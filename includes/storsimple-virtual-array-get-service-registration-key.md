@@ -1,7 +1,7 @@
-#### <a name="to-get-the-storsimple-service-registration-key"></a>Per ottenere la chiave di registrazione del servizio StorSimple.
+#### <a name="to-get-the-storsimple-service-registration-key"></a><span data-ttu-id="d2540-101">Per ottenere la chiave di registrazione del servizio StorSimple.</span><span class="sxs-lookup"><span data-stu-id="d2540-101">To get the StorSimple service registration key</span></span>
 
-1.  Nel pannello **Gestione dispositivi StorSimple** fare clic sul servizio creato. Viene aperto un nuovo pannello a destra.
+1.  <span data-ttu-id="d2540-102">Nel pannello **Gestione dispositivi StorSimple** fare clic sul servizio creato.</span><span class="sxs-lookup"><span data-stu-id="d2540-102">On the **StorSimple Device Manager** blade, click the service that you created.</span></span> <span data-ttu-id="d2540-103">Viene aperto un nuovo pannello a destra.</span><span class="sxs-lookup"><span data-stu-id="d2540-103">This opens up a new blade to the right.</span></span>
 
-2.  Nel pannello aperto fare clic su **Gestisci &gt;** **chiavi**.
+2.  <span data-ttu-id="d2540-104">Nel pannello aperto fare clic su **Gestisci &gt;** **chiavi**.</span><span class="sxs-lookup"><span data-stu-id="d2540-104">In the blade that opens up, click **Manage &gt;** **Keys**.</span></span>
 
-3.  Fare clic sull'icona di copia per copiare la chiave di registrazione del servizio e salvarla per un utilizzo successivo.
+3.  <span data-ttu-id="d2540-105">Fare clic sull'icona di copia per copiare la chiave di registrazione del servizio e salvarla per un utilizzo successivo.</span><span class="sxs-lookup"><span data-stu-id="d2540-105">Click the copy icon to copy the service registration key and save it for later use.</span></span>

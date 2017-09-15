@@ -1,6 +1,6 @@
-## <a name="prerequisites"></a>Prerequisiti 
-Per completare questa esercitazione è necessario un file VHD caricato nell'account di archiviazione associato al laboratorio in cui si crea l'immagine personalizzata. Selezionare uno dei collegamenti seguenti per caricare un file VHD:
+## <a name="prerequisites"></a><span data-ttu-id="4ca88-101">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="4ca88-101">Prerequisites</span></span> 
+<span data-ttu-id="4ca88-102">Per completare questa esercitazione è necessario un file VHD caricato nell'account di archiviazione associato al laboratorio in cui si crea l'immagine personalizzata.</span><span class="sxs-lookup"><span data-stu-id="4ca88-102">To complete this tutorial, you must have a VHD file uploaded to the storage account associated with the lab in which you are creating the custom image.</span></span> <span data-ttu-id="4ca88-103">Selezionare uno dei collegamenti seguenti per caricare un file VHD:</span><span class="sxs-lookup"><span data-stu-id="4ca88-103">Select any of the following links to upload a VHD file:</span></span>
 
-- [Caricare con l'utilità della riga di comando AzCopy](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
-- [Caricare con Microsoft Azure Storage Explorer](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
-- [Caricare con la console di PowerShell](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)
+- [<span data-ttu-id="4ca88-104">Caricare con l'utilità della riga di comando AzCopy</span><span class="sxs-lookup"><span data-stu-id="4ca88-104">Upload using the AzCopy command-line utility</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-azcopy.md)
+- [<span data-ttu-id="4ca88-105">Caricare con Microsoft Azure Storage Explorer</span><span class="sxs-lookup"><span data-stu-id="4ca88-105">Upload using the Microsoft Azure Storage Explorer</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-storage-explorer.md)
+- [<span data-ttu-id="4ca88-106">Caricare con la console di PowerShell</span><span class="sxs-lookup"><span data-stu-id="4ca88-106">Upload using the PowerShell console</span></span>](../articles/devtest-lab/devtest-lab-upload-vhd-using-powershell.md)

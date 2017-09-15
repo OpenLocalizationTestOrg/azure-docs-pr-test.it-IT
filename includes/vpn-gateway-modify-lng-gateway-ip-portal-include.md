@@ -1,32 +1,32 @@
-### <a name="gwipnoconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale senza connessione gateway
+### <span data-ttu-id="d71f8-101"><a name="gwipnoconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale senza connessione gateway</span><span class="sxs-lookup"><span data-stu-id="d71f8-101"><a name="gwipnoconnection"></a> To modify the local network gateway IP address - no gateway connection</span></span>
 
-Usare l'esempio per modificare un gateway di rete locale privo di connessione gateway. Quando si modifica questo valore, è anche possibile modificare contemporaneamente i prefissi degli indirizzi.
+<span data-ttu-id="d71f8-102">Usare l'esempio per modificare un gateway di rete locale privo di connessione gateway.</span><span class="sxs-lookup"><span data-stu-id="d71f8-102">Use the example to modify a local network gateway that does not have a gateway connection.</span></span> <span data-ttu-id="d71f8-103">Quando si modifica questo valore, è anche possibile modificare contemporaneamente i prefissi degli indirizzi.</span><span class="sxs-lookup"><span data-stu-id="d71f8-103">When modifying this value, you can also modify the address prefixes at the same time.</span></span>
 
-1. Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Configurazione**.
-2. Nella casella **Indirizzo IP** modificare l'indirizzo IP.
-3. Fare clic su **Salva** per salvare le impostazioni.
+1. <span data-ttu-id="d71f8-104">Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Configurazione**.</span><span class="sxs-lookup"><span data-stu-id="d71f8-104">On the Local Network Gateway resource, in the **Settings** section, click **Configuration**.</span></span>
+2. <span data-ttu-id="d71f8-105">Nella casella **Indirizzo IP** modificare l'indirizzo IP.</span><span class="sxs-lookup"><span data-stu-id="d71f8-105">In the **IP address** box, modify the IP address.</span></span>
+3. <span data-ttu-id="d71f8-106">Fare clic su **Salva** per salvare le impostazioni.</span><span class="sxs-lookup"><span data-stu-id="d71f8-106">Click **Save** to save the settings.</span></span>
 
-### <a name="gwipwithconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale con una connessione gateway esistente
+### <span data-ttu-id="d71f8-107"><a name="gwipwithconnection"></a> Per modificare l'indirizzo IP del gateway di rete locale con una connessione gateway esistente</span><span class="sxs-lookup"><span data-stu-id="d71f8-107"><a name="gwipwithconnection"></a>To modify the local network gateway gateway IP address - existing gateway connection</span></span>
 
-Per modificare un gateway di rete locale con una connessione, è necessario in primo luogo rimuovere la connessione. Dopo aver rimosso la connessione sarà possibile modificare l'indirizzo IP del gateway e ricreare una nuova connessione. È anche possibile modificare contemporaneamente i prefissi di indirizzo. Questo comporterà periodi di inattività per la connessione VPN. Quando si modifica l'indirizzo IP del gateway, non è necessario eliminare il gateway VPN. Occorre rimuovere solo la connessione.
+<span data-ttu-id="d71f8-108">Per modificare un gateway di rete locale con una connessione, è necessario in primo luogo rimuovere la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-108">To modify a local network gateway that has a connection, you need to first remove the connection.</span></span> <span data-ttu-id="d71f8-109">Dopo aver rimosso la connessione sarà possibile modificare l'indirizzo IP del gateway e ricreare una nuova connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-109">After the connection is removed, you can modify the gateway IP address and recreate a new connection.</span></span> <span data-ttu-id="d71f8-110">È anche possibile modificare contemporaneamente i prefissi di indirizzo.</span><span class="sxs-lookup"><span data-stu-id="d71f8-110">You can also modify the address prefixes at the same time.</span></span> <span data-ttu-id="d71f8-111">Questo comporterà periodi di inattività per la connessione VPN.</span><span class="sxs-lookup"><span data-stu-id="d71f8-111">This results in some downtime for your VPN connection.</span></span> <span data-ttu-id="d71f8-112">Quando si modifica l'indirizzo IP del gateway, non è necessario eliminare il gateway VPN.</span><span class="sxs-lookup"><span data-stu-id="d71f8-112">When modifying the gateway IP address, you don't need to delete the VPN gateway.</span></span> <span data-ttu-id="d71f8-113">Occorre rimuovere solo la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-113">You only need to remove the connection.</span></span>
  
-#### <a name="1-remove-the-connection"></a>1. Rimuovere la connessione.
+#### <a name="1-remove-the-connection"></a><span data-ttu-id="d71f8-114">1. Rimuovere la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-114">1. Remove the connection.</span></span>
 
-1. Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Connessioni**.
-2. Fare clic su **...** nella riga della connessione e quindi fare clic su **Elimina**.
-3. Per salvare le impostazioni, fare clic su **Save** .
+1. <span data-ttu-id="d71f8-115">Nella risorsa Gateway di rete locale, nella sezione **Impostazioni** fare clic su **Connessioni**.</span><span class="sxs-lookup"><span data-stu-id="d71f8-115">On the Local Network Gateway resource, in the **Settings** section, click **Connections**.</span></span>
+2. <span data-ttu-id="d71f8-116">Fare clic su **...** nella riga della connessione e quindi fare clic su **Elimina**.</span><span class="sxs-lookup"><span data-stu-id="d71f8-116">Click the **...** on the line for the connection, then click **Delete**.</span></span>
+3. <span data-ttu-id="d71f8-117">Per salvare le impostazioni, fare clic su **Save** .</span><span class="sxs-lookup"><span data-stu-id="d71f8-117">Click **Save** to save your settings.</span></span>
 
-#### <a name="2-modify-the-ip-address"></a>2. Modificare l'indirizzo IP.
+#### <a name="2-modify-the-ip-address"></a><span data-ttu-id="d71f8-118">2. Modificare l'indirizzo IP.</span><span class="sxs-lookup"><span data-stu-id="d71f8-118">2. Modify the IP address.</span></span>
 
-È anche possibile modificare contemporaneamente i prefissi di indirizzo.
+<span data-ttu-id="d71f8-119">È anche possibile modificare contemporaneamente i prefissi di indirizzo.</span><span class="sxs-lookup"><span data-stu-id="d71f8-119">You can also modify the address prefixes at the same time.</span></span>
 
-1. Nella casella **Indirizzo IP** modificare l'indirizzo IP.
-2. Fare clic su **Salva** per salvare le impostazioni.
+1. <span data-ttu-id="d71f8-120">Nella casella **Indirizzo IP** modificare l'indirizzo IP.</span><span class="sxs-lookup"><span data-stu-id="d71f8-120">In the **IP address** box, modify the IP address.</span></span>
+2. <span data-ttu-id="d71f8-121">Fare clic su **Salva** per salvare le impostazioni.</span><span class="sxs-lookup"><span data-stu-id="d71f8-121">Click **Save** to save the settings.</span></span>
 
-#### <a name="3-recreate-the-connection"></a>3. Ricreare la connessione.
+#### <a name="3-recreate-the-connection"></a><span data-ttu-id="d71f8-122">3. Ricreare la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-122">3. Recreate the connection.</span></span>
 
-1. Passare al gateway di rete virtuale relativo alla rete virtuale (non al gateway di rete locale).
-2. Nella risorsa Gateway di rete virtuale, nella sezione **Impostazioni** fare clic su **Connessioni**.
-3. Fare clic su **+Aggiungi** per aprire il pannello **Aggiungi connessione**.
-4. Ricreare la connessione.
-5. Fare clic su **OK** per creare la connessione.
+1. <span data-ttu-id="d71f8-123">Passare al gateway di rete virtuale relativo alla rete virtuale</span><span class="sxs-lookup"><span data-stu-id="d71f8-123">Navigate to the Virtual Network Gateway for your VNet.</span></span> <span data-ttu-id="d71f8-124">(non al gateway di rete locale).</span><span class="sxs-lookup"><span data-stu-id="d71f8-124">(Not the Local Network Gateway.)</span></span>
+2. <span data-ttu-id="d71f8-125">Nella risorsa Gateway di rete virtuale, nella sezione **Impostazioni** fare clic su **Connessioni**.</span><span class="sxs-lookup"><span data-stu-id="d71f8-125">On the Virtual Network Gateway, in the **Settings** section, click **Connections**.</span></span>
+3. <span data-ttu-id="d71f8-126">Fare clic su **+Aggiungi** per aprire il pannello **Aggiungi connessione**.</span><span class="sxs-lookup"><span data-stu-id="d71f8-126">Click the **+ Add** to open the **Add connection** blade.</span></span>
+4. <span data-ttu-id="d71f8-127">Ricreare la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-127">Recreate your connection.</span></span>
+5. <span data-ttu-id="d71f8-128">Fare clic su **OK** per creare la connessione.</span><span class="sxs-lookup"><span data-stu-id="d71f8-128">Click **OK** to create the connection.</span></span>

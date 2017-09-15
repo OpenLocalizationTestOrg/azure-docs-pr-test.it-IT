@@ -1,3 +1,3 @@
-Per passare al tenant di Azure AD B2C, selezionare la directory B2C nell'angolo superiore destro del portale.
+<span data-ttu-id="87c8e-101">Per passare al tenant di Azure AD B2C, selezionare la directory B2C nell'angolo superiore destro del portale.</span><span class="sxs-lookup"><span data-stu-id="87c8e-101">To switch to your Azure AD B2C tenant, select the B2C directory in the top-right corner of the portal.</span></span>
 
 ![Passare al tenant di Azure AD B2C](./media/active-directory-b2c-switch-b2c-tenant/switch-to-b2c-tenant.png)

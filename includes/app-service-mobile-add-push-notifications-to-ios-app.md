@@ -1,16 +1,16 @@
 
-**Objective-C**:
+<span data-ttu-id="1bfa8-101">**Objective-C**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-101">**Objective-C**:</span></span>
 
-1. In **QSAppDelegate.m** importare iOS SDK e **QSTodoService.h**:
+1. <span data-ttu-id="1bfa8-102">In **QSAppDelegate.m** importare iOS SDK e **QSTodoService.h**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-102">In **QSAppDelegate.m**, import the iOS SDK and **QSTodoService.h**:</span></span>
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. In `didFinishLaunchingWithOptions` in **QSAppDelegate.m** inserire le righe seguenti prima di `return YES;`:
+2. <span data-ttu-id="1bfa8-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m** inserire le righe seguenti prima di `return YES;`:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-103">In `didFinishLaunchingWithOptions` in **QSAppDelegate.m**, insert the following lines right before `return YES;`:</span></span>
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. In **QSAppDelegate.m**aggiungere i metodi del gestore seguenti. L'app è ora aggiornata per il supporto delle notifiche push. 
+3. <span data-ttu-id="1bfa8-104">In **QSAppDelegate.m**aggiungere i metodi del gestore seguenti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-104">In **QSAppDelegate.m**, add the following handler methods.</span></span> <span data-ttu-id="1bfa8-105">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-105">Your app is now updated to support push notifications.</span></span> 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -77,17 +77,17 @@
    
         }
 
-**Swift**:
+<span data-ttu-id="1bfa8-106">**Swift**:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-106">**Swift**:</span></span>
 
-1. Aggiungere il file **ClientManager.swift** con i seguenti contenuti. Sostituire *%AppUrl%* con l'URL del back-end di app per dispositivi mobili di Azure.
+1. <span data-ttu-id="1bfa8-107">Aggiungere il file **ClientManager.swift** con i seguenti contenuti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-107">Add file **ClientManager.swift** with the following contents.</span></span> <span data-ttu-id="1bfa8-108">Sostituire *%AppUrl%* con l'URL del back-end di app per dispositivi mobili di Azure.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-108">Replace *%AppUrl%* with the URL of the Azure Mobile App backend.</span></span>
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. In **ToDoTableViewController.swift** sostituire la riga `let client` che inizializza un `MSClient` con la riga seguente:
+2. <span data-ttu-id="1bfa8-109">In **ToDoTableViewController.swift** sostituire la riga `let client` che inizializza un `MSClient` con la riga seguente:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-109">In **ToDoTableViewController.swift**, replace the `let client` line that initializes an `MSClient` with this line:</span></span>
    
         let client = ClientManager.sharedClient
-3. In **AppDelegate.swift** sostituire il corpo di `func application` come indicato di seguito:
+3. <span data-ttu-id="1bfa8-110">In **AppDelegate.swift** sostituire il corpo di `func application` come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="1bfa8-110">In **AppDelegate.swift**, replace the body of `func application` as follows:</span></span>
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. In **AppDelegate.swift**, aggiungere i metodi del gestore seguenti. L'app è ora aggiornata per il supporto delle notifiche push.
+4. <span data-ttu-id="1bfa8-111">In **AppDelegate.swift**, aggiungere i metodi del gestore seguenti.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-111">In **AppDelegate.swift**, add the following handler methods.</span></span> <span data-ttu-id="1bfa8-112">L'app è ora aggiornata per il supporto delle notifiche push.</span><span class="sxs-lookup"><span data-stu-id="1bfa8-112">Your app is now updated to support push notifications.</span></span>
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {

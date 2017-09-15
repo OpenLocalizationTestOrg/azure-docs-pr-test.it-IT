@@ -20,9 +20,9 @@ ms.translationtype: MT
 ms.contentlocale: it-IT
 ms.lasthandoff: 08/29/2017
 ---
-## <a name="use-the-microsoft-authentication-library-msal-to-get-a-token-for-the-microsoft-graph-api"></a>Usare Microsoft Authentication Library (MSAL) per ottenere un token per l'API Microsoft Graph
+## <a name="use-the-microsoft-authentication-library-msal-to-get-a-token-for-the-microsoft-graph-api"></a><span data-ttu-id="48878-103">Usare Microsoft Authentication Library (MSAL) per ottenere un token per l'API Microsoft Graph</span><span class="sxs-lookup"><span data-stu-id="48878-103">Use the Microsoft Authentication Library (MSAL) to get a token for the Microsoft Graph API</span></span>
 
-Aprire `ViewController.swift` e sostituire il codice con:
+<span data-ttu-id="48878-104">Aprire `ViewController.swift` e sostituire il codice con:</span><span class="sxs-lookup"><span data-stu-id="48878-104">Open `ViewController.swift` and replace the code with:</span></span>
 
 ```swift
 import UIKit
@@ -133,24 +133,24 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
 ```
 
 <!--start-collapse-->
-### <a name="more-information"></a>Altre informazioni
-#### <a name="getting-a-user-token-interactively"></a>Acquisizione di un token utente in modo interattivo
-Se si chiama il metodo `acquireToken`, viene visualizzata una finestra del browser in cui si chiede all'utente di eseguire l'accesso. In genere, le applicazioni chiedono agli utenti di accedere in modo interattivo la prima volta che devono accedere a una risorsa protetta o quando un'operazione invisibile di acquisizione di un token ha esito negativo (ad esempio, perché la password dell'utente è scaduta).
+### <a name="more-information"></a><span data-ttu-id="48878-105">Altre informazioni</span><span class="sxs-lookup"><span data-stu-id="48878-105">More Information</span></span>
+#### <a name="getting-a-user-token-interactively"></a><span data-ttu-id="48878-106">Acquisizione di un token utente in modo interattivo</span><span class="sxs-lookup"><span data-stu-id="48878-106">Getting a user token interactively</span></span>
+<span data-ttu-id="48878-107">Se si chiama il metodo `acquireToken`, viene visualizzata una finestra del browser in cui si chiede all'utente di eseguire l'accesso.</span><span class="sxs-lookup"><span data-stu-id="48878-107">Calling the `acquireToken` method results in a browser window prompting the user to sign in.</span></span> <span data-ttu-id="48878-108">In genere, le applicazioni chiedono agli utenti di accedere in modo interattivo la prima volta che devono accedere a una risorsa protetta o quando un'operazione invisibile di acquisizione di un token ha esito negativo (ad esempio, perché la password dell'utente è scaduta).</span><span class="sxs-lookup"><span data-stu-id="48878-108">Applications usually require a user to sign in interactively the first time they need to access a protected resource, or when a silent operation to acquire a token fails (e.g. the user’s password expired).</span></span>
 
-#### <a name="getting-a-user-token-silently"></a>Acquisizione di un token utente in modo invisibile
-Il metodo `acquireTokenSilent` gestisce le acquisizioni e i rinnovi dei token senza alcuna interazione da parte dell'utente. Dopo aver eseguito `acquireToken` la prima volta, per le chiamate successive il metodo comunemente usato per ottenere i token usati per accedere a risorse protette è `acquireTokenSilent`: le chiamate per richiedere o rinnovare token vengono eseguite in modo invisibile per l'utente.
+#### <a name="getting-a-user-token-silently"></a><span data-ttu-id="48878-109">Acquisizione di un token utente in modo invisibile</span><span class="sxs-lookup"><span data-stu-id="48878-109">Getting a user token silently</span></span>
+<span data-ttu-id="48878-110">Il metodo `acquireTokenSilent` gestisce le acquisizioni e i rinnovi dei token senza alcuna interazione da parte dell'utente.</span><span class="sxs-lookup"><span data-stu-id="48878-110">The `acquireTokenSilent` method handles token acquisitions and renewal without any user interaction.</span></span> <span data-ttu-id="48878-111">Dopo aver eseguito `acquireToken` la prima volta, per le chiamate successive il metodo comunemente usato per ottenere i token usati per accedere a risorse protette è `acquireTokenSilent`: le chiamate per richiedere o rinnovare token vengono eseguite in modo invisibile per l'utente.</span><span class="sxs-lookup"><span data-stu-id="48878-111">After `acquireToken` is executed for the first time, `acquireTokenSilent` is the method commonly used to obtain tokens used to access protected resources for subsequent calls - as calls to request or renew tokens are made silently.</span></span>
 
-Alla fine, tuttavia, `acquireTokenSilent` avrà esito negativo perché, ad esempio, l'utente si sarà disconnesso o avrà modificato la password in un altro dispositivo. Se MSAL rileva che il problema può essere risolto richiedendo un'azione interattiva, viene attivata un'eccezione `MSALErrorCode.interactionRequired`. L'applicazione può gestire questa eccezione in due modi:
+<span data-ttu-id="48878-112">Alla fine, tuttavia, `acquireTokenSilent` avrà esito negativo perché, ad esempio, l'utente si sarà disconnesso o avrà modificato la password in un altro dispositivo.</span><span class="sxs-lookup"><span data-stu-id="48878-112">Eventually, `acquireTokenSilent` will fail – e.g. the user has signed out, or has changed their password on another device.</span></span> <span data-ttu-id="48878-113">Se MSAL rileva che il problema può essere risolto richiedendo un'azione interattiva, viene attivata un'eccezione `MSALErrorCode.interactionRequired`.</span><span class="sxs-lookup"><span data-stu-id="48878-113">When MSAL detects that the issue can be resolved by requiring an interactive action, it fires an `MSALErrorCode.interactionRequired` exception.</span></span> <span data-ttu-id="48878-114">L'applicazione può gestire questa eccezione in due modi:</span><span class="sxs-lookup"><span data-stu-id="48878-114">Your application can handle this exception in two ways:</span></span>
 
-1.  Eseguire subito una chiamata a `acquireToken`, in modo da chiedere all'utente di eseguire l'accesso. Questo criterio viene usato in genere nelle applicazioni online in cui non sono disponibili contenuti offline per l'utente. L'applicazione di esempio generata tramite questa installazione guidata usa questo criterio: è possibile vederlo in azione la prima volta che viene eseguita l'applicazione. Poiché nessun utente ha mai usato l'applicazione, `applicationContext.users().first` conterrà un valore null e verrà generata un'eccezione ` MSALErrorCode.interactionRequired `. Il codice dell'esempio gestirà quindi l'eccezione chiamando `acquireToken`, ovvero chiedendo all'utente di eseguire l'eccesso.
+1.  <span data-ttu-id="48878-115">Eseguire subito una chiamata a `acquireToken`, in modo da chiedere all'utente di eseguire l'accesso.</span><span class="sxs-lookup"><span data-stu-id="48878-115">Make a call against `acquireToken` immediately, which results in prompting the user to sign in.</span></span> <span data-ttu-id="48878-116">Questo criterio viene usato in genere nelle applicazioni online in cui non sono disponibili contenuti offline per l'utente.</span><span class="sxs-lookup"><span data-stu-id="48878-116">This pattern is usually used in online applications where there is no offline content in the application available for the user.</span></span> <span data-ttu-id="48878-117">L'applicazione di esempio generata tramite questa installazione guidata usa questo criterio: è possibile vederlo in azione la prima volta che viene eseguita l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="48878-117">The sample application generated by this guided setup uses this pattern: you can see it in action the first time you execute the application.</span></span> <span data-ttu-id="48878-118">Poiché nessun utente ha mai usato l'applicazione, `applicationContext.users().first` conterrà un valore null e verrà generata un'eccezione ` MSALErrorCode.interactionRequired `.</span><span class="sxs-lookup"><span data-stu-id="48878-118">Because no user ever used the application, `applicationContext.users().first` will contain a null value, and an ` MSALErrorCode.interactionRequired ` exception will be thrown.</span></span> <span data-ttu-id="48878-119">Il codice dell'esempio gestirà quindi l'eccezione chiamando `acquireToken`, ovvero chiedendo all'utente di eseguire l'eccesso.</span><span class="sxs-lookup"><span data-stu-id="48878-119">The code in the sample then handles the exception by calling `acquireToken` resulting in prompting the user to sign in.</span></span>
 
-2.  Le applicazioni possono anche generare un'indicazione visiva per informare l'utente che è necessario un accesso interattivo, in modo da consentire di scegliere il momento più opportuno per accedere. In alternativa, l'applicazione riproverà a eseguire `acquireTokenSilent` in un secondo momento. Questo metodo viene usato in genere quando l'utente può accedere ad altre funzionalità dell'applicazione senza essere interrotto, ad esempio quando nell'applicazione sono disponibili contenuti offline. In questo caso, l'utente può decidere quando eseguire l'accesso per accedere alla risorsa protetta o per aggiornare informazioni obsolete. In alternativa, l'applicazione può decidere di riprovare a eseguire `acquireTokenSilent` se la rete viene ripristinata dopo essere stata temporaneamente non disponibile.
+2.  <span data-ttu-id="48878-120">Le applicazioni possono anche generare un'indicazione visiva per informare l'utente che è necessario un accesso interattivo, in modo da consentire di scegliere il momento più opportuno per accedere. In alternativa, l'applicazione riproverà a eseguire `acquireTokenSilent` in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="48878-120">Applications can also make a visual indication to the user that an interactive sign-in is required, so the user can select the right time to sign in, or the application can retry `acquireTokenSilent` at a later time.</span></span> <span data-ttu-id="48878-121">Questo metodo viene usato in genere quando l'utente può accedere ad altre funzionalità dell'applicazione senza essere interrotto, ad esempio quando nell'applicazione sono disponibili contenuti offline.</span><span class="sxs-lookup"><span data-stu-id="48878-121">This is usually used when the user can use other functionality of the application without being disrupted - for example, there is offline content available in the application.</span></span> <span data-ttu-id="48878-122">In questo caso, l'utente può decidere quando eseguire l'accesso per accedere alla risorsa protetta o per aggiornare informazioni obsolete. In alternativa, l'applicazione può decidere di riprovare a eseguire `acquireTokenSilent` se la rete viene ripristinata dopo essere stata temporaneamente non disponibile.</span><span class="sxs-lookup"><span data-stu-id="48878-122">In this case, the user can decide when they want to sign in to access the protected resource, or to refresh the outdated information, or your application can decide to retry `acquireTokenSilent` when network is restored after being unavailable temporarily.</span></span>
 
 <!--end-collapse-->
 
-## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a>Chiamare l'API Microsoft Graph usando il token appena ottenuto
+## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a><span data-ttu-id="48878-123">Chiamare l'API Microsoft Graph usando il token appena ottenuto</span><span class="sxs-lookup"><span data-stu-id="48878-123">Call the Microsoft Graph API using the token you just obtained</span></span>
 
-Aggiungere il nuovo metodo seguente a `ViewController.swift`. Questo metodo consente di eseguire una richiesta `GET` all'API Graph di Microsoft tramite un'*intestazione dell'autorizzazione HTTP*:
+<span data-ttu-id="48878-124">Aggiungere il nuovo metodo seguente a `ViewController.swift`.</span><span class="sxs-lookup"><span data-stu-id="48878-124">Add the new method below to `ViewController.swift`.</span></span> <span data-ttu-id="48878-125">Questo metodo consente di eseguire una richiesta `GET` all'API Graph di Microsoft tramite un'*intestazione dell'autorizzazione HTTP*:</span><span class="sxs-lookup"><span data-stu-id="48878-125">This method is used to make a `GET` request against the Microsoft Graph API using an *HTTP Authorization header*:</span></span>
 
 ```swift
 func getContentWithToken() {
@@ -176,14 +176,14 @@ func getContentWithToken() {
 ```
 
 <!--start-collapse-->
-### <a name="making-a-rest-call-against-a-protected-api"></a>Esecuzione di una chiamata REST a un'API protetta
+### <a name="making-a-rest-call-against-a-protected-api"></a><span data-ttu-id="48878-126">Esecuzione di una chiamata REST a un'API protetta</span><span class="sxs-lookup"><span data-stu-id="48878-126">Making a REST call against a protected API</span></span>
 
-In questa applicazione di esempio, viene usato il metodo `getContentWithToken()` per eseguire una richiesta HTTP `GET` a una risorsa protetta che richiede un token e restituisce il contenuto al chiamante. Questo metodo aggiunge il token acquisito nell'*intestazione di autorizzazione HTTP*. Per questo esempio, la risorsa è l'endpoint *me* dell'API Microsoft Graph, che consente di visualizzare informazioni sul profilo dell'utente.
+<span data-ttu-id="48878-127">In questa applicazione di esempio, viene usato il metodo `getContentWithToken()` per eseguire una richiesta HTTP `GET` a una risorsa protetta che richiede un token e restituisce il contenuto al chiamante.</span><span class="sxs-lookup"><span data-stu-id="48878-127">In this sample application, the `getContentWithToken()` method is used to make an HTTP `GET` request against a protected resource that requires a token and then return the content to the caller.</span></span> <span data-ttu-id="48878-128">Questo metodo aggiunge il token acquisito nell'*intestazione di autorizzazione HTTP*.</span><span class="sxs-lookup"><span data-stu-id="48878-128">This method adds the acquired token in the *HTTP Authorization header*.</span></span> <span data-ttu-id="48878-129">Per questo esempio, la risorsa è l'endpoint *me* dell'API Microsoft Graph, che consente di visualizzare informazioni sul profilo dell'utente.</span><span class="sxs-lookup"><span data-stu-id="48878-129">For this sample, the resource is the Microsoft Graph API *me* endpoint – which displays the user's profile information.</span></span>
 <!--end-collapse-->
 
-## <a name="set-up-sign-out"></a>Configurare la disconnessione
+## <a name="set-up-sign-out"></a><span data-ttu-id="48878-130">Configurare la disconnessione</span><span class="sxs-lookup"><span data-stu-id="48878-130">Set up sign-out</span></span>
 
-Aggiungere il metodo seguente al file `ViewController.swift` per disconnettere l'utente:
+<span data-ttu-id="48878-131">Aggiungere il metodo seguente al file `ViewController.swift` per disconnettere l'utente:</span><span class="sxs-lookup"><span data-stu-id="48878-131">Add the following method to `ViewController.swift` to sign out the user:</span></span>
 
 ```swift 
 @IBAction func signoutButton(_ sender: UIButton) {
@@ -202,18 +202,18 @@ Aggiungere il metodo seguente al file `ViewController.swift` per disconnettere l
 }
 ```
 <!--start-collapse-->
-### <a name="more-info-on-sign-out"></a>Altre informazioni sulla disconnessione
+### <a name="more-info-on-sign-out"></a><span data-ttu-id="48878-132">Altre informazioni sulla disconnessione</span><span class="sxs-lookup"><span data-stu-id="48878-132">More info on sign-out</span></span>
 
-Il metodo `signoutButton` sopra riportato rimuove l'utente dalla cache utente di MSAL: in questo modo, MSAL dimenticherà l'utente corrente e un'eventuale richiesta futura di acquisizione di un token riuscirà solo se eseguita in modo interattivo.
+<span data-ttu-id="48878-133">Il metodo `signoutButton` sopra riportato rimuove l'utente dalla cache utente di MSAL: in questo modo, MSAL dimenticherà l'utente corrente e un'eventuale richiesta futura di acquisizione di un token riuscirà solo se eseguita in modo interattivo.</span><span class="sxs-lookup"><span data-stu-id="48878-133">The `signoutButton` method removes the user from the MSAL user cache – this will effectively tell MSAL to forget the current user so a future request to acquire a token will only succeed if it is made to be interactive.</span></span>
 
-Anche se l'applicazione in questo esempio supporta un unico utente, MSAL supporta anche scenari in cui è possibile eseguire contemporaneamente l'accesso di più account, come nel caso di un'applicazione di posta elettronica in cui un utente dispone di più account.
+<span data-ttu-id="48878-134">Anche se l'applicazione in questo esempio supporta un unico utente, MSAL supporta anche scenari in cui è possibile eseguire contemporaneamente l'accesso di più account, come nel caso di un'applicazione di posta elettronica in cui un utente dispone di più account.</span><span class="sxs-lookup"><span data-stu-id="48878-134">Although the application in this sample supports a single user, MSAL supports scenarios where multiple accounts can be signed in at the same time – an example is an email application where a user has multiple accounts.</span></span>
 <!--end-collapse-->
 
-## <a name="register-the-callback"></a>Registrare il callback
+## <a name="register-the-callback"></a><span data-ttu-id="48878-135">Registrare il callback</span><span class="sxs-lookup"><span data-stu-id="48878-135">Register the callback</span></span>
 
-Dopo l'autenticazione dell'utente, il browser reindirizza di nuovo l'utente all'applicazione. Eseguire la procedura descritta di seguito per registrare questo callback:
+<span data-ttu-id="48878-136">Dopo l'autenticazione dell'utente, il browser reindirizza di nuovo l'utente all'applicazione.</span><span class="sxs-lookup"><span data-stu-id="48878-136">Once the user authenticates, the browser redirects the user back to the application.</span></span> <span data-ttu-id="48878-137">Eseguire la procedura descritta di seguito per registrare questo callback:</span><span class="sxs-lookup"><span data-stu-id="48878-137">Follow the steps below to register this callback:</span></span>
 
-1.  Aprire `AppDelegate.swift` e importare MSAL:
+1.  <span data-ttu-id="48878-138">Aprire `AppDelegate.swift` e importare MSAL:</span><span class="sxs-lookup"><span data-stu-id="48878-138">Open `AppDelegate.swift` and import MSAL:</span></span>
 
 ```swift
 import MSAL
@@ -221,7 +221,7 @@ import MSAL
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-Aggiungere il metodo seguente alla classe <code>AppDelegate</code> per gestire i callback:
+<span data-ttu-id="48878-139">Aggiungere il metodo seguente alla classe <code>AppDelegate</code> per gestire i callback:</span><span class="sxs-lookup"><span data-stu-id="48878-139">Add the following method to your <code>AppDelegate</code> class to handle callbacks:</span></span>
 </li>
 </ol>
 

@@ -1,8 +1,8 @@
-I limiti seguenti si applicano quando si usano Gestione risorse di Azure e i gruppi di risorse di Azure.
+<span data-ttu-id="99bd3-101">I limiti seguenti si applicano quando si usano Gestione risorse di Azure e i gruppi di risorse di Azure.</span><span class="sxs-lookup"><span data-stu-id="99bd3-101">The following limits apply when using the Azure Resource Manager and Azure Resource Groups only.</span></span>
 
-| Risorsa | Limite predefinito |
+| <span data-ttu-id="99bd3-102">Risorsa</span><span class="sxs-lookup"><span data-stu-id="99bd3-102">Resource</span></span> | <span data-ttu-id="99bd3-103">Limite predefinito</span><span class="sxs-lookup"><span data-stu-id="99bd3-103">Default Limit</span></span> |
 | --- | --- |
-| Operazioni di gestione account di archiviazione (lettura) |800 per 5 minuti |
-| Operazioni di gestione account di archiviazione (scrittura) |200 all'ora |
-| Operazioni di gestione account di archiviazione (elenco) |100 per 5 minuti |
+| <span data-ttu-id="99bd3-104">Operazioni di gestione account di archiviazione (lettura)</span><span class="sxs-lookup"><span data-stu-id="99bd3-104">Storage account management operations (read)</span></span> |<span data-ttu-id="99bd3-105">800 per 5 minuti</span><span class="sxs-lookup"><span data-stu-id="99bd3-105">800 per 5 minutes</span></span> |
+| <span data-ttu-id="99bd3-106">Operazioni di gestione account di archiviazione (scrittura)</span><span class="sxs-lookup"><span data-stu-id="99bd3-106">Storage account management operations (write)</span></span> |<span data-ttu-id="99bd3-107">200 all'ora</span><span class="sxs-lookup"><span data-stu-id="99bd3-107">200 per hour</span></span> |
+| <span data-ttu-id="99bd3-108">Operazioni di gestione account di archiviazione (elenco)</span><span class="sxs-lookup"><span data-stu-id="99bd3-108">Storage account management operations (list)</span></span> |<span data-ttu-id="99bd3-109">100 per 5 minuti</span><span class="sxs-lookup"><span data-stu-id="99bd3-109">100 per 5 minutes</span></span> |
 

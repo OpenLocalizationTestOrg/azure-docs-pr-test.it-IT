@@ -1,7 +1,7 @@
 
-1. Nel [Portale di Azure](https://portal.azure.com/) fare clic su **Browse All** (Esplora tutto)  > **Servizi app** e quindi scegliere il back-end dell'app per dispositivi mobili. In **Impostazioni** fare clic su **App Service Push** (Push servizio app), quindi fare clic sul nome dell'hub di notifica.
-2. Andare in **Windows (WNS)**, immettere la **chiave di sicurezza** (chiave privata client) e il **SID di pacchetto** ottenuti dal sito di servizi Live, quindi fare clic su **Salva**.
+1. <span data-ttu-id="2aa00-101">Nel [Portale di Azure](https://portal.azure.com/) fare clic su **Browse All** (Esplora tutto)  > **Servizi app** e quindi scegliere il back-end dell'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="2aa00-101">In the [Azure portal](https://portal.azure.com/), click **Browse All** > **App Services**, and click your Mobile Apps back end.</span></span> <span data-ttu-id="2aa00-102">In **Impostazioni** fare clic su **App Service Push** (Push servizio app), quindi fare clic sul nome dell'hub di notifica.</span><span class="sxs-lookup"><span data-stu-id="2aa00-102">Under **Settings**, click **App Service Push**, and then click your notification hub name.</span></span>
+2. <span data-ttu-id="2aa00-103">Andare in **Windows (WNS)**, immettere la **chiave di sicurezza** (chiave privata client) e il **SID di pacchetto** ottenuti dal sito di servizi Live, quindi fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="2aa00-103">Go to **Windows (WNS)**, enter the **Security key** (client secret) and **Package SID** that you obtained from the Live Services site, and then click **Save**.</span></span>
 
     ![Impostare la chiave WNS nel portale](./media/app-service-mobile-configure-wns/mobile-push-wns-credentials.png)
 
-Il back-end ora è configurato per poter inviare le notifiche push tramite WSN.
+<span data-ttu-id="2aa00-105">Il back-end ora è configurato per poter inviare le notifiche push tramite WSN.</span><span class="sxs-lookup"><span data-stu-id="2aa00-105">Your back end is now configured to use WNS to send push notifications.</span></span>

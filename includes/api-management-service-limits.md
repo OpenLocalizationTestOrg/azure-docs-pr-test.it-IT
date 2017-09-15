@@ -1,10 +1,10 @@
-| Risorsa | Limite |
+| <span data-ttu-id="2d35d-101">Risorsa</span><span class="sxs-lookup"><span data-stu-id="2d35d-101">Resource</span></span> | <span data-ttu-id="2d35d-102">Limite</span><span class="sxs-lookup"><span data-stu-id="2d35d-102">Limit</span></span> |
 | --- | --- |
-| Chiamate API (per unità di scala) |32 milioni al giorno<sup>1</sup> |
-| Trasferimento dei dati (per unità di scala) |161 GB al giorno<sup>1</sup> |
-| Cache |5 GB<sup>1</sup> |
-| Unità di scala |Illimitate<sup>1</sup> |
-| Integrazione di Azure Active Directory |Account utente illimitati<sup>1</sup> |
+| <span data-ttu-id="2d35d-103">Chiamate API (per unità di scala)</span><span class="sxs-lookup"><span data-stu-id="2d35d-103">API Calls (per unit of scale)</span></span> |<span data-ttu-id="2d35d-104">32 milioni al giorno<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="2d35d-104">32 million per day<sup>1</sup></span></span> |
+| <span data-ttu-id="2d35d-105">Trasferimento dei dati (per unità di scala)</span><span class="sxs-lookup"><span data-stu-id="2d35d-105">Data transfer (per unit of scale)</span></span> |<span data-ttu-id="2d35d-106">161 GB al giorno<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="2d35d-106">161 GB per day<sup>1</sup></span></span> |
+| <span data-ttu-id="2d35d-107">Cache</span><span class="sxs-lookup"><span data-stu-id="2d35d-107">Cache</span></span> |<span data-ttu-id="2d35d-108">5 GB<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="2d35d-108">5 GB<sup>1</sup></span></span> |
+| <span data-ttu-id="2d35d-109">Unità di scala</span><span class="sxs-lookup"><span data-stu-id="2d35d-109">Units of scale</span></span> |<span data-ttu-id="2d35d-110">Illimitate<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="2d35d-110">Unlimited<sup>1</sup></span></span> |
+| <span data-ttu-id="2d35d-111">Integrazione di Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="2d35d-111">Azure Active Directory Integration</span></span> |<span data-ttu-id="2d35d-112">Account utente illimitati<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="2d35d-112">Unlimited User Accounts<sup>1</sup></span></span> |
 
-<sup>1</sup>I limiti di Gestione API sono diversi per ogni livello di prezzo. Per visualizzare i livelli di prezzo con le opzioni di scalabilità e i limiti associati, vedere [Prezzi di Gestione API](https://azure.microsoft.com/pricing/details/api-management/).
+<span data-ttu-id="2d35d-113"><sup>1</sup>I limiti di Gestione API sono diversi per ogni livello di prezzo.</span><span class="sxs-lookup"><span data-stu-id="2d35d-113"><sup>1</sup>API Management limits are different for each pricing tier.</span></span> <span data-ttu-id="2d35d-114">Per visualizzare i livelli di prezzo con le opzioni di scalabilità e i limiti associati, vedere [Prezzi di Gestione API](https://azure.microsoft.com/pricing/details/api-management/).</span><span class="sxs-lookup"><span data-stu-id="2d35d-114">To see the pricing tiers and their associated limits and scaling options, see [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/).</span></span>
 

@@ -1,7 +1,7 @@
 > [!div class="op_single_selector"]
-> * [portale di Azure](../articles/virtual-network/virtual-networks-static-private-ip-arm-pportal.md)
-> * [PowerShell](../articles/virtual-network/virtual-networks-static-private-ip-arm-ps.md)
-> * [Interfaccia della riga di comando di Azure](../articles/virtual-network/virtual-networks-static-private-ip-arm-cli.md)
-> * [Portale di Azure (classico)](../articles/virtual-network/virtual-networks-static-private-ip-classic-pportal.md)
-> * [PowerShell (Classic)](../articles/virtual-network/virtual-networks-static-private-ip-classic-ps.md) (PowerShell (classico))
-> * [Interfaccia della riga di comando di Azure (versione classica)](../articles/virtual-network/virtual-networks-static-private-ip-classic-cli.md)
+> * [<span data-ttu-id="951cf-101">portale di Azure</span><span class="sxs-lookup"><span data-stu-id="951cf-101">Azure portal</span></span>](../articles/virtual-network/virtual-networks-static-private-ip-arm-pportal.md)
+> * [<span data-ttu-id="951cf-102">PowerShell</span><span class="sxs-lookup"><span data-stu-id="951cf-102">PowerShell</span></span>](../articles/virtual-network/virtual-networks-static-private-ip-arm-ps.md)
+> * [<span data-ttu-id="951cf-103">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="951cf-103">Azure CLI</span></span>](../articles/virtual-network/virtual-networks-static-private-ip-arm-cli.md)
+> * [<span data-ttu-id="951cf-104">Portale di Azure (classico)</span><span class="sxs-lookup"><span data-stu-id="951cf-104">Azure portal (Classic)</span></span>](../articles/virtual-network/virtual-networks-static-private-ip-classic-pportal.md)
+> * <span data-ttu-id="951cf-105">[PowerShell (Classic)](../articles/virtual-network/virtual-networks-static-private-ip-classic-ps.md) (PowerShell (classico))</span><span class="sxs-lookup"><span data-stu-id="951cf-105">[PowerShell (Classic)](../articles/virtual-network/virtual-networks-static-private-ip-classic-ps.md)</span></span>
+> * [<span data-ttu-id="951cf-106">Interfaccia della riga di comando di Azure (versione classica)</span><span class="sxs-lookup"><span data-stu-id="951cf-106">Azure CLI (Classic)</span></span>](../articles/virtual-network/virtual-networks-static-private-ip-classic-cli.md)

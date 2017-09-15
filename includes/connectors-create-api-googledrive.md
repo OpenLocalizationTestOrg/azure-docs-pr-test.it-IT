@@ -1,20 +1,20 @@
-### <a name="prerequisites"></a>Prerequisiti
-* Un account [GoogleDrive](https://www.google.com/drive/)  
+### <a name="prerequisites"></a><span data-ttu-id="8a82e-101">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="8a82e-101">Prerequisites</span></span>
+* <span data-ttu-id="8a82e-102">Un account [GoogleDrive](https://www.google.com/drive/)</span><span class="sxs-lookup"><span data-stu-id="8a82e-102">A [GoogleDrive](https://www.google.com/drive/) account</span></span>  
 
-Prima di poter usare l'account GoogleDrive in un'app per la logica, è necessario autorizzare l'app per la logica a connettersi all'account GoogleDrive. Fortunatamente, è possibile eseguire questa operazione in modo facile dalla propria app per la logica nel Portale di Azure.  
+<span data-ttu-id="8a82e-103">Prima di poter usare l'account GoogleDrive in un'app per la logica, è necessario autorizzare l'app per la logica a connettersi all'account GoogleDrive. Fortunatamente, è possibile eseguire questa operazione in modo facile dalla propria app per la logica nel Portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8a82e-103">Before you can use your GoogleDrive account in a Logic app, you must authorize the Logic app to connect to your GoogleDrive account.Fortunately, you can do this easily from within your Logic app on the Azure Portal.</span></span>  
 
-Ecco i passaggi per autorizzare l'app per la logica a connettersi all'account GoogleDrive:  
+<span data-ttu-id="8a82e-104">Ecco i passaggi per autorizzare l'app per la logica a connettersi all'account GoogleDrive:</span><span class="sxs-lookup"><span data-stu-id="8a82e-104">Here are the steps to authorize your Logic app to connect to your GoogleDrive account:</span></span>  
 
-1. Per creare una connessione a GoogleDrive, nella finestra di progettazione dell'app per la logica, selezionare **Mostra API gestite da Microsoft** nell'elenco a discesa e quindi immettere *GoogleDrive* nella casella di ricerca. Selezionare il trigger o l'azione che si desidera usare:   
-   ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-1.png)  
-2. Se non sono mai state create connessioni a GoogleDrive prima d'ora, verrà chiesto di fornire le credenziali di GoogleDrive. Queste credenziali verranno usate per autorizzare l'app per la logica a connettersi e ad accedere ai dati dell'account GoogleDrive:  
+1. <span data-ttu-id="8a82e-105">Per creare una connessione a GoogleDrive, nella finestra di progettazione dell'app per la logica, selezionare **Mostra API gestite da Microsoft** nell'elenco a discesa e quindi immettere *GoogleDrive* nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="8a82e-105">To create a connection to GoogleDrive, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *GoogleDrive* in the search box.</span></span> <span data-ttu-id="8a82e-106">Selezionare il trigger o l'azione che si desidera usare: </span><span class="sxs-lookup"><span data-stu-id="8a82e-106">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="8a82e-107">![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-1.png)</span><span class="sxs-lookup"><span data-stu-id="8a82e-107">![GoogleDrive connection creation step](./media/connectors-create-api-googledrive/googledrive-1.png)</span></span>  
+2. <span data-ttu-id="8a82e-108">Se non sono mai state create connessioni a GoogleDrive prima d'ora, verrà chiesto di fornire le credenziali di GoogleDrive.</span><span class="sxs-lookup"><span data-stu-id="8a82e-108">If you haven't created any connections to GoogleDrive before, you'll get prompted to provide your GoogleDrive credentials.</span></span> <span data-ttu-id="8a82e-109">Queste credenziali verranno usate per autorizzare l'app per la logica a connettersi e ad accedere ai dati dell'account GoogleDrive:</span><span class="sxs-lookup"><span data-stu-id="8a82e-109">These credentials will be used to authorize your Logic app to connect to, and access your GoogleDrive account's data:</span></span>  
    ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-2.png)  
-3. Specificare l'indirizzo di posta elettronica GoogleDrive:  
+3. <span data-ttu-id="8a82e-111">Specificare l'indirizzo di posta elettronica GoogleDrive:</span><span class="sxs-lookup"><span data-stu-id="8a82e-111">Provide your GoogleDrive email address:</span></span>  
    ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-3.png)  
-4. Specificare il nome utente e la password di GoogleDrive per autorizzare l'app per la logica:  
+4. <span data-ttu-id="8a82e-113">Specificare il nome utente e la password di GoogleDrive per autorizzare l'app per la logica:</span><span class="sxs-lookup"><span data-stu-id="8a82e-113">Provide your GoogleDrive password to authorize your Logic app:</span></span>  
    ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-4.png)
-5. Consentire la connessione a GoogleDrive  
+5. <span data-ttu-id="8a82e-115">Consentire la connessione a GoogleDrive</span><span class="sxs-lookup"><span data-stu-id="8a82e-115">Allow the connection to GoogleDrive</span></span>  
    ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-5.png)  
-6. Si noti che la connessione è stata creata ed è ora possibile procedere con gli altri passaggi nell'app per la logica:   
+6. <span data-ttu-id="8a82e-117">Si noti che la connessione è stata creata ed è ora possibile procedere con gli altri passaggi nell'app per la logica: </span><span class="sxs-lookup"><span data-stu-id="8a82e-117">Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:</span></span>  
    ![Passaggio di creazione della connessione a GoogleDrive](./media/connectors-create-api-googledrive/googledrive-6.png)  
 

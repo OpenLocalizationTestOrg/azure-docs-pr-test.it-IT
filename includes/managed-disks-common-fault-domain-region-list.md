@@ -1,34 +1,34 @@
-### <a name="number-of-fault-domains-per-region"></a>Numero di domini di errore per area
+### <a name="number-of-fault-domains-per-region"></a><span data-ttu-id="6ba6d-101">Numero di domini di errore per area</span><span class="sxs-lookup"><span data-stu-id="6ba6d-101">Number of Fault Domains per region</span></span>
 
-| Region              | Numero massimo di domini di errore  |
+| <span data-ttu-id="6ba6d-102">Region</span><span class="sxs-lookup"><span data-stu-id="6ba6d-102">Region</span></span>              | <span data-ttu-id="6ba6d-103">Numero massimo di domini di errore</span><span class="sxs-lookup"><span data-stu-id="6ba6d-103">Max # of Fault Domains</span></span>  |
 |---------------------|-------------------------|
-| Stati Uniti orientali             | 3                       |
-| Stati Uniti orientali 2           | 3                       |
-| Stati Uniti occidentali             | 3                       |
-| Stati Uniti occidentali 2           | 2                       |
-| Stati Uniti centrali          | 3                       |
-| Stati Uniti centro-settentrionali    | 3                       |
-| Stati Uniti centro-meridionali    | 3                       |
-| Stati Uniti centro-occidentali     | 2                       |
-| Canada centrale      | 2                       |
-| Canada orientale         | 2                       |
+| <span data-ttu-id="6ba6d-104">Stati Uniti orientali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-104">East US</span></span>             | <span data-ttu-id="6ba6d-105">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-105">3</span></span>                       |
+| <span data-ttu-id="6ba6d-106">Stati Uniti orientali 2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-106">East US 2</span></span>           | <span data-ttu-id="6ba6d-107">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-107">3</span></span>                       |
+| <span data-ttu-id="6ba6d-108">Stati Uniti occidentali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-108">West US</span></span>             | <span data-ttu-id="6ba6d-109">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-109">3</span></span>                       |
+| <span data-ttu-id="6ba6d-110">Stati Uniti occidentali 2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-110">West US 2</span></span>           | <span data-ttu-id="6ba6d-111">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-111">2</span></span>                       |
+| <span data-ttu-id="6ba6d-112">Stati Uniti centrali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-112">Central US</span></span>          | <span data-ttu-id="6ba6d-113">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-113">3</span></span>                       |
+| <span data-ttu-id="6ba6d-114">Stati Uniti centro-settentrionali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-114">North Central US</span></span>    | <span data-ttu-id="6ba6d-115">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-115">3</span></span>                       |
+| <span data-ttu-id="6ba6d-116">Stati Uniti centro-meridionali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-116">South Central US</span></span>    | <span data-ttu-id="6ba6d-117">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-117">3</span></span>                       |
+| <span data-ttu-id="6ba6d-118">Stati Uniti centro-occidentali</span><span class="sxs-lookup"><span data-stu-id="6ba6d-118">West Central US</span></span>     | <span data-ttu-id="6ba6d-119">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-119">2</span></span>                       |
+| <span data-ttu-id="6ba6d-120">Canada centrale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-120">Canada Central</span></span>      | <span data-ttu-id="6ba6d-121">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-121">2</span></span>                       |
+| <span data-ttu-id="6ba6d-122">Canada orientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-122">Canada East</span></span>         | <span data-ttu-id="6ba6d-123">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-123">2</span></span>                       |
 |                     |                         |
-| Europa settentrionale        | 3                       |
-| Europa occidentale         | 3                       |
-| Regno Unito meridionale            | 2                       |
-| Regno Unito occidentale             | 2                       |
+| <span data-ttu-id="6ba6d-124">Europa settentrionale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-124">North Europe</span></span>        | <span data-ttu-id="6ba6d-125">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-125">3</span></span>                       |
+| <span data-ttu-id="6ba6d-126">Europa occidentale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-126">West Europe</span></span>         | <span data-ttu-id="6ba6d-127">3</span><span class="sxs-lookup"><span data-stu-id="6ba6d-127">3</span></span>                       |
+| <span data-ttu-id="6ba6d-128">Regno Unito meridionale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-128">UK South</span></span>            | <span data-ttu-id="6ba6d-129">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-129">2</span></span>                       |
+| <span data-ttu-id="6ba6d-130">Regno Unito occidentale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-130">UK West</span></span>             | <span data-ttu-id="6ba6d-131">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-131">2</span></span>                       |
 |                     |                         |
-| Asia orientale           | 2                       |
-| Asia sudorientale     | 2                       |
-| Giappone orientale          | 2                       |
-| Giappone occidentale          | 2                       |
-| India meridionale         | 2                       |
-| India centrale       | 2                       |
-| India occidentale          | 2                       |
-| Corea centrale       | 2                       |
-| Corea meridionale         | 2                       |
+| <span data-ttu-id="6ba6d-132">Asia orientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-132">East Asia</span></span>           | <span data-ttu-id="6ba6d-133">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-133">2</span></span>                       |
+| <span data-ttu-id="6ba6d-134">Asia sudorientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-134">South East Asia</span></span>     | <span data-ttu-id="6ba6d-135">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-135">2</span></span>                       |
+| <span data-ttu-id="6ba6d-136">Giappone orientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-136">Japan East</span></span>          | <span data-ttu-id="6ba6d-137">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-137">2</span></span>                       |
+| <span data-ttu-id="6ba6d-138">Giappone occidentale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-138">Japan West</span></span>          | <span data-ttu-id="6ba6d-139">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-139">2</span></span>                       |
+| <span data-ttu-id="6ba6d-140">India meridionale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-140">South India</span></span>         | <span data-ttu-id="6ba6d-141">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-141">2</span></span>                       |
+| <span data-ttu-id="6ba6d-142">India centrale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-142">Central India</span></span>       | <span data-ttu-id="6ba6d-143">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-143">2</span></span>                       |
+| <span data-ttu-id="6ba6d-144">India occidentale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-144">West India</span></span>          | <span data-ttu-id="6ba6d-145">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-145">2</span></span>                       |
+| <span data-ttu-id="6ba6d-146">Corea centrale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-146">Korea Central</span></span>       | <span data-ttu-id="6ba6d-147">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-147">2</span></span>                       |
+| <span data-ttu-id="6ba6d-148">Corea meridionale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-148">Korea South</span></span>         | <span data-ttu-id="6ba6d-149">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-149">2</span></span>                       |
 |                     |                         |
-| Australia orientale      | 2                       |
-| Australia sudorientale | 2                       |
+| <span data-ttu-id="6ba6d-150">Australia orientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-150">Australia East</span></span>      | <span data-ttu-id="6ba6d-151">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-151">2</span></span>                       |
+| <span data-ttu-id="6ba6d-152">Australia sudorientale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-152">Australia Southeast</span></span> | <span data-ttu-id="6ba6d-153">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-153">2</span></span>                       |
 |                     |                         |
-| Brasile meridionale        | 2                       |
+| <span data-ttu-id="6ba6d-154">Brasile meridionale</span><span class="sxs-lookup"><span data-stu-id="6ba6d-154">Brazil South</span></span>        | <span data-ttu-id="6ba6d-155">2</span><span class="sxs-lookup"><span data-stu-id="6ba6d-155">2</span></span>                       |

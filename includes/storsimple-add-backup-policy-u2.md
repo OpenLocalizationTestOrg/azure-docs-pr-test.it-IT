@@ -1,24 +1,24 @@
 <!--author=v-sharos last changed: 11/06/15-->
 
-#### <a name="to-add-a-storsimple-backup-policy"></a>Per aggiungere un criterio di backup per StorSimple
-1. Nella pagina **Avvio rapido** fare clic sulla scheda **Criteri di backup**. Verrà visualizzata la pagina **Criteri di backup** .
-2. Nella parte inferiore della pagina, fare clic su **Aggiungi** per avviare la procedura guidata Aggiungi criteri di Backup.
+#### <a name="to-add-a-storsimple-backup-policy"></a><span data-ttu-id="b607e-101">Per aggiungere un criterio di backup per StorSimple</span><span class="sxs-lookup"><span data-stu-id="b607e-101">To add a StorSimple backup policy</span></span>
+1. <span data-ttu-id="b607e-102">Nella pagina **Avvio rapido** fare clic sulla scheda **Criteri di backup**.</span><span class="sxs-lookup"><span data-stu-id="b607e-102">On the device **Quick Start** page, click the **Backup Policies** tab.</span></span> <span data-ttu-id="b607e-103">Verrà visualizzata la pagina **Criteri di backup** .</span><span class="sxs-lookup"><span data-stu-id="b607e-103">This will take you to the **Backup Policies** page.</span></span>
+2. <span data-ttu-id="b607e-104">Nella parte inferiore della pagina, fare clic su **Aggiungi** per avviare la procedura guidata Aggiungi criteri di Backup.</span><span class="sxs-lookup"><span data-stu-id="b607e-104">At the bottom of the page, click **Add** to start the Add Backup Policy wizard.</span></span>
    
     ![Aggiungere un criterio di backup 1](./media/storsimple-add-backup-policy-u2/AddBackupPolicy1.png)
-3. Nella finestra di dialogo **Aggiungi un criterio di backup** visualizzata in **Definire i criteri di backup** eseguire questa procedura:
+3. <span data-ttu-id="b607e-106">Nella finestra di dialogo **Aggiungi un criterio di backup** visualizzata in **Definire i criteri di backup** eseguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="b607e-106">In the **Add Backup Policy** dialog box, under **Define your backup policy**, do the following:</span></span>
    
-   1. Specificare un nome per il criterio di backup che contenga tra i 3 e i 150 caratteri.
-   2. Fare clic su una o più caselle di controllo per assegnare uno o più volumi a questo criterio di backup. Si noti che non è possibile selezionare volumi che utilizzano provider di servizi cloud diversi. Se si utilizzano più provider di servizi cloud, in base alla prima selezione, l'elenco visualizzerà i volumi appartenenti solo a tale provider di servizi cloud. In questo modo sarà possibile raggruppare i volumi appartenenti a un singolo provider di servizi cloud in uno snapshot.
-   3. Fare clic sull'icona freccia  ![Icona freccia](./media/storsimple-add-backup-policy-u2/HCS_ArrowIcon-include.png) per passare alla pagina successiva.
+   1. <span data-ttu-id="b607e-107">Specificare un nome per il criterio di backup che contenga tra i 3 e i 150 caratteri.</span><span class="sxs-lookup"><span data-stu-id="b607e-107">Specify a backup policy name that contains between 3 and 150 characters.</span></span>
+   2. <span data-ttu-id="b607e-108">Fare clic su una o più caselle di controllo per assegnare uno o più volumi a questo criterio di backup.</span><span class="sxs-lookup"><span data-stu-id="b607e-108">Click the check box(es) to assign one or more volumes to this backup policy.</span></span> <span data-ttu-id="b607e-109">Si noti che non è possibile selezionare volumi che utilizzano provider di servizi cloud diversi.</span><span class="sxs-lookup"><span data-stu-id="b607e-109">Note that you cannot select volumes that use different cloud service providers.</span></span> <span data-ttu-id="b607e-110">Se si utilizzano più provider di servizi cloud, in base alla prima selezione, l'elenco visualizzerà i volumi appartenenti solo a tale provider di servizi cloud.</span><span class="sxs-lookup"><span data-stu-id="b607e-110">If you are using multiple cloud service providers, based on your first selection, the list will show volumes belonging to only that cloud service provider.</span></span> <span data-ttu-id="b607e-111">In questo modo sarà possibile raggruppare i volumi appartenenti a un singolo provider di servizi cloud in uno snapshot.</span><span class="sxs-lookup"><span data-stu-id="b607e-111">This will allow you to group volumes belonging to a single cloud service provider in a snapshot.</span></span>
+   3. <span data-ttu-id="b607e-112">Fare clic sull'icona freccia </span><span class="sxs-lookup"><span data-stu-id="b607e-112">Click the arrow icon</span></span> ![Icona freccia](./media/storsimple-add-backup-policy-u2/HCS_ArrowIcon-include.png) <span data-ttu-id="b607e-114">per passare alla pagina successiva.</span><span class="sxs-lookup"><span data-stu-id="b607e-114">to go to the next page.</span></span>
       
       ![Aggiungere un criterio di backup 2](./media/storsimple-add-backup-policy-u2/AddBackupPolicy2.png)
-4. In **Definisci una pianificazione**, eseguire le operazioni seguenti:
+4. <span data-ttu-id="b607e-116">In **Definisci una pianificazione**, eseguire le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="b607e-116">Under **Define a schedule**, do the following:</span></span>
    
-   1. Nella casella **Tipo di backup** selezionare **Snapshot cloud** o **Snapshot locale** dall'elenco a discesa.
-   2. Indicare la frequenza dei backup specificando un numero e quindi scegliendo **Giorni** o **Settimane** dall'elenco a discesa.
-   3. Immettere una pianificazione di conservazione.
-   4. Immettere una data e ora di inizio per il criterio di backup.  
-   5. Fare clic sull’icona del segno del spunta  ![icona del segno di spunta](./media/storsimple-add-backup-policy-u2/HCS_CheckIcon-include.png) per salvare il criterio.
+   1. <span data-ttu-id="b607e-117">Nella casella **Tipo di backup** selezionare **Snapshot cloud** o **Snapshot locale** dall'elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="b607e-117">In the **Type of Backup** box, select **Cloud Snapshot** or **Local Snapshot** from the drop-down list.</span></span>
+   2. <span data-ttu-id="b607e-118">Indicare la frequenza dei backup specificando un numero e quindi scegliendo **Giorni** o **Settimane** dall'elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="b607e-118">Indicate the frequency of backups (specify a number and then choose **Days** or **Weeks** from the drop-down list).</span></span>
+   3. <span data-ttu-id="b607e-119">Immettere una pianificazione di conservazione.</span><span class="sxs-lookup"><span data-stu-id="b607e-119">Enter a retention schedule.</span></span>
+   4. <span data-ttu-id="b607e-120">Immettere una data e ora di inizio per il criterio di backup.</span><span class="sxs-lookup"><span data-stu-id="b607e-120">Enter a time and date for the backup policy to begin.</span></span>  
+   5. <span data-ttu-id="b607e-121">Fare clic sull’icona del segno del spunta </span><span class="sxs-lookup"><span data-stu-id="b607e-121">Click the check icon</span></span> ![icona del segno di spunta](./media/storsimple-add-backup-policy-u2/HCS_CheckIcon-include.png) <span data-ttu-id="b607e-123">per salvare il criterio.</span><span class="sxs-lookup"><span data-stu-id="b607e-123">to save the policy.</span></span>
 
-Il criterio appena aggiunto verrà visualizzato nella visualizzazione tabulare nella pagina **Criteri di backup** .
+<span data-ttu-id="b607e-124">Il criterio appena aggiunto verrà visualizzato nella visualizzazione tabulare nella pagina **Criteri di backup** .</span><span class="sxs-lookup"><span data-stu-id="b607e-124">The newly added policy will be displayed in the tabular view on the **Backup Policies** page.</span></span>
 

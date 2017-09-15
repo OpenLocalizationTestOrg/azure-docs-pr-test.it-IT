@@ -1,16 +1,16 @@
 > [!NOTE]
-> * L'indirizzo IP pubblico del gateway VPN cambierà in caso di migrazione da uno SKU precedente a un nuovo SKU.
-> * Non è possibile eseguire la migrazione di gateway VPN classici in nuovi SKU. I gateway VPN classici sono compatibili unicamente con gli SKU legacy (precedenti).
+> * <span data-ttu-id="4beae-101">L'indirizzo IP pubblico del gateway VPN cambierà in caso di migrazione da uno SKU precedente a un nuovo SKU.</span><span class="sxs-lookup"><span data-stu-id="4beae-101">The VPN gateway Public IP address will change when migrating from an old SKU to a new SKU.</span></span>
+> * <span data-ttu-id="4beae-102">Non è possibile eseguire la migrazione di gateway VPN classici in nuovi SKU.</span><span class="sxs-lookup"><span data-stu-id="4beae-102">You can't migrate classic VPN gateways to the new SKUs.</span></span> <span data-ttu-id="4beae-103">I gateway VPN classici sono compatibili unicamente con gli SKU legacy (precedenti).</span><span class="sxs-lookup"><span data-stu-id="4beae-103">Classic VPN gateways can only use the legacy (old) SKUs.</span></span>
 > 
 
-Non è possibile ridimensionare i gateway VPN di Azure tra gli SKU precedenti e le nuove famiglie di SKU. Se nel modello di distribuzione di Resource Manager sono presenti gateway VPN che usano la versione precedente degli SKU, è possibile eseguire la migrazione ai nuovi SKU. Per eseguire la migrazione, eliminare il gateway VPN esistente per la rete virtuale, quindi crearne uno nuovo.
+<span data-ttu-id="4beae-104">Non è possibile ridimensionare i gateway VPN di Azure tra gli SKU precedenti e le nuove famiglie di SKU.</span><span class="sxs-lookup"><span data-stu-id="4beae-104">You can't resize your Azure VPN gateways between the old SKUs and the new SKU families.</span></span> <span data-ttu-id="4beae-105">Se nel modello di distribuzione di Resource Manager sono presenti gateway VPN che usano la versione precedente degli SKU, è possibile eseguire la migrazione ai nuovi SKU.</span><span class="sxs-lookup"><span data-stu-id="4beae-105">If you have VPN gateways in the Resource Manager deployment model that are using the older version of the SKUs, you can migrate to the new SKUs.</span></span> <span data-ttu-id="4beae-106">Per eseguire la migrazione, eliminare il gateway VPN esistente per la rete virtuale, quindi crearne uno nuovo.</span><span class="sxs-lookup"><span data-stu-id="4beae-106">To migrate, you delete the existing VPN gateway for your virtual network, then create a new one.</span></span>
 
-Flusso di lavoro della migrazione:
+<span data-ttu-id="4beae-107">Flusso di lavoro della migrazione:</span><span class="sxs-lookup"><span data-stu-id="4beae-107">Migration workflow:</span></span>
 
-1. Rimuovere eventuali connessioni al gateway di rete virtuale.
-2. Eliminare il gateway VPN precedente.
-3. Creare il nuovo gateway VPN.
-4. Aggiornare i dispositivi VPN locali con il nuovo indirizzo IP del gateway VPN (per connessioni da sito a sito).
-5. Aggiornare il valore dell'indirizzo IP del gateway per eventuali gateway di rete locale da rete virtuale a rete virtuale che si connetteranno a questo gateway.
-6. Scaricare i nuovi pacchetti di configurazione VPN client per i client P2S che si connettono alla rete virtuale tramite questo gateway VPN.
-7. Creare di nuovo eventuali connessioni al gateway di rete virtuale.
+1. <span data-ttu-id="4beae-108">Rimuovere eventuali connessioni al gateway di rete virtuale.</span><span class="sxs-lookup"><span data-stu-id="4beae-108">Remove any connections to the virtual network gateway.</span></span>
+2. <span data-ttu-id="4beae-109">Eliminare il gateway VPN precedente.</span><span class="sxs-lookup"><span data-stu-id="4beae-109">Delete the old VPN gateway.</span></span>
+3. <span data-ttu-id="4beae-110">Creare il nuovo gateway VPN.</span><span class="sxs-lookup"><span data-stu-id="4beae-110">Create the new VPN gateway.</span></span>
+4. <span data-ttu-id="4beae-111">Aggiornare i dispositivi VPN locali con il nuovo indirizzo IP del gateway VPN (per connessioni da sito a sito).</span><span class="sxs-lookup"><span data-stu-id="4beae-111">Update your on-premises VPN devices with the new VPN gateway IP address (for Site-to-Site connections).</span></span>
+5. <span data-ttu-id="4beae-112">Aggiornare il valore dell'indirizzo IP del gateway per eventuali gateway di rete locale da rete virtuale a rete virtuale che si connetteranno a questo gateway.</span><span class="sxs-lookup"><span data-stu-id="4beae-112">Update the gateway IP address value for any VNet-to-VNet local network gateways that will connect to this gateway.</span></span>
+6. <span data-ttu-id="4beae-113">Scaricare i nuovi pacchetti di configurazione VPN client per i client P2S che si connettono alla rete virtuale tramite questo gateway VPN.</span><span class="sxs-lookup"><span data-stu-id="4beae-113">Download new client VPN configuration packages for P2S clients connecting to the virtual network through this VPN gateway.</span></span>
+7. <span data-ttu-id="4beae-114">Creare di nuovo eventuali connessioni al gateway di rete virtuale.</span><span class="sxs-lookup"><span data-stu-id="4beae-114">Recreate the connections to the virtual network gateway.</span></span>

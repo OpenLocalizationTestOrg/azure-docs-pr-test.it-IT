@@ -1,7 +1,7 @@
-| Risorsa | Limite predefinito |
+| <span data-ttu-id="26086-101">Risorsa</span><span class="sxs-lookup"><span data-stu-id="26086-101">Resource</span></span> | <span data-ttu-id="26086-102">Limite predefinito</span><span class="sxs-lookup"><span data-stu-id="26086-102">Default Limit</span></span> |
 | --- | --- |
-| Macchine virtuali per set di disponibilità | 200 |
-| Certificati per sottoscrizione |Illimitato<sup>1</sup> |
+| <span data-ttu-id="26086-103">Macchine virtuali per set di disponibilità</span><span class="sxs-lookup"><span data-stu-id="26086-103">Virtual machines per availability set</span></span> | <span data-ttu-id="26086-104">200</span><span class="sxs-lookup"><span data-stu-id="26086-104">200</span></span> |
+| <span data-ttu-id="26086-105">Certificati per sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="26086-105">Certificates per subscription</span></span> |<span data-ttu-id="26086-106">Illimitato<sup>1</sup></span><span class="sxs-lookup"><span data-stu-id="26086-106">Unlimited<sup>1</sup></span></span> |
 
-<sup>1</sup>Con Gestione risorse di Azure, i certificati sono archiviati nell'insieme di credenziali chiave di Azure. Sebbene il numero di certificati sia illimitato per una sottoscrizione, esiste comunque un limite di 1 MB di certificati per distribuzione (singola macchina virtuale o set di disponibilità).
+<span data-ttu-id="26086-107"><sup>1</sup>Con Gestione risorse di Azure, i certificati sono archiviati nell'insieme di credenziali chiave di Azure.</span><span class="sxs-lookup"><span data-stu-id="26086-107"><sup>1</sup>With Azure Resource Manager, certificates are stored in the Azure Key Vault.</span></span> <span data-ttu-id="26086-108">Sebbene il numero di certificati sia illimitato per una sottoscrizione, esiste comunque un limite di 1 MB di certificati per distribuzione (singola macchina virtuale o set di disponibilità).</span><span class="sxs-lookup"><span data-stu-id="26086-108">Although the number of certificates is unlimited for a subscription, there is still a 1 MB limit of certificates per deployment (which consists of either a single VM or an availability set).</span></span>
 

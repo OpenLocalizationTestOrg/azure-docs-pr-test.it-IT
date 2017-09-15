@@ -1,22 +1,22 @@
-Dopo aver propagato i record per il nome di dominio, è necessario associarli all'app Web. Attenersi alla procedura seguente per abilitare i nomi di dominio usando il Web browser.
+<span data-ttu-id="b2a22-101">Dopo aver propagato i record per il nome di dominio, è necessario associarli all'app Web.</span><span class="sxs-lookup"><span data-stu-id="b2a22-101">After the records for your domain name have propagated, you must associate them with your Web App.</span></span> <span data-ttu-id="b2a22-102">Attenersi alla procedura seguente per abilitare i nomi di dominio usando il Web browser.</span><span class="sxs-lookup"><span data-stu-id="b2a22-102">Use the following steps to enable the domain names using your web browser.</span></span>
 
 > [!NOTE]
-> La propagazione dei record TXT creati nei passaggi precedenti in tutto il sistema DNS può richiedere tempo. Non è possibile aggiungere il nome di dominio dell'app Web finché il record TXT non è stato propagato. Se si usa un record A, non è possibile aggiungere il nome di dominio del record A all'app Web finché il record TXT creato nel passaggio precedente non sarà stato propagato.
+> <span data-ttu-id="b2a22-103">La propagazione dei record TXT creati nei passaggi precedenti in tutto il sistema DNS può richiedere tempo.</span><span class="sxs-lookup"><span data-stu-id="b2a22-103">It can take some time for TXT records created in the previous steps to propagate through the DNS system.</span></span> <span data-ttu-id="b2a22-104">Non è possibile aggiungere il nome di dominio dell'app Web finché il record TXT non è stato propagato.</span><span class="sxs-lookup"><span data-stu-id="b2a22-104">You cannot add the domain name of to your web app until the TXT record has propagated.</span></span> <span data-ttu-id="b2a22-105">Se si usa un record A, non è possibile aggiungere il nome di dominio del record A all'app Web finché il record TXT creato nel passaggio precedente non sarà stato propagato.</span><span class="sxs-lookup"><span data-stu-id="b2a22-105">If you are using an A record, you cannot add the A record domain name to your web app until the TXT record created in the previous step has propagated.</span></span>
 > 
-> È possibile usare un servizio come <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> per verificare se il record TXT è disponibile.
+> <span data-ttu-id="b2a22-106">È possibile usare un servizio come <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> per verificare se il record TXT è disponibile.</span><span class="sxs-lookup"><span data-stu-id="b2a22-106">You can use a service such as <a href="http://www.digwebinterface.com/">http://www.digwebinterface.com/</a> to verify that the TXT record is available.</span></span>
 > 
 > 
 
-1. Accedere al [portale di Azure](https://portal.azure.com)dal browser.
-2. Nella scheda **App Web** fare clic sul nome dell'app Web e selezionare **Domini personalizzati**
+1. <span data-ttu-id="b2a22-107">Accedere al [portale di Azure](https://portal.azure.com)dal browser.</span><span class="sxs-lookup"><span data-stu-id="b2a22-107">In your browser, open the [Azure Portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="b2a22-108">Nella scheda **App Web** fare clic sul nome dell'app Web e selezionare **Domini personalizzati**</span><span class="sxs-lookup"><span data-stu-id="b2a22-108">In the **Web Apps** tab, click the name of your web app, and then select **Custom domains**</span></span>
    
     ![](./media/custom-dns-web-site/dncmntask-cname-6.png)
-3. Nel pannello **Domini personalizzati** fare clic su **Aggiungi il nome host**.
-4. Usare le caselle di testo **Nome host** per immettere i nomi di dominio da associare a questa app Web.
+3. <span data-ttu-id="b2a22-109">Nel pannello **Domini personalizzati** fare clic su **Aggiungi il nome host**.</span><span class="sxs-lookup"><span data-stu-id="b2a22-109">In the **Custom domains** blade, click **Add hostname**.</span></span>
+4. <span data-ttu-id="b2a22-110">Usare le caselle di testo **Nome host** per immettere i nomi di dominio da associare a questa app Web.</span><span class="sxs-lookup"><span data-stu-id="b2a22-110">Use the **Hostname** text boxes to enter the domain names to associate with this web app.</span></span>
    
     ![](./media/custom-dns-web-site/add-custom-domain.png)
-5. Fare clic su **Convalida**.
-6. Dopo la selezione di **Convalida**, Azure avvierà il flusso di lavoro di verifica del dominio, che controllerà la proprietà del dominio oltre alla disponibilità del nome host e segnalerà la riuscita o un errore dettagliato con le linee guida consigliate per correggere l'errore.    
+5. <span data-ttu-id="b2a22-111">Fare clic su **Convalida**.</span><span class="sxs-lookup"><span data-stu-id="b2a22-111">Click **Validate**.</span></span>
+6. <span data-ttu-id="b2a22-112">Dopo la selezione di **Convalida**, Azure avvierà il flusso di lavoro di verifica del dominio,</span><span class="sxs-lookup"><span data-stu-id="b2a22-112">Upon clicking **Validate** Azure will kick off Domain Verification workflow.</span></span> <span data-ttu-id="b2a22-113">che controllerà la proprietà del dominio oltre alla disponibilità del nome host e segnalerà la riuscita o un errore dettagliato con le linee guida consigliate per correggere l'errore.</span><span class="sxs-lookup"><span data-stu-id="b2a22-113">This will check for Domain ownership as well as Hostname availability and report success or detailed error with prescriptive guidence on how to fix the error.</span></span>    
 
-A questo punto sarà possibile immettere il nome di dominio personalizzato nel browser e verificare che il reindirizzamento all'app Web avvenga correttamente.
+<span data-ttu-id="b2a22-114">A questo punto sarà possibile immettere il nome di dominio personalizzato nel browser e verificare che il reindirizzamento all'app Web avvenga correttamente.</span><span class="sxs-lookup"><span data-stu-id="b2a22-114">At this point, you should be able to enter the custom domain name in your browser and see that it successfully takes you to your web app.</span></span>
 

@@ -1,5 +1,5 @@
 
-* In Xcode premere **Esegui** e avviare l'app in un dispositivo iOS. Si noti che il push non funzionerà nei simulatori. Fare clic su **OK** per accettare le notifiche push. Questa richiesta si verifica alla prima esecuzione dell'app.
-* Nell'app aggiungere un nuovo elemento e fare clic su **+**.
-* Verificare che venga ricevuta una notifica, quindi fare clic su **OK** per eliminarla. L'esercitazione è stata completata.
+* <span data-ttu-id="4ecf4-101">In Xcode premere **Esegui** e avviare l'app in un dispositivo iOS. Si noti che il push non funzionerà nei simulatori.</span><span class="sxs-lookup"><span data-stu-id="4ecf4-101">In Xcode, press **Run** and start the app on an iOS device (note that push will not work on simulators).</span></span> <span data-ttu-id="4ecf4-102">Fare clic su **OK** per accettare le notifiche push. Questa richiesta si verifica alla prima esecuzione dell'app.</span><span class="sxs-lookup"><span data-stu-id="4ecf4-102">Click **OK** to accept push notifications; this request occurs the first time the app runs.</span></span>
+* <span data-ttu-id="4ecf4-103">Nell'app aggiungere un nuovo elemento e fare clic su **+**.</span><span class="sxs-lookup"><span data-stu-id="4ecf4-103">In the app, add a new item and click **+**.</span></span>
+* <span data-ttu-id="4ecf4-104">Verificare che venga ricevuta una notifica, quindi fare clic su **OK** per eliminarla.</span><span class="sxs-lookup"><span data-stu-id="4ecf4-104">Verify that a notification is received, then click **OK** to dismiss the notification.</span></span> <span data-ttu-id="4ecf4-105">L'esercitazione è stata completata.</span><span class="sxs-lookup"><span data-stu-id="4ecf4-105">You have now successfully completed this tutorial.</span></span>
 

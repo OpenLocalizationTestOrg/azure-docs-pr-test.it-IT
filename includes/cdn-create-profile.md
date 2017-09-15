@@ -1,16 +1,16 @@
-**Per creare un nuovo profilo di rete CDN**
+<span data-ttu-id="25cf1-101">**Per creare un nuovo profilo di rete CDN**</span><span class="sxs-lookup"><span data-stu-id="25cf1-101">**To create a new CDN profile**</span></span>
 
-1. Nel [portale di Azure](https://portal.azure.com)fare clic su **Nuovo**in alto a sinistra.  Nel pannello **Nuovo** selezionare **Web e dispositivi mobili** e quindi **Rete CDN**.
+1. <span data-ttu-id="25cf1-102">Nel [portale di Azure](https://portal.azure.com)fare clic su **Nuovo**in alto a sinistra.</span><span class="sxs-lookup"><span data-stu-id="25cf1-102">In the [Azure Portal](https://portal.azure.com), in the upper left, click **New**.</span></span>  <span data-ttu-id="25cf1-103">Nel pannello **Nuovo** selezionare **Web e dispositivi mobili** e quindi **Rete CDN**.</span><span class="sxs-lookup"><span data-stu-id="25cf1-103">In the **New** blade, select **Web + Mobile**, then **CDN**.</span></span>
    
-    Viene visualizzato il pannello del nuovo profilo di rete CDN.
+    <span data-ttu-id="25cf1-104">Viene visualizzato il pannello del nuovo profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="25cf1-104">The new CDN profile blade appears.</span></span>
    
     ![Nuovo profilo di rete CDN](./media/cdn-create-profile/new-cdn-profile-include.png)
-2. Inserire un nome per il profilo di rete CDN.
-3. Selezionare un **percorso**.  Questo è il percorso di Azure in cui verranno archiviate le informazioni relative al profilo di rete CDN.  Non incide sulle posizioni dell’endpoint di rete CDN.
-4. Selezionare o creare un **gruppo di risorse**.  Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md#resource-groups).
-5. Selezionare un **Piano tariffario**.  Per un confronto tra i piani tariffari, vedere [Panoramica della rete CDN](../articles/cdn/cdn-overview.md#azure-cdn-features) .
+2. <span data-ttu-id="25cf1-106">Inserire un nome per il profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="25cf1-106">Enter a name for your CDN profile.</span></span>
+3. <span data-ttu-id="25cf1-107">Selezionare un **percorso**.</span><span class="sxs-lookup"><span data-stu-id="25cf1-107">Select a **Location**.</span></span>  <span data-ttu-id="25cf1-108">Questo è il percorso di Azure in cui verranno archiviate le informazioni relative al profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="25cf1-108">This is the Azure location where your CDN profile information will be stored.</span></span>  <span data-ttu-id="25cf1-109">Non incide sulle posizioni dell’endpoint di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="25cf1-109">It has no impact on CDN endpoint locations.</span></span>
+4. <span data-ttu-id="25cf1-110">Selezionare o creare un **gruppo di risorse**.</span><span class="sxs-lookup"><span data-stu-id="25cf1-110">Select or create a **Resource Group**.</span></span>  <span data-ttu-id="25cf1-111">Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md#resource-groups).</span><span class="sxs-lookup"><span data-stu-id="25cf1-111">For more information on Resource Groups, see [Azure Resource Manager overview](../articles/azure-resource-manager/resource-group-overview.md#resource-groups).</span></span>
+5. <span data-ttu-id="25cf1-112">Selezionare un **Piano tariffario**.</span><span class="sxs-lookup"><span data-stu-id="25cf1-112">Select a **Pricing tier**.</span></span>  <span data-ttu-id="25cf1-113">Per un confronto tra i piani tariffari, vedere [Panoramica della rete CDN](../articles/cdn/cdn-overview.md#azure-cdn-features) .</span><span class="sxs-lookup"><span data-stu-id="25cf1-113">See the [CDN Overview](../articles/cdn/cdn-overview.md#azure-cdn-features) for a comparison of pricing tiers.</span></span>
    
     ![Selezione del piano tariffario della rete CDN](./media/cdn-create-profile/cdn-choose-sku-include.png)
-6. Selezionare la **Sottoscrizione** per questo profilo di rete CDN.
-7. Per creare il nuovo profilo, fare clic sul pulsante **Crea** . 
+6. <span data-ttu-id="25cf1-115">Selezionare la **Sottoscrizione** per questo profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="25cf1-115">Select the **Subscription** for this CDN profile.</span></span>
+7. <span data-ttu-id="25cf1-116">Per creare il nuovo profilo, fare clic sul pulsante **Crea** .</span><span class="sxs-lookup"><span data-stu-id="25cf1-116">Click the **Create** button to create the new profile.</span></span> 
 

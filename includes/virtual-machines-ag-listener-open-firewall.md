@@ -1,18 +1,18 @@
-In questo passaggio si creerà una regola del firewall per aprire la porta probe per l'endpoint con carico bilanciato (59999, come specificato in precedenza) e un'altra regola per aprire la porta del listener del gruppo disponibilità. Poiché è stato creato l'endpoint con carico bilanciato nelle VM contenenti repliche del gruppo di disponibilità, è necessario aprire la porta probe e la porta del listener sulle rispettive macchine virtuali.
+<span data-ttu-id="ccedb-101">In questo passaggio si creerà una regola del firewall per aprire la porta probe per l'endpoint con carico bilanciato (59999, come specificato in precedenza) e un'altra regola per aprire la porta del listener del gruppo disponibilità.</span><span class="sxs-lookup"><span data-stu-id="ccedb-101">In this step, you create a firewall rule to open the probe port for the load-balanced endpoint (59999, as specified earlier) and another rule to open the availability group listener port.</span></span> <span data-ttu-id="ccedb-102">Poiché è stato creato l'endpoint con carico bilanciato nelle VM contenenti repliche del gruppo di disponibilità, è necessario aprire la porta probe e la porta del listener sulle rispettive macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="ccedb-102">Because you created the load-balanced endpoint on the VMs that contain availability group replicas, you need to open the probe port and the listener port on the respective VMs.</span></span>
 
-1. Nelle macchine virtuali che ospitano le repliche, avviare **Windows Firewall con sicurezza avanzata**.
+1. <span data-ttu-id="ccedb-103">Nelle macchine virtuali che ospitano le repliche, avviare **Windows Firewall con sicurezza avanzata**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-103">On VMs that host replicas, start **Windows Firewall with Advanced Security**.</span></span>
 
-2. Fare clic con il pulsante destro del mouse su **Regole connessioni in entrata** e quindi scegliere **Nuova regola**.
+2. <span data-ttu-id="ccedb-104">Fare clic con il pulsante destro del mouse su **Regole connessioni in entrata** e quindi scegliere **Nuova regola**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-104">Right-click **Inbound Rules**, and then click **New Rule**.</span></span>
 
-3. Nella pagina **Tipo di regola** selezionare **Porta** e quindi fare clic su **Avanti**.
+3. <span data-ttu-id="ccedb-105">Nella pagina **Tipo di regola** selezionare **Porta** e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-105">On the **Rule Type** page, select **Port**, and then click **Next**.</span></span>
 
-4. Nella pagina **Protocollo e porte** selezionare **TCP**, digitare **59999** nella casella **Porte locali specifiche** e quindi fare clic su **Avanti**.
+4. <span data-ttu-id="ccedb-106">Nella pagina **Protocollo e porte** selezionare **TCP**, digitare **59999** nella casella **Porte locali specifiche** e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-106">On the **Protocol and Ports** page, select **TCP**, type **59999** in the **Specific local ports** box, and then click **Next**.</span></span>
 
-5. Nella pagina **Azione** mantenere selezionata l'opzione **Consenti la connessione** e quindi fare clic su **Avanti**.
+5. <span data-ttu-id="ccedb-107">Nella pagina **Azione** mantenere selezionata l'opzione **Consenti la connessione** e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-107">On the **Action** page, keep **Allow the connection** selected, and then click **Next**.</span></span>
 
-6. Nella pagina **Profilo** accettare le impostazioni predefinite e quindi fare clic su **Avanti**.
+6. <span data-ttu-id="ccedb-108">Nella pagina **Profilo** accettare le impostazioni predefinite e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-108">On the **Profile** page, accept the default settings, and then click **Next**.</span></span>
 
-7. Nella pagina **Nome** specificare nella casella di testo **Nome** un nome per la regola, ad esempio **Porta probe del listener AlwaysOn** e quindi fare clic su **Fine**.
+7. <span data-ttu-id="ccedb-109">Nella pagina **Nome** specificare nella casella di testo **Nome** un nome per la regola, ad esempio **Porta probe del listener AlwaysOn** e quindi fare clic su **Fine**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-109">On the **Name** page, in the **Name** text box, specify a rule name, such as **Always On Listener Probe Port**, and then click **Finish**.</span></span>
 
-8. Ripetere i passaggi precedenti per la porta del listener del gruppo di disponibilità (come specificato in precedenza nel parametro $EndpointPort dello script) e specificare un nome di regola appropriato, ad esempio **Porta del Listener AlwaysOn**.
+8. <span data-ttu-id="ccedb-110">Ripetere i passaggi precedenti per la porta del listener del gruppo di disponibilità (come specificato in precedenza nel parametro $EndpointPort dello script) e specificare un nome di regola appropriato, ad esempio **Porta del Listener AlwaysOn**.</span><span class="sxs-lookup"><span data-stu-id="ccedb-110">Repeat the preceding steps for the availability group listener port (as specified earlier in the $EndpointPort parameter of the script), and then specify an appropriate rule name, such as **Always On Listener Port**.</span></span>
 

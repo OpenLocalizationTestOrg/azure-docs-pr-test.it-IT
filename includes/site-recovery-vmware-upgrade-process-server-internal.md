@@ -1,4 +1,4 @@
-1. Accedere al server di elaborazione come amministratore.
-2. Scaricare la versione più recente dell'[installazione unificata](http://aka.ms/unifiedinstaller).
-3. Fare doppio clic sul programma di installazione per avviare il processo di aggiornamento.
-4. Il programma di installazione rileva i vari componenti installati e li aggiorna alla versione più recente.
+1. <span data-ttu-id="ed007-101">Accedere al server di elaborazione come amministratore.</span><span class="sxs-lookup"><span data-stu-id="ed007-101">Login to the process server as an Administrator.</span></span>
+2. <span data-ttu-id="ed007-102">Scaricare la versione più recente dell'[installazione unificata](http://aka.ms/unifiedinstaller).</span><span class="sxs-lookup"><span data-stu-id="ed007-102">Download the latest version of the [Unified Setup](http://aka.ms/unifiedinstaller).</span></span>
+3. <span data-ttu-id="ed007-103">Fare doppio clic sul programma di installazione per avviare il processo di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="ed007-103">Double-click the installer to launch the update process.</span></span>
+4. <span data-ttu-id="ed007-104">Il programma di installazione rileva i vari componenti installati e li aggiorna alla versione più recente.</span><span class="sxs-lookup"><span data-stu-id="ed007-104">The installer will detect the various components that are installed and upgrade them to the latest version.</span></span>

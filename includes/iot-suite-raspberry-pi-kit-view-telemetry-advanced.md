@@ -1,20 +1,20 @@
-## <a name="view-the-telemetry"></a>Visualizzare i dati di telemetria
+## <a name="view-the-telemetry"></a><span data-ttu-id="17f2c-101">Visualizzare i dati di telemetria</span><span class="sxs-lookup"><span data-stu-id="17f2c-101">View the telemetry</span></span>
 
-Raspberry Pi ora invia i dati di telemetria alla soluzione di monitoraggio remota. È possibile visualizzare i dati di telemetria nel dashboard della soluzione. È anche possibile inviare messaggi a Raspberry Pi dal dashboard della soluzione.
+<span data-ttu-id="17f2c-102">Raspberry Pi ora invia i dati di telemetria alla soluzione di monitoraggio remota.</span><span class="sxs-lookup"><span data-stu-id="17f2c-102">The Raspberry Pi is now sending telemetry to the remote monitoring solution.</span></span> <span data-ttu-id="17f2c-103">È possibile visualizzare i dati di telemetria nel dashboard della soluzione.</span><span class="sxs-lookup"><span data-stu-id="17f2c-103">You can view the telemetry on the solution dashboard.</span></span> <span data-ttu-id="17f2c-104">È anche possibile inviare messaggi a Raspberry Pi dal dashboard della soluzione.</span><span class="sxs-lookup"><span data-stu-id="17f2c-104">You can also send messages to your Raspberry Pi from the solution dashboard.</span></span>
 
-- Passare al dashboard della soluzione.
-- Selezionare il dispositivo nell'elenco a discesa **Dispositivo da visualizzare**.
-- I dati di telemetria da Raspberry Pi vengono visualizzati nel dashboard.
+- <span data-ttu-id="17f2c-105">Passare al dashboard della soluzione.</span><span class="sxs-lookup"><span data-stu-id="17f2c-105">Navigate to the solution dashboard.</span></span>
+- <span data-ttu-id="17f2c-106">Selezionare il dispositivo nell'elenco a discesa **Dispositivo da visualizzare**.</span><span class="sxs-lookup"><span data-stu-id="17f2c-106">Select your device in the **Device to View** dropdown.</span></span>
+- <span data-ttu-id="17f2c-107">I dati di telemetria da Raspberry Pi vengono visualizzati nel dashboard.</span><span class="sxs-lookup"><span data-stu-id="17f2c-107">The telemetry from the Raspberry Pi displays on the dashboard.</span></span>
 
 ![Visualizzare i dati di telemetria da Raspberry Pi][img-telemetry-display]
 
-## <a name="initiate-the-firmware-update"></a>Avviare l'aggiornamento del firmware
+## <a name="initiate-the-firmware-update"></a><span data-ttu-id="17f2c-109">Avviare l'aggiornamento del firmware</span><span class="sxs-lookup"><span data-stu-id="17f2c-109">Initiate the firmware update</span></span>
 
-Il processo di aggiornamento del firmware scarica e installa una versione aggiornata dell'applicazione client del dispositivo in Raspberry Pi. Per altre informazioni sul processo di aggiornamento del firmware, vedere la descrizione del modello di aggiornamento del firmware in [Panoramica della gestione dei dispositivi con l'hub IoT][lnk-update-pattern].
+<span data-ttu-id="17f2c-110">Il processo di aggiornamento del firmware scarica e installa una versione aggiornata dell'applicazione client del dispositivo in Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="17f2c-110">The firmware update process downloads and installs an updated version of the device client application on the Raspberry Pi.</span></span> <span data-ttu-id="17f2c-111">Per altre informazioni sul processo di aggiornamento del firmware, vedere la descrizione del modello di aggiornamento del firmware in [Panoramica della gestione dei dispositivi con l'hub IoT][lnk-update-pattern].</span><span class="sxs-lookup"><span data-stu-id="17f2c-111">For more information about the firmware update process, see the description of the firmware update pattern in [Overview of device management with IoT Hub][lnk-update-pattern].</span></span>
 
-Per avviare il processo di aggiornamento del firmware, richiamare un metodo nel dispositivo. Questo metodo è asincrono e viene restituito non appena inizia il processo di aggiornamento. Il dispositivo usa le proprietà segnalate per notificare la soluzione sullo stato dell'aggiornamento.
+<span data-ttu-id="17f2c-112">Per avviare il processo di aggiornamento del firmware, richiamare un metodo nel dispositivo.</span><span class="sxs-lookup"><span data-stu-id="17f2c-112">You initiate the firmware update process by invoking a method on the device.</span></span> <span data-ttu-id="17f2c-113">Questo metodo è asincrono e viene restituito non appena inizia il processo di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="17f2c-113">This method is asynchronous, and returns as soon as the update process begins.</span></span> <span data-ttu-id="17f2c-114">Il dispositivo usa le proprietà segnalate per notificare la soluzione sullo stato dell'aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="17f2c-114">The device uses reported properties to notify the solution about the progress of the update.</span></span>
 
-I metodi vengono richiamati in Raspberry Pi dal dashboard della soluzione. Quando Raspberry Pi si connette per la prima volta alla soluzione di monitoraggio remoto, invia le informazioni sui metodi supportati. 
+<span data-ttu-id="17f2c-115">I metodi vengono richiamati in Raspberry Pi dal dashboard della soluzione.</span><span class="sxs-lookup"><span data-stu-id="17f2c-115">You invoke methods on your Raspberry Pi from the solution dashboard.</span></span> <span data-ttu-id="17f2c-116">Quando Raspberry Pi si connette per la prima volta alla soluzione di monitoraggio remoto, invia le informazioni sui metodi supportati.</span><span class="sxs-lookup"><span data-stu-id="17f2c-116">When the Raspberry Pi first connects to the remote monitoring solution, it sends information about the methods it supports.</span></span> 
 
 [img-telemetry-display]: media/iot-suite-raspberry-pi-kit-view-telemetry-advanced/telemetry.png
 [lnk-update-pattern]: ../articles/iot-hub/iot-hub-device-management-overview.md

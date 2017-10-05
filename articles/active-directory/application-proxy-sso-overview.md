@@ -1,0 +1,81 @@
+---
+title: Gestire l'accesso Single Sign-On per il proxy di applicazione di Azure AD | Microsoft Docs
+description: Informazioni di base sull'accesso Single Sign-On con il proxy di applicazione
+services: active-directory
+documentationcenter: 
+author: kgremban
+manager: femila
+ms.assetid: 
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/23/2017
+ms.author: kgremban
+ms.reviewer: harshja
+ms.custom: it-pro
+ms.openlocfilehash: 1deb3d91049d45fe26791783e13bd23e0a7d9f95
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/29/2017
+---
+# <a name="how-does-azure-ad-application-proxy-provide-single-sign-on"></a><span data-ttu-id="6d755-103">Come viene offerto l'accesso Single Sign-On dal proxy di applicazione di Azure AD?</span><span class="sxs-lookup"><span data-stu-id="6d755-103">How does Azure AD Application Proxy provide single sign-on?</span></span>
+
+<span data-ttu-id="6d755-104">Single Sign-On è un elemento chiave del proxy di applicazione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="6d755-104">Single sign-on is a key element of Azure AD Application Proxy.</span></span>  <span data-ttu-id="6d755-105">Offre un'esperienza d'uso ottimale, poiché gli utenti devono solo eseguire l'accesso ad Azure Active Directory nel cloud.</span><span class="sxs-lookup"><span data-stu-id="6d755-105">It provides the best user experience because your users only have to sign in to Azure Active Directory in the cloud.</span></span> <span data-ttu-id="6d755-106">Dopo che un utente ha eseguito l'autenticazione ad Azure Active Directory, il connettore del proxy di applicazione gestisce l'autenticazione all'applicazione locale.</span><span class="sxs-lookup"><span data-stu-id="6d755-106">Once they authenticate to Azure Active Directory, the Application Proxy connector handles the authentication to the on-premises application.</span></span> <span data-ttu-id="6d755-107">L'applicazione di back-end non è in grado di rilevare la differenza tra un utente remoto che accede tramite il proxy di applicazione e un utilizzo standard basato su un dispositivo aggiunto al dominio.</span><span class="sxs-lookup"><span data-stu-id="6d755-107">The backend application can't tell the difference between a remote user signing in through Application Proxy and a regular use on a domain-joined device.</span></span> 
+
+<span data-ttu-id="6d755-108">Per usare Azure Active Directory per l'accesso Single Sign-On alle applicazioni, è necessario selezionare **Azure Active Directory** come metodo di pre-autenticazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-108">To use Azure Active Directory for single sign-on to your applications, you need to select **Azure Active Directory** as the pre-authentication method.</span></span> <span data-ttu-id="6d755-109">Se si seleziona **PassThrough**, gli utenti non eseguono l'autenticazione ad Azure Active Directory ma vengono indirizzati direttamente all'applicazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-109">If you select **Passthrough** then your users don't authenticate to Azure Active Directory at all, but are directed straight to the application.</span></span> <span data-ttu-id="6d755-110">È possibile configurare questa impostazione quando si pubblica per la prima volta un'applicazione. In alternativa, è possibile accedere all'applicazione nel portale di Azure e modificare le impostazioni del proxy di applicazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-110">You can configure this setting when you first publish an application, or navigate to your application in the Azure portal and edit the Application Proxy settings.</span></span> 
+
+<span data-ttu-id="6d755-111">Per visualizzare le opzioni relative all'accesso Single Sign-On, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="6d755-111">To see your single sign-on options, follow these steps:</span></span>
+
+1. <span data-ttu-id="6d755-112">Accedere al [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="6d755-112">Sign in to the [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="6d755-113">Selezionare **Azure Active Directory** > **Applicazioni aziendali** > **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="6d755-113">Navigate to **Azure Active Directory** > **Enterprise applications** > **All applications**.</span></span>
+3. <span data-ttu-id="6d755-114">Selezionare l'app di cui si vuole gestire le opzioni di accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="6d755-114">Select the app whose single sign-on options you want to manage.</span></span>
+4. <span data-ttu-id="6d755-115">Selezionare **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="6d755-115">Select **Single sign-on**.</span></span>
+
+   ![Menu a discesa Single Sign-On](./media/application-proxy-sso-overview/single-sign-on-mode.png)
+
+<span data-ttu-id="6d755-117">Nel menu a discesa sono disponibili cinque opzioni per l'accesso Single Sign-On all'applicazione:</span><span class="sxs-lookup"><span data-stu-id="6d755-117">The dropdown menu shows five options for single sign-on to your application:</span></span>
+
+* <span data-ttu-id="6d755-118">Single Sign-On di Azure AD disabilitato</span><span class="sxs-lookup"><span data-stu-id="6d755-118">Azure AD single sign-on disabled</span></span>
+* <span data-ttu-id="6d755-119">Accesso basato su password</span><span class="sxs-lookup"><span data-stu-id="6d755-119">Password-based sign-on</span></span>
+* <span data-ttu-id="6d755-120">Linked sign-on (Accesso collegato)</span><span class="sxs-lookup"><span data-stu-id="6d755-120">Linked sign-on</span></span>
+* <span data-ttu-id="6d755-121">Autenticazione integrata di Windows</span><span class="sxs-lookup"><span data-stu-id="6d755-121">Integrated Windows Authentication</span></span>
+* <span data-ttu-id="6d755-122">Accesso basato su intestazione</span><span class="sxs-lookup"><span data-stu-id="6d755-122">Header-based sign-on</span></span>
+
+## <a name="azure-ad-single-sign-on-disabled"></a><span data-ttu-id="6d755-123">Single Sign-On di Azure AD disabilitato</span><span class="sxs-lookup"><span data-stu-id="6d755-123">Azure AD single sign-on disabled</span></span>
+
+<span data-ttu-id="6d755-124">Se non si vuole usare l'integrazione di Azure Active Directory per l'accesso Single Sign-On all'applicazione, scegliere **Single Sign-On di Azure AD disabilitato**.</span><span class="sxs-lookup"><span data-stu-id="6d755-124">If you don't want to use Azure Active Directory integration for single sign-on to your application, choose **Azure AD single sign-on disabled**.</span></span> <span data-ttu-id="6d755-125">Con questa opzione selezionata, gli utenti possono eseguire l'autenticazione due volte.</span><span class="sxs-lookup"><span data-stu-id="6d755-125">With this option selected, your users may authenticate twice.</span></span> <span data-ttu-id="6d755-126">Eseguire prima l'autenticazione ad Azure Active Directory e quindi accedere all'applicazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-126">First, they authenticate to Azure Active Directory and then sign in to the application itself.</span></span> 
+
+<span data-ttu-id="6d755-127">Questa opzione è la scelta migliore se l'applicazione locale non prevede l'autenticazione ma si vuole aggiungere Azure Active Directory come un livello di sicurezza per l'accesso remoto.</span><span class="sxs-lookup"><span data-stu-id="6d755-127">This option is a good choice if your on-premises application doesn't require users to authenticate, but you want to add Azure Active Directory as a layer of security for remote access.</span></span> 
+
+## <a name="password-based-sign-on"></a><span data-ttu-id="6d755-128">Accesso basato su password</span><span class="sxs-lookup"><span data-stu-id="6d755-128">Password-based sign-on</span></span>
+
+<span data-ttu-id="6d755-129">Se si vuole usare Azure Active Directory come un insieme di credenziali delle password per le applicazioni locali, scegliere **Accesso basato su password**.</span><span class="sxs-lookup"><span data-stu-id="6d755-129">If you want to use Azure Active Directory as a password vault for your on-premises applications, choose **Password-based sign-on**.</span></span> <span data-ttu-id="6d755-130">Questa opzione è la scelta migliore se l'autenticazione all'applicazione è bastata su nome utente e password e non su intestazioni o token di accesso.</span><span class="sxs-lookup"><span data-stu-id="6d755-130">This option is a good choice if your application authenticates with a username/password combo instead of access tokens or headers.</span></span> <span data-ttu-id="6d755-131">Con l'accesso basato su password, gli utenti devono eseguire la procedura di accesso all'applicazione solo al primo accesso.</span><span class="sxs-lookup"><span data-stu-id="6d755-131">With password-based sign-on, your users need to sign in to the application the first time they access it.</span></span> <span data-ttu-id="6d755-132">Successivamente, sarà Azure Active Directory a fornire il nome utente e la password per conto dell'utente.</span><span class="sxs-lookup"><span data-stu-id="6d755-132">After that, Azure Active Directory supplies the username and password on behalf of the user.</span></span> 
+
+<span data-ttu-id="6d755-133">Per informazioni sulla configurazione dell'accesso basato su password, vedere [Insieme di credenziali delle password per l'accesso Single Sign-On con il proxy di applicazione](application-proxy-sso-azure-portal.md).</span><span class="sxs-lookup"><span data-stu-id="6d755-133">For information about setting up password-based sign-on, see [Password vaulting for single sign-on with Application Proxy](application-proxy-sso-azure-portal.md).</span></span>
+
+## <a name="linked-sign-on"></a><span data-ttu-id="6d755-134">Linked sign-on (Accesso collegato)</span><span class="sxs-lookup"><span data-stu-id="6d755-134">Linked sign-on</span></span>
+
+<span data-ttu-id="6d755-135">Se è già stata configurata una soluzione di accesso Single Sign-On per le identità locali, scegliere **Accesso collegato**.</span><span class="sxs-lookup"><span data-stu-id="6d755-135">If you already have a single sign-on solution set up for your on-premises identities, choose **Linked sign-on**.</span></span> <span data-ttu-id="6d755-136">Questa opzione consente ad Azure Active Directory di sfruttare le soluzioni Single Sign-On esistenti, ma continua a offrire agli utenti l'accesso remoto all'applicazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-136">This option enables Azure Active Directory to leverage existing SSO solutions, but still gives your users remote access to the application.</span></span> 
+
+<span data-ttu-id="6d755-137">Per altre informazioni sul linked sign-on (accesso collegato), noto formalmente come Single Sign-On esistente, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).</span><span class="sxs-lookup"><span data-stu-id="6d755-137">For information about linked sign-on (formally known as existing single sign-on), see [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).</span></span>
+
+## <a name="integrated-windows-authentication"></a><span data-ttu-id="6d755-138">Autenticazione integrata di Windows</span><span class="sxs-lookup"><span data-stu-id="6d755-138">Integrated Windows Authentication</span></span>
+
+<span data-ttu-id="6d755-139">Se le applicazioni locali usano l'autenticazione di Windows integrata o se si preferisce usare la delega vincolata Kerberos per l'accesso Single Sign-On, scegliere **Autenticazione di Windows integrata**.</span><span class="sxs-lookup"><span data-stu-id="6d755-139">If your on-premises applications use Integrated Windows Authentication(IWA) or if you want to use Kerberos Constrained Delegation (KCD) for single sign-on, choose **Integrated Windows Authentication**.</span></span> <span data-ttu-id="6d755-140">Con questa opzione, l'utente deve solo eseguire l'autenticazione ad Azure Active Directory e il connettore del proxy di applicazione acquisirà un token Kerberos e accederà all'applicazione per conto dell'utente.</span><span class="sxs-lookup"><span data-stu-id="6d755-140">With this option, your users only need to authenticate to Azure Active Directory, and then the Application Proxy connector impersonates the user to get a Kerberos token and sign in to the application.</span></span> 
+
+<span data-ttu-id="6d755-141">Per informazioni sulla configurazione dell'autenticazione di Windows integrata, vedere [Delega vincolata Kerberos per l'accesso Single Sign-On con il proxy di applicazione](active-directory-application-proxy-sso-using-kcd.md).</span><span class="sxs-lookup"><span data-stu-id="6d755-141">For information about setting up Integrated Windows Authentication, see [Kerberos Constrained Delegation for single sign-on with Application Proxy](active-directory-application-proxy-sso-using-kcd.md).</span></span>
+
+## <a name="header-based-sign-on"></a><span data-ttu-id="6d755-142">Accesso basato su intestazione</span><span class="sxs-lookup"><span data-stu-id="6d755-142">Header-based sign-on</span></span> 
+
+<span data-ttu-id="6d755-143">Se le applicazioni usano le intestazioni per l'autenticazione, scegliere **Accesso basato su intestazione**.</span><span class="sxs-lookup"><span data-stu-id="6d755-143">If your applications use headers for authentication, choose **Header-based sign-on**.</span></span> <span data-ttu-id="6d755-144">Con questa opzione, gli utenti devono solo eseguire l'autenticazione ad Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="6d755-144">With this option, your users only need to authentication the Azure Active Directory.</span></span> <span data-ttu-id="6d755-145">Microsoft si avvale di un servizio di autenticazione di terze parti chiamato PingAccess, che converte il token di accesso ad Azure Active Directory in un formato di intestazione per l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="6d755-145">Microsoft partners with a third-party authentication service called PingAccess, which translated the Azure Active Directory access token into a header format for the application.</span></span> 
+
+<span data-ttu-id="6d755-146">Per informazioni sulla configurazione dell'autenticazione basata su intestazione, vedere [Autenticazione basata su intestazione per l'accesso Single Sign-On con il proxy di applicazione](application-proxy-ping-access.md).</span><span class="sxs-lookup"><span data-stu-id="6d755-146">For information about setting up header-based authentication, see [Header-based authentication for single sign-on with Application Proxy](application-proxy-ping-access.md).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="6d755-147">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="6d755-147">Next steps</span></span>
+
+- [<span data-ttu-id="6d755-148">Insieme di credenziali delle password per l'accesso Single Sign-On con il proxy di applicazione</span><span class="sxs-lookup"><span data-stu-id="6d755-148">Password vaulting for single sign-on with Application Proxy</span></span>](application-proxy-sso-azure-portal.md)
+- [<span data-ttu-id="6d755-149">Delega vincolata Kerberos per l'accesso Single Sign-On con il proxy di applicazione</span><span class="sxs-lookup"><span data-stu-id="6d755-149">Kerberos Constrained Delegation for single sign-on with Application Proxy</span></span>](active-directory-application-proxy-sso-using-kcd.md)
+- [<span data-ttu-id="6d755-150">Autenticazione basata su intestazione per l'accesso Single Sign-On con il proxy di applicazione</span><span class="sxs-lookup"><span data-stu-id="6d755-150">Header-based authentication for single sign-on with Application Proxy</span></span>](application-proxy-ping-access.md) 

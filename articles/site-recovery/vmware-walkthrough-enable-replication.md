@@ -1,0 +1,84 @@
+---
+title: Abilitare la replica per le VM VMware in Azure con Azure Site Recovery | Microsoft Docs
+description: Riepiloga i passaggi necessari per abilitare la replica delle macchine virtuali VMware in Azure con il servizio Azure Site Recovery
+documentationcenter: 
+author: rayne-wiselman
+manager: carmonm
+editor: 
+ms.assetid: 519c5559-7032-4954-b8b5-f24f5242a954
+ms.service: site-recovery
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 06/27/2017
+ms.author: raynew
+ms.openlocfilehash: 470b9ddd8df4a4e74ec7174f79020c252323e502
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="step-11-enable-replication-for-vmware-virtual-machines-to-azure"></a><span data-ttu-id="b00dc-103">Passaggio 11: Abilitare la replica delle macchine virtuali VMware in Azure</span><span class="sxs-lookup"><span data-stu-id="b00dc-103">Step 11: Enable replication for VMware virtual machines to Azure</span></span>
+
+
+<span data-ttu-id="b00dc-104">Questo articolo illustra come abilitare la replica delle macchine virtuali VMware locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="b00dc-104">This article describes how to enable replication for on-premises VMware virtual machines to Azure, using the [Azure Site Recovery](site-recovery-overview.md) service in the Azure portal.</span></span>
+
+<span data-ttu-id="b00dc-105">Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).</span><span class="sxs-lookup"><span data-stu-id="b00dc-105">Post comments and questions at the bottom of this article, or on the [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).</span></span>
+
+
+## <a name="before-you-start"></a><span data-ttu-id="b00dc-106">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="b00dc-106">Before you start</span></span>
+
+- <span data-ttu-id="b00dc-107">Nelle macchine virtuali VMware deve essere installato il [componente del servizio Mobility](vmware-walkthrough-install-mobility.md).</span><span class="sxs-lookup"><span data-stu-id="b00dc-107">VMware VMs must have the [Mobility service component installed](vmware-walkthrough-install-mobility.md).</span></span> <span data-ttu-id="b00dc-108">Se una VM è pronta per l'installazione push, il server di elaborazione installa automaticamente il servizio Mobility quando si abilita la replica.</span><span class="sxs-lookup"><span data-stu-id="b00dc-108">- If a VM is prepared for push installation, the process server automatically installs the Mobility service when you enable replication.</span></span>
+- <span data-ttu-id="b00dc-109">L'account utente di Azure deve avere [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) specifiche per abilitare la replica di una nuova VM in Azure.</span><span class="sxs-lookup"><span data-stu-id="b00dc-109">Your Azure user account needs specific [permissions](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) to enable replication of a VM to Azure</span></span>
+- <span data-ttu-id="b00dc-110">Quando si aggiungono o si modificano VM, possono trascorrere 15 minuti o più prima che le modifiche diventino effettive e vengano visualizzate nel portale.</span><span class="sxs-lookup"><span data-stu-id="b00dc-110">When you add or modify VMs, it can take up to 15 minutes or longer for changes to take effect, and for them to appear in the portal.</span></span>
+- <span data-ttu-id="b00dc-111">È possibile controllare l'ora dell'ultima individuazione di VM in **Server di configurazione** > **Ora ultimo contatto**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-111">You can check the last discovered time for VMs in **Configuration Servers** > **Last Contact At**.</span></span>
+- <span data-ttu-id="b00dc-112">Per aggiungere VM senza attendere l'individuazione pianificata, evidenziare il server di configurazione, senza selezionarlo, e fare clic su **Aggiorna**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-112">To add VMs without waiting for the scheduled discovery, highlight the configuration server (don’t click it), and click **Refresh**.</span></span>
+
+
+
+## <a name="exclude-disks-from-replication"></a><span data-ttu-id="b00dc-113">Escludere dischi dalla replica</span><span class="sxs-lookup"><span data-stu-id="b00dc-113">Exclude disks from replication</span></span>
+
+<span data-ttu-id="b00dc-114">Per impostazione predefinita, vengono replicati tutti i dischi in un computer.</span><span class="sxs-lookup"><span data-stu-id="b00dc-114">By default all disks on a machine are replicated.</span></span> <span data-ttu-id="b00dc-115">È possibile escludere dischi dalla replica.</span><span class="sxs-lookup"><span data-stu-id="b00dc-115">You can exclude disks from replication.</span></span> <span data-ttu-id="b00dc-116">Ad esempio, è possibile evitare di replicare i dischi con dati temporanei o dati che vengono aggiornati ogni volta che un computer o un'applicazione viene riavviata, come pagefile.sys o tempdb di SQL Server.</span><span class="sxs-lookup"><span data-stu-id="b00dc-116">For example you might not want to replicate disks with temporary data, or data that's refreshed each time a machine or application restarts (for example pagefile.sys or SQL Server tempdb).</span></span> [<span data-ttu-id="b00dc-117">Altre informazioni</span><span class="sxs-lookup"><span data-stu-id="b00dc-117">Learn more</span></span>](site-recovery-exclude-disk.md)
+
+## <a name="replicate-vms"></a><span data-ttu-id="b00dc-118">Replicare le VM</span><span class="sxs-lookup"><span data-stu-id="b00dc-118">Replicate VMs</span></span>
+
+<span data-ttu-id="b00dc-119">Prima di iniziare, guardare una rapida panoramica video</span><span class="sxs-lookup"><span data-stu-id="b00dc-119">Before you start, watch a quick video overview</span></span>
+
+>[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video3-Protect-VMware-Virtual-Machines/player]
+
+1. <span data-ttu-id="b00dc-120">Fare clic su **Passaggio 2: Eseguire la replica dell'applicazione** > **Origine**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-120">Click **Step 2: Replicate application** > **Source**.</span></span>
+2. <span data-ttu-id="b00dc-121">In **Origine** selezionare il server di configurazione.</span><span class="sxs-lookup"><span data-stu-id="b00dc-121">In **Source**, select the configuration server.</span></span>
+3. <span data-ttu-id="b00dc-122">In **Tipo di computer** selezionare **Macchine virtuali**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-122">In **Machine type**, select **Virtual Machines**.</span></span>
+4. <span data-ttu-id="b00dc-123">In **vCenter/vSphere Hypervisor** selezionare il server vCenter che gestisce l'host di vSphere oppure selezionare l'host.</span><span class="sxs-lookup"><span data-stu-id="b00dc-123">In **vCenter/vSphere Hypervisor**, select the vCenter server that manages the vSphere host, or select the host.</span></span>
+5. <span data-ttu-id="b00dc-124">Selezionare il server di elaborazione.</span><span class="sxs-lookup"><span data-stu-id="b00dc-124">Select the process server.</span></span> <span data-ttu-id="b00dc-125">Se non sono stati creati server di elaborazione aggiuntivi, questo sarà il server di configurazione.</span><span class="sxs-lookup"><span data-stu-id="b00dc-125">If you haven't created any additional process servers this will be the configuration server.</span></span> <span data-ttu-id="b00dc-126">Fare quindi clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-126">Then click **OK**.</span></span>
+
+    ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication2.png)
+
+6. <span data-ttu-id="b00dc-128">In **Destinazione** selezionare la sottoscrizione e il gruppo di risorse in cui si vogliono creare le VM di cui viene effettuato il failover.</span><span class="sxs-lookup"><span data-stu-id="b00dc-128">In **Target**, select the subscription and the resource group in which you want to create the failed over VMs.</span></span> <span data-ttu-id="b00dc-129">Scegliere il modello di distribuzione (classica o Resource Manager) da usare in Azure per le VM di cui viene effettuato il failover.</span><span class="sxs-lookup"><span data-stu-id="b00dc-129">Choose the deployment model that you want to use in Azure (classic or resource management), for the failed over VMs.</span></span>
+
+
+7. <span data-ttu-id="b00dc-130">Selezionare l'account di archiviazione di Azure da usare per la replica dei dati.</span><span class="sxs-lookup"><span data-stu-id="b00dc-130">Select the Azure storage account you want to use for replicating data.</span></span> <span data-ttu-id="b00dc-131">Se non si vuole usare un account già configurato, è possibile crearne uno nuovo.</span><span class="sxs-lookup"><span data-stu-id="b00dc-131">If you don't want to use an account you've already set up, you can create a new one.</span></span>
+
+8. <span data-ttu-id="b00dc-132">Selezionare la rete di Azure e la subnet a cui dovranno connettersi le VM di Azure create dopo il failover.</span><span class="sxs-lookup"><span data-stu-id="b00dc-132">Select the Azure network and subnet to which Azure VMs will connect, when they're created after failover.</span></span> <span data-ttu-id="b00dc-133">Scegliere **Configurare ora per le macchine virtuali selezionate** per applicare le impostazioni di rete a tutti i computer selezionati per la protezione.</span><span class="sxs-lookup"><span data-stu-id="b00dc-133">Select **Configure now for selected machines**, to apply the network setting to all machines you select for protection.</span></span> <span data-ttu-id="b00dc-134">Scegliere **Configurare in seguito** per selezionare la rete di Azure per ogni computer.</span><span class="sxs-lookup"><span data-stu-id="b00dc-134">Select **Configure later** to select the Azure network per machine.</span></span> <span data-ttu-id="b00dc-135">Se non si vuole usare una rete esistente, è possibile crearne una.</span><span class="sxs-lookup"><span data-stu-id="b00dc-135">If you don't want to use an existing network, you can create one.</span></span>
+
+    ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-rep3.png)
+9. <span data-ttu-id="b00dc-137">In **Macchine virtuali** > **Seleziona macchine virtuali** fare clic per selezionare tutte le macchine virtuali da replicare.</span><span class="sxs-lookup"><span data-stu-id="b00dc-137">In **Virtual Machines** > **Select virtual machines**, click and select each machine you want to replicate.</span></span> <span data-ttu-id="b00dc-138">È possibile selezionare solo i computer per cui è possibile abilitare la replica.</span><span class="sxs-lookup"><span data-stu-id="b00dc-138">You can only select machines for which replication can be enabled.</span></span> <span data-ttu-id="b00dc-139">Fare quindi clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-139">Then click **OK**.</span></span>
+
+    ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication5.png)
+10. <span data-ttu-id="b00dc-141">In **Proprietà** > **Configura proprietà**selezionare l'account che verrà usato dal server di elaborazione per installare automaticamente il servizio Mobility nel computer.</span><span class="sxs-lookup"><span data-stu-id="b00dc-141">In **Properties** > **Configure properties**, select the account that will be used by the process server to automatically install the Mobility service on the machine.</span></span>
+11. <span data-ttu-id="b00dc-142">Per impostazione predefinita, vengono replicati tutti i dischi.</span><span class="sxs-lookup"><span data-stu-id="b00dc-142">By default all disks are replicated.</span></span> <span data-ttu-id="b00dc-143">Fare clic su **Tutti i dischi** e deselezionare i dischi da non replicare.</span><span class="sxs-lookup"><span data-stu-id="b00dc-143">Click **All Disks** and clear any disks you don't want to replicate.</span></span> <span data-ttu-id="b00dc-144">Fare quindi clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-144">Then click **OK**.</span></span> <span data-ttu-id="b00dc-145">È possibile impostare proprietà aggiuntive delle VM in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="b00dc-145">You can set additional VM properties later.</span></span>
+
+    ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication6.png)
+11. <span data-ttu-id="b00dc-147">In **Impostazioni della replica** > **Configura impostazioni di replica** verificare che siano selezionati i criteri di replica corretti.</span><span class="sxs-lookup"><span data-stu-id="b00dc-147">In **Replication settings** > **Configure replication settings**, verify that the correct replication policy is selected.</span></span> <span data-ttu-id="b00dc-148">Se si modificano i criteri, le modifiche verranno applicate al computer di replica e ai nuovi computer.</span><span class="sxs-lookup"><span data-stu-id="b00dc-148">If you modify a policy, changes will be applied to replicating machine, and to new machines.</span></span>
+12. <span data-ttu-id="b00dc-149">Abilitare la **Coerenza tra più VM** per raccogliere le macchine in un gruppo di replica e specificare un nome per il gruppo.</span><span class="sxs-lookup"><span data-stu-id="b00dc-149">Enable **Multi-VM consistency** if you want to gather machines into a replication group, and specify a name for the group.</span></span> <span data-ttu-id="b00dc-150">Fare quindi clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-150">Then click **OK**.</span></span> <span data-ttu-id="b00dc-151">Si noti che:</span><span class="sxs-lookup"><span data-stu-id="b00dc-151">Note that:</span></span>
+
+    * <span data-ttu-id="b00dc-152">I computer in gruppi di replica vengono replicati insieme e hanno punti di ripristino condivisi coerenti con l'arresto anomalo del sistema e coerenti con l'app in caso di failover.</span><span class="sxs-lookup"><span data-stu-id="b00dc-152">Machines in replication groups replicate together, and have shared crash-consistent and app-consistent recovery points when they fail over.</span></span>
+    * <span data-ttu-id="b00dc-153">È consigliabile raggruppare le macchine virtuali e i server fisici in modo da rispecchiare i carichi di lavoro.</span><span class="sxs-lookup"><span data-stu-id="b00dc-153">We recommend that you gather VMs and physical servers together so that they mirror your workloads.</span></span> <span data-ttu-id="b00dc-154">L'abilitazione della coerenza tra più VM può influire sulle prestazioni del carico di lavoro e deve essere usata solo se i computer eseguono lo stesso carico di lavoro ed è necessaria la coerenza.</span><span class="sxs-lookup"><span data-stu-id="b00dc-154">Enabling multi-VM consistency can impact workload performance, and should only be used if machines are running the same workload and you need consistency.</span></span>
+
+    ![Abilitare la replica](./media/vmware-walkthrough-enable-replication/enable-replication7.png)
+13. <span data-ttu-id="b00dc-156">Fare clic su **Abilita la replica**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-156">Click **Enable Replication**.</span></span> <span data-ttu-id="b00dc-157">È possibile tenere traccia dello stato del processo **Abilita protezione** in **Impostazioni** > **Processi** > **Processi di Site Recovery**.</span><span class="sxs-lookup"><span data-stu-id="b00dc-157">You can track progress of the **Enable Protection** job in **Settings** > **Jobs** > **Site Recovery Jobs**.</span></span> <span data-ttu-id="b00dc-158">Dopo l'esecuzione del processo **Finalizza protezione** la macchina virtuale è pronta per il failover.</span><span class="sxs-lookup"><span data-stu-id="b00dc-158">After the **Finalize Protection** job runs the machine is ready for failover.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="b00dc-159">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b00dc-159">Next steps</span></span>
+
+<span data-ttu-id="b00dc-160">Andare al [Passaggio 12: Eseguire un failover di test](vmware-walkthrough-test-failover.md)</span><span class="sxs-lookup"><span data-stu-id="b00dc-160">Go to [Step 12: Run a test failover](vmware-walkthrough-test-failover.md)</span></span>

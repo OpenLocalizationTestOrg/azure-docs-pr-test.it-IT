@@ -1,0 +1,73 @@
+---
+title: Come aggiungere un'origine evento hub IoT a un ambiente Azure Time Series Insights | Documentazione Microsoft
+description: Questa esercitazione illustra come aggiungere un'origine evento connessa a un hub IoT all'ambiente Time Series Insights
+keywords: 
+services: time-series-insights
+documentationcenter: 
+author: sandshadow
+manager: almineev
+editor: cgronlun
+ms.assetid: 
+ms.service: time-series-insights
+ms.devlang: na
+ms.topic: how-to-article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 04/19/2017
+ms.author: edett
+ms.openlocfilehash: 72037677fac528ff8174d25b474ca7e70826a7b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="how-to-add-an-iot-hub-event-source"></a><span data-ttu-id="4f622-103">Come aggiungere un'origine evento hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-103">How to add an IoT Hub event source</span></span>
+
+<span data-ttu-id="4f622-104">Questa esercitazione illustra come usare il portale di Azure per aggiungere un'origine evento che legge da un hub IoT all'ambiente Time Series Insights.</span><span class="sxs-lookup"><span data-stu-id="4f622-104">This tutorial covers how to use the Azure portal to add an event source that reads from an IoT Hub to your Time Series Insights environment.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="4f622-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="4f622-105">Prerequisites</span></span>
+
+<span data-ttu-id="4f622-106">È stato creato un hub IoT e si stanno scrivendo eventi in esso.</span><span class="sxs-lookup"><span data-stu-id="4f622-106">You have created an IoT Hub and are writing events to it.</span></span> <span data-ttu-id="4f622-107">Per altre informazioni sugli hub IoT, vedere <https://azure.microsoft.com/services/iot-hub/></span><span class="sxs-lookup"><span data-stu-id="4f622-107">For more information on IoT Hubs, see <https://azure.microsoft.com/services/iot-hub/></span></span>
+
+> <span data-ttu-id="4f622-108">[Gruppi di consumer] Tutte le origini evento Time Series Insights devono avere un proprio gruppo di consumer dedicato che non è condiviso con altri consumer.</span><span class="sxs-lookup"><span data-stu-id="4f622-108">[Consumer Groups] Each Time Series Insights event source needs to have its own dedicated consumer group that is not shared with any other consumers.</span></span> <span data-ttu-id="4f622-109">Se più lettori consumano eventi dello stesso gruppo di consumer, tutti i lettori hanno probabilità di vedere errori.</span><span class="sxs-lookup"><span data-stu-id="4f622-109">If multiple readers consume events from the same consumer group, all readers are likely to see failures.</span></span> <span data-ttu-id="4f622-110">Per altre informazioni, vedere la [Guida per gli sviluppatori dell'hub IoT](../iot-hub/iot-hub-devguide.md).</span><span class="sxs-lookup"><span data-stu-id="4f622-110">For details, see the [IoT Hub developer guide](../iot-hub/iot-hub-devguide.md).</span></span>
+
+## <a name="choose-an-import-option"></a><span data-ttu-id="4f622-111">Scegliere un'opzione di importazione</span><span class="sxs-lookup"><span data-stu-id="4f622-111">Choose an Import option</span></span>
+
+<span data-ttu-id="4f622-112">Le impostazioni per l'origine evento possono essere inserite manualmente oppure è possibile selezionare un hub IoT dagli hub IoT disponibili.</span><span class="sxs-lookup"><span data-stu-id="4f622-112">The settings for the event source can be entered manually or an IoT hub can be selected from the IoT hubs that are available to you.</span></span>
+<span data-ttu-id="4f622-113">Nel selettore **Opzione di importazione** scegliere una delle opzioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="4f622-113">In the **Import Option** selector, choose one of the following options:</span></span>
+
+* <span data-ttu-id="4f622-114">Specificare le impostazioni dell'hub IoT manualmente</span><span class="sxs-lookup"><span data-stu-id="4f622-114">Provide IoT Hub settings manually</span></span>
+* <span data-ttu-id="4f622-115">Usare un hub IoT delle sottoscrizioni disponibili</span><span class="sxs-lookup"><span data-stu-id="4f622-115">Use IoT Hub from available subscriptions</span></span>
+
+### <a name="select-an-available-iot-hub"></a><span data-ttu-id="4f622-116">Selezionare un hub IoT disponibile</span><span class="sxs-lookup"><span data-stu-id="4f622-116">Select an available IoT Hub</span></span>
+
+<span data-ttu-id="4f622-117">La tabella seguente riporta le singole opzioni della scheda Nuova origine evento con la relativa descrizione quando si seleziona un hub IoT disponibile come origine evento:</span><span class="sxs-lookup"><span data-stu-id="4f622-117">The following table explains each option in the New Event Source tab with its description when selecting an available IoT Hub as an event source:</span></span>
+
+| <span data-ttu-id="4f622-118">Nome proprietà</span><span class="sxs-lookup"><span data-stu-id="4f622-118">PROPERTY NAME</span></span> | <span data-ttu-id="4f622-119">DESCRIZIONE</span><span class="sxs-lookup"><span data-stu-id="4f622-119">DESCRIPTION</span></span> |
+| --- | --- |
+| <span data-ttu-id="4f622-120">Nome origine evento</span><span class="sxs-lookup"><span data-stu-id="4f622-120">Event source name</span></span> | <span data-ttu-id="4f622-121">Il nome dell'origine evento.</span><span class="sxs-lookup"><span data-stu-id="4f622-121">The name of your event source.</span></span> <span data-ttu-id="4f622-122">Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.</span><span class="sxs-lookup"><span data-stu-id="4f622-122">This name must be unique within your Time Series Insights environment.</span></span>
+| <span data-ttu-id="4f622-123">Sorgente</span><span class="sxs-lookup"><span data-stu-id="4f622-123">Source</span></span> | <span data-ttu-id="4f622-124">Scegliere **Hub IoT** per creare un'origine evento hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-124">Choose **IoT Hub** to create an IoT Hub event source.</span></span>
+| <span data-ttu-id="4f622-125">ID sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="4f622-125">Subscription Id</span></span> | <span data-ttu-id="4f622-126">Selezionare la sottoscrizione in cui l'hub IoT è stato creato.</span><span class="sxs-lookup"><span data-stu-id="4f622-126">Select the subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="4f622-127">Nome dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-127">IoT hub name</span></span> | <span data-ttu-id="4f622-128">Selezionare il nome dell'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-128">Select the name of the IoT Hub.</span></span>
+| <span data-ttu-id="4f622-129">Nome criterio dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-129">IoT hub policy name</span></span> | <span data-ttu-id="4f622-130">Selezionare il criterio di accesso condiviso che si può trovare nella scheda Impostazioni hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-130">Select the shared access policy, which can be found on the IoT Hub settings tab.</span></span> <span data-ttu-id="4f622-131">Ogni criterio di accesso condiviso ha un nome, autorizzazioni impostate e chiavi di accesso.</span><span class="sxs-lookup"><span data-stu-id="4f622-131">Each shared access policy has a name, permissions that you set, and access keys.</span></span> <span data-ttu-id="4f622-132">Il criterio di accesso condiviso per l'origine evento *deve* avere le autorizzazioni per la **connessione al servizio**.</span><span class="sxs-lookup"><span data-stu-id="4f622-132">The shared access policy for your event source *must* have **service connect** permissions.</span></span>
+| <span data-ttu-id="4f622-133">Gruppo di consumer dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-133">IoT hub consumer group</span></span> | <span data-ttu-id="4f622-134">Il gruppo di consumer per leggere gli eventi dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-134">The Consumer Group to read events from the IoT Hub.</span></span> <span data-ttu-id="4f622-135">È consigliabile usare un gruppo di consumer dedicato per l'origine evento.</span><span class="sxs-lookup"><span data-stu-id="4f622-135">It is highly recommended to use a dedicated consumer group for your event source.</span></span>
+
+### <a name="provide-iot-hub-settings-manually"></a><span data-ttu-id="4f622-136">Specificare le impostazioni dell'hub IoT manualmente</span><span class="sxs-lookup"><span data-stu-id="4f622-136">Provide IoT Hub settings manually</span></span>
+
+<span data-ttu-id="4f622-137">La tabella seguente riporta le singole proprietà della scheda Nuova origine evento con la descrizione quando si immettono le impostazioni manualmente:</span><span class="sxs-lookup"><span data-stu-id="4f622-137">The following table explains each property in the New Event Source tab with its description when entering settings manually:</span></span>
+
+| <span data-ttu-id="4f622-138">Nome proprietà</span><span class="sxs-lookup"><span data-stu-id="4f622-138">PROPERTY NAME</span></span> | <span data-ttu-id="4f622-139">DESCRIZIONE</span><span class="sxs-lookup"><span data-stu-id="4f622-139">DESCRIPTION</span></span> |
+| --- | --- |
+| <span data-ttu-id="4f622-140">Nome origine evento</span><span class="sxs-lookup"><span data-stu-id="4f622-140">Event source name</span></span> | <span data-ttu-id="4f622-141">Il nome dell'origine evento.</span><span class="sxs-lookup"><span data-stu-id="4f622-141">The name of your event source.</span></span> <span data-ttu-id="4f622-142">Questo nome deve essere univoco all'interno dell'ambiente Time Series Insights.</span><span class="sxs-lookup"><span data-stu-id="4f622-142">This name must be unique within your Time Series Insights environment.</span></span>
+| <span data-ttu-id="4f622-143">Sorgente</span><span class="sxs-lookup"><span data-stu-id="4f622-143">Source</span></span> | <span data-ttu-id="4f622-144">Scegliere **Hub IoT** per creare un'origine evento hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-144">Choose **IoT Hub** to create an IoT Hub event source.</span></span>
+| <span data-ttu-id="4f622-145">ID sottoscrizione</span><span class="sxs-lookup"><span data-stu-id="4f622-145">Subscription Id</span></span> | <span data-ttu-id="4f622-146">La sottoscrizione in cui l'hub IoT è stato creato.</span><span class="sxs-lookup"><span data-stu-id="4f622-146">The subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="4f622-147">Gruppo di risorse</span><span class="sxs-lookup"><span data-stu-id="4f622-147">Resource group</span></span> | <span data-ttu-id="4f622-148">La sottoscrizione in cui l'hub IoT è stato creato.</span><span class="sxs-lookup"><span data-stu-id="4f622-148">The subscription in which this IoT hub was created.</span></span>
+| <span data-ttu-id="4f622-149">Nome dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-149">IoT hub name</span></span> | <span data-ttu-id="4f622-150">Il nome dell'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-150">The name of your IoT Hub.</span></span> <span data-ttu-id="4f622-151">Quando l'hub IoT è stato creato gli è stato anche assegnato un nome specifico</span><span class="sxs-lookup"><span data-stu-id="4f622-151">When you created your IoT hub, you also gave it a specific name</span></span>
+| <span data-ttu-id="4f622-152">Nome criterio dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-152">IoT hub policy name</span></span> | <span data-ttu-id="4f622-153">Il criterio di accesso condiviso che può essere creato nella scheda Impostazioni hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-153">The shared access policy, which can be created on the IoT Hub settings tab.</span></span> <span data-ttu-id="4f622-154">Ogni criterio di accesso condiviso ha un nome, autorizzazioni impostate e chiavi di accesso.</span><span class="sxs-lookup"><span data-stu-id="4f622-154">Each shared access policy has a name, permissions that you set, and access keys.</span></span> <span data-ttu-id="4f622-155">Il criterio di accesso condiviso per l'origine evento *deve* avere le autorizzazioni per la **connessione al servizio**.</span><span class="sxs-lookup"><span data-stu-id="4f622-155">The shared access policy for your event source *must* have **service connect** permissions.</span></span>
+| <span data-ttu-id="4f622-156">Chiave criteri hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-156">IoT hub policy key</span></span> | <span data-ttu-id="4f622-157">Chiave di accesso condivisa usata per autenticare l'accesso allo spazio dei nomi del bus di servizio.</span><span class="sxs-lookup"><span data-stu-id="4f622-157">The Shared Access key used to authenticate access to the Service Bus namespace.</span></span> <span data-ttu-id="4f622-158">Digitare la chiave primaria o secondaria qui.</span><span class="sxs-lookup"><span data-stu-id="4f622-158">Type the primary or secondary key here.</span></span>
+| <span data-ttu-id="4f622-159">Gruppo di consumer dell'hub IoT</span><span class="sxs-lookup"><span data-stu-id="4f622-159">IoT hub consumer group</span></span> | <span data-ttu-id="4f622-160">Il gruppo di consumer per leggere gli eventi dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="4f622-160">The Consumer Group to read events from the IoT Hub.</span></span> <span data-ttu-id="4f622-161">È consigliabile usare un gruppo di consumer dedicato per l'origine evento.</span><span class="sxs-lookup"><span data-stu-id="4f622-161">It is highly recommended to use a dedicated consumer group for your event source.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="4f622-162">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="4f622-162">Next steps</span></span>
+
+1. <span data-ttu-id="4f622-163">Aggiungere i criteri di accesso ai dati nell'ambiente [Definire i criteri di accesso ai dati](time-series-insights-data-access.md)</span><span class="sxs-lookup"><span data-stu-id="4f622-163">Add a data access policy to your environment [Define data access policies](time-series-insights-data-access.md)</span></span>
+1. <span data-ttu-id="4f622-164">Accedere all'ambiente nel [portale di Time Series Insights](https://insights.timeseries.azure.com)</span><span class="sxs-lookup"><span data-stu-id="4f622-164">Access your environment in the [Time Series Insights Portal](https://insights.timeseries.azure.com)</span></span>

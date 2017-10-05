@@ -1,0 +1,90 @@
+---
+title: Introduzione a Linux in Azure | Microsoft Docs
+description: Informazioni sull'uso delle macchine virtuali Linux in Azure.
+services: virtual-machines-linux
+documentationcenter: python
+author: szarkos
+manager: timlt
+editor: 
+tags: azure-resource-manager,azure-service-management
+ms.assetid: b13bf305-87bf-4df3-815e-e8f6337aa6ea
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 06/01/2017
+ms.author: szark
+ms.openlocfilehash: 7bd0c5549a2e1f592681760d5ef464b9570ca4ab
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="introduction-to-linux-on-azure"></a><span data-ttu-id="05fef-103">Introduzione a Linux in Azure</span><span class="sxs-lookup"><span data-stu-id="05fef-103">Introduction to Linux on Azure</span></span>
+<span data-ttu-id="05fef-104">In questo argomento viene fornita una panoramica relativa ad alcuni aspetti dell'uso di macchine virtuali Linux nel cloud di Azure.</span><span class="sxs-lookup"><span data-stu-id="05fef-104">This topic provides an overview of some aspects of using Linux virtual machines in the Azure cloud.</span></span> <span data-ttu-id="05fef-105">Se si usa un'immagine presente nella raccolta, la distribuzione di una macchina virtuale Linux è un processo estremamente semplice.</span><span class="sxs-lookup"><span data-stu-id="05fef-105">Deploying a Linux virtual machine is a straightforward process using an image from the gallery.</span></span>
+
+## <a name="authentication-usernames-passwords-and-ssh-keys"></a><span data-ttu-id="05fef-106">Autenticazione: nomi utente, password e chiavi SSH</span><span class="sxs-lookup"><span data-stu-id="05fef-106">Authentication: Usernames, Passwords and SSH Keys</span></span>
+<span data-ttu-id="05fef-107">Quando si crea una macchina virtuale Linux usando il portale di Azure, viene chiesto di specificare un nome utente e una password o una chiave pubblica SSH.</span><span class="sxs-lookup"><span data-stu-id="05fef-107">When creating a Linux virtual machine using the Azure portal, you are asked to provide a either username and password or an SSH public key.</span></span> <span data-ttu-id="05fef-108">La scelta del nome utente per la distribuzione di una macchina virtuale Linux in Azure è soggetta a un vincolo: i nomi degli account di sistema (UID <100) già presenti nella macchina virtuale, ad esempio l'account 'root', non sono consentiti.</span><span class="sxs-lookup"><span data-stu-id="05fef-108">The choice of a username for deploying a Linux virtual machine on Azure is subject to the following constraint: names of system accounts (UID <100) already present in the virtual machine are not allowed, 'root' for example.</span></span>
+
+* <span data-ttu-id="05fef-109">Vedere [Creare una macchina virtuale che esegue Linux](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-109">See [Create a Virtual Machine Running Linux](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+* <span data-ttu-id="05fef-110">Vedere [Come usare SSH con Linux in Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-110">See [How to Use SSH with Linux on Azure](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+
+## <a name="obtaining-superuser-privileges-using-sudo"></a><span data-ttu-id="05fef-111">Ottenere privilegi utente avanzato tramite `sudo`</span><span class="sxs-lookup"><span data-stu-id="05fef-111">Obtaining Superuser Privileges Using `sudo`</span></span>
+<span data-ttu-id="05fef-112">L'account utente specificato durante la distribuzione di istanze di macchine virtuali in Azure è un account con privilegi.</span><span class="sxs-lookup"><span data-stu-id="05fef-112">The user account that is specified during virtual machine instance deployment on Azure is a privileged account.</span></span> <span data-ttu-id="05fef-113">Tale account viene configurato dall'agente Linux di Azure con la capacità di elevare i privilegi al ruolo di utente ROOT (account utente con privilegi avanzati) tramite l'utilità `sudo` .</span><span class="sxs-lookup"><span data-stu-id="05fef-113">This account is configured by the Azure Linux Agent to be able to elevate privileges to root (superuser account) using the `sudo` utility.</span></span> <span data-ttu-id="05fef-114">Dopo aver eseguito l'accesso usando questo account utente, sarà possibile eseguire comandi come utente ROOT usando la sintassi del comando:</span><span class="sxs-lookup"><span data-stu-id="05fef-114">Once logged in using this user account, you will be able to run commands as root using the command syntax:</span></span>
+
+    # sudo <COMMAND>
+
+<span data-ttu-id="05fef-115">Facoltativamente, è possibile ottenere una shell di root usando **sudo -s**.</span><span class="sxs-lookup"><span data-stu-id="05fef-115">You can optionally obtain a root shell using **sudo -s**.</span></span>
+
+* <span data-ttu-id="05fef-116">Vedere [Uso di privilegi root sulle macchine virtuali Linux in Azure](use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-116">See [Using root privileges on Linux virtual machines in Azure](use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+
+## <a name="firewall-configuration"></a><span data-ttu-id="05fef-117">Configurazione del firewall</span><span class="sxs-lookup"><span data-stu-id="05fef-117">Firewall Configuration</span></span>
+<span data-ttu-id="05fef-118">In Azure è disponibile un filtro dei pacchetti in ingresso che limita la connettività alle porte specificate nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="05fef-118">Azure provides an inbound packet filter that restricts connectivity to ports specified in the Azure portal.</span></span> <span data-ttu-id="05fef-119">Per impostazione predefinita, l'unica porta consentita è SSH.</span><span class="sxs-lookup"><span data-stu-id="05fef-119">By default, the only allowed port is SSH.</span></span> <span data-ttu-id="05fef-120">È possibile aprire l'accesso a porte aggiuntive nella macchina virtuale Linux mediante la configurazione di endpoint nel portale di Azure:</span><span class="sxs-lookup"><span data-stu-id="05fef-120">You may open up access to additional ports on your Linux virtual machine by configuring endpoints in the Azure portal:</span></span>
+
+* <span data-ttu-id="05fef-121">Vedere [Come configurare gli endpoint in una macchina virtuale](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-121">See: [How to Set Up Endpoints to a Virtual Machine](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)</span></span>
+
+<span data-ttu-id="05fef-122">Le immagini Linux disponibili nella Raccolta di Azure non abilitano il firewall *iptables* per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="05fef-122">The Linux images in the Azure Gallery do not enable the *iptables* firewall by default.</span></span> <span data-ttu-id="05fef-123">Se necessario, è possibile configurare il firewall per implementare funzionalità di filtro.</span><span class="sxs-lookup"><span data-stu-id="05fef-123">If desired, the firewall may be configured to provide additional filtering.</span></span>
+
+## <a name="hostname-changes"></a><span data-ttu-id="05fef-124">Modifica del nome host</span><span class="sxs-lookup"><span data-stu-id="05fef-124">Hostname Changes</span></span>
+<span data-ttu-id="05fef-125">Quando si distribuisce un'istanza di un'immagine Linux è necessario specificare un nome host per la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="05fef-125">When you initially deploy an instance of a Linux image, you are required to provide a host name for the virtual machine.</span></span> <span data-ttu-id="05fef-126">Quando la macchina virtuale è in esecuzione, il nome host viene pubblicato nei server DNS della piattaforma, in modo che più macchine virtuali connesse tra loro possano eseguire ricerche di indirizzi IP usando i nomi host.</span><span class="sxs-lookup"><span data-stu-id="05fef-126">Once the virtual machine is running, this hostname is published to the platform DNS servers so that multiple virtual machines connected to each other can perform IP address lookups using hostnames.</span></span>
+
+<span data-ttu-id="05fef-127">Se, dopo la distribuzione di una macchina virtuale, si vuole modificarne il nome host, usare il comando</span><span class="sxs-lookup"><span data-stu-id="05fef-127">If hostname changes are desired after a virtual machine has been deployed, please use the command</span></span>
+
+    # sudo hostname <newname>
+
+<span data-ttu-id="05fef-128">L'agente Linux di Azure include funzionalità per il rilevamento automatico delle modifiche del nome host, la configurazione della macchina virtuale per il salvataggio permanente della modifica e la pubblicazione della modifica nei server DNS della piattaforma.</span><span class="sxs-lookup"><span data-stu-id="05fef-128">The Azure Linux Agent includes functionality to automatically detect this name change and appropriately configure the virtual machine to persist this change and publish this change to the platform DNS servers.</span></span>
+
+* [<span data-ttu-id="05fef-129">Guida dell'utente dell'agente Linux di Azure</span><span class="sxs-lookup"><span data-stu-id="05fef-129">Azure Linux Agent User Guide</span></span>](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+
+### <a name="cloud-init"></a><span data-ttu-id="05fef-130">cloud-init</span><span class="sxs-lookup"><span data-stu-id="05fef-130">Cloud-Init</span></span>
+<span data-ttu-id="05fef-131">Le immagini **Ubuntu** e **CoreOS** usano cloud-init in Azure, che offre capacità aggiuntive per il bootstrap di una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="05fef-131">**Ubuntu** and **CoreOS** images utilize cloud-init on Azure, which provides additional capabilities for bootstrapping a virtual machine.</span></span>
+
+* [<span data-ttu-id="05fef-132">Come inserire dati personalizzati</span><span class="sxs-lookup"><span data-stu-id="05fef-132">How to Inject Custom Data</span></span>](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [<span data-ttu-id="05fef-133">Dati personalizzati e cloud-init in Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="05fef-133">Custom Data and Cloud-Init on Microsoft Azure</span></span>](https://azure.microsoft.com/blog/2014/04/21/custom-data-and-cloud-init-on-windows-azure/)
+* [<span data-ttu-id="05fef-134">Creare partizioni di scambio di Azure con cloud-init</span><span class="sxs-lookup"><span data-stu-id="05fef-134">Create Azure Swap Partitions Using Cloud-Init</span></span>](https://wiki.ubuntu.com/AzureSwapPartitions)
+* [<span data-ttu-id="05fef-135">Come usare CoreOS in Azure</span><span class="sxs-lookup"><span data-stu-id="05fef-135">How to Use CoreOS on Azure</span></span>](https://coreos.com/os/docs/latest/booting-on-azure.html)
+
+## <a name="virtual-machine-image-capture"></a><span data-ttu-id="05fef-136">Acquisizione di immagini di macchine virtuali</span><span class="sxs-lookup"><span data-stu-id="05fef-136">Virtual Machine Image Capture</span></span>
+<span data-ttu-id="05fef-137">Azure offre la possibilità di acquisire lo stato di una macchina virtuale esistente in un'immagine che potrà essere usata in un secondo momento per distribuire altre istanze di macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="05fef-137">Azure provides the ability to capture the state of an existing virtual machine into an image that can subsequently be used to deploy additional virtual machine instances.</span></span> <span data-ttu-id="05fef-138">L'agente Linux di Azure può essere usato per ripristinare lo stato precedente di alcune personalizzazioni effettuate durante il processo di provisioning.</span><span class="sxs-lookup"><span data-stu-id="05fef-138">The Azure Linux Agent may be used to rollback some of the customization that was performed during the provisioning process.</span></span> <span data-ttu-id="05fef-139">Per acquisire una macchina virtuale come immagine, eseguire la procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="05fef-139">You may follow the steps below to capture a virtual machine as an image:</span></span>
+
+1. <span data-ttu-id="05fef-140">Eseguire **waagent -deprovision** per annullare la personalizzazione del provisioning.</span><span class="sxs-lookup"><span data-stu-id="05fef-140">Run **waagent -deprovision** to undo provisioning customization.</span></span> <span data-ttu-id="05fef-141">Facoltativamente, eseguire **waagent -deprovision+user** per eliminare l'account utente specificato durante il provisioning e tutti i relativi dati.</span><span class="sxs-lookup"><span data-stu-id="05fef-141">Or **waagent -deprovision+user** to optionally delete the user account specified during provisioning and all associated data.</span></span>
+2. <span data-ttu-id="05fef-142">Arrestare/Spegnere la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="05fef-142">Shut down/power off the virtual machine.</span></span>
+3. <span data-ttu-id="05fef-143">Fare clic su **Acquisisci** nel portale di Azure oppure usare gli strumenti di PowerShell o dell'interfaccia della riga di comando per acquisire la macchina virtuale come immagine.</span><span class="sxs-lookup"><span data-stu-id="05fef-143">Click **Capture** in the Azure portal or use the PowerShell or CLI tools to capture the virtual machine as an image.</span></span>
+   
+   * <span data-ttu-id="05fef-144">Vedere: [Come acquisire una macchina virtuale Linux da usare come modello](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-144">See: [How to Capture a Linux Virtual Machine to Use as a Template](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)</span></span>
+
+## <a name="attaching-disks"></a><span data-ttu-id="05fef-145">Collegamento di dischi</span><span class="sxs-lookup"><span data-stu-id="05fef-145">Attaching Disks</span></span>
+<span data-ttu-id="05fef-146">Ogni macchina virtuale ha un *disco risorse* temporaneo locale collegato.</span><span class="sxs-lookup"><span data-stu-id="05fef-146">Each virtual machine has a temporary, local *resource disk* attached.</span></span> <span data-ttu-id="05fef-147">Poiché è possibile che i dati su un disco risorse non vengano mantenuti tra un riavvio e l'altro, questo tipo di disco viene spesso usato da applicazioni e processi in esecuzione nella macchina virtuale per l'archiviazione **temporanea** di dati.</span><span class="sxs-lookup"><span data-stu-id="05fef-147">Because data on a resource disk may not be durable across reboots, it is often used by applications and processes running in the virtual machine for transient and **temporary** storage of data.</span></span> <span data-ttu-id="05fef-148">È anche usato per archiviare file di paging o di scambio per il sistema operativo.</span><span class="sxs-lookup"><span data-stu-id="05fef-148">It is also used to store the page or swap files for the operating system.</span></span>
+
+<span data-ttu-id="05fef-149">In Linux il disco risorse è in genere gestito dall'agente Linux di Azure e viene montato automaticamente in **/mnt/resource** (o **/mnt** nelle immagini Ubuntu).</span><span class="sxs-lookup"><span data-stu-id="05fef-149">On Linux, the resource disk is typically managed by the Azure Linux Agent and automatically mounted to **/mnt/resource** (or **/mnt** on Ubuntu images).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="05fef-150">Si noti che il disco risorse è un disco **temporaneo** e potrebbe essere eliminato e riformattato al riavvio della macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="05fef-150">Note that the resource disk is a **temporary** disk, and might be deleted and reformatted when the VM is rebooted.</span></span>
+> 
+> 
+
+<span data-ttu-id="05fef-151">In Linux il kernel potrebbe assegnare al disco dati il nome `/dev/sdc`. In questo caso gli utenti dovranno suddividere in partizioni, formattare e montare tale risorsa.</span><span class="sxs-lookup"><span data-stu-id="05fef-151">On Linux the data disk might be named by the kernel as `/dev/sdc`, and users will need to partition, format and mount that resource.</span></span> <span data-ttu-id="05fef-152">Questa procedura è illustrata in dettaglio nell'esercitazione [Come collegare un disco dati a una macchina virtuale](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="05fef-152">This is covered step-by-step in the tutorial: [How to Attach a Data Disk to a Virtual Machine](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).</span></span>
+
+* <span data-ttu-id="05fef-153">**Vedere anche:** [Configurare RAID software in Linux](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) & [Configurare LVM su una macchina virtuale Linux in Azure](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span><span class="sxs-lookup"><span data-stu-id="05fef-153">**See also:** [Configure Software RAID on Linux](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) & [Configure LVM on a Linux VM in Azure](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)</span></span>
+

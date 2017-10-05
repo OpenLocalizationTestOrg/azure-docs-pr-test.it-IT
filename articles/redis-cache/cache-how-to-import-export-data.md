@@ -1,0 +1,177 @@
+---
+title: Importare ed esportare dati in Cache Redis di Azure | Documentazione Microsoft
+description: Informazioni su come importare ed esportare dati da e verso l'archivio BLOB con le istanze di Cache Redis di Azure Premium
+services: redis-cache
+documentationcenter: 
+author: steved0x
+manager: douge
+editor: 
+ms.assetid: 4a68ac38-87af-4075-adab-569d37d7cc9e
+ms.service: cache
+ms.workload: tbd
+ms.tgt_pltfrm: cache-redis
+ms.devlang: na
+ms.topic: article
+ms.date: 07/31/2017
+ms.author: sdanie
+ms.openlocfilehash: 5e6d731f0a1cecc1a191c74a45e37a9b94fd98ee
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/29/2017
+---
+# <a name="import-and-export-data-in-azure-redis-cache"></a><span data-ttu-id="f0145-103">Importare ed esportare dati in Cache Redis di Azure</span><span class="sxs-lookup"><span data-stu-id="f0145-103">Import and Export data in Azure Redis Cache</span></span>
+<span data-ttu-id="f0145-104">L'importazione/esportazione è un'operazione di gestione dati di Cache Redis di Azure che consente di importare o esportare dati da Cache Redis di Azure, importando o esportando uno snapshot del database di Cache Redis (RDB) da una cache Premium a un BLOB in un account di Archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="f0145-104">Import/Export is an Azure Redis Cache data management operation, which allows you to import data into Azure Redis Cache or export data from Azure Redis Cache by importing and exporting a Redis Cache Database (RDB) snapshot from a premium cache to a blob in an Azure Storage Account.</span></span> 
+
+- <span data-ttu-id="f0145-105">**Esportare**: è possibile esportare gli snapshot RDB di Cache Redis di Azure in un BLOB di pagine.</span><span class="sxs-lookup"><span data-stu-id="f0145-105">**Export** - you can export your Azure Redis Cache RDB snapshots to a Page Blob.</span></span>
+- <span data-ttu-id="f0145-106">**Importare**: è possibile importare gli snapshot RDB di Cache Redis da un BLOB di pagine o da un BLOB in blocchi.</span><span class="sxs-lookup"><span data-stu-id="f0145-106">**Import** - you can import your Redis Cache RDB snapshots from either a Page Blob or a Block Blob.</span></span>
+
+<span data-ttu-id="f0145-107">L'operazione Importa/Esporta consente di eseguire la migrazione tra diverse istanze di Cache Redis di Azure o di popolare la cache con i dati prima dell'uso.</span><span class="sxs-lookup"><span data-stu-id="f0145-107">Import/Export enables you to migrate between different Azure Redis Cache instances or populate the cache with data before use.</span></span>
+
+<span data-ttu-id="f0145-108">Questo articolo è una guida all'importazione e all'esportazione dei dati con Cache Redis di Azure e include le risposte alle domande più frequenti.</span><span class="sxs-lookup"><span data-stu-id="f0145-108">This article provides a guide for importing and exporting data with Azure Redis Cache and provides the answers to commonly asked questions.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="f0145-109">La funzionalità Importazione/Esportazione è disponibile in anteprima solo per le cache del [piano Premium](cache-premium-tier-intro.md) .</span><span class="sxs-lookup"><span data-stu-id="f0145-109">Import/Export is in preview and is only available for [premium tier](cache-premium-tier-intro.md) caches.</span></span>
+>
+>
+
+## <a name="import"></a><span data-ttu-id="f0145-110">Importa</span><span class="sxs-lookup"><span data-stu-id="f0145-110">Import</span></span>
+<span data-ttu-id="f0145-111">L'importazione può essere usata per spostare i file RDB compatibili con Redis da qualsiasi server Redis in esecuzione su qualsiasi cloud o ambiente, compresi i server Redis in esecuzione su Linux, Windows o su altri provider di servizi cloud come Amazon Web Services e altri.</span><span class="sxs-lookup"><span data-stu-id="f0145-111">Import can be used to bring Redis compatible RDB files from any Redis server running in any cloud or environment, including Redis running on Linux, Windows, or any cloud provider such as Amazon Web Services and others.</span></span> <span data-ttu-id="f0145-112">L'importazione dei dati è un modo semplice per creare una cache con dati già popolati.</span><span class="sxs-lookup"><span data-stu-id="f0145-112">Importing data is an easy way to create a cache with pre-populated data.</span></span> <span data-ttu-id="f0145-113">Durante il processo di importazione Cache Redis di Azure carica i file RDB dall'archiviazione di Azure nella memoria e quindi inserisce le chiavi nella cache.</span><span class="sxs-lookup"><span data-stu-id="f0145-113">During the import process, Azure Redis Cache loads the RDB files from Azure storage into memory and then inserts the keys into the cache.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="f0145-114">Prima di avviare l'operazione di importazione, assicurarsi che il file o i file di database Redis (RDB) siano caricati nei BLOB di pagine o nei BLOB in blocchi in Archiviazione di Azure, nella stessa area e nella stessa sottoscrizione dell'istanza di Cache Redis di Azure.</span><span class="sxs-lookup"><span data-stu-id="f0145-114">Before beginning the import operation, ensure that your Redis Database (RDB) file or files are uploaded into page or block blobs in Azure storage, in the same region and subscription as your Azure Redis Cache instance.</span></span> <span data-ttu-id="f0145-115">Per altre informazioni, vedere [Introduzione all'archivio BLOB di Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span><span class="sxs-lookup"><span data-stu-id="f0145-115">For more information, see [Get started with Azure Blob storage](../storage/blobs/storage-dotnet-how-to-use-blobs.md).</span></span> <span data-ttu-id="f0145-116">Se il file RDB è stato esportato con la funzionalità [Esportazione di Cache Redis di Azure](#export) , è già archiviato in un BLOB di pagine ed è pronto per l'importazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-116">If you exported your RDB file using the [Azure Redis Cache Export](#export) feature, your RDB file is already stored in a page blob and is ready for importing.</span></span>
+>
+>
+
+1. <span data-ttu-id="f0145-117">Per importare uno o più BLOB di cache esportati, [passare alla cache](cache-configure.md#configure-redis-cache-settings) nel portale di Azure e fare clic su **Importa dati** dal **menu della risorsa**.</span><span class="sxs-lookup"><span data-stu-id="f0145-117">To import one or more exported cache blobs, [browse to your cache](cache-configure.md#configure-redis-cache-settings) in the Azure portal and click **Import data** from the **Resource menu**.</span></span>
+
+    ![Importa dati][cache-import-data]
+2. <span data-ttu-id="f0145-119">Fare clic su **Scegliere i BLOB** e selezionare l'account di archiviazione che contiene i dati da importare.</span><span class="sxs-lookup"><span data-stu-id="f0145-119">Click **Choose Blob(s)** and select the storage account that contains the data to import.</span></span>
+
+    ![Scegliere l'account di archiviazione][cache-import-choose-storage-account]
+3. <span data-ttu-id="f0145-121">Fare clic sul contenitore che contiene i dati da importare.</span><span class="sxs-lookup"><span data-stu-id="f0145-121">Click the container that contains the data to import.</span></span>
+
+    ![Scegliere il contenitore][cache-import-choose-container]
+4. <span data-ttu-id="f0145-123">Selezionare uno o più BLOB da importare facendo clic sull'area a sinistra del nome del BLOB e quindi fare clic su **Seleziona**.</span><span class="sxs-lookup"><span data-stu-id="f0145-123">Select one or more blobs to import by clicking the area to the left of the blob name, and then click **Select**.</span></span>
+
+    ![Scegliere il BLOB][cache-import-choose-blobs]
+5. <span data-ttu-id="f0145-125">Fare clic su **Importa** per avviare il processo di importazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-125">Click **Import** to begin the import process.</span></span>
+
+   > [!IMPORTANT]
+   > <span data-ttu-id="f0145-126">Durante il processo di importazione la cache non è accessibile ai client della cache ed eventuali dati esistenti nella cache vengono eliminati.</span><span class="sxs-lookup"><span data-stu-id="f0145-126">The cache is not accessible by cache clients during the import process, and any existing data in the cache is deleted.</span></span>
+   >
+   >
+
+    ![Importa][cache-import-blobs]
+
+    <span data-ttu-id="f0145-128">È possibile controllare lo stato dell'operazione di importazione tramite le notifiche del portale di Azure oppure visualizzando gli eventi nel [log di controllo](../azure-resource-manager/resource-group-audit.md).</span><span class="sxs-lookup"><span data-stu-id="f0145-128">You can monitor the progress of the import operation by following the notifications from the Azure portal, or by viewing the events in the [audit log](../azure-resource-manager/resource-group-audit.md).</span></span>
+
+    ![Stato dell'importazione][cache-import-data-import-complete]
+
+## <a name="export"></a><span data-ttu-id="f0145-130">Esportazione</span><span class="sxs-lookup"><span data-stu-id="f0145-130">Export</span></span>
+<span data-ttu-id="f0145-131">L'esportazione consente di esportare i dati memorizzati in Cache Redis di Azure in file RDB compatibili con Redis.</span><span class="sxs-lookup"><span data-stu-id="f0145-131">Export allows you to export the data stored in Azure Redis Cache to Redis compatible RDB file(s).</span></span> <span data-ttu-id="f0145-132">È possibile usare questa funzionalità per spostare i dati da un'istanza di Cache Redis di Azure a un'altra o su un altro server Redis.</span><span class="sxs-lookup"><span data-stu-id="f0145-132">You can use this feature to move data from one Azure Redis Cache instance to another or to another Redis server.</span></span> <span data-ttu-id="f0145-133">Durante il processo di esportazione viene creato un file temporaneo nella VM che ospita l'istanza del server Cache Redis di Azure e il file viene caricato nell'account di archiviazione designato.</span><span class="sxs-lookup"><span data-stu-id="f0145-133">During the export process, a temporary file is created on the VM that hosts the Azure Redis Cache server instance, and the file is uploaded to the designated storage account.</span></span> <span data-ttu-id="f0145-134">Quando l'operazione di esportazione viene completata con esito positivo o negativo, il file temporaneo viene eliminato.</span><span class="sxs-lookup"><span data-stu-id="f0145-134">When the export operation completes with either a status of success or failure, the temporary file is deleted.</span></span>
+
+1. <span data-ttu-id="f0145-135">Per esportare il contenuto corrente della cache nell'archiviazione, [passare alla cache](cache-configure.md#configure-redis-cache-settings) nel portale di Azure e fare clic su **Esporta dati** dal **menu della risorsa**.</span><span class="sxs-lookup"><span data-stu-id="f0145-135">To export the current contents of the cache to storage, [browse to your cache](cache-configure.md#configure-redis-cache-settings) in the Azure portal and click **Export data** from the **Resource menu**.</span></span>
+
+    ![Scegliere il contenitore di archiviazione][cache-export-data-choose-storage-container]
+2. <span data-ttu-id="f0145-137">Fare clic su **Scegliere il contenitore di archiviazione** e selezionare l'account di archiviazione desiderato.</span><span class="sxs-lookup"><span data-stu-id="f0145-137">Click **Choose Storage Container** and select the desired storage account.</span></span> <span data-ttu-id="f0145-138">L'account di archiviazione deve trovarsi nella stessa area e nella stessa sottoscrizione della cache.</span><span class="sxs-lookup"><span data-stu-id="f0145-138">The storage account must be in the same subscription and region as your cache.</span></span>
+
+   > [!IMPORTANT]
+   > <span data-ttu-id="f0145-139">La funzionalità di esportazione è compatibile con i BLOB di pagine, supportati dagli account di archiviazione di Azure Resource Manager e della versione classica ma al momento non supportati dagli [account di archiviazione BLOB](../storage/blobs/storage-blob-storage-tiers.md#blob-storage-accounts).</span><span class="sxs-lookup"><span data-stu-id="f0145-139">Export works with page blobs, which are supported by both classic and Resource Manager storage accounts, but are not supported by [Blob storage accounts](../storage/blobs/storage-blob-storage-tiers.md#blob-storage-accounts) at this time.</span></span>
+   >
+   >
+
+    ![Account di archiviazione][cache-export-data-choose-account]
+3. <span data-ttu-id="f0145-141">Scegliere il contenitore BLOB desiderato e fare clic su **Seleziona**.</span><span class="sxs-lookup"><span data-stu-id="f0145-141">Choose the desired blob container and click **Select**.</span></span> <span data-ttu-id="f0145-142">Per usare un nuovo contenitore, fare clic su **Aggiungi contenitore** per aggiungerlo prima e quindi selezionarlo dall'elenco.</span><span class="sxs-lookup"><span data-stu-id="f0145-142">To use new a container, click **Add Container** to add it first and then select it from the list.</span></span>
+
+    ![Scegliere il contenitore di archiviazione][cache-export-data-container]
+4. <span data-ttu-id="f0145-144">Digitare un valore in **Prefisso nome BLOB** e fare clic su **Esporta** per avviare il processo di esportazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-144">Type a **Blob name prefix** and click **Export** to start the export process.</span></span> <span data-ttu-id="f0145-145">Il prefisso del nome BLOB viene usato per i nomi dei file generati da questa operazione di esportazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-145">The blob name prefix is used to prefix the names of files generated by this export operation.</span></span>
+
+    ![Esporta][cache-export-data]
+
+    <span data-ttu-id="f0145-147">È possibile controllare lo stato dell'operazione di esportazione seguendo le notifiche del portale di Azure oppure visualizzando gli eventi nel [log di controllo](../azure-resource-manager/resource-group-audit.md).</span><span class="sxs-lookup"><span data-stu-id="f0145-147">You can monitor the progress of the export operation by following the notifications from the Azure portal, or by viewing the events in the [audit log](../azure-resource-manager/resource-group-audit.md).</span></span>
+
+    ![Esportazione dei dati completa][cache-export-data-export-complete]
+
+    <span data-ttu-id="f0145-149">Durante il processo di esportazione le cache rimangono disponibili per l'uso.</span><span class="sxs-lookup"><span data-stu-id="f0145-149">Caches remain available for use during the export process.</span></span>
+
+## <a name="importexport-faq"></a><span data-ttu-id="f0145-150">Domande frequenti su Importazione/Esportazione</span><span class="sxs-lookup"><span data-stu-id="f0145-150">Import/Export FAQ</span></span>
+<span data-ttu-id="f0145-151">Questa sezione contiene le domande frequenti relative alla funzionalità Importazione/Esportazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-151">This section contains frequently asked questions about the Import/Export feature.</span></span>
+
+* [<span data-ttu-id="f0145-152">Con quali piani tariffari è possibile usare Importazione/Esportazione?</span><span class="sxs-lookup"><span data-stu-id="f0145-152">What pricing tiers can use Import/Export?</span></span>](#what-pricing-tiers-can-use-importexport)
+* [<span data-ttu-id="f0145-153">È possibile importare dati da qualsiasi server Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-153">Can I import data from any Redis server?</span></span>](#can-i-import-data-from-any-redis-server)
+* [<span data-ttu-id="f0145-154">Quali versioni RDB è possibile importare?</span><span class="sxs-lookup"><span data-stu-id="f0145-154">What RDB versions can I import?</span></span>](#what-rdb-versions-can-i-import)
+* [<span data-ttu-id="f0145-155">La cache è disponibile durante un'operazione di Importazione/Esportazione?</span><span class="sxs-lookup"><span data-stu-id="f0145-155">Is my cache available during an Import/Export operation?</span></span>](#is-my-cache-available-during-an-importexport-operation)
+* [<span data-ttu-id="f0145-156">È possibile usare Importazione/Esportazione con il cluster Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-156">Can I use Import/Export with Redis cluster?</span></span>](#can-i-use-importexport-with-redis-cluster)
+* [<span data-ttu-id="f0145-157">Come funziona Importazione/Esportazione con un'impostazione databases personalizzata?</span><span class="sxs-lookup"><span data-stu-id="f0145-157">How does Import/Export work with a custom databases setting?</span></span>](#how-does-importexport-work-with-a-custom-databases-setting)
+* [<span data-ttu-id="f0145-158">Quali sono le differenze tra la funzionalità Importazione/Esportazione e la persistenza di Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-158">How is Import/Export different from Redis persistence?</span></span>](#how-is-importexport-different-from-redis-persistence)
+* [<span data-ttu-id="f0145-159">È possibile automatizzare la funzionalità Importazione/Esportazione con PowerShell, l'interfaccia della riga di comando o altri client di gestione?</span><span class="sxs-lookup"><span data-stu-id="f0145-159">Can I automate Import/Export using PowerShell, CLI, or other management clients?</span></span>](#can-i-automate-importexport-using-powershell-cli-or-other-management-clients)
+* [<span data-ttu-id="f0145-160">Durante l'operazione di Importazione/Esportazione è stato ricevuto un errore di timeout. Da cosa dipende il problema?</span><span class="sxs-lookup"><span data-stu-id="f0145-160">I received a timeout error during my Import/Export operation. What does it mean?</span></span>](#i-received-a-timeout-error-during-my-importexport-operation-what-does-it-mean)
+* [<span data-ttu-id="f0145-161">Durante l'esportazione dei dati nell'archivio BLOB di Azure è stato visualizzato un errore. Che cosa è successo?</span><span class="sxs-lookup"><span data-stu-id="f0145-161">I got an error when exporting my data to Azure Blob Storage. What happened?</span></span>](#i-got-an-error-when-exporting-my-data-to-azure-blob-storage-what-happened)
+
+### <a name="what-pricing-tiers-can-use-importexport"></a><span data-ttu-id="f0145-162">Con quali piani tariffari è possibile usare Importazione/Esportazione?</span><span class="sxs-lookup"><span data-stu-id="f0145-162">What pricing tiers can use Import/Export?</span></span>
+<span data-ttu-id="f0145-163">La funzionalità Importazione/Esportazione è disponibile solo con il piano tariffario Premium.</span><span class="sxs-lookup"><span data-stu-id="f0145-163">Import/Export is available only in the premium pricing tier.</span></span>
+
+### <a name="can-i-import-data-from-any-redis-server"></a><span data-ttu-id="f0145-164">È possibile importare dati da qualsiasi server Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-164">Can I import data from any Redis server?</span></span>
+<span data-ttu-id="f0145-165">Sì. Oltre a importare i dati esportati da istanze di Cache Redis di Azure, è possibile importare i file RDB da qualsiasi server Redis in esecuzione in qualsiasi cloud o ambiente, come Linux, Windows, o provider di cloud, come Amazon Web Services.</span><span class="sxs-lookup"><span data-stu-id="f0145-165">Yes, in addition to importing data exported from Azure Redis Cache instances, you can import RDB files from any Redis server running in any cloud or environment, such as Linux, Windows, or cloud providers such as Amazon Web Services.</span></span> <span data-ttu-id="f0145-166">A tale scopo, caricare il file RDB dal server Redis desiderato in un BLOB di pagine o in un BLOB in blocchi di un account di Archiviazione di Azure e quindi importarlo nell'istanza di Cache Redis di Azure Premium.</span><span class="sxs-lookup"><span data-stu-id="f0145-166">To do this, upload the RDB file from the desired Redis server into a page or block blob in an Azure Storage Account, and then import it into your premium Azure Redis Cache instance.</span></span> <span data-ttu-id="f0145-167">È ad esempio possibile importare i dati della cache di produzione e importarli in una cache usata in un ambiente di gestione temporanea per i test o la migrazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-167">For example, you may want to export the data from your production cache and import it into a cache used as part of a staging environment for testing or migration.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="f0145-168">Per importare i dati esportati da server Redis diversi da Cache Redis di Azure quando si usa un BLOB di pagine, la dimensione del BLOB di pagine deve essere allineata a un limite di 512 byte.</span><span class="sxs-lookup"><span data-stu-id="f0145-168">To successfully import data exported from Redis servers other than Azure Redis Cache when using a page blob, the page blob size must be aligned on a 512 byte boundary.</span></span> <span data-ttu-id="f0145-169">Per codice di esempio che esegua il byte padding richiesto, vedere [SamplePageBlobUpload](https://github.com/JimRoberts-MS/SamplePageBlobUpload).</span><span class="sxs-lookup"><span data-stu-id="f0145-169">For sample code to perform any required byte padding, see [Sample page blog upload](https://github.com/JimRoberts-MS/SamplePageBlobUpload).</span></span>
+> 
+> 
+
+### <a name="what-rdb-versions-can-i-import"></a><span data-ttu-id="f0145-170">Quali versioni RDB è possibile importare?</span><span class="sxs-lookup"><span data-stu-id="f0145-170">What RDB versions can I import?</span></span>
+
+<span data-ttu-id="f0145-171">Cache Redis di Azure supporta l'importazione RDB fino alla versione 7.</span><span class="sxs-lookup"><span data-stu-id="f0145-171">Azure Redis Cache supports RDB import up through RDB version 7.</span></span>
+
+### <a name="is-my-cache-available-during-an-importexport-operation"></a><span data-ttu-id="f0145-172">La cache è disponibile durante un'operazione di Importazione/Esportazione?</span><span class="sxs-lookup"><span data-stu-id="f0145-172">Is my cache available during an Import/Export operation?</span></span>
+* <span data-ttu-id="f0145-173">**Esportazione** : durante un'operazione di esportazione le cache rimangono disponibili ed è possibile continuare a usarle.</span><span class="sxs-lookup"><span data-stu-id="f0145-173">**Export** - Caches remain available and you can continue to use your cache during an export operation.</span></span>
+* <span data-ttu-id="f0145-174">**Importazione** : quando si avvia un'operazione di importazione le cache non sono più disponibili, ma tornano disponibili al termine dell'operazione.</span><span class="sxs-lookup"><span data-stu-id="f0145-174">**Import** - Caches become unavailable when an import operation starts, and become available for use when the import operation completes.</span></span>
+
+### <a name="can-i-use-importexport-with-redis-cluster"></a><span data-ttu-id="f0145-175">È possibile usare Importazione/Esportazione con il cluster Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-175">Can I use Import/Export with Redis cluster?</span></span>
+<span data-ttu-id="f0145-176">Sì. È inoltre possibile usare questa funzionalità tra una cache di cluster e una non di cluster.</span><span class="sxs-lookup"><span data-stu-id="f0145-176">Yes, and you can import/export between a clustered cache and a non-clustered cache.</span></span> <span data-ttu-id="f0145-177">Poiché il cluster Redis [supporta solo database 0](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering), i dati nei database diversi da 0 non verranno importati.</span><span class="sxs-lookup"><span data-stu-id="f0145-177">Since Redis cluster [only supports database 0](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering), any data in databases other than 0 isn't imported.</span></span> <span data-ttu-id="f0145-178">Quando si importano dati della cache di cluster, le chiavi vengono ridistribuite tra le partizioni del cluster.</span><span class="sxs-lookup"><span data-stu-id="f0145-178">When clustered cache data is imported, the keys are redistributed among the shards of the cluster.</span></span>
+
+### <a name="how-does-importexport-work-with-a-custom-databases-setting"></a><span data-ttu-id="f0145-179">Come funziona Importazione/Esportazione con un'impostazione databases personalizzata?</span><span class="sxs-lookup"><span data-stu-id="f0145-179">How does Import/Export work with a custom databases setting?</span></span>
+<span data-ttu-id="f0145-180">Alcuni piani tariffari hanno [limiti di database](cache-configure.md#databases) diversi, quindi esistono alcune considerazioni da tenere presente durante l'importazione se si è configurato un valore personalizzato per l'impostazione `databases` durante la creazione della cache.</span><span class="sxs-lookup"><span data-stu-id="f0145-180">Some pricing tiers have different [databases limits](cache-configure.md#databases), so there are some considerations when importing if you configured a custom value for the `databases` setting during cache creation.</span></span>
+
+* <span data-ttu-id="f0145-181">Quando si esegue l'importazione in un piano tariffario con un limite di `databases` più basso del piano da cui è stata eseguita l'esportazione:</span><span class="sxs-lookup"><span data-stu-id="f0145-181">When importing to a pricing tier with a lower `databases` limit than the tier from which you exported:</span></span>
+  * <span data-ttu-id="f0145-182">Se si usa il numero predefinito di `databases`, che è 16 per tutti i piani tariffari, non viene perso alcun dato.</span><span class="sxs-lookup"><span data-stu-id="f0145-182">If you are using the default number of `databases`, which is 16 for all pricing tiers, no data is lost.</span></span>
+  * <span data-ttu-id="f0145-183">Se si usa un numero personalizzato di `databases` compreso nei limiti per il piano in cui si esegue l'importazione, non viene perso alcun dato.</span><span class="sxs-lookup"><span data-stu-id="f0145-183">If you are using a custom number of `databases` that falls within the limits for the tier to which you are importing, no data is lost.</span></span>
+  * <span data-ttu-id="f0145-184">Se i dati esportati contenevano dati in un database che superano i limiti per il nuovo piano, i dati dei database più elevati non vengono importati.</span><span class="sxs-lookup"><span data-stu-id="f0145-184">If your exported data contained data in a database that exceeds the limits of the new tier, the data from those higher databases is not imported.</span></span>
+
+### <a name="how-is-importexport-different-from-redis-persistence"></a><span data-ttu-id="f0145-185">Quali sono le differenze tra la funzionalità Importazione/Esportazione e la persistenza di Redis?</span><span class="sxs-lookup"><span data-stu-id="f0145-185">How is Import/Export different from Redis persistence?</span></span>
+<span data-ttu-id="f0145-186">La persistenza di Cache Redis di Azure consente di salvare in modo permanente in Archiviazione di Azure i dati archiviati in Redis.</span><span class="sxs-lookup"><span data-stu-id="f0145-186">Azure Redis Cache persistence allows you to persist data stored in Redis to Azure Storage.</span></span> <span data-ttu-id="f0145-187">Quando si configura la persistenza, Cache Redis di Azure archivia uno snapshot della cache Redis in un formato binario Redis su disco in base a una frequenza di backup configurabile.</span><span class="sxs-lookup"><span data-stu-id="f0145-187">When persistence is configured, Azure Redis Cache persists a snapshot of the Redis cache in a Redis binary format to disk based on a configurable backup frequency.</span></span> <span data-ttu-id="f0145-188">Se si verifica un evento catastrofico che disabilita sia la cache primaria che quella di replica, i dati della cache vengono ripristinati automaticamente usando lo snapshot più recente.</span><span class="sxs-lookup"><span data-stu-id="f0145-188">If a catastrophic event occurs that disables both the primary and replica cache, the cache data is restored automatically using the most recent snapshot.</span></span> <span data-ttu-id="f0145-189">Per altre informazioni, vedere [Come configurare la persistenza dei dati per una Cache Redis di Azure Premium](cache-how-to-premium-persistence.md).</span><span class="sxs-lookup"><span data-stu-id="f0145-189">For more information, see [How to configure data persistence for a Premium Azure Redis Cache](cache-how-to-premium-persistence.md).</span></span>
+
+<span data-ttu-id="f0145-190">La funzionalità Importazione/Esportazione consente di importare o esportare dati in Cache Redis di Azure,</span><span class="sxs-lookup"><span data-stu-id="f0145-190">Import/ Export allows you to bring data into or export from Azure Redis Cache.</span></span> <span data-ttu-id="f0145-191">ma non di configurare il backup e il ripristino usando la persistenza di Redis.</span><span class="sxs-lookup"><span data-stu-id="f0145-191">It does not configure backup and restore using Redis persistence.</span></span>
+
+### <a name="can-i-automate-importexport-using-powershell-cli-or-other-management-clients"></a><span data-ttu-id="f0145-192">È possibile automatizzare la funzionalità Importazione/Esportazione con PowerShell, l'interfaccia della riga di comando o altri client di gestione?</span><span class="sxs-lookup"><span data-stu-id="f0145-192">Can I automate Import/Export using PowerShell, CLI, or other management clients?</span></span>
+<span data-ttu-id="f0145-193">Sì, per istruzioni relative a PowerShell vedere [Per importare una cache Redis](cache-howto-manage-redis-cache-powershell.md#to-import-a-redis-cache) e [Per esportare una cache Redis](cache-howto-manage-redis-cache-powershell.md#to-export-a-redis-cache).</span><span class="sxs-lookup"><span data-stu-id="f0145-193">Yes, for PowerShell instructions see [To import a Redis cache](cache-howto-manage-redis-cache-powershell.md#to-import-a-redis-cache) and [To export a Redis cache](cache-howto-manage-redis-cache-powershell.md#to-export-a-redis-cache).</span></span>
+
+### <a name="i-received-a-timeout-error-during-my-importexport-operation-what-does-it-mean"></a><span data-ttu-id="f0145-194">Durante l'operazione di Importazione/Esportazione è stato ricevuto un errore di timeout.</span><span class="sxs-lookup"><span data-stu-id="f0145-194">I received a timeout error during my Import/Export operation.</span></span> <span data-ttu-id="f0145-195">Da cosa dipende il problema?</span><span class="sxs-lookup"><span data-stu-id="f0145-195">What does it mean?</span></span>
+<span data-ttu-id="f0145-196">Se il pannello **Importa dati** o **Esporta dati** rimane aperto per più di 15 minuti prima che l'operazione venga avviata, verrà visualizzato un errore contenente un messaggio simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="f0145-196">If you remain on the **Import data** or **Export data** blade for longer than 15 minutes before initiating the operation, you receive an error with an error message similar to the following example:</span></span>
+
+    The request to import data into cache 'contoso55' failed with status 'error' and error 'One of the SAS URIs provided could not be used for the following reason: The SAS token end time (se) must be at least 1 hour from now and the start time (st), if given, must be at least 15 minutes in the past.
+
+<span data-ttu-id="f0145-197">Per risolvere il problema, avviare l'operazione di importazione o esportazione prima che scadano i 15 minuti.</span><span class="sxs-lookup"><span data-stu-id="f0145-197">To resolve this, initiate the import or export operation before 15 minutes has elapsed.</span></span>
+
+### <a name="i-got-an-error-when-exporting-my-data-to-azure-blob-storage-what-happened"></a><span data-ttu-id="f0145-198">Durante l'esportazione dei dati nell'archivio BLOB di Azure è stato visualizzato un errore.</span><span class="sxs-lookup"><span data-stu-id="f0145-198">I got an error when exporting my data to Azure Blob Storage.</span></span> <span data-ttu-id="f0145-199">Che cosa è successo?</span><span class="sxs-lookup"><span data-stu-id="f0145-199">What happened?</span></span>
+<span data-ttu-id="f0145-200">L'esportazione funziona solo con i file RDB archiviati come BLOB di pagine.</span><span class="sxs-lookup"><span data-stu-id="f0145-200">Export works only with RDB files stored as page blobs.</span></span> <span data-ttu-id="f0145-201">Al momento non sono supportati altri tipi di BLOB, inclusi gli account di archiviazione BLOB con livelli di accesso frequente e non frequente.</span><span class="sxs-lookup"><span data-stu-id="f0145-201">Other blob types are not currently supported, including blob storage accounts with hot and cool tiers.</span></span> <span data-ttu-id="f0145-202">Per altre informazioni, vedere [Account di archiviazione BLOB](../storage/blobs/storage-blob-storage-tiers.md#blob-storage-accounts).</span><span class="sxs-lookup"><span data-stu-id="f0145-202">For more information, see [Blob storage accounts](../storage/blobs/storage-blob-storage-tiers.md#blob-storage-accounts).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="f0145-203">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f0145-203">Next steps</span></span>
+<span data-ttu-id="f0145-204">Informazioni su come usare altre funzionalità di cache premium.</span><span class="sxs-lookup"><span data-stu-id="f0145-204">Learn how to use more premium cache features.</span></span>
+
+* [<span data-ttu-id="f0145-205">Introduzione al piano Premium di Cache Redis di Azure</span><span class="sxs-lookup"><span data-stu-id="f0145-205">Introduction to the Azure Redis Cache Premium tier</span></span>](cache-premium-tier-intro.md)    
+
+<!-- IMAGES -->
+[cache-settings-import-export-menu]: ./media/cache-how-to-import-export-data/cache-settings-import-export-menu.png
+[cache-export-data-choose-account]: ./media/cache-how-to-import-export-data/cache-export-data-choose-account.png
+[cache-export-data-choose-storage-container]: ./media/cache-how-to-import-export-data/cache-export-data-choose-storage-container.png
+[cache-export-data-container]: ./media/cache-how-to-import-export-data/cache-export-data-container.png
+[cache-export-data-export-complete]: ./media/cache-how-to-import-export-data/cache-export-data-export-complete.png
+[cache-export-data]: ./media/cache-how-to-import-export-data/cache-export-data.png
+[cache-import-data]: ./media/cache-how-to-import-export-data/cache-import-data.png
+[cache-import-choose-storage-account]: ./media/cache-how-to-import-export-data/cache-import-choose-storage-account.png
+[cache-import-choose-container]: ./media/cache-how-to-import-export-data/cache-import-choose-container.png
+[cache-import-choose-blobs]: ./media/cache-how-to-import-export-data/cache-import-choose-blobs.png
+[cache-import-blobs]: ./media/cache-how-to-import-export-data/cache-import-blobs.png
+[cache-import-data-import-complete]: ./media/cache-how-to-import-export-data/cache-import-data-import-complete.png

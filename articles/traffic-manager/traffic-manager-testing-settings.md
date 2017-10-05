@@ -1,0 +1,76 @@
+---
+title: Verificare le impostazioni di Gestione traffico di Azure | Microsoft Docs
+description: Questo articolo contiene le informazioni necessarie per verificare le impostazioni di Gestione traffico.
+services: traffic-manager
+documentationcenter: 
+author: kumudd
+manager: timlt
+editor: 
+ms.assetid: 2180b640-596e-4fb2-be59-23a38d606d12
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 03/16/2017
+ms.author: kumud
+ms.openlocfilehash: aadff1806a7cb22347283143563467366e857569
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="verify-traffic-manager-settings"></a><span data-ttu-id="31071-103">Verificare le impostazioni di Gestione traffico</span><span class="sxs-lookup"><span data-stu-id="31071-103">Verify Traffic Manager settings</span></span>
+
+<span data-ttu-id="31071-104">Per verificare le impostazioni di Gestione traffico, è necessario disporre di più client, ubicati in diverse posizioni, da cui eseguire i test.</span><span class="sxs-lookup"><span data-stu-id="31071-104">To test your Traffic Manager settings, you need to have multiple clients, in various locations, from which you can run your tests.</span></span> <span data-ttu-id="31071-105">Arrestare quindi uno alla volta gli endpoint del profilo di Gestione traffico.</span><span class="sxs-lookup"><span data-stu-id="31071-105">Then, bring the endpoints in your Traffic Manager profile down one at a time.</span></span>
+
+* <span data-ttu-id="31071-106">Impostare una durata (TTL) DNS bassa, ad esempio 30 secondi, per consentire una rapida propagazione delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="31071-106">Set the DNS TTL value low so that changes propagate quickly (for example, 30 seconds).</span></span>
+* <span data-ttu-id="31071-107">Conoscere gli indirizzi IP dei servizi cloud e dei siti Web di Azure nel profilo in corso di verifica.</span><span class="sxs-lookup"><span data-stu-id="31071-107">Know the IP addresses of your Azure cloud services and websites in the profile you are testing.</span></span>
+* <span data-ttu-id="31071-108">Utilizzare gli strumenti che consentono di risolvere un nome DNS per un indirizzo IP e visualizzare tale indirizzo.</span><span class="sxs-lookup"><span data-stu-id="31071-108">Use tools that let you resolve a DNS name to an IP address and display that address.</span></span>
+
+<span data-ttu-id="31071-109">Eseguire un controllo per verificare che i nomi DNS vengano risolti negli indirizzi IP degli endpoint nel profilo.</span><span class="sxs-lookup"><span data-stu-id="31071-109">You are checking to see that the DNS names resolve to IP addresses of the endpoints in your profile.</span></span> <span data-ttu-id="31071-110">La risoluzione dei nomi deve avvenire in modo coerente con il metodo di routing del traffico definito nel profilo di Gestione traffico.</span><span class="sxs-lookup"><span data-stu-id="31071-110">The names should resolve in a manner consistent with the traffic routing method defined in the Traffic Manager profile.</span></span> <span data-ttu-id="31071-111">Per risolvere i nomi DNS è possibile usare strumenti come **nslookup** o **dig**.</span><span class="sxs-lookup"><span data-stu-id="31071-111">You can use the tools like **nslookup** or **dig** to resolve DNS names.</span></span>
+
+<span data-ttu-id="31071-112">Per testare il profilo di Gestione traffico, vedere gli esempi seguenti.</span><span class="sxs-lookup"><span data-stu-id="31071-112">The following examples help you test your Traffic Manager profile.</span></span>
+
+### <a name="check-traffic-manager-profile-using-nslookup-and-ipconfig-in-windows"></a><span data-ttu-id="31071-113">Controllare il profilo di Gestione traffico in Windows con nslookup e ipconfig</span><span class="sxs-lookup"><span data-stu-id="31071-113">Check Traffic Manager profile using nslookup and ipconfig in Windows</span></span>
+
+1. <span data-ttu-id="31071-114">Aprire un comando o prompt Windows PowerShell come amministratore.</span><span class="sxs-lookup"><span data-stu-id="31071-114">Open a command or Windows PowerShell prompt as an administrator.</span></span>
+2. <span data-ttu-id="31071-115">Digitare `ipconfig /flushdns` per scaricare la cache del resolver DNS.</span><span class="sxs-lookup"><span data-stu-id="31071-115">Type `ipconfig /flushdns` to flush the DNS resolver cache.</span></span>
+3. <span data-ttu-id="31071-116">Digitare `nslookup <your Traffic Manager domain name>`.</span><span class="sxs-lookup"><span data-stu-id="31071-116">Type `nslookup <your Traffic Manager domain name>`.</span></span> <span data-ttu-id="31071-117">Il comando seguente, ad esempio, controlla il nome di dominio con il prefisso *myapp.contoso*</span><span class="sxs-lookup"><span data-stu-id="31071-117">For example, the following command checks the domain name with the prefix *myapp.contoso*</span></span>
+
+        nslookup myapp.contoso.trafficmanager.net
+
+    <span data-ttu-id="31071-118">Un risultato tipico visualizza le informazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="31071-118">A typical result shows the following information:</span></span>
+
+    + <span data-ttu-id="31071-119">Nome DNS e indirizzo IP del server DNS a cui si accede per risolvere questo nome di dominio di Gestione traffico.</span><span class="sxs-lookup"><span data-stu-id="31071-119">The DNS name and IP address of the DNS server being accessed to resolve this Traffic Manager domain name.</span></span>
+    + <span data-ttu-id="31071-120">Nome del dominio di Gestione traffico digitato nella riga di comando dopo "nslookup" e indirizzo IP in cui viene risolto il dominio di Gestione traffico.</span><span class="sxs-lookup"><span data-stu-id="31071-120">The Traffic Manager domain name you typed on the command line after "nslookup" and the IP address to which the Traffic Manager domain resolves.</span></span> <span data-ttu-id="31071-121">Il secondo indirizzo IP è quello più importante da verificare.</span><span class="sxs-lookup"><span data-stu-id="31071-121">The second IP address is the important one to check.</span></span> <span data-ttu-id="31071-122">Deve corrispondere a un indirizzo VIP per uno dei servizi cloud o dei siti Web nel profilo di Gestione traffico in fase di verifica.</span><span class="sxs-lookup"><span data-stu-id="31071-122">It should match a public virtual IP (VIP) address for one of the cloud services or websites in the Traffic Manager profile you are testing.</span></span>
+
+## <a name="how-to-test-the-failover-traffic-routing-method"></a><span data-ttu-id="31071-123">Come testare il metodo di routing del traffico failover</span><span class="sxs-lookup"><span data-stu-id="31071-123">How to test the failover traffic routing method</span></span>
+
+1. <span data-ttu-id="31071-124">Lasciare tutti gli endpoint attivi.</span><span class="sxs-lookup"><span data-stu-id="31071-124">Leave all endpoints up.</span></span>
+2. <span data-ttu-id="31071-125">Usando un unico client, richiedere la risoluzione DNS per il nome di dominio aziendale mediante nslookup o un'utilità simile.</span><span class="sxs-lookup"><span data-stu-id="31071-125">Using a single client, request DNS resolution for your company domain name using nslookup or a similar utility.</span></span>
+3. <span data-ttu-id="31071-126">Verificare che l'indirizzo IP risolto corrisponda all'endpoint primario.</span><span class="sxs-lookup"><span data-stu-id="31071-126">Ensure that the resolved IP address matches the primary endpoint.</span></span>
+4. <span data-ttu-id="31071-127">Arrestare l'endpoint primario o rimuovere il file di monitoraggio in modo che Gestione traffico consideri l'applicazione inattiva.</span><span class="sxs-lookup"><span data-stu-id="31071-127">Bring down your primary endpoint or remove the monitoring file so that Traffic Manager thinks that the application is down.</span></span>
+5. <span data-ttu-id="31071-128">Attendere la durata (TTL) DNS del profilo di Gestione traffico più altri due minuti.</span><span class="sxs-lookup"><span data-stu-id="31071-128">Wait for the DNS Time-to-Live (TTL) of the Traffic Manager profile plus an additional two minutes.</span></span> <span data-ttu-id="31071-129">Ad esempio, se la durata TTL del DNS è 300 secondi (5 minuti), è necessario attendere sette minuti.</span><span class="sxs-lookup"><span data-stu-id="31071-129">For example, if your DNS TTL is 300 seconds (5 minutes), you must wait for seven minutes.</span></span>
+6. <span data-ttu-id="31071-130">Scaricare la cache del client DNS e richiedere una risoluzione DNS usando nslookup.</span><span class="sxs-lookup"><span data-stu-id="31071-130">Flush your DNS client cache and request DNS resolution using nslookup.</span></span> <span data-ttu-id="31071-131">In Windows è possibile scaricare la cache DNS con il comando ipconfig /flushdns.</span><span class="sxs-lookup"><span data-stu-id="31071-131">In Windows, you can flush your DNS cache with the ipconfig /flushdns command.</span></span>
+7. <span data-ttu-id="31071-132">Verificare che l'indirizzo IP risolto corrisponda all'endpoint secondario.</span><span class="sxs-lookup"><span data-stu-id="31071-132">Ensure that the resolved IP address matches your secondary endpoint.</span></span>
+8. <span data-ttu-id="31071-133">Ripetere la procedura arrestando gli endpoint uno dopo l'altro.</span><span class="sxs-lookup"><span data-stu-id="31071-133">Repeat the process, bringing down each endpoint in turn.</span></span> <span data-ttu-id="31071-134">Verificare che il DNS restituisca l'indirizzo IP del successivo endpoint dell'elenco.</span><span class="sxs-lookup"><span data-stu-id="31071-134">Verify that the DNS returns the IP address of the next endpoint in the list.</span></span> <span data-ttu-id="31071-135">Quando tutti gli endpoint sono inattivi, si dovrebbe ottenere nuovamente l'indirizzo IP dell'endpoint primario.</span><span class="sxs-lookup"><span data-stu-id="31071-135">When all endpoints are down, you should obtain the IP address of the primary endpoint again.</span></span>
+
+## <a name="how-to-test-the-weighted-traffic-routing-method"></a><span data-ttu-id="31071-136">Come testare il metodo di routing del traffico ponderato</span><span class="sxs-lookup"><span data-stu-id="31071-136">How to test the weighted traffic routing method</span></span>
+
+1. <span data-ttu-id="31071-137">Lasciare tutti gli endpoint attivi.</span><span class="sxs-lookup"><span data-stu-id="31071-137">Leave all endpoints up.</span></span>
+2. <span data-ttu-id="31071-138">Usando un unico client, richiedere la risoluzione DNS per il nome di dominio aziendale mediante nslookup o un'utilità simile.</span><span class="sxs-lookup"><span data-stu-id="31071-138">Using a single client, request DNS resolution for your company domain name using nslookup or a similar utility.</span></span>
+3. <span data-ttu-id="31071-139">Verificare che l'indirizzo IP risolto corrisponda a uno degli endpoint.</span><span class="sxs-lookup"><span data-stu-id="31071-139">Ensure that the resolved IP address matches one of your endpoints.</span></span>
+4. <span data-ttu-id="31071-140">Scaricare la cache del client DNS e continuare a ripetere i passaggi 2 e 3 per ciascun endpoint.</span><span class="sxs-lookup"><span data-stu-id="31071-140">Flush your DNS client cache and repeat steps 2 and 3 for each endpoint.</span></span> <span data-ttu-id="31071-141">Vengono visualizzati i diversi indirizzi IP restituiti per ognuno degli endpoint.</span><span class="sxs-lookup"><span data-stu-id="31071-141">You should see different IP addresses returned for each of your endpoints.</span></span>
+
+## <a name="how-to-test-the-performance-traffic-routing-method"></a><span data-ttu-id="31071-142">Come testare il metodo di routing del traffico delle prestazioni</span><span class="sxs-lookup"><span data-stu-id="31071-142">How to test the performance traffic routing method</span></span>
+
+<span data-ttu-id="31071-143">Per verificare in modo efficace il metodo di routing del traffico delle prestazioni, è necessario che i client si trovino in diverse parti del mondo.</span><span class="sxs-lookup"><span data-stu-id="31071-143">To effectively test a performance traffic routing method, you must have clients located in different parts of the world.</span></span> <span data-ttu-id="31071-144">È possibile creare client in diverse aree di Azure utilizzabili per testare i servizi.</span><span class="sxs-lookup"><span data-stu-id="31071-144">You can create clients in different Azure regions that can be used to test your services.</span></span> <span data-ttu-id="31071-145">Se si dispone di una rete globale, è possibile accedere in remoto a client ubicati in altri paesi ed eseguire quindi i test da tali client.</span><span class="sxs-lookup"><span data-stu-id="31071-145">If you have a global network, you can remotely sign in to clients in other parts of the world and run your tests from there.</span></span>
+
+<span data-ttu-id="31071-146">In alternativa, sono disponibili servizi gratuiti di analisi approfondita e DNS basati su Web.</span><span class="sxs-lookup"><span data-stu-id="31071-146">Alternatively, there are free web-based DNS lookup and dig services available.</span></span> <span data-ttu-id="31071-147">Alcuni di questi strumenti consentono di verificare la risoluzione del nome DNS da diverse località del mondo.</span><span class="sxs-lookup"><span data-stu-id="31071-147">Some of these tools give you the ability to check DNS name resolution from various locations around the world.</span></span> <span data-ttu-id="31071-148">Per alcuni esempi, eseguire una ricerca con le parole chiave "Ricerca DNS".</span><span class="sxs-lookup"><span data-stu-id="31071-148">Do a search on "DNS lookup" for examples.</span></span> <span data-ttu-id="31071-149">È possibile usare servizi di terze parti come Gomez o Keynote per confermare che i profili distribuiscano il traffico nel modo previsto.</span><span class="sxs-lookup"><span data-stu-id="31071-149">Third-party services like Gomez or Keynote can be used to confirm that your profiles are distributing traffic as expected.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="31071-150">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="31071-150">Next steps</span></span>
+
+* [<span data-ttu-id="31071-151">Informazioni sui metodi di routing di Gestione traffico</span><span class="sxs-lookup"><span data-stu-id="31071-151">About Traffic Manager traffic routing methods</span></span>](traffic-manager-routing-methods.md)
+* [<span data-ttu-id="31071-152">Considerazioni sulle prestazioni di gestione traffico</span><span class="sxs-lookup"><span data-stu-id="31071-152">Traffic Manager performance considerations</span></span>](traffic-manager-performance-considerations.md)
+* [<span data-ttu-id="31071-153">Risoluzione dei problemi relativi allo stato Danneggiato di Gestione traffico</span><span class="sxs-lookup"><span data-stu-id="31071-153">Troubleshooting Traffic Manager degraded state</span></span>](traffic-manager-troubleshooting-degraded.md)

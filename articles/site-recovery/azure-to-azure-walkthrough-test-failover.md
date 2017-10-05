@@ -1,0 +1,67 @@
+---
+title: Eseguire un failover di test per la replica nella macchina virtuale di Azure con Azure Site Recovery | Microsoft Docs
+description: Vengono riepilogati i passaggi necessari per eseguire un failover di test per le VM di Azure di cui viene eseguita la replica in Azure tramite il servizio Azure Site Recovery.
+services: site-recovery
+documentationcenter: 
+author: rayne-wiselman
+manager: carmon
+editor: 
+ms.assetid: e15c1b0c-5d75-4fdf-acb0-e61def9e9339
+ms.service: site-recovery
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/01/2017
+ms.author: raynew
+ms.openlocfilehash: 8babb0d016729f318442af93596d206c38d91206
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/03/2017
+---
+# <a name="step-6-run-a-test-failover-for-azure-vm-replication"></a><span data-ttu-id="d0c9a-103">Passaggio 6: Eseguire un failover di test per la replica della macchina virtuale di Azure</span><span class="sxs-lookup"><span data-stu-id="d0c9a-103">Step 6: Run a test failover for Azure VM replication</span></span>
+
+<span data-ttu-id="d0c9a-104">Dopo avere abilitato la replica per la macchina virtuale di Azure (VM), seguire la procedura descritta in questo articolo per eseguire il failover di test da un'area di Azure a un'altra tramite il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-104">After you've enabled replication for Azure virtual machine (VMs), follow the steps in this article, to run test failover from one Azure region to another, using the [Azure Site Recovery](site-recovery-overview.md) service in the Azure portal.</span></span>
+
+- <span data-ttu-id="d0c9a-105">Terminata la lettura dell'articolo, è consigliabile verificare con un failover di test che almeno una macchina virtuale di Azure può eseguire il failover per l'area secondaria di Azure.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-105">When you finish the article, you should have verified with a test failover, that at least one Azure VM can fail over to your secondary Azure region.</span></span> 
+- <span data-ttu-id="d0c9a-106">È possibile inserire commenti alla fine di questo articolo oppure porre domande nel [forum sui Servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)</span><span class="sxs-lookup"><span data-stu-id="d0c9a-106">Post any comments at the bottom of this article, or ask questions in the [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)</span></span>
+
+>[!NOTE]
+>
+> <span data-ttu-id="d0c9a-107">La replica della macchina virtuale di Azure è attualmente in anteprima.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-107">Azure VM replication is currently in preview.</span></span>
+
+
+## <a name="before-you-start"></a><span data-ttu-id="d0c9a-108">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="d0c9a-108">Before you start</span></span>
+
+- <span data-ttu-id="d0c9a-109">Prima di eseguire un failover di test, è consigliabile verificare le proprietà delle VM e apportare eventuali modifiche necessarie.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-109">Before you run a test failover, we recommend that you verify the VM properties, and make any changes you need to.</span></span> <span data-ttu-id="d0c9a-110">È possibile accedere alle proprietà delle VM in **Elementi replicati**.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-110">You can access the VM properties in **Replicated items**.</span></span> <span data-ttu-id="d0c9a-111">Il pannello **Informazioni di base** visualizza informazioni sulle impostazioni e sullo stato dei computer.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-111">The **Essentials** blade shows information about machines settings and status.</span></span>
+- <span data-ttu-id="d0c9a-112">È consigliabile usare una rete VM di Azure separata per il failover di test e non la rete (predefinita o personalizzato) che è stata configurata per il failover di produzione.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-112">We recommend you use a separate Azure VM network for the test failover, and not the network (default or customized) that was set up for production failover.</span></span>
+- <span data-ttu-id="d0c9a-113">Il failover di test viene eseguito per le macchine virtuali di Azure (e il relativo spazio di archiviazione) nell'area secondaria di Azure.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-113">The test failover fails over Azure VMs (and their storage) to the secondary Azure region.</span></span> <span data-ttu-id="d0c9a-114">Non vengono replicate eventuali app o risorse dipendenti.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-114">It doesn't replicate any dependent apps or resources.</span></span> <span data-ttu-id="d0c9a-115">Se le app in esecuzione in macchine virtuali su cui è stato eseguito il failover sono dipendenti da altre risorse, ad esempio Active Directory o DNS, è necessario replicare anche queste, se non sono già disponibili nell'area secondaria.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-115">If apps running on failed over VMs are dependent on other resources, such as Active Directory or DNS, you need to replicate these too, if they're not already available in your secondary region.</span></span> [<span data-ttu-id="d0c9a-116">Altre informazioni</span><span class="sxs-lookup"><span data-stu-id="d0c9a-116">Learn more</span></span>](site-recovery-test-failover-to-azure.md#prepare-active-directory-and-dns)
+- <span data-ttu-id="d0c9a-117">Se si desidera accedere alle macchine virtuali replicate dopo il failover da un sito locale, è necessario [preparare la connessione](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover) a queste macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-117">If you want to access replicated VMs after failover from an on-premises site, you need to [prepare to connect](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover) to these VMs.</span></span>
+
+## <a name="run-a-test-failover"></a><span data-ttu-id="d0c9a-118">Eseguire un failover di test</span><span class="sxs-lookup"><span data-stu-id="d0c9a-118">Run a test failover</span></span>
+
+1. <span data-ttu-id="d0c9a-119">In **Impostazioni** > **Elementi replicati** fare clic sull'icona della VM **+Failover di test**.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-119">In **Settings** > **Replicated Items**, click the VM **+Test Failover** icon.</span></span> 
+
+2. <span data-ttu-id="d0c9a-120">In **Failover di test** selezionare un punto di ripristino in cui eseguire il failover:</span><span class="sxs-lookup"><span data-stu-id="d0c9a-120">In **Test Failover**, Select a recovery point to use for the failover:</span></span>
+
+    - <span data-ttu-id="d0c9a-121">**Ultima elaborazione**: viene eseguito il failover della macchina virtuale nel punto di ripristino più recente che è stato elaborato dal servizio Site Recovery.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-121">**Latest processed**: Fails the VM over to the latest recovery point that was processed by the Site Recovery service.</span></span> <span data-ttu-id="d0c9a-122">Viene visualizzato il timestamp.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-122">The time stamp is shown.</span></span> <span data-ttu-id="d0c9a-123">Con questa opzione, non viene impiegato alcun tempo di elaborazione dati, pertanto viene fornito un RTO (Recovery Time Objective) basso.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-123">With this option, no time is spent processing data, so it provides a low RTO (Recovery Time Objective).</span></span>
+    - <span data-ttu-id="d0c9a-124">**Coerente con l'app più recente**: questa opzione esegue il failover su tutte le macchine virtuali al punto di ripristino coerente con l'app.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-124">**Latest app-consistent**: This option fails over all VMs to the latest app-consistent recovery point.</span></span> <span data-ttu-id="d0c9a-125">Viene visualizzato il timestamp.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-125">The time stamp is shown.</span></span> 
+    - <span data-ttu-id="d0c9a-126">**Personalizzazione**: selezionare qualsiasi punto di ripristino.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-126">**Custom**: Select any recovery point.</span></span>
+ 
+3. <span data-ttu-id="d0c9a-127">Selezionare la rete virtuale di Azure di destinazione a cui si connetteranno le VM di Azure nell'area secondaria dopo il failover.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-127">Select the target Azure virtual network to which Azure VMs in the secondary region will be connected, after the failover occurs.</span></span>
+4. <span data-ttu-id="d0c9a-128">Per avviare il failover, fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-128">To start the failover, click **OK**.</span></span> <span data-ttu-id="d0c9a-129">Per verificare lo stato dell'operazione, fare clic sulla VM per visualizzare le rispettive proprietà.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-129">To track progress, click the VM to open its properties.</span></span> <span data-ttu-id="d0c9a-130">In alternativa, è possibile fare clic sul processo **Failover di test** nel nome dell'insieme di credenziali, quindi su **Impostazioni** > **Processi** > **Site Recovery jobs** (Processi di Site Recovery).</span><span class="sxs-lookup"><span data-stu-id="d0c9a-130">Or, you can click the **Test Failover** job in the vault name > **Settings** > **Jobs** > **Site Recovery jobs**.</span></span>
+5. <span data-ttu-id="d0c9a-131">Al termine del failover, la macchina virtuale di Azure di replica viene visualizzata nel portale di Azure in **Macchine virtuali**.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-131">After the failover finishes, the replica Azure VM appears in the Azure portal > **Virtual Machines**.</span></span> <span data-ttu-id="d0c9a-132">Verificare che la macchina virtuale sia delle dimensioni appropriate, che sia connessa alla rete giusta e che sia in esecuzione.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-132">Make sure that the VM is the appropriate size, that it's connected to the appropriate network, and that it's running.</span></span>
+6. <span data-ttu-id="d0c9a-133">Per eliminare le VM create durante il failover di test, fare clic su **Cleanup test failover** (Pulizia failover di test) nell'elemento replicato o nel piano di ripristino.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-133">To delete the VMs that were created during the test failover, click **Cleanup test failover** on the replicated item or the recovery plan.</span></span> <span data-ttu-id="d0c9a-134">Fare clic su **Note** per registrare e salvare eventuali osservazioni associate al failover di test.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-134">In **Notes**, record and save any observations associated with the test failover.</span></span> 
+
+<span data-ttu-id="d0c9a-135">[Altre informazioni](site-recovery-test-failover-to-azure.md) sui failover di test.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-135">[Learn more](site-recovery-test-failover-to-azure.md) about test failovers.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="d0c9a-136">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="d0c9a-136">Next steps</span></span>
+
+<span data-ttu-id="d0c9a-137">Dopo aver testato il failover, questa procedura dettagliata viene completata.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-137">After you've tested failover, this walkthrough is complete.</span></span> <span data-ttu-id="d0c9a-138">A questo punto, informazioni sull'esecuzione di failover nell'ambiente di produzione:</span><span class="sxs-lookup"><span data-stu-id="d0c9a-138">Now, learn about running failovers in production:</span></span>
+
+- <span data-ttu-id="d0c9a-139">[Altre informazioni](site-recovery-failover.md) sui diversi tipi di failover e su come eseguirli.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-139">[Learn more](site-recovery-failover.md) about different types of failovers, and how to run them.</span></span>
+- <span data-ttu-id="d0c9a-140">Altre informazioni sul failover su più macchine virtuali [tramite un piano di ripristino](site-recovery-create-recovery-plans.md).</span><span class="sxs-lookup"><span data-stu-id="d0c9a-140">Learn more about failing over multiple VMs [using a recovery plan](site-recovery-create-recovery-plans.md).</span></span>
+- <span data-ttu-id="d0c9a-141">Altre informazioni sull'[uso dei piani di ripristino](site-recovery-create-recovery-plans.md).</span><span class="sxs-lookup"><span data-stu-id="d0c9a-141">Learn more about [using recovery plans](site-recovery-create-recovery-plans.md).</span></span>
+- <span data-ttu-id="d0c9a-142">Altre informazioni sulla [riprotezione delle VM di Azure](site-recovery-how-to-reprotect.md) dopo il failover.</span><span class="sxs-lookup"><span data-stu-id="d0c9a-142">Learn more about [reprotecting Azure  VMs](site-recovery-how-to-reprotect.md) after failover.</span></span>
+

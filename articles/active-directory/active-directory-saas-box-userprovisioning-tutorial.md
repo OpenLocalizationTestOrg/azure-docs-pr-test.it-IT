@@ -1,0 +1,124 @@
+---
+title: 'Esercitazione: Integrazione di Azure Active Directory con Box | Documentazione Microsoft'
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Box.
+services: active-directory
+documentationCenter: na
+author: jeevansd
+manager: femila
+ms.assetid: 1c959595-6e57-4954-9c0d-67ba03ee212b
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/19/2017
+ms.author: jeedes
+ms.openlocfilehash: 9f061f3f5a0a4825854b893150ceccc8951487de
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="tutorial-configuring-box-for-automatic-user-provisioning"></a><span data-ttu-id="45a66-103">Esercitazione: Configurazione di Box per il provisioning utenti automatico</span><span class="sxs-lookup"><span data-stu-id="45a66-103">Tutorial: Configuring Box for Automatic User Provisioning</span></span>
+
+<span data-ttu-id="45a66-104">Questa esercitazione descrive le procedure da eseguire in Box e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-104">The objective of this tutorial is to show the steps you need to perform in Box and Azure AD to automatically provision and de-provision user accounts from Azure AD to Box.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="45a66-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="45a66-105">Prerequisites</span></span>
+
+<span data-ttu-id="45a66-106">Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:</span><span class="sxs-lookup"><span data-stu-id="45a66-106">The scenario outlined in this tutorial assumes that you already have the following items:</span></span>
+
+*   <span data-ttu-id="45a66-107">Tenant di Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="45a66-107">An Azure Active directory tenant.</span></span>
+*   <span data-ttu-id="45a66-108">Sottoscrizione di Box abilitata per l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="45a66-108">A Box single-sign on enabled subscription.</span></span>
+*   <span data-ttu-id="45a66-109">Account utente in Box con autorizzazioni di amministratore di team.</span><span class="sxs-lookup"><span data-stu-id="45a66-109">A user account in Box with Team Admin permissions.</span></span>
+
+## <a name="assigning-users-to-box"></a><span data-ttu-id="45a66-110">Assegnazione di utenti a Box</span><span class="sxs-lookup"><span data-stu-id="45a66-110">Assigning users to Box</span></span> 
+
+<span data-ttu-id="45a66-111">Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni".</span><span class="sxs-lookup"><span data-stu-id="45a66-111">Azure Active Directory uses a concept called "assignments" to determine which users should receive access to selected apps.</span></span> <span data-ttu-id="45a66-112">Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="45a66-112">In the context of automatic user account provisioning, only the users and groups that have been "assigned" to an application in Azure AD is synchronized.</span></span>
+
+<span data-ttu-id="45a66-113">Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-113">Before configuring and enabling the provisioning service, you need to decide what users and/or groups in Azure AD represent the users who need access to your Box app.</span></span> <span data-ttu-id="45a66-114">Dopo aver stabilito questo, è possibile assegnare tali utenti all'app Box seguendo le istruzioni riportate nell'articolo seguente:</span><span class="sxs-lookup"><span data-stu-id="45a66-114">Once decided, you can assign these users to your Box app by following the instructions here:</span></span>
+
+[<span data-ttu-id="45a66-115">Assegnare un utente o gruppo a un'app aziendale</span><span class="sxs-lookup"><span data-stu-id="45a66-115">Assign a user or group to an enterprise app</span></span>](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+
+## <a name="assign-users-and-groups"></a><span data-ttu-id="45a66-116">Assegnare utenti e gruppi</span><span class="sxs-lookup"><span data-stu-id="45a66-116">Assign users and groups</span></span>
+<span data-ttu-id="45a66-117">La scheda **Box > Utenti e gruppi** nel portale di Azure consente di specificare gli utenti e i gruppi cui concedere l'accesso a Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-117">The **Box > Users and Groups** tab in the Azure portal allows you to specify which users and groups should be granted access to Box.</span></span> <span data-ttu-id="45a66-118">L'assegnazione di un utente o gruppo causa quanto segue:</span><span class="sxs-lookup"><span data-stu-id="45a66-118">Assignment of a user or group causes the following things to occur:</span></span>
+
+* <span data-ttu-id="45a66-119">Azure AD consente all'utente, assegnato tramite assegnazione diretta o appartenenza a un gruppo, di eseguire l'autenticazione in Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-119">Azure AD permits the assigned user (either by direct assignment or group membership) to authenticate to Box.</span></span> <span data-ttu-id="45a66-120">Se l'utente non è assegnato, Azure AD non consente all'utente di eseguire l'accesso a Box e restituisce un errore nella pagina di accesso di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="45a66-120">If a user is not assigned, then Azure AD does not permit them to sign in to Box and returns an error on the Azure AD sign-in page.</span></span>
+* <span data-ttu-id="45a66-121">Un riquadro dell'app Box viene aggiunto alla [schermata di avvio delle applicazioni](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)dell'utente.</span><span class="sxs-lookup"><span data-stu-id="45a66-121">An app tile for Box is added to the user's [application launcher](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).</span></span>
+* <span data-ttu-id="45a66-122">Se il provisioning automatico è abilitato, gli utenti e/o i gruppi assegnati vengono aggiunti alla coda di provisioning per l'esecuzione automatica del provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-122">If automatic provisioning is enabled, then the assigned users and/or groups are added to the provisioning queue to be automatically provisioned.</span></span>
+  
+  * <span data-ttu-id="45a66-123">Se è stata selezionata l'esecuzione del provisioning solo per gli oggetti utente, tutti gli utenti assegnati direttamente e tutti gli utenti che appartengono ai gruppi assegnati vengono aggiunti alla coda di provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-123">If only user objects were configured to be provisioned, then all directly assigned users are placed in the provisioning queue, and all users that are members of any assigned groups are placed in the provisioning queue.</span></span> 
+  * <span data-ttu-id="45a66-124">Se è stata selezionata l'esecuzione del provisioning per gli oggetti gruppo, viene eseguito il provisioning in Box di tutti gli oggetti gruppo assegnati e di tutti gli utenti che appartengono a tali gruppi.</span><span class="sxs-lookup"><span data-stu-id="45a66-124">If group objects were configured to be provisioned, then all assigned group objects are provisioned to Box, and all users that are members of those groups.</span></span> <span data-ttu-id="45a66-125">Le appartenenze utente e gruppo vengono mantenute dopo la scrittura in Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-125">The group and user memberships are preserved upon being written to Box.</span></span>
+
+<span data-ttu-id="45a66-126">La scheda **Attributi > Single Sign-On** consente di configurare gli attributi utente o le attestazioni presentate a Box durante l'autenticazione SAML. La scheda **Attributi > Provisioning** permette di configurare il flusso degli attributi utente e gruppo da Azure AD a Box durante le operazioni di provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-126">You can use the **Attributes > Single Sign-On** tab to configure which user attributes (or claims) are presented to Box during SAML-based authentication, and the **Attributes > Provisioning** tab to configure how user and group attributes flow from Azure AD to Box during provisioning operations.</span></span>
+
+### <a name="important-tips-for-assigning-users-to-box"></a><span data-ttu-id="45a66-127">Suggerimenti importanti per l'assegnazione di utenti a Box</span><span class="sxs-lookup"><span data-stu-id="45a66-127">Important tips for assigning users to Box</span></span> 
+
+*   <span data-ttu-id="45a66-128">È consigliabile assegnare un singolo utente di Azure AD a Box per testare la configurazione del provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-128">It is recommended that a single Azure AD user assigned to Box to test the provisioning configuration.</span></span> <span data-ttu-id="45a66-129">È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="45a66-129">Additional users and/or groups may be assigned later.</span></span>
+
+*   <span data-ttu-id="45a66-130">Quando si assegna un utente a Box, è necessario selezionare un ruolo utente valido.</span><span class="sxs-lookup"><span data-stu-id="45a66-130">When assigning a user to box, you must select a valid user role.</span></span> <span data-ttu-id="45a66-131">Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-131">The "Default Access" role does not work for provisioning.</span></span>
+
+## <a name="enable-automated-user-provisioning"></a><span data-ttu-id="45a66-132">Abilitare il provisioning utenti automatizzato</span><span class="sxs-lookup"><span data-stu-id="45a66-132">Enable Automated User Provisioning</span></span>
+
+<span data-ttu-id="45a66-133">Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di Box e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Box in base all'assegnazione di utenti e gruppi in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="45a66-133">This section guides through connecting your Azure AD to Box's user account provisioning API, and configuring the provisioning service to create, update, and disable assigned user accounts in Box based on user and group assignment in Azure AD.</span></span>
+
+<span data-ttu-id="45a66-134">Se il provisioning automatico è abilitato, gli utenti e/o i gruppi assegnati vengono aggiunti alla coda di provisioning per l'esecuzione automatica del provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-134">If automatic provisioning is enabled, then the assigned users and/or groups are added to the provisioning queue to be automatically provisioned.</span></span>
+    
+ * <span data-ttu-id="45a66-135">Se l'esecuzione del provisioning è selezionata solo per gli oggetti utente, gli utenti assegnati direttamente e tutti gli utenti che appartengono ai gruppi assegnati vengono aggiunti alla coda di provisioning.</span><span class="sxs-lookup"><span data-stu-id="45a66-135">If only user objects are configured to be provisioned, then directly assigned users are placed in the provisioning queue, and all users that are members of any assigned groups are placed in the provisioning queue.</span></span> 
+    
+ * <span data-ttu-id="45a66-136">Se è stata selezionata l'esecuzione del provisioning per gli oggetti gruppo, viene eseguito il provisioning in Box di tutti gli oggetti gruppo assegnati e di tutti gli utenti che appartengono a tali gruppi.</span><span class="sxs-lookup"><span data-stu-id="45a66-136">If group objects were configured to be provisioned, then all assigned group objects are provisioned to Box, and all users that are members of those groups.</span></span> <span data-ttu-id="45a66-137">Le appartenenze utente e gruppo vengono mantenute dopo la scrittura in Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-137">The group and user memberships are preserved upon being written to Box.</span></span>
+
+> [!TIP] 
+> <span data-ttu-id="45a66-138">Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Box, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="45a66-138">You may also choose to enabled SAML-based Single Sign-On for Box, following the instructions provided in [Azure portal](https://portal.azure.com).</span></span> <span data-ttu-id="45a66-139">L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.</span><span class="sxs-lookup"><span data-stu-id="45a66-139">Single sign-on can be configured independently of automatic provisioning, though these two features compliment each other.</span></span>
+
+### <a name="to-configure-automatic-user-account-provisioning"></a><span data-ttu-id="45a66-140">Per configurare il provisioning automatico degli account utente:</span><span class="sxs-lookup"><span data-stu-id="45a66-140">To configure automatic user account provisioning:</span></span>
+
+<span data-ttu-id="45a66-141">Questa sezione descrive come abilitare il provisioning degli account utente di Active Directory in Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-141">The objective of this section is to outline how to enable provisioning of Active Directory user accounts to Box.</span></span>
+
+1. <span data-ttu-id="45a66-142">Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="45a66-142">In the [Azure portal](https://portal.azure.com), browse to the **Azure Active Directory > Enterprise Apps > All applications** section.</span></span>
+
+2. <span data-ttu-id="45a66-143">Se si è già configurato Box per l'accesso Single Sign-On, cercare l'istanza di Box usando il campo di ricerca.</span><span class="sxs-lookup"><span data-stu-id="45a66-143">If you have already configured Box for single sign-on, search for your instance of Box using the search field.</span></span> <span data-ttu-id="45a66-144">In caso contrario, selezionare **Aggiungi** e cercare **Box** nella raccolta di applicazioni.</span><span class="sxs-lookup"><span data-stu-id="45a66-144">Otherwise, select **Add** and search for **Box** in the application gallery.</span></span> <span data-ttu-id="45a66-145">Selezionare Box nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.</span><span class="sxs-lookup"><span data-stu-id="45a66-145">Select Box from the search results, and add it to your list of applications.</span></span>
+
+3. <span data-ttu-id="45a66-146">Selezionare l'istanza di Box e quindi la scheda **Provisioning**.</span><span class="sxs-lookup"><span data-stu-id="45a66-146">Select your instance of Box, then select the **Provisioning** tab.</span></span>
+
+4. <span data-ttu-id="45a66-147">Impostare **Modalità di provisioning** su **Automatico**.</span><span class="sxs-lookup"><span data-stu-id="45a66-147">Set the **Provisioning Mode** to **Automatic**.</span></span> 
+
+    ![provisioning](./media/active-directory-saas-box-userprovisioning-tutorial/provisioning.png)
+
+5. <span data-ttu-id="45a66-149">Nella sezione **Credenziali amministratore** fare clic su **Autorizza** per aprire una finestra di dialogo di accesso a Box in una nuova finestra del browser.</span><span class="sxs-lookup"><span data-stu-id="45a66-149">Under the **Admin Credentials** section, click **Authorize** to open a Box login dialog in a new browser window.</span></span>
+
+6. <span data-ttu-id="45a66-150">Nella pagina **Log in to grant access to Box** (Accedere per concedere l'accesso a Box) specificare le credenziali richieste e fare clic su **Authorize** (Autorizza).</span><span class="sxs-lookup"><span data-stu-id="45a66-150">On the **Login to grant access to Box** page, provide the required credentials, and then click **Authorize**.</span></span> 
+   
+    <span data-ttu-id="45a66-151">![Enable automatic user provisioning](./media/active-directory-saas-box-userprovisioning-tutorial/IC769546.png "Enable automatic user provisioning")</span><span class="sxs-lookup"><span data-stu-id="45a66-151">![Enable automatic user provisioning](./media/active-directory-saas-box-userprovisioning-tutorial/IC769546.png "Enable automatic user provisioning")</span></span>
+
+7. <span data-ttu-id="45a66-152">Fare clic su **Grant access to Box** (Concedi l'accesso a Box) per autorizzare l'operazione e tornare al portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="45a66-152">Click **Grant access to Box** to authorize this operation and to return to the Azure portal.</span></span> 
+   
+    <span data-ttu-id="45a66-153">![Enable automatic user provisioning](./media/active-directory-saas-box-userprovisioning-tutorial/IC769549.png "Enable automatic user provisioning")</span><span class="sxs-lookup"><span data-stu-id="45a66-153">![Enable automatic user provisioning](./media/active-directory-saas-box-userprovisioning-tutorial/IC769549.png "Enable automatic user provisioning")</span></span>
+
+8. <span data-ttu-id="45a66-154">Nel portale di Azure fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-154">In the Azure portal, click **Test Connection** to ensure Azure AD can connect to your Box app.</span></span> <span data-ttu-id="45a66-155">Se la connessione non riesce, verificare che l'account di Box abbia autorizzazioni di amministratore di team e ripetere il passaggio **"Autorizza"**.</span><span class="sxs-lookup"><span data-stu-id="45a66-155">If the connection fails, ensure your Box account has Team Admin permissions and try the **"Authorize"** step again.</span></span>
+
+9. <span data-ttu-id="45a66-156">Immettere l'indirizzo e-mail di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo.</span><span class="sxs-lookup"><span data-stu-id="45a66-156">Enter the email address of a person or group who should receive provisioning error notifications in the **Notification Email** field, and check the checkbox.</span></span>
+
+10. <span data-ttu-id="45a66-157">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="45a66-157">Click **Save.**</span></span>
+
+11. <span data-ttu-id="45a66-158">Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to Slack** (Sincronizza utenti di Azure Active Directory in Box).</span><span class="sxs-lookup"><span data-stu-id="45a66-158">Under the Mappings section, select **Synchronize Azure Active Directory Users to Box.**</span></span>
+
+12. <span data-ttu-id="45a66-159">Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-159">In the **Attribute Mappings** section, review the user attributes that are synchronized from Azure AD to Box.</span></span> <span data-ttu-id="45a66-160">Gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in Box per le operazioni di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="45a66-160">The attributes selected as **Matching** properties are used to match the user accounts in Box for update operations.</span></span> <span data-ttu-id="45a66-161">Selezionare il pulsante Salva per eseguire il commit delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="45a66-161">Select the Save button to commit any changes.</span></span>
+
+13. <span data-ttu-id="45a66-162">Per abilitare il servizio di provisioning di Azure AD per Box, impostare **Stato del provisioning** su **Sì** nella sezione Impostazioni</span><span class="sxs-lookup"><span data-stu-id="45a66-162">To enable the Azure AD provisioning service for Box, change the **Provisioning Status** to **On** in the Settings section</span></span>
+
+14. <span data-ttu-id="45a66-163">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="45a66-163">Click **Save.**</span></span>
+
+<span data-ttu-id="45a66-164">Viene avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a Box nella sezione Utenti e gruppi.</span><span class="sxs-lookup"><span data-stu-id="45a66-164">That starts the initial synchronization of any users and/or groups assigned to Box in the Users and Groups section.</span></span> <span data-ttu-id="45a66-165">La sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione.</span><span class="sxs-lookup"><span data-stu-id="45a66-165">The initial sync takes longer to perform than subsequent syncs, which occur approximately every 20 minutes as long as the service is running.</span></span> <span data-ttu-id="45a66-166">È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning per l'app Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-166">You can use the **Synchronization Details** section to monitor progress and follow links to provisioning activity reports, which describe all actions performed by the provisioning service on your Box app.</span></span>
+
+<span data-ttu-id="45a66-167">È ora possibile creare un account di test.</span><span class="sxs-lookup"><span data-stu-id="45a66-167">You can now create a test account.</span></span> <span data-ttu-id="45a66-168">Attendere 20 minuti per verificare che l'account sia stato sincronizzato con Box.</span><span class="sxs-lookup"><span data-stu-id="45a66-168">Wait for up to 20 minutes to verify that the account has been synchronized to box.</span></span>
+
+<span data-ttu-id="45a66-169">Nel tenant Box, gli utenti sincronizzati sono visualizzati nella sezione **Managed Users** (Utenti gestiti) di **Admin Console** (Console di amministrazione).</span><span class="sxs-lookup"><span data-stu-id="45a66-169">In your Box tenant, synchronized users are listed under **Managed Users** in the **Admin Console**.</span></span>
+
+<span data-ttu-id="45a66-170">![Stato integrazione](./media/active-directory-saas-box-userprovisioning-tutorial/IC769556.png "Stato integrazione")</span><span class="sxs-lookup"><span data-stu-id="45a66-170">![Integration status](./media/active-directory-saas-box-userprovisioning-tutorial/IC769556.png "Integration status")</span></span>
+
+
+## <a name="additional-resources"></a><span data-ttu-id="45a66-171">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="45a66-171">Additional resources</span></span>
+
+* [<span data-ttu-id="45a66-172">Gestione del provisioning degli account utente per app aziendali</span><span class="sxs-lookup"><span data-stu-id="45a66-172">Managing user account provisioning for Enterprise Apps</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="45a66-173">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="45a66-173">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="45a66-174">Configurare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="45a66-174">Configure Single Sign-on</span></span>](active-directory-saas-box-tutorial.md)

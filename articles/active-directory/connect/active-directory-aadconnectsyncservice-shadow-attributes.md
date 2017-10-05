@@ -1,0 +1,76 @@
+---
+title: Attributi shadow del servizio di sincronizzazione Azure AD Connect | Microsoft Docs
+description: Descrive il funzionamento degli attributi shadow con il servizio di sincronizzazione Azure AD Connect.
+services: active-directory
+documentationcenter: 
+author: andkjell
+manager: femila
+editor: 
+ms.assetid: 
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/13/2017
+ms.author: billmath
+ms.openlocfilehash: 0b6a7f22d744480a40a878c979986cdd7667109c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/03/2017
+---
+# <a name="azure-ad-connect-sync-service-shadow-attributes"></a><span data-ttu-id="96088-103">Attributi shadow del servizio di sincronizzazione Azure AD Connect</span><span class="sxs-lookup"><span data-stu-id="96088-103">Azure AD Connect sync service shadow attributes</span></span>
+<span data-ttu-id="96088-104">La maggior parte degli attributi viene rappresentata allo stesso modo in Azure AD e nel servizio Active Directory locale.</span><span class="sxs-lookup"><span data-stu-id="96088-104">Most attributes are represented the same way in Azure AD as they are in your on-premises Active Directory.</span></span> <span data-ttu-id="96088-105">Tuttavia, alcuni attributi sono caratterizzati da una gestione speciale e il valore dell'attributo in Azure AD potrebbe essere diverso da quello sincronizzato in Azure AD Connect.</span><span class="sxs-lookup"><span data-stu-id="96088-105">But some attributes have some special handling and the attribute value in Azure AD might be different than what Azure AD Connect synchronizes.</span></span>
+
+## <a name="introducing-shadow-attributes"></a><span data-ttu-id="96088-106">Introduzione agli attributi shadow</span><span class="sxs-lookup"><span data-stu-id="96088-106">Introducing shadow attributes</span></span>
+<span data-ttu-id="96088-107">Alcuni attributi hanno due rappresentazioni in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="96088-107">Some attributes have two representations in Azure AD.</span></span> <span data-ttu-id="96088-108">Vengono archiviati sia il valore locale che un valore calcolato.</span><span class="sxs-lookup"><span data-stu-id="96088-108">Both the on-premises value and a calculated value are stored.</span></span> <span data-ttu-id="96088-109">Questi attributi aggiuntivi sono chiamati attributi shadow.</span><span class="sxs-lookup"><span data-stu-id="96088-109">These extra attributes are called shadow attributes.</span></span> <span data-ttu-id="96088-110">I due attributi più comuni in cui si può notare questo comportamento sono **userPrincipalName** e **proxyAddress**.</span><span class="sxs-lookup"><span data-stu-id="96088-110">The two most common attributes where you see this behavior are **userPrincipalName** and **proxyAddress**.</span></span> <span data-ttu-id="96088-111">La modifica dei valori degli attributi avviene quando sono presenti valori in questi attributi che rappresentano domini non verificati.</span><span class="sxs-lookup"><span data-stu-id="96088-111">The change in attribute values happens when there are values in these attributes representing non-verified domains.</span></span> <span data-ttu-id="96088-112">Tuttavia, il motore di sincronizzazione in Connect legge il valore nell'attributo shadow, pertanto dal suo punto di vista l'attributo è stato confermato da Azure AD.</span><span class="sxs-lookup"><span data-stu-id="96088-112">But the sync engine in Connect reads the value in the shadow attribute so from its perspective, the attribute has been confirmed by Azure AD.</span></span>
+
+<span data-ttu-id="96088-113">Non è possibile visualizzare gli attributi shadow usando il portale di Azure o con PowerShell.</span><span class="sxs-lookup"><span data-stu-id="96088-113">You cannot see the shadow attributes using the Azure portal or with PowerShell.</span></span> <span data-ttu-id="96088-114">Ma comprendere questo concetto sarà d'aiuto per risolvere determinati scenari in cui l'attributo presenta valori differenti in locale e nel cloud.</span><span class="sxs-lookup"><span data-stu-id="96088-114">But understanding the concept helps you to troubleshoot certain scenarios where the attribute has different values on-premises and in the cloud.</span></span>
+
+<span data-ttu-id="96088-115">Per capire meglio questo comportamento, esaminare l'esempio seguente relativo a Fabrikam:</span><span class="sxs-lookup"><span data-stu-id="96088-115">To better understand the behavior, look at this example from Fabrikam:</span></span>  
+![Domini](./media/active-directory-aadconnectsyncservice-shadow-attributes/domains.png)  
+<span data-ttu-id="96088-117">Includono più suffissi UPN nel servizio Active Directory locale, ma ne è stato verificato solo uno.</span><span class="sxs-lookup"><span data-stu-id="96088-117">They have multiple UPN suffixes in their on-premises Active Directory, but they have only verified one.</span></span>
+
+### <a name="userprincipalname"></a><span data-ttu-id="96088-118">userPrincipalName</span><span class="sxs-lookup"><span data-stu-id="96088-118">userPrincipalName</span></span>
+<span data-ttu-id="96088-119">Un utente ha i seguenti valori di attributo in un dominio non verificato:</span><span class="sxs-lookup"><span data-stu-id="96088-119">A user has the following attribute values in a non-verified domain:</span></span>
+
+| <span data-ttu-id="96088-120">Attributo</span><span class="sxs-lookup"><span data-stu-id="96088-120">Attribute</span></span> | <span data-ttu-id="96088-121">Valore</span><span class="sxs-lookup"><span data-stu-id="96088-121">Value</span></span> |
+| --- | --- |
+| <span data-ttu-id="96088-122">userPrincipalName locale</span><span class="sxs-lookup"><span data-stu-id="96088-122">on-premises userPrincipalName</span></span> | lee.sperry@fabrikam.com |
+| <span data-ttu-id="96088-123">shadowUserPrincipalName in Azure AD</span><span class="sxs-lookup"><span data-stu-id="96088-123">Azure AD shadowUserPrincipalName</span></span> | lee.sperry@fabrikam.com |
+| <span data-ttu-id="96088-124">userPrincipalName in Azure AD</span><span class="sxs-lookup"><span data-stu-id="96088-124">Azure AD userPrincipalName</span></span> | lee.sperry@fabrikam.onmicrosoft.com |
+
+<span data-ttu-id="96088-125">L'attributo userPrincipalName è il valore che viene visualizzato quando si usa PowerShell.</span><span class="sxs-lookup"><span data-stu-id="96088-125">The userPrincipalName attribute is the value you see when using PowerShell.</span></span>
+
+<span data-ttu-id="96088-126">Dal momento che il valore dell'attributo locale reale è archiviato in Azure AD, quando si verifica il dominio fabrikam.com, Azure AD aggiorna l'attributo userPrincipalName con il valore di shadowUserPrincipalName.</span><span class="sxs-lookup"><span data-stu-id="96088-126">Since the real on-premises attribute value is stored in Azure AD, when you verify the fabrikam.com domain, Azure AD updates the userPrincipalName attribute with the value from the shadowUserPrincipalName.</span></span> <span data-ttu-id="96088-127">Non è necessario sincronizzare le modifiche apportate in Azure AD Connect perché questi valori vengano aggiornati.</span><span class="sxs-lookup"><span data-stu-id="96088-127">You do not have to synchronize any changes from Azure AD Connect for these values to be updated.</span></span>
+
+### <a name="proxyaddresses"></a><span data-ttu-id="96088-128">proxyAddresses</span><span class="sxs-lookup"><span data-stu-id="96088-128">proxyAddresses</span></span>
+<span data-ttu-id="96088-129">Lo stesso processo per includere solo domini verificati si verifica anche per proxyAddresses, ma con una logica aggiuntiva.</span><span class="sxs-lookup"><span data-stu-id="96088-129">The same process for only including verified domains also occurs for proxyAddresses, but with some additional logic.</span></span> <span data-ttu-id="96088-130">Il controllo dei domini verificati avviene solo per gli utenti delle cassette postali.</span><span class="sxs-lookup"><span data-stu-id="96088-130">The check for verified domains only happens for mailbox users.</span></span> <span data-ttu-id="96088-131">Un contatto o un utente abilitato alla posta elettronica rappresenta un utente in un'altra organizzazione di Exchange ed è possibile aggiungere qualsiasi valore in proxyAddresses a questi oggetti.</span><span class="sxs-lookup"><span data-stu-id="96088-131">A mail-enabled user or contact represent a user in another Exchange organization and you can add any values in proxyAddresses to these objects.</span></span>
+
+<span data-ttu-id="96088-132">Per un utente della cassetta postale, in locale o in Exchange Online, vengono visualizzati solo i valori per i domini verificati.</span><span class="sxs-lookup"><span data-stu-id="96088-132">For a mailbox user, either on-premises or in Exchange Online, only values for verified domains appear.</span></span> <span data-ttu-id="96088-133">L'aspetto è simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="96088-133">It could look like this:</span></span>
+
+| <span data-ttu-id="96088-134">Attributo</span><span class="sxs-lookup"><span data-stu-id="96088-134">Attribute</span></span> | <span data-ttu-id="96088-135">Valore</span><span class="sxs-lookup"><span data-stu-id="96088-135">Value</span></span> |
+| --- | --- |
+| <span data-ttu-id="96088-136">proxyAddresses locale</span><span class="sxs-lookup"><span data-stu-id="96088-136">on-premises proxyAddresses</span></span> | SMTP:abbie.spencer@fabrikamonline.com</br>smtp:abbie.spencer@fabrikam.com</br>smtp:abbie@fabrikamonline.com |
+| <span data-ttu-id="96088-137">proxyAddresses in Exchange Online</span><span class="sxs-lookup"><span data-stu-id="96088-137">Exchange Online proxyAddresses</span></span> | SMTP:abbie.spencer@fabrikamonline.com</br>smtp:abbie@fabrikamonline.com</br>SIP:abbie.spencer@fabrikamonline.com |
+
+<span data-ttu-id="96088-138">In questo caso **smtp:abbie.spencer@fabrikam.com** è stato rimosso poiché tale dominio non è stato verificato.</span><span class="sxs-lookup"><span data-stu-id="96088-138">In this case **smtp:abbie.spencer@fabrikam.com** was removed since that domain has not been verified.</span></span> <span data-ttu-id="96088-139">Ma Exchange ha aggiunto anche **SIP:abbie.spencer@fabrikamonline.com**.</span><span class="sxs-lookup"><span data-stu-id="96088-139">But Exchange also added **SIP:abbie.spencer@fabrikamonline.com**.</span></span> <span data-ttu-id="96088-140">Fabrikam non ha usato Lync/Skype in locale, ma Azure AD ed Exchange Online sono in fase di preparazione.</span><span class="sxs-lookup"><span data-stu-id="96088-140">Fabrikam has not used Lync/Skype on-premises, but Azure AD and Exchange Online prepare for it.</span></span>
+
+<span data-ttu-id="96088-141">Questa logica per proxyAddresses è detta **ProxyCalc**.</span><span class="sxs-lookup"><span data-stu-id="96088-141">This logic for proxyAddresses is referred to as **ProxyCalc**.</span></span> <span data-ttu-id="96088-142">ProxyCalc viene richiamato con ogni modifica a un utente quando:</span><span class="sxs-lookup"><span data-stu-id="96088-142">ProxyCalc is invoked with every change on a user when:</span></span>
+
+- <span data-ttu-id="96088-143">All'utente è stato assegnato un piano di servizio che include Exchange Online, anche se l'utente non disponeva della licenza per Exchange.</span><span class="sxs-lookup"><span data-stu-id="96088-143">The user has been assigned a service plan that includes Exchange Online even if the user was not licensed for Exchange.</span></span> <span data-ttu-id="96088-144">Ad esempio, se all'utente è assegnato lo SKU Office E3, ma è stato assegnato solo SharePoint Online.</span><span class="sxs-lookup"><span data-stu-id="96088-144">For example, if the user is assigned the Office E3 SKU, but only was assigned SharePoint Online.</span></span> <span data-ttu-id="96088-145">Questo vale anche se la cassetta postale dell'utente è ancora in locale.</span><span class="sxs-lookup"><span data-stu-id="96088-145">This is true even if your mailbox is still on-premises.</span></span>
+- <span data-ttu-id="96088-146">L'attributo msExchRecipientTypeDetails ha un valore.</span><span class="sxs-lookup"><span data-stu-id="96088-146">The attribute msExchRecipientTypeDetails has a value.</span></span>
+- <span data-ttu-id="96088-147">Viene apportata una modifica a proxyAddresses o userPrincipalName.</span><span class="sxs-lookup"><span data-stu-id="96088-147">You make a change to proxyAddresses or userPrincipalName.</span></span>
+
+<span data-ttu-id="96088-148">ProxyCalc potrebbe richiedere del tempo per elaborare una modifica apportata a un utente e non è sincrono con il processo di esportazione di Azure AD Connect.</span><span class="sxs-lookup"><span data-stu-id="96088-148">ProxyCalc might take some time to process a change on a user and is not synchronous with the Azure AD Connect export process.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="96088-149">La logica ProxyCalc presenta alcuni comportamenti aggiuntivi per scenari avanzati non documentati in questo argomento.</span><span class="sxs-lookup"><span data-stu-id="96088-149">The ProxyCalc logic has some additional behaviors for advanced scenarios not documented in this topic.</span></span> <span data-ttu-id="96088-150">Questo argomento viene fornito per consentire all'utente di comprendere il comportamento e non per documentare l'intera logica interna.</span><span class="sxs-lookup"><span data-stu-id="96088-150">This topic is provided for you to understand the behavior and not document all internal logic.</span></span>
+
+### <a name="quarantined-attribute-values"></a><span data-ttu-id="96088-151">Valori di attributo in quarantena</span><span class="sxs-lookup"><span data-stu-id="96088-151">Quarantined attribute values</span></span>
+<span data-ttu-id="96088-152">Gli attributi shadow vengono usati anche quando sono presenti valori di attributo duplicati.</span><span class="sxs-lookup"><span data-stu-id="96088-152">Shadow attributes are also used when there are duplicate attribute values.</span></span> <span data-ttu-id="96088-153">Per altre informazioni, vedere [Resilienza degli attributi duplicati](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md).</span><span class="sxs-lookup"><span data-stu-id="96088-153">For more information, see [duplicate attribute resiliency](active-directory-aadconnectsyncservice-duplicate-attribute-resiliency.md).</span></span>
+
+## <a name="see-also"></a><span data-ttu-id="96088-154">Vedere anche</span><span class="sxs-lookup"><span data-stu-id="96088-154">See also</span></span>
+* [<span data-ttu-id="96088-155">Servizio di sincronizzazione Azure AD Connect</span><span class="sxs-lookup"><span data-stu-id="96088-155">Azure AD Connect sync</span></span>](active-directory-aadconnectsync-whatis.md)
+* <span data-ttu-id="96088-156">[Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md).</span><span class="sxs-lookup"><span data-stu-id="96088-156">[Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).</span></span>

@@ -1,0 +1,112 @@
+---
+title: 'Esercitazione: Integrazione di Azure Active Directory con Salesforce Sandbox | Microsoft Docs'
+description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Salesforce Sandbox.
+services: active-directory
+documentationCenter: na
+author: jeevansd
+manager: femila
+ms.assetid: bab73fda-6754-411d-9288-f73ecdaa486d
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/18/2017
+ms.author: jeedes
+ms.openlocfilehash: 7d3c655a754f83284c386d2007c604a731367814
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 07/11/2017
+---
+# <a name="tutorial-configuring-salesforce-sandbox-for-automatic-user-provisioning"></a><span data-ttu-id="cd240-103">Esercitazione: Configurazione di Salesforce Sandbox per il provisioning utenti automatico</span><span class="sxs-lookup"><span data-stu-id="cd240-103">Tutorial: Configuring Salesforce Sandbox for Automatic User Provisioning</span></span>
+
+<span data-ttu-id="cd240-104">Questa esercitazione descrive le procedure da eseguire in Salesforce Sandbox e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-104">The objective of this tutorial is to show you the steps you need to perform in Salesforce Sandbox and Azure AD to automatically provision and de-provision user accounts from Azure AD to Salesforce Sandbox.</span></span>
+
+## <a name="prerequisites"></a><span data-ttu-id="cd240-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="cd240-105">Prerequisites</span></span>
+
+<span data-ttu-id="cd240-106">Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:</span><span class="sxs-lookup"><span data-stu-id="cd240-106">The scenario outlined in this tutorial assumes that you already have the following items:</span></span>
+
+*   <span data-ttu-id="cd240-107">Tenant di Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="cd240-107">An Azure Active directory tenant.</span></span>
+*   <span data-ttu-id="cd240-108">È necessario disporre di un tenant valido per Salesforce Sandbox for Work o Salesforce Sandbox for Education.</span><span class="sxs-lookup"><span data-stu-id="cd240-108">You must have a valid tenant for Salesforce Sandbox for Work or Salesforce Sandbox for Education.</span></span> <span data-ttu-id="cd240-109">È possibile usare un account della versione di valutazione gratuita per entrambi i servizi.</span><span class="sxs-lookup"><span data-stu-id="cd240-109">You may use a free trial     account for either service.</span></span>
+*   <span data-ttu-id="cd240-110">Account utente in Salesforce Sandbox con autorizzazioni di amministratore di team.</span><span class="sxs-lookup"><span data-stu-id="cd240-110">A user account in Salesforce Sandbox with Team Admin permissions.</span></span>
+
+## <a name="assigning-users-to-salesforce-sandbox"></a><span data-ttu-id="cd240-111">Assegnazione di utenti a Salesforce Sandbox</span><span class="sxs-lookup"><span data-stu-id="cd240-111">Assigning users to Salesforce Sandbox</span></span>
+
+<span data-ttu-id="cd240-112">Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni".</span><span class="sxs-lookup"><span data-stu-id="cd240-112">Azure Active Directory uses a concept called "assignments" to determine which users should receive access to selected apps.</span></span> <span data-ttu-id="cd240-113">Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="cd240-113">In the context of automatic user account provisioning, only the users and groups that have been "assigned" to an application in Azure AD are synchronized.</span></span>
+
+<span data-ttu-id="cd240-114">Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-114">Before configuring and enabling the provisioning service, you need to decide what users and/or groups in Azure AD represent the users who need access to your Salesforce Sandbox app.</span></span> <span data-ttu-id="cd240-115">Dopo aver stabilito questo, è possibile assegnare tali utenti all'app Salesforce Sandbox seguendo le istruzioni riportate qui:</span><span class="sxs-lookup"><span data-stu-id="cd240-115">Once decided, you can assign these users to your Salesforce Sandbox app by following the instructions here:</span></span>
+
+[<span data-ttu-id="cd240-116">Assegnare un utente o gruppo a un'app aziendale</span><span class="sxs-lookup"><span data-stu-id="cd240-116">Assign a user or group to an enterprise app</span></span>](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+
+### <a name="important-tips-for-assigning-users-to-salesforce-sandbox"></a><span data-ttu-id="cd240-117">Suggerimenti importanti per l'assegnazione di utenti a Salesforce Sandbox</span><span class="sxs-lookup"><span data-stu-id="cd240-117">Important tips for assigning users to Salesforce Sandbox</span></span>
+
+* <span data-ttu-id="cd240-118">È consigliabile assegnare un singolo utente di Azure AD a Salesforce Sandbox per testare la configurazione del provisioning.</span><span class="sxs-lookup"><span data-stu-id="cd240-118">It is recommended that a single Azure AD user is assigned to Salesforce Sandbox to test the provisioning configuration.</span></span> <span data-ttu-id="cd240-119">È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.</span><span class="sxs-lookup"><span data-stu-id="cd240-119">Additional users and/or groups may be assigned later.</span></span>
+
+* <span data-ttu-id="cd240-120">Quando si assegna un utente a Salesforce Sandbox, è necessario selezionare un ruolo utente valido.</span><span class="sxs-lookup"><span data-stu-id="cd240-120">When assigning a user to Salesforce Sandbox, you must select a valid user role.</span></span> <span data-ttu-id="cd240-121">Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.</span><span class="sxs-lookup"><span data-stu-id="cd240-121">The "Default Access" role does not work for provisioning.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="cd240-122">Questa app importa ruoli personalizzati da Salesforce Sandbox come parte del processo di provisioning che il cliente può decidere di selezionare durante l'assegnazione di utenti.</span><span class="sxs-lookup"><span data-stu-id="cd240-122">This app imports custom roles from Salesforce Sandbox as part of the provisioning process, which the customer may want to select when assigning users.</span></span>
+
+## <a name="enable-automated-user-provisioning"></a><span data-ttu-id="cd240-123">Abilitare il provisioning utenti automatizzato</span><span class="sxs-lookup"><span data-stu-id="cd240-123">Enable Automated User Provisioning</span></span>
+
+<span data-ttu-id="cd240-124">Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di Salesforce Sandbox e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Salesforce Sandbox in base all'assegnazione di utenti e gruppi in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="cd240-124">This section guides you through connecting your Azure AD to Salesforce Sandbox's user account provisioning API, and configuring the provisioning service to create, update, and disable assigned user accounts in Salesforce Sandbox based on user and group assignment in Azure AD.</span></span>
+
+>[!Tip]
+><span data-ttu-id="cd240-125">Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Salesforce Sandbox, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="cd240-125">You may also choose to enabled SAML-based Single Sign-On for Salesforce Sandbox, following the instructions provided in [Azure portal](https://portal.azure.com).</span></span> <span data-ttu-id="cd240-126">L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.</span><span class="sxs-lookup"><span data-stu-id="cd240-126">Single sign-on can be configured independently of automatic provisioning, though these two features compliment each other.</span></span>
+
+### <a name="to-configure-automatic-user-account-provisioning"></a><span data-ttu-id="cd240-127">Per configurare il provisioning automatico degli account utente:</span><span class="sxs-lookup"><span data-stu-id="cd240-127">To configure automatic user account provisioning:</span></span>
+
+<span data-ttu-id="cd240-128">In questa sezione viene descritto come abilitare il provisioning utente degli account utente di Active Directory in Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-128">The objective of this section is to outline how to enable user provisioning of Active Directory user accounts to Salesforce Sandbox.</span></span>
+
+1. <span data-ttu-id="cd240-129">Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="cd240-129">In the [Azure portal](https://portal.azure.com), browse to the **Azure Active Directory > Enterprise Apps > All applications** section.</span></span>
+
+2. <span data-ttu-id="cd240-130">Se è già stato configurato Salesforce Sandbox per l'accesso Single Sign-On, cercare l'istanza di Salesforce Sandbox usando il campo di ricerca.</span><span class="sxs-lookup"><span data-stu-id="cd240-130">If you have already configured Salesforce Sandbox for single sign-on, search for your instance of Salesforce Sandbox using the search field.</span></span> <span data-ttu-id="cd240-131">In caso contrario, selezionare **Aggiungi** e cercare **Salesforce Sandbox** nella raccolta di applicazioni.</span><span class="sxs-lookup"><span data-stu-id="cd240-131">Otherwise, select **Add** and search for **Salesforce Sandbox** in the application gallery.</span></span> <span data-ttu-id="cd240-132">Selezionare Salesforce Sandbox nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.</span><span class="sxs-lookup"><span data-stu-id="cd240-132">Select Salesforce Sandbox from the search results, and add it to your list of applications.</span></span>
+
+3. <span data-ttu-id="cd240-133">Selezionare l'istanza di Salesforce Sandbox e quindi la scheda **Provisioning**.</span><span class="sxs-lookup"><span data-stu-id="cd240-133">Select your instance of Salesforce Sandbox, then select the **Provisioning** tab.</span></span>
+
+4. <span data-ttu-id="cd240-134">Impostare **Modalità di provisioning** su **Automatico**.</span><span class="sxs-lookup"><span data-stu-id="cd240-134">Set the **Provisioning Mode** to **Automatic**.</span></span> 
+    <span data-ttu-id="cd240-135">![provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/provisioning.png)</span><span class="sxs-lookup"><span data-stu-id="cd240-135">![provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/provisioning.png)</span></span>
+
+5. <span data-ttu-id="cd240-136">Nella sezione **Credenziali di amministratore** specificare le impostazioni di configurazione seguenti:</span><span class="sxs-lookup"><span data-stu-id="cd240-136">Under the **Admin Credentials** section, provide the following configuration settings:</span></span>
+   
+    <span data-ttu-id="cd240-137">a.</span><span class="sxs-lookup"><span data-stu-id="cd240-137">a.</span></span> <span data-ttu-id="cd240-138">Nella casella di testo **Nome utente amministratore** digitare un nome account di Salesforce Sandbox con il profilo **Amministratore di sistema** assegnato in Salesforce.com.</span><span class="sxs-lookup"><span data-stu-id="cd240-138">In the **Admin User Name** textbox, type a Salesforce Sandbox account name that has the **System Administrator** profile in Salesforce.com assigned.</span></span>
+   
+    <span data-ttu-id="cd240-139">b.</span><span class="sxs-lookup"><span data-stu-id="cd240-139">b.</span></span> <span data-ttu-id="cd240-140">Nella casella di testo **Password amministratore** digitare la password per questo account.</span><span class="sxs-lookup"><span data-stu-id="cd240-140">In the **Admin Password** textbox, type the password for this account.</span></span>
+
+6. <span data-ttu-id="cd240-141">Per ottenere il token di sicurezza di Salesforce Sandbox, aprire una nuova scheda e accedere allo stesso account amministratore di Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-141">To get your Salesforce Sandbox security token, open a new tab and sign into the same Salesforce Sandbox admin account.</span></span> <span data-ttu-id="cd240-142">Nell'angolo superiore destro della pagina fare clic sul proprio nome e quindi su **Impostazioni personali**.</span><span class="sxs-lookup"><span data-stu-id="cd240-142">On the top right corner of the page, click your name, and then click **My Settings**.</span></span>
+
+     <span data-ttu-id="cd240-143">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-my-settings.png "Enable automatic user provisioning")</span><span class="sxs-lookup"><span data-stu-id="cd240-143">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-my-settings.png "Enable automatic user provisioning")</span></span>
+7. <span data-ttu-id="cd240-144">Nel pannello di navigazione sinistro fare clic su **Personal** (Personale) per espandere la sezione corrispondente, quindi fare clic su **Reset My Security Token** (Reimposta token di sicurezza personale).</span><span class="sxs-lookup"><span data-stu-id="cd240-144">On the left navigation pane, click **Personal** to expand the related section, and then click **Reset My Security Token**.</span></span>
+  
+    <span data-ttu-id="cd240-145">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-personal-reset.png "Enable automatic user provisioning")</span><span class="sxs-lookup"><span data-stu-id="cd240-145">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-personal-reset.png "Enable automatic user provisioning")</span></span>
+8. <span data-ttu-id="cd240-146">Nella pagina **Reset My Security Token** (Reimposta token di sicurezza personale) fare clic sul pulsante **Reset Security Token** (Reimposta token di sicurezza personale).</span><span class="sxs-lookup"><span data-stu-id="cd240-146">On the **Reset My Security Token** page, click the **Reset Security Token** button.</span></span>
+
+    <span data-ttu-id="cd240-147">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-reset-token.png "Enable automatic user provisioning")</span><span class="sxs-lookup"><span data-stu-id="cd240-147">![Enable automatic user provisioning](./media/active-directory-saas-salesforce-sandbox-provisioning-tutorial/sf-reset-token.png "Enable automatic user provisioning")</span></span>
+9. <span data-ttu-id="cd240-148">Controllare la casella di posta elettronica associata a questo account di amministratore.</span><span class="sxs-lookup"><span data-stu-id="cd240-148">Check the email inbox associated with this admin account.</span></span> <span data-ttu-id="cd240-149">Cercare un messaggio di posta elettronica da Salesforce Sandbox.com contenente il nuovo token di sicurezza.</span><span class="sxs-lookup"><span data-stu-id="cd240-149">Look for an email from Salesforce Sandbox.com that contains the new security token.</span></span>
+10. <span data-ttu-id="cd240-150">Copiare il token, passare alla finestra di Azure AD e incollarlo nel campo **Socket Token**.</span><span class="sxs-lookup"><span data-stu-id="cd240-150">Copy the token, go to your Azure AD window, and paste it into the **Socket Token** field.</span></span>
+
+11. <span data-ttu-id="cd240-151">Nel portale di Azure fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-151">In the Azure portal, click **Test Connection** to ensure Azure AD can connect to your Salesforce Sandbox app.</span></span>
+
+12. <span data-ttu-id="cd240-152">Nel campo **Messaggio di posta elettronica di notifica** immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning e selezionare la casella di controllo.</span><span class="sxs-lookup"><span data-stu-id="cd240-152">In the **Notification Email** field, enter the email address of a person or group who should receive provisioning error notifications, and check the checkbox.</span></span>
+
+13. <span data-ttu-id="cd240-153">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="cd240-153">Click **Save.**</span></span>  
+    
+14.  <span data-ttu-id="cd240-154">Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to Salesforce Sandbox** (Sincronizza utenti di Azure Active Directory in Salesforce Sandbox).</span><span class="sxs-lookup"><span data-stu-id="cd240-154">Under the Mappings section, select **Synchronize Azure Active Directory Users to Salesforce Sandbox.**</span></span>
+
+15. <span data-ttu-id="cd240-155">Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-155">In the **Attribute Mappings** section, review the user attributes that are synchronized from Azure AD to Salesforce Sandbox.</span></span> <span data-ttu-id="cd240-156">Gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in Salesforce Sandbox per le operazioni di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="cd240-156">The attributes selected as **Matching** properties are used to match the user accounts in Salesforce Sandbox for update operations.</span></span> <span data-ttu-id="cd240-157">Selezionare il pulsante Salva per eseguire il commit delle modifiche.</span><span class="sxs-lookup"><span data-stu-id="cd240-157">Select the Save button to commit any changes.</span></span>
+
+16. <span data-ttu-id="cd240-158">Per abilitare il servizio di provisioning di Azure AD per Salesforce Sandbox, impostare **Stato del provisioning** su **Sì** nella sezione Impostazioni</span><span class="sxs-lookup"><span data-stu-id="cd240-158">To enable the Azure AD provisioning service for Salesforce Sandbox, change the **Provisioning Status** to **On** in the Settings section</span></span>
+
+17. <span data-ttu-id="cd240-159">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="cd240-159">Click **Save.**</span></span>
+
+
+<span data-ttu-id="cd240-160">Viene avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a Salesforce Sandbox nella sezione Utenti e gruppi.</span><span class="sxs-lookup"><span data-stu-id="cd240-160">It starts the initial synchronization of any users and/or groups assigned to Salesforce Sandbox in the Users and Groups section.</span></span> <span data-ttu-id="cd240-161">La sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione.</span><span class="sxs-lookup"><span data-stu-id="cd240-161">The initial sync takes longer to perform than subsequent syncs, which occur approximately every 20 minutes as long as the service is running.</span></span> <span data-ttu-id="cd240-162">È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app Salesforce Sandbox.</span><span class="sxs-lookup"><span data-stu-id="cd240-162">You can use the **Synchronization Details** section to monitor progress and follow links to provisioning activity reports, which describe all actions performed by the provisioning service on Salesforce Sandbox app.</span></span>
+
+<span data-ttu-id="cd240-163">È ora possibile creare un account di test.</span><span class="sxs-lookup"><span data-stu-id="cd240-163">You can now create a test account.</span></span> <span data-ttu-id="cd240-164">Attendere 20 minuti per verificare che l'account sia stato sincronizzato con Salesforce.</span><span class="sxs-lookup"><span data-stu-id="cd240-164">Wait for up to 20 minutes to verify that the account has been synchronized to salesforce.</span></span>
+
+## <a name="additional-resources"></a><span data-ttu-id="cd240-165">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="cd240-165">Additional resources</span></span>
+
+* [<span data-ttu-id="cd240-166">Gestione del provisioning degli account utente per app aziendali</span><span class="sxs-lookup"><span data-stu-id="cd240-166">Managing user account provisioning for Enterprise Apps</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="cd240-167">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="cd240-167">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="cd240-168">Configurare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="cd240-168">Configure Single Sign-on</span></span>](active-directory-saas-salesforcesandbox-tutorial.md)

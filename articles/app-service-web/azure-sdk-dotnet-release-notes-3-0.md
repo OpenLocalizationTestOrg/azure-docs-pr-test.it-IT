@@ -1,0 +1,57 @@
+---
+title: Note sulla versione di Azure SDK per .NET 3.0 | Microsoft Docs
+description: Note sulla versione di Azure SDK per .NET 3.0
+services: app-service\web
+documentationcenter: .net
+author: chrissfanos
+editor: 
+ms.assetid: c83d815b-fc19-4260-821e-7d2a7206dffc
+ms.service: app-service
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 03/07/2017
+ms.author: juliako
+ms.openlocfilehash: eea4e569ac2d0192ed7872d2fcb9bed03614832b
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/29/2017
+---
+# <a name="azure-sdk-for-net-30-release-notes"></a><span data-ttu-id="ef8a5-103">Note sulla versione di Azure SDK per .NET 3.0</span><span class="sxs-lookup"><span data-stu-id="ef8a5-103">Azure SDK for .NET 3.0 release notes</span></span>
+
+<span data-ttu-id="ef8a5-104">Questo argomento contiene le note sulla versione 3.0 di Azure SDK per .NET.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-104">This topic includes release notes for version 3.0 of the Azure SDK for .NET.</span></span>
+
+##<a name="azure-sdk-for-net-30-release-summary"></a><span data-ttu-id="ef8a5-105">Riepilogo sulla versione Azure SDK per .NET 3.0</span><span class="sxs-lookup"><span data-stu-id="ef8a5-105">Azure SDK for .NET 3.0 release summary</span></span>
+
+<span data-ttu-id="ef8a5-106">Data di rilascio: 07/03/2017</span><span class="sxs-lookup"><span data-stu-id="ef8a5-106">Release date: 03/07/2017</span></span>
+ 
+<span data-ttu-id="ef8a5-107">In questa versione non sono state introdotte modifiche di rilievo ad Azure SDK 3.0.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-107">No breaking changes to the Azure SDK 3.0 have been introduced in this release.</span></span> <span data-ttu-id="ef8a5-108">Per sfruttare questo SDK con progetti di servizio cloud esistenti, inoltre, non è necessario alcun processo di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-108">There is also no upgrade process needed to leverage this SDK with existing Cloud Service projects.</span></span> <span data-ttu-id="ef8a5-109">Per consentire l'uso di Azure SDK 3.0 senza eseguire un processo di aggiornamento, Azure SDK 3.0 può essere installato nelle stesse directory di Azure SDK 2.9.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-109">To allow use of the Azure SDK 3.0 without requiring an upgrade process, Azure SDK 3.0 installs to the same directories as Azure SDK 2.9.</span></span> <span data-ttu-id="ef8a5-110">Per la maggior parte dei componenti non è stato modificato il numero di versione principale 2.9,ma è stato aggiornato il numero di build.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-110">Most the components did not change the major version from 2.9 but instead just updated the build number.</span></span>
+
+## <a name="visual-studio-2017-rtw"></a><span data-ttu-id="ef8a5-111">Visual Studio 2017 RTW</span><span class="sxs-lookup"><span data-stu-id="ef8a5-111">Visual Studio 2017 RTW</span></span>
+
+- <span data-ttu-id="ef8a5-112">In Visual Studio 2017 questa versione di Azure SDK per .NET è integrata nel carico di lavoro di Azure.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-112">In Visual Studio 2017, this release of the Azure SDK for .NET is built in to the Azure Workload.</span></span> <span data-ttu-id="ef8a5-113">In futuro, tutti gli strumenti necessari per eseguire operazioni di sviluppo in Azure saranno integrati in Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-113">All the tools you need to do Azure development will be part of Visual Studio 2017 going forward.</span></span> <span data-ttu-id="ef8a5-114">Per Visual Studio 2015, l'SDK sarà ancora disponibile tramite WebPI.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-114">For Visual Studio 2015 the SDK will still be available through WebPI.</span></span> <span data-ttu-id="ef8a5-115">Con il rilascio di Visual Studio 2017 sono state sospese le versioni di Azure SDK per .NET per Visual Studio 2013.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-115">We have discontinued Azure SDK for .NET releases for Visual Studio 2013 now that Visual Studio 2017 has been released.</span></span>
+
+### <a name="azure-diagnostics"></a><span data-ttu-id="ef8a5-116">Diagnostica Azure</span><span class="sxs-lookup"><span data-stu-id="ef8a5-116">Azure Diagnostics</span></span>
+
+- <span data-ttu-id="ef8a5-117">Il comportamento è stato modificato in modo che venga archiviata solo una stringa di connessione parziale e che la chiave venga sostituita da un token per la stringa di connessione dell'archiviazione di diagnostica di Servizi cloud.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-117">Changed the behavior to only store a partial connection string with the key replaced by a token for Cloud Services diagnostics storage connection string.</span></span> <span data-ttu-id="ef8a5-118">La chiave di archiviazione effettiva viene ora archiviata nella cartella del profilo utente per poterne controllare l'accesso.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-118">The actual storage key is now stored in the user profile folder so its access can be controlled.</span></span> <span data-ttu-id="ef8a5-119">Visual Studio leggerà la chiave di archiviazione dalla cartella del profilo utente per il processo locale di debug e pubblicazione.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-119">Visual Studio will read the storage key from user profile folder for local debugging and publishing process.</span></span> 
+- <span data-ttu-id="ef8a5-120">In risposta alla modifica descritta sopra, il team di Visual Studio Online ha migliorato il modello di attività per la distribuzione di Servizi cloud di Azure in modo che gli utenti possano specificare la chiave di archiviazione per impostare l'estensione di diagnostica in caso di pubblicazione in Azure con l'integrazione e la distribuzione continua.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-120">In response to the change described above, Visual Studio Online team enhanced the Azure Cloud Services deployment task template so users could specify the storage key for setting diagnostics extension when publishing to Azure in Continuous Integration and Deployment.</span></span>
+- <span data-ttu-id="ef8a5-121">È stata introdotta la possibilità di archiviare la stringa di connessione protetta e la tokenizzazione per Diagnostica di Azure (WAD) per consentire agli utenti di risolvere i problemi relativi alla configurazione in diversi ambienti.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-121">We’ve made it possible to store secure connection string and tokenization for Azure Diagnostics (WAD), to help you solve problems with configuration across environements.</span></span>
+ 
+### <a name="windows-server-2016-virtual-machines"></a><span data-ttu-id="ef8a5-122">Macchine virtuali Windows Server 2016</span><span class="sxs-lookup"><span data-stu-id="ef8a5-122">Windows Server 2016 virtual machines</span></span>
+
+- <span data-ttu-id="ef8a5-123">Visual Studio supporta ora la distribuzione di Servizi cloud in macchine virtuali con la famiglia di sistemi operativi 5 (Windows Server 2016).</span><span class="sxs-lookup"><span data-stu-id="ef8a5-123">Visual Studio now supports deploying Cloud Services to OS Family 5 (Windows Server 2016) virtual machines.</span></span> <span data-ttu-id="ef8a5-124">Per i servizi cloud esistenti, è possibile modificare le impostazioni specificando come destinazione la nuova famiglia di sistemi operativi.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-124">For existing cloud services, you can change your settings to target the new OS Family.</span></span> <span data-ttu-id="ef8a5-125">In caso di creazione di nuovi servizi cloud, se si sceglie di creare il servizio con .NET 4.6 o versioni successive verrà usata per impostazione predefinita la famiglia di sistemi operativi 5.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-125">When creating new cloud services, if you choose to create the service using .net 4.6 or higher, it will default the service to use OS Family 5.</span></span>  <span data-ttu-id="ef8a5-126">Per altre informazioni, vedere la [tabella relativa al supporto per le famiglie di sistemi operativi guest](../cloud-services/cloud-services-guestos-update-matrix.md).</span><span class="sxs-lookup"><span data-stu-id="ef8a5-126">For more information, you can review the [Guest OS Family support table](../cloud-services/cloud-services-guestos-update-matrix.md).</span></span>
+
+### <a name="known-issues"></a><span data-ttu-id="ef8a5-127">Problemi noti</span><span class="sxs-lookup"><span data-stu-id="ef8a5-127">Known issues</span></span>
+
+- <span data-ttu-id="ef8a5-128">In Azure .NET SDK 3.0 si verifica un problema quando si rimuove Visual Studio 2017 in una configurazione side-by-side con Visual Studio 2015.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-128">Azure .NET SDK 3.0 introduced an issue when removing Visual Studio 2017 in a side by side configuration with Visual Studio 2015.</span></span>  <span data-ttu-id="ef8a5-129">Se è installato Azure SDK per Visual Studio 2015 e si disinstalla Visual Studio 2017, verranno eliminati sia l'emulatore di archiviazione di Microsoft Azure sia l'emulatore di calcolo di Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-129">If you have the Azure SDK installed for Visual Studio 2015, the Microsoft Azure Storage Emulator and Microsoft Azure Compute Emulator will be removed if you uninstall Visual Studio 2017.</span></span>  <span data-ttu-id="ef8a5-130">Di conseguenza, durante la creazione e il debug di nuovi progetti di servizi cloud in Visual Studio 2015 verrà generato un errore.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-130">This will produce an error when creating and debugging new Cloud services projects in Visual Studio 2015.</span></span> <span data-ttu-id="ef8a5-131">Per risolvere questo problema, reinstallare Azure SDK dall'Installazione guidata piattaforma Web.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-131">In order to fix this issue,  reinstall the Azure SDK from the Web Platform Installer.</span></span>  <span data-ttu-id="ef8a5-132">Il problema verrà risolto in un futuro aggiornamento di Visual Studio 2017.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-132">The issue will be resolved in a future Visual Studio 2017 update.</span></span>  <span data-ttu-id="ef8a5-133">.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-133">.</span></span>
+
+ 
+### <a name="azure-in-role-cache"></a><span data-ttu-id="ef8a5-134">Cache nel ruolo di Azure</span><span class="sxs-lookup"><span data-stu-id="ef8a5-134">Azure In-Role Cache</span></span> 
+
+- <span data-ttu-id="ef8a5-135">Il supporto per Cache nel ruolo di Azure è terminato il 30 novembre 2016.</span><span class="sxs-lookup"><span data-stu-id="ef8a5-135">Support for Azure In-Role Cache ended on November 30, 2016.</span></span> <span data-ttu-id="ef8a5-136">Per altri dettagli, fare clic [qui](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/).</span><span class="sxs-lookup"><span data-stu-id="ef8a5-136">For more details, click [here](https://azure.microsoft.com/blog/azure-managed-cache-and-in-role-cache-services-to-be-retired-on-11-30-2016/).</span></span>
+
+
+
+

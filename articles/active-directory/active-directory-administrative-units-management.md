@@ -1,0 +1,43 @@
+---
+title: "Anteprima della gestione delle unità amministrative in Azure Active Directory"
+description: "Utilizzo delle unità amministrative per la delega più granulare delle autorizzazioni in Azure Active Directory"
+services: active-directory
+documentationcenter: 
+author: curtand
+manager: femila
+editor: 
+ms.assetid: 8464cd6b-1d1a-470d-a4fb-ee29b8eab4c4
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 08/17/2017
+ms.author: curtand
+ms.reviewer: elkuzmen
+ms.custom: oldportal;it-pro;
+ms.openlocfilehash: e12a0aea8264b1ea67c26294ec5bbe9c404a171e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.translationtype: MT
+ms.contentlocale: it-IT
+ms.lasthandoff: 08/18/2017
+---
+# <a name="administrative-units-management-in-azure-ad---public-preview"></a><span data-ttu-id="76e12-103">Gestione delle unità amministrative in Azure AD - Anteprima pubblica</span><span class="sxs-lookup"><span data-stu-id="76e12-103">Administrative units management in Azure AD - public preview</span></span>
+<span data-ttu-id="76e12-104">Questo articolo descrive le unità amministrative, un nuovo contenitore di risorse di Azure Active Directory che può essere usato per la delega di autorizzazioni amministrative su subset di utenti e per l'applicazione di criteri a un subset di utenti.</span><span class="sxs-lookup"><span data-stu-id="76e12-104">This article describes administrative units – a new Azure Active Directory container of resources that can be used for delegating administrative permissions over subsets of users and applying policies to a subset of users.</span></span> <span data-ttu-id="76e12-105">In Azure Active Directory, le unità amministrative consentono agli amministratori centrali di delegare le autorizzazioni agli amministratori regionali o di impostare criteri a livello dettagliato.</span><span class="sxs-lookup"><span data-stu-id="76e12-105">In Azure Active Directory, administrative units enable central administrators to delegate permissions to regional administrators or to set policy at a granular level.</span></span>
+
+<span data-ttu-id="76e12-106">Ciò risulta utile nelle organizzazioni con divisioni indipendenti, ad esempio, una grande università è costituita da molte scuole autonome (facoltà di gestione aziendale, facoltà di ingegneria, ecc.) indipendenti tra loro.</span><span class="sxs-lookup"><span data-stu-id="76e12-106">This is useful in organizations with independent divisions, for example, a large university that is made up of many autonomous schools (Business school, Engineering school, and so on) which are independent from each other.</span></span> <span data-ttu-id="76e12-107">Tali divisioni dispongono dei propri amministratori IT che controllano l'accesso, gestiscono gli utenti e impostano i criteri in modo specifico per la propria facoltà.</span><span class="sxs-lookup"><span data-stu-id="76e12-107">Such divisions have their own IT administrators who control access, manage users, and set policies specifically for their division.</span></span> <span data-ttu-id="76e12-108">Gli amministratori centrali desiderano essere in grado di concedere a questi amministratori di divisione autorizzazioni sugli utenti delle proprie divisioni.</span><span class="sxs-lookup"><span data-stu-id="76e12-108">Central administrators want to be able grant these divisional administrators permissions over the users in their particular divisions.</span></span> <span data-ttu-id="76e12-109">In particolare, utilizzando questo esempio, un amministratore centrale può, ad esempio, creare un'unità amministrativa per una facoltà particolare (facoltà di gestione aziendale) e popolarla con solo gli utenti della facoltà.</span><span class="sxs-lookup"><span data-stu-id="76e12-109">More specifically, using this example, a central administrator can, for instance, create an administrative unit for a particular school (Business school) and populate it with only the Business school users.</span></span> <span data-ttu-id="76e12-110">Quindi un amministratore centrale può aggiungere il personale IT della facoltà di gestione aziendale a un ruolo con ambito, ovvero, concedere al personale IT della facoltà di gestione aziendale autorizzazioni amministrative solo per l'unità amministrativa della facoltà.</span><span class="sxs-lookup"><span data-stu-id="76e12-110">Then a central administrator can add the Business school IT staff to a scoped role, in other words, grant the IT staff of Business school administrative permissions only over the Business school administrative unit.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="76e12-111">È possibile assegnare ruoli di amministratore con ambito unità amministrativa solo se si abilita Azure Active Directory Premium.</span><span class="sxs-lookup"><span data-stu-id="76e12-111">You can assign administrative unit-scoped admin roles only if you enable Azure Active Directory Premium.</span></span> <span data-ttu-id="76e12-112">Per altre informazioni, vedere [Introduzione a Azure AD Premium](active-directory-get-started-premium.md).</span><span class="sxs-lookup"><span data-stu-id="76e12-112">For more information, see [Getting started with Azure AD Premium](active-directory-get-started-premium.md).</span></span>
+>
+
+
+<span data-ttu-id="76e12-113">Dal punto di vista dell'amministratore centrale, un'unità amministrativa è un oggetto directory che può essere creato e popolato con le risorse.</span><span class="sxs-lookup"><span data-stu-id="76e12-113">From the central administrator’s point of view, an administrative unit is a directory object that can be created and populated with resources.</span></span> <span data-ttu-id="76e12-114">**In questa versione di anteprima, queste risorse possono essere solo gli utenti.**</span><span class="sxs-lookup"><span data-stu-id="76e12-114">**In this preview release, these resources can be only users.**</span></span> <span data-ttu-id="76e12-115">Dopo averla creata e popolata, l'unità amministrativa può essere utilizzata come ambito per limitare le autorizzazioni concesse solo alle risorse contenute nell’unità amministrativa.</span><span class="sxs-lookup"><span data-stu-id="76e12-115">Once created and populated, the administrative unit can be used as a scope to restrict the granted permission only over resources contained in the administrative unit.</span></span>
+
+## <a name="managing-administrative-units"></a><span data-ttu-id="76e12-116">Gestione delle unità amministrative</span><span class="sxs-lookup"><span data-stu-id="76e12-116">Managing administrative units</span></span>
+<span data-ttu-id="76e12-117">In questa versione di anteprima, è possibile creare e gestire le unità amministrative utilizzando i cmdlet del modulo di Microsoft Azure Active Directory per Windows PowerShell.</span><span class="sxs-lookup"><span data-stu-id="76e12-117">In this preview release, you can create and manage administrative units using the Azure Active Directory Module for Windows PowerShell cmdlets.</span></span> <span data-ttu-id="76e12-118">Per ulteriori informazioni su come eseguire queste operazioni, vedere [Uso di unità amministrative](https://docs.microsoft.com/powershell/azure/active-directory/working-with-administrative-units?view=azureadps-2.0)</span><span class="sxs-lookup"><span data-stu-id="76e12-118">To learn more about how to do that, see [Working with Administrative Units](https://docs.microsoft.com/powershell/azure/active-directory/working-with-administrative-units?view=azureadps-2.0)</span></span>
+
+<span data-ttu-id="76e12-119">Per ulteriori informazioni sui requisiti software e l'installazione del modulo di Azure AD e per informazioni sui cmdlet di modulo di Azure AD per la gestione di unità amministrative, tra cui sintassi, descrizioni dei parametri ed esempi, vedere [Azure Active Directory PowerShell](https://docs.microsoft.com/powershell/azure/active-directory/overview?view=azureadps-2.0).</span><span class="sxs-lookup"><span data-stu-id="76e12-119">For more information on software requirements and installing the Azure AD module, and for information on the Azure AD Module cmdlets for managing administrative units, including syntax, parameter descriptions, and examples, see [Azure Active Directory PowerShell](https://docs.microsoft.com/powershell/azure/active-directory/overview?view=azureadps-2.0).</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="76e12-120">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="76e12-120">Next steps</span></span>
+[<span data-ttu-id="76e12-121">Edizioni di Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="76e12-121">Azure Active Directory editions</span></span>](active-directory-editions.md)

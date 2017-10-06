@@ -1,6 +1,6 @@
 ---
-title: Diagnostica di avvio per le macchine virtuali Linux in Azure | Microsoft Docs
-description: "Panoramica delle due funzionalità di debug per le macchine virtuali Linux in Azure"
+title: diagnostica aaaBoot per le macchine virtuali Linux in Azure | Documento di Microsoft
+description: "Panoramica delle funzionalità di debug due hello per le macchine virtuali Linux in Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: Deland-Han
@@ -15,44 +15,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: delhan
-ms.openlocfilehash: 70254d39b5c6326166f7e29fdfc99533835502f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d355d512de09d2f1d7a2718e3db3fb99c9dd9e24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-boot-diagnostics-to-troubleshoot-linux-virtual-machines-in-azure"></a><span data-ttu-id="6089a-103">Come usare la diagnostica di avvio per risolvere i problemi relativi alle macchine virtuali Linux in Azure</span><span class="sxs-lookup"><span data-stu-id="6089a-103">How to use boot diagnostics to troubleshoot Linux virtual machines in Azure</span></span>
+# <a name="how-toouse-boot-diagnostics-tootroubleshoot-linux-virtual-machines-in-azure"></a><span data-ttu-id="fb2ac-103">Come toouse Avvio diagnostica tootroubleshoot le macchine virtuali Linux in Azure</span><span class="sxs-lookup"><span data-stu-id="fb2ac-103">How toouse boot diagnostics tootroubleshoot Linux virtual machines in Azure</span></span>
 
-<span data-ttu-id="6089a-104">In Azure ora è disponibile il supporto per due funzionalità di debug: il supporto per l'output della console e per gli screenshot per il modello di distribuzione Resource Manager di Macchine virtuali di Azure.</span><span class="sxs-lookup"><span data-stu-id="6089a-104">Support for two debugging features is now available in Azure: Console Output and Screenshot support for Azure Virtual Machines Resource Manager deployment model.</span></span> 
+<span data-ttu-id="fb2ac-104">In Azure ora è disponibile il supporto per due funzionalità di debug: il supporto per l'output della console e per gli screenshot per il modello di distribuzione Resource Manager di Macchine virtuali di Azure.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-104">Support for two debugging features is now available in Azure: Console Output and Screenshot support for Azure Virtual Machines Resource Manager deployment model.</span></span> 
 
-<span data-ttu-id="6089a-105">Quando si usa l'immagine personale in Azure o anche quando si avvia una delle immagini della piattaforma, una macchina virtuale può passare a uno stato non avviabile per diversi motivi.</span><span class="sxs-lookup"><span data-stu-id="6089a-105">When bringing your own image to Azure or even booting one of the platform images, there can be many reasons why a Virtual Machine gets into a non-bootable state.</span></span> <span data-ttu-id="6089a-106">Queste funzionalità consentono di diagnosticare facilmente gli errori di avvio e di ripristinare le macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="6089a-106">These features enable you to easily diagnose and recover your Virtual Machines from boot failures.</span></span>
+<span data-ttu-id="fb2ac-105">Quando si attiva la propria immagine tooAzure o anche l'avvio delle immagini della piattaforma hello, possono esistere molti motivi per cui una macchina virtuale ottiene in uno stato non avviabile.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-105">When bringing your own image tooAzure or even booting one of hello platform images, there can be many reasons why a Virtual Machine gets into a non-bootable state.</span></span> <span data-ttu-id="fb2ac-106">Questi consentono di funzionalità si tooeasily diagnosticare e ripristinare le macchine virtuali da errori di avvio.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-106">These features enable you tooeasily diagnose and recover your Virtual Machines from boot failures.</span></span>
 
-<span data-ttu-id="6089a-107">Per le macchine virtuali Linux, è possibile visualizzare facilmente l'output del log della console dal portale:</span><span class="sxs-lookup"><span data-stu-id="6089a-107">For Linux Virtual Machines, you can easily view the output of your console log from the Portal:</span></span>
+<span data-ttu-id="fb2ac-107">Per macchine virtuali Linux, è possibile visualizzare facilmente output di hello del log dal portale hello console:</span><span class="sxs-lookup"><span data-stu-id="fb2ac-107">For Linux Virtual Machines, you can easily view hello output of your console log from hello Portal:</span></span>
 
 ![Portale di Azure](./media/boot-diagnostics/screenshot1.png)
  
-<span data-ttu-id="6089a-109">Per le macchine virtuali sia Windows che Linux, Azure consente anche di visualizzare uno screenshot della VM dall'hypervisor:</span><span class="sxs-lookup"><span data-stu-id="6089a-109">However, for both Windows and Linux Virtual Machines, Azure also enables you to see a screenshot of the VM from the hypervisor:</span></span>
+<span data-ttu-id="fb2ac-109">Tuttavia, per Windows e macchine virtuali Linux, Azure consente inoltre di toosee una schermata di hello VM dall'hypervisor hello:</span><span class="sxs-lookup"><span data-stu-id="fb2ac-109">However, for both Windows and Linux Virtual Machines, Azure also enables you toosee a screenshot of hello VM from hello hypervisor:</span></span>
 
 ![Errore](./media/boot-diagnostics/screenshot2.png)
 
-<span data-ttu-id="6089a-111">Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutte le aree.</span><span class="sxs-lookup"><span data-stu-id="6089a-111">Both of these features are supported for Azure Virtual Machines in all regions.</span></span> <span data-ttu-id="6089a-112">Si noti che la visualizzazione degli screenshot e dell'output nell'account di archiviazione può richiedere fino a 10 minuti.</span><span class="sxs-lookup"><span data-stu-id="6089a-112">Note, screenshots, and output can take up to 10 minutes to appear in your storage account.</span></span>
+<span data-ttu-id="fb2ac-111">Entrambe le funzionalità sono supportate per Macchine virtuali di Azure in tutte le aree.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-111">Both of these features are supported for Azure Virtual Machines in all regions.</span></span> <span data-ttu-id="fb2ac-112">Si noti, schermate e l'output può richiedere fino a too10 minuti tooappear nell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-112">Note, screenshots, and output can take up too10 minutes tooappear in your storage account.</span></span>
 
-## <a name="common-boot-errors"></a><span data-ttu-id="6089a-113">Errori di avvio comuni</span><span class="sxs-lookup"><span data-stu-id="6089a-113">Common boot errors</span></span>
+## <a name="common-boot-errors"></a><span data-ttu-id="fb2ac-113">Errori di avvio comuni</span><span class="sxs-lookup"><span data-stu-id="fb2ac-113">Common boot errors</span></span>
 
-- [<span data-ttu-id="6089a-114">Problemi del file system</span><span class="sxs-lookup"><span data-stu-id="6089a-114">File system issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/09/13/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes/)
-- [<span data-ttu-id="6089a-115">Problemi del kernel</span><span class="sxs-lookup"><span data-stu-id="6089a-115">Kernel Issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-manually-fixing-non-boot-issues-related-to-kernel-problems/)
-- [<span data-ttu-id="6089a-116">Errori relativi alla tabella del file system</span><span class="sxs-lookup"><span data-stu-id="6089a-116">FSTAB errors</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/ )
+- [<span data-ttu-id="fb2ac-114">Problemi del file system</span><span class="sxs-lookup"><span data-stu-id="fb2ac-114">File system issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/09/13/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes/)
+- [<span data-ttu-id="fb2ac-115">Problemi del kernel</span><span class="sxs-lookup"><span data-stu-id="fb2ac-115">Kernel Issues</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-manually-fixing-non-boot-issues-related-to-kernel-problems/)
+- [<span data-ttu-id="fb2ac-116">Errori relativi alla tabella del file system</span><span class="sxs-lookup"><span data-stu-id="fb2ac-116">FSTAB errors</span></span>](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/ )
 
-## <a name="enable-diagnostics-on-a-new-virtual-machine"></a><span data-ttu-id="6089a-117">Abilitare la diagnostica in una nuova macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="6089a-117">Enable diagnostics on a new virtual machine</span></span>
-1. <span data-ttu-id="6089a-118">Quando si crea una nuova macchina virtuale dal portale di anteprima, selezionare **Azure Resource Manager** dall'elenco a discesa del modello di distribuzione:</span><span class="sxs-lookup"><span data-stu-id="6089a-118">When creating a new Virtual Machine from the Preview Portal, select the **Azure Resource Manager** from the deployment model dropdown:</span></span>
+## <a name="enable-diagnostics-on-a-new-virtual-machine"></a><span data-ttu-id="fb2ac-117">Abilitare la diagnostica in una nuova macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="fb2ac-117">Enable diagnostics on a new virtual machine</span></span>
+1. <span data-ttu-id="fb2ac-118">Quando si crea una nuova macchina virtuale dal portale di anteprima di hello, selezionare hello **Azure Resource Manager** dall'elenco a discesa modello di distribuzione hello:</span><span class="sxs-lookup"><span data-stu-id="fb2ac-118">When creating a new Virtual Machine from hello Preview Portal, select hello **Azure Resource Manager** from hello deployment model dropdown:</span></span>
  
     ![Gestione risorse](./media/boot-diagnostics/screenshot3.jpg)
 
-2. <span data-ttu-id="6089a-120">Configurare l'opzione Monitoraggio per selezionare l'account di archiviazione in cui si vogliono inserire questi file di diagnostica.</span><span class="sxs-lookup"><span data-stu-id="6089a-120">Configure the Monitoring option to select the storage account where you would like to place these diagnostic files.</span></span>
+2. <span data-ttu-id="fb2ac-120">Configurare monitoraggio opzione tooselect hello account di archiviazione in cui si desidera tooplace hello questi file di diagnostica.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-120">Configure hello Monitoring option tooselect hello storage account where you would like tooplace these diagnostic files.</span></span>
  
     ![Creare una macchina virtuale](./media/boot-diagnostics/screenshot4.jpg)
 
-3. <span data-ttu-id="6089a-122">Se si esegue la distribuzione da un modello di Azure Resource Manager, passare alla risorsa macchina virtuale e aggiungere la sezione del profilo di diagnostica.</span><span class="sxs-lookup"><span data-stu-id="6089a-122">If you are deploying from an Azure Resource Manager template, navigate to your Virtual Machine resource and append the diagnostics profile section.</span></span> <span data-ttu-id="6089a-123">Si ricordi di usare l'intestazione di versione API "2015-06-15".</span><span class="sxs-lookup"><span data-stu-id="6089a-123">Remember to use the “2015-06-15” API version header.</span></span>
+3. <span data-ttu-id="fb2ac-122">Se si distribuisce un modello di gestione risorse di Azure, passare la risorsa di macchina virtuale tooyour e aggiungere una sezione del profilo di diagnostica hello.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-122">If you are deploying from an Azure Resource Manager template, navigate tooyour Virtual Machine resource and append hello diagnostics profile section.</span></span> <span data-ttu-id="fb2ac-123">Ricordare di intestazione della versione API toouse hello "2015-06-15".</span><span class="sxs-lookup"><span data-stu-id="fb2ac-123">Remember toouse hello “2015-06-15” API version header.</span></span>
 
     ```json
     {
@@ -61,7 +61,7 @@ ms.lasthandoff: 08/29/2017
           … 
     ```
 
-4. <span data-ttu-id="6089a-124">Il profilo di diagnostica consente di selezionare l'account di archiviazione in cui si vogliono inserire questi log.</span><span class="sxs-lookup"><span data-stu-id="6089a-124">The diagnostics profile enables you to select the storage account where you want to put these logs.</span></span>
+4. <span data-ttu-id="fb2ac-124">profilo di diagnostica Hello consente tooselect hello account di archiviazione in cui tooput questi registri.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-124">hello diagnostics profile enables you tooselect hello storage account where you want tooput these logs.</span></span>
 
     ```json
             "diagnosticsProfile": {
@@ -74,8 +74,8 @@ ms.lasthandoff: 08/29/2017
         }
     ```
 
-## <a name="update-an-existing-virtual-machine"></a><span data-ttu-id="6089a-125">Aggiornare una macchina virtuale esistente</span><span class="sxs-lookup"><span data-stu-id="6089a-125">Update an existing virtual machine</span></span>
+## <a name="update-an-existing-virtual-machine"></a><span data-ttu-id="fb2ac-125">Aggiornare una macchina virtuale esistente</span><span class="sxs-lookup"><span data-stu-id="fb2ac-125">Update an existing virtual machine</span></span>
 
-<span data-ttu-id="6089a-126">Per abilitare la diagnostica dal portale, è anche possibile aggiornare una macchina virtuale esistente dal portale.</span><span class="sxs-lookup"><span data-stu-id="6089a-126">To enable boot diagnostics through the portal, you can also update an existing virtual machine through the portal.</span></span> <span data-ttu-id="6089a-127">Selezionare l'opzione Diagnostica di avvio e fare clic su Salva.</span><span class="sxs-lookup"><span data-stu-id="6089a-127">Select the Boot Diagnostics option and Save.</span></span> <span data-ttu-id="6089a-128">Riavviare la VM per rendere effettivo l'aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="6089a-128">Restart the VM to take effect.</span></span>
+<span data-ttu-id="fb2ac-126">diagnostica di avvio tooenable tramite il portale di hello, è possibile aggiornare una macchina virtuale esistente tramite il portale di hello.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-126">tooenable boot diagnostics through hello portal, you can also update an existing virtual machine through hello portal.</span></span> <span data-ttu-id="fb2ac-127">La diagnostica di avvio hello seleziona l'opzione e salvare.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-127">Select hello Boot Diagnostics option and Save.</span></span> <span data-ttu-id="fb2ac-128">Riavviare l'effetto di tootake hello macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="fb2ac-128">Restart hello VM tootake effect.</span></span>
 
 ![Aggiornare una VM esistente](./media/boot-diagnostics/screenshot5.png)

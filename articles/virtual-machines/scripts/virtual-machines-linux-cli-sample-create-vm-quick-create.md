@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Creare rapidamente una VM Linux | Microsoft Docs
+title: aaaAzure CLI Script di esempio - creazione rapida una VM Linux | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Creare rapidamente una VM Linux
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,44 +16,44 @@ ms.workload: infrastructure
 ms.date: 02/27/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 3df3affcedf9edbe6e548d881a877f14204ec280
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: edecf274f4e401af3603e5be37a989e2e0eb22c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-machine"></a><span data-ttu-id="38e1a-103">Creare una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="38e1a-103">Create a virtual machine</span></span>
+# <a name="create-a-virtual-machine"></a><span data-ttu-id="2ca6f-103">Creare una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="2ca6f-103">Create a virtual machine</span></span>
 
-<span data-ttu-id="38e1a-104">Questo script crea una macchina virtuale di Azure con sistema operativo Ubuntu e le relative risorse di rete.</span><span class="sxs-lookup"><span data-stu-id="38e1a-104">This script creates an Azure Virtual Machine with an Ubuntu operating system and related networking resources.</span></span> <span data-ttu-id="38e1a-105">Dopo aver eseguito lo script, è possibile accedere alla macchina virtuale tramite SSH.</span><span class="sxs-lookup"><span data-stu-id="38e1a-105">After running the script, you can access the virtual machine over SSH.</span></span>
+<span data-ttu-id="2ca6f-104">Questo script crea una macchina virtuale di Azure con sistema operativo Ubuntu e le relative risorse di rete.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-104">This script creates an Azure Virtual Machine with an Ubuntu operating system and related networking resources.</span></span> <span data-ttu-id="2ca6f-105">Dopo l'esecuzione di script hello, è possibile accedere a macchina virtuale hello su SSH.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-105">After running hello script, you can access hello virtual machine over SSH.</span></span>
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="38e1a-106">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="38e1a-106">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="2ca6f-106">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="2ca6f-106">Sample script</span></span>
 
-<span data-ttu-id="38e1a-107">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-quick/create-vm-quick.sh "Creazione rapida della macchina virtuale")]</span><span class="sxs-lookup"><span data-stu-id="38e1a-107">[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-quick/create-vm-quick.sh "Quick Create VM")]</span></span>
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-quick/create-vm-quick.sh "Quick Create VM")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="38e1a-108">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="38e1a-108">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="2ca6f-107">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="2ca6f-107">Clean up deployment</span></span> 
 
-<span data-ttu-id="38e1a-109">Eseguire questo comando per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.</span><span class="sxs-lookup"><span data-stu-id="38e1a-109">Run the following command to remove the resource group, VM, and all related resources.</span></span>
+<span data-ttu-id="2ca6f-108">Comando che segue hello esecuzione gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-108">Run hello following command tooremove hello resource group, VM, and all related resources.</span></span>
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="38e1a-110">Spiegazione dello script</span><span class="sxs-lookup"><span data-stu-id="38e1a-110">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="2ca6f-109">Spiegazione dello script</span><span class="sxs-lookup"><span data-stu-id="2ca6f-109">Script explanation</span></span>
 
-<span data-ttu-id="38e1a-111">Questo script usa i comandi seguenti per creare un gruppo di risorse, la macchina virtuale e tutte le risorse correlate.</span><span class="sxs-lookup"><span data-stu-id="38e1a-111">This script uses the following commands to create a resource group, virtual machine, and all related resources.</span></span> <span data-ttu-id="38e1a-112">Ogni comando della tabella include collegamenti alla documentazione specifica del comando.</span><span class="sxs-lookup"><span data-stu-id="38e1a-112">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="2ca6f-110">Questo script utilizza i seguenti comandi toocreate un gruppo di risorse, la macchina virtuale, hello e tutte risorse correlate.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-110">This script uses hello following commands toocreate a resource group, virtual machine, and all related resources.</span></span> <span data-ttu-id="2ca6f-111">Ogni comando in documentazione specifica toocommand hello tabella collegamenti.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-111">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="38e1a-113">Comando</span><span class="sxs-lookup"><span data-stu-id="38e1a-113">Command</span></span> | <span data-ttu-id="38e1a-114">Note</span><span class="sxs-lookup"><span data-stu-id="38e1a-114">Notes</span></span> |
+| <span data-ttu-id="2ca6f-112">Comando</span><span class="sxs-lookup"><span data-stu-id="2ca6f-112">Command</span></span> | <span data-ttu-id="2ca6f-113">Note</span><span class="sxs-lookup"><span data-stu-id="2ca6f-113">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="38e1a-115">az group create</span><span class="sxs-lookup"><span data-stu-id="38e1a-115">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="38e1a-116">Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse.</span><span class="sxs-lookup"><span data-stu-id="38e1a-116">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="38e1a-117">az vm create</span><span class="sxs-lookup"><span data-stu-id="38e1a-117">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm#create) | <span data-ttu-id="38e1a-118">Consente di creare la macchina virtuale e la connette alla scheda di rete, alla rete virtuale, alla subnet e al gruppo di sicurezza di rete.</span><span class="sxs-lookup"><span data-stu-id="38e1a-118">Creates the virtual machine and connects it to the network card, virtual network, subnet, and network security group.</span></span> <span data-ttu-id="38e1a-119">Questo comando specifica anche l'immagine della macchina virtuale da usare e le credenziali di amministrazione.</span><span class="sxs-lookup"><span data-stu-id="38e1a-119">This command also specifies the virtual machine image to be used and administrative credentials.</span></span>  |
-| [<span data-ttu-id="38e1a-120">az group delete</span><span class="sxs-lookup"><span data-stu-id="38e1a-120">az group delete</span></span>](https://docs.microsoft.com/cli/azure/vm/extension#set) | <span data-ttu-id="38e1a-121">Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate.</span><span class="sxs-lookup"><span data-stu-id="38e1a-121">Deletes a resource group including all nested resources.</span></span> |
+| [<span data-ttu-id="2ca6f-114">az group create</span><span class="sxs-lookup"><span data-stu-id="2ca6f-114">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="2ca6f-115">Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-115">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="2ca6f-116">az vm create</span><span class="sxs-lookup"><span data-stu-id="2ca6f-116">az vm create</span></span>](https://docs.microsoft.com/cli/azure/vm#create) | <span data-ttu-id="2ca6f-117">Crea macchina virtuale hello e lo connette una scheda di rete toohello, rete virtuale, subnet e il gruppo di sicurezza di rete.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-117">Creates hello virtual machine and connects it toohello network card, virtual network, subnet, and network security group.</span></span> <span data-ttu-id="2ca6f-118">Questo comando specifica inoltre toobe immagine di macchina virtuale hello usato e le credenziali amministrative.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-118">This command also specifies hello virtual machine image toobe used and administrative credentials.</span></span>  |
+| [<span data-ttu-id="2ca6f-119">az group delete</span><span class="sxs-lookup"><span data-stu-id="2ca6f-119">az group delete</span></span>](https://docs.microsoft.com/cli/azure/vm/extension#set) | <span data-ttu-id="2ca6f-120">Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate.</span><span class="sxs-lookup"><span data-stu-id="2ca6f-120">Deletes a resource group including all nested resources.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="38e1a-122">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="38e1a-122">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2ca6f-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="2ca6f-121">Next steps</span></span>
 
-<span data-ttu-id="38e1a-123">Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="38e1a-123">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="2ca6f-122">Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="2ca6f-122">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="38e1a-124">Altri esempi di script dell'interfaccia della riga di comando della macchina virtuale sono reperibili nella [documentazione della VM Linux di Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="38e1a-124">Additional virtual machine CLI script samples can be found in the [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="2ca6f-123">Esempi di script di macchina virtuale aggiuntiva CLI sono reperibile in hello [documentazione VM Linux di Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="2ca6f-123">Additional virtual machine CLI script samples can be found in hello [Azure Linux VM documentation](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

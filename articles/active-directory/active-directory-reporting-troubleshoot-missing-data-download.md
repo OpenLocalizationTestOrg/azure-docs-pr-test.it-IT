@@ -1,6 +1,6 @@
 ---
-title: "Risoluzione dei problemi: dati mancanti nei log attività scaricati di Azure Active Directory | Microsoft Docs"
-description: "Offre una soluzione per i dati mancanti nei log attività scaricati di Azure Active Directory."
+title: "Risoluzione dei problemi: I dati mancanti in hello scaricato log attività di Azure Active Directory | Documenti Microsoft"
+description: "Fornisce dati toomissing una risoluzione log attività di Azure Active Directory scaricato."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 3d56f89035da4d1a0074256b165663f81fc2b01e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 027b70e6efc570f81d3c836f50ee52aaa89be71a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a><span data-ttu-id="08ae9-103">Non è possibile trovare dati nei log attività di Azure Active Directory scaricati</span><span class="sxs-lookup"><span data-stu-id="08ae9-103">I can’t find any data in the Azure Active Directory activity logs I have downloaded</span></span>
+# <a name="i-cant-find-any-data-in-hello-azure-active-directory-activity-logs-i-have-downloaded"></a><span data-ttu-id="f3861-103">Non è possibile trovare tutti i dati nel log attività di Azure Active Directory hello che ho scaricato</span><span class="sxs-lookup"><span data-stu-id="f3861-103">I can’t find any data in hello Azure Active Directory activity logs I have downloaded</span></span>
 
 
-## <a name="symptoms"></a><span data-ttu-id="08ae9-104">Sintomi</span><span class="sxs-lookup"><span data-stu-id="08ae9-104">Symptoms</span></span>
+## <a name="symptoms"></a><span data-ttu-id="f3861-104">Sintomi</span><span class="sxs-lookup"><span data-stu-id="f3861-104">Symptoms</span></span>
 
-<span data-ttu-id="08ae9-105">I log attività (controllo o accessi) sono stati scaricati ma non vengono visualizzati tutti i record per l'orario scelto.</span><span class="sxs-lookup"><span data-stu-id="08ae9-105">I downloaded the activity logs (audit or sign-ins) and I don’t see all the records for the time I chose.</span></span> <span data-ttu-id="08ae9-106">Perché?</span><span class="sxs-lookup"><span data-stu-id="08ae9-106">Why?</span></span> 
+<span data-ttu-id="f3861-105">Scaricato log attività di hello (controllo o accessi) e non è possibile visualizzare tutti i record di hello per volta hello che ho scelto.</span><span class="sxs-lookup"><span data-stu-id="f3861-105">I downloaded hello activity logs (audit or sign-ins) and I don’t see all hello records for hello time I chose.</span></span> <span data-ttu-id="f3861-106">Perché?</span><span class="sxs-lookup"><span data-stu-id="f3861-106">Why?</span></span> 
 
  ![Creazione di report](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
-## <a name="cause"></a><span data-ttu-id="08ae9-108">Causa</span><span class="sxs-lookup"><span data-stu-id="08ae9-108">Cause</span></span>
+## <a name="cause"></a><span data-ttu-id="f3861-108">Causa</span><span class="sxs-lookup"><span data-stu-id="f3861-108">Cause</span></span>
 
-<span data-ttu-id="08ae9-109">Quando si scaricano i log attività nel portale di Azure, viene applicata una limitazione a 120.000 record, ordinati a partire dal più recente.</span><span class="sxs-lookup"><span data-stu-id="08ae9-109">When you download activity logs in the Azure portal, we limit the scale to 120K records, sorted by most recent.</span></span> 
+<span data-ttu-id="f3861-109">Quando si scarica log di attività nel portale di Azure hello, limitiamo hello scala too120K record, ordinati in base più recente.</span><span class="sxs-lookup"><span data-stu-id="f3861-109">When you download activity logs in hello Azure portal, we limit hello scale too120K records, sorted by most recent.</span></span> 
 
-## <a name="resolution"></a><span data-ttu-id="08ae9-110">Risoluzione</span><span class="sxs-lookup"><span data-stu-id="08ae9-110">Resolution</span></span>
+## <a name="resolution"></a><span data-ttu-id="f3861-110">Risoluzione</span><span class="sxs-lookup"><span data-stu-id="f3861-110">Resolution</span></span>
 
-<span data-ttu-id="08ae9-111">È possibile sfruttare le [API di Creazione rapporti di Azure AD](active-directory-reporting-api-getting-started.md) per recuperare fino a un milione di record per un momento specifico.</span><span class="sxs-lookup"><span data-stu-id="08ae9-111">You can leverage [Azure AD Reporting APIs](active-directory-reporting-api-getting-started.md) to fetch up to a million records at any given point.</span></span> <span data-ttu-id="08ae9-112">L'approccio consigliato consiste nell'eseguire uno script in base a una pianificazione per chiamare le API di Creazione rapporti per recuperare i record in modo incrementale in un periodo di tempo specifico, ad esempio ogni giorno oppure ogni settimana.</span><span class="sxs-lookup"><span data-stu-id="08ae9-112">Our recommended approach is to run a script on a scheduled basis that calls the reporting APIs to fetch records in an incremental fashion over a period of time (e.g., daily or weekly).</span></span>
+<span data-ttu-id="f3861-111">È possibile sfruttare [API di Reporting AD Azure](active-directory-reporting-api-getting-started.md) toofetch tooa milioni di record in un determinato momento.</span><span class="sxs-lookup"><span data-stu-id="f3861-111">You can leverage [Azure AD Reporting APIs](active-directory-reporting-api-getting-started.md) toofetch up tooa million records at any given point.</span></span> <span data-ttu-id="f3861-112">L'approccio consigliato è toorun uno script in base a una pianificazione che chiama hello reporting API toofetch registra in modo incrementale in un periodo di tempo (ad esempio, giornaliera o settimanale).</span><span class="sxs-lookup"><span data-stu-id="f3861-112">Our recommended approach is toorun a script on a scheduled basis that calls hello reporting APIs toofetch records in an incremental fashion over a period of time (e.g., daily or weekly).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="08ae9-113">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="08ae9-113">Next steps</span></span>
-<span data-ttu-id="08ae9-114">Vedere [Domande frequenti sulla creazione di report in Azure Active Directory](active-directory-reporting-faq.md).</span><span class="sxs-lookup"><span data-stu-id="08ae9-114">See the [Azure Active Directory reporting FAQ](active-directory-reporting-faq.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f3861-113">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f3861-113">Next steps</span></span>
+<span data-ttu-id="f3861-114">Vedere hello [reporting domande frequenti su Azure Active Directory](active-directory-reporting-faq.md).</span><span class="sxs-lookup"><span data-stu-id="f3861-114">See hello [Azure Active Directory reporting FAQ](active-directory-reporting-faq.md).</span></span>
 

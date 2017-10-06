@@ -1,6 +1,6 @@
 ---
-title: Selezionare immagini di VM Windows in Azure | Microsoft Docs
-description: Imparare a usare Azure PowerSHell per determinare l'editore, l'offerta, lo SKU e la versione per le immagini di VM del Marketplace.
+title: le immagini di macchina virtuale Windows aaaSelect in Azure | Documenti Microsoft
+description: Informazioni su come toouse Azure PowerSHell toodetermine hello editore, offerta, SKU e la versione per le immagini VM Marketplace.
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,77 +15,77 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 07/12/2017
 ms.author: danlep
-ms.openlocfilehash: 814ae260123c045d4b6766bf4b312f874cd77068
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 752edcd0935f5141832e49503ae800ea0145e219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a><span data-ttu-id="c96e3-103">Come trovare immagini di VM Windows in Azure Marketplace con Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="c96e3-103">How to find Windows VM images in the Azure Marketplace with Azure PowerShell</span></span>
+# <a name="how-toofind-windows-vm-images-in-hello-azure-marketplace-with-azure-powershell"></a><span data-ttu-id="a987d-103">La modalità di immagini toofind macchina virtuale Windows in hello Azure Marketplace con Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="a987d-103">How toofind Windows VM images in hello Azure Marketplace with Azure PowerShell</span></span>
 
-<span data-ttu-id="c96e3-104">Questo argomento descrive come usare Azure PowerShell per trovare immagini di VM in Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="c96e3-104">This topic describes how to use Azure PowerShell to find VM images in the Azure Marketplace.</span></span> <span data-ttu-id="c96e3-105">Usare queste informazioni per specificare un'immagine del Marketplace quando si crea una VM Windows.</span><span class="sxs-lookup"><span data-stu-id="c96e3-105">Use this information to specify a Marketplace image when you create a Windows VM.</span></span>
+<span data-ttu-id="a987d-104">In questo argomento viene descritto come toouse Azure PowerShell toofind VM immagini in hello Azure Marketplace.</span><span class="sxs-lookup"><span data-stu-id="a987d-104">This topic describes how toouse Azure PowerShell toofind VM images in hello Azure Marketplace.</span></span> <span data-ttu-id="a987d-105">Quando si crea una macchina virtuale di Windows, utilizzare questo toospecify informazioni un'immagine del Marketplace.</span><span class="sxs-lookup"><span data-stu-id="a987d-105">Use this information toospecify a Marketplace image when you create a Windows VM.</span></span>
 
-<span data-ttu-id="c96e3-106">Verificare di aver prima installato e configurato il [modulo di Azure PowerShell](/powershell/azure/install-azurerm-ps) più recente.</span><span class="sxs-lookup"><span data-stu-id="c96e3-106">Make sure that you installed and configured the latest [Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
+<span data-ttu-id="a987d-106">Assicurarsi che è installato e configurato hello più recente [modulo Azure PowerShell](/powershell/azure/install-azurerm-ps).</span><span class="sxs-lookup"><span data-stu-id="a987d-106">Make sure that you installed and configured hello latest [Azure PowerShell module](/powershell/azure/install-azurerm-ps).</span></span>
 
 
 
-## <a name="table-of-commonly-used-windows-images"></a><span data-ttu-id="c96e3-107">Tabella delle immagini Windows usate comunemente</span><span class="sxs-lookup"><span data-stu-id="c96e3-107">Table of commonly used Windows images</span></span>
-| <span data-ttu-id="c96e3-108">PublisherName</span><span class="sxs-lookup"><span data-stu-id="c96e3-108">PublisherName</span></span> | <span data-ttu-id="c96e3-109">Offerta</span><span class="sxs-lookup"><span data-stu-id="c96e3-109">Offer</span></span> | <span data-ttu-id="c96e3-110">Sku</span><span class="sxs-lookup"><span data-stu-id="c96e3-110">Sku</span></span> |
+## <a name="table-of-commonly-used-windows-images"></a><span data-ttu-id="a987d-107">Tabella delle immagini Windows usate comunemente</span><span class="sxs-lookup"><span data-stu-id="a987d-107">Table of commonly used Windows images</span></span>
+| <span data-ttu-id="a987d-108">PublisherName</span><span class="sxs-lookup"><span data-stu-id="a987d-108">PublisherName</span></span> | <span data-ttu-id="a987d-109">Offerta</span><span class="sxs-lookup"><span data-stu-id="a987d-109">Offer</span></span> | <span data-ttu-id="a987d-110">Sku</span><span class="sxs-lookup"><span data-stu-id="a987d-110">Sku</span></span> |
 |:--- |:--- |:--- |:--- |
-| <span data-ttu-id="c96e3-111">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-111">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-112">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-112">WindowsServer</span></span> |<span data-ttu-id="c96e3-113">2016-Datacenter</span><span class="sxs-lookup"><span data-stu-id="c96e3-113">2016-Datacenter</span></span> |
-| <span data-ttu-id="c96e3-114">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-114">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-115">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-115">WindowsServer</span></span> |<span data-ttu-id="c96e3-116">2016-Datacenter-Server-Core</span><span class="sxs-lookup"><span data-stu-id="c96e3-116">2016-Datacenter-Server-Core</span></span> |
-| <span data-ttu-id="c96e3-117">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-117">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-118">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-118">WindowsServer</span></span> |<span data-ttu-id="c96e3-119">2016-Datacenter-with-Containers</span><span class="sxs-lookup"><span data-stu-id="c96e3-119">2016-Datacenter-with-Containers</span></span> |
-| <span data-ttu-id="c96e3-120">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-120">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-121">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-121">WindowsServer</span></span> |<span data-ttu-id="c96e3-122">2016-Nano-Server</span><span class="sxs-lookup"><span data-stu-id="c96e3-122">2016-Nano-Server</span></span> |
-| <span data-ttu-id="c96e3-123">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-123">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-124">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-124">WindowsServer</span></span> |<span data-ttu-id="c96e3-125">2012-R2-Datacenter</span><span class="sxs-lookup"><span data-stu-id="c96e3-125">2012-R2-Datacenter</span></span> |
-| <span data-ttu-id="c96e3-126">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-126">MicrosoftWindowsServer</span></span> |<span data-ttu-id="c96e3-127">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-127">WindowsServer</span></span> |<span data-ttu-id="c96e3-128">2008 R2-SP1</span><span class="sxs-lookup"><span data-stu-id="c96e3-128">2008-R2-SP1</span></span> |
-| <span data-ttu-id="c96e3-129">MicrosoftDynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="c96e3-129">MicrosoftDynamicsNAV</span></span> |<span data-ttu-id="c96e3-130">DynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="c96e3-130">DynamicsNAV</span></span> |<span data-ttu-id="c96e3-131">2017</span><span class="sxs-lookup"><span data-stu-id="c96e3-131">2017</span></span> |
-| <span data-ttu-id="c96e3-132">MicrosoftSharePoint</span><span class="sxs-lookup"><span data-stu-id="c96e3-132">MicrosoftSharePoint</span></span> |<span data-ttu-id="c96e3-133">MicrosoftSharePointServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-133">MicrosoftSharePointServer</span></span> |<span data-ttu-id="c96e3-134">2016</span><span class="sxs-lookup"><span data-stu-id="c96e3-134">2016</span></span> |
-| <span data-ttu-id="c96e3-135">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-135">MicrosoftSQLServer</span></span> |<span data-ttu-id="c96e3-136">SQL2016-WS2016</span><span class="sxs-lookup"><span data-stu-id="c96e3-136">SQL2016-WS2016</span></span> |<span data-ttu-id="c96e3-137">Enterprise</span><span class="sxs-lookup"><span data-stu-id="c96e3-137">Enterprise</span></span> |
-| <span data-ttu-id="c96e3-138">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="c96e3-138">MicrosoftSQLServer</span></span> |<span data-ttu-id="c96e3-139">SQL2014SP2-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="c96e3-139">SQL2014SP2-WS2012R2</span></span> |<span data-ttu-id="c96e3-140">Enterprise</span><span class="sxs-lookup"><span data-stu-id="c96e3-140">Enterprise</span></span> |
-| <span data-ttu-id="c96e3-141">MicrosoftWindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="c96e3-141">MicrosoftWindowsServerHPCPack</span></span> |<span data-ttu-id="c96e3-142">WindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="c96e3-142">WindowsServerHPCPack</span></span> |<span data-ttu-id="c96e3-143">2012R2</span><span class="sxs-lookup"><span data-stu-id="c96e3-143">2012R2</span></span> |
-| <span data-ttu-id="c96e3-144">MicrosoftWindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="c96e3-144">MicrosoftWindowsServerEssentials</span></span> |<span data-ttu-id="c96e3-145">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="c96e3-145">WindowsServerEssentials</span></span> |<span data-ttu-id="c96e3-146">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="c96e3-146">WindowsServerEssentials</span></span> |
+| <span data-ttu-id="a987d-111">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-111">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-112">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-112">WindowsServer</span></span> |<span data-ttu-id="a987d-113">2016-Datacenter</span><span class="sxs-lookup"><span data-stu-id="a987d-113">2016-Datacenter</span></span> |
+| <span data-ttu-id="a987d-114">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-114">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-115">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-115">WindowsServer</span></span> |<span data-ttu-id="a987d-116">2016-Datacenter-Server-Core</span><span class="sxs-lookup"><span data-stu-id="a987d-116">2016-Datacenter-Server-Core</span></span> |
+| <span data-ttu-id="a987d-117">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-117">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-118">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-118">WindowsServer</span></span> |<span data-ttu-id="a987d-119">2016-Datacenter-with-Containers</span><span class="sxs-lookup"><span data-stu-id="a987d-119">2016-Datacenter-with-Containers</span></span> |
+| <span data-ttu-id="a987d-120">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-120">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-121">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-121">WindowsServer</span></span> |<span data-ttu-id="a987d-122">2016-Nano-Server</span><span class="sxs-lookup"><span data-stu-id="a987d-122">2016-Nano-Server</span></span> |
+| <span data-ttu-id="a987d-123">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-123">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-124">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-124">WindowsServer</span></span> |<span data-ttu-id="a987d-125">2012-R2-Datacenter</span><span class="sxs-lookup"><span data-stu-id="a987d-125">2012-R2-Datacenter</span></span> |
+| <span data-ttu-id="a987d-126">MicrosoftWindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-126">MicrosoftWindowsServer</span></span> |<span data-ttu-id="a987d-127">WindowsServer</span><span class="sxs-lookup"><span data-stu-id="a987d-127">WindowsServer</span></span> |<span data-ttu-id="a987d-128">2008 R2-SP1</span><span class="sxs-lookup"><span data-stu-id="a987d-128">2008-R2-SP1</span></span> |
+| <span data-ttu-id="a987d-129">MicrosoftDynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="a987d-129">MicrosoftDynamicsNAV</span></span> |<span data-ttu-id="a987d-130">DynamicsNAV</span><span class="sxs-lookup"><span data-stu-id="a987d-130">DynamicsNAV</span></span> |<span data-ttu-id="a987d-131">2017</span><span class="sxs-lookup"><span data-stu-id="a987d-131">2017</span></span> |
+| <span data-ttu-id="a987d-132">MicrosoftSharePoint</span><span class="sxs-lookup"><span data-stu-id="a987d-132">MicrosoftSharePoint</span></span> |<span data-ttu-id="a987d-133">MicrosoftSharePointServer</span><span class="sxs-lookup"><span data-stu-id="a987d-133">MicrosoftSharePointServer</span></span> |<span data-ttu-id="a987d-134">2016</span><span class="sxs-lookup"><span data-stu-id="a987d-134">2016</span></span> |
+| <span data-ttu-id="a987d-135">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="a987d-135">MicrosoftSQLServer</span></span> |<span data-ttu-id="a987d-136">SQL2016-WS2016</span><span class="sxs-lookup"><span data-stu-id="a987d-136">SQL2016-WS2016</span></span> |<span data-ttu-id="a987d-137">Enterprise</span><span class="sxs-lookup"><span data-stu-id="a987d-137">Enterprise</span></span> |
+| <span data-ttu-id="a987d-138">MicrosoftSQLServer</span><span class="sxs-lookup"><span data-stu-id="a987d-138">MicrosoftSQLServer</span></span> |<span data-ttu-id="a987d-139">SQL2014SP2-WS2012R2</span><span class="sxs-lookup"><span data-stu-id="a987d-139">SQL2014SP2-WS2012R2</span></span> |<span data-ttu-id="a987d-140">Enterprise</span><span class="sxs-lookup"><span data-stu-id="a987d-140">Enterprise</span></span> |
+| <span data-ttu-id="a987d-141">MicrosoftWindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="a987d-141">MicrosoftWindowsServerHPCPack</span></span> |<span data-ttu-id="a987d-142">WindowsServerHPCPack</span><span class="sxs-lookup"><span data-stu-id="a987d-142">WindowsServerHPCPack</span></span> |<span data-ttu-id="a987d-143">2012R2</span><span class="sxs-lookup"><span data-stu-id="a987d-143">2012R2</span></span> |
+| <span data-ttu-id="a987d-144">MicrosoftWindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="a987d-144">MicrosoftWindowsServerEssentials</span></span> |<span data-ttu-id="a987d-145">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="a987d-145">WindowsServerEssentials</span></span> |<span data-ttu-id="a987d-146">WindowsServerEssentials</span><span class="sxs-lookup"><span data-stu-id="a987d-146">WindowsServerEssentials</span></span> |
 
-## <a name="find-specific-images"></a><span data-ttu-id="c96e3-147">Trovare immagini specifiche</span><span class="sxs-lookup"><span data-stu-id="c96e3-147">Find specific images</span></span>
+## <a name="find-specific-images"></a><span data-ttu-id="a987d-147">Trovare immagini specifiche</span><span class="sxs-lookup"><span data-stu-id="a987d-147">Find specific images</span></span>
 
 
-<span data-ttu-id="c96e3-148">Quando si crea una nuova macchina virtuale con Gestione risorse di Azure, in alcuni casi è necessario specificare un'immagine combinando le seguenti proprietà dell'immagine:</span><span class="sxs-lookup"><span data-stu-id="c96e3-148">When creating a new virtual machine with Azure Resource Manager, in some cases you need to specify an image with the combination of the following image properties:</span></span>
+<span data-ttu-id="a987d-148">Quando si crea una nuova macchina virtuale con Azure Resource Manager, in alcuni casi è necessario toospecify un'immagine con una combinazione hello di hello le proprietà di immagine seguenti:</span><span class="sxs-lookup"><span data-stu-id="a987d-148">When creating a new virtual machine with Azure Resource Manager, in some cases you need toospecify an image with hello combination of hello following image properties:</span></span>
 
-* <span data-ttu-id="c96e3-149">Editore</span><span class="sxs-lookup"><span data-stu-id="c96e3-149">Publisher</span></span>
-* <span data-ttu-id="c96e3-150">Offerta</span><span class="sxs-lookup"><span data-stu-id="c96e3-150">Offer</span></span>
-* <span data-ttu-id="c96e3-151">SKU</span><span class="sxs-lookup"><span data-stu-id="c96e3-151">SKU</span></span>
+* <span data-ttu-id="a987d-149">Autore</span><span class="sxs-lookup"><span data-stu-id="a987d-149">Publisher</span></span>
+* <span data-ttu-id="a987d-150">Offerta</span><span class="sxs-lookup"><span data-stu-id="a987d-150">Offer</span></span>
+* <span data-ttu-id="a987d-151">SKU</span><span class="sxs-lookup"><span data-stu-id="a987d-151">SKU</span></span>
 
-<span data-ttu-id="c96e3-152">Ad esempio, usare questi valori con il cmdlet di PowerShell [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) o con un modello di gruppo di risorse in cui è necessario specificare il tipo di VM da creare.</span><span class="sxs-lookup"><span data-stu-id="c96e3-152">For example, use these values with the [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell cmdlet, or with a resource group template in which you must specify the type of VM to be created.</span></span>
+<span data-ttu-id="a987d-152">Ad esempio, utilizzare questi valori con hello [Set AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) cmdlet di PowerShell o con un modello di gruppo di risorse in cui è necessario specificare il tipo di hello di toobe macchina virtuale creata.</span><span class="sxs-lookup"><span data-stu-id="a987d-152">For example, use these values with hello [Set-AzureRMVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) PowerShell cmdlet, or with a resource group template in which you must specify hello type of VM toobe created.</span></span>
 
-<span data-ttu-id="c96e3-153">Se è necessario determinare questi valori, è possibile eseguire i cmdlet [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer) e [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) per passare alle immagini.</span><span class="sxs-lookup"><span data-stu-id="c96e3-153">If you need to determine these values, you can run the [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), and [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) cmdlets to navigate the images.</span></span> <span data-ttu-id="c96e3-154">Questi valori possono essere determinati:</span><span class="sxs-lookup"><span data-stu-id="c96e3-154">You determine these values:</span></span>
+<span data-ttu-id="a987d-153">Se è necessario toodetermine questi valori, è possibile eseguire hello [Get AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), e [Get AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) cmdlet immagini di hello toonavigate.</span><span class="sxs-lookup"><span data-stu-id="a987d-153">If you need toodetermine these values, you can run hello [Get-AzureRMVMImagePublisher](/powershell/module/azurerm.compute/get-azurermvmimagepublisher), [Get-AzureRMVMImageOffer](/powershell/module/azurerm.compute/get-azurermvmimageoffer), and [Get-AzureRMVMImageSku](/powershell/module/azurerm.compute/get-azurermvmimagesku) cmdlets toonavigate hello images.</span></span> <span data-ttu-id="a987d-154">Questi valori possono essere determinati:</span><span class="sxs-lookup"><span data-stu-id="a987d-154">You determine these values:</span></span>
 
-1. <span data-ttu-id="c96e3-155">Elencando gli editori di immagini.</span><span class="sxs-lookup"><span data-stu-id="c96e3-155">List the image publishers.</span></span>
-2. <span data-ttu-id="c96e3-156">Elencando le offerte di un determinato editore.</span><span class="sxs-lookup"><span data-stu-id="c96e3-156">For a given publisher, list their offers.</span></span>
-3. <span data-ttu-id="c96e3-157">Elencando le SKU di una determinata offerta.</span><span class="sxs-lookup"><span data-stu-id="c96e3-157">For a given offer, list their SKUs.</span></span>
+1. <span data-ttu-id="a987d-155">Elenco hello immagine server di pubblicazione.</span><span class="sxs-lookup"><span data-stu-id="a987d-155">List hello image publishers.</span></span>
+2. <span data-ttu-id="a987d-156">Elencando le offerte di un determinato editore.</span><span class="sxs-lookup"><span data-stu-id="a987d-156">For a given publisher, list their offers.</span></span>
+3. <span data-ttu-id="a987d-157">Elencando le SKU di una determinata offerta.</span><span class="sxs-lookup"><span data-stu-id="a987d-157">For a given offer, list their SKUs.</span></span>
 
-<span data-ttu-id="c96e3-158">In primo luogo, elencare gli editori con i seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="c96e3-158">First, list the publishers with the following commands:</span></span>
+<span data-ttu-id="a987d-158">In primo luogo, elenco publishers hello con hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="a987d-158">First, list hello publishers with hello following commands:</span></span>
 
 ```powershell
 $locName="<Azure location, such as West US>"
 Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 ```
 
-<span data-ttu-id="c96e3-159">Specificare il nome dell'editore prescelto ed eseguire i seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="c96e3-159">Fill in your chosen publisher name and run the following commands:</span></span>
+<span data-ttu-id="a987d-159">Immettere il nome del server di pubblicazione selezionato ed eseguire hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="a987d-159">Fill in your chosen publisher name and run hello following commands:</span></span>
 
 ```powershell
 $pubName="<publisher>"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-<span data-ttu-id="c96e3-160">Specificare il nome dell'offerta prescelta ed eseguire i seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="c96e3-160">Fill in your chosen offer name and run the following commands:</span></span>
+<span data-ttu-id="a987d-160">Immettere il nome scelto offerta ed eseguire hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="a987d-160">Fill in your chosen offer name and run hello following commands:</span></span>
 
 ```powershell
 $offerName="<offer>"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-<span data-ttu-id="c96e3-161">Nell'output del comando `Get-AzureRMVMImageSku` ci sono tutte le informazioni necessarie per specificare l'immagine per una nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="c96e3-161">From the output of the `Get-AzureRMVMImageSku` command, you have all the information you need to specify the image for a new virtual machine.</span></span>
+<span data-ttu-id="a987d-161">Output di hello di hello `Get-AzureRMVMImageSku` comando, si dispongano di tutte le informazioni di hello immagine hello toospecify è necessario per una nuova macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="a987d-161">From hello output of hello `Get-AzureRMVMImageSku` command, you have all hello information you need toospecify hello image for a new virtual machine.</span></span>
 
-<span data-ttu-id="c96e3-162">Di seguito è riportato un esempio completo:</span><span class="sxs-lookup"><span data-stu-id="c96e3-162">The following shows a full example:</span></span>
+<span data-ttu-id="a987d-162">Hello seguito è riportato un esempio completo è:</span><span class="sxs-lookup"><span data-stu-id="a987d-162">hello following shows a full example:</span></span>
 
 ```powershell
 $locName="West US"
@@ -93,7 +93,7 @@ Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 
 ```
 
-<span data-ttu-id="c96e3-163">Output:</span><span class="sxs-lookup"><span data-stu-id="c96e3-163">Output:</span></span>
+<span data-ttu-id="a987d-163">Output:</span><span class="sxs-lookup"><span data-stu-id="a987d-163">Output:</span></span>
 
 ```
 PublisherName
@@ -111,14 +111,14 @@ Canonical
 ...
 ```
 
-<span data-ttu-id="c96e3-164">Per l'editore "MicrosoftWindowsServer":</span><span class="sxs-lookup"><span data-stu-id="c96e3-164">For the "MicrosoftWindowsServer" publisher:</span></span>
+<span data-ttu-id="a987d-164">Per server di pubblicazione "MicrosoftWindowsServer" hello:</span><span class="sxs-lookup"><span data-stu-id="a987d-164">For hello "MicrosoftWindowsServer" publisher:</span></span>
 
 ```powershell
 $pubName="MicrosoftWindowsServer"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-<span data-ttu-id="c96e3-165">Output:</span><span class="sxs-lookup"><span data-stu-id="c96e3-165">Output:</span></span>
+<span data-ttu-id="a987d-165">Output:</span><span class="sxs-lookup"><span data-stu-id="a987d-165">Output:</span></span>
 
 ```
 Offer
@@ -128,14 +128,14 @@ WindowsServer
 WindowsServer-HUB
 ```
 
-<span data-ttu-id="c96e3-166">Per l'offerta "WindowsServer":</span><span class="sxs-lookup"><span data-stu-id="c96e3-166">For the "WindowsServer" offer:</span></span>
+<span data-ttu-id="a987d-166">Per l'offerta di "Windows Server" hello:</span><span class="sxs-lookup"><span data-stu-id="a987d-166">For hello "WindowsServer" offer:</span></span>
 
 ```powershell
 $offerName="WindowsServer"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-<span data-ttu-id="c96e3-167">Output:</span><span class="sxs-lookup"><span data-stu-id="c96e3-167">Output:</span></span>
+<span data-ttu-id="a987d-167">Output:</span><span class="sxs-lookup"><span data-stu-id="a987d-167">Output:</span></span>
 
 ```
 Skus
@@ -154,7 +154,7 @@ Skus
 2016-Nano-Server
 ```
 
-<span data-ttu-id="c96e3-168">In questo elenco, copiare il nome della SKU scelta per disporre di tutte le informazioni per il cmdlet di PowerShell `Set-AzureRMVMSourceImage` o per un modello di gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="c96e3-168">From this list, copy the chosen SKU name, and you have all the information for the `Set-AzureRMVMSourceImage` PowerShell cmdlet or for a resource group template.</span></span>
+<span data-ttu-id="a987d-168">Da questo elenco, copiare hello scelto nome SKU e si dispongano di tutte le informazioni per hello hello `Set-AzureRMVMSourceImage` cmdlet di PowerShell o per un modello di gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="a987d-168">From this list, copy hello chosen SKU name, and you have all hello information for hello `Set-AzureRMVMSourceImage` PowerShell cmdlet or for a resource group template.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="c96e3-169">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c96e3-169">Next steps</span></span>
-<span data-ttu-id="c96e3-170">A questo punto è possibile scegliere con precisione l'immagine da usare.</span><span class="sxs-lookup"><span data-stu-id="c96e3-170">Now you can choose precisely the image you want to use.</span></span> <span data-ttu-id="c96e3-171">Per creare rapidamente una macchina virtuale usando le informazioni dell'immagine, appena trovate, vedere [Creare una macchina virtuale Windows con PowerShell](quick-create-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="c96e3-171">To create a virtual machine quickly by using the image information, which you just found, see [Create a Windows virtual machine with PowerShell](quick-create-powershell.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a987d-169">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="a987d-169">Next steps</span></span>
+<span data-ttu-id="a987d-170">Ora è possibile scegliere l'immagine di hello precisamente desiderato toouse.</span><span class="sxs-lookup"><span data-stu-id="a987d-170">Now you can choose precisely hello image you want toouse.</span></span> <span data-ttu-id="a987d-171">toocreate una macchina virtuale rapidamente utilizzando informazioni sulle immagini hello solo disponibili, vedere [creare una macchina virtuale Windows con PowerShell](quick-create-powershell.md).</span><span class="sxs-lookup"><span data-stu-id="a987d-171">toocreate a virtual machine quickly by using hello image information, which you just found, see [Create a Windows virtual machine with PowerShell](quick-create-powershell.md).</span></span>

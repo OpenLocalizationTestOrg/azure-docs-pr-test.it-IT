@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione tabelle di Azure da Node.js | Microsoft Docs
-description: Archiviare dati non strutturati nel cloud con il servizio di archiviazione tabelle di Azure, ovvero un archivio dati NoSQL.
+title: aaaHow toouse archiviazione tabelle di Azure da Node.js | Documenti Microsoft
+description: Archiviare dati strutturati in un cloud di hello tramite l'archiviazione tabelle di Azure, un archivio dati NoSQL.
 services: cosmos-db
 documentationcenter: nodejs
 author: mimig1
@@ -14,35 +14,35 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: 539212c6abe7738c022d67245f8992516f0899ff
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 21022491a9a21a5365628de93582ea3a325ed869
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-table-storage-from-nodejs"></a><span data-ttu-id="66302-103">Come usare l'archiviazione tabelle di Azure da Node.js</span><span class="sxs-lookup"><span data-stu-id="66302-103">How to use Azure Table storage from Node.js</span></span>
+# <a name="how-toouse-azure-table-storage-from-nodejs"></a><span data-ttu-id="e5cea-103">Come toouse archiviazione tabelle di Azure da Node.js</span><span class="sxs-lookup"><span data-stu-id="e5cea-103">How toouse Azure Table storage from Node.js</span></span>
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
-## <a name="overview"></a><span data-ttu-id="66302-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="66302-104">Overview</span></span>
-<span data-ttu-id="66302-105">Questo argomento illustra come eseguire scenari comuni usando il servizio tabelle di Azure in un'applicazione Node.js.</span><span class="sxs-lookup"><span data-stu-id="66302-105">This topic shows how to perform common scenarios using the Azure Table service in a Node.js application.</span></span>
+## <a name="overview"></a><span data-ttu-id="e5cea-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="e5cea-104">Overview</span></span>
+<span data-ttu-id="e5cea-105">Questo argomento viene illustrato come gli scenari comuni di tooperform utilizzando hello tabelle di Azure del servizio in un'applicazione Node.js.</span><span class="sxs-lookup"><span data-stu-id="e5cea-105">This topic shows how tooperform common scenarios using hello Azure Table service in a Node.js application.</span></span>
 
-<span data-ttu-id="66302-106">Negli esempi di codice illustrati in questo argomento si suppone che sia già stata ottenuta un'applicazione Node.js.</span><span class="sxs-lookup"><span data-stu-id="66302-106">The code examples in this topic assume you already have a Node.js application.</span></span> <span data-ttu-id="66302-107">Per informazioni su come creare un'applicazione Node.js in Azure, vedere uno qualsiasi degli argomenti seguenti:</span><span class="sxs-lookup"><span data-stu-id="66302-107">For information about how to create a Node.js application in Azure, see any of these topics:</span></span>
+<span data-ttu-id="e5cea-106">esempi di codice Hello in questo argomento si presume che un'applicazione Node.js.</span><span class="sxs-lookup"><span data-stu-id="e5cea-106">hello code examples in this topic assume you already have a Node.js application.</span></span> <span data-ttu-id="e5cea-107">Per informazioni su come toocreate un'applicazione Node.js in Azure, vedere uno degli argomenti seguenti:</span><span class="sxs-lookup"><span data-stu-id="e5cea-107">For information about how toocreate a Node.js application in Azure, see any of these topics:</span></span>
 
-* [<span data-ttu-id="66302-108">Creare un'app Web Node.js nel servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="66302-108">Create a Node.js web app in Azure App Service</span></span>](../app-service-web/app-service-web-get-started-nodejs.md)
-* [<span data-ttu-id="66302-109">Creazione e distribuzione di un sito Web Node.js in Azure con WebMatrix</span><span class="sxs-lookup"><span data-stu-id="66302-109">Build and deploy a Node.js web app to Azure using WebMatrix</span></span>](../app-service-web/web-sites-nodejs-use-webmatrix.md)
-* <span data-ttu-id="66302-110">[Creare e distribuire un'applicazione Node.js in un servizio cloud di Azure](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (usando Windows PowerShell)</span><span class="sxs-lookup"><span data-stu-id="66302-110">[Build and deploy a Node.js application to an Azure Cloud Service](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (using Windows PowerShell)</span></span>
+* [<span data-ttu-id="e5cea-108">Creare un'app Web Node.js nel servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="e5cea-108">Create a Node.js web app in Azure App Service</span></span>](../app-service-web/app-service-web-get-started-nodejs.md)
+* [<span data-ttu-id="e5cea-109">Compilare e distribuire un tooAzure di app web Node. js con WebMatrix</span><span class="sxs-lookup"><span data-stu-id="e5cea-109">Build and deploy a Node.js web app tooAzure using WebMatrix</span></span>](../app-service-web/web-sites-nodejs-use-webmatrix.md)
+* <span data-ttu-id="e5cea-110">[Compilare e distribuire un tooan di applicazione del servizio Cloud di Azure Node.js](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (tramite Windows PowerShell)</span><span class="sxs-lookup"><span data-stu-id="e5cea-110">[Build and deploy a Node.js application tooan Azure Cloud Service](../cloud-services/cloud-services-nodejs-develop-deploy-app.md) (using Windows PowerShell)</span></span>
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-## <a name="configure-your-application-to-access-azure-storage"></a><span data-ttu-id="66302-111">Configurare l'applicazione per l'accesso all'archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="66302-111">Configure your application to access Azure Storage</span></span>
-<span data-ttu-id="66302-112">Per usare Archiviazione di Azure, è necessario disporre di Azure Storage SDK per Node.js, che comprende un set di pratiche librerie che comunicano con i servizi di archiviazione REST.</span><span class="sxs-lookup"><span data-stu-id="66302-112">To use Azure Storage, you need the Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with the storage REST services.</span></span>
+## <a name="configure-your-application-tooaccess-azure-storage"></a><span data-ttu-id="e5cea-111">Configurare l'archiviazione di Azure di tooaccess applicazione</span><span class="sxs-lookup"><span data-stu-id="e5cea-111">Configure your application tooaccess Azure Storage</span></span>
+<span data-ttu-id="e5cea-112">toouse archiviazione di Azure, è necessario hello Azure Storage SDK per Node.js, che include un set di librerie di praticità che comunicano con servizi REST di archiviazione hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-112">toouse Azure Storage, you need hello Azure Storage SDK for Node.js, which includes a set of convenience libraries that communicate with hello storage REST services.</span></span>
 
-### <a name="use-node-package-manager-npm-to-install-the-package"></a><span data-ttu-id="66302-113">Usare Node Package Manager (NPM) per installare il pacchetto</span><span class="sxs-lookup"><span data-stu-id="66302-113">Use Node Package Manager (NPM) to install the package</span></span>
-1. <span data-ttu-id="66302-114">Usare un'interfaccia della riga di comando come **PowerShell** (Windows), **Terminale** (Mac) o **Bash** (Unix) e passare alla cartella in cui è stata creata l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="66302-114">Use a command-line interface such as **PowerShell** (Windows), **Terminal** (Mac), or **Bash** (Unix), and navigate to the folder where you created your application.</span></span>
-2. <span data-ttu-id="66302-115">Digitare **npm install azure-storage** nella finestra di comando.</span><span class="sxs-lookup"><span data-stu-id="66302-115">Type **npm install azure-storage** in the command window.</span></span> <span data-ttu-id="66302-116">L'output da questo comando sarà simile al seguente esempio:</span><span class="sxs-lookup"><span data-stu-id="66302-116">Output from the command is similar to the following example.</span></span>
+### <a name="use-node-package-manager-npm-tooinstall-hello-package"></a><span data-ttu-id="e5cea-113">Utilizzare un pacchetto di hello tooinstall nodo Package Manager (NPM)</span><span class="sxs-lookup"><span data-stu-id="e5cea-113">Use Node Package Manager (NPM) tooinstall hello package</span></span>
+1. <span data-ttu-id="e5cea-114">Utilizzare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac), o **Bash** (Unix) e passare toohello cartella in cui viene creata l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="e5cea-114">Use a command-line interface such as **PowerShell** (Windows), **Terminal** (Mac), or **Bash** (Unix), and navigate toohello folder where you created your application.</span></span>
+2. <span data-ttu-id="e5cea-115">Tipo **npm installare archiviazione di azure** nella finestra di comando hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-115">Type **npm install azure-storage** in hello command window.</span></span> <span data-ttu-id="e5cea-116">Output del comando hello è simile toohello esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="e5cea-116">Output from hello command is similar toohello following example.</span></span>
 
        azure-storage@0.5.0 node_modules\azure-storage
        +-- extend@1.2.1
@@ -54,28 +54,28 @@ ms.lasthandoff: 08/29/2017
        +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
        +-- xml2js@0.2.7 (sax@0.5.2)
        +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. <span data-ttu-id="66302-117">È possibile eseguire manualmente il comando **ls** per verificare che sia stata creata una cartella **node\_modules**.</span><span class="sxs-lookup"><span data-stu-id="66302-117">You can manually run the **ls** command to verify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="66302-118">All'interno di questa cartella si trova il pacchetto **azure-storage** , che contiene le librerie necessarie per accedere all'archiviazione.</span><span class="sxs-lookup"><span data-stu-id="66302-118">Inside that folder you will find the **azure-storage** package, which contains the libraries you need to access storage.</span></span>
+3. <span data-ttu-id="e5cea-117">È possibile eseguire manualmente hello **ls** comando tooverify che un **nodo\_moduli** cartella è stata creata.</span><span class="sxs-lookup"><span data-stu-id="e5cea-117">You can manually run hello **ls** command tooverify that a **node\_modules** folder was created.</span></span> <span data-ttu-id="e5cea-118">Questa cartella si troverà hello **archiviazione di azure** pacchetto che contiene le librerie di hello tooaccess archiviazione necessarie.</span><span class="sxs-lookup"><span data-stu-id="e5cea-118">Inside that folder you will find hello **azure-storage** package, which contains hello libraries you need tooaccess storage.</span></span>
 
-### <a name="import-the-package"></a><span data-ttu-id="66302-119">Importare il pacchetto</span><span class="sxs-lookup"><span data-stu-id="66302-119">Import the package</span></span>
-<span data-ttu-id="66302-120">Aggiungere il codice seguente all'inizio del file **server.js** nell'applicazione:</span><span class="sxs-lookup"><span data-stu-id="66302-120">Add the following code to the top of the **server.js** file in your application:</span></span>
+### <a name="import-hello-package"></a><span data-ttu-id="e5cea-119">Importa pacchetto di hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-119">Import hello package</span></span>
+<span data-ttu-id="e5cea-120">Aggiungere i seguenti hello cima toohello codice hello **server.js** file dell'applicazione:</span><span class="sxs-lookup"><span data-stu-id="e5cea-120">Add hello following code toohello top of hello **server.js** file in your application:</span></span>
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
-## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="66302-121">Configurare una connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="66302-121">Set up an Azure Storage connection</span></span>
-<span data-ttu-id="66302-122">I modulo di Azure leggerà le variabili di ambiente AZURE\_STORAGE\_ACCOUNT e AZURE\_STORAGE\_ACCESS\_KEY, o AZURE\_STORAGE\_CONNECTION\_STRING per ottenere le informazioni necessarie per la connessione all'account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="66302-122">The azure module will read the environment variables AZURE\_STORAGE\_ACCOUNT and AZURE\_STORAGE\_ACCESS\_KEY, or AZURE\_STORAGE\_CONNECTION\_STRING for information required to connect to your Azure storage account.</span></span> <span data-ttu-id="66302-123">Se queste variabili di ambiente non sono impostate, sarà necessario specificare le informazioni relative all'account quando si chiama **TableService**.</span><span class="sxs-lookup"><span data-stu-id="66302-123">If these environment variables are not set, you must specify the account information when calling **TableService**.</span></span>
+## <a name="set-up-an-azure-storage-connection"></a><span data-ttu-id="e5cea-121">Configurare una connessione di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="e5cea-121">Set up an Azure Storage connection</span></span>
+<span data-ttu-id="e5cea-122">modulo Hello azure verrà lette le variabili di ambiente hello AZURE\_archiviazione\_ACCOUNT e AZURE\_archiviazione\_accesso\_chiave o AZURE\_archiviazione\_connessione \_Stringa per le informazioni necessarie tooconnect tooyour account di archiviazione di Azure.</span><span class="sxs-lookup"><span data-stu-id="e5cea-122">hello azure module will read hello environment variables AZURE\_STORAGE\_ACCOUNT and AZURE\_STORAGE\_ACCESS\_KEY, or AZURE\_STORAGE\_CONNECTION\_STRING for information required tooconnect tooyour Azure storage account.</span></span> <span data-ttu-id="e5cea-123">Se non vengono impostate queste variabili di ambiente, è necessario specificare le informazioni sull'account hello quando si chiama **TableService**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-123">If these environment variables are not set, you must specify hello account information when calling **TableService**.</span></span>
 
-<span data-ttu-id="66302-124">Per un esempio di impostazione delle variabili di ambiente nel [portale di Azure](https://portal.azure.com) per un sito Web di Azure, vedere [App Web Node.js con il servizio tabelle di Azure](../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span><span class="sxs-lookup"><span data-stu-id="66302-124">For an example of setting the environment variables in the [Azure portal](https://portal.azure.com) for an Azure Website, see [Node.js web app using the Azure Table Service](../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span></span>
+<span data-ttu-id="e5cea-124">Per un esempio di impostazione delle variabili di ambiente hello in hello [portale di Azure](https://portal.azure.com) per un sito Web di Azure, vedere [app web Node. js utilizzando hello del servizio tabelle di Azure](../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span><span class="sxs-lookup"><span data-stu-id="e5cea-124">For an example of setting hello environment variables in hello [Azure portal](https://portal.azure.com) for an Azure Website, see [Node.js web app using hello Azure Table Service](../app-service-web/storage-nodejs-use-table-storage-web-site.md).</span></span>
 
-## <a name="create-a-table"></a><span data-ttu-id="66302-125">Creare una tabella</span><span class="sxs-lookup"><span data-stu-id="66302-125">Create a table</span></span>
-<span data-ttu-id="66302-126">Il codice seguente consente di creare un oggetto **TableService** e di utilizzarlo per creare una nuova tabella.</span><span class="sxs-lookup"><span data-stu-id="66302-126">The following code creates a **TableService** object and uses it to create a new table.</span></span> <span data-ttu-id="66302-127">Aggiungere il codice seguente nella parte superiore di **server.js**.</span><span class="sxs-lookup"><span data-stu-id="66302-127">Add the following near the top of **server.js**.</span></span>
+## <a name="create-a-table"></a><span data-ttu-id="e5cea-125">Creare una tabella</span><span class="sxs-lookup"><span data-stu-id="e5cea-125">Create a table</span></span>
+<span data-ttu-id="e5cea-126">Hello codice seguente viene creata una **TableService** dell'oggetto e lo usa toocreate una nuova tabella.</span><span class="sxs-lookup"><span data-stu-id="e5cea-126">hello following code creates a **TableService** object and uses it toocreate a new table.</span></span> <span data-ttu-id="e5cea-127">Aggiungere il seguente hello parte superiore di hello di **server.js**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-127">Add hello following near hello top of **server.js**.</span></span>
 
 ```nodejs
 var tableSvc = azure.createTableService();
 ```
 
-<span data-ttu-id="66302-128">La chiamata a **createTableIfNotExists** crea una nuova tabella con il nome specificato, se non è già presente.</span><span class="sxs-lookup"><span data-stu-id="66302-128">The call to **createTableIfNotExists** will create a new table with the specified name if it does not already exist.</span></span> <span data-ttu-id="66302-129">Nell'esempio seguente viene creata una nuova tabella denominata "mytable" se questa non esiste ancora:</span><span class="sxs-lookup"><span data-stu-id="66302-129">The following example creates a new table named 'mytable' if it does not already exist:</span></span>
+<span data-ttu-id="e5cea-128">Hello chiamata troppo**createTableIfNotExists** creerà una nuova tabella con il nome specificato hello se non esiste già.</span><span class="sxs-lookup"><span data-stu-id="e5cea-128">hello call too**createTableIfNotExists** will create a new table with hello specified name if it does not already exist.</span></span> <span data-ttu-id="e5cea-129">Hello esempio seguente viene creata una nuova tabella denominata "mytable" Se non esiste già:</span><span class="sxs-lookup"><span data-stu-id="e5cea-129">hello following example creates a new table named 'mytable' if it does not already exist:</span></span>
 
 ```nodejs
 tableSvc.createTableIfNotExists('mytable', function(error, result, response){
@@ -85,67 +85,67 @@ tableSvc.createTableIfNotExists('mytable', function(error, result, response){
 });
 ```
 
-<span data-ttu-id="66302-130">`result.created` sarà `true` se viene creata una nuova tabella e sarà `false` se la tabella è già presente.</span><span class="sxs-lookup"><span data-stu-id="66302-130">The `result.created` will be `true` if a new table is created, and `false` if the table already exists.</span></span> <span data-ttu-id="66302-131">`response` conterrà le informazioni sulla richiesta.</span><span class="sxs-lookup"><span data-stu-id="66302-131">The `response` will contain information about the request.</span></span>
+<span data-ttu-id="e5cea-130">Hello `result.created` sarà `true` se viene creata una nuova tabella, e `false` hello tabella esiste già.</span><span class="sxs-lookup"><span data-stu-id="e5cea-130">hello `result.created` will be `true` if a new table is created, and `false` if hello table already exists.</span></span> <span data-ttu-id="e5cea-131">Hello `response` contengono informazioni sulla richiesta di hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-131">hello `response` will contain information about hello request.</span></span>
 
-### <a name="filters"></a><span data-ttu-id="66302-132">Filtri</span><span class="sxs-lookup"><span data-stu-id="66302-132">Filters</span></span>
-<span data-ttu-id="66302-133">Le operazioni di filtro facoltative possono essere applicate alle operazioni eseguite usando **TableService**.</span><span class="sxs-lookup"><span data-stu-id="66302-133">Optional filtering operations can be applied to operations performed using **TableService**.</span></span> <span data-ttu-id="66302-134">Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con la firma:</span><span class="sxs-lookup"><span data-stu-id="66302-134">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with the signature:</span></span>
+### <a name="filters"></a><span data-ttu-id="e5cea-132">Filtri</span><span class="sxs-lookup"><span data-stu-id="e5cea-132">Filters</span></span>
+<span data-ttu-id="e5cea-133">Operazioni di filtro facoltative possono essere applicato toooperations eseguita utilizzando **TableService**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-133">Optional filtering operations can be applied toooperations performed using **TableService**.</span></span> <span data-ttu-id="e5cea-134">Le operazioni di filtro possono includere la registrazione, la ripetizione automatica dei tentativi e così via. I filtri sono oggetti che implementano un metodo con firma hello:</span><span class="sxs-lookup"><span data-stu-id="e5cea-134">Filtering operations can include logging, automatically retrying, etc. Filters are objects that implement a method with hello signature:</span></span>
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-<span data-ttu-id="66302-135">Dopo aver eseguito la pre-elaborazione sulle opzioni della richiesta, il metodo deve chiamare "next" passando un callback con la firma seguente:</span><span class="sxs-lookup"><span data-stu-id="66302-135">After doing its preprocessing on the request options, the method needs to call "next", passing a callback with the following signature:</span></span>
+<span data-ttu-id="e5cea-135">Dopo aver eseguito il pre-elaborazione sulle opzioni di richiesta di hello, metodo hello deve toocall "Avanti", il passaggio di un callback con hello seguente firma:</span><span class="sxs-lookup"><span data-stu-id="e5cea-135">After doing its preprocessing on hello request options, hello method needs toocall "next", passing a callback with hello following signature:</span></span>
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-<span data-ttu-id="66302-136">In questo callback, e dopo l'elaborazione di returnObject (la risposta della richiesta al server), il callback deve richiamare "next", se questo esiste, per continuare a elaborare altri filtri oppure semplicemente richiamare finalCallback per concludere la chiamata al servizio.</span><span class="sxs-lookup"><span data-stu-id="66302-136">In this callback, and after processing the returnObject (the response from the request to the server), the callback needs to either invoke next if it exists to continue processing other filters or simply invoke finalCallback otherwise to end the service invocation.</span></span>
+<span data-ttu-id="e5cea-136">In questo callback e dopo l'elaborazione di hello returnObject (risposta hello dal server di hello richiesta toohello), il callback di hello richiede tooeither richiamare successivamente se esiste l'elaborazione di altri filtri toocontinue o semplicemente richiamare finalCallback hello tooend in caso contrario chiamata del servizio.</span><span class="sxs-lookup"><span data-stu-id="e5cea-136">In this callback, and after processing hello returnObject (hello response from hello request toohello server), hello callback needs tooeither invoke next if it exists toocontinue processing other filters or simply invoke finalCallback otherwise tooend hello service invocation.</span></span>
 
-<span data-ttu-id="66302-137">In Azure SDK per Node.js sono inclusi due filtri che implementano la logica di ripetizione dei tentativi. Sono **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**.</span><span class="sxs-lookup"><span data-stu-id="66302-137">Two filters that implement retry logic are included with the Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="66302-138">Il codice seguente consente di creare un oggetto **TableService** che usa **ExponentialRetryPolicyFilter**:</span><span class="sxs-lookup"><span data-stu-id="66302-138">The following creates a **TableService** object that uses the **ExponentialRetryPolicyFilter**:</span></span>
+<span data-ttu-id="e5cea-137">Due filtri, che implementano la logica di ripetizione sono inclusi in Azure SDK per Node.js, hello **ExponentialRetryPolicyFilter** e **LinearRetryPolicyFilter**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-137">Two filters that implement retry logic are included with hello Azure SDK for Node.js, **ExponentialRetryPolicyFilter** and **LinearRetryPolicyFilter**.</span></span> <span data-ttu-id="e5cea-138">Hello seguito creato un **TableService** oggetto che utilizza hello **ExponentialRetryPolicyFilter**:</span><span class="sxs-lookup"><span data-stu-id="e5cea-138">hello following creates a **TableService** object that uses hello **ExponentialRetryPolicyFilter**:</span></span>
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var tableSvc = azure.createTableService().withFilter(retryOperations);
 ```
 
-## <a name="add-an-entity-to-a-table"></a><span data-ttu-id="66302-139">Aggiungere un'entità a una tabella</span><span class="sxs-lookup"><span data-stu-id="66302-139">Add an entity to a table</span></span>
-<span data-ttu-id="66302-140">Per aggiungere un'entità, creare prima un oggetto che definisca le proprietà dell'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-140">To add an entity, first create an object that defines your entity properties.</span></span> <span data-ttu-id="66302-141">Tutte le entità devono contenere **PartitionKey** e **RowKey** che sono gli identificatori univoci dell'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-141">All entities must contain a **PartitionKey** and **RowKey**, which are unique identifiers for the entity.</span></span>
+## <a name="add-an-entity-tooa-table"></a><span data-ttu-id="e5cea-139">Aggiungere una tabella tooa entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-139">Add an entity tooa table</span></span>
+<span data-ttu-id="e5cea-140">tooadd un'entità, creare innanzitutto un oggetto che definisce le proprietà dell'entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-140">tooadd an entity, first create an object that defines your entity properties.</span></span> <span data-ttu-id="e5cea-141">Tutte le entità devono contenere un **PartitionKey** e **RowKey**, che sono identificatori univoci per l'entità hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-141">All entities must contain a **PartitionKey** and **RowKey**, which are unique identifiers for hello entity.</span></span>
 
-* <span data-ttu-id="66302-142">**PartitionKey** : determina la partizione in cui è archiviata l'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-142">**PartitionKey** - determines the partition that the entity is stored in</span></span>
-* <span data-ttu-id="66302-143">**RowKey** : identifica in modo univoco l'entità all'interno della partizione.</span><span class="sxs-lookup"><span data-stu-id="66302-143">**RowKey** - uniquely identifies the entity within the partition</span></span>
+* <span data-ttu-id="e5cea-142">**PartitionKey** -determina partizione hello archiviati in entità hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-142">**PartitionKey** - determines hello partition that hello entity is stored in</span></span>
+* <span data-ttu-id="e5cea-143">**RowKey** : in modo univoco identifica hello entità all'interno della partizione hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-143">**RowKey** - uniquely identifies hello entity within hello partition</span></span>
 
-<span data-ttu-id="66302-144">Sia **PartitionKey** che **RowKey** devono essere valori stringa.</span><span class="sxs-lookup"><span data-stu-id="66302-144">Both **PartitionKey** and **RowKey** must be string values.</span></span> <span data-ttu-id="66302-145">Per altre informazioni, vedere [Informazioni sul modello di dati del servizio tabelle](http://msdn.microsoft.com/library/azure/dd179338.aspx).</span><span class="sxs-lookup"><span data-stu-id="66302-145">For more information, see [Understanding the Table Service Data Model](http://msdn.microsoft.com/library/azure/dd179338.aspx).</span></span>
+<span data-ttu-id="e5cea-144">Sia **PartitionKey** che **RowKey** devono essere valori stringa.</span><span class="sxs-lookup"><span data-stu-id="e5cea-144">Both **PartitionKey** and **RowKey** must be string values.</span></span> <span data-ttu-id="e5cea-145">Per ulteriori informazioni, vedere [hello comprensione modello di dati del servizio tabelle](http://msdn.microsoft.com/library/azure/dd179338.aspx).</span><span class="sxs-lookup"><span data-stu-id="e5cea-145">For more information, see [Understanding hello Table Service Data Model](http://msdn.microsoft.com/library/azure/dd179338.aspx).</span></span>
 
-<span data-ttu-id="66302-146">Nell'esempio seguente viene definita un'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-146">The following is an example of defining an entity.</span></span> <span data-ttu-id="66302-147">**dueDate** è definito come tipo di **Edm.DateTime**.</span><span class="sxs-lookup"><span data-stu-id="66302-147">Note that **dueDate** is defined as a type of **Edm.DateTime**.</span></span> <span data-ttu-id="66302-148">La specifica del tipo è facoltativa e si presuppone che i tipi non siano specificati.</span><span class="sxs-lookup"><span data-stu-id="66302-148">Specifying the type is optional, and types will be inferred if not specified.</span></span>
+<span data-ttu-id="e5cea-146">Hello Ecco un esempio di definizione di un'entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-146">hello following is an example of defining an entity.</span></span> <span data-ttu-id="e5cea-147">**dueDate** è definito come tipo di **Edm.DateTime**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-147">Note that **dueDate** is defined as a type of **Edm.DateTime**.</span></span> <span data-ttu-id="e5cea-148">Specifica il tipo hello è facoltativo e tipi verranno dedotto se non specificati.</span><span class="sxs-lookup"><span data-stu-id="e5cea-148">Specifying hello type is optional, and types will be inferred if not specified.</span></span>
 
 ```nodejs
 var task = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '1'},
-  description: {'_':'take out the trash'},
+  description: {'_':'take out hello trash'},
   dueDate: {'_':new Date(2015, 6, 20), '$':'Edm.DateTime'}
 };
 ```
 
 > [!NOTE]
-> <span data-ttu-id="66302-149">Per ogni record è anche presente un campo **Timestamp** , impostato da Azure quando viene inserita o aggiornata un'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-149">There is also a **Timestamp** field for each record, which is set by Azure when an entity is inserted or updated.</span></span>
+> <span data-ttu-id="e5cea-149">Per ogni record è anche presente un campo **Timestamp** , impostato da Azure quando viene inserita o aggiornata un'entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-149">There is also a **Timestamp** field for each record, which is set by Azure when an entity is inserted or updated.</span></span>
 >
 >
 
-<span data-ttu-id="66302-150">È anche possibile usare **entityGenerator** per creare le entità.</span><span class="sxs-lookup"><span data-stu-id="66302-150">You can also use the **entityGenerator** to create entities.</span></span> <span data-ttu-id="66302-151">Nell'esempio seguente viene creata la stessa entità Task tramite **entityGenerator**.</span><span class="sxs-lookup"><span data-stu-id="66302-151">The following example creates the same task entity using the **entityGenerator**.</span></span>
+<span data-ttu-id="e5cea-150">È inoltre possibile utilizzare hello **entityGenerator** toocreate entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-150">You can also use hello **entityGenerator** toocreate entities.</span></span> <span data-ttu-id="e5cea-151">esempio Hello crea hello stessa entità di attività utilizzando hello **entityGenerator**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-151">hello following example creates hello same task entity using hello **entityGenerator**.</span></span>
 
 ```nodejs
 var entGen = azure.TableUtilities.entityGenerator;
 var task = {
   PartitionKey: entGen.String('hometasks'),
   RowKey: entGen.String('1'),
-  description: entGen.String('take out the trash'),
+  description: entGen.String('take out hello trash'),
   dueDate: entGen.DateTime(new Date(Date.UTC(2015, 6, 20))),
 };
 ```
 
-<span data-ttu-id="66302-152">Per aggiungere un'entità alla tabella, passare l'oggetto entità al metodo **insertEntity** .</span><span class="sxs-lookup"><span data-stu-id="66302-152">To add an entity to your table, pass the entity object to the **insertEntity** method.</span></span>
+<span data-ttu-id="e5cea-152">una tabella, tooyour entità tooadd passare hello entità oggetto toohello **insertEntity** metodo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-152">tooadd an entity tooyour table, pass hello entity object toohello **insertEntity** method.</span></span>
 
 ```nodejs
 tableSvc.insertEntity('mytable',task, function (error, result, response) {
@@ -155,30 +155,30 @@ tableSvc.insertEntity('mytable',task, function (error, result, response) {
 });
 ```
 
-<span data-ttu-id="66302-153">Se l'operazione ha esito positivo, `result` conterrà l'[ETag](http://en.wikipedia.org/wiki/HTTP_ETag) del record inserito e `response` conterrà le informazioni sull'operazione.</span><span class="sxs-lookup"><span data-stu-id="66302-153">If the operation is successful, `result` will contain the [ETag](http://en.wikipedia.org/wiki/HTTP_ETag) of the inserted record and `response` will contain information about the operation.</span></span>
+<span data-ttu-id="e5cea-153">Se ha esito positivo, operazione hello `result` conterrà hello [ETag](http://en.wikipedia.org/wiki/HTTP_ETag) di hello inserire record e `response` conterrà informazioni sull'operazione hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-153">If hello operation is successful, `result` will contain hello [ETag](http://en.wikipedia.org/wiki/HTTP_ETag) of hello inserted record and `response` will contain information about hello operation.</span></span>
 
-<span data-ttu-id="66302-154">Esempio di risposta:</span><span class="sxs-lookup"><span data-stu-id="66302-154">Example response:</span></span>
+<span data-ttu-id="e5cea-154">Esempio di risposta:</span><span class="sxs-lookup"><span data-stu-id="e5cea-154">Example response:</span></span>
 
 ```nodejs
 { '.metadata': { etag: 'W/"datetime\'2015-02-25T01%3A22%3A22.5Z\'"' } }
 ```
 
 > [!NOTE]
-> <span data-ttu-id="66302-155">Per impostazione predefinita, **insertEntity** non restituisce l'entità inserita come parte delle informazioni di `response`.</span><span class="sxs-lookup"><span data-stu-id="66302-155">By default, **insertEntity** does not return the inserted entity as part of the `response` information.</span></span> <span data-ttu-id="66302-156">Se si prevede di eseguire altre operazioni su questa entità o si intende memorizzare le informazioni nella cache, è opportuno che l'entità venga restituita insieme a `result`.</span><span class="sxs-lookup"><span data-stu-id="66302-156">If you plan on performing other operations on this entity, or wish to cache the information, it can be useful to have it returned as part of the `result`.</span></span> <span data-ttu-id="66302-157">A tale scopo, abilitare **echoContent** come segue:</span><span class="sxs-lookup"><span data-stu-id="66302-157">You can do this by enabling **echoContent** as follows:</span></span>
+> <span data-ttu-id="e5cea-155">Per impostazione predefinita, **insertEntity** non restituisce entità hello inserito come parte di hello `response` informazioni.</span><span class="sxs-lookup"><span data-stu-id="e5cea-155">By default, **insertEntity** does not return hello inserted entity as part of hello `response` information.</span></span> <span data-ttu-id="e5cea-156">Se si prevede di eseguire altre operazioni su questa entità o si desiderano informazioni hello toocache, può essere utile toohave restituita come parte di hello `result`.</span><span class="sxs-lookup"><span data-stu-id="e5cea-156">If you plan on performing other operations on this entity, or wish toocache hello information, it can be useful toohave it returned as part of hello `result`.</span></span> <span data-ttu-id="e5cea-157">A tale scopo, abilitare **echoContent** come segue:</span><span class="sxs-lookup"><span data-stu-id="e5cea-157">You can do this by enabling **echoContent** as follows:</span></span>
 >
 > `tableSvc.insertEntity('mytable', task, {echoContent: true}, function (error, result, response) {...}`
 >
 >
 
-## <a name="update-an-entity"></a><span data-ttu-id="66302-158">Aggiornare un'entità</span><span class="sxs-lookup"><span data-stu-id="66302-158">Update an entity</span></span>
-<span data-ttu-id="66302-159">Esistono vari metodi per aggiornare un'entità esistente:</span><span class="sxs-lookup"><span data-stu-id="66302-159">There are multiple methods available to update an existing entity:</span></span>
+## <a name="update-an-entity"></a><span data-ttu-id="e5cea-158">Aggiornare un'entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-158">Update an entity</span></span>
+<span data-ttu-id="e5cea-159">Esistono più tooupdate disponibili di metodi un'entità esistente:</span><span class="sxs-lookup"><span data-stu-id="e5cea-159">There are multiple methods available tooupdate an existing entity:</span></span>
 
-* <span data-ttu-id="66302-160">**replaceEntity** : aggiorna un'entità esistente sostituendola</span><span class="sxs-lookup"><span data-stu-id="66302-160">**replaceEntity** - updates an existing entity by replacing it</span></span>
-* <span data-ttu-id="66302-161">**mergeEntity** : aggiorna un'entità esistente unendovi i nuovi valori delle proprietà.</span><span class="sxs-lookup"><span data-stu-id="66302-161">**mergeEntity** - updates an existing entity by merging new property values into the existing entity</span></span>
-* <span data-ttu-id="66302-162">**insertOrReplaceEntity** : aggiorna un'entità esistente sostituendola.</span><span class="sxs-lookup"><span data-stu-id="66302-162">**insertOrReplaceEntity** - updates an existing entity by replacing it.</span></span> <span data-ttu-id="66302-163">Se non esiste alcuna entità, ne verrà inserita una nuova.</span><span class="sxs-lookup"><span data-stu-id="66302-163">If no entity exists, a new one will be inserted</span></span>
-* <span data-ttu-id="66302-164">**insertOrMergeEntity** : aggiorna un'entità esistente unendovi i nuovi valori delle proprietà.</span><span class="sxs-lookup"><span data-stu-id="66302-164">**insertOrMergeEntity** - updates an existing entity by merging new property values into the existing.</span></span> <span data-ttu-id="66302-165">Se non esiste alcuna entità, ne verrà inserita una nuova.</span><span class="sxs-lookup"><span data-stu-id="66302-165">If no entity exists, a new one will be inserted</span></span>
+* <span data-ttu-id="e5cea-160">**replaceEntity** : aggiorna un'entità esistente sostituendola</span><span class="sxs-lookup"><span data-stu-id="e5cea-160">**replaceEntity** - updates an existing entity by replacing it</span></span>
+* <span data-ttu-id="e5cea-161">**mergeEntity** -aggiorna un'entità esistente unendo nuovi valori della proprietà di entità esistente hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-161">**mergeEntity** - updates an existing entity by merging new property values into hello existing entity</span></span>
+* <span data-ttu-id="e5cea-162">**insertOrReplaceEntity** : aggiorna un'entità esistente sostituendola.</span><span class="sxs-lookup"><span data-stu-id="e5cea-162">**insertOrReplaceEntity** - updates an existing entity by replacing it.</span></span> <span data-ttu-id="e5cea-163">Se non esiste alcuna entità, ne verrà inserita una nuova.</span><span class="sxs-lookup"><span data-stu-id="e5cea-163">If no entity exists, a new one will be inserted</span></span>
+* <span data-ttu-id="e5cea-164">**insertOrMergeEntity** -aggiorna un'entità esistente mediante l'unione di nuovi valori della proprietà in hello esistente.</span><span class="sxs-lookup"><span data-stu-id="e5cea-164">**insertOrMergeEntity** - updates an existing entity by merging new property values into hello existing.</span></span> <span data-ttu-id="e5cea-165">Se non esiste alcuna entità, ne verrà inserita una nuova.</span><span class="sxs-lookup"><span data-stu-id="e5cea-165">If no entity exists, a new one will be inserted</span></span>
 
-<span data-ttu-id="66302-166">Nell'esempio seguente viene illustrato l'aggiornamento di un'entità mediante **replaceEntity**:</span><span class="sxs-lookup"><span data-stu-id="66302-166">The following example demonstrates updating an entity using **replaceEntity**:</span></span>
+<span data-ttu-id="e5cea-166">Hello esempio seguente viene illustrato l'aggiornamento di un'entità mediante **replaceEntity**:</span><span class="sxs-lookup"><span data-stu-id="e5cea-166">hello following example demonstrates updating an entity using **replaceEntity**:</span></span>
 
 ```nodejs
 tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response){
@@ -189,36 +189,36 @@ tableSvc.replaceEntity('mytable', updatedTask, function(error, result, response)
 ```
 
 > [!NOTE]
-> <span data-ttu-id="66302-167">Per impostazione predefinita, l'aggiornamento di un'entità non comporta la verifica dei dati per controllare se siano stati modificati da altri processi.</span><span class="sxs-lookup"><span data-stu-id="66302-167">By default, updating an entity does not check to see if the data being updated has previously been modified by another process.</span></span> <span data-ttu-id="66302-168">Per supportare gli aggiornamenti simultanei:</span><span class="sxs-lookup"><span data-stu-id="66302-168">To support concurrent updates:</span></span>
+> <span data-ttu-id="e5cea-167">Per impostazione predefinita, l'aggiornamento di un'entità non verifica toosee se i dati di hello in corso l'aggiornamento sono stati modificati in precedenza da un altro processo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-167">By default, updating an entity does not check toosee if hello data being updated has previously been modified by another process.</span></span> <span data-ttu-id="e5cea-168">toosupport aggiornamenti simultanei:</span><span class="sxs-lookup"><span data-stu-id="e5cea-168">toosupport concurrent updates:</span></span>
 >
-> 1. <span data-ttu-id="66302-169">Recuperare il valore ETag dell'oggetto da aggiornare.</span><span class="sxs-lookup"><span data-stu-id="66302-169">Get the ETag of the object being updated.</span></span> <span data-ttu-id="66302-170">Questo valore viene restituito insieme a `response` per qualsiasi operazione associata all'entità e può essere recuperato tramite `response['.metadata'].etag`.</span><span class="sxs-lookup"><span data-stu-id="66302-170">This is returned as part of the `response` for any entity-related operation and can be retrieved through `response['.metadata'].etag`.</span></span>
-> 2. <span data-ttu-id="66302-171">Quando si esegue un'operazione di aggiornamento su un'entità, aggiungere le informazioni ETag precedentemente recuperate alla nuova entità.</span><span class="sxs-lookup"><span data-stu-id="66302-171">When performing an update operation on an entity, add the ETag information previously retrieved to the new entity.</span></span> <span data-ttu-id="66302-172">Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="66302-172">For example:</span></span>
+> 1. <span data-ttu-id="e5cea-169">Ottenere hello ETag dell'oggetto hello in corso l'aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="e5cea-169">Get hello ETag of hello object being updated.</span></span> <span data-ttu-id="e5cea-170">Viene restituito come parte di hello `response` per qualsiasi operazione associati all'entità e possono essere recuperati tramite `response['.metadata'].etag`.</span><span class="sxs-lookup"><span data-stu-id="e5cea-170">This is returned as part of hello `response` for any entity-related operation and can be retrieved through `response['.metadata'].etag`.</span></span>
+> 2. <span data-ttu-id="e5cea-171">Quando si esegue un'operazione di aggiornamento su un'entità, aggiungere le informazioni di ETag hello precedentemente recuperati toohello nuova entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-171">When performing an update operation on an entity, add hello ETag information previously retrieved toohello new entity.</span></span> <span data-ttu-id="e5cea-172">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="e5cea-172">For example:</span></span>
 >
->       <span data-ttu-id="66302-173">entity2['.metadata'].etag = currentEtag;</span><span class="sxs-lookup"><span data-stu-id="66302-173">entity2['.metadata'].etag = currentEtag;</span></span>
-> 3. <span data-ttu-id="66302-174">Eseguire l'operazione di aggiornamento.</span><span class="sxs-lookup"><span data-stu-id="66302-174">Perform the update operation.</span></span> <span data-ttu-id="66302-175">Se l'entità è stata modificata dall'ultimo recupero del valore di ETag, ad esempio da un'altra istanza dell'applicazione, viene restituito un `error` che indica che la condizione di aggiornamento specificata nella richiesta non è stata soddisfatta.</span><span class="sxs-lookup"><span data-stu-id="66302-175">If the entity has been modified since you retrieved the ETag value, such as another instance of your application, an `error` will be returned stating that the update condition specified in the request was not satisfied.</span></span>
+>       <span data-ttu-id="e5cea-173">entity2['.metadata'].etag = currentEtag;</span><span class="sxs-lookup"><span data-stu-id="e5cea-173">entity2['.metadata'].etag = currentEtag;</span></span>
+> 3. <span data-ttu-id="e5cea-174">Eseguire l'operazione di aggiornamento hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-174">Perform hello update operation.</span></span> <span data-ttu-id="e5cea-175">Se l'entità di hello è stata modificata poiché è stato recuperato valore ETag hello, ad esempio un'altra istanza dell'applicazione, un `error` verranno restituite che informa che condizione aggiornamento hello specificato nella richiesta di hello non è stata soddisfatta.</span><span class="sxs-lookup"><span data-stu-id="e5cea-175">If hello entity has been modified since you retrieved hello ETag value, such as another instance of your application, an `error` will be returned stating that hello update condition specified in hello request was not satisfied.</span></span>
 >
 >
 
-<span data-ttu-id="66302-176">Con **replaceEntity** e **mergeEntity**, se l'entità da aggiornare non esiste, l'operazione di aggiornamento non riesce.</span><span class="sxs-lookup"><span data-stu-id="66302-176">With **replaceEntity** and **mergeEntity**, if the entity that is being updated doesn't exist, then the update operation will fail.</span></span> <span data-ttu-id="66302-177">Se pertanto si desidera archiviare un'entità indipendentemente dal fatto che esista o meno, usare **insertOrReplaceEntity** oppure **insertOrMergeEntity**.</span><span class="sxs-lookup"><span data-stu-id="66302-177">Therefore if you wish to store an entity regardless of whether it already exists, use **insertOrReplaceEntity** or **insertOrMergeEntity**.</span></span>
+<span data-ttu-id="e5cea-176">Con **replaceEntity** e **mergeEntity**, se l'entità hello in corso di aggiornamento non esiste, l'operazione di aggiornamento hello avrà esito negativo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-176">With **replaceEntity** and **mergeEntity**, if hello entity that is being updated doesn't exist, then hello update operation will fail.</span></span> <span data-ttu-id="e5cea-177">Pertanto se si desidera toostore un'entità indipendentemente dal fatto se esiste già, utilizzare **insertOrReplaceEntity** o **insertOrMergeEntity**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-177">Therefore if you wish toostore an entity regardless of whether it already exists, use **insertOrReplaceEntity** or **insertOrMergeEntity**.</span></span>
 
-<span data-ttu-id="66302-178">In `result` per le operazioni di aggiornamento riuscite correttamente sarà incluso l' **Etag** dell'entità aggiornata.</span><span class="sxs-lookup"><span data-stu-id="66302-178">The `result` for successful update operations will contain the **Etag** of the updated entity.</span></span>
+<span data-ttu-id="e5cea-178">Hello `result` per l'aggiornamento ha esito positivo operazioni conterrà hello **Etag** di hello aggiornato l'entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-178">hello `result` for successful update operations will contain hello **Etag** of hello updated entity.</span></span>
 
-## <a name="work-with-groups-of-entities"></a><span data-ttu-id="66302-179">Usare i gruppi di entità</span><span class="sxs-lookup"><span data-stu-id="66302-179">Work with groups of entities</span></span>
-<span data-ttu-id="66302-180">È talvolta consigliabile inviare più operazioni in un batch per garantire l'elaborazione atomica da parte del server.</span><span class="sxs-lookup"><span data-stu-id="66302-180">Sometimes it makes sense to submit multiple operations together in a batch to ensure atomic processing by the server.</span></span> <span data-ttu-id="66302-181">A questo scopo, usare la classe **TableBatch** per creare un batch e quindi usare il metodo **executeBatch** di **TableService** per eseguire le operazioni in batch.</span><span class="sxs-lookup"><span data-stu-id="66302-181">To accomplish that, use the **TableBatch** class to create a batch, and then use the **executeBatch** method of **TableService** to perform the batched operations.</span></span>
+## <a name="work-with-groups-of-entities"></a><span data-ttu-id="e5cea-179">Usare i gruppi di entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-179">Work with groups of entities</span></span>
+<span data-ttu-id="e5cea-180">A volte risulta più toosubmit senso più operazioni contemporaneamente in un batch tooensure atomica elaborazione dal server hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-180">Sometimes it makes sense toosubmit multiple operations together in a batch tooensure atomic processing by hello server.</span></span> <span data-ttu-id="e5cea-181">tooaccomplish utilizzati, hello **TableBatch** classe toocreate un batch e quindi utilizzare hello **executeBatch** metodo **TableService** tooperform hello operazioni in batch.</span><span class="sxs-lookup"><span data-stu-id="e5cea-181">tooaccomplish that, use hello **TableBatch** class toocreate a batch, and then use hello **executeBatch** method of **TableService** tooperform hello batched operations.</span></span>
 
- <span data-ttu-id="66302-182">Nell'esempio seguente viene dimostrato l'invio di due entità in un batch:</span><span class="sxs-lookup"><span data-stu-id="66302-182">The following example demonstrates submitting two entities in a batch:</span></span>
+ <span data-ttu-id="e5cea-182">Hello di esempio seguente viene illustrato l'invio di due entità in un batch:</span><span class="sxs-lookup"><span data-stu-id="e5cea-182">hello following example demonstrates submitting two entities in a batch:</span></span>
 
 ```nodejs
 var task1 = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '1'},
-  description: {'_':'Take out the trash'},
+  description: {'_':'Take out hello trash'},
   dueDate: {'_':new Date(2015, 6, 20)}
 };
 var task2 = {
   PartitionKey: {'_':'hometasks'},
   RowKey: {'_': '2'},
-  description: {'_':'Wash the dishes'},
+  description: {'_':'Wash hello dishes'},
   dueDate: {'_':new Date(2015, 6, 20)}
 };
 
@@ -234,41 +234,41 @@ tableSvc.executeBatch('mytable', batch, function (error, result, response) {
 });
 ```
 
-<span data-ttu-id="66302-183">Per le operazioni in batch riuscite, `result` conterrà le informazioni relative a ogni operazione del batch.</span><span class="sxs-lookup"><span data-stu-id="66302-183">For successful batch operations, `result` will contain information for each operation in the batch.</span></span>
+<span data-ttu-id="e5cea-183">Per le operazioni batch ha esito positivo, `result` conterrà informazioni per ogni operazione nel batch hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-183">For successful batch operations, `result` will contain information for each operation in hello batch.</span></span>
 
-### <a name="work-with-batched-operations"></a><span data-ttu-id="66302-184">Uso delle operazioni in batch</span><span class="sxs-lookup"><span data-stu-id="66302-184">Work with batched operations</span></span>
-<span data-ttu-id="66302-185">Le operazioni aggiunte a un batch possono essere esaminate visualizzando la proprietà `operations` .</span><span class="sxs-lookup"><span data-stu-id="66302-185">Operations added to a batch can be inspected by viewing the `operations` property.</span></span> <span data-ttu-id="66302-186">Per usare le operazioni sono disponibili anche i metodi seguenti:</span><span class="sxs-lookup"><span data-stu-id="66302-186">You can also use the following methods to work with operations:</span></span>
+### <a name="work-with-batched-operations"></a><span data-ttu-id="e5cea-184">Uso delle operazioni in batch</span><span class="sxs-lookup"><span data-stu-id="e5cea-184">Work with batched operations</span></span>
+<span data-ttu-id="e5cea-185">Aggiungere le operazioni batch tooa può essere controllato da visualizzazione hello `operations` proprietà.</span><span class="sxs-lookup"><span data-stu-id="e5cea-185">Operations added tooa batch can be inspected by viewing hello `operations` property.</span></span> <span data-ttu-id="e5cea-186">È inoltre possibile utilizzare hello toowork metodi con le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="e5cea-186">You can also use hello following methods toowork with operations:</span></span>
 
-* <span data-ttu-id="66302-187">**clear** : cancella tutte le operazioni da un batch.</span><span class="sxs-lookup"><span data-stu-id="66302-187">**clear** - clears all operations from a batch</span></span>
-* <span data-ttu-id="66302-188">**getOperations** : recupera un'operazione dal batch.</span><span class="sxs-lookup"><span data-stu-id="66302-188">**getOperations** - gets an operation from the batch</span></span>
-* <span data-ttu-id="66302-189">**hasOperations** : restituisce true se il batch contiene operazioni.</span><span class="sxs-lookup"><span data-stu-id="66302-189">**hasOperations** - returns true if the batch contains operations</span></span>
-* <span data-ttu-id="66302-190">**removeOperations** : rimuove un'operazione.</span><span class="sxs-lookup"><span data-stu-id="66302-190">**removeOperations** - removes an operation</span></span>
-* <span data-ttu-id="66302-191">**size** : restituisce il numero di operazioni nel batch.</span><span class="sxs-lookup"><span data-stu-id="66302-191">**size** - returns the number of operations in the batch</span></span>
+* <span data-ttu-id="e5cea-187">**clear** : cancella tutte le operazioni da un batch.</span><span class="sxs-lookup"><span data-stu-id="e5cea-187">**clear** - clears all operations from a batch</span></span>
+* <span data-ttu-id="e5cea-188">**getOperations** -Ottiene un'operazione batch hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-188">**getOperations** - gets an operation from hello batch</span></span>
+* <span data-ttu-id="e5cea-189">**hasOperations** -restituisce true se il batch hello contiene operazioni</span><span class="sxs-lookup"><span data-stu-id="e5cea-189">**hasOperations** - returns true if hello batch contains operations</span></span>
+* <span data-ttu-id="e5cea-190">**removeOperations** : rimuove un'operazione.</span><span class="sxs-lookup"><span data-stu-id="e5cea-190">**removeOperations** - removes an operation</span></span>
+* <span data-ttu-id="e5cea-191">**dimensioni** -restituisce hello numero di operazioni in batch hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-191">**size** - returns hello number of operations in hello batch</span></span>
 
-## <a name="retrieve-an-entity-by-key"></a><span data-ttu-id="66302-192">Recuperare un'entità in base alla chiave</span><span class="sxs-lookup"><span data-stu-id="66302-192">Retrieve an entity by key</span></span>
-<span data-ttu-id="66302-193">Per restituire un'entità specifica in base a **PartitionKey** e **RowKey**, usare il metodo **retrieveEntity**.</span><span class="sxs-lookup"><span data-stu-id="66302-193">To return a specific entity based on the **PartitionKey** and **RowKey**, use the **retrieveEntity** method.</span></span>
+## <a name="retrieve-an-entity-by-key"></a><span data-ttu-id="e5cea-192">Recuperare un'entità in base alla chiave</span><span class="sxs-lookup"><span data-stu-id="e5cea-192">Retrieve an entity by key</span></span>
+<span data-ttu-id="e5cea-193">un'entità specifica in base a hello tooreturn **PartitionKey** e **RowKey**, utilizzare hello **retrieveEntity** metodo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-193">tooreturn a specific entity based on hello **PartitionKey** and **RowKey**, use hello **retrieveEntity** method.</span></span>
 
 ```nodejs
 tableSvc.retrieveEntity('mytable', 'hometasks', '1', function(error, result, response){
   if(!error){
-    // result contains the entity
+    // result contains hello entity
   }
 });
 ```
 
-<span data-ttu-id="66302-194">Al termine di questa operazione, `result` conterrà l'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-194">Once this operation is complete, `result` will contain the entity.</span></span>
+<span data-ttu-id="e5cea-194">Dopo aver completata questa operazione `result` conterrà entità hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-194">Once this operation is complete, `result` will contain hello entity.</span></span>
 
-## <a name="query-a-set-of-entities"></a><span data-ttu-id="66302-195">Eseguire query su un set di entità</span><span class="sxs-lookup"><span data-stu-id="66302-195">Query a set of entities</span></span>
-<span data-ttu-id="66302-196">Per eseguire una query su una tabella, usare l'oggetto **TableQuery** per creare un'espressione di query con queste clausole:</span><span class="sxs-lookup"><span data-stu-id="66302-196">To query a table, use the **TableQuery** object to build up a query expression using the following clauses:</span></span>
+## <a name="query-a-set-of-entities"></a><span data-ttu-id="e5cea-195">Eseguire query su un set di entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-195">Query a set of entities</span></span>
+<span data-ttu-id="e5cea-196">tooquery una tabella, utilizzare hello **TableQuery** oggetto toobuild di un'espressione di query utilizzando hello clausole seguenti:</span><span class="sxs-lookup"><span data-stu-id="e5cea-196">tooquery a table, use hello **TableQuery** object toobuild up a query expression using hello following clauses:</span></span>
 
-* <span data-ttu-id="66302-197">**select** : i campi che la query deve restituire.</span><span class="sxs-lookup"><span data-stu-id="66302-197">**select** - the fields to be returned from the query</span></span>
-* <span data-ttu-id="66302-198">**where** : la clausola where.</span><span class="sxs-lookup"><span data-stu-id="66302-198">**where** - the where clause</span></span>
+* <span data-ttu-id="e5cea-197">**Selezionare** -hello campi toobe restituito dalla query hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-197">**select** - hello fields toobe returned from hello query</span></span>
+* <span data-ttu-id="e5cea-198">**dove** : hello dove clausola</span><span class="sxs-lookup"><span data-stu-id="e5cea-198">**where** - hello where clause</span></span>
 
-  * <span data-ttu-id="66302-199">**and**: una condizione where`and`.</span><span class="sxs-lookup"><span data-stu-id="66302-199">**and** - an `and` where condition</span></span>
-  * <span data-ttu-id="66302-200">**or**: una condizione where `or`.</span><span class="sxs-lookup"><span data-stu-id="66302-200">**or** - an `or` where condition</span></span>
-* <span data-ttu-id="66302-201">**top** : il numero di elementi da recuperare.</span><span class="sxs-lookup"><span data-stu-id="66302-201">**top** - the number of items to fetch</span></span>
+  * <span data-ttu-id="e5cea-199">**and**: una condizione where`and`.</span><span class="sxs-lookup"><span data-stu-id="e5cea-199">**and** - an `and` where condition</span></span>
+  * <span data-ttu-id="e5cea-200">**or**: una condizione where `or`.</span><span class="sxs-lookup"><span data-stu-id="e5cea-200">**or** - an `or` where condition</span></span>
+* <span data-ttu-id="e5cea-201">**inizio** -numero di elementi toofetch hello</span><span class="sxs-lookup"><span data-stu-id="e5cea-201">**top** - hello number of items toofetch</span></span>
 
-<span data-ttu-id="66302-202">L'esempio seguente crea una query che restituisce i primi cinque elementi con PartitionKey 'hometasks'.</span><span class="sxs-lookup"><span data-stu-id="66302-202">The following example builds a query that will return the top five items with a PartitionKey of 'hometasks'.</span></span>
+<span data-ttu-id="e5cea-202">Hello esempio seguente viene compilata una query che verrà restituiti hello primi cinque elementi con un PartitionKey di 'hometasks'.</span><span class="sxs-lookup"><span data-stu-id="e5cea-202">hello following example builds a query that will return hello top five items with a PartitionKey of 'hometasks'.</span></span>
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -276,7 +276,7 @@ var query = new azure.TableQuery()
   .where('PartitionKey eq ?', 'hometasks');
 ```
 
-<span data-ttu-id="66302-203">Poiché **select** non viene usato, vengono restituiti tutti i campi.</span><span class="sxs-lookup"><span data-stu-id="66302-203">Since **select** is not used, all fields will be returned.</span></span> <span data-ttu-id="66302-204">Per eseguire la query su una tabella, usare **queryEntities**.</span><span class="sxs-lookup"><span data-stu-id="66302-204">To perform the query against a table, use **queryEntities**.</span></span> <span data-ttu-id="66302-205">Nell'esempio seguente viene usata questa query per restituire entità da 'mytable'.</span><span class="sxs-lookup"><span data-stu-id="66302-205">The following example uses this query to return entities from 'mytable'.</span></span>
+<span data-ttu-id="e5cea-203">Poiché **select** non viene usato, vengono restituiti tutti i campi.</span><span class="sxs-lookup"><span data-stu-id="e5cea-203">Since **select** is not used, all fields will be returned.</span></span> <span data-ttu-id="e5cea-204">una tabella, utilizzare query hello tooperform **queryEntities**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-204">tooperform hello query against a table, use **queryEntities**.</span></span> <span data-ttu-id="e5cea-205">Hello seguente viene utilizzata questa entità tooreturn query da "mytable".</span><span class="sxs-lookup"><span data-stu-id="e5cea-205">hello following example uses this query tooreturn entities from 'mytable'.</span></span>
 
 ```nodejs
 tableSvc.queryEntities('mytable',query, null, function(error, result, response) {
@@ -286,11 +286,11 @@ tableSvc.queryEntities('mytable',query, null, function(error, result, response) 
 });
 ```
 
-<span data-ttu-id="66302-206">Se la query ha esito positivo, `result.entries` conterrà una matrice delle entità che corrispondono alla query.</span><span class="sxs-lookup"><span data-stu-id="66302-206">If successful, `result.entries` will contain an array of entities that match the query.</span></span> <span data-ttu-id="66302-207">Se la query non è in grado di restituire tutte le entità, `result.continuationToken` sarà un valore diverso da -*null* e potrà essere usato come terzo parametro di **queryEntities** per recuperare più risultati.</span><span class="sxs-lookup"><span data-stu-id="66302-207">If the query was unable to return all entities, `result.continuationToken` will be non-*null* and can be used as the third parameter of **queryEntities** to retrieve more results.</span></span> <span data-ttu-id="66302-208">Per la query iniziale, utilizzare *null* per il terzo parametro.</span><span class="sxs-lookup"><span data-stu-id="66302-208">For the initial query, use *null* for the third parameter.</span></span>
+<span data-ttu-id="e5cea-206">Se ha esito positivo, `result.entries` conterrà una matrice di entità che soddisfano la query hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-206">If successful, `result.entries` will contain an array of entities that match hello query.</span></span> <span data-ttu-id="e5cea-207">Se non è possibile tooreturn query hello tutte le entità, `result.continuationToken` sarà non*null* e può essere utilizzato come terzo parametro del hello **queryEntities** tooretrieve altri risultati.</span><span class="sxs-lookup"><span data-stu-id="e5cea-207">If hello query was unable tooreturn all entities, `result.continuationToken` will be non-*null* and can be used as hello third parameter of **queryEntities** tooretrieve more results.</span></span> <span data-ttu-id="e5cea-208">Per le query iniziale hello, utilizzare *null* per terzo parametro hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-208">For hello initial query, use *null* for hello third parameter.</span></span>
 
-### <a name="query-a-subset-of-entity-properties"></a><span data-ttu-id="66302-209">Eseguire query su un subset di proprietà di entità</span><span class="sxs-lookup"><span data-stu-id="66302-209">Query a subset of entity properties</span></span>
-<span data-ttu-id="66302-210">Una query su una tabella può recuperare solo alcuni campi da un'entità.</span><span class="sxs-lookup"><span data-stu-id="66302-210">A query to a table can retrieve just a few fields from an entity.</span></span>
-<span data-ttu-id="66302-211">Questa tecnica permette di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni.</span><span class="sxs-lookup"><span data-stu-id="66302-211">This reduces bandwidth and can improve query performance, especially for large entities.</span></span> <span data-ttu-id="66302-212">Usare la clausola **select** e passare i nomi dei campi da restituire.</span><span class="sxs-lookup"><span data-stu-id="66302-212">Use the **select** clause and pass the names of the fields to be returned.</span></span> <span data-ttu-id="66302-213">Ad esempio, la query seguente restituisce solo i campi **description** e **dueDate**.</span><span class="sxs-lookup"><span data-stu-id="66302-213">For example, the following query will return only the **description** and **dueDate** fields.</span></span>
+### <a name="query-a-subset-of-entity-properties"></a><span data-ttu-id="e5cea-209">Eseguire query su un subset di proprietà di entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-209">Query a subset of entity properties</span></span>
+<span data-ttu-id="e5cea-210">Una tabella di tooa query è possibile recuperare un numero ridotto di campi da un'entità.</span><span class="sxs-lookup"><span data-stu-id="e5cea-210">A query tooa table can retrieve just a few fields from an entity.</span></span>
+<span data-ttu-id="e5cea-211">Questa tecnica permette di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni.</span><span class="sxs-lookup"><span data-stu-id="e5cea-211">This reduces bandwidth and can improve query performance, especially for large entities.</span></span> <span data-ttu-id="e5cea-212">Hello utilizzare **selezionare** clausola e passare i nomi di hello campi toobe hello restituiti.</span><span class="sxs-lookup"><span data-stu-id="e5cea-212">Use hello **select** clause and pass hello names of hello fields toobe returned.</span></span> <span data-ttu-id="e5cea-213">Ad esempio, hello query seguente restituirà solo hello **descrizione** e **dueDate** campi.</span><span class="sxs-lookup"><span data-stu-id="e5cea-213">For example, hello following query will return only hello **description** and **dueDate** fields.</span></span>
 
 ```nodejs
 var query = new azure.TableQuery()
@@ -299,8 +299,8 @@ var query = new azure.TableQuery()
   .where('PartitionKey eq ?', 'hometasks');
 ```
 
-## <a name="delete-an-entity"></a><span data-ttu-id="66302-214">Eliminare un'entità</span><span class="sxs-lookup"><span data-stu-id="66302-214">Delete an entity</span></span>
-<span data-ttu-id="66302-215">È possibile eliminare un'entità utilizzando le relative chiavi di riga e di partizione.</span><span class="sxs-lookup"><span data-stu-id="66302-215">You can delete an entity using its partition and row keys.</span></span> <span data-ttu-id="66302-216">In questo esempio, l'oggetto **task1** contiene i valori **RowKey** e **PartitionKey** dell'entità da eliminare.</span><span class="sxs-lookup"><span data-stu-id="66302-216">In this example, the **task1** object contains the **RowKey** and **PartitionKey** values of the entity to be deleted.</span></span> <span data-ttu-id="66302-217">L'oggetto viene quindi passato al metodo **deleteEntity** .</span><span class="sxs-lookup"><span data-stu-id="66302-217">Then the object is passed to the **deleteEntity** method.</span></span>
+## <a name="delete-an-entity"></a><span data-ttu-id="e5cea-214">Eliminare un'entità</span><span class="sxs-lookup"><span data-stu-id="e5cea-214">Delete an entity</span></span>
+<span data-ttu-id="e5cea-215">È possibile eliminare un'entità utilizzando le relative chiavi di riga e di partizione.</span><span class="sxs-lookup"><span data-stu-id="e5cea-215">You can delete an entity using its partition and row keys.</span></span> <span data-ttu-id="e5cea-216">In questo esempio hello **Attività1** oggetto contiene hello **RowKey** e **PartitionKey** valori di hello entità toobe eliminato.</span><span class="sxs-lookup"><span data-stu-id="e5cea-216">In this example, hello **task1** object contains hello **RowKey** and **PartitionKey** values of hello entity toobe deleted.</span></span> <span data-ttu-id="e5cea-217">L'oggetto hello è passato toohello **deleteEntity** metodo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-217">Then hello object is passed toohello **deleteEntity** method.</span></span>
 
 ```nodejs
 var task = {
@@ -316,12 +316,12 @@ tableSvc.deleteEntity('mytable', task, function(error, response){
 ```
 
 > [!NOTE]
-> <span data-ttu-id="66302-218">Quando si eliminano elementi, è bene valutare l'uso di ETag per assicurarsi che l'elemento non sia stato modificato da un altro processo.</span><span class="sxs-lookup"><span data-stu-id="66302-218">Consider using ETags when deleting items, to ensure that the item hasn't been modified by another process.</span></span> <span data-ttu-id="66302-219">Vedere [Aggiornare un'entità](#update-an-entity) per informazioni sull'uso di ETag.</span><span class="sxs-lookup"><span data-stu-id="66302-219">See [Update an entity](#update-an-entity) for information on using ETags.</span></span>
+> <span data-ttu-id="e5cea-218">È consigliabile utilizzare valori eTag durante l'eliminazione di elementi, tooensure che hello elemento non è stato modificato da un altro processo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-218">Consider using ETags when deleting items, tooensure that hello item hasn't been modified by another process.</span></span> <span data-ttu-id="e5cea-219">Vedere [Aggiornare un'entità](#update-an-entity) per informazioni sull'uso di ETag.</span><span class="sxs-lookup"><span data-stu-id="e5cea-219">See [Update an entity](#update-an-entity) for information on using ETags.</span></span>
 >
 >
 
-## <a name="delete-a-table"></a><span data-ttu-id="66302-220">Eliminare una tabella</span><span class="sxs-lookup"><span data-stu-id="66302-220">Delete a table</span></span>
-<span data-ttu-id="66302-221">Nell'esempio di codice seguente viene illustrato come eliminare una tabella da un account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="66302-221">The following code deletes a table from a storage account.</span></span>
+## <a name="delete-a-table"></a><span data-ttu-id="e5cea-220">Eliminare una tabella</span><span class="sxs-lookup"><span data-stu-id="e5cea-220">Delete a table</span></span>
+<span data-ttu-id="e5cea-221">Hello di codice seguente elimina una tabella da un account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="e5cea-221">hello following code deletes a table from a storage account.</span></span>
 
 ```nodejs
 tableSvc.deleteTable('mytable', function(error, response){
@@ -331,14 +331,14 @@ tableSvc.deleteTable('mytable', function(error, response){
 });
 ```
 
-<span data-ttu-id="66302-222">Se non si è certi dell'esistenza della tabella, usare **deleteTableIfExists**.</span><span class="sxs-lookup"><span data-stu-id="66302-222">If you are uncertain whether the table exists, use **deleteTableIfExists**.</span></span>
+<span data-ttu-id="e5cea-222">Se non si è certi se la tabella hello esiste, utilizzare **deleteTableIfExists**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-222">If you are uncertain whether hello table exists, use **deleteTableIfExists**.</span></span>
 
-## <a name="use-continuation-tokens"></a><span data-ttu-id="66302-223">Utilizzare i token di continuazione</span><span class="sxs-lookup"><span data-stu-id="66302-223">Use continuation tokens</span></span>
-<span data-ttu-id="66302-224">Quando si esegue una query di tabelle di grandi quantità di risultati, ricercare i token di continuazione.</span><span class="sxs-lookup"><span data-stu-id="66302-224">When you are querying tables for large amounts of results, look for continuation tokens.</span></span> <span data-ttu-id="66302-225">Potrebbero essere disponibili grandi quantità di dati per la query di cui si potrebbe non essere consapevoli se non si compila il riconoscimento della presenza di un token di continuazione.</span><span class="sxs-lookup"><span data-stu-id="66302-225">There may be large amounts of data available for your query that you might not realize if you do not build to recognize when a continuation token is present.</span></span>
+## <a name="use-continuation-tokens"></a><span data-ttu-id="e5cea-223">Utilizzare i token di continuazione</span><span class="sxs-lookup"><span data-stu-id="e5cea-223">Use continuation tokens</span></span>
+<span data-ttu-id="e5cea-224">Quando si esegue una query di tabelle di grandi quantità di risultati, ricercare i token di continuazione.</span><span class="sxs-lookup"><span data-stu-id="e5cea-224">When you are querying tables for large amounts of results, look for continuation tokens.</span></span> <span data-ttu-id="e5cea-225">Potrebbero essere disponibili per la query che si potrebbero non essere consapevoli se toorecognize non compilato quando è presente un token di continuazione grandi quantità di dati.</span><span class="sxs-lookup"><span data-stu-id="e5cea-225">There may be large amounts of data available for your query that you might not realize if you do not build toorecognize when a continuation token is present.</span></span>
 
-<span data-ttu-id="66302-226">L'oggetto results restituito quando si esegue una query sulle entità imposta una proprietà `continuationToken` se è presente un token di questo tipo.</span><span class="sxs-lookup"><span data-stu-id="66302-226">The results object returned during querying entities sets a `continuationToken` property when such a token is present.</span></span> <span data-ttu-id="66302-227">È possibile quindi utilizzarlo quando si esegue una query per continuare a spostarsi tra le entità della partizione e della tabella.</span><span class="sxs-lookup"><span data-stu-id="66302-227">You can then use this when performing a query to continue to move across the partition and table entities.</span></span>
+<span data-ttu-id="e5cea-226">risultati Hello restituiti durante l'esecuzione di query su set di entità dell'oggetto un `continuationToken` proprietà quando è presente un token di questo tipo.</span><span class="sxs-lookup"><span data-stu-id="e5cea-226">hello results object returned during querying entities sets a `continuationToken` property when such a token is present.</span></span> <span data-ttu-id="e5cea-227">È quindi possibile utilizzare questo durante l'esecuzione di un toomove toocontinue query tra le entità di partizione e la tabella hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-227">You can then use this when performing a query toocontinue toomove across hello partition and table entities.</span></span>
 
-<span data-ttu-id="66302-228">Quando si esegue una query, è possibile specificare un parametro continuationToken tra l'istanza dell'oggetto della query e la funzione di richiamata:</span><span class="sxs-lookup"><span data-stu-id="66302-228">When querying, a continuationToken parameter may be provided between the query object instance and the callback function:</span></span>
+<span data-ttu-id="e5cea-228">Quando si eseguono query, è possibile specificare un parametro continuationToken tra l'istanza dell'oggetto query hello e funzione di callback hello:</span><span class="sxs-lookup"><span data-stu-id="e5cea-228">When querying, a continuationToken parameter may be provided between hello query object instance and hello callback function:</span></span>
 
 ```nodejs
 var nextContinuationToken = null;
@@ -357,16 +357,16 @@ dc.table.queryEntities(tableName,
     });
 ```
 
-<span data-ttu-id="66302-229">Se si osserva l'oggetto `continuationToken`, si troveranno proprietà come `nextPartitionKey`, `nextRowKey` e `targetLocation` che possono essere usate per eseguire l'iterazione di tutti i risultati.</span><span class="sxs-lookup"><span data-stu-id="66302-229">If you inspect the `continuationToken` object, you will find properties such as `nextPartitionKey`, `nextRowKey` and `targetLocation`, which can be used to iterate through all the results.</span></span>
+<span data-ttu-id="e5cea-229">Se si analizza hello `continuationToken` oggetto, sono disponibili le proprietà, ad esempio `nextPartitionKey`, `nextRowKey` e `targetLocation`, che può essere utilizzato tooiterate tramite tutti i risultati di hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-229">If you inspect hello `continuationToken` object, you will find properties such as `nextPartitionKey`, `nextRowKey` and `targetLocation`, which can be used tooiterate through all hello results.</span></span>
 
-<span data-ttu-id="66302-230">È inoltre disponibile un esempio di continuazione all'interno del repository Node.js di Archiviazione di Azure su GitHub.</span><span class="sxs-lookup"><span data-stu-id="66302-230">There is also a continuation sample within the Azure Storage Node.js repo on GitHub.</span></span> <span data-ttu-id="66302-231">Cercare `examples/samples/continuationsample.js`.</span><span class="sxs-lookup"><span data-stu-id="66302-231">Look for `examples/samples/continuationsample.js`.</span></span>
+<span data-ttu-id="e5cea-230">È inoltre disponibile un esempio di continuazione in repository di hello Azure Storage Node.js su GitHub.</span><span class="sxs-lookup"><span data-stu-id="e5cea-230">There is also a continuation sample within hello Azure Storage Node.js repo on GitHub.</span></span> <span data-ttu-id="e5cea-231">Cercare `examples/samples/continuationsample.js`.</span><span class="sxs-lookup"><span data-stu-id="e5cea-231">Look for `examples/samples/continuationsample.js`.</span></span>
 
-## <a name="work-with-shared-access-signatures"></a><span data-ttu-id="66302-232">Usare le firme di accesso condiviso di Azure</span><span class="sxs-lookup"><span data-stu-id="66302-232">Work with shared access signatures</span></span>
-<span data-ttu-id="66302-233">Le firme di accesso condiviso rappresentano un modo sicuro per fornire accesso granulare alle tabelle senza specificare il nome o le chiavi dell'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="66302-233">Shared access signatures (SAS) are a secure way to provide granular access to tables without providing your storage account name or keys.</span></span> <span data-ttu-id="66302-234">Le firme di accesso condiviso vengono spesso usate per fornire accesso limitato ai dati, ad esempio per consentire a un'app per dispositivi mobili di eseguire query sui record.</span><span class="sxs-lookup"><span data-stu-id="66302-234">SAS are often used to provide limited access to your data, such as allowing a mobile app to query records.</span></span>
+## <a name="work-with-shared-access-signatures"></a><span data-ttu-id="e5cea-232">Usare le firme di accesso condiviso di Azure</span><span class="sxs-lookup"><span data-stu-id="e5cea-232">Work with shared access signatures</span></span>
+<span data-ttu-id="e5cea-233">Firme di accesso condiviso (SAS) sono un tootables di accesso granulare tooprovide in modo sicuro senza fornire il nome account di archiviazione o chiavi.</span><span class="sxs-lookup"><span data-stu-id="e5cea-233">Shared access signatures (SAS) are a secure way tooprovide granular access tootables without providing your storage account name or keys.</span></span> <span data-ttu-id="e5cea-234">Firma di accesso condiviso è spesso i dati tooyour di accesso utilizzato tooprovide limitate, ad esempio per consentire a un'app mobile tooquery record.</span><span class="sxs-lookup"><span data-stu-id="e5cea-234">SAS are often used tooprovide limited access tooyour data, such as allowing a mobile app tooquery records.</span></span>
 
-<span data-ttu-id="66302-235">Un'applicazione attendibile, ad esempio un servizio basato sul cloud, genera una firma di accesso condiviso tramite il metodo **generateSharedAccessSignature** dell'oggetto **TableService** e la fornisce a un'applicazione non attendibile o parzialmente attendibile, ad esempio a un'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="66302-235">A trusted application such as a cloud-based service generates a SAS using the **generateSharedAccessSignature** of the **TableService**, and provides it to an untrusted or semi-trusted application such as a mobile app.</span></span> <span data-ttu-id="66302-236">La firma di accesso condiviso viene generata tramite un criterio che indica le date di inizio e di fine del periodo di validità della firma, nonché il livello di accesso concesso al titolare della firma di accesso condiviso.</span><span class="sxs-lookup"><span data-stu-id="66302-236">The SAS is generated using a policy, which describes the start and end dates during which the SAS is valid, as well as the access level granted to the SAS holder.</span></span>
+<span data-ttu-id="e5cea-235">Un'applicazione attendibile, ad esempio un servizio basato su cloud genera una firma di accesso condiviso utilizzando hello **generateSharedAccessSignature** di hello **TableService**e fornisce tooan applicazione non attendibile o semi-trusted ad esempio un'app per dispositivi mobili.</span><span class="sxs-lookup"><span data-stu-id="e5cea-235">A trusted application such as a cloud-based service generates a SAS using hello **generateSharedAccessSignature** of hello **TableService**, and provides it tooan untrusted or semi-trusted application such as a mobile app.</span></span> <span data-ttu-id="e5cea-236">Hello firma di accesso condiviso viene generato utilizzando un criterio, che descrive l'avvio di hello e fine in cui hello firma di accesso condiviso è valido, nonché hello titolare SAS toohello concesso livello di accesso.</span><span class="sxs-lookup"><span data-stu-id="e5cea-236">hello SAS is generated using a policy, which describes hello start and end dates during which hello SAS is valid, as well as hello access level granted toohello SAS holder.</span></span>
 
-<span data-ttu-id="66302-237">Nell'esempio seguente viene generato un nuovo criterio di accesso condiviso che consentirà al titolare della firma di accesso condiviso di eseguire una query ('r') per la tabella e che scadrà 100 minuti dopo la data di creazione.</span><span class="sxs-lookup"><span data-stu-id="66302-237">The following example generates a new shared access policy that will allow the SAS holder to query ('r') the table, and expires 100 minutes after the time it is created.</span></span>
+<span data-ttu-id="e5cea-237">Hello esempio seguente genera un nuovo criterio di accesso condiviso che consentirà di hello tabella hello SAS titolare tooquery ("r") e scade 100 minuti dopo il tempo di hello che viene creato.</span><span class="sxs-lookup"><span data-stu-id="e5cea-237">hello following example generates a new shared access policy that will allow hello SAS holder tooquery ('r') hello table, and expires 100 minutes after hello time it is created.</span></span>
 
 ```nodejs
 var startDate = new Date();
@@ -386,9 +386,9 @@ var tableSAS = tableSvc.generateSharedAccessSignature('mytable', sharedAccessPol
 var host = tableSvc.host;
 ```
 
-<span data-ttu-id="66302-238">Si noti che è necessario fornire anche le informazioni sull'host, in quanto sono necessarie quando il titolare della firma di accesso condiviso tenta di accedere alla tabella.</span><span class="sxs-lookup"><span data-stu-id="66302-238">Note that the host information must be provided also, as it is required when the SAS holder attempts to access the table.</span></span>
+<span data-ttu-id="e5cea-238">Si noti che le informazioni sull'host hello deve essere fornito, come richiesto quando titolare SAS hello tenta anche tabella hello tooaccess.</span><span class="sxs-lookup"><span data-stu-id="e5cea-238">Note that hello host information must be provided also, as it is required when hello SAS holder attempts tooaccess hello table.</span></span>
 
-<span data-ttu-id="66302-239">L'applicazione client usa quindi la firma di accesso condiviso con il metodo **TableServiceWithSAS** per eseguire operazioni sulla tabella.</span><span class="sxs-lookup"><span data-stu-id="66302-239">The client application then uses the SAS with **TableServiceWithSAS** to perform operations against the table.</span></span> <span data-ttu-id="66302-240">Nell'esempio seguente viene eseguita la connessione alla tabella e viene eseguita una query.</span><span class="sxs-lookup"><span data-stu-id="66302-240">The following example connects to the table and performs a query.</span></span>
+<span data-ttu-id="e5cea-239">Hello applicazione client, quindi Usa hello SAS con **TableServiceWithSAS** tooperform operazioni sulla tabella hello.</span><span class="sxs-lookup"><span data-stu-id="e5cea-239">hello client application then uses hello SAS with **TableServiceWithSAS** tooperform operations against hello table.</span></span> <span data-ttu-id="e5cea-240">Hello di esempio seguente si connette toohello tabella ed esegue una query.</span><span class="sxs-lookup"><span data-stu-id="e5cea-240">hello following example connects toohello table and performs a query.</span></span>
 
 ```nodejs
 var sharedTableService = azure.createTableServiceWithSas(host, tableSAS);
@@ -397,17 +397,17 @@ var query = azure.TableQuery()
 
 sharedTableService.queryEntities(query, null, function(error, result, response) {
   if(!error) {
-    // result contains the entities
+    // result contains hello entities
   }
 });
 ```
 
-<span data-ttu-id="66302-241">Poiché la firma di accesso condiviso è stata generata con accesso solo query, se si tentasse di inserire, aggiornare o eliminare le entità verrebbe restituito un errore.</span><span class="sxs-lookup"><span data-stu-id="66302-241">Since the SAS was generated with only query access, if an attempt were made to insert, update, or delete entities, an error would be returned.</span></span>
+<span data-ttu-id="e5cea-241">Poiché hello firma di accesso condiviso è stato generato con il solo accesso query, se un tentativo sono stato apportato tooinsert, aggiornare o eliminare le entità, verrà restituito un errore.</span><span class="sxs-lookup"><span data-stu-id="e5cea-241">Since hello SAS was generated with only query access, if an attempt were made tooinsert, update, or delete entities, an error would be returned.</span></span>
 
-### <a name="access-control-lists"></a><span data-ttu-id="66302-242">Elenchi di controllo di accesso</span><span class="sxs-lookup"><span data-stu-id="66302-242">Access Control Lists</span></span>
-<span data-ttu-id="66302-243">Per impostare i criteri di accesso per una firma di accesso condiviso è anche possibile usare un elenco di controllo di accesso.</span><span class="sxs-lookup"><span data-stu-id="66302-243">You can also use an Access Control List (ACL) to set the access policy for a SAS.</span></span> <span data-ttu-id="66302-244">Questa soluzione è utile quando si vuole consentire a più client di accedere alla tabella, impostando tuttavia criteri di accesso diversi per ogni client.</span><span class="sxs-lookup"><span data-stu-id="66302-244">This is useful if you wish to allow multiple clients to access the table, but provide different access policies for each client.</span></span>
+### <a name="access-control-lists"></a><span data-ttu-id="e5cea-242">Elenchi di controllo di accesso</span><span class="sxs-lookup"><span data-stu-id="e5cea-242">Access Control Lists</span></span>
+<span data-ttu-id="e5cea-243">È inoltre possibile utilizzare un criterio di accesso hello tooset elenco di controllo di accesso (ACL) per una firma di accesso condiviso.</span><span class="sxs-lookup"><span data-stu-id="e5cea-243">You can also use an Access Control List (ACL) tooset hello access policy for a SAS.</span></span> <span data-ttu-id="e5cea-244">Ciò è utile se si desiderano tooallow più tabelle di hello tooaccess client, ma forniscono criteri di accesso diversi per ogni client.</span><span class="sxs-lookup"><span data-stu-id="e5cea-244">This is useful if you wish tooallow multiple clients tooaccess hello table, but provide different access policies for each client.</span></span>
 
-<span data-ttu-id="66302-245">Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio.</span><span class="sxs-lookup"><span data-stu-id="66302-245">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="66302-246">L'esempio seguente definisce due criteri, uno per 'user1' e uno per 'user2':</span><span class="sxs-lookup"><span data-stu-id="66302-246">The following example defines two policies, one for 'user1' and one for 'user2':</span></span>
+<span data-ttu-id="e5cea-245">Un elenco di controllo di accesso viene implementato usando una matrice di criteri di accesso, con un ID associato a ogni criterio.</span><span class="sxs-lookup"><span data-stu-id="e5cea-245">An ACL is implemented using an array of access policies, with an ID associated with each policy.</span></span> <span data-ttu-id="e5cea-246">Hello di esempio seguente definisce due criteri, uno per "user1" e uno per 'Utente2':</span><span class="sxs-lookup"><span data-stu-id="e5cea-246">hello following example defines two policies, one for 'user1' and one for 'user2':</span></span>
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -424,7 +424,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-<span data-ttu-id="66302-247">L'esempio seguente recupera l'elenco di controllo di accesso corrente per la tabella **hometasks** e quindi aggiunge i nuovi criteri tramite **setTableAcl**.</span><span class="sxs-lookup"><span data-stu-id="66302-247">The following example gets the current ACL for the **hometasks** table, and then adds the new policies using **setTableAcl**.</span></span> <span data-ttu-id="66302-248">Risultato:</span><span class="sxs-lookup"><span data-stu-id="66302-248">This approach allows:</span></span>
+<span data-ttu-id="e5cea-247">Hello seguente esempio ottiene hello gli ACL per hello **hometasks** tabella e quindi aggiunge nuovi criteri hello utilizzando **setTableAcl**.</span><span class="sxs-lookup"><span data-stu-id="e5cea-247">hello following example gets hello current ACL for hello **hometasks** table, and then adds hello new policies using **setTableAcl**.</span></span> <span data-ttu-id="e5cea-248">Risultato:</span><span class="sxs-lookup"><span data-stu-id="e5cea-248">This approach allows:</span></span>
 
 ```nodejs
 var extend = require('extend');
@@ -440,16 +440,16 @@ if(!error){
 });
 ```
 
-<span data-ttu-id="66302-249">Dopo avere impostato l'elenco di controllo di accesso, è possibile creare una firma di accesso condiviso in base all'ID di un criterio.</span><span class="sxs-lookup"><span data-stu-id="66302-249">Once the ACL has been set, you can then create a SAS based on the ID for a policy.</span></span> <span data-ttu-id="66302-250">Nell'esempio seguente viene creata una nuova firma di accesso condiviso per 'user2':</span><span class="sxs-lookup"><span data-stu-id="66302-250">The following example creates a new SAS for 'user2':</span></span>
+<span data-ttu-id="e5cea-249">Una volta hello che ACL è stato impostato, è quindi possibile creare una firma di accesso condiviso in base all'ID di hello per un criterio.</span><span class="sxs-lookup"><span data-stu-id="e5cea-249">Once hello ACL has been set, you can then create a SAS based on hello ID for a policy.</span></span> <span data-ttu-id="e5cea-250">Hello di esempio seguente crea una nuova firma di accesso condiviso per 'Utente2':</span><span class="sxs-lookup"><span data-stu-id="e5cea-250">hello following example creates a new SAS for 'user2':</span></span>
 
 ```nodejs
 tableSAS = tableSvc.generateSharedAccessSignature('hometasks', { Id: 'user2' });
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="66302-251">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="66302-251">Next steps</span></span>
-<span data-ttu-id="66302-252">Per altre informazioni, vedere le risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="66302-252">For more information, see the following resources.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e5cea-251">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e5cea-251">Next steps</span></span>
+<span data-ttu-id="e5cea-252">Per ulteriori informazioni, vedere hello seguenti risorse.</span><span class="sxs-lookup"><span data-stu-id="e5cea-252">For more information, see hello following resources.</span></span>
 
-* <span data-ttu-id="66302-253">[Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma gratuita di Microsoft che consente di rappresentare facilmente dati di Archiviazione di Azure in Windows, macOS e Linux.</span><span class="sxs-lookup"><span data-stu-id="66302-253">[Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you to work visually with Azure Storage data on Windows, macOS, and Linux.</span></span>
-* <span data-ttu-id="66302-254">[Azure Storage SDK per Node](https://github.com/Azure/azure-storage-node) su GitHub.</span><span class="sxs-lookup"><span data-stu-id="66302-254">[Azure Storage SDK for Node](https://github.com/Azure/azure-storage-node) repository on GitHub.</span></span>
-* [<span data-ttu-id="66302-255">Centro per sviluppatori di Node.js</span><span class="sxs-lookup"><span data-stu-id="66302-255">Node.js Developer Center</span></span>](/develop/nodejs/)
-* [<span data-ttu-id="66302-256">Creare e distribuire un'applicazione Node.js in un sito Web di Azure</span><span class="sxs-lookup"><span data-stu-id="66302-256">Create and deploy a Node.js application to an Azure website</span></span>](../app-service-web/app-service-web-get-started-nodejs.md)
+* <span data-ttu-id="e5cea-253">[Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma, disponibile da Microsoft che consente di toowork visivamente i dati di archiviazione di Azure in Windows, macOS e Linux.</span><span class="sxs-lookup"><span data-stu-id="e5cea-253">[Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) is a free, standalone app from Microsoft that enables you toowork visually with Azure Storage data on Windows, macOS, and Linux.</span></span>
+* <span data-ttu-id="e5cea-254">[Azure Storage SDK per Node](https://github.com/Azure/azure-storage-node) su GitHub.</span><span class="sxs-lookup"><span data-stu-id="e5cea-254">[Azure Storage SDK for Node](https://github.com/Azure/azure-storage-node) repository on GitHub.</span></span>
+* [<span data-ttu-id="e5cea-255">Centro per sviluppatori di Node. js</span><span class="sxs-lookup"><span data-stu-id="e5cea-255">Node.js Developer Center</span></span>](/develop/nodejs/)
+* [<span data-ttu-id="e5cea-256">Creare e distribuire un tooan applicazione Node.js sito Web di Azure</span><span class="sxs-lookup"><span data-stu-id="e5cea-256">Create and deploy a Node.js application tooan Azure website</span></span>](../app-service-web/app-service-web-get-started-nodejs.md)

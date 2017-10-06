@@ -14,17 +14,17 @@
 
 # Procedure
 ## Pianificare e progettare
-### [Informazioni aggiuntive sull'architettura push aziendale](notification-hubs-enterprise-push-notification-architecture.md)
+### [Guida all'architettura push aziendale](notification-hubs-enterprise-push-notification-architecture.md)
 
 ## Sviluppare
-### [Inviare notifiche push ad Android usando GCM](notification-hubs-android-push-notification-google-gcm-get-started.md)
+### [Inviare tooAndroid di notifiche push con GCM](notification-hubs-android-push-notification-google-gcm-get-started.md)
 ### [Effettuare il push di notifiche con recinto virtuale con dati spaziali di Bing](notification-hubs-push-bing-spartial-data-geofencing-notification.md)
-### Effettuare il push a utenti specifici
+### Utenti toospecific push
 #### [Android](notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md)
 #### [iOS](notification-hubs-aspnet-backend-ios-apple-apns-notification.md)
 #### [Windows](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md)
 
-#### [Registrare l'utente corrente usando ASP.NET](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
+#### [Registrare l'utente corrente di hello con ASP.NET](notification-hubs-ios-aspnet-register-user-from-backend-to-push-notification.md)
 ### [Inviare notifiche multipiattaforma](notification-hubs-aspnet-cross-platform-notification.md)
 ### Uso degli SDK del server
 #### [.NET](https://msdn.microsoft.com/library/mt414893.aspx)

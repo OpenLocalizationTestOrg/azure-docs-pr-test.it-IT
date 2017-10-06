@@ -1,6 +1,6 @@
 ---
-title: "Creare una macchina virtuale con più schede di interfaccia di rete - Azure PowerShell | Documentazione Microsoft"
-description: "Informazioni su come creare una VM con più schede di interfaccia di rete mediante PowerShell."
+title: "una macchina virtuale con più schede di rete - Azure PowerShell aaaCreate | Documenti Microsoft"
+description: "Informazioni su come toocreate una macchina virtuale con più schede di rete con PowerShell."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,55 +16,55 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3a11afd8fbd6a5e6b94cf1ebee7ea20665421bd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 507a413510da3ee69aefed324977ee40e442268b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-vm-with-multiple-nics-using-powershell"></a><span data-ttu-id="496b2-103">Creare una macchina virtuale con più schede di interfaccia di rete usando PowerShell</span><span class="sxs-lookup"><span data-stu-id="496b2-103">Create a VM with multiple NICs using PowerShell</span></span>
+# <a name="create-a-vm-with-multiple-nics-using-powershell"></a><span data-ttu-id="936a4-103">Creare una macchina virtuale con più schede di interfaccia di rete usando PowerShell</span><span class="sxs-lookup"><span data-stu-id="936a4-103">Create a VM with multiple NICs using PowerShell</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="496b2-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="496b2-104">PowerShell</span></span>](virtual-network-deploy-multinic-arm-ps.md)
-> * [<span data-ttu-id="496b2-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="496b2-105">Azure CLI</span></span>](virtual-network-deploy-multinic-arm-cli.md)
-> * [<span data-ttu-id="496b2-106">Modello</span><span class="sxs-lookup"><span data-stu-id="496b2-106">Template</span></span>](virtual-network-deploy-multinic-arm-template.md)
-> * <span data-ttu-id="496b2-107">[PowerShell (Classic)](virtual-network-deploy-multinic-classic-ps.md) (PowerShell (classico))</span><span class="sxs-lookup"><span data-stu-id="496b2-107">[PowerShell (Classic)](virtual-network-deploy-multinic-classic-ps.md)</span></span>
-> * [<span data-ttu-id="496b2-108">Interfaccia della riga di comando di Azure (versione classica)</span><span class="sxs-lookup"><span data-stu-id="496b2-108">Azure CLI (Classic)</span></span>](virtual-network-deploy-multinic-classic-cli.md)
+> * [<span data-ttu-id="936a4-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="936a4-104">PowerShell</span></span>](virtual-network-deploy-multinic-arm-ps.md)
+> * [<span data-ttu-id="936a4-105">Interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="936a4-105">Azure CLI</span></span>](virtual-network-deploy-multinic-arm-cli.md)
+> * [<span data-ttu-id="936a4-106">Modello</span><span class="sxs-lookup"><span data-stu-id="936a4-106">Template</span></span>](virtual-network-deploy-multinic-arm-template.md)
+> * <span data-ttu-id="936a4-107">[PowerShell (Classic)](virtual-network-deploy-multinic-classic-ps.md) (PowerShell (classico))</span><span class="sxs-lookup"><span data-stu-id="936a4-107">[PowerShell (Classic)](virtual-network-deploy-multinic-classic-ps.md)</span></span>
+> * [<span data-ttu-id="936a4-108">Interfaccia della riga di comando di Azure (versione classica)</span><span class="sxs-lookup"><span data-stu-id="936a4-108">Azure CLI (Classic)</span></span>](virtual-network-deploy-multinic-classic-cli.md)
 
 [!INCLUDE [virtual-network-deploy-multinic-intro-include.md](../../includes/virtual-network-deploy-multinic-intro-include.md)]
 
 > [!NOTE]
-> <span data-ttu-id="496b2-109">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="496b2-109">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="496b2-110">Questo articolo illustra il modello di distribuzione Resource Manager che Microsoft consiglia di usare per le distribuzioni più recenti in sostituzione del [modello di distribuzione classica](virtual-network-deploy-multinic-classic-ps.md).</span><span class="sxs-lookup"><span data-stu-id="496b2-110">This article covers using the Resource Manager deployment model, which Microsoft recommends for most new deployments instead of the [classic deployment model](virtual-network-deploy-multinic-classic-ps.md).</span></span>
+> <span data-ttu-id="936a4-109">Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../resource-manager-deployment-model.md).</span><span class="sxs-lookup"><span data-stu-id="936a4-109">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span>  <span data-ttu-id="936a4-110">In questo articolo viene illustrato l'utilizzo modello di distribuzione di gestione delle risorse hello, si consiglia di per la maggior parte delle nuove distribuzioni anziché hello [modello di distribuzione classica](virtual-network-deploy-multinic-classic-ps.md).</span><span class="sxs-lookup"><span data-stu-id="936a4-110">This article covers using hello Resource Manager deployment model, which Microsoft recommends for most new deployments instead of hello [classic deployment model](virtual-network-deploy-multinic-classic-ps.md).</span></span>
 >
 
 [!INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-<span data-ttu-id="496b2-111">La procedura seguente usa un gruppo di risorse denominato *IaaSStory* per i server Web e un gruppo di risorse denominato *IaaSStory-BackEnd* per i server di database.</span><span class="sxs-lookup"><span data-stu-id="496b2-111">The following steps use a resource group named *IaaSStory* for the WEB servers and a resource group named *IaaSStory-BackEnd* for the DB servers.</span></span>
+<span data-ttu-id="936a4-111">i passaggi seguenti Hello utilizzano un gruppo di risorse denominato *IaaSStory* per i server WEB di hello e un gruppo di risorse denominato *IaaSStory-back-end* per i server hello DB.</span><span class="sxs-lookup"><span data-stu-id="936a4-111">hello following steps use a resource group named *IaaSStory* for hello WEB servers and a resource group named *IaaSStory-BackEnd* for hello DB servers.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="496b2-112">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="496b2-112">Prerequisites</span></span>
-<span data-ttu-id="496b2-113">Prima di creare i server di database, è necessario creare il gruppo di risorse *IaaSStory* con tutte le risorse richieste per questo scenario.</span><span class="sxs-lookup"><span data-stu-id="496b2-113">Before you can create the DB servers, you need to create the *IaaSStory* resource group with all the necessary resources for this scenario.</span></span> <span data-ttu-id="496b2-114">Per creare le risorse, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="496b2-114">To create these resources, complete the following steps:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="936a4-112">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="936a4-112">Prerequisites</span></span>
+<span data-ttu-id="936a4-113">Prima di poter creare hello server di database, è necessario hello toocreate *IaaSStory* gruppo di risorse con tutte le risorse necessarie hello per questo scenario.</span><span class="sxs-lookup"><span data-stu-id="936a4-113">Before you can create hello DB servers, you need toocreate hello *IaaSStory* resource group with all hello necessary resources for this scenario.</span></span> <span data-ttu-id="936a4-114">completare queste risorse, toocreate hello i passaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="936a4-114">toocreate these resources, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="496b2-115">Passare alla [pagina del modello](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).</span><span class="sxs-lookup"><span data-stu-id="496b2-115">Navigate to [the template page](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).</span></span>
-2. <span data-ttu-id="496b2-116">Nella pagina del modello, a destra del **gruppo di risorse padre**, fare clic su **Distribuisci in Azure**.</span><span class="sxs-lookup"><span data-stu-id="496b2-116">In the template page, to the right of **Parent resource group**, click **Deploy to Azure**.</span></span>
-3. <span data-ttu-id="496b2-117">Se necessario, modificare i valori dei parametri, quindi seguire i passaggi nel portale di anteprima di Azure per distribuire il gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="496b2-117">If needed, change the parameter values, then follow the steps in the Azure preview portal to deploy the resource group.</span></span>
+1. <span data-ttu-id="936a4-115">Passare troppo[pagina modello hello](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).</span><span class="sxs-lookup"><span data-stu-id="936a4-115">Navigate too[hello template page](https://github.com/Azure/azure-quickstart-templates/tree/master/IaaS-Story/11-MultiNIC).</span></span>
+2. <span data-ttu-id="936a4-116">Nella pagina toohello destra del modello di hello **gruppo di risorse padre**, fare clic su **distribuire tooAzure**.</span><span class="sxs-lookup"><span data-stu-id="936a4-116">In hello template page, toohello right of **Parent resource group**, click **Deploy tooAzure**.</span></span>
+3. <span data-ttu-id="936a4-117">Se necessario, modificare i valori di parametro hello, quindi seguire i passaggi hello nel gruppo di risorse hello toodeploy portale hello anteprima di Azure.</span><span class="sxs-lookup"><span data-stu-id="936a4-117">If needed, change hello parameter values, then follow hello steps in hello Azure preview portal toodeploy hello resource group.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="496b2-118">Assicurarsi che i nomi degli account di archiviazione siano univoci.</span><span class="sxs-lookup"><span data-stu-id="496b2-118">Make sure your storage account names are unique.</span></span> <span data-ttu-id="496b2-119">In Azure non sono infatti ammessi nomi di account di archiviazione duplicati.</span><span class="sxs-lookup"><span data-stu-id="496b2-119">You cannot have duplicate storage account names in Azure.</span></span>
+> <span data-ttu-id="936a4-118">Assicurarsi che i nomi degli account di archiviazione siano univoci.</span><span class="sxs-lookup"><span data-stu-id="936a4-118">Make sure your storage account names are unique.</span></span> <span data-ttu-id="936a4-119">In Azure non sono infatti ammessi nomi di account di archiviazione duplicati.</span><span class="sxs-lookup"><span data-stu-id="936a4-119">You cannot have duplicate storage account names in Azure.</span></span>
 > 
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-back-end-vms"></a><span data-ttu-id="496b2-120">Creare le macchine virtuali di back-end</span><span class="sxs-lookup"><span data-stu-id="496b2-120">Create the back-end VMs</span></span>
-<span data-ttu-id="496b2-121">Le macchine virtuali di back-end dipendono dalla creazione delle risorse seguenti:</span><span class="sxs-lookup"><span data-stu-id="496b2-121">The back-end VMs depend on the creation of the following resources:</span></span>
+## <a name="create-hello-back-end-vms"></a><span data-ttu-id="936a4-120">Creare macchine virtuali di back-end di hello</span><span class="sxs-lookup"><span data-stu-id="936a4-120">Create hello back-end VMs</span></span>
+<span data-ttu-id="936a4-121">Hello che macchine virtuali di back-end dipendono dalla creazione di hello di hello seguenti risorse:</span><span class="sxs-lookup"><span data-stu-id="936a4-121">hello back-end VMs depend on hello creation of hello following resources:</span></span>
 
-* <span data-ttu-id="496b2-122">**Account di archiviazione per i dischi dati**.</span><span class="sxs-lookup"><span data-stu-id="496b2-122">**Storage account for data disks**.</span></span> <span data-ttu-id="496b2-123">Per migliorare le prestazioni, i dischi dati sui server di database utilizzano la tecnologia SSD (Solid State Drive), che richiede un account di archiviazione premium.</span><span class="sxs-lookup"><span data-stu-id="496b2-123">For better performance, the data disks on the database servers will use solid state drive (SSD) technology, which requires a premium storage account.</span></span> <span data-ttu-id="496b2-124">Verificare che la posizione di Azure distribuita supporti l'archiviazione premium.</span><span class="sxs-lookup"><span data-stu-id="496b2-124">Make sure the Azure location you deploy to support premium storage.</span></span>
-* <span data-ttu-id="496b2-125">**Schede di rete**.</span><span class="sxs-lookup"><span data-stu-id="496b2-125">**NICs**.</span></span> <span data-ttu-id="496b2-126">Ogni macchina virtuale ha due schede di rete, una per l'accesso al database e una per la gestione.</span><span class="sxs-lookup"><span data-stu-id="496b2-126">Each VM will have two NICs, one for database access, and one for management.</span></span>
-* <span data-ttu-id="496b2-127">**Set di disponibilità**.</span><span class="sxs-lookup"><span data-stu-id="496b2-127">**Availability set**.</span></span> <span data-ttu-id="496b2-128">Tutti i server di database vengono aggiunti a un singolo set di disponibilità, per garantire che almeno una delle macchine virtuali sia attiva e in esecuzione durante la manutenzione.</span><span class="sxs-lookup"><span data-stu-id="496b2-128">All database servers will be added to a single availability set, to ensure at least one of the VMs is up and running during maintenance.</span></span>  
+* <span data-ttu-id="936a4-122">**Account di archiviazione per dischi dati**.</span><span class="sxs-lookup"><span data-stu-id="936a4-122">**Storage account for data disks**.</span></span> <span data-ttu-id="936a4-123">Per ottenere prestazioni migliori, dischi dati hello nei server di database hello utilizzerà la tecnologia di unità SSD allo stato solido, che richiede un account di archiviazione premium.</span><span class="sxs-lookup"><span data-stu-id="936a4-123">For better performance, hello data disks on hello database servers will use solid state drive (SSD) technology, which requires a premium storage account.</span></span> <span data-ttu-id="936a4-124">Verificare che hello distribuire archiviazione premium toosupport località di Azure.</span><span class="sxs-lookup"><span data-stu-id="936a4-124">Make sure hello Azure location you deploy toosupport premium storage.</span></span>
+* <span data-ttu-id="936a4-125">**Schede di rete**.</span><span class="sxs-lookup"><span data-stu-id="936a4-125">**NICs**.</span></span> <span data-ttu-id="936a4-126">Ogni macchina virtuale ha due schede di rete, una per l'accesso al database e una per la gestione.</span><span class="sxs-lookup"><span data-stu-id="936a4-126">Each VM will have two NICs, one for database access, and one for management.</span></span>
+* <span data-ttu-id="936a4-127">**Set di disponibilità**.</span><span class="sxs-lookup"><span data-stu-id="936a4-127">**Availability set**.</span></span> <span data-ttu-id="936a4-128">Tutti i server di database verranno aggiunti tooa unico set di disponibilità, tooensure almeno una delle macchine virtuali hello sia in esecuzione durante la manutenzione.</span><span class="sxs-lookup"><span data-stu-id="936a4-128">All database servers will be added tooa single availability set, tooensure at least one of hello VMs is up and running during maintenance.</span></span>  
 
-### <a name="step-1---start-your-script"></a><span data-ttu-id="496b2-129">Passaggio 1 - avviare lo script</span><span class="sxs-lookup"><span data-stu-id="496b2-129">Step 1 - Start your script</span></span>
-<span data-ttu-id="496b2-130">È possibile scaricare lo script di PowerShell completo utilizzato [qui](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1).</span><span class="sxs-lookup"><span data-stu-id="496b2-130">You can download the full PowerShell script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1).</span></span> <span data-ttu-id="496b2-131">Attenersi alla procedura seguente per modificare lo script da usare nell'ambiente.</span><span class="sxs-lookup"><span data-stu-id="496b2-131">Follow the steps below to change the script to work in your environment.</span></span>
+### <a name="step-1---start-your-script"></a><span data-ttu-id="936a4-129">Passaggio 1 - avviare lo script</span><span class="sxs-lookup"><span data-stu-id="936a4-129">Step 1 - Start your script</span></span>
+<span data-ttu-id="936a4-130">È possibile scaricare hello completo script di PowerShell utilizzato [qui](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1).</span><span class="sxs-lookup"><span data-stu-id="936a4-130">You can download hello full PowerShell script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/arm/virtual-network-deploy-multinic-arm-ps.ps1).</span></span> <span data-ttu-id="936a4-131">Eseguire operazioni di hello seguenti toochange hello script toowork nell'ambiente in uso.</span><span class="sxs-lookup"><span data-stu-id="936a4-131">Follow hello steps below toochange hello script toowork in your environment.</span></span>
 
-1. <span data-ttu-id="496b2-132">Modificare i valori delle variabili indicate di seguito in base al gruppo di risorse esistente distribuito in precedenza in [Prerequisiti](#Prerequisites).</span><span class="sxs-lookup"><span data-stu-id="496b2-132">Change the values of the variables below based on your existing resource group deployed above in [Prerequisites](#Prerequisites).</span></span>
+1. <span data-ttu-id="936a4-132">Modificare i valori hello di variabili di hello riportate di seguito in base al gruppo di risorse esistente distribuito in precedenza in [prerequisiti](#Prerequisites).</span><span class="sxs-lookup"><span data-stu-id="936a4-132">Change hello values of hello variables below based on your existing resource group deployed above in [Prerequisites](#Prerequisites).</span></span>
 
     ```powershell
     $existingRGName        = "IaaSStory"
@@ -75,7 +75,7 @@ ms.lasthandoff: 07/11/2017
     $stdStorageAccountName = "wtestvnetstoragestd"
     ```
 
-2. <span data-ttu-id="496b2-133">Modificare i valori delle variabili indicate di seguito in base ai valori che si desidera usare per la distribuzione di back-end.</span><span class="sxs-lookup"><span data-stu-id="496b2-133">Change the values of the variables below based on the values you want to use for your backend deployment.</span></span>
+2. <span data-ttu-id="936a4-133">Modificare i valori hello di variabili di hello riportate di seguito in base ai valori hello desiderato toouse per la distribuzione di back-end.</span><span class="sxs-lookup"><span data-stu-id="936a4-133">Change hello values of hello variables below based on hello values you want toouse for your backend deployment.</span></span>
 
     ```powershell
     $backendRGName         = "IaaSStory-Backend"
@@ -94,7 +94,7 @@ ms.lasthandoff: 07/11/2017
     $ipAddressPrefix       = "192.168.2."
     $numberOfVMs           = 2
     ```
-3. <span data-ttu-id="496b2-134">Recuperare le risorse esistenti necessarie per la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="496b2-134">Retrieve the existing resources needed for your deployment.</span></span>
+3. <span data-ttu-id="936a4-134">Recuperare le risorse esistenti di hello necessari per la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="936a4-134">Retrieve hello existing resources needed for your deployment.</span></span>
 
     ```powershell
     $vnet                  = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $existingRGName
@@ -103,41 +103,41 @@ ms.lasthandoff: 07/11/2017
     $stdStorageAccount     = Get-AzureRmStorageAccount -Name $stdStorageAccountName -ResourceGroupName $existingRGName
     ```
 
-### <a name="step-2---create-necessary-resources-for-your-vms"></a><span data-ttu-id="496b2-135">Passaggio 2 - Creare le risorse necessarie per le macchine virtuali</span><span class="sxs-lookup"><span data-stu-id="496b2-135">Step 2 - Create necessary resources for your VMs</span></span>
-<span data-ttu-id="496b2-136">È necessario creare un nuovo gruppo di risorse, un account di archiviazione per i dischi dati e un set di disponibilità per tutte le macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="496b2-136">You need to create a new resource group, a storage account for the data disks, and an availability set for all VMs.</span></span> <span data-ttu-id="496b2-137">Sono inoltre necessarie credenziali dell'account amministratore locale per ciascuna macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-137">You alos need the local administrator account credentials for each VM.</span></span> <span data-ttu-id="496b2-138">Per creare queste risorse, eseguire questi passaggi.</span><span class="sxs-lookup"><span data-stu-id="496b2-138">To create these resources, execute the following steps.</span></span>
+### <a name="step-2---create-necessary-resources-for-your-vms"></a><span data-ttu-id="936a4-135">Passaggio 2 - creare le risorse necessarie per le macchine virtuali</span><span class="sxs-lookup"><span data-stu-id="936a4-135">Step 2 - Create necessary resources for your VMs</span></span>
+<span data-ttu-id="936a4-136">È necessario un nuovo gruppo di risorse, un account di archiviazione per i dischi dati hello, toocreate e un gruppo di disponibilità per tutte le macchine virtuali.</span><span class="sxs-lookup"><span data-stu-id="936a4-136">You need toocreate a new resource group, a storage account for hello data disks, and an availability set for all VMs.</span></span> <span data-ttu-id="936a4-137">Le credenziali dell'account amministratore locale hello è alos necessario per ogni macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-137">You alos need hello local administrator account credentials for each VM.</span></span> <span data-ttu-id="936a4-138">esecuzione di queste risorse, toocreate hello i passaggi seguenti.</span><span class="sxs-lookup"><span data-stu-id="936a4-138">toocreate these resources, execute hello following steps.</span></span>
 
-1. <span data-ttu-id="496b2-139">Creare un nuovo gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="496b2-139">Create a new resource group.</span></span>
+1. <span data-ttu-id="936a4-139">Creare un nuovo gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="936a4-139">Create a new resource group.</span></span>
 
     ```powershell
     New-AzureRmResourceGroup -Name $backendRGName -Location $location
     ```
-2. <span data-ttu-id="496b2-140">Creare un nuovo account di archiviazione premium nel gruppo di risorse creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="496b2-140">Create a new premium storage account in the resource group created above.</span></span>
+2. <span data-ttu-id="936a4-140">Creare un nuovo account di archiviazione premium, nel gruppo di risorse hello creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="936a4-140">Create a new premium storage account in hello resource group created above.</span></span>
 
     ```powershell
     $prmStorageAccount = New-AzureRmStorageAccount -Name $prmStorageAccountName `
     -ResourceGroupName $backendRGName -Type Premium_LRS -Location $location
     ```
-3. <span data-ttu-id="496b2-141">Creare un nuovo set di disponibilità.</span><span class="sxs-lookup"><span data-stu-id="496b2-141">Create a new availability set.</span></span>
+3. <span data-ttu-id="936a4-141">Creare un nuovo set di disponibilità.</span><span class="sxs-lookup"><span data-stu-id="936a4-141">Create a new availability set.</span></span>
 
     ```powershell
     $avSet = New-AzureRmAvailabilitySet -Name $avSetName -ResourceGroupName $backendRGName -Location $location
     ```
-4. <span data-ttu-id="496b2-142">Ottenere le credenziali dell'account amministratore locale per ciascuna macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-142">Get the local administrator account credentials to be used for each VM.</span></span>
+4. <span data-ttu-id="936a4-142">Ottenere l'amministratore locale hello toobe le credenziali di account utilizzato per ogni macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-142">Get hello local administrator account credentials toobe used for each VM.</span></span>
 
     ```powershell
-    $cred = Get-Credential -Message "Type the name and password for the local administrator account."
+    $cred = Get-Credential -Message "Type hello name and password for hello local administrator account."
     ```
 
-### <a name="step-3---create-the-nics-and-back-end-vms"></a><span data-ttu-id="496b2-143">Passaggio 3 - Creare le schede di rete e le macchine virtuali di back-end</span><span class="sxs-lookup"><span data-stu-id="496b2-143">Step 3 - Create the NICs and back-end VMs</span></span>
-<span data-ttu-id="496b2-144">È necessario utilizzare un ciclo per creare tutte le macchine virtuali che si desidera e creare le schede di rete e le macchine virtuali necessarie all'interno del ciclo.</span><span class="sxs-lookup"><span data-stu-id="496b2-144">You need to use a loop to create as many VMs as you want, and create the necessary NICs and VMs within the loop.</span></span> <span data-ttu-id="496b2-145">Per creare le schede di rete e le macchine virtuali, eseguire questa procedura.</span><span class="sxs-lookup"><span data-stu-id="496b2-145">To create the NICs and VMs, execute the following steps.</span></span>
+### <a name="step-3---create-hello-nics-and-back-end-vms"></a><span data-ttu-id="936a4-143">Passaggio 3: creare le schede NIC hello e macchine virtuali di back-end</span><span class="sxs-lookup"><span data-stu-id="936a4-143">Step 3 - Create hello NICs and back-end VMs</span></span>
+<span data-ttu-id="936a4-144">È necessario un ciclo di toocreate toouse come più macchine virtuali che desidera e creare hello necessarie schede di rete e le macchine virtuali all'interno di ciclo hello.</span><span class="sxs-lookup"><span data-stu-id="936a4-144">You need toouse a loop toocreate as many VMs as you want, and create hello necessary NICs and VMs within hello loop.</span></span> <span data-ttu-id="936a4-145">hello toocreate schede di rete e le macchine virtuali, eseguire hello alla procedura seguente.</span><span class="sxs-lookup"><span data-stu-id="936a4-145">toocreate hello NICs and VMs, execute hello following steps.</span></span>
 
-1. <span data-ttu-id="496b2-146">Avviare un ciclo `for` per ripetere i comandi per la creazione di una macchina virtuale e di due schede di rete per il numero di volte necessario, in base al valore della variabile `$numberOfVMs`.</span><span class="sxs-lookup"><span data-stu-id="496b2-146">Start a `for` loop to repeat the commands to create a VM and two NICs as many times as necessary, based on the value of the `$numberOfVMs` variable.</span></span>
+1. <span data-ttu-id="936a4-146">Avviare un `for` hello toorepeat ciclo comandi toocreate una macchina virtuale e due schede di rete come numero di volte in base alle esigenze, in base al valore di hello di hello `$numberOfVMs` variabile.</span><span class="sxs-lookup"><span data-stu-id="936a4-146">Start a `for` loop toorepeat hello commands toocreate a VM and two NICs as many times as necessary, based on hello value of hello `$numberOfVMs` variable.</span></span>
    
     ```powershell
     for ($suffixNumber = 1; $suffixNumber -le $numberOfVMs; $suffixNumber++){
     ```
 
-2. <span data-ttu-id="496b2-147">Creare la scheda di rete utilizzata per l'accesso al database.</span><span class="sxs-lookup"><span data-stu-id="496b2-147">Create the NIC used for database access.</span></span>
+2. <span data-ttu-id="936a4-147">Creare hello che NIC utilizzato per l'accesso al database.</span><span class="sxs-lookup"><span data-stu-id="936a4-147">Create hello NIC used for database access.</span></span>
 
     ```powershell
     $nic1Name = $nicNamePrefix + $suffixNumber + "-DA"
@@ -146,7 +146,7 @@ ms.lasthandoff: 07/11/2017
     -Location $location -SubnetId $backendSubnet.Id -PrivateIpAddress $ipAddress1
     ```
 
-3. <span data-ttu-id="496b2-148">Creare la scheda di rete utilizzata per l'accesso remoto.</span><span class="sxs-lookup"><span data-stu-id="496b2-148">Create the NIC used for remote access.</span></span> <span data-ttu-id="496b2-149">Si noti che a questa scheda di rete è associato un NSG.</span><span class="sxs-lookup"><span data-stu-id="496b2-149">Notice how this NIC has an NSG associated to it.</span></span>
+3. <span data-ttu-id="936a4-148">Creare hello che NIC utilizzato per l'accesso remoto.</span><span class="sxs-lookup"><span data-stu-id="936a4-148">Create hello NIC used for remote access.</span></span> <span data-ttu-id="936a4-149">Si noti come questa scheda di rete ha un tooit di gruppo associata.</span><span class="sxs-lookup"><span data-stu-id="936a4-149">Notice how this NIC has an NSG associated tooit.</span></span>
 
     ```powershell
     $nic2Name = $nicNamePrefix + $suffixNumber + "-RA"
@@ -156,14 +156,14 @@ ms.lasthandoff: 07/11/2017
     -NetworkSecurityGroupId $remoteAccessNSG.Id
     ```
 
-4. <span data-ttu-id="496b2-150">Creare l'oggetto `vmConfig` .</span><span class="sxs-lookup"><span data-stu-id="496b2-150">Create `vmConfig` object.</span></span>
+4. <span data-ttu-id="936a4-150">Creare l'oggetto `vmConfig` .</span><span class="sxs-lookup"><span data-stu-id="936a4-150">Create `vmConfig` object.</span></span>
 
     ```powershell
     $vmName = $vmNamePrefix + $suffixNumber
     $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize -AvailabilitySetId $avSet.Id
     ```
 
-5. <span data-ttu-id="496b2-151">Creare due dischi dati per ciascuna macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-151">Create two data disks per VM.</span></span> <span data-ttu-id="496b2-152">Si noti che i dischi dati si trovano nell'account di archiviazione premium creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="496b2-152">Notice that the data disks are in the premium storage account created earlier.</span></span>
+5. <span data-ttu-id="936a4-151">Creare due dischi dati per ciascuna macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-151">Create two data disks per VM.</span></span> <span data-ttu-id="936a4-152">Notare che i dischi dati hello in account di archiviazione premium hello creato in precedenza.</span><span class="sxs-lookup"><span data-stu-id="936a4-152">Notice that hello data disks are in hello premium storage account created earlier.</span></span>
 
     ```powershell
     $dataDisk1Name = $vmName + "-" + $osDiskPrefix + "-1"
@@ -177,21 +177,21 @@ ms.lasthandoff: 07/11/2017
     -VhdUri $data2VhdUri -CreateOption empty -Lun 1
     ```
 
-6. <span data-ttu-id="496b2-153">Configurare il sistema operativo e l'immagine da utilizzare per la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-153">Configure the operating system, and image to be used for the VM.</span></span>
+6. <span data-ttu-id="936a4-153">Configurare hello del sistema operativo e immagine toobe utilizzato per hello macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-153">Configure hello operating system, and image toobe used for hello VM.</span></span>
 
     ```powershell
     $vmConfig = Set-AzureRmVMOperatingSystem -VM $vmConfig -Windows -ComputerName $vmName -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
     $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -PublisherName $publisher -Offer $offer -Skus $sku -Version $version
     ```
 
-7. <span data-ttu-id="496b2-154">Aggiungere le due schede di rete create in precedenza per l'oggetto `vmConfig` .</span><span class="sxs-lookup"><span data-stu-id="496b2-154">Add the two NICs created above to the `vmConfig` object.</span></span>
+7. <span data-ttu-id="936a4-154">Aggiungere hello due schede di rete creati in precedenza toohello `vmConfig` oggetto.</span><span class="sxs-lookup"><span data-stu-id="936a4-154">Add hello two NICs created above toohello `vmConfig` object.</span></span>
 
     ```powershell
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic1.Id -Primary
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic2.Id
     ```
 
-8. <span data-ttu-id="496b2-155">Creare il disco del sistema operativo e la macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-155">Create the OS disk and create the VM.</span></span> <span data-ttu-id="496b2-156">Si noti il simbolo `}` al termine del ciclo `for`.</span><span class="sxs-lookup"><span data-stu-id="496b2-156">Notice the `}` ending the `for` loop.</span></span>
+8. <span data-ttu-id="936a4-155">Creare disco del sistema operativo hello e hello macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-155">Create hello OS disk and create hello VM.</span></span> <span data-ttu-id="936a4-156">Hello preavviso `}` finale hello `for` ciclo.</span><span class="sxs-lookup"><span data-stu-id="936a4-156">Notice hello `}` ending hello `for` loop.</span></span>
 
     ```powershell
     $osDiskName = $vmName + "-" + $osDiskSuffix
@@ -201,10 +201,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-### <a name="step-4---run-the-script"></a><span data-ttu-id="496b2-157">Passaggio 4 - Eseguire lo script.</span><span class="sxs-lookup"><span data-stu-id="496b2-157">Step 4 - Run the script</span></span>
-<span data-ttu-id="496b2-158">Una volta scaricato e modificato lo script in base alle esigenze, eseguire lo script per creare macchine virtuali del database di back-end con più schede di rete.</span><span class="sxs-lookup"><span data-stu-id="496b2-158">Now that you downloaded and changed the script based on your needs, runt he script to create the back end database VMs with multiple NICs.</span></span>
+### <a name="step-4---run-hello-script"></a><span data-ttu-id="936a4-157">Passaggio 4: hello Esegui script</span><span class="sxs-lookup"><span data-stu-id="936a4-157">Step 4 - Run hello script</span></span>
+<span data-ttu-id="936a4-158">Ora che è stato scaricato e modificare script hello in base alle proprie esigenze, Run ha script di database di back-end hello toocreate le macchine virtuali con più schede di rete.</span><span class="sxs-lookup"><span data-stu-id="936a4-158">Now that you downloaded and changed hello script based on your needs, runt he script toocreate hello back end database VMs with multiple NICs.</span></span>
 
-1. <span data-ttu-id="496b2-159">Salvare lo script ed eseguirlo dal prompt dei comandi **PowerShell** o **PowerShell ISE**.</span><span class="sxs-lookup"><span data-stu-id="496b2-159">Save your script and run it from the **PowerShell** command prompt, or **PowerShell ISE**.</span></span> <span data-ttu-id="496b2-160">Verrà visualizzato l'output iniziale, come mostrato di seguito:</span><span class="sxs-lookup"><span data-stu-id="496b2-160">You will see the initial output, as follows:</span></span>
+1. <span data-ttu-id="936a4-159">Salvare lo script ed eseguirlo da hello **PowerShell** prompt dei comandi o **PowerShell ISE**.</span><span class="sxs-lookup"><span data-stu-id="936a4-159">Save your script and run it from hello **PowerShell** command prompt, or **PowerShell ISE**.</span></span> <span data-ttu-id="936a4-160">Verrà visualizzato l'output di hello iniziale, come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="936a4-160">You will see hello initial output, as follows:</span></span>
 
         ResourceGroupName : IaaSStory-Backend
         Location          : westus
@@ -217,7 +217,7 @@ ms.lasthandoff: 07/11/2017
 
         ResourceId        : /subscriptions/[Subscription ID]/resourceGroups/IaaSStory-Backend
 
-2. <span data-ttu-id="496b2-161">Dopo qualche minuto, inserire le credenziali nella casella di richiesta e fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="496b2-161">After a few minutes, fill out the credentials prompt and click **OK**.</span></span> <span data-ttu-id="496b2-162">L'output seguente rappresenta una singola macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="496b2-162">The output below represents a single VM.</span></span> <span data-ttu-id="496b2-163">Si noti che per il completamento dell'intero processo sono stati necessari 8 minuti.</span><span class="sxs-lookup"><span data-stu-id="496b2-163">Notice the entire process took 8 minutes to complete.</span></span>
+2. <span data-ttu-id="936a4-161">Dopo alcuni minuti, compilare la richiesta di credenziali hello e fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="936a4-161">After a few minutes, fill out hello credentials prompt and click **OK**.</span></span> <span data-ttu-id="936a4-162">output di Hello seguente rappresenta una singola macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="936a4-162">hello output below represents a single VM.</span></span> <span data-ttu-id="936a4-163">Si noti hello intero processo ha impiegato toocomplete 8 minuti.</span><span class="sxs-lookup"><span data-stu-id="936a4-163">Notice hello entire process took 8 minutes toocomplete.</span></span>
 
         ResourceGroupName            :
         Id                           :

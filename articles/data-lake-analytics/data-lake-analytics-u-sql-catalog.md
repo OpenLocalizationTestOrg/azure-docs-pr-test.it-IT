@@ -1,6 +1,6 @@
 ---
-title: Introduzione al catalogo di U-SQL | Microsoft Docs
-description: Informazioni su come usare il catalogo di U-SQL per condividere codice e dati.
+title: Introduzione a catalogo hello U-SQL | Documenti Microsoft
+description: Informazioni su come toouse hello U-SQL catalogo dati e codice tooshare.
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: edmaca
-ms.openlocfilehash: 08364c6c7bea53807844e3b1cc327dc3742e0487
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 559bb7a3879031eb290a3e82946d7bf42ac9f553
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-u-sql-catalog"></a><span data-ttu-id="490ba-103">Introduzione al catalogo di U-SQL</span><span class="sxs-lookup"><span data-stu-id="490ba-103">Get started with the U-SQL Catalog</span></span>
+# <a name="get-started-with-hello-u-sql-catalog"></a><span data-ttu-id="c6252-103">Introduzione a hello catalogo U-SQL</span><span class="sxs-lookup"><span data-stu-id="c6252-103">Get started with hello U-SQL Catalog</span></span>
 
-## <a name="create-a-tvf"></a><span data-ttu-id="490ba-104">Creare una funzione con valori di tabella (TVF)</span><span class="sxs-lookup"><span data-stu-id="490ba-104">Create a TVF</span></span>
+## <a name="create-a-tvf"></a><span data-ttu-id="c6252-104">Creare una funzione con valori di tabella (TVF)</span><span class="sxs-lookup"><span data-stu-id="c6252-104">Create a TVF</span></span>
 
-<span data-ttu-id="490ba-105">Nel precedente script U-SQL, è stato usato più volte l'oggetto EXTRACT per leggere da uno stesso file di origine.</span><span class="sxs-lookup"><span data-stu-id="490ba-105">In the previous U-SQL script, you repeated the use of EXTRACT to read from the same source file.</span></span> <span data-ttu-id="490ba-106">La funzione con valori di tabella (TVF) U-SQL consente di incapsulare i dati per un riutilizzo futuro.</span><span class="sxs-lookup"><span data-stu-id="490ba-106">With the U-SQL table-valued function (TVF), you can encapsulate the data for future reuse.</span></span>  
+<span data-ttu-id="c6252-105">In script U-SQL hello precedente si ripetuti utilizzo hello di estrazione tooread da hello stesso file di origine.</span><span class="sxs-lookup"><span data-stu-id="c6252-105">In hello previous U-SQL script, you repeated hello use of EXTRACT tooread from hello same source file.</span></span> <span data-ttu-id="c6252-106">Con U-SQL con valori di tabella funzione hello (TVF), è possibile incapsulare dati hello per il riutilizzo futuro.</span><span class="sxs-lookup"><span data-stu-id="c6252-106">With hello U-SQL table-valued function (TVF), you can encapsulate hello data for future reuse.</span></span>  
 
-<span data-ttu-id="490ba-107">Lo script seguente crea una funzione TVF denominata `Searchlog()` nel database e nello schema predefiniti:</span><span class="sxs-lookup"><span data-stu-id="490ba-107">The following script creates a TVF called `Searchlog()` in the default database and schema:</span></span>
+<span data-ttu-id="c6252-107">Hello script seguente viene creata una TVF chiamato `Searchlog()` nel database predefinito hello e nello schema:</span><span class="sxs-lookup"><span data-stu-id="c6252-107">hello following script creates a TVF called `Searchlog()` in hello default database and schema:</span></span>
 
 ```
 DROP FUNCTION IF EXISTS Searchlog;
@@ -57,7 +57,7 @@ RETURN;
 END;
 ```
 
-<span data-ttu-id="490ba-108">Lo script seguente illustra come usare la funzione con valori di tabella definita nello script precedente:</span><span class="sxs-lookup"><span data-stu-id="490ba-108">The following script shows you how to use the TVF that was defined in the previous script:</span></span>
+<span data-ttu-id="c6252-108">Hello lo script seguente viene illustrato come toouse hello TVF che è stata definita nello script precedente hello:</span><span class="sxs-lookup"><span data-stu-id="c6252-108">hello following script shows you how toouse hello TVF that was defined in hello previous script:</span></span>
 
 ```
 @res =
@@ -69,16 +69,16 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/SerachLog-use-tvf.csv"
+    too"/output/SerachLog-use-tvf.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
-## <a name="create-views"></a><span data-ttu-id="490ba-109">Creare viste</span><span class="sxs-lookup"><span data-stu-id="490ba-109">Create views</span></span>
+## <a name="create-views"></a><span data-ttu-id="c6252-109">Creare viste</span><span class="sxs-lookup"><span data-stu-id="c6252-109">Create views</span></span>
 
-<span data-ttu-id="490ba-110">Se si ha una sola espressione di query, anziché una funzione TVF è possibile usare una VISTA U-SQL per incapsulare l'espressione.</span><span class="sxs-lookup"><span data-stu-id="490ba-110">If you have a single query expression, instead of a TVF you can use a U-SQL VIEW to encapsulate that expression.</span></span>
+<span data-ttu-id="c6252-110">Se si dispone di una singola espressione di query, anziché un TVF è possibile utilizzare un tooencapsulate vista U-SQL dell'espressione.</span><span class="sxs-lookup"><span data-stu-id="c6252-110">If you have a single query expression, instead of a TVF you can use a U-SQL VIEW tooencapsulate that expression.</span></span>
 
-<span data-ttu-id="490ba-111">Lo script seguente crea una vista denominata `SearchlogView` nel database e nello schema predefiniti:</span><span class="sxs-lookup"><span data-stu-id="490ba-111">The following script creates a view called `SearchlogView` in the default database and schema:</span></span>
+<span data-ttu-id="c6252-111">lo script seguente Hello crea una vista denominata `SearchlogView` nel database predefinito hello e nello schema:</span><span class="sxs-lookup"><span data-stu-id="c6252-111">hello following script creates a view called `SearchlogView` in hello default database and schema:</span></span>
 
 ```
 DROP VIEW IF EXISTS SearchlogView;
@@ -95,7 +95,7 @@ CREATE VIEW SearchlogView AS
 USING Extractors.Tsv();
 ```
 
-<span data-ttu-id="490ba-112">Lo script seguente illustra l'uso della vista definita:</span><span class="sxs-lookup"><span data-stu-id="490ba-112">The following script demonstrates the use of the defined view:</span></span>
+<span data-ttu-id="c6252-112">lo script seguente Hello di seguito viene illustrato l'utilizzo di hello della vista hello definito:</span><span class="sxs-lookup"><span data-stu-id="c6252-112">hello following script demonstrates hello use of hello defined view:</span></span>
 
 ```
 @res =
@@ -107,15 +107,15 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/Searchlog-use-view.csv"
+    too"/output/Searchlog-use-view.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
-## <a name="create-tables"></a><span data-ttu-id="490ba-113">Creare tabelle</span><span class="sxs-lookup"><span data-stu-id="490ba-113">Create tables</span></span>
-<span data-ttu-id="490ba-114">Analogamente a una tabella di database relazionale, U-SQL consente di creare una tabella con uno schema predefinito oppure di creare una tabella e dedurre lo schema dalla query che popola la tabella (nota anche come istruzione CREATE TABLE AS SELECT o CTAS).</span><span class="sxs-lookup"><span data-stu-id="490ba-114">As with relational database tables, with U-SQL you can create a table with a predefined schema or create a table that infers the schema from the query that populates the table (also known as CREATE TABLE AS SELECT or CTAS).</span></span>
+## <a name="create-tables"></a><span data-ttu-id="c6252-113">Creare tabelle</span><span class="sxs-lookup"><span data-stu-id="c6252-113">Create tables</span></span>
+<span data-ttu-id="c6252-114">Come con le tabelle di database relazionale, con U-SQL è possibile creare una tabella con uno schema predefinito o creare una tabella che deriva hello da query hello che popola la tabella hello (noto anche come CREATE TABLE AS SELECT o un'istruzione CTAS).</span><span class="sxs-lookup"><span data-stu-id="c6252-114">As with relational database tables, with U-SQL you can create a table with a predefined schema or create a table that infers hello schema from hello query that populates hello table (also known as CREATE TABLE AS SELECT or CTAS).</span></span>
 
-<span data-ttu-id="490ba-115">Lo script seguente crea un database e due tabelle:</span><span class="sxs-lookup"><span data-stu-id="490ba-115">Create a database and two tables by using the following script:</span></span>
+<span data-ttu-id="c6252-115">Creare un database e due tabelle utilizzando hello lo script seguente:</span><span class="sxs-lookup"><span data-stu-id="c6252-115">Create a database and two tables by using hello following script:</span></span>
 
 ```
 DROP DATABASE IF EXISTS SearchLogDb;
@@ -146,10 +146,10 @@ CREATE TABLE SearchLog2(
 ) AS SELECT * FROM master.dbo.Searchlog() AS S; // You can use EXTRACT or SELECT here
 ```
 
-## <a name="query-tables"></a><span data-ttu-id="490ba-116">Eseguire query su tabelle</span><span class="sxs-lookup"><span data-stu-id="490ba-116">Query tables</span></span>
-<span data-ttu-id="490ba-117">È possibile eseguire una query su una tabella, come quelle create nello script precedente, nello stesso modo in cui si esegue su un file di dati.</span><span class="sxs-lookup"><span data-stu-id="490ba-117">You can query tables, such as those created in the previous script, in the same way that you query the data files.</span></span> <span data-ttu-id="490ba-118">Anziché creare un set di righe usando l'istruzione EXTRACT, è possibile ora fare riferimento al nome della tabella.</span><span class="sxs-lookup"><span data-stu-id="490ba-118">Instead of creating a rowset by using EXTRACT, you now can refer to the table name.</span></span>
+## <a name="query-tables"></a><span data-ttu-id="c6252-116">Eseguire query su tabelle</span><span class="sxs-lookup"><span data-stu-id="c6252-116">Query tables</span></span>
+<span data-ttu-id="c6252-117">È possibile eseguire query di tabelle, ad esempio quelli creati nello script precedente hello in hello allo stesso modo di eseguire la query dei file di dati hello.</span><span class="sxs-lookup"><span data-stu-id="c6252-117">You can query tables, such as those created in hello previous script, in hello same way that you query hello data files.</span></span> <span data-ttu-id="c6252-118">Anziché creare un set di righe tramite l'estrazione, è ora possibile fare riferimento toohello nome della tabella.</span><span class="sxs-lookup"><span data-stu-id="c6252-118">Instead of creating a rowset by using EXTRACT, you now can refer toohello table name.</span></span>
 
-<span data-ttu-id="490ba-119">Modificare lo script di trasformazione usato in precedenza in modo da leggere i dati direttamente dalle tabelle:</span><span class="sxs-lookup"><span data-stu-id="490ba-119">To read from the tables, modify the transform script that you used previously:</span></span>
+<span data-ttu-id="c6252-119">tooread dalle tabelle di hello, modificare uno script di trasformazione hello utilizzata in precedenza:</span><span class="sxs-lookup"><span data-stu-id="c6252-119">tooread from hello tables, modify hello transform script that you used previously:</span></span>
 
 ```
 @rs1 =
@@ -166,15 +166,15 @@ GROUP BY Region;
     FETCH 5 ROWS;
 
 OUTPUT @res
-    TO "/output/Searchlog-query-table.csv"
+    too"/output/Searchlog-query-table.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
  >[!NOTE]
- ><span data-ttu-id="490ba-120">Non è attualmente possibile eseguire un'istruzione SELECT in una tabella presente nello stesso script in cui è stata creata la tabella.</span><span class="sxs-lookup"><span data-stu-id="490ba-120">Currently, you cannot run a SELECT on a table in the same script as the one where you created the table.</span></span>
+ ><span data-ttu-id="c6252-120">Attualmente, non è possibile eseguire un'istruzione SELECT in una tabella in hello hello uno stesso script in cui è stato creato tabella hello.</span><span class="sxs-lookup"><span data-stu-id="c6252-120">Currently, you cannot run a SELECT on a table in hello same script as hello one where you created hello table.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="490ba-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="490ba-121">Next Steps</span></span>
-* [<span data-ttu-id="490ba-122">Panoramica di Analisi Microsoft Azure Data Lake</span><span class="sxs-lookup"><span data-stu-id="490ba-122">Overview of Microsoft Azure Data Lake Analytics</span></span>](data-lake-analytics-overview.md)
-* [<span data-ttu-id="490ba-123">Sviluppare script U-SQL con Data Lake Tools per Visual Studio</span><span class="sxs-lookup"><span data-stu-id="490ba-123">Develop U-SQL scripts using Data Lake Tools for Visual Studio</span></span>](data-lake-analytics-data-lake-tools-get-started.md)
-* [<span data-ttu-id="490ba-124">Monitorare e risolvere i problemi dei processi di Azure Data Lake Analytics tramite il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="490ba-124">Monitor and troubleshoot Azure Data Lake Analytics jobs using Azure portal</span></span>](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+## <a name="next-steps"></a><span data-ttu-id="c6252-121">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c6252-121">Next Steps</span></span>
+* [<span data-ttu-id="c6252-122">Panoramica di Analisi Microsoft Azure Data Lake</span><span class="sxs-lookup"><span data-stu-id="c6252-122">Overview of Microsoft Azure Data Lake Analytics</span></span>](data-lake-analytics-overview.md)
+* [<span data-ttu-id="c6252-123">Sviluppare script U-SQL con Data Lake Tools per Visual Studio</span><span class="sxs-lookup"><span data-stu-id="c6252-123">Develop U-SQL scripts using Data Lake Tools for Visual Studio</span></span>](data-lake-analytics-data-lake-tools-get-started.md)
+* [<span data-ttu-id="c6252-124">Monitorare e risolvere i problemi dei processi di Azure Data Lake Analytics tramite il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="c6252-124">Monitor and troubleshoot Azure Data Lake Analytics jobs using Azure portal</span></span>](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)

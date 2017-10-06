@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi di HDFS tramite Azure HDInsight | Microsoft Docs
-description: Risposte alle domande frequenti sull'uso di HDFS e Azure HDInsight.
+title: aaaTroubleshoot HDFS tramite Azure HDinsight | Documenti Microsoft
+description: Ottenere risposte toocommon domande sull'utilizzo di HDFS e Azure HDInsight.
 keywords: Azure HDInsight, HDFS, domande frequenti, guida alla risoluzione dei problemi, domande comuni
 services: Azure HDInsight
 documentationcenter: na
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/7/2017
 ms.author: arijitt
-ms.openlocfilehash: 58f3d160c1f2a32025b706f10863e0055d67bfcd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f5adec6879c947fcff82112e95d9d0303592c834
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-hdfs-by-using-azure-hdinsight"></a><span data-ttu-id="96592-104">Risolvere i problemi di HDFS tramite Azure HDInsight</span><span class="sxs-lookup"><span data-stu-id="96592-104">Troubleshoot HDFS by using Azure HDInsight</span></span>
+# <a name="troubleshoot-hdfs-by-using-azure-hdinsight"></a><span data-ttu-id="2027b-104">Risolvere i problemi di HDFS tramite Azure HDInsight</span><span class="sxs-lookup"><span data-stu-id="2027b-104">Troubleshoot HDFS by using Azure HDInsight</span></span>
 
-<span data-ttu-id="96592-105">Informazioni sui problemi principali che possono verificarsi quando si usano i payload di HDFS (Hadoop Distributed File System) in Apache Ambari unitamente alle risoluzioni.</span><span class="sxs-lookup"><span data-stu-id="96592-105">Learn about the top issues and their resolutions when working with Hadoop Distributed File System (HDFS) payloads in Apache Ambari.</span></span>
+<span data-ttu-id="2027b-105">Quando si lavora con i payload in Ambari Apache Hadoop Distributed File System (HDFS), informazioni sui problemi principali hello e le relative soluzioni.</span><span class="sxs-lookup"><span data-stu-id="2027b-105">Learn about hello top issues and their resolutions when working with Hadoop Distributed File System (HDFS) payloads in Apache Ambari.</span></span>
 
-## <span data-ttu-id="96592-106"><a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>Come accedere al sistema HDFS locale dall'interno di un cluster</span><span class="sxs-lookup"><span data-stu-id="96592-106"><a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>How do I access the local HDFS from inside a cluster</span></span>
+## <span data-ttu-id="2027b-106"><a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>Come accedere hello HDFS locale all'interno di un cluster</span><span class="sxs-lookup"><span data-stu-id="2027b-106"><a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>How do I access hello local HDFS from inside a cluster</span></span>
 
-### <a name="issue"></a><span data-ttu-id="96592-107">Problema</span><span class="sxs-lookup"><span data-stu-id="96592-107">Issue</span></span>
+### <a name="issue"></a><span data-ttu-id="2027b-107">Problema</span><span class="sxs-lookup"><span data-stu-id="2027b-107">Issue</span></span>
 
-<span data-ttu-id="96592-108">Accedere al sistema HDFS locale dalla riga di comando e dal codice dell'applicazione invece di usare l'archiviazione BLOB di Azure o Azure Data Lake Store dall'interno del cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="96592-108">Access the local HDFS from the command line and application code instead of by using Azure Blob storage or Azure Data Lake Store from inside the HDInsight cluster.</span></span>   
+<span data-ttu-id="2027b-108">Hello accesso HDFS locale da hello codice applicazione e riga di comando anziché tramite l'archiviazione Blob di Azure o archivio Azure Data Lake all'interno di hello cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="2027b-108">Access hello local HDFS from hello command line and application code instead of by using Azure Blob storage or Azure Data Lake Store from inside hello HDInsight cluster.</span></span>   
 
-### <a name="resolution-steps"></a><span data-ttu-id="96592-109">Procedura per la risoluzione</span><span class="sxs-lookup"><span data-stu-id="96592-109">Resolution steps</span></span>
+### <a name="resolution-steps"></a><span data-ttu-id="2027b-109">Procedura per la risoluzione</span><span class="sxs-lookup"><span data-stu-id="2027b-109">Resolution steps</span></span>
 
-1. <span data-ttu-id="96592-110">Al prompt dei comandi usare `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` in modo letterale, come nel comando seguente:</span><span class="sxs-lookup"><span data-stu-id="96592-110">At the command prompt, use `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` literally, as in the following command:</span></span>
+1. <span data-ttu-id="2027b-110">Al prompt dei comandi di hello, utilizzare `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` letteralmente, come in hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="2027b-110">At hello command prompt, use `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` literally, as in hello following command:</span></span>
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -ls /
@@ -43,7 +43,7 @@ ms.lasthandoff: 08/29/2017
     drwx------   - hdiuser hdfs          0 2016-11-10 22:22 /user
     ```
 
-2. <span data-ttu-id="96592-111">Dal codice sorgente usare l'URI `hdfs://mycluster/` in modo letterale come nell'applicazione di esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="96592-111">From source code, use the URI `hdfs://mycluster/` literally, as in the following sample application:</span></span>
+2. <span data-ttu-id="2027b-111">Codice sorgente, utilizzare hello URI `hdfs://mycluster/` letteralmente, come illustrato di seguito all'applicazione di esempio hello:</span><span class="sxs-lookup"><span data-stu-id="2027b-111">From source code, use hello URI `hdfs://mycluster/` literally, as in hello following sample application:</span></span>
 
     ```csharp
     import java.io.IOException;
@@ -68,7 +68,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-3. <span data-ttu-id="96592-112">Eseguire il file con estensione jar compilato, ad esempio un file denominato `java-unit-tests-1.0.jar`, nel cluster HDInsight con il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="96592-112">Run the compiled .jar file (for example, a file named `java-unit-tests-1.0.jar`) on the HDInsight cluster with the following command:</span></span>
+3. <span data-ttu-id="2027b-112">Esecuzione hello compilato del file JAR (ad esempio, un file denominato `java-unit-tests-1.0.jar`) sul hello HDInsight cluster con hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="2027b-112">Run hello compiled .jar file (for example, a file named `java-unit-tests-1.0.jar`) on hello HDInsight cluster with hello following command:</span></span>
 
     ```apache
     hdiuser@hn0-spark2:~$ hadoop jar java-unit-tests-1.0.jar JavaUnitTests
@@ -79,27 +79,27 @@ ms.lasthandoff: 08/29/2017
     ```
 
 
-## <span data-ttu-id="96592-113"><a name="how-do-i-force-disable-hdfs-safe-mode-in-a-cluster"></a>Come forzare la disabilitazione della modalità sicura di HDFS in un cluster</span><span class="sxs-lookup"><span data-stu-id="96592-113"><a name="how-do-i-force-disable-hdfs-safe-mode-in-a-cluster"></a>How do I force-disable HDFS safe mode in a cluster</span></span>
+## <span data-ttu-id="2027b-113"><a name="how-do-i-force-disable-hdfs-safe-mode-in-a-cluster"></a>Come forzare la disabilitazione della modalità sicura di HDFS in un cluster</span><span class="sxs-lookup"><span data-stu-id="2027b-113"><a name="how-do-i-force-disable-hdfs-safe-mode-in-a-cluster"></a>How do I force-disable HDFS safe mode in a cluster</span></span>
 
-### <a name="issue"></a><span data-ttu-id="96592-114">Problema</span><span class="sxs-lookup"><span data-stu-id="96592-114">Issue</span></span>
+### <a name="issue"></a><span data-ttu-id="2027b-114">Problema</span><span class="sxs-lookup"><span data-stu-id="2027b-114">Issue</span></span>
 
-<span data-ttu-id="96592-115">Il sistema HDFS locale è bloccato in modalità sicura nel cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="96592-115">The local HDFS is stuck in safe mode on the HDInsight cluster.</span></span>   
+<span data-ttu-id="2027b-115">Hello che HDFS locale è bloccato in modalità provvisoria nel cluster HDInsight hello.</span><span class="sxs-lookup"><span data-stu-id="2027b-115">hello local HDFS is stuck in safe mode on hello HDInsight cluster.</span></span>   
 
-### <a name="detailed-description"></a><span data-ttu-id="96592-116">Descrizione dettagliata</span><span class="sxs-lookup"><span data-stu-id="96592-116">Detailed description</span></span>
+### <a name="detailed-description"></a><span data-ttu-id="2027b-116">Descrizione dettagliata</span><span class="sxs-lookup"><span data-stu-id="2027b-116">Detailed description</span></span>
 
-<span data-ttu-id="96592-117">L'errore si verifica quando si esegue il comando HDFS seguente:</span><span class="sxs-lookup"><span data-stu-id="96592-117">Failure occurs when you run the following HDFS command:</span></span>
+<span data-ttu-id="2027b-117">Errore si verifica quando si esegue hello HDFS comando seguente:</span><span class="sxs-lookup"><span data-stu-id="2027b-117">Failure occurs when you run hello following HDFS command:</span></span>
 
 ```apache
 hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 ```
 
-<span data-ttu-id="96592-118">L'errore seguente viene visualizzato quando si esegue il comando:</span><span class="sxs-lookup"><span data-stu-id="96592-118">You see the following error when you run the command:</span></span>
+<span data-ttu-id="2027b-118">Viene visualizzato l'errore seguente quando si esegue il comando hello hello:</span><span class="sxs-lookup"><span data-stu-id="2027b-118">You see hello following error when you run hello command:</span></span>
 
 ```apache
 hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 17/04/05 16:20:52 WARN retry.RetryInvocationHandler: Exception while invoking ClientNamenodeProtocolTranslatorPB.mkdirs over hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net/10.0.0.22:8020. Not retrying because try once and fail.
 org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /temp. Name node is in safe mode.
-It was turned on manually. Use "hdfs dfsadmin -safemode leave" to turn safe mode off.
+It was turned on manually. Use "hdfs dfsadmin -safemode leave" tooturn safe mode off.
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1359)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:4010)
         at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1102)
@@ -147,13 +147,13 @@ It was turned on manually. Use "hdfs dfsadmin -safemode leave" to turn safe mode
 mkdir: Cannot create directory /temp. Name node is in safe mode.
 ```
 
-### <a name="probable-cause"></a><span data-ttu-id="96592-119">Possibile causa</span><span class="sxs-lookup"><span data-stu-id="96592-119">Probable cause</span></span>
+### <a name="probable-cause"></a><span data-ttu-id="2027b-119">Possibile causa</span><span class="sxs-lookup"><span data-stu-id="2027b-119">Probable cause</span></span>
 
-<span data-ttu-id="96592-120">Il cluster HDInsight è stato ridotto a pochissimi nodi.</span><span class="sxs-lookup"><span data-stu-id="96592-120">The HDInsight cluster has been scaled down to a very few nodes.</span></span> <span data-ttu-id="96592-121">Il numero di nodi è inferiore o vicino al fattore di replica di HDFS.</span><span class="sxs-lookup"><span data-stu-id="96592-121">The number of nodes is below or close to the HDFS replication factor.</span></span>
+<span data-ttu-id="2027b-120">Hello cluster HDInsight è stata ridimensionata tooa molto alcuni nodi.</span><span class="sxs-lookup"><span data-stu-id="2027b-120">hello HDInsight cluster has been scaled down tooa very few nodes.</span></span> <span data-ttu-id="2027b-121">il numero di Hello di nodi di sotto o chiusura fattore di replica toohello HDFS.</span><span class="sxs-lookup"><span data-stu-id="2027b-121">hello number of nodes is below or close toohello HDFS replication factor.</span></span>
 
-### <a name="resolution-steps"></a><span data-ttu-id="96592-122">Procedura per la risoluzione</span><span class="sxs-lookup"><span data-stu-id="96592-122">Resolution steps</span></span> 
+### <a name="resolution-steps"></a><span data-ttu-id="2027b-122">Procedura per la risoluzione</span><span class="sxs-lookup"><span data-stu-id="2027b-122">Resolution steps</span></span> 
 
-1. <span data-ttu-id="96592-123">Ottenere lo stato di HDFS nel cluster HDInsight usando i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="96592-123">Get the status of HDFS on the HDInsight cluster by using the following commands:</span></span>
+1. <span data-ttu-id="2027b-123">Ottenere lo stato di hello di HDFS nel cluster HDInsight hello utilizzando hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="2027b-123">Get hello status of HDFS on hello HDInsight cluster by using hello following commands:</span></span>
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -report
@@ -194,14 +194,14 @@ mkdir: Cannot create directory /temp. Name node is in safe mode.
     ...
     ```
 
-2. <span data-ttu-id="96592-124">Verificare l'integrità di HDFS nel cluster HDInsight usando i comandi seguenti:</span><span class="sxs-lookup"><span data-stu-id="96592-124">Check the integrity of HDFS on the HDInsight cluster by using the following commands:</span></span>
+2. <span data-ttu-id="2027b-124">Controllare l'integrità dei hello di HDFS nel cluster HDInsight hello utilizzando hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="2027b-124">Check hello integrity of HDFS on hello HDInsight cluster by using hello following commands:</span></span>
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs fsck -D "fs.default.name=hdfs://mycluster/" /
     ```
 
     ```apache
-    Connecting to namenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
+    Connecting toonamenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
     FSCK started by hdiuser (auth:SIMPLE) from /10.0.0.22 for path / at Wed Apr 05 16:40:28 UTC 2017
     ....................................................................................................
 
@@ -224,10 +224,10 @@ mkdir: Cannot create directory /temp. Name node is in safe mode.
     Number of racks:               1
     FSCK ended at Wed Apr 05 16:40:28 UTC 2017 in 187 milliseconds
 
-    The filesystem under path '/' is HEALTHY
+    hello filesystem under path '/' is HEALTHY
     ```
 
-3. <span data-ttu-id="96592-125">Se si determina che non esistono blocchi mancanti, danneggiati o replicati in modo insufficiente o che questi blocchi possono essere ignorati, eseguire questo comando per sbloccare il nodo dei nomi dalla modalità sicura:</span><span class="sxs-lookup"><span data-stu-id="96592-125">If you determine that there are no missing, corrupt, or under-replicated blocks, or that those blocks can be ignored, run the following command to take the name node out of safe mode:</span></span>
+3. <span data-ttu-id="2027b-125">Se si determina che non esistono blocchi di mancanti, danneggiati o under-replicati o che possono essere ignorati i blocchi, eseguire hello successivo nodo del nome di comando tootake hello dalla modalità provvisoria:</span><span class="sxs-lookup"><span data-stu-id="2027b-125">If you determine that there are no missing, corrupt, or under-replicated blocks, or that those blocks can be ignored, run hello following command tootake hello name node out of safe mode:</span></span>
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -safemode leave

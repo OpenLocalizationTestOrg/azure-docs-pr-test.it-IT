@@ -1,6 +1,6 @@
 ---
-title: Integrazione di Azure Mobile Engagement SDK per Web | Microsoft Azure
-description: Ultimi aggiornamenti e procedure relativi ad Azure Mobile Engagement SDK per Web
+title: integrazione di Mobile Engagement Web SDK aaaAzure | Documenti Microsoft
+description: "Hello procedure per hello Azure Mobile Engagement Web SDK e gli aggiornamenti più recenti"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,46 +14,46 @@ ms.devlang: js
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: piyushjo
-ms.openlocfilehash: 7d8eaa180e277741a583522ee62d68f5247b92bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99613b68b615bec4ddcfcc8e4e0133ce9d887bad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="integrate-azure-mobile-engagement-in-a-web-application"></a><span data-ttu-id="a04a6-103">Integrare Azure Mobile Engagement in un'applicazione Web</span><span class="sxs-lookup"><span data-stu-id="a04a6-103">Integrate Azure Mobile Engagement in a web application</span></span>
+# <a name="integrate-azure-mobile-engagement-in-a-web-application"></a><span data-ttu-id="77051-103">Integrare Azure Mobile Engagement in un'applicazione Web</span><span class="sxs-lookup"><span data-stu-id="77051-103">Integrate Azure Mobile Engagement in a web application</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="a04a6-104">Windows Universal</span><span class="sxs-lookup"><span data-stu-id="a04a6-104">Windows Universal</span></span>](mobile-engagement-windows-store-integrate-engagement.md)
-> * [<span data-ttu-id="a04a6-105">Windows Phone Silverlight</span><span class="sxs-lookup"><span data-stu-id="a04a6-105">Windows Phone Silverlight</span></span>](mobile-engagement-windows-phone-integrate-engagement.md)
-> * [<span data-ttu-id="a04a6-106">iOS</span><span class="sxs-lookup"><span data-stu-id="a04a6-106">iOS</span></span>](mobile-engagement-ios-integrate-engagement.md)
-> * [<span data-ttu-id="a04a6-107">Android</span><span class="sxs-lookup"><span data-stu-id="a04a6-107">Android</span></span>](mobile-engagement-android-integrate-engagement.md)
+> * [<span data-ttu-id="77051-104">Windows Universal</span><span class="sxs-lookup"><span data-stu-id="77051-104">Windows Universal</span></span>](mobile-engagement-windows-store-integrate-engagement.md)
+> * [<span data-ttu-id="77051-105">Windows Phone Silverlight</span><span class="sxs-lookup"><span data-stu-id="77051-105">Windows Phone Silverlight</span></span>](mobile-engagement-windows-phone-integrate-engagement.md)
+> * [<span data-ttu-id="77051-106">iOS</span><span class="sxs-lookup"><span data-stu-id="77051-106">iOS</span></span>](mobile-engagement-ios-integrate-engagement.md)
+> * [<span data-ttu-id="77051-107">Android</span><span class="sxs-lookup"><span data-stu-id="77051-107">Android</span></span>](mobile-engagement-android-integrate-engagement.md)
 > 
 > 
 
-<span data-ttu-id="a04a6-108">Le procedure contenute in questo articolo descrivono il modo più semplice per attivare le funzioni di analisi e monitoraggio di Azure Mobile Engagement in un'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="a04a6-108">The procedures in this article describe the simplest way to activate the analytics and monitoring functions in Azure Mobile Engagement in your web application.</span></span>
+<span data-ttu-id="77051-108">procedure Hello in questo articolo vengono descritti analitica hello più semplice modo tooactivate hello e funzioni in Azure Mobile Engagement nell'applicazione web di monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="77051-108">hello procedures in this article describe hello simplest way tooactivate hello analytics and monitoring functions in Azure Mobile Engagement in your web application.</span></span>
 
-<span data-ttu-id="a04a6-109">I passaggi seguenti sono utili per attivare la segnalazione dei log necessari per calcolare tutte le statistiche relative a utenti, sessioni, attività, arresti anomali del sistema e dati tecnici.</span><span class="sxs-lookup"><span data-stu-id="a04a6-109">Follow the steps to activate the log reports that are needed to compute all statistics about users, sessions, activities, crashes, and technicals.</span></span> <span data-ttu-id="a04a6-110">Per le statistiche dipendenti dall'applicazione, ad esempio eventi, errori e processi, è necessario attivare manualmente la segnalazione dei log tramite l'API di Azure Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="a04a6-110">For application-dependent statistics, such as events, errors, and jobs, you must activate log reports manually by using the Azure Mobile Engagement API.</span></span> <span data-ttu-id="a04a6-111">Per altre informazioni, leggere [Come usare l'API di Engagement in un'applicazione Web](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="a04a6-111">For more information, learn [how to use the advanced Mobile Engagement tagging API in a web application](mobile-engagement-web-use-engagement-api.md).</span></span>
+<span data-ttu-id="77051-109">Seguire hello passaggi tooactivate hello report del log che sono necessari toocompute tutte le statistiche sugli utenti, sessioni, attività, arresti anomali del sistema e technicals.</span><span class="sxs-lookup"><span data-stu-id="77051-109">Follow hello steps tooactivate hello log reports that are needed toocompute all statistics about users, sessions, activities, crashes, and technicals.</span></span> <span data-ttu-id="77051-110">Per le statistiche di dipendenti dall'applicazione, ad esempio eventi, errori e i processi, è necessario attivare manualmente i report di log utilizzando l'API di Azure Mobile Engagement hello.</span><span class="sxs-lookup"><span data-stu-id="77051-110">For application-dependent statistics, such as events, errors, and jobs, you must activate log reports manually by using hello Azure Mobile Engagement API.</span></span> <span data-ttu-id="77051-111">Per ulteriori informazioni, vedere [come toouse hello avanzate tag API in un'applicazione web di Mobile Engagement](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="77051-111">For more information, learn [how toouse hello advanced Mobile Engagement tagging API in a web application](mobile-engagement-web-use-engagement-api.md).</span></span>
 
-## <a name="introduction"></a><span data-ttu-id="a04a6-112">Introduzione</span><span class="sxs-lookup"><span data-stu-id="a04a6-112">Introduction</span></span>
-<span data-ttu-id="a04a6-113">[Scaricare Azure Mobile Engagement SDK per Web](http://aka.ms/P7b453).</span><span class="sxs-lookup"><span data-stu-id="a04a6-113">[Download the Azure Mobile Engagement Web SDK](http://aka.ms/P7b453).</span></span>
-<span data-ttu-id="a04a6-114">Il Mobile Engagement SDK per Web viene fornito come un singolo file JavaScript denominato azure-engagement.js, che deve essere incluso in ogni pagina del sito o dell'applicazione Web.</span><span class="sxs-lookup"><span data-stu-id="a04a6-114">The Mobile Engagement Web SDK is shipped as a single JavaScript file, azure-engagement.js, which you have to include in each page of your site or web application.</span></span>
+## <a name="introduction"></a><span data-ttu-id="77051-112">Introduzione</span><span class="sxs-lookup"><span data-stu-id="77051-112">Introduction</span></span>
+<span data-ttu-id="77051-113">[Scaricare hello Azure Mobile Engagement Web SDK](http://aka.ms/P7b453).</span><span class="sxs-lookup"><span data-stu-id="77051-113">[Download hello Azure Mobile Engagement Web SDK](http://aka.ms/P7b453).</span></span>
+<span data-ttu-id="77051-114">Hello Web di Mobile Engagement SDK viene fornito come un singolo file JavaScript, azure-engagement.js, aver tooinclude in ogni pagina dell'applicazione web o del sito.</span><span class="sxs-lookup"><span data-stu-id="77051-114">hello Mobile Engagement Web SDK is shipped as a single JavaScript file, azure-engagement.js, which you have tooinclude in each page of your site or web application.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="a04a6-115">Prima di eseguire questo script, è necessario eseguire uno script o un frammento di codice, scritto per configurare Mobile Engagement per l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="a04a6-115">Before you run this script, you must run a script or code snippet that you write to configure Mobile Engagement for your application.</span></span>
+> <span data-ttu-id="77051-115">Prima di eseguire questo script, è necessario eseguire uno script o scrivere tooconfigure Mobile Engagement per l'applicazione di frammento di codice.</span><span class="sxs-lookup"><span data-stu-id="77051-115">Before you run this script, you must run a script or code snippet that you write tooconfigure Mobile Engagement for your application.</span></span>
 > 
 > 
 
-## <a name="browser-compatibility"></a><span data-ttu-id="a04a6-116">Compatibilità dei browser</span><span class="sxs-lookup"><span data-stu-id="a04a6-116">Browser compatibility</span></span>
-<span data-ttu-id="a04a6-117">Il Mobile Engagement SDK per Web usa la codifica/decodifica JSON nativa e le richieste AJAX tra domini (basandosi sulla specifica W3C CORS).</span><span class="sxs-lookup"><span data-stu-id="a04a6-117">The Mobile Engagement Web SDK uses native JSON encoding and decoding, in addition to cross-domain AJAX requests (relying on the W3C CORS specification).</span></span> <span data-ttu-id="a04a6-118">È compatibile con i seguenti browser:</span><span class="sxs-lookup"><span data-stu-id="a04a6-118">It's compatible with the following browsers:</span></span>
+## <a name="browser-compatibility"></a><span data-ttu-id="77051-116">Compatibilità dei browser</span><span class="sxs-lookup"><span data-stu-id="77051-116">Browser compatibility</span></span>
+<span data-ttu-id="77051-117">Hello Mobile Engagement Web SDK Usa JSON native di codifica e decodifica inoltre le richieste AJAX toocross dominio (basarsi sulla specifica W3C CORS hello).</span><span class="sxs-lookup"><span data-stu-id="77051-117">hello Mobile Engagement Web SDK uses native JSON encoding and decoding, in addition toocross-domain AJAX requests (relying on hello W3C CORS specification).</span></span> <span data-ttu-id="77051-118">È compatibile con hello seguenti browser:</span><span class="sxs-lookup"><span data-stu-id="77051-118">It's compatible with hello following browsers:</span></span>
 
-* <span data-ttu-id="a04a6-119">Microsoft Edge 12+</span><span class="sxs-lookup"><span data-stu-id="a04a6-119">Microsoft Edge 12+</span></span>
-* <span data-ttu-id="a04a6-120">Internet Explorer 10+</span><span class="sxs-lookup"><span data-stu-id="a04a6-120">Internet Explorer 10+</span></span>
-* <span data-ttu-id="a04a6-121">Firefox 3.5+</span><span class="sxs-lookup"><span data-stu-id="a04a6-121">Firefox 3.5+</span></span>
-* <span data-ttu-id="a04a6-122">Chrome 4+</span><span class="sxs-lookup"><span data-stu-id="a04a6-122">Chrome 4+</span></span>
-* <span data-ttu-id="a04a6-123">Safari 6+</span><span class="sxs-lookup"><span data-stu-id="a04a6-123">Safari 6+</span></span>
-* <span data-ttu-id="a04a6-124">Opera 12+</span><span class="sxs-lookup"><span data-stu-id="a04a6-124">Opera 12+</span></span>
+* <span data-ttu-id="77051-119">Microsoft Edge 12+</span><span class="sxs-lookup"><span data-stu-id="77051-119">Microsoft Edge 12+</span></span>
+* <span data-ttu-id="77051-120">Internet Explorer 10+</span><span class="sxs-lookup"><span data-stu-id="77051-120">Internet Explorer 10+</span></span>
+* <span data-ttu-id="77051-121">Firefox 3.5+</span><span class="sxs-lookup"><span data-stu-id="77051-121">Firefox 3.5+</span></span>
+* <span data-ttu-id="77051-122">Chrome 4+</span><span class="sxs-lookup"><span data-stu-id="77051-122">Chrome 4+</span></span>
+* <span data-ttu-id="77051-123">Safari 6+</span><span class="sxs-lookup"><span data-stu-id="77051-123">Safari 6+</span></span>
+* <span data-ttu-id="77051-124">Opera 12+</span><span class="sxs-lookup"><span data-stu-id="77051-124">Opera 12+</span></span>
 
-## <a name="configure-mobile-engagement"></a><span data-ttu-id="a04a6-125">Configurare Mobile Engagement</span><span class="sxs-lookup"><span data-stu-id="a04a6-125">Configure Mobile Engagement</span></span>
-<span data-ttu-id="a04a6-126">Scrivere uno script per creare un oggetto JavaScript `azureEngagement` globale simile al seguente.</span><span class="sxs-lookup"><span data-stu-id="a04a6-126">Write a script that creates a global `azureEngagement` JavaScript object, as in the following example.</span></span> <span data-ttu-id="a04a6-127">Poiché il sito potrebbe essere composto da più pagine, questo esempio presuppone che lo script sia incluso in ogni pagina.</span><span class="sxs-lookup"><span data-stu-id="a04a6-127">Because your site might have multiples pages, this example assumes that this script is included in every page.</span></span> <span data-ttu-id="a04a6-128">In questo esempio, l'oggetto JavaScript viene denominato `azure-engagement-conf.js`.</span><span class="sxs-lookup"><span data-stu-id="a04a6-128">In this example, the JavaScript object is named `azure-engagement-conf.js`.</span></span>
+## <a name="configure-mobile-engagement"></a><span data-ttu-id="77051-125">Configurare Mobile Engagement</span><span class="sxs-lookup"><span data-stu-id="77051-125">Configure Mobile Engagement</span></span>
+<span data-ttu-id="77051-126">Scrivere uno script che crea globale `azureEngagement` oggetto JavaScript, come in hello di esempio seguente.</span><span class="sxs-lookup"><span data-stu-id="77051-126">Write a script that creates a global `azureEngagement` JavaScript object, as in hello following example.</span></span> <span data-ttu-id="77051-127">Poiché il sito potrebbe essere composto da più pagine, questo esempio presuppone che lo script sia incluso in ogni pagina.</span><span class="sxs-lookup"><span data-stu-id="77051-127">Because your site might have multiples pages, this example assumes that this script is included in every page.</span></span> <span data-ttu-id="77051-128">In questo esempio è denominato oggetto JavaScript hello `azure-engagement-conf.js`.</span><span class="sxs-lookup"><span data-stu-id="77051-128">In this example, hello JavaScript object is named `azure-engagement-conf.js`.</span></span>
 
     window.azureEngagement = {
       connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -61,15 +61,15 @@ ms.lasthandoff: 07/11/2017
       appVersionCode: 1
     };
 
-<span data-ttu-id="a04a6-129">Il valore `connectionString` per l'applicazione viene visualizzato nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="a04a6-129">The `connectionString` value for your application is displayed in the Azure portal.</span></span>
+<span data-ttu-id="77051-129">Hello `connectionString` valore per l'applicazione viene visualizzata nel portale di Azure hello.</span><span class="sxs-lookup"><span data-stu-id="77051-129">hello `connectionString` value for your application is displayed in hello Azure portal.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a04a6-130">`appVersionName` e `appVersionCode` sono facoltativi.</span><span class="sxs-lookup"><span data-stu-id="a04a6-130">`appVersionName` and `appVersionCode` are optional.</span></span> <span data-ttu-id="a04a6-131">Si consiglia tuttavia di configurarli in modo che l'analisi possa elaborare le informazioni relative alla versione.</span><span class="sxs-lookup"><span data-stu-id="a04a6-131">However, we recommend that you configure them so that analytics can process version information.</span></span>
+> <span data-ttu-id="77051-130">`appVersionName` e `appVersionCode` sono facoltativi.</span><span class="sxs-lookup"><span data-stu-id="77051-130">`appVersionName` and `appVersionCode` are optional.</span></span> <span data-ttu-id="77051-131">Si consiglia tuttavia di configurarli in modo che l'analisi possa elaborare le informazioni relative alla versione.</span><span class="sxs-lookup"><span data-stu-id="77051-131">However, we recommend that you configure them so that analytics can process version information.</span></span>
 > 
 > 
 
-## <a name="include-mobile-engagement-scripts-in-your-pages"></a><span data-ttu-id="a04a6-132">Includere script di Mobile Engagement nelle pagine</span><span class="sxs-lookup"><span data-stu-id="a04a6-132">Include Mobile Engagement scripts in your pages</span></span>
-<span data-ttu-id="a04a6-133">Aggiungere gli script di Mobile Engagement alle pagine in uno dei modi seguenti:</span><span class="sxs-lookup"><span data-stu-id="a04a6-133">Add Mobile Engagement scripts to your pages in one of the following ways:</span></span>
+## <a name="include-mobile-engagement-scripts-in-your-pages"></a><span data-ttu-id="77051-132">Includere script di Mobile Engagement nelle pagine</span><span class="sxs-lookup"><span data-stu-id="77051-132">Include Mobile Engagement scripts in your pages</span></span>
+<span data-ttu-id="77051-133">Aggiungere pagine tooyour gli script di Mobile Engagement in uno dei seguenti modi hello:</span><span class="sxs-lookup"><span data-stu-id="77051-133">Add Mobile Engagement scripts tooyour pages in one of hello following ways:</span></span>
 
     <head>
       ...
@@ -78,7 +78,7 @@ ms.lasthandoff: 07/11/2017
       ...
     </head>
 
-<span data-ttu-id="a04a6-134">Oppure:</span><span class="sxs-lookup"><span data-stu-id="a04a6-134">Or this:</span></span>
+<span data-ttu-id="77051-134">Oppure:</span><span class="sxs-lookup"><span data-stu-id="77051-134">Or this:</span></span>
 
     <body>
       ...
@@ -87,10 +87,10 @@ ms.lasthandoff: 07/11/2017
       ...
     </body>
 
-## <a name="alias"></a><span data-ttu-id="a04a6-135">Alias</span><span class="sxs-lookup"><span data-stu-id="a04a6-135">Alias</span></span>
-<span data-ttu-id="a04a6-136">Dopo aver caricato lo script di Mobile Engagement SDK per Web, viene creato l'alias **engagement** per accedere alle API dell'SDK.</span><span class="sxs-lookup"><span data-stu-id="a04a6-136">After the Mobile Engagement Web SDK script is loaded, it creates the **engagement** alias to access the SDK APIs.</span></span> <span data-ttu-id="a04a6-137">Non è possibile usare l'alias per definire la configurazione dell'SDK.</span><span class="sxs-lookup"><span data-stu-id="a04a6-137">You cannot use this alias to define the SDK configuration.</span></span> <span data-ttu-id="a04a6-138">In questa documentazione l'alias viene usato come riferimento.</span><span class="sxs-lookup"><span data-stu-id="a04a6-138">This alias is used as a reference in this documentation.</span></span>
+## <a name="alias"></a><span data-ttu-id="77051-135">Alias</span><span class="sxs-lookup"><span data-stu-id="77051-135">Alias</span></span>
+<span data-ttu-id="77051-136">Dopo il caricamento di uno script di Mobile Engagement Web SDK hello crea hello **engagement** tooaccess alias hello API SDK.</span><span class="sxs-lookup"><span data-stu-id="77051-136">After hello Mobile Engagement Web SDK script is loaded, it creates hello **engagement** alias tooaccess hello SDK APIs.</span></span> <span data-ttu-id="77051-137">Non è possibile utilizzare questa configurazione di alias toodefine hello SDK.</span><span class="sxs-lookup"><span data-stu-id="77051-137">You cannot use this alias toodefine hello SDK configuration.</span></span> <span data-ttu-id="77051-138">In questa documentazione l'alias viene usato come riferimento.</span><span class="sxs-lookup"><span data-stu-id="77051-138">This alias is used as a reference in this documentation.</span></span>
 
-<span data-ttu-id="a04a6-139">Si noti che se l'alias predefinito è in conflitto con un'altra variabile globale della pagina, sarà possibile ridefinirlo nella configurazione prima di caricare il Mobile Engagement SDK per Web nel modo seguente:</span><span class="sxs-lookup"><span data-stu-id="a04a6-139">Note that if the default alias conflicts with another global variable from your page, you can redefine it in the configuration as follows before you load the Mobile Engagement Web SDK:</span></span>
+<span data-ttu-id="77051-139">Si noti che se l'alias predefinito hello in conflitto con un'altra variabile globale dalla pagina, è possibile ridefinirla nella configurazione di hello come indicato di seguito prima di caricare hello Mobile Engagement Web SDK:</span><span class="sxs-lookup"><span data-stu-id="77051-139">Note that if hello default alias conflicts with another global variable from your page, you can redefine it in hello configuration as follows before you load hello Mobile Engagement Web SDK:</span></span>
 
     window.azureEngagement = {
       connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
@@ -99,15 +99,15 @@ ms.lasthandoff: 07/11/2017
       alias:'anotherAlias'
     };
 
-## <a name="basic-reporting"></a><span data-ttu-id="a04a6-140">Segnalazione di base</span><span class="sxs-lookup"><span data-stu-id="a04a6-140">Basic reporting</span></span>
-<span data-ttu-id="a04a6-141">La segnalazione di base in Mobile Engagement riguarda le statistiche a livello di sessione, ad esempio le statistiche relative a utenti, sessioni, attività e arresti anomali del sistema.</span><span class="sxs-lookup"><span data-stu-id="a04a6-141">Basic reporting in Mobile Engagement covers session-level statistics, such as statistics about users, sessions, activities, and crashes.</span></span>
+## <a name="basic-reporting"></a><span data-ttu-id="77051-140">Segnalazione di base</span><span class="sxs-lookup"><span data-stu-id="77051-140">Basic reporting</span></span>
+<span data-ttu-id="77051-141">La segnalazione di base in Mobile Engagement riguarda le statistiche a livello di sessione, ad esempio le statistiche relative a utenti, sessioni, attività e arresti anomali del sistema.</span><span class="sxs-lookup"><span data-stu-id="77051-141">Basic reporting in Mobile Engagement covers session-level statistics, such as statistics about users, sessions, activities, and crashes.</span></span>
 
-### <a name="session-tracking"></a><span data-ttu-id="a04a6-142">Monitoraggio di una sessione</span><span class="sxs-lookup"><span data-stu-id="a04a6-142">Session tracking</span></span>
-<span data-ttu-id="a04a6-143">Una sessione di Mobile Engagement è suddivisa in una sequenza di attività identificate da un nome.</span><span class="sxs-lookup"><span data-stu-id="a04a6-143">A Mobile Engagement session is divided into a sequence of activities, each identified by a name.</span></span>
+### <a name="session-tracking"></a><span data-ttu-id="77051-142">Monitoraggio di una sessione</span><span class="sxs-lookup"><span data-stu-id="77051-142">Session tracking</span></span>
+<span data-ttu-id="77051-143">Una sessione di Mobile Engagement è suddivisa in una sequenza di attività identificate da un nome.</span><span class="sxs-lookup"><span data-stu-id="77051-143">A Mobile Engagement session is divided into a sequence of activities, each identified by a name.</span></span>
 
-<span data-ttu-id="a04a6-144">In un sito Web classico è consigliabile dichiarare un'attività diversa in ogni pagina del sito.</span><span class="sxs-lookup"><span data-stu-id="a04a6-144">In a classic website, we recommend that you declare a different activity on each page of your site.</span></span> <span data-ttu-id="a04a6-145">Per una sito o un'applicazione Web in cui la pagina corrente non cambia mai, si desidera monitorare le attività su scala ridotta, ad esempio all'interno della pagina.</span><span class="sxs-lookup"><span data-stu-id="a04a6-145">For a website or web application in which the current page never changes, you might want to track the activities on a smaller scale, such as within the page.</span></span>
+<span data-ttu-id="77051-144">In un sito Web classico è consigliabile dichiarare un'attività diversa in ogni pagina del sito.</span><span class="sxs-lookup"><span data-stu-id="77051-144">In a classic website, we recommend that you declare a different activity on each page of your site.</span></span> <span data-ttu-id="77051-145">Per una sito o applicazione web in cui hello pagina corrente non cambia mai, le attività di hello tootrack su scala ridotta, potrebbe essere, ad esempio all'interno di pagina hello.</span><span class="sxs-lookup"><span data-stu-id="77051-145">For a website or web application in which hello current page never changes, you might want tootrack hello activities on a smaller scale, such as within hello page.</span></span>
 
-<span data-ttu-id="a04a6-146">In entrambi i casi, per avviare o modificare l'attività utente corrente, chiamare la funzione `engagement.agent.startActivity` .</span><span class="sxs-lookup"><span data-stu-id="a04a6-146">Either way, to start or change the current user activity, call the `engagement.agent.startActivity` function.</span></span> <span data-ttu-id="a04a6-147">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="a04a6-147">For example:</span></span>
+<span data-ttu-id="77051-146">Ovvero, toostart o modifica hello attività corrente dell'utente chiamata hello `engagement.agent.startActivity` (funzione).</span><span class="sxs-lookup"><span data-stu-id="77051-146">Either way, toostart or change hello current user activity, call hello `engagement.agent.startActivity` function.</span></span> <span data-ttu-id="77051-147">ad esempio:</span><span class="sxs-lookup"><span data-stu-id="77051-147">For example:</span></span>
 
     <body onload="yourOnload()">
 
@@ -118,28 +118,28 @@ ms.lasthandoff: 07/11/2017
       engagement.agent.startActivity('welcome');
     };
 
-<span data-ttu-id="a04a6-148">Il server di Mobile Engagement termina automaticamente una sessione aperta entro 3 minuti dalla chiusura della pagina dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="a04a6-148">The Mobile Engagement server automatically ends an open session within three minutes after the application page is closed.</span></span>
+<span data-ttu-id="77051-148">server di Mobile Engagement Hello termina automaticamente una sessione aperta all'interno di tre minuti dopo la chiusura di una pagina dell'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="77051-148">hello Mobile Engagement server automatically ends an open session within three minutes after hello application page is closed.</span></span>
 
-<span data-ttu-id="a04a6-149">In alternativa, è possibile terminare una sessione manualmente chiamando `engagement.agent.endActivity`.</span><span class="sxs-lookup"><span data-stu-id="a04a6-149">Alternatively, you can end a session manually by calling `engagement.agent.endActivity`.</span></span> <span data-ttu-id="a04a6-150">Ciò consente di impostare l'attività dell'utente corrente su "Idle".</span><span class="sxs-lookup"><span data-stu-id="a04a6-150">This sets the current user activity to 'Idle.'</span></span>  <span data-ttu-id="a04a6-151">La sessione terminerà dopo 10 secondi fino a quando una nuova chiamata a `engagement.agent.startActivity` riprenda la sessione.</span><span class="sxs-lookup"><span data-stu-id="a04a6-151">The session will end 10 seconds later unless a new call to `engagement.agent.startActivity` resumes the session.</span></span>
+<span data-ttu-id="77051-149">In alternativa, è possibile terminare una sessione manualmente chiamando `engagement.agent.endActivity`.</span><span class="sxs-lookup"><span data-stu-id="77051-149">Alternatively, you can end a session manually by calling `engagement.agent.endActivity`.</span></span> <span data-ttu-id="77051-150">Consente di impostare too'Idle attività utente corrente di hello.'</span><span class="sxs-lookup"><span data-stu-id="77051-150">This sets hello current user activity too'Idle.'</span></span>  <span data-ttu-id="77051-151">sessione Hello terminerà dopo 10 secondi, a meno che una nuova chiamata`engagement.agent.startActivity` riprende una sessione di hello.</span><span class="sxs-lookup"><span data-stu-id="77051-151">hello session will end 10 seconds later unless a new call too`engagement.agent.startActivity` resumes hello session.</span></span>
 
-<span data-ttu-id="a04a6-152">È possibile configurare il ritardo di 10 secondi nell'oggetto engagement globale, come segue:</span><span class="sxs-lookup"><span data-stu-id="a04a6-152">You can configure the 10-second delay in the global engagement object, as follows:</span></span>
+<span data-ttu-id="77051-152">È possibile configurare il ritardo di 10 secondi hello nell'oggetto globale engagement hello, come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="77051-152">You can configure hello 10-second delay in hello global engagement object, as follows:</span></span>
 
     engagement.sessionTimeout = 2000; // 2 seconds
     // or
-    engagement.sessionTimeout = 0; // end the session as soon as endActivity is called
+    engagement.sessionTimeout = 0; // end hello session as soon as endActivity is called
 
 > [!NOTE]
-> <span data-ttu-id="a04a6-153">Non è possibile usare `engagement.agent.endActivity` nel callback `onunload` perché non è possibile eseguire chiamate AJAX in questa fase.</span><span class="sxs-lookup"><span data-stu-id="a04a6-153">You cannot use `engagement.agent.endActivity` in the `onunload` callback because you cannot make AJAX calls at this stage.</span></span>
+> <span data-ttu-id="77051-153">Non è possibile utilizzare `engagement.agent.endActivity` in hello `onunload` callback perché in questa fase non è possibile apportare le chiamate AJAX.</span><span class="sxs-lookup"><span data-stu-id="77051-153">You cannot use `engagement.agent.endActivity` in hello `onunload` callback because you cannot make AJAX calls at this stage.</span></span>
 > 
 > 
 
-## <a name="advanced-reporting"></a><span data-ttu-id="a04a6-154">Segnalazione avanzata</span><span class="sxs-lookup"><span data-stu-id="a04a6-154">Advanced reporting</span></span>
-<span data-ttu-id="a04a6-155">Facoltativamente, per segnalare eventi, errori e processi specifici dell'applicazione, è necessario usare l'API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="a04a6-155">Optionally, if you want to report application-specific events, errors, and jobs, you need to use the Mobile Engagement API.</span></span> <span data-ttu-id="a04a6-156">È possibile accedere alle API di Mobile Engagement tramite l'oggetto `engagement.agent` .</span><span class="sxs-lookup"><span data-stu-id="a04a6-156">You access the Mobile Engagement API through the `engagement.agent` object.</span></span>
+## <a name="advanced-reporting"></a><span data-ttu-id="77051-154">Segnalazione avanzata</span><span class="sxs-lookup"><span data-stu-id="77051-154">Advanced reporting</span></span>
+<span data-ttu-id="77051-155">Facoltativamente, se si desidera processi, errori ed eventi di tooreport specifiche dell'applicazione, è necessario toouse hello API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="77051-155">Optionally, if you want tooreport application-specific events, errors, and jobs, you need toouse hello Mobile Engagement API.</span></span> <span data-ttu-id="77051-156">Si accede hello API di Mobile Engagement tramite hello `engagement.agent` oggetto.</span><span class="sxs-lookup"><span data-stu-id="77051-156">You access hello Mobile Engagement API through hello `engagement.agent` object.</span></span>
 
-<span data-ttu-id="a04a6-157">È possibile accedere a tutte le funzionalità avanzate di Mobile Engagement nell'API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="a04a6-157">You can access all of the advanced capabilities in Mobile Engagement in the Mobile Engagement API.</span></span> <span data-ttu-id="a04a6-158">Per altre informazioni sull'API, leggere [Come usare l'API di Engagement in un'applicazione Web](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="a04a6-158">The API is detailed in the article [How to use the advanced Mobile Engagement tagging API in a web application](mobile-engagement-web-use-engagement-api.md).</span></span>
+<span data-ttu-id="77051-157">È possibile accedere a tutti i hello avanzate funzionalità di Mobile Engagement in hello API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="77051-157">You can access all of hello advanced capabilities in Mobile Engagement in hello Mobile Engagement API.</span></span> <span data-ttu-id="77051-158">API Hello è descritta in dettaglio nell'articolo hello [come toouse hello avanzate tag API in un'applicazione web di Mobile Engagement](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="77051-158">hello API is detailed in hello article [How toouse hello advanced Mobile Engagement tagging API in a web application](mobile-engagement-web-use-engagement-api.md).</span></span>
 
-## <a name="customize-the-urls-used-for-ajax-calls"></a><span data-ttu-id="a04a6-159">Personalizzare gli URL usati per le chiamate AJAX</span><span class="sxs-lookup"><span data-stu-id="a04a6-159">Customize the URLs used for AJAX calls</span></span>
-<span data-ttu-id="a04a6-160">È possibile personalizzare gli URL usati dal Mobile Engagement SDK per Web.</span><span class="sxs-lookup"><span data-stu-id="a04a6-160">You can customize URLs that the Mobile Engagement Web SDK uses.</span></span> <span data-ttu-id="a04a6-161">Ad esempio, per ridefinire l'URL di accesso (l'endpoint SDK per l'accesso), è possibile eseguire l'override della configurazione in modo simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="a04a6-161">For example, to redefine the log URL (the SDK endpoint for logging), you can override the configuration like this:</span></span>
+## <a name="customize-hello-urls-used-for-ajax-calls"></a><span data-ttu-id="77051-159">Personalizzare gli URL hello utilizzati per le chiamate AJAX</span><span class="sxs-lookup"><span data-stu-id="77051-159">Customize hello URLs used for AJAX calls</span></span>
+<span data-ttu-id="77051-160">È possibile personalizzare gli URL che hello che usa Web di Mobile Engagement SDK.</span><span class="sxs-lookup"><span data-stu-id="77051-160">You can customize URLs that hello Mobile Engagement Web SDK uses.</span></span> <span data-ttu-id="77051-161">Ad esempio, tooredefine hello log URL (hello SDK dell'endpoint per la registrazione), è possibile eseguire l'override di configurazione hello come segue:</span><span class="sxs-lookup"><span data-stu-id="77051-161">For example, tooredefine hello log URL (hello SDK endpoint for logging), you can override hello configuration like this:</span></span>
 
     window.azureEngagement = {
       ...
@@ -151,7 +151,7 @@ ms.lasthandoff: 07/11/2017
       }
     };
 
-<span data-ttu-id="a04a6-162">Se le funzioni URL restituiscono una stringa che inizia con `/`, `//`, `http://` o `https://`, lo schema predefinito non è usato.</span><span class="sxs-lookup"><span data-stu-id="a04a6-162">If your URL functions return a string that begins with `/`, `//`, `http://`, or `https://`, the default scheme is not used.</span></span> <span data-ttu-id="a04a6-163">Per impostazione predefinita, per tali URL viene usato lo schema `https://` .</span><span class="sxs-lookup"><span data-stu-id="a04a6-163">By default, the `https://` scheme is used for those URLs.</span></span> <span data-ttu-id="a04a6-164">Se si desidera personalizzare lo schema predefinito, eseguire l'override della configurazione in modo simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="a04a6-164">If you want to customize the default scheme, override the configuration, like this:</span></span>
+<span data-ttu-id="77051-162">Se le funzioni dell'URL restituiranno una stringa che inizia con `/`, `//`, `http://`, o `https://`, non viene utilizzato lo schema predefinito di hello.</span><span class="sxs-lookup"><span data-stu-id="77051-162">If your URL functions return a string that begins with `/`, `//`, `http://`, or `https://`, hello default scheme is not used.</span></span> <span data-ttu-id="77051-163">Per impostazione predefinita, hello `https://` schema viene utilizzato per tali URL.</span><span class="sxs-lookup"><span data-stu-id="77051-163">By default, hello `https://` scheme is used for those URLs.</span></span> <span data-ttu-id="77051-164">Se si desidera schema predefinito di hello toocustomize, eseguire l'override di configurazione hello, simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="77051-164">If you want toocustomize hello default scheme, override hello configuration, like this:</span></span>
 
     window.azureEngagement = {
       ...

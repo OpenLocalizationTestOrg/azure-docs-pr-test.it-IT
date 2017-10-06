@@ -53,9 +53,9 @@
 ## Gestire
 ### [Librerie di gestione del bus di servizio](service-bus-management-libraries.md)
 ### [Uso dei modelli di Azure Resource Manager](service-bus-resource-manager-overview.md)
-### [Uso di PowerShell per il provisioning delle entità](service-bus-manage-with-ps.md)
+### [Utilizzando PowerShell tooprovision entità](service-bus-manage-with-ps.md)
 
-# Riferimenti
+# riferimento
 ## .NET
 ### [Microsoft.ServiceBus.Messaging (.NET Framework)](/dotnet/api/microsoft.servicebus.messaging)
 ### [Microsoft.Azure.ServiceBus (.NET Standard)](/dotnet/api/microsoft.azure.servicebus)

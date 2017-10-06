@@ -1,6 +1,6 @@
 ---
-title: Aprire porte a una VM tramite Azure PowerShell | Documentazione Microsoft
-description: Informazioni su come aprire una porta o creare un endpoint alla VM Windows tramite il modello di distribuzione di Azure Resource Manager e Azure PowerShell
+title: aaaOpen porte tooa VM con Azure PowerShell | Documenti Microsoft
+description: "Informazioni su come tooopen una porta / creare una macchina virtuale Windows di tooyour endpoint tramite la modalità di distribuzione di gestione risorse di Azure hello e PowerShell di Azure"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 08/21/2017
 ms.author: iainfou
-ms.openlocfilehash: e818e3b3c707e1471d6f580f8379a277d3575b89
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c1817a0c447ae4ce7a1ce2a1fc6927bedf2dacb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-open-ports-and-endpoints-to-a-vm-in-azure-using-powershell"></a><span data-ttu-id="8588f-103">Come aprire le porte e gli endpoint in una VM in Azure usando PowerShell</span><span class="sxs-lookup"><span data-stu-id="8588f-103">How to open ports and endpoints to a VM in Azure using PowerShell</span></span>
+# <a name="how-tooopen-ports-and-endpoints-tooa-vm-in-azure-using-powershell"></a><span data-ttu-id="e5f00-103">Come tooopen tooa di porte e gli endpoint di macchina virtuale in Azure tramite PowerShell</span><span class="sxs-lookup"><span data-stu-id="e5f00-103">How tooopen ports and endpoints tooa VM in Azure using PowerShell</span></span>
 [!INCLUDE [virtual-machines-common-nsg-quickstart](../../../includes/virtual-machines-common-nsg-quickstart.md)]
 
-## <a name="quick-commands"></a><span data-ttu-id="8588f-104">Comandi rapidi</span><span class="sxs-lookup"><span data-stu-id="8588f-104">Quick commands</span></span>
-<span data-ttu-id="8588f-105">Per creare un gruppo di sicurezza di rete e le regole del controllo di accesso, è necessario che [sia installata la versione più recente di Azure PowerShell](/powershell/azureps-cmdlets-docs).</span><span class="sxs-lookup"><span data-stu-id="8588f-105">To create a Network Security Group and ACL rules you need [the latest version of Azure PowerShell installed](/powershell/azureps-cmdlets-docs).</span></span> <span data-ttu-id="8588f-106">È possibile anche [eseguire questi passaggi tramite il portale di Azure](nsg-quickstart-portal.md).</span><span class="sxs-lookup"><span data-stu-id="8588f-106">You can also [perform these steps using the Azure portal](nsg-quickstart-portal.md).</span></span>
+## <a name="quick-commands"></a><span data-ttu-id="e5f00-104">Comandi rapidi</span><span class="sxs-lookup"><span data-stu-id="e5f00-104">Quick commands</span></span>
+<span data-ttu-id="e5f00-105">Gruppo di sicurezza di rete toocreate e delle regole ACL è necessario [più recente di Azure PowerShell installata hello](/powershell/azureps-cmdlets-docs).</span><span class="sxs-lookup"><span data-stu-id="e5f00-105">toocreate a Network Security Group and ACL rules you need [hello latest version of Azure PowerShell installed](/powershell/azureps-cmdlets-docs).</span></span> <span data-ttu-id="e5f00-106">È anche possibile [eseguire questi passaggi tramite il portale di Azure hello](nsg-quickstart-portal.md).</span><span class="sxs-lookup"><span data-stu-id="e5f00-106">You can also [perform these steps using hello Azure portal](nsg-quickstart-portal.md).</span></span>
 
-<span data-ttu-id="8588f-107">Accedere all'account di Azure:</span><span class="sxs-lookup"><span data-stu-id="8588f-107">Log in to your Azure account:</span></span>
+<span data-ttu-id="e5f00-107">Accedi tooyour account di Azure:</span><span class="sxs-lookup"><span data-stu-id="e5f00-107">Log in tooyour Azure account:</span></span>
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-<span data-ttu-id="8588f-108">Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati.</span><span class="sxs-lookup"><span data-stu-id="8588f-108">In the following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="8588f-109">I nomi dei parametri di esempio includono *myResourceGroup*, *myNetworkSecurityGroup* e *myVnet*.</span><span class="sxs-lookup"><span data-stu-id="8588f-109">Example parameter names included *myResourceGroup*, *myNetworkSecurityGroup*, and *myVnet*.</span></span>
+<span data-ttu-id="e5f00-108">In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati.</span><span class="sxs-lookup"><span data-stu-id="e5f00-108">In hello following examples, replace example parameter names with your own values.</span></span> <span data-ttu-id="e5f00-109">I nomi dei parametri di esempio includono *myResourceGroup*, *myNetworkSecurityGroup* e *myVnet*.</span><span class="sxs-lookup"><span data-stu-id="e5f00-109">Example parameter names included *myResourceGroup*, *myNetworkSecurityGroup*, and *myVnet*.</span></span>
 
-<span data-ttu-id="8588f-110">Creare una regola con [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig).</span><span class="sxs-lookup"><span data-stu-id="8588f-110">Create a rule with [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig).</span></span> <span data-ttu-id="8588f-111">L'esempio seguente crea una regola denominata *myNetworkSecurityGroupRule* per consentire il traffico *tcp* sulla porta *80*:</span><span class="sxs-lookup"><span data-stu-id="8588f-111">The following example creates a rule named *myNetworkSecurityGroupRule* to allow *tcp* traffic on port *80*:</span></span>
+<span data-ttu-id="e5f00-110">Creare una regola con [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig).</span><span class="sxs-lookup"><span data-stu-id="e5f00-110">Create a rule with [New-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.network/new-azurermnetworksecurityruleconfig).</span></span> <span data-ttu-id="e5f00-111">esempio Hello crea una regola denominata *myNetworkSecurityGroupRule* tooallow *tcp* il traffico sulla porta *80*:</span><span class="sxs-lookup"><span data-stu-id="e5f00-111">hello following example creates a rule named *myNetworkSecurityGroupRule* tooallow *tcp* traffic on port *80*:</span></span>
 
 ```powershell
 $httprule = New-AzureRmNetworkSecurityRuleConfig `
@@ -50,7 +50,7 @@ $httprule = New-AzureRmNetworkSecurityRuleConfig `
     -DestinationPortRange 80
 ```
 
-<span data-ttu-id="8588f-112">Creare quindi il gruppo di sicurezza di rete con [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) e assegnare la regola HTTP appena creata come indicato di seguito.</span><span class="sxs-lookup"><span data-stu-id="8588f-112">Next, create your Network Security group with [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) and assign the HTTP rule you just created as follows.</span></span> <span data-ttu-id="8588f-113">L'esempio seguente crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:</span><span class="sxs-lookup"><span data-stu-id="8588f-113">The following example creates a Network Security Group named *myNetworkSecurityGroup*:</span></span>
+<span data-ttu-id="e5f00-112">Successivamente, creare il gruppo di sicurezza di rete con [New AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) e assegnare hello HTTP regola appena creata come indicato di seguito.</span><span class="sxs-lookup"><span data-stu-id="e5f00-112">Next, create your Network Security group with [New-AzureRmNetworkSecurityGroup](/powershell/module/azurerm.network/new-azurermnetworksecuritygroup) and assign hello HTTP rule you just created as follows.</span></span> <span data-ttu-id="e5f00-113">esempio Hello crea un gruppo di sicurezza di rete denominata *myNetworkSecurityGroup*:</span><span class="sxs-lookup"><span data-stu-id="e5f00-113">hello following example creates a Network Security Group named *myNetworkSecurityGroup*:</span></span>
 
 ```powershell
 $nsg = New-AzureRmNetworkSecurityGroup `
@@ -60,7 +60,7 @@ $nsg = New-AzureRmNetworkSecurityGroup `
     -SecurityRules $httprule
 ```
 
-<span data-ttu-id="8588f-114">Ora si assegnerà il gruppo di sicurezza di rete a una subnet.</span><span class="sxs-lookup"><span data-stu-id="8588f-114">Now let's assign your Network Security Group to a subnet.</span></span> <span data-ttu-id="8588f-115">L'esempio seguente assegna una rete virtuale esistente denominata *myVnet* alla variabile *$vnet* con [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):</span><span class="sxs-lookup"><span data-stu-id="8588f-115">The following example assigns an existing virtual network named *myVnet* to the variable *$vnet* with [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):</span></span>
+<span data-ttu-id="e5f00-114">Ora si assegnare la subnet tooa il gruppo di sicurezza di rete.</span><span class="sxs-lookup"><span data-stu-id="e5f00-114">Now let's assign your Network Security Group tooa subnet.</span></span> <span data-ttu-id="e5f00-115">esempio Hello assegna una rete virtuale esistente denominata *myVnet* toohello variabile *$vnet* con [Get AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):</span><span class="sxs-lookup"><span data-stu-id="e5f00-115">hello following example assigns an existing virtual network named *myVnet* toohello variable *$vnet* with [Get-AzureRmVirtualNetwork](/powershell/module/azurerm.network/get-azurermvirtualnetwork):</span></span>
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork `
@@ -68,7 +68,7 @@ $vnet = Get-AzureRmVirtualNetwork `
     -Name "myVnet"
 ```
 
-<span data-ttu-id="8588f-116">Associare il gruppo di sicurezza di rete alla subnet con [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig).</span><span class="sxs-lookup"><span data-stu-id="8588f-116">Associate your Network Security Group with your subnet with [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig).</span></span> <span data-ttu-id="8588f-117">L'esempio seguente associa la subnet denominata *mySubnet* al gruppo di sicurezza di rete:</span><span class="sxs-lookup"><span data-stu-id="8588f-117">The following example associates the subnet named *mySubnet* with your Network Security Group:</span></span>
+<span data-ttu-id="e5f00-116">Associare il gruppo di sicurezza di rete alla subnet con [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig).</span><span class="sxs-lookup"><span data-stu-id="e5f00-116">Associate your Network Security Group with your subnet with [Set-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/set-azurermvirtualnetworksubnetconfig).</span></span> <span data-ttu-id="e5f00-117">esempio Hello associa subnet hello denominata *mySubnet* con il gruppo di sicurezza di rete:</span><span class="sxs-lookup"><span data-stu-id="e5f00-117">hello following example associates hello subnet named *mySubnet* with your Network Security Group:</span></span>
 
 ```powershell
 $subnetPrefix = $vnet.Subnets|?{$_.Name -eq 'mySubnet'}
@@ -80,22 +80,22 @@ Set-AzureRmVirtualNetworkSubnetConfig `
     -NetworkSecurityGroup $nsg
 ```
 
-<span data-ttu-id="8588f-118">Infine, aggiornare la rete virtuale con [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) affinché le modifiche abbiano effetto:</span><span class="sxs-lookup"><span data-stu-id="8588f-118">Finally, update your virtual network with [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) in order for your changes to take effect:</span></span>
+<span data-ttu-id="e5f00-118">Infine, aggiornare la rete virtuale con [Set AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) affinché l'effetto di tootake modifiche:</span><span class="sxs-lookup"><span data-stu-id="e5f00-118">Finally, update your virtual network with [Set-AzureRmVirtualNetwork](/powershell/module/azurerm.network/set-azurermvirtualnetwork) in order for your changes tootake effect:</span></span>
 
 ```powershell
 Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 ```
 
 
-## <a name="more-information-on-network-security-groups"></a><span data-ttu-id="8588f-119">Altre informazioni sui gruppi di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="8588f-119">More information on Network Security Groups</span></span>
-<span data-ttu-id="8588f-120">I comandi rapidi seguenti consentono di rendere operativo il traffico verso la VM.</span><span class="sxs-lookup"><span data-stu-id="8588f-120">The quick commands here allow you to get up and running with traffic flowing to your VM.</span></span> <span data-ttu-id="8588f-121">I gruppi di sicurezza di rete offrono numerose funzionalità efficienti e la necessaria granularità per controllare l'accesso alle risorse.</span><span class="sxs-lookup"><span data-stu-id="8588f-121">Network Security Groups provide many great features and granularity for controlling access to your resources.</span></span> <span data-ttu-id="8588f-122">Per altre informazioni, leggere l'articolo sulla [creazione di un gruppo di sicurezza di rete e di regole dell'elenco di controllo di accesso qui](tutorial-virtual-network.md#manage-internal-traffic).</span><span class="sxs-lookup"><span data-stu-id="8588f-122">You can read more about [creating a Network Security Group and ACL rules here](tutorial-virtual-network.md#manage-internal-traffic).</span></span>
+## <a name="more-information-on-network-security-groups"></a><span data-ttu-id="e5f00-119">Altre informazioni sui gruppi di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="e5f00-119">More information on Network Security Groups</span></span>
+<span data-ttu-id="e5f00-120">Hello rapido comandi consentono di tooget backup e in esecuzione con traffico propagazione tooyour macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="e5f00-120">hello quick commands here allow you tooget up and running with traffic flowing tooyour VM.</span></span> <span data-ttu-id="e5f00-121">Gruppi di sicurezza di rete forniscono numerose funzionalità eccellenti e granularità per il controllo tooyour di accedere alle risorse.</span><span class="sxs-lookup"><span data-stu-id="e5f00-121">Network Security Groups provide many great features and granularity for controlling access tooyour resources.</span></span> <span data-ttu-id="e5f00-122">Per altre informazioni, leggere l'articolo sulla [creazione di un gruppo di sicurezza di rete e di regole dell'elenco di controllo di accesso qui](tutorial-virtual-network.md#manage-internal-traffic).</span><span class="sxs-lookup"><span data-stu-id="e5f00-122">You can read more about [creating a Network Security Group and ACL rules here](tutorial-virtual-network.md#manage-internal-traffic).</span></span>
 
-<span data-ttu-id="8588f-123">Per le applicazioni Web a disponibilità elevata, è consigliabile inserire le macchine virtuali dietro a un Azure Load Balancer.</span><span class="sxs-lookup"><span data-stu-id="8588f-123">For highly available web applications, you should place your VMs behind an Azure Load Balancer.</span></span> <span data-ttu-id="8588f-124">Il bilanciamento del carico distribuisce il traffico alle macchine virtuali, con un gruppo di sicurezza di rete che consente di filtrare il traffico.</span><span class="sxs-lookup"><span data-stu-id="8588f-124">The load balancer distributes traffic to VMs, with a Network Security Group that provides traffic filtering.</span></span> <span data-ttu-id="8588f-125">Per altre informazioni, vedere [Come bilanciare il carico per le macchine virtuali di Linux in Azure per creare un'applicazione a disponibilità elevata](tutorial-load-balancer.md).</span><span class="sxs-lookup"><span data-stu-id="8588f-125">For more information, see [How to load balance Linux virtual machines in Azure to create a highly available application](tutorial-load-balancer.md).</span></span>
+<span data-ttu-id="e5f00-123">Per le applicazioni Web a disponibilità elevata, è consigliabile inserire le macchine virtuali dietro a un Azure Load Balancer.</span><span class="sxs-lookup"><span data-stu-id="e5f00-123">For highly available web applications, you should place your VMs behind an Azure Load Balancer.</span></span> <span data-ttu-id="e5f00-124">bilanciamento del carico di Hello distribuisce il traffico tooVMs, con un gruppo di sicurezza di rete che consente di filtrare il traffico.</span><span class="sxs-lookup"><span data-stu-id="e5f00-124">hello load balancer distributes traffic tooVMs, with a Network Security Group that provides traffic filtering.</span></span> <span data-ttu-id="e5f00-125">Per ulteriori informazioni, vedere [come macchine saldo tooload virtuali Linux in Azure toocreate applicazioni a disponibilità elevata](tutorial-load-balancer.md).</span><span class="sxs-lookup"><span data-stu-id="e5f00-125">For more information, see [How tooload balance Linux virtual machines in Azure toocreate a highly available application](tutorial-load-balancer.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="8588f-126">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="8588f-126">Next steps</span></span>
-<span data-ttu-id="8588f-127">In questo esempio viene creata una regola semplice per consentire il traffico HTTP.</span><span class="sxs-lookup"><span data-stu-id="8588f-127">In this example, you created a simple rule to allow HTTP traffic.</span></span> <span data-ttu-id="8588f-128">È possibile trovare informazioni sulla creazione di ambienti più dettagliati negli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="8588f-128">You can find information on creating more detailed environments in the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e5f00-126">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e5f00-126">Next steps</span></span>
+<span data-ttu-id="e5f00-127">In questo esempio è stato creato il traffico HTTP tooallow una semplice regola.</span><span class="sxs-lookup"><span data-stu-id="e5f00-127">In this example, you created a simple rule tooallow HTTP traffic.</span></span> <span data-ttu-id="e5f00-128">È possibile trovare informazioni sulla creazione di ambienti più dettagliati in hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="e5f00-128">You can find information on creating more detailed environments in hello following articles:</span></span>
 
-* [<span data-ttu-id="8588f-129">Panoramica di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="8588f-129">Azure Resource Manager overview</span></span>](../../azure-resource-manager/resource-group-overview.md)
-* [<span data-ttu-id="8588f-130">Che cos'è un gruppo di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="8588f-130">What is a Network Security Group (NSG)?</span></span>](../../virtual-network/virtual-networks-nsg.md)
-* [<span data-ttu-id="8588f-131">Panoramica di Azure Resource Manager per i servizi di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="8588f-131">Azure Resource Manager Overview for Load Balancers</span></span>](../../load-balancer/load-balancer-arm.md)
+* [<span data-ttu-id="e5f00-129">Panoramica di Azure Resource Manager</span><span class="sxs-lookup"><span data-stu-id="e5f00-129">Azure Resource Manager overview</span></span>](../../azure-resource-manager/resource-group-overview.md)
+* [<span data-ttu-id="e5f00-130">Che cos'è un gruppo di sicurezza di rete</span><span class="sxs-lookup"><span data-stu-id="e5f00-130">What is a Network Security Group (NSG)?</span></span>](../../virtual-network/virtual-networks-nsg.md)
+* [<span data-ttu-id="e5f00-131">Panoramica di Azure Resource Manager per i servizi di bilanciamento del carico</span><span class="sxs-lookup"><span data-stu-id="e5f00-131">Azure Resource Manager Overview for Load Balancers</span></span>](../../load-balancer/load-balancer-arm.md)
 

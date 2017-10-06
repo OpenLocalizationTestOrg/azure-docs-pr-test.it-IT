@@ -1,6 +1,6 @@
 ---
-title: Verificare il traffico con la verifica del flusso IP di Azure Network Watcher - PowerShell | Microsoft Docs
-description: "Questo articolo descrive come verificare se il traffico da o verso una macchina virtuale è consentito o negato usando PowerShell"
+title: Verificare il traffico aaaverify con flusso di controllo indirizzo IP rete di Azure - PowerShell | Documenti Microsoft
+description: "Questo articolo viene descritto come toocheck se tooor il traffico da una macchina virtuale è consentito o negato tramite PowerShell"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,60 +14,60 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: bf0c01a9af0e28647d11ad89a9d164716d5c8312
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 924da1de1bd554e15816886f8e51d7f170f0e7ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a><span data-ttu-id="4f940-103">Controllare se il traffico da o verso una macchina virtuale è consentito o negato con la verifica del flusso IP, una funzionalità di Azure Network Watcher</span><span class="sxs-lookup"><span data-stu-id="4f940-103">Check if traffic is allowed or denied to or from a VM with IP flow verify a component of Azure Network Watcher</span></span>
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a><span data-ttu-id="4ac2e-103">Verificare se il traffico è consentito o negato tooor da una macchina virtuale con flusso IP verificare un componente del controllo di rete di Azure</span><span class="sxs-lookup"><span data-stu-id="4ac2e-103">Check if traffic is allowed or denied tooor from a VM with IP flow verify a component of Azure Network Watcher</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="4f940-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="4f940-104">Azure portal</span></span>](network-watcher-check-ip-flow-verify-portal.md)
-> - [<span data-ttu-id="4f940-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="4f940-105">PowerShell</span></span>](network-watcher-check-ip-flow-verify-powershell.md)
-> - [<span data-ttu-id="4f940-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="4f940-106">CLI 1.0</span></span>](network-watcher-check-ip-flow-verify-cli-nodejs.md)
-> - [<span data-ttu-id="4f940-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="4f940-107">CLI 2.0</span></span>](network-watcher-check-ip-flow-verify-cli.md)
-> - [<span data-ttu-id="4f940-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="4f940-108">Azure REST API</span></span>](network-watcher-check-ip-flow-verify-rest.md)
+> - [<span data-ttu-id="4ac2e-104">Portale di Azure</span><span class="sxs-lookup"><span data-stu-id="4ac2e-104">Azure portal</span></span>](network-watcher-check-ip-flow-verify-portal.md)
+> - [<span data-ttu-id="4ac2e-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="4ac2e-105">PowerShell</span></span>](network-watcher-check-ip-flow-verify-powershell.md)
+> - [<span data-ttu-id="4ac2e-106">Interfaccia della riga di comando 1.0</span><span class="sxs-lookup"><span data-stu-id="4ac2e-106">CLI 1.0</span></span>](network-watcher-check-ip-flow-verify-cli-nodejs.md)
+> - [<span data-ttu-id="4ac2e-107">Interfaccia della riga di comando 2.0</span><span class="sxs-lookup"><span data-stu-id="4ac2e-107">CLI 2.0</span></span>](network-watcher-check-ip-flow-verify-cli.md)
+> - [<span data-ttu-id="4ac2e-108">API REST di Azure</span><span class="sxs-lookup"><span data-stu-id="4ac2e-108">Azure REST API</span></span>](network-watcher-check-ip-flow-verify-rest.md)
 
 
-<span data-ttu-id="4f940-109">La verifica del flusso IP è una funzionalità di Network Watcher che consente di verificare se il traffico da o verso una macchina virtuale è consentito o negato.</span><span class="sxs-lookup"><span data-stu-id="4f940-109">IP flow verify is a feature of Network Watcher that allows you to verify if traffic is allowed to or from a virtual machine.</span></span> <span data-ttu-id="4f940-110">Questo scenario è utile per stabilire se una macchina virtuale può comunicare con una risorsa esterna o back-end.</span><span class="sxs-lookup"><span data-stu-id="4f940-110">This scenario is useful to get a current state of whether a virtual machine can talk to an external resource or backend.</span></span> <span data-ttu-id="4f940-111">La funzionalità può essere usata per verificare se le regole del gruppo di sicurezza di rete sono configurate correttamente e per risolvere i problemi dei flussi bloccati da tali regole.</span><span class="sxs-lookup"><span data-stu-id="4f940-111">IP flow verify can be used to verify if your Network Security Group (NSG) rules are properly configured and troubleshoot flows that are being blocked by NSG rules.</span></span> <span data-ttu-id="4f940-112">La verifica del flusso IP consente inoltre di verificare che il traffico che si vuole bloccare sia correttamente bloccato dal gruppo di sicurezza di rete.</span><span class="sxs-lookup"><span data-stu-id="4f940-112">Another reason for using IP flow verify is to ensure traffic that you want blocked is being blocked properly by the NSG.</span></span>
+<span data-ttu-id="4ac2e-109">Verificare di flusso IP è una funzionalità di controllo di rete che consente tooverify se il traffico consentito tooor da una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-109">IP flow verify is a feature of Network Watcher that allows you tooverify if traffic is allowed tooor from a virtual machine.</span></span> <span data-ttu-id="4ac2e-110">Questo scenario è utile tooget uno stato corrente di fatto una macchina virtuale possono comunicare con la risorsa esterna tooan o back-end.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-110">This scenario is useful tooget a current state of whether a virtual machine can talk tooan external resource or backend.</span></span> <span data-ttu-id="4ac2e-111">Verificare di flusso IP può essere utilizzato tooverify se le regole di sicurezza gruppo (rete) sono configurate correttamente e risolvere i problemi di flussi che sono bloccati dalle regole di gruppo.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-111">IP flow verify can be used tooverify if your Network Security Group (NSG) rules are properly configured and troubleshoot flows that are being blocked by NSG rules.</span></span> <span data-ttu-id="4ac2e-112">Un altro motivo per l'uso di IP flusso verificare tooensure che si desidera bloccare il traffico viene bloccato correttamente dal gruppo hello.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-112">Another reason for using IP flow verify is tooensure traffic that you want blocked is being blocked properly by hello NSG.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="4f940-113">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="4f940-113">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="4ac2e-113">Prima di iniziare</span><span class="sxs-lookup"><span data-stu-id="4ac2e-113">Before you begin</span></span>
 
-<span data-ttu-id="4f940-114">Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher o aprire un'istanza esistente di Network Watcher.</span><span class="sxs-lookup"><span data-stu-id="4f940-114">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher or have an existing instance of Network Watcher.</span></span> <span data-ttu-id="4f940-115">Lo scenario presuppone inoltre che esista e possa essere usato un gruppo di risorse con una macchina virtuale valida.</span><span class="sxs-lookup"><span data-stu-id="4f940-115">The scenario also assumes that a Resource Group with a valid virtual machine exists to be used.</span></span>
+<span data-ttu-id="4ac2e-114">Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete o dispone di un'istanza esistente del controllo di rete.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-114">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher or have an existing instance of Network Watcher.</span></span> <span data-ttu-id="4ac2e-115">scenario di Hello si suppone inoltre che un gruppo di risorse con una macchina virtuale valida toobe utilizzato.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-115">hello scenario also assumes that a Resource Group with a valid virtual machine exists toobe used.</span></span>
 
-## <a name="scenario"></a><span data-ttu-id="4f940-116">Scenario</span><span class="sxs-lookup"><span data-stu-id="4f940-116">Scenario</span></span>
+## <a name="scenario"></a><span data-ttu-id="4ac2e-116">Scenario</span><span class="sxs-lookup"><span data-stu-id="4ac2e-116">Scenario</span></span>
 
-<span data-ttu-id="4f940-117">Questo scenario usa la verifica del flusso IP per verificare se una macchina virtuale può comunicare con un indirizzo IP Bing noto.</span><span class="sxs-lookup"><span data-stu-id="4f940-117">This scenario uses IP flow verify to verify if a virtual machine can talk to a known Bing IP address.</span></span> <span data-ttu-id="4f940-118">Se il traffico viene negato, restituisce la regola di sicurezza che nega il traffico.</span><span class="sxs-lookup"><span data-stu-id="4f940-118">If the traffic is denied, it returns the security rule that is denying that traffic.</span></span> <span data-ttu-id="4f940-119">Per altre informazioni sulla verifica del flusso IP, leggere la [panoramica sulla verifica del flusso IP](network-watcher-ip-flow-verify-overview.md)</span><span class="sxs-lookup"><span data-stu-id="4f940-119">To learn more about IP flow verify, visit [IP flow verify Overview](network-watcher-ip-flow-verify-overview.md)</span></span>
+<span data-ttu-id="4ac2e-117">Questo flusso di scenario utilizza IP verificare tooverify se una macchina virtuale possono comunicare con tooa noti indirizzo IP di Bing.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-117">This scenario uses IP flow verify tooverify if a virtual machine can talk tooa known Bing IP address.</span></span> <span data-ttu-id="4ac2e-118">Regola di sicurezza hello che nega il traffico viene restituito se il traffico hello viene negato.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-118">If hello traffic is denied, it returns hello security rule that is denying that traffic.</span></span> <span data-ttu-id="4ac2e-119">informazioni sul flusso IP verificare, visitare toolearn [flusso IP verificare Panoramica](network-watcher-ip-flow-verify-overview.md)</span><span class="sxs-lookup"><span data-stu-id="4ac2e-119">toolearn more about IP flow verify, visit [IP flow verify Overview](network-watcher-ip-flow-verify-overview.md)</span></span>
 
-## <a name="retrieve-network-watcher"></a><span data-ttu-id="4f940-120">Recuperare Network Watcher</span><span class="sxs-lookup"><span data-stu-id="4f940-120">Retrieve Network Watcher</span></span>
+## <a name="retrieve-network-watcher"></a><span data-ttu-id="4ac2e-120">Recuperare Network Watcher</span><span class="sxs-lookup"><span data-stu-id="4ac2e-120">Retrieve Network Watcher</span></span>
 
-<span data-ttu-id="4f940-121">Il primo passaggio consente di recuperare l'istanza di Network Watcher.</span><span class="sxs-lookup"><span data-stu-id="4f940-121">The first step is to retrieve the Network Watcher instance.</span></span> <span data-ttu-id="4f940-122">La variabile `$networkWatcher` viene passata al cmdlet di verifica del flusso IP.</span><span class="sxs-lookup"><span data-stu-id="4f940-122">The `$networkWatcher` variable is passed to the IP flow verify cmdlet.</span></span>
+<span data-ttu-id="4ac2e-121">innanzitutto Hello è l'istanza di tooretrieve hello Watcher di rete.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-121">hello first step is tooretrieve hello Network Watcher instance.</span></span> <span data-ttu-id="4ac2e-122">Hello `$networkWatcher` variabile viene passata toohello IP flusso verificare cmdlet.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-122">hello `$networkWatcher` variable is passed toohello IP flow verify cmdlet.</span></span>
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
 $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $nw.ResourceGroupName 
 ```
 
-## <a name="get-a-vm"></a><span data-ttu-id="4f940-123">Ottenere una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="4f940-123">Get a VM</span></span>
+## <a name="get-a-vm"></a><span data-ttu-id="4ac2e-123">Ottenere una macchina virtuale</span><span class="sxs-lookup"><span data-stu-id="4ac2e-123">Get a VM</span></span>
 
-<span data-ttu-id="4f940-124">La verifica del flusso IP esegue il test del traffico da o verso un indirizzo IP su una macchina virtuale da o verso una destinazione remota.</span><span class="sxs-lookup"><span data-stu-id="4f940-124">IP flow verify tests traffic to or from an IP address on a virtual machine to or from a remote destination.</span></span> <span data-ttu-id="4f940-125">Il cmdlet richiede un ID di macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="4f940-125">An Id of a virtual machine is required for the cmdlet.</span></span> <span data-ttu-id="4f940-126">Se l'ID della macchina virtuale da usare è già noto, è possibile ignorare questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="4f940-126">If you already know the ID of the virtual machine to use, you can skip this step.</span></span>
+<span data-ttu-id="4ac2e-124">Flusso IP verificare tooor il traffico di test da un indirizzo IP su tooor una macchina virtuale da una destinazione remota.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-124">IP flow verify tests traffic tooor from an IP address on a virtual machine tooor from a remote destination.</span></span> <span data-ttu-id="4ac2e-125">Un Id di una macchina virtuale è obbligatorio per i cmdlet di hello.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-125">An Id of a virtual machine is required for hello cmdlet.</span></span> <span data-ttu-id="4ac2e-126">Se si conosce già ID hello di hello toouse di macchina virtuale, è possibile ignorare questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-126">If you already know hello ID of hello virtual machine toouse, you can skip this step.</span></span>
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
 ```
 
-## <a name="get-the-nics"></a><span data-ttu-id="4f940-127">Ottenere le schede NIC</span><span class="sxs-lookup"><span data-stu-id="4f940-127">Get the NICS</span></span>
+## <a name="get-hello-nics"></a><span data-ttu-id="4ac2e-127">Ottenere hello NIC</span><span class="sxs-lookup"><span data-stu-id="4ac2e-127">Get hello NICS</span></span>
 
-<span data-ttu-id="4f940-128">È necessario l'indirizzo IP di una scheda di rete nella macchina virtuale. In questo esempio vengono recuperate le schede NIC in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="4f940-128">The IP address of a NIC on the virtual machine is needed, in this example we retrieve the NICs on a virtual machine.</span></span> <span data-ttu-id="4f940-129">Se l'indirizzo IP da testare nella macchina virtuale è già noto, è possibile ignorare questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="4f940-129">If you already know the IP address that you want to test on the virtual machine, you can skip this step.</span></span>
+<span data-ttu-id="4ac2e-128">è necessario l'indirizzo IP Hello di una scheda di rete nella macchina virtuale hello, in questo esempio vengono recuperate le schede NIC hello in una macchina virtuale.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-128">hello IP address of a NIC on hello virtual machine is needed, in this example we retrieve hello NICs on a virtual machine.</span></span> <span data-ttu-id="4ac2e-129">Se si conosce già hello IP indirizzo che si desidera tootest sulla macchina virtuale hello, è possibile ignorare questo passaggio.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-129">If you already know hello IP address that you want tootest on hello virtual machine, you can skip this step.</span></span>
 
 ```powershell
 $Nics = Get-AzureRmNetworkInterface | Where {$_.Id -eq $vm.NetworkProfile.NetworkInterfaces.Id.ForEach({$_})}
 ```
 
-## <a name="run-ip-flow-verify"></a><span data-ttu-id="4f940-130">Eseguire la verifica del flusso IP</span><span class="sxs-lookup"><span data-stu-id="4f940-130">Run IP flow verify</span></span>
+## <a name="run-ip-flow-verify"></a><span data-ttu-id="4ac2e-130">Eseguire la verifica del flusso IP</span><span class="sxs-lookup"><span data-stu-id="4ac2e-130">Run IP flow verify</span></span>
 
-<span data-ttu-id="4f940-131">Dopo aver ottenuto le informazioni necessarie per eseguire il cmdlet, eseguire il cmdlet `Test-AzureRmNetworkWatcherIPFlow` per testare il traffico.</span><span class="sxs-lookup"><span data-stu-id="4f940-131">Now that we have the information needed to run the cmdlet, we run the `Test-AzureRmNetworkWatcherIPFlow` cmdlet to test the traffic.</span></span> <span data-ttu-id="4f940-132">In questo esempio, viene usato il primo indirizzo IP nella prima scheda NIC.</span><span class="sxs-lookup"><span data-stu-id="4f940-132">In this example, we are using the first IP address on the first NIC.</span></span>
+<span data-ttu-id="4ac2e-131">Ora che si dispone di informazioni hello necessari toorun hello cmdlet, eseguiamo hello `Test-AzureRmNetworkWatcherIPFlow` traffico hello tootest di cmdlet.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-131">Now that we have hello information needed toorun hello cmdlet, we run hello `Test-AzureRmNetworkWatcherIPFlow` cmdlet tootest hello traffic.</span></span> <span data-ttu-id="4ac2e-132">In questo esempio, utilizziamo primo indirizzo IP di hello in hello prima scheda di rete.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-132">In this example, we are using hello first IP address on hello first NIC.</span></span>
 
 ```powershell
 Test-AzureRmNetworkWatcherIPFlow -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id `
@@ -76,11 +76,11 @@ Test-AzureRmNetworkWatcherIPFlow -NetworkWatcher $networkWatcher -TargetVirtualM
 ```
 
 > [!NOTE]
-> <span data-ttu-id="4f940-133">Per eseguire la verifica del flusso IP è necessario che la risorsa della macchina virtuale sia allocata.</span><span class="sxs-lookup"><span data-stu-id="4f940-133">IP flow verify requires that the VM resource is allocated to run.</span></span>
+> <span data-ttu-id="4ac2e-133">Flusso IP verificare richiede che risorsa macchina virtuale hello è allocato toorun.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-133">IP flow verify requires that hello VM resource is allocated toorun.</span></span>
 
-## <a name="review-results"></a><span data-ttu-id="4f940-134">Esaminare i risultati</span><span class="sxs-lookup"><span data-stu-id="4f940-134">Review Results</span></span>
+## <a name="review-results"></a><span data-ttu-id="4ac2e-134">Esaminare i risultati</span><span class="sxs-lookup"><span data-stu-id="4ac2e-134">Review Results</span></span>
 
-<span data-ttu-id="4f940-135">Dopo aver eseguito `Test-AzureRmNetworkWatcherIPFlow` vengono restituiti i risultati. L'esempio seguente mostra i risultati restituiti nel passaggio precedente.</span><span class="sxs-lookup"><span data-stu-id="4f940-135">After running `Test-AzureRmNetworkWatcherIPFlow` the results are returned, the following example is the results returned from the preceding step.</span></span>
+<span data-ttu-id="4ac2e-135">Dopo aver eseguito `Test-AzureRmNetworkWatcherIPFlow` hello risultati vengono restituiti, esempio hello è risultato hello restituito da hello passaggio precedente.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-135">After running `Test-AzureRmNetworkWatcherIPFlow` hello results are returned, hello following example is hello results returned from hello preceding step.</span></span>
 
 ```
 Access RuleName                                  
@@ -88,9 +88,9 @@ Access RuleName
 Allow  defaultSecurityRules/AllowInternetOutBound
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="4f940-136">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="4f940-136">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="4ac2e-136">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="4ac2e-136">Next steps</span></span>
 
-<span data-ttu-id="4f940-137">Se il traffico risulta bloccato e non dovrebbe esserlo, vedere [Gestire i gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) per individuare il gruppo di sicurezza di rete e le relative regole di sicurezza definite.</span><span class="sxs-lookup"><span data-stu-id="4f940-137">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) to track down the network security group and security rules that are defined.</span></span>
+<span data-ttu-id="4ac2e-137">Se il traffico viene bloccato e non può essere, vedere [gestire gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack verso il basso hello rete sicurezza e gruppo di regole di sicurezza definiti.</span><span class="sxs-lookup"><span data-stu-id="4ac2e-137">If traffic is being blocked and it should not be, see [Manage Network Security Groups](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack down hello network security group and security rules that are defined.</span></span>
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

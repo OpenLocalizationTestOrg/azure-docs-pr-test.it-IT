@@ -1,6 +1,6 @@
 ---
-title: Autenticazione basata su certificati di Azure Active Directory in Android | Documentazione Microsoft
-description: Informazioni sugli scenari supportati e i requisiti per configurare l'autenticazione basata su certificati nelle soluzioni con i dispositivi Android
+title: autenticazione basata su certificati aaaAzure Active Directory in Android | Documenti Microsoft
+description: Informazioni sugli scenari di hello supportata e requisiti di hello per la configurazione dell'autenticazione basata su certificato nelle soluzioni con i dispositivi Android
 services: active-directory
 author: MarkusVi
 documentationcenter: na
@@ -14,74 +14,74 @@ ms.workload: identity
 ms.date: 08/28/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: 8005bfe821fea25539c84efdccf6c49bd5f1f8ee
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 148275fa3da610530c278fcd57e02e907f735d9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-certificate-based-authentication-on-android"></a><span data-ttu-id="e5d74-103">Autenticazione basata su certificati di Azure Active Directory in Android</span><span class="sxs-lookup"><span data-stu-id="e5d74-103">Azure Active Directory certificate-based authentication on Android</span></span>
+# <a name="azure-active-directory-certificate-based-authentication-on-android"></a><span data-ttu-id="114c5-103">Autenticazione basata su certificati di Azure Active Directory in Android</span><span class="sxs-lookup"><span data-stu-id="114c5-103">Azure Active Directory certificate-based authentication on Android</span></span>
 
 
-<span data-ttu-id="e5d74-104">L'autenticazione basata su certificati (CBA) consente di essere autenticati da Azure Active Directory con un certificato client su un dispositivo Windows, Android o iOS quando si connette il proprio account Exchange online a:</span><span class="sxs-lookup"><span data-stu-id="e5d74-104">Certificate-based authentication (CBA) enables you to be authenticated by Azure Active Directory with a client certificate on a Windows, Android or iOS device when connecting your Exchange online account to:</span></span> 
+<span data-ttu-id="114c5-104">L'autenticazione basata su certificato (CBA) consente toobe autenticato da Azure Active Directory con un certificato client in un dispositivo Windows, Android o iOS, quando ci si connette l'account di Exchange online a:</span><span class="sxs-lookup"><span data-stu-id="114c5-104">Certificate-based authentication (CBA) enables you toobe authenticated by Azure Active Directory with a client certificate on a Windows, Android or iOS device when connecting your Exchange online account to:</span></span> 
 
-* <span data-ttu-id="e5d74-105">Applicazioni Office per dispositivi mobili, come Microsoft Outlook e Microsoft Word</span><span class="sxs-lookup"><span data-stu-id="e5d74-105">Office mobile applications such as Microsoft Outlook and Microsoft Word</span></span>   
-* <span data-ttu-id="e5d74-106">Client Exchange ActiveSync (EAS)</span><span class="sxs-lookup"><span data-stu-id="e5d74-106">Exchange ActiveSync (EAS) clients</span></span> 
+* <span data-ttu-id="114c5-105">Applicazioni Office per dispositivi mobili, come Microsoft Outlook e Microsoft Word</span><span class="sxs-lookup"><span data-stu-id="114c5-105">Office mobile applications such as Microsoft Outlook and Microsoft Word</span></span>   
+* <span data-ttu-id="114c5-106">Client Exchange ActiveSync (EAS)</span><span class="sxs-lookup"><span data-stu-id="114c5-106">Exchange ActiveSync (EAS) clients</span></span> 
 
-<span data-ttu-id="e5d74-107">La configurazione di questa funzionalità elimina la necessità di immettere una combinazione di nome utente e password in determinate applicazioni di posta e applicazioni Microsoft Office sul dispositivo mobile.</span><span class="sxs-lookup"><span data-stu-id="e5d74-107">Configuring this feature eliminates the need to enter a username and password combination into certain mail and Microsoft Office applications on your mobile device.</span></span> 
+<span data-ttu-id="114c5-107">Configurazione di questa funzionalità Elimina hello necessità tooenter un nome utente e la combinazione di password in determinate posta elettronica e le applicazioni di Microsoft Office sul tuo dispositivo mobile.</span><span class="sxs-lookup"><span data-stu-id="114c5-107">Configuring this feature eliminates hello need tooenter a username and password combination into certain mail and Microsoft Office applications on your mobile device.</span></span> 
 
-<span data-ttu-id="e5d74-108">Questo argomento indica i requisiti e gli scenari supportati per la configurazione dell'autenticazione basata su certificati su un dispositivo iOS (Android) per gli utenti dei tenant nei piani di Office 365 Enterprise, Business, Education, US Government, China e Germany.</span><span class="sxs-lookup"><span data-stu-id="e5d74-108">This topic provides you with the requirements and the supported scenarios for configuring CBA on an iOS(Android) device for users of tenants in Office 365 Enterprise, Business, Education, US Government, China, and Germany plans.</span></span>
-
-
-
-<span data-ttu-id="e5d74-109">Questa funzionalità è disponibile in anteprima nei piani di Office 365 US Government Defense e Federal.</span><span class="sxs-lookup"><span data-stu-id="e5d74-109">This feature is available in preview in Office 365 US Government Defense and Federal plans.</span></span>
+<span data-ttu-id="114c5-108">In questo argomento vengono fornite hello requisiti e degli scenari di hello è supportato per la configurazione CBA in un dispositivo iOS(Android) per gli utenti del tenant Office 365 Enterprise, Business, formazione, governo, Cina, e piani Germania.</span><span class="sxs-lookup"><span data-stu-id="114c5-108">This topic provides you with hello requirements and hello supported scenarios for configuring CBA on an iOS(Android) device for users of tenants in Office 365 Enterprise, Business, Education, US Government, China, and Germany plans.</span></span>
 
 
-## <a name="office-mobile-applications-support"></a><span data-ttu-id="e5d74-110">Supporto delle applicazioni Office per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="e5d74-110">Office mobile applications support</span></span>
-| <span data-ttu-id="e5d74-111">App</span><span class="sxs-lookup"><span data-stu-id="e5d74-111">Apps</span></span> | <span data-ttu-id="e5d74-112">Supporto</span><span class="sxs-lookup"><span data-stu-id="e5d74-112">Support</span></span> |
+
+<span data-ttu-id="114c5-109">Questa funzionalità è disponibile in anteprima nei piani di Office 365 US Government Defense e Federal.</span><span class="sxs-lookup"><span data-stu-id="114c5-109">This feature is available in preview in Office 365 US Government Defense and Federal plans.</span></span>
+
+
+## <a name="office-mobile-applications-support"></a><span data-ttu-id="114c5-110">Supporto delle applicazioni Office per dispositivi mobili</span><span class="sxs-lookup"><span data-stu-id="114c5-110">Office mobile applications support</span></span>
+| <span data-ttu-id="114c5-111">App</span><span class="sxs-lookup"><span data-stu-id="114c5-111">Apps</span></span> | <span data-ttu-id="114c5-112">Supporto</span><span class="sxs-lookup"><span data-stu-id="114c5-112">Support</span></span> |
 | --- | --- |
-| <span data-ttu-id="e5d74-113">App Azure Information Protection</span><span class="sxs-lookup"><span data-stu-id="e5d74-113">Azure Information Protection app</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-115">Microsoft Teams</span><span class="sxs-lookup"><span data-stu-id="e5d74-115">Microsoft Teams</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-117">OneNote</span><span class="sxs-lookup"><span data-stu-id="e5d74-117">OneNote</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-119">OneDrive</span><span class="sxs-lookup"><span data-stu-id="e5d74-119">OneDrive</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-121">Outlook</span><span class="sxs-lookup"><span data-stu-id="e5d74-121">Outlook</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-123">App per dispositivi mobili di Power BI</span><span class="sxs-lookup"><span data-stu-id="e5d74-123">Power BI mobile apps</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-125">Skype for Business Online</span><span class="sxs-lookup"><span data-stu-id="e5d74-125">Skype for Business</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-127">Word / Excel / PowerPoint</span><span class="sxs-lookup"><span data-stu-id="e5d74-127">Word / Excel / PowerPoint</span></span> |![Controllo][1] |
-| <span data-ttu-id="e5d74-129">Yammer</span><span class="sxs-lookup"><span data-stu-id="e5d74-129">Yammer</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-113">App Azure Information Protection</span><span class="sxs-lookup"><span data-stu-id="114c5-113">Azure Information Protection app</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-115">Microsoft Teams</span><span class="sxs-lookup"><span data-stu-id="114c5-115">Microsoft Teams</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-117">OneNote</span><span class="sxs-lookup"><span data-stu-id="114c5-117">OneNote</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-119">OneDrive</span><span class="sxs-lookup"><span data-stu-id="114c5-119">OneDrive</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-121">Outlook</span><span class="sxs-lookup"><span data-stu-id="114c5-121">Outlook</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-123">App per dispositivi mobili di Power BI</span><span class="sxs-lookup"><span data-stu-id="114c5-123">Power BI mobile apps</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-125">Skype for Business Online</span><span class="sxs-lookup"><span data-stu-id="114c5-125">Skype for Business</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-127">Word / Excel / PowerPoint</span><span class="sxs-lookup"><span data-stu-id="114c5-127">Word / Excel / PowerPoint</span></span> |![Controllo][1] |
+| <span data-ttu-id="114c5-129">Yammer</span><span class="sxs-lookup"><span data-stu-id="114c5-129">Yammer</span></span> |![Controllo][1] |
 
 
-### <a name="implementation-requirements"></a><span data-ttu-id="e5d74-131">Requisiti di implementazione</span><span class="sxs-lookup"><span data-stu-id="e5d74-131">Implementation requirements</span></span>
+### <a name="implementation-requirements"></a><span data-ttu-id="114c5-131">Requisiti di implementazione</span><span class="sxs-lookup"><span data-stu-id="114c5-131">Implementation requirements</span></span>
 
-<span data-ttu-id="e5d74-132">La versione del sistema operativo del dispositivo deve essere Android 5.0 (Lollipop) o successiva.</span><span class="sxs-lookup"><span data-stu-id="e5d74-132">The device OS version must be Android 5.0 (Lollipop) and above.</span></span> 
+<span data-ttu-id="114c5-132">Hello versione sistema operativo del dispositivo deve essere Android 5.0 (simbolo) e versioni successive.</span><span class="sxs-lookup"><span data-stu-id="114c5-132">hello device OS version must be Android 5.0 (Lollipop) and above.</span></span> 
 
-<span data-ttu-id="e5d74-133">È necessario configurare un server federativo.</span><span class="sxs-lookup"><span data-stu-id="e5d74-133">A federation server must be configured.</span></span>  
+<span data-ttu-id="114c5-133">È necessario configurare un server federativo.</span><span class="sxs-lookup"><span data-stu-id="114c5-133">A federation server must be configured.</span></span>  
 
-<span data-ttu-id="e5d74-134">Perché Azure Active Directory possa revocare un certificato client, il token ADFS deve avere le attestazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="e5d74-134">For Azure Active Directory to revoke a client certificate, the ADFS token must have the following claims:</span></span>  
+<span data-ttu-id="114c5-134">Per un certificato client toorevoke di Azure Active Directory, token ADFS hello deve avere hello seguenti attestazioni:</span><span class="sxs-lookup"><span data-stu-id="114c5-134">For Azure Active Directory toorevoke a client certificate, hello ADFS token must have hello following claims:</span></span>  
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/<serialnumber>`  
-  <span data-ttu-id="e5d74-135">(Il numero di serie del certificato client)</span><span class="sxs-lookup"><span data-stu-id="e5d74-135">(The serial number of the client certificate)</span></span> 
+  <span data-ttu-id="114c5-135">(hello numero di serie del certificato client hello)</span><span class="sxs-lookup"><span data-stu-id="114c5-135">(hello serial number of hello client certificate)</span></span> 
 * `http://schemas.microsoft.com/2012/12/certificatecontext/field/<issuer>`  
-  <span data-ttu-id="e5d74-136">(La stringa per l'autorità emittente del certificato client)</span><span class="sxs-lookup"><span data-stu-id="e5d74-136">(The string for the issuer of the client certificate)</span></span> 
+  <span data-ttu-id="114c5-136">(stringa hello per emittente hello del certificato client hello)</span><span class="sxs-lookup"><span data-stu-id="114c5-136">(hello string for hello issuer of hello client certificate)</span></span> 
 
-<span data-ttu-id="e5d74-137">Azure Active Directory aggiunge queste attestazioni per il token di aggiornamento se sono disponibili nel token ADFS (o in qualsiasi altro token SAML).</span><span class="sxs-lookup"><span data-stu-id="e5d74-137">Azure Active Directory adds these claims to the refresh token if they are available in the ADFS token (or any other SAML token).</span></span> <span data-ttu-id="e5d74-138">Quando il token di aggiornamento deve essere convalidato, queste informazioni vengono usate per controllare la revoca.</span><span class="sxs-lookup"><span data-stu-id="e5d74-138">When the refresh token needs to be validated, this information is used to check the revocation.</span></span> 
+<span data-ttu-id="114c5-137">Azure Active Directory aggiunge queste attestazioni toohello il token di aggiornamento se sono disponibili nel token ADFS hello (o qualsiasi altro token SAML).</span><span class="sxs-lookup"><span data-stu-id="114c5-137">Azure Active Directory adds these claims toohello refresh token if they are available in hello ADFS token (or any other SAML token).</span></span> <span data-ttu-id="114c5-138">Quando il token di aggiornamento hello deve toobe convalidato, queste informazioni sono utilizzate toocheck hello revoca.</span><span class="sxs-lookup"><span data-stu-id="114c5-138">When hello refresh token needs toobe validated, this information is used toocheck hello revocation.</span></span> 
 
-<span data-ttu-id="e5d74-139">Come procedura consigliata, è necessario aggiornare le pagine di errore di ADFS con le istruzioni su come ottenere un certificato utente.</span><span class="sxs-lookup"><span data-stu-id="e5d74-139">As a best practice, you should update the ADFS error pages with instructions on how to get a user certificate.</span></span>  
-<span data-ttu-id="e5d74-140">Per altre informazioni, vedere [Personalizzazione delle pagine di accesso ad AD FS](https://technet.microsoft.com/library/dn280950.aspx).</span><span class="sxs-lookup"><span data-stu-id="e5d74-140">For more details, see [Customizing the AD FS Sign-in Pages](https://technet.microsoft.com/library/dn280950.aspx).</span></span>  
+<span data-ttu-id="114c5-139">Come procedura consigliata, è necessario aggiornare le pagine di errore hello ADFS con istruzioni su come tooget un certificato utente.</span><span class="sxs-lookup"><span data-stu-id="114c5-139">As a best practice, you should update hello ADFS error pages with instructions on how tooget a user certificate.</span></span>  
+<span data-ttu-id="114c5-140">Per ulteriori informazioni, vedere [personalizzazione delle pagine di hello AD FS Sign-in](https://technet.microsoft.com/library/dn280950.aspx).</span><span class="sxs-lookup"><span data-stu-id="114c5-140">For more details, see [Customizing hello AD FS Sign-in Pages](https://technet.microsoft.com/library/dn280950.aspx).</span></span>  
 
-<span data-ttu-id="e5d74-141">Alcune app di Office, in cui non è abilitata l'autenticazione moderna, inviano "*prompt=login*" ad Azure AD nella richiesta.</span><span class="sxs-lookup"><span data-stu-id="e5d74-141">Some Office apps (with modern authentication enabled) send ‘*prompt=login*’ to Azure AD in their request.</span></span> <span data-ttu-id="e5d74-142">Per impostazione predefinita, Azure AD lo traduce in una richiesta ad AD FS di eseguire l'autorizzazione di nome utente e password, ovvero "*wauth=usernamepassworduri*", e di ignorare lo stato SSO ed eseguire una nuova autenticazione, ovvero "*wfresh=0*".</span><span class="sxs-lookup"><span data-stu-id="e5d74-142">By default, Azure AD translates this in the request to ADFS to ‘*wauth=usernamepassworduri*’ (asks ADFS to do U/P auth) and ‘*wfresh=0*’ (asks ADFS to ignore SSO state and do a fresh authentication).</span></span> <span data-ttu-id="e5d74-143">Per abilitare l'autenticazione basata su certificati per queste applicazioni, è necessario modificare il comportamento predefinito di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="e5d74-143">If you want to enable certificate-based authentication for these apps, you need to modify the default Azure AD behavior.</span></span> <span data-ttu-id="e5d74-144">È sufficiente impostare "*PromptLoginBehavior*" tra le impostazioni del dominio federato su "*Disabled*" (Disabilitato).</span><span class="sxs-lookup"><span data-stu-id="e5d74-144">Just set the ‘*PromptLoginBehavior*’ in your federated domain settings to ‘*Disabled*‘.</span></span> <span data-ttu-id="e5d74-145">Per eseguire questa operazione è possibile usare il cmdlet [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0):</span><span class="sxs-lookup"><span data-stu-id="e5d74-145">You can use the [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) cmdlet to perform this task:</span></span>
+<span data-ttu-id="114c5-141">Alcune applicazioni di Office (con l'autenticazione moderna abilitata) inviare '*prompt = account di accesso*' tooAzure AD nella richiesta.</span><span class="sxs-lookup"><span data-stu-id="114c5-141">Some Office apps (with modern authentication enabled) send ‘*prompt=login*’ tooAzure AD in their request.</span></span> <span data-ttu-id="114c5-142">Per impostazione predefinita, Azure AD Converte l'oggetto in hello richiesta tooADFS troppo '*wauth = usernamepassworduri*' (richiede l'autenticazione ADFS toodo U/P) e '*wfresh = 0*' (richiede lo stato SSO tooignore ad FS ed eseguire una ripetizione dell'autenticazione) .</span><span class="sxs-lookup"><span data-stu-id="114c5-142">By default, Azure AD translates this in hello request tooADFS too‘*wauth=usernamepassworduri*’ (asks ADFS toodo U/P auth) and ‘*wfresh=0*’ (asks ADFS tooignore SSO state and do a fresh authentication).</span></span> <span data-ttu-id="114c5-143">Se si desidera tooenable basata sui certificati di autenticazione per queste App, è necessario un comportamento toomodify hello predefinito AD Azure.</span><span class="sxs-lookup"><span data-stu-id="114c5-143">If you want tooenable certificate-based authentication for these apps, you need toomodify hello default Azure AD behavior.</span></span> <span data-ttu-id="114c5-144">Solo il set di hello '*PromptLoginBehavior*' nelle impostazioni del dominio federato troppo '*disabilitato*'.</span><span class="sxs-lookup"><span data-stu-id="114c5-144">Just set hello ‘*PromptLoginBehavior*’ in your federated domain settings too‘*Disabled*‘.</span></span> <span data-ttu-id="114c5-145">È possibile utilizzare hello [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) tooperform cmdlet questa attività:</span><span class="sxs-lookup"><span data-stu-id="114c5-145">You can use hello [MSOLDomainFederationSettings](/powershell/module/msonline/set-msoldomainfederationsettings?view=azureadps-1.0) cmdlet tooperform this task:</span></span>
 
 `Set-MSOLDomainFederationSettings -domainname <domain> -PromptLoginBehavior Disabled`
 
 
 
-## <a name="exchange-activesync-clients-support"></a><span data-ttu-id="e5d74-146">Supporto dei client Exchange ActiveSync</span><span class="sxs-lookup"><span data-stu-id="e5d74-146">Exchange ActiveSync clients support</span></span>
-<span data-ttu-id="e5d74-147">Alcune applicazioni Exchange ActiveSync sono supportate in Android 5.0 (Lollipop) o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="e5d74-147">Certain Exchange ActiveSync applications on Android 5.0 (Lollipop) or later are supported.</span></span> <span data-ttu-id="e5d74-148">Per determinare se l'applicazione di posta elettronica supporta questa funzionalità, contattare lo sviluppatore dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="e5d74-148">To determine if your email application does support this feature, please contact your application developer.</span></span> 
+## <a name="exchange-activesync-clients-support"></a><span data-ttu-id="114c5-146">Supporto dei client Exchange ActiveSync</span><span class="sxs-lookup"><span data-stu-id="114c5-146">Exchange ActiveSync clients support</span></span>
+<span data-ttu-id="114c5-147">Alcune applicazioni Exchange ActiveSync sono supportate in Android 5.0 (Lollipop) o versioni successive.</span><span class="sxs-lookup"><span data-stu-id="114c5-147">Certain Exchange ActiveSync applications on Android 5.0 (Lollipop) or later are supported.</span></span> <span data-ttu-id="114c5-148">toodetermine se l'applicazione di posta elettronica che supportano questa funzionalità, contattare lo sviluppatore dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="114c5-148">toodetermine if your email application does support this feature, please contact your application developer.</span></span> 
 
 
-## <a name="next-steps"></a><span data-ttu-id="e5d74-149">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e5d74-149">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="114c5-149">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="114c5-149">Next steps</span></span>
 
-<span data-ttu-id="e5d74-150">Se si desidera configurare l'autenticazione basata su certificati nel proprio ambiente, vedere [Introduzione all'autenticazione basata su certificati in Android](active-directory-certificate-based-authentication-get-started.md) per le istruzioni.</span><span class="sxs-lookup"><span data-stu-id="e5d74-150">If you want to configure certificate-based authentication in your environment, see [Get started with certificate-based authentication on Android](active-directory-certificate-based-authentication-get-started.md) for instructions.</span></span>
+<span data-ttu-id="114c5-150">Se si desidera l'autenticazione basata su certificato tooconfigure nell'ambiente in uso, vedere [Introduzione all'autenticazione basata sui certificati in Android](active-directory-certificate-based-authentication-get-started.md) per le istruzioni.</span><span class="sxs-lookup"><span data-stu-id="114c5-150">If you want tooconfigure certificate-based authentication in your environment, see [Get started with certificate-based authentication on Android](active-directory-certificate-based-authentication-get-started.md) for instructions.</span></span>
 
 <!--Image references-->
 [1]: ./media/active-directory-certificate-based-authentication-android/ic195031.png

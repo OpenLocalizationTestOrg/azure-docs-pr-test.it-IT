@@ -1,6 +1,6 @@
 ---
-title: Aggiungere una rete CDN a un servizio app di Azure | Microsoft Docs
-description: Aggiungere una rete per la distribuzione di contenuti (CDN) a un servizio app di Azure per memorizzare nella cache e distribuire i file statici dai server vicini ai clienti in tutto il mondo.
+title: aaaAdd tooan una rete CDN Azure App Service | Documenti Microsoft
+description: Aggiungere un toocache di servizio App di Azure tooan rete CDN (Content Delivery) e recapitare file statici dal server ai clienti tooyour Chiudi tutto il mondo hello.
 services: app-service\web
 author: syntaxc4
 ms.author: cfowler
@@ -10,82 +10,82 @@ ms.service: app-service-web
 manager: erikre
 ms.workload: web
 ms.custom: mvc
-ms.openlocfilehash: 257b75d01f3904661c1a188a2d53ffcb74f48f06
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 88b7fd884517279064472b804a6d1dc2921cbd24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-content-delivery-network-cdn-to-an-azure-app-service"></a><span data-ttu-id="d9043-103">Aggiungere una rete per la distribuzione di contenuti (CDN) a un servizio app di Azure</span><span class="sxs-lookup"><span data-stu-id="d9043-103">Add a Content Delivery Network (CDN) to an Azure App Service</span></span>
+# <a name="add-a-content-delivery-network-cdn-tooan-azure-app-service"></a><span data-ttu-id="eab2e-103">Aggiungere un tooan rete CDN (Content Delivery) servizio App di Azure</span><span class="sxs-lookup"><span data-stu-id="eab2e-103">Add a Content Delivery Network (CDN) tooan Azure App Service</span></span>
 
-<span data-ttu-id="d9043-104">La [rete per la distribuzione di contenuti (CDN) di Azure](../cdn/cdn-overview.md) memorizza nella cache il contenuto Web statico in località strategiche per offrire la massima velocità effettiva per la distribuzione del contenuto agli utenti.</span><span class="sxs-lookup"><span data-stu-id="d9043-104">[Azure Content Delivery Network (CDN)](../cdn/cdn-overview.md) caches static web content at strategically placed locations to provide maximum throughput for delivering content to users.</span></span> <span data-ttu-id="d9043-105">La rete CDN riduce anche il carico del server per l'app Web.</span><span class="sxs-lookup"><span data-stu-id="d9043-105">The CDN also decreases server load on your web app.</span></span> <span data-ttu-id="d9043-106">Questa esercitazione illustra come aggiungere la rete CDN di Azure a un'[app Web nel servizio app di Azure](app-service-web-overview.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-106">This tutorial shows how to add Azure CDN to a [web app in Azure App Service](app-service-web-overview.md).</span></span> 
+<span data-ttu-id="eab2e-104">[Rete di distribuzione Azure contenuti (CDN)](../cdn/cdn-overview.md) memorizza nella cache il contenuto web statico in percorsi strategici tooprovide massima velocità effettiva per il recapito toousers contenuto.</span><span class="sxs-lookup"><span data-stu-id="eab2e-104">[Azure Content Delivery Network (CDN)](../cdn/cdn-overview.md) caches static web content at strategically placed locations tooprovide maximum throughput for delivering content toousers.</span></span> <span data-ttu-id="eab2e-105">Hello CDN riduce anche il carico del server nell'app web.</span><span class="sxs-lookup"><span data-stu-id="eab2e-105">hello CDN also decreases server load on your web app.</span></span> <span data-ttu-id="eab2e-106">Questa esercitazione viene illustrato come tooadd rete CDN di Azure tooa [app web in Azure App Service](app-service-web-overview.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-106">This tutorial shows how tooadd Azure CDN tooa [web app in Azure App Service](app-service-web-overview.md).</span></span> 
 
-<span data-ttu-id="d9043-107">Di seguito è riportata la home page del sito HTML statico di esempio che verrà usato:</span><span class="sxs-lookup"><span data-stu-id="d9043-107">Here's the home page of the sample static HTML site that you'll work with:</span></span>
+<span data-ttu-id="eab2e-107">Ecco hello home page di hello esempio sito HTML statico che è possibile utilizzare:</span><span class="sxs-lookup"><span data-stu-id="eab2e-107">Here's hello home page of hello sample static HTML site that you'll work with:</span></span>
 
 ![Home page dell'app di esempio](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page.png)
 
-<span data-ttu-id="d9043-109">Contenuto dell'esercitazione:</span><span class="sxs-lookup"><span data-stu-id="d9043-109">What you'll learn:</span></span>
+<span data-ttu-id="eab2e-109">Contenuto dell'esercitazione:</span><span class="sxs-lookup"><span data-stu-id="eab2e-109">What you'll learn:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="d9043-110">Creare un endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-110">Create a CDN endpoint.</span></span>
-> * <span data-ttu-id="d9043-111">Aggiornare gli asset memorizzati nella cache.</span><span class="sxs-lookup"><span data-stu-id="d9043-111">Refresh cached assets.</span></span>
-> * <span data-ttu-id="d9043-112">Usare stringhe di query per controllare le versioni memorizzate nella cache.</span><span class="sxs-lookup"><span data-stu-id="d9043-112">Use query strings to control cached versions.</span></span>
-> * <span data-ttu-id="d9043-113">Usare un dominio personalizzato per l'endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-113">Use a custom domain for the CDN endpoint.</span></span>
+> * <span data-ttu-id="eab2e-110">Creare un endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-110">Create a CDN endpoint.</span></span>
+> * <span data-ttu-id="eab2e-111">Aggiornare gli asset memorizzati nella cache.</span><span class="sxs-lookup"><span data-stu-id="eab2e-111">Refresh cached assets.</span></span>
+> * <span data-ttu-id="eab2e-112">Versioni di toocontrol memorizzati nella cache delle stringhe di query di utilizzo.</span><span class="sxs-lookup"><span data-stu-id="eab2e-112">Use query strings toocontrol cached versions.</span></span>
+> * <span data-ttu-id="eab2e-113">Utilizzare un dominio personalizzato per l'endpoint rete CDN hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-113">Use a custom domain for hello CDN endpoint.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d9043-114">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="d9043-114">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="eab2e-114">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="eab2e-114">Prerequisites</span></span>
 
-<span data-ttu-id="d9043-115">Per completare questa esercitazione:</span><span class="sxs-lookup"><span data-stu-id="d9043-115">To complete this tutorial:</span></span>
+<span data-ttu-id="eab2e-115">toocomplete questa esercitazione:</span><span class="sxs-lookup"><span data-stu-id="eab2e-115">toocomplete this tutorial:</span></span>
 
-- [<span data-ttu-id="d9043-116">Installare Git</span><span class="sxs-lookup"><span data-stu-id="d9043-116">Install Git</span></span>](https://git-scm.com/)
-- [<span data-ttu-id="d9043-117">Installare l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="d9043-117">Install Azure CLI 2.0</span></span>](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [<span data-ttu-id="eab2e-116">Installare Git</span><span class="sxs-lookup"><span data-stu-id="eab2e-116">Install Git</span></span>](https://git-scm.com/)
+- [<span data-ttu-id="eab2e-117">Installare l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="eab2e-117">Install Azure CLI 2.0</span></span>](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
-## <a name="create-the-web-app"></a><span data-ttu-id="d9043-118">Creare l'app Web</span><span class="sxs-lookup"><span data-stu-id="d9043-118">Create the web app</span></span>
+## <a name="create-hello-web-app"></a><span data-ttu-id="eab2e-118">Creare l'app web hello</span><span class="sxs-lookup"><span data-stu-id="eab2e-118">Create hello web app</span></span>
 
-<span data-ttu-id="d9043-119">Per creare l'app Web che verrà usata, seguire le istruzioni riportate nella [guida introduttiva per siti HTML statici](app-service-web-get-started-html.md) fino al passaggio **Pulire le risorse**.</span><span class="sxs-lookup"><span data-stu-id="d9043-119">To create the web app that you'll work with, follow the [static HTML quickstart](app-service-web-get-started-html.md) through the **Browse to the app** step.</span></span>
+<span data-ttu-id="eab2e-119">toocreate hello web app che verranno utilizzate, seguire hello [quickstart HTML statico](app-service-web-get-started-html.md) tramite hello **Sfoglia toohello app** passaggio.</span><span class="sxs-lookup"><span data-stu-id="eab2e-119">toocreate hello web app that you'll work with, follow hello [static HTML quickstart](app-service-web-get-started-html.md) through hello **Browse toohello app** step.</span></span>
 
-### <a name="have-a-custom-domain-ready"></a><span data-ttu-id="d9043-120">Preparare un dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="d9043-120">Have a custom domain ready</span></span>
+### <a name="have-a-custom-domain-ready"></a><span data-ttu-id="eab2e-120">Preparare un dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="eab2e-120">Have a custom domain ready</span></span>
 
-<span data-ttu-id="d9043-121">Per completare il passaggio di questa esercitazione relativo al dominio personalizzato, è necessario essere proprietario di un dominio personalizzato e avere accesso al registro DNS per il provider di dominio, ad esempio GoDaddy.</span><span class="sxs-lookup"><span data-stu-id="d9043-121">To complete the custom domain step of this tutorial, you need to own a custom domain and have access to your DNS registry for your domain provider (such as GoDaddy).</span></span> <span data-ttu-id="d9043-122">Ad esempio, per aggiungere le voci DNS per `contoso.com` e `www.contoso.com`, è necessario avere l’accesso per configurare le impostazioni DNS per il dominio radice `contoso.com`.</span><span class="sxs-lookup"><span data-stu-id="d9043-122">For example, to add DNS entries for `contoso.com` and `www.contoso.com`, you must have access to configure the DNS settings for the `contoso.com` root domain.</span></span>
+<span data-ttu-id="eab2e-121">passaggio di dominio personalizzato hello toocomplete di questa esercitazione, è necessario tooown un dominio personalizzato e dispone del Registro di sistema di accesso tooyour DNS per il provider del dominio (ad esempio GoDaddy).</span><span class="sxs-lookup"><span data-stu-id="eab2e-121">toocomplete hello custom domain step of this tutorial, you need tooown a custom domain and have access tooyour DNS registry for your domain provider (such as GoDaddy).</span></span> <span data-ttu-id="eab2e-122">Ad esempio, le voci DNS tooadd per `contoso.com` e `www.contoso.com`, è necessario disporre di impostazioni di accesso tooconfigure hello DNS per hello `contoso.com` dominio radice.</span><span class="sxs-lookup"><span data-stu-id="eab2e-122">For example, tooadd DNS entries for `contoso.com` and `www.contoso.com`, you must have access tooconfigure hello DNS settings for hello `contoso.com` root domain.</span></span>
 
-<span data-ttu-id="d9043-123">Se non si ha ancora un nome di dominio, può essere opportuno seguire l'[esercitazione relativa ai domini nel servizio app](custom-dns-web-site-buydomains-web-app.md) per acquistare un dominio usando il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="d9043-123">If you don't already have a domain name, consider following the [App Service domain tutorial](custom-dns-web-site-buydomains-web-app.md) to purchase a domain using the Azure portal.</span></span> 
+<span data-ttu-id="eab2e-123">Se si dispone già di un nome di dominio, è consigliabile seguenti hello [esercitazione di dominio di servizio App](custom-dns-web-site-buydomains-web-app.md) toopurchase il dominio utilizzando hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="eab2e-123">If you don't already have a domain name, consider following hello [App Service domain tutorial](custom-dns-web-site-buydomains-web-app.md) toopurchase a domain using hello Azure portal.</span></span> 
 
-## <a name="log-in-to-the-azure-portal"></a><span data-ttu-id="d9043-124">Accedere al Portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="d9043-124">Log in to the Azure portal</span></span>
+## <a name="log-in-toohello-azure-portal"></a><span data-ttu-id="eab2e-124">Accedi toohello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="eab2e-124">Log in toohello Azure portal</span></span>
 
-<span data-ttu-id="d9043-125">Aprire un browser e passare al [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="d9043-125">Open a browser and navigate to the [Azure portal](https://portal.azure.com).</span></span>
+<span data-ttu-id="eab2e-125">Aprire un browser e passare toohello [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="eab2e-125">Open a browser and navigate toohello [Azure portal](https://portal.azure.com).</span></span>
 
-## <a name="create-a-cdn-profile-and-endpoint"></a><span data-ttu-id="d9043-126">Creare un profilo e un endpoint della rete CDN</span><span class="sxs-lookup"><span data-stu-id="d9043-126">Create a CDN profile and endpoint</span></span>
+## <a name="create-a-cdn-profile-and-endpoint"></a><span data-ttu-id="eab2e-126">Creare un profilo e un endpoint della rete CDN</span><span class="sxs-lookup"><span data-stu-id="eab2e-126">Create a CDN profile and endpoint</span></span>
 
-<span data-ttu-id="d9043-127">Nel riquadro di spostamento a sinistra selezionare **Servizi app** e quindi l'app creata nella [guida introduttiva per siti HTML statici](app-service-web-get-started-html.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-127">In the left navigation, select **App Services**, and then select the app that you created in the [static HTML quickstart](app-service-web-get-started-html.md).</span></span>
+<span data-ttu-id="eab2e-127">Nel riquadro di spostamento sinistro di hello, selezionare **servizi App**e quindi selezionare l'applicazione hello creati in hello [quickstart HTML statico](app-service-web-get-started-html.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-127">In hello left navigation, select **App Services**, and then select hello app that you created in hello [static HTML quickstart](app-service-web-get-started-html.md).</span></span>
 
-![Selezionare Servizi app nel portale](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
+![Selezionare l'applicazione di servizio App nel portale di hello](media/app-service-web-tutorial-content-delivery-network/portal-select-app-services.png)
 
-<span data-ttu-id="d9043-129">Nella sezione **Impostazioni** della pagina **Servizio app** selezionare **Rete > Configurare la rete CDN di Azure per l'app**.</span><span class="sxs-lookup"><span data-stu-id="d9043-129">In the **App Service** page, in the **Settings** section, select **Networking > Configure Azure CDN for your app**.</span></span>
+<span data-ttu-id="eab2e-129">In hello **servizio App** hello della pagina **impostazioni** selezionare **rete > rete CDN di Azure configurare per l'app**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-129">In hello **App Service** page, in hello **Settings** section, select **Networking > Configure Azure CDN for your app**.</span></span>
 
-![Selezionare la rete CDN nel portale](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
+![Selezionare una rete CDN nel portale di hello](media/app-service-web-tutorial-content-delivery-network/portal-select-cdn.png)
 
-<span data-ttu-id="d9043-131">Nella pagina **Rete per la distribuzione di contenuti di Azure** specificare le impostazioni in **Nuovo endpoint** come indicato nella tabella.</span><span class="sxs-lookup"><span data-stu-id="d9043-131">In the **Azure Content Delivery Network** page, provide the **New endpoint** settings as specified in the table.</span></span>
+<span data-ttu-id="eab2e-131">In hello **rete CDN di Azure** fornire hello **nuovo endpoint** impostazioni come specificato nella tabella hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-131">In hello **Azure Content Delivery Network** page, provide hello **New endpoint** settings as specified in hello table.</span></span>
 
-![Creare un profilo e un endpoint nel portale](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
+![Creare endpoint e del profilo nel portale di hello](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint.png)
 
-| <span data-ttu-id="d9043-133">Impostazione</span><span class="sxs-lookup"><span data-stu-id="d9043-133">Setting</span></span> | <span data-ttu-id="d9043-134">Valore consigliato</span><span class="sxs-lookup"><span data-stu-id="d9043-134">Suggested value</span></span> | <span data-ttu-id="d9043-135">Descrizione</span><span class="sxs-lookup"><span data-stu-id="d9043-135">Description</span></span> |
+| <span data-ttu-id="eab2e-133">Impostazione</span><span class="sxs-lookup"><span data-stu-id="eab2e-133">Setting</span></span> | <span data-ttu-id="eab2e-134">Valore consigliato</span><span class="sxs-lookup"><span data-stu-id="eab2e-134">Suggested value</span></span> | <span data-ttu-id="eab2e-135">Descrizione</span><span class="sxs-lookup"><span data-stu-id="eab2e-135">Description</span></span> |
 | ------- | --------------- | ----------- |
-| <span data-ttu-id="d9043-136">**Profilo CDN**</span><span class="sxs-lookup"><span data-stu-id="d9043-136">**CDN profile**</span></span> | <span data-ttu-id="d9043-137">myCDNProfile</span><span class="sxs-lookup"><span data-stu-id="d9043-137">myCDNProfile</span></span> | <span data-ttu-id="d9043-138">Selezionare **Crea nuovo** per creare un profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-138">Select **Create new** to create a CDN profile.</span></span> <span data-ttu-id="d9043-139">Un profilo di rete CDN è una raccolta di endpoint della rete CDN con lo stesso piano tariffario.</span><span class="sxs-lookup"><span data-stu-id="d9043-139">A CDN profile is a collection of CDN endpoints with the same pricing tier.</span></span> |
-| <span data-ttu-id="d9043-140">**Piano tariffario**</span><span class="sxs-lookup"><span data-stu-id="d9043-140">**Pricing tier**</span></span> | <span data-ttu-id="d9043-141">Standard Akamai</span><span class="sxs-lookup"><span data-stu-id="d9043-141">Standard Akamai</span></span> | <span data-ttu-id="d9043-142">Il [piano tariffario](../cdn/cdn-overview.md#azure-cdn-features) specifica il provider e le funzionalità disponibili.</span><span class="sxs-lookup"><span data-stu-id="d9043-142">The [pricing tier](../cdn/cdn-overview.md#azure-cdn-features) specifies the provider and available features.</span></span> <span data-ttu-id="d9043-143">In questa esercitazione si userà Akamai standard.</span><span class="sxs-lookup"><span data-stu-id="d9043-143">In this tutorial, we are using Standard Akamai.</span></span> |
-| <span data-ttu-id="d9043-144">**Nome endpoint rete CDN**</span><span class="sxs-lookup"><span data-stu-id="d9043-144">**CDN endpoint name**</span></span> | <span data-ttu-id="d9043-145">Qualsiasi nome univoco nel dominio azureedge.net</span><span class="sxs-lookup"><span data-stu-id="d9043-145">Any name that is unique in the azureedge.net domain</span></span> | <span data-ttu-id="d9043-146">Si accede alle risorse memorizzate nella cache nel dominio *\<nomeendpoint>.azureedge.net*.</span><span class="sxs-lookup"><span data-stu-id="d9043-146">You access your cached resources at the domain *\<endpointname>.azureedge.net*.</span></span>
+| <span data-ttu-id="eab2e-136">**Profilo CDN**</span><span class="sxs-lookup"><span data-stu-id="eab2e-136">**CDN profile**</span></span> | <span data-ttu-id="eab2e-137">myCDNProfile</span><span class="sxs-lookup"><span data-stu-id="eab2e-137">myCDNProfile</span></span> | <span data-ttu-id="eab2e-138">Selezionare **Crea nuovo** toocreate un profilo di rete CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-138">Select **Create new** toocreate a CDN profile.</span></span> <span data-ttu-id="eab2e-139">Il profilo CDN è una raccolta di endpoint CDN con hello stesso livello di prezzo.</span><span class="sxs-lookup"><span data-stu-id="eab2e-139">A CDN profile is a collection of CDN endpoints with hello same pricing tier.</span></span> |
+| <span data-ttu-id="eab2e-140">**Piano tariffario**</span><span class="sxs-lookup"><span data-stu-id="eab2e-140">**Pricing tier**</span></span> | <span data-ttu-id="eab2e-141">Standard Akamai</span><span class="sxs-lookup"><span data-stu-id="eab2e-141">Standard Akamai</span></span> | <span data-ttu-id="eab2e-142">Hello [tariffario](../cdn/cdn-overview.md#azure-cdn-features) specifica provider hello e le funzionalità disponibili.</span><span class="sxs-lookup"><span data-stu-id="eab2e-142">hello [pricing tier](../cdn/cdn-overview.md#azure-cdn-features) specifies hello provider and available features.</span></span> <span data-ttu-id="eab2e-143">In questa esercitazione si userà Akamai standard.</span><span class="sxs-lookup"><span data-stu-id="eab2e-143">In this tutorial, we are using Standard Akamai.</span></span> |
+| <span data-ttu-id="eab2e-144">**Nome endpoint rete CDN**</span><span class="sxs-lookup"><span data-stu-id="eab2e-144">**CDN endpoint name**</span></span> | <span data-ttu-id="eab2e-145">Qualsiasi nome che è univoco nel dominio azureedge.net hello</span><span class="sxs-lookup"><span data-stu-id="eab2e-145">Any name that is unique in hello azureedge.net domain</span></span> | <span data-ttu-id="eab2e-146">Accedere alle risorse memorizzate nella cache dominio hello  *\<endpointname >. azureedge.net*.</span><span class="sxs-lookup"><span data-stu-id="eab2e-146">You access your cached resources at hello domain *\<endpointname>.azureedge.net*.</span></span>
 
-<span data-ttu-id="d9043-147">Selezionare **Create**.</span><span class="sxs-lookup"><span data-stu-id="d9043-147">Select **Create**.</span></span>
+<span data-ttu-id="eab2e-147">Selezionare **Crea**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-147">Select **Create**.</span></span>
 
-<span data-ttu-id="d9043-148">Azure crea il profilo e l'endpoint.</span><span class="sxs-lookup"><span data-stu-id="d9043-148">Azure creates the profile and endpoint.</span></span> <span data-ttu-id="d9043-149">Il nuovo endpoint verrà visualizzato nell'elenco **Endpoint** nella stessa pagina e al termine del relativo provisioning lo stato sarà **In esecuzione**.</span><span class="sxs-lookup"><span data-stu-id="d9043-149">The new endpoint appears in the **Endpoints** list on the same page, and when it's provisioned the status is **Running**.</span></span>
+<span data-ttu-id="eab2e-148">Azure Crea profilo hello e endpoint.</span><span class="sxs-lookup"><span data-stu-id="eab2e-148">Azure creates hello profile and endpoint.</span></span> <span data-ttu-id="eab2e-149">viene visualizzata di nuovo endpoint Hello in hello **endpoint** elenco hello stessa pagina, e quando è disponibile lo stato di hello è **esecuzione**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-149">hello new endpoint appears in hello **Endpoints** list on hello same page, and when it's provisioned hello status is **Running**.</span></span>
 
 ![Nuovo endpoint nell'elenco](media/app-service-web-tutorial-content-delivery-network/portal-new-endpoint-in-list.png)
 
-### <a name="test-the-cdn-endpoint"></a><span data-ttu-id="d9043-151">Testare l'endpoint della rete CDN</span><span class="sxs-lookup"><span data-stu-id="d9043-151">Test the CDN endpoint</span></span>
+### <a name="test-hello-cdn-endpoint"></a><span data-ttu-id="eab2e-151">Hello test endpoint rete CDN</span><span class="sxs-lookup"><span data-stu-id="eab2e-151">Test hello CDN endpoint</span></span>
 
-<span data-ttu-id="d9043-152">Se è stato selezionato il piano tariffario Verizon, la propagazione dell'endpoint richiede in genere circa 90 minuti.</span><span class="sxs-lookup"><span data-stu-id="d9043-152">If you selected Verizon pricing tier, it typically takes about 90 minutes for endpoint propagation.</span></span> <span data-ttu-id="d9043-153">Per Akamai è sufficiente qualche minuto.</span><span class="sxs-lookup"><span data-stu-id="d9043-153">For Akamai, it takes a couple minutes for propagation</span></span>
+<span data-ttu-id="eab2e-152">Se è stato selezionato il piano tariffario Verizon, la propagazione dell'endpoint richiede in genere circa 90 minuti.</span><span class="sxs-lookup"><span data-stu-id="eab2e-152">If you selected Verizon pricing tier, it typically takes about 90 minutes for endpoint propagation.</span></span> <span data-ttu-id="eab2e-153">Per Akamai è sufficiente qualche minuto.</span><span class="sxs-lookup"><span data-stu-id="eab2e-153">For Akamai, it takes a couple minutes for propagation</span></span>
 
-<span data-ttu-id="d9043-154">L'app di esempio include un file `index.html` e le cartelle *css*, *img* e *js* che contengono altri asset statici.</span><span class="sxs-lookup"><span data-stu-id="d9043-154">The sample app has an `index.html` file and *css*, *img*, and *js* folders that contain other static assets.</span></span> <span data-ttu-id="d9043-155">I percorsi del contenuto per tutti questi file sono gli stessi nell'endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-155">The content paths for all of these files are the same at the CDN endpoint.</span></span> <span data-ttu-id="d9043-156">Entrambi gli URL seguenti, ad esempio, accedono al file *bootstrap.css* nella cartella *css*:</span><span class="sxs-lookup"><span data-stu-id="d9043-156">For example, both of the following URLs access the *bootstrap.css* file in the *css* folder:</span></span>
+<span data-ttu-id="eab2e-154">applicazione di esempio Hello ha un `index.html` file e *css*, *img*, e *js* cartelle che contengono altre risorse statici.</span><span class="sxs-lookup"><span data-stu-id="eab2e-154">hello sample app has an `index.html` file and *css*, *img*, and *js* folders that contain other static assets.</span></span> <span data-ttu-id="eab2e-155">percorsi per tutti i file sono contenuto Hello hello stesso all'endpoint rete CDN hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-155">hello content paths for all of these files are hello same at hello CDN endpoint.</span></span> <span data-ttu-id="eab2e-156">Ad esempio, entrambi gli URL seguenti hello accedere hello *bootstrap.css* file hello *css* cartella:</span><span class="sxs-lookup"><span data-stu-id="eab2e-156">For example, both of hello following URLs access hello *bootstrap.css* file in hello *css* folder:</span></span>
 
 ```
 http://<appname>.azurewebsites.net/css/bootstrap.css
@@ -95,7 +95,7 @@ http://<appname>.azurewebsites.net/css/bootstrap.css
 http://<endpointname>.azureedge.net/css/bootstrap.css
 ```
 
-<span data-ttu-id="d9043-157">Usare un browser per passare all'URL seguente:</span><span class="sxs-lookup"><span data-stu-id="d9043-157">Navigate a browser to the following URL:</span></span>
+<span data-ttu-id="eab2e-157">Passare un toohello browser URL seguente:</span><span class="sxs-lookup"><span data-stu-id="eab2e-157">Navigate a browser toohello following URL:</span></span>
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -103,36 +103,36 @@ http://<endpointname>.azureedge.net/index.html
 
 ![Home page dell'app di esempio fornita dalla rete CDN](media/app-service-web-tutorial-content-delivery-network/sample-app-home-page-cdn.png)
 
- <span data-ttu-id="d9043-159">Viene visualizzata la stessa pagina eseguita in precedenza in un'app Web di Azure.</span><span class="sxs-lookup"><span data-stu-id="d9043-159">You see the same page that you ran earlier in an Azure web app.</span></span> <span data-ttu-id="d9043-160">La rete CDN di Azure ha recuperato gli asset dell'app Web di origine e li specifica dal proprio endpoint</span><span class="sxs-lookup"><span data-stu-id="d9043-160">Azure CDN has retrieved the origin web app's assets and is serving them from the CDN endpoint</span></span>
+ <span data-ttu-id="eab2e-159">Vedrai hello stessa pagina è stata eseguita in precedenza in un'app web di Azure.</span><span class="sxs-lookup"><span data-stu-id="eab2e-159">You see hello same page that you ran earlier in an Azure web app.</span></span> <span data-ttu-id="eab2e-160">Rete CDN di Azure ha recuperato asset dell'app web origine di hello e viene utilizzata dall'endpoint rete CDN hello</span><span class="sxs-lookup"><span data-stu-id="eab2e-160">Azure CDN has retrieved hello origin web app's assets and is serving them from hello CDN endpoint</span></span>
 
-<span data-ttu-id="d9043-161">Per assicurarsi che questa pagina sia memorizzata nella cache nella rete CDN, aggiornare la pagina.</span><span class="sxs-lookup"><span data-stu-id="d9043-161">To ensure that this page is cached in the CDN, refresh the page.</span></span> <span data-ttu-id="d9043-162">Affinché la rete CDN memorizzi nella cache il contenuto richiesto sono talvolta necessarie due richieste dello stesso asset.</span><span class="sxs-lookup"><span data-stu-id="d9043-162">Two requests for the same asset are sometimes required for the CDN to cache the requested content.</span></span>
+<span data-ttu-id="eab2e-161">tooensure che questa pagina memorizzato nella cache di hello CDN, aggiornare la pagina hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-161">tooensure that this page is cached in hello CDN, refresh hello page.</span></span> <span data-ttu-id="eab2e-162">Due richieste hello stesso asset sono talvolta necessarie per toocache CDN hello hello contenuto richiesto.</span><span class="sxs-lookup"><span data-stu-id="eab2e-162">Two requests for hello same asset are sometimes required for hello CDN toocache hello requested content.</span></span>
 
-<span data-ttu-id="d9043-163">Per altre informazioni sulla creazione dei profili e degli endpoint della rete CDN di Azure, vedere [Introduzione alla rete CDN di Azure](../cdn/cdn-create-new-endpoint.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-163">For more information about creating Azure CDN profiles and endpoints, see [Getting started with Azure CDN](../cdn/cdn-create-new-endpoint.md).</span></span>
+<span data-ttu-id="eab2e-163">Per altre informazioni sulla creazione dei profili e degli endpoint della rete CDN di Azure, vedere [Introduzione alla rete CDN di Azure](../cdn/cdn-create-new-endpoint.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-163">For more information about creating Azure CDN profiles and endpoints, see [Getting started with Azure CDN](../cdn/cdn-create-new-endpoint.md).</span></span>
 
-## <a name="purge-the-cdn"></a><span data-ttu-id="d9043-164">Ripulire la rete CDN</span><span class="sxs-lookup"><span data-stu-id="d9043-164">Purge the CDN</span></span>
+## <a name="purge-hello-cdn"></a><span data-ttu-id="eab2e-164">Ripulire hello rete CDN</span><span class="sxs-lookup"><span data-stu-id="eab2e-164">Purge hello CDN</span></span>
 
-<span data-ttu-id="d9043-165">La rete CDN aggiorna periodicamente le proprie risorse dall'app Web di origine in base alla configurazione della durata (TTL).</span><span class="sxs-lookup"><span data-stu-id="d9043-165">The CDN periodically refreshes its resources from the origin web app based on the time-to-live (TTL) configuration.</span></span> <span data-ttu-id="d9043-166">La durata predefinita è di sette giorni.</span><span class="sxs-lookup"><span data-stu-id="d9043-166">The default TTL is seven days.</span></span>
+<span data-ttu-id="eab2e-165">rete CDN Hello Aggiorna periodicamente le risorse da app web di origine hello in base alla configurazione di hello time-to-live (TTL).</span><span class="sxs-lookup"><span data-stu-id="eab2e-165">hello CDN periodically refreshes its resources from hello origin web app based on hello time-to-live (TTL) configuration.</span></span> <span data-ttu-id="eab2e-166">durata TTL predefinita Hello è sette giorni.</span><span class="sxs-lookup"><span data-stu-id="eab2e-166">hello default TTL is seven days.</span></span>
 
-<span data-ttu-id="d9043-167">Potrebbe essere talvolta necessario aggiornare la rete CDN prima della scadenza del valore TTL, ad esempio quando si distribuisce contenuto aggiornato nell'app Web.</span><span class="sxs-lookup"><span data-stu-id="d9043-167">At times you might need to refresh the CDN before the TTL expiration -- for example, when you deploy updated content to the web app.</span></span> <span data-ttu-id="d9043-168">Per attivare un aggiornamento, è possibile ripulire manualmente le risorse della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-168">To trigger a refresh, you can manually purge the CDN resources.</span></span> 
+<span data-ttu-id="eab2e-167">In alcuni casi potrebbe essere necessario toorefresh hello CDN prima della scadenza di TTL: hello, ad esempio, quando si distribuisce l'app web toohello contenuto aggiornato.</span><span class="sxs-lookup"><span data-stu-id="eab2e-167">At times you might need toorefresh hello CDN before hello TTL expiration -- for example, when you deploy updated content toohello web app.</span></span> <span data-ttu-id="eab2e-168">tootrigger un aggiornamento, è possibile eliminare manualmente le risorse di rete CDN hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-168">tootrigger a refresh, you can manually purge hello CDN resources.</span></span> 
 
-<span data-ttu-id="d9043-169">In questa sezione dell'esercitazione si distribuirà una modifica nell'app Web e si ripulirà la rete CDN per attivare l'aggiornamento della cache.</span><span class="sxs-lookup"><span data-stu-id="d9043-169">In this section of the tutorial, you deploy a change to the web app and purge the CDN to trigger the CDN to refresh its cache.</span></span>
+<span data-ttu-id="eab2e-169">In questa sezione dell'esercitazione hello, si distribuisce un'app web toohello di modifica e ripulitura hello CDN tootrigger hello CDN toorefresh la cache.</span><span class="sxs-lookup"><span data-stu-id="eab2e-169">In this section of hello tutorial, you deploy a change toohello web app and purge hello CDN tootrigger hello CDN toorefresh its cache.</span></span>
 
-### <a name="deploy-a-change-to-the-web-app"></a><span data-ttu-id="d9043-170">Distribuire una modifica nell'app Web</span><span class="sxs-lookup"><span data-stu-id="d9043-170">Deploy a change to the web app</span></span>
+### <a name="deploy-a-change-toohello-web-app"></a><span data-ttu-id="eab2e-170">Distribuire un'app web toohello di modifica</span><span class="sxs-lookup"><span data-stu-id="eab2e-170">Deploy a change toohello web app</span></span>
 
-<span data-ttu-id="d9043-171">Aprire il file `index.html` e aggiungere "- V2" all'intestazione H1 come illustrato nell'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="d9043-171">Open the `index.html` file and add "- V2" to the H1 heading, as shown in the following example:</span></span> 
+<span data-ttu-id="eab2e-171">Aprire hello `index.html` file e aggiungere "-V2" intestazione H1 toohello, come illustrato nell'esempio seguente hello:</span><span class="sxs-lookup"><span data-stu-id="eab2e-171">Open hello `index.html` file and add "- V2" toohello H1 heading, as shown in hello following example:</span></span> 
 
 ```
 <h1>Azure App Service - Sample Static HTML Site - V2</h1>
 ```
 
-<span data-ttu-id="d9043-172">Eseguire il commit della modifica e distribuirla nell'app Web.</span><span class="sxs-lookup"><span data-stu-id="d9043-172">Commit your change and deploy it to the web app.</span></span>
+<span data-ttu-id="eab2e-172">Eseguire il commit della modifica e distribuirlo toohello web app.</span><span class="sxs-lookup"><span data-stu-id="eab2e-172">Commit your change and deploy it toohello web app.</span></span>
 
 ```bash
 git commit -am "version 2"
 git push azure master
 ```
 
-<span data-ttu-id="d9043-173">Al termine della distribuzione, passando all'URL dell'app Web verrà visualizzata la modifica.</span><span class="sxs-lookup"><span data-stu-id="d9043-173">Once deployment has completed, browse to the web app URL and you see the change.</span></span>
+<span data-ttu-id="eab2e-173">Una volta completata la distribuzione, URL dell'app web toohello Sfoglia e visualizzato hello modificare.</span><span class="sxs-lookup"><span data-stu-id="eab2e-173">Once deployment has completed, browse toohello web app URL and you see hello change.</span></span>
 
 ```
 http://<appname>.azurewebsites.net/index.html
@@ -140,7 +140,7 @@ http://<appname>.azurewebsites.net/index.html
 
 !["V2" nel titolo nell'app Web](media/app-service-web-tutorial-content-delivery-network/v2-in-web-app-title.png)
 
-<span data-ttu-id="d9043-175">Passando all'URL dell'endpoint della rete CDN per la home page, la modifica non verrà visualizzata perché la versione memorizzata nella cache nella rete CDN non è ancora scaduta.</span><span class="sxs-lookup"><span data-stu-id="d9043-175">Browse to the CDN endpoint URL for the home page and you don't see the change because the cached version in the CDN hasn't expired yet.</span></span> 
+<span data-ttu-id="eab2e-175">URL dell'endpoint rete CDN toohello Sfoglia per hello home page e si non si rilevano hello modificare la versione memorizzata nella cache di hello in hello CDN non è ancora scaduto.</span><span class="sxs-lookup"><span data-stu-id="eab2e-175">Browse toohello CDN endpoint URL for hello home page and you don't see hello change because hello cached version in hello CDN hasn't expired yet.</span></span> 
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -148,35 +148,35 @@ http://<endpointname>.azureedge.net/index.html
 
 ![Titolo nella rete CDN senza "V2"](media/app-service-web-tutorial-content-delivery-network/no-v2-in-cdn-title.png)
 
-### <a name="purge-the-cdn-in-the-portal"></a><span data-ttu-id="d9043-177">Ripulire la rete CDN nel portale</span><span class="sxs-lookup"><span data-stu-id="d9043-177">Purge the CDN in the portal</span></span>
+### <a name="purge-hello-cdn-in-hello-portal"></a><span data-ttu-id="eab2e-177">Ripulire hello CDN nel portale di hello</span><span class="sxs-lookup"><span data-stu-id="eab2e-177">Purge hello CDN in hello portal</span></span>
 
-<span data-ttu-id="d9043-178">Per attivare l'aggiornamento della versione memorizzata nella cache nella rete CDN, ripulire la rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-178">To trigger the CDN to update its cached version, purge the CDN.</span></span>
+<span data-ttu-id="eab2e-178">tootrigger hello CDN tooupdate la versione memorizzata nella cache, cancellare hello CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-178">tootrigger hello CDN tooupdate its cached version, purge hello CDN.</span></span>
 
-<span data-ttu-id="d9043-179">Nel riquadro di spostamento a sinistra nel portale selezionare **Gruppi di risorse** e quindi il gruppo di risorse creato per l'app Web (myResourceGroup).</span><span class="sxs-lookup"><span data-stu-id="d9043-179">In the portal left navigation, select **Resource groups**, and then select the resource group that you created for your web app (myResourceGroup).</span></span>
+<span data-ttu-id="eab2e-179">Spostamento a sinistra del portale hello, selezionare **gruppi di risorse**, quindi selezionare gruppo di risorse hello creato per l'app web (myResourceGroup).</span><span class="sxs-lookup"><span data-stu-id="eab2e-179">In hello portal left navigation, select **Resource groups**, and then select hello resource group that you created for your web app (myResourceGroup).</span></span>
 
 ![Selezionare il gruppo di risorse](media/app-service-web-tutorial-content-delivery-network/portal-select-group.png)
 
-<span data-ttu-id="d9043-181">Nell'elenco delle risorse selezionare l'endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-181">In the list of resources, select your CDN endpoint.</span></span>
+<span data-ttu-id="eab2e-181">Nell'elenco di hello delle risorse, selezionare l'endpoint CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-181">In hello list of resources, select your CDN endpoint.</span></span>
 
 ![Selezionare l'endpoint](media/app-service-web-tutorial-content-delivery-network/portal-select-endpoint.png)
 
-<span data-ttu-id="d9043-183">Nella parte superiore della pagina **Endpoint** fare clic su **Ripulisci**.</span><span class="sxs-lookup"><span data-stu-id="d9043-183">At the top of the **Endpoint** page, click **Purge**.</span></span>
+<span data-ttu-id="eab2e-183">Nella parte superiore di hello di hello **Endpoint** pagina, fare clic su **ripulire**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-183">At hello top of hello **Endpoint** page, click **Purge**.</span></span>
 
 ![Selezionare Ripulisci](media/app-service-web-tutorial-content-delivery-network/portal-select-purge.png)
 
-<span data-ttu-id="d9043-185">Immettere i percorsi del contenuto che si vuole ripulire.</span><span class="sxs-lookup"><span data-stu-id="d9043-185">Enter the content paths you wish to purge.</span></span> <span data-ttu-id="d9043-186">È possibile passare un percorso file completo per ripulire un singolo file oppure un segmento di percorso per ripulire e aggiornare tutto il contenuto in una cartella.</span><span class="sxs-lookup"><span data-stu-id="d9043-186">You can pass a complete file path to purge an individual file, or a path segment to purge and refresh all content in a folder.</span></span> <span data-ttu-id="d9043-187">Dato che è stato modificato `index.html`, verificare che sia incluso in tali percorsi.</span><span class="sxs-lookup"><span data-stu-id="d9043-187">Since you changed `index.html`, make sure that is one of the paths.</span></span>
+<span data-ttu-id="eab2e-185">Immettere i percorsi del contenuto hello desiderato toopurge.</span><span class="sxs-lookup"><span data-stu-id="eab2e-185">Enter hello content paths you wish toopurge.</span></span> <span data-ttu-id="eab2e-186">È possibile passare un toopurge percorso completo del file, un singolo file o un toopurge segmento di percorso e aggiorna tutto il contenuto in una cartella.</span><span class="sxs-lookup"><span data-stu-id="eab2e-186">You can pass a complete file path toopurge an individual file, or a path segment toopurge and refresh all content in a folder.</span></span> <span data-ttu-id="eab2e-187">Poiché hai cambiato `index.html`, assicurarsi che sia uno dei percorsi di hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-187">Since you changed `index.html`, make sure that is one of hello paths.</span></span>
 
-<span data-ttu-id="d9043-188">Nella parte inferiore della pagina selezionare **Ripulisci**.</span><span class="sxs-lookup"><span data-stu-id="d9043-188">At the bottom of the page, select **Purge**.</span></span>
+<span data-ttu-id="eab2e-188">Nella parte inferiore di hello della pagina hello, selezionare **ripulire**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-188">At hello bottom of hello page, select **Purge**.</span></span>
 
 ![Pagina Ripulisci](media/app-service-web-tutorial-content-delivery-network/app-service-web-purge-cdn.png)
 
-### <a name="verify-that-the-cdn-is-updated"></a><span data-ttu-id="d9043-190">Verificare che la rete CDN sia aggiornata</span><span class="sxs-lookup"><span data-stu-id="d9043-190">Verify that the CDN is updated</span></span>
+### <a name="verify-that-hello-cdn-is-updated"></a><span data-ttu-id="eab2e-190">Verificare che hello che viene aggiornata della rete CDN</span><span class="sxs-lookup"><span data-stu-id="eab2e-190">Verify that hello CDN is updated</span></span>
 
-<span data-ttu-id="d9043-191">Attendere il completamento dell'elaborazione della richiesta di ripulitura, che in genere richiede qualche minuto.</span><span class="sxs-lookup"><span data-stu-id="d9043-191">Wait until the purge request finishes processing, typically a couple of minutes.</span></span> <span data-ttu-id="d9043-192">Per visualizzare lo stato corrente, selezionare l'icona a forma di campana nella parte superiore della pagina.</span><span class="sxs-lookup"><span data-stu-id="d9043-192">To see the current status, select the bell icon at the top of the page.</span></span> 
+<span data-ttu-id="eab2e-191">Attendere che la richiesta di eliminazione hello ha completato l'elaborazione, in genere un paio di minuti.</span><span class="sxs-lookup"><span data-stu-id="eab2e-191">Wait until hello purge request finishes processing, typically a couple of minutes.</span></span> <span data-ttu-id="eab2e-192">toosee hello lo stato corrente, icona campana hello selezionare nella parte superiore di hello della pagina hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-192">toosee hello current status, select hello bell icon at hello top of hello page.</span></span> 
 
 ![Notifica di ripulitura](media/app-service-web-tutorial-content-delivery-network/portal-purge-notification.png)
 
-<span data-ttu-id="d9043-194">Passando all'URL dell'endpoint della rete CDN per `index.html`, "V2" risulterà ora aggiunto al titolo nella home page.</span><span class="sxs-lookup"><span data-stu-id="d9043-194">Browse to the CDN endpoint URL for `index.html`, and now you see the V2 that you added to the title on the home page.</span></span> <span data-ttu-id="d9043-195">Ciò dimostra che la cache della rete CDN è stata aggiornata.</span><span class="sxs-lookup"><span data-stu-id="d9043-195">This shows that the CDN cache has been refreshed.</span></span>
+<span data-ttu-id="eab2e-194">Individuare l'URL dell'endpoint rete CDN toohello per `index.html`, ed è ora possibile visualizzare hello V2 che è stato aggiunto toohello titolo hello home page.</span><span class="sxs-lookup"><span data-stu-id="eab2e-194">Browse toohello CDN endpoint URL for `index.html`, and now you see hello V2 that you added toohello title on hello home page.</span></span> <span data-ttu-id="eab2e-195">Ciò indica che è stata aggiornata per cache di hello rete CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-195">This shows that hello CDN cache has been refreshed.</span></span>
 
 ```
 http://<endpointname>.azureedge.net/index.html
@@ -184,50 +184,50 @@ http://<endpointname>.azureedge.net/index.html
 
 !["V2" nel titolo nella rete CDN](media/app-service-web-tutorial-content-delivery-network/v2-in-cdn-title.png)
 
-<span data-ttu-id="d9043-197">Per altre informazioni, vedere [Ripulire un endpoint della rete CDN di Azure](../cdn/cdn-purge-endpoint.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-197">For more information, see [Purge an Azure CDN endpoint](../cdn/cdn-purge-endpoint.md).</span></span> 
+<span data-ttu-id="eab2e-197">Per altre informazioni, vedere [Ripulire un endpoint della rete CDN di Azure](../cdn/cdn-purge-endpoint.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-197">For more information, see [Purge an Azure CDN endpoint](../cdn/cdn-purge-endpoint.md).</span></span> 
 
-## <a name="use-query-strings-to-version-content"></a><span data-ttu-id="d9043-198">Usare le stringhe di query per il controllo delle versioni del contenuto</span><span class="sxs-lookup"><span data-stu-id="d9043-198">Use query strings to version content</span></span>
+## <a name="use-query-strings-tooversion-content"></a><span data-ttu-id="eab2e-198">Utilizzare il contenuto di tooversion stringhe di query</span><span class="sxs-lookup"><span data-stu-id="eab2e-198">Use query strings tooversion content</span></span>
 
-<span data-ttu-id="d9043-199">Per il comportamento di memorizzazione nella cache, la rete CDN di Azure offre le opzioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="d9043-199">The Azure CDN offers the following caching behavior options:</span></span>
+<span data-ttu-id="eab2e-199">Hello rete CDN di Azure offre hello le opzioni di memorizzazione nella cache comportamento seguenti:</span><span class="sxs-lookup"><span data-stu-id="eab2e-199">hello Azure CDN offers hello following caching behavior options:</span></span>
 
-* <span data-ttu-id="d9043-200">Ignora stringhe di query</span><span class="sxs-lookup"><span data-stu-id="d9043-200">Ignore query strings</span></span>
-* <span data-ttu-id="d9043-201">Disabilita la memorizzazione nella cache per le stringhe di query</span><span class="sxs-lookup"><span data-stu-id="d9043-201">Bypass caching for query strings</span></span>
-* <span data-ttu-id="d9043-202">Memorizza nella cache tutti gli URL univoci</span><span class="sxs-lookup"><span data-stu-id="d9043-202">Cache every unique URL</span></span> 
+* <span data-ttu-id="eab2e-200">Ignora stringhe di query</span><span class="sxs-lookup"><span data-stu-id="eab2e-200">Ignore query strings</span></span>
+* <span data-ttu-id="eab2e-201">Disabilita la memorizzazione nella cache per le stringhe di query</span><span class="sxs-lookup"><span data-stu-id="eab2e-201">Bypass caching for query strings</span></span>
+* <span data-ttu-id="eab2e-202">Memorizza nella cache tutti gli URL univoci</span><span class="sxs-lookup"><span data-stu-id="eab2e-202">Cache every unique URL</span></span> 
 
-<span data-ttu-id="d9043-203">La prima è l'opzione predefinita, ovvero esiste una sola versione di un asset memorizzata nella cache indipendentemente dalla stringa di query nell'URL.</span><span class="sxs-lookup"><span data-stu-id="d9043-203">The first of these is the default, which means there is only one cached version of an asset regardless of the query string in the URL.</span></span> 
+<span data-ttu-id="eab2e-203">Hello innanzitutto di questi è l'impostazione predefinita di hello, che non esiste un'unica versione memorizzata nella cache di un cespite indipendentemente dalla stringa di query hello hello URL.</span><span class="sxs-lookup"><span data-stu-id="eab2e-203">hello first of these is hello default, which means there is only one cached version of an asset regardless of hello query string in hello URL.</span></span> 
 
-<span data-ttu-id="d9043-204">In questa sezione dell'esercitazione si modificherà il comportamento per memorizzare nella cache tutti gli URL univoci.</span><span class="sxs-lookup"><span data-stu-id="d9043-204">In this section of the tutorial, you change the caching behavior to cache every unique URL.</span></span>
+<span data-ttu-id="eab2e-204">In questa sezione dell'esercitazione hello è modificare hello la memorizzazione nella cache comportamento toocache tutti gli URL univoci.</span><span class="sxs-lookup"><span data-stu-id="eab2e-204">In this section of hello tutorial, you change hello caching behavior toocache every unique URL.</span></span>
 
-### <a name="change-the-cache-behavior"></a><span data-ttu-id="d9043-205">Modificare il comportamento della cache</span><span class="sxs-lookup"><span data-stu-id="d9043-205">Change the cache behavior</span></span>
+### <a name="change-hello-cache-behavior"></a><span data-ttu-id="eab2e-205">Modificare il comportamento della cache di hello</span><span class="sxs-lookup"><span data-stu-id="eab2e-205">Change hello cache behavior</span></span>
 
-<span data-ttu-id="d9043-206">Nella pagina **Endpoint rete CDN** del portale di Azure selezionare **Cache**.</span><span class="sxs-lookup"><span data-stu-id="d9043-206">In the Azure portal **CDN Endpoint** page, select **Cache**.</span></span>
+<span data-ttu-id="eab2e-206">Nel portale di Azure hello **Endpoint rete CDN** selezionare **Cache**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-206">In hello Azure portal **CDN Endpoint** page, select **Cache**.</span></span>
 
-<span data-ttu-id="d9043-207">Selezionare **Memorizza nella cache tutti gli URL univoci** nell'elenco a discesa **Comportamento di memorizzazione nella cache della stringa di query**.</span><span class="sxs-lookup"><span data-stu-id="d9043-207">Select **Cache every unique URL** from the **Query string caching behavior** drop-down list.</span></span>
+<span data-ttu-id="eab2e-207">Selezionare **memorizzare nella Cache tutti gli URL univoci** da hello **stringa di Query, il comportamento di memorizzazione nella cache** elenco a discesa.</span><span class="sxs-lookup"><span data-stu-id="eab2e-207">Select **Cache every unique URL** from hello **Query string caching behavior** drop-down list.</span></span>
 
-<span data-ttu-id="d9043-208">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="d9043-208">Select **Save**.</span></span>
+<span data-ttu-id="eab2e-208">Selezionare **Salva**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-208">Select **Save**.</span></span>
 
 ![Selezionare il comportamento di memorizzazione nella cache della stringa di query](media/app-service-web-tutorial-content-delivery-network/portal-select-caching-behavior.png)
 
-### <a name="verify-that-unique-urls-are-cached-separately"></a><span data-ttu-id="d9043-210">Verificare che gli URL univoci vengano memorizzati nella cache separatamente</span><span class="sxs-lookup"><span data-stu-id="d9043-210">Verify that unique URLs are cached separately</span></span>
+### <a name="verify-that-unique-urls-are-cached-separately"></a><span data-ttu-id="eab2e-210">Verificare che gli URL univoci vengano memorizzati nella cache separatamente</span><span class="sxs-lookup"><span data-stu-id="eab2e-210">Verify that unique URLs are cached separately</span></span>
 
-<span data-ttu-id="d9043-211">In un browser passare alla home page nell'endpoint della rete CDN includendo però una stringa di query:</span><span class="sxs-lookup"><span data-stu-id="d9043-211">In a browser, navigate to the home page at the CDN endpoint, but include a query string:</span></span> 
+<span data-ttu-id="eab2e-211">In un browser, passare l'endpoint rete CDN hello toohello home page, ma includono una stringa di query:</span><span class="sxs-lookup"><span data-stu-id="eab2e-211">In a browser, navigate toohello home page at hello CDN endpoint, but include a query string:</span></span> 
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=1
 ```
 
-<span data-ttu-id="d9043-212">La rete CDN restituirà il contenuto corrente dell'app Web, che include "V2" nell'intestazione.</span><span class="sxs-lookup"><span data-stu-id="d9043-212">The CDN returns the current web app content, which includes "V2" in the heading.</span></span> 
+<span data-ttu-id="eab2e-212">rete CDN Hello restituisce hello web app contenuto corrente, ovvero "2" nell'intestazione di hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-212">hello CDN returns hello current web app content, which includes "V2" in hello heading.</span></span> 
 
-<span data-ttu-id="d9043-213">Per assicurarsi che questa pagina sia memorizzata nella cache nella rete CDN, aggiornare la pagina.</span><span class="sxs-lookup"><span data-stu-id="d9043-213">To ensure that this page is cached in the CDN, refresh the page.</span></span> 
+<span data-ttu-id="eab2e-213">tooensure che questa pagina memorizzato nella cache di hello CDN, aggiornare la pagina hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-213">tooensure that this page is cached in hello CDN, refresh hello page.</span></span> 
 
-<span data-ttu-id="d9043-214">Aprire `index.html`, modificare "V2" in "V3" e distribuire la modifica.</span><span class="sxs-lookup"><span data-stu-id="d9043-214">Open `index.html` and change "V2" to "V3", and deploy the change.</span></span> 
+<span data-ttu-id="eab2e-214">Aprire `index.html` e modificare anche "V2" "V3" e distribuire hello modifica.</span><span class="sxs-lookup"><span data-stu-id="eab2e-214">Open `index.html` and change "V2" too"V3", and deploy hello change.</span></span> 
 
 ```bash
 git commit -am "version 3"
 git push azure master
 ```
 
-<span data-ttu-id="d9043-215">In un browser passare all'URL dell'endpoint della rete CDN con una nuova stringa di query come `q=2`.</span><span class="sxs-lookup"><span data-stu-id="d9043-215">In a browser, go to the CDN endpoint URL with a new query string such as `q=2`.</span></span> <span data-ttu-id="d9043-216">La rete CDN recupera il file `index.html` corrente e visualizza "V3".</span><span class="sxs-lookup"><span data-stu-id="d9043-216">The CDN gets the current `index.html` file and displays "V3".</span></span>  <span data-ttu-id="d9043-217">Se invece si passa all'endpoint della rete CDN con la stringa di query `q=1`, viene visualizzato "V2".</span><span class="sxs-lookup"><span data-stu-id="d9043-217">But if you navigate to the CDN endpoint with the `q=1` query string, you see "V2".</span></span>
+<span data-ttu-id="eab2e-215">In un browser, passare l'URL dell'endpoint rete CDN toohello con una nuova stringa di query, ad esempio `q=2`.</span><span class="sxs-lookup"><span data-stu-id="eab2e-215">In a browser, go toohello CDN endpoint URL with a new query string such as `q=2`.</span></span> <span data-ttu-id="eab2e-216">rete CDN Hello Ottiene hello corrente `index.html` file e visualizza "V3".</span><span class="sxs-lookup"><span data-stu-id="eab2e-216">hello CDN gets hello current `index.html` file and displays "V3".</span></span>  <span data-ttu-id="eab2e-217">Ma se si passa l'endpoint rete CDN toohello con hello `q=1` stringa di query viene visualizzato "V2".</span><span class="sxs-lookup"><span data-stu-id="eab2e-217">But if you navigate toohello CDN endpoint with hello `q=1` query string, you see "V2".</span></span>
 
 ```
 http://<endpointname>.azureedge.net/index.html?q=2
@@ -241,69 +241,69 @@ http://<endpointname>.azureedge.net/index.html?q=1
 
 !["V2" nel titolo nella rete CDN, con stringa di query 1](media/app-service-web-tutorial-content-delivery-network/v2-in-cdn-title-qs1.png)
 
-<span data-ttu-id="d9043-220">Questo output mostra che ogni stringa di query viene trattata in modo diverso:</span><span class="sxs-lookup"><span data-stu-id="d9043-220">This output shows that each query string is treated differently:</span></span>
+<span data-ttu-id="eab2e-220">Questo output mostra che ogni stringa di query viene trattata in modo diverso:</span><span class="sxs-lookup"><span data-stu-id="eab2e-220">This output shows that each query string is treated differently:</span></span>
 
-* <span data-ttu-id="d9043-221">Poiché q=1 è stata usata in precedenza, vengono restituiti i contenuti memorizzati nella cache (V2).</span><span class="sxs-lookup"><span data-stu-id="d9043-221">q=1 was used before, so cached contents are returned (V2).</span></span>
-* <span data-ttu-id="d9043-222">Poiché q=2 non è mai stata usata, vengono recuperati e restituiti i contenuti dell'app Web più recenti (V3).</span><span class="sxs-lookup"><span data-stu-id="d9043-222">q=2 is new, so the latest web app contents are retrieved and returned (V3).</span></span>
+* <span data-ttu-id="eab2e-221">Poiché q=1 è stata usata in precedenza, vengono restituiti i contenuti memorizzati nella cache (V2).</span><span class="sxs-lookup"><span data-stu-id="eab2e-221">q=1 was used before, so cached contents are returned (V2).</span></span>
+* <span data-ttu-id="eab2e-222">q = 2 è una novità, in modo più recente contenuto dell'app web hello viene recuperati e restituito (V3).</span><span class="sxs-lookup"><span data-stu-id="eab2e-222">q=2 is new, so hello latest web app contents are retrieved and returned (V3).</span></span>
 
-<span data-ttu-id="d9043-223">Per altre informazioni, vedere [Controllare il comportamento di memorizzazione nella cache della rete CDN di Azure con stringhe di query](../cdn/cdn-query-string.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-223">For more information, see [Control Azure CDN caching behavior with query strings](../cdn/cdn-query-string.md).</span></span>
+<span data-ttu-id="eab2e-223">Per altre informazioni, vedere [Controllare il comportamento di memorizzazione nella cache della rete CDN di Azure con stringhe di query](../cdn/cdn-query-string.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-223">For more information, see [Control Azure CDN caching behavior with query strings](../cdn/cdn-query-string.md).</span></span>
 
-## <a name="map-a-custom-domain-to-a-cdn-endpoint"></a><span data-ttu-id="d9043-224">Eseguire il mapping di un dominio personalizzato a un endpoint della rete CDN</span><span class="sxs-lookup"><span data-stu-id="d9043-224">Map a custom domain to a CDN endpoint</span></span>
+## <a name="map-a-custom-domain-tooa-cdn-endpoint"></a><span data-ttu-id="eab2e-224">Eseguire il mapping di un endpoint rete CDN tooa di dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="eab2e-224">Map a custom domain tooa CDN endpoint</span></span>
 
-<span data-ttu-id="d9043-225">Per eseguire il mapping del dominio personalizzato all'endpoint della rete CDN si creerà un record CNAME.</span><span class="sxs-lookup"><span data-stu-id="d9043-225">You'll map your custom domain to your CDN Endpoint by creating a CNAME record.</span></span> <span data-ttu-id="d9043-226">Un record CNAME è una funzionalità DNS tramite cui viene eseguito il mapping di un dominio di origine a uno di destinazione.</span><span class="sxs-lookup"><span data-stu-id="d9043-226">A CNAME record is a DNS feature that maps a source domain to a destination domain.</span></span> <span data-ttu-id="d9043-227">Ad esempio, si potrebbe eseguire il mapping di `cdn.contoso.com` o `static.contoso.com` a `contoso.azureedge.net`.</span><span class="sxs-lookup"><span data-stu-id="d9043-227">For example, you might map `cdn.contoso.com` or `static.contoso.com` to `contoso.azureedge.net`.</span></span>
+<span data-ttu-id="eab2e-225">Viene eseguito il mapping del tooyour dominio personalizzato CDN Endpoint tramite la creazione di un record CNAME.</span><span class="sxs-lookup"><span data-stu-id="eab2e-225">You'll map your custom domain tooyour CDN Endpoint by creating a CNAME record.</span></span> <span data-ttu-id="eab2e-226">Un record CNAME è una funzionalità DNS che esegue il mapping di un dominio di destinazione tooa di dominio di origine.</span><span class="sxs-lookup"><span data-stu-id="eab2e-226">A CNAME record is a DNS feature that maps a source domain tooa destination domain.</span></span> <span data-ttu-id="eab2e-227">Ad esempio, è possibile mappare `cdn.contoso.com` o `static.contoso.com` troppo`contoso.azureedge.net`.</span><span class="sxs-lookup"><span data-stu-id="eab2e-227">For example, you might map `cdn.contoso.com` or `static.contoso.com` too`contoso.azureedge.net`.</span></span>
 
-<span data-ttu-id="d9043-228">Se non si ha un dominio personalizzato, può essere opportuno seguire l'[esercitazione relativa ai domini nel servizio app](custom-dns-web-site-buydomains-web-app.md) per acquistare un dominio usando il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="d9043-228">If you don't have a custom domain, consider following the [App Service domain tutorial](custom-dns-web-site-buydomains-web-app.md) to purchase a domain using the Azure portal.</span></span> 
+<span data-ttu-id="eab2e-228">Se non si dispone di un dominio personalizzato, prendere in considerazione seguenti hello [esercitazione di dominio di servizio App](custom-dns-web-site-buydomains-web-app.md) toopurchase il dominio utilizzando hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="eab2e-228">If you don't have a custom domain, consider following hello [App Service domain tutorial](custom-dns-web-site-buydomains-web-app.md) toopurchase a domain using hello Azure portal.</span></span> 
 
-### <a name="find-the-hostname-to-use-with-the-cname"></a><span data-ttu-id="d9043-229">Trovare il nome host da usare con il record CNAME</span><span class="sxs-lookup"><span data-stu-id="d9043-229">Find the hostname to use with the CNAME</span></span>
+### <a name="find-hello-hostname-toouse-with-hello-cname"></a><span data-ttu-id="eab2e-229">Trovare hello hostname toouse con hello CNAME</span><span class="sxs-lookup"><span data-stu-id="eab2e-229">Find hello hostname toouse with hello CNAME</span></span>
 
-<span data-ttu-id="d9043-230">Nella pagina **Endpoint** del portale di Azure verificare che nel riquadro di spostamento a sinistra sia selezionata l'opzione **Panoramica** e quindi selezionare il pulsante **+ Dominio personalizzato** nella parte superiore della pagina.</span><span class="sxs-lookup"><span data-stu-id="d9043-230">In the Azure portal **Endpoint** page, make sure **Overview** is selected in the left navigation, and then select the **+ Custom Domain** button at the top of the page.</span></span>
+<span data-ttu-id="eab2e-230">Nel portale di Azure hello **Endpoint** assicurarsi **Panoramica** è selezionata in hello sinistro spostamento e quindi seleziona hello **+ dominio personalizzato** pulsante nella parte superiore di hello della pagina hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-230">In hello Azure portal **Endpoint** page, make sure **Overview** is selected in hello left navigation, and then select hello **+ Custom Domain** button at hello top of hello page.</span></span>
 
 ![Selezionare l'aggiunta di un dominio personalizzato](media/app-service-web-tutorial-content-delivery-network/portal-select-add-domain.png)
 
-<span data-ttu-id="d9043-232">Nella pagina **Aggiungi dominio personalizzato** verrà visualizzato il nome host dell'endpoint da usare per la creazione di un record CNAME.</span><span class="sxs-lookup"><span data-stu-id="d9043-232">In the **Add a custom domain** page, you see the endpoint host name to use in creating a CNAME record.</span></span> <span data-ttu-id="d9043-233">Il nome host è derivato dall'URL dell'endpoint della rete CDN: **&lt;NomeEndpoint>.azureedge.net**.</span><span class="sxs-lookup"><span data-stu-id="d9043-233">The host name is derived from your CDN endpoint URL: **&lt;EndpointName>.azureedge.net**.</span></span> 
+<span data-ttu-id="eab2e-232">In hello **aggiungere un dominio personalizzato** visualizzata hello toouse nome host di endpoint per la creazione di un record CNAME.</span><span class="sxs-lookup"><span data-stu-id="eab2e-232">In hello **Add a custom domain** page, you see hello endpoint host name toouse in creating a CNAME record.</span></span> <span data-ttu-id="eab2e-233">nome host Hello è derivato dall'URL dell'endpoint rete CDN:  **&lt;EndpointName >. azureedge.net**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-233">hello host name is derived from your CDN endpoint URL: **&lt;EndpointName>.azureedge.net**.</span></span> 
 
 ![Pagina per l'aggiunta di un dominio](media/app-service-web-tutorial-content-delivery-network/portal-add-domain.png)
 
-### <a name="configure-the-cname-with-your-domain-registrar"></a><span data-ttu-id="d9043-235">Configurare il record CNAME con il registrar</span><span class="sxs-lookup"><span data-stu-id="d9043-235">Configure the CNAME with your domain registrar</span></span>
+### <a name="configure-hello-cname-with-your-domain-registrar"></a><span data-ttu-id="eab2e-235">Configurare hello CNAME con il registrar</span><span class="sxs-lookup"><span data-stu-id="eab2e-235">Configure hello CNAME with your domain registrar</span></span>
 
-<span data-ttu-id="d9043-236">Passare al sito Web del registrar e individuare la sezione per la creazione di record DNS.</span><span class="sxs-lookup"><span data-stu-id="d9043-236">Navigate to your domain registrar's web site, and locate the section for creating DNS records.</span></span> <span data-ttu-id="d9043-237">Queste informazioni possono essere disponibili in una sezione come **Domain Name**, **DNS** o **Name Server Management**.</span><span class="sxs-lookup"><span data-stu-id="d9043-237">You might find this in a section such as **Domain Name**, **DNS**, or **Name Server Management**.</span></span>
+<span data-ttu-id="eab2e-236">Sito web del registrar di dominio tooyour passare e individuare la sezione hello per la creazione di record DNS.</span><span class="sxs-lookup"><span data-stu-id="eab2e-236">Navigate tooyour domain registrar's web site, and locate hello section for creating DNS records.</span></span> <span data-ttu-id="eab2e-237">Queste informazioni possono essere disponibili in una sezione come **Domain Name**, **DNS** o **Name Server Management**.</span><span class="sxs-lookup"><span data-stu-id="eab2e-237">You might find this in a section such as **Domain Name**, **DNS**, or **Name Server Management**.</span></span>
 
-<span data-ttu-id="d9043-238">Individuare la sezione per la gestione dei record CNAME.</span><span class="sxs-lookup"><span data-stu-id="d9043-238">Find the section for managing CNAMEs.</span></span> <span data-ttu-id="d9043-239">Potrebbe essere necessario passare a una pagina di impostazioni avanzate e cercare le parole CNAME, Alias o Subdomains.</span><span class="sxs-lookup"><span data-stu-id="d9043-239">You may have to go to an advanced settings page and look for the words CNAME, Alias, or Subdomains.</span></span>
+<span data-ttu-id="eab2e-238">Trovare la sezione hello per la gestione dei record CNAME.</span><span class="sxs-lookup"><span data-stu-id="eab2e-238">Find hello section for managing CNAMEs.</span></span> <span data-ttu-id="eab2e-239">È possibile avere una pagina di impostazioni avanzate tooan toogo e cercare parole hello CNAME, Alias o diversi sottodomini.</span><span class="sxs-lookup"><span data-stu-id="eab2e-239">You may have toogo tooan advanced settings page and look for hello words CNAME, Alias, or Subdomains.</span></span>
 
-<span data-ttu-id="d9043-240">Creare un record CNAME per il mapping del sottodominio scelto (ad esempio, **static** o **cdn**) al **nome host dell'endpoint** visualizzato in precedenza nel portale.</span><span class="sxs-lookup"><span data-stu-id="d9043-240">Create a CNAME record that maps your chosen subdomain (for example, **static** or **cdn**) to the **Endpoint host name** shown earlier in the portal.</span></span> 
+<span data-ttu-id="eab2e-240">Creare un record CNAME che esegue il mapping del sottodominio scelto (ad esempio, **statico** o **cdn**) toohello **nome host dell'Endpoint** illustrato in precedenza nel portale di hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-240">Create a CNAME record that maps your chosen subdomain (for example, **static** or **cdn**) toohello **Endpoint host name** shown earlier in hello portal.</span></span> 
 
-### <a name="enter-the-custom-domain-in-azure"></a><span data-ttu-id="d9043-241">Immettere il dominio personalizzato in Azure</span><span class="sxs-lookup"><span data-stu-id="d9043-241">Enter the custom domain in Azure</span></span>
+### <a name="enter-hello-custom-domain-in-azure"></a><span data-ttu-id="eab2e-241">Immettere dominio personalizzato hello in Azure</span><span class="sxs-lookup"><span data-stu-id="eab2e-241">Enter hello custom domain in Azure</span></span>
 
-<span data-ttu-id="d9043-242">Tornare alla pagina **Aggiungi dominio personalizzato** e immettere il dominio personalizzato, includendo il sottodominio, nella finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="d9043-242">Return to the **Add a custom domain** page, and enter your custom domain, including the subdomain, in the dialog box.</span></span> <span data-ttu-id="d9043-243">Ad esempio, immettere `cdn.contoso.com`.</span><span class="sxs-lookup"><span data-stu-id="d9043-243">For example, enter `cdn.contoso.com`.</span></span>   
+<span data-ttu-id="eab2e-242">Restituire toohello **aggiungere un dominio personalizzato** pagina e immettere il dominio personalizzato, inclusi il sottodominio hello, nella finestra di dialogo hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-242">Return toohello **Add a custom domain** page, and enter your custom domain, including hello subdomain, in hello dialog box.</span></span> <span data-ttu-id="eab2e-243">Ad esempio, immettere `cdn.contoso.com`.</span><span class="sxs-lookup"><span data-stu-id="eab2e-243">For example, enter `cdn.contoso.com`.</span></span>   
    
-<span data-ttu-id="d9043-244">Azure verifica l'esistenza del record CNAME per il nome di dominio immesso.</span><span class="sxs-lookup"><span data-stu-id="d9043-244">Azure verifies that the CNAME record exists for the domain name you have entered.</span></span> <span data-ttu-id="d9043-245">Se il record CNAME è corretto, il dominio personalizzato viene convalidato.</span><span class="sxs-lookup"><span data-stu-id="d9043-245">If the CNAME is correct, your custom domain is validated.</span></span>
+<span data-ttu-id="eab2e-244">Azure verifica l'esistenza di record CNAME hello hello nome di dominio immesso.</span><span class="sxs-lookup"><span data-stu-id="eab2e-244">Azure verifies that hello CNAME record exists for hello domain name you have entered.</span></span> <span data-ttu-id="eab2e-245">Se hello CNAME è corretto, viene convalidato il dominio personalizzato.</span><span class="sxs-lookup"><span data-stu-id="eab2e-245">If hello CNAME is correct, your custom domain is validated.</span></span>
 
-<span data-ttu-id="d9043-246">La propagazione del record CNAME nei server dei nomi in Internet può richiedere tempo.</span><span class="sxs-lookup"><span data-stu-id="d9043-246">It can take time for the CNAME record to propagate to name servers on the Internet.</span></span> <span data-ttu-id="d9043-247">Se il dominio non viene convalidato immediatamente, attendere qualche minuto e riprovare.</span><span class="sxs-lookup"><span data-stu-id="d9043-247">If your domain is not validated immediately, wait a few minutes and try again.</span></span>
+<span data-ttu-id="eab2e-246">Per i server di tooname toopropagate record CNAME hello in hello Internet può richiedere tempo.</span><span class="sxs-lookup"><span data-stu-id="eab2e-246">It can take time for hello CNAME record toopropagate tooname servers on hello Internet.</span></span> <span data-ttu-id="eab2e-247">Se il dominio non viene convalidato immediatamente, attendere qualche minuto e riprovare.</span><span class="sxs-lookup"><span data-stu-id="eab2e-247">If your domain is not validated immediately, wait a few minutes and try again.</span></span>
 
-### <a name="test-the-custom-domain"></a><span data-ttu-id="d9043-248">Testare il dominio personalizzato</span><span class="sxs-lookup"><span data-stu-id="d9043-248">Test the custom domain</span></span>
+### <a name="test-hello-custom-domain"></a><span data-ttu-id="eab2e-248">Dominio personalizzato hello di test</span><span class="sxs-lookup"><span data-stu-id="eab2e-248">Test hello custom domain</span></span>
 
-<span data-ttu-id="d9043-249">In un browser passare al file `index.html` usando il dominio personalizzato (ad esempio, `cdn.contoso.com/index.html`) per verificare che il risultato sia lo stesso ottenuto andando direttamente a `<endpointname>azureedge.net/index.html`.</span><span class="sxs-lookup"><span data-stu-id="d9043-249">In a browser, navigate to the `index.html` file using your custom domain (for example, `cdn.contoso.com/index.html`) to verify that the result is the same as when you go directly to `<endpointname>azureedge.net/index.html`.</span></span>
+<span data-ttu-id="eab2e-249">In un browser, passare toohello `index.html` file utilizzando il dominio personalizzato (ad esempio, `cdn.contoso.com/index.html`) tooverify hello risultato del metodo hello stesso come quando si passa direttamente troppo`<endpointname>azureedge.net/index.html`.</span><span class="sxs-lookup"><span data-stu-id="eab2e-249">In a browser, navigate toohello `index.html` file using your custom domain (for example, `cdn.contoso.com/index.html`) tooverify that hello result is hello same as when you go directly too`<endpointname>azureedge.net/index.html`.</span></span>
 
 ![Home page dell'app di esempio con URL del dominio personalizzato](media/app-service-web-tutorial-content-delivery-network/home-page-custom-domain.png)
 
-<span data-ttu-id="d9043-251">Per altre informazioni, vedere [Eseguire il mapping del contenuto della rete CDN di Azure a un dominio personalizzato](../cdn/cdn-map-content-to-custom-domain.md).</span><span class="sxs-lookup"><span data-stu-id="d9043-251">For more information, see [Map Azure CDN content to a custom domain](../cdn/cdn-map-content-to-custom-domain.md).</span></span>
+<span data-ttu-id="eab2e-251">Per ulteriori informazioni, vedere [dominio di rete CDN di Azure mappa tooa contenuto personalizzato](../cdn/cdn-map-content-to-custom-domain.md).</span><span class="sxs-lookup"><span data-stu-id="eab2e-251">For more information, see [Map Azure CDN content tooa custom domain](../cdn/cdn-map-content-to-custom-domain.md).</span></span>
 
 [!INCLUDE [cli-samples-clean-up](../../includes/cli-samples-clean-up.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="d9043-252">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="d9043-252">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="eab2e-252">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="eab2e-252">Next steps</span></span>
 
-<span data-ttu-id="d9043-253">Contenuto dell'esercitazione:</span><span class="sxs-lookup"><span data-stu-id="d9043-253">What you learned:</span></span>
+<span data-ttu-id="eab2e-253">Contenuto dell'esercitazione:</span><span class="sxs-lookup"><span data-stu-id="eab2e-253">What you learned:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="d9043-254">Creare un endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-254">Create a CDN endpoint.</span></span>
-> * <span data-ttu-id="d9043-255">Aggiornare gli asset memorizzati nella cache.</span><span class="sxs-lookup"><span data-stu-id="d9043-255">Refresh cached assets.</span></span>
-> * <span data-ttu-id="d9043-256">Usare stringhe di query per controllare le versioni memorizzate nella cache.</span><span class="sxs-lookup"><span data-stu-id="d9043-256">Use query strings to control cached versions.</span></span>
-> * <span data-ttu-id="d9043-257">Usare un dominio personalizzato per l'endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="d9043-257">Use a custom domain for the CDN endpoint.</span></span>
+> * <span data-ttu-id="eab2e-254">Creare un endpoint della rete CDN.</span><span class="sxs-lookup"><span data-stu-id="eab2e-254">Create a CDN endpoint.</span></span>
+> * <span data-ttu-id="eab2e-255">Aggiornare gli asset memorizzati nella cache.</span><span class="sxs-lookup"><span data-stu-id="eab2e-255">Refresh cached assets.</span></span>
+> * <span data-ttu-id="eab2e-256">Versioni di toocontrol memorizzati nella cache delle stringhe di query di utilizzo.</span><span class="sxs-lookup"><span data-stu-id="eab2e-256">Use query strings toocontrol cached versions.</span></span>
+> * <span data-ttu-id="eab2e-257">Utilizzare un dominio personalizzato per l'endpoint rete CDN hello.</span><span class="sxs-lookup"><span data-stu-id="eab2e-257">Use a custom domain for hello CDN endpoint.</span></span>
 
-<span data-ttu-id="d9043-258">Per informazioni su come ottimizzare la rete CDN, vedere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="d9043-258">Learn how to optimize CDN performance in the following articles:</span></span>
-
-> [!div class="nextstepaction"]
-> [<span data-ttu-id="d9043-259">Migliorare le prestazioni con la compressione dei file nella rete CDN di Azure</span><span class="sxs-lookup"><span data-stu-id="d9043-259">Improve performance by compressing files in Azure CDN</span></span>](../cdn/cdn-improve-performance.md)
+<span data-ttu-id="eab2e-258">Informazioni su come le prestazioni della rete CDN toooptimize hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="eab2e-258">Learn how toooptimize CDN performance in hello following articles:</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="d9043-260">Precaricamento di risorse in un endpoint della rete CDN di Azure</span><span class="sxs-lookup"><span data-stu-id="d9043-260">Pre-load assets on an Azure CDN endpoint</span></span>](../cdn/cdn-preload-endpoint.md)
+> [<span data-ttu-id="eab2e-259">Migliorare le prestazioni con la compressione dei file nella rete CDN di Azure</span><span class="sxs-lookup"><span data-stu-id="eab2e-259">Improve performance by compressing files in Azure CDN</span></span>](../cdn/cdn-improve-performance.md)
+
+> [!div class="nextstepaction"]
+> [<span data-ttu-id="eab2e-260">Precaricamento di risorse in un endpoint della rete CDN di Azure</span><span class="sxs-lookup"><span data-stu-id="eab2e-260">Pre-load assets on an Azure CDN endpoint</span></span>](../cdn/cdn-preload-endpoint.md)

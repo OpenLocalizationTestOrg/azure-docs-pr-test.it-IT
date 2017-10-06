@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'archiviazione code di Azure e ai servizi connessi di Visual Studio (ASP.NET) | Documentazione Microsoft
-description: Informazioni su come iniziare a usare l'archiviazione code di Azure in un progetto ASP.NET in Visual Studio dopo aver eseguito la connessione a un account di archiviazione con i servizi connessi di Visual Studio
+title: aaaGet avviato con l'archiviazione delle code di Azure e Visual Studio connesso servizi (ASP.NET) | Documenti Microsoft
+description: "La modalità di avvio utilizzando l'archiviazione delle code di Azure in un progetto ASP.NET in Visual Studio dopo la connessione di account di archiviazione tooa con Visual Studio connesso Services tooget"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/23/2016
 ms.author: tarcher
-ms.openlocfilehash: 76b0d5e270e16a317ce8a7b424c06c867b537a8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a9d6ecb1e8d61d75f59658d0ea3fa63d26fd7354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="22d69-103">Introduzione all'archiviazione code di Azure e ai servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="22d69-103">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>
+# <a name="get-started-with-azure-queue-storage-and-visual-studio-connected-services-aspnet"></a><span data-ttu-id="2a9f2-103">Introduzione all'archiviazione code di Azure e ai servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-103">Get started with Azure queue storage and Visual Studio Connected Services (ASP.NET)</span></span>
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
-## <a name="overview"></a><span data-ttu-id="22d69-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="22d69-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="2a9f2-104">Panoramica</span><span class="sxs-lookup"><span data-stu-id="2a9f2-104">Overview</span></span>
 
-<span data-ttu-id="22d69-105">L'archivio code di Azure fornisce la messaggistica cloud tra i componenti dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-105">Azure queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="22d69-106">Durante la progettazione di applicazioni scalabili, i componenti dell'applicazione vengono spesso separati, per poter essere scalati in modo indipendente.</span><span class="sxs-lookup"><span data-stu-id="22d69-106">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="22d69-107">L'archivio code fornisce la messaggistica asincrona per la comunicazione tra i componenti dell'applicazione, che possono essere eseguiti nel cloud, in un desktop, in un server locale o in un dispositivo mobile.</span><span class="sxs-lookup"><span data-stu-id="22d69-107">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in the cloud, on the desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="22d69-108">Archiviazione code supporta anche la gestione di attività asincrone e la creazione di flussi di lavoro dei processi.</span><span class="sxs-lookup"><span data-stu-id="22d69-108">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
+<span data-ttu-id="2a9f2-105">L'archivio code di Azure fornisce la messaggistica cloud tra i componenti dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-105">Azure queue storage provides cloud messaging between application components.</span></span> <span data-ttu-id="2a9f2-106">Durante la progettazione di applicazioni scalabili, i componenti dell'applicazione vengono spesso separati, per poter essere scalati in modo indipendente.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-106">In designing applications for scale, application components are often decoupled, so that they can scale independently.</span></span> <span data-ttu-id="2a9f2-107">L'archiviazione delle code recapita la messaggistica asincrona per la comunicazione tra i componenti dell'applicazione, se sono in esecuzione nel cloud hello, sul desktop di hello, in un server locale o in un dispositivo mobile.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-107">Queue storage delivers asynchronous messaging for communication between application components, whether they are running in hello cloud, on hello desktop, on an on-premises server, or on a mobile device.</span></span> <span data-ttu-id="2a9f2-108">Archiviazione code supporta anche la gestione di attività asincrone e la creazione di flussi di lavoro dei processi.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-108">Queue storage also supports managing asynchronous tasks and building process work flows.</span></span>
 
-<span data-ttu-id="22d69-109">Questa esercitazione illustra come scrivere codice ASP.NET per alcuni scenari comuni usando le entità di archiviazione code di Azure.</span><span class="sxs-lookup"><span data-stu-id="22d69-109">This tutorial shows how to write ASP.NET code for some common scenarios using Azure queue storage entities.</span></span> <span data-ttu-id="22d69-110">Tali scenari includono attività comuni, ad esempio la creazione di una coda di Azure e l'aggiunta, modifica, lettura e rimozione dei messaggi in coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-110">These scenarios include common tasks such as creating an Azure queue, and adding, modifying, reading, and removing queue messages.</span></span>
+<span data-ttu-id="2a9f2-109">Questa esercitazione viene illustrato come toowrite ASP.NET codice in alcuni scenari comuni con le entità di archiviazione delle code di Azure.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-109">This tutorial shows how toowrite ASP.NET code for some common scenarios using Azure queue storage entities.</span></span> <span data-ttu-id="2a9f2-110">Tali scenari includono attività comuni, ad esempio la creazione di una coda di Azure e l'aggiunta, modifica, lettura e rimozione dei messaggi in coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-110">These scenarios include common tasks such as creating an Azure queue, and adding, modifying, reading, and removing queue messages.</span></span>
 
-##<a name="prerequisites"></a><span data-ttu-id="22d69-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="22d69-111">Prerequisites</span></span>
+##<a name="prerequisites"></a><span data-ttu-id="2a9f2-111">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="2a9f2-111">Prerequisites</span></span>
 
-* [<span data-ttu-id="22d69-112">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="22d69-112">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
-* [<span data-ttu-id="22d69-113">Account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="22d69-113">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
+* [<span data-ttu-id="2a9f2-112">Microsoft Visual Studio</span><span class="sxs-lookup"><span data-stu-id="2a9f2-112">Microsoft Visual Studio</span></span>](https://www.visualstudio.com/downloads/)
+* [<span data-ttu-id="2a9f2-113">Account di archiviazione di Azure</span><span class="sxs-lookup"><span data-stu-id="2a9f2-113">Azure storage account</span></span>](storage-create-storage-account.md#create-a-storage-account)
 
 [!INCLUDE [storage-queue-concepts-include](../../includes/storage-queue-concepts-include.md)]
 
@@ -40,21 +40,21 @@ ms.lasthandoff: 08/03/2017
 
 [!INCLUDE [storage-development-environment-include](../../includes/vs-storage-aspnet-getting-started-setup-dev-env.md)]
 
-### <a name="create-an-mvc-controller"></a><span data-ttu-id="22d69-114">Creare un controller MVC</span><span class="sxs-lookup"><span data-stu-id="22d69-114">Create an MVC controller</span></span> 
+### <a name="create-an-mvc-controller"></a><span data-ttu-id="2a9f2-114">Creare un controller MVC</span><span class="sxs-lookup"><span data-stu-id="2a9f2-114">Create an MVC controller</span></span> 
 
-1. <span data-ttu-id="22d69-115">In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Controller** e selezionare **Aggiungi > Controller** dal menu di scelta rapida.</span><span class="sxs-lookup"><span data-stu-id="22d69-115">In the **Solution Explorer**, right-click **Controllers**, and, from the context menu, select **Add->Controller**.</span></span>
+1. <span data-ttu-id="2a9f2-115">In hello **Esplora soluzioni**, fare doppio clic su **controller**, selezionare il menu di scelta rapida hello **Aggiungi -> Controller**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-115">In hello **Solution Explorer**, right-click **Controllers**, and, from hello context menu, select **Add->Controller**.</span></span>
 
-    ![Aggiungere un controller a un'app MVC ASP.NET](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
+    ![Aggiungere un tooan controller app ASP.NET MVC](./media/vs-storage-aspnet-getting-started-queues/add-controller-menu.png)
 
-1. <span data-ttu-id="22d69-117">Nella finestra di dialogo **Aggiungi scaffolding** fare clic su **Controller MVC 5 - Vuoto** e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-117">On the **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-117">In hello **aggiungere lo scaffolding** finestra di dialogo Seleziona **Controller MVC 5 - vuoto**e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-117">On hello **Add Scaffold** dialog, select **MVC 5 Controller - Empty**, and select **Add**.</span></span>
 
     ![Specificare il tipo di controller MVC](./media/vs-storage-aspnet-getting-started-queues/add-controller.png)
 
-1. <span data-ttu-id="22d69-119">Nella finestra di dialogo **Aggiungi controller** assegnare il nome *QueuesController* al controller e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-119">On the **Add Controller** dialog, name the controller *QueuesController*, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-119">In hello **Aggiungi Controller** finestra di dialogo, nome del controller hello *QueuesController*e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-119">On hello **Add Controller** dialog, name hello controller *QueuesController*, and select **Add**.</span></span>
 
-    ![Assegnare un nome al controller MVC](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
+    ![Controller MVC hello di nome](./media/vs-storage-aspnet-getting-started-queues/add-controller-name.png)
 
-1. <span data-ttu-id="22d69-121">Aggiungere le direttive *using* seguenti al file `QueuesController.cs`:</span><span class="sxs-lookup"><span data-stu-id="22d69-121">Add the following *using* directives to the `QueuesController.cs` file:</span></span>
+1. <span data-ttu-id="2a9f2-121">Aggiungere il seguente hello *utilizzando* toohello direttive `QueuesController.cs` file:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-121">Add hello following *using* directives toohello `QueuesController.cs` file:</span></span>
 
     ```csharp
     using Microsoft.Azure;
@@ -62,62 +62,62 @@ ms.lasthandoff: 08/03/2017
     using Microsoft.WindowsAzure.Storage.Auth;
     using Microsoft.WindowsAzure.Storage.Queue;
     ```
-## <a name="create-a-queue"></a><span data-ttu-id="22d69-122">Creare una coda</span><span class="sxs-lookup"><span data-stu-id="22d69-122">Create a queue</span></span>
+## <a name="create-a-queue"></a><span data-ttu-id="2a9f2-122">Creare una coda</span><span class="sxs-lookup"><span data-stu-id="2a9f2-122">Create a queue</span></span>
 
-<span data-ttu-id="22d69-123">I passaggi seguenti illustrano come creare una coda:</span><span class="sxs-lookup"><span data-stu-id="22d69-123">The following steps illustrate how to create a queue:</span></span>
+<span data-ttu-id="2a9f2-123">Hello passaggi seguenti viene illustrato come toocreate una coda:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-123">hello following steps illustrate how toocreate a queue:</span></span>
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-124">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-124">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-124">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-124">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-125">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-125">Open the `QueuesController.cs` file.</span></span> 
+1. <span data-ttu-id="2a9f2-125">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-125">Open hello `QueuesController.cs` file.</span></span> 
 
-1. <span data-ttu-id="22d69-126">Aggiungere un metodo denominato **CreateQueue** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-126">Add a method called **CreateQueue** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-126">Aggiungere un metodo denominato **CreateQueue** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-126">Add a method called **CreateQueue** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult CreateQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
 
-1. <span data-ttu-id="22d69-127">Nel metodo **CreateQueue** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-127">Within the **CreateQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-128">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-128">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-127">All'interno di hello **CreateQueue** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-127">Within hello **CreateQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-128">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-128">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
 
-1. <span data-ttu-id="22d69-129">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-129">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-129">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-129">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
-1. <span data-ttu-id="22d69-130">Ottenere un oggetto **CloudQueue** che rappresenta un riferimento al nome della coda desiderata.</span><span class="sxs-lookup"><span data-stu-id="22d69-130">Get a **CloudQueue** object that represents a reference to the desired queue name.</span></span> <span data-ttu-id="22d69-131">Il metodo **CloudQueueClient.GetQueueReference** non esegue una richiesta all'archiviazione code.</span><span class="sxs-lookup"><span data-stu-id="22d69-131">The **CloudQueueClient.GetQueueReference** method does not make a request against queue storage.</span></span> <span data-ttu-id="22d69-132">Il riferimento viene restituito indipendentemente dall'esistenza della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-132">The reference is returned whether or not the queue exists.</span></span> 
+1. <span data-ttu-id="2a9f2-130">Ottenere un **CloudQueue** oggetto che rappresenta un nome di riferimento toohello coda desiderata.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-130">Get a **CloudQueue** object that represents a reference toohello desired queue name.</span></span> <span data-ttu-id="2a9f2-131">Hello **CloudQueueClient.GetQueueReference** metodo non apporta una richiesta per l'archiviazione delle code.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-131">hello **CloudQueueClient.GetQueueReference** method does not make a request against queue storage.</span></span> <span data-ttu-id="2a9f2-132">coda hello esista o meno, viene restituito il riferimento di Hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-132">hello reference is returned whether or not hello queue exists.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-133">Chiamare il metodo **CloudQueue.CreateIfNotExists** per creare la coda se non esiste.</span><span class="sxs-lookup"><span data-stu-id="22d69-133">Call the **CloudQueue.CreateIfNotExists** method to create the queue if it does not yet exist.</span></span> <span data-ttu-id="22d69-134">Il metodo **CloudQueue.CreateIfNotExists** restituisce **true** se la coda non esiste e viene creata correttamente.</span><span class="sxs-lookup"><span data-stu-id="22d69-134">The **CloudQueue.CreateIfNotExists** method returns **true** if the queue does not exist, and is successfully created.</span></span> <span data-ttu-id="22d69-135">In caso contrario, viene restituito **false**.</span><span class="sxs-lookup"><span data-stu-id="22d69-135">Otherwise, **false** is returned.</span></span>    
+1. <span data-ttu-id="2a9f2-133">Chiamare hello **CloudQueue.CreateIfNotExists** coda di hello toocreate metodo se non esiste ancora.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-133">Call hello **CloudQueue.CreateIfNotExists** method toocreate hello queue if it does not yet exist.</span></span> <span data-ttu-id="2a9f2-134">Hello **CloudQueue.CreateIfNotExists** restituisce **true** coda hello non esiste, se è stata creata correttamente.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-134">hello **CloudQueue.CreateIfNotExists** method returns **true** if hello queue does not exist, and is successfully created.</span></span> <span data-ttu-id="2a9f2-135">In caso contrario, viene restituito **false**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-135">Otherwise, **false** is returned.</span></span>    
 
     ```csharp
     ViewBag.Success = queue.CreateIfNotExists();
     ```
 
-1. <span data-ttu-id="22d69-136">Aggiornare **ViewBag** con il nome della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-136">Update the **ViewBag** with the name of the queue.</span></span>
+1. <span data-ttu-id="2a9f2-136">Hello aggiornamento **ViewBag** con nome hello della coda di hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-136">Update hello **ViewBag** with hello name of hello queue.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
 
-1. <span data-ttu-id="22d69-137">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-137">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-137">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-137">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-138">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **CreateQueue** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-138">On the **Add View** dialog, enter **CreateQueue** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-138">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **CreateQueue** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-138">On hello **Add View** dialog, enter **CreateQueue** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-139">Aprire `CreateQueue.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-139">Open `CreateQueue.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-139">Aprire `CreateQueue.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-139">Open `CreateQueue.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -129,84 +129,84 @@ ms.lasthandoff: 08/03/2017
     Creation of @ViewBag.QueueName @(ViewBag.Success == true ? "succeeded" : "failed")
     ```
 
-1. <span data-ttu-id="22d69-140">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-140">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-140">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-140">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-141">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-141">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-141">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-141">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Create queue", "CreateQueue", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-142">Eseguire l'applicazione e selezionare **Crea coda** per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-142">Run the application, and select **Create queue** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-142">Eseguire un'applicazione hello e selezionare **Create queue** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-142">Run hello application, and select **Create queue** toosee results similar toohello following screen shot:</span></span>
   
     ![Crea coda](./media/vs-storage-aspnet-getting-started-queues/create-queue-results.png)
 
-    <span data-ttu-id="22d69-144">Come accennato in precedenza, il metodo **CloudQueue.CreateIfNotExists** restituisce **true** solo quando la coda non esiste e viene creata.</span><span class="sxs-lookup"><span data-stu-id="22d69-144">As mentioned previously, the **CloudQueue.CreateIfNotExists** method returns **true** only when the queue doesn't exist and is created.</span></span> <span data-ttu-id="22d69-145">Se quindi si esegue l'app quando la coda esiste, il metodo restituisce **false**.</span><span class="sxs-lookup"><span data-stu-id="22d69-145">Therefore, if you run the app when the queue exists, the method returns **false**.</span></span> <span data-ttu-id="22d69-146">Per eseguire l'app più volte, è necessario eliminare la coda prima di eseguire di nuovo l'app.</span><span class="sxs-lookup"><span data-stu-id="22d69-146">To run the app multiple times, you must delete the queue before running the app again.</span></span> <span data-ttu-id="22d69-147">L'eliminazione della coda può essere eseguita tramite il metodo **CloudQueue.Delete**.</span><span class="sxs-lookup"><span data-stu-id="22d69-147">Deleting the queue can be done via the **CloudQueue.Delete** method.</span></span> <span data-ttu-id="22d69-148">È possibile anche eliminare la coda usando il [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040) o [Esplora archivi di Microsoft Azure](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span><span class="sxs-lookup"><span data-stu-id="22d69-148">You can also delete the queue using the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or the [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
+    <span data-ttu-id="2a9f2-144">Come accennato in precedenza, hello **CloudQueue.CreateIfNotExists** restituisce **true** solo quando la coda hello non esiste e viene creata.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-144">As mentioned previously, hello **CloudQueue.CreateIfNotExists** method returns **true** only when hello queue doesn't exist and is created.</span></span> <span data-ttu-id="2a9f2-145">Pertanto, se si esegue l'applicazione hello quando hello coda esiste, il metodo di hello restituisce **false**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-145">Therefore, if you run hello app when hello queue exists, hello method returns **false**.</span></span> <span data-ttu-id="2a9f2-146">app hello toorun più volte, è necessario eliminare hello coda prima di eseguire nuovamente l'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-146">toorun hello app multiple times, you must delete hello queue before running hello app again.</span></span> <span data-ttu-id="2a9f2-147">L'eliminazione della coda di hello può essere eseguita tramite hello **CloudQueue.Delete** metodo.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-147">Deleting hello queue can be done via hello **CloudQueue.Delete** method.</span></span> <span data-ttu-id="2a9f2-148">È anche possibile eliminare coda hello utilizzando hello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040) o hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-148">You can also delete hello queue using hello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or hello [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).</span></span>  
 
-## <a name="add-a-message-to-a-queue"></a><span data-ttu-id="22d69-149">Aggiungere un messaggio a una coda</span><span class="sxs-lookup"><span data-stu-id="22d69-149">Add a message to a queue</span></span>
+## <a name="add-a-message-tooa-queue"></a><span data-ttu-id="2a9f2-149">Aggiungere una coda di messaggi tooa</span><span class="sxs-lookup"><span data-stu-id="2a9f2-149">Add a message tooa queue</span></span>
 
-<span data-ttu-id="22d69-150">Dopo aver [creato una coda](#create-a-queue) è possibile aggiungervi dei messaggi.</span><span class="sxs-lookup"><span data-stu-id="22d69-150">Once you've [created a queue](#create-a-queue), you can add messages to that queue.</span></span> <span data-ttu-id="22d69-151">Questa sezione illustra i passaggi per aggiungere un messaggio alla coda *test-queue*.</span><span class="sxs-lookup"><span data-stu-id="22d69-151">This section walks you through adding a message to a queue *test-queue*.</span></span> 
+<span data-ttu-id="2a9f2-150">Dopo aver [creazione di una coda](#create-a-queue), è possibile aggiungere messaggi toothat coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-150">Once you've [created a queue](#create-a-queue), you can add messages toothat queue.</span></span> <span data-ttu-id="2a9f2-151">In questa sezione viene illustrata l'aggiunta di una coda di messaggi tooa *test coda*.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-151">This section walks you through adding a message tooa queue *test-queue*.</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-152">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-152">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-152">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-152">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-153">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-153">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="2a9f2-153">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-153">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="22d69-154">Aggiungere un metodo denominato **AddMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-154">Add a method called **AddMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-154">Aggiungere un metodo denominato **AddMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-154">Add a method called **AddMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult AddMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="22d69-155">Nel metodo **AddMessage** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-155">Within the **AddMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-156">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-156">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-155">All'interno di hello **AddMessage** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-155">Within hello **AddMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-156">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-156">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="22d69-157">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-157">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-157">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-157">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="22d69-158">Ottenere un oggetto **CloudQueueContainer** che rappresenta un riferimento alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-158">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-158">Ottenere un **CloudQueueContainer** oggetto che rappresenta una coda di toohello di riferimento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-158">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-159">Creare l'oggetto **CloudQueueMessage** che rappresenta il messaggio da aggiungere alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-159">Create the **CloudQueueMessage** object representing the message you want to add to the queue.</span></span> <span data-ttu-id="22d69-160">È possibile creare un oggetto **CloudQueueMessage** da una stringa in formato UTF-8 o da una matrice di byte.</span><span class="sxs-lookup"><span data-stu-id="22d69-160">A **CloudQueueMessage** object can be created from either a string (in UTF-8 format) or a byte array.</span></span>
+1. <span data-ttu-id="2a9f2-159">Creare hello **CloudQueueMessage** oggetto che rappresenta il messaggio hello da tooadd toohello coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-159">Create hello **CloudQueueMessage** object representing hello message you want tooadd toohello queue.</span></span> <span data-ttu-id="2a9f2-160">È possibile creare un oggetto **CloudQueueMessage** da una stringa in formato UTF-8 o da una matrice di byte.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-160">A **CloudQueueMessage** object can be created from either a string (in UTF-8 format) or a byte array.</span></span>
 
     ```csharp
     CloudQueueMessage message = new CloudQueueMessage("Hello, Azure Queue Storage");
     ```
 
-1. <span data-ttu-id="22d69-161">Chiamare il metodo **CloudQueue.AddMessage** per aggiungere il messaggio alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-161">Call the **CloudQueue.AddMessage** method to add the messaged to the queue.</span></span>
+1. <span data-ttu-id="2a9f2-161">Chiamare hello **CloudQueue.AddMessage** coda di messaggi toohello hello tooadd metodo.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-161">Call hello **CloudQueue.AddMessage** method tooadd hello messaged toohello queue.</span></span>
 
     ```csharp
     queue.AddMessage(message);
     ```
 
-1. <span data-ttu-id="22d69-162">Creare e impostare un paio di proprietà **ViewBag** per la visualizzazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-162">Create and set a couple of **ViewBag** properties for display in the view.</span></span>
+1. <span data-ttu-id="2a9f2-162">Creare e impostare un paio di **ViewBag** le proprietà per la visualizzazione hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-162">Create and set a couple of **ViewBag** properties for display in hello view.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
 
-1. <span data-ttu-id="22d69-163">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-163">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-163">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-163">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-164">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **AddMessage** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-164">On the **Add View** dialog, enter **AddMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-164">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **AddMessage** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-164">On hello **Add View** dialog, enter **AddMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-165">Aprire `AddMessage.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-165">Open `AddMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-165">Aprire `AddMessage.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-165">Open `AddMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -215,81 +215,81 @@ ms.lasthandoff: 08/03/2017
     
     <h2>Add Message results</h2>
     
-    The message '@ViewBag.Message' was added to the queue '@ViewBag.QueueName'.
+    hello message '@ViewBag.Message' was added toohello queue '@ViewBag.QueueName'.
     ```
 
-1. <span data-ttu-id="22d69-166">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-166">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-166">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-166">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-167">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-167">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-167">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-167">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Add message", "AddMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-168">Eseguire l'applicazione e selezionare **Aggiungi messaggio** per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-168">Run the application, and select **Add message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-168">Eseguire un'applicazione hello e selezionare **Aggiungi messaggio** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-168">Run hello application, and select **Add message** toosee results similar toohello following screen shot:</span></span>
   
     ![Aggiungi messaggio](./media/vs-storage-aspnet-getting-started-queues/add-message-results.png)
 
-<span data-ttu-id="22d69-170">Le sezioni [Leggere un messaggio da una coda senza rimuoverlo](#read-a-message-from-a-queue-without-removing-it) e [Leggere e rimuovere un messaggio da una coda](#read-and-remove-a-message-from-a-queue) illustrano come leggere i messaggi da una coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-170">The two sections - [Read a message from a queue without removing it](#read-a-message-from-a-queue-without-removing-it) and [Read and remove a message from a queue](#read-and-remove-a-message-from-a-queue) - illustrate how to read messages from a queue.</span></span>    
+<span data-ttu-id="2a9f2-170">Hello due sezioni - [leggere un messaggio da una coda senza rimuoverlo](#read-a-message-from-a-queue-without-removing-it) e [lettura e rimuovere un messaggio da una coda](#read-and-remove-a-message-from-a-queue) -illustrare la modalità tooread dei messaggi da una coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-170">hello two sections - [Read a message from a queue without removing it](#read-a-message-from-a-queue-without-removing-it) and [Read and remove a message from a queue](#read-and-remove-a-message-from-a-queue) - illustrate how tooread messages from a queue.</span></span>  
 
-## <a name="read-a-message-from-a-queue-without-removing-it"></a><span data-ttu-id="22d69-171">Leggere un messaggio da una coda senza rimuoverlo</span><span class="sxs-lookup"><span data-stu-id="22d69-171">Read a message from a queue without removing it</span></span>
+## <a name="read-a-message-from-a-queue-without-removing-it"></a><span data-ttu-id="2a9f2-171">Leggere un messaggio da una coda senza rimuoverlo</span><span class="sxs-lookup"><span data-stu-id="2a9f2-171">Read a message from a queue without removing it</span></span>
 
-<span data-ttu-id="22d69-172">Questa sezione illustra come visualizzare un messaggio in coda (leggere il primo messaggio senza rimuoverlo).</span><span class="sxs-lookup"><span data-stu-id="22d69-172">This section illustrates how to peek at a queued message (read the first message without removing it).</span></span>  
+<span data-ttu-id="2a9f2-172">In questa sezione viene illustrato come toopeek un messaggio in coda (messaggio senza rimuoverlo prima di hello lettura).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-172">This section illustrates how toopeek at a queued message (read hello first message without removing it).</span></span>  
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-173">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-173">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-173">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-173">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-174">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-174">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="2a9f2-174">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-174">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="22d69-175">Aggiungere un metodo denominato **PeekMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-175">Add a method called **PeekMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-175">Aggiungere un metodo denominato **PeekMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-175">Add a method called **PeekMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult PeekMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="22d69-176">Nel metodo **PeekMessage** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-176">Within the **PeekMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-177">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-177">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-176">All'interno di hello **PeekMessage** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-176">Within hello **PeekMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-177">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-177">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="22d69-178">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-178">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-178">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-178">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="22d69-179">Ottenere un oggetto **CloudQueueContainer** che rappresenta un riferimento alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-179">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-179">Ottenere un **CloudQueueContainer** oggetto che rappresenta una coda di toohello di riferimento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-179">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-180">Chiamare il metodo **CloudQueue.PeekMessage** per leggere il primo messaggio di una coda senza rimuoverlo dalla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-180">Call the **CloudQueue.PeekMessage** method to read the first message in the queue without removing it from the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-180">Chiamare hello **CloudQueue.PeekMessage** metodo tooread hello primo messaggio hello coda senza rimuoverlo dalla coda hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-180">Call hello **CloudQueue.PeekMessage** method tooread hello first message in hello queue without removing it from hello queue.</span></span> 
 
     ```csharp
     CloudQueueMessage message = queue.PeekMessage();
     ```
 
-1. <span data-ttu-id="22d69-181">Aggiornare **ViewBag** con due valori: il nome della coda e il messaggio letto.</span><span class="sxs-lookup"><span data-stu-id="22d69-181">Update the **ViewBag** with two values: the queue name and the message that was read.</span></span> <span data-ttu-id="22d69-182">L'oggetto **CloudQueueMessage** espone due proprietà per ottenerne il valore: **CloudQueueMessage.AsBytes** e **CloudQueueMessage.AsString**.</span><span class="sxs-lookup"><span data-stu-id="22d69-182">The **CloudQueueMessage** object exposes two properties for getting the object's value: **CloudQueueMessage.AsBytes** and **CloudQueueMessage.AsString**.</span></span> <span data-ttu-id="22d69-183">**AsString** (usata in questo esempio) restituisce una stringa, mentre **AsBytes** restituisce una matrice di byte.</span><span class="sxs-lookup"><span data-stu-id="22d69-183">**AsString** (used in this example) returns a string, while **AsBytes** returns a byte array.</span></span>
+1. <span data-ttu-id="2a9f2-181">Hello aggiornamento **ViewBag** con due valori: nome della coda hello e un messaggio hello che è stato letto.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-181">Update hello **ViewBag** with two values: hello queue name and hello message that was read.</span></span> <span data-ttu-id="2a9f2-182">Hello **CloudQueueMessage** oggetto espone due proprietà per ottenere il valore dell'oggetto hello: **CloudQueueMessage.AsBytes** e **CloudQueueMessage.AsString**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-182">hello **CloudQueueMessage** object exposes two properties for getting hello object's value: **CloudQueueMessage.AsBytes** and **CloudQueueMessage.AsString**.</span></span> <span data-ttu-id="2a9f2-183">**AsString** (usata in questo esempio) restituisce una stringa, mentre **AsBytes** restituisce una matrice di byte.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-183">**AsString** (used in this example) returns a string, while **AsBytes** returns a byte array.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name; 
     ViewBag.Message = (message != null ? message.AsString : "");
     ```
 
-1. <span data-ttu-id="22d69-184">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-184">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-184">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-184">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-185">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **PeekMessage** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-185">On the **Add View** dialog, enter **PeekMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-185">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **PeekMessage** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-185">On hello **Add View** dialog, enter **PeekMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-186">Aprire `PeekMessage.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-186">Open `PeekMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-186">Aprire `PeekMessage.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-186">Open `PeekMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -304,83 +304,83 @@ ms.lasthandoff: 08/03/2017
     </table>    
     ```
 
-1. <span data-ttu-id="22d69-187">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-187">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-187">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-187">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-188">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-188">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-188">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-188">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Peek message", "PeekMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-189">Eseguire l'applicazione e selezionare **Visualizza il messaggio** per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-189">Run the application, and select **Peek message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-189">Eseguire un'applicazione hello e selezionare **messaggio Peek** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-189">Run hello application, and select **Peek message** toosee results similar toohello following screen shot:</span></span>
   
     ![Visualizza il messaggio](./media/vs-storage-aspnet-getting-started-queues/peek-message-results.png)
 
-## <a name="read-and-remove-a-message-from-a-queue"></a><span data-ttu-id="22d69-191">Leggere e rimuovere un messaggio da una coda</span><span class="sxs-lookup"><span data-stu-id="22d69-191">Read and remove a message from a queue</span></span>
+## <a name="read-and-remove-a-message-from-a-queue"></a><span data-ttu-id="2a9f2-191">Leggere e rimuovere un messaggio da una coda</span><span class="sxs-lookup"><span data-stu-id="2a9f2-191">Read and remove a message from a queue</span></span>
 
-<span data-ttu-id="22d69-192">In questa sezione viene illustrato come leggere e rimuovere un messaggio da una coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-192">In this section, you learn how to read and remove a message from a queue.</span></span>   
+<span data-ttu-id="2a9f2-192">In questa sezione viene illustrato come tooread e rimuovere un messaggio da una coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-192">In this section, you learn how tooread and remove a message from a queue.</span></span>   
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-193">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-193">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-193">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-193">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-194">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-194">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="2a9f2-194">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-194">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="22d69-195">Aggiungere un metodo denominato **ReadMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-195">Add a method called **ReadMessage** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-195">Aggiungere un metodo denominato **ReadMessage** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-195">Add a method called **ReadMessage** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult ReadMessage()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="22d69-196">Nel metodo **ReadMessage** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-196">Within the **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-197">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-197">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-196">All'interno di hello **ReadMessage** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-196">Within hello **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-197">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-197">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="22d69-198">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-198">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-198">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-198">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="22d69-199">Ottenere un oggetto **CloudQueueContainer** che rappresenta un riferimento alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-199">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-199">Ottenere un **CloudQueueContainer** oggetto che rappresenta una coda di toohello di riferimento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-199">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-200">Chiamare il metodo **CloudQueue.GetMessage** per leggere il primo messaggio nella coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-200">Call the **CloudQueue.GetMessage** method to read the first message in the queue.</span></span> <span data-ttu-id="22d69-201">Il metodo **CloudQueue.GetMessage** rende invisibile il messaggio per 30 secondi (impostazione predefinita) per qualsiasi altro codice che legge i messaggi, in modo che nessun altro codice possa modificare o eliminare il messaggio mentre lo si sta elaborando.</span><span class="sxs-lookup"><span data-stu-id="22d69-201">The **CloudQueue.GetMessage** method makes the message invisible for 30 seconds (by default) to any other code reading messages so that no other code can modify or delete the message while your processing it.</span></span> <span data-ttu-id="22d69-202">Per modificare l'intervallo di tempo per cui il messaggio rimane invisibile, modificare il parametro **visibilityTimeout** passato al metodo **CloudQueue.GetMessage**.</span><span class="sxs-lookup"><span data-stu-id="22d69-202">To change the amount of time the message is invisible, modify the **visibilityTimeout** parameter being passed to the **CloudQueue.GetMessage** method.</span></span>
+1. <span data-ttu-id="2a9f2-200">Chiamare hello **CloudQueue.GetMessage** metodo tooread hello primo messaggio nella coda di hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-200">Call hello **CloudQueue.GetMessage** method tooread hello first message in hello queue.</span></span> <span data-ttu-id="2a9f2-201">Hello **CloudQueue.GetMessage** metodo rende hello altro codice la lettura dei messaggi in modo che nessun altro codice è possibile modificare o eliminare il messaggio hello durante l'elaborazione di messaggi invisibili per tooany 30 secondi (per impostazione predefinita).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-201">hello **CloudQueue.GetMessage** method makes hello message invisible for 30 seconds (by default) tooany other code reading messages so that no other code can modify or delete hello message while your processing it.</span></span> <span data-ttu-id="2a9f2-202">quantità di hello toochange di messaggio hello ora non è visibile, modificare hello **visibilityTimeout** parametro passato toohello **CloudQueue.GetMessage** metodo.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-202">toochange hello amount of time hello message is invisible, modify hello **visibilityTimeout** parameter being passed toohello **CloudQueue.GetMessage** method.</span></span>
 
     ```csharp
-    // This message will be invisible to other code for 30 seconds.
+    // This message will be invisible tooother code for 30 seconds.
     CloudQueueMessage message = queue.GetMessage();     
     ```
 
-1. <span data-ttu-id="22d69-203">Chiamare il metodo **CloudQueueMessage.Delete** per eliminare il messaggio dalla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-203">Call the **CloudQueueMessage.Delete** method to delete the message from the queue.</span></span>
+1. <span data-ttu-id="2a9f2-203">Chiamare hello **CloudQueueMessage.Delete** messaggio dalla coda hello hello toodelete del metodo.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-203">Call hello **CloudQueueMessage.Delete** method toodelete hello message from hello queue.</span></span>
 
     ```csharp
     queue.DeleteMessage(message);
     ```
 
-1. <span data-ttu-id="22d69-204">Aggiornare **ViewBag** con il messaggio eliminato e il nome della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-204">Update the **ViewBag** with the message deleted, and the name of the queue.</span></span>
+1. <span data-ttu-id="2a9f2-204">Hello aggiornamento **ViewBag** con hello messaggio eliminato e nome della coda di hello hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-204">Update hello **ViewBag** with hello message deleted, and hello name of hello queue.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Message = message.AsString;
     ```
  
-1. <span data-ttu-id="22d69-205">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-205">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-205">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-205">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-206">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **ReadMessage** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-206">On the **Add View** dialog, enter **ReadMessage** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-206">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **ReadMessage** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-206">On hello **Add View** dialog, enter **ReadMessage** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-207">Aprire `ReadMessage.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-207">Open `ReadMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-207">Aprire `ReadMessage.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-207">Open `ReadMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -395,82 +395,82 @@ ms.lasthandoff: 08/03/2017
     </table>
     ```
 
-1. <span data-ttu-id="22d69-208">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-208">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-208">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-208">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-209">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-209">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-209">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-209">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Read/Delete message", "ReadMessage", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-210">Eseguire l'applicazione e selezionare **Read/Delete message** (Leggi/Elimina messaggio) per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-210">Run the application, and select **Read/Delete message** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-210">Eseguire un'applicazione hello e selezionare **messaggio di lettura/eliminazione** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-210">Run hello application, and select **Read/Delete message** toosee results similar toohello following screen shot:</span></span>
   
     ![Read/Delete message (Leggi/Elimina messaggio)](./media/vs-storage-aspnet-getting-started-queues/read-message-results.png)
 
-## <a name="get-the-queue-length"></a><span data-ttu-id="22d69-212">Recuperare la lunghezza della coda</span><span class="sxs-lookup"><span data-stu-id="22d69-212">Get the queue length</span></span>
+## <a name="get-hello-queue-length"></a><span data-ttu-id="2a9f2-212">Ottiene la lunghezza della coda hello</span><span class="sxs-lookup"><span data-stu-id="2a9f2-212">Get hello queue length</span></span>
 
-<span data-ttu-id="22d69-213">In questa sezione viene illustrato come ottenere la lunghezza della coda (numero di messaggi).</span><span class="sxs-lookup"><span data-stu-id="22d69-213">This section illustrates how to get the queue length (number of messages).</span></span> 
+<span data-ttu-id="2a9f2-213">In questa sezione viene illustrato come tooget hello lunghezza della coda (numero di messaggi).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-213">This section illustrates how tooget hello queue length (number of messages).</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-214">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-214">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-214">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-214">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-215">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-215">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="2a9f2-215">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-215">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="22d69-216">Aggiungere un metodo denominato **GetQueueLength** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-216">Add a method called **GetQueueLength** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-216">Aggiungere un metodo denominato **GetQueueLength** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-216">Add a method called **GetQueueLength** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult GetQueueLength()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="22d69-217">Nel metodo **ReadMessage** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-217">Within the **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-218">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-218">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-217">All'interno di hello **ReadMessage** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-217">Within hello **ReadMessage** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-218">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-218">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="22d69-219">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-219">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-219">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-219">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="22d69-220">Ottenere un oggetto **CloudQueueContainer** che rappresenta un riferimento alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-220">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-220">Ottenere un **CloudQueueContainer** oggetto che rappresenta una coda di toohello di riferimento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-220">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-221">Chiamare il metodo **CloudQueue.FetchAttributes** per recuperare gli attributi della coda, che includono anche la lunghezza.</span><span class="sxs-lookup"><span data-stu-id="22d69-221">Call the **CloudQueue.FetchAttributes** method to retrieve the queue's attributes (including its length).</span></span> 
+1. <span data-ttu-id="2a9f2-221">Chiamare hello **CloudQueue.FetchAttributes** attributi della coda di metodo tooretrieve hello (inclusa la relativa lunghezza).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-221">Call hello **CloudQueue.FetchAttributes** method tooretrieve hello queue's attributes (including its length).</span></span> 
 
     ```csharp
     queue.FetchAttributes();
     ```
 
-6. <span data-ttu-id="22d69-222">Accedere alla proprietà **CloudQueue.ApproximateMessageCount** per ottenere la lunghezza della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-222">Access the **CloudQueue.ApproximateMessageCount** property to get the queue's length.</span></span>
+6. <span data-ttu-id="2a9f2-222">Hello accesso **CloudQueue.ApproximateMessageCount** lunghezza della coda di proprietà tooget hello.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-222">Access hello **CloudQueue.ApproximateMessageCount** property tooget hello queue's length.</span></span>
  
     ```csharp
     int? nMessages = queue.ApproximateMessageCount;
     ```
 
-1. <span data-ttu-id="22d69-223">Aggiornare **ViewBag** con il nome e la lunghezza della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-223">Update the **ViewBag** with the name of the queue, and its length.</span></span>
+1. <span data-ttu-id="2a9f2-223">Hello aggiornamento **ViewBag** con nome hello della coda di hello e la relativa lunghezza.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-223">Update hello **ViewBag** with hello name of hello queue, and its length.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ViewBag.Length = nMessages;
     ```
  
-1. <span data-ttu-id="22d69-224">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-224">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-224">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-224">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-225">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **GetQueueLength** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-225">On the **Add View** dialog, enter **GetQueueLength** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-225">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **GetQueueLength** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-225">On hello **Add View** dialog, enter **GetQueueLength** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-226">Aprire `GetQueueLengthMessage.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-226">Open `GetQueueLengthMessage.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-226">Aprire `GetQueueLengthMessage.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-226">Open `GetQueueLengthMessage.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -479,78 +479,78 @@ ms.lasthandoff: 08/03/2017
     
     <h2>Get Queue Length results</h2>
     
-    The queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
+    hello queue '@ViewBag.QueueName' has a length of (number of messages): @ViewBag.Length
     ```
 
-1. <span data-ttu-id="22d69-227">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-227">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-227">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-227">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-228">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-228">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-228">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-228">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Get queue length", "GetQueueLength", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-229">Eseguire l'applicazione e selezionare **Get queue length** (Ottieni lunghezza coda) per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-229">Run the application, and select **Get queue length** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-229">Eseguire un'applicazione hello e selezionare **ottenere lunghezza coda** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-229">Run hello application, and select **Get queue length** toosee results similar toohello following screen shot:</span></span>
   
     ![Recuperare la lunghezza della coda](./media/vs-storage-aspnet-getting-started-queues/get-queue-length-results.png)
 
 
-## <a name="delete-a-queue"></a><span data-ttu-id="22d69-231">Eliminare una coda</span><span class="sxs-lookup"><span data-stu-id="22d69-231">Delete a queue</span></span>
-<span data-ttu-id="22d69-232">Questa sezione illustra come eliminare una coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-232">This section illustrates how to delete a queue.</span></span> 
+## <a name="delete-a-queue"></a><span data-ttu-id="2a9f2-231">Eliminare una coda</span><span class="sxs-lookup"><span data-stu-id="2a9f2-231">Delete a queue</span></span>
+<span data-ttu-id="2a9f2-232">In questa sezione viene illustrato come toodelete una coda.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-232">This section illustrates how toodelete a queue.</span></span> 
 
 > [!NOTE]
 > 
-> <span data-ttu-id="22d69-233">Questa sezione presuppone che siano stati completati i passaggi descritti in [Configurare l'ambiente di sviluppo](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="22d69-233">This section assumes you have completed the steps [Set up the development environment](#set-up-the-development-environment).</span></span> 
+> <span data-ttu-id="2a9f2-233">Questa sezione si presuppone di aver completato i passaggi di hello [configurare un ambiente di sviluppo hello](#set-up-the-development-environment).</span><span class="sxs-lookup"><span data-stu-id="2a9f2-233">This section assumes you have completed hello steps [Set up hello development environment](#set-up-the-development-environment).</span></span> 
 
-1. <span data-ttu-id="22d69-234">Aprire il file `QueuesController.cs` .</span><span class="sxs-lookup"><span data-stu-id="22d69-234">Open the `QueuesController.cs` file.</span></span>
+1. <span data-ttu-id="2a9f2-234">Aprire hello `QueuesController.cs` file.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-234">Open hello `QueuesController.cs` file.</span></span>
 
-1. <span data-ttu-id="22d69-235">Aggiungere un metodo denominato **DeleteQueue** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="22d69-235">Add a method called **DeleteQueue** that returns an **ActionResult**.</span></span>
+1. <span data-ttu-id="2a9f2-235">Aggiungere un metodo denominato **DeleteQueue** che restituisce un **ActionResult**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-235">Add a method called **DeleteQueue** that returns an **ActionResult**.</span></span>
 
     ```csharp
     public ActionResult DeleteQueue()
     {
-        // The code in this section goes here.
+        // hello code in this section goes here.
 
         return View();
     }
     ```
  
-1. <span data-ttu-id="22d69-236">Nel metodo **DeleteQueue** recuperare un oggetto **CloudStorageAccount** che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="22d69-236">Within the **DeleteQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="22d69-237">Usare il codice seguente per ottenere la stringa di connessione di archiviazione e le informazioni sull'account di archiviazione dalla configurazione del servizio di Azure: sostituire *&lt;storage-account-name>* con il nome dell'account di archiviazione Azure a cui si sta accedendo.</span><span class="sxs-lookup"><span data-stu-id="22d69-237">Use the following code to get the storage connection string and storage account information from the Azure service configuration: (Change *&lt;storage-account-name>* to the name of the Azure storage account you're accessing.)</span></span>
+1. <span data-ttu-id="2a9f2-236">All'interno di hello **DeleteQueue** (metodo), ottenere un **CloudStorageAccount** oggetto che rappresenta le informazioni sull'account di archiviazione.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-236">Within hello **DeleteQueue** method, get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="2a9f2-237">Esempio di codice seguente di hello utilizzare tooget hello archiviazione stringa e l'archiviazione account informazioni di connessione di configurazione del servizio Azure hello: (modifica  *&lt;storage-account-name >* toohello nome hello archiviazione di Azure account che si accede.)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-237">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration: (Change *&lt;storage-account-name>* toohello name of hello Azure storage account you're accessing.)</span></span>
    
     ```csharp
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
        CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
     ```
    
-1. <span data-ttu-id="22d69-238">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="22d69-238">Get a **CloudQueueClient** object represents a queue service client.</span></span>
+1. <span data-ttu-id="2a9f2-238">Ottenere un oggetto **CloudQueueClient** che rappresenta un client del servizio di accodamento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-238">Get a **CloudQueueClient** object represents a queue service client.</span></span>
    
     ```csharp
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
     ```
 
-1. <span data-ttu-id="22d69-239">Ottenere un oggetto **CloudQueueContainer** che rappresenta un riferimento alla coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-239">Get a **CloudQueueContainer** object that represents a reference to the queue.</span></span> 
+1. <span data-ttu-id="2a9f2-239">Ottenere un **CloudQueueContainer** oggetto che rappresenta una coda di toohello di riferimento.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-239">Get a **CloudQueueContainer** object that represents a reference toohello queue.</span></span> 
    
     ```csharp
     CloudQueue queue = queueClient.GetQueueReference("test-queue");
     ```
 
-1. <span data-ttu-id="22d69-240">Chiamare il metodo **CloudQueue.Delete** per eliminare la coda rappresentata dall'oggetto **CloudQueue**.</span><span class="sxs-lookup"><span data-stu-id="22d69-240">Call the **CloudQueue.Delete** method to delete the queue represented by the **CloudQueue** object.</span></span>
+1. <span data-ttu-id="2a9f2-240">Chiamare hello **CloudQueue.Delete** coda di hello toodelete metodo rappresentata da hello **CloudQueue** oggetto.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-240">Call hello **CloudQueue.Delete** method toodelete hello queue represented by hello **CloudQueue** object.</span></span>
 
     ```csharp
     queue.Delete();
     ```
 
-1. <span data-ttu-id="22d69-241">Aggiornare **ViewBag** con il nome e la lunghezza della coda.</span><span class="sxs-lookup"><span data-stu-id="22d69-241">Update the **ViewBag** with the name of the queue, and its length.</span></span>
+1. <span data-ttu-id="2a9f2-241">Hello aggiornamento **ViewBag** con nome hello della coda di hello e la relativa lunghezza.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-241">Update hello **ViewBag** with hello name of hello queue, and its length.</span></span>
 
     ```csharp
     ViewBag.QueueName = queue.Name;
     ```
  
-1. <span data-ttu-id="22d69-242">In **Esplora soluzioni** espandere la cartella **Views**, fare clic con il pulsante destro del mouse su **Code** e dal menu di scelta rapida selezionare **Aggiungi->Visualizzazione**.</span><span class="sxs-lookup"><span data-stu-id="22d69-242">In the **Solution Explorer**, expand the **Views** folder, right-click **Queues**, and from the context menu, select **Add->View**.</span></span>
+1. <span data-ttu-id="2a9f2-242">In hello **Esplora**, espandere hello **viste** cartella, fare doppio clic su **code**e quindi scegliere il menu di scelta rapida hello **Aggiungi -> Vista**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-242">In hello **Solution Explorer**, expand hello **Views** folder, right-click **Queues**, and from hello context menu, select **Add->View**.</span></span>
 
-1. <span data-ttu-id="22d69-243">Nella finestra di dialogo **Aggiungi visualizzazione** immettere **DeleteQueue** per il nome della visualizzazione e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="22d69-243">On the **Add View** dialog, enter **DeleteQueue** for the view name, and select **Add**.</span></span>
+1. <span data-ttu-id="2a9f2-243">In hello **Aggiungi visualizzazione** finestra di dialogo immettere **DeleteQueue** per nome della visualizzazione hello e selezionare **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-243">On hello **Add View** dialog, enter **DeleteQueue** for hello view name, and select **Add**.</span></span>
 
-1. <span data-ttu-id="22d69-244">Aprire `DeleteQueue.cshtml` e modificarlo in modo che l'aspetto sia simile al frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-244">Open `DeleteQueue.cshtml`, and modify it so that it looks like the following code snippet:</span></span>
+1. <span data-ttu-id="2a9f2-244">Aprire `DeleteQueue.cshtml`e modificarlo in modo che risulti simile hello frammento di codice seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-244">Open `DeleteQueue.cshtml`, and modify it so that it looks like hello following code snippet:</span></span>
 
     ```csharp
     @{
@@ -562,20 +562,20 @@ ms.lasthandoff: 08/03/2017
     @ViewBag.QueueName deleted.
     ```
 
-1. <span data-ttu-id="22d69-245">In **Esplora soluzioni** espandere la cartella **Views->Shared** e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="22d69-245">In the **Solution Explorer**, expand the **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
+1. <span data-ttu-id="2a9f2-245">In hello **Esplora**, espandere hello **viste -> Shared** cartella e aprire `_Layout.cshtml`.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-245">In hello **Solution Explorer**, expand hello **Views->Shared** folder, and open `_Layout.cshtml`.</span></span>
 
-1. <span data-ttu-id="22d69-246">Dopo l'ultimo **Html.ActionLink**, aggiungere il seguente **Html.ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="22d69-246">After the last **Html.ActionLink**, add the following **Html.ActionLink**:</span></span>
+1. <span data-ttu-id="2a9f2-246">Dopo aver hello ultimo **HTML. ActionLink**, aggiungere il seguente hello **HTML. ActionLink**:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-246">After hello last **Html.ActionLink**, add hello following **Html.ActionLink**:</span></span>
 
     ```html
     <li>@Html.ActionLink("Delete queue", "DeleteQueue", "Queues")</li>
     ```
 
-1. <span data-ttu-id="22d69-247">Eseguire l'applicazione e selezionare **Get queue length** (Ottieni lunghezza coda) per visualizzare risultati simili allo screenshot seguente:</span><span class="sxs-lookup"><span data-stu-id="22d69-247">Run the application, and select **Get queue length** to see results similar to the following screen shot:</span></span>
+1. <span data-ttu-id="2a9f2-247">Eseguire un'applicazione hello e selezionare **ottenere lunghezza coda** toosee risultati simile toohello cattura di schermata seguente:</span><span class="sxs-lookup"><span data-stu-id="2a9f2-247">Run hello application, and select **Get queue length** toosee results similar toohello following screen shot:</span></span>
   
     ![Elimina coda](./media/vs-storage-aspnet-getting-started-queues/delete-queue-results.png)
 
-## <a name="next-steps"></a><span data-ttu-id="22d69-249">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="22d69-249">Next steps</span></span>
-<span data-ttu-id="22d69-250">Per ulteriori opzioni di archiviazione dei dati in Azure, consultare altre guide alle funzionalità.</span><span class="sxs-lookup"><span data-stu-id="22d69-250">View more feature guides to learn about additional options for storing data in Azure.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="2a9f2-249">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="2a9f2-249">Next steps</span></span>
+<span data-ttu-id="2a9f2-250">Consente di visualizzare altre toolearn di guide di funzionalità sulle opzioni aggiuntive per l'archiviazione dei dati in Azure.</span><span class="sxs-lookup"><span data-stu-id="2a9f2-250">View more feature guides toolearn about additional options for storing data in Azure.</span></span>
 
-  * [<span data-ttu-id="22d69-251">Introduzione all'Archiviazione BLOB di Azure e ai Servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="22d69-251">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
-  * [<span data-ttu-id="22d69-252">Introduzione all'archiviazione tabelle di Azure e ai Servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="22d69-252">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-tables.md)
+  * [<span data-ttu-id="2a9f2-251">Introduzione all'Archiviazione BLOB di Azure e ai Servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-251">Get started with Azure blob storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-blobs.md)
+  * [<span data-ttu-id="2a9f2-252">Introduzione all'archiviazione tabelle di Azure e ai Servizi connessi di Visual Studio (ASP.NET)</span><span class="sxs-lookup"><span data-stu-id="2a9f2-252">Get started with Azure table storage and Visual Studio Connected Services (ASP.NET)</span></span>](./vs-storage-aspnet-getting-started-tables.md)

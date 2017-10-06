@@ -1,6 +1,6 @@
 ---
-title: Guida per la risoluzione dei problemi di Analisi di flusso di Azure | Documentazione Microsoft
-description: Come risolvere i problemi del processo di Analisi di flusso
+title: Guida di aaaTroubleshooting per Analitica di flusso di Azure | Documenti Microsoft
+description: Come tootroubleshoot il processo di flusso Analitica
 keywords: guida per la risoluzione dei problemi
 documentationcenter: 
 services: stream-analytics
@@ -15,76 +15,76 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 8ecf279047f06691cef1bc0db06888974405a9f0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4add48054e06a7d8eb617a08595c1be4555c59d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-guide-for-azure-stream-analytics"></a>Guida per la risoluzione dei problemi di Analisi di flusso di Azure
 
-La risoluzione dei problemi di Azure di flusso di Azure può risultare complessa a prima vista. Dopo aver lavorato con molti utenti, è stata creata questa guida al fine di semplificare la procedura e rimuovere le ambiguità sugli input, gli output, le query e le funzioni.
+Risoluzione dei problemi di Azure Analitica flusso toobe complessa può apparire a prima vista. Dopo aver lavorato con molti utenti, è stato creato il processo di hello Guida toohelp semplificata e rimuovere incognite hello sulle input e output, le query e funzioni.
 
 ## <a name="troubleshoot-your-stream-analytics-job"></a>Risoluzione dei problemi del processo di Analisi di flusso
 
-Per ottenere i migliori risultati nella risoluzione dei problemi del processo di Analisi di flusso, applicare le linee guida seguenti:
+Per ottenere risultati ottimali nella risoluzione dei problemi relativi al processo di flusso Analitica, utilizzare hello alle linee guida:
 
 1.  Testare la connettività:
-    - Verificare la connettività agli input e output con il pulsante **Verifica connessione** per ogni input e output.
+    - Verificare la connettività tooinputs e output utilizzando hello **Test connessione** per ognuno di input e output.
 
 2.  Esaminare i dati di input:
-    - Per verificare che è attivo il flusso dei dati di input verso l'hub eventi, usare [Service Bus Explorer](https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a) per connettersi all'hub eventi di Azure, se in uso.  
-    - Usare il pulsante [**Dati di esempio**](stream-analytics-sample-data-input.md) per ogni input e scaricare i dati di esempio dell'input.
-    - Esaminare i dati di esempio per comprendere la forma dei dati, ovvero lo schema e i [tipi di dati](https://msdn.microsoft.com/library/azure/dn835065.aspx).
+    - passa tooverify che i dati di input nell'Hub eventi, utilizzare [Service Bus Explorer](https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a) tooconnect tooAzure Hub di eventi (se viene utilizzato l'input dell'Hub eventi).  
+    - Hello utilizzare [ **dati di esempio** ](stream-analytics-sample-data-input.md) pulsante per ogni input e il download dei dati di input di esempio hello.
+    - Controllare hello esempio toounderstand hello forma dei dati hello: hello hello e lo schema [tipi di dati](https://msdn.microsoft.com/library/azure/dn835065.aspx).
 
 3.  Testare la query:
-    - Nella scheda **Query** usare il pulsante **Verifica** e i dati di esempio scaricati per [testare la query](stream-analytics-test-query.md). Esaminare eventuali errori e provare a risolverli.
-    - Se si usa [**Timestamp By**](https://msdn.microsoft.com/library/azure/mt573293.aspx), assicurarsi che i timestamp degli eventi siano successivi all'[ora di inizio del processo](stream-analytics-out-of-order-and-late-events.md).
+    - In hello **Query** scheda, utilizzare hello **Test** pulsante query hello tootest e utilizzare dati di esempio hello scaricato troppo[test hello query](stream-analytics-test-query.md). Esaminare gli eventuali errori e tentare toocorrect li.
+    - Se si utilizza [ **Timestamp By**](https://msdn.microsoft.com/library/azure/mt573293.aspx), verificare che gli eventi di hello con timestamp maggiore di hello [ora di inizio del processo](stream-analytics-out-of-order-and-late-events.md).
 
 4.  Eseguire il debug della query:
-    - Ricreare la query progressivamente, partendo dalla semplice istruzione di selezione per arrivare agli aggregati più complessi, attenendosi alla procedura illustrata. Usare la clausola [WITH](https://msdn.microsoft.com/library/azure/dn835049.aspx) per creare la logica di query passo per passo.
-    - Usare [SELECT INTO](stream-analytics-select-into.md) per eseguire il debug dei passaggi della query.
+    - Ricompilare la query hello progressivamente da aggregazioni complesse di istruzione select semplice toomore attenendosi alla procedura. Utilizzare toobuild di passaggio per passaggio e logica della query hello [WITH](https://msdn.microsoft.com/library/azure/dn835049.aspx) clausole.
+    - Utilizzare [SELECT INTO](stream-analytics-select-into.md) toodebug passaggi di query.
 
 5.  Eliminare i problemi comuni, ad esempio:
-    - Una clausola [**WHERE**](https://msdn.microsoft.com/library/azure/dn835048.aspx) della query ha filtrato tutti gli eventi impedendo la generazione dell'output.
-    - Quando si usano le funzioni finestra, attendere la durata dell'intera finestra per vedere l'output dalla query.
-    - Il timestamp per gli eventi precede l'ora di inizio del processo, perciò gli eventi vengono eliminati.
+    - Oggetto [ **in** ](https://msdn.microsoft.com/library/azure/dn835048.aspx) clausola di query hello filtrati da tutti gli eventi, impedendo che viene generato alcun output.
+    - Quando si utilizzano funzioni finestra, attendere hello intera finestra durata toosee un output dalla query hello.
+    - Hello timestamp per gli eventi precede l'ora di inizio processo hello e, pertanto, vengono eliminati gli eventi.
 
 6.  Usare l'ordine degli eventi:
-    - Se tutti i passaggi precedenti hanno avuto esito positivo, accedere al pannello **Impostazioni** e selezionare [**Ordinamento eventi**](stream-analytics-out-of-order-and-late-events.md). Verificare che questo criterio sia configurato in modo sensato per lo scenario. Il criterio *non* viene applicato quando si usa il pulsante **Test** per testare la query. Questo aspetto rappresenta una differenza tra il test nel browser e l'esecuzione del processo in produzione.
+    - Se tutti hello passaggi precedenti funzionati correttamente, andare toohello **impostazioni** pannello e selezionare [ **ordine degli eventi**](stream-analytics-out-of-order-and-late-events.md). Verificare che questo criterio sia configurato in modo sensato per lo scenario. criteri di Hello sono *non* applicate quando si utilizza hello **Test** query di hello tootest pulsante. Il risultato è una differenza tra il test nel browser e in esecuzione il processo di hello nell'ambiente di produzione.
 
 7.  Eseguire il debug usando le metriche:
-    - Se non si ottiene alcun output al termine della durata prevista (in base alla query), provare la procedura seguente:
-        - Esaminare le [**metriche di monitoraggio**](stream-analytics-monitoring.md) nella scheda **Monitor**. Poiché i valori sono aggregati, le metriche sono posticipate di alcuni minuti.
-            - Se Eventi di input è maggiore di zero, il processo è in grado di leggere i dati di input. Se Eventi di input non è maggiore di zero:
-                - Per vedere se l'origine dati contiene dati validi, verificarla tramite [Service Bus Explorer](https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a). Questa verifica viene eseguita se il processo usa Hub eventi come input.
-                - Controllare se il formato di serializzazione dei dati e la codifica dei dati sono quelli previsti.
-                - Se il processo usa un Hub eventi, verificare se il corpo del messaggio è *Null*.
-            - Se Errori di conversione dati è maggiore di zero, significa che probabilmente:
-                - Il processo potrebbe non riuscire a deserializzare gli eventi.
-                - Lo schema degli eventi potrebbe non corrispondere allo schema definito o previsto degli eventi nella query.
-                - I tipi di dati di alcuni dei campi nell'evento potrebbero non corrispondere alle aspettative.
-            - Se Errori di runtime è maggiore di zero significa che il processo è in grado di ricevere i dati ma genera errori durante l'elaborazione della query.
-                - Per trovare gli errori, consultare i [log di controllo](../azure-resource-manager/resource-group-audit.md) e filtrare lo stato *non riuscito*.
-            - Se InputEvents è maggiore di zero e OutputEvents è uguale a zero, significa che una delle seguenti cose è vera:
+    - Se non si ottiene alcun output dopo hello previsto di durata (basata su query hello), provare a seguito di hello:
+        - Esaminare [ **metriche di monitoraggio** ](stream-analytics-monitoring.md) su hello **monitoraggio** scheda. Poiché vengono aggregati i valori hello, metriche hello ritardo di pochi minuti.
+            - Se gli eventi di Input > 0, il processo di hello è in grado di tooread dati di input. Se Eventi di input non è maggiore di zero:
+                - toosee se l'origine dati hello i dati siano validi, archiviarlo tramite [Service Bus Explorer](https://code.msdn.microsoft.com/windowsapps/Service-Bus-Explorer-f2abca5a). La verifica viene eseguita se il processo di hello utilizza Hub eventi come input.
+                - Controllare toosee se il formato di serializzazione di dati hello e codifica dei dati sono quelli previsti.
+                - Se il processo di hello utilizza un Hub eventi, controllare toosee se hello corpo del messaggio hello è *Null*.
+            - Se gli errori di conversione dati > 0 e progressivamente, seguente hello potrebbero essere true:
+                - processo Hello potrebbe non essere in grado di toode-serializzare eventi hello.
+                - Hello allo schema di eventi potrebbe non corrispondere hello definito o lo schema previsto di eventi di hello in query hello.
+                - Hello tipi di dati di alcuni dei campi evento hello hello potrebbero non corrispondere alle aspettative.
+            - Se gli errori di Runtime > 0, significa che il processo di hello può ricevere dati hello ma genera errori durante l'elaborazione di query hello.
+                - errori hello toofind, andare toohello [i log di controllo](../azure-resource-manager/resource-group-audit.md) e filtrare in base a *non riuscito* stato.
+            - Se InputEvents > 0 e OutputEvents = 0, significa che uno dei seguenti hello è vera:
                 - L'elaborazione della query non ha prodotto eventi di output.
                 - Il formato degli eventi o dei relativi campi potrebbe non essere valido, di conseguenza l'elaborazione della query non ha prodotto output.
-                - Il processo non è riuscito a eseguire il push dei dati al [sink di output](stream-analytics-select-into.md) per motivi di connettività o autenticazione.
-        - In tutti i casi di errore menzionati sopra, i messaggi di log delle operazioni specificano altri dettagli e la spiegazione della situazione, tranne nei casi in cui la logica della query ha filtrato tutti gli eventi. Se l'elaborazione di più eventi ha generato errori, Analisi di flusso registra i primi tre messaggi di errore dello stesso tipo entro 10 minuti nei log operazioni. Elimina quindi gli altri errori identici con il messaggio "Gli errori si verificano troppo rapidamente e verranno eliminati".
+                - il processo di Hello è stato Impossibile toopush dati toohello [sink di output](stream-analytics-select-into.md) per motivi di connettività o di autenticazione.
+        - Hello tutte indicate in precedenza i casi di errori, le operazioni di messaggi di log forniti ulteriori dettagli, inclusi qual è il problema, ad eccezione dei casi in cui la logica della query hello filtrato tutti gli eventi. Se l'errore di elaborazione hello di più eventi, flusso Analitica registri hello primi tre messaggi di errore di hello dello stesso tipo all'interno di 10 minuti tooOperations Registra. Elimina quindi gli altri errori identici con il messaggio "Gli errori si verificano troppo rapidamente e verranno eliminati".
 
 8. Eseguire il debug usando i log di controllo e diagnostica:
-    - Usare i [log di controllo](../azure-resource-manager/resource-group-audit.md) e filtrare per identificare gli errori ed eseguirne il debug.
-    - Usare i [log di diagnostica del processo](stream-analytics-job-diagnostic-logs.md) per identificare gli errori ed eseguirne il debug.
+    - Utilizzare [i log di controllo](../azure-resource-manager/resource-group-audit.md)e gli errori di filtro tooidentify ed eseguire il debug.
+    - Utilizzare [processo log di diagnostica](stream-analytics-job-diagnostic-logs.md) tooidentify ed eseguire il debug degli errori.
 
-9. Esaminare gli output:
-    - Quando lo stato del processo è *In esecuzione*, a seconda della durata prevista nella query è possibile vedere l'output nell'origine dati di sink.
-    - Se non si vedono output che procedono verso un tipo di output specifico, reindirizzarli a un tipo di output che sia meno complesso, ad esempio un BLOB di Azure. Usando Storage Explorer, verificare se è possibile vedere l'output. Verificare inoltre se le limitazioni dell'output impediscono la ricezione dei dati.
+9. Esaminare l'output di hello:
+    - Quando lo stato del processo hello è *esecuzione*, a seconda della durata di hello quanto stabilito nella query hello, è possibile visualizzare l'output di hello nell'origine dati di hello sink.
+    - Se è possibile visualizzare l'output che verranno tooa nell'output specifico tipo, reindirizza tooan tipo di output che è meno complesso, ad esempio un Blob di Azure. Tramite Esplora archivi, controllare toosee se può essere visualizzato l'output di hello. Inoltre, verificare se i limiti di limitazione delle richieste dall'output di hello impediscono dati ricevuti.
 
 10. Usare l'analisi del flusso di dati con le metriche del diagramma di processo:
-    - Per analizzare il flusso di dati e identificare i problemi, usare il [diagramma del processo con le metriche](stream-analytics-job-diagram-with-metrics.md).
+    - flusso di dati tooanalyze e identificare i problemi, utilizzare hello [diagramma di processo con le metriche](stream-analytics-job-diagram-with-metrics.md).
 
 11. Aprire un caso di supporto:
-    - Infine, se tutto il resto non dà risultati, aprire un caso di supporto tecnico Microsoft usando l'ID sottoscrizione che contiene il processo.
+    - Infine, se necessario, aprire un caso di supporto tecnico Microsoft tramite hello SubscriptionID contenente il processo.
 
 ## <a name="get-help"></a>Ottenere aiuto
 
@@ -92,7 +92,7 @@ Per ulteriore assistenza, provare il [Forum di Analisi dei flussi di Azure](http
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

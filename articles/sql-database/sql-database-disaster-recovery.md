@@ -1,6 +1,6 @@
 ---
-title: Ripristino di emergenza del database SQL | Documentazione Microsoft
-description: "Informazioni su come ripristinare un database da un guasto o un'interruzione del servizio del data center a livello di area con le funzionalità di replica geografica attiva e ripristino geografico del database SQL."
+title: ripristino di emergenza Database aaaSQL | Documenti Microsoft
+description: "Informazioni su come un database da un'interruzione del Data Center regionale con toorecover hello Database SQL di Azure la replica geografica attiva e funzionalità di ripristino a livello geografico."
 services: sql-database
 documentationcenter: 
 author: anosov1960
@@ -15,88 +15,88 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/14/2017
 ms.author: sashan
-ms.openlocfilehash: e33f69bf04b32a31aae3c311c41aa44e4da5016a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bae08485863067748107ec4808e52d8e88e2de0d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="restore-an-azure-sql-database-or-failover-to-a-secondary"></a>Ripristinare un database SQL di Azure o eseguire il failover in un database secondario
-Il database SQL di Azure offre le funzionalità riportate di seguito per il ripristino da un'interruzione del servizio:
+# <a name="restore-an-azure-sql-database-or-failover-tooa-secondary"></a>Ripristinare un Database SQL di Azure o il failover tooa è secondario
+Database SQL di Azure offre hello funzionalità per il ripristino di un'interruzione di seguito:
 
 * [Replica geografica attiva](sql-database-geo-replication-overview.md)
 * [Ripristino geografico](sql-database-recovery-using-backups.md#point-in-time-restore)
 
-Per informazioni sugli scenari di continuità aziendale e sulle funzionalità che supportano questi scenari, vedere [Continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).
+toolearn sugli scenari di continuità aziendale e le funzionalità di hello per supportare questi scenari, vedere [la continuità aziendale](sql-database-business-continuity.md).
 
-### <a name="prepare-for-the-event-of-an-outage"></a>Prepararsi per un evento di interruzione del servizio
-Per completare correttamente il ripristino su un'altra area dati tramite la replica geografica attiva o i backup con ridondanza geografica, è necessario preparare un server in un altro data center perché diventi il nuovo server primario in caso di necessità, nonché procedure ben definite, documentate e testate per garantire un ripristino senza problemi. La procedura di preparazione comprende:
+### <a name="prepare-for-hello-event-of-an-outage"></a>Preparazione per l'evento hello di interruzione
+Per il successo con l'area dati di ripristino tooanother con replica geografica attiva o i backup con ridondanza geografica, è necessario tooprepare un server in un altro data center interruzione toobecome hello nuovo server primario deve hello devono verificarsi nonché passaggi ben definiti testato e documentato tooensure un ripristino senza problemi. La procedura di preparazione comprende:
 
-* Identificare il server logico in un'altra area perché diventi il nuovo server primario. Con la replica geografica attiva, questo sarà almeno uno o forse ognuno dei server secondari. Per il ripristino geografico, questo sarà in genere un server di un'[area abbinata](../best-practices-availability-paired-regions.md) all'area in cui si trova il database.
-* Identificare e definire, facoltativamente, le regole del firewall a livello di server necessarie agli utenti per accedere al nuovo database primario.
-* Determinare come si desidera reindirizzare gli utenti al nuovo server primario, ad esempio tramite modifica delle stringhe di connessione o delle voci del DNS.
-* Identificare e, facoltativamente, creare gli account di accesso presenti nel database master nel nuovo server primario e verificare che questi account di accesso dispongano delle autorizzazioni appropriate nel database master, se necessarie. Per altre informazioni, vedere [Come gestire la sicurezza del database SQL di Azure dopo il ripristino di emergenza](sql-database-geo-replication-security-config.md)
-* Stabilire le regole di avviso che dovranno essere aggiornata per eseguire il mapping verso il nuovo database primario.
-* Documentare la configurazione di controllo nel database primario corrente
-* [Esercitazione per il ripristino di emergenza](sql-database-disaster-recovery-drills.md). Per simulare un'interruzione del servizio di ripristino geografico, è possibile eliminare o rinominare il database di origine per provocare un errore di connettività dell'applicazione. Per simulare un'interruzione del servizio per la replica geografica attiva, è possibile disabilitare l'applicazione Web o la macchina virtuale connessa al database o il failover del database per causare errori di connettività dell'applicazione.
+* Identificare i server logici disponibili hello in un'altra area toobecome hello nuovo server primario. Con la replica geografica attiva, questo sarà almeno uno e forse ogni server secondario hello. Per il ripristino geografico, si tratterà in genere un server in hello [area abbinata](../best-practices-availability-paired-regions.md) per area hello in cui si trova il database.
+* Identificare e facoltativamente definire, regole del firewall a livello di server hello necessarie in per gli utenti tooaccess hello nuovo database primario.
+* Determinare come verrà tooredirect utenti toohello nuovo server primario, ad esempio la modifica di stringhe di connessione oppure modificando le voci DNS.
+* Identificare e, facoltativamente, creare, hello gli account di accesso che deve essere presente nel database master di hello nel nuovo server primario hello e verificare che questi account di accesso dispone delle autorizzazioni appropriate nel database master hello, se presente. Per altre informazioni, vedere [Come gestire la sicurezza del database SQL di Azure dopo il ripristino di emergenza](sql-database-geo-replication-security-config.md)
+* Identificare le regole di avviso che saranno necessario toobe toomap aggiornato toohello nuovo database primario.
+* Configurazione del controllo di hello documento sul database primario corrente hello
+* [Esercitazione per il ripristino di emergenza](sql-database-disaster-recovery-drills.md). toosimulate un'interruzione del servizio per il ripristino geografico, è possibile eliminare o rinominare un errore di connettività di hello origine database toocause dell'applicazione. toosimulate un'interruzione del servizio per la replica geografica attiva, è possibile disabilitare l'applicazione web hello o macchina virtuale connessa toohello database o il failover hello database toocause applicazione gli errori di connettività.
 
-## <a name="when-to-initiate-recovery"></a>Quando avviare il ripristino
-L'operazione di ripristino ha un impatto sull'applicazione. Richiede la modifica della stringa di connessione SQL o il reindirizzamento tramite DNS e può comportare una perdita di dati permanente. Pertanto, è necessario eseguirla solo quando è probabile che l'interruzione del servizio duri più a lungo dell'obiettivo del tempo di ripristino dell'applicazione. Quando l'applicazione viene distribuita nell'ambiente di produzione, è consigliabile eseguire il monitoraggio regolare dell'integrità dell'applicazione e usare i punti dati seguenti per determinare se il ripristino è possibile:
+## <a name="when-tooinitiate-recovery"></a>Quando il ripristino tooinitiate
+operazione di ripristino Hello influisce su un'applicazione hello. Richiede la modifica di reindirizzamento tramite DNS o stringa di connessione SQL hello e può provocare la perdita permanente dei dati. Pertanto, deve essere eseguita solo quando l'interruzione hello è probabilmente toolast più obiettivo tempo di ripristino dell'applicazione. Quando l'applicazione hello è distribuito tooproduction che occorre eseguire il monitoraggio regolare dell'integrità delle applicazioni hello e utilizzare hello tooassert punti di ripristino hello è garantito di dati seguenti:
 
-1. Si è verificato un errore di connettività permanente dal livello applicazione al database.
-2. Il portale di Azure visualizza un avviso relativo a un evento imprevisto nell'area con un impatto importante.
-3. Il server di database SQL di Azure è contrassegnato come danneggiato.
+1. Errore di connettività permanente dal database toohello livello di applicazione hello.
+2. Hello portale di Azure viene visualizzato un avviso su un evento imprevisto nell'area di hello con effetti estesi.
+3. server di Database SQL di Azure Hello viene contrassegnato come danneggiato.
 
-A seconda della tolleranza dell'applicazione ai tempi di inattività e delle eventuali responsabilità aziendali è possibile prendere in considerazione le opzioni di ripristino seguenti.
+A seconda l'applicazione tolleranza toodowntime e possibili business responsabilità dell'utente è possibile considerare le opzioni di ripristino seguenti hello.
 
-Usare [Get Recoverable Database](https://msdn.microsoft.com/library/dn800985.aspx) (*LastAvailableBackupDate*), che consente di ottenere l'ultimo punto di ripristino con replica geografica.
+Hello utilizzare [Get Recoverable Database](https://msdn.microsoft.com/library/dn800985.aspx) (*LastAvailableBackupDate*) punto di ripristino di replica geografica tooget hello più recente.
 
 ## <a name="wait-for-service-recovery"></a>Attendere il ripristino del servizio
-I team di Azure puntano a ripristinare la disponibilità del servizio quanto più rapidamente possibile, ma questo può richiedere ore o giorni a seconda della causa radice.  Se l'applicazione può tollerare tempi di inattività significativi è possibile attendere semplicemente il completamento del ripristino. In tal caso, non è necessaria alcuna azione da parte dell'utente. È possibile vedere lo stato corrente del servizio nel [dashboard per l'integrità dei servizi di Azure](https://azure.microsoft.com/status/). Dopo il ripristino dell'area verrà ripristinata la disponibilità dell'applicazione.
+Hello Azure i team lavorano attentamente la disponibilità del servizio toorestore come rapidamente possibile, ma a seconda della causa radice di hello può richiedere ore o giorni.  Se l'applicazione può tollerare i tempi di inattività significativi è semplicemente possibile attendere toocomplete ripristino hello. In tal caso, non è necessaria alcuna azione da parte dell'utente. È possibile visualizzare lo stato del servizio corrente hello nel nostro [Dashboard di integrità del servizio di Azure](https://azure.microsoft.com/status/). Dopo il ripristino di hello dell'area di hello verrà ripristinata la disponibilità dell'applicazione.
 
-## <a name="fail-over-to-geo-replicated-secondary-database"></a>Failover al database secondario con replica geografica
-Se i tempi di inattività dell'applicazione possono comportare una responsabilità aziendale, è consigliabile usare database con replica geografica nell'applicazione. Questo permette all'applicazione di ripristinare rapidamente la disponibilità in un'area diversa in caso di interruzione del servizio. Informazioni su [come configurare la replica geografica](sql-database-geo-replication-portal.md).
+## <a name="fail-over-toogeo-replicated-secondary-database"></a>Eseguire il failover toogeo alla replica di database secondario
+Se i tempi di inattività dell'applicazione possono comportare una responsabilità aziendale, è consigliabile usare database con replica geografica nell'applicazione. Disponibilità di ripristino tooquickly applicazione hello in un'area diversa in caso di interruzione verrà attivata. Informazioni su come troppo[configurare la replica geografica](sql-database-geo-replication-portal.md).
 
-Per ripristinare la disponibilità dei database è necessario avviare il failover nel database secondario con replica geografica usando uno dei metodi supportati.
+database di disponibilità toorestore di hello è necessario tooinitiate hello failover toohello replica geografica secondaria usando uno dei metodi di hello è supportato.
 
-Per eseguire il failover in un database secondario con replica geografica, seguire una di queste procedure:
+Utilizzare uno dei seguenti guide toofail sul database secondario di replica geografica tooa hello:
 
-* [Failover in un database secondario con replica geografica tramite il portale di Azure](sql-database-geo-replication-portal.md)
-* [Failover in un database secondario con replica geografica tramite PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)
-* [Failover in un database secondario con replica geografica tramite T-SQL](sql-database-geo-replication-transact-sql.md)
+* [Eseguire il failover tooa replica geografica secondaria, tramite il portale di Azure](sql-database-geo-replication-portal.md)
+* [Eseguire il failover tooa replica geografica secondaria tramite PowerShell](scripts/sql-database-setup-geodr-and-failover-database-powershell.md)
+* [Eseguire il failover tooa replica geografica secondaria utilizzando T-SQL](sql-database-geo-replication-transact-sql.md)
 
 ## <a name="recover-using-geo-restore"></a>Ripristino tramite il ripristino geografico
-Se i tempi di inattività dell'applicazione non comportano una responsabilità aziendale è possibile usare il [ripristino geografico](sql-database-recovery-using-backups.md) come metodo per il ripristino dei database dell'applicazione. Questo metodo crea una copia del database dal backup con ridondanza geografica più recente.
+Se i tempi di inattività dell'applicazione non comporta la responsabilità di business è possibile utilizzare [ripristino a livello geografico](sql-database-recovery-using-backups.md) come toorecover un metodo al database dell'applicazione. Crea una copia del database hello dal relativo backup con ridondanza geografica più recente.
 
 ## <a name="configure-your-database-after-recovery"></a>Configurare il database dopo il ripristino
-Se si esegue il ripristino da un'interruzione del servizio usando il failover con replica geografica o il ripristino geografico, è necessario assicurarsi che la connettività ai nuovi database sia configurata correttamente per poter riprendere il normale funzionamento dell'applicazione. Di seguito è riportato un elenco di controllo di attività per fare in modo che il database ripristinato sia pronto per la produzione.
+Se si utilizza la replica geografica failover o toorecover ripristino a livello geografico di un'interruzione, è necessario assicurarsi che i nuovi database hello connettività toohello sia configurato correttamente in modo che può essere ripresi funzione normale applicazione hello. Questo è un elenco di controllo di tooget attività di produzione del database ripristinato pronta.
 
 ### <a name="update-connection-strings"></a>Aggiornare le stringhe di connessione
-Poiché il database ripristinato si troverà in un server diverso, è necessario aggiornare la stringa di connessione dell'applicazione in modo che punti a tale server.
+Poiché il database ripristinato si trova in un server diverso, è necessario tooupdate di connessione stringa toopoint toothat server dell'applicazione.
 
-Per altre informazioni sulla modifica delle stringhe di connessione, vedere il linguaggio di sviluppo appropriato per le [raccolte di connessioni](sql-database-libraries.md).
+Per ulteriori informazioni sulla modifica di stringhe di connessione, vedere il linguaggio di sviluppo appropriata hello per le [raccolta connessioni](sql-database-libraries.md).
 
 ### <a name="configure-firewall-rules"></a>Configurare le regole firewall
-Verificare che le regole firewall configurate nel server e nel database corrispondano a quelle configurate nel server primario e nel database primario. Per altre informazioni, vedere [Procedura: Configurare le impostazioni del firewall (Database SQL di Azure)](sql-database-configure-firewall-settings.md).
+È necessario assicurarsi che le regole del firewall hello configurata nel server e in corrispondenza di hello database quelli che sono stati configurati nel server primario di hello e database primario toomake. Per altre informazioni, vedere [Procedura: Configurare le impostazioni del firewall (Database SQL di Azure)](sql-database-configure-firewall-settings.md).
 
 ### <a name="configure-logins-and-database-users"></a>Configurare gli account di accesso e gli utenti del database
-Verificare che tutti gli account di accesso usati dall'applicazione siano presenti nel server che ospita il database ripristinato. Per altre informazioni, vedere [Configurazione della sicurezza per la replica geografica](sql-database-geo-replication-security-config.md).
+È necessario che tutti gli accessi hello utilizzati dall'applicazione nel server siano presenti hello che ospita il database ripristinato toomake. Per altre informazioni, vedere [Configurazione della sicurezza per la replica geografica](sql-database-geo-replication-security-config.md).
 
 > [!NOTE]
-> È necessario configurare e testare le regole del firewall del server e gli account di accesso (con le relative autorizzazioni) durante un'analisi di ripristino di emergenza. Questi oggetti a livello di server e la relativa configurazione potrebbero non essere disponibili durante l'interruzione del servizio.
+> È necessario configurare e testare le regole del firewall del server e gli account di accesso (con le relative autorizzazioni) durante un'analisi di ripristino di emergenza. Questi oggetti a livello di server e la configurazione potrebbe non essere disponibile durante un'interruzione di hello.
 > 
 > 
 
 ### <a name="setup-telemetry-alerts"></a>Avvisi di telemetria di configurazione
-Verificare che le impostazioni della regola di avviso esistenti vengano aggiornate per il mapping al database ripristinato e al nuovo server.
+È necessario che le impostazioni della regola di avviso esistenti siano aggiornati toomap toohello ripristinati database hello diversi server e toomake.
 
 Per altre informazioni sulle regole di avviso per il database, vedere [Ricevere notifiche di avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) e [Tracciare l’integrità del servizio](../monitoring-and-diagnostics/insights-service-health.md).
 
 ### <a name="enable-auditing"></a>Attivare il controllo
-Se è necessario il controllo di accesso al database, occorre attivare il controllo dopo il ripristino del database. Per altre informazioni, vedere l'articolo sul [controllo del database](sql-database-auditing.md).
+Se il controllo è obbligatorio tooaccess del database, è necessario tooenable controllo dopo il ripristino di database hello. Per altre informazioni, vedere l'articolo sul [controllo del database](sql-database-auditing.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sui backup automatici del database SQL di Azure, vedere [Backup automatici del database SQL](sql-database-automated-backups.md)
-* Per informazioni sugli scenari di progettazione e ripristino della continuità aziendale, vedere l'articolo relativo agli [scenari di continuità aziendale](sql-database-business-continuity.md)
-* Per altre informazioni sull'uso dei backup automatici per il ripristino, vedere l'articolo relativo al [ripristino di un database dai backup avviati dal servizio](sql-database-recovery-using-backups.md)
+* toolearn sui backup di Database di SQL Azure automatizzati, vedere [backup automatici di Database SQL](sql-database-automated-backups.md)
+* toolearn sugli scenari di progettazione e il ripristino di continuità aziendale, vedere [gli scenari di continuità](sql-database-business-continuity.md)
+* toolearn sull'utilizzo di backup automatico per il ripristino, vedere [ripristinare un database dai backup avviate dal servizio hello](sql-database-recovery-using-backups.md)
 

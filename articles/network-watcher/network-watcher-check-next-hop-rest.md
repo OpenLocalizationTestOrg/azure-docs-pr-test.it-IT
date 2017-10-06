@@ -1,6 +1,6 @@
 ---
-title: "Individuare l'hop successivo con la funzionalità Hop successivo di Network Watcher di Azure - REST | Documentazione Microsoft"
-description: "Questo articolo descrive come individuare il tipo di hop successivo e l'indirizzo IP mediante la funzionalità Hop successivo usando l'API REST di Azure"
+title: aaaFind Hop successivo con Azure rete Watcher Hop successivo - REST | Documenti Microsoft
+description: "In questo articolo descrive come è possibile trovare quale hello tipo dell'hop successivo è e indirizzo ip utilizzando di Hop successivo hello API REST di Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 644713d365191bf5e51517d0cc565efbc2abc144
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2b61b355aae8ae513ebd44837184fbc6cfd668c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>Individuare il tipo di hop successivo tramite la funzionalità Hop successivo di Network Watcher di Azure usando l'API REST di Azure
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>Individuare il tipo dell'hop successivo hello sta utilizzando funzionalità Hop successivo hello in Watcher di rete di Azure utilizzando l'API REST di Azure
 
 > [!div class="op_single_selector"]
 > - [Portale di Azure](network-watcher-check-next-hop-portal.md)
@@ -29,25 +29,25 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-check-next-hop-cli.md)
 > - [API REST di Azure](network-watcher-check-next-hop-rest.md)
 
-Hop successivo è una funzionalità di Network Watcher che consente di recuperare il tipo di hop successivo e l'indirizzo IP in base a una macchina virtuale specificata. La funzionalità è utile per determinare se il traffico in uscita da una macchina virtuale attraversa gateway, Internet o reti virtuali per arrivare alla propria destinazione.
+Hop successivo è una funzionalità di controllo di rete che consente di hello ottenere il tipo dell'hop successivo di hello e l'indirizzo IP in base a una macchina virtuale specificata. Questa funzionalità è utile per determinare se il traffico da una macchina virtuale consente di scorrere un gateway, internet o reti virtuali tooget tooits destinazione.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-ARMclient viene usato per chiamare l'API REST con PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
+ARMclient è l'API REST di hello toocall utilizzati tramite PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario illustrato in questo articolo usa la funzionalità Hop successivo di Network Watcher che rileva il tipo di hop successivo e l'indirizzo IP di una risorsa. Per altre informazioni sulla funzionalità di individuazione dell'hop successivo, consultare la [panoramica sulla funzionalità Hop successivo](network-watcher-next-hop-overview.md).
+scenario di Hello illustrato in questo articolo Usa Hop successivo, una funzionalità del controllo di rete che consente di trovare il tipo dell'hop successivo hello e indirizzo IP per una risorsa. toolearn su più Hop successivo, visitare [panoramica dell'Hop successivo](network-watcher-next-hop-overview.md).
 
 In questo scenario si apprenderà come:
 
-* Recuperare l'hop successivo per una macchina virtuale.
+* Recuperare l'hop successivo di hello per una macchina virtuale.
 
 ## <a name="log-in-with-armclient"></a>Accedere con ARMClient
 
-Accedere ad armclient con le credenziali di Azure.
+Accedi tooarmclient con le credenziali di Azure.
 
 ```PowerShell
 armclient login
@@ -55,12 +55,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Recuperare una macchina virtuale
 
-Eseguire lo script seguente per restituire la macchina virtuale. Queste informazioni sono necessarie per eseguire l'hop successivo.
+Eseguire hello seguenti script tooreturn una macchina virtuale. Queste informazioni sono necessarie per eseguire l'hop successivo.
 
-Il codice seguente richiede i valori per le variabili seguenti:
+Hello seguente di codice deve valori per hello seguenti variabili:
 
-- **subscriptionId**: l'ID sottoscrizione da usare.
-- **resourceGroupName**: il nome di un gruppo di risorse contenente le macchine virtuali.
+- **subscriptionId** -hello toouse Id sottoscrizione.
+- **resourceGroupName** : hello nome di un gruppo di risorse contenente le macchine virtuali.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -69,7 +69,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-L'ID della macchina virtuale dell'output seguente viene usato nell'esempio seguente:
+Dall'output seguente hello, id di hello della macchina virtuale hello viene utilizzato nell'esempio seguente hello:
 
 ```json
 ...
@@ -86,10 +86,10 @@ L'ID della macchina virtuale dell'output seguente viene usato nell'esempio segue
 
 ## <a name="get-next-hop"></a>Ottenere l'hop successivo
 
-Dopo aver creato l'intestazione di autorizzazione, è possibile recuperare l'hop successivo da una macchina virtuale. Perché l'esempio di codice funzioni devono essere sostituiti i valori seguenti.
+Dopo aver creata un'intestazione authorization hello, hop successivo di hello da una macchina virtuale può essere recuperato. Hello valori seguenti devono essere sostituiti per toowork di esempio di codice hello.
 
 > [!Important]
-> Per le chiamate dell'API REST di Network Watcher, il nome del gruppo di risorse nell'URI della richiesta è il gruppo di risorse che contiene Network Watcher, non le risorse su cui eseguono le azioni di diagnostica.
+> Per l'API REST di controllo rete chiamate hello Nome gruppo di risorse nella richiesta di hello che URI è gruppo di risorse hello contenente hello Watcher di rete, non le risorse hello si eseguono operazioni di diagnostica hello in.
 
 ```powershell
 $sourceIP = "10.0.0.4"
@@ -108,17 +108,17 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 ```
 
 > [!NOTE]
-> La funzionalità Hop successivo richiede che la risorsa VM sia allocata.
+> Hop successivo è necessario che risorsa macchina virtuale hello è allocato toorun.
 
 ## <a name="results"></a>Risultati
 
-Il seguente frammento di codice è un esempio dell'output ricevuto. I risultati contengono i valori seguenti:
+Hello frammento di codice seguente è riportato un esempio dell'output di hello ricevuto. risultati di Hello contengono hello seguenti valori:
 
-* **nextHopType**: questo è uno dei seguenti valori: Internet, VirtualAppliance, VirtualNetworkGateway, VnetLocal, HyperNetGateway o None.
-* **nextHopIpAddress**: l'indirizzo IP dell'hop successivo.
-* **routeTableId**: il valore è un URI per la tabella di route associata alla route oppure, se non ci sono route definite dall'utente, viene restituito il valore *System Route*.
+* **nextHopType** -questo valore è uno dei seguenti valori hello: Internet, VirtualAppliance, gateway di rete virtuale, VnetLocal, HyperNetGateway o nessuno.
+* **nextHopIpAddress** -indirizzo IP dell'hop successivo hello hello.
+* **routeTableId** - valore hello è l'uri per la tabella di route hello associato hello route o se non definita dall'utente route è il valore di hello definito di *sistema Route* viene restituito.
 
-Di seguito sono riportati i risultati in formato json.
+di seguito Hello sono risultati hello in formato json.
 
 ```json
 {
@@ -129,7 +129,7 @@ Di seguito sono riportati i risultati in formato json.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver scoperto l'hop successivo per una macchina virtuale, è possibile visualizzare le informazioni sulla sicurezza delle risorse di rete visitando [Security View overview](network-watcher-security-group-view-overview.md) (Panoramica della visualizzazione della sicurezza)
+Una volta che è stato in grado di toofind all'hop successivo di hello per una macchina virtuale, è possibile visualizzare sicurezza hello delle risorse di rete, visitare il sito [Panoramica di vista della sicurezza](network-watcher-security-group-view-overview.md)
 
 
 

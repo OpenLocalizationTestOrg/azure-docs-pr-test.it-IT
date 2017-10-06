@@ -1,6 +1,6 @@
 ---
-title: Effettuare il provisioning di una macchina virtuale Linux per l'analisi scientifica dei dati | Microsoft Docs
-description: Configurare e creare una macchina virtuale Linux per l'analisi scientifica dei dati in Azure per eseguire analisi dei dati e per l'apprendimento automatico.
+title: hello aaaProvision macchina virtuale di analisi scientifica dei dati di Linux | Documenti Microsoft
+description: Configurare e creare una macchina di virtuale analisi scientifica dei dati di Linux in Azure toodo analitica e machine learning.
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: bradsev
-ms.openlocfilehash: bc6f293db0d537990d7fb1238fe4a19c704f57a1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 81dfa90f6cd4b4f33535a20fb97442bf9152d829
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-the-linux-data-science-virtual-machine"></a>Effettuare il provisioning di una macchina virtuale Linux per l'analisi scientifica dei dati
-La macchina virtuale Linux per l'analisi scientifica dei dati è una macchina virtuale di Azure basata su CentOS fornita con un insieme di strumenti preinstallati. Questi strumenti vengono comunemente usati per eseguire l'analisi dei dati e il Machine Learning. Ecco i componenti software principali:
+# <a name="provision-hello-linux-data-science-virtual-machine"></a>Eseguire il provisioning di hello macchina virtuale di analisi scientifica dei dati di Linux
+Hello macchina virtuale di analisi scientifica dei dati di Linux è una CentOS basato su macchina virtuale di Azure che include una raccolta di strumenti di pre-installati. Questi strumenti vengono comunemente usati per eseguire l'analisi dei dati e il Machine Learning. i componenti software chiave Hello inclusi sono:
 
 * Sistema operativo: distribuzione di Linux CentOS.
 * Microsoft R Server Developer Edition
@@ -36,7 +36,7 @@ La macchina virtuale Linux per l'analisi scientifica dei dati è una macchina vi
   * [Computational Network Toolkit (CNTK)](https://github.com/Microsoft/CNTK): toolkit di software di formazione avanzato sviluppato da Microsoft Research.
   * [Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit): sistema di apprendimento automatico rapido che supporta tecniche come hash, allreduce, reduction, learning2search, nonché apprendimento online, attivo e interattivo.
   * [XGBoost](https://xgboost.readthedocs.org/en/latest/): strumento che consente un'implementazione dell'albero con boosting rapida e accurata.
-  * [Rattle](http://rattle.togaware.com/) (R Analytical Tool To Learn Easily): strumento che rende semplice la fase introduttiva all'analisi dei dati e al Machine Learning in R, grazie a funzionalità di esplorazione e modellazione dei dati basate su GUI con generazione automatica di codice R.
+  * [Rattle](http://rattle.togaware.com/) (strumento di analisi R tooLearn hello facilmente): uno strumento che consente l'introduzione analitica dei dati e machine learning in R semplice, con l'esplorazione dei dati basata su interfaccia utente grafica e di modellazione con generazione automatica di codice R.
 * Azure SDK in Java, Python, Node.js, Ruby, PHP
 * Librerie in R e Python da usare in Azure Machine Learning e altri servizi di Azure
 * Editor e strumenti di sviluppo (RStudio, PyCharm, IntelliJ, Emacs, gedit, VI)
@@ -46,48 +46,48 @@ L'esecuzione dell'analisi scientifica dei dati comporta l'iterazione di una sequ
 
 1. Ricerca, caricamento e pre-elaborazione dei dati
 2. Compilazione e test di modelli
-3. Distribuzione dei modelli per l'uso in applicazioni intelligenti
+3. Distribuzione di modelli di hello per l'utilizzo in applicazioni intelligenti
 
-Gli esperti di dati usano vari strumenti per completare queste attività. Trovare le versioni del software appropriate e quindi scaricarle, compilarle e installarle può essere un'operazione molto dispersiva in termini di tempo.
+Gli esperti di dati utilizzano vari strumenti toocomplete queste attività. Può essere molto tempo toofind versioni appropriate di hello del software hello e toodownload, quindi compilare e installare le versioni.
 
-La macchina virtuale Linux per l'analisi scientifica dei dati può rendere queste attività sostanzialmente più facili. Usarla per avviare rapidamente il progetto di analisi. Consente di svolgere attività in diversi linguaggi, ad esempio R, Python, SQL, Java e C++. Eclipse fornisce un IDE facile da usare per sviluppare e testare il codice. Azure SDK, incluso nella VM, consente di compilare le applicazioni usando vari servizi in Linux sulla piattaforma cloud di Microsoft. È anche possibile accedere ad altri linguaggi, come Ruby, Perl, PHP e Node. js, anch'essi pre-installati.
+Macchina virtuale di analisi scientifica dei dati di Linux Hello facilita questo carico significativo. Utilizzarlo toojump avvio progetto analitica. Consente di toowork attività in varie lingue, tra cui R, Python, SQL, Java e C++. Eclipse fornisce un toodevelop IDE e testare il codice che è facile toouse. Hello incluso in hello VM di Azure SDK consente toobuild le applicazioni usando vari servizi in Linux per hello Microsoft cloud platform. Inoltre, si dispongono di accesso tooother lingue come Ruby, Perl, PHP e node.js anche pre-installate.
 
-Per questa immagine di VM per l'analisi scientifica dei dati non sono previsti costi per il software. Si pagano solo le spese d'uso dell'hardware di Azure valutate in base alle dimensioni della macchina virtuale di cui si esegue il provisioning con l'immagine della VM. Altre informazioni sui costi di calcolo sono disponibili alla [pagina con l'elenco delle VM su Azure Marketplace](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/).
+Per questa immagine di VM per l'analisi scientifica dei dati non sono previsti costi per il software. Si paga solo hello tariffe che vengono valutate in base alle dimensioni di hello di macchina virtuale hello è effettuare il provisioning con immagine di macchina virtuale hello sull'utilizzo di hardware di Azure. Ulteriori dettagli su hello calcolano le commissioni possono trovarsi in hello [pagina elenco VM hello Azure Marketplace ](https://azure.microsoft.com/marketplace/partners/microsoft-ads/linux-data-science-vm/).
 
-## <a name="other-versions-of-the-data-science-virtual-machine"></a>Altre versioni della macchina virtuale per l'analisi scientifica dei dati
-È disponibile anche un'immagine [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md), con molti degli stessi strumenti dell'immagine CentOS, oltre a framework di apprendimento avanzato. È disponibile anche un'immagine [Windows](machine-learning-data-science-provision-vm.md).
+## <a name="other-versions-of-hello-data-science-virtual-machine"></a>Altre versioni di hello macchina virtuale di analisi scientifica dei dati
+Un [Ubuntu](machine-learning-data-science-dsvm-ubuntu-intro.md) immagine è disponibile, con molti hello stesso strumenti come hello immagine CentOS più Framework di formazione. È disponibile anche un'immagine [Windows](machine-learning-data-science-provision-vm.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di creare una macchina virtuale Linux per l'analisi scientifica dei dati, è necessario avere gli elementi seguenti:
+Prima di creare una macchina di virtuale analisi scientifica dei dati di Linux, è necessario disporre delle seguenti hello:
 
-* **Sottoscrizione di Azure**: per ottenerne una, vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/free/).
-* **Account di archiviazione di Azure**: per crearne uno, vedere [Creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account). In alternativa, è possibile creare l'account di archiviazione come parte del processo di creazione della VM se non si vuole usare un account esistente.
+* **Una sottoscrizione di Azure**: tooobtain uno, vedere [versione di valutazione gratuita di Azure ottenere](https://azure.microsoft.com/free/).
+* **Un account di archiviazione di Azure**: toocreate uno, vedere [creare un account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account). In alternativa, è possibile creare account di archiviazione hello come parte del processo di hello di creazione di hello macchina virtuale, se non si desidera toouse un account esistente.
 
 ## <a name="create-your-linux-data-science-virtual-machine"></a>Creare la macchina virtuale Linux per l'analisi scientifica dei dati
-Ecco i passaggi necessari per creare un'istanza della macchina virtuale Linux per l'analisi scientifica dei dati:
+Di seguito è hello passaggi toocreate un'istanza di macchina virtuale di analisi scientifica dei dati di Linux hello:
 
-1. Passare all'elenco di macchine virtuali nel [portale di Azure](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm).
-2. Fare clic su **Crea** (in basso) per aprire la procedura guidata.![configure-data-science-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
-3. Le sezioni seguenti forniscono gli input per ognuno dei passaggi (elencati nella parte destra della figura precedente) della procedura guidata usata per creare la macchina virtuale per l'analisi scientifica dei dati di Microsoft. Di seguito sono riportati gli input necessari per configurare ciascuno di questi passaggi:
+1. Passare a macchina virtuale toohello elenco su hello [portale di Azure](https://portal.azure.com/#create/microsoft-ads.linux-data-science-vmlinuxdsvm).
+2. Fare clic su **crea** (nella parte inferiore di hello) toobring guidata hello.![ configurare-data-scienza-vm](./media/machine-learning-data-science-linux-dsvm-intro/configure-linux-data-science-virtual-machine.png)
+3. Hello le sezioni seguenti consentono di input hello per ognuno di hello passaggi nella procedura guidata hello (enumerata in hello destra della figura precedente hello) hello toocreate macchina virtuale di analisi scientifica dei dati di Microsoft. Di seguito sono hello input Necessito tooconfigure ciascuna di queste operazioni:
    
    a. **Nozioni di base**:
    
    * **Name**: nome del server di analisi scientifica dei dati che si sta creando.
    * **Nome utente**: primo ID di accesso dell'account.
    * **Password**: la prima password dell'account. È possibile usare una chiave pubblica SSH invece di una password.
-   * **Sottoscrizione**: se si ha più di una sottoscrizione, selezionare quella in cui viene creata e fatturata la macchina virtuale. È necessario disporre di privilegi di creazione delle risorse per questa sottoscrizione.
+   * **Sottoscrizione**: se si dispone di più di una sottoscrizione, selezionare hello uno in cui hello il computer è toobe creato e fatturato. È necessario disporre di privilegi di creazione delle risorse per questa sottoscrizione.
    * **Gruppo di risorse**: è possibile creare un nuovo gruppo di risorse o usarne uno esistente.
-   * **Location**: selezionare la posizione del data center più appropriata. In genere è il data center che include la maggior parte dei dati o è più vicino alla posizione fisica per l'accesso più veloce alla rete.
+   * **Percorso**: hello selezionare data center situato più appropriato. In genere è centro dati hello che include la maggior parte dei dati oppure è più vicino tooyour di posizione fisica per l'accesso di rete più veloce.
    
    b. **Dimensione**:
    
-   * Selezionare uno dei tipi di server che soddisfa i requisiti funzionali e vincoli di costo. Selezionare **Visualizza tutto** per visualizzare altre opzioni per le dimensioni delle VM.
+   * Selezionare uno dei tipi di server hello che soddisfa i requisiti funzionali e vincoli di costo. Selezionare **Visualizza tutto** toosee altre opzioni di dimensioni delle macchine Virtuali.
    
    c. **Impostazioni**:
    
    * **Tipo di disco**: se si preferisce un'unità a stato solido, scegliere **Premium**. In caso contrario, scegliere **Standard**.
-   * **Account di archiviazione**: è possibile creare un nuovo account di archiviazione di Azure nella sottoscrizione o usarne uno esistente nella stessa posizione scelta nel passaggio **Nozioni di base** della procedura guidata.
-   * **Altri parametri**: nella maggior parte dei casi si usano semplicemente i valori predefiniti. Nel caso in cui si desideri usare valori non predefiniti, è possibile passare il puntatore sul collegamento informativo per visualizzare informazioni sui campi specifici.
+   * **Account di archiviazione**: È possibile creare un nuovo account di archiviazione di Azure nella sottoscrizione o utilizzarne uno esistente in hello stessa ubicazione in cui è stato scelto in hello **nozioni di base** passaggio della procedura guidata hello.
+   * **Altri parametri**: nella maggior parte dei casi, è sufficiente utilizzare i valori predefiniti di hello. valori non predefiniti tooconsider, passare il mouse su un collegamento informativo hello per consentono in campi specifici di hello.
    
    d. **Riepilogo**:
    
@@ -95,94 +95,94 @@ Ecco i passaggi necessari per creare un'istanza della macchina virtuale Linux pe
    
    e. **Acquisto**:
    
-   * Fare clic su **Acquista**per avviare il provisioning. Viene fornito un collegamento alle condizioni della transazione. La macchina virtuale non prevede costi aggiuntivi oltre a quelli per il calcolo delle dimensioni del server scelto nel passaggio **Size** .
+   * toostart hello provisioning, fare clic su **acquistare**. Termini toohello di transazione hello viene fornito un collegamento. Hello macchina virtuale non dispone di costi aggiuntivi oltre calcolo hello per le dimensioni del server hello scelto nel hello **dimensioni** passaggio.
 
-Per il provisioning sono necessari circa 10-20 minuti. Lo stato del provisioning viene visualizzato nel portale di Azure.
+provisioning di Hello dovrebbe richiedere circa 10-20 minuti. stato di Hello di provisioning hello viene visualizzato nel portale di Azure hello.
 
-## <a name="how-to-access-the-linux-data-science-virtual-machine"></a>Come accedere alla macchina virtuale Linux per l'analisi scientifica dei dati
-Dopo aver creato la VM, è possibile accedervi tramite SSH. Usare le credenziali dell'account creato nella sezione **Nozioni di base** del passaggio 3 per l'interfaccia della shell di testo. In Windows è possibile scaricare uno strumento client SSH come [Putty](http://www.putty.org). Se si preferisce un desktop con interfaccia grafica (X Windows System), è possibile usare X11 Forwarding su Putty o installare il client X2Go.
+## <a name="how-tooaccess-hello-linux-data-science-virtual-machine"></a>Come tooaccess hello macchina virtuale di analisi scientifica dei dati di Linux
+Dopo aver hello che viene creata la VM, è possibile firmare tooit utilizzando SSH. Utilizzare le credenziali dell'account hello creati in hello **nozioni di base** sezione del passaggio 3 per l'interfaccia di shell testo hello. In Windows è possibile scaricare uno strumento client SSH come [Putty](http://www.putty.org). Se si preferisce un desktop con interfaccia grafico (sistema Windows X), è possibile utilizzare in Putty di inoltro X11 o installare il client X2Go hello.
 
 > [!NOTE]
-> Nei test il client X2Go ha fornito prestazioni significativamente migliori di X11 Forwarding. È quindi consigliabile usare il client X2Go per un'interfaccia desktop grafica.
+> client Hello X2Go eseguita in modo significativo migliore nel test di inoltro X11. È consigliabile utilizzare client X2Go hello per un'interfaccia grafica desktop.
 > 
 > 
 
 ## <a name="installing-and-configuring-x2go-client"></a>Installazione e configurazione del client X2Go
-Nella VM Linux è già stato effettuato il provisioning del server X2Go ed è pronta per accettare connessioni client. Per connettersi al desktop con interfaccia grafica della VM Linux, è necessario eseguire le operazioni seguenti sul client:
+è già effettuato il provisioning di Hello VM Linux con X2Go server e le connessioni client tooaccept pronto. tooconnect toohello desktop grafica VM Linux, hello seguente nel client:
 
-1. Scaricare e installare il client X2Go per la piattaforma client da [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient).    
-2. Eseguire il client X2Go e selezionare **New Session**(Nuova sessione). Viene visualizzata una finestra di configurazione con più schede. Immettere i parametri di configurazione seguenti:
+1. Scaricare e installare il client hello X2Go per la piattaforma del client da [X2Go](http://wiki.x2go.org/doku.php/doc:installation:x2goclient).    
+2. Eseguire il client hello X2Go e selezionare **nuova sessione**. Viene visualizzata una finestra di configurazione con più schede. Immettere i seguenti parametri di configurazione hello:
    * **Scheda Session**(Sessione):
-     * **Host**: nome host o indirizzo IP della VM Linux di analisi scientifica dei dati.
-     * **Login**(Accesso): nome utente di accesso della VM Linux.
-     * **SSH Port**(Porta SSH): lasciare il valore predefinito 22.
-     * **Session Type**(Tipo sessione): modificare il valore in XFCE. La VM Linux attualmente supporta solo l'ambiente desktop XFCE.
-   * **Scheda Media**(Supporti): è possibile disattivare il supporto audio e la stampa client se non è necessario usarli.
-   * **Shared folders**(Cartelle condivise): se si intende montare directory dei computer client nella VM Linux, aggiungere in questa scheda le directory dei computer client da condividere con la VM.
+     * **Host**: nome host hello o l'indirizzo IP della VM Linux analisi scientifica dei dati.
+     * **Account di accesso**: nome utente indicato sul hello VM Linux.
+     * **Porta SSH**: lasciarlo 22, valore predefinito di hello.
+     * **Tipo di sessione**: tooXFCE valore hello di modifica. Hello VM Linux supporta attualmente solo desktop XFCE.
+   * **Scheda supporto**: È possibile disattivare il supporto di audio e stampa se non è necessario toouse client li.
+   * **Cartelle condivise**: se si desidera directory dal computer client montato su hello VM Linux, aggiungere le cartelle del computer client hello che si desidera tooshare con hello VM in questa scheda.
 
-Dopo aver eseguito l'accesso alla VM con il client SSH o il desktop con interfaccia grafica XFCE tramite il client X2Go, è possibile iniziare a usare gli strumenti installati e configurati nella VM. In XFCE è possibile visualizzare i collegamenti di menu delle applicazioni e le icone del desktop per molti di questi strumenti.
+Dopo l'accesso toohello VM utilizzando client SSH hello o desktop con interfaccia grafica di XFCE tramite client X2Go hello, si è pronti toostart hello strumenti vengono installati e configurati in hello VM. Nella XFCE, è possibile visualizzare i collegamenti di applicazioni del menu e icone del desktop per molti degli strumenti hello.
 
-## <a name="tools-installed-on-the-linux-data-science-virtual-machine"></a>Strumenti installati nella macchina virtuale LInux per l'analisi scientifica dei dati
+## <a name="tools-installed-on-hello-linux-data-science-virtual-machine"></a>Strumenti installati nella macchina virtuale di analisi scientifica dei dati di Linux hello
 ### <a name="microsoft-r-server"></a>Microsoft R Server
-R è uno dei linguaggi più diffusi per l'analisi dei dati e il Machine Learning. Se si vuole usare R per l'esecuzione di analisi, è necessario che nella macchina virtuale sia installato Microsoft R Server (MRS) con Microsoft R Open (MRO) con Math Kernel Library (MKL). La libreria MKL ottimizza le operazioni matematiche comuni negli algoritmi di analisi. MRO è totalmente compatibile con CRAN-R e tutte le librerie R pubblicate in CRAN possono essere installate in MRO. MRS garantisce scalabilità e messa in funzione dei modelli R nei servizi Web. È possibile modificare i programmi R in uno degli editor predefiniti, ad esempio RStudio, VI, Emacs o gedit. Se si usa l'editor Emacs, si noti che il relativo pacchetto ESS (Emacs Speaks Statistics), che semplifica l'uso dei file R all'interno dell'editor Emacs, è preinstallato.
+R è uno dei linguaggi più diffusi di hello per analisi dei dati e machine learning. Se si desidera toouse R per l'analitica, hello VM è Microsoft R Server (Signora) con hello Microsoft R Open (MRO) e libreria del Kernel matematico (MKL). Hello MKL Ottimizza operazioni matematiche comuni negli algoritmi analitici. Una delle librerie R hello pubblicate in CRAN può essere installata in hello MRO MRO è compatibile con CRAN R al 100%. MRS garantisce scalabilità e messa in funzione dei modelli R nei servizi Web. È possibile modificare i programmi di R in uno degli editor predefiniti hello, ad esempio RStudio, vi, Emacs o gedit. Se si utilizza l'editor Emacs hello, si noti che il pacchetto Emacs hello ESS (Emacs pronuncia statistiche), che semplifica l'utilizzo dei file di R nell'editor di Emacs hello pre-installato.
 
-Per avviare la console R è sufficiente digitare **R** nella shell. Verrà visualizzato un ambiente interattivo. Per sviluppare il programma R, si usa in genere un editor come Emacs o VI oppure gedit e quindi si eseguono gli script all'interno di R. Con RStudio, si ottiene un ambiente IDE con interfaccia grafica completo per sviluppare il programma R.
+console toolaunch R, sufficiente digitare **R** nella shell di hello. Consente di procedere ambiente interattivo tooan. toodevelop del programma di R, in genere, utilizzare un editor come Emacs o vi o gedit e quindi eseguire uno script di hello in R. Con RStudio, è necessario un grafico completo toodevelop ambiente IDE con il programma di R.
 
-È anche disponibile uno script R per installare i [20 pacchetti R più popolari](http://www.kdnuggets.com/2015/06/top-20-r-packages.html) , se necessario. Questo script può essere eseguito una volta nell'interfaccia interattiva R, a cui è possibile accedere digitando **R** nella shell, come indicato sopra.  
+È inoltre disponibile uno script R per tooinstall hello [pacchetti R 20 Top](http://www.kdnuggets.com/2015/06/top-20-r-packages.html) se si desidera. Questo script può essere eseguito una volta nell'interfaccia interattiva hello R, che può essere inserita (come indicato) digitando **R** nella shell di hello.  
 
 ### <a name="python"></a>Python
-Per lo sviluppo tramite Python, è installata la distribuzione Anaconda Python 2.7 e 3.5. Questa distribuzione contiene il linguaggio Python di base con circa 300 dei più diffusi pacchetti di matematica, ingegneria e analisi dei dati. È possibile usare gli editor di testo predefiniti. Si può anche usare Spyder, un IDE Python incluso nelle distribuzioni di Anaconda Python. Spyder richiede un desktop con interfaccia grafica o X11 Forwarding. Nel desktop con interfaccia grafica è disponibile un collegamento a Spyder.
+Per lo sviluppo tramite Python, è installata la distribuzione Anaconda Python 2.7 e 3.5. Questo tipo di distribuzione contiene hello Python con circa 300 di hello più diffusi matematiche, ingegneria e analitica pacchetti di dati di base. È possibile utilizzare l'editor di testo hello predefiniti. Si può anche usare Spyder, un IDE Python incluso nelle distribuzioni di Anaconda Python. Spyder richiede un desktop con interfaccia grafica o X11 Forwarding. Nel desktop grafica hello viene fornito un tooSpyder di scelta rapida.
 
-Poiché sono presenti sia Python 2.7 che 3.5, è necessario attivare in modo specifico la versione di Python (ambiente conda) che si vuole usare nella sessione corrente. Il processo di attivazione imposta la variabile PATH sulla versione di Python desiderata.
+Poiché si dispone di Python 2.7 e 3.5, è necessario toospecifically Attiva versione di Python hello desiderato (conda environment) da toowork su in hello sessione corrente. il processo di attivazione Hello imposta versione desiderata toohello variabile PATH di hello di Python.
 
-Per attivare l'ambiente conda di Python 2.7, eseguire il comando seguente dalla shell:
+tooactivate hello Python 2.7 conda ambiente eseguire hello dalla shell hello:
 
     source /anaconda/bin/activate root
 
 Python 2.7 viene installato in */anaconda/bin*.
 
-Per attivare l'ambiente conda di Python 3.5, eseguire il comando seguente dalla shell:
+tooactivate hello Python 3.5 conda ambiente eseguire hello dalla shell hello:
 
     source /anaconda/bin/activate py35
 
 
 Python 3.5 viene installato in */anaconda/envs/py35/bin*.
 
-Per richiamare la sessione interattiva di Python, è sufficiente digitare **python** nella shell. Se si usa un'interfaccia grafica o è installato l'inoltro X11, è possibile digitare il comando **pycharm** per avviare l'IDE di PyCharm Python.
+tooinvoke una sessione interattiva di Python, è sufficiente digitare **python** nella shell di hello. Se si trovano su un'interfaccia grafica o utilizzare X11 inoltro set di backup, è possibile digitare **pycharm** toolaunch hello PyCharm dell'IDE Python.
 
-Per installare le librerie di Python aggiuntive, è necessario eseguire il comando ```conda``` o ````pip```` in sudo e specificare il percorso completo della gestione del pacchetto Python (conda o pip) per eseguire l'installazione nell'ambiente Python corretto. ad esempio:
+tooinstall librerie aggiuntive di Python, è necessario toorun ```conda``` o ````pip```` comando in sudo e fornire il percorso completo di gestione di pacchetti Python hello (conda o pip) tooinstall toohello Python ambiente corretto. ad esempio:
 
     sudo /anaconda/bin/pip install <package> #for Python 2.7 environment
     sudo /anaconda/envs/py35/bin/pip install <package> # for Python 3.5 environment
 
 
 ### <a name="jupyter-notebook"></a>Notebook di Jupyter
-La distribuzione Anaconda include anche Jupyter Notebook, un ambiente per condividere codice e analisi. Notebook di Jupyter è accessibile tramite JupyterHub. Per eseguire l'accesso, usare il nome utente e la password locali di Linux.
+Hello distribuzione Anaconda include anche un server Jupyter notebook, un codice tooshare ambiente e l'analisi. notebook Jupyter Hello è accessibile tramite JupyterHub. Per eseguire l'accesso, usare il nome utente e la password locali di Linux.
 
-Il server Notebook di Jupyter è stato preconfigurato con Python 2, Python 3 e i kernel R. Sul desktop è disponibile un'icona denominata Notebook di Jupyter per avviare il browser e accedere al server Notebook di Jupyter. Se si usa la VM tramite SSH o il client X2Go, è anche possibile visitare [https://localhost:8000/](https://localhost:8000/) per accedere al server Notebook di Jupyter.
+Server notebook jupyter Hello preconfigurata con Python 2, 3 Python e kernel R. È disponibile un'icona desktop denominata "Server Jupyter Notebook" toolaunch hello browser tooaccess hello notebook server. Se si utilizza hello VM tramite SSH o X2Go client, è inoltre possibile visitare [https://localhost:8000 /](https://localhost:8000/) tooaccess hello server Jupyter notebook.
 
 > [!NOTE]
 > Se vengono visualizzati avvisi relativi al certificato, scegliere di continuare.
 > 
 > 
 
-È possibile accedere al server Jupyter Notebook da qualsiasi host, digitando semplicemente *https://\<nome DNS o indirizzo IP della VM\>:8000/*
+Server notebook jupyter hello è possibile accedere da qualsiasi host. digitando semplicemente *https://\<nome DNS o indirizzo IP della VM\>:8000/*
 
 > [!NOTE]
-> La porta 8000 è aperta nel firewall per impostazione predefinita quando viene effettuato il provisioning della VM.
+> Porta 8000 viene aperta nel firewall hello per impostazione predefinita quando viene eseguito il provisioning hello VM.
 > 
 > 
 
-Nel pacchetto sono inclusi alcuni notebook di esempio: uno in Python e uno in R. È possibile visualizzare il collegamento agli esempi nella home page del notebook dopo l'autenticazione a Notebook di Jupyter con il nome utente e la password locali di Linux. È possibile creare un nuovo notebook selezionando **Nuovo** e quindi il kernel del linguaggio adatto. Se il pulsante **Nuovo** non è visualizzato, fare clic sull'icona **Jupyter** in alto a sinistra per passare alla home page del server notebook.
+È stato incluso nel pacchetto di esempi di blocchi appunti - Python in uno e uno in R. È possibile visualizzare esempi di hello collegamento toohello nella home page di hello notebook dopo l'autenticazione toohello server Jupyter notebook utilizzando il nome utente di Linux locale e la password. È possibile creare un nuovo blocco appunti selezionando **New**e quindi hello lingua appropriata kernel. Se non viene visualizzato hello **New** fare clic su hello **Jupyter** icona hello toogo sinistra superiore toohello home page di server notebook hello.
 
 ### <a name="apache-spark-standalone"></a>Apache Spark autonomo 
-Un'istanza autonoma di Apache Spark è preinstallata in DSVM di Linux per contribuire allo sviluppo delle applicazioni Spark inizialmente in locale, prima di eseguire i test e la distribuzione in cluster di grandi dimensioni. È possibile eseguire programmi PySpark attraverso il kernel Jupyter. Quando si apre Jupyter e si fa clic sul pulsante "Nuovo" verrà visualizzato un elenco di kernel disponibili. "Spark - Python" è il kernel PySpark che consente di creare applicazioni Spark usando il linguaggio Python. È anche possibile usare un IDE Python come PyCharm o Spyder per creare un programma Spark. Poiché si tratta di un'istanza autonoma, lo stack di Spark viene eseguito all'interno del programma client che esegue la chiamata. Questo rende più veloce e semplice la risoluzione dei problemi rispetto allo sviluppo in un cluster Spark. 
+Un'istanza autonoma di Apache Spark è preinstallata in hello toohelp Linux DSVM sviluppare applicazioni Spark localmente prima prima di test e la distribuzione in cluster di grandi dimensioni. È possibile eseguire i programmi PySpark attraverso il kernel di Jupyter hello. Quando si apre Jupyter e fare clic sul pulsante "Nuovo" hello, verrà visualizzato un elenco di kernel disponibile. "Spark – Python" Hello è kernel PySpark hello che consente di compilare applicazioni usando il linguaggio Python di Spark. È inoltre possibile utilizzare un come PyCharm o Spyder toobuild nascita dell'IDE Python programma. Poiché si tratta di un'istanza autonoma, stack Spark hello viene eseguito all'interno di hello chiamata programma client. Questo rende più veloce e più facilmente problemi tootroubleshoot confrontata toodeveloping in un cluster Spark. 
 
-Su Jupyter viene assicurato un blocco di appunti di esempio PySpark che è possibile trovare nella directory "SparkML" nella home directory di Jupyter ($HOME/notebooks/SparkML/pySpark). 
+Nel server Jupyter che è possibile trovare nella directory "SparkML" hello nella home directory di hello del server Jupyter ($HOME/notebook/SparkML/pySpark) è disponibile un notebook PySpark di esempio. 
 
 Se si programma in R per Spark, è possibile usare Microsoft R Server, SparkR o sparklyr. 
 
-Prima di eseguire nel contesto Spark in Microsoft R Server, è necessario eseguire un unico passaggio di configurazione per abilitare un solo nodo locale Hadoop HDFS e un'istanza Yarn. Per impostazione predefinita, i servizi Hadoop sono installati ma disabilitati su DSVM. Per attivarli, è necessario eseguire i comandi seguenti come radice la prima volta:
+Prima di eseguire nel contesto di Spark in Microsoft R Server, è necessario toodo un una volta il programma di installazione passaggio tooenable un singolo nodo Hadoop HDFS locale e un'istanza di Yarn. Per impostazione predefinita, i servizi Hadoop sono installati ma disabilitati su hello DSVM. In ordine tooenable, è necessario hello toorun seguenti comandi come hello radice prima volta:
 
     echo -e 'y\n' | ssh-keygen -t rsa -P '' -f ~hadoop/.ssh/id_rsa
     cat ~hadoop/.ssh/id_rsa.pub >> ~hadoop/.ssh/authorized_keys
@@ -192,126 +192,126 @@ Prima di eseguire nel contesto Spark in Microsoft R Server, è necessario esegui
     chown hadoop:hadoop ~hadoop/.ssh/authorized_keys
     systemctl start hadoop-namenode hadoop-datanode hadoop-yarn
 
-È possibile arrestare i servizi relativi a Hadoop quando non servono eseguendo ````systemctl stop hadoop-namenode hadoop-datanode hadoop-yarn````. un esempio che illustra come sviluppare e verificare che MRS nel contesto di Spark remoto, ovvero l'istanza di Spark autonoma nel DSVM, sia implementato e disponibile nella directory `/dsvm/samples/MRS`. 
+È possibile arrestare hello Hadoop relativi servizi quando non sono necessari eseguendo ````systemctl stop hadoop-namenode hadoop-datanode hadoop-yarn```` un esempio che illustri come Signora toodevelop e test nel contesto di Spark remoto (che è l'istanza di Spark autonoma hello in hello DSVM) viene fornito e disponibile in hello `/dsvm/samples/MRS` directory. 
 
 ### <a name="ides-and-editors"></a>IDE ed editor
-È possibile scegliere tra diversi editor di codice. Ciò include VI/VIM, Emacs, gEdit, PyCharm, RStudio, Eclipse e IntelliJ. gEdit, Eclipse, IntelliJ, RStudio e PyCharm sono editor grafici e per usarli è necessario essere connessi a un desktop con interfaccia grafica. Per avviare questi editor sono disponibili collegamenti di menu delle applicazioni e sul desktop.
+È possibile scegliere tra diversi editor di codice. Ciò include VI/VIM, Emacs, gEdit, PyCharm, RStudio, Eclipse e IntelliJ. gEdit, Eclipse, IntelliJ, RStudio e PyCharm sono editor grafici e necessario toobe li ha firmati in toouse desktop grafica tooa. Questi editor dispongono di applicazione e desktop dal menu di scelta rapida toolaunch li.
 
-**VIM** e **Emacs** sono editor basati su testo. In Emacs è installato un pacchetto di componenti aggiuntivi denominato Emacs Speaks Statistics (ESS) che facilita l'utilizzo di R nell'editor Emacs. Altre informazioni sono disponibili nella pagina relativa a [ESS](http://ess.r-project.org/).
+**VIM** e **Emacs** sono editor basati su testo. Emacs, è stato installato un pacchetto di componente aggiuntivo denominato Emacs pronuncia statistiche (SSE) che consente più facilmente all'interno dell'editor Emacs hello working with R. Altre informazioni sono disponibili nella pagina relativa a [ESS](http://ess.r-project.org/).
 
-**Eclipse** è un IDE open source estendibile che supporta più linguaggi. L'edizione per sviluppatori Java è l'istanza installata nella VM. Sono disponibili plug-in per diversi linguaggi comuni che possono essere installati per estendere l'ambiente. È anche disponibile un plug-in installato in Eclipse, **Toolkit di Azure per Eclipse**. Il plug-in consente di creare, sviluppare, testare e distribuire applicazioni Azure tramite l'ambiente di sviluppo Eclipse che supporta linguaggi come Java. È disponibile anche **Azure SDK per Java** che consente l'accesso a diversi servizi di Azure da un ambiente Java. Altre informazioni su Azure Toolkit for Eclipse sono disponibili nella pagina [Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse.md).
+**Eclipse** è un IDE open source estendibile che supporta più linguaggi. edizione gli sviluppatori Java di Hello è istanza hello installata su hello macchina virtuale. Sono disponibili i plug-in per i diversi linguaggi più diffusi che possono essere ambiente hello tooextend installato. È anche disponibile un plug-in installato in Eclipse, **Toolkit di Azure per Eclipse**. Consente di toocreate, sviluppare, testare e distribuire applicazioni Azure mediante l'ambiente di sviluppo Eclipse hello che supporta i linguaggi come Java. È inoltre disponibile un **Azure SDK per Java** che consente l'accesso toodifferent servizi di Azure da un ambiente Java. Altre informazioni su Azure Toolkit for Eclipse sono disponibili nella pagina [Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse.md).
 
-**LaTex** viene installato tramite il pacchetto texlive insieme a un pacchetto di componenti aggiuntivi di Emacs, [auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html) , che semplifica la creazione di documenti LaTex in Emacs.  
+**Acrilica** viene installato tramite il pacchetto texlive hello insieme a un componente aggiuntivo Emacs [auctex](https://www.gnu.org/software/auctex/manual/auctex/auctex.html) pacchetto, che semplifica la creazione di documenti acrilica interno Emacs.  
 
 ### <a name="databases"></a>Database
 #### <a name="postgres"></a>Postgres
-Il database open source **Postgres** è disponibile nella VM con i servizi in esecuzione e initdb già completati. È comunque necessario creare database e utenti. Per altre informazioni, vedere la [documentazione di Postgres](https://www.postgresql.org/docs/).  
+database di origine aprire Hello **Postgres** è disponibile in hello macchina virtuale, con servizi hello in esecuzione e initdb già completata. È comunque necessario agli utenti e i database toocreate. Per ulteriori informazioni, vedere hello [Postgres documentazione](https://www.postgresql.org/docs/).  
 
 #### <a name="graphical-sql-client"></a>Client SQL grafico
-Il client SQL grafico **SQuirreL SQL** viene fornito per la connessione a diversi database, come Microsoft SQL Server, Postgres e MySQL, e per l'esecuzione di query SQL. È possibile eseguirlo da una sessione desktop con interfaccia grafica, usando ad esempio il client X2Go. Per richiamare SQuirreL SQL è possibile avviarlo dall'icona sul desktop o eseguire il comando seguente nella shell.
+**Esce SQL**, un client SQL con interfaccia grafico, è stato fornito tooconnect toodifferent database (ad esempio Microsoft SQL Server, Postgres e MySQL) e query SQL toorun. Puoi eseguire da una sessione di desktop con interfaccia grafica (tramite client X2Go hello, ad esempio). tooinvoke esce SQL, è possibile avviarla dall'icona hello sul desktop hello o eseguire hello comando seguente nella shell di hello.
 
     /usr/local/squirrel-sql-3.7/squirrel-sql.sh
 
-Prima di usarlo per la prima volta, è necessario configurare i driver e gli alias di database. I driver JDBC si trovano in:
+Prima di utilizzare innanzitutto hello, configurare i driver e gli alias di database. driver JDBC Hello si trovano in:
 
 */usr/share/Java/jdbcdrivers*
 
 Per altre informazioni, vedere [SQL SQuirrel](http://squirrel-sql.sourceforge.net/index.php?page=screenshots).
 
 #### <a name="command-line-tools-for-accessing-microsoft-sql-server"></a>Strumenti da riga di comando per l'accesso a Microsoft SQL Server
-Anche nel pacchetto driver ODBC per SQL Server sono disponibili due strumenti da riga di comando:
+pacchetto di driver Hello ODBC per SQL Server è disponibili due strumenti da riga di comando:
 
-**bcp**: questa utilità crea copie bulk di dati tra un'istanza di Microsoft SQL Server e un file di dati in un formato specificato dall'utente. L'utilità bcp può essere usata per importare un numero elevato di nuove righe nelle tabelle di SQL Server o per esportare dati dalle tabelle in file di dati. Per importare dati in una tabella, è necessario usare un file di formato creato per la tabella o conoscere la struttura della tabella e i tipi di dati validi per le relative colonne.
+**bcp**: hello bcp utilità copia bulk dei dati tra un'istanza di Microsoft SQL Server e un file di dati in un formato specificato dall'utente. utilità bcp Hello può essere utilizzato tooimport un numero elevato di nuove righe nelle tabelle di SQL Server o tooexport dati dalle tabelle in file di dati. tooimport dati in una tabella, è necessario utilizzare un file di formato creato per la tabella o conoscere la struttura della tabella di hello e i tipi di dati validi per le colonne hello hello.
 
 Per altre informazioni, vedere [Connessione a bcp](https://msdn.microsoft.com/library/hh568446.aspx).
 
-**sqlcmd**: questa utilità consente di immettere istruzioni Transact-SQL, procedure di sistema e file script al prompt dei comandi. Questa utilità usa ODBC per eseguire batch Transact-SQL.
+**SQLCMD**: È possibile immettere istruzioni Transact-SQL con l'utilità sqlcmd hello, nonché le procedure di sistema e i file del prompt dei comandi hello script. Questa utilità utilizza batch tooexecute Transact-SQL ODBC.
 
 Per altre informazioni, vedere [Connessione con sqlcmd](https://msdn.microsoft.com/library/hh568447.aspx).
 
 > [!NOTE]
-> Esistono alcune differenze in questa utilità tra le piattaforme Linux e Windows. Per informazioni dettagliate, vedere la documentazione di .
+> Esistono alcune differenze in questa utilità tra le piattaforme Linux e Windows. Vedere la documentazione di hello per informazioni dettagliate.
 > 
 > 
 
 #### <a name="database-access-libraries"></a>Librerie di accesso al database
-In R e Python sono disponibili librerie per accedere ai database.
+Sono disponibili librerie disponibili nei database tooaccess R e Python.
 
-* In R il pacchetto **RODBC** o **dplyr** consente di eseguire query o istruzioni SQL sul server di database.
-* In Python la libreria **pyodbc** fornisce l'accesso al database con ODBC come livello sottostante.  
+* In R, hello **RODBC** pacchetto o **dplyr** pacchetto consente tooquery o eseguire istruzioni SQL nel server di database hello.
+* Nella finestra Python, hello **pyodbc** libreria fornisce l'accesso al database con ODBC come hello livello sottostante.  
 
-Per accedere a **Postgres**:
+tooaccess **Postgres**:
 
-* Da R usare il pacchetto **RPostgreSQL**.
-* Da Python usare la libreria **psycopg2** .
+* Da r: Utilizzare hello un pacchetto di **RPostgreSQL**.
+* Da Python: Hello utilizzare **psycopg2** libreria.
 
 ### <a name="azure-tools"></a>Strumenti di Azure
-Nella VM sono installati gli strumenti di Azure seguenti:
+Hello seguendo gli strumenti di Azure viene installato in hello VM:
 
-* **Interfaccia della riga di comando di Azure**: consente di creare e gestire risorse di Azure tramite i comandi della shell. Per richiamare gli strumenti di Azure, digitare semplicemente **azure help**. Per altre informazioni, vedere la [pagina di documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
-* **Microsoft Azure Storage Explorer**(Esplora archivi di Microsoft Azure): è uno strumento grafico usato per esplorare gli oggetti archiviati nell'account di archiviazione di Azure e per caricare o scaricare dati nei BLOB e dai BLOB di Azure. È possibile accedere a Esplora archivi dall'icona del collegamento sul desktop. Questo strumento può essere richiamato da un prompt della shell digitando **StorageExplorer**. È necessario essere connessi da un client X2Go o avere installato X11 Forwarding.
-* **Librerie di Azure**: di seguito vengono illustrate alcune delle librerie preinstallate.
+* **Interfaccia della riga di comando di Azure**: hello CLI di Azure consente toocreate e gestire le risorse di Azure tramite i comandi della shell. tooinvoke hello gli strumenti di Azure, è sufficiente digitare **Guida azure**. Per ulteriori informazioni, vedere hello [pagina della documentazione di Azure CLI](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).
+* **Microsoft Azure Storage Explorer**: Microsoft Azure Storage Explorer è uno strumento grafico che viene utilizzato toobrowse tramite oggetti hello archiviati nell'account di archiviazione di Azure e tooand tooupload e download di dati BLOB di Azure. È possibile accedere a Esplora archivi dall'icona di collegamento sul desktop hello. Questo strumento può essere richiamato da un prompt della shell digitando **StorageExplorer**. Accesso eseguito da un client X2Go toobe necessarie o dispone di set di backup di inoltro X11.
+* **Librerie di Azure**: hello seguito vengono illustrate alcune librerie di hello pre-installate.
   
-  * **Python**: le librerie installate correlate ad Azure in Python sono **azure**, **azureml**, **pydocumentdb** e **pyodbc**. Le prime tre librerie consentono di accedere ai servizi di archiviazione di Azure, Azure Machine Learning e Azure Cosmos DB, ovvero un database NoSQL in Azure. La quarta libreria, pyodbc (insieme ai driver Microsoft ODBC per SQL Server), consente l'accesso da Python a SQL Server, al database SQL di Azure e ad Azure SQL Data Warehouse tramite un'interfaccia ODBC. Immettere **pip list** per vedere elencate tutte le librerie. Assicurarsi di eseguire questo comando in Python sia nell'ambiente 2.7 che 3.5.
-  * **R**: le librerie installate correlate ad Azure in R sono **AzureML** e **RODBC**.
-  * **Java**: l'elenco delle librerie Java per Azure è disponibile nella directory **/dsvm/sdk/AzureSDKJava** della VM. Le librerie principali sono le API di archiviazione e gestione di Azure, Azure Cosmos DB e i driver JDBC per SQL Server.  
+  * **Python**: hello correlate ad Azure librerie in Python installati sono **azure**, **Azure ml**, **pydocumentdb**, e **pyodbc** . Con i primi tre librerie hello, è possibile accedere a servizi di archiviazione di Azure, Azure Machine Learning e Azure Cosmos DB (un database NoSQL in Azure). libreria quarto Hello, pyodbc (insieme hello driver Microsoft ODBC per SQL Server), consente accesso tooSQL Server, Database SQL di Azure e Azure SQL Data Warehouse da Python usando un'interfaccia ODBC. Immettere **elenco pip** toosee tutti hello elencati librerie. Essere toorun che questo comando in entrambi hello Python 2.7 e 3.5 ambienti.
+  * **R**: hello Azure relative librerie in R installati sono **Azure ml** e **RODBC**.
+  * **Java**: hello elenco delle librerie di Java di Azure è disponibile nella directory hello **/dsvm/sdk/AzureSDKJava** su hello macchina virtuale. librerie chiave Hello sono Azure archiviazione e la gestione API, Azure Cosmos DB e JDBC driver per SQL Server.  
 
-È possibile accedere al [portale di Azure](https://portal.azure.com) dal browser Firefox pre-installato. Nel portale di Azure si possono creare, gestire e monitorare le risorse di Azure.
+È possibile accedere hello [portale di Azure](https://portal.azure.com) dal browser Firefox pre-installate hello. Nel portale di Azure hello, è possibile creare, gestire e monitorare le risorse di Azure.
 
 ### <a name="azure-machine-learning"></a>Azure Machine Learning
-Azure Machine Learning è un servizio cloud completamente gestito che consente di creare, distribuire e condividere soluzioni di analisi predittiva. Si possono creare esperimenti e modelli da Azure Machine Learning Studio, a cui è possibile accedere da un Web browser nella macchina virtuale di analisi scientifica dei dati, visitando il sito [Microsoft Azure Machine Learning](https://studio.azureml.net).
+Azure Machine Learning è un servizio cloud completamente gestito che consente di toobuild, distribuire e condividere soluzioni analitica predittiva. Si possono creare esperimenti e modelli da Azure Machine Learning Studio, Essere accessibile da un browser web nella macchina virtuale di analisi scientifica dei dati hello visitando [Microsoft Azure Machine Learning](https://studio.azureml.net).
 
-Dopo aver eseguito l'accesso ad Azure Machine Learning Studio, si può accedere a un'area di sperimentazione che consente di compilare un flusso logico per gli algoritmi di Machine Learning. È anche possibile accedere a un notebook di Jupyter ospitato in Azure Machine Learning e usare direttamente gli esperimenti in Machine Learning Studio. È possibile rendere operativi i modelli di Machine Learning creati eseguendone il wrapping in un'interfaccia del servizio Web. Questo consente ai client scritti in qualsiasi linguaggio di richiamare le stime dai modelli di Machine Learning. Per altre informazioni, vedere [Documentazione su Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
+Dopo l'accesso tooAzure Machine Learning Studio, è necessario accedere tooan sperimentazione area di disegno in cui è possibile compilare un flusso logico per hello algoritmi di machine learning. Ha accesso tooa server Jupyter notebook ospitato in Azure Machine Learning e funziona perfettamente con esperimenti hello in Machine Learning Studio. Rendere operativo hello modelli di machine learning generati eseguendo il wrapping in un'interfaccia del servizio web. In questo modo i client scritti in eventuali stime tooinvoke language da hello modelli di machine learning. Per ulteriori informazioni, vedere hello [documentazione di Machine Learning](https://azure.microsoft.com/documentation/services/machine-learning/).
 
-È anche possibile creare modelli personalizzati in R o Python nella VM e quindi distribuirli nell'ambiente di produzione in Azure Machine Learning. Per abilitare questa funzionalità sono state installate librerie in R (**AzureML**) e Python (**azureml**).
+È possibile compilare anche i modelli R o Python su hello macchina virtuale e quindi distribuirla nell'ambiente di produzione in Azure Machine Learning. È stato installato librerie in R (**Azure ml**) e Python (**Azure ml**) tooenable questa funzionalità.
 
-Per informazioni su come distribuire i modelli in R e Python in Azure Machine Learning, vedere la sezione "Compilare modelli usando R o Python e renderli operativi con Azure Machine Learning" nell'articolo [Dieci cose da fare con la macchina virtuale per l'analisi scientifica dei dati](machine-learning-data-science-vm-do-ten-things.md) .
+Per informazioni su come modelli di toodeploy in R e Python in Azure Machine Learning, vedere [dieci operazioni da eseguire su hello analisi scientifica dei dati macchina virtuale](machine-learning-data-science-vm-do-ten-things.md) (in particolare, hello sezione "compilazione di modelli utilizzando R o Python e rendere operative le loro con Azure Machine Learning").
 
 > [!NOTE]
-> Queste istruzioni sono state scritte per la versione Windows della macchina virtuale di analisi scientifica dei dati. Tuttavia, le informazioni sulla distribuzione di modelli in Azure Machine Learning è applicabile anche alle VM Linux.
+> Queste istruzioni sono state scritte per la versione di Windows hello di hello VM di analisi scientifica dei dati. Ma informazioni hello purché esista nella distribuzione di modelli tooAzure Machine Learning sono applicabile toohello VM Linux.
 > 
 > 
 
 ### <a name="machine-learning-tools"></a>Strumenti di Machine Learning
-La VM viene fornita con alcuni strumenti e algoritmi di Machine Learning precompilati e preinstallati localmente. Sono inclusi:
+Hello VM viene fornito con alcuni di algoritmi che sono stati precompilati e pre-installati in locale e gli strumenti di apprendimento automatico. incluse le seguenti:
 
 * **CNTK** (Computational Network Toolkit di Microsoft Research): toolkit di apprendimento avanzato.
 * **Vowpal Wabbit**: algoritmo di apprendimento rapido online.
 * **xgboost**: strumento che fornisce algoritmi di albero con boosting ottimizzati.
-* **Python**: Anaconda Python integra algoritmi Machine Learning con librerie come Scikit-learn. È possibile installare altre librerie usando il comando `pip install` .
-* **R**: una libreria completa di funzioni di Machine Learning disponibili per R. Alcune librerie preinstallate sono lm, glm, randomForest, rpart. Altre librerie possono essere installate eseguendo:
+* **Python**: Anaconda Python integra algoritmi Machine Learning con librerie come Scikit-learn. È possibile installare altre librerie mediante hello `pip install` comando.
+* **R**: una libreria completa delle funzioni di machine learning è disponibile per R. Alcune delle librerie di hello pre-installati sono lm, glm, randomForest, rpart. Altre librerie possono essere installate eseguendo:
   
         install.packages(<lib name>)
 
-Ecco alcune informazioni aggiuntive sui primi tre strumenti di Machine Learning nell'elenco.
+Ecco alcune informazioni aggiuntive sul hello innanzitutto tre strumenti di apprendimento di computer nell'elenco di hello.
 
 #### <a name="cntk"></a>CNTK
-È un toolkit open source di apprendimento avanzato e uno strumento da riga di comando (cntk) già incluso in PATH.
+È un toolkit open source di apprendimento avanzato È uno strumento da riga di comando (cntk) ed è già in hello percorso.
 
-Per un esempio di base, eseguire i comandi seguenti nella shell:
+toorun un esempio di base, eseguire hello comandi nella shell di hello seguenti:
 
     cd /home/[USERNAME]/notebooks/CNTK/HelloWorld-LogisticRegression
     cntk configFile=lr_bs.cntk makeMode=false command=Train
 
-Per altre informazioni, vedere la sezione CNTK di [GitHub](https://github.com/Microsoft/CNTK) e la [wiki di CNTK](https://github.com/Microsoft/CNTK/wiki).
+Per ulteriori informazioni, vedere la sezione CNTK di hello [GitHub](https://github.com/Microsoft/CNTK), hello e [CNTK wiki](https://github.com/Microsoft/CNTK/wiki).
 
 #### <a name="vowpal-wabbit"></a>Vowpal Wabbit
 Vowpal Wabbit è un sistema di apprendimento automatico che usa tecniche come hash, allreduce, reduction, learning2search, nonché apprendimento online, attivo e interattivo.
 
-Per eseguire lo strumento su un esempio molto semplice, eseguire questi comandi:
+strumento di hello toorun su un esempio molto semplice, hello seguenti:
 
     cp -r /dsvm/tools/VowpalWabbit/demo vwdemo
     cd vwdemo
     vw house_dataset
 
-Nella directory sono presenti altre demo più approfondite. Per altre informazioni su VW, vedere [questa sezione di GitHub](https://github.com/JohnLangford/vowpal_wabbit) e la [wiki di Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit/wiki).
+Nella directory sono presenti altre demo più approfondite. Per ulteriori informazioni sulle unità VW, vedere [in questa sezione di GitHub](https://github.com/JohnLangford/vowpal_wabbit), hello e [wiki di Vowpal Wabbit](https://github.com/JohnLangford/vowpal_wabbit/wiki).
 
 #### <a name="xgboost"></a>XGBoost
-Si tratta di una libreria progettata e ottimizzata per gli algoritmi di albero con boosting. L'obiettivo di questa libreria consiste nello spingere i limiti di calcolo dei computer fino ai massimi livelli necessari per fornire una funzionalità di boosting degli alberi su larga scala portabile, scalabile e accurata.
+Si tratta di una libreria progettata e ottimizzata per gli algoritmi di albero con boosting. obiettivo di Hello di questa libreria è limiti di calcolo toopush hello di estremi toohello macchine necessari tooprovide boosting dell'albero su larga scala che sia scalabile, portabile e accurate.
 
 Viene fornita sia come riga di comando che come libreria R.
 
-Per usare questa libreria in R, è possibile avviare una sessione R interattiva digitando semplicemente **R** nella shell e quindi caricando la libreria.
+toouse questa libreria in R, è possibile avviare una sessione interattiva di R (digitando semplicemente **R** nella shell di hello) e il caricamento della libreria di hello.
 
 Ecco un semplice esempio eseguibile al prompt di R:
 
@@ -325,51 +325,51 @@ Ecco un semplice esempio eseguibile al prompt di R:
                     eta = 1, nthread = 2, nround = 2, objective = "binary:logistic")
     pred <- predict(bst, test$data)
 
-Per eseguire la riga di comando di xgboost, ecco i comandi da eseguire nella shell:
+riga di comando xgboost hello toorun, ecco hello comandi tooexecute nella shell di hello:
 
     cp -r /dsvm/tools/xgboost/demo/binary_classification/ xgboostdemo
     cd xgboostdemo
     xgboost mushroom.conf
 
 
-Nella directory specificata viene scritto un file con estensione model. Altre informazioni su questa demo sono disponibili [su GitHub](https://github.com/dmlc/xgboost/tree/master/demo/binary_classification).
+Un file. Model viene scritto toohello directory specificata. Altre informazioni su questa demo sono disponibili [su GitHub](https://github.com/dmlc/xgboost/tree/master/demo/binary_classification).
 
-Per altre informazioni su xgboost, vedere la [pagina della documentazione di xgboost](https://xgboost.readthedocs.org/en/latest/) e il relativo [archivio GitHub](https://github.com/dmlc/xgboost).
+Per ulteriori informazioni su xgboost, vedere hello [pagina della documentazione xgboost](https://xgboost.readthedocs.org/en/latest/)e il relativo [repository GitHub](https://github.com/dmlc/xgboost).
 
 #### <a name="rattle"></a>Rattle
-Rattle (**R** **A**nalytical **T**ool **T**o **L**earn **E**asily) usa la funzionalità di esplorazione e modellazione dei dati basate su GUI. Presenta riepiloghi statistici e visivi dei dati, trasforma i dati che possono essere modellati facilmente, compila modelli con e senza supervisione dai dati, presenta graficamente le prestazioni dei modelli e assegna un punteggio ai nuovi set di dati. Genera anche codice R replicando le operazioni nell'interfaccia utente che possono essere eseguite direttamente in R o usate come punto di partenza per altre analisi.
+Rattle (hello **R** **A**nalytical **T**Tool esegue **T**o **L**guadagnare **E** asily) utilizza modellazione e l'esplorazione dei dati basata su interfaccia utente grafica. Presenta statistiche e visual riepiloghi dei dati, trasformazioni che possono essere modellate immediatamente, compila supervisionati e non supervisionati modelli dai dati hello presenta hello prestazioni dei modelli graficamente e set di dati nuovi di punteggi. Genera inoltre il codice R, la replica di operazioni di hello in hello dell'interfaccia utente che possono essere eseguite direttamente nello R o utilizzate come punto di partenza per un'ulteriore analisi.
 
-Per eseguire Rattle, è necessario aprire una sessione di accesso desktop con interfaccia grafica. Nel terminale digitare ```R``` per accedere all'ambiente R. Al prompt di R immettere i comandi seguenti:
+toorun sonagli, è necessario toobe in una grafica desktop sessione di accesso. Nella finestra terminal hello, digitare ```R``` ambiente hello R tooenter. Al prompt dei comandi hello R, immettere hello seguenti comandi:
 
     library(rattle)
     rattle()
 
-Si apre un'interfaccia grafica con un set di schede. Qui è disponibile una procedura di avvio rapido in Rattle per l'uso di un set di dati meteo di esempio e la compilazione di un modello. In alcune delle procedure illustrate di seguito viene chiesto di installare automaticamente e caricare alcuni pacchetti R necessari non ancora disponibili nel sistema.
+Si apre un'interfaccia grafica con un set di schede. Di seguito sono hello passaggi toouse sonagli necessario un set di dati meteo di esempio e compilare un modello di avvio rapido. Alcuni dei passaggi di hello riportati di seguito, si installa tooautomatically richiesta e caricare alcuni pacchetti R richiesti che sono già disponibili nel sistema hello.
 
 > [!NOTE]
-> Se non si dispone di accesso per l'installazione del pacchetto nella directory predefinita, è possibile che venga visualizzata la richiesta sulla console R di Windows per l'installazione dei pacchetti nella libreria personale. Se vengono visualizzate queste richieste, rispondere *y* (Sì).
+> Se non si dispone di pacchetto di accesso tooinstall hello nella directory di sistema hello (impostazione predefinita hello), venga visualizzato un prompt dei comandi in R console finestra tooinstall pacchetti tooyour libreria personali. Se vengono visualizzate queste richieste, rispondere *y* (Sì).
 > 
 > 
 
 1. Fare clic su **Execute**.
-2. Viene visualizzata una finestra di dialogo in cui viene chiesto se si vuole usare il set di dati meteo di esempio. Fare clic su **Yes** (Sì) per caricare l'esempio.
-3. Fare clic sulla scheda **Model** (Modello).
-4. Fare clic su **Execute** (Esegui) per compilare un albero delle decisioni.
-5. Fare clic su **Draw** (Progetta) per visualizzare l'albero delle decisioni.
-6. Fare clic sul pulsante di opzione **Foresta** e quindi su **Esegui** per creare una foresta casuale.
-7. Fare clic sulla scheda **Evaluate** (Valuta).
-8. Fare clic sul pulsante di opzione **Rischio** e quindi su **Esegui** per visualizzare due tracciati delle prestazioni per Rischio (Cumulativo).
-9. Fare clic sulla scheda **Log** (Log) per visualizzare il codice R generato per le operazioni precedenti.
-   (A causa di un bug nella versione corrente di Rattle, è necessario inserire un carattere *#* davanti a *Esporta il log...* nel testo del log).
-10. Fare clic sul pulsante **Esporta** per salvare il file di script R denominato *weather_script.R* nella home directory.
+2. Una finestra di dialogo viene visualizzata, in cui viene richiesto se si desidera toouse hello esempio set di dati meteo. Fare clic su **Sì** esempio hello tooload.
+3. Fare clic su hello **modello** scheda.
+4. Fare clic su **Execute** toobuild un albero delle decisioni.
+5. Fare clic su **disegnare** albero delle decisioni di hello toodisplay.
+6. Fare clic su hello **foresta** pulsante di opzione e fare clic su **Execute** toobuild una foresta casuale.
+7. Fare clic su hello **Evaluate** scheda.
+8. Fare clic su hello **rischio** pulsante di opzione e fare clic su **Execute** toodisplay due rischio (cumulativo) prestazioni tracciati.
+9. Fare clic su hello **Log** hello tooshow scheda generare il codice R per hello operazioni precedenti.
+   (A causa di tooa bug nella versione corrente di hello di sonagli, è necessario tooinsert un  *#*  carattere davanti *esportare questo file di registro...*  nel testo hello del log hello.)
+10. Fare clic su hello **esportare** file script di pulsante toosave hello R denominato *weather_script. R* toohello home directory.
 
-È possibile uscire da Rattle e da R. A questo punto è possibile modificare lo script R generato o usarlo così com'è, in qualsiasi momento, per ripetere tutte le operazioni eseguite nell'interfaccia utente di Rattle. Questo è un modo semplice, specialmente per gli utenti meno esperti di R, di eseguire analisi e accedere all'apprendimento automatico rapidamente in un'interfaccia grafica semplice, generando automaticamente codice in R per apportare modifiche e/o apprendere.
+È possibile uscire sonagli e R. È possibile modificare lo script R hello generato o utilizzarlo come toorun, in qualsiasi momento toorepeat tutto ciò che è stata eseguita all'interno di hello Rattle dell'interfaccia utente. In particolare per utenti meno esperti in R, questo è un modo semplice tooquickly eseguire analisi e machine learning in un'interfaccia grafica semplice, durante la generazione automatica di codice in R toomodify e/o informazioni.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Ecco come è possibile continuare l'apprendimento e l'esplorazione:
 
-* La procedura dettagliata [Data science on the Linux Data Science Virtual Machine](machine-learning-data-science-linux-dsvm-walkthrough.md) (Analisi scientifica dei dati nella macchina virtuale Linux Data Science) illustra come eseguire diverse attività comuni di analisi scientifica dei dati con la macchina virtuale Data Science Linux qui descritta. 
-* Esaminare e provare i vari strumenti di analisi scientifica dei dati descritti in questo articolo nella VM di analisi scientifica dei dati. È anche possibile eseguire *dsvm-more-info* nella shell della macchina virtuale per un'introduzione di base e per visualizzare collegamenti ad altre informazioni sugli strumenti installati nella VM.  
-* Informazioni su come creare sistematicamente soluzioni analitiche end-to-end usando il [Processo di analisi scientifica dei dati per i team](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
-* Visitare la pagina relativa a [Cortana Analytics Gallery](http://gallery.cortanaanalytics.com) per esempi di Machine Learning e di analisi dei dati tramite Cortana Analytics Suite.
+* Hello [analisi scientifica dei dati nella macchina virtuale di analisi scientifica dei dati di Linux hello](machine-learning-data-science-linux-dsvm-walkthrough.md) procedura dettagliata viene illustrato come tooperform attività più comuni analisi scientifica dei dati con hello VM di analisi scientifica dei dati di Linux provisioning qui. 
+* Esplorare hello vari strumenti di analisi scientifica dei dati su hello analisi scientifica dei dati VM provando ad strumenti hello descritti in questo articolo. È anche possibile eseguire *dsvm-più-info* su shell hello hello di macchina virtuale per un'introduzione e i puntatori toomore le informazioni di base sugli strumenti hello installato hello VM.  
+* Informazioni su come soluzioni di analisi end-to-end toobuild sistematicamente utilizzando hello [processo di analisi scientifica dei dati di Team](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+* Visitare hello [Cortana Analitica raccolta](http://gallery.cortanaanalytics.com) per analitica di machine learning e i dati di esempio che hello utilizzare Cortana Analitica Suite.
 

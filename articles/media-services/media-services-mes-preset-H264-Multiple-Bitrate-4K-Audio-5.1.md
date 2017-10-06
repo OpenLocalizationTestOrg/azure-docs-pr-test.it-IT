@@ -1,6 +1,6 @@
 ---
-title: Codec video H.264 a bitrate multipli con risoluzione 4K e audio 5.1 | Documentazione Microsoft
-description: "Questo argomento offre una panoramica del set di impostazioni di attività **Codec video H.264 a bitrate multipli con risoluzione 4K e audio 5.1**."
+title: "aaa264 più velocità in bit 4K e Audio 5.1 | Documenti Microsoft"
+description: Hello argomento viene fornita una panoramica di hello * * 264 bitrate multiplo con risoluzione 4K Audio 5.1* * set di impostazioni.
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 10e5c41be42b73e3e1458adac9642547c182530b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ea0169a86b132002233488ba748a6583fe08d51b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-multiple-bitrate-4k-audio-51"></a>Codec video H.264 a bitrate multipli con risoluzione 4K e audio 5.1
-`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile usare un `preset name` per specificare il formato in cui codificare il file multimediale oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. Dopodiché, occorre trasmettere il set di impostazioni personalizzato al codificatore. Per un elenco di tutti i nomi dei set di impostazioni supportati dal codificatore `Media Encoder Standard`, vedere [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md) (Set di impostazioni di attività per Media Encoder Standard).  
+`Media Encoder Standard` definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È possibile utilizzare un `preset name` toospecify in formato di cui si desidera tooencode nel file multimediale. oppure creare set di impostazioni basati su JSON o XML personalizzati, con codifica UTF-8 o UTF-16. È quindi necessario passare codificatore personalizzato toohello preimpostato hello. Per elenco hello di hello tutti nomi supportati da questo set di impostazioni `Media Encoder Standard` codificatore, vedere [set di impostazioni di attività per supporti codificatore Standard](media-services-mes-presets-overview.md).  
   
- Questo argomento illustra il set di impostazioni `H264 Multiple Bitrate 4K Audio 5.1` nei formati XML e JSON.  
+ In questo argomento viene hello `H264 Multiple Bitrate 4K Audio 5.1` predefinito in formato XML e JSON.  
   
- Il set di impostazioni genera un set di 12 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa tra 20.000 e 1000 kbps. Per informazioni dettagliate su profilo, velocità in bit, frequenza di campionamento e così via di questo set di impostazioni, esaminare il codice XML o JSON definito di seguito. Per informazioni sul significato di ogni elemento e sui valori possibili per ciascuno, vedere lo [schema di Media Encoder Standard](media-services-mes-schema.md).  
-  
-> [!NOTE]
->  È necessario ottenere il tipo di unità riservata Premium con codifica 4K. Per altre informazioni, vedere [Come scalare la codifica](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
+ Questa impostazione produce un set di file MP4 allineati GOP a 12, compreso fra 20000 kbps too1000 kbps e audio 5.1 AAC. Per informazioni dettagliate sul profilo, velocità in bit, il campionamento di velocità e così via di questo set di impostazioni, esaminare hello XML o JSON definita di seguito. Per una spiegazione di significa che ogni elemento e i valori validi di hello per ogni elemento, vedere hello [schema Media Encoder Standard](media-services-mes-schema.md).  
   
 > [!NOTE]
->  Quando si modificano i valori `Width` e `Height` nei livelli, assicurarsi che le proporzioni rimangano coerenti. Ad esempio: 1920x1080, 1280x720, 1080x576, 640x360. Non è consigliabile usare una combinazione di proporzioni, ad esempio: 1280x720, 720x480, 640x360.  
+>  È necessario ottenere hello Premium riservato codifica il tipo di unità con 4K. Per ulteriori informazioni, vedere [come tooScale codifica](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
+  
+> [!NOTE]
+>  Quando si modifica hello `Width` e `Height` valori tra i livelli, assicurarsi che le proporzioni hello rimanga coerente. Ad esempio: 1920x1080, 1280x720, 1080x576, 640x360. Non è consigliabile usare una combinazione di proporzioni, ad esempio: 1280x720, 720x480, 640x360.  
   
  XML  
   

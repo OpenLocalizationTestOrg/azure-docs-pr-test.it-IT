@@ -1,6 +1,6 @@
 ---
-title: Come configurare un ambiente del servizio app v1
-description: Configurazione, gestione e monitoraggio dell'ambiente del servizio app v1
+title: aaaHow tooConfigure v1 un ambiente del servizio App
+description: Configurazione, gestione e monitoraggio di hello v1 ambiente del servizio App
 services: app-service
 documentationcenter: 
 author: ccompy
@@ -14,186 +14,186 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: ae99f5a412f73cddc28543ba12c66c82f1a7835a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f9539a72517276d8a1e340a408841561e8b8f56d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-an-app-service-environment-v1"></a>Configurazione di un ambiente del servizio app v1
 
 > [!NOTE]
-> Questo articolo fa riferimento all'ambiente del servizio app v1  Esiste una nuova versione dell'ambiente del servizio app che, oltre ad essere più facile da usare, può essere eseguita in un'infrastruttura più potente. Per altre informazioni su questa nuova versione, vedere [Introduzione ad Ambiente del servizio app](../app-service/app-service-environment/intro.md).
+> Questo articolo è sull'ambiente del servizio App v1 hello.  È una versione più recente di hello ambiente del servizio App che è più facile toouse e viene eseguito sull'infrastruttura più potente. informazioni sulla nuova versione di hello iniziare con hello toolearn [toohello introduzione ambiente del servizio App](../app-service/app-service-environment/intro.md).
 > 
 
 ## <a name="overview"></a>Panoramica
 A livello generale, un ambiente del servizio app di Azure è costituito da vari componenti principali:
 
-* Risorse di calcolo in esecuzione nel servizio ospitato dell'ambiente del servizio app
+* Risorse di calcolo che sono in esecuzione nell'ambiente del servizio App hello servizio ospitato
 * Archiviazione
 * Un database
 * Una rete virtuale di Azure classica (V1) o di Resource Manager (V2) 
-* Una subnet in cui viene eseguito il servizio ospitato dell'ambiente del servizio app
+* Una subnet con il servizio di ambiente del servizio App ospitata hello in esecuzione
 
 ### <a name="compute-resources"></a>Risorse di calcolo
-Le risorse di calcolo vengono usate per quattro pool di risorse.  Ogni ambiente del servizio app contiene un set di front-end e tre pool di lavoro possibili. Non è necessario usare tutti e tre i pool di lavoro. Se si vuole, è possibile usarne solo uno o due.
+Utilizzare le risorse di calcolo hello per il pool di quattro risorse.  Ogni ambiente del servizio app contiene un set di front-end e tre pool di lavoro possibili. Non è necessario di tutti i pool di lavoro tre - toouse se si desidera, è possibile utilizzare solo uno o due.
 
-Gli host nei pool di risorse (front-end e ruoli di lavoro) non sono direttamente accessibili per i tenant. Non è possibile usare Remote Desktop Protocol (RDP) per connettersi a essi, modificarne il provisioning o eseguire attività amministrative.
+gli host di Hello nei pool di risorse hello (front-end e lavoratori) non sono direttamente accessibili tootenants. Impossibile utilizzare toothem tooconnect Remote Desktop Protocol (RDP), modificare il provisioning o agire come un amministratore su di essi.
 
 È possibile impostare la quantità e le dimensioni dei pool di risorse. In un ambiente del servizio app sono disponibili quattro opzioni di dimensioni, denominate da P1 a P4. Per informazioni dettagliate sulle dimensioni e sui relativi prezzi, vedere la sezione "Prezzi" in [Informazioni sul servizio app di Azure](../app-service/app-service-value-prop-what-is.md).
-La modifica della quantità o delle dimensioni è denominata operazione di ridimensionamento.  È possibile eseguire una sola operazione di ridimensionamento alla volta.
+Modifica quantità hello o dimensioni, si tratta di un'operazione di scala.  È possibile eseguire una sola operazione di ridimensionamento alla volta.
 
-**Front-end**: i front-end sono gli endpoint HTTP/HTTPS per le app contenute nell'ambiente del servizio app. Nei front-end non vengono eseguiti carichi di lavoro.
+**Front-end**: front-end hello sono gli endpoint HTTP/HTTPS hello per le app che vengono mantenuti nel ASE. Non vengono eseguiti i carichi di lavoro in hello front-end.
 
-* Un ambiente del servizio app include inizialmente due P2, sufficienti per carichi di lavoro di sviluppo e test e carichi di lavoro di produzione di basso livello. Per carichi di lavoro di produzione da moderati a elevati è consigliabile usare P3.
-* Per carichi di lavoro di produzione da moderati a elevati, è consigliabile avere almeno quattro P3 per garantire l'esecuzione di un numero sufficiente di front-end durante la manutenzione pianificata. Nelle attività di manutenzione pianificata, verrà arrestato un front-end per volta e la capacità complessiva disponibile di front-end risulterà così ridotta.
-* Il provisioning del front-end può richiedere fino a un'ora. 
-* Per ottimizzare ulteriormente il ridimensionamento, è consigliabile monitorare le metriche Percentuale CPU, Percentuale memoria e Richieste attive del pool front-end. Se la percentuale di CPU o memoria è superiore al 70% durante l'esecuzione di P3, aggiungere altri front-end. È consigliabile aggiungere altri front-end anche in caso di valore medio delle richieste attive compreso tra 15.000 e 20.000 per front-end. Durante l'esecuzione di P3, l'obiettivo generale è mantenere le percentuali di CPU e memoria inferiori al 70% e la media delle richieste attive al di sotto di 15.000 richieste per front-end.  
+* Un ambiente del servizio app include inizialmente due P2, sufficienti per carichi di lavoro di sviluppo e test e carichi di lavoro di produzione di basso livello. È consigliabile P3s per tooheavy moderata i carichi di lavoro.
+* Per i carichi di lavoro di produzione tooheavy con gravità moderata, si consiglia di disporre di almeno quattro tooensure P3s esistono sufficienti front-end in esecuzione quando si verifica di manutenzione pianificata. Nelle attività di manutenzione pianificata, verrà arrestato un front-end per volta e la capacità complessiva disponibile di front-end risulterà così ridotta.
+* Front-end può richiedere tooan ora tooprovision. 
+* Per ottimizzare ulteriormente la scala, è necessario monitorare la percentuale di CPU hello, percentuale di memoria e le metriche di richieste attive per il pool di server front-end hello. Se durante l'esecuzione di P3s. le percentuali di CPU o memoria hello sono superiore al 70%, aggiungere ulteriori server front-end. Se il valore di richieste attive hello calcola Media too15, too20 000 000 richieste per ogni front-end, è necessario aggiungere ulteriori server front-end. Hello obiettivo complessivo è tookeep CPU e delle percentuali di memoria inferiore a 70% e di richieste attive Media out toobelow 15.000 richieste al front-end, quando si esegue P3s.  
 
-**Ruoli di lavoro**: i ruoli di lavoro sono la posizione in cui le app vengono effettivamente eseguite. Quando si passa a un piano di servizio app superiore, vengono usati i ruoli di lavoro del pool di lavoro associato.
+**Thread di lavoro**: lavoratori hello sono in cui vengono eseguiti effettivamente le app. Quando si aumenta il del servizio App piani, che utilizza i lavoratori in hello associati pool di lavoro.
 
-* Non è possibile aggiungere immediatamente ruoli di lavoro. Il provisioning può richiedere fino a un'ora.
-* Il ridimensionamento di una risorsa di calcolo di un qualsiasi pool richiederà meno di un'ora per ogni dominio di aggiornamento. Sono disponibili 20 domini di aggiornamento in un ambiente del servizio app. Il ridimensionamento del calcolo di un pool di lavoro con 10 istanze potrebbe richiedere fino a 10 ore.
-* Se si modificano le dimensioni delle risorse di calcolo usate in un pool di lavoro, si verificheranno avvii a freddo delle app in esecuzione nel pool di lavoro.
+* Non è possibile aggiungere immediatamente ruoli di lavoro. Che occupino tooan ora tooprovision.
+* Hello dimensioni di una risorsa di calcolo per qualsiasi pool richiederà < 1 ora per ogni dominio di aggiornamento. Sono disponibili 20 domini di aggiornamento in un ambiente del servizio app. Se in scala di dimensioni di calcolo hello di un pool di lavoro con le istanze di 10, potrebbero richiedere too10 ore toocomplete.
+* Se si modifica la dimensione hello hello delle risorse di calcolo che vengono utilizzati in un pool di lavoro, si verificherà l'avvio a freddo di hello App che sono in esecuzione in tale pool di lavoro.
 
-Il modo più rapido per modificare le dimensioni delle risorse di calcolo di un pool di lavoro che non esegue alcuna app consiste nel:
+Hello più rapido toochange hello calcolare la dimensione di risorsa di un pool di lavoro che non è in esecuzione di qualsiasi App consiste nel:
 
-* Ridurre la quantità di ruoli di lavoro a 2.  La dimensione di ridimensionamento minima nel portale è pari a 2. La deallocazione delle istanze richiederà qualche minuto. 
-* Selezionare le nuove dimensioni di calcolo e il nuovo numero di istanze. A questo punto, il completamento dell'operazione richiederà fino a 2 ore.
+* Scalare verso il basso quantità hello di too2 processi di lavoro.  Scala minima del Hello verso il basso della dimensione nel portale di hello è 2. Può richiedere alcuni minuti toodeallocate le istanze. 
+* Selezionare nuove dimensioni di calcolo hello e numero di istanze. A questo punto, occuperà too2 ore toocomplete.
 
-Se le app richiedono dimensioni delle risorse di calcolo superiori, le indicazioni precedenti non risulteranno utili. Anziché modificare le dimensioni del pool di lavoro che ospita tali app, è possibile popolare un altro pool di lavoro con ruoli di lavoro delle dimensioni desiderate e spostare le app in tale pool.
+Se le app richiedono una dimensione di risorse di calcolo più grande, si può usufruire di informazioni aggiuntive precedenti hello. Anziché modificare dimensioni hello del pool di lavoro hello che ospita queste App, è possibile popolare un altro pool di lavoro con processi di lavoro di dimensioni desiderato hello e sposta le app su toothat pool.
 
-* Creare le istanze aggiuntive delle dimensioni di calcolo necessarie in un altro pool di lavoro. Il completamento dell'operazione richiederà fino a un'ora.
-* Riassegnare i piani di servizio app che ospitano le app che richiedono dimensioni superiori al pool di lavoro appena configurato. Questa operazione è rapida e richiede meno di un minuto per il completamento.  
-* Se le istanze inutilizzate non sono più necessarie, ridurre il primo pool di lavoro. Il completamento dell'operazione richiede alcuni minuti.
+* Creare istanze aggiuntive di hello di hello necessario calcolare le dimensioni in un altro pool di lavoro. Questa operazione richiederà di tooan ora toocomplete.
+* Riassegnare i piani di servizio App che ospitano applicazioni hello che richiedono un pool di lavoro di maggiori dimensioni toohello appena configurato. Si tratta di un'operazione di rapida esecuzione che dovrà essere minore di un minuto toocomplete.  
+* Ridurre il pool di lavoro prima hello se non è necessario più di tali istanze inutilizzate. Questa operazione richiede pochi minuti toocomplete.
 
-**Ridimensionamento automatico**: uno degli strumenti che consentono di gestire l'utilizzo delle risorse di calcolo è il ridimensionamento automatico, che può essere usato per pool di lavoro o front-end. È ad esempio possibile aumentare e successivamente ridurre nell'arco della stessa giornata le istanze di qualsiasi tipo di pool o eventualmente aggiungere istanze quando il numero dei ruoli di lavoro disponibili in un pool di lavoro scende al di sotto di una determinata soglia.
+**La scalabilità automatica**: uno degli strumenti hello che consentono di toomanage il consumo di risorse di calcolo è la scalabilità automatica. che può essere usato per pool di lavoro o front-end. È possibile eseguire operazioni, ad esempio aumentare le istanze di qualsiasi tipo di pool mattino hello e ridurlo sera hello. O forse è possibile aggiungere istanze quando il numero di hello di processi di lavoro che sono disponibili in un pool di lavoro scende sotto una determinata soglia.
 
-Se si vogliono impostare regole di ridimensionamento automatico in base alle metriche del pool di risorse di calcolo, tenere presente il tempo necessario per il provisioning. Per altri dettagli sul ridimensionamento automatico degli ambienti del servizio app, vedere [Come configurare il ridimensionamento automatico in un ambiente del servizio app][ASEAutoscale].
+È necessario se si desidera che le regole di scalabilità automatica tooset intorno metriche pool risorse di calcolo, mantenere nel tempo hello tenga presente che il provisioning. Per altre informazioni sugli ambienti di servizio App per la scalabilità automatica, vedere [come tooconfigure scalabilità automatica in un ambiente del servizio App][ASEAutoscale].
 
 ### <a name="storage"></a>Archiviazione
-Ogni ambiente del servizio app è configurato con 500 GB di spazio di archiviazione. Questo spazio viene usato da tutte le app incluse nell'ambiente. Lo spazio di archiviazione fa parte dell'ambiente del servizio app e non è possibile cambiare l'impostazione per usare il proprio spazio di archiviazione. Se si apportano modifiche al routing o alla sicurezza della rete virtuale, è necessario consentire l'accesso ad Archiviazione di Azure. In caso contrario, l'ambiente del servizio app non può funzionare.
+Ogni ambiente del servizio app è configurato con 500 GB di spazio di archiviazione. Questo spazio viene utilizzato in tutte le app hello in hello ASE. Questo spazio di archiviazione è una parte di hello ASE e attualmente non può essere disattivati toouse lo spazio di archiviazione. Se si apportano modifiche tooyour rete virtuale routing o la sicurezza, è necessario toostill consentire accesso tooAzure archiviazione - o hello ASE non può funzionare.
 
 ### <a name="database"></a>Database
-Il database contiene le informazioni che definiscono l'ambiente, nonché tutti i dettagli sulle app in esso eseguite. Anche questo fa parte della sottoscrizione di Azure. L'utente non ha la possibilità di modificare queste informazioni direttamente. Se si apportano modifiche al routing o alla sicurezza della rete virtuale, è necessario consentire l'accesso a SQL Azure. In caso contrario, l'ambiente del servizio app non può funzionare.
+database Hello contiene informazioni di hello che definisce l'ambiente hello, nonché informazioni dettagliate di hello sulle applicazioni hello che sono in esecuzione all'interno di esso. Questa è troppo una parte di hello sottoscrizione contenuti di Azure. Non è un elemento che si dispone di un toomanipulate possibilità diretto. Se si apportano modifiche tooyour rete virtuale routing o la sicurezza, è necessario toostill consentire accesso tooSQL Azure - o hello ASE non può funzionare.
 
 ### <a name="network"></a>Rete
-La rete virtuale usata con l'ambiente del servizio app può essere una rete creata durante la creazione dell'ambiente o in precedenza. Se la subnet viene creata durante la creazione dell'ambiente del servizio app, l'ambiente apparterrà allo stesso gruppo di risorse della rete virtuale. Se è necessario che il gruppo di risorse usato dall'ambiente del servizio app sia diverso da quello della rete virtuale, occorre creare l'ambiente del servizio app usando un modello di Resource Manager.
+rete virtuale che viene utilizzato con il ASE Hello può essere uno apportate durante la creazione di hello ASE o eseguito in anticipo. Quando si creano subnet hello durante la creazione di base, viene forzato toobe hello ASE in hello rete virtuale hello stesso gruppo di risorse. Se è necessario il gruppo di risorse hello utilizzato il toobe ASE diverso da quello di una rete virtuale, è necessario toocreate il ASE utilizzando un modello di gestione risorse.
 
-Esistono alcune restrizioni per la rete virtuale usata per un ambiente del servizio app:
+Esistono alcune restrizioni relative alla rete virtuale hello utilizzato per un tipo di base:
 
-* La rete virtuale deve essere una rete virtuale a livello di area.
-* È necessaria una subnet con 8 o più indirizzi, in cui viene distribuito l'ambiente del servizio app.
-* Se una subnet viene usata per ospitare un ambiente del servizio app, l'intervallo di indirizzi della subnet non può essere modificato. Per questo motivo, è consigliabile che la subnet contenga almeno 64 indirizzi per supportare un'eventuale crescita futura dell'ambiente del servizio app.
-* La subnet non può contenere altro oltre all'ambiente del servizio app.
+* rete virtuale Hello deve essere una rete virtuale regionale.
+* È necessaria una subnet con 8 o più indirizzi in cui è distribuito hello ASE toobe.
+* Dopo una subnet è toohost usato un ASE, intervallo di indirizzi hello della subnet hello non può essere modificata. Per questo motivo, è consigliabile che la subnet hello contiene almeno 64 indirizzi tooaccommodate crescita futura ASE.
+* Può essere presente esclusivamente nella subnet hello ma ASE hello.
 
-A differenza del servizio ospitato contenente l'ambiente del servizio app, la [rete virtuale][virtualnetwork] e la subnet sono controllate dall'utente.  È possibile amministrare la rete virtuale con l'interfaccia utente Rete virtuale o con PowerShell.  Un ambiente del servizio app può essere distribuito in una rete virtuale classica o di Resource Manager.  L'esperienza a livello di portale e di API è leggermente diversa tra reti virtuali classiche e di Resource Manager, ma l'esperienza dell'ambiente del servizio app è identica.
+A differenza dei servizi ospitato hello contenente ASE hello, hello [rete virtuale] [ virtualnetwork] e subnet sottoposti al controllo utente.  È possibile amministrare la rete virtuale tramite l'interfaccia utente di rete virtuale hello o PowerShell.  Un ambiente del servizio app può essere distribuito in una rete virtuale classica o di Resource Manager.  esperienze di API e portale Hello sono leggermente diverse tra classico e Gestione risorse VNets ma hello esperienza ASE è hello stesso.
 
-La rete virtuale usata per ospitare un ambiente del servizio app può usare indirizzi IP RFC1918 privati o indirizzi IP pubblici.  Se si vuole usare un intervallo IP non coperto da RFC1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16), la rete virtuale e la subnet usate dall'ambiente del servizio app devono essere create prima di creare l'ambiente.
+rete virtuale che viene utilizzato toohost un ASE Hello è possibile utilizzare entrambi gli indirizzi IP RFC1918 privati o è possibile utilizzare gli indirizzi IP pubblici.  Se si desidera toouse un intervallo IP non è coperto da RFC1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) è necessario toocreate toobe la rete virtuale e subnet utilizzato per la base precedono creazione ASE.
 
-Poiché il servizio app di Azure viene inserito nella rete virtuale, le app ospitate nell'ambiente del servizio app possono accedere direttamente alle risorse rese disponibili tramite reti private virtuali (VPN) da sito a sito o ExpressRoute. Le app all'interno dell'ambiente del servizio app non richiedono funzionalità di rete aggiuntive per accedere alle risorse disponibili nella rete virtuale che ospita l'ambiente del servizio app. Non è quindi necessario usare le funzionalità Integrazione rete virtuale o Connessioni ibride per accedere alle risorse incluse o connesse alla rete virtuale. È comunque possibile usare entrambe queste funzionalità per accedere a risorse in reti non connesse alla propria rete virtuale.
+Poiché questa funzionalità è posizionata hello Azure App Service nella rete virtuale, significa che le app che sono ospitate nel ASE possono ora accedere alle risorse vengono resi disponibili tramite ExpressRoute o reti private virtuali (VPN) da sito a sito direttamente. app di Hello nell'ambiente del servizio App non richiedono ulteriori rete funzionalità tooaccess risorse disponibili toohello rete virtuale che ospita l'ambiente del servizio App. Ciò significa che non è necessario toouse integrazione della rete virtuale o le connessioni ibride tooget tooresources in o rete virtuale connessa tooyour. È comunque possibile utilizzare entrambe queste funzionalità se le risorse tooaccess nelle reti che non sono connessi tooyour di rete virtuale.
 
-È ad esempio possibile usare l'integrazione rete virtuale per ottenere l'integrazione con una rete virtuale disponibile nella sottoscrizione ma non connessa alla rete virtuale che include l'ambiente del servizio app. oppure usare la funzionalità Connessioni ibride per accedere a risorse in altre reti, come normalmente possibile.  
+Ad esempio, è possibile utilizzare toointegrate integrazione della rete virtuale con una rete virtuale nella sottoscrizione, ma non è connesso toohello la rete virtuale che è la base. È possibile utilizzare ancora anche le connessioni ibride tooaccess risorse in altre reti, analoga a quella normalmente.  
 
-Se la rete virtuale è configurata con una VPN ExpressRoute, è necessario tenere conto di alcune esigenze di routing specifiche di un ambiente del servizio app. Alcune configurazioni di route definite dall'utente sono incompatibili con un ambiente del servizio app. Per altri dettagli sull'esecuzione di un ambiente del servizio app in una rete virtuale con ExpressRoute, vedere [Esecuzione di un ambiente del servizio app in una rete virtuale con ExpressRoute][ExpressRoute].
+Se è la rete virtuale configurata con una VPN ExpressRoute, è necessario tenere conto delle esigenze di routing hello che dispone di un tipo di base. Alcune configurazioni di route definite dall'utente sono incompatibili con un ambiente del servizio app. Per altri dettagli sull'esecuzione di un ambiente del servizio app in una rete virtuale con ExpressRoute, vedere [Esecuzione di un ambiente del servizio app in una rete virtuale con ExpressRoute][ExpressRoute].
 
 #### <a name="securing-inbound-traffic"></a>Protezione del traffico in ingresso
-Per controllare il traffico in ingresso all'ambiente del servizio app esistono due metodi principali.  È possibile usare gruppi di sicurezza di rete (NSG) per controllare gli indirizzi IP che potranno accedere all'ambiente del servizio app, come descritto nell'articolo [Come controllare il traffico in ingresso a un ambiente del servizio app](app-service-app-service-environment-control-inbound-traffic.md) , nonché configurare l'ambiente del servizio app con un servizio di bilanciamento del carico interno.  Queste funzionalità possono anche essere usate contemporaneamente, se si vuole limitare l'accesso usando gruppi di sicurezza di rete per un ambiente del servizio app con servizio di bilanciamento del carico interno.
+Esistono due metodi principali toocontrol in ingresso ASE tooyour traffico.  È possibile utilizzare toocontrol Groups(NSGs) di sicurezza di rete quali IP indirizzi possono accedere i ASE come descritto qui [come toocontrol in ingresso il traffico in un ambiente del servizio App](app-service-app-service-environment-control-inbound-traffic.md) ed è anche possibile configurare il ASE con un carico interno Balancer(ILB).  Queste funzionalità possono inoltre essere utilizzate insieme se si desidera accedere toorestrict utilizzando NSGs tooyour ASE di bilanciamento del carico interno.
 
 Quando si crea un ambiente del servizio app, verrà creato un indirizzo VIP nella rete virtuale.  Esistono due tipi di indirizzo VIP: esterno e interno.  Quando si crea un ambiente del servizio app con un indirizzo VIP esterno, le app nell'ambiente saranno accessibili tramite un indirizzo IP instradabile su Internet. Quando si seleziona un indirizzo VIP interno, l'ambiente del servizio app verrà configurato con un servizio di bilanciamento del carico interno e non sarà accessibile direttamente da Internet.  In un ambiente del servizio app con servizio di bilanciamento del carico interno è comunque necessario un indirizzo VIP esterno, ma viene usato solo per l'accesso a scopo di gestione e di manutenzione di Azure.  
 
-Durante la creazione di un ambiente del servizio app con servizio di bilanciamento del carico interno si specifica il sottodominio usato dall'ambiente ed è necessario gestire un proprio DNS per il sottodominio specificato.  Poiché si imposta il nome del sottodominio, è necessario anche gestire il certificato usato per l'accesso HTTPS.  Al termine della creazione dell'ambiente del servizio app verrà richiesto di specificare il certificato.  Per altre informazioni sulla creazione e sull'uso di un ambiente del servizio app con servizio di bilanciamento del carico interno, vedere [Uso di un servizio di bilanciamento del carico interno con un ambiente del servizio app][ILBASE]. 
+Durante la creazione di bilanciamento del carico interno ASE Fornisci sottodominio hello utilizzato da hello ASE di bilanciamento del carico interno e sarà necessario toomanage DNS per il sottodominio hello specificate.  Poiché si imposta il nome di sottodominio hello è inoltre necessario il certificato di hello toomanage utilizzato per l'accesso tramite HTTPS.  Dopo avere ASE creazione che si è richiesto il certificato di hello tooprovide.  lettura toolearn ulteriori informazioni su creazione e l'uso di ASE un bilanciamento del carico interno [con un bilanciamento del carico interno di un ambiente del servizio App][ILBASE]. 
 
 ## <a name="portal"></a>di Microsoft Azure
-È possibile gestire e monitorare l'ambiente del servizio app usando l'interfaccia utente del portale di Azure. Se è stato creato un ambiente del servizio app, nella barra laterale verrà probabilmente visualizzato il simbolo dei servizi app, usato per rappresentare gli ambienti del servizio app nel portale di Azure:
+È possibile gestire e monitorare l'ambiente del servizio App con hello dell'interfaccia utente nel portale di Azure hello. Se si dispone di un tipo di base, si è probabilmente toosee hello simbolo di servizio App l'intestazione laterale. Questo simbolo è toorepresent utilizzati gli ambienti del servizio App nel portale di Azure hello:
 
 ![Simbolo degli ambienti del servizio app][1]
 
-Per aprire l'interfaccia utente in cui sono elencati tutti gli ambienti del servizio app disponibili, è possibile usare l'icona oppure selezionare la freccia di espansione (simbolo ">") nella parte inferiore della barra laterale e quindi Ambienti del servizio app. Se si seleziona uno degli ambienti del servizio app elencati, verrà visualizzata l'interfaccia utente usata per monitorare e gestire tale ambiente.
+tooopen hello dell'interfaccia utente che elenca tutti gli ambienti di servizio App, è possibile utilizzare freccia di espansione selezionare hello o di un'icona di hello (">" simbolo) nella parte inferiore di hello della barra laterale di hello tooselect gli ambienti del servizio App. Selezionando una delle ASEs hello elencati, aprire un'interfaccia utente utilizzati toomonitor hello e gestirlo.
 
 ![Interfaccia utente per il monitoraggio e la gestione di un ambiente del servizio app][2]
 
-Il primo pannello mostra alcune proprietà dell'ambiente del servizio app e un grafico di metriche per ogni pool di risorse. Alcune delle proprietà visualizzate nel blocco **Informazioni di base** sono anche collegamenti ipertestuali che consentono di aprire il pannello associato. Se si seleziona il nome **Rete virtuale** , ad esempio, verrà aperta l'interfaccia utente associata alla rete virtuale in cui viene eseguito l'ambiente del servizio app. I collegamenti **Piani di servizio app** e **App** consentono di aprire i pannelli contenenti gli elementi corrispondenti inclusi nell'ambiente del servizio app.  
+Il primo pannello mostra alcune proprietà dell'ambiente del servizio app e un grafico di metriche per ogni pool di risorse. Alcune proprietà che vengono visualizzati in hello hello **Essentials** blocco sono anche i collegamenti ipertestuali che verranno aperto il pannello hello che è associato. Ad esempio, è possibile selezionare hello **rete virtuale** tooopen nome backup hello dell'interfaccia utente associata con la rete virtuale hello in esecuzione il ASE in. I collegamenti **Piani di servizio app** e **App** consentono di aprire i pannelli contenenti gli elementi corrispondenti inclusi nell'ambiente del servizio app.  
 
 ### <a name="monitoring"></a>Monitoraggio
-I grafici consentono di visualizzare un'ampia gamma di metriche delle prestazioni in ogni pool di risorse. Per il pool front-end, è possibile monitorare l'utilizzo medio di CPU e memoria. Per i pool di lavoro, è possibile monitorare la quantità usata e la quantità disponibile.
+grafici di Hello consentono toosee un'ampia gamma di metriche delle prestazioni in ogni pool di risorse. Per il pool di hello front-end, è possibile monitorare hello utilizzo medio della CPU e memoria. Per il pool di lavoro, è possibile monitorare quantità hello utilizzato e quantità hello è disponibile.
 
-I ruoli di lavoro in un pool di lavoro possono essere usati da più piani di servizio app. Poiché il carico di lavoro non viene distribuito nello stesso modo in cui viene distribuito per i server front-end, l'utilizzo di CPU e memoria non offre informazioni particolarmente utili. È più importante tenere traccia del numero dei ruoli di lavoro usati e disponibili, soprattutto se si gestisce il sistema perché venga usato da altri.  
+Rendere i piani di servizio App di più l'utilizzo di lavori hello in un pool di lavoro. carico di lavoro Hello non viene distribuita in hello stesso modo come con i server front-end di hello, in modo non forniscono utilizzo della CPU e memoria hello perlopiù in modo hello di informazioni utili. Tootrack più importante è il numero di processi di lavoro che è stato usato e sono disponibili, in particolare se si gestisce questo sistema per altri toouse.  
 
-Tutte le metriche di cui può essere tenuta traccia nei grafici possono essere usate anche per impostare avvisi. L'impostazione di avvisi funziona come altrove nel servizio app. È possibile impostare un avviso nel riquadro interfaccia utente **Avvisi** oppure direttamente nell'interfaccia utente delle singole metriche selezionando **Aggiungi avviso**.
+È inoltre possibile utilizzare le metriche di hello che possono essere registrate in hello grafici tooset di avvisi. Impostazione di avvisi qui works hello stesso come in un' posizione nel servizio App. È possibile impostare un avviso da entrambi hello **avvisi** dell'interfaccia utente o parte di drill-down delle metriche dell'interfaccia utente e selezionando **Aggiungi avviso**.
 
 ![Interfaccia utente delle metriche][3]
 
-Le metriche illustrate sopra sono le metriche dell'ambiente del servizio app. Sono disponibili metriche anche a livello del piano di servizio app. In questo caso, il monitoraggio di CPU e memoria risulta particolarmente utile.
+le metriche di Hello appena descritti sono metriche di ambiente del servizio App hello. Sono inoltre disponibili le metriche disponibili nel livello di piano di servizio App hello. In questo caso, il monitoraggio di CPU e memoria risulta particolarmente utile.
 
-In un ambiente del servizio app, tutti i piani di servizio app sono dedicati. Di conseguenza, le uniche app in esecuzione negli host allocati al piano di servizio app sono le app incluse in quello stesso piano. Per verificare i dettagli del piano di servizio app, visualizzare il piano da uno degli elenchi nell'interfaccia utente dell'ambiente del servizio app oppure da **Browse App Service plans** (Esplora piani di servizio app), in cui sono elencati tutti i piani.   
+In un ASE, tutti i piani di servizio App hello sono dedicati piani di servizio App. Che significa che hello solo le app che eseguono hello host allocate toothat piano di servizio App sono App hello in tale piano di servizio App. Dettagli toosee nel piano di servizio App, visualizzare il piano di servizio App da uno qualsiasi degli elenchi di hello hello dell'interfaccia utente di base o da **piani di servizio App di esplorare** (che elenca tutti gli elementi).   
 
 ### <a name="settings"></a>Impostazioni
-Il pannello dell'ambiente del servizio app include una sezione **Impostazioni** che contiene diverse funzionalità importanti.
+Nel pannello hello ASE è un **impostazioni** sezione che contiene diverse funzionalità importanti:
 
-**Impostazioni** > **Proprietà**: il pannello **Impostazioni** viene aperto automaticamente quando si visualizza il pannello dell'ambiente del servizio app. Nella parte superiore è disponibile la voce **Proprietà**. In questa sezione sono presenti alcune voci visualizzate anche nella sezione **Informazioni di base**. Le voci particolarmente utili sono **Indirizzo IP virtuale** e **Indirizzo IP in uscita**.
+**Impostazioni** > **proprietà**: hello **impostazioni** pannello verrà aperta automaticamente quando verrà distribuito il pannello ASE. Inizio hello è **proprietà**. Esistono un numero di elementi che sono toowhat ridondanti presenti in questa pagina **Essentials**, ma è molto utile **indirizzo IP virtuale**, così come **gli indirizzi IP in uscita**.
 
 ![Pannello Impostazioni e Proprietà][4]
 
-**Impostazioni** > **Indirizzi IP**: quando si crea un'app IP SSL (Secure Sockets Layer) nell'ambiente del servizio app, è necessario un indirizzo IP SSL. Per ottenerne uno, è necessario che l'ambiente del servizio app possieda indirizzi IP SSL da allocare. Quando viene creato, l'ambiente del servizio app ha un indirizzo IP SSL a tale scopo, ma è possibile aggiungerne altri. Per gli indirizzi IP SSL aggiuntivi è previsto un addebito, come indicato nella sezione relativa alle connessioni SSL in [Prezzi di Servizio app ][AppServicePricing]. Il prezzo indicato è il prezzo aggiuntivo per la connessione IP SSL.
+**Impostazioni** > **Indirizzi IP**: quando si crea un'app IP SSL (Secure Sockets Layer) nell'ambiente del servizio app, è necessario un indirizzo IP SSL. Il ASE deve tooobtain ordine uno, gli indirizzi IP SSL di sua proprietà che possono essere allocati. Quando viene creato, l'ambiente del servizio app ha un indirizzo IP SSL a tale scopo, ma è possibile aggiungerne altri. È previsto un addebito per gli indirizzi di SSL IP aggiuntivo, come illustrato nel [servizio App prezzi] [ AppServicePricing] (nella sezione hello per le connessioni SSL). prezzo aggiuntive Hello è hello prezzo IP SSL.
 
-**Impostazioni** > **Pool front end** / **Pool di lavoro**: ogni pannello dei pool di risorse consente di visualizzare informazioni relative al pool specifico, nonché i controlli per il ridimensionamento completo del pool.  
+**Impostazioni** > **Front-End Pool** / **pool di lavoro**: ognuno di questi pannelli di pool di risorse vengono fornite informazioni toosee possibilità hello solo in tale pool di risorse , inoltre tooproviding controlla la scala toofully tale pool di risorse.  
 
-Il pannello di base per ogni pool di risorse mostra un grafico con le metriche relative al pool di risorse specifico. Esattamente come per i grafici del pannello dell'ambiente del servizio app, è possibile passare al grafico e impostare gli avvisi desiderati. La procedura di configurazione di un avviso dal pannello dell'ambiente del servizio app per un pool di risorse specifico equivale alla stessa operazione nel pool di risorse. Dal pannello **Impostazioni** del pool di lavoro è possibile accedere a tutti i piani di servizio app o le app in esecuzione nel pool di lavoro.
+Pannello di base Hello per ogni pool di risorse fornisce un grafico con le metriche per il pool di risorse. Come con i grafici di hello dal pannello ASE hello, è possibile andare in grafico hello e impostare gli avvisi in base alle esigenze. Impostazione di un avviso dal pannello ASE hello per un pool di risorse specifico hello stessa operazione come farlo dal pool di risorse hello. Dal pool di lavoro hello **impostazioni** pannello sono hello tooall accesso App o i piani di servizio App che sono in esecuzione nel pool di lavoro.
 
 ![Interfaccia utente Impostazioni dei pool di lavoro][5]
 
 ### <a name="portal-scale-capabilities"></a>Funzionalità di ridimensionamento del portale
 Le operazioni di ridimensionamento disponibili sono tre:
 
-* Modifica del numero di indirizzi IP dell'ambiente del servizio app disponibili per l'utilizzo con IP SSL
-* Modifica delle dimensioni della risorsa di calcolo usata in un pool di risorse
-* Modifica del numero di risorse di calcolo usate in un pool di risorse, sia manualmente che tramite ridimensionamento automatico
+* Modifica il numero di hello di indirizzi IP in hello ASE disponibili per l'utilizzo di SSL IP.
+* Modifica dimensioni hello hello di risorsa di calcolo utilizzato in un pool di risorse.
+* Modifica il numero di hello delle risorse di calcolo che vengono utilizzati in un pool di risorse manualmente o tramite la scalabilità automatica.
 
-Nel portale sono disponibili tre modi per controllare il numero di server disponibili nei pool di risorse:
+Nel portale di hello, sono disponibili tre modi toocontrol il numero di server con il pool di risorse:
 
-* Operazione di ridimensionamento dalla parte superiore del pannello principale dell'ambiente del servizio app. È possibile apportare più modifiche alla configurazione di scalabilità dei pool di lavoro e front-end. Tutte le modifiche verranno applicate in un'unica operazione.
-* Operazione di ridimensionamento manuale dal pannello **Ridimensionamento** del singolo pool di risorse, disponibile in **Impostazioni**.
-* Ridimensionamento automatico, impostato dal pannello **Piano** del singolo pool di risorse.
+* Un'operazione di scala dal pannello ASE principale di hello nella parte superiore di hello. È possibile apportare scala più modifiche di configurazione toohello front-end e i pool di lavoro. Tutte le modifiche verranno applicate in un'unica operazione.
+* Un'operazione di scala manuale dal pool di risorse singole hello **scala** pannello sotto **impostazioni**.
+* Il ridimensionamento automatico, che devono essere impostate dal pool di risorse singole hello **scala** blade.
 
-Per eseguire l'operazione di ridimensionamento nel pannello dell'ambiente del servizio app, trascinare il dispositivo di scorrimento sulla quantità desiderata e salvare. Questa interfaccia utente supporta anche la modifica delle dimensioni.  
+operazione di ridimensionamento hello toouse nel Pannello di ASE hello, trascinare quantity di toohello dispositivo di scorrimento di hello desiderato e salvare. Questa interfaccia supporta anche la modifica delle dimensioni di hello.  
 
 ![Interfaccia utente Piano][6]
 
-Per usare le funzionalità di ridimensionamento automatico o manuale in un pool di risorse specifico, passare a **Impostazioni** > **Pool front end** / **Pool di lavoro**, a seconda del caso. Aprire quindi il pool che si vuole modificare. Passare a **Impostazioni** > **Aumenta istanze** o **Impostazioni** > **Aumenta prestazioni**. Il pannello **Aumenta istanze** consente di controllare la quantità di istanze. **Aumenta prestazioni** consente di controllare le dimensioni delle risorse.  
+funzionalità toouse hello manuale o scalabilità automatica in un pool di risorse specifiche, andare troppo**impostazioni** > **Front-End Pool** / **pool di lavoro** come appropriati. Aprire quindi pool hello che si desidera toochange. Andare troppo**impostazioni** > **orizzontale** o **impostazioni** > **scalabilità verticale**. Hello **orizzontale** pannello consente toocontrol quantità di istanza. **Scalabilità verticale** consente toocontrol dimensione di risorsa.  
 
 ![Interfaccia utente Impostazione Piano][7]
 
 ## <a name="fault-tolerance-considerations"></a>Considerazioni sulla tolleranza di errore
-Un ambiente del servizio app può essere configurato per usare fino a 55 risorse di calcolo totali. Di queste 55 risorse di calcolo, solo 50 possono essere usate per ospitare i carichi di lavoro. I motivi sono due. Esiste un minimo di 2 risorse di calcolo front-end.  Ne rimangono quindi 53 per supportare l'allocazione dei pool di lavoro. Per garantire la tolleranza di errore, è necessario avere una risorsa di calcolo aggiuntiva allocata in base alle regole seguenti:
+È possibile configurare un ambiente del servizio App di toouse delle risorse di calcolo totale too55. Tali 55 delle risorse di calcolo, solo 50 può essere utilizzato toohost i carichi di lavoro. motivo Hello è duplice. Esiste un minimo di 2 risorse di calcolo front-end.  Che lascia l'allocazione di too53 toosupport hello pool di lavoro. In ordine tooprovide la tolleranza d'errore, è necessario disporre di una risorsa di calcolo che viene allocata in base alle regole toohello toohave:
 
-* Per ogni pool di lavoro è necessaria almeno 1 risorsa di calcolo aggiuntiva non disponibile per l'assegnazione di un carico di lavoro.
-* Quando la quantità di risorse di calcolo in un pool di lavoro supera un determinato valore, è necessaria un'altra risorsa di calcolo per la tolleranza di errore. Ciò non si verifica per il pool front-end.
+* Ogni pool di lavoro è necessario almeno 1 risorse di calcolo aggiuntive che non sono disponibile toobe assegnato a un carico di lavoro.
+* Quando la quantità hello delle risorse di calcolo in un pool di lavoro passa di sopra di un determinato valore, quindi un'altra risorsa di calcolo è obbligatoria per la tolleranza di errore. Non è il caso di hello nel pool di server front-end hello.
 
-All'interno di un singolo pool di lavoro, i requisiti di tolleranza di errore prevedono che per un determinato valore X di risorse assegnate a un pool di lavoro:
+All'interno di qualsiasi singolo lavoro, i requisiti di tolleranza di errore hello sono per un determinato valore di X risorse assegnate tooa pool di lavoro:
 
-* Se X è compreso tra 2 e 20, la quantità di risorse di calcolo che è possibile usare per i carichi di lavoro è X-1.
-* Se X è compreso tra 21 e 40, la quantità di risorse di calcolo che è possibile usare per i carichi di lavoro è X-2.
-* Se X è compreso tra 41 e 53, la quantità di risorse di calcolo che è possibile usare per i carichi di lavoro è X-3.
+* Se X è compreso tra 2 e 20, quantità hello utilizzabile delle risorse di calcolo che è possibile utilizzare per i carichi di lavoro è x-1.
+* Se X è compresa tra 21 e 40, quantità hello utilizzabile delle risorse di calcolo che è possibile utilizzare per i carichi di lavoro è X-2.
+* Se X è compreso tra 41 e 53, quantità hello utilizzabile delle risorse di calcolo che è possibile utilizzare per i carichi di lavoro è X-3.
 
-Il footprint minimo include 2 server front-end e 2 ruoli di lavoro.  In base alle indicazioni precedenti, ecco alcuni esempi di chiarimento:  
+footprint minimo Hello 2 server front-end e 2 processi di lavoro.  Con hello sopra quindi le istruzioni, ecco alcuni esempi tooclarify:  
 
-* Se in un singolo pool sono presenti 30 ruoli di lavoro, è possibile usarne 28 per ospitare i carichi di lavoro.
-* Se in un singolo pool sono presenti 2 ruoli di lavoro, è possibile usarne 1 per ospitare i carichi di lavoro.
-* Se in un singolo pool sono presenti 20 ruoli di lavoro, è possibile usarne 19 per ospitare i carichi di lavoro.  
-* Se in un singolo pool sono presenti 21 ruoli di lavoro, è possibile usarne comunque solo 19 per ospitare i carichi di lavoro.  
+* Se si dispone di 30 processi di lavoro in un unico pool, 28 di essi può essere utilizzato toohost i carichi di lavoro.
+* Se si dispone di 2 processi di lavoro in un unico pool, 1 può essere utilizzato toohost i carichi di lavoro.
+* Se si dispone di 20 thread di lavoro in un unico pool, 19 può essere utilizzato toohost i carichi di lavoro.  
+* Se si dispone di 21 lavori in un unico pool, ancora solo 19 possono essere utilizzati toohost i carichi di lavoro.  
 
-L'aspetto della tolleranza di errore è importante e deve essere tenuto in considerazione in caso di ridimensionamento al di sopra di determinate soglie. Se si vuole aggiungere capacità a partire da 20 istanze, passare a 22 o più perché con 21 non viene aggiunta altra capacità. Lo stesso vale in caso di superamento di 40 istanze. Anche in questo caso, il valore successivo per aggiungere capacità è 42.  
+aspetto della tolleranza di errore Hello è importante, ma è necessario tookeep la presenti durante la scalabilità di sopra di determinate soglie. Se si desidera tooadd più capacità da 20 istanze, quindi passare too22 o versione successiva perché 21 non aggiungere eventuali ulteriori capacità. Hello che è vero anche passare sopra 40, in numero successivo hello che consente di aggiungere capacità è 42.  
 
 ## <a name="deleting-an-app-service-environment"></a>Eliminazione di un ambiente del servizio app
-Per eliminare un ambiente del servizio app, è sufficiente usare l'azione **Elimina** nella parte superiore del pannello dell'ambiente del servizio app. In questo caso, verrà richiesto di immettere il nome dell'ambiente del servizio app per confermare che si vuole procedere con l'operazione. Si noti che quando si elimina un ambiente del servizio app, viene eliminato anche tutto il relativo contenuto.  
+Se si desidera toodelete un ambiente del servizio App, quindi utilizzare semplicemente hello **eliminare** azione nella parte superiore di hello del Pannello di ambiente del servizio App hello. Quando si esegue questa operazione, sarà tooconfirm l'ambiente del servizio App che si vuole toodo questo nome hello tooenter richiesta. Si noti che quando si elimina un ambiente del servizio App, è eliminare tutte hello contenuti all'interno di esso.  
 
 ![Interfaccia utente per l'eliminazione di un ambiente del servizio app][9]  
 
-## <a name="getting-started"></a>Introduzione
-Per iniziare a usare gli ambienti del servizio app, vedere [Come creare un ambiente del servizio app](app-service-web-how-to-create-an-app-service-environment.md).
+## <a name="getting-started"></a>introduttiva
+tooget avviato con gli ambienti del servizio App, vedere [come un ambiente del servizio App toocreate](app-service-web-how-to-create-an-app-service-environment.md).
 
-Per altre informazioni sulla piattaforma del servizio app di Azure, vedere [Servizio app di Azure](../app-service/app-service-value-prop-what-is.md).
+Per ulteriori informazioni sulla piattaforma Azure App Service hello, vedere [Azure App Service](../app-service/app-service-value-prop-what-is.md).
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

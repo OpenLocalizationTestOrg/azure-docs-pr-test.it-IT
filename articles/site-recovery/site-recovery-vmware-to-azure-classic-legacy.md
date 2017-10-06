@@ -1,6 +1,6 @@
 ---
-title: Eseguire la replica di macchine virtuali VMware e server fisici in Azure (legacy classico) | Documentazione Microsoft
-description: Illustra come eseguire la replica di macchine virtuali locali e server fisici Windows o Linux in Azure usando Azure Site Recovery in una distribuzione legacy nel portale classico.
+title: aaaReplicate le macchine virtuali VMware e server fisici tooAzure (classico legacy) | Documenti Microsoft
+description: Viene descritto come tooreplicate locale macchine virtuali e tooAzure di server fisici Windows/Linux usando Azure Site Recovery in una distribuzione nel portale classico hello legacy.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: raynew
-ms.openlocfilehash: 325be23cffc9c728a8af6f92a0f3dce6d31da4ae
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 64c6d906d54426fdd2b884350542a4562bb12528
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-vmware-virtual-machines-and-physical-servers-to-azure-with-azure-site-recovery-using-the-classic-portal-legacy"></a>Eseguire la replica di macchine virtuali VMware e server fisici in Azure con Azure Site Recovery tramite il portale classico (legacy)
+# <a name="replicate-vmware-virtual-machines-and-physical-servers-tooazure-with-azure-site-recovery-using-hello-classic-portal-legacy"></a>Replicare le macchine virtuali VMware e server fisici tooAzure con Azure Site Recovery usando il portale classico di hello (legacy)
 > [!div class="op_single_selector"]
 > * [Portale di Azure](site-recovery-vmware-to-azure.md)
 > * [Portale classico](site-recovery-vmware-to-azure-classic.md)
@@ -28,72 +28,72 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Benvenuti in Azure Site Recovery. Questo articolo illustra una distribuzione legacy per eseguire la replica di macchine virtuali VMware locali o server fisici Windows o Linux in Azure usando Azure Site Recovery nel portale classico.
+Benvenuti tooAzure Site Recovery. Questo articolo descrive una distribuzione legacy per replicare le macchine virtuali VMware in locale o tooAzure di server fisici Windows/Linux usando Azure Site Recovery nel portale classico hello.
 
-## <a name="overview"></a>Overview
-Le organizzazioni necessitano di una strategia di continuità aziendale e ripristino di emergenza per determinare come app, carichi di lavoro e dati possano rimanere in esecuzione e disponibili durante i periodi di inattività, pianificati o meno, e come ripristinare le normali condizioni di lavoro il prima possibile. La strategia di continuità aziendale e ripristino di emergenza deve garantire la sicurezza dei dati aziendali e la possibilità di recuperarli, oltre alla disponibilità costante dei carichi di lavoro in caso di emergenza.
+## <a name="overview"></a>Panoramica
+Le organizzazioni devono una strategia di BCDR che determina come le app, i carichi di lavoro e i dati rimangono in esecuzione e disponibili durante i tempi di inattività pianificati ed e ripristino le condizioni di lavoro toonormal appena possibile. La strategia di continuità aziendale e ripristino di emergenza deve garantire la sicurezza dei dati aziendali e la possibilità di recuperarli, oltre alla disponibilità costante dei carichi di lavoro in caso di emergenza.
 
-Il servizio Azure Site Recovery contribuisce alla strategia BCDR orchestrando la replica dei server fisici locali e delle macchine virtuali sul cloud (Azure) o in un data center secondario. In caso di interruzioni nella località primaria, verrà eseguito il failover alla località secondaria per mantenere disponibili app e carichi di lavoro. Quando la località primaria sarà di nuovo operativa, si tornerà a tale località. Per altre informazioni, vedere [Che cos'è Site Recovery?](site-recovery-overview.md)
+Il ripristino del sito è un servizio di Azure che contribuisce strategia BCDR tooyour dall'orchestrazione replica dei server fisici locali e macchine virtuali toohello cloud (Azure) o Data Center secondario tooa. Quando si verificano interruzioni nella propria posizione primaria, è possibile failover toohello posizione secondaria tookeep App e carichi di lavoro disponibili. Non si posizione primaria tooyour indietro quando vengono restituite le operazioni di toonormal. Per altre informazioni, vedere [Che cos'è Site Recovery?](site-recovery-overview.md)
 
 > [!WARNING]
-> Questo articolo contiene **istruzioni legacy**. Non usare queste informazioni per nuove distribuzioni. Per distribuire Site Recovery nel portale di Azure, seguire invece [queste istruzioni](site-recovery-vmware-to-azure.md). Per configurare la distribuzione avanzata nel portale classico, [usare queste istruzioni](site-recovery-vmware-to-azure-classic.md). Se è già stata eseguita la distribuzione usando il metodo descritto in questo articolo, è consigliabile eseguire la migrazione alla distribuzione avanzata nel portale classico.
+> Questo articolo contiene **istruzioni legacy**. Non usare queste informazioni per nuove distribuzioni. In alternativa, [seguire queste istruzioni](site-recovery-vmware-to-azure.md) toodeploy Site Recovery nel portale di Azure hello o [utilizzare queste istruzioni](site-recovery-vmware-to-azure-classic.md) tooconfigure hello avanzata di distribuzione nel portale classico hello. Se già stato distribuito utilizzando il metodo hello descritto in questo articolo, è consigliabile eseguire la migrazione toohello avanzata di distribuzione nel portale classico hello.
 >
 >
 
-## <a name="migrate-to-the-enhanced-deployment"></a>Eseguire la migrazione alla distribuzione avanzata
-Questa sezione è applicabile solo se è già stato distribuito Site Recovery seguendo le istruzioni contenute in questo articolo.
+## <a name="migrate-toohello-enhanced-deployment"></a>La migrazione della distribuzione toohello avanzata
+In questa sezione è applicabile solo se è già stato distribuito il ripristino del sito utilizzando istruzioni hello in questo articolo.
 
-Per eseguire la migrazione alla distribuzione esistente, sarà necessario:
+toomigrate la distribuzione esistente, è necessario:
 
 1. Distribuire nuovi componenti di Site Recovery nel sito locale.
-2. Configurare le credenziali per l'individuazione automatica di macchine virtuali VMware nel nuovo server di configurazione.
-3. Trovare i server VMware con il nuovo server di configurazione.
-4. Creare un nuovo gruppo protezione dati con il nuovo server di configurazione.
+2. Configurare le credenziali per l'individuazione automatica delle macchine virtuali VMware nel server di configurazione hello.
+3. Individuare i server VMware hello con server di configurazione hello.
+4. Creare un nuovo gruppo protezione dati con server di configurazione hello.
 
 Prima di iniziare:
 
 * È consigliabile impostare una finestra di manutenzione per la migrazione.
-* L'opzione **Esegui la migrazione delle macchine virtuali** è disponibile solo se sono presenti gruppi di protezione esistenti creati durante una distribuzione legacy.
-* Dopo aver completato i passaggi della migrazione, possono essere necessari 15 minuti o più per aggiornare le credenziali e per trovare e aggiornare le macchine virtuali da aggiungere a un gruppo di protezione. È possibile aggiornare manualmente anziché attendere.
+* Hello **eseguire la migrazione di macchine** opzione è disponibile solo se si dispone di gruppi protezione dati esistenti che sono stati creati durante una distribuzione legacy.
+* Dopo aver completato i passaggi della migrazione hello può richiedere 15 minuti o più credenziali di hello toorefresh e toodiscover e aggiorna le macchine virtuali in modo che è possibile aggiungerli tooa gruppo di protezione dati. È possibile aggiornare manualmente anziché attendere.
 
 Eseguire la migrazione nel modo seguente:
 
-1. Vedere la sezione relativa alla [distribuzione avanzata nel portale classico](site-recovery-vmware-to-azure-classic.md). Vedere le sezioni relative all'[architettura](site-recovery-vmware-to-azure-classic.md) avanzata e ai [prerequisiti](site-recovery-vmware-to-azure-classic.md).
-2. Disinstallare il servizio Mobility dai computer di cui si sta eseguendo la replica. Una nuova versione del servizio verrà installata nei computer nel momento in cui verranno aggiunti al nuovo gruppo di protezione.
-3. Scaricare una [chiave di registrazione dell'insieme di credenziali](site-recovery-vmware-to-azure-classic.md) ed eseguire la [procedura guidata per la configurazione unificata](site-recovery-vmware-to-azure-classic.md) per installare i componenti server di configurazione, server di elaborazione e server di destinazione master. Altre informazioni sulla [pianificazione della capacità](site-recovery-vmware-to-azure-classic.md).
-4. [Impostare le credenziali](site-recovery-vmware-to-azure-classic.md) che Site Recovery può usare per accedere al server VMware e rilevare automaticamente le macchine virtuali VMware. Vedere la sezione relativa alle [autorizzazioni necessarie](site-recovery-vmware-to-azure-classic.md).
-5. Aggiungere [server vCenter o host vSphere](site-recovery-vmware-to-azure-classic.md). Possono essere necessari 15 minuti o più perché i server vengano visualizzati nel portale di Site Recovery.
-6. Creare un [nuovo gruppo protezione dati](site-recovery-vmware-to-azure-classic.md). Possono essere necessari fino a 15 minuti per l'aggiornamento del portale in modo che le macchine virtuali vengano individuate e visualizzate. Se non si vuole attendere, è possibile evidenziare il nome del server di gestione, senza farvi clic sopra, e fare clic su **Aggiorna**.
-7. Nel nuovo gruppo protezione dati fare clic su **Esegui la migrazione delle macchine virtuali**.
+1. Conoscenza [avanzata di distribuzione nel portale classico hello](site-recovery-vmware-to-azure-classic.md). Hello revisione avanzata [architettura](site-recovery-vmware-to-azure-classic.md), e [prerequisiti](site-recovery-vmware-to-azure-classic.md).
+2. Disinstallare il servizio di mobilità hello dai computer che si sta attualmente la replica. Una nuova versione del servizio hello verrà installata nei computer hello quando vengono aggiunte toohello nuovo gruppo protezione dati.
+3. Scaricare un [chiave di registrazione dell'insieme di credenziali](site-recovery-vmware-to-azure-classic.md) e [guidata di installazione unificata hello](site-recovery-vmware-to-azure-classic.md) tooinstall hello configurazione server, server di elaborazione e master componenti server di destinazione. Altre informazioni sulla [pianificazione della capacità](site-recovery-vmware-to-azure-classic.md).
+4. [Impostare credenziali](site-recovery-vmware-to-azure-classic.md) che il ripristino del sito è possibile utilizzare tooaccess VMware server tooautomatically individuare le macchine virtuali VMware. Vedere la sezione relativa alle [autorizzazioni necessarie](site-recovery-vmware-to-azure-classic.md).
+5. Aggiungere [server vCenter o host vSphere](site-recovery-vmware-to-azure-classic.md). Può richiedere 15 minuti per ulteriori informazioni per i server tooappear nel portale di Site Recovery hello.
+6. Creare un [nuovo gruppo protezione dati](site-recovery-vmware-to-azure-classic.md). Potrebbe essere necessaria fino too15 minuti per toorefresh portale hello in modo che le macchine virtuali hello vengono individuate e visualizzati. Se non si desidera toowait è possibile evidenziare un nome di server di gestione di hello (selezionarla) > **aggiornamento**.
+7. Scegliere Nuovo gruppo protezione dati di hello **eseguire la migrazione di macchine**.
 
     ![Aggiungi account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration1.png)
-8. In **Selezionare le macchine virtuali** selezionare il gruppo protezione dati dal quale eseguire la migrazione e le macchine di cui eseguire la migrazione.
+8. In **Seleziona macchine** il gruppo protezione dati selezionare hello toomigrate da desiderato e hello macchine da toomigrate.
 
     ![Aggiungi account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration2.png)
-9. In **Configurare le impostazioni di destinazione** specificare se si vogliono usare le stesse impostazioni per tutte le macchine e selezionare il server di elaborazione e l'account di archiviazione di Azure. Se non è disponibile un server di elaborazione separato, sarà l'indirizzo IP del server di configurazione.
+9. In **configurare le impostazioni di destinazione** specificare se si desidera toouse hello stesse impostazioni per tutte le macchine e i server di elaborazione selezionare hello e account di archiviazione di Azure. Se non si dispone di un server di elaborazione separato in questo sarà l'indirizzo IP di hello hello hello server del server di configurazione.
 
     ![Aggiungi account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration3.png)
 
-    > [AZURE.NOTE] [La migrazione degli account di archiviazione](../resource-group-move-resources.md) all'interno dei gruppi di risorse con la stessa sottoscrizione o all'interno delle sottoscrizioni non è supportata per gli account di archiviazione usati per la distribuzione di Site Recovery.
+    > [AZURE.NOTE] [Migrazione di account di archiviazione](../resource-group-move-resources.md) tra risorse gruppi all'interno hello stessa sottoscrizione o per le sottoscrizioni non è supportata per gli account di archiviazione utilizzati per la distribuzione di Site Recovery.
 
-1. In **Specificare gli account**selezionare l'account creato per consentire al server di elaborazione di accedere al computer ed effettuare il push della nuova versione del servizio Mobility.
+1. In **specificare account**, selezionare account hello creato per hello processo server tooaccess hello macchina toopush hello nuova versione del servizio di mobilità hello.
 
    ![Aggiungi account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration4.png)
-2. Site Recovery eseguirà la migrazione dei dati replicati all'account di archiviazione di Azure fornito dall'utente. Facoltativamente è possibile usare nuovamente l'account di archiviazione usato nella distribuzione legacy.
-3. Al termine del processo, le macchine virtuali verranno sincronizzate automaticamente. Al termine della sincronizzazione, eliminare le macchine virtuali dal gruppo protezione dati legacy.
-4. Dopo che è stata eseguita la migrazione di tutti i computer, eliminare il gruppo protezione dati legacy.
-5. Ricordarsi di specificare le proprietà di failover per i computer e le impostazioni di rete di Azure al termine della sincronizzazione.
-6. Se sono presenti piani di ripristino esistenti, è possibile eseguirne la migrazione alla distribuzione avanzata con l'opzione **Esegui la migrazione del piano di ripristino** . Questa operazione deve essere eseguita solo dopo la migrazione di tutti i computer protetti.
+2. Il ripristino del sito verrà eseguita la migrazione di account di archiviazione Azure i dati replicati toohello fornito dall'utente. Facoltativamente è possibile riutilizzare l'account di archiviazione hello utilizzati nella distribuzione legacy hello.
+3. Dopo il processo di hello verranno sincronizzati automaticamente le macchine virtuali al termine. Al termine della sincronizzazione è possibile eliminare le macchine virtuali hello dal gruppo protezione dati legacy hello.
+4. Dopo aver eseguito la migrazione di tutti i computer è possibile eliminare il gruppo di protezione legacy hello.
+5. Tenere presente le proprietà di toospecify hello failover delle macchine e hello le impostazioni di rete di Azure al termine della sincronizzazione.
+6. Se si dispone di piani di ripristino esistenti, è possibile eseguirne la migrazione distribuzione toohello avanzata con hello **eseguire la migrazione del piano di ripristino** opzione. Questa operazione deve essere eseguita solo dopo la migrazione di tutti i computer protetti.
 
    ![Aggiungi account](./media/site-recovery-vmware-to-azure-classic-legacy/legacy-migration5.png)
 
 > [!NOTE]
-> Dopo aver completato la migrazione, proseguire con l' [articolo avanzato](site-recovery-vmware-to-azure-classic.md). La parte restante di questo articolo non è più rilevante e non è quindi necessario seguire le altre procedure descritte**.
+> Dopo aver completato la migrazione continua con hello [articolo migliorata](site-recovery-vmware-to-azure-classic.md). rest Hello di questo articolo legacy non sarà più possibile rilevanti e non devi toofollow qualsiasi più passaggi hello descritti in it * *.
 >
 >
 
 ## <a name="what-do-i-need"></a>Che cosa occorre?
-Questo diagramma illustra i componenti della distribuzione.
+Questo diagramma mostra i componenti di distribuzione hello.
 
 ![Nuovo insieme di credenziali](./media/site-recovery-vmware-to-azure-classic-legacy/architecture.png)
 
@@ -101,31 +101,31 @@ Sono necessari gli elementi seguenti:
 
 | **Componente** | **Distribuzione** | **Dettagli** |
 | --- | --- | --- |
-| **Server di configurazione** |Una macchina virtuale A3 standard di Azure nella stessa sottoscrizione di Site Recovery. |Il server di configurazione coordina le comunicazioni tra i computer protetti, il server di elaborazione e i server di destinazione master in Azure. Configura la replica e coordina il ripristino in Azure quando si verifica il failover. |
-| **Server master di destinazione** |Una macchina virtuale di Azure: come server Windows basato su un'immagine della raccolta di Windows Server 2012 R2, per proteggere i computer Windows, o come server Linux basato su un'immagine della raccolta di OpenLogic CentOS 6.6, per proteggere i computer Linux.<br/><br/> Per le dimensioni sono disponibili tre opzioni: A4 Standard, D14 Standard e DS4 Standard.<br/><br/> Il server è connesso alla stessa rete di Azure in cui risiede il server di configurazione.<br/><br/> Viene configurato nel portale di Site Recovery. |Riceve e mantiene i dati replicati dai computer protetti tramite VHD collegati creati nell'archiviazione BLOB dell'account di archiviazione di Azure.<br/><br/> Selezionare DS4 Standard in modo specifico per la configurazione della protezione per carichi di lavoro che richiedono prestazioni elevate omogenee e a bassa latenza con l'account di archiviazione Premium. |
-| **Server di elaborazione** |Un server virtuale o fisico locale che esegue Windows Server 2012 R2.<br/><br/> È consigliabile collocarlo nella stessa rete e nello stesso segmento di LAN in cui risiedono i computer da proteggere, ma è possibile eseguirlo in una rete diversa, a condizione che i computer protetti possano avere la visibilità di rete L3 per tale server.<br/><br/> Viene impostato e registrato nel server di configurazione nel portale di Site Recovery. |I computer protetti inviano dati di replica al server di elaborazione locale. Dispone di una cache basata su disco per la memorizzazione dei dati di replica ricevuti. Esegue una serie di azioni su tali dati.<br/><br/> Ottimizza i dati attraverso la memorizzazione nella cache, la compressione e la crittografia prima di inviarli al server master di destinazione.<br/><br/> Gestisce l'installazione push del servizio Mobility.<br/><br/> Esegue l'individuazione automatica delle macchine virtuali VMware. |
+| **Server di configurazione** |Standard A3 macchina virtuale di Azure in hello stessa sottoscrizione di Site Recovery. |il server di configurazione di Hello coordina le comunicazioni tra macchine virtuali protette, il server di elaborazione hello e server di destinazione master in Azure. Configura la replica e coordina il ripristino in Azure quando si verifica il failover. |
+| **Server master di destinazione** |Una macchina virtuale di Azure, ovvero un server di Windows in base a un'immagine della raccolta Windows Server 2012 R2 (macchine Windows tooprotect) o come un server Linux dipende da un'immagine della raccolta OpenLogic CentOS 6.6 (macchine Linux tooprotect).<br/><br/> Per le dimensioni sono disponibili tre opzioni: A4 Standard, D14 Standard e DS4 Standard.<br/><br/> server Hello è connesso toohello stessa rete del server di configurazione hello Azure.<br/><br/> Impostare nel portale di Site Recovery hello |Riceve e mantiene i dati replicati dai computer protetti tramite VHD collegati creati nell'archiviazione BLOB dell'account di archiviazione di Azure.<br/><br/> Selezionare DS4 Standard in modo specifico per la configurazione della protezione per carichi di lavoro che richiedono prestazioni elevate omogenee e a bassa latenza con l'account di archiviazione Premium. |
+| **Server di elaborazione** |Un server virtuale o fisico locale che esegue Windows Server 2012 R2.<br/><br/> È consigliabile è posizionata su hello stessa rete e segmento LAN hello per le macchine che si desidera tooprotect, ma può essere eseguita su una rete diversa purché dispongano di macchine virtuali protette L3 tooit visibilità di rete.<br/><br/> È possibile configurare e registrarlo toohello server di configurazione nel portale di Site Recovery hello. |Macchine virtuali protette inviano server di elaborazione locale toohello replica dei dati. Contiene dati di replica di toocache una cache basata su disco che riceve. Esegue una serie di azioni su tali dati.<br/><br/> Ottimizza i dati per la memorizzazione nella cache, la compressione e crittografia prima dell'invio nel server di destinazione master toohello.<br/><br/> Gestisce l'installazione push del servizio di mobilità hello.<br/><br/> Esegue l'individuazione automatica delle macchine virtuali VMware. |
 | **Computer locali** |Macchine virtuali VMware locali oppure server fisici che eseguono Windows o Linux. |Vengono configurate le impostazioni di replica applicabili a uno o più computer. È possibile eseguire il failover di un singolo computer o, più comunemente, di più computer raccolti in un piano di ripristino. |
-| **Servizio Mobility** |Viene installato in ogni macchina virtuale o server fisico da proteggere.<br/><br/> È possibile installarlo manualmente oppure effettuarne il push e l'installazione automatica tramite il server di elaborazione quando si abilita la replica per un computer. |Il servizio Mobility invia dati al server di elaborazione durante la replica iniziale (risincronizzazione). Quando lo stato del computer è protetto, al termine della risincronizzazione, il servizio Mobility acquisisce le scritture su disco in memoria e le invia al server di elaborazione. La coerenza delle applicazioni per i server Windows si ottiene tramite VSS. |
-| **Insieme di credenziali di Azure Site Recovery** |Viene creato un insieme di credenziali di Site Recovery con una sottoscrizione di Azure e al suo interno vengono registrati i server. |L'insieme di credenziali coordina e orchestra la replica, il failover e il ripristino dei dati tra il sito locale e Azure. |
-| **Meccanismo di replica** |**Tramite Internet**: comunica e replica i dati dai server locali protetti in Azure usando un canale SSL/TLS protetto tramite Internet. Questa è l'opzione predefinita.<br/><br/> **VPN/ExpressRoute**: comunica e replica i dati tra i server locali e Azure tramite una connessione VPN. È necessario configurare una VPN da sito a sito o una connessione ExpressRoute tra la rete di Azure e il sito locale.<br/><br/> Viene selezionata la modalità di replica durante la distribuzione di Site Recovery. Dopo aver configurato il meccanismo, non è possibile modificarlo senza influire sulla replica dei computer esistenti. |Nessuna delle due opzioni richiede l'apertura delle porte di rete in ingresso nei computer protetti. Tutte le comunicazioni di rete vengono avviate dal sito locale. |
+| **Servizio Mobility** |Installato in ogni macchina virtuale o un server fisico desiderato tooprotect<br/><br/> Può essere installato manualmente o inserito e installato automaticamente dal server di elaborazione hello quando si abilita la replica per un computer. |servizio di mobilità Hello invia i server di elaborazione dati toohello durante la replica iniziale (risincronizzazione). Dopo aver hello macchina si trova in uno stato protetto (al termine della risincronizzazione) hello servizio di mobilità acquisisce toodisk scritture in memoria e li invia a server di elaborazione toohello. La coerenza delle applicazioni per i server Windows si ottiene tramite VSS. |
+| **Insieme di credenziali di Azure Site Recovery** |Creare un insieme di credenziali di Site Recovery con una sottoscrizione di Azure e registrare i server nell'insieme di credenziali hello. |insieme di credenziali Hello coordina e gestisce la replica dei dati, il failover e ripristino tra il sito locale e Azure. |
+| **Meccanismo di replica** |**Tramite Internet hello**: comunica e vengono replicati i dati da tooAzure server locale protetto utilizzando un canale protetto SSL/TLS su hello internet. Questo è l'opzione predefinita di hello.<br/><br/> **VPN/ExpressRoute**: comunica e replica i dati tra i server locali e Azure tramite una connessione VPN. È necessario tooset una VPN da sito a sito o una connessione ExpressRoute tra il sito locale e la rete di Azure.<br/><br/> È possibile selezionare la modalità tooreplicate durante la distribuzione di Site Recovery. È possibile modificare il meccanismo di hello dopo la configurazione senza conseguenze per la replica delle macchine virtuali esistenti. |Nessuna delle due opzioni richiede si tooopen le porte di rete in ingresso nei computer protetti. Tutte le comunicazioni di rete viene avviata da sito locale hello. |
 
-## <a name="capacity-planning"></a>pianificazione della capacità
-Di seguito sono elencate le aree principali da prendere in considerazione:
+## <a name="capacity-planning"></a>Pianificazione della capacità
+aree principali Hello tooconsider, occorre:
 
-* **Ambiente di origine**- Infrastruttura VMware, impostazioni dei computer di origine e requisiti.
-* **Server dei componenti**- Server di elaborazione, server di configurazione e server di destinazione master
+* **Ambiente di origine**: hello infrastruttura VMware, le impostazioni del computer di origine e requisiti.
+* **Server del componente**: hello server di elaborazione, il server di configurazione e il server di destinazione master
 
-### <a name="considerations-for-the-source-environment"></a>Considerazioni per l'ambiente di origine
-* **Dimensione massima del disco**- La dimensione massima del disco che attualmente può essere collegato a una macchina virtuale è 1 TB. Pertanto, anche la dimensione massima di un disco di origine che può essere replicato è limitata a 1 TB.
-* **Dimensione massima per ogni origine**- La dimensione massima di un singolo computer di origine è 31 TB (con 31 dischi) e con il provisioning di un'istanza D14 per il server di destinazione master.
-* **Numero di origini per ogni server di destinazione master** - È possibile proteggere più computer di origine con un singolo server di destinazione master. Tuttavia, non è possibile proteggere un singolo computer di origine in più server di destinazione master. Infatti, quando i dischi vengono replicati, nell'archivio BLOB di Azure viene creato un VHD che rispecchia le dimensioni del disco e che viene collegato come disco dati al server di destinazione master.  
-* **Frequenza di modifica giornaliera massima per ogni origine**- Esistono tre fattori da considerare quando si valuta la frequenza di modifica consigliata per ogni origine. Per le considerazioni relative alla destinazione, sono necessarie due operazioni IOPS sul disco di destinazione per ogni operazione nell'origine. Questo avviene perché vengono eseguite un'operazione di lettura dei dati precedenti e un'operazione di scrittura dei nuovi dati sul disco di destinazione.
-  * **Frequenza di modifica giornaliera supportata dal server di elaborazione**- Un computer di origine non può estendersi su più server di elaborazione. Un singolo server di elaborazione può supportare fino a 1 TB di frequenza di modifica giornaliera. Pertanto 1 TB è la frequenza massima di modifica giornaliera dei dati supportata per una macchina di origine.
-  * **Velocità effettiva massima supportata dal disco di destinazione**- La varianza massima per ogni disco di origine non può essere superiore a 144 GB al giorno (con una dimensione di scrittura di 8 K). Vedere la tabella nella sezione relativa al server di destinazione master per la velocità effettiva e gli IOPS della destinazione per le varie dimensioni di scrittura. Questo numero deve essere diviso per due, perché ogni operazione IOP di origine genera 2 IOPS sul disco di destinazione. Fare riferimento a [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) durante la configurazione della destinazione per gli account di archiviazione Premium.
-  * **Velocità effettiva massima supportata dall'account di archiviazione**- Un'origine non può estendersi su più account di archiviazione. Dato che un account di archiviazione accetta al massimo 20.000 richieste al secondo e che ogni IOP di origine genera 2 IOPS nel server di destinazione master, è consigliabile mantenere il numero di IOPS nell'origine su 10.000. Fare riferimento a [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) durante la configurazione dell'origine per gli account di archiviazione Premium.
+### <a name="considerations-for-hello-source-environment"></a>Considerazioni per l'ambiente di origine hello
+* **Dimensione massima del disco**: dimensioni massime correnti hello del disco hello che può essere una macchina virtuale tooa associata sono di 1 TB. Dimensioni massime di hello di un disco di origine che può essere replicato anche sono pertanto limitato too1 TB.
+* **Dimensione massima per ogni origine**: dimensioni massime di hello un singolo computer di origine sono 31 TB (con i 31 dischi) e con un'istanza di D14 effettuato il provisioning per il server di destinazione master hello.
+* **Numero di origini per ogni server di destinazione master** - È possibile proteggere più computer di origine con un singolo server di destinazione master. Tuttavia, un computer di origine singolo può essere protetto tra più server di destinazione master, perché come dischi di replicano, un disco rigido virtuale che rispecchia le dimensioni di hello del disco hello viene creato nell'archiviazione blob di Azure e collegato come un server di destinazione master toohello disco dati.  
+* **Frequenza di modifica giornaliera massima per ogni origine**, sono disponibili tre fattori considerati quando si considera hello consigliato toobe modificare frequenza per ogni origine. Per motivi di destinazione in base hello sono necessari due IOPS su disco di destinazione hello per ogni operazione nell'origine hello. Questo avviene perché una lettura di dati precedente e la scrittura di nuovi dati hello avverrà sul disco di destinazione hello.
+  * **Ogni giorno modificare velocità supportata dal server di elaborazione hello**: un computer di origine non può estendersi su più server di elaborazione. Un server singolo processo può supportare fino too1 TB del tasso di modifica giornaliero. 1 TB, pertanto è supportata per una macchina di origine di frequenza di modifica di hello massima giornaliera dei dati.
+  * **Velocità effettiva massima supportata dal disco di destinazione hello**, varianza del valore massimo per il disco di origine non può essere più di 144 GB/giorno (con dimensioni di 8 KB scrittura). Vedere la tabella hello nella sezione di destinazione master hello di velocità effettiva di hello e IOPs della destinazione hello per varie dimensioni di scrittura. Questo numero deve essere divisi per due perché ogni origine IOP genera 2 IOPS su disco di destinazione hello. Conoscenza [Azure obiettivi di scalabilità e prestazioni](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) durante la configurazione di destinazione hello per gli account di archiviazione premium.
+  * **Velocità effettiva massima supportata dall'account di archiviazione hello**, un'origine non può estendersi a più account di archiviazione. Dato che un account di archiviazione che utilizza un massimo di 20.000 richieste al secondo e che ogni origine IOP genera 2 IOPS server di destinazione master hello, è consigliabile che mantenere numero hello di operazioni IOPS tra hello origine too10, 000. Conoscenza [Azure obiettivi di scalabilità e prestazioni](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) quando si configura hello origine per gli account di archiviazione premium.
 
 ### <a name="considerations-for-component-servers"></a>Considerazioni relative ai server dei componenti
-Nella tabella 1 sono riepilogate le dimensioni delle macchine virtuali per i server di configurazione e i server di destinazione master.
+Tabella 1 sono riepilogate le dimensioni delle macchine virtuali hello per la configurazione di hello e i server di destinazione master.
 
 | **Componente** | **Istanze di Azure distribuite** | **Core** | **Memoria** | **Numero massimo di dischi** | **Dimensioni disco** |
 | --- | --- | --- | --- | --- | --- |
@@ -137,35 +137,35 @@ Nella tabella 1 sono riepilogate le dimensioni delle macchine virtuali per i ser
 **Tabella 1**
 
 #### <a name="process-server-considerations"></a>Considerazioni sui server di elaborazione
-In genere il dimensionamento del server di elaborazione dipende dalla frequenza di modifica giornaliera per tutti i carichi di lavoro protetti.
+In genere dimensionamento del processo server dipende dalle modifiche giornaliere hello in tutti i carichi di lavoro protetti.
 
-* È necessaria una potenza di calcolo sufficiente per eseguire operazioni quali la crittografia e la compressione inline.
-* Il server di elaborazione usa una cache basata su disco. Verificare che siano disponibili lo spazio della cache e la velocità effettiva del disco consigliate per facilitare le modifiche dei dati archiviate in caso di interruzione o collo di bottiglia della rete.
-* Verificare che sia disponibile larghezza di banda sufficiente, in modo che il server di elaborazione possa caricare i dati nel server di destinazione master per garantire la protezione dei dati continua.
+* È necessario sufficiente attività tooperform di calcolo, ad esempio inline compressione e crittografia.
+* server di elaborazione Hello utilizza la cache basata su disco. Verificare che hello consigliato spazio nella cache e velocità effettiva del disco è disponibile toofacilitate le modifiche dei dati hello archiviate nell'evento hello del collo di bottiglia di rete o di interruzione.
+* Assicurarsi di larghezza di banda sufficiente affinché hello server di elaborazione possono caricare hello toohello destinazione master server tooprovide dati continua la protezione dei dati.
 
-Nella tabella 2 sono riepilogate le linee guida per il server di elaborazione.
+Tabella 2 fornisce un riepilogo delle linee guida di hello processo server.
 
 | **Frequenza di modifica dei dati** | **CPU** | **Memoria** | **Dimensione disco cache** | **Velocità effettiva disco cache** | **Ingresso/uscita larghezza di banda** |
 | --- | --- | --- | --- | --- | --- |
-| Meno di 300 GB |4 vCPU (2 socket * 2 core a 2,5 GHz) |4 GB |600 GB |Da 7 a 10 MB al secondo |30 Mbps/21 Mbps |
-| Da 300 a 600 GB |8 vCPU (2 socket * 4 core a 2,5 GHz) |6 GB |600 GB |Da 11 a 15 MB al secondo |60 Mbps/42 Mbps |
-| Da 600 GB a 1 TB |12 vCPU (2 socket * 6 core a 2,5 GHz) |8 GB |600 GB |Da 16 a 20 MB al secondo |100 Mbps/70 Mbps |
+| Meno di 300 GB |4 vCPU (2 socket * 2 core a 2,5 GHz) |4 GB |600 GB |too10 7 MB al secondo |30 Mbps/21 Mbps |
+| too600 300 GB |8 vCPU (2 socket * 4 core a 2,5 GHz) |6 GB |600 GB |too15 11 MB al secondo |60 Mbps/42 Mbps |
+| 600 GB too1 TB |12 vCPU (2 socket * 6 core a 2,5 GHz) |8 GB |600 GB |too20 16 MB al secondo |100 Mbps/70 Mbps |
 | Più di 1 TB |Distribuire un altro server di elaborazione | | | | |
 
 **Tabella 2**
 
 Dove:
 
-* Per ingresso si intende la larghezza di banda in download (rete Intranet tra l'origine e il server di elaborazione).
-* Per uscita si intende la larghezza di banda in caricamento (rete Internet tra il server di elaborazione e il server di destinazione master). I valori relativi all'uscita presuppongono una compressione media del server di elaborazione del 30%.
+* In ingresso è la larghezza di banda di download (intranet tra il server di origine e di processo hello).
+* In uscita è il caricamento della larghezza di banda (internet tra server di elaborazione hello e server di destinazione master). I valori relativi all'uscita presuppongono una compressione media del server di elaborazione del 30%.
 * Per il disco cache è consigliabile un disco separato dal sistema operativo di almeno 128 GB per tutti i server di elaborazione.
-* Per la velocità effettiva del disco cache è stata usata l'archiviazione seguente a scopo di benchmark: 8 unità SAS a 10.000 RPM con configurazione RAID 10.
+* Per hello velocità effettiva di cache su disco dopo l'archiviazione è stato utilizzato per quelle di benchmarking: 8 unità SAS di 10 RPM con una configurazione RAID 10.
 
 #### <a name="configuration-server-considerations"></a>Considerazioni relative ai server di configurazione
-Ogni server di configurazione può supportare fino a 100 computer di origine con 3 o 4 volumi. Se la distribuzione ha dimensioni maggiori, è consigliabile distribuire un altro server di configurazione. Per le proprietà della macchina virtuale predefinita del server di configurazione, vedere la tabella 1.
+Ogni server di configurazione può supportare fino a too100 macchine di origine con volumi di 3 e 4. Se la distribuzione ha dimensioni maggiori, è consigliabile distribuire un altro server di configurazione. Vedere la tabella 1 per le proprietà di macchina virtuale predefinite hello hello del server di configurazione.
 
 #### <a name="master-target-server-and-storage-account-considerations"></a>Considerazioni relative al server di destinazione master e all'account di archiviazione
-Per ogni server di destinazione master l'archiviazione include un disco del sistema operativo, un volume di conservazione e dischi dati. L'unità di conservazione mantiene il journal delle modifiche dei dischi per la durata dell'intervallo di conservazione definito nel portale di Site Recovery.  Per le proprietà della macchina virtuale del server di destinazione master, fare riferimento alla tabella 1. Nella tabella 3 viene illustrato l'uso dei dischi per A4.
+archiviazione Hello per ogni server di destinazione master include un disco del sistema operativo, un volume di conservazione e dischi dati. unità di conservazione Hello gestisce journal hello delle modifiche su disco per la durata di hello del periodo di memorizzazione hello definito nel portale di Site Recovery hello.  Fare riferimento tooTable 1 per la proprietà della macchina virtuale hello del server di destinazione master hello. Tabella 3 viene illustrato l'utilizzano dischi hello a4.
 
 | **Istanza** | **Disco del sistema operativo** | **Conservazione** | **Dischi dati** |
 | --- | --- | --- | --- |
@@ -176,393 +176,393 @@ Per ogni server di destinazione master l'archiviazione include un disco del sist
 
 **Tabella 3**
 
-La pianificazione della capacità per il server di destinazione master dipende da:
+Dipende dalla pianificazione della capacità per il server di destinazione master hello:
 
 * Limitazioni e prestazioni dell'archiviazione di Azure
-  * Il numero massimo di dischi a utilizzo elevato per una VM di livello Standard è di circa 40 (20.000/500 IOPS per disco) in un singolo account di archiviazione. Informazioni sugli [obiettivi di scalabilità per account di archiviazione Standard](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) e [account di archiviazione Premium](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks).
+  * numero massimo di Hello di elevata utilizzati dischi per una macchina virtuale di livello Standard, è di circa 40 (IOPS 20.000/500 per disco) in un singolo account di archiviazione. Informazioni sugli [obiettivi di scalabilità per account di archiviazione Standard](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks) e [account di archiviazione Premium](../storage/common/storage-scalability-targets.md#scalability-targets-for-virtual-machine-disks).
 * Frequenza di modifica giornaliera
 * Archiviazione del volume di conservazione.
 
 Si noti che:
 
-* Un'origine non può estendersi su più account di archiviazione. Questo vale per il disco dati assegnato agli account di archiviazione selezionati quando si configura la protezione. I dischi del sistema operativo e di conservazione in genere sono assegnati all'account di archiviazione distribuito automaticamente.
-* Il volume di archiviazione di conservazione richiesto dipende dalla frequenza di modifica giornaliera e dal numero di giorni di conservazione. L'archiviazione di conservazione richiesta per ogni server di destinazione master è uguale alla varianza totale dall'origine al giorno per il numero di giorni di conservazione.
-* Ogni server di destinazione master ha un solo volume di conservazione. Il volume di conservazione è condiviso tra i dischi collegati al server di destinazione master. ad esempio:
-  * Se è presente una macchina di origine con 5 dischi e ogni disco genera 120 IOPS (dimensioni di 8K) nell'origine, questo si traduce in 240 IOPS per disco (2 operazioni sul disco di destinazione per ogni IO di origine). 240 IOPS è entro il limite di IOPS per disco di Azure, pari a 500.
-  * Nel volume di conservazione questo diventa 120 * 5 = 600 IOPS e ciò può rappresentare un collo di bottiglia. In questo scenario, una strategia valida potrebbe essere aggiungere ulteriori dischi al volume di conservazione ed estenderlo, come una configurazione di striping RAID. Ciò consente di migliorare le prestazioni, poiché le operazioni di IOPS vengono distribuite in più unità. Il numero di unità da aggiungere al volume di conservazione sarà come segue:
+* Un'origine non può estendersi su più account di archiviazione. Si applica disco dati toohello che gli account di archiviazione toohello selezionati quando si configura la protezione. i dischi di memorizzazione del sistema operativo e hello Hello andare in genere toohello distribuiti automaticamente l'account di archiviazione.
+* volume di archiviazione di conservazione Hello necessarie dipende dalle modifiche giornaliere hello e numero di giorni di conservazione di hello. archiviazione di conservazione obbligatorio per ogni server di destinazione master Hello = varianza totale dall'origine al giorno * numero di giorni di conservazione.
+* Ogni server di destinazione master ha un solo volume di conservazione. volume di conservazione Hello viene condivisa tra server di destinazione master toohello collegati dischi hello. ad esempio:
+  * Se è presente una macchina di origine con 5 dischi e ogni disco genera 120 IOPS (dimensioni di 8 KB) nell'origine hello, questo si traduce too240 di IOPS per disco (2 operazioni su disco di destinazione hello per ogni origine dei / o). 240 IOPS è all'interno di hello Azure limite di IOPS disco pari a 500.
+  * Nel volume di conservazione hello, questa diventa 120 * 5 = 600 IOPS e ciò può diventare un collo di bottiglia. In questo scenario, una buona strategia potrebbe essere tooadd volume di conservazione di più dischi toohello e span quest'ultimo, come una configurazione di striping RAID. Ciò migliorerà le prestazioni IOPS hello vengono distribuiti in più unità. numero di Hello di unità toobe aggiunto toohello volume di conservazione sarà come segue:
     * IOPS totali dall'ambiente di origine / 500
-    * Varianza totale al giorno dall'ambiente di origine (senza compressione) / 287 GB. 287 GB è la velocità effettiva massima supportata da un disco di destinazione al giorno. Questa metrica varia in base alla dimensione di scrittura con un fattore di 8K, poiché in questo caso 8K è la dimensione di scrittura presupposta. Ad esempio, se la dimensione di scrittura è 4K, la velocità effettiva sarà 287/2. Se la dimensione di scrittura è 16K, la velocità effettiva sarà 287*2.
-* Il numero di account di archiviazione richiesto = IOPS di origine totali/10000.
+    * Varianza totale al giorno dall'ambiente di origine (senza compressione) / 287 GB. 287 GB è la velocità effettiva massima hello è supportata da un disco di destinazione al giorno. Questa metrica variano in base alle dimensioni di scrittura hello con un fattore pari a 8 KB, perché in questo caso è 8 KB tre si presuppone che le dimensioni di scrittura. Se, ad esempio, dimensione scrittura hello è 4 KB, velocità effettiva sarà 287/2. E se la dimensione di scrittura hello è 16 KB, velocità effettiva sarà 287 * 2.
+* numero di account di archiviazione richiesto Hello = origine totale IOPs/10000.
 
 ## <a name="before-you-start"></a>Prima di iniziare
 | **Componente** | **Requisiti** | **Dettagli** |
 | --- | --- | --- |
 | **Account di Azure** |È necessario un account [Microsoft Azure](https://azure.microsoft.com/) . È possibile iniziare con una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/). | |
-| **Archiviazione di Azure** |Per archiviare i dati replicati è necessario un account di archiviazione di Azure.<br/><br/> Deve trattarsi di un [account di archiviazione con ridondanza geografica Standard](../storage/common/storage-redundancy.md#geo-redundant-storage) oppure di un [account di archiviazione Premium](../storage/common/storage-premium-storage.md).<br/><br/> L'account deve trovarsi nella stessa area geografica del servizio Azure Site Recovery e deve essere associato alla stessa sottoscrizione. Non è supportato lo spostamento degli account di archiviazione creati con il [nuovo portale di Azure](../storage/common/storage-create-storage-account.md) tra gruppi di risorse.<br/><br/> Per altre informazioni, vedere [Introduzione ad Archiviazione di Microsoft Azure](../storage/common/storage-introduction.md). | |
-| **Rete virtuale di Azure** |Sarà necessaria una rete virtuale di Azure in cui saranno distribuiti il server di configurazione e il server di destinazione master. Dovrà trovarsi nella stessa sottoscrizione e nella stessa area dell'insieme di credenziali di Azure Site Recovery. Se si desidera replicare i dati tramite una connessione VPN o ExpressRoute, la rete virtuale di Azure deve essere connessa alla rete locale tramite una connessione ExpressRoute o una VPN da sito a sito. | |
-| **Risorse di Azure** |Accertarsi di avere risorse di Azure sufficienti per distribuire tutti i componenti. Per altre informazioni, vedere [Limiti relativi alle sottoscrizioni di Azure](../azure-subscription-service-limits.md). | |
-| **Macchine virtuali di Azure** |Le macchine virtuali da proteggere devono essere conformi ai [prerequisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).<br/><br/> **Numero di dischi**: in un singolo server protetto è possibile supportare un massimo di 31 dischi.<br/><br/> **Dimensioni del disco**: la capacità dei singoli dischi non deve superare 1023 GB.<br/><br/> **Clustering**: i server di cluster non sono supportati.<br/><br/> **Avvio**: l'avvio UEFI (Unified Extensible Firmware Interface)/EFI (Extensible Firmware Interface) non è supportato.<br/><br/> **Volumi**: i volumi crittografati con Bitlocker non sono supportati.<br/><br/> **Nomi dei server**: i nomi devono contenere da 1 a 63 caratteri (lettere, numeri e trattini). Il nome deve iniziare e terminare con una lettera o un numero. Dopo aver protetto un computer, è possibile modificare il nome di Azure. | |
-| **Server di configurazione** |Nella sottoscrizione per il server di configurazione viene creata una macchina virtuale A3 Standard basata su un'immagine della raccolta di Windows Server 2012 R2 con Azure Site Recovery. Viene creata come prima istanza in un nuovo servizio cloud. Se si seleziona Internet pubblico come tipo di connettività per il server di configurazione, il servizio cloud viene creato con un indirizzo IP pubblico riservato.<br/><br/> Il percorso di installazione può contenere solo caratteri inglesi. | |
-| **Server master di destinazione** |Macchina virtuale di Azure, A4 Standard, D14 Standard o DS4 Standard.<br/><br/> Il percorso di installazione può contenere solo caratteri inglesi. Ad esempio, il percorso per un server di destinazione master che esegue Linux deve essere **/usr/local/ASR** . | |
-| **Server di elaborazione** |È possibile distribuire il server di elaborazione in macchine virtuali o computer fisici che eseguono Windows Server 2012 R2 con gli aggiornamenti più recenti. Eseguire l'installazione in C:/.<br/><br/> Collocare il server nella stessa rete e subnet dei computer da proteggere.<br/><br/> Installare VMware vSphere CLI 5.5.0 nel server di elaborazione. Il componente VMware vSphere dell'interfaccia della riga di comando è necessario nel server di elaborazione per trovare le macchine virtuali gestite da un server vCenter o le macchine virtuali in esecuzione in un host ESXi.<br/><br/> Il percorso di installazione può contenere solo caratteri inglesi.<br/><br/> Il file system ReFS non è supportato. | |
-| **VMware** |Server VMware vCenter per la gestione degli hypervisor VMware vSphere. Deve eseguire vCenter versione 5.1 o 5.5 con gli aggiornamenti più recenti.<br/><br/> Uno o più hypervisor vSphere contenenti le macchine virtuali VMWare da proteggere. L'hypervisor deve eseguire ESX/ESXi versione 5.1 o 5.5 con gli aggiornamenti più recenti.<br/><br/> Nelle macchine virtuali VMware devono essere installati e in esecuzione gli strumenti VMware. | |
-| **Computer Windows** |Per i server fisici o le macchine virtuali VMWare protette che eseguono Windows esistono diversi requisiti.<br/><br/> Sistema operativo a 64 bit supportato: **Windows Server 2012 R2**, **Windows Server 2012** o **Windows Server 2008 R2 con SP1 o versioni successive**.<br/><br/> Il nome host, i punti di montaggio, i nomi dei dispositivi e il percorso del sistema Windows, ad esempio C:\Windows, possono contenere solo caratteri inglesi.<br/><br/> Il sistema operativo dovrà essere installato nell'unità C:\.<br/><br/> Sono supportati solo i dischi di base. I dischi dinamici non sono supportati.<br/><br/> Le regole del firewall nei computer protetti devono consentire a tali computer di raggiungere i server di configurazione e di destinazione master in Azure.<p>È necessario specificare un account amministratore, che deve essere un amministratore locale nel computer Windows, per l'installazione push del servizio Mobility nei server Windows. Se l'account specificato non è un account di dominio, si dovrà disabilitare il Controllo dell'accesso utente remoto nel computer locale. A tale scopo, aggiungere la voce del Registro di sistema DWORD LocalAccountTokenFilterPolicy con un valore di 1 in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. Per aggiungere la voce del Registro di sistema da un'interfaccia della riga di comando, aprire il prompt dei comandi o PowerShell e digitare **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**. [Altre informazioni](https://msdn.microsoft.com/library/aa826699.aspx) sul controllo di accesso.<br/><br/> Dopo il failover, per connettersi alle macchine virtuali Windows in Azure con Desktop remoto, accertarsi che per il computer locale sia abilitato Desktop remoto. Se non ci si connette tramite VPN, le regole firewall devono consentire le connessioni Desktop remoto tramite Internet. | |
-| **Computer Linux** |Sistema operativo a 64 bit supportato: **Centos 6.4, 6.5 o 6.6**, **Oracle Enterprise Linux 6.4 o 6.5 che esegue il kernel compatibile Red Hat o Unbreakable Enterprise Kernel versione 3 (UEK3)**, **SUSE Linux Enterprise Server 11 SP3**.<br/><br/> Le regole del firewall nei computer protetti devono consentire a tali computer di raggiungere i server di configurazione e di destinazione master in Azure.<br/><br/> I file /etc/hosts nei computer protetti devono contenere le voci che eseguono il mapping del nome host locale agli indirizzi IP associati a tutte le schede NIC. <br/><br/> Per connettersi a una macchina virtuale di Azure che esegue Linux dopo il failover usando un client Secure Shell (SSH), accertarsi che il servizio Secure Shell nel computer protetto sia impostato per l'avvio automatico all'avvio del sistema e che le regole del firewall permettano una connessione SSH a tale computer.<br/><br/> Nome host, punti di montaggio, nomi dispositivo e percorsi di sistema di Linux e nomi file (ad esempio /etc/, /usr) dovranno essere specificati solo con caratteri dell'alfabeto latino.<br/><br/> La protezione può essere abilitata per i computer locali con le risorse di archiviazione indicate di seguito:<br>File system: EXT3, ETX4, ReiserFS, XFS<br>Software con percorsi multipli: mapper dispositivi (con percorsi multipli)<br>Gestore volumi: LVM2<br>I server fisici con archiviazione del controller HP CCISS non sono supportati. | |
-| **Terze parti** |Alcuni componenti della distribuzione in questo scenario dipendono da software di terze parti per funzionare correttamente. Per un elenco completo, vedere [Informazioni e comunicazioni sul software di terze parti](#third-party) | |
+| **Archiviazione di Azure** |È necessario un toostore replicati dati dell'account di archiviazione di Azure<br/><br/> Deve essere uno di questi account hello un [Account di archiviazione con ridondanza geografica Standard](../storage/common/storage-redundancy.md#geo-redundant-storage) o [Account di archiviazione Premium](../storage/common/storage-premium-storage.md).<br/><br/> È necessario in hello stessa area hello servizio Azure Site Recovery e associato hello stessa sottoscrizione. Non è supportata spostamento hello di account di archiviazione creati utilizzando hello [nuovo portale di Azure](../storage/common/storage-create-storage-account.md) tra gruppi di risorse.<br/><br/> leggere più toolearn [tooMicrosoft introduzione di archiviazione di Azure](../storage/common/storage-introduction.md) | |
+| **Rete virtuale di Azure** |È necessario che una rete virtuale di Azure in cui hello verrà distribuiti il server di configurazione e il server di destinazione master. Dovrebbe essere hello stessa sottoscrizione e area geografica dell'insieme di credenziali di Azure Site Recovery hello. Se si desiderano tooreplicate dati su un hello connessione Azure ExpressRoute o VPN virtuale rete deve essere rete locale tooyour connesso tramite una connessione ExpressRoute o una VPN Site-to-Site. | |
+| **Risorse di Azure** |Assicurarsi di avere sufficiente toodeploy risorse di Azure tutti i componenti. Per altre informazioni, vedere [Limiti relativi alle sottoscrizioni di Azure](../azure-subscription-service-limits.md). | |
+| **Macchine virtuali di Azure** |Macchine virtuali da tooprotect devono essere conformi ai [Azure prerequisiti](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).<br/><br/> **Numero di dischi**: in un singolo server protetto è possibile supportare un massimo di 31 dischi.<br/><br/> **Dimensioni del disco**: la capacità dei singoli dischi non deve superare 1023 GB.<br/><br/> **Clustering**: i server di cluster non sono supportati.<br/><br/> **Avvio**: l'avvio UEFI (Unified Extensible Firmware Interface)/EFI (Extensible Firmware Interface) non è supportato.<br/><br/> **Volumi**: i volumi crittografati con Bitlocker non sono supportati.<br/><br/> **Nomi dei server**: i nomi devono contenere da 1 a 63 caratteri (lettere, numeri e trattini). nome Hello deve iniziare con una lettera o un numero e terminare con una lettera o un numero. Una volta un computer protetto è possibile modificare hello nomi di Azure. | |
+| **Server di configurazione** |Verrà creato nella sottoscrizione per il server di configurazione di hello standard delle macchine virtuali A3 basati su un'immagine della raccolta di Azure Site Recovery Windows Server 2012 R2. Viene creata come hello prima istanza in un nuovo servizio cloud. Se si seleziona la rete Internet pubblica come tipo di connettività hello per il servizio cloud hello di hello configurazione server verrà creato con un indirizzo IP pubblico riservato.<br/><br/> il percorso di installazione di Hello deve essere solo caratteri inglesi. | |
+| **Server master di destinazione** |Macchina virtuale di Azure, A4 Standard, D14 Standard o DS4 Standard.<br/><br/> il percorso di installazione di Hello deve essere solo caratteri inglesi. Ad esempio in cui deve essere il percorso di hello **/usr/local/ASR** per un server di destinazione master Linux. | |
+| **Server di elaborazione** |È possibile distribuire server di elaborazione hello in computer fisico o macchina virtuale che esegue Windows Server 2012 R2 con aggiornamenti più recenti di hello. Eseguire l'installazione in C:/.<br/><br/> Si consiglia di posizionare i server hello in hello stessa rete e subnet hello macchine da tooprotect.<br/><br/> Installare VMware vSphere CLI 5.5.0 nel server di elaborazione hello. componente di Hello VMware vSphere CLI è necessario nel server di elaborazione hello in ordine toodiscover le macchine virtuali gestite da un server vCenter o macchine virtuali in esecuzione in un host ESXi.<br/><br/> il percorso di installazione di Hello deve essere solo caratteri inglesi.<br/><br/> Il file system ReFS non è supportato. | |
+| **VMware** |Server VMware vCenter per la gestione degli hypervisor VMware vSphere. Dovrebbe essere in esecuzione vCenter versione 5.1 o 5.5 con gli aggiornamenti più recenti di hello.<br/><br/> Uno o più hypervisor vSphere contenente macchine virtuali VMware è tooprotect. Hello hypervisor deve essere in esecuzione ESX/ESXi versione 5.1 o 5.5 con gli aggiornamenti più recenti di hello.<br/><br/> Nelle macchine virtuali VMware devono essere installati e in esecuzione gli strumenti VMware. | |
+| **Computer Windows** |Per i server fisici o le macchine virtuali VMWare protette che eseguono Windows esistono diversi requisiti.<br/><br/> Sistema operativo a 64 bit supportato: **Windows Server 2012 R2**, **Windows Server 2012** o **Windows Server 2008 R2 con SP1 o versioni successive**.<br/><br/> Hello nome host, i punti di montaggio, i nomi dei dispositivi, il percorso di sistema Windows (ad esempio: C:\Windows) deve essere solo in inglese.<br/><br/> sistema operativo Hello deve essere installato nell'unità C:\.<br/><br/> Sono supportati solo i dischi di base. I dischi dinamici non sono supportati.<br/><br/> Regole firewall nel computer protetto dovrebbero consentire loro tooreach hello master e configurazione server di destinazione in Azure.p ><p>È necessario un account amministratore tooprovide (deve essere un amministratore locale nel computer di Windows hello) toopush installare hello servizio di mobilità nei server di Windows. Se l'account di hello fornito è un account non di dominio, occorre toodisable controllo di accesso remoto nel computer locale hello. toodo questo hello Aggiungi voce di registro di sistema LocalAccountTokenFilterPolicy DWORD con un valore pari a 1 in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. voce del Registro di sistema di hello tooadd da CLI aprire cmd o powershell e immettere  **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`** . [Altre informazioni](https://msdn.microsoft.com/library/aa826699.aspx) sul controllo di accesso.<br/><br/> Dopo il failover, se si desidera collegare tooWindows di macchine virtuali in Azure con Desktop remoto assicurarsi che Desktop remoto è abilitato per hello nel computer locale. Se non si connette tramite VPN, le regole del firewall devono consentire le connessioni Desktop remoto su hello internet. | |
+| **Computer Linux** |Un sistema operativo supportato a 64 bit: **Centos 6.4 6.5, 6.6**; **Oracle Enterprise Linux 6.4 6.5 esegue kernel compatibile di hello Red Hat o non interrompibile Enterprise Kernel Release 3 (UEK3)**, **SUSE Linux Enterprise Server 11 SP3**.<br/><br/> Regole firewall nel computer protetto dovrebbero consentire loro configurazione hello tooreach e server di destinazione master in Azure.<br/><br/> il file /etc/hosts nel computer protetto devono contenere le voci che eseguono il mapping degli indirizzi tooIP nome host locale hello associati a tutte le schede di rete <br/><br/> Se si desidera tooconnect tooan virtuali di Azure computer Linux in esecuzione dopo il failover tramite Secure Shell client (ssh), verificare che il servizio di Secure Shell su hello protetto hello macchina è impostata toostart automaticamente all'avvio del sistema del sistema e che le regole del firewall consentono un ssh connessione tooit.<br/><br/> nome host Hello, punti di montaggio, i nomi dei dispositivi e i percorsi di sistema di Linux e i nomi di file (ad esempio/e così via, in /usr.) devono essere solo in inglese.<br/><br/> Protezione può essere abilitata per le macchine locali con hello archiviazione seguenti:-<br>File system: EXT3, ETX4, ReiserFS, XFS<br>Software con percorsi multipli: mapper dispositivi (con percorsi multipli)<br>Gestore volumi: LVM2<br>I server fisici con archiviazione del controller HP CCISS non sono supportati. | |
+| **Terze parti** |Alcuni componenti di distribuzione in questo scenario dipendono dal software di terze parti toofunction correttamente. Per un elenco completo, vedere [Informazioni e comunicazioni sul software di terze parti](#third-party) | |
 
 ### <a name="network-connectivity"></a>Connettività di rete
-Sono disponibili due opzioni quando si configura la connettività di rete tra il sito locale e la rete virtuale di Azure in cui vengono distribuiti i componenti dell'infrastruttura (server di configurazione, server di destinazione master). È necessario decidere quale opzione di connettività di rete usare prima di distribuire il server di configurazione. È necessario scegliere questa impostazione in fase di distribuzione. L'impostazione non può essere modificata in seguito.
+Si sono disponibili due opzioni durante la configurazione di connettività di rete tra il sito locale e hello rete virtuale di Azure in cui hello vengono distribuiti i componenti dell'infrastruttura (server di configurazione, i server di destinazione master). È necessario toodecide quali toouse opzione connettività di rete prima di distribuire il server di configurazione. È necessario toochoose questa impostazione in fase di hello della distribuzione. L'impostazione non può essere modificata in seguito.
 
-**Internet:** le comunicazioni e la replica dei dati tra i server locali, come il server di elaborazione e i computer protetti, e i server dei componenti dell'infrastruttura di Azure, come il server di configurazione e il server di destinazione master, avvengono tramite una connessione SSL/TLS protetta dal sito locale agli endpoint pubblici nel server di configurazione e nel server di destinazione master. L'unica eccezione è la connessione tra il server di elaborazione e il server di destinazione master sulla porta TCP 9080 che è non crittografata. Solo le informazioni di controllo relative al protocollo di replica per la configurazione della replica vengono scambiate tramite questa connessione.
+**Internet:** comunicazione e la replica dei dati tra server locali di hello (server di elaborazione, macchine virtuali protette) e i server del componente dell'infrastruttura di Azure hello (server di configurazione, il server di destinazione master) avviene tramite un protetto SSL / Connessione TLS dal endpoint pubblici di toohello locale nei server di destinazione master e di configurazione di hello. (l'unica eccezione hello è connessione hello tra server di elaborazione hello e server di destinazione master hello sulla porta TCP 9080 che viene crittografata. Solo informazioni di controllo relative toohello protocollo di replica per l'installazione della replica verrà scambiato in questa connessione.)
 
 ![Diagramma di distribuzione Internet](./media/site-recovery-vmware-to-azure-classic-legacy/internet-deployment.png)
 
-**VPN:**le comunicazioni e la replica dei dati tra i server locali, come il server di elaborazione e i computer protetti, e i server dei componenti dell'infrastruttura di Azure, come il server di configurazione e il server di destinazione master, avvengono tramite una connessione VPN tra la rete locale e la rete virtuale di Azure in cui vengono distribuiti il server di configurazione e i server di destinazione master. Assicurarsi che la rete locale sia connessa alla rete virtuale di Azure tramite una connessione ExpressRoute o una connessione VPN da sito a sito.
+**VPN**: replica dei dati tra server locali di hello (server di elaborazione, macchine virtuali protette) e i server del componente dell'infrastruttura di Azure hello (server di configurazione, il server di destinazione master) e la comunicazione avviene tramite una connessione VPN tra la rete locale e hello Azure in cui hello vengono distribuiti i server di destinazione master e server di configurazione di rete virtuale. Verificare che la rete locale sia connessa toohello rete virtuale di Azure tramite una connessione ExpressRoute o una connessione VPN da sito a sito.
 
 ![Diagramma di distribuzione VPN](./media/site-recovery-vmware-to-azure-classic-legacy/vpn-deployment.png)
 
 ## <a name="step-1-create-a-vault"></a>Passaggio 1: Creare un insieme di credenziali
-1. Accedere al [portale di gestione](https://portal.azure.com).
+1. Accedi toohello [portale di gestione](https://portal.azure.com).
 2. Espandere **Servizi dati** > **Servizi di ripristino** e fare clic su **Insieme di credenziali di Site Recovery**.
 3. Fare clic su **Creare nuovo** > **Creazione rapida**.
-4. In **Nome**immettere un nome descrittivo per identificare l'insieme di credenziali.
-5. In **Region**selezionare l'area geografica per l'insieme di credenziali. Per informazioni sulla disponibilità a livello geografico e sulle aree supportate, vedere la pagina relativa ai [dettagli sui prezzi per Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/)
+4. In **nome**, immettere un insieme di credenziali di nome descrittivo tooidentify hello.
+5. In **area**, selezionare hello area geografica per l'insieme di credenziali hello. aree toocheck supportato vedere aree geografiche disponibili in [dettagli prezzi di Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/)
 6. Fare clic su **Create vault**.
 
     ![Nuovo insieme di credenziali](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-create-vault.png)
 
-Controllare la barra di stato per verificare che l'insieme di credenziali sia stato creato correttamente. L'insieme di credenziali verrà elencato come **Attivo** nella pagina principale di **Servizi di ripristino**.
+Controllare tooconfirm barra di stato hello che hello insieme di credenziali è stato creato correttamente. insieme di credenziali Hello verrà elencato come **Active** su hello principale **servizi di ripristino** pagina.
 
 ## <a name="step-2-deploy-a-configuration-server"></a>Passaggio 2: Distribuire un server di configurazione
 ### <a name="configure-server-settings"></a>Configurare le impostazioni del server
-1. Nella pagina **Servizi di ripristino** fare clic sull'insieme di credenziali per aprire la pagina Avvio rapido. La pagina Avvio rapido può anche essere aperta in qualsiasi momento tramite l'icona.
+1. In hello **servizi di ripristino** pagina, fare clic su pagina di avvio rapido di hello insieme di credenziali tooopen hello. Guida introduttiva può anche essere aperto in qualsiasi momento facendo clic sull'icona hello.
 
     ![Quick Start Icon](./media/site-recovery-vmware-to-azure-classic-legacy/quick-start-icon.png)
-2. Nell'elenco a discesa selezionare **Tra un sito locale con server VMware/fisici e Azure**.
+2. Nell'elenco a discesa hello, selezionare **tra un sito locale con server VMware/fisici e Azure**.
 3. In **Preparare le risorse (Azure) di destinazione** fare clic su **Distribuisci server di configurazione**.
 
     ![Distribuisci server di configurazione](./media/site-recovery-vmware-to-azure-classic-legacy/deploy-cs2.png)
 4. In **Dettagli del nuovo server di configurazione** specificare:
 
-   * Un nome per il server di configurazione e le credenziali per la connessione.
-   * Nell'elenco a discesa del tipo di connettività di rete selezionare **Internet pubblico** o **VPN**. Si noti che non è possibile modificare questa impostazione dopo averla applicata.
-   * Selezionare la rete di Azure in cui dovrà essere collocato il server. Se si usa una VPN, assicurarsi che la rete di Azure sia connessa alla rete locale come previsto.
-   * Specificare l'indirizzo IP interno e la subnet da assegnare al server. Si noti che i primi quattro indirizzi IP in qualsiasi subnet sono riservati per l'uso interno in Azure. Usare gli altri indirizzi IP disponibili.
+   * Un nome per la configurazione hello server e credenziali tooit tooconnect.
+   * In tipo di connettività di rete hello elenco a discesa selezionare **rete Internet pubblica** o **VPN**. Si noti che non è possibile modificare questa impostazione dopo averla applicata.
+   * Selezionare hello rete di Azure in cui hello server deve essere collocato. Se si usa VPN assicurarsi che hello rete di Azure sia rete locale connesso tooyour come previsto.
+   * Specificare l'indirizzo IP interno hello e la subnet che verrà assegnato toohello server. Si noti che i primi quattro indirizzi IP in una qualsiasi subnet hello sono riservati per scopi interni in Azure. Usare gli altri indirizzi IP disponibili.
 
      ![Distribuisci server di configurazione](./media/site-recovery-vmware-to-azure-classic-legacy/cs-details.png)
-5. Quando si fa clic su **OK** , nella sottoscrizione del server di configurazione verrà creata una macchina virtuale A3 standard basata su un'immagine della raccolta di Windows Server 2012 R2 con Azure Site Recovery. Viene creata come prima istanza in un nuovo servizio cloud. Se si sceglie di connettersi tramite Internet, il servizio cloud viene creato con un indirizzo IP pubblico riservato. Lo stato di avanzamento può essere monitorato nella scheda **Processi** .
+5. Quando fa clic su **OK** verrà creata nella sottoscrizione per il server di configurazione di hello una macchina virtuale di A3 standard basata su un'immagine della raccolta di Azure Site Recovery Windows Server 2012 R2. Viene creata come hello prima istanza in un nuovo servizio cloud. Se si seleziona tooconnect sul servizio cloud di hello internet hello viene creato con un indirizzo IP pubblico riservato. È possibile monitorare lo stato di avanzamento in hello **processi** scheda.
 
     ![Monitorare lo stato](./media/site-recovery-vmware-to-azure-classic-legacy/monitor-cs.png)
-6. Se ci si connette tramite Internet, dopo la distribuzione del server di configurazione annotare l'indirizzo IP pubblico assegnato al server nella pagina **Macchine virtuali** nel portale di Azure. Nella scheda **Endpoint** annotare quindi la porta HTTPS pubblica mappata alla porta privata 443. Queste informazioni saranno necessarie in seguito per la registrazione dei server di destinazione master e di elaborazione con il server di configurazione. Il server di configurazione viene distribuito con gli endpoint indicati di seguito.
+6. Se ci si connette tramite hello internet, dopo che il server di configurazione hello è nota distribuito hello pubblica IP indirizzo assegnato tooit su hello **macchine virtuali** pagina hello portale di Azure. Quindi, nella hello **endpoint** scheda Nota hello pubblica la porta HTTPS mappato tooprivate porta 443. Queste informazioni in un secondo momento sarà necessario quando si registra i server di elaborazione e di destinazione master hello con il server di configurazione di hello. il server di configurazione di Hello viene distribuito con questi endpoint:
 
-   * HTTPS: viene usata una porta pubblica per coordinare le comunicazioni tra i server dei componenti e Azure tramite Internet. La porta privata 443 viene usata per coordinare la comunicazione tra i server dei componenti e Azure tramite VPN.
-   * Personalizzato: viene usata una porta pubblica per le comunicazioni con lo strumento di failback tramite Internet. La porta privata 9443 viene usata per la comunicazione con lo strumento di failback tramite VPN.
+   * HTTPS: Una porta pubblica è toocoordinate utilizzate la comunicazione tra server del componente e hello di Azure tramite internet. Porta privata 443 è toocoordinate utilizzate la comunicazione tra server del componente e Azure tramite VPN.
+   * Custom: Una porta pubblica viene utilizzata per la comunicazione di strumento di failback su hello internet. La porta privata 9443 viene usata per la comunicazione con lo strumento di failback tramite VPN.
    * PowerShell: porta privata 5986
    * Desktop remoto: porta privata 3389
 
    ![Endpoint VM](./media/site-recovery-vmware-to-azure-classic-legacy/vm-endpoints.png)
 
    > [!WARNING]
-   > Non eliminare o modificare il numero della porta pubblica o privata di qualsiasi endpoint creato durante la distribuzione del server di configurazione.
+   > Non eliminare o modificare il numero di porta pubblico o privato hello degli endpoint creati durante la distribuzione di server di configurazione.
    >
    >
 
-Il server di configurazione viene distribuito in un servizio cloud di Azure creato automaticamente con un indirizzo IP riservato. L'indirizzo riservato è necessario per garantire che l'indirizzo IP del servizio cloud del server di configurazione rimanga invariato dopo i riavvii delle macchine virtuali, incluso il server di configurazione, nel servizio cloud. La prenotazione dell'indirizzo IP pubblico riservato dovrà essere annullata manualmente al momento della rimozione del server di configurazione. In caso contrario, l'indirizzo IP resterà riservato. Esiste un limite predefinito di 20 indirizzi IP pubblici riservati per ogni sottoscrizione. [Altre informazioni](../virtual-network/virtual-networks-reserved-private-ip.md) sugli indirizzi IP riservati.
+il server di configurazione di Hello viene distribuito in un servizio cloud di Azure creato automaticamente con un indirizzo IP riservato. indirizzi riservati Hello sono tooensure necessario che l'indirizzo IP del servizio di configurazione server cloud hello rimane uguale hello dopo il riavvio di hello macchine virtuali (incluso il server di configurazione di hello) nel servizio cloud hello. Hello indirizzo IP pubblico riservato sarà necessario toobe manualmente non riservati quando il server di configurazione hello viene rimosso o verrà rimosso riservato. Esiste un limite predefinito di 20 indirizzi IP pubblici riservati per ogni sottoscrizione. [Altre informazioni](../virtual-network/virtual-networks-reserved-private-ip.md) sugli indirizzi IP riservati.
 
-### <a name="register-the-configuration-server-in-the-vault"></a>Registrare il server di configurazione nell'insieme di credenziali
-1. Nella pagina **Avvio rapido** fare clic su **Preparare le risorse (Azure) di destinazione** > **Scaricare una chiave di registrazione**. Il file di chiave viene generato automaticamente. È valido 5 giorni dopo essere stato generato. Copiare il file nel server di configurazione.
-2. In **Macchine virtuali** selezionare il server di configurazione nell'elenco delle macchine virtuali. Aprire la scheda **Dashboard** e fare clic su **Connetti**. **aprire** il file RDP scaricato. Se si usa una VPN, usare l'indirizzo IP interno, ovvero l'indirizzo specificato durante la distribuzione del server di configurazione, per una connessione Desktop remoto dal sito locale. Quando si accede per la prima volta, viene eseguita automaticamente la procedura guidata Azure Site Recovery Configuration Server Setup Wizard.
+### <a name="register-hello-configuration-server-in-hello-vault"></a>Registrare il server di configurazione di hello nell'insieme di credenziali hello
+1. In hello **avvio rapido** pagina fare clic su **preparare le risorse di destinazione** > **scaricare una chiave di registrazione**. file di chiave Hello viene generato automaticamente. È valido 5 giorni dopo essere stato generato. Copiare il file server di configurazione toohello.
+2. In **macchine virtuali** server di configurazione hello selezionare dall'elenco di macchine virtuali hello. Aprire hello **Dashboard** scheda e fare clic su **Connetti**. **Aprire** hello scaricato toolog file RDP nel server di configurazione hello tramite Desktop remoto. Se si sta usando una VPN, utilizzare l'indirizzo IP interno hello (indirizzo hello specificato al momento della distribuzione del server di configurazione hello) per una connessione Desktop remoto da sito locale hello. l'installazione guidata di Azure Site Recovery configurazione Server Hello viene eseguito automaticamente quando si accede per hello prima volta.
 
     ![Registrazione](./media/site-recovery-vmware-to-azure-classic-legacy/splash.png)
-3. In **Third-Party Software Installation** (Installazione software di terze parti) fare clic su **I Accept** (Accetto) per scaricare e installare MySQL.
+3. In **installazione Software di terze parti** fare clic su **accetto** toodownload e installare MySQL.
 
     ![Installazione di MySQL](./media/site-recovery-vmware-to-azure-classic-legacy/sql-eula.png)
-4. In **MySQL Server Details** creare le credenziali per l'accesso all'istanza del server MySQL.
+4. In **i dettagli del Server MySQL** creare credenziali toolog sull'istanza del server MySQL hello.
 
     ![Credenziali di MySQL](./media/site-recovery-vmware-to-azure-classic-legacy/sql-password.png)
-5. In **Internet Settings** specificare la modalità di connessione a Internet del server di configurazione. Si noti che:
+5. In **impostazioni Internet** specificare la modalità server di configurazione hello si connetteranno toohello internet. Si noti che:
 
-   * Se si vuole usare un server proxy personalizzato, configurarlo prima di installare il provider.
-   * Facendo clic su **Avanti** , verrà eseguito un test per verificare la connessione al proxy.
-   * Se si usa un proxy personalizzato oppure se il proxy predefinito richiede l'autenticazione, sarà necessario immettere i dettagli del proxy, tra cui l'indirizzo, la porta e le credenziali.
-   * Gli URL seguenti dovranno essere accessibili tramite il proxy:
+   * Se si desidera toouse un proxy personalizzato è necessario configurarlo prima di installare hello Provider.
+   * Quando fa clic su **Avanti** connessione proxy di hello toocheck verrà eseguito da un test.
+   * Se si utilizza un proxy personalizzato, o il proxy predefinito richiede l'autenticazione, occorre dettagli del proxy hello tooenter, incluse le credenziali, porta e indirizzo hello.
+   * Hello URL seguenti devono essere accessibile tramite proxy hello:
      * *.hypervrecoverymanager.windowsazure.com
      * *.accesscontrol.windows.net
      * *.backup.windowsazure.com
      * *.blob.core.windows.net
-     * *. store.core.windows.net
-   * Se sono presenti regole firewall basate sull'indirizzo IP, verificare che siano impostate per autorizzare la comunicazione tra il server di configurazione e gli indirizzi IP descritti in [Intervalli IP dei data center di Azure](https://msdn.microsoft.com/library/azure/dn175718.aspx) e per il protocollo HTTPS (443). È necessario aggiungere all'elenco di indirizzi consentiti gli IP dell'area Azure che si prevede di utilizzare e quello degli Stati Uniti occidentali.
+     * *.store.core.windows.net
+   * Se sono basate sull'indirizzo IP regole firewall verificare che le regole di hello siano impostate comunicazione tooallow hello configurazione server toohello degli indirizzi IP descritti [intervalli IP dei Data Center Azure](https://msdn.microsoft.com/library/azure/dn175718.aspx) e il protocollo HTTPS (443). È necessario che gli intervalli IP toowhite-elenco di hello regione di Azure che si prevede di toouse e quello di Stati Uniti occidentali.
 
      ![Registrazione del proxy](./media/site-recovery-vmware-to-azure-classic-legacy/register-proxy.png)
-6. In **Provider Error Message Localization Settings** specificare in quale lingua si desidera visualizzare i messaggi di errore.
+6. In **impostazioni localizzazione messaggio di errore del Provider** specificare in quale lingua si desidera tooappear i messaggi di errore.
 
     ![Registrazione di messaggi di errore](./media/site-recovery-vmware-to-azure-classic-legacy/register-locale.png)
-7. In **Azure Site Recovery Registration** individuare e selezionare il file di chiave copiato nel server.
+7. In **Azure Site Recovery registrazione** Sfoglia e i file di chiave hello selezionare copiato toohello server.
 
     ![Registrazione del file di chiave](./media/site-recovery-vmware-to-azure-classic-legacy/register-vault.png)
-8. Nella pagina di completamento della procedura guidata selezionare le opzioni seguenti:
+8. Nella pagina di completamento hello della procedura guidata hello selezionare queste opzioni:
 
-   * Selezionare **Avviare la finestra di gestione dell’account** per specificare che deve essere aperta la finestra Gestisci account dopo il completamento della procedura guidata.
-   * Selezionare **Crea un'icona desktop per Cspsconfigtool** per aggiungere un collegamento sul desktop nel server di configurazione, in modo da poter aprire la finestra di dialogo **Gestisci account** in qualsiasi momento senza dover ripetere la procedura guidata.
+   * Selezionare **avvia finestra di dialogo Gestione Account** deve aprire toospecify che hello finestra di dialogo Gestione account dopo aver completato la procedura guidata hello.
+   * Selezionare **creare un'icona sul desktop per Cspsconfigtool** tooadd un collegamento sul desktop nel server di configurazione hello in modo che sia possibile aprire hello **Gestisci account** finestra di dialogo in qualsiasi momento senza la necessità di hello toorerun procedura guidata.
 
      ![Completare la registrazione](./media/site-recovery-vmware-to-azure-classic-legacy/register-final.png)
-9. Fare clic su **Finish** per completare la procedura guidata. Verrà generata una passphrase. Copiarla in una posizione sicura. Sarà necessaria per autenticare e registrare i server di elaborazione e di destinazione master con il server di configurazione. Verrà usata anche per assicurare l'integrità del canale nelle comunicazioni del server di configurazione. La passphrase può essere rigenerata, ma si dovrà registrare di nuovo i server di elaborazione e di destinazione master con la nuova passphrase.
+9. Fare clic su **fine** guidata hello toocomplete. Verrà generata una passphrase. Copiare il percorso sicuro tooa. Si sarà necessario tooauthenticate e registrare processo hello e i server di destinazione master con il server di configurazione di hello. Integrità canale tooensure è utilizzato anche nelle comunicazioni di server di configurazione. È possibile rigenerare la passphrase hello ma sarà necessario toore la registrazione di destinazione master hello e i server di elaborazione con hello nuova passphrase.
 
     ![Passphrase](./media/site-recovery-vmware-to-azure-classic-legacy/passphrase.png)
 
-Dopo la registrazione, il server di configurazione verrà elencato nella pagina **Server di configurazione** nell'insieme di credenziali.
+Dopo la registrazione del server di configurazione hello verrà elencato nella hello **server di configurazione** pagina nell'insieme di credenziali hello.
 
 ### <a name="set-up-and-manage-accounts"></a>Impostare e gestire gli account
-Durante la distribuzione, Site Recovery richiede le credenziali per le azioni seguenti:
+Durante la distribuzione il ripristino del sito richiede le credenziali per hello seguenti azioni:
 
 * Un account di VMware, per permettere a Site Recovery di rilevare automaticamente le macchine virtuali nei server vCenter o negli host vSphere.
-* Quando si aggiungono computer per la protezione, in modo che Site Recovery possa installare il servizio Mobility su di essi.
+* Quando si aggiungono macchine per la protezione, in modo che il ripristino del sito può installare il servizio di mobilità hello su di essi.
 
-Dopo aver registrato il server di configurazione, è possibile aprire la finestra di dialogo **Gestisci account** per aggiungere e gestire gli account che devono essere usati per queste azioni. Esistono due modi per eseguire questa operazione:
+Dopo aver registrato il server di configurazione di hello è possibile aprire hello **Gestisci account** tooadd finestra di dialogo e gestire gli account che devono essere utilizzati per eseguire queste azioni. Esistono un paio di modi toodo questo:
 
-* Aprire il collegamento che si è scelto di creare per la finestra di dialogo nell'ultima pagina dell'installazione per il server di configurazione (cspsconfigtool).
-* Aprire la finestra di dialogo al termine della dell'installazione del server di configurazione.
+* Aprire il collegamento hello si è scelto di toocreated per la finestra di dialogo hello hello ultima pagina del programma di installazione per il server di configurazione hello (cspsconfigtool).
+* Finestra di dialogo Apri hello nel completamento dell'installazione del server di configurazione.
 
 1. In **Gestisci account** click **Aggiungi account**. È inoltre possibile modificare ed eliminare account esistenti.
 
     ![Gestisci account](./media/site-recovery-vmware-to-azure-classic-legacy/manage-account.png)
-2. In **Dettagli account** specificare un nome di account da usare in Azure e le credenziali (dominio/nome utente).
+2. In **dettagli Account** specificare un toouse nome di account in Azure e le credenziali (nome di dominio/utente).
 
     ![Gestisci account](./media/site-recovery-vmware-to-azure-classic-legacy/account-details.png)
 
-### <a name="connect-to-the-configuration-server"></a>Connettersi al server di configurazione
-Esistono due modi per connettersi al server di configurazione:
+### <a name="connect-toohello-configuration-server"></a>Connettere il server di configurazione toohello
+Esistono due server di configurazione toohello di tooconnect modi:
 
 * Tramite una connessione VPN da sito a sito o ExpressRoute
-* Tramite Internet
+* Su hello internet
 
 Si noti che:
 
-* Una connessione Internet usa gli endpoint della macchina virtuale insieme all'indirizzo IP virtuale pubblico del server.
-* Una connessione VPN usa l'indirizzo IP interno del server insieme alle porte private dell'endpoint.
-* È necessario decidere se eseguire la connessione (dati di controllo e replica) dai server locali ai vari server dei componenti (server di configurazione, server di destinazione master) in esecuzione in Azure tramite una connessione VPN o via Internet. Non è possibile modificare questa impostazione in un secondo momento. Se la si modifica, sarà necessario ridistribuire lo scenario e proteggere nuovamente i computer.  
+* Una connessione internet utilizza gli endpoint di hello della macchina virtuale hello in combinazione con hello indirizzo IP virtuale pubblico del server di hello.
+* Una connessione VPN Usa indirizzo IP interno hello del server hello insieme alle porte private dell'endpoint di hello.
+* Se è toodecide una sola volta tooconnect (dati di controllo e della replica) dal toohello Server on-premise vari server del componente (server di configurazione, il server di destinazione master) in esecuzione in Azure tramite una connessione VPN o internet hello. Non è possibile modificare questa impostazione in un secondo momento. Se non si sarà necessario tooredeploy hello scenario e ricrea la protezione dei computer.  
 
-## <a name="step-3-deploy-the-master-target-server"></a>Passaggio 3: Distribuire il server di destinazione master
+## <a name="step-3-deploy-hello-master-target-server"></a>Passaggio 3: Distribuire il server di destinazione master hello
 1. Fare clic su **Preparare le risorse (Azure) di destinazione** > **Distribuisci server di destinazione master**.
-2. Specificare i dettagli e le credenziali del server di destinazione master. Il server verrà distribuito nella stessa rete di Azure in cui risiede il server di configurazione. Quando si fa clic per confermare, verrà creata una macchina virtuale di Azure con un'immagine della raccolta di Windows o Linux.
+2. Specificare le credenziali e i dettagli del server di destinazione principale hello. server Hello saranno distribuiti in hello stessa rete del server di configurazione hello Azure. Quando si fa clic toocomplete una macchina virtuale di Azure verrà creata con un'immagine della raccolta Windows o Linux.
 
     ![Impostazioni del server di destinazione](./media/site-recovery-vmware-to-azure-classic-legacy/target-details.png)
 
-Si noti che i primi quattro indirizzi IP in qualsiasi subnet sono riservati per l'uso interno in Azure. Specificare gli altri indirizzi IP disponibili.
+Si noti che i primi quattro indirizzi IP in una qualsiasi subnet hello sono riservati per scopi interni in Azure. Specificare gli altri indirizzi IP disponibili.
 
 > [!NOTE]
-> Selezionare DS4 Standard durante la configurazione della protezione dei carichi di lavoro che richiedono prestazioni di I/O elevate e omogenee e bassa latenza per ospitare carichi di lavoro con numerose operazioni di I/O con un [account di archiviazione Premium](../storage/common/storage-premium-storage.md).
+> Selezionare Standard DS4 durante la configurazione di protezione per i carichi di lavoro che richiedono prestazioni dei / o elevata coerente e bassa latenza in ordine toohost i/o intensivo carichi di lavoro con [Account di archiviazione Premium](../storage/common/storage-premium-storage.md).
 >
 >
 
-1. Viene creata una macchina virtuale del server di destinazione master Windows con gli endpoint indicati di seguito. Si noti che gli endpoint pubblici vengono creati solo se ci si connette tramite Internet.
+1. Viene creata una macchina virtuale del server di destinazione master Windows con gli endpoint indicati di seguito. Si noti che gli endpoint pubblici vengono creati solo se la connessione su hello internet.
 
-   * Personalizzato: porta pubblica usata dal server di elaborazione per inviare dati di replica tramite Internet. La porta privata 9443 viene usata dal server di elaborazione per inviare dati di replica al server di destinazione master tramite VPN.
-   * Personalizzato1: porta pubblica usata dal server di elaborazione per inviare metadati tramite Internet. La porta privata 9080 viene usata dal server di elaborazione per inviare metadati al server di destinazione master tramite VPN.
+   * Custom: Porta pubblica utilizzata dai dati di replica di hello processo server toosend tramite hello internet. Porta privata 9443 viene utilizzata da hello processo server toosend replica dati toohello server di destinazione master tramite VPN.
+   * Personalizzata1: Utilizzato da hello processo server toosend metadati su hello la porta pubblica internet. Porta privata 9080 viene utilizzata dal server di destinazione master di hello processo server toosend metadati toohello tramite VPN.
    * PowerShell: porta privata 5986
    * Desktop remoto: porta privata 3389
-2. Viene creata una macchina virtuale del server di destinazione master Linux con gli endpoint indicati di seguito. Si noti che gli endpoint pubblici vengono creati solo se ci si connette tramite Internet.
+2. Viene creata una macchina virtuale del server di destinazione master Linux con gli endpoint indicati di seguito. Si noti che vengono creati gli endpoint pubblici solo se ci si connette tramite hello internet.
 
-   * Personalizzato: porta pubblica usata dal server di elaborazione per inviare dati di replica tramite Internet. La porta privata 9443 viene usata dal server di elaborazione per inviare dati di replica al server di destinazione master tramite VPN.
-   * Personalizzato1: porta pubblica usata dal server di elaborazione per inviare metadati tramite Internet. La porta privata 9080 viene usata dal server di elaborazione per inviare metadati al server di destinazione master tramite VPN.
+   * Custom: Porta pubblica utilizzata dai dati di replica di processo server toosend tramite hello internet. Porta privata 9443 viene utilizzata da hello processo server toosend replica dati toohello server di destinazione master tramite VPN.
+   * Personalizzata1: Porta pubblica è utilizzata da hello processo server toosend metadati su hello internet. Porta privata 9080 viene utilizzata dal server di destinazione master di hello processo server toosend metadati toohello tramite VPN
    * SSH: porta privata 22
 
      > [!WARNING]
-     > Non eliminare o modificare il numero della porta pubblica o privata di qualsiasi endpoint creato durante la distribuzione del server di destinazione master.
+     > Non eliminare o modificare il numero di porta pubblico o privato hello di qualsiasi endpoint hello creati durante la distribuzione di server di destinazione master hello.
      >
      >
-3. In **Macchine virtuali** attendere l'avvio della macchina virtuale.
+3. In **macchine virtuali** attendere hello toostart di macchina virtuale.
 
-   * Se si tratta di un server Windows, annotare le informazioni sul desktop remoto.
-   * Se si tratta di un server Linux e ci si connette tramite VPN, annotare l'indirizzo IP interno della macchina virtuale. Se si stabilisce la connessione tramite Internet, annotare l'indirizzo IP pubblico.
-4. Accedere al server per completare l'installazione ed eseguirne la registrazione con il server di configurazione.
+   * Se si tratta di una nota di Windows server verso il basso dettagli hello del desktop remoto.
+   * Se si tratta di un server Linux e ci si connette tramite VPN nota hello indirizzo IP interno della macchina virtuale hello. Se ci si connette tramite hello internet nota hello indirizzo IP pubblico.
+4. Accedere a installazione di toocomplete server hello e registrarlo con il server di configurazione di hello.
 5. Se si usa Windows:
 
-   1. Avviare una connessione Desktop remoto alla macchina virtuale. La prima volta che si accede, verrà eseguito uno script nella finestra di PowerShell. Non chiuderla. Al termine, viene aperto automaticamente lo strumento di configurazione dell'agente host (Host Agent Config) per registrare il server.
-   2. Nella finestra **Host Agent Config** specificare l'indirizzo IP interno del server di configurazione e la porta 443. È possibile usare l'indirizzo interno e la porta privata 443 anche se non si usa la modalità VPN per la connessione, perché la macchina virtuale è collegata alla stessa rete di Azure in cui risiede il server di configurazione. Lasciare abilitata l'opzione **Use HTTPS** . Immettere la passphrase per il server di configurazione annotata in precedenza. Fare clic su **OK** per registrare il server. È possibile ignorare le opzioni NAT. in quanto non vengono usate.
-   3. Se l'unità di conservazione stimata richiede più di 1 TB, è possibile configurare il volume di conservazione (R:) usando un disco virtuale e [spazi di archiviazione](http://blogs.technet.com/b/askpfeplat/archive/2013/10/21/storage-spaces-how-to-configure-storage-tiers-with-windows-server-2012-r2.aspx)
+   1. Avviare una macchina virtuale di toohello connessione desktop remoto. Hello prima volta che accede a uno script verrà eseguito in una finestra di PowerShell. Non chiuderla. Al termine dello strumento di configurazione dell'agente Host hello viene aperta automaticamente server hello tooregister.
+   2. In **configurazione dell'agente Host** specificare l'indirizzo IP interno hello del server di configurazione hello e la porta 443. È possibile utilizzare l'indirizzo interno hello e la porta privata 443, anche se ci si connette tramite VPN non perché la macchina virtuale di hello è collegato toohello stessa rete del server di configurazione hello Azure. Lasciare abilitata l'opzione **Use HTTPS** . Immettere la passphrase hello per server di configurazione hello annotati in precedenza. Fare clic su **OK** server hello tooregister. È possibile ignorare le opzioni di hello NAT. in quanto non vengono usate.
+   3. Se il requisito di unità di conservazione stimato è più di 1 TB, è possibile configurare volume di conservazione hello (r) mediante un disco virtuale e [spazi di archiviazione](http://blogs.technet.com/b/askpfeplat/archive/2013/10/21/storage-spaces-how-to-configure-storage-tiers-with-windows-server-2012-r2.aspx)
 
    ![Server di destinazione master Windows](./media/site-recovery-vmware-to-azure-classic-legacy/target-register.png)
 6. Se si usa Linux:
 
-   1. Assicurarsi di aver installato il LIS (Linux Integration Services) più recente prima di installare il server di destinazione master. È possibile trovare la versione più recente di LIS insieme alle istruzioni su come installarlo [qui](https://www.microsoft.com/download/details.aspx?id=46842). Riavviare il computer dopo l’installazione di LIS.
-   2. In **Preparare le risorse (Azure) di destinazione** fare clic su **Scarica e installa il software aggiuntivo (solo per il server di destinazione master Linux)**. Copiare il file TAR scaricato nella macchina virtuale usando un client SFTP. In alternativa, è possibile accedere al server di destinazione master Linux distribuito e usare *wget http://go.microsoft.com/fwlink/?LinkID=529757&clcid=0x409* per scaricare il file.
-   3. Accedere al server con un client Secure Shell. Se si è connessi alla rete di Azure tramite VPN, usare l'indirizzo IP interno. In caso contrario, usare l'indirizzo IP esterno e l'endpoint pubblico SSH.
-   4. Estrarre i file dal programma di installazione compresso con gzip eseguendo: **tar –xvzf Microsoft-ASR_UA_8.4.0.0_RHEL6-64***
-      ![Server di destinazione master Linux](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
-   5. Accertarsi di essere nella directory nella quale è stato estratto il contenuto del file TAR.
-   6. Copiare la passphrase del server di configurazione in un file locale usando il comando ***echo `<passphrase>`* >passphrase.txt**
-   7. Eseguire il comando "***sudo ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i `<Configuration server internal IP address>`* -p 443 -s y -c https -P passphrase.txt**".
+   1. Verificare che è stato installato hello più recente Linux Integration Services (LIS) installato prima di installare il server di destinazione master hello. È possibile trovare una versione più recente di LIS hello insieme alle istruzioni su come tooinstall [qui](https://www.microsoft.com/download/details.aspx?id=46842). Riavviare il computer di hello dopo l'installazione di LIS hello.
+   2. In **Preparare le risorse (Azure) di destinazione** fare clic su **Scarica e installa il software aggiuntivo (solo per il server di destinazione master Linux)**. Hello copia scaricato tar file toohello macchina virtuale utilizzando un client FTP sicuro. In alternativa è possibile accedere al server di destinazione master linux distribuito toohello e utilizzare *wget http://go.microsoft.com/fwlink/?LinkID=529757&clcid=0x409* file hello di hello toodownload.
+   3. Accedere al server toohello utilizzando un client Secure Shell. Se si è connessi toohello rete tramite VPN di Azure usare l'indirizzo IP interno hello. In caso contrario, utilizzare l'indirizzo IP esterno hello ed endpoint pubblico di hello SSH.
+   4. Estrarre i file hello dal programma di installazione compresso con gzip hello eseguendo: **tar – xvzf Microsoft-ASR_UA_8.4.0.0_RHEL6-64***
+      ![server di destinazione master Linux](./media/site-recovery-vmware-to-azure-classic-legacy/linux-tar.png)
+   5. Assicurarsi di essere in toowhich directory hello è stato estratto il contenuto di hello del file con estensione tar hello.
+   6. Copia hello server passphrase tooa locale file di configurazione utilizzando il comando hello **echo  *`<passphrase>`*  > passphrase.txt**
+   7. Eseguire il comando hello "**sudo. /Install -t entrambi - a -R host /usr/local/ASR -d MasterTarget -i  *`<Configuration server internal IP address>`*  -p 443 -s y - c https -P passphrase.txt**".
 
       ![Registrare il server di destinazione](./media/site-recovery-vmware-to-azure-classic-legacy/linux-mt-install.png)
-7. Attendere da 10 a 15 minuti, quindi verificare nella pagina che il server di destinazione master sia elencato come registrato nella scheda **Server** > **Server di configurazione** **Dettagli server**. Se si usa Linux e il server non è stato registrato, eseguire di nuovo lo strumento di configurazione dell'host da /usr/local/ASR/Vx/bin/hostconfigcli. Sarà necessario impostare le autorizzazioni di accesso eseguendo chmod come utente ROOT.
+7. Attendere alcuni minuti (10-15) e in controllo pagina hello indicato come registrato nel server di destinazione master hello **server** > **server di configurazione** **idettaglidelServer** scheda. Se si eseguono Linux e non ha registrato ripetere host hello strumento di configurazione /usr/local/ASR/Vx/bin/hostconfigcli. È necessario tooset le autorizzazioni di accesso eseguendo chmod come radice.
 
     ![Verificare il server di destinazione](./media/site-recovery-vmware-to-azure-classic-legacy/target-server-list.png)
 
 > [!NOTE]
-> Al termine della registrazione, possono essere necessari fino a 15 minuti perché il server di destinazione master venga elencato nel portale. Per aggiornarlo immediatamente, fare clic su **Aggiorna** on the **Server di configurazione** .
+> Potrebbe essere necessaria fino too15 minuti dopo la registrazione è stata completata per toobe server di destinazione master hello elencato nel portale di hello. tooupdate immediatamente, fare clic su **aggiornamento** su hello **server di configurazione** pagina.
 >
 >
 
-## <a name="step-4-deploy-the-on-premises-process-server"></a>Passaggio 4: Distribuire il server di elaborazione locale
-Prima di iniziare è consigliabile configurare un indirizzo IP statico nel server di elaborazione per fare in modo che sia persistente dopo i riavvii.
+## <a name="step-4-deploy-hello-on-premises-process-server"></a>Passaggio 4: Distribuire server di elaborazione locale hello
+Prima di iniziare, è consigliabile configurare un indirizzo IP statico nel server di elaborazione hello in modo che è sicuramente toobe permanente attraverso riavvii.
 
-1. Fare clic su Avvio rapido > **Installare il server di elaborazione locale** > **Scaricare e installare il server di elaborazione**.
+1. Fare clic su avvio rapido > **installare Server di elaborazione locale** > **scaricare e installare il server di elaborazione hello**.
 
     ![Installare il server di elaborazione](./media/site-recovery-vmware-to-azure-classic-legacy/ps-deploy.png)
-2. Copiare il file ZIP scaricato nel server in cui si installerà il server di elaborazione. Il file ZIP contiene due file di installazione:
+2. Hello copia scaricato server toohello di file zip in cui si userà il server di elaborazione tooinstall hello. file zip Hello contiene due file di installazione:
 
    * Microsoft-ASR_CX_TP_8.4.0.0_Windows*
    * Microsoft-ASR_CX_8.4.0.0_Windows*
-3. Decomprimere il file compresso e copiare i file di installazione in un percorso del server.
-4. Eseguire il file di installazione **Microsoft-ASR_CX_TP_8.4.0.0_Windows*** e seguire le istruzioni. Verranno installati i componenti di terze parti necessari per la distribuzione.
+3. Decomprimere hello archivio e copia hello file tooa percorso di installazione su server hello.
+4. Eseguire hello **Microsoft-ASR_CX_TP_8.4.0.0_Windows*** file di installazione e seguire le istruzioni di hello. Consente di installare i componenti di terze parti necessari per la distribuzione di hello.
 5. Eseguire quindi **Microsoft-ASR_CX_8.4.0.0_Windows***.
-6. Nella pagina **Modalità server** selezionare **Server di elaborazione**.
-7. Nella pagina **Dettagli ambiente** eseguire le operazioni seguenti:
+6. In hello **modalità Server** pagina selezionare **Server di elaborazione**.
+7. In hello **dettagli sull'ambiente** hello pagina seguente:
 
-    - Se si desidera proteggere macchine virtuali VMware, fare clic su **Sì**
-    - Se si vuole solo proteggere server fisici e quindi non è necessario installare VMware vCLI nel server di elaborazione, fare clic su **No** e continuare.
+    - Se si desidera fare clic su macchine virtuali VMware di tooprotect **Sì**
+    - Se si desidera che solo i server fisici tooprotect e non deve dunque vCLI VMware installato nel server di elaborazione hello. fare clic su **No** e continuare.
 
-1. Quando si installa VMware vCLI, tenere presente quanto segue:
+1. Si noti seguenti hello quando si installa vCLI VMware:
 
-   * **È supportato solo VMware vSphere CLI 5.5.0**. Il server di elaborazione non funziona con altre versioni o aggiornamenti di vSphere CLI.
+   * **È supportato solo VMware vSphere CLI 5.5.0**. server di elaborazione Hello non funziona con le altre versioni o gli aggiornamenti di vSphere CLI.
    * Scaricare vSphere CLI 5.5.0 da [qui.](https://my.vmware.com/web/vmware/details?downloadGroup=VCLI550&productId=352)
-   * Se vSphere CLI è stato installato subito prima di avviare l'installazione del server di elaborazione e non viene rilevato dal programma di installazione, attendere fino a cinque minuti prima di riprovare a eseguire l'installazione. Questo garantisce che tutte le variabili di ambiente necessarie per il rilevamento di vSphere CLI siano state inizializzate correttamente.
-2. In **Selezione della NIC per il server di elaborazione** selezionare la scheda di rete che deve essere usata dal server di elaborazione.
+   * Se è installato vSphere CLI appena prima di iniziare l'installazione di server di elaborazione hello, non rileva il programma di installazione, attendere fino a toofive minuti prima di riprovare l'installazione. In questo modo si garantisce che tutte le variabili di ambiente hello necessari per il rilevamento di vSphere CLI sono state inizializzate in modo corretto.
+2. In **selezione NIC per Server di elaborazione** scheda di rete selezionare hello è necessario utilizzare il server di elaborazione hello.
 
    ![Selezionare la scheda](./media/site-recovery-vmware-to-azure-classic-legacy/ps-nic.png)
 3. In **Dettagli del server di configurazione**:
 
-   * Per l'indirizzo IP e la porta, se si stabilisce la connessione tramite VPN, specificare l'indirizzo IP interno del server di configurazione e la porta 443. In caso contrario, specificare l'indirizzo IP virtuale e l'endpoint HTTP pubblico mappato.
-   * Digitare la passphrase del server di configurazione.
-   * Per disabilitare la verifica quando si usa il push automatico per installare il servizio, deselezionare **Verifica firma del software del servizio Mobility** . La verifica della firma richiede la connettività Internet dal server di elaborazione.
-   * Fare clic su **Next**.
+   * Per indirizzo IP hello e la porta, se ci si connette tramite VPN specificare indirizzo IP interno hello hello del server di configurazione e la 443 per la porta hello. In caso contrario specificare indirizzo IP virtuale pubblico di hello e mappato endpoint HTTP pubblico.
+   * Digitare la passphrase hello hello del server di configurazione.
+   * Deselezionare **firma software servizio di mobilità verificare** se si desidera toodisable verifica quando si usa servizio di push automatico tooinstall hello. Verifica della firma necessita della connettività internet dal server di elaborazione hello.
+   * Fare clic su **Avanti**.
 
    ![Registrare il server di configurazione](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cs.png)
-4. In **Selezionare l'unità di installazione** selezionare un'unità cache. Il server di elaborazione richiede un'unità cache con almeno 600 GB di spazio libero. Fare clic su **Installa**.
+4. In **Selezionare l'unità di installazione** selezionare un'unità cache. server di elaborazione Hello deve un'unità di cache con un minimo di 600 GB di spazio libero. Fare clic su **Installa**.
 
    ![Registrare il server di configurazione](./media/site-recovery-vmware-to-azure-classic-legacy/ps-cache.png)
-5. Si noti che potrebbe essere necessario riavviare il server per completare l'installazione. In **Configuration Server** > **Dettagli server** verificare che il server di elaborazione sia visualizzato e risulti registrato correttamente nell'insieme di credenziali.
+5. Si noti che potrebbe essere necessario installazione hello toocomplete di toorestart hello server. In **Server di configurazione** > **i dettagli del Server** controllare tale server di elaborazione hello viene visualizzata ed è stato registrato nell'insieme di credenziali hello.
 
 > [!NOTE]
-> Possono essere necessari fino a 15 minuti dopo la registrazione perché il server di elaborazione venga elencato nel server di configurazione. Per aggiornare immediatamente, aggiornare il server di configurazione facendo clic sul pulsante Aggiorna nella parte inferiore della pagina Server di configurazione.
+> Potrebbe essere necessaria fino too15 minuti dopo la registrazione è stata completata per hello processo server tooappear come elencato nella sezione server di configurazione hello. tooupdate immediatamente, aggiornare il server di configurazione hello facendo clic sul pulsante Aggiorna hello nella parte inferiore di hello hello server della pagina di configurazione
 >
 >
 
 ![Convalidare il server di elaborazione](./media/site-recovery-vmware-to-azure-classic-legacy/ps-register.png)
 
-Se la verifica della firma per il servizio Mobility non è stata disabilitata al momento della registrazione del server di elaborazione, è possibile farlo in un secondo momento come descritto di seguito:
+Se si non disabilita la verifica della firma per il servizio di mobilità hello durante la registrazione di server di elaborazione hello è possibile farlo in un secondo momento come indicato di seguito:
 
-1. Accedere al server di elaborazione come amministratore e aprire il file C:\pushinstallsvc\pushinstaller.conf per la modifica. Nella sezione **[PushInstaller.transport]** aggiungere la riga seguente: **SignatureVerificationChecks="0"**. Salvare e chiudere il file.
-2. Riavviare il servizio InMage PushInstall.
+1. Accedere al server di elaborazione hello come amministratore e aprire il file hello C:\pushinstallsvc\pushinstaller.conf per la modifica. Nella sezione hello **[PushInstaller.transport]** aggiungere questa riga: **SignatureVerificationChecks = "0"**. Salvare e chiudere il file hello.
+2. Riavviare servizio InMage PushInstall hello.
 
 ## <a name="step-5-update-site-recovery-components"></a>Passaggio 5: Aggiornare i componenti di Site Recovery
-I componenti di Site Recovery vengono aggiornati periodicamente. Quando sono disponibili nuovi aggiornamenti è necessario installarli nell'ordine seguente:
+I componenti di ripristino del sito vengono aggiornati da tootime ora. Quando sono disponibili nuovi aggiornamenti è necessario installare tali hello seguente ordine:
 
 1. Server di configurazione
 2. Server di elaborazione
 3. Server master di destinazione
 4. Strumento di failback (vContinuum)
 
-### <a name="obtain-and-install-the-updates"></a>Ottenere e installare gli aggiornamenti
-1. Gli aggiornamenti per i server di configurazione, di elaborazione e di destinazione master sono disponibili nel **dashboard**di Site Recovery. Per l'installazione in Linux, estrarre i file dal programma di installazione in formato GZIP ed eseguire il comando "sudo ./install" per installare l'aggiornamento.
-2. [Scaricare](http://go.microsoft.com/fwlink/?LinkID=533813) l'aggiornamento più recente per lo strumento di failback (vContinuum).
-3. Se si eseguono macchine virtuali o server fisici in cui è già installato il servizio Mobility, è possibile ottenere gli aggiornamenti per il servizio come segue:
+### <a name="obtain-and-install-hello-updates"></a>Ottenere e installare gli aggiornamenti di hello
+1. È possibile ottenere gli aggiornamenti per i server di destinazione master, processi e configurazione di hello da Site Recovery hello **Dashboard**. Per l'installazione di Linux estrarre file hello dal programma di installazione compresso con gzip hello ed eseguire il comando hello "sudo. /Install" aggiornamento hello tooinstall.
+2. [Scaricare](http://go.microsoft.com/fwlink/?LinkID=533813) hello aggiornamento più recente di hello Failback tool(vContinuum).
+3. Se si eseguono le macchine virtuali o i server fisici che è già installato servizio di mobilità di hello, è possibile ottenere gli aggiornamenti per il servizio hello come indicato di seguito:
 
    * **Opzione 1**: scaricare gli aggiornamenti seguenti.
      * [Windows Server (solo 64 bit)](http://download.microsoft.com/download/8/4/8/8487F25A-E7D9-4810-99E4-6C18DF13A6D3/Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe)
      * [CentOS 6.4,6.5,6.6 (solo 64 bit)](http://download.microsoft.com/download/7/E/D/7ED50614-1FE1-41F8-B4D2-25D73F623E9B/Microsoft-ASR_UA_8.4.0.0_RHEL6-64_GA_28Jul2015_release.tar.gz)
      * [Oracle Enterprise Linux 6.4,6.5 (solo 64 bit)](http://download.microsoft.com/download/5/2/6/526AFE4B-7280-4DC6-B10B-BA3FD18B8091/Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz)
      * [SUSE Linux Enterprise Server SP3 (solo 64 bit)](http://download.microsoft.com/download/B/4/2/B4229162-C25C-4DB2-AD40-D0AE90F92305/Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz)
-     * Dopo l'aggiornamento del server di elaborazione, la versione aggiornata del servizio Mobility è disponibile nella cartella C:\pushinstallsvc\repository nel server di elaborazione.
-   * **Opzione 2**: se è disponibile un computer su cui è installata una versione precedente del servizio Mobility, è possibile aggiornare automaticamente il servizio Mobility nel computer dal portale di gestione.
+     * Dopo aver aggiornato i messaggi hello del processo server hello versione aggiornata del servizio di mobilità hello saranno disponibili nella cartella C:\pushinstallsvc\repository hello nel server di elaborazione hello.
+   * **Opzione 2**: se si dispone di un computer con una versione precedente di hello installato servizio di mobilità, è possibile aggiornare automaticamente il servizio di mobilità hello computer hello dal portale di gestione di hello.
 
-     1. Assicurarsi che il server di elaborazione sia aggiornato.
-     2. Assicurarsi che il computer protetto sia conforme ai [prerequisiti](#install-the-mobility-service-automatically) per il push automatico del servizio Mobility, in modo che l'aggiornamento funzioni come previsto.
-     3. Selezionare il gruppo di protezione, evidenziare il computer protetto e fare clic su **Aggiorna servizio Mobility**. Questo pulsante è disponibile solo se è presente una versione più recente del servizio Mobility.
+     1. Verificare che server di elaborazione hello viene aggiornato.
+     2. Verificare che il computer protetto di hello sia conforme a hello [prerequisiti](#install-the-mobility-service-automatically) per inserire automaticamente il servizio di mobilità hello, in modo che aggiornamento hello funziona come previsto.
+     3. Gruppo protezione dati selezionare hello, evidenziazione hello protected computer e fare clic su **servizio di mobilità aggiornamento**. Questo pulsante è disponibile solo se è presente una versione più recente del servizio di mobilità hello.
 
          ![Selezionare il server vCenter](./media/site-recovery-vmware-to-azure-classic-legacy/update-mobility.png)
 
-In Seleziona account specificare l'account amministratore da utilizzare per aggiornare il servizio Mobility sul server protetto. Fare clic su OK e attendere il completamento del processo attivato.
+In Seleziona account specificare servizio di mobilità di hello amministratore account toobe utilizzato tooupdate hello nel server protetto hello. Fare clic su OK e attendere toocomplete processo hello attivato.
 
 ## <a name="step-6-add-vcenter-servers-or-vsphere-hosts"></a>Passaggio 6: Aggiungere server vCenter o host vSphere
-1. Fare clic su **Server** > **Server di configurazione**. Selezionare il server di configurazione e fare clic su **Aggiungi server vCenter** per aggiungere un server vCenter o un host vSphere.
+1. Fare clic su **server** > **server di configurazione** > server di configurazione >**aggiungere Server vCenter** tooadd un host di server o vSphere vCenter.
 
     ![Selezionare il server vCenter](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter.png)
-2. Specificare i dettagli del server o dell'host e selezionare il server di elaborazione da usare per trovarlo.
+2. Specificare i dettagli per server hello o l'host e server di elaborazione selezionare hello che verrà utilizzato toodiscover è.
 
-   * Se il server vCenter non è in esecuzione sulla porta 443 predefinita, specificare il numero di porta su cui è in esecuzione il server vCenter.
-   * Il server di elaborazione deve trovarsi nella stessa rete del server vCenter o dell'host vSphere e deve esservi installato VMware vSphere CLI 5.5.0.
+   * Se non è in esecuzione sulla porta 443 predefinita di hello server vCenter hello specificare il numero di porta hello in cui hello vCenter server è in esecuzione.
+   * server di elaborazione Hello deve essere nella stessa rete come hello vCenter server/host vSphere e deve essere VMware vSphere CLI installata 5.5.0 di hello.
 
      ![Impostazioni del server vCenter](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter4.png)
-3. Al termine dell'individuazione, il server vCenter sarà elencato nei dettagli del server di configurazione.
+3. Al termine dell'individuazione server vCenter hello sarà elencata sotto i dettagli del server configuration hello.
 
     ![Impostazioni del server vCenter](./media/site-recovery-vmware-to-azure-classic-legacy/add-vcenter2.png)
-4. Se si usa un account senza privilegi di amministratore per aggiungere il server o l'host, assicurarsi che l'account abbia i privilegi seguenti:
+4. Se si utilizza un server di hello tooadd account senza privilegi di amministratore o un host, assicurarsi che disponga di hello hello seguenti privilegi:
 
    * Per gli account vCenter devono essere abilitati i privilegi Datacenter, Datastore, Folder, Host, Network, Resource, Storage views, Virtual machine e vSphere Distributed Switch abilitati.
-   * Per gli account host vSphere devono essere abilitati i privilegi Datacenter, Datastore, Folder, Host, Network, Resource, Virtual machine e vSphere Distributed Switch.
+   * gli account di host di vSphere devono avere hello Data Center, l'archivio dati, cartella, Host, rete, risorsa, macchina virtuale e privilegi Switch distribuiti vSphere abilitati
 
 ## <a name="step-7-create-a-protection-group"></a>Passaggio 7: Creare un gruppo di protezione
 1. Aprire **Elementi protetti** > **Gruppo di protezione** > **Crea gruppo di protezione**.
 
     ![Crea gruppo di protezione](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg1.png)
-2. Nella pagina **Specificare le impostazioni del gruppo di protezione** immettere un nome per il gruppo e selezionare il server di configurazione in cui creare il gruppo.
+2. In hello **specifica le impostazioni del gruppo di protezione** pagina specificare un nome per il gruppo di hello e server di configurazione selezionare hello in cui si desidera che il gruppo di hello toocreate.
 
     ![Impostazioni del gruppo di protezione](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg2.png)
-3. Nella pagina **Specifica le impostazioni di replica** configurare le impostazioni di replica da usare per tutti i computer nel gruppo.
+3. In hello **specificare le impostazioni di replica** pagina configurare le impostazioni di replica hello che verranno utilizzate per tutte le macchine hello gruppo hello.
 
     ![Replica del gruppo di protezione](./media/site-recovery-vmware-to-azure-classic-legacy/create-pg3.png)
 4. Impostazioni:
 
-   * **Coerenza di più macchine virtuali**: se si attiva questa opzione, vengono creati punti di ripristino coerenti con l'applicazione condivisi tra i computer nel gruppo di protezione. Questa impostazione è importante quando tutti i computer nel gruppo di protezione eseguono lo stesso carico di lavoro. Tutti i computer saranno ripristinati nello stesso punto dati. Disponibile solo per i server Windows.
-   * **Soglia RPO**: se il valore RPO della replica per la protezione dati continua supera la soglia RPO configurata, vengono generati avvisi.
-   * **Conservazione del punto di ripristino**: specifica l'intervallo di conservazione. I computer protetti possono essere ripristinati in qualsiasi punto all'interno di questo intervallo.
+   * **La coerenza Multi VM**: se attivare questa opzione crea punti di ripristino coerenti con l'applicazione condivisa tra più computer hello in gruppo protezione dati hello. Questa impostazione è molto utile durante l'esecuzione di tutti i computer hello in gruppo protezione dati hello hello stesso carico di lavoro. Tutti i computer sarà ripristinato toohello stesso punto dati. Disponibile solo per i server Windows.
+   * **Soglia RPO**: verranno generati avvisi quando la replica di protezione dei dati continua di hello RPO supera valore di soglia RPO hello configurato.
+   * **Conservazione del punto di ripristino**: Specifica il periodo di memorizzazione hello. Macchine virtuali protette possono essere ripristinati tooany punto all'interno di questa finestra.
    * **Frequenza di snapshot coerenti con l'applicazione**: specifica con quale frequenza verranno creati i punti di ripristino contenenti snapshot coerenti con l'applicazione.
 
-Dopo averlo creato, è possibile monitorare il gruppo di protezione nella pagina **Elementi protetti** .
+È possibile monitorare il gruppo di protezione dati hello che vengono creati in hello **elementi protetti** pagina.
 
-## <a name="step-8-set-up-machines-you-want-to-protect"></a>Passaggio 8: Configurare i computer da proteggere
-È necessario installare il servizio Mobility nelle macchine virtuali e nei server fisici che si desidera proteggere. Questa operazione può essere eseguita in due modi:
+## <a name="step-8-set-up-machines-you-want-tooprotect"></a>Passaggio 8: Configurare i computer desiderati tooprotect
+È necessario tooinstall hello servizio Mobility nelle macchine virtuali e server fisici che si desidera tooprotect. Questa operazione può essere eseguita in due modi:
 
-* Eseguire il push e installare automaticamente il servizio in ogni computer dal server di elaborazione.
-* Installare manualmente il servizio.
+* Push e installare il servizio hello in ogni computer dal server di elaborazione hello automaticamente.
+* Installare manualmente il servizio di hello.
 
-### <a name="install-the-mobility-service-automatically"></a>Installare automaticamente il servizio Mobility
-Quando si aggiungono computer a un gruppo di protezione, il server di elaborazione effettua automaticamente il push e l'installazione del servizio Mobility in ogni computer.
+### <a name="install-hello-mobility-service-automatically"></a>Installare il servizio di mobilità hello automaticamente
+Quando si aggiungono macchine tooa protezione gruppo hello servizio di mobilità è inserito automaticamente e installata in ogni computer da server di elaborazione hello.
 
-**Eseguire automaticamente l'installazione push del servizio Mobility nei server Windows:**
+**Automaticamente l'installazione push del servizio di mobilità hello in Windows Server:**
 
-1. Installare gli aggiornamenti più recenti per il server di elaborazione, come descritto in [Passaggio 5: Installare gli aggiornamenti più recenti](#step-5-install-latest-updates)e assicurarsi che il server di elaborazione sia disponibile.
-2. Verificare che sia presente la connettività di rete tra il computer di origine e il server di elaborazione e che il computer di origine sia accessibile dal server di elaborazione.  
-3. Configurare Windows Firewall per abilitare **Condivisione di file e stampanti** e **Strumentazione gestione Windows**. Nelle impostazioni di Windows Firewall selezionare l'opzione "Consenti app o funzionalità attraverso Windows Firewall" e selezionare le applicazioni, come illustrato nella figura seguente. Per i computer appartenenti a un dominio, è possibile configurare i criteri del firewall con un oggetto Criteri di gruppo.
+1. Installare gli aggiornamenti più recenti di hello per il server di elaborazione hello, come descritto in [passaggio 5: installare gli aggiornamenti più recenti](#step-5-install-latest-updates)e assicurarsi che il server di elaborazione hello è disponibile.
+2. Verificare che non c'è connettività di rete tra il computer di origine hello e hello server di elaborazione e tale macchina di origine hello sia accessibile dal server di elaborazione hello.  
+3. Configurare hello Windows firewall tooallow **condivisione File e stampanti** e **Strumentazione gestione Windows**. In impostazioni di Windows Firewall, selezionare l'opzione hello "Consenti app o funzionalità attraverso Firewall" e selezionare applicazioni hello come illustrato nell'immagine di hello riportata di seguito. Per i computer appartenenti al dominio tooa è possibile configurare i criteri firewall hello con un oggetto Criteri di gruppo.
 
     ![Impostazioni del firewall](./media/site-recovery-vmware-to-azure-classic-legacy/push-firewall.png)
-4. L'account usato per eseguire l'installazione push deve appartenere al gruppo Administrators nel computer da proteggere. Queste credenziali vengono usate solo per l'installazione push del servizio Mobility e verranno specificate quando si aggiunge un computer a un gruppo di protezione.
-5. Se l'account specificato non è un account di dominio, si dovrà disabilitare il Controllo dell'accesso utente remoto nel computer locale. A tale scopo, aggiungere la voce del Registro di sistema DWORD LocalAccountTokenFilterPolicy con un valore di 1 in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. Per aggiungere la voce del Registro di sistema da un'interfaccia della riga di comando, aprire il prompt dei comandi o PowerShell e digitare **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`**.
+4. l'installazione push Hello account utilizzato tooperform hello deve essere nel gruppo Administrators hello macchina hello desiderato tooprotect. Queste credenziali vengono utilizzate solo per l'installazione push del servizio di mobilità hello ed è necessario specificare quando si aggiunge un gruppo di protezione dati tooa macchina.
+5. Hello fornito l'account non è un account di dominio, occorre toodisable controllo di accesso remoto nel computer locale hello. toodo questo hello Aggiungi voce di registro di sistema LocalAccountTokenFilterPolicy DWORD con un valore pari a 1 in HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System. voce del Registro di sistema di hello tooadd da CLI aprire cmd o powershell e immettere  **`REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1`** .
 
-**Eseguire automaticamente l'installazione push del servizio Mobility nei server Linux:**
+**Automaticamente l'installazione push del servizio di mobilità hello in server Linux:**
 
-1. Installare gli aggiornamenti più recenti per il server di elaborazione, come descritto in [Passaggio 5: Installare gli aggiornamenti più recenti](#step-5-install-latest-updates)e assicurarsi che il server di elaborazione sia disponibile.
-2. Verificare che sia presente la connettività di rete tra il computer di origine e il server di elaborazione e che il computer di origine sia accessibile dal server di elaborazione.  
-3. Verificare che l'account sia un utente ROOT nel server Linux di origine.
-4. Assicurarsi che il file /etc/hosts nel server Linux di origine contenga le voci che eseguono il mapping del nome host locale agli indirizzi IP associati a tutte le schede NIC.
-5. Installare i pacchetti openssh, openssh-server, openssl più recenti nel computer da proteggere.
+1. Installare gli aggiornamenti più recenti di hello per il server di elaborazione hello, come descritto in [passaggio 5: installare gli aggiornamenti più recenti](#step-5-install-latest-updates)e assicurarsi che il server di elaborazione hello è disponibile.
+2. Verificare che non c'è connettività di rete tra il computer di origine hello e hello server di elaborazione e tale macchina di origine hello sia accessibile dal server di elaborazione hello.  
+3. Verificare che l'account hello è un utente root nel server di hello origine Linux.
+4. Verificare che il file /etc/hosts hello sull'origine hello Linux server contiene voci che mappa gli indirizzi tooIP nome host locale hello associati a tutte le schede di rete.
+5. Installare openssh più recente di hello, openssh-server, pacchetti openssl sulla macchina di hello desiderato tooprotect.
 6. Assicurarsi che SSH sia abilitato e in esecuzione sulla porta 22.
-7. Abilitare il sottosistema SFTP e l'autenticazione della password nel file sshd_config, come segue:
+7. Abilitare l'autenticazione SFTP di sottosistema e password nel file sshd_config hello come segue:
 
    * a) Accedere come utente ROOT.
-   * b) Nel file /etc/ssh/sshd_config trovare la riga che inizia con **PasswordAuthentication**.
-   * c) Rimuovere il commento dalla riga e modificare il valore da "no" in "yes".
+   * b) in hello file via/ssh/file sshd_config, trova hello riga che inizia con **PasswordAuthentication**.
+   * c) rimuovere il commento riga hello e hello valore da "no" troppo "yes".
 
        ![Mobility di Linux](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push.png)
-   * d) Trovare la riga che inizia con Subsystem e rimuovere il commento.
+   * d) riga di hello trova che inizia con sottosistema e rimuovere il commento riga hello.
 
        ![Mobility push Linux](./media/site-recovery-vmware-to-azure-classic-legacy/linux-push2.png)    
-8. Verificare che la variante Linux del computer di origine sia supportata.
+8. Verificare la variante Linux macchina di origine hello è supportato.
 
-### <a name="install-the-mobility-service-manually"></a>Installare manualmente il servizio Mobility
-I pacchetti software usati per installare il servizio Mobility sono nel server di elaborazione, in C:\pushinstallsvc\repository. Accedere al server di elaborazione e copiare il pacchetto di installazione appropriato per il computer di origine in base alla tabella seguente:
+### <a name="install-hello-mobility-service-manually"></a>Installare manualmente il servizio di mobilità hello
+i pacchetti software Hello utilizzato tooinstall hello mobilità servizio si trovano in server di elaborazione hello in C:\pushinstallsvc\repository. Accedere al server di elaborazione hello e copia hello installazione appropriato pacchetto toohello macchina di origine basato su tabella hello riportata di seguito:-
 
 | Sistema operativo di origine | Pacchetto del servizio Mobility nel server di elaborazione |
 | --- | --- |
@@ -571,101 +571,101 @@ I pacchetti software usati per installare il servizio Mobility sono nel server d
 | SUSE Linux Enterprise Server 11 SP3 (solo 64 bit) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_SLES11-SP3-64_GA_28Jul2015_release.tar.gz` |
 | Oracle Enterprise Linux 6.4, 6.5 (solo 64 bit) |`C:\pushinstallsvc\repository\Microsoft-ASR_UA_8.4.0.0_OL6-64_GA_28Jul2015_release.tar.gz` |
 
-**Per installare manualmente il servizio Mobility in un server Windows**, seguire questa procedura:
+**hello tooinstall servizio di mobilità manualmente in un server Windows**, hello seguenti:
 
-1. Copiare il pacchetto **Microsoft-ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe** dal percorso della directory del server di elaborazione elencato nella tabella precedente nel computer di origine.
-2. Installare il servizio Mobility eseguendo il file eseguibile nel computer di origine.
-3. Seguire le istruzioni del programma di installazione.
-4. Selezionare **Servizio Mobility** come ruolo e fare clic su **Avanti**.
+1. Hello copia **Microsoft ASR_UA_8.4.0.0_Windows_GA_28Jul2015_release.exe** pacchetto dal percorso di directory hello processo server elencate nella tabella di hello sopra toohello macchina di origine.
+2. Installare il servizio di mobilità hello eseguendo hello eseguibile nel computer di origine hello.
+3. Seguire le istruzioni di installazione di hello.
+4. Selezionare **servizio di mobilità** come ruolo hello e fare clic su **Avanti**.
 
     ![Installare il servizio Mobility](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install.png)
-5. Mantenere la directory di installazione come percorso di installazione predefinito e fare clic su **Installa**.
-6. Nella finestra **Host Agent Config** specificare l'indirizzo IP e la porta HTTPS del server di configurazione.
+5. La directory di installazione hello come percorso di installazione predefinito hello e fare clic su **installare**.
+6. In **configurazione dell'agente Host** specificare l'indirizzo IP hello e la porta HTTPS hello del server di configurazione.
 
-   * Se si sta eseguendo la connessione via Internet, specificare l'indirizzo IP virtuale pubblico e l'endpoint HTTPS pubblico come porta.
-   * Se si sta eseguendo la connessione tramite VPN, specificare l'indirizzo IP interno e 443 per la porta. Lasciare selezionata l'opzione **Use HTTPS** .
+   * Se ci si connette tramite internet specificare hello hello indirizzo IP virtuale pubblico e pubblica endpoint HTTPS come porta hello.
+   * Se ci si connette tramite VPN specificare l'indirizzo IP interno hello e 443 per la porta hello. Lasciare selezionata l'opzione **Use HTTPS** .
 
      ![Installare il servizio Mobility](./media/site-recovery-vmware-to-azure-classic-legacy/ms-install2.png)
-7. Specificare la passphrase del server di configurazione e fare clic su **OK** per registrare il servizio Mobility con il server di configurazione.
+7. Specificare la passphrase di hello configurazione server e fare clic su **OK** hello tooregister servizio di mobilità con il server di configurazione di hello.
 
-**Per eseguire dalla riga di comando:**
+**toorun dalla riga di comando hello:**
 
-1. Copiare la passphrase da CX nel file "C:\connection.passphrase" sul server ed eseguire questo comando. Nel nostro esempio CX è 104.40.75.37 e la porta HTTPS è 62519:
+1. Copiare hello passphrase hello CX toohello file "C:\connection.passphrase" hello server ed eseguire questo comando. In questo esempio CX i 104.40.75.37 e hello porta HTTPS è 62519:
 
     `C:\Microsoft-ASR_UA_8.2.0.0_Windows_PREVIEW_20Mar2015_Release.exe" -ip 104.40.75.37 -port 62519 -mode UA /LOG="C:\stdout.txt" /DIR="C:\Program Files (x86)\Microsoft Azure Site Recovery" /VERYSILENT  /SUPPRESSMSGBOXES /norestart  -usesysvolumes  /CommunicationMode https /PassphrasePath "C:\connection.passphrase"`
 
-**Installare manualmente il servizio Mobility in un server Linux**:
+**Installare manualmente il servizio di mobilità hello in un server Linux**:
 
-1. Copiare l'archivio TAR appropriato in base alla tabella precedente dal server di elaborazione nel computer di origine.
-2. Aprire un programma shell ed eseguire `tar -xvzf Microsoft-ASR_UA_8.2.0.0*`
-3. Immettere *`echo <passphrase> >passphrase.txt`* dalla shell per creare un file passphrase.txt nella directory locale in cui è stato estratto il contenuto dell'archivio TAR.
-4. Immettere *`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`*per installare il servizio Mobility.
-5. Specificare l'indirizzo IP e la porta:
+1. Copiare l'archivio di tar appropriato hello basato sulla tabella hello sopra riportata, dal computer di origine toohello di hello processo server.
+2. Aprire un programma shell ed estrarre percorso locale tooa archivio con estensione tar compresso hello eseguendo`tar -xvzf Microsoft-ASR_UA_8.2.0.0*`
+3. Creare un file passphrase.txt in hello toowhich di directory locale è stato estratto il contenuto di hello dell'archivio tar hello immettendo  *`echo <passphrase> >passphrase.txt`*  dalla shell.
+4. Installare il servizio Mobility hello immettendo  *`sudo ./install -t both -a host -R Agent -d /usr/local/ASR -i <IP address> -p <port> -s y -c https -P passphrase.txt`* .
+5. Specificare la porta e indirizzo IP hello:
 
-   * Se si sta eseguendo la connessione al server di configurazione via Internet, specificare indirizzo IP pubblico virtuale e l'endpoint HTTPS pubblico del server di configurazione in `<IP address>` e `<port>`.
-   * Se si sta eseguendo la connessione tramite VPN, specificare l'indirizzo IP interno e 443.
+   * Se ci si connette il server di configurazione toohello su internet specificare hello configurazione server virtuale indirizzo IP pubblico e pubblica endpoint HTTPS in hello `<IP address>` e `<port>`.
+   * Se ci si connette tramite una connessione VPN specificare 443 e l'indirizzo IP interno hello.
 
-**Per eseguire dalla riga di comando**:
+**toorun dalla riga di comando hello**:
 
-1. Copiare la passphrase da CX nel file "passphrase.txt" sul server ed eseguire questi comandi. Nel nostro esempio CX è 104.40.75.37 e la porta HTTPS è 62519:
+1. Copiare la passphrase hello dal file toohello hello CX "passphrase.txt" nel server di hello ed eseguire questo comando. In questo esempio CX i 104.40.75.37 e hello porta HTTPS è 62519:
 
-Per eseguire l'installazione in un server di produzione:
+tooinstall in un server di produzione:
 
     ./install -t both -a host -R Agent -d /usr/local/ASR -i 104.40.75.37 -p 62519 -s y -c https -P passphrase.txt
 
-Per eseguire l'installazione nel server di destinazione:
+tooinstall nel server di destinazione hello:
 
     ./install -t both -a host -R MasterTarget -d /usr/local/ASR -i 104.40.75.37 -p 62519 -s y -c https -P passphrase.txt
 
 > [!NOTE]
-> Quando si aggiungono computer a un gruppo di protezione in cui è già in esecuzione una versione appropriata del servizio Mobility, l'installazione push viene ignorata.
+> Quando si aggiunta gruppo di protezione dati tooa macchine che già eseguono una versione appropriata del servizio di mobilità hello quindi l'installazione push hello viene ignorata.
 >
 >
 
 ## <a name="step-9-enable-protection"></a>Passaggio 9: Abilitare la protezione
-Per abilitare la protezione, aggiungere macchine virtuali e server fisici a un gruppo di protezione. Prima di iniziare, tenere presente quanto segue:
+protezione tooenable aggiungere macchine virtuali e gruppo di server fisici tooa protezione dati. Prima di iniziare, tenere presente quanto segue:
 
-* Le macchine virtuali vengono individuate ogni 15 minuti e possono essere necessari fino a 15 minuti perché vengano visualizzate in Azure Site Recovery dopo l'individuazione.
-* Anche le modifiche dell'ambiente nella macchina virtuale (ad esempio, l'installazione degli strumenti VMware) possono richiedere fino a 15 minuti per l'aggiornamento in Site Recovery.
-* È possibile controllare l'ora dell'ultima individuazione nel campo **ORA ULTIMO CONTATTO** per il server vCenter o l'host ESXi nella pagina **Server di configurazione**.
-* Se è già stato creato un gruppo di protezione e successivamente si aggiunge un server vCenter o un host ESXi, sono necessari 15 minuti per l'aggiornamento del portale di Azure Site Recovery e per la visualizzazione delle macchine virtuali nella finestra di dialogo **Aggiungi macchine virtuali a un gruppo di protezione** .
-* Se si desidera procedere immediatamente con l'aggiunta di computer al gruppo di protezione senza attendere l'individuazione pianificata, evidenziare il server di configurazione (senza fare clic su di esso) e fare clic sul pulsante **Aggiorna** .
-* Quando si aggiungono macchine virtuali o computer fisici a un gruppo di protezione, il server di elaborazione esegue automaticamente il push e l'installazione del servizio Mobility nel server di origine, se non è già installato.
-* Per il funzionamento del meccanismo di push automatico, accertarsi di avere configurato i computer protetti come descritto nel passaggio precedente.
+* Macchine virtuali vengono individuate ogni 15 minuti e può richiedere fino a too15 minuti relativa tooappear in Azure Site Recovery dopo l'individuazione.
+* Le modifiche dell'ambiente nella macchina virtuale hello (ad esempio, l'installazione degli strumenti di VMware) possono richiedere anche too15 minuti toobe aggiornato in Site Recovery.
+* È possibile controllare hello individuati ultima volta in hello **ultimo contatto in** campo per hello vCenter/ESXi di server host hello **server di configurazione** pagina.
+* Se si dispone di un gruppo protezione dati già creato, aggiunta un host di Server o ESXi vCenter dopo che avrà 15 minuti per toorefresh portale di Azure Site Recovery hello e per macchine virtuali toobe elencati in hello **Aggiungi un gruppo di protezione tooa macchine**  finestra di dialogo.
+* Se si desidera tooproceed immediatamente con l'aggiunta di gruppo tooprotection macchine senza attendere l'individuazione pianificata hello, evidenziare il server di configurazione di hello (selezionarla) e fare clic su hello **aggiornamento** pulsante.
+* Quando si aggiunta macchine virtuali o un gruppo di protezione di computer fisici tooa, server process hello inserisce automaticamente e installa il servizio di mobilità hello nel server di origine hello se hello non è già installato.
+* Per il meccanismo di push automatico hello toowork assicurarsi aver configurato i computer protetti come descritto nel passaggio precedente hello.
 
 Aggiungere i computer come segue:
 
-1. Fare clic su **Elementi protetti** > **Gruppo di protezione** > **Computer** > **Aggiungi computer**. Come procedura consigliata, i gruppi di protezione dovranno riflettere i carichi di lavoro, in modo da aggiungere allo stesso gruppo i computer che eseguono un'applicazione specifica.
-2. Se si attiva la protezione per server fisici, nella pagina **Seleziona macchine virtuali** della procedura guidata **Aggiungi computer fisici** specificare l'indirizzo IP e il nome descrittivo. Selezionare quindi la famiglia di sistemi operativi.
+1. Fare clic su **Elementi protetti** > **Gruppo di protezione** > **Computer** > **Aggiungi computer**. Come procedura consigliata, è consigliabile che i gruppi protezione dati devono rispecchiare i carichi di lavoro in modo che si aggiungono macchine in esecuzione un'applicazione specifica di toohello nello stesso gruppo.
+2. In **Seleziona macchine virtuali** per la protezione dei server fisici, in hello **aggiungere le macchine fisiche** guidata specificare l'indirizzo IP hello e il nome descrittivo. Selezionare quindi la famiglia di sistemi operativi hello.
 
     ![Aggiungere un server V-Center](./media/site-recovery-vmware-to-azure-classic-legacy/physical-protect.png)
-3. Se si attiva la protezione per macchine virtuali VMware, nella pagina **Seleziona macchine virtuali** selezionare il server vCenter che gestisce le macchine virtuali (o l'host EXSi in cui sono in esecuzione) e quindi selezionare le macchine.
+3. In **Seleziona macchine virtuali** se si proteggono macchine virtuali VMware, selezionare un server vCenter che gestisce le macchine virtuali host EXSi hello in cui vengono eseguiti (o), quindi macchine hello.
 
     ![Aggiungere un server V-Center](./media/site-recovery-vmware-to-azure-classic-legacy/select-vms.png)    
-4. In **Specificare le risorse di destinazione** selezionare i server di destinazione master e l'archiviazione da usare per la replica e indicare se le impostazioni devono essere usate per tutti i carichi di lavoro. Selezionare [Account di archiviazione Premium](../storage/common/storage-premium-storage.md) durante la configurazione della protezione dei carichi di lavoro che richiedono prestazioni di I/O elevate e coerenti e bassa latenza per ospitare i carichi di lavoro con numerose operazioni di I/O. Se si desidera utilizzare un account di archiviazione Premium per i dischi dei carichi di lavoro, è necessario usare destinazioni master della serie DS. Non è possibile usare dischi di archiviazione Premium su destinazioni master diverse dalla serie DS.
+4. In **risorse di destinazione specificare** selezionare i server di destinazione master hello e toouse di archiviazione per la replica e consente di indicare se le impostazioni di hello devono essere utilizzate per tutti i carichi di lavoro. Selezionare [Account di archiviazione Premium](../storage/common/storage-premium-storage.md) durante la configurazione della protezione per i carichi di lavoro che richiedono coerente delle prestazioni dei / o alta e bassa latenza nei carichi di lavoro con utilizzo intensivo ordine toohost IO. Se si desidera toouse un account di archiviazione Premium per i dischi del carico di lavoro, è necessario toouse hello Master di destinazione della serie DS. Non è possibile usare dischi di archiviazione Premium su destinazioni master diverse dalla serie DS.
 
    > [!NOTE]
-   > Non è supportato lo spostamento degli account di archiviazione creati con il [nuovo portale di Azure](../storage/common/storage-create-storage-account.md) tra gruppi di risorse.
+   > Non è supportata spostamento hello di account di archiviazione creati utilizzando hello [nuovo portale di Azure](../storage/common/storage-create-storage-account.md) tra gruppi di risorse.
    >
    >
 
     ![Server vCenter](./media/site-recovery-vmware-to-azure-classic-legacy/machine-resources.png)
-5. In **Specificare gli account** selezionare l'account da usare per l'installazione del servizio Mobility nei computer protetti. Sono necessarie le credenziali dell'account per l'installazione automatica del servizio Mobility. Se non è possibile selezionare un account, assicurarsi di configurare uno come descritto nel passaggio 2. Si noti che questo account non è accessibile da Azure. Per i server Windows è richiesto un account con privilegi di amministratore nel server di origine. Per Linux l'account deve essere l'utente ROOT.
+5. In **specificare account** selezionare hello account toouse per l'installazione di servizio di mobilità hello nei computer protetti. le credenziali dell'account Hello sono necessari per l'installazione automatica di hello servizio di mobilità. Se non è possibile selezionare un account, assicurarsi di configurare uno come descritto nel passaggio 2. Si noti che questo account non è accessibile da Azure. Per Windows account hello del server deve disporre di privilegi di amministratore nel server di origine hello. Per Linux hello è necessario account radice.
 
     ![Credenziali Linux](./media/site-recovery-vmware-to-azure-classic-legacy/mobility-account.png)
-6. Fare clic sul segno di spunta per completare l'aggiunta dei computer al gruppo di protezione e avviare la replica iniziale per ogni computer. Lo stato può essere monitorato nella pagina **Processi** .
+6. Fare clic su hello segno di spunta toofinish aggiunta macchine toohello protezione toostart e gruppo di replica iniziale per ogni computer. È possibile monitorare lo stato su hello **processi** pagina.
 
     ![Aggiungere un server V-Center](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs2.png)
-7. Per monitorare lo stato della protezione, fare clic su **Elementi protetti** > nome del gruppo di protezione > **Macchine virtuali**. Dopo il completamento della replica iniziale e la sincronizzazione dei dati nei computer, verrà visualizzato lo stato **Protetto** .
+7. Per monitorare lo stato della protezione, fare clic su **Elementi protetti** > nome del gruppo di protezione > **Macchine virtuali**. Dopo il completamento della replica iniziale e macchine hello stanno sincronizzando i dati verranno visualizzati **Protected** stato.
 
     ![Processi di macchine virtuali](./media/site-recovery-vmware-to-azure-classic-legacy/pg-jobs.png)
 
 ### <a name="set-protected-machine-properties"></a>Impostare le proprietà dei computer protetti
-1. Quando lo stato della macchina virtuale è **Protetto** , sarà possibile configurarne le proprietà di failover. Nei dettagli del gruppo di protezione selezionare il computer e aprire la scheda **Configura** .
-2. È possibile modificare il nome assegnato al computer in Azure dopo il failover e le dimensioni della macchina virtuale di Azure. È anche possibile selezionare la rete di Azure alla quale verrà connesso il computer dopo il failover.
+1. Quando lo stato della macchina virtuale è **Protetto** , sarà possibile configurarne le proprietà di failover. In dettagli del gruppo di protezione hello selezionare hello hello computer e aprire **configura** scheda.
+2. È possibile modificare il nome hello che verrà assegnato al computer toohello in Azure dopo il failover e hello dimensioni di macchina virtuale di Azure. È inoltre possibile selezionare hello Azure rete toowhich hello macchina verrà connessa dopo il failover.
 
    > [!NOTE]
-   > La [migrazione di reti](../resource-group-move-resources.md) all'interno dei gruppi di risorse con la stessa sottoscrizione o all'interno delle sottoscrizioni non è supportata per le reti usate per la distribuzione di Site Recovery.
+   > [Migrazione delle reti](../resource-group-move-resources.md) tra risorse gruppi all'interno hello stessa sottoscrizione o per le sottoscrizioni non è supportata per le reti utilizzate per la distribuzione di Site Recovery.
    >
    >
 
@@ -673,69 +673,69 @@ Aggiungere i computer come segue:
 
 Si noti che:
 
-* Il nome del computer in Azure deve rispettare i requisiti di Azure.
-* Per impostazione predefinita, le macchine virtuali replicate in Azure non sono connesse a una rete di Azure. Per permettere la comunicazione delle macchine virtuali, accertarsi di impostare la stessa rete di Azure.
-* Se si ridimensiona un volume in una macchina virtuale VMware o un server fisico, questo entra in uno stato critico. Se è necessario modificare la dimensione, eseguire le operazioni seguenti:
+* nome di Hello di hello Azure macchina deve essere conforme ai requisiti di Azure.
+* Per impostazione predefinita le macchine virtuali replicate in Azure non sono connessi tooan rete di Azure. Se si desidera toocommunicate assicurarsi che le macchine virtuali replicate tooset hello stessa rete di Azure per loro.
+* Se si ridimensiona un volume in una macchina virtuale VMware o un server fisico, questo entra in uno stato critico. Se è necessario dimensioni hello toomodify, hello seguenti:
 
-  * a) Modificare l'impostazione della dimensione.
-  * b) Nella scheda **Macchine virtuali** selezionare la macchina virtuale e fare clic su **Rimuovi**.
-  * c) In **Rimuovi macchina virtuale** selezionare l'opzione **Disabilita protezione (Usare per analisi ripristino e ridimensionamento volume)**. Questa opzione disabilita la protezione ma mantiene i punti di ripristino in Azure.
+  * a) modificare l'impostazione delle dimensioni di hello.
+  * b) in hello **macchine virtuali** , selezionare una macchina virtuale hello e fare clic su **rimuovere**.
+  * c) in **Rimuovi macchina virtuale** selezionare opzione hello **Disabilita protezione (usare per il ripristino drill e il ridimensionamento del volume)**. Questa opzione Disabilita la protezione, ma mantiene i punti di ripristino hello in Azure.
 
       ![Impostare le proprietà di una macchina virtuale](./media/site-recovery-vmware-to-azure-classic-legacy/remove-vm.png)
-  * d) Abilitare nuovamente la protezione per la macchina virtuale. Quando si abilita nuovamente la protezione, i dati per il volume ridimensionato verranno trasferiti in Azure.
+  * d) riabilitare la protezione per la macchina virtuale hello. Quando si riabilita la protezione dei dati di hello per il volume ridimensionato hello sarà tooAzure trasferiti.
 
 ## <a name="step-10-run-a-failover"></a>Passaggio 10: Eseguire un failover
-Attualmente è possibile eseguire solo failover non pianificati per le macchine virtuali VMware e i server fisici protetti. Tenere presente quanto segue:
+Attualmente è possibile eseguire solo failover non pianificati per le macchine virtuali VMware e i server fisici protetti. Si noti hello segue:
 
-* Prima di avviare un failover, assicurarsi che i server di configurazione e di destinazione master siano in esecuzione e integri. In caso contrario, il failover avrà esito negativo.
-* I computer di origine non vengono arrestati nell'ambito di un failover non pianificato. L'esecuzione di un failover non pianificato interrompe la replica dei dati per i server protetti. È necessario eliminare i computer dal gruppo di protezione e aggiungerli nuovamente per iniziare a proteggerli di nuovo dopo il failover non pianificato.
-* Se si desidera eseguire il failover senza perdite di dati, assicurarsi che le macchine virtuali del sito primario siano disattivate prima di avviare il failover.
+* Prima di avviare un failover, assicurarsi che i server di destinazione master e di configurazione hello siano in esecuzione e integro. In caso contrario, il failover avrà esito negativo.
+* I computer di origine non vengono arrestati nell'ambito di un failover non pianificato. Eseguire un failover non pianificato arresta la replica dei dati per i server protetti hello. Si sarà necessario macchine hello toodelete dal gruppo protezione dati hello e aggiungerli nuovamente nell'ordine toostart proteggere computer nuovo termine hello failover non pianificato.
+* Se si desidera toofail sulla senza perdere i dati, assicurarsi che le macchine virtuali del sito primario hello sono disattivate prima di iniziare il failover hello.
 
-1. Nella pagina **Piani di ripristino** aggiungere un piano di ripristino. Specificare i dettagli per il piano e selezionare **Azure** come destinazione.
+1. In hello **piani di ripristino** pagina e aggiungere un piano di ripristino. Specificare i dettagli per il piano di hello e selezionare **Azure** come destinazione di hello.
 
     ![Configurare un piano di ripristino](./media/site-recovery-vmware-to-azure-classic-legacy/rplan1.png)
-2. In **Seleziona macchine virtuali** selezionare un gruppo di protezione e quindi i computer nel gruppo da aggiungere al piano di ripristino. [Ulteriori informazioni](site-recovery-create-recovery-plans.md) sui piani di ripristino.
+2. In **seleziona macchina virtuale** selezionare un gruppo protezione dati e quindi selezionare le macchine nel piano di ripristino toohello tooadd gruppo hello. [Ulteriori informazioni](site-recovery-create-recovery-plans.md) sui piani di ripristino.
 
     ![Aggiungi macchine virtuali.](./media/site-recovery-vmware-to-azure-classic-legacy/rplan2.png)
-3. Se necessario, è possibile personalizzare il piano per creare gruppi e una sequenza dell'ordine in cui verrà eseguito il failover dei computer nel piano di ripristino. È anche possibile aggiungere istruzioni per azioni manuali e script. Gli script durante il ripristino in Azure possono essere aggiunti tramite i [runbook di automazione di Azure](site-recovery-runbook-automation.md).
-4. Nella pagina **Piani di ripristino** selezionare il piano e fare clic su **Failover non pianificato**.
-5. In **Conferma failover** verificare la direzione del failover (in Azure) e selezionare il punto di ripristino in cui effettuare il failover.
-6. Attendere il completamento del processo di failover e quindi verificare che sia stato eseguito nel modo previsto e che le macchine virtuali replicate vengano avviate in Azure.
+3. Se necessario è possibile personalizzare i gruppi del piano di toocreate hello e ordine della sequenza hello in cui macchine recupero hello piano viene eseguito il failover. È anche possibile aggiungere istruzioni per azioni manuali e script. Hello script quando ripristino tooAzure può essere aggiunti tramite [runbook di automazione di Azure](site-recovery-runbook-automation.md).
+4. In hello **piani di ripristino** pagina piano hello selezionare e fare clic su **Failover non pianificato**.
+5. In **conferma Failover** controllare la direzione del failover hello (tooAzure) e selezionare toofail punto di ripristino hello su a.
+6. Attendere toocomplete processo di failover hello e quindi verificare che il failover hello funziona come previsto e che hello replicate le macchine virtuali inizio correttamente in Azure.
 
 ## <a name="step-11-fail-back-failed-over-machines-from-azure"></a>Passaggio 11: Eseguire il failback dei computer sottoposti a failover da Azure
-[Altre informazioni](site-recovery-failback-azure-to-vmware-classic-legacy.md) su come rendere nuovamente disponibili nell'ambiente locale i computer sottoposti a failover in esecuzione in Azure.
+[Altre informazioni](site-recovery-failback-azure-to-vmware-classic-legacy.md) sul toobring la non riuscita nel computer in esecuzione in Azure nuovamente tooyour nell'ambiente locale.
 
 ## <a name="manage-your-process-servers"></a>Gestire i server di elaborazione
-Il server di elaborazione invia i dati di replica al server di destinazione master in Azure e individua le nuove macchine virtuali VMware aggiunte a un server vCenter. Nelle seguenti circostanze può essere necessario cambiare il server di elaborazione nella distribuzione:
+server di elaborazione Hello invia server di destinazione master toohello dati di replica in Azure e individua nuova VMware le macchine virtuali aggiunte tooa vCenter server. Nelle seguenti circostanze hello è server di elaborazione hello toochange nella distribuzione:
 
-* Se il server di elaborazione corrente non è disponibile
-* Se l'obiettivo del punto di ripristino (RPO) raggiunge un livello non accettabile per l'organizzazione.
+* Se si arresta il server di elaborazione corrente hello
+* Se il punto di ripristino (RPO) obiettivo aumenta tooan livello non accettabile per l'organizzazione.
 
-Se necessario, è possibile spostare in un server di elaborazione diverso la replica di alcuni o tutti i server fisici e le macchine virtuali VMware in locale. ad esempio:
+Se necessario che è possibile spostare la replica di alcuni o tutti i VMware locale virtuale hello macchine e i server fisici tooa diverso processo server. ad esempio:
 
-* **Errore**: se si verifica un errore in un server di elaborazione o questo risulta non disponibile, è possibile spostare la replica delle macchine virtuali protette in un altro server di elaborazione. I metadati del computer di origine e del computer di replica vengono spostati nel nuovo server di elaborazione e i dati vengono sincronizzati di nuovo. Il nuovo server di elaborazione si connetterà automaticamente al server vCenter per eseguire l'individuazione automatica. È possibile monitorare lo stato dei server di elaborazione nel dashboard di Site Recovery.
-* **Bilanciamento del carico per regolare l'obiettivo del punto di ripristino**: per migliorare il bilanciamento del carico, è possibile selezionare un server di elaborazione diverso nel portale di Azure Site Recovery e spostare in tale server la replica di una o più macchine virtuali per il bilanciamento del carico manuale. In questo caso, i metadati dei computer di origine e di replica selezionati vengono spostati nel nuovo server di elaborazione. Il server di elaborazione originale rimane connesso al server vCenter.
+* **Errore**: se un server di elaborazione non riesce o non è disponibile, è possibile spostare server di elaborazione tooanother replica macchina virtuale protetta. I metadati della macchina di origine hello e computer di replica saranno spostati toohello nuovo server di elaborazione e dati viene risincronizzati. il nuovo server di elaborazione Hello verranno connesse automaticamente toohello vCenter server tooperform l'individuazione automatica. È possibile monitorare lo stato di hello del server di elaborazione dashboard di Site Recovery hello.
+* **Il bilanciamento del carico tooadjust RPO**, per migliorare il bilanciamento del carico è possibile selezionare un server di elaborazione diverso nel portale di Site Recovery hello, spostare la replica di uno o più tooit macchine per il bilanciamento del carico manuale. In questo caso, i metadati di origine selezionato hello e computer di replica sono spostato toohello nuovo server di elaborazione. server di elaborazione Hello originale rimane connesso toohello vCenter server.
 
-### <a name="monitor-the-process-server"></a>Monitorare il server di elaborazione
-Se un server di elaborazione è in stato critico, nel dashboard di Site Recovery verrà visualizzato un avviso di stato. È possibile fare clic sullo stato per aprire la scheda Eventi e quindi eseguire il drill-down a processi specifici nella scheda Processi.
+### <a name="monitor-hello-process-server"></a>Server di monitoraggio hello processo
+Se un server di elaborazione è in uno stato critico in hello Dashboard di ripristino del sito verrà visualizzato un avviso di stato. È possibile fare clic sulla scheda eventi di hello stato tooopen hello e quindi eseguire il drill-down toospecific processi nella scheda processi hello.
 
-### <a name="modify-the-process-server-used-for-replication"></a>Modificare il server di elaborazione usato per la replica
+### <a name="modify-hello-process-server-used-for-replication"></a>Modificare il server di elaborazione hello utilizzato per la replica
 1. Aprire **Server** > **Server di configurazione**. Selezionare il server di configurazione e aprire **Dettagli server**.
-2. Fare clic su **Server di elaborazione** > **Cambia server di elaborazione** accanto al server da modificare.
+2. Fare clic su **i server di elaborazione** > **Cambia Server di elaborazione** server toohello successivo si desidera toomodify.
 
     ![Modificare il server di elaborazione 1](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps1.png)
-3. In **Cambia server di elaborazione** > **Server di elaborazione di destinazione** selezionare il nuovo server da usare e quindi selezionare le macchine virtuali da replicare nel nuovo server. Fare clic sull'icona informazioni accanto al nome del server per informazioni dettagliate sullo spazio disponibile e la memoria usata. Per consentire di prendere le decisioni relative al carico, viene visualizzato lo spazio medio che sarà necessario per replicare ogni macchina virtuale selezionata nel nuovo server di elaborazione.
+3. In **Cambia Server di elaborazione** > **il Server di elaborazione di destinazione** selezionare hello nuovo server toouse desiderato e quindi selezionare le macchine virtuali di hello che si desidera tooreplicate toohello nuovo server. Fare clic su hello informazioni icona Avanti toohello nome del server per i dettagli di spazio libero e di memoria utilizzata. spazio medio Hello che sarà necessarie tooreplicate ogni macchina virtuale selezionata toohello nuovo server di elaborazione è visualizzato toohelp apportate caricare decisioni.
 
     ![Modificare il server di elaborazione 2](./media/site-recovery-vmware-to-azure-classic-legacy/change-ps2.png)
-4. Fare clic sul segno di spunta per avviare la replica nel nuovo server di elaborazione. Si noti che se si rimuovono tutte le macchine virtuali da un server di elaborazione in stato critico, per tale server non dovrebbe più essere visualizzato un avviso critico nel dashboard.
+4. Fare clic su hello segno di spunta toobegin replica toohello nuovo server di elaborazione. Si noti che se si rimuovono tutte le macchine virtuali da un server di elaborazione stato critico consigliabile non vengono più visualizzati un avviso critico nel dashboard di hello.
 
 ## <a name="third-party-software-notices-and-information"></a>Informazioni e comunicazioni sul software di terze parti
 Do Not Translate or Localize
 
-The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third Party Code”).  Microsoft is the not original author of the Third Party Code.  The original copyright notice and license, under which Microsoft received such Third Party Code, are set forth below.
+software Hello e in esecuzione nel firmware hello prodotto Microsoft o servizio è basato su o integra materiale proveniente dai hello progetti elencati sotto (collettivamente, "terze parti Code").  Microsoft è hello autore originale non di hello codice di terze parti.  copyright originale Hello e la licenza, in cui Microsoft ha ricevuto tale codice di terze parti, sono set specificato di seguito.
 
-The information in Section A is regarding Third Party Code components from the projects listed below. Such licenses and information are provided for informational purposes only.  This Third Party Code is being relicensed to you by Microsoft under Microsoft's software licensing terms for the Microsoft product or service.  
+informazioni di Hello nella sezione si riferisce il codice di terze parti componenti dei progetti hello elencati di seguito. Such licenses and information are provided for informational purposes only.  Questo codice di terze parti è in corso tooyou relicensed da Microsoft in termini di hello prodotto o servizio Microsoft di licenza software Microsoft.  
 
-The information in Section B is regarding Third Party Code components that are being made available to you by Microsoft under the original licensing terms.
+informazioni di Hello nella sezione B sono per quanto riguarda i componenti del codice di terze parti che vengono eseguiti tooyou disponibili da Microsoft in condizioni di licenza originale hello.
 
-The complete file may be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.
+è possibile trovare completo del file Hello in hello [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel or otherwise.

@@ -1,5 +1,5 @@
 ---
-title: Archiviazione Standard basata su dischi rigidi conveniente e dischi delle macchine virtuali di Azure | Microsoft Docs
+title: basato su aaaHD economica archiviazione Standard e i dischi di macchina virtuale di Azure | Documenti Microsoft
 description: Informazioni sul servizio economicamente conveniente Archiviazione Standard e sui dischi gestiti e non gestiti delle macchine virtuali.
 services: storage
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: yuemlu
-ms.openlocfilehash: cdcc06844dce5df09b50a9a5f6a97a7a96a9ef48
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c454c61254c6b160bdf2cd39ea3319452e3e4898
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cost-effective-standard-storage-and-unmanaged-and-managed-azure-vm-disks"></a>Archiviazione Standard conveniente e dischi gestiti e non gestiti delle macchine virtuali di Azure
 
-Archiviazione Standard di Azure offre un supporto dei dischi affidabile e a basso costo per le VM che eseguono carichi di lavoro non sensibili alla latenza. Supporta anche BLOB, tabelle, code e file. Con Archiviazione Standard, i dati vengono archiviati in unità disco rigido. Per le VM, è possibile usare dischi di Archiviazione Standard per scenari di sviluppo/test e carichi di lavoro meno critici e dischi di Archiviazione Premium per applicazioni di produzione cruciali. Archiviazione Standard è disponibile in tutte le aree di Azure. 
+Archiviazione Standard di Azure offre un supporto dei dischi affidabile e a basso costo per le VM che eseguono carichi di lavoro non sensibili alla latenza. Supporta anche BLOB, tabelle, code e file. Con l'archiviazione Standard, hello vengono archiviati in unità disco rigido (HDD). Per le VM, è possibile usare dischi di Archiviazione Standard per scenari di sviluppo/test e carichi di lavoro meno critici e dischi di Archiviazione Premium per applicazioni di produzione cruciali. Archiviazione Standard è disponibile in tutte le aree di Azure. 
 
-Questo articolo è incentrato sull'uso di Archiviazione Standard per i dischi delle macchine virtuali. Per altre informazioni sull'uso dell'archiviazione con BLOB, tabelle, code e file, vedere [Introduzione ad Archiviazione](storage-introduction.md).
+Questo articolo è incentrato sull'uso di hello dell'archiviazione standard per i dischi di macchina virtuale. Per ulteriori informazioni sull'utilizzo di hello di archiviazione BLOB, tabelle, code e i file, fare riferimento toohello [tooStorage Introduzione](storage-introduction.md).
 
 ## <a name="disk-types"></a>Tipi di disco
 
-È possibile creare dischi Standard per le VM di Azure in due modi.
+Esistono due modi toocreate dischi standard per le macchine virtuali di Azure:
 
-**Dischi non gestiti**: si tratta del metodo originale con cui vengono gestiti gli account di archiviazione usati per archiviare i file VHD che corrispondono ai dischi delle macchine virtuali. I file VHD vengono archiviati come BLOB di pagine in account di archiviazione. I dischi non gestiti possono essere collegati a VM di Azure di qualsiasi dimensione, incluse le VM che usano principalmente Archiviazione Premium come le serie DSv2 e GS. Le VM di Azure supportano il collegamento di diversi dischi Standard, fino a un massimo di 256 TB di spazio di archiviazione per VM.
+**Non gestita dischi**: si tratta di metodo originali hello in cui si gestiscono hello storage account utilizzati toostore hello disco rigido virtuale i file che corrispondono toohello dischi di macchina virtuale. I file VHD vengono archiviati come BLOB di pagine in account di archiviazione. I dischi non gestiti possono essere collegato tooany dimensioni delle macchine Virtuali di Azure, incluse le VM hello che usano principalmente archiviazione Premium, ad esempio hello DSv2 e serie GS. Macchine virtuali di Azure supportano il collegamento di più dischi standard, consentendo di too256 TB di spazio di archiviazione per ogni macchina virtuale.
 
-[**Azure Managed Disks**](storage-managed-disks-overview.md): questa funzionalità gestisce gli account di archiviazione usati per i dischi delle macchine virtuali. Specificando il tipo, Premium o Standard, e le dimensioni del disco necessarie, Azure crea e gestisce automaticamente il disco. Azure gestisce anche l'inserimento dei dischi in più account di archiviazione per rimanere entro i limiti di scalabilità degli account di archiviazione.
+[**I dischi di Azure gestiti**](storage-managed-disks-overview.md): questa funzionalità consente di gestire gli account di archiviazione hello usati per i dischi VM hello. Specificare il tipo di hello (Standard o Premium) e le dimensioni del disco è necessario, Azure crea e gestisce disco hello per l'utente. Non è tooworry sull'inserimento di dischi hello tra più account di archiviazione in ordine tooensure che rientrino nei limiti di scalabilità hello per gli account di archiviazione hello - Azure che gestisce automaticamente.
 
-Anche se entrambi i tipi di disco sono disponibili, è consigliabile usare Managed Disks per sfruttarne appieno le varie funzionalità.
+Anche se entrambi i tipi di dischi disponibili, è consigliabile utilizzare le numerose funzionalità sfruttare tootake dischi gestiti.
 
-Per iniziare a usare gratuitamente Archiviazione Standard di Azure, visitare [questa pagina](https://azure.microsoft.com/pricing/free-trial/). 
+tooget avviato con l'archiviazione Standard di Azure, visitare [possibile iniziare gratuitamente](https://azure.microsoft.com/pricing/free-trial/). 
 
-Per informazioni su come creare una VM con Managed Disks, vedere uno degli articoli seguenti.
+Per informazioni su come toocreate una macchina virtuale con dischi gestiti, vedere uno dei seguenti hello articoli.
 
 * [Creare una VM con Resource Manager e PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md)
-* [Creare una VM Linux usando l'interfaccia della riga di comando di Azure 2.0](../virtual-machines/linux/quick-create-cli.md)
+* [Creare una VM Linux di hello Azure CLI 2.0](../virtual-machines/linux/quick-create-cli.md)
 
 ## <a name="standard-storage-features"></a>Funzionalità di Archiviazione Standard 
 
-Di seguito sono illustrate alcune delle funzionalità di Archiviazione Standard. Per altri dettagli, vedere [Introduzione ad Archiviazione di Azure](storage-introduction.md).
+Esaminiamo alcune delle funzionalità di hello di archiviazione Standard. Per ulteriori informazioni, vedere [tooAzure introduzione archiviazione](storage-introduction.md).
 
-**Archiviazione Standard**: Archiviazione Standard di Azure supporta dischi, BLOB, archiviazione di file, tabelle e code di Azure. Per usare i servizi Archiviazione Standard, per prima cosa [creare un account di archiviazione di Azure](storage-create-storage-account.md#create-a-storage-account).
+**Archiviazione Standard**: Archiviazione Standard di Azure supporta dischi, BLOB, archiviazione di file, tabelle e code di Azure. servizi di archiviazione Standard toouse, iniziare con [creare un account di archiviazione di Azure](storage-create-storage-account.md#create-a-storage-account).
 
-**Dischi di Archiviazione Standard**: i dischi di Archiviazione Standard possono essere collegati a tutte le VM di Azure, incluse le VM di serie di dimensioni usate con Archiviazione Premium come DSv2 e GS. Un disco di Archiviazione Standard può essere collegato a una sola VM. È tuttavia possibile collegare a una VM uno o più dischi di questo tipo, fino al numero massimo di dischi definito per la specifica dimensione di VM. Nella sezione seguente sugli obiettivi di scalabilità e prestazioni di Archiviazione Standard verranno descritte in dettaglio le specifiche. 
+**I dischi di archiviazione standard:** archiviazione Standard possono essere dischi collegati tooall macchine virtuali di Azure tra macchine virtuali di dimensioni della serie utilizzate con archiviazione Premium, ad esempio hello DSv2 e GS serie. Un disco di archiviazione standard può essere collegati tooone macchina virtuale. Tuttavia, è possibile collegare uno o più di questi tooa dischi VM, conteggio massima del disco toohello definito per la dimensione di macchina virtuale. In hello seguendo sezione Standard obiettivi di scalabilità e prestazioni, si descrive le specifiche di hello in modo più dettagliato. 
 
-**BLOB di pagine Standard**: i BLOB di pagine Standard vengono usati per contenere dischi persistenti per le VM e sono anche accessibili direttamente tramite REST come altri tipi di BLOB di Azure. I [BLOB di pagine](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) sono una raccolta di pagine di 512 byte ottimizzata per operazioni di lettura e scrittura casuali. 
+**Blob di pagine standard**: BLOB di pagine Standard vengono utilizzati toohold dischi persistenti per le macchine virtuali e sono accessibili anche tramite REST, come gli altri tipi di BLOB di Azure. I [BLOB di pagine](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs) sono una raccolta di pagine di 512 byte ottimizzata per operazioni di lettura e scrittura casuali. 
 
-**Replica di Archiviazione**: nella maggior parte delle aree, i dati in un account di archiviazione Standard possono essere replicati in locale oppure essere sottoposti a replica geografica tra più data center. Sono disponibili i quattro tipi di replica seguenti: archiviazione con ridondanza locale (LRS), archiviazione con ridondanza della zona (ZRS), archiviazione con ridondanza geografica (GRS) e archiviazione con ridondanza geografica e accesso in lettura (RA-GRS). In Archiviazione Standard, Managed Disks supporta attualmente solo l'archiviazione con ridondanza locale. Per altre informazioni, vedere [Replica di Archiviazione](storage-redundancy.md).
+**Replica di Archiviazione**: nella maggior parte delle aree, i dati in un account di archiviazione Standard possono essere replicati in locale oppure essere sottoposti a replica geografica tra più data center. Hello quattro tipi di replica disponibile sono archiviazione localmente ridondante (LRS), archiviazione con ridondanza della zona (ZRS), archiviazione con ridondanza geografica (GRS) e archiviazione geograficamente ridondante con accesso in lettura (RA-GRS). In Archiviazione Standard, Managed Disks supporta attualmente solo l'archiviazione con ridondanza locale. Per altre informazioni, vedere [Replica di Archiviazione](storage-redundancy.md).
 
 ## <a name="scalability-and-performance-targets"></a>Obiettivi di scalabilità e prestazioni
 
-Questa sezione descrive gli obiettivi di scalabilità e prestazioni da considerare quando si usa Archiviazione Standard.
+In questa sezione si descrive obiettivi di scalabilità e prestazioni di hello è necessario tooconsider quando si utilizza l'archiviazione standard.
 
-### <a name="account-limits--does-not-apply-to-managed-disks"></a>Limiti dell'account (non applicati ai dischi gestiti)
+### <a name="account-limits--does-not-apply-toomanaged-disks"></a>I limiti dell'account: non si applica toomanaged dischi
 
 | **Risorsa** | **Limite predefinito** |
 |--------------|-------------------|
@@ -68,51 +68,51 @@ Questa sezione descrive gli obiettivi di scalabilità e prestazioni da considera
 | Traffico in uscita massimo<sup>1</sup> per account di archiviazione (aree degli Stati Uniti) | 20 Gbps con archiviazione RA-GRS/GRS/ZRS abilitata, 30 Gbps per LRS |
 | Traffico in ingresso massimo<sup>1</sup> per account di archiviazione (aree europee e asiatiche) | 5 Gbps con archiviazione GRS/ZRS abilitata, 10 Gbps per LRS |
 | Traffico in uscita massimo<sup>1</sup> per account di archiviazione (aree europee e asiatiche) | 10 Gbps con archiviazione RA-GRS/GRS/ZRS abilitata, 15 Gbps per LRS |
-| Frequenza di richiesta totale (presupponendo oggetti con dimensione di 1 KB) per account di archiviazione | Fino a 20.000 IOPS, entità al secondo o messaggi al secondo |
+| Frequenza di richiesta totale (presupponendo oggetti con dimensione di 1 KB) per account di archiviazione | Backup too20, IOPS 000, entità al secondo o messaggi al secondo |
 
-<sup>1</sup>Il traffico in ingresso indica tutti i dati (richieste) inviati a un account di archiviazione. Il traffico in uscita indica tutti i dati (risposte) provenienti da un account di archiviazione.
+<sup>1</sup> in ingresso si riferisce a dati tooall (richieste) inviati tooa account di archiviazione. In uscita fa riferimento tooall dati (risposte) ricevuti da un account di archiviazione.
 
 Per altre informazioni, vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](storage-scalability-targets.md).
 
-Se le esigenze dell'applicazione superano gli obiettivi di scalabilità di un singolo account di archiviazione, compilare l'applicazione in modo da usare più account di archiviazione e partizionare i dati tra tali account. In alternativa, è possibile usare Azure Managed Disks, con cui il partizionamento e il posizionamento dei dati verranno gestiti automaticamente da Azure.
+Se hello deve superare obiettivi di scalabilità hello di un singolo account di archiviazione dell'applicazione, compilare l'applicazione toouse più account di archiviazione e partizionare i dati in tali account di archiviazione. In alternativa, è possibile di dischi gestiti di Azure e Azure gestiscono hello partizionamento e la posizione dei dati per l'utente.
 
 ### <a name="standard-disks-limits"></a>Limiti dei dischi Standard
 
-A differenza dei dischi Premium, per i dischi Standard non viene effettuato il provisioning delle operazioni di I/O al secondo e della velocità effettiva (larghezza di banda). Le prestazioni dei dischi Standard variano in base alla dimensione della VM a cui il disco è collegato e non dipendono dalle dimensioni del disco. La tabella seguente elenca i limiti di prestazioni che si può prevedere di raggiungere.
+A differenza dei dischi Premium, operazioni di input/output di hello al secondo (IOPS) e la velocità effettiva (larghezza di banda) di dischi Standard non sono disponibile. Hello variazione delle prestazioni dei dischi standard con hello VM dimensioni toowhich hello disco è collegato, non toohello dimensioni del disco di hello. Si può prevedere tooachieve backup limite prestazioni toohello elencati nella tabella hello riportata di seguito.
 
 **Limiti dei dischi Standard (gestiti e non gestiti)**
 
 | **Livello VM**            | **VM livello Basic** | **VM livello Standard** |
 |------------------------|-------------------|----------------------|
 | Dimensioni massime disco          | 4095 GB           | 4095 GB              |
-| Numero massimo di operazioni di I/O al secondo da 8 KB per disco | Fino a 300         | Fino a 500            |
-| Larghezza di banda massima per disco | Fino a 60 MB/s     | Fino a 60 MB/s        |
+| Numero massimo di operazioni di I/O al secondo da 8 KB per disco | Backup too300         | Backup too500            |
+| Larghezza di banda massima per disco | Backup too60 MB/s     | Backup too60 MB/s        |
 
-Se il carico di lavoro richiede un supporto dei dischi a bassa latenza e prestazioni elevate, è consigliabile valutare la possibilità di usare Archiviazione Premium. Per informazioni sui vantaggi aggiuntivi di Archiviazione Premium, vedere [Archiviazione Premium a prestazioni elevate e dischi delle macchine virtuali di Azure](storage-premium-storage.md). 
+Se il carico di lavoro richiede un supporto dei dischi a bassa latenza e prestazioni elevate, è consigliabile valutare la possibilità di usare Archiviazione Premium. tooknow ulteriori vantaggi dell'archiviazione Premium, visitare [archiviazione Premium a prestazioni elevate e dischi di macchina virtuale di Azure](storage-premium-storage.md). 
 
 ## <a name="snapshots-and-copy-blob"></a>Snapshot e copia di BLOB
 
-Per il servizio Archiviazione, il file VHD è un BLOB di pagine. È possibile creare snapshot dei BLOB di pagine e copiarli in un'altra posizione, ad esempio un diverso account di archiviazione.
+il servizio di archiviazione, file VHD hello toohello è un blob di pagine. È possibile creare snapshot del BLOB di pagine e copiarli tooanother percorso, ad esempio un account di archiviazione diverso.
 
 ### <a name="unmanaged-disks"></a>Dischi non gestiti
 
-È possibile creare [snapshot incrementali](storage-incremental-snapshots.md) dei dischi Standard non gestiti nello stesso modo in cui si usano gli snapshot con Archiviazione Standard. Se il disco di origine si trova in un account di archiviazione con ridondanza locale, è consigliabile creare gli snapshot e quindi copiarli in un account di archiviazione Standard con ridondanza geografica. Per altre informazioni, vedere [Opzioni di ridondanza di Archiviazione di Azure](storage-redundancy.md).
+È possibile creare [snapshot incrementali](storage-incremental-snapshots.md) per dischi standard non gestito in hello stessa modalità di utilizzo di snapshot con archiviazione Standard. È consigliabile creare gli snapshot e quindi copiare tali account di archiviazione standard con ridondanza geografica tooa snapshot se il disco di origine si trova in un account di archiviazione con ridondanza locale. Per altre informazioni, vedere [Opzioni di ridondanza di Archiviazione di Azure](storage-redundancy.md).
 
-Se un disco è collegato a una macchina virtuale, alcune operazioni API non sono consentite sui dischi. Ad esempio, non è possibile eseguire un'operazione [Copy Blob](/rest/api/storageservices/Copy-Blob) sul BLOB finché il disco è collegato a una macchina virtuale. Al contrario, è necessario creare innanzitutto uno snapshot del BLOB usando il metodo dell'API REST [Snapshot Blob](/rest/api/storageservices/Snapshot-Blob), quindi eseguire l'operazione [Copy Blob](/rest/api/storageservices/Copy-Blob) dello snapshot per copiare il disco collegato. In alternativa, è possibile scollegare il disco e quindi eseguire le operazioni necessarie.
+Se un disco collegato tooa VM, determinate operazioni dell'API non sono consentite nei dischi hello. Ad esempio, non è possibile eseguire un [Copy Blob](/rest/api/storageservices/Copy-Blob) operazione per tale blob purché hello disco è collegato tooa macchina virtuale. In alternativa, è possibile creare innanzitutto uno snapshot del blob utilizzando hello [Snapshot Blob](/rest/api/storageservices/Snapshot-Blob) metodo API REST e quindi eseguire hello [Copy Blob](/rest/api/storageservices/Copy-Blob) di hello toocopy di hello snapshot disco collegato. In alternativa, è possibile scollegare il disco hello e quindi effettuare le operazioni necessarie.
 
-Per mantenere copie con ridondanza geografica degli snapshot, è possibile copiare gli snapshot da un account di archiviazione con ridondanza locale a un account di archiviazione Standard con ridondanza geografica usando AzCopy o Copy Blob. Per altre informazioni, vedere [Trasferire dati con l'utilità della riga di comando AzCopy](storage-use-azcopy.md) e [Copy Blob](/rest/api/storageservices/Copy-Blob).
+toomaintain copie con ridondanza geografica degli snapshot, è possibile copiare gli snapshot da un account di archiviazione standard con ridondanza geografica tooa di account di archiviazione con ridondanza locale tramite AzCopy o Blob di copia. Per ulteriori informazioni, vedere [trasferire i dati con l'utilità della riga di comando di AzCopy hello](storage-use-azcopy.md) e [Copy Blob](/rest/api/storageservices/Copy-Blob).
 
 Per informazioni dettagliate sull'esecuzione di operazioni REST sui BLOB di pagine negli account di archiviazione Standard, vedere l'articolo relativo alle [API REST per i servizi di archiviazione di Azure](/rest/api/storageservices/Azure-Storage-Services-REST-API-Reference).
 
 ### <a name="managed-disks"></a>Dischi gestiti
 
-Uno snapshot di un disco gestito è una copia di sola lettura del disco gestito archiviata come disco gestito Standard. Gli snapshot incrementali non sono attualmente supportati per i dischi gestiti, ma saranno supportati in futuro.
+Uno snapshot per un disco gestito è una copia di sola lettura del disco hello gestito viene archiviato come un disco gestito standard. Snapshot incrementali non sono attualmente supportati per i dischi gestiti, ma sarà supportato in hello future.
 
-Se un disco gestito è collegato a una VM, alcune operazioni API non sono consentite sui dischi. Ad esempio, non è possibile generare una firma di accesso condiviso per eseguire un'operazione di copia mentre il disco è collegato a una macchina virtuale. Creare invece prima di tutto uno snapshot del disco e quindi eseguire la copia dello snapshot. In alternativa, è possibile scollegare il disco e quindi generare una firma di accesso condiviso per eseguire l'operazione di copia.
+Se un disco gestito è collegato tooa VM, determinate operazioni dell'API non sono consentite nei dischi hello. È ad esempio, non è possibile generare un tooperform di firma di accesso condiviso un'operazione di copia mentre il disco di hello è collegato tooa macchina virtuale. In alternativa, creare innanzitutto uno snapshot del disco hello e quindi eseguire Copia hello dello snapshot hello. In alternativa, è possibile scollegare il disco hello e quindi generare un'operazione di copia hello tooperform firma di accesso condiviso.
 
 ## <a name="pricing-and-billing"></a>Prezzi e fatturazione
 
-Quando si usa Archiviazione Standard, tenere conto delle considerazioni seguenti relative alla fatturazione:
+Quando si utilizza l'archiviazione Standard, hello fatturazione considerazioni seguenti:
 
 * Dimensioni dati/dischi non gestiti di Archiviazione Standard 
 * Dischi gestiti Standard
@@ -120,15 +120,15 @@ Quando si usa Archiviazione Standard, tenere conto delle considerazioni seguenti
 * Trasferimenti di dati in uscita
 * Transazioni
 
-**Dimensioni dei dischi e dei dati di archiviazione non gestiti:** per i dischi non gestiti e altri dati (BLOB, tabelle, code e file) viene addebitata solo la quantità di spazio usata. Se per il BLOB di pagine di una VM è stato effettuato il provisioning per 127 GB ma la VM usa in realtà solo 10 GB di spazio, verranno fatturati solo 10 GB. È supportato un massimo di archiviazione Standard di 8191 GB e un massimo di dischi non gestiti Standard di 4095 GB. 
+**Non gestita delle dimensioni dei dati e il disco di archiviazione:** per i dischi non gestiti e altri dati (BLOB, tabelle, code e file), vengono addebitati solo i hello spazio in uso. Ad esempio, se si dispone di una macchina virtuale il cui blob di pagine viene eseguito il provisioning come 127 GB, ma hello macchina virtuale è in realtà solo utilizzando 10 GB di spazio, verrà fatturato per 10 GB di spazio. Un sostegno archiviazione Standard too8191 GB e i dischi non gestiti Standard too4095 GB. 
 
-**Dischi gestiti:** la fatturazione dei dischi gestiti è basata sulle dimensioni per cui è stato effettuato il provisioning. Se per un disco è stato effettuato il provisioning come disco da 10 GB e si usano solo 5 GB, verranno comunque addebitate le dimensioni di 10 GB del provisioning.
+**Dischi gestiti:** dischi gestiti vengono fatturati dimensione hello il provisioning. Se viene eseguito il provisioning del disco come disco di 10 GB e si usa solo 5 GB, verrà comunque addebitato per le dimensioni di effettuare il provisioning di hello di 10 GB.
 
-**Snapshot**: gli snapshot dei dischi Standard vengono fatturati in base alla capacità aggiuntiva usata allo scopo. Per informazioni sugli snapshot, vedere [Creazione di uno snapshot di un BLOB](/rest/api/storageservices/Creating-a-Snapshot-of-a-Blob).
+**Gli snapshot**: gli snapshot dei dischi standard vengono fatturati per una capacità aggiuntiva hello utilizzata dagli snapshot hello. Per informazioni sugli snapshot, vedere [Creazione di uno snapshot di un BLOB](/rest/api/storageservices/Creating-a-Snapshot-of-a-Blob).
 
 **Trasferimenti di dati in uscita**: i [trasferimenti di dati in uscita](https://azure.microsoft.com/pricing/details/data-transfers/) (dati in uscita dai data center di Azure) vengono fatturati in base all'uso della larghezza di banda.
 
-**Transazioni**: per Archiviazione Standard, Azure addebita $ 0,0036 per 100.000 transazioni. Le transazioni includono le operazioni sia di lettura che di scrittura nello spazio di archiviazione.
+**Transazioni**: per Archiviazione Standard, Azure addebita $ 0,0036 per 100.000 transazioni. Le transazioni includono entrambe lettura e scrittura toostorage operazioni.
 
 Per informazioni dettagliate sui prezzi di Archiviazione Standard, Macchine virtuali e Managed Disks, vedere:
 
@@ -140,11 +140,11 @@ Per informazioni dettagliate sui prezzi di Archiviazione Standard, Macchine virt
 
 È possibile eseguire il backup delle macchine virtuali con dischi non gestiti con Backup di Azure. [Altre informazioni](../backup/backup-azure-vms-first-look-arm.md).
 
-È anche possibile usare il servizio Backup di Azure con Managed Disks per creare un processo di backup con backup pianificati, facile ripristino delle macchine virtuali e criteri di conservazione dei backup. Per altre informazioni in merito, vedere la sezione relativa all'[uso del servizio Backup di Azure per macchine virtuali con dischi gestiti](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
+È possibile utilizzare anche hello servizio Backup di Azure con dischi gestiti toocreate un processo di backup con backup basate sul tempo, facilmente ripristinati VM e i criteri di conservazione dei backup. Per altre informazioni in merito, vedere la sezione relativa all'[uso del servizio Backup di Azure per macchine virtuali con dischi gestiti](../backup/backup-introduction-to-azure-backup.md#using-managed-disk-vms-with-azure-backup).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Introduzione ad Archiviazione di Azure](storage-introduction.md)
+* [Introduzione tooAzure archiviazione](storage-introduction.md)
 
 * [Creare un account di archiviazione](storage-create-storage-account.md)
 
@@ -152,4 +152,4 @@ Per informazioni dettagliate sui prezzi di Archiviazione Standard, Macchine virt
 
 * [Creare una VM con Resource Manager e PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md)
 
-* [Creare una VM Linux usando l'interfaccia della riga di comando di Azure 2.0](../virtual-machines/linux/quick-create-cli.md)
+* [Creare una VM Linux di hello Azure CLI 2.0](../virtual-machines/linux/quick-create-cli.md)

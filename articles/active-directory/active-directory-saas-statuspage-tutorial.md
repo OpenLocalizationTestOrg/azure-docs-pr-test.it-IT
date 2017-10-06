@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con StatusPage | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e StatusPage.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e StatusPage.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,123 +13,123 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: jeedes
-ms.openlocfilehash: fa16cdec7b89404c140435fe57d5aa4b08cfa985
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7c6717017984241e9e459273ead4b5e062311120
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-statuspage"></a>Esercitazione Integrazione di Azure Active Directory con StatusPage
 
-Questa esercitazione descrive come integrare StatusPage con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come toointegrate StatusPage con Azure Active Directory (Azure AD).
 
-L'integrazione di StatusPage con Azure AD offre i vantaggi seguenti:
+Integrazione StatusPage con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a StatusPage
-- È possibile abilitare gli utenti per l'accesso automatico a StatusPage (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooStatusPage
+- È possibile abilitare l'utenti tooautomatically get connesso tooStatusPage (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con StatusPage, sono necessari gli elementi seguenti:
+integrazione di Azure AD con StatusPage tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di StatusPage abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di StatusPage dalla raccolta
+1. Aggiunta di StatusPage dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-statuspage-from-the-gallery"></a>Aggiunta di StatusPage dalla raccolta
-Per configurare l'integrazione di StatusPage in Azure AD, è necessario aggiungere StatusPage dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-statuspage-from-hello-gallery"></a>Aggiunta di StatusPage dalla raccolta hello
+integrazione hello tooconfigure di StatusPage in Azure AD, è necessario tooadd StatusPage dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere StatusPage dalla raccolta, seguire questa procedura:**
+**tooadd StatusPage dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **StatusPage**.
+4. Nella casella di ricerca hello, digitare **StatusPage**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_search.png)
 
-5. Nel pannello dei risultati selezionare **StatusPage** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **StatusPage**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con StatusPage in base a un utente di test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di StatusPage che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in StatusPage.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in StatusPage è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in StatusPage deve toobe stabilita.
 
-Per stabilire la relazione di collegamento, in StatusPage assegnare il valore di **nome utente** in Azure AD come valore di **Username**.
+In StatusPage, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con StatusPage, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con StatusPage, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente di test per StatusPage](#creating-a-statuspage-test-user)**: per avere una controparte di Britta Simon in StatusPage collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test StatusPage](#creating-a-statuspage-test-user)**  -toohave un equivalente di Britta Simon in StatusPage che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione StatusPage.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione StatusPage.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con StatusPage, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con StatusPage, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **StatusPage** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **StatusPage** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_samlbase.png)
 
-3. Nella sezione **URL e dominio StatusPage** seguire questa procedura:
+3. In hello **StatusPage dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_url.png)
 
-    a. Nella casella di testo **Identificatore** digitare l'URL adottando il criterio seguente:
+    a. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:
     | |
     |--|
     | `https://<subdomain>.statuspagestaging.com/` |
     | `https://<subdomain>.statuspage.io/` |
 
-    b. Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente: 
+    b. In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello: 
     | |
     |--|
     | `https://<subdomain>.statuspagestaging.com/sso/saml/consume` |
     | `https://<subdomain>.statuspage.io/sso/saml/consume` |
 
     > [!NOTE]
-    > Per richiedere i metadati necessari per configurare l'accesso Single Sign-On, contattare il team di supporto di StatusPage all'indirizzo [SupportTeam@statuspage.io](mailto:SupportTeam@statuspage.io). 
+    > Contattare il team di supporto StatusPage hello in [ SupportTeam@statuspage.io ](mailto:SupportTeam@statuspage.io)toorequest i metadati necessari tooconfigure accesso single sign-on. 
     >
-    >a. Dal file di metadati, copiare il valore relativo all'autorità di certificazione e quindi incollarlo nella casella di testo **Identificatore** .
+    >a. Dai metadati hello, copiare il valore di autorità di certificazione hello e quindi incollarlo hello **identificatore** casella di testo.
     >
-    >b. Dal file di metadati copiare il valore relativo all'URL di risposta e quindi incollarlo nella casella di testo **Reply URL** .
+    >b. Dai metadati hello, copiare l'URL di risposta hello e quindi incollarlo hello **URL di risposta** casella di testo.
 
-4. Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.
+4. In hello **certificato di firma SAML** fare clic su **certificato (Base64)** e quindi salvare il file di certificato hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_certificate.png) 
 
@@ -137,82 +137,82 @@ In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel porta
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_general_400.png)
 
-6. Nella sezione **Configurazione di StatusPage** fare clic su **Configura StatusPage** per aprire la finestra **Configura accesso**. Copiare l'**URL servizio Single Sign-On SAML** dalla **sezione Riferimento rapido.**
+6. In hello **StatusPage configurazione** fare clic su **configurare StatusPage** tooopen **Configura sign-on** finestra. Hello copia **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_configure.png) 
 
-7. In un'altra finestra del browser accedere al sito aziendale di StatusPage come amministratore.
+7. In un'altra finestra del browser, accedere come amministratore nel sito della società di tooyour StatusPage.
 
-8. Nella barra degli strumenti principale scegliere **Manage Account**.
+8. Nella barra degli strumenti principale hello, fare clic su **Gestisci Account**.
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_06.png) 
 
-10. Fare clic sulla scheda **Single Sign-on** . 
+10. Fare clic su hello **Single Sign-on** scheda. 
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_07.png) 
 
-11. Nella pagina di configurazione dell’accesso Single Sign-On, seguire questa procedura:
+11. Nella pagina di installazione SSO hello, eseguire hello alla procedura seguente:
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_08.png) 
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_09.png) 
  
-    a. Nella casella di testo **SSO Target URL** (URL di destinazione SSO) incollare il valore **SAML Single Sign-On Service URL** (URL servizio Single Sign-On SAML) copiato dal portale di Azure.
+    a. In hello **SSO Target URL** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL**, che è stato copiato dal portale di Azure.
 
-    b. Aprire il certificato scaricato nel Blocco note, copiarne il contenuto e incollarlo nella casella di testo **Certificato** . 
+    b. Aprire il certificato scaricato nel blocco note, hello copia il contenuto e quindi incollarlo hello **certificato** casella di testo. 
 
     c. Fare clic su **SALVA CONFIGURAZIONE**.
 
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="creating-a-statuspage-test-user"></a>Creazione di un utente test per StatusPage
 
-Questa sezione descrive come creare un utente chiamato Britta Simon in StatusPage.
+obiettivo di Hello di questa sezione è un utente denominato Britta Simon in StatusPage toocreate.
 
 StatusPage supporta il provisioning JIT (just-in-time), È già stato abilitato in [Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on).
 
-**Per creare un utente denominato Britta Simon in StatusPage, seguire questa procedura:**
+**un utente denominato Britta Simon in StatusPage, toocreate eseguire hello alla procedura seguente:**
 
-1. Accedere al sito aziendale di StatusPage come amministratore.
+1. Sito dell'azienda StatusPage tooyour accesso come amministratore.
 
-2. Nel menu in alto fare clic su **Gestisci Account**.
+2. Scegliere dal menu hello in primo piano hello **Gestisci Account**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_06.png)
 
-3. Fare clic sulla scheda **Membri del team**. 
+3. Fare clic su hello **i membri del Team** scheda. 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_10.png) 
 
@@ -220,7 +220,7 @@ StatusPage supporta il provisioning JIT (just-in-time), È già stato abilitato 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_11.png) 
 
-5. Digitare i valori **Indirizzo di posta elettronica**, **Nome** e **Cognome** di un utente valido di cui si vuole eseguire il provisioning nelle caselle di testo corrispondenti. 
+5. Hello tipo **indirizzo di posta elettronica**, **nome**, e **nome Sur** di un utente valido desiderate tooprovision hello relative caselle di testo. 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_12.png) 
 
@@ -228,23 +228,23 @@ StatusPage supporta il provisioning JIT (just-in-time), È già stato abilitato 
 
 7. Fare clic su **CREA ACCOUNT**.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendo l'accesso a StatusPage.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooStatusPage.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a StatusPage, seguire questa procedura:**
+**tooassign Britta Simon tooStatusPage, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco di applicazioni selezionare **StatusPage**.
+2. Nell'elenco di applicazioni hello, selezionare **StatusPage**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -252,7 +252,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -260,13 +260,13 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
     
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-Questa sezione descrive come testare la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+obiettivo di Hello di questa sezione è tootest la configurazione di single sign-on di Azure AD mediante hello Pannello di accesso.
 
-Quando si fa clic sul riquadro StatusPage nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione StatusPage.
+Quando si fa clic su riquadro StatusPage hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour StatusPage applicazione.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

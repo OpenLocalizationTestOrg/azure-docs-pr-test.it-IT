@@ -1,6 +1,6 @@
 ---
-title: Spostare le risorse di Azure in una nuova sottoscrizione o in un gruppo di risorse | Microsoft Docs
-description: Usare Azure Resource Manager per spostare risorse a un nuovo gruppo di risorse o a una nuova sottoscrizione.
+title: aaaMove risorse di Azure toonew sottoscrizione o la risorsa gruppo | Documenti Microsoft
+description: Utilizzare Gestione risorse di Azure toomove risorse tooa nuovo gruppo di risorse o di sottoscrizione.
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: e138f80e808968ab4bf5c11cfd5fd46fe4a1bcce
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 09d35f0afbbcdc0c66779f98a982d878f0807497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-resources-to-new-resource-group-or-subscription"></a>Spostare le risorse in un gruppo di risorse o una sottoscrizione nuovi
-Questo argomento illustra come spostare le risorse in una nuova sottoscrizione o in un nuovo gruppo di risorse nella stessa sottoscrizione. È possibile usare il portale, PowerShell, l'interfaccia della riga di comando di Azure o l'API REST per spostare una risorsa. Le operazioni di spostamento descritte in questo argomento non richiedono assistenza da parte del supporto tecnico di Azure.
+# <a name="move-resources-toonew-resource-group-or-subscription"></a>Gruppo di risorse di spostare risorse toonew o sottoscrizione
+Questo argomento viene illustrato come toomove risorse tooeither una nuova sottoscrizione o una nuova risorsa gruppo hello stessa sottoscrizione. È possibile utilizzare il portale di hello, PowerShell, CLI di Azure o hello risorsa toomove API REST. operazioni di spostamento Hello in questo argomento sono disponibili tooyou senza assistenza dal supporto tecnico di Azure.
 
-Durante lo spostamento di risorse, sia il gruppo di origine che il gruppo di destinazione sono bloccati durante l'operazione. Le operazioni di scrittura ed eliminazione sono bloccate nei gruppi di risorse fino al completamento dello spostamento. Questo blocco indica che non è possibile aggiungere, aggiornare o eliminare le risorse dei gruppi di risorse, ma non che le risorse sono bloccate. Se ad esempio si sposta un Server SQL con il relativo database in un nuovo gruppo di risorse, nelle applicazioni che usano il database non si verificano tempi di inattività, poiché rimane possibile leggere e scrivere nel database.
+Quando lo spostamento delle risorse, sia il gruppo di origine hello e il gruppo di destinazione hello sono bloccate durante l'operazione di hello. Scrivere e le operazioni di eliminazione sono bloccati in gruppi di risorse hello fino al completamento di spostamento hello. Non è possibile aggiungere, aggiornare o eliminare le risorse in gruppi di risorse hello, ma questo non significa che vengono bloccate risorse hello, significa che questo blocco. Ad esempio, se si sposta un Server SQL e il relativo database tooa nuovo gruppo di risorse, un'applicazione che utilizza database hello non esperienze tempi di inattività. Può comunque leggere e scrivere toohello database.
 
-Non è possibile modificare il percorso della risorsa. Lo spostamento di una risorsa comporta solo il suo spostamento in un nuovo gruppo di risorse. Il nuovo gruppo di risorse può avere un percorso diverso, ma ciò non modifica la posizione della risorsa.
+È possibile modificare il percorso di hello della risorsa hello. Lo spostamento di una risorsa solo spostarlo tooa nuovo gruppo di risorse. nuovo gruppo di risorse Hello può avere un percorso diverso, ma che non modificare il percorso di hello della risorsa hello.
 
 > [!NOTE]
-> In questo articolo viene descritto come spostare le risorse nell'offerta di un account di Azure esistente. Se si vuole che modificare l'offerta dell'account di Azure, ad esempio effettuando l'aggiornamento da pagamento in base al consumo a pagamento anticipato, pur continuando a lavorare con le risorse esistenti, vedere [Trasferire la sottoscrizione di Azure a un'altra offerta](../billing/billing-how-to-switch-azure-offer.md).
+> Questo articolo descrive la modalità dell'account offerte toomove risorse all'interno di Azure esistente. Se si desidera effettivamente toochange all'account Azure offerta (ad esempio, l'aggiornamento da toopre pagamento a consumo-pay) continuando toowork con le risorse esistenti, vedere [cambiare l'offerta di sottoscrizione di Azure tooanother](../billing/billing-how-to-switch-azure-offer.md).
 >
 >
 
 ## <a name="checklist-before-moving-resources"></a>Controllo prima di spostare le risorse
-Prima di spostare una risorsa è necessario eseguire alcuni passi importanti. La verifica di queste condizioni consente di evitare errori.
+Esistono tooperform alcuni importanti passaggi prima di spostare una risorsa. La verifica di queste condizioni consente di evitare errori.
 
-1. Le sottoscrizioni di origine e di destinazione devono trovarsi nello stesso [tenant di Azure Active Directory](../active-directory/active-directory-howto-tenant.md). Per verificare che entrambe le sottoscrizioni contengano lo stesso ID tenant, usare Azure PowerShell o l'interfaccia della riga di comando di Azure.
+1. Hello le sottoscrizioni di origine e di destinazione devono esistere all'interno di hello stesso [tenant Azure Active Directory](../active-directory/active-directory-howto-tenant.md). toocheck che entrambe le sottoscrizioni sono hello stesso ID tenant, usare Azure PowerShell o CLI di Azure.
 
   Per Azure PowerShell usare:
 
@@ -49,28 +49,28 @@ Prima di spostare una risorsa è necessario eseguire alcuni passi importanti. La
   az account show --subscription "Example Subscription" --query tenantId
   ```
 
-  Se gli ID tenant per le sottoscrizioni di origine e di destinazione non sono uguali, è possibile tentare di modificare la directory della sottoscrizione. Tuttavia, questa opzione è disponibile solo per gli amministratori del servizio sono registrati con un account Microsoft (non un account aziendale). Per tentare di modificare la directory, accedere al [portale classico](https://manage.windowsazure.com/), selezionare **Impostazioni**, quindi la sottoscrizione. Se l'icona **Modifica directory** è disponibile, selezionarla per modificare l'istanza di Azure Active Directory associata.
+  Se hello tenant ID per le sottoscrizioni di origine e destinazione hello non sono hello stesso, è possibile tentare directory hello toochange per sottoscrizione hello. Tuttavia, questa opzione è disponibile tooService solo gli amministratori che ha eseguito l'accesso con un account Microsoft (non un account aziendale). modifica della directory di hello, accedi toohello tooattempt [portale classico](https://manage.windowsazure.com/)e selezionare **impostazioni**, selezionare la sottoscrizione hello. Se hello **modifica Directory** icona è disponibile, selezionarlo toochange hello associati di Azure Active Directory.
 
   ![modifica directory](./media/resource-group-move-resources/edit-directory.png)
 
-  Se questa icona non è disponibile, è necessario contattare il supporto per spostare le risorse in un nuovo tenant.
+  Se tale icona non è disponibile, è necessario contattare il supporto toomove hello risorse tooa nuovo tenant.
 
-2. Il servizio deve abilitare lo spostamento di risorse. In questo argomento sono elencati i servizi che consentono di spostare risorse e quelli che invece non lo permettono.
-3. Il provider di risorse della risorsa da spostare deve essere registrato nella sottoscrizione di destinazione, altrimenti un errore indica che la **sottoscrizione non è registrata per un tipo di risorsa**. Questo problema può verificarsi se si sposta una risorsa in una nuova sottoscrizione, ma la sottoscrizione non è mai stata usata con tale tipo di risorsa. Per informazioni su come controllare lo stato della registrazione e registrare i provider di risorse, vedere [Provider e tipi di risorse](resource-manager-supported-services.md).
+2. servizio Hello è necessario abilitare le risorse di toomove possibilità hello. In questo argomento sono elencati i servizi che consentono di spostare risorse e quelli che invece non lo permettono.
+3. sottoscrizione di destinazione Hello deve essere registrati per il provider di risorse hello della risorsa hello viene spostato. Se non si riceve un errore che informa che hello **sottoscrizione non è registrata per un tipo di risorsa**. Questo problema possono verificarsi durante lo spostamento di una nuova sottoscrizione tooa di risorse, ma tale sottoscrizione non sia mai stato utilizzato con il tipo di risorsa. toolearn come toocheck hello lo stato della registrazione e registrare i provider di risorse, vedere [tipi e i provider di risorse](resource-manager-supported-services.md).
 
-## <a name="when-to-call-support"></a>Quando chiamare il supporto
-È possibile spostare la maggior parte delle risorse tramite le operazioni self-service descritte in questo argomento. Usare le operazioni self-service per:
+## <a name="when-toocall-support"></a>Quando il supporto toocall
+È possibile spostare la maggior parte delle risorse tramite operazioni hello self-service illustrate in questo argomento. Utilizzare hello self-service delle operazioni:
 
 * Spostare le risorse di Resource Manager.
-* Spostare le risorse classiche in base alle [limitazioni della distribuzione classica](#classic-deployment-limitations).
+* Spostare le risorse classiche in base toohello [limitazioni di distribuzione classica](#classic-deployment-limitations).
 
 Chiamare il supporto quando è necessario:
 
-* Spostare le risorse in un nuovo account di Azure (e tenant di Azure Active Directory).
-* Spostare le risorse classiche ma si verificano problemi relativi alle limitazioni.
+* Spostare le risorse tooa nuovo account Azure (e tenant di Azure Active Directory).
+* Spostare le risorse classiche ma problemi con limitazioni hello.
 
 ## <a name="services-that-enable-move"></a>Servizi che abilitano lo spostamento
-Di seguito sono elencati i servizi che attualmente abilitano lo spostamento in un gruppo di risorse e in una sottoscrizione nuovi:
+Per il momento, servizi di hello che consentono lo spostamento tooboth un nuovo gruppo di risorse e la sottoscrizione sono:
 
 * Gestione API
 * App del servizio app (app Web): vedere [Limitazioni del servizio app](#app-service-limitations)
@@ -110,18 +110,18 @@ Di seguito sono elencati i servizi che attualmente abilitano lo spostamento in u
 * Archiviazione
 * Archiviazione (classica): vedere [Limitazioni della distribuzione classica](#classic-deployment-limitations)
 * Analisi di flusso: i processi di analisi di flusso non possono essere spostati durante l'esecuzione.
-* Server di database SQL: il database e il server devono trovarsi nello stesso gruppo di risorse. Quando si sposta un server SQL, quindi, vengono spostati anche tutti i relativi database.
+* Il server di Database SQL - hello database e server devono risiedere in hello stesso gruppo di risorse. Quando si sposta un server SQL, quindi, vengono spostati anche tutti i relativi database.
 * Gestione traffico
 * Macchine virtuali
-* Macchine virtuali con certificato archiviato in Key Vault: lo spostamento al nuovo gruppo di risorse nella stessa sottoscrizione è abilitato, ma lo spostamento fra sottoscrizioni non è abilitato.
+* Macchine virtuali con certificato archiviato nell'insieme di credenziali chiave - toonew spostamento risorse del gruppo nella stessa sottoscrizione è abilitata, ma spostamento tra sottoscrizioni non è abilitato.
 * Macchine virtuali (classiche): vedere [Limitazioni della distribuzione classica](#classic-deployment-limitations)
 * Set di scalabilità di macchine virtuali
-* Reti virtuali: attualmente non è possibile spostare una rete virtuale con peering fino a quando non viene disabilitato il peering di rete virtuale. Dopo che il peering è stato disabilitato, è possibile spostare la rete virtuale e abilitare il peering di rete virtuale. Inoltre, è impossibile spostare una rete virtuale in una sottoscrizione diversa se la rete virtuale contiene una qualsiasi subnet con collegamenti di navigazione delle risorse. Ad esempio, una subnet della rete virtuale ha un collegamento di navigazione delle risorse quando una risorsa redis Microsoft.Cache viene distribuita in questa subnet.
+* Reti virtuali: attualmente non è possibile spostare una rete virtuale con peering fino a quando non viene disabilitato il peering di rete virtuale. Una volta disabilitato, hello rete virtuale può essere spostato correttamente e hello peering di reti virtuali può essere abilitata. Inoltre, una rete virtuale non può essere spostato tooa altra sottoscrizione se hello rete virtuale contiene una qualsiasi subnet con collegamenti di navigazione delle risorse. Ad esempio, una subnet della rete virtuale ha un collegamento di navigazione delle risorse quando una risorsa redis Microsoft.Cache viene distribuita in questa subnet.
 * Gateway VPN
 
 
 ## <a name="services-that-do-not-enable-move"></a>Servizi che non abilitano lo spostamento
-I servizi che attualmente non abilitano lo spostamento di una risorsa sono:
+servizi di Hello che attualmente non consentono di spostare una risorsa sono:
 
 * AD Domain Services
 * Servizio ibrido per l'integrità di AD
@@ -130,26 +130,26 @@ I servizi che attualmente non abilitano lo spostamento di una risorsa sono:
 * Servizi BizTalk
 * Servizio contenitore
 * Express Route
-* DevTest Labs: lo spostamento al nuovo gruppo di risorse nella stessa sottoscrizione è abilitato, ma lo spostamento della sottoscrizione incrociato non è abilitato.
+* DevTest Labs - toonew spostamento risorse del gruppo nella stessa sottoscrizione sono abilitata, ma tra spostamento sottoscrizione non sono abilitata.
 * Dynamics LCS
 * Immagini create da Managed Disks
 * Managed Disks
 * Applicazioni gestite
-* Insieme di credenziali delle chiavi di Servizi di ripristino: non spostare anche le risorse di calcolo, rete e archiviazione associate con l'insieme di credenziali di Servizi di ripristino, vedere [Limitazioni dei servizi di ripristino](#recovery-services-limitations).
+* Insieme di credenziali di servizi di ripristino - anche eseguire hello servizi di ripristino non sposta hello calcolo, rete e archiviazione, le risorse associate all'insieme di credenziali, vedere [limitazioni di servizi di ripristino](#recovery-services-limitations).
 * Sicurezza
 * Snapshot creati da Managed Disks
 * Gestione dispositivi StorSimple
 * Macchine virtuali con Managed Disks
 * Reti virtuali (classiche): vedere [Limitazioni della distribuzione classica](#classic-deployment-limitations)
-* Impossibile spostare le macchine virtuali create da risorse Marketplace fra sottoscrizioni. La risorsa deve essere sottoposta a deprovisioning nella sottoscrizione corrente e distribuita nuovamente nella nuova sottoscrizione
+* Impossibile spostare le macchine virtuali create da risorse Marketplace fra sottoscrizioni. È necessario toobe deprovisioning nella sottoscrizione corrente hello e distribuito di nuovo nella nuova sottoscrizione hello risorsa
 
 ## <a name="app-service-limitations"></a>Limitazioni del servizio app
-Quando si usano le app del servizio app non è possibile spostare solo un piano di servizio app. Per spostare le app del servizio app, le opzioni disponibili sono:
+Quando si usano le app del servizio app non è possibile spostare solo un piano di servizio app. le applicazioni di servizio App toomove, le opzioni disponibili sono:
 
-* Spostare il piano di servizio app e tutte le altre risorse del servizio app del gruppo di risorse in un nuovo gruppo di risorse che non dispone di risorse del servizio app. In base a questo requisito è necessario spostare anche le risorse del servizio app non associate al piano di servizio app.
-* Spostare le app in un gruppo di risorse diverso, ma mantenere tutti i piani di servizio app nel gruppo di risorse originale.
+* Spostare il piano di servizio App hello e tutte le altre risorse del servizio App in tale gruppo tooa nuova risorsa gruppo di risorse che non dispone di risorse del servizio App. Questo requisito significa che è necessario spostare anche hello risorse del servizio App che non sono associati al piano di servizio App hello.
+* Sposta gruppo di risorse diverso tooa hello App, ma Mantieni tutti i piani di servizio App nel gruppo di risorse originale hello.
 
-Per il corretto funzionamento dell'app non è necessario che il piano di servizio app risieda nello stesso gruppo di risorse in cui si trova l'app stessa.
+Hello servizio App non è necessario tooreside nel piano hello stesso gruppo di risorse applicazione hello per hello app toofunction correttamente.
 
 Se ad esempio il gruppo di risorse contiene:
 
@@ -165,65 +165,65 @@ Le opzioni possibili sono:
 
 Con tutte le altre combinazioni si lascerebbe dove si trova un tipo di risorsa che non può essere lasciato nella stessa posizione quando si sposta un piano di servizio app (qualsiasi tipo di risorsa del servizio app).
 
-Se l'app web si trova in un gruppo di risorse diverso rispetto al piano di servizio app corrispondente ma si vuole spostare entrambi gli elementi in un nuovo gruppo di risorse, è necessario eseguire lo spostamento in due fasi. Ad esempio:
+Se l'app web si trova in un gruppo di risorse diverso rispetto al relativo piano di servizio App, ma si desidera toomove entrambi tooa nuovo gruppo di risorse, è necessario eseguire spostamento hello in due passaggi. ad esempio:
 
 * **web-a** si trova in **web-group**
 * **plan-a** si trova in **plan-group**
-* Si vuole che **web-a** e **plan-a** risiedano in **combined-group**
+* Si desidera **web-a** e **piano-a** tooreside in **gruppo combinati**
 
-Per ottenere questo risultato è necessario eseguire due operazioni di spostamento distinte nell'ordine che segue:
+tooaccomplish questo spostamento, eseguire due operazioni di spostamento separato in hello seguente sequenza:
 
-1. Spostare **web-a** in **plan-group**
-2. Spostare **web-a** e **plan-a** in **combined-group**.
+1. Spostare hello **web-a** troppo**piano gruppo**
+2. Spostare **web-a** e **piano-a** troppo**gruppo combinati**.
 
-È possibile spostare un certificato del servizio app in un nuovo gruppo di risorse o una nuova sottoscrizione senza problemi. Se l'app Web include un certificato SSL acquistato esternamente e caricato nell'app, tuttavia, è necessario eliminare il certificato prima di spostare l'app Web. Ad esempio, è possibile eseguire i passaggi seguenti:
+È possibile spostare un certificato di servizio App tooa nuovo gruppo di risorse o di una sottoscrizione senza problemi. Tuttavia, se l'app web include un certificato SSL di acquistata esternamente e caricato toohello app, è necessario eliminare certificato hello prima dell'applicazione web di hello mobile. Ad esempio, è possibile eseguire hello alla procedura seguente:
 
-1. Eliminare il certificato caricato dall'App Web
-2. Spostare l'App Web
-3. Caricare il certificato nell'App Web
+1. Eliminare il certificato di hello caricata dall'app web hello
+2. Spostare hello web app
+3. Caricare hello certificato toohello web app
 
 ## <a name="recovery-services-limitations"></a>Limitazioni dei servizi di ripristino
-Lo spostamento non è abilitato per le risorse di archiviazione, di rete o di calcolo usate per configurare il ripristino di emergenza con Azure Site Recovery.
+Spostamento non è abilitato per l'archiviazione, rete, o risorse di calcolo utilizzato tooset ripristino di emergenza con Azure Site Recovery.
 
-Ad esempio, si supponga di avere configurato la replica delle macchine locali su un account di archiviazione (Storage1) e di desiderare che il computer protetto venga avviato dopo il failover in Azure come macchina virtuale (VM1) collegata a una rete virtuale (Network1). Non è possibile spostare una di queste risorse di Azure - Storage1 VM1 e Network1 - nei gruppi di risorse all'interno della stessa sottoscrizione o tra le sottoscrizioni.
+Ad esempio, si supponga di che aver configurato la replica di on-premise macchine tooa account di archiviazione (Storage1) e desidera toocome macchina hello protetto dopo il failover tooAzure come una macchina virtuale (VM1) è associata la rete virtuale tooa (rete1). Non è possibile spostare una di queste risorse Azure - Storage1, VM1, e - rete1 tra risorse gruppi all'interno di hello stessa sottoscrizione o per le sottoscrizioni.
 
 ## <a name="hdinsight-limitations"></a>Limitazioni di HDInsight
 
-È possibile spostare i cluster HDInsight in una nuova sottoscrizione o in un nuovo gruppo di risorse. Non è tuttavia possibile spostare tra sottoscrizioni le risorse di rete collegate al cluster HDInsight, ad esempio la rete virtuale, l'interfaccia di rete o il servizio di bilanciamento del carico. Non è possibile spostare in un nuovo gruppo di risorse un'interfaccia di rete collegata a una macchina virtuale per il cluster.
+È possibile spostare HDInsight cluster tooa nuova sottoscrizione o un gruppo di risorse. Tuttavia, è possibile spostare tra hello sottoscrizioni rete cluster di HDInsight toohello collegato risorse (ad esempio una rete virtuale hello, scheda di rete o servizio di bilanciamento del carico). Inoltre, è possibile spostare il gruppo di risorse nuovo tooa una scheda di rete di macchina virtuale tooa collegato per il cluster hello.
 
-Quando si sposta un cluster HDInsight in una nuova sottoscrizione, spostare prima altre risorse, ad esempio l'account di archiviazione. Spostare quindi il cluster HDInsight.
+Quando si sposta una nuova sottoscrizione tooa cluster HDInsight, spostare innanzitutto altre risorse (ad esempio account di archiviazione hello). Spostare quindi il cluster di HDInsight hello da se stesso.
 
 ## <a name="classic-deployment-limitations"></a>Limitazioni della distribuzione classica
-Le opzioni per lo spostamento delle risorse distribuite con il modello classico variano a seconda che lo spostamento avvenga all'interno di una sottoscrizione o a una nuova sottoscrizione.
+salve le opzioni per lo spostamento delle risorse distribuite tramite il modello classico di hello differiscono a seconda se si desidera spostare le risorse di hello all'interno di una sottoscrizione o tooa nuova sottoscrizione.
 
 ### <a name="same-subscription"></a>Stessa sottoscrizione
-Quando si spostano risorse da un gruppo di risorse a un altro gruppo di risorse nella stessa sottoscrizione, sono valide le restrizioni seguenti:
+Quando lo spostamento delle risorse dal gruppo di risorse di una risorsa gruppo tooanother all'interno di hello applicare stessa sottoscrizione, hello seguenti restrizioni:
 
 * Le reti virtuali (classiche) non possono essere spostate.
-* Le macchine virtuali (classiche) devono essere spostate con il servizio cloud.
-* Il servizio cloud può essere spostato solo quando lo spostamento include tutte le macchine virtuali del servizio stesso.
+* Macchine virtuali (classico) devono essere spostate con il servizio cloud hello.
+* Servizio cloud può essere spostato solo quando si sposta hello include tutte le macchine virtuali.
 * È possibile spostare un solo servizio cloud alla volta.
 * È possibile spostare un solo account di archiviazione (classico) alla volta.
-* Un account di archiviazione (classico) non può essere spostato nella stessa operazione di spostamento che include una macchina virtuale o un servizio cloud.
+* Account di archiviazione (classico) non può essere spostato in hello stessa operazione con una macchina virtuale o un servizio cloud.
 
-Per spostare le risorse classiche in un nuovo gruppo di risorse all'interno della stessa sottoscrizione usare le operazioni di spostamento standard tramite il [portale](#use-portal), [Azure PowerShell](#use-powershell), l'[interfaccia della riga di comando di Azure](#use-azure-cli) o l'[API REST](#use-rest-api). Usare le stesse operazioni eseguite per lo spostamento di risorse di Resource Manager.
+toomove le risorse classiche tooa nuovo gruppo di risorse interno hello stessa sottoscrizione, utilizzare le operazioni di spostamento standard hello tramite hello [portale](#use-portal), [Azure PowerShell](#use-powershell), [CLI di Azure](#use-azure-cli), o [API REST](#use-rest-api). Utilizzare hello stesse operazioni quando si utilizza per lo spostamento delle risorse di gestione risorse.
 
 ### <a name="new-subscription"></a>Nuova sottoscrizione
-Quando si spostano risorse in una nuova sottoscrizione, sono valide le restrizioni seguenti:
+Quando si spostano nuova sottoscrizione di risorse tooa, si applica hello seguenti restrizioni:
 
-* Tutte le risorse classiche della sottoscrizione vanno spostate nella stessa operazione.
-* La sottoscrizione di destinazione non deve contenere nessuna delle altre risorse classiche.
-* Lo spostamento può essere richiesto solo tramite un'API REST separata per gli spostamenti di risorse classiche. I comandi di spostamento standard di Resource Manager non funzionano quando si spostano risorse classiche a una nuova sottoscrizione.
+* Tutte le risorse classiche nella sottoscrizione hello devono essere spostate in hello stessa operazione.
+* sottoscrizione di destinazione Hello non deve contenere tutte le altre risorse classiche.
+* spostamento Hello può essere richiesti solo tramite un'API REST separato per gli spostamenti classici. comandi di spostamento Hello standard di gestione delle risorse non funzionano quando sposta le risorse classiche tooa nuova sottoscrizione.
 
-Per spostare le risorse classiche in una nuova sottoscrizione, usare le operazioni REST specifiche per le risorse classiche. Per usare REST, seguire questa procedura:
+toomove le risorse classiche tooa nuova sottoscrizione, utilizzare hello le operazioni REST che rappresentano risorse tooclassic specifico. toouse REST, eseguire hello alla procedura seguente:
 
-1. Controllare se la sottoscrizione di origine può partecipare a un'operazione di spostamento tra sottoscrizioni. Usare l'operazione seguente:
+1. Verifica se la sottoscrizione di origine hello può partecipare a una sottoscrizione tra spostare. Utilizzare hello seguente operazione:
 
   ```HTTP   
   POST https://management.azure.com/subscriptions/{sourceSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
 
-     Nel corpo della richiesta includere:
+     Nel corpo della richiesta hello, includere:
 
   ```json
   {
@@ -231,7 +231,7 @@ Per spostare le risorse classiche in una nuova sottoscrizione, usare le operazio
   }
   ```
 
-     La risposta per l'operazione di convalida ha il formato seguente:
+     risposta Hello per l'operazione di convalida hello è nel seguente formato hello:
 
   ```json
   {
@@ -243,13 +243,13 @@ Per spostare le risorse classiche in una nuova sottoscrizione, usare le operazio
   }
   ```
 
-2. Controllare se la sottoscrizione di destinazione può partecipare a un'operazione di spostamento tra sottoscrizioni. Usare l'operazione seguente:
+2. Verifica se la sottoscrizione di destinazione hello può partecipare a una sottoscrizione tra spostare. Utilizzare hello seguente operazione:
 
   ```HTTP
   POST https://management.azure.com/subscriptions/{destinationSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
 
-     Nel corpo della richiesta includere:
+     Nel corpo della richiesta hello, includere:
 
   ```json
   {
@@ -257,14 +257,14 @@ Per spostare le risorse classiche in una nuova sottoscrizione, usare le operazio
   }
   ```
 
-     La risposta ha lo stesso formato della convalida della sottoscrizione di origine.
-3. Se entrambe le sottoscrizioni superano la convalida, spostare tutte le risorse classiche da una sottoscrizione a un'altra usando l'operazione seguente:
+     risposta Hello è nel stesso formato delle convalida della sottoscrizione di origine hello hello.
+3. Se entrambe le sottoscrizioni superano la convalida, spostare tutte le risorse classiche dalla sottoscrizione di una sottoscrizione tooanother con hello seguente operazione:
 
   ```HTTP
   POST https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.ClassicCompute/moveSubscriptionResources?api-version=2016-04-01
   ```
 
-    Nel corpo della richiesta includere:
+    Nel corpo della richiesta hello, includere:
 
   ```json
   {
@@ -272,38 +272,38 @@ Per spostare le risorse classiche in una nuova sottoscrizione, usare le operazio
   }
   ```
 
-Questa operazione potrebbe richiedere alcuni minuti.
+può eseguire l'operazione di Hello per alcuni minuti.
 
 ## <a name="use-portal"></a>Usare il portale
-Per spostare le risorse, selezionare il gruppo contenente queste risorse, quindi usare il pulsante **Sposta**.
+risorse toomove, selezionare il gruppo di risorse hello contenente tali risorse, quindi hello **spostare** pulsante.
 
 ![Spostare le risorse](./media/resource-group-move-resources/select-move.png)
 
-Selezionare se si desidera spostare le risorse in un nuovo gruppo di risorse o in una nuova sottoscrizione.
+Selezionare se si sta spostando hello risorse tooa nuovo gruppo di risorse o una nuova sottoscrizione.
 
-Selezionare le risorse da spostare e il gruppo di risorse di destinazione. Confermare di dover aggiornare gli script per queste risorse e selezionare **OK**. Se si seleziona l'icona del comando Modifica sottoscrizione nel passaggio precedente, è necessario anche selezionare la sottoscrizione di destinazione.
+Selezionare toomove risorse hello e gruppo di risorse di destinazione hello. Confermare che è necessario tooupdate script per le risorse e selezionare **OK**. Se è stata selezionata nel passaggio precedente hello sull'icona di hello Modifica sottoscrizione, è necessario selezionare anche la sottoscrizione di destinazione hello.
 
 ![Selezione della destinazione](./media/resource-group-move-resources/select-destination.png)
 
-In **Notifiche**si nota che è in corso l'operazione di spostamento.
+In **notifiche**, vedrai che hello spostare l'operazione è in esecuzione.
 
 ![Visualizzare lo stato dello spostamento](./media/resource-group-move-resources/show-status.png)
 
-Al completamento dell'operazione si riceverà la notifica del risultato.
+Quando è stata completata, ricevono la notifica del risultato hello.
 
 ![Visualizzare il risultato dello spostamento](./media/resource-group-move-resources/show-result.png)
 
 ## <a name="use-powershell"></a>Usare PowerShell
-Per spostare le risorse esistenti in un gruppo di risorse o una sottoscrizione diversi, usare il comando `Move-AzureRmResource`.
+esistente toomove gruppo di risorse tooanother risorse o una sottoscrizione, utilizzare hello `Move-AzureRmResource` comando.
 
-Nel primo esempio viene illustrato come spostare una risorsa in un nuovo gruppo di risorse.
+Hello primo esempio viene illustrato come toomove una risorsa tooa nuovo gruppo di risorse.
 
 ```powershell
 $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
 Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
 ```
 
-Nel secondo esempio viene illustrato come spostare più risorse in un nuovo gruppo di risorse.
+Hello secondo esempio viene illustrato come toomove più risorse tooa nuovo gruppo di risorse.
 
 ```powershell
 $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
@@ -311,14 +311,14 @@ $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
 Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
 ```
 
-Per eseguire lo spostamento in una nuova sottoscrizione, includere un valore per il parametro `DestinationSubscriptionId`.
+toomove tooa nuova sottoscrizione, includere un valore per hello `DestinationSubscriptionId` parametro.
 
-Viene richiesto di confermare che si vuole spostare la risorsa specificata.
+Viene richiesto che si desidera hello toomove tooconfirm delle risorse specificate.
 
 ```powershell
 Confirm
-Are you sure you want to move these resources to the resource group
-'/subscriptions/{guid}/resourceGroups/newRG' the resources:
+Are you sure you want toomove these resources toohello resource group
+'/subscriptions/{guid}/resourceGroups/newRG' hello resources:
 
 /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/serverFarms/exampleplan
 /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/sites/examplesite
@@ -326,28 +326,28 @@ Are you sure you want to move these resources to the resource group
 ```
 
 ## <a name="use-azure-cli-20"></a>Usare l'interfaccia della riga di comando 2.0 di Azure
-Per spostare le risorse esistenti in un gruppo di risorse o una sottoscrizione diversi, usare il comando `az resource move`. Fornire gli ID risorsa delle risorse da spostare. È possibile ottenere gli ID risorsa con il comando seguente:
+esistente toomove gruppo di risorse tooanother risorse o una sottoscrizione, utilizzare hello `az resource move` comando. Fornire hello ID risorsa delle toomove risorse hello. È possibile ottenere l'ID di risorsa con hello comando seguente:
 
 ```azurecli
 az resource show -g sourceGroup -n storagedemo --resource-type "Microsoft.Storage/storageAccounts" --query id
 ```
 
-L'esempio seguente illustra come spostare un account di archiviazione in un nuovo gruppo di risorse. Nel parametro `--ids` inserire un elenco delimitato da spazi di ID di risorse da spostare.
+Hello di esempio seguente viene illustrato come una risorsa di archiviazione toomove account tooa nuovo gruppo di risorse. In hello `--ids` parametro, fornire un elenco separato da spazi di toomove gli ID di risorsa hello.
 
 ```azurecli
 az resource move --destination-group newgroup --ids "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo"
 ```
 
-Per spostare in una nuova sottoscrizione, inserire il parametro `--destination-subscription-id`.
+nuova sottoscrizione tooa toomove, fornire hello `--destination-subscription-id` parametro.
 
 ## <a name="use-azure-cli-10"></a>Usare l'interfaccia della riga di comando di Azure 1.0
-Per spostare le risorse esistenti in un gruppo di risorse o una sottoscrizione diversi, usare il comando `azure resource move`. Fornire gli ID risorsa delle risorse da spostare. È possibile ottenere gli ID risorsa con il comando seguente:
+esistente toomove gruppo di risorse tooanother risorse o una sottoscrizione, utilizzare hello `azure resource move` comando. Fornire hello ID risorsa delle toomove risorse hello. È possibile ottenere l'ID di risorsa con hello comando seguente:
 
 ```azurecli
 azure resource list -g sourceGroup --json
 ```
 
-Viene restituito il formato seguente:
+Restituisce hello seguente formato:
 
 ```azurecli
 [
@@ -366,25 +366,25 @@ Viene restituito il formato seguente:
 ]
 ```
 
-L'esempio seguente illustra come spostare un account di archiviazione in un nuovo gruppo di risorse. Nel parametro `-i` inserire un elenco delimitato da virgole di ID di risorse da spostare.
+Hello di esempio seguente viene illustrato come una risorsa di archiviazione toomove account tooa nuovo gruppo di risorse. In hello `-i` parametro, fornire un elenco delimitato da virgole di toomove gli ID di risorsa hello.
 
 ```azurecli
 azure resource move -i "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo" -d "destinationGroup"
 ```
 
-Viene richiesto di confermare che si vuole spostare la risorsa specificata.
+Viene richiesto che si desidera toomove hello tooconfirm risorsa specificata.
 
 ## <a name="use-rest-api"></a>Usare l'API REST
-Per spostare le risorse esistenti in un gruppo di risorse o una sottoscrizione diversi, eseguire:
+gruppo risorse tooanother toomove esistente risorse o sottoscrizione, eseguire:
 
 ```HTTP
 POST https://management.azure.com/subscriptions/{source-subscription-id}/resourcegroups/{source-resource-group-name}/moveResources?api-version={api-version}
 ```
 
-Nel corpo della richiesta specificare il gruppo di risorse di destinazione e le risorse da spostare. Per altre informazioni sull'operazione REST di spostamento, vedere [Spostare le risorse](https://msdn.microsoft.com/library/azure/mt218710.aspx).
+Nel corpo della richiesta hello, specificare gruppo di risorse di destinazione hello e toomove risorse hello. Per ulteriori informazioni sull'operazione di resto spostamento hello, vedere [lo spostamento di risorse](https://msdn.microsoft.com/library/azure/mt218710.aspx).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sui cmdlet di PowerShell per la gestione della sottoscrizione, vedere [Uso di Azure PowerShell con Resource Manager](powershell-azure-resource-manager.md).
-* Per informazioni sui comandi dell'interfaccia della riga di comando di Azure per la gestione della sottoscrizione, vedere [Uso dell'interfaccia della riga di comando di Azure per Mac, Linux e Windows con Azure Resource Manager](xplat-cli-azure-resource-manager.md).
-* Per informazioni sulle funzionalità del portale per la gestione della sottoscrizione, vedere [Gestire le risorse di Azure mediante il portale](resource-group-portal.md).
-* Per informazioni sull'organizzazione logica delle risorse, vedere [Uso dei tag per organizzare le risorse di Azure](resource-group-using-tags.md).
+* toolearn sui cmdlet di PowerShell per gestire la sottoscrizione, vedere [tramite Azure PowerShell con Gestione risorse di](powershell-azure-resource-manager.md).
+* toolearn sui comandi CLI di Azure per gestire la sottoscrizione, vedere [Using hello CLI di Azure con Gestione risorse di](xplat-cli-azure-resource-manager.md).
+* toolearn sulle funzionalità del portale per gestire la sottoscrizione, vedere [utilizzando le risorse di Azure toomanage portale hello](resource-group-portal.md).
+* toolearn sull'applicazione di una risorsa tooyour organizzazione logica, vedere [tramite tag tooorganize le risorse](resource-group-using-tags.md).

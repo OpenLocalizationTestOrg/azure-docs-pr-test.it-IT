@@ -1,6 +1,6 @@
 ---
-title: Archivi di registri contenitori di Azure | Documentazione Microsoft
-description: Come usare gli archivi di registri contenitori di Azure per le immagini Docker
+title: repository del Registro di sistema di contenitore aaaAzure | Documenti Microsoft
+description: Il repository del Registro di sistema di Azure contenitore toouse per le immagini Docker
 services: container-registry
 documentationcenter: 
 author: cristy
@@ -13,43 +13,43 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/24/2017
 ms.author: cristyg
-ms.openlocfilehash: 06b809c31cecef1714f60d04657eb74c611be8cb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 108622c565e41777fbb1fc9da9a01168abc7a7fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-container-registry-repositories"></a>Archivi di registri contenitori di Azure
 
-Il registro contenitori di Azure consente di archiviare le immagini dei contenitori in repository. Archiviando le immagini nei repository, è possibile avere gruppi di immagini (o versioni delle immagini) in ambienti isolati. È possibile specificare questi repository quando si effettua il push delle immagini nel registro.
+Registro di sistema di contenitore di Azure consente di immagini contenitore toostore nel repository. Archiviando le immagini nei repository, è possibile avere gruppi di immagini (o versioni delle immagini) in ambienti isolati. Quando si esegue il push del Registro di sistema tooyour immagini, è possibile specificare questi archivi.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-* **Registro di contenitori di Azure**: creare un registro di contenitori nella sottoscrizione di Azure. Ad esempio, usare il [Portale di Azure](container-registry-get-started-portal.md) o l'[interfaccia della riga di comando di Azure 2.0](container-registry-get-started-azure-cli.md).
-* **Interfaccia della riga di comando di Docker**: per configurare il computer locale come host Docker e accedere ai comandi della riga di comando di Docker, installare [Docker Engine](https://docs.docker.com/engine/installation/).
-* **Eseguire il pull di un'immagine**: estrarre un'immagine dal registro Docker Hub pubblico, aggiungervi un tag ed eseguirne il push nel registro. Per istruzioni su come eseguire il push e il pull delle immagini, vedere [Effettuare il push della prima immagine in un registro per contenitori Docker privati tramite l'interfaccia della riga di comando di Docker](container-registry-get-started-docker-cli.md).
+* **Registro di contenitori di Azure**: creare un registro di contenitori nella sottoscrizione di Azure. Ad esempio, utilizzare hello [portale di Azure](container-registry-get-started-portal.md) o hello [CLI di Azure 2.0](container-registry-get-started-azure-cli.md).
+* **Docker CLI** -tooset del computer locale come un host e accesso hello Docker CLI i comandi di Docker, installare [motore Docker](https://docs.docker.com/engine/installation/).
+* **Estrarre un'immagine** - Pull un'immagine dal Registro di sistema di hello pubblico Hub Docker, tag e spingerla tooyour del Registro di sistema. Per indicazioni su come eseguire il push e pull immagini, vedere [Registro di sistema privata Push Docker immagine tooAzure](container-registry-get-started-docker-cli.md).
 
 
-## <a name="viewing-repositories-in-the-portal"></a>Visualizzazione dei repository nel portale
+## <a name="viewing-repositories-in-hello-portal"></a>Visualizzazione di repository in hello portale
 
-Dopo aver eseguito il push delle immagini nel registro contenitori, è possibile vedere un elenco dei repository che ospitano le immagini nel portale di Azure.
+Dopo avere eseguito il push del Registro di sistema di immagini tooyour contenitore, è possibile visualizzare un elenco dei repository hello hosting immagini hello in hello portale di Azure.
 
-Se è stata seguita la procedura descritta nell'articolo [Effettuare il push della prima immagine in un registro per contenitori Docker privati tramite l'interfaccia della riga di comando di Docker](container-registry-get-started-docker-cli.md), si dovrebbe avere un'immagine Nginx nel registro contenitori. Come parte delle istruzioni sarà stato specificato uno spazio dei nomi per l'immagine. Nell'esempio seguente il comando esegue il push dell'immagine NGinx nel repository "samples":
+Se è stata seguita la procedura hello in hello [registro privata di Push di Docker immagini tooAzure](container-registry-get-started-docker-cli.md) articolo, è stata acquisita un'immagine di Nginx nel Registro di sistema contenitore. Come parte delle istruzioni di hello, si deve specificare uno spazio dei nomi per l'immagine di hello. Nell'esempio hello seguente comando hello inserisce i repository di hello NGinx immagini toohello "esempi":
 
 ```
 docker push myregistry.azurecr.io/samples/nginx
 ```
- Registro contenitori di Azure supporta spazi dei nomi dei repository multilivello. Questa funzionalità consente di raggruppare raccolte di immagini correlate a un'app specifica oppure una raccolta di app per specifici team operativi o di sviluppo. Per altre informazioni sul repository nei registri contenitori, vedere [Effettuare il push della prima immagine in un registro per contenitori Docker privati tramite l'interfaccia della riga di comando di Docker](container-registry-intro.md).
+ Registro contenitori di Azure supporta spazi dei nomi dei repository multilivello. Questa funzionalità consente di toogroup raccolte di app specifica tooa correlati di immagini, o una raccolta di sviluppo di App toospecific o i team operativi. tooread ulteriori informazioni su repository nei registri di sistema di contenitore, vedere [registri contenitore privato Docker in Azure](container-registry-intro.md).
 
-Per visualizzare i repository del registro contenitori:
+repository del Registro di sistema di tooview hello contenitore:
 
-1. Accedere al Portale di Azure.
-2. Nel pannello **Registro contenitori di Azure** selezionare il registro che si desidera esaminare
-3. Nel pannello del registro fare clic su **Repository** per vedere un elenco di tutti i repository e le relative immagini
-4. (Facoltativo) Selezionare un'immagine specifica per vedere i tag
+1. Accedi toohello portale di Azure
+2. In hello **Registro di sistema di Azure contenitore** blade, Registro di sistema selezionare hello desiderato tooinspect
+3. Nel Pannello di hello del Registro di sistema, fare clic su **repository** toosee un elenco di tutti i repository hello e proprie immagini
+4. (Facoltativo) Selezionare un tag di immagine specifico toosee
 
-![I repository nel portale](./media/container-registry-repositories/container-registry-repositories.png)
+![Repository nel portale di hello](./media/container-registry-repositories/container-registry-repositories.png)
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Una volta apprese le nozioni di base, si è pronti per iniziare a usare il proprio registro. È ad esempio possibile iniziare a distribuire immagini di contenitore in un cluster del [servizio contenitore di Azure](https://azure.microsoft.com/documentation/services/container-service/).
+Ora che si conoscono i concetti di base hello, si è pronti toostart mediante il Registro di sistema. Ad esempio, iniziare la distribuzione di contenitore immagini tooan [servizio contenitore di Azure](https://azure.microsoft.com/documentation/services/container-service/) cluster.

@@ -1,5 +1,5 @@
 ---
-title: Ricevere eventi da Hub eventi di Azure usando Apache Storm | Microsoft Docs
+title: eventi aaaReceive dall'hub di eventi di Azure usando Apache Storm | Documenti Microsoft
 description: Avviare la ricezione da Hub eventi usando Apache Storm
 services: event-hubs
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 3e15370c7602276ef323708632b324fe05497f41
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a0ab860ee8d504a28aac380c504c928f0d6dbc1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="receive-events-from-event-hubs-using-apache-storm"></a>Ricevere eventi da Hub eventi di Azure usando Apache Storm
 
-[Apache Storm](https://storm.incubator.apache.org) è un sistema distribuito di calcolo in tempo reale che semplifica l'elaborazione affidabile di flussi di dati non associati. Questa sezione illustra come usare uno Storm Spout di Hub eventi per ricevere eventi da Hub eventi stesso. Usando Apache Storm, è possibile dividere gli eventi tra più processi ospitati in nodi diversi. L'integrazione di Hub eventi con Storm semplifica l'uso degli eventi eseguendo il checkpoint trasparente dello stato di avanzamento grazie all'installazione di Zookeeper di Storm e alla gestione dei checkpoint persistenti e delle ricezioni parallele dagli hub eventi.
+[Apache Storm](https://storm.incubator.apache.org) è un sistema distribuito di calcolo in tempo reale che semplifica l'elaborazione affidabile di flussi di dati non associati. In questa sezione viene illustrato come una tempesta di hub di eventi di Azure toouse spout tooreceive eventi dagli hub eventi. Usando Apache Storm, è possibile dividere gli eventi tra più processi ospitati in nodi diversi. Hello integrazione degli hub di eventi con Storm semplifica il consumo di eventi dal checkpoint in modo trasparente lo stato di avanzamento utilizzando Installazione Zookeeper elevato del numero, la gestione dei checkpoint persistente e parallelo riceve dagli hub eventi.
 
-Per altre informazioni sui modelli di ricezione di Hub eventi, vedere [Panoramica di Hub eventi][Event Hubs overview].
+Per ulteriori informazioni sugli hub di eventi ricezione modelli, vedere hello [Panoramica di hub eventi][Event Hubs overview].
 
 ## <a name="create-project-and-add-code"></a>Creare il progetto e aggiungere il codice
 
-Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] , fornita con lo Spout di Hub eventi già disponibile.
+Questa esercitazione viene utilizzato un [HDInsight Storm] [ HDInsight Storm] installazione, viene fornito con gli hub di eventi spout hello già disponibili.
 
-1. Seguire la procedura indicata nell' [introduzione a HDInsight Storm](../hdinsight/hdinsight-storm-overview.md) per creare un nuovo cluster HDInsight e quindi connettersi a quest'ultimo tramite Desktop remoto.
-2. Copiare il file `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` nell'ambiente di sviluppo locale. Il file contiene il componente events-storm-spout.
-3. Usare il comando seguente per installare il pacchetto nell'archivio Maven locale. Ciò consentirà di aggiungerlo come riferimento nel progetto Storm in un passaggio successivo.
+1. Seguire hello [HDInsight Storm - Introduzione](../hdinsight/hdinsight-storm-overview.md) procedura toocreate HDInsight un nuovo cluster e connettere tooit tramite Desktop remoto.
+2. Hello copia `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` ambiente di sviluppo locale tooyour file. Contiene gli eventi-storm-beccuccio hello.
+3. Comando che segue di hello utilizzare pacchetto hello tooinstall nell'archivio di Maven locale hello. In questo modo tooadd come riferimento nel hello tempesta di progetto in un passaggio successivo.
 
     ```shell
     mvn install:install-file -Dfile=target\eventhubs-storm-spout-0.9-jar-with-dependencies.jar -DgroupId=com.microsoft.eventhubs -DartifactId=eventhubs-storm-spout -Dversion=0.9 -Dpackaging=jar
@@ -41,9 +41,9 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
    
     ![][12]
 5. Selezionare **Use default Workspace location** (Usa percorso predefinito dello spazio di lavoro) e quindi fare clic su **Next** (Avanti)
-6. Selezionare l'archetipo **maven-archetype-quickstart** e quindi fare clic su **Next** (Avanti)
+6. Seleziona hello **Guida rapida di sistema per maven** sistema per, quindi fare clic su **successivo**
 7. Inserire un valore per **GroupId** e **ArtifactId** e quindi fare clic su **Finish** (Fine)
-8. In **pom.xml** aggiungere le dipendenze seguenti nel nodo `<dependency>`.
+8. In **pom.xml**, aggiungere hello seguendo le dipendenze in hello `<dependency>` nodo.
 
     ```xml  
     <dependency>
@@ -75,7 +75,7 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
     </dependency>
     ```
 
-9. Nella cartella **src** creare un file denominato **Config.properties** e copiare il contenuto seguente, sostituendo i valori `receive rule key` e `event hub name`:
+9. In hello **src** cartella, creare un file denominato **Config.properties** hello copia il contenuto seguente, sostituendo hello e `receive rule key` e `event hub name` valori:
 
     ```java
     eventhubspout.username = ReceiveRule
@@ -90,8 +90,8 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
     eventhubspout.checkpoint.interval = 10
     eventhub.receiver.credits = 10
     ```
-    Il valore per **eventhub.receiver.credits** determina quanti eventi vengono inseriti in batch prima del loro rilascio nella pipeline di Storm. Per semplicità, questo esempio imposta il valore su 10. In produzione dovrebbe essere impostato su valori superiori, ad esempio 1024.
-10. Creare una nuova classe denominata **LoggerBolt** con il codice seguente:
+    valore per Hello **eventhub.receiver.credits** determina il numero di eventi viene eseguite in batch prima di rilasciarlo pipeline Storm toohello. Per i migliori risultati hello di semplicità, in questo esempio too10 questo valore. Nell'ambiente di produzione, in genere deve essere impostato toohigher valori. ad esempio 1024.
+10. Creare una nuova classe denominata **LoggerBolt** con hello seguente codice:
     
     ```java
     import java.util.Map;
@@ -130,8 +130,8 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
     }
     ```
     
-    Questo Bolt Storm registra il contenuto degli eventi ricevuti. Può essere facilmente esteso per archiviare tuple in un servizio di archiviazione. L' [esercitazione di analisi dei sensori con HDInsight] usa lo stesso approccio per archiviare dati in HBase.
-11. Creare una classe denominata **LogTopology** con il codice seguente:
+    Questo fulmine Storm registra il contenuto di hello di eventi ricevuto hello. Questo può essere esteso facilmente toostore tuple in un servizio di archiviazione. Hello [esercitazioni su analysis sensore HDInsight] utilizzi gli stessi dati toostore approccio in HBase.
+11. Creare una classe denominata **LogTopology** con hello seguente codice:
     
     ```java
     import java.io.FileReader;
@@ -182,9 +182,9 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
                     namespaceName, entityPath, partitionCount, zkEndpointAddress,
                     checkpointIntervalInSeconds, receiverCredits);
         
-            // set the number of workers to be the same as partition number.
-            // the idea is to have a spout and a logger bolt co-exist in one
-            // worker to avoid shuffling messages across workers in storm cluster.
+            // set hello number of workers toobe hello same as partition number.
+            // hello idea is toohave a spout and a logger bolt co-exist in one
+            // worker tooavoid shuffling messages across workers in storm cluster.
             numWorkers = spoutConfig.getPartitionCount();
         
             if (args.length > 0) {
@@ -235,10 +235,10 @@ Questa esercitazione usa un'installazione di [HDInsight Storm][HDInsight Storm] 
     }
     ```
 
-    Questa classe crea un nuovo spout di Hub eventi, usando le proprietà contenute nel file di configurazione, per crearne un'istanza. È importante notare che questo esempio crea tante attività Spout quante sono le partizioni nell'hub eventi, in modo da usare il massimo parallelismo consentito dall'hub eventi stesso.
+    Questa classe crea un nuovo beccuccio hub eventi, utilizzando le proprietà di hello in tooinstantiate file di configurazione hello è. È importante toonote che questo esempio viene creata come molti spouts attività come il numero di hello di partizioni nell'hub di eventi hello, in ordine toouse hello massimo parallelismo consentito da hub eventi.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
+Sono disponibili ulteriori informazioni sugli hub di eventi visitando hello seguenti collegamenti:
 
 * [Panoramica di Hub eventi][Event Hubs overview]
 * [Creare un hub eventi](event-hubs-create.md)
@@ -247,7 +247,7 @@ Per ulteriori informazioni su Hub eventi visitare i collegamenti seguenti:
 <!-- Links -->
 [Event Hubs overview]: event-hubs-what-is-event-hubs.md
 [HDInsight Storm]: ../hdinsight/hdinsight-storm-overview.md
-[esercitazione di analisi dei sensori con HDInsight]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
+[esercitazioni su analysis sensore HDInsight]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
 
 <!-- Images -->
 

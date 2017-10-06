@@ -1,6 +1,6 @@
 ---
-title: Soluzione DNS Analytics in Azure Log Analytics | Microsoft Docs
-description: Configurare e usare la soluzione DNS Analytics in Log Analytics per raccogliere informazioni dettagliate nell'infrastruttura DNS relative a sicurezza, prestazioni e operazioni.
+title: soluzione Analitica in Azure Log Analitica aaaDNS | Documenti Microsoft
+description: Configurare e utilizzare hello DNS Analitica soluzione di infrastruttura DNS prestazioni, sicurezza e altre operazioni approfondite toogather Analitica di Log.
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,169 +14,169 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: banders
-ms.openlocfilehash: 0e8fc0ffb8e0d0bdf00bea46594fe050c00b6c8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: be7982c54b65ba0c4b1c15ae7516d02eced313f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="gather-insights-about-your-dns-infrastructure-with-the-dns-analytics-preview-solution"></a>Raccogliere informazioni dettagliate sull'infrastruttura DNS con la soluzione DNS Analytics (anteprima)
+# <a name="gather-insights-about-your-dns-infrastructure-with-hello-dns-analytics-preview-solution"></a>Raccogliere informazioni approfondite sull'infrastruttura DNS con hello soluzione DNS Analitica anteprima
 
 ![Simbolo di Analisi DNS](./media/log-analytics-dns/dns-analytics-symbol.png)
 
-Questo articolo descrive come configurare e usare la soluzione Azure DNS Analytics in Azure Log Analytics per raccogliere informazioni dettagliate in DNS relative a sicurezza, prestazioni e operazioni.
+In questo articolo viene descritto come tooset backup e utilizzare hello soluzione Analitica DNS di Azure insights toogather Analitica di Log di Azure nell'infrastruttura DNS prestazioni, sicurezza e altre operazioni.
 
 DNS Analytics consente di:
 
-- Identificare i client che tentano di risolvere nomi di dominio dannosi.
+- Identificare i client che tentano di nomi di dominio dannoso tooresolve.
 - Identificare i record di risorse non aggiornati.
 - Identificare i nomi di dominio sottoposti frequentemente a query e i client DNS loquaci.
 - Visualizzare il carico di richieste nei server DNS.
 - Visualizzare gli errori di registrazione di DNS dinamici.
 
-La soluzione raccoglie, analizza e mette in relazione i log di controllo e analisi DNS di Windows e altri dati correlati dei server DNS.
+soluzione Hello raccoglie, analizza e correla analitici DNS di Windows e log di controllo e altri dati correlati dal server DNS.
 
 ## <a name="connected-sources"></a>Origini connesse
 
-La tabella seguente descrive le origini connesse che sono supportate da questa soluzione:
+Hello nella tabella seguente vengono descritti hello connesso origini supportate da questa soluzione:
 
 | **Origine connessa** | **Supporto** | **Descrizione** |
 | --- | --- | --- |
-| [Agenti di Windows](log-analytics-windows-agents.md) | Sì | La soluzione raccoglie le informazioni DNS dagli agenti Windows. |
-| [Agenti Linux](log-analytics-linux-agents.md) | No | La soluzione non raccoglie le informazioni DNS dagli agenti Linux diretti. |
-| [Gruppo di gestione di System Center Operations Manager](log-analytics-om-agents.md) | Sì | La soluzione raccoglie le informazioni DNS dagli agenti di un gruppo di gestione di Operations Manager connesso. Non è necessaria una connessione diretta dall'agente Operations Manager a Operations Management Suite. I dati vengono inoltrati dal gruppo di gestione al repository Operations Management Suite. |
-| [Account di archiviazione di Azure](log-analytics-azure-storage.md) | No | La soluzione non usa le risorse di archiviazione di Azure. |
+| [Agenti di Windows](log-analytics-windows-agents.md) | Sì | soluzione Hello raccoglie le informazioni DNS dagli agenti di Windows. |
+| [Agenti Linux](log-analytics-linux-agents.md) | No | soluzione Hello non raccoglie informazioni DNS dagli agenti Linux diretti. |
+| [Gruppo di gestione di System Center Operations Manager](log-analytics-om-agents.md) | Sì | soluzione Hello raccoglie le informazioni DNS dagli agenti in un gruppo di gestione di Operations Manager connesso. Una connessione diretta da toohello agente di Operations Manager hello Operations Management Suite non è necessaria. Dati viene inoltrati dal repository di hello gestione gruppo toohello Operations Management Suite. |
+| [Account di archiviazione di Azure](log-analytics-azure-storage.md) | No | Archiviazione di Azure non verrà usato dalla soluzione hello. |
 
 ### <a name="data-collection-details"></a>Informazioni dettagliate sulla raccolta di dati
 
-La soluzione raccoglie i dati relativi all'inventario e agli eventi DNS dai server DNS in cui è installato un agente Log Analytics. Tali dati vengono quindi caricati in Log Analytics e visualizzati nel dashboard della soluzione. I dati relativi all'inventario, come il numero di server, zone e record di risorse DNS, vengono raccolti eseguendo i cmdlet di PowerShell per DNS. I dati vengono aggiornati ogni due giorni. I dati relativi agli eventi vengono raccolti quasi in tempo reale dai [log di analisi e di controllo](https://technet.microsoft.com/library/dn800669.aspx#enhanc) offerti dalle funzionalità avanzate di registrazione e diagnostica DNS di Windows Server 2012 R2.
+soluzione Hello raccoglie l'inventario DNS e i dati relativi agli eventi DNS dai server DNS hello in cui è installato un agente di Log Analitica. Questi dati vengono quindi caricati tooLog Analitica e visualizzati nel dashboard di soluzione hello. Eseguendo il cmdlet di PowerShell DNS hello vengono raccolti i dati correlati al magazzino, ad esempio il numero di hello del server DNS, zone e i record di risorse. dati Hello viene aggiornati ogni due giorni. Hello correlati agli eventi di raccolta dei dati quasi in tempo reale da hello [analitiche e di log di controllo](https://technet.microsoft.com/library/dn800669.aspx#enhanc) fornito da avanzata registrazione DNS e diagnostica in Windows Server 2012 R2.
 
 ## <a name="configuration"></a>Configurazione
 
-Per configurare la soluzione, usare le informazioni seguenti:
+Utilizzare hello soluzione hello tooconfigure delle informazioni seguenti:
 
-- È necessario un agente [Windows](log-analytics-windows-agents.md) o [Operations Manager](log-analytics-om-agents.md) in ogni server DNS che si vuole monitorare.
-- È possibile aggiungere la soluzione DNS Analytics nell'area di lavoro di Operations Management Suite da [Azure Marketplace](https://aka.ms/dnsanalyticsazuremarketplace). È anche possibile seguire la procedura descritta nell'articolo relativo all'[aggiunta di soluzioni di Log Analytics dalla raccolta soluzioni](log-analytics-add-solutions.md).
+- È necessario disporre di un [Windows](log-analytics-windows-agents.md) o [Operations Manager](log-analytics-om-agents.md) agente in ogni server DNS che si desidera toomonitor.
+- È possibile aggiungere l'area di lavoro hello DNS Analitica soluzione tooyour Operations Management Suite da hello [Azure Marketplace](https://aka.ms/dnsanalyticsazuremarketplace). È inoltre possibile utilizzare il processo di hello descritto in [soluzioni aggiungere Log Analitica da hello Solutions Gallery](log-analytics-add-solutions.md).
 
-La soluzione avvia la raccolta dati senza che siano necessarie operazioni di configurazione aggiuntive. È tuttavia possibile usare la configurazione seguente per personalizzare la raccolta.
+soluzione Hello avvia la raccolta dei dati senza necessità di hello di altre operazioni di configurazione. Tuttavia, è possibile utilizzare hello seguente raccolta di dati di configurazione toocustomize.
 
-### <a name="configure-the-solution"></a>Configurare la soluzione
+### <a name="configure-hello-solution"></a>Configurare la soluzione hello
 
-Nel dashboard della soluzione fare clic su **Configurazione** per aprire la pagina Configurazione di DNS Analytics. È possibile apportare due tipi di modifiche di configurazione.
+Nel dashboard di soluzione hello, fare clic su **configurazione** pagina di configurazione del DNS Analitica tooopen hello. È possibile apportare due tipi di modifiche di configurazione.
 
-- **Nomi di dominio consentiti**. La soluzione non elabora tutte le query di ricerca, ma gestisce un elenco elementi consentiti per i suffissi dei nomi di dominio. Le query di ricerca che si risolvono nei nomi di dominio corrispondenti ai suffissi di questo elenco non vengono elaborate dalla soluzione. L'esclusione dall'elaborazione dei nomi di dominio consentiti consente di ottimizzare i dati inviati a Log Analytics. L'elenco elementi consentiti predefinito include i nomi di dominio pubblici più diffusi, come www.google.com e www.facebook.com. L'intero elenco predefinito può essere visualizzato tramite lo scorrimento.
+- **Nomi di dominio consentiti**. soluzione Hello non elabora tutte le query di ricerca di hello. ma gestisce un elenco elementi consentiti per i suffissi dei nomi di dominio. query di ricerca Hello che la risoluzione dei nomi di dominio toohello corrispondenti suffissi di nome di dominio in questo elenco non vengono elaborate dalla soluzione hello. Non elabora i nomi di dominio consentito consente dati hello toooptimize inviati tooLog Analitica. Hello predefinito whitelist include nomi di dominio pubblico più diffusi, ad esempio www.google.com e www.facebook.com. È possibile visualizzare l'elenco completo predefinito hello mediante lo scorrimento.
 
- È possibile modificare l'elenco per aggiungere qualsiasi suffisso di nome di dominio per cui non si vogliono visualizzare informazioni dettagliate relative alla ricerca. È anche possibile rimuovere qualsiasi suffisso di nome di dominio per cui non si vogliono visualizzare informazioni dettagliate relative alla ricerca.
+ È possibile modificare hello elenco tooadd un suffisso di nome di dominio che si desidera tooview insights di ricerca per. È inoltre possibile rimuovere un suffisso di nome di dominio che non si desidera tooview insights di ricerca per.
 
-- **Soglia client loquaci**. I client DNS che superano la soglia relativa al numero di richieste di ricerca vengono evidenziati nel pannello **Client DNS**. La soglia predefinita è 1000. È possibile modificare la soglia.
+- **Soglia client loquaci**. I client DNS che superano la soglia di hello per numero hello di richieste di ricerca viene evidenziato in hello **client DNS** blade. soglia predefinita Hello è 1.000. È possibile modificare la soglia hello.
 
     ![Nomi di dominio consentiti](./media/log-analytics-dns/dns-config.png)
 
 ## <a name="management-packs"></a>Management Pack
 
-Se per la connessione all'area di lavoro di Operations Management Suite si usa Microsoft Monitoring Agent, viene installato il Management Pack seguente:
+Se si utilizza l'area di lavoro hello Microsoft Monitoring Agent tooconnect tooyour Operations Management Suite, hello seguenti management pack è installato:
 
 - Microsoft DNS Data Collector Intelligence Pack (Microsft.IntelligencePacks.Dns)
 
-Se il gruppo di gestione di Operations Manager è connesso all'area di lavoro di Operations Management Suite, in Operations Manager vengono installati i Management Pack seguenti quando si aggiunge questa soluzione. Per i Management Pack seguenti non è necessaria alcuna configurazione o manutenzione:
+Se il gruppo di gestione di Operations Manager è Operations Management Suite tooyour connesso, hello seguenti management pack vengono installati in Operations Manager quando si aggiunge questa soluzione. Per i Management Pack seguenti non è necessaria alcuna configurazione o manutenzione:
 
 - Microsoft DNS Data Collector Intelligence Pack (Microsft.IntelligencePacks.Dns)
 - Microsoft System Center Advisor DNS Analytics Configuration (Microsoft.IntelligencePack.Dns.Configuration)
 
-Per maggiori informazioni sulla modalità di aggiornamento dei Management Pack, vedere [Connettere Operations Manager a Log Analytics](log-analytics-om-agents.md).
+Per ulteriori informazioni sulla modalità di aggiornamento dei management pack di soluzione, vedere [tooLog connettere Operations Manager Analitica](log-analytics-om-agents.md).
 
-## <a name="use-the-dns-analytics-solution"></a>Usare la soluzione DNS Analytics
+## <a name="use-hello-dns-analytics-solution"></a>Utilizzare una soluzione Analitica DNS hello
 
-In questa sezione vengono illustrate tutte le funzioni del dashboard e si spiega come usarle.
+Questa sezione vengono illustrate tutte le funzioni di dashboard hello e come toouse li.
 
-Dopo aver aggiunto la soluzione all'area di lavoro, il riquadro della soluzione nella pagina di panoramica di Operations Management Suite offre un breve riepilogo dell'infrastruttura DNS, che include il numero di server DNS in cui vengono raccolti i dati e il numero di richieste effettuato dai client per risolvere domini dannosi nelle ultime 24 ore. Quando si fa clic sul riquadro, viene aperto il dashboard della soluzione.
+Dopo aver aggiunto l'area di lavoro tooyour soluzione hello, riquadro soluzione hello nella pagina Panoramica di Operations Management Suite hello fornisce un riepilogo rapido dell'infrastruttura DNS. Include il numero di hello del server DNS in cui sono stati raccolti dati di hello. Include inoltre hello numero di richieste da client tooresolve dannoso domini hello nelle ultime 24 ore. Quando si fa clic su riquadro hello, apre il dashboard di soluzione hello.
 
 ![Riquadro DNS Analytics](./media/log-analytics-dns/dns-tile.png)
 
 ### <a name="solution-dashboard"></a>Dashboard della soluzione
 
-Il dashboard della soluzione visualizza informazioni di riepilogo relative alle varie funzionalità e include anche collegamenti alla visualizzazione dettagliata per l'analisi e la diagnosi per scopi legali. Per impostazione predefinita, vengono visualizzati i dati per gli ultimi sette giorni. È possibile modificare l'intervallo di tempo con il **controllo di selezione di data e ora**, come nell'immagine seguente:
+dashboard di soluzione Hello Mostra le informazioni riepilogative per hello varie funzionalità della soluzione hello. Sono inoltre disponibili collegamenti toohello dettagliate di visualizzazione per le analisi forensi e la diagnosi. Per impostazione predefinita, per hello dati hello sono illustrati negli ultimi sette giorni. È possibile modificare l'intervallo di data e ora di hello utilizzando hello **controllo selezione data e ora**, come illustrato nella seguente immagine hello:
 
 ![Controllo di selezione di data e ora](./media/log-analytics-dns/dns-time.png)
 
-Il dashboard visualizza i pannelli descritti di seguito.
+dashboard di soluzione Hello Mostra hello seguenti pannelli:
 
-**Sicurezza DNS**. Segnala i client DNS che tentano di comunicare con domini dannosi. Usando i feed di intelligence per le minacce di Microsoft, DNS Analytics può rilevare gli indirizzi IP client che tentano di accedere ai domini dannosi. In molti casi, i dispositivi infetti da malware "stabiliscono la connessione" con il "centro di comando e controllo" del dominio dannoso risolvendo il nome di dominio del malware.
+**Sicurezza DNS**. Report hello client DNS che si sta tentando di toocommunicate con domini dannoso. Usando i feed di Microsoft threat intelligence, Analitica DNS possono rilevare gli indirizzi IP che si sta tentando di domini dannoso tooaccess client. In molti casi, i dispositivi infetti da malware "chiamate in uscita" toohello "comando e controllo" centro del dominio dannoso di hello risolvendo hello il nome di dominio di malware.
 
 ![Pannello Sicurezza DNS](./media/log-analytics-dns/dns-security-blade.png)
 
-Facendo clic su un indirizzo IP client nell'elenco si apre Ricerca log con i dettagli della ricerca della rispettiva query. Nell'esempio seguente, DNS Analytics ha rilevato una comunicazione con [IRCbot](https://www.microsoft.com/security/portal/threat/encyclopedia/entry.aspx?Name=Win32/IRCbot):
+Quando si fa clic su un indirizzo IP del client nell'elenco di hello, ricerca di Log viene visualizzata la Dettagli ricerca hello di query rispettivi hello. Nell'esempio seguente di hello, Analitica DNS ha rilevato che la comunicazione hello è stata eseguita con un [IRCbot](https://www.microsoft.com/security/portal/threat/encyclopedia/entry.aspx?Name=Win32/IRCbot):
 
 ![Ricerca log: risultati con IRCbot](./media/log-analytics-dns/ircbot.png)
 
-Le informazioni consentono di identificare quanto segue:
+informazioni di Hello consentono tooidentify di:
 
-- IP client che ha avviato la comunicazione.
-- Nome di dominio che viene risolto nell'indirizzo IP dannoso.
-- Indirizzi IP in cui viene risolto il nome di dominio.
+- Client IP che ha avviato la comunicazione hello.
+- Nome di dominio che si risolve toohello IP dannosi.
+- Risolve gli indirizzi IP che hello nome di dominio.
 - Indirizzo IP dannoso.
-- Gravità del problema.
-- Motivo per non consentire l'indirizzo IP dannoso.
+- Gravità del problema hello.
+- Motivo della black list IP dannosi hello.
 - Data e ora di rilevamento.
 
-**Domini sottoposti a query**. Contiene i nomi di dominio su cui i client DNS eseguono più frequentemente query nell'ambiente. È possibile visualizzare l'elenco di tutti i nomi di dominio sottoposti a query ed eseguire il drill-down nei dettagli delle richieste di ricerca per un nome di dominio specifico in Ricerca log.
+**Domini sottoposti a query**. Fornisce hello nomi di dominio più frequenti sottoposte a query per i client DNS hello nell'ambiente in uso. È possibile visualizzare l'elenco di hello di tutti i nomi di dominio hello eseguire una query. È anche possibile drill-down nei dettagli richiesta di ricerca hello di un nome di dominio specifico in Log Search.
 
 ![Pannello Domini sottoposti a query](./media/log-analytics-dns/domains-queried-blade.png)
 
-**Client DNS**. Segnala i client che *violano la soglia* relativa al numero di query nel periodo di tempo selezionato. È possibile visualizzare l'elenco di tutti i client DNS e i dettagli delle query che hanno eseguito in Ricerca log.
+**Client DNS**. Report hello client *la violazione del limite di hello* per numero di query in hello periodo di tempo scelto. È possibile visualizzare l'elenco di hello di tutti i client DNS hello e i dettagli di hello delle query hello effettuate in Log Search.
 
 ![Pannello Client DNS](./media/log-analytics-dns/dns-clients-blade.png)
 
-**Registrazioni di DNS dinamici**. Segnala gli errori di registrazione dei nomi. Vengono evidenziati tutti gli errori di registrazione relativi a [record di risorse](https://en.wikipedia.org/wiki/List_of_DNS_record_types) indirizzo (tipo A e AAAA), con gli indirizzi IP client che hanno effettuato le richieste di registrazione. È quindi possibile usare queste informazioni per trovare la causa radice dell'errore di registrazione seguendo questa procedura:
+**Registrazioni di DNS dinamici**. Segnala gli errori di registrazione dei nomi. Tutti gli errori di registrazione per l'indirizzo [record di risorse](https://en.wikipedia.org/wiki/List_of_DNS_record_types) (tipo A e AAAA) sono evidenziati client hello gli indirizzi IP che ha effettuato hello richieste di registrazione. È quindi possibile utilizzare questo causa principale di informazioni toofind hello di errore durante la registrazione di hello attenendosi alla procedura seguente:
 
-1. Trovare la zona rilevante per il nome che il client sta tentando di aggiornare.
+1. Trovare il fuso orario hello è autorevole per nome hello hello client sta tentando di tooupdate.
 
-2. Usare la soluzione per controllare le informazioni di inventario di tale zona.
+2. Utilizzare hello soluzione toocheck hello informazioni di inventario di tale area.
 
-3. Verificare che per la zona sia abilitato l'aggiornamento dinamico.
+3. Verificare che l'aggiornamento dinamico hello per zona hello è abilitato.
 
-4. Controllare se la zona è configurata o meno per l'aggiornamento dinamico sicuro.
+4. Controllare se la zona hello è configurata per l'aggiornamento dinamico protetto o non.
 
     ![Pannello Registrazioni di DNS dinamici](./media/log-analytics-dns/dynamic-dns-reg-blade.png)
 
-**Richieste di registrazione del nome**. Il riquadro superiore visualizza la tendenza del numero di richieste di aggiornamento dinamico di DNS riuscite e non riuscite. Il riquadro inferiore contiene l'elenco dei primi 10 client che hanno inviato richieste di aggiornamento di DNS non riuscite ai server DNS, ordinato in base al numero di errori.
+**Richieste di registrazione del nome**. riquadro superiore di Hello Mostra una linea di tendenza di esito positivo e negativo richieste di aggiornamento dinamico DNS. riquadro inferiore Hello Elenca i client di primi 10 hello che inviano richieste non riuscite di aggiornamento DNS server DNS toohello, ordinati in base al numero di hello di errori.
 
 ![Pannello Richieste di registrazione del nome ](./media/log-analytics-dns/name-reg-req-blade.png)
 
-**Query DDI Analytics di esempio**. Contiene un elenco delle query di ricerca più comuni che recuperano direttamente dati di analisi non elaborati.
+**Query DDI Analytics di esempio**. Contiene un elenco di query di ricerca più comuni hello che recuperano dati analitica non elaborato direttamente.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 ![Query di esempio](./media/log-analytics-dns/queries.png)
 
-È possibile usare queste query come punto di partenza per creare le proprie query per l'elaborazione di report personalizzati. Le query si collegano alla pagina di Ricerca log di DNS Analytics in cui vengono visualizzati i risultati:
+È possibile usare queste query come punto di partenza per creare le proprie query per l'elaborazione di report personalizzati. le query Hello collegano toohello pagina di ricerca nei Log Analitica DNS in cui vengono visualizzati i risultati:
 
 - **Elenco di server DNS**. Visualizza un elenco di tutti i server DNS con i nomi di dominio completo, i nomi di dominio, i nomi foresta e gli IP server associati.
-- **Elenco di zone DNS**. Visualizza un elenco di tutte le zone DNS con il nome della zona, lo stato di aggiornamento dinamico, i server dei nomi e lo stato della firma DNSSEC associati.
-- **Record di risorse inutilizzati**. Visualizza un elenco di tutti i record di risorse non usati o non aggiornati. L'elenco contiene il nome e il tipo dei record di risorse, il server DNS associato, la data e l'ora di generazione dei record e il nome della zona. È possibile usare questo elenco per identificare i record di risorse DNS non più in uso e quindi intervenire sulla base di tali informazioni per rimuovere tali voci dai server DNS.
-- **Carico query server DNS**. Visualizza informazioni che consentono di ottenere una prospettiva del carico DNS sui server DNS. Queste informazioni consentono di pianificare la capacità per i server. È possibile passare alla scheda **Metrica** per ottenere una visualizzazione grafica, che consente di comprendere la distribuzione del carico DNS nei server DNS e mostra le tendenze nella frequenza di query DNS per ogni server.
+- **Elenco di zone DNS**. Mostra un elenco di tutte le zone DNS con nome zona associata hello, lo stato di aggiornamento dinamico, server dei nomi e stato della firma DNSSEC.
+- **Record di risorse inutilizzati**. Mostra un elenco di tutti i record di risorse inutilizzate/aggiornata hello. Questo elenco contiene nome record di risorsa hello, tipo di record di risorse, server DNS hello associata, ora di generazione di record e nome della zona. È possibile utilizzare questo elenco tooidentify hello record di risorse DNS che non sono più in uso. In base a queste informazioni, è quindi possibile rimuovere tali voci dai server DNS hello.
+- **Carico query server DNS**. Mostra le informazioni in modo che sia possibile ottenere una prospettiva di hello che caricare DNS sui server DNS. Queste informazioni consentono di pianificare la capacità di hello per i server hello. È possibile passare toohello **metriche** scheda visualizzazione grafica tooa toochange hello vista. Questa vista consente di comprendere come hello caricare DNS viene distribuito tra i server DNS. e mostra le tendenze nella frequenza di query DNS per ogni server.
 
     ![Ricerca log: risultati relativi alle query nei server DNS](./media/log-analytics-dns/dns-servers-query-load.png)
 
-- **Carico query zone DNS**. Visualizza le statistiche al secondo delle query di tutte le zone DNS nei server DNS gestiti dalla soluzione. Fare clic sulla scheda **Metrica** per passare dalla visualizzazione di record dettagliati a una visualizzazione grafica dei risultati.
-- **Eventi di configurazione**. Visualizza tutti gli eventi di modifica configurazione DNS e i messaggi associati. È quindi possibile filtrare questi eventi in base a data e ora dell'evento, ID evento, server DNS o categoria di attività. I dati consentono di controllare le modifiche apportate a specifici server DNS in date e ore specifiche.
-- **Log analitico DNS**. Visualizza tutti gli eventi analitici in tutti i server DNS gestiti dalla soluzione. È quindi possibile filtrare questi eventi in base a data e ora dell'evento, ID evento, server DNS, IP client che ha eseguito la query di ricerca e categoria di attività del tipo di query. Gli eventi di analisi dei server DNS consentono il rilevamento delle attività nel server DNS. Viene registrato un evento di analisi ogni volta che il server invia o riceve informazioni DNS.
+- **Carico query zone DNS**. Mostra le statistiche di zona query al secondo di DNS di tutte le zone hello hello nei server DNS hello gestiti da soluzioni hello. Fare clic su hello **metriche** scheda visualizzazione hello toochange dalla visualizzazione di grafica tooa record dettagliate dei risultati di hello.
+- **Eventi di configurazione**. Mostra tutti gli eventi di modifica configurazione DNS hello e i messaggi associati. È quindi possibile filtrare questi eventi in base al tempo di hello evento, ID di evento, il server DNS, o alla categoria attività. dati Hello consentono di controllare i server DNS toospecific le modifiche apportate a orari specifici.
+- **Log analitico DNS**. Mostra tutti gli eventi analitici di hello in tutti i server DNS hello gestiti da soluzione hello. È quindi possibile filtrare questi eventi in base al tempo di hello evento, ID di evento, il server DNS, indirizzo IP del client che ha effettuato hello query di ricerca e categoria di tipi di attività di query. Gli eventi analitici di server DNS abilitano l'attività di rilevamento nel server DNS hello. Ogni volta che il server di hello invia o riceve le informazioni DNS viene registrato un evento di analisi.
 
 ### <a name="search-by-using-dns-analytics-log-search"></a>Eseguire una ricerca usando la Ricerca log di DNS Analytics
 
-Nella pagina Ricerca log è possibile creare una query. È possibile filtrare i risultati usando i controlli facet. È anche possibile creare query avanzate per trasformare, filtrare e creare report sui risultati. Per iniziare, usare le query seguenti:
+Nella pagina di ricerca di Log hello, è possibile creare una query. È possibile filtrare i risultati usando i controlli facet. È anche possibile creare query avanzate tootransform, filtro e report sui risultati. Avviare utilizzando hello seguente query:
 
-1. Nella **casella della query di ricerca** digitare `Type=DnsEvents` per visualizzare tutti gli eventi DNS generati dai server DNS gestiti dalla soluzione. Nei risultati sono elencati i dati di log per tutti gli eventi relativi a query di ricerca, registrazioni dinamiche e modifiche di configurazione.
+1. In hello **casella search**, tipo `Type=DnsEvents` tooview tutti gli eventi DNS generati dal server DNS hello gestiti da soluzione hello di hello. dati del log hello per tutti gli eventi correlati toolookup query, le registrazioni dinamiche e modifiche di configurazione dell'elenco dei risultati di Hello.
 
     ![Ricerca log: eventi DNS](./media/log-analytics-dns/log-search-dnsevents.png)  
 
-    a. Per visualizzare i dati di log per query di ricerca, selezionare **LookUpQuery** come filtro **sottotipo** nel controllo facet sul lato sinistro. Viene visualizzata una tabella contenente gli eventi relativi a query di ricerca per il periodo di tempo selezionato.
+    a. dati del log tooview hello per le query di ricerca, selezionare **LookUpQuery** come hello **sottotipo** filtro dal controllo del facet hello a sinistra di hello. Viene visualizzata una tabella che elenca tutti gli eventi query di ricerca hello per hello periodo di tempo selezionato.
 
-    b. Per visualizzare i dati di log per registrazioni dinamiche, selezionare  **DynamicRegistration** come filtro **sottotipo** nel controllo facet sul lato sinistro. Viene visualizzata una tabella contenente tutti gli eventi relativi a registrazioni dinamiche per il periodo di tempo selezionato.
+    b. dati del log tooview hello per le registrazioni dinamiche, selezionare **DynamicRegistration** come hello **sottotipo** filtro dal controllo del facet hello a sinistra di hello. Viene visualizzata una tabella che elenca tutti gli eventi di registrazione dinamica hello per hello periodo di tempo selezionato.
 
-    c. Per visualizzare i dati di log per modifiche di configurazione, selezionare **ConfigurationChange** come filtro **sottotipo** nel controllo facet sul lato sinistro. Viene visualizzata una tabella contenente tutti gli eventi relativi a modifiche di configurazione per il periodo di tempo selezionato.
+    c. dati del log tooview hello per le modifiche di configurazione, selezionare **ConfigurationChange** come hello **sottotipo** filtro dal controllo del facet hello a sinistra di hello. Viene visualizzata una tabella che elenca tutti gli eventi di modifica configurazione hello per hello periodo di tempo selezionato.
 
-2. Nella **casella della query di ricerca** digitare `Type=DnsInventory` per visualizzare tutti i dati relativi all'inventario DNS per i server DNS gestiti dalla soluzione. Nei risultati vengono elencati i dati di log relativi ai server DNS, alle zone DNS e ai record di risorse.
+2. In hello **casella search**, tipo `Type=DnsInventory` tooview tutti hello dati correlate all'inventario DNS per i server DNS hello gestiti da soluzione hello. elenco dei risultati di Hello dati hello del log per i server DNS e zone DNS i record di risorse.
 
     ![Ricerca log: inventario DNS](./media/log-analytics-dns/log-search-dnsinventory.png)
 
@@ -184,9 +184,9 @@ Nella pagina Ricerca log è possibile creare una query. È possibile filtrare i 
 
 È possibile indicare commenti e suggerimenti in diversi modi:
 
-- **UserVoice**. È possibile pubblicare idee sulle funzionalità di DNS Analytics che possono essere migliorate. Visitare la pagina [UserVoice relativa a Operations Management Suite](https://aka.ms/dnsanalyticsuservoice).
-- **Partecipare alla coorte**. Microsoft è sempre interessata a includere nelle coorti nuovi clienti, che otterranno un accesso in anteprima alle nuove funzionalità e contribuiranno al miglioramento di DNS Analytics. Per partecipare, compilare questo [rapido sondaggio](https://aka.ms/dnsanalyticssurvey).
+- **UserVoice**. Pubblicare un post nel idee per toowork funzionalità DNS Analitica. Visitare hello [pagina Operations Management Suite UserVoice](https://aka.ms/dnsanalyticsuservoice).
+- **Partecipare alla coorte**. Siamo sempre interessati in presenza di nuovi clienti join nostri coorti tooget anticipata toonew le funzionalità di accesso e contribuire a migliorare Analitica DNS. Per partecipare, compilare questo [rapido sondaggio](https://aka.ms/dnsanalyticssurvey).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-[Eseguire ricerche nei log](log-analytics-log-searches.md) per visualizzare record di log dettagliati per DNS.
+[Ricerca dei registri](log-analytics-log-searches.md) tooview dettagliate DNS i record del log.

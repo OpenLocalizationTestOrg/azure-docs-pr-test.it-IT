@@ -1,6 +1,6 @@
 ---
-title: Come monitorare un account di archiviazione di Azure | Microsoft Docs
-description: Informazioni su come monitorare un account di archiviazione in Azure usando il portale di Azure.
+title: aaaHow toomonitor un account di archiviazione di Azure | Documenti Microsoft
+description: Informazioni su come toomonitor un account di archiviazione in Azure utilizzando hello portale di Azure.
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,145 +14,145 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: marsma
-ms.openlocfilehash: e8fbc4ecdffe62806019f494e1412cfedbccf71f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9a939e0b5db687c1b7b7857399321f681df2056a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-a-storage-account-in-the-azure-portal"></a>Monitorare un account di archiviazione nel portale di Azure
+# <a name="monitor-a-storage-account-in-hello-azure-portal"></a>Monitoraggio di un account di archiviazione nel portale di Azure hello
 
-[Analisi archiviazione di Azure](../storage-analytics.md) offre metriche per tutti i servizi di archiviazione e log per BLOB, code e tabelle. È possibile usare il [portale di Azure](https://portal.azure.com) per configurare quali metriche e log verranno registrati per l'account e i grafici che offriranno una rappresentazione visiva dei dati di metrica.
+[Analisi archiviazione di Azure](../storage-analytics.md) offre metriche per tutti i servizi di archiviazione e log per BLOB, code e tabelle. È possibile utilizzare hello [portale di Azure](https://portal.azure.com) tooconfigure quali le metriche e i log viene registrate per l'account e configura grafici che forniscono rappresentazioni visive dei dati di metrica.
 
 > [!NOTE]
-> All'esame dei dati di monitoraggio nel portale di Azure sono associati costi. Per altre informazioni, vedere [Analisi archiviazione e fatturazione](/rest/api/storageservices/Storage-Analytics-and-Billing).
+> Sono presenti i costi associati all'esame dei dati di monitoraggio del portale di Azure hello. Per altre informazioni, vedere [Analisi archiviazione e fatturazione](/rest/api/storageservices/Storage-Analytics-and-Billing).
 >
 > L’archiviazione file di Azure attualmente supporta la metrica di analisi di archiviazione, ma non supporta ancora l'accesso.
 >
-> Le funzionalità di metrica e registrazione non sono attualmente abilitate per gli account di archiviazione con replica di tipo archiviazione con ridondanza della zona (ZRS).
+> Account di archiviazione con un tipo di replica di archiviazione con ridondanza della zona (ZRS) attualmente non è abilitata la funzionalità di registrazione o metrica di hello.
 > 
-> Per una guida dettagliata sull'utilizzo di Analisi archiviazione e di altri strumenti per identificare, diagnosticare e risolvere i problemi relativi ad Archiviazione di Azure, vedere [Monitoraggio, diagnosi e risoluzione dei problemi del servizio di archiviazione di Microsoft Azure](../storage-monitoring-diagnosing-troubleshooting.md).
+> Per una guida approfondita sull'uso di archiviazione Analitica e tooidentify altri strumenti, diagnosticare e risoluzione dei problemi relativi al servizio di archiviazione Azure, vedere [Monitor, diagnosticare e risolvere i problemi di archiviazione di Microsoft Azure](../storage-monitoring-diagnosing-troubleshooting.md).
 >
 
 ## <a name="configure-monitoring-for-a-storage-account"></a>Configurare il monitoraggio per un account di archiviazione
 
-1. Nel [portale di Azure](https://portal.azure.com) selezionare **Account di archiviazione**e quindi il nome dell'account di archiviazione per aprire il dashboard dell'account.
-1. Selezionare **Diagnostica** nella sezione **Monitoraggio** del pannello del menu.
+1. In hello [portale di Azure](https://portal.azure.com)selezionare **gli account di archiviazione**, quindi dashboard dell'account di hello storage account name tooopen hello.
+1. Selezionare **diagnostica** in hello **monitoraggio** sezione del pannello menu hello.
 
     ![MonitoringOptions](./media/storage-monitor-storage-account/stg-enable-metrics-00.png)
 
-1. Selezionare il **tipo** di dati di metrica per ogni **servizio** che si vuole monitorare e i **criteri di conservazione** per i dati. È anche possibile disabilitare il monitoraggio impostando **Stato** su **Disattivato**.
+1. Seleziona hello **tipo** di dati di metrica per ogni **servizio** desidera toomonitor e hello **criteri di conservazione** per i dati di hello. È anche possibile disabilitare il monitoraggio impostando **stato** troppo**Off**.
 
     ![MonitoringOptions](./media/storage-monitor-storage-account/stg-enable-metrics-01.png)
 
    Per ogni servizio è possibile abilitare due tipi di metriche, che per i nuovi account di archiviazione sono entrambi abilitati per impostazione predefinita.
 
-   * **Metriche aggregate**: vengono raccolte metriche come ingresso/uscita, disponibilità, latenza e percentuale di operazioni riuscite, che vengono aggregate per i servizi BLOB, di accodamento, tabelle e file.
-   * **Per API**: oltre alle metriche aggregate, lo stesso set di metriche viene raccolto per ogni operazione di archiviazione nell'API del servizio Archiviazione di Azure.
+   * **Metriche aggregate**: vengono raccolte metriche come ingresso/uscita, disponibilità, latenza e percentuale di operazioni riuscite, Queste metriche aggregate per hello servizi blob, coda, tabella e file.
+   * **Per ogni API**: nella metrica di aggregazione toohello addizione, raccoglie hello stesso set di metriche per ogni operazione di archiviazione in hello API del servizio di archiviazione di Azure.
 
-   Per impostare i criteri di conservazione dei dati, spostare il dispositivo di scorrimento **Conservazione (in giorni)** oppure immettere il numero desiderato di giorni, da 1 a 365. L'impostazione predefinita per i nuovi account di archiviazione è sette giorni. Se non si desidera impostare criteri di conservazione, immettere zero. Se non vengono impostati criteri di conservazione, i dati di monitoraggio dovranno essere eliminati manualmente.
+   criteri di conservazione dati hello tooset, hello spostamento **conservazione (giorni)** dispositivo di scorrimento o immettere hello numero di giorni di dati tooretain, da 1 too365. valore predefinito di Hello per i nuovi account di archiviazione è sette giorni. Se si desidera tooset un criterio di conservazione, immettere zero. Se è presente alcun criterio di conservazione, è attivo hello toodelete tooyou dati di monitoraggio.
 
    > [!WARNING]
-   > Quando si eliminano manualmente i dati di metrica, viene applicato un addebito. I dati di analisi obsoleti, che hanno superato l'intervallo di tempo dei criteri di conservazione, vengono eliminati dal sistema gratuitamente. È consigliabile impostare i criteri di conservazione in base al periodo di tempo per il quale si vogliono conservare i dati di analisi dell'archiviazione per l'account. Per altre informazioni, vedere [Quali addebiti è necessario sostenere quando si abilitano le metriche di archiviazione?](../common/storage-enable-and-view-metrics.md#what-charges-do-you-incur-when-you-enable-storage-metrics)
+   > Quando si eliminano manualmente i dati di metrica, viene applicato un addebito. Dati non aggiornati analitica (i dati precedenti i criteri di conservazione) viene eliminati dal sistema hello senza alcun costo. È consigliabile impostare un criterio di conservazione in base a quanto tempo dati tooretain archiviazione analitica per l'account. Per altre informazioni, vedere [Quali addebiti è necessario sostenere quando si abilitano le metriche di archiviazione?](../common/storage-enable-and-view-metrics.md#what-charges-do-you-incur-when-you-enable-storage-metrics)
    >
 
-1. Al termine della configurazione del monitoraggio, selezionare **Salva**.
+1. Al termine di configurazione del monitoraggio hello, selezionare **salvare**.
 
-Un set predefinito di metriche verrà visualizzato in grafici nel pannello dell'account di archiviazione e nei pannelli dei singoli servizi (BLOB, accodamento, tabelle e file). Dopo aver abilitato le metriche per un servizio, potrebbe trascorrere fino a un'ora prima che i dati vengano visualizzati nei grafici. È possibile selezionare **Modifica** in qualsiasi grafico delle metriche per [configurare le metriche](#how-to-customize-metrics-charts) visualizzate nel grafico.
+Un set predefinito di metriche viene visualizzato nei grafici nel Pannello di account di archiviazione hello, nonché i pannelli di singolo servizio hello (blob, coda, tabella e file). Dopo aver abilitato le metriche per un servizio, potrebbe richiedere fino a ora tooan per tooappear dati nei relativi grafici. È possibile selezionare **modifica** su qualsiasi metrica del grafico troppo[configurare le metriche](#how-to-customize-metrics-charts) vengono visualizzati nel grafico hello.
 
-È possibile disabilitare la raccolta e la registrazione delle metriche impostando **Stato** su **Disattivato**.
+È possibile disabilitare la raccolta di metriche e registrazione impostando **stato** troppo**Off**.
 
 > [!NOTE]
-> Archiviazione di Azure usa l'[archivio tabelle](../common/storage-introduction.md#table-storage) per archiviare le metriche per l'account di archiviazione e archivia le metriche in tabelle dell'account. Per altre informazioni, vedere [Come vengono archiviate le metriche](../common/storage-analytics.md#how-metrics-are-stored).
+> Archiviazione di Azure Usa [archivio tabelle](../common/storage-introduction.md#table-storage) metriche hello toostore per l'account di archiviazione e archivi hello metriche nelle tabelle nell'account. Per altre informazioni, vedere [Come vengono archiviate le metriche](../common/storage-analytics.md#how-metrics-are-stored).
 >
 
 ## <a name="customize-metrics-charts"></a>Personalizzare i grafici delle metriche
 
-Per scegliere le metriche di archiviazione da visualizzare in un grafico, seguire questa procedura. 
+Utilizzare hello seguendo procedure toochoose quali tooview di metriche di archiviazione in un grafico delle metriche. 
 
-1. Per iniziare, visualizzare un grafico delle metriche di archiviazione nel portale di Azure. I grafici sono riportati nel **pannello dell'account di archiviazione** e nel pannello **Metriche** di un singolo servizio (BLOB, accodamento, tabelle o file).
+1. Avviare la visualizzazione di un grafico di metriche di archiviazione nel portale di Azure hello. È possibile trovare grafici hello **blade di account di archiviazione** e hello **metriche** pannello per un singolo servizio (blob, coda, tabella, file).
 
-   In questo esempio verrà usato il grafico seguente, visualizzato nel **pannello dell'account di archiviazione**:
+   In questo esempio si lavora hello seguente grafico visualizzato nel hello **blade di account di archiviazione**:
 
    ![Selezione del grafico nel portale di Azure](./media/storage-monitor-storage-account/stg-customize-chart-00.png)
 
-1. Fare quindi clic in qualsiasi punto del grafico per aprire il pannello **Metrica**. Selezionare **Modifica grafico** per aprire il pannello **Modifica grafico**.
+1. Fare quindi clic su un punto qualsiasi all'interno di hello di hello grafico tooopen **metrica** blade. Selezionare **Modifica grafico** tooopen hello **Modifica grafico** blade.
 
    ![Pulsante Modifica grafico nel pannello del grafico](./media/storage-monitor-storage-account/stg-customize-chart-01.png)
 
-1. Nel pannello **Modifica grafico** selezionare l'**intervallo di tempo** delle metriche da visualizzare nel grafico e il **servizio** (BLOB, accodamento, tabelle o file) di cui si vogliono visualizzare le metriche. In questo esempio si è scelto di visualizzare le metriche della settimana precedente per il servizio BLOB:
+1. In hello **Modifica grafico** blade, seleziona hello **intervallo di tempo** di hello metriche toodisplay grafico hello e hello **servizio** (blob, coda, tabella, di file) il cui metriche desiderato toodisplay. Di seguito sono state selezionate hello toodisplay oltre le metriche della settimana per il servizio blob hello:
 
-   ![Selezione dell'intervallo di tempo e del servizio nel pannello Modifica grafico](./media/storage-monitor-storage-account/stg-customize-chart-02.png)
+   ![Selezione intervallo e il servizio ora nel Pannello di modifica grafico hello](./media/storage-monitor-storage-account/stg-customize-chart-02.png)
 
-1. Selezionare le singole **metriche** da visualizzare nel grafico e quindi fare clic su **OK**. In questo esempio si è scelto di visualizzare le metriche *ContainerCount* e *ObjectCount*:
+1. Hello selezionare singoli **metriche** aveva come visualizzato nel grafico hello, quindi fare clic su **OK**. Ad esempio, qui abbiamo scelto hello toodisplay *ContainerCount* e *ObjectCount* metriche:
 
    ![Selezione delle singole metriche nel pannello Modifica grafico](./media/storage-monitor-storage-account/stg-customize-chart-03.png)
 
-Le impostazioni del grafico non influiscono sulla raccolta, l'aggregazione o l'archiviazione dei dati di monitoraggio nell'account di archiviazione, ma solo sulla visualizzazione dei dati di metrica.
+Le impostazioni del grafico non influisce su raccolta hello, aggregazione o archiviazione dei dati nell'account di archiviazione hello di monitoraggio, hello solo la visualizzazione dei dati di metrica.
 
 ### <a name="metrics-availability-in-charts"></a>Metriche disponibili nei grafici
 
-L'elenco delle metriche disponibili varia in base al servizio selezionato nell'elenco a discesa e al tipo di unità del grafico che viene modificato. Ad esempio, è possibile selezionare metriche relative a percentuali come *PercentNetworkError* e *PercentThrottlingError* solo se si sta modificando un grafico che visualizza unità in percentuale:
+elenco di Hello delle metriche disponibili per modifiche basato sul servizio che si è scelto nell'elenco a discesa hello e tipo di grafico hello unità hello che si sta modificando. Ad esempio, è possibile selezionare metriche relative a percentuali come *PercentNetworkError* e *PercentThrottlingError* solo se si sta modificando un grafico che visualizza unità in percentuale:
 
-![Grafico della percentuale di errori nelle richieste nel portale di Azure](./media/storage-monitor-storage-account/stg-customize-chart-04.png)
+![Grafico di percentuale di errore di richiesta nel portale di Azure hello](./media/storage-monitor-storage-account/stg-customize-chart-04.png)
 
 ### <a name="metrics-resolution"></a>Risoluzione delle metriche
 
-Le metriche selezionate in Diagnostica determinano la risoluzione delle metriche disponibili per l'account:
+metriche Hello selezionate nella diagnostica determina la risoluzione di hello di metriche di hello che sono disponibili per l'account:
 
-* Il monitoraggio **aggregato** offre metriche come ingresso/uscita, disponibilità, latenza e percentuale di operazioni riuscite, che vengono aggregate dai servizi BLOB, tabelle, file e di accodamento.
-* **Per API** offre una risoluzione più dettagliata, con disponibilità di metriche per le singole operazioni di archiviazione in aggiunta alle aggregazioni a livello di servizio.
+* Il monitoraggio **aggregato** offre metriche come ingresso/uscita, disponibilità, latenza e percentuale di operazioni riuscite, Queste metriche vengono aggregate da hello servizi blob, tabella, file e coda.
+* **Per ogni API** risoluzione più accurato, con le metriche disponibili per singole operazioni di archiviazione, inoltre toohello aggregazioni a livello di servizio.
 
 ## <a name="configure-metrics-alerts"></a>Configurare avvisi relativi alle metriche
 
-È possibile creare avvisi per ricevere una notifica quando sono state raggiunte le soglie per le metriche delle risorse di archiviazione.
+È possibile creare avvisi toonotify quando sono state raggiunte le soglie per la metrica di risorsa di archiviazione.
 
-1. Per aprire il pannello **Regole di avviso**, scorrere verso il basso fino alla sezione **Monitoraggio** del **pannello del menu** e selezionare **Regole di avviso**.
-1. Selezionare **Aggiungi avviso** per aprire il pannello **Aggiungi una regola di avviso**.
-1. Selezionare una **risorsa** (BLOB, file, coda o tabella) nell'elenco a discesa e immettere un **nome** e una **descrizione** per la nuova regola di avviso.
-1. Selezionare la **metrica** per cui si vuole aggiungere un avviso, una **condizione** di avviso e una **soglia**. Il tipo di unità della soglia varia a seconda della metrica scelta. Ad esempio, il tipo di unità per *ContainerCount* è "conteggio", mentre l'unità per la metrica *PercentNetworkError* è una percentuale.
-1. Selezionare il **periodo**. Le metriche che raggiungono o superano la soglia nel periodo specificato attivano un avviso.
-1. (Facoltativo) Configurare le notifiche per **posta elettronica** e **webhook**. Per altre informazioni sui webhook, vedere [Configurare un webhook in un avviso relativo alle metriche di Azure](../../monitoring-and-diagnostics/insights-webhooks-alerts.md). Se non si configurano notifiche per posta elettronica o webhook, gli avvisi verranno visualizzati solo nel portale di Azure.
+1. hello tooopen **pannello regole di avviso**, scorrere verso il basso toohello **monitoraggio** sezione di hello **pannello Menu** e selezionare **regole di avviso**.
+1. Selezionare **Aggiungi avviso** tooopen hello **aggiungere una regola di avviso** pannello
+1. Selezionare un **risorse** (blob, file, coda, tabella) da hello elenco a discesa e immettere un **nome** e **descrizione** per la nuova regola di avviso.
+1. Seleziona hello **metrica** per il quale si desidera tooadd un avviso, un avviso **condizione**e un **soglia**. modifiche ai tipi di unità di Hello soglia a seconda della metrica hello scelta. Ad esempio, "count" è il tipo di unità hello per *ContainerCount*, durante l'unità di hello per hello *PercentNetworkError* metrica è una percentuale.
+1. Seleziona hello **periodo**. Metriche raggiungono o superano hello soglia all'interno di trigger periodo hello un avviso.
+1. (Facoltativo) Configurare le notifiche per **posta elettronica** e **webhook**. Per altre informazioni sui webhook, vedere [Configurare un webhook in un avviso relativo alle metriche di Azure](../../monitoring-and-diagnostics/insights-webhooks-alerts.md). Se non si configura notifiche di posta elettronica o webhook, gli avvisi vengono visualizzati solo nel portale di Azure hello.
 
-![Pannello Aggiungi una regola di avviso nel portale di Azure](./media/storage-monitor-storage-account/stg-alert-rules-01.png)
+!['Aggiungi una regola di avviso' blade in hello portale di Azure](./media/storage-monitor-storage-account/stg-alert-rules-01.png)
 
-## <a name="add-metrics-charts-to-the-portal-dashboard"></a>Aggiungere i grafici delle metriche al dashboard del portale
+## <a name="add-metrics-charts-toohello-portal-dashboard"></a>Aggiungere dashboard del portale toohello grafici delle metriche
 
-È possibile aggiungere i grafici delle metriche di Archiviazione di Azure per qualsiasi account di archiviazione al dashboard del portale.
+È possibile aggiungere grafici di metriche di archiviazione di Azure per i dashboard del portale storage account tooyour.
 
-1. Fare clic su **Modifica dashboard** mentre si visualizza il dashboard nel [portale di Azure](https://portal.azure.com).
-1. In **Raccolta riquadri** selezionare **Trova riquadri per** > **Tipo**.
+1. Fare clic su Seleziona **modificare il dashboard** durante la visualizzazione dashboard in hello [portale di Azure](https://portal.azure.com).
+1. In hello **riquadro raccolta**selezionare **trova riquadri da** > **tipo**.
 1. Selezionare **Tipo** > **Account di archiviazione**.
-1. In **Risorse** selezionare l'account di archiviazione di cui si vogliono aggiungere le metriche al dashboard.
+1. In **risorse**, selezionare l'account di archiviazione hello cui metriche desiderate tooadd toohello dashboard.
 1. Selezionare **Categorie** > **Monitoraggio**.
-1. Trascinare il riquadro del grafico per la metrica da visualizzare sul dashboard. Ripetere l'operazione per tutte le metriche che si vogliono visualizzare nel dashboard. Nell'immagine seguente è evidenziato il grafico "BLOB - Richieste totali" come esempio, ma tutti i grafici sono posizionabili nel dashboard.
+1. Grafico di trascinamento e rilascio hello riquadro nel dashboard per metrica hello si desidera visualizzata. Ripetere per tutte le metriche desiderate visualizzate nel dashboard di hello. Nella seguente immagine di hello, grafico "BLOB - Totale richieste" hello è evidenziato come esempio, ma tutti i grafici di hello sono disponibili per la selezione nel dashboard.
 
    ![Raccolta riquadri nel portale di Azure](./media/storage-monitor-storage-account/stg-customize-dashboard-01.png)
-1. Dopo aver completato l'aggiunta dei grafici, selezionare **Fine personalizzazione** nella parte superiore del dashboard.
+1. Selezionare **eseguite di personalizzazione** superiore hello del dashboard hello una volta terminato l'aggiunta di grafici.
 
-Dopo che sono stati aggiunti al dashboard, i grafici possono essere ulteriormente personalizzati come descritto in [Personalizzare i grafici delle metriche](#how-to-customize-metrics-charts).
+Dopo aver aggiunto il dashboard di tooyour grafici, è possibile personalizzare ulteriormente tali come descritto in [personalizzare grafici metriche](#how-to-customize-metrics-charts).
 
 ## <a name="configure-logging"></a>Configurare la registrazione
 
-È possibile impostare Archiviazione di Azure in modo da salvare i log di diagnostica per le richieste di lettura, scrittura ed eliminazione per i servizi BLOB, tabelle e di accodamento. I criteri di conservazione dati impostati si applicano anche a questi log.
+È possibile indicare i log di diagnostica toosave di archiviazione di Azure per leggere, scrivano ed eliminano le richieste di hello servizi blob, tabella e coda. criteri di conservazione dati Hello che è impostare si applicano anche toothese log.
 
 > [!NOTE]
 > L’archiviazione file di Azure attualmente supporta la metrica di analisi di archiviazione, ma non supporta ancora l'accesso.
 >
 
-1. Nel [portale di Azure](https://portal.azure.com) selezionare **Account di archiviazione** e quindi il nome dell'account di archiviazione per aprire il relativo pannello.
-1. Selezionare **Diagnostica** nella sezione **Monitoraggio** del pannello del menu.
+1. In hello [portale di Azure](https://portal.azure.com)selezionare **gli account di archiviazione**, il nome di hello del Pannello di hello storage account tooopen hello storage account.
+1. Selezionare **diagnostica** in hello **monitoraggio** sezione del pannello menu hello.
 
-    ![Voce di menu Diagnostica in Monitoraggio nel portale di Azure.](./media/storage-monitor-storage-account/stg-enable-metrics-00.png)
+    ![Diagnostica della voce di menu nel monitoraggio nel portale di Azure hello.](./media/storage-monitor-storage-account/stg-enable-metrics-00.png)
     
-1. Verificare che l'opzione **Stato** sia impostata su **Attivato** e selezionare i **servizi** per cui si vuole abilitare la registrazione.
+1. Verificare **stato** è troppo**su**e seleziona hello **servizi** per il quale si desidera tooenable registrazione.
 
-    ![Configurare la registrazione nel portale di Azure.](./media/storage-monitor-storage-account/stg-enable-logging-01.png)
-1. Fare clic su **Save**.
+    ![Configurare la registrazione nel portale di Azure hello.](./media/storage-monitor-storage-account/stg-enable-logging-01.png)
+1. Fare clic su **Salva**.
 
-I log di diagnostica vengono salvati in un contenitore BLOB denominato $logs nell'account di archiviazione. È possibile visualizzare i dati dei log con uno strumento di esplorazione di archiviazione come [Microsoft Azure Storage Explorer](http://storageexplorer.com) oppure a livello di codice usando la libreria client di archiviazione o PowerShell.
+log di diagnostica Hello vengono salvati in un contenitore blob denominato $logs nell'account di archiviazione. È possibile visualizzare i dati di log hello usando l'esplorazione dell'archiviazione come hello [Esplora archivi Microsoft](http://storageexplorer.com), o a livello di codice con la libreria client di archiviazione hello o PowerShell.
 
-Per informazioni sull'accesso al contenitore $logs, vedere [Enabling Storage Logging and Accessing Log Data](/rest/api/storageservices/enabling-storage-logging-and-accessing-log-data) (Abilitazione della registrazione di archiviazione e accesso ai dati dei log).
+Per informazioni sull'accesso contenitore hello $logs, vedere [abilitazione della registrazione di archiviazione e accesso ai dati di Log](/rest/api/storageservices/enabling-storage-logging-and-accessing-log-data).
 
 ## <a name="next-steps"></a>Passaggi successivi
 

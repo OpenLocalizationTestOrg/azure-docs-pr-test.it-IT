@@ -1,6 +1,6 @@
 ---
-title: Aggiungere runbook di Automazione di Azure ai piani di ripristino nel portale classico | Documentazione Microsoft
-description: "In questo articolo viene descritto come Azure Site Recovery consente ora di estendere i piani di ripristino tramite Automazione di Azure per completare attività complesse durante il ripristino in Azure"
+title: aaaAdd piani toorecovery runbook di automazione di Azure nel portale classico hello | Documenti Microsoft
+description: "Questo articolo viene descritto come Azure Site Recovery consente ora i piani di ripristino tooextend con complesse attività di automazione di Azure toocomplete durante il ripristino tooAzure"
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,90 +14,90 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 08/11/2017
 ms.author: ruturajd
-ms.openlocfilehash: 0a248e7c3f39a35ac10dc6ac64e5cef7d152e033
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3bb7420911afbce289b656f28823b1923e8af0c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-azure-automation-runbooks-to-recovery-plans-in-the-classic-portal"></a>Aggiungere runbook di Automazione di Azure ai piani di ripristino nel portale classico
-In questa esercitazione viene descritto come Azure Site Recovery si integra con Automazione di Azure per fornire estendibilità ai piani di ripristino. I piani di ripristino possono gestire il ripristino delle macchine virtuali protette tramite Azure Site Recovery per la replica nel cloud secondario e la replica negli scenari di Azure. Consentono inoltre di effettuare il ripristino **costantemente accurato**, **ripetibile** e **automatizzato**. Se viene eseguito il failover delle macchine virtuali in Azure, l’integrazione con Automazione di Azure si estende ai piani di ripristino e offre la possibilità di eseguire i runbook, consentendo in tal modo attività di automazione efficaci.
+# <a name="add-azure-automation-runbooks-toorecovery-plans-in-hello-classic-portal"></a>Aggiungere i piani toorecovery runbook di automazione di Azure nel portale classico hello
+In questa esercitazione viene descritta l'integrazione di Azure Site Recovery con automazione di Azure tooprovide estendibilità toorecovery piani. I piani di ripristino possono orchestrare il ripristino delle macchine virtuali protette mediante Azure Site Recovery per cloud di replica toosecondary e scenari di replica tooAzure. Consentono inoltre di effettuare il ripristino di hello **in modo coerente accurate**, **repeatable**, e **automatizzati**. Se viene eseguito il failover tooAzure le macchine virtuali, integrazione con automazione di Azure estende i piani di ripristino e offre funzionalità tooexecute runbook, consentendo in tal modo l'attività di automazione potente.
 
-Se non si è ancora sentito parlare di Automazione di Azure, effettuare l'iscrizione [qui](https://azure.microsoft.com/services/automation/) e scaricare gli script di esempio [qui](https://azure.microsoft.com/documentation/scripts/). Altre informazioni su [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/) e su come gestire il ripristino in Azure usando piani di ripristino sono disponibili [qui](https://azure.microsoft.com/blog/?p=166264).
+Se non si è ancora sentito parlare di Automazione di Azure, effettuare l'iscrizione [qui](https://azure.microsoft.com/services/automation/) e scaricare gli script di esempio [qui](https://azure.microsoft.com/documentation/scripts/). Altre informazioni sui [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/) e come tooorchestrate tooAzure di ripristino con ripristino prevede [qui](https://azure.microsoft.com/blog/?p=166264).
 
-In questa breve esercitazione verrà illustrato come integrare i runbook di Automazione di Azure nei piani di ripristino. Verranno automatizzate attività semplici che in precedenza richiedevano un intervento manuale e verrà illustrato come convertire un ripristino in più passaggi in un'azione di ripristino a singolo clic. Verrà esaminato inoltre come risolvere eventuali problemi di un semplice script.
+In questa breve esercitazione verrà illustrato come integrare i runbook di Automazione di Azure nei piani di ripristino. Ti consentono di automatizzare attività semplice precedenti richieste interventi manuali e vedere come tooconvert un multi passaggio ripristino in un'azione di ripristino con clic singolo. Verrà esaminato inoltre come risolvere eventuali problemi di un semplice script.
 
-## <a name="protect-the-application-to-azure"></a>Proteggere l'applicazione in Azure
-Si inizierà con una semplice applicazione costituita da due macchine virtuali. In questo caso, viene usata un'applicazione HRweb di Fabrikam. Fabrikam-HRweb-frontend e Fabrikam-Hrweb-backend sono le due macchine virtuali protette in Azure tramite Azure Site Recovery. Per proteggere le macchine virtuali tramite Azure Site Recover, attenersi alla procedura seguente.
+## <a name="protect-hello-application-tooazure"></a>Proteggere tooAzure applicazione hello
+Si inizierà con una semplice applicazione costituita da due macchine virtuali. In questo caso, viene usata un'applicazione HRweb di Fabrikam. Fabrikam-HRweb-front-end e back-end Fabrikam Hrweb sono hello due macchine virtuali protette tooAzure usando Azure Site Recovery. macchine virtuali di hello tooprotect usando Azure Site Recovery, procedura hello riportata di seguito.
 
 1. Abilitare la protezione per le macchine virtuali.
-2. Assicurarsi che le macchine virtuali abbiano completato la replica iniziale e stiano eseguendo la replica.
-3. Attendere che la replica iniziale venga completata e che lo stato della replica sia Protetto.
+2. Verificare che le macchine virtuali hello aver completato la replica iniziale e sta eseguendo la replica.
+3. Consente di attendere il completamento della replica iniziale hello e hello lo stato della replica afferma protetti.
 
 ## ![](media/site-recovery-runbook-automation/01.png)
-In questa esercitazione si creerà un piano di ripristino per l'applicazione Fabrikam HRweb per eseguire il failover dell'applicazione in Azure. Il piano di ripristino verrà quindi integrato con un runbook che creerà un endpoint sulla macchina virtuale di Azure sottoposta a failover, per utilizzare le pagine web sulla porta 80.
+In questa esercitazione si creerà un piano di ripristino per Fabrikam HRweb applicazione toofailover hello applicazione tooAzure hello. È quindi verrà integrarlo con un runbook che verrà creato un endpoint nel hello failover pagine web tooserve di macchina virtuale di Azure alla porta 80.
 
 Innanzitutto, verrà creato un piano di ripristino per l’applicazione.
 
-## <a name="create-the-recovery-plan"></a>Creare il piano di ripristino
-Per ripristinare l'applicazione in Azure, è necessario creare un piano di ripristino.
-Usando un piano di ripristino, è possibile specificare l'ordine di ripristino delle macchine virtuali. La macchina virtuale inserita nel gruppo 1 verrà ripristinata e avviata per prima e quindi seguirà la macchina virtuale nel gruppo 2.
+## <a name="create-hello-recovery-plan"></a>Creare il piano di ripristino hello
+toorecover hello applicazione tooAzure, è necessario toocreate un piano di ripristino.
+Utilizzo di un piano di ripristino che è possibile specificare l'ordine di hello del ripristino delle macchine virtuali. verranno avviati prima e ripristina macchina virtuale Hello inserito nel gruppo 1, e seguire hello di macchina virtuale nel gruppo 2.
 
 Creare un piano di ripristino simile al seguente.
 
 ![](media/site-recovery-runbook-automation/12.png)
 
-Per ulteriori informazioni sui piani di ripristino, leggere la documentazione [qui](https://msdn.microsoft.com/library/azure/dn788799.aspx "qui").
+ulteriori informazioni sui piani di ripristino, leggere la documentazione tooread [qui](https://msdn.microsoft.com/library/azure/dn788799.aspx "qui").
 
-Quindi, verranno creati gli elementi necessari in Automazione di Azure.
+Successivamente, creare hello gli elementi necessari in automazione di Azure.
 
-## <a name="create-the-automation-account-and-its-assets"></a>Creare l'account di automazione e i relativi asset
-Per creare i runbook è necessario un account di Automazione di Azure. Se non si dispone già di un account, passare alla scheda Automazione di Azure identificata da ![](media/site-recovery-runbook-automation/02.png)e creare un nuovo account.
+## <a name="create-hello-automation-account-and-its-assets"></a>Creare account di automazione hello e gli asset
+È necessario un runbook toocreate account di automazione di Azure. Se si dispone già di un account, passare indicata dalla scheda di automazione tooAzure ![](media/site-recovery-runbook-automation/02.png)e creare un nuovo account.
 
-1. Assegnare all'account un nome con cui identificarlo.
-2. Specificare un'area geografica in cui si desidera inserire l'account.
+1. Assegnare all'account hello tooidentify un nome con.
+2. Specificare un'area geografica in cui si desidera account hello tooplace.
 
-Si consiglia di inserire l'account nella stessa area dell’insieme di credenziali per il ripristino automatico di sistema.
+È consigliabile tooplace account hello hello stessa area dell'insieme di credenziali di hello ripristino automatico di sistema.
 
 ![](media/site-recovery-runbook-automation/03.png)
 
-Successivamente, creare gli asset seguenti nell’account.
+Successivamente, creare hello asset in hello Account seguenti.
 
 ### <a name="add-a-subscription-name-as-asset"></a>Aggiungere un nome di sottoscrizione come asset
-1. Aggiungere una nuova impostazione ![](media/site-recovery-runbook-automation/04.png) negli asset di Automazione di Azure e selezionare ![](media/site-recovery-runbook-automation/05.png)
-2. Selezionare **String**
+1. Aggiungere una nuova impostazione ![](media/site-recovery-runbook-automation/04.png) in hello asset di automazione di Azure e selezionare troppo![](media/site-recovery-runbook-automation/05.png)
+2. Selezionare tipo di variabile come hello **stringa**
 3. Specificare **AzureSubscriptionName**
 
    ![](media/site-recovery-runbook-automation/06.png)
-4. Specificare il nome effettivo della sottoscrizione di Azure come valore della variabile.
+4. Specificare il nome della sottoscrizione di Azure effettivo come valore della variabile hello.
 
    ![](media/site-recovery-runbook-automation/07_1.png)
 
-È possibile identificare il nome della sottoscrizione dalla pagina delle impostazioni dell'account nel portale di Azure.
+È possibile identificare il nome di hello della sottoscrizione dalla pagina Impostazioni hello dell'account nel portale di Azure hello.
 
 ### <a name="add-an-azure-login-credential-as-asset"></a>Aggiungere una credenziale di accesso di Azure come asset
-Automazione di Azure usa Azure PowerShell per connettersi alla sottoscrizione e opera sugli elementi disponibili. A tale scopo, è necessario eseguire l'autenticazione usando l'account Microsoft o un account aziendale o dell’istituto di istruzione.
-È possibile archiviare le credenziali dell'account in un asset da utilizzare in modo sicuro nel runbook.
+Automazione di Azure Usa una sottoscrizione di Azure PowerShell tooconnect toothe e opera sugli elementi hello non esiste. A tale scopo, è necessario eseguire l'autenticazione usando l'account Microsoft o un account aziendale o dell’istituto di istruzione.
+È possibile archiviare le credenziali dell'account hello in toobe un asset in modo sicuro utilizzato dal runbook hello.
 
-1. Aggiungere una nuova impostazione ![](media/site-recovery-runbook-automation/04.png) negli asset di Automazione di Azure e selezionare ![](media/site-recovery-runbook-automation/09.png)
-2. Selezionare **Credenziali per Windows PowerShell**
-3. Specificare il nome **AzureCredential**
+1. Aggiungere una nuova impostazione ![](media/site-recovery-runbook-automation/04.png) in hello asset di automazione di Azure e selezionare![](media/site-recovery-runbook-automation/09.png)
+2. Selezionare il tipo di credenziale hello come **credenziali di Windows PowerShell**
+3. Specificare il nome di hello come **AzureCredential**
 
    ![](media/site-recovery-runbook-automation/10.png)
-4. Specificare il nome utente e la password con cui effettuare l'accesso.
+4. Specificare nome utente hello e una password toosign-con.
 
 Entrambe queste impostazioni sono ora disponibili negli asset.
 
 ![](media/site-recovery-runbook-automation/11.png)
 
-Altre informazioni su come connettersi alla sottoscrizione tramite PowerShell sono disponibili [qui](/powershell/azure/overview).
+Ulteriori informazioni sulla modalità in cui viene assegnato tooconnect tooyour sottoscrizione tramite PowerShell [qui](/powershell/azure/overview).
 
-Successivamente, verrà creato un runbook in Automazione di Azure che può aggiungere un endpoint per la macchina virtuale front-end dopo il failover.
+Successivamente, si creerà un runbook in automazione di Azure che è possibile aggiungere un endpoint per la macchina virtuale front-end hello dopo il failover.
 
 ## <a name="azure-automation-context"></a>Contesto di Automazione di Azure
-Il ripristino automatico di sistema passa una variabile di contesto al runbook per consentire all’utente di scrivere script deterministici. Si potrebbe sostenere che i nomi del servizio cloud e della macchina virtuale siano prevedibili, ma ciò non si verifica sempre per determinati scenari, come quello in cui il nome della macchina virtuale potrebbe essere stato modificato a causa di caratteri non supportati in Azure. Di conseguenza, queste informazioni vengono passate al piano di ripristino automatico di sistema come parte del *contesto*.
+Ripristino automatico di sistema passa un toohelp runbook toohello variabile di contesto è scrivere script deterministico. È possibile sostenere che i nomi di hello di hello servizio Cloud e hello macchina virtuale sono prevedibili, ma si verifica che non è sempre case hello dovuti toocertain scenari, ad esempio hello uno in cui il nome di hello del nome della macchina virtuale hello potrebbe essere stato modificato a causa caratteri toounsupported in Azure. Di conseguenza queste informazioni vengono passate piano di ripristino toohello ripristino automatico di sistema come parte di hello *contesto*.
 
-La variabile di contesto avrà un aspetto simile a quello riportato nell’esempio seguente.
+Di seguito è riportato un esempio dell'aspetto di variabile di contesto hello.
 
         {"RecoveryPlanName":"hrweb-recovery",
 
@@ -118,31 +118,31 @@ La variabile di contesto avrà un aspetto simile a quello riportato nell’esemp
         }
 
 
-La tabella che segue contiene il nome e la descrizione di ciascuna variabile nel contesto.
+tabella Hello riportata di seguito contiene nome e una descrizione per ogni variabile nel contesto di hello.
 
 | **Nome variabile** | **Descrizione** |
 | --- | --- |
-| RecoveryPlanName |Nome del piano di esecuzione. Consente di agire in base al nome utilizzando lo stesso script |
-| FailoverType |Specifica se il failover è di test, pianificato o non pianificato. |
-| FailoverDirection |Specifica se il ripristino avviene su primario o secondario |
-| GroupID |Identifica il numero del gruppo all'interno del piano di ripristino quando il piano è in esecuzione |
-| VmMap |Array di tutte le macchine virtuali presenti nel gruppo. |
-| VMMap key |Chiave univoca (GUID) per ciascuna VM. È uguale all'ID di VMM della macchina virtuale, se applicabile. |
-| RoleName |Nome della VM di Azure in fase di ripristino |
-| CloudServiceName |Nome servizio cloud di Azure in cui viene creata la macchina virtuale. |
+| RecoveryPlanName |Nome del piano di esecuzione. Consente di sfruttare l'azione in base a nome utilizzando hello stesso script |
+| FailoverType |Specifica se hello failover è il test, pianificato o non pianificato. |
+| FailoverDirection |Specificare se il ripristino è tooprimary o secondario |
+| GroupID |Identificare il numero di gruppo hello nel piano di ripristino hello quando piano hello è in esecuzione |
+| VmMap |Matrice di tutte le macchine virtuali hello gruppo hello |
+| VMMap key |Chiave univoca (GUID) per ciascuna VM. È hello uguali a quelli hello VMM ID della macchina virtuale hello dove applicabile. |
+| RoleName |Nome della macchina virtuale di Azure che viene ripristinato hello |
+| CloudServiceName |Nome del servizio Cloud Azure in cui hello viene creata la macchina virtuale. |
 
-Per identificare la chiave VmMap nel contesto, è anche possibile andare alla pagina delle proprietà della macchina virtuale in Ripristino automatico di sistema e analizzare la proprietà VM GUID.
+hello tooidentify VmMap Key nel contesto di hello è possibile anche passare toohello pagina delle proprietà macchina virtuale in ASR e osservare hello proprietà GUID di VM.
 
 ![](media/site-recovery-runbook-automation/13.png)
 
 ## <a name="author-an-automation-runbook"></a>Creare un runbook di Automazione
-A questo punto creare il runbook per aprire la porta 80 nella macchina virtuale front-end.
+A questo punto creare hello runbook tooopen porta 80 nella macchina virtuale front-end hello.
 
-1. Creare un nuovo runbook nell'account di Automazione di Azure con il nome **OpenPort80**
+1. Creare un nuovo runbook nell'account di automazione di Azure con nome hello hello **OpenPort80**
 
    ![](media/site-recovery-runbook-automation/14.png)
-2. Passare alla visualizzazione Autore del runbook e inserire la modalità bozza.
-3. Specificare innanzitutto la variabile da utilizzare come contesto del piano di ripristino
+2. Passare toohello Visualizza di autore del runbook hello e passare alla modalità di bozza hello.
+3. Specificare innanzitutto toouse variabile hello come contesto di piano di ripristino hello
 
    ```
        param (
@@ -150,22 +150,22 @@ A questo punto creare il runbook per aprire la porta 80 nella macchina virtuale 
        )
 
    ```
-4. Quindi, connettersi alla sottoscrizione tramite le credenziali e il nome della sottoscrizione
+4. Riconnette toohello sottoscrizione utilizzando un nome delle credenziali e sottoscrizione hello
 
    ```
        $Cred = Get-AutomationPSCredential -Name 'AzureCredential'
 
-       # Connect to Azure
+       # Connect tooAzure
        $AzureAccount = Add-AzureAccount -Credential $Cred
        $AzureSubscriptionName = Get-AutomationVariable –Name ‘AzureSubscriptionName’
        Select-AzureSubscription -SubscriptionName $AzureSubscriptionName
    ```
 
-   Si noti che qui vengono usati gli asset di Azure: **AzureCredential** e **AzureSubscriptionName**.
-5. Specificare i dettagli di endpoint e il GUID della macchina virtuale per il quale si vuole esporre l'endpoint, in questo caso la macchina virtuale front-end.
+   Si noti che è utilizzare hello Azure principali: **AzureCredential** e **AzureSubscriptionName** qui.
+5. GUID della macchina virtuale hello per cui si desidera endpoint hello tooexpose hello ora specificare i dettagli degli endpoint hello. In questa macchina virtuale front-end hello case.
 
    ```
-       # Specify the parameters to be used by the script
+       # Specify hello parameters toobe used by hello script
        $AEProtocol = "TCP"
        $AELocalPort = 80
        $AEPublicPort = 80
@@ -173,11 +173,11 @@ A questo punto creare il runbook per aprire la porta 80 nella macchina virtuale 
        $VMGUID = "7a1069c6-c1d6-49c5-8c5d-33bfce8dd183"
    ```
 
-   Vengono specificati il protocollo di endpoint di Azure, la porta locale nella macchina virtuale e la porta pubblica mappata. Queste variabili rappresentano i parametri richiesti dai comandi di Azure che consentono di aggiungere endpoint alle macchine virtuali. VMGUID contiene il GUID della macchina virtuale su cui è necessario operare.
-6. Lo script estrae ora il contesto per la proprietà VM GUID specificata e crea un endpoint nella macchina virtuale a cui fa riferimento.
+   Questo valore specifica hello protocollo dell'endpoint di Azure, porta locale hello macchina virtuale e la relativa porta pubblica mappata. Queste variabili sono i parametri necessari per hello Azure comandi che aggiungono tooVMs endpoint. Hello VMGUID contiene hello GUID della macchina virtuale hello in che è necessario toooperate.
+6. script Hello ora estrarre contesto hello per hello dato GUID di VM e creare un endpoint nella macchina virtuale hello contiene i riferimenti.
 
    ```
-       #Read the VM GUID from the context
+       #Read hello VM GUID from hello context
        $VM = $RecoveryPlanContext.VmMap.$VMGUID
 
        if ($VM -ne $null)
@@ -185,7 +185,7 @@ A questo punto creare il runbook per aprire la porta 80 nella macchina virtuale 
            # Invoke pipeline commands within an InlineScript
 
            $EndpointStatus = InlineScript {
-               # Invoke the necessary pipeline commands to add a Azure Endpoint to a specified Virtual Machine
+               # Invoke hello necessary pipeline commands tooadd a Azure Endpoint tooa specified Virtual Machine
                # Commands include: Get-AzureVM | Add-AzureEndpoint | Update-AzureVM (including parameters)
 
                $Status = Get-AzureVM -ServiceName $Using:VM.CloudServiceName -Name $Using:VM.RoleName | `
@@ -195,9 +195,9 @@ A questo punto creare il runbook per aprire la porta 80 nella macchina virtuale 
            }
        }
    ```
-7. Al termine, premere Pubblica ![](media/site-recovery-runbook-automation/20.png) per fare in modo che lo script sia disponibile per l'esecuzione.
+7. Al termine, premere pubblica ![](media/site-recovery-runbook-automation/20.png) tooallow il toobe script disponibili per l'esecuzione.
 
-Di seguito è riportato lo script completo per riferimento
+script completo di Hello è indicato di seguito per riferimento
 
 ```
   workflow OpenPort80
@@ -208,19 +208,19 @@ Di seguito è riportato lo script completo per riferimento
 
     $Cred = Get-AutomationPSCredential -Name 'AzureCredential'
 
-    # Connect to Azure
+    # Connect tooAzure
     $AzureAccount = Add-AzureAccount -Credential $Cred
     $AzureSubscriptionName = Get-AutomationVariable –Name ‘AzureSubscriptionName’
     Select-AzureSubscription -SubscriptionName $AzureSubscriptionName
 
-    # Specify the parameters to be used by the script
+    # Specify hello parameters toobe used by hello script
     $AEProtocol = "TCP"
     $AELocalPort = 80
     $AEPublicPort = 80
     $AEName = "Port 80 for HTTP"
     $VMGUID = "7a1069c6-c1d6-49c5-8c5d-33bfce8dd183"
 
-    #Read the VM GUID from the context
+    #Read hello VM GUID from hello context
     $VM = $RecoveryPlanContext.VmMap.$VMGUID
 
     if ($VM -ne $null)
@@ -228,7 +228,7 @@ Di seguito è riportato lo script completo per riferimento
         # Invoke pipeline commands within an InlineScript
 
         $EndpointStatus = InlineScript {
-            # Invoke the necessary pipeline commands to add an Azure Endpoint to a specified Virtual Machine
+            # Invoke hello necessary pipeline commands tooadd an Azure Endpoint tooa specified Virtual Machine
             # This set of commands includes: Get-AzureVM | Add-AzureEndpoint | Update-AzureVM (including necessary parameters)
 
             $Status = Get-AzureVM -ServiceName $Using:VM.CloudServiceName -Name $Using:VM.RoleName | `
@@ -240,39 +240,39 @@ Di seguito è riportato lo script completo per riferimento
   }
 ```
 
-## <a name="add-the-script-to-the-recovery-plan"></a>Aggiungere lo script al piano di ripristino
-Quando lo script è pronto, è possibile aggiungerlo al piano di ripristino creato in precedenza.
+## <a name="add-hello-script-toohello-recovery-plan"></a>Aggiungi piano di ripristino toohello script hello
+Una volta script hello è pronto, è possibile aggiungere toohello piano di ripristino creato in precedenza.
 
-1. Nel piano di ripristino creato, scegliere di aggiungere uno script dopo il gruppo 2. ![](media/site-recovery-runbook-automation/15.png)
-2. Specificare un nome per lo script. Si tratta semplicemente di un nome descrittivo per lo script, per la visualizzazione all'interno del piano di ripristino.
-3. Nel failover allo script di Azure, selezionare il nome dell'account di Automazione di Azure.
-4. Nei runbook di Azure, selezionare il runbook che è stato creato.
+1. Nel piano di ripristino hello che è stato creato, scegliere tooadd uno script dopo il gruppo 2. ![](media/site-recovery-runbook-automation/15.png)
+2. Specificare un nome per lo script. Questo è solo un nome descrittivo per questo script per la visualizzazione nel piano di ripristino hello.
+3. Nello script di tooAzure failover hello: selezionare il nome dell'Account di automazione di Azure hello.
+4. Hello runbook di Azure, selezionare runbook hello che è stato creato.
 
 ![](media/site-recovery-runbook-automation/16.png)
 
 ## <a name="primary-side-scripts"></a>Script sul lato primario
-Quando si esegue un failover in Azure, è possibile scegliere di eseguire gli script sul lato primario. Questi script verranno eseguiti nel server VMM durante il failover.
-Gli script sul lato primario sono disponibili solo nelle fasi precedente e successiva all’arresto. Questo perché in genere il sito primario non è disponibile in caso di emergenza.
-Durante un failover non pianificato, solo se si opta per le operazioni del sito primario, si tenterà di eseguire gli script sul lato primario. Se non sono raggiungibili o sono in timeout, il failover continuerà a ripristinare le macchine virtuali.
-Gli script sul lato primario non sono disponibili per i siti VMware/Physical/Hyper-V senza VMM protetti in Azure durante il failover in Azure.
-Tuttavia, se si esegue il failback da Azure in locale, gli script sul lato primario (runbook) possono essere usati per tutte le destinazioni, ad eccezione di VMware.
+Quando si eseguono tooAzure un failover, è anche possibile scegliere tooexecute script lato primario. Questi script vengono eseguiti nel server VMM hello durante il failover.
+Gli script sul lato primario sono disponibili solo nelle fasi precedente e successiva all’arresto. Questo avviene perché è probabile che hello toobe di sito primario non è in genere quando un'eventuale emergenza.
+Durante un failover non pianificato, solo se si sceglie di partecipare per operazioni del sito primario, verrà eseguito un tentativo script lato primario di hello toorun. Se non sono raggiungibili o timeout, il failover di hello continuerà toorecover hello macchine virtuali.
+Script lato primario sono non disponibili per i siti di VMware/fisici, Hyper-v senza tooAzure VMM protetto - durante il failover tooAzure.
+Tuttavia, quando il failback da Azure tooon sedi locali, gli script lato primario (runbook) è possibile utilizzare per tutte le destinazioni, ad eccezione di VMware.
 
-## <a name="test-the-recovery-plan"></a>Testare il piano di ripristino
-Dopo avere aggiunto il runbook al piano è possibile avviare un failover di test e vederlo in azione. È sempre consigliabile eseguire un failover di test per testare l'applicazione e il piano di ripristino per assicurarsi che non siano presenti errori.
+## <a name="test-hello-recovery-plan"></a>Piano di ripristino hello di test
+Dopo aver aggiunto piano toohello di hello runbook è possibile avviare un failover di test e visualizzarlo in azione. È sempre consigliabile toorun un tootest di failover di test del tooensure piano ripristino di hello e di applicazione che non siano presenti errori.
 
-1. Selezionare il piano di ripristino e avviare un failover di test.
-2. Durante l'esecuzione del piano, è possibile verificare se il runbook è stato eseguito o meno tramite il relativo stato.
+1. Selezionare il piano di ripristino hello e avviare un failover di test.
+2. Durante l'esecuzione di piani hello, è possibile visualizzare se hello runbook è stato eseguito o non mediante il relativo stato.
 
    ![](media/site-recovery-runbook-automation/17.png)
-3. È inoltre possibile visualizzare lo stato di esecuzione dettagliato del runbook nella pagina dei processi di Automazione di Azure relativa al runbook.
+3. È inoltre possibile visualizzare hello dettagliate sullo stato di esecuzione di runbook nella pagina processi di automazione di Azure hello per hello runbook.
 
    ![](media/site-recovery-runbook-automation/18.png)
-4. Dopo il failover, a parte il risultato dell'esecuzione del runbook, è possibile verificare se l'esecuzione ha avuto esito positivo o meno, visitando la pagina della macchina virtuale di Azure e analizzando gli endpoint.
+4. Dopo aver completato il failover hello, oltre al risultato dell'esecuzione runbook hello, è possibile visualizzare se l'esecuzione di hello ha esito positivo o non visita pagina macchina virtuale di Azure hello e analizzando gli endpoint hello.
 
 ![](media/site-recovery-runbook-automation/19.png)
 
 ## <a name="sample-scripts"></a>Script di esempio
-Anche se in questa esercitazione è stata illustrata l'automazione di un’attività comunemente utilizzata di aggiunta di un endpoint a una macchina virtuale di Azure, tramite Automazione di Azure è possibile eseguire una serie di altre attività di automazione efficaci. Microsoft e la community di Automazione di Azure mettono a disposizione runbook di esempio, utili per iniziare a creare soluzioni personalizzate, nonché runbook di utilità, utili come componenti di base per attività di automazione più estese. Iniziare a usare i runbook dalla raccolta e generare piani di ripristino efficaci ad un solo clic per le applicazioni che usano Azure Site Recovery.
+Anche se abbiamo esaminato in dettaglio automazione uno comunemente utilizzato l'operazione di aggiunta di una macchina virtuale di Azure di tooan endpoint in questa esercitazione, è possibile eseguire un numero di altre attività di automazione potente utilizzando l'automazione di Azure. Microsoft e hello community di automazione di Azure forniscono i runbook di esempio che consentono di iniziare a creare la propria soluzioni e i runbook di utilità, che è possibile utilizzare come blocchi predefiniti per le attività di automazione più grandi. Iniziare a utilizzare dalla raccolta hello e compilare i piani di ripristino di un solo clic potente per le applicazioni con Azure Site Recovery.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 [Panoramica di Automazione di Azure](http://msdn.microsoft.com/library/azure/dn643629.aspx "Panoramica di Automazione di Azure")

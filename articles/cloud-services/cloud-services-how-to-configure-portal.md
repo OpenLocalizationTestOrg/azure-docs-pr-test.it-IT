@@ -1,6 +1,6 @@
 ---
-title: Come configurare un servizio cloud (portale) | Documentazione Microsoft
-description: Informazioni su come configurare un servizio cloud in Azure. Informazioni su come aggiornare la configurazione del servizio cloud e configurare l'accesso remoto per le istanze del ruolo. Questi esempi utilizzano il portale di Azure.
+title: aaaHow tooconfigure un servizio cloud (portale) | Documenti Microsoft
+description: Informazioni su come dei servizi cloud tooconfigure in Azure. Informazioni di configurazione del servizio cloud tooupdate hello e configurare accesso remoto toorole istanze. Questi esempi utilizzano hello portale di Azure.
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/07/2016
 ms.author: adegeo
-ms.openlocfilehash: a7e891d05ffe4cc2b4f68dce072a81499cc6de80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 969a08558473e8c79153192942bfda587eb5ada5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-cloud-services"></a>Come configurare i servizi cloud
+# <a name="how-tooconfigure-cloud-services"></a>Come tooConfigure dei servizi Cloud
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-how-to-configure-portal.md)
-> * [Portale di Azure classico](cloud-services-how-to-configure.md)
+> * [portale di Azure classico](cloud-services-how-to-configure.md)
 >
 >
 
-È possibile configurare le impostazioni più comuni di un servizio cloud nel portale di Azure. In alternativa, se si preferisce aggiornare direttamente i file di configurazione, scaricare un file di configurazione del servizio da aggiornare, quindi caricare il file aggiornato e aggiornare il servizio cloud con le modifiche apportate alla configurazione. In ogni caso, per gli aggiornamenti della configurazione viene effettuato il push in tutte le istanze del ruolo.
+È possibile configurare le impostazioni di hello più comunemente usato per un servizio cloud nel portale di Azure hello. In alternativa, se si desidera tooupdate i file di configurazione direttamente, scaricare un tooupdate di file di configurazione del servizio e quindi caricare hello aggiornare file e aggiornamento hello servizio cloud con le modifiche alla configurazione di hello. In entrambi i casi, gli aggiornamenti della configurazione hello vengono inviati tooall le istanze del ruolo.
 
-È anche possibile gestire le istanze dei ruoli del servizio cloud o creare una connessione Desktop remoto per tali servizi.
+È inoltre possibile gestire le istanze di hello dei ruoli del servizio cloud o desktop remoto in essi.
 
-Azure può garantire il 99,95 di disponibilità del servizio durante gli aggiornamenti della configurazione solo se si dispone di almeno due istanze del ruolo per ogni ruolo. In questo modo, una macchina virtuale può elaborare le richieste dei client mentre l'altra viene aggiornata. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
+Azure per garantire la disponibilità del servizio al 99,95% durante hello gli aggiornamenti della configurazione se si dispone di almeno due istanze del ruolo per ogni ruolo. Che consente una macchina virtuale tooprocess client richieste durante l'aggiornamento hello altri. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
 
 ## <a name="change-a-cloud-service"></a>Modificare un servizio cloud
-Dopo aver aperto il [portale di Azure](https://portal.azure.com/), passare al servizio cloud. Da qui è possibile gestire molti aspetti.
+Dopo l'apertura hello [portale di Azure](https://portal.azure.com/), passare servizio cloud tooyour. Da qui è possibile gestire molti aspetti.
 
 ![Pagina Impostazioni](./media/cloud-services-how-to-configure-portal/cloud-service.png)
 
-I collegamenti **Impostazioni** o **Tutte le impostazioni** consentono di accedere al pannello **Impostazioni** nel quale è possibile modificare le **proprietà** e la **configurazione**, gestire i **certificati**, configurare le **regole di avviso** e gestire gli **utenti** che hanno accesso a questo servizio cloud.
+Hello **impostazioni** o **tutte le impostazioni** collegamenti determina l'apertura dei hello **impostazioni** pannello in cui è possibile modificare hello **proprietà**, modificare hello **Configurazione**, gestire hello **certificati**, il programma di installazione **regole di avviso**e gestire hello **utenti** che dispongono dell'accesso toothis servizio cloud.
 
 ![Pannello delle impostazioni del servizio cloud di Azure](./media/cloud-services-how-to-configure-portal/cs-settings-blade.png)
 
 ### <a name="manage-guest-os-version"></a>Gestire la versione del sistema operativo guest
 
-Per impostazione predefinita, Azure aggiorna periodicamente il sistema operativo guest all'immagine supportata più recente nella famiglia di sistemi operativi specificata nella configurazione del servizio (file con estensione cscfg), ad esempio Windows Server 2016.
+Per impostazione predefinita, Azure Aggiorna periodicamente il guest immagine del sistema operativo toohello più recenti supportate all'interno di hello famiglia di sistemi operativi specificati nella configurazione del servizio (con estensione cscfg), ad esempio Windows Server 2016.
 
-Se è necessario fare riferimento a una versione specifica del sistema operativo, è possibile configurarla nel pannello **Configurazione**.
+Se è necessario tootarget una specifica versione del sistema operativo, è possibile impostare in hello **configurazione** blade.
 
 ![Configurare la versione del sistema operativo](./media/cloud-services-how-to-configure-portal/cs-settings-config-guestosversion.png)
 
 
 >[!IMPORTANT]
-> La scelta di una versione specifica del sistema operativo comporta la disabilitazione degli aggiornamenti automatici del sistema operativo e rende l'applicazione di patch a carico dell'utente. È necessario assicurarsi che le istanze del ruolo ricevano gli aggiornamenti. In caso contrario, si rischia l'esposizione dell'applicazione a vulnerabilità della sicurezza.
+> La scelta di una versione specifica del sistema operativo comporta la disabilitazione degli aggiornamenti automatici del sistema operativo e rende l'applicazione di patch a carico dell'utente. È necessario assicurarsi che le istanze del ruolo ricezione degli aggiornamenti o potrebbe esporre le vulnerabilità toosecurity l'applicazione.
 
 ## <a name="monitoring"></a>Monitoraggio
-È possibile aggiungere avvisi al servizio cloud. Fare clic su **Impostazioni** > **Regole di avviso** > **Aggiungi avviso**.
+È possibile aggiungere il servizio cloud tooyour di avvisi. Fare clic su **Impostazioni** > **Regole di avviso** > **Aggiungi avviso**.
 
 ![](./media/cloud-services-how-to-configure-portal/cs-alerts.png)
 
-Da qui è possibile configurare un avviso. La casella di riepilogo a discesa **Metrica** consente di configurare un avviso per i tipi di dati seguenti.
+Da qui è possibile configurare un avviso. Con hello **metrica** elenchi a discesa, è possibile configurare un avviso per hello seguenti tipi di dati.
 
 * Lettura disco
 * Scrittura disco
@@ -70,42 +70,42 @@ Da qui è possibile configurare un avviso. La casella di riepilogo a discesa **M
 ![](./media/cloud-services-how-to-configure-portal/cs-alert-item.png)
 
 ### <a name="configure-monitoring-from-a-metric-tile"></a>Configurazione del monitoraggio da un riquadro della metrica
-Invece di usare **Impostazioni** > **Regole di avviso** è possibile fare clic su uno dei riquadri metrici nella sezione **Monitoraggio** del pannello del **servizio cloud**.
+Anziché utilizzare **impostazioni** > **le regole di avviso**, è possibile fare clic su uno dei riquadri di metrica hello in hello **monitoraggio** sezione di hello **Cloud servizio** blade.
 
 ![Monitoraggio del servizio cloud](./media/cloud-services-how-to-configure-portal/cs-monitoring.png)
 
-Da qui è possibile personalizzare il grafico usato con il riquadro oppure aggiungere una regola di avviso.
+Da qui è possibile personalizzare il grafico di hello utilizzato con il riquadro hello o aggiungere una regola di avviso.
 
 ## <a name="reboot-reimage-or-remote-desktop"></a>Riavviare il computer, ricreare l'immagine o creare una connessione Desktop remoto
-In questo momento non è possibile configurare Desktop remoto con il **portale di Azure**. È tuttavia possibile configurarlo con il [portale di Azure classico](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md) o [Visual Studio](../vs-azure-tools-remote-desktop-roles.md).
+In questo momento non è possibile configurare desktop remoto utilizzando hello **portale di Azure**. Tuttavia, è possibile configurarlo tramite hello [portale di Azure classico](cloud-services-role-enable-remote-desktop.md), [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md), o tramite [Visual Studio](../vs-azure-tools-remote-desktop-roles.md).
 
-Per iniziare, fare clic sull'istanza del servizio cloud.
+Fare clic sull'istanza di servizio cloud hello.
 
 ![Istanza del servizio cloud](./media/cloud-services-how-to-configure-portal/cs-instance.png)
 
-Dal pannello visualizzato è possibile avviare una connessione Desktop remoto, riavviare l'istanza o ricrearne l'immagine in remoto (iniziare con un'immagine aggiornata).
+Da hello pannello visualizzato è possibile avviare una connessione desktop remoto, riavviare in remoto hello istanza o in modalità remota istanza hello ricreazione dell'immagine (inizia con un'immagine aggiornata).
 
 ![Pulsanti di istanza del servizio cloud](./media/cloud-services-how-to-configure-portal/cs-instance-buttons.png)
 
 ## <a name="reconfigure-your-cscfg"></a>Riconfigurare il file con estensione cscfg
-Potrebbe essere necessario riconfigurare il servizio cloud con il file di [configurazione del servizio (CSCFG)](cloud-services-model-and-package.md#cscfg). È prima necessario scaricare il file con estensione cscfg, modificarlo, quindi caricarlo.
+Potrebbe essere necessario tooreconfigure il servizio cloud tramite hello [configurazione del servizio (cscfg)](cloud-services-model-and-package.md#cscfg) file. È necessario innanzitutto toodownload il file con estensione cscfg del file, modificarlo e caricarlo.
 
-1. Fare clic sull'icona **Impostazioni** o sul collegamento **Tutte le impostazioni** per aprire il pannello **Impostazioni**.
+1. Fare clic su hello **impostazioni** icona o hello **tutte le impostazioni** collegamento tooopen backup hello **impostazioni** blade.
 
     ![Pagina Impostazioni](./media/cloud-services-how-to-configure-portal/cloud-service.png)
-2. Fare clic sull’elemento **Configurazione** .
+2. Fare clic su hello **configurazione** elemento.
 
     ![Blade Configurazione](./media/cloud-services-how-to-configure-portal/cs-settings-config.png)
-3. Fare clic sul pulsante **Download** .
+3. Fare clic su hello **scaricare** pulsante.
 
-    ![Download](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-download.png)
-4. Dopo aver aggiornato il file di configurazione del servizio, caricare e applicare gli aggiornamenti della configurazione:
+    ![Scaricare](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-download.png)
+4. Dopo aver aggiornato il file di configurazione servizio hello, caricare e applicare gli aggiornamenti della configurazione hello:
 
-    ![Caricamento](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-upload.png)
-5. Selezionare il file con estensione cscfg e fare clic su **OK**.
+    ![Carica](./media/cloud-services-how-to-configure-portal/cs-settings-config-panel-upload.png)
+5. Selezionare i file con estensione cscfg hello e fare clic su **OK**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Procedura [distribuire un servizio cloud](cloud-services-how-to-create-deploy-portal.md).
+* Informazioni su come troppo[distribuire un servizio cloud](cloud-services-how-to-create-deploy-portal.md).
 * Configurare un [nome di dominio personalizzato](cloud-services-custom-domain-name-portal.md).
 * [Gestire il servizio cloud](cloud-services-how-to-manage-portal.md).
 * Configurare i [certificati ssl](cloud-services-configure-ssl-certificate-portal.md).

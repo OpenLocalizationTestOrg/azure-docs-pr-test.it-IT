@@ -1,6 +1,6 @@
 ---
-title: Abilitare la sincronizzazione offline con le app per dispositivi mobili per iOS | Documentazione Microsoft
-description: Informazioni su come usare le app per dispositivi mobili del servizio app di Azure per memorizzare i dati nella cache e sincronizzarli offline nelle app iOS.
+title: sincronizzazione non in linea aaaEnable con App per dispositivi mobili iOS | Documenti Microsoft
+description: Informazioni su come toouse Azure App Service App per dispositivi mobili toocache e sincronizzazione dati offline nelle applicazioni iOS.
 documentationcenter: ios
 author: ggailey777
 manager: syntaxc4
@@ -14,57 +14,57 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 44c0d26b2d7d28322d436d4bda319d728c31a635
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 570ea7cf6694ab7317c977331038929b64508ad3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-offline-syncing-with-ios-mobile-apps"></a>Sincronizzare offline le app per dispositivi mobili iOS
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>Panoramica
-Questa esercitazione illustra come eseguire la sincronizzazione offline con la funzionalità App per dispositivi mobili di Servizio app di Azure per iOS. La sincronizzazione offline consente agli utenti finali di usare un'app per dispositivi mobili per visualizzare, aggiungere o modificare dati anche in assenza di una connessione di rete. Le modifiche vengono archiviate in un database locale. Quando il dispositivo viene connesso nuovamente alla rete, le modifiche vengono sincronizzate con il back-end remoto.
+In questa esercitazione vengono illustrate la sincronizzazione non in linea con le funzionalità di App per dispositivi mobili hello di servizio App di Azure per iOS. Con gli utenti finali di sincronizzazione non in linea possono interagire con un tooview app per dispositivi mobili, aggiungere o modificare i dati, anche quando non dispongono di alcuna connessione di rete. Le modifiche vengono archiviate in un database locale. Dopo che il dispositivo di hello è online, le modifiche di hello vengono sincronizzate con hello remoto back-end.
 
-Se questa è la prima esperienza con la funzionalità App per dispositivi mobili, è consigliabile completare prima l'esercitazione [Creare un'app iOS]. Se non si usa il progetto server di avvio rapido scaricato, è necessario aggiungere al progetto i pacchetti di estensione per l'accesso ai dati. Per altre informazioni sui pacchetti di estensione server, vedere l'articolo relativo all' [utilizzo dell'SDK del server back-end .NET per app per dispositivi mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Se questa è la prima esperienza con App per dispositivi mobili, è necessario completare prima esercitazione hello [crea un'App iOS]. Se non si utilizza il progetto di avvio rapido server hello scaricato, è necessario aggiungere il progetto tooyour pacchetti di hello accesso ai dati estensione. Per ulteriori informazioni sui pacchetti di estensione di server, vedere [funziona con server di back-end .NET hello SDK per App mobili di Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-Per altre informazioni sulla funzionalità di sincronizzazione offline, vedere l'argomento [Sincronizzazione di dati offline nelle app per dispositivi mobili].
+toolearn sulle funzionalità di sincronizzazione non in linea hello, vedere [sincronizzazione dati Offline nelle App per dispositivi mobili].
 
-## <a name="review-sync"></a>Verificare il codice di sincronizzazione del client
-Il progetto client scaricato per l'esercitazione [Creare un'app iOS] contiene già il codice che supporta la sincronizzazione offline mediante un database basato sui dati principali locali. Questa sezione riepiloga gli elementi già inclusi nel codice dell'esercitazione. Per una panoramica concettuale della funzionalità, vedere [Sincronizzazione di dati offline nelle app per dispositivi mobili].
+## <a name="review-sync"></a>Esaminare il codice di sincronizzazione client hello
+progetto client Hello scaricati per hello [crea un'App iOS] esercitazione contiene già codice che supporta la sincronizzazione non in linea utilizzando un database locale basato su dati di base. Questa sezione vengono riepilogati gli elementi che è già inclusi nel codice dell'esercitazione hello. Per informazioni generali sulla funzionalità hello, vedere [sincronizzazione dati Offline nelle App per dispositivi mobili].
 
-La funzionalità di sincronizzazione dei dati offline di App per dispositivi mobili consente agli utenti finali di interagire con un database locale quando la rete non è disponibile. Per usare queste funzionalità nell'app, è possibile inizializzare il contesto di sincronizzazione di `MSClient` e fare riferimento a un archivio locale. Fare quindi riferimento alla tabella tramite l'interfaccia **MSSyncTable**.
+Tramite funzionalità di sincronizzazione di dati non in linea di hello di App per dispositivi mobili, gli utenti finali possono interagire con un database locale anche quando la rete hello è inaccessibile. toouse queste funzionalità nell'applicazione, inizializzare il contesto di sincronizzazione hello di `MSClient` e fare riferimento a un archivio locale. Quindi si fa riferimento la tabella tramite hello **MSSyncTable** interfaccia.
 
-In **QSTodoService.m** (Objective-C) o **ToDoTableViewController.swift** (Swift) si noti che il tipo del membro **syncTable** è **MSSyncTable**. La sincronizzazione offline usa questa interfaccia della tabella di sincronizzazione al posto di **MSTable**. Quando si usa una tabella di sincronizzazione, tutte le operazioni vengono inviate all'archivio locale e vengono sincronizzate con il back-end remoto solo mediante operazioni push e pull esplicite.
+In **QSTodoService.m** (Objective-C) o **ToDoTableViewController.swift** (Agile), si noti che il tipo di membro hello hello **syncTable** è  **MSSyncTable**. La sincronizzazione offline usa questa interfaccia della tabella di sincronizzazione al posto di **MSTable**. Quando si utilizza una tabella di sincronizzazione, tutte le operazioni passare archivio locale toohello e vengono sincronizzate solo con hello remoto back-end con esplicita push e pull operazioni.
 
- Per ottenere un riferimento a una tabella di sincronizzazione, usare il metodo **syncTableWithName** su `MSClient`. Per rimuovere la funzionalità di sincronizzazione offline, usare invece **tableWithName**.
+ tooget una tabella di riferimento tooa sincronizzazione, utilizzare hello **syncTableWithName** metodo `MSClient`. la funzionalità di sincronizzazione non in linea di tooremove, utilizzare **tableWithName** invece.
 
-Prima di poter eseguire qualsiasi operazione su tabella, è necessario inizializzare l'archivio locale. Di seguito è riportato il codice pertinente.
+Prima di possono eseguire qualsiasi operazione di tabella, è necessario inizializzare l'archivio locale hello. Ecco il codice pertinente hello:
 
-* **Objective-C**: Nel metodo **QSTodoService.init**:
+* **Objective-C**: In hello **QSTodoService.init** metodo:
 
    ```objc
    MSCoreDataStore *store = [[MSCoreDataStore alloc] initWithManagedObjectContext:context];
    self.client.syncContext = [[MSSyncContext alloc] initWithDelegate:nil dataSource:store callback:nil];
    ```    
-* **Swift**: Nel metodo **ToDoTableViewController.viewDidLoad**:
+* **Swift**: In hello **ToDoTableViewController.viewDidLoad** metodo:
 
    ```swift
-   let client = MSClient(applicationURLString: "http:// ...") // URI of the Mobile App
+   let client = MSClient(applicationURLString: "http:// ...") // URI of hello Mobile App
    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
    self.store = MSCoreDataStore(managedObjectContext: managedObjectContext)
    client.syncContext = MSSyncContext(delegate: nil, dataSource: self.store, callback: nil)
    ```
-   Questo metodo crea un archivio locale usando l'interfaccia `MSCoreDataStore`, disponibile in Mobile Apps SDK. È anche possibile fornire un archivio locale differente, implementando il protocollo `MSSyncContextDataSource`. Il primo parametro di **MSSyncContext** viene usato per specificare un gestore di conflitti. Poiché è stato passato `nil`, si otterrà il gestore di conflitti predefinito, che non consente l'esecuzione di operazioni in caso di conflitto.
+   Questo metodo crea un archivio locale tramite hello `MSCoreDataStore` fornisce l'interfaccia che hello Mobile App SDK. In alternativa, è possibile fornire un archivio locale diverso implementando hello `MSSyncContextDataSource` protocollo. Inoltre, hello primo parametro di **MSSyncContext** è toospecify utilizzato un gestore del conflitto. Perché è stato passato `nil`, si ottiene gestore di conflitti di hello predefinito, non riesce in eventuali conflitti.
 
-A questo punto, si esegue l'operazione effettiva di sincronizzazione e si ottengono i dati dal back-end remoto.
+A questo punto, consente un'operazione di sincronizzazione effettivo hello e ottenere dati dal back-end hello remoto:
 
-* **Objective-C**: `syncData` effettua innanzitutto il push delle nuove modifiche e quindi chiama il metodo **pullData** per ottenere i dati dal back-end remoto. A sua volta, il metodo **pullData** ottiene nuovi dati che corrispondono a una query:
+* **Objective-C**: `syncData`Invia le nuove modifiche e quindi chiama **pullData** dati tooget dal back-end hello remoto. A sua volta, hello **pullData** metodo consente di ottenere nuovi dati che corrispondono a una query:
 
    ```objc
    -(void)syncData:(QSCompletionBlock)completion
    {
-       // Push all changes in the sync context, and then pull new data.
+       // Push all changes in hello sync context, and then pull new data.
        [self.client.syncContext pushWithCompletion:^(NSError *error) {
            [self logErrorIfNotNil:error];
            [self pullData:completion];
@@ -75,13 +75,13 @@ A questo punto, si esegue l'operazione effettiva di sincronizzazione e si otteng
    {
        MSQuery *query = [self.syncTable query];
 
-       // Pulls data from the remote server into the local table.
-       // We're pulling all items and filtering in the view.
+       // Pulls data from hello remote server into hello local table.
+       // We're pulling all items and filtering in hello view.
        // Query ID is used for incremental sync.
        [self.syncTable pullWithQuery:query queryId:@"allTodoItems" completion:^(NSError *error) {
            [self logErrorIfNotNil:error];
 
-           // Lets the caller know that we have finished.
+           // Lets hello caller know that we have finished.
            if (completion != nil) {
                dispatch_async(dispatch_get_main_queue(), completion);
            }
@@ -100,18 +100,18 @@ A questo punto, si esegue l'operazione effettiva di sincronizzazione e si otteng
 
           if error != nil {
               // A real application would handle various errors like network conditions,
-              // server conflicts, etc via the MSSyncContextDelegate
+              // server conflicts, etc via hello MSSyncContextDelegate
               print("Error: \(error!.description)")
 
-              // We will discard our changes and keep the server's copy for simplicity
+              // We will discard our changes and keep hello server's copy for simplicity
               if let opErrors = error!.userInfo[MSErrorPushResultKey] as? Array<MSTableOperationError> {
                   for opError in opErrors {
-                      print("Attempted operation to item \(opError.itemId)")
+                      print("Attempted operation tooitem \(opError.itemId)")
                       if (opError.operation == .Insert || opError.operation == .Delete) {
                           print("Insert/Delete, failed discarding changes")
                           opError.cancelOperationAndDiscardItemWithCompletion(nil)
                       } else {
-                          print("Update failed, reverting to server's copy")
+                          print("Update failed, reverting tooserver's copy")
                           opError.cancelOperationAndUpdateItem(opError.serverItem!, completion: nil)
                       }
                   }
@@ -122,35 +122,35 @@ A questo punto, si esegue l'operazione effettiva di sincronizzazione e si otteng
    }
    ```
 
-Nella versione Objective-C, in `syncData`, viene innanzitutto chiamato il metodo **pushWithCompletion** nel contesto di sincronizzazione. Questo metodo fa parte di `MSSyncContext` (e non della tabella di sincronizzazione) perché effettua il push delle modifiche in tutte le tabelle. Solo i record che sono stati in qualche modo modificati localmente (tramite le operazioni CUD) vengono inviati al server. Viene quindi chiamato l'helper **pullData**, che chiama **MSSyncTable.pullWithQuery** per recuperare i dati remoti e memorizzarli nel database locale.
+Nella versione di hello Objective-C, in `syncData`, viene innanzitutto chiamato **pushWithCompletion** nel contesto di sincronizzazione hello. Questo metodo è un membro di `MSSyncContext` (e non hello sincronizzazione tabella) Poiché inserisce le modifiche apportate in tutte le tabelle. Solo i record che sono stati modificati in qualche modo localmente (tramite le operazioni CUD) vengono inviati toohello server. Quindi hello helper **pullData** viene chiamato, che chiama **MSSyncTable.pullWithQuery** dati remoti tooretrieve e archiviarla nel database locale hello.
 
-Nella versione Swift, poiché l'operazione push non è strettamente necessaria, non vi è alcuna chiamata a **pushWithCompletion**. Se nel contesto di sincronizzazione per la tabella che esegue un'operazione push sono presenti modifiche in sospeso, pull effettua sempre prima un'operazione push. Tuttavia, se sono presenti più tabelle di sincronizzazione, è preferibile chiamare in modo esplicito il push per garantire la coerenza tra le tabelle correlate.
+Nella versione Swift hello, perché l'operazione di push hello non sia strettamente necessario, non vi è alcuna chiamata troppo**pushWithCompletion**. Se sono state apportate modifiche in sospeso nel contesto di sincronizzazione hello per tabella hello che esegue un'operazione push, pull genera sempre prima di push. Tuttavia, se si dispone di più di una tabella di sincronizzazione, è migliore tooexplicitly chiamata push tooensure che tutto sia coerenza tra le tabelle correlate.
 
-Sia nella versione Objective-C che nella versione Swift, è possibile usare il metodo **pullWithQuery** per specificare una query per filtrare i record da recuperare. In questo esempio, la query recupera tutti i record nella tabella `TodoItem` remota.
+In hello Objective-C e nelle versioni Swift, è possibile utilizzare hello **pullWithQuery** toospecify metodo toofilter una query hello record che si desidera tooretrieve. In questo esempio, query hello recupera tutti i record di hello remoto `TodoItem` tabella.
 
-Il secondo parametro di **pullWithQuery** è un ID di query che viene usato per la *sincronizzazione incrementale*. La sincronizzazione incrementale recupera solo i record che sono stati modificati dopo l'ultima sincronizzazione, usando il timestamp `UpdatedAt` del record denominato `updatedAt` nell'archivio locale. L'ID di query deve essere una stringa descrittiva univoca per ogni query logica presente nell'app. Per rifiutare esplicitamente la sincronizzazione incrementale, passare `nil` come ID di query. Questo approccio può potenzialmente non essere efficiente, perché recupera tutti i record ad ogni operazione pull.
+secondo parametro di Hello **pullWithQuery** è un ID di query che viene utilizzato per *sincronizzazione incrementale*. Sincronizzazione incrementale recupera solo i record che sono stati modificati dall'ultima sincronizzazione hello, utilizzo del record hello `UpdatedAt` timestamp (chiamato `updatedAt` nell'archivio locale di hello.) hello query ID deve essere una stringa descrittiva che è univoca per ogni query nella logica l'app. tooopt non sincronizzati incrementale, passare `nil` come hello ID di query. Questo approccio può potenzialmente non essere efficiente, perché recupera tutti i record ad ogni operazione pull.
 
-L'app Objective-C esegue la sincronizzazione quando si modificano o si aggiungono dati, quando un utente esegue l'aggiornamento e all'avvio.
+app di Hello Objective-C esegue la sincronizzazione quando si modifica o aggiungere dati, quando un utente esegue l'azione di aggiornamento hello e all'avvio.
 
-L'app Swift esegue la sincronizzazione quando l'utente esegue l'aggiornamento e all'avvio.
+Consente di sincronizzare Hello Swift app quando l'utente hello esegue l'azione di aggiornamento hello e all'avvio.
 
-Poiché l'app esegue la sincronizzazione ogni volta che i dati vengono modificati (Objective-C) oppure a ogni avvio dell'applicazione (Objective-C e Swift), l'app presuppone che l'utente sia online. In un'altra sezione, l'app verrà aggiornata in modo che gli utenti possano apportare modifiche anche quando sono offline.
+Sincronizzazioni app ogni volta che i dati sono hello modificato (Objective-C) o ogni volta che l'applicazione hello all'avvio (Objective-C e Swift), applicazione hello presuppone che l'utente hello è online. In una sezione successiva, si aggiornerà app hello in modo che gli utenti possono modificare anche quando sono in linea.
 
-## <a name="review-core-data"></a>Esaminare il modello di Core Data
-Quando si usa l'archivio offline Core Data, è necessario definire particolari tabelle e campi all'interno del modello di dati. L'app di esempio include già un modello di dati nel formato corretto. Questa sezione illustra le tabelle e il relativo uso.
+## <a name="review-core-data"></a>Modello di dati principali hello revisione
+Quando si utilizza l'archivio non in linea di hello dati principali, è necessario definire tabelle specifiche e i campi nel modello di dati. app di esempio Hello include già un modello di dati con formato corretto hello. In questa sezione vengono illustrate le tooshow tali tabelle le modalità di utilizzo.
 
-Aprire **QSDataModel.xcdatamodeld**. Qui sono definite quattro tabelle, tre usate dall'SDK e una per gli elementi attività:
-  * MS_TableOperations: tiene traccia degli elementi da sincronizzare con il server.
+Aprire **QSDataModel.xcdatamodeld**. Sono quattro tabelle definito tre utilizzati da hello SDK e uno che viene utilizzato per attività hello voci:
+  * MS_TableOperations: Tracce hello elementi che richiedono toobe sincronizzati con il server di hello.
   * MS_TableOperationErrors: tiene traccia di eventuali errori che si verificano durante la sincronizzazione offline.
-  * MS_TableConfig: tiene traccia dell'ora dell'ultimo aggiornamento dell'ultima operazione di sincronizzazione per tutte le operazioni pull.
-  * TodoItem: archivia gli elementi attività. Le colonne di sistema **createdAt**, **updatedAt** e **version** sono proprietà di sistema facoltative.
+  * MS_TableConfig: Tracce hello ora dell'ultimo aggiornamento per l'operazione di sincronizzazione per tutte le operazioni pull ultimo hello.
+  * TodoItem: Archivia gli elementi di attività da eseguire hello. le colonne di sistema di Hello **createdAt**, **updatedAt**, e **versione** sono proprietà di sistema facoltativo.
 
 > [!NOTE]
-> Mobile Apps SDK si riserva i nomi di colonna che iniziano con "**``**". Usare questo prefisso solo per le colonne di sistema. In caso contrario, quando si usa il back-end remoto, i nomi di colonna vengono modificati.
+> Hello Mobile App SDK riserva i nomi di colonna che iniziano con "**``**". Usare questo prefisso solo per le colonne di sistema. In caso contrario, i nomi di colonna vengono modificati quando si utilizza hello remoto back-end.
 >
 >
 
-Quando si usa la funzionalità di sincronizzazione offline, definire le tre tabelle di sistema e la tabella dati.
+Quando si utilizza la funzionalità di sincronizzazione non in linea hello, definire tre tabelle di sistema hello e una tabella di dati hello.
 
 ### <a name="system-tables"></a>Tabelle di sistema
 
@@ -199,24 +199,24 @@ Quando si usa la funzionalità di sincronizzazione offline, definire le tre tabe
 | id | Stringa, contrassegnata come obbligatoria |chiave primaria nell'archivio remoto |
 | complete | Boolean | campo elemento ToDo |
 | text |String |campo elemento ToDo |
-| createdAt | Data | (facoltativo) viene mappato alla proprietà di sistema **createdAt** |
-| updatedAt | Data | (facoltativo) viene mappato alla proprietà di sistema **updatedAt** |
-| version | string | (facoltativo) viene usato per il rilevamento dei conflitti, viene mappato a version |
+| createdAt | Date | (facoltativo) Esegue il mapping troppo**createdAt** proprietà di sistema |
+| updatedAt | Date | (facoltativo) Esegue il mapping troppo**updatedAt** proprietà di sistema |
+| version | String | (facoltativo) È in conflitto toodetect usato, tooversion mappe |
 
-## <a name="setup-sync"></a>Modificare il comportamento di sincronizzazione dell'app
-In questa sezione si modifica l'app in modo che non esegua la sincronizzazione all'avvio o quando si inseriscono e si aggiornano elementi, bensì solo quando si seleziona il pulsante di aggiornamento.
+## <a name="setup-sync"></a>Modificare il comportamento di sincronizzazione hello di hello app
+In questa sezione è modificare app hello in modo che non sincronizza avvio dell'app o quando si inserisce e aggiornare gli elementi. Viene eseguita la sincronizzazione solo quando viene eseguita pulsante di azione di aggiornamento hello.
 
 **Objective-C**:
 
-1. In **QSTodoListViewController.m** modificare il metodo **viewDidLoad** per rimuovere la chiamata a `[self refresh]` alla fine del metodo. A questo punto i dati non vengono sincronizzati con il server all'avvio dell'app. Sono invece sincronizzati con il contenuto dell'archivio locale.
-2. In **QSTodoService.m** modificare la definizione di `addItem` in modo che non esegua la sincronizzazione dopo l'inserimento dell'elemento. Rimuovere il blocco `self syncData` e sostituirlo con quanto segue:
+1. In **QSTodoListViewController.m**, modificare hello **viewDidLoad** tooremove metodo hello chiamata troppo`[self refresh]` alla fine di hello del metodo hello. Dati hello ora non è sincronizzati con il server di hello all'avvio dell'app. Invece viene sincronizzata con il contenuto di hello dell'archivio locale di hello.
+2. In **QSTodoService.m**, modificare la definizione di hello `addItem` in modo che non sincronizzato dopo l'inserimento dell'elemento hello. Rimuovere hello `self syncData` blocco e sostituirlo con il seguente hello:
 
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
    }
    ```
-3. Modificare la definizione di `completeItem` come indicato in precedenza. Rimuovere il blocco per `self syncData` e sostituirlo con il codice seguente:
+3. Modificare la definizione di hello `completeItem` come indicato in precedenza. Rimuovere il blocco di hello per `self syncData` e sostituirlo con il seguente hello:
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
@@ -225,17 +225,17 @@ In questa sezione si modifica l'app in modo che non esegua la sincronizzazione a
 
 **Swift**:
 
-In `viewDidLoad` in **ToDoTableViewController.swift** impostare un commento per queste due righe per interrompere la sincronizzazione all'avvio dell'app. Al momento della stesura di questo articolo, l'app Swift Todo non aggiorna il servizio quando un utente aggiunge o completa un elemento. Aggiorna il servizio solo all'avvio.
+In `viewDidLoad`nella **ToDoTableViewController.swift**, impostare come commento le righe di due hello riportati di seguito, toostop la sincronizzazione all'avvio dell'app. In fase di hello della redazione del presente documento, app Todo Swift hello non aggiorna servizio hello quando un utente aggiunge o completato un elemento. Aggiorna servizio hello solo all'avvio di app.
 
    ```swift
   self.refreshControl?.beginRefreshing()
   self.onRefresh(self.refreshControl)
 ```
 
-## <a name="test-app"></a>Test dell'app
-In questa sezione, ci si collega a un URL non valido per simulare uno scenario offline. Quando si aggiungono elementi di dati, questi vengono conservati nell'archivio Core Data locale, ma non vengono sincronizzati con il back-end dell'app per dispositivi mobili.
+## <a name="test-app"></a>Test hello app
+In questa sezione è connettersi toosimulate URL non valido di tooan uno scenario non in linea. Quando si aggiungono elementi di dati, si è mantenuti in hello archivio locale dei dati di base, ma non è sincronizzati con hello app mobile back-end.
 
-1. Modificare l'URL dell'app per dispositivi mobili in **QSTodoService.m** con un URL non valido ed eseguire di nuovo l'app:
+1. Modifica URL di app per dispositivi mobili hello in **QSTodoService.m** tooan URL non valido e nuovamente l'applicazione hello esecuzione:
 
    **Objective-C**: In QSTodoService.m:
    ```objc
@@ -245,44 +245,44 @@ In questa sezione, ci si collega a un URL non valido per simulare uno scenario o
    ```swift
    let client = MSClient(applicationURLString: "https://sitename.azurewebsites.net.fail")
    ```
-2. Aggiungere alcuni elementi attività. Uscire dal simulatore (o forzare la chiusura dell'app) e riavviare. Verificare che le modifiche siano state conservate.
+2. Aggiungere alcuni elementi attività. Chiudere il simulatore hello (o app hello chiusura forzata) e quindi riavviarlo. Verificare che le modifiche siano state conservate.
 
-3. Visualizzare il contenuto della tabella **TodoItem** remota:
-   * Per un back-end Node.js, passare al [portale di Azure](https://portal.azure.com/) e nel back-end dell'app per dispositivi mobili fare clic su **Tabelle semplici** > **TodoItem**.  
+3. Visualizzare il contenuto di hello di hello remoto **TodoItem** tabella:
+   * Per un back-end di Node.js, visitare toohello [portale di Azure](https://portal.azure.com/) e il back-end di app per dispositivi mobili, fare clic su **tabelle facile** > **TodoItem**.  
    * Per il back-end .NET, usare uno strumento SQL, quale ad esempio SQL Server Management Studio, oppure un client REST, quale ad esempio Fiddler o Postman.  
 
-4. Verificare che i nuovi elementi *non* siano stati sincronizzati con il server.
+4. Verificare che dispongano di nuovi elementi hello *non* stato sincronizzato con il server di hello.
 
-5. Ripristinare l'URL corretto in **QSTodoService.m** ed eseguire di nuovo l'applicazione.
+5. Modifica hello URL nascosto toohello correggere uno in **QSTodoService.m**e app hello eseguire di nuovo.
 
-6. Eseguire il movimento di aggiornamento spostando verso il basso l'elenco di elementi.  
+6. Eseguire l'operazione di aggiornamento di hello trascinando verso il basso elenco hello degli elementi.  
 Verrà visualizzato un indicatore di avanzamento.
 
-7. Visualizzare nuovamente i dati di **TodoItem**. Gli elementi attività nuovi e modificati dovrebbero essere a questo punto visualizzati.
+7. Hello vista **TodoItem** nuovamente i dati. gli elementi di attività nuove e modificate di Hello dovrebbero essere ora visualizzati.
 
 ## <a name="summary"></a>Riepilogo
-Per supportare la funzionalità di sincronizzazione offline è stata usata l'interfaccia `MSSyncTable` ed è stato inizializzato `MSClient.syncContext` con un archivio locale. In questo caso l'archivio locale era un database basato su Core Data.
+funzionalità di sincronizzazione non in linea toosupport hello, abbiamo utilizzato hello `MSSyncTable` l'interfaccia e inizializzato `MSClient.syncContext` con un archivio locale. In questo caso, archivio locale hello è un database basato su dati di base.
 
-Quando si usa un archivio locale Core Data, è necessario definire varie tabelle con le [proprietà di sistema corrette](#review-core-data).
+Quando si utilizza un archivio locale dei dati di base, è necessario definire più tabelle con hello [correggere le proprietà di sistema](#review-core-data).
 
-Le normali operazioni CRUD (create, read, update, delete) per le app per dispositivi mobili funzionano come se l'app fosse connessa alla rete, ma tutte le operazioni si verificano nell'archivio locale.
+normale Hello creare, leggere, aggiornare ed eliminazione (CRUD) per il lavoro App per dispositivi mobili, come se l'applicazione hello è ancora connesso, ma si verificano tutte le operazioni di hello sull'archivio locale hello.
 
-Quando l'archivio locale è stato sincronizzato con il server, è stato usato il metodo **MSSyncTable.pullWithQuery**.
+Quando l'archivio locale hello è sincronizzato con server hello, abbiamo utilizzato hello **MSSyncTable.pullWithQuery** metodo.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
-* [Sincronizzazione di dati offline nelle app per dispositivi mobili]
-* [Cloud Cover: Sincronizzazione offline in Servizi mobili di Azure] \(Il video è relativo a Servizi mobili, ma la sincronizzazione offline delle app per dispositivi mobili funziona in modo analogo.\)
+* [sincronizzazione dati Offline nelle App per dispositivi mobili]
+* [Cloud Cover: La sincronizzazione non in linea in servizi mobili di Azure] \(hello video è servizi mobili, ma non in linea App per dispositivi mobili funziona la sincronizzazione in modo analogo.\)
 
 <!-- URLs. -->
 
 
-[Creare un'app iOS]: app-service-mobile-ios-get-started.md
-[Sincronizzazione di dati offline nelle app per dispositivi mobili]: app-service-mobile-offline-data-sync.md
+[crea un'App iOS]: app-service-mobile-ios-get-started.md
+[sincronizzazione dati Offline nelle App per dispositivi mobili]: app-service-mobile-offline-data-sync.md
 
 [defining-core-data-tableoperationerrors-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableoperationerrors-entity.png
 [defining-core-data-tableoperations-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableoperations-entity.png
 [defining-core-data-tableconfig-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableconfig-entity.png
 [defining-core-data-todoitem-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-todoitem-entity.png
 
-[Cloud Cover: Sincronizzazione offline in Servizi mobili di Azure]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
+[Cloud Cover: La sincronizzazione non in linea in servizi mobili di Azure]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/en-us/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/

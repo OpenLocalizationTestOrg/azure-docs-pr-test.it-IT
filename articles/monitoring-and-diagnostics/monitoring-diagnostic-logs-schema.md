@@ -1,6 +1,6 @@
 ---
-title: Servizi e schemi supportati per i log di Diagnostica di Azure | Microsoft Docs
-description: Informazioni sullo schema di eventi e i servizi per i log di Diagnostica di Azure.
+title: aaaAzure schemi e i servizi supportati log diagnostici | Documenti Microsoft
+description: Comprendere hello supportati servizi e allo schema di eventi per i log di diagnostica di Azure.
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: aa4fa6e0310b2725005dfa34e3225c89fb4282d6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a3cbf5267e1bd0dc257f4fb4f42c323644046a6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-services-schemas-and-categories-for-azure-diagnostic-logs"></a>Servizi, schemi e categorie supportati per i log di Diagnostica di Azure
 
-I [log di diagnostica delle risorse di Azure](monitoring-overview-of-diagnostic-logs.md) vengono generati dalle risorse di Azure e descrivono il funzionamento di tale risorsa. Questi log sono specifici del tipo di risorsa. In questo articolo vengono descritti l'insieme di servizi supportati e lo schema eventi per gli eventi generati da ogni servizio. Questo articolo include anche un elenco completo delle categorie di log disponibili per ogni tipo di risorsa.
+[I log di diagnostica di risorse di Azure](monitoring-overview-of-diagnostic-logs.md) sono registri generati da risorse di Azure che descrivono il funzionamento di hello di tale risorsa. Questi log sono specifici del tipo di risorsa. In questo articolo si descrive il set di hello dello schema di servizi ed evento supportato per gli eventi generati da ogni servizio. Questo articolo include anche un elenco completo delle categorie di log disponibili per ogni tipo di risorsa.
 
 ## <a name="supported-services-and-schemas-for-resource-diagnostic-logs"></a>Servizi e schemi supportati per i log di diagnostica delle risorse
-Lo schema per i log di diagnostica di risorsa varia a seconda della risorsa e della categoria di log.   
+schema Hello per i log di diagnostica di risorse varia a seconda della categoria di risorse e di log hello.   
 
 | Service | Schema e documenti |
 | --- | --- |
@@ -52,12 +52,12 @@ Lo schema per i log di diagnostica di risorsa varia a seconda della risorsa e de
 ## <a name="supported-log-categories-per-resource-type"></a>Categorie di log supportate per tipo di risorsa
 |Tipo di risorsa|Categoria|Nome visualizzato della categoria|
 |---|---|---|
-|Microsoft.ApiManagement/service|GatewayLogs|Log correlati ad ApiManagement Gateway|
+|Microsoft.ApiManagement/service|GatewayLogs|Log relativi tooApiManagement Gateway|
 |Microsoft.Automation/automationAccounts|JobLogs|Log del processo|
 |Microsoft.Automation/automationAccounts|JobStreams|Flussi del processo|
 |Microsoft.Automation/automationAccounts|DscNodeStatus|Stato del nodo Dsc|
 |Microsoft.Batch/batchAccounts|ServiceLog|Log del servizio|
-|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|Ottiene le metriche dell'endpoint, ad esempio la larghezza di banda, i dati in uscita e così via|
+|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|Ottiene la metrica di hello dell'endpoint di hello, ad esempio, la larghezza di banda in uscita, e così via.|
 |Microsoft.CustomerInsights/hubs|AuditEvents|Eventi di controllo|
 |Microsoft.DataLakeAnalytics/accounts|Audit|Log di controllo|
 |Microsoft.DataLakeAnalytics/accounts|Requests|Log delle richieste|
@@ -89,6 +89,6 @@ Lo schema per i log di diagnostica di risorsa varia a seconda della risorsa e de
 ## <a name="next-steps"></a>Passaggi successivi
 
 * [Altre informazioni sui log di diagnostica](monitoring-overview-of-diagnostic-logs.md)
-* [Trasmettere log di diagnostica di Azure a **Hub eventi**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [Modificare le impostazioni di diagnostica di risorsa usando l'API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [I log di diagnostica di risorse di flusso troppo**hub eventi**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Modificare le impostazioni di diagnostica di risorse utilizzando l'API REST di Azure Monitor hello](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [Analizzare i log di Archiviazione di Azure con Log Analytics](../log-analytics/log-analytics-azure-storage.md)

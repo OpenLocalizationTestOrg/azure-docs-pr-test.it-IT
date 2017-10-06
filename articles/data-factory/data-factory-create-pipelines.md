@@ -1,6 +1,6 @@
 ---
-title: "Creare e pianificare pipeline e concatenare attività in Data Factory | Documentazione Microsoft"
-description: Informazioni su come creare una pipeline di dati in Azure Data Factory per spostare e trasformare i dati. Creare un flusso di lavoro basato sui dati per produrre informazioni pronte per l'uso.
+title: "Pipeline di aaaCreate/pianificazione, le attività di catena in Data Factory | Documenti Microsoft"
+description: Informazioni su una pipeline di dati in Azure Data Factory toomove toocreate e trasformare i dati. Creare un dati basato su informazioni toouse pronto tooproduce di flusso di lavoro.
 keywords: pipeline di dati, flusso di lavoro basato sui dati
 services: data-factory
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/12/2017
 ms.author: shlo
-ms.openlocfilehash: 97cdd38488bd52b04d24ab2b413cae99355b77c0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4a0fc20f98ce6453c16955e97fddb891926c173a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="pipelines-and-activities-in-azure-data-factory"></a>Pipeline e attività in Azure Data Factory
-Questo articolo fornisce informazioni sulle pipeline e sulle attività in Azure Data Factory e su come usarle per creare flussi di lavoro completi basati sui dati per gli scenari di elaborazione e trasferimento dei dati.  
+In questo articolo consente di comprendere le pipeline e attività nella Data Factory di Azure e usarli tooconstruct end-to-end basato sui dati dei flussi di lavoro per lo spostamento dei dati e gli scenari di elaborazione dei dati.  
 
 > [!NOTE]
-> Questo articolo è da leggersi dopo aver consultato l' [Introduzione a Data factory di Azure](data-factory-introduction.md). Se non si ha esperienza diretta nella creazione di data factory, l'[esercitazione sulla trasformazione dei dati](data-factory-build-your-first-pipeline.md) e/o [quella sullo spostamento dei dati](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) può essere utile per comprendere meglio questo articolo.  
+> Questo articolo si presuppone che sia già stata consultata [tooAzure introduzione Data Factory](data-factory-introduction.md). Se non si ha esperienza diretta nella creazione di data factory, l'[esercitazione sulla trasformazione dei dati](data-factory-build-your-first-pipeline.md) e/o [quella sullo spostamento dei dati](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) può essere utile per comprendere meglio questo articolo.  
 
 ## <a name="overview"></a>Panoramica
-Una data factory può comprendere una o più pipeline. Una pipeline è un raggruppamento logico di attività che insieme eseguono un compito. Le attività in una pipeline definiscono le azioni da eseguire sui dati. Ad esempio, è possibile usare un'attività di copia per copiare i dati da un Server SQL locale a un'archiviazione BLOB di Azure. Quindi, usare un'attività Hive che esegue uno script Hive in un cluster HDInsight di Azure per elaborare o trasformare i dati dall'archivio BLOB per produrre dati di output. Infine, usare una seconda attività di copia per copiare i dati di output in un Azure SQL Data Warehouse in cui vengono compilate le soluzioni di report di business intelligence, BI. 
+Una data factory può comprendere una o più pipeline. Una pipeline è un raggruppamento logico di attività che insieme eseguono un compito. attività Hello in una pipeline definire tooperform azioni sui dati. Ad esempio, si potrebbero utilizzare un copia attività toocopy dati da un tooan di SQL Server on-premise archiviazione Blob di Azure. Quindi, utilizzare un'attività Hive che esegue uno script Hive in dati di tooprocess/trasformare un cluster Azure HDInsight da dati di output di hello blob archiviazione tooproduce. Infine, utilizzare una seconda copia attività toocopy hello output dati tooan Azure SQL Data Warehouse in cui la business intelligence (BI) soluzioni di report vengono compilate. 
 
-Un'attività può non avere alcun [set di dati](data-factory-create-datasets.md) di input o può averne più di uno e generare uno o più [set di dati di output](data-factory-create-datasets.md). Nel diagramma seguente viene illustrata la relazione tra attività, set di dati e pipeline in Data Factory: 
+Un'attività può non avere alcun [set di dati](data-factory-create-datasets.md) di input o può averne più di uno e generare uno o più [set di dati di output](data-factory-create-datasets.md). Hello diagramma seguente mostra hello relazione tra set di dati, pipeline e attività in Data Factory: 
 
 ![Relazione tra pipeline, attività e set di dati](media/data-factory-create-pipelines/relationship-pipeline-activity-dataset.png)
 
-Una pipeline consente di gestire le attività come un set anziché singolarmente. Ad esempio, è possibile distribuire, pianificare, sospendere e riprendere una pipeline, anziché gestire le attività della pipeline singolarmente.
+Una pipeline consente attività toomanage come set anziché ognuna singolarmente. Ad esempio, è possibile distribuire, pianificare, sospendere e riprendere una pipeline, anziché gestiscono le attività nella pipeline hello in modo indipendente.
 
 Data Factory supporta due tipi di attività: attività di spostamento dei dati e attività di trasformazione dei dati. Ogni attività può non avere alcun [set di dati](data-factory-create-datasets.md) di input o può averne più di uno e generare uno o più set di dati di output.
 
-Un set di dati di input rappresenta l'input per un'attività nella pipeline, un set di dati di output rappresenta l'output dell'attività. I set di dati identificano i dati all'interno dei diversi archivi dati, come tabelle, file, cartelle e documenti. Dopo aver creato un set di dati, è possibile usarlo con le attività in una pipeline. Ad esempio, un set di dati può essere configurato come set di dati di input o di output di un'attività di copia o un'attività HDInsightHive. Per altre informazioni sui set di dati, vedere l'articolo [Set di dati in Azure Data Factory](data-factory-create-datasets.md).
+Un set di dati di input rappresenta hello l'input per un'attività nella pipeline hello e un set di dati di output rappresenta l'output di hello per attività hello. I set di dati identificano i dati all'interno dei diversi archivi dati, come tabelle, file, cartelle e documenti. Dopo aver creato un set di dati, è possibile usarlo con le attività in una pipeline. Ad esempio, un set di dati può essere configurato come set di dati di input o di output di un'attività di copia o un'attività HDInsightHive. Per altre informazioni sui set di dati, vedere l'articolo [Set di dati in Azure Data Factory](data-factory-create-datasets.md).
 
 ### <a name="data-movement-activities"></a>Attività di spostamento dei dati
-L'attività di copia in Data Factory esegue la copia dei dati da un archivio dati di origine a un archivio dati sink. Data Factory supporta gli archivi dati seguenti. I dati da qualsiasi origine possono essere scritti in qualsiasi sink. Fare clic su un archivio dati per informazioni su come copiare dati da e verso tale archivio.
+Attività di copia in Data Factory copia dati da un archivio dati di origine dati archivio tooa sink. Data Factory supporta hello seguenti archivi dati. È possibile scrivere dati da qualsiasi origine tooany sink. Fare clic su un toolearn archivio dati come toocopy tooand di dati dall'archivio.
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 > [!NOTE]
-> Gli archivi dati contrassegnati da un asterisco (*) possono essere locali o in IaaS di Azure e richiederanno l'installazione del [Gateway di gestione dati](data-factory-data-management-gateway.md) in un computer IaaS locale o in Azure.
+> Archivia i dati con * può essere locale o in Azure IaaS e richiedono tooinstall [Gateway di gestione dati](data-factory-data-management-gateway.md) in un computer di IaaS in locale o Azure.
 
 Per altre informazioni, vedere l'articolo [Attività di spostamento dei dati](data-factory-data-movement-activities.md).
 
@@ -56,13 +56,13 @@ Per altre informazioni, vedere l'articolo [Attività di spostamento dei dati](da
 Per altre informazioni, vedere l'articolo [Attività di trasformazione dei dati](data-factory-data-transformation-activities.md).
 
 ### <a name="custom-net-activities"></a>Attività .NET personalizzate 
-Per spostare i dati da e verso un archivio dati che non è supportato dall'attività di copia o per trasformare i dati usando la propria logica, creare un'**attività .NET personalizzata**. Per i dettagli sulla creazione e l'uso di un'attività personalizzata, vedere l'articolo [Usare attività personalizzate in una pipeline di Azure Data Factory](data-factory-use-custom-activities.md).
+Se sono necessari dati toomove a/da un tipo di dati archivio hello attività di copia non supporta, o trasformare i dati usando la logica personalizzata, creare un **attività .NET personalizzata**. Per i dettagli sulla creazione e l'uso di un'attività personalizzata, vedere l'articolo [Usare attività personalizzate in una pipeline di Azure Data Factory](data-factory-use-custom-activities.md).
 
 ## <a name="schedule-pipelines"></a>Pianificare le pipeline
-Una pipeline è attiva solo tra l'ora di **inizio** e l'ora di **fine**. Non viene eseguita prima dell'ora di inizio o dopo l'ora di fine. Se la pipeline viene sospesa, non viene eseguita indipendentemente dall'ora di inizio e di fine. Per essere eseguita, una pipeline non deve essere in pausa. Vedere [Pianificazione ed esecuzione con Data factory](data-factory-scheduling-and-execution.md) per comprendere il funzionamento della pianificazione e dell'esecuzione in Data factory di Azure.
+Una pipeline è attiva solo tra l'ora di **inizio** e l'ora di **fine**. Non viene eseguita prima dell'ora di inizio hello o dopo l'ora di fine hello. Se la pipeline di hello è sospesa, non venga eseguito indipendentemente dal relativo ora di inizio e fine. Per toorun una pipeline, consigliabile non sospesa. Vedere [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) toounderstand funzionamento di pianificazione e l'esecuzione in Azure Data Factory.
 
 ## <a name="pipeline-json"></a>Pipeline JSON
-Osserviamo più da vicino come viene definita una pipeline nel formato JSON. La struttura generica di una pipeline è simile a quella indicata di seguito:
+Osserviamo più da vicino come viene definita una pipeline nel formato JSON. struttura generica di Hello per una pipeline è simile al seguente:
 
 ```json
 {
@@ -88,18 +88,18 @@ Osserviamo più da vicino come viene definita una pipeline nel formato JSON. La 
 
 | Tag | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| name |Nome della pipeline. Specificare un nome che rappresenti l'azione eseguita dalla pipeline. <br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
-| Descrizione | Specificare il testo descrittivo che illustra lo scopo della pipeline. |Sì |
-| attività | Nella sezione delle **attività** possono essere definite una o più attività. Vedere la sezione successiva per informazioni dettagliate sulle attività dell'elemento JSON. | Sì |  
-| start | Data e ora di inizio per la pipeline. Devono essere nel [formato ISO](http://en.wikipedia.org/wiki/ISO_8601), Ad esempio: `2016-10-14T16:32:41Z`. <br/><br/>È possibile specificare un'ora locale, ad esempio in base al fuso orario EST. Di seguito viene riportato un esempio: `2016-02-27T06:00:00-05:00`, che indica le 06:00 EST.<br/><br/>Le proprietà start ed end insieme specificano il periodo attivo per la pipeline. Le sezioni di output vengono generate solo in questo periodo attivo. |No<br/><br/>Se si specifica un valore per la proprietà di fine, è necessario specificare un valore anche per la proprietà di avvio.<br/><br/>L'ora di inizio e l'ora di fine possono essere entrambe vuote per creare una pipeline. È necessario specificare entrambi i valori per impostare un periodo attivo per l'esecuzione della pipeline. Se non si specificano le ore di inizio e fine durante la creazione di una pipeline, è possibile impostare tali valori in un secondo momento usando il cmdlet Set-AzureRmDataFactoryPipelineActivePeriod. |
-| end | Data e ora di fine per la pipeline. Se specificate, devono essere in formato ISO. Ad esempio: `2016-10-14T17:32:41Z` <br/><br/>È possibile specificare un'ora locale, ad esempio in base al fuso orario EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00-05:00`, che indica le 6 EST.<br/><br/>Per eseguire la pipeline illimitatamente, specificare 9999-09-09 come valore per la proprietà end. <br/><br/> Una pipeline è attiva solo tra l'ora di inizio e l’ora di fine. Non viene eseguita prima dell'ora di inizio o dopo l'ora di fine. Se la pipeline viene sospesa, non viene eseguita indipendentemente dall'ora di inizio e di fine. Per essere eseguita, una pipeline non deve essere in pausa. Vedere [Pianificazione ed esecuzione con Data factory](data-factory-scheduling-and-execution.md) per comprendere il funzionamento della pianificazione e dell'esecuzione in Data factory di Azure. |No <br/><br/>Se si specifica un valore per la proprietà di avvio, è necessario specificare un valore anche per la proprietà di fine.<br/><br/>Vedere le note della proprietà **start** . |
-| isPaused | Se impostata su true, la pipeline non viene eseguita. È in stato di sospensione. Valore predefinito = false. È possibile usare questa proprietà per abilitare o disabilitare una pipeline. |No |
-| pipelineMode | Metodo di pianificazione delle esecuzioni per la pipeline. I valori consentiti sono scheduled (predefinito) e onetime.<br/><br/>"Scheduled" indica che la pipeline viene eseguita a intervalli di tempo specificati in base al periodo di attività, ovvero all'ora di inizio e di fine. "Onetime" indica che la pipeline viene eseguita una sola volta. Al momento, dopo aver creato una pipeline monouso non è possibile modificarla o aggiornarla. Per informazioni dettagliate sull'impostazione onetime, vedere la sezione [Pipeline monouso](#onetime-pipeline) . |No |
-| expirationTime | Periodo di tempo dopo la creazione in cui la [pipeline monouso](#onetime-pipeline) è valida e deve rimanere con provisioning eseguito. Se non ha esecuzioni attive, non riuscite o in sospeso, quando viene raggiunta la scadenza, la pipeline viene eliminata automaticamente. Il valore predefinito: `"expirationTime": "3.00:00:00"`|No |
-| set di dati |Elenco dei set di dati usati dalle attività definite nella pipeline. Questa proprietà può essere usata per definire i set di dati specifici di questa pipeline e non definiti all'interno della data factory. I set di dati definiti all'interno di questa pipeline possono essere usati solo da questa pipeline e non possono essere condivisi. Per informazioni dettagliate, vedere la sezione [Set di dati con ambito](data-factory-create-datasets.md#scoped-datasets) . |No |
+| name |Nome della pipeline hello. Specificare un nome che rappresenta l'azione di hello che hello pipeline esegue. <br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
+| description | Specificare il testo hello che descrive le pipeline hello viene utilizzata per. |Sì |
+| attività | Hello **attività** sezione può avere uno o più attività definite all'interno di esso. Vedere hello sezione successiva per informazioni dettagliate sull'elemento di hello attività JSON. | Sì |  
+| start | Data-ora di inizio per la pipeline di hello. Devono essere nel [formato ISO](http://en.wikipedia.org/wiki/ISO_8601), Ad esempio: `2016-10-14T16:32:41Z`. <br/><br/>È possibile toospecify un'ora locale, ad esempio un'ora EST. Di seguito viene riportato un esempio: `2016-02-27T06:00:00-05:00`, che indica le 06:00 EST.<br/><br/>Hello proprietà start ed end insieme specificano il periodo attivo per la pipeline di hello. Le sezioni di output vengono generate solo in questo periodo attivo. |No<br/><br/>Se si specifica un valore per la proprietà di fine hello, è necessario specificare una valore per la proprietà di avvio hello.<br/><br/>Hello ora di inizio e fine può essere entrambi vuoti toocreate una pipeline. È necessario specificare entrambi i valori tooset un periodo attivo per hello pipeline toorun. Se non si specifica l'ora di inizio e fine durante la creazione di una pipeline, è possibile impostare utilizzando il cmdlet Set-AzureRmDataFactoryPipelineActivePeriod hello in un secondo momento. |
+| end | Data-ora di fine per la pipeline di hello. Se specificate, devono essere in formato ISO. Ad esempio: `2016-10-14T17:32:41Z` <br/><br/>È possibile toospecify un'ora locale, ad esempio un'ora EST. Di seguito è fornito l'esempio `2016-02-27T06:00:00-05:00`, che indica le 6 EST.<br/><br/>pipeline hello toorun specificare in modo indefinito, 9999-09-09 come valore di hello per la proprietà di fine hello. <br/><br/> Una pipeline è attiva solo tra l'ora di inizio e l’ora di fine. Non viene eseguita prima dell'ora di inizio hello o dopo l'ora di fine hello. Se la pipeline di hello è sospesa, non venga eseguito indipendentemente dal relativo ora di inizio e fine. Per toorun una pipeline, consigliabile non sospesa. Vedere [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) toounderstand funzionamento di pianificazione e l'esecuzione in Azure Data Factory. |No <br/><br/>Se si specifica un valore per la proprietà di avvio hello, è necessario specificare una valore per la proprietà di fine hello.<br/><br/>Vedere le note per hello **avviare** proprietà. |
+| isPaused | Se non viene eseguito insieme tootrue, pipeline hello. È in hello stato sospeso. Valore predefinito = false. È possibile utilizzare questa proprietà tooenable o disabilitare una pipeline. |No |
+| pipelineMode | metodo Hello per la pianificazione viene eseguita per la pipeline di hello. I valori consentiti sono scheduled (predefinito) e onetime.<br/><br/>'Pianificata' indica che pipeline hello viene eseguita in un intervallo di tempo specificato in base tooits periodo attivo (ora di inizio e fine). 'Unica' indica che pipeline hello viene eseguito una sola volta. Al momento, dopo aver creato una pipeline monouso non è possibile modificarla o aggiornarla. Per informazioni dettagliate sull'impostazione onetime, vedere la sezione [Pipeline monouso](#onetime-pipeline) . |No |
+| expirationTime | Periodo di tempo dopo la creazione per i quali hello [pipeline monouso](#onetime-pipeline) sia valido e deve rimanere disponibile. Se non è attiva qualsiasi, non è riuscita, o in attesa di esecuzione, la pipeline hello viene automaticamente eliminato una volta raggiunge scadenza hello. valore predefinito di Hello:`"expirationTime": "3.00:00:00"`|No |
+| set di dati |Elenco di set di dati toobe utilizzate dalle attività definite nella pipeline hello. Questa proprietà può essere utilizzato toodefine i set di dati sono pipeline toothis specifico e non è definito all'interno di data factory di hello. I set di dati definiti all'interno di questa pipeline possono essere usati solo da questa pipeline e non possono essere condivisi. Per informazioni dettagliate, vedere la sezione [Set di dati con ambito](data-factory-create-datasets.md#scoped-datasets) . |No |
 
 ## <a name="activity-json"></a>Attività JSON
-Nella sezione delle **attività** possono essere definite una o più attività. Ogni attività presenta la seguente struttura di livello superiore:
+Hello **attività** sezione può avere uno o più attività definite all'interno di esso. Ogni attività dispone di hello seguente struttura di livello principale:
 
 ```json
 {
@@ -122,42 +122,42 @@ Nella sezione delle **attività** possono essere definite una o più attività. 
 }
 ```
 
-La tabella seguente descrive le proprietà all'interno della definizione JSON dell'attività:
+Nella tabella seguente vengono descritte le proprietà dell'attività hello definizione JSON:
 
 | Tag | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| name | Nome dell'attività. Specificare un nome che rappresenti l'azione eseguita dall'attività. <br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
-| Descrizione | Testo descrittivo per il tipo o lo scopo dell'attività |Sì |
-| type | Tipo di attività. Per informazioni sui diversi tipi di attività, vedere le sezioni [Attività di spostamento dei dati](#data-movement-activities) e [Attività di trasformazione dei dati](#data-transformation-activities). |Sì |
-| inputs |Tabelle di input usate dall'attività<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Sì |
-| outputs |Tabelle di output usate dall'attività.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": "outputtable1" } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": "outputtable1" }, { "name": "outputtable2" }  ],` |Sì |
-| linkedServiceName |Nome del servizio collegato usato dall'attività. <br/><br/>Per un'attività può essere necessario specificare il servizio collegato che collega all'ambiente di calcolo richiesto. |Sì per Attività di HDInsight e Attività di assegnazione punteggio batch di Azure Machine Learning  <br/><br/>No per tutto il resto |
-| typeProperties |Le proprietà nella sezione **typeProperties** dipendono dal tipo di attività. Per visualizzare le proprietà del tipo per un'attività, fare clic sui collegamenti all'attività nella sezione precedente. | No |
-| policy |Criteri che influiscono sul comportamento di runtime dell'attività. Se vengono omessi, vengono usati i criteri predefiniti. |No |
-| scheduler | La proprietà "scheduler" viene usata per definire la pianificazione per l'attività. Le relative proprietà secondarie sono quelle indicate nella sezione [Disponibilità dei set di dati](data-factory-create-datasets.md#dataset-availability). |No |
+| name | Nome dell'attività hello. Specificare un nome che rappresenta l'azione di hello che esegue attività hello. <br/><ul><li>Numero massimo di caratteri: 260</li><li>Deve iniziare con una lettera, un numero o un carattere di sottolineatura (_)</li><li>Non sono ammessi i caratteri seguenti: ".", "+", "?", "/", "<", ">", "*", "%", "&", ":", "\\"</li></ul> |Sì |
+| description | Testo che descrive le attività hello o viene utilizzate per |Sì |
+| type | Tipo di attività hello. Vedere hello [attività lo spostamento dei dati](#data-movement-activities) e [le attività di trasformazione dati](#data-transformation-activities) sezioni per diversi tipi di attività. |Sì |
+| inputs |Tabelle di input utilizzate dall'attività hello<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |Sì |
+| outputs |Tabelle di output utilizzate dall'attività hello.<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": "outputtable1" } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": "outputtable1" }, { "name": "outputtable2" }  ],` |Sì |
+| linkedServiceName |Nome del servizio hello collegato usato dall'attività hello. <br/><br/>Un'attività potrebbe essere necessario specificare il servizio collegato hello che collega l'ambiente di calcolo necessarie toohello. |Sì per Attività di HDInsight e Attività di assegnazione punteggio batch di Azure Machine Learning  <br/><br/>No per tutto il resto |
+| typeProperties |Le proprietà in hello **typeProperties** sezione dipendono dal tipo di attività hello. proprietà del tipo toosee per un'attività, fare clic su attività toohello collegamenti nella sezione precedente hello. | No |
+| policy |Criteri che influiscono sul comportamento di hello in fase di esecuzione dell'attività hello. Se vengono omessi, vengono usati i criteri predefiniti. |No |
+| scheduler | proprietà "utilità di pianificazione" è utilizzato toodefine desiderato pianificazione per l'attività hello. Le sottoproprietà sono hello stesso hello quelle nella hello [proprietà disponibilità in un set di dati](data-factory-create-datasets.md#dataset-availability). |No |
 
 
 ### <a name="policies"></a>Criteri
-I criteri influiscono sul comportamento in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione di una tabella. La tabella seguente fornisce informazioni dettagliate.
+Criteri influiscono sul comportamento di hello in fase di esecuzione di un'attività, in particolare quando viene elaborata la sezione hello di una tabella. Hello nella tabella seguente fornisce dettagli hello.
 
 | Proprietà | Valori consentiti | Valore predefinito | Descrizione |
 | --- | --- | --- | --- |
-| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività.<br/><br/>Determina il numero di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve passare attraverso grandi set di dati disponibili, con un valore di concorrenza maggiore che consente di velocizzare l'elaborazione dei dati. |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina l'ordine delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder su NewestFirst, viene elaborata per prima la sezione delle 17:00. Allo stesso modo, se si imposta executionPriorityORder su OldestFIrst, verrà elaborata per prima la sezione delle 16:00. |
-| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima che l'elaborazione dei dati per la sezione sia contrassegnata come errore. L'esecuzione dell’attività per una sezione di dati viene ritentata fino al numero di tentativi specificato. Il tentativo viene eseguito appena possibile dopo l'errore. |
-| timeout |TimeSpan |00:00:00 |Timeout per l'attività. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore non è specificato o è 0, il timeout è infinito.<br/><br/>Se il tempo di elaborazione dei dati in una sezione supera il valore di timeout, viene annullato e il sistema prova a ripetere l'elaborazione. Il numero di tentativi dipende dalla proprietà retry. Quando si verifica il timeout, lo stato viene impostato su TimedOut. |
-| delay |TimeSpan |00:00:00 |Specificare il ritardo prima che abbia inizio l'elaborazione dei dati della sezione.<br/><br/>L'esecuzione dell'attività per una sezione di dati viene avviata non appena il ritardo supera il tempo di esecuzione previsto.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
-| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |Numero di tentativi estesi prima che l'esecuzione della sezione dia esito negativo.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario specificare un tempo tra i tentativi, utilizzare longRetry. Se si specificano sia Retry che longRetry, ogni tentativo longRetry include tentativi Retry e il numero massimo di tentativi corrisponde a Retry * longRetry.<br/><br/>Ad esempio, se si hanno le seguenti impostazioni nel criterio attività:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>si presume che la sezione da eseguire sia solo una, con stato Waiting, e che l'esecuzione dell'attività abbia ogni volta esito negativo. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione sarà Retry. Una volta terminati i 3 tentativi sulla sezione, lo stato sarà LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Al termine, lo stato della sezione sarà Failed e non verranno eseguiti altri tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se un'esecuzione ha esito positivo, lo stato della sezione sarà Ready e non saranno ripetuti altri tentativi.<br/><br/>longRetry può essere usato nelle situazioni in cui i dati dipendenti arrivano in orari non deterministici o l'ambiente complessivo in cui si verifica l'elaborazione dei dati è debole. In tali casi, l'esecuzione di tentativi consecutivi potrebbe non essere utile, mentre l'applicazione di un intervallo consente di ottenere il risultato voluto.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
-| longRetryInterval |TimeSpan |00:00:00 |Il ritardo tra tentativi longRetry |
+| Concorrenza |Integer  <br/><br/>Valore massimo: 10 |1 |Numero di esecuzioni simultanee dell'attività hello.<br/><br/>Determina il numero di hello di esecuzioni di attività parallele che possono verificarsi in sezioni diverse. Ad esempio, se un'attività deve toogo tramite un ampio set di dati disponibili, un valore maggiore di concorrenza di velocizzare l'elaborazione dati hello. |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |Determina hello ordinamento delle sezioni di dati che vengono elaborate.<br/><br/>Ad esempio nel caso in cui si abbiano 2 sezioni, una alle 16.00 e l'altra alle 17.00, ed entrambe siano in attesa di esecuzione. Se si imposta executionPriorityOrder di hello toobe NewestFirst, slice hello 17: 00 viene elaborata per prima. Allo stesso modo se si imposta executionPriorityORder di hello toobe OldestFIrst, viene elaborato sezione hello 4 ore. |
+| retry |Integer <br/><br/>Valore massimo: 10 |0 |Numero di tentativi prima dell'elaborazione dei dati di hello per sezione hello è contrassegnato come errore. Esecuzione di attività per una sezione di dati viene ripetuta backup toohello specificato numero di tentativi. Riprova Hello viene eseguito appena possibile dopo l'errore hello. |
+| timeout |TimeSpan |00:00:00 |Timeout per l'attività hello. Esempio: 00:10:00 (implica un timeout di 10 minuti)<br/><br/>Se un valore viene omesso o è 0, hello timeout è infinito.<br/><br/>Se il tempo di elaborazione di dati hello in una sezione supera il valore di timeout di hello, viene annullata e sistema hello tenta l'elaborazione di hello tooretry. numero di tentativi di Hello dipende dalla proprietà retry hello. Quando si verifica il timeout, hello stato tooTimedOut. |
+| delay |TimeSpan |00:00:00 |Specificare il ritardo di hello prima dell'elaborazione di dati di hello sezione inizia.<br/><br/>esecuzione di Hello dell'attività per una sezione di dati viene avviata dopo hello ritardo passato hello previsto tempo di esecuzione.<br/><br/>Esempio: 00:10:00 (implica un ritardo di 10 minuti) |
+| longRetry |Integer <br/><br/>Valore massimo: 10 |1 |numero di Hello di long tentativi prima dell'esecuzione della sezione hello è non è riuscito.<br/><br/>I tentativi longRetry sono distanziati da longRetryInterval. Pertanto, se è necessario toospecify un intervallo tra tentativi, usare quindi longRetry. Se vengono specificati Retry e longRetry, ogni tentativo longRetry include nuovi tentativi e numero massimo di tentativi di hello è Riprova * longRetry.<br/><br/>Ad esempio, se si dispone delle seguenti impostazioni in criteri attività hello hello:<br/>Retry: 3<br/>longRetry: 2<br/>longRetryInterval: 01:00:00<br/><br/>Si supponga che sia presente solo una sezione tooexecute (lo stato è in attesa) e l'esecuzione dell'attività hello ha esito negativo di ogni volta. All’inizio vi saranno tre tentativi di esecuzione consecutivi. Dopo ogni tentativo, lo stato della sezione hello sarà Retry. Dopo aver innanzitutto 3 tentativi di failover, lo stato della sezione hello sarebbe LongRetry.<br/><br/>Dopo un'ora (vale a dire il valore di longRetryInteval), verrà eseguita un'altra serie di 3 tentativi di esecuzione consecutivi. Successivamente, lo stato della sezione hello sarà Failed e non più necessario tentativi. Quindi, sono stati eseguiti 6 tentativi.<br/><br/>Se qualsiasi esecuzione ha esito positivo, lo stato della sezione hello sarà Ready e non più tentativi.<br/><br/>longRetry possono essere utilizzati in situazioni in cui dipendenti dati arrivano a volte non deterministica o hello ambiente generale non è affidabile in cui l'elaborazione dei dati si verifica. In questi casi, potrebbe non aiutare eseguire tentativi uno dopo l'altro e in questo modo, dopo un intervallo di risultati in fase di hello desiderato output.<br/><br/>Attenzione: non impostare valori elevati per longRetry o longRetryInterval. In genere, valori più elevati comportano altri problemi sistemici. |
+| longRetryInterval |TimeSpan |00:00:00 |ritardo Hello tra nuovi tentativi lunghi |
 
 ## <a name="sample-copy-pipeline"></a>Esempio di una pipeline di copia
-In questa pipeline di esempio è presente un'attività di tipo **Copy** in the **attività** . In questo esempio, l'[attività di copia](data-factory-data-movement-activities.md) consente di copiare i dati da un'archiviazione BLOB di Azure a un database SQL di Azure. 
+In hello seguente della pipeline di esempio, un'attività di tipo è **copia** in hello **attività** sezione. In questo esempio, hello [attività di copia](data-factory-data-movement-activities.md) copia i dati da un database di SQL Azure tooan di archiviazione Blob di Azure. 
 
 ```json
 {
   "name": "CopyPipeline",
   "properties": {
-    "description": "Copy data from a blob to Azure SQL table",
+    "description": "Copy data from a blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -196,16 +196,16 @@ In questa pipeline di esempio è presente un'attività di tipo **Copy** in the *
 } 
 ```
 
-Tenere presente quanto segue:
+Si noti hello seguenti punti:
 
-* Nella sezione delle attività esiste una sola attività con l'oggetto **type** impostato su **Copy**.
-* L'input per l'attività è impostato su **InputDataset** e l'output è impostato su **OutputDataset**. Vedere l'articolo [Set di dati](data-factory-create-datasets.md) per la definizione di set di dati in JSON. 
-* Nella sezione **typeProperties** vengono specificati **BlobSource** come tipo di origine e **SqlSink** come tipo di sink. Nella sezione [Attività di spostamento dati](#data-movement-activities), scegliere l'archivio dati che si desidera usare come origine o un sink per avere altre informazioni sullo spostamento dei dati da e verso tale archivio dati. 
+* Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**copia**.
+* Input per attività hello è troppo**InputDataset** e di output per attività hello è troppo**OutputDataset**. Vedere l'articolo [Set di dati](data-factory-create-datasets.md) per la definizione di set di dati in JSON. 
+* In hello **typeProperties** sezione **BlobSource** è specificato come tipo di origine hello e **SqlSink** è specificato come tipo di sink hello. In hello [attività lo spostamento dei dati](#data-movement-activities) fare clic su hello archivio dati che si vuole toouse come un'origine o un sink toolearn più sullo spostamento dei dati da e verso tale archivio dati. 
 
-Per la procedura completa di creazione di questa pipeline, vedere [Esercitazione: copiare i dati dall'archivio BLOB al database SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
+Per una descrizione completa della creazione di questa pipeline, vedere [esercitazione: copiare i dati da archiviazione Blob tooSQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
 
 ## <a name="sample-transformation-pipeline"></a>Esempio di una pipeline di trasformazione
-In questa pipeline di esempio è presente un'attività di tipo **HDInsightHive** in the **attività** . In questo esempio, l' [attività Hive di HDInsight](data-factory-hive-activity.md) trasforma i dati da un archivio BLOB di Azure tramite l'esecuzione di un file di script Hive in un cluster Hadoop di HDInsight. 
+In hello seguente della pipeline di esempio, un'attività di tipo è **HDInsightHive** in hello **attività** sezione. In questo esempio, hello [attività Hive di HDInsight](data-factory-hive-activity.md) Trasforma i dati da un archivio Blob di Azure eseguendo un file di script Hive in un cluster Azure HDInsight Hadoop. 
 
 ```json
 {
@@ -252,32 +252,32 @@ In questa pipeline di esempio è presente un'attività di tipo **HDInsightHive**
 }
 ```
 
-Tenere presente quanto segue: 
+Si noti hello seguenti punti: 
 
-* Nella sezione attività esiste una sola attività con l'oggetto **type** impostato su **HDInsightHive**.
-* Il file di script Hive, **partitionweblogs.hql**, è archiviato nell'account di archiviazione di Azure (specificato da scriptLinkedService, denominato **AzureStorageLinkedService**) e nella cartella **script** nel contenitore **adfgetstarted**.
-* La sezione `defines` viene usata per specificare le impostazioni di runtime che vengono passate allo script Hive come valori di configurazione Hive, ad esempio `${hiveconf:inputtable}` e `${hiveconf:partitionedtable}`.
+* Nella sezione attività hello, è presente una sola attività il cui **tipo** è troppo**HDInsightHive**.
+* file di script Hive Hello, **partitionweblogs.hql**, viene archiviato nell'account di archiviazione Azure hello (specificato da scriptLinkedService hello, chiamato **AzureStorageLinkedService**) e in  **script** cartella nel contenitore hello **adfgetstarted**.
+* Hello `defines` sezione è le impostazioni di runtime hello toospecify utilizzati script hive toohello passati come valori di configurazione di Hive (ad esempio `${hiveconf:inputtable}`, `${hiveconf:partitionedtable}`).
 
-La sezione **typeProperties** è diversa per ogni attività di trasformazione. Per altre informazioni sulle proprietà del tipo supportate per un'attività di trasformazione, fare clic sull'attività di trasformazione nella tabella [Data transformation activities](#data-transformation-activities) (Attività di trasformazione dati). 
+Hello **typeProperties** sezione è diversa per ogni attività di trasformazione. toolearn sulle proprietà del tipo supportato per un'attività di trasformazione, fare clic su attività di trasformazione hello in hello [le attività di trasformazione dati](#data-transformation-activities) tabella. 
 
-Per la procedura completa della creazione di questa pipeline, vedere [Esercitazione: creare la prima pipeline per elaborare i dati usando il cluster Hadoop](data-factory-build-your-first-pipeline.md). 
+Per una descrizione completa della creazione di questa pipeline, vedere [esercitazione: creare i primi dati tooprocess pipeline utilizzando cluster Hadoop](data-factory-build-your-first-pipeline.md). 
 
 ## <a name="multiple-activities-in-a-pipeline"></a>Attività multiple in una pipeline
-Le due pipeline di due esempio precedenti contengono una sola attività. È possibile avere più di un'attività in una pipeline.  
+pipeline di esempio due precedenti Hello avere una sola attività in essi contenuti. È possibile avere più di un'attività in una pipeline.  
 
-Se si hanno più attività in una pipeline e l'output di un'attività non è l'input di un'altra attività, le attività possono essere eseguite in parallelo se le sezioni di dati di input per le attività sono pronte. 
+Se si dispone di più attività in una pipeline e output di un'attività non è un input di un'altra attività, le attività di hello possono essere eseguite in parallelo se gli intervalli di dati di input per le attività di hello pronti. 
 
-È possibile concatenare due attività usando il set di dati di output di un'attività come set di dati di input di altre attività. La seconda attività viene eseguita solo quando la prima viene completata correttamente.
+È possibile concatenare le due attività con i set di dati di un'attività come set di dati input hello di hello output di hello altre attività. seconda attività Hello viene eseguita solo se hello prima uno stato completato correttamente.
 
-![Concatenamento di attività nella stessa pipeline](./media/data-factory-create-pipelines/chaining-one-pipeline.png)
+![Concatenamento di attività in hello stessa pipeline](./media/data-factory-create-pipelines/chaining-one-pipeline.png)
 
-In questo esempio, la pipeline ha due attività: Activity1 e Activity2. Activity1 accetta Dataset1 come input e produce un output Dataset2. Activity2 accetta Dataset2 come input e produce un output Dataset3. Poiché l'output di Activity1 (Dataset2) è l'input di Activity2, Activity2 viene eseguita solo in seguito al corretto completamento dell'attività precedente e genera la sezione Dataset2. Se il completamento di Activity1 per qualche motivo non riesce e non produce la sezione Dataset2, Activity2 non viene eseguita per tale sezione, ad esempio dalle 09:00 alle 10:00. 
+In questo esempio, hello pipeline dispone di due attività: Activity1 e Activity2. accetta Dataset1 come input e produce un output di Hello Activity1 Dataset2. Hello attività accetta Dataset2 come input e produce un output Dataset3. Dall'output di hello di Activity1 (Dataset2) è input hello di Activity2, hello Activity2 viene eseguita solo dopo hello attività viene completata correttamente e produce hello sezione Dataset2. Se hello Activity1 per qualche motivo non riesce e non produce sezione hello Dataset2, hello attività 2 non viene eseguito per tale sezione (ad esempio: STO too10 AM 9). 
 
 È anche possibile concatenare le attività che si trovano in pipeline diverse.
 
 ![Concatenamento di attività in due pipeline](./media/data-factory-create-pipelines/chaining-two-pipelines.png)
 
-In questo esempio, Pipeline1 ha una sola attività che accetta come input Dataset1 e genera come output Dataset2. Pipeline2 ha una sola attività che accetta come input Dataset2 e genera come output Dataset3. 
+In questo esempio, Pipeline1 ha una sola attività che accetta come input Dataset1 e genera come output Dataset2. Hello Pipeline2 dispone anche di una sola attività che accetta Dataset2 come input e Dataset3 come output. 
 
 Per altre informazioni, vedere [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
 
@@ -292,19 +292,19 @@ Per altre informazioni, vedere [Pianificazione ed esecuzione](data-factory-sched
 - API REST
 - API .NET
 
-Vedere le esercitazioni seguenti per istruzioni dettagliate sulla creazione di pipeline tramite uno di questi strumenti o SDK.
+Vedere hello seguenti esercitazioni per istruzioni dettagliate per la creazione di pipeline utilizzando uno di questi strumenti o il SDK.
  
 - [Creare una pipeline con un'attività di trasformazione dati](data-factory-build-your-first-pipeline.md)
 - [Creare una pipeline con un'attività di spostamento dati](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 
-Dopo aver creato o distribuito una pipeline, è possibile gestire e monitorare le pipeline usando i pannelli del portale di Azure o con un'app di gestione e monitoraggio. Vedere l'argomento successivo per le istruzioni dettagliate. 
+Una volta una pipeline creata distribuito, è possibile gestire e monitorare le pipeline utilizzando hello pannelli portali Azure o monitoraggio e gestione di App. Hello seguenti argomenti per informazioni dettagliate, vedere. 
 
 - [Monitorare e gestire le pipeline con i pannelli del portale di Azure](data-factory-monitor-manage-pipelines.md).
 - [Monitorare e gestire le pipeline con l'app di monitoraggio e gestione](data-factory-monitor-manage-app.md)
 
 
 ## <a name="onetime-pipeline"></a>Pipeline monouso
-È possibile creare e pianificare una pipeline da eseguire periodicamente, ad esempio ogni ora o ogni giorno, tra le ore di inizio e di fine specificate nella definizione della pipeline. Per informazioni dettagliate, vedere la sezione [Pianificazione delle attività](#scheduling-and-execution) . È anche possibile creare una pipeline che viene eseguita una sola volta. A tale scopo, impostare la proprietà **pipelineMode** nella definizione della pipeline su **onetime**, come illustrato nell'esempio JSON seguente. Il valore predefinito per questa proprietà è **scheduled**.
+È possibile creare e pianificare un toorun pipeline periodicamente (ad esempio: su base oraria o giornaliera) all'interno di hello inizio e di fine specificate nella definizione di pipeline hello. Per informazioni dettagliate, vedere la sezione [Pianificazione delle attività](#scheduling-and-execution) . È anche possibile creare una pipeline che viene eseguita una sola volta. toodo in tal caso, si imposta hello **pipelineMode** proprietà hello pipeline definizione troppo**unica** come illustrato nel seguente esempio JSON hello. il valore predefinito Hello per questa proprietà è **pianificato**.
 
 ```json
 {
@@ -342,12 +342,12 @@ Dopo aver creato o distribuito una pipeline, è possibile gestire e monitorare l
 }
 ```
 
-Tenere presente quanto segue:
+Si noti hello segue:
 
-* Le ore di **inizio** e **fine** della pipeline non vengono specificate.
-* La **disponibilità** dei set di dati di input e output viene specificata (**frequenza** e **intervallo**) anche se i valori non vengono usati da Data Factory.  
+* **Avviare** e **fine** non sono specificati i tempi per la pipeline di hello.
+* **Disponibilità** di input e output del set di dati è specificato (**frequenza** e **intervallo**), anche se non utilizza i valori hello Data Factory.  
 * Le pipeline monouso non vengono visualizzate nella vista Diagramma. Questo comportamento dipende dalla progettazione.
-* Le pipeline monouso non possono essere aggiornate. È possibile clonare una pipeline monouso, rinominarla, aggiornarne le proprietà e distribuirla per crearne un'altra.
+* Le pipeline monouso non possono essere aggiornate. È possibile clonare una singola pipeline, rinominarlo, aggiornare le proprietà e distribuirlo toocreate un altro.
 
 
 ## <a name="next-steps"></a>Passaggi successivi

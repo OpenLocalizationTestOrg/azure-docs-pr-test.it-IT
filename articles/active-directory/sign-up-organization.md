@@ -1,6 +1,6 @@
 ---
-title: Iscrizione ad Azure come organizzazione
-description: "Informazioni sull'uso di un account aziendale o dell'istituto di istruzione per sfruttare gli account utente, i criteri e le impostazioni esistenti o le distribuzioni del server locali già configurate e migliorare l'efficienza tra l'infrastruttura di identità locale aziendale e Azure AD."
+title: aaaSign iscrizione a Azure come organizzazione
+description: "Informazioni su come è possibile utilizzare un lavoro o scuola account tooleverage hello gli account utente esistenti, criteri, impostazioni o le distribuzioni di server locale è già configurato e migliorare l'efficienza tra l'infrastruttura di identità locale e Azure AD dell'organizzazione."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -13,25 +13,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: curtand
-ms.openlocfilehash: 07ad266ad87028996c4a7b3e4365c11b019f8529
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 89db37b2370b3805691278d6223a26450ef4514b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-up-for-azure-as-an-organization"></a>Iscrizione ad Azure come organizzazione
-Fino a poco tempo fa, era possibile richiedere una nuova sottoscrizione di Microsoft Azure solo tramite un account Microsoft (Windows Live ID). Azure supporta ora l'uso di uno dei due seguenti metodi di iscrizione tramite account:
+Fino a poco tempo fa, era possibile richiedere una nuova sottoscrizione di Microsoft Azure solo tramite un account Microsoft (Windows Live ID). Azure ora supporta l'utilizzo di uno dei seguenti hello due account toosign metodi backup:
 
-* **Account Microsoft** (creati dall'utente per uso personale): garantiscono l'accesso a tutti i prodotti e ai servizi cloud Microsoft destinati agli utenti privati, ad esempio Outlook (Hotmail), Messenger, OneDrive, MSN, Xbox LIVE o Office 365. Con l'iscrizione a Outlook.com viene creato automaticamente un account Microsoft. Un volta creato, l'account Microsoft può essere usato per accedere a servizi cloud Microsoft per consumatori o ad Azure. [Ulteriori informazioni](http://www.microsoft.com/account/default.aspx)
-* **Account aziendali o degli istituti di istruzione** (rilasciati da un amministratore per uso aziendale/accademico): garantiscono l'accesso a tutti i servizi cloud Microsoft per piccole, medie e grandi aziende, ad esempio Azure, Windows Intune o Office 365. Quando ci si iscrive a uno di questi servizi come organizzazione, in Azure Active Directory viene eseguito automaticamente il provisioning di una directory basata sul cloud per rappresentare l'organizzazione. [Ulteriori informazioni](active-directory-administer.md)
+* **Gli account Microsoft** (creati dall'utente per uso personale), fornire l'accesso tooall orientati all'utente i prodotti Microsoft e servizi cloud, ad esempio Outlook (Hotmail), Messenger, OneDrive, MSN, Xbox LIVE o Office 365. Con l'iscrizione a Outlook.com viene creato automaticamente un account Microsoft. Dopo aver creato un account Microsoft, può essere utilizzato tooaccess correlate al consumer Microsoft cloud services o Azure. [Altre informazioni](http://www.microsoft.com/account/default.aspx)
+* **O lavoro o scuola account** (emesso da un amministratore per l'utilizzo di business/academic) - fornire l'accesso tooall piccole, medie e grandi a livello aziendale servizi cloud Microsoft, ad esempio Azure, Microsoft Intune o Office 365. Quando effettua l'iscrizione tooone di questi servizi come un'organizzazione, una directory basato su cloud viene automaticamente eseguito il provisioning in Azure Active Directory toorepresent dell'organizzazione. [Altre informazioni](active-directory-administer.md)
   
-    Dopo aver creato la directory, un amministratore può creare gli utenti e assegnare loro le licenze in base alle sottoscrizioni del servizio cloud a cui devono accedere, ad esempio Azure.
+    Dopo questa directory è stata creata, un amministratore può creare utenti e assegnare licenze toothem basato in sottoscrizioni a servizi quali cloud hanno bisogno di accesso, ad esempio Azure.
 
-Per iscriversi ad Azure come organizzazione [**Effettuare l'iscrizione ora**](https://azure.microsoft.com/pricing/purchase-options/)
+Desidera toosign iscrizione a Azure come organizzazione? [**Effettuare l'iscrizione ora**](https://azure.microsoft.com/pricing/purchase-options/)
 
 **Risorse aggiuntive**
 
 * [Blog di Microsoft Azure](https://azure.microsoft.com/blog/)
 * [Informazioni su Azure AD](active-directory-whatis.md)
-* [Usare l'infrastruttura di identità locale nel cloud](active-directory-aadconnect.md)
+* [Utilizzare l'infrastruttura di identità locali nel cloud hello](active-directory-aadconnect.md)
 

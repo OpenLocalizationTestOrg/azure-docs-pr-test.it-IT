@@ -1,6 +1,6 @@
 ---
-title: Azure AD B2C | Documentazione Microsoft
-description: Come compilare un'API Web .NET con Azure Active Directory B2C protetta con i token di accesso OAuth 2.0 per l'autenticazione.
+title: Active Directory B2C aaaAzure | Documenti Microsoft
+description: Come toobuild un'API Web .NET utilizzando Active B2C Directory di Azure, protette con token di accesso OAuth 2.0 per l'autenticazione.
 services: active-directory-b2c
 documentationcenter: .net
 author: parakhj
@@ -14,68 +14,68 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 03/17/2017
 ms.author: parakhj
-ms.openlocfilehash: 48749bfa2ab54a0e766a4aad4f39073cc4e90818
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d45364216deda38ef44b60dd11e86d9a089ad509
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-build-a-net-web-api"></a>Azure Active Directory B2C: compilare un'API Web .NET
 
-Azure Active Directory (Azure AD) B2C permette di proteggere un'API Web usando i token di accesso OAuth 2.0. Questi token consentono alle app client di eseguire l'autenticazione all'API. Questo articolo illustra come creare un'API "elenco attività" MVC .NET che consente agli utenti dell'applicazione client di eseguire azioni CRUD sulle attività. L'API Web è protetta con Azure AD B2C e consente soltanto agli utenti autenticati di gestire il proprio elenco attività.
+Azure Active Directory (Azure AD) B2C permette di proteggere un'API Web usando i token di accesso OAuth 2.0. Questi token consentono al client App tooauthenticate toohello API. Questo articolo illustra come toocreate un'API di .NET MVC "elenco" che consente agli utenti del client attività tooCRUD dell'applicazione. API web Hello sia protetta con Azure Active Directory B2C e consente solo agli utenti autenticati toomanage proprio elenco di attività da eseguire.
 
 ## <a name="create-an-azure-ad-b2c-directory"></a>Creare una directory Azure AD B2C
 
 Prima di poter usare Azure AD B2C, è necessario creare una directory, o tenant. Una directory è un contenitore per utenti, app, gruppi e così via. Se non è già stato fatto, [creare una directory B2C](active-directory-b2c-get-started.md) prima di proseguire con questa guida.
 
 > [!NOTE]
-> L'applicazione client e l'API Web devono usare la stessa directory di Azure AD B2C.
+> un'applicazione client Hello e API web devono utilizzare directory B2C hello stesso Azure Active Directory.
 >
 
 ## <a name="create-a-web-api"></a>Creare un'API Web
 
-Successivamente, è necessario creare un'app per le API Web nella directory B2C. In questo modo Azure AD acquisisce le informazioni necessarie per comunicare in modo sicuro con l'app. Per creare un'app, [seguire questa procedura](active-directory-b2c-app-registration.md). Assicurarsi di:
+Successivamente, è necessario toocreate un'app di API web nella directory B2C. In questo modo le informazioni di Azure AD che è necessario toosecurely a comunicare con l'app. toocreate un'app, seguire [queste istruzioni](active-directory-b2c-app-registration.md). Assicurarsi di:
 
-* Includere un'**app Web** o un'**API Web** nell'applicazione.
-* Usare l'**URI di reindirizzamento** `https://localhost:44332/` per l'app Web. Si tratta della posizione predefinita del client dell'app Web per questo codice di esempio.
-* Copiare l' **ID applicazione** assegnato all'app. Sarà necessario più avanti.
+* Includere un **app web** o **web API** in un'applicazione hello.
+* Hello utilizzare **URI di reindirizzamento** `https://localhost:44332/` per l'app web hello. Questo è il percorso predefinito hello del client di app web hello per questo esempio di codice.
+* Hello copia **ID applicazione** ovvero tooyour assegnato app. Sarà necessario più avanti.
 * Immettere un identificatore app in **URI ID app**.
-* Aggiungere le autorizzazioni tramite il menu **Ambiti pubblicati**.
+* Aggiungere le autorizzazioni tramite hello **pubblicati ambiti** menu.
 
   [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>Creare i criteri
 
-In Azure AD B2C ogni esperienza utente è definita da [criteri](active-directory-b2c-reference-policies.md)specifici. Sarà necessario creare un criterio per comunicare con Azure AD B2C. È consigliabile usare i criteri di iscrizione/accesso combinati, come illustrato nell'[articolo di riferimento sui criteri](active-directory-b2c-reference-policies.md). Durante la creazione dei criteri, assicurarsi di:
+In Azure AD B2C ogni esperienza utente è definita da [criteri](active-directory-b2c-reference-policies.md)specifici. Sarà necessario toocreate toocommunicate un criterio con Azure Active Directory B2C. È consigliabile utilizzare hello combinazione sign-configurazione/sign-in criteri, come descritto in hello [articolo di riferimento dei criteri](active-directory-b2c-reference-policies.md). Durante la creazione dei criteri, assicurarsi di:
 
 * Scegliere **Nome visualizzato** e altri attributi di iscrizione nei criteri.
 * Scegliere le attestazioni **Nome visualizzato** e **ID oggetto** come attestazioni dell'applicazione in tutti i criteri. È consentito scegliere anche altre attestazioni.
-* Copiare il **Nome** di ogni criterio dopo averlo creato. Il nome dei criteri sarà necessario più avanti.
+* Hello copia **nome** dei criteri dopo averlo creato. È necessario il nome di criterio hello in un secondo momento.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-Dopo aver creato i criteri, è possibile passare alla compilazione dell'app.
+Dopo avere creato i criteri di hello, si è pronti toobuild l'app.
 
-## <a name="download-the-code"></a>Scaricare il codice
+## <a name="download-hello-code"></a>Scaricare codice hello
 
-Il codice per questa esercitazione è salvato su [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi). È possibile clonare l'esempio eseguendo:
+codice Hello per questa esercitazione viene mantenuto nel [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi). È possibile clonare: esempio hello eseguendo:
 
 ```console
 git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi.git
 ```
 
-Dopo aver scaricato il codice di esempio, aprire il file SLN di Visual Studio per iniziare. Il file della soluzione contiene due progetti: `TaskWebApp` e `TaskService`. `TaskWebApp` è un'applicazione Web MVC con cui l'utente interagisce. `TaskService` è l'API Web back-end dell'app in cui viene archiviato l'elenco attività di ogni utente. Questo articolo illustra solo l'applicazione `TaskService`. Per informazioni su come compilare `TaskWebApp` usando Azure AD B2C, vedere l'[esercitazione sulle app Web .NET](active-directory-b2c-devquickstarts-web-dotnet-susi.md).
+Dopo aver scaricato il codice di esempio hello, verrà avviato tooget file con estensione sln di hello aprire Visual Studio. file di soluzione Hello contiene due progetti: `TaskWebApp` e `TaskService`. `TaskWebApp`è un'applicazione web MVC hello utente interagisce con. `TaskService`è l'API web back-end dell'applicazione hello che archivia l'elenco di attività di ogni utente. Questo articolo viene illustrato solo hello `TaskService` dell'applicazione. toolearn come toobuild `TaskWebApp` tramite Azure Active Directory B2C, vedere [l'esercitazione di app web .NET](active-directory-b2c-devquickstarts-web-dotnet-susi.md).
 
-### <a name="update-the-azure-ad-b2c-configuration"></a>Aggiornare la configurazione di Azure AD B2C
+### <a name="update-hello-azure-ad-b2c-configuration"></a>Aggiornare la configurazione di hello Azure Active Directory B2C
 
-L'esempio è configurato per l'uso dei criteri e dell'ID client del tenant di demo. Se si vuole usare il proprio tenant, sarà necessario seguire questa procedura:
+L'esempio è configurato toouse hello criteri e i client ID dei nostri tenant dimostrativo. Se si desidera toouse il proprio tenant, sarà necessario hello toodo seguenti:
 
-1. Aprire `web.config` nel progetto `TaskService` e sostituire i valori seguenti:
+1. Aprire `web.config` in hello `TaskService` progetti e sostituire i valori hello per
     * `ida:Tenant` con il nome del tenant
     * `ida:ClientId` con l'ID dell'applicazione API Web
-    * `ida:SignUpSignInPolicyId` con il nome del criterio "di iscrizione o di accesso"
+    * `ida:SignUpSignInPolicyId` con il nome del criterio "Iscrizione o accesso"
 
-2. Aprire `web.config` nel progetto `TaskWebApp` e sostituire i valori di
+2. Aprire `web.config` in hello `TaskWebApp` progetti e sostituire i valori hello per
     * `ida:Tenant` con il nome del tenant
     * `ida:ClientId` con l'ID dell'applicazione di tipo app Web
     * `ida:ClientSecret` con la chiave privata dell'app Web
@@ -84,13 +84,13 @@ L'esempio è configurato per l'uso dei criteri e dell'ID client del tenant di de
     * `ida:ResetPasswordPolicyId` con il nome del criterio "Reimposta password"
 
 
-## <a name="secure-the-api"></a>Proteggere l'API
+## <a name="secure-hello-api"></a>Proteggi hello API
 
-Quando è disponibile un client che chiama l'API, è possibile proteggere l'API, ad esempio `TaskService`, usando i token di connessione OAuth 2.0. In questo modo si assicura che ogni richiesta all'API sarà valida solo se la richiesta include un token di connessione. L'API può accettare e convalidare i token di connessione usando la libreria OWIN (Open Web Interface for .NET) di Microsoft.
+Quando è disponibile un client che chiama l'API, è possibile proteggere l'API, ad esempio `TaskService`, usando i token di connessione OAuth 2.0. In questo modo si garantisce che ogni API tooyour richiesta sarà valido solo se la richiesta hello dispone di un token di connessione. L'API può accettare e convalidare i token di connessione usando la libreria OWIN (Open Web Interface for .NET) di Microsoft.
 
 ### <a name="install-owin"></a>Installare OWIN
 
-Installare prima di tutto la pipeline di autenticazione OAuth OWIN usando la console di Gestione pacchetti di Visual Studio.
+Iniziare con l'installazione della pipeline di autenticazione OAuth OWIN hello utilizzando hello Console di gestione di pacchetti di Visual Studio.
 
 ```Console
 PM> Install-Package Microsoft.Owin.Security.OAuth -ProjectName TaskService
@@ -98,23 +98,23 @@ PM> Install-Package Microsoft.Owin.Security.Jwt -ProjectName TaskService
 PM> Install-Package Microsoft.Owin.Host.SystemWeb -ProjectName TaskService
 ```
 
-Verrà installato il middleware OWIN che accetterà e convaliderà i token di connessione.
+Middleware OWIN hello che verrà accettati e convalidati i token di connessione verrà installato.
 
 ### <a name="add-an-owin-startup-class"></a>Aggiungere una classe di avvio OWIN
 
-Aggiungere una classe di avvio OWIN all'API denominata `Startup.cs`.  Fare clic con il pulsante destro del mouse sul progetto, scegliere **Aggiungi** e quindi **Nuovo elemento** e cercare "OWIN". Il middleware OWIN richiamerà il metodo `Configuration(…)` all'avvio dell'app.
+Aggiunge un toohello di classe di avvio OWIN API denominata `Startup.cs`.  Fare clic su progetto hello, selezionare **Aggiungi** e **nuovo elemento**e quindi cercare OWIN. middleware OWIN Hello richiamerà hello `Configuration(…)` metodo all'avvio dell'app.
 
-In questo esempio la dichiarazione di classe è stata modificata in `public partial class Startup` ed è stata implementata l'altra parte della classe in `App_Start\Startup.Auth.cs`. Nel metodo `Configuration` è stata aggiunta una chiamata a `ConfigureAuth`, definita in `Startup.Auth.cs`. Dopo le modifiche, `Startup.cs` ha un aspetto analogo al seguente:
+In questo esempio, è stato modificato la dichiarazione di classe hello anche`public partial class Startup` e implementato hello altra parte della classe hello in `App_Start\Startup.Auth.cs`. Inside hello `Configuration` (metodo), è stata aggiunta una chiamata troppo`ConfigureAuth`, definito in `Startup.Auth.cs`. Dopo le modifiche di hello, `Startup.cs` sarà simile hello seguente:
 
 ```CSharp
 // Startup.cs
 
 public partial class Startup
 {
-    // The OWIN middleware will invoke this method when the app starts
+    // hello OWIN middleware will invoke this method when hello app starts
     public void Configuration(IAppBuilder app)
     {
-        // ConfigureAuth defined in other part of the class
+        // ConfigureAuth defined in other part of hello class
         ConfigureAuth(app);
     }
 }
@@ -122,7 +122,7 @@ public partial class Startup
 
 ### <a name="configure-oauth-20-authentication"></a>Configurare l'autenticazione OAuth 2.0
 
-Aprire il file `App_Start\Startup.Auth.cs` e implementare il metodo `ConfigureAuth(...)`. Ad esempio può avere un aspetto simile al seguente:
+File aperti hello `App_Start\Startup.Auth.cs`e implementare hello `ConfigureAuth(...)` metodo. Ad esempio, potrebbe avere questo aspetto hello seguente:
 
 ```CSharp
 // App_Start\Startup.Auth.cs
@@ -137,29 +137,29 @@ Aprire il file `App_Start\Startup.Auth.cs` e implementare il metodo `ConfigureAu
         public static string DefaultPolicy = SignUpSignInPolicy;
 
         /*
-         * Configure the authorization OWIN middleware.
+         * Configure hello authorization OWIN middleware.
          */
         public void ConfigureAuth(IAppBuilder app)
         {
             TokenValidationParameters tvps = new TokenValidationParameters
             {
-                // Accept only those tokens where the audience of the token is equal to the client ID of this app
+                // Accept only those tokens where hello audience of hello token is equal toohello client ID of this app
                 ValidAudience = ClientId,
                 AuthenticationType = Startup.DefaultPolicy
             };
 
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions
             {
-                // This SecurityTokenProvider fetches the Azure AD B2C metadata & signing keys from the OpenIDConnect metadata endpoint
+                // This SecurityTokenProvider fetches hello Azure AD B2C metadata & signing keys from hello OpenIDConnect metadata endpoint
                 AccessTokenFormat = new JwtFormat(tvps, new OpenIdConnectCachingSecurityTokenProvider(String.Format(AadInstance, Tenant, DefaultPolicy)))
             });
         }
     }
 ```
 
-### <a name="secure-the-task-controller"></a>Proteggere il controller dell'attività
+### <a name="secure-hello-task-controller"></a>Proteggere i controller di attività hello
 
-Dopo aver configurato l'app per usare l'autenticazione OAuth 2.0, per proteggere l'API Web aggiungere un tag `[Authorize]` al controller dell'attività. Si tratta del controller in cui avvengono tutte le modifiche relative all'elenco attività. Sarà quindi necessario proteggere l'intero controller a livello della classe. È anche possibile aggiungere il tag `[Authorize]` a singole azioni per un controllo più specifico.
+Dopo l'applicazione hello è autenticazione configurata toouse OAuth 2.0, è possibile proteggere l'API web mediante l'aggiunta di un `[Authorize]` controller attività toohello di tag. Questo è il controller hello in cui tutte le relative modifiche elenco attività viene eseguita, pertanto è consigliabile proteggere i controller di intero hello a livello di classe hello. È inoltre possibile aggiungere hello `[Authorize]` tag azioni tooindividual per un controllo più accurato.
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -171,9 +171,9 @@ public class TasksController : ApiController
 }
 ```
 
-### <a name="get-user-information-from-the-token"></a>Ottenere le informazioni utente dal token
+### <a name="get-user-information-from-hello-token"></a>Ottenere le informazioni utente da hello token
 
-`TasksController` archivia le attività in un database in cui a ogni attività è associato un utente "proprietario" dell'attività. Il proprietario è identificato dall' **ID oggetto**dell'utente. Per questo motivo è necessario aggiungere l'ID oggetto come attestazione dell'applicazione in tutti i criteri.
+`TasksController`Archivia le attività in un database in cui ogni attività dispone di un utente associato "proprietario" attività hello. proprietario Hello è identificato da dell'utente hello **ID di oggetto**. (Questo è il motivo è necessario l'ID di oggetto hello tooadd come un'applicazione in tutti i criteri di attestazione.)
 
 ```CSharp
 // Controllers\TasksController.cs
@@ -186,9 +186,9 @@ public IEnumerable<Models.Task> Get()
 }
 ```
 
-### <a name="validate-the-permissions-in-the-token"></a>Convalidare le autorizzazioni nel token
+### <a name="validate-hello-permissions-in-hello-token"></a>Convalidare le autorizzazioni di hello nel token hello
 
-Un requisito comune per l'API Web è la convalida degli "ambiti" presenti nel token. Ciò garantisce che l'utente goda delle autorizzazioni necessarie per accedere a un servizio di tipo "To Do List".
+Un requisito comune per l'API web è toovalidate hello "ambiti, presenti nel token hello. In questo modo si garantisce che l'utente hello ha accettato le condizioni del servizio di elenco attività toohello autorizzazioni tooaccess obbligatorio hello.
 
 ```CSharp
 public IEnumerable<Models.Task> Get()
@@ -197,17 +197,17 @@ public IEnumerable<Models.Task> Get()
     {
         throw new HttpResponseException(new HttpResponseMessage {
             StatusCode = HttpStatusCode.Unauthorized,
-            ReasonPhrase = "The Scope claim does not contain 'read' or scope claim not found"
+            ReasonPhrase = "hello Scope claim does not contain 'read' or scope claim not found"
         });
     }
     ...
 }
 ```
 
-## <a name="run-the-sample-app"></a>Eseguire l'app di esempio
+## <a name="run-hello-sample-app"></a>Eseguire app di esempio hello
 
-Compilare ed eseguire infine `TaskWebApp` e `TaskService`. Creare alcune attività nell'elenco attività dell'utente e osservarne la persistenza nell'API anche dopo l'arresto e il riavvio del client.
+Compilare ed eseguire infine `TaskWebApp` e `TaskService`. Creare alcune attività nell'elenco attività dell'utente hello e notare come vengono rese persistenti nell'API hello anche dopo l'arresto e riavvio di client hello.
 
 ## <a name="edit-your-policies"></a>Modificare i criteri
 
-Dopo aver protetto l'API con Azure AD B2C, è possibile provare i criteri di iscrizione/di accesso dell'app e visualizzarne gli effetti o l'assenza di effetti nell'API. È possibile modificare le attestazioni dell'applicazione nei criteri nonché le informazioni utente disponibili nell'API Web. Le eventuali attestazioni aggiunte saranno disponibili per l'API Web MVC .NET nell'oggetto `ClaimsPrincipal` , come descritto in precedenza in questo articolo.
+Dopo essersi assicurati un'API con Azure Active Directory B2C, è possibile utilizzare i criteri Sign-in/iscrizione e visualizzare gli effetti di hello (o assenza) su hello API. È possibile modificare le attestazioni applicazione hello nei criteri hello e modificare le informazioni utente hello disponibile nell'API web hello. Tutte le attestazioni che aggiungono sarà API web MVC .NET di tooyour disponibile in hello `ClaimsPrincipal` oggetto, come descritto in precedenza in questo articolo.

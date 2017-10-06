@@ -1,6 +1,6 @@
 ---
-title: Utilizzare il portale dei servizi Web di Azure Machine Learning | Documentazione Microsoft
-description: Gestione dell'accesso alle aree di lavoro di Azure Machine Learning e distribuzione e gestione dei servizi Web API ML
+title: portale di servizi Web di Azure Machine Learning hello aaaUse | Documenti Microsoft
+description: Gestire aree di lavoro di accesso tooAzure Machine Learning, distribuire e gestire i servizi web API ML
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: ad1314aa4b504bd2cb3285789073d4f1de1f545d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 04b49027fc0ab227382b320310088bb66aafacc6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-a-web-service-using-the-azure-machine-learning-web-services-portal"></a>Gestire un servizio Web usando il portale dei servizi Web di Azure Machine Learning
-Il portale dei servizi Web di Microsoft Azure Machine Learning consente di gestire i servizi Web classici e nuovi di Machine Learning. Poiché i servizi Web classici e nuovi sono basati su tecnologie diverse, sono disponibili funzionalità di gestione leggermente diverse.
+# <a name="manage-a-web-service-using-hello-azure-machine-learning-web-services-portal"></a>Gestire un servizio Web tramite il portale di servizi Web di Azure Machine Learning hello
+È possibile gestire i servizi Web classico e il Machine Learning nuovo tramite il portale di servizi Web di Microsoft Azure Machine Learning hello. Poiché i servizi Web classici e nuovi sono basati su tecnologie diverse, sono disponibili funzionalità di gestione leggermente diverse.
 
-Nel portale dei servizi Web di Azure Machine Learning è possibile:
+Nel portale di servizi Web di Machine Learning hello è possibile:
 
-* Monitorare la modalità d'uso del servizio Web.
-* Configurare la descrizione, aggiornare le chiavi per il servizio Web (solo servizi nuovi), aggiornare la chiave dell'account di archiviazione (solo servizi nuovi), abilitare la registrazione e abilitare o disabilitare i dati di esempio.
-* Eliminare il servizio Web.
+* Monitorare l'utilizzo di servizio web hello.
+* Configurare una descrizione di hello, aggiornare le chiavi di hello per il web hello (solo nuovo) del servizio, l'archiviazione account chiave (solo nuova), attivare la registrazione, aggiornare e attivare o disabilitare i dati di esempio.
+* Eliminare il servizio web hello.
 * Creare, eliminare o aggiornare i piani di fatturazione (solo servizi nuovi).
 * Aggiungere ed eliminare gli endpoint (solo servizi classici)
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="permissions-to-manage-new-resources-manager-based-web-services"></a>Autorizzazioni per gestire i nuovi servizi Web basati su Resource Manager
+## <a name="permissions-toomanage-new-resources-manager-based-web-services"></a>Autorizzazioni toomanage nuovo gestore di risorse basato su servizi web
 
-I nuovi servizi Web vengono distribuiti come risorse di Azure. Di conseguenza, è necessario disporre delle autorizzazioni corrette per distribuire e gestire i nuovi servizi Web.  Per distribuire o gestire i nuovi servizi Web è necessario che all'utente sia assegnato un ruolo di collaboratore o di amministratore nella sottoscrizione in cui viene distribuito il servizio Web. Se si invita un altro utente a un'area di lavoro di Machine Learning, è necessario assegnargli un ruolo di collaboratore o amministratore della sottoscrizione prima di poter distribuire o gestire i servizi Web. 
+I nuovi servizi Web vengono distribuiti come risorse di Azure. Di conseguenza, è necessario avere toodeploy delle autorizzazioni corrette hello e gestire nuovi servizi web.  toodeploy o gestire i nuovi servizi web, è necessario disporre di un collaboratore o il ruolo di amministratore nel servizio web di hello sottoscrizione toowhich hello viene distribuito. Se si invita a un'altra macchina di tooa utente apprendimento dell'area di lavoro, è necessario assegnare loro ruolo di collaboratore o amministratore tooa sottoscrizione hello prima di poter distribuire o gestire i servizi web. 
 
-Se l'utente non dispone delle autorizzazioni corrette per accedere alle risorse nel portale dei servizi Web di Azure Machine Learning, riceverà l'errore seguente quando cercherà di distribuire un servizio Web:
+Se hello insufficienti hello correggere risorse tooaccess autorizzazioni nel portale di servizi Web di Azure Machine Learning hello, riceveranno il seguente errore durante il tentativo di un servizio web toodeploy hello:
 
-*Web Service deployment failed. This account does not have sufficient access to the Azure subscription that contains the Workspace. In order to deploy a Web Service to Azure, the same account must be invited to the Workspace and be given access to the Azure subscription that contains the Workspace.* (Distribuzione del servizio Web non riuscita. L'account non dispone dei diritti di accesso sufficienti per accedere alla sottoscrizione di Azure che contiene l'area di lavoro. Per distribuire un servizio Web in Azure, è necessario che lo stesso account sia invitato all'area di lavoro e che gli sia assegnato l'accesso alla sottoscrizione di Azure contenente l'area di lavoro).
+*Web Service deployment failed. Questo account non dispone di sufficienti accesso toohello sottoscrizione di Azure che contiene hello dell'area di lavoro. Toodeploy tooAzure un servizio Web, hello stesso account deve essere invitati toohello dell'area di lavoro ed essere toohello di accesso specificata sottoscrizione di Azure che contiene hello dell'area di lavoro.*
 
 Per altre informazioni sulla creazione di un'area di lavoro, vedere [Creare e condividere un'area di lavoro di Azure Machine Learning](machine-learning-create-workspace.md).
 
-Per altre informazioni sull'impostazione delle autorizzazioni di accesso, vedere [Visualizzare le assegnazioni di accesso per utenti e gruppi nel Portale di Azure - Anteprima pubblica](../active-directory/role-based-access-control-manage-assignments.md).
+Per ulteriori informazioni sull'impostazione delle autorizzazioni di accesso, vedere [visualizzare le assegnazioni di accesso per utenti e gruppi nel portale di Azure - anteprima pubblica di hello](../active-directory/role-based-access-control-manage-assignments.md).
 
 
 ## <a name="manage-new-web-services"></a>Gestire i nuovi servizi Web
-Per gestire i nuovi servizi Web:
+toomanage i servizi Web di nuovo:
 
-1. Accedere al [portale dei servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net/quickstart) usando l'account di Microsoft Azure associato alla sottoscrizione di Azure.
-2. Nel menu fare clic su **Servizi Web**.
+1. Accedi toohello [servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net/quickstart) hello di portale utilizzando l'account di Microsoft Azure - Usa account hello associato alla sottoscrizione di Azure.
+2. Scegliere dal menu hello **servizi Web**.
 
 Verrà visualizzato un elenco di servizi Web distribuiti per la sottoscrizione. 
 
-Per gestire un servizio Web, fare clic su Web Services (Servizi Web). Nella pagina Servizi Web è possibile:
+toomanage un servizio Web, fare clic su servizi Web. Dalla pagina Web Services hello è possibile:
 
-* Fare clic sul servizio Web per gestirlo.
-* Fare clic sul piano di fatturazione per il servizio Web per aggiornarlo.
+* Fare clic su hello web servizio toomanage è.
+* Fare clic su hello piano di fatturazione per hello web servizio tooupdate è.
 * Eliminare un servizio Web.
-* Copiare un servizio Web e distribuirlo in un'altra area.
+* Copiare un servizio web e distribuirlo tooanother area.
 
-Quando si fa clic su un servizio Web, viene visualizzata la pagina di avvio rapido del servizio Web. Questa pagina contiene due opzioni di menu che consentono di gestire il servizio Web:
+Quando si fa clic su un servizio web, verrà visualizzata la pagina avvio rapido del servizio web di hello. pagina di avvio rapido del servizio web Hello è disponibili due opzioni di menu che consentono di toomanage il servizio web:
 
-* **DASHBOARD**: consente di visualizzare l'utilizzo del servizio Web.
-* **CONFIGURE** (CONFIGURA): consente di aggiungere testo descrittivo, aggiornare la chiave dell'account di archiviazione associato al servizio Web e abilitare o disabilitare i dati di esempio.
+* **DASHBOARD** -consente l'utilizzo di servizi Web tooview.
+* **Configura** : consente un testo descrittivo tooadd, chiave hello di aggiornamento per account di archiviazione hello associati hello al servizio Web e abilitare o disabilitare i dati di esempio.
 
-### <a name="monitoring-how-the-web-service-is-being-used"></a>Monitoraggio della modalità d'uso del servizio Web
-Fare clic sulla scheda **DASHBOARD** .
+### <a name="monitoring-how-hello-web-service-is-being-used"></a>Monitoraggio utilizzo servizio web hello
+Fare clic su hello **DASHBOARD** scheda.
 
-Nel dashboard è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare il periodo da visualizzare dal menu a discesa Periodo in alto a destra dei grafici di utilizzo. Il dashboard visualizza le informazioni seguenti:
+Dal dashboard di hello, è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare tooview periodo hello dal menu a discesa periodo hello in alto a destra hello di grafici relativi all'utilizzo di hello. dashboard di Hello Mostra hello le seguenti informazioni:
 
-* **Requests Over Time** (Richieste nel tempo) visualizza un grafico con il numero di richieste nel periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
-* **Request-Response Requests** (Richieste richiesta-risposta) visualizza il numero totale di chiamate di richiesta-risposta ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Request-Response Compute Time** (Tempo medio di calcolo richiesta-risposta) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Batch Requests** (Richieste batch) visualizza il numero totale di richieste batch ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Job Latency** (Latenza processo media) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Errors** (Errori) visualizza il numero complessivo di errori che si sono verificati nelle chiamate al servizio Web.
-* **Services Costs** (Costi servizi) visualizza le spese per il piano di fatturazione associato al servizio.
+* **Le richieste nel tempo** Visualizza un grafico di passaggio del numero di hello di richieste su hello periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
+* **Le richieste di richiesta-risposta** Visualizza hello il numero totale di chiamate richiesta-risposta ricevuta dal servizio hello hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Tempo medio di richiesta-risposta calcolo** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Batch di richieste** hello Visualizza il numero totale di servizio hello richieste Batch ha ricevuto tramite hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Processo latenza media** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Errori** Visualizza hello aggregazione del numero di errori che si sono verificati nel servizio web toohello di chiamate.
+* **I costi dei servizi** hello spese per il piano di fatturazione hello associato hello servizio vengono visualizzate.
 
-### <a name="configuring-the-web-service"></a>Configurazione del servizio Web
-Fare clic sull'opzione di menu **CONFIGURA** .
+### <a name="configuring-hello-web-service"></a>Configurazione del servizio web hello
+Fare clic su hello **configura** opzione di menu.
 
-È possibile aggiornare le proprietà seguenti:
+È possibile aggiornare hello le proprietà seguenti:
 
-* **Description** (Descrizione) consente di immettere una descrizione per il servizio Web.
-* **Title** (Titolo) consente di immettere un titolo per il servizio Web.
-* **Chiavi** consente di ruotare le chiavi API primarie e secondarie.
-* **Storage account key** (Chiave dell'account di archiviazione) consente di aggiornare la chiave per l'account di archiviazione associato alle modifiche del servizio Web. 
-* **Enable Sample data** (Abilita dati di esempio) consente di fornire dati di esempio che è possibile usare per testare il servizio di richiesta-risposta. Se il servizio Web è stato creato in Machine Learning Studio, i dati di esempio vengono prelevati dai dati usati per il training del modello. Se il servizio è stato creato a livello di codice, i dati vengono ricavati dai dati di esempio forniti come parte del pacchetto JSON.
+* **Descrizione** consente tooenter una descrizione per il servizio Web hello.
+* **Titolo** consente tooenter un titolo per hello servizio Web
+* **Le chiavi** consente toorotate le chiavi API primarie e secondarie.
+* **Chiave dell'account di archiviazione** consente tooupdate hello chiave hello account di archiviazione associato le modifiche del servizio Web di hello. 
+* **Abilita dati di esempio** consente tooprovide dati di esempio che è possibile utilizzare il servizio di richiesta-risposta hello tootest. Se si crea servizio web hello in Machine Learning Studio, i dati di esempio hello viene recuperati dal dati hello il tootrain utilizzato il modello. Se è stato creato a livello di codice servizio hello, dati hello viene eseguiti da dati di esempio hello forniti come parte del pacchetto di hello JSON.
 
 ### <a name="managing-billing-plans"></a>Gestione dei piani di fatturazione
-Fare clic sull'opzione di menu **Piani** della pagina Avvio rapido dei servizi Web. È anche possibile fare clic sul piano associato al servizio Web specifico per gestire tale piano.
+Fare clic su hello **piani** opzione di menu dalla pagina Guida introduttiva di servizi web di hello. È anche possibile scegliere il piano di hello associato specifico toomanage servizio Web che prevede.
 
-* **Nuovo** consente di creare un nuovo piano.
-* **Add/Remove Plan instance** (Aggiungi/Rimuovi istanza di piano) consente di aumentare un piano esistente per aggiungere capacità.
-* **Upgrade/DownGrade** (Esegui aggiornamento/downgrade) consente di aumentare un piano esistente per aggiungere capacità.
-* **Elimina** consente di eliminare un piano.
+* **Nuovo** consente toocreate un nuovo piano.
+* **Istanza del piano di installazione** consente troppo "scalabilità" una capacità di tooadd piano esistente.
+* **Aggiornamento/DownGrade** consente troppo "scalabilità" una capacità di tooadd piano esistente.
+* **Eliminare** consente toodelete un piano.
 
-Fare clic su un piano per visualizzare il relativo dashboard. Il dashboard indica l'uso dello snapshot o del piano in un periodo di tempo selezionato. Per selezionare il periodo di tempo da visualizzare, fare clic sull'elenco a discesa **Period** (Periodo) nella parte superiore destra del dashboard. 
+Fare clic su un piano tooview relativo dashboard. dashboard Hello fornisce snapshot o piano di utilizzo in un periodo di tempo selezionato. tooselect hello tooview periodo di tempo, fare clic su hello **periodo** elenco a discesa in alto a destra hello del dashboard. 
 
-Il dashboard del piano contiene le informazioni seguenti:
+dashboard del piano Hello fornisce hello le seguenti informazioni:
 
-* **Descrizione piano** visualizza le informazioni sui costi e le capacità associate al piano.
-* **Plan Usage** (Uso piano) visualizza il numero di transazioni e di ore di calcolo addebitate in base al piano.
-* **Web Services** (Servizi Web) visualizza il numero di servizi Web che usano il piano.
-* **Top Web Service By Calls** (Primi servizi Web per chiamate) visualizza i primi quattro servizi Web che stanno effettuando chiamate per cui viene applicato un addebito in base al piano.
-* **Top Web Services by Compute Hrs** (Primi servizi Web per ore di calcolo) visualizza i primi quattro servizi Web che stanno usando le risorse di calcolo per cui viene applicato un addebito in base al piano.
+* **Pianificare la descrizione** consente di visualizzare informazioni sui costi hello e sulla capacità associati hello piano.
+* **Pianificare l'utilizzo** Visualizza il numero di hello delle transazioni e le ore di calcolo addebitato rispetto ai piani di hello.
+* **Servizi Web** Visualizza il numero di hello di servizi Web che utilizzano questo piano.
+* **Le prime da chiamate del servizio Web** Visualizza hello principali quattro servizi che stanno effettuando chiamate addebitato rispetto ai piani di hello.
+* **I primi servizi Web per ore di calcolo** Visualizza hello principali quattro servizi che utilizzano risorse di calcolo addebitato rispetto ai piani di hello.
 
 ## <a name="manage-classic-web-services"></a>Gestire i servizi Web classici
 > [!NOTE]
-> Le procedure di questa sezione si riferiscono alla gestione dei servizi Web classici nel portale dei servizi Web di Azure Machine Learning. Per informazioni sulla gestione dei servizi Web classici tramite Machine Learning Studio e il portale di Azure classico, vedere [Gestire un'area di lavoro di Azure Machine Learning](machine-learning-manage-workspace.md).
+> procedure di Hello in questa sezione sono i servizi web classica toomanaging rilevanti tramite il portale di servizi Web di Azure Machine Learning hello. Per informazioni sulla gestione classico Web services tramite Machine Learning Studio hello e hello Azure classico portale, vedere [gestire un'area di lavoro di Azure Machine Learning](machine-learning-manage-workspace.md).
 > 
 > 
 
-Per gestire i servizi Web classici:
+toomanage i servizi Web classico:
 
-1. Accedere al [portale dei servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net/quickstart) usando l'account di Microsoft Azure associato alla sottoscrizione di Azure.
-2. Fare clic su **Classic Web Services** (Servizi Web classici).
+1. Accedi toohello [servizi Web di Microsoft Azure Machine Learning](https://services.azureml.net/quickstart) hello di portale utilizzando l'account di Microsoft Azure - Usa account hello associato alla sottoscrizione di Azure.
+2. Scegliere dal menu hello **classico servizi Web**.
 
-Per gestire un servizio Web classico, fare clic su **Classic Web Services**(Servizi Web classici). Nella pagina relativa ai servizi Web classici è possibile:
+Fare clic su un servizio Web classico, toomanage **classico servizi Web**. Dalla pagina di hello Classic servizi Web, è possibile:
 
-* Fare clic sul servizio Web per visualizzare gli endpoint associati.
+* Fare clic su endpoint hello associata tooview del servizio web hello.
 * Eliminare un servizio Web.
 
-Quando si gestisce un servizio Web classico, si gestisce ognuno degli endpoint separatamente. Quando si fa clic su un servizio Web nella pagina dei servizi Web, viene aperto l'elenco degli endpoint associati al servizio. 
+Quando si gestisce un servizio Web classico, gestire ognuno degli endpoint hello separatamente. Quando si fa clic su un servizio web nella pagina servizi Web hello, verrà visualizzato l'elenco di hello di endpoint associati al servizio hello. 
 
-Nella pagina relativa agli endpoint dei servizi Web classici è possibile aggiungere ed eliminare gli endpoint del servizio. Per altre informazioni sull'aggiunta di endpoint, vedere [Creazione di endpoint](machine-learning-create-endpoint.md).
+Nella pagina di endpoint servizio Web classico hello, è possibile aggiungere ed eliminare gli endpoint servizio hello. Per altre informazioni sull'aggiunta di endpoint, vedere [Creazione di endpoint](machine-learning-create-endpoint.md).
 
-Fare clic su uno degli endpoint per aprire la pagina di avvio rapido del servizio Web. Questa pagina contiene due opzioni di menu che consentono di gestire il servizio Web:
+Fare clic su uno della pagina di avvio rapido di hello endpoint tooopen hello web del servizio. Nella pagina avvio rapido di hello, esistono due opzioni di menu che consentono di toomanage il servizio web:
 
-* **DASHBOARD**: consente di visualizzare l'utilizzo del servizio Web.
-* **CONFIGURE** (CONFIGURA): consente di aggiungere testo descrittivo, attivare e disattivare la registrazione degli errori, aggiornare la chiave dell'account di archiviazione associato al servizio Web e abilitare e disabilitare i dati di esempio.
+* **DASHBOARD** -consente l'utilizzo di servizi Web tooview.
+* **Configura** -consente un testo descrittivo tooadd, attivare la registrazione di errori e disattivare, chiave hello di aggiornamento per account di archiviazione hello associati hello al servizio Web, abilitare e disabilitare i dati di esempio.
 
-### <a name="monitoring-how-the-web-service-is-being-used"></a>Monitoraggio della modalità d'uso del servizio Web
-Fare clic sulla scheda **DASHBOARD** .
+### <a name="monitoring-how-hello-web-service-is-being-used"></a>Monitoraggio utilizzo servizio web hello
+Fare clic su hello **DASHBOARD** scheda.
 
-Nel dashboard è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare il periodo da visualizzare dal menu a discesa Periodo in alto a destra dei grafici di utilizzo. Il dashboard visualizza le informazioni seguenti:
+Dal dashboard di hello, è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare tooview periodo hello dal menu a discesa periodo hello in alto a destra hello di grafici relativi all'utilizzo di hello. dashboard di Hello Mostra hello le seguenti informazioni:
 
-* **Requests Over Time** (Richieste nel tempo) visualizza un grafico con il numero di richieste nel periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
-* **Request-Response Requests** (Richieste richiesta-risposta) visualizza il numero totale di chiamate di richiesta-risposta ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Request-Response Compute Time** (Tempo medio di calcolo richiesta-risposta) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Batch Requests** (Richieste batch) visualizza il numero totale di richieste batch ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Job Latency** (Latenza processo media) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Errors** (Errori) visualizza il numero complessivo di errori che si sono verificati nelle chiamate al servizio Web.
-* **Services Costs** (Costi servizi) visualizza le spese per il piano di fatturazione associato al servizio.
+* **Le richieste nel tempo** Visualizza un grafico di passaggio del numero di hello di richieste su hello periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
+* **Le richieste di richiesta-risposta** Visualizza hello il numero totale di chiamate richiesta-risposta ricevuta dal servizio hello hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Tempo medio di richiesta-risposta calcolo** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Batch di richieste** hello Visualizza il numero totale di servizio hello richieste Batch ha ricevuto tramite hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Processo latenza media** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Errori** Visualizza hello aggregazione del numero di errori che si sono verificati nel servizio web toohello di chiamate.
+* **I costi dei servizi** hello spese per il piano di fatturazione hello associato hello servizio vengono visualizzate.
 
-### <a name="configuring-the-web-service"></a>Configurazione del servizio Web
-Fare clic sull'opzione di menu **CONFIGURA** .
+### <a name="configuring-hello-web-service"></a>Configurazione del servizio web hello
+Fare clic su hello **configura** opzione di menu.
 
-È possibile aggiornare le proprietà seguenti:
+È possibile aggiornare hello le proprietà seguenti:
 
-* **Description** (Descrizione) consente di immettere una descrizione per il servizio Web. La descrizione è un campo obbligatorio.
-* **Logging** (Registrazione) consente di abilitare o disabilitare la registrazione nell'endpoint. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
-* **Enable Sample data** (Abilita dati di esempio) consente di fornire dati di esempio che è possibile usare per testare il servizio di richiesta-risposta. Se il servizio Web è stato creato in Machine Learning Studio, i dati di esempio vengono prelevati dai dati usati per il training del modello. Se il servizio è stato creato a livello di codice, i dati vengono ricavati dai dati di esempio forniti come parte del pacchetto JSON.
+* **Descrizione** consente tooenter una descrizione per il servizio Web hello. La descrizione è un campo obbligatorio.
+* **Registrazione** consente errore tooenable o disabilitare la registrazione su endpoint hello. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
+* **Abilita dati di esempio** consente tooprovide dati di esempio che è possibile utilizzare il servizio di richiesta-risposta hello tootest. Se si crea servizio web hello in Machine Learning Studio, i dati di esempio hello viene recuperati dal dati hello il tootrain utilizzato il modello. Se è stato creato a livello di codice servizio hello, dati hello viene eseguiti da dati di esempio hello forniti come parte del pacchetto di hello JSON.
 
-## <a name="grant-or-suspend-access-to-web-services-for-users-in-the-portal"></a>Concedere o sospendere l'accesso ai servizi Web per gli utenti nel portale
-Usando il portale di Azure classico, è possibile consentire o negare l'accesso a utenti specifici.
+## <a name="grant-or-suspend-access-tooweb-services-for-users-in-hello-portal"></a>Concedere o sospendere l'accesso tooWeb servizi per gli utenti nel portale di hello
+Utilizza hello portale di Azure classico, è possibile consentire o negare l'accesso agli utenti di toospecific.
 
 ### <a name="access-for-users-of-new-web-services"></a>Accesso per gli utenti dei nuovi servizi Web
-Per consentire ad altri utenti di usare i servizi Web nel portale dei servizi Web di Azure Machine Learning, è necessario aggiungere gli utenti come coamministratori nella sottoscrizione di Azure.
+tooenable toowork altri utenti con i servizi Web nel portale di servizi Web di Azure Machine Learning hello, è necessario aggiungerli come co-amministratori nella sottoscrizione di Azure.
 
-Accedere al [portale di Azure classico](https://manage.windowsazure.com/) usando l'account di Microsoft Azure associato alla sottoscrizione di Azure.
+Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) utilizzo di Microsoft Azure account, utilizzare account hello associato hello sottoscrizione di Azure.
 
-1. Nel riquadro di spostamento sinistro fare clic su **Impostazioni** e quindi su **Amministratori**.
-2. Nella parte inferiore della finestra fare clic su **Aggiungi**. 
-3. Nella finestra di dialogo AGGIUNGI COAMMINISTRATORE digitare l'indirizzo di posta elettronica della persona che si vuole aggiungere come coamministratore e quindi selezionare la sottoscrizione a cui il coamministratore potrà accedere.
-4. Fare clic su **Save**.
+1. Nel riquadro di spostamento hello, fare clic su **impostazioni**, quindi fare clic su **amministratori**.
+2. Nella parte inferiore di hello della finestra hello, fare clic su **Aggiungi**. 
+3. Nella finestra di dialogo ADD A CO-ADMINISTRATOR hello, hello tipo indirizzo di posta elettronica della persona hello tooadd come coamministratore, quindi selezionare sottoscrizione hello che si desidera tooaccess CO-amministratore hello.
+4. Fare clic su **Salva**.
 
 ### <a name="access-for-users-of-classic-web-services"></a>Accesso per gli utenti dei servizi Web classici
-Per gestire un'area di lavoro:
+toomanage un'area di lavoro:
 
-Accedere al [portale di Azure classico](https://manage.windowsazure.com/) usando l'account di Microsoft Azure associato alla sottoscrizione di Azure.
+Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) utilizzo di Microsoft Azure account, utilizzare account hello associato hello sottoscrizione di Azure.
 
-1. Nel riquadro dei servizi di Microsoft Azure fare clic su **MACHINE LEARNING**.
-2. Fare clic sull'area di lavoro da gestire.
-3. Fare clic sulla scheda **CONFIGURE** .
+1. Nel Pannello di servizi di Microsoft Azure hello, fare clic su **MACHINE LEARNING**.
+2. Fare clic su area di lavoro hello desiderato toomanage.
+3. Fare clic su hello **configura** scheda.
 
-Nella scheda relativa alla configurazione sospendere l'accesso all'area di lavoro di Machine Learning facendo clic su **NEGA**. Gli utenti non saranno più in grado di aprire l'area di lavoro in Machine Learning Studio. Per ripristinare l'accesso, fare clic su **CONSENTI**.
+Dalla scheda Configurazione hello, è possibile sospendere l'area di lavoro Machine Learning toohello access facendo **DENY**. Gli utenti non saranno in grado di tooopen dell'area di lavoro hello in Machine Learning Studio. accesso toorestore, fare clic su **Consenti**.
 
-Per utenti specifici:
+utenti toospecific:
 
-Per gestire account aggiuntivi che hanno accesso all'area di lavoro in Machine Learning Studio, fare clic su **Accedi a ML Studio** nella scheda **DASHBOARD**. Verrà aperta l'area di lavoro in Machine Learning Studio. A questo punto, fare clic sulla scheda **SETTINGS** (IMPOSTAZIONI) e quindi su **USERS** (UTENTI). È possibile fare clic su **INVITE MORE USERS** (INVITA ALTRI UTENTI) per concedere agli utenti l'accesso all'area di lavoro oppure selezionare un utente e fare clic su **REMOVE** (RIMUOVI).
+toomanage altri account che dispongono di accesso dell'area di lavoro toohello in Machine Learning Studio, fare clic su **Accedi tooML Studio** in hello **DASHBOARD** scheda. Verrà visualizzata l'area di lavoro hello in Machine Learning Studio. Da qui, fare clic su hello **impostazioni** scheda e quindi **utenti**. È possibile fare clic su **INVITARE utenti più** toogive utenti accedere toohello area di lavoro, oppure selezionare un utente e fare clic su **rimuovere**.
 
 > [!NOTE]
-> Il link all’ **Accesso a ML Studio** consente di aprire Machine Learning Studio usando l'account Microsoft con cui è stato eseguito l'accesso. L'account Microsoft usato per accedere al portale di Azure classico per creare un'area di lavoro non è automaticamente autorizzato ad aprire tale area di lavoro. Per aprire un'area di lavoro, è necessario essere connessi con l'account Microsoft definito come proprietario dell'area di lavoro oppure ricevere un invito dal proprietario per partecipare all'area di lavoro.
+> Hello **Accedi tooML Studio** collegamento consente di aprire Machine Learning Studio usando l'Account Microsoft è stato eseguito l'accesso in hello. Hello Account Microsoft usato toosign in toohello toocreate portale Azure classico un'area di lavoro dispone automaticamente dell'autorizzazione tooopen area di lavoro. tooopen un'area di lavoro, è necessario essere connessi con Account Microsoft che è stato definito come proprietario di hello dell'area di lavoro hello toohello oppure è necessario un invito dall'area di lavoro di hello proprietario toojoin hello tooreceive.
 > 
 > 
 

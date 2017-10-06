@@ -1,5 +1,5 @@
 ---
-title: Distribuire SAP S/4 HANA o BW/4 HANA in una macchina virtuale di Azure | Microsoft Docs
+title: aaaDeploy S/4HANA SAP o BW/4HANA in una macchina virtuale di Azure | Documenti Microsoft
 description: Distribuire SAP S/4HANA o BW/4HANA in una macchina virtuale di Azure
 services: virtual-machines-linux
 documentationcenter: 
@@ -16,150 +16,150 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 09/15/2016
 ms.author: hermannd
-ms.openlocfilehash: 4788fa14a6c49d39b5a3096a69b6738f4a5d8cca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7e57f7daa7667b7c7dbcb86f6892a54e4295b74c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-sap-s4hana-or-bw4hana-on-azure"></a>Distribuire SAP S/4HANA o BW/4HANA in Azure
-Questo articolo descrive come distribuire S/4HANA in Azure tramite SAP Cloud Appliance Library (SAP CAL) 3.0. Per distribuire altre soluzioni basate su SAP HANA, ad esempio BW/4HANA, seguire la stessa procedura.
+In questo articolo viene descritto come toodeploy S/4HANA in Azure utilizzando hello libreria Appliance di Cloud SAP (SAP CAL) 3.0. toodeploy altre soluzioni basate su SAP HANA, ad esempio BW/4HANA, seguono hello stessi passaggi.
 
 > [!NOTE]
-Per altre informazioni su SAP CAL, visitare il sito Web [SAP Cloud Appliance Library](https://cal.sap.com/). Esiste anche un blog di SAP su [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience).
+Per ulteriori informazioni su hello CAL SAP, visitare toohello [SAP Cloud accessorio libreria](https://cal.sap.com/) sito Web. SAP include anche un blog sui hello [SAP Cloud accessorio libreria 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience).
 
 > [!NOTE]
-A partire dal 29 maggio 2017, per distribuire SAP CAL è possibile usare il modello di distribuzione Azure Resource Manager, oltre al modello di distribuzione classica, non preferito. È consigliabile usare il nuovo modello di distribuzione Resource Manager, ignorando il modello di distribuzione classica.
+Come di 29 maggio 2017, è possibile utilizzare modelli di distribuzione Azure Resource Manager hello inoltre distribuzione classica preferito meno toohello modello toodeploy hello CAL SAP. È consigliabile utilizzare il nuovo modello di distribuzione di gestione delle risorse di hello e ignorare il modello di distribuzione classica hello.
 
-## <a name="step-by-step-process-to-deploy-the-solution"></a>Procedura dettagliata per distribuire la soluzione
+## <a name="step-by-step-process-toodeploy-hello-solution"></a>Soluzione di hello toodeploy passaggi della procedura guidata
 
-La sequenza di screenshot che segue illustra come distribuire S/4HANA in Azure tramite SAP CAL. Per altre soluzioni, ad esempio BW/4HANA, il processo è lo stesso.
+Hello sequenza degli screenshot seguente mostra come toodeploy S/4HANA in Azure utilizzando hello CAL SAP. il processo di Hello funziona hello allo stesso modo di altre soluzioni, ad esempio BW/4HANA.
 
-La pagina **Solutions** (Soluzioni) illustra alcune delle soluzioni SAP CAL basate su HANA disponibili in Azure. **SAP S/4HANA 1610 FPS01, Fully-Activated Appliance** è nella riga centrale:
+Hello **soluzioni** pagina vengono illustrati alcuni dei hello soluzioni basate su SAP HANA CAL disponibili in Azure. **SAP S/4HANA 1610 FPS01, Fully-Activated accessorio** nella riga centrale hello:
 
 ![Soluzioni SAP CAL](./media/cal-s4h/s4h-pic-1c.png)
 
-### <a name="create-an-account-in-the-sap-cal"></a>Creare un account in SAP CAL
-1. Per accedere a SAP CAL per la prima volta, usare un account SAP S-User o un altro account utente registrato con SAP. Definire quindi un account SAP CAL da usare per distribuire appliance in Azure con SAP CAL. Nella definizione dell'account è necessario:
+### <a name="create-an-account-in-hello-sap-cal"></a>Creare un account in hello CAL SAP
+1. toosign in toohello CAL SAP per hello prima volta, utilizzare S utente SAP o altre registrate con SAP dall'utente. Definire quindi un account di SAP CAL utilizzato da dispositivi di toodeploy hello CAL SAP in Azure. Nella definizione di account hello, è necessario:
 
-    a. Selezionare il modello di distribuzione in Azure (Resource Manager o classica).
+    a. Selezionare il modello di distribuzione hello in Azure (classica o gestione delle risorse).
 
-    b. Immettere la sottoscrizione di Azure. Un account SAP CAL può essere assegnato a una sola sottoscrizione. Se sono necessarie più sottoscrizioni, è necessario creare più account SAP CAL.
+    b. Immettere la sottoscrizione di Azure. Un account di SAP CAL può essere assegnato solo sottoscrizione tooone. Se è necessario più di una sottoscrizione, è necessario toocreate un altro account di SAP CAL.
 
-    c. Concedere a SAP CAL l'autorizzazione alla distribuzione all'interno della sottoscrizione di Azure.
+    c. Assegnare hello SAP CAL autorizzazione toodeploy alla sottoscrizione di Azure.
 
     > [!NOTE]
-    I passaggi successivi illustrano come creare un account SAP CAL per le distribuzioni Resource Manager. Se è già disponibile un account SAP CAL collegato al modello di distribuzione classica, per creare un nuovo account SAP CAL è *necessario* seguire questa procedura. Il nuovo account SAP CAL deve eseguire la distribuzione nel modello Resource Manager.
+    passaggi successivi Hello mostrano come toocreate una licenza CAL SAP account per le distribuzioni di gestione risorse. Se hai già un account di SAP CAL che è il modello di distribuzione classica toohello collegato, si *necessario* toofollow questi toocreate passaggi un nuovo account di SAP CAL. il nuovo account di SAP CAL Hello deve toodeploy nel modello di gestione risorse di hello.
 
-2. Creare un nuovo account SAP CAL. La pagina **Accounts** (Account) presenta tre scelte per Azure: 
+2. Creare un nuovo account SAP CAL. Hello **account** pagina sono disponibili tre opzioni Azure: 
 
-    a. **Microsoft Azure (classic)** (Microsoft Azure (classica)), il modello di distribuzione classica, non rappresenta più il modello di distribuzione preferito.
+    a. **Microsoft Azure (versione classica)** è il modello di distribuzione classica hello e non è più preferito.
 
-    b. **Microsoft Azure** corrisponde al nuovo modello di distribuzione Resource Manager.
+    b. **Microsoft Azure** è il nuovo modello di distribuzione di gestione delle risorse di hello.
 
-    c. **Windows Azure operated by 21Vianet** (Windows Azure gestito da 21Vianet) è un'opzione disponibile in Cina che usa il modello di distribuzione classica.
+    c. **Windows Azure gestito da 21Vianet** è un'opzione in Cina che utilizza il modello di distribuzione classica hello.
 
-    Per distribuire il modello Resource Manager, selezionare **Microsoft Azure**.
+    Selezionare toodeploy nel modello di gestione risorse di hello, **Microsoft Azure**.
 
     ![Dettagli dell'account SAP CAL](./media/cal-s4h/s4h-pic-2a.png)
 
-3. Immettere l'**ID sottoscrizione** di Azure, reperibile nel Portale di Azure.
+3. Immettere hello Azure **ID sottoscrizione** che sono disponibili nel portale di Azure hello.
 
    ![Account SAP CAL](./media/cal-s4h/s4h-pic3c.png)
 
-4. Per autorizzare SAP CAL alla distribuzione nella sottoscrizione di Azure definita, fare clic su **Authorize** (Autorizza). Nella scheda del browser viene visualizzata la pagina seguente:
+4. tooauthorize hello CAL SAP toodeploy nella sottoscrizione di Azure hello è definito, fare clic su **Authorize**. Hello seguente pagina viene visualizzata nella scheda del browser hello:
 
    ![Accesso ai servizi cloud di Internet Explorer](./media/cal-s4h/s4h-pic4c.png)
 
-5. Se sono elencati più utenti, scegliere l'account Microsoft collegato come coamministratore della sottoscrizione di Azure selezionata. Nella scheda del browser viene visualizzata la pagina seguente:
+5. Se più di un utente è elencato, scegliere hello account Microsoft collegato toobe hello coadministrator di hello Azure sottoscrizione selezionata. Hello seguente pagina viene visualizzata nella scheda del browser hello:
 
    ![Conferma dei servizi cloud di Internet Explorer](./media/cal-s4h/s4h-pic5a.png)
 
-6. Fare clic **Accept**. Se l'autorizzazione ha esito positivo, viene visualizzata nuovamente la definizione dell'account SAP CAL. Dopo un breve periodo, viene visualizzato un messaggio di conferma del completamento del processo di autorizzazione.
+6. Fare clic **Accept**. Se viene concessa l'autorizzazione di hello, definizione di account di SAP CAL viene visualizzato nuovamente. Dopo un breve periodo di tempo, un messaggio di conferma che il processo di autorizzazione hello ha avuto esito positivo.
 
-7. Per assegnare a un utente l'account SAP CAL appena creato, immettere l'**ID utente** nella casella di testo a destra e fare clic su **Add** (Aggiungi).
+7. hello tooassign appena creati SAP CAL account tooyour utente, immettere il **ID utente** nella casella di testo a destra hello hello e fare clic su **Aggiungi**.
 
-   ![Associazione tra account e utente](./media/cal-s4h/s4h-pic8a.png)
+   ![Associazione toouser account](./media/cal-s4h/s4h-pic8a.png)
 
-8. Per associare l'account all'utente usato per accedere a SAP CAL, fare clic su **Review** (Verifica). 
+8. Fare clic su account utente di hello utilizzare toosign toohello CAL SAP, tooassociate **revisione**. 
  
-9. Per creare l'associazione tra l'utente e l'account SAP CAL appena creato, fare clic su **Create** (Crea).
+9. associazione di hello toocreate tra l'utente e l'account di SAP CAL hello appena creato, fare clic su **crea**.
 
-   ![Associazione tra utente e account SAP CAL](./media/cal-s4h/s4h-pic9b.png)
+   ![Associazione dell'account utente tooSAP CAL](./media/cal-s4h/s4h-pic9b.png)
 
 È stato creato un account SAP CAL in grado di:
 
-- Usare il modello di distribuzione Resource Manager.
+- Utilizzare il modello di distribuzione del hello Gestione risorse.
 - Distribuire i sistemi SAP nella sottoscrizione di Azure.
 
-È ora possibile iniziare a distribuire S/4HANA nella sottoscrizione utente in Azure.
+È ora possibile avviare toodeploy S/4HANA alla sottoscrizione di utente in Azure.
 
 > [!NOTE]
-Prima di continuare, determinare se sono disponibili quote core di Azure per macchine virtuali di serie H di Azure. Attualmente, per distribuire alcune soluzioni basate su SAP HANA, SAP CAL usa macchine virtuali di serie H di Azure. È possibile tuttavia che la sottoscrizione di Azure in uso non abbia quote core per la serie H. In questo caso, è necessario contattare il supporto tecnico di Azure per ottenere una quota di almeno 16 serie H.
+Prima di continuare, determinare se sono disponibili quote core di Azure per macchine virtuali di serie H di Azure. In un momento hello, hello SAP CAL utilizza toodeploy H serie macchine virtuali di Azure alcune delle soluzioni basate su SAP HANA hello. È possibile tuttavia che la sottoscrizione di Azure in uso non abbia quote core per la serie H. In questo caso, potrebbe essere necessario toocontact supporto tecnico di Azure tooget una quota di almeno 16 core H serie.
 
 > [!NOTE]
-Quando si distribuisce una soluzione in Azure con SAP CAL, può accadere che sia possibile scegliere una sola area di Azure. Per eseguire la distribuzione in aree di Azure diverse da quella suggerita da SAP CAL, è necessario acquistare una sottoscrizione CAL da SAP. Potrebbe anche essere necessario aprire un messaggio con SAP per farsi abilitare l'account CAL per il recapito in aree di Azure diverse da quelle suggerite inizialmente.
+Quando si distribuisce una soluzione hello CAL SAP in Azure, si noterà che è possibile scegliere una sola area di Azure. toodeploy in aree di Azure diverso da hello uno suggeriti da hello CAL SAP, è necessario toopurchase una sottoscrizione CAL da SAP. Inoltre potrebbe essere necessario un messaggio con SAP toohave tooopen il toodeliver account abilitato CAL in aree di Azure diverso da quelli suggeriti inizialmente hello.
 
 ### <a name="deploy-a-solution"></a>Distribuire una soluzione
 
-Verrà ora distribuita una soluzione dalla pagina **Solutions** (Soluzioni) di SAP CAL. Con SAP CAL sono disponibili due sequenze di distribuzione:
+Consente di distribuire una soluzione da hello **soluzioni** pagina di hello CAL SAP. Hello CAL SAP dispone di due sequenze toodeploy:
 
-- Una sequenza di base, che usa una sola pagina per definire il sistema da distribuire
+- Una sequenza di base che usa uno toobe di sistema di hello toodefine, pagina distribuito
 - Una sequenza avanzata, che offre opzioni specifiche per le dimensioni delle macchine virtuali 
 
-In questo articolo verrà illustrato il percorso di distribuzione di base.
+Viene descritto come hello qui toodeployment di percorso di base.
 
-1. Nella pagina **Account Details** (Dettagli account) è necessario:
+1. In hello **dettagli Account** pagina, è necessario:
 
-    a. Selezionare un account SAP CAL. Usare un account associato alla distribuzione con il modello di distribuzione Resource Manager.
+    a. Selezionare un account SAP CAL. (Utilizzare un account che sia associato toodeploy con modello di distribuzione di gestione risorse di hello).
 
     b. Immettere un **nome** di istanza.
 
-    c. Selezionare un'**area** di Azure. SAP CAL suggerisce un'area. Se è necessaria un'altra area di Azure e non si ha una sottoscrizione SAP CAL, è necessario ordinare una sottoscrizione CAL a SAP.
+    c. Selezionare un'**area** di Azure. Hello SAP CAL suggerisce una regione. Se occorre un'altra area di Azure e non si dispone di una sottoscrizione CAL SAP, è necessario tooorder una licenza CAL sottoscrizione con SAP.
 
-    d. Immettere una **password** master di otto o nove caratteri per la soluzione. La password viene usata per gli amministratori dei diversi componenti.
+    d. Immettere un master **Password** per soluzione hello di otto o nove caratteri. Hello password viene utilizzata per gli amministratori di hello dei diversi componenti hello.
 
    ![Modalità SAP CAL di base: creare un'istanza](./media/cal-s4h/s4h-pic10a.png)
 
-2. Fare clic su **Create** (Crea). Nella finestra di messaggio visualizzata fare clic su **OK**.
+2. Fare clic su **crea**, nella finestra di messaggio hello che viene visualizzato, fare clic su **OK**.
 
    ![Dimensioni delle macchine virtuali supportate da SAP CAL](./media/cal-s4h/s4h-pic10b.png)
 
-3. Nella finestra di dialogo **Private Key** (Chiave privata) fare clic su **Store** (Archivia) per archiviare la chiave privata in SAP CAL. Per usare la password di protezione per la chiave privata, fare clic su **Download** (Scarica). 
+3. In hello **chiave privata** la finestra di dialogo, fare clic su **archivio** toostore hello chiave privata hello CAL SAP. Fare clic su toouse password di protezione per la chiave privata di hello **scaricare**. 
 
    ![Chiave privata SAP CAL](./media/cal-s4h/s4h-pic10c.png)
 
-4. Leggere il messaggio in **Warning** (Avviso) e fare clic su **OK**.
+4. Hello lettura CAL SAP **avviso** messaggio e fare clic su **OK**.
 
    ![Avviso di SAP CAL](./media/cal-s4h/s4h-pic10d.png)
 
-    Verrà ora eseguita la distribuzione. Dopo alcuni minuti, a seconda della dimensione e della complessità della soluzione, di cui SAP CAL fornisce una stima, la soluzione viene visualizzata come attiva e pronta all'uso.
+    Distribuzione di hello viene ora eseguita. Dopo alcuni minuti, a seconda delle dimensioni di hello e la complessità della soluzione hello (Buongiorno CAL SAP fornisce una stima), lo stato di hello è visualizzato come attivo e pronto all'uso.
 
-5. Per individuare le macchine virtuali raccolte con le altre risorse associate in un unico gruppo di risorse, passare al Portale di Azure: 
+5. macchine virtuali di hello toofind raccolte con hello altre risorse associate in un gruppo di risorse, visitare il portale di Azure toohello: 
 
-   ![Oggetti SAP CAL distribuiti nel nuovo portale](./media/cal-s4h/sapcaldeplyment_portalview.png)
+   ![Oggetti CAL SAP distribuiti nel nuovo portale di hello](./media/cal-s4h/sapcaldeplyment_portalview.png)
 
-6. Nel portale SAP CAL lo stato è visualizzato come **Active** (Attivo). Per connettersi alla soluzione, fare clic su **Connect** (Connetti). All'interno di questa soluzione sono distribuite opzioni diverse per la connessione a componenti diversi.
+6. Nel portale di SAP CAL hello, viene visualizzato lo stato di hello come **Active**. soluzione toohello tooconnect, fare clic su **Connetti**. Diverse opzioni tooconnect toohello diversi componenti vengono distribuiti all'interno di questa soluzione.
 
    ![Istanze di SAP CAL](./media/cal-s4h/active_solution.png)
 
-7. Prima che sia possibile usare una delle opzioni per la connessione ai sistemi distribuiti, è necessario fare clic su **Getting Started Guide** (Guida introduttiva). 
+7. Prima di poter utilizzare uno dei sistemi distribuito toohello tooconnect di hello opzioni, fare clic su **Guida introduttiva**. 
 
-   ![Finestra Connect to the Instance (Connettersi all'istanza)](./media/cal-s4h/connect_to_solution.png)
+   ![Connettersi toohello istanza](./media/cal-s4h/connect_to_solution.png)
 
-    La documentazione cita gli utenti per ognuno dei metodi di connettività. Le password per questi utenti corrispondono alla password master definita all'inizio del processo di distribuzione. Nella documentazione sono elencati altri utenti funzionali con le relative password. È possibile usare questi utenti per accedere al sistema distribuito. 
+    i nomi di documentazione Hello hello utenti per ciascuno dei metodi di connettività hello. le password Hello per gli utenti vengono impostate toohello password master che è definito all'inizio di hello hello processo di distribuzione. Nella documentazione di hello, sono elencati altri utenti più funzionalità e le relative password, che è possibile utilizzare toosign in toohello distribuita del sistema. 
 
-    Se ad esempio si usa la GUI SAP preinstallata nel computer Desktop remoto Windows, il sistema S/4 può avere un aspetto simile al seguente:
+    Ad esempio, se si utilizza hello SAPGUI sia preinstallato nel computer Desktop remoto di Windows hello, hello sistema S/4 potrebbe essere simile al seguente:
 
-   ![SM50 nella GUI SAP preinstallata](./media/cal-s4h/gui_sm50.png)
+   ![SM50 in hello preinstallato SAPGUI](./media/cal-s4h/gui_sm50.png)
 
-    Se invece si usa DBA Cockpit, l'istanza può avere un aspetto simile al seguente:
+    O se si utilizza hello DBACockpit, istanza hello potrebbe essere simile al seguente:
 
-   ![SM50 nella GUI SAP DBA Cockpit](./media/cal-s4h/dbacockpit.png)
+   ![SM50 in hello DBACockpit SAPGUI](./media/cal-s4h/dbacockpit.png)
 
 In poche ore un'appliance SAP S/4 integra verrà distribuita in Azure.
 
-Se è stata acquistata una sottoscrizione SAP CAL, SAP offre il supporto completo alle distribuzioni in Azure tramite SAP CAL. La coda di supporto è BC-VCM-CAL.
+Se è stata acquistata una sottoscrizione CAL SAP, SAP supporta distribuzioni tramite hello CAL SAP in Azure. coda di supporto Hello è BC-VCM-CAL.
 
 
 

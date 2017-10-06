@@ -1,6 +1,6 @@
 ---
-title: Foglio informativo PDF su SQL per Azure Cosmos DB | Microsoft Docs
-description: Un foglio informativo sulle query SQL, stampabile, con estensione pdf, che consente di usare la sintassi in stile SQL di Azure Cosmos DB per eseguire query in documenti JSON nel database - Riferimento rapido di SQL
+title: foglio informativo di aaaAzure Cosmos DB SQL PDF | Documenti Microsoft
+description: SQL stampabile schede di riferimento rapido PDF che consente di utilizzare documenti di Azure Cosmos DB SQL sintassi tooquery JSON nel proprio database - riferimento rapido SQL
 keywords: foglio informativo SQL, pdf foglio informativo sql , foglio informativo query sql
 services: cosmos-db
 documentationcenter: 
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/05/2017
 ms.author: mimig
-ms.openlocfilehash: cd314049a536ad4a95e243eac26aa044c90c8164
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4f0e822602874a6487927f3940af6bf71df05f7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cosmos-db-documentdb-api-sql-query-cheat-sheet-pdf"></a>Azure Cosmos DB: foglio informativo PDF sulle query SQL dell'API di DocumentDB
-Il **foglio informativo sulle query SQL dell'API di DocumentDB per Azure Cosmos DB** consente di scrivere rapidamente query per i dati dell'API di DocumentDB visualizzando query di database, parole chiave, funzioni predefinite e operatori comuni in un foglio di riferimento PDF facile da stampare. 
+Hello **DB Cosmos Azure: DocumentDB API SQL irregolarità nella finestra Query** consente rapidamente query di scrittura per l'API DocumentDB dati mediante la visualizzazione di query di database comuni, le parole chiave, le funzioni predefinite e gli operatori in un semplice tooprint PDF scheda di riferimento. 
 
-Cosmos DB supporta l'esecuzione di query relazionali, gerarchiche e spaziali su documenti JSON usando [SQL](documentdb-sql-query.md) senza specificare uno schema o indici secondari. Oltre alle parole chiave e agli operatori standard ANSI SQL, Cosmos DB supporta funzioni JavaScript definite dall'utente (UDF), operatori JavaScript e una vasta gamma di funzioni predefinite.
+Cosmos DB supporta l'esecuzione di query relazionali, gerarchiche e spaziali su documenti JSON usando [SQL](documentdb-sql-query.md) senza specificare uno schema o indici secondari. In aggiunta toohello standard ANSI SQL le parole chiave e gli operatori, DB Cosmos supporta funzioni JavaScript in definito dall'utente (UDF), gli operatori di JavaScript e una vasta gamma di funzioni predefinite.
 
-## <a name="download-the-cosmos-db-sql-query-cheat-sheet-pdf"></a>Scaricare il foglio informativo PDF sulle query SQL di Cosmos DB
-È possibile scrivere le query più velocemente scaricando il foglio informativo sulle query SQL e utilizzandolo come riferimento rapido. Il foglio informativo SQL in formato PDF mostra query SQL comuni utilizzate per recuperare dati da due documenti JSON di esempio. Per mantenerlo a portata di mano, è possibile stampare il foglio informativo sulle query SQL su un solo lato su pagina di dimensione Lettera (8,5 x 11 pollici).
+## <a name="download-hello-cosmos-db-sql-query-cheat-sheet-pdf"></a>Scaricare foglio informativo di query SQL del database Cosmos hello PDF
+Scrivere le query più velocemente scaricando foglio informativo di query SQL hello e utilizzarlo come riferimento rapido. foglio informativo di Hello SQL PDF Mostra dati comuni di tooretrieve query utilizzate da due documenti JSON di esempio. tookeep è nelle vicinanze, è possibile stampare hello su un solo lato SQL query foglio informativo nella dimensione di pagina lettera (8,5 x 11 pollici).
 
-**Scaricare il [foglio informativo su SQL per Microsoft Azure Cosmos DB](http://go.microsoft.com/fwlink/?LinkId=623215)**
+**Scaricare foglio informativo SQL di hello qui: [foglio informativo Cosmos database SQL di Microsoft Azure](http://go.microsoft.com/fwlink/?LinkId=623215)**
 
-![Foglio informativo sulle query SQL di Cosmos DB: un riferimento rapido PDF per la sintassi SQL supportata da Cosmos DB - foglio informativo SQL, foglio informativo SQL PDF, riferimento rapido SQL][cheat-sheet]
+![Foglio informativo di Azure SQL database Cosmos query: un riferimento rapido sintassi SQL toohello PDF supportato da Azure Cosmos DB - foglio informativo SQL, il foglio informativo SQL PDF, riferimento rapido SQL][cheat-sheet]
 
 [cheat-sheet]: ./media/documentdb-sql-query-cheat-sheet/microsoft-documentdb-sql-query-cheat-sheet-v4.png
 
 
 ## <a name="more-help-with-writing-sql-queries"></a>Ulteriore assistenza nella scrittura di query SQL
-* Per esplorare le opzioni delle query disponibili in Cosmos DB, vedere [Query di Cosmos DB](documentdb-sql-query.md).
-* Per la documentazione di riferimento correlata, vedere [API di DocumentDB per Azure Cosmos DB: riferimento per la sintassi SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx).
+* Per una procedura hello query le opzioni disponibili in Cosmos DB, vedere [Query Cosmos DB](documentdb-sql-query.md).
+* Per hello correlata, fare riferimento alla documentazione, vedere [API DocumentDB di Azure Cosmos DB: riferimento alla sintassi SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx).
 
 ## <a name="release-notes"></a>Note sulla versione
-Aggiornata il 29/7/2016 per includere TOP.
+Aggiornato 7/29/2016 tooinclude superiore.
 

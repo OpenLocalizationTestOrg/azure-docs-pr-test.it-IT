@@ -1,6 +1,6 @@
 ---
-title: Monitorare le macchine virtuali Linux in Azure | Microsoft Docs
-description: Informazioni su come monitorare la diagnostica di avvio e le metriche delle prestazioni in una macchina virtuale Linux in Azure
+title: macchine virtuali Linux di aaaMonitor in Azure | Documenti Microsoft
+description: Informazioni su come toomonitor avvio metriche delle prestazioni e diagnostica in una macchina virtuale di Linux in Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: davidmu1
@@ -16,21 +16,21 @@ ms.workload: infrastructure
 ms.date: 05/08/2017
 ms.author: davidmu
 ms.custom: mvc
-ms.openlocfilehash: 3fe8390e88e609b57a462e066f972346f8e8730e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 282da0f03ab0bf37bd44750c22813ca8d1c89560
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-monitor-a-linux-virtual-machine-in-azure"></a>Come monitorare una macchina virtuale Linux in Azure
+# <a name="how-toomonitor-a-linux-virtual-machine-in-azure"></a>Come toomonitor una macchina virtuale di Linux in Azure
 
-Per verificare che le macchine virtuali in Azure funzionino correttamente, è possibile esaminare le metriche delle prestazioni e la diagnostica di avvio. In questa esercitazione si apprenderà come:
+tooensure che eseguono correttamente le macchine virtuali (VM) in Azure, è possibile esaminare le metriche delle prestazioni e diagnostica di avvio. In questa esercitazione si apprenderà come:
 
 > [!div class="checklist"]
-> * Abilitare la diagnostica di avvio in una macchina virtuale
+> * Abilitare la diagnostica di avvio su hello VM
 > * Visualizzare la diagnostica di avvio
 > * Visualizzare le metriche host
-> * Abilitare l'estensione della diagnostica nella macchina virtuale
+> * Abilitare l'estensione di diagnostica per hello VM
 > * Visualizzare le metriche della macchina virtuale
 > * Creare avvisi basati sulle metriche di diagnostica
 > * Configurare il monitoraggio avanzato
@@ -38,17 +38,17 @@ Per verificare che le macchine virtuali in Azure funzionino correttamente, è po
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa esercitazione è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.4 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa esercitazione, è necessario che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-vm"></a>Creare una macchina virtuale
 
-Per visualizzare la diagnostica e le metriche in azione, è necessaria una macchina virtuale. Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). L'esempio seguente crea un gruppo di risorse denominato *myResourceGroupMonitor* nella località *eastus*.
+diagnostica toosee e metriche in azione, è necessario una macchina virtuale. Creare prima un gruppo di risorse con [az group create](/cli/azure/group#create). esempio Hello crea un gruppo di risorse denominato *myResourceGroupMonitor* in hello *eastus* percorso.
 
 ```azurecli-interactive 
 az group create --name myResourceGroupMonitor --location eastus
 ```
 
-Creare quindi una macchina virtuale con il comando [az vm create](https://docs.microsoft.com/cli/azure/vm#create). L'esempio seguente crea una macchina virtuale denominata *myVM*:
+Creare quindi una macchina virtuale con il comando [az vm create](https://docs.microsoft.com/cli/azure/vm#create). esempio Hello crea una macchina virtuale denominata *myVM*:
 
 ```azurecli-interactive 
 az vm create \
@@ -61,9 +61,9 @@ az vm create \
 
 ## <a name="enable-boot-diagnostics"></a>Abilitare la diagnostica di avvio
 
-All'avvio delle macchine virtuali Linux, l'estensione diagnostica di avvio acquisisce l'output e lo memorizza nell'Archiviazione di Azure. Questi dati possono essere usati per risolvere i problemi di avvio della macchina virtuale. La diagnostica di avvio non viene abilitata automaticamente quando si crea una macchina virtuale Linux tramite l'interfaccia della riga di comando di Azure.
+Come avviare le macchine virtuali Linux, estensione di diagnostica di avvio hello acquisisce l'output di avvio e lo archivia nell'archiviazione di Azure. Questi dati possono essere utilizzati tootroubleshoot problemi di avvio VM. Diagnostica di avvio non è abilitata automaticamente quando si crea una VM Linux di hello CLI di Azure.
 
-Prima di abilitare la diagnostica di avvio, è necessario creare un account di archiviazione per l'archiviazione dei log di avvio. Gli account di archiviazione devono avere un nome univoco globale, che abbia tra i 3 e i 24 caratteri e devono contenere solo numeri e lettere minuscole. Creare un account di archiviazione con il comando [az storage account create](/cli/azure/storage/account#create). In questo esempio, viene usata una stringa casuale per creare un nome univoco per l'account di archiviazione. 
+Prima di abilitare la diagnostica di avvio, un account di archiviazione deve toobe creato per l'archiviazione dei log di avvio. Gli account di archiviazione devono avere un nome univoco globale, che abbia tra i 3 e i 24 caratteri e devono contenere solo numeri e lettere minuscole. Creare un account di archiviazione con hello [creare account di archiviazione az](/cli/azure/storage/account#create) comando. In questo esempio, una stringa casuale è toocreate utilizzati un nome di account di archiviazione univoco. 
 
 ```azurecli-interactive 
 storageacct=mydiagdata$RANDOM
@@ -75,13 +75,13 @@ az storage account create \
   --location eastus
 ```
 
-Quando si abilita la diagnostica di avvio, è necessario l'URI per il contenitore di archiviazione BLOB. Il comando seguente esegue una query sull'account di archiviazione per restituire questo URI. Il valore URI viene archiviato nei nomi di variabile *bloburi* e verrà usato nel passaggio successivo.
+Quando si abilita la diagnostica di avvio, è necessario contenitore di archiviazione blob toohello hello URI. Hello seguenti query di comando hello tooreturn account di archiviazione questo URI. valore dell'URI Hello viene archiviato nei nomi di variabili *bloburi*, che viene utilizzato nel passaggio successivo hello.
 
 ```azurecli-interactive 
 bloburi=$(az storage account show --resource-group myResourceGroupMonitor --name $storageacct --query 'primaryEndpoints.blob' -o tsv)
 ```
 
-Abilitare ora la diagnostica di avvio con [az vm boot-diagnostics enable](https://docs.microsoft.com/cli/azure/vm/boot-diagnostics#enable). Il valore `--storage` è l'URI del BLOB raccolto nel passaggio precedente.
+Abilitare ora la diagnostica di avvio con [az vm boot-diagnostics enable](https://docs.microsoft.com/cli/azure/vm/boot-diagnostics#enable). Hello `--storage` valore è il blob hello URI raccolti nel passaggio precedente hello.
 
 ```azurecli-interactive 
 az vm boot-diagnostics enable \
@@ -93,19 +93,19 @@ az vm boot-diagnostics enable \
 
 ## <a name="view-boot-diagnostics"></a>Visualizzare la diagnostica di avvio
 
-Quando la diagnostica di avvio è abilitata, ogni volta che si arresta e si avvia la macchina virtuale, in un file log vengono scritte le informazioni sul processo di avvio. Per questo esempio, deallocare prima la macchina virtuale con il comando [az vm deallocate](/cli/azure/vm#deallocate) come illustrato di seguito:
+Quando è abilitata la diagnostica di avvio, ogni volta che si arresta e avvia hello VM, informazioni sul processo di avvio hello viene scritto il file di log tooa. Per questo esempio, prima deallocare hello VM con hello [az vm deallocare](/cli/azure/vm#deallocate) comando come segue:
 
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroupMonitor --name myVM
 ```
 
-Ora avviare la macchina virtuale con il comando [az vm start]( /cli/azure/vm#stop) come illustrato di seguito:
+Ora avviare hello VM con hello [inizio vm az]( /cli/azure/vm#stop) comando come segue:
 
 ```azurecli-interactive 
 az vm start --resource-group myResourceGroupMonitor --name myVM
 ```
 
-È possibile ottenere i dati della diagnostica di avvio per *myVM* con il comando [az vm boot-diagnostics get-boot-log](https://docs.microsoft.com/cli/azure/vm/boot-diagnostics#get-boot-log) come illustrato di seguito:
+È possibile ottenere dati di diagnostica di avvio hello per *myVM* con hello [az vm get diagnostica di avvio-avvio-log](https://docs.microsoft.com/cli/azure/vm/boot-diagnostics#get-boot-log) comando come segue:
 
 ```azurecli-interactive 
 az vm boot-diagnostics get-boot-log --resource-group myResourceGroupMonitor --name myVM
@@ -114,10 +114,10 @@ az vm boot-diagnostics get-boot-log --resource-group myResourceGroupMonitor --na
 
 ## <a name="view-host-metrics"></a>Visualizzare le metriche host
 
-Una macchina virtuale Linux è un host dedicato in Azure con cui interagisce. Le metriche per l'host vengono raccolte automaticamente e possono essere visualizzate nel portale di Azure come indicato di seguito:
+Una macchina virtuale Linux è un host dedicato in Azure con cui interagisce. Le metriche vengono automaticamente raccolte per host hello e possono essere visualizzate nel portale di Azure hello come indicato di seguito:
 
-1. Nel portale di Azure, fare clic su **Gruppi di risorse** selezionare **myResourceGroupMonitor**, quindi selezionare **myVM** nell'elenco delle risorse.
-1. Per visualizzare le prestazioni della macchina virtuale host, fare clic su **Metriche** nel pannello della macchina virtuale, quindi selezionare una metrica *[Host]* in **Metriche disponibili**.
+1. Nel portale di Azure hello, fare clic su **gruppi di risorse**selezionare **myResourceGroupMonitor**, quindi selezionare **myVM** nell'elenco di risorse hello.
+1. toosee come macchina virtuale host hello viene eseguita, fare clic su **metriche** nel pannello VM hello, quindi selezionare una qualsiasi delle hello *[Host]* metriche in **le metriche disponibili**.
 
     ![Visualizzare le metriche host](./media/tutorial-monitoring/monitor-host-metrics.png)
 
@@ -125,49 +125,49 @@ Una macchina virtuale Linux è un host dedicato in Azure con cui interagisce. Le
 ## <a name="install-diagnostics-extension"></a>Installare l'estensione di diagnostica
 
 > [!IMPORTANT]
-> Questo documento descrive la versione 2.3 dell'estensione Diagnostica per Linux, che è stata deprecata. La versione 2.3 sarà supportata fino al 30 giugno 2018.
+> Questo documento descrive versione 2.3 di hello estensione diagnostica per Linux, che è stato deprecato. La versione 2.3 sarà supportata fino al 30 giugno 2018.
 >
-> È invece possibile abilitare la versione 3.0 dell'estensione Diagnostica per Linux. Per altre informazioni, vedere [la documentazione](./diagnostic-extension.md).
+> Versione 3.0 di hello che estensione diagnostica per Linux può invece essere abilitato. Per ulteriori informazioni, vedere [hello documentazione](./diagnostic-extension.md).
 
-Sono disponibili le metriche di base host, ma per visualizzare metriche specifiche per la macchina virtuale e più granulari è necessario installare l'estensione Diagnostica di Azure nella macchina virtuale. L'estensione Diagnostica di Azure consente un monitoraggio aggiuntivo e il recupero dei dati di diagnostica dalla macchina virtuale. È possibile visualizzare queste metriche delle prestazioni e creare avvisi in base al funzionamento della macchina virtuale. L'estensione Diagnostica viene installata tramite il portale di Azure come indicato di seguito:
+le metriche di base host Hello sono disponibili, ma toosee più granulare e metriche specifiche di macchina virtuale, si tooneed tooinstall hello Azure estensione diagnostica per hello VM. Hello estensione diagnostica di Azure consente un monitoraggio aggiuntivo e toobe di dati di diagnostica recuperati hello macchina virtuale. È possibile visualizzare queste misurazioni delle prestazioni e creare avvisi basati sulle modalità di funzionamento hello macchina virtuale. estensione di diagnostica Hello viene installata tramite il portale di Azure hello come segue:
 
-1. Nel portale di Azure fare clic su **Gruppi di risorse**, selezionare **myResourceGroup** e quindi selezionare **myVM** nell'elenco delle risorse.
-1. Fare clic su **Impostazioni di diagnostica**. L'elenco mostra che *Diagnostica di avvio* è già stata abilitata nella sezione precedente. Selezionare la casella di controllo per *Metriche di base*.
-1. Nella sezione *Account di archiviazione* individuare e selezionare l'account *mydiagdata[1234]* creato nella sezione precedente.
-1. Fare clic sul pulsante **Salva** .
+1. Nel portale di Azure hello, fare clic su **gruppi di risorse**selezionare **myResourceGroup**, quindi selezionare **myVM** nell'elenco di risorse hello.
+1. Fare clic su **Impostazioni di diagnostica**. elenco di Hello mostra che *diagnostica di avvio* è già stata abilitata dalla sezione precedente hello. Fare clic sulla casella di controllo hello *metriche base*.
+1. In hello *account di archiviazione* sezione, passare hello selezionare tooand *mydiagdata [1234]* account creato nella sezione precedente hello.
+1. Fare clic su hello **salvare** pulsante.
 
     ![Visualizzare le metriche di diagnostica](./media/tutorial-monitoring/enable-diagnostics-extension.png)
 
 
 ## <a name="view-vm-metrics"></a>Visualizzare le metriche della macchina virtuale
 
-È possibile visualizzare le metriche della macchina virtuale nello stesso modo in cui sono state visualizzate le metriche della macchina virtuale host:
+È possibile visualizzare le metriche VM hello in hello allo stesso modo visualizzato metriche di hello host macchina virtuale:
 
-1. Nel portale di Azure fare clic su **Gruppi di risorse**, selezionare **myResourceGroup** e quindi selezionare **myVM** nell'elenco delle risorse.
-1. Per visualizzare le prestazioni della macchina virtuale, fare clic su **Metriche** nel pannello della macchina virtuale, quindi selezionare una metrica di diagnostica in **Metriche disponibili**.
+1. Nel portale di Azure hello, fare clic su **gruppi di risorse**selezionare **myResourceGroup**, quindi selezionare **myVM** nell'elenco di risorse hello.
+1. toosee come hello macchina virtuale viene eseguita, fare clic su **metriche** hello pannello VM e quindi selezionare una delle metriche di diagnostica hello in **le metriche disponibili**.
 
     ![Visualizzare le metriche della macchina virtuale](./media/tutorial-monitoring/monitor-vm-metrics.png)
 
 
 ## <a name="create-alerts"></a>Creare avvisi
 
-È possibile creare avvisi basati sulle metriche di prestazioni specifiche. Gli avvisi possono essere usati, ad esempio, per inviare una notifica quando l'uso medio della CPU supera una determinata soglia o lo spazio su disco disponibile è inferiore a una determinata quantità. Gli avvisi vengono visualizzati nel portale di Azure o possono essere inviati tramite posta elettronica. In risposta agli avvisi generati, è anche possibile attivare i runbook di Automazione di Azure o App per la logica di Azure.
+È possibile creare avvisi basati sulle metriche di prestazioni specifiche. Gli avvisi possono essere ad esempio toonotify utilizzato per l'utilizzo medio della CPU supera una determinata soglia o spazio su disco disponibile scende di sotto di una certa quantità. Gli avvisi vengono visualizzati nel portale di Azure hello o possono essere inviati tramite posta elettronica. È inoltre possibile attivare i runbook di automazione di Azure o Azure logica App in tooalerts risposta in corso la generazione.
 
-L'esempio seguente crea un avviso per l'uso medio della CPU.
+Hello seguente viene creato un avviso per l'utilizzo medio della CPU.
 
-1. Nel portale di Azure fare clic su **Gruppi di risorse**, selezionare **myResourceGroup** e quindi selezionare **myVM** nell'elenco delle risorse.
-2. Nel pannello della macchina virtuale fare clic su **Regole di avviso**, quindi fare clic su **Aggiungi avviso per la metrica** nella parte superiore del pannello degli avvisi.
+1. Nel portale di Azure hello, fare clic su **gruppi di risorse**selezionare **myResourceGroup**, quindi selezionare **myVM** nell'elenco di risorse hello.
+2. Fare clic su **regole di avviso** nel pannello VM hello, quindi fare clic su **Aggiungi avviso metrica** in alto di hello del pannello avvisi hello.
 4. Inserire un **Nome** per l'avviso, ad esempio *myAlertRule*
-5. Per attivare un avviso quando la percentuale di CPU supera 1.0 per cinque minuti, lasciare tutte le altre impostazioni predefinite selezionate.
-6. Facoltativamente, è possibile selezionare la casella per *Invia messaggio di posta elettronica a proprietari, collaboratori e lettori* per inviare una notifica tramite posta elettronica. L'azione predefinita è di presentare una notifica nel portale.
-7. Fare clic sul pulsante **OK**.
+5. tootrigger un avviso quando la percentuale della CPU supera 1.0 per cinque minuti, lasciare hello tutti gli altri valori predefiniti selezionati.
+6. Facoltativamente, selezionare la casella di hello per *i proprietari, collaboratori e lettori di posta elettronica* toosend notifica di posta elettronica. azione predefinita Hello è toopresent una notifica nel portale di hello.
+7. Fare clic su hello **OK** pulsante.
 
 
 ## <a name="advanced-monitoring"></a>Monitoraggio avanzato 
 
 È possibile eseguire un monitoraggio più approfondito della macchina virtuale tramite [Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview). Se non è già stato fatto, è possibile iscriversi per avere una [versione di prova gratuita](https://www.microsoft.com/en-us/cloud-platform/operations-management-suite-trial) di Operations Management Suite.
 
-Quando si ha accesso al portale di OMS, è possibile trovare la chiave e l'identificatore dell'area di lavoro nel pannello Impostazioni. Sostituire <workspace-key> e <workspace-id> con i valori dell'area di lavoro OMS, quindi è possibile usare **az vm extension set** per aggiungere l'estensione OMS alla macchina virtuale:
+Quando si dispone di accesso toohello OMS portale, è possibile trovare l'identificatore di chiave e dell'area di lavoro dell'area di lavoro hello nel pannello impostazioni hello. Sostituire < chiave dell'area di lavoro > e < id area di lavoro > con i valori hello per le OMS è possibile utilizzare area di lavoro e quindi **az vm estensione set** tooadd hello OMS estensione toohello VM:
 
 ```azurecli-interactive 
 az vm extension set \
@@ -180,7 +180,7 @@ az vm extension set \
   --settings '{"workspaceId": "<workspace-id>"}'
 ```
 
-Nel pannello Ricerca log del portale OMS si dovrebbe vedere *myVM* come mostrato nell'immagine seguente:
+Nel Pannello di hello ricerca nei Log del portale OMS hello, dovrebbe essere *myVM* , ad esempio quello mostrato nella seguente immagine hello:
 
 ![Pannello OMS](./media/tutorial-monitoring/tutorial-monitor-oms.png)
 
@@ -189,15 +189,15 @@ Nel pannello Ricerca log del portale OMS si dovrebbe vedere *myVM* come mostrato
 In questa esercitazione le macchine virtuali sono state configurate ed esaminate con il Centro sicurezza di Azure. Si è appreso come:
 
 > [!div class="checklist"]
-> * Abilitare la diagnostica di avvio in una macchina virtuale
+> * Abilitare la diagnostica di avvio su hello VM
 > * Visualizzare la diagnostica di avvio
 > * Visualizzare le metriche host
-> * Abilitare l'estensione della diagnostica nella macchina virtuale
+> * Abilitare l'estensione di diagnostica per hello VM
 > * Visualizzare le metriche della macchina virtuale
 > * Creare avvisi basati sulle metriche di diagnostica
 > * Configurare il monitoraggio avanzato
 
-Passare all'esercitazione successiva per informazioni sul Centro sicurezza di Azure.
+Spostare toohello toolearn esercitazione successiva sul Centro protezione di Azure.
 
 > [!div class="nextstepaction"]
 > [Gestire la sicurezza delle VM](./tutorial-azure-security.md)

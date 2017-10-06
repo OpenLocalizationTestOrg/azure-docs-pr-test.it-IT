@@ -1,6 +1,6 @@
 ---
-title: Usare il server di Backup di Azure per eseguire il backup di una farm di SharePoint in Azure | Microsoft Docs
-description: "Usare il server di Backup di Azure per eseguire il backup e ripristinare i dati di SharePoint. In questo articolo vengono fornite le informazioni per configurare la farm di SharePoint in modo da archiviare in Azure i dati desiderati. È possibile ripristinare i dati SharePoint protetti dal disco o da Azure."
+title: aaaUse Azure Backup server tooback backup un tooAzure di farm di SharePoint | Documenti Microsoft
+description: "Utilizzare tooback Server di Backup di Azure e ripristinare i dati di SharePoint. Questo articolo fornisce hello informazioni tooconfigure la farm di SharePoint in modo che i dati desiderati possono essere archiviati in Azure. È possibile ripristinare i dati SharePoint protetti dal disco o da Azure."
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,120 +14,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: 3ed000affd326eb1bd7c99773ec021ad6e03cc3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 350c1ac0f3518f400062f3b586bbe9710a79915a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-a-sharepoint-farm-to-azure"></a>Eseguire il backup di una farm di SharePoint in Azure
-Il backup di una farm di SharePoint in Azure si esegue tramite il server di Backup di Microsoft Azure (MABS) in modo analogo al backup delle altre origini dati. Backup di Azure offre flessibilità nella pianificazione di backup per creare punti di backup quotidiani, settimanali, mensili o annuali e offre diverse opzioni in termini di criteri di conservazione per i vari intervalli di backup. Offre inoltre la possibilità di archiviare copie dei dischi locali per obiettivi di tempi di ripristino (RTO) rapidi e di archiviare copie in Azure per una conservazione economicamente conveniente e a lungo termine.
+# <a name="back-up-a-sharepoint-farm-tooazure"></a>Eseguire il backup di un tooAzure di farm di SharePoint
+Eseguire il backup di SharePoint della farm tooMicrosoft Azure con Microsoft Azure Backup Server (MABS) in quantità hello stesso modo in cui eseguire il backup di altre origini dati. Backup di Azure fornisce flessibilità di hello toocreate di pianificazione del backup dei punti di backup giornalieri, settimanali, mensili o annuali e fornisce le opzioni di criteri di conservazione per vari punti di backup. Fornisce inoltre hello funzionalità toostore disco locale copie per gli obiettivi del tempo di recupero rapidi (RTO) e toostore copia tooAzure per la conservazione a lungo termine, economico.
 
 ## <a name="sharepoint-supported-versions-and-related-protection-scenarios"></a>Versioni supportate di SharePoint e relativi scenari di protezione
-Backup di Azure per DPM supporta gli scenari seguenti:
+Backup di Azure per Data Protection Manager supporta hello seguenti scenari:
 
 | Carico di lavoro | Versione | Distribuzione di SharePoint | Protezione e ripristino |
 | --- | --- | --- | --- | --- | --- |
 | SharePoint |SharePoint 2013, SharePoint 2010, SharePoint 2007, SharePoint 3.0 |SharePoint distribuito come un server fisico o macchina virtuale Hyper-V o VmWare <br> -------------- <br> SQL AlwaysOn | Proteggere le opzioni di ripristino di farm di SharePoint: farm di ripristino, database, e file o voce di elenco dai punti di ripristino del disco.  Farm e ripristino dei database dai punti di ripristino di Azure. |
 
 ## <a name="before-you-start"></a>Prima di iniziare
-È necessario verificare alcuni aspetti prima di eseguire il backup di una farm di SharePoint in Azure.
+Ci sono alcuni aspetti occorre tooconfirm prima di eseguire il backup di un tooAzure di farm di SharePoint.
 
 ### <a name="prerequisites"></a>Prerequisiti
-Prima di procedere, assicurarsi di avere [installato e preparato il server di Backup di Azure](backup-azure-microsoft-azure-backup.md) per proteggere i carichi di lavoro.
+Prima di procedere, assicurarsi di aver [installati e preparati hello Azure Backup Server](backup-azure-microsoft-azure-backup.md) tooprotect i carichi di lavoro.
 
 ### <a name="protection-agent"></a>Agente protezione
-L'agente protezione deve essere installato nel server che esegue SharePoint, nei server che eseguono SQL Server e in tutti gli altri server che fanno parte della farm di SharePoint. Per altre informazioni sull'installazione dell'agente di protezione, vedere l'articolo relativo alla [configurazione dell'agente di protezione](https://technet.microsoft.com/library/hh758034\(v=sc.12\).aspx).  L'unica eccezione è che l'agente viene installato in un server Web front-end (WFE) solo. DPM ha bisogno che l'agente sia installato in un solo server WFE e agisca come punto di ingresso per la protezione.
+agente di protezione Hello deve essere installato nel server di hello che esegue SharePoint Server hello che eseguono SQL Server e tutti gli altri server che fanno parte della farm di SharePoint hello. Per ulteriori informazioni su come tooset di agente di protezione hello, vedere [il programma di installazione dell'agente di protezione](https://technet.microsoft.com/library/hh758034\(v=sc.12\).aspx).  Hello unica eccezione è che è installato l'agente di hello solo su un singolo server web. front-end (WFE). Come punto di ingresso hello per la protezione, DPM deve agente hello in uno tooserve solo di server front-end Web.
 
 ### <a name="sharepoint-farm"></a>Una farm di SharePoint
-Per ogni 10 milioni di elementi nella farm, deve essere almeno disponibili 2 GB di spazio nel volume in cui si trova la cartella di MABS. Questo spazio è necessario per la generazione del catalogo. Affinché MABS ripristini elementi specifici, ad esempio raccolte siti, siti, elenchi, raccolte documenti, cartelle, singoli documenti ed elementi di elenchi, la generazione del catalogo crea un elenco degli URL inclusi in ogni database del contenuto. È possibile visualizzare l'elenco degli URL nel pannello degli elementi ripristinabili dell'area delle attività di **ripristino** della Console amministrazione MABS.
+Per ogni 10 milioni di elementi nella farm hello, deve essere almeno 2 GB di spazio sul volume hello cartella MABS hello in cui si trova. Questo spazio è necessario per la generazione del catalogo. MABS toorecover elementi specifici (raccolte siti, siti, elenchi, raccolte documenti, cartelle, singoli documenti e gli elementi dell'elenco), per la generazione del catalogo crea un elenco di URL hello contenuti all'interno di ogni database del contenuto. È possibile visualizzare l'elenco di hello degli URL nel riquadro elemento ripristinabile hello in hello **ripristino** area della Console di amministrazione MABS attività.
 
 ### <a name="sql-server"></a>SQL Server
-MABS viene eseguito come account LocalSystem. Per eseguire il backup dei database di SQL Server, MABS deve avere privilegi sysadmin sull'account per il server che esegue SQL Server. Impostare NT AUTHORITY\SYSTEM su *sysadmin* nel server che esegue SQL Server prima di eseguire il backup.
+MABS viene eseguito come account LocalSystem. tooback dei database di SQL Server, MABS deve avere privilegi di sysadmin in tale account per i server hello che esegue SQL Server. Impostare NT AUTHORITY\SYSTEM troppo*sysadmin* nel server di hello che esegue SQL Server prima di eseguirne il backup.
 
-Se la farm di SharePoint ha un database di SQL Server configurato con alias di SQL Server, installare i componenti del client di SQL Server nel server Web front-end da proteggere con MABS.
+Se la farm di SharePoint hello dispone di database di SQL Server configurati con gli alias di SQL Server, installare i componenti client di SQL Server hello nel server Web front-end hello che proteggerà MABS.
 
 ### <a name="sharepoint-server"></a>SharePoint Server
 Mentre le prestazioni dipendono da molti fattori, ad esempio la dimensione della farm di SharePoint, in linea generale un solo MABS può proteggere una farm di SharePoint da 25 TB.
 
 ### <a name="whats-not-supported"></a>Attività non supportate
-* MABS protegge una farm di SharePoint, ma non protegge gli indici di ricerca e i database di servizio dell'applicazione. Occorre configurare separatamente la protezione di questi database.
+* MABS protegge una farm di SharePoint, ma non protegge gli indici di ricerca e i database di servizio dell'applicazione. Sarà necessario protezione hello tooconfigure di questi database separatamente.
 * MABS non esegue il backup dei database di SQL Server SharePoint ospitati in condivisioni di file server di scalabilità orizzontale.
 
 ## <a name="configure-sharepoint-protection"></a>Configurare la protezione di SharePoint
-Prima di usare MABS per proteggere SharePoint, è necessario configurare il servizio VSS Writer di SharePoint (servizio WSS Writer) tramite **ConfigureSharePoint.exe**.
+Prima di poter utilizzare MABS tooprotect SharePoint, è necessario configurare il servizio di SharePoint VSS Writer hello (servizio WSS Writer) utilizzando **ConfigureSharePoint.exe**.
 
-**ConfigureSharePoint.exe** è disponibile nella cartella [percorso di installazione di MABS]\bin nel server Web front-end. Questo strumento fornisce all'agente protezione le credenziali per la farm di SharePoint. È possibile eseguirlo in un unico server front-end Web. Se si dispone di più server WFE, selezionarne solo uno quando si configura un gruppo di protezione dati.
+È possibile trovare **ConfigureSharePoint.exe** nella cartella \bin hello [percorso di installazione MABS] nel server web front-end hello. Questo strumento fornisce l'agente protezione hello con credenziali hello per la farm di SharePoint hello. È possibile eseguirlo in un unico server front-end Web. Se si dispone di più server WFE, selezionarne solo uno quando si configura un gruppo di protezione dati.
 
-### <a name="to-configure-the-sharepoint-vss-writer-service"></a>Per configurare il servizio Writer VSS di SharePoint
-1. Nel server WFE, al prompt dei comandi, passare a [percorso di installazione di MABS]\bin\
+### <a name="tooconfigure-hello-sharepoint-vss-writer-service"></a>hello tooconfigure servizio SharePoint VSS Writer
+1. Nel server di front-end Web hello, al prompt dei comandi, passare troppo \bin\ [percorso di installazione MABS]
 2. Digitare ConfigureSharePoint -EnableSharePointProtection.
-3. Immettere le credenziali di amministratore della farm. Questo account deve essere un membro del gruppo degli amministratori locale nel server front-end Web. Se l'amministratore della farm non è un amministratore locale, concedere le autorizzazioni seguenti sul server front-end Web:
-   * Concedere il controllo completo del gruppo WSS_Admin_WPG sulla cartella DPM (% Program Files%\Microsoft Azure Backup\DPM).
-   * Concedere l'accesso in lettura al gruppo WSS_Admin_WPG per la chiave del Registro di sistema di DPM (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft Data Protection Manager).
+3. Immettere le credenziali di amministratore di farm hello. Questo account deve essere un membro del gruppo Administrators locale di hello nel server WFE hello. Se l'amministratore della farm hello non è un hello di amministratore locale concedere queste autorizzazioni nel server front-end Web hello:
+   * Concedere hello WSS_Admin_WPG controllo completo toohello DPM cartella gruppo (% programma Files%\Microsoft Azure Backup\DPM).
+   * Concedere hello WSS_Admin_WPG gruppo l'accesso in lettura toohello DPM chiave Registro di sistema (HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft Data Protection Manager).
 
 > [!NOTE]
-> È necessario eseguire di nuovo ConfigureSharePoint.exe ogni volta che si verifica un cambiamento nelle credenziali di amministratore di farm SharePoint.
+> Ogni volta che viene apportata una modifica in credenziali di amministratore di farm SharePoint hello, dovrai toorerun ConfigureSharePoint.exe.
 >
 >
 
 ## <a name="back-up-a-sharepoint-farm-by-using-mabs"></a>Eseguire il backup di una farm di SharePoint tramite MABS
-Dopo aver configurato MABS e la farm di SharePoint come descritto in precedenza, è possibile proteggere SharePoint con MABS.
+Dopo aver configurato MABS e hello farm di SharePoint come descritto in precedenza, SharePoint possono essere protetti da MABS.
 
-### <a name="to-protect-a-sharepoint-farm"></a>Per proteggere una farm di SharePoint
-1. Dalla scheda **Protezione** della Console di amministrazione MABS fare clic su **Nuovo**.
+### <a name="tooprotect-a-sharepoint-farm"></a>tooprotect una farm di SharePoint
+1. Da hello **protezione** fare clic sulla scheda della Console di amministrazione MABS hello **New**.
     ![Nuova scheda Protezione](./media/backup-azure-backup-sharepoint/dpm-new-protection-tab.png)
-2. Nella pagina **Seleziona tipo di gruppo protezione dati** della procedura guidata **Crea nuovo gruppo protezione dati** selezionare **Server** e fare clic su **Avanti**.
+2. In hello **Selezione tipo di gruppo protezione dati** pagina di hello **Crea nuovo gruppo protezione dati** procedura guidata, selezionare **server**, quindi fare clic su **Avanti** .
 
     ![Seleziona tipo di gruppo di protezione dati](./media/backup-azure-backup-sharepoint/select-protection-group-type.png)
-3. Nella schermata **Seleziona membri del gruppo** selezionare la casella di controllo del server di SharePoint che si vuole proteggere e fare clic su **Avanti**.
+3. In hello **Seleziona membri del gruppo** dello schermo, la casella di controllo selezionare hello per il server SharePoint hello tooprotect desiderato e fare clic su **Avanti**.
 
     ![Seleziona membri del gruppo](./media/backup-azure-backup-sharepoint/select-group-members2.png)
 
    > [!NOTE]
-   > Con l'agente protezione installato, è possibile visualizzare il server della procedura guidata. MABS mostra anche la propria struttura. Poiché è stato eseguito ConfigureSharePoint.exe, MABS comunica con il servizio VSS Writer di SharePoint e con i relativi database di SQL Server e riconosce la struttura della farm di SharePoint, i database del contenuto associati e tutti gli elementi corrispondenti.
+   > Con installato un agente protezione hello, è possibile vedere server hello nella procedura guidata hello. MABS mostra anche la propria struttura. Poiché è stato eseguito ConfigureSharePoint.exe, MABS comunica con il servizio SharePoint VSS Writer hello e i database di SQL Server corrispondenti e riconosce struttura della farm SharePoint hello, hello associati database del contenuto e gli elementi corrispondenti.
    >
    >
-4. Nella pagina **Seleziona metodo protezione dati** digitare il nome del **Gruppo protezione dati** e selezionare i *metodi di protezione* preferiti. Fare clic su **Avanti**.
+4. In hello **Selezione metodo protezione dati** pagina, immettere il nome di hello di hello **gruppo protezione dati**e selezionare i Preferiti *metodi di protezione*. Fare clic su **Avanti**.
 
     ![Seleziona metodo protezione dati](./media/backup-azure-backup-sharepoint/select-data-protection-method1.png)
 
    > [!NOTE]
-   > Il metodo di protezione del disco consente di soddisfare obiettivi di tempi di ripristino brevi.
+   > metodo di protezione disco Hello consente toomeet breve obiettivi del tempo di recupero.
    >
    >
-5. Nella pagina **Specifica obiettivi a breve termine** selezionare l'**intervallo di conservazione** preferito e specificare la frequenza di esecuzione dei backup.
+5. In hello **Specifica obiettivi a breve termine** pagina, selezionare i Preferiti **mantenimento** e identificare quando si desidera che i backup toooccur.
 
     ![Specifica obiettivi a breve termine](./media/backup-azure-backup-sharepoint/specify-short-term-goals2.png)
 
    > [!NOTE]
-   > Poiché è molto spesso richiesto il ripristino di dati con data di creazione inferiore a cinque giorni, in questo esempio è stato selezionato un periodo di conservazione sul disco di cinque giorni ed è stato specificato che il backup non venga eseguito durante orari lavorativi.
+   > Poiché ripristino è spesso necessario per i dati che sono inferiore a cinque giorni, è selezionato un intervallo di conservazione di cinque giorni su disco e garantire che il backup hello avviene durante le ore non di produzione, per questo esempio.
    >
    >
-6. Esaminare lo spazio su disco del pool di archiviazione allocato per il gruppo protezione dati e fare clic su **Avanti**.
-7. Per ogni gruppo protezione dati MABS alloca spazio su disco per archiviare e gestire le repliche. A questo punto, MABS deve creare una copia dei dati selezionati. Selezionare come e quando si vuole che la replica venga creata, quindi fare clic su **Avanti**.
+6. Spazio su disco del pool archiviazione hello allocato per il gruppo di protezione hello di esaminare e quindi fare clic su **Avanti**.
+7. Per ogni gruppo protezione dati, MABS alloca toostore di spazio su disco e gestire le repliche. A questo punto, MABS deve creare una copia dei dati hello selezionato. Selezionare come e quando desidera che la replica hello creato e quindi fare clic su **Avanti**.
 
     ![Scelta del metodo per la creazione della replica](./media/backup-azure-backup-sharepoint/choose-replica-creation-method.png)
 
    > [!NOTE]
-   > Per assicurarsi che il traffico di rete non venga influenzato, selezionare un'ora fuori dell'orario di produzione.
+   > Assicurarsi che il traffico di rete non viene effettuato, toomake selezionare un'ora fuori dall'orario di produzione.
    >
    >
-8. MABS garantisce l'integrità dei dati mediante l'esecuzione di verifiche della coerenza sulla replica. Sono disponibili due opzioni: È possibile definire una pianificazione per eseguire verifiche della coerenza oppure DPM può eseguire automaticamente verifiche di coerenza sulla replica quando diventa incoerente.  Selezionare l'opzione preferita e fare clic su **Avanti**.
+8. MABS assicura l'integrità dei dati mediante l'esecuzione di verifiche di coerenza sulla replica hello. Sono disponibili due opzioni: È possibile definire le verifiche della coerenza toorun una pianificazione o DPM può eseguire verifiche di coerenza automaticamente nella replica di hello ogni volta che diventa incoerente. Selezionare l'opzione preferita e fare clic su **Avanti**.
 
     ![Verifica coerenza](./media/backup-azure-backup-sharepoint/consistency-check.png)
-9. Nella pagina **Specifica i dati da proteggere online** selezionare la farm di SharePoint che si vuole proteggere e fare clic su **Avanti**.
+9. In hello **specificare dati da proteggere Online** pagina, selezionare hello farm di SharePoint che desidera tooprotect e quindi fare clic su **Avanti**.
 
     ![DPM SharePoint Protection1](./media/backup-azure-backup-sharepoint/select-online-protection1.png)
-10. Nella pagina **Specifica la pianificazione dei backup online** selezionare la pianificazione preferita e fare clic su **Avanti**.
+10. In hello **specificare la pianificazione dei Backup Online** pagina, selezionare la pianificazione preferita e quindi fare clic su **Avanti**.
 
     ![Online_backup_schedule](./media/backup-azure-backup-sharepoint/specify-online-backup-schedule.png)
 
     > [!NOTE]
-    > MABS fornisce un massimo di due backup giornalieri in Azure dal punto di backup del disco più recente disponibile in quel momento. Backup di Azure può inoltre controllare la quantità di larghezza di banda WAN che può essere usata per i backup in orari normali e di punta tramite la [limitazione della larghezza di bada della rete di Backup di Azure](https://azure.microsoft.com/documentation/articles/backup-configure-vault/#enable-network-throttling).
+    > MABS fornisce un massimo di due tooAzure backup giornaliero da hello quindi disponibile più recente punto di backup su disco. Backup di Azure può inoltre controllare quantità hello di larghezza di banda WAN che può essere utilizzato per i backup in ore di punta e non di punta utilizzando [limitazione delle richieste di rete di Azure Backup](https://azure.microsoft.com/documentation/articles/backup-configure-vault/#enable-network-throttling).
     >
     >
-11. In base alla pianificazione di backup selezionata, nella pagina **Specificare i criteri di mantenimento online** selezionare i criteri di conservazione per i punti di backup giornalieri, settimanali, mensili e annuali.
+11. A seconda della pianificazione del backup hello selezionato, hello **specificare criteri di conservazione Online** pagina Criteri di conservazione hello selezionare i punti di backup giornalieri, settimanali, mensili e annuali.
 
     ![Online_retention_policy](./media/backup-azure-backup-sharepoint/specify-online-retention.png)
 
@@ -135,106 +135,106 @@ Dopo aver configurato MABS e la farm di SharePoint come descritto in precedenza,
     > MABS usa uno schema di conservazione GFS (Grandfather-Father-Son, nonno-padre-figlio) in cui è possibile scegliere criteri di conservazione diversi per punti di backup diversi.
     >
     >
-12. Analogamente al disco, è necessario creare una replica del punto di riferimento iniziale in Azure. Selezionare l'opzione preferita per creare una copia di backup iniziale in Azure e fare clic su **Avanti**.
+12. Toodisk simile, una replica del punto di riferimento iniziale deve toobe creato in Azure. Selezionare il toocreate opzione preferita tooAzure una copia di backup iniziale e quindi fare clic su **Avanti**.
 
     ![Online_replica](./media/backup-azure-backup-sharepoint/online-replication.png)
-13. Esaminare le impostazioni selezionate nella pagina di **riepilogo** e fare clic su **Crea gruppo**. Dopo aver creato il gruppo di protezione dati, viene visualizzato un messaggio di corretto completamento.
+13. Esaminare le impostazioni selezionate in hello **riepilogo** pagina e quindi fare clic su **Crea gruppo**. Dopo aver creato il gruppo di protezione dati hello, visualizzeranno un messaggio di conferma.
 
     ![Riepilogo](./media/backup-azure-backup-sharepoint/summary.png)
 
 ## <a name="restore-a-sharepoint-item-from-disk-by-using-mabs"></a>Ripristinare un elemento di SharePoint dal disco tramite MABS
-Nell'esempio seguente, l' *elemento di SharePoint da ripristinare* è stato accidentalmente eliminato e deve essere ripristinato.
+Nell'esempio seguente di hello, hello *elemento di ripristino SharePoint* è stato accidentalmente eliminato ed è necessario toobe recuperato.
 ![MABS SharePoint Protection4](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection5.png)
 
-1. Aprire la **Console amministrazione DPM**. Tutte le farm di SharePoint protette da DPM vengono visualizzate nella scheda **Protezione** .
+1. Aprire hello **Console amministrazione DPM**. Tutte le farm di SharePoint che sono protetti da DPM vengono visualizzate in hello **protezione** scheda.
 
     ![MABS SharePoint Protection3](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection4.png)
-2. Per iniziare a ripristinare l'elemento, selezionare la scheda **Ripristino** .
+2. elemento hello toobegin toorecover hello seleziona **ripristino** scheda.
 
     ![MABS SharePoint Protection5](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection6.png)
 3. È possibile eseguire ricerche in SharePoint relative all' *elemento di SharePoint da ripristinare* tramite una ricerca con caratteri jolly all'interno di un intervallo di punti di ripristino.
 
     ![MABS SharePoint Protection6](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection7.png)
-4. Selezionare il punto di ripristino appropriato dai risultati della ricerca, fare clic con il pulsante destro del mouse sull'elemento e selezionare **Ripristina**.
-5. È inoltre possibile scorrere i vari punti di ripristino e selezionare un database o un elemento da recuperare. Selezionare **Data > Tempo di ripristino**, quindi selezionare l'elemento corretto da **Database > Farm SharePoint > Punto di ripristino > Elemento**.
+4. Selezionare il punto di ripristino appropriato di hello dai risultati della ricerca hello, fare doppio clic su elemento hello e quindi selezionare **ripristinare**.
+5. È anche possibile esplorare vari punti di ripristino e selezionare un database o un elemento di toorecover. Selezionare **data > tempo di recupero**, quindi selezionare hello corretto **Database > farm di SharePoint > punto di ripristino > elemento**.
 
     ![MABS SharePoint Protection7](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection8.png)
-6. Fare clic con il pulsante destro del mouse sull'elemento e selezionare **Ripristina** per aprire il **Ripristino guidato**. Fare clic su **Avanti**.
+6. Elemento hello e quindi scegliere **ripristinare** tooopen hello **ripristino guidato**. Fare clic su **Avanti**.
 
     ![Verifica selezione per ripristino](./media/backup-azure-backup-sharepoint/review-recovery-selection.png)
-7. Selezionare il tipo di ripristino che si vuole eseguire, quindi fare clic su **Avanti**.
+7. Selezionare il tipo di hello di ripristino che desidera tooperform e quindi fare clic su **Avanti**.
 
     ![Tipo di ripristino](./media/backup-azure-backup-sharepoint/select-recovery-type.png)
 
    > [!NOTE]
-   > In questo esempio, la selezione di **Ripristina originale** ripristina l'elemento nel sito originale di SharePoint.
+   > selezione di Hello **ripristinare toooriginal** in hello viene recuperato hello elemento toohello originale sito di SharePoint.
    >
    >
-8. Selezionare il **processo di ripristino** che si vuole usare.
+8. Seleziona hello **il processo di ripristino** che si desidera toouse.
 
-   * Selezionare **Ripristina senza utilizzare una farm di ripristino** se la farm di SharePoint non è stata modificata e corrisponde al punto di ripristino eseguito.
-   * Selezionare **Ripristina utilizzando una farm di ripristino** se la farm di SharePoint è stato modificata dopo che il punto di ripristino è stato creato.
+   * Selezionare **Ripristina senza utilizzare una farm di ripristino** se la farm di SharePoint hello non è stato modificato e hello identico ripristino hello punto di ripristino.
+   * Selezionare **eseguire il ripristino utilizzando una farm di ripristino** farm di SharePoint hello è stato modificato dopo il punto di ripristino hello è stato creato.
 
      ![processo di ripristino](./media/backup-azure-backup-sharepoint/recovery-process.png)
-9. Specificare un percorso di istanza di gestione temporanea di SQL Server per ripristinare temporaneamente il database e specificare una condivisione di file di gestione temporanea in MABS e nel server che esegue SharePoint per ripristinare l'elemento.
+9. Forniscono temporaneamente un database di hello toorecover gestione temporanea del percorso istanza SQL Server e una condivisione di file di gestione temporanea in MABS e hello server che esegue l'elemento hello toorecover di SharePoint.
 
     ![Staging Location1](./media/backup-azure-backup-sharepoint/staging-location1.png)
 
-    MABS collega il database del contenuto che ospita l'elemento di SharePoint all'istanza di gestione temporanea di SQL Server. MABS ripristina l'elemento dal database del contenuto e lo aggiunge al percorso di file di gestione temporanea di MABS. L'elemento recuperato che si trova nel percorso di gestione temporanea deve ora essere esportato nel percorso di gestione temporaneo della farm di SharePoint.
+    MABS Collega database del contenuto hello che ospita hello SharePoint elemento toohello temporaneo istanza di SQL Server. Da database di contenuto hello, recupera l'elemento hello e inserisce nel percorso di file in MABS di gestione temporanea hello. Hello recuperato l'elemento che si trova sul percorso di gestione temporanea ora hello esigenze toobe esportato toohello percorso nella farm di SharePoint hello di gestione temporanea.
 
     ![Gestione temporanea Location2](./media/backup-azure-backup-sharepoint/staging-location2.png)
-10. Selezionare **Specifica opzioni di ripristino**e applicare le impostazioni di sicurezza per la farm di SharePoint o applicare le impostazioni di sicurezza del punto di ripristino. Fare clic su **Avanti**.
+10. Selezionare **Specifica opzioni di ripristino**e applicare le impostazioni di sicurezza toohello farm di SharePoint o applicare le impostazioni di sicurezza hello hello del punto di ripristino. Fare clic su **Avanti**.
 
     ![Opzioni di ripristino](./media/backup-azure-backup-sharepoint/recovery-options.png)
 
     > [!NOTE]
-    > È possibile scegliere di limitare l'utilizzo della larghezza di banda di rete. Consente di ridurre l'impatto sul server di produzione durante l'orario di produzione.
+    > È possibile scegliere l'utilizzo della larghezza di banda di rete hello toothrottle. In questo modo viene ridotta del server di produzione toohello impatto durante le ore di produzione.
     >
     >
-11. Esaminare le informazioni di riepilogo e fare clic su **Ripristina** per avviare il ripristino del file.
+11. Esaminare le informazioni di riepilogo hello e quindi fare clic su **ripristinare** toobegin ripristino del file hello.
 
     ![Riepilogo di ripristino](./media/backup-azure-backup-sharepoint/recovery-summary.png)
-12. Selezionare la scheda **Monitoraggio** nella **Console di amministrazione MABS** per visualizzare lo **Stato** del ripristino.
+12. A questo punto selezionare hello **monitoraggio** scheda hello **Console di amministrazione di MABS** tooview hello **stato** di ripristino hello.
 
     ![Stato di ripristino](./media/backup-azure-backup-sharepoint/recovery-monitoring.png)
 
     > [!NOTE]
-    > A questo punto è possibile ripristinare il file. È possibile aggiornare il sito di SharePoint per controllare il file ripristinato.
+    > file Hello viene ora ripristinato. È possibile aggiornare il file ripristinato hello toocheck di hello SharePoint del sito.
     >
     >
 
 ## <a name="restore-a-sharepoint-database-from-azure-by-using-dpm"></a>Ripristinare un database di SharePoint da Azure tramite DPM
-1. Per ripristinare un database del contenuto di SharePoint, scorrere i vari punti di ripristino (come illustrato in precedenza) e selezionare il punto di ripristino che si vuole ripristinare.
+1. toorecover un database del contenuto di SharePoint, esplorare i vari punti di ripristino (come illustrato in precedenza) e selezionare il punto di ripristino hello che si desidera toorestore.
 
     ![MABS SharePoint Protection8](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection9.png)
-2. Fare doppio clic sul punto di ripristino di SharePoint per visualizzare le informazioni del catalogo di SharePoint disponibili.
+2. Fare doppio clic su hello SharePoint tooshow punto hello disponibili SharePoint catalogo informazioni di ripristino.
 
    > [!NOTE]
-   > Poiché la farm di SharePoint è protetta per la conservazione a lungo termine in Azure, non è disponibile nessuna informazione sul catalogo (metadati) in MABS. Di conseguenza, ogni volta che si vuole ripristinare un database del contenuto di SharePoint temporizzato, si deve ricatalogare la farm di SharePoint.
+   > Poiché la farm di SharePoint hello è protetto per la conservazione a lungo termine in Azure, non è disponibile in MABS alcuna informazione di catalogo (metadati). Di conseguenza, ogni volta che un database del contenuto SharePoint in un momento deve toobe recuperato, è necessario farm di SharePoint hello toocatalog nuovamente.
    >
    >
 3. Fare clic su **Ricatalogazione**.
 
     ![MABS SharePoint Protection10](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection12.png)
 
-    Viene visualizzata la finestra di stato di **Ricatalogazione cloud** .
+    Hello **Cloud ricatalogare** verrà visualizzata la finestra di stato.
 
     ![MABS SharePoint Protection11](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection13.png)
 
-    Dopo aver completato la catalogazione, viene visualizzato lo stato *Operazione completata*. Fare clic su **Close**.
+    Una volta terminata la catalogazione, hello passerà troppo*successo*. Fare clic su **Close**.
 
     ![MABS SharePoint Protection12](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection14.png)
-4. Fare clic sull'oggetto di SharePoint visualizzato nella scheda **Ripristino** di MABS per ottenere la struttura del database del contenuto. Fare clic con il pulsante destro del mouse sull'elemento e scegliere **Ripristina**.
+4. Fare clic su oggetti di SharePoint hello nella hello MABS **ripristino** scheda struttura di database del contenuto tooget hello. Fare doppio clic su elemento hello e quindi fare clic su **ripristinare**.
 
     ![MABS SharePoint Protection13](./media/backup-azure-backup-sharepoint/dpm-sharepoint-protection15.png)
-5. A questo punto seguire i [passaggi di ripristino illustrati precedentemente in questo articolo](#restore-a-sharepoint-item-from-disk-using-dpm) per ripristinare il database del contenuto di SharePoint dal disco.
+5. A questo punto, seguire hello [i passaggi di ripristino più indietro in questo articolo](#restore-a-sharepoint-item-from-disk-using-dpm) toorecover un database del contenuto di SharePoint dal disco.
 
 ## <a name="faqs"></a>Domande frequenti
-D: è possibile ripristinare un elemento di SharePoint nel percorso originale se SharePoint è configurato con SQL AlwaysOn (con protezione su disco)?<br>
-R: Sì, l'elemento può essere ripristinato nel sito originale di SharePoint.
+D: è possibile risolvere un percorso di SharePoint elemento toohello originale se SharePoint è configurato con AlwaysOn di SQL (con protezione disco)?<br>
+R: Sì, elemento hello può essere ripristinato toohello originale sito di SharePoint.
 
-D: è possibile ripristinare un database di SharePoint nel percorso originale se SharePoint è configurato con SQL AlwaysOn?<br>
-R: poiché i database di SharePoint sono configurati con SQL AlwaysOn, non possono essere modificati se non si rimuove il gruppo di disponibilità. Di conseguenza MABS non può ripristinare il database nel percorso originale. È possibile ripristinare un database di SQL Server in un'altra istanza di SQL Server.
+D: è possibile risolvere un percorso originale del database toohello SharePoint se SharePoint è configurata con SQL AlwaysOn?<br>
+R: poiché i database di SharePoint sono configurati in SQL AlwaysOn, non possono essere modificati a meno che non viene rimosso il gruppo di disponibilità hello. Di conseguenza, MABS non è possibile ripristinare un percorso del database toohello originale. È possibile ripristinare un'istanza di SQL Server tooanother database di SQL Server.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per altre informazioni su Protezione MABS di SharePoint, vedere [Serie di Video - Protezione DPM di SharePoint](http://channel9.msdn.com/Series/Azure-Backup/Microsoft-SCDPM-Protection-of-SharePoint-1-of-2-How-to-create-a-SharePoint-Protection-Group)

@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Eliminare una cache Redis di Azure | Microsoft Docs
+title: aaaAzure CLI Script di esempio - eliminare una Cache Redis di Azure | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Eliminare una cache Redis di Azure
 services: redis-cache
 documentationcenter: 
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: f959823b3a7c5b0262f693ecad1e6efc4eec4f35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 788277f6464d40fedc597ce7f3041130312c07a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delete-an-azure-redis-cache"></a>Eliminare una cache Redis di Azure
 
-In questo scenario viene illustrato come eliminare una cache Redis di Azure.
+In questo scenario viene illustrato come toodelete un Redis di Azure memorizzano nella Cache.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-azurecli[main](../../../cli_scripts/redis-cache/delete-cache/delete-cache.sh "Cache Redis di Azure")]
+[!code-azurecli[main](../../../cli_scripts/redis-cache/delete-cache/delete-cache.sh "Azure Redis Cache")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/redis-cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per eliminare un'istanza della cache Redis di Azure. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello seguenti comandi toodelete un'istanza di Cache Redis di Azure. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -44,6 +44,6 @@ Questo script usa i comandi seguenti per eliminare un'istanza della cache Redis 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando della Cache Redis di Azure sono disponibili nella [documentazione della Cache Redis di Azure](../cli-samples.md).
+Ulteriori esempi di script di Azure Redis Cache CLI sono reperibile in hello [documentazione Cache Redis di Azure](../cli-samples.md).

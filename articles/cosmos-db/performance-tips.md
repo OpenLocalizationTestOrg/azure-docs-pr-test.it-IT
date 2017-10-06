@@ -1,7 +1,7 @@
 ---
-title: 'Suggerimenti sulle prestazioni: Azure Cosmos DB NoSQL | Microsoft Docs'
-description: Informazioni sulle opzioni di configurazione client per migliorare le prestazioni del database Azure Cosmos DB
-keywords: Come migliorare le prestazioni del database
+title: suggerimenti aaaPerformance - Azure Cosmos database NoSQL | Documenti Microsoft
+description: Informazioni su prestazioni del database Azure Cosmos DB tooimprove opzioni configurazione client
+keywords: come tooimprove delle prestazioni del database
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/23/2017
 ms.author: mimig
-ms.openlocfilehash: a94cda90eca9dca2b93adb8f5091d829e7375aa5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4f3e82ae5048e3dbc20b0fd891a2d3aa22adf3fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-tips-for-azure-cosmos-db"></a>Suggerimenti sulle prestazioni per Azure Cosmos DB
-Azure Cosmos DB è un database distribuito veloce e flessibile, facilmente scalabile e con latenza e velocità effettiva garantite. Non è necessario apportare modifiche significative all'architettura o scrivere codice complesso per ridimensionare il database con Cosmos DB. Aumentare o ridurre le prestazioni è semplice come eseguire una singola chiamata API o una [chiamata al metodo SDK](set-throughput.md#set-throughput-sdk). Dato che si accede a Cosmos DB tramite chiamate di rete, tuttavia, è possibile apportare ottimizzazioni lato client per ottenere prestazioni ottimali.
+Azure Cosmos DB è un database distribuito veloce e flessibile, facilmente scalabile e con latenza e velocità effettiva garantite. Non sono state apportate modifiche di architettura principali toomake o scrivere codice complesso tooscale il database con DB Cosmos. Aumentare o ridurre le prestazioni è semplice come eseguire una singola chiamata API o una [chiamata al metodo SDK](set-throughput.md#set-throughput-sdk). Tuttavia, poiché Cosmos DB è possibile accedere tramite sono chiamate di rete sono ottimizzazioni sul lato client è possibile apportare tooachieve ottenere prestazioni ottimali.
 
-Se si vogliono migliorare le prestazioni del database, prendere in considerazione le opzioni seguenti:
+Se si vogliono migliorare le prestazioni del database, prendere in considerazione hello le opzioni seguenti:
 
 ## <a name="networking"></a>Rete
 <a id="direct-connection"></a>
 
 1. **Criteri di connessione: usare la modalità di connessione diretta**
 
-    La modalità di connessione di un client a Cosmos DB influisce significativamente sulle prestazioni, in particolare in termini di latenza lato client osservata. Sono disponibili due impostazioni di configurazione chiave per la configurazione dei criteri di connessione client, ovvero la *modalità* di connessione e il [protocollo di *connessione*](#connection-protocol).  Le due modalità disponibili sono:
+    Come un client si connette tooCosmos DB ha implicazioni molto importanti sulle prestazioni, specie in termini di latenza client-side osservata. Sono disponibili due impostazioni di configurazione della chiave per la configurazione del client Criteri di connessione: connessione hello *modalità* hello e [connessione *protocollo*](#connection-protocol).  Hello due modalità disponibili sono:
 
    1. Modalità gateway (predefinita)
    2. Modalità diretta
 
-      La modalità gateway è supportata in tutte le piattaforme SDK ed è l'impostazione predefinita configurata.  Se l'applicazione è in esecuzione in una rete aziendale con limitazioni rigide del firewall, la modalità gateway è la scelta migliore, perché usa la porta HTTPS standard e un singolo endpoint. A livello di prestazioni, tuttavia, la modalità gateway prevede un hop di rete aggiuntivo ogni volta che i dati vengono letti o scritti in Cosmos DB. La modalità diretta offre quindi prestazioni migliori grazie al numero minore di hop di rete.
+      Modalità di gateway è supportata in tutte le piattaforme SDK e hello configurato predefinito.  Se l'applicazione viene eseguita all'interno di una rete aziendale con restrizioni del firewall strict, modalità di Gateway è la scelta migliore hello poiché Usa la porta HTTPS standard hello e un singolo endpoint. salve compromesso di prestazioni, tuttavia, è che la modalità Gateway implica un hop di rete aggiuntiva ogni volta i dati vengono letti o scritti tooCosmos DB. Per questo motivo, la modalità diretta offre prestazioni migliori scadenza toofewer hop di rete.
 <a id="use-tcp"></a>
-2. **Criteri di connessione: usare il protocollo TCP**
+2. **Criteri di connessione: utilizzare protocollo TCP hello**
 
     Quando si usa la modalità diretta, sono disponibili due opzioni del protocollo:
 
    * TCP
    * HTTPS
 
-     Cosmos DB offre un modello di programmazione RESTful su HTTPS semplice e aperto. DocumentDB offre anche un protocollo TCP efficiente, con un modello di comunicazione di tipo RESTful disponibile tramite .NET SDK per client. Sia il protocollo TCP diretto che il protocollo HTTPS usano SSL per l'autenticazione iniziale e la crittografia del traffico. Per prestazioni ottimali, usare il protocollo TCP quando possibile.
+     Cosmos DB offre un modello di programmazione RESTful su HTTPS semplice e aperto. Inoltre, offre un efficiente protocollo TCP, che è anche RESTful nel modello di comunicazione ed è disponibile tramite il client hello .NET SDK. Sia il protocollo TCP diretto che il protocollo HTTPS usano SSL per l'autenticazione iniziale e la crittografia del traffico. Per prestazioni ottimali, utilizzare il protocollo TCP hello quando possibile.
 
-     Quando si usa TCP in modalità gateway, la porta TCP 443 è la porta di Cosmos DB, mentre la porta 10255 è la porta dell'API MongoDB. Quando si usa TCP in modalità diretta, oltre alle porte gateway è necessario verificare che le porte nell'intervallo tra 10000 e 20000 siano aperte perché Cosmos DB usa porte TCP dinamiche. Se queste porte non sono aperte e si tenta di usare TCP, si riceverà un errore 503 (Servizio non disponibile).
+     Quando si utilizza TCP in modalità di Gateway, la porta TCP 443 è hello porta DB Cosmos e 10255 è la porta di MongoDB API hello. Quando si utilizza TCP in modalità diretta, nelle porte di Gateway toohello aggiunta, è necessario porta hello tooensure compreso tra 10000 e 20000 è aperto perché Cosmos DB Usa le porte TCP dinamiche. Se queste porte non sono aperte e si tenta di toouse TCP, viene visualizzato un errore HTTP 503 Servizio non disponibile.
 
-     La modalità di connessione viene configurata durante la creazione dell'istanza di DocumentClient con il parametro ConnectionPolicy. Se si usa la modalità diretta, è possibile configurare il protocollo entro il parametro ConnectionPolicy.
+     Modalità di connettività Hello viene configurato durante la costruzione di hello dell'istanza DocumentClient hello con parametro ConnectionPolicy hello. Se viene utilizzata la modalità diretta, è inoltre possibile impostare hello protocollo nel parametro ConnectionPolicy hello.
 
     ```C#
     var serviceEndpoint = new Uri("https://contoso.documents.net");
-    var authKey = new "your authKey from the Azure portal";
+    var authKey = new "your authKey from hello Azure portal";
     DocumentClient client = new DocumentClient(serviceEndpoint, authKey,
     new ConnectionPolicy
     {
@@ -62,98 +62,98 @@ Se si vogliono migliorare le prestazioni del database, prendere in considerazion
     });
     ```
 
-    Poiché TCP è supportato solo in modalità diretta, se si usa la modalità gateway viene usato sempre il protocollo HTTPS per comunicare con il gateway e il valore del protocollo in ConnectionPolicy viene ignorato.
+    Poiché TCP è supportato solo in modalità diretta, se viene utilizzata la modalità di Gateway, quindi hello il protocollo HTTPS è sempre utilizzato toocommunicate con hello Gateway e il valore di protocollo hello in hello che connectionpolicy viene ignorato.
 
-    ![Illustrazione dei criteri di connessione di Azure Cosmos DB](./media/performance-tips/connection-policy.png)
+    ![Illustrazione di hello Azure Cosmos DB criteri di connessione](./media/performance-tips/connection-policy.png)
 
-3. **Chiamare OpenAsync per evitare la latenza di avvio alla prima richiesta**
+3. **Chiamare la latenza di avvio tooavoid OpenAsync alla prima richiesta**
 
-    Per impostazione predefinita, la prima richiesta ha una latenza più elevata perché deve recuperare la tabella di routing degli indirizzi. Per evitare questa latenza di avvio alla prima richiesta, è necessario chiamare OpenAsync() una volta durante l'inizializzazione, come indicato di seguito.
+    Per impostazione predefinita, prima richiesta hello ha una latenza maggiore perché contiene una tabella di routing toofetch hello indirizzo. tooavoid questa latenza di avvio su hello prima richiesta, è necessario chiamare OpenAsync() come indicato di seguito una volta durante l'inizializzazione.
 
         await client.OpenAsync();
    <a id="same-region"></a>
 4. **Collocare i client nella stessa area di Azure per ottenere prestazioni migliori**
 
-    Quando possibile, posizionare eventuali applicazioni che chiamano Cosmos DB nella stessa area del database Cosmos DB. Per un confronto approssimativo, le chiamate a Cosmos DB eseguite nella stessa area vengono completate entro 1-2 millisecondi, mentre la latenza tra la costa occidentale e quella orientale degli Stati Uniti è > 50 millisecondi. Questa latenza può variare da richiesta a richiesta, in base alla route seguita dalla richiesta durante il passaggio dal client al limite del data center di Azure. È possibile ottenere la latenza più bassa possibile assicurandosi che l'applicazione chiamante si trovi nella stessa area di Azure in cui si trova l'endpoint di Cosmos DB con provisioning. Per un elenco delle aree disponibili, vedere [Aree di Azure](https://azure.microsoft.com/regions/#services).
+    Quando possibile, sul posto hello di tutte le applicazioni che chiamano DB Cosmos stessa area hello database Cosmos DB. Per un confronto approssimativo, chiama tooCosmos DB all'interno di hello stessa regione completata entro 1-2 ms, ma la latenza di hello tra hello ovest e costa orientale di hello Stati Uniti sono > 50 ms. Questa latenza probabilmente può variare da toorequest richiesta a seconda della route hello impiegato dalla richiesta hello durante il passaggio dal limite di hello client toohello Data Center di Azure. Hello più basso possibile latenza scopo è necessario garantire la chiamata di hello applicazione si trova all'interno di hello stessa area Azure hello provisioning Cosmos DB endpoint. Per un elenco delle aree disponibili, vedere [Aree di Azure](https://azure.microsoft.com/regions/#services).
 
-    ![Illustrazione dei criteri di connessione di Azure Cosmos DB](./media/performance-tips/same-region.png)
+    ![Illustrazione di hello Azure Cosmos DB criteri di connessione](./media/performance-tips/same-region.png)
    <a id="increase-threads"></a>
 5. **Aumentare il numero di thread/attività**
 
-    Dato che le chiamate ad Azure Cosmos DB vengono eseguite sulla rete, può essere necessario modificare il grado di parallelismo delle richieste in modo che i tempi di attesa dell'applicazione client tra le richieste siano molto ridotti. Se si usa [Task Parallel Library](https://msdn.microsoft.com//library/dd460717.aspx) di .NET, ad esempio, creare centinaia di attività di lettura o scrittura in Cosmos DB.
+    Poiché le chiamate tooAzure Cosmos DB vengono eseguite su rete hello, potrebbe essere necessario grado di hello toovary parallelismo delle richieste in modo che un'applicazione client hello impiega molto tempo di attesa tra le richieste. Ad esempio, se si sta utilizzando. Del NET [Task Parallel Library](https://msdn.microsoft.com//library/dd460717.aspx), creare nell'ordine di hello di 100s delle attività di lettura o scrittura tooCosmos DB.
 
 ## <a name="sdk-usage"></a>Uso dell'SDK
-1. **Installare l'SDK più recente**
+1. **Installare hello SDK più recente**
 
-    Agli SDK di Cosmos DB vengono apportati continui miglioramenti per offrire prestazioni ottimali. Per determinare la versione di SDK più recente e verificare i miglioramenti, vedere le pagine relative agli [SDK di Cosmos DB](documentdb-sdk-dotnet.md).
-2. **Usare un client Cosmos DB singleton per la durata dell'applicazione**
+    Hello Cosmos DB SDK vengono costantemente migliorate tooprovide hello migliori prestazioni. Vedere hello [Cosmos DB SDK](documentdb-sdk-dotnet.md) toodetermine pagine hello SDK più recente ed esaminare i miglioramenti.
+2. **Utilizzare un client DB Cosmos singleton per durata hello dell'applicazione**
 
-    Si noti che ogni istanza di DocumentClient è thread-safe ed esegue la gestione efficiente delle connessioni e la memorizzazione nella cache degli indirizzi quando viene usata la modalità diretta. Per consentire una gestione efficiente delle connessioni e prestazioni migliori da parte di DocumentClient, è consigliabile usare una singola istanza di DocumentClient per ogni AppDomain per la durata dell'applicazione.
+    Si noti che ogni istanza di DocumentClient è thread-safe ed esegue la gestione efficiente delle connessioni e la memorizzazione nella cache degli indirizzi quando viene usata la modalità diretta. gestione di connessioni efficiente tooallow e prestazioni migliori da DocumentClient, è consigliabile toouse una singola istanza di DocumentClient per AppDomain per durata hello dell'applicazione hello.
 
    <a id="max-connection"></a>
 3. **Aumentare il valore di System.Net MaxConnections per host se si usa la modalità Gateway**.
 
-    Quando si usa la modalità gateway, le richieste di Cosmos DB vengono eseguite su HTTPS/REST e sono soggette ai limiti di connessione predefiniti per ogni nome host o indirizzo IP. Può essere necessario impostare MaxConnections su un valore più alto (100-1000) in modo che la libreria client possa usare più connessioni simultanee a Cosmos DB. In .NET SDK 1.8.0 e versioni successive il valore predefinito per [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx) è 50 e per modificare il valore è possibile impostare [Documents.Client.ConnectionPolicy.MaxConnectionLimit](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.maxconnectionlimit.aspx) su un valore più elevato.   
+    COSMOS DB richieste vengono eseguite su HTTPS/REST quando si utilizza la modalità Gateway e sono sottoposti toohello limite di connessioni predefinito per ogni nome host o indirizzo IP. Potrebbe essere necessario tooset hello MaxConnections tooa valore più alto (100-1000) in modo che hello libreria client può utilizzare più connessioni simultanee tooCosmos DB. In .NET SDK 1.8.0 hello e sopra, hello il valore predefinito per [ServicePointManager. DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit.aspx) è 50 e toochange hello valore, è possibile impostare hello [Documents.Client.ConnectionPolicy.MaxConnectionLimit ](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.connectionpolicy.maxconnectionlimit.aspx) tooa di valore più alto.   
 4. **Ottimizzazione delle query parallele per le raccolte partizionate**
 
-     DocumentDB .NET SDK 1.9.0 e versioni successive supportano le query parallele, che consentono di eseguire query in una raccolta partizionata in parallelo. Vedere [Uso degli SDK](documentdb-partition-data.md#working-with-the-azure-cosmos-db-sdks) e i relativi [esempi di codice](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs) per maggiori dettagli. Le query parallele sono state concepite per migliorare la velocità e la latenza delle query sulle loro controparti seriali. Mettono a disposizione due parametri che gli utenti possono ottimizzare in funzione dei requisiti, ovvero (a) MaxDegreeOfParallelism per definire il numero massimo di partizioni sulle quali è possibile eseguire query in parallelo e (b) MaxBufferedItemCount per definire il numero di risultati di prelettura.
+     DocumentDB .NET SDK versione alla 1.9.0 e versioni successive di query parallele di supporto, che consentono di tooquery una raccolta partizionata in parallelo (vedere [utilizzo hello SDK](documentdb-partition-data.md#working-with-the-azure-cosmos-db-sdks) hello correlati e [esempi di codice](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Queries/Program.cs) per altre informazioni). Query parallele sono progettate tooimprove query latenza e velocità effettiva sulla loro controparte seriale. Query parallele forniscono due parametri che gli utenti possono ottimizzare toocustom adattamento relativi requisiti, MaxDegreeOfParallelism (): numero massimo di hello toocontrol delle partizioni è quindi possibile eseguire una query in parallelo e (b) MaxBufferedItemCount: numero di hello toocontrol di pre-recupero dei risultati.
 
-    (a) ***Ottimizzazione di MaxDegreeOfParallelism\:*** la query parallela funziona eseguendo query su più partizioni in parallelo. I dati di una singola raccolta partizionata vengono recuperati in modo seriale per quanto riguarda la query. L'impostazione di MaxDegreeOfParallelism sul numero di partizioni offre quindi la massima probabilità di ottenere la query più efficiente, se tutte le altre condizioni del sistema rimangono invariate. Se non si conosce il numero di partizioni, è possibile impostare il valore di MaxDegreeOfParallelism su un numero elevato; il sistema sceglie il numero minimo (numero di partizioni, input specificato dall'utente) come valore di MaxDegreeOfParallelism.
+    (a) ***Ottimizzazione di MaxDegreeOfParallelism\:*** la query parallela funziona eseguendo query su più partizioni in parallelo. Tuttavia, da una raccolta partizionata singoli vengono recuperati in modo seriale con query toohello riguardo. In tal caso, hello il possibilità massima di raggiungimento di impostazione del numero di partizioni di hello MaxDegreeOfParallelism toohello è hello la maggior parte delle query ad alte prestazioni, purché tutte le altre condizioni di sistema rimangono hello stesso. Se non si conosce il numero di hello di partizioni, è possibile impostare un numero elevato hello MaxDegreeOfParallelism tooa e sistema hello sceglie minimo hello (numero di partizioni, l'input dell'utente fornito) come hello MaxDegreeOfParallelism.
 
-    È importante notare che le query parallele producono i vantaggi migliori se i dati sono distribuiti uniformemente tra tutte le partizioni per quanto riguarda la query. Se la raccolta è partizionata in modo tale che tutti o la maggior parte dei dati restituiti da una query siano concentrati in alcune partizioni (una sola partizione nel peggiore dei casi), le prestazioni della query potrebbero essere limitate da tali partizioni.
+    È importante toonote parallele query producono hello migliori vantaggi se dati hello viene distribuito uniformemente tra tutte le partizioni con query toohello riguardo. Se hello partizionata raccolta verrà partizionata modo tale che tutte o una parte dei dati di hello restituiti da una query è concentrato in alcune partizioni (una partizione nel peggiore dei casi), quindi le prestazioni di hello di query hello potrebbero essere un collo di bottiglia da tali partizioni.
 
-    (b) ***Ottimizzazione di MaxBufferedItemCount\:*** la query parallela è progettata per la prelettura dei risultati mentre il client elabora il batch di risultati corrente. La prelettura consente il miglioramento complessivo della latenza di una query. MaxBufferedItemCount è il parametro che consente di limitare il numero di risultati di prelettura. L'impostazione di MaxBufferedItemCount sul numero previsto di risultati restituiti (o un numero più alto) consente alla query di ottenere il massimo vantaggio dalla prelettura.
+    (b) ***ottimizzazione MaxBufferedItemCount\: *** query parallele è impostato su toopre-fetch progettato durante l'elaborazione batch di risultati corrente hello client hello. Hello la prelettura consente ottimizzazione Latenza complessiva di una query. MaxBufferedItemCount è hello parametro toolimit hello numero di risultati già recuperati. Impostazione MaxBufferedItemCount toohello previsto hello query tooreceive il massimo vantaggio dalla prelettura consente a numero di risultati restituiti (o un numero più alto).
 
-    Si noti che la prelettura funziona allo stesso modo indipendentemente dall'impostazione di MaxDegreeOfParallelism e che è presente un solo buffer per i dati di tutte le partizioni.  
+    Si noti che funziona pre-recupero hello stesso modo indipendentemente dal fatto che di hello MaxDegreeOfParallelism ed è un singolo buffer per i dati di hello da tutte le partizioni.  
 5. **Attivare GC sul lato server**
 
-    In alcuni casi, può essere utile ridurre la frequenza di Garbage Collection. In .NET impostare [gcServer](https://msdn.microsoft.com/library/ms229357.aspx) su true.
+    In alcuni casi può essere utile ridurre la frequenza hello di garbage collection. In .NET, impostare [gcServer](https://msdn.microsoft.com/library/ms229357.aspx) tootrue.
 6. **Implementare il backoff in corrispondenza di intervalli RetryAfter**
 
-    Durante il test delle prestazioni, è necessario aumentare il carico fino a limitare un numero ridotto di richieste. Se limitata, l'applicazione client deve eseguire il backoff sulla limitazione per l'intervallo tra tentativi specificato dal server. Rispettando il backoff si garantiscono tempi di attesa minimi tra i tentativi. Il supporto dei criteri di ripetizione dei tentativi è incluso nella versione 1.8.0 e versioni successive degli SDK [.NET](documentdb-sdk-dotnet.md) e [Java](documentdb-sdk-java.md), nella versione 1.9.0 e versioni successive degli SDK [Node.js](documentdb-sdk-node.md) e [Python](documentdb-sdk-python.md) e in tutte le versioni supportate degli SDK [.NET Core](documentdb-sdk-dotnet-core.md) di DocumentDB. Per altre informazioni, vedere [Superamento dei limiti della velocità effettiva riservata](request-units.md#RequestRateTooLarge) e [RetryAfter](https://msdn.microsoft.com/library/microsoft.azure.documents.documentclientexception.retryafter.aspx).
+    Durante il test delle prestazioni, è necessario aumentare il carico fino a limitare un numero ridotto di richieste. Limitate, hello applicazione client deve intervallo tentativi di backoff sulla limitazione per hello specificata dal server. Rispettando hello backoff assicura che si trascorrono quantità minima di tempo di attesa tra i tentativi. Supporto di criteri di ripetizione è incluso nella versione 1.8.0 e di sopra di hello DocumentDB [.NET](documentdb-sdk-dotnet.md) e [Java](documentdb-sdk-java.md), versione alla 1.9.0 e versioni successive di hello [Node.js](documentdb-sdk-node.md) e [ Python](documentdb-sdk-python.md), e tutte le versioni supportate di hello [.NET Core](documentdb-sdk-dotnet-core.md) SDK. Per altre informazioni, vedere [Superamento dei limiti della velocità effettiva riservata](request-units.md#RequestRateTooLarge) e [RetryAfter](https://msdn.microsoft.com/library/microsoft.azure.documents.documentclientexception.retryafter.aspx).
 7. **Aumentare il carico di lavoro client**
 
-    Se si sta eseguendo il test a livelli di velocità effettiva elevati (> 50.000 UR/sec), l'applicazione client può diventare un collo di bottiglia a causa della limitazione di utilizzo della CPU o della rete. In questo caso, è possibile continuare a effettuare il push dell'account Cosmos DB aumentando il numero di istanze delle applicazioni client in più server.
+    Se si sta testando a livelli di velocità effettiva elevata (> 50.000 UR/sec), un'applicazione client hello potrebbe diventare collo di bottiglia hello scadenza toohello macchina coprendo all'utilizzo della CPU o rete. Se si raggiunge questo punto, è possibile continuare ulteriormente account al database Cosmos hello toopush tramite la scalabilità alle applicazioni client in più server.
 8. **Memorizzare nella cache gli URI dei documenti per una minore latenza di lettura**
 
-    Memorizzare nella cache gli URI dei documenti quando possibile per ottenere prestazioni di lettura ottimali.
+    Memorizzare nella cache URI ogni volta che è possibile per hello ottimizzare le prestazioni di lettura documento.
    <a id="tune-page-size"></a>
-9. **Modificare le dimensioni di pagina per le query o i feed di lettura per ottenere prestazioni migliori**
+9. **Ottimizzazione delle dimensioni della pagina hello per le query/lettura feed per migliorare le prestazioni**
 
-    Quando si esegue una lettura in blocco di documenti usando la funzionalità dei feed di lettura, ad esempio ReadDocumentFeedAsync, oppure quando si emette una query SQL di DocumentDB, i risultati vengono restituiti in modo segmentato se il set di risultati è troppo grande. Per impostazione predefinita, i risultati vengono restituiti in blocchi di 100 elementi o 1 MB, a seconda del limite che viene raggiunto prima.
+    Quando l'esecuzione di un blocco di lettura di documenti tramite lettura feed funzionalità (ad esempio, ReadDocumentFeedAsync) o quando l'esecuzione di una query SQL di DocumentDB, hello vengono restituiti in modo segmentato se il set di risultati hello è troppo grande. Per impostazione predefinita, i risultati vengono restituiti in blocchi di 100 elementi o 1 MB, a seconda del limite che viene raggiunto prima.
 
-    Per ridurre il numero di round trip di rete necessari per recuperare tutti i risultati applicabili, è possibile aumentare le dimensioni di pagina usando l'intestazione di richiesta x-ms-max-item-count fino a 1000. Nei casi in cui è necessario visualizzare solo alcuni risultati, ad esempio se l'interfaccia utente o l'API dell'applicazione restituisce solo 10 risultati alla volta, è anche possibile ridurre le dimensioni di pagina a 10 in modo da ridurre la velocità effettiva usata per le letture e le query.
+    numero di hello tooreduce di rete tooretrieve di andata e ritorno necessari tutti i risultati applicabili, è possibile aumentare la dimensione di pagina hello utilizzando too1000 tooup di intestazione x-ms-max-item-count richiesta. Nei casi in cui sia necessario toodisplay solo alcuni risultati, ad esempio, se l'API di applicazione o dell'interfaccia utente vengono restituiti solo 10 comporta un tempo, è inoltre possibile ridurre hello dimensioni too10 tooreduce hello velocità effettiva delle pagine utilizzata per letture e le query.
 
-    È anche possibile impostare le dimensioni di pagina usando gli SDK di Cosmos DB disponibili.  ad esempio:
+    È inoltre possibile impostare le dimensioni di pagina hello utilizzando hello disponibili Cosmos DB SDK.  ad esempio:
 
         IQueryable<dynamic> authorResults = client.CreateDocumentQuery(documentCollection.SelfLink, "SELECT p.Author FROM Pages p WHERE p.Title = 'About Seattle'", new FeedOptions { MaxItemCount = 1000 });
 10. **Aumentare il numero di thread/attività**
 
-    Vedere [Aumentare il numero di thread/attività](#increase-threads) nella sezione Rete.
+    Vedere [aumentare del numero di thread/attività](#increase-threads) nella sezione Networking hello.
 
 11. **Usare processi host a 64 bit**
 
-    L'SDK di DocumentDB funziona in un processo host a 32 bit quando si usa DocumentDB .NET SDK versione 1.11.4 e versioni successive. Tuttavia, se si usano query tra partizioni, è consigliabile usare l'elaborazione dell'host a 64 bit per migliorare le prestazioni. I tipi seguenti di applicazioni dispongono di un processo host a 32 bit per impostazione predefinita; per passare a un processo a 64 bit, seguire questi passaggi in base al tipo di applicazione:
+    Hello DocumentDB SDK funziona in un processo host a 32 bit quando si utilizza DocumentDB .NET SDK versione 1.11.4 e versioni successive. Tuttavia, se si usano query tra partizioni, è consigliabile usare l'elaborazione dell'host a 64 bit per migliorare le prestazioni. elaborazione come valore predefinito di hello, pertanto, in ordine toochange che too64 bit, eseguire la procedura seguente in base al tipo di hello dell'applicazione, Hello seguenti tipi di applicazioni è host a 32 bit:
 
-    - Per le applicazioni eseguibili è possibile, a tale scopo, deselezionare l'opzione **Preferisci 32 bit** nella scheda **Compila** della finestra **Proprietà progetto**.
+    - Per le applicazioni eseguibili, questo scopo è possibile hello deselezionando **preferisci 32 bit** opzione hello **le proprietà del progetto** finestra hello **compilare** scheda.
 
-    - Per progetti di test basati su VSTest questa operazione può essere eseguita selezionando **Test**->**Impostazioni test**->**Default Processor Architecture as X64** (Imposta architettura processore X64 come predefinita) dall'opzione **Visual Studio Test**.
+    - Per i progetti di test basati su VSTest, questa operazione può essere eseguita selezionando **Test**->**impostazioni Test**->**predefinito architettura del processore X64**, da hello **Test di Visual Studio** opzione di menu.
 
-    - Per le applicazioni Web ASP.NET distribuite in locale questa operazione può essere eseguita selezionando **Utilizzare la versione a 64 bit di IIS Express per progetti e siti Web** in **Strumenti**->**Opzioni**->**Progetti e soluzioni**->**Progetti Web**.
+    - Per le applicazioni Web ASP.NET distribuite localmente, questa operazione può essere eseguita controllando hello **versione a 64 bit hello utilizzo di IIS Express per progetti e siti web**in **strumenti** ->  **Opzioni**->**progetti e soluzioni**->**progetti Web**.
 
-    - Per le applicazioni Web ASP.NET distribuite in Azure questa operazione può essere eseguita selezionando **Platform as 64-bit** (Piattaforma 64 bit) in **Impostazioni applicazione** nel Portale di Azure.
+    - Per le applicazioni Web ASP.NET distribuite in Azure, questa operazione può essere eseguita scegliendo hello **piattaforma a 64 bit** in hello **le impostazioni dell'applicazione** su hello portale di Azure.
 
 ## <a name="indexing-policy"></a>Criterio di indicizzazione
 1. **Usare l'indicizzazione differita per frequenze di inserimento più veloci nei momenti di massima attività**
 
-    Cosmos DB consente di specificare criteri di indicizzazione a livello di raccolta che permettono di scegliere se i documenti di una raccolta devono essere indicizzati automaticamente o meno.  È anche possibile scegliere tra aggiornamenti sincroni (coerenti) e asincroni (differiti). Per impostazione predefinita, l'indice viene aggiornato in modo sincrono a ogni inserimento, sostituzione o eliminazione di un documento nella raccolta. La modalità sincrona consente alle query di rispettare lo stesso [livello di coerenza](consistency-levels.md) delle letture di documenti, senza che l'indice debba recuperare alcun ritardo.
+    DB COSMOS consente toospecify: a livello di raccolta hello-un criterio di indicizzazione che consente di toochoose se si desidera hello documenti in un insieme di toobe automaticamente indicizzato o meno.  È anche possibile scegliere tra aggiornamenti sincroni (coerenti) e asincroni (differiti). Per impostazione predefinita, l'indice di hello viene aggiornato in modo sincrono in ogni istruzione insert, sostituire o eliminazione di una raccolta di toohello del documento. In modo sincrono in modalità attiva hello query toohonor hello stesso [livello di coerenza](consistency-levels.md) a quella di hello documento legge senza alcun ritardo per l'indice di hello troppo "aggiornarsi".
 
-    L'indicizzazione differita è consigliabile per gli scenari in cui i dati vengono scritti in burst e si vuole ammortizzare il lavoro necessario per indicizzare il contenuto dell'indice in un periodo di tempo più lungo. L'indicizzazione differita consente di usare in modo efficiente la velocità effettiva con provisioning e di gestire le richieste di scrittura nei momenti di massima attività con latenza minima. È importante notare, tuttavia, che con l'indicizzazione differita attivata i risultati delle query sono comunque coerenti indipendentemente dal livello di coerenza configurato per l'account Cosmos DB.
+    Questo tipo di indicizzazione può essere considerata per gli scenari in cui i dati vengono scritti in aumenti improvvisi e si desidera tooamortize hello lavoro richiesto tooindex contenuto in un periodo di tempo più lungo. Questo tipo di indicizzazione consente inoltre toouse il provisioning di velocità effettiva in modo efficace e servire richieste di scrittura nei momenti con latenza minima. È importante toonote, tuttavia, quando è abilitata l'indicizzazione differita, vengono alla fine coerenti indipendentemente dal livello di coerenza hello configurato per l'account Cosmos DB hello risultati della query.
 
-    La modalità di indicizzazione coerente (IndexingPolicy.IndexingMode impostato su Consistent) comporta gli addebiti più elevati per unità richiesta per ogni scrittura, mentre la modalità di indicizzazione differita (IndexingPolicy.IndexingMode impostato su Lazy) e l'assenza di indicizzazione (IndexingPolicy.Automatic impostato su False) non comportano alcun costo di indicizzazione al momento della scrittura.
+    Di conseguenza, la modalità di indicizzazione coerenza (IndexingPolicy.IndexingMode è impostato tooConsistent) comporta hello massima richiesta unità addebito per la scrittura, durante l'indicizzazione di modalità (IndexingPolicy.IndexingMode è impostato tooLazy) e non l'indicizzazione Lazy (IndexingPolicy.Automatic è impostato tooFalse) ha costo pari a zero indicizzazione in fase di hello di scrittura.
 2. **Escludere i percorsi non usati dall'indicizzazione per scritture più veloci**
 
-    I criteri di indicizzazione di Cosmos DB consentono anche di specificare i percorsi dei documenti da includere o escludere dall'indicizzazione sfruttando i percorsi di indicizzazione (IndexingPolicy.IncludedPaths e IndexingPolicy.ExcludedPaths). L'uso dei percorsi di indicizzazione può consentire di ottenere prestazioni migliori e di ridurre le risorse di archiviazione dell'indice per gli scenari in cui i modelli di query sono noti in anticipo, poiché i costi dell'indicizzazione sono correlati direttamente al numero di percorsi univoci indicizzati.  Ad esempio, il codice seguente illustra come escludere un'intera sezione dei documenti, detta anche sottoalbero, dall'indicizzazione usando il carattere jolly "*".
+    Criteri di indicizzazione COSMOS DB consentono inoltre toospecify tooinclude percorsi dei documenti o escludere dall'indicizzazione sfruttando l'indicizzazione di percorsi (IndexingPolicy.IncludedPaths e IndexingPolicy.ExcludedPaths). utilizzo di Hello dei percorsi di indicizzazione può offrire prestazioni di scrittura migliorate e archiviazione dell'indice più basso per gli scenari in cui hello modelli di query sono noti in anticipo, come i costi di indicizzazione sono direttamente correlati toohello svariate univoci percorsi indicizzati.  Ad esempio, hello seguente codice mostra come tooexclude un'intera sezione di hello documenti (anche noto come un sottoalbero) dall'indicizzazione mediante hello "*" con caratteri jolly.
 
     ```C#
     var collection = new DocumentCollection { Id = "excludedPathCollection" };
@@ -169,19 +169,19 @@ Se si vogliono migliorare le prestazioni del database, prendere in considerazion
 
 1. **Misurare e ottimizzare per ottenere un utilizzo minore di unità richiesta al secondo**
 
-    Cosmos DB offre un'ampia gamma di operazioni di database, incluse le query relazionali e gerarchiche con funzioni definite dall'utente, stored procedure e trigger, operative nei documenti in una raccolta di database. Il costo associato a ognuna di queste operazioni dipende da CPU, I/O e memoria necessari per il completamento dell'operazione. Invece di occuparsi della pianificazione e della gestione delle risorse hardware, sarà possibile usare un'unità di richiesta come misura singola per le risorse necessarie per eseguire diverse operazioni di database e rispondere a una richiesta dell'applicazione.
+    COSMOS DB offre un'ampia gamma di operazioni di database, incluse le query relazionale e gerarchiche con funzioni definite dall'utente, stored procedure e trigger: funzionamento nei documenti di hello all'interno di una raccolta di database. costo Hello associata a ognuna di queste operazioni varia in base hello CPU, i/o e quantità di memoria richiesta toocomplete hello operazione. Anziché considerare e la gestione delle risorse hardware, può essere considerato di un'unità di richiesta (RU) come una singola misura per hello le risorse necessarie tooperform varie operazioni di database e servizio richiesta di un'applicazione.
 
-    [unità richiesta](request-units.md) viene eseguito per ogni account di database in base al numero di unità di capacità acquistato. Il consumo delle unità di richiesta è valutato in base alla frequenza al secondo. Le applicazioni che superano il livello di unità richiesta con provisioning previsto per il relativo account sono limitate fino al ritorno del livello sotto il valore riservato per l'account. Se l'applicazione necessita di un livello superiore di velocità effettiva, sarà possibile acquistare unità di capacità aggiuntive.
+    [Unità richieste](request-units.md) viene effettuato il provisioning per ogni account del database in base al numero di hello unità di capacità acquistato. Il consumo delle unità di richiesta è valutato in base alla frequenza al secondo. Le applicazioni che superano l'unità di richiesta di provisioning hello frequenza per l'account è limitata fino a quando il tasso di hello scende di sotto di hello livello riservato per l'account di hello. Se l'applicazione necessita di un livello superiore di velocità effettiva, sarà possibile acquistare unità di capacità aggiuntive.
 
-    La complessità di una query influisce sulla quantità di unità richiesta utilizzate per un'operazione. Il numero di predicati, la natura dei predicati, il numero di funzioni definite dall'utente e le dimensioni del set di dati di origine sono tutti fattori che incidono sul costo delle operazioni di query.
+    complessità Hello di una query ha un impatto quante unità di richiesta vengono utilizzate per un'operazione. numero di Hello di predicati, natura dei predicati hello, numero di funzioni definite dall'utente e dimensioni di hello del set di dati di origine hello tutti influenzare il costo di hello di operazioni di query.
 
-    Per misurare l'overhead di qualunque operazione (create, update o delete), esaminare l'intestazione x-ms-request-charge (o la proprietà RequestCharge equivalente in ResourceResponse<T> oppure FeedResponse<T> in .NET SDK) per determinare il numero di unità richiesta usate da queste operazioni.
+    overhead hello toomeasure di qualsiasi operazione (creare, aggiornare o eliminare), esaminare l'intestazione x-ms-richiesta addebito hello (o hello proprietà RequestCharge equivalente in ResourceResponse<T> o FeedResponse<T> in .NET SDK hello) toomeasure numero di Hello di unità di richiesta utilizzato da queste operazioni.
 
     ```C#
-    // Measure the performance (request units) of writes
+    // Measure hello performance (request units) of writes
     ResourceResponse<Document> response = await client.CreateDocumentAsync(collectionSelfLink, myDocument);
     Console.WriteLine("Insert of document consumed {0} request units", response.RequestCharge);
-    // Measure the performance (request units) of queries
+    // Measure hello performance (request units) of queries
     IDocumentQuery<dynamic> queryable = client.CreateDocumentQuery(collectionSelfLink, queryString).AsDocumentQuery();
     while (queryable.HasMoreResults)
          {
@@ -190,26 +190,26 @@ Se si vogliono migliorare le prestazioni del database, prendere in considerazion
          }
     ```             
 
-    L'addebito richiesta restituito in questa intestazione è una frazione della velocità effettiva con provisioning, ad esempio 2000 UR/secondo. Se, ad esempio, la query precedente restituisce 1000 documenti da 1 KB, il costo dell'operazione è 1000. Entro un secondo, il server rispetterà quindi solo due richieste di questo tipo prima di limitare le richieste successive. Per altre informazioni, vedere [Unità richiesta](request-units.md) e il [calcolatore di unità richiesta](https://www.documentdb.com/capacityplanner).
+    addebito richiesta restituito in questa intestazione Hello rappresenta una frazione della velocità effettiva di provisioning (ad esempio, 2000 RUs al secondo). Ad esempio, se hello query precedente restituisce documenti con 1000 1KB, il costo di hello dell'operazione di hello è 1000. Di conseguenza, all'interno di un secondo, server hello rispetta solo due richieste prima di limitazione delle richieste successive. Per ulteriori informazioni, vedere [unità richieste](request-units.md) hello e [calcolatrice unità richiesta](https://www.documentdb.com/capacityplanner).
 <a id="429"></a>
 2. **Gestire la limitazione della frequenza o una frequenza di richieste troppo elevata**
 
-    Quando un client prova a superare la velocità effettiva riservata per un account, non si verifica alcun calo delle prestazioni del server e l'uso della capacità della velocità effettiva non supera il livello riservato. Il server termina preventivamente la richiesta con RequestRateTooLarge (codice di stato HTTP 429) e restituisce l'intestazione x-ms-retry-after-ms, che indica la quantità di tempo, in millisecondi, che l'utente deve attendere prima di eseguire di nuovo la richiesta.
+    Quando un client tenta di velocità effettiva riservati tooexceed hello per un account, è senza riduzione delle prestazioni server hello e Nessun utilizzo della capacità di velocità effettiva oltre il livello di hello riservato. server Hello modalità preemptive terminerà richiesta hello con RequestRateTooLarge (codice di stato HTTP 429) e indicando l'intestazione x-ms-nuovo tentativo-dopo-ms hello restituito hello tempo totale, espresso in millisecondi, che hello utente deve attendere prima di eseguire nuovamente la richiesta hello.
 
         HTTP Status 429,
         Status Line: RequestRateTooLarge
         x-ms-retry-after-ms :100
 
-    Tutti gli SDK intercettano implicitamente questa risposta, rispettano l'intestazione retry-after specificata dal server e ripetono la richiesta. A meno che all'account non accedano contemporaneamente più client, il tentativo successivo riuscirà.
+    SDK Hello tutti implicitamente intercettare questa risposta di, rispettare intestazione hello specificata dal server retry-after e ripetere la richiesta hello. A meno che non si accede all'account contemporaneamente da più client, il successivo tentativo di hello avrà esito positivo.
 
-    Se più client operano collettivamente in modo costante al di sopra della frequenza delle richieste, il numero di ripetizioni dei tentativi predefinito attualmente impostato su 9 internamente dal client potrebbe non essere sufficiente. In questo caso, il client genererà una DocumentClientException con codice di stato 429 per l'applicazione. Il numero di ripetizioni dei tentativi predefinito può essere modificato impostando RetryOptions nell'istanza di ConnectionPolicy. Per impostazione predefinita, l'eccezione DocumentClientException con codice di stato 429 viene restituita dopo un tempo di attesa cumulativo di 30 secondi, se la richiesta continua a funzionare al di sopra della frequenza delle richieste. Ciò si verifica anche quando il numero di ripetizioni dei tentativi corrente è inferiore al numero massimo di tentativi, indipendentemente dal fatto che si tratti del valore predefinito 9 o di un valore definito dall'utente.
+    Se si dispone di più di un client in modo cumulativo operano in modo coerente di sopra di frequenza di richieste di hello, hello numero di tentativi predefinito attualmente too9 set internamente dal client hello potrebbe non essere sufficiente; In questo caso, il client di hello genera un DocumentClientException con applicazione toohello 429 in codice stato. numero di tentativi di Hello predefinito può essere modificato da hello impostazione RetryOptions nell'istanza ConnectionPolicy hello. Per impostazione predefinita, se richiesta hello continua toooperate sopra la frequenza di richieste hello hello DocumentClientException con codice di stato 429 viene restituito dopo un periodo di tempo cumulativo di attesa di 30 secondi. Questo errore si verifica anche quando il numero di tentativi corrente hello è inferiore al conteggio massimo di tentativi di hello, sia essa predefinito hello 9 o un valore definito dall'utente.
 
-    Benché il comportamento automatizzato per la ripetizione dei tentativi consenta di migliorare la resilienza e l'usabilità per la maggior parte delle applicazioni, è possibile che provochi conflitti durante l'esecuzione dei benchmark delle prestazioni, in particolare durante la misurazione della latenza.  La latenza osservata dal client presenterà dei picchi se l'esperimento raggiunge il limite del server e fa in modo che l'SDK client ripeta automaticamente i tentativi. Per evitare i picchi di latenza durante gli esperimenti relativi alle prestazioni, misurare l'addebito restituito da ogni operazione e assicurarsi che le richieste operino al di sotto della frequenza delle richieste riservata. Per altre informazioni, vedere [Unità richiesta](request-units.md).
+    Mentre hello automatizzata comportamento del nuovo tentativo consente tooimprove flessibilità e facilità d'uso per hello la maggior parte delle applicazioni, potrebbero venire conflittuale quando si esegue il benchmark delle prestazioni, soprattutto quando la misurazione della latenza.  Latenza osservata client Hello raggiungerà un picco se esperimento hello raggiunge il limite di server hello e fa sì che il client di hello tentativi toosilently SDK. latenza tooavoid picchi durante gli esperimenti di prestazioni, misura hello addebito restituiti da ogni operazione e verificare che le richieste sono opera di sotto di frequenza di richieste riservato hello. Per altre informazioni, vedere [Unità richiesta](request-units.md).
 3. **Progettare documenti di dimensioni minori per ottenere una velocità effettiva maggiore**
 
-    L'addebito per le richieste, ovvero il costo di elaborazione delle richieste, per un'operazione specifica è correlato direttamente alle dimensioni del documento. Le operazioni sui documenti di grandi dimensioni sono più costose rispetto alle operazioni per i documenti di piccole dimensioni.
+    Hello addebito richiesta (ad esempio l'elaborazione della richiesta costo) di un'operazione specificata è direttamente correlato toohello dimensioni del documento hello. Le operazioni sui documenti di grandi dimensioni sono più costose rispetto alle operazioni per i documenti di piccole dimensioni.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per un'applicazione di esempio usata per valutare Cosmos DB per scenari a prestazioni elevate su un numero ridotto di computer client, vedere [Test delle prestazioni e della scalabilità con Azure Cosmos DB](performance-testing.md).
+Per un esempio dell'applicazione utilizzata tooevaluate DB Cosmos per scenari ad alte prestazioni in alcuni computer client, vedere [prestazioni e scalabilità test con DB Cosmos](performance-testing.md).
 
-Per altre informazioni sulla progettazione dell'applicazione per scalabilità e prestazioni elevate, vedere l'articolo relativo a [partizionamento e scalabilità in Azure Cosmos DB](partition-data.md).
+Vedere anche toolearn ulteriori informazioni su progettazione dell'applicazione per la scalabilità e prestazioni elevate, [partizionamento e la scalabilità in Azure Cosmos DB](partition-data.md).

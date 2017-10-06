@@ -1,6 +1,6 @@
 ---
-title: Creare avvisi per i servizi di Azure - Interfaccia della riga di comando multipiattaforma | Microsoft Docs
-description: Attivare messaggi di posta elettronica o notifiche, chiamare URL di siti Web (webhook) o usare l'automazione quando vengono soddisfatte le condizioni specificate.
+title: gli avvisi aaaCreate per servizi di Azure - CLI multipiattaforma | Documenti Microsoft
+description: Attivare l'automazione, notifiche, gli URL di siti Web di chiamata (webhook) o messaggi di posta elettronica quando vengono soddisfatte le condizioni di hello specificate.
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: robb
-ms.openlocfilehash: 92246a8da73a244a1c9a924bed55711d71a20fd8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e53701e5377a415038a69fbd32f1e5fc5fe99be9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-metric-alerts-in-azure-monitor-for-azure-services---cross-platform-cli"></a>Creare avvisi sulle metriche in Monitoraggio di Azure per i servizi di Azure - Interfaccia della riga di comando multipiattaforma
 > [!div class="op_single_selector"]
@@ -29,24 +29,24 @@ ms.lasthandoff: 07/11/2017
 >
 
 ## <a name="overview"></a>Panoramica
-Questo articolo descrive come impostare gli avvisi sulle metriche di Azure tramite l'interfaccia della riga di comando multipiattaforma.
+Questo articolo illustra come tooset di Azure avvisi metrica utilizzando hello multipiattaforma interfaccia della riga di comando (CLI).
 
 > [!NOTE]
-> Dal 25 settembre 2016 Monitoraggio di Azure è il nuovo nome di "Azure Insights". Tuttavia, gli spazi dei nomi e quindi i comandi seguenti contengono ancora il termine "insights".
+> Monitoraggio di Azure è hello nuovo nome per ciò che è stato chiamato "Azure Insights" fino a 25 settembre 2016. Tuttavia, gli spazi dei nomi hello e pertanto comandi hello seguenti comunque contengono approfondite"hello".
 >
 >
 
 È possibile ricevere avvisi basati su metriche di monitoraggio o eventi nei servizi Azure.
 
-* **Valori metrici** : l'avviso si attiva quando il valore di una specifica metrica supera una soglia assegnata per eccesso o difetto. Vale a dire che si attiva sia quando la condizione viene inizialmente soddisfatta e successivamente quando tale condizione non è più soddisfatta.    
-* **Eventi del log attività**: è possibile attivare un avviso per *ogni* evento o solo quando si verifica un determinato evento. Per altre informazioni sugli avvisi sui log attività [fare clic qui](monitoring-activity-log-alerts.md)
+* **Valori della metrica** : hello trigger un avviso quando il valore di hello di una specifica metrica supera una soglia è assegnare in entrambe le direzioni. Ovvero, entrambi attiva quando hello prima condizione e quindi successivamente non condizione when che è non è più in grado di soddisfare.    
+* **Eventi del log attività**: è possibile attivare un avviso per *ogni* evento o solo quando si verifica un determinato evento. ulteriori informazioni sugli avvisi di log attività toolearn [fare clic qui](monitoring-activity-log-alerts.md)
 
-È possibile configurare un avviso sulle metriche affinché esegua queste operazioni al momento dell'attivazione:
+È possibile configurare una metrica toodo avviso hello seguenti attiva:
 
-* inviare un messaggio di posta elettronica all'amministratore e ai coamministratori del servizio
-* inviare un messaggio di posta elettronica ad altri indirizzi specificati
+* inviare coamministratore e amministratore del servizio toohello le notifiche tramite posta elettronica
+* Invia messaggio di posta elettronica tooadditional messaggi di posta elettronica specificato.
 * chiamare un webhook
-* avviare l'esecuzione di un runbook di Azure; attualmente è possibile solo dal portale di Azure
+* avviare l'esecuzione di un runbook di Azure (solo dal portale di Azure in questo momento hello)
 
 È possibile configurare e ottenere informazioni sulle regole degli avvisi sulle metriche tramite
 
@@ -55,15 +55,15 @@ Questo articolo descrive come impostare gli avvisi sulle metriche di Azure trami
 * [interfaccia della riga di comando](insights-alerts-command-line-interface.md)
 * [API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/azure/dn931945.aspx)
 
-È possibile ricevere assistenza per i comandi digitando un comando e inserendo -help al termine. Ad esempio:
+Si può sempre ricevere Guida per i comandi, digitare un comando e la messa - Guida alla fine di hello. ad esempio:
 
     ```console
     azure insights alerts -help
     azure insights alerts actions email create -help
     ```
 
-## <a name="create-alert-rules-using-the-cli"></a>Creare le regole di avviso tramite l'interfaccia della riga di comando
-1. Controllare i prerequisiti e accedere ad Azure. Vedere gli [esempi dell'interfaccia della riga di comando di Monitoraggio di Azure](insights-cli-samples.md). In breve, installare l'interfaccia della riga di comando ed eseguire questi comandi. Questi comandi eseguono l'accesso, indicano la sottoscrizione in uso e preparano l'esecuzione dei comandi di Monitoraggio di Azure.
+## <a name="create-alert-rules-using-hello-cli"></a>Creare regole di avviso utilizzando hello CLI
+1. Eseguire prerequisiti hello e tooAzure account di accesso. Vedere gli [esempi dell'interfaccia della riga di comando di Monitoraggio di Azure](insights-cli-samples.md). In breve, hello CLI di installare ed eseguire questi comandi. E ottenere l'accesso, mostra quale sottoscrizione utilizza e preparazione toorun i comandi di monitoraggio di Azure.
 
     ```console
     azure login
@@ -72,17 +72,17 @@ Questo articolo descrive come impostare gli avvisi sulle metriche di Azure trami
 
     ```
 
-2. Per elencare le regole esistenti in un gruppo di risorse, usare il seguente formato **azure insights alerts rule list** *[opzioni] &lt;resourceGroup&gt;*
+2. le regole esistenti toolist in un gruppo di risorse, utilizzare hello seguente modulo **azure insights elenco di regole avvisi** *[opzioni] &lt;gruppo di risorse&gt;*
 
    ```console
    azure insights alerts rule list myresourcegroupname
 
    ```
-3. Per creare una regola, per prima cosa è necessario disporre di alcune informazioni importanti.
-  * L' **ID risorsa** della risorsa per la quale si intende impostare un avviso
-  * Le **definizioni delle metriche** disponibili per tale risorsa
+3. toocreate una regola, è necessario toohave importanti di varie informazioni prima di tutto.
+  * Hello **ID risorsa** per la risorsa hello desiderato tooset un avviso per
+  * Hello **le definizioni delle metriche** disponibili per tale risorsa
 
-     È possibile ottenere l'ID della risorsa tramite il portale di Azure. Se la risorsa è già stata creata, selezionarla nel portale. Nel pannello successivo, nella sezione *Impostazioni*, selezionare *Proprietà*. *ID RISORSA* è un campo nel pannello successivo. È anche possibile usare [Esplora risorse di Azure](https://resources.azure.com/).
+     Un modo tooget hello ID risorsa è toouse hello portale di Azure. Supponendo che la risorsa hello è già stata creata, selezionarlo nel portale di hello. Selezionare nel pannello successivo hello *proprietà* in hello *impostazioni* sezione. Hello *ID risorsa* è un campo nel pannello successivo hello. Un altro modo consiste hello toouse [Esplora inventario risorse di Azure](https://resources.azure.com/).
 
      Un esempio di ID risorsa per un'app Web è
 
@@ -90,24 +90,24 @@ Questo articolo descrive come impostare gli avvisi sulle metriche di Azure trami
      /subscriptions/dededede-7aa0-407d-a6fb-eb20c8bd1192/resourceGroups/myresourcegroupname/providers/Microsoft.Web/sites/mywebsitename
      ```
 
-     Per ottenere un elenco delle metriche e delle unità per le metriche disponibili per l'esempio precedente di risorse, usare il comando dell'interfaccia della riga di comando seguente:  
+     tooget un elenco delle metriche disponibili hello e unità per le metriche per hello precedente esempio di risorse, hello di utilizzare il comando CLI seguente:  
 
      ```console
      azure insights metrics list /subscriptions/dededede-7aa0-407d-a6fb-eb20c8bd1192/resourceGroups/myresourcegroupname/providers/Microsoft.Web/sites/mywebsitename PT1M
      ```
 
-     *PT1M* indica la granularità della misurazione disponibile, con intervalli di 1 minuto. L'uso di granularità diverse offre opzioni di metrica diverse.
-4. Per creare una regola di avviso basata sulla metrica, usare un comando nel formato seguente:
+     *PT1M* è hello granularità di misura disponibili hello (intervalli di 1 minuto). L'uso di granularità diverse offre opzioni di metrica diverse.
+4. toocreate una regola di avviso basata su metrica, utilizzare un comando di hello seguente formato:
 
     **azure insights alerts rule metric set** *[opzioni] &lt;ruleName&gt; &lt;location&gt; &lt;resourceGroup&gt; &lt;windowSize&gt; &lt;operator&gt; &lt;threshold&gt; &lt;targetResourceId&gt; &lt;metricName&gt; &lt;timeAggregationOperator&gt;*
 
-    L'esempio seguente imposta un avviso relativo a una risorsa del sito Web. L'avviso viene attivato ogni volta che si riceve il traffico costantemente per 5 minuti e di nuovo quando non si riceve traffico per 5 minuti.
+    Hello nel seguente esempio impostare un avviso su una risorsa di sito web. trigger avviso Hello ogni volta che riceve il traffico in modo coerente per 5 minuti e nuovamente quando non riceve alcun traffico per 5 minuti.
 
     ```console
     azure insights alerts rule metric set myrule eastus myreasourcegroup PT5M GreaterThan 2 /subscriptions/dededede-7aa0-407d-a6fb-eb20c8bd1192/resourceGroups/myresourcegroupname/providers/Microsoft.Web/sites/mywebsitename BytesReceived Total
 
     ```
-5. Per creare il webhook o inviare un messaggio di posta elettronica all'attivazione di un avviso di metrica, creare prima il messaggio di posta elettronica e/o i webhook. Creare la regola immediatamente dopo. Non è possibile associare il webhook o messaggi di posta elettronica a regole già create tramite l'interfaccia della riga di comando.
+5. toocreate webhook o Invia messaggio di posta elettronica quando viene generato un avviso di metrica, creare innanzitutto la posta elettronica hello e/o webhook. Quindi creare immediatamente regola hello in seguito. Non è possibile associare webhook o messaggi di posta elettronica con già creato le regole utilizzando hello CLI.
 
     ```console
     azure insights alerts actions email create --customEmails myemail@contoso.com
@@ -122,11 +122,11 @@ Questo articolo descrive come impostare gli avvisi sulle metriche di Azure trami
     ```console
     azure insights alerts rule list myresourcegroup --ruleName myrule
     ```
-7. Per eliminare le regole, usare un comando nel formato:
+7. toodelete regole, utilizzare un comando del modulo hello:
 
-    **insights alerts rule delete** [opzioni] &lt;resourceGroup&gt; &lt;ruleName&gt;
+    **insights alerts rule delete** [opzioni] &lt;resourceGroup&gt;&lt;ruleName&gt;
 
-    Questi comandi eliminano le regole create in precedenza in questo articolo.
+    Questi comandi eliminano regole hello create in precedenza in questo articolo.
 
     ```console
     azure insights alerts rule delete myresourcegroup myrule
@@ -135,9 +135,9 @@ Questo articolo descrive come impostare gli avvisi sulle metriche di Azure trami
     ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Leggere una panoramica del monitoraggio di Azure](monitoring-overview.md) che include anche i tipi di informazioni che è possibile raccogliere e monitorare.
+* [Panoramica di Azure monitoring](monitoring-overview.md) inclusi i tipi di informazioni è possibile raccogliere e monitorare hello.
 * Altre informazioni sulla [configurazione dei webhook negli avvisi](insights-webhooks-alerts.md).
 * Altre informazioni sulla [configurazione di avvisi sugli eventi del log attività](monitoring-activity-log-alerts.md).
 * Altre informazioni sui [runbook di automazione di Azure](../automation/automation-starting-a-runbook.md).
-* Leggere una [panoramica della raccolta dei log di diagnostica](monitoring-overview-of-diagnostic-logs.md) per raccogliere metriche dettagliate e ad alta frequenza sul servizio.
-* Leggere una [panoramica della raccolta di metriche](insights-how-to-customize-monitoring.md) per verificare che il servizio sia disponibile e reattivo.
+* Ottenere un [Panoramica di raccogliere i log di diagnostica](monitoring-overview-of-diagnostic-logs.md) toocollect dettagliate ad alta frequenza metriche sul servizio.
+* Ottenere un [Panoramica della raccolta di metriche](insights-how-to-customize-monitoring.md) toomake che il servizio sia disponibile e reattiva.

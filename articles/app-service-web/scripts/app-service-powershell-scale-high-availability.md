@@ -1,5 +1,5 @@
 ---
-title: "Esempio di script di Azure PowerShell - Ridimensionare un'app Web a livello globale con un'architettura a disponibilità elevata | Microsoft Docs"
+title: "Script di PowerShell di esempio - aaaAzure ridimensionare un'app web in tutto il mondo con un'architettura a disponibilità elevata | Documenti Microsoft"
 description: "Esempio di script di Azure PowerShell - Ridimensionare un'app Web a livello globale con un'architettura a disponibilità elevata"
 services: app-service\web
 documentationcenter: 
@@ -16,25 +16,25 @@ ms.workload: web
 ms.date: 03/20/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 9acd1cf4d1a5705811c4dedc545505ec0ac55fc7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1fcda23250efe4966d63c5dfa744b76c26f3762a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-a-web-app-worldwide-with-a-high-availability-architecture"></a>Ridimensionare un'App Web a livello globale con un'architettura a disponibilità elevata
 
-In questo scenario verranno creati un gruppo di risorse, due piani di servizio app, due App Web, una profilo di Gestione traffico e due endpoint di endpoint di Gestione traffico. Dopo aver completato l'esercizio si avrà un'architettura a disponibilità elevata che fornisce la disponibilità globale dell'App Web in base alla minima latenza di rete.
+In questo scenario verranno creati un gruppo di risorse, due piani di servizio app, due App Web, una profilo di Gestione traffico e due endpoint di endpoint di Gestione traffico. Una volta completato l'esercizio hello è un'elevata disponibilità architettura che consente fornisce disponibilità globale dell'app web in base alla latenza di rete più bassa hello.
 
-Se necessario, installare Azure PowerShell usando l'istruzione presente nella [Guida di Azure PowerShell](/powershell/azure/overview) e quindi eseguire `Login-AzureRmAccount` per creare una connessione con Azure.
+Se necessario, installare Azure PowerShell utilizzando l'istruzione hello trovato in hello hello [Guida di Azure PowerShell](/powershell/azure/overview), quindi eseguire `Login-AzureRmAccount` toocreate una connessione con Azure.
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[principale](../../../powershell_scripts/app-service/scale-geographic/scale-geographic.ps1 "Ridimensionare un'app Web a livello globale con un'architettura a disponibilità elevata")]
+[!code-powershell[main](../../../powershell_scripts/app-service/scale-geographic/scale-geographic.ps1 "Scale a web app worldwide with a high-availability architecture")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Dopo aver eseguito lo script di esempio, usare il comando seguente per rimuovere il gruppo di risorse, l'App Web e tutte le risorse correlate.
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello, app web e tutte le relative risorse.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello i comandi seguenti. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -54,6 +54,6 @@ Questo script usa i comandi seguenti. Ogni comando della tabella include collega
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sul modulo Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).
+Per ulteriori informazioni sul modulo di Azure PowerShell hello, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).
 
-Altri esempi di Azure PowerShell per app Web del servizio app di Azure sono disponibili in [Azure PowerShell samples](../app-service-powershell-samples.md) (Esempi di Azure PowerShell).
+Esempi aggiuntivi di Azure Powershell per App Web di servizio App di Azure sono reperibile in hello [esempi di Azure PowerShell](../app-service-powershell-samples.md).

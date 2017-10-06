@@ -1,5 +1,5 @@
 ---
-title: Esempio di script di Azure PowerShell - Rimuovere un'applicazione da un cluster | Microsoft Docs
+title: Esempio di Script di PowerShell - Rimuovi applicazione da un cluster aaaAzure | Documenti Microsoft
 description: Esempio di script di Azure PowerShell - Rimuovere un'applicazione da un cluster di Service Fabric.
 services: service-fabric
 documentationcenter: 
@@ -15,34 +15,34 @@ ms.topic: article
 ms.date: 06/20/2017
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: 05851132c7e5e5877884d29f04bce6c0717ce411
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 3fe2082c2fbeffbff1622f206021d4d907197d19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="remove-an-application-from-a-service-fabric-cluster"></a>Rimuovere un'applicazione da un cluster di Service Fabric
 
-Questo script di esempio elimina un'istanza di applicazione di Service Fabric in esecuzione, annulla la registrazione di un tipo di applicazione e della versione dal cluster ed elimina il pacchetto dell'applicazione dall'archivio immagini del cluster.  L'eliminazione dell'istanza dell'applicazione elimina anche tutte le istanze del servizio associate a questa applicazione. Personalizzare i parametri in base alle esigenze. 
+Questo script di esempio elimina un'istanza di applicazione di Service Fabric in esecuzione, Annulla la registrazione di un tipo di applicazione e la versione dal cluster hello e pacchetto dell'applicazione hello dall'archivio di immagini cluster hello.  Istanza dell'applicazione hello eliminazione elimina inoltre hello tutte le istanze del servizio associata all'applicazione. Personalizzare i parametri di hello in base alle esigenze. 
 
-Se necessario, installare il modulo PowerShell in Service Fabric con il [Service Fabric SDK](../service-fabric-get-started.md). 
+Se necessario, installare il modulo di PowerShell di Service Fabric hello con hello [Service Fabric SDK](../service-fabric-get-started.md). 
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[main](../../../powershell_scripts/service-fabric/remove-application/remove-application.ps1 "Rimuovere un'applicazione da un cluster")]
+[!code-powershell[main](../../../powershell_scripts/service-fabric/remove-application/remove-application.ps1 "Remove an application from a cluster")]
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello i comandi seguenti. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
-| [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) | Rimuove un'istanza di applicazione di Service Fabric in esecuzione dal cluster.  |
-| [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) | Annulla la registrazione di un tipo e una versione di applicazione di Service Fabric dal cluster. |
-| [Remove-ServiceFabricApplicationPackage](/powershell/module/servicefabric/remove-servicefabricapplicationpackage?view=azureservicefabricps) | Rimuove il pacchetto dell'applicazione di Service Fabric dall'archivio immagini.|
+| [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) | Rimuove un'istanza di applicazione di Service Fabric in esecuzione dal cluster hello.  |
+| [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) | Annulla la registrazione di un tipo di applicazione di Service Fabric e una versione da cluster hello. |
+| [Remove-ServiceFabricApplicationPackage](/powershell/module/servicefabric/remove-servicefabricapplicationpackage?view=azureservicefabricps) | Rimuove un pacchetto di applicazione di Service Fabric dall'archivio immagini hello.|
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sul modulo PowerShell in Service Fabric, vedere la [documentazione di Azure PowerShell](/powershell/azure/service-fabric/?view=azureservicefabricps).
+Per ulteriori informazioni sul modulo PowerShell di Service Fabric hello, vedere [documentazione di Azure PowerShell](/powershell/azure/service-fabric/?view=azureservicefabricps).
 
-Altri esempi di PowerShell per Azure Service Fabric sono disponibili in [Esempi di Azure PowerShell](../service-fabric-powershell-samples.md).
+Ulteriori esempi di Powershell per Azure Service Fabric sono reperibile in hello [esempi di Azure PowerShell](../service-fabric-powershell-samples.md).

@@ -1,6 +1,6 @@
 ---
-title: Come gestire Archiviazione file di Azure dal portale di Azure | Microsoft Docs
-description: Informazioni su come usare il portale di Azure per gestire Archiviazione file di Azure.
+title: aaaHow toomanage archiviazione di File di Azure dal portale di Azure hello | Documenti Microsoft
+description: Informazioni su archiviazione di File di Azure toouse hello toomanage portale Azure.
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: d5ffa7cff0a31e36f5a96aaa4b2d477fa39333fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6ad2fbbf9ee2f86748b1b175d0f63274144dc5eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-file-storage-from-the-azure-portal"></a>Come usare Archiviazione file di Azure dal portale di Azure
-Il [portale di Azure](https://portal.azure.com) fornisce un'interfaccia utente per la gestione di Archiviazione file di Azure. Dal Web browser è possibile eseguire le azioni seguenti:
+# <a name="how-toouse-azure-file-storage-from-hello-azure-portal"></a>Come archiviazione di File di Azure toouse da hello portale di Azure
+Hello [portale di Azure](https://portal.azure.com) fornisce un'interfaccia utente per gestire l'archiviazione di File di Azure. È possibile eseguire hello seguente azioni dal web browser:
 
 * Creare una condivisione file
-* Caricare i file nella condivisione file e scaricarli.
-* Monitorare l'uso effettivo di ogni condivisione file.
-* Rettificare la quota delle dimensioni della condivisione file.
-* Copiare i comandi di montaggio da usare per montare la condivisione file da un client Windows o Linux.
+* Caricare e scaricare file tooand dalla condivisione di file.
+* Monitorare l'utilizzo effettivo di hello di ciascuna condivisione file.
+* Regolare quota delle dimensioni di condivisione file hello.
+* Copiare hello montaggio comandi toouse toomount condividere il file da un client di Windows o Linux.
 
 ## <a name="create-file-share"></a>Creare la condivisione file
-1. Accedere al portale di Azure.
-2. Nel menu di navigazione fare clic su **Account di archiviazione** o su **Account di archiviazione (versione classica)**.
+1. Accedi toohello portale di Azure.
+2. Nel menu di navigazione hello, fare clic su **gli account di archiviazione** o **gli account di archiviazione (classico)**.
     
-    ![Schermata che illustra come creare una condivisione file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share1.png)
+    ![Schermata che illustra la modalità di condivisione di file toocreate nel portale di hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share1.png)
 
 3. Scegliere l'account di archiviazione.
 
-    ![Schermata che illustra come creare una condivisione file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share2.png)
+    ![Schermata che illustra la modalità di condivisione di file toocreate nel portale di hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share2.png)
 
 4. Scegliere il servizio "File".
 
-    ![Schermata che illustra come creare una condivisione file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share3.png)
+    ![Schermata che illustra la modalità di condivisione di file toocreate nel portale di hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share3.png)
 
-5. Fare clic su "Condivisioni file" e selezionare il collegamento per creare la prima condivisione file.
+5. Fare clic su "Condivisioni di File" e seguire toocreate collegamento hello condivisione del primo file.
 
-    ![Schermata che illustra come creare una condivisione file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share4.png)
+    ![Schermata che illustra la modalità di condivisione di file toocreate nel portale di hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share4.png)
 
-6. Immettere il nome della condivisione e le dimensioni, fino a 5120 GB, per creare la prima condivisione file. Dopo che la condivisione file è stata creata, è possibile montarla da qualsiasi file system che supporti SMB 2.1 o SMB 3.0. È possibile fare clic su **Quota** nella condivisione file per modificare le dimensioni del file fino a 5120 GB. Vedere [Calcolatore prezzi di Azure](https://azure.microsoft.com/pricing/calculator/) per un preventivo dei costi di archiviazione relativi all'uso di Archiviazione file di Azure.
+6. Immettere il nome di condivisione file hello e dimensioni hello di hello file share (backup GB too5120) toocreate condivisione file di primo. Dopo aver creata una condivisione di hello, è possibile montarlo da qualsiasi file system che supporta SMB 2.1 o SMB 3.0. È possibile fare clic su **Quota** su hello toochange hello dimensioni della condivisione file del file hello too5120 GB. Consultare troppo[calcolatore dei costi Azure](https://azure.microsoft.com/pricing/calculator/) costi di archiviazione di hello tooestimate dell'utilizzo dell'archiviazione di File di Azure.
 
-    ![Schermata che illustra come creare una condivisione file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share5.png)
+    ![Schermata che illustra la modalità di condivisione di file toocreate nel portale di hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share5.png)
 
 ## <a name="upload-and-download-files"></a>Caricare e scaricare file
 1. Scegliere una condivisione file già creata.
 
-    ![Schermata che illustra come caricare e scaricare file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-upload-file1.png)
+    ![Schermata che illustra come tooupload e scaricare file da hello portale](./media/storage-how-to-use-files-portal/use-files-portal-upload-file1.png)
 
-2. Fare clic su **Carica** per aprire l'interfaccia utente per il caricamento dei file.
+2. Fare clic su **caricare** per aprire l'interfaccia utente di hello per i file di caricamento.
 
-    ![Schermata che illustra come caricare file nel portale](./media/storage-how-to-use-files-portal/use-files-portal-upload-file2.png)
+    ![Schermata che illustra come i file dal portale hello tooupload](./media/storage-how-to-use-files-portal/use-files-portal-upload-file2.png)
 
-## <a name="connect-to-file-share"></a>Connettersi alla condivisione file
--  Fare clic su **Connetti** per ottenere la riga di comando per montare la condivisione file da Windows e Linux. Gli utenti Linux possono vedere anche [Come usare Archiviazione file di Azure con Linux](../storage-how-to-use-files-linux.md) per altre istruzioni sul montaggio per le altre distribuzioni Linux.
+## <a name="connect-toofile-share"></a>Connettersi toofile condivisione
+-  Fare clic su **Connetti** per ottenere la riga di comando hello per condivisione file hello di montaggio da Windows e Linux. Per gli utenti Linux, è anche possibile fare riferimento troppo[come archiviazione di File di Azure con Linux toouse](../storage-how-to-use-files-linux.md) per ulteriori istruzioni per altre distribuzioni di Linux.
 
-    ![Schermata che illustra come montare la condivisione file](./media/storage-how-to-use-files-portal/use-files-portal-connect.png)
--  È possibile copiare i comandi per il montaggio della condivisione file in Windows o Linux ed eseguirla dalla VM di Azure o dal computer locale.
+    ![Schermata che illustra come toomount hello condivisione file](./media/storage-how-to-use-files-portal/use-files-portal-connect.png)
+-  È possibile copiare hello comandi per il montaggio di file di condividono in Windows o Linux ed eseguirlo da parte dell'utente macchina VM di Azure o in locale.
 
-    ![Screenshot che illustra i comandi di montaggio per Windows e Linux](./media/storage-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
+    ![Schermata che mostra i comandi di montaggio di hello per Windows e Linux](./media/storage-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
 
 **Suggerimento:**  
-Per trovare la chiave di accesso dell'account di archiviazione per il montaggio, fare clic su **Visualizza chiavi di accesso per questo account di archiviazione** nella parte inferiore della pagina della connessione.
+toofind chiave di accesso account di archiviazione hello per l'installazione, fare clic su **per questo account di archiviazione delle chiavi di accesso alla visualizzazione** nella parte inferiore di hello di hello pagina Connetti.
 
 ## <a name="see-also"></a>Vedere anche
 Vedere i collegamenti seguenti per ulteriori informazioni sull'archiviazione file di Azure.

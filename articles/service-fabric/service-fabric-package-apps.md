@@ -1,6 +1,6 @@
 ---
-title: Inserire un'applicazione Azure Service Fabric di Azure in un pacchetto | Microsoft Docs
-description: Come inserire un'applicazione Service Fabric in un pacchetto prima della distribuzione in un cluster.
+title: un'app di Azure Service Fabric aaaPackage | Documenti Microsoft
+description: Come un'applicazione di Service Fabric prima di distribuire cluster tooa toopackage.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: ryanwi
-ms.openlocfilehash: 486a27d7ca576c8fe1552c02eb24ece6b8bb2ba8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3918e1e25e532acdc9440855213e1fa364ea000
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="package-an-application"></a>Inserire un'applicazione in un pacchetto
-L'articolo descrive come inserire un'applicazione di Service Fabric in un pacchetto e prepararla per la distribuzione.
+Questo articolo viene descritto come un'applicazione di Service Fabric toopackage e renderlo pronto per la distribuzione.
 
 ## <a name="package-layout"></a>Layout del pacchetto
-Il manifesto dell'applicazione, uno o più manifesti dei servizi e gli altri file del pacchetto necessari devono essere organizzati in un layout specifico per la distribuzione in un cluster di Service Fabric. I manifesti di esempio di questo articolo dovrebbero essere organizzati nella struttura di directory seguente:
+manifesto dell'applicazione Hello, uno o più manifesti di servizio e di altri pacchetti necessari i file devono essere organizzati in un layout specifico per la distribuzione in un cluster di Service Fabric. manifesti di esempio Hello in questo articolo dovrebbe toobe organizzati in hello seguente struttura di directory:
 
 ```
 PS D:\temp> tree /f .\MyApplicationType
@@ -45,47 +45,47 @@ D:\TEMP\MYAPPLICATIONTYPE
             init.dat
 ```
 
-Le cartelle sono denominate in modo da corrispondere agli attributi **Name** di ogni elemento corrispondente. Se ad esempio il manifesto del servizio contenesse due pacchetti di codice denominati **MyCodeA** e **MyCodeB**, dovrebbero esistere due cartelle con gli stessi nomi contenenti i file binari necessari per ogni pacchetto di codice.
+cartelle di Hello sono denominate hello toomatch **nome** gli attributi di ogni elemento corrispondente. Ad esempio, se hello manifesto del servizio contiene due pacchetti di codice con i nomi di hello **MyCodeA** e **MyCodeB**, quindi due cartelle con nomi uguali a conterrebbe hello hello file binari necessari per ogni codice pacchetto.
 
 ## <a name="use-setupentrypoint"></a>Usare SetupEntryPoint
-Gli scenari tipici per l'utilizzo di **SetupEntryPoint** sono quando è necessario eseguire un file eseguibile prima dell'avvio del servizio o quando è necessario eseguire un'operazione con privilegi elevati. Ad esempio:
+Scenari tipici per l'utilizzo di **SetupEntryPoint** si verifica se è necessario un file eseguibile prima dell'avvio del servizio hello toorun oppure tooperform un'operazione con privilegi elevati. ad esempio:
 
-* Impostazione e inizializzazione di variabili di ambiente necessari per il file eseguibile del servizio. Questo non è limitato solo agli eseguibili scritti tramite i modelli di programmazione di Service Fabric. Ad esempio, npm.exe richiede alcune variabili di ambiente configurate per la distribuzione di un'applicazione node.js.
+* Impostazione e l'inizializzazione di variabili di ambiente hello esigenze eseguibile del servizio. Non è limitato tooonly eseguibili scritti tramite modelli di programmazione di Service Fabric hello. Ad esempio, npm.exe richiede alcune variabili di ambiente configurate per la distribuzione di un'applicazione node.js.
 * Impostazione del controllo di accesso mediante l'installazione di certificati di sicurezza.
 
-Per altre informazioni su come configurare **SetupEntryPoint**, vedere [Configurare i criteri per il punto di ingresso dell'installazione del servizio](service-fabric-application-runas-security.md)
+Per ulteriori informazioni su come hello tooconfigure **SetupEntryPoint**, vedere [configurare criteri di hello per un punto di ingresso del programma di installazione del servizio](service-fabric-application-runas-security.md)
 
 <a id="Package-App"></a>
 ## <a name="configure"></a>Configurare
 ### <a name="build-a-package-by-using-visual-studio"></a>Creare un pacchetto mediante Visual Studio
-Se si usa Visual Studio 2015 per creare un'applicazione, è possibile usare il comando Pacchetto per creare automaticamente un pacchetto corrispondente al layout descritto precedentemente.
+Se si utilizza Visual Studio 2015 toocreate l'applicazione, è possibile utilizzare hello pacchetto tooautomatically comando creare un pacchetto che corrisponde a layout hello descritto in precedenza.
 
-Per creare un pacchetto, fare clic con il pulsante destro sul progetto dell'applicazione in Esplora soluzioni e scegliere il comando Pacchetto, come mostrato di seguito:
+toocreate un pacchetto, fare clic sul progetto dell'applicazione hello in Esplora soluzioni e scegliere il comando di pacchetto hello, come illustrato di seguito:
 
 ![Inserire un'applicazione in un pacchetto con Visual Studio][vs-package-command]
 
-Dopo avere completato la creazione del pacchetto, è possibile vedere la posizione del pacchetto nella finestra **Output** . Il passaggio di creazione del pacchetto viene eseguito automaticamente con la distribuzione o il debug di un'applicazione in Visual Studio.
+Una volta completato pacchetti, è possibile trovare posizione hello del pacchetto di hello in hello **Output** finestra. passaggio di creazione di pacchetti Hello avviene automaticamente quando si distribuisce o il debug dell'applicazione in Visual Studio.
 
 ### <a name="build-a-package-by-command-line"></a>Creare un pacchetto dalla riga di comando
-È anche possibile creare un pacchetto dell'applicazione a livello di codice usando `msbuild.exe`. Tale operazione viene eseguita da Visual Studio e quindi l'output è lo stesso.
+È inoltre possibile tooprogrammatically pacchetto di applicazione utilizzando `msbuild.exe`. Quinte hello, Visual Studio è in esecuzione, pertanto è lo stesso output di hello.
 
 ```shell
 D:\Temp> msbuild HelloWorld.sfproj /t:Package
 ```
 
-## <a name="test-the-package"></a>Testare il pacchetto
-È possibile verificare la struttura del pacchetto in modalità locale tramite PowerShell usando il comando [Test-ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) .
-Questo comando consente di verificare i problemi di analisi dei manifesti e tutti i riferimenti. Questo comando si limita a verificare la correttezza strutturale delle directory e i file nel pacchetto.
-Non verifica il codice o i contenuti del pacchetto di dati oltre a controllare che tutti i file necessari siano presenti.
+## <a name="test-hello-package"></a>Pacchetto di hello test
+È possibile verificare struttura del pacchetto hello in locale tramite PowerShell utilizzando hello [Test ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) comando.
+Questo comando consente di verificare i problemi di analisi dei manifesti e tutti i riferimenti. Questo comando si limita a verificare la correttezza strutturale hello di hello directory e file nel pacchetto hello.
+Non consente di verificare il contenuto di pacchetto di codice o dati hello oltre verifica che tutti i file necessari siano presenti.
 
 ```
 PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
 False
-Test-ServiceFabricApplicationPackage : The EntryPoint MySetup.bat is not found.
+Test-ServiceFabricApplicationPackage : hello EntryPoint MySetup.bat is not found.
 FileName: C:\Users\servicefabric\AppData\Local\Temp\TestApplicationPackage_7195781181\nrri205a.e2h\MyApplicationType\MyServiceManifest\ServiceManifest.xml
 ```
 
-Questo errore indica che il file *MySetup.bat* a cui viene fatto riferimento nel manifesto del servizio **SetupEntryPoint** manca nel pacchetto di codice. Dopo aver aggiunto il file mancante, la verifica dell'applicazione ha esito positivo:
+Questo errore viene illustrato tale hello *MySetup.bat* file a cui fa riferimento nel manifesto del servizio hello **SetupEntryPoint** mancante dal pacchetto di codice hello. Dopo l'aggiunta di file mancante hello, verifica dell'applicazione hello ha esito positivo:
 
 ```
 PS D:\temp> tree /f .\MyApplicationType
@@ -113,22 +113,22 @@ PS D:\temp>
 
 Se l'applicazione include [parametri applicazione](service-fabric-manage-multiple-environment-app-configuration.md) definiti, è possibile passarli in [Test-ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) per una convalida appropriata.
 
-Se si conosce il cluster in cui verrà distribuita l'applicazione, si consiglia di passarlo nel parametro `ImageStoreConnectionString`. In questo caso, il pacchetto viene convalidato rispetto alle versioni precedenti dell'applicazione già in esecuzione nel cluster. Ad esempio, la convalida può rilevare se sia già stato distribuito un pacchetto con la stessa versione ma con contenuti differenti.  
+Se si conosce cluster hello in cui viene distribuita un'applicazione hello, è consigliabile passare nel hello `ImageStoreConnectionString` parametro. In questo caso, pacchetto hello viene convalidato anche in versioni precedenti di un'applicazione hello che sono già in esecuzione nel cluster hello. Ad esempio, la convalida di hello può rilevare se un pacchetto con hello stessa versione ma contenuto diverso è già stato distribuito.  
 
-Una volta che l'applicazione viene inserita correttamente in un pacchetto e passa la convalida, valutare se sia necessaria la compressione in base alle dimensioni e al numero dei file.
+Dopo che un'applicazione hello viene incluso nel pacchetto correttamente e passa la convalida, valutare in base alle dimensioni hello e numero hello di file se è necessaria la compressione.
 
 ## <a name="compress-a-package"></a>Comprimere un pacchetto
-Quando un pacchetto è di grandi dimensioni o dispone di molti file, è possibile comprimerlo per velocizzare la distribuzione. La compressione riduce il numero di file e le dimensioni del pacchetto.
-Per un pacchetto dell'applicazione compresso, l'operazione di [caricamento](service-fabric-deploy-remove-applications.md#upload-the-application-package) potrebbe richiedere più tempo rispetto al caricamento del pacchetto non compresso, in particolare se è stato eseguito il factoring del tempo di compressione. Tuttavia, le operazioni di [registrazione](service-fabric-deploy-remove-applications.md#register-the-application-package) e [annullamento della registrazione del tipo di applicazione](service-fabric-deploy-remove-applications.md#unregister-an-application-type) sono più veloci per un pacchetto dell'applicazione compresso.
+Quando un pacchetto è di grandi dimensioni o dispone di molti file, è possibile comprimerlo per velocizzare la distribuzione. La compressione riduce il numero di hello di file e le dimensioni di pacchetto hello.
+Per un pacchetto di applicazione compresso, [pacchetto di applicazione di caricamento in corso hello](service-fabric-deploy-remove-applications.md#upload-the-application-package) potrebbe richiedere più confrontati toouploading hello compressi pacchetto (appositamente se il tempo di compressione è inserito), ma [registrazione](service-fabric-deploy-remove-applications.md#register-the-application-package) e [tipo l'annullamento della registrazione dell'applicazione hello](service-fabric-deploy-remove-applications.md#unregister-an-application-type) sono più veloci per un pacchetto di applicazione compresso.
 
-Il meccanismo di distribuzione è lo stesso per i pacchetti compressi e per quelli non compressi. Se il pacchetto è compresso, viene archiviato come tale nell'archivio immagini del cluster e viene decompresso nel nodo prima dell'esecuzione dell'applicazione.
-La compressione sostituisce il pacchetto di Service Fabric valido con la versione compressa. La cartella deve fornire le autorizzazioni di scrittura. La compressione di un pacchetto già compresso non apporta modifiche.
+il meccanismo di distribuzione Hello è lo stesso per i pacchetti compressi e non compressi. Se il pacchetto di hello è compresso, viene archiviata come tale nell'archivio di immagini cluster hello ed è non compressi in nodo hello prima di eseguita un'applicazione hello.
+la compressione di Hello sostituisce il pacchetto di Service Fabric valido hello con versione compressa hello. cartella Hello deve consentire le autorizzazioni di scrittura. La compressione di un pacchetto già compresso non apporta modifiche.
 
-È possibile comprimere un pacchetto eseguendo il comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) con lo switch `CompressPackage`. È possibile decomprimere il pacchetto con lo stesso comando, usando lo switch `UncompressPackage`.
+È possibile comprimere un pacchetto eseguendo il comando di Powershell hello [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) con `CompressPackage` passare. È possibile decomprimere hello del pacchetto con hello stesso comando, mediante `UncompressPackage` passare.
 
-Il comando seguente comprime il pacchetto senza copiarlo nell'archivio immagini. È possibile copiare un pacchetto compresso in uno o più cluster Service Fabric, in base alle esigenze, us il comando [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) senza il flag `SkipCopy`.
-Ora il pacchetto include i file compressi per i pacchetti `code`, `config` e `data`. Il manifesto dell'applicazione e i manifesti del servizio non sono compressi in quanto necessari per numerose operazioni interne, come la condivisione dei pacchetti e l'estrazione del nome e della versione del tipo di applicazione per determinate convalide.
-La compressione dei manifesti renderebbe inefficienti tali operazioni.
+Hello comando seguente consente di comprimere pacchetto hello senza copiarlo toohello archivio di immagini. È possibile copiare un pacchetto compresso di tooone o più cluster di Service Fabric, in base alle esigenze, utilizzando [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) senza hello `SkipCopy` flag.
+pacchetto di Hello include ora i file ZIP per hello `code`, `config`, e `data` pacchetti. manifesto dell'applicazione Hello e hello servizio manifesti non compressi, perché sono necessari per molte operazioni interne (ad esempio la condivisione, l'applicazione nome e la versione estrazione del tipo per alcune convalide di pacchetto).
+Compressione manifesti hello renderebbe queste operazioni inefficienti.
 
 ```
 PS D:\temp> tree /f .\MyApplicationType
@@ -163,21 +163,21 @@ D:\TEMP\MYAPPLICATIONTYPE
 
 ```
 
-In alternativa è possibile comprimere e copiare il pacchetto con [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) in un unico passaggio.
-Se il pacchetto è grande, specificare un timeout sufficiente per consentire la compressione del pacchetto e il caricamento nel cluster.
+In alternativa, è possibile comprimere e copiare il pacchetto di hello con [copia ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) in un unico passaggio.
+Se il pacchetto di hello è grande, fornire un tempo di tooallow sufficientemente elevato per la compressione di pacchetto hello e cluster toohello di caricamento hello.
 ```
 PS D:\temp> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath .\MyApplicationType -ApplicationPackagePathInImageStore MyApplicationType -ImageStoreConnectionString fabric:ImageStore -CompressPackage -TimeoutSec 5400
 ```
 
-Internamente, Service Fabric calcola i checksum per la convalida dei pacchetti dell'applicazione. Quando si usa la compressione, i checksum vengono calcolati nelle versioni compresse di ciascun pacchetto.
-Se è stata copiata una versione non compressa del pacchetto dell'applicazione e si desidera usare la compressione per il medesimo pacchetto, è necessario modificare la versione dei pacchetti `code`, `config` e `data` per evitare la mancata corrispondenza del checksum. Se i pacchetti rimangono invariati, anziché cambiare la versione, è possibile usare [diff provisioning](service-fabric-application-upgrade-advanced.md). Con questa opzione non si include il pacchetto invariato ma si fa solo riferimento a esso dal manifesto del servizio.
+Internamente, Service Fabric calcola i valori di checksum per i pacchetti di applicazione hello per la convalida. Quando si utilizza la compressione, hello checksum vengono calcolate in ogni pacchetto versioni compressa hello.
+Se è stata copiata una versione non compressa del pacchetto di applicazione e si desidera che la compressione toouse per hello stesso pacchetto, è necessario modificare le versioni di hello di hello `code`, `config`, e `data` mancata corrispondenza del checksum tooavoid pacchetti. Se i pacchetti hello rimangono invariati, anziché la modifica di versione di hello, è possibile utilizzare [diff provisioning](service-fabric-application-upgrade-advanced.md). Con questa opzione, non includere pacchetto invariato di hello invece farvi riferimento dal manifesto del servizio hello.
 
-Analogamente, se è stata caricata una versione compressa del pacchetto e si vuole usare un pacchetto non compresso, è necessario aggiornare la versione per evitare la mancata corrispondenza del checksum.
+Analogamente, se è stata caricata una versione compressa del pacchetto di hello e si desidera toouse un pacchetto non compresso, è necessario aggiornare mancata corrispondenza del checksum hello versioni tooavoid hello.
 
-Il pacchetto è ora corretto, convalidato e compresso (se necessario). Pertanto, è pronto per la [distribuzione](service-fabric-deploy-remove-applications.md) in uno o più cluster di Service Fabric.
+Hello pacchetto è ora incluso nel pacchetto in modo corretto, convalidare e compressi (se necessario), in modo che sia pronto per [distribuzione](service-fabric-deploy-remove-applications.md) tooone o altre dell'infrastruttura del servizio cluster.
 
 ### <a name="compress-packages-when-deploying-using-visual-studio"></a>Comprimere i pacchetti quando si distribuisce con Visual Studio
-È possibile indicare a Visual Studio di comprimere i pacchetti in fase di distribuzione, aggiungendo l'elemento `CopyPackageParameters` al profilo di pubblicazione, e di impostare l'attributo `CompressPackage` su `true`.
+È possibile indicare i pacchetti di Visual Studio toocompress nella distribuzione, aggiungendo hello `CopyPackageParameters` tooyour elemento profilo di pubblicazione e impostare hello `CompressPackage` attributo troppo`true`.
 
 ``` xml
     <PublishProfile xmlns="http://schemas.microsoft.com/2015/05/fabrictools">
@@ -188,16 +188,16 @@ Il pacchetto è ora corretto, convalidato e compresso (se necessario). Pertanto,
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Distribuire e rimuovere applicazioni con PowerShell][10]: descrive come usare PowerShell per gestire le istanze dell'applicazione
+[Distribuire e rimuovere le applicazioni] [ 10] viene descritto come le istanze dell'applicazione toomanage toouse PowerShell
 
-[Gestire i parametri dell'applicazione per più ambienti][11]: descrive come configurare parametri e variabili di ambiente per istanze di applicazione diverse.
+[Gestione dei parametri dell'applicazione per più ambienti] [ 11] viene descritto come tooconfigure parametri e variabili di ambiente per le istanze dell'applicazione diverso.
 
-[Configurare i criteri di sicurezza per l'applicazione][12]: descrive come eseguire i servizi nell'ambito dei criteri di sicurezza per limitare l'accesso.
+[Configurare i criteri di sicurezza per l'applicazione] [ 12] viene descritto come toorun servizi con accesso toorestrict criteri di sicurezza.
 
 <!--Image references-->
 [vs-package-command]: ./media/service-fabric-package-apps/vs-package-command.png
 
-<!--Link references--In actual articles, you only need a single period before the slash-->
+<!--Link references--In actual articles, you only need a single period before hello slash-->
 [10]: service-fabric-deploy-remove-applications.md
 [11]: service-fabric-manage-multiple-environment-app-configuration.md
 [12]: service-fabric-application-runas-security.md

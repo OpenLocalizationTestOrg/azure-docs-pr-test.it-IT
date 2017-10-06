@@ -1,6 +1,6 @@
 ---
-title: Gestire le risorse del cluster Apache Spark in Azure HDInsight | Documentazione Microsoft
-description: Informazioni su come gestire le risorse per i cluster Spark in Azure HDInsight per ottenere prestazioni migliori.
+title: cluster di risorse aaaManage per Apache Spark in HDInsight di Azure | Documenti Microsoft
+description: Informazioni su come toouse gestire risorse per i cluster Spark in HDInsight di Azure per ottenere prestazioni migliori.
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,138 +16,138 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: nitinme
-ms.openlocfilehash: 952fa15162a40bccb3f8c7a88508556757ca6675
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e18682a24f77494db884105f9db03c0a350ddad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-resources-for-apache-spark-cluster-on-azure-hdinsight"></a>Gestire le risorse del cluster Apache Spark in Azure HDInsight 
 
-Questo articolo descrive come accedere a interfacce associate al cluster Spark, come l'interfaccia utente di Ambari, l'interfaccia utente di YARN e Server cronologia Spark. Si apprenderà anche come ottimizzare la configurazione del cluster per ottenere prestazioni ottimali.
+In questo articolo si apprenderà come interfacce hello tooaccess come Ambari UI e dell'interfaccia utente YARN hello Spark cronologia Server associata con il cluster Spark. Verrà inoltre Scopri come tootune hello configurazione del cluster per ottenere prestazioni ottimali.
 
 **Prerequisiti:**
 
-È necessario disporre di quanto segue:
+È necessario disporre delle seguenti hello:
 
 * Una sottoscrizione di Azure. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Un cluster Apache Spark in HDInsight. Per istruzioni, vedere l'articolo relativo alla [creazione di cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
 
-## <a name="how-do-i-launch-the-ambari-web-ui"></a>Come è possibile avviare l'interfaccia utente Web di Ambari?
-1. Dalla Schermata iniziale del [portale di Azure](https://portal.azure.com/)fare clic sul riquadro del cluster Spark (se è stato aggiunto sulla Schermata iniziale). È anche possibile passare al cluster da **Esplora tutto** > **Cluster HDInsight**.
-2. Dal pannello del cluster Spark fare clic su **Dashboard**. Quando richiesto, immettere le credenziali di amministratore per il cluster di Spark.
+## <a name="how-do-i-launch-hello-ambari-web-ui"></a>La modalità di avvio dell'interfaccia utente Web Ambari hello?
+1. Da hello [portale Azure](https://portal.azure.com/), dalla schermata iniziale di hello, fare clic sul riquadro hello per il cluster Spark (se è stato aggiunto, schermata iniziale di toohello). È inoltre possibile navigare cluster tooyour **Esplora tutto** > **cluster HDInsight**.
+2. Dal Pannello di cluster Spark hello, fare clic su **Dashboard**. Quando richiesto, immettere le credenziali di amministratore hello per cluster Spark hello.
 
     ![Avviare Ambari](./media/hdinsight-apache-spark-resource-manager/hdinsight-launch-cluster-dashboard.png "Avviare Resource Manager")
-3. Questa operazione consente di avviare l'interfaccia utente Web di Ambari, come illustrato di seguito.
+3. Questo deve essere avviato hello Ambari dell'interfaccia utente Web, come illustrato di seguito.
 
     ![Interfaccia utente Web Ambari](./media/hdinsight-apache-spark-resource-manager/ambari-web-ui.png "Interfaccia utente Web Ambari")   
 
-## <a name="how-do-i-launch-the-spark-history-server"></a>Come è possibile avviare il Server cronologia Spark?
-1. Dalla Schermata iniziale del [portale di Azure](https://portal.azure.com/)fare clic sul riquadro del cluster Spark (se è stato aggiunto sulla Schermata iniziale).
-2. Dal pannello del cluster in **Collegamenti rapidi** fare clic su **Dashboard cluster**. Nel pannello **Dashboard cluster** fare clic su **Server cronologia Spark**.
+## <a name="how-do-i-launch-hello-spark-history-server"></a>Modalità avvio hello Spark cronologia Server?
+1. Da hello [portale Azure](https://portal.azure.com/), dalla schermata iniziale di hello, fare clic sul riquadro hello per il cluster Spark (se è stato aggiunto, schermata iniziale di toohello).
+2. Da hello in cluster pannello **collegamenti rapidi**, fare clic su **Dashboard Cluster**. In hello **Dashboard Cluster** pannello, fare clic su **Spark cronologia Server**.
 
     ![Server cronologia Spark](./media/hdinsight-apache-spark-resource-manager/launch-history-server.png "Server cronologia Spark")
 
-    Quando richiesto, immettere le credenziali di amministratore per il cluster di Spark.
+    Quando richiesto, immettere le credenziali di amministratore hello per cluster Spark hello.
 
-## <a name="how-do-i-launch-the-yarn-ui"></a>Come è possibile avviare l'interfaccia utente di Yarn?
-È possibile usare l'interfaccia utente di YARN per il monitoraggio delle applicazioni attualmente in esecuzione nel cluster Spark.
+## <a name="how-do-i-launch-hello-yarn-ui"></a>Modalità di avvio dell'interfaccia utente Yarn hello?
+È possibile utilizzare hello dell'interfaccia utente YARN toomonitor le applicazioni che sono in esecuzione nel cluster Spark hello.
 
-1. Nel pannello del cluster fare clic su **Dashboard cluster** e quindi su **YARN**.
+1. Dal Pannello di hello cluster, fare clic su **Dashboard Cluster**, quindi fare clic su **YARN**.
 
     ![Avviare l'interfaccia utente di YARN](./media/hdinsight-apache-spark-resource-manager/launch-yarn-ui.png)
 
    > [!TIP]
-   > In alternativa, è anche possibile avviare l'interfaccia utente di YARN dall'interfaccia utente di Ambari. Per avviare l'interfaccia utente di Ambari, nel pannello del cluster fare clic su **Dashboard cluster** e quindi su **Dashboard cluster HDInsight**. Nell'interfaccia utente di Ambari fare clic su **YARN**, su **Collegamenti rapidi**, sulla funzionalità di gestione risorse attiva e quindi fare clic su **ResourceManager UI**.
+   > In alternativa, è possibile avviare hello dell'interfaccia utente YARN da hello Ambari UI. Fare clic su toolaunch hello Ambari UI, dal pannello cluster hello **Dashboard del Cluster**e quindi fare clic su **Dashboard del Cluster HDInsight**. Hello Ambari UI, fare clic su **YARN**, fare clic su **collegamenti rapidi**, fare clic su Gestione risorse attivo hello e quindi fare clic su **ResourceManager UI**.
    >
    >
 
-## <a name="what-is-the-optimum-cluster-configuration-to-run-spark-applications"></a>Qual è la configurazione cluster ottimale per eseguire le applicazioni Spark?
-I tre parametri principali che possono essere usati per la configurazione di Spark, a seconda dei requisiti dell'applicazione, sono `spark.executor.instances`, `spark.executor.cores` e `spark.executor.memory`. Un Executor è un processo avviato per un'applicazione Spark. Viene eseguito sul nodo di lavoro e svolge le attività per l'applicazione. Il numero predefinito di executor e le relative dimensioni per ogni cluster vengono calcolati in base al numero di nodi di lavoro e alle relative dimensioni. Questi dati vengono archiviati in `spark-defaults.conf` nei nodi head del cluster.
+## <a name="what-is-hello-optimum-cluster-configuration-toorun-spark-applications"></a>Che cos'è la applicazioni Spark hello cluster ottimale configurazione toorun?
+Hello e tre i parametri chiave che possono essere utilizzati per la configurazione di Spark a seconda dei requisiti dell'applicazione sono `spark.executor.instances`, `spark.executor.cores`, e `spark.executor.memory`. Un Executor è un processo avviato per un'applicazione Spark. Viene eseguito sul nodo lavoro hello ed è responsabile toocarry attività hello per un'applicazione hello. numero predefinito di Hello di executor hello executor dimensioni e per ogni cluster è calcolato in base a numero hello di nodi di lavoro e le dimensioni di hello lavoro nodo. Questi elementi sono archiviati `spark-defaults.conf` nei nodi head del cluster hello.
 
-I tre parametri di configurazione possono essere configurati a livello di cluster, per tutte le applicazioni in esecuzione nel cluster, o possono anche essere specificati per ogni singola applicazione.
+tre parametri di configurazione Hello possono essere configurati a livello di cluster hello (per tutte le applicazioni in esecuzione nel cluster hello) o possono essere specificati per ogni singola applicazione.
 
-### <a name="change-the-parameters-using-ambari-ui"></a>Modificare i parametri con l'interfaccia utente di Ambari
-1. Nell'interfaccia utente di Ambari fare clic su **Spark**, **Configs** (Configurazioni) e quindi espandere **Custom spark-defaults**.
+### <a name="change-hello-parameters-using-ambari-ui"></a>Modificare i parametri di hello utilizzando Ambari UI
+1. Scegliere hello UI Ambari **Spark**, fare clic su **configurazioni**e quindi espandere **spark-impostazioni predefinite personalizzate**.
 
     ![Impostare parametri con Ambari](./media/hdinsight-apache-spark-resource-manager/set-parameters-using-ambari.png)
-2. I valori predefiniti sono appropriati per 4 applicazioni Spark in esecuzione contemporaneamente nel cluster. È possibile modificare questi valori nell'interfaccia utente, come illustrato di seguito.
+2. i valori predefiniti di Hello sono applicazioni di Spark buona toohave 4 eseguite simultaneamente nel cluster di hello. È possibile, le modifiche questi valori dall'interfaccia utente di hello, come illustrato di seguito.
 
     ![Impostare parametri con Ambari](./media/hdinsight-apache-spark-resource-manager/set-executor-parameters.png)
-3. Per salvare la configurazione, fare clic su **Save** . Nella parte superiore della pagina verrà richiesto di riavviare tutti i servizi interessati. Fare clic su **Restart**.
+3. Fare clic su **salvare** toosave modifiche alla configurazione di hello. Nella parte superiore di hello della pagina hello, verrà richiesto toorestart hello tutti i servizi interessati. Fare clic su **Restart**.
 
     ![Riavviare i servizi](./media/hdinsight-apache-spark-resource-manager/restart-services.png)
 
-### <a name="change-the-parameters-for-an-application-running-in-jupyter-notebook"></a>Modificare i parametri per un'applicazione in esecuzione in Jupyter Notebook
-Per le applicazioni in esecuzione in Jupyter Notebook è possibile usare `%%configure` magic per apportare le modifiche di configurazione. Idealmente, è necessario apportare le modifiche all'inizio dell'applicazione, prima di eseguire la prima cella di codice. Ciò garantisce che la configurazione venga applicata alla sessione Livy quando viene creata. Se si vuole modificare la configurazione in una fase successiva nell'applicazione, è necessario usare il parametro `-f` . Tuttavia, in questo modo tutte le operazioni eseguite nell'applicazione andranno perse.
+### <a name="change-hello-parameters-for-an-application-running-in-jupyter-notebook"></a>Modificare i parametri in un'applicazione in esecuzione nel server Jupyter notebook hello
+Per le applicazioni in esecuzione in server Jupyter notebook di hello, è possibile utilizzare hello `%%configure` modifiche alla configurazione di hello toomake di particolare. Idealmente, è necessario apportare tali modifiche all'inizio di hello di un'applicazione hello, prima di eseguire la prima cella di codice. In questo modo si garantisce che la configurazione hello è applicato toohello inserire il sessione, quando viene creato. Se si desidera toochange hello configurazione in una fase successiva in un'applicazione hello, è necessario utilizzare hello `-f` parametro. Tuttavia, in questo modo tutti sullo stato di avanzamento in hello applicazione andranno persi.
 
-Il frammento di codice riportato di seguito mostra come modificare la configurazione per un'applicazione in esecuzione in Jupyter.
+frammento di Hello seguente viene illustrato come toochange hello configurazione per un'applicazione in esecuzione nel server Jupyter.
 
     %%configure
     {"executorMemory": "3072M", "executorCores": 4, "numExecutors":10}
 
-I parametri di configurazione devono essere passati come una stringa JSON e devono trovarsi nella riga successiva a magic, come illustrato nella colonna di esempio.
+I parametri di configurazione devono essere passati come una stringa JSON e devono essere nella riga successiva hello dopo magic hello, come illustrato nell'esempio la colonna hello.
 
-### <a name="change-the-parameters-for-an-application-submitted-using-spark-submit"></a>Modificare i parametri per un'applicazione inviata tramite spark-submit
-Il comando seguente è un esempio di come modificare i parametri di configurazione per un'applicazione batch inviata tramite `spark-submit`.
+### <a name="change-hello-parameters-for-an-application-submitted-using-spark-submit"></a>Lo script spark-submit hello modificare i parametri per un'applicazione inviato tramite
+Comando seguente è riportato un esempio di come toochange hello parametri di configurazione per un'applicazione di batch che viene inviato tramite `spark-submit`.
 
-    spark-submit --class <the application class to execute> --executor-memory 3072M --executor-cores 4 –-num-executors 10 <location of application jar file> <application parameters>
+    spark-submit --class <hello application class tooexecute> --executor-memory 3072M --executor-cores 4 –-num-executors 10 <location of application jar file> <application parameters>
 
-### <a name="change-the-parameters-for-an-application-submitted-using-curl"></a>Modificare i parametri per un'applicazione inviata tramite cURL
-Il comando seguente è un esempio di come modificare i parametri di configurazione per un'applicazione batch inviata tramite cURL.
+### <a name="change-hello-parameters-for-an-application-submitted-using-curl"></a>Modificare i parametri hello in un'applicazione inviato tramite cURL
+Comando seguente è riportato un esempio di come toochange hello parametri di configurazione per un'applicazione di batch in cui viene inviato utilizzando cURL.
 
-    curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<the application class to execute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
+    curl -k -v -H 'Content-Type: application/json' -X POST -d '{"file":"<location of application jar file>", "className":"<hello application class tooexecute>", "args":[<application parameters>], "numExecutors":10, "executorMemory":"2G", "executorCores":5' localhost:8998/batches
 
 ### <a name="how-do-i-change-these-parameters-on-a-spark-thrift-server"></a>Come è possibile modificare questi parametri nel server Spark Thrift?
-Il server Spark Thrift fornisce l'accesso JDBC/ODBC a un cluster Spark e viene usato per rispondere alle query di Spark SQL. Strumenti come Power BI, Tableau e così via usano il protocollo ODBC per comunicare con il server Spark Thrift per eseguire query di Spark SQL come un'applicazione Spark. Quando si crea un cluster Spark, vengono avviate due istanze del server Spark Thrift, una in ogni nodo head. Ogni Thrift Spark Server è visibile come un'applicazione Spark nell'interfaccia utente di YARN.
+Spark Thrift Server fornisce cluster Spark JDBC/ODBC accesso tooa e viene utilizzato tooservice query Spark SQL. Strumenti come Power BI, Tableau e così via utilizzare ODBC protocollo toocommunicate con le query di Spark SQL tooexecute Spark Thrift Server come applicazione Spark. Quando si crea un cluster Spark, due istanze di hello Spark Thrift Server vengono avviati, uno per ogni nodo head. Ogni Server di Spark Thrift sia visibile come un'applicazione di Spark in hello dell'interfaccia utente YARN.
 
-Il server Spark Thrift usa l'allocazione di executor dinamica di Spark e quindi non viene usato `spark.executor.instances` . Il server Spark Thrift usa invece `spark.dynamicAllocation.minExecutors` e `spark.dynamicAllocation.maxExecutors` per specificare il numero di executor. Per modificare le dimensioni degli executor, si usano i parametri di configurazione `spark.executor.cores` e `spark.executor.memory`. È possibile modificare questi parametri, come illustrato di seguito.
+Spark Thrift Server Usa allocazione dinamica dell'executor di nascita e pertanto hello `spark.executor.instances` non viene utilizzato. Utilizza invece Spark Thrift Server `spark.dynamicAllocation.minExecutors` e `spark.dynamicAllocation.maxExecutors` conteggio executor di hello toospecify. i parametri di configurazione di Hello `spark.executor.cores` e `spark.executor.memory` è toomodify hello executor spazio utilizzato. È possibile modificare questi parametri, come illustrato di seguito.
 
-* Espandere la categoria **Advanced spark-thrift-sparkconf** per aggiornare i parametri `spark.dynamicAllocation.minExecutors`, `spark.dynamicAllocation.maxExecutors` e `spark.executor.memory`.
+* Espandere hello **avanzate spark-thrift-sparkconf** i parametri di categoria tooupdate hello `spark.dynamicAllocation.minExecutors`, `spark.dynamicAllocation.maxExecutors`, e `spark.executor.memory`.
 
     ![Configurare il server Spark Thrift](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-1.png)    
-* Espandere la categoria **Custom spark-thrift-sparkconf** per aggiornare il parametro `spark.executor.cores`.
+* Espandere hello **personalizzato spark-thrift-sparkconf** parametro hello di categoria tooupdate `spark.executor.cores`.
 
     ![Configurare il server Spark Thrift](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-2.png)
 
-### <a name="how-do-i-change-the-driver-memory-of-the-spark-thrift-server"></a>Come è possibile modificare la memoria del driver del server Spark Thrift?
-La memoria del driver del server Spark Thrift è configurata al 25% delle dimensioni della RAM nodo head, a condizione che le dimensioni totali della RAM del nodo head siano maggiori di 14 GB. Per modificare la configurazione della memoria del driver, è possibile usare l'interfaccia utente di Ambari, come illustrato di seguito.
+### <a name="how-do-i-change-hello-driver-memory-of-hello-spark-thrift-server"></a>Come è possibile modificare memoria hello di hello Spark Thrift Server?
+Memoria Spark Thrift Server viene configurato too25% delle dimensioni del nodo head RAM hello, fornito dimensione RAM totale hello del nodo head hello è maggiore di 14GB. È possibile utilizzare hello configurazione della memoria driver hello toochange Ambari UI, come illustrato di seguito.
 
-* Nell'interfaccia utente di Ambari fare clic su **Spark**, **Configs** (Configurazioni), espandere **Advanced spark-env**, quindi specificare il valore per **spark_thrift_cmd_opts**.
+* Scegliere hello UI Ambari **Spark**, fare clic su **configurazioni**, espandere **avanzate spark env**e quindi specificare il valore di hello per **spark_thrift_cmd_opts**.
 
     ![Configurare la RAM del server Spark Thrift](./media/hdinsight-apache-spark-resource-manager/spark-thrift-server-ram.png)
 
-## <a name="i-do-not-use-bi-with-spark-cluster-how-do-i-take-the-resources-back"></a>La funzionalità di Business Intelligence non è in uso con il cluster Spark. Come è possibile ripristinare le risorse?
-Poiché si usa l'assegnazione dinamica di Spark, le uniche risorse utilizzate dal server Thrift sono quelle per i due master applicazioni. Per recuperare tali risorse, è necessario arrestare i servizi del server Thrift in esecuzione nel cluster.
+## <a name="i-do-not-use-bi-with-spark-cluster-how-do-i-take-hello-resources-back"></a>La funzionalità di Business Intelligence non è in uso con il cluster Spark. Come riprendere il risorse hello?
+Perché si usa l'allocazione dinamica di Spark, hello solo le risorse utilizzate dal server thrift sono risorse hello per due schemi di applicazione hello. tooreclaim queste risorse che è necessario arrestare hello servizi Thrift Server eseguiti nel cluster hello.
 
-1. Nel riquadro sinistro dell'interfaccia utente di Ambari fare clic su **Spark**.
-2. Nella pagina successiva fare clic su **Server Spark Thrift**.
+1. Hello Ambari UI, dal riquadro di sinistra hello, fare clic su **Spark**.
+2. Nella pagina successiva di hello, fare clic su **Spark Thrift server**.
 
     ![Riavviare il server Thrift](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-1.png)
-3. Verranno visualizzati due nodi head in cui è in esecuzione il server Spark Thrift. Fare clic su uno dei nodi head.
+3. Dovrebbe essere headnodes di hello due in cui hello Spark Thrift Server è in esecuzione. Fare clic su uno dei headnodes hello.
 
     ![Riavviare il server Thrift](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-2.png)
-4. Nella pagina successiva sono elencati tutti i servizi in esecuzione in quel nodo head. Nell'elenco fare clic sul pulsante dell'elenco a discesa accanto al server Spark Thrift e quindi fare clic su **Stop**.
+4. la pagina successiva di Hello Elenca tutti i servizi di hello in esecuzione su tale nodo head. Dall'elenco hello hello clic sul pulsante Avanti tooSpark Thrift Server e quindi fare clic su **arrestare**.
 
     ![Riavviare il server Thrift](./media/hdinsight-apache-spark-resource-manager/restart-thrift-server-3.png)
-5. Ripetere questi passaggi anche per l'altro nodo head.
+5. Ripetere questi passaggi in hello altri nodo head anche.
 
-## <a name="my-jupyter-notebooks-are-not-running-as-expected-how-can-i-restart-the-service"></a>I notebook Jupyter non vengono eseguiti come previsto. Come è possibile riavviare il servizio?
-Avviare l'interfaccia utente Web di Ambari, come illustrato in precedenza. Dal riquadro di spostamento sinistro fare clic su **Jupyter**, **Service Actions** (Azioni servizio) e quindi su **Restart All** (Riavvia tutto). Verrà avviato il servizio Jupyter su tutti i nodi head.
+## <a name="my-jupyter-notebooks-are-not-running-as-expected-how-can-i-restart-hello-service"></a>I notebook Jupyter non vengono eseguiti come previsto. Come è possibile riavviare servizio hello?
+Avvio dell'interfaccia utente Web Ambari hello come illustrato in precedenza. Dal riquadro di spostamento a sinistra di hello, fare clic su **Jupyter**, fare clic su **azioni servizio**e quindi fare clic su **riavviare tutti**. Verrà avviato servizio Jupyter hello in headnodes hello tutti.
 
     ![Restart Jupyter](./media/hdinsight-apache-spark-resource-manager/restart-jupyter.png "Restart Jupyter")
 
 ## <a name="how-do-i-know-if-i-am-running-out-of-resources"></a>Rilevare l'esaurimento delle risorse
-Avviare l'interfaccia utente di Yarn come illustrato in precedenza. Nella tabella Cluster Metrics (Metriche cluster) nella parte superiore della schermata, verificare i valori delle colonne **Memory Used** (Memoria in uso) e **Memory Total** (Memoria totale). Se i 2 valori sono molto simili, potrebbero non esserci risorse sufficienti per avviare l'applicazione successiva. Lo stesso vale per le colonne **VCores Used** (VCore in uso) e **VCores Total** (VCore totali). Se nella visualizzazione principale è presente un'applicazione con stato **ACCEPTED** (ACCETTATO) che non passa allo stato **RUNNING** (IN ESECUZIONE) o **FAILED** (NON RIUSCITO), ciò può anche indicare che l'applicazione non ha risorse sufficienti per l'avvio.
+Avvio dell'interfaccia utente Yarn hello come illustrato in precedenza. Nella tabella le metriche del Cluster nella parte superiore dello schermo hello, controllare i valori di **di memoria utilizzata** e **memoria totale** colonne. Se i valori hello 2 sono molto simili, potrebbe non essere disponibile sufficiente risorse toostart hello successiva applicazione. Hello vale toohello **VCores utilizzato** e **VCores totale** colonne. Inoltre, nella visualizzazione principale hello, se è presente un'applicazione è rimasto **accettato** lo stato e non in fase di transizione in **esecuzione** né **non riuscito** stato, potrebbe anche trattarsi di un'indicazione che non stanno toostart sufficienti risorse.
 
     ![Resource Limit](./media/hdinsight-apache-spark-resource-manager/resource-limit.png "Resource Limit")
 
-## <a name="how-do-i-kill-a-running-application-to-free-up-resource"></a>Come è possibile terminare un'applicazione in esecuzione per liberare risorse?
-1. Nell'interfaccia utente di Yarn, nel pannello a sinistra, fare clic su **In esecuzione**. Dall'elenco delle applicazioni in esecuzione, determinare l'applicazione da terminare e fare clic sull'**ID**.
+## <a name="how-do-i-kill-a-running-application-toofree-up-resource"></a>Come terminare un'esecuzione applicazione toofree risorsa?
+1. In hello dell'interfaccia utente Yarn, dal pannello sinistro hello, fare clic su **esecuzione**. Elenco delle applicazioni in esecuzione hello determinare toobe applicazione hello terminato, fare clic su hello **ID**.
 
     ![Terminare App1](./media/hdinsight-apache-spark-resource-manager/kill-app1.png "Terminare App1")
 
-2. Fare clic su **Kill Application** (Termina applicazione) nella parte superiore destra, quindi fare clic su **OK**.
+2. Fare clic su **Kill applicazione** hello angolo superiore destro, quindi scegliere **OK**.
 
     ![Terminare App2](./media/hdinsight-apache-spark-resource-manager/kill-app2.png "Terminare App2")
 
@@ -157,7 +157,7 @@ Avviare l'interfaccia utente di Yarn come illustrato in precedenza. Nella tabell
 ### <a name="for-data-analysts"></a>Per gli analisti dei dati
 
 * [Spark con Machine Learning: utilizzare Spark in HDInsight per l'analisi della temperatura di compilazione utilizzando dati HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark con Machine Learning: usare Spark in HDInsight per prevedere i risultati del controllo degli alimenti](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark con Machine Learning: usare Spark in HDInsight risultati dell'ispezione alimentare toopredict](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Analisi dei log del sito Web mediante Spark in HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 * [Application Insight telemetry data analysis using Spark in HDInsight (Analisi dei dati di telemetria di Application Insights con Spark in HDInsight)](hdinsight-spark-analyze-application-insight-logs.md)
 * [Usare Caffe in Azure HDInsight Spark per l'apprendimento avanzato distribuito](hdinsight-deep-learning-caffe-spark.md)
@@ -166,10 +166,10 @@ Avviare l'interfaccia utente di Yarn come illustrato in precedenza. Nella tabell
 
 * [Creare un'applicazione autonoma con Scala](hdinsight-apache-spark-create-standalone-application.md)
 * [Eseguire processi in modalità remota in un cluster Spark usando Livy](hdinsight-apache-spark-livy-rest-interface.md)
-* [Usare il plug-in degli strumenti HDInsight per IntelliJ IDEA per creare e inviare applicazioni Spark in Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utilizzare i plug-in strumenti di HDInsight per toocreate IntelliJ IDEA e inviare applicazioni Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [Streaming Spark: usare Spark in HDInsight per la creazione di applicazioni di streaming in tempo reale](hdinsight-apache-spark-eventhub-streaming.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely (Usare il plug-in Strumenti HDInsight per IntelliJ IDEA per eseguire il debug di applicazioni Spark in remoto)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utilizzare i plug-in strumenti di HDInsight per le applicazioni di Spark toodebug IntelliJ IDEA in modalità remota](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Usare i notebook di Zeppelin con un cluster Spark in HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Kernel disponibili per notebook di Jupyter nel cluster Spark per HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Usare pacchetti esterni con i notebook Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Installare Jupyter Notebook nel computer e connetterlo a un cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Installare Jupyter nel computer e connettere il cluster HDInsight Spark tooan](hdinsight-apache-spark-jupyter-notebook-install-locally.md)

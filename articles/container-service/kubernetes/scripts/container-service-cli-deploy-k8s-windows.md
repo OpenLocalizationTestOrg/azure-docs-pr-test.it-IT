@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Creare un cluster Kubernetes Windows del servizio contenitore di Azure | Microsoft Docs
+title: 'aaaAzure CLI Script di esempio: creazione del Cluster Windows ACS Kubernetes | Documenti Microsoft'
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Creare un cluster Kubernetes Windows del servizio contenitore di Azure
 services: container-service
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
-ms.openlocfilehash: 9ca289817b54c39c59271f35a0af26bad2811da6
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: afbaf17fb1d5310b50a2f181061339cb2ab87fd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-container-service-kubernetes-windows-cluster"></a>Creare un cluster Kubernetes Windows del servizio contenitore di Azure
 
@@ -47,7 +47,7 @@ az acs create \
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Eseguire questo comando per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.
+Comando che segue hello esecuzione gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -55,7 +55,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare la distribuzione. Ogni elemento della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello dopo la distribuzione di comandi toocreate hello. Ogni elemento nella documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
@@ -64,6 +64,6 @@ Questo script usa i comandi seguenti per creare la distribuzione. Ogni elemento 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando del servizio contenitore di Azure sono disponibili nella [documentazione del servizio contenitore di Azure](../cli-samples.md).
+Esempi di script aggiuntivi CLI servizio contenitore di Azure sono reperibile in hello [documentazione del servizio di contenitore di Azure](../cli-samples.md).

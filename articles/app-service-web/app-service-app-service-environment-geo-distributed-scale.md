@@ -1,6 +1,6 @@
 ---
-title: "Scalabilità distribuita a livello geografico con ambienti del servizio app"
-description: "Informazioni sulla scalabilità orizzontale delle app mediante la distribuzione a livello geografico con Gestione traffico e ambienti del servizio app"
+title: aaaGeo scala distribuite con gli ambienti del servizio App
+description: Informazioni su come toohorizontally ridimensionare le app usando geo-distribuzione con gestione traffico e gli ambienti del servizio App.
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 505301b2650c9b8bafdad352055f30e55148ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b441f637d8b7f679b3d83240baf99b8ee57e8f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>Scalabilità distribuita a livello geografico con ambienti del servizio app
-## <a name="overview"></a>Overview
-Gli scenari di applicazioni che richiedono una scalabilità molto elevata possono superare la capacità delle risorse di calcolo disponibili per una singola distribuzione di un'app.  Applicazioni di voto, eventi sportivi ed eventi di intrattenimento televisivi sono tutti esempi di scenari che richiedono una scalabilità estremamente elevata. I requisiti di scalabilità elevata possono essere soddisfatti con la scalabilità orizzontale delle applicazioni, con più distribuzioni di app eseguite in una singola area geografica, oltre che in diverse aree, per gestire i requisiti di carico particolarmente intenso.
+## <a name="overview"></a>Panoramica
+Scenari di applicazioni che richiedono scalabilità molto elevato possono superare hello calcolo risorse capacità disponibile tooa singola distribuzione di un'app.  Applicazioni di voto, eventi sportivi ed eventi di intrattenimento televisivi sono tutti esempi di scenari che richiedono una scalabilità estremamente elevata. Requisiti su larga scala possono essere soddisfatti tramite la scalabilità orizzontale di App, con più distribuzioni di app eseguite in una singola regione, nonché in aree geografiche, requisiti di carico particolarmente intenso toohandle.
 
-Gli ambienti del servizio app sono una piattaforma ideale per la scalabilità orizzontale.  Una volta selezionata una configurazione di Ambiente del servizio app che possa supportare una frequenza di richieste nota, gli sviluppatori possono distribuire altre istanze di ambienti del servizio app usando modelli di progetto (o "cookiecutter") per ottenere una capacità di carico di picco desiderata.
+Gli ambienti del servizio app sono una piattaforma ideale per la scalabilità orizzontale.  Dopo aver selezionata una configurazione dell'ambiente del servizio App che può supportare una velocità di richiesta, gli sviluppatori possono distribuire gli ambienti del servizio App aggiuntive in "utensile cookie" modo tooattain una capacità di carico di picco desiderato.
 
-Si supponga ad esempio che un'app eseguita in una configurazione di Ambiente del servizio app sia stata testata per la gestione di 20 KB di richieste al secondo (RPS).  Se la capacità di carico di picco desiderata è pari a 100 KB RPS, è possibile creare cinque (5) ambienti del servizio app per assicurare che l'applicazione possa gestire il carico massimo previsto.
+Si supponga ad esempio un'app in esecuzione in una configurazione dell'ambiente del servizio App è stata testata toohandle 20K richieste al secondo (RPS).  Se il carico di picco desiderato hello capacità è 100K RPS, è possibile creare ambienti di servizio App cinque (5) e un'applicazione hello tooensure configurato gestibili carico previsto massimo hello.
 
-Poiché in genere i clienti accedono alle app usando un dominio personalizzato, o personale, gli sviluppatori hanno bisogno di un modo per distribuire le richieste di app tra tutte le istanze di Ambiente del servizio app.  Un modo ottimale per ottenere questo risultato consiste nel risolvere il dominio personalizzato usando un [profilo di Gestione traffico di Azure][AzureTrafficManagerProfile].  Il profilo di Gestione traffico può essere configurato in modo che punti a tutti i singoli ambienti del servizio app.  Gestione traffico gestirà automaticamente la distribuzione dei clienti tra tutti gli ambienti del servizio app in base alle impostazioni di bilanciamento del carico nel profilo di Gestione traffico.  Questo approccio funziona indipendentemente dal fatto che tutti gli ambienti del servizio app siano distribuiti in una singola area di Azure o a livello mondiale tra più aree di Azure.
+Poiché i clienti in genere App scritte in un dominio personalizzato (o personale), gli sviluppatori devono accedere a un'app toodistribute modo richiede tutte le istanze di ambiente del servizio App hello.  Tooaccomplish un ottimo modo tratta tooresolve hello dominio personalizzato utilizzando un [profilo di Traffic Manager di Azure][AzureTrafficManagerProfile].  Hello Traffic Manager profilo può essere configurato toopoint tutti hello singoli gli ambienti del servizio App.  Gestione traffico consente di gestire automaticamente la distribuzione ai clienti in tutti gli ambienti del servizio App in base alle impostazioni nel profilo di Traffic Manager hello di bilanciamento carico di hello hello.  Questo approccio funziona indipendentemente dal fatto se tutti gli ambienti del servizio App hello sono distribuiti in una singola regione di Azure o distribuiti in tutto il mondo in più aree di Azure.
 
-Inoltre, poiché i clienti accedono alle app tramite il dominio personale, non conoscono il numero di ambienti del servizio app che eseguono un'app.  Di conseguenza, gli sviluppatori possono aggiungere e rimuovere in modo rapido e facile ambienti del servizio app in base al carico di traffico osservato.
+Inoltre, poiché i clienti di accedere alle App tramite il dominio di reindirizzamento a microsito hello, i clienti non sono consapevoli del numero di hello di esecuzione di un'applicazione gli ambienti del servizio App.  Di conseguenza, gli sviluppatori possono aggiungere e rimuovere in modo rapido e facile ambienti del servizio app in base al carico di traffico osservato.
 
-Il diagramma concettuale seguente illustra un'app con scalabilità orizzontale fra tre ambienti del servizio app in una singola area geografica.
+diagramma concettuale Hello riportato di seguito viene illustrata un'applicazione con scalata orizzontale in tre ambienti di servizio App all'interno di una singola area.
 
 ![Architettura concettuale][ConceptualArchitecture] 
 
-Il resto di questo argomento illustra in dettaglio la procedura prevista per configurare una topologia distribuita per l'app di esempio con più ambienti del servizio app.
+resto Hello di questo argomento vengono illustrati hello passaggi coinvolti con l'impostazione di una topologia distribuita per app di esempio di hello con più ambienti di servizio App.
 
-## <a name="planning-the-topology"></a>Pianificazione della topologia
-Prima di compilare il footprint di un'app distribuita, è utile avere anticipatamente alcune informazioni.
+## <a name="planning-hello-topology"></a>Pianificazione della topologia hello
+Prima di compilare un footprint di applicazione distribuita, è utile toohave alcune informazioni parti anticipatamente.
 
-* **Dominio personalizzato per l'app**: definire qual è il nome del dominio personalizzato che i clienti useranno per accedere all'app.  Per l'app di esempio il nome di dominio personalizzato è *www.scalableasedemo.com*
-* **Dominio di Gestione traffico:** è necessario scegliere un nome di dominio quando si crea un profilo di [Gestione traffico di Azure][AzureTrafficManagerProfile].  Questo nome sarà combinato con il suffisso *trafficmanager.net* per registrare una voce di dominio gestita da Gestione traffico.  Per l'app di esempio il nome scelto è *scalable-ase-demo*.  Il nome di dominio completo gestito da Gestione traffico sarà quindi *scalable-ase-demo.trafficmanager.net*.
-* **Strategia per la scalabilità del footprint dell'app:** definire se il footprint dell'applicazione sarà distribuito tra più ambienti del servizio app in una singola area geografica,  in più aree geografiche  o con una combinazione di entrambi gli approcci.  La decisione dovrà essere basata sulla previsione dell'origine del traffico dei clienti, oltre che sull'efficacia della scalabilità del resto dell'infrastruttura di back-end di supporto di un'app.  Ad esempio, un'applicazione al 100% senza stato può essere considerevolmente ridimensionata usando una combinazione di più ambienti del servizio app per ogni area di Azure, moltiplicati per gli ambienti del servizio app distribuiti tra più aree di Azure.  Con la disponibilità di oltre 15 aree di Azure pubbliche da cui scegliere, i clienti possono veramente creare un footprint dell'applicazione iperscalabile in tutto il mondo.  Per l'app di esempio usata per questo articolo sono stati creati tre ambienti del servizio app in una singola area di Azure (Stati Uniti centro-meridionali).
-* **Convenzione di denominazione per gli ambienti del servizio app**: ogni ambiente del servizio app richiede un nome univoco.  Oltre a uno o due ambienti del servizio app, è utile avere una convenzione di denominazione per facilitare l'identificazione di ogni ambiente del servizio app.  Per l'app di esempio è stata usata una convenzione di denominazione semplice.  I nomi dei tre ambienti del servizio app sono *fe1ase*, *fe2ase* e *fe3ase*.
-* **Convenzione di denominazione per le app:** poiché saranno distribuite più istanze dell'app, è necessario un nome per ogni istanza dell'app distribuita.  Una funzionalità poco conosciuta ma molto pratica degli ambienti del servizio app è la possibilità di usare lo stesso nome tra più ambienti.  Poiché ogni ambiente del servizio app ha un suffisso univoco, gli sviluppatori possono scegliere di riutilizzare esattamente lo stesso nome dell'app in ogni ambiente.  Ad esempio, uno sviluppatore può avere app denominate come segue: *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net* e così via.  Per l'app di esempio ogni istanza dell'app ha tuttavia anche un nome univoco.  I nomi delle istanze dell'app usati sono *webfrontend1*, *webfrontend2* e *webfrontend3*.
+* **Dominio personalizzato per l'applicazione hello:** qual è il nome di dominio personalizzato hello che i clienti utilizzerà tooaccess hello app?  Per il dominio personalizzato hello app esempio hello è nome *www.scalableasedemo.com*
+* **Dominio di Traffic Manager:** un nome di dominio deve toobe scelto durante la creazione di un [profilo di Traffic Manager di Azure][AzureTrafficManagerProfile].  Questo nome verrà combinato con hello *trafficmanager.net* suffisso tooregister una voce di dominio che è gestita da Gestione traffico.  Per app di esempio hello, si è scelto di nome hello *scalabile di ase demo*.  Di conseguenza hello nome completo del dominio che è gestito da Gestione traffico è *scalabile di ase demo.trafficmanager.net*.
+* **Strategia per la scalabilità footprint app hello:** verranno distribuiti tra più ambienti di servizio App in una singola area footprint dell'applicazione hello?  in più aree geografiche  o con una combinazione di entrambi gli approcci.  Hello decisione deve basarsi sulle aspettative di in cui avranno origine traffico dei clienti, nonché come rest hello e di un'applicazione che supporta l'infrastruttura di back-end possono essere ridimensionati.  Ad esempio, un'applicazione al 100% senza stato può essere considerevolmente ridimensionata usando una combinazione di più ambienti del servizio app per ogni area di Azure, moltiplicati per gli ambienti del servizio app distribuiti tra più aree di Azure.  Con almeno 15 pubblica aree di Azure toochoose disponibile da, gli utenti possono creare effettivamente un footprint di applicazione con tutto il mondo.  Per app di esempio hello utilizzato per l'articolo, tre gli ambienti del servizio App sono stati creati in una singola regione di Azure (centro-meridionali).
+* **Convenzione di denominazione per gli ambienti del servizio App hello:** ogni ambiente del servizio App richiede un nome univoco.  Oltre a uno o due ambienti di servizio App è utile toohave una convenzione di denominazione toohelp identificare ogni ambiente del servizio App.  Per app di esempio hello è stata utilizzata una convenzione di denominazione semplice.  Hello nomi di hello e tre gli ambienti del servizio App sono *fe1ase*, *fe2ase*, e *fe3ase*.
+* **Convenzione di denominazione per le app hello:** perché più istanze di hello app verranno distribuite, è necessario un nome per ogni istanza dell'applicazione hello distribuito.  Una funzionalità di poco noti ma molto pratico degli ambienti del servizio App è tale hello stesso nome di app può essere utilizzato in diversi ambienti di servizio App.  Poiché ogni ambiente del servizio App ha un suffisso di dominio univoci, gli sviluppatori possono scegliere toore utilizzare hello esatto nome di un'app in ogni ambiente.  Ad esempio, uno sviluppatore può avere app denominate come segue: *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net* e così via.  Per app di esempio hello anche se ogni istanza di applicazione ha anche un nome univoco.  Hello app istanza nomi utilizzati sono *webfrontend1*, *webfrontend2*, e *webfrontend3*.
 
-## <a name="setting-up-the-traffic-manager-profile"></a>Configurazione del profilo di Gestione traffico
-Dopo la distribuzione di più istanze di un'app in più ambienti del servizio app, è possibile registrare le singole istanze con Gestione traffico.  Per l'app di esempio è necessario un profilo di Gestione traffico per *scalable-ase-demo.trafficmanager.net* che possa indirizzare i clienti a una qualsiasi delle istanze seguenti dell'app distribuita:
+## <a name="setting-up-hello-traffic-manager-profile"></a>Impostazione di hello profilo di gestione traffico
+Una volta distribuite più istanze di un'applicazione in più ambienti di servizio App, è possibile che istanze singole app hello possono essere registrate con gestione traffico.  Per app di esempio hello una gestione traffico profilo è necessaria per *scalabile di ase demo.trafficmanager.net* che può indirizzare i clienti tooany di hello seguente distribuito app istanze:
 
-* **webfrontend1.fe1ase.p.azurewebsites.net**: istanza dell'app di esempio distribuita nel primo ambiente del servizio app.
-* **webfrontend2.fe2ase.p.azurewebsites.net**: istanza dell'app di esempio distribuita nel secondo ambiente del servizio app.
-* **webfrontend3.fe3ase.p.azurewebsites.net**: istanza dell'app di esempio distribuita nel terzo ambiente del servizio app.
+* **webfrontend1.fe1ase.p.azurewebsites.NET:** un'istanza distribuita in app di esempio hello hello prima dell'ambiente del servizio App.
+* **webfrontend2.fe2ase.p.azurewebsites.NET:** un'istanza distribuita in app di esempio hello hello secondo ambiente del servizio App.
+* **webfrontend3.fe3ase.p.azurewebsites.NET:** un'istanza distribuita in app di esempio hello hello terzo ambiente del servizio App.
 
-Il modo più semplice per registrare più endpoint di servizio app di Azure in esecuzione nella **stessa** area di Azure consiste nell'usare il [supporto di Azure Resource Manager per Gestione traffico di Azure][ARMTrafficManager] con PowerShell.  
+Hello tooregister modo più semplice di più endpoint di servizio App di Azure, tutti in esecuzione in hello **stesso** area di Azure, è con Powershell hello [il supporto di gestione traffico di Azure Resource Manager] [ ARMTrafficManager].  
 
-Come primo passaggio creare un profilo di Gestione traffico di Azure.  Il codice seguente illustra come è stato creato il profilo per l'app di esempio:
+primo passaggio Hello è toocreate un profilo di Traffic Manager di Azure.  codice Hello riportato di seguito viene illustrato come profilo hello è stato creato per app di esempio hello:
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-Si noti che il parametro *RelativeDnsName* è stato impostato su *scalable-ase-demo*.  È così che il nome di dominio *scalable-ase-demo.trafficmanager.net* viene creato e associato al profilo di Gestione traffico.
+Si noti come hello *RelativeDnsName* parametro è stato impostato troppo*scalabile di ase demo*.  Questo è hello come nome di dominio *scalabile di ase demo.trafficmanager.net* viene creato e associato a un profilo di Traffic Manager.
 
-Il parametro *TrafficRoutingMethod* definisce i criteri di bilanciamento del carico che saranno usati da Gestione traffico per determinare come distribuire il carico del cliente tra tutti gli endpoint disponibili.  In questo esempio è stato usato il metodo *Weighted* .  Le richieste del cliente saranno quindi distribuite tra tutti gli endpoint dell'applicazione registrata in base ai pesi associati a ogni endpoint. 
+Hello *TrafficRoutingMethod* parametro definisce criteri di gestione traffico verrà utilizzato come il carico tra tutti gli endpoint disponibili hello cliente toospread toodetermine di bilanciamento del carico di hello.  In questo hello esempio *Weighted* è stato scelto il metodo.  Questo comporterà essere disseminate in tutti gli endpoint di applicazione hello registrato basati sui relativi pesi hello associati a ogni endpoint le richieste dei clienti. 
 
-Dopo la creazione del profilo, ogni istanza dell'app viene aggiunta al profilo come endpoint nativo di Azure.  Il codice seguente recupera un riferimento a ogni app Web front-end e quindi aggiunge ogni app come endpoint di Gestione traffico tramite il parametro *TargetResourceId* .
+Profilo hello creato, ogni istanza di applicazione viene aggiunto toohello profilo come un endpoint di Azure nativo.  Recupera un'app web front-end di riferimento tooeach codice Hello seguente e quindi aggiunge ogni app come un endpoint di gestione traffico mediante hello *ID risorsa di destinazione* parametro.
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
     Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
@@ -77,44 +77,44 @@ Dopo la creazione del profilo, ogni istanza dell'app viene aggiunta al profilo c
 
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
 
-Come si noterà, è presente una chiamata a *Add-AzureTrafficManagerEndpointConfig* per ogni singola istanza dell'app.  Il parametro *TargetResourceId* in ogni comando di Powershell fa riferimento a una delle tre istanze dell'app distribuite.  Il profilo di Gestione traffico distribuirà il carico tra tutti e tre gli endpoint registrati nel profilo.
+Si noti come non esiste un'unica chiamata troppo*Aggiungi AzureTrafficManagerEndpointConfig* per ogni istanza di singole app.  Hello *ID risorsa di destinazione* parametro in ogni comando di Powershell fa riferimento a uno dei tre istanze di app distribuita hello.  profilo di gestione traffico Hello verrà esteso carico tra tutte e tre gli endpoint registrati nel profilo hello.
 
-Tutti e tre gli endpoint usano lo stesso valore (10) per il parametro *Weight* .  Gestione traffico distribuirà quindi le richieste dei clienti tra tutte e tre le istanze dell'app in modo relativamente uniforme. 
+Tutti e tre gli endpoint utilizzano hello hello stesso valore (10) per hello *peso* parametro.  Gestione traffico distribuirà quindi le richieste dei clienti tra tutte e tre le istanze dell'app in modo relativamente uniforme. 
 
-## <a name="pointing-the-apps-custom-domain-at-the-traffic-manager-domain"></a>Indirizzamento del dominio personalizzato dell'app al dominio di Gestione traffico
-Come passaggio finale è necessario che il dominio personalizzato dell'app punti al dominio di Gestione traffico.  Per l'app di esempio *www.scalableasedemo.com* deve puntare a *scalable-ase-demo.trafficmanager.net*.  Questo passaggio deve essere completato con il registrar che gestisce il dominio personalizzato.  
+## <a name="pointing-hello-apps-custom-domain-at-hello-traffic-manager-domain"></a>Dominio dell'applicazione hello puntamento personalizzata hello dominio di Traffic Manager
+passaggio finale Hello necessario è dominio personalizzato di hello toopoint dell'app hello al dominio di Traffic Manager hello.  Per app di esempio hello ciò significa che punta *www.scalableasedemo.com* in *scalabile di ase demo.trafficmanager.net*.  Questo passaggio è necessario toobe completato con il registrar hello che gestisce dominio personalizzato hello.  
 
-Usando gli strumenti di gestione del dominio del registrar, è necessario creare un record CNAME che dal dominio personalizzato punti al dominio di Gestione traffico.  L'immagine seguente mostra un esempio di come appare la configurazione di questo CNAME:
+Utilizzando gli strumenti di gestione del dominio del proprio registrar, un toobe esigenze di record CNAME che punti hello il dominio personalizzato creato nel dominio di Traffic Manager hello.  immagine di Hello riportata di seguito viene illustrato un esempio di questa configurazione di CNAME l'aspetto seguente:
 
 ![CNAME per il dominio personalizzato][CNAMEforCustomDomain] 
 
-Anche se questo aspetto non viene trattato in questo argomento, tenere presente che per ogni singola istanza dell'app deve essere registrato anche il dominio personalizzato.  In caso contrario, se una richiesta raggiunge un'istanza dell'app e per l'app non è stato registrato il dominio personalizzato, la richiesta non riuscirà.  
+Anche se non trattate in questo argomento, tenere presente che ogni istanza di singole app deve dominio personalizzato hello toohave registrato anche con esso.  In caso contrario istanza app tooan rende una richiesta, se un'applicazione hello non dispone di hello di dominio personalizzato registrato con l'applicazione hello, hello richiesta avrà esito negativo.  
 
-In questo esempio il dominio personalizzato è *www.scalableasedemo.com*e a ogni istanza dell'applicazione è associato il dominio personalizzato.
+In questo hello esempio dominio personalizzato è *www.scalableasedemo.com*, e ogni istanza dell'applicazione dispone di dominio personalizzato di hello è associato.
 
 ![Dominio personalizzato][CustomDomain] 
 
-Per un riepilogo della procedura di registrazione di un dominio personalizzato con le app del Servizio app di Azure, vedere l'articolo seguente relativo alla [registrazione di domini personalizzati][RegisterCustomDomain].
+Per un riepilogo della registrazione di un dominio personalizzato con le applicazioni di servizio App di Azure, vedere l'articolo seguente hello [registrazione domini personalizzati][RegisterCustomDomain].
 
-## <a name="trying-out-the-distributed-topology"></a>Prova della topologia distribuita
-Come risultato finale della configurazione di Gestione traffico e del DNS, il flusso delle richieste per *www.scalableasedemo.com* avviene con la sequenza seguente:
+## <a name="trying-out-hello-distributed-topology"></a>Provare a hello topologia distribuita
+Hello risultato finale della configurazione di DNS e di gestione traffico hello è che le richieste di *www.scalableasedemo.com* passeranno attraverso hello seguente sequenza:
 
 1. Un browser o un dispositivo esegue una ricerca DNS di *www.scalableasedemo.com*
-2. La voce CNAME del registrar causa il reindirizzamento della ricerca DNS a Gestione traffico di Azure.
-3. Viene eseguita una ricerca DNS di *scalable-ase-demo.trafficmanager.net* in uno dei server DNS di Gestione traffico di Azure.
-4. In base ai criteri di bilanciamento del carico, ovvero il parametro *TrafficRoutingMethod* usato in precedenza durante la creazione del profilo di Gestione traffico, Gestione traffico sceglierà uno degli endpoint configurati e restituirà l'FQDN dell'endpoint al browser o al dispositivo.
-5. Poiché l'FQDN dell'endpoint è l'URL di un'istanza dell'app in esecuzione in un ambiente del servizio app, il browser o il dispositivo chiederà a un server DNS di Microsoft Azure di risolvere l'FQDN in un indirizzo IP. 
-6. Il browser o il dispositivo invierà la richiesta HTTP/S all'indirizzo IP.  
-7. La richiesta arriverà a una delle istanze dell'app in esecuzione in uno degli ambienti del servizio app.
+2. Hello voce CNAME presso il registrar di dominio hello causa hello DNS ricerca toobe reindirizzato tooAzure Traffic Manager.
+3. Viene effettuata una ricerca DNS per *scalabile di ase demo.trafficmanager.net* su uno dei server DNS di Traffic Manager di Azure di hello.
+4. In base al criterio di bilanciamento del carico di hello (hello *TrafficRoutingMethod* parametro utilizzato in precedenza, quando si crea il profilo di Traffic Manager hello), gestione traffico verrà selezionare una delle hello configurato gli endpoint e restituire hello FQDN di tale endpoint toohello browser o nel dispositivo.
+5. Poiché hello FQDN dell'endpoint hello hello Url di un'istanza di applicazione in esecuzione in un ambiente del servizio App, hello browser o nel dispositivo verrà richiesto un server DNS di Microsoft Azure hello tooresolve l'indirizzo IP tooan FQDN. 
+6. dispositivo o browser Hello invierà l'indirizzo IP hello HTTP/S richiesta toohello.  
+7. richiesta di Hello arriverà a una delle istanze di hello app in esecuzione in uno di hello gli ambienti del servizio App.
 
-L'immagine della console seguente mostra una ricerca DNS del dominio personalizzato dell'app di esempio risolta correttamente in un'istanza dell'app eseguita in uno dei tre ambienti del servizio app di esempio, in questo caso il secondo dei tre ambienti del servizio app:
+Hello immagine console seguente viene illustrata una ricerca DNS per dominio personalizzato correttamente risoluzione tooan app istanza dell'app di esempio hello in esecuzione in uno di: esempio hello e tre gli ambienti del servizio App (in questo caso hello secondo di hello e tre gli ambienti del servizio App):
 
 ![Ricerca DNS][DNSLookup] 
 
 ## <a name="additional-links-and-information"></a>Informazioni e collegamenti aggiuntivi
-Tutti gli articoli e le procedure sugli ambienti del servizio app sono disponibili nel [file LEGGIMI per gli ambienti di servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
+Tutti gli articoli e in che modo-per per gli ambienti del servizio App sono disponibili in hello [file Leggimi per gli ambienti del servizio dell'applicazione](../app-service/app-service-app-service-environments-readme.md).
 
-Documentazione sul [supporto di Azure Resource Manager per Gestione traffico][ARMTrafficManager] con PowerShell.  
+Documentazione su hello Powershell [il supporto di gestione traffico di Azure Resource Manager][ARMTrafficManager].  
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

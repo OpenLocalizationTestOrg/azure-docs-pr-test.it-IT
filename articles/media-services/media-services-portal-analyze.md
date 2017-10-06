@@ -1,6 +1,6 @@
 ---
-title: Analizzare i contenuti multimediali usando il portale di Azure | Microsoft Docs
-description: Questo argomento illustra come elaborare i contenuti multimediali con processori di contenuti multimediali (MP) di Analisi Servizi multimediali tramite il portale di Azure.
+title: aaaAnalyze i supporti tramite hello portale di Azure | Documenti Microsoft
+description: Questo argomento viene illustrato come tooprocess hello di file multimediali con processori di contenuti multimediali Analitica Media (MP) utilizzando il portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 22032aef0cc8b7b015503043028873e70c21ee85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d549c0315cd58c3771420379316b4f2ad3c2cea6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-your-media-using-the-azure-portal"></a>Analizzare i contenuti multimediali usando il portale di Azure
+# <a name="analyze-your-media-using-hello-azure-portal"></a>Analizzare i file multimediali usando hello portale di Azure
 > [!NOTE]
-> Per completare l'esercitazione, è necessario un account Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> toocomplete questa esercitazione, è necessario un account di Azure. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
 ## <a name="overview"></a>Panoramica
-Analisi Servizi multimediali è una raccolta di componenti per sintesi vocale e visione artificiale, con conformità, sicurezza e copertura globale di livello enterprise, che semplificano alle aziende e alle organizzazioni l'acquisizione di informazioni dettagliate dai file video. Per una panoramica più dettagliata di Analisi Servizi multimediali, vedere [questo](media-services-analytics-overview.md) argomento. 
+Azure Media Services Analitica è una raccolta di riconoscimento vocale e visione componenti (scala enterprise, conformità, sicurezza e portata globale) che rendono più semplice per aziende e organizzazioni tooderive ricavare informazioni utili dai file di video. Per una panoramica più dettagliata di Analisi Servizi multimediali, vedere [questo](media-services-analytics-overview.md) argomento. 
 
-Questo argomento illustra come elaborare i contenuti multimediali con processori di contenuti multimediali (MP) di Analisi Servizi multimediali tramite il portale di Azure. I processori di contenuti multimediali di Analisi Servizi multimediali producono file MP4 o JSON. Se un processore di contenuti multimediali produce un file MP4, è possibile scaricare progressivamente il file. Se un processore di contenuti multimediali produce un file JSON, è possibile scaricare il file dall'archiviazione BLOB di Azure. 
+Questo argomento viene illustrato come tooprocess hello di file multimediali con processori di contenuti multimediali Analitica Media (MP) utilizzando il portale di Azure. I processori di contenuti multimediali di Analisi Servizi multimediali producono file MP4 o JSON. Se un processore di contenuti multimediali ha prodotto un file MP4, è possibile scaricare progressivamente file hello. Se un processore di contenuti multimediali ha prodotto un file JSON, è possibile scaricare file hello da hello archiviazione blob di Azure. 
 
-## <a name="choose-an-asset-that-you-want-to-analyze"></a>Scegliere un asset da analizzare
-1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
-2. Nella finestra **Impostazioni** selezionare **Asset**.  
+## <a name="choose-an-asset-that-you-want-tooanalyze"></a>Scegliere una risorsa che si desidera tooanalyze
+1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
+2. In hello **impostazioni** selezionare **asset**.  
    .
     ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze001.png)
-3. Selezionare l'asset da analizzare e premere il pulsante **Analizza**.
+3. Asset selezionare hello che si desidera hello tooanalyze e premere **Analizza** pulsante.
    
     ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze002.png)
-4. Nella finestra **Elabora l'asset di file multimediale con Analisi Servizi multimediali** selezionare il processore. 
+4. In hello **asset di file multimediali di processo con supporto Analitica** finestra, processore hello selezionare. 
    
-    Il resto dell'articolo spiega i motivi e le modalità per usare ogni processore. 
-5. Premere **Crea** per iniziare un processo.
+    il resto di Hello di hello articolo spiega come e perché toouse ogni processore. 
+5. Premere **crea** toohello avviare un processo.
 
 ## <a name="azure-media-indexer"></a>Azure Media Indexer
-Il processore di contenuti multimediali **Azure Media Indexer** consente di rendere disponibili per la ricerca file e contenuti multimediali, oltre a generare tracce per i sottotitoli codificati. Questa sezione offre alcuni dettagli sulle opzioni che è possibile specificare per questo Management Pack.
+Hello **Azure Media Indexer** processore di contenuti multimediali consente di file multimediali toomake e ricerca, contenuto, nonché generare tracce sottotitoli codificate chiuse. Questa sezione offre alcuni dettagli sulle opzioni che è possibile specificare per questo Management Pack.
 
 ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze003.png)
 
-### <a name="language"></a>Linguaggio
-Linguaggio naturale da riconoscere nel file multimediale, ad esempio l'inglese o lo spagnolo. 
+### <a name="language"></a>Lingua
+Hello riconosciuto nel file multimediale hello toobe di linguaggio naturale. ad esempio l'inglese o lo spagnolo. 
 
 ### <a name="captions"></a>Sottotitoli
-È possibile scegliere un formato di sottotitoli che verrà generato dal contenuto. Un processo di indicizzazione può generare file di sottotitoli codificati nei formati seguenti:  
+È possibile scegliere un formato di sottotitoli che verrà generato dal contenuto. Un processo di indicizzazione possa generare file di sottotitoli nel hello seguenti formati:  
 
 * **SAMI**
 * **TTML**
 * **WebVTT**
 
-I file di sottotitoli codificati con questi formati possono essere utili per rendere i file audio e video accessibili alle persone con problemi uditivi.
+Chiuso i file di didascalia (CC) in questi formati possono essere utilizzati toomake audio e video file toopeople accessibile con problemi uditivi.
 
 ### <a name="aib-file"></a>File aib
-Selezionare questa opzione per generare il file Audio Index Blob per l'uso con SQL Server IFilter personalizzato. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/using-aib-files-with-azure-media-indexer-and-sql-server/) blog.
+Selezionare questa opzione se si sarebbe simile toogenerate hello Audio indice Blob file per l'utilizzo con hello IFilter di Server SQL personalizzata. Per altre informazioni, vedere [questo](https://azure.microsoft.com/blog/using-aib-files-with-azure-media-indexer-and-sql-server/) blog.
 
 ### <a name="keywords"></a>Parole chiave
-Selezionare questa opzione per generare un file XML di parole chiave. Questo file contiene parole chiave estratte da contenuti vocali, con informazioni sulla frequenza e sull'offset.
+Selezionare questa opzione se si desidera toogenerate un file XML di parole chiave. Questo file contiene parole chiave estratte da contenuti vocali hello, con la frequenza e informazioni relative all'offset.
 
 ### <a name="job-name"></a>Nome processo
-Nome descrittivo che consente di identificare il processo. [Questo](media-services-portal-check-job-progress.md) articolo descrive come è possibile monitorare lo stato di avanzamento di un processo. 
+Nome descrittivo che consente di identificare il processo di hello. [Questo](media-services-portal-check-job-progress.md) articolo viene descritto come è possibile monitorare lo stato di avanzamento hello di un processo. 
 
 ### <a name="output-file"></a>File di output
-Nome descrittivo che consente di identificare il contenuto di output. 
+Nome descrittivo che consente di identificare il contenuto di output di hello. 
 
 ## <a name="azure-media-hyperlapse"></a>Azure Media Hyperlapse
 Azure Media Hyperlapse è un processore multimediale che crea fluidi video in time-lapse da contenuti registrati in prima persona o da fotocamere d'azione.  Per altre informazioni, vedere [questo](media-services-hyperlapse-content.md) argomento. Questa sezione offre alcuni dettagli sulle opzioni che è possibile specificare per questo Management Pack.
@@ -79,61 +79,61 @@ Azure Media Hyperlapse è un processore multimediale che crea fluidi video in ti
 ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze004.png)
 
 ### <a name="speed"></a>Velocità
-Specificare la velocità di riproduzione del video di input. L'output è costituito da un rendering stabilizzato e in time-lapse del video di input.
+Specificare la velocità di hello con cui toospeed i video di input hello. output di Hello è una copia trasformata stabilizzare e tempo trascorso di video di input hello.
 
 ### <a name="job-name"></a>Nome processo
-Nome descrittivo che consente di identificare il processo. [Questo](media-services-portal-check-job-progress.md) articolo descrive come è possibile monitorare lo stato di avanzamento di un processo. 
+Nome descrittivo che consente di identificare il processo di hello. [Questo](media-services-portal-check-job-progress.md) articolo viene descritto come è possibile monitorare lo stato di avanzamento hello di un processo. 
 
 ### <a name="output-file"></a>File di output
-Nome descrittivo che consente di identificare il contenuto di output. 
+Nome descrittivo che consente di identificare il contenuto di output di hello. 
 
 ## <a name="azure-media-face-detector"></a>Rilevamento multimediale volti di Azure
-Il processore di contenuti multimediali **Rilevamento multimediale volti di Azure** consente di contare, monitorare i movimenti e persino di valutare la partecipazione e le reazioni del pubblico in base alle espressioni del volto. Questo servizio contiene due funzionalità: 
+Hello **Azure Media faccia Rilevatore** processore di contenuti multimediali (MP) consente di toocount, i movimenti di avanzamento e anche la partecipazione di destinatari misuratore e reazione tramite facciale. Questo servizio contiene due funzionalità: 
 
 * **Rilevamento volti**
   
-    Il Rilevamento volti rileva e monitora i volti umani all'interno di un video. È possibile rilevare e monitorare diversi volti mentre le persone si muovono; i metadati relativi a ora e luogo vengono restituiti in un file JSON. Durante il monitoraggio, il sistema tenterà di assegnare sempre lo stesso ID al volto mentre la persona si muove sullo schermo, anche se è nascosta o se esce brevemente dall'inquadratura.
+    Il Rilevamento volti rileva e monitora i volti umani all'interno di un video. Più caratteri tipografici possono essere rilevati e successivamente essere rilevate man mano che vengono spostati, con hello ora e il percorso dei metadati restituiti in un file JSON. Durante il rilevamento, verrà eseguito un tentativo toogive un toohello ID coerenza stesso faccia mentre persona hello è spostamento sullo schermo, anche se è nascosto o lasciare brevemente il frame di hello.
   
   > [!NOTE]
-  > Questo servizio non esegue il riconoscimento facciale. Se una persona esce dall'inquadratura o viene nascosta troppo a lungo, al suo ritorno le verrà assegnato un nuovo ID.
+  > Questo servizio non esegue il riconoscimento facciale. Persona che lascia frame hello o diventa nascosto per troppo tempo verrà assegnato un nuovo ID quando viene restituita.
   > 
   > 
 * **Rilevamento emozioni**
   
-    Il Rilevamento emozioni è un componente facoltativo del Processore multimediale di rilevamento volti che restituisce un'analisi di vari attributi emotivi dei volti rilevati, inclusi la felicità, la paura, la tristezza, la rabbia e altre emozioni. 
+    Rilevamento emozioni è un componente facoltativo di hello processore di contenuti multimediali di rilevamento viso restituisce analisi su più attributi affettivi da facce hello rilevate, tra cui "Happiness", sadness, paura, anger e altro ancora. 
 
 ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze005.png)
 
 ### <a name="detection-mode"></a>Modalità di rilevamento
-Il processore può usare una delle modalità seguenti:
+Una delle seguenti modalità hello può essere utilizzata da processore hello:
 
 * rilevamento volti
 * rilevamento emozioni per volto
 * rilevamento emozioni aggregato
 
 ### <a name="job-name"></a>Nome processo
-Nome descrittivo che consente di identificare il processo. [Questo](media-services-portal-check-job-progress.md) articolo descrive come è possibile monitorare lo stato di avanzamento di un processo. 
+Nome descrittivo che consente di identificare il processo di hello. [Questo](media-services-portal-check-job-progress.md) articolo viene descritto come è possibile monitorare lo stato di avanzamento hello di un processo. 
 
 ### <a name="output-file"></a>File di output
-Nome descrittivo che consente di identificare il contenuto di output. 
+Nome descrittivo che consente di identificare il contenuto di output di hello. 
 
 ## <a name="azure-media-motion-detector"></a>Rilevatore multimediale di movimento Azure
-Il processore di contenuti multimediali **Rilevatore multimediale di movimento Azure** consente di identificare in modo efficace le sezioni interessanti all'interno di un video altrimenti lungo e privo di eventi. Il rilevamento di movimento può essere usato nei filmati statici della videocamera per individuare le sezioni del video in cui si verificano movimenti. Viene generato un file JSON contenente i metadati con i timestamp e l'area di delimitazione in cui si è verificato l'evento.
+Hello **rilevatore di movimento di Azure Media** Abilita processore (MP) supporti tooefficiently si identificano le sezioni di interesse all'interno di un video in caso contrario lungo e procede senza interruzioni. Rilevamento del movimento utilizzabile in camera statico riprese tooidentify sezioni del video hello in cui viene effettuato lo spostamento. Genera un file JSON che contiene i metadati con i timestamp e hello delimitazione area in cui si è verificato l'evento hello.
 
-Questa tecnologia, destinata alle trasmissioni video di sicurezza, è in grado di classificare i movimenti in eventi rilevanti e falsi positivi, ad esempio variazioni di luminosità e delle ombre. In questo modo è possibile generare avvisi di sicurezza dalle trasmissioni della videocamera senza che venga segnalata una serie infinita di eventi irrilevanti e al contempo estrarre i momenti di interesse da video di sorveglianza estremamente lunghi.
+Mirata feed video di sicurezza, questa tecnologia è in grado di toocategorize movimento in eventi rilevanti e falsi positivi, ad esempio shadows e modifiche di illuminazione. Ciò consente gli avvisi di sicurezza toogenerate dai feed di fotocamera senza viene posta indesiderata con gli eventi non rilevanti infiniti, pur essendo momenti tooextract in grado di interesse da video sorveglianza estremamente lunghi.
 
 ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze006.png)
 
 ## <a name="azure-media-video-thumbnails"></a>Anteprime video multimediali di Azure
-Questo processore consente di creare un riepilogo per video lunghi selezionando in modo automatico frammenti interessanti del video di origine. Questa funzione risulta particolarmente utile quando si intende creare una panoramica rapida dei contenuti offerti nella versione più lunga del video. Per informazioni dettagliate ed esempi, vedere [Uso delle anteprime video multimediali di Azure per creare un riepilogo video](media-services-video-summarization.md)
+Questo processore consentono di creare riepiloghi dei video lunghi selezionando automaticamente interessanti frammenti video di origine hello. Ciò è utile quando si desidera tooprovide una rapida panoramica delle quali tooexpect in un video di lunga durata. Per informazioni dettagliate ed esempi, vedere [tooCreate Usa Azure Media Video miniature un riepilogo di Video](media-services-video-summarization.md)
 
 ![Analizzare i video](./media/media-services-portal-analyze/media-services-portal-analyze008.png)
 
 ### <a name="job-name"></a>Nome processo
-Nome descrittivo che consente di identificare il processo. [Questo](media-services-portal-check-job-progress.md) articolo descrive come è possibile monitorare lo stato di avanzamento di un processo. 
+Nome descrittivo che consente di identificare il processo di hello. [Questo](media-services-portal-check-job-progress.md) articolo viene descritto come è possibile monitorare lo stato di avanzamento hello di un processo. 
 
 ### <a name="output-file"></a>File di output
-Nome descrittivo che consente di identificare il contenuto di output. 
+Nome descrittivo che consente di identificare il contenuto di output di hello. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 Visualizzare i percorsi di apprendimento di Servizi multimediali.

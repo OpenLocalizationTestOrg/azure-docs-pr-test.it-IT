@@ -1,6 +1,6 @@
 ---
-title: Gestire Azure Data Lake Analytics con Python | Microsoft Docs
-description: 'Informazioni su come usare Python per creare un account di Data Lake Store e inviare i processi. '
+title: Azure Data Lake Analitica aaaManage usando Python | Documenti Microsoft
+description: "Informazioni sulla modalità di memorizzazione una Data Lake di toouse Python toocreate account e inviare i processi. "
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 31326a32f8748e6cfb8bfe24cda46c511ab59352
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3c0fff155db7c4fd4e84c2562816995eb156be16
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-python"></a>Gestire Azure Data Lake Analytics con Python
 
 ## <a name="python-versions"></a>Versioni di Python
 
 * Usare una versione a 64 bit di Python.
-* È possibile usare la distribuzione di Python standard disponibile in **[Python.org downloads](https://www.python.org/downloads/)**. 
-* Molti sviluppatori trovano utile usare la **[distribuzione Anaconda Python](https://www.continuum.io/downloads)**.  
-* Questo articolo si basa su Python versione 3.6 della distribuzione di Python standard
+* È possibile utilizzare distribuzione Python standard hello nella  **[Python.org Scarica](https://www.python.org/downloads/)**. 
+* Molti sviluppatori trovano hello pratico toouse  **[distribuzione Anaconda Python](https://www.continuum.io/downloads)**.  
+* Questo articolo è stato scritto usando Python versione 3.6 dalla distribuzione di Python standard hello
 
 ## <a name="install-azure-python-sdk"></a>Installare Azure Python SDK
 
-Installare i moduli seguenti:
+Installare hello seguenti moduli:
 
-* Il modulo **azure-mgmt-resource** include altri moduli di Azure per Active Directory e così via.
-* Il modulo **azure-mgmt-datalake-store** include le operazioni di gestione account di Azure Data Lake Store.
-* Il modulo **azure-datalake-store** include le operazioni di file system di Azure Data Lake Store. 
-* Il modulo **azure-datalake-analytics** include le operazioni di Azure Data Lake Analytics. 
+* Hello **-mgmt-risorse di azure** modulo include altri moduli di Azure per Active Directory e così via.
+* Hello **archivio azure-mgmt-Lake** modulo include operazioni di gestione di account archivio Azure Data Lake hello.
+* Hello **dell'archivio Lake azure** modulo include le operazioni di file System di hello archivio Azure Data Lake. 
+* Hello **azure-Lake-analitica** modulo include le operazioni di Azure Data Lake Analitica hello. 
 
-Assicurarsi prima di tutto di avere la versione più recente di `pip` usando il comando seguente:
+In primo luogo, verificare di aver hello più recente `pip` eseguendo hello comando seguente:
 
 ```
 python -m pip install --upgrade pip
@@ -46,7 +46,7 @@ python -m pip install --upgrade pip
 
 Questo documento si basa su `pip version 9.0.1`.
 
-Per installare i moduli dalla riga di comando, usare i comandi `pip` seguenti:
+Utilizzare la seguente hello `pip` comandi moduli hello tooinstall dalla riga di comando hello:
 
 ```
 pip install azure-mgmt-resource
@@ -57,7 +57,7 @@ pip install azure-mgmt-datalake-analytics
 
 ## <a name="create-a-new-python-script"></a>Creare un nuovo script Python
 
-Incollare il codice seguente nello script:
+Incollare hello seguente di codice in script hello:
 
 ```python
 ## Use this only for Azure AD service-to-service authentication
@@ -92,7 +92,7 @@ from azure.mgmt.datalake.analytics.catalog import DataLakeAnalyticsCatalogManage
 import logging, getpass, pprint, uuid, time
 ```
 
-Eseguire questo script per verificare che i moduli possano essere importati.
+Eseguire questo tooverify script che hello moduli possono essere importati.
 
 ## <a name="authentication"></a>Autenticazione
 
@@ -103,7 +103,7 @@ Questo metodo non è supportato.
 ### <a name="interactive-user-authentication-with-a-device-code"></a>Autenticazione utente interattiva con un codice di dispositivo
 
 ```python
-user = input('Enter the user to authenticate with that has permission to subscription: ')
+user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
 password = getpass.getpass()
 credentials = UserPassCredentials(user, password)
 ```
@@ -120,7 +120,7 @@ Questo metodo non è supportato.
 
 ## <a name="common-script-variables"></a>Variabili dello script comuni
 
-Negli esempi sono usate queste variabili.
+Queste variabili vengono utilizzate negli esempi di hello.
 
 ```python
 subid= '<Azure Subscription ID>'
@@ -130,7 +130,7 @@ adls = '<Azure Data Lake Store Account Name>'
 adla = '<Azure Data Lake Analytics Account Name>'
 ```
 
-## <a name="create-the-clients"></a>Creare i client
+## <a name="create-hello-clients"></a>Creare i client hello
 
 ```python
 resourceClient = ResourceManagementClient(credentials, subid)
@@ -185,7 +185,7 @@ script = """
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 """
 
@@ -201,7 +201,7 @@ jobResult = adlaJobClient.job.create(
 )
 ```
 
-## <a name="wait-for-a-job-to-end"></a>Attendere la fine di un processo
+## <a name="wait-for-a-job-tooend"></a>Attendere un tooend processo
 
 ```python
 jobResult = adlaJobClient.job.get(adla, jobId)
@@ -228,11 +228,11 @@ for r in recurrences:
 
 ## <a name="manage-compute-policies"></a>Gestire i criteri di calcolo
 
-L'oggetto DataLakeAnalyticsAccountManagementClient offre metodi per gestire i criteri di calcolo per un account Data Lake Analytics.
+oggetto DataLakeAnalyticsAccountManagementClient Hello fornisce metodi per la gestione di hello calcolano criteri per un account Data Lake Analitica.
 
 ### <a name="list-compute-policies"></a>Elencare i criteri di calcolo
 
-Il codice seguente recupera un elenco di criteri di calcolo per un account Data Lake Analytics.
+Hello seguente codice recupera un elenco di criteri di calcolo per un account Data Lake Analitica.
 
 ```python
 policies = adlaAccountClient.computePolicies.listByAccount(rg, adla)
@@ -242,7 +242,7 @@ for p in policies:
 
 ### <a name="create-a-new-compute-policy"></a>Creare un nuovo criterio di calcolo
 
-Il codice seguente crea un nuovo criterio di calcolo per un account Data Lake Analytics, impostando il massimo di unità di analisi disponibile per l'utente specificato su 50 e la priorità minima del processo su 250.
+Hello di codice seguente crea un nuovo criterio di calcolo per un account Data Lake Analitica, impostazione hello massimo AUs disponibile toohello specificato utente too50 e hello processo minimo priorità too250.
 
 ```python
 userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde"
@@ -252,7 +252,7 @@ adlaAccountClient.computePolicies.createOrUpdate(rg, adla, "GaryMcDaniel", newPo
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per visualizzare la stessa esercitazione usando altri strumenti, scegliere i selettori di scheda nella parte superiore della pagina.
-- Per informazioni su U-SQL, vedere [Introduzione al linguaggio U-SQL di Azure Data Lake Analytics](data-lake-analytics-u-sql-get-started.md).
+- toosee hello stesso esercitazione con altri strumenti, fare clic sui selettori di hello scheda nella parte superiore di hello della pagina hello.
+- toolearn U-SQL, vedere [Guida introduttiva di Azure Data Lake Analitica U-SQL language](data-lake-analytics-u-sql-get-started.md).
 - Per informazioni sulle attività di gestione, vedere [Gestire Azure Data Lake Analytics tramite il portale di Azure](data-lake-analytics-manage-use-portal.md).
 

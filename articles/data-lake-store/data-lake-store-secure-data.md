@@ -1,6 +1,6 @@
 ---
-title: Protezione dei dati presenti in Azure Data Lake Store | Microsoft Azure
-description: Informazioni su come proteggere i dati presenti in Archivio Data Lake di Azure usando gruppi ed elenchi di controllo di accesso
+title: dati aaaSecuring archiviati nell'archivio Azure Data Lake | Documenti Microsoft
+description: Informazioni su come elenchi di controllo toosecure dati nell'archivio Azure Data Lake utilizza i gruppi e accesso
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,145 +14,145 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 345896880b0acfb28607926205b053cb7a332d27
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2b4ed7e322e1843ca47d6968ec8801ac19ea6399
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="securing-data-stored-in-azure-data-lake-store"></a>Protezione dei dati presenti in Archivio Data Lake di Azure
 La protezione dei dati presenti in Archivio Data Lake di Azure prevede un approccio suddiviso in tre fasi.
 
-1. Creazione di gruppi di sicurezza in Azure Active Directory, che consentono di implementare il controllo degli accessi in base al ruolo (RBAC) nel portale di Azure. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Microsoft Azure](../active-directory/role-based-access-control-configure.md).
-2. Assegnazione dei gruppi di sicurezza AAD all'account di Archivio Data Lake di Azure. In questo modo è possibile controllare l'accesso all'account di Archivio Data Lake dal portale e le operazioni di gestione dal portale o dalle API.
-3. Assegnazione dei gruppi di sicurezza AAD come elenchi di controllo di accesso al file system di Archivio Data Lake.
-4. È anche possibile impostare un intervallo di indirizzi IP per i client che possono accedere ai dati in Archivio Data Lake.
+1. Creazione di gruppi di sicurezza in Azure Active Directory, Questi gruppi di sicurezza vengono utilizzati tooimplement controllo di accesso basato sui ruoli (RBAC) nel portale di Azure. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Microsoft Azure](../active-directory/role-based-access-control-configure.md).
+2. Assegnare account archivio Azure Data Lake di hello AAD sicurezza gruppi toohello. Controlla l'account di accesso toohello archivio Data Lake dalle operazioni di gestione e portale hello dal portale di hello o le API.
+3. Assegnare gruppi di sicurezza AAD hello come elenchi di controllo di accesso (ACL) nel file system di hello archivio Data Lake.
+4. È inoltre possibile impostare un intervallo di indirizzi IP per i client che è possono accedere ai dati hello in archivio Data Lake.
 
-Questo articolo fornisce istruzioni sull'uso del portale di Azure per eseguire le attività appena descritte. Per informazioni dettagliate sull'implementazione della sicurezza a livello di account e di dati in Archivio Data Lake, vedere [Security in Azure Data Lake Store](data-lake-store-security-overview.md)(Sicurezza in Archivio Azure Data Lake). Per informazioni di approfondimento su come vengono implementati gli elenchi di controllo di accesso in Azure Data Lake Store, vedere la panoramica sul [controllo di accesso in Data Lake Store](data-lake-store-access-control.md).
+In questo articolo vengono fornite istruzioni su come toouse hello hello tooperform portale Azure sopra l'attività. Per informazioni dettagliate su come archivio Data Lake implementa la protezione a livello di account e dati hello, vedere [protezione nell'archivio Azure Data Lake](data-lake-store-security-overview.md). Per informazioni di approfondimento su come vengono implementati gli elenchi di controllo di accesso in Azure Data Lake Store, vedere la panoramica sul [controllo di accesso in Data Lake Store](data-lake-store-access-control.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Prima di iniziare questa esercitazione, è necessario disporre di quanto segue:
+Prima di iniziare questa esercitazione, è necessario disporre delle seguenti hello:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Un account di Archivio Data Lake di Azure**. Per istruzioni su come crearne uno, vedere [Introduzione ad Archivio Data Lake di Azure](data-lake-store-get-started-portal.md)
+* **Un account Azure Data Lake Store**. Per istruzioni su come toocreate uno, vedere [introduzione archivio Azure Data Lake](data-lake-store-get-started-portal.md)
 
 ## <a name="create-security-groups-in-azure-active-directory"></a>Creare gruppi di sicurezza in Azure Active Directory
-Per istruzioni su come creare gruppi di sicurezza AAD e come aggiungere utenti ai gruppi, vedere [Gestione dei gruppi di sicurezza in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
+Per istruzioni su come gruppi di sicurezza AAD toocreate e come gruppo toohello di tooadd utenti, vedere [la gestione dei gruppi di sicurezza in Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
 
 > [!NOTE] 
-> È possibile aggiungere utenti e altri gruppi a un gruppo in Azure AD tramite il portale di Azure. Tuttavia, per aggiungere un'entità servizio a un gruppo, usare il [modulo PowerShell di Azure AD](../active-directory/active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
+> È possibile aggiungere utenti e altri gruppi tooa gruppo di Azure AD usando hello portale di Azure. Tuttavia, in ordine tooadd un gruppo di tooa dell'entità servizio, utilizzare [modulo PowerShell di Azure AD](../active-directory/active-directory-accessmanagement-groups-settings-v2-cmdlets.md).
 > 
 > ```powershell
-> # Get the desired group and service principal and identify the correct object IDs
+> # Get hello desired group and service principal and identify hello correct object IDs
 > Get-AzureADGroup -SearchString "<group name>"
 > Get-AzureADServicePrincipal -SearchString "<SPI name>"
 > 
-> # Add the service principal to the group
+> # Add hello service principal toohello group
 > Add-AzureADGroupMember -ObjectId <Group object ID> -RefObjectId <SPI object ID>
 > ```
  
-## <a name="assign-users-or-security-groups-to-azure-data-lake-store-accounts"></a>Assegnare utenti o gruppi di sicurezza ad account di Archivio Data Lake di Azure
-Quando si assegnano utenti o gruppi di sicurezza ad account di Archivio Data Lake di Azure, è possibile controllare l'accesso alle operazioni di gestione eseguite sull'account tramite il portale di Azure o le API di Gestione risorse di Azure. 
+## <a name="assign-users-or-security-groups-tooazure-data-lake-store-accounts"></a>Assegnare gli utenti o gruppi di protezione account archivio Data Lake tooAzure
+Quando è possibile assegnare gli utenti o gruppi di protezione account archivio Data Lake tooAzure, controllare le operazioni di gestione di accesso toohello account hello utilizzando hello portale di Azure e le API di gestione risorse di Azure. 
 
-1. Aprire un account di Archivio Data Lake di Azure. Nel riquadro sinistro fare clic su **Sfoglia** e su **Data Lake Store**, quindi nel pannello Data Lake Store fare clic sul nome dell'account a cui si desidera assegnare un utente o un gruppo di sicurezza.
+1. Aprire un account di Archivio Data Lake di Azure. Nel riquadro di sinistra hello, fare clic su **Sfoglia**, fare clic su **archivio Data Lake**, dal Pannello di archivio Data Lake hello, quindi fare clic su hello account nome toowhich desiderato tooassign un utente o gruppo di protezione.
 
-2. Nel pannello delle impostazioni dell'account Data Lake Store fare clic su **Controllo di accesso (IAM)**. Per impostazione predefinita il pannello elenca il gruppo **Amministratori della sottoscrizione** come proprietario.
+2. Nel pannello delle impostazioni dell'account Data Lake Store fare clic su **Controllo di accesso (IAM)**. Pannello Hello dagli elenchi predefiniti **gli amministratori delle sottoscrizioni** gruppo come proprietario.
    
-    ![Assegnare un gruppo di sicurezza all'account Azure Data Lake Store](./media/data-lake-store-secure-data/adl.select.user.icon.png "Assegnare un gruppo di sicurezza all'account Azure Data Lake Store")
+    ![Assegnare account archivio Data Lake tooAzure gruppo di protezione](./media/data-lake-store-secure-data/adl.select.user.icon.png "assegnare account archivio Data Lake tooAzure gruppo di protezione")
 
-    Esistono due modi per aggiungere un gruppo e assegnare i ruoli appropriati.
+    Esistono due modi tooadd un gruppo e assegnare i ruoli pertinente.
    
-    * Aggiungere un utente/gruppo all'account e assegnare ad esso un ruolo, oppure
-    * Aggiungere un ruolo ed assegnare ad esso utenti/gruppi.
+    * Aggiungere un account di utente/gruppo toohello e quindi assegnare un ruolo, o
+    * Aggiungere un ruolo e quindi assegnare utenti o gruppi toorole.
      
-    In questa sezione si prenderà in esame il primo metodo, che prevede l'aggiunta di un gruppo e la conseguente assegnazione dei ruoli. È possibile eseguire una procedura simile anche per il secondo metodo, in cui si seleziona prima un ruolo e quindi si assegnano i gruppi.
-4. Nel pannello **Utenti** fare clic su **Aggiungi** per aprire il pannello **Aggiungi accesso**. Nel pannello **Aggiungi accesso** fare clic su **Selezionare un ruolo** e scegliere un ruolo per l'utente o il gruppo.
+    In questa sezione verranno esaminate primo approccio hello, aggiunta di un gruppo e l'assegnazione di ruoli. È possibile eseguire simile passaggi toofirst selezionare un ruolo e quindi assegnare il ruolo di toothat gruppi.
+4. In hello **utenti** pannello, fare clic su **Aggiungi** tooopen hello **aggiungere accesso** blade. In hello **aggiungere accesso** pannello, fare clic su **selezionare un ruolo**, quindi selezionare un ruolo per il gruppo/utente hello.
    
-    ![Aggiungere un ruolo per l'utente](./media/data-lake-store-secure-data/adl.add.user.1.png "Aggiungere un ruolo per l'utente")
+    ![Aggiungere un ruolo utente hello](./media/data-lake-store-secure-data/adl.add.user.1.png "aggiungere un ruolo utente hello")
    
-    I ruoli **Proprietario** e **Collaboratore** offrono l'accesso a un'ampia gamma di funzioni di amministrazione sull'account di Data Lake. Gli utenti che interagiranno con i dati presenti in Data Lake potranno essere aggiunti al ruolo **Lettore **. L'ambito di questi ruoli è limitato alle operazioni di gestione correlate all'account di Archivio Data Lake di Azure.
+    Hello **proprietario** e **collaboratore** ruolo fornisce l'accesso tooa numerose funzioni di amministrazione in account hello data lake. Per gli utenti che interagiscono con i dati nel servizio di data lake hello, è possibile aggiungerli toohello * * lettore * * ruolo. ambito di Hello di questi ruoli è limitato toohello Gestione operazioni correlate toohello account archivio Azure Data Lake.
    
-    Per le operazioni sui dati, invece, l'ambito d'azione degli utenti viene definito dalle singole autorizzazioni a livello di file system. Pertanto, un utente con il ruolo Lettore può visualizzare solo le impostazioni amministrative associate all'account, ma potrebbe anche leggere e scrivere dati, in base alle autorizzazioni per il file system che gli sono state assegnate. Le autorizzazioni per il file system di Archivio Data Lake sono descritte nella sezione [Assegnare utenti o gruppi di sicurezza come elenchi di controllo di accesso al file system di Archivio Data Lake di Azure](#filepermissions).
-5. Nel pannello **Aggiungi accesso** fare clic su **Aggiungi utenti** per aprire il pannello **Aggiungi utenti**. In questo pannello, cercare il gruppo di sicurezza precedentemente creato in Azure Active Directory. Se è presente un elevato numero di gruppi, usare la casella di testo nella parte superiore per filtrare in base al nome del gruppo. Fare clic su **Seleziona**.
+    Per i dati delle autorizzazioni di sistema i singoli file operazioni definiscono operazioni eseguibili dagli utenti hello. Pertanto, un utente con un ruolo di lettore possono solo visualizzare le impostazioni amministrative associate account hello ma può potenzialmente lettura e scrittura dei dati in base alle autorizzazioni del file system assegnate toothem. Le autorizzazioni del file di archivio Data Lake sono descritte nel [l'assegnazione gruppo di sicurezza come toohello ACL di sistema di file di archivio Azure Data Lake](#filepermissions).
+5. In hello **aggiungere accesso** pannello, fare clic su **aggiungere utenti** tooopen hello **aggiungere utenti** blade. In questo pannello, cercare il gruppo di sicurezza hello creata precedentemente in Azure Active Directory. Se si dispone di molti gruppi toosearch da, è possibile utilizzare la casella di testo hello nella hello toofilter superiore sul nome di gruppo hello. Fare clic su **Seleziona**.
    
     ![Aggiungere un gruppo di sicurezza](./media/data-lake-store-secure-data/adl.add.user.2.png "Aggiungere un gruppo di sicurezza")
    
-    Se si desidera aggiungere un gruppo/utente non elencato, è possibile invitarlo selezionando l'icona **Invita** e specificando l'indirizzo di posta elettronica dell'utente/gruppo.
-6. Fare clic su **OK**. Il gruppo di sicurezza dovrebbe essere ora aggiunto all'elenco, come illustrato di seguito.
+    Se si desidera tooadd gruppo/utente che non è elencato, è possibile invitarli utilizzando hello **invitare** icona e specificando l'indirizzo di posta elettronica hello hello utente/gruppo.
+6. Fare clic su **OK**. Verrà visualizzato il gruppo di sicurezza hello aggiunto come illustrato di seguito.
    
     ![Gruppo di sicurezza aggiunto](./media/data-lake-store-secure-data/adl.add.user.3.png "Gruppo di sicurezza aggiunto")
 
-7. L'utente/gruppo di sicurezza dispone ora dell'autorizzazione di accesso all'account di Archivio Data Lake di Azure. Se si desidera assegnare l'accesso a un utente specifico, è possibile aggiungerlo al gruppo di sicurezza. Analogamente, se si desidera revocare l'accesso per un utente, è possibile rimuoverlo dal gruppo di sicurezza. È possibile anche assegnare più gruppi di sicurezza a un account. 
+7. Il gruppo di sicurezza/utente dispone ora di account di accesso toohello archivio Azure Data Lake. Si desidera tooprovide accesso toospecific utenti, è possibile aggiungere il gruppo di sicurezza toohello. Analogamente, se si desidera accedere toorevoke per un utente, è possibile rimuoverli dal gruppo di sicurezza hello. È inoltre possibile assegnare più gruppi di sicurezza tooan account. 
 
-## <a name="filepermissions"></a>Assegnare utenti o gruppi di sicurezza come elenchi di controllo di accesso al file system di Archivio Data Lake di Azure
-Con l'assegnazione di utenti/gruppi di sicurezza al file system di Azure Data Lake, si imposta il controllo di accesso sui dati presenti in Archivio Data Lake di Azure.
+## <a name="filepermissions"></a>Assegnare gli utenti o gruppo di sicurezza come toohello ACL di sistema di file di archivio Azure Data Lake
+Tramite l'assegnazione di gruppi di sicurezza dell'utente o sistema di file di Azure Data Lake toohello, impostare il controllo di accesso ai dati hello archiviati nell'archivio Azure Data Lake.
 
 1. Nel pannello dell'account di Archivio Data Lake, fare clic su **Esplora dati**.
    
     ![Creare directory nell'account Data Lake Store](./media/data-lake-store-secure-data/adl.start.data.explorer.png "Creare directory nell'account Data Lake Store")
-2. Nel pannello **Esplora dati** fare clic sul file o sulla cartella per cui si vuole configurare l'elenco di controllo di accesso e quindi fare clic su **Accesso**. Per assegnare l'elenco di controllo di accesso a un file, è necessario fare clic su **Accesso** dal pannello **Anteprima file**.
+2. In hello **Esplora dati** pannello, fare clic su hello file o una cartella per cui si desidera tooconfigure hello ACL e quindi fare clic su **accesso**. file di tooa tooassign ACL, è necessario fare clic su **accesso** da hello **anteprima File** blade.
    
     ![Configurare elenchi di controllo di accesso nel file system di Data Lake](./media/data-lake-store-secure-data/adl.acl.1.png "Configurare elenchi di controllo di accesso nel file system di Data Lake")
-3. Il pannello di **accesso** elenca i profili di accesso standard e personalizzato già assegnati all'elemento radice. Fare clic sull'icona **Aggiungi** per aggiungere elenchi di controllo per l'accesso personalizzato.
+3. Hello **accesso** pannello elenca accesso standard di hello e toohello radice già assegnato l'accesso personalizzato. Fare clic su hello **Aggiungi** personalizzata a livello di icona tooadd ACL.
    
     ![Elencare gli accessi standard e personalizzati](./media/data-lake-store-secure-data/adl.acl.2.png "Elencare gli accessi standard e personalizzati")
    
-   * **accesso standard** è un tipo di accesso in stile UNIX, in cui si specificano i permessi di lettura, scrittura ed esecuzione per tre diverse classi utente: proprietario, gruppo e altri.
-   * **accesso personalizzato** corrisponde invece agli elenchi di controllo di accesso POSIX, che permettono di impostare autorizzazioni per utenti non anonimi o gruppi specifici e non solo il gruppo o il proprietario del file. 
+   * **Accesso standard** è hello UNIX l'accesso di tipo, consente di leggere, scrivere, eseguire le classi utente distinte di toothree (rwx): proprietario, gruppo e altri.
+   * **Accesso personalizzato** corrisponde toohello POSIX ACL che consente le autorizzazioni tooset per specifici utenti o gruppi e non solo hello proprietario del file o gruppo. 
      
      Per altre informazioni, vedere l'articolo sugli [elenchi di controllo di accesso HDFS](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html#ACLs_Access_Control_Lists). Per altre informazioni sull'implementazione degli elenchi di controllo di accesso in Data Lake Store, vedere [Controllo di accesso in Data Lake Store](data-lake-store-access-control.md).
-4. Fare clic sull'icona **Aggiungi** per aprire il pannello **Aggiungi accesso personalizzato**. In questo pannello fare clic su **Seleziona utente o gruppo** e, nel pannello **Seleziona utente o gruppo**, cercare il gruppo di sicurezza precedentemente creato in Azure Active Directory. Se è presente un elevato numero di gruppi, usare la casella di testo nella parte superiore per filtrare in base al nome del gruppo. Fare clic sul gruppo che si desidera aggiungere e quindi su **Seleziona**.
+4. Fare clic su hello **Aggiungi** hello tooopen icona **aggiungere accesso personalizzato** blade. In questo pannello, fare clic su **Seleziona utente o gruppo**, quindi nel **Seleziona utente o gruppo** pannello, cercare il gruppo di sicurezza hello creata precedentemente in Azure Active Directory. Se si dispone di molti gruppi toosearch da, è possibile utilizzare la casella di testo hello nella hello toofilter superiore sul nome di gruppo hello. Fare clic su gruppo hello tooadd desiderato e quindi fare clic su **selezionare**.
    
     ![Aggiungere un gruppo](./media/data-lake-store-secure-data/adl.acl.3.png "Aggiungere un gruppo")
-5. Fare clic su **Selezionare le autorizzazioni**, selezionare le autorizzazioni e se si desidera assegnare le autorizzazioni come un ACL predefinito, ACL di accesso o entrambi. Fare clic su **OK**.
+5. Fare clic su **selezionare autorizzazioni**, selezionare le autorizzazioni di hello e se si desidera che le autorizzazioni di hello tooassign come un ACL predefinito, accedere ACL o entrambi. Fare clic su **OK**.
    
-    ![Assegnare autorizzazioni a un gruppo](./media/data-lake-store-secure-data/adl.acl.4.png "Assegnare autorizzazioni a un gruppo")
+    ![Assegnare autorizzazioni toogroup](./media/data-lake-store-secure-data/adl.acl.4.png "assegnare autorizzazioni toogroup")
    
     Per altre informazioni sulle autorizzazioni in Data Lake Store e gli ACL predefiniti/di accesso, vedere [Controllo di accesso in Data Lake Store](data-lake-store-access-control.md).
-6. Nel pannello **Aggiungi accesso personalizzato** fare clic su **OK**. Il gruppo appena aggiunto, con le autorizzazioni associate, risulterà ora elencato nel pannello di **accesso** .
+6. In hello **aggiungere accesso personalizzato** pannello, fare clic su **OK**. Hello appena aggiunti, gruppo, con le autorizzazioni di hello associata, verrà ora elencato nella hello **accesso** blade.
    
-    ![Assegnare autorizzazioni a un gruppo](./media/data-lake-store-secure-data/adl.acl.5.png "Assegnare autorizzazioni a un gruppo")
+    ![Assegnare autorizzazioni toogroup](./media/data-lake-store-secure-data/adl.acl.5.png "assegnare autorizzazioni toogroup")
    
    > [!IMPORTANT]
-   > Nella versione corrente l'elenco di **accesso personalizzato**non può contenere più di nove voci. Per aggiungere più di 9 utenti, è necessario creare gruppi di sicurezza, aggiungere utenti a tali gruppi e fornire ai gruppi di sicurezza creati accesso all'account di Archivio Data Lake.
+   > Nella versione corrente di hello, è possibile avere solo 9 voci in **accesso personalizzato**. Se si desidera tooadd più di 9, è consigliabile creare gruppi di sicurezza, aggiungere gruppi di utenti toosecurity, fornire l'accesso toothose gruppi di sicurezza per hello account archivio Data Lake.
    > 
    > 
-7. Se necessario, è possibile modificare le autorizzazioni di accesso anche dopo aver aggiunto il gruppo. Selezionare o deselezionare la casella di controllo per ogni tipo di autorizzazione (lettura, scrittura, esecuzione), in modo da aggiungerla o rimuoverla dal gruppo di sicurezza. Fare clic su **Salva** per salvare le modifiche o su **Ignora** per annullare le modifiche.
+7. Se necessario, è anche possibile modificare le autorizzazioni di accesso hello dopo aver aggiunto il gruppo di hello. Casella di controllo hello deselezionare o selezionare per ogni autorizzazione digitare (lettura, scrittura, esecuzione) in base che si voglia tooremove o assegnare a tale gruppo di sicurezza toohello di autorizzazione. Fare clic su **salvare** modifiche hello toosave, o **annullare** modifiche hello tooundo.
 
 ## <a name="set-ip-address-range-for-data-access"></a>Impostare l'intervallo di indirizzi IP per l'accesso ai dati
-Archivio Azure Data Lake consente di bloccare ulteriormente l'accesso all'archivio dati a livello di rete. È possibile abilitare il firewall, specificare un indirizzo IP e definire un intervallo di indirizzi IP per i client attendibili. Dopo l'abilitazione, solo i client con indirizzo IP compreso nell'intervallo definito possono connettersi all'archivio.
+Archivio Azure Data Lake consente toofurther bloccare archivio dati tooyour di accesso a livello di rete. È possibile abilitare il firewall, specificare un indirizzo IP e definire un intervallo di indirizzi IP per i client attendibili. Una volta abilitato, solo i client che dispongono degli indirizzi IP hello all'interno di intervallo definita possono connettersi toohello store.
 
 ![Impostazioni del firewall e accesso IP](./media/data-lake-store-secure-data/firewall-ip-access.png "Impostazioni del firewall e indirizzo IP")
 
 ## <a name="remove-security-groups-for-an-azure-data-lake-store-account"></a>Rimuovere gruppi di sicurezza da un account di Archivio Data Lake di Azure
-Quando si rimuovono gruppi di sicurezza da un account di Archivio Data Lake di Azure, si modifica semplicemente l'accesso alle operazioni di gestione eseguite sull'account tramite il portale di Azure o le API di Gestione risorse di Azure.
+Quando si rimuovono i gruppi di sicurezza dall'account archivio Azure Data Lake, si modifica solo operazioni di gestione accesso toohello account hello utilizzando hello portale di Azure e le API di gestione risorse di Azure.
 
-1. Nel pannello dell'account di Data Lake Store fare clic su **Impostazioni**. Nel pannello **Impostazioni** fare clic su **Utenti**.
+1. Nel pannello dell'account di Data Lake Store fare clic su **Impostazioni**. Da hello **impostazioni** pannello, fare clic su **utenti**.
    
-    ![Assegnare un gruppo di sicurezza all'account Azure Data Lake](./media/data-lake-store-secure-data/adl.select.user.icon.png "Assegnare un gruppo di sicurezza all'account Azure Data Lake")
-2. Nel pannello **Utenti** fare clic sul gruppo di sicurezza da rimuovere.
+    ![Assegnare account Data Lake tooAzure gruppo di protezione](./media/data-lake-store-secure-data/adl.select.user.icon.png "assegnare account Data Lake tooAzure gruppo di protezione")
+2. In hello **utenti** pannello selezionare il gruppo di protezione hello desiderato tooremove.
    
-    ![Gruppo di sicurezza da rimuovere](./media/data-lake-store-secure-data/adl.add.user.3.png "Gruppo di sicurezza da rimuovere")
-3. Nel pannello relativo al gruppo di sicurezza fare clic su **Rimuovi**.
+    ![Sicurezza gruppo tooremove](./media/data-lake-store-secure-data/adl.add.user.3.png "tooremove gruppo di sicurezza")
+3. Nel Pannello di hello hello gruppo di sicurezza, fare clic su **rimuovere**.
    
     ![Gruppo di sicurezza rimosso](./media/data-lake-store-secure-data/adl.remove.group.png "Gruppo di sicurezza rimosso")
 
 ## <a name="remove-security-group-acls-from-azure-data-lake-store-file-system"></a>Rimuovere elenchi di controllo di accesso di gruppi di sicurezza dal file system di Archivio Data Lake di Azure
-Quando si rimuovono gli elenchi di controllo di accesso dei gruppi di sicurezza dal file system di Azure Data Lake Store si modifica l'accesso ai dati presenti in Archivio Data Lake.
+Quando si rimuovono i gruppi di sicurezza ACL dal file system di archivio Azure Data Lake, si modificano i dati di toohello di accesso in hello archivio Data Lake.
 
 1. Nel pannello dell'account di Archivio Data Lake, fare clic su **Esplora dati**.
    
     ![Creare directory nell'account Data Lake](./media/data-lake-store-secure-data/adl.start.data.explorer.png "Creare directory nell'account Data Lake")
-2. Nel pannello **Esplora dati** fare clic sul file o sulla cartella per cui si vuole rimuovere l'elenco di controllo di accesso e quindi fare clic sull'icona **Accesso** nel pannello dell'account. Per rimuovere l'elenco di controllo di accesso per un file, fare clic su **Accesso** dal pannello **Anteprima file**.
+2. In hello **Esplora dati** pannello, fare clic su file hello o una cartella per cui si desidera tooremove hello ACL e quindi nel pannello account, fare clic su hello **accesso** icona. tooremove ACL per un file, è necessario fare clic su **accesso** da hello **anteprima File** blade.
    
     ![Configurare elenchi di controllo di accesso nel file system di Data Lake](./media/data-lake-store-secure-data/adl.acl.1.png "Configurare elenchi di controllo di accesso nel file system di Data Lake")
-3. Nel pannello di **accesso**, all'interno della sezione **Accesso personalizzato**, fare clic sul gruppo di sicurezza da rimuovere. Nel pannello **Accesso personalizzato** fare clic su **Rimuovi** e quindi su **OK**.
+3. In hello **accesso** pannello da hello **accesso personalizzato** fare clic sul gruppo di sicurezza hello desiderato tooremove. In hello **accesso personalizzato** pannello, fare clic su **rimuovere** e quindi fare clic su **OK**.
    
-    ![Assegnare autorizzazioni a un gruppo](./media/data-lake-store-secure-data/adl.remove.acl.png "Assegnare autorizzazioni a un gruppo")
+    ![Assegnare autorizzazioni toogroup](./media/data-lake-store-secure-data/adl.remove.acl.png "assegnare autorizzazioni toogroup")
 
 ## <a name="see-also"></a>Vedere anche
 * [Panoramica di Archivio Data Lake di Azure](data-lake-store-overview.md)
-* [Copiare i dati da BLOB di archiviazione di Azure ad Archivio Data Lake](data-lake-store-copy-data-azure-storage-blob.md)
+* [Copiare i dati da un archivio Azure archiviazione BLOB tooData Lake](data-lake-store-copy-data-azure-storage-blob.md)
 * [Usare Azure Data Lake Analytics con Data Lake Store](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
 * [Usare Azure HDInsight con Archivio Data Lake](data-lake-store-hdinsight-hadoop-use-portal.md)
 * [Introduzione ad Archivio Data Lake mediante PowerShell](data-lake-store-get-started-powershell.md)

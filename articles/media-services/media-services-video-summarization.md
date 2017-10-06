@@ -1,6 +1,6 @@
 ---
-title: Usare Azure Media Video Thumbnails per creare un riepilogo video | Microsoft Docs
-description: "Il riepilogo video consente di creare un riepilogo per video lunghi selezionando in modo automatico frammenti interessanti del video di origine. Questa funzione risulta particolarmente utile quando si intende creare una panoramica rapida dei contenuti offerti nella versione più lunga del video."
+title: aaaUse Azure Media Video anteprime tooCreate un riepilogo di Video | Documenti Microsoft
+description: "Riepilogo video consentono di creare riepiloghi dei video lunghi selezionando automaticamente interessanti frammenti video di origine hello. Ciò è utile quando si desidera tooprovide una rapida panoramica delle quali tooexpect in un video di lunga durata."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,26 +14,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: 5d5afdaf22ffea8f3b77a154acb5d0a8dda74405
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0a8f0bba6c12a948b940114fe4937e675688a8c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-media-video-thumbnails-to-create-a-video-summarization"></a>Uso delle anteprime video multimediali di Azure per creare un riepilogo video
-## <a name="overview"></a>Overview
-Il processore multimediale delle **anteprime video multimediali di Azure** processore di contenuti multimediali (MP) consente di creare il riepilogo di un video, utile per i clienti che desiderano solo visualizzare in anteprima il riepilogo di un video di lunga durata. Ad esempio, i clienti potrebbero voler vedere un breve "riepilogo video" quando passano il mouse sull'anteprima. Modificando i parametri delle **anteprime video multimediali di Azure** con un set di impostazioni di configurazione, è possibile usare l'efficiente tecnologia di concatenazione e rilevamento delle schermate offerta dal processore multimediale per generare in modo algoritmico una sottoclip descrittiva.  
+# <a name="use-azure-media-video-thumbnails-toocreate-a-video-summarization"></a>Utilizzare le anteprime di Azure Media Video tooCreate un riepilogo di Video
+## <a name="overview"></a>Panoramica
+Hello **anteprime Video di Azure Media** toocreate un riepilogo di un video utile toocustomers che si desidera toopreview un riepilogo di un video di lunga durata che consente il processore di contenuti multimediali (MP). Ad esempio, i clienti potrebbe essere necessario toosee un breve "riepilogo video" quando si posiziona su un'immagine di anteprima. Modificando i parametri di hello di **Azure Media Video anteprime** tramite un set di impostazioni di configurazione, è possibile utilizzare il rilevamento di ripresa potente hello del Management Pack e concatenazione tecnologia tooalgorithmically generare una secondaria descrittiva.  
 
-Al momento, il processore multimediale di **anteprime video multimediali di Azure** è disponibile in Anteprima.
+Hello **anteprima di Azure Media Video** Management Pack è attualmente in anteprima.
 
-Questo argomento contiene informazioni dettagliate su **Azure Media Video Thumbnails** e illustra come usare questa funzionalità con Media Services .NET SDK.
+In questo argomento fornisce informazioni dettagliate sulle **anteprima di Azure Media Video** e Mostra come toouse con Media Services SDK per .NET.
 
 ## <a name="limitations"></a>Limitazioni
 
-In alcuni casi, se il video non è costituito da scene differenti, l'output sarà rappresentato da un'unica immagine.
+In alcuni casi, se il video non è costituito da diverse scene, output di hello sarà solo un'unica operazione.
 
 ## <a name="video-summary-example"></a>Esempio di riepilogo video
-Di seguito sono riportati alcuni esempi delle attività che il processore multimediale delle anteprime video multimediali di Azure può eseguire:
+Di seguito sono riportati alcuni esempi di effettuare il processore di contenuti multimediali Azure Media Video anteprime hello:
 
 ### <a name="original-video"></a>Video originale
 [Video originale](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Faed33834-ec2d-4788-88b5-a4505b3d032c%2FMicrosoft%27s%20HoloLens%20Live%20Demonstration.ism%2Fmanifest)
@@ -42,26 +42,26 @@ Di seguito sono riportati alcuni esempi delle attività che il processore multim
 [Risultato dell'anteprima video](http://ampdemo.azureedge.net/azuremediaplayer.html?url=http%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Ff5c91052-4232-41d4-b531-062e07b6a9ae%2FHololens%2520Demo_VideoThumbnails_MotionThumbnail.mp4)
 
 ## <a name="task-configuration-preset"></a>Configurazione delle attività (set di impostazioni)
-Quando si crea un'attività di anteprima video con **anteprime video multimediali di Azure**, è necessario specificare un set di impostazioni di configurazione. L'esempio precedente dell'anteprima è stato creato con la configurazione JSON di base seguente:
+Quando si crea un'attività di anteprima video con **anteprime video multimediali di Azure**, è necessario specificare un set di impostazioni di configurazione. Hello anteprima nell'esempio precedente è stato creato con hello seguente configurazione di base JSON:
 
     {"version":"1.0"}
 
-Al momento, è possibile modificare i parametri seguenti:
+Attualmente, è possibile modificare hello seguenti parametri:
 
 | Param | Descrizione |
 | --- | --- |
-| outputAudio |Specifica se il video finale contiene audio. <br/>I valori consentiti sono: true o false. Il valore predefinito è true. |
-| fadeInFadeOut |Specifica se vengono usate transizioni a dissolvenza tra le anteprime di movimento separate.  <br/>I valori consentiti sono: true o false.  Il valore predefinito è true. |
-| maxMotionThumbnailDurationInSecs |Numero intero che specifica quanto tempo deve durare l'intero video finale.  Il valore predefinito dipende dalla durata del video originale. |
+| outputAudio |Specifica se consentire o meno video risultante hello contiene audio. <br/>I valori consentiti sono: true o false. Il valore predefinito è true. |
+| fadeInFadeOut |Specifica che ha eseguito la transizione dissolvenza vengono utilizzati tra le anteprime di movimento separato hello.  <br/>I valori consentiti sono: true o false.  Il valore predefinito è true. |
+| maxMotionThumbnailDurationInSecs |Numero intero che specifica quanto tempo hello intero risultante video deve essere.  Il valore predefinito dipende dalla durata del video originale. |
 
-La tabella seguente descrive la durata predefinita, quando **maxMotionThumbnailInSecs** non viene usato.
+Hello nella tabella seguente vengono descritti durata predefinita di hello, quando **maxMotionThumbnailInSecs** non viene utilizzato.
 
 |  |  |  |
 | --- | --- | --- | --- | --- |
 | Durata del video |d < 3 min |3 minuti. < d < 15 minuti |
 | Durata dell'anteprima |15 sec (2-3 scene) |30 sec (3-5 scene) |
 
-Il codice JSON seguente imposta i parametri disponibili.
+Hello JSON seguente imposta i parametri disponibili.
 
     {
         "version": "1.0",
@@ -74,10 +74,10 @@ Il codice JSON seguente imposta i parametri disponibili.
 
 ## <a name="net-sample-code"></a>Codice di esempio .NET
 
-Il programma seguente illustra come:
+esempio Hello programma mostra come:
 
-1. Creare un asset e caricare un file multimediale nell'asset.
-2. Creare un processo con un'attività di anteprima video in base al file di configurazione che contiene il set di impostazioni JSON seguente. 
+1. Creare un asset e caricare un file multimediale nell'asset hello.
+2. Crea un processo con un'attività di anteprima video in base a un file di configurazione che contiene i seguenti set di impostazioni json hello. 
    
         {                
             "version": "1.0",
@@ -87,11 +87,11 @@ Il programma seguente illustra come:
                 "fadeInFadeOut": "false"
             }
         }
-3. Scaricare i file di output. 
+3. Scarica i file di output di hello. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Creare e configurare un progetto di Visual Studio
 
-Configurare l'ambiente di sviluppo e popolare il file app.config con le informazioni di connessione, come descritto in [Sviluppo di applicazioni di Servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
+Configurare l'ambiente di sviluppo e di popolare il file app. config hello con informazioni di connessione, come descritto in [lo sviluppo di servizi multimediali con .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Esempio
 
@@ -107,7 +107,7 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
     {
         class Program
         {
-            // Read values from the App.config file.
+            // Read values from hello App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -124,17 +124,17 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
 
-                // Run the thumbnail job.
+                // Run hello thumbnail job.
                 var asset = RunVideoThumbnailJob(@"C:\supportFiles\VideoThumbnail\BigBuckBunny.mp4",
                                             @"C:\supportFiles\VideoThumbnail\config.json");
 
-                // Download the job output asset.
+                // Download hello job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\VideoThumbnail\Output");
             }
 
             static IAsset RunVideoThumbnailJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload the input media file to storage.
+                // Create an asset and upload hello input media file toostorage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Video Thumbnail Input Asset",
                     AssetCreationOptions.None);
@@ -142,38 +142,38 @@ Configurare l'ambiente di sviluppo e popolare il file app.config con le informaz
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Video Thumbnail Job");
 
-                // Get a reference to Azure Media Video Thumbnails.
+                // Get a reference tooAzure Media Video Thumbnails.
                 string MediaProcessorName = "Azure Media Video Thumbnails";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from the specified file.
+                // Read configuration from hello specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with the encoding details, using a string preset.
+                // Create a task with hello encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Video Thumbnail Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify the input asset.
+                // Specify hello input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset to contain the results of the job.
+                // Add an output asset toocontain hello results of hello job.
                 task.OutputAssets.AddNew("My Video Thumbnail Output Asset", AssetCreationOptions.None);
 
-                // Use the following event handler to check job progress.  
+                // Use hello following event handler toocheck job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch the job.
+                // Launch hello job.
                 job.Submit();
 
-                // Check job execution and wait for job to finish.
+                // Check job execution and wait for job toofinish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, the event handling
+                // If job state is Error, hello event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

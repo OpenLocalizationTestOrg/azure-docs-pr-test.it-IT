@@ -1,6 +1,6 @@
 ---
-title: Sottoscrizione e account per le macchine virtuali Windows in Azure | Documentazione Microsoft
-description: Informazioni sulle principali linee guida di progettazione e implementazione per le sottoscrizioni e gli account in Azure.
+title: aaaSubscription e gli account per le macchine virtuali Windows in Azure | Documenti Microsoft
+description: Informazioni su hello progettazione e implementazione di linee guida fondamentali per le sottoscrizioni e account in Azure.
 documentationcenter: 
 services: virtual-machines-windows
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8b54e18ed6ecef26a059a6ce742bca03a6434183
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9dc712af559b04490be1dc721a9b9f7fe9ed88f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-accounts-guidelines-for-windows-vms"></a>Linee guida per le sottoscrizioni e gli account Azure per macchine virtuali Windows
 
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
-Questo articolo è incentrato sulla comprensione delle modalità di gestione delle sottoscrizioni e degli account mano a mano che si amplia l'ambiente e la base utenti.
+In questo articolo si incentra sulla comprensione di come si espande tooapproach sottoscrizione e account di gestione, come l'ambiente e un utente di base.
 
 ## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a>Linee guida per l'implementazione di sottoscrizioni e account
 Decisioni:
 
-* Quali sono i set di sottoscrizioni e account necessari per l'hosting dell'infrastruttura o del carico di lavoro IT?
-* Come deve essere suddivisa la gerarchia in modo da adattarsi all'organizzazione?
+* Il set di account e sottoscrizioni è necessario toohost l'infrastruttura o il carico di lavoro IT?
+* Come toobreak verso il basso hello gerarchia toofit organizzazione?
 
 Attività:
 
-* Definire la gerarchia logica dell'organizzazione in base a come si intende gestirla a livello di sottoscrizioni.
-* Per soddisfare questa gerarchia logica, definire gli account necessari e le sottoscrizioni per ogni account.
-* Creare il set di sottoscrizioni e account usando la convenzione di denominazione scelta.
+* Definire la gerarchia logica dell'organizzazione che si desidera toomanage dal livello di sottoscrizione.
+* toomatch questa gerarchia logica, definire gli account di hello necessari e le sottoscrizioni con ogni account.
+* Creare set di hello di sottoscrizioni e gli account utilizzando la convenzione di denominazione.
 
 ## <a name="subscriptions-and-accounts"></a>Sottoscrizioni e account
-Per usare Azure sono necessarie una o più sottoscrizioni ad Azure. Nell'ambito di tali sottoscrizioni sono presenti risorse come le macchine virtuali o le reti virtuali.
+toowork con Azure, è necessario uno o più sottoscrizioni di Azure. Nell'ambito di tali sottoscrizioni sono presenti risorse come le macchine virtuali o le reti virtuali.
 
-* I clienti aziendali dispongono in genere di una registrazione Enterprise, che è la risorsa più in alto nella gerarchia ed è associata a uno o più account.
-* Per utenti e clienti senza una registrazione Enterprise, la risorsa di livello superiore è l'Account.
-* Le sottoscrizioni sono associate agli account ed è possibile associare una o più sottoscrizioni a ogni account. In Azure le informazioni relative alla fatturazione vengono registrate a livello di sottoscrizione.
+* I clienti aziendali hanno in genere un'iscrizione Enterprise, risorse di primo piano hello nella gerarchia di hello, e tooone associato o altri account.
+* Per utenti e i clienti senza un'iscrizione Enterprise, risorse di primo piano hello sono account hello.
+* Le sottoscrizioni sono associati tooaccounts e possono essere presenti uno o più sottoscrizioni per l'account. Azure record di informazioni a livello di sottoscrizione hello di fatturazione.
 
-A causa del limite di due livelli gerarchici nella relazione di account/sottoscrizione è importante allineare la convenzione di denominazione degli account e delle sottoscrizioni alle esigenze di fatturazione. Se ad esempio un'azienda globale usa Azure, può scegliere di disporre di un account per ogni area e fare in modo che le sottoscrizioni vengano gestite a livello di area:
+A causa di limite toohello due di livelli della gerarchia in relazione tra Account o una sottoscrizione di hello, è importante tooalign convenzione di denominazione hello di account e sottoscrizioni toohello esigenze di fatturazione. Ad esempio, una società globale Usa Azure, possono scegliere account toohave uno per ogni area e avranno sottoscrizioni gestite a livello di area hello:
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-È ad esempio possibile usare la struttura seguente:
+Ad esempio, è possibile utilizzare hello seguente struttura:
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-Se in un'area si decide di associare più sottoscrizioni a un determinato gruppo, la convenzione di denominazione deve incorporare un modo per codificare i dati aggiuntivi sia nel nome account che nel nome della sottoscrizione. Questa organizzazione consente di elaborare i dati di fatturazione per generare nuovi livelli di gerarchia durante la fatturazione dei report:
+Se un'area decide toohave più gruppo specifico di una sottoscrizione associata tooa, convenzione di denominazione hello deve includere un tooencode modo hello dati aggiuntivi sul conto hello o nome della sottoscrizione hello. Questa organizzazione consente Ritocco dei fatturazione dati toogenerate hello nuovi livelli di gerarchia durante la fatturazione di report:
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-L'organizzazione potrebbe essere simile all'esempio seguente:
+organizzazione Hello potrebbe essere simile hello di esempio seguente:
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 

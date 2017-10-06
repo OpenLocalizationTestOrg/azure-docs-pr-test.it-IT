@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: aungoo
-ms.openlocfilehash: 5b5c8b4a0d490aee4b3d33f9222011d7864e4490
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dde3e60ae4c8387150b65f0715166b5d549891e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-premium-storage-design-for-high-performance"></a>Archiviazione Premium di Azure: progettata per prestazioni elevate
 ## <a name="overview"></a>Overview
-Questo articolo fornisce indicazioni per lo sviluppo di applicazioni a prestazioni elevate mediante l'Archiviazione Premium di Azure. È possibile usare le istruzioni disponibili in questo documento insieme alle procedure consigliate per le prestazioni applicabili alle tecnologie usate dall'applicazione. Per illustrare le indicazioni, è stato usato SQL Server in esecuzione nell'Archiviazione Premium come esempio nell'intero documento.
+Questo articolo fornisce indicazioni per lo sviluppo di applicazioni a prestazioni elevate mediante l'Archiviazione Premium di Azure. È possibile utilizzare istruzioni hello fornite in questo documento combinato con prestazioni migliori procedure consigliate applicabile tootechnologies utilizzati dall'applicazione. linee guida hello tooillustrate, è stato utilizzato SQL Server in esecuzione in archiviazione Premium come un esempio in questo documento.
 
-In questo articolo vengono trattati scenari relativi alle prestazioni per il livello dell'archiviazione, ma sarà necessario ottimizzare il livello dell'applicazione. Ad esempio, se si ospita una farm SharePoint nell'Archiviazione Premium di Azure, è possibile usare gli esempi relativi a SQL Server di questo articolo per ottimizzare il server di database. È anche possibile ottimizzare il server Web e il server applicazioni della farm SharePoint per ottenere prestazioni migliori.
+Mentre si risolve gli scenari di prestazioni per il livello di archiviazione hello in questo articolo, sarà necessario toooptimize livello dell'applicazione hello. Ad esempio, se si ospita una SharePoint Farm su archiviazione Premium di Azure, è possibile utilizzare gli esempi di SQL Server hello dal server di database in questo articolo toooptimize hello. Inoltre, ottimizzare hello tooget di applicazioni server e di server Web della Farm di SharePoint hello la maggior parte delle prestazioni.
 
 Questo articolo è utile per rispondere alle domande comuni seguenti sull'ottimizzazione delle prestazioni dell'applicazione nell'Archiviazione Premium di Azure:
 
-* Come si misurano le prestazioni dell'applicazione?  
+* Come toomeasure le prestazioni dell'applicazione?  
 * Perché non si ottengono le prestazioni elevate previste?  
 * Quali fattori influenzano le prestazioni dell'applicazione nell'Archiviazione Premium?  
 * In che modo questi fattori influenzano le prestazioni dell'applicazione nell'Archiviazione Premium?  
 * Come si ottiene l'ottimizzazione per IOPS, larghezza di banda e latenza?  
 
-Queste indicazioni sono specifiche per l'Archiviazione Premium, perché i carichi di lavoro in esecuzione nell'Archiviazione Premium sono influenzati in modo significativo dalle prestazioni. Sono disponibili esempi nei casi appropriati. È anche possibile applicare alcune indicazioni alle applicazioni in esecuzione su VM IaaS con dischi di archiviazione Standard.
+Queste indicazioni sono specifiche per l'Archiviazione Premium, perché i carichi di lavoro in esecuzione nell'Archiviazione Premium sono influenzati in modo significativo dalle prestazioni. Sono disponibili esempi nei casi appropriati. È inoltre possibile applicare alcune di queste linee guida tooapplications in esecuzione in macchine virtuali IaaS con i dischi di archiviazione Standard.
 
-Prima di iniziare, se non si ha alcuna esperienza dell'Archiviazione Premium, leggere gli articoli [Archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro delle macchine virtuali di Azure](../storage-premium-storage.md) e [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](storage-scalability-targets.md).
+Prima di iniziare, se si è tooPremium nuova archiviazione, leggere prima hello [archiviazione Premium: archiviazione ad alte prestazioni per carichi di lavoro di macchina virtuale Azure](../storage-premium-storage.md) e [Azure obiettivi di scalabilità e prestazioni](storage-scalability-targets.md)articoli.
 
 ## <a name="application-performance-indicators"></a>Indicatori di prestazioni dell'applicazione
-È possibile valutare se le prestazioni di un'applicazione sono adeguate o meno usando indicatori di prestazioni, ad esempio la velocità di elaborazione di una richiesta utente da parte di un'applicazione, la quantità di dati elaborata da un'applicazione per ogni richiesta, il numero di richieste elaborate da un'applicazione in un periodo specifico, la durata dell'attesa da parte di un utente per ottenere una risposta dopo l'invio della richiesta. I termini tecnici per definire questi indicatori di prestazioni sono IOPS, velocità effettiva o larghezza di banda e latenza.
+È valutare se l'esecuzione di un'applicazione ben o non utilizzare come indicatori di prestazioni, la velocità con cui un'applicazione sta elaborando una richiesta dell'utente, la quantità di dati è l'elaborazione di un'applicazione per ogni richiesta, il numero di richieste è un'applicazione di elaborazione in uno specifico periodo di tempo, quanto tempo che un utente ha toowait tooget una risposta dopo aver inviato la richiesta. termini tecnici di Hello per questi indicatori di prestazioni sono IOPS, velocità effettiva o della larghezza di banda e latenza.
 
-In questa sezione verranno illustrati gli indicatori di prestazioni comuni nel contesto dell'Archiviazione Premium. Nella sezione seguente, Recupero dei requisiti dell'applicazione, verrà illustrato come misurare questi indicatori di prestazioni dell'applicazione. In Ottimizzazione delle prestazioni dell'applicazione verranno descritti infine i fattori che influiscono su questi indicatori di prestazioni e verranno fornite indicazioni utili per l'ottimizzazione degli indicatori.
+In questa sezione verranno trattati hello comuni gli indicatori di prestazioni nel contesto di hello dell'archiviazione Premium. In hello seguente sezione, la raccolta dei requisiti dell'applicazione, si apprenderà come toomeasure questi indicatori di prestazioni per l'applicazione. Più avanti in ottimizzazione delle prestazioni dell'applicazione, si apprenderà incidono hello questi toooptimize di indicatori e indicazioni sulle prestazioni li.
 
 ## <a name="iops"></a>IOPS
-IOPS indica il numero di richieste inviate dall'applicazione ai dischi di archiviazione in un secondo. Un'operazione di input/output può essere di lettura o di scrittura, sequenziale o casuale. Le applicazioni OLTP, ad esempio un sito Web per la rivendita online, devono elaborare immediatamente molte richieste utente concomitanti. Le richieste utente sono transazioni di database con un numero elevato di inserimenti e aggiornamenti, che devono essere elaborate rapidamente dall'applicazione. Le applicazioni OLTP richiedono quindi valori molto elevati per IOPS. Queste applicazioni gestiscono milioni di richieste I/O di piccole dimensioni e casuali. Se si crea un'applicazione di questo tipo, sarà necessario progettare l'infrastruttura dell'applicazione in modo che sia ottimizzata per IOPS. Nella sezione successiva, *Ottimizzazione delle prestazioni dell'applicazione*, verranno illustrati in modo dettagliato tutti i fattori da valutare per ottenere valori elevati per IOPS.
+IOPS è numero di richieste che l'applicazione invia toohello dischi di archiviazione in un secondo. Un'operazione di input/output può essere di lettura o di scrittura, sequenziale o casuale. Le applicazioni OLTP come un sito Web delle vendite al dettaglio online necessitano tooprocess immediatamente le richieste di molti utenti simultanei. le richieste utente Hello sono insert e aggiornare le transazioni di database con utilizzo intensivo, l'applicazione hello deve elaborare rapidamente. Le applicazioni OLTP richiedono quindi valori molto elevati per IOPS. Queste applicazioni gestiscono milioni di richieste I/O di piccole dimensioni e casuali. Se si dispone di un'applicazione, è necessario progettare hello applicazione infrastruttura toooptimize per IOPS. In hello sezione in un secondo momento, *ottimizzazione delle prestazioni delle applicazioni*, verranno illustrate in dettaglio tutti i fattori di hello che è necessario considerare tooget numero elevato di IOPS.
 
-Quando si collega un disco di Archiviazione Premium alla VM a scalabilità elevata, Azure effettua automaticamente il provisioning di un numero garantito di IOPS, in base alla specifica del disco. Ad esempio, un disco P50 effettua il provisioning di 7500 IOPS. Ogni dimensione di VM a scalabilità elevata prevede anche un limite di IOPS specifico sostenibile. Ad esempio, una VM GS5 Standard ha un limite di 80.000 IOPS.
+Quando si collega un premium archiviazione disco tooyour su larga scala macchina virtuale, Azure esegue il provisioning per consentire un numero garantito di IOPS in base alla specifica di disco hello. Ad esempio, un disco P50 effettua il provisioning di 7500 IOPS. Ogni dimensione di VM a scalabilità elevata prevede anche un limite di IOPS specifico sostenibile. Ad esempio, una VM GS5 Standard ha un limite di 80.000 IOPS.
 
 ## <a name="throughput"></a>Velocità effettiva
-La velocità effettiva o larghezza di banda è la quantità di dati che l'applicazione invia ai dischi di archiviazione in un intervallo specificato. Se l'applicazione esegue operazioni di input/output con dimensioni elevate per le unità I/O, richiederà una velocità effettiva elevata. Le applicazioni di tipo data warehouse tendono a emettere operazioni che richiedono quantità elevate di analisi, accedono a grandi porzioni di dati ed eseguono in genere operazione in blocco. In altri termini, queste applicazioni richiedono una velocità effettiva più elevata. Se si crea un'applicazione di questo tipo, sarà necessario progettare l'infrastruttura dell'applicazione in modo che sia ottimizzata per la velocità effettiva. Nella sezione successiva verranno illustrati in modo dettagliato i fattori da ottimizzare per ottenere questo risultato.
+Velocità effettiva o larghezza di banda è quantità hello di dati che l'applicazione invia toohello dischi di archiviazione in un intervallo specificato. Se l'applicazione esegue operazioni di input/output con dimensioni elevate per le unità I/O, richiederà una velocità effettiva elevata. Applicazioni del data warehouse tendono tooissue con utilizzo intensivo operazioni di analisi che accedono a grandi porzioni di dati in un momento e in genere eseguono operazioni di massa. In altri termini, queste applicazioni richiedono una velocità effettiva più elevata. Se si dispone di un'applicazione, è necessario progettare il toooptimize infrastruttura per la velocità effettiva. Nella sezione successiva hello, vengono discussi in fattori hello di dettaglio necessario ottimizzare questo tooachieve.
 
-Quando si collega un disco di Archiviazione Premium a una VM a scalabilità elevata, Azure effettua automaticamente il provisioning della velocità effettiva in base alla specifica del disco. Ad esempio, un disco P50 effettua il provisioning di una velocità effettiva di 250 MB al secondo per il disco. Ogni dimensione di VM a scalabilità elevata prevede anche un limite di velocità effettiva specifico sostenibile. Ad esempio, una VM GS5 Standard ha una velocità effettiva massima di 2.000 MB al secondo. 
+Quando si collega un premium archiviazione disco tooa su larga scala macchina virtuale, Azure esegue il provisioning della velocità effettiva in base a tale specifica del disco. Ad esempio, un disco P50 effettua il provisioning di una velocità effettiva di 250 MB al secondo per il disco. Ogni dimensione di VM a scalabilità elevata prevede anche un limite di velocità effettiva specifico sostenibile. Ad esempio, una VM GS5 Standard ha una velocità effettiva massima di 2.000 MB al secondo. 
 
-Come illustrato dalla formula seguente, esiste una relazione tra la velocità effettiva e IOPS.
+C'è una relazione tra la velocità effettiva e IOPS, come illustrato nella formula hello riportato di seguito.
 
 ![](media/storage-premium-storage-performance/image1.png)
 
-È quindi importante determinare i valori ottimali per la velocità effettiva e IOPS richiesti dall'applicazione. I tentativi di ottimizzazione di uno dei valori influiscono anche sull'altro. In una sezione successiva, *Ottimizzazione delle prestazioni dell'applicazione*, verrà illustrata in modo dettagliato l'ottimizzazione di IOPS e velocità effettiva.
+È pertanto importante toodetermine hello velocità effettiva e IOPS valori ottimali richieste dall'applicazione. Quando si tenta di toooptimize uno, ottiene interessato anche altri hello. In una sezione successiva, *Ottimizzazione delle prestazioni dell'applicazione*, verrà illustrata in modo dettagliato l'ottimizzazione di IOPS e velocità effettiva.
 
 ## <a name="latency"></a>Latency
-La latenza è il tempo necessario perché un'applicazione riceva una singola richiesta, la invii ai dischi di archiviazione e restituisca la risposta al client. Si tratta di una misura essenziale delle prestazioni di un'applicazione, oltre a IOPS e velocità effettiva. La latenza di un disco di Archiviazione Premium è il tempo necessario per recuperare le informazioni per una richiesta e restituirle all'applicazione. L'Archiviazione Premium offre latenze uniformemente basse. Se si abilita la memorizzazione nella cache host ReadOnly nei dischi di Archiviazione Premium, sarà possibile ottenere una latenza di lettura molto più bassa. La memorizzazione nella cache dei dischi sarà illustrata in modo più dettagliato nella sezione successiva, *Ottimizzazione delle prestazioni dell'applicazione*.
+La latenza è hello tempo tooreceive un'applicazione una singola richiesta, inviarlo toohello dischi di archiviazione e inviare hello risposta toohello client. Si tratta di una misura critica di prestazioni di un'applicazione in tooIOPS aggiunta e la velocità effettiva. Hello latenza di un disco di archiviazione premium è ora hello accetta informazioni hello tooretrieve per una richiesta e comunicare nuovamente tooyour applicazione. L'Archiviazione Premium offre latenze uniformemente basse. Se si abilita la memorizzazione nella cache host ReadOnly nei dischi di Archiviazione Premium, sarà possibile ottenere una latenza di lettura molto più bassa. La memorizzazione nella cache dei dischi sarà illustrata in modo più dettagliato nella sezione successiva, *Ottimizzazione delle prestazioni dell'applicazione*.
 
-Quando si ottimizza l'applicazione per ottenere valori più elevati per IOPS e velocità effettiva, ciò influirà sulla latenza dell'applicazione. Dopo il perfezionamento delle prestazioni dell'app, è necessario valutare sempre la latenza dell'applicazione per evitare comportamenti imprevisti con latenza elevata.
+Quando si ottimizza il tooget applicazione superiore IOPS e la velocità effettiva, influisce negativamente hello latenza dell'applicazione. Dopo l'ottimizzazione delle prestazioni dell'applicazione hello, restituiscono sempre hello latenza di tooavoid applicazione hello comportamento imprevisto ad alta latenza.
 
 ## <a name="gather-application-performance-requirements"></a>Recuperare i requisiti dell'applicazione
-Il primo passaggio nella progettazione di applicazioni a prestazioni elevate in esecuzione nell'Archiviazione Premium di Azure consiste nel comprendere i requisiti relativi alle prestazioni dell'applicazione. Dopo la raccolta dei requisiti relativi alle prestazioni, sarà possibile ottimizzare l'applicazione per ottenere le prestazioni più elevate possibili.
+è innanzitutto Hello nella progettazione di applicazioni ad alte prestazioni in esecuzione in archiviazione Premium di Azure, i requisiti di prestazioni hello toounderstand dell'applicazione. Dopo aver raccolto i requisiti di prestazioni, è possibile ottimizzare le prestazioni dell'applicazione tooachieve hello ottimale.
 
-Nella sezione precedente sono stati illustrati gli indicatori di prestazioni comuni, ovvero IOPS, velocità effettiva e latenza. È necessario identificare gli indicatori di prestazioni essenziali per consentire all'applicazione di offrire l'esperienza utente desiderata. Ad esempio, un valore elevato per IOPS è molto importante per le applicazioni OLTP che elaborano milioni di transazioni al secondo. Una velocità effettiva elevata, invece, è essenziale per applicazioni di tipo data warehouse che elaborano quantità elevate di dati in un secondo. Una latenza estremamente bassa è critica per applicazioni in tempo reale come siti Web per lo streaming di video.
+Nella sezione precedente hello, spiegare hello comuni indicatori di prestazioni, IOPS, velocità effettiva e latenza. È necessario identificare quali di questi indicatori di prestazioni critici tooyour applicazione hello desiderato toodeliver esperienza dell'utente. Ad esempio, numero elevato di IOPS è rilevante la maggior parte delle applicazioni tooOLTP elaborazione milioni di transazioni in un secondo. Una velocità effettiva elevata, invece, è essenziale per applicazioni di tipo data warehouse che elaborano quantità elevate di dati in un secondo. Una latenza estremamente bassa è critica per applicazioni in tempo reale come siti Web per lo streaming di video.
 
-È quindi necessario misurare i requisiti massimi relativi alle prestazioni per l'intero ciclo di vita dell'applicazione. Per iniziare, usare l'elenco di controllo di esempio seguente. Registrare i requisiti massimi relativi alle prestazioni durante i periodi di carico di lavoro normale, di picco e in orari di minore attività. L'identificazione dei requisiti per tutti i livelli di carico di lavoro consente di determinare i requisiti complessivi relativi alle prestazioni per l'applicazione. Ad esempio, il carico di lavoro normale di un sito Web per l'e-commerce sarà costituito dalle transazioni gestite durante la maggior parte dei giorni in un anno. Il carico di lavoro di picco del sito Web sarà costituito dalle transazioni gestite durante le festività o in caso di svendite speciali. Il carico di lavoro di picco è in genere relativo a un periodo limitato, ma può richiedere un ridimensionamento dell'applicazione pari a due o più volte i livelli necessari per il funzionamento normale. Occorre trovare i requisiti relativi al 50° percentile, al 90° percentile e al 99° percentile. Ciò consente di escludere tramite filtri eventuali outlier nei requisiti relativi alle prestazioni e di concentrarsi sull'ottimizzazione dei valori corretti.
+Successivamente, misurare requisiti massimi di prestazioni hello dell'applicazione in tutta la durata. Utilizzare l'elenco di controllo esempio hello sotto come punto di partenza. Requisiti relativi alle prestazioni massime hello record durante il normale, periodi di carico di lavoro di picco e orario di lavoro. Identificazione dei requisiti per tutti i livelli di carichi di lavoro, sarà in grado di toodetermine hello requisito prestazioni complessive dell'applicazione. Ad esempio, hello normale il carico di lavoro di un sito Web di e-commerce sarà transazioni hello che svolge la maggior parte dei giorni in un anno. il carico di lavoro di Hello picco del sito Web di hello sarà transazioni hello che serve durante le feste natalizie o eventi di vendita speciale. carico di picco Hello esperto in genere per un periodo limitato, ma può richiedere il tooscale applicazione due o più volte il normale funzionamento. Individuare percentile 50 hello, 90 ° percentile e i requisiti di percentile 99. Ciò consente di filtrare tutti gli outlier nei requisiti di prestazioni hello e sarà possibile concentrare l'attenzione sull'ottimizzazione per i valori corretti di hello.
 
 **Elenco di controllo per i requisiti relativi alle prestazioni dell'applicazione**
 
@@ -92,73 +92,73 @@ Nella sezione precedente sono stati illustrati gli indicatori di prestazioni com
 | Profondità coda | | | |
 
 > [!NOTE]
-> è consigliabile prendere in considerazione il ridimensionamento di questi numeri sulla base della crescita futura prevista per l'applicazione. È consigliabile prepararsi con anticipo alla crescita dell'applicazione, perché in seguito potrebbe risultare più difficile modificare l'infrastruttura per migliorare le prestazioni.
+> è consigliabile prendere in considerazione il ridimensionamento di questi numeri sulla base della crescita futura prevista per l'applicazione. È un tooplan buona crescita anticipatamente, perché potrebbe essere più difficile l'infrastruttura di hello toochange per migliorare le prestazioni in un secondo momento.
 >
 >
 
-Se si ha già un'applicazione e si vuole passare all'Archiviazione Premium, creare prima di tutto l'elenco di controllo precedente per l'applicazione esistente. Creare quindi un prototipo dell'applicazione nell'Archiviazione Premium e progettare l'applicazione in base alle indicazioni disponibili nella sezione *Ottimizzazione delle prestazioni dell'applicazione* più avanti in questo documento. La sezione successiva illustra gli strumenti disponibili per raccogliere le misurazioni relative alle prestazioni.
+Se si dispone di un'applicazione esistente e si desidera toomove tooPremium archiviazione, è innanzitutto necessario generare hello elenco di controllo sopra per un'applicazione hello esistente. Quindi, compilare un prototipo di un'applicazione in un'applicazione hello archiviazione Premium e di progettazione in base alle linee guida descritte in *ottimizzazione delle prestazioni dell'applicazione* in una sezione successiva di questo documento. Nella sezione successiva Hello vengono descritti gli strumenti di hello è possibile utilizzare le misurazioni delle prestazioni toogather hello.
 
-Creare un elenco di controllo analogo a quello per l'applicazione esistente per il prototipo. Usando gli strumenti di benchmarking è possibile simulare i carichi di lavoro e misurare le prestazioni nel prototipo dell'applicazione. Per altre informazioni, vedere la sezione [Benchmarking](#benchmarking) . Sarà quindi possibile determinare se l'Archiviazione Premium può soddisfare o sorpassare i requisiti relativi alle prestazioni per l'applicazione. Si potranno quindi implementare le stesse indicazioni per l'applicazione di produzione.
+Creare un'elenco di controllo simile tooyour applicazione esistente per il prototipo di hello. Utilizzando gli strumenti di Benchmarking è possibile simulare carichi di lavoro hello e misurare le prestazioni in un'applicazione hello prototipo. Vedere la sezione hello [Benchmarking](#benchmarking) toolearn altre. Sarà quindi possibile determinare se l'Archiviazione Premium può soddisfare o sorpassare i requisiti relativi alle prestazioni per l'applicazione. È possibile implementare hello stesse linee guida per l'applicazione di produzione.
 
-### <a name="counters-to-measure-application-performance-requirements"></a>Contatori per misurare i requisiti relativi alle prestazioni per l'applicazione
-Il modo migliore per misurare i requisiti relativi alle prestazioni per l'applicazione consiste nell'usare gli strumenti per il monitoraggio delle prestazioni forniti dal sistema operativo del server. È possibile usare PerfMon per Windows e iostat per Linux. Questi strumenti acquisiscono i contatori corrispondenti a ogni misura illustrata nella sezione precedente. È necessario acquisire i valori di questi contatori quando l'applicazione esegue i carichi di lavoro normali, di picco e di orari di minore attività.
+### <a name="counters-toomeasure-application-performance-requirements"></a>Contatori toomeasure requisiti delle prestazioni dell'applicazione
+requisiti di prestazioni toomeasure modo ottimali dell'applicazione Hello, strumenti di monitoraggio delle prestazioni toouse forniti dal sistema operativo hello del server di hello. È possibile usare PerfMon per Windows e iostat per Linux. Questi strumenti acquisiscono i contatori corrispondenti tooeach misure illustrate in hello sopra la sezione. Quando l'applicazione è in esecuzione la normale, i carichi di lavoro di picco e orario di lavoro, è necessario acquisire i valori hello di questi contatori.
 
-Sono disponibili contatori di PerfMon per il processore, la memoria e ogni disco logico e fisico del server. Quando si usano dischi di Archiviazione Premium con una VM, i contatori per dischi fisici sono relativi a ogni disco di Archiviazione Premium e i contatori per dischi logici sono relativi a ogni volume creato nei dischi di Archiviazione Premium. È necessario acquisire i valori per i dischi che ospitano il carico di lavoro dell'applicazione. Se è disponibile il mapping uno a uno tra i dischi logici e i dischi fisici, sarà possibile fare riferimento ai contatori per i dischi fisici. In caso contrario, fare riferimento ai contatori per i dischi logici. In Linux il comando iostat genera un report relativo all'utilizzo della CPU e dei dischi. Il report di utilizzo dischi fornisce statistiche relative al singolo dispositivo o alla singola partizione. Se è presente un server di database con dati e log in dischi separati, raccogliere questi dati per entrambi i dischi. La tabella seguente illustra i contatori per dischi, processore e memoria:
+contatori di PerfMon Hello sono disponibili per il processore, memoria e ogni disco logico e un disco fisico del server. Quando si usano i dischi di archiviazione premium con una macchina virtuale, contatori del disco fisico hello sono per ogni disco di archiviazione premium e contatori del disco logico sono per ogni volume creati nei dischi di archiviazione premium hello. È necessario acquisire i valori hello per i dischi di hello che ospitano il carico di lavoro dell'applicazione. Se è presente un mapping di tooone uno tra i dischi logici e fisici, è possibile fare riferimento a contatori del disco toophysical; in caso contrario, consultare i contatori del disco logico toohello. In Linux, il comando di iostat hello genera un report di utilizzo della CPU e disco. report utilizzo dischi di Hello fornisce statistiche per ogni dispositivo fisico o partizione. Se è presente un server di database con dati e log in dischi separati, raccogliere questi dati per entrambi i dischi. La tabella seguente illustra i contatori per dischi, processore e memoria:
 
 | Contatore | Descrizione | PerfMon | Iostat |
 | --- | --- | --- | --- |
-| **IOPS o transazioni al secondo** |Numero di richieste I/O rilasciate al disco di archiviazione a secondo. |Letture disco/sec  <br> Scritture disco/sec |tps  <br> r/s  <br> w/s |
-| **Letture e scritture del disco** |% di operazioni di lettura e scrittura eseguite sul disco. |% Tempo lettura disco  <br> % Tempo scrittura disco |r/s  <br> w/s |
-| **Velocità effettiva** |Quantità di dati letti da o scritti nel disco al secondo. |Byte letti da disco/sec  <br> Byte scritti su disco/sec |kB_read/s <br> kB_wrtn/s |
-| **Latency** |Tempo totale necessario per completare una richiesta I/O per il disco. |Media letture disco/sec  <br> Media scritture disco/sec |await  <br> svctm |
-| **Dimensioni I/O** |Dimensioni delle richieste I/O rilasciate ai dischi di archiviazione. |Media byte letti da disco  <br> Media byte scritti su disco |avgrq-sz |
-| **Profondità coda** |Numero di richieste I/O in attesa che devono essere lette da o scritte nel disco di archiviazione. |Lunghezza corrente coda su disco |avgqu-sz |
-| **Max. memoria** |Quantità di memoria necessaria per eseguire correttamente un'applicazione. |% byte vincolati in uso |Use vmstat |
-| **Max. CPU** |Quantità di CPU necessaria per eseguire correttamente un'applicazione. |% tempo processore |%util |
+| **IOPS o transazioni al secondo** |Numero di richieste dei / o emessi toohello su disco di archiviazione al secondo. |Letture disco/sec  <br> Scritture disco/sec |tps  <br> r/s  <br> w/s |
+| **Letture e scritture del disco** |% di letture e le operazioni eseguite su disco hello di scrittura. |% Tempo lettura disco  <br> % Tempo scrittura disco |r/s  <br> w/s |
+| **Velocità effettiva** |Quantità di dati lette o scritte su disco toohello al secondo. |Byte letti da disco/sec  <br> Byte scritti su disco/sec |kB_read/s <br> kB_wrtn/s |
+| **Latency** |Numero totale di tempo toocomplete una richiesta dei / o disco. |Media letture disco/sec  <br> Media scritture disco/sec |await  <br> svctm |
+| **Dimensioni I/O** |dimensione Hello delle richieste dei / o problemi toohello dischi di archiviazione. |Media byte letti da disco  <br> Media byte scritti su disco |avgrq-sz |
+| **Profondità coda** |Numero dei / o in attesa di richieste in attesa toobe lettura modulo o la scrittura su disco di archiviazione toohello. |Lunghezza corrente coda su disco |avgqu-sz |
+| **Max. memoria** |Quantità di memoria richiesta toorun applicazione in modo uniforme |% byte vincolati in uso |Use vmstat |
+| **Max. CPU** |Quantità di CPU richiesto toorun applicazione in modo uniforme |% tempo processore |%util |
 
 Altre informazioni su [iostat](http://linuxcommand.org/man_pages/iostat1.html) e [PerfMon](https://msdn.microsoft.com/library/aa645516.aspx).
 
 ## <a name="optimizing-application-performance"></a>Ottimizzazione delle prestazioni dell'applicazione
-I fattori principali che influenzano le prestazioni di un'applicazione in esecuzione nell'Archiviazione Premium sono costituiti dalla natura delle richieste I/O, dalle dimensioni della VM e del disco, dal numero di dischi, dalla memorizzazione nella cache del disco, dal multithreading e dalla profondità della coda. È possibile controllare alcuni di questi fattori con manopole fornite dal sistema. È possibile che la maggior parte delle applicazioni non consenta di modificare direttamente le dimensioni di I/O e la profondità della coda. Ad esempio, se si usa SQL Server, non sarà possibile scegliere le dimensioni di I/O e la profondità della coda. SQL Server sceglie i valori ottimali per le dimensioni di I/O e la profondità della coda per ottenere le prestazioni migliori possibili. È importante comprendere gli effetti di entrambi i tipi di fattori sulle prestazioni dell'applicazione, in modo da effettuare il provisioning delle risorse appropriate per soddisfare le esigenze relative alle prestazioni.
+i fattori principali Hello che influenzano le prestazioni di un'applicazione in esecuzione in archiviazione Premium sono di natura dei / o richieste, dimensioni della macchina virtuale, dimensioni del disco, numero di dischi, la cache del disco, Multithreading e profondità della coda. È possibile controllare alcuni di questi fattori con manopole fornite dal sistema hello. La maggior parte delle applicazioni potrebbero non produrre un hello tooalter opzione dimensioni i/o e la profondità della coda direttamente. Ad esempio, se si utilizza SQL Server, è possibile scegliere di profondità di dimensioni e la coda dei / o hello. SQL Server sceglie hello ottimale IO dimensioni e la coda profondità valori tooget hello la maggior parte delle prestazioni. È importante toounderstand hello impatto di entrambi i tipi di fattori le prestazioni dell'applicazione, in modo che è possibile eseguire il provisioning delle risorse appropriate toomeet le esigenze di prestazioni.
 
-In questa sezione è consigliabile vedere l'elenco di controllo creato relativo ai requisiti dell'applicazione per identificare le esigenze di ottimizzazione per le prestazioni dell'applicazione. L'elenco di controllo consentirà di determinare i fattori da perfezionare tra quelli illustrati in questa sezione. Per verificare gli effetti di ogni fattore sulle prestazioni dell'applicazione, eseguire gli strumenti di benchmarking sulla configurazione dell'applicazione. Per informazioni sui passaggi necessari per eseguire gli strumenti di benchmarking comuni in VM Windows e Linux, vedere la sezione [Benchmarking](#Benchmarking) alla fine dell'articolo.
+In questa sezione, vedere toohello applicazione requisiti di sistema per cui è stato creato, tooidentify quanto è necessario toooptimize le prestazioni dell'applicazione. In base che sarà in grado di toodetermine quali fattori in questa sezione sarà necessario tootune. toowitness hello gli effetti di ogni fattore sulle prestazioni dell'applicazione, eseguire prove comparative gli strumenti di installazione dell'applicazione. Fare riferimento toohello [Benchmarking](#Benchmarking) sezione alla fine di hello di questo articolo per toorun passaggi comuni strumenti di Windows e le macchine virtuali Linux di benchmarking.
 
 ### <a name="optimizing-iops-throughput-and-latency-at-a-glance"></a>Breve panoramica sull'ottimizzazione di IOPS, velocità effettiva e latenza
-Questa tabella riepiloga tutti i fattori relativi alle prestazioni e i passaggi necessari per ottimizzare IOPS, velocità effettiva e latenza. Le sezioni successive al riepilogo illustreranno ogni fattore in modo più dettagliato.
+tabella Hello seguente riepiloga i fattori relativi alle prestazioni hello tutte e hello passaggi toooptimize IOPS, velocità effettiva e latenza. Hello sezioni seguenti questo riepilogo descrivono ogni fattore è molto più approfondito.
 
 | &nbsp; | **IOPS** | **Velocità effettiva** | **Latency** |
 | --- | --- | --- | --- |
-| **Scenario di esempio** |Applicazione OLTP aziendale che richiede una frequenza molto elevata di transazioni al secondo. |Applicazione aziendale di tipo data warehouse che elabora quantità elevate di dati. |Applicazioni quasi in tempo reale che necessitano di risposte immediate alle richieste degli utenti, ad esempio i giochi online. |
+| **Scenario di esempio** |Applicazione OLTP aziendale che richiede una frequenza molto elevata di transazioni al secondo. |Applicazione aziendale di tipo data warehouse che elabora quantità elevate di dati. |Quasi in tempo reale applicazioni richiedono le richieste di toouser risposte immediata, ad esempio giochi online. |
 | Fattori relativi alle prestazioni | &nbsp; | &nbsp; | &nbsp; |
-| **Dimensioni I/O** |Dimensioni I/O ridotte producono valori superiori per IOPS. |Dimensioni I/O maggiori producono una velocità effettiva superiore. | &nbsp;|
+| **Dimensioni I/O** |Dimensioni I/O ridotte producono valori superiori per IOPS. |Tooyields di dimensioni dei / o maggiore velocità effettiva più elevata. | &nbsp;|
 | **Dimensioni macchina virtuale** |Usare una dimensione di VM che offre IOPS superiori ai requisiti dell'applicazione. Per informazioni sulle dimensioni delle VM e i relativi limiti di IOPS, vedere qui. |Usare una dimensione di VM con un limite di velocità effettiva superiore ai requisiti dell'applicazione. Per informazioni sulle dimensioni delle VM e i relativi limiti di velocità effettiva, vedere qui. |Usare una dimensione di VM che offre limiti di ridimensionamento superiori ai requisiti dell'applicazione. Per informazioni sulle dimensioni delle VM e i relativi limiti, vedere qui. |
 | **Dimensioni disco** |Usare una dimensione di disco che offre IOPS superiori ai requisiti dell'applicazione. Per informazioni sulle dimensioni dei dischi e i relativi limiti di IOPS, vedere qui. |Usare una dimensione di disco con un limite di velocità effettiva superiore ai requisiti dell'applicazione. Per informazioni sulle dimensioni dei dischi e i relativi limiti di velocità effettiva, vedere qui. |Usare una dimensione di disco che offre limiti di ridimensionamento superiori ai requisiti dell'applicazione. Per informazioni sulle dimensioni dei dischi e i relativi limiti, vedere qui. |
-| **Limiti relativi al ridimensionamento di VM e dischi** |Il limite di IOPS della dimensione di VM scelta deve essere superiore al totale di IOPS basato sul disco di Archiviazione Premium collegato alla VM. |Il limite di velocità effettiva della dimensione di VM scelta deve essere superiore al totale di velocità effettiva basato sul disco di Archiviazione Premium collegato alla VM. |I limiti di ridimensionamento della dimensione di VM scelta devono essere superiori al totale dei limiti di ridimensionamento dei dischi di Archiviazione Premium collegati. |
-| **Memorizzazione nella cache del disco** |Abilitare la cache ReadOnly nei dischi di Archiviazione Premium con operazioni con numero elevato di letture per ottenere un valore di IOPS di lettura più elevato. | &nbsp; |Abilitare la cache ReadOnly nei dischi di Archiviazione Premium con operazioni con numero elevato di letture per ottenere un valore molto basso per le latenze di lettura. |
-| **Striping del disco** |Usare più dischi ed eseguirne lo striping per ottenere un limite combinato più elevato per IOPS e velocità effettiva. Si noti che il limite combinato per ogni VM deve essere superiore ai limiti combinati dei dischi Premium collegati. | &nbsp; | &nbsp; |
+| **Limiti relativi al ridimensionamento di VM e dischi** |Limite di IOPS della scelta di dimensioni VM hello deve essere maggiore del totale di IOPS dovute ai dischi di archiviazione premium collegato tooit. |Limite di velocità effettiva della scelta di dimensioni VM hello deve essere maggiore della velocità effettiva totale dovuta ai dischi di archiviazione premium collegato tooit. |I limiti di scalabilità della scelta di dimensioni VM hello devono essere maggiori di limiti di scalabilità totale premium collegati dei dischi di archiviazione. |
+| **Memorizzazione nella cache del disco** |Abilitare la Cache di sola lettura nei dischi di archiviazione premium con tooget onerose operazioni di lettura superiori IOPS di lettura. | &nbsp; |Abilitare la Cache di sola lettura nei dischi di archiviazione premium con latenze di lettura pronto onerose operazioni tooget molto basse. |
+| **Striping del disco** |Utilizzo di più dischi ed eseguire lo striping insieme tooget un'operazione di IOPS maggiore combinato e il limite di velocità effettiva. Si noti che hello limite combinato per ogni macchina virtuale devono essere superiori a quello hello combinati i limiti di dischi collegati premium. | &nbsp; | &nbsp; |
 | **Dimensioni di striping** |Dimensioni di striping ridotte per modelli di I/O casuali presenti in applicazioni OLTP. Ad esempio, usare dimensioni di striping pari a 64 KB per un'applicazione OLTP di SQL Server. |Dimensioni di striping superiori per modelli di I/O sequenziali di grandi dimensioni presenti in applicazioni di tipo data warehouse. Ad esempio, usare dimensioni di striping pari a 256 KB per applicazioni SQL Server di tipo data warehouse. | &nbsp; |
-| **Multithreading** |Usare il multithreading per effettuare il push di un numero più elevato di richieste nell'Archiviazione Premium, in modo da ottenere valori più elevati per IOPS e velocità effettiva. Ad esempio, in SQL Server impostare un valore elevato per MAXDOP, in modo da allocare un numero maggiore di CPU a SQL Server. | &nbsp; | &nbsp; |
+| **Multithreading** |Utilizzare il multithreading toopush un numero superiore di richieste tooPremium archiviazione che potrebbero causare toohigher IOPS e la velocità effettiva. Ad esempio, in SQL Server impostato un'elevata tooallocate valore MAXDOP tooSQL CPU più Server. | &nbsp; | &nbsp; |
 | **Profondità coda** |Una profondità maggiore per la coda genera valori più elevati per IOPS. |Una profondità maggiore per la coda genera valori più elevati per la velocità effettiva. |Una profondità minore per la coda genera latenze più basse. |
 
 ## <a name="nature-of-io-requests"></a>Natura delle richieste I/O
-Una richiesta I/O è un'unità di operazioni di input/output che verrà eseguita dall'applicazione. L'identificazione della natura delle richieste I/O, ovvero casuali o sequenziali, di lettura o scrittura, grandi o piccole, consentirà di determinare i requisiti relativi alle prestazioni per l'applicazione. È molto importante comprendere la natura delle richieste I/O, in modo da pendere le decisioni corrette durante la progettazione dell'infrastruttura dell'applicazione.
+Una richiesta I/O è un'unità di operazioni di input/output che verrà eseguita dall'applicazione. Identificazione di natura hello di richieste dei / o casuali o sequenziale, di lettura o scrittura, piccola o grande, consentirà di determinare i requisiti di prestazioni hello dell'applicazione. È molto importante toounderstand natura hello delle richieste dei / o, toomake hello destra decisioni appropriate durante la progettazione dell'infrastruttura dell'applicazione.
 
-La dimensione di I/O è uno dei fattori più importanti. Le dimensioni di I/O sono le dimensioni della richiesta di operazioni di input/output generata dall'applicazione. Le dimensioni di I/O hanno un impatto significativo sulle prestazioni, in particolare sui valori di IOPS e larghezza di banda che l'applicazione è in grado di ottenere. La formula seguente illustra la relazione tra IOPS, dimensioni di I/O e larghezza di banda/velocità effettiva.  
+Dimensioni dei / o è uno dei hello fattori più importanti. dimensioni dei / o Hello è dimensioni hello della richiesta di operazione di input/output di hello generato dall'applicazione. Hello dimensioni i/o ha un impatto significativo sulle prestazioni, soprattutto sulle hello IOPS e larghezza di banda hello applicazione è in grado di tooachieve. Hello formula seguente viene illustrata hello relazione tra IOPS, della larghezza di banda/velocità effettiva e dimensioni dei / o.  
     ![](media/storage-premium-storage-performance/image1.png)
 
-Alcune applicazioni consentono di modificare le relative dimensioni di I/O, mentre altre applicazioni non lo consentono. Ad esempio, SQL Server determina automaticamente le dimensioni di I/O ottimali e non fornisce agli utenti manopole per la modifica. D'altra parte, Oracle fornisce un parametro denominato [DB\_BLOCK\_SIZE](https://docs.oracle.com/cd/B19306_01/server.102/b14211/iodesign.htm#i28815) che consente di configurare la dimensione delle richieste I/O del database.
+Alcune applicazioni consentono le operazioni dei / o modificare le dimensioni, mentre alcune applicazioni non tooalter. Ad esempio, SQL Server determina hello IO sulle dimensioni ottimali se stesso e non fornisce agli utenti con qualsiasi toochange manopole è. In hello invece, Oracle fornisce un parametro denominato [DB\_blocco\_dimensioni](https://docs.oracle.com/cd/B19306_01/server.102/b14211/iodesign.htm#i28815) tramite il quale è possibile configurare hello dimensione richiesta dei / o del database hello.
 
-Se si usa un'applicazione che non consente la modifica delle dimensioni di I/O, usare le indicazioni disponibili in questo articolo per ottimizzare l'indicatore KPI relativo alle prestazioni più rilevante per l'applicazione. Ad esempio,
+Se si utilizza un'applicazione, che non si toochange hello dimensioni i/o, utilizzare le linee guida hello in questo articolo toooptimize hello delle prestazioni indicatore KPI che applicazione tooyour più rilevanti. Ad esempio,
 
-* Un'applicazione OLTP genera milioni di richieste I/O piccole e casuali. Per gestire questo tipo di richieste I/O, è necessario progettare l'infrastruttura dell'applicazione in modo da ottenere valori di IOPS più elevati.  
-* Un'applicazione di tipo data warehouse genera richieste I/O di grandi dimensioni e sequenziali. Per gestire questo tipo di richieste I/O, è necessario progettare l'infrastruttura dell'applicazione in modo da ottenere valori di larghezza di banda e velocità effettiva più elevati.
+* Un'applicazione OLTP genera milioni di richieste I/O piccole e casuali. toohandle questi tipo dei / o richieste, è necessario progettare il tooget infrastruttura applicazione IOPS superiore.  
+* Un'applicazione di tipo data warehouse genera richieste I/O di grandi dimensioni e sequenziali. toohandle questi tipo di richieste dei / o, è necessario progettare l'infrastruttura di applicazioni tooget maggiore larghezza di banda o una velocità effettiva.
 
-Se si usa un'applicazione che consente la modifica delle dimensioni di I/O, usare questa regola generica per le dimensioni di I/O, oltre ad altre indicazioni relative alle prestazioni.
+Se si utilizza un'applicazione, che consenta di dimensioni dei / o toochange hello, usare questa regola empirica per hello IO dimensioni inoltre linee guida sulle prestazioni tooother,
 
-* Dimensioni di I/O minori per ottenere valori di IOPS più elevati. Ad esempio, 8 KB per un'applicazione OLTP.  
-* Dimensioni di I/O maggiori per ottenere valori di larghezza di banda/velocità effettiva più elevati. Ad esempio, 1024 KB per un'applicazione di tipo data warehouse.
+* Tooget di dimensioni più piccole operazioni i/o IOPS superiore. Ad esempio, 8 KB per un'applicazione OLTP.  
+* Tooget di dimensioni dei / o maggiore della larghezza di banda superiore la velocità effettiva. Ad esempio, 1024 KB per un'applicazione di tipo data warehouse.
 
-Ecco un esempio di come è possibile calcolare i valori di IOPS e larghezza di banda/velocità effettiva per l'applicazione. Prendere in considerazione un'applicazione che usa un disco P30. Il valore massimo di IOPS e larghezza di banda/velocità effettiva che può essere raggiunto da un disco P30 è pari a 5000 IOPS e 200 MB al secondo, rispettivamente. Se l'applicazione richiede il valore di IOPS massimo dal disco P30 e si usano dimensioni di I/O minori, ad esempio 8 KB, il valore di larghezza di banda risultante che si potrà ottenere è pari a 40 MB al secondo. Se l'applicazione richiede il valore massimo di larghezza di banda/velocità effettiva dal disco P30 e si usano dimensioni di I/O maggiori, ad esempio 1024 KB, il valore di IOPS risultante sarà più basso, ad esempio 200 IOPS. È quindi necessario perfezionare le dimensioni di I/O in modo che soddisfino i requisiti relativi a IOPS e velocità effettiva/larghezza di banda dell'applicazione. La tabella seguente riepiloga le diverse dimensioni di I/O e i valori di IOPS e velocità effettiva corrispondenti per un disco P30.
+Di seguito è riportato un esempio su come è possibile calcolare hello IOPS e la larghezza di banda/velocità effettiva per l'applicazione. Prendere in considerazione un'applicazione che usa un disco P30. Hello numero massimo di IOPS e velocità effettiva/larghezza di banda possibile ottenere un disco P30 è 5000 IOPS e 200 MB al secondo. A questo punto, se l'applicazione richiede hello che numero massimo di IOPS da disco hello P30 e utilizza una dimensione più piccola dei / o come 8 KB, hello risultante sarà la larghezza di banda in grado di tooget è 40 MB al secondo. Tuttavia, se l'applicazione richiede una velocità effettiva/larghezza di banda massima dal disco P30 hello e si utilizza una dimensione maggiore dei / o come 1024 KB, hello IOPS risultante sarà minore, 200 IOPS. Pertanto, l'ottimizzazione di dimensioni dei / o hello in modo che soddisfi i requisiti di IOPS e velocità effettiva/larghezza di banda sia dell'applicazione. Nella tabella seguente sono riepilogate diverse dimensioni dei / o hello e IOPS e corrispondenti velocità effettiva di un disco P30.
 
 | Requisiti dell'applicazione | Dimensioni di I/O | IOPS | Velocità effettiva/Larghezza di banda |
 | --- | --- | --- | --- |
@@ -167,40 +167,40 @@ Ecco un esempio di come è possibile calcolare i valori di IOPS e larghezza di b
 | Velocità effettiva massima + IOPS elevati |64 KB |3.200 |200 MB al secondo |
 | IOPS massimi + Velocità effettiva elevata |32 KB |5.000 |160 MB al secondo |
 
-Per ottenere valori di IOPS e larghezza di banda più elevati rispetto al valore massimo di un singolo disco di Archiviazione Premium, usare più dischi Premium con striping. Ad esempio, effettuare lo striping di due dischi P30 per ottenere un valore di IOPS combinato di 10.000 IOPS o un valore di velocità effettiva combinato di 400 MB al secondo. Come illustrato nella sezione successiva, è necessario usare una dimensione di VM che supporta i valori combinati di IOPS e velocità effettiva.
+tooget IOPS e larghezza di banda superiore al valore massimo di hello di un disco di archiviazione premium singolo, utilizzare più dischi premium con striping. Ad esempio, eseguire lo striping due P30 dischi tooget un IOPS combinato di 10.000 IOPS o una velocità effettiva di combinato di 400 MB al secondo. Come illustrato nella sezione successiva di hello, è necessario utilizzare una dimensione di macchina virtuale che supporta il disco di hello combinato IOPS e la velocità effettiva.
 
 > [!NOTE]
-> poiché se si aumenta il valore di IOPS o di velocità effettiva aumenterà anche l'altro valore, è necessario assicurarsi di non raggiungere i limiti di velocità effettiva o IOPS del disco o della VM in caso di aumento di uno dei valori.
+> Quando si aumenta l'IOPS o aumenta anche altri hello velocità effettiva, assicurarsi che non rilevamento di velocità effettiva o limiti IOPS di hello disco o di macchina virtuale quando viene incrementato di uno.
 >
 >
 
-Per verificare gli effetti delle dimensioni di I/O sulle prestazioni dell'applicazione, è possibile eseguire gli strumenti di benchmarking sulle VM e sui dischi. Creare più esecuzioni dei test e usare diverse dimensioni di I/O per ogni esecuzione per verificarne l'impatto. Per altri dettagli, vedere la sezione [Benchmarking](#Benchmarking) alla fine di questo articolo.
+toowitness hello gli effetti delle dimensioni dei / o sulle prestazioni dell'applicazione, è possibile eseguire gli strumenti benchmark nelle macchine Virtuali e dischi. Creare più esecuzioni dei test e utilizzare dimensioni i/o diverse per ogni impatto hello toosee esecuzione. Fare riferimento toohello [Benchmarking](#Benchmarking) sezione alla fine di hello di questo articolo per ulteriori dettagli.
 
 ## <a name="high-scale-vm-sizes"></a>Dimensioni di VM a scalabilità elevata
-Quando si inizia a progettare un'applicazione, uno dei primi passaggi da eseguire consiste nel scegliere una VM in cui ospitare l'applicazione. L'Archiviazione Premium include dimensioni di VM a scalabilità elevata in grado di eseguire applicazioni che richiedono capacità di calcolo elevate e prestazioni di I/O elevate per il disco locale. Queste VM forniscono processori più veloci, un rapporto più elevato tra memoria e core e un'unità SSD (Solid-State Drive) per il disco locale. Esempi di VM a scalabilità elevata che supportano l'Archiviazione Premium sono le VM serie DS, DSv2 e GS.
+Quando si avvia la progettazione di un'applicazione, uno di hello prima cose toodo è, scegliere toohost una macchina virtuale dell'applicazione. L'Archiviazione Premium include dimensioni di VM a scalabilità elevata in grado di eseguire applicazioni che richiedono capacità di calcolo elevate e prestazioni di I/O elevate per il disco locale. Queste macchine virtuali offrono processori più veloci, un rapporto memoria-core superiore e allo stato solido unità SSD per disco locale hello. Esempi di macchine virtuali di scala elevata supporto archiviazione Premium sono hello, DSv2 serie DS e GS macchine virtuali.
 
-Le VM a scalabilità elevata sono disponibili in dimensioni diverse con un numero diverso di core CPU, memoria, sistema operativo e dimensioni del disco temporaneo. Ogni dimensione di VM prevede anche un numero massimo di dischi dati che possono essere collegati alla VM. La dimensione di VM scelta influirà quindi sulla quantità di elaborazione, memoria e capacità di archiviazione disponibile per l'applicazione. Influisce anche sui costi di calcolo e archiviazione. Ad esempio, sono riportate di seguito le specifiche per la VM di dimensione massima per le serie DS, DSv2 e GS:
+Le VM a scalabilità elevata sono disponibili in dimensioni diverse con un numero diverso di core CPU, memoria, sistema operativo e dimensioni del disco temporaneo. Ogni dimensione della macchina virtuale è anche il numero massimo di dischi dati che è possibile collegare toohello macchina virtuale. Pertanto, dimensioni della macchina virtuale hello scelto influirà quanta capacità di elaborazione, memoria e archiviazione è disponibile per l'applicazione. Influisce inoltre hello calcolo e i costi di archiviazione. Ad esempio, di seguito sono specifiche di hello hello più grande delle dimensioni delle VM in una serie di dominio Active Directory, DSv2 serie e una serie di GS:
 
 | Dimensioni macchina virtuale | Core CPU | Memoria | Dimensioni di disco della VM | Max. dischi dati | Dimensioni cache | IOPS | Limiti di I/O della cache della larghezza di banda |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Standard_DS14 |16 |112 GB |Sistema operativo = 1023 GB  <br> SSD locale = 224 GB |32 |576 GB |50.000 IOPS  <br> 512 MB al secondo |4.000 IOPS e 33 MB al secondo |
 | Standard_GS5 |32 |448 GB |Sistema operativo = 1023 GB  <br> SSD locale = 896 GB |64 |4224 GB |80.000 IOPS  <br> 2.000 MB al secondo |5.000 IOPS e 50 MB al secondo |
 
-Per visualizzare un elenco completo di tutte le dimensioni delle VM di Azure disponibili, vedere [Dimensioni per le macchine virtuali Windows](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o [Dimensioni per le macchine virtuali Linux](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Scegliere una dimensione di VM in grado di soddisfare e adeguarsi ai requisiti relativi alle prestazioni dell'applicazione. Quando si scelgono le dimensioni delle VM, è inoltre necessario esaminare le importanti considerazioni seguenti.
+tooview un elenco completo di tutte le dimensioni delle macchine Virtuali di Azure disponibili, fare riferimento troppo[dimensioni delle macchine Virtuali di Windows](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) o [le dimensioni di VM Linux](../../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Scegliere una dimensione di macchina virtuale in grado di soddisfare e scala tooyour desiderato requisiti delle prestazioni dell'applicazione. Inoltre, toothis, prendere in considerazione seguenti considerazioni importanti quando si sceglie di dimensioni delle macchine Virtuali.
 
 *Limiti di scalabilità*  
-I limiti massimi per IOPS per ogni VM e ogni disco sono diversi e indipendenti gli uni dagli altri. Assicurarsi che l'applicazione gestisca i valori di IOPS entro i limiti della VM e dei dischi Premium collegati alla VM. In caso contrario, le prestazioni dell'applicazione verranno limitate.
+Hello IOPS i limiti massimi per ogni macchina virtuale e per ogni disco sono diversi e indipendenti tra loro. Assicurarsi che l'applicazione hello sta lanciando IOPS entro i limiti di hello di hello VM, nonché hello premium dischi collegati tooit. In caso contrario, le prestazioni dell'applicazione verranno limitate.
 
-Si supponga, ad esempio, che i requisiti dell'applicazione siano pari a 4.000 IOPS. Per ottenere questo risultato, effettuare il provisioning di un disco P30 su una VM DS1. Il disco P30 può raggiungere fino a 5.000 IOPS. La VM DS1 è tuttavia limitata a 3.200 IOPS. Le prestazioni dell'applicazione verranno quindi vincolate dal limite della VM di 3.200 IOPS e le prestazioni risulteranno danneggiate. Per evitare questa situazione, scegliere dimensioni per VM e disco in grado di soddisfare entrambi i requisiti dell'applicazione.
+Si supponga, ad esempio, che i requisiti dell'applicazione siano pari a 4.000 IOPS. tooachieve, questo è il provisioning un disco P30 in una macchina virtuale DS1. disco P30 Hello grado di portare too5, IOPS 000. Tuttavia, hello DS1 VM è limitato too3, 200 IOPS. Di conseguenza, le prestazioni dell'applicazione hello saranno vincolata dal limite di VM hello in 3.200 IOPS e il calo delle prestazioni. tooprevent questa situazione, scegliere una macchina virtuale e dimensioni che verranno entrambi applicazione soddisfa i requisiti del disco.
 
 *Costo operativo*  
 In molti casi è possibile che il costo operativo complessivo con l'Archiviazione Premium sia inferiore al costo dell'uso dell'Archiviazione Standard.
 
-Ad esempio, si consideri un'applicazione che richiede 16.000 IOPS. Per ottenere queste prestazioni sarà necessaria una VM IaaS di Azure di tipo Standard\_StandardD14, che può offrire un valore massimo di IOPS pari a 16.000 usando 32 dischi di archiviazione Standard da 1 TB. Ogni disco di archiviazione Standard da 1 TB può raggiungere un valore massimo di 500 IOPS. Il costo stimato di questa VM al mese sarà pari a $ 1.570. Il costo mensile di 32 dischi di archiviazione Standard sarà pari a $ 1.638. Il costo totale mensile stimato sarà pari a $ 3.208.
+Ad esempio, si consideri un'applicazione che richiede 16.000 IOPS. tooachieve queste prestazioni, è necessario uno Standard\_D14 Azure IaaS con macchina virtuale, che può concedere a un numero massimo di IOPS di 16.000 con 32 dischi di 1 TB di archiviazione standard. Ogni disco di archiviazione Standard da 1 TB può raggiungere un valore massimo di 500 IOPS. Hello stimato costo di questa macchina virtuale al mese sarà $1,570. Costo mensile di Hello 32 standard dei dischi di archiviazione sarà $1,638. Hello stimato totale mensile sarà $3,208.
 
-Se tuttavia la stessa applicazione è ospitata nell'Archiviazione Premium, sarà necessaria una dimensione di VM minore e saranno necessari meno dischi di Archiviazione Premium. Ciò consente una riduzione del costo complessivo. Una VM Standard\_StandardDS13 può soddisfare il requisito di 16.000 IOPS con quattro dischi P30. La VM DS13 offre un valore massimo di IOPS pari a 25.600 e ogni disco P30 ha un valore massimo di IOPS pari a 5.000. Questa configurazione consente complessivamente di ottenere 5.000 x 4 = 20.000 IOPS. Il costo stimato di questa VM al mese sarà pari a $ 1.003. Il costo mensile di quattro dischi di Archiviazione Premium P30 sarà pari a $ 544,34. Il costo totale mensile stimato sarà pari a $ 1.544.
+Tuttavia, se è ospitato hello stessa applicazione in archiviazione Premium, è necessario una dimensione di macchina virtuale più piccola e meno i dischi di archiviazione premium, riducendo in tal modo hello costo complessivo. Standard\_DS13 VM grado di soddisfare il requisito di IOPS hello 16.000 utilizzando quattro dischi P30. ogni disco P30 è un numero massimo di IOPS di 5.000 Hello DS13 VM è un numero massimo di IOPS di 25,600. Questa configurazione consente complessivamente di ottenere 5.000 x 4 = 20.000 IOPS. Hello stimato costo di questa macchina virtuale al mese sarà $1,003. Costo mensile di Hello di quattro dischi di archiviazione premium P30 sarà $544.34. Hello stimato totale mensile sarà $1,544.
 
-La tabella seguente riepiloga la scomposizione costi di questo scenario per l'Archiviazione Premium e Standard.
+Nella tabella seguente sono riepilogate hello la scomposizione dei costi di questo scenario di Standard e di archiviazione Premium.
 
 | &nbsp; | **Standard** | **Premium** |
 | --- | --- | --- |
@@ -210,12 +210,12 @@ La tabella seguente riepiloga la scomposizione costi di questo scenario per l'Ar
 
 *Distribuzioni Linux*  
 
-Archiviazione Premium di Azure offre lo stesso livello di prestazioni per le macchine virtuali che eseguono Windows e Linux. Sono supportati molti tipi di distribuzioni di Linux. L'elenco completo è disponibile [qui](../../virtual-machines/linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). È importante notare che diverse distribuzioni sono ottimali per diversi tipi di carichi di lavoro. Si otterranno livelli diversi di prestazioni in base alla distribuzione in cui è in esecuzione il carico di lavoro. Testare le distribuzioni di Linux con l'applicazione e scegliere quella migliore per le esigenze specifiche.
+Con archiviazione Premium di Azure, si otterrà hello stesso livello di prestazioni per le macchine virtuali che eseguono Windows e Linux. Sono supportati molti tipi di distribuzioni Linux, ed è possibile visualizzare l'elenco completo di hello [qui](../../virtual-machines/linux/endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). È importante che diverse distribuzioni sono migliori toonote adatto per diversi tipi di carichi di lavoro. Verranno visualizzati diversi livelli di prestazioni a seconda della distribuzione hello che in cui è in esecuzione il carico di lavoro. Le distribuzioni di Linux hello con l'applicazione di test e scegliere hello uno che funziona in modo ottimale.
 
-Quando si esegue Linux con l'Archiviazione Premium, verificare se sono disponibili aggiornamenti recenti per i driver necessari, in modo da assicurare prestazioni elevate.
+Quando si esegue Linux con archiviazione Premium, verificare gli aggiornamenti più recenti di hello sulle prestazioni elevate di tooensure i driver necessari.
 
 ## <a name="premium-storage-disk-sizes"></a>Dimensioni dei dischi di Archiviazione Premium
-L'Archiviazione Premium di Azure offre attualmente sette dimensioni di disco. Ogni dimensione di disco ha un limite di scala diverso per IOPS, larghezza di banda e archiviazione. Scegliere la dimensione del disco di Archiviazione Premium appropriata, in base ai requisiti dell'applicazione e le dimensioni delle VM a scalabilità elevata. La tabella seguente illustra le sette dimensioni di disco e le relative capacità. Le dimensioni di disco P4 e P6 sono attualmente supportate solo per Managed Disks.
+L'Archiviazione Premium di Azure offre attualmente sette dimensioni di disco. Ogni dimensione di disco ha un limite di scala diverso per IOPS, larghezza di banda e archiviazione. Scegliere le dimensioni del disco di archiviazione Premium destra di hello in base a requisiti dell'applicazione hello e su larga scala hello dimensioni della macchina virtuale. tabella Hello seguente mostra le dimensioni di sette dischi hello e le relative funzionalità. Le dimensioni di disco P4 e P6 sono attualmente supportate solo per Managed Disks.
 
 | Tipo di disco Premium  | P4    | P6    | P10   | P20   | P30   | P40   | P50   | 
 |---------------------|-------|-------|-------|-------|-------|-------|-------|
@@ -224,82 +224,82 @@ L'Archiviazione Premium di Azure offre attualmente sette dimensioni di disco. Og
 | Velocità effettiva per disco | 25 MB al secondo  | 50 MB al secondo  | 100 MB al secondo | 150 MB al secondo | 200 MB al secondo | 250 MB al secondo | 250 MB al secondo | 
 
 
-Il numero di dischi scelto dipende dalla dimensione scelta per il disco. È possibile usare un singolo disco P50 o più dischi P10 per soddisfare i requisiti dell'applicazione. Valutare le considerazioni elencate di seguito quando si effettua la scelta.
+Il numero di dischi scelto dipende dal disco hello dimensioni definite. È possibile utilizzare un singolo disco P50 o più P10 dischi toomeet il requisito per un'applicazione. Prendono in considerazioni sull'account elencati di seguito quando si effettua una scelta hello.
 
 *Limiti di scalabilità (IOPS e velocità effettiva)*  
-I limiti di IOPS e velocità effettiva di ogni dimensione di disco Premium sono diversi e non dipendono dai limiti di scalabilità delle VM. Assicurarsi che il valore totale di IOPS e velocità effettiva rientri nei limiti di scalabilità della dimensione scelta per la VM.
+limiti di velocità effettiva e IOPS Hello di ogni dimensione del disco Premium è diversa e indipendente dal hello limiti di scalabilità di macchine Virtuali. Verificare che hello totale di IOPS e velocità effettiva da dischi hello vengono scelti entro i limiti di scala di hello dimensioni della macchina virtuale.
 
-Ad esempio, si supponga che un requisito di applicazione preveda una velocità effettiva massima di 250 MB/sec e si usi una VM DS4 con un singolo disco P30. La VM DS4 può offrire una velocità effettiva massima di 256 MB/sec. Un singolo disco P30 ha tuttavia un limite di velocità effettiva pari a 200 MB/sec. L'applicazione sarà quindi limitata a 200 MB/sec a causa di questo limite del disco. Per superare questo limite, effettuare il provisioning di più dischi dati nella VM oppure ridimensionare i dischi a P40 o P50.
+Ad esempio, si supponga che un requisito di applicazione preveda una velocità effettiva massima di 250 MB/sec e si usi una VM DS4 con un singolo disco P30. Hello DS4 VM consentono di velocità effettiva di too256 MB/sec. Tuttavia, un singolo disco P30 ha un limite di velocità effettiva di 200 MB/sec. Di conseguenza, un'applicazione hello sarà vincolata a 200 MB al secondo a causa di limite disco toohello. tooovercome questo limite, il provisioning toohello dischi di dati più di una macchina virtuale o ridimensionare i dischi tooP40 o P50.
 
 > [!NOTE]
-> le operazioni di lettura fornite dalla cache non sono incluse nei valori di IOPS e velocità effettiva, quindi non sono soggette ai limiti del disco. La cache ha un limite di IOPS e velocità effettiva specifico per ogni VM.
+> Letture servite dalla cache di hello non presenti nel disco hello IOPS e la velocità effettiva, pertanto non soggetto toodisk limiti. La cache ha un limite di IOPS e velocità effettiva specifico per ogni VM.
 >
-> Ad esempio, le operazioni di lettura e scrittura iniziali sono rispettivamente pari a 60 MB/sec e 40 MB/sec. Nel corso del tempo, la cache migliora la propria operatività e fornisce un numero sempre maggiore di operazioni di lettura dalla cache. Sarà quindi possibile ottenere una velocità effettiva di lettura superiore dal disco.
+> Ad esempio, le operazioni di lettura e scrittura iniziali sono rispettivamente pari a 60 MB/sec e 40 MB/sec. Nel corso del tempo, cache di hello riscaldamento e serve di hello letture dalla cache di hello. Quindi, è possibile ottenere la velocità effettiva di scrittura superiore dal disco hello.
 >
 >
 
 *Numero di dischi*  
-Determinare il numero di dischi necessari esaminando i requisiti dell'applicazione. Ogni dimensione di VM prevede anche un limite per il numero di dischi che possono essere collegati alla VM. In genere, questo valore corrisponde al doppio dei core. Assicurarsi che la dimensione di VM scelta sia in grado di supportare il numero di dischi necessari.
+Determinare il numero di hello dei dischi che sarà necessario a valutare i requisiti dell'applicazione. Ogni dimensione della macchina virtuale ha anche un limite sul numero di hello di dischi che è possibile collegare toohello macchina virtuale. In genere, si tratta di due volte hello numero di core. Verificare che hello prescelto può supportare hello numero di dischi necessari dimensioni della macchina virtuale.
 
-Occorre ricordare che i dischi di Archiviazione Premium hanno capacità di prestazioni più elevate rispetto ai dischi di Archiviazione Standard. Se quindi si esegue la migrazione dell'applicazione da una VM IaaS di Azure usando il passaggio dall'Archiviazione Standard all'Archiviazione Premium, è probabile che sia necessario un numero inferiore di dischi per ottenere le stesse prestazioni o prestazioni più elevate per l'applicazione.
+Tenere presente che i dischi di archiviazione Premium hello dispongono di più dischi di archiviazione tooStandard di funzionalità rispetto delle prestazioni. Pertanto, se si esegue la migrazione dell'applicazione dalla macchina virtuale IaaS di Azure tramite archiviazione Standard tooPremium archiviazione, sarà probabilmente necessario meno i dischi premium tooachieve hello prestazioni uguale o superiore per l'applicazione.
 
 ## <a name="disk-caching"></a>Memorizzazione nella cache del disco
-Le VM a scalabilità elevata che sfruttano i vantaggi dell'Archiviazione Premium di Azure includono una tecnologia di memorizzazione nella cache multilivello denominata BlobCache. BlobCache usa una combinazione della RAM della macchina virtuale e dell'unità SSD locale per la memorizzazione nella cache. Questa cache è disponibile per i dischi persistenti di Archiviazione Premium e i dischi locali della VM. Per impostazione predefinita, questa impostazione della cache viene configurata su Read/Write per dischi del sistema operativo e ReadOnly per i dischi dati ospitati nell'Archiviazione Premium. Quando la memorizzazione nella cache su disco è abilitata nei dischi di Archiviazione Premium, le VM a scalabilità elevata possono raggiungere livelli estremamente elevati di prestazioni che superano le prestazioni sottostanti del disco.
+Le VM a scalabilità elevata che sfruttano i vantaggi dell'Archiviazione Premium di Azure includono una tecnologia di memorizzazione nella cache multilivello denominata BlobCache. BlobCache utilizza una combinazione di macchina virtuale RAM hello e unità SSD locale per la memorizzazione nella cache. Questa cache è disponibile per i dischi persistenti di archiviazione Premium hello e dischi locali di hello macchina virtuale. Per impostazione predefinita, questa impostazione della cache è tooRead/scrittura per i dischi del sistema operativo e sola lettura per i dischi dati ospitati in archiviazione Premium. Con la cache del disco attivata su dischi di archiviazione Premium hello, su larga scala hello macchine virtuali possa ottenere livelli estremamente elevati di prestazioni che superano le prestazioni del disco sottostante hello.
 
 > [!WARNING]
-> La modifica dell'impostazione della cache di un disco di Azure scollega e ricollega il disco di destinazione. Se si tratta del disco del sistema operativo, la VM viene riavviata. Arrestare tutte le applicazioni/i servizi che potrebbero essere interessati da questa interruzione prima di modificare l'impostazione della cache del disco.
+> Modifica l'impostazione della cache di hello di un disco di Azure si disconnette e aggiunge di nuovo il disco di destinazione hello. In caso di disco del sistema operativo hello, hello VM viene riavviata. Arrestare tutte le applicazioni/servizi che potrebbero essere interessati da questa interruzione prima di modificare l'impostazione della cache di hello disco.
 >
 >
 
-Per altre informazioni sul funzionamento di BlobCache, vedere il post di blog relativo all' [Archiviazione Premium di Azure](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/) .
+toolearn ulteriori informazioni su come funziona BlobCache, fare riferimento toohello all'interno di [archiviazione Premium di Azure](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/) post di blog.
 
-È importante abilitare la cache sul set corretto di dischi. L'abilitazione o meno della memorizzazione nella cache su disco in un disco Premium dipende dal modello di carichi di lavoro che verranno gestiti dal disco. La tabella seguente illustra le impostazioni predefinite della cache per i dischi sistema operativo e i dischi dati.
+È importante tooenable cache set corretto di hello dei dischi. Se è necessario abilitare la cache del disco in un disco premium o non dipenderà il modello di carico di lavoro hello tale disco gestiscono. Tabella riportata di seguito viene illustrato come predefinito hello le impostazioni della cache per i dischi del sistema operativo e dati.
 
 | **Tipo di disco** | **Impostazione predefinita per la cache** |
 | --- | --- |
 | Disco del sistema operativo |ReadWrite |
-| Disco dati |None |
+| Disco dati |Nessuno |
 
-Ecco le impostazioni consigliate per la cache su disco per i dischi dati:
+Seguenti sono hello le impostazioni della cache su disco consigliato per i dischi dati,
 
-| **Impostazione per la memorizzazione nella cache su disco** | **Indicazione sull'uso di questa impostazione** |
+| **Impostazione per la memorizzazione nella cache su disco** | **Indicazioni su quando toouse questa impostazione** |
 | --- | --- |
-| None |Configurare la cache host come None per dischi di sola scrittura e dischi con numero elevato di operazioni di scrittura. |
+| Nessuno |Configurare la cache host come None per dischi di sola scrittura e dischi con numero elevato di operazioni di scrittura. |
 | ReadOnly |Configurare la cache host come ReadOnly per dischi di sola lettura e di lettura-scrittura. |
-| ReadWrite |Configurare la cache host come ReadWrite solo se l'applicazione gestisce correttamente la scrittura di dati memorizzati nella cache in dischi persistenti, quando necessario. |
+| ReadWrite |Configurare cache dell'host come ReadWrite solo se l'applicazione gestisca correttamente la scrittura nella cache i dischi dati toopersistent quando necessario. |
 
 *ReadOnly*  
 Configurando la memorizzazione nella cache ReadOnly nei dischi dati di Archiviazione Premium, è possibile ottenere una latenza di lettura bassa e valori molto elevati di IOPS e velocità effettiva di lettura per l'applicazione. Questo è dovuto ai due motivi seguenti:
 
-1. Le letture eseguite dalla cache, che si trova nella memoria della VM e nell'unità SSD locale, sono più veloci rispetto alle letture dal disco dati, che si trova nell'archivio BLOB di Azure.  
-2. L'Archiviazione Premium non include le operazioni di lettura fornite dalla cache nel calcolo dei valori di IOPS e velocità effettiva del disco. L'applicazione è quindi in grado di ottenere valori totali di IOPS e velocità effettiva più elevati.
+1. Letture eseguite dalla cache, che si trova in memoria della macchina virtuale hello e unità SSD locale, sono molto più veloce rispetto letture da disco dati hello, che si trova in hello archiviazione blob di Azure.  
+2. Archiviazione Premium non inclusi nel conteggio hello letture soddisfatte dalla cache, verso il disco di hello IOPS e la velocità effettiva. Pertanto, l'applicazione è in grado di tooachieve superiore totale di IOPS e la velocità effettiva.
 
 *ReadWrite*  
-Per impostazione predefinita, la memorizzazione nella cache ReadWrite è abilitata nei dischi sistema operativo. È stato recentemente aggiunto il supporto per la memorizzazione nella cache ReadWrite anche sui dischi dati. Se si usa la memorizzazione nella cache ReadWrite, è necessario scrivere in modo corretto i dati dalla cache ai dischi persistenti. Ad esempio, SQL Server gestisce automaticamente la scrittura di dati memorizzati nella cache nei dischi di archiviazione permanente. L'uso della cache di tipo ReadWrite con un'applicazione che non gestisce la persistenza dei dati necessari può provocare la perdita dei dati, in caso di arresto anomalo della VM.
+Per impostazione predefinita, i dischi del sistema operativo hello abbiano abilitata la memorizzazione nella cache ReadWrite. È stato recentemente aggiunto il supporto per la memorizzazione nella cache ReadWrite anche sui dischi dati. Se si utilizza la memorizzazione nella cache di lettura/scrittura, è necessario disporre di un metodo migliore toowrite hello di dati dai dischi toopersistent cache. Ad esempio, gli handle SQL Server la scrittura memorizzati nella cache di dischi di archiviazione permanente dati toohello autonomamente. L'utilizzo della cache di lettura/scrittura con un'applicazione che non gestisce la persistenza hello necessario dei dati può causare la perdita di toodata, se si blocca hello VM.
 
-È ad esempio possibile applicare queste indicazioni a SQL Server in esecuzione sull'Archiviazione Premium seguendo questa procedura:
+Ad esempio, è possibile applicare questi tooSQL linee guida Server in esecuzione in archiviazione Premium procedendo come indicato di seguito hello,
 
 1. Configurare la cache "ReadOnly" nei dischi di Archiviazione Premium che ospitano i file di dati.  
-   a.  Le operazioni rapide di lettura dalla cache riducono il tempo necessario per le query di SQL Server, poiché le pagine di dati vengono recuperate in modo molto più veloce dalla cache rispetto dal recupero diretto dai dischi dati.  
+   a.  Hello veloce letta la fase di query di cache inferiore hello SQL Server perché le pagine di dati vengono recuperate più velocemente da hello cache confrontata toodirectly dai dischi dati hello.  
    b.  Le fornitura delle letture dalla cache consente di rendere disponibile velocità effettiva aggiuntiva dai dischi dati Premium. SQL Server può usare questa velocità effettiva aggiuntiva per recuperare un numero superiore di pagine di dati e altre operazioni come il backup/ripristino, i carichi in batch e le ricompilazioni degli indici.  
-2. Configurare la cache "None" nei dischi di Archiviazione Premium che ospitano i file di log.  
-   a.  I file di log hanno principalmente operazioni intensive a livello di lettura. Non ottengono quindi alcun vantaggio dalla cache ReadOnly.
+2. Configurare "None" cache in archiviazione premium dischi host i file di log hello.  
+   a.  I file di log hanno principalmente operazioni intensive a livello di lettura. Pertanto, non usano hello cache di sola lettura.
 
 ## <a name="disk-striping"></a>Striping del disco
-Quando una VM a scalabilità elevata è collegata ad alcuni dischi persistenti di Archiviazione Premium, è possibile effettuare lo striping dei dischi per aggregare le relative capacità di IOPS, larghezza di banda e archiviazione.
+Quando è possibile un'elevata scalabilità che macchina virtuale è collegata con diversi premium archiviazione permanente, dischi hello striping tooaggregate loro IOPs, della larghezza di banda e capacità di archiviazione.
 
-In Windows è possibile usare gli spazi di archiviazione per lo striping dei dischi. È necessario configurare una colonna per ogni disco in un pool. In caso contrario, le prestazioni complessive di un volume con striping possono essere inferiori al previsto, a causa della distribuzione non uniforme del traffico nei dischi.
+In Windows, è possibile utilizzare i dischi toostripe spazi di archiviazione. È necessario configurare una colonna per ogni disco in un pool. In caso contrario, hello prestazioni complessive del volume con striping possono essere inferiore al previsto, a causa di toouneven distribuzione del traffico tra dischi hello.
 
-Importante: l'uso dell'interfaccia utente di Gestione server consente di impostare il numero totale di colonne fino a un massimo di 8 per un volume con striping. Quando si collegano più di 8 dischi, usare PowerShell per creare il volume. L'uso di PowerShell consente di impostare un numero di colonne uguale al numero di dischi. Ad esempio, se un singolo set di striping include 16 dischi, specificare 16 colonne nel parametro *NumberOfColumns* del cmdlet *New-VirtualDisk* di PowerShell.
+Importante: Utilizzando Server Manager UI, è possibile impostare hello totale colonne backup too8 per un volume con striping. Se si installa più di 8 dischi, utilizzare volume hello toocreate di PowerShell. Tramite PowerShell, è possibile impostare il numero di hello di colonne uguale toohello numero di dischi. Ad esempio, se sono presenti 16 dischi in un set di striping singolo. specificare 16 colonne in hello *NumberOfColumns* parametro di hello *New-VirtualDisk* cmdlet di PowerShell.
 
-In Linux usare l'utilità MDADM per lo striping dei dischi. Per informazioni dettagliate sulla procedura di striping dei dischi su Linux, vedere [Configurare RAID software in Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+In Linux, usare i dischi di hello MDADM utilità toostripe insieme. Per i passaggi dettagliati per i dischi di striping in Linux, vedere troppo[configurare RAID Software in Linux](../../virtual-machines/linux/configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 *Dimensioni di striping*  
-Un elemento importante della configurazione dello striping del disco è la dimensione di striping. La dimensione di striping o la dimensione del blocco è il blocco più piccolo di dati che l'applicazione può gestire in un volume con striping. La dimensione di striping configurabile dipende dal tipo di applicazione e dal relativo modello di richieste. Se si sceglie la dimensione di striping errata, è possibile che si ottenga un allineamento di I/O non corretto, che porta a prestazioni degradate per l'applicazione.
+Una configurazione più rilevanti nello striping del disco è la dimensione di striping hello. dimensione di striping Hello o dimensione del blocco è blocco più piccolo di hello di dati che l'applicazione può risolvere in un volume con striping. dimensione di striping Hello che configuri dipende dal tipo di hello dell'applicazione e il modello di richiesta. Se si sceglie una dimensione di striping non corretto di hello, può causare problemi di allineamento tooIO, con un conseguente toodegraded delle prestazioni dell'applicazione.
 
-Ad esempio, se una richiesta I/O generata dall'applicazione è maggiore della dimensione di striping del disco, il sistema di archiviazione la scrive oltre i limiti di unità di striping in più dischi. Quando è necessario accedere ai dati, occorrerà cercarli in più unità di striping per completare la richiesta. L'effetto cumulativo di questo comportamento può portare a una riduzione significativa delle prestazioni. D'altra parte, se la dimensione della richiesta I/O è minore della dimensione di striping ed è di tipo casuale, è possibile che le richieste I/P si concentrino sullo stesso disco, provocando un collo di bottiglia e danneggiando le prestazioni di I/O.
+Ad esempio, se una richiesta dei / o generata dall'applicazione è maggiore di dimensione di striping del disco hello, sistema di archiviazione hello scrive tra stripe i limiti di unità in più di un disco. Quando è ora tooaccess tali dati, si otterrà tooseek tra più di una striscia unità toocomplete hello richiesta. effetto cumulativo di Hello di tale comportamento può causare un calo delle prestazioni toosubstantial. In hello se hello dimensione richiesta dei / o è minore di dimensione di striping e se è casuale, le richieste dei / o hello potrebbero sommare su hello stesso invece del disco causando un collo di bottiglia e infine compromettere le prestazioni dei / o hello.
 
-Scegliere una dimensione di striping appropriata in base a tipo di carico di lavoro eseguito dall'applicazione. Per richieste I/O di piccole dimensioni e casuali, usare una dimensione di striping minore. Per richieste I/O di grandi dimensioni e sequenziali, usare una dimensione di striping maggiore. Esaminare le indicazioni relative alle dimensioni di striping per l'applicazione da eseguire nell'Archiviazione Premium. Per SQL Server configurare dimensioni di striping pari a 64 KB per carichi di lavoro OLTP e 256 KB per carichi di lavoro di tipo data warehouse. Per altre informazioni, vedere [Procedure consigliate per le prestazioni per SQL Server in Macchine virtuali di Azure](../../virtual-machines/windows/sql/virtual-machines-windows-sql-performance.md#disks-guidance) .
+A seconda del carico di lavoro di tipo hello è in esecuzione l'applicazione, scegliere una dimensione di striping appropriato. Per richieste I/O di piccole dimensioni e casuali, usare una dimensione di striping minore. Per richieste I/O di grandi dimensioni e sequenziali, usare una dimensione di striping maggiore. Scoprire hello stripe dimensioni consigliate per l'applicazione hello che verrà eseguita in archiviazione Premium. Per SQL Server configurare dimensioni di striping pari a 64 KB per carichi di lavoro OLTP e 256 KB per carichi di lavoro di tipo data warehouse. Vedere [procedure consigliate per SQL Server in macchine virtuali di Azure](../../virtual-machines/windows/sql/virtual-machines-windows-sql-performance.md#disks-guidance) toolearn altre.
 
 > [!NOTE]
 > è possibile effettuare lo striping di un massimo di 32 dischi di Archiviazione Premium in una VM di serie DS e di 64 dischi di Archiviazione Premium in una VM di serie GS.
@@ -307,76 +307,76 @@ Scegliere una dimensione di striping appropriata in base a tipo di carico di lav
 >
 
 ## <a name="multi-threading"></a>Multithreading
-Azure ha progettato la piattaforma di Archiviazione Premium in modo che sia notevolmente parallela. Un'applicazione multithreading ottiene prestazioni molto più elevate rispetto a un'applicazione a thread singolo. Un'applicazione multithreading suddivide le proprie attività in più thread e aumenta l'efficienza dell'esecuzione utilizzando al massimo la VM e le risorse del disco.
+Azure è progettato archiviazione Premium piattaforma toobe parallela massiva. Un'applicazione multithreading ottiene prestazioni molto più elevate rispetto a un'applicazione a thread singolo. Un'applicazione multithreading suddivide le attività tra più thread e aumenta l'efficienza dell'esecuzione da hello utilizzo macchina virtuale e disco risorse toohello massimo.
 
-Ad esempio, se l'applicazione è in esecuzione su una VM a core singolo con due thread, la CPU può passare da un thread all'altro per ottenere l'efficienza. Mentre un thread attende il completamento di un'operazione I/O su disco, la CPU può passare all'altro thread. In questo modo, due thread possono ottenere molto di più rispetto a un singolo thread. Se la VM ha più di un core, riduce ulteriormente il tempo di esecuzione, perché ogni core può eseguire attività in parallelo.
+Ad esempio, se l'applicazione è in esecuzione su un singolo core VM utilizzando due thread, hello CPU possibile alternare efficienza tooachieve due thread di hello. Mentre un thread è in attesa un toocomplete IO disco, hello CPU passare toohello altri thread. In questo modo, due thread possono ottenere molto di più rispetto a un singolo thread. Se hello VM ha più di un core, riduce ulteriormente tempo di esecuzione, poiché ogni core può eseguire le attività in parallelo.
 
-È possibile che non si riesca a cambiare il modo in cui un'applicazione non modificabile implementa la modalità a thread singolo o il multithreading. Ad esempio, SQL Server è in grado di gestire più CPU e più core. SQL Server decide tuttavia in che condizioni sfruttare i vantaggi di uno o più thread per elaborare una query. Può eseguire query e compilare indici usando il multithreading. Per una query che comporta l'unione di più tabelle e l'ordinamento dei dati prima di restituire risultati all'utente, SQL Server userà probabilmente più thread. Un utente non può tuttavia controllare se SQL Server esegue una query usando un singolo thread o più thread.
+Potrebbe non essere modo hello toochange in grado di un'applicazione preconfigurata implementa single threading o multithreading. Ad esempio, SQL Server è in grado di gestire più CPU e più core. Tuttavia, SQL Server decide quali condizioni verrà utilizzati uno o più thread tooprocess una query. Può eseguire query e compilare indici usando il multithreading. Per una query che include un join di tabelle di grandi dimensioni e l'ordinamento dei dati prima della restituzione toohello utente, SQL Server utilizzerà probabilmente più thread. Un utente non può tuttavia controllare se SQL Server esegue una query usando un singolo thread o più thread.
 
-È possibile modificare alcune impostazioni di configurazione per influenzare l'elaborazione multithreading o parallela di un'applicazione. Ad esempio, nel caso di SQL Server è possibile modificare la configurazione Massimo grado parallelismo. Questa impostazione, denominata MAXDOP, consente di configurare il numero massimo di processori che SQL Server può usare durante l'elaborazione parallela. È possibile configurare MAXDOP per singole query o per operazioni sull'indice. Questa configurazione risulta utile per bilanciare le risorse del sistema per un'applicazione essenziale per le prestazioni.
+Sono disponibili le impostazioni di configurazione che è possibile modificare tooinfluence questo multithreading o parallelo l'elaborazione di un'applicazione. Ad esempio, in caso di SQL Server è configurazione grado di parallelismo massimo hello. Questa impostazione di MAXDOP, consente di numero massimo di hello tooconfigure di SQL Server può utilizzare durante l'elaborazione parallela di processori. È possibile configurare MAXDOP per singole query o per operazioni sull'indice. Ciò è utile quando si desidera toobalance risorse di sistema per un'applicazione critica di prestazioni.
 
-Ad esempio, si supponga che l'applicazione che usa SQL Server stia eseguendo contemporaneamente una query di dimensioni elevate e un'operazione sull'indice. Si supponga di volere migliorare le prestazioni dell'operazione sull'indice rispetto alla query di grandi dimensioni. In questo caso è possibile impostare il valore MAXDOP dell'operazione sull'indice in modo che sia superiore al valore MAXDOP per la query. In questo modo SQL Server avrà un numero maggiore di processori da sfruttare per l'operazione sull'indice rispetto al numero di processori da dedicare alla query di grandi dimensioni. Occorre ricordare che non si può controllare il numero di thread usati da SQL Server per ogni operazione. È possibile controllare il numero massimo di processori dedicati al multithreading.
+Se ad esempio, l'applicazione utilizzando SQL Server è in esecuzione una query di grandi dimensioni e un'operazione di indice in hello contemporaneamente. Si supponga che si desiderava hello indice operazione toobe più query di grandi dimensioni toohello ad alte prestazioni confrontati. In tal caso, è possibile impostare il valore MAXDOP di hello toobe operazione di indice maggiore hello valore MAXDOP per query hello. In questo modo, SQL Server disponga di un numero maggiore di processori che è possibile sfruttare per numero di processori, è possibile dedicare hello indice operazioni confrontati toohello toohello query di grandi dimensioni. Tenere presente che non si controlla il numero di hello di thread di SQL Server verrà utilizzata per ogni operazione. È possibile controllare hello il numero massimo di processori da dedicati per il multithreading.
 
-Altre informazioni sui [Gradi di parallelismo](https://technet.microsoft.com/library/ms188611.aspx) in SQL Server. Individuare le impostazioni che influenzano il multithreading nell'applicazione e le relative configurazioni per ottimizzare le prestazioni.
+Altre informazioni sui [Gradi di parallelismo](https://technet.microsoft.com/library/ms188611.aspx) in SQL Server. Individuare tali impostazioni che determinano il multithreading nell'applicazione e delle relative prestazioni toooptimize configurazioni.
 
 ## <a name="queue-depth"></a>Profondità coda
-Il valore per la profondità, la lunghezza o la dimensione della coda indica il numero di richieste I/O in sospeso nel sistema. Il valore della profondità della coda determina il numero di operazioni di I/O che possono essere accodate dall'applicazione e che verranno elaborate dai dischi di archiviazione. Influisce su tutti e tre gli indicatori di prestazioni illustrati in questo articolo, ovvero IOPS, velocità effettiva e latenza.
+Hello profondità della coda o lunghezza della coda o dimensione della coda è numero hello di richieste dei / o in sospeso nel sistema hello. il valore di Hello la profondità della coda determina il numero di operazioni possibile allineare l'applicazione, verranno elaborati i dischi di archiviazione hello. Influisce su tutti hello tre applicazioni gli indicatori di prestazioni cui abbiamo discusso in bastano questo articolo, IOPS, velocità effettiva e latenza.
 
-La profondità della coda e il multithreading sono strettamente correlati. Il valore della profondità della coda indica la quantità di multithreading che l'applicazione può ottenere. Se il valore della profondità della coda è elevato, l'applicazione potrà eseguire più applicazioni contemporaneamente, ovvero potrà ottenere un multithreading maggiore. Se il valore della profondità della coda è ridotto, anche se l'applicazione è abilitata al multithreading, il numero di richieste accodate non sarà sufficiente per l'esecuzione simultanea.
+La profondità della coda e il multithreading sono strettamente correlati. il valore di profondità della coda di Hello indica quanti multithreading può essere ottenuto da un'applicazione hello. Se la profondità della coda hello è grande, applicazione può eseguire più operazioni contemporaneamente, in altre parole, più il multithreading. Se hello profondità della coda è ridotta, anche se l'applicazione è a thread multipli, non avrà sufficiente richieste allineate per l'esecuzione simultanea.
 
-In genere, le applicazioni standard non consentono di modificare la profondità della coda, perché un'impostazione non corretta risulterebbe eccessivamente dannosa. Le applicazioni imposteranno automaticamente il valore di profondità della coda corretto per ottenere prestazioni ottimali. È tuttavia importante comprendere questo concetto, in modo da risolvere i problemi delle prestazioni nell'applicazione. È anche possibile osservare gli effetti della profondità della coda eseguendo gli strumenti di benchmarking nel sistema.
+In genere, disattivare hello applicazioni scaffale non consentono la profondità della coda toochange hello, perché se impostare in modo non corretto tale più male che bene. Applicazioni imposterà hello destra valore prestazioni ottimali hello tooget profondità della coda. Tuttavia, è importante toounderstand questo concetto in modo che è possibile risolvere i problemi di prestazioni con l'applicazione. È anche possibile osservare gli effetti di hello la profondità della coda eseguendo benchmark tools nel sistema.
 
-Alcune applicazioni forniscono le impostazioni necessarie per influenzare la profondità della coda, ad esempio, l'impostazione MAXDOP (Massimo grado parallelismo) in SQL Server illustrata nella sezione precedente. MAXDOP consente di influenzare la profondità della coda e il multithreading, anche se non modifica direttamente il valore Profondità coda di SQL Server.
+Alcune applicazioni forniscono impostazioni tooinfluence hello profondità della coda. Impostazione di MAXDOP (massimo grado di parallelismo) hello in SQL Server, ad esempio, descritto nella sezione precedente. MAXDOP è tooinfluence un modo profondità della coda e multithreading, anche se non modifica direttamente il valore di profondità della coda hello di SQL Server.
 
 *Profondità elevata della coda*  
-Un valore elevato per la profondità della coda consente di allineare più operazioni sul disco. Il disco conosce in anticipo la richiesta successiva nella coda. Di conseguenza, il disco può pianificare in anticipo le operazioni ed elaborarle nella sequenza ottimale. Poiché l'applicazione invia più richieste al disco, il disco potrà elaborare un numero maggiore di I/O paralleli. L'applicazione sarà infine in grado di ottenere valori più elevati per IOPS. Poiché l'applicazione elabora un numero maggiore di richieste, aumenterà anche la velocità effettiva dell'applicazione.
+Righe di una profondità della coda ad alta le altre operazioni su disco hello. disco Hello SA successiva richiesta di hello nella propria coda di anticipo. Di conseguenza, disco hello possa pianificare le operazioni di anticipo e li elaborano in una sequenza ottimale. Poiché il disco di toohello più le richieste inviate dall'applicazione hello, disco hello in grado di elaborare ulteriori IOs parallelo. Infine, un'applicazione hello sarà in grado di tooachieve IOPS superiore. Poiché l'elaborazione di più richieste, hello velocità effettiva totale di un'applicazione hello aumenta.
 
-In genere, un'applicazione può ottenere una velocità effettiva massima con 8-16+ I/O in attesa per ogni disco collegato. Se il valore della profondità della coda è pari a uno, l'applicazione non effettua il push di un numero sufficiente di I/O nel sistema e ne elaborerà una quantità inferiore in un periodo specifico. In altri termini, si otterrà una velocità effettiva minore.
+In genere, un'applicazione può ottenere una velocità effettiva massima con 8-16+ I/O in attesa per ogni disco collegato. Se una profondità della coda, applicazione non viene eseguita sufficiente sistema toohello IOs e minore quantità di verrà elaborato in un periodo specifico. In altri termini, si otterrà una velocità effettiva minore.
 
-In SQL Server ,ad esempio, l'impostazione del valore MAXDOP per una query su "4" indica a SQL Server che può usare al massimo quattro core per eseguire la query. SQL Server determinerà il valore migliore per la profondità della coda e il numero di core per l'esecuzione della query.
+Ad esempio, in SQL Server, hello impostazione MAXDOP valore per una query troppo indica a SQL Server che è possibile utilizzare query di hello toofour core tooexecute "4". SQL Server consente di verificare cosa è migliore coda profondità valore e hello il numero di core per l'esecuzione di query hello.
 
 *Profondità ottimale della coda*  
-Un valore molto elevato per la coda può avere alcuni svantaggi. Se il valore della profondità della coda è troppo alto, l'applicazione proverà a effettuare un numero molto elevato di IOPS. A meno che un'applicazione non abbia dischi persistenti con un numero sufficiente di IOPS con provisioning, ciò può influire negativamente sulle latenze dell'applicazione. La formula seguente illustra la relazione tra IOPS, latenza e profondità della coda.  
+Un valore molto elevato per la coda può avere alcuni svantaggi. Se il valore di profondità della coda è eccessivo, un'applicazione hello tenterà toodrive numero molto elevato di IOPS. A meno che un'applicazione non abbia dischi persistenti con un numero sufficiente di IOPS con provisioning, ciò può influire negativamente sulle latenze dell'applicazione. Formula seguente mostra una relazione di hello tra IOPS, latenza e la profondità della coda.  
     ![](media/storage-premium-storage-performance/image6.png)
 
-È consigliabile non configurare la profondità della coda su un valore elevato, specificando invece un valore ottimale, in grado di offrire un numero di IOPS sufficiente per l'applicazione, senza influire sulle latenze. Ad esempio, se la latenza dell'applicazione deve essere pari a 1 millisecondo, la profondità della coda necessaria per ottenere 5.000 IOPS sarà QD = 5000 x 0,001 = 5.
+Non è consigliabile configurare valore elevato tooany di profondità della coda, ma il valore ottimale tooan, in grado di offrire sufficiente di IOPS per un'applicazione hello senza influire sulla latenza. Ad esempio, se la latenza dell'applicazione hello deve toobe 1 millisecondo, hello profondità della coda obbligatorio tooachieve è 5.000 IOPS, PC = 5000 x 0,001 = 5.
 
 *Profondità della coda per un volume con striping*  
-Per un volume con striping è consigliabile mantenere una profondità della coda sufficientemente elevata da consentire a ogni disco di avere individualmente un picco di profondità della coda. Ad esempio, si consideri un'applicazione che effettua il push di una profondità della coda pari a 2 e lo striping include 4 dischi. Le due richieste I/O verranno trasmesse a due dischi e i due dischi rimanenti saranno inattivi. È quindi consigliabile configurare la profondità della coda in modo che tutti i dischi siano occupati. La formula seguente illustra come determinare la profondità della coda dei volumi con striping.  
+Per un volume con striping è consigliabile mantenere una profondità della coda sufficientemente elevata da consentire a ogni disco di avere individualmente un picco di profondità della coda. Ad esempio, si consideri un'applicazione che inserisce una profondità della coda di 2 e sono presenti 4 dischi in striscia hello. due richieste dei / o Hello entra tootwo dischi, rimanenti due dischi sarà inattiva. Pertanto, configurare la profondità della coda hello tale che tutti i dischi di hello possono essere occupati. Formula seguente viene illustrato come toodetermine hello profondità della coda di volumi con striping.  
     ![](media/storage-premium-storage-performance/image7.png)
 
 ## <a name="throttling"></a>Limitazione
-L'Archiviazione Premium di Azure effettua il provisioning di un numero specificato di IOPS e di velocità effettiva in base alle dimensioni delle VM e alle dimensioni dei dischi scelte. Ogni volta che l'applicazione prova a superare i limiti di IOPS o velocità effettiva che possono essere gestiti dalla VM o dal disco, l'Archiviazione Premium limiterà l'applicazione. Questo problema si manifesta sotto forma di una riduzione delle prestazioni dell'applicazione. Ciò può comportare una latenza più alta, una velocità effettiva minore o valori di IOPS più bassi. Se l'Archiviazione Premium non applica la limitazione, è possibile che si verifichi un errore irreversibile dell'applicazione a causa del superamento dei limiti delle risorse. Per evitare problemi di prestazioni dovuti alla limitazione, è necessario effettuare sempre il provisioning di un numero di risorse sufficiente per l'applicazione. Prendere in considerazione i concetti illustrati nelle sezioni precedenti relative alle dimensioni delle VM e dei dischi. Il benchmarking è il modo migliore per determinare le risorse necessarie per l'hosting dell'applicazione.
+Provisioning di archiviazione Premium Azure numero specificato di IOPS e la velocità effettiva a seconda delle dimensioni delle macchine Virtuali hello e le dimensioni di disco desiderato. Ogni volta che l'applicazione tenta toodrive IOPS o una velocità effettiva di sopra di questi limiti di in grado di gestire quali hello macchina virtuale o un disco, verrà limitazione archiviazione Premium. Questa situazione si manifesta sotto forma di hello di riduzione delle prestazioni dell'applicazione. Ciò può comportare una latenza più alta, una velocità effettiva minore o valori di IOPS più bassi. Se l'Archiviazione Premium non applica la limitazione, è possibile che si verifichi un errore irreversibile dell'applicazione a causa del superamento dei limiti delle risorse. In tal caso, tooavoid problemi di prestazione in scadenza toothrottling, sempre il provisioning di risorse sufficienti per l'applicazione. Prendere in considerazione è descritto nelle sezioni di dimensioni disco precedente e di dimensioni delle macchine Virtuali di hello. Benchmark è toofigure modo migliore hello quali risorse è necessario toohost l'applicazione.
 
 ## <a name="benchmarking"></a>Benchmarking
-Il benchmarking è il processo di simulazione di diversi carichi di lavoro sull'applicazione e di misurazione delle prestazioni dell'applicazione per ogni carico di lavoro. Eseguendo la procedura illustrata in una sezione precedente, sono stati raccolti i requisiti relativi alle prestazioni dell'applicazione. Eseguendo gli strumenti di benchmarking nelle VM che ospitano l'applicazione sarà possibile determinare i livelli di prestazioni che l'applicazione è in grado di ottenere con l'Archiviazione Premium. In questa sezione sono disponibili esempi di benchmarking per una VM DS14 Standard con provisioning con dischi di Archiviazione Premium di Azure.
+Benchmark è il processo di hello di simulazione di carichi di lavoro diversi sull'applicazione e misurare le prestazioni dell'applicazione hello per ogni carico di lavoro. Utilizzare i passaggi di hello descritti in una sezione precedente, si sono stati raccolti i requisiti delle prestazioni dell'applicazione hello. Tramite l'esecuzione di prove comparative strumenti nelle macchine virtuali hello ospita un'applicazione hello, è possibile determinare i livelli di prestazioni hello che l'applicazione può ottenere con archiviazione Premium. In questa sezione sono disponibili esempi di benchmarking per una VM DS14 Standard con provisioning con dischi di Archiviazione Premium di Azure.
 
-Sono stati usati gli strumenti di benchmarking comuni Iometer e FIO, rispettivamente per Windows e Linux. Questi strumenti generano più thread che simulano un carico di lavoro analogo a quello di produzione e misurano le prestazioni del sistema. Questi strumenti consentono anche di configurare i parametri quali la dimensione dei blocchi e la profondità della coda, che in genere non possono essere modificati per un'applicazione. Ciò offre maggiore flessibilità per ottenere il livello massimo di prestazioni su una VM a scalabilità elevata con provisioning con dischi Premium per diversi tipi di carichi di lavoro dell'applicazione. Per altre informazioni su ogni strumento di benchmarking, vedere [Iometer](http://www.iometer.org/) e [FIO](http://freecode.com/projects/fio).
+Sono stati usati gli strumenti di benchmarking comuni Iometer e FIO, rispettivamente per Windows e Linux. Questi strumenti generano la simulazione di produzione come carico di lavoro e le prestazioni del sistema hello misure di più thread. Utilizzando gli strumenti di hello è inoltre possibile configurare i parametri come blocco dimensioni e la coda di profondità, che è in genere non è possibile modificare per un'applicazione. In questo modo è più flessibilità toodrive hello le massime prestazioni su una scala elevata VM eseguito il provisioning con i dischi premium per diversi tipi di carichi di lavoro dell'applicazione. informazioni su ogni strumento di valutazione, visitare toolearn [Iometer](http://www.iometer.org/) e [FIO](http://freecode.com/projects/fio).
 
-Per eseguire gli esempi seguenti, creare una VM DS14 Standard e collegare 11 dischi di Archiviazione Premium alla VM. Degli 11 dischi, configurare 10 dischi con memorizzazione nella cache dell'host impostata su "None" ed effettuarne lo striping in un volume denominato NoCacheWrites. Configurare la memorizzazione nella cache dell'host come "ReadOnly" sul disco rimanente e creare un volume denominato CacheReads con questo disco. Usando questa configurazione, sarà possibile vedere le prestazioni massime di lettura e scrittura da una VM DS14 Standard. Per informazioni dettagliate sulla creazione di una VM DS14 con dischi Premium, vedere [Creare e usare un account di Archiviazione Premium per un disco dati della macchina virtuale](../storage-premium-storage.md).
+toofollow hello esempi riportati di seguito, creare una VM DS14 Standard e allegare toohello dischi di archiviazione Premium 11 macchina virtuale. Dei dischi hello 11, configurare i dischi di 10 con memorizzazione nella cache come "None" host e li eseguire lo striping in un volume denominato NoCacheWrites. Configurare la memorizzazione nella cache come "ReadOnly" su disco rimanente hello host e creare un volume denominato CacheReads con il disco. Tramite il programma di installazione, sarà in grado di toosee hello massimo lettura e scrittura delle prestazioni da una VM DS14 Standard. Per informazioni dettagliate sulla creazione di una macchina virtuale DS14 con i dischi premium, passare troppo[creare e utilizzare uno spazio di archiviazione Premium di conto per un disco di dati della macchina virtuale](../storage-premium-storage.md).
 
-*Preparare la cache*  
-Il disco con memorizzazione nella cache dell'host di tipo ReadOnly sarà in grado di ottenere valori di IOPS più elevati rispetto al limite del disco. Per ottenere queste prestazioni di lettura massime dalla cache dell'host, è prima di tutto necessario preparare la cache del disco. Ciò assicura che le operazioni di I/O di lettura che lo strumento di benchmarking eseguirà sul volume CacheReads raggiungano effettivamente la cache e non direttamente il disco. I riscontri nella cache producono IOPS aggiuntivi da un singolo disco abilitato per la cache.
+*Riscaldamento di Cache di hello*  
+disco di Hello con memorizzazione nella cache di sola lettura host sarà in grado di toogive IOPS superiore rispetto al limite di hello. tooget massime prestazioni leggere dalla cache di hello host, è necessario innanzitutto riscaldamento della cache di hello del disco. In questo modo si garantisce che hello IOs lettura determinerà quale strumento benchmark sul volume CacheReads effettivamente riscontri cache di hello e non il disco hello direttamente. risultato di riscontri cache di Hello in IOPS aggiuntive dalla cache di hello singolo abilitata su disco.
 
 > **Importante:**  
-> è necessario preparare la cache prima di eseguire il benchmarking, ogni volta che la VM viene riavviata.
+> È necessario riscaldamento della cache di hello prima di eseguire prove comparative, ogni volta che viene riavviato macchina virtuale.
 >
 >
 
 #### <a name="iometer"></a>Iometer
-[Scaricare lo strumento Iometer](http://sourceforge.net/projects/iometer/files/iometer-stable/2006-07-27/iometer-2006.07.27.win32.i386-setup.exe/download) nella VM.
+[Scaricare lo strumento Iometer hello](http://sourceforge.net/projects/iometer/files/iometer-stable/2006-07-27/iometer-2006.07.27.win32.i386-setup.exe/download) su hello macchina virtuale.
 
 *File di test*  
-Iometer usa un file di test archiviato nel volume in cui eseguire i test di benchmarking. Gestisce le operazioni di lettura e scrittura sul file di test per misurare i valori di IOPS e velocità effettiva del disco. Iometer crea questo file di test se non ne è stato fornito uno. Creare un file di test di 200 GB denominato iobw.tst nei volumi CacheReads e NoCacheWrites.
+Iometer utilizza un file di test che verrà archiviato nel volume hello in cui eseguire test di benchmark hello. Unità di letture e scritture in questo test toomeasure disco hello del file di IOPS e la velocità effettiva. Iometer crea questo file di test se non ne è stato fornito uno. Creare un file di test di 200GB denominato iobw.tst volumi hello CacheReads e NoCacheWrites.
 
 *Specifiche di accesso*  
-Le specifiche, la dimensione della richiesta I/O, la percentuale di letture/scritture e la percentuale di operazioni casuali/sequenziali vengono configurate tramite la scheda "Access Specifications" in Iometer. Creare una specifica di accesso per ogni scenario illustrato di seguito. Creare le specifiche di accesso, quindi salvarle con un nome appropriato, ad esempio RandomWrites\_8K, RandomReads\_8K. Selezionare la specifica corrispondente durante l'esecuzione dello scenario di test.
+Hello specifiche, dimensione della richiesta i/o, lettura/scrittura %, % casuali o sequenziali sono configurati utilizzando hello "Specifiche di accesso" scheda Iometer. Creare una specifica di accesso per ognuno di hello scenari descritti di seguito. Creare specifiche di accesso hello e "Salva" con un appropriato assegnare un nome simile: RandomWrites\_8 KB, RandomReads\_8 KB. Selezionare specifica corrispondente hello durante l'esecuzione di uno scenario di test hello.
 
 Un esempio di specifiche di accesso per uno scenario con valori massimi di IOPS di scrittura è riportato di seguito,   
     ![](media/storage-premium-storage-performance/image8.png)
 
 *Specifiche per il valore massimo di IOPS di test*  
-Per illustrare il valore massimo di IOPS, usare una dimensione minore della richiesta. Usare una dimensione di richiesta pari a 8 K e creare specifiche per letture e scritture casuali.
+toodemonstrate massimo IOPs, utilizzare dimensioni richiesta. Usare una dimensione di richiesta pari a 8 K e creare specifiche per letture e scritture casuali.
 
 | Specifica di accesso | Dimensione della richiesta | % di casuali | % di letture |
 | --- | --- | --- | --- |
@@ -384,15 +384,15 @@ Per illustrare il valore massimo di IOPS, usare una dimensione minore della rich
 | RandomReads\_8K |8 K |100 |100 |
 
 *Specifiche per il valore massimo di velocità effettiva di test*  
-Per illustrare il valore massimo di velocità effettiva, usare una dimensione maggiore della richiesta. Usare una dimensione di richiesta pari a 64 K e creare specifiche per letture e scritture casuali.
+toodemonstrate velocità effettiva massima, utilizzano le maggiori dimensioni della richiesta. Usare una dimensione di richiesta pari a 64 K e creare specifiche per letture e scritture casuali.
 
 | Specifica di accesso | Dimensione della richiesta | % di casuali | % di letture |
 | --- | --- | --- | --- |
 | RandomWrites\_64K |64 K |100 |0 |
 | RandomReads\_64K |64 K |100 |100 |
 
-*Esecuzione del test di Iometer*  
-Seguire questa procedura per preparare la cache.
+*Esecuzione di Iometer Test hello*  
+Eseguire procedure hello toowarm cache
 
 1. Creare le specifiche di accesso con i valori seguenti.
 
@@ -400,18 +400,18 @@ Seguire questa procedura per preparare la cache.
    | --- | --- | --- | --- |
    | RandomWrites\_1MB |1 MB |100 |0 |
    | RandomReads\_1MB |1 MB |100 |100 |
-2. Eseguire il test di Iometer per l'inizializzazione del disco della cache con i parametri seguenti. Usare tre thread di lavoro per il volume di destinazione e una profondità della coda pari a 128. Impostare la durata relativa al tempo di esecuzione del test su 2 ore nella scheda "Test Setup".
+2. Eseguire test Iometer hello per inizializzare il disco della cache con i parametri seguenti. Utilizzare tre thread di lavoro per il volume di destinazione di hello e una profondità della coda di 128. Impostare hello "Runtime" la durata di hello test too2hrs nella scheda "Configurazione di Test" hello.
 
    | Scenario | Volume di destinazione | Nome | Durata |
    | --- | --- | --- | --- |
    | Inizializzare il disco della cache |CacheReads |RandomWrites\_1MB |2 ore |
-3. Eseguire il test di Iometer per la preparazione del disco della cache con i parametri seguenti. Usare tre thread di lavoro per il volume di destinazione e una profondità della coda pari a 128. Impostare la durata relativa al tempo di esecuzione del test su 2 ore nella scheda "Test Setup".
+3. Eseguire test Iometer hello per il riscaldamento disco cache con i parametri seguenti. Utilizzare tre thread di lavoro per il volume di destinazione di hello e una profondità della coda di 128. Impostare hello "Runtime" la durata di hello test too2hrs nella scheda "Configurazione di Test" hello.
 
    | Scenario | Volume di destinazione | Nome | Durata |
    | --- | --- | --- | --- |
    | Preparare il disco della cache |CacheReads |RandomReads\_1MB |2 ore |
 
-Dopo la preparazione del disco della cache, procedere con gli scenari di test elencati di seguito. Per eseguire il test di Iometer, usare almeno tre thread di lavoro per **ogni** volume di destinazione. Per ogni thread di lavoro selezionare il volume di destinazione, impostare la profondità della coda e selezionare una delle specifiche di test salvate, come illustrato nella tabella seguente, per eseguire lo scenario di test corrispondente. La tabella illustra anche i risultati previsti per IOPS e velocità effettiva quando si eseguono questi test. Per tutti gli scenari vengono usati una dimensione di I/O ridotta pari a 8 KB e un valore elevato per la profondità della coda, pari a 128.
+Dopo che il disco della cache è stato riscaldato, procedere con scenari di test hello elencati di seguito. hello toorun Iometer test, utilizzare almeno tre thread di lavoro per **ogni** volume di destinazione. Per ogni thread di lavoro, selezionare il volume di destinazione hello, impostare la profondità della coda e selezionare una delle specifiche di test salvata hello, come illustrato nella tabella hello sotto, toorun hello corrispondente uno scenario di test. Quando si eseguono questi test, tabella di Hello illustra anche i risultati previsti per IOPS e la velocità effettiva. Per tutti gli scenari vengono usati una dimensione di I/O ridotta pari a 8 KB e un valore elevato per la profondità della coda, pari a 128.
 
 | Scenario di test | Volume di destinazione | Nome | Risultato |
 | --- | --- | --- | --- |
@@ -424,7 +424,7 @@ Dopo la preparazione del disco della cache, procedere con gli scenari di test el
 | MB/sec combinati |CacheReads |RandomWrites\_64K |1000 MB/sec |
 | NoCacheWrites |RandomReads\_64K | &nbsp; | &nbsp; |
 
-Le schermate seguenti illustrano i risultati dei test di Iometer per scenari combinati di IOPS e velocità effettiva.
+Di seguito sono schermate di hello Iometer risultati dei test per scenari IOPS e la velocità effettiva combinati.
 
 *Valori massimi per IOPS di letture e scritture combinate*  
 ![](media/storage-premium-storage-performance/image9.png)
@@ -433,20 +433,20 @@ Le schermate seguenti illustrano i risultati dei test di Iometer per scenari com
 ![](media/storage-premium-storage-performance/image10.png)
 
 ### <a name="fio"></a>FIO
-FIO è uno strumento popolare per il benchmarking dell'archiviazione sulle VM Linux. Offre la flessibilità necessaria per selezionare diverse dimensioni di I/O e letture e scritture sequenziali o casuali. Genera thread di lavoro o processi per l'esecuzione delle operazioni I/O specificate. È possibile specificare il tipo di operazioni I/O che ogni thread di lavoro deve eseguire usando i file processo. È stato creato un file processo per ogni scenario illustrato negli esempi seguenti. È possibile cambiare le specifiche di questi file processo per il benchmarking di diversi carichi di lavoro in esecuzione sull'Archiviazione Premium. Negli esempi viene usata una VM DS 14 Standard che esegue **Ubuntu**. Usare la stessa configurazione illustrata all'inizio della [sezione Benchmarking](#Benchmarking) e preparare la cache prima di eseguire i test di benchmarking.
+FIO è un archivio di toobenchmark strumento comune in hello macchine virtuali Linux. Dispone di hello flessibilità tooselect diversi i/o le dimensioni, sequenziale o casuale letture e scritture. Genera il thread di lavoro o hello tooperform processi specificati operazioni i/o. È possibile specificare il tipo di hello di operazioni dei / o che necessario eseguire ogni thread di lavoro utilizzando i file del processo. È stato creato un file di processo per ogni scenario illustrato negli esempi di hello riportato di seguito. È possibile modificare specifiche hello in questi processi file toobenchmark diversi carichi di lavoro in esecuzione in archiviazione Premium. Negli esempi di hello, si sta usando un in esecuzione Standard per VM 14 DS **Ubuntu**. Hello utilizzare stesso programma di installazione descritti in inizio hello di hello [benchmark sezione](#Benchmarking) e riscaldamento della cache di hello prima di eseguire i test di benchmark hello.
 
 Prima di iniziare, [scaricare FIO](https://github.com/axboe/fio) e installarlo nella macchina virtuale.
 
-Eseguire il comando seguente per Ubuntu:
+Eseguire hello comando seguente per Ubuntu,
 
 ```
 apt-get install fio
 ```
 
-Verranno usati quattro thread di lavoro per la gestione delle operazioni di scrittura e quattro thread di lavoro per la gestione delle operazioni di lettura sui dischi. I ruoli di lavoro di scrittura indirizzeranno il traffico verso il volume "nocache", che include 10 dischi con cache impostata su "None". I ruoli di lavoro di lettura indirizzeranno il traffico verso il volume "readcache", che include un disco con cache impostata su "ReadOnly".
+Si utilizzerà per le operazioni di lettura determinante su dischi hello quattro thread di lavoro per la Guida di operazioni di scrittura e quattro thread di lavoro. Hello scrittura lavoratori verranno essere piedi traffico nel volume nocache"hello", che include 10 dischi con cache troppo imposta "None". Hello thread di lavoro di lettura verrà essere che indirizza il traffico nel volume readcache"hello", con il 1 disco con il set di cache troppo "ReadOnly".
 
 *IOPS massime di scrittura*  
-Creare il file processo con le specifiche seguenti per ottenere il valore massimo per le operazioni IOPS di scrittura. Assegnare al file il nome "fiowrite.ini".
+Creare il file di processo hello con tooget specifiche seguenti numero massimo di IOPS di scrittura. Assegnare al file il nome "fiowrite.ini".
 
 ```
 [global]
@@ -470,23 +470,23 @@ rw=randwrite
 directory=/mnt/nocache
 ```
 
-Notare gli elementi chiave seguenti conformi alle indicazioni di progettazione illustrate nelle sezioni precedenti. Queste specifiche sono essenziali per ottenere il valore massimo per IOPS:  
+Hello nota seguire elementi principali che sono in base alle linee guida di progettazione hello illustrate nelle sezioni precedenti. Queste specifiche sono essenziali toodrive numero massimo di IOPS  
 
 * Profondità della coda elevata pari a 256.  
 * Dimensione di blocco ridotta pari a 8 KB.  
 * Più thread che eseguono scritture casuali.
 
-Eseguire il comando seguente per attivare il test FIO per 30 secondi:  
+Eseguire hello successivo comando tookick off hello FIO verificare la presenza di 30 secondi,  
 
 ```
 sudo fio --runtime 30 fiowrite.ini
 ```
 
-Durante l'esecuzione del test, sarà possibile visualizzare il numero di operazioni IOPS di scrittura gestite dalla VM e dai dischi Premium. Come illustrato nell'esempio seguente, la VM DS14 fornisce il limite massimo di IOPS di scrittura pari a 50.000 IOPS.  
+Durante l'esecuzione di test hello, sarà il numero hello toosee in grado di distribuire i dischi di macchina virtuale e Premium hello IOPS di scrittura. Come illustrato nell'esempio hello riportato di seguito, hello VM DS14 recapita il limite di IOPS di 50.000 IOPS massima di scrittura.  
     ![](media/storage-premium-storage-performance/image11.png)
 
 *IOPS massime di lettura*  
-Creare il file processo con le specifiche seguenti per ottenere il valore massimo per le operazioni IOPS di lettura. Assegnare al file il nome "fioread.ini".
+Creare il file di processo hello con tooget specifiche seguenti numero massimo di IOPS di lettura. Assegnare al file il nome "fioread.ini".
 
 ```
 [global]
@@ -510,23 +510,23 @@ rw=randread
 directory=/mnt/readcache
 ```
 
-Notare gli elementi chiave seguenti conformi alle indicazioni di progettazione illustrate nelle sezioni precedenti. Queste specifiche sono essenziali per ottenere il valore massimo per IOPS:
+Hello nota seguire elementi principali che sono in base alle linee guida di progettazione hello illustrate nelle sezioni precedenti. Queste specifiche sono essenziali toodrive numero massimo di IOPS
 
 * Profondità della coda elevata pari a 256.  
 * Dimensione di blocco ridotta pari a 8 KB.  
 * Più thread che eseguono scritture casuali.
 
-Eseguire il comando seguente per attivare il test FIO per 30 secondi:
+Eseguire hello successivo comando tookick off hello FIO verificare la presenza di 30 secondi,
 
 ```
 sudo fio --runtime 30 fioread.ini
 ```
 
-Durante l'esecuzione del test, sarà possibile visualizzare il numero di operazioni IOPS di lettura gestite dalla VM e dai dischi Premium. Come illustrato nell'esempio seguente, la VM DS14 fornisce un valore superiore a 64.000 IOPS di lettura. Ciò dipende da una combinazione delle prestazioni del disco e della cache.  
+Durante l'esecuzione di test hello, sarà il numero hello toosee in grado di hello IOPS lettura VM e forniscono i dischi Premium. Come illustrato nell'esempio hello riportato di seguito, hello VM DS14 offre più di 64.000 IOPS di lettura. Si tratta di una combinazione di disco hello e le prestazioni della cache di hello.  
     ![](media/storage-premium-storage-performance/image12.png)
 
 *IOPS massime di lettura e scrittura*  
-Creare il file processo con le specifiche seguenti per ottenere il valore massimo per le operazioni IOPS combinate di lettura e scrittura. Assegnare al file il nome "fioreadwrite.ini".
+Creare file di processo hello con tooget di specifiche seguenti massimo combinati in lettura e scrittura di IOPS. Assegnare al file il nome "fioreadwrite.ini".
 
 ```
 [global]
@@ -567,23 +567,23 @@ directory=/mnt/nocache
 rate_iops=12500
 ```
 
-Notare gli elementi chiave seguenti conformi alle indicazioni di progettazione illustrate nelle sezioni precedenti. Queste specifiche sono essenziali per ottenere il valore massimo per IOPS:
+Hello nota seguire elementi principali che sono in base alle linee guida di progettazione hello illustrate nelle sezioni precedenti. Queste specifiche sono essenziali toodrive numero massimo di IOPS
 
 * Profondità della coda elevata pari a 128.  
 * Dimensione di blocco ridotta pari a 4 KB.  
 * Più thread che eseguono scritture e letture casuali.
 
-Eseguire il comando seguente per attivare il test FIO per 30 secondi:
+Eseguire hello successivo comando tookick off hello FIO verificare la presenza di 30 secondi,
 
 ```
 sudo fio --runtime 30 fioreadwrite.ini
 ```
 
-Durante l'esecuzione del test, sarà possibile visualizzare il numero di operazioni IOPS combinate di lettura e scrittura gestite dalla VM e dai dischi Premium. Come illustrato nell'esempio seguente, la VM DS14 fornisce un valore superiore a 100.000 IOPS combinate di lettura e scrittura. Ciò dipende da una combinazione delle prestazioni del disco e della cache.  
+Durante l'esecuzione di test hello, si verrà numero hello toosee in grado di lettura combinato e IOPS di scrittura VM hello e forniscono i dischi Premium. Come illustrato nell'esempio hello riportato di seguito, hello VM DS14 offre più di 100.000 lettura combinato e IOPS di scrittura. Si tratta di una combinazione di disco hello e le prestazioni della cache di hello.  
     ![](media/storage-premium-storage-performance/image13.png)
 
 *Velocità effettiva massima combinata*  
-Per ottenere la velocità effettiva massima combinata di lettura e scrittura, usare una dimensione di blocco superiore e una profondità della coda elevata con più thread che eseguono letture e scritture. È possibile usare una dimensione di blocco pari a 64 KB e una profondità della coda pari a 128.
+hello tooget massimo combinato di lettura e la velocità effettiva di scrittura, utilizzare una dimensione del blocco più grande e la profondità della coda di grandi dimensioni con più thread di esecuzione di letture e scritture. È possibile usare una dimensione di blocco pari a 64 KB e una profondità della coda pari a 128.
 
 ## <a name="next-steps"></a>Passaggi successivi
 Altre informazioni sull'Archiviazione Premium di Azure:

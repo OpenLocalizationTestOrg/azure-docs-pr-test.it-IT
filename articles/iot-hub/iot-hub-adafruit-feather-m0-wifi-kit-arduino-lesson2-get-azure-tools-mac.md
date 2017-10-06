@@ -1,5 +1,5 @@
 ---
-title: 'Connettere Arduino ad Azure IoT: lezione 2: Strumenti di Azure (macOS) | Documentazione Microsoft'
+title: 'Connettersi Arduino tooAzure IoT - lezione 2: strumenti di Azure (macOS) | Documenti Microsoft'
 description: Installare Python e l'interfaccia della riga di comando di Azure in macOS.
 services: iot-hub
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 037f8e3dba542773185fde43a345d5fd487b2d84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f0ec4131e54af5475cd0b4240480c3fda497e14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-azure-tools-macos-1010"></a>Ottenere gli strumenti di Azure (macOS 10.10)
 
@@ -32,49 +32,49 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
 
-Installare l'interfaccia della riga di comando di Azure. In caso di problemi con la scheda Arduino per Adafruit Feather M0 WiFi, cercare le soluzioni nella [pagina sulla risoluzione dei problemi](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md).
+Installare hello Azure interfaccia della riga di comando (CLI di Azure). Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md) per la scheda Adafruit sfumatura M0 Wi-Fi Arduino.
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
 Contenuto dell'articolo:
-* Come installare l'interfaccia della riga di comando di Azure.
-* Come aggiungere un sottogruppo IoT dell'interfaccia della riga di comando di Azure.
+* Come tooinstall CLI di Azure.
+* Come tooadd un sottogruppo di IoT di hello CLI di Azure.
 
 ## <a name="what-you-need"></a>Elementi necessari
 * Un Mac con connessione Internet.
 * Una sottoscrizione di Azure attiva. Se non si ha un account Azure, è possibile [creare un account Azure gratuito](http://azure.microsoft.com/pricing/free-trial/) in pochi minuti.
 
 ## <a name="install-python"></a>Installare Python
-Anche se Python 2.7 è preinstallato in macOS, è consigliabile installarlo tramite Homebrew. Vedere [Installing Python on macOS](http://docs.python-guide.org/en/latest/starting/install/osx/) (Installazione di Python in macOS).
+Sebbene macOS include Python 2.7 predefinito hello, è consigliabile installare Python tramite Homebrew. Vedere [Installing Python on macOS](http://docs.python-guide.org/en/latest/starting/install/osx/) (Installazione di Python in macOS).
 
-Installare Python ed eseguire i parametri di inizializzazione del programma tramite il comando seguente:
+Installare Python e pip eseguendo hello comando seguente:
 
 ```bash
 brew install python
 ```
 
-## <a name="install-the-azure-cli"></a>Installare l'interfaccia della riga di comando di Azure
-L'interfaccia della riga di comando di Azure offre un'esperienza di riga di comando multipiattaforma per Azure. Si opera direttamente dalla riga di comando per il provisioning e la gestione delle risorse.
+## <a name="install-hello-azure-cli"></a>Installare hello CLI di Azure
+Hello CLI di Azure fornisce un'esperienza della riga di comando multipiattaforma di Azure. Si lavora direttamente da tooprovision la riga di comando e la gestione delle risorse.
 
-Per installare l'interfaccia della riga di comando di Azure più recente, seguire questi passaggi:
+tooinstall hello CLI di Azure più recenti, seguire questi passaggi:
 
-1. Eseguire i comandi seguenti in una finestra del terminale. L'installazione dell'interfaccia della riga di comando di Azure può richiedere cinque minuti.
+1. Eseguire i seguenti comandi in una finestra terminale hello. Potrebbe richiedere cinque minuti tooinstall hello CLI di Azure.
 
    ```bash
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
-2. Verificare l'installazione usando il comando seguente:
+2. Verificare l'installazione di hello eseguendo hello comando seguente:
 
    ```bash
    az iot -h
    ```
 
-Se l'installazione ha esito positivo, verrà visualizzato l'output seguente.
+Verrà visualizzato l'output seguente hello se installazione hello ha esito positivo.
 
 ![Output che indica l'esito positivo][output]
 
 ## <a name="summary"></a>Riepilogo
-È stata installata l'interfaccia della riga di comando di Azure. L'attività successiva consiste nella creazione dell'hub IoT di Azure e dell'identità del dispositivo tramite l'interfaccia della riga di comando di Azure.
+È stato installato hello CLI di Azure. L'attività successiva è toocreate l'identità di hub e dispositivi Azure IoT utilizzando hello CLI di Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Creare l'hub IoT e registrare la scheda Arduino][create-your-iot-hub-and-register-your-arduino-board]

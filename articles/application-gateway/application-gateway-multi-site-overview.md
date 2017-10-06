@@ -1,6 +1,6 @@
 ---
-title: "Hosting di più siti in un gateway applicazione di Azure | Microsoft Docs"
-description: "Questa pagina offre una panoramica del supporto di più siti in un gateway applicazione."
+title: "aaaHosting più siti in Gateway di applicazione di Azure | Documenti Microsoft"
+description: "Questa pagina viene fornita una panoramica del supporto di più siti di Gateway applicazione hello."
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
 ms.author: amsriva
-ms.openlocfilehash: 645f68d836babf11f32fc391e6dacc9430f0070c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4ab6faa97f1891d7525affdaa36463681bf99e9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-gateway-multiple-site-hosting"></a>Hosting di più siti in un gateway applicazione
 
-L'hosting di più siti consente di configurare più applicazioni Web nella stessa istanza del gateway applicazione. Questa funzionalità consente di configurare una topologia più efficiente per le distribuzioni aggiungendo fino a 20 siti Web a un unico gateway applicazione. Ogni sito Web può essere indirizzato al proprio pool back-end. Nell'esempio seguente, il gateway applicazione gestisce il traffico per contoso.com e fabrikam.com da due pool di server back-end denominati ContosoServerPool e FabrikamServerPool.
+Hosting di più siti consente tooconfigure più di una sola applicazione web su hello stessa istanza di gateway applicazione. Questa funzionalità permette di tooconfigure una topologia più efficiente per le distribuzioni tramite l'aggiunta di gateway applicazione tooone di too20 siti Web. Ogni sito Web può essere indirizzato tooits proprietari pool back-end. Nell'esempio seguente di hello, gateway applicazione gestisce il traffico per contoso.com e fabrikam.com da due pool di server back-end denominato ContosoServerPool e FabrikamServerPool.
 
 ![imageURLroute](./media/application-gateway-multi-site-overview/multisite.png)
 
 > [!IMPORTANT]
-> Le regole vengono elaborate nell'ordine in cui sono elencate nel portale. È consigliabile configurare i listener multisito prima di configurare un listener di base.  In questo modo il traffico viene indirizzato al back-end appropriato. Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.
+> Le regole vengono elaborate in ordine di hello che sono elencati nel portale di hello. È tooconfiguring precedente prima tooconfigure consigliata multisito listener un listener di base.  In questo modo di terminare tale traffico Ottiene indirizzato toohello nuovo. Se un listener di base viene elencato per primo e corrisponde a una richiesta in ingresso, sarà tale listener a elaborarla.
 
-Le richieste per http://contoso.com vengono instradate a ContosoServerPool, mentre quelle per http://fabrikam.com vengono instradate a FabrikamServerPool.
+Le richieste per http://contoso.com tooContosoServerPool indirizzato e http://fabrikam.com tooFabrikamServerPool indirizzato.
 
-Analogamente, la stessa distribuzione del gateway applicazione può ospitare due sottodomini dello stesso dominio padre. Tra gli esempi dell'uso di sottodomini si possono includere http://blog.contoso.com e http://app.contoso.com ospitati in una singola distribuzione del gateway applicazione.
+Analogamente, due sottodomini di hello nello stesso dominio padre può essere ospitato in hello stessa distribuzione di gateway applicazione. Tra gli esempi dell'uso di sottodomini si possono includere http://blog.contoso.com e http://app.contoso.com ospitati in una singola distribuzione del gateway applicazione.
 
 ## <a name="host-headers-and-server-name-indication-sni"></a>Intestazioni host e indicazione nome server (SNI)
 
-Per abilitare l'hosting di più siti nella stessa infrastruttura sono disponibili tre comuni meccanismi.
+Esistono tre meccanismi comuni per l'abilitazione del sito più hosting in hello stessa infrastruttura.
 
 1. Ospitare più applicazioni Web con un indirizzo IP univoco per ognuna.
-2. Usare il nome host per ospitare più applicazioni Web nello stesso indirizzo IP.
-3. Usare porte diverse per ospitare più applicazioni Web nello stesso indirizzo IP.
+2. Nome di host di usare toohost più applicazioni web su hello stesso indirizzo IP.
+3. Usa diversa porte toohost più applicazioni web su hello stesso indirizzo IP.
 
-Un gateway applicazione ottiene attualmente un singolo indirizzo IP pubblico su cui rimane in ascolto del traffico. Di conseguenza, non è attualmente possibile supportare più applicazioni ognuna con il proprio indirizzo IP. Il gateway applicazione supporta l'hosting di più applicazioni ognuna in ascolto su porte diverse, ma in questo scenario le applicazioni dovrebbero accettare traffico su porte non standard e questa non è in genere una configurazione desiderata. Il gateway applicazione si basa su intestazioni host HTTP 1.1 per ospitare più siti Web nello stesso indirizzo IP pubblico e nella stessa porta. I siti ospitati nel gateway applicazione possono supportare anche l'offload SSL con l'estensione TLS dell'indicazione nome server (SNI). In questo scenario il browser client e la Web farm back-end devono quindi supportare HTTP/1.1 e l'estensione TLS definita nella specifica RFC 6066.
+Un gateway applicazione ottiene attualmente un singolo indirizzo IP pubblico su cui rimane in ascolto del traffico. Di conseguenza, non è attualmente possibile supportare più applicazioni ognuna con il proprio indirizzo IP. Gateway applicazione supporta più applicazioni di hosting ogni in ascolto su porte diverse, ma questo scenario richiede il traffico di hello applicazioni tooaccept sulle porte non standard e spesso non è una configurazione desiderata. Gateway applicazione si basa su HTTP 1.1 toohost intestazioni host più di un sito Web in hello stesso indirizzo IP pubblico e la porta. siti Hello ospitati su gateway applicazione possono inoltre il supporto di offload SSL con l'estensione di indicazione nome Server (SNI) TLS. Questo scenario significa che Hello client browser e back-end web farm devono supportare HTTP/1.1 ed estensione TLS come definito in RFC 6066.
 
 ## <a name="listener-configuration-element"></a>Elemento di configurazione del listener
 
-L'elemento di configurazione HTTPListener esistente è stato migliorato per supportare gli elementi del nome host e dell'indicazione nome server usati dal gateway applicazione per instradare il traffico al pool back-end appropriato. L'esempio di codice seguente è il frammento dell'elemento HttpListeners del file modello.
+HTTPListener esistente è di elemento di configurazione avanzata toosupport host nome e il server indica gli elementi name, che viene utilizzato dal pool di applicazioni gateway tooroute traffico tooappropriate back-end. Hello esempio di codice seguente è hello frammento dell'elemento di listener HTTP dal file di modello.
 
 ```json
 "httpListeners": [
@@ -83,11 +83,11 @@ L'elemento di configurazione HTTPListener esistente è stato migliorato per supp
 ],
 ```
 
-Per una distribuzione basata su modello end-to-end, vedere il [modello di Resource Manager con hosting di più siti](https://github.com/Azure/azure-quickstart-templates/blob/master/201-application-gateway-multihosting).
+È possibile visitare [modello Resource Manager utilizza l'hosting del sito più](https://github.com/Azure/azure-quickstart-templates/blob/master/201-application-gateway-multihosting) per una distribuzione di fine tooend basato su modello.
 
 ## <a name="routing-rule"></a>Regola di routing
 
-Nella regola di routing non è necessaria alcuna modifica. È ancora necessario scegliere la regola di routing "Basic" per collegare il listener del sito appropriato al pool di indirizzi back-end corrispondente.
+Non è richiesta nella regola di routing hello alcuna modifica. Hello toobe scelto tootie hello sito appropriato listener toohello corrispondente back-end pool di indirizzi deve continuare 'Basic' regola di routing.
 
 ```json
 "requestRoutingRules": [
@@ -128,5 +128,5 @@ Nella regola di routing non è necessaria alcuna modifica. È ancora necessario 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver acquisito familiarità con l'hosting di più siti, vedere [Creare un gateway applicazione per l'hosting di più applicazioni Web](application-gateway-create-multisite-azureresourcemanager-powershell.md) per creare un gateway applicazione con supporto di più applicazioni Web.
+Dopo avere learning sull'hosting di più siti, andare troppo[creare un gateway applicazione utilizza l'hosting del sito più](application-gateway-create-multisite-azureresourcemanager-powershell.md) toocreate un gateway applicazione con capacità toosupport più di una sola applicazione web.
 

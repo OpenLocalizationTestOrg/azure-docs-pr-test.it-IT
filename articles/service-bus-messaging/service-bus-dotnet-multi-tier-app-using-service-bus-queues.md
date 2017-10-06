@@ -1,6 +1,6 @@
 ---
-title: Applicazione .NET multilivello con il bus di servizio di Azure | Documentazione Microsoft
-description: Un'esercitazione .NET che consente di sviluppare un'applicazione multilivello in Azure che usa le code di Bus di servizio per la comunicazione tra livelli.
+title: applicazione multilivello aaa.NET utilizzando Azure Service Bus | Documenti Microsoft
+description: "Un'esercitazione .NET che consente di sviluppare un'applicazione a più livelli in Azure che utilizza toocommunicate code Service Bus tra livelli."
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,100 +14,100 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 04/11/2017
 ms.author: sethm
-ms.openlocfilehash: 8b502f5ac5d89801d390a872e7a8b06e094ecbba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 485910ff1d3b8b0a709ee14ede32e57cf873829a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="net-multi-tier-application-using-azure-service-bus-queues"></a>Applicazione .NET multilivello che usa code del bus di servizio
 ## <a name="introduction"></a>Introduzione
-Microsoft Azure consente di sviluppare applicazioni con la stessa semplicità offerta da Visual Studio e Azure SDK gratuito per .NET. Questa esercitazione illustra i passaggi per creare un'applicazione che usa più risorse di Azure in esecuzione nell'ambiente locale.
+Sviluppo per Microsoft Azure è semplice con Visual Studio e hello gratuito di Azure SDK per .NET. In questa esercitazione illustra hello passaggi toocreate un'applicazione che utilizza più risorse di Azure in esecuzione nell'ambiente locale.
 
-Verranno illustrate le operazioni seguenti:
+Si apprenderà seguente hello:
 
-* Abilitare il computer in uso per lo sviluppo per Azure tramite un singolo download e una singola installazione.
-* Utilizzare Visual Studio per lo sviluppo per Azure.
-* Creare un'applicazione multilivello in Azure utilizzando ruoli Web e ruoli di lavoro.
-* Consentire le comunicazioni tra i livelli usando le code del bus di servizio.
+* Come tooenable del computer per lo sviluppo di Azure con un singolo scaricare e installare.
+* Come toouse toodevelop di Visual Studio per Azure.
+* Come toocreate un'applicazione a più livelli in Azure usando i ruoli web e di lavoro.
+* Come toocommunicate tra livelli mediante le code del Bus di servizio.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-In questa esercitazione verrà creata ed eseguita un'applicazione multilivello in un servizio cloud di Azure. Il front-end è un ruolo Web ASP.NET MVC e il back-end è un ruolo di lavoro che usa una coda del bus di servizio. È possibile creare la stessa applicazione multilivello con il front-end come progetto Web distribuito in un sito Web di Azure invece che in un servizio cloud. È anche possibile vedere l'esercitazione sull'[applicazione .NET ibrida locale/sul cloud](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md).
+In questa esercitazione si sarà compilare ed eseguire un'applicazione multilivello hello in un servizio cloud di Azure. front-end Hello è un ruolo web ASP.NET MVC e back-end hello è un ruolo di lavoro che utilizza una coda del Bus di servizio. È possibile creare hello stesso multilivello con front-end hello come progetto di applicazione web, che viene distribuito tooan sito Web di Azure invece di un servizio cloud. È anche possibile provare hello [un'applicazione in locale/cloud ibrida .NET](../service-bus-relay/service-bus-dotnet-hybrid-app-using-service-bus-relay.md) esercitazione.
 
-Nella schermata seguente è illustrata l'applicazione completata.
+Hello cattura di schermata seguente mostra un'applicazione hello completata.
 
 ![][0]
 
 ## <a name="scenario-overview-inter-role-communication"></a>Informazioni generali sullo scenario: comunicazione tra ruoli
-Per inviare un ordine per l'elaborazione, è necessario che il componente dell'interfaccia utente front-end, in esecuzione nel ruolo Web, interagisca con la logica di livello intermedio in esecuzione nel ruolo di lavoro. Questo esempio usa la messaggistica del bus di servizio per la comunicazione tra i livelli.
+toosubmit un ordine per l'elaborazione, componente dell'interfaccia utente front-end hello, in esecuzione nel ruolo web hello devono interagire con la logica di livello intermedio hello in esecuzione nel ruolo di lavoro hello. In questo esempio utilizza la messaggistica di Service Bus per la comunicazione tra i livelli di hello hello.
 
-L'uso della messaggistica del bus di servizio tra il livello Web e il livello intermedio consente di disaccoppiare i due componenti. Invece di usare la messaggistica diretta, ovvero TCP o HTTP, il livello Web non si connette direttamente al livello intermedio, ma inserisce unità di lavoro, ad esempio messaggi, nel bus di servizio, che li conserva in modo affidabile fino a quando il livello intermedio non sarà pronto per usarli ed elaborarli.
+Uso del Bus di servizio Messaggistica tra i livelli intermedi e web hello separa i due componenti. Al contrario di hello toodirect messaggistica (ovvero, TCP o HTTP), livello web non si connette intermedio toohello direttamente. invece inserisce le unità di lavoro, come i messaggi nel Bus di servizio, che li mantiene fino al livello intermedio hello tooconsume pronto in modo affidabile ed elaborarle.
 
-Il bus di servizio offre due entità per il supporto della messaggistica negoziata, ovvero le code e gli argomenti. Se si usano le code, ogni messaggio inviato alla coda viene usato da un ricevitore singolo. Gli argomenti supportano il modello pubblicazione/sottoscrizione, in cui ogni messaggio pubblicato viene reso disponibile a una sottoscrizione registrata per l'argomento. Ogni sottoscrizione mantiene in modo logico la propria coda di messaggi. È anche possibile configurare le sottoscrizioni specificando regole di filtro per limitare i set di messaggi passati alla coda della sottoscrizione ai soli messaggi corrispondenti al filtro. Nel seguente esempio vengono usate le code del bus di servizio.
+Bus di servizio offre due entità toosupport negoziata messaggistica: code e argomenti. Con le code, ogni messaggio inviato toohello coda viene utilizzata da un singolo ricevitore. Gli argomenti supportano modello hello pubblicazione/sottoscrizione in cui ogni messaggio pubblicato viene reso disponibile tooa sottoscrizione registrata con argomento hello. Ogni sottoscrizione mantiene in modo logico la propria coda di messaggi. Le sottoscrizioni possono essere configurate anche con regole dei filtri che limitano il set di hello di messaggi passati a hello sottoscrizione coda toothose che corrispondono al filtro hello. Hello esempio seguente usa le code del Bus di servizio.
 
 ![][1]
 
 Questo meccanismo di comunicazione presenta alcuni vantaggi rispetto alla messaggistica diretta:
 
-* **Disaccoppiamento temporaneo.** Grazie al modello di messaggistica asincrono, non è necessario che produttori e consumer siano online nello stesso momento. I messaggi vengono archiviati in modo affidabile nel bus di servizio fino a quando il consumer non sarà pronto per riceverli. Questo consente la disconnessione volontaria (ad esempio, per attività di manutenzione) o involontaria (a seguito di un guasto) dei componenti dell'applicazione distribuita senza ripercussioni sull'intero sistema. È inoltre possibile che l'applicazione consumer debba essere online solo in determinati orari.
-* **Livellamento del carico.** In molte applicazioni il carico del sistema varia in base al momento, mentre il tempo di elaborazione richiesto per ogni unità di lavoro è in genere costante. L'interposizione di una coda tra producer e consumer di messaggi implica che è necessario solo eseguire il provisioning dell'applicazione consumer (il ruolo di lavoro) per consentire a quest'ultima di gestire un carico medio anziché il carico massimo. In base alla variazione del carico in ingresso, si verificherà un incremento o una riduzione della profondità della coda, con un risparmio diretto in termini economici rispetto alle risorse infrastrutturali richieste per gestire il carico dell'applicazione.
-* **Bilanciamento del carico.** Con l'aumento del carico, è possibile aggiungere altri processi di lavoro per la lettura della coda. Ciascun messaggio viene elaborato da un solo processo di lavoro. Inoltre, il bilanciamento del carico di tipo pull consente un uso ottimale delle macchine di lavoro anche quando queste presentano una potenza di elaborazione diversa. Ogni macchina effettuerà infatti il pull dei messaggi alla propria velocità massima. Questo modello viene spesso definito modello del *consumer concorrente*.
+* **Disaccoppiamento temporaneo.** Con modello di messaggistica asincrona di hello, producer e consumer non è necessario online all'indirizzo hello contemporaneamente. Bus di servizio archivia in modo affidabile i messaggi hello finché consumer non è pronto a riceverli. In questo modo i componenti di hello di toobe applicazione hello distribuita disconnesso, sia volontariamente, ad esempio, per la manutenzione o a causa di arresto anomalo del componente tooa, senza alcun impatto sul sistema nel suo complesso. Inoltre, hello utilizzano l'applicazione potrebbe essere necessario solo toocome online durante determinate ore del giorno hello.
+* **Livellamento del carico.** In molte applicazioni, il carico del sistema varia nel tempo, mentre il tempo di elaborazione di hello necessario per ogni unità di lavoro è in genere costante. Interposizione messaggio producer e consumer una coda significa che hello utilizzo applicazione (worker hello) solo esigenze toobe provisioning tooaccommodate di carico medio invece di un carico di picco. profondità Hello della coda di hello aumentano e i contratti in base alla variazione carico in ingresso hello. In questo modo direttamente money in termini di quantità hello infrastruttura richiesto tooservice hello carico dell'applicazione.
+* **Bilanciamento del carico.** Come aumentare del carico, altri processi di lavoro è possibile aggiungere tooread dalla coda hello. Ogni messaggio viene elaborato da un solo hello di processi di lavoro. Inoltre, il bilanciamento del carico basato su pull consente l'utilizzo ottimale delle macchine lavoro hello anche se le macchine di lavoro si differenziano in termini di potenza di elaborazione, come verrà estraggono i messaggi alla propria velocità massima. Questo modello viene spesso definito hello *consumer concorrente* modello.
   
   ![][2]
 
-Il codice che consente di implementare questa architettura viene illustrato nelle sezioni seguenti.
+Hello le sezioni seguenti viene illustrato il codice hello che implementa questa architettura.
 
-## <a name="set-up-the-development-environment"></a>Configurare l'ambiente di sviluppo
-Prima di iniziare a sviluppare applicazioni Azure, è necessario ottenere gli strumenti e configurare l'ambiente di sviluppo.
+## <a name="set-up-hello-development-environment"></a>Configurare un ambiente di sviluppo hello
+Prima di iniziare lo sviluppo di applicazioni Azure, Scarica gli strumenti di hello e configurare l'ambiente di sviluppo.
 
-1. Installare Azure SDK per .NET dalla [pagina di download](https://azure.microsoft.com/downloads/) di SDK.
-2. Nella colonna **.NET** fare clic sulla versione di [Visual Studio](http://www.visualstudio.com) in uso. I passaggi di questa esercitazione usano Visual Studio 2015, ma funzionano anche con Visual Studio 2017.
-3. Quando viene richiesto se eseguire o salvare il file di installazione, fare clic su **Esegui**.
-4. Nell'**Installazione guidata piattaforma Web** fare clic su **Installa** e procedere con l'installazione.
-5. Al termine dell'installazione, saranno disponibili tutti gli strumenti necessari per avviare lo sviluppo dell’app. Nell'SDK sono disponibili gli strumenti che consentono di sviluppare con facilità applicazioni per Azure in Visual Studio.
+1. Installare hello Azure SDK per .NET da hello SDK [pagina di download](https://azure.microsoft.com/downloads/).
+2. In hello **.NET** colonna, fare clic sulla versione di hello di [Visual Studio](http://www.visualstudio.com) in uso. Hello i passaggi in questa esercitazione usare Visual Studio 2015, ma funzionano anche con Visual Studio 2017.
+3. Quando viene chiesto di toorun o salvare installer hello, fare clic su **eseguire**.
+4. In hello **installazione guidata piattaforma Web**, fare clic su **installare** e continuare l'installazione di hello.
+5. Al termine dell'installazione di hello, sarà necessario tutto il necessario toostart toodevelop hello app. Hello SDK include strumenti che consentono di sviluppare facilmente applicazioni Azure in Visual Studio.
 
 ## <a name="create-a-namespace"></a>Creare uno spazio dei nomi
-Il passaggio successivo consiste nel creare uno spazio dei nomi del servizio e nell'ottenere una chiave di firma di accesso condiviso. Uno spazio dei nomi fornisce un limite per ogni applicazione esposta tramite il bus di servizio. Una chiave di firma di accesso condiviso viene generata dal sistema quando viene creato uno spazio dei nomi. La combinazione di spazio dei nomi e chiave di firma di accesso condiviso fornisce le credenziali che consentono al bus di servizio di autenticare l'accesso a un'applicazione.
+passaggio successivo Hello è toocreate uno spazio dei nomi di servizio e ottenere una chiave di firma di accesso condiviso (SAS). Uno spazio dei nomi fornisce un limite per ogni applicazione esposta tramite il bus di servizio. Una chiave di firma di accesso condiviso viene generata dal sistema hello quando viene creato uno spazio dei nomi. combinazione di Hello di spazio dei nomi e la chiave di firma di accesso condiviso fornisce le credenziali di hello per applicazione tooan accesso tooauthenticate di Bus di servizio.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="create-a-web-role"></a>Creare un ruolo web
-Creare in questa sezione il front-end dell'applicazione. Creare prima di tutto le pagine visualizzate dall'applicazione.
-Aggiungere quindi il codice per inviare elementi a una coda del bus di servizio e visualizzare informazioni relative allo stato della coda.
+In questa sezione, si compila front-end di hello dell'applicazione. Creare innanzitutto le pagine di hello visualizzato dall'applicazione.
+Successivamente, aggiungere il codice che invia gli elementi della coda del Bus di servizio tooa e visualizza le informazioni di stato coda hello.
 
-### <a name="create-the-project"></a>Creare il progetto
-1. Avviare Visual Studio con privilegi di amministratore: fare clic con il pulsante destro del mouse sull'icona del programma **Visual Studio** e quindi scegliere **Esegui come amministratore**. Per l'emulatore di calcolo di Azure, illustrato più avanti in questo articolo, è necessario che Visual Studio sia avviato con privilegi di amministratore.
+### <a name="create-hello-project"></a>Creare il progetto hello
+1. Con privilegi di amministratore, avviare Visual Studio: hello rapida **Visual Studio** sull'icona di programma e quindi fare clic su **Esegui come amministratore**. emulatore di calcolo di Azure Hello, descritto più avanti in questo articolo, è necessario che è possibile avviare Visual Studio con privilegi di amministratore.
    
-   In Visual Studio scegliere **Nuovo** dal menu **File**, quindi fare clic su **Progetto**.
-2. Da **Modelli installati** in **Visual C#** fare clic su **Cloud** e quindi su **Servizio cloud di Azure**. Assegnare al progetto il nome **MultiTierApp**. Fare quindi clic su **OK**.
+   In Visual Studio, su hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**.
+2. Da **Modelli installati** in **Visual C#** fare clic su **Cloud** e quindi su **Servizio cloud di Azure**. Progetto hello nome **MultiTierApp**. Fare quindi clic su **OK**.
    
    ![][9]
 3. Dai ruoli **.NET Framework 4.5** fare doppio clic su **Ruolo Web ASP.NET**.
    
    ![][10]
-4. Passare il puntatore su **WebRole1** in **Soluzione servizio cloud di Microsoft Azure**, quindi fare clic sull'icona a forma di matita e rinominare il ruolo Web in **FrontendWebRole**. Fare quindi clic su **OK**. Assicurarsi di immettere "Frontend" con una 'e' minuscola, non "FrontEnd".
+4. Passare il mouse su **WebRole1** in **soluzione servizio Cloud di Azure**, fare clic sull'icona di matita hello e rinominare il ruolo di web hello troppo**FrontendWebRole**. Fare quindi clic su **OK**. Assicurarsi di immettere "Frontend" con una 'e' minuscola, non "FrontEnd".
    
    ![][11]
-5. Nella finestra di dialogo **Nuovo progetto ASP.NET** fare clic su **MVC** in **Seleziona modello**.
+5. Da hello **nuovo progetto ASP.NET** della finestra di dialogo hello **selezionare un modello** elenco, fare clic su **MVC**.
    
    ![][12]
-6. Sempre nella finestra di dialogo **Nuovo progetto ASP.NET** fare clic sul pulsante **Modifica autenticazione**. Nella finestra di dialogo **Modifica autenticazione** fare clic su **Nessuna autenticazione**, quindi fare clic su **OK**. Per questa esercitazione si distribuisce un'applicazione che non richiede l'accesso utente.
+6. Ancora in hello **nuovo progetto ASP.NET** finestra di dialogo fare clic su hello **Modifica autenticazione** pulsante. In hello **Modifica autenticazione** la finestra di dialogo, fare clic su **Nessuna autenticazione**, quindi fare clic su **OK**. Per questa esercitazione si distribuisce un'applicazione che non richiede l'accesso utente.
    
     ![][16]
-7. Nella finestra di dialogo **Nuovo progetto ASP.NET** fare clic su **OK** per creare il progetto.
-8. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Riferimenti** nel progetto **FrontendWebRole** e quindi scegliere **Gestisci pacchetti NuGet**.
-9. Fare clic sulla scheda **Sfoglia** e quindi cercare `Microsoft Azure Service Bus`. Selezionare il pacchetto **WindowsAzure.ServiceBus**, fare clic su **Installa** e quindi accettare le condizioni per l'utilizzo.
+7. In hello **nuovo progetto ASP.NET** la finestra di dialogo, fare clic su **OK** progetto hello toocreate.
+8. In **Esplora**, in hello **FrontendWebRole** del progetto, fare doppio clic su **riferimenti**, quindi fare clic su **Gestisci pacchetti NuGet**.
+9. Fare clic su hello **Sfoglia** tab, quindi cercare `Microsoft Azure Service Bus`. Seleziona hello **Windowsazure** del pacchetto, fare clic su **installare**e accettare le condizioni di hello d'uso.
    
    ![][13]
    
-   Sono ora disponibili riferimenti agli assembly client necessari e sono stati aggiunti nuovi file di codice.
-10. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Modelli**, quindi scegliere **Aggiungi** e infine **Classe**. Nella casella **Nome** digitare il nome **OnlineOrder.cs**. Fare quindi clic su **Aggiungi**.
+   Si noti che hello e obbligatori per l'assembly client fa riferimento a questo punto sono stati aggiunti alcuni nuovi file di codice.
+10. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **Modelli**, quindi scegliere **Aggiungi** e infine **Classe**. In hello **nome** casella, il nome del tipo hello **Onlineorder**. Fare quindi clic su **Aggiungi**.
 
-### <a name="write-the-code-for-your-web-role"></a>Scrivere il codice per il ruolo Web
-Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'applicazione.
+### <a name="write-hello-code-for-your-web-role"></a>Scrittura di codice hello per il ruolo web
+In questa sezione è creare hello varie pagine visualizzato dall'applicazione.
 
-1. In Visual Studio, nel file OnlineOrder.cs sostituire la definizione dello spazio dei nomi esistente con il codice seguente:
+1. Nel file di Onlineorder hello in Visual Studio, sostituire la definizione dello spazio dei nomi esistente con hello seguente codice:
    
    ```csharp
    namespace FrontendWebRole.Models
@@ -119,14 +119,14 @@ Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'appl
        }
    }
    ```
-2. In **Esplora soluzioni** fare doppio clic su **Controllers\HomeController.cs**. Aggiungere le istruzioni **using** seguenti nella parte iniziale del file per includere gli spazi dei nomi per il modello appena creato, oltre al bus di servizio.
+2. In **Esplora soluzioni** fare doppio clic su **Controllers\HomeController.cs**. Aggiungere il seguente hello **utilizzando** istruzioni nella parte superiore di hello di hello file tooinclude hello gli spazi dei nomi per il modello appena creato, nonché il Bus di servizio.
    
    ```csharp
    using FrontendWebRole.Models;
    using Microsoft.ServiceBus.Messaging;
    using Microsoft.ServiceBus;
    ```
-3. Anche nel file HomeController.cs sostituire la definizione dello spazio dei nomi esistente con il seguente codice. Tale codice include metodi per la gestione dell'invio di elementi alla coda.
+3. Anche nel file di hello HomeController. cs in Visual Studio, sostituire la definizione dello spazio dei nomi esistente con hello seguente codice. Questo codice contiene metodi per la gestione di presentazione hello della coda toohello degli elementi.
    
    ```csharp
    namespace FrontendWebRole.Controllers
@@ -135,7 +135,7 @@ Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'appl
        {
            public ActionResult Index()
            {
-               // Simply redirect to Submit, since Submit will serve as the
+               // Simply redirect tooSubmit, since Submit will serve as the
                // front page of this application.
                return RedirectToAction("Submit");
            }
@@ -146,7 +146,7 @@ Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'appl
            }
    
            // GET: /Home/Submit.
-           // Controller method for a view you will create for the submission
+           // Controller method for a view you will create for hello submission
            // form.
            public ActionResult Submit()
            {
@@ -156,17 +156,17 @@ Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'appl
            }
    
            // POST: /Home/Submit.
-           // Controller method for handling submissions from the submission
+           // Controller method for handling submissions from hello submission
            // form.
            [HttpPost]
-           // Attribute to help prevent cross-site scripting attacks and
+           // Attribute toohelp prevent cross-site scripting attacks and
            // cross-site request forgery.  
            [ValidateAntiForgeryToken]
            public ActionResult Submit(OnlineOrder order)
            {
                if (ModelState.IsValid)
                {
-                   // Will put code for submitting to queue here.
+                   // Will put code for submitting tooqueue here.
    
                    return RedirectToAction("Submit");
                }
@@ -178,34 +178,34 @@ Creare prima di tutto in questa sezione le diverse pagine visualizzate dall'appl
        }
    }
    ```
-4. Scegliere **Compila soluzione** dal menu **Compila** per verificare la correttezza del lavoro svolto finora.
-5. Creare quindi la visualizzazione per il metodo `Submit()` creato in precedenza. Fare clic con il pulsante destro del mouse all'interno del metodo `Submit()`, ovvero l'overload del metodo `Submit()` che non accetta parametri, e quindi scegliere **Aggiungi visualizzazione**.
+4. Da hello **compilare** menu, fare clic su **Compila soluzione** accuratezza hello tootest del lavoro svolto finora.
+5. A questo punto, creare vista hello per hello `Submit()` metodo creato in precedenza. Fare doppio clic all'interno di hello `Submit()` metodo (overload hello del `Submit()` che non accetta parametri), quindi scegliere **Aggiungi visualizzazione**.
    
    ![][14]
-6. Viene visualizzata una finestra di dialogo per la creazione della visualizzazione. Nell'elenco **Modello** scegliere **Crea**. Nell'elenco **Classe modello** scegliere la classe **OnlineOrder**.
+6. Una finestra di dialogo viene visualizzata per la creazione di visualizzazione hello. In hello **modello** scegliere **crea**. In hello **classe modello** elenco, fare clic su hello **OnlineOrder** classe.
    
    ![][15]
 7. Fare clic su **Aggiungi**.
-8. Modificare ora il nome visualizzato dell'applicazione. In **Esplora soluzioni** fare doppio clic sul file **Views\Shared\\_Layout.cshtml** per aprirlo nell'editor di Visual Studio.
+8. A questo punto, modificare il nome di hello visualizzato dell'applicazione. In **Esplora**, fare doppio clic su di **Views\Shared\\layout. cshtml** tooopen del file nell'editor di Visual Studio hello.
 9. Sostituire tutte le occorrenze di **My ASP.NET Application** con **LITWARE'S Products**.
-10. Rimuovere i collegamenti **Home**, **About** e **Contact**. Eliminare il codice evidenziato:
+10. Rimuovere hello **Home**, **su**, e **contatto** collegamenti. Eliminare il codice evidenziato hello:
     
     ![][28]
-11. Modificare infine la pagina di invio in modo da includere informazioni sulla coda. In **Esplora soluzioni** fare doppio clic sul file **Views\Home\Submit.cshtml** per aprirlo nell'editor di Visual Studio. Aggiungere la riga seguente dopo `<h2>Submit</h2>`. Per ora `ViewBag.MessageCount` non contiene valori. Il valore verrà inserito successivamente.
+11. Infine, modificare hello invio pagina tooinclude alcune informazioni sulla coda hello. In **Esplora**, fare doppio clic su di **Views\Home\Submit.cshtml** tooopen del file nell'editor di Visual Studio hello. Aggiungere hello successiva riga dopo `<h2>Submit</h2>`. Per il momento, hello `ViewBag.MessageCount` è vuoto. Il valore verrà inserito successivamente.
     
     ```html
-    <p>Current number of orders in queue waiting to be processed: @ViewBag.MessageCount</p>
+    <p>Current number of orders in queue waiting toobe processed: @ViewBag.MessageCount</p>
     ```
-12. L'interfaccia utente è stata implementata. È possibile premere **F5** per eseguire l'applicazione e confermare che abbia l'aspetto previsto.
+12. L'interfaccia utente è stata implementata. È possibile premere **F5** toorun l'applicazione e verificare che l'aspetto di come previsto.
     
     ![][17]
 
-### <a name="write-the-code-for-submitting-items-to-a-service-bus-queue"></a>Scrivere codice per l'invio di elementi a una coda del bus di servizio
-Aggiungere quindi il codice per l'invio di elementi a una coda. Creare prima di tutto una classe contenente le informazioni di connessione della coda del bus di servizio. Inizializzare quindi la connessione da Global.aspx.cs. Aggiornare infine il codice di invio creato in precedenza in HomeController.cs in modo da inviare effettivamente elementi alla coda del bus di servizio.
+### <a name="write-hello-code-for-submitting-items-tooa-service-bus-queue"></a>Scrittura di codice hello per l'invio di elementi della coda del Bus di servizio tooa
+A questo punto, aggiungere codice per l'invio a coda tooa degli elementi. Creare prima di tutto una classe contenente le informazioni di connessione della coda del bus di servizio. Inizializzare quindi la connessione da Global.aspx.cs. Infine, aggiornare il codice di invio hello creato in precedenza nella coda di Service Bus tooa HomeController.cs tooactually invia gli elementi.
 
-1. In **Esplora soluzioni** fare clic con il pulsante destro del mouse su **FrontendWebRole**. È necessario fare clic con il pulsante destro del mouse sul progetto, non sul ruolo. Fare clic su **Aggiungi**, quindi su **Classe**.
-2. Assegnare alla classe il nome **QueueConnector.cs**. Fare clic su **Aggiungi** per creare la classe.
-3. Aggiungere ora codice che incapsula le informazioni di connessione e inizializza la connessione a una coda del bus di servizio. Sostituire l'intero contenuto di QueueConnector.cs con il codice seguente e immettere i valori per `your Service Bus namespace`, ovvero il nome dello spazio dei nomi, e `yourKey`, ovvero la **chiave primaria** ottenuta in precedenza dal portale di Azure.
+1. In **Esplora**, fare doppio clic su **FrontendWebRole** (progetto hello pulsante destro del mouse, non il ruolo hello). Fare clic su **Aggiungi**, quindi su **Classe**.
+2. Nome classe hello **QueueConnector.cs**. Fare clic su **Aggiungi** classe hello toocreate.
+3. A questo punto, aggiungere il codice che incapsula le informazioni di connessione hello e inizializza coda di Service Bus tooa connessione hello. Sostituire hello l'intero contenuto di QueueConnector.cs con hello seguente di codice e immettere i valori per `your Service Bus namespace` (il nome dello spazio dei nomi) e `yourKey`, ovvero hello **chiave primaria** ottenuto in precedenza da hello Azure portale.
    
    ```csharp
    using System;
@@ -223,15 +223,15 @@ Aggiungere quindi il codice per l'invio di elementi a una coda. Creare prima di 
            // on every request.
            public static QueueClient OrdersQueueClient;
    
-           // Obtain these values from the portal.
+           // Obtain these values from hello portal.
            public const string Namespace = "your Service Bus namespace";
    
-           // The name of your queue.
+           // hello name of your queue.
            public const string QueueName = "OrdersQueue";
    
            public static NamespaceManager CreateNamespaceManager()
            {
-               // Create the namespace manager which gives you access to
+               // Create hello namespace manager which gives you access to
                // management operations.
                var uri = ServiceBusEnvironment.CreateServiceUri(
                    "sb", Namespace, String.Empty);
@@ -242,21 +242,21 @@ Aggiungere quindi il codice per l'invio di elementi a una coda. Creare prima di 
    
            public static void Initialize()
            {
-               // Using Http to be friendly with outbound firewalls.
+               // Using Http toobe friendly with outbound firewalls.
                ServiceBusEnvironment.SystemConnectivity.Mode =
                    ConnectivityMode.Http;
    
-               // Create the namespace manager which gives you access to
+               // Create hello namespace manager which gives you access to
                // management operations.
                var namespaceManager = CreateNamespaceManager();
    
-               // Create the queue if it does not exist already.
+               // Create hello queue if it does not exist already.
                if (!namespaceManager.QueueExists(QueueName))
                {
                    namespaceManager.CreateQueue(QueueName);
                }
    
-               // Get a client to the queue.
+               // Get a client toohello queue.
                var messagingFactory = MessagingFactory.Create(
                    namespaceManager.Address,
                    namespaceManager.Settings.TokenProvider);
@@ -267,39 +267,39 @@ Aggiungere quindi il codice per l'invio di elementi a una coda. Creare prima di 
    }
    ```
 4. Assicurarsi che venga chiamato il metodo **Initialize**. In **Esplora soluzioni** fare doppio clic su **Global.asax\Global.asax.cs**.
-5. Aggiungere la riga di codice seguente alla fine del metodo **Application_Start**.
+5. Aggiungere hello successiva riga di codice alla fine hello hello **Application_Start** metodo.
    
    ```csharp
    FrontendWebRole.QueueConnector.Initialize();
    ```
-6. Verrà infine aggiornato il codice Web creato in precedenza, in modo da inviare elementi alla coda. In **Esplora soluzioni** fare doppio clic su **Controllers\HomeController.cs**.
-7. Aggiornare il metodo `Submit()`, ovvero l'overload che non accetta parametri, come indicato di seguito per ottenere il numero di messaggi per la coda.
+6. Infine, aggiornare il codice di web hello creato in precedenza, per inviare gli elementi toohello coda. In **Esplora soluzioni** fare doppio clic su **Controllers\HomeController.cs**.
+7. Hello aggiornamento `Submit()` metodo (overload hello che non accetta parametri) come indicato di seguito tooget hello numero messaggi per coda hello.
    
    ```csharp
    public ActionResult Submit()
    {
-       // Get a NamespaceManager which allows you to perform management and
+       // Get a NamespaceManager which allows you tooperform management and
        // diagnostic operations on your Service Bus queues.
        var namespaceManager = QueueConnector.CreateNamespaceManager();
    
-       // Get the queue, and obtain the message count.
+       // Get hello queue, and obtain hello message count.
        var queue = namespaceManager.GetQueue(QueueConnector.QueueName);
        ViewBag.MessageCount = queue.MessageCount;
    
        return View();
    }
    ```
-8. Aggiornare il metodo `Submit(OnlineOrder order)`, ovvero l'overload che accetta un parametro, come indicato di seguito per inviare alla coda le informazioni relative all'ordine.
+8. Hello aggiornamento `Submit(OnlineOrder order)` metodo (hello dell'overload che accetta un parametro) come indicato di seguito toosubmit ordine coda toohello informazioni.
    
    ```csharp
    public ActionResult Submit(OnlineOrder order)
    {
        if (ModelState.IsValid)
        {
-           // Create a message from the order.
+           // Create a message from hello order.
            var message = new BrokeredMessage(order);
    
-           // Submit the order.
+           // Submit hello order.
            QueueConnector.OrdersQueueClient.Send(message);
            return RedirectToAction("Submit");
        }
@@ -309,63 +309,63 @@ Aggiungere quindi il codice per l'invio di elementi a una coda. Creare prima di 
        }
    }
    ```
-9. È ora possibile eseguire di nuovo l'applicazione. Ogni volta che si invia un ordine, il conteggio dei messaggi aumenta.
+9. È ora possibile eseguire nuovamente l'applicazione hello. Ogni volta che si invia un ordine, aumenta il numero di messaggi hello.
    
    ![][18]
 
-## <a name="create-the-worker-role"></a>Creare il ruolo di lavoro
-Verrà ora creato il ruolo di lavoro che elabora l'invio dell'ordine. In questo esempio viene usato il modello di progetto **Worker Role with Service Bus Queue** di Visual Studio. Le credenziali necessarie sono già state ottenute dal portale.
+## <a name="create-hello-worker-role"></a>Creare il ruolo di lavoro hello
+Si creerà ora ruolo di lavoro hello che elabora gli invii di ordine di hello. Questo esempio viene utilizzato hello **ruolo di lavoro con coda di Service Bus** il modello di progetto di Visual Studio. Le credenziali necessarie hello già ottenuto dal portale hello.
 
-1. Assicurarsi che Visual Studio sia connesso all'account Azure.
-2. In **Esplora soluzioni** in Visual Studio fare clic con il pulsante destro del mouse sulla cartella **Roles** nel progetto **MultiTierApp**.
-3. Fare clic su **Aggiungi**, quindi su **Nuovo progetto di ruolo di lavoro**. Viene visualizzata la finestra di dialogo **Aggiungi nuovo progetto di ruolo**.
+1. Verificare che si è connessi a Visual Studio tooyour account Azure.
+2. In Visual Studio, in **Esplora** destro la **ruoli** cartella hello **MultiTierApp** progetto.
+3. Fare clic su **Aggiungi**, quindi su **Nuovo progetto di ruolo di lavoro**. Hello **Aggiungi nuovo progetto di ruolo** viene visualizzata la finestra di dialogo.
    
    ![][26]
-4. Nella finestra di dialogo **Aggiungi nuovo progetto di ruolo** fare clic su **Worker Role with Service Bus Queue**.
+4. In hello **Aggiungi nuovo progetto di ruolo** la finestra di dialogo, fare clic su **ruolo di lavoro con coda di Service Bus**.
    
    ![][23]
-5. Nella casella **Nome** assegnare il nome **OrderProcessingRole**. Fare quindi clic su **Aggiungi**.
-6. Copiare negli Appunti la stringa di connessione ottenuta nel passaggio 9 della sezione "Creare uno spazio dei nomi del bus di servizio".
-7. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul ruolo **OrderProcessingRole** creato nel passaggio 5. Assicurarsi di fare clic con il pulsante destro del mouse su **OrderProcessingRole** in **Ruoli** e non sulla classe. Fare quindi clic su **Proprietà**.
-8. Nella scheda **Impostazioni** della finestra di dialogo **Proprietà** posizionare il cursore all'interno della casella **Valore** per **Microsoft.ServiceBus.ConnectionString**, quindi incollare il valore dell'endpoint copiato al passaggio 6.
+5. In hello **nome** casella, il progetto di hello nome **OrderProcessingRole**. Fare quindi clic su **Aggiungi**.
+6. Copiare una stringa di connessione hello ottenuto nel passaggio 9 di blocco per Appunti toohello sezione "Creare uno spazio dei nomi del Bus di servizio" hello.
+7. In **Esplora**, hello rapida **OrderProcessingRole** creato nel passaggio 5 (assicurarsi che si fa clic su **OrderProcessingRole** in **Ruoli**, e non hello classe). Fare quindi clic su **Proprietà**.
+8. In hello **impostazioni** scheda di hello **proprietà** la finestra di dialogo, fare clic all'interno di hello **valore** casella **Microsoft.ServiceBus.ConnectionString**, quindi incollare il valore di endpoint hello copiato nel passaggio 6.
    
    ![][25]
-9. Creare una classe **OnlineOrder** che rappresenti gli ordini elaborati dalla coda. È possibile riutilizzare una classe creata in precedenza. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla classe **OrderProcessingRole**. È necessario fare clic con il pulsante destro del mouse sull'icona della classe, non sul ruolo. Fare clic su **Aggiungi**, quindi su **Elemento esistente**.
-10. Selezionare la sottocartella per **FrontendWebRole\Models**e fare doppio clic su **OnlineOrder.cs** per aggiungerlo al progetto corrente.
-11. In **WorkerRole.cs** modificare il valore della variabile **QueueName** da `"ProcessingQueue"` in `"OrdersQueue"` come illustrato nel codice seguente.
+9. Creare un **OnlineOrder** classe toorepresent hello ordini elaborati dalla coda hello. È possibile riutilizzare una classe creata in precedenza. In **Esplora**, hello rapida **OrderProcessingRole** classe (icona del pulsante destro del mouse hello classe, non il ruolo hello). Fare clic su **Aggiungi**, quindi su **Elemento esistente**.
+10. Individuare la sottocartella toohello per **FrontendWebRole\Models**e quindi fare doppio clic su **Onlineorder** tooadd è toothis progetto.
+11. In **WorkerRole.cs**, modificare il valore di hello di hello **QueueName** variabile `"ProcessingQueue"` troppo`"OrdersQueue"` come illustrato nel seguente codice hello.
     
     ```csharp
-    // The name of your queue.
+    // hello name of your queue.
     const string QueueName = "OrdersQueue";
     ```
-12. Aggiungere l'istruzione using seguente all'inizio del file WorkerRole.cs.
+12. Aggiungere hello seguente istruzione using nella parte superiore di hello del file WorkerRole.cs hello.
     
     ```csharp
     using FrontendWebRole.Models;
     ```
-13. Nella funzione `Run()`, all'interno della chiamata `OnMessage()`, sostituire il contenuto della clausola `try` con il codice seguente.
+13. In hello `Run()` funzione, all'interno di hello `OnMessage()` chiamare, sostituire il contenuto di hello di hello `try` clausola con hello seguente codice.
     
     ```csharp
     Trace.WriteLine("Processing", receivedMessage.SequenceNumber.ToString());
-    // View the message as an OnlineOrder.
+    // View hello message as an OnlineOrder.
     OnlineOrder order = receivedMessage.GetBody<OnlineOrder>();
     Trace.WriteLine(order.Customer + ": " + order.Product, "ProcessingMessage");
     receivedMessage.Complete();
     ```
-14. L'applicazione è stata completata. È possibile testare l'applicazione completa facendo clic con il pulsante destro del mouse sul progetto MultiTierApp in Esplora soluzioni. Selezionare quindi **Imposta come progetto di avvio** e premere F5. Il numero totale dei messaggi non aumenta perché il ruolo di lavoro elabora gli elementi dalla coda e li contrassegna come completati. È possibile verificare l'output di traccia del ruolo di lavoro visualizzando l'interfaccia utente dell'emulatore di calcolo di Azure. Per eseguire questa operazione, fare clic con il pulsante destro del mouse sull'icona dell'emulatore nell'area di notifica della barra delle applicazioni, quindi scegliere **Show Compute Emulator UI** (Mostra interfaccia utente dell'emulatore di calcolo).
+14. È stata completata l'applicazione hello. È possibile testare un'applicazione hello completo facendo clic con il progetto MultiTierApp hello in Esplora soluzioni selezionare **imposta come progetto di avvio**e quindi premendo F5. Si noti che il numero di messaggi non aumenta perché il ruolo di lavoro hello elabora gli elementi dalla coda hello e li contrassegna come completata. È possibile visualizzare l'output di traccia hello del ruolo di lavoro visualizzando hello interfaccia utente emulatore di calcolo di Azure. È possibile farlo facendo clic sull'icona di emulatore hello nell'area di notifica hello della barra delle applicazioni e selezionando **Mostra interfaccia utente di emulatore di calcolo**.
     
     ![][19]
     
     ![][20]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sul bus di servizio, vedere le risorse seguenti:  
+toolearn ulteriori informazioni su Service Bus, vedere hello seguenti risorse:  
 
 * [Documentazione sul bus di servizio di Azure][sbdocs]  
 * [Pagina del servizio Bus di servizio][sbacom]  
-* [Come usare le code del bus di servizio][sbacomqhowto]  
+* [Come tooUse code di Service Bus][sbacomqhowto]  
 
-Per altre informazioni sugli scenari multilivello, vedere:  
+toolearn ulteriori informazioni su scenari a più livelli, vedere:  
 
 * [Applicazione .NET multilivello con tabelle, code e BLOB di archiviazione di Azure][mutitierstorage]  
 

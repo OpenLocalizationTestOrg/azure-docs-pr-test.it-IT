@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2016
 ms.author: magoedte
-ms.openlocfilehash: 7c6365b729d73f1c5b9bc57952b1723255d9e9f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 513a90d144e7ade9c21cd7f3b718578989702c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="hybrid-runbook-worker-a-runbook-job-terminates-with-a-status-of-suspended"></a>Ruolo di lavoro ibrido per runbook: un processo runbook termina con lo stato Sospeso
 ## <a name="summary"></a>Riepilogo
-Il runbook viene sospeso dopo il terzo tentativo di esecuzione. In alcuni casi il runbook non viene completato correttamente e il relativo messaggio di errore non include informazioni aggiuntive sul motivo. Questo articolo illustra le procedure per risolvere i problemi relativi agli errori di esecuzione del runbook ruolo di lavoro ibrido per runbook.
+Il runbook viene sospeso subito dopo il tentativo di tooexecute è tre volte. Sono presenti condizioni che potrebbero interrompere hello runbook venga completato correttamente e il messaggio di errore correlati hello non include informazioni aggiuntive che indica il motivo. In questo articolo vengono fornite procedure per errori di esecuzione di runbook di problemi correlati toohello Runbook Worker ibrido.
 
-Se il problema riguardante Azure non è trattato in questo articolo, visitare i forum di Azure su [MSDN e Stack Overflow](https://azure.microsoft.com/support/forums/). È possibile pubblicare il problema in questi forum o in [@AzureSupport su Twitter](https://twitter.com/AzureSupport). È anche possibile inviare una richiesta di supporto tecnico di Azure selezionando **Ottieni supporto** nel sito del [supporto tecnico di Azure](https://azure.microsoft.com/support/options/).
+Se il problema di Azure non viene risolto in questo articolo, visitare hello forum di Azure in [MSDN e hello Overflow dello Stack](https://azure.microsoft.com/support/forums/). È possibile registrare il problema in questi forum o troppo[ @AzureSupport su Twitter](https://twitter.com/AzureSupport). Inoltre, è possibile inviare una richiesta di supporto tecnico di Azure selezionando **ottenere supporto** su hello [supporto tecnico di Azure](https://azure.microsoft.com/support/options/) sito.
 
 ## <a name="symptom"></a>Sintomo
-Si verifica un errore di esecuzione del runbook e viene restituito l'errore "Impossibile eseguire l'azione del processo ''Attiva'. Il processo si è arrestato in modo imprevisto. L'azione del processo è stata tentata 3 volte."
+Esecuzione del runbook ha esito negativo ed errore hello, "hello azione del processo 'Activate' può essere eseguita perché l'arresto imprevisto del processo hello. azione del processo Hello è stata tentata 3 volte."
 
 ## <a name="cause"></a>Causa
-Le cause dell'errore possono essere diverse: 
+Esistono diverse cause di errore hello: 
 
-1. Il ruolo di lavoro ibrido è protetto da proxy o firewall
-2. Il computer in cui è in esecuzione il ruolo di lavoro ibrido non soddisfa i [requisiti](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
-3. I runbook non possono autenticarsi con le risorse locali
+1. thread di lavoro ibridi Hello è dietro un proxy o firewall
+2. Hello di lavoro ibridi hello computer è in esecuzione su è minore di requisiti hardware minimi hello [requisiti](automation-hybrid-runbook-worker.md#hybrid-runbook-worker-requirements) 
+3. i runbook Hello non possono autenticarsi con risorse locali
 
 ## <a name="cause-1-hybrid-runbook-worker-is-behind-proxy-or-firewall"></a>Causa 1: il ruolo di lavoro ibrido per runbook è protetto da firewall o proxy
-Il computer in cui è in esecuzione il ruolo di lavoro ibrido per runbook è protetto da un firewall o proxy server e l'accesso alla rete in uscita potrebbe non essere consentito o configurato correttamente.
+hello computer Hello in che runbook Worker ibrido è in esecuzione si trova dietro un firewall o proxy server e accesso alla rete in uscita non può essere consentito o configurato correttamente.
 
 ### <a name="solution"></a>Soluzione
-Verificare che il computer abbia accesso in uscita a *. cloudapp.net sulle porte 443, 9354 e da 30199 a 30000. 
+Verificare che il computer di hello disponga dell'accesso in uscita too*.cloudapp .net sulle porte 443, 9354 e 30000-30199. 
 
 ## <a name="cause-2-computer-has-less-than-minimum-hardware-requirements"></a>Causa 2: il computer non soddisfa i requisiti hardware minimi
-I computer che eseguono il ruolo di lavoro ibrido per runbook devono soddisfare i requisiti hardware minimi per poter ospitare questa funzionalità. In caso contrario, a seconda dell'utilizzo di risorse di altri processi in background e dei conflitti causati dai runbook durante l'esecuzione, il computer diverrà sovraccarico e causerà ritardi o interruzioni del processo del runbook. 
+I computer che eseguono lavoro ibridi per Runbook deve soddisfare hello hello requisiti hardware minimi prima designazione di toohost questa funzionalità. In caso contrario, a seconda di hello utilizzo delle risorse di altri processi in background e contesa causata da runbook durante l'esecuzione, hello computer verranno diventano sovraccarico e causare ritardi processo runbook o i timeout. 
 
 ### <a name="solution"></a>Soluzione
-Verificare che il computer designato per svolgere il ruolo di lavoro ibrido per runbook soddisfi i requisiti hardware minimi.  In caso affermativo, monitorare l'utilizzo della CPU e della memoria per determinare eventuali correlazioni tra le prestazioni dei processi del ruolo di lavoro ibrido per runbook e Windows.  In caso di utilizzo eccessivo della CPU o memoria, potrebbe essere necessario aggiornare o aggiungere altri processori o aumentare la memoria per risolvere il collo di bottiglia della risorsa e quindi l'errore. In alternativa, selezionare una risorsa di calcolo diversa in grado di supportare i requisiti minimi e scalare quando le esigenze del carico di lavoro indicano la necessità di un aumento.         
+Confermare il computer di hello designato funzionalità di Runbook Worker ibrido hello toorun soddisfi i requisiti hardware minimi hello.  In caso affermativo, monitorare eventuali correlazioni tra le prestazioni di hello di processi di lavoro ibridi per Runbook e Windows toodetermine di utilizzo della CPU e memoria.  Se è presente memoria o a utilizzo elevato della CPU, questo potrebbe indicare tooupgrade necessità hello o aggiungere processori aggiuntivi o aumento della memoria tooaddress hello collo di bottiglia e risolvere l'errore hello. In alternativa, selezionare una risorsa di calcolo diversi che può supportare i requisiti minimi di hello e scalabilità quando le richieste di carico di lavoro indicano che un aumento è necessario.         
 
 ## <a name="cause-3-runbooks-cannot-authenticate-with-local-resources"></a>Causa 3: i runbook non possono autenticarsi con le risorse locali
 ### <a name="solution"></a>Soluzione
-Controllare il registro eventi **Microsoft-SMA** per un evento corrispondente con la descrizione *Processo Win32 terminato con codice [4294967295]*.  La causa dell'errore è che l'autenticazione non è stata configurata nei runbook oppure le credenziali Esegui come non sono state specificate per il gruppo del ruolo di lavoro ibrido.  Per verificare di aver configurato correttamente l'autenticazione per i runbook, vedere [Autorizzazioni per i runbook](automation-hybrid-runbook-worker.md#runbook-permissions) .  
+Controllare hello **Microsoft SMA** registro eventi per un evento corrispondente con descrizione *Win32 processo terminato con codice [4294967295]*.  causa Hello di questo errore è l'utente non configurata l'autenticazione dei runbook o hello credenziali runas per il gruppo di lavoro ibridi hello specificato.  Consultare [autorizzazioni Runbook](automation-hybrid-runbook-worker.md#runbook-permissions) tooconfirm è stato configurato correttamente l'autenticazione per i runbook.  
 

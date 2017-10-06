@@ -1,6 +1,6 @@
 ---
-title: Aggiungere l'accesso a un'app Web Node.js per Azure AD B2C | Documentazione Microsoft
-description: Come compilare un'app Web Node.js che esegua l'accesso degli utenti usando un tenant B2C.
+title: aaaAdd Accedi tooa Node.js dell'app web Azure B2C | Documenti Microsoft
+description: Come toobuild un'app web Node. js che accede agli utenti tramite un tenant B2C.
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
@@ -14,30 +14,30 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 03/10/2017
 ms.author: xerners
-ms.openlocfilehash: c85b8f8434d1e837ac96ac63b9b37f990677ed6e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b4c334b1f7a0669df2d0864140603dc55bbb5408
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-b2c-add-sign-in-to-a-nodejs-web-app"></a>Azure AD B2C: aggiungere l'accesso a un'app Web Node.js
+# <a name="azure-ad-b2c-add-sign-in-tooa-nodejs-web-app"></a>Azure Active Directory B2C: Aggiungere app web di accesso tooa Node.js
 
 **Passport** è il middleware di autenticazione per Node.js. Passport, estremamente flessibile e modulare, può essere installato in modo non invadente in qualsiasi applicazione Web basata su Express o Restify. Un set completo di strategie supporta l'autenticazione tramite nome utente e password, Facebook, Twitter e altro ancora.
 
-È stata sviluppata una strategia per Azure Active Directory (Azure AD). Dopo l'installazione di questo modulo, aggiungere il plug-in `passport-azure-ad` di Azure AD.
+È stata sviluppata una strategia per Azure Active Directory (Azure AD). Verranno installate in questo modulo e quindi aggiungere hello Azure AD `passport-azure-ad` plug-in.
 
-A questo scopo, è necessario:
+toodo, è necessario:
 
 1. Registrare un'applicazione usando Azure AD.
-2. Configurare l'app per usare il plug-in `passport-azure-ad`.
-3. Usare Passport per inviare le richieste di accesso e disconnessione ad Azure AD.
+2. Impostare il hello toouse app `passport-azure-ad` plug-in.
+3. Usare Passport tooissue Accedi e richieste di disconnessione tooAzure Active Directory.
 4. Stampare i dati utente.
 
-Il codice per questa esercitazione è [disponibile in GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS). Per seguire la procedura, è possibile [scaricare la struttura dell'app come file ZIP](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip). È anche possibile clonare la struttura:
+Hello codice per questa esercitazione [viene mantenuta in GitHub](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS). toofollow lungo, è possibile [scheletro dell'applicazione hello come file ZIP di download](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/skeleton.zip). È anche possibile clonare scheletro hello:
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS.git```
 
-Al termine dell'esercitazione, verrà fornita l'applicazione completata.
+un'applicazione Hello completato viene fornita alla fine di hello di questa esercitazione.
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>Ottenere una directory di Azure AD B2C
 
@@ -45,32 +45,32 @@ Prima di poter usare Azure AD B2C, è necessario creare una directory, o tenant.
 
 ## <a name="create-an-application"></a>Creare un'applicazione
 
-Successivamente, è necessario creare un'app nella directory B2C. In questo modo Azure AD acquisisce le informazioni necessarie per comunicare in modo sicuro con l'app. Sia l'app client che l'API Web saranno rappresentate da un unico **ID applicazione**, perché includono un'app per la logica. Per creare un'app, [seguire questa procedura](active-directory-b2c-app-registration.md). Assicurarsi di:
+Successivamente, è necessario toocreate un'app nel servizio directory B2C. Vengono riportate informazioni di Azure AD che deve toocommunicate in modo sicuro con l'app. Entrambi hello app client e l'API web sarà rappresentato da un singolo **ID applicazione**, poiché comprendono una sola app logica. toocreate un'app, seguire [queste istruzioni](active-directory-b2c-app-registration.md). Assicurarsi di:
 
-- Includere un'**app Web**/**API Web** nell'applicazione.
-- Immettere `http://localhost:3000/auth/openid/return` come **URL di risposta**. Si tratta dell'URL predefinito per questo esempio di codice.
-- Creare un **segreto applicazione** per l'applicazione e prenderne nota. Sarà necessario più avanti. Si noti che prima di usare questo valore è necessario [inserire un carattere di escape XML](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) .
-- Copiare l' **ID applicazione** assegnato all'app. Sarà necessario più avanti.
+- Includere un **app web**/**web API** in un'applicazione hello.
+- Immettere `http://localhost:3000/auth/openid/return` come **URL di risposta**. È l'URL predefinito hello per questo esempio di codice.
+- Creare un **segreto applicazione** per l'applicazione e prenderne nota. Sarà necessario più avanti. Si noti che questo valore deve toobe [XML sottoposto a escape](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) prima di utilizzarlo.
+- Hello copia **ID applicazione** ovvero tooyour assegnato app. Sarà necessario più avanti.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>Creare i criteri
 
-In Azure AD B2C ogni esperienza utente è definita da [criteri](active-directory-b2c-reference-policies.md)specifici. Questa app contiene tre esperienze di identità: iscrizione, accesso e accesso con Facebook. È necessario creare i criteri per ogni tipo, come descritto nell' [articolo di riferimento per i criteri](active-directory-b2c-reference-policies.md#create-a-sign-up-policy). Durante la creazione dei tre criteri assicurarsi di:
+In Azure AD B2C ogni esperienza utente è definita da [criteri](active-directory-b2c-reference-policies.md)specifici. Questa app contiene tre esperienze di identità: iscrizione, accesso e accesso con Facebook. È necessario toocreate questo criterio di ogni tipo, come descritto nel [articolo di riferimento dei criteri](active-directory-b2c-reference-policies.md#create-a-sign-up-policy). Durante la creazione dei tre criteri assicurarsi di:
 
-- Scegliere **Nome visualizzato** e altri attributi nei criteri di iscrizione.
-- Scegliere le attestazioni dell'applicazione **Nome visualizzato** e **ID oggetto** in tutti i criteri. È consentito scegliere anche altre attestazioni.
-- Copiare il **Nome** di ogni criterio dopo averlo creato. Dovrebbero mostrare il prefisso `b2c_1_`.  I nomi dei criteri saranno necessari in un secondo momento.
+- Scegliere hello **nome visualizzato** e altri attributi per l'abbonamento nel criterio di iscrizione.
+- Scegliere hello **nome visualizzato** e **ID oggetto** applicazione le attestazioni in ogni criterio. È consentito scegliere anche altre attestazioni.
+- Hello copia **nome** dei criteri dopo averlo creato. Devono contenere il prefisso hello `b2c_1_`.  I nomi dei criteri saranno necessari in un secondo momento.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-Dopo aver creato i tre criteri, è possibile passare alla compilazione dell'app.
+Dopo aver creato i tre criteri, si è pronti toobuild l'app.
 
-Si noti che questo articolo non illustra come usare i criteri appena creati. Per informazioni sul funzionamento dei criteri in Azure AD B2C, iniziare dall' [esercitazione introduttiva per la compilazione di un'app Web .NET](active-directory-b2c-devquickstarts-web-dotnet.md).
+Si noti che questo articolo non viene illustrata la modalità criteri hello toouse appena creato. toolearn sul funzionamento dei criteri in Azure Active Directory B2C, iniziare con hello [.NET web app esercitazione introduttiva](active-directory-b2c-devquickstarts-web-dotnet.md).
 
-## <a name="add-prerequisites-to-your-directory"></a>Aggiungere prerequisiti alla directory
+## <a name="add-prerequisites-tooyour-directory"></a>Aggiunta di prerequisiti tooyour directory
 
-Dalla riga di comando passare alla cartella radice, se necessario. Eseguire i comandi seguenti:
+Dalla riga di comando hello, Modifica cartella radice tooyour di directory, se non si è già presente. Eseguire hello seguenti comandi:
 
 - `npm install express`
 - `npm install ejs`
@@ -85,23 +85,23 @@ Dalla riga di comando passare alla cartella radice, se necessario. Eseguire i co
 - `npm install express-session`
 - `npm install cookie-parser`
 
-È stato anche usato `passport-azure-ad` per l'anteprima nella struttura di avvio rapido.
+Inoltre, abbiamo utilizzato `passport-azure-ad` per l'anteprima scheletro hello di hello Guida introduttiva.
 
 - `npm install passport-azure-ad`
 
-Verranno installate le librerie da cui dipende `passport-azure-ad`.
+Verranno installate le librerie di hello che `passport-azure-ad` dipende.
 
-## <a name="set-up-your-app-to-use-the-passport-nodejs-strategy"></a>Configurare l'app per l'uso della strategia Passport-Node.js
-Configurare il middleware Express per l'uso del protocollo di autenticazione OpenID Connect. Passport verrà usato, tra le altre azioni, per inviare le richieste di accesso e disconnessione, gestire le sessioni degli utenti e ottenere informazioni sugli utenti.
+## <a name="set-up-your-app-toouse-hello-passport-nodejs-strategy"></a>Impostare il hello toouse app strategia Passport Node.js
+Configurare hello toouse di hello Express middleware OpenID Connect di protocollo di autenticazione. Passport verrà essere tooissue utilizzato le richieste di accesso e disconnessione, gestire le sessioni utente e ottenere informazioni sugli utenti, tra le altre azioni.
 
-Aprire il file `config.js` nella radice del progetto e immettere i valori di configurazione dell'app nella sezione `exports.creds`.
-- `clientID`: **ID applicazione** assegnato all'app nel portale di registrazione.
-- `returnURL`: **URI di reindirizzamento** immesso nel portale.
-- `tenantName`: nome del tenant dell'app, ad esempio, **contoso.onmicrosoft.com**.
+Aprire hello `config.js` file nella directory radice del progetto hello hello e immettere i valori di configurazione dell'applicazione hello `exports.creds` sezione.
+- `clientID`: hello **ID applicazione** assegnato tooyour app nel portale di registrazione hello.
+- `returnURL`: hello **URI di reindirizzamento** immesso nel portale di hello.
+- `tenantName`: nome del tenant hello dell'app, ad esempio, **contoso.onmicrosoft.com**.
 
 [!INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
-Aprire il file `app.js` nella radice del progetto. Aggiungere la chiamata seguente per richiamare la strategia `OIDCStrategy` fornita con `passport-azure-ad`.
+Aprire hello `app.js` file nella directory radice del progetto hello hello. Aggiungere hello seguente chiamata tooinvoke hello `OIDCStrategy` strategia che prevede `passport-azure-ad`.
 
 
 ```JavaScript
@@ -113,10 +113,10 @@ var log = bunyan.createLogger({
 });
 ```
 
-Usare la strategia a cui si è appena fatto riferimento per gestire le richieste di accesso.
+Utilizzare la strategia di hello è stato fatto riferimento solo le richieste di accesso toohandle.
 
 ```JavaScript
-// Use the OIDCStrategy in Passport (Section 2).
+// Use hello OIDCStrategy in Passport (Section 2).
 //
 //   Strategies in Passport require a "validate" function that accepts
 //   credentials (in this case, an OpenID identifier), and invokes a callback
@@ -151,21 +151,21 @@ passport.use(new OIDCStrategy({
   }
 ));
 ```
-Passport usa un modello simile per tutte le strategie (inclusi Twitter e Facebook). Tutti i writer di strategie rispettano questo modello. Quando si esamina la strategia, è possibile osservare che le si passa un oggetto `function()` che ha come parametri un token e un oggetto `done`. La strategia risponde dopo avere eseguito tutte le relative operazioni. Archiviare l'utente e accantonare il token per non doverlo richiedere nuovamente.
+Passport usa un modello simile per tutte le strategie (inclusi Twitter e Facebook). Tutti i writer strategia rispettare toothis modello. Quando si esamina la strategia di hello, è possibile vedere che si passa un `function()` che dispone di un token e un `done` come parametri hello. strategia di Hello torna tooyou dopo che ha eseguito tutte le operazioni. Archivio utente hello e accantonare token hello in modo che non sia necessario tooask per tale nuovamente.
 
 > [!IMPORTANT]
-Il codice precedente accetta tutti gli utenti autenticati dal server. Questa operazione è la registrazione automatica. Quando si usano server di produzione, si consente l'accesso solo agli utenti che abbiano eseguito un processo di registrazione configurato. Questo modello è frequente nelle app consumer che consentono di eseguire la registrazione usando Facebook, ma che chiedono anche di inserire altre informazioni. Se non si trattasse di un'applicazione di esempio, si estrarrebbe un indirizzo di posta elettronica dall'oggetto token restituito e si chiederebbe all'utente di immettere informazioni aggiuntive. Trattandosi di un server di test, è sufficiente aggiungere gli utenti al database in memoria.
+Hello precedente il codice in tutti gli utenti che esegue l'autenticazione server hello. Questa operazione è la registrazione automatica. Quando si utilizzano server di produzione, non si desidera toolet gli utenti a meno che non che sono state registrate tramite un processo di registrazione che è stato impostato. Questo modello è frequente nelle app consumer Che consentono di tooregister con Facebook, ma quindi vengono chiesto toofill informazioni aggiuntive. Se l'applicazione non è un esempio, è stato possibile estrarre un indirizzo di posta elettronica da oggetto hello token restituito e quindi chiedere hello utente toofill informazioni aggiuntive. Poiché si tratta di un server di prova, è sufficiente aggiungere i database in memoria toohello di utenti.
 
-Aggiungere i metodi che consentono di tenere traccia degli utenti che hanno eseguito l'accesso, come richiesto da Passport. Questa operazione include la serializzazione e la deserializzazione delle informazioni dell'utente:
+Aggiungere metodi hello che consentono di tenere traccia di tookeep di utenti che hanno effettuato l'accesso, come richiesto da Passport. Questa operazione include la serializzazione e la deserializzazione delle informazioni dell'utente:
 
 ```JavaScript
 
 // Passport session setup. (Section 2)
 
-//   To support persistent sign-in sessions, Passport needs to be able to
+//   toosupport persistent sign-in sessions, Passport needs toobe able to
 //   serialize users into and deserialize users out of sessions. Typically,
-//   this is as simple as storing the user ID when Passport serializes a user
-//   and finding the user by ID when Passport deserializes that user.
+//   this is as simple as storing hello user ID when Passport serializes a user
+//   and finding hello user by ID when Passport deserializes that user.
 passport.serializeUser(function(user, done) {
   done(null, user.email);
 });
@@ -176,7 +176,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-// Array to hold users who have signed in
+// Array toohold users who have signed in
 var users = [];
 
 var findByEmail = function(email, fn) {
@@ -192,7 +192,7 @@ var findByEmail = function(email, fn) {
 
 ```
 
-Aggiungere il codice per caricare il motore di Express. Nel codice seguente è possibile notare che vengono usati i modelli `/views` e `/routes` predefiniti forniti da Express.
+Aggiungere il motore Express hello di hello code tooload. Nella seguente hello, è possibile visualizzare l'utilizzo predefinito di hello `/views` e `/routes` modello che fornisce Express.
 
 ```JavaScript
 
@@ -209,7 +209,7 @@ app.configure(function() {
   app.use(cookieParser());
   app.use(expressSession({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
   app.use(bodyParser.urlencoded({ extended : true }));
-  // Initialize Passport!  Also use passport.session() middleware to support
+  // Initialize Passport!  Also use passport.session() middleware toosupport
   // persistent sign-in sessions (recommended).
   app.use(passport.initialize());
   app.use(passport.session());
@@ -219,31 +219,31 @@ app.configure(function() {
 
 ```
 
-Aggiungere le route `POST` che trasferiscono le richieste di accesso effettive al motore `passport-azure-ad`:
+Aggiungere hello `POST` route consegnare hello toohello le richieste di accesso effettiva `passport-azure-ad` motore:
 
 ```JavaScript
 
 // Our Auth routes (Section 3)
 
 // GET /auth/openid
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. The first step in OpenID authentication involves redirecting
-//   the user to an OpenID provider. After the user is authenticated,
-//   the OpenID provider redirects the user back to this application at
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. hello first step in OpenID authentication involves redirecting
+//   hello user tooan OpenID provider. After hello user is authenticated,
+//   hello OpenID provider redirects hello user back toothis application at
 //   /auth/openid/return
 
 app.get('/auth/openid',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Authentication was called in the Sample');
+    log.info('Authentication was called in hello Sample');
     res.redirect('/');
   });
 
 // GET /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it redirects the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it redirects hello user toohello home page.
 app.get('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
@@ -252,10 +252,10 @@ app.get('/auth/openid/return',
   });
 
 // POST /auth/openid/return
-//   Use passport.authenticate() as route middleware to authenticate the
-//   request. If authentication fails, the user will be redirected back to the
-//   sign-in page. Otherwise, the primary route function will be called.
-//   In this example, it will redirect the user to the home page.
+//   Use passport.authenticate() as route middleware tooauthenticate the
+//   request. If authentication fails, hello user will be redirected back toothe
+//   sign-in page. Otherwise, hello primary route function will be called.
+//   In this example, it will redirect hello user toohello home page.
 
 app.post('/auth/openid/return',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
@@ -265,11 +265,11 @@ app.post('/auth/openid/return',
   });
 ```
 
-## <a name="use-passport-to-issue-sign-in-and-sign-out-requests-to-azure-ad"></a>Usare Passport per inviare le richieste di accesso e disconnessione ad Azure AD
+## <a name="use-passport-tooissue-sign-in-and-sign-out-requests-tooazure-ad"></a>Usare Passport tooissue Accedi e richieste di disconnessione tooAzure AD
 
-L'app ora è configurata correttamente per comunicare con l'endpoint 2.0 mediante il protocollo di autenticazione OpenID Connect. `passport-azure-ad` ha gestito i dettagli relativi alla creazione dei messaggi di autenticazione, alla convalida dei token da Azure AD e alla gestione della sessione utente. A questo punto, è sufficiente offrire agli utenti un modo per accedere e disconnettersi e per raccogliere informazioni aggiuntive sugli utenti connessi.
+L'app è configurato correttamente toocommunicate con endpoint v 2.0 hello tramite protocollo di autenticazione OpenID Connect hello. `passport-azure-ad`ha preso in considerazione dei dettagli di hello relativi alla creazione di messaggi di autenticazione, convalida dei token da Azure AD e la gestione della sessione utente. Che rimane è toogive agli utenti un modo toosign in e accedere out e toogather ulteriori informazioni sugli utenti che hanno effettuato l'accesso.
 
-Aggiungere prima di tutto i metodi predefinito, di accesso, account e disconnessione al file `app.js`:
+Aggiungere innanzitutto predefinito hello, accesso, account e metodi disconnessione tooyour `app.js` file:
 
 ```JavaScript
 
@@ -286,7 +286,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 app.get('/login',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
   function(req, res) {
-    log.info('Login was called in the Sample');
+    log.info('Login was called in hello Sample');
     res.redirect('/');
 });
 
@@ -297,22 +297,22 @@ app.get('/logout', function(req, res){
 
 ```
 
-Per esaminare questi metodi in dettaglio:
-- La route `/` viene reindirizzata alla visualizzazione `index.ejs` passando l'utente nella richiesta (se presente).
-- La route `/account` verifica prima di tutto che l'utente sia autenticato. L'implementazione per questo passaggio è disponibile più avanti. quindi passa l'utente nella richiesta per poter ottenere altre informazioni sull'utente.
-- La route `/login` chiama l'autenticatore `azuread-openidconnect` da `passport-azure-ad`. Se l'esito è negativo, la route reindirizza di nuovo l'utente a `/login`.
-- `/logout` chiama semplicemente `logout.ejs` e la rispettiva route. I cookie vengono cancellati e quindi l'utente torna a `index.ejs`.
+tooreview questi metodi in modo dettagliato:
+- Hello `/` route reindirizza toohello `index.ejs` vista passando utente hello nella richiesta di hello (se presente).
+- Hello `/account` route verifica innanzitutto che sono autenticati (hello implementazione di questa situazione sotto). Passa quindi utente hello nella richiesta di hello in modo che sia possibile ottenere ulteriori informazioni sull'utente hello.
+- Hello `/login` route chiamate hello `azuread-openidconnect` autenticatore da `passport-azure-ad`. Se non viene completato, route hello utente viene reindirizzato hello nuovamente troppo`/login`.
+- `/logout` chiama semplicemente `logout.ejs` e la rispettiva route. Ciò consente di cancellare i cookie e quindi restituisce hello utente nuovamente troppo`index.ejs`.
 
 
-Per l'ultima parte di `app.js`, aggiungere il metodo `EnsureAuthenticated` usato nella route `/account`.
+Per l'ultima parte di hello del `app.js`, aggiungere hello `EnsureAuthenticated` metodo utilizzato in hello `/account` route.
 
 ```JavaScript
 
-// Simple route middleware to ensure that the user is authenticated. (Section 4)
+// Simple route middleware tooensure that hello user is authenticated. (Section 4)
 
-//   Use this route middleware on any resource that needs to be protected. If
-//   the request is authenticated (typically via a persistent sign-in session),
-//   then the request will proceed. Otherwise, the user will be redirected to the
+//   Use this route middleware on any resource that needs toobe protected. If
+//   hello request is authenticated (typically via a persistent sign-in session),
+//   then hello request will proceed. Otherwise, hello user will be redirected toothe
 //   sign-in page.
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
@@ -321,7 +321,7 @@ function ensureAuthenticated(req, res, next) {
 
 ```
 
-Creare infine il server stesso in `app.js`.
+Infine, creare server hello in `app.js`.
 
 ```JavaScript
 
@@ -330,11 +330,11 @@ app.listen(3000);
 ```
 
 
-## <a name="create-the-views-and-routes-in-express-to-call-your-policies"></a>Creare le visualizzazioni e le route in Express per chiamare i criteri
+## <a name="create-hello-views-and-routes-in-express-toocall-your-policies"></a>Creare visualizzazioni hello e instrada in Express toocall i criteri
 
-`app.js` è stato completato. È sufficiente aggiungere le route e le visualizzazioni che consentono di chiamare i criteri di accesso e di iscrizione. In questo modo vengono gestite anche le route `/logout` e `/login` create.
+`app.js` è stato completato. È sufficiente route hello tooadd e visualizzazioni che consentono di criteri di accesso ed effettuare l'iscrizione hello toocall. Questi anche gestire hello `/logout` e `/login` route creata.
 
-Creare la route `/routes/index.js` nella directory radice.
+Creare hello `/routes/index.js` route nella directory radice hello.
 
 ```JavaScript
 
@@ -347,7 +347,7 @@ exports.index = function(req, res){
 };
 ```
 
-Creare la route `/routes/user.js` nella directory radice.
+Creare hello `/routes/user.js` route nella directory radice hello.
 
 ```JavaScript
 
@@ -360,9 +360,9 @@ exports.list = function(req, res){
 };
 ```
 
-Queste semplici route passano le richieste alle visualizzazioni. Includono l'utente, se è presente.
+Queste route semplice passano dalle visualizzazioni tooyour richieste. Includono utente hello, se presente.
 
-Creare la vista `/views/index.ejs` nella directory radice. Si tratta di una semplice pagina che chiama i criteri per l'accesso e la disconnessione. È possibile usarla anche per ottenere informazioni account. Si noti che è possibile usare `if (!user)` condizionale quando l'utente viene passato nella richiesta per fornire la prova che l'utente ha eseguito l'accesso.
+Creare hello `/views/index.ejs` visualizzazione nella directory radice hello. Si tratta di una semplice pagina che chiama i criteri per l'accesso e la disconnessione. È possibile inoltre utilizzare è toograb informazioni dell'account. Si noti che è possibile utilizzare hello condizionale `if (!user)` come utente hello viene passata nella richiesta hello tooprovide evidenza utente hello è connesso.
 
 ```JavaScript
 <% if (!user) { %>
@@ -377,7 +377,7 @@ Creare la vista `/views/index.ejs` nella directory radice. Si tratta di una semp
 <% } %>
 ```
 
-Creare la visualizzazione `/views/account.ejs` nella directory radice per poter visualizzare informazioni aggiuntive che `passport-azure-ad` ha inserito nella richiesta dell'utente.
+Creare hello `/views/account.ejs` visualizzazione nella directory radice hello in modo che è possibile visualizzare informazioni aggiuntive che `passport-azure-ad` inserito nella richiesta utente hello.
 
 ```Javascript
 <% if (!user) { %>
@@ -398,28 +398,28 @@ Creare la visualizzazione `/views/account.ejs` nella directory radice per poter 
 
 Ora è possibile compilare ed eseguire l'app.
 
-Eseguire `node app.js` e passare a `http://localhost:3000`.
+Eseguire `node app.js` e passare troppo`http://localhost:3000`
 
 
-Iscriversi o accedere all'app usando la posta elettronica o Facebook. Disconnettersi e accedere nuovamente come un utente diverso.
+Iscriversi o accedere nell'app toohello tramite e-mail o Facebook. Disconnettersi e accedere nuovamente come un utente diverso.
 
 ##<a name="next-steps"></a>Passaggi successivi
 
-Come riferimento viene fornito l'esempio completato, senza i valori di configurazione, [come file con estensione zip](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip). È anche possibile clonarlo da GitHub:
+Per riferimento, hello completata esempio (senza i valori di configurazione) [viene fornito come un file con estensione zip](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-NodeJS/archive/complete.zip). È anche possibile clonarlo da GitHub:
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-nodejs.git```
 
-Ora è possibile passare ad argomenti più avanzati. È possibile provare a:
+È possibile procedere con toomore argomenti avanzati. È possibile provare a:
 
-[Proteggere un'API Web usando il modello B2C in Node.js](active-directory-b2c-devquickstarts-api-node.md)
+[Proteggere un'API web utilizzando il modello di hello B2C in Node.js](active-directory-b2c-devquickstarts-api-node.md)
 
 <!--
 
 For additional resources, check out:
-You can now move on to more advanced B2C topics. You might try:
+You can now move on toomore advanced B2C topics. You might try:
 
 [Call a Node.js web API from a Node.js web app]()
 
-[Customizing the your B2C App's UX >>]()
+[Customizing hello your B2C App's UX >>]()
 
 -->

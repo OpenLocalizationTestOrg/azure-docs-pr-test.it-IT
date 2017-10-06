@@ -1,6 +1,6 @@
 ---
-title: Creare un cluster di Azure Service Fabric da un modello | Documentazione Microsoft
-description: Questo articolo descrive come configurare un cluster di Service Fabric sicuro in Azure usando Azure Resource Manager, Azure Key Vault e Azure Active Directory (Azure AD) per l'autenticazione client.
+title: aaaCreate un Azure Service Fabric del cluster da un modello | Documenti Microsoft
+description: In questo articolo viene descritto come tooset di un'infrastruttura protetta di servizio cluster in Azure tramite Gestione risorse di Azure, insieme di credenziali chiave di Azure e Azure Active Directory (Azure AD) per l'autenticazione client.
 services: service-fabric
 documentationcenter: .net
 author: chackdan
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/22/2017
 ms.author: chackdan
-ms.openlocfilehash: 420ea486e626763af65a23e49ce04033ea418fb4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a4563c58a68127720a8290c3be0df9d026833eb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-service-fabric-cluster-by-using-azure-resource-manager"></a>Creare un cluster di Service Fabric usando Azure Resource Manager
 > [!div class="op_single_selector"]
@@ -27,22 +27,22 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-Questo articolo contiene una guida dettagliata che illustra la configurazione di un cluster di Azure Service Fabric sicuro in Azure tramite Azure Resource Manager. Anche se l'articolo è lungo, a meno che non si conosca già a fondo il contenuto, assicurarsi di seguire con attenzione ogni passaggio.
+Questo articolo contiene una guida dettagliata che illustra la configurazione di un cluster di Azure Service Fabric sicuro in Azure tramite Azure Resource Manager. È consapevole di che tale articolo hello è lungo. Tuttavia, a meno che non si conoscono già accuratamente il contenuto di hello, essere toofollow verificare ogni passaggio con attenzione.
 
-La guida illustra le procedure seguenti:
+Hello vengono trattate hello seguire le procedure seguenti:
 
-* Configurazione di un insieme di credenziali delle chiavi di Azure per caricare certificati per la sicurezza di cluster e applicazioni
+* Configurazione dei certificati di tooupload insieme di credenziali chiave Azure per la sicurezza del cluster e dell'applicazione
 * Creazione di un cluster sicuro in Azure con Azure Resource Manager
 * Autenticazione degli utenti con Azure Active Directory (Azure AD) per la gestione dei cluster
 
-Un cluster sicuro impedisce l'accesso non autorizzato alle operazioni di gestione, tra cui distribuzione, aggiornamento ed eliminazione di applicazioni e servizi e dei dati contenuti. Un cluster non protetto è un cluster a cui tutti gli utenti possono connettersi in qualsiasi momento ed eseguire operazioni di gestione. Anche se è possibile creare un cluster non sicuro, è consigliabile creare un cluster sicuro fin dall'inizio. Poiché un cluster non sicuro non può essere protetto in un secondo momento, è necessario crearne uno nuovo.
+Un cluster sicura è un cluster che impedisce le operazioni toomanagement accesso non autorizzato. Ciò include la distribuzione, l'aggiornamento e l'eliminazione di applicazioni, servizi e dati hello in che essi contenuti. Un cluster non sicuro da un cluster che chiunque può connettersi tooat qualsiasi momento ed eseguire operazioni di gestione. Sebbene sia possibile toocreate un cluster non sicuro, si consiglia di creare un cluster protetto sin hello. Poiché un cluster non sicuro non può essere protetto in un secondo momento, è necessario crearne uno nuovo.
 
-Il concetto di creazione di cluster sicuri è lo stesso per i cluster sia Linux che Windows. Per altre informazioni e script helper per la creazione di cluster Linux sicuri, vedere [Creare cluster protetti in Linux](#secure-linux-clusters).
+il concetto di Hello di creazione di cluster sicuri è hello stesso, che si tratti di cluster Linux o Windows. Per altre informazioni e script helper per la creazione di cluster Linux sicuri, vedere [Creare cluster protetti in Linux](#secure-linux-clusters).
 
-## <a name="sign-in-to-your-azure-account"></a>Accedere con l'account Azure
-Questa guida usa [Azure PowerShell][azure-powershell]. Quando si avvia una nuova sessione di PowerShell, accedere al proprio account Azure e selezionare la sottoscrizione prima di eseguire i comandi di Azure.
+## <a name="sign-in-tooyour-azure-account"></a>Accedi tooyour account Azure
+Questa guida usa [Azure PowerShell][azure-powershell]. Quando si avvia una nuova sessione PowerShell, accedi tooyour account Azure e selezionare la sottoscrizione prima di eseguire i comandi di Azure.
 
-Accedere all'account Azure:
+Accedi tooyour account di Azure:
 
 ```powershell
 Login-AzureRmAccount
@@ -56,28 +56,28 @@ Set-AzureRmContext -SubscriptionId <guid>
 ```
 
 ## <a name="set-up-a-key-vault"></a>Configurare un insieme di credenziali delle chiavi
-Questa sezione illustra la creazione di un insieme di credenziali delle chiavi per un cluster di Service Fabric in Azure e per le applicazioni di Service Fabric. Per una guida completa su Azure Key Vault, vedere la [guida introduttiva a Key Vault][key-vault-get-started].
+Questa sezione illustra la creazione di un insieme di credenziali delle chiavi per un cluster di Service Fabric in Azure e per le applicazioni di Service Fabric. Per una guida completa tooAzure insieme di credenziali chiave, vedere toohello [Guida introduttiva di insieme di credenziali chiave][key-vault-get-started].
 
-Service Fabric usa certificati X.509 per proteggere un cluster e fornire le funzionalità di sicurezza dell'applicazione. Si usa Key Vault per gestire i certificati dei cluster di Service Fabric in Azure. Quando viene distribuito un cluster in Azure, il provider di risorse di Azure responsabile della creazione di cluster Service Fabric estrae i certificati da Key Vault e li installa nelle macchine virtuali del cluster.
+Service Fabric utilizza toosecure certificati x. 509 un cluster e fornisce le funzionalità di sicurezza dell'applicazione. Utilizzare i certificati toomanage insieme di credenziali chiave per i cluster di Service Fabric in Azure. Quando viene distribuito un cluster in Azure, i provider di risorse di Azure hello che è responsabili della creazione di cluster di Service Fabric estrae i certificati dall'insieme di credenziali chiave e li installa nel cluster hello macchine virtuali.
 
-Nel diagramma seguente viene illustrata la relazione tra Azure Key Vault, un cluster di Service Fabric e il provider di risorse di Azure che usa i certificati archiviati in un insieme di credenziali delle chiavi durante la creazione di un cluster:
+Hello diagramma seguente viene illustrata hello relazione tra l'insieme di credenziali chiave di Azure, un cluster di Service Fabric e provider di risorse di Azure hello che utilizza i certificati archiviati in un insieme di credenziali chiave durante la creazione di un cluster:
 
 ![Diagramma dell'installazione del certificato][cluster-security-cert-installation]
 
 ### <a name="create-a-resource-group"></a>Creare un gruppo di risorse
-Il primo passaggio consiste nel creare un gruppo di risorse specifico per l'insieme di credenziali delle chiavi. È consigliabile inserire l'insieme di credenziali delle chiavi in un proprio gruppo di risorse. Questa azione consente di rimuovere i gruppi di risorse di calcolo e di archiviazione, incluso il gruppo di risorse contenente il cluster di Service Fabric, senza perdere le chiavi e i segreti. Il gruppo di risorse che contiene l'insieme di credenziali delle chiavi _deve essere situato nella stessa area_ del cluster che lo usa.
+primo passaggio Hello è toocreate un gruppo di risorse in modo specifico per l'insieme di credenziali chiave. Si consiglia di inserire l'insieme di credenziali chiave hello nel proprio gruppo di risorse. Questa azione consente di rimuovere hello calcolo e archiviazione gruppi di risorse, tra cui gruppo di risorse hello che contiene il cluster di Service Fabric, senza perdere le chiavi e segreti. gruppo di risorse Hello che contiene l'insieme di credenziali chiave _deve essere in hello stessa regione_ come cluster hello che lo usa.
 
-Se si prevede di distribuire i cluster in più aree, è consigliabile assegnare al gruppo di risorse e all'insieme di credenziali delle chiavi un nome indicante a quale area appartiene.  
+Se si prevede di cluster toodeploy in più aree, si consiglia di assegnare un nome gruppo di risorse hello e hello chiave dell'insieme di credenziali in modo che indica quale regione a cui appartiene.  
 
 ```powershell
 
     New-AzureRmResourceGroup -Name westus-mykeyvault -Location 'West US'
 ```
-L'output dovrebbe essere simile al seguente:
+output di Hello dovrebbe essere simile al seguente:
 
 ```powershell
 
-    WARNING: The output object type of this cmdlet is going to be modified in a future release.
+    WARNING: hello output object type of this cmdlet is going toobe modified in a future release.
 
     ResourceGroupName : westus-mykeyvault
     Location          : westus
@@ -88,8 +88,8 @@ L'output dovrebbe essere simile al seguente:
 ```
 <a id="new-key-vault"></a>
 
-### <a name="create-a-key-vault-in-the-new-resource-group"></a>Creare un insieme di credenziali delle chiavi nel nuovo gruppo di risorse
-L'insieme di credenziali delle chiavi _deve essere abilitato per la distribuzione_ per consentire al provider di risorse di calcolo di ottenere i certificati e installarli nelle istanze delle macchine virtuali:
+### <a name="create-a-key-vault-in-hello-new-resource-group"></a>Creare un insieme di credenziali chiave nel nuovo gruppo di risorse hello
+insieme di credenziali chiave Hello _deve essere abilitato per la distribuzione_ tooallow hello calcolo certificati tooget provider di risorse da esso e installarla su istanze di macchine virtuali:
 
 ```powershell
 
@@ -97,7 +97,7 @@ L'insieme di credenziali delle chiavi _deve essere abilitato per la distribuzion
 
 ```
 
-L'output dovrebbe essere simile al seguente:
+output di Hello dovrebbe essere simile al seguente:
 
 ```powershell
 
@@ -116,8 +116,8 @@ L'output dovrebbe essere simile al seguente:
                                        Object ID                :    <guid>
                                        Application ID           :
                                        Display Name             :    
-                                       Permissions to Keys      :    get, create, delete, list, update, import, backup, restore
-                                       Permissions to Secrets   :    all
+                                       Permissions tooKeys      :    get, create, delete, list, update, import, backup, restore
+                                       Permissions tooSecrets   :    all
 
 
     Tags                             :
@@ -126,7 +126,7 @@ L'output dovrebbe essere simile al seguente:
 
 ## <a name="use-an-existing-key-vault"></a>Usare un insieme di credenziali delle chiavi esistente
 
-Per usare un insieme di credenziali delle chiavi esistente, è _necessario abilitarlo per la distribuzione_ per consentire al provider di risorse di calcolo di ottenere i certificati e installarli nei nodi del cluster:
+toouse un insieme di credenziali esistente, si _deve essere abilitata per la distribuzione_ tooallow hello calcolo certificati tooget provider di risorse da esso e installarlo nei nodi del cluster:
 
 ```powershell
 
@@ -136,36 +136,36 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -EnabledForDeployme
 
 <a id="add-certificate-to-key-vault"></a>
 
-## <a name="add-certificates-to-your-key-vault"></a>Aggiungere i certificati all'insieme di credenziali delle chiavi
+## <a name="add-certificates-tooyour-key-vault"></a>Aggiungere certificati tooyour insieme di credenziali
 
-I certificati vengono usati in Service Fabric per fornire l'autenticazione e la crittografia e proteggere i vari aspetti di un cluster e delle sue applicazioni. Per altre informazioni sull'uso dei certificati in Service Fabric, vedere [Scenari di sicurezza di un cluster di Service Fabric][service-fabric-cluster-security].
+I certificati vengono usati in Service Fabric tooprovide autenticazione e crittografia toosecure vari aspetti di un cluster e le relative applicazioni. Per altre informazioni sull'uso dei certificati in Service Fabric, vedere [Scenari di sicurezza di un cluster di Service Fabric][service-fabric-cluster-security].
 
 ### <a name="cluster-and-server-certificate-required"></a>Cluster e certificato del server (obbligatorio)
-Questo certificato è richiesto per proteggere un cluster e impedirne accessi non autorizzati. Il certificato fornisce protezione del cluster in due modi:
+Questo certificato è obbligatorio toosecure un cluster e impedire l'accesso non autorizzato tooit. Il certificato fornisce protezione del cluster in due modi:
 
-* Autenticazione del cluster: autentica la comunicazione da nodo a nodo per la federazione di cluster. Solo i nodi che possono dimostrare la propria identità con il certificato possono essere aggiunti al cluster.
-* Autenticazione del server: autentica gli endpoint di gestione del cluster in un client di gestione, in modo che il client di gestione sappia con certezza di comunicare con il cluster reale. Questo certificato fornisce anche un certificato SSL per l'API di gestione HTTPS e per Service Fabric Explorer tramite HTTPS.
+* Autenticazione del cluster: autentica la comunicazione da nodo a nodo per la federazione di cluster. Solo i nodi che è possano provare la propria identità con il certificato è possono aggiungere il cluster hello.
+* L'autenticazione del server: hello cluster Gestione endpoint tooa gestione client viene autenticato in modo che hello client management sa stia comunicando toohello reale cluster. Questo certificato fornisce inoltre SSL per l'API di gestione HTTPS hello e per Service Fabric Explorer tramite HTTPS.
 
-A tale scopo, il certificato deve soddisfare i requisiti seguenti:
+tooserve questi scopi, certificato hello deve soddisfare i seguenti requisiti hello:
 
-* Il certificato deve includere una chiave privata.
-* Il certificato deve essere stato creato per lo scambio di chiave, esportabile in un file con estensione pfx (Personal Information Exchange).
-* Il nome del soggetto del certificato deve corrispondere al dominio usato per accedere al cluster di Service Fabric. Questa corrispondenza è necessaria per fornire un certificato SSL per gli endpoint di gestione HTTPS del cluster e Service Fabric Explorer. Non è possibile ottenere un certificato SSL da un'Autorità di certificazione (CA) per il dominio .cloudapp.azure.com. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da una CA, il nome del soggetto del certificato deve corrispondere al nome di dominio personalizzato usato per il cluster.
+* certificato di Hello deve contenere una chiave privata.
+* Hello certificato deve essere creato per lo scambio di chiave, ovvero esportabile tooa file di scambio di informazioni personali (PFX).
+* nome del soggetto del certificato Hello deve corrispondere dominio hello utilizzare cluster di Service Fabric tooaccess hello. Questo tipo di associazione è obbligatorio tooprovide SSL per l'endpoint di gestione del cluster hello HTTPS e Service Fabric Explorer. È possibile ottenere un certificato SSL da un'autorità di certificazione (CA) per hello. cloudapp.azure.com dominio. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da un'autorità di certificazione, hello Nome soggetto del certificato deve corrispondere nome di dominio personalizzato hello utilizzati per il cluster.
 
 ### <a name="application-certificates-optional"></a>Certificati delle applicazioni (facoltativo)
-Per motivi di sicurezza dell'applicazione, è possibile installare nel cluster numerosi certificati aggiuntivi. Prima di creare il cluster, considerare gli scenari di protezione delle applicazioni che richiedono l'installazione di un certificato sui nodi, ad esempio:
+Per motivi di sicurezza dell'applicazione, è possibile installare nel cluster numerosi certificati aggiuntivi. Prima di creare il cluster, considerare gli scenari di sicurezza dell'applicazione hello che richiedono un toobe certificato installato nei nodi di hello, ad esempio:
 
 * Crittografia e decrittografia dei valori di configurazione dell'applicazione.
 * Crittografia dei dati tra i nodi durante la replica.
 
 ### <a name="formatting-certificates-for-azure-resource-provider-use"></a>Formattazione dei certificati per l'uso di provider di risorse di Azure
-È possibile aggiungere e usare file di chiave privata (PFX) direttamente tramite l'insieme di credenziali delle chiavi. Il provider di risorse di calcolo di Azure richiede tuttavia che le chiavi vengano archiviate in uno speciale formato JSON (JavaScript Object Notation). Il formato include il file PFX come stringa con codifica Base 64 e la password della chiave privata. Per soddisfare questi requisiti, le chiavi devono essere inserite in una stringa JSON e quindi archiviate come "segreti" nell'insieme di credenziali delle chiavi.
+È possibile aggiungere e usare file di chiave privata (PFX) direttamente tramite l'insieme di credenziali delle chiavi. Tuttavia, i provider di risorse di calcolo di Azure hello richiede toobe chiavi archiviate in un particolare formato JavaScript Object Notation (JSON). formato di Hello include file con estensione pfx hello come una stringa base 64 codificata in formato e la password della chiave privata hello. tooaccommodate questi requisiti, hello chiavi devono essere inserite in una stringa JSON e quindi archiviate come "segreti" nella chiave hello insieme di credenziali.
 
-Per semplificare questo processo, è [disponibile su GitHub un modulo di PowerShell][service-fabric-rp-helpers]. Per usare il modulo, seguire questa procedura:
+Questo processo più semplice, toomake un [modulo PowerShell è disponibile in GitHub][service-fabric-rp-helpers]. modulo hello toouse, hello seguenti:
 
-1. Scaricare l'intero contenuto del repository in una directory locale.
-2. Andare alla directory locale.
-2. Importare il modulo ServiceFabricRPHelpers nella finestra di PowerShell:
+1. Scaricare l'intero contenuto di hello del repository hello in una directory locale.
+2. Passare toohello directory locale.
+2. Importare il modulo ServiceFabricRPHelpers hello nella finestra di PowerShell:
 
 ```powershell
 
@@ -173,7 +173,7 @@ Per semplificare questo processo, è [disponibile su GitHub un modulo di PowerSh
 
 ```
 
-Il comando `Invoke-AddCertToKeyVault` in questo modulo di PowerShell formatta in modo automatico una chiave privata del certificato in una stringa JSON e la carica nell'insieme di credenziali delle chiavi. Usare il comando per aggiungere il certificato del cluster ed eventuali altri certificati delle applicazioni all'insieme di credenziali delle chiavi. Ripetere questo passaggio per tutti i certificati aggiuntivi che si vuole installare nel cluster.
+Hello `Invoke-AddCertToKeyVault` comando in questo modulo di PowerShell Formatta automaticamente una chiave privata del certificato in una stringa JSON e ne carica toohello insieme di credenziali chiave. Utilizzare il certificato del cluster hello di hello comando tooadd e qualsiasi applicazione aggiuntiva certificati toohello chiave dell'insieme di credenziali. Ripetere questo passaggio per tutti i certificati aggiuntivi desiderate tooinstall del cluster.
 
 #### <a name="uploading-an-existing-certificate"></a>Caricamento di un certificato esistente
 
@@ -183,10 +183,10 @@ Il comando `Invoke-AddCertToKeyVault` in questo modulo di PowerShell formatta in
 
 ```
 
-Se si verifica un errore, come quello illustrato qui, in genere significa che è presente un conflitto tra URL di risorsa. Per risolvere il conflitto, modificare il nome dell'insieme di credenziali delle chiavi.
+Se si verifica un errore, ad esempio hello uno riportati di seguito, significa in genere la presenza di un conflitto di risorse URL. conflitto di hello tooresolve, nome dell'insieme di credenziali chiave hello di modifica.
 
 ```
-Set-AzureKeyVaultSecret : The remote name could not be resolved: 'westuskv.vault.azure.net'
+Set-AzureKeyVaultSecret : hello remote name could not be resolved: 'westuskv.vault.azure.net'
 At C:\Users\chackdan\Documents\GitHub\Service-Fabric\Scripts\ServiceFabricRPHelpers\ServiceFabricRPHelpers.psm1:440 char:11
 + $secret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $Certif ...
 +           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -195,16 +195,16 @@ At C:\Users\chackdan\Documents\GitHub\Service-Fabric\Scripts\ServiceFabricRPHelp
 
 ```
 
-Dopo avere risolto il conflitto, l'output sarà il seguente:
+Dopo la risoluzione dei conflitti di hello, l'output di hello dovrebbe essere simile al seguente:
 
 ```
 
-    Switching context to SubscriptionId <guid>
+    Switching context tooSubscriptionId <guid>
     Ensuring ResourceGroup westus-mykeyvault in West US
-    WARNING: The output object type of this cmdlet is going to be modified in a future release.
+    WARNING: hello output object type of this cmdlet is going toobe modified in a future release.
     Using existing value mywestusvault in West US
     Reading pfx file from C:\path\to\key.pfx
-    Writing secret to mywestusvault in vault mywestusvault
+    Writing secret toomywestusvault in vault mywestusvault
 
 
 Name  : CertificateThumbprint
@@ -219,13 +219,13 @@ Value : https://mywestusvault.vault.azure.net:443/secrets/mycert/4d087088df974e8
 ```
 
 >[!NOTE]
->Sono necessarie le tre stringhe precedenti, CertificateThumbprint, SourceVault e CertificateURL, per configurare un cluster di Service Fabric sicuro e per ottenere i certificati dell'applicazione che potrebbero essere usati per la sicurezza dell'applicazione. Se non si salvano le stringhe, può essere difficile recuperarle in seguito effettuando una query dell'insieme di credenziali delle chiavi.
+>È necessario hello tre precedente stringhe, CertificateThumbprint SourceVault e CertificateURL, tooset di un cluster di Service Fabric sicuro e tooobtain tutti i certificati dell'applicazione che è possibile utilizzare per la sicurezza dell'applicazione. Se non si salva le stringhe di hello, può essere difficile tooretrieve li eseguendo una ricerca chiave hello insieme di credenziali in un secondo momento.
 
 <a id="add-self-signed-certificate-to-key-vault"></a>
 
-#### <a name="creating-a-self-signed-certificate-and-uploading-it-to-the-key-vault"></a>Creazione di un certificato autofirmato e caricamento nell'insieme di credenziali delle chiavi
+#### <a name="creating-a-self-signed-certificate-and-uploading-it-toohello-key-vault"></a>Creazione di un certificato autofirmato e caricarlo insieme di credenziali chiave toohello
 
-Se i certificati sono già stati caricati nell'insieme di credenziali delle chiavi, saltare questo passaggio che serve a generare un nuovo certificato autofirmato e a caricarlo nell'insieme di credenziali delle chiavi. Dopo avere modificato i parametri nello script seguente e averlo eseguito, verrà chiesta una password per il certificato.  
+Se è già stato caricato nell'insieme di credenziali chiave di certificati toohello, ignorare questo passaggio. Questo passaggio è per la generazione di un nuovo certificato autofirmato e caricarlo insieme di credenziali chiave tooyour. Dopo avere modificato i parametri di hello in hello lo script seguente e quindi eseguirlo, verrà richiesto di immettere una password del certificato.  
 
 ```powershell
 
@@ -234,17 +234,17 @@ $VName = "chackokv2"
 $SubID = "6c653126-e4ba-42cd-a1dd-f7bf96ae7a47"
 $locationRegion = "westus"
 $newCertName = "chackotestcertificate1"
-$dnsName = "www.mycluster.westus.mydomain.com" #The certificate's subject name must match the domain used to access the Service Fabric cluster.
-$localCertPath = "C:\MyCertificates" # location where you want the .PFX to be stored
+$dnsName = "www.mycluster.westus.mydomain.com" #hello certificate's subject name must match hello domain used tooaccess hello Service Fabric cluster.
+$localCertPath = "C:\MyCertificates" # location where you want hello .PFX toobe stored
 
  Invoke-AddCertToKeyVault -SubscriptionId $SubID -ResourceGroupName $ResourceGroup -Location $locationRegion -VaultName $VName -CertificateName $newCertName -CreateSelfSignedCertificate -DnsName $dnsName -OutputPath $localCertPath
 
 ```
 
-Se si verifica un errore, come quello illustrato qui, in genere significa che è presente un conflitto tra URL di risorsa. Per risolvere il conflitto, modificare il nome dell'insieme di credenziali delle chiavi, il nome del gruppo di risorse e così via.
+Se si verifica un errore, ad esempio hello uno riportati di seguito, significa in genere la presenza di un conflitto di risorse URL. conflitto hello tooresolve, insieme di credenziali chiave di hello Modifica nome, nome RG e così via.
 
 ```
-Set-AzureKeyVaultSecret : The remote name could not be resolved: 'westuskv.vault.azure.net'
+Set-AzureKeyVaultSecret : hello remote name could not be resolved: 'westuskv.vault.azure.net'
 At C:\Users\chackdan\Documents\GitHub\Service-Fabric\Scripts\ServiceFabricRPHelpers\ServiceFabricRPHelpers.psm1:440 char:11
 + $secret = Set-AzureKeyVaultSecret -VaultName $VaultName -Name $Certif ...
 +           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -253,17 +253,17 @@ At C:\Users\chackdan\Documents\GitHub\Service-Fabric\Scripts\ServiceFabricRPHelp
 
 ```
 
-Dopo avere risolto il conflitto, l'output sarà il seguente:
+Dopo la risoluzione dei conflitti di hello, l'output di hello dovrebbe essere simile al seguente:
 
 ```
 PS C:\Users\chackdan\Documents\GitHub\Service-Fabric\Scripts\ServiceFabricRPHelpers> Invoke-AddCertToKeyVault -SubscriptionId $SubID -ResourceGroupName $ResouceGroup -Location $locationRegion -VaultName $VName -CertificateName $newCertName -Password $certPassword -CreateSelfSignedCertificate -DnsName $dnsName -OutputPath $localCertPath
-Switching context to SubscriptionId 6c343126-e4ba-52cd-a1dd-f8bf96ae7a47
+Switching context tooSubscriptionId 6c343126-e4ba-52cd-a1dd-f8bf96ae7a47
 Ensuring ResourceGroup chackowestuskv in westus
-WARNING: The output object type of this cmdlet will be modified in a future release.
+WARNING: hello output object type of this cmdlet will be modified in a future release.
 Creating new vault westuskv1 in westus
 Creating new self signed certificate at C:\MyCertificates\chackonewcertificate1.pfx
 Reading pfx file from C:\MyCertificates\chackonewcertificate1.pfx
-Writing secret to chackonewcertificate1 in vault westuskv1
+Writing secret toochackonewcertificate1 in vault westuskv1
 
 
 Name  : CertificateThumbprint
@@ -278,52 +278,52 @@ Value : https://westuskv1.vault.azure.net:443/secrets/chackonewcertificate1/ee24
 ```
 
 >[!NOTE]
->Sono necessarie le tre stringhe precedenti, CertificateThumbprint, SourceVault e CertificateURL, per configurare un cluster di Service Fabric sicuro e per ottenere i certificati dell'applicazione che potrebbero essere usati per la sicurezza dell'applicazione. Se non si salvano le stringhe, può essere difficile recuperarle in seguito effettuando una query dell'insieme di credenziali delle chiavi.
+>È necessario hello tre precedente stringhe, CertificateThumbprint SourceVault e CertificateURL, tooset di un cluster di Service Fabric sicuro e tooobtain tutti i certificati dell'applicazione che è possibile utilizzare per la sicurezza dell'applicazione. Se non si salva le stringhe di hello, può essere difficile tooretrieve li eseguendo una ricerca chiave hello insieme di credenziali in un secondo momento.
 
- A questo punto, dovrebbero essere visualizzati gli elementi seguenti:
+ A questo punto, è necessario disporre di hello degli elementi sul posto di seguito:
 
-* Gruppo di risorse dell'insieme di credenziali delle chiavi.
-* Insieme di credenziali delle chiavi e URL (denominato SourceVault nell'output di PowerShell precedente).
-* Certificato di autenticazione server del cluster e URL nell'insieme di credenziali delle chiavi.
-* Certificati dell'applicazione e URL nell'insieme di credenziali delle chiavi.
+* gruppo di risorse dell'insieme di credenziali chiave Hello.
+* Hello insieme di credenziali chiave e il relativo URL (denominato SourceVault nelle hello precede l'output di PowerShell).
+* certificato di autenticazione server cluster Hello e il relativo URL nell'insieme di credenziali chiave hello.
+* i certificati dell'applicazione Hello e gli URL nell'insieme di credenziali chiave hello.
 
 
 <a id="add-AAD-for-client"></a>
 
 ## <a name="set-up-azure-active-directory-for-client-authentication"></a>Configurare Azure Active Directory per l'autenticazione client
 
-Azure AD consente alle organizzazioni (note come tenant) di gestire l'accesso utenti alle applicazioni. Alcune applicazioni sono caratterizzate da un'interfaccia utente di accesso basata sul Web, altre invece da un'esperienza client nativa. In questo articolo si presuppone che sia già stato creato un tenant. In caso contrario, vedere prima di tutto [Come ottenere un tenant di Azure Active Directory][active-directory-howto-tenant].
+Azure AD consente alle organizzazioni (noto come tenant) toomanage utente accesso tooapplications. Alcune applicazioni sono caratterizzate da un'interfaccia utente di accesso basata sul Web, altre invece da un'esperienza client nativa. In questo articolo si presuppone che sia già stato creato un tenant. In caso contrario, iniziare leggendo [come tenant di Azure Active Directory tooget][active-directory-howto-tenant].
 
-I cluster di Service Fabric offrono numerosi punti di ingresso alle relative funzionalità di gestione, tra cui [Service Fabric Explorer][service-fabric-visualizing-your-cluster], basato sul Web, e [Visual Studio][service-fabric-manage-application-in-visual-studio]. Verranno quindi create due applicazioni Azure AD per controllare l'accesso al cluster, un'applicazione Web e un'applicazione nativa.
+Un cluster di Service Fabric offre tooits punti di ingresso diverse funzionalità di gestione, tra cui hello basata sul web [Service Fabric Explorer] [ service-fabric-visualizing-your-cluster] e [Visual Studio] [service-fabric-manage-application-in-visual-studio]. Di conseguenza, creare due cluster di toohello accesso Azure AD applicazioni toocontrol, un'applicazione web e un'applicazione nativa.
 
-Per semplificare alcuni dei passaggi richiesti per la configurazione di Azure AD con un cluster di Service Fabric è stato creato un set di script di Windows PowerShell.
+toosimplify alcuni dei passaggi di hello coinvolti nella configurazione di Azure AD con un cluster di Service Fabric, è stato creato un set di script di Windows PowerShell.
 
 > [!NOTE]
-> È necessario completare i passaggi seguenti prima di creare il cluster. Poiché per gli script sono previsti nomi ed endpoint dei cluster, i valori devono essere pianificati e non quelli già creati.
+> È necessario completare i seguenti passaggi prima di creare cluster hello hello. Poiché gli script hello prevedono che gli endpoint e i nomi dei cluster, i valori di hello devono essere pianificati e non i valori che è già stato creato.
 
-1. [Scaricare gli script][sf-aad-ps-script-download] nel computer.
-2. Fare clic con il pulsante destro del mouse sul file ZIP, scegliere **Proprietà**, selezionare la casella di controllo **Sblocca** e quindi fare clic su **Applica**.
-3. Estrarre il file con estensione zip.
-4. Eseguire `SetupApplications.ps1` e indicare i parametri TenantId, ClusterName e WebApplicationReplyUrl. ad esempio:
+1. [Scaricare gli script hello] [ sf-aad-ps-script-download] tooyour computer.
+2. Pulsante destro del mouse hello file zip, selezionare **proprietà**selezionare hello **Unblock** casella di controllo e quindi fare clic su **applica**.
+3. Estrarre il file zip hello.
+4. Eseguire `SetupApplications.ps1`e fornire hello TenantId, ClusterName e WebApplicationReplyUrl come parametri. ad esempio:
 
     ```powershell
     .\SetupApplications.ps1 -TenantId '690ec069-8200-4068-9d01-5aaf188e557a' -ClusterName 'mycluster' -WebApplicationReplyUrl 'https://mycluster.westus.cloudapp.azure.com:19080/Explorer/index.html'
     ```
 
-    È possibile trovare il TenantId eseguendo il comando di PowerShell `Get-AzureSubscription`. Eseguendo questo comando, viene visualizzato il TenantId per ogni sottoscrizione.
+    È possibile trovare l'ID tenant eseguendo il comando di PowerShell hello `Get-AzureSubscription`. L'esecuzione di questo comando Visualizza hello TenantId per ogni sottoscrizione.
 
-    ClusterName viene usato come prefisso per le applicazioni Azure AD create dallo script. Non è necessario che corrisponda esattamente al nome effettivo del cluster. Ha solo lo scopo di facilitare il mapping degli elementi di Azure AD al cluster di Service Fabric con cui vengono usati.
+    ClusterName è applicazioni hello Azure AD usato tooprefix creati dallo script hello. Non è necessario toomatch hello nome effettivo del cluster esattamente. È previsto toomake solo è più facile toomap Azure AD artefatti toohello cluster di Service Fabric è utilizzato con.
 
-    WebApplicationReplyUrl è l'endpoint predefinito che Azure AD restituisce agli utenti dopo che hanno completato l'accesso. Impostare questo endpoint come endpoint di Service Fabric Explorer per il cluster, che per impostazione predefinita è:
+    WebApplicationReplyUrl è l'endpoint predefinito hello restituiti da Azure AD utenti tooyour dopo aver effettuato l'accesso. Impostare questo endpoint come endpoint di Service Fabric Explorer hello per il cluster, che per impostazione predefinita è:
 
     https://&lt;cluster_domain&gt;:19080/Explorer
 
-    Verrà richiesto di accedere a un account con privilegi amministrativi per il tenant Azure AD. Dopo avere eseguito l'accesso, lo script crea l'applicazione Web e l'applicazione nativa per rappresentare il cluster di Service Fabric. Tra le applicazioni del tenant nel [portale di Azure classico][azure-classic-portal] dovrebbero essere visualizzate due nuove voci:
+    Si è toosign richiesta nell'account tooan che dispone di privilegi amministrativi per il tenant hello Azure AD. Dopo l'accesso, hello script crea web hello e applicazioni native toorepresent il cluster di Service Fabric. Se si osservano le applicazioni del tenant hello hello su [portale di Azure classico][azure-classic-portal], verranno visualizzate due voci di nuovo:
 
    * *ClusterName*\_Cluster
    * *ClusterName*\_Client
 
-   È consigliabile tenere aperta la finestra di PowerShell perché, durante la creazione del cluster nella sezione successiva, lo script stamperà il codice JSON richiesto dal modello di Azure Resource Manager.
+   script Hello stampa hello JSON richiesto dal modello di Azure Resource Manager hello quando si crea il cluster hello nella sezione successiva hello, pertanto è una finestra di PowerShell buona tookeep hello aprire.
 
 ```json
 "azureActiveDirectory": {
@@ -334,18 +334,18 @@ Per semplificare alcuni dei passaggi richiesti per la configurazione di Azure AD
 ```
 
 ## <a name="create-a-service-fabric-cluster-resource-manager-template"></a>Creare un modello di Cluster Resource Manager di Service Fabric
-In questa sezione, gli output dei comandi di PowerShell precedenti verranno usati in un modello di Resource Manager per cluster di Service Fabric.
+In questa sezione, hello output di hello precedente vengono utilizzati i comandi di PowerShell in un modello di gestione risorse di cluster di Service Fabric.
 
-Nella [raccolta di modelli di avvio rapido di Azure in GitHub][azure-quickstart-templates] sono disponibili alcuni modelli di Resource Manager di esempio. Questi modelli possono essere usati come punto di partenza per il modello del cluster.
+Modelli di gestione risorse di esempio sono disponibili in hello [raccolta di modelli di avvio rapido di Azure su GitHub][azure-quickstart-templates]. Questi modelli possono essere usati come punto di partenza per il modello del cluster.
 
-### <a name="create-the-resource-manager-template"></a>Creare il modello di Azure Resource Manager
-Questa guida usa il modello di esempio di un [cluster protetto a 5 nodi][service-fabric-secure-cluster-5-node-1-nodetype] e i relativi parametri. Scaricare `azuredeploy.json` e `azuredeploy.parameters.json` sul computer e aprire entrambi i file in un editor di testo.
+### <a name="create-hello-resource-manager-template"></a>Creare il modello di gestione risorse di hello
+Questa Guida Usa hello [5 nodi cluster sicuro] [ service-fabric-secure-cluster-5-node-1-nodetype] modello di esempio e i parametri di modello. Scaricare `azuredeploy.json` e `azuredeploy.parameters.json` tooyour computer e aprire entrambi i file in un editor di testo.
 
 ### <a name="add-certificates"></a>Aggiungere certificati
-I certificati vengono aggiunti a un modello di Resource Manager per cluster facendo riferimento all'insieme di credenziali delle chiavi che contiene le chiavi del certificato. È consigliabile inserire i valori dell'insieme di credenziali delle chiavi in un file di parametri del modello di Resource Manager. In questo modo, il file di modello di Resource Manager è riutilizzabile e non contiene valori specifici di una distribuzione.
+Aggiungere modello di gestione risorse di cluster tooa certificati facendo riferimento hello chiave dell'insieme di credenziali contenente le chiavi di hello certificato. Si consiglia di posizionare i valori di insieme di credenziali chiave hello in un file di parametri di modello di gestione risorse. In questo modo consente di mantenere hello Gestione risorse file modello riutilizzabile e privo di distribuzione tooa specifico di valori.
 
-#### <a name="add-all-certificates-to-the-virtual-machine-scale-set-osprofile"></a>Aggiungere tutti i certificati all'elemento osProfile del set di scalabilità di macchine virtuali
-Ogni certificato che viene installato nel cluster deve essere configurato nella sezione osProfile della risorsa del set di scalabilità (Microsoft.Compute/virtualMachineScaleSets). Questa azione indica al provider di risorse di installare il certificato nelle macchine virtuali, includendo sia il certificato del cluster che eventuali certificati di sicurezza dell'applicazione che si intende usare per le applicazioni:
+#### <a name="add-all-certificates-toohello-virtual-machine-scale-set-osprofile"></a>Aggiungere che set di scalabilità di macchine virtuali di tutti i certificati toohello osProfile
+Ogni certificato installato nel cluster hello deve essere configurato nella sezione osProfile hello della risorsa di set di scalabilità hello (Microsoft.Compute/virtualMachineScaleSets). Questa azione indica certificato hello risorsa provider tooinstall hello in hello macchine virtuali. Questa installazione include sia il certificato di cluster hello e i certificati di sicurezza dell'applicazione che si prevede di toouse per le applicazioni:
 
 ```json
 {
@@ -379,8 +379,8 @@ Ogni certificato che viene installato nel cluster deve essere configurato nella 
 }
 ```
 
-#### <a name="configure-the-service-fabric-cluster-certificate"></a>Configurare il certificato del cluster di Service Fabric
-Il certificato di autenticazione del cluster deve essere configurato sia nella risorsa del cluster di Service Fabric (Microsoft.ServiceFabric/clusters) che nell'estensione di Service Fabric per i set di scalabilità di macchine virtuali nella risorsa del set di scalabilità di macchine virtuali. Questa disposizione consente al provider di risorse di Service Fabric di configurarlo per l'uso dell'autenticazione del cluster e del server per gli endpoint di gestione.
+#### <a name="configure-hello-service-fabric-cluster-certificate"></a>Configurare il certificato del cluster di Service Fabric hello
+certificato di autenticazione Hello cluster deve essere configurato in entrambe le risorse di cluster Service Fabric hello (Microsoft.ServiceFabric/clusters) e imposta hello estensione Service Fabric per la scalabilità della macchina virtuale nella risorsa set di scalabilità della macchina virtuale hello. In questo modo hello Service Fabric resource provider tooconfigure per utilizzare per l'autenticazione del cluster e l'autenticazione server per l'endpoint di gestione.
 
 ##### <a name="virtual-machine-scale-set-resource"></a>Risorsa del set di scalabilità di macchine virtuali:
 ```json
@@ -435,7 +435,7 @@ Il certificato di autenticazione del cluster deve essere configurato sia nella r
 ```
 
 ### <a name="insert-azure-ad-configuration"></a>Inserire la configurazione di Azure AD
-La configurazione di Azure AD creata prima può essere inserita nel modello di Resource Manager. È tuttavia consigliabile estrarre prima i valori in un file di parametri in modo che il modello di Resource Manager sia riutilizzabile e non contenga valori specifici di una distribuzione.
+configurazione di Hello Azure Active Directory creato in precedenza può essere inseriti direttamente nel modello di gestione delle risorse. Tuttavia, è consigliabile prima di estrarre i valori hello in riutilizzabile modello parametri file tookeep hello Gestione risorse e privi di distribuzione tooa specifico di valori.
 
 ```json
 {
@@ -460,8 +460,8 @@ La configurazione di Azure AD creata prima può essere inserita nel modello di R
 ```
 
 ### <a "configure-arm" ></a>Configurare i parametri del modello di Resource Manager
-<!--- Loc Comment: It seems that <a "configure-arm" > must be replaced with <a name="configure-arm"></a> since the link seems not to be redirecting correctly --->
-Infine, usare i valori di output dei comandi di PowerShell per Azure AD e dell'insieme di credenziali delle chiavi per compilare il file dei parametri:
+<!--- Loc Comment: It seems that <a "configure-arm" > must be replaced with <a name="configure-arm"></a> since hello link seems not toobe redirecting correctly --->
+Infine, usare valori di output di hello dall'insieme di credenziali chiave di hello e file dei parametri di Azure AD PowerShell comandi toopopulate hello:
 
 ```json
 {
@@ -500,7 +500,7 @@ Infine, usare i valori di output dei comandi di PowerShell per Azure AD e dell'i
     }
 }
 ```
-A questo punto, dovrebbero essere visualizzati gli elementi seguenti:
+A questo punto, è necessario disporre di hello degli elementi sul posto di seguito:
 
 * Gruppo di risorse dell'insieme di credenziali delle chiavi
   * Insieme di credenziali delle chiavi
@@ -514,22 +514,22 @@ A questo punto, dovrebbero essere visualizzati gli elementi seguenti:
   * Certificati configurati tramite l'insieme di credenziali delle chiavi
   * Azure Active Directory configurato
 
-Il diagramma seguente illustra i punti in cui la configurazione dell'insieme di credenziali delle chiavi e di Azure AD rientra nel modello di Resource Manager.
+Hello seguente diagramma viene illustrato dove la chiave dell'insieme di credenziali e la configurazione di Azure AD rientrano nel modello di gestione delle risorse.
 
 ![Mappa di dipendenza di Resource Manager][cluster-security-arm-dependency-map]
 
-## <a name="create-the-cluster"></a>Creare il cluster
-A questo punto si è pronti per creare il cluster usando la [distribuzione del modello di risorsa di Azure][resource-group-template-deploy].
+## <a name="create-hello-cluster"></a>Creare il cluster hello
+Si è ora cluster hello toocreate pronto utilizzando [la distribuzione dei modelli di risorse di Azure][resource-group-template-deploy].
 
 #### <a name="test-it"></a>Eseguirne il test
-Usare il comando PowerShell seguente per testare il modello di Resource Manager con un file di parametri:
+Utilizzare il modello di gestione risorse di hello tootest comando PowerShell seguente con un file dei parametri:
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -TemplateFile .\azuredeploy.json -TemplateParameterFile .\azuredeploy.parameters.json
 ```
 
 #### <a name="deploy-it"></a>Distribuirlo
-Se viene superato il test del modello di Resource Manager, usare il comando PowerShell seguente per distribuire il modello di Resource Manager con un file di parametri:
+Se hello Gestione risorse modello test viene superato, utilizzare hello toodeploy comando PowerShell seguente un modello di gestione delle risorse con un file dei parametri:
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -TemplateFile .\azuredeploy.json -TemplateParameterFile .\azuredeploy.parameters.json
@@ -537,16 +537,16 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myresourcegroup" -Templat
 
 <a name="assign-roles"></a>
 
-## <a name="assign-users-to-roles"></a>Assegnare utenti ai ruoli
-Dopo aver creato le applicazioni per rappresentare il cluster, assegnare gli utenti ai ruoli supportati da Service Fabric: sola lettura e amministratore. È possibile assegnare i ruoli usando il [portale di Azure classico][azure-classic-portal].
+## <a name="assign-users-tooroles"></a>Assegnare gli utenti tooroles
+Dopo aver creato hello toorepresent di applicazioni del cluster, assegnare gli utenti ruoli toohello supportati dall'infrastruttura di servizio: sola lettura e l'amministratore. È possibile assegnare ruoli hello utilizzando hello [portale di Azure classico][azure-classic-portal].
 
-1. Nel portale di Azure andare al tenant e quindi selezionare **Applicazioni**.
-2. Selezionare l'applicazione Web, che avrà un nome simile a `myTestCluster_Cluster`.
-3. Fare clic sulla scheda **Utenti** .
-4. Selezionare un utente per l'assegnazione e quindi fare clic sul pulsante **Assegna** nella parte inferiore della schermata.
+1. Nel portale di Azure hello, andare tooyour tenant e quindi selezionare **applicazioni**.
+2. Selezionare l'applicazione web hello, che ha un nome come `myTestCluster_Cluster`.
+3. Fare clic su hello **utenti** scheda.
+4. Selezionare un tooassign utente e quindi fare clic su hello **assegnare** pulsante in basso hello hello.
 
-    ![Pulsante di assegnazione di utenti ai ruoli][assign-users-to-roles-button]
-5. Selezionare il ruolo da assegnare all'utente.
+    ![Gli utenti tooroles pulsante Assegna][assign-users-to-roles-button]
+5. Selezionare hello ruolo tooassign toohello utente.
 
     ![Finestra di dialogo "Assegna utenti"][assign-users-to-roles-dialog]
 
@@ -556,31 +556,31 @@ Dopo aver creato le applicazioni per rappresentare il cluster, assegnare gli ute
 >
 
  <a name="secure-linux-clusters"></a>
- <!--- Loc Comment: It seems that letter S in cluster was missing, which caused the wrong redirection of the link --->
+ <!--- Loc Comment: It seems that letter S in cluster was missing, which caused hello wrong redirection of hello link --->
 
 ## <a name="create-secure-clusters-on-linux"></a>Creare cluster protetti in Linux
-Per facilitare il processo, è disponibile uno [script helper](http://github.com/ChackDan/Service-Fabric/tree/master/Scripts/CertUpload4Linux). Prima di usare questo script helper, assicurarsi che sia già installata un'interfaccia della riga di comando di Azure e che sia nel percorso in uso. Verificare che lo script abbia le autorizzazioni necessarie per l'esecuzione eseguendo `chmod +x cert_helper.py` al termine del download. Il primo passaggio consiste nell'accedere al proprio account Azure usando il comando `azure login` nell'interfaccia della riga di comando. Dopo aver eseguito l'accesso all'account Azure, usare lo script helper con il certificato firmato di una CA, come illustrato dai comandi seguenti:
+processo di hello toomake più semplice, sono disponibili un [script helper](http://github.com/ChackDan/Service-Fabric/tree/master/Scripts/CertUpload4Linux). Prima di usare questo script helper, assicurarsi che sia già installata un'interfaccia della riga di comando di Azure e che sia nel percorso in uso. Assicurarsi che script hello disponga delle autorizzazioni tooexecute eseguendo `chmod +x cert_helper.py` dopo averlo scaricato. Hello primo passaggio consiste nell'account Azure tooyour toosign con CLI hello `azure login` comando. Dopo aver effettuato l'accesso tooyour account Azure, utilizzare hello helper script con l'autorità di certificazione firmato certificato, come hello seguente comando Mostra:
 
 ```sh
 ./cert_helper.py [-h] CERT_TYPE [-ifile INPUT_CERT_FILE] [-sub SUBSCRIPTION_ID] [-rgname RESOURCE_GROUP_NAME] [-kv KEY_VAULT_NAME] [-sname CERTIFICATE_NAME] [-l LOCATION] [-p PASSWORD]
 ```
 
-Il parametro -ifile può accettare un file PFX o un file PEM come input, con il tipo di certificato (pfx o pem oppure ss se è un certificato autofirmato).
-Il parametro -h visualizza il testo della guida.
+il parametro - ifile Hello può accettare un file con estensione pfx o un file con estensione PEM come input, con un tipo di hello certificato (pfx o pem oppure ss se si tratta di un certificato autofirmato).
+parametro -h Hello stampato il testo della Guida hello.
 
 
-Questo comando restituisce come output le tre stringhe seguenti:
+Questo comando restituisce i seguenti tre stringhe come output di hello hello:
 
-* SourceVaultID, che è l'ID del nuovo gruppo di risorse dell'insieme di credenziali delle chiavi creato.
-* CertificateUrl per l'accesso al certificato.
+* SourceVaultID, ovvero ID hello per hello nuovo KeyVault ResourceGroup è creato per l'utente
+* CertificateUrl per l'accesso a hello certificato
 * CertificateThumbprint, usata per l'autenticazione.
 
-L'esempio seguente illustra come usare il comando:
+Hello di esempio seguente viene illustrato come toouse hello comando:
 
 ```sh
 ./cert_helper.py pfx -sub "fffffff-ffff-ffff-ffff-ffffffffffff"  -rgname "mykvrg" -kv "mykevname" -ifile "/home/test/cert.pfx" -sname "mycert" -l "East US" -p "pfxtest"
 ```
-Eseguendo il comando precedente si ottengono le tre stringhe come segue:
+L'esecuzione di hello precedente consente di comando hello tre stringhe, come indicato di seguito:
 
 ```sh
 SourceVault: /subscriptions/fffffff-ffff-ffff-ffff-ffffffffffff/resourceGroups/mykvrg/providers/Microsoft.KeyVault/vaults/mykvname
@@ -588,74 +588,74 @@ CertificateUrl: https://myvault.vault.azure.net/secrets/mycert/00000000000000000
 CertificateThumbprint: 0xfffffffffffffffffffffffffffffffffffffffff
 ```
 
-Il nome del soggetto del certificato deve corrispondere al dominio usato per accedere al cluster di Service Fabric. Questa corrispondenza è necessaria per fornire un certificato SSL per gli endpoint di gestione HTTPS del cluster e Service Fabric Explorer. Non è possibile ottenere un certificato SSL da una CA per il dominio `.cloudapp.azure.com`. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da una CA, il nome del soggetto del certificato deve corrispondere al nome di dominio personalizzato usato per il cluster.
+nome del soggetto del certificato Hello deve corrispondere dominio hello utilizzare cluster di Service Fabric tooaccess hello. Questa corrispondenza è obbligatorio tooprovide SSL per l'endpoint di gestione del cluster hello HTTPS e Service Fabric Explorer. È possibile ottenere un certificato SSL da un'autorità di certificazione per hello `.cloudapp.azure.com` dominio. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da un'autorità di certificazione, hello Nome soggetto del certificato deve corrispondere nome di dominio personalizzato hello utilizzati per il cluster.
 
-Questi nomi di soggetto sono le voci necessarie per creare un cluster di Service Fabric sicuro (senza Azure AD), come descritto in [Configurare i parametri del modello di Resource Manager](#configure-arm). È possibile connettersi al cluster sicuro seguendo le istruzioni per [autenticare l'accesso client a un cluster](service-fabric-connect-to-secure-cluster.md). I cluster di anteprima Linux non supportano l'autenticazione di Azure AD. È possibile assegnare ruoli amministratore e client come descritto nella sezione [Assegnare utenti ai ruoli](#assign-roles). Quando si specificano ruoli amministrativi e client per un cluster di anteprima Linux, è necessario fornire le identificazioni personali del certificato per l'autenticazione. Non si specifica il nome del soggetto perché non vengono eseguite convalide o revoche della catena in questa versione di anteprima.
+Questi nomi di oggetto sono voci hello è necessario toocreate un cluster di Service Fabric sicuro (senza Azure AD), come descritto in [parametri di modello Configure Resource Manager](#configure-arm). È possibile connettersi toohello sicura cluster seguendo le istruzioni di hello per [cluster tooa di accesso client di autenticazione](service-fabric-connect-to-secure-cluster.md). I cluster di anteprima Linux non supportano l'autenticazione di Azure AD. È possibile assegnare ruoli amministratore e client, come descritto in hello [assegnare ruoli toousers](#assign-roles) sezione. Quando si specificano i ruoli di amministratore e il client per un cluster di anteprima di Linux, è necessario tooprovide identificazioni personali del certificato per l'autenticazione. (Non si specifica il nome di soggetto hello, perché non viene eseguita alcuna convalida della catena o revoche di certificati in questa versione di anteprima.)
 
-Per usare un certificato autofirmato per il test, è possibile usare lo stesso script per generarne uno. È quindi possibile caricare il certificato nell'insieme di credenziali delle chiavi specificando il flag `ss` invece del percorso e del nome del certificato. Per la creazione e il caricamento di un certificato autofirmato, vedere ad esempio il comando seguente:
+Se si desidera toouse un certificato autofirmato per il test, è possibile utilizzare hello toogenerate script stesso uno. È quindi possibile caricare l'insieme di credenziali chiave hello certificato tooyour fornendo flag hello `ss` anziché specificare il nome del certificato hello percorso e il certificato. Ad esempio, vedere hello comando per la creazione e caricamento di un certificato autofirmato seguente:
 
 ```sh
 ./cert_helper.py ss -rgname "mykvrg" -sub "fffffff-ffff-ffff-ffff-ffffffffffff" -kv "mykevname"   -sname "mycert" -l "East US" -p "selftest" -subj "mytest.eastus.cloudapp.net"
 ```
-Questo comando restituisce le stesse tre stringhe: SourceVault, CertificateUrl e CertificateThumbprint. È quindi possibile usare le stringhe per creare sia un cluster Linux sicuro che una posizione in cui inserire il certificato autofirmato. Per connettersi al cluster, è necessario il certificato autofirmato. È possibile connettersi al cluster sicuro seguendo le istruzioni per [autenticare l'accesso client a un cluster](service-fabric-connect-to-secure-cluster.md).
+Questo comando restituisce hello stesso tre stringhe: SourceVault CertificateUrl e CertificateThumbprint. È quindi possibile utilizzare hello stringhe toocreate sia un cluster protetto di Linux e un percorso in cui viene inserito certificato autofirmato hello. È necessario hello certificato autofirmato tooconnect toohello cluster. È possibile connettersi toohello sicura cluster seguendo le istruzioni di hello per [cluster tooa di accesso client di autenticazione](service-fabric-connect-to-secure-cluster.md).
 
-Il nome del soggetto del certificato deve corrispondere al dominio usato per accedere al cluster di Service Fabric. Questa corrispondenza è necessaria per fornire un certificato SSL per gli endpoint di gestione HTTPS del cluster e Service Fabric Explorer. Non è possibile ottenere un certificato SSL da una CA per il dominio `.cloudapp.azure.com`. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da una CA, il nome del soggetto del certificato deve corrispondere al nome di dominio personalizzato usato per il cluster.
+nome del soggetto del certificato Hello deve corrispondere dominio hello utilizzare cluster di Service Fabric tooaccess hello. Questa corrispondenza è obbligatorio tooprovide SSL per l'endpoint di gestione del cluster hello HTTPS e Service Fabric Explorer. È possibile ottenere un certificato SSL da un'autorità di certificazione per hello `.cloudapp.azure.com` dominio. È necessario ottenere un nome di dominio personalizzato per il cluster. Quando si richiede un certificato da un'autorità di certificazione, hello Nome soggetto del certificato deve corrispondere nome di dominio personalizzato hello utilizzati per il cluster.
 
-È possibile immettere i parametri dello script helper nel portale di Azure, come descritto nella sezione [Creare un cluster nel portale di Azure](service-fabric-cluster-creation-via-portal.md#create-cluster-in-the-azure-portal).
+È possibile compilare i parametri di hello dallo script di supporto hello in hello portale di Azure, come descritto in hello [creare un cluster nel portale di Azure hello](service-fabric-cluster-creation-via-portal.md#create-cluster-in-the-azure-portal) sezione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, è stato creato un cluster con Azure Active Directory che fornisce l'autenticazione per la gestione. Successivamente, [connettersi al cluster](service-fabric-connect-to-secure-cluster.md) e scoprire come [gestire i segreti delle applicazioni](service-fabric-application-secret-management.md).
+A questo punto, è stato creato un cluster con Azure Active Directory che fornisce l'autenticazione per la gestione. Successivamente, [connettersi cluster tooyour](service-fabric-connect-to-secure-cluster.md) e informazioni su come troppo[gestire segreti applicazione](service-fabric-application-secret-management.md).
 
 ## <a name="troubleshoot-setting-up-azure-active-directory-for-client-authentication"></a>Risoluzione dei problemi di configurazione di Azure Active Directory per l'autenticazione client
-Se si verifica un problema durante la configurazione di Azure AD per l'autenticazione client, vedere le potenziali soluzioni in questa sezione.
+Se verifica un problema mentre si sta configurando Azure AD per l'autenticazione client, esaminare le potenziali soluzioni hello in questa sezione.
 
-### <a name="service-fabric-explorer-prompts-you-to-select-a-certificate"></a>Service Fabric Explorer richiede di selezionare un certificato
+### <a name="service-fabric-explorer-prompts-you-tooselect-a-certificate"></a>Si tooselect un certificato viene richiesto di Service Fabric Explorer
 #### <a name="problem"></a>Problema
-Dopo avere eseguito l'accesso ad Azure AD in Service Fabric Explorer, il browser torna alla home page, ma un messaggio chiede di selezionare un certificato.
+Dopo l'accesso correttamente in Service Fabric Explorer tooAzure Active Directory, il browser hello restituisce toohello home page di ma si tooselect un certificato verrà visualizzato un messaggio.
 
 ![Finestra di dialogo di selezione certificato in SFX][sfx-select-certificate-dialog]
 
 #### <a name="reason"></a>Motivo
-All'utente non è assegnato un ruolo nell'applicazione cluster Azure AD. Di conseguenza, l'autenticazione di Azure AD non riesce nel cluster di Service Fabric. Service Fabric Explorer ritorna all'autenticazione del certificato.
+utente Hello non è assegnato un ruolo in hello applicazione cluster di Azure AD. Di conseguenza, l'autenticazione di Azure AD non riesce nel cluster di Service Fabric. Service Fabric Explorer fallback toocertificate autenticazione.
 
 #### <a name="solution"></a>Soluzione
-Seguire le istruzioni per la configurazione di Azure AD e assegnare i ruoli utente. È anche consigliabile attivare "Assegnazione utente obbligatoria per l'accesso all'app", come in `SetupApplications.ps1`.
+Seguire le istruzioni di hello per la configurazione di Azure AD e Assegna ruoli utente. Inoltre, è consigliabile attivare "Utente assegnazione tooaccess obbligatorio app", come `SetupApplications.ps1` does.
 
-### <a name="connection-with-powershell-fails-with-an-error-the-specified-credentials-are-invalid"></a>La connessione a PowerShell non riesce con un errore: "Le credenziali specificate non sono valide"
+### <a name="connection-with-powershell-fails-with-an-error-hello-specified-credentials-are-invalid"></a>Connessione con PowerShell non riesce con errore: "hello specificato credenziali non sono valide"
 #### <a name="problem"></a>Problema
-Quando si usa PowerShell per connettersi al cluster con la modalità di sicurezza "AzureActiveDirectory", eseguito l'accesso ad Azure AD, la connessione ha esito negativo con un errore: "Le credenziali specificate non sono valide".
+Quando si usa PowerShell tooconnect toohello cluster utilizzando la modalità di sicurezza "AzureActiveDirectory", dopo l'accesso correttamente tooAzure Active Directory, connessione hello ha esito negativo con errore: "hello specificato credenziali non sono valide."
 
 #### <a name="solution"></a>Soluzione
-Questa soluzione è identica a quella precedente.
+Questa soluzione è hello che identico hello uno precedente.
 
 ### <a name="service-fabric-explorer-returns-a-failure-when-you-sign-in-aadsts50011"></a>Service Fabric Explorer restituisce un errore durante l'accesso: "AADSTS50011"
 #### <a name="problem"></a>Problema
-Quando si prova a eseguire l'accesso ad Azure AD in Service Fabric Explorer, la pagina restituisce l'errore AADSTS50011, che indica che l'&lt;URL&gt; dell'indirizzo di risposta non corrisponde agli indirizzi configurati per l'applicazione: &lt;GUID&gt;.
+Quando si tenta di toosign in tooAzure AD in Service Fabric Explorer, pagina hello restituisce un errore: "AADSTS50011: hello indirizzo di risposta &lt;url&gt; non corrispondono agli indirizzi di risposta hello configurati per l'applicazione hello: &lt;guid&gt;."
 
 ![Indirizzo di risposta di SFX non corrispondente][sfx-reply-address-not-match]
 
 #### <a name="reason"></a>Motivo
-L'applicazione cluster (Web) che rappresenta Service Fabric Explorer prova a eseguire l'autenticazione per Azure AD e come parte della richiesta indica l'URL di reindirizzamento restituito. L'URL non è presente nell'elenco degli **URL DI RISPOSTA** dell'applicazione Azure AD.
+un'applicazione Hello cluster (web) che rappresenta Service Fabric Explorer tenta tooauthenticate con Azure AD e come parte della richiesta di hello fornisce hello URL restituito di reindirizzamento. Ma hello URL non è elencato in un'applicazione hello Azure AD **URL di risposta** elenco.
 
 #### <a name="solution"></a>Soluzione
-Nella scheda **Configura** dell'applicazione cluster (Web) aggiungere l'URL di Service Fabric Explorer all'elenco **URL DI RISPOSTA** o sostituire una delle voci dell'elenco. Al termine, salvare la modifica.
+In hello **configura** scheda di hello cluster applicazione (web), aggiungere hello URL di Service Fabric Explorer toohello **URL di risposta** elenco o sostituire uno degli elementi di hello nell'elenco di hello. Al termine, salvare la modifica.
 
 ![URL di risposta dell'applicazione Web][web-application-reply-url]
 
-### <a name="connect-the-cluster-by-using-azure-ad-authentication-via-powershell"></a>Connettere il cluster usando l'autenticazione di Azure AD tramite PowerShell
-Per connettere il cluster di Service Fabric, usare il comando di PowerShell di esempio seguente:
+### <a name="connect-hello-cluster-by-using-azure-ad-authentication-via-powershell"></a>Connettere il cluster di hello utilizzando l'autenticazione di Azure AD tramite PowerShell
+cluster di Service Fabric hello tooconnect, utilizzare hello esempio di comando PowerShell seguente:
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <endpoint> -KeepAliveIntervalInSec 10 -AzureActiveDirectory -ServerCertThumbprint <thumbprint>
 ```
 
-Per informazioni sul cmdlet Connect-ServiceFabricCluster, vedere [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx).
+toolearn sul cmdlet Connect-ServiceFabricCluster hello, vedere [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/mt125938.aspx).
 
-### <a name="can-i-reuse-the-same-azure-ad-tenant-in-multiple-clusters"></a>È possibile usare di nuovo lo stesso tenant di Azure AD in più cluster?
-Sì. Ricordarsi però di aggiungere l'URL di Service Fabric Explorer all'applicazione cluster (Web). In caso contrario, Service Fabric Explorer non funzionerà.
+### <a name="can-i-reuse-hello-same-azure-ad-tenant-in-multiple-clusters"></a>È possibile riutilizzare il tenant di hello stesso Azure Active Directory in più cluster?
+Sì. Ma tenere presente che un'applicazione tooadd hello URL di Service Fabric Explorer tooyour cluster (web). In caso contrario, Service Fabric Explorer non funzionerà.
 
 ### <a name="why-do-i-still-need-a-server-certificate-while-azure-ad-is-enabled"></a>Perché è ancora necessario un certificato del server se Azure AD è abilitato?
-FabricClient e FabricGateway eseguono un'autenticazione reciproca. Durante l'autenticazione di Azure AD, l'integrazione di Azure AD consente di assegnare un'identità del client al server e il certificato del server viene usato per verificare l'identità del server. Per altre informazioni sui certificati di Service Fabric, vedere [Certificati X.509 e Service Fabric][x509-certificates-and-service-fabric].
+FabricClient e FabricGateway eseguono un'autenticazione reciproca. Durante l'autenticazione di Azure AD, integrazione di Azure AD fornisce un client server toohello delle identità e certificato del server hello è l'identità del server hello tooverify utilizzato. Per altre informazioni sui certificati di Service Fabric, vedere [Certificati X.509 e Service Fabric][x509-certificates-and-service-fabric].
 
 <!-- Links -->
 [azure-powershell]:https://azure.microsoft.com/documentation/articles/powershell-install-configure/

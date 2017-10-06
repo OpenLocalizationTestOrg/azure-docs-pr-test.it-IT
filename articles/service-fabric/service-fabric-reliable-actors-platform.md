@@ -1,6 +1,6 @@
 ---
-title: Reliable Actors in Service Fabric | Documentazione Microsoft
-description: "Descrive come Reliable Actors si sovrappone a Reliable Services e usa le funzionalità della piattaforma Service Fabric."
+title: aaaReliable attori in Service Fabric | Documenti Microsoft
+description: "Viene descritto come Reliable Actors si basano su servizi affidabili e utilizzare le funzionalità di hello della piattaforma di Service Fabric hello."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/07/2017
 ms.author: vturecek
-ms.openlocfilehash: 0a12da52b6e74c721cd25f89e7cde3c07153a396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecffb54139f1171c7839b77fed0be60950881198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-reliable-actors-use-the-service-fabric-platform"></a>Modalità d'uso della piattaforma Service Fabric da parte di Reliable Actors
-Questo articolo descrive il funzionamento di Reliable Actors sulla piattaforma Service Fabric di Azure. Reliable Actors viene eseguito in un framework ospitato in un'implementazione di un servizio Reliable Services con stato denominato *servizio attore*. Il servizio attore contiene tutti i componenti necessari per gestire il ciclo di vita e l'invio di messaggi per gli attori:
+# <a name="how-reliable-actors-use-hello-service-fabric-platform"></a>Utilizzo di piattaforma Service Fabric hello Reliable Actors
+In questo articolo descrive il modo Reliable Actors sulla piattaforma Azure Service Fabric hello. Reliable Actors eseguite in un framework che è ospitato in un'implementazione di un servizio affidabile con stato chiamato hello *servizio actor*. servizio actor Hello contiene tutti i ciclo di vita hello toomanage necessari componenti hello e un messaggio di invio per gli attori:
 
-* Il runtime di Actors gestisce il ciclo di vita e la Garbage Collection e applica l'accesso a thread singolo.
-* Un listener di comunicazione remota del servizio Actor accetta chiamate di accesso remoto per gli attori e le invia a un dispatcher per l'indirizzamento all'istanza d attore appropriata.
-* Il provider di stato degli attori esegue il wrapping dei provider di stato (come il provider di stato Reliable Collections) e fornisce un adattatore per la gestione dello stato degli attori.
+* Hello attore Runtime gestisce ciclo di vita, operazioni di garbage collection e applica l'accesso a thread singolo.
+* Un listener di comunicazione remota del servizio actor accetta tooactors chiamate di accesso remoto e li invia a istanza di tooa dispatcher tooroute toohello attore appropriato.
+* Provider dello stato Actor Hello esegue il wrapping di provider di stato (ad esempio, i provider di stato raccolte affidabile hello) e fornisce un adattatore per la gestione dello stato actor.
 
-Questi componenti insieme costituiscono il framework Reliable Actors.
+Questi framework Reliable Actor hello formano i componenti.
 
 ## <a name="service-layering"></a>Livelli del servizio
-Dato che il servizio attore stesso è un servizio Reliable Services, tutti i concetti di [modello applicativo](service-fabric-application-model.md), ciclo di vita, [creazione pacchetti](service-fabric-package-apps.md), [distribuzione](service-fabric-deploy-remove-applications.md), aggiornamento e ridimensionamento validi per Reliable Services si applicano anche ai servizi attore. 
+Poiché hello attore servizio è un servizio affidabile, tutti hello [modello di applicazione](service-fabric-application-model.md), ciclo di vita, [imballaggio](service-fabric-package-apps.md), [distribuzione](service-fabric-deploy-remove-applications.md), eseguire l'aggiornamento e scalabilità e concetti di Servizi affidabili applicano hello stessi servizi di tooactor modo. 
 
 ![Livelli del servizio attore][1]
 
-Il diagramma precedente mostra la relazione tra i framework applicativi di Service Fabric e il codice utente. Gli elementi blu rappresentano il framework applicativo di Reliable Services, quelli arancioni il framework Reliable Actors e quelli verdi il codice utente.
+Hello diagramma precedente mostra una relazione hello tra Framework di applicazioni di Service Fabric hello e codice utente. Elementi blu rappresentano framework dell'applicazione hello servizi affidabili, framework Reliable Actor hello arancione e verde rappresenta il codice utente.
 
-In Reliable Services il servizio eredita la classe `StatefulService`. Questa classe è a sua volta derivata da `StatefulServiceBase` (o `StatelessService` per i servizi senza stato). In Reliable Actors usare il servizio attore. Il servizio attore è un'implementazione diversa della classe `StatefulServiceBase` che implementa lo schema dell'attore in cui vengono eseguiti gli attori. Dato che il servizio attore è semplicemente un'implementazione di `StatefulServiceBase`, si può scrivere il proprio servizio che deriva da `ActorService` e implementare le funzionalità a livello di servizio così come si farebbe quando si eredita `StatefulService`, ad esempio:
+In servizi affidabili, il servizio eredita hello `StatefulService` classe. Questa classe è a sua volta derivata da `StatefulServiceBase` (o `StatelessService` per i servizi senza stato). In Reliable Actors, si utilizza servizio actor hello. servizio actor Hello è un'implementazione diversa di hello `StatefulServiceBase` classe motivo implementa hello attore in cui è eseguito gli attori. Poiché servizio actor hello stesso è solo un'implementazione di `StatefulServiceBase`, è possibile scrivere il proprio servizio che deriva da `ActorService` e implementare le funzionalità di livello di servizio hello stesso modo analogo, quando si eredita `StatefulService`, ad esempio:
 
 * Backup e ripristino del servizio.
 * Funzionalità condivisa per tutti gli attori, ad esempio un interruttore.
-* Chiamate di routine remote sul servizio attore stesso e su ogni singolo attore.
+* Nel servizio actor hello stesso e in ogni attore singole chiamate di procedura remota.
 
 > [!NOTE]
 > I servizi con stato non sono attualmente supportati in Java/Linux.
 
-### <a name="using-the-actor-service"></a>Uso del servizio attore
-Le istanze degli attori hanno accesso al servizio attore in cui sono in esecuzione. Tramite il servizio attore, le istanze degli attori possono ottenere il contesto del servizio a livello di codice. Il contesto del servizio include l'ID partizione, il nome del servizio, il nome dell'applicazione e altre informazioni specifiche sulla piattaforma Service Fabric:
+### <a name="using-hello-actor-service"></a>Utilizzo del servizio actor hello
+Le istanze di attore hanno servizio actor toohello di accesso in cui sono in esecuzione. Tramite servizio actor hello, istanze attore possono ottenere a livello di codice il contesto di servizio hello. contesto del servizio Hello con ID di partizione hello, nome del servizio, nome dell'applicazione e altre informazioni specifiche della piattaforma Service Fabric:
 
 ```csharp
 Task MyActorMethod()
@@ -68,7 +68,7 @@ CompletableFuture<?> MyActorMethod()
 ```
 
 
-Come tutti i servizi Reliable Services, il servizio attore deve essere registrato con un tipo di servizio nel runtime di Service Fabric. Perché il servizio attore possa eseguire le istanze degli attori, è necessario che anche il proprio tipo di attore sia registrato con il servizio attore. Il metodo di registrazione `ActorRuntime` esegue questa attività per gli attori. Nel caso più semplice, è sufficiente registrare il tipo di attore e verrà usato implicitamente il servizio attore con le impostazioni predefinite:
+Ad esempio tutti i servizi affidabili, servizio actor hello deve essere registrato con un tipo di servizio nel runtime di Service Fabric hello. Per hello del servizio actor toorun le istanze di attore, anche il tipo di attore deve essere registrato con il servizio actor hello. Hello `ActorRuntime` metodo di registrazione, questa operazione viene eseguita per attori. Nel caso più semplice di hello, è possibile registrare solo il tipo di attore e verrà utilizzato in modo implicito servizio actor hello con le impostazioni predefinite:
 
 ```csharp
 static class Program
@@ -82,7 +82,7 @@ static class Program
 }
 ```
 
-In alternativa, è possibile usare un'espressione lambda fornita dal metodo di registrazione per creare manualmente il servizio attore. È possibile perciò configurare il servizio attore e costruire esplicitamente le istanze degli attori, in cui possono essere inserite le dipendenze per l'attore mediante il relativo costruttore:
+In alternativa, è possibile utilizzare un'espressione lambda fornita da servizio di registrazione metodo tooconstruct hello actor hello manualmente. È possibile configurare il servizio di attore hello e costruire in modo esplicito le istanze attore, dove è possibile inserire attore tooyour dipendenze mediante il relativo costruttore:
 
 ```csharp
 static class Program
@@ -113,10 +113,10 @@ static class Program
 ```
 
 ### <a name="actor-service-methods"></a>Metodi del servizio attore
-Il servizio attore implementa `IActorService` (C#) o `ActorService` (Java), che a sua volta implementa `IService` (C#) o `Service` (Java). Questo è l'interfaccia usata dalla comunicazione remota di Reliable Services, che consente le chiamate RPC sui metodi del servizio. Contiene i metodi a livello di servizio che possono essere chiamati in remoto mediante la comunicazione remota del servizio.
+Hello implementa servizio Actor `IActorService` (c#) o `ActorService` (linguaggio), che a sua volta implementa `IService` (c#) o `Service` (linguaggio). Questo è l'interfaccia di hello utilizzata dalla comunicazione remota di servizi affidabili, che consente chiamate di procedure remote sui metodi di servizio. Contiene i metodi a livello di servizio che possono essere chiamati in remoto mediante la comunicazione remota del servizio.
 
 #### <a name="enumerating-actors"></a>Enumerazione degli attori
-Il servizio attore consente al client di enumerare i metadati relativi agli attori ospitati dal servizio. Dato che il servizio attore è un servizio con stato partizionato, l'enumerazione viene eseguita per partizione. Poiché ogni partizione può contenere molti attori, l'enumerazione viene restituita come set di risultati a pagine. Le pagine vengono esaminate in ciclo fino a quando non vengono lette tutte. L'esempio seguente illustra come creare un elenco di tutti gli attori attivi in una partizione di un servizio Actor:
+servizio actor Hello consente al client metadati tooenumerate riguardanti gli attori hello che ospita il servizio di hello. Servizio actor hello, in quanto un servizio con stato partizionato, l'enumerazione viene eseguita per ogni partizione. In quanto ogni partizione può contenere molti attori, enumerazione hello viene restituito come un set di risultati di paging. pagine Hello vengono eseguite su fino a quando tutte le pagine vengono lette. Hello seguente esempio viene illustrato come un elenco di tutti gli attori attivi di una partizione di un servizio actor toocreate:
 
 ```csharp
 IActorService actorServiceProxy = ActorServiceProxy.Create(
@@ -160,7 +160,7 @@ while (continuationToken != null);
 ```
 
 #### <a name="deleting-actors"></a>Eliminazione di attori
-Il servizio attore fornisce anche una funzione per l'eliminazione degli attori:
+servizio actor Hello offre anche una funzione per l'eliminazione di attori:
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -179,10 +179,10 @@ ActorService myActorServiceProxy = ActorServiceProxy.create(
 myActorServiceProxy.deleteActorAsync(actorToDelete);
 ```
 
-Per altre informazioni sull'eliminazione degli attori e il relativo stato, vedere la [documentazione sul ciclo di vita degli attori](service-fabric-reliable-actors-lifecycle.md).
+Per ulteriori informazioni sull'eliminazione di attori e il relativo stato, vedere hello [documentazione del ciclo di vita attore](service-fabric-reliable-actors-lifecycle.md).
 
 ### <a name="custom-actor-service"></a>Servizio attore personalizzato
-Usando l'espressione lambda di registrazione dell'attore è possibile registrare il proprio servizio attore personalizzato che deriva da `ActorService` (C#) e `FabricActorService` (Java). In questo servizio attore personalizzato è possibile implementare funzionalità di livello di servizio scrivendo una classe di servizio che eredita `ActorService` (C#) o `FabricActorService` (Java). Un servizio attore personalizzato eredita tutte le funzionalità di runtime dell'attore da `ActorService` (C#) o `FabricActorService` (Java) e può essere usato per implementare i propri metodi del servizio.
+Utilizzando lambda di hello attore registrazione, è possibile registrare il proprio servizio actor personalizzata che deriva da `ActorService` (c#) e `FabricActorService` (linguaggio). In questo servizio attore personalizzato è possibile implementare funzionalità di livello di servizio scrivendo una classe di servizio che eredita `ActorService` (C#) o `FabricActorService` (Java). Un servizio actor personalizzata eredita tutte le funzionalità di runtime attore hello dalla `ActorService` (c#) o `FabricActorService` (linguaggio) e possono essere utilizzati tooimplement i propri metodi di servizio.
 
 ```csharp
 class MyActorService : ActorService
@@ -230,7 +230,7 @@ public class Program
 ```
 
 #### <a name="implementing-actor-backup-and-restore"></a>Implementazione del backup e ripristino dell'attore
- Nell'esempio seguente il servizio attore personalizzato espone un metodo per il backup dei dati dell'attore sfruttando il listener di comunicazione remota già presente in `ActorService`:
+ Nell'esempio seguente di hello, servizio actor personalizzata hello espone tooback un metodo dei dati attore sfruttando del listener di comunicazione remota di hello già presenti nel `ActorService`:
 
 ```csharp
 public interface IMyActorService : IService
@@ -253,7 +253,7 @@ class MyActorService : ActorService, IMyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -285,7 +285,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -307,7 +307,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
 ```
 
 
-In questo esempio `IMyActorService` è un contratto di comunicazione remota che implementa `IService` (C#) and `Service` (Java) e viene successivamente implementato da `MyActorService`. Aggiungendo questo contratto di comunicazione remota, i metodi su `IMyActorService` ora sono disponibili anche per un client attraverso la creazione di un proxy di comunicazione remota mediante `ActorServiceProxy`:
+In questo esempio `IMyActorService` è un contratto di comunicazione remota che implementa `IService` (C#) and `Service` (Java) e viene successivamente implementato da `MyActorService`. Aggiungere questo contratto di servizi remoti, i metodi per `IMyActorService` sono ora disponibili tooa client mediante la creazione di un proxy remoto tramite `ActorServiceProxy`:
 
 ```csharp
 IMyActorService myActorServiceProxy = ActorServiceProxy.Create<IMyActorService>(
@@ -323,31 +323,31 @@ myActorServiceProxy.backupActorsAsync();
 ```
 
 ## <a name="application-model"></a>Modello di applicazione
-I servizi Actor sono servizi Reliable Services, per cui il modello applicativo è lo stesso. Tuttavia, gli strumenti di compilazione del framework attore generano automaticamente alcuni dei file del modello applicativo.
+Servizi Actor sono servizi affidabili, pertanto il modello di applicazione hello è hello stesso. Tuttavia, gli strumenti di compilazione hello attore framework generano alcuni dei file di modello di applicazione hello di.
 
 ### <a name="service-manifest"></a>Manifesto del servizio
-Gli strumenti di compilazione del framework attore generano automaticamente il contenuto del file ServiceManifest.xml del servizio attore. Questo file include:
+strumenti di compilazione Hello attore framework generare automaticamente il contenuto di hello del file ServiceManifest.xml del servizio actor. Questo file include:
 
-* Tipo del servizio attore. Il nome del tipo viene generato in base al nome del progetto attore. In base all'attributo di persistenza nell'attore, viene impostato anche il flag HasPersistedState.
+* Tipo del servizio attore. nome del tipo Hello viene generato in base al nome di progetto dell'attore. In base all'attributo di persistenza di hello nell'attore, hello HasPersistedState flag viene impostato anche di conseguenza.
 * Pacchetto di codice.
 * Pacchetto di configurazione.
 * Risorse ed endpoint.
 
 ### <a name="application-manifest"></a>Manifesto dell'applicazione
-Gli strumenti di compilazione del framework attore creano automaticamente una definizione del servizio predefinito per il servizio Actor. Gli strumenti di compilazione popolano le proprietà del servizio predefinito:
+strumenti di compilazione Hello attore framework creano automaticamente una definizione di servizio predefinito per il servizio actor. strumenti di compilazione Hello popolano le proprietà del servizio di hello predefinite:
 
-* Il numero di set di repliche è determinato dall'attributo di persistenza sull'attore. Ogni volta che viene modificato l'attributo di persistenza nell'attore, viene reimpostato di conseguenza il numero di set di repliche nella definizione del servizio predefinito.
-* Lo schema e l'intervallo della partizione vengono impostati su Uniform Int64 con l'intervallo di chiavi Int64 completo.
+* Numero di set di repliche è determinato dall'attributo persistenza hello l'attore. Ogni attributo persistenza hello ora l'attore viene modificato, numero di set di repliche hello nella definizione di servizio predefinito hello viene reimpostato di conseguenza.
+* Intervallo e lo schema di partizione vengono impostati tooUniform Int64 con hello completo Int64 intervalli di chiavi.
 
 ## <a name="service-fabric-partition-concepts-for-actors"></a>Concetti relativi alla partizione di Service Fabric per gli attori
 I servizi Actor sono servizi con stato partizionati. Ogni partizione di un servizio Actor contiene un set di attori. Le partizioni del servizio vengono distribuite automaticamente su più nodi in Service Fabric. Le istanze degli attori vengono distribuite di conseguenza.
 
 ![Partizionamento e distribuzione degli attori][5]
 
-È possibile creare servizi Reliable Services con schemi di partizione e intervalli di chiavi di partizione diversi. Il servizio attore usa lo schema di partizionamento Int64 con l'intervallo di chiavi Int64 completo per mappare gli attori alle partizioni.
+È possibile creare servizi Reliable Services con schemi di partizione e intervalli di chiavi di partizione diversi. servizio actor Hello Usa lo schema di partizionamento Int64 hello con toopartitions toomap di intervalli di chiavi di hello completo Int64 attori.
 
 ### <a name="actor-id"></a>ID attore
-A ogni attore creato nel servizio è associato un ID univoco, rappresentato dalla classe `ActorId` . `ActorId` è un valore ID opaco che può essere usato per la distribuzione uniforme degli attori nelle partizioni del servizio mediante la generazione di ID casuali:
+Ogni attore che viene creata nel servizio hello ha un ID univoco associato, rappresentato da hello `ActorId` classe. `ActorId`è un valore di ID opaco che può essere utilizzato per la distribuzione uniforme degli attori tra partizioni servizio hello tramite la generazione degli ID casuali:
 
 ```csharp
 ActorProxy.Create<IMyActor>(ActorId.CreateRandom());
@@ -357,7 +357,7 @@ ActorProxyBase.create<MyActor>(MyActor.class, ActorId.newId());
 ```
 
 
-Di ogni `ActorId` viene eseguito l'hashing in un Int64. Per questo motivo il servizio attore deve usare uno schema di partizionamento Int64 con l'intervallo di chiavi Int64 completo. È comunque possibile usare valori ID personalizzati per un `ActorID`, tra cui GUID/UUID, stringhe e Int64.
+Ogni `ActorId` è stato eseguito l'hashing tooan Int64. Ecco perché servizio actor hello è necessario utilizzare uno schema di partizionamento Int64 con hello completo Int64 intervalli di chiavi. È comunque possibile usare valori ID personalizzati per un `ActorID`, tra cui GUID/UUID, stringhe e Int64.
 
 ```csharp
 ActorProxy.Create<IMyActor>(new ActorId(Guid.NewGuid()));
@@ -370,7 +370,7 @@ ActorProxyBase.create(MyActor.class, new ActorId("myActorId"));
 ActorProxyBase.create(MyActor.class, new ActorId(1234));
 ```
 
-Quando si usano GUID/UUID e stringhe, viene eseguito l'hashing dei valori in un Int64. Quando invece si fornisce esplicitamente un Int64 a un `ActorId`, l'Int64 verrà mappato direttamente a una partizione senza ulteriore hashing. È possibile usare questa tecnica per controllare in quale partizione vengono inseriti gli attori.
+Quando si utilizza GUID/UUID e stringhe, i valori hello sono con hash tooan Int64. Tuttavia, quando si in modo esplicito forniscono un tooan Int64 `ActorId`, hello Int64 verrà eseguito il mapping direttamente tooa partizione senza ulteriore hash. È possibile utilizzare questa tecnica toocontrol cui attori hello partizione vengono inseriti in.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Gestione dello stato degli attori](service-fabric-reliable-actors-state-management.md)

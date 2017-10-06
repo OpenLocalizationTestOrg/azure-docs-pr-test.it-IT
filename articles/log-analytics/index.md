@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Log Analytics - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come usare Log Analytics per raccogliere e analizzare dati generati dalle risorse nel cloud e negli ambienti locali, a prescindere dalla posizione fisica.
+title: aaaAzure Log Analitica documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toouse Analitica Log toocollect e analizzare i dati generati dalle risorse negli ambienti di cloud e locali indipendentemente dalla posizione fisica.
 services: log-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9d5d1ada86a2cb1b6f6f70d9c662708f81b5bcc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48b3c1b28d9e3a9eaed34201d6bae2a6fdea90fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-documentation"></a>Documentazione su Log Analytics
 
-Informazioni su come usare Log Analytics, un servizio di Operations Management Suite che consente di raccogliere e analizzare i dati generati dalle risorse nel cloud e negli ambienti locali. Esercitazioni e altri documenti in cui viene illustrato come ottenere approfondimenti in tempo reale per i carichi di lavoro e i server, a prescindere dalla posizione fisica.
+Informazioni su come toouse Analitica di Log in Operations Management Suite toocollect hello e analizzare i dati generati dalle risorse negli ambienti di cloud e locali. Altra documentazione ed esercitazioni illustrano come tooget le informazioni in tempo reale per i carichi di lavoro e i server indipendentemente dalla posizione fisica.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: Aggiungere una macchina virtuale a disposizione degli utenti in un lab in Azure DevTest Labs | Microsoft Docs
-description: Informazioni su come aggiungere una macchina virtuale a disposizione degli utenti in un lab in Azure DevTest Labs
+title: un laboratorio tooa claimable VM Azure DevTest Labs aaaAdd | Documenti Microsoft
+description: Informazioni su come tooadd un lab tooa claimable macchina virtuale in Azure DevTest Labs
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 98950d72e90b0e178bae2fffa7644fd824a25eea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fe6385ae2e59b9636b82aec250dc3a1f8a40ba5d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-claimable-vm-to-a-lab-in-azure-devtest-labs"></a>Aggiungere una macchina virtuale a disposizione degli utenti in un lab in Azure DevTest Labs
-Per aggiungere una macchina virtuale a disposizione degli utenti a un lab è necessario seguire una procedura simile all'[aggiunta di una macchina virtuale standard](devtest-lab-add-vm.md), partendo da una *base* che può essere un'[immagine personalizzata](devtest-lab-create-template.md), una [formula](devtest-lab-manage-formulas.md) o un'[immagine del Marketplace](devtest-lab-configure-marketplace-images.md). In questa esercitazione viene descritto come usare il portale di Azure per aggiungere una macchina virtuale a disposizione degli utenti a un lab in DevTest Labs e viene illustrato il processo che un utente deve seguire per richiedere la macchina virtuale.
+# <a name="add-a-claimable-vm-tooa-lab-in-azure-devtest-labs"></a>Aggiungere un ambiente lab claimable tooa VM in Azure DevTest Labs
+Si aggiunge un claimable lab tooa macchina virtuale in un simile toohow modo si [aggiungere una macchina virtuale standard](devtest-lab-add-vm.md) : da un *base* in un [immagine personalizzata](devtest-lab-create-template.md), [formula](devtest-lab-manage-formulas.md), o [un'immagine del Marketplace](devtest-lab-configure-marketplace-images.md). In questa esercitazione illustra hello tooadd portale Azure utilizzando un laboratorio VM tooa claimable di DevTest Labs e illustra il processo di hello di che un utente avrà seguito tooclaim hello VM.
 
 > [!NOTE]
-> Se si distribuiscono macchine virtuali lab tramite i [modelli di Azure Resource Manager](devtest-lab-create-environment-from-arm.md), è possibile creare macchine virtuali a disposizione degli utenti impostando la proprietà **allowClaim** su vero nella sezione delle proprietà.
+> Se si distribuiscono le macchine virtuali lab tramite [modelli di gestione risorse di Azure](devtest-lab-create-environment-from-arm.md), è possibile creare macchine virtuali claimable impostazione hello **allowClaim** tootrue proprietà nella sezione proprietà hello.
 >
 >
 
-## <a name="steps-to-add-a-claimable-vm-to-a-lab-in-azure-devtest-labs"></a>Procedura per aggiungere una macchina virtuale a disposizione degli utenti in un lab in Azure DevTest Labs
-1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
-1. Nell'elenco di lab selezionare il lab in cui si vuole creare la VM a disposizione degli utenti.  
-1. Nel pannello **Panoramica** del lab selezionare **+ Aggiungi**.  
+## <a name="steps-tooadd-a-claimable-vm-tooa-lab-in-azure-devtest-labs"></a>Passaggi tooadd un laboratorio tooa claimable VM Azure DevTest Labs
+1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Selezionare lab hello hello elenco di esercitazioni in cui si desidera toocreate hello claimable macchina virtuale.  
+1. Nel lab di hello **Panoramica** pannello seleziona **+ Aggiungi**.  
 
     ![Pulsante Aggiungi VM](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. Nel pannello **Scegli una base** selezionare una base per la macchina virtuale.
-1. Nel pannello **Macchina virtuale** immettere un nome per la nuova macchina virtuale nella casella di testo **Nome macchina virtuale**.
+1. In hello **scegliere una base** pannello, selezionare un valore di base per hello macchina virtuale.
+1. In hello **macchina virtuale** pannello, immettere un nome per la macchina virtuale nuova hello in hello **nome della macchina virtuale** casella di testo.
 
     ![Pannello Lab VM (VM lab)](./media/devtest-lab-add-vm/devtestlab-lab-vm-blade.png)
 
-1. Immettere un **Nome utente** a cui vengono concessi privilegi di amministratore nella macchina virtuale.  
-1. Se si vuole usare una password archiviata nell'[archivio segreto](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), selezionare **Use a saved secret** (Usa un segreto salvato) e specificare un valore chiave corrispondente al segreto (password). In alternativa, immettere una password nel campo di testo **Digita un valore**.
-1. Il **tipo di disco della macchina virtuale** determina il tipo di disco di archiviazione consentito per le macchine virtuali nel lab.
-1. Selezionare **Dimensioni macchina virtuale** e uno degli elementi predefiniti che specificano le memorie centrali del processore, la dimensione della RAM e le dimensioni dell'unità disco rigido della VM da creare.
-1. Selezionare **Elementi** e dall'elenco di elementi selezionare e configurare gli elementi da aggiungere all'immagine di base. Se non si ha familiarità con DevTest Labs o con la configurazione di elementi, vedere la sezione [Aggiungere un elemento esistente in una macchina virtuale](devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) e tornare qui al termine dell'operazione.
-1. Selezionare **Impostazioni avanzate** per configurare le opzioni di rete e le opzioni relative alla scadenza della VM. In **Claim options** (Opzioni di richiesta), scegliere **Sì** per rendere la macchina a disposizione degli utenti.
+1. Immettere un **nome utente** che vengono concessi privilegi di amministratore nella macchina virtuale hello.  
+1. Se si desidera toouse una password archiviati nel [archivio segreto](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store)selezionare **utilizzano un segreto salvato**e specificare un valore di chiave corrispondente tooyour segreto (password). In caso contrario, immettere una password nel campo di testo hello etichettata **digitare un valore**.
+1. Hello **il tipo di disco di macchina virtuale** determina il tipo di disco di archiviazione è consentito per le macchine virtuali hello in lab hello.
+1. Selezionare **dimensioni della macchina virtuale** e selezionare una delle hello predefiniti elementi che specificano le dimensioni del disco rigido hello di hello VM toocreate core del processore hello e dimensioni della RAM.
+1. Selezionare **elementi** e hello elenco di elementi, selezionare e configurare hello elementi che si desidera tooadd toohello immagine di base. Se si è nuovo tooDevTest Labs o configurazione degli elementi, vedere toohello [aggiungere un tooa artefatto esistente VM](devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) sezione e quindi tornare qui al termine.
+1. Selezionare **impostazioni avanzate** opzioni di scadenza e le opzioni di rete della macchina virtuale di tooconfigure hello. In **attestazione opzioni**, scegliere **Sì** macchina hello toomake claimable.
 
-  ![Scegliere di rendere la macchina virtuale a disposizione degli utenti.](./media/devtest-lab-add-vm/devtestlab-claim-VM-option.png)
+  ![Scegliere toomake hello claimable macchina virtuale.](./media/devtest-lab-add-vm/devtestlab-claim-VM-option.png)
 
-1. Se si vuole visualizzare o copiare il modello di Azure Resource Manager, vedere la sezione [Salvare il modello di Azure Resource Manager](devtest-lab-add-vm.md#save-azure-resource-manager-template) e tornare qui al termine dell'operazione.
-1. Selezionare **Crea** per aggiungere la macchina virtuale specificata al lab.
-1. Il pannello lab consente di visualizzare lo stato di creazione della VM prima come **Creazione**, poi come **Esecuzione** dopo aver avviato la VM.
+1. Se si desidera tooview o copiare il modello di gestione risorse di Azure hello, fare riferimento toohello [modello salvare Azure Resource Manager](devtest-lab-add-vm.md#save-azure-resource-manager-template) sezione e tornare qui al termine.
+1. Selezionare **crea** tooadd hello specificato lab toohello macchina virtuale.
+1. Pannello lab Hello Visualizza lo stato di hello della creazione della macchina virtuale di hello - innanzitutto come **creazione**, quindi come **esecuzione** dopo hello macchina virtuale è stata avviata.
 
 
 ## <a name="using-a-claimable-vm"></a>Usare una macchina virtuale a disposizione degli utenti
 
-Un utente può richiedere qualsiasi macchina virtuale dall'elenco "Claimable virtual machines" (Macchine virtuali a disposizione degli utenti) effettuando una delle seguenti operazioni:
+Un utente può richiedere qualsiasi macchina virtuale dall'elenco di hello di "Macchine virtuali Claimable" effettuando una delle operazioni seguenti:
 
-* Dall'elenco "Claimable virtual machines" (Macchine virtuali a disposizione degli utenti), nella parte inferiore del pannello Panoramica del lab, fare clic con il tasto destro del mouse su una delle macchine virtuali nell'elenco e scegliere **Claim machine** (Richiedi macchina).
+* Elenco di hello di "Macchine virtuali Claimable" nella parte inferiore di hello del pannello della panoramica del lab hello, fare clic su una delle macchine virtuali di hello nell'elenco di hello e scegliere **macchina attestazione**.
 
  ![Richiedere una specifica macchina virtuale a disposizione degli utenti.](./media/devtest-lab-add-vm/devtestlab-claim-VM.png)
 
 
-* Nella parte superiore del pannello **Panoramica**, scegliere **Claim any** (Richiedi qualsiasi). Una macchina virtuale casuale viene assegnata dall'elenco di macchine virtuali a disposizione degli utenti.
+* Nella parte superiore di hello di hello **Panoramica** pannello, scegliere **qualsiasi attestazione**. Una macchina virtuale casuale viene assegnata dall'elenco di hello di claimable macchine virtuali.
 
  ![Richiedere una macchina virtuale a disposizione degli utenti.](./media/devtest-lab-add-vm/devtestlab-claim-any.png)
 
@@ -72,5 +72,5 @@ Un utente può richiedere qualsiasi macchina virtuale dall'elenco "Claimable vir
 Quando una macchina virtuale viene richiesta da un utente, questa viene spostata in alto nell'elenco "My virtual machines" (Le mie macchine virtuali) e non è più disponibile per un altro utente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo avere creato la VM, è possibile connettersi ad essa selezionando **Connetti** nel pannello della VM.
-* Esplorare la [raccolta dei modelli Azure Resource Manager di avvio rapido di DevTest Labs](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
+* Una volta hello VM è stato creato, è possibile connettersi toohello VM selezionando **Connetti** nel pannello hello della macchina virtuale.
+* Esplorare hello [raccolta di modelli di DevTest Labs Azure Resource Manager QuickStart](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)

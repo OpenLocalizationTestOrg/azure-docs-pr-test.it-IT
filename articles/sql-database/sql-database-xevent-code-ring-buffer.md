@@ -1,6 +1,6 @@
 ---
-title: Codice del buffer circolare XEvent per il database SQL | Documentazione Microsoft
-description: Fornisce un esempio di codice Transact-SQL reso semplice e veloce tramite l'uso della destinazione del buffer circolare nel database SQL di Azure.
+title: codice di Buffer circolare per il Database SQL aaaXEvent | Documenti Microsoft
+description: Fornisce un esempio di codice Transact-SQL che viene eseguito in modo semplice e rapido mediante l'utilizzo di destinazione Buffer circolare hello, nel Database di SQL Azure.
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,33 +16,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>Codice di destinazione del buffer circolare per gli eventi estesi nel database SQL
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-Si desidera un esempio di codice completo per il modo più semplice e rapido per acquisire e segnalare informazioni per un evento esteso durante un test. La destinazione più semplice per i dati degli eventi estesi è la [destinazione del buffer circolare](http://msdn.microsoft.com/library/ff878182.aspx).
+Si desidera un esempio di codice completo per hello più semplice rapidamente toocapture e segnalare le informazioni per un evento esteso durante un test. destinazione più semplice di Hello per i dati degli eventi estesi è hello [destinazione Buffer circolare](http://msdn.microsoft.com/library/ff878182.aspx).
 
 In questo argomento viene presentato un esempio di codice Transact-SQL che:
 
-1. Crea una tabella con i dati a scopo dimostrativo.
+1. Crea una tabella con dati toodemonstrate con.
 2. Crea una sessione per un evento esteso esistente, ovvero **sqlserver.sql_statement_starting**.
    
-   * L'evento è limitato a istruzioni SQL che contengono una determinata stringa di aggiornamento: **statement LIKE '%UPDATE tabEmployee%'**.
-   * Sceglie di inviare l'output dell'evento a una destinazione di tipo buffer circolare, ovvero **package0.ring_buffer**.
-3. Avvia la sessione dell'evento.
+   * evento Hello è limitato tooSQL istruzioni contenenti una determinata stringa di aggiornamento: **istruzione come '% aggiornamento tabEmployee %'**.
+   * Sceglie output di hello toosend della destinazione di tooa hello evento di tipo Buffer circolare, vale a dire **package0.ring_buffer**.
+3. Avvia una sessione di eventi hello.
 4. Esegue un paio di semplici istruzioni SQL UPDATE.
-5. Esegue un'istruzione SQL SELECT per recuperare l'output dell'evento dal buffer circolare.
+5. Rilascia un SQL SELECT istruzione tooretrieve evento output di hello Buffer circolare.
    
    * **sys.dm_xe_database_session_targets** e altre viste a gestione dinamica (DMV) sono unite.
-6. Arresta la sessione dell'evento.
-7. Elimina la destinazione del buffer circolare, per rilasciare le relative risorse.
-8. Elimina la sessione dell'evento e la tabella dimostrativa.
+6. Arresta sessione dell'evento hello.
+7. Elimina hello destinazione Buffer circolare, toorelease relative risorse.
+8. Elimina la sessione di eventi hello e tabella demo hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -51,14 +51,14 @@ In questo argomento viene presentato un esempio di codice Transact-SQL che:
   
   * Facoltativamente, è possibile [creare un database dimostrativo **AdventureWorksLT**](sql-database-get-started.md) in pochi minuti.
 * SQL Server Management Studio (ssms.exe), idealmente l'ultima versione di aggiornamento mensile. 
-  È possibile scaricare la versione più recente di ssms.exe da:
+  È possibile scaricare hello ssms.exe più recenti da:
   
   * Argomento intitolato [SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).
-  * [Un collegamento diretto al download.](http://go.microsoft.com/fwlink/?linkid=616025)
+  * [Download di toohello un collegamento diretto.](http://go.microsoft.com/fwlink/?linkid=616025)
 
 ## <a name="code-sample"></a>Esempio di codice
 
-Con alcune lievi modifiche, è possibile eseguire il seguente esempio di codice di buffer circolare nel database SQL di Azure o in Microsoft SQL Server. La differenza è la presenza del nodo '_database' nel nome di alcune viste a gestione dinamica (DMV) nella clausola FROM nel passaggio 5. ad esempio:
+Con molto piccola modifica, hello nell'esempio di codice seguente Buffer circolare può avvenire in Database SQL di Azure o Microsoft SQL Server. differenza Hello è la presenza di hello del nodo hello nel nome hello di alcune viste a gestione dinamica (DMV), "database" utilizzata nella clausola FROM hello nel passaggio 5. ad esempio:
 
 * sys.dm_xe**_database**_session_targets
 * sys.dm_xe_session_targets
@@ -220,13 +220,13 @@ GO
 
 ## <a name="ring-buffer-contents"></a>Contenuto del buffer circolare
 
-È stato usato ssms.exe per eseguire l'esempio di codice.
+Nell'esempio di codice hello ssms.exe toorun è stato utilizzato.
 
-Per visualizzare i risultati, è stato fatto clic sulla cella sotto l'intestazione di colonna **target_data_XML**.
+risultati di hello tooview, si fa clic su cella hello sotto l'intestazione di colonna hello **target_data_XML**.
 
-Quindi, nel riquadro dei risultati, è stato fatto clic sulla cella sotto l'intestazione di colonna **target_data_XML**. Tramite questo clic del mouse è stata creata un'altra scheda del file in ssms.exe, in cui è stato visualizzato il contenuto della cella del risultato, come XML.
+Quindi nel riquadro dei risultati di hello è fatto clic su cella hello sotto l'intestazione di colonna hello **target_data_XML**. Fare clic su Create un'altra scheda di file in ssms.exe in cui hello è stato visualizzato il contenuto della cella risultato hello, come XML.
 
-L'output è illustrato nella sezione seguente. Sembra lungo, ma è composto solo da due elementi **<event>** .
+output di Hello è illustrato nella seguente blocco hello. Sembra lungo, ma è composto solo da due elementi **<event>** .
 
 &nbsp;
 
@@ -320,7 +320,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 #### <a name="release-resources-held-by-your-ring-buffer"></a>Rilasciare le risorse usate dal buffer circolare
 
-Al termine dell'uso del buffer circolare, è possibile rimuoverlo e rilasciare le relative risorse eseguendo un'istruzione **ALTER** simile alla seguente:
+Una volta con il Buffer circolare, è possibile rimuoverla e rilasciare le risorse di emissione di un **ALTER** simile hello seguente:
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-La definizione della sessione dell'evento viene aggiornata, ma non eliminata. Successivamente, è possibile aggiungere un'altra istanza del buffer circolare alla sessione dell'evento:
+definizione di Hello della sessione di eventi è aggiornato, ma non è stato eliminato. Successivamente è possibile aggiungere un'altra istanza di una sessione di eventi tooyour Buffer circolare hello:
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -345,11 +345,11 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 
 ## <a name="more-information"></a>Altre informazioni
 
-L'argomento principale per gli eventi estesi in un database SQL di Azure è:
+Hello argomento principale per gli eventi estesi nel Database SQL Azure sono:
 
 * [Considerazioni sugli eventi estesi nel database SQL](sql-database-xevent-db-diff-from-svr.md), che illustra alcuni aspetti degli eventi estesi che presentano differenze tra il database SQL di Azure e Microsoft SQL Server.
 
-Altri argomenti con esempi di codice per gli eventi estesi sono disponibili ai collegamenti seguenti. È comunque necessario controllare regolarmente qualsiasi esempio per verificare se è destinato a Microsoft SQL Server o al database SQL di Azure. È quindi possibile decidere se sono necessarie alcune modifiche per eseguire l'esempio.
+Altri argomenti di esempio di codice per gli eventi estesi sono disponibili in hello seguenti collegamenti. Tuttavia, è necessario controllare regolarmente toosee qualsiasi esempio se l'esempio hello è destinato a Microsoft SQL Server e Database SQL di Azure. È possibile quindi decidere se modifiche di lieve entità sono: esempio hello toorun necessari.
 
 * Esempio di codice per il database SQL di Azure: [codice di destinazione del file evento per gli eventi estesi nel database SQL](sql-database-xevent-code-event-file.md)
 
@@ -357,5 +357,5 @@ Altri argomenti con esempi di codice per gli eventi estesi sono disponibili ai c
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

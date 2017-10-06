@@ -1,6 +1,6 @@
 ---
-title: "Usare Funzioni di Azure per eseguire un'attività di pulizia del database | Microsoft Docs"
-description: "Usare Funzioni di Azure per pianificare un'attività che si connette al database SQL di Azure per eseguire una pulizia periodica delle righe."
+title: "aaaUse funzioni Azure tooperform un pulitura del database attività | Documenti Microsoft"
+description: "Utilizzare le funzioni di Azure tooschedule un'attività che si connette tooAzure Database SQL tooperiodically eseguire la pulizia delle righe."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -15,76 +15,76 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/22/2017
 ms.author: glenga
-ms.openlocfilehash: 6fd0e32374827b249f5aba1cbfc39117c88c6272
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 063a25fe8d14a75d54e9b72cec9fc1e25fa3ff44
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-azure-functions-to-connect-to-an-azure-sql-database"></a>Usare Funzioni di Azure per connettersi al database SQL di Azure
-In questo argomento viene illustrato come usare Funzioni di Azure per creare un processo pianificato al fine di eseguire la pulizia delle righe in una tabella del database SQL di Azure. La nuova funzione C# viene creata in base a un modello predefinito di attivazione del timer nel portale di Azure. Per supportare questo scenario, è necessario anche impostare una stringa di connessione di database come impostazione nell'app per le funzioni. Questo scenario esegue un'operazione in blocco sul database. Affinché la funzione elabori le singole operazioni CRUD in una tabella di un'app per dispositivi mobili, è necessario usare invece le [associazioni all'app per dispositivi mobili](functions-bindings-mobile-apps.md).
+# <a name="use-azure-functions-tooconnect-tooan-azure-sql-database"></a>Utilizzare le funzioni di Azure tooconnect tooan Database SQL di Azure
+Questo argomento viene illustrato come toouse toocreate di funzioni di Azure un processo che pulisce le righe in una tabella in un Database di SQL Azure. funzione Hello nuovo c# viene creato in base a un modello di trigger timer predefiniti nel portale di Azure hello. toosupport questo scenario, è necessario impostare anche una stringa di connessione di database come un'impostazione di app di funzione hello. Questo scenario viene utilizzata un'operazione bulk database hello. toohave la funzione processo singole operazioni CRUD in una tabella di App per dispositivi mobili, è opportuno utilizzare [associazioni di App per dispositivi mobili](functions-bindings-mobile-apps.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-+ Questo argomento usa una funzione attivata da un timer. Completare i passaggi nell'argomento [Creare una funzione in Azure attivata da un timer](functions-create-scheduled-function.md) per creare una versione C# di questa funzione.   
++ Questo argomento usa una funzione attivata da un timer. Hello completato i passaggi in argomento hello [creare una funzione in Azure che viene attivata da un timer](functions-create-scheduled-function.md) toocreate c# versione di questa funzione.   
 
-+ Questo argomento illustra un comando Transact-SQL che esegue un'operazione di pulizia in blocco nella tabella **SalesOrderHeader** nel database di esempio AdventureWorksLT. Per creare il database di esempio AdventureWorksLT, completare la procedura nell'argomento [Creare un database SQL di Azure nel portale di Azure](../sql-database/sql-database-get-started-portal.md). 
++ In questo argomento viene illustrato un comando di Transact-SQL che esegue un'operazione di pulizia delle operazioni bulk in hello **SalesOrderHeader** tabella nel database di esempio AdventureWorksLT hello. database di esempio AdventureWorksLT hello toocreate, hello completato i passaggi in argomento hello [creare un database SQL di Azure nel portale di Azure hello](../sql-database/sql-database-get-started-portal.md). 
 
 ## <a name="get-connection-information"></a>Ottenere informazioni di connessione
 
-È necessario ottenere la stringa di connessione per il database creato dopo avere completato [Creare un database SQL di Azure nel portale di Azure](../sql-database/sql-database-get-started-portal.md).
+Stringa di connessione hello tooget necessari per il database di hello è stato creato dopo avere completato [creare un database SQL di Azure nel portale di Azure hello](../sql-database/sql-database-get-started-portal.md).
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
  
-3. Scegliere **Database SQL** dal menu a sinistra, quindi scegliere il database nella pagina **Database SQL**.
+3. Selezionare **database SQL** dal menu a sinistra, hello e selezionare il database in hello **database SQL** pagina.
 
-4. Selezionare **Mostra stringhe di connessione del database** e copiare tutta la stringa di connessione **ADO.NET**.
+4. Selezionare **Mostra le stringhe di connessione di database** hello copia completa e **ADO.NET** stringa di connessione.
 
-    ![Copiare la stringa di connessione ADO.NET.](./media/functions-scenario-database-table-cleanup/adonet-connection-string.png)
+    ![Copiare una stringa di connessione ADO.NET hello.](./media/functions-scenario-database-table-cleanup/adonet-connection-string.png)
 
-## <a name="set-the-connection-string"></a>Impostare la stringa di connessione 
+## <a name="set-hello-connection-string"></a>Impostare la stringa di connessione hello 
 
-Un'app per le funzioni ospita l'esecuzione delle funzioni in Azure. È consigliabile archiviare le stringhe di connessione e altre informazioni riservate nelle impostazioni dell'app per le funzioni. L'uso delle impostazioni dell'applicazione impedisce la diffusione accidentale della stringa di connessione con il codice. 
+Un'app di funzione ospita esecuzione hello delle funzioni in Azure. È un stringhe di connessione di best practice toostore e altri segreti nelle impostazioni dell'app (funzione). Utilizzando le impostazioni dell'applicazione impedisce la diffusione accidentale della stringa di connessione hello con il codice. 
 
-1. Passare all'app per le funzioni creata in [Creare una funzione in Azure attivata da un timer](functions-create-scheduled-function.md).
+1. Passare tooyour funzione app creato [creare una funzione in Azure che viene attivata da un timer](functions-create-scheduled-function.md).
 
 2. Selezionare **Funzionalità della piattaforma** > **Impostazioni applicazione**.
    
-    ![Impostazioni applicazioni per l'app per le funzioni.](./media/functions-scenario-database-table-cleanup/functions-app-service-settings.png)
+    ![Impostazioni applicazione per app di funzione hello.](./media/functions-scenario-database-table-cleanup/functions-app-service-settings.png)
 
-2. Scorrere verso il basso fino a **Stringhe di connessione** e aggiungere una stringa di connessione usando le impostazioni come indicato nella tabella.
+2. Scorrere verso il basso troppo**le stringhe di connessione** e aggiungere una stringa di connessione utilizzando le impostazioni di hello come specificato nella tabella hello.
    
-    ![Aggiungere una stringa di connessione alle impostazioni dell'app per le funzioni.](./media/functions-scenario-database-table-cleanup/functions-app-service-settings-connection-strings.png)
+    ![Aggiungere impostazioni connessione stringa toohello funzione app.](./media/functions-scenario-database-table-cleanup/functions-app-service-settings-connection-strings.png)
 
     | Impostazione       | Valore consigliato | Descrizione             | 
     | ------------ | ------------------ | --------------------- | 
-    | **Nome**  |  sqldb_connection  | Usato per accedere alla stringa di connessione memorizzata nel codice della funzione.    |
-    | **Valore** | Stringa copiata  | Incollare la stringa di connessione copiata nella sezione precedente. |
-    | **Tipo** | Database SQL | Usare la connessione al database SQL predefinita. |   
+    | **Nome**  |  sqldb_connection  | Hello tooaccess utilizzati archiviati stringa di connessione nel codice di funzione.    |
+    | **Valore** | Stringa copiata  | Dopo la stringa di connessione hello copiata nella sezione precedente hello. |
+    | **Tipo** | Database SQL | Utilizzare connessione di Database SQL di hello predefinita. |   
 
 3. Fare clic su **Salva**.
 
-A questo punto, è possibile aggiungere il codice della funzione C# che si connette al database SQL.
+A questo punto, è possibile aggiungere hello funzione codice c# che si connette tooyour Database SQL.
 
 ## <a name="update-your-function-code"></a>Aggiornare il codice di funzione
 
-1. Nell'app per le funzioni, selezionare la funzione attivata dal timer.
+1. Nell'app (funzione), Seleziona funzione di attivazione del timer hello.
  
-3. Aggiungere i riferimenti assembly seguenti all'inizio del codice della funzione esistente:
+3. Aggiungere hello riferimenti ad assembly nella parte superiore di hello hello esistente del codice di funzione seguente:
 
     ```cs
     #r "System.Configuration"
     #r "System.Data"
     ```
 
-3. Aggiungere le istruzioni `using` seguenti alla funzione:
+3. Aggiungere il seguente hello `using` funzione toohello istruzioni:
     ```cs
     using System.Configuration;
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     ```
 
-4. Sostituire la funzione **Run** esistente con il codice seguente:
+4. Sostituire hello **eseguire** funzione con hello seguente codice:
     ```cs
     public static async Task Run(TimerInfo myTimer, TraceWriter log)
     {
@@ -97,7 +97,7 @@ A questo punto, è possibile aggiungere il codice della funzione C# che si conne
 
             using (SqlCommand cmd = new SqlCommand(text, conn))
             {
-                // Execute the command and log the # rows affected.
+                // Execute hello command and log hello # rows affected.
                 var rows = await cmd.ExecuteNonQueryAsync();
                 log.Info($"{rows} rows were updated");
             }
@@ -105,20 +105,20 @@ A questo punto, è possibile aggiungere il codice della funzione C# che si conne
     }
     ```
 
-    Questo comando di esempio aggiorna la colonna **Stato** in base alla data di spedizione. Aggiorna 32 righe di dati.
+    Questo comando di esempio aggiorna hello **stato** colonna in base alla data di spedizione hello. Aggiorna 32 righe di dati.
 
-5. Fare clic su **Salva**, osservare le finestre **Log** per l'esecuzione della funzione successiva e quindi prendere nota del numero di righe aggiornate nella tabella **SalesOrderHeader**.
+5. Fare clic su **salvare**, hello watch **registri** windows per hello successivamente funzione esecuzione, quindi annotare hello numero di righe aggiornate nella hello **SalesOrderHeader** tabella.
 
-    ![Visualizzare i log di funzione.](./media/functions-scenario-database-table-cleanup/functions-logs.png)
+    ![Consente di visualizzare i log delle funzioni hello.](./media/functions-scenario-database-table-cleanup/functions-logs.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Ora si apprenderà come usare le funzioni con l'app per la logica per l'integrazione con altri servizi.
+Per ulteriori informazioni come toouse funziona con la logica App toointegrate con altri servizi.
 
 > [!div class="nextstepaction"] 
 > [Creare una funzione che si integra con le app per la logica di Azure](functions-twitter-email.md)
 
-Per altre informazioni sulle funzioni, vedere gli argomenti seguenti:
+Per ulteriori informazioni sulle funzioni, vedere hello seguenti argomenti:
 
 * [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md)  
   Informazioni di riferimento per programmatori in merito alla codifica delle funzioni e alla definizione di trigger e associazioni.

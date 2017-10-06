@@ -1,6 +1,6 @@
 ---
-title: Usare Desktop remoto per una macchina virtuale Linux di Azure| Documentazione Microsoft
-description: Informazioni sull'installazione e la configurazione di Desktop remoto (xrdp) per collegarsi a una macchina virtuale Linux di Azure usando strumenti grafici
+title: Desktop remoto di aaaUse tooa VM Linux di Azure | Documenti Microsoft
+description: Informazioni su come tooinstall e configurare Desktop remoto (xrdp) tooconnect tooa VM Linux in Azure tramite strumenti grafici
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: iainfou
-ms.openlocfilehash: d8d6130a270285c84c1dd057a3512cdeb39287f6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 64d30be101ceeb49fc05bb10293ad63db358efe3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-and-configure-remote-desktop-to-connect-to-a-linux-vm-in-azure"></a>Installare e configurare Desktop remoto per connettersi a una VM Linux di Azure
-Le macchine virtuali Linux (VM) di Azure in genere vengono gestite dalla riga di comando tramite una connessione secure shell (SSH). Quando si è nuovi a Linux, o per scenari di risoluzione dei problemi rapidi, l'uso di desktop remoto potrebbe risultare più facile. Questo articolo illustra come installare e configurare un ambiente desktop ([xfce](https://www.xfce.org)) e desktop remoto ([xrdp](http://www.xrdp.org)) per VM Linux usando il modello di distribuzione Resource Manager.
+# <a name="install-and-configure-remote-desktop-tooconnect-tooa-linux-vm-in-azure"></a>Installare e configurare Desktop remoto tooconnect tooa VM Linux in Azure
+Le macchine virtuali Linux (VM) in Azure vengono solitamente gestite dalla riga di comando hello utilizzando una connessione sicura shell (SSH). Quando tooLinux nuovo, o per gli scenari di risoluzione dei problemi veloci, può risultare più semplice utilizzare hello di desktop remoto. Questo articolo come dettagli tooinstall e configurare un ambiente desktop ([xfce](https://www.xfce.org)) e desktop remoto ([xrdp](http://www.xrdp.org)) per le VM Linux con modello di distribuzione di gestione risorse di hello.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questo articolo richiede l'esistenza di una VM Linux di Azure. Se è necessario creare una macchina virtuale, usare uno dei metodi seguenti:
+Questo articolo richiede l'esistenza di una VM Linux di Azure. Se è necessario toocreate una macchina virtuale, utilizzare uno dei seguenti metodi hello:
 
-- L'[interfaccia della riga di comando di Azure 2.0](quick-create-cli.md)
-- Il[portale di Azure](quick-create-portal.md)
+- Hello [CLI di Azure 2.0](quick-create-cli.md)
+- Hello [portale di Azure](quick-create-portal.md)
 
 
 ## <a name="install-a-desktop-environment-on-your-linux-vm"></a>Installare un ambiente desktop nella VM Linux
-La maggior parte delle macchine virtuali Linux di Azure non presenta un ambiente desktop installato per impostazione predefinita. Le macchine virtuali Linux in genere vengono gestite usando connessioni SSH piuttosto che un ambiente desktop. In Linux esistono diversi ambienti desktop tra i quali è possibile scegliere. A seconda dell'ambiente desktop scelto, questo può consumare da 1 a 2 GB di spazio su disco e può impiegare da 5 a 10 minuti per installare e configurare tutti i pacchetti necessari.
+La maggior parte delle macchine virtuali Linux di Azure non presenta un ambiente desktop installato per impostazione predefinita. Le macchine virtuali Linux in genere vengono gestite usando connessioni SSH piuttosto che un ambiente desktop. In Linux esistono diversi ambienti desktop tra i quali è possibile scegliere. A seconda della scelta effettuata dell'ambiente desktop, potrebbe utilizzi uno too2 GB di spazio su disco, richiedere 5 too10 minuti tooinstall e configurare tutti i pacchetti hello necessario.
 
-Nell'esempio seguente l'ambiente desktop leggero [xfce4](https://www.xfce.org/) viene installato in una macchina virtuale Ubuntu. I comandi per le altre distribuzioni sono leggermente diversi (ad esempio, usare `yum` per installare in Red Hat Enterprise Linux e configurare regole `selinux` appropriate, oppure usare `zypper` per installare in SUSE).
+esempio Hello installa lightweight hello [xfce4](https://www.xfce.org/) ambiente desktop in una VM Ubuntu. I comandi per altre distribuzioni variano leggermente (utilizzare `yum` tooinstall su Red Hat Enterprise Linux e configurare appropriato `selinux` regole o utilizzare `zypper` tooinstall in SUSE, ad esempio).
 
-Innanzitutto, stabilire una connessione SSH alla VM. Nell'esempio seguente viene eseguita la connessione alla macchina virtuale denominata *myvm.westus.cloudapp.azure.com* con il nome utente di *azureuser*:
+Prima di tutto, SSH tooyour macchina virtuale. esempio Hello connette toohello macchina virtuale denominata *myvm.westus.cloudapp.azure.com* con il nome utente hello di *azureuser*:
 
 ```bash
 ssh azureuser@myvm.westus.cloudapp.azure.com
 ```
 
-Se si usa Windows, per altre informazioni sull'uso di SSH, vedere [Come usare SSH con Windows in Azure](ssh-from-windows.md).
+Se si utilizza Windows e altre informazioni sull'uso di SSH, vedere [come chiavi, toouse SSH tramite Windows](ssh-from-windows.md).
 
 Successivamente, installare xfce usando `apt` come indicato di seguito:
 
@@ -52,19 +52,19 @@ sudo apt-get install xfce4
 ```
 
 ## <a name="install-and-configure-a-remote-desktop-server"></a>Installare e configurare un server di desktop remoto
-Ora che si dispone di un ambiente desktop installato, configurare un servizio Desktop remoto per l'ascolto delle connessioni in ingresso. [xrdp](http://xrdp.org) è un server Remote Desktop Protocol (RDP) open source che è disponibile nella maggior parte delle distribuzioni Linux e funziona bene con xfce. Installare xrdp nella VM Ubuntu come indicato di seguito:
+Dopo aver creato un ambiente desktop installato, è possibile configurare un toolisten di servizi desktop remoto per le connessioni in ingresso. [xrdp](http://xrdp.org) è un server Remote Desktop Protocol (RDP) open source che è disponibile nella maggior parte delle distribuzioni Linux e funziona bene con xfce. Installare xrdp nella VM Ubuntu come indicato di seguito:
 
 ```bash
 sudo apt-get install xrdp
 ```
 
-Indicare a xrdp quale ambiente desktop usare quando si avvia la sessione. Configurare xrdp per usare xfce come ambiente desktop come indicato di seguito:
+Indicare xrdp quali toouse ambiente desktop quando si avvia la sessione. Configurare xrdp toouse xfce come ambiente di desktop come indicato di seguito:
 
 ```bash
 echo xfce4-session >~/.xsession
 ```
 
-Riavviare il servizio xrdp per rendere effettive le modifiche, come indicato di seguito:
+Riavviare servizio xrdp hello per effetto di hello modifiche tootake come indicato di seguito:
 
 ```bash
 sudo service xrdp restart
@@ -72,20 +72,20 @@ sudo service xrdp restart
 
 
 ## <a name="set-a-local-user-account-password"></a>Impostare una password per l'account utente locale
-Se la password dell'account utente è stata impostata al momento della creazione della macchina virtuale, ignorare questo passaggio. Se si usa soltanto l'autenticazione con chiave SSH e non è stata creata una password per l'account locale, specificare una password prima di usare xrdp per accedere alla macchina virtuale. xrdp non può accettare chiavi SSH per l'autenticazione. Nell'esempio seguente viene specificata una password per l'account utente *azureuser*:
+Se la password dell'account utente è stata impostata al momento della creazione della macchina virtuale, ignorare questo passaggio. Se solo di utilizzare l'autenticazione con chiave SSH e password di un account locale non è impostato, specificare una password prima di utilizzare xrdp toolog tooyour VM. xrdp non può accettare chiavi SSH per l'autenticazione. esempio Hello specifica una password per l'account utente di hello *azureuser*:
 
 ```bash
 sudo passwd azureuser
 ```
 
 > [!NOTE]
-> Se attualmente gli accessi tramite password non sono permessi, l'impostazione della password non aggiorna la configurazione SSHD per consentirli. Dal punto di vista della sicurezza, l'utente potrebbe desiderare connettersi alla macchina virtuale con un tunnel SSH usando l'autenticazione tramite chiave e poi connettersi a xrdp. In questo caso, ignorare il passaggio seguente sulla creazione di una regola del gruppo di sicurezza di rete per consentire il traffico di desktop remoto.
+> Specificare una password non aggiorna gli account di accesso delle password SSHD configurazione toopermit se attualmente non. Da una prospettiva di sicurezza, è possibile desidera tooconnect tooyour macchina virtuale con un tunnel SSH utilizzando l'autenticazione basata su chiavi e quindi connettersi tooxrdp. In questo caso, ignorare hello successivo passaggio nella creazione di un protezione gruppo regola tooallow remote desktop il traffico di rete.
 
 
 ## <a name="create-a-network-security-group-rule-for-remote-desktop-traffic"></a>Creare una regola del gruppo di sicurezza di rete per il traffico di Desktop remoto
-Per consentire al traffico di Desktop remoto di raggiungere la VM Linux, è necessario creare una regola del gruppo di sicurezza di rete che consenta al TCP sulla porta 3389 di raggiungere la macchina virtuale. Per altre informazioni sulle regole dei gruppi di sicurezza di rete, vedere [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). È anche possibile [usare il portale di Azure per creare una regola del gruppo di sicurezza di rete](../windows/nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+tooallow Desktop remoto traffico tooreach VM Linux, una regola gruppo di sicurezza di rete deve toobe creato che consenta il traffico TCP nella porta 3389 tooreach la macchina virtuale. Per altre informazioni sulle regole dei gruppi di sicurezza di rete, vedere [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). È anche possibile [utilizzare una regola gruppo di sicurezza di rete di Azure toocreate portale hello](../windows/nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Nell'esempio seguente viene creata una regola del gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create) denominata *myNetworkSecurityGroupRule* per *consentire* il traffico sulla porta *tcp* *3389*.
+Negli esempi seguenti Hello creano una regola gruppo di sicurezza di rete con [creare una regola gruppo rete az](/cli/azure/network/nsg/rule#create) denominato *myNetworkSecurityGroupRule* troppo*consentire* traffico su *tcp* porta *3389*.
 
 ```azurecli
 az network nsg rule create \
@@ -99,48 +99,48 @@ az network nsg rule create \
 
 
 ## <a name="connect-your-linux-vm-with-a-remote-desktop-client"></a>Connettere la macchina virtuale Linux con un client di Desktop remoto
-Aprire il client di Desktop remoto locale e connettersi all'indirizzo IP o nome DNS della VM Linux. Immettere il nome utente e la password per l'account utente nella macchina virtuale come indicato di seguito:
+Aprire il client desktop remoto locale e connettersi toohello l'indirizzo IP o nome DNS della VM Linux. Immettere hello nome utente e password per account utente di hello nella VM come indicato di seguito:
 
-![Connettersi a xrdp usando il client di Desktop remoto](./media/use-remote-desktop/remote-desktop-client.png)
+![Connettersi tooxrdp utilizzando il client Desktop remoto](./media/use-remote-desktop/remote-desktop-client.png)
 
-Dopo l'autenticazione, l'ambiente desktop xfce verrà caricato e apparirà come nell'esempio seguente:
+Dopo l'autenticazione, ambiente di desktop xfce hello verrà caricate ed esaminare toohello simile esempio seguente:
 
 ![ambiente desktop xfce tramite xrdp](./media/use-remote-desktop/xfce-desktop-environment.png)
 
 
 ## <a name="troubleshoot"></a>Risoluzione dei problemi
-Se non è possibile connettersi alla VM Linux usando un client di Desktop remoto, usare `netstat` nella VM Linux per verificare che la macchina virtuale stia ascoltando le connessioni RDP come indicato di seguito:
+Se non è possibile connettersi tooyour VM Linux utilizzando un client Desktop remoto, utilizzare `netstat` sul tooverify VM Linux che la macchina virtuale è in attesa come indicato di seguito per le connessioni RDP:
 
 ```bash
 sudo netstat -plnt | grep rdp
 ```
 
-Nell'esempio seguente viene mostrata la macchina virtuale in ascolto sulla porta TCP 3389 come previsto:
+Hello seguendo l'esempio hello macchina virtuale è in ascolto sulla porta TCP 3389 come previsto:
 
 ```bash
 tcp     0     0      127.0.0.1:3350     0.0.0.0:*     LISTEN     53192/xrdp-sesman
 tcp     0     0      0.0.0.0:3389       0.0.0.0:*     LISTEN     53188/xrdp
 ```
 
-Se il servizio xrdp non è in ascolto, in una macchina virtuale Ubuntu riavviare il servizio come indicato di seguito:
+Se non è in ascolto il servizio di xrdp hello, in una VM Ubuntu riavviare servizio hello come indicato di seguito:
 
 ```bash
 sudo service xrdp restart
 ```
 
-Controllare i log in */var/log*Thug nella VM Ubuntu per indicazioni sul perché il servizio non risponde. È possibile anche monitorare il syslog durante un tentativo di connessione Desktop remoto per visualizzare eventuali errori:
+Revisione accede *var/log*Thug nella VM Ubuntu per indicazioni come servizio hello toowhy non risponde. È anche possibile monitorare hello syslog durante un tooview tentativo di connessione desktop remoto gli eventuali errori:
 
 ```bash
 tail -f /var/log/syslog
 ```
 
-Altre distribuzioni Linux, ad esempio Red Hat Enterprise Linux e SUSE, possono presentare modi diversi per riavviare i servizi e posizioni dei file di log alternative da controllare.
+Altre distribuzioni Linux, ad esempio Red Hat Enterprise Linux e SUSE possono avere servizi toorestart modi diversi e tooreview percorsi di file alternativo per il log.
 
-Se non si riceve alcuna risposta nel client di Desktop remoto e non viene visualizzato nessun evento nel log di sistema, questo comportamento indica che il traffico di Desktop remoto non riesce a raggiungere la macchina virtuale. Controllare le regole del gruppo di sicurezza di rete per assicurarsi che esista una regola che consenta TCP sulla porta 3389. Per altre informazioni, vedere [Risolvere i problemi di connettività delle applicazioni in una macchina virtuale di Azure per Linux](../windows/troubleshoot-app-connection.md).
+Se si non riceve alcuna risposta il client desktop remoto e non viene visualizzato alcun evento nel Registro di sistema hello, ciò indica che il traffico di desktop remoto non riesce a raggiungere hello VM. Esaminare il tooensure di regole gruppo di sicurezza di rete di disporre di un toopermit regola TCP sulla porta 3389. Per altre informazioni, vedere [Risolvere i problemi di connettività delle applicazioni in una macchina virtuale di Azure per Linux](../windows/troubleshoot-app-connection.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni sulla creazione e l'uso di chiavi SSH con macchine virtuali Linux, vedere [Creare una coppia di chiavi SSH pubblica e privata per le macchine virtuali di Linux](mac-create-ssh-keys.md).
 
-Per informazioni sull'uso di SSH da Windows, vedere [Come usare SSH con Windows in Azure](ssh-from-windows.md).
+Per informazioni sull'utilizzo di SSH da Windows, vedere [come chiavi, toouse SSH tramite Windows](ssh-from-windows.md).
 

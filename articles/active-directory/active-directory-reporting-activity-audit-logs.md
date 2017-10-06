@@ -1,6 +1,6 @@
 ---
-title: "Report delle attività di controllo nel portale di Azure Active Directory | Microsoft Docs"
-description: "Introduzione ai report delle attività di controllo nel portale di Azure Active Directory"
+title: "report relativi all'attività aaaAudit nel portale di Azure Active Directory hello | Documenti Microsoft"
+description: "Report di attività nel portale di Azure Active Directory hello di controllo toohello introduzione"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,66 +15,66 @@ ms.workload: identity
 ms.date: 07/19/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: f2d0332d815c82d7d47625e020de2e9c5099deeb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1567673f5030fc707b017c069f2ba7587962e5cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="audit-activity-reports-in-the-azure-active-directory-portal"></a>Report delle attività di controllo nel portale di Azure Active Directory 
+# <a name="audit-activity-reports-in-hello-azure-active-directory-portal"></a>Report attività nel portale di Azure Active Directory hello di controllo 
 
-I report di Azure Active Directory (Azure AD) offrono tutte le informazioni necessarie per determinare lo stato dell'ambiente.
+Grazie ai report in Azure Active Directory (Azure AD), è possibile ottenere informazioni hello necessarie toodetermine, svolgimento dell'ambiente.
 
-L'architettura di reporting in Azure AD include i componenti seguenti:
+architettura di reporting in Azure AD Hello è costituita da hello seguenti componenti:
 
 - **Attività** 
-    - **Attività di accesso** : informazioni sull'utilizzo delle applicazioni gestite e sulle attività di accesso utente
+    - **Le attività di accesso** – informazioni sull'utilizzo di hello di applicazioni gestite e le attività di accesso dell'utente
     - **Log di controllo**: informazioni relative alle attività di sistema sulla gestione di utenti e gruppi, sulle applicazioni gestite e sulle attività di directory.
 - **Sicurezza** 
-    - **Accessi a rischio**. Un accesso rischioso è indicativo di un tentativo di accesso che potrebbe essere stato eseguito da qualcuno che non è il legittimo proprietario di un account utente. Per informazioni dettagliate, vedere Accessi a rischio.
+    - **Accessi rischiosi** -un rischiosa l'accesso è un indicatore per un tentativo di accesso che siano stato eseguito da un utente che non è proprietario di legittimo hello di un account utente. Per informazioni dettagliate, vedere Accessi a rischio.
     - **Utenti contrassegnati per il rischio**. Un utente rischioso è indicativo di un account utente che potrebbe essere stato compromesso. Per informazioni dettagliate, vedere Utenti contrassegnati per il rischio.
 
-In questo argomento viene offerta una panoramica delle attività di controllo.
+In questo argomento offre una panoramica delle attività di controllo hello.
  
-## <a name="who-can-access-the-data"></a>Chi può accedere ai dati?
-* Gli utenti con ruolo di amministratore della sicurezza o con autorizzazioni di lettura per la sicurezza
+## <a name="who-can-access-hello-data"></a>Chi può accedere a dati hello?
+* Utenti nel ruolo di amministratore responsabile della sicurezza o di sicurezza Reader hello
 * Gli amministratori globali
 * I singoli utenti (non amministratori) possono visualizzare le proprie attività
 
 
 ## <a name="audit-logs"></a>Log di controllo
 
-I log di controllo in Azure Active Directory forniscono i record delle attività di sistema per la conformità.  
-Il primo punto di ingresso a tutti i dati di controllo è **Log di controllo** nella sezione **Attività** di **Azure Active Directory**.
+i log di controllo Hello in Azure Active Directory forniscono i record di attività di sistema per la conformità.  
+È il primo dati di controllo di voce punto tooall **log di controllo** in hello **attività** sezione **Azure Active Directory**.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/61.png "Log di controllo")
 
 Un log di controllo è una visualizzazione elenco predefinita che include:
 
-- Data e ora dell'occorrenza.
-- Iniziatore o attore di un'attività (*chi*) 
-- Attività (*cosa*) 
-- Destinazione
+- Hello data e ora dell'occorrenza hello
+- Hello iniziatore / attore (*che*) di un'attività 
+- attività Hello (*cosa*) 
+- destinazione Hello
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/18.png "Log di controllo")
 
-Per personalizzare la visualizzazione elenco, fare clic su **Colonne** nella barra degli strumenti.
+È possibile personalizzare una visualizzazione elenco hello facendo **colonne** nella barra degli strumenti hello.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/19.png "Log di controllo")
 
-In questo modo è possibile visualizzare campi aggiuntivi o rimuovere campi già visualizzati.
+Questo consente toodisplay altri campi o rimuovere campi già visualizzati.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/21.png "Log di controllo")
 
 
-Facendo clic su un elemento nella visualizzazione elenco, è possibile ottenere tutti i dettagli disponibili sull'elemento.
+Facendo clic su un elemento in visualizzazione elenco hello, ottenere tutte le informazioni disponibili su di esso.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/22.png "Log di controllo")
 
 
 ## <a name="filtering-audit-logs"></a>Filtro dei log di controllo
 
-Per limitare i dati segnalati in base alle esigenze, è possibile filtrare i dati di controllo usando i campi seguenti:
+toonarrow verso il basso hello segnalati livello tooa dati che funziona per l'utente, è possibile filtrare i dati di controllo hello utilizzando hello seguenti campi:
 
 - Intervallo di date
 - Azione avviata da (attore)
@@ -85,7 +85,7 @@ Per limitare i dati segnalati in base alle esigenze, è possibile filtrare i dat
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/23.png "Log di controllo")
 
 
-Il filtro **Intervallo di date** permette di definire un intervallo di tempo per i dati restituiti.  
+Hello **intervallo di date** toodefine tooyou di filtro consente un intervallo di tempo per hello ha restituito dati.  
 I valori possibili sono:
 
 - 1 mese
@@ -95,9 +95,9 @@ I valori possibili sono:
 
 Quando si seleziona un intervallo di tempo personalizzato, è possibile configurare un'ora di inizio e un'ora di fine.
 
-Il filtro **Avviato da** permette di definire il nome di un attore o il relativo nome UPN (Universal Principal Name).
+Hello **avviato da** filtro consente toodefine è il nome di un attore o il nome dell'entità universal (UPN).
 
-Il filtro **Categoria** permette di selezionare uno dei filtri seguenti:
+Hello **categoria** filtro consente tooselect di hello filtro seguente:
 
 - Tutti
 - Categoria principale
@@ -110,7 +110,7 @@ Il filtro **Categoria** permette di selezionare uno dei filtri seguenti:
 - Identity Protection
 - B2C
 
-Il filtro **Tipo di risorsa attività** permette di selezionare uno dei filtri seguenti:
+Hello **il tipo di risorsa attività** filtro consente tooselect hello seguenti filtri:
 
 - Tutti 
 - Gruppo
@@ -119,31 +119,31 @@ Il filtro **Tipo di risorsa attività** permette di selezionare uno dei filtri s
 - Applicazione
 - Criteri
 - Dispositivo
-- Altri
+- Altre
 
-Quando si seleziona **Gruppo** come **Tipo di risorsa attività**, si ottiene una categoria di filtro aggiuntiva che permette di specificare anche un'**Origine**:
+Quando si seleziona **gruppo** come **il tipo di risorsa attività**, si ottiene tooalso a una categoria di filtro aggiuntivo che consente di fornire un **origine**:
 
 - Azure AD
 - O365
 
 
-Il filtro **Attività** filtro si basa sulla categoria e sul tipo di risorsa attività selezionati. È possibile selezionare un'attività specifica da visualizzare o selezionarle tutte. 
+Hello **attività** filtro è basato sulla categoria di hello e selezione tipo di risorsa attività effettuata. È possibile selezionare un'attività specifica, è preferibile toosee o scegliere tutte. 
 
-È possibile ottenere l'elenco di tutte le attività di controllo usando l'API Graph https://graph.windows.net/$tenantdomain/activities/auditActivityTypes?api-version=beta, dove $tenantdomain è il nome del dominio. In alternativa, vedere l'articolo relativo agli [eventi del report di controllo](active-directory-reporting-audit-events.md).
+È possibile ottenere l'elenco di hello di tutte le attività di controllo utilizzando l'API Graph https://graph.windows.net/$ hello tenantdomain/attività/auditActivityTypes? api-version = beta, in cui $tenantdomain = il nome di dominio o consultare l'articolo toohello [report di controllo eventi](active-directory-reporting-audit-events.md).
 
 
 ## <a name="audit-logs-shortcuts"></a>Collegamenti ai log di controllo
 
-Oltre ad **Azure Active Directory**, il portale di Azure offre due ulteriori punti di ingresso ai dati di controllo:
+Inoltre troppo**Azure Active Directory**, hello portale di Azure offre due punti di ingresso aggiuntivi tooaudit dati:
 
 - Utenti e gruppi
 - Applicazioni aziendali
 
 ### <a name="users-and-groups-audit-logs"></a>Log di controllo di utenti e gruppi
 
-Con i report di controllo basati su utenti e gruppi, è possibile ottenere risposte a domande come:
+Con l'utente e i report di controllo in base al gruppo, è possibile ottenere risposte tooquestions, ad esempio:
 
-- Quali tipi di aggiornamenti sono stati applicati agli utenti?
+- I tipi di aggiornamenti sono stati gli utenti di applicare hello?
 
 - Quanti utenti sono stati modificati?
 
@@ -151,38 +151,38 @@ Con i report di controllo basati su utenti e gruppi, è possibile ottenere rispo
 
 - Quali operazioni ha eseguito un amministratore in una directory?
 
-- Quali sono i gruppi che sono stati aggiunti?
+- Quali sono i gruppi che sono stati aggiunti hello?
 
 - Sono presenti gruppi con modifiche all'appartenenza?
 
-- I proprietari dei gruppi sono stati modificati?
+- Sono stati modificati per i proprietari del gruppo hello?
 
-- Quali licenze sono state assegnate a un gruppo o a un utente?
+- Le licenze sono state assegnate a un utente o gruppo tooa?
 
-Per esaminare semplicemente i dati di controllo relativi a utenti e gruppi, è disponibile una visualizzazione filtrata in **Log di controllo** nella sezione **Attività** di **Utenti e gruppi**. Per questo punto di ingresso, **Tipo di risorsa attività** preselezionato è **Utenti e gruppi**.
+Se si desidera tooreview dati toousers correlati e i gruppi di controllo, è possibile trovare una visualizzazione filtrata in **log di controllo** in hello **attività** sezione di hello **utenti e gruppi**. Per questo punto di ingresso, **Tipo di risorsa attività** preselezionato è **Utenti e gruppi**.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/93.png "Log di controllo")
 
 ### <a name="enterprise-applications-audit-logs"></a>Log di controllo di applicazioni aziendali
 
-Con i report di controllo basati sulle applicazioni, è possibile ottenere risposte a domande come:
+Report di controllo con basato sull'applicazione, è possibile ottenere risposte tooquestions, ad esempio:
 
-* Quali sono le applicazioni che sono state aggiunte o aggiornate?
-* Quali sono le applicazioni che sono state rimosse?
+* Quali sono le applicazioni che sono stati aggiunti o aggiornate hello?
+* Quali sono le applicazioni che sono state rimosse hello?
 * È stata modificata un'entità servizio per un'applicazione?
-* I nomi delle applicazioni sono stati modificati?
-* Chi ha dato il consenso a un'applicazione?
+* Sono stati modificati i nomi di hello delle applicazioni?
+* Che ha fornito il consenso tooan applicazione?
 
-Per esaminare semplicemente i dati di controllo relativi alle applicazioni, è disponibile una visualizzazione filtrata in **Log di controllo** nella sezione **Attività** del pannello **Applicazioni aziendali**. Per questo punto di ingresso, il **Tipo di risorsa attività** preselezionato è **Applicazioni aziendali**.
+Se si desidera controllare i dati di applicazioni correlate tooyour tooreview, è possibile trovare una visualizzazione filtrata in **log di controllo** in hello **attività** sezione di hello **applicazioni aziendali**  blade. Per questo punto di ingresso, il **Tipo di risorsa attività** preselezionato è **Applicazioni aziendali**.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/134.png "Log di controllo")
 
-È possibile filtrare ulteriormente questa visualizzazione per vedere solo i **gruppi** o gli **utenti**.
+È possibile filtrare la visualizzazione ulteriormente verso il basso toojust **gruppi** o semplicemente **utenti**.
 
 ![Log di controllo](./media/active-directory-reporting-activity-audit-logs/25.png "Log di controllo")
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una panoramica della creazione di report, vedere [Creazione di report in Azure Active Directory](active-directory-reporting-azure-portal.md).
+Per una panoramica di gestione di report, vedere hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).
 

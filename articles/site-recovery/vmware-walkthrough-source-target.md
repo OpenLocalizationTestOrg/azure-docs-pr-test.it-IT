@@ -1,6 +1,6 @@
 ---
-title: Impostare l'origine e destinazione per la replica VMware in Azure con Azure Site Recovery | Microsoft Docs
-description: Riepilogo dei passaggi per configurare le impostazioni di origine e destinazione per la replica delle macchine virtuali VMware nell'archiviazione di Azure con Azure Site Recovery
+title: aaaSet backup hello origine e di destinazione per VMware replica tooAzure con Azure Site Recovery | Documenti Microsoft
+description: Riepiloga hello passaggi tooset le impostazioni di origine e di destinazione per la replica di archiviazione di macchine virtuali VMware tooAzure con Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 94b629a62c3a54eee69ee397b2f27e3f20b753d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef33a44bc5da17afb0442be63f576925f5b9a8b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-8-set-up-the-source-and-target-for-vmware-replication-to-azure"></a>Passaggio 8: Configurare l'origine e la destinazione per la replica VMware in Azure
+# <a name="step-8-set-up-hello-source-and-target-for-vmware-replication-tooazure"></a>Passaggio 8: Impostare hello origine e di destinazione per tooAzure replica VMware
 
-Questo articolo illustra come configurare impostazioni di origine e destinazione per la replica di macchine virtuali VMware locali in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
+In questo articolo viene descritto come le impostazioni di tooconfigure origine e di destinazione durante la replica locale tooAzure di macchine virtuali VMware, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-the-source-environment"></a>Configurare l'ambiente di origine
+## <a name="set-up-hello-source-environment"></a>Configurare un ambiente di origine hello
 
-Configurare il server di configurazione, registrarlo nell'insieme di credenziali e individuare le VM.
+Configurare il server di configurazione di hello, registrarla nell'insieme di credenziali hello e individuare le macchine virtuali.
 
 1. Fare clic su **Site Recovery** > **Passaggio 1: Preparare l'infrastruttura** > **Origine**.
 2. Se non è disponibile un server di configurazione, fare clic su **+Server di configurazione**.
 3. In **Aggiungi server** verificare che **Tipo di server** contenga **Server di configurazione**.
-4. Scaricare il file di installazione per l'Installazione unificata di Azure Site Recovery.
-5. Scaricare la chiave di registrazione dell'insieme di credenziali, che sarà necessaria quando si esegue l'Installazione unificata. La chiave è valida per cinque giorni dal momento in cui viene generata.
+4. Scaricare i file di installazione di hello installazione unificata di Site Recovery.
+5. Scaricare la chiave di registrazione dell'insieme di credenziali di hello. che sarà necessaria quando si esegue l'Installazione unificata. chiave di Hello è valida per cinque giorni dopo la generazione è.
 
    ![Impostare l'origine](./media/vmware-walkthrough-source-target/set-source2.png)
 
 
-## <a name="register-the-configuration-server-in-the-vault"></a>Registrare il server di configurazione nell'insieme di credenziali
+## <a name="register-hello-configuration-server-in-hello-vault"></a>Registrare il server di configurazione di hello nell'insieme di credenziali hello
 
-Seguire questa procedura prima di iniziare, quindi eseguire l'Installazione unificata per installare il server di configurazione, il server di elaborazione e il server di destinazione master.
+Seguito hello prima di avviare, quindi eseguire il programma di installazione unificata tooinstall hello configurazione server, il server di elaborazione hello e il server di destinazione master hello.
     - Ottenere una breve panoramica video
 
         > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video1-Source-Infrastructure-Setup/player]
 
-    - Nella VM del server di configurazione verificare che il clock di sistema sia sincronizzato con un [server di riferimento ora](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Deve corrispondere. Se è avanti o indietro di 15 minuti, l'installazione potrebbe avere esito negativo.
-    - Eseguire l'installazione come amministratore locale nella VM del server di configurazione.
-    - Verificare che nella VM sia abilitato TLS 1.0.
+    - Nel server di configurazione hello VM, verificare che l'orologio di sistema hello è sincronizzato con un [tempo Server](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Deve corrispondere. Se è avanti o indietro di 15 minuti, l'installazione potrebbe avere esito negativo.
+    - Eseguire l'installazione come amministratore locale nel server di configurazione hello macchina virtuale.
+    - Assicurarsi che sia abilitato TLS 1.0 su hello macchina virtuale.
 
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> Il server di configurazione può essere installato anche [dalla riga di comando](http://aka.ms/installconfigsrv).
+> può anche essere installato il server di configurazione di Hello [dalla riga di comando hello](http://aka.ms/installconfigsrv).
 
 
 
-## <a name="connect-to-vmware-servers"></a>Connettersi ai server VMware
+## <a name="connect-toovmware-servers"></a>Connettere i server tooVMware
 
-Per consentire ad Azure Site Recovery di individuare macchine virtuali in esecuzione nell'ambiente locale, è necessario connettere il server VMware vCenter o gli host vSphere ESXi a Site Recovery. Prima di iniziare tenere presente quanto segue:
+macchine virtuali toodiscover Azure Site Recovery tooallow in esecuzione nell'ambiente locale, è necessario tooconnect il Server VMware vCenter o l'host ESXi vSphere con il ripristino del sito. Si noti seguenti hello prima di iniziare:
 
-- Se si aggiungono gli host vSphere o il server vCenter a Site Recovery con un account senza privilegi Administrator per il server, per l'account devono essere abilitati i privilegi seguenti:
+- Se si aggiunge il server vCenter hello o vSphere host tooSite ripristino con un account senza privilegi di amministratore nel server di hello, account hello necessita di questi privilegi abilitati:
     - Datacenter (Data center), Datastore (Archivio dati), Folder (Cartella), Host, Network (Rete), Resource (Risorsa), Virtual machine (Macchina virtuale) e vSphere Distributed Switch (Switch distribuito vSphere).
-    - Per il server vCenter sono necessarie le autorizzazioni Storage views (Viste archiviazione).
-- Quando si aggiungono server VMware a Site Recovery possono trascorrere 15 o più minuti prima che i server vengano visualizzati nel portale.
+    - server vCenter Hello necessita di autorizzazioni di viste di archiviazione.
+- Quando si aggiunge VMware server tooSite ripristino, può richiedere 15 minuti o più per tali tooappear nel portale di hello.
 
-### <a name="add-the-account-for-automatic-discovery"></a>Aggiungere l'account per l'individuazione automatica
+### <a name="add-hello-account-for-automatic-discovery"></a>Aggiungere account hello per l'individuazione automatica
 
 [!INCLUDE [site-recovery-add-vcenter-account](../../includes/site-recovery-add-vcenter-account.md)]
 
 ### <a name="set-up-a-connection"></a>Configurare una connessione
 
-Stabilire la connessione ai server come indicato di seguito:
+Connettersi tooservers come indicato di seguito:
 
-1. Selezionare **+vCenter** per avviare la connessione di un server VMware vCenter o di un host VMware vSphere ESXi.
-2. In **Aggiungi vCenter** specificare un nome descrittivo per il server vCenter o l'host vSphere e quindi specificare l'indirizzo IP o il nome di dominio completo del server.
-3. Lasciare la porta 443, a meno che i server VMware siano configurati per l'ascolto delle richieste su una porta diversa. Selezionare l'account che si deve connettere al server VMware vCenter o vSphere ESXi. Fare clic su **OK**.
-4. Site Recovery si connette ai server VMware usando le impostazioni specificate e individua le VM.
+1. Selezionare **+ vCenter** toostart la connessione a un server VMware vCenter o un host VMware vSphere ESXi.
+2. In **aggiungere vCenter**, specificare un nome descrittivo per il server vCenter o l'host di vSphere hello e quindi specificare l'indirizzo IP hello o il nome FQDN del server di hello.
+3. Lasciare la porta hello 443, a meno che i server VMware sono toolisten configurato per le richieste su una porta diversa. Selezionare l'account hello tooconnect toohello VMware vCenter server o di vSphere ESXi. Fare clic su **OK**.
+4. Il ripristino del sito si connette a server tooVMware hello utilizzando le impostazioni specificate e individua le macchine virtuali.
 
 > [!NOTE]
-> Se si aggiunge un server o un host con un account che non ha privilegi Administrator per il server vCenter o il server host, assicurarsi che questi privilegi siano abilitati per l'account: Datacenter (Data center), Datastore (Archivio dati), Folder (Cartella), Host, Network (Rete), Resource (Risorsa), Virtual machine (Macchina virtuale) e vSphere Distributed Switch (Switch distribuito vSphere). Per il server VMware vCenter deve essere abilitato anche il privilegio Storage Views (Viste archiviazione).
+> Se si aggiunge un host con un account che non dispone dei privilegi di amministratore nel server vCenter o l'host di hello o un server, verificare che account hello avere questi privilegi abilitati: Data Center, l'archivio dati, cartella, Host, rete, risorsa, la macchina virtuale, e vSphere Switch distribuiti. Inoltre, è necessario hello archiviazione viste privilegio abilitato server hello VMware vCenter.
 
 
-## <a name="set-up-the-target-environment"></a>Configurare l'ambiente di destinazione
+## <a name="set-up-hello-target-environment"></a>Configurare un ambiente di destinazione hello
 
-Prima di configurare l'ambiente di destinazione, verificare di aver configurato una rete virtuale e un account di archiviazione di Azure.
+Prima configurare un ambiente di destinazione hello, verificare di che disporre di un account di archiviazione di Azure e una configurazione di rete virtuale.
 
-1. Fare clic su **Preparare l'infrastruttura** > **Destinazione** e selezionare la sottoscrizione di Azure da usare.
+1. Fare clic su **Prepare infrastruttura** > **destinazione**, e selezionare hello sottoscrizione di Azure da toouse.
 2. Specificare se per la destinazione deve essere usato il modello di distribuzione classica o Resource Manager.
 3. Site Recovery verifica la disponibilità di uno o più account di archiviazione di Azure e reti compatibili.
 
    ![Destinazione](./media/vmware-walkthrough-source-target/gs-target.png)
-4. Se non si è creato un account di archiviazione o una rete, fare clic su **+Account di archiviazione** o **+Rete** per creare una rete o un account Resource Manager inline.
+4. Se è stata creata una rete o un account di archiviazione, fare clic su **+ account di archiviazione** o **+ rete**, toocreate un inline di account o rete di gestione risorse.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare al [Passaggio 9: Configurare i criteri di replica](vmware-walkthrough-replication.md)
+Andare troppo[passaggio 9: configurare un criterio di replica](vmware-walkthrough-replication.md)

@@ -1,6 +1,6 @@
 ---
-title: Proteggere le API usando l'autenticazione con certificato client in Gestione API - Gestione API di Azure | Documentazione Microsoft
-description: Informazioni su come proteggere l'accesso alle API usando i certificati client
+title: aaaSecure API utilizzando l'autenticazione del certificato client in Gestione API - Gestione API di Azure | Documenti Microsoft
+description: Informazioni su come toosecure accedere tooAPIs mediante certificati client
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
 ms.author: apimpm
-ms.openlocfilehash: d3d51d0575a6d2dacced931601d48eb1e51a4051
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ff78bda3d429829da79d0dc4d652f19669cc919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-apis-using-client-certificate-authentication-in-api-management"></a>Come proteggere le API usando l'autenticazione con certificati client in Gestione API
+# <a name="how-toosecure-apis-using-client-certificate-authentication-in-api-management"></a>Come toosecure API che utilizzano client certificato di autenticazione in Gestione API
 
-Gestione API offre la possibilità di proteggere l'accesso alle API (ovvero dal client a Gestione API) mediante certificati client. Attualmente è possibile controllare l'identificazione personale del certificato client rispetto a un valore desiderato. È inoltre possibile controllare l'identificazione personale rispetto a certificati esistenti caricati in Gestione API.  
+Gestione API fornisce hello funzionalità toosecure accesso tooAPIs (ad esempio, client tooAPI Management) utilizzando i certificati client. Attualmente, è possibile verificare l'identificazione personale hello del certificato client con un valore desiderato. È inoltre possibile verificare l'identificazione personale hello contro certificati esistenti caricato tooAPI Management.  
 
-Per informazioni sulla protezione dell'accesso al servizio back-end di un'API tramite certificati client (ovvero da Gestione API al back-end), vedere [Come proteggere i servizi back-end usando l'autenticazione con certificati client](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+Per informazioni sulla sicurezza servizio di accesso toohello back-end di un'API tramite certificati client (ad esempio, gestione API tooback-end), vedere [toosecure servizi di back-end tramite client come certificato di autenticazione](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
 
-## <a name="checking-the-expiration-date"></a>Controllo della data di scadenza
+## <a name="checking-hello-expiration-date"></a>Verifica la data di scadenza hello
 
-È possibile configurare i criteri riportati di seguito per controllare se il certificato è scaduto:
+Di sotto di criteri può essere configurato toocheck se hello certificato è scaduto:
 
 ```
 <choose>
@@ -39,9 +39,9 @@ Per informazioni sulla protezione dell'accesso al servizio back-end di un'API tr
 </choose>
 ```
 
-## <a name="checking-the-issuer-and-subject"></a>Controllo dell'autorità di certificazione e del soggetto
+## <a name="checking-hello-issuer-and-subject"></a>Controllo dell'autorità di certificazione hello e l'oggetto
 
-È possibile configurare i criteri riportati di seguito per controllare l'autorità di certificazione e il soggetto di un certificato client:
+Di sotto di criteri può essere configurato toocheck hello emittente e soggetto del certificato client:
 
 ```
 <choose>
@@ -53,9 +53,9 @@ Per informazioni sulla protezione dell'accesso al servizio back-end di un'API tr
 </choose>
 ```
 
-## <a name="checking-the-thumbprint"></a>Controllo dell'identificazione personale
+## <a name="checking-hello-thumbprint"></a>Verifica l'identificazione personale hello
 
-I criteri riportati di seguito possono essere configurati per controllare l'identificazione personale del certificato client:
+Di sotto di criteri può essere configurato toocheck hello identificazione di un certificato client:
 
 ```
 <choose>
@@ -67,9 +67,9 @@ I criteri riportati di seguito possono essere configurati per controllare l'iden
 </choose>
 ```
 
-## <a name="checking-a-thumbprint-against-certificates-uploaded-to-api-management"></a>Controllo di un'identificazione personale rispetto a certificati caricati in Gestione API
+## <a name="checking-a-thumbprint-against-certificates-uploaded-tooapi-management"></a>Controllo un'identificazione digitale contro certificati caricati tooAPI gestione
 
-L'esempio seguente illustra come controllare l'identificazione personale di un certificato client rispetto a certificati caricati in Gestione API: 
+Hello esempio seguente viene illustrato come identificazione personale hello toocheck di un certificato client con i certificati caricati tooAPI Management: 
 
 ```
 <choose>
@@ -84,6 +84,6 @@ L'esempio seguente illustra come controllare l'identificazione personale di un c
 
 ## <a name="next-step"></a>Passaggio successivo
 
-*  [Come proteggere i servizi back-end usando l'autenticazione con certificati client](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
-*  [Come caricare i certificati](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
+*  [Servizi back-end toosecure tramite client come certificato di autenticazione](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+*  [La modalità certificati tooupload](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
 

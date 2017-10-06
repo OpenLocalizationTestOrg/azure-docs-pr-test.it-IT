@@ -1,6 +1,6 @@
 ---
-title: Accesso a Macchine virtuali di Azure da Esplora server | Documentazione Microsoft
-description: Panoramica su come visualizzare, creare e gestire macchine virtuali di Azure (VM) in Esplora Server in Visual Studio.
+title: Macchine virtuali di Azure da Esplora Server aaaAccessing | Documenti Microsoft
+description: Panoramica di come tooview creare e gestire macchine virtuali di Azure (VM) in Esplora Server in Visual Studio.
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: fcbb00cc2f00691e25ea84333e8c418b08210a67
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f8326aed105a64ca558f766d712cc68701f82c15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="accessing-azure-virtual-machines-from-server-explorer"></a>Accesso alle macchine virtuali di Azure da Esplora server
 Con Esplora server in Visual Studio è possibile visualizzare informazioni sulle macchine virtuali ospitate da Azure.
 
 ## <a name="accessing-virtual-machines-in-server-explorer"></a>Accesso alle macchine virtuali in Esplora server
-Se ci sono macchine virtuali ospitate da Azure, è possibile accedervi in Esplora server. Per visualizzare i servizi mobili, è necessario prima di tutto accedere alla sottoscrizione Azure. Per accedere, aprire il menu di scelta rapida per il nodo Azure e scegliere **Connetti a Microsoft Azure**.
+Se ci sono macchine virtuali ospitate da Azure, è possibile accedervi in Esplora server. È necessario innanzitutto accedere tooyour sottoscrizione di Azure tooview i servizi mobili. toosign, aprire il menu di scelta rapida hello per hello nodo di Azure in Esplora Server e scegliere **connettersi tooMicrosoft Azure**.
 
-### <a name="to-get-information-about-your-virtual-machines"></a>Per ottenere informazioni sulle macchine virtuali
-1. In Esplora server scegliere una macchina virtuale, quindi premere F4 per visualizzare la finestra delle proprietà.
+### <a name="tooget-information-about-your-virtual-machines"></a>tooget informazioni sulle macchine virtuali
+1. In Esplora Server, scegliere una macchina virtuale, quindi tooshow chiave hello F4 la finestra delle proprietà.
    
-    La tabella seguente illustra le proprietà disponibili, le quali sono tuttavia di sola lettura. Per modificarle, usare il [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885).
-   
-   | Proprietà | Descrizione |
-   | --- | --- |
-   | Nome DNS |URL con l'indirizzo Internet della macchina virtuale. |
-   | Environment |Per una macchina virtuale, il valore di questa proprietà è sempre Produzione. |
-   | Name |Nome della macchina virtuale. |
-   | Dimensione |Dimensioni della macchina virtuale corrispondenti alla quantità di memoria e spazio su disco disponibili. Per altre informazioni, vedere Come configurare le dimensioni della macchina virtuale. |
-   | Stato |I valori includono Avvio in corso, Avviato, Arresto, Arrestato e Recupero dello stato. Se viene visualizzato Recupero dello stato, lo stato corrente è sconosciuto. I valori di questa proprietà differiscono da quelli usati nel [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885). |
-   | SubscriptionID |ID sottoscrizione dell'account Azure. È possibile vedere queste informazioni nel [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885) visualizzando le proprietà di una sottoscrizione. |
-2. Scegliere un nodo di endpoint e quindi visualizzare la finestra **Proprietà** .
-3. La tabella seguente descrive le proprietà disponibili degli endpoint, che però sono di sola lettura. Per aggiungere o modificare gli endpoint di una macchina virtuale, usare il [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885). 
+    Hello nella tabella seguente vengono illustrate le proprietà disponibili, ma sono di sola lettura. toochange, utilizzare hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885).
    
    | Proprietà | Descrizione |
    | --- | --- |
-   | Name |Identificatore dell'endpoint. |
-   | Private Port |Porta per l'accesso di rete interno all'applicazione. |
-   | Protocol |Protocollo usato dal livello di trasporto per l'endpoint TCP o UDP. |
-   | Public Port |Porta usata per l'accesso pubblico all'applicazione. |
+   | Nome DNS |URL di Hello con hello indirizzo Internet della macchina virtuale hello. |
+   | Environment |Per una macchina virtuale, il valore di hello di questa proprietà è sempre produzione. |
+   | Nome |nome Hello della macchina virtuale hello. |
+   | Dimensione |dimensione Hello della macchina virtuale di hello, che riflette hello quantità di memoria e spazio su disco disponibile. Per altre informazioni, vedere Come configurare le dimensioni della macchina virtuale. |
+   | Stato |I valori includono Avvio in corso, Avviato, Arresto, Arrestato e Recupero dello stato. Se viene visualizzato recupero dello stato, lo stato corrente di hello è sconosciuto. i valori Hello per questa proprietà sono diversi dai valori hello che vengono utilizzati in hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885). |
+   | SubscriptionID |ID sottoscrizione Hello per l'account di Azure. È possibile visualizzare queste informazioni in hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885) visualizzando le proprietà di hello per una sottoscrizione. |
+2. Scegliere un nodo dell'endpoint e quindi visualizzare hello **proprietà** finestra.
+3. Hello tabella seguente vengono descritte le proprietà disponibili hello degli endpoint, ma sono di sola lettura. gli endpoint di hello tooadd o di modifica per una macchina virtuale, utilizzare hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885). 
+   
+   | Proprietà | Descrizione |
+   | --- | --- |
+   | Nome |Un identificatore per l'endpoint di hello. |
+   | Private Port |porta Hello per applicazione interna tooyour accesso di rete. |
+   | Protocol |protocollo di Hello hello layer di trasporto per l'endpoint utilizza TCP o UDP. |
+   | Public Port |porta Hello che viene utilizzata per l'accesso pubblico tooyour applicazione. |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sull'utilizzo dei ruoli di Azure in Visual Studio, vedere [Utilizzo di Desktop remoto con i ruoli di Azure](vs-azure-tools-remote-desktop-roles.md).
+toolearn ulteriori informazioni sull'utilizzo di ruoli di Azure in Visual Studio, vedere [tramite Desktop remoto con i ruoli Azure](vs-azure-tools-remote-desktop-roles.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Introduzione alle query tra database (partizionamento verticale) | Documentazione Microsoft
-description: Informazioni sull'uso della query del database elastico con database con partizionamento verticale.
+title: aaaGet avviato con query tra database (partizionamento verticale) | Documenti Microsoft
+description: la query di database elastico toouse con partizionato verticalmente i database
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: torsteng
-ms.openlocfilehash: 17158c4960e9ba9251524659c90af9aec1316774
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e6183268e8bf87e3ac28f502711fcc05a7a3f52
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-cross-database-queries-vertical-partitioning-preview"></a>Introduzione alle query tra database (partizionamento verticale) (anteprima)
-La query del database elastico (anteprima) per il database SQL di Azure consente di eseguire query T-SQL che si estendono a più database usando un unico punto di connessione. Questo argomento si applica ai [database con partizionamento verticale](sql-database-elastic-query-vertical-partitioning.md).  
+Query di database elastico (anteprima) per il Database SQL di Azure consente query T-SQL toorun che si estendono su più database utilizzando un singolo punto di connessione. Questo argomento si applica troppo[partizionato verticalmente database](sql-database-elastic-query-vertical-partitioning.md).  
 
-Al termine, si apprenderà come configurare e usare un database SQL di Azure per eseguire query che coinvolgono più database correlati. 
+Al termine, sarà possibile: informazioni su come tooconfigure e utilizzare un Database SQL di Azure di tooperform query suddivisi in più database correlati. 
 
-Per altre informazioni sulla funzionalità di query del database elastico, vedere [Panoramica delle query su database elastico del database SQL di Azure](sql-database-elastic-query-overview.md). 
+Per ulteriori informazioni sulla funzionalità di query di database elastico hello, vedere [panoramica delle query di Database di SQL Azure database elastico](sql-database-elastic-query-overview.md). 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-L'utente deve disporre dell'autorizzazione ALTER ANY EXTERNAL DATA SOURCE. Questa autorizzazione è inclusa nell'autorizzazione ALTER DATABASE. Per il riferimento all'origine dati sottostante sono necessarie autorizzazioni ALTER ANY EXTERNAL DATA SOURCE.
+L'utente deve disporre dell'autorizzazione ALTER ANY EXTERNAL DATA SOURCE. Questa autorizzazione è inclusa con l'autorizzazione ALTER DATABASE hello. Le autorizzazioni ALTER ANY EXTERNAL DATA SOURCE sono necessari toorefer toohello origine dati sottostante.
 
-## <a name="create-the-sample-databases"></a>Creare i database di esempio
-Per iniziare, è necessario creare due database, **Customers** e **Orders**, in server logici uguali o diversi.   
+## <a name="create-hello-sample-databases"></a>Creare i database di esempio di hello
+toostart con, è necessario toocreate due database, **clienti** e **ordini**, in hello uguali o diversi server logici.   
 
-Eseguire le query seguenti sul database **Orders** per creare la tabella **OrderInformation** e inserire i dati di esempio. 
+Eseguire hello seguendo le query hello **ordini** hello toocreate database **OrderInformation** tabella e l'input di dati di esempio hello. 
 
     CREATE TABLE [dbo].[OrderInformation]( 
         [OrderID] [int] NOT NULL, 
@@ -46,7 +46,7 @@ Eseguire le query seguenti sul database **Orders** per creare la tabella **Order
     INSERT INTO [dbo].[OrderInformation] ([OrderID], [CustomerID]) VALUES (321, 1) 
     INSERT INTO [dbo].[OrderInformation] ([OrderID], [CustomerID]) VALUES (564, 8) 
 
-Eseguire quindi la query seguente sul database **Customers** per creare la tabella **CustomerInformation** e inserire i dati di esempio. 
+A questo punto, eseguire query su hello riportata di seguito **clienti** hello toocreate database **CustomerInformation** tabella e l'input di dati di esempio hello. 
 
     CREATE TABLE [dbo].[CustomerInformation]( 
         [CustomerID] [int] NOT NULL, 
@@ -61,18 +61,18 @@ Eseguire quindi la query seguente sul database **Customers** per creare la tabel
 ## <a name="create-database-objects"></a>Creare oggetti di database
 ### <a name="database-scoped-master-key-and-credentials"></a>Chiave master e credenziali con ambito database
 1. Apri SQL Server Management Studio e SQL Server Data Tools in Visual Studio
-2. Connettersi al database Orders ed eseguire i comandi T-SQL seguenti:
+2. La connessione a database Orders toohello ed eseguire hello comandi T-SQL seguente:
    
         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<password>'; 
         CREATE DATABASE SCOPED CREDENTIAL ElasticDBQueryCred 
         WITH IDENTITY = '<username>', 
         SECRET = '<password>';  
    
-    Il nome utente e la password devono corrispondere al nome utente e alla password usati per l'accesso al database Customers.
+    Hello "nomeutente" e "password" deve essere hello username e password utilizzati toologin nel database di clienti hello.
     L'autenticazione tramite Azure Active Directory con query elastiche non è attualmente supportata.
 
 ### <a name="external-data-sources"></a>DROP EXTERNAL DATA SOURCE
-Per creare un'origine dati esterna, eseguire il comando seguente sul database Orders: 
+toocreate un'origine dati esterna, eseguire comando seguente nel database Orders hello hello: 
 
     CREATE EXTERNAL DATA SOURCE MyElasticDBQueryDataSrc WITH 
         (TYPE = RDBMS, 
@@ -82,7 +82,7 @@ Per creare un'origine dati esterna, eseguire il comando seguente sul database Or
     ) ;
 
 ### <a name="external-tables"></a>Tabelle esterne
-Creare una tabella esterna nel database Orders che corrisponda alla definizione della tabella CustomerInformation:
+Creare una tabella esterna nel database Orders hello, che corrisponde a definizione hello della tabella CustomerInformation hello:
 
     CREATE EXTERNAL TABLE [dbo].[CustomerInformation] 
     ( [CustomerID] [int] NOT NULL, 
@@ -92,7 +92,7 @@ Creare una tabella esterna nel database Orders che corrisponda alla definizione 
     ( DATA_SOURCE = MyElasticDBQueryDataSrc) 
 
 ## <a name="execute-a-sample-elastic-database-t-sql-query"></a>Eseguire una query di esempio elastica database T-SQL
-Dopo aver definito l'origine dati esterna e le tabelle esterne, è possibile usare T-SQL per eseguire query nelle tabelle esterne. Eseguire questa query nel database Orders: 
+Dopo aver definito l'origine dati esterna e le tabelle esterne, è ora possibile usare tooquery T-SQL le tabelle esterne. Eseguire la query sul database Orders hello: 
 
     SELECT OrderInformation.CustomerID, OrderInformation.OrderId, CustomerInformation.CustomerName, CustomerInformation.Company 
     FROM OrderInformation 
@@ -100,7 +100,7 @@ Dopo aver definito l'origine dati esterna e le tabelle esterne, è possibile usa
     ON CustomerInformation.CustomerID = OrderInformation.CustomerID 
 
 ## <a name="cost"></a>Costi
-Attualmente, la funzionalità di query del database elastico è compresa nel costo del database SQL di Azure.  
+Attualmente, funzionalità di query di database elastico hello è incluso nel costo hello del Database SQL di Azure.  
 
 Per informazioni sui prezzi, vedere [Database SQL - Prezzi](https://azure.microsoft.com/pricing/details/sql-database). 
 

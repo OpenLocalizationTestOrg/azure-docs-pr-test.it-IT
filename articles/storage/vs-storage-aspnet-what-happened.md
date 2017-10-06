@@ -1,6 +1,6 @@
 ---
-title: "Cosa è successo a un progetto ASP.NET? | Microsoft Docs"
-description: Viene descritto cosa succede dopo l'aggiunta di archiviazione di Azure a un progetto ASP.NET utilizzando i servizi connessi a Visual Studio
+title: aaaWhat si sono verificati progetto ASP.NET toomy? | Microsoft Docs
+description: Viene descritto cosa succede dopo l'aggiunta di progetto ASP.NET tooa di archiviazione di Azure con Visual Studio di servizi connessi
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: e2cdc2ff4df85f0224352bd32a3ec62480c3e6e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a78f4b46bb1f5e6bc258723ebebad96ca7da5f67
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-aspnet-project-visual-studio-azure-storage-connected-service"></a>Cosa è successo a un progetto ASP.NET (servizio connesso a Visual Studio Archiviazione di Azure)?
+# <a name="what-happened-toomy-aspnet-project-visual-studio-azure-storage-connected-service"></a>Il progetto ASP.NET verificato anomalo toomy (Visual Studio di archiviazione di Azure, servizio connesso)?
 ## <a name="references-added"></a>Aggiunta di riferimenti
-Il pacchetto NuGet per l'Archiviazione di Azure è stato aggiunto al progetto di Visual Studio.  
-Il pacchetto aggiunge i riferimenti a .NET seguenti:
+pacchetto NuGet di archiviazione di Azure Hello è stato aggiunto il progetto di Visual Studio tooyour.  
+Questo pacchetto aggiunge hello segue i riferimenti .NET:
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Il pacchetto aggiunge i riferimenti a .NET seguenti:
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>Aggiunta di stringa di connessione per l'Archiviazione di Azure
-Nel file web.config del progetto è stato creato un elemento con la stringa di connessione e la chiave dell'account di archiviazione selezionato.
+Nel file Web. config di hello del progetto, con stringa di connessione e la chiave dell'account di archiviazione hello selezionato è stato creato un elemento.
 
 Per altre informazioni, vedere [ASP.NET](http://www.asp.net).
 

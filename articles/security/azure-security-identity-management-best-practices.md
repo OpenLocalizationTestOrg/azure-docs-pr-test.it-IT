@@ -1,5 +1,5 @@
 ---
-title: "Procedure consigliate per la sicurezza con il controllo di accesso e identità di Azure | Documentazione Microsoft"
+title: "aaaAzure identità e dell'accesso di sicurezza consigliate | Documenti Microsoft"
 description: "Questo articolo illustra una serie di procedure consigliate per il controllo di accesso e la gestione delle identità usando le funzionalità integrate di Azure."
 services: security
 documentationcenter: na
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/30/2017
 ms.author: yurid
-ms.openlocfilehash: 50f9073d3c35bd9dcfd826ff44e767fb69558757
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: af07dfda84758b9124641078ac8f696f725f2bf1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-identity-management-and-access-control-security-best-practices"></a>Procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure
-Molti considerano l'identità come il nuovo livello limite per la sicurezza, sostituendo in questo ruolo la prospettiva tradizionale incentrata sulla rete. Questa evoluzione nell'attenzione per la sicurezza e negli investimenti è dovuta al fatto che i perimetri di rete sono diventati sempre più permeabili e la difesa perimetrale non può più essere efficace quanto prima dell'esplosione delle applicazioni cloud e dei dispositivi [BYOD](http://aka.ms/byodcg).
+Molti considerare toobe hello nuovo limite livello identità per la sicurezza, assumendo il ruolo prospettiva hello tradizionali basate su rete. Questa evoluzione di pivot primario di hello per attenzione di sicurezza e gli investimenti provengono da tabelle dei fatti hello che perimetro di una rete è diventate sempre più poroso e tale difesa perimetrale non può essere altrettanto efficace come avveniva una volta toohello precedente esplosione di [BYOD](http://aka.ms/byodcg) dispositivi e applicazioni cloud.
 
-Questo articolo illustra una serie di procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure. Le procedure consigliate si basano sull'esperienza di tecnici e clienti con [Azure AD](../active-directory/active-directory-whatis.md).
+Questo articolo illustra una serie di procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure. Queste procedure consigliate derivano dall'esperienza acquisita con [Azure AD](../active-directory/active-directory-whatis.md) ed esperienze hello dei clienti come manualmente.
 
 Per ogni procedura consigliata verrà illustrato:
 
-* Qual è la procedura consigliata
-* Il motivo per cui si vuole abilitare tale procedura consigliata
-* Quale potrebbe essere il risultato se non fosse possibile abilitare la procedura consigliata
-* Alternative possibili alla procedura consigliata
-* Come imparare ad abilitare la procedura consigliata
+* Quali consigliabile hello
+* Motivo per cui si desidera tooenable consigliata
+* Se non è consigliata di hello tooenable, quale potrebbe essere il risultato di hello
+* Procedura consigliata toohello alternative possibili
+* Informazioni come procedura consigliata hello tooenable
 
-Questo articolo sulle procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure si basa su pareri condivisi, nonché sulle capacità e sui set di funzionalità della piattaforma Azure esistenti quando l'articolo è stato scritto. Le opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato regolarmente per riflettere tali modifiche.
+Questa gestione delle identità di Azure e controllo dell'accesso articolo di procedure consigliate si basa su un parere di consenso e funzionalità della piattaforma Azure e set di funzionalità di sicurezza in cui si trovano in fase di hello in questo articolo è stato scritto. Opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato in un tooreflect regolarmente le modifiche.
 
 Procedure consigliate per la sicurezza con il controllo di accesso e la gestione delle identità di Azure illustrate in questo articolo:
 
@@ -43,95 +43,95 @@ Procedure consigliate per la sicurezza con il controllo di accesso e la gestione
 * Applicare l'autenticazione a più fattori (MFA) per gli utenti
 * Usare il controllo degli accessi in base al ruolo
 * Controllare i percorsi di creazione delle risorse con Resource Manager
-* Guidare gli sviluppatori nell'utilizzo delle funzionalità di identità per app SaaS
+* Guida per gli sviluppatori tooleverage identità funzionalità per App SaaS
 * Monitorare attivamente le attività sospette
 
 ## <a name="centralize-your-identity-management"></a>Centralizzare la gestione delle identità
-Per la protezione dell'identità è importante fare in modo che il reparto IT possa gestire gli account da un'unica posizione rispetto al punto in cui l'account è stato creato. Nella maggior parte delle organizzazioni la directory dell'account primario del reparto IT è in locale, ma si stanno affermando anche distribuzioni cloud ibride. È quindi importante comprendere come integrare le directory cloud e quelle locali e offrire un'esperienza coerente all'utente finale.
+Un passaggio importante per proteggere la tua identità è tooensure che è possibile gestire gli account da una singola posizione relative in cui è stato creato questo account. Mentre la maggior parte hello delle aziende hello alle organizzazioni IT avrà account principale directory locale, le distribuzioni di cloud ibrido in luogo di hello è importante comprendere come toointegrate locale e le directory del cloud e fornire un esperienza toohello all'utente finale.
 
-Per realizzare questo scenario di [soluzione ibrida di gestione delle identità](../active-directory/active-directory-hybrid-identity-design-considerations-overview.md), è consigliabile procedere come segue:
+tooaccomplish questo [identità ibride](../active-directory/active-directory-hybrid-identity-design-considerations-overview.md) scenario si consiglia di due opzioni:
 
 * Sincronizzare la directory locale con la directory cloud usando Azure AD Connect.
 * Attuare la federazione dell'identità locale con la directory cloud usando [Active Directory Federation Services](https://msdn.microsoft.com/library/bb897402.aspx) (AD FS).
 
-Le organizzazioni che non provvedono all'integrazione dell'identità locale con l'identità cloud sono soggette a un maggiore sovraccarico amministrativo nella gestione degli account, che aumenta le probabilità di errore e le violazioni della sicurezza.
+Le organizzazioni che non si verificheranno la propria identità locali con la propria identità cloud toointegrate amministrativi un sovraccarico maggiore nella gestione degli account, che aumenta la probabilità di hello di errori e violazioni della protezione.
 
-Per altre informazioni sulla sincronizzazione con Azure AD, vedere [Integrazione delle identità locali con Azure Active Directory](../active-directory/active-directory-aadconnect.md).
+Per ulteriori informazioni sulla sincronizzazione di Azure AD, leggere l'articolo hello [integrazione delle identità locali con Azure Active Directory](../active-directory/active-directory-aadconnect.md).
 
 ## <a name="enable-single-sign-on-sso"></a>Abilitare il Single Sign-On (SSO)
-La gestione di più directory rappresenta un problema di amministrazione non solo per il reparto IT, ma anche per gli utenti finali che devono tenere a mente più password. L'accesso [SSO](https://azure.microsoft.com/documentation/videos/overview-of-single-sign-on/) offre agli utenti la possibilità di usare lo stesso set di credenziali per accedere alle risorse necessarie, indipendentemente dalla posizione di tali risorse in locale o nel cloud.
+Quando si dispone di più directory toomanage, questo diventa un problema di amministrazione non solo per l'IT, ma anche per gli utenti finali che avrà tooremember più password. Utilizzando [SSO](https://azure.microsoft.com/documentation/videos/overview-of-single-sign-on/) si consentirà agli utenti hello di utilizzare hello stesso insieme di credenziali toosign-in e accedere alle risorse di hello necessari, indipendentemente dal fatto che in questa risorsa è situata in locale o nel cloud hello.
 
-Usare SSO per consentire agli utenti di accedere alle [applicazioni SaaS](../active-directory/active-directory-appssoaccess-whatis.md) in base all'account aziendale in Azure AD. Questo vale non solo per le app SaaS Microsoft, ma anche per altre app come [Google Apps](../active-directory/active-directory-saas-google-apps-tutorial.md) e [Salesforce](../active-directory/active-directory-saas-salesforce-tutorial.md). L'applicazione può essere configurata per l'uso di Azure AD come provider di [identità basata su SAML](../active-directory/fundamentals-identity.md). Come controllo di sicurezza, Azure AD non rilascia un token per l'accesso all'applicazione a meno che l'accesso non sia stato concesso con Azure AD. L'accesso può essere concesso direttamente agli utenti o attraverso un gruppo di cui sono membri.
+Utilizzare SSO tooenable utenti tooaccess loro [applicazioni SaaS](../active-directory/active-directory-appssoaccess-whatis.md) in base al proprio account aziendale in Azure AD. Questo vale non solo per le app SaaS Microsoft, ma anche per altre app come [Google Apps](../active-directory/active-directory-saas-google-apps-tutorial.md) e [Salesforce](../active-directory/active-directory-saas-salesforce-tutorial.md). L'applicazione può essere configurato toouse AD Azure come un [basato su SAML identity](../active-directory/fundamentals-identity.md) provider. Come un controllo di sicurezza, non Azure AD emetta un token consentendo toosign in un'applicazione hello a meno che non hanno ottenuto l'accesso tramite Azure AD. L'accesso può essere concesso direttamente agli utenti o attraverso un gruppo di cui sono membri.
 
 > [!NOTE]
-> La decisione di usare il Single Sign-On influisce sulla modalità di integrazione della directory locale con la directory cloud. Per usare SSO, è necessario usare la federazione, perché la sincronizzazione della directory offre solo un'[esperienza Same Sign-On](../active-directory/active-directory-aadconnect.md).
+> Hello decisione toouse SSO avrà un impatto sulle modalità di integrazione directory locale con la directory cloud. Se si desidera SSO, sarà necessario toouse federazione, perché la sincronizzazione delle directory fornirà solo [stessa esperienza di accesso](../active-directory/active-directory-aadconnect.md).
 >
 >
 
-Nelle organizzazioni che non adottano il Single Sign-On per gli utenti e le applicazioni gli utenti devono gestire più password. Questo aumenta direttamente le probabilità che vengano usate password vulnerabili oppure le stesse password più volte.
+Le organizzazioni che non consentono l'applicazione SSO per i relativi utenti e applicazioni sono più tooscenarios esposto in cui gli utenti avranno più password direttamente aumenta la probabilità di hello utenti del riutilizzo delle password o l'utilizzo di password vulnerabili.
 
-Per altre informazioni sull'uso di SSO con Azure AD, vedere [Gestione e personalizzazione di AD FS con Azure AD Connect](../active-directory/active-directory-aadconnect-federation-management.md).
+Maggiori informazioni su SSO AD Azure, leggere l'articolo hello [personalizzazione con Azure AD Connect e gestione di ADFS](../active-directory/active-directory-aadconnect-federation-management.md).
 
 ## <a name="deploy-password-management"></a>Distribuire la gestione delle password
-In scenari in cui sono presenti più tenant o si vuole consentire agli utenti di [reimpostare la propria password](../active-directory/active-directory-passwords-update-your-own-password.md) è importante adottare criteri di sicurezza adatti per prevenire l'uso improprio. In Azure è possibile usare la funzionalità di reimpostazione della password self-service e personalizzare le opzioni di sicurezza per soddisfare i requisiti aziendali.
+In scenari in cui si dispone di più tenant o si desidera che gli utenti tooenable troppo[reimpostare le proprie password](../active-directory/active-directory-passwords-update-your-own-password.md), è importante utilizzare abuso tooprevent criteri di sicurezza appropriate. In Azure è possibile sfruttare funzionalità di reimpostazione della password self-service hello e personalizzare toomeet opzioni di sicurezza hello i requisiti aziendali.
 
-È molto importante ottenere commenti e suggerimenti dagli utenti e imparare dalla loro esperienza di esecuzione di questi passaggi. In base all'esperienza degli utenti, elaborare un piano per attenuare i problemi che possono verificarsi durante la distribuzione per un gruppo di dimensioni maggiori. È anche consigliabile usare il [report Attività di registrazione reimpostazione password](../active-directory/active-directory-passwords-get-insights.md) per monitorare gli utenti che eseguono la registrazione.
+È particolarmente importante tooobtain feedback da questi utenti e imparare da loro esperienze affrontate tooperform questi passaggi. In base a queste esperienze, elaborare un piano toomitigate potenziali problemi che possono verificarsi durante la distribuzione di hello per un gruppo di dimensioni maggiore. È inoltre consigliabile utilizzare hello [report attività di registrazione reimpostazione Password](../active-directory/active-directory-passwords-get-insights.md) utenti hello toomonitor che siano registrando.
 
-Le organizzazioni che vogliono evitare le richieste di supporto per la modifica delle password ma consentono agli utenti di reimpostare le proprie password sono più soggette a volumi elevati di richieste di assistenza a causa di problemi con le password. Nelle organizzazioni con più tenant è fondamentale implementare questo tipo di funzionalità e consentire agli utenti di reimpostare le proprie password entro limiti precisi stabiliti nei criteri di sicurezza delle password.
+Le organizzazioni che vogliono password tooavoid modificare chiamate al supporto tecnico, ma abilitare gli utenti tooreset le proprie password è più sensibili tooa superiore chiamata volume toohello assistenza a causa di problemi di toopassword. In organizzazioni che dispongono di più tenant, è importante implementare questo tipo di funzionalità e consentire agli utenti tooperform la reimpostazione della password all'interno dei limiti di sicurezza che sono stati stabiliti nel criterio di protezione hello.
 
-Per altre informazioni sulla reimpostazione della password, vedere [Distribuzione di Gestione delle password e formazione degli utenti per l'uso](../active-directory/active-directory-passwords-best-practices.md).
+Sono disponibili ulteriori informazioni sulla password reimpostata, leggere l'articolo hello [la distribuzione di gestione delle Password e formazione utenti toouse è](../active-directory/active-directory-passwords-best-practices.md).
 
 ## <a name="enforce-multi-factor-authentication-mfa-for-users"></a>Applicare l'autenticazione a più fattori (MFA) per gli utenti
-Per le organizzazioni che devono essere conformi agli standard di settore, ad esempio [PCI DSS versione 3.2](http://blog.pcisecuritystandards.org/preparing-for-pci-dss-32), Multi-Factor Authentication è una funzionalità indispensabile per l'autenticazione degli utenti. L'uso della Multi-Factor Authentication per autenticare gli utenti permette alle organizzazioni non solo di essere conformi agli standard di settore, ma anche di attenuare gli attacchi con furto di credenziali, ad esempio [Pass-the-Hash (PtH)](http://aka.ms/PtHPaper).
+Per le organizzazioni che devono rispettare gli standard del settore, ad esempio toobe [PCI DSS versione 3.2](http://blog.pcisecuritystandards.org/preparing-for-pci-dss-32), multi-factor authentication è necessario disporre di funzionalità per autenticare gli utenti. Oltre a essere conformi agli standard di settore, imporre agli utenti MFA tooauthenticate consente inoltre le organizzazioni toomitigate furto il tipo di credenziali di attacco, ad esempio [Pass-the-Hash (PtH)](http://aka.ms/PtHPaper).
 
-Quando si abilita Azure MFA per gli utenti, si aggiunge un secondo livello di sicurezza agli accessi e alle transazioni degli utenti. In questo caso, una transazione potrebbe accedere a un documento che si trova in un file server o in SharePoint Online. Grazie a Azure MFA, i reparti IT possono anche ridurre la probabilità di accesso ai dati dell'organizzazione usando credenziali compromesse.
+Abilitando l'autenticazione a più fattori di Azure per gli utenti, si aggiunge un secondo livello di sicurezza toouser accessi e le transazioni. In questo caso, una transazione potrebbe accedere a un documento che si trova in un file server o in SharePoint Online. Azure MFA consente inoltre di probabilità di hello tooreduce IT che una credenziale compromessa avranno i dati del tooorganization di accesso.
 
-Ad esempio: è possibile applicare Azure MFA per gli utenti e configurarlo per l'uso di una telefonata o di un messaggio di testo di verifica. Se le credenziali dell'utente vengono compromesse, l'autore dell'attacco non può accedere alle risorse perché non ha accesso al telefono dell'utente. Le organizzazioni che non aggiungono livelli supplementari di protezione delle identità sono più vulnerabili agli attacchi con furto di credenziali, con conseguente rischio di compromissione dei dati.
+Ad esempio: si attiva Azure MFA per gli utenti e lo configura toouse una telefonata o un SMS come verifica. Se le credenziali dell'utente hello compromessi autore dell'attacco hello non essere in grado di tooaccess qualsiasi risorsa poiché non sarà possibile phone dell'accesso toouser. Le organizzazioni che non si aggiungono livelli aggiuntivi di protezione di identità sono più vulnerabile agli attacchi di furto delle credenziali, con conseguente rischio di compromissione toodata.
 
-In alternativa, le organizzazioni che vogliono mantenere in locale tutto il controllo dell'autenticazione possono usare il [server Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-server.md), detto anche MFA locale. Questo metodo consentirà comunque di applicare la Multi-Factor Authentication, mantenendo il server MFA in locale.
+Un'alternativa per le organizzazioni che vogliono controllo intero processo di autenticazione di hello tookeep locale non è toouse [Server Azure multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication-get-started-server.md), detta anche autenticazione a più fattori locale. Tramite questo metodo, sarà comunque in grado di tooenforce autenticazione a più fattori, mantenendo hello MFA server locale.
 
-Per altre informazioni su Azure MFA, vedere l'articolo [Introduzione ad Azure Multi-Factor Authentication nel cloud](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
+Per ulteriori informazioni sull'autenticazione a più fattori di Azure, leggere l'articolo hello [Introduzione ad Azure multi-Factor Authentication nel cloud hello](../multi-factor-authentication/multi-factor-authentication-get-started-cloud.md).
 
 ## <a name="use-role-based-access-control-rbac"></a>Usare il controllo degli accessi in base al ruolo
-Per le organizzazioni che intendono applicare criteri di sicurezza per l'accesso ai dati è fondamentale limitare l'accesso in base a principi di [riservatezza](https://en.wikipedia.org/wiki/Need_to_know) e [privilegi minimi](https://en.wikipedia.org/wiki/Principle_of_least_privilege). Il controllo degli accessi in base al ruolo di Azure consente di assegnare autorizzazioni a utenti, gruppi e applicazioni in un determinato ambito. L'ambito di un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa.
+Limitazione dell'accesso basato su hello [necessario tooknow](https://en.wikipedia.org/wiki/Need_to_know) e [privilegio](https://en.wikipedia.org/wiki/Principle_of_least_privilege) principi di sicurezza è fondamentale per le organizzazioni che vogliono tooenforce criteri di sicurezza per l'accesso ai dati. Azure Role-Based Access controllo (RBAC) può essere utilizzato tooassign autorizzazioni toousers, gruppi e applicazioni in un determinato ambito. ambito Hello un'assegnazione di ruolo può essere una sottoscrizione, un gruppo di risorse o una singola risorsa.
 
-Si possono sfruttare i [ruoli predefiniti del controllo degli accessi in base al ruolo](../active-directory/role-based-access-built-in-roles.md) in Azure per assegnare privilegi agli utenti. Si consiglia di usare *Collaboratore Account di archiviazione* per gli operatori cloud che devono gestire gli account di archiviazione e il ruolo *Collaboratore Account di archiviazione classico* per gestire gli account di archiviazione classici. Per quanto riguarda gli operatori di cloud che hanno necessità di gestire le macchine virtuali e l'account di archiviazione, è consigliabile aggiungerli al ruolo *Collaboratore Macchina virtuale*.
+È possibile sfruttare [incorporata RBAC](../active-directory/role-based-access-built-in-roles.md) ruoli in Azure tooassign privilegi toousers. È consigliabile utilizzare *collaboratore di Account di archiviazione* per gli operatori di cloud che necessitano di account di archiviazione toomanage e *collaboratore di Account di archiviazione classico* gli account di archiviazione classico toomanage di ruolo. Per gli operatori di cloud che necessita di macchine virtuali toomanage e account di archiviazione, è consigliabile aggiungerli troppo*collaboratore alla macchina virtuale* ruolo.
 
-Le organizzazioni che non applicano il controllo di accesso ai dati con funzionalità come il controllo degli accessi in base al ruolo potrebbero concedere più privilegi del necessario agli utenti. Questo può comportare la compromissione dei dati perché gli utenti potrebbero avere accesso a tipi di dati, come importanti dati aziendali, a cui non dovrebbero accedere.
+Le organizzazioni che non si applicano il controllo di accesso ai dati tramite le funzionalità, ad esempio RBAC possono essere concesse più privilegi rispetto agli utenti di tootheir necessarie. Questo può causare la compromissione toodata consente agli utenti l'accesso per tipi toocertain di tipi di dati (ad esempio, alto impatto aziendale) che sono non deve in primo luogo hello.
 
-Per altre informazioni sul controllo degli accessi in base al ruolo di Azure, vedere l'articolo [Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-configure.md).
+Maggiori informazioni su Azure RBAC leggendo l'articolo hello [gestire il controllo di accesso](../active-directory/role-based-access-control-configure.md).
 
 ## <a name="control-locations-where-resources-are-created-using-resource-manager"></a>Controllare i percorsi di creazione delle risorse con Resource Manager
-Permettere agli operatori cloud di eseguire attività senza infrangere convenzioni necessarie per la gestione delle risorse dell'organizzazione è molto importante. Per controllare i percorsi in cui le risorse vengono create, è consigliabile impostarli come hardcoded a livello dell'organizzazione.
+Abilitazione di cloud operatori tooperform attività mentre impedisce di rilievo convenzioni che sono necessari toomanage risorse dell'organizzazione è molto importante. Le organizzazioni che vogliono percorsi hello toocontrol in cui le risorse vengono create devono codificare questi percorsi.
 
-A tale scopo, l'organizzazione può creare criteri di sicurezza con definizioni che descrivono le risorse o le azioni negate in modo specifico. Le definizioni dei criteri vengono assegnate all'ambito desiderato, ad esempio la sottoscrizione, un gruppo di risorse o una singola risorsa.
+tooachieve, le organizzazioni possono creare criteri di sicurezza che dispongono di definizioni che descrivono le azioni di hello o risorse che vengono negate in modo specifico. Assegnare le definizioni dei criteri nell'ambito di hello desiderato, ad esempio hello sottoscrizione, gruppo di risorse o una singola risorsa.
 
 > [!NOTE]
-> Questo metodo non equivale al controllo degli accessi in base al ruolo, ma lo usa per autenticare gli utenti che hanno i privilegi necessari per creare tali risorse.
+> Questo non è hello stesso come RBAC, sfrutta effettivamente agli utenti di hello tooauthenticate RBAC che dispongono di privilegi toocreate tali risorse.
 >
 >
 
-È possibile usare [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) per creare criteri personalizzati anche per scenari in cui l'organizzazione vuole consentire solo le operazioni associate al centro di costo appropriato. In caso contrario, la richiesta viene negata.
+Usare [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) criteri personalizzati toocreate anche per scenari in cui le operazioni di hello organizzazione desidera tooallow solo quando hello centro di costo appropriato è associato; in caso contrario, si consentirà il richiesta hello.
 
-Le organizzazioni che non controllano le modalità di creazione delle risorse sono più soggette a un uso improprio del servizio da parte degli utenti, che potrebbero creare più risorse del necessario. La protezione avanzata del processo di creazione delle risorse è un passaggio importante per la protezione di uno scenario multi-tenant.
+Le organizzazioni che non controlla le modalità di creazione delle risorse sono toousers più sensibili che potrebbe abusare servizio hello creando più risorse di quante hanno bisogno. Protezione avanzata dei processo di creazione risorsa hello è un toosecure importante passaggio uno scenario di multi-tenant.
 
-Per altre informazioni sulla creazione di criteri con Azure Resource Manager, vedere [Usare i criteri per gestire le risorse e controllare l'accesso](../azure-resource-manager/resource-manager-policy.md).
+Sono disponibili ulteriori informazioni sulla creazione di criteri con Gestione risorse di Azure leggendo l'articolo hello [risorse toomanage criteri di utilizzo e controllare l'accesso](../azure-resource-manager/resource-manager-policy.md).
 
-## <a name="guide-developers-to-leverage-identity-capabilities-for-saas-apps"></a>Guidare gli sviluppatori nell'utilizzo delle funzionalità di identità per app SaaS
-L'identità dell'utente viene usata in molti scenari quando gli utenti accedono ad [app SaaS](https://azure.microsoft.com/marketplace/active-directory/all/) che possono essere integrate in directory locali o cloud. Gli sviluppatori stessi dovrebbero usare una metodologia sicura per lo sviluppo di queste applicazioni, ad esempio [Microsoft Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl/default.aspx). Azure AD semplifica l'autenticazione per gli sviluppatori fornendo le identità come servizio, con il supporto per protocolli standard del settore come [OAuth 2.0](http://oauth.net/2/) e [OpenID Connect](http://openid.net/connect/), nonché librerie open source per diverse piattaforme.
+## <a name="guide-developers-tooleverage-identity-capabilities-for-saas-apps"></a>Guida per gli sviluppatori tooleverage identità funzionalità per App SaaS
+L'identità dell'utente viene usata in molti scenari quando gli utenti accedono ad [app SaaS](https://azure.microsoft.com/marketplace/active-directory/all/) che possono essere integrate in directory locali o cloud. In primo luogo, è consigliabile che gli sviluppatori utilizzino una toodevelop metodologia sicura queste App, ad esempio [Microsoft Security Development Lifecycle (SDL)](https://www.microsoft.com/sdl/default.aspx). Azure AD semplifica l'autenticazione per gli sviluppatori fornendo le identità come servizio, con il supporto per protocolli standard del settore come [OAuth 2.0](http://oauth.net/2/) e [OpenID Connect](http://openid.net/connect/), nonché librerie open source per diverse piattaforme.
 
-Assicurarsi di registrare qualsiasi applicazione che affida l'autenticazione ad Azure AD. Si tratta di una procedura obbligatoria. Questo perché Azure AD deve coordinare le comunicazioni con l'applicazione quando gestisce l'accesso SSO o lo scambio di token. La sessione dell'utente scade al termine del periodo di validità del token emesso da Azure AD. Valutare sempre se tale periodo di validità è necessario per l'applicazione o se è possibile ridurlo. La riduzione della durata può fungere da misura di sicurezza che forza la disconnessione degli utenti in base a un periodo di inattività.
+Rendere tooregister che tutte le applicazioni che usano l'outsourcing per l'autenticazione tooAzure Active Directory, si tratta di una routine obbligatoria. Hello motivazioni è poiché Azure AD necessita di una comunicazione di hello toocoordinate con un'applicazione hello quando Gestione sign-on (SSO) o lo scambio di token. la sessione dell'utente Hello scade quando scade la durata hello di hello token rilasciati da Azure AD. Valutare sempre se tale periodo di validità è necessario per l'applicazione o se è possibile ridurlo. Riduzione della durata di hello può fungere da una misura di sicurezza che forzerà toosign utenti out in base a un periodo di inattività.
 
-Le organizzazioni che non applicano il controllo dell'identità per l'accesso alle app e non forniscono indicazioni agli sviluppatori per l'integrazione sicura delle app con il sistema di gestione delle identità possono essere più soggette ad attacchi con furto di credenziali. Vedere in proposito la descrizione di [gestione della sessione e autenticazione vulnerabile nella top 10 OWASP (Open Web Application Security Project)](https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet).
+Le organizzazioni che non applicano App tooaccess controllo di identità non sugli Guida e gli sviluppatori come toosecurely integrare applicazioni con il sistema di gestione di identità possono essere più vulnerabile tipo furto di toocredential di attacco, ad esempio [debole gestione di autenticazione e sessione descritta in Open Web applicazione sicurezza progetto (OWASP) primi 10](https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet).
 
 Per altre informazioni sugli scenari di autenticazione per app SaaS, vedere [Scenari di autenticazione per Azure AD](../active-directory/active-directory-authentication-scenarios.md).
 
 ## <a name="actively-monitor-for-suspicious-activities"></a>Monitorare attivamente le attività sospette
-Secondo il [report sulla violazione dei dati 2016 redatto da Verizon](http://www.verizonenterprise.com/verizon-insights-lab/dbir/2016/), la compromissione delle credenziali è ancora in aumento e sta diventando una delle attività più redditizie per il crimine informatico. Per questo motivo è importante avere un sistema di monitoraggio attivo delle identità che possa rilevare rapidamente i comportamenti sospetti e attivare avvisi per richiedere analisi aggiuntive. Azure AD offre due importanti funzionalità che consentono alle organizzazioni di monitorare le identità: i [report anomalie](../active-directory/active-directory-view-access-usage-reports.md) di Azure AD Premium e Azure AD [Identity Protection](../active-directory/active-directory-identityprotection.md).
+In base troppo[report Verizon 2016 dati violazione](http://www.verizonenterprise.com/verizon-insights-lab/dbir/2016/), violazione delle credenziali è ancora in luogo di hello e diventi delle aziende più remunerative hello criminali informatici. Per questo motivo, è importante toohave un sistema di monitoraggio active identità in grado di rilevare attività sospette comportamento e attivare un avviso per ulteriori indagini rapidamente. Azure AD offre due importanti funzionalità che consentono alle organizzazioni di monitorare le identità: i [report anomalie](../active-directory/active-directory-view-access-usage-reports.md) di Azure AD Premium e Azure AD [Identity Protection](../active-directory/active-directory-identityprotection.md).
 
-Usare i report anomalie per identificare i tentativi di accesso [senza tracciamento](../active-directory/active-directory-reporting-sign-ins-from-unknown-sources.md), gli attacchi di [forza bruta](../active-directory/active-directory-reporting-sign-ins-after-multiple-failures.md) contro un account specifico, i tentativi di accesso da più posizioni, l'accesso da [dispositivi infetti](../active-directory/active-directory-reporting-sign-ins-from-possibly-infected-devices.md) e gli indirizzi IP sospetti. Tenere presente che si tratta di report. È quindi necessario predisporre processi e procedure in modo che gli amministratori IT possano eseguire tali report ogni giorno o su richiesta, in genere in uno scenario di risposta a eventi imprevisti.
+Verificare che toouse hello anomalie report tooidentify tentativi toosign in [senza tracciamento](../active-directory/active-directory-reporting-sign-ins-from-unknown-sources.md), [attacchi di forza bruta](../active-directory/active-directory-reporting-sign-ins-after-multiple-failures.md) gli attacchi contro un account specifico, toosign tentativi in da più posizioni, accedi da [dispositivi infetti](../active-directory/active-directory-reporting-sign-ins-from-possibly-infected-devices.md) e gli indirizzi IP sospetti. Tenere presente che si tratta di report. In altre parole, è necessario disporre dei processi e procedure di inserire tali report per toorun gli amministratori IT su base giornaliera hello o su richiesta (in genere in uno scenario di risposta agli eventi imprevisti).
 
-Azure AD Identity Protection è invece un sistema di monitoraggio attivo che contrassegna i rischi correnti nel relativo dashboard e invia notifiche di riepilogo giornaliere tramite posta elettronica. È consigliabile modificare il livello di rischio in base ai requisiti aziendali. Il livello di rischio è un'indicazione della gravità, misurata come alta, media o bassa, di un evento di rischio. Il livello di rischio consente agli utenti di Identity Protection di classificare in ordine di priorità le azioni da intraprendere per ridurre il rischio per l'organizzazione.
+Al contrario, la protezione dell'identità di Azure AD è un sistema di monitoraggio attivo e contrassegnerà hello possibili rischi nel proprio dashboard. e invia notifiche di riepilogo giornaliere tramite posta elettronica. È consigliabile modificare il livello di rischio hello in base a tooyour requisiti aziendali. livello di rischio Hello per un evento di rischio è un'indicazione della gravità hello dell'evento di rischio hello (alta, Media o bassa). livello di rischio Hello consente agli utenti di protezione dell'identità priorità azioni hello deve accettano organizzazione di tootheir tooreduce hello rischio.
 
-Le organizzazioni che non monitorano attivamente i sistemi di identità sono esposti al rischio di compromissione delle credenziali utente. Se l'organizzazione non è a conoscenza dello svolgimento di attività sospette con tali credenziali, non potrà attenuare questo tipo di minaccia.
+Le organizzazioni che non monitorano attivamente i sistemi di identità sono esposti al rischio di compromissione delle credenziali utente. Insaputa dell'utente che siano eseguendo le attività sospette posizionare utilizzando queste credenziali, le organizzazioni non saranno in grado di toomitigate questo tipo di minaccia.
 Per altre informazioni in merito, vedere [Azure Active Directory Identity Protection](../active-directory/active-directory-identityprotection.md).

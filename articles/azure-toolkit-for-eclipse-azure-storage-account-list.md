@@ -1,6 +1,6 @@
 ---
-title: Elenco di Account di archiviazione di Azure
-description: Gestire le impostazioni dell'account di archiviazione tramite il Toolkit di Azure per Eclipse
+title: Elenco di Account di archiviazione aaaAzure
+description: Gestire le impostazioni dell'account di archiviazione utilizzando hello Azure Toolkit per Eclipse
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: f859efa389d3fe0b4b7b16255d57f1aa13123319
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35e25881ca95ae4050a26283e4726d9549b37f46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-account-list"></a>Elenco di Account di archiviazione di Azure
-Gli account di archiviazione di Azure abilitano dei percorsi di download da usare per il JDK, per il server dell’applicazione e per i componenti arbitrari, nonché per lo stato di archiviazione quando si utilizza la memorizzazione nella cache. Eclipse mantiene un elenco di account di archiviazione noti disponibili per i progetti nell'area di lavoro di Eclipse. Per aprire la finestra di dialogo **Account di archiviazione** che viene usata per gestire tale elenco, in Eclipse, fare clic su **Finestra**, **Preferenze**, espandere **Azure**, quindi fare clic su **Account di archiviazione**.
+Abilitare gli account di archiviazione Azure scaricare toobe percorsi utilizzati per il JDK, server applicazioni e componenti arbitrari, nonché per l'archiviazione dello stato quando si utilizza la memorizzazione nella cache. Eclipse gestisce un elenco di account di archiviazione conosciuti tooyour disponibili progetti nell'area di lavoro di Eclipse. hello tooopen **gli account di archiviazione** finestra di dialogo che viene utilizzato toomanage l'elenco, in Eclipse, fare clic su **finestra**, fare clic su **preferenze**, espandere **Azure** , quindi fare clic su **gli account di archiviazione**.
 
-Di seguito viene visualizzata la finestra di dialogo **Account di archiviazione** .
+Hello seguente illustra la hello **gli account di archiviazione** finestra di dialogo.
 
 ![][ic719496]
 
-Questa finestra di dialogo può anche essere aperta da un collegamento **Account** nelle finestre di dialogo che utilizzano gli account di archiviazione, come ad esempio le gli elementi seguenti:
+Questa finestra di dialogo può anche essere aperta da un **account** collegamento nelle finestre di dialogo che utilizzano gli account di archiviazione, come illustrato di seguito hello:
 
-* La scheda **JDK** della finestra di dialogo **Configurazione Server**.
-* La scheda **Server** della finestra di dialogo **Configurazione Server**.
-* La finestra di dialogo **Aggiungi componente** .
-* La finestra di dialogo delle proprietà di **Memorizzazione nella cache**
+* Hello **JDK** scheda di hello **configurazione Server** finestra di dialogo.
+* Hello **Server** scheda di hello **configurazione Server** finestra di dialogo.
+* Hello **Add Component** finestra di dialogo.
+* Hello **la memorizzazione nella cache** finestra di dialogo proprietà.
 
-## <a name="to-import-your-storage-accounts-using-a-publish-settings-file"></a>Per importare gli account di archiviazione usando un file di impostazioni di pubblicazione
-1. All'interno della finestra di dialogo **Account di archiviazione** fare clic su **Importa da file IMPOSTAZIONI DI PUBBLICAZIONE**.
+## <a name="tooimport-your-storage-accounts-using-a-publish-settings-file"></a>tooimport lo spazio di archiviazione degli account con un file di impostazioni di pubblicazione
+1. All'interno di hello **gli account di archiviazione** finestra di dialogo, fare clic su **Importa da file PUBLISH-SETTINGS**.
 
-2. (Saltare questo passaggio se è già stato salvato un file di impostazioni di pubblicazione nel computer locale). Nella finestra di dialogo **Import Subscription Information** (Importa informazioni sottoscrizione) fare clic su **Download PUBLISH-SETTINGS File** (Download del file PUBLISH-SETTINGS). Se non ci si è ancora connessi al proprio account Azure, verrà richiesto di farlo. Quindi verrà richiesto di salvare un file di impostazioni di pubblicazione di Azure. (È possibile ignorare le istruzioni risultanti visualizzate nelle pagine di accesso, sono fornite dal portale di Azure e sono destinate agli utenti di Visual Studio.) Salvarlo nel computer locale.
+2. (Ignorare questo passaggio se è già stato salvato un computer locale pubblica Impostazioni file tooyour). In hello **Importa informazioni sottoscrizione** finestra di dialogo, fare clic su **Scarica File PUBLISH-SETTINGS**. Se non si è ancora connessi all'account Azure, sarà richiesta toolog in. Quindi verrà chiesto di file di impostazioni di pubblicazione toosave di Azure. (È possibile ignorare istruzioni di hello risultanti visualizzate nelle pagine di accesso hello - sono forniti dal portale di Azure hello e sono destinate agli utenti di Visual Studio.) Salvare il file tooyour di computer locale.
 
-3. Sempre nella finestra di dialogo **Import Subscription Information** (Importa informazioni sottoscrizione) fare clic sul pulsante **Browse** (Sfoglia), selezionare il file di impostazioni di pubblicazione precedentemente salvato in locale e quindi fare clic su **Open** (Apri).
+3. Ancora in hello **Importa informazioni sottoscrizione** finestra di dialogo, fare clic su hello **Sfoglia** pulsante, hello seleziona pubblicare file di impostazioni che è stato salvato in locale in precedenza e quindi fare clic su **aprire**.
 
-4. Fare clic su **OK** per chiudere la finestra di dialogo **Import Subscription Information** (Importa informazioni sottoscrizione).
+4. Fare clic su **OK** tooclose hello **Importa informazioni sottoscrizione** finestra di dialogo.
 
-## <a name="to-create-a-new-storage-account"></a>Per creare un nuovo account di archiviazione
-1. Nella finestra di dialogo **Account di archiviazione** fare clic su **Aggiungi**.
+## <a name="toocreate-a-new-storage-account"></a>toocreate un nuovo account di archiviazione
+1. All'interno di hello **gli account di archiviazione** finestra di dialogo, fare clic su **Aggiungi**.
 
-2. Nella finestra di dialogo **Aggiungi account di archiviazione** fare clic su **Nuovo**.
+2. All'interno di hello **Add Storage Account** finestra di dialogo, fare clic su **New**.
 
-3. All'interno della finestra di dialogo **Nuovo Account di archiviazione** , specificare i valori per le operazioni seguenti:
+3. All'interno di hello **nuovo Account di archiviazione** finestra di dialogo, specificare i valori per l'esempio hello:
 
    * Nome dell'account di archiviazione.
 
-   * Posizione dell'account di archiviazione.
+   * Posizione dell'account di archiviazione hello.
 
-   * Descrizione dell'account di archiviazione.
+   * Descrizione dell'account di archiviazione hello.
 
-   * Sottoscrizione a cui appartiene l'account di archiviazione.
+   * account di archiviazione di Hello sottoscrizione toowhich hello appartiene.
 
-4. Fare clic su **OK** per chiudere la finestra di dialogo **Nuovo Account di archiviazione**.
+4. Fare clic su **OK** tooclose hello **nuovo Account di archiviazione** finestra di dialogo.
 
-Potrebbero volerci alcuni minuti per creare l'account di archiviazione. Dopo averlo creato, fare clic su **OK** per chiudere la finestra di dialogo **Aggiungi Account di archiviazione** e il nuovo account di archiviazione verrà aggiunto all'elenco di account di archiviazione disponibili.
+Potrebbe richiedere alcuni minuti per il toobe di account di archiviazione creato. Dopo averlo creato, fare clic su **OK** tooclose hello **Add Storage Account** finestra di dialogo e il nuovo account di archiviazione verrà aggiunto toohello elenco di account di archiviazione disponibile.
 
-## <a name="to-add-an-existing-storage-account-to-the-list"></a>Aggiungere un account di archiviazione esistente all’elenco
-1. Se non si dispone ancora di un account di archiviazione di Azure, crearne uno seguendo i passaggi elencati in **Creare una nuova sezione di account di archiviazione** . In alternativa, è possibile creare un nuovo account di archiviazione nel [portale di gestione di Azure][Azure Management Portal].
+## <a name="tooadd-an-existing-storage-account-toohello-list"></a>tooadd un elenco di toohello account di archiviazione esistente
+1. Se non hai già una risorsa di archiviazione Azure account, crearlo hello passaggi elencati in hello **toocreate una nuova sezione di account di archiviazione** sopra. (In alternativa, è possibile creare un nuovo account di archiviazione in hello [il portale di gestione di Azure][Azure Management Portal].)
 
-2. Nella finestra di dialogo **Account di archiviazione** fare clic su **Aggiungi**.
+2. All'interno di hello **gli account di archiviazione** finestra di dialogo, fare clic su **Aggiungi**.
 
-3. Nella finestra di dialogo **Aggiungi Account di archiviazione** immettere i valori per **Nome** e **Chiave di accesso**. Ci devono essere la chiave dell'account e la chiave di accesso per un account di archiviazione di Azure esistente. Utilizzare la sezione **Archiviazione** del [Portale di gestione di Azure][Azure Management Portal] per visualizzare i nomi degli account di archiviazione e le chiavi. la finestra di dialogo **Aggiungi Account di archiviazione** sarà simile a quella seguente.
+3. All'interno di hello **Add Storage Account** finestra di dialogo, immettere i valori per **nome** e **tasto**. chiave di accesso e sul nome di account Hello deve essere di un account di archiviazione di Azure esistente. Hello utilizzare **archiviazione** sezione di hello [il portale di gestione di Azure] [ Azure Management Portal] tooview nomi account di archiviazione e delle chiavi. Il **Add Storage Account** finestra di dialogo avrà un aspetto simile toohello seguente.
    
    ![][ic719497]
 
-4. Fare clic su **OK** per chiudere la finestra di dialogo **Aggiungi account di archiviazione**.
+4. Fare clic su **OK** tooclose hello **Add Storage Account** finestra di dialogo.
 
-## <a name="to-modify-a-storage-account-to-use-a-new-access-key"></a>Modificare un account di archiviazione per l'utilizzo di una nuova chiave di accesso
-1. Nella finestra di dialogo **Account di archiviazione** scegliere l'account di archiviazione da modificare e quindi fare clic su **Modifica**.
+## <a name="toomodify-a-storage-account-toouse-a-new-access-key"></a>toomodify un toouse di account di archiviazione nuova chiave di accesso
+1. All'interno di hello **gli account di archiviazione** finestra di dialogo, fare clic su account di archiviazione hello che desidera tooedit e quindi fare clic su **modifica**.
 
-2. Nella finestra di dialogo di modifica della **chiave di accesso dell'account di archiviazione**, modificare il valore della **chiave di accesso**.
+2. All'interno di hello **Edit Storage Account Access Key** finestra di dialogo, modificare hello **chiave di accesso** valore.
 
-3. Fare clic su **OK** per chiudere la finestra di dialogo di modifica della **chiave di accesso dell'account di archiviazione**.
+3. Fare clic su **OK** tooclose hello **Edit Storage Account Access Key** finestra di dialogo.
 
-## <a name="to-remove-a-storage-account-from-the-list-maintained-in-eclipse"></a>Per rimuovere un account di archiviazione dall'elenco gestito in Eclipse
-1. Nella finestra di dialogo **Account di archiviazione** fare clic sull'account di archiviazione da modificare e quindi fare clic su **Rimuovi**.
+## <a name="tooremove-a-storage-account-from-hello-list-maintained-in-eclipse"></a>tooremove un account di archiviazione dall'elenco di hello gestito in Eclipse
+1. All'interno di hello **gli account di archiviazione** finestra di dialogo, fare clic su account di archiviazione hello che desidera tooedit e quindi fare clic su **rimuovere**.
 
-2. Fare clic su **OK** quando viene richiesto di rimuovere l'account di archiviazione.
+2. Fare clic su **OK** quando richiesta tooremove hello account di archiviazione.
 
 > [!NOTE]
-> Rimuovendolo tramite la finestra di dialogo **Account di archiviazione**, l'account verrà rimosso solo dall'elenco di account di archiviazione visualizzabili in Eclipse. L'account di archiviazione non viene rimosso dalla sottoscrizione di Azure e potrebbe essere nuovamente visualizzato nell'elenco dopo che Eclipse ricarica i dettagli della sottoscrizione.
+> Rimozione di account di archiviazione hello tramite hello **gli account di archiviazione** finestra di dialogo verrà rimosso solo dall'elenco di hello degli account di archiviazione visualizzabile in Eclipse. Non rimuove account di archiviazione hello dalla sottoscrizione di Azure. Inoltre, account di archiviazione hello venga visualizzato nuovamente nell'elenco dopo che Eclipse ricarica i dettagli di hello della sottoscrizione.
 > 
 > 
 
 ## <a name="see-also"></a>Vedere anche
 [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]
 
-[Installazione di Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse] 
+[L'installazione di hello Azure Toolkit per Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
 [Creare un'applicazione Hello World per Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
-Per altre informazioni su come usare Azure con Java, vedere il [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
+Per ulteriori informazioni sull'uso di Azure con Java, vedere hello [Centro per sviluppatori Java di Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -105,8 +105,8 @@ Per altre informazioni su come usare Azure con Java, vedere il [Centro per svilu
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[What's New in hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 

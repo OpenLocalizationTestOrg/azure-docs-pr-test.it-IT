@@ -1,5 +1,5 @@
 ---
-title: ALM in Azure Machine Learning | Documentazione di Microsoft
+title: in Azure Machine Learning aaaALM | Documenti Microsoft
 description: Applicare le procedure consigliate per la gestione del ciclo di vita dell'applicazione in Azure Machine Learning Studio
 keywords: ALM, AML, Azure ML, Gestione del ciclo di vita dell'applicazione, Controllo delle versioni
 services: machine-learning
@@ -15,88 +15,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/27/2016
 ms.author: haining
-ms.openlocfilehash: 7dc337c5aa03a9a609b4ca5d811442c99c75878f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99470ff72fea7ab59d9d44f3fded7b9dd49a38c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-lifecycle-management-in-azure-machine-learning-studio"></a>Gestione del ciclo di vita dell'applicazione in Azure Machine Learning Studio
-Azure Machine Learning Studio è uno strumento per lo sviluppo di esperimenti di Machine Learning che siano operativi nel cloud di Azure. Si tratta di una specie di fusione del servizio cloud scalabile e dell'IDE di Visual Studio in un'unica piattaforma. È possibile incorporare le procedure ALM (gestione del ciclo di vita dell'applicazione) standard, dal controllo delle versioni delle varie risorse all'esecuzione e distribuzione automatica in Azure Machine Learning Studio. Questo articolo descrive alcune opzioni e approcci.
+Azure Machine Learning Studio è uno strumento per lo sviluppo di esperimenti di machine learning che sono operativi nella piattaforma di cloud di Azure hello. È ad esempio hello IDE di Visual Studio e il servizio cloud scalabili unite in un'unica piattaforma. È possibile incorporare procedure standard di Application Lifecycle Management (ALM), dal controllo delle versioni delle varie risorse tooautomated esecuzione e la distribuzione, in Azure Machine Learning Studio. In questo articolo vengono descritte alcune delle opzioni di hello e approcci.
 
 ## <a name="versioning-experiment"></a>Controllo della versione degli esperimenti
-Esistono due metodi consigliati per controllare la versione degli esperimenti. È possibile fare affidamento sulla cronologia di esecuzione integrata o esportare l'esperimento nel formato JSON (JavaScript Object Notation) e gestirlo esternamente. Ecco vantaggi e svantaggi di ogni approccio.
+Esistono due metodi consigliati tooversion gli esperimenti. È possibile basarsi sulla cronologia di esecuzione predefinita, o esportare esperimento hello in formato JavaScript Object Notation (JSON) e gestirlo esternamente. Ecco vantaggi e svantaggi di ogni approccio.
 
 ### <a name="experiment-snapshots-using-run-history"></a>Snapshot dell'esperimento tramite la cronologia di esecuzione
-Nel modello di esecuzione dell'esperimento di apprendimento di Azure Machine Learning Studio ogni volta che si fa clic sul pulsante **Esegui** nell'editor dell'esperimento viene inviato uno snapshot non modificabile dell'esperimento all'utilità di pianificazione del processo. Per visualizzare l'elenco degli snapshot, fare clic sul pulsante **Cronologia di esecuzione** sulla barra dei comandi dell'editor dell'esperimento.
+Nel modello di esecuzione hello di hello learning di Azure Machine Learning Studio esperimento, ogni volta che si fa clic su hello **eseguire** pulsante nell'editor di sperimentazione hello, uno snapshot non modificabile di sperimentazione hello viene inviato toohello pianificatore di processi. È possibile visualizzare l'elenco di snapshot, fare clic su hello **eseguire cronologia** pulsante sulla barra dei comandi di hello in vista dell'editor hello esperimento.
 
 ![Pulsante Cronologia di esecuzione](media/machine-learning-version-control/runhistory.png)
 
-È quindi possibile aprire lo snapshot in modalità bloccata facendo clic sul nome che lo stesso aveva nel momento in cui l'esperimento è stato inviato per l'esecuzione e lo snapshot acquisito. Si noti che è possibile modificare solo il primo elemento nell'elenco, che rappresenta l'esperimento corrente. Si osservi anche che ogni snapshot può presentare diversi stati, tra cui Completato (esecuzione parziale), Non riuscito, Non riuscito (esecuzione parziale) o Bozza.
+È possibile quindi snapshot hello aperto in modalità bloccato facendo clic sul nome hello dell'esperimento hello all'esperimento di hello hello ora è stato inviato toorun e hello dello snapshot. Si noti che solo hello primo elemento nell'elenco di hello, che rappresenta l'esperimento corrente hello, è in uno stato modificabile. Si osservi anche che ogni snapshot può presentare diversi stati, tra cui Completato (esecuzione parziale), Non riuscito, Non riuscito (esecuzione parziale) o Bozza.
 
 ![Elenco Cronologia di esecuzione](media/machine-learning-version-control/runhistorylist.png)
 
-Dopo averlo aperto, è possibile salvare l'esperimento dello snapshot come nuovo esperimento e quindi modificarlo. Se lo snapshot dell'esperimento contiene risorse come modelli sottoposti a training, trasformazione, set di dati e così via, che dispongono quindi di versioni aggiornate, lo snapshot mantiene i riferimenti della versione originale, ovvero del momento della sua acquisizione. Se si salva lo snapshot bloccato come nuovo esperimento, Azure Machine Learning Studio rileva l'esistenza di una versione più recente di queste risorse e le aggiorna automaticamente nel nuovo esperimento.
+Dopo che è aperto, è possibile salvare hello snapshot esperimento come un esperimento di nuovo e quindi modificarlo. Se lo snapshot esperimento contiene risorse, ad esempio un modello con training, trasformazione o set di dati che dispongano di versioni aggiornate, snapshot hello mantenere versione originale di hello riferimenti toohello hello dello snapshot. Se si salva hello bloccato snapshot come un esperimento di nuovo, Azure Machine Learning Studio rileva l'esistenza di hello di una versione più recente di queste risorse e aggiorna automaticamente nell'esperimento nuovo hello.
 
-Se si elimina l'esperimento, vengono eliminati tutti i relativi snapshot.
+Se si elimina l'esperimento hello, vengono eliminati tutti gli snapshot di tale esperimento.
 
 ### <a name="exportimport-experiment-in-json-format"></a>Esportare/importare un esperimento in formato JSON
-Gli snapshot della cronologia di esecuzione mantengono una versione non modificabile dell'esperimento in Azure Machine Learning Studio ogni volta che vengono inviati per l'esecuzione. È anche possibile salvare una copia locale dell'esperimento e archiviarla nel sistema di controllo di origine preferito, come Team Foundation Server, e successivamente ricreare un esperimento da tale file locale. A questo scopo possono essere utilizzati i commandlet di [Azure Machine Learning PowerShell](http://aka.ms/amlps) [*Export-AmlExperimentGraph*](https://github.com/hning86/azuremlps#export-amlexperimentgraph) e [*Import-AmlExperimentGraph*](https://github.com/hning86/azuremlps#import-amlexperimentgraph).
+gli snapshot della cronologia di esecuzione Hello mantenere una versione non modificabile di hello esperimento in Azure Machine Learning Studio ogni volta che viene inviato toorun. È possibile inoltre salvare una copia locale di sperimentazione hello archiviarlo nel sistema di controllo origine preferito tooyour, ad esempio Team Foundation Server e ricreare un esperimento dai file locali in un secondo momento. È possibile utilizzare hello [Azure Machine Learning PowerShell](http://aka.ms/amlps) cmdlet [ *esportazione AmlExperimentGraph* ](https://github.com/hning86/azuremlps#export-amlexperimentgraph) e [  *Importazione AmlExperimentGraph* ](https://github.com/hning86/azuremlps#import-amlexperimentgraph) tooaccomplish che.
 
-Il file JSON è una rappresentazione testuale del grafico dell'esperimento contenente il riferimento agli asset nell'area di lavoro, ad esempio set di dati o modelli sottoposti a training. Non contiene una versione serializzata dell'asset. Se si tenta di importare nuovamente il documento JSON nell'area di lavoro, gli asset referenziati devono già esistere e avere gli stessi ID asset referenziati nell'esperimento. In caso contrario non sarà possibile accedere all'esperimento importato.
+file JSON Hello è una rappresentazione testuale di hello sperimentare grafico, che potrebbe includere un riferimento tooassets nell'area di lavoro di hello, ad esempio un set di dati o un modello con training. Non contiene una versione serializzata di asset hello. Se si tenta di documento JSON di hello tooimport indietro nell'area di lavoro di hello, asset hello a cui fa riferimento deve essere già esistente con hello stesso asset ID a cui fa riferimento nell'esperimento hello. In caso contrario non sarà in grado di tooaccess hello importato esperimento.
 
 ## <a name="versioning-trained-model"></a>Controllo della versione del modello sottoposto a training
-Un modello sottoposto a training in Azure Machine Learning viene serializzato in un formato noto come file .iLearner e archiviato nell'account di archiviazione BLOB di Azure associato all'area di lavoro. Un modo per ottenere una copia del file iLearner è usare l'API di ripetizione del training. [Questo articolo](machine-learning-retrain-models-programmatically.md) spiega il funzionamento dell'API di ripetizione del training. Procedura generale:
+Un modello con Training in Azure Machine Learning viene serializzato in un formato noto come un file .iLearner e viene archiviato nell'account di archiviazione Blob di Azure hello associati hello area di lavoro. Un modo tooget una copia del file .iLearner hello viene eseguita tramite hello ripetizione di training API. [In questo articolo](machine-learning-retrain-models-programmatically.md) illustra il funzionamento hello ripetizione di training API. passaggi di alto livello Hello:
 
 1. Impostare l'esperimento di training.
-2. Aggiungere la porta di output del servizio Web al modulo Train Model o al modulo che genera il modello sottoposto a training, ad esempio Tune Model Hyperparameter (Regola iperparametri del modello) o Create R Model (Crea modello R).
+2. Aggiungere un modulo Train Model toohello di web service output porta o un modulo hello che produce modello con training hello, ad esempio ottimizzare modello Hyperparameter o Create R Model.
 3. Eseguire l'esperimento di training e quindi distribuirlo come servizio Web di training del modello.
-4. Chiamare l'endpoint BES del servizio Web di training e specificare il nome del file .iLearner desiderato, nonché la posizione dell'account di archiviazione BLOB in cui verrà archiviato.
-5. Raccogliere il file .iLearner generato al termine della chiamata BES.
+4. Chiamare hello BES endpoint di hello training servizio web e specificare nome del file hello .iLearner desiderato e posizione dell'account di archiviazione Blob in cui verrà archiviata.
+5. Al termine del raccolto hello prodotto .iLearner file dopo la chiamata hello BES.
 
-È possibile recuperare il file .iLearner tramite il commandlet di PowerShell [*Download-AmlExperimentNodeOutput*](https://github.com/hning86/azuremlps#download-amlexperimentnodeoutput). Questa operazione potrebbe essere più semplice se si desidera ottenere una copia del file iLearner senza la necessità di ripetere il training del modello a livello di codice.
+File di un altro modo tooretrieve hello .iLearner è tramite il cmdlet di PowerShell hello [ *Download AmlExperimentNodeOutput*](https://github.com/hning86/azuremlps#download-amlexperimentnodeoutput). Questo potrebbe essere più semplice se si desidera tooget una copia di hello .iLearner file senza modello hello tooretrain necessità di hello a livello di codice.
 
-Dopo aver creato il file .iLearner contenente il modello con training, è possibile applicare la propria strategia di controllo delle versioni. La strategia può essere molto semplice, come applicare un prefisso o un suffisso quale convenzione di denominazione e lasciare il file .iLearner nell'archiviazione BLOB, oppure è possibile copiarlo o importarlo nel sistema di controllo delle versioni.
+Dopo aver hello .iLearner contenente modello con training hello, è quindi possibile utilizzare la propria strategia di controllo delle versioni. strategia di Hello può essere semplice come l'applicazione di un precedente/suffisso come una convenzione di denominazione e lasciando solo il file .iLearner hello nell'archiviazione Blob o copia/importandoli nel sistema di controllo delle versioni.
 
-Il file .iLearner salvato può quindi essere usato per la valutazione tramite i servizi Web distribuiti.
+file di .iLearner salvato Hello può quindi essere utilizzato per il punteggio tramite servizi web distribuiti.
 
 ## <a name="versioning-web-service"></a>Controllo della versione del servizio Web
-È possibile distribuire due tipi di servizi Web da un esperimento di Azure Machine Learning. Il servizio Web classico è strettamente abbinato all'esperimento e all'area di lavoro. Il nuovo servizio Web usa il framework di Azure Resource Manager e non è più abbinato all'esperimento o all'area di lavoro originale.
+È possibile distribuire due tipi di servizi Web da un esperimento di Azure Machine Learning. servizio web classico Hello è strettamente con esperimento hello come area di lavoro hello. nuovo servizio web di Hello utilizza il framework di gestione risorse di Azure hello e non è accoppiato con area di lavoro di hello o esperimento originale hello.
 
 ### <a name="classic-web-service"></a>Servizio Web classico
-Per controllare la versione di un servizio Web classico, è possibile usare il costrutto dell'endpoint del servizio Web. Ecco un metodo tipico:
+tooversion un servizio web classico, è possibile usufruire di costrutto di endpoint servizio web hello. Ecco un metodo tipico:
 
 1. Dall'esperimento predittivo, distribuire un nuovo servizio Web classico che contiene un endpoint predefinito.
-2. È possibile creare un nuovo endpoint denominato ep2, che espone la versione corrente del modello sottoposto a training o dell'esperimento.
+2. Si crea un nuovo endpoint denominato ep2, che espone versione corrente di hello di hello esperimento o training del modello.
 3. È necessario tornare indietro e aggiornare l'esperimento predittivo e il modello sottoposto a training.
-4. È possibile ridistribuire l'esperimento predittivo, che aggiornerà l'endpoint predefinito. Ciò non incide sull'ep2.
-5. Creare un endpoint aggiuntivo denominato ep3, che espone la nuova versione del modello sottoposto a training e dell'esperimento.
-6. Se necessario, tornare al passaggio 3.
+4. Si ridistribuisce l'esperimento predittiva hello, che verrà quindi aggiornare l'endpoint predefinito hello. Ciò non incide sull'ep2.
+5. Si crea un endpoint aggiuntivo denominato ep3, che espone una nuova versione di hello dell'esperimento hello e il modello con training.
+6. Tornare indietro toostep 3 se necessario.
 
-Nel tempo potrebbero essere creati molti endpoint nello stesso servizio Web. Ciascun endpoint rappresenta una copia temporizzata dell'esperimento contenente la versione temporizzata del modello sottoposto a training. È quindi possibile usare la logica esterna per determinare l'endpoint da chiamare, che comporta la selezione di una versione del modello sottoposto a training per l'esecuzione della valutazione.
+Nel corso del tempo, potrebbe essere creati molti nel hello stesso al servizio web. Ogni endpoint rappresenta una copia in un momento di sperimentazione hello contenente hello temporizzati nella versione del modello con training hello. È quindi possibile utilizzare toodetermine logica esterna che toocall endpoint, che comporta la selezione di una versione di hello training del modello per l'esecuzione dell'assegnazione punteggio hello.
 
-È anche possibile creare numerosi endpoint del servizio Web identici e quindi riempire diverse versioni del file .iLearner nell'endpoint per ottenere un effetto simile. [Questo articolo](machine-learning-create-models-and-endpoints-with-powershell.md) illustra in modo più dettagliato come eseguire questa operazione.
+È possibile inoltre creare molti endpoint del servizio web identici e quindi applicare patch versioni diverse di hello .iLearner file toohello endpoint tooachieve paragonabile. [In questo articolo](machine-learning-create-models-and-endpoints-with-powershell.md) viene illustrato in dettaglio come tooaccomplish che.
 
 ### <a name="new-web-service"></a>Nuovo servizio Web
-Se si crea un nuovo servizio Web basato su Azure Resource Manager, il costrutto dell'endpoint non è più disponibile. In alternativa è possibile generare il file WSD (definizione del servizio Web) in formato JSON dall'esperimento predittivo tramite il commandlet di PowerShell [Export-AmlWebServiceDefinitionFromExperiment](https://github.com/hning86/azuremlps#export-amlwebservicedefinitionfromexperiment) o [*Export-AzureRmMlWebservice*](https://msdn.microsoft.com/library/azure/mt767935.aspx) da un servizio Web distribuito basato su Resource Manager.
+Se si crea un nuovo servizio web basato su Gestione risorse di Azure, hello endpoint costrutto non è più disponibile. In alternativa, è possibile generare file di definizione (WSD) del servizio web, in formato JSON, dall'esperimento usando hello predittiva [esportazione AmlWebServiceDefinitionFromExperiment](https://github.com/hning86/azuremlps#export-amlwebservicedefinitionfromexperiment) cmdlet di PowerShell, oppure utilizzando hello [ *Esportazione AzureRmMlWebservice* ](https://msdn.microsoft.com/library/azure/mt767935.aspx) cmdlet di PowerShell da un servizio web basato su Gestione risorse distribuite.
 
-Dopo aver esportato il file WSD e aver eseguito il relativo controllo della versione, è anche possibile distribuire il file WSD come nuovo servizio Web in un diverso piano di servizio Web di un'altra area di Azure. Assicurarsi semplicemente di specificare la configurazione appropriata per l'account di archiviazione, nonché l'ID del nuovo piano di servizio Web. Per riempire diversi file .iLearner, è possibile modificare il file WSD e aggiornare il riferimento al percorso del modello sottoposto a training, da distribuire come nuovo servizio Web.
+Dopo aver esportato hello controllare tale versione e il file WSD, è inoltre possibile distribuire hello WSD come un nuovo servizio web in un piano di servizio web diversi in un'area diversa di Azure. È sufficiente Assicurarsi che è specificare l'account di archiviazione appropriato hello configurazione nonché hello web nuovo ID del piano di servizio toopatch .iLearner diversi file, è possibile modificare il file WSD hello e riferimento al percorso di aggiornamento hello di hello eseguito il training del modello e distribuirlo come un nuovo servizio web.
 
 ## <a name="automate-experiment-execution-and-deployment"></a>Automatizzare la distribuzione e l'esecuzione dell'esperimento
-Un aspetto importante di ALM è la possibilità di automatizzare il processo di distribuzione ed esecuzione dell'applicazione. In Azure Machine Learning è possibile eseguire questa operazione tramite il [modulo di PowerShell](http://aka.ms/amlps). Di seguito è riportato un esempio di procedure complete riguardanti un processo automatizzato di esecuzione/distribuzione standard di ALM tramite il [modulo PowerShell di Azure Machine Learning Studio](http://aka.ms/amlps). Ogni passaggio è collegato a uno o più commandlet di PowerShell che possono essere usati per portare a termine questa operazione.
+Un aspetto importante di ALM è esecuzione hello tooautomate in grado di toobe e processo di distribuzione di un'applicazione hello. In Azure Machine Learning, è possibile effettuare questa operazione utilizzando hello [modulo PowerShell](http://aka.ms/amlps). Di seguito è riportato un esempio di passaggi end-to-end che risultano rilevanti tooa del processo di esecuzione/distribuzione standard ALM automatizzata con hello [modulo PowerShell di Azure Machine Learning Studio](http://aka.ms/amlps). Ogni passaggio è collegato tooone o più cmdlet PowerShell che è possibile utilizzare tooaccomplish passaggio.
 
 1. [Caricare un set di dati](https://github.com/hning86/azuremlps#upload-amldataset).
-2. Copiare un esperimento di training nell'area di lavoro da un'[area di lavoro](https://github.com/hning86/azuremlps#copy-amlexperiment) o dalla [raccolta](https://github.com/hning86/azuremlps#copy-amlexperimentfromgallery), oppure [importare](https://github.com/hning86/azuremlps#import-amlexperimentgraph) un esperimento [esportato](https://github.com/hning86/azuremlps#export-amlexperimentgraph) dal disco locale.
-3. [Aggiornare il set di dati](https://github.com/hning86/azuremlps#update-amlexperimentuserasset) nell'esperimento di training.
-4. [Eseguire l'esperimento di training](https://github.com/hning86/azuremlps#start-amlexperiment).
-5. [Promuovere il modello sottoposto a training](https://github.com/hning86/azuremlps#promote-amltrainedmodel).
-6. [Copiare un esperimento predittivo](https://github.com/hning86/azuremlps#copy-amlexperiment) nell'area di lavoro.
-7. [Aggiornare il modello sottoposto a training](https://github.com/hning86/azuremlps#update-amlexperimentuserasset) nell'esperimento predittivo.
-8. [Eseguire l'esperimento predittivo](https://github.com/hning86/azuremlps#start-amlexperiment).
-9. [Distribuire un servizio Web](https://github.com/hning86/azuremlps#new-amlwebservice) dall'esperimento predittivo.
-10. Testare l'endpoint [RRS](https://github.com/hning86/azuremlps#invoke-amlwebservicerrsendpoint) o [BES](https://github.com/hning86/azuremlps#invoke-amlwebservicebesendpoint) del servizio Web.
+2. Copiare un esperimento di training hello area di lavoro da un [dell'area di lavoro](https://github.com/hning86/azuremlps#copy-amlexperiment) o da [raccolta](https://github.com/hning86/azuremlps#copy-amlexperimentfromgallery), o [importare](https://github.com/hning86/azuremlps#import-amlexperimentgraph) un [esportato](https://github.com/hning86/azuremlps#export-amlexperimentgraph) sperimentare da disco locale.
+3. [Aggiornare i set di dati hello](https://github.com/hning86/azuremlps#update-amlexperimentuserasset) nell'esperimento di training hello.
+4. [Eseguire l'esperimento di training hello](https://github.com/hning86/azuremlps#start-amlexperiment).
+5. [Alzare di livello del modello con training hello](https://github.com/hning86/azuremlps#promote-amltrainedmodel).
+6. [Copiare un esperimento predittivo](https://github.com/hning86/azuremlps#copy-amlexperiment) nell'area di lavoro hello.
+7. [Training modello di aggiornamento hello](https://github.com/hning86/azuremlps#update-amlexperimentuserasset) nell'esperimento predittiva hello.
+8. [Eseguire l'esperimento predittiva hello](https://github.com/hning86/azuremlps#start-amlexperiment).
+9. [Distribuire un servizio web](https://github.com/hning86/azuremlps#new-amlwebservice) da esperimento predittiva hello.
+10. Test di servizio web hello [RR](https://github.com/hning86/azuremlps#invoke-amlwebservicerrsendpoint) o [BES](https://github.com/hning86/azuremlps#invoke-amlwebservicebesendpoint) endpoint.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Scaricare il modulo [Azure Machine Learning Studio PowerShell](http://aka.ms/amlps) e avviare l'automazione delle attività ALM.
-* Informazioni su come [creare e gestire un numero elevato di modelli ML usando un singolo esperimento](machine-learning-create-models-and-endpoints-with-powershell.md) tramite PowerShell e l'API di ripetizione del training.
+* Scaricare hello [Azure Machine Learning Studio PowerShell](http://aka.ms/amlps) tooautomate modulo e avviare le attività ALM.
+* Informazioni su come troppo[creare e gestire un numero elevato di modelli di Machine Learning tramite un esperimento di singolo](machine-learning-create-models-and-endpoints-with-powershell.md) tramite PowerShell e API di ripetizione di training.
 * Altre informazioni sulla [distribuzione di servizi Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).

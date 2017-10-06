@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione di un nome DNS attivo al Servizio app di Azure | Microsoft Docs
-description: "Informazioni su come eseguire la migrazione di un nome di dominio DNS personalizzato già assegnato a un sito live al Servizio app di Azure senza tempi di inattività."
+title: aaaMigrate un DNS active nome tooAzure servizio App | Documenti Microsoft
+description: "Informazioni su come un nome di dominio DNS personalizzato che è già assegnato tooa toomigrate live tooAzure sito servizio App senza alcun tempo di inattività."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -15,116 +15,116 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: cephalin
-ms.openlocfilehash: 89308c1c684a639950467b72d26703cc07c50c14
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fbc4cc30dcb87efb2e867cb65c5404b667661e62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-an-active-dns-name-to-azure-app-service"></a>Eseguire la migrazione di un nome DNS attivo al Servizio app di Azure
+# <a name="migrate-an-active-dns-name-tooazure-app-service"></a>Eseguire la migrazione di un active tooAzure di nome DNS del servizio App
 
-Questo articolo descrive come eseguire la migrazione di un nome DNS attivo al [Servizio app di Azure](../app-service/app-service-value-prop-what-is.md) senza tempi di inattività.
+Questo articolo viene illustrato come un DNS active toomigrate denominati troppo[Azure App Service](../app-service/app-service-value-prop-what-is.md) senza alcun tempo di inattività.
 
-Quando si esegue la migrazione di un sito live e del relativo nome di dominio DNS al Servizio app di Azure, tale nome DNS è già usato dal traffico live. È possibile evitare tempi di inattività nella risoluzione DNS durante la migrazione associando preventivamente il nome DNS attivo al Servizio app di Azure.
+Quando si esegue la migrazione di un sito in tempo reale e il relativo tooApp nome di dominio DNS del servizio, tale nome DNS è già in uso presso il traffico in tempo reale. È possibile evitare periodi di inattività per la risoluzione DNS durante la migrazione di hello associando hello active tooyour di nome DNS del servizio App app modalità preemptive.
 
-Se i tempi di inattività non rappresentano un problema nella risoluzione DNS, vedere [Eseguire il mapping di un nome DNS personalizzato esistente alle app Web di Azure](app-service-web-tutorial-custom-domain.md).
+Se non si ritiene che la risoluzione DNS periodi di inattività, vedere [mappare un esistente personalizzato DNS nome tooAzure App Web](app-service-web-tutorial-custom-domain.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa procedura:
+toocomplete questo procedure:
 
 - [Verificare che l'app del servizio app non sia inclusa nel livello GRATUITO](app-service-web-tutorial-custom-domain.md#checkpricing).
 
-## <a name="bind-the-domain-name-preemptively"></a>Associare preventivamente il nome del dominio
+## <a name="bind-hello-domain-name-preemptively"></a>Associare il nome di dominio hello modalità preemptive
 
-Quando si associa preventivamente un dominio personalizzato, è necessario eseguire entrambe le operazioni seguenti prima di apportare modifiche ai record DNS:
+Quando si associa un dominio personalizzato modalità preemptive, eseguire entrambe le operazioni seguenti hello prima di apportare modifiche ai record DNS:
 
 - Verificare la proprietà del dominio
-- Abilitare il nome di dominio per l'app
+- Abilita hello nome di dominio per l'app
 
-Dopo aver eseguito la migrazione del nome DNS personalizzato dal sito precedente all'app del servizio app, non si verificheranno più tempi di inattività nella risoluzione DNS.
+Quando si migra infine il nome DNS personalizzato hello vecchio sito toohello app del servizio App, non saranno presenti tempi di inattività nella risoluzione DNS.
 
 [!INCLUDE [Access DNS records with domain provider](../../includes/app-service-web-access-dns-records.md)]
 
 ### <a name="create-domain-verification-record"></a>Creare un record di verifica del dominio
 
-Per verificare la proprietà del dominio, aggiungere un record TXT. Il record TXT esegue il mapping da _awverify.&lt;subdomain>_ a _&lt;appname>.azurewebsites.net_. 
+la proprietà dominio tooverify, Aggiungi un TXT record. esegue il mapping di Hello record TXT da _awverify.&lt; sottodominio >_ too_&lt;appname >. azurewebsites.net_. 
 
-Il record TXT necessario varia a seconda del record DNS di cui si vuole eseguire la migrazione. Ad esempio, vedere la tabella seguente (`@` rappresenta in genere il dominio radice):  
+Hello record TXT, è necessario dipende dal record DNS che si desidera toomigrate hello. Per esempi, vedere hello nella tabella seguente (`@` in genere rappresenta hello dominio principale):  
 
 | Esempio di record DNS | Host TXT | Valore TXT |
 | - | - | - |
 | @ (radice) | _awverify_ | _&lt;appname>.azurewebsites.net_ |
-| www (sottodominio) | _awverify.www_ | _&lt;appname>.azurewebsites.net_ |
-| \* (wildcard) | _awverify.\*_ | _&lt;appname>.azurewebsites.net_ |
+| www (sottodominio) | _awverify.www_ | _&lt;appname&gt;.azurewebsites.net_ |
+| \* (wildcard) | _awverify.\*_ | _&lt;appname&gt;.azurewebsites.net_ |
 
-Nella pagina dei record DNS prendere nota del tipo di record del nome DNS di cui si vuole eseguire la migrazione. Il servizio app supporta i mapping da record CNAME e A.
+Nella pagina di record DNS, tipo di record di hello del nome DNS desiderato toomigrate hello nota. Il servizio app supporta i mapping da record CNAME e A.
 
-### <a name="enable-the-domain-for-your-app"></a>Abilitare il dominio per l'app
+### <a name="enable-hello-domain-for-your-app"></a>Abilitare hello dominio per l'app
 
-Nel riquadro di spostamento a sinistra della pagina dell'app nel [portale di Azure](https://portal.azure.com) selezionare **Domini personalizzati**. 
+In hello [portale di Azure](https://portal.azure.com)in hello spostamento a sinistra della pagina app hello, selezionare **i domini personalizzati**. 
 
 ![Menu del dominio personalizzato](./media/app-service-web-tutorial-custom-domain/custom-domain-menu.png)
 
-Nella pagina **Domini personalizzati** selezionare l'icona **+** accanto ad **Aggiungi il nome host**.
+In hello **i domini personalizzati** pagina, seleziona hello  **+**  icona Avanti troppo**aggiungere hostname**.
 
 ![Aggiunta del nome host](./media/app-service-web-tutorial-custom-domain/add-host-name-cname.png)
 
-Digitare il nome di dominio completo al quale è stato aggiunto un record TXT, ad esempio `www.contoso.com`. Per un dominio con caratteri jolly (ad esempio \*. contoso.com), è possibile usare un nome DNS qualsiasi che corrisponda al dominio con caratteri jolly. 
+Nome dominio completo del tipo hello aggiunti record TXT hello, ad esempio `www.contoso.com`. Per un dominio con caratteri jolly (ad esempio \*. contoso.com), è possibile utilizzare qualsiasi nome DNS al dominio con caratteri jolly hello. 
 
 Selezionare **Convalida**.
 
-Viene attivato il pulsante **Aggiungi il nome host**. 
+Hello **aggiungere hostname** pulsante è attivato. 
 
-Assicurarsi che **Tipo di record del nome host** sia impostato sul tipo di record DNS di cui si vuole eseguire la migrazione.
+Assicurarsi che **tipo di record Hostname** è di tipo di record DNS toohello desiderato toomigrate impostato.
 
 Selezionare **Aggiungi il nome host**.
 
-![Aggiunta del nome DNS all'app](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
+![Aggiungere app toohello di nome DNS](./media/app-service-web-tutorial-custom-domain/validate-domain-name-cname.png)
 
-La visualizzazione del nuovo nome host nella pagina **Domini personalizzati** dell'app potrebbe richiedere qualche minuto. Provare ad aggiornare il browser per visualizzare i dati più recenti.
+Potrebbe richiedere del tempo hello nuovo nome host toobe riportate nella finestra dell'applicazione hello **i domini personalizzati** pagina. Provare ad aggiornare dati hello tooupdate di hello del browser.
 
 ![Record CNAME aggiunto](./media/app-service-web-tutorial-custom-domain/cname-record-added.png)
 
 Il dominio DNS personalizzato è ora abilitato nell'app Azure. 
 
-## <a name="remap-the-active-dns-name"></a>Modificare il mapping del nome DNS attivo
+## <a name="remap-hello-active-dns-name"></a>Modificare il nome DNS active hello mapping
 
-A questo punto resta solo da modificare il mapping del record DNS attivo in modo che faccia riferimento al servizio app. Per il momento si riferisce ancora al sito precedente.
+Hello solo toodo a sinistra di cosa è mapping l'active tooApp di toopoint record DNS del servizio. Destra a questo punto, fa ancora riferimento tooyour vecchio sito.
 
 <a name="info"></a>
 
-### <a name="copy-the-apps-ip-address-a-record-only"></a>Copiare l'indirizzo IP dell'app (solo record A)
+### <a name="copy-hello-apps-ip-address-a-record-only"></a>Copiare l'indirizzo IP dell'applicazione hello (solo un record)
 
 Se si vuole modificare il mapping di un record CNAME, ignorare questa sezione. 
 
-Per modificare il mapping di un record A, è necessario l'indirizzo IP esterno dell'app del servizio app, visualizzato nella pagina **Domini personalizzati**.
+tooremap un record, è necessario indirizzo IP esterno dell'applicazione di servizio App hello, come illustrato nella hello **i domini personalizzati** pagina.
 
-Chiudere la pagina **Aggiungi il nome host** selezionando **X** nell'angolo in alto a destra. 
+Chiude hello **aggiungere hostname** selezionando **X** nell'angolo superiore destro di hello. 
 
-Nella pagina **Domini personalizzati**, copiare l'indirizzo IP dell'applicazione.
+In hello **i domini personalizzati** copiare l'indirizzo IP dell'applicazione hello.
 
-![Passaggio all'app di Azure nel portale](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
+![Spostamento del portale tooAzure app](./media/app-service-web-tutorial-custom-domain/mapping-information.png)
 
-### <a name="update-the-dns-record"></a>Aggiornare il record DNS
+### <a name="update-hello-dns-record"></a>Aggiornamento del record DNS hello
 
-Tornare alla pagina dei record DNS del provider di dominio e selezionare il record DNS per il quale si vuole modificare il mapping.
+Nella pagina di record DNS hello del provider di dominio, selezionare hello tooremap di record DNS.
 
-Per l'esempio di dominio radice `contoso.com`, modificare il mapping del record A o CNAME come negli esempi illustrati nella tabella seguente: 
+Per hello `contoso.com` esempio dominio radice, modificare i record A o CNAME hello, come negli esempi di hello hello nella tabella seguente: 
 
 | Esempio di FQDN | Tipo di record | Host | Valore |
 | - | - | - | - |
-| contoso.com (radice) | Una  | `@` | Indirizzo IP ricavato da [Copiare l'indirizzo IP dell'app](#info) |
+| contoso.com (radice) | Una  | `@` | Indirizzo IP da [indirizzo IP dell'applicazione hello copia](#info) |
 | www.contoso.com (sottodominio) | CNAME | `www` | _&lt;appname>.azurewebsites.net_ |
-| \*.contoso.com (carattere jolly) | CNAME | _\*_ | _&lt;appname>.azurewebsites.net_ |
+| \*.contoso.com (carattere jolly) | CNAME | _\*_ | _&lt;appname&gt;.azurewebsites.net_ |
 
 Salvare le impostazioni.
 
-Le query DNS inizieranno a risolversi nell'app del servizio app immediatamente dopo la propagazione DNS.
+Query DNS devono iniziare a risolvere tooyour app del servizio App immediatamente dopo l'operazione di propagazione DNS.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come associare un certificato SSL personalizzato al servizio app.
+Informazioni su come toobind un SSL personalizzato certificato tooApp servizio.
 
 > [!div class="nextstepaction"]
-> [Associare un certificato SSL personalizzato esistente ad app Web di Azure](app-service-web-tutorial-custom-ssl.md)
+> [Associare un esistente personalizzato SSL certificato tooAzure App Web](app-service-web-tutorial-custom-ssl.md)

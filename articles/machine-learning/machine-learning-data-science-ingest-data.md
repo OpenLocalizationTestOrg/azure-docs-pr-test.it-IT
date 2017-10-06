@@ -1,6 +1,6 @@
 ---
-title: Caricare i dati in ambienti di archiviazione di Azure per l'analisi | Documentazione Microsoft
-description: Spostamento dei dati da e verso l'archiviazione BLOB di Azure
+title: dati aaaLoad in ambienti di archiviazione di Azure per analitica | Documenti Microsoft
+description: Spostare dati tooand dall'archiviazione Blob di Azure
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: 7fbf3bfedca8fa57a5e9428c9399558992b4acbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fea2290991f9fa63d9e46c3a657000e27d95289
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-into-storage-environments-for-analytics"></a>Caricare i dati in ambienti di archiviazione per l'analisi
-Il Processo di analisi scientifica dei dati per i team richiede l'inserimento o il caricamento di dati in una vasta gamma di ambienti di archiviazione diversi per l'elaborazione e l'analisi nei modi più appropriati in ogni fase del processo. Le destinazioni dei dati più comunemente usate per l'elaborazione includono l'archiviazione BLOB di Azure, i database di SQL Azure, SQL Server nella macchina virtuale di Azure, HDInsight (Hadoop) e Azure Machine Learning. 
+Processo di analisi scientifica dei dati di Team Hello richiede che dati caricamento o caricati in un'ampia gamma di archiviazione diversi ambienti toobe elaborato o analizzare in modo più appropriato hello in ogni fase del processo di hello. Le destinazioni dei dati più comunemente usate per l'elaborazione includono l'archiviazione BLOB di Azure, i database di SQL Azure, SQL Server nella macchina virtuale di Azure, HDInsight (Hadoop) e Azure Machine Learning. 
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
-Questo **menu** si collega ad argomenti che descrivono come inserire dati in questi ambienti di destinazione dove i dati vengono archiviati ed elaborati.
+Questo **menu** collegamenti tootopics che descrivono come dati tooingest in questi ambienti in cui i dati hello sono archiviati ed elaborati come destinazione.
 
-Le esigenze aziendali e tecniche specifiche, nonché la posizione iniziale, il formato e le dimensioni dei dati determinano gli ambienti di destinazione in cui i dati devono essere inseriti per raggiungere gli obiettivi dell'analisi. Non è insolito per uno scenario richiedere lo spostamento dei dati tra ambienti diversi per disporre di tutte le attività necessarie per creare un modello predittivo. Questa sequenza di attività può includere, ad esempio, l'esplorazione dei dati, la pre-elaborazione, la pulizia, il sottocampionamento e il training del modello.
+Le esigenze aziendali e tecnici, nonché percorso iniziale hello, formattazione e determina la dimensione dei dati agli ambienti di destinazione hello in quale hello toobe caricamento tooachieve hello obiettivi dell'analisi, è necessario dati. Non è raro che un toobe di dati toorequire scenario spostata tra diversi ambienti tooachieve hello svariati tooconstruct necessarie attività un modello predittivo. Questa sequenza di attività può includere, ad esempio, l'esplorazione dei dati, la pre-elaborazione, la pulizia, il sottocampionamento e il training del modello.
 

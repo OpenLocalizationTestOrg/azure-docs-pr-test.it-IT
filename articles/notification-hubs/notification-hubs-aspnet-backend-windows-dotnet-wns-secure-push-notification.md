@@ -1,6 +1,6 @@
 ---
-title: Push sicuro degli hub di notifica di Azure
-description: Informazioni su come inviare notifiche push sicure in Azure. Gli esempi di codice sono scritti in C# mediante l'API .NET.
+title: aaaAzure notifica hub Secure Push
+description: Informazioni su come toosend sicuro le notifiche push in Azure. Esempi di codice scritti in c# utilizzando hello API .NET.
 documentationcenter: windows
 author: ysxu
 manager: erikre
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 9c626ec1534c4899588150a58c0da57b9d963f6f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6fe16c96d28d75ff698278409fb012472ba6396
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-secure-push"></a>Push sicuro degli hub di notifica di Azure
 > [!div class="op_single_selector"]
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-## <a name="overview"></a>Overview
-Il supporto per le notifiche push in Microsoft Azure consente di accedere a un'infrastruttura push di facile utilizzo, multipiattaforma con scalabilità orizzontale, che semplifica considerevolmente l'implementazione delle notifiche push sia per le applicazioni consumer sia per quelle aziendali per piattaforme mobili.
+## <a name="overview"></a>Panoramica
+Supporto di notifica push di Microsoft Azure consente tooaccess un'infrastruttura push di semplice utilizzo, multipiattaforma e con scalabilità orizzontale, che semplifica notevolmente l'implementazione di hello delle notifiche push per le applicazioni aziendali e per dispositivi mobili piattaforme.
 
-A causa di vincoli normativi o di sicurezza, un'applicazione potrebbe talvolta includere nella notifica informazioni che non è possibile trasmettere attraverso l'infrastruttura di notifiche push standard. In questa esercitazione viene descritto come conseguire la stessa esperienza inviando informazioni sensibili attraverso una connessione autenticata e sicura tra il dispositivo client e il back-end dell'app.
+A causa di vincoli di sicurezza o tooregulatory, un'applicazione potrebbe talvolta tooinclude qualcosa nel notifica hello che non può essere trasmesso tramite l'infrastruttura di notifica push standard hello. In questa esercitazione viene descritto come tooachieve hello stessa esperienza inviando informazioni riservate tramite una connessione autenticata protetta tra il dispositivo di client hello e back-end app hello.
 
-A livello generale, il flusso è il seguente:
+In generale, il flusso di hello è il seguente:
 
-1. Il back-end dell'app:
+1. Hello app back-end:
    * Archivia il payload sicuro nel database back-end.
-   * Invia l'ID di questa notifica al dispositivo (non vengono inviate informazioni sicure).
-2. L'app sul dispositivo, quando riceve la notifica:
-   * Il dispositivo contatta il back-end richiedendo il payload sicuro.
-   * L'app può indicare il payload come una notifica sul dispositivo.
+   * Invia ID hello del dispositivo notifica toohello (viene inviata alcuna informazione protetta).
+2. Hello app sul dispositivo hello, quando si riceve notifica hello:
+   * dispositivo di Hello contatta hello back-end richiedente hello sicura payload.
+   * app Hello possono mostrare payload hello come una notifica sul dispositivo hello.
 
-È importante notare che nel flusso precedente e in questa esercitazione si presuppone che il dispositivo archivi un token di autenticazione nella memoria locale, dopo l’accesso dell'utente. Ciò garantisce un'esperienza completamente lineare, in quanto il dispositivo può recuperare il payload sicuro della notifica tramite questo token. Se invece l'applicazione non archivia i token di autenticazione nel dispositivo o se questi hanno una scadenza, l'app per dispositivo, alla ricezione della notifica, dovrà visualizzare una notifica generica in cui si richiede all'utente di avviare l'app. L'app autentica quindi l'utente e mostra il payload di notifica.
+È importante in hello precedente del flusso e in questa esercitazione, si presuppone che il dispositivo hello toonote memorizza un token di autenticazione nel servizio di archiviazione locale, dopo hello utente effettua l'accesso. In questo modo si garantisce un'esperienza completamente trasparente, come dispositivo hello può recuperare i payload della notifica hello protetto con questo token. Se l'applicazione non archivia i token di autenticazione nel dispositivo hello, o se i token possono essere scaduti, hello app del dispositivo, al momento della ricezione di notifiche di hello deve essere visualizzato una generica notifica conferma hello utente toolaunch hello app. app Hello quindi esegue l'autenticazione utente hello e Mostra il payload di notifica di hello.
 
-In questa esercitazione sul push sicuro viene illustrato come inviare una notifica push in modo sicuro. Poiché i passaggi qui descritti si basano sull'esercitazione [Utilizzo di Hub di notifica per inviare notifiche agli utenti](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) , sarà prima necessario completare i passaggi di quest'ultima.
+Questa esercitazione Secure Push viene illustrato come toosend una notifica push in modo sicuro. Hello esercitazione si basa sulle hello [notifica utenti](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) esercitazione, pertanto è necessario completare i passaggi di hello in tale esercitazione prima.
 
 > [!NOTE]
 > Questa esercitazione presuppone che l'utente abbia creato e configurato l'hub di notifica come descritto in [Introduzione ad Hub di notifica (Windows Store)](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md).
-> Si noti inoltre che Windows Phone 8.1 richiede le credenziali di Windows (non di Windows Phone) e che le attività in background non funzionano in Windows Phone 8.0 o Silverlight 8.1. Per le applicazioni per Windows Store, è possibile ricevere le notifiche tramite un'attività in background solo se per l'app è abilitata la schermata di blocco (fare clic sulla casella di controllo nel manifesto dell'app).
+> Si noti inoltre che Windows Phone 8.1 richiede le credenziali di Windows (non di Windows Phone) e che le attività in background non funzionano in Windows Phone 8.0 o Silverlight 8.1. Per le applicazioni Windows Store, è possibile ricevere notifiche tramite un'attività in background solo se l'applicazione hello è abilitato blocco schermo (scegliere la casella di controllo hello in hello Appmanifest).
 > 
 > 
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-the-windows-phone-project"></a>Modificare il progetto dell'app di Windows Phone
-1. Nel progetto **NotifyUserWindowsPhone** aggiungere il codice seguente al file App.xaml.cs per registrare l'attività di push in background. Aggiungere la seguente riga di codice alla fine del metodo `OnLaunched()` :
+## <a name="modify-hello-windows-phone-project"></a>Modificare hello progetto Windows Phone
+1. In hello **NotifyUserWindowsPhone** del progetto, aggiungere hello attività in background push hello tooregister tooApp.xaml.cs codice seguente. Aggiungere hello successiva riga di codice alla fine hello hello `OnLaunched()` metodo:
    
         RegisterBackgroundTask();
-2. Sempre nel file App.xaml.cs aggiungere il seguente codice immediatamente dopo il metodo `OnLaunched()` :
+2. Ancora in App.xaml.cs, aggiungere hello seguente codice immediatamente dopo hello `OnLaunched()` metodo:
    
         private async void RegisterBackgroundTask()
         {
@@ -73,21 +73,21 @@ In questa esercitazione sul push sicuro viene illustrato come inviare una notifi
                 BackgroundTaskRegistration task = builder.Register();
             }
         }
-3. Aggiungere le seguenti istruzioni `using` all'inizio del file App.xaml.cs:
+3. Aggiungere il seguente hello `using` istruzioni alla parte superiore di hello del file App.xaml.cs hello:
    
         using Windows.Networking.PushNotifications;
         using Windows.ApplicationModel.Background;
-4. Scegliere **Salva tutto** dal menu **File** in Visual Studio.
+4. Da hello **File** menu in Visual Studio, fare clic su **Salva tutto**.
 
-## <a name="create-the-push-background-component"></a>Creare il componente push in background
-Il passaggio successivo consiste nella creazione del componente push in background.
+## <a name="create-hello-push-background-component"></a>Creare hello Push componente in Background
+passaggio successivo Hello è componente di toocreate hello push in background.
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul nodo di primo livello della soluzione (in questo caso **Solution SecurePush**), fare clic su **Aggiungi** e quindi su **Nuovo progetto**.
-2. Espandere **Applicazioni Windows Store**, fare clic su **App di Windows Phone** e quindi su **Componente Windows Runtime (Windows Phone)**. Assegnare al progetto il nome **PushBackgroundComponent** e quindi fare clic su **OK** per creare il progetto.
+1. In Esplora soluzioni, fare clic sul nodo di primo livello della soluzione hello hello (**soluzione SecurePush** in questo caso), quindi fare clic su **Aggiungi**, quindi fare clic su **nuovo progetto**.
+2. Espandere **Applicazioni Windows Store**, fare clic su **App di Windows Phone** e quindi su **Componente Windows Runtime (Windows Phone)**. Progetto hello nome **PushBackgroundComponent**, quindi fare clic su **OK** progetto hello toocreate.
    
     ![][12]
-3. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **PushBackgroundComponent (Windows Phone 8.1)**, quindi fare clic su **Aggiungi** e infine su **Classe**. Assegnare alla nuova classe il nome **PushBackgroundTask.cs**. Fare clic su **Aggiungi** per generare la classe.
-4. Sostituire l'intero contenuto della definizione dello spazio dei nomi di **PushBackgroundComponent** con il seguente codice e sostituire il segnaposto `{back-end endpoint}` con l'endpoint back-end ottenuto durante la distribuzione del back-end:
+3. In Esplora soluzioni fare doppio clic su hello **PushBackgroundComponent (Windows Phone 8.1)** del progetto, quindi fare clic su **Aggiungi**, quindi fare clic su **classe**. Nome nuova classe hello **PushBackgroundTask.cs**. Fare clic su **Aggiungi** classe hello toogenerate.
+4. Sostituire l'intero contenuto di hello di hello **PushBackgroundComponent** definizione dello spazio dei nomi con hello nel codice seguente, sostituendo i segnaposto hello `{back-end endpoint}` con endpoint di back-end hello ottenuto durante la distribuzione del back-end:
    
         public sealed class Notification
             {
@@ -102,7 +102,7 @@ Il passaggio successivo consiste nella creazione del componente push in backgrou
    
                 async void IBackgroundTask.Run(IBackgroundTaskInstance taskInstance)
                 {
-                    // Store the content received from the notification so it can be retrieved from the UI.
+                    // Store hello content received from hello notification so it can be retrieved from hello UI.
                     RawNotification raw = (RawNotification)taskInstance.TriggerDetails;
                     var notificationId = raw.Content;
    
@@ -131,12 +131,12 @@ Il passaggio successivo consiste nella creazione del componente push in backgrou
                     ToastNotificationManager.CreateToastNotifier().Show(toast);
                 }
             }
-5. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **PushBackgroundComponent (Windows Phone 8.1)**, quindi fare clic su **Gestisci pacchetti NuGet**.
-6. Sul lato sinistro fare clic su **Online**.
-7. Nella **casella di ricerca** digitare **Client Http**.
-8. Nell'elenco dei risultati fare clic su **Librerie client HTTP Microsoft** e quindi su **Installa**. Completare l'installazione.
-9. Di nuovo nella **casella di ricerca** di NuGet digitare **Json.net**. Installare il pacchetto **Json.NET** e quindi chiudere la finestra di Gestione pacchetti NuGet.
-10. Aggiungere le seguenti istruzioni `using` all'inizio del file **PushBackgroundTask.cs** :
+5. In Esplora soluzioni fare doppio clic su hello **PushBackgroundComponent (Windows Phone 8.1)** del progetto e quindi fare clic su **Gestisci pacchetti NuGet**.
+6. Sul lato sinistro di hello, fare clic su **Online**.
+7. In hello **ricerca** digitare **Http Client**.
+8. Nell'elenco risultati hello, fare clic su **Microsoft HTTP Client Libraries**, quindi fare clic su **installare**. Completare l'installazione di hello.
+9. In hello NuGet **ricerca** digitare **Json.net**. Installare hello **Json.NET** pacchetto, quindi finestra di gestione pacchetti NuGet hello Chiudi.
+10. Aggiungere il seguente hello `using` le istruzioni nella parte superiore di hello di hello **PushBackgroundTask.cs** file:
     
         using Windows.ApplicationModel.Background;
         using Windows.Networking.PushNotifications;
@@ -146,24 +146,24 @@ Il passaggio successivo consiste nella creazione del componente push in backgrou
         using Newtonsoft.Json;
         using Windows.UI.Notifications;
         using Windows.Data.Xml.Dom;
-11. In Esplora soluzioni fare clic con il pulsante destro del mouse su **Riferimenti** nella cartella del progetto **NotifyUserWindowsPhone (Windows Phone 8.1)**, quindi scegliere **Aggiungi riferimento...**. Nella finestra di dialogo Gestione riferimenti selezionare la casella di controllo accanto a **PushBackgroundComponent**, quindi fare clic su **OK**.
-12. In Esplora soluzioni fare doppio clic sul file **Package.appxmanifest** nel progetto **NotifyUserWindowsPhone (Windows Phone 8.1)**. In **Notifiche** impostare **Popup supportati** su **Sì**.
+11. In Esplora soluzioni, in hello **NotifyUserWindowsPhone (Windows Phone 8.1)** del progetto, fare doppio clic su **riferimenti**, quindi fare clic su **Aggiungi riferimento...** . Nella finestra di dialogo Gestione riferimenti hello casella di controllo hello accanto troppo**PushBackgroundComponent**, quindi fare clic su **OK**.
+12. In Esplora soluzioni fare doppio clic su **package. appxmanifest** in hello **NotifyUserWindowsPhone (Windows Phone 8.1)** progetto. In **notifiche**, impostare **in grado di tipo avviso popup** troppo**Sì**.
     
     ![][3]
-13. Sempre nel file **Package.appxmanifest** fare clic sul menu **Dichiarazioni** nella parte superiore. Nell'elenco a discesa **Dichiarazioni disponibili** fare clic su **Attività di background** e quindi su **Aggiungi**.
+13. Ancora in **package. appxmanifest**, fare clic su hello **dichiarazioni** menu superiore hello. In hello **dichiarazioni disponibili** elenco a discesa, fare clic su **attività in Background**, quindi fare clic su **Aggiungi**.
 14. In **Package.appxmanifest**, in **Proprietà** selezionare **Notifica Push**.
-15. Nel file **Package.appxmanifest**, in **Impostazioni app** digitare **PushBackgroundComponent.PushBackgroundTask** nel campo **Punto di ingresso**.
+15. In **package. appxmanifest**in **impostazioni App**, tipo **PushBackgroundComponent.PushBackgroundTask** in hello **punto di ingresso** campo.
     
     ![][13]
-16. Scegliere **Save All** (Salva tutto) nel menu **File**.
+16. Da hello **File** menu, fare clic su **Salva tutto**.
 
-## <a name="run-the-application"></a>Esecuzione dell'applicazione
-Per eseguire l'applicazione, eseguire le operazioni seguenti:
+## <a name="run-hello-application"></a>Eseguire l'applicazione hello
+toorun applicazione hello, hello seguenti:
 
-1. In Visual Studio eseguire l'applicazione API Web **AppBackend** . Verrà visualizzata una pagina Web ASP.NET.
-2. In Visual Studio eseguire l'app per Windows Phone **NotifyUserWindowsPhone (Windows Phone 8.1)** . Verrà eseguito l'emulatore di Windows Phone e l'app verrà caricata automaticamente.
-3. Nell'interfaccia utente dell'app **NotifyUserWindowsPhone** immettere un nome utente e una password. Può trattarsi di qualsiasi stringa, ma devono avere lo stesso valore.
-4. Nell'interfaccia utente dell'app **NotifyUserWindowsPhone** fare clic su **Log in and register**. Fare clic su **Send push**.
+1. In Visual Studio, eseguire hello **AppBackend** applicazione API Web. Verrà visualizzata una pagina Web ASP.NET.
+2. In Visual Studio, eseguire hello **NotifyUserWindowsPhone (Windows Phone 8.1)** app di Windows Phone. emulatore Windows Phone Hello viene eseguito e carica app hello automaticamente.
+3. In hello **NotifyUserWindowsPhone** app dell'interfaccia utente, immettere un nome utente e password. Può trattarsi di qualsiasi stringa, ma devono essere hello stesso valore.
+4. In hello **NotifyUserWindowsPhone** app dell'interfaccia utente, fare clic su **Accedi e registrare**. Fare clic su **Send push**.
 
 [3]: ./media/notification-hubs-aspnet-backend-windows-dotnet-secure-push/notification-hubs-secure-push3.png
 [12]: ./media/notification-hubs-aspnet-backend-windows-dotnet-secure-push/notification-hubs-secure-push12.png

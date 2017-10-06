@@ -1,6 +1,6 @@
 ---
-title: Soluzioni di Cortana Intelligence Gallery | Documentazione Microsoft
-description: Scoprire soluzioni in Cortana Intelligence Gallery.
+title: Soluzioni di Business Intelligence raccolta aaaCortana | Documenti Microsoft
+description: Individuare le soluzioni in hello Cortana Intelligence Gallery.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 8e180db2ab5fbabf5238b18b1d2866b746eb9994
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2cb6b0892c2eba873fa7e685288dc3b12d1dc981
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-solutions-in-the-cortana-intelligence-gallery"></a>Scoprire soluzioni in Cortana Intelligence Gallery
+# <a name="discover-solutions-in-hello-cortana-intelligence-gallery"></a>L'individuazione di soluzioni hello Cortana Intelligence Gallery
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="solutions"></a>Soluzioni
-Le **[soluzioni](https://gallery.cortanaintelligence.com/solutions)** disponibili in Gallery consentono di creare rapidamente soluzioni di Cortana Intelligence a partire da soluzioni preconfigurate, architetture di riferimento e modelli di progettazione.
-Per usarle al meglio è possibile seguire le istruzioni fornite o rivolgersi a un partner di fiducia.  
+Oggetto  **[soluzione](https://gallery.cortanaintelligence.com/solutions)**  in hello raccolta fornisce una compilazione tooquickly avviare soluzioni di Business Intelligence di Cortana da soluzioni preconfigurate, fanno riferimento le architetture e la progettazione di modelli.
+Renderli personalizzati con le istruzioni inclusa hello o con un in primo piano partner.  
 
 ## <a name="discover"></a>Scoprire
-  Per individuare nella raccolta di soluzioni, aprire il [raccolta](http://gallery.cortanaintelligence.com) e fare clic su **soluzioni** nella parte superiore della home page della raccolta.
+  toobrowse per le soluzioni nella raccolta, aprire hello hello [raccolta](http://gallery.cortanaintelligence.com) e fare clic su **soluzioni** nella parte superiore di hello della home page della Galleria hello.
 
- Il  **[soluzioni](https://gallery.cortanaintelligence.com/solutions)**  pagina Visualizza un elenco delle soluzioni aggiunte più di recente.
-Fare clic su **See all** (Visualizza tutto) per visualizzare tutte le soluzioni.
-In questa pagina è possibile eseguire la ricerca di tutte le soluzioni presenti nella raccolta. È anche possibile eseguire la ricerca selezionando i criteri di filtro a sinistra della pagina e immettendo i termini di ricerca nella parte superiore.
+ Il  **[soluzioni](https://gallery.cortanaintelligence.com/solutions)**  consente di visualizzare un elenco di hello aggiunto più di recente soluzioni.
+Fare clic su **tutti** tooview tutte le soluzioni.
+In questa pagina, è possibile esplorare tutte le soluzioni hello raccolta. È anche possibile effettuare la ricerca selezionando i criteri di filtro a sinistra di hello della pagina hello e immettere i termini di ricerca all'inizio di hello.
 
- Fare clic su una soluzione qualsiasi per aprirne la pagina dei dettagli e leggere maggiori informazioni su di essa. In questa pagina è disponibile una sezione dedicata ai commenti in cui è possibile inserire un commento, inviare suggerimenti o porre una domanda. Usando le funzionalità di condivisione di LinkedIn o Twitter è anche possibile condividere la pagina con amici o colleghi. È inoltre possibile invitare altri utenti a visualizzare la pagina inviando loro un collegamento alla soluzione tramite posta elettronica.
+ Fare clic su qualsiasi tooopen soluzione relativa pagina dei dettagli e altre informazioni. In questa pagina è che possibile impostare come commento, fornire commenti e suggerimenti o porre domande tramite sezione commenti hello. È anche possibile condividerla con altri utenti o i colleghi tramite hello condividono le funzionalità di LinkedIn o Twitter. È possibile anche inviare tramite posta elettronica tooinvite di soluzione toothe un collegamento pagina di hello tooview altri utenti.
 
 ![Condividere l'elemento con amici](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Aggiungere un commento](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
-## <a name="deploy"></a>Distribuisci
-Se si vuole usare una soluzione, fare clic su **Deploy** (Distribuisci). Seguire la procedura descritta per configurare e distribuire la soluzione nella propria area di lavoro.
+## <a name="deploy"></a>Distribuire
+Se si desidera toouse una soluzione, fare clic su **Distribuisci**. Seguire i passaggi di hello presentati tooconfigure e distribuire hello soluzioni nell'area di lavoro.
 
 ![Distribuire una soluzione di Gallery](media/machine-learning-gallery-solutions/deploy-solution.png)
 
-**[VAI A GALLERY >>](http://gallery.cortanaintelligence.com)**
+**[RICHIEDERE ME toohello Raccolta >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

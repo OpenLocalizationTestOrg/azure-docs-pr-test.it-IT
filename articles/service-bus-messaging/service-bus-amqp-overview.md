@@ -1,6 +1,6 @@
 ---
-title: Panoramica del protocollo AMQP 1.0 nel bus di servizio di Azure | Documentazione Microsoft
-description: Informazioni sull'uso del protocollo AMQP (Advanced Message Queuing Protocol) 1.0 in Azure.
+title: aaaOverview di AMQP 1.0 in Azure Service Bus | Documenti Microsoft
+description: Informazioni sull'uso di hello Advanced Message Queuing Protocol (AMQP) 1.0 in Azure.
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,43 +14,43 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sethm
-ms.openlocfilehash: 0aeb02c8a07728cd17aa937614c5c20dd0bf102b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c35a20c50dd24845d9a4c7a0251e8240848a6f4b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="amqp-10-support-in-service-bus"></a>Supporto per il protocollo AMQP 1.0 nel bus di servizio
-Il protocollo AMQP (Advanced Message Queueing Protocol) 1.0 è supportato sia nel servizio cloud del bus di servizio di Azure sia nel [bus di servizio per Windows Server (Bus di servizio 1.1)](https://msdn.microsoft.com/library/dn282144.aspx) locale. AMQP consente di creare applicazioni ibride multipiattaforma usando un protocollo aperto standard. È possibile creare applicazioni usando componenti creati in linguaggi e framework diversi e in esecuzione su sistemi operativi diversi. Tutti questi componenti possono connettersi al bus di servizio e scambiare in modo lineare ed efficiente messaggi di business strutturati con assoluta fedeltà.
+Entrambi hello in locale e servizio cloud di Azure Service Bus [Service Bus per Windows Server (Service Bus 1.1)](https://msdn.microsoft.com/library/dn282144.aspx) supporto hello Advanced Message Queuing Protocol (AMQP) 1.0. AMQP consente si toobuild multipiattaforma, di applicazioni ibride tramite un protocollo standard aperto. È possibile creare applicazioni usando componenti creati in linguaggi e framework diversi e in esecuzione su sistemi operativi diversi. Tutti questi componenti possono connettersi tooService Bus e facilmente scambiarsi messaggi aziendali strutturati in modo efficiente e alla massima fedeltà.
 
 ## <a name="introduction-what-is-amqp-10-and-why-is-it-important"></a>Introduzione: informazioni sul protocollo AMQP 1.0 e sulla sua rilevanza
-I prodotti middleware orientati ai messaggi hanno tradizionalmente usato protocolli proprietari per le comunicazioni tra applicazioni client e broker. Dopo la selezione di un broker di messaggistica di un fornitore specifico, è pertanto necessario utilizzare le librerie di tale fornitore per connettere le applicazioni client a tale broker. Ne risulta un livello di dipendenza rispetto a tale fornitore, poiché il trasferimento di un'applicazione a un prodotto diverso richiede la modifica del codice per tutte le applicazioni connesse. 
+I prodotti middleware orientati ai messaggi hanno tradizionalmente usato protocolli proprietari per le comunicazioni tra applicazioni client e broker. Ciò significa che dopo aver selezionato i broker di messaggistica un particolare fornitore, è necessario utilizzare tooconnect librerie del fornitore intermediario toothat di applicazioni client. Ciò consente di un livello di dipendenza dal fornitore, poiché il porting di un prodotto di applicazione tooa diverso richiede modifiche del codice in tutte le applicazioni hello connesso. 
 
-La connessione di broker di messaggistica da fornitori diversi è inoltre complicata e richiede in genere bridging a livello di applicazione per lo spostamento dei messaggi da un sistema all'altro e per la conversione nei diversi formati di messaggio proprietari. Questa esigenza è molto comune, ad esempio, quando è necessario fornire una nuova interfaccia unificata per sistemi diversi precedenti oppure integrare sistemi IT diversi dopo una fusione tra società.
+La connessione di broker di messaggistica da fornitori diversi è inoltre complicata Questo in genere richiede messaggi toomove bridging a livello di applicazione da un sistema tooanother e tootranslate tra i formati di messaggio proprietario. Questo è un requisito comune; ad esempio, quando è necessario fornire un nuovo tooolder interfaccia unificata sistemi diversi o integrare i sistemi IT dopo una fusione tra società.
 
-Il settore software è caratterizzato da rapido sviluppo. Nuovi linguaggi di programmazione e framework applicazione vengono introdotti a ritmo sorprendente. Analogamente, i requisiti dei sistemi IT si evolvono nel tempo e gli sviluppatori desiderano avvalersi delle possibilità offerte dai linguaggi e dalle funzionalità più recenti della piattaforma. A volte, tuttavia, il fornitore di messaggistica selezionato non supporta tali piattaforme. Poiché vengono usati protocolli di messaggistica proprietari, non è possibile offrire librerie diverse per le nuove piattaforme. Pertanto, è necessario usare approcci come la creazione di gateway o bridge che consentano di continuare a usare il prodotto di messaggistica.
+settore software Hello è un'azienda rapido. a un ritmo contribuito a volte vengono introdotti nuovi linguaggi di programmazione e altri framework applicazione. Analogamente, evolversi delle esigenze di hello dei sistemi IT nel corso del tempo e gli sviluppatori desiderino tootake sfruttare funzionalità più recenti della piattaforma hello. Tuttavia, talvolta hello fornitore messaggistica selezionato non supporta queste piattaforme. Poiché i protocolli di messaggistica sono proprietari, non è possibile per gli altri utenti tooprovide librerie per queste nuove piattaforme. Pertanto, è necessario utilizzare gli approcci, ad esempio la compilazione di gateway o bridge che consentono di toocontinue toouse hello messaggistica prodotto.
 
-Il protocollo AMQP (Advanced Message Queuing Protocol) 1.0 è stato sviluppato per risolvere questi problemi presso JP Morgan Chase, che, come la maggior parte delle aziende del settore dei servizi finanziari, fa ampio uso di prodotti middleware orientati alla messaggistica. L'obiettivo da raggiungere era semplice: creare un protocollo di messaggistica a standard aperto che consentisse di creare applicazioni basate sui messaggi usando componenti creati in linguaggi, framework e sistemi operativi diversi, avvalendosi dei migliori prodotti offerti da diversi fornitori.
+sviluppo di Hello di hello Advanced Message Queuing Protocol (AMQP) 1.0 è stato eseguito da tali problemi. presso JP Morgan Chase, che, come la maggior parte delle aziende del settore dei servizi finanziari, fa ampio uso di prodotti middleware orientati alla messaggistica. obiettivo Hello è semplice: un protocollo di messaggistica standard aperti che viene effettuata utilizzando i componenti compilati utilizzando diversi linguaggi, Framework e sistemi operativi, applicazioni basate su messaggi toobuild possibili toocreate tutte utilizzano i componenti di migliori da un intervallo di fornitori.
 
 ## <a name="amqp-10-technical-features"></a>Caratteristiche tecniche del protocollo AMQP 1.0
-AMQP 1.0 è un protocollo di messaggistica wire-level efficiente e affidabile che può essere utilizzato per creare applicazioni di messaggistica multipiattaforma e affidabili. Questo protocollo assolve a uno scopo semplice, ovvero definire i meccanismi per la trasmissione sicura, affidabile ed efficiente dei messaggi tra due parti. I messaggi stessi vengono codificati usando una rappresentazione dati portatile che consente a mittenti e destinatari eterogenei di scambiarsi messaggi di business strutturati con assoluta fedeltà. Di seguito sono riepilogate le caratteristiche più importanti:
+AMQP 1.0 è un protocollo di messaggistica efficiente, affidabile e a livello di rete che è possibile utilizzare toobuild multipiattaforma affidabile, applicazioni di messaggistica. protocollo Hello ha l'obiettivo semplice: meccanismi hello toodefine hello protetta, affidabile ed efficiente di trasferimento dei messaggi tra due parti. messaggi Hello stessi vengono codificati utilizzando una rappresentazione dati portatile che consente di eterogenei mittenti e ricevitori tooexchange strutturato messaggi di business alla massima fedeltà. di seguito Hello è un riepilogo delle funzionalità più importanti hello:
 
-* **Efficienza**: AMQP 1.0 è un protocollo orientato alla connessione che usa una codifica binaria per le istruzioni del protocollo e per i messaggi aziendali trasmessi. Integra sofisticati schemi di controllo di flusso per massimizzare l'uso della rete e dei componenti connessi. In ogni caso, il protocollo è stato progettato per assicurare un equilibrio tra efficienza, flessibilità e interoperabilità.
-* **Affidabilità**: il protocollo AMQP 1.0 consente lo scambio di messaggi con una serie di garanzie di affidabilità, dal "fire-and-forget" al recapito confermato affidabile di tipo "exactly-once".
-* **Flessibilità**: AMQP 1.0 è un protocollo flessibile che consente di supportare diverse topologie. È possibile utilizzare lo stesso protocollo per le comunicazioni client-client, client-broker e broker-broker.
-* **Indipendenza dal modello di broker**: il protocollo AMQP 1.0 non prevede requisiti relativi al modello di messaggistica usato da un broker. È pertanto possibile aggiungere con facilità il supporto per il protocollo AMQP 1.0 ai broker di messaggistica esistenti.
+* **Efficiente**: AMQP 1.0 è un protocollo orientato alla connessione che usa una codifica per hello binaria istruzioni del protocollo e hello messaggi aziendali trasferiti su di esso. Incorpora un controllo di flusso sofisticati schemi toomaximize hello utilizzo delle rete hello e componenti hello connesso. Ciò premesso, hello è stato progettato toostrike un equilibrio tra efficienza, flessibilità e interoperabilità.
+* **Affidabile**: hello protocollo AMQP 1.0 consente toobe di messaggi scambiati con un intervallo di garanzie di affidabilità, dal tooreliable fire-and-forget, esattamente-una volta riconosciuto recapito.
+* **Flessibile**: AMQP 1.0 è un protocollo flessibile che può essere utilizzato toosupport diverse topologie. Hello stesso protocollo può essere utilizzato per le comunicazioni da client client-gestore e gestore-gestore.
+* **Indipendenza dal modello di Broker**: hello protocollo AMQP 1.0 non impone requisiti relativi modello di messaggistica hello usato da un gestore. Ciò significa che è possibile tooeasily aggiungere tooexisting di supporto di AMQP 1.0 Broker di messaggistica.
 
 ## <a name="amqp-10-is-a-standard-with-a-capital-s"></a>AMQP 1.0 è uno standard affermato
 AMQP 1.0 è uno standard internazionale approvato da ISO e IEC come ISO/IEC 19464:2014.
 
-Lo sviluppo di AMQP 1.0 procede dal 2008 a opera di un gruppo fondamentale di oltre 20 società, di cui fanno parte fornitori di tecnologie e aziende utenti finali. In questo lasso di tempo, le aziende utenti hanno comunicato i propri requisiti aziendali reali e i fornitori di tecnologie hanno proseguito lo sviluppo del protocollo con l'intento di soddisfarli. Nel corso del processo i fornitori hanno partecipato a workshop, che hanno permesso loro di collaborare per verificare l'interoperabilità tra le diverse implementazioni.
+Lo sviluppo di AMQP 1.0 procede dal 2008 a opera di un gruppo fondamentale di oltre 20 società, di cui fanno parte fornitori di tecnologie e aziende utenti finali. Durante questo periodo, aziende utenti hanno comunicato i requisiti aziendali reali e i fornitori di tecnologie hello si sono evoluti hello protocollo toomeet tali requisiti. Durante il processo di hello, fornitori hanno partecipato workshop in cui essi hanno collaborato interoperabilità hello toovalidate tra le diverse implementazioni.
 
-A ottobre 2011 il lavoro di sviluppo è passato a un comitato tecnico all'interno della Organization for the Advancement of Structured Information Standards (OASIS) e a ottobre 2012 è stato rilasciato lo standard OASIS AMQP 1.0. Del comitato tecnico hanno fatto parte le seguenti aziende durante lo sviluppo dello standard:
+In ottobre 2011, il processo di sviluppo hello passata tooa comitato tecnico all'interno dell'organizzazione di hello per hello Advancement di Structured Information Standards (OASIS) e hello Standard OASIS AMQP 1.0 è stato rilasciato in ottobre 2012. Hello imprese seguenti hanno partecipato comitato tecnico hello durante lo sviluppo di hello di hello standard:
 
 * **Fornitori di tecnologie**: Axway Software, Huawei Technologies, IIT Software, INETCO Systems, Kaazing, Microsoft, Mitre Corporation, Primeton Technologies, Progress Software, Red Hat, SITA, Software AG, Solace Systems, VMware, WSO2, Zenika.
 * **Aziende utenti**: Bank of America, Credit Suisse, Deutsche Boerse, Goldman Sachs, JPMorgan Chase.
 
-Di seguito sono indicati alcuni dei vantaggi più apprezzati degli standard aperti:
+Di hello comunemente menzionate degli standard aperti seguenti vantaggi:
 
 * Minore possibilità di blocco da parte del fornitore
 * Interoperabilità
@@ -60,17 +60,17 @@ Di seguito sono indicati alcuni dei vantaggi più apprezzati degli standard aper
 * Rischio ridotto e gestibile
 
 ## <a name="amqp-10-and-service-bus"></a>AMQP 1.0 e bus di servizio
-Grazie al supporto del protocollo AMQP 1.0 al bus di servizio di Azure, è ora possibile usare le funzionalità di accodamento e di messaggistica negoziata di pubblicazione/sottoscrizione del bus di servizio offerte da numerose piattaforme, usando un protocollo binario efficiente. Inoltre, è possibile creare applicazioni costituite da componenti creati con un insieme di linguaggi, framework e sistemi operativi.
+Supporto di AMQP 1.0 in Azure Service Bus indica che è possibile sfruttare hello Bus di servizio di accodamento e di pubblicazione/sottoscrizione funzionalità di messaggistica negoziata da una vasta gamma di piattaforme usando un protocollo binario efficiente. Inoltre, è possibile creare applicazioni costituite da componenti creati con un insieme di linguaggi, framework e sistemi operativi.
 
-La figura riportata di seguito illustra una distribuzione di esempio, in cui i client Java in esecuzione su Linux, scritti usando l'API JMS (Java Message Service) standard, e i client .NET in esecuzione su Windows si scambiano messaggi tramite il bus di servizio usando il protocollo AMQP 1.0.
+Hello figura riportata di seguito viene illustrato un esempio di distribuzione in cui client Java in esecuzione in Linux, scritti con API Java Message Service (JMS) standard hello e client .NET in esecuzione su Windows scambiano messaggi tramite il Bus di servizio tramite AMQP 1.0.
 
 ![][0]
 
 **Figura 1: Scenario di distribuzione di esempio, in cui per la messaggistica tra diverse piattaforme usa il bus di servizio e il protocollo AMQP 1.0**
 
-È attualmente possibile utilizzare le librerie client seguenti con il bus di servizio:
+In questo hello ora librerie client seguenti sono noti toowork con il Bus di servizio:
 
-| Linguaggio | Libreria |
+| Lingua | Libreria |
 | --- | --- |
 | Java |Client Apache Qpid Java Message Service (JMS)<br/>Client IIT Software SwiftMQ Java |
 | C |Apache Qpid Proton-C |
@@ -81,11 +81,11 @@ La figura riportata di seguito illustra una distribuzione di esempio, in cui i c
 **Figura 2: Tabella delle librerie client del protocollo AMQP 1.0**
 
 ## <a name="summary"></a>Riepilogo
-* AMQP 1.0 è un protocollo di messaggistica aperto e affidabile, che può essere utilizzato per creare applicazioni ibride multipiattaforma. AMQP 1.0 è uno standard OASIS.
-* Il supporto per il protocollo AMQP 1.0 è ora disponibile nel bus di servizio di Azure e nel bus di servizio per Windows Server (Service Bus 1.1). La determinazione dei prezzi è analoga a quella dei protocolli esistenti.
+* AMQP 1.0 è un protocollo di messaggistica affidabile, aprire che è possibile utilizzare applicazioni ibride di toobuild multipiattaforma. AMQP 1.0 è uno standard OASIS.
+* Il supporto per il protocollo AMQP 1.0 è ora disponibile nel bus di servizio di Azure e nel bus di servizio per Windows Server (Service Bus 1.1). I prezzi sono hello che stesso hello protocolli esistenti.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere i collegamenti seguenti:
+Pronto più toolearn? Visitare hello seguenti collegamenti:
 
 * [Uso del bus di servizio da .NET con AMQP]
 * [Uso del bus di servizio da Java con AMQP]

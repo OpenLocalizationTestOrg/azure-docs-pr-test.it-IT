@@ -25,13 +25,13 @@
 ### [Configurare le regole del traffico per un ruolo](cloud-services-enable-communication-role-instances.md)
 ### [Gestire eventi del ciclo di vita dei servizi cloud](cloud-services-role-lifecycle-dotnet.md)
 ### [Socket.io (Node.js)](cloud-services-nodejs-chat-app-socketio.md)
-### [Usare Twilio per effettuare una chiamata telefonica (.NET)](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
+### [Usare Twilio toomake una telefonata (.NET)](../partner-twilio-cloud-services-dotnet-phone-call-web-role.md)
 ### [New Relic](../store-new-relic-cloud-services-dotnet-application-performance-management.md)
 
 ### Configurare le attività di avvio
 #### [Creare le attività di avvio](cloud-services-startup-tasks.md)
 #### [Attività di avvio comuni](cloud-services-startup-tasks-common.md)
-#### [Usare un'attività per installare .NET in un ruolo di un servizio cloud](cloud-services-dotnet-install-dotnet.md)
+#### [Utilizzare un tooInstall attività .NET in un ruolo del servizio Cloud](cloud-services-dotnet-install-dotnet.md)
 
 ### Configurare Desktop remoto
 #### [Portale](cloud-services-role-enable-remote-desktop-new-portal.md)
@@ -47,7 +47,7 @@
 #### [Portale](cloud-services-custom-domain-name-portal.md)
 #### [Portale classico](cloud-services-custom-domain-name.md)
 ### [Inserire temporaneamente una distribuzione di servizi cloud (Node.js)](cloud-services-nodejs-stage-application.md)
-### [Connettersi a un controller di dominio personalizzato](cloud-services-connect-to-custom-domain.md)
+### [Connettersi personalizzato tooa Controller di dominio](cloud-services-connect-to-custom-domain.md)
 
 ## Gestire il servizio
 ### Attività di gestione comuni
@@ -60,7 +60,7 @@
 ### Configurare la scalabilità automatica
 #### [Portale](cloud-services-how-to-scale-portal.md)
 #### [Portale classico](cloud-services-how-to-scale.md)
-### [Usare Python per gestire le risorse di Azure](cloud-services-python-how-to-use-service-management.md)
+### [Utilizzare le risorse di Azure toomanage Python](cloud-services-python-how-to-use-service-management.md)
 
 ### [Patch per il sistema operativo guest](cloud-services-guestos-msrc-releases.md)
 ### Ritiro del sistema operativo guest
@@ -86,9 +86,9 @@
 ### [Usare contatori delle prestazioni in Diagnostica di Azure](cloud-services-dotnet-diagnostics-performance-counters.md)
 ### [Archiviare e visualizzare i dati di diagnostica in Archiviazione di Azure](cloud-services-dotnet-diagnostics-storage.md)
 ### [Tracciare un servizio cloud con Diagnostica](cloud-services-dotnet-diagnostics-trace-flow.md)
-### [Inviare dati di diagnostica ad App Insights](cloud-services-dotnet-diagnostics-applicationinsights.md)
+### [Inviare i dati di diagnostica tooApp Insights](cloud-services-dotnet-diagnostics-applicationinsights.md)
 
-## Risolvere problemi
+## Risoluzione dei problemi
 ### Debug 
 #### [Abilitare il debug remoto con la distribuzione di contenuti](cloud-services-virtual-machines-dotnet-continuous-delivery-remote-debugging.md)
 #### [Opzioni per un servizio cloud](../vs-azure-tools-debugging-cloud-services-overview.md)
@@ -98,7 +98,7 @@
 ### [Cause comuni del riciclo di ruoli dei servizi cloud](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md)
 ### [Dimensioni della cartella TEMP predefinita insufficienti per un ruolo](cloud-services-troubleshoot-default-temp-folder-size-too-small-web-worker-role.md)
 ### [Problemi di distribuzione comuni](cloud-services-troubleshoot-deployment-problems.md)
-### [Errore di avvio di un ruolo](cloud-services-troubleshoot-roles-that-fail-start.md)
+### [Ruolo non è stato possibile toostart](cloud-services-troubleshoot-roles-that-fail-start.md)
 ### [Informazioni aggiuntive sul ripristino](cloud-services-disaster-recovery-guidance.md)
 ### Domande frequenti sui servizi cloud
 #### [Domande frequenti sulla disponibilità dell'applicazione e del servizio](cloud-services-application-and-service-availability-faq.md)

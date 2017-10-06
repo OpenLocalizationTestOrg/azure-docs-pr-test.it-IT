@@ -1,6 +1,6 @@
 ---
-title: Guida al linguaggio di specifica Net# delle reti neurali | Microsoft Docs
-description: 'Sintassi per la Net # neural networks lingua specifica, con relativi esempi di come creare un modello di rete neurale personalizzata in Microsoft Azure Machine Learning tramite Net #'
+title: 'aaaGuide toohello neurale reti linguaggio specifica Net # | Documenti Microsoft'
+description: 'Sintassi per hello Net # neural networks lingua specifica, con relativi esempi di come toocreate una rete neurale personalizzata del modello in Microsoft Azure Machine Learning tramite Net #'
 services: machine-learning
 documentationcenter: 
 author: jeannt
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeannt
-ms.openlocfilehash: 965c60ffde55041cc3864d06d81f5590c7ea1c11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3493247ecc39ca3a1382510ad520d7017159ff62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>Guida al linguaggio di specifica Net# delle reti neurali per Azure Machine Learning
+# <a name="guide-toonet-neural-network-specification-language-for-azure-machine-learning"></a>Guida di linguaggio di specifica di rete neurale tooNet # per Azure Machine Learning
 ## <a name="overview"></a>Panoramica
-Net# è un linguaggio sviluppato da Microsoft e usato per definire le architetture di reti neurali. È possibile usare Net# in moduli di reti neurali in Microsoft Azure Machine Learning.
+NET # è un linguaggio sviluppato da Microsoft che viene utilizzato toodefine architetture di rete neurale. È possibile usare Net# in moduli di reti neurali in Microsoft Azure Machine Learning.
 
-<!-- This function doesn't currentlyappear in the MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
+<!-- This function doesn't currentlyappear in hello MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
 
-, or in the `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
+, or in hello `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
 
 -->
 
-Questo articolo illustra i concetti base necessari per lo sviluppo di una rete neurale personalizzata: 
+In questo articolo si apprenderà concetti di base necessarie toodevelop una rete neurale personalizzata: 
 
-* Requisiti relativi alla rete neurale e come definire i componenti principali
-* Sintassi e parole chiave del linguaggio di specifica Net#
-* Esempi delle reti neurali personalizzati creati tramite Net # 
+* Requisiti di rete neurale e come toodefine hello componenti primari
+* sintassi di Hello e parole chiave del linguaggio di specifica Net # hello
+* Esempi di reti neurali personalizzate create usando Net# 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="neural-network-basics"></a>Nozioni di base sulla rete neurale
-Una struttura di rete neurale è composta da ***nodi*** organizzati in ***livelli*** e ***connessioni*** ponderate (o ***bordi***) tra i nodi. Le connessioni sono direzionali e ognuna ha un nodo di ***origine*** e un nodo di ***destinazione***.  
+Costituito da una struttura di rete neurale ***nodi*** organizzati in ***livelli***e ponderata ***connessioni*** (o ***bordi***) tra nodi Hello. connessioni Hello sono direzionali e ogni connessione dispone di un ***origine*** nodo e un ***destinazione*** nodo.  
 
-Ogni ***livello di cui è possibile eseguire il training*** (livello nascosto o di output) ha una o più ***aggregazioni di connessioni***. Un'aggregazione di connessioni è costituita da un livello di origine e da una specifica delle connessioni provenienti da quel livello di origine. Tutte le connessioni in una determinata aggregazione condividono lo stesso ***livello di origine*** e lo stesso ***livello di destinazione***. In Net# un'aggregazione di connessioni è considerata come appartenente al livello di destinazione dell'aggregazione.  
+Ogni ***livello di cui è possibile eseguire il training*** (livello nascosto o di output) ha una o più ***aggregazioni di connessioni***. Un bundle di connessione è costituito da un livello di origine e una specifica di connessioni hello di tale livello di origine. Tutte le connessioni di hello in una condivisione di bundle specificato hello stesso ***livello origine*** e hello stesso ***livello destinazione***. In Net #, un bundle di connessione viene considerato come livello di destinazione del bundle toohello appartiene.  
 
-Net# supporta diversi tipi di aggregazioni di connessioni, permettendo quindi di personalizzare il modo in cui gli input sono mappati per i livelli nascosti e agli output.   
+NET # supporta vari tipi di pacchetti di connessione, che consente di personalizzare la modalità di hello gli input sono mappate toohidden livelli e output toohello mappato.   
 
-L'aggregazione predefinita o standard è un'**aggregazione completa**, in cui ogni nodo del livello di origine è connesso a tutti i nodi del livello di destinazione.  
+predefinito Hello o bundle standard è un **bundle completo**, in cui ogni nodo in hello del livello di origine è nodo tooevery connessi nel livello di destinazione hello.  
 
-Net# supporta anche i quattro tipi seguenti di aggregazioni di connessioni avanzate:  
+Net # supporta inoltre hello seguenti quattro tipi di pacchetti di connessione avanzate:  
 
-* **Aggregazioni filtrate**. L'utente può definire un predicato usando le posizioni del nodo di livelli di origine e del nodo di livelli di destinazione. I nodi vengono connessi se il predicato è True.
-* **Aggregazioni convoluzionali**. L'utente può definire piccoli intorni di nodi nel livello di origine. Ogni nodo nel livello di destinazione è connesso a un intorno di nodi nel livello di origine.
-* **Aggregazioni di pooling** e **aggregazioni di normalizzazione delle risposte**. Sono simili alle aggregazioni convoluzionali, in quanto l'utente definisce piccoli intorni di nodi nel livello di origine. La differenza è che i pesi dei bordi in questi pacchetti non sono addestrabili. Infatti, una funzione predefinita viene applicata ai valori del nodo di origine per determinare il valore del nodo di destinazione.  
+* **Aggregazioni filtrate**. utente di Hello può definire un predicato utilizzando percorsi hello del nodo di livello di origine hello e hello destinazione livello. I nodi connessi ogni volta che il predicato hello è True.
+* **Aggregazioni convoluzionali**. utente di Hello può definire Villaggi piccoli di nodi nel livello di origine hello. Ogni nodo nel livello di destinazione hello è connesso tooone risorse di nodi nel livello di origine hello.
+* **Aggregazioni di pooling** e **aggregazioni di normalizzazione delle risposte**. Questi sono raggruppamenti di tooconvolutional simili in tale hello utente definisce Villaggi piccoli di nodi nel livello di origine hello. differenza Hello è che non si è trainable pesi hello dei bordi hello in questi pacchetti. In alternativa, in cui viene applicata una funzione predefinita nodo di origine toohello valori toodetermine hello destinazione nodo valore.  
 
-L'uso di Net# per definire la struttura di una rete neurale rende possibile la definizione di strutture complesse quali reti neurali profonde o convoluzioni di dimensioni arbitrarie, che notoriamente migliorano l'apprendimento relativo a dati quali immagini, audio e video.  
+Tramite Net # toodefine hello struttura di una rete neurale rende possibili toodefine strutture complesse, ad esempio le reti neurali o convoluzioni di dimensioni arbitrarie, che sono note learning tooimprove sui dati, ad esempio immagini, audio o video.  
 
 ## <a name="supported-customizations"></a>Personalizzazioni supportate
-L'architettura dei modelli di rete neurale creati in Azure Machine Learning può essere ampiamente personalizzata tramite Net#. È possibile:  
+architettura Hello dei modelli di rete neurale creati in Azure Machine Learning può essere ampiamente personalizzato tramite Net #. È possibile:  
 
-* Creare livelli nascosti e controllare il numero di nodi in ogni livello.
-* Specificare la modalità di connessione reciproca dei livelli.
+* Creare livelli nascosti e controllo hello numero di nodi in ogni livello.
+* Specificare la modalità livelli tooeach toobe connessi altri.
 * Definire strutture di connettività speciali, ad esempio aggregazioni di convoluzioni e per la condivisione dei pesi.
 * Specificare diverse funzioni di attivazione.  
 
-Per informazioni dettagliate sulla sintassi del linguaggio di specifica, vedere [Specifiche di struttura](#Structure-specifications).  
+Per informazioni dettagliate della sintassi del linguaggio di specifica hello, vedere [struttura specifica](#Structure-specifications).  
 
-Per esempi di definizione di reti neurali per alcune attività comuni di Machine Learning, dalle più semplici alle più complesse, vedere [Esempi](#Examples-of-Net#-usage).  
+Per esempi di definizione di reti neurali per alcune attività, dalla toocomplex simplex, di apprendimento automatico comune vedere [esempi](#Examples-of-Net#-usage).  
 
 ## <a name="general-requirements"></a>Requisiti generali
 * Devono essere esattamente disponibili un livello di output, almeno un livello di input e zero o più livelli nascosti. 
 * Ogni livello ha un numero fisso di nodi, disposti concettualmente in una matrice rettangolare di dimensioni arbitrarie. 
-* I livelli di input non sono associati a parametri sottoposti a training e rappresentano il punto in cui i dati delle istanze entrano nella rete. 
-* I livelli sottoponibili a training, ovvero i livelli nascosti e di output hanno parametri sottoposti a training associati, noti come pesi e distorsioni. 
-* I nodi di origine e di destinazione devono trovarsi in livelli separati. 
-* La connessione deve essere aciclica, ovvero non può essere presente una catena di connessioni che riporta al nodo di origine iniziale.
-* Il livello di output non può essere un livello di origine di un'aggregazione di connessioni.  
+* Input livelli privi di parametri con training associato e rappresentano hello punto dati di istanza in cui vengono immessi rete hello. 
+* Livelli trainable (livelli nascosti e di output di hello) sono associati parametri con training, noto come pesi e i pregiudizi. 
+* nodi di origine e destinazione Hello devono trovarsi in livelli separati. 
+* Le connessioni devono essere acicliche; in altre parole, non può essere una catena di connessioni iniziali toohello back-nodo di origine iniziale.
+* il livello di output di Hello non può essere un livello di origine di un pacchetto di connessione.  
 
 ## <a name="structure-specifications"></a>Specifiche di struttura
-La specifica della struttura di una rete neurale è composta da tre sezioni: la **dichiarazione delle costanti**, la **dichiarazione dei livelli** e la **dichiarazione delle connessioni**. È anche disponibile una sezione facoltativa denominata **dichiarazione delle condivisioni**. Le sezioni possono essere specificate in qualsiasi ordine.  
+Una specifica struttura di rete neurale è composto da tre sezioni: hello **dichiarazione di costante**, hello **livello dichiarazione**, hello **dichiarazione connessione**. È anche disponibile una sezione facoltativa denominata **dichiarazione delle condivisioni**. sezioni Hello possono essere specificate in qualsiasi ordine.  
 
 ## <a name="constant-declaration"></a>Dichiarazione della costante
-Una dichiarazione della costante è facoltativa. Fornisce un mezzo per definire i valori usati in una qualunque posizione nella definizione della rete neurale. L'istruzione di dichiarazione è costituita da un identificatore seguito da un segno di uguale e un'espressione valore.   
+Una dichiarazione della costante è facoltativa. Fornisce un toodefine indica i valori utilizzati in un' posizione nella definizione di rete neurale hello. istruzione di dichiarazione Hello è costituito da un identificatore seguito da un segno di uguale e un'espressione di valore.   
 
-Ad esempio, l'istruzione seguente definisce una costante **x**:  
+Ad esempio, hello istruzione definisce una costante **x**:  
 
     Const X = 28;  
 
-Per definire contemporaneamente due o più costanti, racchiudere i nomi e i valori degli identificatori tra parentesi graffe e separarle da punti e virgola. ad esempio:  
+toodefine due o più costanti contemporaneamente, racchiudere i nomi di identificatore hello e i valori tra parentesi graffe ed è necessario separarli con punti e virgola. ad esempio:  
 
     Const { X = 28; Y = 4; }  
 
-La parte destra di ogni espressione di assegnazione può essere costituita da un valore Integer, un numero reale, un valore booleano (true/false) o un'espressione matematica. ad esempio:  
+Hello destra di ogni espressione di assegnazione può essere un numero intero, un numero reale, un valore booleano (True o False) o un'espressione matematica. ad esempio:  
 
     Const { X = 17 * 2; Y = true; }  
 
 ## <a name="layer-declaration"></a>Dichiarazione dei livelli
-La dichiarazione di livello è obbligatoria. Definisce le dimensioni e l'origine del livello, inclusi il raggruppamento di connessione e gli attributi. L'istruzione della dichiarazione inizia con il nome del livello (di input, nascosto o di output), seguito dalle dimensioni del livello (una tupla di valori Integer positivi). ad esempio:  
+dichiarazione di livello Hello è obbligatorio. Definisce dimensioni hello e l'origine del livello di hello, inclusi i bundle di connessione e relativi attributi. salve inizia di istruzione di dichiarazione con il nome di hello del livello di hello (di input, nascosto o di output), seguito dalle dimensioni di hello del livello di hello (una tupla di numeri interi positivi). ad esempio:  
 
     input Data auto;
     hidden Hidden[5,20] from Data all;
     output Result[2] from Hidden all;  
 
-* Il prodotto delle dimensioni è il numero di nodi nel livello. In questo esempio ci sono due dimensioni [5,20]. Ciò significa che nel livello ci sono 100 nodi.
-* I livelli possono essere dichiarati in qualsiasi ordine, con una eccezione: se sono stati definiti più livelli di input, l'ordine in cui vengono dichiarati deve corrispondere all'ordine delle funzionalità nei dati di input.  
+* prodotto Hello di dimensioni hello è il numero di hello di nodi nel livello hello. In questo esempio, sono presenti due dimensioni [5,20], che non vi sono 100 nodi nel livello hello.
+* livelli di Hello possono essere dichiarati in qualsiasi ordine, con una sola eccezione: se è definito più di un livello di input, hello ordine in cui sono dichiarati deve corrispondere hello di funzioni nei dati di input hello.  
 
-Per specificare che il numero di nodi in un livello deve essere determinato automaticamente, usare la parola chiave **auto**. La parola chiave **auto** ha effetti diversi, a seconda del livello:  
+toospecify che hello numero di nodi in un livello determinato automaticamente, utilizzare hello **auto** (parola chiave). Hello **auto** parola chiave ha effetti diversi, a seconda di livello hello:  
 
-* Nella dichiarazione di un livello di input il numero di nodi corrisponde al numero di funzionalità nei dati di input.
-* In una dichiarazione di livello nascosto, il numero di nodi corrisponde al numero specificato dal valore del parametro per il **numero di nodi nascosti**. 
-* Nella dichiarazione di un livello di output il numero di nodi corrisponde a 2 per la classificazione a due classi, 1 per la regressione ed è uguale al numero di nodi di output per la classificazione a più classi.   
+* In una dichiarazione a livello di input, il numero di hello di nodi è il numero di hello di funzioni nei dati di input hello.
+* In una dichiarazione di livello nascosto, il numero di hello di nodi è il numero hello specificato dal valore del parametro hello per **numero di nodi nascosti**. 
+* In una dichiarazione di livello di output, il numero di hello di nodi è 2 per classificazione a due classi, 1 per la regressione e uguale toohello numero di nodi di output per la classificazione multiclasse.   
 
-Ad esempio, la definizione di rete seguente permette la determinazione automatica delle dimensioni di tutti i livelli:  
+Ad esempio, hello seguente definizione di rete consente dimensioni hello di tutti i livelli toobe determinato automaticamente:  
 
     input Data auto;
     hidden Hidden auto from Data all;
     output Result auto from Hidden all;  
 
 
-Una dichiarazione di livelli per un livello di cui è possibile eseguire il training, ovvero i livelli nascosti o di output, può includere facoltativamente la funzione di output, definita anche funzione di attivazione, che assume il valore predefinito **sigmoid** per i modelli di classificazione e **linear** per i modelli di regressione. (Anche se si usa l'impostazione predefinita, è possibile dichiarare in modo esplicito la funzione di attivazione, se lo si desidera per maggiore chiarezza.)
+Una dichiarazione di livello per un livello trainable (livelli nascosti o di output di hello) può includere facoltativamente funzione output hello (denominata anche una funzione di attivazione), che per impostazione predefinita troppo**sigmoidale** per i modelli di classificazione e **lineare** per i modelli di regressione. (Anche se si utilizza l'impostazione predefinita di hello, è possibile dichiarare in modo esplicito funzione di attivazione hello, se lo si desidera per maggiore chiarezza.)
 
-Sono supportate le funzioni di output seguenti:  
+Hello output funzioni seguenti sono supportate:  
 
 * sigmoid
 * linear
@@ -132,69 +132,69 @@ Sono supportate le funzioni di output seguenti:
 * tanh 
 * brlinear  
 
-Ad esempio, la dichiarazione seguente usa la funzione **softmax**:  
+Ad esempio che segue la dichiarazione di hello utilizza hello **softmax** funzione:  
 
     output Result [100] softmax from Hidden all;  
 
 ## <a name="connection-declaration"></a>Dichiarazione della connessione
-Immediatamente dopo aver definito il livello sottoponibile a training, è necessario dichiarare connessioni tra i livelli definiti. La dichiarazione di aggregazione delle connessioni inizia con la parola chiave **from**, seguita dal nome del livello di origine dell'aggregazione e dal tipo di aggregazione di connessioni da creare.   
+Immediatamente dopo aver definito livello trainable hello, è necessario dichiarare le connessioni tra i livelli di hello che è definito. dichiarazione di bundle connessione Hello inizia con la parola chiave hello **da**, seguiti dal nome hello di tipo del bundle hello origine hello e di livello di connessione bundle toocreate.   
 
 Sono attualmente supportati cinque tipi di aggregazioni di connessioni:  
 
-* Aggregazioni **complete**, indicate dalla parola chiave **all**
-* Aggregazioni **filtrate**, indicate dalla parola chiave **where**, seguita da un'espressione del predicato
-* Aggregazioni **convoluzionali**, indicate dalla parola chiave **convolve**, seguite dagli attributi di convoluzione
-* Aggregazioni di **pooling**, indicate dalle parole chiave **max pool** o **mean pool**
-* Aggregazioni di **normalizzazione delle risposte**, indicate dalla parola chiave **response norm**      
+* **Completa** bundle, indicati dalla parola chiave hello **tutti**
+* **Filtrati** bundle, indicati dalla parola chiave hello **in**, seguito da un'espressione del predicato
+* **Convolutional** bundle, indicati dalla parola chiave hello **convolve**, seguito da attributi convoluzione hello
+* **Il pool** bundle, indicati dalle parole chiave hello **max pool** o **significa pool**
+* **Normalizzazione di risposta** bundle, indicati dalla parola chiave hello **norm risposta**      
 
 ## <a name="full-bundles"></a>Aggregazioni complete
-Un'aggregazione completa di connessioni include una connessione da ogni nodo del livello di origine verso ogni nodo del livello di destinazione. Si tratta del tipo di connessione di rete predefinito.  
+Un bundle di connessione completa include una connessione da ogni nodo nel nodo di hello origine livello tooeach nel livello di destinazione hello. Si tratta di tipo di connessione di rete predefinito hello.  
 
 ## <a name="filtered-bundles"></a>Aggregazioni filtrate
-Una specifica di aggregazione di connessioni filtrata include un predicato, espresso sintatticamente in modo analogo a un'espressione lambda in C#. L'esempio seguente definisce due aggregazioni filtrate:  
+Una specifica di aggregazione di connessioni filtrata include un predicato, espresso sintatticamente in modo analogo a un'espressione lambda in C#. Hello seguente definisce due pacchetti filtrati:  
 
     input Pixels [10, 20];
     hidden ByRow[10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol[5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;  
 
-* Nel predicato per *ByRow*, **s** è un parametro che rappresenta un indice nella matrice rettangolare di nodi del livello di input *Pixels* e **d** è un parametro che rappresenta un indice nella matrice di nodi del livello nascosto *ByRow*. Il tipo di **s** e **d** è una tupla di valori interi di lunghezza due. Concettualmente, **s** include tutte le coppie di valori interi con *0 <= s[0] < 10* e *0 <= s[1] < 20* e **d** include tutte le coppie di valori interi con *0 <= d[0] < 10* e *0 <= d[1] < 12*. 
-* Una condizione è presente nella parte destra dell'espressione del predicato. In questo esempio, per ogni valore di **s** e **d** tale da rendere la condizione true, c'è un bordo dal nodo del livello di origine al nodo del livello di destinazione. Questa espressione di filtro indica quindi che l'aggregazione include una connessione dal nodo definito da **s** al nodo definito da **d** in tutti i casi in cui s[0] è uguale a d[0].  
+* Nel predicato hello per *ByRow*, **s** è un parametro che rappresenta un indice nella matrice rettangolare di hello dei nodi del livello di input hello, *pixel*, e **d**  è un parametro che rappresenta un indice nella matrice hello dei nodi del livello nascosto hello, *ByRow*. tipo di entrambi Hello **s** e **d** è una tupla di interi di lunghezza due. Concettualmente, **s** include tutte le coppie di valori interi con *0 <= s[0] < 10* e *0 <= s[1] < 20* e **d** include tutte le coppie di valori interi con *0 <= d[0] < 10* e *0 <= d[1] < 12*. 
+* Sul lato destro di hello dell'espressione predicato hello, vi è una condizione. In questo esempio, per ogni valore di **s** e **d** tale condizione hello è True, è un bordo dal nodo di livello di hello origine livello nodo toohello destinazione. Di conseguenza, questa espressione di filtro indica il file di bundle hello include una connessione dal nodo hello definito da **s** toohello nodo definito da **d** in tutti i casi in cui s [0] è uguale tood [0].  
 
-È facoltativamente possibile specificare un insieme di pesi per un'aggregazione filtrata. Il valore dell'attributo **Weights** deve essere una tupla di valori a virgola mobile, la cui lunghezza corrisponde al numero di connessioni definite dall'aggregazione. Per impostazione predefinita, i pesi sono generati in modo casuale.  
+È facoltativamente possibile specificare un insieme di pesi per un'aggregazione filtrata. valore per hello Hello **pesi** attributo deve essere una tupla di valori a virgola mobile con una lunghezza corrispondente hello numero di connessioni definito dal bundle hello. Per impostazione predefinita, i pesi sono generati in modo casuale.  
 
-I valori dei pesi sono raggruppati in base all'indice dei nodi di destinazione, ovvero, se il primo nodo di destinazione è connesso ai nodi di origine K, i primi elementi *K* della tupla **Weights** rappresentano i pesi per il primo nodo di destinazione nell'ordine dell'indice di origine. La stessa procedura è applicabile ai nodi di destinazione rimanenti.  
+I valori di peso sono raggruppati in base all'indice di nodo di destinazione hello. Vale a dire, se è connesso il nodo di destinazione prima hello ha impiegato i nodi di origine, hello innanzitutto *K* gli elementi di hello **pesi** tupla sono pesi hello per hello primo nodo di destinazione, in ordine di indice di origine. Hello che stesso vale per hello rimanenti nodi di destinazione.  
 
-È possibile specificare i pesi direttamente come valori costanti. Se ad esempio si sono appresi in precedenza i pesi, è possibile specificarli come costanti usando questa sintassi:
+È possibile toospecify pesi direttamente come valori costanti. Ad esempio, se si è appreso pesi hello in precedenza, è possibile specificarli come costanti utilizzando questa sintassi:
 
     const Weights_1 = [0.0188045055, 0.130500451, ...]
 
 
 ## <a name="convolutional-bundles"></a>Aggregazioni convoluzionali
-Quando i dati di training hanno una struttura omogenea, le connessioni convoluzionali vengono solitamente usate per ottenere funzionalità di livello elevato dei dati. Ad esempio, nei dati di tipo immagine, audio o video è possibile che la dimensionalità spaziale o temporale sia abbastanza uniforme.  
+Se i dati di training hello presenta una struttura omogenea, le connessioni convolutional sono funzionalità di alto livello dei dati hello toolearn comunemente utilizzati. Ad esempio, nei dati di tipo immagine, audio o video è possibile che la dimensionalità spaziale o temporale sia abbastanza uniforme.  
 
-Le aggregazioni convoluzionali usano**kernels** rettangolari inseriti nelle dimensioni. Essenzialmente, ogni kernel definisce un insieme di pesi applicati nei vicinati locali, indicati come **applicazioni di kernel**. Ogni applicazione di kernel corrisponde a un nodo nel livello di origine indicato come **nodo centrale**. I pesi di un kernel sono condivisi tra molte connessioni. In un'aggregazione convoluzionale ogni kernel è rettangolare e tutte le applicazioni di kernel hanno le stesse dimensioni.  
+Bundle convolutional impiegano rettangolare **directcompute** che vengono portati sopra tramite dimensioni hello. In pratica, ogni kernel definisce un set di pesi applicato in locali Villaggi, cui viene fatto riferimento tooas **applicazioni kernel**. Ogni applicazione kernel corrisponde tooa nodo nel livello di origine hello, ovvero tooas cui hello **nodo centrale**. numero di connessioni sono condivise con pesi Hello di un kernel. In un bundle convolutional, ogni kernel rettangolare e tutte le applicazioni kernel hello stessa dimensione.  
 
-Le aggregazioni convoluzionali supportano gli attributi seguenti:
+Bundle convolutional supportano hello gli attributi seguenti:
 
-**InputShape** definisce la dimensionalità del livello di origine ai fini di questa aggregazione convoluzionale. Il valore deve essere una tupla di valori Integer positivi. Il prodotto dei valori Integer deve essere uguale al numero di nodi del livello di origine, ma non deve corrispondere in altro modo alla dimensionalità dichiarata per il livello di origine. La lunghezza di questa tupla diventa il valore di **arietà** per l'aggregazione convoluzionale. In genere, il grado fa riferimento al numero di argomenti oppure operandi che una funziona può accettare.  
+**InputShape** definisce dimensionalità hello del livello di origine hello per scopi di hello per il raggruppamento convolutional. il valore di Hello deve essere una tupla di numeri interi positivi. prodotto di Hello di numeri interi hello deve essere uguale hello numero di nodi nel livello di origine hello, ma in caso contrario, è necessario dimensionalità hello toomatch dichiarata per il livello di origine hello. lunghezza Hello di questo tipo di tupla diventa hello **grado** valore per bundle convolutional hello. (In genere grado fa riferimento toohello numero di argomenti o una funzione può accettare gli operandi).  
 
-Per definire la forma e le posizioni dei kernel, usare gli attributi **KernelShape**, **Stride**, **Padding**, **LowerPad** e **UpperPad**:   
+forma hello toodefine e le posizioni dei kernel hello, utilizzare gli attributi di hello **KernelShape**, **Stride**, **Padding**, **LowerPad**, e **UpperPad**:   
 
-* **KernelShape**: (obbligatorio) definisce la dimensionalità di ogni kernel per l'aggregazione convoluzionale. Il valore deve essere una tupla di numeri interi positivi con una lunghezza uguale al valore del grado dell'aggregazione. Ogni componente di questa tupla non deve essere maggiore del componente corrispondente di **InputShape**. 
-* **Stride**: (facoltativo) definisce le dimensioni del passo di inserimento della convoluzione (una sola dimensione del passo per ogni dimensione), ovvero la distanza tra i nodi centrali. Il valore deve essere una tupla di numeri interi positivi con una lunghezza corrispondente al valore del grado dell'aggregazione. Ogni componente di questa tupla non deve essere maggiore del componente corrispondente di **KernelShape**. Il valore predefinito è una tupla con tutti i componenti uguali a uno. 
-* **Sharing**: (facoltativo) definisce la condivisione dei pesi per ogni dimensione della convoluzione. Il valore può essere un singolo valore booleano o una tupla di valori booleani, con lunghezza corrispondente al valore del grado dell'aggregazione. Un singolo valore booleano viene esteso in modo da diventare una tupla di lunghezza corretta con tutti i componenti uguali al valore specificato. Il valore predefinito è una tupla costituita interamente da valori True. 
-* **MapCount**: (facoltativo) definisce il numero di mapping di funzionalità per l'aggregazione convoluzionale. Il valore può essere un singolo numero intero positivo o una tupla di numeri interi positivi, con lunghezza corrispondente al valore del grado dell'aggregazione. Un singolo valore Integer viene esteso in modo da diventare una tupla di lunghezza corretta quando i primi componenti sono uguali al valore specificato e tutti i componenti rimanenti sono uguali a uno. Il valore predefinito è uno. Il numero totale di mapping di funzionalità è il prodotto dei componenti della tupla. La fattorizzazione di questo numero totale nei componenti determina il modo in cui i valori di mapping di funzionalità vengono raggruppati nei nodi di destinazione. 
-* **Weights**: (facoltativo) definisce i pesi iniziali per l'aggregazione. Il valore deve essere una tupla di valori a virgola mobile con una lunghezza corrispondente al numero di pesi per kernel, come definito in seguito in questo articolo. I pesi predefiniti sono generati in modo casuale.  
+* **KernelShape**: dimensionalità di hello definisce (obbligatoria) di ogni kernel per bundle convolutional hello. il valore di Hello deve essere una tupla di numeri interi positivi con una lunghezza pari al grado hello del bundle hello. Ogni componente di questo tipo di tupla deve essere maggiore di componente corrispondente di hello del **InputShape**. 
+* **Stride**: (facoltativo) hello definisce la variabile di dimensioni di passaggio di convoluzione hello (dimensioni di un passaggio per ogni dimensione), che corrisponde alla distanza hello tra i nodi centrale hello. il valore di Hello deve essere una tupla di numeri interi positivi con una lunghezza di grado hello del bundle hello. Ogni componente di questo tipo di tupla deve essere maggiore di componente corrispondente di hello del **KernelShape**. valore predefinito di Hello è una tupla con tooone uguale di tutti i componenti. 
+* **Condivisione**: condivisione per ogni dimensione di convoluzione hello un peso di hello definisce (facoltativo). il valore di Hello può essere un singolo valore booleano o una tupla di valori booleani con una lunghezza di grado hello del bundle hello. Un singolo valore booleano è estesa toobe una tupla di lunghezza corretta di hello con tutti i componenti toohello uguale valore specificato. valore predefinito di Hello è una tupla costituita da tutti i valori True. 
+* **MapCount**: (facoltativo) definisce hello numerose funzionalità esegue il mapping per bundle convolutional hello. il valore di Hello può essere un numero intero positivo o una tupla di numeri interi positivi con una lunghezza di grado hello del bundle hello. Un singolo valore integer viene esteso toobe una tupla di lunghezza corretta di hello con hello prima componenti uguale toohello specificato valore e tutti i hello tooone uguale a componenti rimanenti. valore predefinito di Hello è uno. numero totale di Hello delle mappe di funzionalità è prodotto hello dei componenti di hello di hello tupla. Hello factoring del numero totale di vari componenti hello determina la modalità di raggruppamento hello funzionalità mappare i valori nei nodi di destinazione hello. 
+* **Pesi**: (facoltativo) definisce hello iniziale i pesi per il bundle di hello. il valore di Hello deve essere una tupla di valori a virgola mobile con una lunghezza hello numero kernel volte hello del pesi per kernel, come definito più avanti in questo articolo. pesi predefiniti Hello, vengono generati in modo casuale.  
 
-Sono disponibili due set di proprietà che controllano la spaziatura interna. Le proprietà si escludono a vicenda:
+Esistono due set di proprietà che controllano la spaziatura interna ovvero la proprietà come hello si escludono a vicenda:
 
-* **Padding**: (facoltativo) determina se l'input deve essere riempito tramite uno **schema di riempimento predefinito**. Il valore può essere un singolo valore booleano o una tupla di valori booleani, con lunghezza corrispondente al valore del grado dell'aggregazione. Un singolo valore booleano viene esteso in modo da diventare una tupla di lunghezza corretta con tutti i componenti uguali al valore specificato. Se il valore per una dimensione è True, l'origine sarà riempita in modo logico in quella dimensione con celle a valore zero per supportare altre applicazioni di kernel, in modo che i nodi centrali del primo e dell'ultimo kernel in quella dimensione siano i primi e gli ultimi nodi di quella dimensione nel livello di origine. Il numero di nodi "fittizi" in ogni dimensione viene quindi determinato automaticamente, in modo da inserire esattamente i kernel *(InputShape[d] - 1) / Stride[d] + 1* nel livello di origine riempito. Se il valore per una dimensione è False, i kernel verranno definiti in modo che il numero di nodi esclusi in ogni lato sia uguale (con una differenza massima di 1). Il valore predefinito di questo attributo è una tupla con tutti i componenti uguali a False.
-* **UpperPad** e **LowerPad**: (facoltativi) consentono un maggiore controllo sulla quantità di riempimento da usare. **Importante:** questi attributi possono essere definiti solo se la proprietà **Padding** precedente ***non*** è definita. I valori devono essere tuple con numeri interi con lunghezza corrispondente al grado dell'aggregazione. Quando questi attributi sono specificati, i nodi "fittizi" vengono aggiunti alle estremità superiori e inferiori di ogni dimensione del livello di input. Il numero di nodi aggiunti alle estremità inferiori e superiori di ogni dimensione è determinato rispettivamente da **LowerPad**[i] e **UpperPad**[i]. Per assicurare che i kernel corrispondano solo a nodi "effettivi" e non a nodi "fittizi", è necessario che siano soddisfatte le condizioni seguenti:
+* **Spaziatura interna**: (facoltativo) consente di determinare se un input hello deve essere completato utilizzando un **schema di riempimento predefinito**. il valore di Hello può essere un singolo valore booleano o può essere una tupla di valori booleani con una lunghezza di grado hello del bundle hello. Un singolo valore booleano è estesa toobe una tupla di lunghezza corretta di hello con tutti i componenti toohello uguale valore specificato. Se il valore di hello per una dimensione è True, origine hello viene riempita logicamente in tale dimensione con le applicazioni aggiuntive kernel toosupport di celle con valori zero, in modo che i nodi di centrale hello del kernel e il cognome di hello in tale dimensione siano hello prima e l'ultimo nodo in tale dimensione nel livello di origine hello. Pertanto, il numero di hello dei nodi "fittizi" in ogni dimensione è determinata automaticamente in toofit esattamente *(InputShape [d] - 1) / Stride [d] + 1* kernel nel livello di origine hello applicato un riempimento. Se il valore di hello per una dimensione è False, hello kernel sono definiti in modo che sia il numero di hello di nodi su ciascun lato che sono stati esclusi hello stesso (backup differenza tooa 1). il valore predefinito Hello di questo attributo è una tupla con tooFalse uguale di tutti i componenti.
+* **UpperPad** e **LowerPad**: (facoltativo) specificare un controllo maggiore sulla quantità di hello di spaziatura interna toouse. **Importante:** questi attributi possono essere definiti se e solo se hello **Padding** proprietà precedente è ***non*** definito. i valori Hello devono essere tuple con valori integer con lunghezze di grado hello del bundle hello. Quando vengono specificati questi attributi, nodi "fittizi" vengono aggiunti toohello inferiore ed estremità superiore di ogni dimensione di hello livello di input. numero di nodi Hello aggiunto toohello inferiore e superiore termina in ogni dimensione è determinata da **LowerPad**[i] e **UpperPad**[i] rispettivamente. è necessario soddisfare tooensure che kernel corrispondenti nodi solo troppo "reali" e non troppo "fittizio" hello seguenti condizioni:
   * Ogni componente di**LowerPad** deve essere rigorosamente minore di KernelShape[d]/2. 
   * Ogni componente di **UpperPad** non deve essere maggiore di KernelShape[d]/2. 
-  * Il valore predefinito di questi attributi è una tupla con tutti i componenti uguali a 0. 
+  * il valore predefinito Hello di questi attributi è una tupla con too0 uguale di tutti i componenti. 
 
-L'impostazione **Padding** = true consente tutto il riempimento necessario per mantenere il "centro" del kernel all'interno dell'input "reale". In questo modo i calcoli matematici variano un po' per calcolare le dimensioni di output. In genere, le dimensioni di output *D* vengono calcolate come *D = (I - K) / S + 1*, dove *I* è la dimensione di input, *K* è la dimensione del kernel, *S* è lo stride e */* è la divisione intera (con arrotondamento a zero). Se si imposta UpperPad = [1, 1], la dimensione di input *I* è in realtà 29, ovvero *D = (29 - 5) / 2 + 1 = 13*. Se **Padding** è true, *I* viene essenzialmente incrementato di *K - 1*, ovvero *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. Specificando i valori per **UpperPad** e **LowerPad** si ottiene un maggiore controllo sul riempimento rispetto all'impostazione **Padding** = true.
+impostazione di Hello **Padding** = true consente in base alle esigenze di spaziatura come tookeep hello "center" del kernel hello all'interno di hello "real" di input. In questo caso matematiche hello un bit per il calcolo delle dimensioni di output di hello. In genere, l'output di hello dimensioni *D* viene calcolata come *D = (I - K) / S + 1*, dove *si* dimensioni input hello, *K* dimensioni kernel hello, *S* è stride hello, e  */*  è la divisione di interi (arrotondare per difetto). Se si imposta UpperPad = [1, 1], hello input dimensioni *si* in modo efficace è 29 e pertanto *D = (29-5) / 2 + 1 = 13*. Se **Padding** è true, *I* viene essenzialmente incrementato di *K - 1*, ovvero *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*. Specificando i valori per **UpperPad** e **LowerPad** ottenere un maggiore controllo riguardo hello padding rispetto ai casi si appena **Padding** = true.
 
 Per altre informazioni sulle reti convoluzionali e le relative applicazioni, vedere gli articoli seguenti:  
 
@@ -203,11 +203,11 @@ Per altre informazioni sulle reti convoluzionali e le relative applicazioni, ved
 * [http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf](http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf)  
 
 ## <a name="pooling-bundles"></a>Aggregazioni di pooling
-Un'**aggregazione di pooling** applica una geometria analoga alla connettività convoluzionale, ma usa funzioni predefinite per i valori del nodo di origine per derivare il valore del nodo di destinazione. Le aggregazioni di pooling non hanno quindi stati sottoponibili a training (pesi o distorsioni). Le aggregazioni di pooling supportano tutti gli attributi convoluzionali, ad eccezione di **Sharing**, **MapCount** e **Weights**.  
+Oggetto **pool bundle** applica connettività tooconvolutional simile di geometry, ma usa le funzioni predefinite toosource nodo valori tooderive hello nodo valore di destinazione. Le aggregazioni di pooling non hanno quindi stati sottoponibili a training (pesi o distorsioni). Supporto di bundle tutti hello convolutional attributi ad eccezione di pool **condivisione**, **MapCount**, e **pesi**.  
 
-In genere, i kernel riepilogati da unità di pooling adiacenti non sono sovrapposti. Se Stride[d] equivale a KernelShape[d] in ogni dimensione, il livello ottenuto è il livello di pooling locale tradizionale, usato in genere nelle reti neurali convoluzionali. Ogni nodo di destinazione calcola il valore massimo o medio delle attività del rispettivo kernel nel livello di origine.  
+In genere, non si sovrappongano kernel hello riepilogati per unità del pool di connessioni adiacenti. Se Stride [d] è uguale tooKernelShape [d] in ogni dimensione, il livello di hello ottenuto è hello tradizionale locale pooling livello, che è comunemente usato in reti neurali convolutional. Ogni nodo di destinazione calcola hello massima o Media hello delle attività di hello del relativo kernel nel livello di origine hello.  
 
-L'esempio seguente illustra un'aggregazione di pooling: 
+Hello di esempio seguente viene illustrato un bundle del pool di connessioni: 
 
     hidden P1 [5, 12, 12]
       from C1 max pool {
@@ -216,10 +216,10 @@ L'esempio seguente illustra un'aggregazione di pooling:
         Stride      = [ 1,  2,  2];
       }  
 
-* L'arietà dell'aggregazione è pari a 3, ovvero alla lunghezza delle tuple **InputShape**, **KernelShape** e **Stride**. 
-* Il numero di nodi del livello di origine è pari a *5 * 24 * 24 = 2880*. 
+* grado di Hello del bundle hello è 3 (lunghezza di tuple hello hello **InputShape**, **KernelShape**, e **Stride**). 
+* Hello numero di nodi nel livello di origine hello è *5 * 24 * 24 = 2880*. 
 * Questo è un livello di pooling locale tradizionale, perché **KernelShape** e **Stride** sono uguali. 
-* Il numero di nodi del livello di destinazione è pari a *5 * 12 * 12 = 1440*.  
+* Hello numero di nodi nel livello di destinazione hello è *5 * 12 * 12 = 1440*.  
 
 Per altre informazioni sui livelli di pooling, vedere gli articoli seguenti:  
 
@@ -228,26 +228,26 @@ Per altre informazioni sui livelli di pooling, vedere gli articoli seguenti:
 * [http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf](http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf)
 
 ## <a name="response-normalization-bundles"></a>Aggregazioni di normalizzazione delle risposte
-La **normalizzazione delle risposte** è uno schema di normalizzazione locale introdotto per la prima volta da Geoffrey Hinton e altri esperti nell'articolo [ImageNet Classiﬁcation with Deep Convolutional Neural Networks](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf) (Classificazione ImageNet con reti neurali convoluzionali avanzate). La normalizzazione delle risposte viene usata per semplificare la generalizzazione nelle reti neurali. Quando un neurone opera a un livello di attivazione molto elevato, un livello di normalizzazione delle risposte locale sopprime il livello di attivazione dei neuroni circostanti. Ciò avviene tramite tre parametri (***α***, ***β***, e ***k***) e una struttura convoluzionale (o forma di vicinato). Ogni neurone nel livello di destinazione ***y*** corrisponde a un neurone ***x*** nel livello di origine. Il livello di attivazione di ***y*** è dato dalla formula seguente, dove ***f*** corrisponde al livello di attivazione di un neurone e ***Nx*** è il kernel o l'insieme contenente i neuroni nel vicinato di ***x***, come definito dalla struttura convoluzionale seguente:  
+**Normalizzazione di risposta** è uno schema di normalizzazione locale che è stato introdotto da Geoffrey Hinton, et al., nel documento hello [ImageNet Classiﬁcation con complete reti neurali Convolutional](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf). Normalizzazione di risposta è una generalizzazione tooaid utilizzato nelle reti neurali. Quando un neurone la generazione di un livello molto elevato di attivazione, un livello di normalizzazione risposta locale elimina il livello di attivazione hello di hello circostanti neuroni. Ciò avviene tramite tre parametri (***α***, ***β***, e ***k***) e una struttura convoluzionale (o forma di vicinato). Ogni neurone nel livello di destinazione hello ***y*** corrisponde tooa neurone ***x*** nel livello di origine hello. livello di attivazione di Hello ***y*** viene fornito dalla seguente formula, hello in cui ***f*** hello livello di attivazione di un neurone, e ***Nx*** è kernel hello (o set di hello contenente hello neuroni di circa hello ***x***), come definito da hello convolutional struttura seguente:  
 
 ![][1]  
 
-Le aggregazioni di normalizzazione delle risposte supportano tutti gli attributi convoluzionali, ad eccezione di **Sharing**, **MapCount** e **Weights**.  
+Bundle di normalizzazione risposta supportano tutti gli attributi convolutional hello, tranne **condivisione**, **MapCount**, e **pesi**.  
 
-* Se il kernel contiene neuroni nello stesso mapping di ***x***, lo schema di normalizzazione è definito **normalizzazione dello stesso mapping**. Per definire la normalizzazione nello stesso mapping, la prima coordinata in **InputShape** deve avere valore 1.
-* Se il kernel contiene neuroni nella stessa posizione spaziale di ***x***, ma i neuroni si trovano in mapping diversi, lo schema di normalizzazione sarà definito **normalizzazione tra mapping**. Questo tipo di normalizzazione delle risposte implementa una forma di inibizione laterale ispirata dal tipo trovato nei neuroni reali, creando una competizione per livelli di attivazione elevati tra gli output di neuroni calcolati nei diversi mapping. Per definire la normalizzazione tra mapping, è necessario che la prima coordinata sia superiore a uno e non sia superiore al numero di mapping e che il resto delle coordinate abbia valore 1.  
+* Se kernel hello contiene neuroni hello stessa mappa come ***x***, lo schema di normalizzazione hello è tooas cui **stessa mappa normalizzazione**. toodefine stesso eseguire il mapping di normalizzazione, hello prima coordinata **InputShape** deve avere valore hello 1.
+* Se il kernel hello contiene neuroni hello stessa posizione spaziale ***x***, senza neuroni hello in altri mapping, viene chiamato lo schema di normalizzazione hello **attraverso esegue il mapping di normalizzazione**. Questo tipo di normalizzazione risposta implementa una forma di inibizione laterale ispirata hello trovato tipo nel neuroni reali, la creazione di concorrenza per i livelli di attivazione big tra output neurone calcolato in mappe diverse. toodefine tra esegue il mapping di normalizzazione, coordinate prima hello deve essere un numero intero maggiore di uno e non è maggiore del numero di hello delle mappe e rest hello di coordinate hello deve avere il valore di hello 1.  
 
-Poiché le aggregazioni di normalizzazione delle risposte applicano una funzione predefinita ai valori del nodo di origine per determinare il valore del nodo di destinazione, non hanno stati sottoponibili a training (pesi o distorsioni).   
+Poiché il bundle di normalizzazione risposta applicano un funzione predefinita toosource nodo valori toodetermine hello nodo valore di destinazione, non presentano alcun stato trainable (pesi o pregiudizi).   
 
-**Avviso**: i nodi del livello di destinazione corrispondono ai neuroni che costituiscono i nodi centrali dei kernel. Ad esempio, se KernelShape[d] è dispari, *KernelShape[d]/2* corrisponderà al nodo centrale del kernel. Se *KernelShape[d]* è pari, il nodo centrale si trova in *KernelShape[d]/2 - 1*. Se quindi **Padding**[d] è False, il primo e l'ultimo nodo *KernelShape[d]/2* non hanno nodi corrispondenti nel livello di destinazione. Per evitare questa situazione, definire **Padding** come [true, true, …, true].  
+**Avviso**: i nodi nel livello di destinazione hello hello corrispondono tooneurons che sono nodi centrale hello kernel hello. Ad esempio, se KernelShape [d] è dispari, verrà restituito *KernelShape [d] / 2* corrispondente nodo centrale kernel toohello. Se *KernelShape [d]* è pari, Trova nodo centrale hello *KernelShape [d] / 2-1*. Pertanto, se **Padding**[d] è False, hello prima e ultima hello *KernelShape [d] / 2* nodi non dispongono di nodi corrispondenti nel livello di destinazione hello. tooavoid questa situazione, definire **Padding** come [true, true,..., true].  
 
-Oltre ai quattro attributi descritti precedentemente, le aggregazioni di normalizzazione delle risposte supportano anche gli attributi seguenti:  
+Inoltre toohello quattro attributi descritti in precedenza, il bundle di normalizzazione risposta anche supporto hello gli attributi seguenti:  
 
-* **Alpha**: (obbligatorio) specifica un valore a virgola mobile che corrisponde a ***α*** nella formula precedente. 
-* **Beta**: (obbligatorio) specifica un valore a virgola mobile che corrisponde a ***β*** nella formula precedente. 
-* **Offset**: (facoltativo) specifica un valore a virgola mobile che corrisponde a ***k*** nella formula precedente. Assume il valore predefinito 1.  
+* **Alpha**: (obbligatorio) specifica un valore a virgola mobile che corrisponde a troppo***α*** nella formula precedente hello. 
+* **Beta**: (obbligatorio) specifica un valore a virgola mobile che corrisponde a troppo***β*** nella formula precedente hello. 
+* **Offset**: (facoltativo) specifica un valore a virgola mobile che corrisponde a troppo***k*** nella formula precedente hello. Per impostazione predefinita too1.  
 
-L'esempio seguente definisce un'aggregazione di normalizzazione delle risposte usando questi attributi:  
+Hello seguente definisce un raggruppamento di normalizzazione risposta mediante tali attributi:  
 
     hidden RN1 [5, 10, 10]
       from P1 response norm {
@@ -257,12 +257,12 @@ L'esempio seguente definisce un'aggregazione di normalizzazione delle risposte u
         Beta = 0.75;
       }  
 
-* Il livello di origine include cinque mapping, ognuno con una dimensione di 12x12, per un totale di 1440 nodi. 
-* Il valore di **KernelShape** indica che si tratta dello stesso livello di normalizzazione di mapping, in cui il vicinato è un rettangolo 3x3. 
-* Se il valore predefinito di **Padding** è False, il livello di destinazione ha solo 10 nodi in ogni dimensione. Per includere un nodo nel livello di destinazione corrispondente a ogni nodo nel livello di origine, aggiungere Padding = [true, true, true]; e modificare le dimensioni di RN1 su [5, 12, 12].  
+* livello di origine Hello include cinque mappe, ognuna con dimensione aof 12 x 12, per un totale di nodi 1440. 
+* valore di Hello **KernelShape** indica che si tratta di un livello di normalizzazione mappa stessa, in cui le risorse di hello sono un 3x3 rettangolo. 
+* il valore predefinito di Hello **Padding** è False, pertanto il livello di destinazione hello è solo 10 nodi in ogni dimensione. tooinclude un nodo nel livello di destinazione hello corrispondente nodo tooevery nel livello di origine di hello, aggiungere spaziatura interna = [true, true, true]; e modificare anche le dimensioni di hello di RN1 [5, 12, 12].  
 
 ## <a name="share-declaration"></a>Dichiarazione delle condivisioni
-Net# supporta facoltativamente la definizione di più aggregazioni con pesi condivisi. I pesi di qualsiasi aggregazione possono essere condivisi se le loro strutture sono uguali. La sintassi seguente definisce le aggregazioni con i pesi condivisi:  
+Net# supporta facoltativamente la definizione di più aggregazioni con pesi condivisi. pesi Hello qualsiasi due pacchetti di possono essere condiviso se le strutture sono hello stesso. la seguente sintassi Hello definisce bundle con pesi condivisi:  
 
     share-declaration:
         share    {    layer-list    }
@@ -290,7 +290,7 @@ Net# supporta facoltativamente la definizione di più aggregazioni con pesi cond
     layer-name:
         identifier  
 
-Ad esempio, la dichiarazione di condivisioni seguente specifica i nomi dei livelli, indicando che devono essere condivisi sia i pesi che le distorsioni:  
+Ad esempio, hello condivisione-dichiarazione seguente specifica i nomi dei livelli di hello, che indica che devono essere condivisa pesi sia pregiudizi:  
 
     Const {
       InputSize = 37;
@@ -310,9 +310,9 @@ Ad esempio, la dichiarazione di condivisioni seguente specifica i nomi dei livel
     }
     share { H1, H2 } // share both weights and biases  
 
-* Le funzionalità di input sono partizionate in due livelli di input di dimensioni identiche. 
-* I livelli nascosti calcolano quindi le funzionalità di livello superiore nei due livelli di input. 
-* La dichiarazione di condivisione specifica che *H1* e *H2* devono essere calcolati in modo analogo dai rispettivi input.  
+* le funzionalità di Hello input vengono suddivisi in due livelli di input con dimensioni uguali. 
+* i livelli nascosto Hello per calcolare le funzionalità di livello superiore nei due livelli di input hello. 
+* dichiarazione di Hello condivisione specifica che *H1* e *H2* deve essere calcolato in hello allo stesso modo dal loro rispettivi input.  
 
 In alternativa, è possibile specificare questo concetto con due dichiarazioni delle condivisioni separate, come indicato di seguito:  
 
@@ -322,59 +322,59 @@ In alternativa, è possibile specificare questo concetto con due dichiarazioni d
 
     share { 1 => H1, 1 => H2 } // share biases  
 
-È possibile usare la forma breve solo se i livelli contengono una singola aggregazione. In genere, la condivisione è possibile solo se la struttura rilevante è identica, ovvero se le dimensioni, la geometria convoluzionale e così via sono identiche.  
+È possibile utilizzare la forma breve hello solo quando i livelli di hello contengono un unico bundle. In generale, è possibile condividere solo quando si struttura rilevanti hello è identico, vale a dire che dispongono di hello stessa dimensione, geometry convolutional stesso e così via.  
 
 ## <a name="examples-of-net-usage"></a>Esempi di utilizzo di Net#
-Questa sezione offre alcuni esempi di utilizzo di Net# per aggiungere livelli nascosti, definire il modo in cui i livelli nascosti interagiscono con altri livelli e creare reti convoluzionali.   
+In questa sezione vengono forniti alcuni esempi di come è possibile utilizzare Net # livelli tooadd nascosto, definire modo hello che interagiscono con gli altri livelli livelli nascosti e compilare convolutional reti.   
 
 ### <a name="define-a-simple-custom-neural-network-hello-world-example"></a>Definire una semplice rete neurale personalizzata, ad esempio "Hello World"
-Questo esempio illustra come creare un modello di rete neurale con un singolo livello nascosto.  
+Questo semplice esempio viene illustrato come toocreate un neurale rete modello che dispone di un singolo livello nascosto.  
 
     input Data auto;
     hidden H [200] from Data all;
     output Out [10] sigmoid from H all;  
 
-L'esempio illustra alcuni comandi di base come indicato di seguito:  
+esempio Hello alcuni comandi di base viene illustrato come indicato di seguito:  
 
-* La prima riga definisce il livello di input (denominato *Data*). Quando si usa la parola chiave **auto**, la rete neurale include automaticamente tutte le colonne di funzionalità negli esempi di input. 
-* La seconda riga crea il livello nascosto. Il nome *H* è assegnato al livello nascosto, che ha 200 nodi. Questo livello è completamente connesso al livello di input.
-* La terza riga definisce il livello di output (denominato *O*), che contiene 10 nodi di output. Se la rete neurale viene usata per la classificazione, è disponibile un nodo di output per ogni classe. La parola chiave **sigmoid** indica la funzione di output applicata al livello di output.   
+* prima riga Hello definisce livello input hello (denominato *dati*). Quando si utilizza hello **auto** (parola chiave), la rete neurale hello include automaticamente tutte le colonne di funzionalità negli esempi di input hello. 
+* seconda riga Hello Crea livello nascosto hello. nome Hello *H* viene assegnato il livello nascosto toohello, che dispone di 200 nodi. Questo livello è completamente connesso toohello input.
+* terza riga Hello definisce il livello di output di hello (denominato *O*), che contiene 10 nodi di output. Se la rete neurale hello viene utilizzata per la classificazione, c'è un nodo di output per ogni classe. parola chiave Hello **sigmoidale** indica che il livello di output toohello applicato hello output funzione.   
 
 ### <a name="define-multiple-hidden-layers-computer-vision-example"></a>Definire più livelli nascosti: esempio obiettivo computer
-L'esempio seguente illustra come definire una rete neurale leggermente più complessa, con più livelli nascosti personalizzati.  
+Hello esempio seguente viene illustrato come toodefine una rete neurale leggermente più complessa con più livelli nascosti personalizzati.  
 
-    // Define the input layers 
+    // Define hello input layers 
     input Pixels [10, 20];
     input MetaData [7];
 
-    // Define the first two hidden layers, using data only from the Pixels input
+    // Define hello first two hidden layers, using data only from hello Pixels input
     hidden ByRow [10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol [5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;
 
-    // Define the third hidden layer, which uses as source the hidden layers ByRow and ByCol
+    // Define hello third hidden layer, which uses as source hello hidden layers ByRow and ByCol
     hidden Gather [100] 
     {
       from ByRow all;
       from ByCol all;
     }
 
-    // Define the output layer and its sources
+    // Define hello output layer and its sources
     output Result [10]  
     {
       from Gather all;
       from MetaData all;
     }  
 
-Questo esempio descrive diverse funzionalità del linguaggio di specifica delle reti neurali:  
+In questo esempio vengono illustrate diverse funzionalità del linguaggio di specifica di reti neurali hello:  
 
-* La struttura ha due livelli di input, *Pixels* e *MetaData*.
-* Il livello *Pixels* è un livello di origine per due aggregazioni di connessioni, con livelli di destinazione, *ByRow* e *ByCol*.
-* I livelli *Gather* e *Result* sono livelli di destinazione in più aggregazioni di connessioni.
-* Il livello di output, *Result*, è un livello di destinazione in due aggregazioni di connessione. Una con il secondo livello nascosto (Gather) come livello di destinazione e l'altra con il livello di input (MetaData) come livello di destinazione.
-* I livelli nascosti, *ByRow* e *ByCol*, specificano connettività filtrata usando espressioni del predicato. Più precisamente, il nodo in *ByRow* su [x, y] è connesso ai nodi in *Pixels* che hanno la prima coordinata indice uguale alla prima coordinata del nodo x. Analogamente, il nodo in *ByCol in [x, y] è connesso ai nodi in _Pixels* che hanno la seconda coordinata indice all'interno di una della seconda coordinata del nodo y.  
+* struttura Hello ha due livelli di input, *pixel* e *metadati*.
+* Hello *pixel* livello è un livello di origine per due bundle di connessione, con livelli di destinazione, *ByRow* e *ByCol*.
+* Hello livelli *raccogliere* e *risultato* sono livelli di destinazione in più bundle di connessione.
+* livello di output di Hello, *risultato*, è un livello di destinazione in due pacchetti di connessione, uno con hello di secondo livello nascosto (raccolta) come un livello di destinazione e hello altro con livello di input hello (metadati) come un livello di destinazione.
+* Hello livelli nascosti, *ByRow* e *ByCol*, specificare la connettività filtrate tramite le espressioni del predicato. Più precisamente, hello nodo *ByRow* a [x, y] è nodi connessi toohello *pixel* che dispongono di x di coordinate, prima di hello primo indice toohello uguale coordinate del nodo. Analogamente, hello nodo *ByCol a [x, y] è nodi connessi toohello _Pixels* che dispongono di coordinate indice secondo di hello all'interno di uno di coordinate a seconda del nodo hello, y.  
 
 ### <a name="define-a-convolutional-network-for-multiclass-classification-digit-recognition-example"></a>Definire una rete per la classificazione multiclasse convoluzionale: esempio di riconoscimento cifra
-La definizione della rete seguente è progettata per riconoscere numeri e illustra alcune tecniche avanzate per la personalizzazione di una rete neurale.  
+definizione di Hello di hello seguente rete è progettato toorecognize numeri e illustra alcune tecniche avanzate per la personalizzazione di una rete neurale.  
 
     input Image [29, 29];
     hidden Conv1 [5, 13, 13] from Image convolve 
@@ -397,21 +397,21 @@ La definizione della rete seguente è progettata per riconoscere numeri e illust
     output Digit [10] from Hid3 all;  
 
 
-* La struttura ha un livello di input singolo, *Image*.
-* La parola chiave **convolve** indica che i livelli *Conv1* e *Conv2* sono livelli convoluzionali. Tutte queste dichiarazioni di livelli sono seguite da un elenco di attributi convoluzionali.
-* La rete ha un terzo livello nascosto, *Hid3*, che è completamente connesso al secondo livello nascosto, *Conv2*.
-* Il livello di output, *Digit*, è connesso solo al terzo livello nascosto, *Hid3*. La parola chiave **all** indica che il livello di output è completamente connesso a *Hid3*.
-* L'arietà della convoluzione è uguale a tre, ovvero alla lunghezza delle tuple **InputShape**, **KernelShape**, **Stride** e **Sharing**. 
-* Il numero di pesi per kernel è*1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape**\[2] = 1 + 1 * 5 * 5 = 26. Oppure 26 * 50 = 1300*.
-* È possibile calcolare i nodi in ogni livello nascosto come indicato di seguito:
+* struttura Hello ha un solo livello di input, *immagine*.
+* parola chiave Hello **convolve** indica che i livelli di hello denominati *Conv1* e *Conv2* convolutional livelli. Ognuna di queste dichiarazioni di livello è seguito da un elenco di attributi convoluzione hello.
+* nascosto di Hello net dispone di un terzo livello, *Hid3*, che è completamente connesso toohello secondo livello nascosto, *Conv2*.
+* livello di output di Hello, *cifra*, è connessa toohello solo terzo livello nascosto, *Hid3*. parola chiave Hello **tutti** indica il livello di output di hello è completamente connesso troppo*Hid3*.
+* Hello grado del convoluzione hello è tre (lunghezza di tuple hello hello **InputShape**, **KernelShape**, **Stride**, e **condivisione**). 
+* numero di Hello di pesi per kernel è *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape** \[2] = 1 + 1 * 5 * 5 = 26. Oppure 26 * 50 = 1300*.
+* È possibile calcolare nodi hello in ogni livello nascosto, come indicato di seguito:
   * **NodeCount**\[0] = (5 - 1) / 1 + 1 = 5.
   * **NodeCount**\[1] = (13 - 5) / 2 + 1 = 5. 
   * **NodeCount**\[2] = (13 - 5) / 2 + 1 = 5. 
-* Il numero totale di nodi può essere calcolato usando la dimensionalità dichiarata del livello, [50, 5, 5], come indicato di seguito: ***MapCount** * **NodeCount**\[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
-* Poiché **Sharing**[d] è False solo per *d == 0*, il numero di kernel è ***MapCount** * **NodeCount**\[0] = 10 * 5 = 50*. 
+* Hello numero totale di nodi può essere calcolato tramite hello dichiarato dimensionalità di hello dei livelli, [50, 5, 5], come indicato di seguito:  ***MapCount** * **NodeCount** \[ 0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
+* Poiché **condivisione**[d] è impostato su False solo per *d = = 0*, numero di hello del kernel è  ***MapCount** * **NodeCount** \[0] = 10 * 5 = 50*. 
 
 ## <a name="acknowledgements"></a>Riconoscimenti
-Il linguaggio Net # per personalizzare l'architettura delle reti neurali è stato sviluppato presso Microsoft da Shon Katzenberger (progettista, Machine Learning) e Alexey Kamenev (ingegnere di software, Microsoft Research). Viene usato internamente per progetti Machine Learning e le applicazioni che vanno dal rilevamento immagine alle analisi di testo. Per altre informazioni, vedere [Neural Nets in Azure ML - Introduction to Net#](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx) (Reti neurali in Azure ML - Introduzione a Net #)
+Hello linguaggio Net # per personalizzare l'architettura di hello delle reti neurali è stato sviluppato da Microsoft da Shon Katzenberger (Architect, Machine Learning) e Alexey Kamenev (tecnico del Software, Microsoft Research). Viene utilizzata internamente per machine learning progetti e applicazioni, da analitica tootext rilevamento di immagine. Per ulteriori informazioni, vedere [reti neurali in Machine Learning di Azure - introduzione tooNet #](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
 
 [1]:./media/machine-learning-azure-ml-netsharp-reference-guide/formula_large.gif
 

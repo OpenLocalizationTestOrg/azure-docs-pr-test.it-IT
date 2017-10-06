@@ -1,6 +1,6 @@
 ---
-title: Failover in Site Recovery | Microsoft Docs
-description: Azure Site Recovery coordina la replica, il failover e il ripristino di macchine virtuali e server fisici. Informazioni sul failover in Azure o in un centro dati secondario.
+title: aaaFailover in Site Recovery | Documenti Microsoft
+description: Azure Site Recovery coordina la replica di hello, failover e il ripristino delle macchine virtuali e server fisici. Informazioni su failover tooAzure o un Data Center secondario.
 services: site-recovery
 documentationcenter: 
 author: prateek9us
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/04/2017
 ms.author: pratshar
-ms.openlocfilehash: ef586191f0b89dca89810644d45503fe42538635
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7cacea829d78bb7de2b2d67402291b472b10f023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="failover-in-site-recovery"></a>Failover in Site Recovery
-Questo articolo descrive come eseguire il failover di macchine virtuali e server fisici protetti da Site Recovery.
+In questo articolo viene descritto come toofailover le macchine virtuali e server fisici protetta da Site Recovery.
 
 ## <a name="prerequisites"></a>Prerequisiti
-1. Prima di eseguire un failover, eseguire un [failover di test](site-recovery-test-failover-to-azure.md) per verificare che tutto funzioni come previsto.
-1. [Preparare la rete](site-recovery-network-design.md) nel percorso di destinazione prima di eseguire un failover.  
+1. Prima di eseguire un failover, eseguire una [failover di test](site-recovery-test-failover-to-azure.md) tooensure che funzionino come previsto.
+1. [Preparare la rete hello](site-recovery-network-design.md) nel percorso di destinazione prima di eseguire un failover.  
 
 
 ## <a name="run-a-failover"></a>Eseguire un failover
-Questa procedura descrive come eseguire un failover per un [piano di ripristino](site-recovery-create-recovery-plans.md). In alternativa è possibile eseguire il failover per una singola macchina virtuale o un server fisico dalla pagina **Elementi replicati**.
+Questa procedura viene descritto come toorun un failover per un [piano di ripristino](site-recovery-create-recovery-plans.md). In alternativa è possibile eseguire il failover hello per una singola macchina virtuale o un server fisico da hello **gli elementi replicati** pagina
 
 
 ![Failover](./media/site-recovery-failover/Failover.png)
 
 1. Selezionare **Piani di ripristino** > *nome_pianodiripristino*. Fare clic su **Failover**.
-2. Nella schermata **Failover** selezionare un **punto di ripristino** in cui eseguire il failover. È possibile usare una delle opzioni seguenti.
-    1.  **Più recente** (opzione predefinita): con questa opzione vengono prima elaborati tutti i dati inviati al servizio Site Recovery per creare un punto di ripristino per ogni macchina virtuale e quindi viene eseguito il failover in tale punto di ripristino. Questa opzione offre il valore RPO (Recovery Point Objective) più basso, perché la macchina virtuale creata dopo il failover contiene tutti i dati che sono stati replicati nel servizio Site Recovery all'attivazione del failover.
-    1.  **Punto di ripristino elaborato più recente**: con questa opzione viene eseguito il failover di tutte le macchine virtuali del piano di ripristino nell'ultimo punto di ripristino elaborato dal servizio Site Recovery. Quando si esegue il failover di test di una macchina virtuale, viene visualizzato anche il timestamp del punto di ripristino elaborato più recente. Se si esegue il failover di un piano di ripristino, per ottenere tali informazioni è possibile passare alla singola macchina virtuale ed esaminare il riquadro **Latest Recovery Points** (Punti di ripristino più recenti). Dato che non viene impiegato tempo per elaborare dati non elaborati, questa opzione offre un failover con valore RTO (Recovery Time Objective) basso.
-    1.  **Punto di ripristino più recente coerente con l'applicazione**: con questa opzione viene eseguito il failover di tutte le macchine virtuali del piano di ripristino nell'ultimo punto di ripristino coerente con l'applicazione elaborato dal servizio Site Recovery. Quando si esegue il failover di test di una macchina virtuale, viene visualizzato anche il timestamp del punto di ripristino coerente con l'app più recente. Se si esegue il failover di un piano di ripristino, per ottenere tali informazioni è possibile passare alla singola macchina virtuale ed esaminare il riquadro **Latest Recovery Points** (Punti di ripristino più recenti).
-    1.  **Latest multi-VM processed** (Più recente coerente tra più VM elaborato): questa opzione è disponibile solo per i piani di ripristino con almeno una macchina virtuale in cui è abilitata la coerenza tra più macchine virtuali. Le macchine virtuali che fanno parte di un gruppo di replica eseguono il failover nel punto di recupero coerente tra più macchine comune più recente. Le altre macchine virtuali eseguono il failover nel relativo punto di recupero più recente elaborato.  
-    1.  **Latest multi-VM app-consistent** (Più recente coerente con l'applicazione tra più VM): questa opzione è disponibile solo per i piani di ripristino con almeno una macchina virtuale in cui è abilitata la coerenza tra più macchine virtuali. Le macchine virtuali che fanno parte di un gruppo di replica eseguono il failover nel punto di recupero coerente a livello applicazione tra più macchine comune più recente. Le altre macchine virtuali eseguono il failover nel relativo punto di recupero più recente coerente con l'applicazione.
-    1.  **Personalizzato**: in caso di failover di test di una macchina virtuale, è possibile usare questa opzione per eseguire il failover in un determinato punto di ripristino.
+2. In hello **Failover** selezionare un **punto di ripristino** toofailover per. È possibile utilizzare una delle seguenti opzioni hello:
+    1.  **Più recente** (impostazione predefinita): questa opzione Elabora prima tutti i dati che sono stato inviato tooSite ripristino servizio toocreate un punto di ripristino per ogni macchina virtuale prima del failover li tooit hello. Questa opzione offre hello più basso RPO (Recovery Point Objective) come macchina virtuale hello creato dopo il failover ha tutti i dati di hello che è stata replicata tooSite servizio di ripristino quando hello failover è stato attivato.
+    1.  **Ultima elaborazione**: questa opzione viene eseguito il failover tutte le macchine virtuali hello piano toohello ultimo ripristino del punto di ripristino che è già stato elaborato dal servizio Site Recovery. Quando si esegue il failover di test di una macchina virtuale, viene visualizzato anche i timestamp dell'ultimo punto di ripristino elaborato hello. Se si esegue il failover di un piano di ripristino, è possibile passare una macchina virtuale tooindividual e osservare **punti di ripristino più recente** riquadro tooget queste informazioni. Come non viene impiegato per l'ora tooprocess hello dati non elaborati, questa opzione offre un'opzione failover RTO (tempo Recovery Time Objective).
+    1.  **Versione più recente coerente con app**: questa opzione non funziona su tutte le macchine virtuali di hello piano toohello più recente dell'applicazione ripristino coerenti con punto di ripristino che è già stato elaborato dal servizio Site Recovery. Quando si esegue il failover di test di una macchina virtuale, viene visualizzato anche i timestamp dell'ultimo punto di ripristino coerenti con l'applicazione hello. Se si esegue il failover di un piano di ripristino, è possibile passare una macchina virtuale tooindividual e osservare **punti di ripristino più recente** riquadro tooget queste informazioni.
+    1.  **Latest multi-VM processed** (Più recente coerente tra più VM elaborato): questa opzione è disponibile solo per i piani di ripristino con almeno una macchina virtuale in cui è abilitata la coerenza tra più macchine virtuali. Macchine virtuali che fanno parte di un gruppo failover toohello più recente comuni tra più macchine coerente ripristino della replica del punto. Altre macchine virtuali failover tootheir ultimo elaborati punto di ripristino.  
+    1.  **Latest multi-VM app-consistent** (Più recente coerente con l'applicazione tra più VM): questa opzione è disponibile solo per i piani di ripristino con almeno una macchina virtuale in cui è abilitata la coerenza tra più macchine virtuali. Macchine virtuali che fanno parte di una replica di tipo gruppo failover toohello ultimo comuni tra più macchine coerenti con l'applicazione punto di ripristino. Altre macchine virtuali failover tootheir più recente coerente con l'applicazione del punto di ripristino.
+    1.  **Custom**: se si sta eseguendo il failover di test di una macchina virtuale, quindi è possibile utilizzare questo punto di recupero specifico tooa toofailover opzione.
 
     > [!NOTE]
-    > La possibilità di scegliere un punto di ripristino è disponibile solo quando viene eseguito il failover in Azure.
+    > opzione di Hello toochoose un punto di ripristino è disponibile solo quando viene eseguito il failover tooAzure.
     >
     >
 
 
-1. Se alcune delle macchine virtuali nel piano di ripristino sono state sottoposte a failover in un'esecuzione precedente e ora sono attive nel percorso di origine e in quello di destinazione, è possibile usare l'opzione **Cambia direzione** per stabilire la direzione in cui deve essere eseguito il failover.
-1. Se le macchine virtuali Hyper-V sono protette da un server VMM e si esegue il failover in Azure con la crittografia dei dati abilitata per il cloud, in **Chiave di crittografia** selezionare il certificato emesso quando è stata abilitata la crittografia dei dati durante l'installazione nel server VMM.
-1. Selezionare **Arrestare la macchina prima di iniziare il failover** se si vuole provare ad arrestare le macchine virtuali di origine tramite Site Recovery prima di attivare il failover. Il failover continua anche se l'arresto ha esito negativo.  
+1. Se alcune delle macchine virtuali hello nel piano di ripristino hello failover durante un'esecuzione precedente e l'ora hello le macchine virtuali sono attive nel percorso di origine e di destinazione, è possibile utilizzare **modificare la direzione** opzione direzione hello toodecide in che eseguono il failover hello dovrebbe essere eseguita.
+1. Se esegue il failover tooAzure e la crittografia dei dati è abilitata per il cloud di hello (si applica solo quando si protegge le macchine virtuali Hyper-v da un Server VMM), in **chiave di crittografia** certificato selezionare hello emesso quando si abilitare la crittografia dei dati durante l'installazione nel server VMM hello.
+1. Selezionare **spegnere la macchina prima di iniziare il failover** se si desidera che il ripristino del sito tooattempt toodo un arresto delle macchine virtuali di origine prima che venga attivato hello failover. Il failover continua anche se l'arresto ha esito negativo.  
 
     > [!NOTE]
-    > Se si usano macchine virtuali Hyper-V, l'opzione prova anche a sincronizzare i dati locali che non sono ancora stati inviati al servizio prima di attivare il failover.
+    > In caso di macchine virtuali Hyper-v, questa opzione tenta anche toosynchronize hello locale i dati non sono ancora stati inviati toohello servizio prima che venga attivato hello failover.
     >
     >
 
-1. Nella pagina **Processi** è possibile seguire lo stato del failover. Anche se si verificano errori durante un failover non pianificato, il piano di ripristino viene eseguito fino al completamento.
-1. Dopo il failover, convalidare la macchina virtuale eseguendo l'accesso ad essa. Per passare a un altro punto di ripristino per la macchina virtuale, è possibile usare l'opzione **Modifica punto di ripristino**.
-1. Quando la macchina virtuale sottoposta a failover è pronta, è possibile eseguire il **commit** del failover. Questa operazione elimina tutti i punti di ripristino disponibili con il servizio e l'opzione **Modifica punto di ripristino** non sarà disponibile.
+1. È possibile controllare lo stato di avanzamento di hello failover nella hello **processi** pagina. Anche se si verificano errori durante un failover non pianificato, il piano di ripristino hello viene eseguito fino al completamento.
+1. Dopo il failover hello, convalidare macchina virtuale hello accedendo tooit. Se si desidera toogo un altro punto di ripristino per la macchina virtuale hello, quindi è possibile utilizzare **Modifica punto di ripristino** opzione.
+1. Dopo avere effettuato hello failover macchina virtuale, è possibile **Commit** hello failover. Ciò consente di eliminare tutti i punti di ripristino hello disponibili con il servizio hello e **Modifica punto di ripristino** opzione non sarà disponibile.
 
 ## <a name="planned-failover"></a>Failover pianificato
-Oltre al failover, le macchine virtuali Hyper-V protette con Site Recovery supportano anche il **failover pianificato**. Si tratta di un'opzione di failover senza alcuna perdita di dati. Quando viene attivato un failover pianificato, prima le macchine virtuali di origine vengono arrestate, vengono sincronizzati i dati non ancora sincronizzati e quindi viene attivato il failover.
+Oltre al failover, le macchine virtuali Hyper-V protette con Site Recovery supportano anche il **failover pianificato**. Si tratta di un'opzione di failover senza alcuna perdita di dati. Quando viene attivato un failover pianificato, innanzitutto hello macchine virtuali vengono arrestate, dati hello ancora toobe sincronizzato è sincronizzato e quindi viene attivato un failover di origine.
 
 > [!NOTE]
-> Quando si esegue il failover di macchine virtuali Hyper-V da un sito locale a un altro sito locale, per tornare al sito locale primario è prima necessario **eseguire la replica inversa** della macchina virtuale nel sito primario e quindi attivare il failover. Se la macchina virtuale primaria non è disponibile, prima di avviare la **replica inversa** è necessario ripristinare la macchina virtuale da un backup.   
+> Quando si macchine virtuali di failover Hyper-v da un locale tooanother sito locale sito, toocome toohello indietro locale primario è toofirst **replica inversa** sito tooprimary indietro di virtual machine hello e quindi avviato un failover. Se macchina virtuale primaria hello non è disponibile, quindi prima di avviare troppo**replica inversa** macchina virtuale di hello toorestore da un backup.   
 >
 >
 
@@ -77,17 +77,17 @@ Oltre al failover, le macchine virtuali Hyper-V protette con Site Recovery suppo
 L'attivazione di un failover comporta l'esecuzione dei passaggi riportati di seguito.
 
 1. Verifica preliminare: questo passaggio garantisce che siano soddisfatte tutte le condizioni necessarie per il failover.
-1. Failover: questo passaggio elabora i dati preparandoli in modo che possano essere usati per creare una macchina virtuale di Azure. Se si è scelto il punto di ripristino **Più recente**, viene creato un punto di ripristino dai dati che sono stati inviati al servizio.
-1. Avvio: questo passaggio crea una macchina virtuale di Azure usando i dati elaborati nel passaggio precedente.
+1. Failover: Questo passaggio elabora i dati di hello e rende pronti in modo che sia possibile creare esplicitamente una macchina virtuale di Azure. Se si è scelto **più recente** punto di ripristino, questo passaggio Crea un punto di ripristino dai dati di hello inviati toohello servizio.
+1. Start: Questo passaggio viene creata una macchina virtuale di Azure utilizzando dati hello elaborati nel passaggio precedente hello.
 
 > [!WARNING]
-> **Non annullare un failover in corso**: prima dell'avvio del failover, la replica della macchina virtuale viene arrestata. Se si **annulla** un processo in corso, il failover viene arrestato ma la macchina virtuale non avvia la replica. Non è possibile riavviare nuovamente la replica.
+> **Non annullare un corso failover**: prima di avviare il failover, è la replica per la macchina virtuale hello è interrotta. Se si **Annulla** un processo lo stato di avanzamento, macchina virtuale hello, ma si arresta il failover non verrà avviato tooreplicate. Non è possibile riavviare nuovamente la replica.
 >
 >
 
-## <a name="time-taken-for-failover-to-azure"></a>Tempo impiegato per il failover in Azure
+## <a name="time-taken-for-failover-tooazure"></a>Tempo impiegato per il failover tooAzure
 
-Il failover di macchine virtuali richiede in alcuni casi un passaggio aggiuntivo intermedio che in genere viene completato in circa 8-10 minuti. Questi casi sono i seguenti:
+In alcuni casi, il failover delle macchine virtuali prevede un passaggio intermedio aggiuntiva che in genere richiede circa 8 too10 minuti toocomplete. Questi casi sono i seguenti:
 
 * Macchine virtuali VMware che usano una versione del servizio di mobilità precedente alla 9.8
 * Server fisici 
@@ -101,23 +101,23 @@ Il failover di macchine virtuali richiede in alcuni casi un passaggio aggiuntivo
     * atapi
 * Macchine virtuali VMware che non dispongono del servizio DHCP abilitato indipendentemente che usino indirizzi IP statici o DHCP.
 
-In tutti gli altri casi questo passaggio intermedio non è necessario e il tempo impiegato per il failover è notevolmente inferiore. 
+In hello tutti gli altri casi questo passaggio intermedio non è necessario e tempo per il failover hello hello è notevolmente inferiore. 
 
 
 
 
 
 ## <a name="using-scripts-in-failover"></a>Uso di script per il failover
-È possibile automatizzare determinate azioni durante un failover. A questo scopo, è possibile usare script o [runbook di Automazione di Azure](site-recovery-runbook-automation.md) nei [piani di ripristino](site-recovery-create-recovery-plans.md).
+È possibile tooautomate determinate azioni durante un failover. È possibile utilizzare script o [i runbook di automazione di Azure](site-recovery-runbook-automation.md) in [i piani di ripristino](site-recovery-create-recovery-plans.md) toodo che.
 
 ## <a name="other-considerations"></a>Altre considerazioni
-* **Lettera di unità**: per mantenere la lettera di unità nelle macchine virtuali dopo il failover è possibile impostare il **criterio SAN** per la macchina virtuale su **OnlineAll**. [Altre informazioni](https://support.microsoft.com/en-us/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure).
+* **Lettera di unità** -lettera di unità tooretain hello in macchine virtuali dopo il failover è possibile impostare hello **criteri SAN** per hello virtual machine troppo**OnlineAll**. [Altre informazioni](https://support.microsoft.com/en-us/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure).
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver eseguito il failover delle macchine virtuali e aver accertato la disponibilità del data center locale, è necessario [**riproteggere**](site-recovery-how-to-reprotect.md) le macchine virtuali VMware nel data center locale.
+Dopo aver eseguito il failover le macchine virtuali e data center di hello in locale è disponibile, è necessario [ **riproteggere** ](site-recovery-how-to-reprotect.md) macchine virtuali VMware di eseguire il data center di toohello in locale.
 
-Usare l'opzione [**Failover pianificato**](site-recovery-failback-from-azure-to-hyper-v.md) per eseguire il **failback** delle macchine virtuali Hyper-V in locale da Azure.
+Utilizzare [ **failover pianificato** ](site-recovery-failback-from-azure-to-hyper-v.md) opzione troppo**Failback** il backup di macchine virtuali Hyper-v locale tooon da Azure.
 
-Se è stato eseguito il failover di una macchina virtuale Hyper-V in un data center locale gestito da un server VMM e il data center principale è disponibile, usare l'opzione **Esegui replica inversa** per avviare la replica al data center primario.
+Se hanno esito negativo su un dati di on-premise tooanother macchina virtuale Hyper-v gestito da un centro dati principale VMM server e hello center è disponibile, quindi utilizzare **la replica inversa** opzione toostart hello replica indietro toohello data center principale.

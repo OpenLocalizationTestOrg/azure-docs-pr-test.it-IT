@@ -1,6 +1,6 @@
 ---
-title: "Disponibilità elevata con Apache Kafka: Azure HDInsight| Microsoft Docs"
-description: "Informazioni su come garantire disponibilità elevata con Apache Kafka in Azure HDInsight. Questo articolo illustra come ribilanciare le repliche di partizione in Kafka in modo che siano incluse in domini di errore diversi all'interno dell'area di Azure contenente HDInsight."
+title: "disponibilità aaaHigh con Apache Kafka - HDInsight di Azure | Documenti Microsoft"
+description: "Informazioni su come la disponibilità elevata tooensure con Apache Kafka in Azure HDInsight. Informazioni su come toorebalance partizionare le repliche Kafka in modo che siano in diversi domini di errore all'interno di hello area che contiene HDInsight di Azure."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: f8164d1c3483b28e5f2abcc8035da78880daec1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 337468f36b531f83c2999e87907de89cf3d19dd4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="high-availability-of-your-data-with-apache-kafka-preview-on-hdinsight"></a>Disponibilità elevata dei dati con Apache Kafka (anteprima) in HDInsight
 
-Questo articolo illustra come configurare le repliche di partizione per gli argomenti Kafka in modo da sfruttare la configurazione rack hardware sottostante, che garantisce la disponibilità dei dati archiviati in Apache Kafka in HDInsight.
+Informazioni su come le repliche delle partizioni tooconfigure per Kafka argomenti tootake sfruttare hardware sottostante rack configurazione. Questa configurazione assicura la disponibilità di hello dei dati archiviati in Apache Kafka in HDInsight.
 
 ## <a name="fault-and-update-domains-with-kafka"></a>Domini di errore e di aggiornamento con Kafka
 
-Un dominio di errore è un raggruppamento logico dell'hardware sottostante in un data center di Azure. Ogni dominio di errore condivide una fonte di alimentazione e un commutatore di rete comuni. Le macchine virtuali e i dischi gestiti che implementano i nodi in un cluster HDInsight sono distribuiti tra i domini di errore. Questa architettura limita il potenziale impatto dei guasti dell'hardware fisico.
+Un dominio di errore è un raggruppamento logico dell'hardware sottostante in un data center di Azure. Ogni dominio di errore condivide una fonte di alimentazione e un commutatore di rete comuni. Hello le macchine virtuali e dischi gestiti che implementano i nodi di hello all'interno di un cluster HDInsight vengono distribuiti tra i domini di errore. Questa architettura limita l'impatto potenziale di hello dei guasti hardware fisico.
 
-Ogni area di Azure include un numero specifico di domini di errore. Per un elenco dei domini e il numero dei domini di errore in essi contenuti, vedere la documentazione relativa ai [set di disponibilità](../virtual-machines/linux/regions-and-availability.md#availability-sets).
+Ogni area di Azure include un numero specifico di domini di errore. Per un elenco di domini e il numero di hello di domini di errore contengono, vedere hello [set di disponibilità](../virtual-machines/linux/regions-and-availability.md#availability-sets) documentazione.
 
 > [!IMPORTANT]
-> Kafka non rileva i domini di errore. Quando si crea un argomento in Kafka, tutte le partizioni di replica potrebbero essere archiviate nello stesso dominio di errore. Per risolvere il problema, è disponibile uno [strumento per il ribilanciamento delle partizioni Kafka](https://github.com/hdinsight/hdinsight-kafka-tools).
+> Kafka non rileva i domini di errore. Quando si crea un argomento in Kafka, è possibile archiviare tutte le repliche di partizione in hello stesso dominio di errore. toosolve questo problema, forniamo hello [strumento ribilanciamento delle partizioni Kafka](https://github.com/hdinsight/hdinsight-kafka-tools).
 
-## <a name="when-to-rebalance-partition-replicas"></a>Quando ribilanciare le repliche di partizione
+## <a name="when-toorebalance-partition-replicas"></a>Quando toorebalance partizione repliche
 
-Per garantire la massima disponibilità dei dati Kafka, è consigliabile ribilanciare le repliche di partizione per l'argomento nei momenti seguenti:
+tooensure hello massima disponibilità dei dati Kafka, è necessario ribilanciare le repliche delle partizioni hello per l'argomento in seguito volte hello:
 
 * Quando viene creato un nuovo argomento o una nuova partizione
 
@@ -46,15 +46,15 @@ Per garantire la massima disponibilità dei dati Kafka, è consigliabile ribilan
 > [!IMPORTANT]
 > È consigliabile usare un'area di Azure contenente tre domini di errore e un fattore di replica di 3.
 
-Se si deve usare un'area che contiene solo due domini di errore, usare un fattore di replica di 4 per distribuire uniformemente le repliche tra i due domini di errore.
+Se è necessario utilizzare un'area che contiene solo due domini di errore, utilizzare un fattore di replica delle repliche di hello toospread 4 in modo uniforme tra i due domini di errore hello.
 
-Per un esempio della creazione di argomenti e dell'impostazione del fattore di replica, vedere il documento su come [iniziare a usare Kafka in HDInsight](hdinsight-apache-kafka-get-started.md).
+Per un esempio di creazione di argomenti e fattore di replica hello impostazione, vedere hello [iniziano con Kafka in HDInsight](hdinsight-apache-kafka-get-started.md) documento.
 
-## <a name="how-to-rebalance-partition-replicas"></a>Come ribilanciare le repliche di partizione
+## <a name="how-toorebalance-partition-replicas"></a>Le repliche delle partizioni toorebalance
 
-Usare lo [strumento per il ribilanciamento delle partizioni Kafka](https://github.com/hdinsight/hdinsight-kafka-tools) per ribilanciare gli argomenti selezionati. Questo strumento deve essere eseguito da una sessione SSH al nodo head del cluster Kafka.
+Hello utilizzare [strumento ribilanciamento delle partizioni Kafka](https://github.com/hdinsight/hdinsight-kafka-tools) toorebalance selezionato argomenti. Questo strumento deve essere eseguito da un nodo head di toohello sessione SSH del cluster Kafka.
 
-Per altre informazioni sulla connessione a HDInsight con SSH, vedere il documento su come [usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+Per ulteriori informazioni sulla connessione tooHDInsight tramite SSH, vedere il [utilizzo di SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md) documento.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: Come configurare una nuova applicazione multi-tenant | Microsoft Docs
-description: Come configurare l'accesso Single Sign-on per un'applicazione personalizzata che si sta sviluppando e registrando con Azure AD.
+title: aaaHow tooconfigure una nuova applicazione multi-tenant | Documenti Microsoft
+description: Come tooconfigure single sign-on per un'applicazione personalizzata sono lo sviluppo e la registrazione con Azure AD.
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 0fdc58d82d9cd2e7edac33cc5af4b98d2fd06c56
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4d3499d8885933516d6597fa9f87bcf88cd5a428
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-a-new-multi-tenant-application"></a>Come configurare una nuova applicazione multi-tenant
+# <a name="how-tooconfigure-a-new-multi-tenant-application"></a>Come tooconfigure una nuova applicazione multi-tenant
 
-L'abilitazione dell'accesso Single Sign-on (SSO) federato nell'applicazione avviene automaticamente quando si esegue la federazione tramite Azure AD per OpenID Connect, SAML 2.0 o WS-Fed. Se gli utenti finali devono eseguire l'accesso nonostante dispongano già di una sessione esistente con Azure AD, è probabile che l'applicazione non sia configurata correttamente.
+L'abilitazione dell'accesso Single Sign-on (SSO) federato nell'applicazione avviene automaticamente quando si esegue la federazione tramite Azure AD per OpenID Connect, SAML 2.0 o WS-Fed. Se gli utenti finali hanno toosign in nonostante che dispongono già di una sessione esistente in Azure AD, è probabile che l'app sia configurato correttamente.
 
-* Se si usa ADAL/MSAL, accertarsi di avere impostato **PromptBehavior** su **Auto** anziché su **Sempre**.
+* Se si usa ADAL/MSAL, accertarsi di avere **PromptBehavior** impostare troppo**Auto** anziché **sempre**.
 
-* Se si sta creando un'applicazione per dispositivi mobili, potrebbe essere necessaria della configurazione aggiuntiva per abilitare l'accesso Single Sign-On negoziato o non negoziato.
+* Se si sta creando un'app per dispositivi mobili, potrebbe essere configurazioni aggiuntive tooenable negoziata o SSO non-negoziata.
 
 Per Android, vedere [Abilitare l'accesso Single Sign-On tra app in Android](https://docs.microsoft.com/azure/active-directory/develop/active-directory-sso-android).<br>
 
@@ -39,7 +39,7 @@ Per iOS, vedere [Abilitare l'accesso Single Sign-On tra app in iOS](https://docs
 
 [Abilitare l'accesso Single Sign-On tra app in iOS](https://docs.microsoft.com/azure/active-directory/develop/active-directory-sso-ios)<br>
 
-[Integrazione di applicazioni con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)<br>
+[L'integrazione di applicazioni tooAzureAD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)<br>
 
 [Consent and Permissioning for AzureAD v2.0 converged Apps](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes) (Consenso e concessione delle autorizzazioni per le app con convergenza di Azure Active Directory v2.0)<br>
 

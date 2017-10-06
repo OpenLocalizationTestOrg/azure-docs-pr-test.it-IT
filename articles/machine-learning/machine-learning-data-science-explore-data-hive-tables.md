@@ -1,5 +1,5 @@
 ---
-title: Esplorare i dati nelle tabelle Hive con query Hive | Documentazione Microsoft
+title: aaaExplore dati nelle tabelle Hive con query Hive | Documenti Microsoft
 description: Esplorare i dati nelle tabelle Hive mediante le query Hive.
 services: machine-learning
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 67a33a9abc3d3dcdd2fc7205e11feff97e3582a3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2ede3d41682aa08ced19284f7a83ec95e0c2a93a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-hive-tables-with-hive-queries"></a>Esplorare i dati nelle tabelle Hive con  query Hive.
-Questo documento fornisce alcuni script Hive di esempio che sono utilizzati per esplorare i dati nelle tabelle Hive in un cluster HDInsight Hadoop.
+Questo documento fornisce esempi di script Hive che vengono utilizzati tooexplore dati nelle tabelle Hive in un cluster HDInsight Hadoop.
 
-Il **menu** seguente collega ad argomenti che descrivono come usare gli strumenti per esplorare i dati da vari ambienti di archiviazione.
+esempio Hello **menu** collegamenti tootopics che descrivono come toouse strumenti tooexplore dati da diversi ambienti di archiviazione.
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
@@ -31,18 +31,18 @@ Il **menu** seguente collega ad argomenti che descrivono come usare gli strument
 Questo articolo presuppone che l'utente abbia:
 
 * Creato un account di archiviazione di Azure. Per istruzioni, vedere [Creare un account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)
-* Eseguito il provisioning di un cluster Hadoop personalizzato con il servizio HDInsight. Per istruzioni, vedere [Personalizzazione di cluster Hadoop di Azure HDInsight per l'analisi scientifica dei dati](machine-learning-data-science-customize-hadoop-cluster.md).
-* Caricato i dati nelle tabelle Hive dei cluster Hadoop di Azure HDInsight. Se questa operazione non è stata eseguita, seguire le istruzioni in [Creazione e caricamento di dati nelle tabelle Hive](machine-learning-data-science-move-hive-tables.md) per caricare prima di tutto i dati nelle tabelle Hive.
-* Abilitato l'accesso remoto al cluster. Per istruzioni, vedere [Accesso al nodo head del cluster Hadoop](machine-learning-data-science-customize-hadoop-cluster.md#headnode).
-* Per istruzioni su come inviare query Hive, vedere [Come inviare query Hive](machine-learning-data-science-move-hive-tables.md#submit)
+* Il provisioning di un cluster Hadoop personalizzato con hello servizio HDInsight. Per istruzioni, vedere [Personalizzazione di cluster Hadoop di Azure HDInsight per l'analisi scientifica dei dati](machine-learning-data-science-customize-hadoop-cluster.md).
+* dati Hello sono stato caricato tooHive tabelle cluster Azure HDInsight Hadoop. In caso contrario, seguire le istruzioni hello [carico e creare tabelle di dati tooHive](machine-learning-data-science-move-hive-tables.md) tooupload dati tooHive tabelle prima.
+* Cluster toohello di accesso remoto abilitato. Se sono necessarie istruzioni, vedere [hello accesso nodo Head del Hadoop Cluster](machine-learning-data-science-customize-hadoop-cluster.md#headnode).
+* Se sono necessarie istruzioni su come visualizzare le query Hive toosubmit, [come tooSubmit query Hive](machine-learning-data-science-move-hive-tables.md#submit)
 
 ## <a name="example-hive-query-scripts-for-data-exploration"></a>Script delle query Hive di esempio per l'esplorazione dei dati
-1. Visualizzare il numero di osservazioni per partizione `SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
-2. Visualizzare il numero di osservazioni per giorno `SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
-3. Visualizzare i livelli in una colonna di categoria   
+1. Ottenere il conteggio di hello di osservazioni per partizione`SELECT <partitionfieldname>, count(*) from <databasename>.<tablename> group by <partitionfieldname>;`
+2. Ottenere il conteggio di hello di osservazioni al giorno`SELECT to_date(<date_columnname>), count(*) from <databasename>.<tablename> group by to_date(<date_columnname>);`
+3. Ottenere livelli hello in una colonna categorica  
     `SELECT  distinct <column_name> from <databasename>.<tablename>`
-4. Visualizzare il numero di livelli in una combinazione di due colonne di categoria `SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
-5. Visualizzare la distribuzione per colonne numeriche   
+4. Ottenere il numero di hello dei livelli nella combinazione di due colonne categoriche`SELECT <column_a>, <column_b>, count(*) from <databasename>.<tablename> group by <column_a>, <column_b>`
+5. Ottenere la distribuzione hello per le colonne numeriche  
     `SELECT <column_name>, count(*) from <databasename>.<tablename> group by <column_name>`
 6. Estrarre i record dall'unione di due tabelle
    
@@ -72,5 +72,5 @@ Questo articolo presuppone che l'utente abbia:
             ON a.<common_columnname1>=b.<common_columnname1> and a.<common_columnname2>=b.<common_columnname2>
 
 ## <a name="additional-query-scripts-for-taxi-trip-data-scenarios"></a>Script delle query aggiuntive per gli scenari relativi ai dati delle corse dei taxi
-Nell'[archivio GitHub](http://chriswhong.com/open-data/foil_nyc_taxi/) sono disponibili anche alcuni esempi di query specifiche per gli scenari relativi ai [dati dei tragitti dei taxi di NYC](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts). Tali query dispongono già di un determinato schema dei dati e possono essere inviate e usate immediatamente.
+Esempi di query specifiche troppo[NYC Taxi viaggi dati](http://chriswhong.com/open-data/foil_nyc_taxi/) scenari vengono inoltre forniti [repository GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts). Queste query già uno schema di dati specificato e sono pronti toobe inviato toorun.
 

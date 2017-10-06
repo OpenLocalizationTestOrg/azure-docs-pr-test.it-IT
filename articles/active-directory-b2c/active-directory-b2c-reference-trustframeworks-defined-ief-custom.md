@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: riferimenti - Framework attendibilità | Microsoft Docs"
-description: "Informazioni sui criteri personalizzati e sul Framework dell'esperienza di gestione delle identità di Azure Active Directory B2C"
+description: "Un argomento sui criteri personalizzati di Azure Active Directory B2C e hello identità esperienza Framework"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,117 +14,117 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: 4e2de9c4d1c0f92970911e132fffaacbd01d9ad0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d9634da72cb136ac165dd32e735622b5d0e22ec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="define-trust-frameworks-with-azure-ad-b2c-identity-experience-framework"></a>Definizione dei framework attendibilità basati sul Framework dell'esperienza di gestione delle identità di Azure AD B2C
 
-I criteri personalizzati di Azure Active Directory B2C (Azure AD B2C) che usano il Framework dell'esperienza di gestione delle identità offrono all'organizzazione un servizio centralizzato. Questo servizio riduce la complessità della federazione delle identità in una community di interesse di grandi dimensioni a una singola relazione di trust e a un singolo scambio di metadati.
+Azure Active B2C di Directory (Azure AD B2C) i criteri personalizzati che utilizzano hello identità esperienza Framework forniscono dell'organizzazione con un servizio centralizzato. Questo servizio consente di ridurre la complessità di hello di federazione delle identità in una grande community di interesse. la complessità di Hello è ridotta tooa singola relazione di trust e uno scambio di metadati singolo.
 
-I criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità consentono di rispondere alle domande seguenti:
+Criteri personalizzati di Azure Active Directory B2C che utilizzano tooenable identità esperienza Framework hello è tooanswer hello seguenti domande:
 
-- Quali criteri legali, di sicurezza, privacy e protezione dei dati devono essere rispettati?
-- Chi sono i contatti e quali sono le procedure per diventare membro accreditato?
-- Chi sono i provider di informazioni di identità accreditati (anche noti come "provider di attestazioni") e cosa offrono?
-- Chi sono le relying party accreditate e, facoltativamente, cosa richiedono?
-- Quali sono i requisiti tecnici di interoperabilità "in transito" per i membri?
-- Quali sono le regole operative di "runtime" che devono essere applicate per lo scambio di informazioni di identità digitali?
+- Quali sono hello legale, sicurezza, privacy e i criteri di protezione dati che devono essere rispettati?
+- Chi sono i contatti hello e quali sono i processi di hello per diventare un partecipante accreditato?
+- Chi sono hello accredited provider di informazioni di identità (anche noto come "provider di attestazioni") e ciò che offrono?
+- Chi sono hello accredited relying party (e, facoltativamente, cosa è necessario il)?
+- Quali sono hello tecnico "in transito hello" requisiti di interoperabilità per i partecipanti?
+- Quali sono le regole operative "runtime" hello che devono essere applicate per lo scambio di informazioni di identità digitali?
 
-Per rispondere a tutte queste domande, i criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità usano il costrutto del framework attendibilità. Esaminiamo ora questo costrutto e il suo contributo in questo senso.
+tooanswer costruire tutte queste domande, criteri personalizzati di Azure Active Directory B2C che utilizzano hello di utilizzare Framework esperienza identità hello Trust Framework (TF). Esaminiamo ora questo costrutto e il suo contributo in questo senso.
 
-## <a name="understand-the-trust-framework-and-federation-management-foundation"></a>Nozioni fondamentali sul framework attendibilità e sulla gestione della federazione
+## <a name="understand-hello-trust-framework-and-federation-management-foundation"></a>Comprendere foundation di gestione della federazione e attendibilità Framework hello
 
-Il framework attendibilità è una specifica scritta dei criteri di identità, sicurezza, privacy e protezione dei dati a cui i membri di una community di interesse devono conformarsi.
+Hello Framework Trust è una specifica scritta di hello identità, sicurezza, privacy e dati criteri di protezione devono essere conforme toowhich i partecipanti a una community di interesse.
 
-L'identità federata rappresenta la base per ottenere la verifica delle identità degli utenti finali a livello di Internet. Se si delega la gestione delle identità a terze parti, una singola identità digitale per un utente finale può essere usata con più relying party.  
+L'identità federata rappresenta la base per ottenere la verifica delle identità degli utenti finali a livello di Internet. Delega le parti toothird di gestione di identità, una singola identità digitali per un utente finale può essere riutilizzata con più relying party.  
 
-La verifica delle identità richiede che i provider di identità (IdP) e i provider di attributi aderiscano a procedure e criteri operativi, di privacy e sicurezza specifici.  Se non possono eseguire ispezioni dirette, le relying party (RP) devono sviluppare relazioni di trust con i provider di identità e i provider di attributi con i quali scelgono di lavorare.  
+Garanzia di identità è necessario che il provider di identità (IdPs) e il provider di attributo (AtPs) rispettino toospecific sicurezza, privacy e criteri operativi e procedure consigliate.  Se non possono eseguire controlli diretti, relying party (RPs) necessario sviluppare le relazioni di trust con hello IdPs e AtPs sceglieranno toowork con.  
 
-Con l'aumento del numero di consumer e di provider di informazioni di identità digitali, diventa difficile proseguire la gestione pairwise di queste relazioni di trust o anche lo scambio pairwise dei metadati tecnici necessari per la connettività di rete.  Gli hub di federazione hanno risolto questi problemi solo in parte.
+Man mano che aumenta il numero di hello di consumer e provider di informazioni di identità digitali, è difficile toocontinue management pairwise queste relazioni di trust, o anche hello pairwise scambio di metadati di documentazione tecnica di hello che ha richiesto la connettività di rete .  Gli hub di federazione hanno risolto questi problemi solo in parte.
 
 ### <a name="what-a-trust-framework-specification-defines"></a>Contenuto definito in una specifica di framework di attendibilità
-I framework attendibilità rappresentano il cardine del modello di Open Identity Exchange (OIX), in cui ogni community di interesse è regolata da una specifica di framework attendibilità. Questa specifica di framework attendibilità definisce:
+TFs sono linchpins hello hello aprire Identity Exchange (OIX) attendibile del modello di Framework, in cui ogni community di interesse è governata da una determinata specifica di TF. Questa specifica di framework attendibilità definisce:
 
-- **Le metriche di sicurezza e privacy per la community di interesse con la definizione degli elementi seguenti:**
-    - I livelli di verifica che sono offerti/richiesti dai membri, ad esempio un set ordinato di valutazioni di attendibilità per l'autenticità di informazioni su identità digitali.
-    - I livelli di protezione offerti/richiesti dai membri, ad esempio un set ordinato di valutazioni di attendibilità per la protezione di informazioni su identità digitali gestite da membri nella community di interesse.
+- **Hello metriche di sicurezza e privacy per la community di hello di interesse con la definizione di hello di:**
+    - livelli di Hello di garanzia (LOA) che vengono offerti/richiesto dai partecipanti; ad esempio, un set ordinato di classificazioni di confidenza autenticità hello delle informazioni di identità digitali.
+    - livelli di Hello di protezione (LOP) che vengono offerti/richiesto dai partecipanti; ad esempio, un set ordinato di punteggi di confidenza per la protezione di hello delle informazioni di identità digitale che sono gestite dai partecipanti della community di hello di interesse.
 
-- **La descrizione delle informazioni su identità digitali offerte/richieste dai membri**.
+- **descrizione di hello informazioni di identità digitali che ha offerto/richiesto dai partecipanti Hello**.
 
-- **I criteri tecnici per la produzione e l'uso delle informazioni su identità digitali e quindi per la misurazione dei livelli di verifica e dei livelli di protezione. Questi criteri scritti includono in genere le categorie seguenti:**
+- **criteri tecnici Hello per produzione e l'utilizzo di informazioni di identità digitali e quindi per la misurazione LOA e LOP. Scritto in genere criteri tra hello seguenti categorie di criteri:**
     - Criteri di verifica dell'identità, ad esempio *con quale rigore vengono controllate le informazioni sull'identità di un utente?*
     - Criteri di sicurezza, ad esempio *con quale rigore vengono protette l'integrità e la riservatezza delle informazioni?*
     - Criteri di privacy, ad esempio *quale controllo ha un utente sulle informazioni di identificazione personale*?
     - Criteri di capacità di sopravvivenza, ad esempio *come vengono gestite la continuità e la protezione delle informazioni di identificazione personale se un provider cessa l'attività?*
 
-- **I profili tecnici per la produzione e l'uso delle informazioni su identità digitali. Questi profili includono:**
+- **profili di tecniche di Hello per produzione e l'utilizzo di informazioni di identità digitali. Questi profili includono:**
     - Interfacce di ambito per le quali sono disponibili le informazioni su identità digitali al livello di verifica specificato.
     - Requisiti tecnici per l'interoperabilità in transito.
 
-- **Le descrizioni dei diversi ruoli che i membri della community possono rivestire insieme alle qualifiche necessarie per adempiere a questi ruoli.**
+- **salve le descrizioni di hello diversi ruoli che i partecipanti della community di hello possono eseguire e hello qualifiche che sono necessari toofulfill questi ruoli.**
 
-Una specifica di framework attendibilità determina quindi la modalità di scambio delle informazioni di identità tra i membri della community di interesse: relying party, provider di identità e di attributi e verificatori di attributi.
+In questo modo una specifica di TF determina la modalità di scambio di informazioni di identità tra i partecipanti di hello della community di hello di interesse: relying party, l'identità e i provider di attributo e strumenti di verifica di attributo.
 
-Una specifica di framework attendibilità è organizzata in uno o più documenti che fungono da riferimento per la governance della community di interesse, regolando l'asserzione e l'uso di informazioni su identità digitali all'interno della community. Ciò implica una serie documentata di criteri e procedure, progettati per stabilire l'attendibilità nelle identità digitali usate per le transazioni online tra i membri di una community di interesse.  
+Una specifica di TF è uno o più documenti che fungono da un riferimento per la governance hello della community di hello di interesse che regola l'asserzione hello e utilizzo delle informazioni di identità digitali all'interno della community di hello. È un set di criteri documentato e procedure progettate attendibilità tooestablish identità digitali hello che vengono utilizzati per le transazioni online tra i membri di una community di interesse.  
 
-Una specifica di framework attendibilità definisce quindi le regole per la creazione di un ecosistema di identità federate valido per una community.
+In altre parole, una specifica di TF definisce le regole di hello per la creazione di un ecosistema di identità federativa valida per una community.
 
-Il vantaggio di questo approccio è oggi ampiamente riconosciuto. Senza dubbio le specifiche di framework attendibilità semplificano lo sviluppo di ecosistemi di identità digitali con caratteristiche verificabili di sicurezza, verifica e privacy che ne consentono il riutilizzo in più community di interesse.
+È attualmente presente contratto generalizzata vantaggio hello di tale approccio. È senza dubbio che trust specifiche del framework semplificano lo sviluppo di hello degli ecosistemi identità digitali con verificabile caratteristiche di sicurezza, sicurezza e privacy, vale a dire che possono essere riutilizzati in più comunità di interesse.
 
-Per questo motivo, i criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità usano la specifica come base della rappresentazione dei dati per un framework attendibilità per semplificare l'interoperabilità.  
+Per questo motivo, criteri personalizzati di Azure Active Directory B2C che utilizzano hello identità esperienza Framework utilizza specifica di hello come base per hello di rappresentazione di dati per l'interoperabilità di toofacilitate un TF.  
 
-I criteri personalizzati di Azure Active Directory B2C che si basano sul Framework dell'esperienza di gestione delle identità rappresentano una specifica di framework attendibilità come una combinazione di dati leggibili da computer e da risorse umane. Alcune sezioni di questo modello (in genere le sezioni più orientate alla governance) vengono rappresentate come riferimenti a documentazione pubblicata sui criteri di sicurezza e privacy insieme alle procedure correlate (se presenti). Altre sezioni descrivono in dettaglio le regole di runtime e i metadati di configurazione che facilitano l'automazione operativa.
+Criteri di Azure Active Directory B2C personalizzato che sfruttano hello identità esperienza Framework rappresentano una specifica di TF come una combinazione di dati leggibili dal computer e risorse umane. Alcune sezioni di questo modello (in genere le sezioni più orientati verso governance) vengono rappresentati come fa riferimento a documentazione di criteri di sicurezza e privacy toopublished insieme hello procedure relative (se presente). Altre sezioni descrivono in dettaglio hello metadati e runtime le regole di configurazione che facilitano l'automazione operativa.
 
 ## <a name="understand-trust-framework-policies"></a>Criteri di framework attendibilità
 
-In termini di implementazione, la specifica di framework attendibilità è costituita da un set di criteri che offrono il controllo completo sulle esperienze e sui comportamenti delle identità.  I criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità consentono di creare framework attendibilità personali tramite tali criteri dichiarativi che possono definire e configurare:
+In termini di implementazione, hello specifica TF è costituito da un set di criteri che consentono il controllo completo esperienze e i comportamenti di identità.  Criteri personalizzati di Azure Active Directory B2C che sfruttano hello identità esperienza Framework abilitare si tooauthor e creare la propria TF tramite tali criteri dichiarativi che è possibile definire e configurare:
 
-- I documenti o i riferimenti che definiscono l'ecosistema di identità federative della community in relazione al framework attendibilità. Si tratta di collegamenti alla documentazione relativa al framework di attendibilità. Le regole operative di "runtime" predefinite oppure i percorsi utente che automatizzano e/o controllano lo scambio e l'uso delle attestazioni. Questi percorsi utente sono associati a un livello di verifica e a un livello di protezione. Un criterio può quindi avere percorsi utente con livelli di verifica e livelli di protezione differenti.
+- riferimento al documento Hello o riferimenti che definiscono l'ecosistema di identità federativa hello della community di hello che correla toohello TF. Documentazione di TF toohello collegamenti sono. Hello operational (predefinito) "runtime" regole o i percorsi utente hello automatizzano e/o controllano exchange hello e l'utilizzo di attestazioni di hello. Questi percorsi utente sono associati a un livello di verifica e a un livello di protezione. Un criterio può quindi avere percorsi utente con livelli di verifica e livelli di protezione differenti.
 
-- I provider di identità e di attributi o i provider di attestazioni nella community di interesse e i profili tecnici supportati insieme all'accreditamento dei livelli di verifica e di protezione fuori banda correlati.
+- provider di attestazioni di provider di identità e attributo Hello o hello, community hello dei profili di documentazione tecnici di interesse e hello supportano insieme il riconoscimento LOA/LOP hello (out-of-band) che si riferisce toothem.
 
-- L'integrazione con verificatori di attributi o provider di attestazioni.
+- integrazione di Hello con strumenti di verifica di attributo o un provider di attestazioni.
 
-- Le relying party nella community (per inferenza).
+- Hello relying party community hello (tramite inferenza).
 
-- I metadati per stabilire comunicazioni di rete tra i membri. Questi metadati vengono usati insieme ai profili tecnici durante una transazione per ottimizzare l'interoperabilità "in transito" tra la relying party e altri membri della community.
+- metadati Hello per stabilire comunicazioni di rete tra i partecipanti. Questi metadati, insieme ai profili tecniche hello, vengono utilizzati durante una transazione tooplumb "in transito hello" interoperabilità tra hello relying party e altri partecipanti della community.
 
-- L'eventuale conversione dei protocolli, ad esempio SAML, OAuth2, WS-Federation e OpenID Connect.
+- Hello conversione di protocollo, se presente (ad esempio, SAML, OAuth2, WS-Federation e OpenID Connect).
 
-- I requisiti di autenticazione.
+- requisiti di autenticazione Hello.
 
-- L'eventuale orchestrazione a più fattori.
+- Hello a più fattori dell'orchestrazione se presente.
 
-- Uno schema condiviso per tutte le attestazioni disponibili e i mapping ai membri di una community di interesse.
+- Uno schema condiviso per tutte le attestazioni hello disponibili e tooparticipants i mapping di una community di interesse.
 
-- Tutte le trasformazioni di attestazioni, insieme all'eventuale riduzione dei dati in questo contesto, per sostenere lo scambio e l'uso delle attestazioni.
+- Hello tutte le attestazioni di trasformazioni, con riduzione al minimo i dati possibili hello in questo contesto, exchange hello toosustain e l'utilizzo di attestazioni di hello.
 
-- Il binding e la crittografia.
+- associazione di Hello e la crittografia.
 
-- L'archivio delle attestazioni.
+- archiviazione di attestazioni Hello.
 
 ### <a name="understand-claims"></a>Attestazioni
 
 > [!NOTE]
-> Sono definiti "attestazioni" tutti i possibili tipi di informazioni di identità che possono essere scambiati come "attestazioni": attestazioni sulle credenziali di autenticazione di un utente finale, controllo delle identità, dispositivo di comunicazione, posizione fisica, attributi di identificazione personale e così via.  
+> Facciamo riferimento collettivamente tooall hello possibili tipi di informazioni di identità che potrebbe essere scambiata come "attestazioni": le attestazioni relative credenziale di autenticazione dell'utente finale, si di identity, il dispositivo di comunicazione, posizione fisica, identificazione personale gli attributi e così via.  
 >
-> Si usa il termine "attestazioni" anziché "attributi" perché nelle transazioni online questi elementi dati non possono essere verificati direttamente dalla relying party. Si tratta piuttosto di asserzioni o attestazioni su fatti verso cui la relying party deve sviluppare una fiducia sufficiente a garantire la transazione richiesta dell'utente finale.  
+> Utilizziamo hello termine "attestazioni", anziché "attributi", perché le transazioni in linea, questi elementi di dati non sono fatti che possono essere verificati direttamente da hello relying party. Si tratta piuttosto asserzioni o attestazioni, sui fatti per cui hello relying party necessario sviluppare transazione richiesta sufficiente confidenza toogrant hello dell'utente finale.  
 >
-> Si usa il termine "attestazioni" anche perché i criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità sono progettati per semplificare lo scambio di tutti i tipi di informazioni di identità digitale in modo coerente, indipendentemente dal fatto che il protocollo sottostante sia definito per l'autenticazione utente o il recupero di attributi.  Si usa analogamente il termine "provider di attestazioni" per fare riferimento ai provider di identità, i provider di attributi e i verificatori di attributi, quando non si intende distinguerli in base alle funzioni specifiche.   
+> Utilizziamo inoltre il termine hello "attestazioni" poiché Azure AD B2C sono criteri personalizzati che utilizzano hello identità esperienza Framework progettato exchange hello toosimplify di tutti i tipi di informazioni di identità digitali in modo coerente indipendentemente dal fatto hello sottostante protocollo è definito per il recupero di attributo o l'autenticazione utente.  Analogamente, viene usato il termine di hello toocollectively "provider di attestazioni" fanno riferimento a provider tooidentity, i provider di attributo e strumenti di verifica di attributo quando non si desidera toodistinguish tra funzioni specifiche.   
 
 Questi determinano la modalità di scambio delle informazioni di identità tra una relying party, i provider di identità e di attributi e i verificatori di attributi. Stabiliscono i provider di identità e di attributi necessari per l'autenticazione di una relying party. Devono essere considerati un linguaggio specifico di dominio, ovvero un linguaggio di programmazione specializzato per un determinato dominio dell'applicazione con ereditarietà, istruzioni *if* e polimorfismo.
 
-Questi criteri costituiscono la parte leggibile dal computer del costrutto TF nei criteri personalizzati di Azure Active Directory B2C basati sul Framework dell'esperienza di gestione delle identità. Includono tutti i dettagli operativi, inclusi i metadati e i profili tecnici dei provider di attestazioni, le definizioni dello schema di attestazioni, le funzioni di trasformazione di attestazioni e i percorsi utente che vengono compilati per facilitare l'automazione e l'orchestrazione operative.  
+Questi criteri costituiscono hello leggibile parte hello TF costruire nei criteri personalizzati di Azure Active Directory B2C sfruttando hello Framework esperienza di identità. Includono tutti i dettagli operativi di hello, inclusi i provider di attestazioni e i metadati e profili tecnici, definizioni dello schema di attestazioni, le funzioni di trasformazione di attestazioni, viaggi utente che vengono compilati nell'orchestrazione operational toofacilitate e automazione.  
 
-Questi sono considerati *documenti in continua modifica* perché è probabile che il relativo contenuto verrà cambiato nel tempo relativamente ai membri attivi dichiarati nei criteri. È possibile che cambino anche le condizioni per diventare membri.  
+Vengono considerati come toobe *documenti living* perché è probabile che il relativo contenuto cambia nel tempo relative partecipanti attivi di hello dichiarati nei criteri di hello. Non vi è rischio di hello hello e le condizioni per partecipanti potrebbero cambiare.  
 
-La configurazione e la manutenzione della federazione risultano notevolmente semplificate schermando le relying party da continue riconfigurazioni di attendibilità e connettività quando diversi provider di attestazioni/verificatori entrano o escono dalla community rappresentata dal set di criteri.
+Il programma di installazione di federazione e di manutenzione sono notevolmente semplificati dagli relying party da in corso operazioni di riconfigurazione di trust e la connettività di schermatura come provider di attestazioni diverse/strumenti di verifica aggiunta o rimozione (rappresentata dalla community di hello) hello set di criteri.
 
-L'interoperabilità è un'altra sfida importante. È necessario integrare altri provider di attestazioni/verificatori, perché è improbabile che le relying party supportino tutti i protocolli necessari. I criteri personalizzati di Azure AD B2C risolvono questo problema supportando protocolli standard del settore e applicando percorsi utente specifici per trasporre le richieste quando le relying party e i provider di attributi non supportano lo stesso protocollo.  
+L'interoperabilità è un'altra sfida importante. Provider di attestazioni aggiuntive/strumenti di verifica deve essere integrati, poiché le relying party sono toosupport improbabile tutti hello protocolli necessari. Criteri personalizzati di Azure Active Directory B2C risolvere il problema grazie al supporto di protocolli standard del settore e applicando i percorsi utente specifico quando il provider di attributi e le relying party non supporta le richieste di tootranspose hello stesso protocollo.  
 
-I percorsi utente includono profili di protocolli e metadati che vengono usati per ottimizzare l'interoperabilità "in transito" tra la relying party e altri membri. Sono anche disponibili regole di runtime operative che vengono applicate ai messaggi di richiesta/risposta per lo scambio di informazioni di identità ai fini della conformità con i criteri pubblicati nell'ambito della specifica di framework attendibilità. Il concetto di percorso utente è fondamentale per la personalizzazione dell'esperienza del cliente. Chiarisce anche il funzionamento del sistema a livello di protocollo.
+I percorsi utente includono i profili di protocollo e i metadati che vengono utilizzati tooplumb "in transito hello" interoperabilità tra hello relying party e altri partecipanti. Sono previste inoltre regole di runtime operativo che sono messaggi di richiesta/risposta exchange informazioni tooidentity applicata per l'applicazione della conformità con i criteri pubblicati come parte della specifica di TF hello. il concetto di Hello di viaggi utente è toohello chiave personalizzazione dell'esperienza del cliente hello. Inoltre chiarezza luce sul funzionamento del sistema hello a livello di protocollo hello.
 
-Su questa base, le applicazioni e i portali delle relying party possono, a seconda del contesto, richiamare i criteri personalizzati di Azure AD B2C basati sul Framework dell'esperienza di gestione delle identità passando il nome di un criterio specifico e ottenere esattamente il comportamento e lo scambio di informazioni desiderati in modo semplice e senza rischi.
+Alla base, applicazioni relying party e portali possono, in base al relativo contesto, richiamare Azure AD B2C criteri personalizzati che sfruttano hello identità esperienza Framework passando hello nome di un criterio specifico e con precisione il comportamento di hello e informazioni Exchange che desiderano senza qualsiasi muss, confusione o dei rischi.

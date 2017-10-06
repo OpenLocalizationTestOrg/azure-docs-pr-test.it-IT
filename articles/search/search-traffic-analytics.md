@@ -1,6 +1,6 @@
 ---
-title: Analisi del traffico di ricerca per Ricerca di Azure | Documentazione Microsoft
-description: Abilitare Analisi del traffico di ricerca per Ricerca di Azure, un servizio di ricerca cloud ospitato in Microsoft Azure, per sbloccare informazioni dettagliate su utenti e dati.
+title: aaaSearch Analitica di traffico per la ricerca di Azure | Documenti Microsoft
+description: Abilitare analitica di traffico di ricerca per un servizio di ricerca cloud ospitato in Microsoft Azure, approfondimenti toounlock su utenti e i dati di ricerca di Azure.
 services: search
 documentationcenter: 
 author: bernitorres
@@ -14,52 +14,52 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 04/05/2017
 ms.author: betorres
-ms.openlocfilehash: 303ca5c820f573dc0b58f1910f258403c3baad2a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d16aa63d05c1c3df1bbfbb4f09ac77705ed9d9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-search-traffic-analytics"></a>Analisi del traffico di ricerca
-Analisi del traffico di ricerca è un modello per l'implementazione di un ciclo di feedback per il servizio di ricerca. Questo modello descrive i dati necessari e come raccoglierli utilizzando Application Insights, uno strumento leader di settore per il monitoraggio dei servizi in più piattaforme.
+Analisi del traffico di ricerca è un modello per l'implementazione di un ciclo di feedback per il servizio di ricerca. Questo modello viene descritto come toocollect con Application Insights, leader del settore per il monitoraggio di servizi in più piattaforme e i dati necessari hello.
 
-Analisi del traffico di ricerca consente di ottenere visibilità nel servizio di ricerca e informazioni dettagliate su utenti e relativo comportamento. La possibilità di accedere ai dati correlati alle scelte effettuate dagli utenti è utile per prendere decisioni in grado di migliorare ulteriormente l'esperienza di ricerca e per fare un passo indietro se i risultati non sono quelli previsti.
+Analisi del traffico di ricerca consente di ottenere visibilità nel servizio di ricerca e informazioni dettagliate su utenti e relativo comportamento. Con i dati relativi a ciò che gli utenti potranno scegliere, è possibile toomake decisioni che consentono di migliorare ulteriormente l'esperienza di ricerca e tooback off quando i risultati di hello sono non previsto.
 
-Ricerca di Azure offre una soluzione di telemetria che integra Azure Application Insights e Power BI per offrire funzionalità di rilevamento e monitoraggio avanzate. Poiché l'interazione con Ricerca di Azure avviene solo tramite le API, la telemetria deve essere implementata dagli sviluppatori che utilizzano la funzionalità di ricerca, seguendo le istruzioni riportate in questa pagina.
+Ricerca di Azure offre una soluzione di telemetria che integra Azure Application Insights e Power BI tooprovide approfondita di monitoraggio e rilevamento. Poiché l'interazione con ricerca di Azure solo tramite le API, dati di telemetria hello deve essere implementata dagli sviluppatori di hello utilizzo della ricerca, attenendosi alle istruzioni hello in questa pagina.
 
-## <a name="identify-the-relevant-search-data"></a>Identificare i dati di ricerca rilevanti
+## <a name="identify-hello-relevant-search-data"></a>Identificare i dati di ricerca rilevanti hello
 
-Per ottenere metriche di ricerca utili, è necessario registrare alcuni segnali provenienti dagli utenti dell'applicazione di ricerca. Questi segnali indicano contenuti che gli utenti trovano interessanti e considerano rilevanti per le proprie esigenze.
+le metriche di ricerca utili di toohave, è necessario toolog alcuni segnali da utenti hello hello applicazione di ricerca. Questi segnali indicano il contenuto che gli utenti sono interessati a e che essi considerano deve tootheir pertinente.
 
 I segnali necessari per Analisi del traffico di ricerca sono due:
 
-1. Eventi di ricerca generati dagli utenti. Sono interessanti solo le query di ricerca avviate da un utente. Le richieste di ricerca utilizzate per popolare facet, contenuti aggiuntivi o informazioni interne non sono rilevanti e anzi pregiudicano la correttezza dei risultati.
+1. Eventi di ricerca generati dagli utenti. Sono interessanti solo le query di ricerca avviate da un utente. Ricerca richieste utilizzate toopopulate facet, contenuto aggiuntivo o qualsiasi informazione interne, non sono importanti e inclinare e definire i risultati.
 
-2. Eventi generati dai clic degli utenti. Il termine "clic" in questo documento si riferisce alla selezione, da parte di un utente, di un determinato risultato di ricerca restituito da una query di ricerca. Un clic in genere indica che un documento è un risultato rilevante per una specifica query di ricerca.
+2. Eventi click generato dall'utente: eseguiti i clic in questo documento, si fa riferimento tooa utente la selezione di un risultato di ricerca particolare restituito da una query di ricerca. Un clic in genere indica che un documento è un risultato rilevante per una specifica query di ricerca.
 
-Il collegamento degli eventi di ricerca e degli eventi clic mediante un ID di correlazione consente di analizzare i comportamenti degli utenti nell'applicazione. I registri del traffico di ricerca non sono in grado di offrire informazioni sulla ricerca così dettagliate.
+Collegando gli eventi di ricerca e fare clic con un id di correlazione, è possibile tooanalyze i comportamenti di hello di utenti per l'applicazione. Queste informazioni di ricerca sono tooobtain impossibili con solo i log di traffico di ricerca.
 
-## <a name="how-to-implement-search-traffic-analytics"></a>Come implementare Analisi del traffico di ricerca
+## <a name="how-tooimplement-search-traffic-analytics"></a>Come tooimplement ricerca analitica di traffico
 
-I segnali menzionati nella sezione precedente devono essere raccolti dall'applicazione di ricerca quando l'utente interagisce con essa. Application Insights è una soluzione di monitoraggio estensibile, disponibile per più piattaforme, con opzioni di strumentazione flessibili. L'uso di Application Insights consente di usufruire dei report di ricerca Power BI creati da Ricerca di Azure per semplificare l'analisi dei dati.
+segnali Hello riportato in hello precedente sezione deve essere raccolti da un'applicazione hello ricerca come hello utente interagisce con esso. Application Insights è una soluzione di monitoraggio estensibile, disponibile per più piattaforme, con opzioni di strumentazione flessibili. Utilizzo di Application Insights consente di sfruttare i vantaggi dei report di ricerca di Power BI hello creato da un'analisi dei dati hello toomake ricerca di Azure.
 
-Nella pagina del [portale](https://portal.azure.com) del servizio Ricerca di Azure il pannello Analisi del traffico di ricerca contiene un foglio informativo utile per seguire questo modello di telemetria. È anche possibile selezionare o creare una risorsa di Application Insights e visualizzare i dati necessari, tutti raccolti in un'unica posizione.
+In hello [portale](https://portal.azure.com) pagina per il servizio di ricerca di Azure, pannello di hello Analitica di traffico di ricerca contiene un foglio informativo per questo modello di dati di telemetria. È anche possibile selezionare o creare una risorsa di Application Insights e visualizzare i dati necessari hello, in un'unica posizione.
 
 ![Istruzioni per Analisi del traffico di ricerca][1]
 
 ### <a name="1-select-an-application-insights-resource"></a>1. Selezionare una risorsa di Application Insights
 
-È necessario selezionare una risorsa di Application Insights da usare o crearne una se non è già disponibile. È possibile usare una risorsa già in uso per registrare gli eventi personalizzati necessari.
+È necessario tooselect un toouse di risorsa di Application Insights o crearne uno, se non è già disponibile. È possibile utilizzare una risorsa che è già in uso toolog hello richiesto eventi personalizzati.
 
-Quando si crea una nuova risorsa di Application Insights, sono validi tutti i tipi di applicazione per questo scenario. Selezionare quella che meglio si adatta alla piattaforma in uso.
+Quando si crea una nuova risorsa di Application Insights, sono validi tutti i tipi di applicazione per questo scenario. Selezionare hello uno che meglio si adatta piattaforma hello in uso.
 
-Per creare il client di telemetria per l'applicazione, è necessario disporre della chiave di strumentazione. È possibile ottenerla dal dashboard del portale di Application Insights oppure dalla pagina Analisi del traffico di ricerca selezionando l'istanza che si desidera usare.
+Chiave di strumentazione hello è necessaria per la creazione di client di telemetria hello per l'applicazione. È possibile ottenerlo dal dashboard del portale Application Insights hello oppure è possibile ottenere dalla pagina di ricerca traffico Analitica hello, selezione istanza hello da toouse.
 
 ### <a name="2-instrument-your-application"></a>2. Instrumentare l'applicazione
 
-Questa è la fase in cui si esegue la strumentazione della propria applicazione di ricerca, utilizzando la risorsa di Application Insights creata al passaggio precedente. Questo processo è suddiviso in quattro passaggi:
+Questa fase è dove instrumentare un'applicazione di ricerca personalizzato, utilizzando una risorsa di Application Insights hello il hello creato nel passaggio precedente. Esistono quattro passaggi processo toothis:
 
-**I. Creazione di un client di telemetria** Si tratta dell'oggetto che invia eventi alla risorsa di Application Insights.
+**I. Creare un client di telemetria** oggetto hello che invia gli eventi toohello risorsa di Application Insights.
 
 *C#*
 
@@ -75,13 +75,13 @@ Questa è la fase in cui si esegue la strumentazione della propria applicazione 
     window.appInsights=appInsights;
     </script>
 
-Per altre piattaforme e altri linguaggi, vedere l'[elenco](https://docs.microsoft.com/azure/application-insights/app-insights-platforms) completo.
+Per altri linguaggi e piattaforme, vedere hello completo [elenco](https://docs.microsoft.com/azure/application-insights/app-insights-platforms).
 
-**II. Richiesta di un ID di ricerca per la correlazione** Per correlare le richieste di ricerca con i clic, è necessario disporre di un ID di correlazione che metta in correlazione questi due eventi distinti. Ricerca di Azure offre un ID di ricerca quando viene richiesto con l'intestazione seguente:
+**II. Un ID di ricerca per la correlazione richiesta** ricerca toocorrelate richieste con clic, è necessario toohave un id di correlazione che si riferisce a questi due eventi distinti. Ricerca di Azure offre un ID di ricerca quando viene richiesto con l'intestazione seguente:
 
 *C#*
 
-    // This sample uses the Azure Search .NET SDK https://www.nuget.org/packages/Microsoft.Azure.Search
+    // This sample uses hello Azure Search .NET SDK https://www.nuget.org/packages/Microsoft.Azure.Search
 
     var client = new SearchIndexClient(<ServiceName>, <IndexName>, new SearchCredentials(<QueryKey>)
     var headers = new Dictionary<string, List<string>>() { { "x-ms-azs-return-searchid", new List<string>() { "true" } } };
@@ -100,16 +100,16 @@ Per altre piattaforme e altri linguaggi, vedere l'[elenco](https://docs.microsof
 
 **III. Registrazione degli eventi di ricerca**
 
-Ogni volta che un utente esegue una richiesta di ricerca, è necessario registrarla come evento di ricerca con lo schema seguente in un evento personalizzato di Application Insights:
+Ogni volta che una richiesta di ricerca viene eseguita da un utente, è consigliabile registrare che come un evento di ricerca con hello seguente schema di un evento personalizzato di Application Insights:
 
-**ServiceName**: (string) nome del servizio di ricerca **SearchId**: (guid) identificatore univoco della query di ricerca (incluso nella risposta alla ricerca) **IndexName**: (string) indice del servizio di ricerca da sottoporre a query **QueryTerms**: (string) termini di ricerca immessi dall'utente **ResultCount**: (int) numero di documenti restituiti (incluso nella risposta alla ricerca) **ScoringProfile**: (string) nome del profilo di punteggio usato, se disponibile
+**ServiceName**: nome del servizio di ricerca (string) **il SearchId**: identificatore (guid) della query di ricerca hello (disponibile in risposta alla ricerca hello) **IndexName**: indice del servizio di ricerca (string) toobe query **QueryTerms**: i termini di ricerca (stringa) immessi dall'utente hello **ResultCount**: (int) numero di documenti che sono stati restituiti (disponibile in risposta alla ricerca hello)  **ScoringProfile**: nome (string) di hello punteggio profilo utilizzato, se presente
 
 > [!NOTE]
-> Richiedere il conteggio nelle query generate dall'utente mediante l'aggiunta di $count=true alla query di ricerca. Ulteriori informazioni sono disponibili [qui](https://docs.microsoft.com/rest/api/searchservice/search-documents#request).
+> Numero di richieste per le query generato dall'utente tramite l'aggiunta di $count = true tooyour query di ricerca. Ulteriori informazioni sono disponibili [qui](https://docs.microsoft.com/rest/api/searchservice/search-documents#request).
 >
 
 > [!NOTE]
-> Ricordarsi di registrare solo le query di ricerca generate dagli utenti.
+> Tenere presente che le query di ricerca log tooonly generati dagli utenti.
 >
 
 *C#*
@@ -137,12 +137,12 @@ Ogni volta che un utente esegue una richiesta di ricerca, è necessario registra
 
 **IV. Registrazione degli eventi clic**
 
-Ogni clic di un utente su un documento è un segnale che deve essere registrato a scopo di analisi delle ricerche. Utilizzare gli eventi personalizzati di Application Insights per registrare questi eventi con lo schema seguente:
+Ogni clic di un utente su un documento è un segnale che deve essere registrato a scopo di analisi delle ricerche. Utilizzare questi eventi di Application Insights eventi personalizzati toolog con hello seguente schema:
 
-**ServiceName**: (string) nome del servizio di ricerca**SearchId**: (guid) identificatore univoco della query di ricerca correlata **DocId**: (string) identificatore del documento **Position**: (int) posizione del documento nella pagina dei risultati della ricerca
+**ServiceName**: nome del servizio di ricerca (string) **il SearchId**: identificatore (guid) della query di ricerca correlata hello **DocId**: identificatore documento (string) **posizione** : pagina di risultati di priorità del documento hello nella ricerca hello (int)
 
 > [!NOTE]
-> Position fa riferimento all'ordine cardinale nell'applicazione. È possibile impostare questo numero, purché si tratti sempre dello stesso, per consentire il confronto.
+> Posizione fa riferimento l'ordine di tipo cardinal toohello nell'applicazione. Si è gratuita tooset questo numero, purché ha sempre hello stesso, tooallow per il confronto.
 >
 
 *C#*
@@ -166,28 +166,28 @@ Ogni clic di un utente su un documento è un segnale che deve essere registrato 
 
 ### <a name="3-analyze-with-power-bi-desktop"></a>3. Eseguire l'analisi con Power BI Desktop
 
-Dopo avere instrumentato l'app e averne verificata la corretta connessione ad Application Insights, è possibile utilizzare un modello predefinito creato da Ricerca di Azure per Power BI Desktop.
-Questo modello contiene grafici e tabelle che consentono di prendere decisioni più informate per migliorare le prestazioni di ricerca e la rilevanza.
+Dopo aver instrumentata dell'applicazione e verificare che l'applicazione sia correttamente connesso tooApplication Insights, è possibile utilizzare un modello predefinito creato da ricerca di Azure per Power BI desktop.
+Il modello contiene grafici e tabelle che consentono di rendono tooimprove decisioni più informate le prestazioni di ricerca e pertinenza.
 
-Per creare un'istanza del modello di Power BI Desktop, sono necessarie tre informazioni su Application Insights. Questi dati sono reperibili nella pagina Analisi del traffico di ricerca, quando si seleziona la risorsa da usare.
+tooinstantiate hello Power BI modello di desktop, è necessario tre tipi di informazioni su Application Insights. Questi dati sono reperibile nella pagina di ricerca traffico Analitica hello, quando si seleziona hello risorse toouse
 
-![Dati di Application Insights nel pannello Analisi del traffico di ricerca][2]
+![Dati di Insights di applicazioni nel Pannello di hello Analitica di traffico di ricerca][2]
 
-Metriche incluse nel modello di Power BI Desktop:
+Metrica inclusa nel modello di hello Power BI desktop:
 
-*   Tasso di clic (CTR): rapporto tra utenti che fanno clic su un documento specifico e numero di ricerche totali.
+*   Fare clic su tramite velocità (CTRL): rapporto tra l'utente fa clic su un numero di ricerche totali toohello di documento specifico.
 *   Ricerche senza clic: termini delle query principali per i quali non sono registrati clic.
-*   Documenti con più clic: documenti con più clic suddivisi per ID nelle ultime 24 ore e negli ultimi 7 e 30 giorni.
-*   Coppie termine-documento più comuni: termini che producono lo stesso documento selezionato, ordinati per clic.
-*   Tempo dei clic: clic con bucket definiti in base al tempo dopo la query di ricerca.
+*   Selezionato più documenti: selezionato più documenti da ID in hello ultime 24 ore, 7 giorni e 30 giorni.
+*   Coppie di documenti termini comuni: condizioni che comportano hello fa clic sul documento stesso, ordinati in base al clic.
+*   Tempo tooclick: clic riportato per volta dalla query di ricerca hello
 
 ![Modello di Power BI per la lettura da Application Insights][3]
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Instrumentare l'applicazione di ricerca per ottenere dati estremamente utili e dettagliati relativi al servizio di ricerca.
+Instrumentare i dati di ricerca applicazione tooget potente e utili informazioni sul servizio di ricerca.
 
-Ulteriori informazioni su Application Insights sono disponibili [qui](https://go.microsoft.com/fwlink/?linkid=842905). Per ulteriori informazioni sui diversi livelli di servizio, visitare la [pagina dei prezzi](https://azure.microsoft.com/pricing/details/application-insights/) di Application Insights.
+Ulteriori informazioni su Application Insights sono disponibili [qui](https://go.microsoft.com/fwlink/?linkid=842905). Visitare Application Insights [pagina dei prezzi](https://azure.microsoft.com/pricing/details/application-insights/) toolearn ulteriori informazioni sulla loro diversi livelli di servizio.
 
 Altre informazioni sulla creazione di report utili Per informazioni dettagliate, vedere [Introduzione a Power BI Desktop](https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-getting-started/).
 

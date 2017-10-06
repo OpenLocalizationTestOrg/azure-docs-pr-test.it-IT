@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione da HDInsight basato su Windows a HDInsight basato su Linux - Azure| Microsoft Docs
-description: Informazioni sulla migrazione da un cluster HDInsight basato su Windows a un cluster HDInsight basato su Linux.
+title: aaaMigrate da HDInsight basati su Windows basato su tooLinux HDInsight - Azure | Documenti Microsoft
+description: Informazioni su come toomigrate da un HDInsight basati su Windows cluster del cluster HDInsight basati su Linux tooa.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 35e80efe27081cd43243f488fa60447b76a20c32
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7e5e536e8672d7e7c3086c6860cec062d05eda65
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-from-a-windows-based-hdinsight-cluster-to-a-linux-based-cluster"></a>Migrare da un cluster HDInsight basato su Windows a un cluster basato su Linux
+# <a name="migrate-from-a-windows-based-hdinsight-cluster-tooa-linux-based-cluster"></a>Eseguire la migrazione da un cluster basato su Linux di HDInsight basati su Windows cluster tooa
 
-Questo documento contiene informazioni dettagliate sulle differenze tra HDInsight in Windows e Linux e indicazioni su come eseguire la migrazione dei carichi di lavoro esistenti verso un cluster basato su Linux.
+Questo documento vengono fornite informazioni dettagliate sulle differenze tra HDInsight in Windows e Linux e informazioni aggiuntive su come la hello toomigrate i carichi di lavoro tooa basati su Linux cluster esistente.
 
-Anche se HDInsight basato su Windows fornisce un modo semplice per usare Hadoop nel cloud, potrebbe essere necessario eseguire la migrazione a un cluster basato su Linux. Ad esempio, per sfruttare i vantaggi di strumenti e tecnologie basati su Linux che sono necessari per la soluzione. Molti elementi nell'ecosistema Hadoop vengono sviluppati in sistemi basati su Linux e potrebbero non essere compatibili con HDInsight basato su Windows. Inoltre, molti libri, video e altre forme di materiale didattico prevedono che si usi un sistema Linux quando si lavora con Hadoop.
+HDInsight basati su Windows offre un toouse facilmente nel cloud hello Hadoop, potrebbe essere necessario toomigrate tooa basati su Linux cluster. Ad esempio, tootake sfruttare gli strumenti basati su Linux e tecnologie necessarie per la soluzione. Molte operazioni nell'ecosistema Hadoop hello vengono sviluppate nei sistemi basati su Linux e potrebbero non essere disponibile per l'utilizzo con HDInsight basati su Windows. Inoltre, molti libri, video e altre forme di materiale didattico prevedono che si usi un sistema Linux quando si lavora con Hadoop.
 
 > [!NOTE]
-> I cluster HDInsight usano il supporto a lungo termine Ubuntu (LTS) come sistema operativo per i nodi del cluster. Per informazioni sulla versione di Ubuntu disponibile con HDInsight e sulle versioni degli altri componenti, vedere le [versioni dei componenti HDInsight](hdinsight-component-versioning.md).
+> Cluster HDInsight utilizzano supporto a lungo termine Ubuntu (LTS) come sistema operativo hello per nodi hello hello cluster. Per informazioni sulla versione di hello di Ubuntu disponibili con HDInsight, insieme ad altre informazioni di controllo delle versioni del componente, vedere [versioni dei componenti di HDInsight](hdinsight-component-versioning.md).
 
 ## <a name="migration-tasks"></a>Attività di migrazione
 
-Il flusso di lavoro generale per la migrazione è il seguente:
+flusso di lavoro generale Hello per la migrazione è come indicato di seguito.
 
 ![Diagramma del flusso di lavoro della migrazione](./media/hdinsight-migrate-from-windows-to-linux/workflow.png)
 
-1. Leggere interamente questo documento per comprendere le modifiche che potrebbero essere necessarie durante la migrazione del flusso di lavoro esistente, dei processi e così via in un cluster basato su Linux.
+1. Leggere ogni sezione di questo documento toounderstand modifiche che possono essere necessari durante la migrazione del flusso di lavoro esistente, i processi, cluster basati su Linux tooa di e così via.
 
 2. Creare un cluster basato su Linux come ambiente di test/controllo qualità. Per altre informazioni sulla creazione di un cluster basato su Linux, vedere [Creare cluster Hadoop basati su Linux in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
-3. Copiare processi esistenti, origini dati e sink nel nuovo ambiente.
+3. Copia esistente processi, origini dati e sink toohello nuovo ambiente.
 
-4. Eseguire il test di convalida per assicurarsi che i processi funzionino come previsto nel nuovo cluster.
+4. Eseguire test toomake assicurarsi che i processi di funzionano come previsto nel nuovo cluster hello di convalida.
 
-Dopo avere verificato che tutto funzioni come previsto, pianificare i tempi di inattività per la migrazione. Durante questo periodo di inattività, eseguire le operazioni seguenti:
+Dopo avere verificato che tutto funzioni come previsto, pianificare i tempi di inattività per la migrazione di hello. Durante questo periodo di inattività, eseguire hello seguenti azioni:
 
-1. Eseguire il backup tutti i dati temporanei archiviati localmente sui nodi del cluster, ad esempio se i dati sono archiviati direttamente in un nodo head.
+1. Eseguire il backup dei dati temporanei archiviati in locale sui nodi del cluster hello. ad esempio se i dati sono archiviati direttamente in un nodo head.
 
-2. Eliminare il cluster basato su Windows.
+2. Eliminare il cluster basati su Windows hello.
 
-3. Creare un cluster basato su Linux con lo stesso archivio dati predefinito usato dal cluster basato su Windows. Il nuovo cluster basato su Linux può continuare a lavorare con i dati di produzione esistenti.
+3. Creare un cluster basato su Linux utilizzando hello stessa impostazione predefinita l'archivio dati che hello cluster basati su Windows utilizzato. cluster basato su Linux Hello possono continuare a lavorare con i dati di produzione esistente.
 
 4. Importare i dati temporanei di cui è stata eseguita una copia di backup.
 
-5. Avviare processi/continuare l'elaborazione con il nuovo cluster.
+5. Avvia processi/continua l'elaborazione tramite il nuovo cluster di hello.
 
-### <a name="copy-data-to-the-test-environment"></a>Copiare i dati nell'ambiente di test
+### <a name="copy-data-toohello-test-environment"></a>Ambiente di test toohello copia dati
 
-Esistono molti metodi per copiare dati e processi, ma i due metodi illustrati in questa sezione sono i più semplici per spostare direttamente i file in un cluster di prova.
+Sono presenti molti dati hello toocopy di metodi e i processi, tuttavia hello due illustrati in questa sezione sono hello più semplice metodi toodirectly spostamento file tooa test del cluster.
 
 #### <a name="hdfs-copy"></a>Copia HDFS
 
-Usare la procedura seguente per copiare i dati dal cluster di produzione al cluster di test. In queste procedure viene usata l'utilità `hdfs dfs` inclusa in HDInsight.
+Utilizzare hello seguenti dati toocopy passaggi dagli hello produzione cluster toohello il testing cluster. Questi passaggi utilizzano hello `hdfs dfs` utilità che è incluso in HDInsight.
 
-1. Individuare le informazioni dell'account di archiviazione e del contenitore predefinito per il cluster esistente. Nell'esempio seguente viene usato PowerShell per recuperare queste informazioni:
+1. Trovare hello storage account e l'impostazione predefinita le informazioni sul contenitore per il cluster esistente. Hello di esempio seguente usa PowerShell tooretrieve queste informazioni:
 
     ```powershell
     $clusterName="Your existing HDInsight cluster name"
@@ -73,50 +73,50 @@ Usare la procedura seguente per copiare i dati dal cluster di produzione al clus
     write-host "Default container: $clusterInfo.DefaultStorageContainer"
     ```
 
-2. Per creare un ambiente di test, seguire la procedura riportata nel documento Creare cluster basati su Linux in HDInsight. Prima di creare il cluster, interrompersi e selezionare **Configurazione facoltativa**.
+2. toocreate un ambiente di test, hello procedura nei cluster basati su Linux creare hello nel documento di HDInsight. Arrestare prima di creare cluster hello e selezionare invece **configurazione facoltativa**.
 
-3. Nel pannello Configurazione facoltativa selezionare **Account di archiviazione collegati**.
+3. Dal Pannello di configurazione facoltativa hello, selezionare **account di archiviazione collegati**.
 
-4. Selezionare **Aggiungi una chiave di archiviazione**e, quando richiesto, selezionare l'account di archiviazione restituito dallo script PowerShell nel passaggio 1. Fare clic su **Seleziona** in ogni pannello. Al termine, creare il cluster.
+4. Selezionare **aggiungere una chiave di archiviazione**e quando richiesto, selezionare l'account di archiviazione hello che è stato restituito da hello script di PowerShell nel passaggio 1. Fare clic su **Seleziona** in ogni pannello. Infine, creare il cluster di hello.
 
-5. Dopo aver creato il cluster, connettersi tramite **SSH** Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+5. Dopo aver creato il cluster hello, connettersi utilizzando tooit **SSH.** Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-6. Dalla sessione SSH usare il comando seguente per copiare i file dall'account di archiviazione collegato al nuovo account di archiviazione predefinito. Sostituire CONTAINER con le informazioni sul contenitore restituite da PowerShell. Sostituire __ACCOUNT__ con il nome dell'account. Sostituire il percorso dei dati con il percorso di un file di dati.
+6. Dalla sessione SSH hello, utilizzare i seguenti file di comando toocopy da hello collegato storage account toohello nuovo account di archiviazione predefinito hello. Sostituire contenitore con le informazioni sul contenitore hello restituite da PowerShell. Sostituire __ACCOUNT__ con il nome di account hello. Sostituire hello percorso toodata con file di dati tooa percorso hello.
 
     ```bash
     hdfs dfs -cp wasb://CONTAINER@ACCOUNT.blob.core.windows.net/path/to/old/data /path/to/new/location
     ```
 
     > [!NOTE]
-    > Se la struttura della directory che contiene i dati non esiste nell'ambiente di test, è possibile crearla usando il comando seguente:
+    > Se non esiste nell'ambiente di test hello struttura di directory hello che contiene dati hello, è possibile creare tramite hello comando seguente:
 
     ```bash
     hdfs dfs -mkdir -p /new/path/to/create
     ```
 
-    L'opzione `-p` consente di creare tutte le directory nel percorso.
+    Hello `-p` switch consente la creazione di hello di tutte le directory nel percorso di hello.
 
 #### <a name="direct-copy-between-blobs-in-azure-storage"></a>Copia diretta tra i BLOB in Archiviazione di Azure
 
-In alternativa si può usare il cmdlet `Start-AzureStorageBlobCopy` di Azure PowerShell per copiare i BLOB tra gli account di archiviazione all'esterno di HDInsight. Per altre informazioni, vedere la sezione Come gestire i BLOB di Azure del documento Uso di Azure PowerShell con Archiviazione di Azure.
+In alternativa, è opportuno toouse hello `Start-AzureStorageBlobCopy` Azure PowerShell cmdlet toocopy BLOB tra account di archiviazione all'esterno di HDInsight. Per ulteriori informazioni, vedere la procedura hello toomanage sezione BLOB di Azure tramite Azure PowerShell con l'archiviazione di Azure.
 
 ## <a name="client-side-technologies"></a>Tecnologie lato client
 
-Le tecnologie lato client, ad esempio i [cmdlet di Azure PowerShell](/powershell/azureps-cmdlets-docs), l'[interfaccia della riga di comando di Azure](../cli-install-nodejs.md) o [.NET SDK per Hadoop](https://hadoopsdk.codeplex.com/) continuano a usare i cluster basati su Linux. Queste tecnologie si basano sulle stesse API REST dei tipi di cluster del sistema operativo.
+Tecnologie lato client, ad esempio [cmdlet di Azure PowerShell](/powershell/azureps-cmdlets-docs), [CLI di Azure](../cli-install-nodejs.md), o hello [.NET SDK per Hadoop](https://hadoopsdk.codeplex.com/) cluster basati su Linux toowork di continuare. Queste tecnologie si basano su REST API che hello uguale in entrambi i tipi del sistema operativo cluster.
 
 ## <a name="server-side-technologies"></a>Tecnologie lato server
 
-La tabella seguente contiene indicazioni sulla migrazione dei componenti lato server specifici di Windows.
+Hello nella tabella seguente fornisce indicazioni sulla migrazione componenti lato server che sono specifici di Windows.
 
 | Se si usa questa tecnologia... | Eseguire questa operazione... |
 | --- | --- |
 | **PowerShell** (script sul lato server, incluse le Azioni script usate durante la creazione del cluster) |Riscriverli come script di Bash. Per le azioni script vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md) e [Sviluppo di azioni script con HDInsight basati su Linux](hdinsight-hadoop-script-actions-linux.md). |
-| **Interfaccia della riga di comando di Azure** (script lato server) |Anche se l'interfaccia della riga di comando di Azure è disponibile in Linux, non è preinstallata nei nodi head del cluster HDInsight. Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere [Get started with Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli) (Introduzione all'interfaccia della riga di comando di Azure 2.0). |
-| **Componenti .NET** |.NET è supportato nei cluster HDInsight basati su Linux tramite [Mono](https://mono-project.com). Per ulteriori informazioni, vedere [Eseguire la migrazione per le soluzioni .NET per HDInsight basato su Linux](hdinsight-hadoop-migrate-dotnet-to-linux.md). |
-| **Componenti di Win32 o altre tecnologie esclusive di Windows** |La procedura dipende dal componente o dalla tecnologia. Si potrebbe trovare una versione compatibile con Linux o potrebbe essere necessario trovare una soluzione alternativa o riscrivere il componente. |
+| **Interfaccia della riga di comando di Azure** (script lato server) |Mentre hello CLI di Azure è disponibile in Linux, non vengono preinstallato nei nodi head del cluster HDInsight hello. Per ulteriori informazioni sull'installazione hello CLI di Azure, vedere [Introduzione a Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli). |
+| **Componenti .NET** |.NET è supportato nei cluster HDInsight basati su Linux tramite [Mono](https://mono-project.com). Per ulteriori informazioni, vedere [soluzioni .NET di eseguire la migrazione basata su tooLinux HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md). |
+| **Componenti di Win32 o altre tecnologie esclusive di Windows** |Linee guida dipende dal componente hello o una tecnologia. Potrebbe essere in grado di toofind una versione compatibile con Linux, oppure potrebbe necessario toofind una soluzione alternativa o riscrivere questo componente. |
 
 > [!IMPORTANT]
-> L'SDK di gestione di HDInsight non è completamente compatibile con Mono. E non deve essere usato come parte delle soluzioni distribuite al cluster HDInsight in questo momento.
+> gestione di HDInsight Hello SDK non è completamente compatibile con Mono. Non deve essere utilizzato come parte delle soluzioni distribuite cluster HDInsight toohello in questo momento.
 
 ## <a name="cluster-creation"></a>Creazione del cluster
 
@@ -124,70 +124,70 @@ Questa sezione illustra le differenze nella creazione del cluster.
 
 ### <a name="ssh-user"></a>Utente SSH
 
-I cluster HDInsight basati su Linux usano il protocollo **Secure Shell (SSH)** per fornire l'accesso remoto ai nodi del cluster. A differenza dei desktop remoti per i cluster basati Windows, la maggior parte dei client SSH non offrono un'esperienza utente con interfaccia grafica. Al contrario, i client SSH offrono una riga di comando che consente di eseguire comandi nel cluster. Alcuni client, ad esempio [MobaXterm](http://mobaxterm.mobatek.net/), offrono un browser grafico per il file system oltre a una riga di comando remota.
+Cluster HDInsight basati su Linux usare hello **Secure Shell (SSH)** protocollo i nodi del cluster toohello tooprovide accesso remoto. A differenza dei desktop remoti per i cluster basati Windows, la maggior parte dei client SSH non offrono un'esperienza utente con interfaccia grafica. Al contrario, i client SSH forniscono una riga di comando che consente di comandi toorun nel cluster hello. Alcuni client (ad esempio [MobaXterm](http://mobaxterm.mobatek.net/)) forniscono un visualizzatore di sistema di file con interfaccia grafica nella riga di comando remoto tooa aggiunta.
 
 Durante la creazione del cluster è necessario specificare un utente SSH e una **password** oppure un **certificato di chiave pubblica** per l'autenticazione.
 
-È consigliabile usare il certificato di chiave pubblica perché è più sicuro rispetto alla password. L'autenticazione del certificato genera una coppia di chiavi pubblica/privata firmata e fornisce la chiave pubblica durante la creazione del cluster. Durante la connessione al server tramite SSH, la chiave privata del client consente l'autenticazione per la connessione.
+È consigliabile usare il certificato di chiave pubblica perché è più sicuro rispetto alla password. L'autenticazione del certificato funziona, la generazione di una coppia di chiavi pubblica/privata con segno, quindi fornire la chiave pubblica di hello durante la creazione di cluster hello. Durante la connessione server toohello tramite SSH, chiave privata hello client hello fornisce l'autenticazione per la connessione hello.
 
 Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
 ### <a name="cluster-customization"></a>Personalizzazione cluster
 
-**Azioni script** usate con i cluster basati su Linux devono essere scritte nello script Bash. Sebbene le Azioni script possano essere usate durante la creazione del cluster, per i cluster basati su Linux possono anche essere usate per eseguire la personalizzazione dopo che il cluster entra in funzione. Per altre informazioni vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md) e [Sviluppo di azioni script con HDInsight basati su Linux](hdinsight-hadoop-script-actions-linux.md).
+**Azioni script** usate con i cluster basati su Linux devono essere scritte nello script Bash. Mentre le azioni Script può essere utilizzate durante la creazione di un cluster, per i cluster basati su Linux possono anche essere utilizzati tooperform personalizzazione dopo che un cluster sia attivo e in esecuzione. Per altre informazioni vedere [Personalizzare cluster HDInsight basati su Linux tramite Azione script](hdinsight-hadoop-customize-cluster-linux.md) e [Sviluppo di azioni script con HDInsight basati su Linux](hdinsight-hadoop-script-actions-linux.md).
 
-Un'altra funzionalità di personalizzazione è **bootstrap**, che per i cluster basati su Windows consente di specificare la posizione di librerie aggiuntive da usare con Hive. Dopo la creazione del cluster, queste librerie sono automaticamente disponibili per l'uso con le query Hive, senza la necessità di usare `ADD JAR`.
+Un'altra funzionalità di personalizzazione è **bootstrap**, Per i cluster di Windows, questa funzionalità consente percorso hello toospecify di librerie aggiuntive per l'utilizzo con Hive. Dopo la creazione di cluster, queste librerie sono automaticamente disponibili per l'utilizzo con le query Hive senza hello necessità toouse `ADD JAR`.
 
-Bootstrap per i cluster basati su Linux non offre questa funzionalità. Usare invece l'azione script documentata nell'articolo [Aggiungere librerie Hive durante la creazione del cluster HDInsight](hdinsight-hadoop-add-hive-libraries.md).
+funzionalità di Bootstrap Hello per i cluster basati su Linux non fornisce questa funzionalità. Usare invece l'azione script documentata nell'articolo [Aggiungere librerie Hive durante la creazione del cluster HDInsight](hdinsight-hadoop-add-hive-libraries.md).
 
 ### <a name="virtual-networks"></a>Reti virtuali
 
-I cluster HDInsight basati su Windows funzionano soltanto con le reti virtuali classiche, mentre i cluster HDInsight basati su Linux richiedono le reti virtuali di gestione risorse. Se nella rete virtuale classica sono presenti risorse a cui si deve connettere il cluster HDInsight basato su Linux, vedere [Connessione di una rete virtuale classica a una rete virtuale di Azure Resource Manager](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
+I cluster HDInsight basati su Windows funzionano soltanto con le reti virtuali classiche, mentre i cluster HDInsight basati su Linux richiedono le reti virtuali di gestione risorse. Se si dispone di risorse una rete virtuale classica hello cluster Linux HDInsight è necessario connettersi a, vedere [tooa una rete virtuale classica rete virtuale di gestione risorse di connessione](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md).
 
 Per altre informazioni sui requisiti di configurazione per usare le reti virtuali di Azure con HDInsight, vedere [Estendere le funzionalità di HDInsight usando una rete virtuale](hdinsight-extend-hadoop-virtual-network.md).
 
 ## <a name="management-and-monitoring"></a>Gestione e monitoraggio
 
-Molte interfacce utente Web usate con HDInsight basato su Windows, ad esempio l'interfaccia di Cronologia processo o YARN, sono disponibili tramite Ambari. La vista Hive di Ambari rappresenta inoltre un modo per eseguire query Hive usando il browser Web. L'interfaccia utente Web di Ambari è disponibile in ogni cluster basato su Linux all'indirizzo https://NOMECLUSTER.azurehdinsight.net.
+Molte delle web hello interfacce utente potrebbe essere usata con HDInsight basati su Windows, ad esempio la cronologia processo oppure dell'interfaccia utente Yarn, sono disponibili tramite Ambari. Inoltre, hello Ambari Hive Vista fornisce toorun un modo query Hive tramite il browser. Hello dell'interfaccia utente Web Ambari è disponibile nel cluster di https://CLUSTERNAME.azurehdinsight.net basati su Linux.
 
-Per altre informazioni sull'uso di Ambari, vedere i documenti seguenti:
+Per ulteriori informazioni sull'uso di Ambari, vedere hello seguenti documenti:
 
 * [Web Ambari](hdinsight-hadoop-manage-ambari.md)
 * [API REST Ambari](hdinsight-hadoop-manage-ambari-rest-api.md)
 
 ### <a name="ambari-alerts"></a>Avvisi di Ambari
 
-Ambari offre un sistema di avvisi in grado di indicare i potenziali problemi con il cluster. Gli avvisi vengono visualizzati come voci rosse o gialle nell'interfaccia utente Web Ambari, ma possono anche essere recuperati tramite l'API REST.
+Ambari è un sistema di avvisi che possa indicare potenziali problemi con i cluster di hello. Gli avvisi vengono visualizzati come voci rosse o gialle hello Ambari dell'interfaccia utente Web, tuttavia è possibile recuperare anche tramite API REST hello.
 
 > [!IMPORTANT]
 > Gli avvisi Ambari indicano che *potrebbe* esserci un problema e non che *è* presente un problema. Ad esempio, un avviso potrebbe indicare che HiveServer2 non è accessibile anche se è possibile accedervi normalmente.
 >
-> Molti avvisi vengono implementati come query basate su intervalli di tempo nell'ambito di un servizio e attendono una risposta entro un intervallo di tempo specifico. L'avviso pertanto non significa necessariamente che il servizio è inattivo, bensì che non ha restituito risultati entro l'intervallo di tempo previsto.
+> Molti avvisi vengono implementati come query basate su intervalli di tempo nell'ambito di un servizio e attendono una risposta entro un intervallo di tempo specifico. In modo avviso hello non significa necessariamente che il servizio di hello è inattivo, semplicemente che non restituisca risultati entro il periodo di tempo previsto di hello.
 
 È opportuno valutare se un avviso si verifica per molto tempo o se indica problemi dell'utente che erano stati segnalati prima di intervenire.
 
 ## <a name="file-system-locations"></a>Percorsi del file system
 
-Il file system del cluster Linux è strutturato diversamente rispetto ai cluster HDInsight basati su Windows. Usare la tabella seguente per individuare i file usati comunemente.
+sistema di file di cluster Linux Hello è disposto in modo diverso rispetto ai cluster HDInsight basati su Windows. Utilizzare i seguenti tabella toofind comunemente utilizzati file hello.
 
-| Devo cercare... | Si trova... |
+| È necessario toofind... | Si trova... |
 | --- | --- |
 | Configurazione |`/etc`. Ad esempio, `/etc/hadoop/conf/core-site.xml` |
 | File di log |`/var/logs` |
-| Hortonworks Data Platform (HDP) |`/usr/hdp`. Qui sono presenti due directory: una è la versione HDP corrente, l'altra è `current`. La directory `current` contiene i collegamenti simbolici a file e directory all'interno della directory dei numeri di versione. La directory `current` è un modo pratico per accedere ai file HDP, poiché il numero di versione cambia non appena viene aggiornata la versione di HDP. |
+| Hortonworks Data Platform (HDP) |`/usr/hdp`. Esistono due directory si trova in questo caso, una versione di hello corrente HDP e `current`. Hello `current` directory contiene toofiles collegamenti simbolici e directory si trova nella directory numero versione di hello. Hello `current` directory viene fornito come un modo pratico per l'accesso ai file HDP dall'hello numero di versione cambia come hello HDP versione viene aggiornata. |
 | hadoop-streaming.jar |`/usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar` |
 
-In genere, se si conosce il nome del file, è possibile usare il comando seguente da una sessione SSH per trovare il percorso del file:
+In generale, se si conosce il nome di hello del file hello, è possibile utilizzare hello comando seguente da un percorso del file hello toofind sessione SSH:
 
     find / -name FILENAME 2>/dev/null
 
-È possibile usare anche caratteri jolly con il nome del file. Ad esempio, `find / -name *streaming*.jar 2>/dev/null` restituisce il percorso dei file con estensione jar contenenti la parola 'streaming' nel nome del file.
+È anche possibile utilizzare caratteri jolly con nome di file hello. Ad esempio, `find / -name *streaming*.jar 2>/dev/null` restituisce hello percorso tooany file jar contenente parola hello streaming come parte del nome file hello.
 
 ## <a name="hive-pig-and-mapreduce"></a>Hive, Pig e MapReduce
 
-I carichi di lavoro di Pig e MapReduce sono simili ai cluster basati su Linux. Tuttavia, i cluster HDInsight basati su Linux possono essere creati usando versioni più recenti di Hadoop, Hive e Pig. Queste differenze di versione potrebbero introdurre modifiche nel funzionamento delle soluzioni esistenti. Per altre informazioni sulle versioni dei componenti compresi in HDInsight, vedere [Controllo delle versioni dei componenti di HDInsight](hdinsight-component-versioning.md).
+I carichi di lavoro di Pig e MapReduce sono simili ai cluster basati su Linux. Tuttavia, i cluster HDInsight basati su Linux possono essere creati usando versioni più recenti di Hadoop, Hive e Pig. Queste differenze di versione potrebbero introdurre modifiche nel funzionamento delle soluzioni esistenti. Per ulteriori informazioni sulle versioni di hello dei componenti inclusi in HDInsight, vedere [il controllo delle versioni di HDInsight componente](hdinsight-component-versioning.md).
 
-HDInsight basato su Linux non offre la funzionalità di desktop remoto. In alternativa, è possibile usare SSH per connettersi in remoto ai nodi head del cluster. Per altre informazioni, vedere i documenti seguenti:
+HDInsight basato su Linux non offre la funzionalità di desktop remoto. In alternativa, è possibile usare SSH tooremotely connettersi toohello nodi head del cluster. Per ulteriori informazioni, vedere hello seguenti documenti:
 
 * [Usare Hive con SSH](hdinsight-hadoop-use-hive-ssh.md)
 * [Usare Pig con SSH](hdinsight-hadoop-use-pig-ssh.md)
@@ -196,79 +196,79 @@ HDInsight basato su Linux non offre la funzionalità di desktop remoto. In alter
 ### <a name="hive"></a>Hive
 
 > [!IMPORTANT]
-> Se si usa un metastore di Hive esterno, è necessario eseguire il backup del metastore prima di usarlo con HDInsight basato su Linux. HDInsight basato su Linux è disponibile nelle versioni più recenti di Hive, che possono presentare problemi di incompatibilità con i metastore creati nelle versioni precedenti.
+> Se si utilizza un metastore Hive esterno, è consigliabile eseguire backup hello metastore prima di utilizzarlo con HDInsight basati su Linux. HDInsight basato su Linux è disponibile nelle versioni più recenti di Hive, che possono presentare problemi di incompatibilità con i metastore creati nelle versioni precedenti.
 
-Il grafico seguente fornisce indicazioni sulla migrazione dei carichi di lavoro di Hive.
+Hello grafico seguente vengono fornite indicazioni sulla migrazione dei carichi di lavoro di Hive.
 
 | Nel sistema basato su Windows si usa... | Nel sistema basato su Linux si usa... |
 | --- | --- |
 | **Editor Hive** |[vista Hive in Ambari](hdinsight-hadoop-use-hive-ambari-view.md) |
-| `set hive.execution.engine=tez;` per abilitare Tez |Tez è il motore di esecuzione predefinito per i cluster basati su Linux, pertanto l'istruzione set non è più necessaria. |
-| Funzioni definite dall'utente C# | Per informazioni sulla convalida dei componenti di C# con HDInsight basato su Linux, vedere [Eseguire la migrazione delle soluzioni .NET a HDInsight basato su Linux](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
-| script o file CMD nel server richiamati nell'ambito di un processo Hive |gli script Bash |
+| `set hive.execution.engine=tez;`tooenable Tez |Tez è hello motore di esecuzione predefinito per i cluster basati su Linux, in modo hello imposta l'istruzione non è più necessario. |
+| Funzioni definite dall'utente C# | Per informazioni sulla convalida dei componenti di c# con HDInsight basati su Linux, vedere [soluzioni .NET di eseguire la migrazione basata su tooLinux HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
+| CMD o file di script nel server di hello richiamata come parte di un processo Hive |gli script Bash |
 | `hive` dal desktop remoto |Usare [Beeline](hdinsight-hadoop-use-hive-beeline.md) o [Hive da una sessione SSH](hdinsight-hadoop-use-hive-ssh.md) |
 
 ### <a name="pig"></a>Pig
 
 | Nel sistema basato su Windows si usa... | Nel sistema basato su Linux si usa... |
 | --- | --- |
-| Funzioni definite dall'utente C# | Per informazioni sulla convalida dei componenti di C# con HDInsight basato su Linux, vedere [Eseguire la migrazione delle soluzioni .NET a HDInsight basato su Linux](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
-| Script o file CMD nel server richiamati nell'ambito di un processo Pig |gli script Bash |
+| Funzioni definite dall'utente C# | Per informazioni sulla convalida dei componenti di c# con HDInsight basati su Linux, vedere [soluzioni .NET di eseguire la migrazione basata su tooLinux HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
+| CMD o file di script nel server di hello richiamata come parte di un processo Pig |gli script Bash |
 
 ### <a name="mapreduce"></a>MapReduce
 
 | Nel sistema basato su Windows si usa... | Nel sistema basato su Linux si usa... |
 | --- | --- |
-| Componenti di mapping e riduttore C# | Per informazioni sulla convalida dei componenti di C# con HDInsight basato su Linux, vedere [Eseguire la migrazione delle soluzioni .NET a HDInsight basato su Linux](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
-| script o file CMD nel server richiamati nell'ambito di un processo Hive |gli script Bash |
+| Componenti di mapping e riduttore C# | Per informazioni sulla convalida dei componenti di c# con HDInsight basati su Linux, vedere [soluzioni .NET di eseguire la migrazione basata su tooLinux HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md) |
+| CMD o file di script nel server di hello richiamata come parte di un processo Hive |gli script Bash |
 
 ## <a name="oozie"></a>Oozie
 
 > [!IMPORTANT]
-> Se si usa un metastore di Oozie esterno, è necessario eseguire il backup del metastore prima di usarlo con HDInsight basato su Linux. HDInsight basato su Linux è disponibile nelle versioni più recenti di Oozie, che possono presentare problemi di incompatibilità con i metastore creati nelle versioni precedenti.
+> Se si utilizza un metastore Oozie esterno, è consigliabile eseguire backup hello metastore prima di utilizzarlo con HDInsight basati su Linux. HDInsight basato su Linux è disponibile nelle versioni più recenti di Oozie, che possono presentare problemi di incompatibilità con i metastore creati nelle versioni precedenti.
 
-I flussi di lavoro di Oozie consentono le azioni shell. Le azioni shell usano la shell predefinita per il sistema operativo per poter eseguire i comandi della riga di comando. Se si dispone di flussi di lavoro di Oozie che si basano su shell di Windows, è necessario riscrivere i flussi di lavoro affinché si basino su un ambiente della shell di Linux (Bash). Per ulteriori informazioni sull'uso di azioni shell con Oozie, vedere [Oozie shell action extension](http://oozie.apache.org/docs/3.3.0/DG_ShellActionExtension.html) (Estensioni dell'azione shell di Oozie).
+I flussi di lavoro di Oozie consentono le azioni shell. Azioni shell utilizzano shell predefinita hello per hello del sistema operativo toorun riga di comando. Se si dispone di Oozie flussi di lavoro che si basano su hello shell di Windows, è necessario riscrivere hello toorely di flussi di lavoro nell'ambiente della shell di Linux hello (Bash). Per ulteriori informazioni sull'uso di azioni shell con Oozie, vedere [Oozie shell action extension](http://oozie.apache.org/docs/3.3.0/DG_ShellActionExtension.html) (Estensioni dell'azione shell di Oozie).
 
-Se si dispone di flussi di lavoro di Oozie che si basano su applicazioni C# richiamate tramite azioni shell, è necessario convalidare le applicazioni in un ambiente Linux. Per ulteriori informazioni, vedere [Eseguire la migrazione per le soluzioni .NET per HDInsight basato su Linux](hdinsight-hadoop-migrate-dotnet-to-linux.md).
+Se si dispone di flussi di lavoro di Oozie che si basano su applicazioni C# richiamate tramite azioni shell, è necessario convalidare le applicazioni in un ambiente Linux. Per ulteriori informazioni, vedere [soluzioni .NET di eseguire la migrazione basata su tooLinux HDInsight](hdinsight-hadoop-migrate-dotnet-to-linux.md).
 
 ## <a name="storm"></a>Storm
 
 | Nel sistema basato su Windows si usa... | Nel sistema basato su Linux si usa... |
 | --- | --- |
-| Storm Dashboard |Storm Dashboard non è disponibile. Vedere [Distribuzione e gestione di topologie Apache Storm in HDInsight basato su Linux](hdinsight-storm-deploy-monitor-topology-linux.md) per le modalità di invio delle topologie |
-| Interfaccia utente di Storm |L'interfaccia utente di Storm è disponibile all'indirizzo https://NOMECLUSTER.azurehdinsight.net/stormui |
-| Visual Studio per creare, distribuire e gestire le topologie C# o ibride |È possibile usare Visual Studio per creare, distribuire e gestire topologie C# (SCP.NET) o ibride in Storm basato su Linux in cluster HDInsight creati dopo il 28/10/2016. |
+| Storm Dashboard |Hello Storm Dashboard non è disponibile. Vedere [le topologie di distribuzione e gestire Storm in HDInsight basati su Linux](hdinsight-storm-deploy-monitor-topology-linux.md) per le topologie toosubmit modi |
+| Interfaccia utente di Storm |è disponibile all'indirizzo https://CLUSTERNAME.azurehdinsight.net/stormui Hello Storm UI |
+| Visual Studio toocreate, distribuire e gestire le topologie di c# o ibrida |Visual Studio può essere utilizzato toocreate, distribuire e gestire c# (SCP.NET) o topologie ibrida in Storm basati su Linux nel cluster HDInsight creati dopo il 10/28/2016. |
 
 ## <a name="hbase"></a>HBase
 
-Nei cluster basati su Linux, l'elemento padre znode per HBase è `/hbase-unsecure`. Impostare questo valore nella configurazione di qualsiasi applicazione client Java che usi un'API Java HBase nativa.
+Nei cluster basati su Linux, è padre di znode hello HBase `/hbase-unsecure`. Impostare questo valore nella configurazione di hello per tutte le applicazioni client Java che utilizzano API Java di HBase nativa.
 
 Vedere [Compilare un'applicazione HBase basata su Java](hdinsight-hbase-build-java-maven.md) per un client di esempio che imposta questo valore.
 
 ## <a name="spark"></a>Spark
 
-I cluster Spark non erano disponibili nei cluster Windows durante l'anteprima. GA Spark è disponibile solo con i cluster basati su Linux. Non esiste un percorso di migrazione da un cluster di anteprima Spark basato su Windows a un cluster di rilascio Spark basato su Linux.
+I cluster Spark non erano disponibili nei cluster Windows durante l'anteprima. GA Spark è disponibile solo con i cluster basati su Linux. Non è un percorso di migrazione da un cluster di Spark basati su Linux basati su Windows Spark anteprima cluster tooa versione.
 
 ## <a name="known-issues"></a>Problemi noti
 
 ### <a name="azure-data-factory-custom-net-activities"></a>Attività .NET personalizzate in Azure Data Factory
 
-Le attività .NET personalizzate in Azure Data Factory non sono attualmente supportate nei cluster HDInsight basati su Linux. Conviene invece usare uno dei metodi seguenti per implementare attività personalizzate nell'ambito della pipeline di ADF.
+Le attività .NET personalizzate in Azure Data Factory non sono attualmente supportate nei cluster HDInsight basati su Linux. È invece necessario utilizzare una delle seguenti attività personalizzate di metodi tooimplement come parte della pipeline di ADF hello.
 
-* Eseguire le attività .NET nel pool di Azure Batch. Vedere la sezione relativa all'uso del servizio collegato a Azure Batch dell'articolo su come [usare attività personalizzate in una pipeline di Azure Data Factory](../data-factory/data-factory-use-custom-activities.md)
-* Implementare l'attività come attività di MapReduce. Per altre informazioni vedere [Richiamare i programmi MapReduce da Data Factory](../data-factory/data-factory-map-reduce.md).
+* Eseguire le attività .NET nel pool di Azure Batch. Vedere la sezione di servizio collegato di Azure Batch utilizzare hello della [utilizzare attività personalizzate in una pipeline di Data Factory di Azure](../data-factory/data-factory-use-custom-activities.md)
+* Implementare l'attività hello come attività MapReduce. Per altre informazioni vedere [Richiamare i programmi MapReduce da Data Factory](../data-factory/data-factory-map-reduce.md).
 
 ### <a name="line-endings"></a>Terminazioni riga
 
-In genere le terminazioni riga nei sistemi basati su Windows usano CRLF, mentre nei sistemi basati su Linux usano LF. Se si producono o si attendono dati con terminazioni riga CRLF, potrebbe essere necessario modificare i producer o i consumer in modo che risultino compatibili con la terminazione riga LF.
+In genere le terminazioni riga nei sistemi basati su Windows usano CRLF, mentre nei sistemi basati su Linux usano LF. Se si produce o si prevede che, dati con terminazioni riga CR/LF, potrebbe essere toowork toomodify hello producer o consumer con terminazione di riga hello LF.
 
-Ad esempio, se si usa Azure PowerShell per eseguire una query in HDInsight in un cluster basato su Windows, verranno restituiti dati con terminazione riga CRLF. La stessa query in un cluster basato su Linux restituisce dati con terminazione riga LF. Prima di eseguire la migrazione a un cluster basato su Linux, è consigliabile verificare se la fine della riga causa un problema con la soluzione.
+Ad esempio, tramite Azure PowerShell tooquery HDInsight in un cluster basato su Windows restituisce i dati con CR/LF. Hello stessa query con un cluster basato su Linux restituisce LF. È consigliabile testare toosee se terminazioni di riga hello causa un problema con il solutuion prima della migrazione di cluster basati su Linux tooa.
 
-Se si dispone di script che vengono eseguiti direttamente nei nodi cluster Linux, è necessario usare sempre LF come terminazione di riga. Se si usa CRLF, è possibile riscontrare errori durante l'esecuzione di script in un cluster basato su Linux.
+Se si dispone di script che vengono eseguiti direttamente nei nodi di cluster Linux hello, è necessario utilizzare sempre LF come terminazione di riga hello. Se si utilizza CR/LF, è possibile riscontrare errori durante l'esecuzione di script hello in un cluster basato su Linux.
 
-Se si è certi che gli script non contengono stringhe con caratteri CR incorporati, è possibile modificare in blocco le terminazioni riga tramite uno dei metodi seguenti:
+Se si conosce che gli script hello non contengano le stringhe con caratteri CR incorporati, è possibile eseguire bulk terminazioni di riga hello modifica utilizzando uno dei seguenti metodi hello:
 
-* **Prima di caricare sul cluster**: usare le istruzioni di PowerShell seguenti per modificare le terminazioni della riga da CRLF a LF prima di caricare lo script sul cluster.
+* **Prima di caricare cluster toohello**: hello utilizzare seguenti terminazioni di riga hello toochange istruzioni PowerShell dagli tooLF CRLF prima del caricamento del cluster di toohello script hello.
 
     ```powershell
     $original_file ='c:\path\to\script.py'
@@ -276,7 +276,7 @@ Se si è certi che gli script non contengono stringhe con caratteri CR incorpora
     [IO.File]::WriteAllText($original_file, $text)
     ```
 
-* **Dopo il caricamento sul cluster**: usare il comando seguente da una sessione SSH a un cluster basato su Linux per modificare lo script.
+* **Dopo aver caricato cluster toohello**: il comando seguente di hello di uso da un toohello sessione SSH script hello toomodify di cluster basati su Linux.
 
     ```bash
     hdfs dfs -get wasb:///path/to/script.py oldscript.py
@@ -286,6 +286,6 @@ Se si è certi che gli script non contengono stringhe con caratteri CR incorpora
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Informazioni su come creare cluster HDInsight basati su Linux](hdinsight-hadoop-provision-linux-clusters.md)
-* [Usare SSHper connettersi a HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)
+* [Informazioni su come i cluster HDInsight basati su Linux di toocreate](hdinsight-hadoop-provision-linux-clusters.md)
+* [Utilizzare tooHDInsight tooconnect SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
 * [Gestire un cluster basato su Linux tramite Ambari](hdinsight-hadoop-manage-ambari.md)

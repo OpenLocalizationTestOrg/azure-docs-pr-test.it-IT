@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Creare un'App Web ASP.NET Core in un contenitore Docker | Microsoft Docs
+title: aaaAzure CLI Script di esempio - creare un'app web ASP.NET Core in un contenitore Docker | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Creare un'App Web ASP.NET Core in un contenitore Docker
 services: appservice
 documentationcenter: appservice
@@ -16,21 +16,21 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 5d1e2c7d2815df5fb9c176ec290a18d330ea3f7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 23106345bfbbf1f68757d99010db98e7c9a7da49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-aspnet-core-web-app-in-a-docker-container"></a>Creare un'App Web ASP.NET Core in un contenitore Docker
 
-In questo scenario si apprenderà come creare un gruppo di risorse, un piano di servizio app di Linux e un'App Web e come distribuire un'applicazione ASP.NET Core usando un contenitore Docker.
+In questo scenario si apprenderà come pianificare e app web del servizio toocreate un gruppo di risorse, app di Linux e distribuire un'applicazione ASP.NET di base utilizzando un contenitore Docker.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questo argomento è necessario eseguire la versione 2.0 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, in questo argomento è necessario che si esegue hello Azure CLI versione 2.0 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 
 ## <a name="sample-script"></a>Script di esempio
@@ -41,17 +41,17 @@ Se si sceglie di installare e usare l'interfaccia della riga di comando in local
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un gruppo di risorse, l'App Web e tutte le risorse correlate. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello seguenti comandi toocreate un gruppo di risorse, app web e tutte le relative risorse. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | Consente di creare un piano di servizio app. Equivale a una server farm per l'App Web di Azure. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Crea un'App Web di Azure. |
-| [az webapp config container set](https://docs.microsoft.com/cli/azure/webapp/config/container#set) | Imposta il contenitore Docker per l'App Web di Azure. |
+| [az webapp config container set](https://docs.microsoft.com/cli/azure/webapp/config/container#set) | Imposta il contenitore Docker hello per hello Azure web app. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando del servizio app sono disponibili nella [documentazione del servizio app di Azure](../app-service-cli-samples.md).
+Esempi di script aggiuntivi CLI di servizio App sono reperibile in hello [documentazione di Azure App Service](../app-service-cli-samples.md).

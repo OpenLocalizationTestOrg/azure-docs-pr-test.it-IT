@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con etouches | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e etouches.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory ed etouches.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,223 +14,223 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 3cd9e9d6aae924369065ca492b1f6380c0ddc5fe
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5f3ff7550e660b0fc52612140ca55061504b5edd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-etouches"></a>Esercitazione: Integrazione di Azure Active Directory con eTouches
 
-Questa esercitazione descrive come integrare etouches con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come etouches toointegrate con Azure Active Directory (Azure AD).
 
-L'integrazione di etouches con Azure AD offre i vantaggi seguenti:
+Integrazione etouches con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a etouches
-- È possibile abilitare gli utenti per l'accesso automatico a etouches (Single Sign-On) con gli account Azure AD personali
-- È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.
+- È possibile controllare in Azure AD che ha accesso tooetouches
+- È possibile abilitare l'utenti tooautomatically get connesso tooetouches (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con etouches, sono necessari gli elementi seguenti:
+integrazione di Azure AD con etouches tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di etouches abilitata per l'accesso Single Sign-On
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione a meno che non sia necessario.
 - Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di etouches dalla raccolta
+1. Aggiunta di etouches dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
-## <a name="adding-etouches-from-the-gallery"></a>Aggiunta di etouches dalla raccolta
-Per configurare l'integrazione di etouches in Azure AD, è necessario aggiungere etouches dalla raccolta all'elenco di app SaaS gestite.
+## <a name="adding-etouches-from-hello-gallery"></a>Aggiunta di etouches dalla raccolta hello
+integrazione hello tooconfigure di etouches in Azure AD, è necessario etouches tooadd dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere etouches dalla raccolta, seguire questa procedura:**
+**etouches tooadd dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.
+3. tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. Nella casella di ricerca digitare **etouches**, selezionare **etouches** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+4. Nella casella di ricerca hello, digitare **etouches**selezionare **etouches** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
-    ![etouches nell'elenco risultati](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_addfromgallery.png)
+    ![Nell'elenco risultati hello etouches](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurare e testare l'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con etouches usando un utente di test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di etouches corrispondente a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in etouches.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in etouches è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in etouches deve toobe stabilita.
 
-Per stabilire la relazione di collegamento, in etouches assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).
+In etouches, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con etouches, è necessario completare le procedure di base seguenti:
+tooconfigure e prova AD Azure single sign-on con etouches, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.
-2. **[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creare un utente di test di etouches](#create-an-etouches-test-user)**: per avere una controparte di Britta Simon in etouches collegata alla rappresentazione dell'utente in Azure AD.
-4. **[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testare l'accesso Single Sign-On](#test-single-sign-on)**: per verificare se la configurazione funziona.
+1. **[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creare un utente test etouches](#create-an-etouches-test-user)**  -toohave un equivalente di Britta Simon in etouches che è la rappresentazione toohello collegato Azure AD dell'utente.
+4. **[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Testare Single Sign-On](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurare l'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione etouches.
+In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione etouches.
 
-**Per configurare l'accesso Single Sign-On di Azure AD con etouches, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con etouches, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **etouches** del portale di Azure fare clic su **Single Sign-On**.
+1. Nel portale di Azure su hello hello **etouches** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_samlbase.png)
 
-3. Nella sezione **URL e dominio etouches** seguire questa procedura:
+3. In hello **etouches dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di etouches](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_url.png)
 
-    a. Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://www.eiseverywhere.com/saml/accounts/?sso&accountid=<ACCOUNTID>`.
+    a. In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://www.eiseverywhere.com/saml/accounts/?sso&accountid=<ACCOUNTID>`
 
-    b. Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://www.eiseverywhere.com/<instance name>`
+    b. In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://www.eiseverywhere.com/<instance name>`
 
     > [!NOTE] 
-    > Poiché questi non sono i valori reali, Aggiornare i valori con URL di accesso e identificatore effettivi, come illustrato più avanti nell'esercitazione.
+    > Poiché questi non sono i valori reali, Si aggiorna il valore di hello con hello effettivo accesso URL e l'identificatore, illustrato più avanti nell'esercitazione di hello.
     > 
 
-4. L'applicazione etouches prevede un formato specifico per le asserzioni SAML. Configurare le attestazioni seguenti per questa applicazione. È possibile gestire i valori di questi attributi nella scheda **Attributo utente** dell'applicazione. La schermata seguente illustra un esempio relativo a questa operazione. 
+4. applicazione di etouches prevede asserzioni SAML hello in un formato specifico. Configurare hello seguendo le attestazioni per questa applicazione. È possibile gestire i valori hello di questi attributi da hello **attributo utente** di un'applicazione hello. Hello seguente schermata mostra un esempio per questo oggetto. 
 
     ![Attributo utente](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_attribute.png) 
 
-5. Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come illustrato nell'immagine e seguire questa procedura:
+5. In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nella figura hello ed eseguire hello alla procedura seguente:
     
     | Nome attributo | Valore attributo |
     | ------------------- | -------------------- |
     | Email | user.mail |    
     
-    a. Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.
+    a. Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.
 
     ![Aggiungi attributo](./media/active-directory-saas-etouches-tutorial/tutorial_attribute_04.png)
 
     ![Finestra di dialogo Aggiungi attributo](./media/active-directory-saas-etouches-tutorial/tutorial_attribute_05.png)
 
-    b. Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.
+    b. In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.
 
-    c. Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.
+    c. Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.
     
     d. Fare clic su **OK**. 
 
-6. Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.
+6. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.
 
-    ![Collegamento di download del certificato](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_certificate.png) 
+    ![collegamento al download del certificato Hello](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_certificate.png) 
 
 7. Fare clic sul pulsante **Salva** .
 
-    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-etouches-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-etouches-tutorial/tutorial_general_400.png)
 
-8. Per configurare l'accesso SSO per l'applicazione, seguire questa procedura nell'applicazione etouches: 
+8. tooget SSO configurato per l'applicazione, attenersi alla procedura seguente in un'applicazione hello etouches hello: 
 
     ![Configurazione di etouches](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_06.png) 
 
-    a. Accedere all'applicazione **etouches** con diritti di amministratore.
+    a. Account di accesso troppo**etouches** applicazione utilizzando i diritti di amministratore hello.
    
-    b. Passare alla pagina di configurazione per **SAML**.
+    b. Passare toohello **SAML** configurazione.
 
-    c. Nella sezione **General Settings** (Impostazioni generali) aprire il certificato scaricato dal portale di Azure nel Blocco note, copiarne il contenuto e incollarlo nella casella di testo dei metadati IDP. 
+    c. In hello **impostazioni generali** sezione, aprire il certificato scaricato dal portale di Azure nel blocco note, hello copia il contenuto e quindi incollarlo nella casella di testo hello IDP metadati. 
 
-    d. Fare clic sul pulsante **Save & Stay** (Salva e rimani).
+    d. Fare clic su hello **Salva e rimanere** pulsante.
   
-    e. Fare clic sul pulsante **Update Metadata** (Aggiorna metadati) nella sezione relativa ai metadati SAML. 
+    e. Fare clic su hello **i metadati degli aggiornamenti** pulsante nella sezione dei metadati SAML hello. 
 
-    f. La pagina verrà aperta e verrà eseguito l'accesso SSO. Quando l'accesso SSO funziona, è possibile impostare il nome utente.
+    f. Verrà visualizzata hello pagina ed esegue SSO. Una volta hello SSO sta quindi è possibile impostare il nome utente hello.
 
-    g. Nel campo Username (Nome utente) selezionare **emailaddress** (indirizzo e-mail), come mostrato nell'immagine seguente. 
+    g. Nel campo nome utente hello selezionare hello **emailaddress** come illustrato nell'immagine di hello riportata di seguito. 
 
-    h. Copiare il valore dell'**ID entità del provider di servizi** e incollarlo nella casella di testo **Identificatore** nella sezione **URL e dominio etouches** del portale di Azure.
+    h. Hello copia **ID entità SP** valore e incollarlo in hello **identificatore** casella di testo, ovvero in **etouches dominio e gli URL** sezione nel portale di Azure.
 
-    i. Copiare il valore dell'**URL SSO/ACS** e incollarlo nella casella di testo **URL di accesso** nella sezione **URL e dominio etouches** del portale di Azure.
+    i. Hello copia **URL SSO / ACS** valore e incollarlo in hello **URL di accesso** casella di testo, ovvero in **etouches dominio e gli URL** sezione nel portale di Azure.
    
 > [!TIP]
-> Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.  Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore. Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).
+> È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!  Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello. È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Creare un utente test di Azure AD
-Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.
 
 ![Creare un utente test di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
-    ![Pulsante Azure Active Directory](./media/active-directory-saas-etouches-tutorial/create_aaduser_01.png) 
+    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-etouches-tutorial/create_aaduser_01.png) 
 
-2. Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.
     
-    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-etouches-tutorial/create_aaduser_02.png) 
+    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-etouches-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.
  
-    ![Pulsante Aggiungi](./media/active-directory-saas-etouches-tutorial/create_aaduser_03.png) 
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-etouches-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
-    ![Finestra di dialogo Utente](./media/active-directory-saas-etouches-tutorial/create_aaduser_04.png) 
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-etouches-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**.
  
 ### <a name="create-an-etouches-test-user"></a>Creare un utente di test di etouches
 
-In questa sezione viene creato un utente di nome Britta Simon in etouches. Collaborare con il [team di supporto clienti di etouches](https://www.etouches.com/event-software/support/customer-support/) per aggiungere gli utenti nella piattaforma etouches.
+In questa sezione viene creato un utente di nome Britta Simon in etouches. Lavorare con [team di supporto Client etouches](https://www.etouches.com/event-software/support/customer-support/) utenti hello tooadd nella piattaforma etouches hello.
 
-### <a name="assign-the-azure-ad-test-user"></a>Assegnare l'utente test di Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Assegnare l'utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a etouches.
+In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooetouches.
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-**Per assegnare Britta Simon a etouches, seguire questa procedura:**
+**tooassign Britta Simon tooetouches, eseguire hello alla procedura seguente:**
 
-1. Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **etouches**.
+2. Nell'elenco di applicazioni hello, selezionare **etouches**.
 
-    ![Collegamento di etouches nell'elenco delle applicazioni](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_app.png) 
+    ![Hello etouches collegamento nell'elenco delle applicazioni hello](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_app.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
-    ![Collegamento "Utenti e gruppi"][202] 
+    ![collegamento di "Utenti e gruppi" Hello][202] 
 
 4. Fare clic sul pulsante **Aggiungi**. Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -239,13 +239,13 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 ### <a name="test-single-sign-on"></a>Testare l'accesso Single Sign-On
 
 
-Questa sezione descrive come testare la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+obiettivo di Hello di questa sezione è tootest la configurazione di single sign-on di Azure AD mediante hello Pannello di accesso.
 
-Quando si fa clic sul riquadro etouches nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione etouches.
+Quando si fa clic hello etouches riquadro in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour etouches applicazione.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Novità di Power BI Embedded"
-description: "Informazioni più recenti sulle novità di Power BI Embedded"
+title: "aaaWhat's novità di Power BI Embedded"
+description: "Ottenere informazioni più recenti di hello sulle novità in Power BI Embedded"
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 07c53a5d6b1881a4c207a2aefed9fcede0fa069e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 859fa57eda4311b17a0098d0e5cb7fa4f969b534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="whats-new-in-power-bi-embedded"></a>Novità di Power BI Embedded
 
-Gli aggiornamenti su **Power BI Embedded** vengono rilasciati a intervalli regolari. Non tutte le nuove versioni includono tuttavia nuove funzionalità destinate all'utente, in quanto alcune sono incentrate sulle funzionalità del servizio back-end. In questa pagina vengono evidenziate nuove funzionalità destinate all'utente. È consigliabile controllarla spesso.
+Aggiorna troppo**Power BI Embedded** vengono rilasciati a intervalli regolari. Non tutte le nuove versioni includono tuttavia nuove funzionalità destinate all'utente, in quanto alcune sono incentrate sulle funzionalità del servizio back-end. In questa pagina vengono evidenziate nuove funzionalità destinate all'utente. Essere back toocheck che spesso.
 
 ## <a name="march-2017"></a>Marzo 2017
 
@@ -44,7 +44,7 @@ Gli aggiornamenti su **Power BI Embedded** vengono rilasciati a intervalli regol
 **API di gestione**
 
 * Clonare report e set di dati
-* Associare un report a un diverso set di dati
+* Associare report tooa diversi set di dati
 
 **Esempi**
 
@@ -62,18 +62,18 @@ Gli aggiornamenti su **Power BI Embedded** vengono rilasciati a intervalli regol
 Contenuti di questa versione:
 
 * Tutti i nuovi SDK JavaScript che supportano [navigazione tra le pagine e filtri avanzati](power-bi-embedded-interact-with-reports.md).
-* Power BI Embedded è ora supportato nel data center del Canada Centrale. Controllare lo [stato del datacenter](https://azure.microsoft.com/status/).
+* Power BI Embedded è ora supportato nel Data Center centrale Canada hello. Controllare lo [stato del datacenter](https://azure.microsoft.com/status/).
 
 ## <a name="july-11th-2016"></a>11 luglio 2016
 Contenuti di questa versione:
 
-* **Novità** Il servizio Power BI Embedded non è più disponibile in anteprima: è ora disponibile a livello generale.  
-* Tutte le API REST sono state spostate da **/beta** a **/v1.0**.
+* **Novità** servizio Power BI Embedded Hello non è più in anteprima: è ora GA (in genere disponibile).  
+* Tutte le API REST è stato spostato dal **/beta** troppo**/v1.0**.
 * Gli SDK per .NET e JavaScript sono stati aggiornati per la versione **v1.0**.
-* Le chiamate all'API di Power BI possono essere ora autenticate direttamente mediante le chiavi API. I token dell'app sono necessari solo per l'incorporamento. I token di provisioning e di sviluppo sono stati quindi deprecati nelle API della versione 1.0 , ma continueranno a funzionare nella versione Beta fino al 30/12/2016. Per altre informazioni, vedere [Informazioni sul flusso dei token delle app in Power BI Embedded](power-bi-embedded-app-token-flow.md).
-* Supporto della sicurezza a livello di riga per token dell'app e report incorporati. Per altre informazioni, vedere [Row level security with Power BI Embedded](power-bi-embedded-rls.md)(Sicurezza a livello di riga con Power BI Embedded).
+* Le chiamate all'API di Power BI possono essere ora autenticate direttamente mediante le chiavi API. I token dell'app sono necessari solo per l'incorporamento. Come parte di questa operazione, eseguire il provisioning e dev token sono state deprecate in v 1.0 API, ma sarà continuano toowork nella versione beta di hello fino al 30/12/2016. vedere, più toolearn [autenticazione e autorizzazione a Power BI Embedded](power-bi-embedded-app-token-flow.md).
+* Supporto della sicurezza a livello di riga per token dell'app e report incorporati. vedere, più toolearn [con Power BI Embedded sicurezza a livello di riga](power-bi-embedded-rls.md).
 * Applicazione di esempio aggiornata per tutte le chiamate all'API **v1.0** .
 * Supporto di Power BI Embedded per Azure SDK, PowerShell e interfaccia della riga di comando.
-* Gli utenti possono esportare i dati di visualizzazione in un file con estensione **csv**.
-* Power BI Embedded è ora supportato in tutte le lingue/impostazioni locali di Microsoft Azure. Per altre informazioni, vedere [Microsoft Azure - Extent of Localization](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx)(Microsoft Azure: estensione della localizzazione).
+* È possibile esportare una visualizzazione dati tooa **CSV**.
+* Power BI Embedded è ora supportato in tutti hello stesso lingue/impostazioni locali come Microsoft Azure. vedere, più toolearn [Azure - lingue](http://social.technet.microsoft.com/wiki/contents/articles/4234.windows-azure-extent-of-localization.aspx).
 

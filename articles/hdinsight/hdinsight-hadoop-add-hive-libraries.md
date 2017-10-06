@@ -1,6 +1,6 @@
 ---
-title: Aggiungere librerie Hive durante la creazione del cluster HDInsight - Azure | Microsoft Docs
-description: Informazioni su come aggiungere librerie Hive (file con estensione jar) a un cluster HDInsight durante la creazione del cluster.
+title: le librerie Hive aaaAdd durante HDInsight cluster creazione - Azure | Documenti Microsoft
+description: Informazioni su come le librerie Hive tooadd (file jar), tooan HDInsight cluster durante la creazione del cluster.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,29 +15,29 @@ ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 3412864384961e8820d6700c1bf22a4cae64ba4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2e028a07c3248205def0789af2c262a0774a8f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-custom-hive-libraries-when-creating-your-hdinsight-cluster"></a>Aggiungere librerie Hive personalizzate durante la creazione del cluster HDInsight
 
-Se sono disponibili librerie di uso frequente con Hive in HDInsight, questo documento contiene informazioni sull'uso di un'azione script per precaricare le librerie durante la creazione del cluster. Le librerie aggiunte usando i passaggi in questo documento sono disponibili in modo globale in Hive, non è necessario utilizzare [ADD JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) per caricarli.
+Se si dispongono di librerie di uso frequente con Hive in HDInsight, in questo documento contiene informazioni sull'utilizzo di librerie di hello toopre carico un'azione Script durante la creazione del cluster. Librerie aggiunte utilizzando i passaggi di hello in questo documento sono disponibili a livello globale nell'Hive, non c'è alcuna necessità toouse [aggiungere JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) tooload li.
 
 ## <a name="how-it-works"></a>Funzionamento
 
-Quando si crea un cluster, è possibile specificare facoltativamente un'azione script che esegue uno script nei nodi del cluster durante la creazione. Lo script in questo documento accetta un singolo parametro, ovvero un percorso WASB che contiene le librerie (archiviate come file con estensione JAR) da precaricare.
+Quando si crea un cluster, è possibile specificare facoltativamente un'azione che esegue uno script nei nodi del cluster hello durante la creazione di Script. script Hello in questo documento accetta un solo parametro, ovvero una posizione WASB contenente hello librerie (archiviate come file jar) toobe precaricati.
 
-Durante la creazione del cluster, lo script enumera i file, li copia nella directory `/usr/lib/customhivelibs/` nei nodi head e di lavoro, quindi li aggiunge alla proprietà `hive.aux.jars.path` nel file `core-site.xml`. Nei cluster basati su Linux, aggiorna anche il file `hive-env.sh` con il percorso dei file.
+Durante la creazione del cluster script hello enumera i file hello, li copia toohello `/usr/lib/customhivelibs/` directory nei nodi head e di lavoro, quindi li aggiunge toohello `hive.aux.jars.path` proprietà hello `core-site.xml` file. Nei cluster basati su Linux, viene anche aggiornato hello `hive-env.sh` file con percorso hello del file hello.
 
 > [!NOTE]
-> L'uso delle azioni script in questo articolo rende le librerie disponibili negli scenari seguenti:
+> Usando le azioni script hello in questo articolo, le librerie di hello rende disponibili in hello seguenti scenari:
 >
-> * **HDInsight basato su Linux**: quando si usa un client Hive, **WebHCat**, e **HiveServer2**.
-> * **HDInsight basato su Windows**, quando si usa un client Hive e **WebHCat**.
+> * **HDInsight basati su Linux** : quando l'utilizzo di un client di Hive, hello **WebHCat**, e **HiveServer2**.
+> * **HDInsight basati su Windows** - quando si utilizza il client di Hive hello e **WebHCat**.
 
-## <a name="the-script"></a>Lo script
+## <a name="hello-script"></a>script Hello
 
 **Percorso dello script**
 
@@ -46,35 +46,35 @@ Per i **cluster basati su Linux**: [https://hdiconfigactions.blob.core.windows.n
 Per i **cluster basati su Windows**: [https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1](https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1)
 
 > [!IMPORTANT]
-> Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 **Requisiti**
 
-* Gli script devono essere applicati ai **nodi head** e ai **nodi di lavoro**.
+* gli script Hello devono essere applicato tooboth hello **nodi Head** e **nodi di lavoro**.
 
-* I file con estensione jar da installare devono essere memorizzati nell'archivio BLOB di Azure in un **singolo contenitore**.
+* Hello JAR desiderato tooinstall devono essere archiviate nell'archiviazione Blob di Azure in un **singolo contenitore**.
 
-* L'account di archiviazione contenente la libreria dei file con estensione jar **deve** essere collegato al cluster HDInsight durante la creazione. Deve essere l'account di archiviazione predefinito o un account aggiunto tramite la __configurazione facoltativa__.
+* account di archiviazione Hello libreria hello dei file jar contenente **deve** essere cluster HDInsight toohello collegato durante la creazione. Deve essere account di archiviazione predefinito hello o un account aggiunto tramite __configurazione facoltativa__.
 
-* Il percorso WASB al contenitore deve essere specificato come parametro dell'azione script. Ad esempio, se i file con estensione jar sono archiviati in un contenitore denominato **libs** in un account di archiviazione denominato **mystorage**, il parametro deve essere **wasb://libs@mystorage.blob.core.windows.net/**.
+* Hello WASB percorso toohello contenitore deve essere specificato come un toohello parametro azione Script. Ad esempio, se hello JAR vengono archiviati in un contenitore denominato **librerie** su un account di archiviazione denominato **la risorsa mystorage**, il parametro hello sarebbe  **wasb://libs@mystorage.blob.core.windows.net/** .
 
   > [!NOTE]
-  > In questo documento si presuppone che un account di archiviazione e un contenitore BLOB siano già stati creati e che i file siano stati caricati nel contenitore.
+  > Questo documento presuppone che hanno già crei un account di archiviazione, il contenitore blob e tooit file hello caricato.
   >
-  > Se non è stato creato un account di archiviazione, è possibile farlo tramite il [Portale di Azure](https://portal.azure.com). È quindi possibile usare un'utilità, ad esempio [Azure Storage Explorer](http://storageexplorer.com/) (Esplora archivi di Azure), per creare un contenitore nell'account e caricarvi i file.
+  > Se non è stato creato un account di archiviazione, è possibile farlo tramite hello [portale di Azure](https://portal.azure.com). È quindi possibile utilizzare un'utilità, ad esempio [Azure Storage Explorer](http://storageexplorer.com/) toocreate un contenitore nell'account di hello e caricamento file tooit.
 
-## <a name="create-a-cluster-using-the-script"></a>Creare un cluster usando lo script
+## <a name="create-a-cluster-using-hello-script"></a>Creare un cluster utilizzando script hello
 
 > [!NOTE]
-> La procedura seguente consente di creare un cluster HDInsight basato su Linux. Per creare un cluster basato su Windows, selezionare **Windows** come sistema operativo del cluster durante la creazione del cluster e usare lo script di Windows (PowerShell) invece dello script bash.
+> Hello alla procedura seguente crea un cluster HDInsight basati su Linux. Selezionare un cluster basato su Windows, toocreate **Windows** come hello cluster del sistema operativo durante la creazione di cluster hello e utilizzare script di Windows (PowerShell) hello anziché script bash hello.
 >
-> È anche possibile usare Azure PowerShell o HDInsight .NET SDK per creare un cluster con questo script. Per altre informazioni sull'uso di questi metodi, vedere [Personalizzare i cluster HDInsight con azioni script](hdinsight-hadoop-customize-cluster-linux.md).
+> È inoltre possibile utilizzare Azure PowerShell o hello HDInsight .NET SDK toocreate un cluster utilizzando lo script. Per altre informazioni sull'uso di questi metodi, vedere [Personalizzare i cluster HDInsight con azioni script](hdinsight-hadoop-customize-cluster-linux.md).
 
-1. Avviare il provisioning di un cluster seguendo i passaggi descritti in [Effettuare il provisioning di cluster HDInsight in Linux](hdinsight-hadoop-provision-linux-clusters.md) senza completarlo.
+1. Avviare il provisioning di un cluster attenendosi alla procedura hello in [cluster HDInsight di effettuare il provisioning in Linux](hdinsight-hadoop-provision-linux-clusters.md), ma non viene completato il provisioning.
 
-2. Nel pannello **Configurazione facoltativa** selezionare **Azioni script** e specificare le informazioni seguenti:
+2. In hello **configurazione facoltativa** pannello seleziona **azioni Script**e fornire hello le seguenti informazioni:
 
-   * **NOME**: immettere un nome descrittivo per l'azione script.
+   * **NOME**: immettere un nome descrittivo per l'azione script hello.
 
    * **SCRIPT URI**: https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh
 
@@ -84,17 +84,17 @@ Per i **cluster basati su Windows**: [https://hdiconfigactions.blob.core.windows
 
    * **ZOOKEEPER**: lasciare vuoto questo campo.
 
-   * **PARAMETRI**: immettere l'indirizzo WASB per l'account di archiviazione e il contenitore che contiene i file con estensione jar. Ad esempio, **wasb://libs@mystorage.blob.core.windows.net/**.
+   * **I parametri**: immettere hello WASB toohello contenitore e l'archiviazione account indirizzo contenente JAR hello. Ad esempio, **wasb://libs@mystorage.blob.core.windows.net/**.
 
-3. Nella parte inferiore di **Azioni di script** usare il pulsante **Seleziona** per salvare la configurazione.
+3. Nella parte inferiore di hello di hello **azioni Script**, utilizzare hello **selezionare** configurazione hello toosave dei pulsanti.
 
-4. Nel pannello **Configurazione facoltativa** selezionare **Account di archiviazione collegati** e il collegamento **Aggiungi una chiave di archiviazione**. Selezionare l'account di archiviazione che contiene i file con estensione jar e quindi usare i pulsanti di **selezione** per salvare le impostazioni e tornare al pannello **Configurazione facoltativa**.
+4. In hello **configurazione facoltativa** pannello seleziona **account di archiviazione collegati** e seleziona hello **aggiungere una chiave di archiviazione** collegamento. Selezionare l'account di archiviazione hello contenente JAR hello e quindi utilizzare hello **selezionare** impostazioni toosave pulsanti e hello restituito **configurazione facoltativa** blade.
 
-5. Usare il pulsante **Seleziona** nella parte inferiore del pannello **Configurazione facoltativa** per salvare le informazioni relative alla configurazione facoltativa.
+5. Hello utilizzare **selezionare** pulsante nella parte inferiore di hello di hello **configurazione facoltativa** informazioni di configurazione facoltativa hello toosave blade.
 
-6. Continuare il provisioning del cluster come descritto in [Effettuare il provisioning dei cluster HDInsight in Linux](hdinsight-hadoop-provision-linux-clusters.md).
+6. Continuano il provisioning del cluster di hello, come descritto in [cluster HDInsight di effettuare il provisioning in Linux](hdinsight-hadoop-provision-linux-clusters.md).
 
-Al termine della creazione del cluster, sarà possibile usare i file con estensione JAR aggiunti tramite questo script da Hive senza dover usare l'istruzione `ADD JAR`.
+Al termine della creazione del cluster, si è in grado di toouse JAR di hello aggiunti tramite questo script dall'Hive senza hello toouse `ADD JAR` istruzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

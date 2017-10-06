@@ -1,5 +1,5 @@
 ---
-title: Guida al protocollo per le connessioni ibride di inoltro di Azure | Microsoft Docs
+title: le connessioni ibride di inoltro aaaAzure protocollo Guida | Documenti Microsoft
 description: Guida al protocollo per le connessioni ibride di inoltro di Azure.
 services: service-bus-relay
 documentationcenter: na
@@ -14,109 +14,109 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm;clemensv
-ms.openlocfilehash: 6b76403ba5fc4d00a625057549c85db59a473898
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d145d919d606ae4722b063e1baf39fb845a600a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # Protocollo per le connessioni ibride di inoltro di Azure
-L'inoltro di Azure è una delle funzionalità chiave di base della piattaforma Bus di servizio di Azure. La nuova funzionalità *Connessioni ibride* di inoltro è un'evoluzione sicura del protocollo aperto basata su HTTP e WebSocket. Sostituisce la funzionalità precedente, comunemente denominata *Servizi BizTalk*, che è basata su un protocollo di proprietà. L'integrazione di Connessioni ibride nei servizi app di Azure continuerà a funzionare così com'è.
+Inoltro di Azure è uno dei pilastri funzionalità chiave hello della piattaforma Azure Service Bus hello. nuovo Hello *connessioni ibride* funzionalità di inoltro è un'evoluzione protetta, aprire protocollo basata su HTTP e WebSocket. Sostituisce ex hello, denominato ugualmente *servizi BizTalk* funzionalità che è stata basata su un protocollo proprietario. integrazione di Hello di connessioni ibride in servizi di App di Azure continuerà toofunction come-è.
 
-Connessioni ibride permette di stabilire una comunicazione bidirezionale con flussi binari tra due applicazioni di rete, di cui una o entrambe le parti risiedono dietro NAT o firewall. Questo articolo descrive le interazioni lato client con l'inoltro di Connessioni ibride per la connessione dei client nei ruoli listener e mittente e come i listener accettano nuove connessioni.
+Connessioni ibride permette di stabilire una comunicazione bidirezionale con flussi binari tra due applicazioni di rete, di cui una o entrambe le parti risiedono dietro NAT o firewall. Questo articolo descrive le interazioni di hello sul lato client con l'inoltro di connessioni ibride hello per la connessione client nel listener e i ruoli di mittente e il listener di accettano nuove connessioni.
 
 ## Modello di interazione
-L'inoltro di Connessioni ibride connette due parti fornendo un punto di incontro nel cloud di Azure che entrambe le parti possono individuare e a cui possono connettersi dalla rispettiva rete. Tale punto di incontro è detto "connessione ibrida" in questo e negli altri documenti, nelle API e anche nel Portale di Azure. L'endpoint di servizio di Connessioni ibride viene chiamato "servizio" nella parte restante di questo articolo. Il modello di interazione si basa sulla nomenclatura stabilita da diverse altre API di rete.
+inoltro di connessioni ibride Hello si connette due parti, fornendo un punto di rendezvous nel cloud di Azure che sia in grado di individuare e connettersi toofrom prospettiva della propria rete parti hello. Tale punto rendezvous viene chiamato "Connessione ibrida" in questo esempio e altra documentazione, hello API, nonché in hello portale di Azure. Hello connessioni ibride endpoint del servizio è denominato tooas hello "servizio" per il resto di hello di questo articolo. modello di interazione Hello tende è stato a nomenclatura hello stabilita da molte altre API rete seguire.
 
-È presente un listener che prima indica la conformità alla gestione delle connessioni in ingresso e successivamente le accetta quando arrivano. Sull'altro lato è presente un client di connessione che si connette al listener, aspettando che la connessione venga accettata per stabilire un percorso di comunicazione bidirezionale.
-"Connettersi", "essere in ascolto", "accettare" sono gli stessi termini usati nella maggior parte delle API socket.
+Sia presente un listener che innanzitutto indica le connessioni in ingresso toohandle di conformità e successivamente li accetta man mano che arrivano. In hello altro lato, è disponibile un connessione client che si connette verso listener hello, previsto toobe tale connessione accettata per stabilire un percorso di comunicazione bidirezionale.
+"Connessione", "Ascolto", e "Accetta" sono hello stessa API di socket trova nella maggior parte dei termini.
 
-In un modello di comunicazione di inoltro entrambe le parti creano connessioni in uscita verso un endpoint di servizio, rendendo il "listener" anche un "client" nel linguaggio comune e causando altre sovrapposizioni terminologiche. La terminologia esatta usata per Connessioni ibride è quindi la seguente:
+Qualsiasi modello di comunicazione inoltrata dispone di una delle due parti vengono stabilite le connessioni in uscita verso un endpoint del servizio, che rende listener"hello" anche "client" in uso stilistici e può essere causato anche altri overload di terminologia. è pertanto possibile utilizzare per le connessioni ibride la terminologia precisa Hello è indicato di seguito:
 
-I programmi su entrambi i lati di una connessione sono detti "client", perché sono i client del servizio. Il client che attende e accetta le connessioni è il "listener", che è anche nel "ruolo listener". Il client che avvia una nuova connessione verso un listener tramite il servizio è detto "mittente", che è anche nel "ruolo mittente".
+i programmi di Hello su entrambi i lati di una connessione vengono definiti "client", poiché sono servizio toohello client. client che attende e accetta le connessioni "listener" o Hello detto toobe hello "listener ruolo." client Hello che avvia una nuova connessione verso un listener tramite il servizio hello viene chiamato hello "mittente" o "mittente ruolo".
 
 ### Interazioni del listener
-Il listener ha quattro interazioni con il servizio. Tutti i dettagli sono descritti più avanti in questo articolo nella sezione di riferimento.
+listener Hello ha quattro interazioni con il servizio di hello. tutti i dettagli di transito sono descritte più avanti in questo articolo nella sezione di riferimento hello.
 
 #### Attesa
-Un listener, per indicare al servizio che è pronto ad accettare le connessioni, crea una connessione WebSocket in uscita. L'handshake della connessione trasporta il nome di una connessione ibrida configurata nello spazio dei nomi dell'inoltro e un token di sicurezza che conferisce il diritto di "ascoltare" a tale nome.
-Quando il WebSocket viene accettato dal servizio, la registrazione è completa e il WebSocket stabilito viene mantenuto attivo come "canale di controllo" per abilitare tutte le interazioni successive. Il servizio consente fino a 25 listener simultanei in una connessione ibrida. In presenza di due o più listener attivi, le connessioni in ingresso vengono bilanciate tra di essi in ordine casuale. Non è garantita una distribuzione equa.
+servizio di toohello conformità tooindicate che un listener è pronto tooaccept connessioni, crea una connessione WebSocket in uscita. l'handshake della connessione Hello esegue nome hello di una connessione ibrida configurato nell'inoltro di hello dello spazio dei nomi e un token di sicurezza che conferisce hello "Ascolto" destro del mouse su tale nome.
+Quando hello WebSocket è accettata dal servizio di hello, registrazione hello e hello stabilita web che WebSocket viene mantenuta attiva come hello "canale di controllo" per l'abilitazione di tutte le interazioni successive. servizio Hello consente backup too25 listener simultanei su una connessione ibrida. In presenza di due o più listener attivi, le connessioni in ingresso vengono bilanciate tra di essi in ordine casuale. Non è garantita una distribuzione equa.
 
 #### Accept
-Quando un mittente apre una nuova connessione nel servizio, il servizio sceglie uno dei listener attivi nella connessione ibrida e gli invia una notifica. La notifica viene inviata al listener tramite il canale di controllo aperto come messaggio JSON contenente l'URL dell'endpoint del WebSocket a cui il listener deve connettersi per accettare la connessione.
+Quando un mittente apre una nuova connessione per il servizio di hello, servizio hello decide e comunica a uno dei listener attivi di hello in hello connessione ibrida. Questa notifica viene inviata toohello listener su canale di controllo aprire hello come un messaggio JSON contenente hello URL dell'endpoint WebSocket hello hello listener deve connettersi toofor accettazione connessione hello.
 
-L'URL può e deve essere usato direttamente dal listener senza operazioni aggiuntive.
-Le informazioni codificate sono valide solo per un breve periodo, essenzialmente finché il mittente è disposto ad attendere che venga stabilita una connessione end-to-end e comunque per un massimo di 30 secondi. L'URL può essere usato solo per tentativo di connessione riuscito. Non appena viene stabilita la connessione WebSocket con l'URL di incontro, tutte le altre attività in questo WebSocket vengono inoltrate da e verso il mittente, senza interventi o interpretazioni da parte del servizio.
+URL di Hello può e deve essere utilizzato direttamente dal listener hello senza operazioni aggiuntive.
+informazioni Hello codificato sono valido solo per un breve periodo di tempo, in pratica per la durata come mittente hello indica toowait disposti per hello connessione stabilita toobe end-to-end, ma i tooa massimo di 30 secondi. URL di Hello utilizzabile solo per il tentativo di una connessione ha esito positivo. Appena hello WebSocket connessione rendezvous hello che URL viene stabilito, tutte le altre attività in questo WebSocket viene inoltrato dal e al mittente toohello, senza alcun intervento da parte dell'interpretazione dal servizio hello.
 
 #### Renew
-Il token di sicurezza che deve essere usato per registrare il listener e mantenere il canale di controllo può scadere mentre il listener è attivo. La scadenza del token non ha effetto sulle connessioni in corso, ma il canale di controllo viene rimosso dal servizio al momento della scadenza o poco dopo. L'operazione "renew" è un messaggio JSON che il listener può inviare per sostituire il token associato al canale di controllo che potrà quindi essere mantenuto per lunghi periodi.
+token di sicurezza Hello che deve essere usato tooregister hello listener e gestire che il canale di controllo può scadere mentre hello listener è attivo. la scadenza del token Hello influisce sulle connessioni in corso, ma comporta hello controllo canale toobe eliminato dal servizio hello in o subito dopo il momento di hello della scadenza. l'operazione "rinnovare" Hello è un messaggio JSON che hello listener può inviare il token di hello tooreplace associato al canale di controllo hello, in modo che hello canale di controllo possa essere mantenuti per lunghi periodi di tempo.
 
 #### Ping
-Se il canale di controllo rimane inattivo a lungo, gli intermediari lungo il percorso, ad esempio servizi di bilanciamento del carico o NAT, potrebbero rimuovere la connessione TCP. L'operazione "ping" evita questo problema inviando nel canale una piccola quantità di dati che ricorda a tutti gli elementi nella route di rete che la connessione deve restare attiva, oltre a fungere da test dello stato attivo per il listener. Se il ping non riesce, il canale di controllo deve essere considerato non utilizzabile e il listener deve riconnettersi.
+Se il canale di controllo di hello resta inattivo per molto tempo, gli intermediari in modo hello, ad esempio carico bilanciamento del carico o NAT può essere eliminato connessione TCP hello. operazione "ping" Hello evita adatto inviando una piccola quantità di dati su un canale di hello che ricorda di tutti i membri della route di rete hello tale connessione hello toobe alive e funge anche da un test per il listener hello "attivo". Se hello ping non riesce, il canale di controllo di hello deve essere considerato inutilizzabile e listener hello devono riconnettersi.
 
 ### Interazione del mittente
-Il mittente ha una sola interazione con il servizio, la connessione.
+mittente Hello è solo una singola interazione con il servizio hello: si connette.
 
 #### Connettere
-L'operazione "connect" apre un WebSocket nel servizio, fornendo il nome della connessione ibrida e un token di sicurezza (facoltativo, ma richiesto per impostazione predefinita) che conferisce l'autorizzazione "Send" nella stringa di query. Il servizio interagisce quindi con il listener nel modo descritto in precedenza e il listener crea una connessione di incontro che viene unita a questo WebSocket. Dopo che il WebSocket è stato accettato, tutte le altre interazioni nel WebSocket avvengono quindi con un listener connesso.
+operazione "connect" Hello apre un protocollo WebSocket nel servizio di hello, che fornisce nome hello della connessione ibrida hello e (facoltativamente, ma obbligatoria per impostazione predefinita) un token di sicurezza che conferisce autorizzazioni "Invia" nella stringa di query hello. servizio Hello interagisce con il listener hello nel modo descritto in precedenza hello e listener hello crea una connessione rendezvous è unita in join con questo WebSocket. Dopo avere accettato hello WebSocket, tutte le altre interazioni in tale WebSocket sono con un listener connesso.
 
 ### Riepilogo delle interazioni
-Il risultato di questo modello di interazione è che il client mittente esce dall'handshake con un WebSocket "pulito" che è connesso a un listener e non richiede altri preamboli o preparazioni. Questo modello consente in pratica alle implementazioni di client WebSocket esistenti di usare subito il servizio Connessioni ibride specificando un URL correttamente costruito nel livello del client WebSocket.
+il risultato di Hello di questo modello di interazione è che client mittente hello uscirà l'handshake con un WebSocket "pulito", che è connesso tooa listener e che non necessita di alcuna ulteriore preambles o preparazione. Questo modello consente praticamente qualsiasi esistente WebSocket client implementazione tooreadily sfruttare hello servizio connessioni ibride fornendo un URL costruito correttamente in loro livello di client WebSocket.
 
-Anche il WebSocket della connessione di incontro che il listener ottiene tramite l'interazione accept è pulito e può essere assegnato a qualsiasi implementazione di server WebSocket esistente con una minima astrazione aggiuntiva che distingue tra operazioni "accept" sui listener di rete locale del framework e operazioni "accept" remote di Connessioni ibride.
+connessione rendezvous Hello WebSocket che hello listener ottenute tramite l'interazione accetta inoltre sia pulito e può essere passato tooany WebSocket server implementazione esistente con un'astrazione aggiuntiva minima che distingue tra "Accetto" operazioni su listener di rete locale e le connessioni ibride remoto relativo framework "operazioni di accettazione".
 
 ## Riferimento al protocollo
 
-Questa sezione descrive i dettagli delle interazioni del protocollo descritte sopra.
+In questa sezione vengono descritti dettagliatamente di hello delle interazioni di protocollo hello descritte in precedenza.
 
 Tutte le connessioni WebSocket vengono stabilite sulla porta 443 come aggiornamento da HTTPS 1.1, che è in genere un'astrazione di alcune API o framework del WebSocket. La presente descrizione è neutra dal punto di vista dell'implementazione e non suggerisce un framework specifico.
 
 ### Protocollo del listener
-Il protocollo del listener è costituito da due comandi di connessione e da tre operazioni messaggio.
+protocollo di listener Hello è costituito da tre operazioni di messaggio e due i movimenti di connessione.
 
 #### Connessione del canale di controllo del listener
-Il canale di controllo viene aperto con la creazione di una connessione WebSocket a:
+il canale di controllo di Hello viene aperto con la creazione di una connessione WebSocket a:
 
 ```
 wss://{namespace-address}/$hc/{path}?sb-hc-action=...[&sb-hc-id=...]&sb-hc-token=...
 ```
 
-`namespace-address` è il nome di dominio completo dello spazio dei nomi di inoltro di Azure che ospita la connessione ibrida, in genere nel formato `{myname}.servicebus.windows.net`.
+Hello `namespace-address` è il nome di dominio completo hello dello spazio dei nomi di Azure inoltro hello che gli host hello connessione ibrida, in genere del modulo di hello `{myname}.servicebus.windows.net`.
 
-Le opzioni dei parametri della stringa di query sono le seguenti.
+opzioni del parametro stringa query Hello sono i seguenti.
 
-| Parametro | Obbligatorio | Descrizione |
+| . | Obbligatorio | Descrizione |
 | --- | --- | --- |
-| `sb-hc-action` |Sì |Per il ruolo listener, il parametro deve essere **sb-hc-action=listen** |
-| `{path}` |Sì |Il percorso dello spazio dei nomi codificato con URL della connessione ibrida preconfigurata in cui registrare questo listener. Questa espressione viene aggiunta alla parte del percorso `$hc/` fissa. |
-| `sb-hc-token` |Sì\* |Il listener deve fornire un token di accesso condiviso del bus di servizio codificato con URL valido per lo spazio dei nomi o la connessione ibrida che conferisce il diritto **Listen**. |
+| `sb-hc-action` |Sì |Per hello ruolo di listener hello parametro deve essere **sb-hc-action = ascolto** |
+| `{path}` |Sì |percorso dello spazio dei nomi con codifica URL Hello di hello preconfigurato connessione ibrida tooregister questo listener in. Questa espressione viene accodato toohello fissata `$hc/` parte del percorso. |
+| `sb-hc-token` |Sì\* |Hello listener deve fornire un valido, la codifica URL del servizio Bus condiviso Token di accesso per spazio dei nomi hello o la connessione ibrida che conferisce hello **ascolto** destra. |
 | `sb-hc-id` |No |Questo ID facoltativo fornito dal client consente la traccia diagnostica end-to-end. |
 
-Se la connessione WebSocket non riesce perché il percorso della connessione ibrida non è registrato oppure a causa di un token mancante o non valido o di un altro errore, il feedback dell'errore viene specificato usando il normale modello di feedback dello stato HTTP 1.1. La descrizione dello stato contiene un ID di traccia dell'errore che può essere comunicato al personale del supporto di Azure:
+Se hello connessione WebSocket non riesce a causa di percorso di connessione ibrida toohello non è registrato o un token non valido o manca o di altri errori, viene fornito un feedback errore hello modello hello regolare HTTP 1.1 stato commenti e suggerimenti. La descrizione dello stato contiene un ID di traccia dell'errore che può essere comunicato al personale del supporto di Azure:
 
 | Codice | Errore | Description |
 | --- | --- | --- |
-| 404 |Non trovato |Il percorso della connessione ibrida non è valido o il formato dell'URL di base non è corretto. |
-| 401 |Non autorizzata |Il token di sicurezza è mancante, non valido o non corretto. |
-| 403 |Accesso negato |Il token di sicurezza non è valido per questo percorso per questa azione. |
-| 500 |Errore interno |Si è verificato un errore nel servizio. |
+| 404 |Non trovato |percorso di Hello connessione ibrida non è valido o hello URL di base non è corretto. |
+| 401 |Non autorizzata |token di sicurezza Hello è mancante o non valido o non valido. |
+| 403 |Accesso negato |token di sicurezza Hello non è valido per questo percorso per questa azione. |
+| 500 |Errore interno |Si è verificato un errore nel servizio hello. |
 
-Se la connessione WebSocket viene intenzionalmente arrestata dal servizio dopo la configurazione iniziale, il motivo viene comunicato usando un codice errore del protocollo WebSocket appropriato con un messaggio di errore descrittivo che include anche un ID di traccia. Il servizio non arresterà il canale di controllo senza riscontrare una condizione di errore. Le chiusure normali sono controllate dal client.
+Se hello connessione WebSocket è intenzionalmente arrestato dal servizio hello dopo che è stato inizialmente configurato, motivo hello per eseguire questa operazione viene comunicato utilizzando un codice di errore di protocollo WebSocket appropriato con un messaggio di errore descrittivo che include un rilevamento ID. servizio Hello non interromperà il canale di controllo senza che si verifichi una condizione di errore. Le chiusure normali sono controllate dal client.
 
 | Stato Web Socket | Description |
 | --- | --- |
-| 1001 |Il percorso della connessione ibrida è stato eliminato o disabilitato. |
-| 1008 |Il token di sicurezza è scaduto e i criteri di autorizzazione vengono quindi violati. |
-| 1011 |Si è verificato un errore nel servizio. |
+| 1001 |percorso della connessione ibrida Hello è stato eliminato o disabilitato. |
+| 1008 |token di sicurezza Hello è scaduta, pertanto viene violato i criteri di autorizzazione hello. |
+| 1011 |Si è verificato un errore nel servizio hello. |
 
 ### Handshake accept
-La notifica "accept" viene inviata dal servizio al listener tramite il canale di controllo stabilito in precedenza come messaggio JSON in una cornice di testo del WebSocket. Non sono previste risposte a questo messaggio.
+Hello "accetta" notifica viene inviata dal listener di hello servizio toohello attraverso il canale di controllo definito in precedenza come un messaggio JSON in un intervallo di testo di WebSocket. Non vi è alcun messaggio di risposta toothis.
 
-Il messaggio contiene un oggetto JSON denominato "accept", che definisce le proprietà attuali seguenti:
+messaggio contiene un oggetto JSON denominato "accetta", che definisce le proprietà seguenti in questo momento hello:
 
-* **address**: stringa dell'URL da usare per stabilire il WebSocket al servizio per accettare una connessione in ingresso.
-* **id**: identificatore univoco per questa connessione. Se l'ID è stato fornito dal client mittente, si tratta del valore fornito dal mittente. In caso contrario, è un valore generato dal sistema.
-* **connectHeaders**: tutte le intestazioni HTTP fornite all'endpoint di inoltro dal mittente, che include anche le intestazioni Sec-WebSocket-Protocol e Sec-WebSocket-Extensions.
+* **indirizzo** : hello toobe stringa URL utilizzato per stabilire hello WebSocket toothe servizio tooaccept una connessione in ingresso.
+* **ID** : hello identificatore univoco per questa connessione. Se ID hello è stato fornito dal client mittente hello è il valore di mittente fornito hello, in caso contrario è un valore generato dal sistema.
+* **connectHeaders** : tutte le intestazioni HTTP che sono stati forniti endpoint di inoltro toohello dal mittente hello, che include anche hello protocollo WebSocket al secondo e le intestazioni le estensioni di WebSocket al secondo.
 
 #### Messaggio accept
 
@@ -134,70 +134,70 @@ Il messaggio contiene un oggetto JSON denominato "accept", che definisce le prop
 }
 ```
 
-L'URL dell'indirizzo specificato nel messaggio JSON viene usato dal listener per stabilire il WebSocket per accettare o rifiutare il socket del mittente.
+Hello indirizzo URL fornito in hello messaggio JSON viene usato dal listener hello per stabilire hello WebSocket per l'accettazione o rifiuto di socket mittente hello.
 
-#### Accettazione del socket
-Per accettare, il listener stabilisce una connessione WebSocket all'indirizzo specificato.
+#### Accettazione socket hello
+tooaccept, listener hello stabilisce un indirizzo di toohello fornito connessione WebSocket.
 
-Se il messaggio "accept" contiene un'intestazione `Sec-WebSocket-Protocol`, è previsto che il listener accetti il WebSocket solo se supporta tale protocollo. Imposta inoltre l'intestazione quando viene definito il WebSocket.
+Se hello "accetta" messaggio trasporta un `Sec-WebSocket-Protocol` intestazione, è previsto listener hello accetta hello WebSocket solo se supporta tale protocollo. Inoltre, imposta l'intestazione di hello come hello che WebSocket viene stabilita.
 
-Lo stesso vale per l'intestazione `Sec-WebSocket-Extensions`. Se il framework supporta un'estensione, deve impostare l'intestazione sulla risposta lato server dell'handshake `Sec-WebSocket-Extensions` obbligatorio per l'estensione.
+Hello vale toohello `Sec-WebSocket-Extensions` intestazione. Se il framework di hello supporta un'estensione, è necessario impostare risposta sul lato server di hello intestazione toohello di hello necessario `Sec-WebSocket-Extensions` handshake per estensione hello.
 
-L'URL deve essere usato così com'è per stabilire il socket di accettazione, ma contiene i parametri seguenti:
+URL Hello devono essere usati come-per stabilire hello accetta socket, ma contiene i parametri seguenti:
 
-| Parametro | Obbligatorio | Descrizione |
+| . | Obbligatorio | Descrizione |
 | --- | --- | --- |
-| `sb-hc-action` |Sì |Per accettare un socket, il parametro deve essere `sb-hc-action=accept` |
-| `{path}` |Sì |(vedere il paragrafo seguente) |
+| `sb-hc-action` |Sì |Per accettare un socket, è necessario il parametro hello`sb-hc-action=accept` |
+| `{path}` |Sì |(vedere il seguente paragrafo hello) |
 | `sb-hc-id` |No |Vedere la descrizione precedente di **id**. |
 
-`{path}` è il percorso dello spazio dei nomi codificato con URL della connessione ibrida preconfigurata in cui registrare questo listener. Questa espressione viene aggiunta alla parte del percorso `$hc/` fissa. 
+`{path}`è il percorso dello spazio dei nomi con codifica URL hello di hello preconfigurato connessione ibrida in cui tooregister questo listener. Questa espressione viene accodato toothe fissata `$hc/` parte del percorso. 
 
-L'espressione `path` può essere estesa aggiungendo al nome registrato una barra, un suffisso e un'espressione di stringa di query. Il client mittente può in questo modo trasmettere gli argomenti di invio al listener di accettazione quando non è possibile includere le intestazioni HTTP. Il framework del listener dovrebbe analizzare la parte fissa del percorso e il nome registrato dal percorso, quindi rendere disponibile la parte restante (possibilmente senza argomenti di stringa di query con prefisso `sb-`) all'applicazione perché decida se accettare la connessione.
+Hello `path` espressione può essere esteso con un suffisso e un'espressione di stringa di query seguente, nome registrato hello dopo una barra rovesciata separazione. In questo modo hello mittente toopass invio argomenti toohello accettazione listener del client quando non è possibile tooinclude HTTP intestazioni. Hello previsione listener hello framework analizza parte di percorso predefinito di hello e hello nome registrato dal percorso e resto hello, probabilmente senza argomenti di stringa di query preceduti da `sb-`, applicazione toohello disponibile per determinazione se tooaccept hello connessione.
 
-Per altre informazioni, vedere la sezione "Protocollo per il mittente" che segue.
+Per ulteriori informazioni, vedere hello successiva sezione "Mittente protocollo".
 
-In caso di errore il servizio può rispondere come segue:
+Se si verifica un errore, il servizio hello può rispondere nel modo seguente:
 
 | Codice | Errore | Description |
 | --- | --- | --- |
-| 403 |Accesso negato |URL non valido. |
-| 500 |Errore interno |Si è verificato un errore nel servizio |
+| 403 |Accesso negato |Hello URL non è valido. |
+| 500 |Errore interno |Si è verificato un errore nel servizio hello |
 
-Dopo che la connessione è stata stabilita, il server arresta il WebSocket quando il WebSocket mittente si arresta o ha lo stato seguente:
+Dopo aver stabilita la connessione hello, hello server viene arrestato hello WebSocket quando il mittente di hello WebSocket arresta, oppure con hello seguente stato:
 
 | Stato Web Socket | Description |
 | --- | --- |
-| 1001 |Il client mittente arresta la connessione. |
-| 1001 |Il percorso della connessione ibrida è stato eliminato o disabilitato. |
-| 1008 |Il token di sicurezza è scaduto e i criteri di autorizzazione vengono quindi violati. |
-| 1011 |Si è verificato un errore nel servizio. |
+| 1001 |client mittente Hello viene chiuso la connessione hello. |
+| 1001 |percorso della connessione ibrida Hello è stato eliminato o disabilitato. |
+| 1008 |token di sicurezza Hello è scaduta, pertanto viene violato i criteri di autorizzazione hello. |
+| 1011 |Si è verificato un errore nel servizio hello. |
 
-#### Rifiuto del socket
-Per rifiutare il socket dopo avere esaminato il messaggio "accept", è necessario un handshake simile in modo che il codice di stato e la descrizione dello stato che comunica il motivo del rifiuto possano tornare al mittente.
+#### Rifiuto di socket hello
+Rifiuto di socket hello dopo "esame hello accetta" messaggio richiede un handshake simile in modo che hello codice di stato e la descrizione di stato comunicare che il motivo del rifiuto hello possano essere scambiate all'indietro toohello mittente.
 
-La scelta di progettazione del protocollo in questo caso prevede l'uso di un handshake WebSocket (progettato per restituire uno stato di errore definito) in modo che le implementazioni del client listener possano continuare a basarsi su un client WebSocket e non sia necessario impiegare un altro client HTTP di base.
+Hello protocollo progettazione scelta è toouse un handshake di WebSocket, ovvero tooend progettato in uno stato di errore definito, in modo che le implementazioni di client listener possono continuare toorely in un client WebSocket e non è necessario utilizzare un'ulteriore, bare client HTTP.
 
-Per rifiutare il socket, il client accetta l'URI dell'indirizzo dal messaggio "accept" e vi aggiunge due parametri di stringa di query, come indicato di seguito:
+socket client hello hello tooreject accetta hello indirizzo URI dal messaggio "accetta" hello e accoda due query tooit di parametri stringa, come indicato di seguito:
 
 | Param | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | statusCode |Sì |Codice di stato HTTP numerico. |
-| statusDescription |Sì |Motivo leggibile del rifiuto. |
+| statusDescription |Sì |Motivo leggibile umano hello rifiuto. |
 
-L'URI risultante viene quindi usato per stabilire una connessione WebSocket.
+Hello che URI risultante viene quindi utilizzato tooestablish una connessione WebSocket.
 
-Se completato correttamente, questo handshake non riuscirà di proposito con il codice di errore HTTP 410, perché non è stato stabilito alcun WebSocket. Se si verificano problemi, i codici seguenti descrivono l'errore:
+Se completato correttamente, questo handshake non riuscirà di proposito con il codice di errore HTTP 410, perché non è stato stabilito alcun WebSocket. Se si verificano problemi, hello seguenti codici di descrivere l'errore hello:
 
 | Codice | Errore | Description |
 | --- | --- | --- |
-| 403 |Accesso negato |URL non valido. |
-| 500 |Errore interno |Si è verificato un errore nel servizio. |
+| 403 |Accesso negato |Hello URL non è valido. |
+| 500 |Errore interno |Si è verificato un errore nel servizio hello. |
 
 ### Rinnovo del token del listener
-Quando il token del listener sta per scadere, può essere sostituito inviando un messaggio in una cornice di testo al servizio tramite il canale di controllo stabilito. Il messaggio contiene un oggetto JSON denominato `renewToken`, che definisce la proprietà attuale seguente:
+Quando il token di listener hello su tooexpire, è possibile sostituirlo mediante l'invio di un frame toohello servizio SMS tramite il canale di controllo di hello stabilita. Il messaggio contiene un oggetto JSON chiamato `renewToken`, che definisce hello seguente proprietà in questo momento:
 
-* **token**: token di accesso condiviso del bus di servizio codificato con URL valido per lo spazio dei nomi o la connessione ibrida che conferisce il diritto **Listen**.
+* **token** : un token di accesso condiviso Bus di servizio valido, la codifica URL per dello spazio dei nomi o di una connessione ibrida che conferisce hello **ascolto** destra.
 
 #### Messaggio renewToken
 
@@ -209,58 +209,58 @@ Quando il token del listener sta per scadere, può essere sostituito inviando un
 }
 ```
 
-Se la convalida del token non riesce, l'accesso viene negato e il servizio cloud chiude il WebSocket del canale di controllo con un errore. In caso contrario non vi è alcuna risposta.
+Se si verifica un errore di convalida del token hello, viene negato l'accesso e servizio cloud hello chiude il canale di controllo hello WebSocket con un errore. In caso contrario non vi è alcuna risposta.
 
 | Stato Web Socket | Description |
 | --- | --- |
-| 1008 |Il token di sicurezza è scaduto e i criteri di autorizzazione vengono quindi violati. |
+| 1008 |token di sicurezza Hello è scaduta, pertanto viene violato i criteri di autorizzazione hello. |
 
 ## Protocollo per il mittente
-Il protocollo per il mittente è di fatto identico a come viene stabilito un listener.
-L'obiettivo è la massima trasparenza per il WebSocket end-to-end. L'indirizzo a cui connettersi è lo stesso del listener, ma l'"azione" è diversa e il token richiede un'autorizzazione diversa:
+protocollo di mittente Hello è in pratica è identico toohello modo che viene stabilito un listener.
+obiettivo di Hello è massima trasparenza per hello end-to-end WebSocket. indirizzo di Hello per la connessione hello toois che identico a quello del listener hello, ma l'azione"hello" è diverso e il token richiede un'autorizzazione diversa:
 
 ```
 wss://{namespace-address}/$hc/{path}?sb-hc-action=...&sb-hc-id=...&sbc-hc-token=...
 ```
 
-*namespace-address* è il nome di dominio completo dello spazio dei nomi di inoltro di Azure che ospita la connessione ibrida, in genere nel formato `{myname}.servicebus.windows.net`.
+Hello *dello spazio dei nomi indirizzo* è il nome di dominio completo hello dello spazio dei nomi di Azure inoltro hello che gli host hello connessione ibrida, in genere del modulo di hello `{myname}.servicebus.windows.net`.
 
-La richiesta può contenere intestazioni HTTP aggiuntive arbitrarie, incluse quelle definite dall'applicazione. Tutte le intestazioni specificate vengono trasmesse al listener e sono disponibili nell'oggetto `connectHeader` del messaggio di controllo **accept**.
+richiesta di Hello può contenere arbitrarie intestazioni HTTP aggiuntive, inclusi quelli definiti dall'applicazione. Tutti fornito toohello listener del flusso di intestazioni e possono trovarsi in hello `connectHeader` oggetto di hello **accettare** messaggio di controllo.
 
-Le opzioni dei parametri della stringa di query sono le seguenti:
+opzioni del parametro stringa query Hello sono i seguenti:
 
 | Param | Obbligatorio? | Descrizione |
 | --- | --- | --- |
-| `sb-hc-action` |Sì |Per il ruolo mittente, il parametro deve essere `action=connect`. |
-| `{path}` |Sì |(vedere il paragrafo seguente) |
-| `sb-hc-token` |Sì\* |Il listener deve fornire un token di accesso condiviso del bus di servizio codificato con URL valido per lo spazio dei nomi o la connessione ibrida che conferisce il diritto **Send**. |
-| `sb-hc-id` |No |ID facoltativo che consente la traccia diagnostica end-to-end ed è disponibile per il listener durante l'handshake accept. |
+| `sb-hc-action` |Sì |Per il ruolo di mittente hello, hello parametro deve essere `action=connect`. |
+| `{path}` |Sì |(vedere il seguente paragrafo hello) |
+| `sb-hc-token` |Sì\* |Hello listener deve fornire un valido, la codifica URL del servizio Bus condiviso Token di accesso per spazio dei nomi hello o la connessione ibrida che conferisce hello **inviare** destra. |
+| `sb-hc-id` |No |Un ID facoltativo che consente la traccia diagnostica end-to-end e viene reso disponibile toohello listener durante hello accettare handshake. |
 
-`{path}` è il percorso dello spazio dei nomi codificato con URL della connessione ibrida preconfigurata in cui registrare questo listener. L'espressione `path` può essere estesa con un suffisso e un'espressione di stringa di query per comunicare altre informazioni. Se la connessione ibrida è registrata nel percorso `hyco`, l'espressione `path` può essere `hyco/suffix?param=value&...` seguita dai parametri di stringa di query definiti qui. Un'espressione completa potrebbe quindi essere:
+Hello `{path}` è il percorso dello spazio dei nomi con codifica URL hello di hello preconfigurato connessione ibrida in cui tooregister questo listener. Hello `path` espressione può essere esteso con un suffisso e un toocommunicate a un'espressione stringa di query ulteriormente. Se la connessione ibrida hello è registrato in un percorso di hello `hyco`, hello `path` espressione può essere `hyco/suffix?param=value&...` seguito dai parametri di stringa di query hello definiti qui. Un'espressione completa potrebbe quindi essere:
 
 ```
 wss://{namespace-address}/$hc/hyco/suffix?param=value&sb-hc-action=...[&sb-hc-id=...&]sbc-hc-token=...
 ```
 
-L'espressione `path` viene trasmessa al listener nell'URI dell'indirizzo contenuto nel messaggio di controllo "accept".
+Hello `path` espressione viene passata tramite il listener toohello indirizzo hello URI contenuto nel messaggio di controllo "accept" hello.
 
-Se la connessione WebSocket non riesce perché il percorso della connessione ibrida non è registrato oppure a causa di un token mancante o non valido o di un altro errore, il feedback dell'errore viene specificato usando il normale modello di feedback dello stato HTTP 1.1. La descrizione dello stato contiene un ID di traccia dell'errore che può essere comunicato al personale del supporto di Azure:
+Se hello connessione WebSocket non riesce a causa di percorso della connessione ibrida toohello non è registrato, un token non valido o manca o di altri errori, viene fornito un feedback errore hello modello hello regolare HTTP 1.1 stato commenti e suggerimenti. La descrizione dello stato contiene un ID di traccia dell'errore che può essere comunicato al personale del supporto di Azure:
 
 | Codice | Errore | Description |
 | --- | --- | --- |
-| 404 |Non trovato |Il percorso della connessione ibrida non è valido o il formato dell'URL di base non è corretto. |
-| 401 |Non autorizzata |Il token di sicurezza è mancante, non valido o non corretto. |
-| 403 |Accesso negato |Il token di sicurezza non è valido per questo percorso e per questa azione. |
-| 500 |Errore interno |Si è verificato un errore nel servizio. |
+| 404 |Non trovato |percorso di Hello connessione ibrida non è valido o hello URL di base non è corretto. |
+| 401 |Non autorizzata |token di sicurezza Hello è mancante o non valido o non valido. |
+| 403 |Accesso negato |token di sicurezza Hello non è valido per questo percorso e per questa azione. |
+| 500 |Errore interno |Si è verificato un errore nel servizio hello. |
 
-Se la connessione WebSocket viene intenzionalmente arrestata dal servizio dopo la configurazione iniziale, il motivo viene comunicato usando un codice di errore del protocollo WebSocket appropriato con un messaggio di errore descrittivo che include anche un ID di traccia.
+Se intenzionalmente hello connessione WebSocket viene chiuso dal servizio hello dopo che è stato inizialmente configurato, motivo hello ad esempio, quando pertanto viene comunicato utilizzando un codice di errore di protocollo WebSocket appropriato con un messaggio di errore descrittivo che include anche un ID rilevamento.
 
 | Stato Web Socket | Description |
 | --- | --- |
-| 1000 |Il listener ha arrestato il socket. |
-| 1001 |Il percorso della connessione ibrida è stato eliminato o disabilitato. |
-| 1008 |Il token di sicurezza è scaduto e i criteri di autorizzazione vengono quindi violati. |
-| 1011 |Si è verificato un errore nel servizio. |
+| 1000 |listener Hello arrestato dal socket hello. |
+| 1001 |percorso della connessione ibrida Hello è stato eliminato o disabilitato. |
+| 1008 |token di sicurezza Hello è scaduta, pertanto viene violato i criteri di autorizzazione hello. |
+| 1011 |Si è verificato un errore nel servizio hello. |
 
 ## Passaggi successivi
 * [Domande frequenti sull'inoltro](relay-faq.md)

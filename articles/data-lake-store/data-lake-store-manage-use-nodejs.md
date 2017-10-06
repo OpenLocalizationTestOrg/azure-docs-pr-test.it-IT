@@ -1,6 +1,6 @@
 ---
-title: Introduzione ad Azure Data Lake Store con Azure SDK per Node.js |Documentazione Microsoft
-description: Informazioni su come usare Node.js con gli account Data Lake Store e il file system.
+title: aaaGet avviato con l'archivio Azure Data Lake con Azure SDK per Node.js | Documenti Microsoft
+description: Informazioni su come toouse Node.js toowork con account archivio Data Lake e hello del file system.
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/06/2017
 ms.author: nitinme
-ms.openlocfilehash: 8c7a2e6ca061bbfa077592efb73d592906c3d070
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce36a2e0de4e091a4e85ed784a3381415ef6f9e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-azure-sdk-for-nodejs"></a>Introduzione ad Azure Data Lake Store con Azure SDK per Node.js
 > [!div class="op_single_selector"]
@@ -34,31 +34,31 @@ ms.lasthandoff: 07/11/2017
 > 
 
 > [!NOTE]
-> Per caricare e scaricare grandi quantità di dati (file di grandi dimensioni, un gran numero di file o entrambi), è consigliabile usare [Python SDK](data-lake-store-get-started-python.md), [.NET SDK](data-lake-store-get-started-net-sdk.md), [l'interfaccia della riga di comando di Azure 2.0](data-lake-store-get-started-cli-2.0.md) o [Azure PowerShell](data-lake-store-get-started-powershell.md). Queste opzioni offrono prestazioni migliori, perché usano più thread per parallelizzare lo spostamento dei dati.
+> Per caricare e scaricare grandi quantità di dati (file di grandi dimensioni, un numero elevato di file o entrambi), è consigliabile utilizzare hello [Python SDK](data-lake-store-get-started-python.md), hello [.NET SDK](data-lake-store-get-started-net-sdk.md), [CLI di Azure 2.0](data-lake-store-get-started-cli-2.0.md), o [Azure PowerShell](data-lake-store-get-started-powershell.md). Queste opzioni offrono prestazioni migliori perché usano lo spostamento dati di più thread tooparallelize hello.
 > 
 > 
 
-Informazioni su come usare Azure SDK per Node.js per creare un account Azure Data Lake Store ed eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare i file di dati, eliminare l'account e così via. Per altre informazioni su Data Lake Store, vedere [Panoramica di Data Lake Store](data-lake-store-overview.md). L'SDK attualmente supporta:
+Informazioni su come toouse hello Azure SDK per Node.js toocreate un account archivio Azure Data Lake ed eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare file di dati, eliminare l'account, e così via. Per altre informazioni su Data Lake Store, vedere [Panoramica di Data Lake Store](data-lake-store-overview.md). Attualmente, hello SDK supporta
 
 * **Versione di Node.js: 0.10.0 o successiva**
 * **Versione dell'API REST per l'account: 2015-10-01-preview**
 * **Versione dell'API REST per FileSystem: 2015-10-01-anteprima**
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire le procedure descritte nell'articolo è necessario:
+Prima di iniziare questo articolo, è necessario disporre delle seguenti hello:
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
-* **Creare un'applicazione di Azure Active Directory**. Usare l'applicazione Azure AD per autenticare l'applicazione Data Lake Store con Azure AD. Per l'autenticazione con Azure AD è possibile usare l'**autenticazione dell'utente finale** o l'**autenticazione da servizio a servizio**. Per altre informazioni e istruzioni su come eseguire l'autenticazione, vedere [Autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [Autenticazione da servizio a servizio](data-lake-store-authenticate-using-active-directory.md).
+* **Creare un'applicazione di Azure Active Directory**. Utilizzare un'applicazione hello Azure AD applicazione tooauthenticate hello archivio Data Lake con Azure AD. Esistono diversi approcci tooauthenticate con Azure AD, che sono **autenticazione dell'utente finale** o **authentication service to service**. Per istruzioni e ulteriori informazioni su come tooauthenticate, vedere [autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [authentication Service to service](data-lake-store-authenticate-using-active-directory.md).
 
-## <a name="how-to-install"></a>Come eseguire l'installazione
+## <a name="how-tooinstall"></a>Come tooInstall
 ```bash
 npm install azure-arm-datalake-store
 ```
 
 ## <a name="authenticate-using-azure-active-directory"></a>Eseguire l'autenticazione con Azure Active Directory
-I frammenti seguenti illustrano due modi diversi per eseguire l'autenticazione con Data Lake Store usando Azure AD. Per una spiegazione dettagliata dei diversi metodi da usare per eseguire l'autenticazione con Data Lake Store, vedere [Eseguire l'autenticazione con Data Lake Store usando Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
+Hello i frammenti di codice seguente mostra due modi diversi di autenticazione con l'archivio Data Lake con Azure AD. Per informazioni dettagliate su toouse metodi diversi per l'autenticazione con l'archivio Data Lake, vedere [autentica con archivio Data Lake tramite Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
 
-Il frammento seguente richiede anche input come il nome di dominio di Azure AD, l'ID client per un'app Azure AD e così via. Tutti questi dettagli possono essere recuperati da un'applicazione Azure AD che è necessario creare. Per informazioni dettagliate, fare clic sul collegamento precedente.
+frammento di Hello seguente richiede l'input come nome di dominio Azure AD, ID client per un'app di Azure AD e così via. Tutti questi dettagli possono essere recuperati da un'applicazione Azure AD che è necessario creata, hello cui dettagli sono inoltre inclusi nel collegamento riportato sopra.
 
  ```javascript
  var msrestAzure = require('ms-rest-azure');
@@ -68,7 +68,7 @@ Il frammento seguente richiede anche input come il nome di dominio di Azure AD, 
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## <a name="create-the-data-lake-store-clients"></a>Creare i client Data Lake Store
+## <a name="create-hello-data-lake-store-clients"></a>Creare i client di archivio hello Data Lake
 ```javascript
 var adlsManagement = require("azure-arm-datalake-store");
 var acccountClient = new adlsManagement.DataLakeStoreAccountClient(credentials, "your-subscription-id");
@@ -82,7 +82,7 @@ var resourceGroupName = 'testrg';
 var accountName = 'testadlsacct';
 var location = 'eastus2';
 
-// account object to create
+// account object toocreate
 var accountToCreate = {
   tags: {
     testtag1: 'testvalue1',
@@ -95,14 +95,14 @@ var accountToCreate = {
 client.account.create(resourceGroupName, accountName, accountToCreate, function (err, result, request, response) {
   if (err) {
     console.log(err);
-    /*err has reference to the actual request and response, so you can see what was sent and received on the wire.
-      The structure of err looks like this:
+    /*err has reference toohello actual request and response, so you can see what was sent and received on hello wire.
+      hello structure of err looks like this:
       err: {
         code: 'Error Code',
         message: 'Error Message',
-        body: 'The response body if any',
-        request: reference to a stripped version of http request
-        response: reference to a stripped version of the response
+        body: 'hello response body if any',
+        request: reference tooa stripped version of http request
+        response: reference tooa stripped version of hello response
       }
     */
   } else {

@@ -1,6 +1,6 @@
 ---
-title: Latenze dei report di Azure Active Directory | Microsoft Docs
-description: Informazioni sul tempo necessario per la visualizzazione nel portale di Azure degli eventi dei report
+title: le latenze reporting di Active Directory aaaAzure | Documenti Microsoft
+description: "Informazioni sulle quantità hello di tempo impiegato per la segnalazione di eventi tooshow backup nel portale di Azure"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,27 +15,27 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi;dhanyahk
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 93cb0baeab8f13f81257ed1bd32ed08561c54b72
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eee959331262ba59b313dd038cb54699dbef48a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-reporting-latencies"></a>Latenze dei report di Azure Active Directory
 
-I [report](active-directory-preview-explainer.md) di Azure Active Directory offrono tutte le informazioni necessarie per determinare lo stato dell'ambiente. Il tempo necessario per la visualizzazione dei dati di report nel portale di Azure è nota anche come latenza. 
+Con [reporting](active-directory-preview-explainer.md) in hello Azure Active Directory, si ottengono tutte le informazioni di hello è necessario toodetermine, svolgimento dell'ambiente. quantità di Hello di tempo impiegato per la segnalazione dei dati tooshow backup nel portale di Azure hello è noto anche come latenza. 
 
-Questo argomento elenca le informazioni sulla latenza per tutte le categorie di report nel portale di Azure. 
+Questo argomento elenca le informazioni sulla latenza hello per hello tutte le categorie di report nel portale di Azure hello. 
 
 
 ## <a name="activity-reports"></a>Report sull’attività
 
 Esistono due aree di reporting sulle attività:
 
-- **Attività di accesso** : informazioni sull'utilizzo delle applicazioni gestite e sulle attività di accesso utente
+- **Le attività di accesso** – informazioni sull'utilizzo di hello di applicazioni gestite e le attività di accesso dell'utente
 - **Log di controllo** : informazioni relative alle attività di sistema sulla gestione di utenti e gruppi, sulle applicazioni gestite e sulle attività di directory
 
-Nella tabella seguente sono elencate le informazioni sulla latenza per i report di attività.
+Hello nella tabella seguente elenca le informazioni sulla latenza hello per i report di attività.
 
 | Report | Minima | Media | Massima |
 | :-- | --- | --- | --- |
@@ -43,17 +43,17 @@ Nella tabella seguente sono elencate le informazioni sulla latenza per i report 
 | Accessi               | 15 minuti  | 15 minuti | 2 ore*   |
 
 >[!NOTE]
-> Per alcuni dati di attività di accesso provenienti da applicazioni legacy di office, potrebbero essere necessarie fino a 8 ore per la visualizzazione dei dati dei report. 
+> Per alcuni dati di attività accessi provenienti da applicazioni di office legacy, può richiedere ore too8 hello reporting dati tooshow backup. 
 
 
 ## <a name="security-reports"></a>Report sulla sicurezza
 
 Esistono due aree di reporting sulla sicurezza:
 
-- **Accessi a rischio**. Un accesso rischioso è indicativo di un tentativo di accesso che potrebbe essere stato eseguito da qualcuno che non è il legittimo proprietario di un account utente. 
+- **Accessi rischiosi** -un rischiosa l'accesso è un indicatore per un tentativo di accesso che siano stato eseguito da un utente che non è proprietario di legittimo hello di un account utente. 
 - **Utenti contrassegnati per il rischio**. Un utente rischioso è indicativo di un account utente che potrebbe essere stato compromesso. 
 
-Nella tabella seguente sono elencate le informazioni sulla latenza per i report di sicurezza.
+Hello nella tabella seguente elenca le informazioni sulla latenza hello per i report di sicurezza.
 
 | Report | Minima | Media | Massima |
 | :-- | --- | --- | --- |
@@ -62,16 +62,16 @@ Nella tabella seguente sono elencate le informazioni sulla latenza per i report 
 
 ## <a name="risk-events"></a>Eventi di rischio
 
-Azure Active Directory usa l'euristica e gli algoritmi adattivi di Machine Learning per rilevare azioni sospette correlate agli account dell'utente. Ogni azione sospetta rilevata viene archiviata in un record denominato evento di rischio.
+Azure Active Directory Usa adattivo di machine learning algoritmi euristica toodetect sospette azioni e che sono account utente tooyour correlati. Ogni azione sospetta rilevata viene archiviata in un record denominato evento di rischio.
 
-Nella tabella seguente sono elencate le informazioni sulla latenza per gli eventi di rischio.
+Hello nella tabella seguente elenca le informazioni di latenza hello per gli eventi di rischio.
 
 | Report | Minima | Media | Massima |
 | :-- | --- | --- | --- |
 | Accessi da indirizzi IP anonimi |5 minuti |15 minuti |2 ore |
 | Accessi da posizioni non note |5 minuti |15 minuti |2 ore |
 | Utenti con credenziali perse |2 ore |4 ore |8 ore |
-| Trasferimento impossibile a posizioni atipiche |5 minuti |1 ora |8 ore  |
+| Comunicazione Impossibile tooatypical percorsi |5 minuti |1 ora |8 ore  |
 | Accessi da dispositivi infetti |2 ore |4 ore |8 ore  |
 | Accessi da indirizzi IP con attività sospette |2 ore |4 ore |8 ore  |
 
@@ -79,14 +79,14 @@ Nella tabella seguente sono elencate le informazioni sulla latenza per gli event
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se si desidera ottenere maggiori informazioni sui report dell’attività nel portale di Azure, vedere:
+Se si desidera tooknow ulteriori informazioni sui report di attività hello in hello portale di Azure, vedere:
 
-- [Report delle attività di accesso nel portale di Azure Active Directory](active-directory-reporting-activity-sign-ins.md)
-- [Report delle attività di controllo nel portale di Azure Active Directory](active-directory-reporting-activity-audit-logs.md)
+- [Report attività di accesso nel portale di Azure Active Directory hello](active-directory-reporting-activity-sign-ins.md)
+- [Report attività nel portale di Azure Active Directory hello di controllo](active-directory-reporting-activity-audit-logs.md)
 
-Se si desidera ottenere maggiori informazioni sui report della sicurezza nel portale di Azure, vedere:
+Se si desidera tooknow ulteriori informazioni sui report di sicurezza hello in hello portale di Azure, vedere:
 
-- [Report della sicurezza per gli utenti a rischio nel portale di Azure Active Directory](active-directory-reporting-security-user-at-risk.md)
-- [Report degli accessi a rischio nel portale di Azure Active Directory](active-directory-reporting-security-risky-sign-ins.md)
+- [Utenti dei report di rischio per la sicurezza nel portale di Azure Active Directory hello](active-directory-reporting-security-user-at-risk.md)
+- [Report accessi rischiosa nel portale di Azure Active Directory hello](active-directory-reporting-security-risky-sign-ins.md)
 
-Se si desidera ottenere maggiori informazioni sugli eventi di rischio, vedere [Eventi di rischio di Azure Active Directory](active-directory-reporting-risk-events.md).
+Se si desidera tooknow ulteriori sugli eventi di rischio, vedere [gli eventi di rischio di Azure Active Directory](active-directory-reporting-risk-events.md).

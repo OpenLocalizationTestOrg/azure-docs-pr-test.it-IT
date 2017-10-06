@@ -1,5 +1,5 @@
 ---
-title: Operazioni comuni nell'API Recommendations di Machine Learning | Microsoft Docs
+title: operazioni aaaCommon in Machine Learning indicazioni API hello | Documenti Microsoft
 description: Recommendations di Azure ML - Applicazione di esempio
 services: machine-learning
 documentationcenter: 
@@ -16,81 +16,81 @@ ms.date: 03/31/2017
 ms.author: luisca
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 8d8efa93e820f4a745ed93c0f4d13b2438dfa1eb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: da16767134a1386617e1184e4a4850f1f346e972
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="recommendations-api-sample-application-walkthrough"></a>Applicazione di esempio dell'API Recommendations
 > [!NOTE]
-> È consigliabile iniziare usando l'API Recommendations di Servizi cognitivi invece di questa versione. Il Servizio cognitivo di Recommendations sostituirà questo servizio e verranno sviluppate nuove funzionalità. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
-> Per altre informazioni, vedere [Migrating to the new Cognitive Service](http://aka.ms/recomigrate)
+> È consigliabile iniziare utilizzando hello indicazioni API cognitivi servizio invece di questa versione. Hello servizio cognitivi indicazioni andrà a sostituire questo servizio e tutte le nuove funzionalità hello verranno sviluppate non esiste. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
+> Altre informazioni, vedere [toohello migrazione nuovo servizio cognitivi](http://aka.ms/recomigrate)
 > 
 > 
 
 ## <a name="purpose"></a>Scopo
-Questo documento illustra l'utilizzo dell'API Recommendations di Azure Machine Learning, tramite un' [applicazione di esempio](https://code.msdn.microsoft.com/Recommendations-144df403).
+Questo documento illustra l'utilizzo di hello di hello Azure Machine Learning indicazioni API tramite un [applicazione di esempio](https://code.msdn.microsoft.com/Recommendations-144df403).
 
-Questa applicazione non è concepita per includere tutte le funzionalità, né per l'uso di tutte le API, ma serve solo per dimostrare alcune delle operazioni comuni da eseguire quando si vuole provare il servizio di raccomandazione di Machine Learning. 
+L'applicazione non è previsto tooinclude le funzionalità complete, né utilizza hello tutte le API. Vengono illustrate alcune tooperform operazioni comuni quando si desidera innanzitutto tooplay con il servizio di suggerimenti di Machine Learning hello. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="introduction-to-machine-learning-recommendation-service"></a>Introduzione al servizio di raccomandazione di Machine Learning
-Le raccomandazioni tramite il servizio di raccomandazione di Machine Learning vengono abilitate quando si compila un modello di raccomandazione basato sui dati seguenti:
+## <a name="introduction-toomachine-learning-recommendation-service"></a>Introduzione tooMachine il servizio di suggerimenti di apprendimento
+Suggerimenti tramite il servizio di suggerimenti di Machine Learning hello sono abilitati quando si compila un modello di raccomandazione basato su hello dati seguenti:
 
-* Repository dell'elemento da raccomandare, noto anche come catalogo.
-* Dati che rappresentano l'utilizzo di elementi per ogni utente o sessione. Queste informazioni possono essere ottenute nel tempo tramite l'acquisizione dei dati, non come parte dell'app di esempio.
+* Un repository di elementi di hello da toorecommend, noto anche come un catalogo
+* Rappresentazione dell'uso di hello di elementi per ogni utente o sessione (ciò può essere acquisito nel tempo tramite l'acquisizione dei dati, non come parte di app di esempio hello) di dati
 
-Dopo aver compilato un modello di raccomandazione, è possibile usarlo per una stima degli elementi a cui un utente può essere interessato, in base a un set di elementi o un singolo elemento selezionato dall'utente.
+Una volta creato un modello di raccomandazione, è possibile utilizzarlo toopredict elementi che un utente potrebbe essere interessato, in base a tooa Seleziona utente hello di set di elementi (o un singolo elemento).
 
-Per abilitare lo scenario precedente, eseguire le operazioni seguenti nel servizio di raccomandazione di Machine Learning:
+tooenable hello scenario precedente, si segue hello in hello servizio indicazione di Machine Learning:
 
-* Creare un modello: si tratta di un contenitore logico che include i dati, del catalogo e di utilizzo, e il modello o i modelli di stima. Il contenitore di ogni modello è identificato da un ID univoco allocato al momento della creazione. Questo ID è definito ID modello e viene usato dalla maggior parte delle API. 
-* Caricare nel catalogo: quando si crea un contenitore del modello, è possibile associarlo a un catalogo.
+* Creare un modello: si tratta di un contenitore logico che contiene i dati di hello (catalogo e utilizzo) e i modelli di stima hello. Il contenitore di ogni modello è identificato da un ID univoco allocato al momento della creazione. Questo ID viene chiamato l'ID modello hello e viene utilizzato per la maggior parte delle API hello. 
+* Caricare toocatalog: quando viene creato un contenitore del modello, è possibile associare tooit un catalogo.
 
-**Nota**: le operazioni di creazione di un modello e caricamento in un catalogo vengono in genere eseguite una sola volta per il ciclo di vita del modello.
+**Nota**: creazione di un modello e il caricamento di catalogo tooa vengono in genere eseguite una volta per ciclo di vita del modello hello.
 
-* Caricare i dati di utilizzo: i dati di utilizzo vengono aggiunti al contenitore del modello.
-* Compilare un modello di raccomandazione: quando sono disponibili dati sufficienti, si potrà compilare il modello di raccomandazione. Questa operazione usa algoritmi di Machine Learning avanzati per creare un modello di raccomandazione. A ogni compilazione è associato un ID univoco, che dovrà essere conservato, essendo necessario per la funzionalità di alcune API.
-* Monitorare il processo di compilazione: la compilazione di un modello di raccomandazione è un'operazione asincrona e può richiedere diversi minuti o diverse ore, a seconda della quantità di dati (catalogo e utilizzo) e dei parametri di compilazione. È quindi necessario monitorare la compilazione. Un modello di raccomandazione viene creato solo se la compilazione associata riesce.
-* (Facoltativo) Scegliere una compilazione del modello di raccomandazione attivo: questo passaggio è necessario solo se nel contenitore del modello è disponibile più di una compilazione del modello di raccomandazione. Qualsiasi richiesta di ottenere raccomandazioni senza indicare il modello di raccomandazione attivo viene reindirizzata automaticamente dal sistema alla compilazione attiva predefinita. 
+* Utilizzo di caricare: aggiunge contenitore del modello toohello dati sull'utilizzo.
+* Compilare un modello di raccomandazione: dopo avere dati sufficienti, è possibile compilare il modello di raccomandazione hello. Questa operazione utilizza hello superiore Machine Learning algoritmi toocreate un modello di raccomandazione. A ogni compilazione è associato un ID univoco, È necessario un record di questo ID tookeep perché è necessario per la funzionalità di hello di alcune API.
+* Hello monitoraggio processo di compilazione: una compilazione del modello di raccomandazione è un'operazione asincrona e può richiedere da diverse ore tooseveral minuti, a seconda della quantità di hello di dati (catalogo e utilizzo) e hello parametri di compilazione. Pertanto, è necessario compilazione hello toomonitor. Un modello di raccomandazione viene creato solo se la compilazione associata riesce.
+* (Facoltativo) Scegliere una compilazione del modello di raccomandazione attivo: questo passaggio è necessario solo se nel contenitore del modello è disponibile più di una compilazione del modello di raccomandazione. Raccomandazioni tooget richiesta senza indicare il modello di raccomandazione active di hello viene reindirizzata automaticamente da compilazione active di hello sistema toohello predefinito. 
 
 **Nota**: un modello di raccomandazione attivo è pronto per la produzione e viene compilato per i carichi di lavoro di produzione. Differisce da un modello di raccomandazione non attivo che rimane in un ambiente di tipo test, definito a volte gestione temporanea.
 
 * Ottenere raccomandazioni: dopo avere ottenuto un modello di raccomandazione, è possibile attivare le raccomandazioni per un singolo elemento o un elenco di elementi selezionati. 
 
-In genere si richiama Get Recommendation per un certo periodo di tempo. Durante questo intervallo di tempo è possibile reindirizzare i dati di utilizzo al sistema di raccomandazione di Machine Learning che li aggiungerà al contenitore del modello specificato. Quando si avranno dati di utilizzo sufficienti, si potrà compilare un nuovo modello di raccomandazione che incorpora i dati di utilizzo aggiuntivi. 
+In genere si richiama Get Recommendation per un certo periodo di tempo. Durante tale periodo di tempo, è possibile reindirizzare i dati di utilizzo toohello sistema di raccomandazione Machine Learning, che aggiunge questo contenitore del modello specificato toohello dati. Quando si dispone di sufficienti dati di utilizzo, è possibile creare un nuovo modello di raccomandazione che incorpora dati di utilizzo aggiuntivo hello. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 * Visual Studio 2013 o versioni successive
 * Accesso a Internet 
-* Sottoscrizione a API Recommendations (https://datamarket.azure.com/dataset/amla/recommendations).
+* Sottoscrizione toohello indicazioni API (https://datamarket.azure.com/dataset/amla/recommendations).
 
 ## <a name="azure-machine-learning-sample-app-solution"></a>Soluzione di app di esempio di Azure Machine Learning
-La soluzione contiene il codice sorgente, i file dei dati di utilizzo e del catalogo di esempio, oltre alle istruzioni per scaricare i pacchetti necessari per la compilazione.
+Questa soluzione contiene codice sorgente hello, esempio di utilizzo, i file di catalogo e direttive toodownload hello pacchetti che sono necessari per la compilazione.
 
-## <a name="the-apis-used"></a>API usate
-L'applicazione usa la funzionalità di raccomandazione di Machine Learning tramite un subset delle API disponibili. Nell'applicazione vengono illustrate le API seguenti:
+## <a name="hello-apis-used"></a>le API usate Hello
+un'applicazione Hello utilizza la funzionalità di indicazione di Machine Learning tramite un sottoinsieme delle API disponibile. Hello che API seguenti vengono illustrate in un'applicazione hello:
 
-* Creare un modello: creare il contenitore logico per i dati e i modelli di raccomandazione. Poiché un modello è identificato da un nome, non è possibile creare più di un modello con lo stesso nome.
-* Caricare un file del catalogo: vengono caricati i dati del catalogo.
-* Caricare il file dei dati di utilizzo: vengono caricati i dati di utilizzo.
-* Attivare la compilazione: viene creato un modello di raccomandazione.
-* Monitorare l'esecuzione della compilazione: viene monitorato lo stato di compilazione di un modello di raccomandazione.
-* Scegliere un modello di compilazione per la raccomandazione: viene indicato quale modello di raccomandazione sarà usato per impostazione predefinita per un determinato contenitore del modello. Questo passaggio è necessario solo se è disponibile più di un modello di raccomandazione e si vuole attivare una compilazione non attiva come modello di raccomandazione attivo.
-* Ottenere la raccomandazione: viene recuperato l'elemento raccomandato in base a un singolo elemento o un set di elementi specificati. 
+* Creazione di modelli: creare un contenitore logico di toohold i modelli di data e l'indicazione. Un modello è identificato da un nome e non è possibile creare più di un modello con hello stesso nome.
+* Caricare il file di catalogo: usare i dati del catalogo tooupload.
+* Caricare il file di utilizzo: dati di utilizzo tooupload utilizzati.
+* Attivare compilazione: utilizzare un modello di raccomandazione toocreate.
+* Monitorare l'esecuzione della compilazione: utilizzare toomonitor hello stato di una compilazione del modello di raccomandazione.
+* Scegliere un modello predefinito per il suggerimento: usare tooindicate quali toouse modello di raccomandazione per impostazione predefinita per un determinato contenitore del modello. Questo passaggio è necessario solo se si dispone di più di un modello di raccomandazione e si desidera tooactivate non attivo di compilazione del modello di raccomandazione active hello.
+* Ottenere l'indicazione: utilizzare tooretrieve elementi in base tooa dato singolo elemento o un set di elementi consigliati. 
 
-Per una descrizione completa delle API, vedere la documentazione di Microsoft Azure Marketplace. 
+Per una descrizione completa di hello API, vedere la documentazione di Microsoft Azure Marketplace hello. 
 
-**Nota**: con il tempo, un modello può avere diverse compilazioni (non contemporaneamente). Ogni compilazione viene creata con lo stesso catalogo o un catalogo aggiornato e dati di utilizzo aggiuntivi.
+**Nota**: con il tempo, un modello può avere diverse compilazioni (non contemporaneamente). Ogni compilazione è stata creata con hello stesso o un aggiornamento del catalogo e i dati di utilizzo aggiuntive.
 
 ## <a name="common-pitfalls"></a>Inconvenienti comuni
-* È necessario fornire il nome utente e la chiave primaria dell'account Microsoft Azure Marketplace per eseguire l'app di esempio.
-* L'app di esempio non può essere eseguita consecutivamente. Il flusso dell'applicazione include le operazioni di creazione, caricamento, monitoraggio della compilazione e recupero di raccomandazioni da un modello predefinito. Di conseguenza, l'esecuzione consecutiva non riuscirà se non si cambia il nome del modello tra una chiamata e l'altra.
-* La raccomandazione potrebbe essere restituita senza dati. L'app di esempio usa un file del catalogo e dei dati di utilizzo molto piccolo. Alcuni elementi del catalogo non avranno pertanto elementi raccomandati.
+* È necessario tooprovide il nome utente e le app di esempio hello toorun chiave account principale di Microsoft Azure Marketplace.
+* App di esempio in esecuzione hello consecutivamente avrà esito negativo. il flusso dell'applicazione Hello include creazione, caricamento, il monitoraggio di hello e ottenere indicazioni da un modello predefinito. Pertanto, non funziona sull'esecuzione consecutivi se non si modifica il nome modello hello tra le chiamate.
+* La raccomandazione potrebbe essere restituita senza dati. app di esempio Hello utilizza un file di catalogo e di utilizzo molto piccolo. Pertanto, alcuni elementi dal catalogo hello non saranno necessario alcun elementi consigliati.
 
 ## <a name="disclaimer"></a>Dichiarazione di non responsabilità
-L'app di esempio non è destinata all'esecuzione in un ambiente di produzione. I dati forniti nel catalogo sono molto limitati e non offrono un modello di raccomandazione significativo. Vengono forniti per fini dimostrativi. 
+app di esempio Hello non è previsto toobe eseguito in un ambiente di produzione. dati Hello forniti nel catalogo di hello sono molto piccoli e non fornisce un modello di raccomandazione significativo. dati Hello viene forniti una dimostrazione. 
 

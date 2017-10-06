@@ -1,6 +1,6 @@
 ---
-title: Creare un gateway applicazione di Azure - Interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Informazioni su come creare un gateway applicazione usando l'interfaccia della riga di comando di Azure 1.0 in Resource Manager
+title: aaaCreate un Gateway di applicazione di Azure - CLI di Azure 1.0 | Documenti Microsoft
+description: Informazioni su come toocreate un Gateway applicazione utilizzando hello Azure CLI 1.0 in Gestione risorse
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: e7b16e789e0f241aa8ca2292aacb2bccde8777ee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3c0d2d96b6be404d0372d00f0deb2a32959ca419
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-application-gateway-by-using-the-azure-cli"></a>Creare un gateway applicazione con l'interfaccia della riga di comando di Azure
+# <a name="create-an-application-gateway-by-using-hello-azure-cli"></a>Creare un gateway applicazione hello CLI di Azure
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](application-gateway-create-gateway-portal.md)
@@ -33,18 +33,18 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-Il gateway applicazione di Azure è un dispositivo di bilanciamento del carico di livello 7. Fornisce richieste HTTP con routing delle prestazioni e failover tra server diversi, sia nel cloud che in locale. Il gateway applicazione offre le seguenti funzionalità di distribuzione delle applicazioni: bilanciamento del carico HTTP, affinità di sessione basata sui cookie, offload SSL (Secure Sockets Layer), probe di integrità personalizzati e supporto per più siti.
+Il gateway applicazione di Azure è un dispositivo di bilanciamento del carico di livello 7. Fornisce il failover, le prestazioni di routing di richieste HTTP tra server diversi, che si trovino in locale o cloud hello. Gateway applicazione ha seguendo le funzionalità di recapito dell'applicazione hello: caricare probe di integrità personalizzato di bilanciamento del carico, l'affinità di sessione basato su cookie e offload Secure Sockets Layer (SSL), HTTP e il supporto per più siti.
 
-## <a name="prerequisite-install-the-azure-cli"></a>Prerequisito: installare l'interfaccia della riga di comando di Azure
+## <a name="prerequisite-install-hello-azure-cli"></a>Prerequisito: Installare hello CLI di Azure
 
-Per eseguire i passaggi in questo articolo, è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](../xplat-cli-install.md) ed è necessario [accedere ad Azure](../xplat-cli-connect.md). 
+hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](../xplat-cli-install.md) ed è necessario troppo[accedere tooAzure](../xplat-cli-connect.md). 
 
 > [!NOTE]
 > Se non si dispone di un account Azure, è necessario procurarsene uno. Usare la [versione di valutazione gratuita](../active-directory/sign-up-organization.md).
 
 ## <a name="scenario"></a>Scenario
 
-Questo scenario mostra come creare un gateway applicazione usando il portale di Azure.
+In questo scenario viene illustrato come gateway un'applicazione utilizzando toocreate hello portale di Azure.
 
 Questo scenario illustrerà come:
 
@@ -53,41 +53,41 @@ Questo scenario illustrerà come:
 * Creare una subnet denominata subnet01 che usa 10.0.0.0/28 come blocco CIDR.
 
 > [!NOTE]
-> La configurazione aggiuntiva del gateway applicazione, che include i probe di integrità personalizzati, gli indirizzi del pool back-end e le regole aggiuntive, viene definita dopo la configurazione del gateway applicazione e non durante la distribuzione iniziale.
+> Le ricerche di configurazione aggiuntiva di gateway applicazione hello, inclusi stato personalizzato, gli indirizzi del pool back-end e regole aggiuntive vengono configurati dopo la configurazione di gateway applicazione hello e non durante la distribuzione iniziale.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Il gateway applicazione di Azure richiede una propria subnet. Quando si crea una rete virtuale, assicurarsi di lasciare uno spazio indirizzi sufficiente per più subnet. Dopo che un gateway applicazione è stato distribuito in una subnet, alla subnet possono essere aggiunti solo altri gateway applicazione.
+Il gateway applicazione di Azure richiede una propria subnet. Quando si crea una rete virtuale, assicurarsi di lasciare sufficiente toohave spazio di indirizzi più subnet. Dopo aver distribuito una subnet tooa di gateway applicazione, gateway di applicazione solo aggiuntive sono in grado di toobe aggiunto toohello subnet.
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure
+## <a name="log-in-tooazure"></a>Accedi tooAzure
 
-Aprire il **prompt dei comandi di Microsoft Azure**ed effettuare l'accesso. 
+Aprire hello **prompt dei comandi di Microsoft Azure**ed effettuare l'accesso. 
 
 ```azurecli-interactive
 azure login
 ```
 
-Dopo avere digitato l'esempio precedente, viene fornito un codice. Passare a https://aka.ms/devicelogin in un browser per continuare il processo di accesso.
+Una volta digitato hello sopra riportato, viene fornito un codice. Spostarsi in un processo di accesso browser hello toocontinue toohttps://aka.ms/devicelogin.
 
 ![Comando che illustra l'accesso al dispositivo][1]
 
-Nel browser immettere il codice ricevuto. Si verrà reindirizzati a una pagina di accesso.
+Nel browser hello immettere codice hello ricevuto. Si è reindirizzato tooa nella pagina di accesso.
 
-![Browser in cui immettere il codice][2]
+![codice tooenter browser][2]
 
-Dopo avere immesso il codice ed effettuato l'accesso, chiudere il browser per continuare con lo scenario.
+Dopo aver immesso il codice hello si è connessi, hello Chiudi browser toocontinue scenario hello.
 
 ![Accesso eseguito][3]
 
-## <a name="switch-to-resource-manager-mode"></a>Passare alla modalità Resource Manager
+## <a name="switch-tooresource-manager-mode"></a>Passare tooResource modalità di gestione
 
 ```azurecli-interactive
 azure config mode arm
 ```
 
-## <a name="create-the-resource-group"></a>Creare il gruppo di risorse.
+## <a name="create-hello-resource-group"></a>Creare il gruppo di risorse hello
 
-Prima di creare il gateway applicazione viene creato un gruppo di risorse che contenga il gateway applicazione. Di seguito è riportato il comando.
+Prima di creare i gateway applicazione hello, un gruppo di risorse viene creato toocontain gateway di applicazione hello. Hello seguito è riportato il comando hello.
 
 ```azurecli-interactive
 azure group create \
@@ -97,7 +97,7 @@ azure group create \
 
 ## <a name="create-a-virtual-network"></a>Crea rete virtuale
 
-Dopo aver creato il gruppo di risorse, viene creata una rete virtuale per il gateway applicazione.  Nell'esempio seguente, lo spazio degli indirizzi era 10.0.0.0/16 come definito nelle note sullo scenario precedente.
+Una volta creato il gruppo di risorse hello, viene creata una rete virtuale per il gateway applicazione hello.  Nell'esempio seguente di hello, spazio degli indirizzi di hello era come 10.0.0.0/16 come definito in hello note scenario precedente.
 
 ```azurecli-interactive
 azure network vnet create \
@@ -109,7 +109,7 @@ azure network vnet create \
 
 ## <a name="create-a-subnet"></a>Creare una subnet
 
-Dopo aver creato la rete virtuale, viene aggiunta una subnet per il gateway applicazione.  Se si intende usare il gateway applicazione con un'app Web ospitata nella stessa rete virtuale del gateway applicazione, assicurarsi di lasciare spazio sufficiente per un'altra subnet.
+Dopo aver creata la rete virtuale hello, viene aggiunta una subnet per il gateway applicazione hello.  Se si prevede di gateway applicazione toouse con un'app web ospitato in hello stesso virtuale come gateway applicazione hello di rete, tooleave che lo spazio sia sufficiente per un'altra subnet.
 
 ```azurecli-interactive
 azure network vnet subnet create \
@@ -119,9 +119,9 @@ azure network vnet subnet create \
 --address-prefix 10.0.0.0/28 
 ```
 
-## <a name="create-the-application-gateway"></a>Creare il gateway applicazione
+## <a name="create-hello-application-gateway"></a>Creare il gateway applicazione hello
 
-Dopo aver creato la rete virtuale e la subnet, i prerequisiti per il gateway applicazione sono soddisfatti. Per il passaggio seguente sono necessari anche un certificato PFX esportato prima e la password del certificato. Gli indirizzi IP usati per il back-end sono gli indirizzi IP per il server back-end. Questi valori possono essere indirizzi IP privati nella rete virtuale, indirizzi IP pubblici o nomi di dominio completi per i server back-end.
+Dopo aver creati la rete virtuale hello e subnet, siano soddisfatti i prerequisiti per il gateway applicazione hello hello. Inoltre, una password di hello e di certificato PFX esportato in precedenza per il certificato di hello sono richieste per hello seguente passaggio: hello indirizzi utilizzati per back-end hello sono gli indirizzi IP hello del server back-end. Questi valori possono essere entrambi indirizzi IP privati nella rete virtuale hello, gli indirizzi IP pubblici o nomi di dominio completo per i server back-end.
 
 ```azurecli-interactive
 azure network application-gateway create \
@@ -143,16 +143,16 @@ azure network application-gateway create \
 ```
 
 > [!NOTE]
-> Per un elenco di parametri che possono essere specificati durante la creazione, eseguire questo comando: **azure network application-gateway create --help**.
+> Per un elenco di parametri che possono essere forniti durante la creazione eseguire hello comando seguente: **creare applicazione-gateway di rete di azure - Guida**.
 
-Questo esempio crea un gateway applicazione di base con le impostazioni predefinite per il listener, il pool back-end, le impostazioni HTTP back-end e le regole. Queste impostazioni possono essere modificate in base alla propria distribuzione dopo che è stato completato il provisioning.
-Se l'applicazione Web è già stata definita con il pool back-end nei passaggi precedenti, dopo la creazione, inizia il bilanciamento del carico.
+Questo esempio crea un gateway applicazione basic con le impostazioni predefinite per il listener hello, pool back-end, le impostazioni http back-end e regole. È possibile modificare la distribuzione toosuit queste impostazioni dopo il provisioning di hello ha esito positivo.
+Se si dispone già di un'applicazione web definita con il pool back-end hello in hello precedenti passaggi, una volta creati, il bilanciamento del carico ha inizio.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come creare probe di integrità personalizzati, vedere [Creare un probe personalizzato per un gateway applicazione con il portale](application-gateway-create-probe-portal.md)
+Informazioni su come probe di integrità personalizzato toocreate visitando [per creare un probe di integrità personalizzato](application-gateway-create-probe-portal.md)
 
-Per informazioni su come configurare l'offload SSL ed evitare costose attività di decrittografia SSL nei server Web, vedere [Configurare un gateway applicazione per l'offload SSL con Azure Resource Manager](application-gateway-ssl-arm.md)
+Informazioni su come tooconfigure offload SSL e la decrittografia SSL costosa di intraprendere hello off i server web, visitare il sito [configurare Offload SSL](application-gateway-ssl-arm.md)
 
 <!--Image references-->
 

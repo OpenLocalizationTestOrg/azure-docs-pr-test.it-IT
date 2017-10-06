@@ -1,6 +1,6 @@
 ---
-title: "Configurazione della scalabilità automatica di un servizio cloud nel portale classico | Microsoft Docs"
-description: "(classico) Informazioni su come usare il portale classico per configurare le regole di scalabilità automatica per un ruolo Web o un ruolo di lavoro del servizio cloud in Azure."
+title: aaaAuto scalare un servizio cloud nel portale classico hello | Documenti Microsoft
+description: "(versione classica) Informazioni su come toouse hello tooconfigure portale classico regole di scalabilità automatica per un ruolo web del servizio cloud o un ruolo di lavoro in Azure."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 90d55bbac6e113d6add848ace67cf0749e26342b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ddb5816d4d22192c6d2f51d7508e390779742078
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-auto-scaling-for-a-cloud-service-in-the-classic-portal"></a>Come configurare la scalabilità automatica per un servizio cloud nel portale classico
+# <a name="how-tooconfigure-auto-scaling-for-a-cloud-service-in-hello-classic-portal"></a>Come tooconfigure auto scaling per un servizio Cloud nel portale classico hello
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-how-to-scale-portal.md)
-> * [Portale di Azure classico](cloud-services-how-to-scale.md)
+> * [portale di Azure classico](cloud-services-how-to-scale.md)
 
-Nella pagina Scalabilità del portale di Azure classico, è possibile configurare le impostazioni di scalabilità automatica per il ruolo Web o per un ruolo di lavoro. In alternativa, è possibile configurare la scalabilità manuale invece della scalabilità automatica basata su regole.
+Nella pagina di scala hello di hello portale di Azure classico, è possibile configurare le impostazioni di scalabilità automatica per il ruolo web o un ruolo di lavoro. In alternativa, è possibile configurare la scalabilità manuale invece della scalabilità automatica basata su regole.
 
 > [!NOTE]
-> Questo articolo è incentrato sui ruoli Web e di lavoro del servizio cloud. Quando si crea una macchina virtuale (distribuzione classica) direttamente, questa viene ospitata in un servizio cloud. Alcune delle presenti informazioni si applicano a questi tipi di macchine virtuali. Scalare un set di disponibilità di macchine virtuali significa semplicemente attivarle e disattivarle in base alle regole di scalabilità configurate. Per altre informazioni sulle macchine virtuali e sui set di disponibilità, vedere [Gestire la disponibilità delle macchine virtuali](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+> Questo articolo è incentrato sui ruoli Web e di lavoro del servizio cloud. Quando si crea una macchina virtuale (distribuzione classica) direttamente, questa viene ospitata in un servizio cloud. Alcune di queste informazioni si applicano tipi toothese di macchine virtuali. Ridimensionamento di un set di disponibilità delle macchine virtuali è solo in corso l'arresto li attivare e disattivare in base alle regole di scala hello che è configurare. Per ulteriori informazioni sulle macchine virtuali e i set di disponibilità, vedere [Gestisci hello disponibilità delle macchine virtuali](../virtual-machines/windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-Prima di configurare la scalabilità per l'applicazione, tenere presente quanto segue:
+È necessario considerare le seguenti informazioni prima di configurare la scalabilità per l'applicazione hello:
 
 * La scalabilità è influenzata dall'utilizzo di core.
 
-    Le istanze del ruolo più ampie usano più core. È possibile ridimensionare il numero di istanze di un'applicazione solo entro i limiti di core previsti dalla sottoscrizione. Si supponga, ad esempio, che la sottoscrizione abbia un limite di 20 core. Se si esegue un'applicazione con due servizi cloud di medie dimensioni (per un totale di 4 core), l'aumento di altre distribuzioni del servizio cloud nella sottoscrizione è limitata ai 16 core rimanenti. Per altre informazioni sulle dimensioni, vedere [Dimensioni dei servizi cloud](cloud-services-sizes-specs.md).
+    Le istanze del ruolo più ampie usano più core. È possibile scalare un'applicazione solo entro il limite di hello di core per la sottoscrizione. Si supponga, ad esempio, che la sottoscrizione abbia un limite di 20 core. Se si esegue un'applicazione con i due servizi di cloud di medie dimensioni (un totale di 4 core), è possibile solo scalabilità verticale altre distribuzioni del servizio cloud nella sottoscrizione da 16 core hello rimanenti. Per altre informazioni sulle dimensioni, vedere [Dimensioni dei servizi cloud](cloud-services-sizes-specs.md).
 
-* È necessario creare una coda e associarla a un ruolo prima di ridimensionare il numero di istanze di un'applicazione in base a una soglia di messaggi. Per altre informazioni, vedere [Come utilizzare il servizio di archiviazione di accodamento](../storage/queues/storage-dotnet-how-to-use-queues.md).
+* È necessario creare una coda e associarla a un ruolo prima di ridimensionare il numero di istanze di un'applicazione in base a una soglia di messaggi. Per ulteriori informazioni, vedere [come toouse hello servizio di archiviazione code](../storage/queues/storage-dotnet-how-to-use-queues.md).
 
-* È possibile scalare le risorse collegate al servizio cloud. Per altre informazioni sul collegamento di risorse, vedere [Procedura: Collegare una risorsa a un servizio cloud](cloud-services-how-to-manage.md#how-to-link-a-resource-to-a-cloud-service).
+* È possibile scalare le risorse che sono collegati tooyour servizio cloud. Per ulteriori informazioni sul collegamento di risorse, vedere [procedura: collegamento di un servizio cloud di risorse tooa](cloud-services-how-to-manage.md#how-to-link-a-resource-to-a-cloud-service).
 
-* Per abilitare la disponibilità elevata dell'applicazione, è necessario accertarsi che sia distribuita con due o più istanze del ruolo. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
+* tooenable la disponibilità elevata dell'applicazione, è necessario assicurarsi che venga distribuito con due o più istanze del ruolo. Per altre informazioni, vedere [Contratti di servizio](https://azure.microsoft.com/support/legal/sla/).
 
 ## <a name="schedule-scaling"></a>Pianificazione della scalabilità
-Per impostazione predefinita, i ruoli non seguono una pianificazione specifica. Per questo motivo, tutte le impostazioni modificate vengono applicate in qualsiasi momento e tutti i giorni dell'anno. Se lo si desidera, è possibile configurare la scalabilità manuale o automatica per le modalità seguenti:
+Per impostazione predefinita, i ruoli non seguono una pianificazione specifica. Pertanto, le impostazioni modificate valide tooall volte e tutti i giorni anno hello. Se si desidera, è possibile configurare il ridimensionamento manuale o automatica per una delle seguenti modalità hello:
 
 * Giorni della settimana
 * Fine settimana
@@ -52,80 +52,80 @@ Per impostazione predefinita, i ruoli non seguono una pianificazione specifica. 
 * Date specifiche
 * Intervalli di date specifiche
 
-L'impostazione della programmazione viene configurata nel [portale di Azure classico](https://manage.windowsazure.com/) in  
+Hello pianificazione è configurata in hello [portale di Azure classico](https://manage.windowsazure.com/) su hello  
 **Servizi cloud** > **\[Servizio cloud utente\]** > **Piano** > **\[Produzione o Staging\]**.
 
-Fare clic sul pulsante **Imposta ore di pianificazione** per ogni ruolo che si desidera modificare.
+Fare clic su hello **Imposta ore di pianificazione** pulsante per ogni ruolo desiderato toochange.
 
 ![Ridimensionamento automatico del servizio cloud in base a una pianificazione][scale_schedules]
 
 ## <a name="manual-scale"></a>Scalabilità manuale
-Nella pagina **Ridimensiona** è possibile aumentare o diminuire manualmente il numero delle istanze in esecuzione in un servizio cloud. Questa configurazione è prevista per qualsiasi pianificazione creata o, in mancanza di una pianificazione, viene applicata sempre.
+In hello **scala** pagina, è possibile manualmente aumentare o diminuire il numero di hello di istanze in esecuzione in un servizio cloud. Questa impostazione è configurata per ogni pianificazione che è stato creato o tooall tempo se non è stata creata una pianificazione.
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)fare clic su **Servizi cloud**e quindi sul nome del servizio cloud per aprire il dashboard.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **servizi Cloud**, quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
    
    > [!TIP]
-   > Se il servizio cloud non viene visualizzato, potrebbe essere necessario passare da **Produzione** a **Staging** o viceversa.
+   > Se non viene visualizzato il servizio cloud, potrebbe essere necessario toochange da **produzione** troppo**gestione temporanea** o viceversa.
 
 2. Fare clic su **Scale**.
-3. Selezionare la pianificazione di cui si desidera modificare le opzioni di scalabilità. In assenza di una pianificazione definita, l'impostazione predefinita è *Nessuna ora pianificata*.
-4. Trovare la sezione **Ridimensiona in base alla metrica** e selezionare **Nessuna**. Questa è l'impostazione predefinita per tutti i ruoli.
-5. In ogni ruolo nel servizio cloud è presente un dispositivo di scorrimento che consente di modificare il numero di istanze da usare.
+3. Selezionare una pianificazione di hello desiderata toochange sicure per. *Non orari pianificati* è hello predefinito se non si dispone di Nessuna pianificazione definita.
+4. Trovare hello **scala in base alla metrica** sezione e selezionare **Nessuno**. Questa impostazione è predefinita hello per tutti i ruoli.
+5. Ogni ruolo nel servizio cloud hello dispone di un dispositivo di scorrimento per modificare il numero di hello di toouse di istanze.
    
     ![Ridimensionare manualmente un ruolo del servizio cloud][manual_scale]
    
-    Se sono richieste altre istanze, potrebbe essere necessario modificare le [dimensioni di macchine virtuali e di servizi cloud](cloud-services-sizes-specs.md).
-6. Fare clic su **Save**.  
+    Se è necessario più istanze, potrebbe essere necessario hello toochange [dimensione di macchina virtuale del servizio cloud](cloud-services-sizes-specs.md).
+6. Fare clic su **Salva**.  
    Verranno aggiunte o rimosse istanze del ruolo in base alle selezioni effettuate.
 
 > [!TIP]
-> Per informazioni sulla funzione di una specifica impostazione, spostare il mouse sull'icona ![][tip_icon] ogni volta che viene visualizzata.
+> Ogni volta che viene visualizzato ![][tip_icon] spostare tooit il mouse ed è possibile ottenere la Guida sulle quali un'impostazione specifica.
 
 ## <a name="automatic-scale---cpu"></a>Scalabilità automatica - CPU
-Questo tipo di scalabilità è possibile se la percentuale media di uso della CPU supera o scende al di sotto delle soglie specificate. Quando accade questo, vengono create o eliminate istanze del ruolo.
+Questa modalità è adatta se percentuale media di hello di utilizzo della CPU è superiore o inferiore alle soglie specificate. Quando accade questo, vengono create o eliminate istanze del ruolo.
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)fare clic su **Servizi cloud**e quindi sul nome del servizio cloud per aprire il dashboard.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **servizi Cloud**, quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
    
    > [!TIP]
-   > Se il servizio cloud non viene visualizzato, potrebbe essere necessario passare da **Produzione** a **Staging** o viceversa.
+   > Se non viene visualizzato il servizio cloud, potrebbe essere necessario toochange da **produzione** troppo**gestione temporanea** o viceversa.
 
 2. Fare clic su **Scale**.
-3. Selezionare la pianificazione di cui si desidera modificare le opzioni di scalabilità. In assenza di una pianificazione definita, l'impostazione predefinita è *Nessuna ora pianificata*.
-4. Trovare la sezione **Ridimensiona in base alla metrica** e selezionare **CPU**.
-5. A questo punto è possibile configurare un intervallo minimo e massimo di istanze dei ruoli, l'intervallo di destinazione per l'uso della CPU (per attivare un aumento) e il numero di istanze da aumentare o ridurre.
+3. Selezionare una pianificazione di hello desiderata toochange sicure per. *Non orari pianificati* è hello predefinito se non si dispone di Nessuna pianificazione definita.
+4. Trovare hello **scala in base alla metrica** sezione e selezionare **CPU**.
+5. È ora possibile configurare un intervallo minimo e massimo di istanze dei ruoli, l'utilizzo di CPU destinazione hello (tootrigger una scalabilità verticale) e il numero di istanze tooscale su e giù per.
 
 ![Ridimensionare un ruolo del servizio cloud per carico CPU][cpu_scale]
 
 > [!TIP]
-> Per informazioni sulla funzione di una specifica impostazione, spostare il mouse sull'icona ![][tip_icon] ogni volta che viene visualizzata.
+> Ogni volta che viene visualizzato ![][tip_icon] spostare tooit il mouse ed è possibile ottenere la Guida sulle quali un'impostazione specifica.
 
 ## <a name="automatic-scale---queue"></a>Scalabilità automatica - Coda
-Questo tipo di scalabilità automatica è possibile se il numero di messaggi in una coda supera o scende al di sotto di una soglia specificata. Quando accade questo, vengono create o eliminate istanze del ruolo.
+Questa modalità viene ridimensionato automaticamente se il numero di hello di messaggi in una coda passa sopra o sotto la soglia specificata. Quando accade questo, vengono create o eliminate istanze del ruolo.
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)fare clic su **Servizi cloud**e quindi sul nome del servizio cloud per aprire il dashboard.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **servizi Cloud**, quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
    
    > [!TIP]
-   > Se il servizio cloud non viene visualizzato, potrebbe essere necessario passare da **Produzione** a **Staging** o viceversa.
+   > Se non viene visualizzato il servizio cloud, potrebbe essere necessario toochange da **produzione** troppo**gestione temporanea** o viceversa.
 
 2. Fare clic su **Scale**.
-3. Trovare la sezione **Ridimensiona in base alla metrica** e selezionare **CODA**.
-4. A questo punto è possibile configurare un intervallo minimo e massimo di istanze dei ruoli, la coda, la quantità di messaggi in coda da elaborare per ogni istanza e il numero di istanze da aumentare o ridurre.
+3. Trovare hello **scala in base alla metrica** sezione e selezionare **coda**.
+4. È ora possibile configurare un intervallo minimo e massimo di istanze di ruoli, coda hello e numero di coda messaggi tooprocess per ogni istanza e il numero di istanze tooscale su e giù per.
 
 ![Ridimensionare un ruolo del servizio cloud per coda di messaggi][queue_scale]
 
 > [!TIP]
-> Per informazioni sulla funzione di una specifica impostazione, spostare il mouse sull'icona ![][tip_icon] ogni volta che viene visualizzata.
+> Ogni volta che viene visualizzato ![][tip_icon] spostare tooit il mouse ed è possibile ottenere la Guida sulle quali un'impostazione specifica.
 
 ## <a name="scale-linked-resources"></a>Scalare risorse collegate
-Quando si scala un ruolo, spesso risulta utile scalare anche il database utilizzato dall'applicazione. Se si collega il database al servizio cloud, è possibile accedere alle impostazioni di scalabilità per tale risorsa facendo clic sul collegamento appropriato.
+Spesso quando si ridimensiona un ruolo, è utile tooscale i database di hello che utilizza anche l'applicazione hello. Se si collega servizio cloud di hello database toohello, è possibile accedere hello scalabilità impostazioni per tale risorsa facendo clic sul collegamento appropriato hello.
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)fare clic su **Servizi cloud**e quindi sul nome del servizio cloud per aprire il dashboard.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **servizi Cloud**, quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
    
    > [!TIP]
-   > Se il servizio cloud non viene visualizzato, potrebbe essere necessario passare da **Produzione** a **Staging** o viceversa.
+   > Se non viene visualizzato il servizio cloud, potrebbe essere necessario toochange da **produzione** troppo**gestione temporanea** o viceversa.
 
 2. Fare clic su **Scale**.
-3. Trovare la sezione **Risorse collegate** e fare clic su **Gestire la scalabilità per questo database**.
+3. Trovare hello **risorse collegate** sezione e fare clic su **gestire la scalabilità per questo database**.
    
    > [!NOTE]
    > Se la sezione delle **risorse collegate** non viene visualizzata, è probabile che non sia presente alcuna risorsa.

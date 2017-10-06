@@ -1,6 +1,6 @@
 ---
-title: Configurare l'offload SSL - Gateway applicazione di Azure - Portale di Azure | Documentazione Microsoft
-description: Questa pagina contiene istruzioni per creare un gateway applicazione con offload SSL usando il portale
+title: -Gateway applicazione Azure - portale di Azure di offload SSL aaaConfigure | Documenti Microsoft
+description: Questa pagina fornisce un gateway applicazione con SSL offload tramite il portale di hello toocreate di istruzioni
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: gwallace
-ms.openlocfilehash: f61be0cc4c9274c9914f7c468ce48a2a3d0a4f4a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e87ac0bbe10ac45e307c18802741c7bc31764a20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-an-application-gateway-for-ssl-offload-by-using-the-portal"></a>Configurare un gateway applicazione per l'offload SSL con il portale
+# <a name="configure-an-application-gateway-for-ssl-offload-by-using-hello-portal"></a>Configurare un gateway applicazione per l'offload SSL tramite il portale di hello
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](application-gateway-ssl-portal.md)
@@ -28,67 +28,67 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell per Azure classico](application-gateway-ssl.md)
 > * [Interfaccia della riga di comando di Azure 2.0](application-gateway-ssl-cli.md)
 
-Il gateway applicazione di Azure può essere configurato per terminare la sessione Secure Sockets Layer (SSL) nel gateway ed evitare costose attività di decrittografia SSL nella Web farm. L'offload SSL semplifica anche la configurazione e la gestione del server front-end dell'applicazione Web.
+Gateway applicazione Azure può essere configurato tooterminate hello Secure Sockets Layer (SSL) sessione hello gateway tooavoid costosi SSL decrittografia attività toohappen alla farm web hello. Offload SSL semplifica anche l'installazione di server front-end di hello e gestione di un'applicazione web hello.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario seguente illustra la configurazione dell'offload SSL in un gateway applicazione esistente. Lo scenario presuppone che sia già stata seguita la procedura per [creare un gateway applicazione](application-gateway-create-gateway-portal.md).
+Hello segue scenario passa attraverso la configurazione di offload SSL su un gateway applicazione esistente. Hello scenario si presuppone che siano state già seguite passaggi hello troppo[creare un Gateway applicazione](application-gateway-create-gateway-portal.md).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Per configurare l'offload SSL con un gateway applicazione, è necessario un certificato, che viene caricato nel gateway applicazione e viene usato per crittografare e decrittografare il traffico inviato tramite SSL. Il certificato deve essere in formato PFX (Personal Information Exchange). Questo formato di file consente l'esportazione della chiave privata necessaria al gateway applicazione per eseguire la crittografia e la decrittografia del traffico.
+offload SSL di tooconfigure con un gateway applicazione, è necessario un certificato. Questo certificato viene caricato nel gateway applicazione hello e usato tooencrypt e decrittografia il traffico hello inviato tramite SSL. certificato Hello deve toobe nel formato di scambio di informazioni personali (pfx). Questo formato di file consente di hello privata toobe chiave esportato richiesto dal hello applicazione gateway tooperform hello crittografia e decrittografia del traffico.
 
 ## <a name="add-an-https-listener"></a>Aggiungere un listener HTTPS
 
-Il listener HTTPS cerca il traffico in base alla relativa configurazione e consente di instradare il traffico ai pool back-end.
+listener HTTPS Hello Cerca il traffico in base alla relativa configurazione e consente di pool back-end di route hello traffico toohello.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Passare al portale di Azure e selezionare un gateway applicazione esistente.
+Passare toohello portale di Azure e selezionare un gateway applicazione esistente
 
 ### <a name="step-2"></a>Passaggio 2
 
-Fare clic su Listener e quindi sul pulsante Aggiungi per aggiungere un listener.
+Selezionare i listener hello Aggiungi pulsante tooadd un listener.
 
 ![Pannello di panoramica del gateway applicazione][1]
 
 ### <a name="step-3"></a>Passaggio 3
 
-Inserire le informazioni necessarie per il listener e caricare il certificato PFX. Al termine, fare clic su OK.
+Compilare le informazioni necessarie per il listener hello hello e caricamento hello certificato PFX, al termine, fare clic su OK.
 
-**Nome** : questo valore è un nome descrittivo del listener.
+**Nome** -questo valore è un nome descrittivo del listener hello.
 
-**Configurazione IP front-end** : questo valore è la configurazione IP front-end usata per il listener.
+**Configurazione IP Frontend** -questo valore è una configurazione IP front-end del hello che viene utilizzato per il listener hello.
 
-**Porta front-end (Nome/Porta)** : nome descrittivo della porta usata nel front-end del gateway applicazione e porta effettiva usata.
+**Porta front-end (nome/porta)** -un nome descrittivo per la porta hello utilizzata nel front-end di hello di gateway applicazione hello e hello effettivo della porta utilizzata.
 
-**Protocollo** : opzione che consente di determinare se usare HTTPS o HTTP per il front-end.
+**Protocollo** -toodetermine un commutatore se viene utilizzato https o http per front-end hello.
 
 **Certificato (Nome/Password)** : se si usa l'offload SSL, per questa impostazione sono necessari un certificato PFX, un nome descrittivo e una password.
 
 ![Pannello Aggiungi listener][2]
 
-## <a name="create-a-rule-and-associate-it-to-the-listener"></a>Creare una regola e associarla al listener
+## <a name="create-a-rule-and-associate-it-toohello-listener"></a>Creare una regola e associarlo toohello listener
 
-Ora che il listener è stato creato, è necessario creare una regola per gestire il traffico dal listener. Le regole definiscono in che modo il traffico viene indirizzato ai pool back-end sulla base di varie impostazioni di configurazione, tra cui se viene usata l'affinità di sessione basata su cookie, nonché il protocollo, la porta e i probe di integrità.
+listener Hello è stata creata. È ora toocreate un traffico di hello toohandle regola dal listener hello. Le regole definiscono come il traffico è indirizzato toohello pool di back-end in base a più impostazioni di configurazione, ad esempio se viene utilizzato l'affinità di sessione basato su cookie, protocollo, porta e probe di integrità.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Fare clic su **Regole** nel gateway applicazione e quindi su Aggiungi.
+Fare clic su hello **regole** di gateway applicazione hello, quindi fare clic su Aggiungi.
 
 ![Pannello delle regole del gateway applicazione][3]
 
 ### <a name="step-2"></a>Passaggio 2
 
-Nel pannello **Aggiungi regola di base** digitare il nome descrittivo della regola e scegliere il listener creato nel passaggio precedente. Scegliere il pool back-end e l'impostazione HTTP appropriati e fare clic su **OK**
+In hello **Aggiungi regola di base** pannello digitare hello nome descrittivo per la regola hello e scegliere listener hello creato nel passaggio precedente hello. Scegliere il pool di back-end appropriata hello e http impostazione e fare clic su **OK**
 
 ![Finestra delle impostazioni HTTP][4]
 
-Le impostazioni vengono così salvate nel gateway applicazione. Il processo di salvataggio di queste impostazioni può richiedere tempo e le impostazioni potrebbero non essere immediatamente visualizzabili tramite il portale o PowerShell. Al termine del salvataggio, il gateway applicazione gestisce la crittografia e la decrittografia del traffico. Tutto il traffico tra il gateway applicazione e i server Web back-end verrà gestito su HTTP. Tutte le comunicazioni verso il client, se avviate su HTTPS, verranno restituite al client crittografate.
+gateway applicazione toohello verranno salvate le impostazioni di Hello. Hello Salva processo per queste impostazioni potrebbe richiedere qualche minuto prima che vengano tooview disponibili tramite il portale di hello o PowerShell. Gateway applicazione hello dopo il salvataggio gestisce hello crittografia e decrittografia del traffico. Tutto il traffico tra server di hello back-end web e di gateway applicazione hello verrà gestito tramite http. Verrà restituito client toohello crittografata qualsiasi client toohello indietro comunicazione se avviata tramite https.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come configurare un probe di integrità personalizzato con un gateway applicazione di Azure, vedere [Creare un gateway applicazione con il portale](application-gateway-create-gateway-portal.md).
+toolearn come probe tooconfigure dello stato personalizzato con Gateway applicazione Azure, vedere [per creare un probe di integrità personalizzato](application-gateway-create-gateway-portal.md).
 
 [1]: ./media/application-gateway-ssl-portal/figure1.png
 [2]: ./media/application-gateway-ssl-portal/figure2.png

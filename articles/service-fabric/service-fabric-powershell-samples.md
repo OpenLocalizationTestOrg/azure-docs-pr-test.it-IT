@@ -1,5 +1,5 @@
 ---
-title: Esempi di Azure PowerShell - Service Fabric | Microsoft Docs
+title: aaaAzure esempi di PowerShell - Service Fabric | Documenti Microsoft
 description: Esempi di Azure PowerShell - Service Fabric
 services: service-fabric
 documentationcenter: service-fabric
@@ -16,24 +16,24 @@ ms.workload: service-fabric
 ms.date: 08/16/2017
 ms.author: ryanwi
 ms.custom: mvc
-ms.openlocfilehash: b109d1f3082fa3017f34bed685fd008ff3630394
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aa2373c03fba4e529c6c6e2892e32000b0aa9c81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-powershell-samples"></a>Esempi di Azure PowerShell
 
-La tabella seguente include collegamenti a esempi di script PowerShell che creano e gestiscono servizi, applicazioni e cluster di Service Fabric.
+Hello nella tabella seguente include collegamenti tooPowerShell script esempi di creare e gestiscono i cluster, applicazioni e servizi di Service Fabric.
 
 | | |
 |-|-|
 | **Creare cluster** ||
 | [Creare un cluster sicuro](./scripts/service-fabric-powershell-create-secure-cluster-cert.md)| Crea un cluster di Azure Service Fabric. |
 | **Gestire un cluster** ||
-| [Aggiungere un certificato dell'applicazione](./scripts/service-fabric-powershell-add-application-certificate.md)| Aggiunge un certificato X.509 dell'applicazione a tutti i nodi di un cluster. |
+| [Aggiungere un certificato dell'applicazione](./scripts/service-fabric-powershell-add-application-certificate.md)| Aggiunge l'applicazione di tooall nodi un certificato x. 509 in un cluster. |
 | **Gestire le applicazioni** ||
-| [Distribuire un'applicazione](./scripts/service-fabric-powershell-deploy-application.md)| Distribuire un'applicazione in un cluster.|
+| [Distribuire un'applicazione](./scripts/service-fabric-powershell-deploy-application.md)| Distribuire un cluster di tooa dell'applicazione.|
 | [Aggiornare un'applicazione](./scripts/service-fabric-powershell-upgrade-application.md)| Aggiornare un'applicazione |
 | [Rimuovere un'applicazione](./scripts/service-fabric-powershell-remove-application.md)| Rimuovere un'applicazione da un cluster.|
-| [Aprire una porta nel servizio di bilanciamento del carico](./scripts/service-fabric-powershell-open-port-in-load-balancer.md) | Aprire una porta dell'applicazione nel servizio di bilanciamento del carico di Azure. |
+| [Aprire una porta nel servizio di bilanciamento del carico hello](./scripts/service-fabric-powershell-open-port-in-load-balancer.md) | Aprire una porta dell'applicazione nel servizio di bilanciamento carico di Azure hello. |

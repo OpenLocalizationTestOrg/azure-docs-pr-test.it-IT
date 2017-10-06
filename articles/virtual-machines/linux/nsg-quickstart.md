@@ -1,6 +1,6 @@
 ---
-title: Aprire le porte per una VM Linux con l'interfaccia della riga di comando di Azure 2.0 | Documentazione Microsoft
-description: Informazioni su come aprire una porta o creare un endpoint per la VM Linux tramite il modello di distribuzione Azure Resource Manager e l'interfaccia della riga di comando di Azure 2.0
+title: aaaOpen porte tooa VM Linux con Azure CLI 2.0 | Documenti Microsoft
+description: Informazioni su come tooopen una porta / creare una VM Linux di tooyour endpoint utilizzando la distribuzione di gestione risorse di Azure hello del modello e hello Azure CLI 2.0
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 08/21/2017
 ms.author: iainfou
-ms.openlocfilehash: d176187fe465264b5f433260de5178b48ca9dd4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c79b31206e97558171609cf033bb3cb3370777c7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="open-ports-and-endpoints-to-a-linux-vm-with-the-azure-cli"></a>Aprire porte ed endpoint per una VM Linux con l'interfaccia della riga di comando di Azure
-Aprire una porta o creare un endpoint in una macchina virtuale (VM) di Azure tramite la creazione di un filtro di rete su una subnet o un'interfaccia di rete di VM. Questi filtri, che consentono di controllare il traffico in ingresso e in uscita, vengono inseriti in un gruppo di sicurezza di rete e collegati alla risorsa che riceve il traffico. Si userà un esempio comune di traffico Web sulla porta 80. Questo articolo illustra come aprire una porta in una VM con l'interfaccia della riga di comando di Azure 2.0. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](nsg-quickstart-nodejs.md).
+# <a name="open-ports-and-endpoints-tooa-linux-vm-with-hello-azure-cli"></a>Aprire le porte e gli endpoint tooa VM Linux con hello CLI di Azure
+Aprire una porta o creare un endpoint, tooa macchina virtuale (VM) in Azure tramite la creazione di un filtro di rete su una subnet o l'interfaccia di rete VM. Questi filtri, che consentono di controllare il traffico in ingresso e in uscita, posizionare in una risorsa toohello gruppo di sicurezza di rete associata che riceve il traffico di hello. Si userà un esempio comune di traffico Web sulla porta 80. In questo articolo illustra come tooopen tooa una porta VM con hello CLI di Azure 2.0. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](nsg-quickstart-nodejs.md).
 
 
 ## <a name="quick-commands"></a>Comandi rapidi
-Per creare un gruppo di sicurezza di rete e le regole è necessario aver installato la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e aver eseguito l'accesso a un account Azure usando [az login](/cli/azure/#login).
+Gruppo di sicurezza di rete toocreate e regole, è necessario hello più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) installato e registrato con un account Azure tooan [accesso az](/cli/azure/#login).
 
-Nell'esempio seguente sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *myNetworkSecurityGroup* e *myVnet*.
+In hello negli esempi seguenti, sostituire i nomi dei parametri di esempio con i valori desiderati. I nomi dei parametri di esempio includono *myResourceGroup*, *myNetworkSecurityGroup* e *myVnet*.
 
-Creare il gruppo di sicurezza di rete con [az network nsg create](/cli/azure/network/nsg#create). L'esempio seguente crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* nella posizione *eastus*:
+Creare un gruppo di sicurezza di rete hello con [rete az creare](/cli/azure/network/nsg#create). esempio Hello crea un gruppo di sicurezza di rete denominato *myNetworkSecurityGroup* in hello *eastus* percorso:
 
 ```azurecli
 az network nsg create \
@@ -38,7 +38,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-Aggiungere una regola con [az network nsg rule create](/cli/azure/network/nsg/rule#create) per consentire il traffico HTTP al server Web (o in base allo scenario specifico, come l'accesso SSH o la connettività al database). L'esempio seguente crea una regola denominata *myNetworkSecurityGroupRule* per consentire il traffico TCP sulla porta 80:
+Aggiungere una regola con [creare una regola gruppo rete az](/cli/azure/network/nsg/rule#create) tooallow HTTP traffico webserver tooyour (o modificare per proprio scenario, ad esempio la connettività di accesso o database SSH). esempio Hello crea una regola denominata *myNetworkSecurityGroupRule* tooallow TCP il traffico sulla porta 80:
 
 ```azurecli
 az network nsg rule create \
@@ -50,7 +50,7 @@ az network nsg rule create \
     --destination-port-range 80
 ```
 
-Associare il gruppo di sicurezza di rete all'interfaccia di rete della VM (NIC) utilizzando [az network nic update](/cli/azure/network/nic#update). L'esempio seguente associa una scheda di interfaccia di rete esistente denominata *myNic* al gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
+Associare il gruppo di sicurezza di rete hello con interfaccia di rete della macchina virtuale (NIC) [aggiornamento nic di rete az](/cli/azure/network/nic#update). esempio Hello associa una scheda di rete esistente denominato *myNic* con il gruppo di sicurezza di rete denominata hello *myNetworkSecurityGroup*:
 
 ```azurecli
 az network nic update \
@@ -59,7 +59,7 @@ az network nic update \
     --network-security-group myNetworkSecurityGroup
 ```
 
-In alternativa, è possibile associare il gruppo di sicurezza di rete a una subnet di rete virtuale utilizzando [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) anziché solo all'interfaccia di rete di una singola VM. L'esempio seguente associa una subnet esistente denominata *mySubnet* nella rete virtuale *myVnet* al gruppo di sicurezza di rete denominato *myNetworkSecurityGroup*:
+In alternativa, è possibile associare il gruppo di sicurezza di rete a una subnet di rete virtuale con [aggiornare subnet rete virtuale di rete az](/cli/azure/network/vnet/subnet#update) anziché semplicemente toohello interfaccia di rete in una singola macchina virtuale. esempio Hello associa una subnet esistente denominata *mySubnet* in hello *myVnet* rete virtuale con il gruppo di sicurezza di rete denominata hello *myNetworkSecurityGroup*:
 
 ```azurecli
 az network vnet subnet update \
@@ -70,12 +70,12 @@ az network vnet subnet update \
 ```
 
 ## <a name="more-information-on-network-security-groups"></a>Altre informazioni sui gruppi di sicurezza di rete
-I comandi rapidi seguenti consentono di rendere operativo il traffico verso la VM. I gruppi di sicurezza di rete offrono numerose funzionalità efficienti e la necessaria granularità per controllare l'accesso alle risorse. Per altre informazioni, leggere l'articolo sulla [creazione di un gruppo di sicurezza di rete e di regole dell'elenco di controllo di accesso qui](tutorial-virtual-network.md#secure-network-traffic).
+Hello rapido comandi consentono di tooget backup e in esecuzione con traffico propagazione tooyour macchina virtuale. Gruppi di sicurezza di rete forniscono numerose funzionalità eccellenti e granularità per il controllo tooyour di accedere alle risorse. Per altre informazioni, leggere l'articolo sulla [creazione di un gruppo di sicurezza di rete e di regole dell'elenco di controllo di accesso qui](tutorial-virtual-network.md#secure-network-traffic).
 
-Per le applicazioni Web a disponibilità elevata, è consigliabile inserire le macchine virtuali dietro a un Azure Load Balancer. Il bilanciamento del carico distribuisce il traffico alle macchine virtuali, con un gruppo di sicurezza di rete che consente di filtrare il traffico. Per altre informazioni, vedere [Come bilanciare il carico per le macchine virtuali di Linux in Azure per creare un'applicazione a disponibilità elevata](tutorial-load-balancer.md).
+Per le applicazioni Web a disponibilità elevata, è consigliabile inserire le macchine virtuali dietro a un Azure Load Balancer. bilanciamento del carico di Hello distribuisce il traffico tooVMs, con un gruppo di sicurezza di rete che consente di filtrare il traffico. Per ulteriori informazioni, vedere [come macchine saldo tooload virtuali Linux in Azure toocreate applicazioni a disponibilità elevata](tutorial-load-balancer.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo esempio viene creata una regola semplice per consentire il traffico HTTP. È possibile trovare informazioni sulla creazione di ambienti più dettagliati negli articoli seguenti:
+In questo esempio è stato creato il traffico HTTP tooallow una semplice regola. È possibile trovare informazioni sulla creazione di ambienti più dettagliati in hello seguenti articoli:
 
 * [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
 * [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md)

@@ -1,6 +1,6 @@
 ---
-title: Creare un'app Web ASP.NET in Azure | Microsoft Docs
-description: Informazioni su come eseguire app Web nel servizio app di Azure distribuendo l'app Web ASP.NET predefinita.
+title: aaaCreate ASP.NET web app in Azure | Documenti Microsoft
+description: Informazioni su come le app web di toorun distribuendo predefinito hello ASP.NET in Azure App Service app web.
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,25 +15,25 @@ ms.topic: quickstart
 ms.date: 06/14/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 0f0035f6fef03ddcbb500b78f3445ced5b749808
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eec916b3c32b6c8b68083177938c5c822a9782b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-aspnet-web-app-in-azure"></a>Creare un'app Web ASP.NET in Azure
 
-Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione.  Questa guida introduttiva illustra come distribuire la prima app Web ASP.NET in un'app Web di Azure. Al termine della procedura si avrà un gruppo di risorse costituito da un piano di servizio App e da un'app Web di Azure con un'applicazione Web distribuita.
+Le [app Web di Azure](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) forniscono un servizio di hosting Web ad alta scalabilità e con funzioni di auto-correzione.  Questa Guida introduttiva viene illustrato come toodeploy prima ASP.NET web app tooAzure App Web. Al termine della procedura si avrà un gruppo di risorse costituito da un piano di servizio App e da un'app Web di Azure con un'applicazione Web distribuita.
 
-Guardare il video per osservare il funzionamento di questa guida introduttiva e quindi seguire personalmente la procedura per pubblicare la prima app .NET in Azure.
+Guardare video toosee di hello questa Guida introduttiva nell'azione e quindi seguire hello passaggi manualmente toopublish della prima applicazione .NET in Azure.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Azure-for-NET-Developers/Create-a-NET-app-in-Azure-Quickstart/player]
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa esercitazione:
+toocomplete questa esercitazione:
 
-* Installare [Visual Studio 2017](https://www.visualstudio.com/downloads/) con i carichi di lavoro seguenti:
+* Installare [Visual Studio 2017](https://www.visualstudio.com/downloads/) con hello carichi di lavoro seguente:
     - **Sviluppo Web e ASP.NET**
     - **Sviluppo di Azure**
 
@@ -45,25 +45,25 @@ Per completare questa esercitazione:
 
 In Visual Studio creare un progetto selezionando **File > Nuovo > Progetto**. 
 
-Nella finestra di dialogo **Nuovo progetto** selezionare **Visual C# > Web > Applicazione Web ASP.NET (.NET Framework)**.
+In hello **nuovo progetto** finestra di dialogo Seleziona **Visual c# > Web > applicazione Web ASP.NET (.NET Framework)**.
 
-Assegnare all'applicazione il nome _myFirstAzureWebApp_ e fare clic su **OK**.
+Nome di un'applicazione hello _myFirstAzureWebApp_, quindi selezionare **OK**.
    
 ![Finestra di dialogo Nuovo progetto](./media/app-service-web-get-started-dotnet/new-project.png)
 
-È possibile distribuire qualsiasi tipo di app Web ASP.NET in Azure. Per questa guida introduttiva, selezionare il modello **MVC** e verificare che l'autenticazione sia impostata su **Nessuna autenticazione**.
+È possibile distribuire qualsiasi tipo di tooAzure di app web ASP.NET. Per questa Guida rapida, selezionare hello **MVC** , modello e assicurarsi che l'autenticazione è impostata troppo**Nessuna autenticazione**.
       
 Selezionare **OK**.
 
 ![Finestra di dialogo Nuovo progetto ASP.NET](./media/app-service-web-get-started-dotnet/select-mvc-template.png)
 
-Nel menu selezionare **Debug > Avvia senza eseguire debug** per eseguire l'app Web in locale.
+Scegliere dal menu hello **Debug > Avvia senza eseguire debug** toorun hello web app localmente.
 
 ![Eseguire l'app in locale](./media/app-service-web-get-started-dotnet/local-web-app.png)
 
-## <a name="publish-to-azure"></a>Pubblicazione in Azure
+## <a name="publish-tooazure"></a>Pubblicare tooAzure
 
-In **Esplora soluzioni** fare clic con il pulsante destro del mouse sul progetto **myFirstAzureWebApp** e scegliere **Pubblica**.
+In hello **Esplora**, hello rapida **myFirstAzureWebApp** del progetto e selezionare **pubblica**.
 
 ![Pubblicare da Esplora soluzioni](./media/app-service-web-get-started-dotnet/solution-explorer-publish.png)
 
@@ -71,95 +71,95 @@ Verificare che **Servizio app di Microsoft Azure** sia selezionato e scegliere *
 
 ![Pubblicare dalla pagina di panoramica progetto](./media/app-service-web-get-started-dotnet/publish-to-app-service.png)
 
-Viene visualizzata la finestra di dialogo **Crea servizio app**, che consente di creare tutte le risorse di Azure necessarie per eseguire l'app Web ASP.NET in Azure.
+Verrà visualizzata hello **Crea servizio App** finestra di dialogo che consente di creare tutti hello necessarie risorse di Azure toorun hello app web ASP.NET in Azure.
 
-## <a name="sign-in-to-azure"></a>Accedere ad Azure
+## <a name="sign-in-tooazure"></a>Accedi tooAzure
 
-Nella finestra di dialogo **Crea servizio app** fare clic su **Aggiungi un account** e accedere alla sottoscrizione di Azure. Se è già stato eseguito l'accesso, selezionare l'account contenente la sottoscrizione desiderata dall'elenco a discesa.
+In hello **Crea servizio App** finestra di dialogo Seleziona **aggiungere un account**ed eseguire l'accesso tooyour sottoscrizione di Azure. Se hai già effettuato l'accesso, account selezionare hello contenente hello desiderato sottoscrizione dall'elenco a discesa hello.
 
 > [!NOTE]
 > Se si è già connessi, non selezionare ancora l'opzione **Crea**.
 >
 >
    
-![Accedere ad Azure](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
+![Accedi tooAzure](./media/app-service-web-get-started-dotnet/sign-in-azure.png)
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
 [!INCLUDE [resource group intro text](../../includes/resource-group.md)]
 
-Accanto a **Gruppo di risorse** selezionare **Nuovo**.
+Avanti troppo**gruppo di risorse**selezionare **New**.
 
-Assegnare al gruppo di risorse il nome **myResourceGroup** e selezionare **OK**.
+Nome gruppo di risorse hello **myResourceGroup** e selezionare **OK**.
 
 ## <a name="create-an-app-service-plan"></a>Creare un piano di servizio app
 
 [!INCLUDE [app-service-plan](../../includes/app-service-plan.md)]
 
-Accanto a **Piano di servizio app** selezionare **Nuovo**. 
+Avanti troppo**piano di servizio App**selezionare **New**. 
 
-Nella finestra di dialogo **Configura piano di servizio app** usare le impostazioni della tabella riportata sotto l'immagine.
+In hello **configurare il piano di servizio App** finestra di dialogo, utilizza le impostazioni di hello nella tabella hello hello schermata seguente.
 
 ![Creare un piano di servizio app](./media/app-service-web-get-started-dotnet/configure-app-service-plan.png)
 
 | Impostazione | Valore consigliato | Descrizione |
 |-|-|-|
-|Piano di servizio app| myAppServicePlan | Nome del piano di servizio app. |
-| Località | Europa occidentale | Data center in cui è ospitata l'app Web. |
+|Piano di servizio app| myAppServicePlan | Nome del piano di servizio App hello. |
+| Percorso | Europa occidentale | Hello Data Center in cui è ospitato app web hello. |
 | Dimensione | Gratuito | [Piano tariffario](https://azure.microsoft.com/pricing/details/app-service/) che determina le funzionalità di hosting. |
 
 Selezionare **OK**.
 
-## <a name="create-and-publish-the-web-app"></a>Creare e pubblicare l'app Web
+## <a name="create-and-publish-hello-web-app"></a>Creare e pubblicare app web hello
 
-In **Nome app Web** immettere un nome univoco dell'app, usando i caratteri validi `a-z`, `0-9` e `-`, o accettare il nome univoco generato automaticamente. L'URL dell'app Web è `http://<app_name>.azurewebsites.net`, dove `<app_name>` è il nome dell'app Web.
+In **nome dell'applicazione Web**, digitare un nome univoco dell'app (i caratteri validi sono `a-z`, `0-9`, e `-`), o accettare hello generato automaticamente un nome univoco. l'URL dell'app web hello Hello è `http://<app_name>.azurewebsites.net`, dove `<app_name>` è il nome dell'applicazione web.
 
-Selezionare **Crea** per avviare la creazione delle risorse di Azure.
+Selezionare **crea** toostart creazione hello risorse di Azure.
 
 ![Configurare il nome dell'app Web](./media/app-service-web-get-started-dotnet/web-app-name.png)
 
-Al termine della procedura guidata, l'app Web ASP.NET viene pubblicata in Azure e avviata nel browser predefinito.
+Una volta completata la procedura guidata hello, pubblica tooAzure di app web ASP.NET hello e quindi avvia hello app nel browser predefinito hello.
 
 ![App Web ASP.NET pubblicata in Azure](./media/app-service-web-get-started-dotnet/published-azure-web-app.png)
 
-Il nome dell'app Web specificato nel passaggio relativo alla [creazione e pubblicazione](#create-and-publish-the-web-app) viene usato come prefisso dell'URL nel formato `http://<app_name>.azurewebsites.net`.
+nome dell'applicazione web Hello specificato in hello [creare e pubblicare passaggio](#create-and-publish-the-web-app) viene utilizzato come prefisso di URL in formato hello hello `http://<app_name>.azurewebsites.net`.
 
 L'app Web ASP.NET è ora in esecuzione nel servizio app di Azure.
 
-## <a name="update-the-app-and-redeploy"></a>Aggiornare e ridistribuire l'app
+## <a name="update-hello-app-and-redeploy"></a>Ridistribuzione e l'applicazione hello aggiornamento
 
-Da **Esplora soluzioni** aprire _Views\Home\Index.cshtml_.
+Da hello **Esplora**aprire _Views\Home\Index.cshtml_.
 
-Trovare il tag HTML `<div class="jumbotron">` in alto e sostituire l'intero elemento con il codice seguente:
+Trovare hello `<div class="jumbotron">` HTML tag superiore hello e sostituire l'intero elemento hello con hello seguente codice:
 
 ```HTML
 <div class="jumbotron">
     <h1>ASP.NET in Azure!</h1>
-    <p class="lead">This is a simple app that we’ve built that demonstrates how to deploy a .NET app to Azure App Service.</p>
+    <p class="lead">This is a simple app that we’ve built that demonstrates how toodeploy a .NET app tooAzure App Service.</p>
 </div>
 ```
 
-Per la ridistribuzione in Azure, fare clic con il pulsante destro del mouse sul progetto **myFirstAzureWebApp** in **Esplora soluzioni** e selezionare **Pubblica**.
+tooredeploy tooAzure, hello rapida **myFirstAzureWebApp** nel progetto **Esplora** e selezionare **pubblica**.
 
-Nella pagina di pubblicazione selezionare **Pubblica**.
+Pagina pubblica hello, selezionare **pubblica**.
 
-Al termine del processo di pubblicazione, Visual Studio avvia un browser sull'URL dell'app Web.
+Al termine del processo di pubblicazione, Visual Studio avvia un browser toohello URL hello web app.
 
 ![App Web ASP.NET aggiornata in Azure](./media/app-service-web-get-started-dotnet/updated-azure-web-app.png)
 
-## <a name="manage-the-azure-web-app"></a>Gestire l'app Web di Azure
+## <a name="manage-hello-azure-web-app"></a>Gestire app web di Azure hello
 
-Accedere al <a href="https://portal.azure.com" target="_blank">portale di Azure</a> per visualizzare l'app Web.
+Passare toohello <a href="https://portal.azure.com" target="_blank">portale di Azure</a> toomanage hello web app.
 
-Scegliere **Servizi app** dal menu a sinistra e quindi selezionare il nome dell'app Web di Azure.
+Scegliere dal menu a sinistra hello **servizi App**, quindi selezionare il nome di hello dell'app web di Azure.
 
-![Passare all'app Web di Azure nel portale](./media/app-service-web-get-started-dotnet/access-portal.png)
+![Spostamento del portale tooAzure web app](./media/app-service-web-get-started-dotnet/access-portal.png)
 
 Verrà visualizzata la pagina di panoramica dell'app Web. Qui è possibile eseguire attività di gestione di base come l'esplorazione, l'arresto, l'avvio, il riavvio e l'eliminazione dell'app. 
 
 ![Pannello del servizio app nel portale di Azure](./media/app-service-web-get-started-dotnet/web-app-blade.png)
 
-Il menu a sinistra fornisce varie pagine per la configurazione dell'app. 
+menu a sinistra di Hello fornisce diverse pagine di configurazione app. 
 
 [!INCLUDE [Clean-up section](../../includes/clean-up-section-portal.md)]
 

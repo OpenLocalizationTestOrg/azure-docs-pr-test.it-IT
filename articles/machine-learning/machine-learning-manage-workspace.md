@@ -1,6 +1,6 @@
 ---
-title: Gestire un'area di lavoro di Machine Learning | Microsoft Docs
-description: Gestione dell'accesso alle aree di lavoro di Azure Machine Learning e distribuzione e gestione dei servizi Web API ML
+title: un'area di lavoro di Machine Learning aaaManage | Documenti Microsoft
+description: Gestire aree di lavoro di accesso tooAzure Machine Learning, distribuire e gestire i servizi web API ML
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,125 +14,125 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/27/2017
 ms.author: garye
-ms.openlocfilehash: 94800f51baf83311c33490cada5f991ff2101da9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7bd378d82aa46f4340ca974c7dc5a612c089cdca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-an-azure-machine-learning-workspace"></a>Gestire un'area di lavoro di Azure Machine Learning
 
 > [!NOTE]
-> Per informazioni sulla gestione dei servizi Web nel portale dei servizi Web di Machine Learning, vedere [Gestire un servizio Web usando il portale dei servizi Web di Azure Machine Learning](machine-learning-manage-new-webservice.md).
+> Per informazioni sulla gestione dei servizi Web nel portale di servizi Web di Machine Learning hello, vedere [gestire un servizio Web tramite il portale di servizi Web di Azure Machine Learning hello](machine-learning-manage-new-webservice.md).
 > 
 > 
 
-È possibile gestire le aree di lavoro di Machine Learning nel portale di Azure o nel portale di Azure classico.
+È possibile gestire le aree di lavoro di Machine Learning nel portale di Azure entrambi hello o hello portale di Azure classico.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="use-the-azure-portal"></a>Usare il portale di Azure
+## <a name="use-hello-azure-portal"></a>Utilizzare hello portale di Azure
 
-Per gestire un'area di lavoro nel portale di Azure:
+toomanage un'area di lavoro hello portale di Azure:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/) usando un account amministratore della sottoscrizione di Azure.
-2. Nella casella di ricerca nella parte superiore della pagina immettere "aree di lavoro di Machine Learning" e quindi selezionare **Aree di lavoro di Machine Learning**.
-3. Fare clic sull'area di lavoro da gestire.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/) utilizzando un account di amministratore della sottoscrizione di Azure.
+2. Nella casella di ricerca hello nella parte superiore di hello di hello pagina, immettere "di machine learning aree di lavoro" e quindi selezionare **Machine Learning aree di lavoro**.
+3. Fare clic su area di lavoro hello desiderato toomanage.
 
-Oltre alle informazioni e alle opzioni di gestione delle risorse standard disponibili, viene offerta la possibilità di effettuare le operazioni seguenti.
+Inoltre le informazioni di gestione risorse standard toohello e le opzioni disponibili, è possibile:
 
-- Visualizzare **Proprietà**: questa pagina visualizza informazioni relative all'area di lavoro e alle risorse e consente di modificare la sottoscrizione e il gruppo di risorse a cui è connessa l'area di lavoro.
-- **Risincronizzare le chiavi di archiviazione**: l'area di lavoro mantiene le chiavi per l'account di archiviazione. Se le chiavi vengono modificate nell'account di archiviazione, è possibile fare clic su **Risincronizza le chiavi** per sincronizzarle con l'area di lavoro.
+- Visualizzazione **proprietà** : questa pagina consente di visualizzare informazioni su area di lavoro e risorse hello e sottoscrizione hello e gruppo di risorse collegato con l'area di lavoro, è possibile modificare.
+- **Risincronizzazione di archiviazione chiavi** -area di lavoro hello gestisce l'account di archiviazione chiavi toohello. Se i tasti di modifica degli account di archiviazione hello, quindi è possibile fare clic su **Resync chiavi** chiavi hello toosynchronize con area di lavoro hello.
 
-Per gestire i servizi Web associati all'area di lavoro, usare il portale dei servizi Web di Machine Learning. Per informazioni complete, vedere [Gestire un servizio Web usando il portale dei servizi Web di Azure Machine Learning](machine-learning-manage-new-webservice.md).
+servizi web di hello toomanage associati a questa area di lavoro, usare il portale di servizi Web di Machine Learning hello. Vedere [gestire un servizio Web tramite il portale di servizi Web di Azure Machine Learning hello](machine-learning-manage-new-webservice.md) per informazioni complete.
 
 > [!NOTE]
-> Per distribuire o gestire nuovi servizi Web è necessario che all'utente sia assegnato un ruolo di collaboratore o di amministratore nella sottoscrizione in cui viene distribuito il servizio Web. Se si invita un altro utente in un'area di lavoro di Machine Learning, affinché possa distribuire o gestire servizi Web è prima necessario assegnargli un ruolo di collaboratore o di amministratore nella sottoscrizione. 
+> toodeploy o gestire i nuovi servizi web, è necessario disporre di un collaboratore o il ruolo di amministratore nel servizio web di hello sottoscrizione toowhich hello viene distribuito. Se si invita a un'altra macchina di tooa utente apprendimento dell'area di lavoro, è necessario assegnare loro ruolo di collaboratore o amministratore tooa sottoscrizione hello prima di poter distribuire o gestire i servizi web. 
 > 
->Per altre informazioni sull'impostazione delle autorizzazioni di accesso, vedere [Visualizzare le assegnazioni di accesso per utenti e gruppi nel Portale di Azure - Anteprima pubblica](../active-directory/role-based-access-control-manage-assignments.md).
+>Per ulteriori informazioni sull'impostazione delle autorizzazioni di accesso, vedere [visualizzare le assegnazioni di accesso per utenti e gruppi nel portale di Azure - anteprima pubblica di hello](../active-directory/role-based-access-control-manage-assignments.md).
 
-## <a name="use-the-azure-classic-portal"></a>Usare il portale di Azure classico
+## <a name="use-hello-azure-classic-portal"></a>Utilizzare hello portale di Azure classico
 
-Tramite il portale di Azure classico è possibile gestire le aree di lavoro di Machine Learning per:
+Usa hello portale di Azure classico, è possibile gestire le aree di lavoro di Machine Learning per:
 
-* Monitorare la modalità d'uso dell'area di lavoro.
-* Configurare l'area di lavoro per consentire o negare l'accesso.
-* Gestire i servizi Web creati nell'area di lavoro
-* Eliminare l'area di lavoro.
+* Monitorare l'utilizzo dell'area di lavoro hello
+* Configurare hello dell'area di lavoro tooallow o negare l'accesso
+* Gestire i servizi Web creati nell'area di lavoro hello
+* Elimina area di lavoro hello
 
-Nella scheda Dashboard viene inoltre fornita una panoramica dell'utilizzo dell'area di lavoro e un riepilogo rapido delle informazioni relative all'area di lavoro.  
+Inoltre, nella scheda dashboard hello fornisce una panoramica dell'uso dell'area di lavoro e una rapida panoramica delle informazioni dell'area di lavoro.  
 
 > [!TIP]
-> Nella scheda **WEB SERVICES** (SERVIZI WEB) di Azure Machine Learning Studio è possibile aggiungere, aggiornare o eliminare un servizio Web di Machine Learning.
+> In Azure Machine Learning Studio, su hello **servizi WEB** scheda, è possibile aggiungere, aggiornare o eliminare un servizio Web di Machine Learning.
 > 
 > 
 
-Per gestire un'area di lavoro nel portale di Azure classico:
+area di lavoro nel portale di Azure classico hello toomanage:
 
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com/) usando l'account di Microsoft Azure associato alla sottoscrizione di Azure.
-2. Nel riquadro dei servizi di Microsoft Azure fare clic su **MACHINE LEARNING**.
-3. Fare clic sull'area di lavoro da gestire.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com/) utilizzo di Microsoft Azure account, utilizzare account hello associato hello sottoscrizione di Azure.
+2. Nel Pannello di servizi di Microsoft Azure hello, fare clic su **MACHINE LEARNING**.
+3. Fare clic su area di lavoro hello desiderato toomanage.
 
-La pagina dell'area di lavoro contiene tre schede:
+Nella pagina dell'area di lavoro Hello sono presenti tre schede:
 
-* **DASHBOARD** : permette di visualizzare i dati di utilizzo e le informazioni sull'area di lavoro.
-* **CONFIGURE** : permette di gestire l'accesso all'area di lavoro.
-* **WEB SERVICES** (SERVIZI WEB): permette di gestire i servizi Web pubblicati da questa area di lavoro.
+* **DASHBOARD** -consente l'utilizzo dell'area di lavoro tooview e informazioni
+* **Configura** -permette l'area di lavoro toohello toomanage access
+* **SERVIZI WEB** -consente i servizi Web toomanage che sono stati pubblicati dall'area di lavoro
 
-### <a name="to-monitor-how-the-workspace-is-being-used"></a>Per monitorare la modalità d'uso dell'area di lavoro
-Fare clic sulla scheda **DASHBOARD** .
+### <a name="toomonitor-how-hello-workspace-is-being-used"></a>utilizzo dell'area di lavoro hello toomonitor
+Fare clic su hello **DASHBOARD** scheda.
 
-Dal dashboard è possibile visualizzare l'utilizzo complessivo dell'area di lavoro e ottenere un riepilogo rapido delle informazioni dell'area di lavoro.
+Dal dashboard di hello, è possibile visualizzare l'utilizzo complessivo dell'area di lavoro e ottenere un riepilogo rapido delle informazioni dell'area di lavoro.
 
-* Il grafico **COMPUTE** mostra le risorse di calcolo in uso nell'area di lavoro. È possibile modificare la visualizzazione per mostrare i valori relativi o assoluti, nonché cambiare l'intervallo di tempo visualizzato nel grafico.
-* **Usage overview** mostra l'archiviazione di Azure attualmente in uso nell'area di lavoro.
+* Hello **calcolo** grafico mostra le risorse di calcolo hello in uso dall'area di lavoro hello. È possibile modificare toodisplay visualizzazione hello relativo o assoluto valori ed è possibile modificare l'intervallo di tempo hello hello grafico visualizzato.
+* **Panoramica sull'utilizzo** Visualizza l'archiviazione di Azure in uso dall'area di lavoro hello.
 * **Quick glance** visualizza un riepilogo delle informazioni dell'area di lavoro e collegamenti utili.
 
 > [!NOTE]
-> Il link all’ **Accesso a ML Studio** consente di aprire Machine Learning Studio usando l'account Microsoft con cui è stato eseguito l'accesso. L'account Microsoft usato per accedere al portale di Azure classico per creare un'area di lavoro non è automaticamente autorizzato ad aprire tale area di lavoro. Per aprire un'area di lavoro, è necessario essere connessi con l'account Microsoft definito come proprietario dell'area di lavoro oppure ricevere un invito dal proprietario per partecipare all'area di lavoro.
+> Hello **Accedi tooML Studio** collegamento consente di aprire Machine Learning Studio usando l'Account Microsoft è stato eseguito l'accesso in hello. Hello Account Microsoft usato toosign in toohello toocreate portale Azure classico un'area di lavoro dispone automaticamente dell'autorizzazione tooopen area di lavoro. tooopen un'area di lavoro, è necessario essere connessi con Account Microsoft che è stato definito come proprietario di hello dell'area di lavoro hello toohello oppure è necessario un invito dall'area di lavoro di hello proprietario toojoin hello tooreceive.
 > 
 > 
 
-### <a name="to-grant-or-suspend-access-for-users"></a>Per concedere o sospendere l'accesso agli utenti
-Fare clic sulla scheda **CONFIGURE** .
+### <a name="toogrant-or-suspend-access-for-users"></a>toogrant o sospendere l'accesso per gli utenti
+Fare clic su hello **configura** scheda.
 
-Dalla scheda di configurazione è possibile:
+Dalla scheda Configurazione hello è possibile:
 
-* Sospendere l'accesso all'area di lavoro di Machine Learning facendo clic su DENY. Gli utenti non saranno più in grado di aprire l'area di lavoro in Machine Learning Studio. Per ripristinare l'accesso, fare clic su ALLOW.
+* Sospensione dell'area di lavoro di accesso toohello Machine Learning facendo clic su Nega. Gli utenti non saranno in grado di tooopen dell'area di lavoro hello in Machine Learning Studio. toorestore accedere, fare clic su Consenti.
 
-Per gestire account aggiuntivi che hanno accesso all'area di lavoro in Machine Learning Studio, fare clic su **Accedi a ML Studio** nella scheda **DASHBOARD** (vedere la nota precedente relativa al comando **Accedi a ML Studio**). Verrà aperta l'area di lavoro in Machine Learning Studio. A questo punto, fare clic sulla scheda **SETTINGS** (IMPOSTAZIONI) e quindi su **USERS** (UTENTI). È possibile fare clic su **INVITE MORE USERS** (INVITA ALTRI UTENTI) per concedere agli utenti l'accesso all'area di lavoro oppure selezionare un utente e fare clic su **REMOVE** (RIMUOVI).
+toomanage altri account che dispongono di accesso dell'area di lavoro toohello in Machine Learning Studio, fare clic su **Accedi tooML Studio** in hello **DASHBOARD** scheda (vedere la nota che precedono hello relative  **Sign-in tooML Studio**). Verrà visualizzata l'area di lavoro hello in Machine Learning Studio. Da qui, fare clic su hello **impostazioni** scheda e quindi **utenti**. È possibile fare clic su **INVITARE utenti più** toogive utenti accedere toohello area di lavoro, oppure selezionare un utente e fare clic su **rimuovere**.
 
-### <a name="to-manage-web-services-in-this-workspace"></a>Per gestire i servizi Web in questa area di lavoro
-Fare clic sulla scheda **WEB SERVICES** .
+### <a name="toomanage-web-services-in-this-workspace"></a>servizi web toomanage nell'area di lavoro
+Fare clic su hello **servizi WEB** scheda.
 
 Verrà visualizzato un elenco di servizi Web pubblicati da questa area di lavoro.
-Per gestire un servizio Web, fare clic sul nome nell'elenco per aprire la pagina corrispondente.
+toomanage un servizio web, fare clic su nome hello nella pagina del servizio Web di hello elenco tooopen hello.
 
 Per un servizio Web possono essere definiti uno o più endpoint.
 
-* È possibile definire altri endpoint oltre a quelli di "Default". Per aggiungere l'endpoint, fare clic su **Manage Endpoints** (Gestisci endpoint) nella parte inferiore del dashboard per aprire il portale dei servizi Web di Azure Machine Learning.
-* Per eliminare un endpoint, escluso l'endpoint "Default" che non può essere eliminato, fare clic nella casella di controllo all'inizio della riga dell'endpoint e quindi su **DELETE** (ELIMINA). L'endpoint verrà rimosso dal servizio Web.
+* È possibile definire più endpoint nell'endpoint "Default" toohello di addizione. tooadd hello endpoint, fare clic su **gestire endpoint** nella parte inferiore di hello del portale di servizi Web di Azure Machine Learning di hello dashboard tooopen hello.
+* toodelete un endpoint (è possibile eliminare endpoint "Predefinita" hello), fare clic sulla casella di controllo hello all'inizio di hello della riga di endpoint hello e fare clic su **eliminare**. Per rimuovere endpoint hello dal servizio Web hello.
   
   > [!NOTE]
-  > Se in un'applicazione è in uso l'endpoint di servizio Web quando questo viene eliminato, al successivo tentativo di accesso al servizio da parte dell'applicazione verrà visualizzato un errore .
+  > Se un'applicazione sta utilizzando l'endpoint del servizio web hello quando viene eliminato l'endpoint di hello, un'applicazione hello riceverà hello un errore successivo tentativo servizio hello tooaccess.
   > 
   > 
 
-Fare clic sul nome di un endpoint di servizio Web per aprirlo. 
+Fare clic sul nome di un tooopen di endpoint servizio Web hello è. 
 
-Nel dashboard è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare il periodo da visualizzare dal menu a discesa Periodo in alto a destra dei grafici di utilizzo. Il dashboard visualizza le informazioni seguenti:
+Dal dashboard di hello, è possibile visualizzare l'utilizzo complessivo del servizio Web in un periodo di tempo. È possibile selezionare tooview periodo hello dal menu a discesa periodo hello in alto a destra hello di grafici relativi all'utilizzo di hello. dashboard di Hello Mostra hello le seguenti informazioni:
 
-* **Requests Over Time** (Richieste nel tempo) visualizza un grafico con il numero di richieste nel periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
-* **Request-Response Requests** (Richieste richiesta-risposta) visualizza il numero totale di chiamate di richiesta-risposta ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Request-Response Compute Time** (Tempo medio di calcolo richiesta-risposta) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Batch Requests** (Richieste batch) visualizza il numero totale di richieste batch ricevute dal servizio nel periodo di tempo selezionato e il numero di richieste con errore.
-* **Average Job Latency** (Latenza processo media) visualizza una media del tempo necessario per eseguire le richieste ricevute.
-* **Errors** (Errori) visualizza il numero complessivo di errori che si sono verificati nelle chiamate al servizio Web.
-* **Services Costs** (Costi servizi) visualizza le spese per il piano di fatturazione associato al servizio.
+* **Le richieste nel tempo** Visualizza un grafico di passaggio del numero di hello di richieste su hello periodo di tempo selezionato. Può aiutare a identificare se si verificano picchi di utilizzo.
+* **Le richieste di richiesta-risposta** Visualizza hello il numero totale di chiamate richiesta-risposta ricevuta dal servizio hello hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Tempo medio di richiesta-risposta calcolo** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Batch di richieste** hello Visualizza il numero totale di servizio hello richieste Batch ha ricevuto tramite hello periodo di tempo selezionato e quanti di essi non riusciti.
+* **Processo latenza media** consente di visualizzare una media di tempo hello necessari tooexecute hello ricevuto richieste.
+* **Errori** Visualizza hello aggregazione del numero di errori che si sono verificati nel servizio web toohello di chiamate.
+* **I costi dei servizi** hello spese per il piano di fatturazione hello associato hello servizio vengono visualizzate.
 
-Dalla pagina di configurazione è possibile aggiornare le proprietà seguenti:
+Dalla pagina Configura hello, è possibile aggiornare hello le proprietà seguenti:
 
-* **Description** (Descrizione) consente di immettere una descrizione per il servizio Web. La descrizione è un campo obbligatorio.
-* **Logging** (Registrazione) consente di abilitare o disabilitare la registrazione nell'endpoint. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
-* **Enable Sample data** (Abilita dati di esempio) consente di fornire dati di esempio che è possibile usare per testare il servizio di richiesta-risposta. Se il servizio Web è stato creato in Machine Learning Studio, i dati di esempio vengono prelevati dai dati usati per il training del modello. Se il servizio è stato creato a livello di codice, i dati vengono ricavati dai dati di esempio forniti come parte del pacchetto JSON.
+* **Descrizione** consente tooenter una descrizione per il servizio Web hello. La descrizione è un campo obbligatorio.
+* **Registrazione** consente errore tooenable o disabilitare la registrazione su endpoint hello. Per altre informazioni sulla registrazione, vedere [Abilitare la registrazione per i servizi Web di Machine Learning](machine-learning-web-services-logging.md).
+* **Abilita dati di esempio** consente tooprovide dati di esempio che è possibile utilizzare il servizio di richiesta-risposta hello tootest. Se si crea servizio web hello in Machine Learning Studio, i dati di esempio hello viene recuperati dal dati hello il tootrain utilizzato il modello. Se è stato creato a livello di codice servizio hello, dati hello viene eseguiti da dati di esempio hello forniti come parte del pacchetto di hello JSON.
 

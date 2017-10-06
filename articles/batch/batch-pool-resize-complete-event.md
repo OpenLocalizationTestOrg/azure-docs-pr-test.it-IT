@@ -1,5 +1,5 @@
 ---
-title: Evento di completamento ridimensionamento pool di Azure Batch | Microsoft Docs
+title: aaa "evento di completamento di ridimensionamento del pool di Azure Batch | Documenti di Microsoft"
 description: "Riferimento per l’evento di completamento ridimensionamento del pool di batch."
 services: batch
 author: tamram
@@ -12,17 +12,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 7072293d98526812cb42ce9c2f8e33bfcafaa149
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc64711a01aa4cf6192edba1a2c4cad56f953766
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="pool-resize-complete-event"></a>Evento di completamento ridimensionamento pool
 
  Questo evento viene generato quando il ridimensionamento di un pool è stato completato o non è riuscito.
 
- L'esempio seguente illustra il corpo di un evento di completamento ridimensionamento pool relativo a un pool le cui dimensioni sono aumentate e che è stato completato correttamente.
+ Hello esempio seguente viene illustrato hello corpo di un evento di completamento di ridimensionamento pool per un pool di aumenta le dimensioni e completata correttamente.
 
 ```
 {
@@ -35,19 +35,19 @@ ms.lasthandoff: 07/11/2017
     "startTime": "2016-09-09T22:13:06.573Z",
     "endTime": "2016-09-09T22:14:01.727Z",
     "result": "Success",
-    "resizeError": "The operation succeeded"
+    "resizeError": "hello operation succeeded"
 }
 ```
 
 |Elemento|Tipo|Note|
 |-------------|----------|-----------|
-|id|String|ID del pool.|
-|nodeDeallocationOption|String|Specifica quando è possibile rimuovere nodi dal pool, in caso di riduzione delle dimensioni del pool.<br /><br /> I valori possibili sono:<br /><br /> **requeue**: termina le attività in esecuzione e le reinserisce nella coda. Le attività verranno eseguite di nuovo quando il processo viene abilitato. I nodi vengono rimossi non appena le attività sono state terminate.<br /><br /> **terminate**: termina le attività in esecuzione. Le attività non verranno più eseguite. I nodi vengono rimossi non appena le attività sono state terminate.<br /><br /> **taskcompletion**: consente il completamento delle attività attualmente in esecuzione. Non viene pianificata alcuna nuova attività durante l'attesa. I nodi vengono rimossi al completamento di tutte le attività.<br /><br /> **Retaineddata**: consente il completamento delle attività attualmente in esecuzione e quindi attende che scadano tutti i periodi di conservazione dati delle attività. Non viene pianificata alcuna nuova attività durante l'attesa. I nodi vengono rimossi alla scadenza di tutti i periodi di conservazione dati delle attività.<br /><br /> Il valore predefinito è requeue.<br /><br /> In caso di aumento delle dimensioni del pool, il valore è impostato su **invalid**.|
-|currentDedicated|Int32|Numero di nodi di calcolo attualmente assegnati al pool.|
-|targetDedicated|Int32|Numero di nodi di calcolo richiesti per il pool.|
-|enableAutoScale|Booleano|Specifica se le dimensioni del pool vengono regolate automaticamente nel tempo.|
-|isAutoPool|Booleano|Specifica se il pool è stato creato tramite il meccanismo di pool automatico di un processo.|
-|startTime|DateTime|Data e ora in cui è stato avviato il ridimensionamento del pool.|
-|endTime|DateTime|Date e ora in cui è stato completato il ridimensionamento del pool.|
-|resultCode|String|Risultato del ridimensionamento.|
-|resultMessage|String|L'errore di ridimensionamento include i dettagli del risultato.<br /><br /> Se il ridimensionamento è stato completato correttamente, indica che l'operazione è riuscita.|
+|id|String|id di Hello del pool di hello.|
+|nodeDeallocationOption|String|Se quando i nodi potrebbero essere rimosse dal pool di hello, dimensioni del pool di hello sono decrescente.<br /><br /> I valori possibili sono:<br /><br /> **requeue**: termina le attività in esecuzione e le reinserisce nella coda. attività Hello verrà eseguito nuovamente durante il processo di hello è abilitato. I nodi vengono rimossi non appena le attività sono state terminate.<br /><br /> **terminate**: termina le attività in esecuzione. attività Hello non verranno più eseguite. I nodi vengono rimossi non appena le attività sono state terminate.<br /><br /> **taskcompletion** : Consenti toocomplete attività in corso. Non viene pianificata alcuna nuova attività durante l'attesa. I nodi vengono rimossi al completamento di tutte le attività.<br /><br /> **Retaineddata** : attualmente in esecuzione attività toocomplete, quindi attendere tutte tooexpire periodi di conservazione dei dati di attività. Non viene pianificata alcuna nuova attività durante l'attesa. I nodi vengono rimossi alla scadenza di tutti i periodi di conservazione dati delle attività.<br /><br /> valore predefinito di Hello è riaccodamento.<br /><br /> Se l'aumentano di dimensioni del pool di hello, hello è impostato troppo**valido**.|
+|currentDedicated|Int32|numero di nodi di calcolo di Hello attualmente assegnati toohello pool.|
+|targetDedicated|Int32|numero di Hello di nodi di calcolo che sono richieste per il pool di hello.|
+|enableAutoScale|Booleano|Specifica se le dimensioni del pool di hello viene ridimensionato automaticamente nel corso del tempo.|
+|isAutoPool|Booleano|Specifica se il pool di hello è stato creato tramite il meccanismo di pool automatico di un processo.|
+|startTime|DateTime|Hello di ridimensionamento del pool di hello avvio.|
+|endTime|DateTime|Hello tempo di ridimensionamento del pool di hello completata.|
+|resultCode|String|risultato Hello di hello ridimensionare.|
+|resultMessage|String|Errore di ridimensionamento Hello include i dettagli di hello del risultato hello.<br /><br /> Se Ridimensiona hello completata correttamente, gli Stati che hello operazione ha avuto esito positivo.|

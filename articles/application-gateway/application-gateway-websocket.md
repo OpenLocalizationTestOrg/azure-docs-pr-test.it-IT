@@ -1,6 +1,6 @@
 ---
-title: Supporto di WebSocket nel gateway applicazione di Azure | Microsoft Docs
-description: Questa pagina offre una panoramica del supporto di WebSocket nel gateway applicazione.
+title: supporto aaaWebSocket in Gateway di applicazione di Azure | Documenti Microsoft
+description: Questa pagina viene fornita una panoramica del supporto di WebSocket Gateway applicazione hello.
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/08/2017
 ms.author: amsriva
-ms.openlocfilehash: 75b06ddd02da231b7813c609c848c75e42116da5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3776117803e8559ad243c2d4c3dd661199c1e48a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-websocket-support-in-application-gateway"></a>Panoramica del supporto di WebSocket nel gateway dell'applicazione
 
-Il gateway applicazione offre il supporto nativo per WebSocket in tutte le dimensioni di gateway. Non esistono impostazioni configurabili dall'utente per abilitare o disabilitare in modo selettivo il supporto di WebSocket. 
+Il gateway applicazione offre il supporto nativo per WebSocket in tutte le dimensioni di gateway. Non sussiste alcuna impostazione configurabile dall'utente tooselectively Abilita o disabilita il supporto di WebSocket. 
 
-Il protocollo WebSocket standardizzato nella specifica [RFC6455](https://tools.ietf.org/html/rfc6455) consente una comunicazione full duplex tra un server e un client su una connessione TCP con esecuzione prolungata. Questa funzionalità consente una comunicazione più interattiva tra il server Web e il client, che può essere bidirezionale senza che sia necessario il polling richiesto invece nelle implementazioni basate su HTTP. A differenza del protocollo HTTP, WebSocket presenta un overhead ridotto e può riusare la stessa connessione TCP per più richieste/risposte garantendo così un utilizzo più efficiente delle risorse. I protocolli WebSocket sono progettati per usare le porte HTTP 80 e 443 tradizionali.
+Il protocollo WebSocket standardizzato nella specifica [RFC6455](https://tools.ietf.org/html/rfc6455) consente una comunicazione full duplex tra un server e un client su una connessione TCP con esecuzione prolungata. Questa funzionalità consente una comunicazione più interattiva tra server web hello e client hello, che può essere bidirezionale senza necessità di hello per il polling come richiesto nelle implementazioni basate su HTTP. WebSocket sovraccarico è inferiore a differenza di HTTP e può riutilizzare hello stessa connessione TCP per più richieste/risposte risultante in un utilizzo più efficiente delle risorse. Protocolli di WebSocket sono progettate toowork attraverso le porte HTTP tradizionali di 80 e 443.
 
-È possibile continuare a usare un listener HTTP standard nella porta 80 o 443 per ricevere il traffico WebSocket. Il traffico WebSocket viene quindi indirizzato al server back-end abilitato per WebSocket usando il pool back-end appropriato, come specificato nelle regole del gateway applicazione. Il server back-end deve rispondere ai probe del gateway applicazione, descritti nella sezione di [panoramica dei probe di integrità](application-gateway-probe-overview.md). I probe di integrità del gateway applicazione sono solo HTTP e HTTPS. Ogni server back-end deve rispondere a probe HTTP per il gateway applicazione per instradare il traffico WebSocket al server.
+È possibile continuare a usare un listener HTTP standard nella porta 80 o 443 tooreceive traffico WebSocket. Il traffico di WebSocket è diretto toohello WebSocket attivato i server back-end usando pool back-end appropriata hello come specificato nelle regole di gateway applicazione. server di back-end Hello deve rispondere toohello probe di gateway applicazione, che sono descritte nel hello [Panoramica probe di integrità](application-gateway-probe-overview.md) sezione. I probe di integrità del gateway applicazione sono solo HTTP e HTTPS. Ogni server back-end deve rispondere tooHTTP probe per il server applicazioni gateway tooroute WebSocket traffico toohello.
 
 ## <a name="listener-configuration-element"></a>Elemento di configurazione del listener
 
-Per supportare il traffico WebSocket è possibile usare un listener HTTP esistente. Di seguito è riportato il frammento dell'elemento httpListeners di un file modello di esempio. Per supportare WebSocket e il traffico WebSocket sicuro saranno necessari listener sia HTTP che HTTPS. Per creare un gateway applicazione con listener sulla porta 80/443 per supportare il traffico WebSocket, è possibile usare in modo analogo il [portale](application-gateway-create-gateway-portal.md) o [PowerShell](application-gateway-create-gateway-arm.md).
+Un listener HTTP esistente può essere utilizzato toosupport traffico WebSocket. Hello di seguito è riportato un frammento di un elemento listener HTTP da un file di modello di esempio. Si sarebbe necessario listener HTTP e HTTPS toosupport WebSocket e proteggere il traffico di WebSocket. Analogamente è possibile utilizzare hello [portale](application-gateway-create-gateway-portal.md) o [PowerShell](application-gateway-create-gateway-arm.md) toocreate un gateway applicazione con i listener nel traffico sulla porta 80/443 toosupport WebSocket.
 
 ```json
 "httpListeners": [
@@ -66,7 +66,7 @@ Per supportare il traffico WebSocket è possibile usare un listener HTTP esisten
 
 ## <a name="backendaddresspool-backendhttpsetting-and-routing-rule-configuration"></a>Configurazione di BackendAddressPool, BackendHttpSetting e della regola di routing
 
-BackendAddressPool viene usato per definire un pool back-end con server abilitati per WebSocket. backendHttpSetting è definito con una porta back-end 80 e 443. Le proprietà per l'affinità basata su cookie e requestTimeouts non sono rilevanti per il traffico WebSocket. Non è necessaria alcuna modifica nella regola di routing. Viene usato 'Basic' per collegare il listener appropriato al pool di indirizzi back-end corrispondente. 
+Un BackendAddressPool è toodefine utilizzato un pool di back-end con server WebSocket abilitato. backendHttpSetting Hello è definito con una back-end la porta 80 e 443. proprietà Hello basato su cookie di affinità e requestTimeouts non sono rilevanti tooWebSocket traffico. Nessuna modifica necessaria nella regola di routing hello, 'Basic' è utilizzato tootie hello listener appropriato toohello corrispondente pool di indirizzi back-end. 
 
 ```json
 "requestRoutingRules": [{
@@ -104,7 +104,7 @@ BackendAddressPool viene usato per definire un pool back-end con server abilitat
 
 ## <a name="websocket-enabled-backend"></a>Back-end abilitato per WebSocket
 
-Per il funzionamento di WebSocket, è necessario che il back-end includa un server Web HTTP/HTTPS in esecuzione sulla porta configurata (in genere 80/443). Il protocollo WebSocket richiede infatti un handshake iniziale HTTP con un campo di intestazione Upgrade per il protocollo WebSocket. Di seguito è riportato un esempio di intestazione:
+Il back-end deve disporre di un server web HTTP/HTTPS in hello configurata la porta per WebSocket toowork (in genere 80/443). Questo requisito è il protocollo WebSocket richiede hello handshake iniziale toobe HTTP con il protocollo di aggiornamento tooWebSocket come un campo di intestazione. Hello Ecco un esempio di un'intestazione di:
 
 ```
     GET /chat HTTP/1.1
@@ -117,9 +117,9 @@ Per il funzionamento di WebSocket, è necessario che il back-end includa un serv
     Sec-WebSocket-Version: 13
 ```
 
-Un altro motivo risiede nel fatto che il probe di integrità del back-end del gateway applicazione supporta solo i protocolli HTTP e HTTPS. Se il server back-end non risponde ai probe HTTP o HTTPS, il server viene escluso dal pool back-end.
+Un altro motivo risiede nel fatto che il probe di integrità del back-end del gateway applicazione supporta solo i protocolli HTTP e HTTPS. Se il server di back-end hello non risponde tooHTTP o probe HTTPS, viene escluso dalla pool back-end.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver acquisito familiarità con il supporto di WebSocket, [creare un gateway applicazione](application-gateway-create-gateway.md) per iniziare a usare un'applicazione Web abilitata per WebSocket.
+Dopo avere imparare a supporto di WebSocket, andare troppo[creare un gateway applicazione](application-gateway-create-gateway.md) tooget avviato con un WebSocket l'applicazione web abilitata.
 

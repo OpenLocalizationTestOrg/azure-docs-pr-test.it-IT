@@ -1,6 +1,6 @@
 ---
-title: Connettere dispositivi aggiunti a un dominio ad Azure AD in ambiente Windows 10 | Documentazione Microsoft
-description: Illustra agli amministratori come configurare Criteri di gruppo per abilitare i dispositivi per l'aggiunta a un dominio nella rete dell'organizzazione.
+title: si verifica nel aaaConnect tooAzure di dispositivi appartenenti a un dominio Active Directory per Windows 10 | Documenti Microsoft
+description: Viene illustrato come gli amministratori possono configurare rete di criteri di gruppo tooenable dispositivi toobe toohello dominio aziendale.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -16,58 +16,58 @@ ms.topic: article
 ms.date: 06/23/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: 9c91579d20bb84701f6d0b97d944728c84044adf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9766aa702352dea2ecad3a9a0bdf8d3286ee6d91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-domain-joined-devices-to-azure-ad-for-windows-10-experiences"></a>Connettere dispositivi aggiunti a un dominio ad Azure AD in ambiente Windows 10
-Negli ultimi 15 anni, per connettere i dispositivi sui cui lavorare le aziende hanno fatto essenzialmente ricorso alla funzione di aggiunta a un dominio. Questo ha permesso agli utenti di accedere ai dispositivi con i relativi account aziendali o dell'istituto di istruzione di Windows Server Active Directory (Active Directory) e agli amministratori IT di gestire interamente tali dispositivi. In genere, le aziende si basano su metodi di creazione dell'immagine per effettuare il provisioning dei dispositivi agli utenti e, per gestirli, usano System Center Configuration Manager (SCCM) o Criteri di gruppo.
+# <a name="connect-domain-joined-devices-tooazure-ad-for-windows-10-experiences"></a>Connettersi tooAzure dispositivi appartenenti a un dominio Active Directory per Windows 10
+Aggiunta a un dominio è organizzazioni modalità tradizionale hello avere stabilito la connessione di dispositivi per lavoro hello ultimi 15 anni e altro ancora. È abilitato toosign utenti nei dispositivi tootheir utilizzando il proprio lavoro di Windows Server Active Directory (Active Directory) o scuola e consentiti toofully IT di gestire questi dispositivi. Le organizzazioni si basano su metodi tooprovision dispositivi toousers imaging e in genere utilizzare criteri di gruppo o System Center Configuration Manager (SCCM) toomanage li.
 
 
-Dopo aver connesso i dispositivi ad Azure Active Directory (Azure AD), l'aggiunta a un dominio di Windows 10 offre i vantaggi seguenti:
+Aggiunta a un dominio Windows 10 vengono fornite hello seguenti vantaggi dopo aver connesso i dispositivi tooAzure Active Directory (Azure AD):
 
-* Accesso Single Sign-On (SSO) alle risorse di Azure AD da qualsiasi posizione.
-* Accesso alla sezione aziendale di Windows Store usando account aziendali o dell'istituto di istruzione, non è necessario un account Microsoft.
+* Single sign-on (SSO) tooAzure AD risorse da qualsiasi posizione
+* Accedere a toohello enterprise, Windows Store utilizzando lavoro o scuola account (necessari account di Microsoft)
 * Roaming delle impostazioni utente tra dispositivi conforme ai criteri dell'organizzazione usando account aziendali o dell'istituto di istruzione, non è necessario un account Microsoft.
 * Autenticazione avanzata e pratico accesso all'account aziendale o dell'istituto di istruzione con Windows Hello for Business e Windows Hello
-* Possibilità di limitare l'accesso solo ai dispositivi conformi alle impostazioni di Criteri di gruppo dei dispositivi aziendali.
+* Toorestrict possibilità di accedere solo toodevices conformi con le impostazioni di criteri di gruppo di dispositivi aziendali
 
 ## <a name="prerequisites"></a>Prerequisiti
-Aggiunta a un dominio continua a essere utile. Tuttavia, per poter sfruttare i vantaggi offerti da Azure AD per l'accesso SSO, il roaming delle impostazioni e l'accesso a Windows Store con account aziendali o dell'istituto di istruzione, è necessario quanto segue:
+Aggiunta a un dominio continua toobe utile. Tuttavia, tooget i vantaggi di hello Azure AD di SSO, il roaming delle impostazioni con o lavoro o scuola account e accedere tooWindows archivio con lavoro o scuola account, sarà necessario hello seguenti:
 
 * Sottoscrizione di Azure AD
-* Azure AD Connect per estendere la directory locale ad Azure AD.
-* Criteri impostati per connettere dispositivi aggiunti a un dominio ad Azure AD.
+* Azure AD Connect tooextend hello locale tooAzure di directory Active Directory
+* Criteri impostati tooconnect tooAzure di dispositivi appartenenti a un dominio Active Directory
 * Build di Windows 10 (build 10551 o successiva) per i dispositivi.
 
-Per abilitare Windows Hello for Business e Windows Hello è anche necessario quanto segue:
+tooenable Windows Hello for Business e di Windows Hello, è necessario anche seguenti hello:
 
 - **Infrastruttura a chiave pubblica (PKI)** per il rilascio di certificati utente.
 
-- **System Center Configuration Manager Current Branch**: è necessario installare la versione 1606 o successiva.  
+- **System Center Configuration Manager Current Branch** -è necessario tooinstall versione 1606 o migliori.  
 Per altre informazioni, vedere: 
     - [Documentazione per System Center Configuration Manager](https://technet.microsoft.com/library/mt346023.aspx)
     - [Blog del team di System Center Configuration Manager](http://blogs.technet.com/b/configmgrteam/archive/2015/09/23/now-available-update-for-system-center-config-manager-tp3.aspx)
     - [Impostazioni di Windows Hello for Business in System Center Configuration Manager](https://docs.microsoft.com/sccm/protect/deploy-use/windows-hello-for-business-settings)
 
-In alternativa alla distribuzione di un'infrastruttura PKI, è possibile soddisfare il requisito seguente:
+Come requisito distribuzione PKI toohello alternativo, è possibile eseguire il seguente hello:
 
 * Disporre di alcuni controller di dominio con Servizi di dominio Active Directory di Windows Server 2016.
 
-Per abilitare l'accesso condizionale, è possibile creare impostazioni di Criteri di gruppo che consentano l'accesso a dispositivi aggiunti al dominio senza distribuzioni aggiuntive. Per gestire il controllo di accesso in base alla conformità dei dispositivi, è necessario quanto segue:
+tooenable l'accesso condizionale, è possibile creare le impostazioni di criteri di gruppo che consentono di accedere ai dispositivi aggiunti a un toodomain con nessun altre distribuzioni. controllo di accesso toomanage basata sulla conformità del dispositivo hello, sarà necessario seguente hello:
 
 * System Center Configuration Manager Current Branch (1606 o versione successiva) per scenari Windows Hello for Business
 
 ## <a name="deployment-instructions"></a>Istruzioni per la distribuzione
 
-Per eseguire la distribuzione, seguire la procedura indicata in [Come configurare la registrazione automatica dei dispositivi di dominio Windows con Azure Active Directory](active-directory-conditional-access-automatic-device-registration-setup.md)
+toodeploy, seguire la procedura seguente hello elencata in [come tooconfigure la registrazione automatica di Windows appartenenti a un dominio dispositivi con Azure Active Directory](active-directory-conditional-access-automatic-device-registration-setup.md)
 
 ## <a name="next-step"></a>Passaggio successivo
-* [Windows 10 per le aziende: modalità d'uso dei dispositivi di lavoro](active-directory-azureadjoin-windows10-devices-overview.md)
-* [Estensione delle funzionalità del cloud ai dispositivi Windows 10 tramite Aggiunta ad Azure Active Directory](active-directory-azureadjoin-user-upgrade.md)
+* [Windows 10 per enterprise hello: i dispositivi toouse modi per lavoro](active-directory-azureadjoin-windows10-devices-overview.md)
+* [Estensione cloud dispositivi tooWindows 10 funzionalità tramite Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
 * [Scenari di utilizzo per Aggiunta ad Azure AD](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Connettere dispositivi appartenenti a un dominio ad Azure AD per usufruire di Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [Connettersi tooAzure dispositivi appartenenti a un dominio Active Directory per Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [Configurare Aggiunta di Azure AD](active-directory-azureadjoin-setup.md)
 

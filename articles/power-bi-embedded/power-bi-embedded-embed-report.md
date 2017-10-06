@@ -1,6 +1,6 @@
 ---
-title: Incorporare un report in Azure Power BI Embedded | Microsoft Docs
-description: Informazioni su come incorporare nell'applicazione un report che si trova in Power BI Embedded.
+title: un report in Power BI Embedded Azure aaaEmbed | Documenti Microsoft
+description: Informazioni su come tooembed un report in Power BI incorporato nell'applicazione.
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 3d865af2418c9c557c861a379766a125d75cebf1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f25344bbd0b9c092ef19da04d0b455d453b426a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="embed-a-report-in-power-bi-embedded"></a>Incorporare un report in Power BI Embedded
 
-Informazioni su come incorporare nell'applicazione un report che si trova in Power BI Embedded.
+Informazioni su come tooembed un report in Power BI incorporato nell'applicazione.
 
-Verrà esaminato come incorporare effettivamente un report nell'applicazione. Ciò presuppone che esista già un report in un'area di lavoro della raccolta di aree di lavoro. Se questo passaggio non è ancora stato completato, vedere [Introduzione a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
+Verranno esaminati come tooactually incorporare un report nell'applicazione. Ciò presuppone che esista già un report in un'area di lavoro della raccolta di aree di lavoro. Se questo passaggio non è ancora stato completato, vedere [Introduzione a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
 
-Per compilare facilmente l'applicazione con Power BI Embedded, è possibile usare l'SDK per .NET (C#) o Node.js, insieme a JavaScript. 
+È possibile usare .NET hello (c#) o Node.js SDK, insieme a JavaScript, tooeasily compilare l'applicazione con Power BI Embedded. 
 
-## <a name="using-the-access-keys-to-use-rest-apis"></a>Uso delle chiavi di accesso per API REST
+## <a name="using-hello-access-keys-toouse-rest-apis"></a>Utilizzo di hello accesso chiavi toouse API REST
 
-Per chiamare l'API REST, è possibile passare la chiave di accesso che può essere ottenuta dal portale di Azure per una determinata raccolta di aree di lavoro. Per altre informazioni, vedere [Introduzione a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
+In hello toocall ordine API REST, è possibile passare hello tasto di scelta che è possibile ottenere da hello portale di Azure per una raccolta di area di lavoro specificato. Per altre informazioni, vedere [Introduzione a Microsoft Power BI Embedded](power-bi-embedded-get-started.md).
 
 ## <a name="get-a-report-id"></a>Ottenere un ID report
 
-Ogni token di accesso è basato su un report. È necessario ottenere lo specifico ID del report che si vuole incorporare. A questo scopo è possibile effettuare chiamate all'API REST [Get Reports](https://msdn.microsoft.com/library/azure/mt711510.aspx), che restituirà l'ID report e l'URL di incorporamento. È possibile usare Power BI .NET SDK oppure chiamare direttamente l'API REST.
+Ogni token di accesso è basato su un report. Sarà necessario hello tooget per report hello che si desidera tooembed l'id di report specificato. Questa operazione può essere eseguita in base alle chiamate toohello [Get Reports](https://msdn.microsoft.com/library/azure/mt711510.aspx) API REST. Report hello id e hello incorporare url verrà restituito. Questa operazione può essere eseguita utilizzando hello SDK .NET di Power BI o chiamare direttamente l'API REST hello.
 
-### <a name="using-the-power-bi-net-sdk"></a>Uso di Power BI .NET SDK
+### <a name="using-hello-power-bi-net-sdk"></a>Utilizzo di hello SDK .NET di Power BI
 
-Quando si usa .NET SDK, è necessario creare una credenziale token basata sulla chiave di accesso ottenuta dal portale di Azure. Ciò richiede l'installazione del [pacchetto NuGet Power BI API](https://www.nuget.org/profiles/powerbi).
+Quando si utilizza hello .NET SDK, sarà necessario toocreate una credenziale del token di cui è basata sulla chiave di accesso hello che si ottiene da hello portale di Azure. Ciò è necessario installare hello [pacchetto NuGet dell'API Power BI](https://www.nuget.org/profiles/powerbi).
 
 **Installazione del pacchetto NuGet**
 
@@ -59,10 +59,10 @@ client.BaseUri = new Uri(https://api.powerbi.com);
 
 var reports = (IList<Report>)client.Reports.GetReports(workspaceCollectionName, workspaceId).Value;
 
-// Select the report that you want to work with from the collection of reports.
+// Select hello report that you want toowork with from hello collection of reports.
 ```
 
-### <a name="calling-the-rest-api-directly"></a>Chiamata diretta dell'API REST
+### <a name="calling-hello-rest-api-directly"></a>Hello chiamata API REST direttamente
 
 ```
 System.Net.WebRequest request = System.Net.WebRequest.Create("https://api.powerbi.com/v1.0/collections/{collectionName}/workspaces/{workspaceId}/Reports") as System.Net.HttpWebRequest;
@@ -75,7 +75,7 @@ using (var response = request.GetResponse() as System.Net.HttpWebResponse)
 {
     using (var reader = new System.IO.StreamReader(response.GetResponseStream()))
     {
-        // Work with JSON response to get the report you want to work with.
+        // Work with JSON response tooget hello report you want toowork with.
     }
 
 }
@@ -83,11 +83,11 @@ using (var response = request.GetResponse() as System.Net.HttpWebResponse)
 
 ## <a name="create-an-access-token"></a>Creare un token di accesso
 
-Power BI Embedded usa token di incorporamento, che sono token JSON Web con firma HMAC. I token sono firmati con la chiave di accesso della raccolta di aree di lavoro di Azure Power BI Embedded. Per impostazione predefinita, i token di incorporamento vengono usati per concedere l'accesso di sola lettura a un report da incorporare in un'applicazione. I token di incorporamento vengono rilasciati per un report specifico e dovranno essere associati a un URL di incorporamento.
+Power BI Embedded usa token di incorporamento, che sono token JSON Web con firma HMAC. i token Hello sono firmati con la chiave di accesso hello dalla raccolta di area di lavoro di Azure Power BI Embedded. Incorporare i token, per impostazione predefinita, vengono utilizzati tooprovide leggere accedere solo tooa report tooembed in un'applicazione. I token di incorporamento vengono rilasciati per un report specifico e dovranno essere associati a un URL di incorporamento.
 
-I token di accesso devono essere creati nel server perché le chiavi di accesso vengono usate per firmare/crittografare i token. Per informazioni sulla creazione di un token di accesso, vedere [Autenticazione e autorizzazione con Power BI Embedded](power-bi-embedded-app-token-flow.md). È anche possibile esaminare il metodo [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_). Di seguito è riportato un esempio corrispondente all'uso di .NET SDK per Power BI.
+I token di accesso devono essere creati nel server di hello come chiavi di accesso hello sono utilizzati toosign o crittografare i token hello. Per informazioni su come toocreate un token di accesso, vedere [autenticazione e autorizzazione a Power BI Embedded](power-bi-embedded-app-token-flow.md). È inoltre possibile rivedere hello [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) metodo. Di seguito è riportato un esempio di questo aspetto utilizzando hello .NET SDK per Power BI.
 
-Verrà usato l'ID report recuperato in precedenza. Dopo la creazione del token di incorporamento, si userà la chiave di accesso per generare il token utilizzabile per JavaScript. La *classe PowerBIToken* richiede l'installazione del [pacchetto NuGet Power BI Core](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
+Si utilizzerà l'id di report hello recuperato in precedenza. Una volta hello incorporare token viene creato, si utilizzerà quindi hello accesso toogenerate chiave hello token utilizzabili dalla prospettiva di hello javascript. Hello *PowerBIToken classe* richiede l'installazione di hello [Power BI Core NuGut pacchetto](https://www.nuget.org/packages/Microsoft.PowerBI.Core/).
 
 **Installazione del pacchetto NuGet**
 
@@ -106,16 +106,16 @@ embedToken = PowerBIToken.CreateReportEmbedToken(workspaceCollectionName, worksp
 var token = embedToken.Generate("{access key}");
 ```
 
-### <a name="adding-permission-scopes-to-embed-tokens"></a>Aggiunta degli ambiti di autorizzazione ai token di incorporamento
+### <a name="adding-permission-scopes-tooembed-tokens"></a>Aggiunta di token tooembed gli ambiti di autorizzazione
 
-Quando si usano token di incorporamento, può essere opportuno limitare l'utilizzo delle risorse a cui si concede l'accesso. Per questo motivo, è possibile generare un token con autorizzazioni con ambito. Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).
+Quando si utilizza il token di incorporamento, è consigliabile toorestrict utilizzo delle risorse di hello a che si concede l'accesso. Per questo motivo, è possibile generare un token con autorizzazioni con ambito. Per altre informazioni, vedere [Scopes](power-bi-embedded-app-token-flow.md#scopes) (Ambiti).
 
 ## <a name="embed-using-javascript"></a>Incorporare con JavaScript
 
-Dopo aver ottenuto il token di accesso e l'ID report, è possibile incorporare il report con JavaScript. Ciò richiede l'installazione del [pacchetto Power BI JavaScript](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). L'URL di incorporamento sarà https://embedded.powerbi.com/appTokenReportEmbed.
+Dopo aver ottenuto il token di accesso di hello e id report hello, è possibile incorporare report hello utilizzando JavaScript. Ciò è necessario installare nuget hello [Power BI JavaScript pacchetto](https://www.nuget.org/packages/Microsoft.PowerBI.JavaScript/). embedUrl Hello sarà sufficiente https://embedded.powerbi.com/appTokenReportEmbed.
 
 > [!NOTE]
-> Per testare il funzionamento, è possibile usare l'[esempio dell'incorporamento di report con JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/), che offre anche esempi di codice per le diverse operazioni disponibili.
+> È possibile utilizzare hello [esempio incorporare Report di JavaScript](https://microsoft.github.io/PowerBI-JavaScript/demo/) tootest funzionalità. Vengono inoltre forniti esempi di codice per operazioni diverse hello disponibili.
 
 **Installazione del pacchetto NuGet**
 
@@ -140,9 +140,9 @@ var $reportContainer = $('#reportContainer');
 var report = powerbi.embed($reportContainer.get(0), embedConfiguration);
 ```
 
-### <a name="set-the-size-of-embedded-elements"></a>Impostare le dimensioni degli elementi incorporati
+### <a name="set-hello-size-of-embedded-elements"></a>Impostare le dimensioni di hello elementi incorporati
 
-Il report verrà automaticamente incorporato in base alle dimensioni del contenitore. Per eseguire l'override delle dimensioni predefinite degli incorporamenti, è sufficiente aggiungere stili in linea o un attributo di classe CSS per larghezza e altezza.
+report Hello verranno incorporati automaticamente in base alle dimensioni di hello del relativo contenitore. dimensioni predefinite di hello toooverride di hello incorpora semplicemente aggiungere una classe attributo o inline gli stili CSS per larghezza e altezza.
 
 ## <a name="see-also"></a>Vedere anche
 
@@ -155,4 +155,4 @@ Il report verrà automaticamente incorporato in base alle dimensioni del conteni
 [Pacchetto NuGet Power BI Core](https://www.nuget.org/packages/Microsoft.PowerBI.Core/)  
 [Repository Git PowerBI-CSharp](https://github.com/Microsoft/PowerBI-CSharp)  
 [Repository Git PowerBI-Node](https://github.com/Microsoft/PowerBI-Node)  
-Altre domande? [Contattare la community di Power BI](http://community.powerbi.com/)
+Altre domande? [Provare a hello Community di Power BI](http://community.powerbi.com/)

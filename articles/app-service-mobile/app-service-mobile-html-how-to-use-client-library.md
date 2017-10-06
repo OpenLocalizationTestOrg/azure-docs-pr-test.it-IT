@@ -1,6 +1,6 @@
 ---
-title: Come usare JavaScript SDK per le app per dispositivi mobili di Azure
-description: Come usare v per le app per dispositivi mobili di Azure
+title: aaaHow tooUse hello SDK JavaScript per App mobili di Azure
+description: Come v tooUse per App mobili di Azure
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,32 +14,32 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 0c4b4de560d70592f5bbdee28b56a7686b5689f4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3fcbb0c5bd6918a285bdafa1946ba0bd47bb21b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-javascript-client-library-for-azure-mobile-apps"></a>Come usare la libreria client JavaScript per App per dispositivi mobili di Azure
+# <a name="how-toouse-hello-javascript-client-library-for-azure-mobile-apps"></a>Come tooUse hello libreria client JavaScript per App mobili di Azure
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-Questa guida descrive come eseguire scenari comuni usando il più recente [JavaScript SDK per le app per dispositivi mobili di Azure]. Se si ha familiarità con le app per dispositivi mobili di Azure, prima è necessario completare l' [Avvio rapido alle app per dispositivi mobili di Azure] per creare un back-end e una tabella. In questa Guida, l'attenzione è posta sull'uso di un back-end mobile nelle applicazioni Web HTML/JavaScript.
+Questa guida illustra tooperform scenari comuni di utilizzo più recenti hello [SDK JavaScript per App mobili di Azure]. Nel caso di nuove app per dispositivi mobili tooAzure, completare innanzitutto [avvio rapido di Azure Mobile app] toocreate un back-end e creare una tabella. In questa Guida, l'attenzione sull'utilizzo di back-end mobile hello in applicazioni Web HTML/JavaScript.
 
 ## <a name="supported-platforms"></a>Piattaforme supportate
-Il supporto del browser è limitato alle versioni correnti e aggiornate dei browser principali: Google Chrome, Microsoft Edge, Microsoft Internet Explorer e Mozilla Firefox.  L'SDK dovrebbe funzionare con qualsiasi browser abbastanza aggiornato.
+È limitare browser supporto toohello corrente e l'ultimo versioni di hello i browser principali: Google Chrome, Microsoft Edge, Microsoft Internet Explorer e Mozilla Firefox.  Prevediamo hello SDK toofunction con qualsiasi browser moderno relativamente.
 
-Il pacchetto viene distribuito come Universal JavaScript Module, in modo da supportare i formati globali, AMD e CommonJS.
+pacchetto di Hello viene distribuito come modulo JavaScript universale, in modo che supporta funzioni globali, AMD, CommonJS i formati e.
 
 ## <a name="Setup"></a>Installazione e prerequisiti
-In questa guida si presuppone che siano stati creati un backend e una tabella. In questa guida si presuppone che la tabella abbia lo stesso schema delle tabelle presenti in tali esercitazioni.
+In questa guida si presuppone che siano stati creati un backend e una tabella. Questa guida si presuppone che la tabella hello è hello stesso schema come tabelle hello in tali esercitazioni.
 
-L'installazione di JavaScript SDK per le app per dispositivi mobili di Azure può essere eseguito tramite il comando `npm` :
+L'installazione di hello Azure Mobile App JavaScript SDK possono essere eseguita tramite hello `npm` comando:
 
 ```
 npm install azure-mobile-apps-client --save
 ```
 
-La libreria può anche essere utilizzata come modulo ES2015, all'interno di ambienti CommonJS come ad esempio Browserify e Webpack, e come libreria AMD.  Ad esempio:
+libreria di Hello può essere utilizzata anche come un modulo ES2015, all'interno di ambienti CommonJS come Browserify e Webpack e come una libreria AMD.  ad esempio:
 
 ```
 # For ECMAScript 5.1 CommonJS
@@ -48,7 +48,7 @@ var WindowsAzure = require('azure-mobile-apps-client');
 import * as WindowsAzure from 'azure-mobile-apps-client';
 ```
 
-È anche possibile usare una versione predefinita dell'SDK scaricandolo direttamente dalla rete CDN:
+È anche possibile utilizzare una versione preesistente di hello SDK scaricando direttamente dal nostro CDN:
 
 ```html
 <script src="https://zumo.blob.core.windows.net/sdk/azure-mobile-apps-client.min.js"></script>
@@ -57,52 +57,52 @@ import * as WindowsAzure from 'azure-mobile-apps-client';
 [!INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
 
 ## <a name="auth"></a>Procedura: Autenticare gli utenti
-Il servizio app di Azure supporta l'autenticazione e l'autorizzazione degli utenti di app usando diversi provider di identità esterni, a esempio Facebook, Google, account Microsoft e Twitter. È possibile impostare le autorizzazioni per le tabelle per limitare l'accesso per operazioni specifiche solo agli utenti autenticati. È inoltre possibile utilizzare l'identità degli utenti autenticati per implementare regole di autorizzazione negli script del server. Per ulteriori informazioni, vedere l'esercitazione [Introduzione all'autenticazione] .
+Il servizio app di Azure supporta l'autenticazione e l'autorizzazione degli utenti di app usando diversi provider di identità esterni, a esempio Facebook, Google, account Microsoft e Twitter. È possibile impostare le autorizzazioni di accesso toorestrict tabelle per operazioni specifiche tooonly autenticata users. È inoltre possibile utilizzare identità hello gli utenti autenticati tooimplement delle regole di autorizzazione negli script del server. Per ulteriori informazioni, vedere hello [Introduzione all'autenticazione] esercitazione.
 
-Sono supportati due flussi di autenticazione, ovvero un flusso server e un flusso client.  Il flusso server è il processo di autenticazione più semplice, poiché si basa sull'interfaccia di autenticazione Web del provider. Il flusso client assicura una maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio Single-Sign-On, poiché si basa su SDK specifici del provider.
+Sono supportati due flussi di autenticazione, ovvero un flusso server e un flusso client.  flusso server Hello fornisce l'esperienza di autenticazione più semplice hello, come si basa sull'interfaccia di autenticazione web del provider di hello. Hello flusso client consente una maggiore integrazione con funzionalità specifiche del dispositivo, ad esempio single sign-on quanto si basa sulla SDK specifici del provider.
 
 [!INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
 
 ### <a name="configure-external-redirect-urls"></a>Procedura: Configurare il servizio App per dispositivi mobili per URL di reindirizzamento esterni.
-Molti tipi di applicazioni JavaScript usano una funzionalità di loopback per gestire i flussi dell'interfaccia utente di OAuth.  Queste funzionalità includono:
+Diversi tipi di applicazioni JavaScript di utilizzare un toohandle funzionalità loopback che OAuth UI flussi.  Queste funzionalità includono:
 
 * Esecuzione del servizio in locale
-* Uso di Live Reload con Ionic Framework
-* Reindirizzamento al servizio app per l'autenticazione.
+* Utilizzo di ricaricamento in tempo reale con hello Framework Ionic
+* Reindirizzamento tooApp servizio per l'autenticazione.
 
-L'esecuzione in locale può causare problemi perché, per impostazione predefinita, l'autenticazione del servizio app viene configurata solo per consentire l'accesso dal back-end dell'app per dispositivi mobili. Usare i passaggi seguenti per modificare le impostazioni del servizio app per abilitare l'autenticazione quando si esegue il server in locale:
+In esecuzione in locale può causare problemi in quanto, per impostazione predefinita, il servizio App è solo l'autenticazione configurato l'accesso tooallow dal back-end App per dispositivi mobili. Utilizzare i seguenti passaggi toochange hello autenticazione tooenable le impostazioni di servizio App in esecuzione in locale server hello hello:
 
-1. Accedere al [portale di Azure]
-2. Passare al back-end dell'app per dispositivi mobili.
-3. Selezionare **Esplora risorse** nel menu **STRUMENTI DI SVILUPPO**.
-4. Fare clic su **Vai** per aprire Esplora risorse per il back-end dell'app per dispositivi mobili in una nuova scheda o finestra.
-5. Espandere il nodo **config** > **authsettings** per l'app.
-6. Fare clic sul pulsante **Modifica** per abilitare la modifica della risorsa.
-7. Cercare l'elemento **allowedExternalRedirectUrls** che deve essere null. Aggiungere gli URL in una matrice:
+1. Accedi toohello [portale di Azure]
+2. Passare back-end di tooyour App per dispositivi mobili.
+3. Selezionare **Esplora inventario risorse** in hello **gli strumenti di sviluppo** menu.
+4. Fare clic su **passare** Esplora inventario risorse di hello tooopen per il back-end di App per dispositivi mobili in una nuova scheda o finestra.
+5. Espandere hello **config** > **authsettings** nodo per l'app.
+6. Fare clic su hello **modifica** pulsante tooenable la modifica della risorsa hello.
+7. Trovare hello **allowedExternalRedirectUrls** elemento che deve essere null. Aggiungere gli URL in una matrice:
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
 
-    Sostituire gli URL nella matrice con gli URL del servizio, che in questo esempio è `http://localhost:3000` per il servizio di esempio Node.js locale. È anche possibile usare `http://localhost:4400` per il servizio Ripple o un altro URL, a seconda della configurazione dell'app.
-8. Nella parte superiore della pagina fare clic su **Lettura/Scrittura**, quindi su **PUT** per salvare gli aggiornamenti.
+    Sostituire gli URL di hello nella matrice hello con hello URL del servizio, che in questo esempio è `http://localhost:3000` per il servizio di esempio hello locale Node.js. È anche possibile usare `http://localhost:4400` per il servizio di Ripple hello o altri URL, a seconda della configurazione dell'app.
+8. Nella parte superiore di hello della pagina hello, fare clic su **lettura/scrittura**, quindi fare clic su **inserire** toosave gli aggiornamenti.
 
-È necessario anche aggiungere gli stessi URL di loopback alle impostazioni dell'elenco elementi consentiti CORS:
+È inoltre necessario tooadd hello stesso loopback URL toohello whitelist delle impostazioni CORS:
 
-1. Ritornare al [portale di Azure].
-2. Passare al back-end dell'app per dispositivi mobili.
-3. Fare clic su **CORS** nel menu dell'**API**.
-4. Immettere ogni URL nella casella di testo vuota **Origini consentite** .  Viene creata una nuova casella di testo.
+1. Spostarsi indietro toohello [portale di Azure].
+2. Passare back-end di tooyour App per dispositivi mobili.
+3. Fare clic su **CORS** in hello **API** menu.
+4. Immettere ogni URL in hello vuoto **le origini consentite** casella di testo.  Viene creata una nuova casella di testo.
 5. Fare clic su **SALVA**
 
-Dopo l'aggiornamento del backend, sarà possibile usare i nuovi URL di loopback nell'app.
+Dopo l'aggiornamento di back-end hello, sarà in grado di toouse hello nuovi loopback URL nell'app.
 
 <!-- URLs. -->
-[Avvio rapido alle app per dispositivi mobili di Azure]: app-service-mobile-cordova-get-started.md
+[avvio rapido di Azure Mobile app]: app-service-mobile-cordova-get-started.md
 [Introduzione all'autenticazione]: app-service-mobile-cordova-get-started-users.md
-[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
+[Add authentication tooyour app]: app-service-mobile-cordova-get-started-users.md
 
 [portale di Azure]: https://portal.azure.com/
-[JavaScript SDK per le app per dispositivi mobili di Azure]: https://www.npmjs.com/package/azure-mobile-apps-client
+[SDK JavaScript per App mobili di Azure]: https://www.npmjs.com/package/azure-mobile-apps-client
 [Query object documentation]: https://msdn.microsoft.com/en-us/library/azure/jj613353.aspx

@@ -1,6 +1,6 @@
 ---
-title: Usare ReportViewer in un sito Web | Microsoft Docs
-description: In questo argomento viene descritto come compilare un sito Web di Microsoft Azure con il controllo ReportViewer di Visual Studio che visualizza un report archiviato in una macchina virtuale di Microsoft Azure.
+title: aaaUse ReportViewer in un sito Web | Documenti Microsoft
+description: In questo argomento viene descritto come toobuild un sito Web di Microsoft Azure con il controllo ReportViewer di Visual Studio hello che visualizza un report archiviati in una macchina virtuale di Microsoft Azure.
 services: virtual-machines-windows
 documentationcenter: na
 author: guyinacube
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/11/2017
 ms.author: asaxton
-ms.openlocfilehash: e54c3bc484b0b3b81cc495e54c17e8ef448abe91
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8e0729d6657f96c32a9ac7dffdff7745ff92b48d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-reportviewer-in-a-web-site-hosted-in-azure"></a>Usare ReportViewer in un sito Web ospitato in Azure
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni.
 
-È possibile compilare un sito Web di Microsoft Azure con il controllo ReportViewer di Visual Studio che visualizza un report archiviato in una macchina virtuale di Microsoft Azure. Il controllo ReportViewer si trova in un'applicazione Web creata mediante il modello di applicazione Web ASP.NET.
+È possibile compilare un sito Web di Microsoft Azure con hello controllo ReportViewer di Visual Studio che consente di visualizzare un report archiviato in una macchina virtuale di Microsoft Azure. Hello controllo ReportViewer è in un'applicazione Web creata mediante hello modello applicazione Web ASP.NET.
 
 > [!IMPORTANT]
-> I modelli di applicazione Web MVC ASP.NET non supportano il controllo ReportViewer.
+> modelli di applicazione Web ASP.NET MVC Hello supporta il controllo ReportViewer hello.
 
-Per incorporare ReportViewer nel sito Web di Microsoft Azure, è necessario completare le attività seguenti.
+tooincorporate ReportViewer nel sito Web di Microsoft Azure, è necessario hello toocomplete seguenti attività.
 
-* **Aggiungere** gli assembly al pacchetto di distribuzione
+* **Aggiungere** assembly toohello pacchetto di distribuzione
 * **Configurare** l'autenticazione e l'autorizzazione
-* **Pubblicare** l'applicazione Web ASP.NET in Azure
+* **Pubblicare** hello tooAzure applicazione Web ASP.NET
 
 ## <a name="prerequisites"></a>Prerequisiti
-Consultare la sezione "Indicazioni generali e procedure consigliate" in [SQL Server Business Intelligence in Macchine virtuali di Azure](../classic/ps-sql-bi.md).
+Nella sezione hello "indicazioni generali e procedure consigliate" in [SQL Server Business Intelligence in macchine virtuali di Azure](../classic/ps-sql-bi.md).
 
 > [!NOTE]
-> I controlli ReportViewer vengono offerti con Visual Studio Standard Edition o versione successiva. Se si usa Web Developer Express Edition, è necessario installare [MICROSOFT REPORT VIEWER 2012 RUNTIME](https://www.microsoft.com/download/details.aspx?id=35747) per usare le funzionalità di runtime di ReportViewer.
+> I controlli ReportViewer vengono offerti con Visual Studio Standard Edition o versione successiva. Se si utilizza hello Web Developer Express Edition, è necessario installare hello [MICROSOFT REPORT VIEWER 2012 RUNTIME](https://www.microsoft.com/download/details.aspx?id=35747) le funzionalità di runtime toouse hello ReportViewer.
 > 
 > ReportViewer configurato in modalità di elaborazione locale non è supportato in Microsoft Azure.
 
-## <a name="adding-assemblies-to-the-deployment-package"></a>Aggiunta di assembly al pacchetto di distribuzione
-Quando si ospita l'applicazione ASP.NET in locale, gli assembly di ReportViewer vengono solitamente installati direttamente nella Global Assembly Cache (GAC) del server IIS durante l'installazione di Visual Studio e sono accessibili direttamente dall'applicazione. Tuttavia, quando si ospita l'applicazione ASP.NET nel cloud, Microsoft Azure non consente alcuna installazione nella Global Assembly Cache, pertanto è necessario verificare che gli assembly di ReportViewer siano disponibili localmente per l'applicazione. È possibile eseguire questa operazione aggiungendo i riferimenti agli assembly nel progetto e configurandoli per essere copiati localmente.
+## <a name="adding-assemblies-toohello-deployment-package"></a>Aggiunta di assembly toohello pacchetto di distribuzione
+Quando si ospitano l'applicazione di ASP.NET in locale, gli assembly di ReportViewer hello vengono solitamente installati direttamente nella hello global assembly cache (GAC) del server IIS hello durante l'installazione di Visual Studio e accessibili direttamente da un'applicazione hello. Tuttavia, quando si ospita l'applicazione ASP.NET nel cloud hello, Microsoft Azure non consente a qualsiasi componente installato toobe in hello Global Assembly Cache, pertanto è necessario assicurarsi che gli assembly di ReportViewer hello sono disponibili localmente per l'applicazione. È possibile effettuare questa operazione aggiungendo riferimenti toothem nel progetto e configurarli toobe copiato in locale.
 
-In modalità di elaborazione remota il controllo ReportViewer usa gli assembly seguenti:
+In modalità di elaborazione remota hello controllo ReportViewer utilizza hello seguente assembly:
 
-* **Microsoft.ReportViewer.WebForms.dll**: contiene il codice di ReportViewer necessario per usare ReportViewer nella pagina. Un riferimento per questo assembly viene aggiunto al progetto quando si elimina un controllo ReportViewer in una pagina ASP.NET del progetto.
-* **Microsoft.ReportViewer.Common.dll**: contiene le classi usate dal controllo ReportViewer in fase di esecuzione. Non viene automaticamente aggiunto al progetto.
+* **Microsoft.ReportViewer.WebForms.dll**: contiene codice di ReportViewer hello, che è necessario toouse ReportViewer nella pagina. Un riferimento per questo assembly viene aggiunto il progetto tooyour quando si elimina un controllo ReportViewer in una pagina ASP.NET nel progetto.
+* **Microsoft.ReportViewer.Common.dll**: contiene le classi usate dal controllo ReportViewer hello in fase di esecuzione. Non viene automaticamente aggiunto tooyour progetto.
 
-### <a name="to-add-a-reference-to-microsoftreportviewercommon"></a>Per aggiungere un riferimento a Microsoft.ReportViewer.Common
-* Fare clic con il pulsante destro del mouse sul nodo **Riferimenti** del progetto e quindi scegliere **Aggiungi riferimento**, selezionare l'assembly nella scheda .NET e fare clic su **OK**.
+### <a name="tooadd-a-reference-toomicrosoftreportviewercommon"></a>tooadd tooMicrosoft.ReportViewer.Common un riferimento
+* Mouse sul progetto **riferimenti** nodo e selezionare **Aggiungi riferimento**, selezionare l'assembly hello nella scheda .NET hello e fare clic su **OK**.
 
-### <a name="to-make-the-assemblies-locally-accessible-by-your-aspnet-application"></a>Per rendere gli assembly accessibili localmente dall'applicazione ASP.NET
-1. Nella cartella **Riferimenti** fare clic sull'assembly Microsoft.ReportViewer.Common in modo che vengano visualizzate le proprietà nel riquadro Proprietà.
-2. Nel riquadro Proprietà impostare **Copia locale** su True.
+### <a name="toomake-hello-assemblies-locally-accessible-by-your-aspnet-application"></a>assembly hello toomake accessibili localmente dall'applicazione ASP.NET
+1. In hello **riferimenti** cartella, fare clic su assembly Microsoft.ReportViewer.Common hello in modo che le proprietà visualizzate nel riquadro Proprietà hello.
+2. Nel riquadro Proprietà hello, impostare **Copia localmente** tooTrue.
 3. Ripetere i passaggi 1 e 2 per Microsoft.ReportViewer.WebForms.
 
-### <a name="to-get-reportviewer-language-pack"></a>Per ottenere ReportViewer Language Pack
-1. Installare Microsoft Report Viewer 2012 Runtime Redistributable Package appropriatamente dall' [Area download Microsoft](http://go.microsoft.com/fwlink/?LinkId=317386).
-2. Selezionare la lingua dall'elenco a discesa. La pagina viene reindirizzata alla pagina dell'area download corrispondente.
-3. Fare clic su **Download** per avviare il download di ReportViewerLP.exe.
-4. Dopo aver scaricato ReportViewerLP.exe, fare clic su **Esegui** per eseguire immediatamente l'installazione oppure su **Salva** per salvare il file nel computer. Se si fa clic su **Salva**, tenere a mente il nome della cartella in cui si salva il file.
-5. Individuare la cartella in cui è stato salvato il file. Fare clic con il pulsante destro del mouse su ReportViewerLP.exe, scegliere **Esegui come amministratore** e quindi fare clic su **Sì**.
-6. Dopo aver eseguito ReportViewerLP.exe, si può notare che in c:\windows\assembly sono presenti i file di risorse **Microsoft.ReportViewer.Webforms.Resources** e **Microsoft.ReportViewer.Common.Resources**.
+### <a name="tooget-reportviewer-language-pack"></a>tooget ReportViewer Language Pack
+1. Installare hello appropriato Microsoft Report Viewer 2012 Runtime redistributable package [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=317386).
+2. Lingua hello selezionare dall'elenco a discesa hello e pagina hello Ottiene toohello reindirizzato pagina dell'area download corrispondente.
+3. Fare clic su **scaricare** download hello toostart di ReportViewerLP.exe.
+4. Dopo aver scaricato ReportViewerLP.exe, fare clic su **eseguire** tooinstall immediatamente, oppure fare clic su **salvare** toosave è tooyour computer. Se si fa clic **salvare**, ricordare hello nome della cartella hello in cui salvare il file hello.
+5. Individuare hello cartella in cui è stato salvato il file hello. Fare clic con il pulsante destro del mouse su ReportViewerLP.exe, scegliere **Esegui come amministratore** e quindi fare clic su **Sì**.
+6. Dopo aver eseguito ReportViewerLP.exe, si noterà c:\windows\assembly hello contiene i file di risorse hello **disponibili** e **Microsoft** .
 
-### <a name="to-configure-for-localized-reportviewer-control"></a>Per configurare il controllo ReportViewer localizzato
-1. Scaricare e installare Microsoft Report Viewer 2012 Runtime Redistributable Package attenendosi alle istruzioni specificate in precedenza.
-2. Creare la cartella <language> nel progetto e copiare i file di assembly di risorse associati. I file di assembly di risorse da copiare sono: **Microsoft.ReportViewer.Webforms.Resources.dll** e **Microsoft.ReportViewer.Common.Resources.dll**. Selezionare i file di assembly di risorse e nel riquadro Proprietà impostare **Copia nella directory di output** su "**Copia sempre**".
-3. Impostare la lingua e la lingua dell'interfaccia utente per il progetto Web. Per altre informazioni su come impostare la lingua e la lingua dell'interfaccia utente per una pagina Web ASP.NET, vedere [Procedura: Impostare la lingua e la lingua dell'interfaccia utente per la globalizzazione di pagine Web ASP.NET](http://go.microsoft.com/fwlink/?LinkId=237461).
+### <a name="tooconfigure-for-localized-reportviewer-control"></a>tooconfigure per il controllo ReportViewer localizzato
+1. Scaricare e installare hello Microsoft Report Viewer 2012 Runtime redistributable package dall'hello seguente di sopra di istruzioni specificate.
+2. Creare <language> cartella hello di progetto e copiarvi hello associati sono file di assembly di risorse. sono Hello toobe i file di assembly risorse copiati: **Microsoft.ReportViewer.Webforms.Resources.dll** e **Microsoft.ReportViewer.Common.Resources.dll**. Selezionare i file di assembly di risorse hello e nel riquadro Proprietà hello impostare **copiare tooOutput Directory** troppo "**Copia sempre**".
+3. Impostare hello Culture e UICulture per il progetto web hello. Per ulteriori informazioni su come tooset hello delle impostazioni cultura e le impostazioni cultura dell'interfaccia utente per una pagina Web ASP.NET, vedere [come: Set hello delle impostazioni cultura e le impostazioni cultura dell'interfaccia utente per la globalizzazione di pagine Web ASP.NET](http://go.microsoft.com/fwlink/?LinkId=237461).
 
 ## <a name="configuring-authentication-and-authorization"></a>Configurazione dell'autenticazione e dell'autorizzazione
-ReportViewer deve usare le credenziali appropriate per l'autenticazione con il server di report e le credenziali devono essere autorizzate dal server di report per accedere ai report desiderati. Per informazioni sull'autenticazione, vedere il white paper [Controllo visualizzatore di report del servizio di creazione report e server di report basati sulle macchine virtuali di Microsoft Azure](https://msdn.microsoft.com/library/azure/dn753698.aspx).
+Hello ReportViewer deve toouse le credenziali appropriate tooauthenticate con il server di report hello e credenziali hello devono essere autorizzate dal hello report server di report tooaccess hello desiderato. Per informazioni sull'autenticazione, vedere il white paper relativo alle hello [server di report di macchina virtuale basato su Microsoft Azure e di controllo Visualizzatore report di Reporting Services](https://msdn.microsoft.com/library/azure/dn753698.aspx).
 
-## <a name="publish-the-aspnet-web-application-to-azure"></a>Pubblicare l'applicazione Web ASP.NET in Azure
-Per istruzioni sulla pubblicazione di un'applicazione Web ASP.NET in Azure, vedere la [procedura per la migrazione e la pubblicazione di un'applicazione Web in Azure da Visual Studio](../../../vs-azure-tools-migrate-publish-web-app-to-cloud-service.md) e l'articolo di [introduzione alle app Web e ASP.NET](../../../app-service-web/app-service-web-get-started-dotnet.md).
+## <a name="publish-hello-aspnet-web-application-tooazure"></a>Pubblicare hello tooAzure applicazione Web ASP.NET
+Per istruzioni sulla pubblicazione di un tooAzure di applicazione Web ASP.NET, vedere [procedura: eseguire la migrazione e pubblicare un'applicazione Web di tooAzure da Visual Studio](../../../vs-azure-tools-migrate-publish-web-app-to-cloud-service.md) e [Introduzione alle applicazioni Web e ASP.NET](../../../app-service-web/app-service-web-get-started-dotnet.md).
 
 > [!IMPORTANT]
-> Se il comando Aggiungi progetto di distribuzione di Azure o Aggiungi progetto di servizio cloud Azure non viene visualizzato nel menu di scelta rapida in Esplora soluzioni, potrebbe essere necessario modificare il framework di destinazione per il progetto in .NET Framework 4.
+> Se hello comando Aggiungi progetto di distribuzione di Azure o Aggiungi progetto servizio Cloud di Azure non viene visualizzato nel menu di scelta rapida hello in Esplora soluzioni, potrebbe essere framework di destinazione hello toochange per hello progetto too.NET Framework 4.
 > 
-> I due comandi offrono essenzialmente la stessa funzionalità. Uno dei due comandi viene visualizzato nel menu di scelta rapida in base alla versione di Microsoft Azure SDK installata.
+> i comandi di Hello due forniscono essenzialmente hello stessa funzionalità. Uno o hello altro comando verrà visualizzato nel menu di scelta rapida hello a seconda della versione di hello Microsoft Azure SDK è installato.
 > 
 > 
 
@@ -91,5 +91,5 @@ Per istruzioni sulla pubblicazione di un'applicazione Web ASP.NET in Azure, vede
 
 [SQL Server Business Intelligence in Macchine virtuali di Azure](../classic/ps-sql-bi.md)
 
-[Usare PowerShell per creare una macchina virtuale di Azure con un server di report in modalità nativa](../classic/ps-sql-report.md)
+[Utilizzare PowerShell tooCreate un Azure VM con un Server in modalità nativa Report](../classic/ps-sql-report.md)
 

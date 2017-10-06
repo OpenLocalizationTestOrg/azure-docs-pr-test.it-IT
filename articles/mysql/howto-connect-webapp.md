@@ -1,6 +1,6 @@
 ---
-title: Connessione del servizio app di Azure esistente al Database di Azure per MySQL | Microsoft Docs
-description: Istruzioni su come connettere correttamente un servizio app di Azure esistente al Database di Azure per MySQL
+title: aaaConnect tooAzure di servizio App di Azure esistente del Database per MySQL | Documenti Microsoft
+description: "Istruzioni per la modalità di connessione un tooAzure di servizio App di Azure esistente Database tooproperly per MySQL"
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -9,29 +9,29 @@ manager: jhubbard
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/23/2017
-ms.openlocfilehash: 735e21e8135d67405ec6b88d75be1711a2f071f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d5b16f316e186d665370adcd8b7c7bb38c8d51a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-an-existing-azure-app-service-to-azure-database-for-mysql-server"></a>Connessione di un servizio app di Azure esistente al Database di Azure per MySQL
-Questo documento descrive come connettere un servizio app di Azure esistente al Database di Azure per il server MySQL.
+# <a name="connect-an-existing-azure-app-service-tooazure-database-for-mysql-server"></a>Connettersi a un servizio App di Azure tooAzure Database esistente per il server MySQL
+Questo documento viene illustrato come Database di Azure tooconnect un tooyour di servizio App di Azure esistente per il server MySQL.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Accedere al [Portale di Azure](https://portal.azure.com). Creare un database di Azure per il server MySQL. Per informazioni dettagliate, vedere [Come creare il database di Azure per il server MySQL dal portale](quickstart-create-mysql-server-database-using-azure-portal.md) o [Come creare il database di Azure per il server MySQL con l'interfaccia della riga di comando](quickstart-create-mysql-server-database-using-azure-cli.md).
+Accedi toohello [portale di Azure](https://portal.azure.com). Creare un database di Azure per il server MySQL. Per informazioni dettagliate, vedere troppo[come toocreate del Database per il server MySQL dal portale di Azure](quickstart-create-mysql-server-database-using-azure-portal.md) o [come toocreate Azure Database per il server di MySQL con CLI](quickstart-create-mysql-server-database-using-azure-cli.md).
 
-Attualmente sono disponibili due soluzioni per abilitare l'accesso dal servizio app di Azure a un database di Azure per MySQL. Entrambe le soluzioni implicano la configurazione di regole firewall a livello di server.
+Attualmente sono disponibili due soluzioni tooenable di accesso da un Database di Azure di tooan di servizio App di Azure per MySQL. Entrambe le soluzioni implicano la configurazione di regole firewall a livello di server.
 
-## <a name="solution-1---create-a-firewall-rule-to-allow-all-ips"></a>Soluzione 1: creare una regola del firewall per consentire tutti gli indirizzi IP
-Il database di Azure per MySQL offre accesso alla sicurezza tramite un firewall per proteggere i dati. Durante la connessione da un servizio app di Azure al database di Azure per il server MySQL, tenere presente che gli indirizzi IP in uscita del servizio app hanno una natura dinamica. 
+## <a name="solution-1---create-a-firewall-rule-tooallow-all-ips"></a>Soluzione 1 - creare un tooallow regola firewall di tutti gli indirizzi IP
+Il Database di Azure per MySQL offre la sicurezza di accesso usando un tooprotect firewall i dati. Quando la connessione da un Database di tooAzure servizio App di Azure per il server MySQL, tenere presente che hello in uscita, gli indirizzi IP di servizio App sono dinamico in natura. 
 
-Per garantire la disponibilità del servizio app di Azure, è consigliabile usare questa soluzione per consentire tutti gli indirizzi IP.
+disponibilità di hello tooensure del servizio App di Azure, è consigliabile utilizzare questo tooallow soluzione tutti gli indirizzi IP.
 
 > [!NOTE]
-> Microsoft sta lavorando a una soluzione a lungo termine per evitare che tutti gli indirizzi IP consentano ai servizi di Azure di connettersi al database di Azure per MySQL.
+> Microsoft sta lavorando per un tooavoid soluzione a lungo termine consentendo tutti gli indirizzi IP per servizi di Azure tooconnect tooAzure Database MySQL.
 
-1. Nel pannello del server MySQL fare clic su **Sicurezza connessione** sotto l'intestazione Impostazioni per aprire il pannello Sicurezza connessione per Database di Azure per MySQL.
+1. Nel Pannello di server MySQL hello, in impostazioni fare clic su **sicurezza della connessione** tooopen hello sicurezza della connessione pannello hello Database di Azure per MySQL.
 
    ![Portale di Azure: fare clic su Sicurezza connessione](./media/howto-manage-firewall-using-portal/1-connection-security.png)
 
@@ -42,23 +42,23 @@ Per garantire la disponibilità del servizio app di Azure, è consigliabile usar
 
    ![Portale di Azure - Aggiungere tutti gli indirizzi IP](./media/howto-connect-webapp/1_2-add-all-ips.png)
 
-## <a name="solution-2---create-a-firewall-rule-to-explicitly-allow-outbound-ips"></a>Soluzione 2: creare una regola del firewall per consentire in modo esplicito gli indirizzi IP in uscita
-È possibile aggiungere in modo esplicito tutti gli IP in uscita del servizio app di Azure.
+## <a name="solution-2---create-a-firewall-rule-tooexplicitly-allow-outbound-ips"></a>Soluzione 2: creare un firewall tooexplicitly regola consentire gli indirizzi IP in uscita
+È possibile aggiungere in modo esplicito che tutti hello gli indirizzi IP in uscita del servizio App di Azure.
 
-1. Nel pannello Proprietà del servizio app, visualizzare l'**INDIRIZZO IP IN USCITA**.
+1. Nel Pannello proprietà del servizio App hello, visualizzare il **indirizzo IP in uscita**.
 
    ![Portale di Azure - Visualizzare gli indirizzi IP in uscita](./media/howto-connect-webapp/2_1-outbound-ip-address.png)
 
-2. Nel pannello Sicurezza connessione di MySQL, aggiungere gli indirizzi IP in uscita uno alla volta.
+2. Nel Pannello di sicurezza di connessione MySQL hello, aggiungere indirizzi IP in uscita, uno alla volta.
 
    ![Portale di Azure - Aggiungere indirizzi IP in modo esplicito](./media/howto-connect-webapp/2_2-add-explicit-ips.png)
 
-3. Ricordarsi di **salvare** le regole del firewall.
+3. Ricordare troppo**salvare** regole del firewall.
 
-Sebbene il servizio app di Azure tenti di mantenere gli indirizzi IP costanti nel tempo, vi sono casi in cui gli indirizzi IP possono cambiare. Ad esempio, quando l'app ricicla o si effettua un'operazione di ridimensionamento, oppure quando vengono aggiunti nuovi data center nell'area di Azure per aumentare la capacità. Quando gli indirizzi IP cambiano, l'app potrebbe subire tempi di inattività nel caso in cui non riesca a connettersi al server MySQL. Considerare questa possibilità quando si sceglie una delle soluzioni precedenti.
+Anche se hello servizio App di Azure tenta costante di indirizzi IP tookeep nel tempo, vi sono casi in cui è possano modificare gli indirizzi IP hello. Ad esempio, quando hello ricicli app si verifica un'operazione di scala o quando vengono aggiunti nuovi computer in Azure dati internazionali centri capacità hello tooincrease. Quando si modifica indirizzi IP hello app hello potrebbe subire tempi di inattività in caso di hello non può più connettersi toohello MySQL server. Quando si sceglie una delle soluzioni precedenti hello, prendere in considerazione questo potenziale.
 
 ## <a name="ssl-configuration"></a>Configurazione SSL
-Il database di Azure per MySQL ha abilitato SSL per impostazione predefinita. Se l'applicazione non usa SSL per la connessione al database, è necessario disabilitarlo sul server MySQL. Per informazioni dettagliate su come configurare SSL, vedere [Uso di SSL con il database di Azure per MySQL](howto-configure-ssl.md).
+Il database di Azure per MySQL ha abilitato SSL per impostazione predefinita. Se l'applicazione non utilizza SSL tooconnect toohello database, è necessario toodisable SSL sul server MySQL. Per informazioni dettagliate su come tooconfigure SSL, vedere [utilizzando SSL con il Database di Azure per MySQL](howto-configure-ssl.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulle stringhe di connessione, vedere l'argomento relativo alle [stringhe di connessione](howto-connection-string.md).
+Per ulteriori informazioni sulle stringhe di connessione, fare riferimento troppo[le stringhe di connessione](howto-connection-string.md).

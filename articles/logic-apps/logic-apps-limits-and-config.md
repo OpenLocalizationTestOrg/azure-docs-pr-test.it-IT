@@ -1,6 +1,6 @@
 ---
-title: Limiti e configurazione delle app per la logica | Microsoft Docs
-description: Panoramica dei limiti del servizio e dei valori di configurazione disponibili per le app per la logica.
+title: App aaaLogic limiti e configurazione | Documenti Microsoft
+description: Panoramica dei limiti dei servizi hello e valori di configurazione disponibili per App per la logica.
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: da23bd9fe71a0c41bc236b55bc9f56e123a9d77a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 739509afe5c9a7b7e946ba3571951264127e5297
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-app-limits-and-configuration"></a>Limiti e configurazione delle app per la logica
 
-Di seguito sono riportate informazioni sugli attuali limiti e sui dettagli della configurazione di App per la logica di Azure.
+Di seguito è informazioni su limiti di corrente hello e i dettagli di configurazione per le app di logica di Azure.
 
 ## <a name="limits"></a>Limiti
 
@@ -47,22 +47,22 @@ Di seguito sono riportati i limiti per una singola richiesta e/o chiamata al con
 
 |Nome|Limite|Note|
 |----|----|----|
-|Tentativi|10| Il valore predefinito è 4. Configurabile con il [parametro dei criteri di ripetizione](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
-|Intervallo massimo tra i tentativi|1 ora|Configurabile con il [parametro dei criteri di ripetizione](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
-|Intervallo minimo tra i tentativi|5 secondi|Configurabile con il [parametro dei criteri di ripetizione](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Tentativi|10| Il valore predefinito è 4. Possibile configurare con hello [ripetere parametro criteri](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Intervallo massimo tra i tentativi|1 ora|Possibile configurare con hello [ripetere parametro criteri](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
+|Intervallo minimo tra i tentativi|5 secondi|Possibile configurare con hello [ripetere parametro criteri](https://msdn.microsoft.com/en-us/library/azure/mt643939.aspx)|
 
 ### <a name="run-duration-and-retention"></a>Durata dell'esecuzione e conservazione
 
-Di seguito sono riportati i limiti per una singola esecuzione di app per la logica.
+Di seguito sono i limiti di hello per eseguire un'app di regola singolo.
 
 |Nome|Limite|Note|
 |----|----|----|
 |Durata esecuzione|90 giorni||
-|Conservazione in risorsa di archiviazione|90 giorni|A partire dalla data di inizio dell'esecuzione|
+|Conservazione in risorsa di archiviazione|90 giorni|A partire da ora di inizio eseguita hello|
 |Intervallo di ricorrenza minimo|1 secondo|| 15 secondi per le app per la logica con il piano di servizio app
 |Intervallo di ricorrenza massimo|500 giorni||
 
-Se si prevede di superare i limiti di durata dell'esecuzione o di conservazione della risorsa di archiviazione nel normale flusso di elaborazione, [contattare il supporto](mailto://logicappsemail@microsoft.com) per ottenere assistenza sui requisiti specifici.
+Se si prevede di eseguire i limiti di conservazione durata o di archiviazione nel flusso normale elaborazione, tooexceed [Contattaci](mailto://logicappsemail@microsoft.com) in modo che possiamo aiutarti con i requisiti specifici.
 
 
 ### <a name="looping-and-debatching-limits"></a>Limiti di esecuzione di cicli e debatching
@@ -71,10 +71,10 @@ Di seguito sono riportati i limiti per una singola esecuzione di app per la logi
 
 |Nome|Limite|Note|
 |----|----|----|
-|Elementi ForEach|100.000|È possibile usare l' [azione di query](../connectors/connectors-native-query.md) per filtrare matrici di dimensioni superiori, se necessario|
+|Elementi ForEach|100.000|È possibile utilizzare hello [query azione](../connectors/connectors-native-query.md) toofilter le matrici maggiori in base alle esigenze|
 |Iterazioni Until|5.000||
 |Elementi SplitOn|100.000||
-|Parallelismo ForEach|50| Il valore predefinito è 20. È possibile impostare un elemento foreach sequenziale aggiungendo `"operationOptions": "Sequential"` all'azione `foreach` o un livello specifico di parallelismo usando `runtimeConfiguration`|
+|Parallelismo ForEach|50| Il valore predefinito è 20. È possibile impostare foreach sequenziale tooa aggiungendo `"operationOptions": "Sequential"` toohello `foreach` azione o specifici livelli di parallelismo utilizzando`runtimeConfiguration`|
 
 
 ### <a name="throughput-limits"></a>Limiti di velocità effettiva
@@ -84,12 +84,12 @@ Di seguito sono riportati i limiti per una singola istanza di app per la logica.
 |Nome|Limite|Note|
 |----|----|----|
 |Esecuzioni di azioni per 5 minuti |100.000|Se necessario, è possibile distribuire il carico di lavoro tra più app|
-|Chiamate in uscita simultanee di azioni |~2.500|Diminuire il numero di richieste simultanee o ridurre la durata in base alle esigenze|
-|Chiamate in ingresso simultanee di endpoint di runtime |~1,000|Diminuire il numero di richieste simultanee o ridurre la durata in base alle esigenze|
+|Chiamate in uscita simultanee di azioni |~2.500|Numero di richieste simultanee di aumentare o ridurre la durata di hello in base alle esigenze|
+|Chiamate in ingresso simultanee di endpoint di runtime |~1,000|Numero di richieste simultanee di aumentare o ridurre la durata di hello in base alle esigenze|
 |L'endpoint di runtime legge le chiamate per cinque minuti |60.000|Se necessario, è possibile distribuire il carico di lavoro tra più app|
 |L'endpoint di runtime richiama le chiamate per cinque minuti |45,000|Se necessario, è possibile distribuire il carico di lavoro tra più app|
 
-Se si prevede di superare questo limite nella normale elaborazione o si vuole eseguire il test di carico che potrebbe superare questo limite per un periodo di tempo, [contattare il supporto](mailto://logicappsemail@microsoft.com) per ottenere assistenza sui requisiti specifici.
+Se si prevede che tooexceed questo limite nella normale elaborazione o il test di carico toorun preferenze che potrebbe superare questo limite per un periodo di tempo, [Contattaci](mailto://logicappsemail@microsoft.com) in modo che possiamo aiutarti con i requisiti specifici.
 
 ### <a name="definition-limits"></a>Limiti delle definizioni
 
@@ -97,41 +97,41 @@ Di seguito sono riportati i limiti per una singola definizione di app per la log
 
 |Nome|Limite|Note|
 |----|----|----|
-|Azioni per flusso di lavoro|500|È possibile aggiungere flussi di lavoro annidati per estendere questo limite, se necessario|
-|Livello di annidamento azioni consentito|8|È possibile aggiungere flussi di lavoro annidati per estendere questo limite, se necessario|
+|Azioni per flusso di lavoro|500|È possibile aggiungere questo limite in base alle esigenze tooextend flussi di lavoro annidati|
+|Livello di annidamento azioni consentito|8|È possibile aggiungere questo limite in base alle esigenze tooextend flussi di lavoro annidati|
 |Flussi di lavoro per area per sottoscrizione|1000||
 |Trigger per flusso di lavoro|10||
 |Limite ambito switch-case|25||
 |Numero di variabili per flusso di lavoro|250||
 |Numero massimo di caratteri per espressione|8.192||
 |Dimensioni massime di `trackedProperties` in caratteri|16.000|
-|`action`/`trigger` |80||
+|`action`/`trigger`|80||
 |`description` |256||
 |`parameters` limit|50||
 |`outputs` limit|10||
 
 ### <a name="integration-account-limits"></a>Limiti dell'account di integrazione
 
-Di seguito sono riportati i limiti per gli elementi aggiunti all'account di integrazione
+Di seguito sono i limiti per gli elementi aggiunti toointegration Account
 
 |Nome|Limite|Note|
 |----|----|----|
-|Schema|8 MB|È possibile usare l'[URI del BLOB](logic-apps-enterprise-integration-schemas.md) per caricare file di dimensioni superiori a 2 MB |
+|Schema|8 MB|È possibile utilizzare [URI del blob](logic-apps-enterprise-integration-schemas.md) tooupload file maggiori di 2 MB |
 |Mappa (file XSLT)|2 MB| |
 |L'endpoint di runtime legge le chiamate per cinque minuti |60.000|Se necessario, è possibile distribuire il carico di lavoro tra più account|
 |L'endpoint di runtime richiama le chiamate per cinque minuti |45,000|Se necessario, è possibile distribuire il carico di lavoro tra più account|
 |L'endpoint di runtime tiene traccia delle chiamate per 5 minuti |45,000|Se necessario, è possibile distribuire il carico di lavoro tra più account|
-|L'endpoint di runtime blocca le chiamate simultanee |~1,000|Diminuire il numero di richieste simultanee o ridurre la durata in base alle esigenze|
+|L'endpoint di runtime blocca le chiamate simultanee |~1,000|Numero di richieste simultanee di aumentare o ridurre la durata di hello in base alle esigenze|
 
 ### <a name="b2b-protocols-as2-x12-edifact-message-size"></a>Dimensioni dei messaggi per i protocolli B2B (AS2, X12, EDIFACT)
 
-Di seguito sono riportati i limiti per i protocolli B2B
+Di seguito sono i limiti di hello per protocolli B2B
 
 |Nome|Limite|Note|
 |----|----|----|
-|AS2|50 MB|Applicabile alla decodifica e alla codifica|
-|X12|50 MB|Applicabile alla decodifica e alla codifica|
-|EDIFACT|50 MB|Applicabile alla decodifica e alla codifica|
+|AS2|50 MB|Toodecode applicabile e codificare|
+|X12|50 MB|Toodecode applicabile e codificare|
+|EDIFACT|50 MB|Toodecode applicabile e codificare|
 
 ## <a name="configuration"></a>Configurazione
 
@@ -139,7 +139,7 @@ Di seguito sono riportati i limiti per i protocolli B2B
 
 #### <a name="logic-app-service"></a>Servizio app per la logica
 
-Le chiamate effettuate direttamente da un'app per la logica (ad esempio, tramite [HTTP](../connectors/connectors-native-http.md) oppure [HTTP e Swagger](../connectors/connectors-native-http-swagger.md)) o altre richieste HTTP provengono dall'indirizzo IP specificato nell'elenco seguente:
+Le chiamate effettuate direttamente da un'app logica (vale a dire tramite [HTTP](../connectors/connectors-native-http.md) o [HTTP + Swagger](../connectors/connectors-native-http-swagger.md)) o altre richieste HTTP provenienti da indirizzi IP specificato nel seguente elenco hello hello:
 
 |Area dell'app per la logica|IP in uscita|
 |-----|----|
@@ -168,7 +168,7 @@ Le chiamate effettuate direttamente da un'app per la logica (ad esempio, tramite
 
 #### <a name="connectors"></a>Connettori
 
-Le chiamate effettuate da un [connettore](../connectors/apis-list.md) provengono dall'indirizzo IP specificato nell'elenco seguente:
+Le chiamate eseguite da un [connettore](../connectors/apis-list.md) provengono da hello indirizzo IP specificato in hello seguente elenco:
 
 |Area dell'app per la logica|IP in uscita|
 |-----|----|
@@ -198,7 +198,7 @@ Le chiamate effettuate da un [connettore](../connectors/apis-list.md) provengono
 
 ## <a name="next-steps"></a>Passaggi successivi  
 
-- Per iniziare a usare App per la logica, seguire l'esercitazione [Creare una nuova app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).  
+- iniziare con le app di logica, tooget seguire hello [creare un'App di logica](../logic-apps/logic-apps-create-a-logic-app.md) esercitazione.  
 - [Visualizzare esempi e scenari comuni](../logic-apps/logic-apps-examples-and-scenarios.md)
 - [Le app per la logica consentono di automatizzare i processi aziendali](http://channel9.msdn.com/Events/Build/2016/T694) 
-- [Informazioni su come integrare i sistemi correnti con le app per la logica](http://channel9.msdn.com/Events/Build/2016/P462)
+- [Informazioni su come tooIntegrate i sistemi con logica App](http://channel9.msdn.com/Events/Build/2016/P462)

@@ -1,6 +1,6 @@
 ---
-title: Aggiunta di Azure Active Directory tramite Servizi connessi di Visual Studio | Documentazione Microsoft
-description: Aggiungere un'istanza di Azure Active Directory usando la finestra di dialogo Aggiungi Servizi connessi di Visual Studio
+title: Azure Active Directory utilizzando i servizi connessi in Visual Studio aaaAdding | Documenti Microsoft
+description: Aggiungere una Azure Active Directory utilizzando la finestra di dialogo di Visual Studio aggiungere servizi connessi hello
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/01/2017
 ms.author: kraigb
-ms.openlocfilehash: a767c93fb271f3aa33d9556c69c511bcac7cb0d5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 26c8f68edf9ec5f7bf65cbab34e4f9b4085ed18d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="adding-an-azure-active-directory-by-using-connected-services-in-visual-studio"></a>Aggiunta di Azure Active Directory mediante servizi connessi in Visual Studio
-Tramite Azure Active Directory (Azure AD), è possibile supportare Single Sign-On (SSO) per le applicazioni Web ASP.NET MVC o l'autenticazione di Active Directory nei servizi Web API. Con l'autenticazione Azure Active Directory, gli utenti possono usare gli account da Azure Active Directory per connettersi alle applicazioni Web. I vantaggi dell'autenticazione di Azure Active Directory con l'API Web comprendono la protezione avanzata dei dati quando si espone un'API da un'applicazione Web. Con Azure AD, non è necessario gestire un sistema di autenticazione distinto con la gestione di account e utente.
+Tramite Azure Active Directory (Azure AD), è possibile supportare Single Sign-On (SSO) per le applicazioni Web ASP.NET MVC o l'autenticazione di Active Directory nei servizi Web API. Con Azure Active Directory l'autenticazione, gli utenti possono usare i propri account dalle applicazioni web di Azure Active Directory tooconnect tooyour. i vantaggi di Hello di Azure Active Directory Authentication con API Web includono protezione avanzata dei dati quando si espone un'API da un'applicazione web. Con Azure AD, non si dispone toomanage un sistema di autenticazione distinto con la gestione di account e utente.
 
 ## <a name="prerequisites"></a>Prerequisiti
 - Account di Azure: se non si ha un account di Azure, è possibile [iscriversi per ottenere una versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) oppure [attivare i vantaggi della sottoscrizione di Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F).
 
-### <a name="connect-to-azure-active-directory-using-the-connected-services-dialog"></a>Connettersi ad Azure Active Directory usando la finestra di dialogo dei servizi connessi
+### <a name="connect-tooazure-active-directory-using-hello-connected-services-dialog"></a>La connessione di Active Directory utilizzando i servizi connessi hello tooAzure finestra di dialogo
 1. In Visual Studio creare o aprire un progetto ASP.NET MVC o un progetto API Web ASP.NET.
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul nodo **Servizi connessi** e scegliere **Add Connected Services** (Aggiungi servizi connessi) dal menu di scelta rapida.
+1. Da hello Esplora soluzioni, fare doppio clic su hello **servizi connessi** nodo, selezionare il menu di scelta rapida hello **aggiungere servizi connessi**.
 
-1. Nella pagina di **Servizi connessi** selezionare **Autenticazione con Azure Active Directory**.
+1. In hello **servizi connessi** selezionare **l'autenticazione con Azure Active Directory**.
    
     ![Pagina di Servizi connessi](./media/vs-azure-tools-connected-services-add-active-directory/connected-services-add-active-directory.png)
 
-1. Nella pagina **Introduzione** della procedura guidata **Configura Autenticazione di Azure AD**, selezionare **Avanti**.
+1. In hello **Introduzione** pagina di hello **configurare Azure Active Authentication** procedura guidata, selezionare **Avanti**.
    
     ![Pagina Introduzione](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-1.png)
 
-1. Nella pagina **Single-Sign On** della procedura guidata **Configura Autenticazione di Azure AD** selezionare un dominio dall'elenco a discesa **Dominio**. L'elenco di domini contiene tutti i domini accessibili dagli account elencati nella finestra di dialogo Impostazioni Account. In alternativa, è possibile immettere un nome di dominio se non è possibile trovare quello che si sta cercando, ad esempio `mydomain.onmicrosoft.com`. È possibile scegliere l'opzione per creare una nuova app di Azure Active Directory o usare le impostazioni di un'app di Azure Active Directory esistente. Al termine scegliere **Avanti**.
+1. In hello **Single Sign-On** pagina di hello **configurare Azure Active Authentication** guidata, selezionare un dominio da hello **dominio** elenco a discesa. elenco di Hello dei domini contiene tutti i domini accessibili dagli account hello elencati nella finestra di dialogo Impostazioni Account hello. In alternativa, è possibile immettere un nome di dominio, se non è possibile trovarla hello si sta cercando, ad esempio `mydomain.onmicrosoft.com`. È possibile scegliere di hello opzione toocreate un'app di Azure Active Directory o utilizzare le impostazioni di hello da un'app di Azure Active Directory esistente. Al termine scegliere **Avanti**.
    
     ![Pagina Single Sign-On](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-2.png)
 
-1. Nella pagina **Accesso alla directory** della procedura guidata **Configura Autenticazione di Azure AD**, assicurarsi che l'opzione **Lettura dati directory** sia selezionata. 
+1. In hello **accesso alla Directory** pagina di hello **configurare Azure Active Authentication** procedura guidata, verificare che hello **lettura dati directory** opzione è selezionata. 
    
     ![Pagina di accesso alla directory](./media/vs-azure-tools-connected-services-add-active-directory/configure-azure-ad-wizard-3.png)
 
-1. Selezionare **Fine** per aggiungere il codice di configurazione necessario e i riferimenti per abilitare il progetto per l'autenticazione di Azure AD. È possibile visualizzare il dominio di Active Directory nel [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **fine** tooadd hello tooenable di configurazione necessarie codice e i riferimenti progetto per l'autenticazione di Azure AD. È possibile visualizzare il dominio di Active Directory hello in hello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. In Visual Studio verrà visualizzato un articolo [What Happened](#how-your-project-is-modified) (Risultati) che mostra le modifiche apportate al progetto. Per controllare che tutte le operazioni siano state eseguite correttamente, aprire uno dei file di configurazione modificati, quindi verificare che le impostazioni indicate nell'articolo siano presenti. 
+1. In Visual Studio verrà visualizzato un [cosa è successo](#how-your-project-is-modified) tooshow articolo è come è stato modificato il progetto. Se si desidera toocheck che tutto funzioni, aprire uno dei file di configurazione modificato hello e verificare che le impostazioni di hello indicate nell'articolo hello siano presenti. 
 
 ## <a name="how-your-project-is-modified"></a>Come viene modificato il progetto
-Quando si esegue la procedura guidata, Visual Studio aggiunge Azure Active Directory e i riferimenti associati al progetto. Anche i file di configurazione e i file di codice nel progetto vengono modificati per aggiungere supporto per Azure AD. Le modifiche specifiche apportate in Visual Studio dipendono dal tipo di progetto. Per informazioni dettagliate sul modo in cui vengono modificati i progetti MVC ASP.NET, vedere [Risultati - Progetti MVC](http://go.microsoft.com/fwlink/p/?LinkID=513809). Per i progetti Web API, vedere [Cosa è successo: Progetti Web API](http://go.microsoft.com/fwlink/p/?LinkId=513810).
+Quando si esegue la procedura guidata hello, Visual Studio aggiunge i riferimenti associati tooyour progetto e Azure Active Directory. File di configurazione e i file di codice nel progetto sono anche supporto tooadd modificato per Azure AD. modifiche specifiche Hello che Visual Studio apporta dipendono dal tipo di progetto hello. Per informazioni dettagliate sul modo in cui vengono modificati i progetti MVC ASP.NET, vedere [Risultati - Progetti MVC](http://go.microsoft.com/fwlink/p/?LinkID=513809). Per i progetti Web API, vedere [Cosa è successo: Progetti Web API](http://go.microsoft.com/fwlink/p/?LinkId=513810).
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Forum MSDN su Azure Active Directory](https://social.msdn.microsoft.com/forums/azure/home?forum=WindowsAzureAD)
 * [Documentazione di Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)
-* [Post di blog: Introduzione ad Azure Active Directory](http://blogs.msdn.com/b/brunoterkaly/archive/2014/03/03/introduction-to-windows-azure-active-directory.aspx)
+* [Post di blog: Introduzione tooAzure Active Directory](http://blogs.msdn.com/b/brunoterkaly/archive/2014/03/03/introduction-to-windows-azure-active-directory.aspx)
 

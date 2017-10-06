@@ -1,5 +1,5 @@
 ---
-title: Problemi relativi allo sviluppo dell'applicazione
+title: aaaProblems lo sviluppo dell'applicazione"
 description: Problemi relativi allo sviluppo dell'applicazione
 services: active-directory
 documentationcenter: 
@@ -12,21 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 82215b5b1a47069b5000a13f82f19139ed2c63dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 47ec2024babce164ad1ad3e334c7acd5725d3680
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="problems-developing-my-application"></a>Problemi relativi allo sviluppo dell'applicazione
 
 
-## <a name="i-dont-know-how-to-configure-my-application"></a>Come configurare l'applicazione
-  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
-  * [I don't know how to change the token lifetime defaults for my application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-change-token-lifetime-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav) (Come modificare le impostazioni predefinite per la durata del token per l'applicazione)
+## <a name="i-dont-know-how-tooconfigure-my-application"></a>Non so come tooconfigure dell'applicazione
+  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
+  * [Non si conosce la durata del token hello toochange per impostazione predefinita per l'applicazione](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-change-token-lifetime-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
 
-## <a name="i-dont-know-how-to-select-or-manage-permissions-for-my-application"></a>Come selezionare o gestire le autorizzazioni per l'applicazione
-  I documenti seguenti possono aiutare a risolvere alcuni dei problemi più comuni in questa categoria.
+## <a name="i-dont-know-how-tooselect-or-manage-permissions-for-my-application"></a>Non so come tooselect o gestire le autorizzazioni per l'applicazione
+  Hello documenti elencati di seguito consentono di tooresolve alcuni dei problemi più comuni di hello in questa categoria.
   * [I am confused about how application consent works](https://docs.microsoft.com/azure/active-directory/application-dev-consent-framework/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav) (Informazioni sul funzionamento del consenso dell'applicazione)
-  * [I don't know how to grant permissions to my application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-grant-permissions-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav) (Come concedere autorizzazioni all'applicazione)
-  * [I don't understand the difference between delegated and application permissions](https://docs.microsoft.com/azure/active-directory/application-dev-delegated-and-app-perms/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav) (Differenza tra autorizzazioni delegate e dell'applicazione)
+  * [Non so come applicazione di toomy toogrant autorizzazioni](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-grant-permissions-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Non mi differenza hello tra autorizzazioni applicazione e Delegate](https://docs.microsoft.com/azure/active-directory/application-dev-delegated-and-app-perms/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)

@@ -1,6 +1,6 @@
 ---
 title: 'Esempio di IoT di Azure MyDriving: Avvio rapido | Documentazione Microsoft'
-description: Introduzione a un'app che rappresenta una dimostrazione completa di come progettare un sistema IoT con Microsoft Azure che include l'analisi di flusso, Machine Learning e hub eventi.
+description: "Introduzione a un'applicazione che è una dimostrazione completa di come tooarchitect un sistema IoT utilizzando Microsoft Azure, tra cui flusso Analitica, Machine Learning e hub eventi."
 services: 
 documentationcenter: .net
 suite: 
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/25/2016
 ms.author: harikm
-ms.openlocfilehash: 031b492df1f186087e7b91102cbb44f552999293
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 411b9a992deb22b915f8291d8559e2917d976b2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mydriving-iot-system-quick-start"></a>Sistema IoT MyDriving: Avvio rapido
-MyDriving è un sistema che mostra la progettazione e l'implementazione di una tipica soluzione [Internet delle cose](iot-suite-overview.md) (IoT) che raccoglie dati di telemetria dai dispositivi, li elabora nel cloud e applica Machine Learning per fornire una risposta adattiva. La dimostrazione registra i dati sui viaggi in automobile usando sia il telefono cellulare che un adattatore che raccoglie informazioni dal sistema di controllo dell'automobile. Questi dati vengono poi usati per fornire commenti e suggerimenti sullo stile di guida rispetto ad altri utenti.
+MyDriving è un sistema che illustra hello progettazione e implementazione di una tipica [Internet of Things](iot-suite-overview.md) soluzione (IoT) che raccoglie i dati di telemetria dai dispositivi, elabora i dati nel cloud hello e si applica l'apprendimento tooprovide una risposta adattiva. dimostrazione di Hello registra i dati sulle visite Auto, utilizzando i dati dal telefono cellulare e un adattatore che raccoglie informazioni dal sistema di controllo dell'automobile. Usa questi commenti e suggerimenti di dati tooprovide al proprio approccio Guida gli utenti tooother di confronto.
 
-Il vero scopo di MyDriving consiste nel creare una soluzione IoT, ma, prima di questo, occorre iniziare a usare l'app MyDriving come membro del team di utenti di test. Questo approccio consente di consente di provare l'app e il sistema sottostante in qualità di consumatore, prima di esaminarne l'architettura. Viene introdotto anche HockeyApp, che offre un modo interessante per gestire le distribuzioni alfa e beta delle app agli utenti di test.
+Hello reale MyDriving mira tooget per iniziare a creare la propria soluzione IoT. Ma prima di esso, possibile iniziare a usarlo con hello MyDriving app stessa, come un membro del team utente test. Ciò offre un'esperienza di app hello e sistema hello dietro come un consumer, prima di addentrarsi nell'architettura di hello. Introduce anche tooHockeyApp, un modo sporadico della gestione delle distribuzioni di alfa e beta hello degli utenti tootest app.
 
-## <a name="use-the-mobile-experience"></a>Usare l'esperienza mobile
-È possibile usare l'app MyDriving se è disponibile un dispositivo Android, iOS o Windows 10.
+## <a name="use-hello-mobile-experience"></a>Utilizzare l'esperienza per dispositivi mobili hello
+Se si dispone di un dispositivo Android, iOS o Windows 10, è possibile utilizzare app MyDriving hello.
 
 ### <a name="android-and-windows-10-mobile-installation"></a>Installazione di Android e Windows 10 Mobile
 Nel dispositivo:
@@ -35,82 +35,82 @@ Nel dispositivo:
    
    * Android: in **Impostazioni**,  > **Sicurezza**, consentire le app da **Origini sconosciute**.
    * Windows 10: in **Impostazioni** > , **Aggiornamenti** > **Per gli sviluppatori**, impostare **Modalità sviluppatore**.
-2. Unirsi al team di test beta mediante l'iscrizione o l'accesso a [HockeyApp](https://rink.hockeyapp.net). HockeyApp semplifica la distribuzione dei rilasci anticipati dell'app agli utenti di test.
+2. Unirsi al team di test beta mediante l'iscrizione o l'accesso a [HockeyApp](https://rink.hockeyapp.net). HockeyApp rende facile toodistribute prime versioni di utenti tootest app.
    
-   Se è installato Windows 10, usare il browser Edge.
+   Se si usa Windows 10, è possibile utilizzare browser Edge hello.
    
-   I partecipanti con la build 2016 possono accedere con lo stesso indirizzo di posta elettronica dell'account Microsoft registrato per la conferenza, usando uno dei pulsanti Microsoft. L'iscrizione a HockeyApp è già stata eseguita.
+   Se fosse un partecipante di compilazione 2016, accedi hello stesso posta elettronica dell'account Microsoft che è registrato per la conferenza hello, utilizzando uno dei pulsanti Microsoft hello. L'iscrizione a HockeyApp è già stata eseguita.
    
    ![Schermata di accesso di HockeyApp](./media/iot-solution-get-started/image1.png)
-3. Scaricare e installare l'app qui:
+3. Scaricare e installare l'applicazione hello da qui:
    
    * [Android](http://rink.io/spMyDrivingAndroid)
    * [Windows 10](http://rink.io/spMyDrivingUWP)
    
-   Sono disponibili due elementi. Installare il certificato in **Persone attendibili**, quindi installare l'app.
+   Sono disponibili due elementi. Installare il certificato di hello in **persone attendibili**. Installare quindi l'applicazione hello.
 
-*In caso di problemi di avvio dell'app in Windows 10 Mobile* Il telefono potrebbe non essere aggiornato alla versione più recente. Verificare che siano installati gli ultimi aggiornamenti oppure installare:
+*Eventuali problemi di avvio applicazione hello in Windows 10 Mobile?* Il telefono potrebbe non essere aggiornato alla versione più recente. Assicurarsi di aver ottenuto gli aggiornamenti più recenti di hello, o installare:
 
 * [Microsoft.NET.Native.Framework.1.2.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Framework.1.2.appx) 
 * [Microsoft.NET.Native.Runtime.1.1.appx](https://download.hockeyapp.net/packages/win10/Microsoft.NET.Native.Runtime.1.1.appx) 
 * [Microsoft.VCLibs.ARM.14.00.appx](https://download.hockeyapp.net/packages/win10/Microsoft.VCLibs.ARM.14.00.appx)
 
 ### <a name="ios-installation"></a>Installazione di iOS
-I partecipanti con la build 2016 dovranno scaricare l'app come membro del team di test in HockeyApp.
+Se si è partecipato compilazione 2016, scaricare l'applicazione hello come membro del team di test in HockeyApp:
 
-1. Nel dispositivo iOS accedere a [HockeyApp](https://rink.hockeyapp.net).
-   Usare uno dei pulsanti di accesso Microsoft e accedere con lo stesso indirizzo di posta elettronica dell'account Microsoft registrato per la conferenza. Non usare i campi della posta elettronica e della password.
+1. Nel dispositivo iOS accedere troppo[HockeyApp](https://rink.hockeyapp.net).
+   Utilizzare uno dei pulsanti di accesso Microsoft hello e Accedi con hello stesso posta elettronica dell'account Microsoft che è stato registrato con conferenza hello. (Non usare i campi di posta elettronica e password hello).
    
    ![Schermata di accesso di HockeyApp](./media/iot-solution-get-started/image1.png)
-2. Nel dashboard di HockeyApp selezionare MyDriving e scaricarla.
-3. Autorizzare la versione beta da HockeyApp:
+2. Nel dashboard HockeyApp hello, selezionare MyDriving e scaricarlo.
+3. Autorizzare versione beta di hello da HockeyApp:
    
-   a. Passare a **Settings** > **General** > **Profiles and Device Management.**
+   a. Andare troppo**impostazioni** > **generale** > **profili e la gestione dei dispositivi.**
    
-   b. Considerare attendibile il certificato **Bit Stadium GmbH** .
+   b. Trust hello **Bit stadio GmbH** certificato.
 
-Per chi non ha partecipato con la build 2016, è possibile compilare e distribuire l'applicazione manualmente:
+Se non viene risolto compilazione 2016, è possibile compilare e distribuire app hello manualmente:
 
-1. Scaricare il codice [da GitHub].
+1. Scaricare codice hello [da GitHub].
 2. Compilare e distribuire l'app [con Xamarin].
 
-Altre informazioni sono disponibili nella [guida di riferimento di MyDriving](http://aka.ms/mydrivingdocs).
+Informazioni su altre in hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs).
 
 ## <a name="get-an-obd-adapter-optional"></a>Ottenere un adattatore OBD (facoltativo)
-Questa è la parte che rende il sistema un vero sistema Internet delle cose (IoT). L'app può essere anche usata senza adattatore, ma non è altrettanto divertente. E, in più, gli adattatori non sono costosi.
+Questo aspetto è parte di hello che rende questa un reale sistema Internet of Things! È possibile utilizzare l'applicazione hello senza uno, ma è più divertente reali hello e non sono costosi.
 
-La diagnostica a bordo (OBD) è la funzionalità dell'automobile che l'officina usa per risolvere e diagnosticare le cause dei rumori anomali e delle spie di avvertenza. A meno che l'automobile sia molto obsoleta, è possibile trovare una presa in qualche punto dell'abitacolo, in genere dietro una protezione sotto il cruscotto. Con il connettore giusto, è possibile ottenere le metriche delle prestazioni del motore e apportare alcune modifiche. Un connettore OBD può essere acquistato a prezzi modici dai normali rivenditori. Può essere connesso a un'app del telefono tramite Bluetooth o Wi-Fi.
+Sistemi diagnostici (OBD) sono una funzionalità hello di un'automobile che hello garage utilizza tootune backup Auto e diagnosticare rumori dispari e spie. A meno che la macchina è di grande antichità, sono disponibili un socket in un punto qualsiasi in cabine hello, in genere dietro flap in dashboard hello. Con connettore di destra hello, è possibile ottenere le metriche delle prestazioni del motore di hello e apportare alcune modifiche. È possibile acquistare un connettore OBD economici da posizioni di solito hello. Si connette tramite Bluetooth o Wi-Fi app tooan sul telefono.
 
-Tuttavia, in questo caso, l'automobile verrà connessa al cloud. La connessione diretta dal dispositivo OBD avviene con il telefono, ma l'app viene usata per l'inoltro. I dati di telemetria dell'automobile vengono inviati direttamente all'hub IoT di MyDriving, dove vengono elaborati per registrare i percorsi dei viaggi e valutare lo stile di guida.
+In questo caso, verrà tooconnect cloud toohello Auto. connessione diretta di Hello da hello OBD è tooyour telefono, ma l'app funziona come un relè. Dati di telemetria dell'automobile viene inviato retta toohello MyDriving IoT hub, in cui è elaborato toolog i viaggi e valutare il proprio stile di Guida.
 
-Per connettersi a un dispositivo di diagnostica a bordo (OBD)
+un dispositivo OBD tooconnect:
 
 1. Verificare che il veicolo abbia una presa OBD.
 2. Ottenere un adattatore OBD:
    
    * Se si usa un telefono Android o Windows, è necessario un adattatore OBD II abilitato per Bluetooth. In questo caso, è stato usato [BAFX Products 34t5 Bluetooth OBDII Scan Tool].
    * Se si usa un telefono iOS, è necessario un adattatore OBD abilitato per Wi-Fi. In questo caso, è stato usato [ScanTool OBDLink MX Wi-Fi: OBD Adapter/Diagnostic Scanner].
-3. Seguire le istruzioni fornite con l'adattatore OBD per connetterlo al telefono. Tenere presente quanto segue:
+3. Seguire le istruzioni di hello forniti con il tooconnect adapter OBD è tooyour phone. Tenere presente hello segue:
    
-   * Un adattatore Bluetooth deve essere abbinato al telefono nella pagina delle **impostazioni** .
-   * Un adattatore Wi-Fi deve avere un indirizzo nell'intervallo 192.168.xxx.xxx.
+   * Una scheda Bluetooth deve essere abbinata a telefono hello hello **impostazioni** pagina.
+   * Un adapter Wi-Fi deve avere un indirizzo in 192.168.xxx.xxx intervallo hello.
 4. Se si hanno diverse automobili, è possibile usare un adattatore distinto per ogni macchina (per un massimo di 3).
 
-Se non si ha un adattatore OBD, l'app invia comunque i dati su posizione e velocità dal ricevitore GPS del telefono al back-end e chiede se si vuole simulare un dispositivo OBD.
+Se non si dispone di un adapter OBD, hello app invierà ancora percorso e dati sulla velocità dal nuovo toohello di ricevitore GPS del telefono hello terminano e verranno richiesto se si desidera un OBD toosimulate.
 
-Per altre informazioni su come l'app usa i dati dall'adattatore OBD e sulle opzioni per creare il proprio dispositivo OBD, vedere la sezione 2.1 sui dispositivi IoT nella [guida di riferimento di MyDriving](http://aka.ms/mydrivingdocs).
+È possibile trovare informazioni sull'utilizzo di dati dalla scheda OBD hello app hello e sulle opzioni per creare il proprio dispositivo OBD nella sezione 2.1, "Dispositivi IoT" in hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs).
 
-## <a name="use-the-app"></a>Usare l'app
-Avviare l'app. È disponibile una Guida introduttiva iniziale che fornisce all'utente indicazioni dettagliate sul funzionamento.
+## <a name="use-hello-app"></a>Utilizzare l'applicazione hello
+Avviare l'applicazione hello. È presente un iniziale toowalk Guida introduttiva illustra il funzionamento.
 
 ### <a name="track-your-trips"></a>Tenere traccia dei viaggi.
-Toccare il pulsante di registrazione, il grande cerchio rosso nella parte inferiore della schermata, per avviare un viaggio e toccarlo di nuovo per arrestarlo.
+Toccare hello pulsante record (big cerchio rosso in basso hello hello) toostart un andata e ritorno e nuovamente tooend.
 
-![Illustrazione del pulsante di registrazione di rilevamento dei viaggi](./media/iot-solution-get-started/image2.png)
+![Illustrazione del pulsante di hello record di rilevamento di andata e ritorno](./media/iot-solution-get-started/image2.png)
 
-Ogni volta che si avvia un viaggio, se non è presente un dispositivo OBD, viene chiesto se si vuole usare il simulatore.
+Ogni volta che si avvia un andata e ritorno, se è presente alcun dispositivo OBD, verrà chiesto se si desidera che il simulatore di hello toouse.
 
-Alla fine di un viaggio, fare clic sul pulsante di arresto per visualizzare un riepilogo:
+Alla fine hello un andata e ritorno, toccare hello stop e sarà visualizzato un riepilogo.
 
 ![Esempio di riepilogo di un viaggio](./media/iot-solution-get-started/image3.png)
 
@@ -121,26 +121,26 @@ Alla fine di un viaggio, fare clic sul pulsante di arresto per visualizzare un r
 ![Esempio di un profilo dello stile di guida](./media/iot-solution-get-started/image5.png)
 
 ## <a name="send-us-your-test-feedback"></a>Inviateci i commenti e suggerimenti sul test
-MyDriving è stato creato per aiutare gli utenti a usare rapidamente i propri sistemi IoT. Per questo motivo sarà molto apprezzato qualsiasi commento sul funzionamento. Indicare se:
+Perché abbiamo creato MyDriving toohelp iniziare subito a usare i propri sistemi IoT, si desidera certamente toohear da parte dell'utente, sulle modalità di funzionamento. Indicare se:
 
 * Si sono riscontrate difficoltà o problematiche.
-* Esiste un punto di estensione che potrebbe renderlo più adatto al proprio scenario.
-* Si è trovato un modo più efficace per soddisfare determinate esigenze.
+* C'è un punto di estensione che potrebbe renderlo scenario tooyour più adatto.
+* Trovare un tooaccomplish modo più efficiente determinate esigenze.
 * Si hanno altri suggerimenti per migliorare MyDriving o questa documentazione.
 
-All'interno dell'app MyDriving è possibile usare il meccanismo per commenti e suggerimenti predefinito di HockeyApp. In iOS e Android è sufficiente scuotere il telefono oppure usare il comando del menu **Feedback**. In questo modo viene applicato automaticamente uno screenshot in modo che il destinatario sappia di cosa si sta parlando. In caso di arresti anomali del sistema, HockeyApp raccoglie i relativi log per consentire l'inoltro delle informazioni pertinenti. I commenti possono essere inviati anche dal portale di [HockeyApp].
+All'interno di hello MyDriving app, è possibile utilizzare il meccanismo di feedback hello incorporato HockeyApp: in iOS e Android, è sufficiente specificare il telefono un agitazione oppure utilizzare hello **Feedback** comando di menu. In questo modo viene applicato automaticamente uno screenshot in modo che il destinatario sappia di cosa si sta parlando. E se sono presenti eventuali ingrato arresti anomali del sistema, HockeyApp raccoglie tootell i registri di arresto anomalo del sistema hello ci su di essi. È inoltre possibile assegnare i commenti e suggerimenti tramite hello [portale HockeyApp].
 
 È anche possibile registrare un [problema in GitHub] o lasciare un commento qui di seguito (versione en-us).
 
-Tutti i commenti e suggerimenti saranno apprezzati.
+Saremo lieti toohearing da parte dell'utente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Esplorare la [guida di riferimento di MyDriving](http://aka.ms/mydrivingdocs) per capire come è stato progettato e compilato l'intero sistema MyDriving.
-* [Creare e distribuire un sistema personalizzato](iot-solution-build-system.md) con gli script di Azure Resource Manager. La [guida di riferimento di MyDriving](http://aka.ms/mydrivingdocs) fornisce anche istruzioni relative alle aree con maggiori possibilità di personalizzazione.
+* Esplorare hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs) toounderstand come è stato progettato e costruito hello intero sistema MyDriving.
+* [Creare e distribuire un sistema personalizzato](iot-solution-build-system.md) con gli script di Azure Resource Manager. Hello [Guida di riferimento MyDriving](http://aka.ms/mydrivingdocs) anche in modo semplificato le aree in cui ti hello la maggior parte delle personalizzazioni.
 
 [da GitHub]: https://github.com/Azure-Samples/MyDriving
 [con Xamarin]: https://developer.xamarin.com/guides/ios/getting_started/installation/
 [BAFX Products 34t5 Bluetooth OBDII Scan Tool]: http://www.amazon.com/gp/product/B005NLQAHS
 [ScanTool OBDLink MX Wi-Fi: OBD Adapter/Diagnostic Scanner]: http://www.amazon.com/gp/product/B00OCYXTYY/ref=s9_simh_gw_g263_i1_r?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=desktop-2&pf_rd_r=1MWRMKXK4KK9VYMJ44MP
-[HockeyApp]: https://rink.hockeyapp.org
+[portale HockeyApp]: https://rink.hockeyapp.org
 [problema in GitHub]: https://github.com/Azure-Samples/MyDriving/issues

@@ -1,6 +1,6 @@
 ---
-title: "Documentazione dei set di scalabilità di macchine virtuali di Azure: esercitazioni e riferimento per le API | Documentazione Microsoft"
-description: "Informazioni su come usare i set di scalabilità di macchina virtuale per creare VM Windows o Linux a scalabilità automatica per soluzioni Big Compute, Big Data e in contenitori."
+title: aaaAzure macchina virtuale scala set di documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: "Informazioni su come toouse set di scalabilità di macchine virtuali toocreate scalabilità automatica VM Windows o Linux per una soluzione big compute, dati e le soluzioni nei contenitori."
 services: virtual-machine-scale-sets
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c03fc321082b8be9044faf0e57e2f26ddc22c243
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7f4a4812e2ba44cabfd54bc25fa3b66a04c5bbe8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="virtual-machine-scale-sets-documentation"></a>Documentazione dei set di scalabilità di macchine virtuali
 
-Informazioni su come usare i set di scalabilità di macchina virtuale per distribuire e gestire un set di MV Windows o Linux identiche a scalabilità automatica. La documentazione illustra come usare i set di scalabilità per supportare servizi destinati a soluzioni Big Compute, Big Data e in contenitori.
+Informazioni su come ridimensionare la macchina virtuale toouse imposta toodeploy e gestire un set di identici, la scalabilità automatica VM Windows o Linux. Documentazione viene illustrato come toouse toosupport di set di scalabilità dei servizi che big compute di destinazione, dati e soluzioni nei contenitori.
 
 <ul class="panelContent cardsFTitle">
     <li>

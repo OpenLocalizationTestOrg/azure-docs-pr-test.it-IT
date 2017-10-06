@@ -1,6 +1,6 @@
 ---
-title: Considerazioni sulle prestazioni per Gestione traffico di Azure | Documentazione Microsoft
-description: Informazioni sulle prestazioni in Gestione traffico e su come testare le prestazioni in un sito Web quando si usa Gestione traffico
+title: Considerazioni sulla aaaPerformance per gestione traffico di Azure | Documenti Microsoft
+description: Informazioni sulle prestazioni per gestione traffico e come tootest delle prestazioni del sito Web quando si Usa gestione traffico
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
-ms.openlocfilehash: f686685138625a53971f1fc5fc754fd22c9d67b2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fd4e6cb221a2ceee63ec57237ee90fd714e91db8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="performance-considerations-for-traffic-manager"></a>Considerazioni sulle prestazioni per Gestione traffico
 
-Questa pagina illustrati alcune considerazioni sulle prestazioni di Gestione traffico. Si consideri lo scenario seguente:
+Questa pagina illustrati alcune considerazioni sulle prestazioni di Gestione traffico. Prendere in considerazione hello seguente scenario:
 
-Sono presenti istanze del sito Web nelle aree Stati Uniti occidentali e Asia orientale. Una delle istanze non ha superato il controllo di integrità per il probe di Gestione traffico. Il traffico delle applicazioni viene indirizzato all'area integra. Questo failover è previsto, ma si verifica un problema di prestazioni in base alla latenza del traffico che viene ora indirizzato a un'area distante.
+Si dispone di istanze del sito Web in hello WestUS e aree asiatico. Una delle istanze di hello non è possibile eseguire il controllo di integrità hello per il probe di gestione traffico hello. Il traffico delle applicazioni è area integro toohello diretto. È previsto il failover, ma le prestazioni possono essere un problema in base a latenza hello di hello traffico ora tooa distante area.
 
 ## <a name="performance-considerations-for-traffic-manager"></a>Considerazioni sulle prestazioni per Gestione traffico
 
-L'unico impatto sulle prestazioni prodotto da Gestione traffico in un sito Web è la ricerca DNS iniziale. Il server radice DNS Microsoft che ospita la zona trafficmanager.net gestisce una richiesta DNS per il nome del profilo di Gestione traffico. Gestione traffico popola e aggiorna regolarmente i server radice DNS Microsoft in base ai criteri e ai risultati dei probe. Di conseguenza, a Gestione traffico non viene inviata alcuna query DNS nemmeno durante la ricerca DNS iniziale.
+impatto sulle prestazioni di solo Hello che dispongono di gestione traffico nel sito Web è ricerca DNS iniziale hello. Una richiesta DNS per il nome di hello del profilo di Traffic Manager viene gestita dal server principale di hello Microsoft DNS che ospita la zona trafficmanager.net hello. Gestione traffico compila e aggiorna regolarmente hello DNS radice server Microsoft in base a criteri di Traffic Manager hello e risultati probe hello. Pertanto, anche durante la ricerca DNS iniziale di hello, nessuna query DNS viene inviata tooTraffic Manager.
 
-Gestione traffico è costituito da diversi componenti: server dei nomi DNS, un servizio API, il livello di archiviazione e un servizio di monitoraggio degli endpoint. Un eventuale errore in uno di questi componenti non ha alcun effetto sul nome DNS associato al profilo di Gestione traffico. I record presenti nel server DNS Microsoft rimangono invariati. Il monitoraggio degli endpoint e l'aggiornamento DNS, tuttavia, non vengono eseguiti. Di conseguenza, in caso di arresto del sito primario, Gestione traffico non è in grado di aggiornare DNS in modo che punti al sito di failover.
+Gestione traffico è costituito da diversi componenti: il nome DNS server, un servizio API, il livello di archiviazione hello e un endpoint di servizio di monitoraggio. Se un componente del servizio Gestione traffico non riesce, non vi è alcun effetto sul nome DNS hello associato al profilo di Traffic Manager. record Hello in server Microsoft DNS hello rimangono invariati. Il monitoraggio degli endpoint e l'aggiornamento DNS, tuttavia, non vengono eseguiti. Pertanto, Traffic Manager non è in grado di tooupdate DNS toopoint tooyour failover sito quando si arresta il sito primario.
 
-La risoluzione dei nomi DNS è rapida e i risultati vengono memorizzati nella cache. La velocità della ricerca DNS iniziale dipende dai server DNS usati dal client per la risoluzione dei nomi. In genere, un client è in grado di eseguire una ricerca DNS in circa 50 ms. I risultati della ricerca vengono memorizzati nella cache per la durata (TTL) del DNS. Per Gestione traffico, la durata (TTL) predefinita è 300 secondi.
+La risoluzione dei nomi DNS è rapida e i risultati vengono memorizzati nella cache. Hello velocità di ricerca DNS iniziale hello varia a seconda hello client hello di server DNS viene utilizzato per la risoluzione dei nomi. In genere, un client è in grado di eseguire una ricerca DNS in circa 50 ms. risultati di Hello di ricerca hello vengono memorizzati nella cache per la durata di hello di hello DNS Time-to-live (TTL). valore TTL per gestione traffico predefinito di Hello è 300 secondi.
 
-Il traffico NON attraversa Gestione traffico. Dopo il completamento della ricerca DNS, il client dispone di un indirizzo IP per un'istanza del sito Web. Il client si connette direttamente a tale indirizzo e non passa attraverso Gestione traffico. I criteri di Gestione traffico scelti non producono alcun effetto sulle prestazioni DNS. Il metodo di routing del traffico Prestazioni, tuttavia, può avere un impatto negativo sull'esperienza dell'applicazione. Se, ad esempio, i criteri reindirizzano il traffico dall'America del Nord a un'istanza ospitata in Asia, la latenza di rete per tali sessioni può essere un problema di prestazioni.
+Il traffico NON attraversa Gestione traffico. Al termine di ricerca DNS hello, hello client dispone di un indirizzo IP per un'istanza del sito web. Hello client si connette direttamente toothat indirizzo e il non passa attraverso Traffic Manager. criterio di Traffic Manager si sceglie di Hello non ha effetto sulle prestazioni di DNS hello. Tuttavia, un metodo di routing di prestazioni può influire negativamente sulle prestazioni dell'applicazione hello. Ad esempio, se i criteri reindirizza il traffico dal Nord America tooan istanza ospitata in Asia, latenza di rete hello per le sessioni può essere un problema di prestazioni.
 
 ## <a name="measuring-traffic-manager-performance"></a>Misurazione delle prestazioni di Gestione traffico
 
-Sono presenti diversi siti Web che è possibile usare per comprendere le prestazioni e il comportamento di un profilo di Gestione traffico. Molti di questi siti sono gratuiti, ma possono presentare alcune limitazioni. Alcuni siti offrono servizi avanzati di monitoraggio e report a pagamento.
+Esistono diversi siti Web, è possibile utilizzare toounderstand hello prestazioni e sul comportamento di un profilo di Traffic Manager. Molti di questi siti sono gratuiti, ma possono presentare alcune limitazioni. Alcuni siti offrono servizi avanzati di monitoraggio e report a pagamento.
 
-Gli strumenti disponibili in questi siti misurano la latenza DNS e visualizzano gli indirizzi IP risolti per le ubicazioni dei client nelle diverse aree geografiche. La maggior parte di questi strumenti non memorizza i risultati DNS nella cache. Di conseguenza, gli strumenti visualizzano la ricerca DNS completa ogni volta che viene eseguito un test. Quando si esegue un test dal proprio client, nel corso della durata (TTL) la ricerca DNS completa viene eseguita una sola volta.
+strumenti Hello in questi siti misurano le latenze DNS e visualizzazione hello risolto gli indirizzi IP per tutto il mondo hello posizioni del client. La maggior parte di questi strumenti non memorizzare nella cache i risultati di DNS hello. Di conseguenza, gli strumenti di hello dimostrano ricerca DNS completa hello ogni volta che viene eseguito un test. Quando si testa da un client specifico, si verificano solo hello completo DNS le prestazioni di ricerca di una volta durante la durata TTL hello.
 
-## <a name="sample-tools-to-measure-dns-performance"></a>Strumenti di esempio per la misurazione delle prestazioni DNS
+## <a name="sample-tools-toomeasure-dns-performance"></a>Prestazioni DNS toomeasure strumenti di esempio
 
 * [SolveDNS](http://www.solvedns.com/dns-comparison/)
 
-    SolveDNS offre diversi strumenti per la misurazione delle prestazioni. Lo strumento DNS Comparison visualizza il tempo necessario per la risoluzione del nome DNS e lo confronta con altri provider di servizi DNS.
+    SolveDNS offre diversi strumenti per la misurazione delle prestazioni. strumento di confronto del DNS Hello consente di visualizzare il tempo impiegato tooresolve il nome DNS e il modo in cui che confronta i provider di servizi DNS tooother.
 
 * [WebSitePulse](http://www.websitepulse.com/help/tools.php)
 
-    Uno degli strumenti più semplici è WebSitePulse. Immettere l'URL per visualizzare statistiche, ad esempio i tempi di risoluzione DNS, i tempi per il primo byte e per l'ultimo byte e altre statistiche sulle prestazioni. È possibile scegliere tra tre posizioni di test. In questo esempio, la prima esecuzione mostra che la ricerca DNS impiega 0,204 secondi.
+    Uno degli strumenti più semplici di hello è WebSitePulse. Immettere i tempi di risoluzione DNS toosee hello URL, il primo Byte, l'ultimo Byte e altre statistiche sulle prestazioni. È possibile scegliere tra tre posizioni di test. In questo esempio, si noterà che prima esecuzione hello è indicato che la ricerca DNS accetta 0.204 sec.
 
     ![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse.png)
 
-    Poiché i risultati vengono memorizzati nella cache, nel secondo test relativo allo stesso endpoint di Gestione traffico la ricerca DNS impiega 0,002 secondi.
+    Poiché i risultati vengono memorizzati nella cache, hello hello secondo test hello ricerca DNS hello endpoint di gestione traffico stesso accetta 0.002 sec.
 
     ![pulse2](./media/traffic-manager-performance-considerations/traffic-manager-web-site-pulse2.png)
 
 * [CA App Synthetic Monitor](https://asm.ca.com/en/checkit.php)
 
-    Precedentemente noto come Watchmouse Check Website, questo sito mostra i tempi di risoluzione DNS da più aree geografiche simultaneamente. Immettere l'URL per visualizzare i tempi di risoluzione DNS, i tempi di connessione e la velocità da diverse aree geografiche. Usare questo test per vedere quale servizio ospitato viene restituito per le diverse aree geografiche.
+    In precedenza come strumento di hello Watchmouse sito Web di controllo, questo sito mostrano hello risoluzione DNS ora contemporaneamente da più aree geografiche. Immettere i tempi di risoluzione DNS toosee hello URL, il tempo di connessione e velocità da diverse posizioni geografiche. Utilizzare questo toosee test viene restituito il servizio ospitato per percorsi diversi in tutto il mondo hello.
 
     ![pulse1](./media/traffic-manager-performance-considerations/traffic-manager-web-site-watchmouse.png)
 
 * [Pingdom](http://tools.pingdom.com/)
 
-    Questo strumento offre statistiche sulle prestazioni per ogni elemento di una pagina Web. La scheda Page Analysis (Analisi pagina) mostra la percentuale di tempo impiegato per la ricerca DNS.
+    Questo strumento offre statistiche sulle prestazioni per ogni elemento di una pagina Web. scheda analisi pagina Hello Mostra percentuale di hello di tempo impiegato per la ricerca DNS.
 
 * [What's My DNS?](http://www.whatsmydns.net/)
 
-    Questo sito esegue una ricerca DNS da 20 aree geografiche diverse e visualizza i risultati su una mappa.
+    Il sito esegue una ricerca DNS da diverse 20 posizioni e Visualizza risultati hello su una mappa.
 
 * [Dig Web Interface](http://www.digwebinterface.com)
 
-    Mostra informazioni più dettagliate sul DNS, inclusi i record A e CNAME. Verificare di selezionare "Colorize output" (Colora output) e "Stats" (Statistiche) in Options (Opzioni) e di selezionare "All" (Tutti) in Nameservers (Server dei nomi).
+    Mostra informazioni più dettagliate sul DNS, inclusi i record A e CNAME. Verificare che si selezioni 'Colorizza output di hello' e 'Stats' opzioni e selezionare "All" Nameservers.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

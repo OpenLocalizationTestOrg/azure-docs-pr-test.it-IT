@@ -1,63 +1,46 @@
 ---
-title: 'Lezione supplementare dell''esercitazione su Azure Analysis Services: righe di dettaglio | Microsoft Docs'
-description: Descrive come creare un'espressione di righe di dettaglio nell'esercitazione su Azure Analysis Services.
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 05/26/2017
-ms.author: owend
-ms.openlocfilehash: fde5cd9a9efc3a13e731a91962ced5c086a72355
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
-ms.translationtype: MT
-ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+titolo: aaa "lezione supplementare di Azure Analysis Services tutorial: righe di dettaglio | Descrizione di "Microsoft Docs: viene descritto come toocreate un espressione di righe di dettaglio in hello Azure Analysis Services tutorial.
+servizi: documentationcenter di analysis services: ' autore: manager minewiskan: erikre editor: ' tag: '
+
+ms. AssetID: ms. Service: ms. DevLang analysis services: ms. topic NA: ms. tgt_pltfrm get-started-article: Workload NA: ms. date na: author 26/05/2017: owend
 ---
 # <a name="supplemental-lesson---detail-rows"></a>Lezione supplementare: Righe di dettaglio
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-In questa lezione supplementare si userà l'Editor DAX per definire un'espressione di righe di dettaglio personalizzata. Un'espressione di righe di dettaglio è una proprietà su una misura, che offre agli utenti finali ulteriori informazioni sui risultati aggregati di una misura. 
+In questa lezione supplementare, utilizzare Editor DAX toodefine hello un'espressione di righe di dettaglio personalizzata. Un'espressione di righe di dettaglio è una proprietà su una misura, fornendo agli utenti finali di ulteriori informazioni sui risultati di hello aggregato di una misura. 
   
-Tempo previsto per il completamento della lezione: **10 minuti**  
+Stimato toocomplete ora questa lezione: **10 minuti**  
   
 ## <a name="prerequisites"></a>Prerequisiti  
-L'argomento di questa lezione supplementare fa parte di un'esercitazione sulla creazione di modelli tabulari. Prima di eseguire le attività di questa lezione supplementare, è necessario avere completato tutte le lezioni precedenti o avere a disposizione un progetto completo del modello di esempio Adventure Works Internet Sales.  
+L'argomento di questa lezione supplementare fa parte di un'esercitazione sulla creazione di modelli tabulari. Prima di eseguire attività di hello in questa lezione supplementare, è necessario avere completato tutte le lezioni precedenti o dispone di un progetto di modello di esempio Adventure Works Internet Sales completato.  
   
-## <a name="what-do-we-need-to-solve"></a>Qual è l'esigenza?
-Prima di aggiungere un'espressione di righe di dettaglio, verrà esaminata in dettaglio la misura InternetTotalSales.
+## <a name="what-do-we-need-toosolve"></a>Che cosa dobbiamo toosolve?
+Esaminiamo i dettagli di hello della misura InternetTotalSales, prima di aggiungere un'espressione di righe di dettaglio.
 
-1.  In SSDT fare clic sul menu **Modello** > **Analizza in Excel** per aprire Excel e creare una tabella pivot vuota.
+1.  In SSDT, fare clic su hello **modello** menu > **analizza in Excel** tooopen Excel e creare una tabella pivot vuota.
   
-2.  In **Campi tabella pivot** aggiungere la misura **InternetTotalSales** dalla tabella FactInternetSales in **Valori**, **CalendarYear** dalla tabella DimDate in **Colonne** e **EnglishCountryRegionName** in **Righe**. La tabella pivot offre ora i risultati aggregati dalla misura InternetTotalSales per area e anno. 
+2.  In **PivotTable Fields**, aggiungere hello **InternetTotalSales** misure da tabella FactInternetSales hello troppo**valori**, **CalendarYear**dalla hello DimDate tabella troppo**colonne**, e **EnglishCountryRegionName** troppo**righe**. La tabella pivot subito produce risultati aggregati da misure InternetTotalSales hello per le aree e anno. 
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-pivottable.png)
 
-3. Nella tabella pivot fare doppio clic su un valore aggregato per un anno e un nome di area. In questo esempio sono stati selezionati l'Australia e l'anno 2014. Viene aperto un nuovo foglio contenente alcuni dati, ma non molto utili.
+3. Nella tabella pivot hello, fare doppio clic su un valore aggregato per un anno e un nome di area. Di seguito si fa doppio clic sul valore hello per l'Australia e hello anno 2014. Viene aperto un nuovo foglio contenente alcuni dati, ma non molto utili.
 
     ![aas-lesson-detail-rows-pivottable](../tutorials/media/aas-lesson-detail-rows-sheet.png)
   
-In questo caso, sarebbe invece utile una tabella contenente colonne e righe dei dati che contribuiscono al risultato aggregato della misura InternetTotalSales. A tale scopo, è possibile aggiungere un'espressione di righe di dettaglio come proprietà della misura.
+Ciò che si desidera toosee qui è una tabella contenente colonne e righe di dati che contribuiscono toohello aggregati i risultati di una misura InternetTotalSales. toodo, che è possibile aggiungere un'espressione di righe di dettaglio come proprietà della misura hello.
 
 ## <a name="add-a-detail-rows-expression"></a>Aggiungere un'espressione di righe di dettaglio
 
-#### <a name="to-create-a-detail-rows-expression"></a>Per creare un'espressione di righe di dettaglio 
+#### <a name="toocreate-a-detail-rows-expression"></a>toocreate un'espressione di righe di dettaglio 
   
-1. In SSDT, nella griglia delle misure della tabella FactInternetSales, fare clic sulla misura **InternetTotalSales**. 
+1. In SSDT, nella griglia delle misure della tabella FactInternetSales hello, fare clic su hello **InternetTotalSales** misura. 
 
-2. In **Proprietà** > **Espressione righe di dettaglio** fare clic sul pulsante con i tre puntini per aprire l'Editor DAX.
+2. In **proprietà** > **espressione righe di dettaglio**, fare clic su prova editor pulsante tooopen prova Editor DAX.
 
     ![aas-lesson-detail-rows-ellipse](../tutorials/media/aas-lesson-detail-rows-ellipse.png)
 
-3. Nell'Editor DAX immettere l'espressione seguente:
+3. Nell'Editor DAX immettere hello espressione seguente:
 
     ```
     SELECTCOLUMNS(
@@ -72,9 +55,9 @@ In questo caso, sarebbe invece utile una tabella contenente colonne e righe dei 
 
     ```
 
-    Questa espressione specifica che i nomi, le colonne e i risultati delle misure dalla tabella FactInternetSales e dalle tabelle correlate vengono restituiti quando un utente fa doppio clic su un risultato aggregato in una tabella pivot o un report.
+    Questa espressione consente di specificare i nomi, le colonne e misure da tabella FactInternetSales hello e le tabelle correlate vengono restituiti quando un utente fa doppio clic su un risultato aggregato in una tabella pivot o un report.
 
-4. Tornare a Excel ed eliminare il foglio creato nel passaggio 3, quindi fare doppio clic su un valore aggregato. Questa volta, dopo aver definito una proprietà di espressione di righe di dettaglio per la misura, viene aperto un nuovo foglio contenente dati molto più utili.
+4. In Excel, Elimina foglio hello creato nel passaggio 3, quindi fare doppio clic su un valore aggregato. Questa volta, con una proprietà di espressione di righe di dettaglio definita per la misura hello, un nuovo foglio apre che contiene dati molto più utili.
 
     ![aas-lesson-detail-rows-detailsheet](../tutorials/media/aas-lesson-detail-rows-detailsheet.png)
 

@@ -1,5 +1,5 @@
 ---
-title: Raccogliere dati da CollectD in Log Analytics di OMS | Microsoft Docs
+title: dati aaaCollect da CollectD in OMS Log Analitica | Documenti Microsoft
 description: "CollectD è un daemon Linux open source che, a intervalli regolari, raccoglie dati dalle applicazioni e informazioni a livello di sistema.  Questo articolo fornisce informazioni sulla raccolta di dati da CollectD in Log Analytics."
 services: log-analytics
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: magoedte
-ms.openlocfilehash: a63b15ca5126b45451f0694c9ee75d7b67b1ceaf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7ad82c9c67a664aabd44f08bef2253d84cd2dfba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-data-from-collectd-on-linux-agents-in-log-analytics"></a>Raccogliere dati da CollectD su agenti Linux in Log Analytics
-[CollectD](https://collectd.org/) è un daemon Linux open source che, a intervalli regolari, raccoglie metriche sulle prestazioni dalle applicazioni e informazioni a livello di sistema. Applicazioni di esempio includono Java Virtual Machine (JVM), MySQL Server e Nginx. Questo articolo fornisce informazioni sulla raccolta di dati sulle prestazioni da CollectD in Log Analytics.
+[CollectD](https://collectd.org/) è un daemon Linux open source che, a intervalli regolari, raccoglie metriche sulle prestazioni dalle applicazioni e informazioni a livello di sistema. Applicazioni di esempio includono Nginx hello Java Virtual Machine (JVM) e il MySQL Server. Questo articolo fornisce informazioni sulla raccolta di dati sulle prestazioni da CollectD in Log Analytics.
 
 Un elenco completo dei plug-in disponibili è contenuto nella [Tabella dei plug-in](https://collectd.org/wiki/index.php/Table_of_Plugins).
 
 ![Panoramica di CollectD](media/log-analytics-data-sources-collectd/overview.png)
 
-Nell'agente OMS per Linux è inclusa la configurazione di CollectD seguente per indirizzare dati CollectD all'agente OMS per Linux.
+Hello configurazione CollectD seguente è incluso in hello agente OMS per Linux tooroute CollectD dati toohello agente OMS per Linux.
 
     LoadPlugin write_http
 
@@ -39,7 +39,7 @@ Nell'agente OMS per Linux è inclusa la configurazione di CollectD seguente per 
          </Node>
     </Plugin>
 
-Se si usa una versione di CollectD precedente a 5.5, adottare invece la configurazione seguente.
+Inoltre, se si utilizza un versioni collectD prima 5.5 hello seguente configurazione invece di utilizzare.
 
     LoadPlugin write_http
 
@@ -50,12 +50,12 @@ Se si usa una versione di CollectD precedente a 5.5, adottare invece la configur
        </URL>
     </Plugin>
 
-La configurazione di CollectD usa il plug-in predefinito `write_http` per inviare dati delle metriche sulle prestazioni all'agente OMS per Linux tramite la porta 26000. 
+configurazione CollectD Hello Usa predefinito hello`write_http` plug-in toosend prestazioni dati di metrica sulla porta 26000 tooOMS agente per Linux. 
 
 > [!NOTE]
-> Se necessario, questa porta può essere configurata su una porta personalizzata.
+> Questa porta può essere configurato tooa personalizzato porta, se necessario.
 
-L'agente OMS per Linux resta in ascolto delle metriche di CollectD sulla porta 26000 e le converte anche in metriche per lo schema OMS. Di seguito è illustrata la configurazione dell'agente OMS per Linux `collectd.conf`.
+Hello agente OMS per Linux inoltre in ascolto sulla porta 26000 per le metriche CollectD e quindi li converte tooOMS metriche di schema. esempio Hello è hello agente OMS per Linux configurazione `collectd.conf`.
 
     <source>
       type http
@@ -74,15 +74,15 @@ L'agente OMS per Linux resta in ascolto delle metriche di CollectD sulla porta 2
 
 
 ## <a name="configuration"></a>Configurazione
-Di seguito è riportata la procedura di base per configurare la raccolta di dati CollectD in Log Analytics.
+di seguito Hello sono raccolta tooconfigure passaggi di base dei dati CollectD nel Log Analitica.
 
-1. Configurare CollectD per l'invio di dati all'agente OMS per Linux con il plug-in write_http.  
-2. Configurare l'agente OMS per Linux restare in ascolto dei dati di CollectD sulla porta appropriata.
+1. Configurare CollectD toosend dati toohello agente OMS per Linux tramite plug-in write_http hello.  
+2. Configurare hello agente OMS per Linux toolisten per hello CollectD dati sulla porta appropriata hello.
 3. Riavviare CollectD e l'agente OMS per Linux.
 
-### <a name="configure-collectd-to-forward-data"></a>Configurare CollectD per l'inoltro di dati 
+### <a name="configure-collectd-tooforward-data"></a>Configurare CollectD tooforward dati 
 
-1. Per indirizzare dati di CollectD all'agente OMS per Linux, è necessario che `oms.conf` sia stato aggiunto alla directory di configurazione di CollectD. La destinazione di questo file dipende dalla distribuzione di Linux presente sul computer.
+1. tooroute CollectD dati toohello agente OMS per Linux, `oms.conf` toobe esigenze aggiunta directory di configurazione del tooCollectD. destinazione Hello di questo file dipende dalla distribuzione Linux hello del computer.
 
     Se la directory di configurazione di CollectD si trova in /etc/collectd.d/:
 
@@ -93,20 +93,20 @@ Di seguito è riportata la procedura di base per configurare la raccolta di dati
         sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.d/oms.conf /etc/collectd/collectd.conf.d/oms.conf
 
     >[!NOTE]
-    >Per versioni di CollectD antecedenti a 5.5, è necessario modificare i tag in `oms.conf`, come illustrato in precedenza.
+    >Per le versioni CollectD precedenti 5.5 è tag hello toomodify in `oms.conf` come illustrato in precedenza.
     >
 
-2. Copiare collectd.conf nella directory di configurazione di omsagent dell'area di lavoro desiderata.
+2. Copiare la directory di configurazione omsagent dell'area di lavoro collectd.conf toohello desiderato.
 
         sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.d/collectd.conf /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/
         sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/collectd.conf
 
-3. Riavviare CollectD e l'agente OMS per Linux con i comandi seguenti.
+3. Riavviare CollectD e l'agente OMS per Linux con hello i comandi seguenti.
 
     sudo service collectd restart  sudo /opt/microsoft/omsagent/bin/service_control restart
 
-## <a name="collectd-metrics-to-log-analytics-schema-conversion"></a>Conversione dello schema di metriche di CollectD nello schema di Log Analytics
-Per mantenere un modello comune tra le metriche dell'infrastruttura già raccolte dall'agente OMS per Linux e le nuove metriche raccolte da CollectD, viene usato lo schema di mapping seguente:
+## <a name="collectd-metrics-toolog-analytics-schema-conversion"></a>CollectD metriche tooLog conversione degli schemi Analitica
+toomaintain un comune modello tra le metriche delle infrastrutture già raccolti dall'agente OMS per Linux e hello nuova metrica raccolte CollectD hello seguente mapping dello schema viene utilizzato:
 
 | Campo metrica CollectD | Campo Log Analytics |
 |:--|:--|
@@ -120,6 +120,6 @@ Per mantenere un modello comune tra le metriche dell'infrastruttura già raccolt
 | values[] | CounterValue |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni sulle [ricerche nei log](log-analytics-log-searches.md) per analizzare i dati raccolti dalle origini dati e dalle soluzioni. 
-* Usare [campi personalizzati](log-analytics-custom-fields.md) per analizzare i dati dei record Syslog nei singoli campi.
+* Informazioni su [log ricerche](log-analytics-log-searches.md) tooanalyze hello dati raccolti da origini dati e le soluzioni. 
+* Utilizzare [campi personalizzati](log-analytics-custom-fields.md) tooparse dati da record syslog in singoli campi.
 

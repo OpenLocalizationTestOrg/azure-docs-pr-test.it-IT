@@ -1,5 +1,5 @@
 ---
-title: Deprecazione Datamarket| Microsoft Docs
+title: Deprecazione aaaDatamarket | Documenti Microsoft
 description: Deprecazione Data Market di Azure.
 services: machine-learning
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: LuisCa
-ms.openlocfilehash: e40b69f97878a6072a64912f017f8e5621ba6e71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee9fb0c6e4ffd87239220976ea2984afab9fffae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="datamarket-is-now-deprecated"></a>DataMarket è deprecata
 
-[Microsoft DataMarket](https://datamarket.azure.com/datasets) è ora deprecata e quindi sono deprecate anche le API di Machine Learning in essa contenute.
+Hello [Microsoft DataMarket](https://datamarket.azure.com/datasets) è ora deprecato, e quindi hello Machine Learning API sono ospitati anche ora sono deprecate.
 
-È possibile trovare queste funzionalità (e altro ancora) nelle [API Servizi cognitivi](https://www.microsoft.com/cognitive-services).
+È ora possibile trovare queste funzionalità (e altro ancora) in hello [API dei servizi cognitivi](https://www.microsoft.com/cognitive-services).
 
 ## <a name="text-analytics-api"></a>API analisi del testo
 
-I clienti dell'API analisi del testo di DataMarket devono iniziare a usare l'[API analisi del testo di Servizi cognitivi](https://www.microsoft.com/cognitive-services/text-analytics-api).
-L'API analisi del testo di Servizi cognitivi supporta tutti gli scenari supportati da DataMarket, nonché altri scenari, quali il rilevamento lingua e il rilevamento argomento.
+I clienti precedenti DataMarket testo Analitica API devono iniziare a usare hello [cognitivi servizi testo Analitica API](https://www.microsoft.com/cognitive-services/text-analytics-api).
+Hello cognitivi Analitica API per servizi testo supporta tutti gli scenari di hello che hello DataMarket precedente ha versione, nonché scenari aggiuntivi, ad esempio il rilevamento della lingua e il rilevamento di argomento.
 
 
 ## <a name="recommendations-api"></a>API Consigli 
 
-I clienti dell'API Consigli di DataMarket devono iniziare a usare l'[API Consigli di Servizi cognitivi](https://www.microsoft.com/cognitive-services/recommendations-api).
-L'API Consigli di Servizi cognitivi supporta tutti gli scenari supportati da DataMarket, nonché altri scenari, quali il supporto batch e migliori metriche offline per valutare la qualità dei modelli. 
+I clienti precedenti DataMarket indicazioni API devono iniziare a usare hello [cognitivi servizi indicazioni API](https://www.microsoft.com/cognitive-services/recommendations-api).
+Hello supporta l'API di indicazioni servizi cognitivi che tutti hello scenari hello DataMarket precedente versione ha, nonché ulteriori scenari, ad esempio il supporto in batch e la qualità di hello tooevaluate meglio le metriche non in linea dei modelli. 
 
-Per altre informazioni su come iniziare a usare l'API Consigli di Servizi cognitivi vedere [Migrate to Azure Cognitive Services Recommendations API](http://aka.ms/recomigrate) (Migrazione all'API Consigli di Servizi cognitivi di Azure).
+Per ulteriori informazioni su come toostart utilizzando hello cognitivi API dei servizi di indicazioni, vedere [migrare tooAzure cognitivi servizi indicazioni API](http://aka.ms/recomigrate).

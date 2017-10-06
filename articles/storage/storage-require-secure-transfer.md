@@ -1,6 +1,6 @@
 ---
-title: Richiedere il trasferimento sicuro in Archiviazione di Azure | Microsoft Docs
-description: "Informazioni sulla funzionalità \"Trasferimento sicuro obbligatorio\" per Archiviazione di Azure e su come abilitarla."
+title: trasferimento sicuro di aaaRequire in archiviazione di Azure | Documenti Microsoft
+description: "Informazioni sulle funzionalità di \"Richiede il trasferimento protetto\" hello per archiviazione di Azure e come tooenable è."
 services: storage
 documentationcenter: na
 author: fhryo-msft
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 06/20/2017
 ms.author: fryu
-ms.openlocfilehash: bc5b7fc79869c632db96958f17aaf953a5fd3b19
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 27f745c5e771b50213c1dbb39dee081947be1f39
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="require-secure-transfer"></a>Richiedere il trasferimento sicuro
 
-L'opzione Trasferimento sicuro obbligatorio aumenta la sicurezza dell'account di archiviazione perché consente le richieste all'account di archiviazione solo tramite connessioni sicure il protocollo HTTPS. Ad esempio, quando si chiamano API REST per accedere all'account di archiviazione, è necessario connettersi usando HTTPS. Quando questa impostazione è abilitata, le eventuali richieste tramite HTTP vengono rifiutate.
+opzione Hello "trasferimento sicuro richiesto" migliora la sicurezza hello dell'account di archiviazione consentendo solo le richieste di account di archiviazione toohello da connessioni protette. Ad esempio, quando si chiama l'API REST tooaccess account di archiviazione, è necessario connettersi usando HTTPS. Quando questa impostazione è abilitata, le eventuali richieste tramite HTTP vengono rifiutate.
 
-Quando si usa il servizio File di Azure, se è abilitata l'opzione "Trasferimento sicuro obbligatorio" le connessioni senza crittografia hanno esito negativo. Questo include scenari in cui si usano SMB 2.1, SMB 3.0 senza crittografia e alcuni tipi del client SMB Linux. 
+Quando si utilizza il servizio di Azure file hello, qualsiasi connessione senza crittografia ha esito negativo quando la "Protezione di trasferimento richiesto" è abilitate. Sono inclusi scenari con alcune varianti di hello client Linux SMB, SMB 2.1 e SMB 3.0 senza crittografia. 
 
-Per impostazione predefinita, l'opzione "Trasferimento sicuro obbligatorio" è disattivata.
+Per impostazione predefinita, l'opzione di hello "trasferimento sicuro richiesto" è disabilitata.
 
 > [!NOTE]
 > Poiché Archiviazione di Azure non supporta HTTPS per i nomi di dominio personalizzati, l'opzione non è applicabile quando si usa un nome di dominio personalizzato.
 
-## <a name="enable-secure-transfer-required-in-the-azure-portal"></a>Abilitare "Trasferimento sicuro obbligatorio" nel portale di Azure
+## <a name="enable-secure-transfer-required-in-hello-azure-portal"></a>Abilitare "Trasferimento sicuro richiesto" in hello portale di Azure
 
-È possibile abilitare l'impostazione "Trasferimento sicuro obbligatorio" sia quando si crea un account di archiviazione nel [portale di Azure](https://portal.azure.com), sia per gli account di archiviazione esistenti.
+È possibile abilitare hello "trasferimento sicuro richiesto" Se si impostano entrambe quando si crea un account di archiviazione in hello [portale di Azure](https://portal.azure.com)e per gli account di archiviazione esistente.
 
 ### <a name="require-secure-transfer-when-you-create-a-storage-account"></a>Richiedere il trasferimento sicuro quando si crea un account di archiviazione
 
-1. Aprire il pannello **Crea account di archiviazione** nel portale di Azure.
+1. Aprire hello **creare account di archiviazione** pannello in hello portale di Azure.
 1. In **Trasferimento sicuro obbligatorio** selezionare **Abilitato**.
 
   ![screenshot](./media/storage-require-secure-transfer/secure_transfer_field_in_portal_en_1.png)
 
 ### <a name="require-secure-transfer-for-an-existing-storage-account"></a>Richiedere il trasferimento sicuro per un account di archiviazione esistente
 
-1. Selezionare un account di archiviazione esistente nel portale di Azure.
-1. Selezionare **Configurazione** in **IMPOSTAZIONI** nel pannello del menu dell'account di archiviazione.
+1. Selezionare un account di archiviazione esistente nel portale di Azure hello.
+1. Selezionare **configurazione** in **impostazioni** nel Pannello di hello storage account dal menu.
 1. In **Trasferimento sicuro obbligatorio** selezionare **Abilitato**.
 
   ![screenshot](./media/storage-require-secure-transfer/secure_transfer_field_in_portal_en_2.png)
 
 ## <a name="enable-secure-transfer-required-programmatically"></a>Abilitare "Trasferimento sicuro obbligatorio" a livello di codice
 
-Nelle proprietà dell'account di archiviazione, il nome dell'impostazione è _supportsHttpsTrafficOnly_. È possibile abilitare l'impostazione "Trasferimento sicuro obbligatorio" tramite l'API REST, strumenti o librerie:
+nome dell'impostazione Hello _supportsHttpsTrafficOnly_ nelle proprietà di account di archiviazione. È possibile abilitare l'impostazione "Trasferimento sicuro obbligatorio" tramite l'API REST, strumenti o librerie:
 
 * **API REST** (versione: 2016-12-01): [pacchetto versione](https://docs.microsoft.com/en-us/rest/api/storagerp/storageaccounts)
 * **PowerShell** (versione: 4.1.0): [pacchetto versione](https://docs.microsoft.com/en-us/powershell/module/azurerm.storage/set-azurermstorageaccount?view=azurermps-4.1.0)
@@ -64,9 +64,9 @@ Nelle proprietà dell'account di archiviazione, il nome dell'impostazione è _su
 
 ### <a name="enable-secure-transfer-required-setting-with-rest-api"></a>Abilitare l'impostazione "Trasferimento sicuro obbligatorio" tramite l'API REST
 
-Per semplificare il test con l'API REST, è possibile usare [ArmClient](https://github.com/projectkudu/ARMClient) per eseguire la chiamata dalla riga di comando.
+toosimplify test con l'API REST, è possibile utilizzare [ArmClient](https://github.com/projectkudu/ARMClient) toocall dalla riga di comando.
 
- Per verificare l'impostazione con l'API REST, usare la riga di comando seguente:
+ È possibile utilizzare di sotto della riga di comando toocheck hello con hello API REST:
 
 ```
 # Login Azure and proceed with your credentials
@@ -75,7 +75,7 @@ Per semplificare il test con l'API REST, è possibile usare [ArmClient](https://
 > armclient GET  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}?api-version=2016-12-01
 ```
 
-Nella risposta è possibile trovare l'impostazione _supportsHttpsTrafficOnly_. Esempio:
+In risposta hello, è possibile trovare _supportsHttpsTrafficOnly_ impostazione. Esempio:
 
 ```Json
 {
@@ -90,7 +90,7 @@ Nella risposta è possibile trovare l'impostazione _supportsHttpsTrafficOnly_. E
 }
 ```
 
-Per abilitare l'impostazione con l'API REST, usare la riga di comando seguente:
+È possibile utilizzare di sotto della riga di comando tooenable hello con hello API REST:
 
 ```
 # Login Azure and proceed with your credentials
@@ -109,4 +109,4 @@ Esempio di Input.json:
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza, che consentono agli sviluppatori di creare applicazioni sicure. Per altre informazioni, vedere la [Guida alla sicurezza delle risorse di archiviazione](storage-security-guide.md).
+Archiviazione di Azure fornisce un set completo di funzionalità di sicurezza, che insieme consentono agli sviluppatori di applicazioni sicure toobuild. Per ulteriori dettagli, visitare hello [Guida alla protezione di archiviazione](storage-security-guide.md).

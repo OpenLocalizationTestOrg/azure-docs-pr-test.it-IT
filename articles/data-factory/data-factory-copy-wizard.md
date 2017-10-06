@@ -1,6 +1,6 @@
 ---
-title: Copiare i dati facilmente con la Copia guidata - Azure | Documentazione Microsoft
-description: Informazioni su come usare Copia guidata di Data Factory per copiare i dati da origini dati supportate nei sink.
+title: dati aaaCopy facilmente con copia guidata - Azure | Documenti Microsoft
+description: Informazioni su come toouse hello dati toocopy Data Factory Copia guidata toosinks di origini dati supportate.
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 282cb4484f8209e6bb36f2a02d7a897f1ba0aa8e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 99437ec16facf3b94c8be18487ec89e9f13acc9b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="copy-or-move-data-easily-with-azure-data-factory-copy-wizard"></a>Copiare o spostare facilmente i dati con Copia guidata di Azure Data Factory
-La copia guidata di Azure Data Factory semplifica l'inserimento di dati, che rappresenta in genere il primo passaggio in uno scenario di integrazione dati end-to-end. Quando si esegue la copia guidata di Azure Data Factory, non è necessario comprendere le definizioni JSON per i set di dati, le pipeline e i servizi collegati. Tuttavia, dopo aver completato tutti i passaggi della procedura guidata, verrà automaticamente creata una pipeline per copiare i dati dall'origine dati selezionata alla destinazione scelta. In più, questa procedura guidata consente di convalidare i dati aggiunti al momento della creazione, così da risparmiare tempo, soprattutto al primo inserimento dei dati dall'origine dati. Per avviare Copia guidata, fare clic sul riquadro **Copia dati** nella home page della data factory.
+Hello Azure Data Factory Copia guidata è il processo di hello tooease l'inserimento di dati che è in genere un primo passaggio in uno scenario di integrazione di dati end-to-end. Se si utilizza Copia guidata di Azure Data Factory di hello, non è necessario toounderstand qualsiasi definizione JSON di pipeline, i set di dati e i servizi collegati. Tuttavia, dopo aver completato tutti i passaggi nella procedura guidata hello hello, hello guidata crea automaticamente una pipeline di dati toocopy dalla destinazione selezionata toohello di hello origine dati selezionata. Inoltre hello Copia guidata consente di dati di hello toovalidate il caricamento in fase di creazione, di hello che salva gran parte del tempo, soprattutto quando si sono l'inserimento di dati per hello prima volta dall'origine dati hello. hello toostart Copia guidata, fare clic su hello **copiare dati** riquadro hello home page della data factory.
 
 ![Copia guidata](./media/data-factory-copy-wizard/copy-data-wizard.png)
 
 ## <a name="an-intuitive-wizard-for-copying-data"></a>Una procedura guidata intuitiva per la copia dei dati
-Questa procedura guidata consente di spostare facilmente i dati da un'ampia gamma di origini alle destinazioni in pochi minuti. Al termine della procedura guidata viene creata automaticamente una pipeline con un'attività di copia insieme a entità di Data Factory dipendenti (set di dati e servizi collegati). Per creare la pipeline non occorre eseguire altri passaggi.   
+Questa procedura guidata consente di spostare tooeasily i dati da una vasta gamma di origini toodestinations in minuti. Dopo aver esaminato la procedura guidata hello, una pipeline con attività di copia viene creata automaticamente insieme a entità dipendenti di Data Factory (servizi collegati e i set di dati). Non sono ulteriori passaggi pipeline hello toocreate obbligatorio.   
 
 ![Selezionare l'origine dati](./media/data-factory-copy-wizard/select-data-source-page.png)
 
 > [!NOTE]
-> Leggere l'articolo sull'[esercitazione Copia guidata](data-factory-copy-data-wizard-tutorial.md) per istruzioni dettagliate sulla creazione di una pipeline di esempio per copiare i dati da un BLOB Azure a una tabella del database SQL di Azure. 
+> Vedere [esercitazione guidata copia](data-factory-copy-data-wizard-tutorial.md) articolo per istruzioni dettagliate toocreate dati toocopy di pipeline di esempio da una tabella di Database SQL di Azure tooan blob di Azure. 
 > 
 > 
 
-La procedura guidata è totalmente pensata per i Big Data. È semplice ed efficiente creare pipeline di Data Factory che spostano centinaia di cartelle, file o tabelle con la procedura guidata per copiare i dati. La procedura guidata supporta le tre funzionalità seguenti: anteprima automatica dei dati, acquisizione dello schema e mapping e filtro dei dati. 
+la procedura guidata Hello è progettato dati di grandi dimensioni presenti dall'inizio hello. È semplice ed efficiente tooauthor le pipeline di Data Factory che sposta centinaia di cartelle, file o tabelle utilizzando Creazione guidata copia dati hello. procedura guidata Hello supporta hello seguenti tre caratteristiche: anteprima automatica dei dati, l'acquisizione dello schema e mapping e filtraggio dei dati. 
 
 ## <a name="automatic-data-preview"></a>Anteprima automatica dei dati
-La copia guidata consente di esaminare parte dei dati dall'origine dati selezionata per confermare che si tratti esattamente dei dati che si desidera copiare. in più, se l'origine dati è in un file di testo, la copia guidata analizza il file di testo per apprendere automaticamente lo schema e i delimitatori di riga e colonna. 
+procedura guidata copia Hello consente si tooreview dati hello hello selezionata parte origine dati per l'utente toovalidate se i dati in modo dettagliato hello hello destro dati che si desidera toocopy. Inoltre, se i dati di origine hello sono in un file di testo, procedura guidata copia hello analizza dello schema e i delimitatori di colonna e riga toolearn del file di testo hello automaticamente. 
 
 ![Impostazioni sul formato del file](./media/data-factory-copy-wizard/file-format-settings.png)
 
 ## <a name="schema-capture-and-mapping"></a>Acquisizione dello schema e mapping
-In alcuni casi è possibile che lo schema di dati di input non corrisponda allo schema dei dati di output. Se succede, è necessario eseguire il mapping delle colonne che appartengono allo schema di origine con le colonne dello schema di destinazione. 
+schema di Hello di dati di input potrebbe non corrispondere schema hello dei dati di output in alcuni casi. In questo scenario, è necessario toomap colonne toocolumns dello schema di origine hello dallo schema di destinazione hello. 
 
-La copia guidata esegue automaticamente il mapping delle colonne nello schema di origine con le colonne nello schema di destinazione. È possibile ignorare i mapping usando gli elenchi a discesa oppure specificando se una colonna deve essere saltata durante la copia dei dati.   
+procedura guidata copia Hello esegue automaticamente il mapping di colonne in toocolumns dello schema di origine hello nello schema di destinazione hello. È possibile sostituire i mapping di hello utilizzando elenchi a discesa hello (o) specificano se una colonna deve toobe ignorata durante la copia di dati hello.   
 
 ![Mapping dello schema](./media/data-factory-copy-wizard/schema-mapping.png)
 
 ## <a name="filtering-data"></a>Filtro dei dati
-La procedura guidata consente di filtrare i dati di origine per selezionare soltanto quelli da copiare nell'archivio dati di destinazione/sink. L'uso del filtro consente di ridurre il volume di dati da copiare nell'archivio dati sink, aumentando l'efficacia dell'operazione di copia. Offre un modo flessibile di filtrare i dati in un database relazionale tramiteil linguaggio query SQL o i file in una cartella BLOB di Azure usando [le variabili e le funzioni di Data Factory](data-factory-functions-variables.md).   
+la procedura guidata Hello consente toofilter dati tooselect solo hello dati di origine che è l'archivio dati di destinazione/sink toohello toobe copiati. Filtro riduce volume hello hello dati toobe toohello copiato del sink dei dati, archiviano e pertanto migliora la velocità effettiva di hello dell'operazione di copia hello. Fornisce dati di toofilter un modo flessibile in un database relazionale utilizzando SQL query language (o) file in una cartella blob di Azure utilizzando [variabili e funzioni di Data Factory](data-factory-functions-variables.md).   
 
 ### <a name="filtering-of-data-in-a-database"></a>Filtro dei dati in un database
-Nell'esempio, la query SQL usa la funzione `Text.Format` e la variabile `WindowStart`. 
+Nell'esempio hello query SQL hello utilizza hello `Text.Format` funzione e `WindowStart` variabile. 
 
 ![Espressione di convalida](./media/data-factory-copy-wizard/validate-expressions.png)
 
 ### <a name="filtering-of-data-in-an-azure-blob-folder"></a>Filtro dei dati in una cartella BLOB di Azure
-È possibile usare le variabili nel percorso della cartella per copiare dati da una cartella determinata in fase di esecuzione in base alle [variabili di sistema](data-factory-functions-variables.md#data-factory-system-variables). Le variabili supportate sono: **{year}**, **{month}**, **{day}**, **{hour}**, **{minute}** e **{custom}**. Esempio: inputfolder/{year}/{month}/{day}.
+È possibile utilizzare variabili in dati toocopy percorso della cartella hello da una cartella in cui viene determinato in fase di esecuzione in base a [le variabili di sistema](data-factory-functions-variables.md#data-factory-system-variables). le variabili di Hello supportato sono: **{year}**, **{month}**, **{day}**, **{ora}**, **{minuto}**, e **{personalizzato}**. Esempio: inputfolder/{year}/{month}/{day}.
 
-Si supponga di avere cartelle di input nel formato seguente:
+Si supponga di avere immesso le cartelle in hello seguente formato:
 
     2016/03/01/01
     2016/03/01/02
     2016/03/01/03
     ...
 
-Fare clic sul pulsante **Esplora** per **File o cartella**, passare a una di queste cartelle, ad esempio 2016->03->01->02, e fare clic su **Scegli**. Nella casella di testo dovrebbe essere visualizzato `2016/03/01/02`. Sostituire **2016** con **{year}**, **03** con **{month}**, **01** con **{day}** e **02** con **{hour}**, poi premere Tab. Dovrebbero essere visualizzati elenchi a discesa da cui selezionare il formato per queste quattro variabili:
+Fare clic su hello **Sfoglia** pulsante **File o cartella**, Sfoglia tooone di queste cartelle (ad esempio, 2016 -> 03 -> 01 -> 02), fare clic su **scegliere**. Dovrebbe essere `2016/03/01/02` nella casella di testo hello. Sostituire **2016** con **{year}**, **03** con **{month}**, **01** con **{day}** e **02** con **{hour}**, poi premere Tab. Dovrebbe essere formato hello tooselect di elenchi a discesa per questi quattro variabili:
 
 ![Uso di variabili di sistema](./media/data-factory-copy-wizard/blob-standard-variables-in-folder-path.png)   
 
-Come mostra lo screenshot seguente, è anche possibile usare una variabile **personalizzata** e qualsiasi [stringa di formato supportato](https://msdn.microsoft.com/library/8kb3ddd4.aspx). Per selezionare una cartella con tale struttura, usare prima di tutto il pulsante **Esplora** . Sostituire un valore con **{custom}**e quindi premere TAB per visualizzare la casella di testo in cui è possibile digitare la stringa di formato.     
+Come illustrato nella seguente schermata hello, è inoltre possibile utilizzare un **personalizzato** variabile e qualsiasi [supportate stringhe di formato](https://msdn.microsoft.com/library/8kb3ddd4.aspx). una cartella con tale struttura, utilizzare hello tooselect **Sfoglia** pulsante prima. Sostituire un valore con **{personalizzato}**e premere Tab toosee hello casella in cui è possibile digitare la stringa di formato hello.     
 
 ![Uso di variabili personalizzate](./media/data-factory-copy-wizard/blob-custom-variables-in-folder-path.png)
 
 ## <a name="support-for-diverse-data-and-object-types"></a>Supporto per tipi di dati e di oggetti diversi
-La procedura guidata di copia permette di spostare centinaia di cartelle, file o tabelle in modo efficiente.
+Tramite Copia guidata hello, è possibile spostare in modo efficiente centinaia di cartelle, file o tabelle.
 
-![Selezionare le tabelle da cui copiare i dati](./media/data-factory-copy-wizard/select-tables-to-copy-data.png)
+![Selezionare le tabelle da cui toocopy](./media/data-factory-copy-wizard/select-tables-to-copy-data.png)
 
 ## <a name="scheduling-options"></a>Opzioni di pianificazione
-È possibile eseguire l'operazione di copia una sola volta oppure in base a una pianificazione, con cadenza oraria, giornaliera e così via. Entrambe queste opzioni possono essere usate per tutti i vari connettori tra copie in locale, nel cloud e nei computer desktop locali.
+Operazione di copia hello è possibile eseguire una sola volta o in una pianificazione (oraria, giornaliera, e così via). Entrambe le opzioni utilizzabili per breadth hello dei connettori hello in locale, cloud e copia desktop locale.
 
-Un'operazione di copia eseguita una sola volta permette di spostare dati da un'origine a una destinazione una sola volta. Si applica ai dati di qualsiasi dimensione e in qualsiasi formato supportato. La copia pianificata consente di copiare i dati secondo una ricorrenza predeterminata. Per configurare la copia pianificata sono disponibili impostazioni avanzate, come la ripetizione dei tentativi, il timeout, gli avvisi e così via.
+Un'operazione di copia occasionale consente lo spostamento dei dati da una destinazione tooa origine una sola volta. Si applica toodata di qualsiasi dimensione e qualsiasi formato supportato. copia di Hello pianificata consente toocopy dati in una ricorrenza prestabilita. È possibile utilizzare le impostazioni avanzate (ad esempio i tentativi, timeout e avvisi) tooconfigure hello pianificata copia.
 
 ![Proprietà di pianificazione](./media/data-factory-copy-wizard/scheduling-properties.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per una procedura dettagliata sull'uso di Copia guidata di Data Factory per creare una pipeline con l'attività di copia, vedere [Esercitazione: Creare una pipeline con l'attività di copia usando la Copia guidata di Data Factory](data-factory-copy-data-wizard-tutorial.md).
+Per un'esercitazione rapida dell'uso hello Data Factory Copia guidata toocreate una pipeline con attività di copia, vedere [esercitazione: creare una pipeline mediante Copia guidata hello](data-factory-copy-data-wizard-tutorial.md).
 

@@ -1,5 +1,5 @@
 ---
-title: Procedure consigliate per la sicurezza operativa di Azure | Microsoft Docs
+title: procedure consigliate di sicurezza operativa aaaAzure | Documenti Microsoft
 description: Questo articolo propone un set di procedure consigliate per la sicurezza operativa di Azure.
 services: security
 documentationcenter: na
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/04/2017
 ms.author: tomsh
-ms.openlocfilehash: ed3c4bf2dcdda3e04a18682da568ae73f41bb37d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3b17ef20fb3545b1c268ac0d7ce692e07c8da00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-operational-security-best-practices"></a>Procedure consigliate per la sicurezza operativa di Azure
-La sicurezza operativa di Azure include i servizi, i controlli e le funzionalità offerti ai clienti per proteggere i dati, le applicazioni e gli altri asset di Microsoft Azure. Questa soluzione si basa su un framework che incorpora le conoscenze acquisite tramite varie funzionalità univoche di Microsoft, tra cui Microsoft Security Development Lifecycle (SDL), il programma Microsoft Security Response Center e una profonda consapevolezza del panorama delle minacce per la sicurezza informatica.
+Sicurezza operativa Azure fa riferimento toohello servizi, i controlli e toousers disponibili funzionalità per la protezione dei dati, applicazioni e altre risorse in Microsoft Azure. Sicurezza operative di Azure si basa su un framework che incorpora informazioni hello ottenute tramite varie funzionalità che sono univoci tooMicrosoft, tra cui Microsoft Security Development Lifecycle (SDL), Microsoft Security Response Center hello hello programma e conoscenza approfondita dei panorama delle minacce alla sicurezza informatica hello.
 
-In questo articolo viene illustrata una raccolta di procedure consigliate per la sicurezza del database di Azure, derivate dalla nostra esperienza con la sicurezza dei database di Azure e dalle esperienze di altri clienti.
+In questo articolo viene illustrata una raccolta di procedure consigliate per la sicurezza del database di Azure, Queste procedure consigliate derivano dall'esperienza acquisita con la protezione del database di Azure e l'esperienza dei clienti hello come manualmente.
 
 Per ogni procedura consigliata verrà illustrato:
--   Qual è la procedura consigliata
--   Il motivo per cui si vuole abilitare tale procedura consigliata
--   Quale potrebbe essere il risultato se non fosse possibile abilitare la procedura consigliata
-- Come imparare ad abilitare la procedura consigliata
+-   Quali consigliabile hello
+-   Motivo per cui si desidera tooenable consigliata
+-   Se non è consigliata di hello tooenable, quale potrebbe essere il risultato di hello
+- Informazioni come procedura consigliata hello tooenable
 
-Il presente articolo sulle procedure consigliate per la sicurezza operativa di Azure si basa su opinioni condivise, nonché sulle capacità e sui set di funzionalità della piattaforma di Azure esistenti al momento della scrittura. Le opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato regolarmente per riflettere tali modifiche.
+Questo articolo Azure Operational procedure ottimali di protezione si basa su un parere di consenso e funzionalità della piattaforma Azure e il set di funzionalità, in cui si trovano in fase di hello in questo articolo è stato scritto. Opinioni e le tecnologie cambiano nel tempo e questo articolo verrà aggiornato in un tooreflect regolarmente le modifiche.
 
 Le procedure consigliate per la sicurezza operativa di Azure discusse in questo articolo includono:
 
@@ -39,20 +39,20 @@ Le procedure consigliate per la sicurezza operativa di Azure discusse in questo 
 -   Gestire le identità e implementare Single Sign-On (SSO)
 -   Tenere traccia delle richieste, analizzare le tendenze di utilizzo e diagnosticare i problemi
 -   Monitoraggio dei servizi con una soluzione di monitoraggio centralizzata
--   Prevenire le minacce, rilevarle e rispondere
+-   Impedire, rilevare e rispondere toothreats
 -   Monitoraggio della rete basato su scenari end-to-end
 -   Distribuzione sicura tramite strumenti DevOps collaudati
 
 ## <a name="monitor-manage-and-protect-cloud-infrastructure"></a>Monitorare, gestire e proteggere l'infrastruttura cloud
-Il reparto delle operazioni IT è responsabile della gestione dell'infrastruttura del centro di dati, delle applicazioni e dei dati, compresa la stabilità e la sicurezza di questi sistemi. Tuttavia, ottenere informazioni di sicurezza in ambienti IT sempre più complessi spesso richiede alle organizzazioni di assemblare i dati da più sistemi di gestione e sicurezza.
+Il reparto IT è responsabile della gestione dei dati, tra cui hello stabilità e sicurezza di questi sistemi, applicazioni e dell'infrastruttura Data Center. Ottenere informazioni di sicurezza in ad aumentare gli ambienti IT complessi spesso richiede, tuttavia, le organizzazioni toocobble uniscono i dati da più sistemi di sicurezza e la gestione.
 
 [Microsoft Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/operations-management-suite-overview) è la soluzione Microsoft per la gestione IT basata sul cloud che consente di gestire e proteggere l'infrastruttura locale e cloud.
 
-La [soluzione Sicurezza e controllo di OMS](https://docs.microsoft.com/azure/operations-management-suite/oms-security-monitoring-resources) consente al personale IT di monitorare attivamente tutte le risorse, per ridurre l’impatto dei problemi di sicurezza. OMS Security and Audit prevede domini di sicurezza che possono essere usati per il monitoraggio delle risorse.
+[Soluzioni OMS Security and Audit](https://docs.microsoft.com/azure/operations-management-suite/oms-security-monitoring-resources) Abilita tooactively IT di monitorare tutte le risorse, che consentono di ridurre al minimo l'impatto di hello di eventi di sicurezza. OMS Security and Audit prevede domini di sicurezza che possono essere usati per il monitoraggio delle risorse.
 
-Per altre informazioni su OMS, leggere l'articolo [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx).
+Per ulteriori informazioni su OMS, leggere l'articolo hello [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx).
 
-Per consentire di evitare, rilevare e rispondere alle minacce, la [soluzione Sicurezza e controllo di Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started) raccoglie ed elabora i dati sulle risorse, tra cui:
+toohelp impedire, rilevare e rispondere toothreats, [soluzione di controllo e protezione di Operations Management Suite (OMS)](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started) raccoglie ed elabora i dati sulle risorse, che includono:
 
 -   Registri eventi sicurezza
 -   Tracciamento degli eventi di Windows (ETW)
@@ -62,7 +62,7 @@ Per consentire di evitare, rilevare e rispondere alle minacce, la [soluzione Sic
 -   Risultati della valutazione baseline
 -   Risultati di Antimalware Assessment
 -   Risultati della valutazione di aggiornamenti/patch
--   Flussi di Syslog abilitati esplicitamente nell'agente
+-   Flussi Syslog che sono abilitati in modo esplicito sull'agente hello
 
 
 ## <a name="manage-identity-and-implement-single-sign-on"></a>Gestire le identità e implementare Single Sign-On
@@ -70,65 +70,65 @@ Per consentire di evitare, rilevare e rispondere alle minacce, la [soluzione Sic
 
 [Azure AD](https://azure.microsoft.com/services/active-directory/) include anche un insieme completo di funzionalità per la [gestione delle identità](https://docs.microsoft.com/azure/security/security-identity-management-overview), tra cui l'[autenticazione a più fattori](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication), la registrazione dei dispositivi, la gestione self-service delle password e dei gruppi, la gestione degli account con privilegi, il controllo degli accessi in base al ruolo, il monitoraggio dell'utilizzo dell'applicazione, il controllo avanzato e il monitoraggio e avvisi relativi alla sicurezza.
 
-Le funzionalità seguenti possono contribuire alla protezione di applicazioni basate sul cloud, alla semplificazione dei processi IT, alla riduzione dei costi e alla soddisfazione degli obiettivi aziendali relativi alla conformità:
+Hello seguente funzionalità possibile la protezione delle applicazioni basate su cloud, semplificare i processi IT, ridurre i costi e garantire che siano soddisfatti gli obiettivi aziendali di conformità:
 
--   Gestione di identità e accessi per il cloud
--   Semplificazione dell'accesso utente a qualsiasi app cloud
+-   Gestione delle identità e accesso per il cloud hello
+-   Semplificare l'accesso utente tooany. app cloud
 -   Protezione di dati e applicazioni sensibili
 -   Abilitazione della modalità self-service per i dipendenti
 -   Integrazione con Azure Active Directory
 
-### <a name="identity-and-access-management-for-the-cloud"></a>Gestione di identità e accessi per il cloud
-Azure Active Directory (Azure AD) è una [soluzione cloud completa per la gestione delle identità e dell'accesso](https://www.microsoft.com/cloud-platform/identity-management) che offre un solido set di funzionalità per gestire utenti e gruppi. Il servizio aiuta a proteggere l'accesso ad applicazioni locali e cloud, tra cui i servizi Web Microsoft come Office 365 e molte applicazioni SaaS (Software as a Service) non Microsoft.
-Per altre informazioni su come abilitare la protezione delle identità in Azure AD, vedere [Abilitazione di Azure Active Directory Identity Protection](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection-enable).
+### <a name="identity-and-access-management-for-hello-cloud"></a>Gestione delle identità e accesso per il cloud hello
+Azure Active Directory (Azure AD) è una serie completa [soluzione cloud di gestione di identità e accessi](https://www.microsoft.com/cloud-platform/identity-management), che offre un set affidabile di funzionalità toomanage utenti e gruppi. Consente di proteggere l'accesso locale tooon cloud e applicazioni, compresi servizi web di Microsoft come Office 365 e quantità software non Microsoft come applicazioni di servizio (SaaS).
+più la protezione dell'identità tooenable in Azure AD, vedere toolearn [attivazione di Azure Active Directory Identity Protection](https://docs.microsoft.com/azure/active-directory/active-directory-identityprotection-enable).
 
-### <a name="simplify-user-access-to-any-cloud-app"></a>Semplificazione dell'accesso utente a qualsiasi app cloud
-[Abilitare Single Sign-On](https://docs.microsoft.com/azure/active-directory/active-directory-sso-integrate-saas-apps) per semplificare l'accesso degli utenti a migliaia di applicazioni cloud da dispositivi Windows, Mac, Android e iOS. Gli utenti possono avviare applicazioni cloud da un pannello di accesso Web personalizzato usando le proprie credenziali aziendali. Usare il modulo proxy di applicazione di Azure AD per andare oltre le applicazioni SaaS e pubblicare applicazioni Web locali per offrire accesso remoto a sicurezza elevata e l'accesso Single Sign-On.
+### <a name="simplify-user-access-tooany-cloud-app"></a>Semplificare l'accesso utente tooany. app cloud
+[Abilita single sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-sso-integrate-saas-apps) toosimplify utente accesso toothousands delle applicazioni cloud dai dispositivi Windows, Mac, Android e iOS. Gli utenti possono avviare applicazioni cloud da un pannello di accesso Web personalizzato usando le proprie credenziali aziendali. Utilizzare toogo di modulo Proxy dell'applicazione hello Azure AD oltre applicazioni SaaS e pubblicare on premise web applicazioni tooprovide estremamente sicuro accesso remoto e accesso single sign-on.
 
 ### <a name="protect-sensitive-data-and-applications"></a>Protezione di dati e applicazioni sensibili
-Abilitare [Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication) per impedire l'accesso non autorizzato alle applicazioni locali e cloud attraverso un livello aggiuntivo di autenticazione. Proteggere l'azienda e prevenire le possibili minacce mediante monitoraggio della sicurezza, avvisi e report basati su Machine Learning in grado di identificare i modelli di accesso non coerenti.
+Abilitare [Azure multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication) tooprevent non autorizzato ai tooon locale e applicazioni cloud, fornendo un ulteriore livello di autenticazione. Proteggere l'azienda e prevenire le possibili minacce mediante monitoraggio della sicurezza, avvisi e report basati su Machine Learning in grado di identificare i modelli di accesso non coerenti.
 
 ### <a name="enable-self-service-for-your-employees"></a>Abilitazione della modalità self-service per i dipendenti
-Delegare attività importanti ai dipendenti, come la reimpostazione delle password e la creazione e la gestione di gruppi. [Abilitare la modifica self-service della password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-update-your-own-password), la reimpostazione e la gestione di gruppi in modalità self-service con Azure AD.
+Delegare dipendenti tooyour attività importanti, ad esempio la reimpostazione delle password e la creazione e gestione dei gruppi. [Abilitare la modifica self-service della password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-update-your-own-password), la reimpostazione e la gestione di gruppi in modalità self-service con Azure AD.
 
 ### <a name="integrate-with-azure-active-directory"></a>Integrazione con Azure Active Directory
-Estendere [Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-how-to-integrate) e qualsiasi altra directory locale ad Azure AD per consentire l'accesso Single Sign-On per tutte le applicazioni basate sul cloud. Gli attributi utente possono essere sincronizzati automaticamente nella directory cloud da qualsiasi tipo di directory locale.
+Estendere [Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-how-to-integrate) e qualsiasi altro locale directory tooAzure AD tooenable single sign-on per tutte le applicazioni basate su cloud. Gli attributi utente possono essere una directory cloud tooyour automaticamente sincronizzate da tutti i tipi di directory locali.
 
-Per altre informazioni sull'integrazione e l'abilitazione di Azure Active Directory, vedere [Integrare le directory locali con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
+toolearn ulteriori informazioni sull'integrazione di Azure Active Directory e come tooenable, leggere hello articolo [integrare le directory locali con Azure Active Directory](https://docs.microsoft.com/azure/active-directory/connect/active-directory-aadconnect).
 
 ## <a name="trace-requests-analyze-usage-trends-and-diagnose-issues"></a>Tenere traccia delle richieste, analizzare le tendenze di utilizzo e diagnosticare i problemi
-L'[Analisi archiviazione di Azure](https://docs.microsoft.com/azure/storage/storage-analytics) esegue la registrazione e restituisce i dati delle metriche per un account di archiviazione. È possibile utilizzare questi dati per tenere traccia delle richieste, analizzare le tendenze d'uso e diagnosticare i problemi relativi al proprio account di archiviazione.
+L'[Analisi archiviazione di Azure](https://docs.microsoft.com/azure/storage/storage-analytics) esegue la registrazione e restituisce i dati delle metriche per un account di archiviazione. È possibile usare questo richieste tootrace dati, analizzare le tendenze di utilizzo e diagnosticare i problemi con l'account di archiviazione.
 
-Le metriche di Analisi archiviazione sono abilitate per impostazione predefinita per i nuovi account di archiviazione. È possibile abilitare la registrazione e configurare sia le metriche che la registrazione nel portale di Azure. Per informazioni dettagliate, vedere [Monitorare un account di archiviazione nel portale di Azure](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account). È inoltre possibile abilitare Analisi archiviazione a livello di codice tramite l'API REST o la libreria client. Per abilitare l'Analisi archiviazione per ogni servizio, usare le operazioni che consentono di impostare le proprietà dei servizi.
+Le metriche di Analisi archiviazione sono abilitate per impostazione predefinita per i nuovi account di archiviazione. È possibile abilitare la registrazione e configurare le metriche e registrazione nel portale di Azure; hello Per informazioni dettagliate, vedere [monitorare un account di archiviazione nel portale di Azure hello](https://docs.microsoft.com/azure/storage/storage-monitor-storage-account). È anche possibile abilitare Analitica di archiviazione a livello di programmazione tramite hello API REST o libreria client hello. Utilizzare hello Set Service Properties operazione tooenable archiviazione Analitica singolarmente per ogni servizio.
 
-Per una guida dettagliata sull'utilizzo di Analisi archiviazione e di altri strumenti per identificare, diagnosticare e risolvere i problemi relativi ad Archiviazione di Azure, vedere [Monitoraggio, diagnosi e risoluzione dei problemi del servizio di archiviazione di Microsoft Azure](https://docs.microsoft.com/azure/storage/storage-monitoring-diagnosing-troubleshooting).
+Per una guida approfondita sull'uso di archiviazione Analitica e tooidentify altri strumenti, diagnosticare e risoluzione dei problemi relativi al servizio di archiviazione Azure, vedere [Monitor, diagnosticare e risolvere i problemi di archiviazione di Microsoft Azure](https://docs.microsoft.com/azure/storage/storage-monitoring-diagnosing-troubleshooting).
 
-Per altre informazioni sull'integrazione e l'abilitazione di Azure Active Directory, leggere l'articolo [Enabling and Configuring Storage Analytics](https://docs.microsoft.com/rest/api/storageservices/Enabling-and-Configuring-Storage-Analytics?redirectedfrom=MSDN) (Abilitazione e configurazione di Analisi archiviazione).
+toolearn ulteriori informazioni sull'integrazione di Azure Active Directory e come tooenable, leggere articolo hello [abilitazione e configurazione di archiviazione Analitica](https://docs.microsoft.com/rest/api/storageservices/Enabling-and-Configuring-Storage-Analytics?redirectedfrom=MSDN).
 
 ## <a name="monitoring-services"></a>Monitoraggio dei servizi
-Le applicazioni cloud sono complesse e hanno molte parti mobili. Il monitoraggio offre la possibilità di garantire il funzionamento e l'integrità dell'applicazione. Consente anche di prevenire i problemi potenziali o di risolvere quelli precedenti. Inoltre, è possibile usare i dati di monitoraggio per ottenere informazioni approfondite sull'applicazione, utili per migliorarne le prestazioni o la manutenibilità oppure per automatizzare azioni che altrimenti richiederebbero un intervento manuale.
+Le applicazioni cloud sono complesse e hanno molte parti mobili. Il monitoraggio fornisce tooensure dati che l'applicazione resta alto e in esecuzione in uno stato integro. Consente inoltre toostave è impostata su off problemi potenziali o risolvere i problemi oltre quelle. Inoltre, è possibile utilizzare Monitoraggio dati toogain approfondite sull'applicazione. Tali informazioni possono consentono di prestazioni dell'applicazione tooimprove o manutenibilità o automatizzare le operazioni che altrimenti richiederebbero un intervento manuale.
 
 ### <a name="monitor-azure-resources"></a>Monitorare le risorse di Azure
-[Monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-get-started) è il servizio di piattaforma che mette a disposizione un'unica origine per il monitoraggio delle risorse di Azure. Con Monitoraggio di Azure è possibile visualizzare, fare query, indirizzare, archiviare ed effettuare operazioni sulle metriche e sui log provenienti dalle risorse di Azure. È possibile usare questi dati tramite il pannello del portale di Monitoraggio di Azure, i [cmdlet di PowerShell di Monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-powershell-samples), l'[interfaccia della riga di comando multi-piattaforma](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-cli-samples) o le [API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/dn931943.aspx).
+[Monitoraggio Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-get-started) è servizio di piattaforma hello che fornisce un'unica origine per il monitoraggio delle risorse di Azure. Con il monitoraggio di Azure, è possibile visualizzare, richiedere, route, archiviare e intraprendere un'azione in metriche hello e log provenienti dalle risorse in Azure. È possibile utilizzare questo dati pannello portale monitoraggio di hello, con [i cmdlet PowerShell di monitoraggio](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-powershell-samples), [CLI multipiattaforma](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-cli-samples), o [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/dn931943.aspx).
 
 ### <a name="enable-autoscale-with-azure-monitor"></a>Abilitare la scalabilità automatica con Monitoraggio di Azure
-La possibilità di abilitare la [scalabilità automatica di Monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-autoscale-get-started) si applica solo a set di scalabilità di macchine virtuali (VMSS), servizi cloud, piani di servizio app e ambienti di servizio app.
+Abilitare [scalabilità automatica di monitoraggio di Azure](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-autoscale-get-started) si applica solo set di scalabilità macchina toovirtual (VMSS), servizi cloud, piani di servizio app e gli ambienti del servizio app.
 
 ### <a name="manage-roles-permissions-and-security"></a>Gestire le autorizzazioni e la sicurezza dei ruoli
-Molti team hanno bisogno di [regolare rigorosamente l'accesso ai dati e alle impostazioni di monitoraggio](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-roles-permissions-security). Ad esempio, se si dispone di membri del team che lavorano esclusivamente sul monitoraggio (tecnici del supporto, tecnici DevOps) o si usa un provider di servizi gestiti, si consiglia di concedere loro l'accesso ai dati di monitoraggio solo limitandone la possibilità di creare, modificare o eliminare le risorse.
+Molti team necessario toostrictly [regolare accesso toomonitoring](https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-roles-permissions-security) dati e le impostazioni. Ad esempio, se si dispongono di membri del team che lavorano esclusivamente sul monitoraggio (tecnici del supporto, i tecnici devops) o se si utilizza un provider del servizio gestito, è opportuno toogrant tooonly dati di monitoraggio limitando la possibilità toocreate loro l'accesso, modificare, o eliminare le risorse.
 
-Questo articolo illustra come applicare rapidamente un ruolo di monitoraggio predefinito del controllo degli accessi in base al ruolo a un utente in Azure o creare il proprio ruolo personalizzato per un utente che ha bisogno di autorizzazioni di monitoraggio limitate. Vengono poi esposte alcune considerazioni sulla sicurezza per le risorse legate al monitoraggio di Azure e viene illustrato come è possibile limitare l'accesso ai dati che contengono.
+Viene illustrato come tooquickly applicare un monitoraggio RBAC ruolo tooa utente incorporato in Azure o creare il proprio ruolo personalizzato per un utente che necessita di autorizzazioni limitate di monitoraggio. Quindi illustra le considerazioni sulla sicurezza per le risorse correlate al monitoraggio di Azure e come è possibile limitare l'accesso ai dati toohello contengono.
 
-## <a name="prevent-detect-and-respond-to-threats"></a>Prevenire le minacce, rilevarle e rispondere
-Il sistema di rilevamento delle minacce del Centro sicurezza funziona mediante la raccolta automatica di informazioni sulla sicurezza dalle risorse di Azure, dalla rete e dalle soluzioni dei partner connesse. Per identificare le minacce, analizza queste informazioni, correlando spesso quelle raccolte da più origini. Gli avvisi di sicurezza sono classificati in ordine di priorità nel Centro sicurezza insieme a indicazioni su come su correggere la minaccia.
+## <a name="prevent-detect-and-respond-toothreats"></a>Impedire, rilevare e rispondere toothreats
+Rilevamento minacce del Centro sicurezza PC funziona automaticamente la raccolta di informazioni di sicurezza da risorse di Azure, rete hello e soluzioni partner connesso. Analizza queste informazioni, correlazione spesso informazioni provenienti da più origini, tooidentify minacce. Avvisi di sicurezza sono classificati in Centro sicurezza PC insieme ai consigli su come tooremediate hello minaccia.
 
 -   [Configurare i criteri di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-policies) per la sottoscrizione di Azure.
--   Usare le [raccomandazioni nel Centro sicurezza](https://docs.microsoft.com/azure/security-center/security-center-recommendations) per la protezione delle risorse di Azure.
+-   Hello utilizzare [indicazioni del Centro sicurezza PC](https://docs.microsoft.com/azure/security-center/security-center-recommendations) toohelp proteggere le risorse di Azure.
 -   Esaminare e gestire gli [avvisi di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-managing-and-responding-alerts) correnti.
 
-Il [Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-intro) consente di prevenire, rilevare e rispondere alle minacce con un livello di visibilità e controllo più elevato della sicurezza delle risorse di Azure. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
+[Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-intro) consente di impedire, rilevare e rispondere toothreats con una maggiore visibilità e controllo sui hello protezione delle risorse di Azure. Offre funzionalità integrate di monitoraggio della sicurezza e gestione dei criteri tra le sottoscrizioni di Azure, facilita il rilevamento delle minacce che altrimenti passerebbero inosservate e funziona con un ampio ecosistema di soluzioni di sicurezza.
 
-Il Centro sicurezza fornisce funzionalità efficaci e facili da usare, integrate in Azure, per la prevenzione e il rilevamento delle minacce e la relativa risposta. Funzionalità principali:
+Centro sicurezza PC offre minaccia di semplice utilizzo ed efficace funzionalità di prevenzione, rilevamento e risposta che vengono compilate in tooAzure. Funzionalità principali:
 
 -   Ottenere informazioni sullo stato della sicurezza nel cloud
 -   Acquisire il controllo della sicurezza nel cloud
@@ -136,43 +136,43 @@ Il Centro sicurezza fornisce funzionalità efficaci e facili da usare, integrate
 -   Rilevare le minacce e rispondere rapidamente
 
 ### <a name="understand-cloud-security-state"></a>Ottenere informazioni sullo stato della sicurezza nel cloud
-Usare il Centro sicurezza di Azure per ottenere un punto di vista centralizzato sullo stato della sicurezza di tutte le risorse di Azure. È possibile verificare subito che i controlli di sicurezza appropriati siano implementati e configurati correttamente e identificare rapidamente le eventuali risorse che richiedono attenzione.
+Utilizzare il Centro protezione Azure tooget una vista centrale dello stato di sicurezza hello di tutte le risorse di Azure. In breve, verificare che siano soddisfatti i controlli di sicurezza appropriati hello e configurato correttamente e identificano rapidamente eventuali risorse che richiedono attenzione.
 
 ### <a name="take-control-of-cloud-security"></a>Acquisire il controllo della sicurezza nel cloud
-Definire i [criteri di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-policies) per le sottoscrizioni di Azure in base alle esigenze di sicurezza nel cloud della società, personalizzandoli secondo il tipo di applicazione o il livello di riservatezza dei dati in ogni sottoscrizione. Usare raccomandazioni basate sui criteri per guidare i proprietari delle risorse nel processo di implementazione dei controlli richiesti, per non lasciare al caso la sicurezza nel cloud.
+Definire [criteri di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-policies) per le sottoscrizioni di Azure in base della società tooyour del protezione cloud, è necessario adattato toohello tipi di applicazioni o riservatezza dei dati hello in ogni sottoscrizione. Usare proprietari delle risorse basato su criteri indicazioni tooguide processo hello di implementazione di controlli necessari, ovvero richiedere supporto per hello protezione cloud.
 
 ### <a name="easily-deploy-integrated-cloud-security-solutions"></a>Distribuire in tutta semplicità soluzioni di sicurezza nel cloud integrate
-[Abilitare soluzioni di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-partner-integration) di Microsoft e dei suoi partner, tra cui firewall e antimalware leader del settore. Usare un provisioning semplificato per distribuire le soluzioni di sicurezza: persino le modifiche alla rete vengono configurate automaticamente. Gli eventi di sicurezza delle soluzioni dei partner vengono raccolti automaticamente per l'analisi e la creazione di avvisi.
+[Abilitare soluzioni di sicurezza](https://docs.microsoft.com/azure/security-center/security-center-partner-integration) di Microsoft e dei suoi partner, tra cui firewall e antimalware leader del settore. Utilizzo semplificato soluzioni per la sicurezza toodeploy provisioning, modifiche anche rete vengono configurate automaticamente. Gli eventi di sicurezza delle soluzioni dei partner vengono raccolti automaticamente per l'analisi e la creazione di avvisi.
 
 ### <a name="detect-threats-and-respond-fast"></a>Rilevare le minacce e rispondere rapidamente
-Per anticipare le minacce al cloud attuali ed emergenti, è necessario un approccio integrato basato sull'analisi. Combinando l'esperienza e l'[intelligence per le minacce](https://docs.microsoft.com/azure/security-center/security-center-detection-capabilities) globali di Microsoft con informazioni dettagliate su eventi correlati alla sicurezza in tutte le distribuzioni di Azure, Centro sicurezza consente di rilevare in anticipo le minacce effettive con minori falsi positivi. Gli avvisi di sicurezza nel cloud offrono informazioni dettagliate sulla campagna di attacco, tra cui eventi correlati e risorse interessate, e suggeriscono metodi per la risoluzione dei problemi e un rapido ripristino.
+Per anticipare le minacce al cloud attuali ed emergenti, è necessario un approccio integrato basato sull'analisi. Combinando l'esperienza e l'[intelligence per le minacce](https://docs.microsoft.com/azure/security-center/security-center-detection-capabilities) globali di Microsoft con informazioni dettagliate su eventi correlati alla sicurezza in tutte le distribuzioni di Azure, Centro sicurezza consente di rilevare in anticipo le minacce effettive con minori falsi positivi. Avvisi di protezione cloud offrono informazioni dettagliate sui campagna attacco hello, inclusi gli eventi correlati e le risorse interessate e vengono forniti suggerimenti tooremediate problemi e ripristinare rapidamente.
 
 ## <a name="end-to-end-scenario-based-network-monitoring"></a>Monitoraggio della rete basato su scenari end-to-end
-Per creare una rete end-to-end in Azure è possibile orchestrare e comporre varie risorse di rete individuali, quali rete virtuale, ExpressRoute, gateway applicazione, servizi di bilanciamento del carico e altro ancora. Il monitoraggio è disponibile in ognuna delle risorse di rete.
+Per creare una rete end-to-end in Azure è possibile orchestrare e comporre varie risorse di rete individuali, quali rete virtuale, ExpressRoute, gateway applicazione, servizi di bilanciamento del carico e altro ancora. Il monitoraggio è disponibile in ogni hello risorse di rete.
 
-[Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) è un servizio a livello di area che permette di monitorare e diagnosticare le condizioni al livello di scenario di rete da, verso e all'interno di Azure. Gli strumenti di visualizzazione e diagnostica di rete disponibili in Network Watcher permettono di comprendere, diagnosticare e ottenere informazioni dettagliate sulla rete in Azure.
+[Controllo di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) è un servizio consente toomonitor internazionale e diagnosticare le condizioni a un livello di uno scenario di rete in, a e da Azure. Diagnostica di rete e gli strumenti di visualizzazione disponibili con Watcher di rete consentono di comprendere, diagnosticare e ottenere rete tooyour insights in Azure.
 
 ### <a name="automate-remote-network-monitoring-with-packet-capture"></a>Automatizzare il monitoraggio di rete remoto con l'acquisizione pacchetti
-Monitorare e diagnosticare i problemi di rete senza accedere alle macchine virtuali con Network Watcher. Attivare l'[acquisizione dei pacchetti](https://docs.microsoft.com/azure/network-watcher/network-watcher-alert-triggered-packet-capture) impostando gli avvisi e ottenere l'accesso alle informazioni sulle prestazioni in tempo reale a livello del pacchetto. Quando viene rilevato un problema, è possibile esaminarlo in dettaglio per una diagnosi migliore.
+Monitoraggio e diagnosi di problemi di rete senza effettuare l'accesso tooyour macchine virtuali (VM) utilizzando Watcher di rete. Trigger [acquisizione pacchetto](https://docs.microsoft.com/azure/network-watcher/network-watcher-alert-triggered-packet-capture) impostando gli avvisi e ottenere informazioni di accesso tooreal prestazioni a livello di pacchetto hello. Quando viene rilevato un problema, è possibile esaminarlo in dettaglio per una diagnosi migliore.
 
 ### <a name="gain-insight-into-your-network-traffic-using-flow-logs"></a>Acquisire informazioni dettagliate sul traffico di rete con i log dei flussi
 Ottenere informazioni approfondite sul modello del traffico di rete con i [log dei flussi del gruppo di sicurezza di rete](https://docs.microsoft.com/en-us/azure/network-watcher/network-watcher-nsg-flow-logging-overview). Le informazioni fornite dai log dei flussi permettono di raccogliere i dati per la conformità, il controllo e il monitoraggio del profilo di sicurezza della rete.
 
 ### <a name="diagnose-vpn-connectivity-issues"></a>Diagnosticare i problemi di connettività della VPN
-Network Watcher permette di [diagnosticare i problemi più comuni delle connessioni e dei gateway VPN](https://docs.microsoft.com/azure/network-watcher/network-watcher-diagnose-on-premises-connectivity). Non solo aiuta a identificare il problema, ma offre anche log dettagliati per eseguire ulteriori indagini.
+Watcher di rete fornisce si hello possibilità troppo[diagnosticare i problemi più comuni di Gateway VPN e connessioni](https://docs.microsoft.com/azure/network-watcher/network-watcher-diagnose-on-premises-connectivity). Che consente non solo problema hello tooidentify, ma anche toouse hello dettagliati registri esaminare ulteriormente toohelp creato.
 
-Per altre informazioni sulla configurazione e abilitazione di Network Watcher, vedere [Configurare Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-create).
+altre informazioni su come toolearn tooconfigure watcher di rete e come tooenable, leggere hello articolo [configurare watcher di rete](https://docs.microsoft.com/azure/network-watcher/network-watcher-create).
 
 ## <a name="secure-deployment-using-proven-devops-tools"></a>Distribuzione sicura tramite strumenti DevOps collaudati
-Queste sono alcune delle procedure consigliate di DevOps per Azure in questo spazio Microsoft Cloud, che promuovono la produttività e l'efficienza di aziende e team.
+Questi sono alcuni dei hello elenco di Azure DevOps consigliate in questo spazio Cloud Microsoft, che rende le aziende e i team produttivi ed efficienti.
 
--   **Infrastruttura come codice (IaC):** si tratta di un set di tecniche e procedure consigliate, che aiutano i professionisti IT a evitare il carico di lavoro associato alla creazione e gestione quotidiana dell'infrastruttura modulare. Lo scopo è consentire ai professionisti IT di creare e gestire un ambiente server moderno in modo simile a quello usato dagli sviluppatori per la compilazione e manutenzione del codice delle applicazioni. Nel caso di Azure è disponibile [Azure Resource Manager]( https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/) che consente di effettuare il provisioning delle applicazioni usando un modello dichiarativo. In un unico modello, è possibile distribuire più servizi con le relative dipendenze. Si usa lo stesso modello per distribuire più volte l'applicazione durante ogni fase del ciclo di vita dell'applicazione.
--   **Integrazione e distribuzione continue:** è possibile configurare i progetti del proprio team di Visual Studio Online in modo da [compilare ed eseguire automaticamente la distribuzione](https://www.visualstudio.com/docs/build/overview) nelle app Web o nei servizi cloud di Azure. Visual Studio Online distribuisce automaticamente i file binari dopo una compilazione in Azure e dopo ogni archiviazione del codice. Il processo di compilazione del pacchetto qui descritto equivale al comando Pacchetto di Visual Studio, mentre i passaggi per la pubblicazione equivalgono al comando Pubblica di Visual Studio.
--   **Gestione del rilascio:** [Release Management](https://msdn.microsoft.com/library/vs/alm/release/overview) per Visual Studio è un'ottima soluzione per automatizzare la distribuzione in più fasi e la gestione del processo di rilascio. È possibile creare pipeline gestite di distribuzione continua per rilasciare versioni in modo rapido, semplice e frequente. Con Release Management è possibile automatizzare in gran parte il processo di rilascio e definire flussi di lavoro predefiniti per l'approvazione. Sono supportate la distribuzione locale e nel cloud, l'estensione e la personalizzazione in base alle specifiche esigenze.
--   **Monitoraggio delle prestazioni delle app:** rilevare problemi, risolverli e migliorare continuamente le applicazioni. Diagnosticare rapidamente eventuali problemi nell'applicazione live. Comprendere in che modo gli utenti lo usano. La configurazione include semplicemente l'aggiunta di codice JS e una voce webconfig. I risultati vengono visualizzati entro pochi minuti nel portale con tutti i dettagli. [Application Insights](https://azure.microsoft.com/documentation/articles/app-insights-start-monitoring-app-health-usage/) aiuta le aziende a velocizzare il rilevamento e la risoluzione dei problemi.
--   **Test di carico e scalabilità automatica:** è possibile trovare i problemi di prestazione nell'app per migliorare la qualità della distribuzione e assicurarsi che l'app sia sempre aggiornata o disponibile per soddisfare le esigenze aziendali. Verificare che l'app possa gestire il traffico per la prossima campagna di lancio o di marketing. Con Visual Studio Online è possibile iniziare molto velocemente a eseguire [test di carico](https://www.visualstudio.com/docs/test/performance-testing/getting-started/getting-started-with-performance-testing) basati sul cloud.
+-   **Infrastruttura come codice (IaC):** infrastruttura come codice è un set di tecniche e procedure consigliate, che aiutano i professionisti IT rimuovere onere hello associate alla compilazione tooday giorno di hello e gestione dell'infrastruttura modulare. Consente ai professionisti IT toobuild e mantenere l'ambiente server moderna in modo simile a quello descritto agli sviluppatori di software compilare e gestire il codice dell'applicazione. Per Azure, è possibile utilizzare [Azure Resource Manager]( https://azure.microsoft.com/documentation/articles/resource-group-authoring-templates/) tooprovision consente le applicazioni con un modello dichiarativo. In un unico modello, è possibile distribuire più servizi con le relative dipendenze. Utilizzare hello stesso modello toorepeatedly distribuire l'applicazione durante ogni fase del ciclo di vita dell'applicazione hello.
+-   **Integrazione continua e della distribuzione:** è possibile configurare i progetti team di Visual Studio Online troppo[compilare e distribuire automaticamente](https://www.visualstudio.com/docs/build/overview) tooAzure le app web o servizi cloud. Visual Studio online distribuisce automaticamente i file binari hello dopo aver eseguito un tooAzure compilazione dopo ogni archiviazione codice. il processo di compilazione pacchetto descritto qui Hello è comando pacchetto toohello equivalente in Visual Studio, e passaggi di pubblicazione hello comando Pubblica toohello equivalente in Visual Studio.
+-   **Gestione del rilascio:** Visual Studio [Release Management](https://msdn.microsoft.com/library/vs/alm/release/overview) è un'ottima soluzione per automatizzare la distribuzione a più fasi e la gestione di hello processo di rilascio. Creare la distribuzione continua gestito pipeline toorelease rapidamente, semplice e spesso. Con Release Management è possibile automatizzare in gran parte il processo di rilascio e definire flussi di lavoro predefiniti per l'approvazione. La distribuzione locale e toohello cloud, estendere e personalizzare in base alle esigenze.
+-   **Monitoraggio delle prestazioni delle app:** rilevare problemi, risolverli e migliorare continuamente le applicazioni. Diagnosticare rapidamente eventuali problemi nell'applicazione live. Comprendere in che modo gli utenti lo usano. Configurazione riguarda semplice aggiunta di codice JS e una voce webconfig e vengono visualizzati i risultati in pochi minuti nel portale di hello con tutti i dettagli di hello. [App insights](https://azure.microsoft.com/documentation/articles/app-insights-start-monitoring-app-health-usage/) aiuta le aziende per una maggiore velocità di rilevamento di problemi e monitoraggio e aggiornamento.
+-   **Scalabilità automatica e test di carico:** è possibile trovare i problemi di prestazioni qualità di distribuzione di app tooimprove e toomake l'app sia sempre attivo o disponibile toocater toohello le esigenze aziendali. Verificare che l'app possa gestire il traffico per la prossima campagna di lancio o di marketing. Con Visual Studio Online è possibile iniziare molto velocemente a eseguire [test di carico](https://www.visualstudio.com/docs/test/performance-testing/getting-started/getting-started-with-performance-testing) basati sul cloud.
 
 ## <a name="next-steps"></a>Passaggi successivi
 - Altre informazioni sulla [sicurezza operativa di Azure](https://docs.microsoft.com/azure/security/azure-operational-security).
-- Per altre informazioni, vedere [Operations Management Suite | Sicurezza e conformità](https://www.microsoft.com/cloud-platform/security-and-compliance).
+- tooLearn più [Operations Management Suite | Sicurezza e conformità](https://www.microsoft.com/cloud-platform/security-and-compliance).
 - [Introduzione alla soluzione Sicurezza e controllo di Operations Management Suite](https://docs.microsoft.com/azure/operations-management-suite/oms-security-getting-started).

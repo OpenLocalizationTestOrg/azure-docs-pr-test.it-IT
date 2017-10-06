@@ -1,6 +1,6 @@
 ---
-title: Panoramica della sicurezza in Azure | Microsoft Docs
-description: "Nel sito di informazioni sulla sicurezza di Microsoft Azure su Azure.com è possibile trovare risposte tecniche alle domande relative alla sicurezza di Azure."
+title: Cenni preliminari sulla sicurezza aaaAzure | Documenti Microsoft
+description: "sito di informazioni di sicurezza di Microsoft Azure Hello in Azure.com è un'area per le domande di sicurezza di Azure tooyour risposte a domande tecniche."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: terrylan
-ms.openlocfilehash: 1303815755584e912891d501018b257b96e5f063
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bee676068a84cf8af03910aa5fcb047723ebce6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-overview"></a>Panoramica della sicurezza in Azure
-Nel sito di informazioni sulla sicurezza di Microsoft Azure su Azure.com è possibile trovare risposte tecniche alle domande relative alla sicurezza di Azure. Se si è interessati alla conformità di Azure e alle modalità di protezione dell'infrastruttura da parte di Azure, visitare il [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/default.aspx).
+sito di informazioni di sicurezza di Microsoft Azure Hello in Azure.com è un'area per le domande di sicurezza di Azure tooyour risposte a domande tecniche. Se si è interessati in conformità di Azure e in che modo Azure protegge la propria infrastruttura, visitare la pagina hello [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/default.aspx).
 
-La sicurezza è la priorità principale nel cloud ed è importante che l'utente trovi informazioni accurate e tempestive sulla sicurezza di Azure. Uno dei motivi migliori per usare Azure per le applicazioni e i servizi consiste nella possibilità di sfruttare la vasta gamma di strumenti e funzionalità per la sicurezza disponibili. Questi strumenti e queste funzionalità consentono di creare soluzioni sicure sulla piattaforma Azure protetta.
+Sappiamo che sicurezza processo cloud hello e come sia importante che trovare informazioni accurate e aggiornate sulla sicurezza di Azure. Uno dei toouse delle ragioni migliore Azure di hello per le applicazioni e servizi è tootake sfruttare hello numerosi strumenti di sicurezza e funzionalità disponibili. Questi strumenti e funzionalità rendono toocreate possibili soluzioni di protezione sulla piattaforma Azure sicura hello.
 
-Questa pagina e questo sito si evolveranno non appena saranno online nuovi servizi di Azure e in caso di aggiornamento dei servizi esistenti. Le offerte sulla sicurezza vengono costantemente migliorate e in questo sito verranno illustrati i dettagli tecnici di tali miglioramenti. È consigliabile visitare regolarmente questo sito per scoprire le novità.
+Questa pagina e questo sito si evolveranno non appena saranno online nuovi servizi di Azure e in caso di aggiornamento dei servizi esistenti. Migliorare costantemente le offerte di sicurezza e verrà condivisa dettagli tecnici di hello di tali miglioramenti. Si consiglia di restituire per il sito toothis regolarmente e vedere quali sono le novità!
 
-## <a name="using-the-azure-security-information-site"></a>Uso del sito di informazioni sulla sicurezza di Azure
-Sul lato sinistro della pagina viene visualizzato un insieme di categorie di argomenti relativi alla sicurezza. Fare clic o toccare l'argomento per visualizzare gli articoli disponibili per tale categoria.
+## <a name="using-hello-azure-security-information-site"></a>Utilizzo di hello del sito informazioni di sicurezza di Azure
+Quando si verifica sul lato sinistro di hello della pagina hello, viene visualizzata una raccolta di categorie di argomenti relativi alla sicurezza. Fare clic o toccare gli articoli hello toosee argomento hello che è disponibile per tale categoria.
 
-Ogni categoria è introdotta da un articolo contenente un riepilogo delle funzionalità offerte da Azure in termini di sicurezza per la categoria specifica. Gli articoli introduttivi consentono di comprendere i prodotti, i servizi e le funzionalità disponibili in Azure che è possibile usare per migliorare la sicurezza delle distribuzioni. Gli articoli introduttivi contengono numerosi collegamenti a contenuti tecnici per ottenere maggiori informazioni sugli argomenti e sulla relativa implementazione.
+Ogni categoria è introdotta da un articolo obiettivo di Hello dell'articolo di panoramica hello è tooprovide è un riepilogo delle quali Azure ha toooffer in termini di sicurezza per tale categoria. gli articoli di panoramica Hello consentono di comprendere hello prodotti, servizi e funzionalità disponibili in Azure che è possibile utilizzare sicurezza hello tooenhance delle distribuzioni. Questi articoli Panoramica contengono numerosi collegamenti tootechnical in modo che altre informazioni sugli argomenti hello e come tooimplement li.
 
-Il sito di informazioni sulla sicurezza di Azure attualmente include le categorie seguenti:
+sito di informazioni sulla sicurezza di Azure Hello indirizzi attualmente hello seguenti categorie:
 
 * Risorse
 * Sicurezza di rete
@@ -46,8 +46,8 @@ Il sito di informazioni sulla sicurezza di Azure attualmente include le categori
 * Architettura
 
 > [!NOTE]
-> Tutti gli articoli presenti nel sito di informazioni sulla sicurezza di Azure vengono visualizzati nel riquadro di navigazione sul lato sinistro della pagina. Per visualizzare tutti gli articoli, fare clic o toccare **Vedi altri** nella parte inferiore dell'elenco delle categorie.
+> Tutti gli articoli di hello che è disponibile nel sito di informazioni sulla sicurezza di Azure hello visualizzato durante l'esplorazione di hello sul lato sinistro hello della pagina hello. Se si desidera toosee tutti gli articoli di hello, fare clic o toccare **vedere più** nella parte inferiore di hello dell'elenco di categorie hello.
 >
 >
 
-I commenti e i suggerimenti degli utenti sono molto apprezzati. Segnalare se sono presenti categorie che si vuole aggiungere al sito o se sono presenti articoli che si vuole aggiungere a una categoria esistente. A tale scopo, usare la sezione dei commenti qui di seguito o scrivere all'indirizzo [azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com). I suggerimenti ricevuti verranno incorporati nelle progettazioni future.
+I commenti e i suggerimenti degli utenti sono molto apprezzati. Segnalare se sono presenti categorie che si vuole aggiungere al sito Se sono presenti articoli che si desidera aggiungere categoria esistente tooan, segnalarlo che troppo! È possibile utilizzare sezione commenti hello o scrivere toous in [ azsecinfosite@microsoft.com ](mailto:azsecinfosite@microsoft.com) e si verranno incorporare le raccomandazioni dei piani.

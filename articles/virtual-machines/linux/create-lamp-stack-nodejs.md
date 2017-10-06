@@ -1,6 +1,6 @@
 ---
-title: Distribuire LAMP in una macchina virtuale Linux con l'interfaccia della riga di comando di Azure 1.0 | Documentazione Microsoft
-description: Informazioni su come installare lo stack LAMP in una VM Linux in Azure
+title: aaaDeploy LAMP in una macchina virtuale Linux con hello Azure CLI 1.0 | Documenti Microsoft
+description: Informazioni su come tooinstall hello luce dello stack in una VM Linux in Azure
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: jluk
@@ -15,36 +15,36 @@ ms.devlang: NA
 ms.topic: article
 ms.date: 2/21/2017
 ms.author: juluk
-ms.openlocfilehash: feba2fb20d1831e92358ff5d1b4c9589d63d28dc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e78a82d388ce68710933b9b673aa1b2460bdbb14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-lamp-stack-with-the-azure-cli-10"></a>Distribuire lo stack LAMP con l'interfaccia della riga di comando di Azure 1.0
-Questo articolo illustra come distribuire un server Web Apache, MySQL e PHP (lo stack LAMP) in Azure. Sono necessari un account Azure ([richiedere una versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/)) e l'[interfaccia della riga di comando di Azure](../../cli-install-nodejs.md) [connessa all'account Azure](../../xplat-cli-connect.md).
+# <a name="deploy-lamp-stack-with-hello-azure-cli-10"></a>Distribuire stack LAMP con hello Azure CLI 1.0
+In questo articolo illustra come toodeploy un Apache web server, MySQL e PHP (stack LAMP hello) in Azure. È necessario un Account di Azure ([ottenere una versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/)) e hello [CLI di Azure](../../cli-install-nodejs.md) ovvero [connesso tooyour account Azure](../../xplat-cli-connect.md).
 
-## <a name="cli-versions-to-complete-the-task"></a>Versioni dell'interfaccia della riga di comando per completare l'attività
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
+## <a name="cli-versions-toocomplete-hello-task"></a>Attività hello toocomplete versioni CLI
+È possibile completare l'attività hello utilizzando una delle seguenti versioni CLI hello:
 
-- [Interfaccia della riga di comando di Azure 1.0]: interfaccia della riga di comando per i modelli di distribuzione classica e di Gestione risorsa (questo articolo)
-- [Interfaccia della riga di comando di Azure 2.0](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): interfaccia della riga di comando di prossima generazione per il modello di distribuzione di Gestione risorsa
+- [Azure CLI 1.0]-il nostro CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
+- [Azure CLI 2.0](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -la prossima generazione CLI per modello di distribuzione di gestione risorse hello
 
 ```
-# One command to create a resource group holding a VM with LAMP already on it
+# One command toocreate a resource group holding a VM with LAMP already on it
 $ azure group create -n uniqueResourceGroup -l westus --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json
 ```
 
 * Distribuire LAMP in una VM esistente
 
 ```
-# Two commands: one updates packages, the other installs Apache, MySQL, and PHP
+# Two commands: one updates packages, hello other installs Apache, MySQL, and PHP
 user@ubuntu$ sudo apt-get update
 user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 ```
 
-## <a name="deploy-lamp-on-new-vm-walkthrough"></a>Procedura dettagliata per distribuire LAMP in una nuova VM
-È possibile iniziare creando un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md) che conterrà la nuova VM:
+## <a name="deploy-lamp-on-new-vm-walkthrough"></a>Procedura dettagliata per distribuire LAMP in una nuova macchina virtuale
+Iniziare creando un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md) che conterrà hello nuova macchina virtuale:
 
     $ azure group create uniqueResourceGroup westus
     info:    Executing command group create
@@ -59,14 +59,14 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
     data:
     info:    group create command OK
 
-Per creare la VM, è possibile usare un modello di Azure Resource Manager già pronto disponibile [qui in GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
+toocreate hello macchina virtuale stessa, è possibile utilizzare un modello di gestione risorse di Azure già scritto trovato [qui su GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/lamp-app).
 
     $ azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/lamp-app/azuredeploy.json uniqueResourceGroup uniqueLampName
 
 Verrà visualizzata una risposta che chiede alcuni input aggiuntivi:
 
     info:    Executing command group deployment create
-    info:    Supply values for the following parameters
+    info:    Supply values for hello following parameters
     storageAccountNamePrefix: lampprefix
     location: westus
     adminUsername: someUsername
@@ -76,7 +76,7 @@ Verrà visualizzata una risposta che chiede alcuni input aggiuntivi:
     info:    Initializing template configurations and parameters
     info:    Creating a deployment
     info:    Created template deployment "uniqueLampName"
-    info:    Waiting for deployment to complete
+    info:    Waiting for deployment toocomplete
     data:    DeploymentName     : uniqueLampName
     data:    ResourceGroupName  : uniqueResourceGroup
     data:    ProvisioningState  : Succeeded
@@ -97,17 +97,17 @@ Verrà visualizzata una risposta che chiede alcuni input aggiuntivi:
     data:    ubuntuOSVersion           String        14.04.2-LTS
     info:    group deployment create command OK
 
-È stata creata una VM Linux con LAMP già installato. Se si desidera verificare l'installazione, si può passare direttamente a [Verificare l'installazione di LAMP](#verify-lamp-successfully-installed).
+È stata creata una VM Linux con LAMP già installato. Se si desidera, è possibile verificare l'installazione hello passando troppo basso[verificare LAMP installato](#verify-lamp-successfully-installed).
 
 ## <a name="deploy-lamp-on-existing-vm-walkthrough"></a>Procedura dettagliata per distribuire LAMP in una macchina virtuale esistente
-Per assistenza nella creazione di una macchina virtuale Linux, [qui sono disponibili informazioni su come creare una macchina virtuale Linux](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). È quindi necessario connettersi tramite SSH alla macchina virtuale Linux. Per assistenza nella creazione di una chiave SSH, [qui sono disponibili informazioni su come creare una chiave SSH in Linux/Mac](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Se è necessario informazioni sulla creazione di una VM Linux, è possibile head [toolearn qui come toocreate una VM Linux](quick-create-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Successivamente, è necessario tooSSH in hello VM Linux. Per assistenza con la creazione di una chiave SSH, è possibile head [toolearn qui come una chiave SSH in Linux o Mac toocreate](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 Se si dispone già di una chiave SSH, continuare connettendosi tramite SSH dalla riga di comando alla macchina virtuale Linux con `ssh exampleUsername@exampleDNS`.
 
-Ora che la macchina virtuale Linux è disponibile, viene illustrata l'installazione dello stack LAMP nelle distribuzioni basate su Debian. I comandi possono essere leggermente diversi per le altre distribuzioni Linux.
+Ora che si lavora all'interno di VM Linux, è possibile scorrere l'installazione di stack LAMP hello in distribuzioni basate su Debian. per altre distribuzioni Linux, potrebbero essere diversi comandi Hello.
 
 #### <a name="installing-on-debianubuntu"></a>Installazione in Debian/Ubuntu
-È necessario che siano installati i pacchetti seguenti: `apache2`, `mysql-server`, `php5` e `php5-mysql`. È possibile installare questi pacchetti catturandoli direttamente o usando Tasksel. Di seguito sono fornite le istruzioni per entrambi le opzioni.
-Prima dell'installazione, è necessario scaricare e aggiornare gli elenchi di pacchetti.
+È necessario hello seguenti pacchetti installati: `apache2`, `mysql-server`, `php5`, e `php5-mysql`. È possibile installare questi pacchetti catturandoli direttamente o usando Tasksel. Di seguito sono fornite le istruzioni per entrambi le opzioni.
+Prima di installare è necessario toodownload e aggiornare gli elenchi di pacchetto.
 
     user@ubuntu$ sudo apt-get update
 
@@ -122,47 +122,47 @@ In alternativa è possibile scaricare Tasksel, uno strumento Debian/Ubuntu che i
     user@ubuntu$ sudo apt-get install tasksel
     user@ubuntu$ sudo tasksel install lamp-server
 
-Dopo l'esecuzione di una delle due opzioni precedenti, verrà richiesto di installare questi pacchetti e altre dipendenze. Premere y e quindi INVIO per continuare e seguire eventuali altri comandi per impostare una password amministrativa per MySQL. In questo modo vengono installate le estensioni PHP minime obbligatorie per l'uso di PHP con MySQL. 
+Dopo aver eseguito una delle opzioni precedenti hello, sarà possibile tooinstall richiesta questi pacchetti e varie altre dipendenze. Premere 'y' e 'Invio' toocontinue e seguire eventuali altri tooset richiede una password amministrativa per MySQL. Consente di installare hello minimo richiesto PHP necessite estensioni toouse PHP con MySQL. 
 
 ![][1]
 
-Eseguire il comando seguente per visualizzare altre estensioni PHP disponibili come pacchetti:
+Eseguire hello successivo comando toosee altre estensioni di PHP che sono disponibili come pacchetti:
 
     user@ubuntu$ apt-cache search php5
 
 
 #### <a name="create-infophp-document"></a>Creare un documento info.php
-Ora sarà possibile controllare la versione di Apache, MySQL e PHP disponibile digitando `apache2 -v`, `mysql -v` o `php -v` nella riga di comando.
+Dovrebbe ora essere in grado di toocheck la versione di PHP, MySQL e Apache uso tramite riga di comando hello digitando `apache2 -v`, `mysql -v`, o `php -v`.
 
-Per eseguire altri test, è possibile creare rapidamente una pagina di informazioni PHP da visualizzare in un browser. Creare un file con l'editor di testo Nano con questo comando:
+Se potrebbe ad esempio tootest, inoltre, è possibile creare un rapido tooview pagina informazioni PHP in un browser. Creare un file con l'editor di testo Nano con questo comando:
 
     user@ubuntu$ sudo nano /var/www/html/info.php
 
-Nell'editor di testo GNU Nano aggiungere le righe seguenti:
+Nell'editor di testo hello GNU Nano aggiungere hello seguenti righe:
 
     <?php
     phpinfo();
     ?>
 
-Quindi salvare e chiudere l'editor di testo.
+Successivamente, salvare e chiudere l'editor di testo hello.
 
 Riavviare Apache con questo comando, in modo che tutte le nuove installazioni vengano applicate.
 
     user@ubuntu$ sudo service apache2 restart
 
 ## <a name="verify-lamp-successfully-installed"></a>Verificare l'installazione di LAMP
-A questo punto è possibile aprire un browser e accedere a http://youruniqueDNS/info.php per controllare la pagina di informazioni PHP creata. Dovrebbe avere un aspetto simile a questa immagine.
+Ora è possibile controllare pagina delle info PHP hello che aprendo un browser e passare toohttp://youruniqueDNS/info.php creato. Dovrebbe essere simile toothis immagine.
 
 ![][2]
 
-È possibile controllare l'installazione di Apache visualizzando la pagina predefinita di Apache2 Ubuntu andando su http://youruniqueDNS/. Dovrebbe essere visualizzata una schermata simile a questa immagine.
+È possibile controllare l'installazione di Apache visualizzando hello Apache2 Ubuntu predefinito pagina passando tooyou http://youruniqueDNS/. Dovrebbe essere visualizzata una schermata simile a questa immagine.
 
 ![][3]
 
 È stato configurato uno stack LAMP nella VM di Azure.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere la documentazione di Ubuntu sullo stack LAMP:
+Estrarre hello documentazione Ubuntu nello stack LAMP hello:
 
 * [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 

@@ -1,5 +1,5 @@
 ---
-title: Concetti relativi a Servizi multimediali di Azure | Microsoft Docs
+title: concetti relativi a servizi multimediali aaaAzure | Documenti Microsoft
 description: Questo argomento fornisce una panoramica dei concetti relativi ai Servizi multimediali di Azure
 services: media-services
 documentationcenter: 
@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: juliako
-ms.openlocfilehash: 5322b5f3231b067937b685c69b916ed74dfe9a6e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0a45deff32336dfcf778552f720c1ea21927951b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-media-services-concepts"></a>Concetti relativi ai Servizi multimediali di Azure
-Questo argomento fornisce una panoramica dei concetti più importanti su Servizi multimediali.
+In questo argomento fornisce una panoramica dei concetti di servizi multimediali più importanti hello.
 
 ## <a id="assets"></a>Asset e archiviazione
 ### <a name="assets"></a>Asset
-Un'entità [Asset](https://docs.microsoft.com/rest/api/media/operations/asset) contiene file digitali, tra cui video, audio, immagini, raccolte di anteprime, tracce di testo e file di sottotitoli codificati, con i relativi metadati. Una volta caricati in un asset, i file digitali possono essere usati nei flussi di lavoro di codifica e trasmissione di Servizi multimediali.
+Un [Asset](https://docs.microsoft.com/rest/api/media/operations/asset) contiene file digitali (tra cui video, audio, immagini, raccolte di anteprime, tracce di testo e file di sottotitoli) e i metadati relativi a questi file hello. Una volta caricati i file digitali hello in un asset, potrebbero essere utilizzati in servizi multimediali di hello di codifica e trasmissione di flussi di lavoro.
 
-Un asset viene mappato a un contenitore BLOB nell'account di archiviazione di Azure e i file contenuti nell'asset vengono archiviati come BLOB in blocchi in tale contenitore. I BLOB di pagine non sono supportati da Servizi multimediali di Azure.
+Un asset è mappato tooa contenitore di blob nell'account di archiviazione di Azure hello e file hello in asset hello vengono archiviati come BLOB in blocchi nel contenitore. I BLOB di pagine non sono supportati da Servizi multimediali di Azure.
 
-Per decidere quale contenuto multimediale caricare e archiviare in un asset, tenere presenti le seguenti considerazioni:
+Quando si decide quali tooupload contenuto multimediale e l'archivio in un asset, applica hello seguenti considerazioni:
 
 * Un asset deve contenere una sola istanza univoca di contenuto multimediale, ad esempio una singola modifica di un episodio televisivo, di un film o di un annuncio pubblicitario.
-* Un asset non deve contenere più rendering o modifiche di un file audiovisivo. Il tentativo di archiviare più episodi televisivi, annunci pubblicitari o angolazioni di una singola produzione all'interno di un asset è un esempio di uso non corretto di un'entità Asset. L'archiviazione di più rendering o modifiche di un file audiovisivo in un asset può comportare difficoltà durante l'invio di processi di codifica, la trasmissione in flusso o la protezione della distribuzione dell'asset in una fase successiva del flusso di lavoro.  
+* Un asset non deve contenere più rendering o modifiche di un file audiovisivo. Un esempio di uso non corretto di un cespite tentano toostore più episodi Televisivi, annunci pubblicitari o angolazioni di una singola produzione all'interno di un asset. L'archiviazione di più rendering o modifiche di un file audiovisivo in un asset può comportare difficoltà durante l'invio di processi di codifica, streaming e recapito hello del cespite hello in un secondo momento nel flusso di lavoro hello di protezione.  
 
 ### <a name="asset-file"></a>File di asset
-Un'entità [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) rappresenta un file video o audio effettivo archiviato in un contenitore BLOB. Un file di asset è sempre associato a un asset e un asset può contenere uno o più file. Se un oggetto di file di asset non è associato a un file digitale in un contenitore BLOB, l'attività del codificatore di Servizi multimediali restituisce un errore.
+Un'entità [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) rappresenta un file video o audio effettivo archiviato in un contenitore BLOB. Un file di asset è sempre associato a un asset e un asset può contenere uno o più file. attività di Media Services Encoder Hello non riesce se un oggetto di file di asset non è associato a un file digitale in un contenitore blob.
 
-L'istanza di **AssetFile** e il file multimediale effettivo sono due oggetti distinti. L'istanza di AssetFile contiene metadati relativi al file multimediale, mentre quest'ultimo contiene l'effettivo contenuto multimediale.
+Hello **AssetFile** istanza e hello effettivo file multimediale sono due oggetti distinti. istanza di AssetFile Hello contiene i metadati relativi a file di supporto hello, mentre i file di supporto hello contiene hello effettivo contenuto multimediale.
 
-È sconsigliabile tentare di modificare i contenuti dei contenitori BLOB generati da Servizi multimediali senza usare le API di Servizi multimediali.
+Non è consigliabile tentare contenuto hello toochange dei contenitori di blob che sono stati generati da servizi multimediali senza usare le API di servizi multimediali.
 
 ### <a name="asset-encryption-options"></a>Opzioni di crittografia di asset
-A seconda del tipo di contenuto che si vuole caricare, archiviare e distribuire, in Servizi multimediali è possibile scegliere tra varie opzioni di crittografia.
+In base al tipo di contenuto di hello desiderate tooupload, archivio e recapito, servizi multimediali offre varie opzioni di crittografia che è possibile scegliere.
 
 >[!NOTE]
->Non viene usata alcuna crittografia. Si tratta del valore predefinito. Quando si usa questa opzione il contenuto non è protetto durante il transito, né nell'archiviazione locale.
+>Non viene usata alcuna crittografia. Questo è il valore di predefinito hello. Quando si usa questa opzione il contenuto non è protetto durante il transito, né nell'archiviazione locale.
 
-Se si prevede di distribuire un file MP4 tramite download progressivo, usare questa opzione per caricare il contenuto.
+Se si prevede di toodeliver un file MP4 tramite download progressivo, usare il contenuto tooupload questa opzione.
 
-**StorageEncrypted**: usare questa opzione per crittografare localmente il contenuto non crittografato applicando la crittografia AES a 256 bit e quindi caricarlo in Archiviazione di Azure, dove viene archiviato in forma crittografata. Gli asset protetti con la crittografia di archiviazione vengono decrittografati automaticamente e inseriti in un file system crittografato prima della codifica. Se necessario, inoltre, possono essere ricrittografati prima del successivo caricamento come nuovo asset di output. La crittografia di archiviazione viene usata principalmente per proteggere file multimediali di input di alta qualità archiviati su disco applicando una crittografia avanzata. 
+**StorageEncrypted** : utilizzare questa opzione tooencrypt il contenuto non crittografato in locale utilizzando la crittografia AES a 256 bit e quindi caricarla tooAzure archiviazione dove viene archiviato in forma crittografata. Gli asset protetti con crittografia di archiviazione vengono decrittografati automaticamente e inseriti in un file crittografato sistema precedente tooencoding e, facoltativamente, crittografare nuovamente toouploading precedente come nuovo asset di output. Hello primario per la crittografia di archiviazione viene usata quando si desidera toosecure file multimediali di input di alta qualità applicando una crittografia avanzata rest su disco. 
 
-Per poter trasmettere l'asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset in modo da informare Servizi multimediali della modalità di distribuzione del contenuto. Per potere permettere lo streaming dell'asset, il server di streaming rimuove la crittografia di archiviazione ed esegue lo streaming dei contenuti usando i criteri di recapito specificati (ad esempio, AES, PlayReady o nessuna crittografia). 
+In ordine toodeliver asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset hello in modo da servizi multimediali come toodeliver il contenuto. Prima che l'asset può essere trasmesso, hello streaming flussi e crittografia di archiviazione hello viene rimosso il server dei contenuti usando hello specificato criterio di recapito (ad esempio, AES, PlayReady o Nessuna crittografia). 
 
-**CommonEncryptionProtected** : usare questa opzione se si vuole crittografare o caricare contenuto già crittografato e protetto con la crittografia comune o con DRM PlayReady, ad esempio Smooth Streaming protetto con DRM PlayReady.
+**CommonEncryptionProtected** -utilizzare questa opzione se si desidera tooencrypt (o caricamento già crittografato) contenuto con la crittografia comune o PlayReady DRM (ad esempio, Smooth Streaming protetto con PlayReady DRM).
 
-**EnvelopeEncryptionProtected** : usare questa opzione se si vuole proteggere o caricare contenuto HLS (HTTP Live Streaming) già protetto, crittografato con AES. Se si sta caricando contenuto HLS già crittografato con AES, la crittografia deve essere stata eseguita con Transform Manager.
+**EnvelopeEncryptionProtected** : utilizzare questa opzione se si desidera tooprotect (o caricamento già protetto) HTTP Live Streaming (HLS) crittografato con Advanced Encryption Standard (AES). Se si sta caricando contenuto HLS già crittografato con AES, la crittografia deve essere stata eseguita con Transform Manager.
 
 ### <a name="access-policy"></a>Criterio di accesso
-Un'entità [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy) definisce le autorizzazioni, ad esempio di lettura, scrittura ed elenco, nonché la durata dell'accesso a un asset. In genere, si passa un oggetto AccessPolicy a un localizzatore, che viene quindi usato per l'accesso ai file contenuti in un asset.
+Un [AccessPolicy](https://docs.microsoft.com/rest/api/media/operations/accesspolicy) definisce le autorizzazioni (ad esempio lettura, scrittura ed elenco) e la durata dell'asset tooan di accesso. In genere, è necessario passare un localizzatore di tooa oggetto AccessPolicy che sarebbe quindi file hello tooaccess utilizzati contenuti in un asset.
 
 >[!NOTE]
->È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
+>È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
 
 ### <a name="blob-container"></a>Contenitore BLOB
 Un contenitore BLOB consente di raggruppare un insieme di BLOB. I contenitori BLOB vengono usati in Servizi multimediali come delimitazione per il controllo di accesso e per i localizzatori di firma di accesso condiviso negli asset. Un account di archiviazione di Azure può includere un numero illimitato di contenitori BLOB, In un contenitore può essere archiviato un numero illimitato di BLOB.
 
 >[!NOTE]
-> È sconsigliabile tentare di modificare i contenuti dei contenitori BLOB generati da Servizi multimediali senza usare le API di Servizi multimediali.
+> Non è consigliabile tentare contenuto hello toochange dei contenitori di blob che sono stati generati da servizi multimediali senza usare le API di servizi multimediali.
 > 
 > 
 
 ### <a id="locators"></a>Localizzatori
-I [localizzatori](https://docs.microsoft.com/rest/api/media/operations/locator) forniscono un punto di ingresso per accedere ai file contenuti in un asset. Per definire le autorizzazioni e il periodo di tempo durante il quale un client ha accesso a un determinato asset viene usato un criterio di accesso. I localizzatori possono disporre di una relazione uno-a-molti con un criterio di accesso. In tal modo, localizzatori diversi possono fornire date/ore di inizio e tipi di connessione diversi a client diversi usando tutti le stesse impostazioni per le autorizzazioni e la durata. Tuttavia, a causa di una restrizione sul criterio di accesso condiviso impostata dai servizi di archiviazione di Azure, a un determinato asset non possono essere associati più di cinque localizzatori univoci alla volta. 
+[Localizzatore](https://docs.microsoft.com/rest/api/media/operations/locator)forniscono un hello tooaccess punto di ingresso file contenuti in un asset. Un criterio di accesso è usato toodefine hello autorizzazioni e la durata che un client ha accesso tooa asset specificato. I localizzatori possono avere una relazione tooone con un criterio di accesso, ad esempio che localizzatori diversi possono offrire tempi di inizio diversa e i client toodifferent tipi di connessione utilizzando tutti hello stessa autorizzazione e le impostazioni di durata. a causa di una restrizione di criteri di accesso condiviso impostata dai servizi di archiviazione di Azure, tuttavia, non è più di cinque localizzatori univoci associati a un determinato asset contemporaneamente. 
 
-Servizi multimediali supporta due tipi di localizzatori: localizzatori OnDemandOrigin usati per trasmettere in streaming file multimediali (ad esempio, MPEG DASH, HLS o Smooth Streaming) o scaricare progressivamente file multimediali e localizzatori URL di firma di accesso condiviso, usati per caricare o scaricare file multimediali a/da Archiviazione di Azure. 
+Servizi multimediali sono supportati due tipi di localizzatori: localizzatori OnDemandOrigin, utilizzato toostream media (ad esempio, MPEG DASH, HLS o Smooth Streaming) o il download progressivo supporti e localizzatori URL di firma di accesso condiviso usati tooupload o to\from i file di download supporti di archiviazione di Azure. 
 
 >[!NOTE]
->L'autorizzazione di elenco (AccessPermissions.List) non deve essere usata durante la creazione di un localizzatore OnDemandOrigin. 
+>autorizzazione di elenco Hello (AccessPermissions.List) da utilizzare non quando si crea un localizzatore OnDemandOrigin. 
 
 ### <a name="storage-account"></a>Account di archiviazione
-l'accesso ad Archiviazione di Azure viene eseguito esclusivamente tramite un account di archiviazione. Un account di Servizi multimediali può essere associato a uno o più account di archiviazione. Un account può contenere un numero illimitato di contenitori, purché la dimensione totale di questi sia inferiore a 500TB per ogni account di archiviazione.  In Servizi multimediali sono disponibili strumenti di SDK che consentono di gestire più account di archiviazione e di bilanciare il carico della distribuzione degli asset durante il caricamento negli account in base a metriche specifiche oppure secondo una distribuzione casuale. Per altre informazioni, vedere Uso di [Archiviazione di Azure](https://msdn.microsoft.com/library/azure/dn767951.aspx). 
+Tutti tooAzure accesso archiviazione viene eseguita tramite un account di archiviazione. Un account di Servizi multimediali può essere associato a uno o più account di archiviazione. Un account può contenere un numero illimitato di contenitori, purché la dimensione totale di questi sia inferiore a 500TB per ogni account di archiviazione.  Servizi multimediali fornisce il livello SDK tooling tooallow si toomanage più account di archiviazione e di carico bilanciare la distribuzione di hello degli asset durante il caricamento toothese account in base alle metriche o distribuzione casuale. Per altre informazioni, vedere Uso di [Archiviazione di Azure](https://msdn.microsoft.com/library/azure/dn767951.aspx). 
 
 ## <a name="jobs-and-tasks"></a>Processi e attività
-Un'entità [Job](https://https://docs.microsoft.com/rest/api/media/operations/job) viene in genere usata per elaborare (ad esempio, indicizzare o codificare) una presentazione audio/video. Se si stanno elaborando più video, è necessario creare un processo per ciascun video codificato.
+Oggetto [processo](https://https://docs.microsoft.com/rest/api/media/operations/job) viene in genere utilizzate tooprocess (ad esempio, indice o codificare) una presentazione audio/video. Se si stanno elaborando più video, creare un processo per ogni toobe video codificato.
 
-Un processo contiene i metadati relativi all'elaborazione da eseguire. Ogni processo contiene una o più entità [task](https://docs.microsoft.com/rest/api/media/operations/task)che specificano un'attività di elaborazione atomica, i relativi asset di input e output, un processore di contenuti multimediali e le impostazioni associate. Le attività contenute in un processo possono essere concatenate, in modo che l'asset di output di un'attività sia indicato come asset di input dell'attività successiva. In questo modo un processo può contenere tutte le operazioni di elaborazione necessarie per una presentazione multimediale.
+Un processo contiene i metadati relativi a elaborazione hello toobe eseguita. Ogni processo contiene una o più entità [task](https://docs.microsoft.com/rest/api/media/operations/task)che specificano un'attività di elaborazione atomica, i relativi asset di input e output, un processore di contenuti multimediali e le impostazioni associate. Attività all'interno di un processo possono essere concatenate insieme, dove hello asset di output di un'attività è specificato come hello attività successiva toohello di asset di input. In questo modo un processo può contenere tutta l'elaborazione di hello necessaria per una presentazione multimediale.
 
 ## <a id="encoding"></a>Codifica
-Servizi multimediali di Azure offre diverse opzioni per la codifica di servizi multimediali nel cloud.
+Servizi multimediali di Azure fornisce più opzioni per la codifica dei file multimediali in cloud hello hello.
 
-Quando si iniziano ad utilizzare i servizi multimediali, è importante comprendere la differenza tra codec e formati di file.
-I codec sono costituiti da software che implementa gli algoritmi di compressione/decompressione, mentre i formati di file sono contenitori che includono il video compresso.
+Quando si avvia con servizi multimediali, è importante toounderstand differenza di hello tra codec e formati di file.
+Codec sono costituiti da software hello che implementa gli algoritmi di compressione/decompressione hello, mentre i formati di file sono contenitori che includono il video compresso hello.
 
-Servizi multimediali include la funzionalità per la creazione dinamica dei pacchetti, che consente di distribuire contenuto con codifica Smooth Streaming o MP4 a bitrate adattivo nei formati supportati da Servizi multimediali, ovvero MPEG-DASH, HLS, Smooth Streaming, senza dover ricreare i pacchetti in questi formati di streaming.
+Servizi multimediali fornisce creazione dinamica dei pacchetti che consente la velocità in bit adattiva MP4 o Smooth Streaming con codifica contenuto in streaming formati supportati da servizi multimediali (MPEG DASH, HLS, Smooth Streaming) toodeliver senza che sia necessario toore-package in questi formati di streaming.
 
-Per sfruttare i vantaggi della [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md), è necessario codificare il file mezzanine (di origine) in un set di file MP4 con bitrate adattivo o di file Smooth Streaming a bitrate adattivo e disporre di almeno un endpoint di streaming Standard o Premium con stato avviato.
+sfruttare tootake [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md), è necessario tooencode il file mezzanine (origine) in un set di file MP4 o file Smooth Streaming a velocità in bit adattiva e si dispone di almeno un endpoint di streaming di standard o premium in stato avviato.
 
-Servizi multimediali supporta i seguenti codificatori su richiesta descritti in questo articolo:
+Servizi multimediali supporta hello seguenti codificatori su richiesta che sono descritte in questo articolo:
 
 * [Codificatore multimediale standard](media-services-encode-asset.md#media-encoder-standard)
 * [Flusso di lavoro Premium del codificatore multimediale](media-services-encode-asset.md#media-encoder-premium-workflow)
@@ -107,50 +107,50 @@ Per informazioni sui codificatori supportati, vedere [Codificatori](media-servic
 ## <a name="live-streaming"></a>Streaming live
 In Servizi multimediali di Azure un canale rappresenta una pipeline per l'elaborazione di contenuto in streaming live. Un canale riceve i flussi di input live in uno dei due modi seguenti:
 
-* Un codificatore live locale invia al canale un flusso RTMP o Smooth Streaming (MP4 frammentato) a più velocità in bit. È possibile usare i codificatori live seguenti che generano output in formato Smooth Streaming a bitrate multipli: MediaExcel, Ateme, Imagine Communications, Envivio, Cisco ed Elemental. I codificatori live seguenti generano output in formato RTMP: Adobe Flash Live Encoder, Telestream Wirecast, Teradek, Haivision e codificatori Tricaster. I flussi inseriti attraversano i canali senza ulteriori operazioni di transcodifica e codifica. Quando richiesto, Servizi multimediali invia il flusso ai clienti.
-* Un flusso a velocità in bit singola (in uno dei formati seguenti: RTP (MPEG-TS), RTMP o Smooth Streaming (MP4 frammentato)) viene inviato al canale abilitato per l'esecuzione della codifica live con Servizi multimediali. Il canale esegue quindi la codifica live del flusso in ingresso a velocità in bit singola in un flusso video a più velocità in bit (adattivo). Quando richiesto, Servizi multimediali invia il flusso ai clienti.
+* Un codificatore live locale invia più velocità in bit RTMP o Smooth Streaming (MP4 frammentato) toohello canale. È possibile utilizzare i seguenti codificatori live Smooth Streaming con più velocità in bit di output di hello: MediaExcel, Ateme, le comunicazioni immaginare, Envivio, Cisco ed elementare. Hello codificatori live seguenti generano output in RTMP: Adobe Flash Live Encoder, Telestream Wirecast, Teradek, Haivision e Tricaster codificatori. Hello flussi inseriti passano attraverso i canali senza altre transcodifica e codifica. Quando richiesto, servizi multimediali offre toocustomers flusso hello.
+* Un flusso a velocità in bit singola (in uno dei seguenti formati hello: RTP (MPEG-TS)), RTMP o Smooth Streaming (MP4 frammentato)) viene inviato toohello canale che viene attivato tooperform in tempo reale di codifica con servizi multimediali. Hello canale esegue quindi la codifica live di hello in arrivo velocità in bit singola flusso tooa più velocità in bit (adattivo) flusso video. Quando richiesto, servizi multimediali offre toocustomers flusso hello.
 
 ### <a name="channel"></a>Canale
-In Servizi multimediali le entità [Channel](https://docs.microsoft.com/rest/api/media/operations/channel)sono responsabili dell'elaborazione dei contenuti in streaming live. Un'entità Channel, o canale, fornisce un endpoint di input (URL di inserimento) che può essere a sua volta fornito al transcodificatore live. Un'entità Channel riceve flussi di input live dal trascodificatore live e li rende disponibili per lo streaming mediante uno o più StreamingEndpoints. I canali forniscono anche un endpoint di anteprima(URL di anteprima) che consente di visualizzare in anteprima e convalidare il flusso prima dell'ulteriore elaborazione e del recapito.
+In Servizi multimediali le entità [Channel](https://docs.microsoft.com/rest/api/media/operations/channel)sono responsabili dell'elaborazione dei contenuti in streaming live. Un canale, fornisce un endpoint di input (URL di inserimento) che è quindi fornire transcodificatore live tooa. canale Hello riceve flussi di input live dal transcodificatore live hello e rende disponibili per lo streaming tramite uno o più entità Streamingendpoint. I canali forniscono inoltre un endpoint di anteprima (URL di anteprima) di utilizzare toopreview e convalidare il flusso prima di elaborarlo ulteriormente e di recapito.
 
-È possibile ottenere l'URL di inserimento e l'URL di anteprima quando si crea il canale. Per ottenere questi URL, non è necessario che il canale sia nello stato avviato. Quando si è pronti per avviare l'inserimento di dati da un transcodificatore live nel canale, il canale deve essere avviato. Una volta che il transcodificatore live inizia a inserire i dati, è possibile visualizzare in anteprima il flusso.
+È possibile ottenere hello inserimento URL e l'URL di anteprima di hello quando si crea il canale hello. tooget questi URL, il canale di hello non avere toobe nello stato avviato hello. Quando si è pronti toostart push dei dati da un transcodificatore live nel canale hello, canale hello deve essere avviati. Una volta transcodificatore live hello inizia l'inserimento di dati, è possibile visualizzare in anteprima il flusso.
 
-Ogni account di Servizi multimediali può contenere più entità Channel, Program e StreamingEndpoint. In base alle esigenze di sicurezza e alla larghezza di banda, i servizi di StreamingEndpoint possono essere dedicati a uno o più canali. Qualsiasi StreamingEndpoint può effettuare il pull da qualsiasi canale.
+Ogni account di Servizi multimediali può contenere più entità Channel, Program e StreamingEndpoint. A seconda delle esigenze di larghezza di banda e sicurezza hello, servizi StreamingEndpoint possono essere dedicato tooone o altri canali. Qualsiasi StreamingEndpoint può effettuare il pull da qualsiasi canale.
 
 ### <a name="program-event"></a>Programma (evento)
-Un [programma (evento)](https://docs.microsoft.com/rest/api/media/operations/program) consente di controllare la pubblicazione e l'archiviazione di segmenti in un flusso live. I programmi (eventi) sono gestiti dai canali. La relazione tra queste due entità è simile a quella che intercorre tra di essi nei media tradizionali, in cui un canale è costituito da un flusso costante di contenuti, mentre un programma ha come ambito una serie di eventi programmati sul canale.
-È possibile specificare il numero di ore per cui si vuole mantenere il contenuto registrato per il programma impostando la proprietà **ArchiveWindowLength** . Il valore impostato può essere compreso tra 5 minuti e 25 ore.
+Oggetto [programma (evento)](https://docs.microsoft.com/rest/api/media/operations/program) consente toocontrol hello pubblicazione e l'archiviazione di segmenti in un flusso in tempo reale. I programmi (eventi) sono gestiti dai canali. Hello relazione canale e il programma è simile tootraditional media, in cui un canale è un flusso costante di contenuto e l'evento con ambito toosome timeout su tale canale è un programma.
+È possibile specificare hello numero di ore che si vuole tooretain hello registrato contenuto per il programma hello, impostazione hello **ArchiveWindowLength** proprietà. Questo valore può essere impostato da un minimo di 25 ore massimo tooa 5 minuti.
 
-La proprietà ArchiveWindowLength determina anche il limite di tempo per cui i client possono eseguire ricerche a ritroso nel tempo dalla posizione live corrente. I programmi possono essere eseguiti per la quantità di tempo specificata, ma il contenuto che va oltre la durata prevista viene scartato in modo continuo. Il valore della proprietà determina anche il tempo per cui i manifesti client possono crescere.
+ArchiveWindowLength determina anche l'intervallo di tempo i client possono cercare indietro nel tempo dalla posizione live corrente hello massimo hello. I programmi eseguibili sul periodo di tempo specificato hello, ma il contenuto che non è sincronizzato con la lunghezza della finestra hello viene scartato in modo continuo. Questo valore di questa proprietà determina anche per quanto tempo hello client possono raggiungere i manifesti.
 
-Ogni programma (evento) è associato a un asset. Per pubblicare il programma, è necessario creare un localizzatore per l'asset associato. Con questo localizzatore sarà possibile creare un URL di streaming da fornire ai client.
+Ogni programma (evento) è associato a un asset. il programma di hello toopublish è necessario creare un localizzatore per hello associati asset. Con questo localizzatore sarà si toobuild un URL di streaming che è possibile fornire tooyour client.
 
-Un canale supporta fino a tre programmi in esecuzione simultanea, in modo da poter creare più archivi dello stesso flusso in ingresso. Questo consente di pubblicare e archiviare parti diverse di un evento a seconda delle necessità. Si consideri ad esempio uno scenario in cui un'azienda richiede l'archiviazione di 6 ore di un programma e la trasmissione solo degli ultimi 10 minuti. A tale scopo, è necessario creare due programmi in esecuzione contemporaneamente. Un programma è impostato per l'archiviazione di 6 ore dell'evento, ma non viene pubblicato. L'altro programma è impostato per l'archiviazione di 10 minuti e viene pubblicato.
+Un canale supporta fino toothree programmi in esecuzione contemporaneamente in modo è possibile creare più archivi di hello stesso flusso in ingresso. In questo modo toopublish e archiviare parti diverse di un evento in base alle esigenze. Ad esempio, il requisito di business è tooarchive 6 ore di un programma, ma toobroadcast solo ultimi 10 minuti. tooaccomplish, è necessario toocreate due programmi in esecuzione simultanea. Un programma è impostato tooarchive 6 ore dell'evento hello ma hello non viene pubblicato. Hello altro programma è tooarchive insieme per 10 minuti e questo programma viene pubblicato.
 
 Per altre informazioni, vedere:
 
-* [Uso di canali abilitati per l'esecuzione della codifica live con Servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md)
+* [Utilizzo di canali che sono Enabled tooPerform Live codifica con servizi multimediali di Azure](media-services-manage-live-encoder-enabled-channels.md)
 * [Uso di canali che ricevono il flusso live a più velocità in bit da codificatori locali](media-services-live-streaming-with-onprem-encoders.md)
 * [Quote e limitazioni](media-services-quotas-and-limitations.md).
 
 ## <a name="protecting-content"></a>Protezione del contenuto
 ### <a name="dynamic-encryption"></a>Crittografia dinamica
-Servizi multimediali di Azure consente di proteggere i file multimediali dal momento in cui escono dal computer fino alle fasi di archiviazione, elaborazione e recapito. Servizi multimediali consente di distribuire contenuti crittografati dinamicamente con AES (Advanced Encryption Standard), mediante chiavi di crittografia a 128 bit, e con la crittografia comune (CENC), mediante PlayReady e/o Widevine DRM. Servizi multimediali fornisce inoltre un servizio per la distribuzione di chiavi AES e licenze PlayReady ai client autorizzati.
+Servizi multimediali di Azure consente di toosecure gli elementi multimediali dal tempo hello che lascia computer tramite l'archiviazione, elaborazione e il recapito. Servizi multimediali consente toodeliver il contenuto crittografato in modo dinamico con Advanced Encryption Standard (AES) (utilizzando le chiavi di crittografia a 128 bit) e la crittografia comune (CENC) utilizzando PlayReady e/o Widevine DRM. Servizi multimediali fornisce anche un servizio per la distribuzione client di tooauthorized di licenze PlayReady e chiavi AES.
 
-Attualmente è possibile crittografare i formati di streaming seguenti: HLS, MPEG DASH e Smooth Streaming. Non è possibile crittografare i download progressivi.
+Attualmente, è possibile crittografare hello seguenti formati di streaming: HLS, MPEG DASH e Smooth Streaming. Non è possibile crittografare i download progressivi.
 
-Per consentire a Servizi multimediali di crittografare un asset, è necessario associare una chiave di crittografia (CommonEncryption o EnvelopeEncryption) all'asset e configurare anche i criteri di autorizzazione per la chiave.
+Se si desidera per servizi multimediali tooencrypt un asset, è necessario tooassociate una chiave di crittografia (CommonEncryption o EnvelopeEncryption) con l'asset e inoltre configurare criteri di autorizzazione per la chiave di hello.
 
-Se si vuole trasmettere l'asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset in modo da specificare la modalità di distribuzione dell'asset.
+Se si desidera toostream asset crittografato di archiviazione, è necessario configurare i criteri di distribuzione dell'asset hello in ordine toospecify come si desidera toodeliver dell'asset.
 
-Quando un flusso viene richiesto da un lettore, Servizi multimediali usa la chiave specificata per crittografare dinamicamente i contenuti mediante la crittografia envelope (con AES) o la crittografia common (con PlayReady o Widevine). Per decrittografare il flusso, il lettore richiederà la chiave dal servizio di distribuzione delle chiavi. Per decidere se l'utente è autorizzato a ottenere la chiave, il servizio valuta i criteri di autorizzazione specificati.
+Quando un flusso è richiesto da un lettore, servizi multimediali Usa hello specificato toodynamically chiave crittografare il contenuto utilizzando una crittografia envelope (con AES) o la crittografia comune (con PlayReady o Widevine). flusso di hello toodecrypt, hello lettore richiederà chiave hello dal servizio di distribuzione delle chiavi hello. Se è o meno utente hello toodecide autorizzato chiave hello tooget, servizio hello valuta i criteri di autorizzazione hello specificato per la chiave di hello.
 
 ### <a name="token-restriction"></a>Restrizione Token
-I criteri di autorizzazione delle chiavi simmetriche possono avere una o più restrizioni di tipo Open, Token o IP. I criteri con restrizione Token devono essere accompagnati da un token rilasciato da un servizio STS (Secure Token Service, servizio token di sicurezza). Servizi multimediali supporta i token nei formati Simple Web Tokens (SWT) e JSON Web Token (JWT). Servizi multimediali non fornisce servizi token di sicurezza. Per il rilascio di token è possibile creare un servizio token di sicurezza personalizzato oppure usare il Servizio di controllo di accesso di Microsoft Azure. Il servizio token di sicurezza deve essere configurato in modo da creare un token firmato con la chiave specificata e rilasciare le attestazioni specificate nella configurazione della restrizione token. Il servizio di distribuzione di chiavi di Servizi multimediali restituirà al client la chiave o la licenza richiesta se il token è valido e le attestazioni del token corrispondono a quelle configurate per la chiave o la licenza.
+Hello criteri di autorizzazione chiave contenuto potrebbero avere una o più restrizioni di autorizzazione: aprire, token o restrizioni IP. criteri con restrizione token Hello devono essere accompagnato da un token rilasciato da un servizio (token di sicurezza). Servizi multimediali supporta i token in formato JSON Web Token (JWT) e i token SWT (Simple Web token) hello. Servizi multimediali non fornisce servizi token di sicurezza. È possibile creare un servizio token di sicurezza personalizzato o utilizzare i token tooissue ACS di Microsoft Azure. Hello servizio token di sicurezza deve essere configurato toocreate un token firmato con hello specificato chiave e rilasciare le attestazioni specificate nella configurazione della restrizione token hello. attestazioni di servizi multimediali Hello servizio di distribuzione chiavi restituirà hello richiesto hello e chiave (o licenza) client toohello se hello token è valido in hello token corrispondono a quelle configurate per la chiave di hello (o licenza).
 
-Quando si configurano i criteri di restrizione Token, è necessario specificare i parametri primary verification key, issuer e audience. Il parametro primary verification key include la chiave usata per firmare il token. Il parametro issuer è il servizio token di sicurezza che emette il token. Il parametro audience (talvolta denominato scope) descrive l'ambito del token o la risorsa a cui il token autorizza l'accesso. Il servizio di distribuzione delle chiavi di Servizi multimediali verifica che i valori nel token corrispondano ai valori nel modello.
+Quando si configurano i criteri con restrizione token hello, è necessario specificare la chiave di verifica primaria hello, autorità di certificazione e i parametri di destinatari. chiave di verifica primaria Hello contiene hello chiave che hello token è stato firmato con, autorità emittente è hello servizio token di sicurezza che rilascia token hello. destinatari Hello (talvolta denominato ambito) descrive finalità hello del token hello o hello risorse hello token autorizza l'accesso. Hello servizio di distribuzione delle chiavi di servizi multimediali verifica che i valori nel token hello corrispondano valori hello hello modello.
 
-Per altre informazioni, vedere gli articoli seguenti:
+Per ulteriori informazioni, vedere hello seguenti articoli:
 
 [Informazioni generali sulla protezione dei contenuti](media-services-content-protection-overview.md)
 [Proteggere contenuti con AES-128](media-services-protect-with-aes128.md)
@@ -158,48 +158,48 @@ Per altre informazioni, vedere gli articoli seguenti:
 
 ## <a name="delivering"></a>Recapito
 ### <a id="dynamic_packaging"></a>Creazione dinamica dei pacchetti
-Quando si usa Servizi multimediali, è consigliabile codificare i file in formato intermedio con un set MP4 a bitrate adattivo e quindi convertire il set nel formato desiderato mediante la [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md).
+Quando si lavora con servizi multimediali, è consigliabile tooencode i file in formato intermedio in un file MP4 a velocità in bit adattiva, impostare e quindi convertono hello imposta toohello formato desiderato utilizzando hello [creazione dinamica dei pacchetti](media-services-dynamic-packaging-overview.md).
 
 ### <a name="streaming-endpoint"></a>endpoint di streaming
-Un'entità StreamingEndpoint rappresenta un servizio di streaming in grado di trasmettere contenuti direttamente a un lettore client o a una rete per la distribuzione di contenuti (CDN) per una successiva ridistribuzione (Servizi multimediali di Azure ora fornisce l'integrazione della rete CDN di Azure). Il flusso in uscita da un servizio endpoint di streaming può essere costituito da un flusso live o da una risorsa video on demand associata all'account di Servizi multimediali. I clienti di Servizi multimediali scelgono un endpoint di streaming **Standard** oppure uno o più endpoint di streaming **Premium**, in base alle esigenze. L'endpoint di streaming Standard è adatto per la maggior parte dei carichi di lavoro di streaming. 
+Un'entità StreamingEndpoint rappresenta un servizio di streaming in grado di fornire contenuto direttamente applicazione di lettore client tooa o tooa rete di contenuti (CDN) per ulteriore distribuzione (servizi multimediali di Azure offre ora il servizio di integrazione di hello rete CDN di Azure.) hello flusso in uscita da un servizio di endpoint di streaming può essere un flusso live, o una risorsa video su richiesta nell'account di servizi multimediali. Scegliere i clienti di servizi multimediali un **Standard** streaming endpoint oppure uno o più **Premium** gli endpoint, in base alle esigenze tootheir di streaming. L'endpoint di streaming Standard è adatto per la maggior parte dei carichi di lavoro di streaming. 
 
-L'endpoint di streaming Standard è adatto per la maggior parte dei carichi di lavoro di streaming. Gli endpoint di streaming Standard offrono la flessibilità necessaria per distribuire il contenuto praticamente a tutti i dispositivi grazie alla creazione dinamica dei pacchetti in HLS, MPEG-DASH e Smooth Streaming, nonché alla crittografia dinamica per Microsoft PlayReady, Google Widevine, Apple Fairplay e AES128.  Tali endpoint sono anche scalabili per destinatari di dimensioni diverse con migliaia di visualizzatori simultanei tramite l'integrazione della rete CDN di Azure. Se il carico di lavoro è avanzato o i requisiti della capacità di streaming non rispondono alle destinazioni con la velocità effettiva degli endpoint di streaming Standard o se si vuole controllare la capacità del servizio StreamingEndpoint per gestire esigenze di crescita in termini di larghezza di banda, è consigliabile allocare unità di scala (note anche come unità di streaming Premium).
+L'endpoint di streaming Standard è adatto per la maggior parte dei carichi di lavoro di streaming. Endpoint standard di Streaming offrono hello flessibilità toodeliver toovirtually il contenuto ogni dispositivo tramite creazione dinamica dei pacchetti in HLS e MPEG-DASH, Smooth Streaming, nonché la crittografia dinamica per Microsoft PlayReady, Google Widevine, Fairplay Apple e AES128.  Anche una scalabilità da vasto toovery molto piccoli con migliaia di visualizzatori simultanei attraverso l'integrazione della rete CDN di Azure. Se si dispone di un carico di lavoro avanzato o i requisiti di capacità di streaming non rientrano toostandard destinazioni di velocità effettiva di endpoint di streaming o si desidera toocontrol hello capacità deve hello StreamingEndpoint servizio toohandle aumento della larghezza di banda, è consigliabile unità di scala tooallocate (noto anche come premium unità di streaming).
 
-È opportuno anche usare la creazione dinamica dei pacchetti e/o la crittografia dinamica.
+È consigliabile toouse creazione dinamica dei pacchetti e/o la crittografia dinamica.
 
 >[!NOTE]
->Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
+>Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
 
 Per altre informazioni, vedere [questo](media-services-portal-manage-streaming-endpoints.md) argomento.
 
-Per impostazione predefinita, è possibile avere fino a due endpoint di streaming nell'account di Servizi multimediali. Per richiedere un limite più elevato, vedere [Quote e limitazioni](media-services-quotas-and-limitations.md).
+Per impostazione predefinita è possibile avere fino a endpoint di streaming too2 nell'account di servizi multimediali. toorequest un limite superiore, vedere [quote e limitazioni](media-services-quotas-and-limitations.md).
 
 Il costo verrà addebitato solo quando StreamingEndpoint è in stato di esecuzione.
 
 ### <a name="asset-delivery-policy"></a>Criteri di distribuzione degli asset
-Uno dei passaggi del flusso di lavoro di distribuzione dei contenuti in Servizi multimediali consiste nella configurazione dei [criteri di distribuzione degli asset ](https://docs.microsoft.com/rest/api/media/operations/assetdeliverypolicy)che si desidera trasmettere in streaming. Questi criteri indicano a Servizi multimediali la modalità di distribuzione di un asset, ovvero il protocollo di streaming da usare per la creazione dinamica dei pacchetti (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti), se l'asset deve essere crittografato dinamicamente e l'eventuale modalità di crittografia (envelope o common).
+Uno dei hello passaggi in servizi multimediali di flusso di lavoro di distribuzione del contenuto è la configurazione di hello [i criteri di distribuzione per asset ](https://docs.microsoft.com/rest/api/media/operations/assetdeliverypolicy)che si desidera toobe trasmesso. criteri di distribuzione di asset Hello indicano a servizi multimediali la modalità desiderata per l'asset toobe recapitati: in quale protocollo di streaming deve l'asset essere dinamicamente incluso nel pacchetto (ad esempio, MPEG DASH, HLS, Smooth Streaming o tutti), se si desidera toodynamically o meno crittografare l'asset e come (busta o la crittografia comune).
 
-Nel caso di un asset crittografato di archiviazione, prima di trasmettere in streaming l'asset in base ai criteri specificati, il server rimuove la crittografia di archiviazione. Ad esempio, per distribuire l'asset crittografato con una chiave di crittografia AES, impostare il tipo di criteri su DynamicEnvelopeEncryption. Per rimuovere la crittografia di archiviazione e trasmettere l'asset in chiaro, impostare il tipo di criteri su NoDynamicEncryption.
+Se si dispone di un asset crittografato di archiviazione, prima dell'asset può essere trasmesso, hello streaming flussi e crittografia di archiviazione hello viene rimosso il server dei contenuti usando hello specifica criteri di distribuzione. Ad esempio, toodeliver l'asset crittografato con chiave di crittografia Advanced Encryption Standard (AES), set hello criteri tipo tooDynamicEnvelopeEncryption. crittografia di archiviazione tooremove e le risorse hello flusso hello chiara, impostare hello criteri tipo tooNoDynamicEncryption.
 
 ### <a name="progressive-download"></a>Download progressivo
-Il download progressivo è una tecnologia che consente di avviare la riproduzione di file multimediali prima che il download dell'intero file sia stato completato. È possibile scaricare in modo progressivo solo file MP4.
+Il download progressivo consente toostart riproduzione di file multimediali prima di aver scaricato l'intero file hello. È possibile scaricare in modo progressivo solo file MP4.
 
 >[!NOTE]
->Se si vuole rendere disponibili le risorese crittografate per il download progressivo, sarà necessario decrittografarle.
+>Se si desidera, è necessario decrittografare gli asset crittografati toobe disponibili per il download progressivo.
 
-Per fornire agli utenti gli URL di download progressivo, è necessario prima creare un localizzatore OnDemandOrigin. La creazione del localizzatore produce il valore Path di base dell'asset. È quindi necessario aggiungere il nome del file MP4. ad esempio:
+gli utenti tooprovide con progressivo URL di download, è necessario prima creare un localizzatore OnDemandOrigin. Creazione localizzatore hello, offre hello base asset toohello di percorso. È quindi necessario nome hello tooappend di file MP4. ad esempio:
 
 http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
 
 ### <a name="streaming-urls"></a>URL di streaming
-Streaming dei contenuti ai client. Per poter fornire agli utenti URL di streaming, è prima necessario creare un localizzatore OnDemandOrigin. Creando il localizzatore è possibile ottenere il valore Path di base dell'asset che include i contenuti da trasmettere in streaming. Tuttavia, per trasmettere in streaming questi contenuti, è necessario modificare ulteriormente il percorso. Per creare un URL completo per il file manifesto di streaming, si deve concatenare il valore Path del localizzatore e il nome del file manifesto (nomefile.ism), quindi aggiungere /Manifest e un formato appropriato (se necessario) al percorso di origine del localizzatore.
+Tooclients il contenuto di flusso. gli utenti tooprovide con URL di streaming, è innanzitutto necessario creare un localizzatore OnDemandOrigin. Creazione localizzatore hello, offre hello base asset toohello percorso che contiene il contenuto di hello da toostream. Tuttavia, toobe toostream in grado di questo contenuto è necessario toomodify ulteriormente il percorso. tooconstruct un toohello URL completo il flusso di file manifesto, è necessario concatenare il percorso del localizzatore hello valore e hello manifesto (nomefile.ISM) nome del file. Aggiungere quindi /Manifest e percorso del localizzatore toohello un formato appropriato (se necessario).
 
-Lo streaming dei contenuti può essere eseguito anche tramite una connessione SSL. A questo scopo, verificare che gli URL di streaming inizino con HTTPS. Attualmente AMS non supporta SSL con domini personalizzati.  
+Lo streaming dei contenuti può essere eseguito anche tramite una connessione SSL. toodo, assicurarsi che l'URL di streaming inizino con HTTPS. Attualmente AMS non supporta SSL con domini personalizzati.  
 
 >[!NOTE]
->Lo streaming tramite SSL è possibile solo se l'endpoint di streaming da cui si inviano i contenuti è stato creato dopo il 10 settembre 2014. Se gli URL di streaming si basano sugli endpoint di streaming creati dopo il 10 settembre, l'URL contiene "streaming.mediaservices.windows.net" (nuovo formato). Gli URL di streaming contenenti "origin.mediaservices.windows.net" (vecchio formato) non supportano SSL. Se l'URL è nel vecchio formato e si desidera poter eseguire lo streaming tramite SSL, creare un nuovo endpoint di streaming. Usare gli URL creati con il nuovo endpoint di streaming per lo streaming dei contenuti tramite SSL.
+>È possibile trasmettere solo tramite SSL, se l'endpoint da cui si distribuisce il contenuto di streaming hello è stato creato dopo il 10 settembre 2014. Se gli URL di streaming sono basati su hello streaming creati dopo il 10 settembre, hello URL contiene "streaming.mediaservices.windows.net" (formato nuovo hello). URL di streaming che contengono "origin.mediaservices.windows.net" (formato precedente hello) non supportano SSL. Se l'URL è nel formato precedente hello e si desidera toostream in grado di toobe su SSL, è possibile creare un nuovo endpoint di streaming. Usare gli URL creati in base a hello streaming nuovi endpoint toostream il contenuto tramite SSL.
 
-Il seguente elenco include la descrizione dei vari formati di streaming e alcuni esempi:
+Hello seguente elenco descrive i vari formati di streaming e alcuni esempi:
 
 * Smooth Streaming
 

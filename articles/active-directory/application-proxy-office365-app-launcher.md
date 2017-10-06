@@ -1,6 +1,6 @@
 ---
-title: Impostare una home page personalizzata per le app pubblicate tramite il proxy applicazione di Azure AD | Microsoft Docs
-description: Tratta i fondamenti dei connettori del proxy applicazione di Azure AD
+title: una home page personalizzata per le app pubblicate usando il Proxy di applicazione AD Azure aaaSet | Documenti Microsoft
+description: Nozioni fondamentali di hello include informazioni sui connettori Proxy di applicazione di Azure AD
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,85 +15,85 @@ ms.date: 08/17/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 9069166259265f5d2b43043b75039e239f397f6c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5bb695e904d285c3b440520f107c7bf63ba5cac9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-a-custom-home-page-for-published-apps-by-using-azure-ad-application-proxy"></a>Impostare una home page personalizzata per le app pubblicate tramite il proxy applicazione di Azure AD
 
-In questo articolo viene illustrato come configurare le app per indirizzare gli utenti a una home page personalizzata. Quando si pubblica un'applicazione con Proxy dell'applicazione, si imposta un URL interno ma a volte non è la pagina che gli utenti dovrebbero vedere per prima. Impostare una home page personalizzata in modo che gli utenti passino alla pagina corretta quando accedono alle app dal Pannello di accesso di Azure Active Directory o dall'utilità di avvio di app di Office 365.
+Questo articolo illustra come tooconfigure App toodirect utenti tooa home page personalizzata. Quando si pubblica un'applicazione con Proxy dell'applicazione, si imposta un URL interno, ma che viene visualizzata agli utenti dovrebbe essere prima pagina di hello. Impostare una home page personalizzata in modo che gli utenti Vai a pagina destra toohello quando accedono alle App hello da hello Pannello di accesso di Azure Active Directory o l'utilità di avvio applicazione hello Office 365.
 
-Quando gli utenti avviano le app, per impostazione predefinita vengono indirizzati all'URL del dominio radice dell'app pubblicata. La pagina di destinazione viene impostata in genere sull'URL della home page. Usare il modulo PowerShell di Azure AD per definire l'URL della home page personalizzata quando si desidera che gli utenti dell'app arrivino ad una pagina specifica all'interno dell'app. 
+Quando gli utenti avviano l'applicazione hello, gli si indirizzati dall'URL di dominio radice toohello predefinito per l'app pubblicata hello. pagina di destinazione Hello viene in genere impostato come URL della home page hello. Utilizzare gli URL home page personalizzata di hello Azure AD PowerShell modulo toodefine quando si desidera tooland agli utenti di app in una pagina specifica all'interno di app hello. 
 
 ad esempio:
-- All'interno della rete aziendale, gli utenti passano a *https://ExpenseApp/login/login.aspx* per registrarsi e accedere all'app.
-- Poiché si dispone di altre risorse come le immagini a cui il Proxy dell'applicazione deve accedere al livello superiore della struttura della cartella, si pubblica l'app con *https://ExpenseApp* come URL interno.
-- L'URL esterno predefinito è *https://ExpenseApp-contoso.msappproxy.net*, che non richiede agli utenti di registrarsi alla pagina.  
-- Impostare *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* come URL della home page per offrire agli utenti un'esperienza senza problemi. 
+- All'interno della rete azienda, gli utenti andare troppo*https://ExpenseApp/login/login.aspx* toosign in e accedere all'app.
+- Poiché si dispone di altre risorse come le immagini che il Proxy di applicazione deve tooaccess hello primo livello della struttura di cartelle hello, si pubblica l'applicazione hello con *https://ExpenseApp* come hello URL interno.
+- URL esterno predefinito è Hello *https://ExpenseApp-contoso.msappproxy.net*, che non accetta le credenziali di utenti toohello nella pagina.  
+- Impostare *https://ExpenseApp-contoso.msappproxy.net/login/login.aspx* toogive URL pagina iniziale come hello agli utenti un'esperienza senza problemi. 
 
 >[!NOTE]
->Quando si fornisce agli utenti l'accesso alle app pubblicate, le app vengono visualizzate nel [pannello di accesso di Azure AD](active-directory-saas-access-panel-introduction.md) e nell'[icona di avvio delle app di Office 365](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).
+>Quando si concedono l'accesso agli utenti le app toopublished, hello App vengono visualizzate in hello [Pannello di accesso AD Azure](active-directory-saas-access-panel-introduction.md) hello e [avvio app di Office 365](https://blogs.office.com/2016/09/27/introducing-the-new-office-365-app-launcher).
 
 ## <a name="before-you-start"></a>Prima di iniziare
 
-Prima di impostare l'URL della home page, tenere presente i requisiti presenti:
+Prima di impostare l'URL della home page di hello, tenere hello presente i requisiti seguenti:
 
-* Assicurarsi che il percorso specificato sia un percorso di sottodominio dell'URL del dominio radice.
+* Verificare che si specifica il percorso di hello è un percorso di sottodominio di hello URL radice del dominio.
 
-  Se l'URL del dominio radice è https://apps.contoso.com/app1/, l'URL della home page configurato deve iniziare con https://apps.contoso.com/app1/.
+  Se l'URL del dominio radice hello è, ad esempio, https://apps.contoso.com/app1/, URL della home page hello configurate deve iniziare con https://apps.contoso.com/app1/.
 
-* Se si apporta una modifica all'app pubblicata, la modifica potrebbe reimpostare il valore dell'URL della home page. Quando si decide di aggiornare l'app è quindi necessario verificare ed eventualmente aggiornare l'URL della home page.
+* Se si apporta una modifica toohello pubblicare app, modifica hello potrebbe reimpostare il valore di hello dell'URL della home page hello. Quando si aggiorna l'applicazione hello in hello future, si deve ricontrollare e, se necessario, aggiornare l'URL della home page hello.
 
-## <a name="change-the-home-page-in-the-azure-portal"></a>Cambiare la home page nel portale di Azure
+## <a name="change-hello-home-page-in-hello-azure-portal"></a>Modifica hello home page di hello portale di Azure
 
-1. Accedere al [portale di Azure](https://portal.azure.com) come amministratore.
-2. Passare ad **Azure Active Directory** > **Registrazioni per l'app** e scegliere l'applicazione dall'elenco. 
-3. Selezionare **Proprietà** dalle impostazioni.
-4. Aggiornare il campo **URL della home page** con il nuovo percorso. 
+1. Accedi toohello [portale di Azure](https://portal.azure.com) come amministratore.
+2. Passare troppo**Azure Active Directory** > **registrazioni di App** e selezionare l'applicazione hello elenco. 
+3. Selezionare **proprietà** dalle impostazioni di hello.
+4. Hello aggiornamento **URL della Home page** campo con il nuovo percorso. 
 
    ![Fornire nuovi URL della home page](./media/application-proxy-office365-app-launcher/homepage.png)
 
 5. Selezionare **Salva**
 
-## <a name="change-the-home-page-with-powershell"></a>Modificare la home page con PowerShell
+## <a name="change-hello-home-page-with-powershell"></a>Modificare hello home page con PowerShell
 
-### <a name="install-the-azure-ad-powershell-module"></a>Installare il modulo Azure AD PowerShell
+### <a name="install-hello-azure-ad-powershell-module"></a>Installare il modulo di Azure AD PowerShell hello
 
-Prima di definire l'URL di una home page personalizzata tramite PowerShell è necessario installare il modulo Azure AD PowerShell. È possibile scaricare il pacchetto da [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), che usa l'endpoint API Graph. 
+Prima di definire un URL della home page personalizzata tramite PowerShell, è possibile installare il modulo di Azure AD PowerShell hello. È possibile scaricare i pacchetti hello da hello [PowerShell Gallery](https://www.powershellgallery.com/packages/AzureAD/2.0.0.131), che utilizza hello endpoint dell'API Graph. 
 
-Per installare il pacchetto, seguire questa procedura:
+tooinstall hello del pacchetto, seguire questi passaggi:
 
-1. Aprire una finestra di PowerShell standard ed eseguire questo comando:
+1. Aprire una finestra di PowerShell di standard e quindi eseguire hello comando seguente:
 
     ```
      Install-Module -Name AzureAD
     ```
-    Se il comando non viene eseguito come amministratore, usare l'opzione `-scope currentuser`.
-2. Durante l'installazione selezionare **Y** per installare due pacchetti da Nuget.org. Sono necessari entrambi i pacchetti. 
+    Se si esegue il comando hello come un utente non amministratore, utilizzare hello `-scope currentuser` opzione.
+2. Durante l'installazione di hello, selezionare **Y** tooinstall due pacchetti da Nuget.org. Sono necessari entrambi i pacchetti. 
 
-### <a name="find-the-objectid-of-the-app"></a>Trovare il valore ObjectID dell'app
+### <a name="find-hello-objectid-of-hello-app"></a>Trovare hello ObjectID dell'applicazione hello
 
-Ottenere il valore ObjectID dell'app e quindi cercare l'app tramite la relativa home page.
+Ottenere hello ObjectID dell'applicazione hello e quindi eseguire la ricerca per l'applicazione hello relativa home page.
 
-1. Aprire PowerShell e importare il modulo di Azure AD.
+1. Aprire PowerShell e importare il modulo di hello Azure AD.
 
     ```
     Import-Module AzureAD
     ```
 
-2. Accedere al modulo di Azure AD come amministratore del tenant.
+2. Accedi toohello modulo di Azure AD come amministratore tenant hello.
 
     ```
     Connect-AzureAD
     ```
-3. Individuare l'app in base all'URL della home page. È possibile trovare l'URL nel portale passando ad **Azure Active Directory** > **Applicazioni aziendali** > **Tutte le applicazioni**. Questo esempio usa *sharepoint-iddemo*.
+3. Trovare l'applicazione hello in base all'URL della pagina iniziale. È possibile trovare hello URL nel portale di hello passando troppo**Azure Active Directory** > **applicazioni aziendali** > **tutte le applicazioni**. Questo esempio usa *sharepoint-iddemo*.
 
     ```
     Get-AzureADApplication | where { $_.Homepage -like “sharepoint-iddemo” } | fl DisplayName, Homepage, ObjectID
     ```
-4. Viene visualizzato un risultato simile a quello illustrato di seguito. Copiare il GUID di ObjectID da usare nella sezione successiva.
+4. È necessario ottenere un risultato simile toohello uno qui. Copiare hello toouse ObjectID GUID nella sezione successiva hello.
 
     ```
     DisplayName : SharePoint
@@ -101,44 +101,44 @@ Ottenere il valore ObjectID dell'app e quindi cercare l'app tramite la relativa 
     ObjectId    : 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
-### <a name="update-the-home-page-url"></a>Aggiornare l'URL della home page
+### <a name="update-hello-home-page-url"></a>Aggiornare l'URL della home page hello
 
-Nello stesso modulo PowerShell usato per il passaggio 1, eseguire la procedura seguente:
+Hello stesso modulo di PowerShell utilizzati per il passaggio 1, l'esecuzione hello alla procedura seguente:
 
-1. Verificare che l'app sia corretta e sostituire *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* con il valore ObjectID copiato nel passaggio precedente.
+1. Verificare di avere hello correggere app e sostituire *8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4* con hello ObjectID copiata nel passaggio precedente hello.
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4.
     ```
 
- Ora che è stata verificata l'app, è possibile aggiornare la home page come indicato di seguito.
+ Ora che è stato confermato app hello, sei pronto tooupdate hello home page come indicato di seguito.
 
-2. Creare un oggetto applicazione vuoto per le modifiche da apportare. Questa variabile contiene i valori che si desidera aggiornare. Non viene creato nulla in questo passaggio.
+2. Creare un toohold oggetto applicazione vuota modifiche hello che si desidera toomake. Questa variabile contiene i valori hello che si desidera tooupdate. Non viene creato nulla in questo passaggio.
 
     ```
     $appnew = New-Object “Microsoft.Open.AzureAD.Model.Application”
     ```
 
-3. Impostare l'URL della home page sul valore desiderato. Il valore deve essere un percorso di sottodominio dell'app pubblicata. Se ad esempio si modifica l'URL della home page da *https://sharepoint-iddemo.msappproxy.net/* a *https://sharepoint-iddemo.msappproxy.net/hybrid/*, gli utenti vengono indirizzati direttamente alla home page personalizzata.
+3. Impostare hello homepage URL toohello valore desiderato. il valore di Hello deve essere un percorso di sottodominio di app pubblicata hello. Ad esempio, se si modifica hello URL della home page da *https://sharepoint-iddemo.msappproxy.net/* troppo*https://sharepoint-iddemo.msappproxy.net/hybrid/*, gli utenti di app andare direttamente toohello personalizzato pagina iniziale.
 
     ```
     $homepage = “https://sharepoint-iddemo.msappproxy.net/hybrid/”
     ```
-4. Eseguire l'aggiornamento usando il GUID (ObjectID) copiato in "Passaggio 1: trovare il valore ObjectID dell'app".
+4. Rendere hello aggiornamento utilizzando hello GUID (ObjectID) che è stato copiato in "passaggio 1: trovare hello ObjectID dell'applicazione hello."
 
     ```
     Set-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4 -Homepage $homepage
     ```
-5. Verificare che la modifica sia stata completata riavviando l'app.
+5. tooconfirm che modifica hello è stata completata correttamente, riavviare l'applicazione hello.
 
     ```
     Get-AzureADApplication -ObjectId 8af89bfa-eac6-40b0-8a13-c2c4e3ee22a4
     ```
 
 >[!NOTE]
->Le modifiche apportate all'app possono reimpostare l'URL della home page. Se viene reimpostato l'URL della home page, ripetere il passaggio 2.
+>Le modifiche apportate app toohello potrebbero reimpostata hello URL della home page. Se viene reimpostato l'URL della home page, ripetere il passaggio 2.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Abilitare l'accesso remoto a SharePoint con il proxy applicazione di Azure AD](application-proxy-enable-remote-access-sharepoint.md)
-- [Abilitare il proxy di applicazione nel portale di Azure](active-directory-application-proxy-enable.md)
+- [Abilitare accesso remoto tooSharePoint con Proxy dell'applicazione Azure AD](application-proxy-enable-remote-access-sharepoint.md)
+- [Abilitare il Proxy di applicazione nel portale di Azure hello](active-directory-application-proxy-enable.md)

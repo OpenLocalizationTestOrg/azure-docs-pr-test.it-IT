@@ -1,5 +1,5 @@
 ---
-title: "Cos'è l'insieme di credenziali chiave di Azure? | Documentazione Microsoft"
+title: "aaaWhat è l'insieme di credenziali chiave di Azure? | Microsoft Docs"
 description: L'insieme di credenziali chiave di Azure consente di proteggere le chiavi e i segreti di crittografia usati da servizi e applicazioni cloud. Con l'insieme di credenziali chiave di Azure i clienti possono crittografare chiavi e segreti (ad esempio, chiavi di autenticazione, chiavi dell'account di archiviazione, chiavi di crittografia dati, file PFX e password) usando chiavi protette da moduli di protezione hardware (HSM).
 services: key-vault
 documentationcenter: 
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/19/2017
 ms.author: cabailey
-ms.openlocfilehash: 3b679a2a8ba91a8a9dec0534a3d8930fcaa7afcf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 296fcce03658b96b84afab299b73681bbe8ac9fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-key-vault"></a>Cos'è l'insieme di credenziali chiave di Azure?
-L'insieme di credenziali delle chiavi di Azure è disponibile nella maggior parte delle aree. Per altre informazioni, vedere la [pagina Insieme di credenziali delle chiavi - Prezzi](https://azure.microsoft.com/pricing/details/key-vault/).
+L'insieme di credenziali delle chiavi di Azure è disponibile nella maggior parte delle aree. Per ulteriori informazioni, vedere hello [insieme di credenziali chiave pagina dei prezzi](https://azure.microsoft.com/pricing/details/key-vault/).
 
 ## <a name="introduction"></a>Introduzione
-L'insieme di credenziali chiave di Azure consente di proteggere le chiavi e i segreti di crittografia usati da servizi e applicazioni cloud. Con l'insieme di credenziali delle chiavi è possibile crittografare chiavi e segreti (ad esempio, chiavi di autenticazione, chiavi dell'account di archiviazione, chiavi di crittografia dati, file PFX e password) usando chiavi protette da moduli di protezione hardware (HSM). Per una maggiore sicurezza, è possibile importare o generare le chiavi in moduli di protezione hardware. Se si sceglie di eseguire questa operazione, Microsoft elabora le chiavi in moduli di protezione hardware FIPS 140-2 livello 2 convalidati (hardware e firmware).  
+L'insieme di credenziali chiave di Azure consente di proteggere le chiavi e i segreti di crittografia usati da servizi e applicazioni cloud. Con l'insieme di credenziali delle chiavi è possibile crittografare chiavi e segreti (ad esempio, chiavi di autenticazione, chiavi dell'account di archiviazione, chiavi di crittografia dati, file PFX e password) usando chiavi protette da moduli di protezione hardware (HSM). Per una maggiore sicurezza, è possibile importare o generare le chiavi in moduli di protezione hardware. Se si sceglie questa operazione, i processi di Microsoft a toodo le chiavi di FIPS 140-2 livello 2 convalidati moduli di protezione hardware (hardware e firmware).  
 
-L'insieme di credenziali chiave semplifica il processo di gestione delle chiavi e consente di mantenere il controllo delle chiavi che accedono ai dati e li crittografano. Gli sviluppatori possono creare chiavi per lo sviluppo e il test in pochi minuti e quindi eseguirne facilmente la migrazione alle chiavi di produzione. Gli amministratori della sicurezza possono concedere (e revocare) le autorizzazioni per chiavi, in base alle esigenze.
+Insieme di credenziali chiave semplifica il processo di gestione delle chiavi hello e consente il controllo toomaintain di chiavi per l'accesso e crittografare i dati. Gli sviluppatori possono creare chiavi per lo sviluppo e test in minuti e quindi migrare le chiavi tooproduction. Gli amministratori della sicurezza possono concedere e revocare tookeys di autorizzazione, in base alle esigenze.
 
-La seguente tabella permette di capire meglio come l'insieme di credenziali chiave aiuti a soddisfare le esigenze degli sviluppatori e degli amministratori della sicurezza.
+Hello utilizzare toobetter nella tabella seguente è comprendere come insieme di credenziali chiave consente di esigenze di hello toomeet di sviluppatori e amministratori della sicurezza.
 
 | Ruolo | Presentazione del problema | Soluzione offerta dall'insieme di credenziali chiave di Azure |
 | --- | --- | --- |
-| Sviluppatore di un'applicazione Azure |"Voglio scrivere un'applicazione per Azure che usi chiavi per la firma e la crittografia, che però dovranno essere esterne all'applicazione, in modo che la soluzione sia adatta a un'applicazione geograficamente distribuita. <br/><br/>Voglio anche che queste chiavi e questi segreti siano protetti, senza dover scrivere manualmente il codice, e voglio poterli usare facilmente dall'applicazione ottenendo prestazioni ottimali." |√ Le chiavi vengono archiviate in un insieme di credenziali e richiamate dall'URI quando è necessario.<br/><br/> √ Le chiavi vengono protette da Azure con algoritmi standard del settore, lunghezze delle chiavi e moduli di protezione hardware.<br/><br/> √ Le chiavi vengono elaborate in moduli di protezione hardware che risiedono negli stessi data center di Azure in cui si trovano le applicazioni. In questo modo si ottiene una migliore affidabilità e una latenza ridotta rispetto a quando le chiavi si trovano in una posizione diversa, ad esempio in locale. |
-| Sviluppatore di software come un servizio (SaaS) |"Non voglio essere in alcun modo responsabile delle chiavi e dei segreti dei tenant dei miei clienti. <br/><br/>Voglio che siano i clienti a possedere e gestire le chiavi per potermi concentrare su ciò che so fare meglio, ovvero fornire le principali funzionalità del software." |√ I clienti possono importare le loro chiavi in Azure e gestirle. Quando un'applicazione SaaS deve eseguire operazioni di crittografia usando le chiavi dei clienti, è l'insieme di credenziali delle chiavi a eseguirle per conto dell'applicazione. L'applicazione non vede le chiavi dei clienti. |
-| Responsabile della sicurezza |"Voglio la certezza che le applicazioni siano conformi ai moduli di protezione hardware FIPS 140-2 livello 2 per la gestione delle chiavi protetta. <br/><br/>Voglio assicurarmi che la mia organizzazione abbia il controllo del ciclo di vita delle chiavi e possa monitorare l'utilizzo delle chiavi. <br/><br/>Anche se usiamo più servizi e risorse di Azure, voglio gestire le chiavi da una sola posizione in Azure. |√ I moduli di protezione hardware hanno la certificazione FIPS 140-2 livello 2.<br/><br/>√ L'insieme di credenziali delle chiavi è progettato in modo che Microsoft non possa vedere o estrarre le chiavi.<br/><br/>√ Registrazione quasi in tempo reale dell'utilizzo delle chiavi.<br/><br/>√ L'insieme di credenziali offre un'unica interfaccia, indipendentemente dal numero di insiemi di credenziali disponibili in Azure, dalle aree supportate e dalle applicazioni che li usano. |
+| Sviluppatore di un'applicazione Azure |"Voglio toowrite un'applicazione per Azure che usa chiavi per la firma e crittografia, ma si desidera toobe queste chiavi esterne da un'applicazione in modo che la soluzione hello è adatta per un'applicazione geograficamente distribuita. <br/><br/>Inoltre, è toobe queste chiavi e segreti protetto, senza la necessità di codice hello toowrite per me. Inoltre, è toobe queste chiavi e segreti semplice per me toouse da applicazioni, con prestazioni ottimali." |√ Le chiavi vengono archiviate in un insieme di credenziali e richiamate dall'URI quando è necessario.<br/><br/> √ Le chiavi vengono protette da Azure con algoritmi standard del settore, lunghezze delle chiavi e moduli di protezione hardware.<br/><br/> √ Chiavi vengono elaborate in moduli di protezione hardware che si trovano in hello stesso Data Center di Azure come applicazioni hello. Ciò fornisce maggiore affidabilità e la latenza ridotta rispetto a quella se le chiavi di hello risiedono in un percorso separato, ad esempio in locale. |
+| Sviluppatore di software come un servizio (SaaS) |"Non si desidera la responsabilità di hello responsabilità o potenziale per i segreti e tutte le chiavi tenant dei clienti. <br/><br/>Desidera tooown clienti hello e gestiscono le relative chiavi in modo che è possibile concentrarsi sull'esecuzione di operazioni ottimale, che fornisce funzionalità di software di base hello". |√ I clienti possono importare le loro chiavi in Azure e gestirle. Quando un'applicazione SaaS deve tooperform le operazioni di crittografia tramite chiavi dei clienti, insieme di credenziali chiave effettua queste operazioni per conto di un'applicazione hello. un'applicazione Hello non consente di visualizzare le chiavi dei clienti hello. |
+| Responsabile della sicurezza |"Si desidera tooknow le applicazioni conformi con i moduli HSM FIPS 140-2 livello 2 per la gestione delle chiavi protetta. <br/><br/>Si desidera che l'organizzazione sia nel controllo del ciclo di vita chiave hello toomake e monitorare l'utilizzo della chiave. <br/><br/>E anche se si usa più servizi di Azure e risorse, si desidero che le chiavi di hello toomanage da un'unica posizione in Azure". |√ I moduli di protezione hardware hanno la certificazione FIPS 140-2 livello 2.<br/><br/>√ L'insieme di credenziali delle chiavi è progettato in modo che Microsoft non possa vedere o estrarre le chiavi.<br/><br/>√ Registrazione quasi in tempo reale dell'utilizzo delle chiavi.<br/><br/>Insieme di credenziali hello √ offre un'unica interfaccia, indipendentemente dal quanti gli insiemi di credenziali è in Azure, le aree sono, supporto e le applicazioni li utilizzano. |
 
-Chiunque abbia una sottoscrizione di Azure può creare e usare insiemi di credenziali delle chiavi. Anche se l'insieme di credenziali chiave è un vantaggio per sviluppatori e amministratori della sicurezza, può essere implementato e gestito dall'amministratore di un'organizzazione che gestisce altri servizi di Azure per un'organizzazione. Ad esempio, questo amministratore potrebbe accedere con una sottoscrizione di Azure, creare un insieme di credenziali per l'organizzazione in cui archiviare le chiavi e quindi essere responsabile di attività operative, ad esempio:
+Chiunque abbia una sottoscrizione di Azure può creare e usare insiemi di credenziali delle chiavi. Anche se l'insieme di credenziali chiave è un vantaggio per sviluppatori e amministratori della sicurezza, può essere implementato e gestito dall'amministratore di un'organizzazione che gestisce altri servizi di Azure per un'organizzazione. L'amministratore sarebbe ad esempio, accedere con una sottoscrizione di Azure, creare un insieme di credenziali per l'organizzazione hello in tasti toostore e quindi essere responsabile per le attività operative, ad esempio:
 
 * Creare o importare una chiave o un segreto
 * Revocare o eliminare una chiave o un segreto
-* Autorizzare gli utenti o le applicazioni per l'accesso all'insieme di credenziali delle chiavi, per consentire la gestione o l'uso delle chiavi e dei segreti corrispondenti
+* Autorizzare utenti o applicazioni tooaccess hello chiave dell'insieme di credenziali, in modo da poter quindi gestire o usare le chiavi e segreti
 * Configurare l'utilizzo delle chiavi (ad esempio, la firma o la crittografia)
 * Monitorare l'utilizzo delle chiavi
 
-L'amministratore quindi fornirebbe agli sviluppatori gli URI da chiamare dalle applicazioni e fornirebbe all'amministrazione della sicurezza le informazioni sulla registrazione dell'utilizzo delle chiavi. 
+L'amministratore potrebbe quindi fornire agli sviluppatori con URI toocall dalle rispettive applicazioni e fornire loro amministratore della sicurezza con le informazioni di registrazione dell'utilizzo chiave. 
 
    ![Panoramica dell'insieme di credenziali chiave di Azure][1]
 
-Gli sviluppatori possono gestire le chiavi anche direttamente, usando le API. Per altre informazioni, vedere la [Guida per gli sviluppatori dell'insieme di credenziali delle chiavi di Azure](key-vault-developers-guide.md).
+Gli sviluppatori possono anche gestire hello le chiavi direttamente, utilizzando le API. Per ulteriori informazioni, vedere [hello Guida per gli sviluppatori di insieme di credenziali chiave](key-vault-developers-guide.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per un'esercitazione introduttiva per gli amministratori, vedere [Introduzione all'insieme di credenziali chiave di Azure](key-vault-get-started.md).

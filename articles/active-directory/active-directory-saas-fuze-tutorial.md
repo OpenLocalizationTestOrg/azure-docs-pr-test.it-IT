@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Fuze | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Fuze.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e catena pirotecnica.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeedes
-ms.openlocfilehash: c7f7b095aac6202a7ec5248ee2bbb109615287a7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0ea8c6456824e348301ed8bf1f5e00f4bfa8121
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-fuze"></a>Esercitazione: Integrazione di Azure Active Directory con Fuze
 
-Questa esercitazione descrive come integrare Fuze con Azure Active Directory (Azure AD).
+In questa esercitazione, è illustrato come catena pirotecnica toointegrate con Azure Active Directory (Azure AD).
 
-L'integrazione di Fuze con Azure AD offre i vantaggi seguenti:
+Integrazione di catena pirotecnica con Azure AD fornisce hello seguenti vantaggi:
 
-- È possibile controllare in Azure AD chi può accedere a Fuze
-- È possibile abilitare gli utenti per l'accesso automatico a Fuze (Single Sign-On) con i propri account Azure AD
-- È possibile gestire gli account da una posizione centrale: il portale di gestione di Azure
+- È possibile controllare in Azure AD che ha accesso tooFuze
+- È possibile abilitare l'utenti tooautomatically get connesso tooFuze (Single Sign-On) con i propri account Azure AD
+- È possibile gestire gli account in un'unica posizione centrale - portale di gestione di Azure hello
 
-Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per configurare l'integrazione di Azure AD con Fuze, sono necessari gli elementi seguenti:
+integrazione di Azure AD con catena pirotecnica tooconfigure, è necessario hello seguenti elementi:
 
 - Sottoscrizione di Azure AD.
 - Sottoscrizione di Domo abilitata per l'accesso Single Sign-On
 
 
 > [!NOTE]
-> Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.
+> hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.
 
 
-A questo scopo, è consigliabile seguire le indicazioni seguenti:
+passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:
 
 - Non usare l'ambiente di produzione, a meno che non sia necessario.
 - Se non è disponibile un ambiente di prova di Azure AD, è possibile ottenere una versione di prova di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).
 
 
 ## <a name="scenario-description"></a>Descrizione dello scenario
-In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:
+In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test. scenario di Hello descritto in questa esercitazione è composto da due componenti principali:
 
-1. Aggiunta di Fuze dalla raccolta
+1. Aggiunta di catena pirotecnica dalla raccolta hello
 2. Configurazione e test dell'accesso Single Sign-On di Azure AD
 
 
-## <a name="adding-fuze-from-the-gallery"></a>Aggiunta di Fuze dalla raccolta
-Per configurare l'integrazione di Fuze in Azure AD è necessario aggiungerla dalla raccolta al proprio elenco di app SaaS gestite.
+## <a name="adding-fuze-from-hello-gallery"></a>Aggiunta di catena pirotecnica dalla raccolta hello
+integrazione hello tooconfigure di catena pirotecnica in Azure AD, è necessario tooadd catena pirotecnica dall'elenco di tooyour hello raccolta di App SaaS gestite.
 
-**Per aggiungere Fuze dalla raccolta, seguire questa procedura:**
+**tooadd catena pirotecnica dalla raccolta di hello, eseguire hello alla procedura seguente:**
 
-1. Nel **[portale di gestione di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro. 
+1. In hello  **[il portale di gestione di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona. 
 
     ![Active Directory][1]
 
-2. Passare ad **Applicazioni aziendali**. Andare quindi a **Tutte le applicazioni**.
+2. Passare troppo**applicazioni aziendali**. Quindi andare troppo**tutte le applicazioni**.
 
     ![Applicazioni][2]
     
-3. Fare clic sul pulsante **Aggiungi** nella parte superiore della finestra di dialogo.
+3. Fare clic su **Aggiungi** pulsante nella parte superiore di hello della finestra di dialogo hello.
 
     ![Applicazioni][3]
 
-4. Nella casella di ricerca digitare **Fuze**.
+4. Nella casella di ricerca hello, digitare **catena pirotecnica**.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_000.png)
 
-5. Nel pannello dei risultati selezionare **Fuze** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.
+5. Nel riquadro dei risultati hello, selezionare **catena pirotecnica**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_0001.png)
 
@@ -85,77 +85,77 @@ Per configurare l'integrazione di Fuze in Azure AD è necessario aggiungerla dal
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configurazione e test dell'accesso Single Sign-On di Azure AD
 In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Fuze in base a un utente test di nome "Britta Simon".
 
-Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Fuze che corrisponde a un utente di Azure AD. In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Fuze.
+Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello nella catena pirotecnica è tooa utente in Azure AD. In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello nella catena pirotecnica deve toobe stabilita.
 
-La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **Username** in Fuze.
+Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** nella catena pirotecnica.
 
-Per configurare e testare l'accesso Single Sign-On di Azure AD con Fuze, è necessario completare i blocchi predefiniti seguenti:
+tooconfigure e prova AD Azure single sign-on con catena pirotecnica, è necessario hello toocomplete seguenti blocchi predefiniti:
 
-1. **[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.
-2. **[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.
-3. **[Creazione di un utente test Fuze](#creating-a-fuze-test-user)** : per avere una controparte di Britta Simon in Fuze collegata alla relativa rappresentazione in Azure AD.
-4. **[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.
+1. **[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.
+2. **[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.
+3. **[Creazione di un utente test catena pirotecnica](#creating-a-fuze-test-user)**  -toohave un equivalente di Britta Simon nella catena pirotecnica toohello collegato AD Azure rappresentazione in seguito.
+4. **[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.
+5. **[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configurazione dell'accesso Single Sign-On di Azure AD
 
-In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di gestione di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Fuze.
+In questa sezione, si abilita Azure AD single sign-on nel portale di gestione di Azure hello e configurare l'accesso single sign-on nell'applicazione catena pirotecnica.
 
-**Per configurare l’accesso Single Sign-On di Azure AD con Fuze, seguire questa procedura:**
+**Azure AD tooconfigure single sign-on con catena pirotecnica, eseguire hello alla procedura seguente:**
 
-1. Nella pagina di integrazione dell'applicazione **Fuze** del portale di gestione di Azure fare clic su **Single Sign-On**.
+1. Nel portale di gestione di Azure hello in hello **catena pirotecnica** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.
 
     ![Configura accesso Single Sign-On][4]
 
-2. Nella finestra di dialogo **Single Sign-On** in **Modalità** selezionare **Accesso basato su SAML** per abilitare l'accesso Single Sign-On.
+2. In hello **Single sign-on** finestra di dialogo, come **modalità** selezionare **basato su SAML Sign-on** tooenable single sign-on.
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_01.png)
 
-3. Nella sezione **URL e dominio Fuze** seguire questa procedura:
+3. In hello **catena pirotecnica dominio e gli URL** seguire hello alla procedura seguente:
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_020.png)
     
-    Nella casella di testo **URL di accesso**, digitare l'URL seguente: `https://www.thinkingphones.com/jetspeed/portal/`
+    In hello **URL di accesso** casella di testo, digitare l'URL hello Sign-on come:`https://www.thinkingphones.com/jetspeed/portal/`
 
 4.  Fare clic sul pulsante **Salva** .
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-fuze-tutorial/tutorial_general_400.png)
 
-5. Nella sezione **Certificato di firma SAML** fare clic su **XML metadati** e quindi salvare il file XML nel computer.
+5. In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file xml hello nel computer in uso.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_05.png) 
 
-6. Per configurare l’accesso Single Sign-On sul lato **Fuze**, è necessario inviare il file di **XML metadati** scaricato al [team di supporto di Fuze](https://www.fuze.com/support). Tale accesso verrà configurato in modo che la connessione SAML SSO sia impostata correttamente su entrambi i lati.
+6. tooconfigure single sign-on sul **catena pirotecnica** lato, è necessario hello toosend scaricato **Metadata XML** troppo[team di supporto di catena pirotecnica](https://www.fuze.com/support). Verrà impostata questa in hello toohave ordine connessione SAML SSO impostato correttamente su entrambi i lati.
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Creazione di un utente test di Azure AD
-Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di gestione di Azure.
+obiettivo di Hello di questa sezione è un utente di test nel portale di gestione di Azure hello chiamato Britta Simon toocreate.
 
 ![Creare un utente di Azure AD][100]
 
-**Per creare un utente test in Azure AD, eseguire la procedura seguente:**
+**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**
 
-1. Nel **portale di gestione di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.
+1. In hello **portale di gestione di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/create_aaduser_01.png) 
 
-2. Andare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.
+2. Andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti** elenco hello toodisplay degli utenti.
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/create_aaduser_02.png) 
 
-3. Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.
+3. Nella parte superiore di hello della finestra di dialogo hello fare clic su **Aggiungi** tooopen hello **utente** finestra di dialogo.
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/create_aaduser_03.png) 
 
-4. Nella pagina della finestra di dialogo **Utente** seguire questa procedura:
+4. In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-fuze-tutorial/create_aaduser_04.png) 
 
-    a. Nella casella di testo **Nome** digitare **BrittaSimon**.
+    a. In hello **nome** casella tipo **BrittaSimon**.
 
-    b. Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.
+    b. In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.
 
-    c. Selezionare **Mostra password** e prendere nota del valore della **Password**.
+    c. Selezionare **Show Password** e annotare il valore di hello di hello **Password**.
 
     d. Fare clic su **Crea**. 
 
@@ -164,23 +164,23 @@ Questa sezione descrive come creare un utente test chiamato Britta Simon nel por
 
 L’applicazione Fuze supporta il provisioning just-in-time completo degli utenti che possono quindi essere creati automaticamente al momento dell’accesso. Per eventuali altri dettagli, contattare il [supporto](https://www.fuze.com/support) di Fuze.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assegnazione dell'utente test di Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Assegnazione utente test hello Azure AD
 
-In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Fuze.
+In questa sezione è abilitare Britta Simon toouse single sign-on Azure concedendo tooFuze proprio accesso.
 
 ![Assegna utente][200] 
 
-**Per assegnare Britta Simon a Fuze, seguire questa procedura:**
+**tooassign Britta Simon tooFuze, eseguire hello alla procedura seguente:**
 
-1. Nel portale di gestione di Azure aprire la visualizzazione con le applicazioni e quindi passare alla visualizzazione con le directory e andare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.
+1. Nel portale di gestione di Azure hello, aprire visualizzazione applicazioni hello, quindi selezionare la visualizzazione di directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.
 
     ![Assegna utente][201] 
 
-2. Nell'elenco delle applicazioni selezionare **Fuze**.
+2. Nell'elenco di applicazioni hello, selezionare **catena pirotecnica**.
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-fuze-tutorial/tutorial_fuze_50.png) 
 
-3. Scegliere **Utenti e gruppi** dal menu a sinistra.
+3. Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.
 
     ![Assegna utente][202] 
 
@@ -188,7 +188,7 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
     ![Assegna utente][203]
 
-5. Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.
+5. In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.
 
 6. Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.
 
@@ -197,14 +197,14 @@ In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sig
 
 ### <a name="testing-single-sign-on"></a>Test dell'accesso Single Sign-On
 
-In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.
+In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.
 
-Quando si fa clic sul riquadro di Fuze nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Fuze.
+Quando si fa clic su riquadro catena pirotecnica hello in hello Pannello di accesso, è necessario ottenere applicazione catena pirotecnica tooyour automaticamente firmato-on.
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* [Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md)
 
 

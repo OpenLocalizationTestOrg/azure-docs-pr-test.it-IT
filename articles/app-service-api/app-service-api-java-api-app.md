@@ -1,6 +1,6 @@
 ---
-title: Compilare e distribuire un'app per le API Java nel servizio app di Azure
-description: Informazioni su come creare un pacchetto dell'app per le API Java e distribuirlo nel servizio app di Azure.
+title: aaaBuild e distribuire un'applicazione API Java in Azure App Service
+description: Informazioni su come un'applicazione API Java toocreate pacchetto e distribuirlo tooAzure servizio App.
 services: app-service\api
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: get-started-article
 ms.date: 04/25/2017
 ms.author: rachelap;robmcm
-ms.openlocfilehash: e38c540071cb49b0177e79178566d72ecb5f8886
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a4056fec870b1c4bed8ee14bb0e748b3ee89b9e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-and-deploy-a-java-api-app-in-azure-app-service"></a>Compilare e distribuire un'app per le API Java nel servizio app di Azure
 [!INCLUDE [app-service-api-get-started-selector](../../includes/app-service-api-get-started-selector.md)]
 
-Questa esercitazione illustra come creare un'applicazione Java e come distribuirla nelle app per le API del servizio app di Azure tramite [Git]. Le istruzioni di questa esercitazione possono essere eseguite in qualsiasi sistema operativo in grado di eseguire Java. Il codice in questa esercitazione viene compilato con [Maven]. [Jax-RS] consente invece di creare il servizio RESTful e viene generato in base alle specifiche dei metadati [Swagger] usando l'[editor Swagger].
+Questa esercitazione viene illustrato come un'applicazione Java toocreate e distribuire le applicazioni API del servizio App tooAzure utilizzando [Git]. istruzioni di Hello in questa esercitazione possono essere seguite su qualsiasi sistema operativo che è in grado di eseguire Java. codice Hello in questa esercitazione viene compilato utilizzando [Maven]. [JAX RS] è usato toocreate hello servizio RESTful e viene generato in base hello [Swagger] specifiche dei metadati utilizzando hello [Swagger Editor].
 
 ## <a name="prerequisites"></a>Prerequisiti
 1. [Java Development Kit 8] \((o versione successiva)
 2. [Maven] installato nel computer di sviluppo
 3. [Git] installato nel computer di sviluppo
-4. Una sottoscrizione di [valutazione gratuita] o a pagamento a [Microsoft Azure]
+4. Un pagamento o [versione di valutazione gratuita] sottoscrizione troppo[Microsoft Azure]
 5. Un'applicazione di test HTTP come [Postman]
 
-## <a name="scaffold-the-api-using-swaggerio"></a>Eseguire lo scaffolding dell'API con Swagger.IO
-Nell'editor online Swagger.io è possibile immettere il codice YAML o JSON Swagger che rappresenta la struttura dell'API. Dopo aver progettato la superficie di attacco dell'API, è possibile esportare il codice per vari tipi di piattaforme e framework. Nella sezione successiva, il codice sottoposto a scaffolding verrà modificato in modo da includere la funzionalità di implementazione fittizia. 
+## <a name="scaffold-hello-api-using-swaggerio"></a>API di hello Scaffold utilizzando Swagger.IO
+Editor di hello swagger.io online, è possibile immettere codice JSON Swagger o YAML che rappresenta la struttura hello dell'API. Dopo aver creato il della superficie di attacco di hello API progettato, è possibile esportare il codice per un'ampia gamma di piattaforme e Framework. Nella sezione successiva hello, codice hello scaffolding sarà funzionalità fittizio tooinclude modificato. 
 
-In questa dimostrazione, un corpo JSON Swagger iniziale verrà incollato nell'editor Swagger.io, che verrà quindi usato per generare codice che sfrutta JAX-RS per accedere a un endpoint API REST. Si modificherà quindi il codice con scaffolding in modo che restituisca dati fittizi, simulando un'API REST creata in base a un meccanismo di persistenza dei dati.  
+In questa dimostrazione inizierà con un corpo JSON Swagger verranno incollati in editor swagger.io hello, che verrà quindi essere utilizzato toogenerate codice che utilizza tooaccess JAX RS un endpoint dell'API REST. Quindi, viene modificato dati fittizi tooreturn codice hello scaffolding, simulando un'API REST compilato nella parte superiore di un meccanismo di persistenza dei dati.  
 
-1. Copiare negli appunti il codice JSON Swagger seguente:
+1. Hello copia negli Appunti tooyour di codice JSON Swagger seguente:
    
         {
             "swagger": "2.0",
@@ -131,28 +131,28 @@ In questa dimostrazione, un corpo JSON Swagger iniziale verrà incollato nell'ed
                 }
             }
         }
-2. Passare all' [editor Swagger online]. Fare clic sulla voce di menu **File -> Paste JSON** (Incolla JSON).
+2. Passare toohello [Online Editor Swagger]. Una volta, fare clic su hello **File -> Incolla JSON** voce di menu.
    
     ![Voce di menu Paste JSON (Incolla JSON)][paste-json]
-3. Incollare il codice JSON Swagger relativo all'API dell'elenco dei contatti copiato in precedenza. 
+3. Incollare in hello contatti elenco API Swagger JSON copiato in precedenza. 
    
     ![Incollare codice JSON in Swagger][pasted-swagger]
-4. Visualizzare le pagine di documentazione e il riepilogo dell'API restituito nell'editor. 
+4. Consente di visualizzare pagine della documentazione di hello e visualizzato nell'editor di hello riepilogo delle API. 
    
     ![Visualizzare documenti generati da Swagger][view-swagger-generated-docs]
-5. Selezionare l'opzione di menu **Generate Server -> JAX-RS** (Genera server -> JAX-RS) per eseguire lo scaffolding del codice lato server che dovrà essere modificato per aggiungere l'implementazione fittizia. 
+5. Seleziona hello **generare Server -> JAX RS** codice lato server menu opzione tooscaffold hello modificherai implementazione fittizia di tooadd successive. 
    
     ![Generare una voce di menu del codice][generate-code-menu-item]
    
-    Al termine della generazione del codice, verrà visualizzato un file ZIP per il download. Il file contiene il codice sottoposto a scaffolding dal generatore di codice Swagger e tutti gli script di compilazione associati. Decomprimere l'intera libreria in una directory della workstation di sviluppo. 
+    Dopo la generazione del codice hello, all'utente verrà fornito un toodownload file ZIP. Questo file contiene codice hello scaffolding dal generatore di codice hello Swagger e tutti associati gli script di compilazione. Decomprimere directory tooa intera libreria di hello nella workstation di sviluppo. 
 
-## <a name="edit-the-code-to-add-api-implementation"></a>Modificare il codice per aggiungere l'implementazione dell'API
-In questa sezione si sostituirà l'implementazione sul lato server del codice generato da Swagger con il codice personalizzato. Il nuovo codice restituirà al client chiamante un'entità ArrayList of Contact. 
+## <a name="edit-hello-code-tooadd-api-implementation"></a>Modifica tooadd codice hello implementazione delle API
+In questa sezione sostituirai implementazione sul lato server hello generato Swagger del codice con il codice personalizzato. nuovo codice Hello restituirà un ArrayList di contatto entità toohello del client chiamante. 
 
-1. Aprire il file di modello *Contact.java* incluso nella cartella *src/gen/java/io/swagger/model* usando [Visual Studio Code] o l'editor di testo preferito. 
+1. Aprire hello *Contact.java* file di modello, che si trova in hello *src/gen/java/io/swagger/modello* cartella utilizzando [codice di Visual Studio] o un editor di testo. 
    
     ![Aprire un file di modello dei contatti][open-contact-model-file]
-2. Aggiungere il costruttore seguente alla classe **Contact**. 
+2. Aggiungere hello seguente costruttore all'interno di hello **contatto** classe. 
    
         public Contact(Integer id, String name, String email) 
         {
@@ -160,10 +160,10 @@ In questa sezione si sostituirà l'implementazione sul lato server del codice ge
             this.name = name;
             this.emailAddress = email;
         }
-3. Aprire il file di implementazione del servizio *ContactsApiServiceImpl.java* incluso nella cartella *src/main/java/io/swagger/api/impl* usando [Visual Studio Code] o l'editor di testo preferito.
+3. Aprire hello *ContactsApiServiceImpl.java* file di implementazione del servizio, che si trova in hello *src/main/java/io/swagger/api/impl* cartella utilizzando [codice di Visual Studio]o un editor di testo.
    
     ![Aprire il file del codice di servizio dei contatti][open-contact-service-code-file]
-4. Sovrascrivere il codice del file con questo nuovo codice per aggiungere un'implementazione fittizia al codice del servizio. 
+4. Sovrascrivere il codice di hello nel file hello con questo nuovo tooadd di codice un codice di implementazione fittizia toohello servizio. 
    
         package io.swagger.api.impl;
    
@@ -211,51 +211,51 @@ In questa sezione si sostituirà l'implementazione sul lato server del codice ge
                 return Response.ok().entity(ret).build();
             }
         }
-5. Aprire il prompt dei comandi e passare alla cartella radice dell'applicazione.
-6. Eseguire il comando Maven seguente per compilare il codice ed eseguirlo in locale tramite il server di app Jetty. 
+5. Aprire un prompt dei comandi e modificare una cartella radice toohello di directory dell'applicazione.
+6. Eseguire hello seguendo Maven comando toobuild hello codice ed eseguirlo utilizzando hello server app Jetty locale. 
    
         mvn package jetty:run
-7. Dovrebbe essere visualizzata la finestra di comando in cui si specifica che Jetty ha avviato il codice sulla porta 8080. 
+7. Verrà visualizzata la finestra di comando hello riflettere che Jetty ha avviato il codice sulla porta 8080. 
    
     ![Aprire il file del codice di servizio dei contatti][run-jetty-war]
-8. Usare [Postman] per effettuare una richiesta al metodo API "ottieni tutti i contatti" in http://localhost:8080/api/contacts.
+8. Utilizzare [Postman] toomake un'API di richiesta toohello "ottenere tutti i contatti" metodo http://localhost:8080/api/contatti.
    
-    ![Chiamare l'API dei contatti][calling-contacts-api]
-9. Usare [Postman] per effettuare una richiesta al metodo API "ottieni tutti i contatti" in http://localhost:8080/api/contacts/2.
+    ![Hello chiamata dell'API contatti][calling-contacts-api]
+9. Utilizzare [Postman] metodo toomake un'API di richiesta toohello "ottenere un contatto specifico" disponibile all'indirizzo http://localhost:8080/api/contatti/2.
    
-    ![Chiamare l'API dei contatti][calling-specific-contact-api]
-10. Compilare infine il file Java WAR (Web ARchive) eseguendo il seguente comando Maven nella console. 
+    ![Hello chiamata dell'API contatti][calling-specific-contact-api]
+10. Infine, compilare file WAR Java (archivio Web) hello eseguendo hello comando Maven nella console seguente. 
     
          mvn package war:war
-11. Una volta creato, il file WAR verrà inserito nella cartella di **destinazione**. Passare alla cartella di **destinazione** e rinominare il file WAR **ROOT.war**, accertandosi di rispettare le lettere maiuscole.
+11. Una volta creato file WAR hello, sarà inserito hello **destinazione** cartella. Passare alla hello **destinazione** cartella e rinominare hello file WAR troppo**ROOT.war**. (Assicurarsi che l'uso delle maiuscole hello corrisponde a questo formato).
     
           rename swagger-jaxrs-server-1.0.0.war ROOT.war
-12. Eseguire infine i comandi seguenti dalla cartella radice dell'applicazione per creare una cartella di **distribuzione** da usare per distribuire il file WAR in Azure. 
+12. Infine, eseguire i seguenti comandi dalla cartella radice hello toocreate l'applicazione hello un **distribuire** hello di toodeploy toouse cartella WAR file tooAzure. 
     
           mkdir deploy
           mkdir deploy\webapps
           copy target\ROOT.war deploy\webapps
           cd deploy
 
-## <a name="publish-the-output-to-azure-app-service"></a>Pubblicare l'output nel servizio app di Azure
-Questa sezione descrive come creare una nuova app per le API tramite il portale di Azure, preparare l'app per le API per l'hosting di applicazioni Java e distribuire il file WAR appena creato nel servizio app di Azure per eseguire la nuova app per le API. 
+## <a name="publish-hello-output-tooazure-app-service"></a>Pubblicare l'output di hello tooAzure servizio App
+In questa sezione che si apprenderà come toocreate una nuova App API hello tramite il portale di Azure, preparare tale App per le API per l'hosting di applicazioni Java e distribuire hello appena creato WAR file tooAzure toorun di servizio App di App per le nuove API. 
 
-1. Creare una nuova app per le API nel [Portale di Azure]. A tale scopo, fare clic sulla voce di menu **Nuovo -> Web e dispositivi mobili -> API App**, immettere i dettagli dell'app e quindi fare clic su **Crea**.
+1. Creare una nuova app per le API in hello [portale di Azure], facendo clic su hello **nuovo -> Web + Mobile -> app per le API** voce di menu, immettere i dettagli dell'app e quindi fare clic su **crea**.
    
     ![Creare una nuova app per le API][create-api-app]
-2. Dopo aver creato l'app per le API, aprire il pannello **Impostazioni** dell'app e quindi fare clic sulla voce di menu **Impostazioni dell'applicazione**. Selezionare le versioni più recenti di Java nelle opzioni disponibili e quindi la versione più recente di Tomcat nel menu **Contenitore Web** e infine fare clic su **Salva**.
+2. Dopo aver creato l'app dell'API, aprire l'app **impostazioni** pannello, quindi fare clic su hello **le impostazioni dell'applicazione** voce di menu. Selezionare hello versioni più recenti di Java delle opzioni disponibili hello, quindi selezionare hello Tomcat più recenti da hello **contenitore Web** menu e quindi fare clic su **salvare**.
    
-    ![Configurare Java nel pannello dell'app per le API][set-up-java]
-3. Fare clic sulla voce di menu delle impostazioni **Credenziali per la distribuzione** e specificare il nome utente e la password da usare per la pubblicazione dei file nell'app per le API. 
+    ![Nel linguaggio hello pannello App per le API][set-up-java]
+3. Fare clic su hello **le credenziali di distribuzione** menu impostazioni di elemento e fornire un nome utente e la password da toouse per la pubblicazione di file tooyour App per le API. 
    
     ![Reimpostare le credenziali di distribuzione][deployment-credentials]
-4. Fare clic sulla voce di menu delle impostazioni **Origine distribuzione** . Fare quindi clic sul pulsante **Scegliere l'origine**, selezionare l'opzione **Local Git Repository** e infine fare clic su **OK**. Verrà creato un repository Git in esecuzione in Azure, contenente un'associazione con l'app per le API. Ogni volta che si esegue il commit di un codice nel ramo *master* del repository Git, il codice verrà pubblicato nell'istanza dell'app per le API in esecuzione. 
+4. Fare clic su hello **origine distribuzione** voce di menu impostazioni. Una volta, fare clic su hello **origine scegliere** pulsante, hello seleziona **Git Repository locale** opzione e quindi fare clic su **OK**. Verrà creato un repository Git in esecuzione in Azure, contenente un'associazione con l'app per le API. Ogni volta che si esegue il commit codice toohello *master* ramo del repository Git, il codice verrà pubblicato nell'istanza API App in esecuzione in tempo reale. 
    
     ![Configurare un nuovo repository Git locale][select-git-repo]
-5. Copiare negli appunti l'URL del nuovo repository Git. Salvare il file, poiché risulterà di grande importanza più avanti. 
+5. Copiare negli Appunti tooyour dell'hello nuovo repository Git URL. Salvare il file, poiché risulterà di grande importanza più avanti. 
    
     ![Configurare un nuovo repository Git per l'app][copy-git-repo-url]
-6. Eseguire il push GIT del file WAR nel repository online. A tale scopo, passare alla cartella di **distribuzione** creata in precedenza, in modo da poter facilmente eseguire il commit del codice nel repository in cui è in esecuzione il servizio app. Dopo aver attivato la finestra della console ed essersi spostati nella directory in cui si trova la cartella webapps, inviare i comandi Git seguenti per avviare il processo e attivare una distribuzione. 
+6. Push hello WAR file toohello online repository GIT. toodo, passare alla hello **distribuire** cartella creata in precedenza in modo che è possibile applicare facilmente codice hello backup toohello repository in esecuzione nel servizio App. Una volta è nella finestra di console hello e spostato nella cartella hello cartella webapps hello in cui si trova, emettere hello Git comandi toolaunch hello processo e attivano una distribuzione. 
    
          git init
          git add .
@@ -263,15 +263,15 @@ Questa sezione descrive come creare una nuova app per le API tramite il portale 
          git remote add azure [YOUR GIT URL]
          git push azure master
    
-    Dopo aver emesso la richiesta di **push** , viene richiesta la password creata in precedenza per le credenziali di distribuzione. Dopo l'immissione delle credenziali, nel portale dovrebbe essere visualizzata la distribuzione dell'aggiornamento.
-7. Se si accede alla nuova app per le API in esecuzione nel servizio app di Azure con Postman, si noterà che il comportamento è coerente, che ora restituisce i dati dei contatti previsti e, tramite un semplice codice, si trasforma in codice Java sottoposto a scaffolding da Swagger.io. 
+    Quando si esegue hello **push** richiesta, verrà chiesto di password hello creato in precedenza per le credenziali di distribuzione hello. Dopo aver immesso le credenziali, verrà visualizzata la visualizzazione del portale che hello aggiornamento è stata distribuita.
+7. Se si utilizza ancora una volta Postman toohit hello appena distribuito API App in esecuzione in Azure App Service, si noterà che il comportamento di hello è coerente e che ora ha restituito dati di contatto come previsto, e con le modifiche di codice semplice toohello Swagger.io scaffolding codice Java. 
    
     ![Usare l'API REST dei contatti Java in Azure][postman-calling-azure-contacts]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questo articolo è iniziato con un file JSON Swagger e il codice Java sottoposto a scaffolding ottenuto dall'editor Swagger.io. Con alcune modifiche e un processo di distribuzione di un repository Git è stata creata un'app per le API funzionale, scritta in Java. L'esercitazione successiva mostra come [utilizzare app per le API da client JavaScript tramite CORS][App Service API CORS]. Le esercitazioni successive della serie illustrano come implementare l'autenticazione e l'autorizzazione.
+In questo articolo è stato in grado di toostart con un file Swagger JSON e codice Java scaffolding ottenuto dall'editor Swagger.io hello. Con alcune modifiche e un processo di distribuzione di un repository Git è stata creata un'app per le API funzionale, scritta in Java. esercitazione successiva Hello viene illustrato come troppo[utilizzare App per le API da client JavaScript, tramite condivisione CORS][App Service API CORS]. Le esercitazioni successive in hello serie Mostra come tooimplement autenticazione e autorizzazione.
 
-Per approfondire questo esempio, è possibile acquisire informazioni su [Storage SDK per Java] per rendere permanenti i BLOB JSON. In alternativa, è possibile usare [DocumentDB Java SDK] per salvare i dati dei contatti in Azure DocumentDB. 
+toobuild in questo esempio, per ulteriori informazioni su hello [Storage SDK per Java] BLOB di toopersist hello JSON. In alternativa, è Impossibile usare hello [SDK per Java DB documento] toosave tooAzure di dati del contatto DB documento. 
 
 <a name="see-also"></a>
 
@@ -281,21 +281,21 @@ Per altre informazioni sull'uso di Azure con Java, vedere [Azure for Java develo
 <!-- URL List -->
 
 [App Service API CORS]: app-service-api-cors-consume-javascript.md
-[Portale di Azure]: https://portal.azure.com/
-[DocumentDB Java SDK]: ../documentdb/documentdb-java-application.md
-[valutazione gratuita]: https://azure.microsoft.com/pricing/free-trial/
+[portale di Azure]: https://portal.azure.com/
+[SDK per Java DB documento]: ../documentdb/documentdb-java-application.md
+[versione di valutazione gratuita]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: http://www.git-scm.com/
 [Azure Java Developer Center]: /develop/java/
 [Java Development Kit 8]: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-[Jax-RS]: https://jax-rs-spec.java.net/
+[JAX RS]: https://jax-rs-spec.java.net/
 [Maven]: https://maven.apache.org/
 [Microsoft Azure]: https://azure.microsoft.com/
-[editor Swagger online]: http://editor2.swagger.io/
+[Online Editor Swagger]: http://editor2.swagger.io/
 [Postman]: https://www.getpostman.com/
 [Storage SDK per Java]:../storage/blobs/storage-java-how-to-use-blob-storage.md
 [Swagger]: http://swagger.io/
-[editor Swagger]: http://editor.swagger.io/
-[Visual Studio Code]: https://code.visualstudio.com
+[Swagger Editor]: http://editor.swagger.io/
+[codice di Visual Studio]: https://code.visualstudio.com
 
 <!-- IMG List -->
 

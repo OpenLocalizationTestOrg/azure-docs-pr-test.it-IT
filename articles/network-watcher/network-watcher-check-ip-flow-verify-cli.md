@@ -1,6 +1,6 @@
 ---
-title: Verificare il traffico con la verifica del flusso IP di Network Watcher di Azure - Interfaccia della riga di comando di Azure | Documentazione Microsoft
-description: "Questo articolo descrive come verificare se il traffico da o verso una macchina virtuale è consentito o negato usando l'interfaccia della riga di comando di Azure"
+title: traffico aaaVerify con Azure rete Watcher IP flusso verificare - CLI di Azure | Documenti Microsoft
+description: "Questo articolo viene descritto come toocheck se tooor il traffico da una macchina virtuale è consentito o negato tramite l'interfaccia CLI di Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 0b52257a6c38a4392573672b7190d2269c2f145a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 128a00b4296994551e7e17838a51e6d9de180e21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-if-traffic-is-allowed-or-denied-to-or-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Controllare se il traffico da o verso una macchina virtuale è consentito o negato con la verifica del flusso IP, una funzionalità di Network Watcher di Azure
+# <a name="check-if-traffic-is-allowed-or-denied-tooor-from-a-vm-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>Verifica se il traffico non è consentito o negato tooor da una macchina virtuale con IP flusso verificare un componente del controllo di rete di Azure
 
 > [!div class="op_single_selector"]
 > - [Portale di Azure](network-watcher-check-ip-flow-verify-portal.md)
@@ -30,31 +30,31 @@ ms.lasthandoff: 07/11/2017
 > - [API REST di Azure](network-watcher-check-ip-flow-verify-rest.md)
 
 
-La verifica del flusso IP è una funzionalità di Network Watcher che consente di verificare se il traffico da o verso una macchina virtuale è consentito o negato. Questo scenario è utile per stabilire se una macchina virtuale può comunicare con una risorsa esterna o back-end. La funzionalità può essere usata per verificare se le regole del gruppo di sicurezza di rete sono configurate correttamente e per risolvere i problemi dei flussi bloccati da tali regole. La verifica del flusso IP consente inoltre di verificare che il traffico che si vuole bloccare sia correttamente bloccato dal gruppo di sicurezza di rete.
+Flusso di IP verificare è una funzionalità di controllo di rete che consente tooverify se il traffico consentito tooor da una macchina virtuale. Questo scenario è utile tooget uno stato corrente di fatto una macchina virtuale possono comunicare con la risorsa esterna tooan o back-end. Verificare di flusso IP può essere utilizzato tooverify se le regole di sicurezza gruppo (rete) sono configurate correttamente e risolvere i problemi di flussi che sono bloccati dalle regole di gruppo. Un altro motivo per l'uso di IP flusso verificare tooensure che si desidera bloccare il traffico viene bloccato correttamente dal gruppo hello.
 
-Questo articolo usa l'interfaccia della riga di comando di nuova generazione per il modello di distribuzione di gestione delle risorse, ovvero l'interfaccia della riga di comando di Azure 2.0, disponibile per Windows, Mac e Linux.
+In questo articolo utilizza la nuova generazione CLI per modello di distribuzione Gestione risorse hello, CLI di Azure 2.0, che è disponibile per Windows, Mac e Linux.
 
-Per eseguire i passaggi indicati in questo articolo è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher o aprire un'istanza esistente di Network Watcher. Lo scenario presuppone inoltre che esista e possa essere usato un gruppo di risorse con una macchina virtuale valida.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete o dispone di un'istanza esistente del controllo di rete. scenario di Hello si suppone inoltre che un gruppo di risorse con una macchina virtuale valida toobe utilizzato.
 
 ## <a name="scenario"></a>Scenario
 
-Questo scenario usa la verifica del flusso IP per verificare se una macchina virtuale può comunicare con un indirizzo IP Bing noto. Se il traffico viene negato, restituisce la regola di sicurezza che nega il traffico. Per altre informazioni sulla verifica del flusso IP, leggere la [panoramica sulla verifica del flusso IP](network-watcher-ip-flow-verify-overview.md)
+Questo scenario Usa tooverify IP flusso verificare se una macchina virtuale possono comunicare con tooa noti indirizzo IP di Bing. Regola di sicurezza hello che nega il traffico viene restituito se il traffico hello viene negato. toolearn ulteriori informazioni su IP flusso verificare, visitare [IP Flow verificare Overview](network-watcher-ip-flow-verify-overview.md)
 
 ## <a name="get-a-vm"></a>Ottenere una macchina virtuale
 
-La verifica del flusso IP esegue il test del traffico da o verso un indirizzo IP su una macchina virtuale da o verso una destinazione remota. Il cmdlet richiede un ID di macchina virtuale. Se l'ID della macchina virtuale da usare è già noto, è possibile ignorare questo passaggio.
+Flusso IP verificare tooor il traffico di test da un indirizzo IP su tooor una macchina virtuale da una destinazione remota. Un Id di una macchina virtuale è obbligatorio per i cmdlet di hello. Se si conosce già ID hello di hello toouse di macchina virtuale, è possibile ignorare questo passaggio.
 
 ```azurecli
 az vm show --resource-group MyResourceGroup5431 --name MyVM-Web
 ```
 
-## <a name="get-the-nics"></a>Ottenere le schede NIC
+## <a name="get-hello-nics"></a>Ottenere hello NIC
 
-È necessario l'indirizzo IP di una scheda di rete nella macchina virtuale. In questo esempio vengono recuperate le schede NIC in una macchina virtuale. Se l'indirizzo IP da testare nella macchina virtuale è già noto, è possibile ignorare questo passaggio.
+è necessario l'indirizzo IP Hello di una scheda di rete nella macchina virtuale hello, in questo esempio vengono recuperate le schede NIC hello in una macchina virtuale. Se si conosce già hello IP indirizzo che si desidera tootest sulla macchina virtuale hello, è possibile ignorare questo passaggio.
 
 ```azurecli
 az network nic show --resource-group MyResourceGroup5431 --name MyNic-Web
@@ -62,18 +62,18 @@ az network nic show --resource-group MyResourceGroup5431 --name MyNic-Web
 
 ## <a name="run-ip-flow-verify"></a>Eseguire la verifica del flusso IP
 
-Dopo aver ottenuto le informazioni necessarie per eseguire il cmdlet, eseguire il cmdlet `az network watcher test-ip-flow` per testare il traffico. In questo esempio, viene usato il primo indirizzo IP nella prima scheda NIC.
+Ora che si dispone di informazioni hello necessari toorun hello cmdlet, eseguiamo hello `az network watcher test-ip-flow` traffico hello tootest di cmdlet. In questo esempio, utilizziamo primo indirizzo IP di hello in hello prima scheda di rete.
 
 ```azurecli
 az network watcher test-ip-flow --resource-group resourceGroupName --direction directionInboundorOutbound --protocol protocolTCPorUDP --local ipAddressandPort --remote ipAddressandPort --vm vmNameorID --nic nicNameorID
 ```
 
 > [!NOTE]
-> Per eseguire la verifica del flusso IP è necessario che la risorsa della macchina virtuale sia allocata.
+> Flusso di IP verificare richiede che risorsa macchina virtuale hello è allocato toorun.
 
 ## <a name="review-results"></a>Esaminare i risultati
 
-Dopo aver eseguito `az network watcher test-ip-flow` vengono restituiti i risultati. L'esempio seguente mostra i risultati restituiti nel passaggio precedente.
+Dopo aver eseguito `az network watcher test-ip-flow` hello risultati vengono restituiti, esempio hello è risultato hello restituito da hello passaggio precedente.
 
 ```azurecli
 {
@@ -84,9 +84,9 @@ Dopo aver eseguito `az network watcher test-ip-flow` vengono restituiti i risult
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Se il traffico risulta bloccato e non dovrebbe esserlo, vedere [Gestire i gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) per individuare il gruppo di sicurezza di rete e le relative regole di sicurezza definite.
+Se il traffico viene bloccato e non può essere, vedere [gestire gruppi di sicurezza di rete](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack verso il basso hello rete sicurezza e gruppo di regole di sicurezza definiti.
 
-Informazioni su come controllare le impostazioni del gruppo sicurezza di rete sono disponibili in [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-nsg-auditing-powershell.md) (Verifica dei gruppi di sicurezza di rete con Network Watcher).
+Informazioni su impostazioni gruppo tooaudit visitando [il controllo di sicurezza gruppi (rete) con Watcher di rete](network-watcher-nsg-auditing-powershell.md).
 
 [1]: ./media/network-watcher-check-ip-flow-verify-portal/figure1.png
 [2]: ./media/network-watcher-check-ip-flow-verify-portal/figure2.png

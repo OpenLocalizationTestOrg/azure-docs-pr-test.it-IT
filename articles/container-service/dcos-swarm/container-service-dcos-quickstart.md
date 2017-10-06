@@ -1,5 +1,5 @@
 ---
-title: Guida rapida al servizio contenitore di Azure - Distribuire un cluster DC/OS | Microsoft Docs
+title: aaaAzure avvio rapido del servizio contenitore - distribuire controller di dominio o del sistema operativo Cluster | Documenti Microsoft
 description: Guida rapida al servizio contenitore di Azure - Distribuire un cluster DC/OS
 services: container-service
 documentationcenter: 
@@ -17,23 +17,23 @@ ms.workload: na
 ms.date: 08/04/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: a31170369de9bc1ddcddb97171281b0014af95f9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b961f15bd73deeafda5a3fc25ab53c839195219b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-dcos-cluster"></a>Distribuire un cluster DC/OS
 
-DC/OS fornisce una piattaforma distribuita per l'esecuzione di applicazioni in contenitori e moderne. Con il servizio contenitore di Azure, il provisioning di un cluster DC/OS pronto per la produzione è semplice e rapido. Questa guida rapida illustra in dettaglio i passaggi di base necessari per distribuire un cluster DC/OS ed eseguire un carico di lavoro di base.
+DC/OS fornisce una piattaforma distribuita per l'esecuzione di applicazioni in contenitori e moderne. Con il servizio contenitore di Azure, il provisioning di un cluster DC/OS pronto per la produzione è semplice e rapido. Questo passaggi di base di avvio rapido dettagli hello necessari toodeploy un cluster di controller di dominio o del sistema operativo e un carico di lavoro di base esecuzione.
 
 Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
 
-Questa esercitazione richiede l'interfaccia della riga di comando di Azure 2.0.4 o versioni successive. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Questa esercitazione richiede hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooupgrade, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure 
+## <a name="log-in-tooazure"></a>Accedi tooAzure 
 
-Accedere alla sottoscrizione di Azure con il comando [az login](/cli/azure/#login) e seguire le istruzioni visualizzate.
+Accedere alla sottoscrizione di Azure con hello tooyour [accesso az](/cli/azure/#login) comando e seguire hello le direzioni.
 
 ```azurecli
 az login
@@ -41,9 +41,9 @@ az login
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *stati uniti orientali*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso.
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
@@ -51,9 +51,9 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-dcos-cluster"></a>Creare un cluster DC/OS
 
-Creare un cluster DC/OS con il comando [az acs create](/cli/azure/acs#create).
+Creare un cluster di controller di dominio o del sistema operativo con hello [az acs creare](/cli/azure/acs#create) comando.
 
-L'esempio seguente crea un cluster DC/OS denominato *myDCOSCluster* e crea le chiavi SSH se non esistono già. Per usare un set specifico di chiavi, utilizzare l'opzione `--ssh-key-value`.  
+esempio Hello crea un cluster di controller di dominio o del sistema operativo denominato *myDCOSCluster* e crea le chiavi SSH se non esiste già. toouse uno specifico set di chiavi, utilizzare hello `--ssh-key-value` opzione.  
 
 ```azurecli
 az acs create \
@@ -63,39 +63,39 @@ az acs create \
   --generate-ssh-keys
 ```
 
-Dopo alcuni minuti, il comando viene completato e restituisce le informazioni sulla distribuzione.
+Dopo alcuni minuti, comando hello completa e restituisce informazioni sulla distribuzione di hello.
 
-## <a name="connect-to-dcos-cluster"></a>Connettersi al cluster DC/OS
+## <a name="connect-toodcos-cluster"></a>Connettere il cluster tooDC/OS
 
-Dopo aver creato un cluster DC/OS, è possibile accedervi tramite un tunnel SSH. Eseguire il comando seguente per restituire l'indirizzo IP pubblico del master DC/OS. L'indirizzo IP viene archiviato in una variabile e usato nel passaggio successivo.
+Dopo aver creato un cluster DC/OS, è possibile accedervi tramite un tunnel SSH. Comando che segue di esecuzione hello tooreturn hello indirizzo IP pubblico del database master di controller di dominio/OS hello. Questo indirizzo IP è archiviato in una variabile e usato nel passaggio successivo hello.
 
 ```azurecli
 ip=$(az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-master')].[ipAddress]" -o tsv)
 ```
 
-Per creare il tunnel SSH, eseguire il comando seguente e seguire le istruzioni visualizzate. Se la porta 80 è già in uso, il comando non riesce. Aggiornare la porta di tunneling selezionandone una non in uso, come `85:localhost:80`. 
+toocreate hello tunnel SSH, eseguire hello comando seguente e istruzioni hello sullo schermo. Se la porta 80 è già in uso, il comando hello ha esito negativo. Hello aggiornamento tunneled tooone porta non è in uso, ad esempio `85:localhost:80`. 
 
 ```azurecli
 sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 ```
 
-Il tunnel SSH può essere testato passando a `http://localhost`. Se è stata usata una porta diversa dalla 80, modificare il percorso corrispondentemente. 
+può essere testato tunnel SSH Hello esplorando troppo`http://localhost`. Se una porta altro che è stata utilizzata 80, modificare toomatch percorso hello. 
 
-Se il tunnel SSH è stato creato correttamente, viene restituito il portale di DC/OS.
+Se tunnel SSH hello è stato creato correttamente, viene restituito il portale di controller di dominio/OS hello.
 
 ![Interfaccia utente di DC/OS](./media/container-service-dcos-quickstart/dcos-ui.png)
 
 ## <a name="install-dcos-cli"></a>Installare l'interfaccia della riga di comando di DC/OS
 
-L'interfaccia della riga di comando di DC/OS viene usata per gestire un cluster DC/OS dalla riga di comando. Installare l'interfaccia della riga di comando di DC/OS con il comando [az acs dcos install-cli](/azure/acs/dcos#install-cli). Se si usa Azure CloudShell, l'interfaccia della riga di comando di DC/OS è già installata. 
+interfaccia della riga di comando DC/OS Hello è toomanage usato un cluster di controller di dominio o del sistema operativo da hello della riga di comando. Installare hello cli di controller di dominio/OS utilizzando hello [az acs dcos install-cli](/azure/acs/dcos#install-cli) comando. Se si utilizza Azure CloudShell, hello CLI di controller di dominio o del sistema operativo è già installato. 
 
-Se si esegue l'interfaccia della riga di comando di Azure in macOS o Linux, potrebbe essere necessario eseguire il comando con sudo.
+Se si esegue hello CLI di Azure in macOS o Linux, potrebbe essere comando hello toorun con sudo.
 
 ```azurecli
 az acs dcos install-cli
 ```
 
-Prima di poter usare l'interfaccia della riga di comando con il cluster, deve essere configurato per usare il tunnel SSH. A tale scopo, eseguire il comando seguente, modificando la porta se necessario.
+Prima di hello che CLI può essere utilizzato con i cluster di hello, deve essere tunnel SSH di hello toouse configurato. toodo in tal caso, eseguire hello comando seguente, modificare la porta hello se necessario.
 
 ```azurecli
 dcos config set core.dcos_url http://localhost
@@ -103,7 +103,7 @@ dcos config set core.dcos_url http://localhost
 
 ## <a name="run-an-application"></a>Eseguire un'applicazione
 
-Il meccanismo di pianificazione predefinito per un cluster DC/OS del servizio contenitore di Azure è Marathon. Marathon viene usato per avviare un'applicazione e gestire lo stato dell'applicazione nel cluster DC/OS. Per pianificare un'applicazione tramite Marathon, creare un file denominato *marathon-app.json* e copiarvi il contenuto seguente. 
+valore predefinito di Hello meccanismo per un cluster ACS controller di dominio o del sistema operativo di pianificazione è maratona. Maratona toostart utilizzata un'applicazione e gestire lo stato di hello di un'applicazione hello nel cluster di controller di dominio/OS hello. tooschedule un'applicazione tramite maratona, creare un file denominato *maratona app.json*, e hello copia seguendo contenuto al suo interno. 
 
 ```json
 {
@@ -135,38 +135,38 @@ Il meccanismo di pianificazione predefinito per un cluster DC/OS del servizio co
 }
 ```
 
-Eseguire il comando seguente per pianificare l'esecuzione dell'applicazione nel cluster DC/OS.
+Eseguire hello successivo comando tooschedule hello applicazione toorun nel cluster di controller di dominio/OS hello.
 
 ```azurecli
 dcos marathon app add marathon-app.json
 ```
 
-Per visualizzare lo stato di distribuzione per l'app, eseguire il comando seguente.
+stato della distribuzione toosee hello per le app di hello, eseguire hello comando seguente.
 
 ```azurecli
 dcos marathon app list
 ```
 
-Quando il valore della colonna **WAITING** (Attesa) passa da *True* a *False*, la distribuzione dell'applicazione è stata completata.
+Quando hello **in attesa** passa il valore di colonna da *True* troppo*False*, la distribuzione di applicazioni è stata completata.
 
 ```azurecli
 ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD   
 /test   32   1     1/1    ---       ---      False      DOCKER   None
 ```
 
-Ottenere l'indirizzo IP pubblico degli agenti del cluster DC/OS.
+Ottenere l'indirizzo IP pubblico hello degli agenti di hello controller di dominio o del sistema operativo cluster.
 
 ```azurecli
 az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-agent')].[ipAddress]" -o tsv
 ```
 
-Passando a questo indirizzo viene restituito il sito NGINX predefinito.
+Esplorazione toothis indirizzo restituisce sito NGINX di hello predefinito.
 
 ![NGINX](./media/container-service-dcos-quickstart/nginx.png)
 
 ## <a name="delete-dcos-cluster"></a>Eliminare il cluster DC/OS
 
-Quando non serve più, è possibile rimuovere il gruppo di risorse, il cluster DC/OS e tutte le risorse correlate tramite il comando [az group delete](/cli/azure/group#delete).
+Quando non è più necessario, è possibile utilizzare hello [eliminazione gruppo az](/cli/azure/group#delete) comandi tooremove gruppo di risorse hello, cluster/OS di controller di dominio e tutte le relative risorse.
 
 ```azurecli
 az group delete --name myResourceGroup --no-wait
@@ -174,7 +174,7 @@ az group delete --name myResourceGroup --no-wait
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida rapida è stato distribuito un cluster DC/OS ed è stato eseguito un contenitore Docker semplice nel cluster. Per altre informazioni sul servizio contenitore di Azure, continuare con le esercitazioni relative a questo servizio.
+In questa Guida introduttiva, è stato distribuito un cluster di controller di dominio o del sistema operativo e l'esecuzione un semplice contenitore Docker in cluster hello. toolearn ulteriori informazioni su servizio di contenitore di Azure, continuare esercitazioni toohello ACS.
 
 > [!div class="nextstepaction"]
 > [Gestire un cluster DC/OS del servizio contenitore di Azure](container-service-dcos-manage-tutorial.md)

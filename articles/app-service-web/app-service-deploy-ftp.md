@@ -1,6 +1,6 @@
 ---
-title: Distribuire l'app nel servizio app di Azure usando FTP/S | Documentazione Microsoft
-description: Informazioni su come distribuire l'app nel servizio app di Azure usando FTP o FTPS.
+title: aaaDeploy il tooAzure app servizio App utilizzando FTP/S | Documenti Microsoft
+description: Informazioni su come toodeploy tooAzure l'app App Service tramite FTP o FTPS.
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: cephalin;dariac
-ms.openlocfilehash: 9078abbc4ed7eff6975201443992f7bbb84bf57c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 318ae79d4fae269f853ea5c3ce28353b0864131e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-app-to-azure-app-service-using-ftps"></a>Distribuire l'app nel servizio app di Azure usando FTP/S
+# <a name="deploy-your-app-tooazure-app-service-using-ftps"></a>Distribuire il servizio App utilizzando FTP/S di tooAzure app
 
-Questo articolo illustra come usare FTP o FTPS per distribuire l'app Web, il back-end dell'app per dispositivi mobili o l'app per le API nel [servizio app di Azure](http://go.microsoft.com/fwlink/?LinkId=529714).
+In questo articolo illustra come toouse FTP o FTPS toodeploy l'app web back-end dell'app mobile o app per le API troppo[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-L'endpoint FTP/S per l'app è già attivo. Non è necessaria alcuna configurazione per abilitare la distribuzione FTP/S.
+endpoint di Hello FTP/S per l'app è già attivo. Non è distribuzione FTP/S tooenable necessaria alcuna configurazione.
 
 > [!IMPORTANT]
-> Microsoft è costantemente impegnata per migliorare la protezione della piattaforma Microsoft Azure. Nell'ambito di questa attività in corso un aggiornamento delle applicazioni Web è pianificato per le aree della Germania centrale e nord-orientale. Durante tale aggiornamento le App Web disabiliteranno l'uso del protocollo di testo normale FTP per le distribuzioni. Si consiglia ai clienti per passare a FTPS per le distribuzioni. Non sono previste interruzioni del servizio durante l'aggiornamento, pianificato per il 5/9. Grazie per il sostegno per il lavoro richiesto.
+> Si sta eseguendo in modo continuo passaggi tooimprove sicurezza piattaforma Microsoft Azure. Nell'ambito di questa attività in corso un aggiornamento delle applicazioni Web è pianificato per le aree della Germania centrale e nord-orientale. Durante l'esecuzione dell'App Web verrà la disabilitazione della utilizzare hello del protocollo di testo normale FTP per le distribuzioni. I clienti tooour raccomandazione è tooFTPS tooswitch per le distribuzioni. Non Prevediamo qualsiasi servizio tooyour interruzioni durante l'aggiornamento a cui è pianificato per 9/5. Grazie per il sostegno per il lavoro richiesto.
 
 <a name="step1"></a>
 ## <a name="step-1-set-deployment-credentials"></a>Passaggio 1: Impostare le credenziali per la distribuzione
 
-Per accedere al server FTP per l'app, prima sono necessarie le credenziali per la distribuzione. 
+server di tooaccess hello FTP per l'app, è necessario innanzitutto le credenziali di distribuzione. 
 
-Per impostare o reimpostare le credenziali per la distribuzione, vedere [Credenziali per la distribuzione del Servizio app di Azure](app-service-deployment-credentials.md). Questa esercitazione illustra l'uso di credenziali a livello di utente.
+tooset o Reimposta le credenziali di distribuzione, vedere [le credenziali di distribuzione di Azure App Service](app-service-deployment-credentials.md). Questa esercitazione viene illustrato l'utilizzo di hello delle credenziali a livello di utente.
 
 ## <a name="step-2-get-ftp-connection-information"></a>Passaggio 2: Ottenere informazioni di connessione a FTP
 
-1. Nel [portale di Azure](https://portal.azure.com) aprire il [pannello della risorsa](../azure-resource-manager/resource-group-portal.md#manage-resources) dell'app.
-2. Scegliere **Panoramica** dal menu a sinistra, quindi prendere nota dei valori per **Utente FTP/distribuzione**, **Nome host FTP** e **Nome host FTPS**. 
+1. In hello [portale di Azure](https://portal.azure.com), Apri l'app [pannello della risorsa](../azure-resource-manager/resource-group-portal.md#manage-resources).
+2. Selezionare **Panoramica** nel menu a sinistra di hello, quindi annotare i valori hello per **utente FTP/distribuzione**, **nome Host FTP**, e **il nome Host FTPS**. 
 
     ![Informazioni di connessione a FTP](./media/web-sites-deploy/FTP-Connection-Info.PNG)
 
     > [!NOTE]
-    > Il valore di **Utente FTP/distribuzione** visualizzato dal portale di Azure include il nome dell'app per rendere disponibile un contesto appropriato al server FTP.
-    > È possibile trovare le stesse informazioni scegliendo **Proprietà** dal menu a sinistra. 
+    > Hello **utente FTP/distribuzione** valore utente come visualizzato dal portale di Azure, incluso il nome dell'app hello contesto appropriato tooprovide di ordine per il server FTP hello hello.
+    > È possibile trovare hello stesse informazioni quando si seleziona **proprietà** nel menu a sinistra di hello. 
     >
-    > La password per la distribuzione inoltre non viene mai visualizzata. Se si dimentica la password per la distribuzione, tornare al [passaggio 1](#step1) e reimpostarla.
+    > Inoltre, la password di hello distribuzione non viene visualizzata. Se si dimentica la password di distribuzione, tornare troppo[passaggio 1](#step1) e reimpostare la password di distribuzione.
     >
     >
 
-## <a name="step-3-deploy-files-to-azure"></a>Passaggio 3: Distribuire file in Azure
+## <a name="step-3-deploy-files-tooazure"></a>Passaggio 3: Distribuire file tooAzure
 
-1. Dal client FTP ([Visual Studio](https://www.visualstudio.com/vs/community/), [FileZilla](https://filezilla-project.org/download.php?type=client) e così via) usare le informazioni di connessione raccolte per connettersi all'app.
-3. Copiare i file e la struttura di directory corrispondente nella directory [**/site/wwwroot** ](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) in Azure o nella directory **/site/wwwroot/App_Data/Jobs/** per i processi Web.
-4. Passare all'URL dell'app per verificare che l'applicazione venga eseguita correttamente. 
+1. Dal client FTP ([Visual Studio](https://www.visualstudio.com/vs/community/), [FileZilla](https://filezilla-project.org/download.php?type=client)e così via), utilizzare le informazioni di connessione hello raccolte tooconnect tooyour app.
+3. Copiare i file e i relativi toohello struttura rispettive directory [ **/sito/wwwroot** directory](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) in Azure (o hello **/sito/wwwroot/App_Data/processi/** directory per Processi Web).
+4. App di hello tooverify URL dell'app tooyour Sfoglia viene eseguito correttamente. 
 
 > [!NOTE] 
-> Diversamente dalle [distribuzioni basate su Git](app-service-deploy-local-git.md), la distribuzione FTP non supporta le automazioni di distribuzione seguenti: 
+> A differenza di [le distribuzioni basate su Git](app-service-deploy-local-git.md), la distribuzione FTP non supporta hello automazioni di distribuzione seguenti: 
 >
 > - Ripristino delle dipendenze (ad esempio, automazioni NuGet, NPM, PIP e Composer)
 > - Compilazione di file binari .NET
@@ -70,7 +70,7 @@ Per impostare o reimpostare le credenziali per la distribuzione, vedere [Credenz
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per scenari di distribuzione più avanzati, provare a eseguire la [distribuzione in Azure con Git](app-service-deploy-local-git.md). La distribuzione basata su Git in Azure abilita il controllo della versione, il ripristino del pacchetto, MSBuild e altro ancora.
+Per gli scenari più avanzati, provare a [distribuzione tooAzure con Git](app-service-deploy-local-git.md). Distribuzione basati su GIT tooAzure consente il controllo della versione, ripristino del pacchetto, MSBuild e molto altro.
 
 ## <a name="more-resources"></a>Altre risorse
 

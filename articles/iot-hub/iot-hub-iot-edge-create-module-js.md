@@ -1,6 +1,6 @@
 ---
-title: Creare un modulo Azure IoT Edge con Node.js | Microsoft Docs
-description: "Questa esercitazione illustra come scrivere un modulo convertitore di dati BLE usando i pacchetti NPM di Azure IoT Edge più recenti e il generatore Yeoman."
+title: un modulo di Edge IoT di Azure con Node.js aaaCreate | Documenti Microsoft
+description: "In questa esercitazione illustra come una tabella dati convertitore modulo utilizzando toowrite hello pacchetti Azure IoT Edge NPM più recenti e Yeoman generatore."
 services: iot-hub
 author: sushi
 manager: timlt
@@ -11,23 +11,23 @@ ms.devlang: js
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: sushi
-ms.openlocfilehash: ba466f47e157d805600c41fa3d84ed5a0363969c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d3e696b5a310377ffb8e99998ff0714bf7c0bb41
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-iot-edge-module-with-nodejs"></a>Creare un modulo Azure IoT Edge con Node.js
 
-Questa esercitazione illustra come creare un modulo per Azure IoT Edge in JS.
+In questa esercitazione illustra come toocreate un modulo per Azure IoT Edge in JS.
 
-L'esercitazione illustra i passaggi per configurare l'ambiente e spiega come scrivere un modulo convertitore di dati [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) con la versione più recente dei pacchetti NPM di Azure IoT Edge.
+In questa esercitazione vengono illustrate le impostazione dell'ambiente e come toowrite un [BILITA](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) modulo convertitore di tipi di dati utilizzando pacchetti Azure IoT Edge NPM più recenti hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-In questa sezione si configura l'ambiente per lo sviluppo del modulo IoT Edge. Si applica sia a *Windows a 64 bit* che a *Linux a 64 bit (Ubuntu 14+)*.
+In questa sezione si configura l'ambiente per lo sviluppo del modulo IoT Edge. Si applica tooboth *Windows a 64 bit* e *Linux a 64 bit (Ubuntu + 14)* sistemi operativi.
 
-È richiesto il software seguente:
+Hello seguente software è necessario:
 * [Client Git](https://git-scm.com/downloads).
 * [Nodo LTS](https://nodejs.org).
 * `npm install -g yo`.
@@ -35,41 +35,41 @@ In questa sezione si configura l'ambiente per lo sviluppo del modulo IoT Edge. S
 
 ## <a name="architecture"></a>Architettura
 
-La piattaforma Azure IoT Edge usa frequentemente l'[architettura Von Neumann](https://en.wikipedia.org/wiki/Von_Neumann_architecture). L'intera architettura di Azure IoT Edge è quindi un sistema che elabora input e produce output e ogni singolo modulo è anche un piccolo sottosistema di input/output. In questa esercitazione vengono presentati i due moduli seguenti:
+piattaforma Azure IoT Edge Hello adotta frequentemente hello [architettura Neumann Von](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ovvero l'architettura di Azure IoT bordo intero hello è un sistema che elabora l'input e produce l'output. e che ogni singolo modulo sia anche un piccolo sottosistema di input / output. In questa esercitazione, si introduce hello due moduli seguenti:
 
 1. Un modulo che riceve un segnale [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) simulato e lo converte in un messaggio [JSON](https://en.wikipedia.org/wiki/JSON) formattato.
-2. Un modulo che stampa il messaggio [JSON](https://en.wikipedia.org/wiki/JSON) ricevuto.
+2. Un modulo che stampa hello ricevuto [JSON](https://en.wikipedia.org/wiki/JSON) messaggio.
 
-L'immagine seguente mostra il tipico flusso di dati end-to-end per il progetto:
+Hello seguente immagine Mostra hello fine tipico tooend un flusso di dati per questo progetto:
 
 ![Flusso di dati tra tre moduli](media/iot-hub-iot-edge-create-module/dataflow.png "Input: modulo BLE simulato; Processore: modulo convertitore; Output: modulo stampante")
 
-## <a name="set-up-the-environment"></a>Configurare l'ambiente
-Di seguito viene mostrato come configurare rapidamente l'ambiente per iniziare a scrivere il primo modulo convertitore BLE con JS.
+## <a name="set-up-hello-environment"></a>Configurare un ambiente di hello
+Di seguito viene illustrata la modalità tooquickly impostare ambiente toostart toowrite il primo modulo convertitore BILITA con JS.
 
 ### <a name="create-module-project"></a>Creare un progetto di modulo
 1. Aprire la finestra della riga di comando ed eseguire `yo az-iot-gw-module`.
-2. Seguire i passaggi visualizzati per completare l'inizializzazione del progetto del modulo.
+2. Seguire i passaggi di hello in hello schermata toofinish hello l'inizializzazione del progetto del modulo.
 
 ### <a name="project-structure"></a>Struttura progetto
-Un progetto di modulo JS è costituito dai componenti seguenti:
+Un progetto di modulo JS è costituito da hello seguenti componenti:
 
-`modules` - I file di origine del modulo JS personalizzato. Sostituire i file `sensor.js` e `printer.js` predefiniti con i propri file del modulo.
+`modules`-hello personalizzata i file di origine JS modulo. Sostituire l'impostazione predefinita hello `sensor.js` e `printer.js` con i propri file di modulo.
 
-`app.js` - Il file di voce per avviare l'istanza di Edge.
+`app.js`-istanza di hello voce file toostart hello Edge.
 
-`gw.config.json` - Il file di configurazione per personalizzare i moduli da caricare in Edge.
+`gw.config.json`-toobe di hello configurazione file toocustomize hello moduli caricati dal bordo.
 
-`package.json` - Le informazioni sui metadati per il progetto del modulo.
+`package.json`-hello informazioni sui metadati per il progetto di modulo.
 
-`README.md` - La documentazione di base per il progetto del modulo.
+`README.md`-hello documentazione di base per il progetto di modulo.
 
 
 ### <a name="package-file"></a>File del pacchetto
 
-Il file `package.json` dichiara tutte le informazioni sui metadati necessarie a un progetto di modulo, tra cui il nome, la versione, la voce, gli script, il runtime e le dipendenze di sviluppo.
+Questo `package.json` dichiara tutte le informazioni dei metadati hello necessarie per un progetto di modulo che include le dipendenze di nome, versione, voce, script, runtime e sviluppo hello.
 
-Il frammento di codice seguente mostra come preparare la configurazione per il progetto di esempio del convertitore BLE.
+Seguente frammento di codice viene illustrato come tooconfigure per convertitore disattiva il progetto di esempio.
 ```json
 {
   "name": "converter",
@@ -95,7 +95,7 @@ Il frammento di codice seguente mostra come preparare la configurazione per il p
 
 
 ### <a name="entry-file"></a>File di voce
-Il file `app.js` definisce il modo per inizializzare l'istanza di Edge. In questo caso non sono necessarie modifiche.
+Hello `app.js` definisce hello modo tooinitialize hello edge istanza. In questo caso non è necessario toomake qualsiasi modifica.
 
 ```javascript
 (function() {
@@ -117,13 +117,13 @@ Il file `app.js` definisce il modo per inizializzare l'istanza di Edge. In quest
 ### <a name="interface-of-module"></a>Interfaccia del modulo
 È possibile gestire il modulo Azure IoT Edge come elaboratore di dati il cui compito è di ricevere l'input, elaborarlo e produrre l'output.
 
-L'input potrebbe essere costituito da dati dell'hardware (ad esempio un rilevatore di movimento), un messaggio da altri moduli o qualsiasi altra informazione (ad esempio un numero casuale generato periodicamente da un timer).
+Hello input potrebbe essere dati dall'hardware (ad esempio un rilevatore di movimento), un messaggio da altri moduli, o qualsiasi altro (ad esempio, un numero casuale generato periodicamente da un timer).
 
-L'output è simile all'input. Può attivare il comportamento dell'hardware, ad esempio il lampeggiamento di un LED, generare un messaggio ad altri moduli o qualsiasi altra azione, ad esempio la stampa nella console.
+output di Hello input toohello simile, potrebbe attivare il comportamento di hardware (ad esempio hello LED lampeggiante), i moduli tooother un messaggio o a qualsiasi altro (ad esempio stampa toohello console).
 
-I moduli comunicano reciprocamente usando l'oggetto `message`. Il **contenuto** di un oggetto `message` è una matrice di byte in grado di rappresentare qualsiasi tipo di dati che si preferisce. In `message` sono presenti anche **proprietà** che rappresentano semplicemente il mapping stringa-a-stringa. Si può pensare alle **proprietà** come alle intestazioni in una richiesta HTTP o ai metadati di un file.
+I moduli comunicano reciprocamente usando l'oggetto `message`. Hello **contenuto** di un `message` è una matrice di byte che è in grado di rappresentare qualsiasi tipo di dati desiderato. **Proprietà** sono disponibili anche in hello `message` e sono semplicemente un mapping da stringa-stringa. È possibile pensare **proprietà** come intestazioni hello in una richiesta HTTP o hello metadati di un file.
 
-Per sviluppare un modulo Azure IoT Edge in JS, è necessario creare un nuovo oggetto modulo che implementa i metodi `receive()` necessari. È anche possibile a questo punto implementare i metodi `create()` o `start()` o `destroy()` facoltativi. Il frammento di codice seguente mostra lo scaffolding dell'oggetto modulo JS.
+In un modulo di Azure IoT Edge in JS toodevelop di ordine, è necessario un nuovo oggetto modulo che implementa i metodi necessario hello toocreate `receive()`. A questo punto, è inoltre possibile scegliere hello tooimplement facoltativo `create()` o `start()`, o `destroy()` anche i metodi. Hello frammento di codice seguente viene illustrato come che Hello lo scaffolding dell'oggetto modulo JS.
 
 ```javascript
 'use strict';
@@ -158,16 +158,16 @@ module.exports = {
 | ------------------------ | -------------------------------------- | ---------------------- | ---------------------- |
 | Messaggio sui dati della temperatura | Analizza e crea un nuovo messaggio JSON | Messaggio JSON strutturato | `converter.js` |
 
-Questo è un tipico modulo Azure IoT Edge. Accetta messaggi sulla temperatura da altri moduli, ad esempio un modulo hardware o in questo caso il modulo BLE simulato. Normalizza quindi il messaggio sulla temperatura in un messaggio JSON strutturato, includendo l'aggiunta dell'ID di messaggio, l'impostazione della proprietà che indica se è necessario attivare l'avviso di temperatura e così via.
+Questo è un tipico modulo Azure IoT Edge. Accetta messaggi temperatura da altri moduli (modulo di hardware, o in questo caso, il modulo BILITA simulato); e quindi Normalizza il messaggio di temperatura hello nel messaggio JSON tooa strutturata (inclusi aggiungendo l'ID del messaggio hello, impostazione proprietà hello di se occorre avviso temperatura tootrigger hello e così via).
 
 ```javascript
 receive: function (message) {
-  // Initialize the messageCount in global object at first time.
+  // Initialize hello messageCount in global object at first time.
   if (!global.messageCount) {
     global.messageCount = 0;
   }
 
-  // Read the content and properties objects from message.
+  // Read hello content and properties objects from message.
   let rawContent = JSON.parse(Buffer.from(message.content).toString('utf8'));
   let rawProperties = message.properties;
 
@@ -185,7 +185,7 @@ receive: function (message) {
     temperature: rawContent.temperature
   };
 
-  // Publish the new message to broker.
+  // Publish hello new message toobroker.
   this.broker.publish(
     {
       properties: newProperties,
@@ -198,9 +198,9 @@ receive: function (message) {
 ### <a name="printer-module"></a>Modulo della stampante
 | Input                          | Processore | Output                     | File di origine          |
 | ------------------------------ | --------- | -------------------------- | -------------------- |
-| Qualsiasi messaggio da altri moduli | N/D       | Registra il messaggio nella console | `printer.js` |
+| Qualsiasi messaggio da altri moduli | N/D       | Log tooconsole messaggio hello | `printer.js` |
 
-Questo modulo semplice e di chiara interpretazione restituisce i messaggi ricevuti (proprietà, contenuto) alla finestra Terminal.
+Questo modulo è semplice e chiara interpretazione, che restituisce una finestra terminale toohello di hello ricevuto messaggi (proprietà, contenuto).
 
 ```javascript
 receive: function (message) {
@@ -213,9 +213,9 @@ receive: function (message) {
 ```
 
 ### <a name="configuration"></a>Configurazione
-Il passaggio finale prima di eseguire i moduli consiste nel configurare Azure IoT Edge e stabilire le connessioni tra i moduli.
+passaggio finale di Hello prima di eseguire i moduli di hello è tooconfigure hello Azure IoT Edge e connessioni di hello tooestablish tra i moduli.
 
-Dal momento che Azure IoT Edge supporta caricatori di varie lingue, occorre prima dichiarare il caricatore `node` specifico, a cui si potrebbe fare riferimento in base al `name` nelle sezioni successive.
+È prima necessario toodeclare nostri `node` caricatore (dal bordo IoT di Azure supporta caricatori di lingue diverse) che può fare riferimento relativo `name` nelle sezioni hello in seguito.
 
 ```json
 "loaders": [
@@ -226,7 +226,7 @@ Dal momento che Azure IoT Edge supporta caricatori di varie lingue, occorre prim
 ]
 ```
 
-Dopo avere dichiarato i caricatori, è necessario dichiarare anche i moduli. Come avviene nella dichiarazione dei caricatori, anche ai moduli è possibile fare riferimento tramite il relativo attributo `name`. Quando si dichiara un modulo, è necessario specificare il caricatore che il modulo deve usare (che dovrebbe essere quello che è stato definito prima) e il punto di ingresso (che dovrebbe essere il nome della classe normalizzata del modulo) per ogni modulo. Il modulo `simulated_device` è un modulo nativo che è incluso nel pacchetto di runtime principale di Azure IoT Edge. Includere `args` nel file JSON anche se è `null`.
+Una volta che è stato dichiarato il nostro caricatori, è anche necessario toodeclare anche i moduli. Caricatori di hello toodeclaring simili, è possibile inoltre farvi riferimento dal loro `name` attributo. Quando si dichiara un modulo, è necessario caricatore hello toospecify deve utilizzare (che deve essere hello uno è stato definito prima) e hello punto di ingresso (il nome della classe normalizzato hello del nostro modulo deve essere) per ogni modulo. Hello `simulated_device` è un modulo nativo incluso nel pacchetto di runtime di hello Azure IoT Edge core. Includere `args` nel file JSON, anche se hello `null`.
 
 ```json
 "modules": [
@@ -266,7 +266,7 @@ Dopo avere dichiarato i caricatori, è necessario dichiarare anche i moduli. Com
 ]
 ```
 
-Al termine della configurazione occorre stabilire le connessioni. Ogni connessione è espressa da `source` e `sink`. Entrambi devono fare riferimento a un modulo predefinito. Il messaggio di output del modulo `source` viene inoltrato all'input del modulo `sink`.
+Alla fine di hello della configurazione di hello, è stabilire le connessioni di hello. Ogni connessione è espressa da `source` e `sink`. Entrambi devono fare riferimento a un modulo predefinito. messaggio di output di Hello di `source` modulo viene inoltrato input toohello di `sink` modulo.
 
 ```json
 "links": [
@@ -281,11 +281,11 @@ Al termine della configurazione occorre stabilire le connessioni. Ogni connessio
 ]
 ```
 
-## <a name="running-the-modules"></a>Esecuzione dei moduli
+## <a name="running-hello-modules"></a>Moduli di hello in esecuzione
 1. `npm install`
 2. `npm start`
 
-Se si intende terminare l'applicazione premere `<Enter>`.
+Se si desidera un'applicazione hello tooterminate, premere `<Enter>` chiave.
 
 > [!IMPORTANT]
-> Non è consigliabile usare Ctrl + C per terminare l'applicazione IoT Edge in quanto questa azione può determinare un arresto anomalo del processo.
+> Non è consigliabile toouse Ctrl + C tooterminate hello IoT bordo dell'applicazione. In questo modo può causare tooterminate processo hello in modo anomalo.

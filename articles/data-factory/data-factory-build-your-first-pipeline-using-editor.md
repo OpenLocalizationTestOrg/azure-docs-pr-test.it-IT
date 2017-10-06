@@ -1,6 +1,6 @@
 ---
-title: Creare la prima data factory di Azure con il Portale di Azure | Microsoft Docs
-description: In questa esercitazione viene creata una pipeline di esempio di Azure Data Factory usando l'editor di Data Factory nel portale di Azure.
+title: aaaBuild la prima data factory (portale di Azure) | Documenti Microsoft
+description: "In questa esercitazione è creare una pipeline di Data Factory di Azure di esempio utilizzando l'Editor delle Data Factory nel portale di Azure hello."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 9c958aecb841fa02349c6b9e5e1984f6ba4fb611
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fc80776001b181a59c04d80d2e05c20b107a63f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-build-your-first-azure-data-factory-using-azure-portal"></a>Esercitazione: Creare la prima data factory di Azure con il portale di Azure
 > [!div class="op_single_selector"]
@@ -30,86 +30,86 @@ ms.lasthandoff: 08/29/2017
 > * [API REST](data-factory-build-your-first-pipeline-using-rest-api.md)
 
 
-Questo articolo descrive come usare il [portale di Azure](https://portal.azure.com/) per creare la prima istanza di Azure Data Factory. Per eseguire l'esercitazione usando altri strumenti/SDK, selezionare una delle opzioni dall'elenco a discesa. 
+In questo articolo viene illustrato come toouse [portale di Azure](https://portal.azure.com/) toocreate prima data factory di Azure. esercitazione di hello toodo tramite altri strumenti/SDK, selezionare una delle opzioni di hello dall'elenco a discesa hello. 
 
-La pipeline in questa esercitazione include un'attività, l'**attività Hive di HDInsight**, che esegue uno script Hive in un cluster Azure HDInsight per trasformare i dati di input e generare i dati di output. L'esecuzione della pipeline è pianificata una volta al mese tra le ore di inizio e di fine specificate. 
+pipeline Hello in questa esercitazione è un'attività: **attività Hive di HDInsight**. Questa attività esegue uno script hive in un cluster HDInsight di Azure che trasformazioni i dati di output tooproduce di dati di input. pipeline di Hello è toorun pianificato dopo un mese tra hello specificato di ore di inizio e fine. 
 
 > [!NOTE]
-> La pipeline di dati in questa esercitazione trasforma i dati di input per produrre dati di output. Per un'esercitazione su come copiare dati usando Azure Data Factory, vedere [Copiare dati da un archivio BLOB al database SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+> pipeline di dati Hello in questa esercitazione Trasforma i dati di output tooproduce di dati di input. Per un'esercitazione su come dati di toocopy tramite Data Factory di Azure, vedere [esercitazione: copiare i dati da archiviazione Blob tooSQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 > 
-> Una pipeline può includere più attività ed è possibile concatenarne due, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input dell'altra. Per altre informazioni, vedere [Pianificazione ed esecuzione in Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
+> Una pipeline può includere più attività Inoltre, è possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. Per altre informazioni, vedere [Pianificazione ed esecuzione in Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline).
 
 ## <a name="prerequisites"></a>Prerequisiti
-1. Vedere la [panoramica dell'esercitazione](data-factory-build-your-first-pipeline.md) ed eseguire i passaggi relativi ai **prerequisiti** .
-2. Questo articolo non fornisce una panoramica concettuale del servizio Data factory di Azure. Si consiglia di leggere l'articolo [Introduzione al servizio Data factory di Azure](data-factory-introduction.md) per una panoramica dettagliata del servizio.  
+1. Leggere [esercitazione Panoramica](data-factory-build-your-first-pipeline.md) articolo e hello completo **prerequisito** passaggi.
+2. In questo articolo non fornisce una panoramica concettuale di hello servizio Azure Data Factory. È consigliabile eseguire [tooAzure introduzione Data Factory](data-factory-introduction.md) articolo per una panoramica dettagliata del servizio hello.  
 
 ## <a name="create-data-factory"></a>Creare un'istanza di Data Factory
-Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, un'attività di copia per copiare dati da un archivio dati di origine a uno di destinazione e un'attività Hive HDInsight per eseguire uno script Hive e trasformare i dati di input in dati di output di prodotto. In questo passaggio iniziale viene creata la data factory.
+Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Ad esempio, una data toocopy attività di copia da un archivio dati di origine tooa destinazione e un toorun attività Hive di HDInsight un tootransform script Hive i dati di output tooproduct dati di input. Iniziamo con la creazione di data factory di hello in questo passaggio.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Fare clic su **NUOVO** nel menu a sinistra e quindi su **Dati e analisi** e **Data factory**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Fare clic su **NEW** scegliere dal menu a sinistra, hello **dati + Analitica**, fare clic su **Data Factory**.
 
    ![Pannello Crea](./media/data-factory-build-your-first-pipeline-using-editor/create-blade.png)
-3. Nel pannello **Nuova data factory** immettere **GetStartedDF** come nome.
+3. In hello **nuova data factory** pannello immettere **GetStartedDF** per hello Name.
 
    ![Pannello Nuova data factory](./media/data-factory-build-your-first-pipeline-using-editor/new-data-factory-blade.png)
 
    > [!IMPORTANT]
-   > Il nome della data factory di Azure deve essere **univoco a livello globale**. Se viene visualizzato l'errore **Il nome "GetStartedDF" per la data factory non è disponibile**, cambiare il nome della data factory, ad esempio nomeutenteGetStartedDF, e provare di nuovo a crearla. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .
+   > nome Hello di hello Azure data factory deve essere **univoco globale**. Se viene visualizzato l'errore hello: **"GetStartedDF" nome della Data factory non è disponibile**. Modificare il nome di hello di hello data factory (ad esempio, yournameGetStartedDF) e provare a creare di nuovo. Per informazioni sulle regole di denominazione per gli elementi di Data factory, vedere l'argomento relativo alle [regole di denominazione di Data factory](data-factory-naming-rules.md) .
    >
-   > Il nome della data factory può essere registrato in futuro come nome **DNS** e diventare quindi visibile pubblicamente.
+   > nome Hello della hello data factory può essere registrato come un **DNS** nome nel futuro hello e pertanto diventano visibili pubblicamente.
    >
    >
-4. Selezionare la **sottoscrizione di Azure** in cui creare la data factory.
-5. Selezionare un **gruppo di risorse** esistente o crearne uno. Per l'esercitazione creare un gruppo di risorse denominato **ADFGetStartedRG**.
-6. Selezionare la **località** per la data factory. Nell'elenco a discesa vengono visualizzate solo le aree supportate dal servizio Data Factory.
-7. Selezionare **Aggiungi al dashboard**. 
-8. Fare clic su **Crea** nel pannello **Nuova data factory**.
+4. Seleziona hello **sottoscrizione di Azure** in cui si desidera hello data factory toobe creato.
+5. Selezionare un **gruppo di risorse** esistente o crearne uno. Per l'esercitazione hello, creare un gruppo di risorse denominato: **ADFGetStartedRG**.
+6. Seleziona hello **percorso** per data factory di hello. Solo le aree supportate dal servizio Data Factory hello vengono visualizzate nell'elenco a discesa hello.
+7. Selezionare **toodashboard Pin**. 
+8. Fare clic su **crea** su hello **nuova data factory** blade.
 
    > [!IMPORTANT]
-   > Per creare istanze di data factory, è necessario essere membri del ruolo [Collaboratore Data factory](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) a livello di sottoscrizione/gruppo di risorse.
+   > le istanze di Data Factory toocreate, è necessario essere un membro di hello [Data Factory collaboratore](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) ruolo a livello di gruppo di risorse di sottoscrizione/hello.
    >
    >
-7. Nel dashboard viene visualizzato il riquadro seguente con lo stato: Deploying data factory (Distribuzione della data factory).    
+7. Nel dashboard di hello, si vedrà hello segue riquadro con stato: data factory di distribuzione.    
 
    ![Stato creazione della data factory](./media/data-factory-build-your-first-pipeline-using-editor/creating-data-factory-image.png)
-8. Congratulazioni. La creazione della prima data factory è così completata. Dopo la creazione della data factory, viene visualizzata la pagina corrispondente con elencato il contenuto della data factory.     
+8. Congratulazioni. La creazione della prima data factory è così completata. Dopo aver hello data factory è stata creata correttamente, vedrai hello data factory pagina nella quale viene hello contenuto di data factory di hello.     
 
     ![Pannello Data factory](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-blade.png)
 
-Prima di creare una pipeline nella data factory è necessario creare alcune entità di Data Factory. Creare prima di tutto i servizi collegati per collegare archivi dati/servizi di calcolo all'archivio dati, definire i set di dati di input e di output per rappresentare i dati di input/output negli archivi dati collegati e quindi creare la pipeline con un'attività che usa questi set di dati.
+Prima di creare una pipeline in data factory di hello, è necessario toocreate alcune entità Data Factory prima. Creare innanzitutto i dati di servizi collegati toolink archivi/calcola tooyour dati archiviano, definiscono l'input e output dei dati di input/output toorepresent di set di dati in archivi dati collegato e quindi creare pipeline hello con un'attività che utilizza questi set di dati.
 
-## <a name="create-linked-services"></a>Creazione di servizi collegati
-In questo passaggio l'account di archiviazione di Azure e un cluster HDInsight su richiesta di Azure vengono collegati alla data factory. In questo esempio l'account di archiviazione di Azure contiene i dati di input e di output per la pipeline. Il servizio HDInsight collegato viene usato per eseguire uno script Hive specificato nell'attività della pipeline in questo esempio. Identificare l'[archivio dati](data-factory-data-movement-activities.md)/[i servizi di calcolo](data-factory-compute-linked-services.md) usati nello scenario e collegare tali servizi alla data factory creando servizi collegati.  
+## <a name="create-linked-services"></a>Creare servizi collegati
+In questo passaggio è collegare l'account di archiviazione di Azure e una factory del dati tooyour cluster Azure HDInsight su richiesta. contiene account di archiviazione di Azure Hello hello dati di input e outpui per la pipeline di hello in questo esempio. servizio collegato di HDInsight Hello è toorun usato uno script Hive specificato nell'attività hello della pipeline hello in questo esempio. Identificare le [archivio dati](data-factory-data-movement-activities.md)/[servizi di calcolo](data-factory-compute-linked-services.md) vengono utilizzati nello scenario e collegare tali toohello data factory di servizi mediante la creazione di servizi collegati.  
 
 ### <a name="create-azure-storage-linked-service"></a>Creare il servizio collegato Archiviazione di Azure
-In questo passaggio l'account di archiviazione di Azure viene collegato alla data factory. In questa esercitazione viene usato lo stesso account di archiviazione di Azure per archiviare i dati di input/output e il file di script HQL.
+In questo passaggio si collega la data factory tooyour account di archiviazione di Azure. In questa esercitazione è utilizzare hello stesso account di archiviazione di Azure i dati di input/output toostore e hello HQL file di script.
 
-1. Fare clic su **Creare e distribuire** nel pannello **DATA FACTORY** relativo a **GetStartedDF**. Verrà visualizzato l'editor di Data Factory.
+1. Fare clic su **autore e distribuire** su hello **DATA FACTORY** pannello **GetStartedDF**. Dovrebbe essere hello Editor delle Data Factory.
 
    ![Riquadro Creare e distribuire](./media/data-factory-build-your-first-pipeline-using-editor/data-factory-author-deploy.png)
 2. Fare clic su **Nuovo archivio dati** e scegliere **Archiviazione di Azure**.
 
    ![Nuovo archivio dati - Archiviazione di Azure - Menu](./media/data-factory-build-your-first-pipeline-using-editor/new-data-store-azure-storage-menu.png)
-3. Nell'editor verrà visualizzato lo script JSON per la creazione di un servizio collegato Archiviazione di Azure.
+3. Dovrebbe essere hello script JSON per la creazione di una risorsa di archiviazione di Azure il servizio nell'editor di hello collegato.
 
    ![Servizio collegato Archiviazione di Azure](./media/data-factory-build-your-first-pipeline-using-editor/azure-storage-linked-service.png)
-4. Sostituire **account name** con il nome dell'account di archiviazione di Azure e **account key** con la chiave di accesso dell'account di archiviazione di Azure. Per informazioni su come ottenere la chiave di accesso alle risorse di archiviazione, vedere le informazioni su come visualizzare, copiare e rigenerare le chiavi di accesso alle risorse di archiviazione in [Gestire l'account di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
-5. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il servizio collegato.
+4. Sostituire **nome account** con nome hello dell'account di archiviazione di Azure e **chiave dell'account** con la chiave di accesso hello di hello account di archiviazione di Azure. toolearn come accedere a tooget lo spazio di archiviazione della chiave, vedere informazioni come tooview, copiare e rigenerare archiviazione accedere alle chiavi in hello [gestire account di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+5. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello collegato servizio.
 
     ![Pulsante Distribuisci](./media/data-factory-build-your-first-pipeline-using-editor/deploy-button.png)
 
-   Al termine della distribuzione del servizio collegato, la finestra **Bozza-1** verrà nascosta e nella visualizzazione albero a sinistra verrà visualizzato **AzureStorageLinkedService**.
+   Dopo aver hello servizio collegato viene distribuito correttamente, hello **bozza 1** dovrebbe scomparire una finestra e viene visualizzato **AzureStorageLinkedService** nella visualizzazione ad albero di hello a sinistra di hello.
 
     ![Servizio collegato Archiviazione nel menu](./media/data-factory-build-your-first-pipeline-using-editor/StorageLinkedServiceInTree.png)    
 
 ### <a name="create-azure-hdinsight-linked-service"></a>Creare un servizio collegato Azure HDInsight
-In questo passaggio viene collegato un cluster HDInsight su richiesta alla data factory. Il cluster HDInsight viene creato automaticamente in fase di esecuzione ed eliminato al termine dell'elaborazione, se rimane inattivo per il periodo di tempo specificato.
+In questo passaggio si collega una factory del dati tooyour cluster HDInsight su richiesta. cluster HDInsight Hello viene automaticamente creato in fase di esecuzione ed eliminato al termine per l'elaborazione e inattività per l'intervallo di tempo specificato hello.
 
-1. Nell'**editor di Data Factory** fare clic su **... Altro** e quindi su **Nuovo calcolo** e selezionare **Cluster HDInsight su richiesta**.
+1. In hello **Editor delle Data Factory**, fare clic su **... Altro** e quindi su **Nuovo calcolo** e selezionare **Cluster HDInsight su richiesta**.
 
     ![Nuovo calcolo](./media/data-factory-build-your-first-pipeline-using-editor/new-compute-menu.png)
-2. Copiare e incollare il frammento di codice seguente nella finestra **Bozza-1** . Il frammento di codice JSON descrive le proprietà che vengono usate per creare il cluster HDInsight su richiesta.
+2. Copiare e incollare hello seguente frammento di codice toohello **bozza 1** finestra. frammento di codice JSON Hello descrive le proprietà di hello hello toocreate utilizzati cluster HDInsight su richiesta.
 
     ```JSON
     {
@@ -127,38 +127,38 @@ In questo passaggio viene collegato un cluster HDInsight su richiesta alla data 
     }
     ```
 
-    La tabella seguente fornisce le descrizioni delle proprietà JSON usate nel frammento di codice:
+    Hello nella tabella seguente vengono fornite descrizioni per le proprietà JSON hello utilizzate nel frammento di codice hello:
 
    | Proprietà | Descrizione |
    |:--- |:--- |
-   | ClusterSize |Specifica le dimensioni del cluster HDInsight. |
-   | TimeToLive | Specifica il tempo di inattività del cluster HDInsight, prima che sia eliminato. |
-   | linkedServiceName | Specifica l'account di archiviazione che viene usato per archiviare i log generati da HDInsight. |
+   | ClusterSize |Specifica dimensioni hello del cluster HDInsight hello. |
+   | TimeToLive | Specifica il tempo di inattività hello per il cluster HDInsight hello, prima che venga eliminato. |
+   | linkedServiceName | Specifica l'account di archiviazione hello toostore utilizzati hello registri generati da HDInsight. |
 
-    Tenere presente quanto segue:
+    Si noti hello seguenti punti:
 
-   * Data Factory crea automaticamente un cluster HDInsight **basato su Linux** con il codice JSON. Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
+   * Hello Data Factory viene creata una **basati su Linux** cluster HDInsight per l'utente con hello JSON. Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
    * È possibile usare il **proprio cluster HDInsight** anziché un cluster HDInsight su richiesta. Per i dettagli, vedere [Servizio collegato Azure HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) .
-   * Il cluster HDInsight crea un **contenitore predefinito** nell'archivio BLOB specificato nel file JSON (**linkedServiceName**). HDInsight non elimina il contenitore quando viene eliminato il cluster. Questo comportamento dipende dalla progettazione. Con il servizio collegato HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che viene elaborata una sezione, a meno che non esista un cluster attivo (**timeToLive**). Il cluster viene eliminato al termine dell'elaborazione.
+   * Crea cluster HDInsight Hello un **contenitore predefinito** nell'archiviazione blob hello specificato in JSON hello (**linkedServiceName**). HDInsight non eliminare questo contenitore quando viene eliminato il cluster hello. Questo comportamento dipende dalla progettazione. Con il servizio collegato HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che viene elaborata una sezione, a meno che non esista un cluster attivo (**timeToLive**). cluster Hello viene eliminato automaticamente quando viene eseguita un'elaborazione hello.
 
-       Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non sono necessari per risolvere i problemi relativi ai processi, è possibile eliminarli per ridurre i costi di archiviazione. I nomi dei contenitori seguono questo schema: "adf**yourdatafactoryname**-**linkedservicename**-datetimestamp". Per eliminare i contenitori nell'archivio BLOB di Azure, usare strumenti come [Microsoft Azure Storage Explorer](http://storageexplorer.com/) .
+       Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non li necessario per la risoluzione dei problemi dei processi di hello, è opportuno toodelete li tooreduce hello il costo di archiviazione. i nomi di Hello di questi contenitori seguono un modello: "adf**yourdatafactoryname**-**linkedservicename**- datetimestamp". Utilizzare strumenti come [Esplora archivi Microsoft](http://storageexplorer.com/) toodelete contenitori di Azure nell'archiviazione blob.
 
      Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il servizio collegato.
+3. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello collegato servizio.
 
     ![Distribuire il servizio collegato HDInsight su richiesta](./media/data-factory-build-your-first-pipeline-using-editor/ondemand-hdinsight-deploy.png)
-4. Verificare che nella visualizzazione albero a sinistra siano presenti sia **AzureStorageLinkedService** che **HDInsightOnDemandLinkedService**.
+4. Assicurarsi di visualizzare entrambi **AzureStorageLinkedService** e **HDInsightOnDemandLinkedService** nella visualizzazione ad albero di hello a sinistra di hello.
 
     ![Visualizzazione albero con servizi collegati](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-linked-services.png)
 
 ## <a name="create-datasets"></a>Creare set di dati
-In questo passaggio vengono creati set di dati per rappresentare i dati di input e di output per l'elaborazione Hive. I set di dati fanno riferimento all'oggetto **AzureStorageLinkedService** creato in precedenza in questa esercitazione. Il servizio collegato punta a un account di archiviazione di Azure e i set di dati specificano il contenitore, la cartella e il nome del file nella risorsa di archiviazione che contiene i dati di input e di output.   
+In questo passaggio creare set di dati toorepresent hello input e output dei dati per l'elaborazione Hive. Questi set di dati di riferimento toohello **AzureStorageLinkedService** creata precedentemente in questa esercitazione. Hello tooan punti di servizio collegato account di archiviazione di Azure e i set di dati specificare contenitore, cartella, nome del file nell'archiviazione hello che contiene l'input e output di dati.   
 
 ### <a name="create-input-dataset"></a>Creare set di dati di input
-1. Nell'**editor di Data Factory** fare clic su **... Altro** sulla barra dei comandi e quindi fare clic su **Nuovo set di dati** e selezionare **Archivio BLOB di Azure**.
+1. In hello **Editor delle Data Factory**, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo set di dati**e selezionare **archiviazione Blob di Azure**.
 
     ![Nuovo set di dati](./media/data-factory-build-your-first-pipeline-using-editor/new-data-set.png)
-2. Copiare e incollare il frammento di codice seguente nella finestra Bozza-1. Nel frammento di codice JSON si crea un set di dati denominato **AzureBlobInput** che rappresenta i dati di input per un'attività nella pipeline. Si specifica anche che i dati di input si trovano nel contenitore BLOB denominato **adfgetstarted** e nella cartella denominata **inputdata**.
+2. Copiare e incollare hello successiva finestra di frammento toohello bozza-1. Nel frammento di codice JSON hello, si sta creando un set di dati denominato **AzureBlobInput** che rappresenta i dati di input per un'attività nella pipeline hello. Inoltre, si specifica che i dati di input hello si trovano nel contenitore di blob hello chiamato **adfgetstarted** e cartella hello denominata **inputdata**.
 
     ```JSON
     {
@@ -183,27 +183,27 @@ In questo passaggio vengono creati set di dati per rappresentare i dati di input
         }
     }
     ```
-    La tabella seguente fornisce le descrizioni delle proprietà JSON usate nel frammento di codice:
+    Hello nella tabella seguente vengono fornite descrizioni per le proprietà JSON hello utilizzate nel frammento di codice hello:
 
    | Proprietà | Descrizione |
    |:--- |:--- |
-   | type |La proprietà type è impostata su **AzureBlob** perché i dati risiedono in un archivio BLOB di Azure. |
-   | linkedServiceName |Fa riferimento all'oggetto **AzureStorageLinkedService** creato in precedenza. |
-   | folderPath | Specifica il **contenitore** BLOB e la **cartella** che contiene i BLOB di input. | 
-   | fileName |Questa proprietà è facoltativa. Se si omette questa proprietà, vengono prelevati tutti i file da folderPath. In questo tutorial viene elaborato solo il file **input.log**. |
-   | type |I file di log sono in formato testo, quindi viene usato **TextFormat**. |
-   | columnDelimiter |Le colonne nei file di log sono delimitate da **virgola (`,`)**. |
-   | frequenza/intervallo |La frequenza è impostata su **Month** e l'intervallo è **1**; ciò significa che le sezioni di input sono disponibili con cadenza mensile. |
-   | external | Questa proprietà è impostata su **true** se i dati di input non vengono generati dalla pipeline. In questa esercitazione il file input.log non viene generato dalla pipeline, quindi questa proprietà viene impostata su true. |
+   | type |proprietà tipo Hello è troppo**AzureBlob** perché i dati risiedono in una risorsa di archiviazione blob di Azure. |
+   | linkedServiceName |Fa riferimento toohello **AzureStorageLinkedService** creato in precedenza. |
+   | folderPath | Specifica il blob hello **contenitore** hello e **cartella** che contiene il BLOB di input. | 
+   | fileName |Questa proprietà è facoltativa. Se si omette questa proprietà, vengono selezionati tutti i file hello folderPath hello. In questa esercitazione, hello solo **input.log** viene elaborato. |
+   | type |file di log Hello sono in formato testo, permette di usare **TextFormat**. |
+   | columnDelimiter |nei file di log hello colonne sono delimitate da **carattere virgola (`,`)** |
+   | frequenza/intervallo |frequenza impostata troppo**mese** e l'intervallo è **1**, il che significa che hello input sezioni sono disponibili ogni mese. |
+   | external | Questa proprietà è impostata troppo**true** se i dati di input hello non viene generati da questa pipeline. In questa esercitazione, i file input.log hello non viene generato da questa pipeline, è necessario impostare tootrue proprietà hello. |
 
     Per altre informazioni su queste proprietà JSON, vedere l'articolo relativo al [connettore BLOB di Azure](data-factory-azure-blob-connector.md#dataset-properties).
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il set di dati appena creato. Il set di dati viene visualizzato nella visualizzazione albero a sinistra.
+3. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello appena creato set di dati. Dovrebbe essere hello set di dati nella visualizzazione ad albero di hello a sinistra di hello.
 
 ### <a name="create-output-dataset"></a>Creare il set di dati di output
-Viene creato ora il set di dati di output per rappresentare i dati di output archiviati nell'archivio BLOB di Azure.
+È quindi possibile creare hello output dataset toorepresent hello output dati archiviati in archiviazione Blob di Azure hello.
 
-1. Nell'**editor di Data Factory** fare clic su **... Altro** sulla barra dei comandi e quindi fare clic su **Nuovo set di dati** e selezionare **Archivio BLOB di Azure**.  
-2. Copiare e incollare il frammento di codice seguente nella finestra Bozza-1. Nel frammento di codice JSON si crea un set di dati denominato **AzureBlobOutput**e si specifica la struttura dei dati che vengono generati dallo script Hive. Si specifica anche che i risultati vengono archiviati nel contenitore BLOB denominato **adfgetstarted** e nella cartella denominata **partitioneddata**. La sezione **availability** specifica che il set di dati di output viene generato su base mensile.
+1. In hello **Editor delle Data Factory**, fare clic su **... Ulteriori** nella barra dei comandi di hello, fare clic su **nuovo set di dati**e selezionare **archiviazione Blob di Azure**.  
+2. Copiare e incollare hello successiva finestra di frammento toohello bozza-1. Nel frammento di codice JSON hello, si sta creando un set di dati denominato **AzureBlobOutput**e specificare la struttura di dati hello derivante da script Hive hello hello. Inoltre, si specifica che i risultati di hello vengono archiviati nel contenitore blob hello chiamato **adfgetstarted** e cartella hello denominata **partitioneddata**. Hello **disponibilità** sezione specifica di tale set di dati di output di hello viene prodotto su base mensile.
 
     ```JSON
     {
@@ -225,22 +225,22 @@ Viene creato ora il set di dati di output per rappresentare i dati di output arc
       }
     }
     ```
-    Per le descrizioni di queste proprietà, vedere la sezione **Creare il set di dati di input** . La proprietà esterna non viene impostata su un set di dati di output perché il set di dati viene generato dal servizio Data factory.
-3. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire il set di dati appena creato.
-4. Verificare se il set di dati è stato creato correttamente.
+    Vedere **creare set di dati input hello** sezione per le descrizioni di queste proprietà. Non si imposta proprietà esterna hello in un set di dati di output come set di dati hello viene generato dal servizio Data Factory hello.
+3. Fare clic su **Distribuisci** sul comando hello barra toodeploy hello appena creato set di dati.
+4. Verificare che Hello set di dati è stata creata correttamente.
 
     ![Visualizzazione albero con servizi collegati](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-data-set.png)
 
 ## <a name="create-pipeline"></a>Creare una pipeline
-In questo passaggio viene creata la prima pipeline con un'attività **HDInsightHive** . La sezione di input è disponibile ogni mese (frequency: Month, interval: 1), la sezione di output viene generata ogni mese e anche la proprietà dell'utilità di pianificazione dell'attività è impostata su una frequenza mensile. Le impostazioni per il set di dati di output e l'utilità di pianificazione dell'attività devono corrispondere. In questo momento la pianificazione è basata sul set di dati di output, quindi è necessario creare un set di dati di output anche se l'attività non genera alcun output. Se l'attività non richiede input, è possibile ignorare la creazione del set di dati di input. Le proprietà usate nel codice JSON seguente sono illustrate in fondo a questa sezione.
+In questo passaggio viene creata la prima pipeline con un'attività **HDInsightHive** . Sezione di input è disponibile ogni mese (frequenza: mese, intervallo: 1), sezione di output viene prodotta ogni mese e hello dell'utilità di pianificazione per l'attività hello viene anche impostata toomonthly. le impostazioni di Hello per set di dati output hello e utilità di pianificazione attività hello devono corrispondere. Set di dati di output è attualmente, quali unità hello pianificazione, pertanto è necessario creare un set di dati di output, anche se l'attività hello non genera alcun output. Se l'attività hello non accetta alcun input, è possibile ignorare i set di dati input hello creazione. proprietà Hello utilizzate nei hello JSON seguente sono illustrate alla fine di hello in questa sezione.
 
-1. Nell'**editor di Data Factory** fare clic sui **puntini di sospensione (…)** per visualizzare altri comandi e quindi su **Nuova pipeline**.
+1. In hello **Editor delle Data Factory**, fare clic su **i puntini di sospensione (...) Altri comandi** e quindi fare clic su **nuova pipeline**.
 
     ![Pulsante Nuova pipeline](./media/data-factory-build-your-first-pipeline-using-editor/new-pipeline-button.png)
-2. Copiare e incollare il frammento di codice seguente nella finestra Bozza-1.
+2. Copiare e incollare hello successiva finestra di frammento toohello bozza-1.
 
    > [!IMPORTANT]
-   > Nel codice JSON sostituire **storageaccountname** con il nome dell'account di archiviazione.
+   > Sostituire **storageaccountname** con nome hello dell'account di archiviazione in hello JSON.
    >
    >
 
@@ -289,111 +289,111 @@ In questo passaggio viene creata la prima pipeline con un'attività **HDInsightH
     }
     ```
 
-    Nel frammento di codice JSON si crea una pipeline costituita da una singola attività che usa Hive per elaborare i dati in un cluster HDInsight.
+    Nel frammento di codice JSON hello, si sta creando una pipeline che è costituito da una singola attività che utilizza Hive tooprocess dati in un cluster HDInsight.
 
-    Il file di script Hive, **partitionweblogs.hql**, è archiviato nell'account di archiviazione di Azure (specificato da scriptLinkedService, denominato **AzureStorageLinkedService**) e nella cartella **script** nel contenitore **adfgetstarted**.
+    file di script Hive Hello, **partitionweblogs.hql**, viene archiviato nell'account di archiviazione Azure hello (specificato da scriptLinkedService hello, chiamato **AzureStorageLinkedService**) e in  **script** cartella nel contenitore hello **adfgetstarted**.
 
-    La sezione **defines** è usata per specificare le impostazioni di runtime che vengono passate allo script Hive come valori di configurazione Hive, ad esempio, ${hiveconf:inputtable}, ${hiveconf:partitionedtable}.
+    Hello **definisce** sezione è le impostazioni di runtime hello toospecify utilizzati script hive toohello passati come valori di configurazione di Hive (ad esempio ${hiveconf: inputtable}, {hiveconf:partitionedtable} $).
 
-    Le proprietà **start** ed **end** della pipeline ne specificano il periodo attivo.
+    Hello **avviare** e **fine** le proprietà della pipeline hello specifica periodo attivo di hello della pipeline hello.
 
-    Nel codice JSON dell'attività si specifica che lo script Hive viene eseguito sulla risorsa di calcolo specificata da **linkedServiceName** - **HDInsightOnDemandLinkedService**.
+    In formato JSON dell'attività hello, specificare tale script Hive hello viene eseguito sul calcolo hello specificato da hello **linkedServiceName** – **HDInsightOnDemandLinkedService**.
 
    > [!NOTE]
-   > Per informazioni dettagliate sulle proprietà JSON usate nell'esempio, vedere la sezione "Pipeline JSON" dell'articolo [Pipeline e attività in Azure Data Factory](data-factory-create-pipelines.md).
+   > Vedere la sezione "JSON di Pipeline" in [pipeline e attività in Azure Data Factory](data-factory-create-pipelines.md) per dettagli sulle proprietà JSON utilizzato nell'esempio hello.
    >
    >
-3. Verificare quanto segue:
+3. Verificare l'esempio hello:
 
-   1. Il file **input.log** è presente nella cartella **inputdata** del contenitore **adfgetstarted** nell'archivio BLOB di Azure
-   2. Il file **partitionweblogs.hql** è presente nella cartella **script** del contenitore **adfgetstarted** nell'archivio BLOB di Azure. Se questi file non sono visibili, completare i passaggi preliminari nella sezione [Panoramica dell'esercitazione](data-factory-build-your-first-pipeline.md) .
-   3. Verificare di avere sostituito **storageaccountname** con il nome dell'account di archiviazione nel codice JSON della pipeline.
-4. Fare clic su **Distribuisci** sulla barra dei comandi per distribuire la pipeline. Dal momento che gli orari di **inizio** e **fine** sono impostati nel passato e **isPaused** è impostato su false, la pipeline (l'attività nella pipeline) viene eseguita immediatamente dopo la distribuzione.
-5. Verificare che la pipeline sia visibile nella visualizzazione albero.
+   1. **input.log** file esista in hello **inputdata** cartella di hello **adfgetstarted** contenitore nell'archiviazione blob di Azure hello
+   2. **partitionweblogs.hql** file esista in hello **script** cartella di hello **adfgetstarted** contenitore nell'archiviazione blob di Azure hello. Prerequisito hello completato i passaggi in hello [esercitazione Panoramica](data-factory-build-your-first-pipeline.md) se questi file non viene visualizzato.
+   3. Confermare che è stato sostituito **storageaccountname** con nome hello dell'account di archiviazione in hello JSON di pipeline.
+4. Fare clic su **Distribuisci** sul comando hello barra pipeline hello toodeploy. Poiché hello **avviare** e **fine** volte in cui vengono impostate in hello precedente e **isPaused** è toofalse set, pipeline hello esecuzioni (attività nella pipeline hello) immediatamente dopo la distribuzione.
+5. Verificare che sia visualizzato pipeline hello nella visualizzazione ad albero di hello.
 
     ![Visualizzazione albero con pipeline](./media/data-factory-build-your-first-pipeline-using-editor/tree-view-pipeline.png)
 6. La creazione della prima pipeline è così completata.
 
 ## <a name="monitor-pipeline"></a>Monitorare la pipeline
 ### <a name="monitor-pipeline-using-diagram-view"></a>Monitorare la pipeline con la vista diagramma
-1. Fare clic su **X** per chiudere i pannelli dell'editor di Data Factory, tornare al pannello Data Factory e quindi fare clic su **Diagramma**.
+1. Fare clic su **X** tooclose Editor delle Data Factory pannelli e toonavigate il pannello Data Factory toohello e fare clic su **diagramma**.
 
     ![Riquadro Diagramma](./media/data-factory-build-your-first-pipeline-using-editor/diagram-tile.png)
-2. In Vista diagramma saranno visualizzati una panoramica delle pipeline e i set di dati usati in questa esercitazione.
+2. In vista diagramma hello, si visualizza una panoramica di pipeline hello e set di dati utilizzati in questa esercitazione.
 
     ![Vista Diagramma](./media/data-factory-build-your-first-pipeline-using-editor/diagram-view-2.png)
-3. Per visualizzare tutte le attività nella pipeline, fare clic con il pulsante destro del mouse sulla pipeline nel diagramma e scegliere Apri pipeline.
+3. tooview tutte le attività nella pipeline di hello, pipeline pulsante destro del mouse in hello diagramma e fare clic su Apri Pipeline.
 
     ![Menu Apri pipeline](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-menu.png)
-4. Assicurarsi che l'attività HDInsightHive sia visualizzata nella pipeline.
+4. Confermare la visualizzazione attività HDInsightHive hello nella pipeline hello.
 
     ![Visualizzazione Apri pipeline](./media/data-factory-build-your-first-pipeline-using-editor/open-pipeline-view.png)
 
-    Per tornare alla visualizzazione precedente, fare clic su **Data Factory** nel menu di navigazione nella parte superiore.
-5. In **Vista diagramma** fare doppio clic sul set di dati **AzureBlobInput**. Verificare che lo stato della sezione sia **Pronto** . Potrebbero essere necessari alcuni minuti perché lo stato della sezione venga visualizzato come Pronto. Se dopo qualche minuto ciò non accade, verificare che il file di input, input.log, sia posizionato nel contenitore adfgetstarted e nella cartella inputdata corretti.
+    toonavigate nuovamente toohello visualizzazione precedente, fare clic su **Data factory** nel menu di navigazione hello nella parte superiore di hello.
+5. In hello **vista diagramma**, fare doppio clic sul set di dati hello **AzureBlobInput**. Verificare che tale sezione hello sia **pronto** stato. Potrebbe richiedere un paio di minuti per hello sezione tooshow fino nello stato pronto. Se non si verifica dopo attendere qualche minuto, verificare se si dispone di hello file di input (input.log) inserito in un contenitore destra hello (adfgetstarted) e cartella (inputdata).
 
    ![Sezione di input nello stato Pronto](./media/data-factory-build-your-first-pipeline-using-editor/input-slice-ready.png)
-6. Fare clic su **X** per chiudere il pannello **AzureBlobInput**.
-7. In **Vista diagramma** fare doppio clic sul set di dati **AzureBlobOutput**. Viene visualizzata la sezione in fase di elaborazione.
+6. Fare clic su **X** tooclose **AzureBlobInput** blade.
+7. In hello **vista diagramma**, fare doppio clic sul set di dati hello **AzureBlobOutput**. Vedrai tale sezione hello che è in corso di elaborazione.
 
    ![Set di dati](./media/data-factory-build-your-first-pipeline-using-editor/dataset-blade.png)
-8. Al termine dell'elaborazione lo stato della sezione è **Pronta** .
+8. Quando viene eseguita l'elaborazione, vedrai sezione hello **pronto** stato.
 
    ![Set di dati](./media/data-factory-build-your-first-pipeline-using-editor/dataset-slice-ready.png)  
 
    > [!IMPORTANT]
-   > La creazione di un cluster HDInsight su richiesta di solito richiede tempo (circa 20 minuti). Di conseguenza, prevedere **circa 30 minuti** per l'elaborazione della sezione nella pipeline.
+   > La creazione di un cluster HDInsight su richiesta di solito richiede tempo (circa 20 minuti). Pertanto, prevedere pipeline hello richiedere troppo **circa 30 minuti** tooprocess hello sezione.
    >
    >
 
-9. Quando lo stato della sezione è **Pronto**, cercare i dati di output nella cartella **partitioneddata** del contenitore **adfgetstarted** nell'archivio BLOB.  
+9. Quando si trova in sezione hello **pronto** stato, controllare hello **partitioneddata** cartella hello **adfgetstarted** contenitore nell'archiviazione blob per hello i dati di output.  
 
    ![Dati di output](./media/data-factory-build-your-first-pipeline-using-editor/three-ouptut-files.png)
-10. Fare clic sulla sezione per visualizzare i relativi dettagli in un pannello **Sezione dati** .
+10. Fare clic su hello sezione toosee dettagli in un **sezione dati** blade.
 
    ![Dettagli sezione dati](./media/data-factory-build-your-first-pipeline-using-editor/data-slice-details.png)  
-11. Fare clic su un'esecuzione di attività nell'elenco **Esecuzioni attività** (in questo scenario, un'attività Hive) per visualizzare i relativi dettagli nella finestra **Dettagli esecuzione attività**.   
+11. Fare clic su un'attività eseguire in hello **elenco viene eseguita l'attività** toosee dettagli su un'attività (attività Hive nello scenario di esempio) di eseguire in un **Dettagli esecuzione attività** finestra.   
 
    ![Dettagli esecuzione attività](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-blade.png)    
 
-   Nei file di log sono riportate la query Hive eseguita e le informazioni sullo stato. Tali file di log sono utili per risolvere eventuali problemi.
+   Dai file di log hello, è possibile visualizzare informazioni sullo stato e query Hive hello che è stato eseguito. Tali file di log sono utili per risolvere eventuali problemi.
    Vedere l'articolo [Monitorare e gestire le pipeline di Azure Data Factory](data-factory-monitor-manage-pipelines.md) per altri dettagli.
 
 > [!IMPORTANT]
-> Il file di input viene eliminato quando la sezione viene elaborata correttamente. Per eseguire di nuovo la sezione o ripetere l'esercitazione, caricare quindi il file di input (input.log) nella cartella inputdata del contenitore adfgetstarted.
+> file di input Hello eliminato quando la sezione hello viene elaborata correttamente. Pertanto, se si desidera toorerun hello sezione o hello esercitazione nuovamente, hello del file di input (input.log) toohello inputdata cartella del contenitore adfgetstarted hello di caricamento.
 >
 >
 
 ### <a name="monitor-pipeline-using-monitor--manage-app"></a>Monitorare la pipeline con l'app Monitoraggio e gestione
-È anche possibile usare l'applicazione Monitoraggio e gestione per monitorare le pipeline. Per informazioni dettagliate sull'uso di questa applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con la nuova app di monitoraggio e gestione](data-factory-monitor-manage-app.md).
+È possibile anche utilizzare Monitoraggio e Gestione applicazione toomonitor le pipeline. Per informazioni dettagliate sull'uso di questa applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con la nuova app di monitoraggio e gestione](data-factory-monitor-manage-app.md).
 
-1. Fare clic sul riquadro **Monitoraggio e gestione** nella home page della data factory.
+1. Fare clic su **monitoraggio e gestione** riquadro hello home page per la data factory.
 
     ![Riquadro Monitoraggio e gestione](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-tile.png)
-2. Verrà visualizzata l'applicazione **Monitoraggio e gestione**. Modificare **Ora di inizio** e **Ora di fine** in modo che corrispondano alle ore di inizio e di fine della pipeline e quindi fare clic su **Applica**.
+2. Verrà visualizzata l'applicazione **Monitoraggio e gestione**. Hello modifica **ora di inizio** e **ora di fine** toomatch avvio e fine della pipeline e fare clic su **applica**.
 
     ![App Monitoraggio e gestione](./media/data-factory-build-your-first-pipeline-using-editor/monitor-and-manage-app.png)
-3. Selezionare una finestra attività nell'elenco **Activity Windows** (Finestre attività) per visualizzare i relativi dettagli.
+3. Selezionare una finestra attività in hello **attività Windows** elenco dettagli toosee.
 
     ![Dettagli finestra attività](./media/data-factory-build-your-first-pipeline-using-editor/activity-window-details.png)
 
 ## <a name="summary"></a>Riepilogo
-In questa esercitazione è stata creata un'istanza di Azure Data Factory per elaborare i dati eseguendo lo script Hive in un cluster Hadoop di HDInsight. È stato usato l'editor di Data Factory nel portale di Azure per eseguire questa procedura:  
+In questa esercitazione, creato un Azure factory tooprocess dati tramite l'esecuzione di script Hive in un cluster di HDInsight hadoop. È stato utilizzato hello Editor delle Data Factory in hello toodo portale Azure hello alla procedura seguente:  
 
 1. Creare un'istanza di Azure **Data Factory**.
 2. Creare due **servizi collegati**:
-   1. **Archiviazione di Azure** per collegare l'archivio BLOB di Azure che contiene i file di input/output alla data factory.
-   2. **Azure HDInsight** per collegare un cluster Hadoop di HDInsight alla data factory. Azure Data Factory crea un cluster Hadoop di HDInsight JIT per elaborare i dati di input e generare i dati di output.
-3. Creare due **set di dati**che descrivono i dati di input e di output per l'attività Hive di HDInsight nella pipeline.
+   1. **Archiviazione di Azure** collegati toolink servizio di archiviazione blob di Azure che contiene una data factory toohello di file di input/output.
+   2. **Azure HDInsight** toolink servizio collegato su richiesta di una factory del dati toohello cluster HDInsight Hadoop su richiesta. Data Factory di Azure crea un HDInsight Hadoop dati di input tooprocess just-in-time di cluster e generare dati di output.
+3. Creare due **set di dati**, che descrivono i dati di input e outpui per l'attività Hive di HDInsight nella pipeline hello.
 4. Creare una **pipeline** con un'attività **Hive di HDInsight**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo articolo è stata creata una pipeline con un'attività di trasformazione (attività HDInsight) che esegue uno script Hive in un cluster HDInsight su richiesta. Per informazioni su come usare un'attività di copia per copiare i dati da un BLOB di Azure ad Azure SQL, vedere [Esercitazione: Copiare i dati di un BLOB di Azure in Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+In questo articolo è stata creata una pipeline con un'attività di trasformazione (attività HDInsight) che esegue uno script Hive in un cluster HDInsight su richiesta. toosee toouse un dati toocopy attività di copia da un tooAzure Blob di Azure SQL, vedere [esercitazione: copiare i dati da un tooAzure blob di Azure SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
 ## <a name="see-also"></a>Vedere anche
 | Argomento | Descrizione |
 |:--- |:--- |
-| [Pipeline](data-factory-create-pipelines.md) |Questo articolo fornisce informazioni sulle pipeline e sulle attività in Azure Data Factory e su come usarle per costruire flussi di lavoro end-to-end basati sui dati per lo scenario o l'azienda. |
+| [Pipeline](data-factory-create-pipelines.md) |In questo articolo consente di comprendere le pipeline e attività nella Data Factory di Azure e come toouse li tooconstruct end-to-end basato sui dati dei flussi di lavoro degli scenario o dell'azienda. |
 | [Set di dati](data-factory-create-datasets.md) |Questo articolo fornisce informazioni sui set di dati in Azure Data Factory. |
-| [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) |Questo articolo descrive gli aspetti di pianificazione ed esecuzione del modello applicativo di Data factory di Azure. |
-| [Monitorare e gestire le pipeline con l'app di monitoraggio](data-factory-monitor-manage-app.md) |Questo articolo descrive come monitorare, gestire ed eseguire il debug delle pipeline usando l'app di monitoraggio e gestione. |
+| [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) |Questo articolo illustra gli aspetti hello di pianificazione e l'esecuzione del modello di applicazione di Azure Data Factory. |
+| [Monitorare e gestire le pipeline con l'app di monitoraggio](data-factory-monitor-manage-app.md) |In questo articolo viene descritto come toomonitor, gestire ed eseguire il debug pipeline utilizzando hello monitoraggio e gestione delle App. |

@@ -1,6 +1,6 @@
 ---
-title: Limiti e quote della sottoscrizione di Azure | Microsoft Docs
-description: Fornisce un elenco di limiti, quote e vincoli comuni relativi alle sottoscrizioni e ai servizi di Azure. Sono incluse informazioni su come aumentare i limiti e i valori massimi.
+title: sottoscrizione aaaAzure limiti e quote | Documenti Microsoft
+description: Fornisce un elenco di limiti, quote e vincoli comuni relativi alle sottoscrizioni e ai servizi di Azure. Sono incluse informazioni su come tooincrease limita insieme ai valori massimi.
 services: 
 documentationcenter: 
 author: rothja
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: byvinyal
-ms.openlocfilehash: a76acd67e9ba7822f2837b3c08e2ede389047f11
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a754d56124520791254ab8f1729808f0750ff222
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Sottoscrizione di Azure e limiti, quote e vincoli dei servizi
-In questo documento sono elencati alcuni dei limiti più comuni di Microsoft Azure, che vengono definiti anche quote. Al momento nel documento non vengono trattati tutti i servizi di Azure. Nel corso del tempo l'elenco verrà ampliato e aggiornato in modo da coprire un maggior numero di servizi della piattaforma.
+Questo documento sono elencati alcuni dei limiti Microsoft Azure più comuni hello, che vengono definiti anche le quote. Al momento nel documento non vengono trattati tutti i servizi di Azure. Nel corso del tempo, elenco hello verrà espanso e aggiornato toocover ulteriori della piattaforma hello.
 
-Vedere [Prezzi di Azure](https://azure.microsoft.com/pricing/) per altre informazioni sui prezzi di Azure. Nella pagina è possibile stimare i costi usando il [Calcolatore prezzi](https://azure.microsoft.com/pricing/calculator/) o visitando la pagina dei dettagli dei prezzi per un servizio, ad esempio [Macchine virtuali Windows](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows). Per suggerimenti su come gestire i costi, vedere [Evitare costi imprevisti con la fatturazione del costi e la fatturazione di Azure](billing/billing-getting-started.md).
-
-> [!NOTE]
-> Per aumentare il limite o la quota oltre il valore **Limite predefinito**, è possibile [aprire una richiesta di assistenza clienti online senza alcun addebito](azure-supportability/resource-manager-core-quotas-request.md). I limiti non possono essere aumentati oltre il valore **Limite massimo** definito nelle tabelle seguenti. Se non è presente nessuna colonna **Limite massimo**, per la risorsa specificata non sono disponibili limiti regolabili. 
-> 
-> Le sottoscrizioni per le versioni di valutazione gratuite non sono idonee ad aumenti di limite o di quota. Se è disponibile una versione di valutazione gratuita, è possibile eseguire l'aggiornamento a una sottoscrizione con [pagamento in base al consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) . Per altre informazioni, vedere [Aggiornare la versione di valutazione gratuita di Azure all'offerta con pagamento in base al consumo](billing/billing-upgrade-azure-subscription.md).
-> 
-
-## <a name="limits-and-the-azure-resource-manager"></a>Limiti e Azure Resource Manager
-È ora possibile combinare più risorse di Azure in un singolo gruppo di risorse di Azure. Quando si usano i gruppi di risorse, i limiti in precedenza globali vengono gestiti a livello di area con Gestione risorse di Azure. Per altre informazioni sui gruppi di risorse di Azure, vedere [Panoramica di Azure Resource Manager](azure-resource-manager/resource-group-overview.md).
-
-Nei limiti indicati di seguito è stata aggiunta una nuova tabella che indica eventuali differenze applicate quando si usa Gestione risorse di Azure. Sono ad esempio presenti una tabella **Limiti delle sottoscrizioni** e una tabella **Limiti delle sottoscrizioni - Azure Resource Manager**. Quando un limite si applica a entrambi gli scenari, viene indicato solo nella prima tabella. Se non diversamente indicato, i limiti sono globali in tutte le aree.
+Visitare [panoramica dei prezzi di Azure](https://azure.microsoft.com/pricing/) toolearn più sui prezzi di Azure. Non esiste, è possibile stimare i costi utilizzando hello [calcolatore dei costi](https://azure.microsoft.com/pricing/calculator/) o visitando hello prezzi pagina dei dettagli per un servizio (ad esempio, [macchine virtuali Windows](https://azure.microsoft.com/pricing/details/virtual-machines/#Windows)). Per suggerimenti toohelp gestire i costi, vedere [evitare i costi imprevisti con la fatturazione di Azure e gestione dei costi](billing/billing-getting-started.md).
 
 > [!NOTE]
-> È importante sottolineare che le quote per le risorse nei gruppi di risorse di Azure sono da intendersi per ogni area accessibile dalla sottoscrizione e non per ogni sottoscrizione, come nel caso delle quote di gestione del servizio. Si considerino, ad esempio. le quote relative ai core. Se è necessario richiedere un aumento della quota con supporto per i core, è necessario stabilire quanti core si desidera usare e in quali aree e quindi effettuare una richiesta specifica per le quote di core del gruppo di risorse di Azure per le quantità e le aree desiderate. Pertanto, se è necessario usare 30 core in Europa occidentale per eseguire l'applicazione, è necessario richiedere in modo specifico 30 core in Europa occidentale. La quota di core per le altre aree non verrà tuttavia aumentata, ma sarà disponibile una quota di 30 core solo in Europa occidentale.
+> Se si desidera che il limite di hello tooraise o quota sopra hello **limite predefinito**, [aprire una richiesta di supporto clienti online senza costi](azure-supportability/resource-manager-core-quotas-request.md). Hello limiti non possono essere generati in precedenza hello **limite massimo** valore mostrato in hello le tabelle seguenti. Se è presente alcun **limite massimo** colonna, quindi risorse hello non ha limiti di variabili. 
+> 
+> Le sottoscrizioni per le versioni di valutazione gratuite non sono idonee ad aumenti di limite o di quota. Se si dispone di una versione di valutazione gratuita, è possibile aggiornare tooa [consumo](https://azure.microsoft.com/offers/ms-azr-0003p/) sottoscrizione. Per ulteriori informazioni, vedere [aggiornare Azure versione di valutazione gratuita tooPay-come-di-Go](billing/billing-upgrade-azure-subscription.md).
+> 
+
+## <a name="limits-and-hello-azure-resource-manager"></a>Limiti e hello Azure Resource Manager
+È ora possibile toocombine più risorse di Azure in tooa singolo gruppo di risorse di Azure. Quando si utilizzano gruppi di risorse, i limiti di una volta sono globali gestiti a un livello regionale con hello Azure Resource Manager. Per altre informazioni sui gruppi di risorse di Azure, vedere [Panoramica di Azure Resource Manager](azure-resource-manager/resource-group-overview.md).
+
+Nei limiti di hello seguito, una nuova tabella è stato aggiunto tooreflect eventuali differenze nei limiti quando si utilizza hello Azure Resource Manager. Sono ad esempio presenti una tabella **Limiti delle sottoscrizioni** e una tabella **Limiti delle sottoscrizioni - Azure Resource Manager**. Quando un limite si applica tooboth scenari, viene visualizzata solo nella prima tabella hello. Se non diversamente indicato, i limiti sono globali in tutte le aree.
+
+> [!NOTE]
+> È importante tooemphasize quote per le risorse in gruppi di risorse di Azure vengono per ogni area accessibile dalla sottoscrizione che non sono per ogni sottoscrizione, sono le quote di Gestione servizio hello. Si considerino, ad esempio. le quote relative ai core. Se è necessario toorequest aumentare una quota con il supporto per core, è necessario come toodecide molti core toouse in quali aree desiderato e quindi effettuare una richiesta specifica per il gruppo di risorse di Azure le quote di base per gli importi hello e aree che si desidera. Pertanto, se è necessario toouse 30 core in Europa occidentale toorun l'applicazione. in particolare, è necessario richiedere 30 core in Europa occidentale. Ma non si avrà una quota di core aumentare in qualsiasi altra area - solo Europa occidentale avrà una quota di core 30 hello.
 > <!-- -->
-> Di conseguenza, può risultare utile stabilire le quote per il gruppo di risorse di Azure necessarie per il carico di lavoro in ogni area e richiedere tale quantità in ogni area in cui si prevede di eseguire la distribuzione. Per altre informazioni su come individuare le quote correnti per aree specifiche, vedere l'argomento relativo alla [risoluzione dei problemi di distribuzione](resource-manager-common-deployment-errors.md) .
+> Di conseguenza, può risultare utile tooconsider decidere quali le quote del gruppo di risorse di Azure devono toobe il carico di lavoro in qualsiasi uno area e richiesta che importo in ogni area in cui si sta considerando la distribuzione. Per altre informazioni su come individuare le quote correnti per aree specifiche, vedere l'argomento relativo alla [risoluzione dei problemi di distribuzione](resource-manager-common-deployment-errors.md) .
 > 
 > 
 
@@ -96,7 +96,7 @@ Nei limiti indicati di seguito è stata aggiunta una nuova tabella che indica ev
 [!INCLUDE [azure-subscription-limits](../includes/azure-subscription-limits.md)]
 
 #### <a name="subscription-limits---azure-resource-manager"></a>Limiti delle sottoscrizioni - Azure Resource Manager
-I limiti seguenti si applicano quando si usano Gestione risorse di Azure e i gruppi di risorse di Azure. I limiti che non cambiano in caso di uso di Gestione risorse di Azure non sono elencati di seguito. Per tali limiti, fare riferimento alla tabella precedente.
+Hello seguendo i limiti si applica quando si usa Azure Resource Manager hello e gruppi di risorse di Azure. I limiti che non sono stati modificati con hello Azure Resource Manager non sono elencati di seguito. Per tali limiti, vedere la tabella precedente toohello.
 
 Per informazioni sulla gestione dei limiti nelle richieste di Resource Manager, vedere [Throttling Resource Manager requests](resource-manager-request-limits.md) (Limitazione delle richieste di Resource Manager).
 
@@ -110,7 +110,7 @@ Per informazioni sulla gestione dei limiti nelle richieste di Resource Manager, 
 [!INCLUDE [azure-virtual-machines-limits](../includes/azure-virtual-machines-limits.md)]
 
 #### <a name="virtual-machines-limits---azure-resource-manager"></a>Limiti relativi a Macchine virtuali - Gestione risorse di Azure
-I limiti seguenti si applicano quando si usano Gestione risorse di Azure e i gruppi di risorse di Azure. I limiti che non cambiano in caso di uso di Gestione risorse di Azure non sono elencati di seguito. Per tali limiti, fare riferimento alla tabella precedente.
+Hello seguendo i limiti si applica quando si usa Azure Resource Manager hello e gruppi di risorse di Azure. I limiti che non sono stati modificati con hello Azure Resource Manager non sono elencati di seguito. Per tali limiti, vedere la tabella precedente toohello.
 
 [!INCLUDE [azure-virtual-machines-limits-azure-resource-manager](../includes/azure-virtual-machines-limits-azure-resource-manager.md)]
 
@@ -144,7 +144,7 @@ Per altre informazioni sui limiti dell'account di archiviazione, vedere [Obietti
 #### <a name="storage-service-limits"></a>Limiti relativi al servizio di archiviazione
 [!INCLUDE [azure-storage-limits](../includes/azure-storage-limits.md)]
 
-<!-- conceptual info about disk limits -- applies to unmanaged and managed -->
+<!-- conceptual info about disk limits -- applies toounmanaged and managed -->
 #### <a name="virtual-machine-disk-limits"></a>Limiti relativi ai dischi della macchina virtuale 
 [!INCLUDE [azure-storage-limits-vm-disks](../includes/azure-storage-limits-vm-disks.md)]
 
@@ -167,7 +167,7 @@ Vedere [Dimensioni della macchina virtuale](virtual-machines/linux/sizes.md?toc=
 [!INCLUDE [azure-cloud-services-limits](../includes/azure-cloud-services-limits.md)]
 
 ### <a name="app-service-limits"></a>Limiti relativi a Servizio app
-I seguenti limiti del servizio App includono limiti per le App Web, App mobili, App API e App per la logica.
+seguente Hello limiti di servizio App includono i limiti per le applicazioni Web, applicazioni per dispositivi mobili, App per le API e App per la logica.
 
 [!INCLUDE [azure-websites-limits](../includes/azure-websites-limits.md)]
 
@@ -178,22 +178,22 @@ I seguenti limiti del servizio App includono limiti per le App Web, App mobili, 
 [!INCLUDE [azure-batch-limits](../includes/azure-batch-limits.md)]
 
 ### <a name="biztalk-services-limits"></a>Limiti relativi a Servizi BizTalk
-La tabella seguente mostra i limiti per i servizi Biztalk di Azure.
+Hello nella tabella seguente mostra i limiti di hello servizi Biztalk di Azure.
 
 [!INCLUDE [biztalk-services-service-limits](../includes/biztalk-services-service-limits.md)]
 
 ### <a name="azure-cosmos-db-limits"></a>Limiti relativi ad Azure Cosmos DB
-Azure Cosmos DB è un database con scalabilità globale in cui la velocità effettiva e lo spazio di archiviazione possono essere ridimensionati in modo da gestire qualsiasi requisito dell'applicazione. Per eventuali domande sulla scalabilità offerta da Azure Cosmos DB, inviare un messaggio di posta elettronica all'indirizzo askcosmosdb@microsoft.com.
+DB Cosmos Azure è un database su scala globale in cui la velocità effettiva e l'archiviazione può essere scalato toohandle qualsiasi richiede l'applicazione. Se si dispone di domande su scala hello Azure Cosmos DB fornisce, inviare posta elettronica tooaskcosmosdb@microsoft.com.
 
 ### <a name="mobile-engagement-limits"></a>Limiti relativi a Mobile Engagement
 [!INCLUDE [azure-mobile-engagement-limits](../includes/azure-mobile-engagement-limits.md)]
 
 ### <a name="search-limits"></a>Limiti relativi a Ricerca
-I piano tariffari determinano la capacità e i limiti del servizio di ricerca. Sono disponibili i piani seguenti:
+Piani tariffari determinano la capacità di hello e i limiti del servizio di ricerca. Sono disponibili i piani seguenti:
 
 * *Gratuito* , offre un servizio multi-tenant, condiviso con altri sottoscrittori di Azure, progettato per la valutazione e progetti di sviluppo di piccole dimensioni.
-* *Basic* fornisce risorse di calcolo dedicate per i carichi di lavoro di produzione su scala più ridotta, con un massimo di 3 repliche per i carichi di lavoro di query a disponibilità elevata.
-* *Standard (S1, S2, S3, S3 ad alta densità)* è per i carichi di lavoro di produzione più consistenti. All'interno del livello standard esistono più livelli per consentire di scegliere una configurazione delle risorse ottimale per il profilo di carico di lavoro.
+* *Base* fornisce risorse di elaborazione dedicate per i carichi di lavoro in scala ridotta, con le repliche toothree per carichi di lavoro di query a disponibilità elevata.
+* *Standard (S1, S2, S3, S3 ad alta densità)* è per i carichi di lavoro di produzione più consistenti. Più livelli esistono all'interno del livello standard hello in modo che sia possibile scegliere una configurazione di risorsa che corrisponde maggiormente il profilo di carico di lavoro.
 
 **Limiti per ogni sottoscrizione**
 
@@ -203,7 +203,7 @@ I piano tariffari determinano la capacità e i limiti del servizio di ricerca. S
 
 [!INCLUDE [azure-search-limits-per-service](../includes/azure-search-limits-per-service.md)]
 
-Per informazioni più dettagliati sui limiti, ad esempio dimensioni dei documenti, query al secondo, chiavi, richieste e risposte, vedere [Limiti dei servizi in Ricerca di Azure](search/search-limits-quotas-capacity.md).
+toolearn ulteriori informazioni sui limiti di un livello più granulare, ad esempio dimensioni del documento, le query al secondo, le chiavi, le richieste e risposte, vedere [limiti in ricerca di Azure del servizio](search/search-limits-quotas-capacity.md).
 
 ### <a name="media-services-limits"></a>Limiti relativi a Servizi multimediali
 [!INCLUDE [azure-mediaservices-limits](../includes/azure-mediaservices-limits.md)]

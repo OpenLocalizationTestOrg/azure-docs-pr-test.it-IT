@@ -1,5 +1,5 @@
 ---
-title: Esercitazione sul servizio contenitore di Azure - Gestire DC/OS | Microsoft Docs
+title: esercitazione per il servizio contenitore aaaAzure - controller di dominio di gestione del sistema operativo | Documenti Microsoft
 description: Esercitazione sul servizio contenitore di Azure - Gestire DC/OS
 services: container-service
 documentationcenter: 
@@ -17,41 +17,41 @@ ms.workload: na
 ms.date: 07/17/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: e93f782c26c32f97749e817ec59ee3c2ecb7e119
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b91c433bfd7e48ec405cc62be1486d9d4662839d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-container-service-tutorial---manage-dcos"></a>Esercitazione sul servizio contenitore di Azure - Gestire DC/OS
 
-DC/OS fornisce una piattaforma distribuita per l'esecuzione di applicazioni in contenitori e moderne. Con il servizio contenitore di Azure, il provisioning di un cluster DC/OS pronto per la produzione è semplice e rapido. Questa guida rapida illustra in dettaglio i passaggi di base necessari per distribuire un cluster DC/OS ed eseguire un carico di lavoro di base.
+DC/OS fornisce una piattaforma distribuita per l'esecuzione di applicazioni in contenitori e moderne. Con il servizio contenitore di Azure, il provisioning di un cluster DC/OS pronto per la produzione è semplice e rapido. Questo passaggi di base di informazioni di avvio rapido necessari toodeploy un cluster di controller di dominio o del sistema operativo e un carico di lavoro di base esecuzione.
 
 > [!div class="checklist"]
 > * Creare un cluster DC/OS del servizio contenitore di Azure
-> * Connettersi al cluster
-> * Installare l'interfaccia della riga di comando di DC/OS
-> * Distribuire un'applicazione nel cluster
-> * Ridimensionare un'applicazione nel cluster
-> * Ridimensionare i nodi del cluster DC/OS
+> * Connettere il cluster toohello
+> * Installare controller di dominio/OS CLI hello
+> * Distribuire un cluster di toohello applicazione
+> * Scalabilità di un'applicazione in cluster hello
+> * Ridimensionare i nodi del cluster hello controller di dominio o del sistema operativo
 > * Gestione di base di DC/OS
-> * Eliminare il cluster DC/OS
+> * Eliminare il cluster di controller di dominio/OS hello
 
-Questa esercitazione richiede l'interfaccia della riga di comando di Azure 2.0.4 o versioni successive. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Questa esercitazione richiede hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooupgrade, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-dcos-cluster"></a>Creare un cluster DC/OS
 
-Creare prima di tutto un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
+Innanzitutto, creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *westeurope*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *westeurope* percorso.
 
 ```azurecli
 az group create --name myResourceGroup --location westeurope
 ```
 
-Creare prima di tutto un cluster DC/OS con il comando [az acs create](/cli/azure/acs#create).
+Successivamente, creare un cluster di controller di dominio o del sistema operativo con hello [az acs creare](/cli/azure/acs#create) comando.
 
-L'esempio seguente crea un cluster DC/OS denominato *myDCOSCluster* e crea le chiavi SSH se non esistono già. Per usare un set specifico di chiavi, utilizzare l'opzione `--ssh-key-value`.  
+esempio Hello crea un cluster di controller di dominio o del sistema operativo denominato *myDCOSCluster* e crea le chiavi SSH se non esiste già. toouse uno specifico set di chiavi, utilizzare hello `--ssh-key-value` opzione.  
 
 ```azurecli
 az acs create \
@@ -61,17 +61,17 @@ az acs create \
   --generate-ssh-keys
 ```
 
-Dopo alcuni minuti, il comando viene completato e restituisce le informazioni sulla distribuzione.
+Dopo alcuni minuti, comando hello completa e restituisce informazioni sulla distribuzione di hello.
 
-## <a name="connect-to-dcos-cluster"></a>Connettersi al cluster DC/OS
+## <a name="connect-toodcos-cluster"></a>Connettere il cluster tooDC/OS
 
-Dopo aver creato un cluster DC/OS, è possibile accedervi tramite un tunnel SSH. Eseguire il comando seguente per restituire l'indirizzo IP pubblico del master DC/OS. L'indirizzo IP viene archiviato in una variabile e usato nel passaggio successivo.
+Dopo aver creato un cluster DC/OS, è possibile accedervi tramite un tunnel SSH. Comando che segue di esecuzione hello tooreturn hello indirizzo IP pubblico del database master di controller di dominio/OS hello. Questo indirizzo IP è archiviato in una variabile e usato nel passaggio successivo hello.
 
 ```azurecli
 ip=$(az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-master')].[ipAddress]" -o tsv)
 ```
 
-Per creare il tunnel SSH, eseguire il comando seguente e seguire le istruzioni visualizzate. Se la porta 80 è già in uso, il comando non riesce. Aggiornare la porta di tunneling selezionandone una non in uso, come `85:localhost:80`. 
+toocreate hello tunnel SSH, eseguire hello comando seguente e istruzioni hello sullo schermo. Se la porta 80 è già in uso, il comando hello ha esito negativo. Hello aggiornamento tunneled tooone porta non è in uso, ad esempio `85:localhost:80`. 
 
 ```azurecli
 sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
@@ -79,13 +79,13 @@ sudo ssh -i ~/.ssh/id_rsa -fNL 80:localhost:80 -p 2200 azureuser@$ip
 
 ## <a name="install-dcos-cli"></a>Installare l'interfaccia della riga di comando di DC/OS
 
-Installare l'interfaccia della riga di comando di DC/OS con il comando [az acs dcos install-cli](/azure/acs/dcos#install-cli). Se si usa Azure CloudShell, l'interfaccia della riga di comando di DC/OS è già installata. Se si esegue l'interfaccia della riga di comando di Azure in macOS o Linux, potrebbe essere necessario eseguire il comando con sudo.
+Installare hello cli di controller di dominio/OS utilizzando hello [az acs dcos install-cli](/azure/acs/dcos#install-cli) comando. Se si utilizza Azure CloudShell, hello CLI di controller di dominio o del sistema operativo è già installato. Se si esegue hello CLI di Azure in macOS o Linux, potrebbe essere comando hello toorun con sudo.
 
 ```azurecli
 az acs dcos install-cli
 ```
 
-Prima di poter usare l'interfaccia della riga di comando con il cluster, deve essere configurato per usare il tunnel SSH. A tale scopo, eseguire il comando seguente, modificando la porta se necessario.
+Prima di hello che CLI può essere utilizzato con i cluster di hello, deve essere tunnel SSH di hello toouse configurato. toodo in tal caso, eseguire hello comando seguente, modificare la porta hello se necessario.
 
 ```azurecli
 dcos config set core.dcos_url http://localhost
@@ -93,7 +93,7 @@ dcos config set core.dcos_url http://localhost
 
 ## <a name="run-an-application"></a>Eseguire un'applicazione
 
-Il meccanismo di pianificazione predefinito per un cluster DC/OS del servizio contenitore di Azure è Marathon. Marathon viene usato per avviare un'applicazione e gestire lo stato dell'applicazione nel cluster DC/OS. Per pianificare un'applicazione tramite Marathon, creare un file denominato **marathon-app.json** e copiarvi il contenuto seguente. 
+valore predefinito di Hello meccanismo per un cluster ACS controller di dominio o del sistema operativo di pianificazione è maratona. Maratona toostart utilizzata un'applicazione e gestire lo stato di hello di un'applicazione hello nel cluster di controller di dominio/OS hello. tooschedule un'applicazione tramite maratona, creare un file denominato **maratona app.json**, e hello copia seguendo contenuto al suo interno. 
 
 ```json
 {
@@ -121,19 +121,19 @@ Il meccanismo di pianificazione predefinito per un cluster DC/OS del servizio co
 }
 ```
 
-Eseguire il comando seguente per pianificare l'esecuzione dell'applicazione nel cluster DC/OS.
+Eseguire hello successivo comando tooschedule hello applicazione toorun nel cluster di controller di dominio/OS hello.
 
 ```azurecli
 dcos marathon app add marathon-app.json
 ```
 
-Per visualizzare lo stato di distribuzione per l'app, eseguire il comando seguente.
+stato della distribuzione toosee hello per le app di hello, eseguire hello comando seguente.
 
 ```azurecli
 dcos marathon app list
 ```
 
-Quando il valore della colonna **TASKS** (Attività) passa da *0/1* a *1/1*, la distribuzione dell'applicazione è stata completata.
+Quando hello **attività** passa il valore di colonna da *0/1* troppo*1/1*, la distribuzione di applicazioni è stata completata.
 
 ```azurecli
 ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD   
@@ -142,7 +142,7 @@ ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD
 
 ## <a name="scale-marathon-application"></a>Ridimensionare l'applicazione Marathon
 
-Nell'esempio precedente è stata creata un'applicazione a istanza singola. Per aggiornare la distribuzione in modo che siano disponibili tre istanze dell'applicazione, aprire il file **marathon-app.json** e impostare la proprietà per le istanze su 3.
+Nell'esempio precedente hello è stata creata un'applicazione a istanza singola. Questa distribuzione in modo che siano disponibili, tre istanze di un'applicazione hello aprire hello tooupdate **maratona app.json** file e aggiornare hello istanza proprietà too3.
 
 ```json
 {
@@ -170,19 +170,19 @@ Nell'esempio precedente è stata creata un'applicazione a istanza singola. Per a
 }
 ```
 
-Aggiornare l'applicazione con il comando `dcos marathon app update`.
+Aggiornare l'applicazione hello utilizzando hello `dcos marathon app update` comando.
 
 ```azurecli
 dcos marathon app update demo-app-private < marathon-app.json
 ```
 
-Per visualizzare lo stato di distribuzione per l'app, eseguire il comando seguente.
+stato della distribuzione toosee hello per le app di hello, eseguire hello comando seguente.
 
 ```azurecli
 dcos marathon app list
 ```
 
-Quando il valore della colonna **TASKS** (Attività) passa da *1/3* a *3/1*, la distribuzione dell'applicazione è stata completata.
+Quando hello **attività** passa il valore di colonna da *1/3* troppo*3/1*, la distribuzione di applicazioni è stata completata.
 
 ```azurecli
 ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD   
@@ -191,11 +191,11 @@ ID     MEM  CPUS  TASKS  HEALTH  DEPLOYMENT  WAITING  CONTAINER  CMD
 
 ## <a name="run-internet-accessible-app"></a>Eseguire un'app accessibile su Internet
 
-Il cluster DC/OS del servizio contenitore di Azure è costituito da due set di nodi, uno pubblico accessibile su Internet e uno privato non accessibile su Internet. Il set predefinito è quello dei nodi privati, usato nell'ultimo esempio.
+Hello ACS controller di dominio o del sistema operativo cluster include due set di nodi, una pubblica accessibile su internet di hello e una privata che non è accessibile su internet di hello. set predefinito di Hello è nodi privata hello, che è stato usato nell'ultimo esempio hello.
 
-Per rendere un'applicazione accessibile su Internet, distribuirla nel set di nodi pubblico. A tale scopo, assegnare all'oggetto `acceptedResourceRoles` il valore `slave_public`.
+un'applicazione accessibile toomake in hello internet, distribuirle toohello set di nodi pubblici. toodo, valutare hello `acceptedResourceRoles` il valore dell'oggetto `slave_public`.
 
-Creare un file denominato **nginx-public.json** e copiare il contenuto seguente nel file.
+Creare un file denominato **nginx public.json** e hello copia seguendo contenuto al suo interno.
 
 ```json
 {
@@ -227,33 +227,33 @@ Creare un file denominato **nginx-public.json** e copiare il contenuto seguente 
 }
 ```
 
-Eseguire il comando seguente per pianificare l'esecuzione dell'applicazione nel cluster DC/OS.
+Eseguire hello successivo comando tooschedule hello applicazione toorun nel cluster di controller di dominio/OS hello.
 
 ```azurecli 
 dcos marathon app add nginx-public.json
 ```
 
-Ottenere l'indirizzo IP pubblico degli agenti del cluster pubblico DC/OS.
+Ottenere l'indirizzo IP pubblico hello degli agenti di cluster pubblica hello controller di dominio o del sistema operativo.
 
 ```azurecli 
 az network public-ip list --resource-group myResourceGroup --query "[?contains(name,'dcos-agent')].[ipAddress]" -o tsv
 ```
 
-Passando a questo indirizzo viene restituito il sito NGINX predefinito.
+Esplorazione toothis indirizzo restituisce sito NGINX di hello predefinito.
 
 ![NGINX](./media/container-service-dcos-manage-tutorial/nginx.png)
 
 ## <a name="scale-dcos-cluster"></a>Ridimensionare il cluster DC/OS
 
-Negli esempi precedenti, un'applicazione è stata ridimensionata per più istanze. Anche l'infrastruttura di DC/OS può essere ridimensionata per offrire maggiore o minore capacità di calcolo. Questa operazione viene eseguita con il comando [az acs scale](). 
+Negli esempi precedenti hello, un'applicazione è stato ridimensionato toomultiple istanza. infrastruttura di controller di dominio/OS Hello può anche essere scalato tooprovide più o meno capacità di calcolo. Questa operazione viene eseguita con hello [az acs scalare]() comando. 
 
-Per visualizzare il numero corrente di agenti di DC/OS, usare il comando [az acs show](/cli/azure/acs#show).
+numero corrente di hello toosee degli agenti di controller di dominio o del sistema operativo, utilizzare hello [az acs Mostra](/cli/azure/acs#show) comando.
 
 ```azurecli
 az acs show --resource-group myResourceGroup --name myDCOSCluster --query "agentPoolProfiles[0].count"
 ```
 
-Per aumentare il conteggio a 5, usare il comando [az acs scale](/cli/azure/acs#scale). 
+tooincrease hello too5 count, utilizzare hello [az acs scalare](/cli/azure/acs#scale) comando. 
 
 ```azurecli
 az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-count 5
@@ -261,7 +261,7 @@ az acs scale --resource-group myResourceGroup --name myDCOSCluster --new-agent-c
 
 ## <a name="delete-dcos-cluster"></a>Eliminare il cluster DC/OS
 
-Quando non serve più, è possibile rimuovere il gruppo di risorse, il cluster DC/OS e tutte le risorse correlate tramite il comando [az group delete](/cli/azure/group#delete).
+Quando non è più necessario, è possibile utilizzare hello [eliminazione gruppo az](/cli/azure/group#delete) comandi tooremove gruppo di risorse hello, cluster/OS di controller di dominio e tutte le relative risorse.
 
 ```azurecli 
 az group delete --name myResourceGroup --no-wait
@@ -269,18 +269,18 @@ az group delete --name myResourceGroup --no-wait
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono state descritte le attività di gestione di base di DC/OS, incluse le seguenti. 
+In questa esercitazione, si è appreso sulle attività di gestione di controller di dominio o del sistema operativo base inclusi hello seguenti. 
 
 > [!div class="checklist"]
 > * Creare un cluster DC/OS del servizio contenitore di Azure
-> * Connettersi al cluster
-> * Installare l'interfaccia della riga di comando di DC/OS
-> * Distribuire un'applicazione nel cluster
-> * Ridimensionare un'applicazione nel cluster
-> * Ridimensionare i nodi del cluster DC/OS
-> * Eliminare il cluster DC/OS
+> * Connettere il cluster toohello
+> * Installare controller di dominio/OS CLI hello
+> * Distribuire un cluster di toohello applicazione
+> * Scalabilità di un'applicazione in cluster hello
+> * Ridimensionare i nodi del cluster hello controller di dominio o del sistema operativo
+> * Eliminare il cluster di controller di dominio/OS hello
 
-Passare all'esercitazione successiva per apprendere come bilanciare il carico delle applicazioni in DC/OS in Azure. 
+Anticipo toohello successivo dell'esercitazione toolearn su caricare l'applicazione di bilanciamento del carico nel controller di dominio o sistema operativo in Azure. 
 
 > [!div class="nextstepaction"]
 > [Bilanciare il carico delle applicazioni](container-service-load-balancing.md)

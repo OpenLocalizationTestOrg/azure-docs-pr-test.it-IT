@@ -1,6 +1,6 @@
 ---
-title: Assegnare un utente ai ruoli di amministratore in Azure Active Directory | Microsoft Docs
-description: Illustra come cambiare le informazioni amministrative in Azure Active Directory
+title: un utente aaaAssign tooadministrator ruoli in Azure Active Directory | Documenti Microsoft
+description: Viene illustrato come le informazioni amministrative toochange utente in Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/27/2017
 ms.author: curtand
 ms.reviewer: jeffsta
-ms.openlocfilehash: bfadf133154488f9827cfbeaa98ddb0eb84b52f6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8bb6711c2570843962fe075b6026542a4bca525f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="assign-a-user-to-administrator-roles-in-azure-active-directory"></a>Assegnare un utente ai ruoli di amministratore in Azure Active Directory
-Questo articolo descrive come assegnare un ruolo di amministratore a un utente in Azure Active Directory (Azure AD). Per informazioni sull'aggiunta di nuovi utenti nell'organizzazione, vedere [Aggiungere nuovi utenti ad Azure Active Directory](active-directory-users-create-azure-portal.md). Gli utenti aggiunti non hanno autorizzazioni di amministratore per impostazione predefinita, ma è possibile assegnare loro dei ruoli in qualsiasi momento.
+# <a name="assign-a-user-tooadministrator-roles-in-azure-active-directory"></a>Assegnare un utente tooadministrator ruoli in Azure Active Directory
+Questo articolo viene illustrato come tooassign un utente tooa ruolo amministrativo in Azure Active Directory (Azure AD). Per informazioni sull'aggiunta di nuovi utenti nell'organizzazione, vedere [aggiungere nuovi utenti tooAzure Active Directory](active-directory-users-create-azure-portal.md). Gli utenti aggiunti non dispongono delle autorizzazioni di amministratore per impostazione predefinita, ma è possibile assegnare ruoli toothem in qualsiasi momento.
 
-## <a name="assign-a-role-to-a-user"></a>Assegnare un ruolo a un utente
-1. Accedere al [portale di Azure](https://portal.azure.com) con un account di amministratore globale per la directory.
-2. Selezionare **Altri servizi**, immettere **Utenti e gruppi** nella casella di testo e quindi premere **INVIO**.
+## <a name="assign-a-role-tooa-user"></a>Assegnare un utente tooa ruolo
+1. Accedi toohello [portale di Azure](https://portal.azure.com) con un account che sia un amministratore globale per la directory di hello.
+2. Selezionare **più servizi**, immettere **utenti e gruppi** nella casella di testo hello e quindi selezionare **invio**.
 
    ![Apertura di Gestione utenti](./media/active-directory-users-assign-role-azure-portal/create-users-user-management.png)
-3. Nel pannello **Utenti e gruppi** selezionare **Tutti gli utenti**.
+3. In hello **utenti e gruppi** pannello seleziona **tutti gli utenti**.
 
-   ![Apertura del pannello Tutti gli utenti](./media/active-directory-users-assign-role-azure-portal/create-users-open-users-blade.png)
-4. Nel pannello **Utenti e gruppi - Tutti gli utenti** selezionare un utente nell'elenco.
-5. Nel pannello per l'utente prescelto selezionare **Ruolo della directory** e quindi assegnare l'utente a un ruolo nell'elenco **Ruolo della directory**. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
+   ![Apertura hello blade di tutti gli utenti](./media/active-directory-users-assign-role-azure-portal/create-users-open-users-blade.png)
+4. In hello **utenti e gruppi - tutti gli utenti** pannello, selezionare un utente dall'elenco di hello.
+5. Nel Pannello di hello per l'utente selezionato hello, selezionare **ruolo della Directory**, quindi assegnare ruoli di hello utente tooa da hello **ruolo della Directory** elenco. Per altre informazioni sui ruoli utente e di amministratore, vedere [Assegnazione dei ruoli di amministratore in Azure Active Directory](active-directory-assign-admin-roles.md).
 
-      ![Assegnazione di un utente a un ruolo](./media/active-directory-users-assign-role-azure-portal/create-users-assign-role.png)
+      ![Assegnazione di un ruolo di utente tooa](./media/active-directory-users-assign-role-azure-portal/create-users-assign-role.png)
 6. Selezionare **Salva**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Aggiungere un utente](active-directory-users-create-azure-portal.md)
-* [Reimpostare la password di un utente nel nuovo portale di Azure](active-directory-users-reset-password-azure-portal.md)
+* [Reimpostare la password dell'utente nel nuovo portale di Azure hello](active-directory-users-reset-password-azure-portal.md)
 * [Modificare le informazioni di lavoro di un utente](active-directory-users-work-info-azure-portal.md)
 * [Gestire i profili utente](active-directory-users-profile-azure-portal.md)
 * [Eliminare un utente in Azure AD](active-directory-users-delete-user-azure-portal.md)

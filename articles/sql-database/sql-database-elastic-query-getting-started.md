@@ -1,6 +1,6 @@
 ---
-title: "Creare report in database cloud con scalabilità orizzontale (partizionamento orizzontale) | Documentazione Microsoft"
-description: come utilizzare tra le query di database tra database
+title: "aaaReport tra i database di cloud di scalabilità orizzontale (partizionamento orizzontale) | Documenti Microsoft"
+description: come toouse tra le query di database di database
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2016
 ms.author: mlandzic
-ms.openlocfilehash: 8eb56d44c3a261f6325d4fc91f169d09bf108160
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e34f398f8d408cffd91a70fc2cfbda73daec3550
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="report-across-scaled-out-cloud-databases-preview"></a>Creare report in database cloud con numero maggiore di istanze (anteprima)
-È possibile creare report da più database SQL di Azure da un unico punto di connessione usando una [query elastica](sql-database-elastic-query-overview.md). Il database deve essere con partizionamento orizzontale.
+È possibile creare report da più database SQL di Azure da un unico punto di connessione usando una [query elastica](sql-database-elastic-query-overview.md). Hello database deve essere partizionata orizzontalmente (anche noto come "partizionati").
 
-Se si ha un database esistente, vedere [Migrazione dei database esistenti in database con un numero maggiore di istanze](sql-database-elastic-convert-to-use-elastic-tools.md).
+Se si dispone di un database esistente, vedere [esistente migrazione database database tooscaled-out](sql-database-elastic-convert-to-use-elastic-tools.md).
 
-Per comprendere quali sono gli oggetti SQL necessari per eseguire una query, vedere [Eseguire query in database con partizionamento orizzontale](sql-database-elastic-query-horizontal-partitioning.md).
+gli oggetti SQL hello toounderstand necessari tooquery, vedere [Query tra database partizionati orizzontalmente](sql-database-elastic-query-horizontal-partitioning.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Scaricare ed eseguire [Introduzione allo strumento di esempio del Database elastico](sql-database-elastic-scale-get-started.md).
+Scaricare ed eseguire hello [Guida introduttiva a esempio di strumenti di Database elastico](sql-database-elastic-scale-get-started.md).
 
-## <a name="create-a-shard-map-manager-using-the-sample-app"></a>Creare un gestore mappe partizione utilizzando l'applicazione di esempio
-Di seguito si creerà un gestore mappe partizione con diverse partizioni, seguita dall'inserimento di dati nelle partizioni. Se si dispone già di programma di installazione di partizioni con dati partizionati in essi, è possibile ignorare i passaggi seguenti e passare alla sezione successiva.
+## <a name="create-a-shard-map-manager-using-hello-sample-app"></a>Creare una mappa partizioni gestione tramite app di esempio hello
+Di seguito si creerà una mappa partizioni manager insieme a diverse partizioni, seguita dall'inserimento di dati in partizioni hello. Se si è verificata tooalready con l'installazione di partizioni con dati partizionati, è possibile passare alla procedura seguente hello e spostare toohello nella sezione successiva.
 
-1. Compilare ed eseguire l’applicazione di esempio **Introduzione agli strumenti del Database elastico** . Seguire la procedura fino al passaggio 7 nella sezione [Scaricare ed eseguire l'app di esempio](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). Alla fine del passaggio 7, verrà visualizzato il seguente prompt dei comandi:
+1. Compilare ed eseguire hello **Introduzione agli strumenti di Database elastico** applicazione di esempio. Seguire i passaggi di hello fino al passaggio 7 nella sezione hello [scaricare ed eseguire app di esempio hello](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app). Al fine di hello del passaggio 7, verrà visualizzato un hello prompt dei comandi seguenti:
 
     ![Aprire il prompt dei comandi.][1]
-2. Nella finestra di comando, digitare "1" e premere **Invio**. Viene creato il gestore delle mappe partizioni e aggiunge due partizioni al server. Digitare "3" e premere **Invio**; ripetere l'azione quattro volte. Consente di inserire righe di dati di esempio nelle partizioni.
-3. Il [portale di Azure](https://portal.azure.com) dovrebbe mostrare tre nuovi database nel server:
+2. Nella finestra di comando hello, digitare "1" e premere **invio**. Questo gestore mappe partizioni di hello crea e aggiunge due partizioni toohello server. Quindi digitare "3" e premere **invio**; ripetere azione hello quattro volte. Consente di inserire righe di dati di esempio nelle partizioni.
+3. Hello [portale di Azure](https://portal.azure.com) devono essere visualizzati tre nuovi database nel server:
 
    ![Conferma di Visual Studio][2]
 
-   A questo punto, le query tra database sono supportate tramite le risorse del client del Database elastico. Nella finestra di comando, ad esempio, utilizzare l'opzione 4. I risultati di una query con più partizioni sono sempre un **UNION ALL** dei risultati di tutte le partizioni.
+   Query tra database a questo punto, sono supportate tramite le librerie client di Database elastico hello. Nella finestra di comando hello, ad esempio, utilizzare l'opzione 4. Hello risultati da una query su più partizioni sono sempre un **UNION ALL** dei risultati di hello da tutte le partizioni.
 
-   Nella sezione successiva, verrà creato un endpoint del database di esempio che supporta l'esecuzione più completa delle query dei dati tra partizioni.
+   Nella sezione successiva hello, si crea un endpoint di database di esempio che supporta più l'esecuzione di query di dati hello tra partizioni.
 
 ## <a name="create-an-elastic-query-database"></a>Creare un database di query elastico
-1. Aprire il [portale di Azure](https://portal.azure.com) ed eseguire l'accesso.
-2. Creare un nuovo database SQL Azure nello stesso server del programma di installazione del partizionamento. Denominare il database "ElasticDBQuery".
+1. Aprire hello [portale di Azure](https://portal.azure.com) ed effettuare l'accesso.
+2. Creare un nuovo database SQL di Azure in hello nello stesso server di configurazione del partizionamento. Nome database hello "ElasticDBQuery".
 
     ![Portale di Azure e il livello di prezzo][3]
 
     > [!NOTE]
-    > È possibile usare un database esistente. Se è possibile farlo, non deve essere una delle partizioni su cui si desidera eseguire la query. Questo database verrà utilizzato per la creazione di oggetti di metadati per una query di database elastico.
+    > È possibile usare un database esistente. Se è possibile farlo, non deve essere una delle partizioni hello che si desidera tooexecute nella query. Questo database verrà utilizzato per la creazione di oggetti di metadati per una query di database elastico hello.
     >
 
 ## <a name="create-database-objects"></a>Creare oggetti di database
 ### <a name="database-scoped-master-key-and-credentials"></a>Chiave master con ambito database e credenziali
-Questi vengono utilizzati per la connessione per la gestione di gestore di mappe di partizioni e partizioni:
+Si tratta di gestore mappe partizioni di toohello tooconnect utilizzato e partizioni hello:
 
 1. Apri SQL Server Management Studio e SQL Server Data Tools in Visual Studio
-2. Connettersi al database ElasticDBQuery ed eseguire i comandi T-SQL seguenti:
+2. La connessione a database tooElasticDBQuery ed eseguire hello comandi T-SQL seguente:
 
         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '<password>';
 
@@ -68,10 +68,10 @@ Questi vengono utilizzati per la connessione per la gestione di gestore di mappe
         WITH IDENTITY = '<username>',
         SECRET = '<password>';
 
-    "nome utente" e "password" devono essere uguali alle informazioni di accesso usate nel passaggio 6 della sezione [Scaricare ed eseguire l'app di esempio](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) in [Iniziare a utilizzare gli strumenti di database elastici](sql-database-elastic-scale-get-started.md).
+    "nomeutente" e "password" deve essere hello stesso come informazioni di accesso utilizzate nel passaggio 6 di [scaricare ed eseguire app di esempio hello](sql-database-elastic-scale-get-started.md#download-and-run-the-sample-app) in [Introduzione agli strumenti di database elastico](sql-database-elastic-scale-get-started.md).
 
 ### <a name="external-data-sources"></a>DROP EXTERNAL DATA SOURCE
-Per creare un'origine dati esterna, eseguire il comando seguente sul database ElasticDBQuery:
+toocreate un'origine dati esterna, eseguire comando seguente sul database ElasticDBQuery hello hello:
 
     CREATE EXTERNAL DATA SOURCE MyElasticDBQueryDataSrc WITH
       (TYPE = SHARD_MAP_MANAGER,
@@ -81,10 +81,10 @@ Per creare un'origine dati esterna, eseguire il comando seguente sul database El
        SHARD_MAP_NAME = 'CustomerIDShardMap'
     ) ;
 
- "CustomerIDShardMap" è il nome della mappa del partizionamento, se è stato creato il mapping della partizione e la gestione di mapping di partizione utilizzando l'esempio di strumenti di database flessibile. Tuttavia, se si utilizza il programma di installazione personalizzato per questo esempio, deve essere il nome di mappa partizionamento che scelto nell'applicazione.
+ "CustomerIDShardMap" è il nome di hello della mappa partizioni hello, se è stato creato mappa partizioni hello e mappa partizioni manager utilizzando l'esempio di strumenti di database elastico hello. Tuttavia, se si utilizza il programma di installazione personalizzato per questo esempio, deve essere nome mappa partizioni di hello che scelto nell'applicazione.
 
 ### <a name="external-tables"></a>Tabelle esterne
-Creare una tabella esterna corrispondente della tabella Customers nelle partizioni eseguendo il comando seguente sul database ElasticDBQuery:
+Creare una tabella esterna corrispondente tabella Customers hello su partizioni hello eseguendo hello comando seguente sul database ElasticDBQuery:
 
     CREATE EXTERNAL TABLE [dbo].[Customers]
     ( [CustomerId] [int] NOT NULL,
@@ -98,33 +98,33 @@ Creare una tabella esterna corrispondente della tabella Customers nelle partizio
 ## <a name="execute-a-sample-elastic-database-t-sql-query"></a>Eseguire una query di esempio elastica database T-SQL
 Dopo aver definito l'origine dati esterna e le tabelle esterne è ora possibile utilizzare T-SQL completa tramite le tabelle esterne.
 
-Eseguire questa query sul database ElasticDBQuery:
+Eseguire la query sul database ElasticDBQuery hello:
 
     select count(CustomerId) from [dbo].[Customers]
 
-Si noterà che la query di aggregare i risultati di tutte le partizioni e produce il seguente output:
+Si noterà che eseguono query hello aggrega i risultati di tutte le partizioni hello e offre hello seguente output:
 
 ![Dettagli dell'output][4]
 
-## <a name="import-elastic-database-query-results-to-excel"></a>Importare i risultati della query database elastica in Excel
- È possibile importare i risultati da di una query a un file di Excel.
+## <a name="import-elastic-database-query-results-tooexcel"></a>Importare tooExcel risultati query di database elastico
+ È possibile importare i risultati di hello da di un file di Excel tooan query.
 
 1. Avviare Excel 2013.
-2. Individuare il **dati** della barra multifunzione.
+2. Passare toohello **dati** della barra multifunzione.
 3. Fare clic su **Da altre origini** e quindi su **Da SQL Server**.
 
    ![Importazione di Excel da altre origini][5]
-4. In **Connessione guidata dati** digitare le credenziali di accesso e il nome del server. Quindi fare clic su **Next**.
-5. Nella finestra di dialogo **Selezionare il database contenente i dati desiderati** selezionare il database **ElasticDBQuery**.
-6. Selezionare la tabella **Customers** nella visualizzazione elenco e fare clic su **Avanti**. Fare clic su **Fine**.
-7. Nel modulo **Importa dati** in **Specificare come visualizzare i dati nella cartella di lavoro** selezionare **Tabella** e fare clic su **OK**.
+4. In hello **connessione guidata dati** digitare le credenziali di nome e l'account di accesso server hello. Quindi fare clic su **Next**.
+5. Nella finestra di dialogo hello **database selezionare hello che contiene dati hello da**selezionare hello **ElasticDBQuery** database.
+6. Seleziona hello **clienti** tabella nella visualizzazione elenco hello e fare clic su **Avanti**. Fare clic su **Fine**.
+7. In hello **l'importazione dei dati** del modulo **selezionare la modalità tooview questi dati nella cartella di lavoro**selezionare **tabella** e fare clic su **OK**.
 
-Tutte le righe dalla tabella **Clienti** , archiviate in diverse partizioni sono riportate nel foglio Excel.
+Tutte le righe di hello **clienti** tabella, archiviata in partizioni diverse popolare un foglio di Excel hello.
 
-È ora possibile utilizzare funzioni di visualizzazione avanzata dei dati di Excel. È possibile utilizzare la stringa di connessione con il nome del server, nome del database e credenziali per gli strumenti di integrazione di Business Intelligence e i dati di connettersi al database query elastica. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. È possibile fare riferimento al database elastica query e tabelle esterne come qualsiasi altro database di SQL Server e tabelle di SQL Server è necessario connettersi allo strumento.
+È ora possibile utilizzare funzioni di visualizzazione avanzata dei dati di Excel. È possibile utilizzare la stringa di connessione hello con il nome del server, nome del database e credenziali tooconnect BI e dati integrazione strumenti toohello elastico query database. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. È possibile fare riferimento a database elastico query toohello e le tabelle esterne come qualsiasi altro database di SQL Server e le tabelle di SQL Server si connetterà toowith lo strumento.
 
 ### <a name="cost"></a>Costi
-Non esiste senza alcun costo aggiuntivo per utilizzare la funzione elastica Query del Database.
+Non è senza costi aggiuntivi per l'utilizzo di funzionalità di Query di Database elastico hello.
 
 Per informazioni sui prezzi, vedere [Dettagli prezzi del database SQL](https://azure.microsoft.com/pricing/details/sql-database/).
 

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Concur | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Concur.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Concur.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,110 +13,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: cd35b6e2dc3171e9cffdb820bbc5b0d45ff58e07
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 13ba364af26a5ce0f1d2b51aaa0f84a4c353b107
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-concur-for-user-provisioning"></a>Esercitazione: Configurazione di Concur per il provisioning utenti
 
-Questa esercitazione descrive le procedure da eseguire in Concur e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a Concur.
+obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform in Concur e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooConcur.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
 *   Tenant di Azure Active Directory.
 *   Sottoscrizione di Concur abilitata per l'accesso Single Sign-On.
 *   Account utente in Concur con autorizzazioni di amministratore di team.
 
-## <a name="assigning-users-to-concur"></a>Assegnazione di utenti a Concur
+## <a name="assigning-users-tooconcur"></a>L'assegnazione di utenti tooConcur
 
-Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD.
+Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD è sincronizzato.
 
-Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app Concur. Dopo aver stabilito questo, è possibile assegnare tali utenti all'app Concur seguendo le istruzioni riportate qui:
+Prima di configurare e abilitare hello provisioning del servizio, è necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano hello utenti devono accedere tooyour Concur app. Una volta deciso, è possibile assegnare queste app di Concur tooyour utenti seguendo le istruzioni di hello qui:
 
-[Assegnare un utente o gruppo a un'app aziendale](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
+[Assegnare un'applicazione aziendale tooan utente o gruppo](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal)
 
-### <a name="important-tips-for-assigning-users-to-concur"></a>Suggerimenti importanti per l'assegnazione di utenti a Concur
+### <a name="important-tips-for-assigning-users-tooconcur"></a>Suggerimenti importanti per l'assegnazione di utenti tooConcur
 
-*   È consigliabile assegnare un singolo utente di Azure AD a Concur per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile che un singolo utente di Azure AD assegnare tooConcur tootest hello configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un utente a Concur, è necessario selezionare un ruolo utente valido. Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.
+*   Quando si assegna un tooConcur utente, è necessario selezionare un ruolo utente valido. ruolo di "accesso predefinita" Hello non funziona per il provisioning.
 
 ## <a name="enable-user-provisioning"></a>Abilitare il provisioning utenti
 
-Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di Concur e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in Concur in base all'assegnazione di utenti e gruppi in Azure AD.
+Questa sezione viene illustrato come tramite la connessione API di provisioning dell'account utente del tooConcur il Azure AD e configura il provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in Concur in base all'assegnazione di utenti e gruppi in Azure AD.
 
 > [!Tip] 
-> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per Concur, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per Concur, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
-### <a name="to-configure-user-account-provisioning"></a>Per configurare il provisioning degli account utente:
+### <a name="tooconfigure-user-account-provisioning"></a>tooconfigure provisioning dell'account utente:
 
-Questa sezione descrive come abilitare il provisioning utente degli account utente di Active Directory in Concur.
+obiettivo di Hello di questa sezione è toooutline tooenable provisioning dell'utente di Active Directory come account di tooConcur.
 
-Per abilitare le app nel servizio Expense, è necessario configurare e usare in modo corretto un profilo di amministratore di servizi Web. Non aggiungere il ruolo di amministratore dei servizi Web al profilo amministratore esistente usato per le funzioni amministrative di T&E.
+App tooenable in hello servizio Expense, è toobe corretta configurazione e l'utilizzo di un profilo di amministratore del servizio Web. Non aggiungere hello amministratore ruolo tooyour profilo amministratore esistente utilizzato per le funzioni amministrative di T & E.
 
-I consulenti Concur o l'amministratore client devono creare un diverso profilo di amministratore dei servizi Web e l'amministratore client deve usare tale profilo per le funzioni di amministratore dei servizi Web, ad esempio per abilitare le app. Questi profili devono essere mantenuti separati dal profilo di amministratore T&E giornaliero dell'amministratore del client. Questo significa che al profilo di amministratore T&E non deve essere assegnato il ruolo di amministratore dei servizi Web.
+I consulenti concur o amministratore client hello è necessario creare un profilo di amministratore del servizio Web distinti e messaggio per l'amministratore Client debba usare questo profilo per le funzioni hello amministratore dei servizi Web (ad esempio, l'abilitazione di App). Questi profili devono essere mantenuti separati dal profilo amministratore T & E giornaliero dell'amministratore di hello client (hello T & profilo di amministratore E non deve hello assegnato il ruolo).
 
-Quando si crea il profilo da usare per abilitare l'app, immettere il nome dell'amministratore client nei campi del profilo utente per assegnare la proprietà al profilo. Ciò consente di assegnare la proprietà al profilo. Dopo la creazione di uno o più profili, il client dovrà accedere con questo profilo per poter fare clic sul pulsante "*Abilita*" relativo a un'app dei partner nel menu Servizi web.
+Quando si crea hello profilo toobe utilizzato per l'abilitazione di app hello, immettere il nome dell'amministratore di hello client nei campi di profilo utente hello. Ciò consente di assegnare il profilo toohello proprietà. Dopo aver creato uno o più profili, i client di hello dovrà accedere con questo hello tooclick profilo "*abilitare*" pulsante per un'App Partner nel menu Web Services hello.
 
-Per i seguenti motivi è consigliabile non eseguire questa operazione con il profilo usato per la normale amministrazione T&E.
+Per i seguenti motivi di hello, questa azione non deve essere eseguita con il profilo di hello usato per la normale amministrazione T & E.
 
-* Il client deve essere quello che fa clic su "*Sì*" nella finestra di dialogo visualizzata dopo l'abilitazione di un'app. Tale operazione conferma che il client consente all'applicazione del partner di accedere ai dati, di conseguenza non può essere l'utente o il partner a fare clic sul pulsante Yes.
+* Hello client ha toobe hello che fa clic su "*Sì*" nella finestra di dialogo hello visualizzata dopo l'abilitazione di un'app. Fare clic su Invia un acknowledgement client hello viene disposto per hello Partner applicazione tooaccess i propri dati, pertanto si o hello Partner non è possibile fare clic su che pulsante Sì.
 
-* Se un amministratore client che ha abilitato un'app con il profilo di amministratore T&E lascia la società e il relativo profilo viene disattivato, tutte le app abilitate tramite tale profilo non funzioneranno finché l'app non viene abilitata con un altro profilo di amministratore di servizi Web attivo. È per questo motivo che è richiesta la creazione di profili distinti per l'amministratore di servizi Web.
+* Se un amministratore client che ha abilitato un'app usando hello T & profilo di amministratore E lascia la società hello (risultante nel profilo hello viene disattivato), tutte le app abilitate tramite tale profilo non funzionare fino a quando l'applicazione hello è abilitata con un altro amministratore active profilo. È per questo motivo che si suppone toocreate distinct amministratore profili.
 
-* Se un amministratore lascia la società, se necessario è possibile modificare il nome associato al profilo dell'amministratore di servizi Web impostandolo su quello di sostituzione senza alcun impatto sull'app abilitata perché non è necessario disattivare tale profilo.
+* Se un amministratore lascia la società hello, profilo di amministratore può essere amministratore di sostituzione toohello modificato se si desidera senza conseguenze hello abilitato app perché tale profilo non è necessario disattivata toohello hello associata.
 
-**Per configurare il provisioning utenti, seguire questa procedura:**
+**tooconfigure provisioning degli utenti, eseguire hello alla procedura seguente:**
 
-1. Accedere al tenant di **Concur**.
+1. Accesso tooyour **Concur** tenant.
 
-2. Nel menu **Administration** (Amministrazione) selezionare **Web Services** (Servizi Web).
+2. Da hello **amministrazione** dal menu **servizi Web**.
    
     ![Tenant Concur](./media/active-directory-saas-concur-provisioning-tutorial/IC721729.png "Tenant Concur")
 
-3. Sul lato sinistro nel riquadro **Web Services** (Servizi Web) selezionare **Enable Partner Application** (Abilita applicazione partner).
+3. Sul lato sinistro, da hello hello **servizi Web** riquadro, selezionare **Abilita applicazione Partner**.
    
     ![Enable Partner Application](./media/active-directory-saas-concur-provisioning-tutorial/ic721730.png "Enable Partner Application")
 
-4. Dall'elenco **Enable Application** (Abilita applicazione) selezionare **Azure Active Directory**, quindi fare clic su **Enable** (Abilita).
+4. Da hello **Abilita applicazione** elenco, selezionare **Azure Active Directory**, quindi fare clic su **abilitare**.
    
     ![Microsoft Azure Active Directory](./media/active-directory-saas-concur-provisioning-tutorial/ic721731.png "Microsoft Azure Active Directory")
 
-5. Fare clic su **Yes** (Sì) per chiudere la finestra di dialogo **Confirm Action** (Conferma operazione).
+5. Fare clic su **Sì** tooclose hello **conferma azione** finestra di dialogo.
    
     ![Confirm Action](./media/active-directory-saas-concur-provisioning-tutorial/ic721732.png "Confirm Action")
 
-6. Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
+6. In hello [portale di Azure](https://portal.azure.com), Sfoglia toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
 
-7. Se si è già configurato Concur per l'accesso Single Sign-On, cercare l'istanza di Concur usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **Concur** nella raccolta di applicazioni. Selezionare Concur nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
+7. Se è già stato configurato Concur per single sign-on, eseguire la ricerca per l'istanza di Concur utilizzando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **Concur** nella raccolta di applicazione hello. Selezionare Concur dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
 
-8. Selezionare l'istanza di Concur e quindi la scheda **Provisioning**.
+8. Selezionare l'istanza di Concur, quindi selezionare hello **Provisioning** scheda.
 
-9. Impostare **Modalità di provisioning** su **Automatico**. 
+9. Set hello **modalità di Provisioning** troppo**automatica**. 
  
     ![provisioning](./media/active-directory-saas-concur-provisioning-tutorial/provisioning.png)
 
-10. Nella sezione **Credenziali amministratore** immettere il **nome utente** e la **password** dell'amministratore di Concur.
+10. In hello **credenziali di amministratore** immettere hello **nome utente** hello e **password** dell'amministratore di Concur.
 
-11. Nel portale di Azure fare clic su **Connessione di test** per verificare che Azure AD possa connettersi all'app Concur. Se la connessione non riesce, verificare che l'account Concur disponga di autorizzazioni di amministratore di team.
+11. Nel portale di Azure hello, fare clic su **Test connessione** tooensure Azure AD può connettersi tooyour Concur app. Se hello connessione non riesce, verificare che l'account di Concur disponga delle autorizzazioni di amministratore di Team.
 
-12. Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo.
+12. Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e casella di controllo hello.
 
 13. Fare clic su **Salva**.
 
-14. Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to Concur** (Sincronizza utenti di Azure Active Directory in Concur).
+14. Nella sezione mapping hello, selezionare **tooConcur sincronizzare Active Directory gli utenti di Azure.**
 
-15. Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a Concur. Gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in Concur per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
+15. In hello **mapping degli attributi** sezione, esaminare gli attributi utente hello che vengono sincronizzati da tooConcur di Azure AD. gli attributi selezionati come Hello **corrispondenza** proprietà sono utilizzate toomatch hello account utente in Concur per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
 
-16. Per abilitare il servizio di provisioning di Azure AD per Concur, impostare lo **Stato del provisioning** su **Sì** nella sezione **Impostazioni**
+16. tooenable hello servizio provisioning di Azure AD per Concur, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
 
 17. Fare clic su **Salva**.
 
-È ora possibile creare un account di test. Attendere 20 minuti per verificare che l'account sia stato sincronizzato con Concur.
+È ora possibile creare un account di test. Attendere che i minuti too20 tooverify che hello account è stato sincronizzato tooConcur.
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 

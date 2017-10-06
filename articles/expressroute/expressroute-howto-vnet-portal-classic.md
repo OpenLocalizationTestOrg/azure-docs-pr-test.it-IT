@@ -1,6 +1,6 @@
 ---
-title: Configurare una rete virtuale e un gateway per ExpressRoute nel portale classico | Documentazione Microsoft
-description: Questo articolo illustra come configurare una rete virtuale per ExpressRoute usando il modello di distribuzione classica e il portale classico.
+title: aaaConfigure una rete virtuale e il Gateway per ExpressRoute nel portale classico di hello | Documenti Microsoft
+description: Questo articolo viene illustrato come configurare una rete virtuale per ExpressRoute tramite il modello di distribuzione classica hello e portale classico hello.
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -15,64 +15,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/20/2016
 ms.author: cherylmc
-ms.openlocfilehash: f62254b2a7df50aa55a2a49009702848a9aecebd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd1f6c5e85dbb3ad0a53ecd81c13b4d3f5c06e66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-virtual-network-for-expressroute-in-the-classic-portal"></a>Creare una rete virtuale per ExpressRoute nel portale classico
-La procedura disponibile in questo articolo illustra come configurare una rete virtuale e un gateway di rete virtuale da usare con ExpressRoute mediante il modello di distribuzione classica e il portale classico.
+# <a name="create-a-virtual-network-for-expressroute-in-hello-classic-portal"></a>Creare una rete virtuale per ExpressRoute nel portale classico hello
+passaggi di Hello in questo articolo verranno consentono di configurare una rete virtuale e un gateway di rete virtuale per l'uso con ExpressRoute utilizzando il modello di distribuzione classica hello e portale classico hello.
 
-Se sono necessarie istruzioni per il modello di distribuzione di Resource Manager, è possibile vedere gli articoli seguenti: [Creare una rete virtuale usando PowerShell](../virtual-network/virtual-networks-create-vnet-arm-ps.md) e [Aggiungere un gateway VPN a una VNet di Resource Manager per ExpressRoute](expressroute-howto-add-gateway-resource-manager.md).
+Se si desidera utilizzare le istruzioni per modello di distribuzione di gestione risorse di hello, è possibile utilizzare i seguenti articoli hello: [creare una rete virtuale mediante PowerShell](../virtual-network/virtual-networks-create-vnet-arm-ps.md) e [aggiungere tooa un Gateway VPN VNet Gestione risorse per ExpressRoute](expressroute-howto-add-gateway-resource-manager.md).
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
-**Informazioni sui modelli di distribuzione di AzureAbout Azure deployment models**
+**Informazioni sui modelli di distribuzione di Azure**
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="create-a-classic-vnet-and-gateway"></a>Creare una rete virtuale classica e un gateway
-La procedura seguente consente di creare una rete virtuale classica e un gateway di rete virtuale. Se è già disponibile una rete virtuale classica, vedere la sezione [Configurare una rete virtuale classica esistente](#config) in questo articolo.
+Hello seguenti passaggi necessari per creare una rete virtuale classica e un gateway di rete virtuale. Se si dispone già di una rete virtuale classica, vedere hello [configurare una rete virtuale classica esistente](#config) sezione in questo articolo.
 
-1. Accedere al [portale di Azure classico](http://manage.windowsazure.com).
-2. Nell'angolo inferiore sinistro della schermata fare clic su **New**. Nel riquadro di spostamento fare clic su **Servizi di rete** e quindi su **Rete virtuale**. Fare clic su **Creazione personalizzata** per avviare la configurazione guidata.
-3. Nella pagina **Dettagli della rete virtuale** immettere quanto segue:
+1. Accedi toohello [portale di Azure classico](http://manage.windowsazure.com).
+2. Hello angolo in basso a sinistra della schermata ciao, fare clic su **New**. Nel riquadro di spostamento hello, fare clic su **servizi di rete**, quindi fare clic su **rete virtuale**. Fare clic su **creazione personalizzata** configurazione guidata di toobegin hello.
+3. In hello **dettagli rete virtuale** pagina, immettere hello seguenti:
    
-   * **Nome** : assegnare un nome alla rete virtuale. Questo nome della rete virtuale viene usato quando si distribuiscono le macchine virtuali e le istanze PaaS e pertanto è consigliabile non specificare un nome troppo complicato.
-   * **Località** : la località è direttamente correlata alla posizione fisica (regione) in cui si desidera che risiedano le risorse (macchine virtuali). Ad esempio, se si desidera che le macchine virtuali distribuite nella rete virtuale vengano posizionate fisicamente in Stati Uniti occidentali, selezionare tale posizione. È possibile modificare l’area associata alla rete virtuale dopo averla creata.
-4. Nella pagina **DNS Servers and VPN Connectivity** immettere le informazioni seguenti e quindi fare clic sulla freccia Next in basso a destra. 
+   * **Nome** : assegnare un nome alla rete virtuale. Quando si distribuiscono le macchine virtuali e istanze PaaS, pertanto è consigliabile non nome hello toomake troppo complicato, si utilizzerà il nome di rete virtuale.
+   * **Percorso** : hello località è direttamente correlata toohello fisica (regione) in cui si desidera tooreside le risorse (macchine virtuali). Ad esempio, se si desidera hello macchine virtuali distribuite toothis toobe di rete virtuale che si trova fisicamente negli Stati Uniti orientali, selezionare tale posizione. È possibile modificare l'area di hello associata con la rete virtuale dopo averla creata.
+4. In hello **server DNS e connettività VPN** pagina, immettere le seguenti informazioni hello e quindi fare clic sulla freccia avanti hello in basso a destra hello. 
    
-   * **Server DNS** : immettere il nome del server DNS e l'indirizzo IP o selezionare un server DNS registrato in precedenza dal menu di scelta rapida. Questa impostazione non comporta la creazione di un server DNS. Consente di specificare i server DNS da usare per la risoluzione dei nomi per la rete virtuale.
-   * **Connettività da sito a sito**: selezionare la casella di controllo **Configura una VPN Site-to-Site**.
-   * **ExpressRoute**: selezionare la casella di controllo **Usa ExpressRoute**. Questa opzione viene visualizzata solo se è stata selezionata **Configura una VPN Site-To-Site**.
-   * **Rete locale** : è necessario avere un sito di rete locale per ExpressRoute. Tuttavia, nel caso di una connessione ExpressRoute, i prefissi degli indirizzi specificati per il sito di rete locale verranno ignorati. Per il routing verranno invece usati i prefissi degli indirizzi annunciati a Microsoft attraverso il circuito ExpressRoute.<BR>Se è già disponibile una rete locale creata per la connessione ExpressRoute, è possibile selezionarla dall'elenco a discesa. In caso contrario, selezionare **Specificare una nuova rete locale**.
-5. Se nel passaggio precedente si è scelto di specificare una nuova rete locale, viene visualizzata la pagina **Connettività da sito a sito** . Per configurare la rete locale, immettere le informazioni seguenti e quindi fare clic sulla freccia avanti. 
+   * **I server DNS** - immettere nome hello del server DNS e indirizzo IP o selezionare un server DNS registrato in precedenza dal menu di scelta rapida hello. Questa impostazione non comporta la creazione di un server DNS. Consente i server DNS di hello toospecify che si vuole toouse per la risoluzione dei nomi per la rete virtuale.
+   * **Connettività Site-to-Site** : selezionare questa opzione hello casella di controllo per **configurare una VPN site-to-site**.
+   * **ExpressRoute** : selezionare la casella di controllo di hello **Usa ExpressRoute**. Questa opzione viene visualizzata solo se è stata selezionata **Configura una VPN Site-To-Site**.
+   * **Rete locale** -si è toohave richiesto un sito di rete locale per ExpressRoute. Tuttavia, nel caso di hello di una connessione ExpressRoute, i prefissi di indirizzo hello specificato per hello locale sito di rete verrà ignorato. Al contrario, i prefissi di indirizzo hello annunciati tooMicrosoft tramite hello circuito ExpressRoute verrà utilizzato a scopo di routing.<BR>Se si dispone già di una rete locale creata per la connessione ExpressRoute, è possibile selezionarlo dall'elenco a discesa hello. In caso contrario, selezionare **Specificare una nuova rete locale**.
+5. Hello **connettività Site-to-Site** verrà visualizzata la pagina se è stata selezionata nel passaggio precedente hello toospecify una nuova rete locale. tooconfigure la rete locale, immettere le seguenti informazioni hello e quindi fare clic sulla freccia avanti hello. 
    
-   * **Nome** : nome da assegnare al sito di rete locale.
-   * **Spazio di indirizzi** : inclusi IP iniziale e CIDR (conteggio indirizzi). È possibile specificare qualsiasi intervallo di indirizzi, purché non si sovrapponga all'intervallo di indirizzi della rete virtuale. In genere, vengono specificati gli intervalli di indirizzi per le reti locali, ma nel caso di ExpressRoute queste impostazioni non vengono usate. Tuttavia, questa impostazione è necessaria per creare la rete locale quando si usa il portale classico.
+   * **Nome** -nome hello da toocall locale del sito di rete (locale).
+   * **Spazio di indirizzi** : inclusi IP iniziale e CIDR (conteggio indirizzi). È possibile specificare qualsiasi intervallo di indirizzi, purché non si sovrappongono all'intervallo di indirizzi di hello per la rete virtuale. In genere, si specificherà intervalli di indirizzi hello per le reti locali, ma nel caso di hello di ExpressRoute, queste impostazioni non vengono utilizzate. Tuttavia, questa impostazione è necessaria nella rete locale di ordini toocreate hello quando si usa il portale classico di hello.
    * **Aggiungi spazio di indirizzi** : questa impostazione non è rilevante per ExpressRoute.
-6. Nella pagina **Virtual Network Address Spaces** immettere le informazioni seguenti e quindi fare clic sul segno di spunta in basso a destra per configurare la rete. 
+6. In hello **spazi degli indirizzi di rete virtuale** immettere hello le seguenti informazioni e quindi fare clic su hello segno di spunta tooconfigure destro inferiore hello della rete. 
    
-   * **Spazio di indirizzi** : inclusi IP iniziale e conteggio indirizzi. Verificare che gli spazi di indirizzi specificati non si sovrappongano agli spazi di indirizzi presenti nella rete locale.
+   * **Spazio di indirizzi** : inclusi IP iniziale e conteggio indirizzi. Verificare che gli spazi degli indirizzi hello specificato non si sovrappongano agli hello gli spazi degli indirizzi presenti nella rete locale.
    * **Aggiungi subnet** inclusi IP iniziale e conteggio indirizzi. Non sono necessarie altre subnet.
-   * **Aggiungi subnet gateway** : fare clic per aggiungere la subnet del gateway. La subnet del gateway viene usata solo per il gateway di rete virtuale ed è obbligatoria per questa configurazione.<BR>Il CIDR, o conteggio indirizzi, della subnet del gateway per ExpressRoute deve essere /28 o superiore (/ 27/26 e così via). In questo modo nella subnet diventano disponibili indirizzi IP sufficienti per consentire il funzionamento della configurazione. Se nel portale classico è stata selezionata la casella di controllo per l'uso di ExpressRoute, viene specificata automaticamente una subnet del gateway con /28.  Non è possibile modificare il conteggio di indirizzi CIDR nel portale classico. La subnet del gateway verrà visualizzata come **Gateway** nel portale classico, anche se il vero nome della subnet del gateway creato è in effetti **GatewaySubnet**. È possibile visualizzare il nome tramite PowerShell o nel portale di Azure.
-7. Fare clic sul segno di spunta nella parte inferiore della pagina per iniziare a creare la rete virtuale. Al termine, nella pagina **Reti** del portale classico verrà visualizzato **Creato** in **Stato**.
+   * **Aggiungi subnet gateway** -fare clic su subnet del gateway tooadd hello. subnet del gateway Hello viene utilizzato solo per il gateway di rete virtuale hello sia necessaria per questa configurazione.<BR>Hello CIDR (conteggio indirizzi) subnet del gateway per ExpressRoute deve essere/28 o superiore (/ 27/26 ecc.). Questo consente un numero sufficiente di indirizzi IP in tale configurazione toowork di subnet tooallow hello. Nel portale classico hello, se è stata selezionata la casella di controllo di hello toouse ExpressRoute, portale hello specifica una subnet del gateway con /28.  Conteggio di indirizzi CIDR hello nel portale classico hello non è possibile modificare. subnet del gateway Hello verrà visualizzato come **Gateway** nel portale classico hello, sebbene hello nome reale di subnet del gateway hello creato è effettivamente **GatewaySubnet**. È possibile visualizzare questo nome mediante PowerShell o nel portale di Azure hello.
+7. Fare clic su hello segno di spunta nella parte inferiore di hello della pagina hello e la rete virtuale verrà avviata toocreate. Al termine, verrà visualizzato **creato** sotto **stato** su hello **reti** pagina nel portale classico hello.
 
-## <a name="gw"></a>Creare il gateway
-1. Nella pagina **Reti** fare clic sulla rete virtuale appena creata e quindi su **Dashboard** nella parte superiore della pagina.
-2. Nella parte inferiore della pagina **Dashboard** fare clic su **Crea gateway** e selezionare **Routing dinamico**. Fare clic su **Sì** per confermare che si vuole creare un gateway.
-3. All'avvio della creazione del gateway, verrà visualizzato un messaggio che indica che la procedura è stata avviata. La creazione del gateway può richiedere fino a 45 minuti.
-4. Collegare la rete al circuito. Seguire le istruzioni riportate nell'articolo [Come collegare reti virtuali a circuiti ExpressRoute](expressroute-howto-linkvnet-classic.md).
+## <a name="gw"></a>Creare il gateway hello
+1. In hello **reti** pagina, fare clic su rete virtuale hello appena creato, quindi fare clic su **Dashboard** nella parte superiore di hello della pagina hello.
+2. Nella parte inferiore di hello di hello **Dashboard** pagina, fare clic su **crea Gateway** e selezionare **Routing dinamico**. Fare clic su **Sì** tooconfirm che si desidera toocreate un gateway.
+3. Quando si inizia a creare il gateway di hello, verrà visualizzato un messaggio che informa che gateway hello è stata avviata. Potrebbe richiedere fino a too45 minuti per toocreate gateway hello.
+4. Collegamento del circuito tooa di rete. Seguire le istruzioni hello articolo hello [come toolink reti virtuali tooExpressRoute circuiti](expressroute-howto-linkvnet-classic.md).
 
 ## <a name="config"></a>Configurare una rete virtuale classica esistente per ExpressRoute
-Se è già disponibile una rete virtuale classica, è possibile configurarne la connessione a ExpressRoute nel portale classico. Le impostazioni sono le stesse usate nelle sezioni precedenti, quindi vedere quelle sezioni per acquisire familiarità con le impostazioni necessarie. Se si vuole creare una connessione coesistente ExpressRoute/Da sito a sito, vedere la procedura in [questo articolo](expressroute-howto-coexist-classic.md) . I passaggi sono diversi rispetto a questo articolo.
+Se si dispone già di una rete virtuale classica, è possibile configurarlo nel portale classico hello tooconnect tooExpressRoute. le impostazioni di Hello sono hello stesso come sezioni hello precedenti, in modo da leggere tali toobecome sezioni familiarità con hello le impostazioni obbligatorie. Se si desidera toocreate una connessione coesistenti ExpressRoute/Site-to-Site, vedere [questo articolo](expressroute-howto-coexist-classic.md) per i passaggi di hello. Sono diversi rispetto a hello i passaggi in questo articolo.
 
-1. È necessario creare la rete locale prima di aggiornare il resto delle impostazioni della rete virtuale. Per creare una nuova rete locale, necessaria quando si configura ExpressRoute dal portale classico, fare clic su **Nuovo** **>** **Servizi di rete** **>** **Rete virtuale** **>** **Aggiungi rete locale**. Seguire i passaggi della procedura guidata per creare la rete locale.
-2. Usare la pagina **Configura** per aggiornare il resto delle impostazioni per la rete virtuale e associare la rete virtuale alla rete locale.
-3. Dopo aver configurato le impostazioni, vedere la sezione [Creare il gateway](#gw) in questo articolo per completare l'operazione.
+1. Rete locale di toocreate hello è necessario prima di aggiornare altre hello impostazioni di rete virtuale. Fare clic su una nuova rete locale, è necessario quando si configura ExpressRoute tramite il portale classico di hello, toocreate **New**  **>**  **servizi di rete**  **>**  **Rete virtuale**  **>**  **rete locale aggiunta**. Seguire hello guidata passaggi toocreate hello locale di rete.
+2. Utilizzare **configura** pagina rest hello tooupdate delle impostazioni di hello per la rete virtuale e tooassociate hello rete virtuale toohello rete locale.
+3. Dopo avere configurato le impostazioni di hello, andare toohello [crea gateway hello](#gw) sezione del gateway di hello toocreate articolo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Se si vuole aggiungere macchine virtuali alla rete virtuale, vedere [Percorsi di apprendimento per le macchine virtuali](https://azure.microsoft.com/documentation/learning-paths/virtual-machines/).
-* Per altre informazioni su ExpressRoute, vedere [Panoramica tecnica relativa a ExpressRoute](expressroute-introduction.md).
+* Se si desidera una rete virtuale tooyour di tooadd macchine virtuali, vedere [macchine virtuali di percorsi di formazione](https://azure.microsoft.com/documentation/learning-paths/virtual-machines/).
+* Se si desidera toolearn informazioni su ExpressRoute, vedere hello [panoramica relativa a ExpressRoute](expressroute-introduction.md).
 

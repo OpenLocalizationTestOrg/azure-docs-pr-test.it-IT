@@ -1,6 +1,6 @@
 ---
-title: Imbuti di Azure Application Insights
-description: Informazioni su come usare gli imbuti per scoprire in che modo i clienti interagiscono con l'applicazione.
+title: aaaAzure Application Insights grafici a imbuto
+description: "Informazioni su come utilizzare grafici a imbuto toodiscover la modalità di interazione con l'applicazione ai clienti."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,32 +12,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: cfreeman
-ms.openlocfilehash: 85f47daaaff8967eb83c330bab839023f128b486
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a90cfd11cb193e303136504df44008ffd04a290
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-how-customers-are-using-your-application-with-the-application-insights-funnels"></a>Informazioni sulle modalità di utilizzo dell'applicazione da parte dei clienti attraverso gli imbuti di Application Insights
+# <a name="discover-how-customers-are-using-your-application-with-hello-application-insights-funnels"></a>Scoprire come i clienti con l'applicazione hello Application Insights grafici a imbuto
 
-Per un'azienda è di primaria importanza analizzare l'utilizzo del software da parte dei clienti. Se l'applicazione implica più fasi, è necessario sapere se la maggior parte dei clienti prosegue lungo l'intero processo o se lo termina in un determinato punto. L'avanzamento attraverso una serie di passaggi in un'applicazione Web è noto come "imbuto". È possibile usare gli imbuti di Application Insights per ottenere informazioni approfondite sugli utenti e per monitorare i tassi di conversione a ogni passaggio. 
+Analisi utilizzo software conoscenza è di business tooyour di fondamentale importanza hello. Se l'applicazione è costituita da più fasi, è necessario tooknow se la maggior parte dei clienti progrediscono intero processo hello o terminano processo hello in un determinato momento. avanzamento Hello attraverso una serie di passaggi in un'applicazione web è noto come "a imbuto". È possibile utilizzare hello Application Insights grafici a imbuto toogain approfondite gli utenti e i tassi di conversione dettagliate di monitoraggio. 
 
-## <a name="get-started-with-the-funnels-blade"></a>Introduzione al pannello Imbuti
-Il modo più semplice per imparare a usare gli imbuti consiste nel seguire un esempio. Le illustrazioni seguenti mostrano i passaggi che i proprietari di un'azienda di e-commerce devono seguire per scoprire in che modo i clienti interagiscono con l'applicazione Web dell'azienda.  
+## <a name="get-started-with-hello-funnels-blade"></a>Introduzione a pannello di grafici a imbuto hello
+toolearn modo più semplice di Hello sui grafici a imbuto è toowalk ma un esempio. Hello nelle figure seguenti illustrano i proprietari di hello passaggi di un'attività di commercio elettronico richiederebbe toolearn interagiscono tra i clienti con le applicazioni web.  
 
 ### <a name="create-your-funnel"></a>Creare il proprio imbuto
-Prima di creare il proprio imbuto, è necessario decidere a quale domanda si intende rispondere. Si potrebbe ad esempio voler scoprire quanti clienti tra quelli che visitano la home page del sito selezionano un annuncio. In questo esempio, i proprietari della società Fabrikam Fiber desiderano conoscere la percentuale di clienti che ha effettuato l'acquisto dopo avere aggiunto articoli al carrello acquisti nell'ultimo mese.
+Prima di creare il grafico a imbuto, è necessario toodecide sulla domanda hello desiderato tooanswer. Ad esempio, è necessario tooknow quanti clienti visualizzando l'home pagina, fare clic su un annuncio. In questo esempio, i proprietari di hello di hello aziendale di Fabrikam Fiber desidera percentuale hello tooknow dei clienti che effettuano un acquisto dopo l'aggiunta di elementi tootheir carrello degli acquisti durante l'ultimo mese hello.
 
-Ecco i passaggi per creare l'imbuto.
+Ecco i passaggi di hello hanno toocreate relativi a imbuto.
 
-1. Fare clic sul pulsante Nuovo nel pannello Imbuti.
-1. Selezionare l'intervallo di tempo "Ultimo mese" dal menu a discesa **Intervallo di tempo**. 
-1. Selezionare l'evento **Product page** (Pagina prodotto) dall'elenco a discesa **Step 1** (Passaggio 1). 
-1. Selezionare l'evento **Add to shopping cart** (Aggiungi al carrello acquisti) dall'elenco a discesa **Step 2** (Passaggio 2).
-1. Selezionare l'evento **Click purchase** (Clic su acquisto) dall'elenco a discesa **Step 3** (Passaggio 3).
-1. Aggiungere un nome per l'imbuto e fare clic su **Salva**.
+1. Fare clic hello pulsante nuovo nel Pannello di grafici a imbuto hello.
+1. Selezionare intervallo di tempo hello del "Ultimo mese" hello **intervallo di tempo** elenco a discesa. 
+1. Seleziona hello **pagina prodotto** evento da hello **passaggio 1** elenco a discesa. 
+1. Seleziona hello **Aggiungi tooshopping carrello** evento da hello **passaggio 2** elenco a discesa.
+1. Seleziona hello **fare clic su Acquista** evento da hello **passaggio 3** elenco a discesa.
+1. Aggiungere un grafico a imbuto toohello nome e fare clic su **salvare**.
 
-La figura seguente mostra i dati generati dal pannello Imbuti. Da qui i proprietari di Fabrikam possono vedere che, durante l'ultima settimana, il 22,7% dei clienti che hanno aggiunto un articolo al carrello acquisti ha completato l'acquisto. Possono inoltre vedere che l'1% dei clienti ha fatto clic su un annuncio prima di visitare la pagina del prodotto e che il 20% dei clienti si è disconnesso dopo avere completato l'acquisto.
+Hello figura seguente illustra il pannello di grafici a imbuto hello dati hello genera l'errore. Da qui hello proprietari di Fabrikam possono vedere durante la settimana scorsa hello, 22,7% dei clienti che ha aggiunto un elemento di tootheir market carrello acquisti hello completato. Possono inoltre verificare che % 1 di clienti hello scelto un annuncio prima di visitare la pagina di prodotto hello e 20% dei clienti effettuata la disconnessione dopo aver completato l'acquisto.
 
 
 ![Pannello Imbuti con dati](./media/app-insights-understand-usage-patterns/funnel1.png)

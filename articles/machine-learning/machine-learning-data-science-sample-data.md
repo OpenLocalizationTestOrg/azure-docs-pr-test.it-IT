@@ -1,6 +1,6 @@
 ---
-title: Campionare i dati in contenitori BLOB di Azure, SQL Server e nelle tabelle Hive | Documentazione Microsoft
-description: Come esplorare i dati archiviati in vari ambienti di Azure.
+title: dati aaaSample in Azure contenitori, SQL Server, blob e tabelle Hive | Documenti Microsoft
+description: "Modalità di archiviazione in vari enviromnents Azure tooexplore dati."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
-ms.openlocfilehash: 0683be564a88ef54882e8d882d196851ecac243d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5a5295b59fa02f91da680fc7495a92ca135e26c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="heading"></a>Campionare i dati in contenitori BLOB di Azure, SQL Server e nelle tabelle Hive
-Questo documento include collegamenti ad argomenti che trattano come campionare i dati archiviati in uno fra tre diversi percorsi di Azure:
+Questo documento collega tootopics che illustra come toosample i dati archiviati in uno dei tre percorsi diversi di Azure:
 
 * **I dati del contenitore BLOB di Azure** vengono campionati scaricandoli a livello di programmazione ed eseguendo il successivo campionamento usando un codice Python di esempio.
-* **Dati di SQL Server** vengono campionati utilizzando sia il linguaggio di programmazione Python che SQL. 
+* **Dati di SQL Server** campionato utilizzando il linguaggio di programmazione Python hello e SQL. 
 * **Dati della tabella hive** vengono campionati utilizzando le query Hive.
 
-Il **menu** seguente contiene collegamenti ad argomenti che descrivono come campionare i dati da ognuno di questi ambienti di archiviazione di Azure. 
+esempio Hello **menu** collegamenti toohello argomenti che descrivono come dati toosample da ognuno di questi ambienti di archiviazione di Azure. 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
-Questo campionamento è un passaggio del [Processo di analisi scientifica dei dati per i team (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Questa attività di campionamento è un passaggio di hello [Team Data Science processo (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
 **Perché campionare i dati?**
 
-Se il set di dati da analizzare è grande, è in genere opportuno sottocampionare i dati per ridurlo e ottenere dimensioni inferiori più facilmente gestibili ma comunque rappresentative. Questa operazione facilita la comprensione e l'esplorazione dei dati, nonché la progettazione di funzionalità. Il suo ruolo nel Cortana Analytics Process consiste nell'abilitare la creazione relativa a prototipi di funzioni di elaborazione dei dati e di modelli per l'apprendimento automatico.
+Se si prevede di tooanalyze set di dati hello è grande, è in genere un tooreduce di dati di buona toodown esempio hello è tooa più piccolo ma rappresentativo e gestibile dimensioni. Questa operazione facilita la comprensione e l'esplorazione dei dati, nonché la progettazione di funzionalità. Il relativo ruolo nel processo di Cortana Analitica hello è tooenable rapida la creazione di prototipi di funzioni di elaborazione dei dati hello e modelli di machine learning.
 

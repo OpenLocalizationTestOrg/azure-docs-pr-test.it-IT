@@ -1,5 +1,5 @@
 ---
-title: Informazioni su come inviare notifiche pianificate | Microsoft Docs
+title: aaaHow toosend pianificata notifiche | Documenti Microsoft
 description: Questo argomento descrive l'uso di notifiche pianificate con Hub di notifica.
 services: notification-hubs
 documentationcenter: .net
@@ -15,17 +15,17 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: efac6e1ecc00359f1622d380333140bc055c83e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b3ba715dad6f5d824a615e83f2863b0db47b533
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-to-send-scheduled-notifications"></a>Procedura: Inviare le notifiche pianificate
 ## <a name="overview"></a>Panoramica
-Si consideri uno scenario in cui si desidera inviare una notifica in un certo momento in futuro, ma non si dispone di una soluzione semplice per riattivare il codice di back-end per l'invio della notifica. Il livello Standard Hub di notifica supporta una funzionalità che consente di pianificare le notifiche fino a 7 giorni prima dell'invio.
+Se si dispone di uno scenario in cui si desidera una notifica a un certo punto in hello toosend futuri, ma non è un modo semplice di toowake notifiche di hello toosend il codice di back-end di. Livello standard hub di notifica supporta una funzionalità che consente di notifiche tooschedule dei giorni too7 hello future.
 
-Per l'invio di una notifica è sufficiente usare la classe [ScheduledNotification](https://msdn.microsoft.com/library/microsoft.azure.notificationhubs.schedulednotification.aspx) classe nell'SDK di Hub di notifica, come illustrato nell'esempio seguente:
+Quando si invia una notifica, è sufficiente usare hello [ScheduledNotification](https://msdn.microsoft.com/library/microsoft.azure.notificationhubs.schedulednotification.aspx) classe hello SDK hub di notifica, come illustrato nell'esempio seguente hello:
 
     Notification notification = new AppleNotification("{\"aps\":{\"alert\":\"Happy birthday!\"}}");
     var scheduled = await hub.ScheduleNotificationAsync(notification, new DateTime(2014, 7, 19, 0, 0, 0));
@@ -34,5 +34,5 @@ Per l'invio di una notifica è sufficiente usare la classe [ScheduledNotificatio
 
     await hub.CancelNotificationAsync(scheduled.ScheduledNotificationId);
 
-Non sono previsti limiti al numero di notifiche pianificate che è possibile inviare.
+Non sono previsti limiti al numero di hello di notifiche pianificate che è possibile inviare.
 

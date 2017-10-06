@@ -1,5 +1,5 @@
 ---
-title: Gruppi dedicati in Azure Active Directory | Documentazione Microsoft
+title: aaaDedicated gruppi in Azure Active Directory | Documenti Microsoft
 description: Panoramica del funzionamento dei gruppi dedicati in Azure Active Directory e della loro creazione.
 services: active-directory
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: curtand
-ms.openlocfilehash: d9decd5de6a5bafc525edc5b04c82701185088ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8feec6e1a4e6b384470392d3043caeeec2b03dd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dedicated-groups-in-azure-active-directory"></a>Gruppi dedicati in Azure Active Directory
-In Azure Active Directory (Azure AD), la funzionalità gruppi dedicati crea e popola automaticamente l'appartenenza per gruppi di Azure AD predefiniti. Non è possibile aggiungere o rimuovere membri nei gruppi dedicati tramite il portale di Azure classico, i cmdlet di Windows PowerShell oppure a livello di codice.
+In Azure Active Directory (Azure AD), funzionalità di gruppi dedicati hello creati e popolati automaticamente l'appartenenza a gruppi di Azure Active Directory predefinito. Non è possibile aggiungere i membri di gruppi dedicati o rimosso utilizzando hello Azure classico portale, cmdlet di Windows PowerShell, o a livello di codice.
 
 > [!NOTE]
 > I gruppi dedicati richiedono che venga assegnata una licenza Azure AD Premium a:
 >
-> * l'amministratore che gestisce la regola in un gruppo
-> * tutti gli utenti che vengono selezionati in base alla regola come membro del gruppo
+> * messaggio per l'amministratore che gestisce la regola hello in un gruppo
+> * tutti gli utenti che sono selezionati per hello regola toobe un membro del gruppo di hello
 >
 >
 
-**Per abilitare i gruppi dedicati**
+**gruppi tooenable dedicato**
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**e aprire la directory dell'organizzazione.
-2. Selezionare la scheda **Gruppi** e aprire il gruppo da modificare.
-3. Selezionare la scheda **Configura** e impostare **Abilita gruppi dedicati** su **Sì**.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com)selezionare **Active Directory**e quindi aprire la directory dell'organizzazione.
+2. Seleziona hello **gruppi** scheda e quindi aprire hello gruppo tooedit.
+3. Seleziona hello **configura** scheda e quindi impostare **Abilita gruppi dedicati** troppo**Sì**.
 
-Dopo aver impostato l'opzione Abilita gruppi dedicati su **Sì**, è anche possibile consentire alla directory di creare automaticamente il gruppo dedicato Tutti gli utenti impostando l'opzione **Abilita il gruppo "Tutti gli utenti"** su **Sì**. È quindi possibile modificare il nome di questo gruppo dedicato digitando il nuovo nome nel campo **Nome visualizzato per il gruppo “Tutti gli utenti”** .
+Dopo aver impostato troppo hello abilitazione dei gruppi dedicati passare**Sì**, è possibile abilitare hello directory tooautomatically creare gruppo dedicato di hello tutti gli utenti dall'impostazione hello **"tutti gli utenti" gruppo** opzione troppo**Sì**. Quindi è possibile inoltre modificare il nome di hello di questo gruppo dedicato digitandolo nel hello **nome visualizzato per "All Users" gruppo** campo.
 
-Il gruppo Tutti gli utenti può essere usato per assegnare le stesse autorizzazioni a tutti gli utenti in una directory. Ad esempio, è possibile consentire a tutti gli utenti di una directory di accedere a un'applicazione SaaS tramite l'assegnazione dell'accesso a tale applicazione al gruppo dedicato Tutti gli utenti.
+è possibile utilizzare il gruppo di tutti gli utenti Hello tooassign hello stesso autorizzazioni tooall hello utenti della directory. Ad esempio, è possibile concedere tutti gli utenti in tooa di accesso la directory applicazione SaaS per l'assegnazione dell'accesso per tutti gli utenti gruppo dedicato toothis applicazione hello.
 
-Il gruppo Tutti gli utenti include tutti gli utenti della directory, compresi gli utenti guest e gli utenti esterni. Se è necessario un gruppo che esclude gli utenti esterni, è possibile creare un gruppo con una regola dinamica basata su attributi come la seguente:
+gruppo di tutti gli utenti Hello dedicato include tutti gli utenti nella directory di hello, inclusi i guest e gli utenti esterni. Se è necessario un gruppo che consente di escludere gli utenti esterni, quindi questo scopo, è possibile la creazione di un gruppo con una regola dinamica basato su attributi quali seguenti hello:
 
                 (user.userPrincipalName -notContains "#EXT#@")
 
-Per un gruppo che esclude tutti gli utenti guest, usare una regola come la seguente:
+Per un gruppo che esclude tutti i guest, usare una regola, come illustrato di seguito hello:
 
                 (user.userType -ne "Guest")
 
-Per informazioni su come creare regole *avanzate* (ovvero regole che possono contenere più confronti) per l'appartenenza dinamica ai gruppi, vedere [Uso di attributi per la creazione di regole avanzate](active-directory-accessmanagement-groups-with-advanced-rules.md).
+toolearn sulla toocreate *avanzate* regole, che può contenere più confronti, per l'appartenenza dinamica ai gruppi, vedere [utilizzando attributi toocreate regole avanzate](active-directory-accessmanagement-groups-with-advanced-rules.md).
 
 ### <a name="next-steps"></a>Passaggi successivi
 Questi articoli forniscono informazioni aggiuntive su Azure Active Directory.
 
-* [Gestione dell'accesso alle risorse tramite i gruppi di Azure Active Directory](active-directory-manage-groups.md)
+* [Gestione di accesso tooresources con gruppi di Azure Active Directory](active-directory-manage-groups.md)
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
 * [Informazioni su Azure Active Directory](active-directory-whatis.md)
 * [Integrazione delle identità locali con Azure Active Directory](active-directory-aadconnect.md)

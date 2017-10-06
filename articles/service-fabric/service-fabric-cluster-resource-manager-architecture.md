@@ -1,5 +1,5 @@
 ---
-title: Architettura di Resource Manager | Microsoft Docs
+title: Architettura di gestione aaaResource | Documenti Microsoft
 description: An architectural overview of Service Fabric Cluster Resource Manager.
 services: service-fabric
 documentationcenter: .net
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 565c20637fa93ed92bb6c52e585a4b70bdeb6f8c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9ea80273d0566a2ac25143ada3662875656b57b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cluster-resource-manager-architecture-overview"></a>Panoramica dell'architettura di Cluster Resource Manager
-Il Cluster Resource Manager di Service Fabric è un servizio centrale in esecuzione nel cluster. Gestisce lo stato desiderato dei servizi del cluster, in particolare in relazione all'uso delle risorse e alle regole di selezione. 
+Hello gestione delle risorse Cluster di Service Fabric è un servizio centrale in esecuzione in cluster hello. Gestisce lo stato desiderato di hello dei servizi di hello cluster hello, in particolare con riguardo tooresource consumo e tutte le regole di selezione host. 
 
-Per gestire le risorse del cluster, Cluster Resource Manager di Service Fabric deve disporre di varie informazioni:
+toomanage risorse hello del cluster, è necessario disporre di varie informazioni hello servizio di gestione delle risorse Cluster dell'infrastruttura:
 
 - I servizi esistenti attualmente
 - Ogni uso della risorsa della corrente del servizio (o per impostazione predefinito) 
-- La capacità residua del cluster 
-- La capacità dei nodi del cluster 
-- La quantità di risorse usate in ogni nodo
+- capacità del cluster rimanenti Hello 
+- capacità di Hello di nodi hello hello cluster 
+- quantità di Hello di risorse utilizzate in ogni nodo
 
-L'uso di risorse di un determinato servizio può cambiare nel tempo; i servizi sono in genere interessati da più di un tipo di risorse. Potrebbero essere misurate risorse reali e fisiche tra diversi servizi. I servizi possono tracciare metriche fisiche come il consumo di memoria e del disco. Più comunemente, i servizi potrebbero occuparsi anche di metriche logiche, ad esempio "WorkQueueDepth" o "TotalRequests". Nello stesso cluster, è possibile usare le metriche logiche e fisiche. Le metriche possono essere condivise tra molti servizi o essere specifiche per un determinato servizio.
+utilizzo delle risorse di un determinato servizio Hello può cambiare nel tempo e servizi in genere si preoccupa più di un tipo di risorsa. Potrebbero essere misurate risorse reali e fisiche tra diversi servizi. I servizi possono tracciare metriche fisiche come il consumo di memoria e del disco. Più comunemente, i servizi potrebbero occuparsi anche di metriche logiche, ad esempio "WorkQueueDepth" o "TotalRequests". Metriche logiche e fisiche possono essere usate in hello dello stesso cluster. Metriche possono essere condivisi tra molti servizi o essere tooa specifico particolare servizio.
 
 ## <a name="other-considerations"></a>Altre considerazioni
-I proprietari e gli operatori del cluster possono essere diversi dagli autori del servizio e dell'applicazione, anche solo ufficialmente. Quando si sviluppa l'applicazione si conoscono alcuni aspetti riguardanti cosa è necessario. Si dispone di una stima delle risorse che verranno usate e come devono essere distribuiti servizi diversi. Ad esempio, il livello del web deve essere eseguito nei nodi esposti a Internet, mentre per i servizi di database non è necessario. Come esempio aggiuntivo, i servizi web sono probabilmente limitati dalla CPU e dalla rete, mentre la cura di servizi del livello dei dati si occupa maggiormente del consumo della memoria e del disco. Tuttavia, la persona che gestisce un evento imprevisto in un sito per quel servizio in produzione, o che gestisce un aggiornamento del servizio, ha un lavoro diverso da fare e richiede strumenti diversi. 
+Hello proprietari e operatori di cluster hello possono essere diversi da hello gli autori di servizio e di applicazione o in un oggetto sono minimo hello stesso persone che ricoprono diversi. Quando si sviluppa l'applicazione si conoscono alcuni aspetti riguardanti cosa è necessario. Si dispone di una stima di hello devono essere distribuiti come i diversi servizi e le risorse che verrà utilizzata. Ad esempio, livello web hello deve toorun su nodi esposti toohello Internet, mentre i servizi di database hello non dovrebbero. Ad esempio, servizi web hello probabilmente sono limitati della CPU e la rete, durante l'attenzione di hello dati livello servizi ulteriori informazioni su consumo di memoria e disco. Tuttavia, persona hello gestisce un evento imprevisto in tempo reale a sito per il servizio nell'ambiente di produzione, o che gestisce un servizio di aggiornamento toohello ha toodo un processo diverso e richiede strumenti diversi. 
 
-I cluster e i servizi sono dinamici:
+I servizi e i cluster hello sono dinamici:
 
-- Il numero di nodi nel cluster può aumentare e diminuire
+- numero di Hello di nodi nel cluster hello può aumentare e ridursi
 - Nodi di diversi tipi e dimensioni possono essere aggiunti o rimossi
 - I servizi possono essere creati e rimossi e le allocazioni delle risorse desiderate e le regole di selezione possono essere modificate
-- Gli aggiornamenti o altre operazioni di gestione possono passare tramite il cluster nell'applicazione sui livelli dell'infrastruttura
+- Gli aggiornamenti o altre operazioni di gestione possono essere distribuite tramite cluster hello in un'applicazione hello sui livelli di infrastruttura
 - Gli errori possono verificarsi in qualsiasi momento.
 
 ## <a name="cluster-resource-manager-components-and-data-flow"></a>Componenti di Cluster Resource Manager e flusso dei dati
-Cluster Resource Manager deve monitorare i requisiti di ogni servizio e il consumo di risorse di ogni oggetto di servizio che li compone. Cluster Resource Manager dispone di due componenti concettuali: agenti in esecuzione su ciascun nodo e un servizio a tolleranza d'errore. Gli agenti in ogni nodo monitorano i report di carico dai servizi, li aggregano e li presentano in modo periodico. Il servizio Cluster Resource Manager aggrega tutte le informazioni dagli agenti locali e agisce in base alla propria configurazione corrente.
+Hello gestione delle risorse Cluster ha requisiti di hello tootrack di ogni servizio e hello l'utilizzo delle risorse per ogni oggetto di servizio all'interno di tali servizi. Gestione delle risorse Cluster Hello composta da due parti concettuale: agenti eseguiti in ogni nodo e un servizio a tolleranza di errore. agenti Hello ogni carico di tenere traccia del nodo vengono segnalati dai servizi, aggregazione e li segnala periodicamente. servizio di gestione delle risorse Cluster Hello aggrega tutte le informazioni dagli agenti locale hello hello e reagisce in base alla relativa configurazione corrente.
 
-Si veda il diagramma seguente:
+Diamo un'occhiata hello seguente diagramma:
 
 <center>
 ![Architettura di Resource Balancer][Image1]
 </center>
 
-Durante il runtime possono essere apportate numerose modifiche. Ad esempio, si supponga che la quantità di risorse consumate da determinati servizi venga modificata, che alcuni servizi abbiano esito negativo e che alcuni nodi si aggiungano o lascino il cluster. Tutte le modifiche in un nodo vengono aggregate e inviate periodicamente al servizio Cluster Resource Manager (1,2) in cui vengono nuovamente aggregate, analizzate e archiviate. Il servizio esamina tutte le modifiche a intervalli di pochi secondi e determina eventuali azioni necessarie (3). Ad esempio potrebbe notare che sono stati aggiunti dei nodi vuoti al cluster. Di conseguenza, decide di spostare alcuni servizi in tali nodi. Cluster Resource Manager potrebbe anche notare che un determinato nodo è sovraccarico o che alcuni servizi presentano anomalie (o sono stati eliminati), liberando risorse altrove.
+Durante il runtime possono essere apportate numerose modifiche. Ad esempio, si supponga che la quantità hello di risorse di alcuni servizi utilizzano le modifiche, alcuni errori di servizi, e alcuni nodi partecipare o uscire dai cluster hello. Tutte le modifiche di hello in un nodo vengono aggregate e inviate periodicamente del servizio di gestione delle risorse Cluster toohello (1,2) in cui sono nuovamente aggregati, analizzati e archiviati. Ogni pochi secondi che servizio esamina modifiche hello e determina se sono necessarie tutte le azioni (3). Ad esempio, potrebbe notare che sono stati aggiunti alcuni nodi vuoti toohello cluster. Di conseguenza, decide toomove alcuni nodi toothose servizi. Hello gestione delle risorse Cluster potrebbe si noti inoltre che un determinato nodo è sovraccarico o che determinati servizi riusciti o eliminate, liberando risorse in un' posizione.
 
-Verrà ora descritto il diagramma seguente. Si supponga che Cluster Resource Manager stabilisca che sono necessarie modifiche. Interagisce con altri servizi di sistema (in particolare Gestione failover) per apportare le modifiche necessarie. I comandi necessari vengono quindi inviati ai nodi appropriati (4). Ad esempio, si supponga che Resource Manager abbia notato che il nodo 5 è sovraccarico e che abbia pertanto deciso di spostare il servizio B da Node5 a Node4. Alla fine della riconfigurazione (5), il cluster avrà l'aspetto seguente:
+Si esaminerà hello seguente diagramma e vedere le operazioni successive. Si supponga che hello gestione delle risorse Cluster determina che sono necessarie modifiche. Interagisce con altri system services (in particolare hello gestione Failover) toomake hello le modifiche necessarie. I comandi necessari hello vengono quindi inviati toohello nodi appropriati (4). Si supponga, ad esempio, hello Gestione risorse notato che è stato sottoposto a overload Nodo5 e pertanto deciso toomove servizio B da tooNode4 Nodo5. Alla fine di hello di riconfigurazione hello (5), il cluster hello è simile al seguente:
 
 <center>
 ![Architettura di Resource Balancer][Image2]
 </center>
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Cluster Resource Manager dispone di varie opzioni per descrivere il cluster. Per altre informazioni a riguardo vedere l'articolo [Descrivere un cluster di Service Fabric](./service-fabric-cluster-resource-manager-cluster-description.md)
-- I compiti primari di Cluster Resource Manager sono il ribilanciamento del cluster e l'applicazione delle regole di selezione. Per altre informazioni sulla configurazione di questi comportamenti, vedere [bilanciamento del cluster di Service Fabric](./service-fabric-cluster-resource-manager-balancing.md)
+- Hello gestione delle risorse Cluster dispone di numerose opzioni per la descrizione del cluster di hello. toofind ulteriori informazioni, consultare questo articolo in [che descrive un cluster di Service Fabric](./service-fabric-cluster-resource-manager-cluster-description.md)
+- compiti primario di gestione risorse del Cluster di Hello sono ribilanciamento cluster hello e imporre regole di selezione host. Per altre informazioni sulla configurazione di questi comportamenti, vedere [bilanciamento del cluster di Service Fabric](./service-fabric-cluster-resource-manager-balancing.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-1.png
 [Image2]:./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-2.png

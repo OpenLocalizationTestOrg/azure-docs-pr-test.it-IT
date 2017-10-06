@@ -1,6 +1,6 @@
 ---
-title: Criteri avanzati di Gestione API di Azure | Microsoft Docs
-description: Informazioni sui criteri avanzati disponibili per l'uso in Gestione API di Azure.
+title: criteri avanzati di gestione API aaaAzure | Documenti Microsoft
+description: Informazioni su hello avanzate criteri disponibili per l'utilizzo in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 0c65ac74316421a0258f01143baa25ffecb5be3b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8245e7a4c9d432b7b4d362192e357829fcabad55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-advanced-policies"></a>Criteri avanzati di gestione API
-Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+In questo argomento fornisce un riferimento per i seguenti criteri di gestione API hello. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AdvancedPolicies"></a>Criteri avanzati  
   
--   [Controlla flusso](api-management-advanced-policies.md#choose): applica in modo condizionale le istruzioni dei criteri sulla base dei risultati della valutazione di [espressioni](api-management-policy-expressions.md) booleane.  
+-   [Flusso di controllo](api-management-advanced-policies.md#choose) : in modo condizionale istruzioni dei criteri in base ai risultati di hello di valutazione di hello Boolean applica [espressioni](api-management-policy-expressions.md).  
   
--   [Inoltra richiesta](#ForwardRequest) : inoltra la richiesta al servizio back-end.
+-   [Inoltro della richiesta](#ForwardRequest) -inoltra servizio back-end di hello richiesta toohello.
 
--   [Limita la concorrenza](#LimitConcurrency): previene ai criteri racchiusi l’esecuzione di un numero maggiore di richieste contemporaneamente rispetto a quello specificato.
+-   [Limita la concorrenza](#LimitConcurrency) -impedisce racchiuso tra i criteri di esecuzione di più di hello numero specificato di richieste in un momento.
   
--   [Registra in Hub eventi](#log-to-eventhub): invia messaggi nel formato specificato a un Hub eventi definito da un'entità Logger. 
+-   [Log tooEvent Hub](#log-to-eventhub) -invia messaggi hello specificato formato tooan Hub di eventi definito da un'entità del Logger. 
 
--   [Restituisci risposta](#mock-response): interrompe l'esecuzione della pipeline e restituisce una risposta fittizia direttamente al chiamante.
+-   [Simulare risposta](#mock-response) -esecuzione nella pipeline viene interrotta e restituisce una risposta simulata direttamente toohello chiamante.
   
--   [Riprova](#Retry) : riprova l'esecuzione delle istruzioni dei criteri, se e fino a quando non viene soddisfatta la condizione. L'esecuzione verrà ripetuta a specifici intervalli di tempo e per il numero di tentativi indicato.  
+-   [Ripetere](#Retry) -esecuzione di tentativi di hello racchiuso tra istruzioni dei criteri, se e fino a quando non viene soddisfatta la condizione hello. Esecuzione viene ripetuto in intervalli di tempo specificati hello e backup toohello specificato numero di tentativi.  
   
--   [Restituisci risposta](#ReturnResponse) : l’esecuzione nella pipeline viene interrotta e viene restituita la risposta specificata direttamente al chiamante. 
+-   [Restituire una risposta](#ReturnResponse) -hello di esecuzione e restituisce pipeline interruzioni specificato risposta direttamente toohello chiamante. 
   
--   [Invia richiesta unidirezionale](#SendOneWayRequest) : invia una richiesta all'URL specificato senza attendere una risposta.  
+-   [Inviare una richiesta unidirezionale](#SendOneWayRequest) -invia una richiesta toohello URL specificato senza attendere una risposta.  
   
--   [Invia richiesta](#SendRequest) : invia una richiesta all'URL specificato.  
+-   [Invio richiesta](#SendRequest) -invia una richiesta toohello URL specificato.  
 
--   [Imposta proxy HTTP](#SetHttpProxy): consente di indirizzare le richieste inoltrate tramite un proxy HTTP.  
+-   [Impostazione del proxy HTTP](#SetHttpProxy) -consente le richieste di tooroute inoltrati tramite un proxy HTTP.  
 
--   [Imposta metodo di richiesta](#SetRequestMethod) : consente di modificare il metodo HTTP per una richiesta.  
+-   [Impostare il metodo di richiesta](#SetRequestMethod) -consente di determinare il metodo HTTP hello toochange per una richiesta.  
   
--   [Imposta codice di stato](#SetStatus): modifica il codice di stato HTTP per il valore specificato.  
+-   [Impostare il codice di stato](#SetStatus) -toohello di codice stato HTTP hello modifiche valore specificato.  
   
 -   [Imposta variabile](api-management-advanced-policies.md#set-variable): rende persistente un valore in una variabile di [contesto](api-management-policy-expressions.md#ContextVariables) denominata e consente di accedervi in un momento successivo.  
 
--   [Traccia](#Trace): aggiunge una stringa nell'output di [Controllo API](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/).  
+-   [Traccia](#Trace) -aggiunge una stringa hello [API controllo](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) output.  
   
--   [Attendi](#Wait): attende il completamento dei criteri inclusi per l'[invio della richiesta](api-management-advanced-policies.md#SendRequest), il [recupero del valore dalla cache](api-management-caching-policies.md#GetFromCacheByKey) o il [flusso di controllo](api-management-advanced-policies.md#choose) prima di procedere.  
+-   [Attesa](#Wait) -attende racchiusi [richiesta di invio](api-management-advanced-policies.md#SendRequest), [ottenere valore dalla cache](api-management-caching-policies.md#GetFromCacheByKey), o [flusso di controllo](api-management-advanced-policies.md#choose) toocomplete criteri prima di procedere.  
   
 ##  <a name="choose"></a>Flusso di controllo  
- Il criterio `choose` si applica alle istruzioni del criterio incluse in base al risultato della valutazione di espressioni booleane, simili a un costrutto if-then-else o switch in un linguaggio di programmazione.  
+ Hello `choose` criteri si applicano criteri racchiuse costruiscono istruzioni in base hello risultato della valutazione di espressioni booleane, simile tooan if-then-else o un'opzione in un linguaggio di programmazione.  
   
 ###  <a name="ChoosePolicyStatement"></a>Istruzione del criterio  
   
 ```xml  
 <choose>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <otherwise>   
-        <!— one or more policy statements to be applied if none of the above conditions are true  -->  
+        <!— one or more policy statements toobe applied if none of hello above conditions are true  -->  
 </otherwise>   
 </choose>  
 ```  
   
- Il criterio del flusso di controllo deve contenere almeno un elemento `<when/>`. L'elemento `<otherwise/>` è facoltativo. Le condizioni negli elementi `<when/>` vengono valutate in ordine di visualizzazione all'interno del criterio. Si applicano le istruzioni del criterio incluse all'interno del primo elemento `<when/>` con attributo di condizione uguale a `true`. I criteri inclusi all'interno dell'elemento `<otherwise/>`, se presente, vengono applicati se tutti gli attributi di condizione dell'elemento `<when/>` sono `false`.  
+ Hello il criterio di flusso di controllo deve contenere almeno un `<when/>` elemento. Hello `<otherwise/>` elemento è facoltativo. Le condizioni nella `<when/>` elementi vengono valutati nell'ordine di visualizzazione nel criterio hello. Le istruzioni del criterio racchiuse hello innanzitutto `<when/>` elemento con attributo di condizione `true` verranno applicate. Criteri racchiuso tra parentesi hello `<otherwise/>` elemento, se presente, verrà applicato se in tutti di hello `<when/>` sono attributi dell'elemento condizione `false`.  
   
-### <a name="examples"></a>Esempi  
+### <a name="examples"></a>esempi  
   
 ####  <a name="ChooseExample"></a>Esempio  
- L'esempio seguente illustra un criterio [set-variable](api-management-advanced-policies.md#set-variable) e due criteri di flusso di controllo.  
+ Hello esempio seguente viene illustrato un [set-variable](api-management-advanced-policies.md#set-variable) due criteri di flusso di controllo e i criteri.  
   
- Il criterio di impostazione della variabile si trova nella sezione in ingresso e crea `isMobile`, una variabile di [contesto](api-management-policy-expressions.md#ContextVariables) booleana, che è impostata su true se l'intestazione della richiesta `User-Agent` contiene il testo `iPad` o `iPhone`.  
+ Hello set variabile criteri si trovano in hello sezione in ingresso e crea un `isMobile` booleano [contesto](api-management-policy-expressions.md#ContextVariables) variabile impostata tootrue se hello `User-Agent` richiesta intestazione contiene testo hello `iPad` o `iPhone`.  
   
- Il primo criterio di flusso di controllo è disponibile anche nella sezione in ingresso e applica in modo condizionale uno dei due criteri [Imposta parametro di stringa della query](api-management-transformation-policies.md#SetQueryStringParameter) in base al valore della variabile di contesto `isMobile`.  
+ criterio del flusso di controllo prima Hello è anche hello sezione in ingresso e applica in modo condizionale uno dei due [impostare il parametro di stringa di query](api-management-transformation-policies.md#SetQueryStringParameter) criteri in base al valore di hello di hello `isMobile` variabile di contesto.  
   
- Il secondo criterio di flusso di controllo si trova nella sezione in uscita e applica in modo condizionale il criterio [Converti XML in JSON](api-management-transformation-policies.md#ConvertXMLtoJSON) quando `isMobile` è impostato su `true`.  
+ criterio del flusso di controllo secondo Hello nella sezione in uscita hello e applica in modo condizionale hello [convertire XML tooJSON](api-management-transformation-policies.md#ConvertXMLtoJSON) criteri quando `isMobile` è troppo`true`.  
   
 ```xml  
 <policies>  
@@ -117,10 +117,10 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ```  
   
 #### <a name="example"></a>Esempio  
- Questo esempio mostra come eseguire operazioni di filtro sui contenuti rimuovendo elementi di dati dalla risposta ricevuta dal servizio back-end quando si usa il prodotto `Starter`. Per una dimostrazione relativa alla configurazione e all'uso di questo criterio, vedere l'[episodio 177 di Cloud Cover su altre funzionalità di Gestione API con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e passare direttamente al minuto 34:30. Iniziare dal minuto 31:50 per visualizzare una panoramica di [The Dark Sky Forecast API](https://developer.forecast.io/), l'API usata in questa dimostrazione.  
+ Questo esempio viene illustrato come tooperform contenuto applicando un filtro per la rimozione degli elementi di dati dalla risposta hello ricevuto dal servizio back-end hello quando si utilizza hello `Starter` prodotto. Per una dimostrazione della configurazione e l'utilizzo di questo criterio, vedere [Cloud coprire episodio 177: più API le funzionalità di gestione con Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) e far avanzare rapidamente too34:30. Inizia dal 31:50 toosee Cenni preliminari [hello scuro Sky previsione API](https://developer.forecast.io/) utilizzato per questa dimostrazione.  
   
 ```xml  
-<!-- Copy this snippet into the outbound section to remove a number of data elements from the response received from the backend service based on the name of the api product -->  
+<!-- Copy this snippet into hello outbound section tooremove a number of data elements from hello response received from hello backend service based on hello name of hello api product -->  
 <choose>  
   <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">  
     <set-body>@{  
@@ -140,27 +140,27 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 |Elemento|Descrizione|Obbligatorio|  
 |-------------|-----------------|--------------|  
 |choose|Elemento radice.|Sì|  
-|when|La condizione da usare per le parti `if` o `ifelse` del criterio `choose`. Se il criterio `choose` ha più sezioni `when`, vengono valutate in modo sequenziale. Una volta che la `condition` di un elemento when risulta `true`, non vengono valutate altre condizioni `when`.|Sì|  
-|otherwise|Contiene il frammento di criterio da usare se nessuna delle condizioni `when` viene valutata `true`.|No|  
+|when|Hello toouse condizione per hello `if` o `ifelse` parti di hello `choose` criteri. Se hello `choose` criteri ha più `when` sezioni, vengono valutati in sequenza. Una volta hello `condition` di un oggetto quando l'elemento restituisce troppo`true`e non per ulteriormente `when` condizioni vengono valutate.|Sì|  
+|otherwise|Contiene hello criteri frammento toobe utilizzati se nessuna delle hello `when` condizioni restituiscono troppo`true`.|No|  
   
 ### <a name="attributes"></a>Attributi  
   
 |Attributo|Descrizione|Obbligatorio|  
 |---------------|-----------------|--------------|  
-|condition="Boolean expression &#124; Boolean constant"|La costante o espressione booleana da valutare quando viene valutata l'istruzione del criterio contenente `when`.|Sì|  
+|condition="Boolean expression &#124; Boolean constant"|espressione booleana Hello o costante tooevaluated quando hello contenente `when` viene valutata l'istruzione dei criteri.|Sì|  
   
 ###  <a name="ChooseUsage"></a>Uso  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="ForwardRequest"></a>Inoltra richiesta  
- Il criterio `forward-request` inoltra la richiesta in ingresso al servizio back-end specificato nel [contesto](api-management-policy-expressions.md#ContextVariables) della richiesta. L'URL del servizio back-end è specificato nelle [impostazioni](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) API e può essere modificato tramite il criterio [imposta servizio back-end](api-management-transformation-policies.md).  
+ Hello `forward-request` criterio inoltra hello in arrivo richiesta toohello servizio back-end specificato nella richiesta di hello [contesto](api-management-policy-expressions.md#ContextVariables). Hello URL del servizio back-end specificato nel hello API [impostazioni](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) e può essere modificato utilizzando hello [impostare servizio back-end](api-management-transformation-policies.md) criteri.  
   
 > [!NOTE]
->  Se questo criterio viene rimosso, la richiesta non viene inoltrata al servizio back-end e i criteri nella sezione in uscita vengono valutati immediatamente dopo il completamento dei criteri nella sezione in ingresso.  
+>  Rimozione di richiesta di hello non vengono inoltrati criteri toohello back-end del servizio e hello nella sezione in uscita hello i risultati dei criteri vengono valutati immediatamente dopo il completamento di hello dei criteri di hello in hello in ingresso di sezione.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -171,7 +171,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ### <a name="examples"></a>Esempi  
   
 #### <a name="example"></a>Esempio  
- Il criterio a livello di API seguente inoltra tutte le richieste al servizio back-end con un intervallo di timeout di 60 secondi.  
+ Hello seguente criterio a livello di API inoltra tutte le richieste di servizio back-end toohello con un intervallo di timeout di 60 secondi.  
   
 ```xml  
 <!-- api level -->  
@@ -190,7 +190,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ```  
   
 #### <a name="example"></a>Esempio  
- Questo criterio a livello di operazione usa l'elemento `base` per ereditare il criterio di back-end dall'ambito di livello API padre.  
+ Questo criterio a livello di operazione Usa hello `base` criteri back-end di elemento tooinherit hello dall'ambito di livello padre API hello.  
   
 ```xml  
 <!-- operation level -->  
@@ -209,7 +209,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ```  
   
 #### <a name="example"></a>Esempio  
- Questo criterio a livello di operazione inoltra in modo esplicito tutte le richieste al servizio back-end con un timeout di 120 e non eredita il criterio di back-end a livello API padre.  
+ Questo criterio a livello di operazione in modo esplicito inoltra tutte le richieste toohello back-end del servizio con un timeout di 120 e non eredita padre hello criteri livello back-end dell'API.  
   
 ```xml  
 <!-- operation level -->  
@@ -219,7 +219,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
     </inbound>  
     <backend>  
         <forward-request timeout="120"/>   
-        <!-- effective policy. note the absence of <base/> -->  
+        <!-- effective policy. note hello absence of <base/> -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -229,7 +229,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ```  
   
 #### <a name="example"></a>Esempio  
- Questo criterio a livello di operazione non inoltra le richieste al servizio back-end.  
+ Questo criterio a livello di operazione non inoltra le richieste di servizio back-end toohello.  
   
 ```xml  
 <!-- operation level -->  
@@ -238,7 +238,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
         <base/>  
     </inbound>  
     <backend>  
-        <!-- no forwarding to backend -->  
+        <!-- no forwarding toobackend -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -257,18 +257,18 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|timeout="integer"|Intervallo di timeout in secondi prima che la chiamata al servizio back-end abbia esito negativo.|No|No timeout|  
-|follow-redirects="true &#124; false"|Specifica se i reindirizzamenti dal servizio back-end sono seguiti dal gateway o restituiti al chiamante.|No|false|  
+|timeout="integer"|intervallo di timeout Hello in secondi prima del servizio back-end di hello chiamata toohello ha esito negativo.|No|No timeout|  
+|follow-redirects="true &#124; false"|Specifica se i reindirizzamenti dal servizio back-end hello sono seguiti dal gateway hello o restituiti toohello chiamante.|No|false|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** back-end  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="LimitConcurrency"></a>Limita concorrenza  
- Il criterio `limit-concurrency` previene ai criteri racchiusi l’esecuzione di un numero maggiore di richieste in un dato momento rispetto a quello specificato. In caso di superamento della soglia, le nuove richieste vengono aggiunte a una coda, fino a raggiungere la lunghezza massima della coda. Al momento di esaurimento della coda, le nuove richieste avranno immediatamente esito negativo.
+ Hello `limit-concurrency` criteri impedisce l'esecuzione di più di hello numero specificato di richieste in un determinato momento criteri tra parentesi. In caso di superamento limite hello, le nuove richieste vengono aggiunti tooa coda, fino a raggiungere hello lunghezza massima della coda. Al momento di esaurimento della coda, le nuove richieste avranno immediatamente esito negativo.
   
 ###  <a name="LimitConcurrencyStatement"></a>Istruzione del criterio  
   
@@ -281,7 +281,7 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
 ### <a name="examples"></a>esempi  
   
 ####  <a name="ChooseExample"></a>Esempio  
- Nell'esempio seguente viene illustrato come limitare il numero di richieste inoltrate a un back-end in base al valore di una variabile di contesto.
+ Hello esempio seguente viene illustrato come toolimit numero di richieste inoltrate back-end tooa in base al valore di hello di una variabile di contesto.
  
 ```xml  
 <policies>
@@ -305,35 +305,35 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|--------------|  
-|key|Stringa. Espressione consentita. Specifica l'ambito di concorrenza. Può essere condivisa da più criteri.|Sì|N/D|  
-|numero max|Un intero. Specifica un numero massimo di richieste autorizzate ad accedere al criterio.|Sì|N/D|  
-|timeout|Un intero. Espressione consentita. Specifica il numero di secondi che una richiesta deve attendere per accedere a un ambito prima che si verifichi "403 numero eccessivo di richieste"|No|Infinity|  
-|lunghezza massima della coda|Un intero. Espressione consentita. Specifica la lunghezza massima della coda. Le richieste in entrata che provano ad accedere a questo criterio verranno interrotta con "403 numero eccessivo di richieste" immediatamente quando la coda è esaurita.|No|Infinity|  
+|key|Stringa. Espressione consentita. Specifica l'ambito di concorrenza hello. Può essere condivisa da più criteri.|Sì|N/D|  
+|numero max|Un intero. Specifica un numero massimo di richieste non sono consentiti criteri hello tooenter.|Sì|N/D|  
+|timeout|Un intero. Espressione consentita. Specifica il numero di hello di secondi durante una richiesta deve attendere tooenter un ambito prima che si verifichi "403 eccessivo numero di richieste"|No|Infinity|  
+|lunghezza massima della coda|Un intero. Espressione consentita. Specifica una lunghezza massima della coda hello. Le richieste in ingresso tentativo tooenter questo criterio verrà interrotta con "403 eccessivo numero di richieste" immediatamente quando è esaurita coda hello.|No|Infinity|  
   
 ###  <a name="ChooseUsage"></a>Uso  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
 
-##  <a name="log-to-eventhub"></a>Registra in Hub eventi  
- Il criterio `log-to-eventhub` invia messaggi nel formato specificato a un Hub eventi definito da un'entità Logger. Come suggerisce il nome, il criterio viene usato per il salvataggio di informazioni selezionate sul contesto di richiesta o risposta per l'analisi online o offline.  
+##  <a name="log-to-eventhub"></a>Log tooEvent Hub  
+ Hello `log-to-eventhub` criteri invia messaggi hello specificato formato tooan Hub di eventi definiti da un'entità del Logger. Come suggerisce il nome, i criteri di hello vengono utilizzati per il salvataggio selezionati informazioni sul contesto di richiesta o risposta per l'analisi online o offline.  
   
 > [!NOTE]
->  Per una guida dettagliata sulla configurazione di un hub eventi e la registrazione di eventi, vedere [Come registrare eventi nell'Hub eventi di Azure in Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
+>  Per una Guida dettagliata sulla configurazione di un hub eventi e la registrazione eventi, vedere [come eventi di gestione API toolog con hub eventi di Azure](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
 ```xml  
-<log-to-eventhub logger-id="id of the logger entity" partition-id="index of the partition where messages are sent" partition-key="value used for partition assignment">  
-  Expression returning a string to be logged  
+<log-to-eventhub logger-id="id of hello logger entity" partition-id="index of hello partition where messages are sent" partition-key="value used for partition assignment">  
+  Expression returning a string toobe logged  
 </log-to-eventhub>  
   
 ```  
   
 ### <a name="example"></a>Esempio  
- È possibile usare qualsiasi stringa come valore da registrare in Hub eventi. In questo esempio la data e l'ora, il nome del servizio di distribuzione, l'ID della richiesta, l'indirizzo IP e il nome dell'operazione per tutte le chiamate in entrata vengono registrati nel Logger dell'hub eventi registrato con l'ID `contoso-logger`.  
+ Qualsiasi stringa può essere utilizzata come toobe valore hello registrato nell'hub eventi. In questo esempio hello data e ora, nome del servizio di distribuzione, id richiesta, l'indirizzo ip e nome dell'operazione per tutte le chiamate in ingresso sono hub eventi connesso toohello Logger registrato con hello `contoso-logger` id.  
   
 ```xml  
 <policies>  
@@ -351,25 +351,25 @@ Questo argomento fornisce un riferimento per i criteri di Gestione API seguenti.
   
 |Elemento|Descrizione|Obbligatorio|  
 |-------------|-----------------|--------------|  
-|log-to-eventhub|Elemento radice. Il valore di questo elemento è la stringa per la registrazione all'hub eventi.|Sì|  
+|log-to-eventhub|Elemento radice. valore Hello di questo elemento è l'hub di eventi tooyour toolog stringa hello.|Sì|  
   
 ### <a name="attributes"></a>Attributi  
   
 |Attributo|Descrizione|Obbligatorio|  
 |---------------|-----------------|--------------|  
-|logger-id|ID del Logger registrato con il servizio Gestione API.|Sì|  
-|partition-id|Specifica l'indice della partizione a cui i messaggi vengono inviati.|facoltativo. Questo attributo non può essere usato se si usa `partition-key`.|  
-|partition-key|Specifica il valore usato per l'assegnazione della partizione quando vengono inviati i messaggi.|facoltativo. Questo attributo non può essere usato se si usa `partition-id`.|  
+|logger-id|id Hello di hello Logger registrato con il servizio Gestione API.|Sì|  
+|partition-id|Specifica l'indice di hello della partizione hello in cui i messaggi vengono inviati.|Facoltativo. Questo attributo non può essere usato se si usa `partition-key`.|  
+|partition-key|Specifica il valore di hello utilizzato per l'assegnazione di partizione quando vengono inviati messaggi.|Facoltativo. Questo attributo non può essere usato se si usa `partition-id`.|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
 
 ##  <a name="mock-response"></a> Restituisci risposta  
-Il criterio `mock-response`, come implica il nome, viene usato per restituire API e operazioni. Interrompe la normale esecuzione della pipeline e restituisce una risposta fittizia direttamente al chiamante. Il criterio cerca sempre di restituire risposte della massima fedeltà. Include esempi di contenuto di risposta ogni volta che è possibile. Nelle situazioni in cui vengono forniti schemi ma non esempi, genera risposte di esempio dagli schemi. Se non sono presenti né esempi né schemi, restituisce risposte senza contenuto.
+Hello `mock-response`, come nome hello implica, viene utilizzato toomock API e operazioni. Interrompe l'esecuzione della pipeline normale e restituisce un chiamante toohello risposta simulati. criteri di Hello tenta sempre di risposte tooreturn di più alta fedeltà. Include esempi di contenuto di risposta ogni volta che è possibile. Nelle situazioni in cui vengono forniti schemi ma non esempi, genera risposte di esempio dagli schemi. Se non sono presenti né esempi né schemi, restituisce risposte senza contenuto.
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -382,11 +382,11 @@ Il criterio `mock-response`, come implica il nome, viene usato per restituire AP
   
 ```xml  
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code. First found content type is used. If no example or schema is found, the content is empty. -->
+status code. First found content type is used. If no example or schema is found, hello content is empty. -->
 <mock-response/>
 
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code and media type. If no example or schema found, the content is empty. -->
+status code and media type. If no example or schema found, hello content is empty. -->
 <mock-response status-code='200' content-type='application/json'/>  
 ```  
   
@@ -400,18 +400,18 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|--------------|  
-|status-code|Specifica il codice di stato della risposta e viene usato per selezionare l'esempio o lo schema corrispondente.|No|200|  
-|content-type|Specifica il valore di intestazione della risposta `Content-Type` e viene usato per selezionare l'esempio o lo schema corrispondente.|No|None|  
+|status-code|Specifica il codice di stato di risposta ed è esempio corrispondente utilizzato tooselect o nello schema.|No|200|  
+|content-type|Specifica `Content-Type` valore dell'intestazione di risposta e viene utilizzato tooselect esempio corrispondente o nello schema.|No|None|  
   
-### <a name="usage"></a>Uso  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+### <a name="usage"></a>Utilizzo  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound, outbound, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti
 
 ##  <a name="Retry"></a> Riprova  
- Il criterio `retry` esegue i criteri figlio una volta e quindi ritenta l'esecuzione degli stessi fino a quando il tentativo `condition` diventa `false` o fino a esaurimento del tentativo `count`.  
+ Hello `retry` criteri esegue i relativi criteri figlio una volta e quindi ripete l'esecuzione fino al tentativo di hello `condition` diventa `false` o ripetere `count` è esaurita.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -430,7 +430,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Esempio  
- Nella richiesta di esempio seguente l'inoltro viene ripetuto fino a dieci volte usando un algoritmo di ripetizione esponenziale. Poiché `first-fast-retry` è impostato su false, tutti i tentativi sono soggetti all'algoritmo di ripetizione esponenziale.  
+ In hello forewarding richiesta di esempio seguente viene ripetuta backup tooten volte utilizzando l'algoritmo di tentativi esponenziali. Poiché `first-fast-retry` è impostato toofalse, tutti i tentativi sono algoritmo dei tentativi exponsntial toohello soggetto.  
   
 ```xml  
   
@@ -457,26 +457,26 @@ status code and media type. If no example or schema found, the content is empty.
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
 |condition|Valore letterale booleano o [espressione](api-management-policy-expressions.md) che specifica se i tentativi devono essere interrotti (`false`) o devono continuare (`true`).|Sì|N/D|  
-|count|Numero positivo che specifica il numero massimo di tentativi da eseguire.|Sì|N/D|  
-|interval|Numero positivo in secondi che specifica l'intervallo di attesa tra i tentativi di ripetizione.|Sì|N/D|  
-|max-interval|Un numero positivo che specifica l'intervallo di attesa massimo tra i tentativi di ripetizione. Viene usato per implementare un algoritmo di ripetizione esponenziale.|No|N/D|  
-|delta|Numero positivo in secondi che specifica l'incremento dell'intervallo di attesa. Viene usato per implementare gli algoritmi di ripetizione lineari ed esponenziali.|No|N/D|  
-|first-fast-retry|Se impostato su `true`, il primo tentativo di ripetizione viene eseguito immediatamente.|No|`false`|  
+|count|Un numero positivo che specifica hello il numero massimo di tentativi tooattempt.|Sì|N/D|  
+|interval|Un numero positivo, in secondi, specificando l'intervallo di attesa hello tra tentativi hello.|Sì|N/D|  
+|max-interval|Un numero positivo, in secondi, specificando l'intervallo di attesa massimo hello tra tentativi hello. È tooimplement utilizzato un algoritmo di tentativi esponenziali.|No|N/D|  
+|delta|Un numero positivo, in secondi, specificare l'incremento di intervallo di attesa hello. È utilizzato tooimplement hello tentativi lineare ed esponenziale algoritmi.|No|N/D|  
+|first-fast-retry|Se impostato troppo `true` , primo tentativo di hello viene eseguita immediatamente.|No|`false`|  
   
 > [!NOTE]
->  Se è specificato solo `interval`, vengono eseguiti tentativi a intervallo **fisso**.  
->  Se vengono specificati solo `interval` e `delta`, viene usato un algoritmo di ripetizione a intervalli **lineari**, in cui il tempo di attesa tra i tentativi viene calcolato secondo la formula seguente: `interval + (count - 1)*delta`.  
->  Se vengono specificati `interval`, `max-interval` e `delta`,viene applicato un algoritmo di ripetizione a intervalli **esponenziali**, in cui il tempo di attesa tra i tentativi cresce in modo esponenziale dal valore `interval` al valore `max-interval`, secondo la formula seguente: `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
+>  Quando solo hello `interval` è specificato, **fissa** intervallo tentativi vengono eseguiti.  
+>  Quando solo hello `interval` e `delta` vengono specificati un **lineare** viene utilizzato l'algoritmo di tentativi di intervallo, in cui il tempo di attesa tra tentativi viene calcolato hello in base formula - seguente `interval + (count - 1)*delta`.  
+>  Quando hello `interval`, `max-interval` e `delta` vengono specificati, **esponenziale** viene applicato l'algoritmo dei tentativi di intervallo, in cui crescono in modo esponenziale il tempo di attesa hello tra i tentativi di hello dal valore hello `interval`valore toohello `max-interval` in base a seguito di toohello forumula - `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti. Si noti che le restrizioni sull'uso dei criteri figlio verranno ereditate da questo criterio.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) . Si noti che le restrizioni sull'uso dei criteri figlio verranno ereditate da questo criterio.  
   
 -   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="ReturnResponse"></a>Restituisci risposta  
- Il criterio `return-response` interrompe l'esecuzione della pipeline e restituisce al chiamante una risposta predefinita o personalizzata. La risposta predefinita è `200 OK`, senza corpo. La risposta personalizzata può essere specificata tramite una variabile di contesto o le istruzioni del criterio. Quando entrambi sono specificati, la risposta contenuta all'interno della variabile di contesto viene modificata tramite le istruzioni del criterio prima di essere restituita al chiamante.  
+ Hello `return-response` criteri interrompe l'esecuzione della pipeline e restituisce un'istanza predefinita o chiamante toohello risposta personalizzata. La risposta predefinita è `200 OK`, senza corpo. La risposta personalizzata può essere specificata tramite una variabile di contesto o le istruzioni del criterio. Se vengono specificati entrambi, risposta hello contenuto all'interno di variabile di contesto hello viene modificato mediante le istruzioni dei criteri di hello prima della restituzione toohello chiamante.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -514,17 +514,17 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attributo|Descrizione|Obbligatorio|  
 |---------------|-----------------|--------------|  
-|response-variable-name|Nome della variabile di contesto a cui fa riferimento, ad esempio, un criterio di upstream [send-request](api-management-advanced-policies.md#SendRequest) e contenente un oggetto `Response`.|facoltativo.|  
+|response-variable-name|Hello nome di variabile di contesto hello a cui fa riferimento, ad esempio, un upstream [richiesta di invio](api-management-advanced-policies.md#SendRequest) criteri e che contiene un `Response` oggetto|Facoltativo.|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="SendOneWayRequest"></a>Invia richiesta unidirezionale  
- Il criterio `send-one-way-request` invia la richiesta specificata all'URL specificato senza attendere una risposta.  
+ Hello `send-one-way-request` criteri invia la richiesta di hello fornito toohello URL specificato senza attendere una risposta.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -539,7 +539,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Esempio  
- Questo criterio di esempio illustra come usare il criterio `send-one-way-request` per inviare un messaggio a una chat di Slack, se il codice della risposta HTTP è maggiore o uguale a 500. Per altre informazioni relative a questo esempio, vedere [Uso di servizi esterni dal servizio Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Questo criterio di esempio viene illustrato un esempio dell'utilizzo di hello `send-one-way-request` toosend criteri una messaggio tooa Slack chat room se hello codice di risposta HTTP è maggiore o uguale too500. Per ulteriori informazioni su questo esempio, vedere [tramite servizi esterni dal servizio Gestione API di Azure hello](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -572,28 +572,28 @@ status code and media type. If no example or schema found, the content is empty.
 |Elemento|Descrizione|Obbligatorio|  
 |-------------|-----------------|--------------|  
 |send-one-way-request|Elemento radice.|Sì|  
-|URL|URL della richiesta.|No if mode=copy; otherwise yes.|  
-|statico|Metodo HTTP usato nella richiesta.|No if mode=copy; otherwise yes.|  
+|URL|Hello l'URL della richiesta di hello.|No if mode=copy; otherwise yes.|  
+|statico|metodo HTTP per la richiesta di hello Hello.|No if mode=copy; otherwise yes.|  
 |intestazione|Intestazione della richiesta. Usare più elementi di intestazione per più intestazioni della richiesta.|No|  
-|body|Corpo della richiesta.|No|  
+|body|corpo della richiesta Hello.|No|  
   
 ### <a name="attributes"></a>Attributi  
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|mode="string"|Determina se questa è una nuova richiesta o una copia della richiesta corrente. In modalità in uscita, mode=copy non avvia il corpo della richiesta.|No|Nuovo|  
-|name|Specifica il nome dell'intestazione da impostare.|Sì|N/D|  
-|exists-action|Specifica l'azione da eseguire quando l'intestazione è già specificata. Questo attributo deve avere uno dei valori seguenti.<br /><br /> -   override - sostituisce il valore dell'intestazione esistente.<br />-   skip - non sostituisce il valore dell'intestazione esistente.<br />-   append - aggiunge il valore dell'intestazione esistente.<br />-   delete - elimina l'intestazione dalla richiesta.<br /><br /> Se è impostato su `override`, l'integrazione di più voci con lo stesso nome avrà come risultato l'impostazione dell'intestazione in base a tutte le voci, che saranno elencate più volte. Nel risultato saranno impostati solo i valori elencati.|No|override|  
+|mode="string"|Determina se si tratta di una nuova richiesta o una copia della richiesta corrente hello. In modalità in uscita, modalità = copia non viene inizializzato il corpo della richiesta hello.|No|Nuovo|  
+|name|Specifica il nome di hello di hello intestazione toobe set.|Sì|N/D|  
+|exists-action|Specifica quali tootake azione quando l'intestazione hello è già specificato. Questo attributo deve avere uno dei seguenti valori hello.<br /><br /> -override - sostituisce hello valore dell'intestazione esistente hello.<br />-skip: non sostituisce il valore dell'intestazione esistente di hello.<br />-aggiungere - aggiunge hello valore toohello valore dell'intestazione esistente.<br />-delete - rimuove l'intestazione di hello dalla richiesta hello.<br /><br /> Quando impostato troppo`override` l'integrazione di più voci con hello stesso nome risultati nell'intestazione di hello viene impostato in base tooall le voci (elencate più volte); solo i valori elencati verranno impostati nel risultato hello.|No|override|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="SendRequest"></a> Invio richiesta  
- Il criterio `send-request` invia la richiesta fornita all'URL specificato, attendendo non oltre il valore di timeout impostato.  
+ Hello `send-request` criteri Invia richiesta hello fornito toohello specificato l'URL, in attesa non più di hello imposta il valore di timeout.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -609,14 +609,14 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Esempio  
- Questo esempio mostra un metodo per verificare un token di riferimento con un server di autorizzazione. Per altre informazioni relative a questo esempio, vedere [Uso di servizi esterni dal servizio Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Questo esempio viene illustrato un modo tooverify un token di riferimento con un server di autorizzazione. Per ulteriori informazioni su questo esempio, vedere [tramite servizi esterni dal servizio Gestione API di Azure hello](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <inbound>  
   <!-- Extract Token from Authorization header parameter -->  
   <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />  
   
-  <!-- Send request to Token Server to validate token (see RFC 7662) -->  
+  <!-- Send request tooToken Server toovalidate token (see RFC 7662) -->  
   <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">  
     <set-url>https://microsoft-apiappec990ad4c76641c6aea22f566efc5a4e.azurewebsites.net/introspection</set-url>  
     <set-method>POST</set-method>  
@@ -651,31 +651,31 @@ status code and media type. If no example or schema found, the content is empty.
 |Elemento|Descrizione|Obbligatorio|  
 |-------------|-----------------|--------------|  
 |send-request|Elemento radice.|Sì|  
-|URL|URL della richiesta.|No if mode=copy; otherwise yes.|  
-|statico|Metodo HTTP usato nella richiesta.|No if mode=copy; otherwise yes.|  
+|URL|Hello l'URL della richiesta di hello.|No if mode=copy; otherwise yes.|  
+|statico|metodo HTTP per la richiesta di hello Hello.|No if mode=copy; otherwise yes.|  
 |intestazione|Intestazione della richiesta. Usare più elementi di intestazione per più intestazioni della richiesta.|No|  
-|body|Corpo della richiesta.|No|  
+|body|corpo della richiesta Hello.|No|  
   
 ### <a name="attributes"></a>Attributi  
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|mode="string"|Determina se questa è una nuova richiesta o una copia della richiesta corrente. In modalità in uscita, mode=copy non avvia il corpo della richiesta.|No|Nuovo|  
+|mode="string"|Determina se si tratta di una nuova richiesta o una copia della richiesta corrente hello. In modalità in uscita, modalità = copia non viene inizializzato il corpo della richiesta hello.|No|Nuovo|  
 |response-variable-name="string"|Se non è presente, viene usato `context.Response`.|No|N/D|  
-|timeout="integer"|Intervallo di timeout in secondi prima che la chiamata all'URL abbia esito negativo.|No|60|  
-|ignore-error|Se impostato su true e la richiesta restituisce un errore:<br /><br /> - Se è stato specificato response-variable-name, questo conterrà un valore null.<br />- Se response-variable-name non è stato specificato, context.Request non verrà aggiornato.|No|false|  
-|name|Specifica il nome dell'intestazione da impostare.|Sì|N/D|  
-|exists-action|Specifica l'azione da eseguire quando l'intestazione è già specificata. Questo attributo deve avere uno dei valori seguenti.<br /><br /> -   override - sostituisce il valore dell'intestazione esistente.<br />-   skip - non sostituisce il valore dell'intestazione esistente.<br />-   append - aggiunge il valore dell'intestazione esistente.<br />-   delete - elimina l'intestazione dalla richiesta.<br /><br /> Se è impostato su `override`, l'integrazione di più voci con lo stesso nome avrà come risultato l'impostazione dell'intestazione in base a tutte le voci, che saranno elencate più volte. Nel risultato saranno impostati solo i valori elencati.|No|override|  
+|timeout="integer"|intervallo di timeout Hello in secondi, prima chiamata hello toohello URL non riesce.|No|60|  
+|ignore-error|Se true e hello richiesta comporta un errore:<br /><br /> - Se è stato specificato response-variable-name, questo conterrà un valore null.<br />- Se response-variable-name non è stato specificato, context.Request non verrà aggiornato.|No|false|  
+|name|Specifica il nome di hello di hello intestazione toobe set.|Sì|N/D|  
+|exists-action|Specifica quali tootake azione quando l'intestazione hello è già specificato. Questo attributo deve avere uno dei seguenti valori hello.<br /><br /> -override - sostituisce hello valore dell'intestazione esistente hello.<br />-skip: non sostituisce il valore dell'intestazione esistente di hello.<br />-aggiungere - aggiunge hello valore toohello valore dell'intestazione esistente.<br />-delete - rimuove l'intestazione di hello dalla richiesta hello.<br /><br /> Quando impostato troppo`override` l'integrazione di più voci con hello stesso nome risultati nell'intestazione di hello viene impostato in base tooall le voci (elencate più volte); solo i valori elencati verranno impostati nel risultato hello.|No|override|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="SetHttpProxy"></a>Impostare il proxy HTTP  
- Il criterio `proxy` consente di indirizzare le richieste inoltrate ai back-end tramite un proxy HTTP. È supportato solo HTTP (non HTTPS) tra il gateway e il proxy. Solo autenticazione Basic e NTLM.
+ Hello `proxy` criteri consentono di tooroute richieste inoltrate toobackends tramite un proxy HTTP. Solo HTTP (non HTTPS) è supportata tra il gateway hello e proxy hello. Solo autenticazione Basic e NTLM.
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -685,7 +685,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Esempio  
-Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valori di nome utente e password per evitare di archiviare informazioni riservate nel documento dei criteri.  
+Si noti hello utilizzo di [proprietà](api-management-howto-properties.md) come valori di tooavoid hello nome utente e password, l'archiviazione di informazioni riservate nel documento di criteri hello.  
   
 ```xml  
 <proxy url="http://192.168.1.1:8080" username={{username}} password={{password}} />
@@ -702,19 +702,19 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|url="string"|URL del proxy nel formato http://host:port.|Sì|N/D |  
-|username="string"|Nome utente da usare per l'autenticazione con il proxy.|No|N/D |  
-|password="string"|Password da usare per l'autenticazione con il proxy.|No|N/D |  
+|url="string"|URL del proxy in forma di hello di HTTP.|Sì|N/D |  
+|username="string"|Toobe nome utente utilizzato per l'autenticazione con il proxy di hello.|No|N/D |  
+|password="string"|Toobe password utilizzata per l'autenticazione con il proxy di hello.|No|N/D |  
 
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
 
 ##  <a name="SetRequestMethod"></a> Impostare il metodo di richiesta  
- Il criterio `set-method` consente di modificare il metodo di richiesta HTTP per una richiesta.  
+ Hello `set-method` criteri consentono di metodo di richiesta HTTP hello toochange per una richiesta.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -724,7 +724,7 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
 ```  
   
 ### <a name="example"></a>Esempio  
- Questo criterio di esempio che usa il criterio `set-method` mostra un esempio di invio di un messaggio a una chat di Slack, se il codice della risposta HTTP è maggiore o uguale a 500. Per altre informazioni relative a questo esempio, vedere [Uso di servizi esterni dal servizio Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Questo esempio di criterio che utilizza hello `set-method` criteri Mostra un esempio di invio di una messaggio tooa Slack chat room se hello codice di risposta HTTP è maggiore o uguale too500. Per ulteriori informazioni su questo esempio, vedere [tramite servizi esterni dal servizio Gestione API di Azure hello](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -756,17 +756,17 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Elemento|Descrizione|Obbligatorio|  
 |-------------|-----------------|--------------|  
-|set-method|Elemento radice. Il valore dell'elemento specifica il metodo HTTP.|Sì|  
+|set-method|Elemento radice. valore Hello elemento hello specifica il metodo HTTP hello.|Sì|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="SetStatus"></a> Impostare il codice di stato  
- Il criterio `set-status` modifica il codice di stato HTTP sul valore specificato.  
+ Hello `set-status` criteri set hello HTTP stato codice toohello valore specificato.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -776,7 +776,7 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
 ```  
   
 ### <a name="example"></a>Esempio  
- Questo esempio illustra come restituire una risposta 401 se il token di autorizzazione non è valido. Per altre informazioni, vedere [Uso di servizi esterni dal servizio Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Questo esempio viene illustrato come tooreturn una risposta 401, se il token di autorizzazione hello non è valido. Per ulteriori informazioni, vedere [tramite servizi esterni da hello servizio Gestione API di Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
   
 ```xml  
 <choose>  
@@ -802,18 +802,18 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|code="integer"|Il codice di stato HTTP da restituire.|Sì|N/D|  
-|reason="string"|Descrizione del motivo per la restituzione del codice di stato.|Sì|N/D|  
+|code="integer"|tooreturn codice di stato HTTP Hello.|Sì|N/D|  
+|reason="string"|Descrizione del motivo di hello per la restituzione di codice di stato hello.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
 
 ##  <a name="set-variable"></a>Impostare una variabile  
- Il criterio `set-variable` dichiara una variabile di [contesto](api-management-policy-expressions.md#ContextVariables) e assegna a essa un valore specificato tramite un'[espressione](api-management-policy-expressions.md) o un valore letterale di stringa. Se l'espressione contiene un valore letterale, questo verrà convertito in una stringa e il tipo di valore sarà `System.String`.  
+ Hello `set-variable` criteri dichiara un [contesto](api-management-policy-expressions.md#ContextVariables) variabile e assegna un valore specificato tramite un [espressione](api-management-policy-expressions.md) o un valore letterale stringa. Se l'espressione di hello contiene un valore letterale verrà convertito tooa stringa e hello il tipo di valore hello sarà `System.String`.  
   
 ###  <a name="set-variablePolicyStatement"></a>Istruzione del criterio  
   
@@ -822,7 +822,7 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
 ```  
   
 ###  <a name="set-variableExample"></a>Esempio  
- L'esempio seguente illustra un criterio di impostazione della variabile nella sezione in ingresso. Il criterio di impostazione della variabile crea `isMobile`, una variabile di [contesto](api-management-policy-expressions.md#ContextVariables) booleana, che è impostata su true se l'intestazione della richiesta `User-Agent` contiene il testo `iPad` o `iPhone`.  
+ Hello esempio seguente viene illustrato un criterio di variabile set in hello in ingresso di sezione. Questo criterio variabile set crea un `isMobile` booleano [contesto](api-management-policy-expressions.md#ContextVariables) variabile impostata tootrue se hello `User-Agent` richiesta intestazione contiene testo hello `iPad` o `iPhone`.  
   
 ```xml  
 <set-variable name="IsMobile" value="@(context.Request.Headers["User-Agent"].Contains("iPad") || context.Request.Headers["User-Agent"].Contains("iPhone"))" />  
@@ -838,18 +838,18 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Attributo|Descrizione|Obbligatorio|  
 |---------------|-----------------|--------------|  
-|name|Nome della variabile.|Sì|  
-|value|Valore della variabile. Può essere un'espressione o un valore letterale.|Sì|  
+|name|nome Hello della variabile di hello.|Sì|  
+|value|valore di Hello della variabile hello. Può essere un'espressione o un valore letterale.|Sì|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ###  <a name="set-variableAllowedTypes"></a>Tipi consentiti  
- Le espressioni usate nel criterio `set-variable` devono restituire uno dei seguenti tipi di base.  
+ Le espressioni utilizzate in hello `set-variable` criteri devono restituire uno dei seguenti tipi di base hello.  
   
 -   System.Boolean  
   
@@ -914,7 +914,7 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
 -   System.DateTime?  
 
 ##  <a name="Trace"></a> Traccia  
- Il criterio `trace` aggiunge una stringa nell'output di [Controllo API](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/). Il criterio verrà eseguito solo quando la traccia è attivata, ad esempio quando è presente l'intestazione della richiesta `Ocp-Apim-Trace` ed è impostata su `true` e quando è presente l'intestazione della richiesta `Ocp-Apim-Subscription-Key` e contiene una chiave valida associata all'account amministratore.  
+ Hello `trace` criteri aggiunge una stringa in hello [API controllo](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) output. Hello criteri verranno eseguiti solo quando la traccia è attivata, vale a dire `Ocp-Apim-Trace` intestazione della richiesta è presente e impostato troppo`true` e `Ocp-Apim-Subscription-Key` intestazione della richiesta è presente e contiene una chiave valida associata a hello amministratore account.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -936,17 +936,17 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|una sezione source|Valore letterale della stringa significativo per il visualizzatore di tracce e che specifica l'origine del messaggio.|Sì|N/D|  
+|una sezione source|Visualizzatore di tracce di stringa letterale toohello significativo e specificando origine hello del messaggio hello.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) .  
   
--   **Sezioni del criterio:**in ingresso, in uscita, back-end, on-error  
+-   **Sezioni del criterio:** inbound, outbound, backend, on-error  
   
 -   **Ambiti del criterio:** tutti gli ambiti  
   
 ##  <a name="Wait"></a> Attesa  
- Il criterio `wait` esegue i criteri figlio immediati in parallelo e attende che tutti o uno dei relativi criteri figlio immediati vengano completati prima di terminare la sua attività. I criteri di attesa possono avere come criteri figlio immediati i criteri [Invio della richiesta](api-management-advanced-policies.md#SendRequest), [Recupero del valore dalla cache](api-management-caching-policies.md#GetFromCacheByKey) e [Flusso di controllo](api-management-advanced-policies.md#choose).  
+ Hello `wait` criteri esegue i criteri figlio diretti in parallelo e attende che tutti o uno dei relativi toocomplete criteri figlio immediati prima che venga completato. Hello attesa criteri possono avere come relativi criteri figlio immediati [richiesta di invio](api-management-advanced-policies.md#SendRequest), [ottenere valore dalla cache](api-management-caching-policies.md#GetFromCacheByKey), e [flusso di controllo](api-management-advanced-policies.md#choose) criteri.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -959,7 +959,7 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
 ```  
   
 ### <a name="example"></a>Esempio  
- L'esempio seguente contiene due criteri `choose` come criteri figlio immediato dei criteri `wait`. Ognuno di questi criteri `choose` viene eseguito in parallelo. Ogni criterio `choose` tenta di recuperare un valore memorizzato nella cache. Se si verifica un mancato riscontro nella cache, viene chiamato un servizio di back-end per fornire il valore. In questo esempio il criterio `wait` non si completa fino al completamento di tutti i relativi criteri figlio immediati, poiché l'attributo `for` è impostato su `all`.   In questo esempio le variabili di contesto (`execute-branch-one`, `value-one`, `execute-branch-two` e `value-two`) vengono dichiarate all'esterno dell'ambito di questo criterio di esempio.  
+ Nell'esempio seguente hello sono disponibili due `choose` criteri come criteri figlio immediati di hello `wait` criteri. Ognuno di questi criteri `choose` viene eseguito in parallelo. Ogni `choose` criteri tenta tooretrieve valore memorizzato nella cache. Se è presente un mancato riscontro nella cache, un servizio back-end viene chiamato il valore di hello tooprovide. In questo hello esempio `wait` criteri non verrà completata fino al completamento di tutti i relativi criteri figlio immediati, poiché hello `for` attributo è impostato troppo`all`.   Nelle variabili di contesto hello in questo esempio (`execute-branch-one`, `value-one`, `execute-branch-two`, e `value-two`) vengono dichiarati di fuori ambito hello di questo criterio di esempio.  
   
 ```xml  
 <wait for="all">  
@@ -1003,10 +1003,10 @@ Si noti l'utilizzo di [proprietà](api-management-howto-properties.md) come valo
   
 |Attributo|Descrizione|Obbligatorio|Default|  
 |---------------|-----------------|--------------|-------------|  
-|for|Determina se il criterio `wait` attende il completamento di tutti o solo uno dei criteri figlio immediati. I valori consentiti sono i seguenti:<br /><br /> -   `all`: consente di attendere il completamento di tutti i criteri figlio immediati<br />-   any: consente di attendere il completamento di uno dei criteri figlio immediati. Dopo il completamento del primo criterio figlio immediato, il criterio `wait` si completa e l'esecuzione di qualsiasi altro criterio figlio immediato viene arrestata.|No|tutti|  
+|for|Determina se hello `wait` criteri attende che tutti i toobe criteri figlio immediati completata o solo una. I valori consentiti sono i seguenti:<br /><br /> -   `all`-attendere tutti figlio immediati criteri toocomplete<br />-i - attendere qualsiasi toocomplete criterio figlio immediati. Una volta completato il primo criterio di figlio immediati hello, hello `wait` criteri completa e viene terminata l'esecuzione di tutti gli altri criteri figlio immediati.|No|tutti|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** inbound, outbound, back-end  
   

@@ -1,6 +1,6 @@
 ---
 title: 'PowerShell: creare e gestire un pool elastico SQL di Azure | Microsoft Docs'
-description: Informazioni su come usare PowerShell per gestire un pool elastico.
+description: Informazioni su come toouse PowerShell toomanage un pool elastico.
 services: sql-database
 documentationcenter: 
 author: srinia
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: powershell
 ms.workload: data-management
 ms.date: 06/06/2017
 ms.author: srinia
-ms.openlocfilehash: 5e76397c62e5a6ff7fb356bd81218c307f3fda31
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 92de2a4b243dcc74502064e9d2c31682691753d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-an-elastic-pool-with-powershell"></a>Creare e gestire un pool elastico con PowerShell
-Questo argomento illustra come creare e gestire [pool elastici](sql-database-elastic-pool.md) scalabili con PowerShell.  È anche possibile creare e gestire un pool elastico di Azure con il [portale di Azure](https://portal.azure.com/), l'API REST o [C#](sql-database-elastic-pool-manage-csharp.md). È anche possibile creare e spostare database verso e dai pool elastici usando [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
+In questo argomento illustra come toocreate e gestire scalabile [pool elastici](sql-database-elastic-pool.md) con PowerShell.  È anche possibile creare e gestire un pool elastico Azure utilizzando hello [portale di Azure](https://portal.azure.com/), l'API REST o [c#](sql-database-elastic-pool-manage-csharp.md). È anche possibile creare e spostare database verso e dai pool elastici usando [Transact-SQL](sql-database-elastic-pool-manage-tsql.md).
 
 [!INCLUDE [Start your PowerShell session](../../includes/sql-database-powershell.md)]
 
 ## <a name="create-an-elastic-pool"></a>Creare un pool elastico
-Il cmdlet [New-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/new-azurermsqlelasticpool) crea un pool elastico. I valori per eDTU per pool, DTU min e max sono vincolati dal valore del livello di servizio (Basic, Standard, Premium o Premium RS). Vedere [Limiti di archiviazione e di eDTU per pool elastici e database in pool](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
+Hello [New AzureRmSqlElasticPool](/powershell/module/azurerm.sql/new-azurermsqlelasticpool) cmdlet crea un pool elastico. i valori Hello per eDTU per pool e min Dtu massime sono vincolati dal valore del livello servizio hello (Basic, Standard, Premium o RS Premium). Vedere [Limiti di archiviazione e di eDTU per pool elastici e database in pool](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
 
 ```PowerShell
 New-AzureRmSqlElasticPool -ResourceGroupName "resourcegroup1" -ServerName "server1" -ElasticPoolName "elasticpool1" -Edition "Standard" -Dtu 400 -DatabaseDtuMin 10 -DatabaseDtuMax 100
 ```
 
 ## <a name="create-a-pooled-database-in-an-elastic-pool"></a>Creare un nuovo database in pool in un pool elastico
-Usare il cmdlet [New- AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase) e impostare il parametro **ElasticPoolName** per il pool di destinazione. Per spostare un database esistente in un pool elastico, vedere [Spostare un database in un pool elastico](sql-database-elastic-pool-manage-powershell.md#move-a-database-into-an-elastic-pool).
+Hello utilizzare [New AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase) cmdlet e set hello **ElasticPoolName** pool di destinazione toohello di parametro. toomove un database esistente in un pool elastico, vedere [spostare un database in un pool elastico](sql-database-elastic-pool-manage-powershell.md#move-a-database-into-an-elastic-pool).
 
 ```PowerShell
 New-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 ```
 
 ### <a name="complete-script"></a>Script completo
-Questo script crea un gruppo di risorse di Azure e un server. Quando richiesto, specificare un nome utente dell'amministratore e una password per il nuovo server (non le credenziali di Azure).
+Questo script crea un gruppo di risorse di Azure e un server. Quando richiesto, fornire un nome utente amministratore e una password per nuovo server di hello (non le credenziali di Azure).
 
 ```PowerShell
 $subscriptionId = '<your Azure subscription id>'
@@ -64,88 +64,88 @@ New-AzureRmSqlDatabase -ResourceGroupName $resourceGroupName -ServerName $server
 ```
 
 ## <a name="create-an-elastic-pool-and-add-multiple-pooled-databases"></a>Creare un pool elastico e aggiungere più database in pool
-La creazione di molti database in un pool elastico può richiedere tempo quando viene eseguita tramite il portale o i cmdlet di PowerShell che creano un database singolo alla volta. Per automatizzare la creazione in un pool elastico, vedere [CreateOrUpdateElasticPoolAndPopulate ](https://gist.github.com/billgib/d80c7687b17355d3c2ec8042323819ae).
+Creazione di molti database in un pool elastico può richiedere tempo al termine della hello portale o i cmdlet di PowerShell che creano solo un singolo database alla volta. creazione di tooautomate in un pool elastico, vedere [CreateOrUpdateElasticPoolAndPopulate ](https://gist.github.com/billgib/d80c7687b17355d3c2ec8042323819ae).
 
 ## <a name="move-a-database-into-an-elastic-pool"></a>Spostare un database in un pool elastico
-È possibile spostare un database all'interno o all'esterno di un pool elastico con [Set-AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqlelasticpool).
+È possibile spostare un database interno o all'esterno di un pool elastico con hello [Set AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqlelasticpool).
 
 ```PowerShell
 Set-AzureRmSqlDatabase -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 ```
 
 ## <a name="change-performance-settings-of-an-elastic-pool"></a>Modificare le impostazioni delle prestazioni di un pool elastico
-Quando le prestazioni ne risentono, è possibile modificare le impostazioni del pool per supportare la crescita. Usare il cmdlet [Set-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/set-azurermsqlelasticpool). Impostare il parametro -Dtu sul numero di eDTU per pool. Per i valori possibili, vedere [Limiti di archiviazione e di eDTU dei pool elastici e dei database elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
+Quando le prestazioni risultano lente, è possibile modificare impostazioni hello di crescita di hello pool tooaccommodate. Hello utilizzare [Set AzureRmSqlElasticPool](/powershell/module/azurerm.sql/set-azurermsqlelasticpool) cmdlet. Impostare hello - Dtu parametro toohello Edtu per pool. Per i valori possibili, vedere [Limiti di archiviazione e di eDTU dei pool elastici e dei database elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
 
 ```PowerShell
 Set-AzureRmSqlElasticPool -ResourceGroupName “resourcegroup1” -ServerName “server1” -ElasticPoolName “elasticpool1” -Dtu 1200 -DatabaseDtuMax 100 -DatabaseDtuMin 50
 ```
 
-## <a name="change-the-storage-limit-for-an-elastic-pool"></a>Modificare il limite di archiviazione per un pool elastico
+## <a name="change-hello-storage-limit-for-an-elastic-pool"></a>Modificare il limite di archiviazione hello per un pool elastico
 
-Usare il cmdlet [Set-AzureRmSqlElasticPool](/powershell/module/azurerm.sql/set-azurermsqlelasticpool) per impostare il parametro _-StorageMB_. Specificare il limite di archiviazione in MB. Con 2097152, ad esempio, il limite di archiviazione viene impostato su 2 TB. Per i valori possibili, vedere [Limiti di archiviazione e di eDTU dei pool elastici e dei database elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
+Hello utilizzare [Set AzureRmSqlElasticPool](/powershell/module/azurerm.sql/set-azurermsqlelasticpool) cmdlet tooset hello _- StorageMB_ parametro. Specificare il limite di archiviazione hello in MB (ad esempio, 2097152 imposta hello archiviazione limite too2 TB). Per i valori possibili, vedere [Limiti di archiviazione e di eDTU dei pool elastici e dei database elastici](sql-database-elastic-pool.md#edtu-and-storage-limits-for-elastic-pools).
 
 > [!IMPORTANT]
-> Lo spazio di archiviazione dati massimo predefinito per pool Premium con 1500 o più eDTU è 750 GB. Per ottenere _dimensioni di archiviazione dati massime per pool_ superiori, è necessario impostare il limite di archiviazione in modo esplicito. I pool Premium con spazio di archiviazione superiore a 750 GB sono attualmente in anteprima pubblica nelle aree seguenti: Stati Uniti orientali 2, Stati Uniti occidentali, US Gov Virginia, Europa occidentale, Germania centrale, Asia sud-orientale, Giappone orientale, Australia orientale, Canada centrale e Canada orientale.
+> archiviazione di dati max Hello predefinita per ogni pool per pool Premium con 1500 Edtu o più sono 750 GB. hello tooobtain superiore _max dimensioni di archiviazione di dati per ogni pool_, il limite di archiviazione hello deve essere impostato in modo esplicito. Pool Premium con più di 750 GB di spazio di archiviazione è attualmente in anteprima pubblica di hello seguenti aree: Stati Uniti orientali 2, Stati Uniti occidentali, ci Gov Virginia, Europa occidentale, Germania centrale, Asia sudorientale, Giappone orientale, Australia orientale, Canada centrale e in Canada orientale.
 
 ```PowerShell
 Set-AzureRmSqlElasticPool -ServerName "server1" -ElasticPoolName “elasticpool1” -StorageMB 2097152
 ```
 
-## <a name="get-the-status-of-pool-operations"></a>Ottenere lo stato delle operazioni dei pool
-La creazione di un pool elastico può richiedere tempo. Per tenere traccia dello stato delle operazioni dei pool, inclusi la creazione e gli aggiornamenti, usare il cmdlet [Get-AzureRmSqlElasticPoolActivity](/powershell/module/azurerm.sql/get-azurermsqlelasticpoolactivity).
+## <a name="get-hello-status-of-pool-operations"></a>Ottenere lo stato di hello delle operazioni del pool
+La creazione di un pool elastico può richiedere tempo. stato hello tootrack delle operazioni del pool inclusi la creazione e gli aggiornamenti, utilizzare hello [Get AzureRmSqlElasticPoolActivity](/powershell/module/azurerm.sql/get-azurermsqlelasticpoolactivity) cmdlet.
 
 ```PowerShell
 Get-AzureRmSqlElasticPoolActivity -ResourceGroupName “resourcegroup1” -ServerName “server1” -ElasticPoolName “elasticpool1”
 ```
 
-## <a name="get-the-status-of-moving-a-database-into-and-out-of-an-elastic-pool"></a>Ottenere lo stato dello spostamento di un database all'interno o all'esterno di un pool elastico
-Lo spostamento di un database può richiedere tempo. Tenere traccia di un stato di spostamento mediante il cmdlet [Get-AzureRmSqlDatabaseActivity](/powershell/module/azurerm.sql/get-azurermsqldatabaseactivity).
+## <a name="get-hello-status-of-moving-a-database-into-and-out-of-an-elastic-pool"></a>Ottenere lo stato di hello di spostamento di un database in e da un pool elastico
+Lo spostamento di un database può richiedere tempo. Tenere traccia di uno stato di spostamento tramite hello [Get AzureRmSqlDatabaseActivity](/powershell/module/azurerm.sql/get-azurermsqldatabaseactivity) cmdlet.
 
 ```PowerShell
 Get-AzureRmSqlDatabaseActivity -ResourceGroupName "resourcegroup1" -ServerName "server1" -DatabaseName "database1" -ElasticPoolName "elasticpool1"
 ```
 
 ## <a name="get-resource-usage-data-for-an-elastic-pool"></a>Ottenere i dati di utilizzo delle risorse per un pool elastico
-Metriche che è possibile recuperare come percentuale del limite del pool di risorse:
+Metriche che possono essere recuperate come percentuale del limite di pool di risorse hello:
 
 | Nome metrica | Descrizione |
 |:--- |:--- |
-| cpu\_percent |Utilizzo medio del calcolo espresso in percentuale del limite del pool. |
-| physical\_data\_read\_percent |Utilizzo I/O medio espresso in percentuale sulla base del limite del pool. |
-| log\_write\_percent |Utilizzo delle risorse di scrittura medio espresso in percentuale del limite del pool. |
-| DTU\_consumption\_percent |Utilizzo di eDTU medio espresso in percentuale del limite di eDTU per pool |
-| storage\_percent |Utilizzo di spazio di archiviazione medio espresso in percentuale del limite di archiviazione del pool. |
-| workers\_percent |Numero massimo di ruoli di lavoro simultanei (richieste) espresso in percentuale sulla base del limite del pool. |
-| sessions\_percent |Numero massimo di sessioni simultanee espresso in percentuale sulla base del limite del pool. |
+| cpu\_percent |Utilizzo di calcolo Media in percentuale del limite di hello del pool di hello. |
+| physical\_data\_read\_percent |Utilizzo medio dei / o in percentuale hello limite del pool di hello. |
+| log\_write\_percent |Medio scrittura utilizzo delle risorse in percentuale del limite di hello del pool di hello. |
+| DTU\_consumption\_percent |Utilizzo di eDTU medio espresso come percentuale del limite di eDTU per pool hello |
+| storage\_percent |Utilizzo di spazio di archiviazione medio espresso come percentuale del limite di archiviazione hello del pool di hello. |
+| workers\_percent |Massimi simultanee processi di lavoro (richieste), espresso in percentuale basata sul limite di hello del pool di hello. |
+| sessions\_percent |Numero massimo di sessioni simultaneo espresso come percentuale sul limite di hello del pool di hello. |
 | eDTU_limit |Impostazione del numero massimo DTU del pool elastico corrente per questo pool elastico durante l'intervallo. |
 | storage\_limit |Impostazione del limite massimo di archiviazione del pool elastico corrente per questo pool elastico espresso in megabyte durante l'intervallo. |
-| eDTU\_used |Numero medio di eDTU usato dal pool nell'intervallo. |
-| storage\_used |Spazio medio di archiviazione usato dal pool nell'intervallo espresso in byte |
+| eDTU\_used |Numero di Edtu Media utilizzata dal pool hello in questo intervallo. |
+| storage\_used |Spazio di archiviazione medio utilizzato dal pool hello in questo intervallo, in byte |
 
 **Granularità della metrica/periodi di conservazione:**
 
 * I dati vengono restituiti con una granularità di 5 minuti.  
 * La conservazione dei dati è di 35 giorni.  
 
-Questo cmdlet e questa API limitano il numero di righe che è possibile recuperare in una chiamata a 1000 righe, ovvero circa 3 giorni di dati con una granularità di 5 minuti. Tuttavia, questo comando può essere chiamato più volte con intervalli di tempo iniziale e finale differenti per recuperare ulteriori dati
+Questa API e i cmdlet limita il numero di hello di righe che possono essere recuperati in un'unica chiamata too1000 righe (circa 3 giorni di dati con granularità di 5 minuti). Ma questo comando può essere chiamato più volte con tooretrieve intervalli di tempo iniziale o finale di diversi altri dati
 
-Per recuperare le metriche:
+metrica di hello tooretrieve:
 
 ```PowerShell
 $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/elasticPools/franchisepool -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015")
 ```
 
 ## <a name="get-resource-usage-data-for-a-database-in-an-elastic-pool"></a>Ottenere i dati di utilizzo delle risorse per un database in un pool elastico
-Queste API sono le stesse API usate per monitorare l'utilizzo delle risorse di un database singolo, tranne per la differenza semantica seguente: le metriche recuperate sono espresse in percentuale del numero massimo di eDTU per database (o di un limite equivalente per la metrica sottostante, ad esempio CPU o I/O) impostato per il pool. Ad esempio, l'utilizzo del 50% di una di queste metriche indica che il consumo di risorse specifico si trova al 50% del limite di utilizzo per database per quella risorsa nel pool padre.
+Queste API sono hello stesso hello API utilizzate per il monitoraggio di utilizzo delle risorse di un singolo database, ad eccezione delle seguenti differenze semantiche hello hello: le metriche recuperate sono espresse come percentuale di hello per ogni database max Edtu (o equivalente cap per hello sottostante metrica come CPU o dei / o) impostato per tale pool. 50% di utilizzo di uno qualsiasi di queste metriche, ad esempio, indica che il consumo di risorse specifico hello al 50% di hello al limite di database per tale risorsa nel pool di hello padre.
 
-Per recuperare le metriche:
+metrica di hello tooretrieve:
 
 ```PowerShell
 $metrics = (Get-AzureRmMetric -ResourceId /subscriptions/<subscriptionId>/resourceGroups/FabrikamData01/providers/Microsoft.Sql/servers/fabrikamsqldb02/databases/myDB -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime "4/18/2015" -EndTime "4/21/2015")
 ```
 
-## <a name="add-an-alert-to-an-elastic-pool-resource"></a>Aggiungere un avviso a una risorsa di pool elastico
-È possibile aggiungere regole di avviso a un pool elastico per l'invio di notifiche tramite posta elettronica oppure stringhe di avviso a [endpoint di URL](https://msdn.microsoft.com/library/mt718036.aspx) quando il pool elastico raggiunge la soglia di utilizzo impostata. Usare il cmdlet Add-AzureRmMetricAlertRule.
+## <a name="add-an-alert-tooan-elastic-pool-resource"></a>Aggiungere una risorsa del pool elastico tooan avviso
+È possibile aggiungere regole di avviso tooan pool elastico toosend notifiche tramite posta elettronica o l'avviso stringhe troppo[endpoint URL](https://msdn.microsoft.com/library/mt718036.aspx) quando pool elastico hello raggiunga una soglia di utilizzo impostato. Utilizzare il cmdlet Add-AzureRmMetricAlertRule hello.
 
 > [!IMPORTANT]
 > Il monitoraggio dell'uso delle risorse per i pool elastici viene eseguito con un ritardo di almeno 5 minuti. Al momento non è possibile impostare avvisi inferiori ai 10 minuti per i pool elastici. Eventuali avvisi impostato per il pool elastico con un punto (parametro denominato "-WindowSize" nell'API di PowerShell) di meno di 10 minuti non può essere avviata. Verificare che gli avvisi definiti per i pool elastici usino un periodo (WindowSize) di almeno 10 minuti.
@@ -177,14 +177,14 @@ Add-AzureRMMetricAlertRule -Name $alertName -Location $location -ResourceGroup $
 
 Per altre informazioni, vedere [Usare il portale di Azure per creare avvisi per il database SQL di Azure](sql-database-insights-alerts-portal.md).
 
-## <a name="add-alerts-to-all-databases-in-an-elastic-pool"></a>Aggiungere avvisi a tutti i database in un pool elastico
-È possibile aggiungere regole di avviso a tutti i database di un pool elastico in modo che vengano inviate notifiche tramite posta elettronica o stringhe di avviso a [endpoint di URL](https://msdn.microsoft.com/library/mt718036.aspx) quando una risorsa raggiunge la soglia di utilizzo impostata.
+## <a name="add-alerts-tooall-databases-in-an-elastic-pool"></a>Aggiungere database tooall degli avvisi in un pool elastico
+È possibile aggiungere regole di avviso database tooall in un pool elastico di toosend notifiche tramite posta elettronica o l'avviso stringhe troppo[endpoint URL](https://msdn.microsoft.com/library/mt718036.aspx) quando una risorsa raggiunga una soglia di utilizzo impostata dall'avviso hello.
 
 > [!IMPORTANT]
 > Il monitoraggio dell'uso delle risorse per i pool elastici viene eseguito con un ritardo di almeno 5 minuti. Al momento non è possibile impostare avvisi inferiori ai 10 minuti per i pool elastici. Eventuali avvisi impostato per il pool elastico con un punto (parametro denominato "-WindowSize" nell'API di PowerShell) di meno di 10 minuti non può essere avviata. Verificare che gli avvisi definiti per i pool elastici usino un periodo (WindowSize) di almeno 10 minuti.
 >
 
-Questo esempio aggiunge un avviso a ognuno dei database di un pool elastico in modo che venga inviata una notifica quando il consumo di DTU del database supera una determinata soglia.
+Questo esempio viene aggiunto un avviso tooeach dei database hello in un pool elastico per ricevere notifiche quando il consumo di DTU del database supera determinata soglia.
 
 ```PowerShell
 # Set up your resource ID configurations
@@ -194,13 +194,13 @@ $resourceGroupName = '<resource group name>'     # Resource Group
 $serverName = '<server name>'                    # server name
 $poolName = '<elastic pool name>'                # pool name
 
-# Get the list of databases in this pool.
+# Get hello list of databases in this pool.
 $dbList = Get-AzureRmSqlElasticPoolDatabase -ResourceGroupName $resourceGroupName -ServerName $serverName -ElasticPoolName $poolName
 
 # Create an email action
 $actionEmail = New-AzureRmAlertRuleEmail -SendToServiceOwners -CustomEmail JohnDoe@contoso.com
 
-# Get resource usage metrics for a database in an elastic pool for the specified time interval.
+# Get resource usage metrics for a database in an elastic pool for hello specified time interval.
 foreach ($db in $dbList)
 {
     $dbResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/databases/' + $db.DatabaseName
@@ -211,31 +211,31 @@ foreach ($db in $dbList)
     # Create an alert rule for DTU_consumption_percent
     Add-AzureRMMetricAlertRule -Name $alertName  -Location $location -ResourceGroup $resourceGroupName -TargetResourceId $dbResourceId -MetricName "dtu_consumption_percent"  -Operator GreaterThan -Threshold 80 -TimeAggregationOperator Average -WindowSize 00:60:00 -Actions $actionEmail
 
-    # drop the alert rule
+    # drop hello alert rule
     #Remove-AzureRmAlertRule -ResourceGroup $resourceGroupName -Name $alertName
 }
 ```
 
 ## <a name="collect-and-monitor-resource-usage-data-across-multiple-pools-in-a-subscription"></a>Raccogliere e monitorare i dati sull'utilizzo delle risorse in più pool in una sottoscrizione
-In presenza di molti database in una sottoscrizione, è difficile monitorare separatamente i singoli pool elastici. I cmdlet di PowerShell per database SQL e le query T-SQL, invece, possono essere combinati per raccogliere dati sull'utilizzo delle risorse da più pool e i relativi database per il monitoraggio e l'analisi dell'utilizzo delle risorse. Nel repository di esempi relativi a SQL Server su GitHub è disponibile un' [implementazione di esempio](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) di un set di script di PowerShell di questo tipo, insieme alla documentazione relativa alle operazioni eseguite da tale implementazione e al relativo uso.
+Quando si dispone di molti database in una sottoscrizione, è scomodo toomonitor ogni elastica pool separatamente. Al contrario, i cmdlet PowerShell di database SQL e query T-SQL possono essere toocollect combinati i dati di utilizzo di risorse di più pool e i relativi database per il monitoraggio e analisi dell'utilizzo delle risorse. Oggetto [implementazione di esempio](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools) di un set di questo tipo di powershell script è reperibile nel repository di esempi di hello GitHub SQL Server insieme documentazione su vengono eseguite e come toouse è.
 
-Per usare questa implementazione di esempio, seguire questa procedura.
+toouse questa implementazione di esempio, eseguire la procedura seguente.
 
-1. Scaricare gli [script e la documentazione](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools):
-2. Modificare gli script per l'ambiente. Specificare uno o più server in cui sono ospitati i pool elastici.
-3. Specificare un database di telemetria in cui archiviare le metriche raccolte.
-4. Personalizzare lo script per specificare la durata dell'esecuzione degli script.
+1. Scaricare hello [script e la documentazione](https://github.com/Microsoft/sql-server-samples/tree/master/samples/manage/azure-sql-db-elastic-pools):
+2. Modificare gli script hello per l'ambiente. Specificare uno o più server in cui sono ospitati i pool elastici.
+3. Specificare un database di telemetria in hello metriche raccolte sono toobe archiviati.
+4. Personalizzare hello script toospecify hello Durata esecuzione degli script hello.
 
-A livello generale, gli script eseguono le operazioni seguenti:
+In generale, gli script hello hello seguenti:
 
 * Enumera tutti i server in una determinata sottoscrizione di Azure (o in determinato elenco di server).
-* Esegue un processo in background per ogni server. Il processo viene eseguito in un ciclo a intervalli regolari e raccoglie i dati di telemetria per tutti i pool nel server. Carica quindi i dati raccolti nel database di telemetria specificato.
-* Enumera un elenco di database in ogni pool per raccogliere i dati sull'utilizzo delle risorse di database. Carica quindi i dati raccolti nel database di telemetria.
+* Esegue un processo in background per ogni server. il processo di Hello viene eseguito in un ciclo a intervalli regolari e raccoglie i dati di telemetria per tutti i pool di hello in server hello. Quindi carica hello raccolti dati nel database specificato telemetria hello.
+* Enumera un elenco di database in ogni pool toocollect hello database risorse sull'utilizzo di dati. Quindi carica hello raccolti dati nel database di telemetria hello.
 
-È possibile analizzare le metriche raccolte nel database di telemetria per monitorare l'integrità dei pool elastici e i database che contengono. Lo script installa anche una funzione con valori di tabella predefinita nel database di telemetria per aggregare le metriche per un determinato intervallo di tempo. Ad esempio, i risultati della funzione con valori di tabella possono essere usati per visualizzare i "primi N pool elastici con l'utilizzo eDTU massimo in un dato intervallo di tempo". Facoltativamente, è possibile usare strumenti di analisi come Excel o Power BI per eseguire una query e analizzare i dati raccolti.
+Hello metriche raccolte nel database di telemetria hello possono essere analizzati toomonitor hello integrità del pool elastico e database hello in essa contenuti. script Hello installa anche una funzione con valori di tabella predefinita (TVF) in metriche hello telemetria database toohelp hello aggregazione per un intervallo di tempo specificato. Ad esempio, possono essere i risultati di hello TVF utilizzato tooshow "top N pool elastici con l'utilizzo di eDTU massimo hello in un determinato intervallo di tempo." Facoltativamente, usare strumenti analitici come Excel o Power BI tooquery e analizzare i dati raccolti hello.
 
 ### <a name="example-retrieve-resource-consumption-metrics-for-an-elastic-pool-and-its-databases"></a>Esempio: recuperare le metriche di consumo di risorse per un pool elastico e i relativi database
-Questo esempio recupera le metriche di consumo per un determinato pool elastico e tutti i relativi database. I dati raccolti vengono formattati e scritti in un file in formato CSV. Il file può essere esplorato in Excel.
+In questo esempio recupera le metriche di utilizzo hello per un determinato pool elastico e tutti i database. I dati raccolti sono formattati e scritti tooa file in formato CSV. file Hello può essere visualizzati con Excel.
 
 ```PowerShell
 $subscriptionId = '<Azure subscription id>'          # Azure subscription ID
@@ -243,22 +243,22 @@ $resourceGroupName = '<resource group name>'             # Resource Group
 $serverName = <server name>                              # server name
 $poolName = <elastic pool name>                          # pool name
 
-# Login to Azure account and select the subscription.
+# Login tooAzure account and select hello subscription.
 Login-AzureRmAccount
 Set-AzureRmContext -SubscriptionId $subscriptionId
 
-# Get resource usage metrics for an elastic pool for the specified time interval.
+# Get resource usage metrics for an elastic pool for hello specified time interval.
 $startTime = '4/27/2016 00:00:00'  # start time in UTC
 $endTime = '4/27/2016 01:00:00'    # end time in UTC
 
-# Construct the pool resource ID and retrive pool metrics at 5-minute granularity.
+# Construct hello pool resource ID and retrive pool metrics at 5-minute granularity.
 $poolResourceId = '/subscriptions/' + $subscriptionId + '/resourceGroups/' + $resourceGroupName + '/providers/Microsoft.Sql/servers/' + $serverName + '/elasticPools/' + $poolName
 $poolMetrics = (Get-AzureRmMetric -ResourceId $poolResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime)
 
-# Get the list of databases in this pool.
+# Get hello list of databases in this pool.
 $dbList = Get-AzureRmSqlElasticPoolDatabase -ResourceGroupName $resourceGroupName -ServerName $serverName -ElasticPoolName $poolName
 
-# Get resource usage metrics for a database in an elastic pool for the specified time interval.
+# Get resource usage metrics for a database in an elastic pool for hello specified time interval.
 $dbMetrics = @()
 foreach ($db in $dbList)
 {
@@ -266,7 +266,7 @@ foreach ($db in $dbList)
      $dbMetrics = $dbMetrics + (Get-AzureRmMetric -ResourceId $dbResourceId -TimeGrain ([TimeSpan]::FromMinutes(5)) -StartTime $startTime -EndTime $endTime)
 }
 
-#Optionally you can format the metrics and output as .csv file using the following script block.
+#Optionally you can format hello metrics and output as .csv file using hello following script block.
 $command = {
 param($metricList, $outputFile)
 
@@ -283,7 +283,7 @@ foreach($metric in $metricList) {
    }
 }
 
-# Output the metrics into a .csv file.
+# Output hello metrics into a .csv file.
 write-output $table | Export-csv -Path $outputFile -Append -NoTypeInformation
 }
 
@@ -295,11 +295,11 @@ Invoke-Command -ScriptBlock $command -ArgumentList $dbMetrics,c:\temp\dbmetrics.
 ```
 
 ## <a name="latency-of-elastic-pool-operations"></a>Latenza delle operazioni dei pool elastici
-* La modifica del numero minimo di eDTU per database o del numero massimo di eDTU per database in genere viene completata entro 5 minuti.
-* La modifica del numero di eDTU per pool dipende dallo spazio totale usato da tutti i database nel pool. Le modifiche richiedono una media di 90 minuti o meno per 100 GB. Ad esempio, se lo spazio totale utilizzato da tutti i database nel pool è pari a 200 GB, la latenza prevista per la modifica del numero di eDTU del pool per ogni pool è di 3 ore o meno.
+* Modifica hello min Edtu per database o un numero massimo di Edtu per ogni database in genere viene completata entro 5 minuti o meno.
+* Modifica hello Edtu per pool dipende dalla quantità totale di hello dello spazio utilizzato da tutti i database nel pool di hello. Le modifiche richiedono una media di 90 minuti o meno per 100 GB. Ad esempio, se lo spazio totale hello utilizzato da tutti i database nel pool di hello è 200 GB, quindi hello prevista latenza per la modifica hello pool eDTU per pool è 3 ore o minore.
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Creare processi elastici](sql-database-elastic-jobs-overview.md) : i processi elastici consentono di eseguire script T-SQL su un numero qualsiasi di database nel pool.
-* Vedere [Aumentare il numero di istanze con il database SQL di Azure](sql-database-elastic-scale-introduction.md): usare gli strumenti elastici per aumentare il numero di istanze, spostare dati, eseguire query o creare transazioni.
+* [Creare processi elastici](sql-database-elastic-jobs-overview.md) elastici processi consentono di eseguire script T-SQL in un numero qualsiasi di database nel pool di hello.
+* Vedere [scalabilità orizzontale con Database SQL di Azure](sql-database-elastic-scale-introduction.md): utilizzare strumenti elastico tooscale out, spostare i dati, eseguire una query o creare transazioni.

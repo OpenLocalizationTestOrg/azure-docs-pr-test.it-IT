@@ -1,5 +1,5 @@
 ---
-title: Automazione della distribuzione di applicazioni con le estensioni delle macchine virtuali | Microsoft Docs
+title: Distribuzione dell'applicazione con estensioni di macchine virtuali aaaAutomating | Documenti Microsoft
 description: Macchine virtuali di Azure - Esercitazione DotNet Core
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,22 +16,22 @@ ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f2996eef71b39c6240fac5484854f72d3e657d0f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d52537fbd4e935f19d3864def11484f519f8598
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-deployment-with-azure-resource-manager-templates-for-windows-vms"></a>Distribuzione di applicazioni con i modelli di Azure Resource Manager per macchine virtuali Windows
 
-Dopo che tutti i requisiti dell'infrastruttura di Azure sono stati identificati e convertiti in un modello di distribuzione, è necessario occuparsi della distribuzione effettiva delle applicazioni. Per distribuzione delle applicazioni si intende l'installazione effettiva dei file binari delle applicazioni nelle risorse di Azure. Per l'esempio Music Store, è necessario installare e configurare .Net Core e IIS in ogni macchina virtuale, nonché installare i file binari di Music Store nella macchina virtuale e creare il database di Music Store.
+Una volta tutti i requisiti infrastrutturali Azure sono stati identificati e convertiti in un modello di distribuzione, distribuzione di applicazione reale hello deve toobe risolti. Distribuzione dell'applicazione qui fa riferimento a file binari dell'applicazione effettivo hello tooinstalling su risorse di Azure. Per esempio negozio hello, .net Core e IIS devono toobe installato e configurato in ogni macchina virtuale. Hello negozio file binari necessari toobe installato nella macchina virtuale hello e database dell'archivio di musica hello creato in precedenza.
 
-Questo documento descrive in che modo le estensioni delle macchine virtuali possono automatizzare la distribuzione e la configurazione di applicazioni nelle macchine virtuali di Azure. Tutte le dipendenze e le configurazioni univoche sono evidenziate. Per ottenere risultati ottimali, pre-distribuire un'istanza della soluzione alla propria sottoscrizione di Azure ed esercitarsi con il modello di Azure Resource Manager. Il modello completo è disponibile in [Music Store Deployment on Windows](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows) (Distribuzione di Music Store in Windows).
+Questo documento illustra in dettaglio come estensioni di macchine virtuali consente di automatizzare la distribuzione e configurazione tooAzure macchine virtuali dell'applicazione. Tutte le dipendenze e le configurazioni univoche sono evidenziate. Per un'esperienza ottimale hello, pre-distribuire un'istanza di hello soluzione tooyour sottoscrizione di Azure e di lavoro nel modello di gestione risorse di Azure hello. è disponibili qui: modello completa Hello [musica archivio distribuzione in Windows](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-windows).
 
 ## <a name="configuration-script"></a>Script di configurazione
-Le estensioni delle macchine virtuali sono programmi specializzati che vengono eseguiti sulle macchine virtuali per automatizzare le attività di configurazione. Le estensioni sono disponibili per molti scopi specifici, ad esempio un programma antivirus, la configurazione della registrazione e la configurazione di Docker. L'estensione script personalizzata può essere usata per eseguire uno script su una macchina virtuale. Nel caso dell'esempio Music Store, l'estensione script personalizzata viene usata per configurare le macchine virtuali Windows e installare l'applicazione Music Store.
+Estensioni di macchine virtuali sono programmi specializzati eseguite sui automazione configurazione tooprovide di macchine virtuali. Le estensioni sono disponibili per molti scopi specifici, ad esempio un programma antivirus, la configurazione della registrazione e la configurazione di Docker. Hello estensione Script personalizzato può essere utilizzato toorun qualsiasi a fronte di una macchina virtuale. Con l'esempio hello Negozio, è backup di macchine virtuali toohello script personalizzato estensione tooconfigure hello Windows e installare un'applicazione hello Negozio.
 
-Prima di vedere in che modo le estensioni delle macchine virtuali sono dichiarate in un modello di Azure Resource Manager, esaminare lo script che viene eseguito. Questo script configura la macchina virtuale Windows in modo da ospitare l'applicazione Music Store. Durante l'esecuzione, lo script installa tutto il software necessario, installa l'applicazione Music Store dal controllo del codice sorgente e prepara il database. 
+Prima che riporta in dettaglio come estensioni di macchine virtuali vengono dichiarate in un modello di gestione risorse di Azure, esaminare script hello che viene eseguito. Questo script configura hello toohost di macchina virtuale Windows hello applicazione Negozio. Durante l'esecuzione, script hello installa il software necessario tutte, installare un'applicazione hello musica archivio dal controllo del codice sorgente e preparare i database di hello. 
 
 > Questo esempio è fornito a scopo dimostrativo.
 
@@ -84,11 +84,11 @@ New-Website -Name "MusicStore" -Port 80 -PhysicalPath C:\music\ -ApplicationPool
 ```
 
 ## <a name="vm-script-extension"></a>Estensione script della macchina virtuale
-Le estensioni delle macchine virtuali possono essere eseguite su una macchina virtuale in fase di compilazione includendo la risorsa dell'estensione nel modello di Azure Resource Manager. È possibile aggiungere l'estensione usando la procedura guidata Aggiungi nuova risorsa di Visual Studio o inserendo una risorsa JSON valida nel modello. La risorsa dell'estensione script è annidata all'interno della risorsa della macchina virtuale, come illustrato nell'esempio seguente.
+Le estensioni VM possibile eseguire in una macchina virtuale in fase di compilazione con l'inclusione di risorse di estensione hello nel modello di gestione risorse di Azure hello. Hello estensione può essere aggiunta con hello Visual Studio Aggiunta guidata risorsa o tramite l'inserimento di un oggetto JSON valido nel modello hello. risorse di estensione dello Script Hello è annidata all'interno di hello risorsa macchina virtuale. può essere visto nell'esempio seguente hello.
 
-Fare clic su questo collegamento per vedere l'esempio JSON incluso nel modello di Resource Manager: [Estensione script della macchina virtuale](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-windows/azuredeploy.json#L339). 
+Seguire questo esempio di collegamento toosee hello JSON all'interno di modello di gestione risorse hello- [estensione della macchina virtuale Script](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-windows/azuredeploy.json#L339). 
 
-Nel codice JSON seguente è possibile notare che lo script è archiviato in GitHub. Questo script può essere incluso anche nell'archiviazione BLOB di Azure. Inoltre, i modelli di Azure Resource Manager consentono di creare la stringa di esecuzione dello script in modo che i valori dei parametri del modello siano utilizzabili come parametri per l'esecuzione dello script. In questo caso, i dati vengono forniti quando si distribuiscono i modelli e questi valori possono quindi essere usati durante l'esecuzione dello script.
+Si noti che in hello seguito JSON che hello script viene archiviato in GitHub. Questo script può essere incluso anche nell'archiviazione BLOB di Azure. Inoltre, i modelli di gestione risorse di Azure consentono hello script esecuzione stringa toobe costruito in modo che i valori di parametri di modello possono essere usati come parametri per l'esecuzione dello script. In questo caso i dati vengono forniti durante la distribuzione di modelli di hello e questi valori possono quindi essere utilizzati durante l'esecuzione di script hello.
 
 ```json
 {
@@ -120,11 +120,11 @@ Nel codice JSON seguente è possibile notare che lo script è archiviato in GitH
 }
 ```
 
-Come indicato in precedenza, è anche possibile archiviare gli script personalizzati nell'archivio BLOB di Azure. Esistono due possibilità di archiviazione per le risorse di script nell'archivio BLOB: rendere pubblico il contenitore o lo script e seguire l'approccio descritto in precedenza, oppure mantenere l'archivio BLOB privato il che implica indicare storageAccountName e storageAccountKey nella definizione della risorsa CustomScriptExtension.
+Come indicato in precedenza, è anche possibile toostore script personalizzato nell'archiviazione Blob di Azure. Sono disponibili due opzioni per l'archiviazione di risorse di script hello nell'archiviazione blob. rendere pubblico contenitore/script hello e seguire hello stesso approccio sopra, o può anche essere conservato nell'archiviazione blob privato che richiede il tooprovide hello storageAccountName e storageAccountKey toohello CustomScriptExtension definizione di risorsa.
 
-Nell'esempio seguente è stato effettuato un passaggio in più. Sebbene sia possibile indicare il nome e la chiave dell'account di archiviazione come parametro o variabile durante la distribuzione, i modelli di Resource Manager implementano la funzione `listKeys` che può recuperare la chiave dell'account di archiviazione a livello di programmazione e inserirla nel modello in fase di distribuzione.
+Nel seguente esempio hello è stato effettuato un passaggio ulteriormente. Sebbene sia possibile tooprovide nome account di archiviazione hello e la chiave come parametro o variabile durante la distribuzione, i modelli di gestione risorse forniscono hello `listKeys` funzione che è possibile ottenere l'account di archiviazione hello chiave a livello di codice e inserirlo in toohello modello per l'utente in fase di distribuzione.
 
-Nell'esempio di definizione di risorsa CustomScriptExtension riportato di seguito, lo script personalizzato è già stato caricato in un account di archiviazione di Azure denominato `mystorageaccount9999` che esiste in un altro gruppo di risorse denominato `mysa999rgname`. Quando si distribuisce un modello contenente questa risorsa, la funzione `listKeys` recupera a livello di programmazione la chiave dell'account di archiviazione per l'account di archiviazione `mystorageaccount9999` nel gruppo di risorse `mysa999rgname` e la inserisce nel modello.
+Nell'esempio hello CustomScriptExtension definizione di risorsa seguente, lo script personalizzato è già stato caricato tooan account di archiviazione di Azure denominato `mystorageaccount9999` che esiste in un altro gruppo di risorse denominato `mysa999rgname`. Quando si distribuisce un modello che contiene la risorsa, hello `listKeys` funzione a livello di codice ottiene chiave dell'account di archiviazione per l'account di archiviazione hello hello `mystorageaccount9999` nel gruppo di risorse hello `mysa999rgname` e lo inserisce nel modello toohello per noi.
 
 ```json
 {
@@ -158,9 +158,9 @@ Nell'esempio di definizione di risorsa CustomScriptExtension riportato di seguit
 }
 ```
 
-Il principale vantaggio di questo approccio è che non è necessario modificare i parametri del modello o della distribuzione nel caso in cui la chiave dell'account di archiviazione venga modificata.
+vantaggio principale di Hello di questo approccio è che non richiede toochange è il modello o i parametri di distribuzione nell'evento hello di hello Modifica chiave account di archiviazione.
 
-Per altre informazioni sull'estensione script personalizzata, vedere [Custom script extensions with Resource Manager templates](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)(Estensioni script personalizzate con i modelli di Resource Manager).
+Per ulteriori informazioni sull'uso delle estensioni hello script personalizzato, vedere [le estensioni degli script personalizzati con modelli di gestione risorse](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-step"></a>Passaggio successivo
 <hr>

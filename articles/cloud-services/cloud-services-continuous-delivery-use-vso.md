@@ -1,6 +1,6 @@
 ---
-title: Recapito continuo con Visual Studio Team Services in Azure | Documentazione Microsoft
-description: "Informazioni sulla configurazione dei progetti team di Visual Studio Team Services per la compilazione e la distribuzione automatiche alla funzionalità App Web nel Servizio app di Azure o nei servizi cloud."
+title: recapito aaaContinuous con Visual Studio Team Services in Azure | Documenti Microsoft
+description: "Informazioni su come tooconfigure il Visual Studio Team Services i progetti team tooautomatically compilare e distribuire toohello funzionalità App Web di servizi cloud o di servizio App di Azure."
 services: cloud-services
 documentationcenter: .net
 author: mlearned
@@ -14,171 +14,171 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: mlearned
-ms.openlocfilehash: d80ce63eb7ddfd7c45726be887a772f9a7594b28
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eae75729e1c1a55f9bc3375604a8192f329d0042
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="continuous-delivery-to-azure-using-visual-studio-team-services"></a>Recapito continuo in Azure tramite Visual Studio Team Services
-È possibile configurare i progetti del proprio team di Visual Studio Team Services in modo da compilare ed eseguire automaticamente la distribuzione nelle app Web o nei servizi cloud di Azure.  Per informazioni su come configurare un sistema di compilazione e distribuzione continua con un Team Foundation Server *locale* , vedere [Recapito continuo per Servizi cloud in Azure](cloud-services-dotnet-continuous-delivery.md).
+# <a name="continuous-delivery-tooazure-using-visual-studio-team-services"></a>TooAzure il recapito continuo con Visual Studio Team Services
+È possibile configurare la compilazione di Visual Studio Team Services team progetti tooautomatically e distribuire le app web tooAzure o servizi cloud.  (Per informazioni su come tooset fino a una compilazione continua e distribuzione del sistema utilizzando un *locale* Team Foundation Server, vedere [il recapito continuo per servizi Cloud in Azure](cloud-services-dotnet-continuous-delivery.md).)
 
-In questa esercitazione si presuppone che l'utente abbia installato Visual Studio 2013 e Azure SDK. Se non si dispone ancora di Visual Studio 2013, scaricarlo scegliendo il collegamento **Inizia gratuitamente** all'indirizzo [www.visualstudio.com](http://www.visualstudio.com). Installare Azure SDK da [questa pagina](http://go.microsoft.com/fwlink/?LinkId=239540).
+In questa esercitazione si presuppone di Visual Studio 2013 e Azure SDK installata hello. Se si dispone già di Visual Studio 2013, scaricarlo scegliendo hello **possibile iniziare gratuitamente** collegamento [www.visualstudio.com](http://www.visualstudio.com). Installazione hello Azure SDK da [qui](http://go.microsoft.com/fwlink/?LinkId=239540).
 
 > [!NOTE]
-> Per completare l'esercitazione, è necessario un account di Visual Studio Team Services: è possibile [aprire un account di Visual Studio Team Services gratuitamente](http://go.microsoft.com/fwlink/p/?LinkId=512979).
+> È necessario un toocomplete di account di Visual Studio Team Services in questa esercitazione: È possibile [aprire un account di Visual Studio Team Services gratuito](http://go.microsoft.com/fwlink/p/?LinkId=512979).
 > 
 > 
 
-Per configurare un servizio cloud da compilare e distribuire automaticamente in Azure tramite Visual Studio Team Services, seguire questa procedura.
+tooset backup un tooautomatically servizio cloud compilare e distribuire tooAzure utilizzando Visual Studio Team Services, seguire questi passaggi.
 
 ## <a name="1-create-a-team-project"></a>1: Creare un progetto team
-Seguire le istruzioni [qui](http://go.microsoft.com/fwlink/?LinkId=512980) per creare il progetto team e collegarlo a Visual Studio. In questa procedura dettagliata si presume che si usi Controllo della versione di Team Foundation (TFVC) come soluzione di controllo del codice sorgente. Per usare Git per il controllo della versione, vedere [la versione per Git di questa procedura dettagliata](http://go.microsoft.com/fwlink/p/?LinkId=397358).
+Seguire le istruzioni di hello [qui](http://go.microsoft.com/fwlink/?LinkId=512980) toocreate il team di progetto e crea un collegamento tooVisual Studio. In questa procedura dettagliata si presume che si usi Controllo della versione di Team Foundation (TFVC) come soluzione di controllo del codice sorgente. Se si desidera toouse Git per il controllo della versione, vedere [versione Git hello di questa procedura dettagliata](http://go.microsoft.com/fwlink/p/?LinkId=397358).
 
-## <a name="2-check-in-a-project-to-source-control"></a>2: Archiviare un progetto nel controllo del codice sorgente
-1. In Visual Studio, aprire la soluzione che si desidera distribuire o crearne una nuova.
-   È possibile distribuire un’app Web o un servizio cloud (applicazione Azure) seguendo i passaggi di questa procedura dettagliata.
-   Se si desidera creare una nuova soluzione, creare un nuovo progetto di servizio cloud di Azure o un nuovo progetto ASP.NET MVC. Assicurarsi che la destinazione del progetto sia .NET Framework 4 o 4.5 e, se si sta creando un progetto di servizio cloud, aggiungere un ruolo Web ASP.NET MVC e un ruolo di lavoro, quindi scegliere l'applicazione Internet per il ruolo Web. Quando richiesto, scegliere **Applicazione Internet**.
-   Per creare un’app Web, scegliere il modello di progetto Applicazione Web ASP.NET e quindi scegliere MVC. Vedere [Creare un'app Web ASP.NET in Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md).
+## <a name="2-check-in-a-project-toosource-control"></a>2: controllare in un controllo toosource progetto
+1. In Visual Studio, aprire Esplora hello toodeploy desiderato oppure crearne uno nuovo.
+   È possibile distribuire un'app web o un servizio cloud (applicazione di Azure) da hello seguente passaggi in questa procedura dettagliata.
+   Se si desidera toocreate una nuova soluzione, creare un nuovo progetto di servizio Cloud di Azure o un nuovo progetto ASP.NET MVC. Assicurarsi che hello progetto è destinato a .NET Framework 4 o 4.5 e se si sta creando un progetto di servizio cloud, aggiungere un ruolo web ASP.NET MVC e un ruolo di lavoro e scegliere l'applicazione Internet per il ruolo web hello. Quando richiesto, scegliere **Applicazione Internet**.
+   Se si desidera toocreate un'app web, scegliere il modello di progetto applicazione Web ASP.NET di hello, quindi MVC. Vedere [Creare un'app Web ASP.NET in Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md).
    
    > [!NOTE]
    > Al momento, Visual Studio Team Services supporta solo le distribuzioni CI di applicazioni Web di Visual Studio. I progetti di sito Web sono esterni all'ambito.
    > 
    > 
-2. Aprire il menu di scelta rapida relativo alla soluzione e selezionare **Aggiungi soluzione al controllo del codice sorgente**.
+2. Aprire hello menu di scelta rapida Esplora hello e scegliere **tooSource Aggiungi soluzione controllo**.
    
     ![][5]
-3. Accettare o modificare le impostazioni predefinite e quindi scegliere **OK** . Dopo il completamento del processo, in **Esplora soluzioni**vengono visualizzate le icone del controllo codice sorgente.
+3. Accettare o modificare le impostazioni predefinite di hello e scegliere hello **OK** pulsante. Al termine del processo di hello, vengono visualizzate le icone di controllo di origine **Esplora**.
    
     ![][6]
-4. Aprire il menu di scelta rapida relativo alla soluzione e scegliere **Archivia**.
+4. Aprire il menu di scelta rapida hello per soluzione hello e scegliere **Archivia**.
    
     ![][7]
-5. Nell'area **Modifiche in sospeso** di **Team Explorer** digitare un commento per l'archiviazione e scegliere il pulsante **Archivia**.
+5. In hello **modifiche in sospeso** area di **Team Explorer**, digitare un commento per l'archiviazione hello e scegliere hello **Archivia** pulsante.
    
     ![][8]
    
-    Notare le opzioni per includere o escludere modifiche specifiche quando si esegue l'archiviazione. Se le modifiche desiderate sono escluse, scegliere il collegamento **Includi tutto** .
+    Si noti hello opzioni tooinclude o escludere modifiche specifiche quando si archivia. Se si desidera sono escluse le modifiche, scegliere hello **Includi tutto** collegamento.
    
     ![][9]
 
-## <a name="3-connect-the-project-to-azure"></a>3: Collegare il progetto ad Azure
-1. A questo punto, dopo avere creato un progetto team VS Team Services contenente il codice sorgente, è possibile connettere il progetto team ad Azure.  Nel [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885) selezionare il servizio cloud o l'app Web oppure crearne uno nuovo selezionando l'icona **+** in basso a sinistra e scegliendo **Servizio cloud** o **App Web** e quindi **Creazione rapida**. Scegliere il collegamento **Imposta pubblicazione con Visual Studio Team Services** .
+## <a name="3-connect-hello-project-tooazure"></a>3: connettere hello progetto tooAzure
+1. Dopo avere creato un progetto team di Visual Studio Team Services con un codice di origine in essa contenuti, si è pronti tooconnect tooAzure del progetto team.  In hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885), selezionare l'applicazione web o servizio cloud o crearne uno nuovo scegliendo hello  **+**  icona in basso a sinistra di hello e scegliendo **servizio Cloud** o **App Web** e quindi **creazione rapida**. Scegliere hello **impostare la pubblicazione con Visual Studio Team Services** collegamento.
    
     ![][10]
-2. Nella procedura guidata digitare il nome del proprio account di Visual Studio Team Services nella casella di testo e fare clic sul collegamento **Autorizza ora** . È possibile che venga richiesto di effettuare l'accesso.
+2. Nella procedura guidata hello, digitare il nome di hello dell'account di Visual Studio Team Services nella casella di testo hello e fare clic su hello **autorizzare ora** collegamento. Potrebbe essere necessario toosign in.
    
     ![][11]
-3. Nella finestra di dialogo popup **Connection Request** (Richiesta di connessione) scegliere il pulsante **Accetta** per autorizzare Azure a configurare il progetto team in VS Team Services.
+3. In hello **richiesta di connessione** finestra di dialogo popup scegliere hello **Accept** pulsante tooauthorize tooconfigure Azure il progetto team in Visual Studio Team Services.
    
     ![][12]
-4. Dopo aver concesso l'autorizzazione verrà visualizzato un elenco a discesa contenente un elenco dei progetti team di Visual Studio Team Services. Selezionare il nome del progetto team creato nei passaggi precedenti e quindi fare clic sul pulsante con il segno di spunta della procedura guidata.
+4. Dopo aver concesso l'autorizzazione verrà visualizzato un elenco a discesa contenente un elenco dei progetti team di Visual Studio Team Services. Scegliere il nome di hello del progetto team creato nei passaggi precedenti hello e quindi sul pulsante della procedura guidata di hello segno di spunta.
    
     ![][13]
-5. Dopo aver collegato il progetto saranno visualizzate alcune istruzioni per l'archiviazione delle modifiche nel progetto team di Visual Studio Team Services.  Alla successiva archiviazione, Visual Studio Team Services compilerà e distribuirà il progetto in Azure.  Provare subito facendo clic sul collegamento **Archivia da Visual Studio**, quindi sul collegamento **Avviare Visual Studio** o sul pulsante equivalente **Visual Studio** nella parte inferiore della schermata del portale.
+5. Dopo che il progetto è collegato, verrà visualizzato alcune istruzioni per l'archiviazione del progetto team di Visual Studio Team Services tooyour le modifiche.  Il successivo check-in, Visual Studio Team Services verrà compilato e distribuito tooAzure il progetto.  Provare a questo punto, fare clic su hello **Check-In da Visual Studio** il collegamento e quindi hello **avviare Visual Studio** collegamento (o equivalente hello **Visual Studio** pulsante nella parte inferiore di hello del portale schermata Ciao).
    
     ![][14]
 
 ## <a name="4-trigger-a-rebuild-and-redeploy-your-project"></a>4: Attivare una ricompilazione e ridistribuire il progetto
-1. In **Team Explorer** di Visual Studio fare clic sul collegamento **Esplora controllo codice sorgente**.
+1. In Visual Studio **Team Explorer**, scegliere hello **Esplora controllo codice sorgente** collegamento.
    
     ![][15]
-2. Passare al file della soluzione e aprirlo.
+2. Selezionare il file di soluzione tooyour e aprirlo.
    
     ![][16]
-3. In **Esplora soluzioni**aprire un file e modificarlo. Modificare ad esempio il file `_Layout.cshtml` nella cartella Views\\Shared in un ruolo Web MVC.
+3. In **Esplora soluzioni**aprire un file e modificarlo. Ad esempio, modificare il file hello `_Layout.cshtml` in visualizzazioni hello\\cartella condivisa in un ruolo web MVC.
    
     ![][17]
-4. Modificare il logo del sito e premere **CTRL+S** per salvare il file.
+4. Modificare il logo hello per il sito hello e scegliere **Ctrl + S** file hello toosave.
    
     ![][18]
-5. In **Team Explorer** scegliere il collegamento **Modifiche in sospeso**.
+5. In **Team Explorer**, scegliere hello **modifiche in sospeso** collegamento.
    
     ![][19]
-6. Immettere un commento e quindi scegliere il pulsante **Archivia** .
+6. Immettere un commento e quindi scegliere hello **Archivia** pulsante.
    
     ![][20]
-7. Scegliere il pulsante **Home** per tornare alla pagina iniziale di **Team Explorer**.
+7. Scegliere hello **Home** pulsante tooreturn toohello **Team Explorer** pagina iniziale.
    
     ![][21]
-8. Scegliere il collegamento **Compilazioni** per visualizzare le compilazioni in corso.
+8. Scegliere hello **compilazioni** hello tooview collegamento compilazioni in corso.
    
     ![][22]
    
     **Team Explorer** mostra che è stata attivata una compilazione per l'archiviazione.
    
     ![][23]
-9. Fare doppio clic sul nome della compilazione in corso per visualizzare un log dettagliato con l'avanzare della compilazione.
+9. Fare doppio clic sul nome hello di compilazione hello in corso tooview un log dettagliato come compilazione hello.
    
     ![][24]
-10. Quando la compilazione è in corso, osservare la definizione di compilazione creata quando TFS è stato collegato ad Azure mediante la procedura guidata.  Aprire il menu di scelta rapida relativo alla definizione di compilazione e scegliere **Modifica definizione di compilazione**.
+10. Durante la compilazione hello è in corso, esaminare una definizione di compilazione hello creata quando è stato collegato tooAzure TFS utilizzando la procedura guidata hello.  Aprire il menu di scelta rapida hello hello la definizione di compilazione e scegliere **Modifica definizione di compilazione**.
     
      ![][25]
     
-     Nella scheda **Trigger** si osserva che, per impostazione predefinita, la definizione di compilazione è configurata per la compilazione a ogni archiviazione.
+     In hello **Trigger** scheda, si noterà che la definizione di compilazione hello è toobuild attivata ogni check-in per impostazione predefinita.
     
      ![][26]
     
-     Nella scheda **Processo** si osserva che l'ambiente di distribuzione è configurato con il nome del proprio servizio cloud o app Web. Se si lavora con le app Web, le proprietà visualizzate saranno diverse da quelle presenti nella sezione seguente.
+     In hello **processo** scheda, è possibile vedere ambiente di distribuzione hello è impostato toohello nome dell'app web o servizio cloud. Se si lavora con le app web, proprietà hello che viene visualizzato è diversa da quelle indicate qui.
     
      ![][27]
-11. Specificare i valori per le proprietà se si desidera che siano diversi da quelli predefiniti. Le proprietà per la pubblicazione in Azure sono nella sezione **Distribuzione** .
+11. Se si desiderano valori diversi da quelli predefiniti hello, specificare i valori per le proprietà di hello. salve le proprietà per la pubblicazione di Azure sono in hello **distribuzione** sezione.
     
-     La tabella seguente illustra le proprietà disponibili nella sezione **Distribuzione** :
+     Hello nella tabella seguente mostra le proprietà disponibili hello in hello **distribuzione** sezione:
     
     | Proprietà | Valore predefinito |
     | --- | --- |
     | Consenti certificati non attendibili |Se è false, i certificati SSL devono essere firmati da un'autorità radice. |
-    | Consenti aggiornamento |Consente l'aggiornamento di una distribuzione esistente anziché crearne una nuova. Conserva l'indirizzo IP. |
+    | Consenti aggiornamento |Consente di hello distribuzione tooupdate una distribuzione esistente anziché crearne uno nuovo. Consente di mantenere l'indirizzo IP hello. |
     | Non eliminare |Se è true, una distribuzione non correlata esistente non viene sovrascritta (l'aggiornamento è consentito). |
-    | Percorso impostazioni di distribuzione |Percorso del file con estensione pubxml di un’app Web, relativo alla cartella radice del repository. Viene ignorato per i servizi cloud. |
-    | Ambiente di distribuzione SharePoint |Analogo al nome del servizio. |
-    | Ambiente di distribuzione Azure |Nome dell'app Web o del servizio cloud. |
-12. Se si usano più configurazioni di servizio (file .cscfg), è possibile specificare la configurazione del servizio desiderata nell'impostazione **Compila, Avanzate, Argomenti MSBuild** . Ad esempio, per usare ServiceConfiguration.Test.cscfg impostare l'opzione della riga degli argomenti di MSBuild `/p:TargetProfile=Test`.
+    | Percorso tooDeployment impostazioni |Hello percorso tooyour pubxml file per un'app web, toohello relativo di cartella radice del repository hello. Viene ignorato per i servizi cloud. |
+    | Ambiente di distribuzione SharePoint |nome del servizio hello, Hello stesso. |
+    | Ambiente di distribuzione Azure |Hello app o cloud nome del servizio web. |
+12. Se si utilizza più configurazioni del servizio (file con estensione cscfg), è possibile specificare la configurazione del servizio desiderato hello in hello **argomenti di compilazione, avanzate, MSBuild** impostazione. Ad esempio, toouse ServiceConfiguration.Test.cscfg, impostare gli argomenti MSBuild opzione della riga `/p:TargetProfile=Test`.
     
      ![][38]
     
      A questo punto la compilazione sarà stata completata correttamente.
     
      ![][28]
-13. Facendo doppio clic sul nome della compilazione, Visual Studio visualizza un **Riepilogo compilazione**che include eventuali risultati del test restituiti dai progetti unit test associati.
+13. Se si fa doppio clic sul nome di compilazione hello, Visual Studio visualizza un **Riepilogo compilazione**, compresi i risultati dei test da associati progetti di unit test.
     
      ![][29]
-14. Nel [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885)è possibile visualizzare la distribuzione associata nella scheda **Distribuzioni** quando si seleziona l'ambiente di gestione temporanea.
+14. In hello [portale di Azure classico](http://go.microsoft.com/fwlink/?LinkID=213885), è possibile visualizzare la distribuzione di hello associata nella hello **distribuzioni** scheda quando viene selezionato l'ambiente di gestione temporanea hello.
     
      ![][30]
-15. Passare all'URL del proprio sito. Per un'app Web è sufficiente fare clic sul pulsante **Browse** della barra dei comandi. Per un servizio cloud, scegliere l'URL nella sezione **Riepilogo rapido** della pagina **Dashboard** in cui è visualizzato l'ambiente di staging per un servizio cloud. Le distribuzioni derivanti dall'integrazione continua per i servizi cloud vengono pubblicate nell'ambiente di gestione temporanea per impostazione predefinita. È possibile modificare questa impostazione configurando la proprietà **Ambiente del servizio cloud alternativo** su **Produzione**. La schermata seguente mostra dove si trova l'URL del sito nella pagina dashboard del servizio cloud.
+15. Individuare l'URL del sito tooyour. Per un'app web, fare clic hello **Sfoglia** pulsante sulla barra dei comandi di hello. Per un servizio cloud, scegliere URL hello in hello **Quick Glance** sezione di hello **Dashboard** pagina che mostra l'ambiente di gestione temporanea hello per un servizio cloud. Le distribuzioni di integrazione continua per i servizi cloud sono pubblicati toohello ambiente di gestione temporanea per impostazione predefinita. È possibile modificare questa impostazione hello **ambiente del servizio Cloud alternativo** proprietà troppo**produzione**. Questa schermata mostra dove hello che URL del sito è nella pagina dashboard del servizio cloud hello.
     
     ![][31]
     
-    Il sito in esecuzione verrà aperto in una nuova scheda del browser.
+    Una nuova scheda del browser verrà aperto tooreveal del sito in esecuzione.
     
     ![][32]
     
-    Per i servizi cloud, se si apportano altre modifiche al progetto, si attiveranno altre compilazioni e si accumuleranno più distribuzioni. L'ultima è contrassegnata come Attiva.
+    Per i servizi cloud, se si apporta altre progetto tooyour le modifiche, si trigger più compila e si accumuleranno più distribuzioni. Hello più recente contrassegnato come attivo.
     
     ![][33]
 
 ## <a name="5-redeploy-an-earlier-build"></a>5: Ridistribuire una compilazione precedente
-Questo passaggio si applica ai servizi cloud ed è facoltativo. Nel portale di Azure classico selezionare una distribuzione precedente e fare clic sul pulsante **Ridistribuisci** per riportare il sito a un'archiviazione precedente.  Si noti che verrà attivata una nuova compilazione in TFS e verrà creata una nuova voce nella cronologia della distribuzione.
+Questo passaggio si applica toocloud services ed è facoltativo. Nel portale di Azure classico hello, scegliere una distribuzione precedente quindi hello **ridistribuire** pulsante toorewind il sito tooan precedentemente check-in.  Si noti che verrà attivata una nuova compilazione in TFS e verrà creata una nuova voce nella cronologia della distribuzione.
 
 ![][34]
 
-## <a name="6-change-the-production-deployment"></a>6: Modificare la distribuzione di produzione
-Questo passaggio si applica solo ai servizi cloud, non alle app Web. Quando si è pronti, è possibile promuovere l'ambiente di gestione temporanea all'ambiente di produzione scegliendo il pulsante **Scambia** nel portale di Azure classico. L'ambiente di gestione temporanea appena distribuito verrà promosso alla produzione e il precedente ambiente di produzione (se presente) diventerà un ambiente di gestione temporanea. La distribuzione attiva potrebbe differire per gli ambienti di produzione e di gestione temporanea, ma la cronologia di distribuzione delle compilazioni recenti è la stessa indipendentemente dall'ambiente.
+## <a name="6-change-hello-production-deployment"></a>6: modificare la distribuzione di produzione hello
+Questo passaggio si applica solo toocloud services, non le applicazioni web. Quando si è pronti, è possibile alzare di livello hello gestione temporanea toohello ambiente di produzione scegliendo hello **scambiare** pulsante hello portale di Azure classico. ambiente di gestione temporanea appena distribuito Hello è tooProduction innalzate di livello e ambiente di produzione hello precedente, se presente, diventa un ambiente di gestione temporanea. distribuzione attiva Hello potrebbe essere diverso per ambienti di gestione temporanea e produzione hello, ma la cronologia della distribuzione hello di compilazioni recenti è hello uguali indipendentemente dal fatto che dell'ambiente.
 
 ![][35]
 
 ## <a name="7-run-unit-tests"></a>7: Eseguire unit test
-Questo passaggio si applica solo alle app Web, non ai servizi cloud. Per inserire un controllo qualità nella distribuzione, è possibile eseguire alcuni unit test e, se non riescono, è possibile arrestare la distribuzione.
+Questo passaggio si applica solo le app tooweb, non i servizi cloud. tooput controllo di qualità, alla distribuzione, è possibile eseguire unit test e in caso di errore, è possibile arrestare la distribuzione di hello.
 
 1. In Visual Studio aggiungere un progetto di unit test.
    
    ![][39]
-2. Aggiungere i riferimenti al progetto da testare.
+2. Aggiungere riferimenti toohello progetto desiderato tootest.
    
    ![][40]
-3. Aggiungere alcuni unit test. Per iniziare, provare un test fittizio che verrà sempre superato.
+3. Aggiungere alcuni unit test. tooget avviato, provare a un test fittizio che passa sempre.
    
        ```
        using System;
@@ -198,8 +198,8 @@ Questo passaggio si applica solo alle app Web, non ai servizi cloud. Per inserir
            }
        }
        ```
-4. Modificare la definizione di compilazione, scegliere la scheda **Processo** ed espandere il nodo **Test**.
-5. Impostare **Errore compilazione se test non superato** su True. Questo significa che la distribuzione non verrà eseguita se non dopo il superamento dei test.
+4. Modificare la definizione di compilazione hello, scegliere hello **processo** scheda ed espandere hello **Test** nodo.
+5. Set hello **Errore compilazione se test** tooTrue. Ciò significa che la distribuzione di hello non verrà eseguita a meno che non hello test vengono superati.
    
    ![][41]
 6. Inserire in coda una nuova compilazione.
@@ -207,17 +207,17 @@ Questo passaggio si applica solo alle app Web, non ai servizi cloud. Per inserir
    ![][42]
    
    ![][43]
-7. Mentre la compilazione è in corso, controllarne l'avanzamento.
+7. Mentre è in corso la compilazione hello, controllare lo stato di avanzamento.
    
     ![][44]
    
     ![][45]
-8. Al termine della compilazione, controllare i risultati del test.
+8. Quando viene eseguita la compilazione hello, controllare i risultati dei test hello.
    
     ![][46]
    
     ![][47]
-9. Provare a creare un test che non verrà superato. Aggiungere un nuovo test copiando il primo, rinominarlo e impostare come commento la riga di codice che indica che NotImplementedException è un'eccezione prevista.
+9. Provare a creare un test che non verrà superato. Aggiungere un nuovo test copiando hello prima, rinominarlo e impostare come commento la riga hello del codice che indica il che NotImplementedException è un'eccezione prevista.
    
        ```
        [TestMethod]
@@ -227,17 +227,17 @@ Questo passaggio si applica solo alle app Web, non ai servizi cloud. Per inserir
            throw new NotImplementedException();
        }
        ```
-10. Archiviare la modifica per inserire in coda una nuova compilazione.
+10. Il controllo in hello modifica tooqueue una nuova compilazione.
     
      ![][48]
-11. Visualizzare i risultati del test per vedere i dettagli sull'errore.
+11. Visualizzare hello test risultati toosee i dettagli sull'errore hello.
     
      ![][49]
     
      ![][50]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sull'esecuzione di test delle unità in Visual Studio Team Services, vedere [Eseguire test delle unità nella compilazione](http://go.microsoft.com/fwlink/p/?LinkId=510474). Se si usa Git, vedere [Condividere il codice in Git](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx) e [Distribuzione continua nel servizio app di Azure](../app-service-web/app-service-continuous-deployment.md).  Per altre informazioni su Visual Studio Team Services, vedere [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
+Per altre informazioni sull'esecuzione di test delle unità in Visual Studio Team Services, vedere [Eseguire test delle unità nella compilazione](http://go.microsoft.com/fwlink/p/?LinkId=510474). Se si usa Git, vedere [condividere il codice in Git](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx) e [tooAzure distribuzione continua servizio App](../app-service-web/app-service-continuous-deployment.md).  Per altre informazioni su Visual Studio Team Services, vedere [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso/tfs1.png

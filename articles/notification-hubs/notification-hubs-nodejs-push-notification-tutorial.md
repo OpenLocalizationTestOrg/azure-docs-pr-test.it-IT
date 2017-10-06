@@ -1,6 +1,6 @@
 ---
-title: Invio di notifiche push con Hub di notifica di Azure e Node.js
-description: Informazioni su come usare Hub di notifica per inviare notifiche push da un'applicazione Node.js.
+title: aaaSending le notifiche push con hub di notifica di Azure e Node.js
+description: Informazioni su come toouse gli hub di notifica toosend notifiche push da un'applicazione Node.js.
 keywords: notifica push,notifiche push,push node.js,push ios
 services: notification-hubs
 documentationcenter: nodejs
@@ -15,93 +15,93 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: yuaxu
-ms.openlocfilehash: dc4987b16b2e930641c6c90eff8b65c1bf8d573c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 151d224fa6dd07e4acdc3a4887c4e95ee03168c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sending-push-notifications-with-azure-notification-hubs-and-nodejs"></a>Invio di notifiche push con Hub di notifica di Azure e Node.js
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>Panoramica
 > [!IMPORTANT]
-> Per completare l'esercitazione, è necessario disporre di un account Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-nodejs-how-to-use-notification-hubs).
+> toocomplete questa esercitazione, è necessario disporre di un account di Azure attivo. Se non si dispone di un account, è possibile creare un account di valutazione gratuita in pochi minuti. Per informazioni dettagliate, vedere la pagina relativa alla [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-nodejs-how-to-use-notification-hubs).
 > 
 > 
 
-Questa guida illustra come inviare notifiche push con Hub di notifica di Azure direttamente da un'applicazione Node.js. 
+Questa guida illustra come toosend notifiche con l'aiuto di hello Azure degli hub di notifica push direttamente da un'applicazione Node.js. 
 
-Gli scenari presentati includono l'invio di notifiche push ad applicazioni nelle piattaforme seguenti:
+scenari di Hello trattati includono l'invio di tooapplications notifiche push su hello seguenti piattaforme:
 
 * Android
 * iOS
 * Windows Phone
 * Piattaforma UWP (Universal Windows Platform) 
 
-Per ulteriori informazioni sugli hub di notifica, vedere la sezione [Passaggi successivi](#next) .
+Per ulteriori informazioni sull'hub di notifica, vedere hello [passaggi successivi](#next) sezione.
 
 ## <a name="what-are-notification-hubs"></a>Informazioni su Hub di notifica
-Hub di notifica di Azure offre un'infrastruttura scalabile, multipiattaforma e di semplice utilizzo per l'invio di notifiche push ai dispositivi mobili. Per informazioni dettagliate sull'infrastruttura del servizio, vedere la pagina [Hub di notifica di Azure](http://msdn.microsoft.com/library/windowsazure/jj927170.aspx) .
+Hub di notifica di Azure forniscono un'infrastruttura di facile utilizzo, multipiattaforma e scalabile per l'invio di dispositivi toomobile le notifiche push. Per informazioni dettagliate sull'infrastruttura del servizio hello, vedere hello [gli hub di notifica di Azure](http://msdn.microsoft.com/library/windowsazure/jj927170.aspx) pagina.
 
 ## <a name="create-a-nodejs-application"></a>Creazione di un'applicazione Node.js
-Il primo passaggio in questa esercitazione consiste nel creare una nuova applicazione Node.js vuota. Per istruzioni sulla creazione di un'applicazione Node.js, vedere [Creare e distribuire un'applicazione Node.js in un sito Web di Azure][nodejswebsite], [Servizio cloud Node.js][Node.js Cloud Service] con Windows PowerShell o [Sito Web con WebMatrix].
+passaggio prima di Hello in questa esercitazione consiste nel creare una nuova applicazione Node.js vuota. Per istruzioni sulla creazione di un'applicazione Node.js, vedere [creare e distribuire un tooAzure di applicazione del sito Web Node.js][nodejswebsite], [servizio Cloud Node.js] [ Node.js Cloud Service] tramite Windows PowerShell, o [sito Web con WebMatrix].
 
-## <a name="configure-your-application-to-use-notification-hubs"></a>Configurare l'applicazione per l'uso di Hub di notifica
-Per usare Hub di notifica di Azure, è necessario scaricare e usare il [pacchetto Azure](https://www.npmjs.com/package/azure)di Node.js, che comprende un set integrato di librerie di supporto che comunicano con i servizi REST di notifica push.
+## <a name="configure-your-application-toouse-notification-hubs"></a>Configurare gli hub di notifica tooUse dell'applicazione
+toouse gli hub di notifica di Azure, è necessario toodownload e utilizzare hello Node.js [pacchetto azure](https://www.npmjs.com/package/azure), che include un set predefinito di librerie di supporto che comunicano con servizi REST di notifica push di hello.
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Usare Node Package Manager (NPM) per ottenere il pacchetto
-1. Usare un'interfaccia della riga di comando come **PowerShell** (Windows), **Terminal** (Mac) o **Bash** (Linux) e passare alla cartella in cui è stata creata l'applicazione vuota.
-2. Digitare **npm install azure-sb** nella finestra di comando.
-3. È possibile eseguire manualmente il comando **ls** o **dir** per verificare che sia stata creata una cartella **node\_modules**. All'interno di tale cartella trovare il pacchetto **azure** , che contiene le librerie necessarie per accedere a Hub di notifica.
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utilizzare un pacchetto di hello tooobtain nodo Package Manager (NPM)
+1. Utilizzare un'interfaccia della riga di comando, ad esempio **PowerShell** (Windows), **Terminal** (Mac), o **Bash** (Linux) e passare toohello cartella in cui viene creata l'applicazione vuota .
+2. Tipo **npm installare Service bus di azure** nella finestra di comando hello.
+3. È possibile eseguire manualmente hello **ls** o **dir** comando tooverify che un **nodo\_moduli** cartella è stata creata. All'interno di tale cartella, trovare hello **azure** pacchetto che contiene le librerie di hello necessarie tooaccess hello Hub di notifica.
 
 > [!NOTE]
-> Altre informazioni sull'installazione di NPM sono disponibili nel [blog NPM](http://blog.npmjs.org/post/85484771375/how-to-install-npm)ufficiale. 
+> Maggiori informazioni sull'installazione di NPM in ufficiale hello [NPM blog](http://blog.npmjs.org/post/85484771375/how-to-install-npm). 
 > 
 > 
 
-### <a name="import-the-module"></a>Importare il modulo
-Utilizzando un editor di testo, aggiungere quanto segue nella parte superiore del file **server.js** dell'applicazione:
+### <a name="import-hello-module"></a>Modulo di importazione hello
+Utilizzando un editor di testo aggiungere hello seguente toohello cima hello **server.js** file dell'applicazione hello:
 
     var azure = require('azure');
 
 ### <a name="setup-an-azure-notification-hub-connection"></a>Configurare una connessione all'Hub di notifica di Azure
-L'oggetto **NotificationHubService** consente di lavorare con gli hub di notifica. Il codice seguente consente di creare un oggetto **NotificationHubService** per l'hub di notifica denominato **hubname**. Aggiungerlo nella parte superiore del file **server.js** dopo l'istruzione per l'importazione del modulo azure:
+Hello **NotificationHubService** oggetto consente di collaborare con gli hub di notifica. Hello codice seguente viene creata una **NotificationHubService** oggetto per l'hub nofication hello denominato **hubname**. Aggiungerlo parte superiore di hello di hello **server.js** file, dopo il modulo di hello istruzione tooimport hello azure:
 
     var notificationHubService = azure.createNotificationHubService('hubname','connectionstring');
 
-Il valore **connectionstring** della connessione può essere recuperato dal [portale di Azure] seguendo questa procedura:
+Hello connessione **connectionstring** valore può essere ottenuto dalla hello [portale Azure] eseguendo hello alla procedura seguente:
 
-1. Nel riquadro di spostamento a sinistra fare clic su **Sfoglia**.
-2. Selezionare **Hub di notifica**e quindi individuare l'hub da utilizzare per l'esempio. Per informazioni sulla creazione di un nuovo hub di notifica, vedere l' [esercitazione introduttiva per Windows Store](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) .
+1. Nel riquadro di spostamento a sinistra di hello, fare clic su **Sfoglia**.
+2. Selezionare **gli hub di notifica**e quindi hub hello trova desiderato toouse per esempio hello. È possibile fare riferimento toohello [esercitazione Windows Store introduttiva](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) se è necessario informazioni sulla creazione di un nuovo Hub di notifica.
 3. Selezionare **Impostazioni**.
 4. Fare clic su **Criteri di accesso**. Verranno visualizzate la stringhe di connessione di accesso completo e condiviso.
 
 ![Portale di Azure - Hub di notifica](./media/notification-hubs-nodejs-how-to-use-notification-hubs/notification-hubs-portal.png)
 
 > [!NOTE]
-> La stringa di connessione può essere recuperata anche usando il cmdlet **Get-AzureSbNamespace** specificato da [Azure PowerShell](/powershell/azureps-cmdlets-docs) o il comando **azure sb namespace show** con l'[interfaccia della riga di comando di Azure](../cli-install-nodejs.md).
+> È inoltre possibile recuperare stringa di connessione di hello utilizzando hello **Get-AzureSbNamespace** cmdlet forniti da [Azure PowerShell](/powershell/azureps-cmdlets-docs) o hello **Mostra lo spazio dei nomi Service bus di azure** con Hello [interfaccia della riga di comando di Azure (Azure CLI)](../cli-install-nodejs.md).
 > 
 > 
 
 ## <a name="general-architecture"></a>Architettura generale
-L'oggetto **NotificationHubService** espone le istanze seguenti dell'oggetto per l'invio di notifiche push a specifici dispositivi e specifiche applicazioni:
+Hello **NotificationHubService** oggetto espone hello istanze dell'oggetto per l'invio di dispositivi toospecific di notifiche push e le applicazioni seguenti:
 
-* **Android**: usare l'oggetto **GcmService**, disponibile in **notificationHubService.gcm**
-* **iOS**: usare l'oggetto **ApnsService**, accessibile in **notificationHubService.apns**
-* **Windows Phone**: usare l'oggetto **MpnsService**, disponibile in **notificationHubService.mpns**
-* **Piattaforma UWP (Universal Windows Platform)**: usare l'oggetto **WnsService** disponibile in **notificationHubService.wns**
+* **Android** -utilizzare hello **GcmService** oggetto, che è disponibile all'indirizzo **notificationHubService.gcm**
+* **iOS** -utilizzare hello **ApnsService** oggetto, che è possibile accedere al **notificationHubService.apns**
+* **Windows Phone** -utilizzare hello **MpnsService** oggetto, che è disponibile all'indirizzo **notificationHubService.mpns**
+* **Piattaforma UWP** -utilizzare hello **WnsService** oggetto, che è disponibile all'indirizzo **notificationHubService.wns**
 
-### <a name="how-to-send-push-notifications-to-android-applications"></a>Procedura: Inviare notifiche push ad applicazioni Android
-L’oggetto **GcmService** specifica un metodo **send** che è possibile usare per inviare notifiche push alle applicazioni Android. Di seguito sono illustrati i parametri accettati dal metodo **send** .
+### <a name="how-to-send-push-notifications-tooandroid-applications"></a>Procedura: inviare le applicazioni di tooAndroid di notifiche push
+Hello **GcmService** oggetto fornisce un **inviare** metodo che può essere utilizzati toosend push notifiche tooAndroid applicazioni. Hello **inviare** accetta hello seguenti parametri:
 
-* **Tags** : l'identificatore tag. Se non viene specificato alcun tag, la notifica verrà inviata a tutti i client.
-* **Payload** : il payload JSON o la stringa non elaborata del messaggio.
-* **Callback** : la funzione di richiamata.
+* **Tag** -hello identificatore tag. Se non viene specificato alcun tag, verrà inviata notifica hello client tooall.
+* **Payload** -hello JSON del messaggio o il payload di stringa non elaborata.
+* **Callback** -hello funzione di callback.
 
-Per altre informazioni sul formato di payload, vedere la sezione **Payload** del documento relativo all' [implementazione del server GCM](http://developer.android.com/google/gcm/server.html#payload) .
+Per ulteriori informazioni sul formato di payload hello, vedere hello **Payload** sezione di hello [implementazione Server GCM](http://developer.android.com/google/gcm/server.html#payload) documento.
 
-Nel codice seguente viene usata l'istanza **GcmService** esposta dall'oggetto **NotificationHubService** per inviare una notifica push a tutti i client registrati.
+Hello codice seguente viene utilizzato hello **GcmService** istanza esposto da hello **NotificationHubService** toosend un tooall di notifica push registrato i client.
 
     var payload = {
       data: {
@@ -114,16 +114,16 @@ Nel codice seguente viene usata l'istanza **GcmService** esposta dall'oggetto **
       }
     });
 
-### <a name="how-to-send-push-notifications-to-ios-applications"></a>Procedura: Inviare notifiche push ad applicazioni iOS
-Come per le applicazioni Android descritte sopra, l'oggetto **ApnsService** specifica un metodo **send** che è possibile usare per inviare notifiche push alle applicazioni iOS. Di seguito sono illustrati i parametri accettati dal metodo **send** .
+### <a name="how-to-send-push-notifications-tooios-applications"></a>Procedura: inviare le applicazioni di tooiOS di notifiche push
+Stesso come descritta in precedenza, le applicazioni Android hello **ApnsService** oggetto fornisce un **inviare** metodo che può essere utilizzati toosend push notifiche tooiOS applicazioni. Hello **inviare** accetta hello seguenti parametri:
 
-* **Tags** : l'identificatore tag. Se non viene specificato alcun tag, la notifica verrà inviata a tutti i client.
-* **Payload** : il payload JSON o stringa del messaggio.
-* **Callback** : la funzione di richiamata.
+* **Tag** -hello identificatore tag. Se non viene specificato alcun tag, verrà inviata notifica hello client tooall.
+* **Payload** : hello JSON del messaggio o stringa payload.
+* **Callback** -hello funzione di callback.
 
-Per altre informazioni sul formato di payload, vedere la sezione relativa al **payload di notifica** nella [guida alla programmazione di notifiche push e locali](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html) .
+Per il formato di payload hello ulteriori informazioni, vedere hello **Payload di notifica** sezione di hello [locali e Guida per programmatori notifica Push](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html) documento.
 
-Nel codice seguente viene usata l'istanza **ApnsService** esposta dall'oggetto **NotificationHubService** per inviare un messaggio di avviso a tutti i client:
+Hello codice seguente viene utilizzato hello **ApnsService** istanza esposto da hello **NotificationHubService** toosend un avviso messaggio tooall client:
 
     var payload={
         alert: 'Hello!'
@@ -134,19 +134,19 @@ Nel codice seguente viene usata l'istanza **ApnsService** esposta dall'oggetto *
       }
     });
 
-### <a name="how-to-send-push-notifications-to-windows-phone-applications"></a>Procedura: Inviare notifiche push ad applicazioni Windows Phone
-L'oggetto **MpnsService** specifica un metodo **send** che è possibile usare per inviare notifiche push alle applicazioni Windows Phone. Di seguito sono illustrati i parametri accettati dal metodo **send** .
+### <a name="how-to-send-push-notifications-toowindows-phone-applications"></a>Procedura: inviare le applicazioni di Phone tooWindows di notifiche push
+Hello **MpnsService** oggetto fornisce un **inviare** metodo che può essere utilizzato toosend push notifiche tooWindows applicazioni Phone. Hello **inviare** accetta hello seguenti parametri:
 
-* **Tags** : l'identificatore tag. Se non viene specificato alcun tag, la notifica verrà inviata a tutti i client.
-* **Payload** : il payload XML del messaggio.
+* **Tag** -hello identificatore tag. Se non viene specificato alcun tag, verrà inviata notifica hello client tooall.
+* **Payload** -hello payload XML del messaggio.
 * **TargetName** - `toast` per le notifiche di tipo avviso popup. `token` per le notifiche di tipo riquadro.
-* **NotificationClass** : la priorità della notifica. Per i valori validi, vedere la sezione relativa agli **elementi dell'intestazione HTTP** nel documento sul [push di notifiche da un server](http://msdn.microsoft.com/library/hh221551.aspx) .
+* **Classe di notifica** -hello priorità della notifica hello. Vedere hello **gli elementi dell'intestazione HTTP** sezione di hello [notifiche Push da un server](http://msdn.microsoft.com/library/hh221551.aspx) documento per i valori validi.
 * **Options** : intestazioni delle richieste facoltative.
-* **Callback** : la funzione di richiamata.
+* **Callback** -hello funzione di callback.
 
-Per un elenco dei valori validi per **TargetName**, **NotificationClass** e le opzioni di intestazione, vedere la pagina [Pushing Notifications from a Server](http://msdn.microsoft.com/library/hh221551.aspx) (Notifiche push da server).
+Per un elenco di valido **TargetName**, **della classe di notifica** e opzioni di intestazione, estrarre hello [notifiche Push da un server](http://msdn.microsoft.com/library/hh221551.aspx) pagina.
 
-Nel codice di esempio seguente viene usata l'istanza **MpnsService** esposta dall'oggetto **NotificationHubService** per inviare una notifica push di tipo avviso popup:
+Hello seguente codice di esempio utilizza hello **MpnsService** istanza esposto da hello **NotificationHubService** toosend una notifica push di tipo avviso popup:
 
     var payload = '<?xml version="1.0" encoding="utf-8"?><wp:Notification xmlns:wp="WPNotification"><wp:Toast><wp:Text1>string</wp:Text1><wp:Text2>string</wp:Text2></wp:Toast></wp:Notification>';
     notificationHubService.mpns.send(null, payload, 'toast', 22, function(error){
@@ -155,18 +155,18 @@ Nel codice di esempio seguente viene usata l'istanza **MpnsService** esposta dal
       }
     });
 
-### <a name="how-to-send-push-notifications-to-universal-windows-platform-uwp-applications"></a>Procedura: Inviare notifiche push alle applicazioni della piattaforma UWP (Universal Windows Platform)
-L'oggetto **WnsService** specifica un metodo **send** che è possibile usare per inviare notifiche push alle applicazioni della piattaforma UWP (Universal Windows Platform).  Di seguito sono illustrati i parametri accettati dal metodo **send** .
+### <a name="how-to-send-push-notifications-toouniversal-windows-platform-uwp-applications"></a>Procedura: inviare le applicazioni di Windows Platform (UWP) tooUniversal di notifiche push
+Hello **WnsService** oggetto fornisce un **inviare** metodo che può essere utilizzati toosend push notifiche tooUniversal piattaforma Windows applicazioni.  Hello **inviare** accetta hello seguenti parametri:
 
-* **Tags** : l'identificatore tag. Se non viene specificato alcun tag, la notifica verrà inviata a tutti i client registrati.
-* **Payload** : il payload XML del messaggio.
-* **Type** : il tipo di notifica.
+* **Tag** -hello identificatore tag. Se non viene specificato alcun tag, verrà inviata notifica hello client tooall registrato.
+* **Payload** -payload del messaggio hello XML.
+* **Tipo** -hello tipo di notifica.
 * **Options** : intestazioni delle richieste facoltative.
-* **Callback** : la funzione di richiamata.
+* **Callback** -hello funzione di callback.
 
 Per un elenco dei valori validi per i tipi e le intestazioni delle richieste, vedere [Intestazioni delle richieste e delle risposte per il servizio di notifica push](http://msdn.microsoft.com/library/windows/apps/hh465435.aspx).
 
-Nel codice seguente viene usata l'istanza **WnsService** esposta dall'oggetto **NotificationHubService** per inviare una notifica push di tipo avviso popup a un'app UWP:
+Hello codice seguente viene utilizzato hello **WnsService** istanza esposto da hello **NotificationHubService** toosend un'app UWP tooa di tipo avviso popup push notifica:
 
     var payload = '<toast><visual><binding template="ToastText01"><text id="1">Hello!</text></binding></visual></toast>';
     notificationHubService.wns.send(null, payload , 'wns/toast', function(error){
@@ -176,21 +176,21 @@ Nel codice seguente viene usata l'istanza **WnsService** esposta dall'oggetto **
     });
 
 ## <a name="next-steps"></a>Passaggi successivi
-I frammenti di codice di esempio riportati sopra consentono di creare facilmente l'infrastruttura del servizio per recapitare notifiche push a un'ampia gamma di dispositivi. A questo punto, dopo aver appreso le nozioni di base dell'uso di Hub di notifica con Node.js, usare i collegamenti seguenti per scoprire come estendere ulteriormente queste funzionalità.
+frammenti di esempio Hello precedenti consentono si tooeasily compilazione servizio infrastruttura toodeliver push notifiche tooa vasta gamma di dispositivi. Ora che si sono appreso nozioni fondamentali di hello dell'utilizzo degli hub di notifica con node.js, seguire questi toolearn collegamenti con informazioni su come è possibile estendere ulteriormente queste funzionalità.
 
-* Vedere la documentazione MSDN su [Hub di notifica di Azure](https://msdn.microsoft.com/library/azure/jj927170.aspx).
-* Visitare il repository [Azure SDK for Node] su GitHub per altri esempi e dettagli relativi all'implementazione.
+* Vedere hello riferimento MSDN per [gli hub di notifica di Azure](https://msdn.microsoft.com/library/azure/jj927170.aspx).
+* Visitare hello [Azure SDK per nodo] repository in GitHub per ulteriori esempi e i dettagli di implementazione.
 
-[Azure SDK for Node]: https://github.com/WindowsAzure/azure-sdk-for-node
+[Azure SDK per nodo]: https://github.com/WindowsAzure/azure-sdk-for-node
 [Next Steps]: #nextsteps
 [What are Service Bus Topics and Subscriptions?]: #what-are-service-bus-topics
 [Create a Service Namespace]: #create-a-service-namespace
-[Obtain the Default Management Credentials for the Namespace]: #obtain-default-credentials
+[Obtain hello Default Management Credentials for hello Namespace]: #obtain-default-credentials
 [Create a Node.js Application]: #Create_a_Nodejs_Application
-[Configure Your Application to Use Service Bus]: #Configure_Your_Application_to_Use_Service_Bus
+[Configure Your Application tooUse Service Bus]: #Configure_Your_Application_to_Use_Service_Bus
 [How to: Create a Topic]: #How_to_Create_a_Topic
 [How to: Create Subscriptions]: #How_to_Create_Subscriptions
-[How to: Send Messages to a Topic]: #How_to_Send_Messages_to_a_Topic
+[How to: Send Messages tooa Topic]: #How_to_Send_Messages_to_a_Topic
 [How to: Receive Messages from a Subscription]: #How_to_Receive_Messages_from_a_Subscription
 [How to: Handle Application Crashes and Unreadable Messages]: #How_to_Handle_Application_Crashes_and_Unreadable_Messages
 [How to: Delete Topics and Subscriptions]: #How_to_Delete_Topics_and_Subscriptions
@@ -205,10 +205,10 @@ I frammenti di codice di esempio riportati sopra consentono di creare facilmente
 [SqlFilter.SqlExpression]: http://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
 [Azure Service Bus Notification Hubs]: http://msdn.microsoft.com/library/windowsazure/jj927170.aspx
 [SqlFilter]: http://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.aspx
-[Sito Web con WebMatrix]: /develop/nodejs/tutorials/web-site-with-webmatrix/
+[sito Web con WebMatrix]: /develop/nodejs/tutorials/web-site-with-webmatrix/
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Previous Management Portal]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/previous-portal.png
 [nodejswebsite]: /develop/nodejs/tutorials/create-a-website-(mac)/
 [Node.js Cloud Service with Storage]: /develop/nodejs/tutorials/web-app-with-storage/
 [Node.js Web Application with Storage]: /develop/nodejs/tutorials/web-site-with-storage/
-[portale di Azure]: https://portal.azure.com
+[portale Azure]: https://portal.azure.com

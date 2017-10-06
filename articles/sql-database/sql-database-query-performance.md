@@ -1,6 +1,6 @@
 ---
-title: Informazioni dettagliate sulle prestazioni delle query per il database SQL di Azure | Documentazione Microsoft
-description: Il monitoraggio delle prestazioni delle query identifica le query principali a livello di utilizzo di CPU per un database SQL di Azure.
+title: informazioni dettagliate prestazioni aaaQuery per Database SQL di Azure | Documenti Microsoft
+description: Monitoraggio delle prestazioni delle query identifica hello utilizzo CPU la maggior parte delle query per un Database di SQL Azure.
 services: sql-database
 documentationcenter: 
 author: stevestein
@@ -15,70 +15,70 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 07/05/2017
 ms.author: sstein
-ms.openlocfilehash: 1925d4ff8f5b16a0df56de987f8653cfd8441c52
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 01cca26f85193c679365585cd676449c9db00e1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-query-performance-insight"></a>Query Performance Insight del database SQL di Azure
-La gestione e l'ottimizzazione delle prestazioni dei database relazionali è un'attività complessa che richiede un'esperienza significativa e un investimento elevato in termini di tempo. Le Informazioni dettagliate sulle prestazioni delle query consentono di dedicare meno tempo alla risoluzione dei problemi delle prestazioni del database, offrendo i vantaggi seguenti:​
+La gestione e ottimizzazione delle prestazioni dei database relazionali di hello è un'attività complessa che richiede una notevole esperienza e richiede tempo. Informazioni dettagliate prestazioni query consente toospend meno tempo di risoluzione dei problemi di prestazioni del database, fornendo seguente hello:
 
 * Informazioni più approfondite sull'utilizzo delle risorse del database (DTU). 
-* Query principali a livello di CPU/durata/conteggio delle esecuzioni, che possono essere potenzialmente ottimizzate per migliorare le prestazioni.
-* La possibilità di eseguire il drill-down nei dettagli di una query, visualizzarne il testo e la cronologia di utilizzo delle risorse. 
+* Hello prime query per numero di CPU/Durata/esecuzione che potenzialmente possono essere ottimizzate per migliorare le prestazioni.
+* salve possibilità toodrill verso il basso in dettagli hello di una query, visualizzare il testo e la cronologia di utilizzo delle risorse. 
 * Le annotazioni relative all'ottimizzazione delle prestazioni che descrivono le azioni eseguite da [SQL Azure Database Advisor](sql-database-advisor.md)  
 
 
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Per Informazioni dettagliate sulle prestazioni delle query è necessario che l' [archivio query](https://msdn.microsoft.com/library/dn817826.aspx) sia attivo nel database. Se l'archivio query non è in esecuzione, il portale richiede di attivarlo.
+* Per Informazioni dettagliate sulle prestazioni delle query è necessario che l' [archivio query](https://msdn.microsoft.com/library/dn817826.aspx) sia attivo nel database. Se l'archivio Query non è in esecuzione, il portale di hello richiede tooturn sul.
 
 ## <a name="permissions"></a>Autorizzazioni
-Le autorizzazioni di [controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-what-is.md) seguenti sono necessarie per usare Query Performance Insight: 
+esempio Hello [controllo di accesso basato sui ruoli](../active-directory/role-based-access-control-what-is.md) le autorizzazioni sono necessarie toouse informazioni dettagliate prestazioni Query: 
 
-* Le autorizzazioni **Lettore**, **Proprietario**, **Collaboratore**, **Collaboratore database SQL** o **Collaboratore SQL Server** sono necessarie per visualizzare le query principali che usano le risorse e i grafici. 
-* Le autorizzazioni **Proprietario**, **Collaboratore**, **Collaboratore database SQL** o **Collaboratore SQL Server** sono necessarie per visualizzare il testo della query.
+* **Lettore**, **proprietario**, **collaboratore**, **collaboratore DB SQL**, o **collaboratore di SQL Server** sono le autorizzazioni necessario tooview hello prime consumo di risorse grafici e le query. 
+* **Proprietario**, **collaboratore**, **collaboratore DB SQL**, o **collaboratore di SQL Server** le autorizzazioni sono necessarie tooview testo della query.
 
 ## <a name="using-query-performance-insight"></a>Uso di Query Performance Insight
-Query Performance Insight è facile da usare:
+Informazioni dettagliate prestazioni query è facile toouse:
 
-* Aprire il [portale di Azure](https://portal.azure.com/) e individuare il database che si desidera esaminare. 
+* Aprire [portale di Azure](https://portal.azure.com/) e database di ricerca che si desidera tooexamine. 
   * Dal menu a sinistra, sotto la sezione dedicata al supporto e alla risoluzione dei problemi, selezionare "Informazioni dettagliate sulle prestazioni delle query".
-* Nella prima scheda, esaminare l'elenco delle query principali a livello di utilizzo delle risorse.
-* Selezionare una singola query per visualizzarne i dettagli.
+* Nella prima scheda hello, esaminare l'elenco di hello delle query più frequenti di consumo di risorse.
+* Selezionare i dettagli di tooview una singola query.
 * Aprire [SQL Azure Database Advisor](sql-database-advisor.md) e verificare se sono disponibili raccomandazioni.
-* Utilizzare i dispositivi di scorrimento o le icone dello zoom per modificare l'intervallo osservato.
+* Utilizzare dispositivi di scorrimento Zoom avanti o indietro toochange icone osservati intervallo.
   
     ![dashboard prestazioni](./media/sql-database-query-performance/performance.png)
 
 > [!NOTE]
-> Per consentire al database SQL di fornire informazioni dettagliate sulle prestazioni delle query, è necessario che l'archivio query acquisisca un paio di ore di dati. Se il database non ha alcuna attività o l'archivio query non è attivo in un determinato periodo di tempo, i grafici saranno vuoti quando viene visualizzato quel periodo di tempo. È possibile abilitare l'archivio query in qualsiasi momento, se non è in esecuzione.   
+> Un paio di ore di dati deve toobe acquisita dall'archivio Query per informazioni dettagliate prestazioni query di Database SQL tooprovide. Se il database di hello non contiene attività o archivio Query non era attivo durante un determinato periodo di tempo, grafici hello sarà vuoti per la visualizzazione di questo periodo di tempo. È possibile abilitare l'archivio query in qualsiasi momento, se non è in esecuzione.   
 > 
 > 
 
 ## <a name="review-top-cpu-consuming-queries"></a>Esaminare le query principali a livello di utilizzo di CPU
-Eseguire le operazioni seguenti nel [portale](http://portal.azure.com) :
+In hello [portale](http://portal.azure.com) hello seguenti:
 
-1. Passare a un database SQL e fare clic su **Tutte le impostazioni** > **Supporto e risoluzione dei problemi** > **Informazioni dettagliate prestazioni query**. 
+1. Database SQL tooa e fare clic su **tutte le impostazioni** > **supporto + Troubleshooting** > **informazioni dettagliate prestazioni Query**. 
    
-    ![Informazioni dettagliate sulle prestazioni delle query][1]
+    ![Informazioni dettagliate prestazioni query][1]
    
-    Verrà aperta la visualizzazione relativa alle query principali e verrà mostrato l'elenco delle query principali a livello di utilizzo di CPU.
-2. Per informazioni dettagliate, fare clic nei vari punti del grafico.<br>La prima riga visualizza la percentuale di uso di DTU complessiva per il database, mentre le barre visualizzano la percentuale di CPU usata dalle query selezionate durante l'intervallo selezionato (ad esempio, se si seleziona **Settimana precedente** ogni barra rappresenta un giorno).
+    verrà visualizzata la visualizzazione di query superiore Hello e sono elencati hello principali della CPU dispendiosa in termini di query.
+2. Fare clic su grafico hello per informazioni dettagliate.<br>Hello riga superiore mostra % complessivo di DTU per database hello, mentre le barre di hello indicano % della CPU utilizzate dalle query hello selezionato durante l'intervallo selezionato hello (ad esempio, se **settimana precedente** è selezionata ogni barra rappresenta un giorno).
    
     ![query principali][2]
    
-    La griglia inferiore rappresenta informazioni aggregate per le query visibili.
+    griglia inferiore Hello rappresenta informazioni aggregate per query visibile hello.
    
    * ID query: identificatore univoco di query all'interno del database.
    * Utilizzo della CPU per query durante l'intervallo osservabile (dipende dalla funzione di aggregazione).
    * Durata per ogni query (dipende dalla funzione di aggregazione).
    * Numero totale di esecuzioni per una query specifica.
      
-     Selezionare o deselezionare singole query per includerle o escluderle dal grafico utilizzando le caselle di spunta.
-3. Se i dati non vengono più aggiornati, fare clic sul pulsante **Aggiorna** .
-4. È possibile usare i dispositivi di scorrimento e i pulsanti dello zoom per modificare l'intervallo di osservazione ed esaminare i picchi: ![impostazioni](./media/sql-database-query-performance/zoom.png)
+     Selezionare o deselezionare singole query tooinclude o escluderli dal grafico hello utilizzando le caselle di controllo.
+3. Se i dati non risulta più aggiornati, fare clic su hello **aggiornamento** pulsante.
+4. È possibile usare dispositivi di scorrimento e intervallo di osservazione toochange pulsanti zoom e analizzare i picchi: ![impostazioni](./media/sql-database-query-performance/zoom.png)
 5. Facoltativamente, se si desidera un'altra visualizzazione, è possibile selezionare la scheda **Personalizzata** e impostare:
    
    * Metrica (CPU, durata, conteggio delle esecuzioni)
@@ -89,98 +89,98 @@ Eseguire le operazioni seguenti nel [portale](http://portal.azure.com) :
      ![Impostazioni](./media/sql-database-query-performance/custom-tab.png)
 
 ## <a name="viewing-individual-query-details"></a>Visualizzazione dei dettagli delle singole query
-Per visualizzare i dettagli relativi alle query:
+dettagli di query tooview:
 
-1. Fare clic su qualsiasi query nell'elenco delle query principali.
+1. Fare clic su qualsiasi query elenco hello delle query più frequenti.
    
     ![informazioni dettagliate](./media/sql-database-query-performance/details.png)
-2. Verrà aperta la visualizzazione dettagliata e i valori relativi a utilizzo CPU/durata/conteggio delle esecuzioni delle query verranno suddiviso nel tempo.
-3. Per informazioni dettagliate, fare clic nei vari punti del grafico.
+2. verrà visualizzata la finestra di visualizzazione dei dettagli Hello e conteggio di utilizzo/Durata/esecuzione hello query della CPU è suddivisa nel tempo.
+3. Fare clic su grafico hello per informazioni dettagliate.
    
-   * Il grafico in altomMostra una linea con la percentuale % DTU complessiva del database e le barre rappresentano la percentuale % della CPU utilizzata dalla query selezionata.
-   * Nel secondo grafico viene mostrata la durata totale della query selezionata.
-   * Nel grafico in fondo viene mostrato il numero totale delle esecuzioni effettuate dalla query selezionata.
+   * Grafico superiore Mostra linea con % DTU complessivo del database e le barre di hello sono % della CPU utilizzata dalla query selezionata hello.
+   * Secondo grafico mostra la durata totale dalla query selezionata hello.
+   * Numero totale di esecuzioni inferiore mostra dalla query selezionata hello.
      
      ![dettagli sulle query][3]
-4. Facoltativamente, utilizzare i dispositivi di scorrimento, i pulsanti dello zoom oppure fare clic su **Impostazioni** per personalizzare la modalità di visualizzazione dei dati della query o per mostrare un periodo di tempo diverso.
+4. Facoltativamente, utilizzare dispositivi di scorrimento, pulsanti di zoom oppure fare clic su **impostazioni** toocustomize modalità di visualizzazione dati di query o toopick un periodo di tempo diverso.
 
 ## <a name="review-top-queries-per-duration"></a>Esaminare le query principali in base alla durata
-Nel recente aggiornamento di Informazioni dettagliate sulle prestazioni delle query, abbiamo introdotto due nuove metriche che aiutano a individuare potenziali colli di bottiglia: conteggio delle esecuzioni e durata.<br>
+In hello recente aggiornamento di informazioni dettagliate prestazioni Query, è stata introdotta due nuove metriche che consentono di identificare potenziali colli di bottiglia: conteggio di durata e l'esecuzione.<br>
 
-Le query con esecuzione prolungata hanno le maggiori probabilità di bloccare gli altri utenti e le risorse più a lungo, nonché di limitare la scalabilità. Sono anche i candidati ideali per l'ottimizzazione.<br>
+Query con esecuzione prolungata sono hello maggiori possibilità più risorse di blocco, blocco di altri utenti e limitare la scalabilità. Sono inoltre hello di candidati ottimali per l'ottimizzazione.<br>
 
-Per identificare le query di lunga esecuzione :
+tooidentify query a esecuzione prolungata:
 
 1. Aprire la scheda **Personalizza** in Informazioni dettagliate sulle prestazioni delle query del database selezionato
-2. Modificare le metriche su **Durata**
+2. Modificare le metriche toobe **durata**
 3. Selezionare il numero di query e l'intervallo di osservazione
 4. Selezionare la funzione di aggregazione
    
    * **Somma** aggiunge il tempo di esecuzione di tutte le query durante l'intero intervallo di osservazione.
    * **Max** individua le query con il tempo di esecuzione massimo durante l'intero intervallo di osservazione.
-   * **Media** rileva il tempo medio di esecuzione di tutte le query e mostra i valori medi più alti tra quelli rilevati. 
+   * **AVG** rileva il tempo medio di esecuzione di tutte le esecuzioni di query e mostrano hello top fuori queste medie. 
      
      ![durata query][4]
 
 ## <a name="review-top-queries-per-execution-count"></a>Esaminare le query principali in base al conteggio delle esecuzioni
 Il numero elevato di esecuzioni potrebbe non influire sul database e l'utilizzo delle risorse potrebbe essere modesto, ma l'applicazione nel suo complesso potrebbe risultare rallentata.
 
-In alcuni casi, il conteggio di esecuzioni molto elevato potrebbe causare l'aumento dei round trip di rete. I round trip hanno un forte impatto sulle prestazioni. Sono soggetti alla latenza di rete e alla latenza di server downstream. 
+In alcuni casi, conteggio esecuzioni molto elevato può causare tooincrease di rete di andata e ritorno. I round trip hanno un forte impatto sulle prestazioni. Sono latenza toonetwork soggetto e latenza server toodownstream. 
 
-Ad esempio, molti siti Web basati sui dati accedono in maniera massiccia al database per tutte le richieste dell'utente. Mentre il pool di connessioni è di supporto, il traffico di rete aumentato e il carico di elaborazione sul server di database possono influire negativamente sulle prestazioni.  Il consiglio generico è di mantenere i round trip a un livello minimo assoluto.
+Ad esempio, molti siti Web basati sui dati accedere frequentemente database hello per ogni richiesta dell'utente. Mentre il pool di connessioni consente, hello aumentato il traffico di rete e il carico di elaborazione nel server di database hello può influire negativamente sulle prestazioni.  Consigli di carattere generale sono tookeep round trip tooan minimo.
 
-Per identificare le query eseguite di frequente ("chatty"):
+tooidentify eseguite di frequente query query ("chatty"):
 
 1. Aprire la scheda **Personalizza** in Informazioni dettagliate sulle prestazioni delle query del database selezionato
-2. Modificare le metriche su **Conteggio delle esecuzioni**
+2. Modificare le metriche toobe **conteggio esecuzioni**
 3. Selezionare il numero di query e l'intervallo di osservazione
    
     ![conteggio delle esecuzioni query][5]
 
 ## <a name="understanding-performance-tuning-annotations"></a>Informazioni sulle annotazioni di ottimizzazione delle prestazioni
-Durante l'esplorazione del carico di lavoro in Informazioni dettagliate sulle prestazioni delle query, è possibile notare la presenza di icone con linea verticale nella parte superiore del grafico.<br>
+Durante l'esplorazione del carico di lavoro di informazioni dettagliate prestazioni Query, è possibile notare le icone con linea verticale nella parte superiore del grafico hello.<br>
 
-Queste icone sono annotazioni sulle prestazioni che influiscono sulle azioni eseguite da [SQL Azure Database Advisor](sql-database-advisor.md). Passando il cursore del mouse su un'annotazione, si ottengono le informazioni di base relative a tale azione:
+Queste icone sono annotazioni sulle prestazioni che influiscono sulle azioni eseguite da [SQL Azure Database Advisor](sql-database-advisor.md). Per questa annotazione, si ottiene le informazioni di base sull'azione hello:
 
 ![annotazione query][6]
 
-Per saperne di più o per applicare il consiglio di SQL Azure Database Advisor, fare clic sull'icona, in modo da visualizzare i dettagli relativi all'azione.  Se si tratta di un consiglio attivo è possibile applicarlo direttamente tramite il comando.
+Se si desidera più tooknow o applica l'indicazione, fare clic sull'icona di hello. in modo da visualizzare i dettagli relativi all'azione.  Se si tratta di un consiglio attivo è possibile applicarlo direttamente tramite il comando.
 
 ![dettagli annotazione query][7]
 
 ### <a name="multiple-annotations"></a>Annotazioni multiple.
-È possibile che a causa del livello di zoom le annotazioni vicine tra loro vengano compresse in una, che verrà rappresentato dall'icona speciale; facendo clic su tale icona si aprirà un nuovo pannello con l'elenco delle annotazioni raggruppate.
-Correlare le query e le azioni di ottimizzazione delle prestazioni può servire ad avere una migliore comprensione del carico di lavoro. 
+È possibile, che a causa di livello di zoom, le annotazioni che sono Chiudi tooeach altri verranno ottenere compresso in un unico. che verrà rappresentato dall'icona speciale; facendo clic su tale icona si aprirà un nuovo pannello con l'elenco delle annotazioni raggruppate.
+Correlazione di query e le azioni di ottimizzazione delle prestazioni può comprendere toobetter il carico di lavoro. 
 
-## <a name="optimizing-the-query-store-configuration-for-query-performance-insight"></a>Ottimizzare la configurazione dell'archivio query per Informazioni dettagliate prestazioni query
-Durante l'uso di Informazioni dettagliate prestazioni query, possono essere visualizzati messaggi dell'archivio query simili ai seguenti:
+## <a name="optimizing-hello-query-store-configuration-for-query-performance-insight"></a>Ottimizzazione della configurazione di archivio Query hello per informazioni dettagliate prestazioni Query
+Durante l'uso di informazioni dettagliate prestazioni Query, possono verificarsi hello messaggi dell'archivio di Query seguente:
 
-* "Archivio query non è correttamente configurato in questo database. Per altre informazioni, fare clic qui."
-* "Archivio query non è correttamente configurato in questo database. Fare clic qui per modificare le impostazioni." 
+* "Archivio query non è correttamente configurato in questo database. Fare clic qui ulteriori toolearn."
+* "Archivio query non è correttamente configurato in questo database. Fare clic qui impostazioni toochange." 
 
-Questi messaggi in genere vengono visualizzati quando l'archivio query non è in grado di raccogliere nuovi dati. 
+Questi messaggi vengono visualizzati in genere quando l'archivio Query non è in grado di toocollect nuovi dati. 
 
 Il primo caso si verifica quando l'archivio query è in stato di sola lettura e i parametri sono impostati in modo ottimale. È possibile risolvere il problema aumentando le dimensioni dell'archivio query o svuotandolo del tutto.
 
 ![pulsante qds][8]
 
-Il secondo caso si verifica quando l'archivio query è disattivato o se i parametri non sono impostati in modo ottimale. <br>È possibile modificare i criteri di conservazione e acquisizione e abilitare l'archivio query direttamente dal portale oppure eseguendo i comandi indicati sotto:
+Il secondo caso si verifica quando l'archivio query è disattivato o se i parametri non sono impostati in modo ottimale. <br>È possibile modificare hello acquisizione e memorizzazione dei criteri e abilitare archivio Query eseguendo i comandi riportati di seguito o direttamente dal portale:
 
 ![pulsante qds][9]
 
 ### <a name="recommended-retention-and-capture-policy"></a>Criteri di conservazione e acquisizione consigliati
 Esistono due tipi di criteri di conservazione:
 
-* Basati sulle dimensioni: se impostati su AUTOMATICO i dati verranno automaticamente cancellati al raggiungimento delle dimensioni massime.
-* Basati sul tempo: per impostazione predefinita verranno impostati su 30 giorni in modo tale che, se verrà esaurito lo spazio, l'archivio query eliminerà le informazioni di query antecedenti a 30 giorni
+* Dimensioni basate - se viene raggiunto tooAUTO set eseguirà la pulizia dati automaticamente in prossimità di dimensioni massime.
+* Tempo basata - per impostazione predefinita, si imposterà too30 giorni, vale a dire che, se l'archivio Query esaurirà lo spazio, verranno eliminati, eseguire query sulle informazioni più vecchi di 30 giorni
 
 I criteri di acquisizione possono essere impostati su:
 
 * **Tutte**: acquisisce tutte le query.
-* **Automatico**: le query poco frequenti e con durata di compilazione ed esecuzione trascurabile vengono ignorate. Le soglie per il conteggio delle esecuzioni e la durata di compilazione ed esecuzione vengono stabilite internamente. Questa è l'opzione predefinita.
+* **Automatico**: le query poco frequenti e con durata di compilazione ed esecuzione trascurabile vengono ignorate. Le soglie per il conteggio delle esecuzioni e la durata di compilazione ed esecuzione vengono stabilite internamente. Questo è l'opzione predefinita di hello.
 * **Nessuna**: l'archivio query interrompe l'acquisizione di nuove query, ma continua a raccogliere le statistiche di runtime per le query già acquisite.
 
-È consigliabile impostare tutti i criteri su AUTOMATICO e i criteri di pulizia dei dati su 30 giorni:
+È consigliabile impostare tutti i criteri tooAUTO e criteri pulita too30 giorni:
 
     ALTER DATABASE [YourDB] 
     SET QUERY_STORE (SIZE_BASED_CLEANUP_MODE = AUTO);
@@ -191,15 +191,15 @@ I criteri di acquisizione possono essere impostati su:
     ALTER DATABASE [YourDB] 
     SET QUERY_STORE (QUERY_CAPTURE_MODE = AUTO);
 
-Aumentare le dimensioni dell'archivio query. È possibile eseguire questa operazione connettendosi a un database ed eseguendo la query seguente:
+Aumentare le dimensioni dell'archivio query. Potrebbe trattarsi di operazione eseguita dal database tooa connessione ed emettere query riportata di seguito:
 
     ALTER DATABASE [YourDB]
     SET QUERY_STORE (MAX_STORAGE_SIZE_MB = 1024);
 
-L'applicazione di queste impostazioni porterà l'archivio query a raccogliere nuove query; tuttavia, se non si desidera aspettare è possibile svuotare l'archivio query. 
+Applicazione di queste impostazioni eventualmente renderà archivio Query, la raccolta di nuove query, tuttavia, se non si desidera toowait è possibile cancellare l'archivio Query. 
 
 > [!NOTE]
-> L'esecuzione della query seguente comporta l'eliminazione di tutte le informazioni correnti nell'archivio query. 
+> Esecuzione della query seguente eliminerà tutte le informazioni correnti in hello archivio Query. 
 > 
 > 
 
@@ -207,10 +207,10 @@ L'applicazione di queste impostazioni porterà l'archivio query a raccogliere nu
 
 
 ## <a name="summary"></a>Riepilogo
-Query Performance Insight semplifica la comprensione dell'impatto del carico di lavoro della query e la relativa correlazione all'utilizzo delle risorse del database. Questa funzionalità consente di ottenere informazioni sulle query principali a livello di utilizzo di risorse e di identificare facilmente le query da correggere prima che si verifichino problemi.
+Informazioni dettagliate prestazioni query consente di comprendere l'impatto di hello query del carico di lavoro e l'interrelazione toodatabase consumo delle risorse. Con questa funzionalità, si verrà apprendere top hello query per consumo e identificare facilmente quelli hello toofix prima che diventino un problema.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori raccomandazioni sul miglioramento delle prestazioni del database SQL, fare clic su [Consigli](sql-database-advisor.md) nel pannello **Informazioni dettagliate sulle prestazioni delle query** .
+Per altre indicazioni sull'ottimizzazione delle prestazioni di hello del database SQL, fare clic su [indicazioni](sql-database-advisor.md) su hello **informazioni dettagliate prestazioni Query** blade.
 
 ![Performance Advisor](./media/sql-database-query-performance/ia.png)
 

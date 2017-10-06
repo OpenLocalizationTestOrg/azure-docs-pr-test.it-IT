@@ -1,6 +1,6 @@
 ---
-title: Tipi di raccolte disponibili per Azure RemoteApp | Microsoft Docs
-description: Informazioni sui tipi di raccolte disponibili con Azure RemoteApp.
+title: tipo aaaWhat dei sistemi di raccolta sono necessari per Azure RemoteApp? | Microsoft Docs
+description: Informazioni sui tipi di hello delle raccolte disponibili con Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,48 +13,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 10f6c0533027767b6635ebff1e6a9872bde06a68
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f00b5fe41af597cf75e26300bf7842c3a8ff94fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-kind-of-collection-do-you-need-for-azure-remoteapp"></a>Tipi di raccolte disponibili per Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Azure RemoteApp consente di condividere applicazioni e risorse con utenti su qualsiasi dispositivo. Questo risultato si ottiene con la creazione di raccolte per contenere le applicazioni e le risorse, quindi con la condivisione di tali raccolte con gli utenti. Esistono 2 diverse opzioni per le raccolte con opzioni differenti per la rete e l'autenticazione. Qual è quella appropriata per ogni esigenza?
+Azure RemoteApp consente di condividere applicazioni e risorse con utenti su qualsiasi dispositivo. A tale scopo occorre la creazione di risorse e raccolte toohold hello App, e quindi si condividono tali raccolte con gli utenti. Esistono 2 diverse opzioni per le raccolte con opzioni differenti per la rete e l'autenticazione. Qual è quella appropriata per ogni esigenza?
 
-Verranno esaminate le diverse considerazioni e le scelte che è necessario effettuare per ottenere il massimo da una raccolta di Azure RemoteApp. 
+Si analizzerà diverse considerazioni hello e scelte toomake tooget hello di frequente da una raccolta di Azure RemoteApp. 
 
-## <a name="quick-differences-between-the-collection-types"></a>Principali differenze tra i tipi di raccolta
+## <a name="quick-differences-between-hello-collection-types"></a>Rapide differenze tra tipi di raccolta hello
 |  | Cloud | Ibrido |
 | --- | --- | --- |
 | Usa una rete virtuale esistente |Sì |Sì |
 | Richiede account connessi ad Active Directory (DirSync) |No |Sì |
 | Richiede l'aggiunta al dominio |No |Sì |
-| Richiede un controller di dominio accessibile per la rete virtuale |No |Sì |
+| Richiede tooVNET accessibile controller di dominio |No |Sì |
 
 ## <a name="cloud-collections"></a>Raccolte nel cloud
-* Facile da creare. Il provisioning di questa raccolta è veloce e ciò significa che le applicazioni raggiungono più velocemente gli utenti.
-* Applicazioni proprie o condivisione delle applicazioni predefinite. È possibile usare un'immagine personalizzata creata da una VM di Azure oppure una delle immagini incluse nella sottoscrizione.
-* Non è necessario configurare una connessione tra la raccolta e il dominio locale.
-* È comunque possibile usare facoltativamente la rete virtuale di Azure per fornire l'accesso all'ambiente locale per la condivisione dei dati o per usare l'autenticazione non di Windows per risorse come SQL Server (usando l'autenticazione del database).
+* Toocreate rapido - raccolta hello è rapidamente il provisioning, vale a dire che le app toousers accedere più velocemente.
+* Applicazioni proprie o condivisione delle applicazioni predefinite. È possibile utilizzare un'immagine personalizzata (creata da una macchina virtuale di Azure) o una delle immagini hello incluse con la sottoscrizione.
+* Non è necessario tooconfigure una connessione tra la raccolta e il dominio locale.
+* Ma è possibile utilizzare facoltativamente il proprio accesso tooprovide di rete virtuale di Azure nell'ambiente locale per l'autenticazione di Windows non toouse o di condivisione di dati in risorse di SQL Server (utilizzando l'autenticazione del database).
 
 Come si crea una raccolta?
 
-* Solo cloud? Usare l'opzione **Creazione rapida** nel portale.
-* Cloud + rete virtuale? Usare l'opzione **Crea con rete virtuale** ma NON scegliere l'aggiunta a un dominio.
+* Solo cloud? Crea con hello **creazione rapida** opzione nel portale di hello.
+* Cloud + rete virtuale? Creare utilizzando hello **Create con una rete virtuale** opzione ma non si sceglie toojoin un dominio.
 
 ## <a name="hybrid-collections"></a>Raccolte ibride
-* Consentire l'accesso completo alla rete locale e alla rete virtuale di Azure.
+* Fornire una rete locale tooon accesso completo + rete virtuale di Azure.
 * Include l'accesso con aggiunta al dominio per applicazioni e dati. Le applicazioni remote possono eseguire l'autenticazione in Active Directory in locale e possono quindi accedere alle risorse nel dominio.
 * Abilitare il monitoraggio e la gestione avanzati con soluzioni System Center e Criteri di gruppo di Windows esistenti (tramite un'immagine personalizzata creata in Windows Server 2012 R2)
-* Supportare [ExpressRoute](https://azure.microsoft.com/services/expressroute/) per connettere la rete virtuale di Azure alla rete virtuale locale.
+* Supporto [ExpressRoute](https://azure.microsoft.com/services/expressroute/) tooconnect tooyour la rete virtuale di Azure tra reti VIRTUALI locali.
 
-Usare l'opzione **Crea con rete virtuale** e SCEGLIERE l'aggiunta a un dominio.
+Creare utilizzando hello **Create con una rete virtuale** opzione e scegliere toojoin un dominio.
 
 ## <a name="authentication-options"></a>Opzioni di autenticazione
 Azure RemoteApp supporta sia account Microsoft che account Azure Active Directory, ma non tutte le raccolte supportano tutti i metodi. 
@@ -71,23 +71,23 @@ Azure RemoteApp supporta sia account Microsoft che account Azure Active Director
 | Autenticazione a più fattori | |Sì |Sì |Sì |
 
 ### <a name="cloud-and-cloud--vnet"></a>Cloud e Cloud + rete virtuale
-Con le raccolte nel cloud è possibile usare account Microsoft, account Azure AD o una combinazione dei due. Usare gli account più adatti agli utenti.
+Con le raccolte di cloud, è possibile utilizzare gli account Microsoft, gli account di Azure AD o una combinazione di due hello. Utilizzare gli account di hello che funzionano meglio per gli utenti.
 
 Non sono previsti requisiti specifici per l'uso di account Microsoft. 
 
-Se si vuole usare gli account Azure AD, è necessario assicurarsi che il tenant di Azure AD corrisponda a quello associato alla sottoscrizione. Durante la creazione della sottoscrizione di Azure RemoteApp, il tenant di Azure AD in uso è stato associato automaticamente alla sottoscrizione. Qualsiasi utente di Azure AD a cui vengono concesse le autorizzazioni deve corrispondere allo stesso tenant. Se necessario, è possibile [modificare il tenant di Azure AD](remoteapp-changetenant.md) associato alla sottoscrizione.
+Se si desidera toouse account di Azure AD, è necessario verificare che il tenant di Azure AD corrisponda hello uno associati alla sottoscrizione toomake. Quando si crea la sottoscrizione di Azure RemoteApp, si utilizzava tenant di Azure AD di hello è automaticamente associato alla sottoscrizione. Qualsiasi utente di Azure AD assegnare autorizzazioni tooneeds toobe lo stesso tenant. Se necessario, è possibile [modificare tenant di Azure AD hello](remoteapp-changetenant.md) associati alla sottoscrizione.
 
 ### <a name="hybrid-or-cloud--azure-ad--ad"></a>Ibrido (o cloud + Azure AD + Active Directory)
-L'uso di Azure AD insieme ad Active Directory in locale è un prerequisito per una raccolta ibrida. È necessario usare AD Connect per integrare le due directory. Esistono però alcune possibilità di scelta per quanto riguarda la configurazione di AD Connect. 
+L'uso di Azure AD insieme ad Active Directory in locale è un prerequisito per una raccolta ibrida. È necessario toouse AD Connect toointegrate hello due directory. Ma è alcune scelte per quanto riguarda toohow configuri AD Connect. 
 
-Esistono due scenari per AD Connect, ovvero l'uso della sincronizzazione delle password o l'uso della federazione di Active Directory. Vedere le [informazioni su AD Connect](../active-directory/active-directory-aadconnect.md) per individuare lo scenario ottimale per le specifiche esigenze.
+Esistono due scenari per AD Connect, ovvero l'uso della sincronizzazione delle password o l'uso della federazione di Active Directory. Estrarre hello [informazioni di Active Directory Connect](../active-directory/active-directory-aadconnect.md) toofigure quale di questi è adatto per l'utente.
 
-È inoltre possibile usare Azure AD e Active Directory con una raccolta nel cloud. Assicurarsi di seguire gli stessi passaggi di configurazione.
+È inoltre possibile usare Azure AD e Active Directory con una raccolta nel cloud. Assicurarsi di che seguire hello stessi passaggi di impostazione.
 
-Vedere i [requisiti di Azure AD e Active Directory per Azure RemoteApp](remoteapp-ad.md) per informazioni sulla procedura per la configurazione di Azure AD e Active Directory.
+Estrarre [Azure AD + requisiti di Active Directory per Azure RemoteApp](remoteapp-ad.md) per tooconfigure necessari passaggi di hello Azure AD e Active Directory.
 
 ## <a name="go-create-your-collection"></a>A questo punto è possibile procedere
-con la creazione della prima raccolta di Azure RemoteApp.
+OK, ritengo che è stato calcolato a questo punto, pertanto non c'è toodo a sinistra di una sola operazione - creare la prima raccolta di Azure RemoteApp.
 
 [Creare una raccolta nel cloud](remoteapp-create-cloud-deployment.md) o [creare una raccolta ibrida](remoteapp-create-hybrid-deployment.md).
 

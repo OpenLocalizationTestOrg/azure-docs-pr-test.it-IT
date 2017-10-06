@@ -1,5 +1,5 @@
 ---
-title: Esperimenti di Cortana Intelligence Gallery | Documentazione Microsoft
+title: Raccolta di Intelligence aaaCortana esperimenti | Documenti Microsoft
 description: Scoprire e condividere esperimenti in Cortana Intelligence Gallery.
 services: machine-learning
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: e1f784eff02cacd680d631a843e6384697d0ae6e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55994846e277061bbb3febb759e0c68ad6cee7e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="discover-experiments-in-cortana-intelligence-gallery"></a>Scoprire esperimenti in Cortana Intelligence Gallery
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="experiments-for-machine-learning-studio"></a>Esperimenti per Machine Learning Studio
-Cortana Intelligence Gallery contiene un'ampia gamma di [esperimenti](https://gallery.cortanaintelligence.com/experiments) sviluppati in [Azure Machine Learning Studio](https://studio.azureml.net), da veloci esperimenti di prova che illustrano una tecnica di apprendimento automatico specifica a soluzioni complete per la risoluzione di problemi di apprendimento automatico complessi.
+Raccolta Hello ha un'ampia gamma di [esperimenti](https://gallery.cortanaintelligence.com/experiments) che sono state sviluppate [Azure Machine Learning Studio](https://studio.azureml.net). Intervallo esperimenti da esperimenti di prova rapidi che illustrano un computer specifico toofully tecnica di apprendimento sviluppate soluzioni per problemi di apprendimento macchina complessa.
 
 > [!NOTE]
-> Un ***esperimento*** è un'area di disegno in Machine Learning Studio da usare per costruire un modello di analisi predittiva. Il modello viene creato collegando i dati da vari moduli di analisi. È possibile provare idee diverse, effettuare esecuzioni di prova e alla fine distribuire il modello come servizio Web in Azure. Per un esempio di creazione di un esperimento semplice, vedere [Esercitazione di Machine Learning: Creare il primo esperimento in Azure Machine Learning Studio](machine-learning-create-experiment.md). Per una procedura dettagliata più completa della creazione di una soluzione di analisi predittiva, vedere [Procedura dettagliata: Sviluppare una soluzione di analisi predittiva per la valutazione del rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
+> Un ***sperimentare*** è un'area di disegno in Machine Learning Studio che è possibile utilizzare un modello di analisi predittiva tooconstruct. Creare il modello di hello tramite la connessione dati con diversi moduli analitici. È possibile provare idee diverse, effettuare esecuzioni di prova e alla fine distribuire il modello come servizio Web in Azure. Per un esempio di come toocreate un esperimento di base, vedere [esercitazione di Machine learning: creare il primo esperimento in Azure Machine Learning Studio](machine-learning-create-experiment.md). Per una procedura dettagliata relativa più completa vedere toocreate una soluzione analitica predittiva, [procedura dettagliata: sviluppare una soluzione analitica predittiva, per valutare il rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
 >
 >
 
 ## <a name="discover"></a>Scoprire
-Per cercare gli esperimenti disponibili in Gallery, aprire [Gallery](http://gallery.cortanaintelligence.com) e selezionare **Esperimenti** nella parte alta della home page di Gallery.
+esperimenti toobrowse [in hello raccolta](http://gallery.cortanaintelligence.com), nella parte superiore di hello di hello raccolta pagina iniziale, selezionare **esperimenti**.
 
-Nella pagina **[Esperimenti](https://gallery.cortanaintelligence.com/experiments)** è disponibile l'elenco degli ultimi esperimenti inseriti e quello degli esperimenti più visualizzati. Per visualizzare tutti gli esperimenti, selezionare il pulsante **Visualizza tutto**. Per cercare un esperimento specifico, selezionare **Visualizza tutto** e quindi selezionare i criteri di filtro. È anche possibile immettere i termini di ricerca nella casella **Ricerca** nella parte superiore della pagina di Gallery.
+Hello  **[esperimenti](https://gallery.cortanaintelligence.com/experiments)**  pagina Visualizza un elenco di esperimenti più diffusi e aggiunti di recente. Selezionare tutti gli esperimenti, toosee hello **tutti** pulsante. toosearch per un esperimento specifico, selezionare **tutti**, criteri di filtro selezionate. È inoltre possibile immettere i termini di ricerca in hello **ricerca** casella nella parte superiore di hello della pagina Raccolta hello.
 
-È possibile ottenere altre informazioni su un esperimento nella pagina di dettagli dell'esperimento. Per aprire una pagina di dettagli dell'esperimento, selezionare l'esperimento. Nella pagina dei dettagli di un esperimento, è possibile fornire commenti e suggerimenti oppure fare domande sull'esperimento nella sezione **Commenti**. È anche possibile condividere l'esperimento con amici o colleghi su Twitter o LinkedIn e invitare altri utenti a visualizzare la pagina di dettagli dell'esperimento inviando loro un collegamento tramite posta elettronica.
+È possibile ottenere ulteriori informazioni su un esperimento nella pagina dettagli di hello esperimento. tooopen pagina dei dettagli un esperimento, esperimento hello selezionare. In un esperimento dettagli pagina hello **commenti** sezione, è possibile inviare commenti, fornire commenti e suggerimenti o porre domande sulle esperimento hello. È anche possibile condividere hello esperimento con amici o colleghi su Twitter o LinkedIn. È anche possibile di posta elettronica una collegamento toohello esperimento pagina dettagli tooinvite pagina di hello tooview altri utenti.
 
 ![Condividere l'elemento con amici](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Aggiungere un commento](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="download"></a>Scaricare
-È possibile scaricare nella propria area di lavoro di Machine Learning Studio una copia di un qualsiasi esperimento presente in Gallery. A quel punto è possibile modificare la copia per creare soluzioni personalizzate.
+È possibile scaricare una copia di qualsiasi esperimento nell'area di lavoro Machine Learning Studio tooyour raccolta hello. Quindi, è possibile modificare il toocreate copia soluzioni personalizzate.
 
-Cortana Intelligence Gallery offre due modi per importare la copia di un esperimento:
+Raccolta di Cortana Intelligence offre due modi tooimport una copia di un esperimento:
 
-* **Da Gallery**. Se si trova un esperimento di proprio interesse in Gallery, è possibile scaricarne e aprirne una copia nella propria area di lavoro di Machine Learning Studio.
-* **Da Machine Learning Studio**. In Machine Learning Studio è possibile usare qualsiasi esperimento presente in Gallery come modello per creare un nuovo esperimento.
+* **Da raccolta hello**. Se si trova un esperimento che si desidera che in hello raccolta, è possibile scaricare una copia, quindi aprirlo nell'area di lavoro di Machine Learning Studio.
+* **Da Machine Learning Studio**. In Machine Learning Studio, è possibile utilizzare qualsiasi esperimento in hello raccolta come un toocreate modello un esperimento di nuovo.
 
-### <a name="from-the-gallery"></a>Da Gallery
+### <a name="from-hello-gallery"></a>Da raccolta hello
 
-1. Aprire la pagina dei dettagli dell'esperimento in Gallery.
+1. Nella raccolta hello, aprire pagina dei dettagli hello esperimento.
 2. Selezionare **Apri in Studio**.
 
-    ![Aprire un esperimento da Gallery](media/machine-learning-gallery-experiments/open-experiment-from-gallery.png)
+    ![Aprire esperimento dai hello raccolta](media/machine-learning-gallery-experiments/open-experiment-from-gallery.png)
 
-Quando si seleziona **Apri in Studio**, l'esperimento viene aperto nell'area di lavoro di Machine Learning Studio. Se non è già stato effettuato l'accesso a Machine Learning Studio, sarà necessario accedere con l'account Microsoft.
+Quando si seleziona **Open in Studio**, esperimento hello viene visualizzata nell'area di lavoro di Machine Learning Studio. (Se non è già stato effettuato in tooMachine Learning Studio, verrà chiesto toofirst Accedi con l'account Microsoft.)
 
 ### <a name="from-within-machine-learning-studio"></a>Da Machine Learning Studio
 
 1. In Machine Learning Studio selezionare **NUOVO**.
-2. Selezionare **Esperimento**. È possibile scegliere da un elenco degli esperimenti di Gallery o trovare un esperimento specifico usando la casella **Ricerca**.
-3. Spostare il mouse sopra un esperimento e quindi selezionare **Apri in Studio**. Per ottenere informazioni sull'esperimento, selezionare **Visualizza in Gallery**. Verrà aperta la pagina di dettagli dell'esperimento in Gallery.
+2. Selezionare **Esperimento**. È possibile scegliere da un elenco di esperimenti di raccolta o trovare un esperimento specifico utilizzando hello **ricerca** casella.
+3. Spostare il mouse sopra un esperimento e quindi selezionare **Apri in Studio**. (selezionare toosee informazioni esperimento hello **visualizzazione nella raccolta**. Verrà visualizzata la pagina dei dettagli esperimento toohello nella raccolta hello.)
 
     ![Aprire un esperimento di Gallery da Machine Learning Studio](media/machine-learning-gallery-experiments/open-experiment-from-studio.png)
 
@@ -72,20 +72,20 @@ Quando si seleziona **Apri in Studio**, l'esperimento viene aperto nell'area di 
 ![Esperimento aperto in Studio](media/machine-learning-gallery-experiments/experiment-open-in-studio.png)
 
 ## <a name="contribute"></a>Contribuire
-Quando si esegue l'accesso a Gallery si diventa membri della community di Gallery. I membri della community contribuire con i propri esperimenti, in modo che altri utenti possano trarre vantaggio dalle soluzioni individuate.
+Quando si accede nella raccolta toohello, diventano un membro di hello community di raccolta. Come membro della community di hello, è possibile contribuire esperimenti, in modo da altri utenti possono trarre vantaggio dalle soluzioni hello che è stato individuato.
 
-### <a name="publish-your-experiment-to-the-gallery"></a>Pubblicare un esperimento in Gallery
+### <a name="publish-your-experiment-toohello-gallery"></a>Pubblicare il Gallery toohello esperimento
 
-1. Accedere a Machine Learning Studio con il proprio account Microsoft.
+1. Accedi tooMachine Learning Studio usando l'account Microsoft.
 2. Creare l'esperimento ed eseguirlo.
-3. Quando l'esperimento è pronto per essere pubblicato in Gallery, selezionare **Publish to Gallery** (Pubblica in Gallery) nell'elenco di azioni sotto l'area di disegno dell'esperimento.
+3. Quando sarai pronto toopublish esperimento in hello raccolta, nell'elenco di hello di azioni sotto l'area di disegno di hello esperimento, selezionare **pubblicare tooGallery**.
 
-    ![Selezionare "Publish to Gallery" (Pubblica in Gallery)](media/machine-learning-gallery-experiments/publish-experiment-to-gallery.png)
-4. Nella pagina **Experiment Description** (Descrizione esperimento), immettere un titolo e i tag, possibilmente descrittivi. Evidenziare le tecniche utilizzate o i problemi reali risolvibili che l'esperimento punta a risolvere. Un esempio di titolo descrittivo per un esperimento è "Classificazione binaria: analisi del sentiment su Twitter".
+    ![Selezionare "Pubblica tooGallery"](media/machine-learning-gallery-experiments/publish-experiment-to-gallery.png)
+4. In hello **descrizione esperimento** pagina, immettere un titolo e tag. Scegliere i tag e il titolo hello descrittivo. Evidenziare le tecniche di hello che è stato utilizzato o hello reali problemi sono. Un esempio di titolo descrittivo per un esperimento è "Classificazione binaria: analisi del sentiment su Twitter".
 
     ![Immettere titolo e tag per la pubblicazione](media/machine-learning-gallery-experiments/experiment-description.png)
-5. Nella casella **RIEPILOGO** immettere un riepilogo dell'esperimento. Descrivere brevemente il problema che viene risolto con l'esperimento e com'è stato affrontato.
-6. Nella casella **DESCRIZIONE DETTAGLIATA** descrivere i passaggi in ogni parte dell'esperimento. Ecco alcuni elementi utili da includere:
+5. In hello **riepilogo** , immettere un riepilogo dell'esperimento. Descrivere brevemente esperimento di hello hello problema è stato risolto ed la modalità di approcci.
+6. In hello **descrizione dettagliata** casella, vengono descritti i passaggi di hello è stata eseguita in ogni parte dell'esperimento. Tooinclude alcuni argomenti utili sono:
    * Screenshot del grafico dell'esperimento
    * Origini dati e spiegazione
    * Elaborazione dei dati
@@ -93,44 +93,44 @@ Quando si esegue l'accesso a Gallery si diventa membri della community di Galler
    * Descrizione modello
    * Risultati e valutazione delle prestazioni del modello
 
-   È possibile usare la sintassi markdown per formattare la descrizione. Per visualizzare l'aspetto delle voci nella pagina di descrizione dell'esperimento una volta pubblicato, selezionare **Anteprima**.
+   È possibile utilizzare markdown tooformat la descrizione. toosee aspetto le voci selezionate nella pagina di descrizione esperimento hello esperimento hello viene pubblicata, selezionare **anteprima**.
 
-   ![Selezionare "Anteprima" per visualizzare l'aspetto del testo](media/machine-learning-gallery-experiments/preview-markdown-text.png)
+   ![Selezionare "Anteprima" toosee aspetto del testo](media/machine-learning-gallery-experiments/preview-markdown-text.png)
 
    > [!TIP]
-   > Le caselle di testo per l'anteprima e la modifica markdown sono molto piccole. È consigliabile scrivere la documentazione dell'esperimento in un editor markdown, copiarla e incollarla nella casella di testo in Gallery una volta completa. Dopo aver pubblicato l'esperimento, è possibile apportare correzioni usando strumenti standard basati su Web che usano la sintassi markdown per le modifiche e l'anteprima.
+   > testo Hello finestre fornito per la modifica markdown e visualizzare in anteprima sono piccole. È consigliabile scrivere la documentazione di prova in un editor markdown, copiarlo e incollarlo documentazione hello completata nella casella di testo hello nella raccolta hello. Dopo aver pubblicato l'esperimento, è possibile apportare correzioni usando strumenti standard basati su Web che usano la sintassi markdown per le modifiche e l'anteprima.
 
-7. Nella pagina **Selezione immagine** scegliere un'immagine di anteprima per l'esperimento. L'immagine di anteprima viene visualizzata nella parte superiore della pagina dei dettagli dell'esperimento e nel riquadro dell'esperimento. Gli altri utenti vedranno un'immagine di anteprima mentre esplorano Gallery. È possibile caricare un'immagine dal computer oppure selezionarne una da Gallery.
+7. In hello **selezione di immagini** pagina, scegliere un'immagine di anteprima per l'esperimento. immagine di anteprima Hello viene visualizzata nella parte superiore di hello della pagina di dettagli esperimento hello e nel riquadro di hello esperimento. Gli altri utenti vedranno miniatura hello quando esplorano hello raccolta. È possibile caricare un'immagine dal computer, o selezionare un'immagine dalla raccolta hello.
     </br>
-    ![Caricare o selezionare un'immagine per la raccolta](media/machine-learning-gallery-experiments/select-gallery-image.png)
-8. Nella pagina **Impostazioni**, in **Visibilità**, scegliere se pubblicare il contenuto con l'impostazione **Public** (Pubblico) o se renderlo accessibile solo agli utenti dotati di un collegamento alla pagina con l'impostazione **Unlisted** (Non in elenco).
+    ![Caricare o selezionare un'immagine per hello raccolta](media/machine-learning-gallery-experiments/select-gallery-image.png)
+8. In hello **impostazioni** nella pagina **visibilità**, scegliere se toopublish contenuti pubblicamente (**pubblica**) o toohave è accessibile toopeople solo che dispongono di un collegamento pagina toohello (**non in elenco**).
 
-    ![Scelta tra pubblicazione pubblica o come applicazione non in elenco](media/machine-learning-gallery-experiments/choose-public-or-unlisted.png)
+    ![Scegliere se toopublish pubblicamente o come non in elenco](media/machine-learning-gallery-experiments/choose-public-or-unlisted.png)
 
     <!-- -->
 
    > [!TIP]
-   > Per assicurarsi che la documentazione sia corretta prima di pubblicarla, è possibile usare l'opzione **Unlisted** (Non in elenco) prima di rendere pubblico l'esperimento. In un secondo momento sarà possibile modificare l'impostazione di visibilità su **Public** (Pubblico) nella pagina dei dettagli dell'esperimento.
+   > Se si desidera che la documentazione siano corretta prima di rilasciare pubblicamente toomake, è possibile pubblicare innanzitutto hello esperimento come **non in elenco**. In un secondo momento, è possibile modificare hello visibilità impostazione troppo**pubblica** nella pagina dettagli di hello esperimento.
    >
    >
-9. Selezionare il segno di spunta **OK** per pubblicare l'esperimento in Gallery.
+9. toopublish hello esperimento toohello raccolta, seleziona hello **OK** segno di spunta.
 
-    ![Selezionare il segno di spunta OK per pubblicare l'esperimento](media/machine-learning-gallery-experiments/ok-checkmark.png)
+    ![Selezionare l'esperimento di hello toopublish segno di spunta hello OK](media/machine-learning-gallery-experiments/ok-checkmark.png)
 
-Per suggerimenti su come pubblicare un esperimento di alta qualità in Gallery, vedere [Suggerimenti per documentare e pubblicare un esperimento](#tips-for-documenting-and-publishing-your-experiment).
+Per suggerimenti su come raccolta di alta qualità toopublish provare, vedere [suggerimenti per la documentazione e pubblicare l'esperimento](#tips-for-documenting-and-publishing-your-experiment).
 
 La procedura è terminata.
 
-Ora è possibile visualizzare l'esperimento in Cortana Intelligence Gallery e condividere il collegamento con altri utenti. Se l'esperimento è stato pubblicato con l'impostazione di visibilità **Public** (Pubblico), verrà visualizzato in Gallery e nei relativi risultati di ricerca. È possibile modificare la documentazione dell'esperimento nella relativa pagina dei dettagli in qualsiasi momento dopo aver effettuato l'accesso a Gallery.
+Ora è possibile visualizzare l'esperimento in hello raccolta e condividere il collegamento hello con altri utenti. Se è stato pubblicato l'esperimento usando hello **pubblica** , impostazione di visibilità hello esperimento viene visualizzato nei risultati di ricerca nella raccolta hello. È possibile modificare la documentazione di sperimentazione nella pagina di dettagli esperimento hello ogni volta che si è connessi toohello raccolta.
 
-Per visualizzare l'elenco dei propri contributi, selezionare l'immagine nell'angolo superiore destro delle pagine della raccolta. Quindi selezionare il proprio nome per aprire la pagina dell'account.
+elenco di hello toosee dei propri contributi, selezionare l'immagine nell'angolo superiore destro di hello di qualsiasi pagina della raccolta. Selezionare quindi il nome tooopen pagina dell'account.
 
 ![Selezionare il nome del proprio account](media/machine-learning-gallery-experiments/click-account-name.png)
 
 ### <a name="update-your-experiment"></a>Aggiornare l'esperimento
-Se si desidera, è possibile apportare modifiche al flusso di lavoro (moduli, parametri e così via) in un esperimento pubblicato in Gallery. In Machine Learning Studio, apportare le modifiche desiderate all'esperimento e quindi pubblicarlo di nuovo. L'esperimento pubblicato verrà aggiornato con le modifiche apportate.
+Se si desidera, è possibile apportare modifiche toohello flusso di lavoro (moduli, parametri e così via) in un esperimento che è stato pubblicato toohello raccolta. In Machine Learning Studio, apportare le modifiche desideri toomake toohello esperimento e quindi pubblicare di nuovo. L'esperimento pubblicato verrà aggiornato con le modifiche apportate.
 
-È possibile modificare le informazioni seguenti dell'esperimento direttamente in Gallery:
+È possibile modificare le seguenti informazioni per l'esperimento direttamente nella raccolta hello hello:
 
 * Nome dell'esperimento
 * Riepilogo o descrizione
@@ -138,54 +138,54 @@ Se si desidera, è possibile apportare modifiche al flusso di lavoro (moduli, pa
 * Image
 * Impostazione di visibilità, tra **Public** (Pubblico) e **Unlisted** (Non in elenco)
 
-È anche possibile eliminare l'esperimento da Gallery.
+È inoltre possibile eliminare hello esperimento da hello raccolta.
 
-Queste modifiche o eliminazioni possono essere apportate in Gallery dalla pagina dei dettagli dell'esperimento o dalla pagina del profilo personale.
+È possibile apportare queste modifiche, o eliminare esperimento hello, dalla pagina dei dettagli di hello esperimento o dalla pagina del profilo di hello raccolta.
 
 
-#### <a name="from-the-experiment-details-page"></a>Dalla pagina dei dettagli dell'esperimento
-Nella pagina dei dettagli dell'esperimento selezionare **Modifica** per modificare i dettagli dell'esperimento.
+#### <a name="from-hello-experiment-details-page"></a>Da hello sperimentare pagina dei dettagli
+Nella pagina di dettagli hello esperimento, selezionare i dettagli di hello toochange per l'esperimento, **modifica**.
 
-![Selezionare Modifica per modificare l'esperimento](media/machine-learning-gallery-experiments/edit-button.png)
+![Selezionare Modifica tooedit l'esperimento](media/machine-learning-gallery-experiments/edit-button.png)
 
-La pagina dei dettagli passa alla modalità di modifica. Per apportare le modifiche, selezionare **Modifica** accanto al nome dell'esperimento, al riepilogo o ai tag. Dopo aver apportato tutte le modifiche desiderate, selezionare **Fine**.
+pagina dei dettagli Hello passa alla modalità di modifica. Selezionare le modifiche toomake, **modifica** toohello Avanti sperimentare nome, riepilogo o tag. Dopo aver apportato tutte le modifiche desiderate, selezionare **Fine**.
 
-![Selezionare "Modifica" per modificare i dettagli e quindi "Fine" al termine dell'operazione](media/machine-learning-gallery-experiments/edit-details-page.png)
+![Selezionare i dettagli tooedit "Modifica" e "Done" al termine](media/machine-learning-gallery-experiments/edit-details-page.png)
 
-Per modificare le impostazioni di visibilità per l'esperimento tra **Public** (Pubblico) e **Unlisted** (Non in elenco) o per eliminare l'esperimento da Gallery, selezionare l'icona **Impostazioni**.
+impostazioni di visibilità hello toochange per esperimento hello (**pubblica** o **non in elenco**), o hello toodelete sperimentare dalla raccolta, seleziona hello hello **impostazioni** icona.
 
-![Selezionare "Impostazioni" modificare la visibilità o eliminare l'esperimento](media/machine-learning-gallery-experiments/settings-button.png)
+![Selezionare "Impostazioni" toochange la visibilità o esperimento hello toodelete](media/machine-learning-gallery-experiments/settings-button.png)
 
 #### <a name="from-your-profile-page"></a>Dalla pagina del profilo personale
-Nella pagina del profilo personale è possibile selezionare la freccia verso il basso in corrispondenza dell'esperimento e selezionare **Modifica**. Viene visualizzata la pagina dei dettagli dell'esperimento in modalità di modifica. Dopo aver apportato tutte le modifiche desiderate, selezionare **Fine**.
+Nella pagina del profilo, selezionare hello freccia giù per esperimento hello e quindi selezionare **modifica**. Verrà visualizzata la pagina dei dettagli toohello per l'esperimento, in modalità di modifica. Dopo aver apportato tutte le modifiche desiderate, selezionare **Fine**.
 
-È anche possibile eliminare l'esperimento da Gallery selezionando **Elimina**.
+Selezionare toodelete hello esperimento dalla raccolta, hello **eliminare**.
 
 ![Selezionare "Modifica" o "Elimina"](media/machine-learning-gallery-experiments/edit-delete-buttons.png)
 
 ### <a name="tips-for-documenting-and-publishing-your-experiment"></a>Suggerimenti per documentare e pubblicare un esperimento
-* Si può presupporre che il lettore disponga di esperienze precedenti nell'analisi scientifica dei dati, ma è comunque consigliabile usare un linguaggio semplice. Si consiglia di spiegare in dettaglio i vari elementi, se possibile.
-* Cortana Intelligence Suite è una soluzione relativamente nuova, pertanto non tutti i lettori hanno familiarità nell'usarla. È quindi opportuno fornire informazioni esaurienti e spiegazioni dettagliate per consentire a tutti di svolgere correttamente l'esperimento.
-* Gli elementi visivi possono essere utili per aiutare i lettori a interpretare e usare correttamente la documentazione dell'esperimento. Possono includere grafici e screenshot dei dati dell'esperimento. Per altre informazioni su come includere immagini nella documentazione dell'esperimento, vedere [Publishing Guidelines and Examples collection](https://gallery.cortanaintelligence.com/Collection/Publishing-Guidelines-and-Examples-1) (Linee guida per la pubblicazione e raccolta di esempi).
-* Se si include un set di dati nell'esperimento, vale a dire se non si importa il set di dati tramite il modulo di importazione, questo farà parte dell'esperimento e verrà pubblicato in Gallery. Assicurarsi che i dati pubblicati dispongano di termini di licenza che autorizzino la condivisione e il download da parte degli utenti. I contributi pubblicati in Cortana Intelligence Gallery sono coperti dalle [Condizioni per l'utilizzo](https://azure.microsoft.com/support/legal/website-terms-of-use/)di Azure.
+* Si può presupporre che il lettore hello è analisi scientifica dei dati precedente esperienza, ma può essere utile toouse semplice linguaggio. Si consiglia di spiegare in dettaglio i vari elementi, se possibile.
+* Cortana Intelligence Suite è una soluzione relativamente nuova, Non tutti i reader si ha familiari con le modalità di toouse è. Fornire informazioni e sufficienti lettori toohelp spiegazioni dettagliate passare l'esperimento.
+* Oggetti visivi possono essere utili per i lettori toointerpret e usare la documentazione di sperimentazione correttamente. Possono includere grafici e screenshot dei dati dell'esperimento. Per ulteriori informazioni su come tooinclude immagini nella documentazione di esperimento, vedere hello [raccolta pubblicazione linee guida ed esempi](https://gallery.cortanaintelligence.com/Collection/Publishing-Guidelines-and-Examples-1).
+* Se si include un set di dati nell'esperimento (vale a dire non si importano hello set di dati tramite il modulo di importazione dei dati hello), il set di dati hello fa parte dell'esperimento ed è pubblicato nella raccolta hello. Verificare che disponga di set di dati hello pubblicate licenza che consentono la condivisione e il download da chiunque. I contributi di raccolta sono coperti hello Azure [condizioni per l'utilizzo](https://azure.microsoft.com/support/legal/website-terms-of-use/).
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
-**Quali sono i requisiti a cui attenersi quando si invia o si modifica l'immagine associata a un esperimento?**
+**Quali sono i requisiti di hello per l'invio o la modifica di un'immagine per la sperimentazione?**
 
-Le immagini inviate insieme all'esperimento vengono usate per creare il riquadro dell'esperimento con informazioni sull'autore che ha inserito il proprio contributo. È consigliabile che le immagini siano inferiori a 500 KB, con proporzioni di 3:2 e una risoluzione di 960 &#215; 640.
+Le immagini inviati con l'esperimento sono toocreate utilizzato per il contributo di un riquadro dell'esperimento. È consigliabile che le immagini siano inferiori a 500 KB, con proporzioni di 3:2 e una risoluzione di 960 &#215; 640.
 
-**Come vengono impiegati i set di dati usati nell'esperimento? Il set di dati viene pubblicato anche in Gallery?**
+**Cosa accade toohello set di dati utilizzato nell'esperimento hello? Set di dati hello è pubblicato anche in hello raccolta?**
 
-Se il set di dati non è stato importato tramite il modulo di importazione dati ma fa parte dell'esperimento, viene pubblicato in Gallery contestualmente all'esperimento. Assicurarsi che il set di dati pubblicato con l'esperimento disponga di termini di licenza appropriati. I termini di licenza devono consentire a chiunque di condividere e scaricare i dati.
+Se il set di dati fa parte dell'esperimento e non viene importato mediante il modulo di importazione dei dati hello, set di dati hello è pubblicata in hello raccolta come parte dell'esperimento. Assicurarsi che i set di dati hello pubblicati con l'esperimento con condizioni di licenza appropriato hello. condizioni di licenza Hello deve consentono a chiunque tooshare e scaricare dati hello.
 
-**Per la realizzazione di un esperimento ho usato le mie credenziali per estrarre i dati da Azure HDInsight o SQL Server tramite un modulo di importazione dati. È possibile pubblicare questo tipo di esperimento? Come posso essere certo che le mie credenziali non saranno condivise?**
+**Si dispone di un esperimento che usi un dati toopull modulo di importazione dei dati da HDInsight di Azure o SQL Server. Usa dati hello tooretrieve credenziali. È possibile pubblicare questo tipo di esperimento? Come posso essere certo che le mie credenziali non saranno condivise?**
 
-Al momento non è possibile pubblicare in Gallery un esperimento che usa le credenziali.
+Attualmente, non è possibile pubblicare un esperimento che usi le credenziali in hello raccolta.
 
 **Come posso inserire più tag?**
 
-Dopo aver inserito un tag, premere il tasto TAB per inserirne un altro.
+Dopo avere immesso un tag, tooenter un altro tag, premere un tasto scheda hello.
 
-**[Passare a Gallery](http://gallery.cortanaintelligence.com)**
+**[Passare toohello raccolta](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]

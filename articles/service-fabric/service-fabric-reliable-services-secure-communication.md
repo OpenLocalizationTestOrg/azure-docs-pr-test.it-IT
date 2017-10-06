@@ -1,6 +1,6 @@
 ---
-title: Proteggere le comunicazioni per i servizi in Azure Service Fabric | Microsoft Docs
-description: Panoramica relativa a come proteggere le comunicazioni per servizi Reliable Services in esecuzione in un cluster di Azure Service Fabric.
+title: aaaHelp comunicazione protetta per i servizi in Azure Service Fabric | Documenti Microsoft
+description: Panoramica di come toohelp proteggere le comunicazioni per i servizi affidabile che sono in esecuzione in un cluster di Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: suchiagicha
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: 53119244f8f09c0c6c43f43761af1cc074f8d0af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 15201eb503322b17db329b319f1f42860b0f0c6b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="help-secure-communication-for-services-in-azure-service-fabric"></a>Proteggere le comunicazioni per i servizi in Azure Service Fabric
 > [!div class="op_single_selector"]
@@ -27,12 +27,12 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-La sicurezza è uno degli aspetti essenziali delle comunicazioni. Il framework di applicazioni di Reliable Services offre alcuni stack e strumenti predefiniti che è possibile usare per migliorare la sicurezza. In questo articolo viene illustrato come migliorare la sicurezza quando si usa la comunicazione remota dei servizi e lo stack di comunicazione di Windows Communication Foundation (WCF).
+La sicurezza è uno degli aspetti più importanti di hello di comunicazione. Hello servizi affidabili application framework fornisce alcuni stack di comunicazione predefiniti e gli strumenti che è possibile utilizzare la sicurezza tooimprove. In questo articolo illustra come tooimprove sicurezza quando si utilizza il servizio remoto e hello stack di comunicazione di Windows Communication Foundation (WCF).
 
 ## <a name="help-secure-a-service-when-youre-using-service-remoting"></a>Proteggere un servizio quando si usa la comunicazione remota dei servizi
-Verrà usato un [esempio](service-fabric-reliable-services-communication-remoting.md) esistente che spiega come configurare la comunicazione remota per Reliable Services. Per proteggere un servizio quando si usa la comunicazione remota, seguire questa procedura:
+Si sta usando un oggetto esistente [esempio](service-fabric-reliable-services-communication-remoting.md) che spiega come tooset backup remoto per servizi affidabili. toohelp proteggere un servizio quando si usa la comunicazione remota del servizio, seguire questi passaggi:
 
-1. Creare un'interfaccia, `IHelloWorldStateful`, che definisce i metodi che saranno disponibili per la Remote Procedure Call del servizio. Il servizio userà il metodo `FabricTransportServiceRemotingListener`, dichiarato nello spazio dei nomi `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime`. Si tratta di un'implementazione `ICommunicationListener` che fornisce funzionalità di accesso remoto.
+1. Creare un'interfaccia, `IHelloWorldStateful`, che definisce i metodi di hello che saranno disponibili per una chiamata di procedura remota nel servizio. Il servizio utilizzerà `FabricTransportServiceRemotingListener`, dichiarato in hello `Microsoft.ServiceFabric.Services.Remoting.FabricTransport.Runtime` dello spazio dei nomi. Si tratta di un’implementazione `ICommunicationListener` che fornisce funzionalità di accesso remoto.
 
     ```csharp
     public interface IHelloWorldStateful : IService
@@ -57,9 +57,9 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
     ```
 2. Aggiungere le impostazioni del listener e le credenziali di sicurezza.
 
-    Assicurarsi che il certificato da usare per proteggere le comunicazioni dei servizi sia installato in tutti i nodi del cluster. Esistono due modi per specificare le impostazioni del listener e le credenziali di sicurezza:
+    Assicurarsi che il certificato hello che si desidera toohelp toouse sicuro che delle comunicazioni di servizio sono installata in tutti i nodi nel cluster hello hello. Esistono due modi per specificare le impostazioni del listener e le credenziali di sicurezza:
 
-   1. Specificarle direttamente nel codice del servizio:
+   1. Fornire loro direttamente nel codice del servizio hello:
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -94,7 +94,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
        ```
    2. Specificarle tramite un [pacchetto di configurazione](service-fabric-application-model.md):
 
-       Aggiungere una sezione `TransportSettings` nel file settings.xml.
+       Aggiungere un `TransportSettings` sezione nel file Settings hello.
 
        ```xml
        <Section Name="HelloWorldStatefulTransportSettings">
@@ -110,7 +110,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
        </Section>
        ```
 
-       In questo caso il metodo `CreateServiceReplicaListeners` avrà un aspetto analogo al seguente:
+       In questo caso, hello `CreateServiceReplicaListeners` metodo sarà simile al seguente:
 
        ```csharp
        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -124,7 +124,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
        }
        ```
 
-        Se si aggiunge una sezione `TransportSettings` al file settings.xml, `FabricTransportRemotingListenerSettings ` caricherà tutte le impostazioni da questa sezione per impostazione predefinita.
+        Se si aggiunge un `TransportSettings` sezione nel file Settings hello `FabricTransportRemotingListenerSettings ` caricherà tutte le impostazioni di hello in questa sezione per impostazione predefinita.
 
         ```xml
         <!--"TransportSettings" section .-->
@@ -132,7 +132,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
             ...
         </Section>
         ```
-        In questo caso il metodo `CreateServiceReplicaListeners` avrà un aspetto analogo al seguente:
+        In questo caso, hello `CreateServiceReplicaListeners` metodo sarà simile al seguente:
 
         ```csharp
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -145,7 +145,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
             };
         }
         ```
-3. Quando si chiamano metodi in un servizio protetto tramite lo stack di comunicazione remota, anziché usare la classe `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` per creare un proxy del servizio, usare `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`. Specificare `FabricTransportRemotingSettings`, che contiene `SecurityCredentials`.
+3. Quando si chiamano metodi su un servizio protetto tramite stack di comunicazione remota di hello, anziché utilizzare hello `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` toocreate classe un proxy del servizio, utilizzare `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxyFactory`. Specificare `FabricTransportRemotingSettings`, che contiene `SecurityCredentials`.
 
     ```csharp
 
@@ -175,7 +175,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
 
     ```
 
-    Se il codice client viene eseguito come parte del servizio, è possibile caricare `FabricTransportRemotingSettings` dal file settings.xml. Creare una sezione HelloWorldClientTransportSettings simile al codice del servizio, come illustrato in precedenza. Apportare le modifiche seguenti al codice client:
+    Se il codice client hello è in esecuzione come parte di un servizio, è possibile caricare `FabricTransportRemotingSettings` dal file Settings hello. Creare una sezione HelloWorldClientTransportSettings codice del servizio toohello simili, come illustrato in precedenza. Apportare hello il codice client toohello le modifiche seguenti:
 
     ```csharp
     ServiceProxyFactory serviceProxyFactory = new ServiceProxyFactory(
@@ -188,11 +188,11 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
 
     ```
 
-    Se il client non è in esecuzione come parte di un servizio, è possibile creare un file client_name.settings.xml nello stesso percorso del file client_name.exe. Creare quindi una sezione TransportSettings in tale file.
+    Se il client di hello non è in esecuzione come parte di un servizio, è possibile creare un file client_name.settings.xml in hello stessa posizione in cui client_name.exe hello. Creare quindi una sezione TransportSettings in tale file.
 
-    Come con il servizio, se si aggiunge una sezione `TransportSettings` nel file settings.xml/client_name.settings.xml del client, `FabricTransportRemotingSettings` carica tutte le impostazioni da questa sezione per impostazione predefinita.
+    Servizio toohello simile, se si aggiunge un `TransportSettings` sezione client settings.xml/client_name.settings.xml, `FabricTransportRemotingSettings` carica tutte le impostazioni di hello in questa sezione per impostazione predefinita.
 
-    In questo caso il codice precedente risulta ancora più semplice:  
+    In tal caso, hello codice precedenti viene ulteriormente semplificata:  
 
     ```csharp
 
@@ -204,9 +204,9 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-remotin
     ```
 
 ## <a name="help-secure-a-service-when-youre-using-a-wcf-based-communication-stack"></a>Proteggere un servizio quando si usa uno stack di comunicazione basato su WCF
-Verrà usato un [esempio](service-fabric-reliable-services-communication-wcf.md) esistente che spiega come configurare uno stack di comunicazione basato su WCF per Reliable Services. Per proteggere un sevizio quando si usa uno stack di comunicazione basato su WCF, seguire questa procedura:
+Si sta usando un oggetto esistente [esempio](service-fabric-reliable-services-communication-wcf.md) che spiega come tooset di una comunicazione WCF basato su stack per servizi affidabili. toohelp proteggere un servizio quando si utilizza uno stack di comunicazione basata su WCF, seguire questi passaggi:
 
-1. Per il servizio, è necessario proteggere il listener di comunicazione WCF (`WcfCommunicationListener`) che viene creato. A tale scopo, modificare il metodo `CreateServiceReplicaListeners` .
+1. Per il servizio di hello, è necessario listener di comunicazione WCF protetto hello toohelp (`WcfCommunicationListener`) creati. toodo, modificare hello `CreateServiceReplicaListeners` metodo.
 
     ```csharp
     protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -227,7 +227,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-wcf.md)
             listenerBinding: GetNetTcpBinding(),
             endpointResourceName:"WcfServiceEndpoint");
 
-        // Add certificate details in the ServiceHost credentials.
+        // Add certificate details in hello ServiceHost credentials.
         wcfCommunicationListener.ServiceHost.Credentials.ServiceCertificate.SetCertificate(
             StoreLocation.LocalMachine,
             StoreName.My,
@@ -243,7 +243,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-wcf.md)
         return b;
     }
     ```
-2. Nel client la classe `WcfCommunicationClient` creata nell' [esempio](service-fabric-reliable-services-communication-wcf.md) precedente rimane invariata. È però necessario eseguire l'override del metodo `CreateClientAsync` di `WcfCommunicationClientFactory`:
+2. Nel client hello hello `WcfCommunicationClient` classe che è stato creato in hello precedente [esempio](service-fabric-reliable-services-communication-wcf.md) rimane invariato. Ma è necessario hello toooverride `CreateClientAsync` metodo `WcfCommunicationClientFactory`:
 
     ```csharp
     public class SecureWcfCommunicationClientFactory<TServiceContract> : WcfCommunicationClientFactory<TServiceContract> where TServiceContract : class
@@ -277,8 +277,8 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-wcf.md)
             {
                 channelFactory = new ChannelFactory<TServiceContract>(this.clientBinding, endpointAddress);
             }
-            // Add certificate details to the ChannelFactory credentials.
-            // These credentials will be used by the clients created by
+            // Add certificate details toohello ChannelFactory credentials.
+            // These credentials will be used by hello clients created by
             // SecureWcfCommunicationClientFactory.  
             channelFactory.Credentials.ClientCertificate.SetCertificate(
                 StoreLocation.LocalMachine,
@@ -293,7 +293,7 @@ Verrà usato un [esempio](service-fabric-reliable-services-communication-wcf.md)
     }
     ```
 
-    Usare il metodo `SecureWcfCommunicationClientFactory` per creare un client di comunicazione WCF (`WcfCommunicationClient`). Usare il client per richiamare i metodi del servizio.
+    Utilizzare `SecureWcfCommunicationClientFactory` toocreate un client di comunicazione WCF (`WcfCommunicationClient`). Utilizzare i metodi del servizio tooinvoke hello client.
 
     ```csharp
     IServicePartitionResolver partitionResolver = ServicePartitionResolver.GetDefault();

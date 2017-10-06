@@ -1,6 +1,6 @@
 ---
-title: Caricare un certificato dell'API Gestione di Azure | Documentazione Microsoft
-description: Informazioni su come caricare il certificato di gestione API per il portale di Azure classico.
+title: aaaUpload un certificato API di gestione di Azure | Documenti Microsoft
+description: Informazioni su come il convertitore tooupload API di gestione del certificato per hello portale classico di Azure.
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/01/2017
 ms.author: adegeo
-ms.openlocfilehash: 9dc438e927acd9aef38f06807fabf3dda9b021c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8294d7131cfb01dba664bd4fd04b6fc22c1e93ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-an-azure-management-api-management-certificate"></a>Caricare un certificato di gestione dell'API di gestione di Azure
-I certificati di gestione consentono di eseguire l'autenticazione con il modello di distribuzione classico fornito da Azure. Molti programmi e strumenti (ad esempio Visual Studio o Azure SDK) usano questi certificati per automatizzare la configurazione e la distribuzione di vari servizi di Azure. 
+I certificati di gestione consentono tooauthenticate con modello di distribuzione classica hello fornita da Azure. Molti programmi e strumenti (ad esempio Visual Studio o hello Azure SDK) di utilizzare questi configurazione tooautomate dei certificati e la distribuzione dei vari servizi di Azure. 
 
 > [!WARNING]
-> Fare attenzione. Questi tipi di certificati consentono a chiunque esegua l'autenticazione di gestire la sottoscrizione a cui sono associati.
+> Fare attenzione. Questi tipi di certificati consentono di qualsiasi utente che esegue l'autenticazione con le sottoscrizioni di hello toomanage sono associate.
 >
 >
 
 Se servono altre informazioni sui certificati di Azure, compresa la creazione di un certificato autofirmato, vedere [Panoramica sui certificati per i servizi cloud di Azure](cloud-services/cloud-services-certs-create.md#what-are-management-certificates).
 
-È anche possibile usare [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) per autenticare il codice client per scopi di automazione.
+È inoltre possibile utilizzare [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) tooauthenticate codice client per scopi di automazione.
 
 ## <a name="upload-a-management-certificate"></a>Creare un certificato di gestione
-Dopo aver creato un certificato di gestione (file con estensione cer solo con la chiave pubblica), è possibile caricarlo nel portale. Quando il certificato è disponibile nel portale, chiunque disponga di un certificato corrispondente (chiave privata) può connettersi tramite l'API di gestione e accedere alle risorse per la sottoscrizione associata.
+Una volta che si disponga di un certificato di gestione creato (file con estensione cer con solo una chiave pubblica hello) è possibile caricarlo nel portale di hello. Quando è disponibile nel portale di hello certificato di hello, chiunque disponga di un certificato corrispondente (chiave privata) può connettersi tramite hello API di gestione e accesso hello risorse per la sottoscrizione associata hello.
 
-1. Accedere al [Portale di Azure](http://portal.azure.com).
-2. Fare clic su **Altri servizi** in fondo all'elenco dei servizi di Azure e quindi selezionare **Sottoscrizioni** nel gruppo di servizi _Generale_.
+1. Accedi toohello [portale di Azure](http://portal.azure.com).
+2. Fare clic su **più servizi** elenco di servizi di Azure hello inferiore, quindi selezionare **sottoscrizioni** in hello _generale_ gruppo del servizio.
 
     ![Menu Sottoscrizioni](./media/azure-api-management-certs/subscriptions_menu.png)
 
-3. Assicurarsi di selezionare la sottoscrizione corretta a cui si vuole associare il certificato.     
-4. Dopo aver selezionato la sottoscrizione corretta, selezionare **Certificati di gestione** nel gruppo _Impostazioni_.
+3. Assicurarsi che tooselect hello corretto sottoscrizione che si desidera tooassociate con certificato hello.     
+4. Dopo aver selezionato la sottoscrizione corretta hello, premere **i certificati di gestione** in hello _impostazioni_ gruppo.
 
     ![Impostazioni](./media/azure-api-management-certs/mgmtcerts_menu.png)
 
-5. Fare clic sul pulsante **Upload** (Carica).
+5. Hello premere **caricare** pulsante.
 
     ![Caricamento nella pagina Certificati](./media/azure-api-management-certs/certificates_page.png)
-6. Compilare le informazioni della finestra di dialogo e fare clic su **Carica**.
+6. Compila informazioni di finestra di dialogo hello e premere **caricare**.
 
     ![Impostazioni](./media/azure-api-management-certs/certificate_details.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Ora che è disponibile un certificato di gestione associato a una sottoscrizione, è possibile (dopo avere installato il certificato corrispondente in locale) connettersi a livello di codice all'[API REST del modello di distribuzione classico](https://msdn.microsoft.com/library/azure/mt420159.aspx) e automatizzare le varie risorse di Azure che possono essere associate a tale sottoscrizione.
+Dopo aver creato un certificato di gestione associato a una sottoscrizione, è possibile (dopo aver installato hello corrispondente certificato in locale) a livello di programmazione connettersi toohello [API REST del modello di distribuzione classica](https://msdn.microsoft.com/library/azure/mt420159.aspx) e automatizzare Hello varie risorse di Azure che sono anche associate alla sottoscrizione.

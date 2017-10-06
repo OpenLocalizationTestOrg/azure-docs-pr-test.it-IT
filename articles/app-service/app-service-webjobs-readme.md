@@ -1,6 +1,6 @@
 ---
-title: Processi Web nel servizio app di Azure
-description: "Informazioni su come creare processi Web per eseguire test in background, interagire con servizi quali archiviazione e bus di servizio e creare attività pianificate."
+title: aaaWebJobs in Azure App Service
+description: Informazioni su come toobuild background toorun processi Web verifica, interagire con i servizi come archiviazione e Bus di servizio e creare operazioni pianificate.
 services: app-service
 documentationcenter: 
 author: christopheranderson
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/10/2015
 ms.author: chrande
-ms.openlocfilehash: 1ca6d2eabe9781a8bb09fc5948ed306e3e8b013c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 25c24bfe71a64036cd48e58f471995b4a06e3b33
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-webjobs-in-azure-app-service"></a>Uso di Processi Web nel servizio app di Azure
-Questo articolo include i collegamenti a risorse della documentazione relative all'uso di Processi Web di Azure e di Azure WebJobs SDK. Processi Web di Azure costituisce una soluzione semplice e rapida per eseguire script e programmi sotto forma di processi in background in [App Web del servizio app](http://go.microsoft.com/fwlink/?LinkId=529714). È infatti possibile caricare ed eseguire un file eseguibile in formato cmd, bat, exe (.NET), ps1, sh, php, py, js e jar, che verrà eseguito come processo Web in base a una pianificazione (cron) o senza interruzioni.
+In questo articolo collega toodocumentation risorse sul toouse processi Web di Azure e hello Azure WebJobs SDK. Processi Web di Azure forniscono gli script toorun un modo semplice o programmi come processi in background in [App del servizio Web App](http://go.microsoft.com/fwlink/?LinkId=529714). È infatti possibile caricare ed eseguire un file eseguibile in formato cmd, bat, exe (.NET), ps1, sh, php, py, js e jar, che verrà eseguito come processo Web in base a una pianificazione (cron) o senza interruzioni.
 
-WebJobs SDK semplifica l'uso dell'archiviazione di Azure. Include infatti un sistema di binding e attivazione che interagisce con BLOB, code e tabelle di archiviazione di Microsoft Azure, oltre che con le code del bus di servizio.
+Hello WebJobs SDK rende più facile toouse di archiviazione di Azure. Hello WebJobs SDK è un sistema di trigger che funziona con il BLOB di archiviazione di Microsoft Azure, code e tabelle, nonché le code del Bus di servizio e l'associazione.
 
 Grazie agli strumenti integrati in Visual Studio, è inoltre semplice creare, distribuire e gestire processi Web. È possibile creare processi Web da modelli, nonché pubblicarli e gestirli (eseguirli/arrestarli/monitorarli/eseguirne il debug).
 
-Il dashboard Processi Web nel portale di Azure include efficaci funzionalità di gestione per controllare completamente l'esecuzione di processi Web, tra cui la possibilità di richiamare singole funzioni nei processi Web. Il dashboard visualizza inoltre i runtime delle funzioni e l'output delle registrazioni.
+dashboard di processi Web Hello in hello portale di Azure offre funzionalità di gestione potenti che consentono il controllo completo sull'esecuzione di hello di processi Web, tra cui hello possibilità tooinvoke singole funzioni all'interno di processi Web. dashboard Hello Visualizza anche l'output di registrazione e di runtime di funzione.
 
 [!INCLUDE [app-service-blueprint-webjobs](../../includes/app-service-blueprint-webjobs.md)]
 

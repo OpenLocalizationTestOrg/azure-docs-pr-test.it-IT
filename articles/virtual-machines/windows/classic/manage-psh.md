@@ -1,6 +1,6 @@
 ---
-title: Gestire le macchine virtuali tramite Azure PowerShell | Microsoft Docs
-description: "Informazioni su comandi che è possibile utilizzare per automatizzare le attività di gestione delle macchine virtuali."
+title: aaaManage le macchine virtuali tramite Azure PowerShell | Documenti Microsoft
+description: "Informazioni sui comandi che è possibile utilizzare attività tooautomate nella gestione delle macchine virtuali."
 services: virtual-machines-windows
 documentationcenter: windows
 author: singhkays
@@ -15,44 +15,44 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 10/12/2016
 ms.author: kasing
-ms.openlocfilehash: fd2df7e1029ced11974d0b832258bed2cf3bbb27
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e4ca6f098519243a321eac98b6692790fe18c22c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-your-virtual-machines-by-using-azure-powershell"></a>Gestire le macchine virtuali con Azure PowerShell
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per i comandi comuni di PowerShell con il modello di Resource Manager, vedere [qui](../../virtual-machines-windows-ps-common-ref.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per i comandi PowerShell utilizzando il modello di gestione risorse hello comuni, vedere [qui](../../virtual-machines-windows-ps-common-ref.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Molte attività che è possibile eseguire ogni giorno per gestire le macchine virtuali possono essere automatizzate utilizzando i cmdlet di Azure PowerShell. In questo articolo offre esempi di comandi per le attività più semplici e collegamenti ad articoli in cui visualizzare i comandi per attività più complesse.
+Molte attività si toomanage ogni giorno le macchine virtuali possono essere automatizzate tramite i cmdlet PowerShell di Azure. In questo articolo fornisce comandi di esempio per attività più semplice e tooarticles di collegamenti che mostra i comandi di hello per attività più complesse.
 
 > [!NOTE]
-> Se non è ancora stato installato e configurato Azure PowerShell, è possibile ottenere le istruzioni nell'articolo [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+> Se non è ancora stato installato e configurato Azure PowerShell, è possibile ottenere le istruzioni nell'articolo hello [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 > 
 > 
 
-## <a name="how-to-use-the-example-commands"></a>Come utilizzare i comandi di esempio
-È necessario sostituire una parte del testo nei comandi con il testo appropriato per l'ambiente. I simboli < e > indicano il testo da sostituire. Quando si sostituisce il testo, rimuovere i simboli ma mantenere le virgolette.
+## <a name="how-toouse-hello-example-commands"></a>Come toouse hello comandi di esempio
+È necessario tooreplace parte del testo hello in hello comandi con il testo che è appropriato per l'ambiente. Hello < e > simboli indicano il testo è necessario tooreplace. Quando si sostituisce il testo hello, rimuovere i simboli di hello ma lasciare virgolette hello sul posto.
 
 ## <a name="get-a-vm"></a>Ottenere una macchina virtuale
-Si tratta di un'attività di base che si utilizzerà spesso. È possibile utilizzarla per ottenere informazioni su una macchina virtuale, eseguire le attività in una macchina virtuale o recuperare l'output da archiviare in una variabile.
+Si tratta di un'attività di base che si utilizzerà spesso. Utilizzarlo tooget informazioni su una macchina virtuale, eseguire le attività in una macchina virtuale o ottenere output toostore in una variabile.
 
-Per ottenere informazioni sulla macchina virtuale, eseguire questo comando sostituendo tutto ciò che è racchiuso tra virgolette, inclusi i caratteri < e >:
+tooget informazioni hello macchina virtuale, eseguire questo comando, sostituendo tutti gli elementi di offerta di hello, che includono caratteri hello < e >:
 
      Get-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
-Per archiviare l'output in una variabile $vm, eseguire:
+hello toostore output in una variabile $vm, eseguire:
 
     $vm = Get-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
-## <a name="log-on-to-a-windows-based-vm"></a>Accedere a una macchina virtuale basata su Windows
+## <a name="log-on-tooa-windows-based-vm"></a>Accedere tooa VM basate su Windows
 Eseguire i comandi seguenti.
 
 > [!NOTE]
-> È possibile ottenere il nome del servizio delle macchine virtuali e cloud dalla visualizzazione della **Get-AzureVM** comando.
+> È possibile ottenere macchine virtuali hello e nome del servizio cloud dalla visualizzazione hello di hello **Get-AzureVM** comando.
 > 
-> $svcName = "<cloud service name>" $vmName = "<virtual machine name>" $localPath = "<posizione dell'unità e della cartella in cui archiviare il file con estensione RDP scaricato, ad esempio: c:\temp >" $localFile = $localPath + "\" + $vmname + ".rdp" Get-AzureRemoteDesktopFile -ServiceName $svcName -Name $vmName -LocalPath $localFile -Launch
+> $svcName = "<cloud service name>" $vmName = "<virtual machine name>" $localPath = "< unità e la cartella toostore hello download RDP file del percorso, ad esempio: c:\temp >" $localFile = $localPath + "\" $vmname +"RDP"Get-AzureRemoteDesktopFile - ServiceName $svcName-nome $vmName - LocalPath $localFile-avvio
 > 
 > 
 
@@ -62,7 +62,7 @@ Eseguire questo comando:
     Stop-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
 > [!IMPORTANT]
-> Utilizzare questo parametro per mantenere l'IP virtuale (VIP) del servizio cloud, qualora fosse l'ultima macchina virtuale inclusa nel servizio cloud specifico. <br><br> Se si utilizza il parametro StayProvisioned, sarà ancora configurato per la macchina virtuale.
+> Utilizzare questo hello tookeep parametro IP virtuale (VIP) del cloud hello del servizio nel caso in cui è hello ultima VM nel servizio cloud. <br><br> Se si usa il parametro StayProvisioned hello, ancora verrà addebitato per hello macchina virtuale.
 > 
 > 
 
@@ -72,19 +72,19 @@ Eseguire questo comando:
     Start-AzureVM -ServiceName "<cloud service name>" -Name "<virtual machine name>"
 
 ## <a name="attach-a-data-disk"></a>Collegamento di un disco dati
-Questa operazione richiede alcuni passaggi. Utilizzare innanzitutto la cmdlet****Aggiungi-DiscoDatiAzure**** per aggiungere il disco per l'oggetto $vm. Quindi è possibile utilizzare il cmdlet **Aggiorna-MacchinaVirtualeAzure** per aggiornare la configurazione della macchina virtuale.
+Questa operazione richiede alcuni passaggi. Innanzitutto, utilizzare hello * * * Add-AzureDataDisk * * * cmdlet tooadd hello toohello $vm oggetto disco. Utilizzare quindi **Update-AzureVM** configurazione hello tooupdate di cmdlet di hello macchina virtuale.
 
-È inoltre necessario decidere se collegare un nuovo disco o uno che contiene già dati. Per un nuovo disco, il comando permette di creare il file con estensione VHD e contemporaneamente di collegarlo.
+È anche necessario toodecide se tooattach un nuovo disco o uno che contiene dati. Per un nuovo disco, il comando di hello crea file con estensione vhd hello e lo collega.
 
-Per collegare un nuovo disco, eseguire questo comando:
+tooattach un nuovo disco, eseguire questo comando:
 
     Add-AzureDataDisk -CreateNew -DiskSizeInGB 128 -DiskLabel "<main>" -LUN <0> -VM $vm | Update-AzureVM
 
-Per collegare un disco dati esistente, eseguire questo comando:
+tooattach un disco dati esistente, eseguire questo comando:
 
     Add-AzureDataDisk -Import -DiskName "<MyExistingDisk>" -LUN <0> | Update-AzureVM
 
-Per collegare dischi dati da un file con estensione vhd esistente nell'archiviazione blob, è necessario eseguire questo comando:
+tooattach dischi di dati da un file con estensione vhd esistente nell'archiviazione blob, eseguire questo comando:
 
     Add-AzureDataDisk -ImportFrom -MediaLocation `
               "<https://mystorage.blob.core.windows.net/mycontainer/MyExistingDisk.vhd>" `
@@ -92,7 +92,7 @@ Per collegare dischi dati da un file con estensione vhd esistente nell'archiviaz
               Update-AzureVM
 
 ## <a name="create-a-windows-based-vm"></a>Creare una macchina virtuale basata su Windows
-Per creare una nuova macchina virtuale basata su Windows in Azure, usare le istruzioni nell'argomento relativo all'[uso di Azure PowerShell per creare e preconfigurare le macchine virtuali basate su Windows](create-powershell.md). Questo argomento illustra la creazione di un set di comandi di PowerShell che consente di creare una macchina virtuale di Windows che può essere preconfigurata con:
+una nuova macchina virtuale basato su Windows in Azure, hello seguire le istruzioni riportate in toocreate [toocreate usare Azure PowerShell e preconfigurare macchine virtuali basate su Windows](create-powershell.md). Questo argomento descrive i passaggi di creazione di hello di un set di comandi di Azure PowerShell crea una macchina virtuale basata su Windows che può essere preconfigurata:
 
 * Con l’appartenenza al dominio di Active Directory
 * Con Dischi aggiuntivi

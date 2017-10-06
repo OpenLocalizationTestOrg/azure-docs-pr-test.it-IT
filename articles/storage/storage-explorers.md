@@ -1,6 +1,6 @@
 ---
-title: Strumenti per l'uso di Archiviazione di Azure | Documentazione Microsoft
-description: Elenco di strumenti che consentono di visualizzare o interagire con i dati di Archiviazione di Azure.
+title: aaaTools per l'utilizzo di archiviazione di Azure | Documenti Microsoft
+description: Un elenco di strumenti che consentono di tooview/interagire con i dati di archiviazione di Azure.
 services: storage
 documentationcenter: 
 author: dineshmurthy
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: dineshmurthy
-ms.openlocfilehash: 620efda06d8225b21b6bb9b104b79061ebb6515c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3308de2153099a05a676ab1d76426bd932e8a96c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-client-tools"></a>Strumento client di Archiviazione di Azure
-Gli utenti dell'Archiviazione di Azure possono visualizzare o interagire con i propri dati utilizzando lo strumento client di Archiviazione di Azure. Nelle tabelle seguenti sono elencati numerosi strumenti che consentono di eseguire questa operazione. Con una "X" in ogni blocco viene indicata la possibilità di enumerare e/o accedere all'astrazione dei dati. Viene inoltre specificato se lo strumento è gratuito o meno. "Prova" indica che esiste una versione di valutazione gratuita, ma il prodotto completo non è gratuito. "S/N" indica che è disponibile una versione gratuita, mentre è possibile acquistare una versione diversa.
+Gli utenti di archiviazione di Azure desiderano spesso toobe in grado di tooview/interagire con i dati utilizzando uno strumento client di archiviazione di Azure. Hello seguito nelle tabelle, sono elencati numerosi strumenti che consentono di toodo questo. È stato inserito una "X" in ogni blocco se contiene il possibilità hello tooeither enumerare e/o l'accesso di astrazione dati hello. tabella Hello Mostra anche se gli strumenti di hello è disponibile o meno. "Prova" indica che è una versione di valutazione gratuita, ma completa del prodotto hello non è disponibile. "S/N" indica che è disponibile una versione gratuita, mentre è possibile acquistare una versione diversa.
 
-Si tratta unicamente di un riepilogo degli strumenti client di Archiviazione di Azure disponibili. Le funzionalità degli strumenti possono continuare a migliorare e aumentare. Per eventuali correzioni o aggiornamenti, è possibile lasciare un commento. Per suggerire l'aggiunta di altri strumenti simili, lasciare un commento.
+È stata fornita solo uno snapshot degli strumenti client di archiviazione di Azure disponibili hello. Questi strumenti possono continuare tooevolve e aumento delle funzionalità. Se sono presenti correzioni o aggiornamenti, lascia un commento toolet che inviarci. Hello stesso vale se si conoscono gli strumenti che dovrebbero toobe qui, si sarà soddisfatti tooadd li.
 
 **Strumento client di Archiviazione di Microsoft Azure**
 
@@ -91,7 +91,7 @@ Si tratta unicamente di un riepilogo degli strumenti client di Archiviazione di 
 
 **Strumenti client di Archiviazione di Azure di terze parti**
 
-La funzionalità o la qualità dichiarate per i seguenti strumenti di terze parti non è stata verificata e la pubblicazione non implica un'approvazione da parte di Microsoft.
+Che non abbiamo verificato hello funzionalità o la qualità di richiedere hello seguenti strumenti di terze parti e la pubblicazione non implica un'approvazione da parte di Microsoft.
 
 <table>
   <tr>

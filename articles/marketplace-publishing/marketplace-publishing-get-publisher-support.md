@@ -1,6 +1,6 @@
 ---
-title: Accesso al supporto per gli editori per Azure Marketplace | Documentazione Microsoft
-description: Come accedere e inviare le richieste di supporto per gli editori per Azure Marketplace
+title: supporto dell'autore aaaAccessing per hello Azure Marketplace | Documenti Microsoft
+description: Come tooaccess e inviare richieste di supporto di server di pubblicazione di hello Azure Marketplace
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: 4bf5b2c53b91199e446836e76cefee6cd2878e25
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3b3bead42fccafba77b4a187432ad268319b2a81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="accessing-publisher-support-for-the-azure-marketplace"></a>Accesso al supporto per gli editori per Azure Marketplace
-Microsoft fornisce il supporto per un'ampia gamma di prodotti e servizi. Assicurarsi che la query rilevi il team di supporto corretto è importante per garantire una risposta appropriata e tempestiva. Considerare gli scenari seguenti, che possono essere utili per indirizzare la propria richiesta al team appropriato:
+# <a name="accessing-publisher-support-for-hello-azure-marketplace"></a>L'accesso a supporto dell'autore per hello Azure Marketplace
+Microsoft fornisce il supporto per un'ampia gamma di prodotti e servizi. Verificare che la query trovi il team di supporto hello è tooensure importante una risposta appropriata e tempestiva. Provare a hello scenari, che consentono di indirizzare il team appropriato toohello di query seguente:
 
-* Se si è un editore in Azure Marketplace e si sta ancora sviluppando la propria VM, è necessario contattare i team Microsoft che si occupano dell'integrazione o del calcolo.
-* Se si è un editore in Marketplace e si riceve una domanda da un cliente, indicare al cliente di richiedere supporto tramite i collegamenti di supporto in https://portal.azure.com/.
-* Se si è un editore in Marketplace e si desidera porre una domanda relativa all'app o al servizio, proseguire con la lettura.
+* Se si è un server di pubblicazione in Azure Marketplace hello e è ancora lo sviluppo di una macchina virtuale, è necessario contattare il Microsoft onboarding o team di calcolo.
+* Se si è un server di pubblicazione nel Marketplace hello e domande da un cliente, informare il cliente toorequest supporto tramite collegamenti per il supporto di hello in https://portal.azure.com/.
+* Se si è un server di pubblicazione nel Marketplace hello e domande relative tooyour app o un servizio, continuare a leggere di seguito.
 
 In questo articolo verranno illustrate le attività seguenti:
 
-* Effettuare l'accesso all'account Microsoft.
-* Passare alle pagine di supporto per gli editori.
-* Selezionare il tipo di problema e la categoria.
+* Accedi tooyour account Microsoft.
+* Spostarsi tra le pagine di supporto toohello server di pubblicazione.
+* Selezionare una categoria e il tipo di problema hello.
 * Richiedere supporto.
 * Fornire informazioni di contatto.
-* Descrivere il problema.
+* Descrivere il problema di hello.
 
-## <a name="1-sign-in-to-your-microsoft-account"></a>1. Effettuare l'accesso con l'account Microsoft.
-Passare a https://publish.windowsazure.com/ e accedere con le credenziali dell'account Microsoft.
+## <a name="1-sign-in-tooyour-microsoft-account"></a>1. Accedi tooyour account Microsoft
+Passare toohttps://publish.windowsazure.com/ e accedere con le credenziali dell'account Microsoft.
 
   ![Schermata di accesso][1]
 
-## <a name="2-navigate-to-the-publisher-support-pages"></a>2. Passare alle pagine di supporto per gli editori
-Nel menu superiore destro selezionare **Ottieni supporto**.
+## <a name="2-navigate-toohello-publisher-support-pages"></a>2. Spostarsi tra le pagine di supporto di server di pubblicazione toohello
+Scegliere dal menu superiore destro hello **supporto**.
 
   ![Supporto][2]
 
-## <a name="3-select-the-problem-type-and-category"></a>3. Selezionare il tipo di problema e la categoria.
+## <a name="3-select-hello-problem-type-and-category"></a>3. Selezionare una categoria e il tipo di problema hello
 ![Tipo e categoria del problema][3]
 
 I tipi di problemi disponibili sono i seguenti:
@@ -61,25 +61,25 @@ I tipi di problemi disponibili sono i seguenti:
 * **Altri**
 
 ## <a name="4-request-support"></a>4. Richiedere supporto
-Dopo aver selezionato il tipo di problema e la categoria, fare clic sul pulsante **Avvia richiesta** .
+Dopo aver selezionato il tipo di problema hello e la categoria, fare clic su hello **richiesta di avvio** pulsante.
 
 ![Avviare il supporto][4]
 
-## <a name="5-provide-contact-information-and-describe-the-problem"></a>5. Fornire le informazioni di contatto e descrivere il problema
-Descrivere il problema nel modo più completo possibile e fornire eventuali file (ad esempio, screenshot, tracce di rete e così via) che possono essere utili per risolvere il problema.
+## <a name="5-provide-contact-information-and-describe-hello-problem"></a>5. Fornire informazioni di contatto e descrivere il problema di hello
+Vengono descritti i problemi di hello e completamente come è possibile fornire qualsiasi tipo di file (schermate, le tracce di rete e così via) che può risultare utili per risolvere il problema.
 
 ![Descrivere il problema][5]
 
 ## <a name="6-submission-confirmation"></a>6. Conferma dell'invio
-Dopo avere inviato il problema, verrà confermata la ricezione entro 24 ore e saranno assegnate una priorità e una gravità al problema. Il team dedicato di tecnici del supporto tecnico offrirà l'assistenza necessaria per la risoluzione in base ai tempi di risposta del contratto di servizio.
+Dopo avere inviato il problema, verrà confermata la ricezione entro 24 ore e saranno assegnate una priorità e una gravità al problema. Il nostro team dedicato di esperti supporta la sua risoluzione in base a tempi di risposta tooour Service Level Agreement.
 
 ![Conferma][6]
 
-* Se è necessario comunicare con Microsoft in relazione al problema, usare il numero di conferma in tutta la corrispondenza.
+* Se è necessario tootalk toous relative al problema, utilizzare il numero di conferma hello in tutta la corrispondenza.
 * È possibile visualizzare lo stato del problema in qualsiasi momento.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni su come risolvere specifici problemi di supporto, vedere [Risoluzione dei problemi comuni in Azure Marketplace](marketplace-publishing-support-common-issues.md).
+toolearn tooresolve problemi di supporto specifiche, vedere [risolvere i problemi comuni di hello Azure Marketplace](marketplace-publishing-support-common-issues.md).
 
 [1]: ./media/marketplace-publishing-get-publisher-support/step1.png
 [2]: ./media/marketplace-publishing-get-publisher-support/step2.png

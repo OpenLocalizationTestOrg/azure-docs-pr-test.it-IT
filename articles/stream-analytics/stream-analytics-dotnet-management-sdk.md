@@ -1,6 +1,6 @@
 ---
-title: Management .NET SDK per Analisi di flusso di Azure | Microsoft Docs
-description: Introduzione a .NET SDK per la gestione di Analisi di flusso. Informazioni su come configurare ed eseguire i processi di analisi. Creare un progetto, input, output e trasformazioni.
+title: .NET SDK per Azure flusso Analitica aaaManagement | Documenti Microsoft
+description: Introduzione a .NET SDK per la gestione di Analisi di flusso. Informazioni su come tooset backup ed eseguire i processi analitica. Creare un progetto, input, output e trasformazioni.
 keywords: .NET SDK, API di analisi
 services: stream-analytics
 documentationcenter: 
@@ -15,53 +15,53 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/06/2017
 ms.author: jeffstok
-ms.openlocfilehash: f9aa812e6e82cc0f72d0cd1fe63058e53f794775
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 507c11938bc5bf2249a2e41f6bcc076db8ead3f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-the-azure-stream-analytics-api-for-net"></a>Management .NET SDK: impostare ed eseguire processi di analisi tramite l'API di Analisi di flusso di Azure per .NET
-Informazioni su come impostare ed eseguire processi di analisi tramite l'API di Analisi di flusso per .NET usando Management .NET SDK. Impostare un progetto, creare origini di input e output, trasformazioni e avviare e arrestare i processi. Per i processi di analisi, è possibile trasmettere i dati di flusso dall'archiviazione BLOB o da un hub eventi.
+# <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-hello-azure-stream-analytics-api-for-net"></a>Gestione .NET SDK: Configurare ed eseguire i processi analitica usando hello API Analitica flusso di Azure per .NET
+Informazioni su come tooset backup e processi di esecuzione analitica tramite hello flusso Analitica API per l'utilizzo di .NET hello Management .NET SDK. Impostare un progetto, creare origini di input e output, trasformazioni e avviare e arrestare i processi. Per i processi di analisi, è possibile trasmettere i dati di flusso dall'archiviazione BLOB o da un hub eventi.
 
-Vedere la [documentazione di riferimento sulla gestione per l'API di Analisi di flusso per .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).
+Vedere hello [documentazione di riferimento di gestione per hello flusso Analitica API per .NET](https://msdn.microsoft.com/library/azure/dn889315.aspx).
 
-Analisi dei flussi di Azure è un servizio completamente gestito che consente l'elaborazione di eventi complessi con bassa latenza, elevata disponibilità e scalabilità per lo streaming di dati nel cloud. Analisi di flusso consente ai clienti di configurare processi di flusso per analizzare i flussi di dati e di condurre operazioni di analisi pressoché in tempo reale.  
+Analitica di flusso di Azure è un servizio completamente gestito che fornisce l'elaborazione di eventi di bassa latenza, elevata disponibilità, scalabili e complesso nel flusso di dati nel cloud hello. Flusso Analitica consente tooset clienti di flussi di dati tooanalyze i processi di flusso e consente loro toodrive quasi in tempo reale analitica.  
 
 > [!NOTE]
-> Il codice di esempio in questo articolo è stato aggiornato con la versione v2.x .NET SDK per la gestione di Analisi di flusso di Azure. Per il codice di esempio che usa la versione legacy (1.x) SDK, vedere [Usare Management .NET SDK v1.x per Analisi di flusso](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).
+> Codice di esempio di hello in questo articolo è stato aggiornato con la versione v2. x SDK .NET di gestione di Azure flusso Analitica. Per il codice di esempio utilizzando hello utilizza la versione SDK lagecy (1. x), vedere [utilizzare hello v1. x SDK .NET di gestione per Analitica flusso](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-dotnet-management-sdk-v1).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire le procedure descritte nell'articolo è necessario:
+Prima di iniziare questo articolo, è necessario disporre delle seguenti hello:
 
 * Installare Visual Studio 2017 o 2015.
 * Scaricare e installare [Azure .NET SDK](https://azure.microsoft.com/downloads/).
-* Creare un gruppo di risorse di Azure nella sottoscrizione. Di seguito è riportato un esempio di script di Azure PowerShell: Per informazioni su Azure PowerShell , vedere [Installare e configurare Azure PowerShell](/powershell/azure/overview);  
+* Creare un gruppo di risorse di Azure nella sottoscrizione. Hello seguito è riportato un esempio di script di PowerShell di Azure. Per informazioni su Azure PowerShell , vedere [Installare e configurare Azure PowerShell](/powershell/azure/overview);  
 
-        # Log in to your Azure account
+        # Log in tooyour Azure account
         Add-AzureAccount
 
-        # Select the Azure subscription you want to use to create the resource group
+        # Select hello Azure subscription you want toouse toocreate hello resource group
         Select-AzureSubscription -SubscriptionName <subscription name>
 
-            # If Stream Analytics has not been registered to the subscription, remove the remark symbol (#) to run the Register-AzureRMProvider cmdlet to register the provider namespace
+            # If Stream Analytics has not been registered toohello subscription, remove hello remark symbol (#) toorun hello Register-AzureRMProvider cmdlet tooregister hello provider namespace
             #Register-AzureRMProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
         New-AzureResourceGroup -Name <YOUR RESOURCE GROUP NAME> -Location <LOCATION>
 
 
-* Configurare un'origine di input e una destinazione di output da usare. Per altre istruzioni, vedere [Aggiungere input](stream-analytics-add-inputs.md) per impostare un esempio di input e [Aggiungere output](stream-analytics-add-outputs.md) per impostare un esempio di output.
+* Impostare un'origine di input e output toouse di destinazione. Per ulteriori istruzioni, vedere [aggiungere input](stream-analytics-add-inputs.md) tooset di un input di esempio e [Aggiungi output](stream-analytics-add-outputs.md) tooset di un esempio di output.
 
 ## <a name="set-up-a-project"></a>Configurare un progetto
-Per creare un processo di analisi usando l'API di Analisi di flusso per .NET, configurare prima il progetto.
+toocreate un processo analitica usare hello flusso Analitica API per .NET, impostare innanzitutto il progetto.
 
 1. Creare un'applicazione console .NET di Visual Studio C#.
-2. Nella Console di Gestione pacchetti, eseguire i comandi seguenti per installare i pacchetti NuGet. Il primo è l'SDK per .NET di Analisi di flusso di Azure. Il secondo è per l'autenticazione del client di Azure.
+2. Nella Console di gestione pacchetti hello, seguente hello esecuzione comandi tooinstall pacchetti di NuGet hello. Hello uno viene innanzitutto hello Azure flusso Analitica Management .NET SDK. Hello seconda è per l'autenticazione client di Azure.
    
         Install-Package Microsoft.Azure.Management.StreamAnalytics -Version 2.0.0
         Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Version 2.3.1
-3. Aggiungere la sezione **appSettings** seguente al file App.config:
+3. Aggiungere il seguente hello **appSettings** file app. config di toohello sezione:
    
         <appSettings>
           <add key="ClientId" value="1950a258-227b-4e31-a9cf-717495945fc2" />
@@ -70,15 +70,15 @@ Per creare un processo di analisi usando l'API di Analisi di flusso per .NET, co
           <add key="ActiveDirectoryTenantId" value="YOUR TENANT ID" />
         </appSettings>
 
-    Sostituire i valori per **SubscriptionId** e **ActiveDirectoryTenantId** con gli ID della sottoscrizione di Azure e del tenant. È possibile ottenere questi valori eseguendo il cmdlet Azure PowerShell seguente:
+    Sostituire i valori per **SubscriptionId** e **ActiveDirectoryTenantId** con gli ID della sottoscrizione di Azure e del tenant. È possibile ottenere questi valori eseguendo hello cmdlet di Azure PowerShell seguente:
 
         Get-AzureAccount
 
-4. Aggiungere il riferimento seguente nel file con estensione csproj:
+4. Aggiungere hello dopo un riferimento nel file con estensione csproj:
 
         <Reference Include="System.Configuration" />
 
-5. Aggiungere le istruzioni **using** seguenti al file di origine (Program.cs) nel progetto.
+5. Aggiungere il seguente hello **utilizzando** istruzioni toohello file di origine (Program.cs) nel progetto hello:
    
         using System;
         using System.Collections.Generic;
@@ -103,9 +103,9 @@ Per creare un processo di analisi usando l'API di Analisi di flusso per .NET, co
    ```
 
 ## <a name="create-a-stream-analytics-management-client"></a>Creare un client di gestione di Analisi di flusso.
-Un oggetto **StreamAnalyticsManagementClient** consente di gestire il processo e i componenti di processo, ad esempio l'input, l'output e la trasformazione.
+Oggetto **StreamAnalyticsManagementClient** oggetto consente di toomanage hello processo e hello processo componenti, ad esempio input, output e la trasformazione.
 
-Aggiungere il codice seguente all'inizio del metodo **Main** .
+Aggiungere hello dopo l'inizio di toohello codice hello **Main** metodo:
 
    ```
     string resourceGroupName = "<YOUR AZURE RESOURCE GROUP NAME>";
@@ -126,14 +126,14 @@ Aggiungere il codice seguente all'inizio del metodo **Main** .
     };
    ```
 
-Il valore della variabile **resourceGroupName** deve essere lo stesso del nome del gruppo di risorse creato o selezionato nei passaggi preliminari.
+Hello **resourceGroupName** il valore della variabile deve essere uguale al nome hello della risorsa hello gruppo creato o selezionati nei passaggi prerequisiti hello hello.
 
-Per automatizzare l'aspetto di presentazione delle credenziali della creazione del processo, fare riferimento a [Autenticazione di un'entità servizio con Gestione risorse di Azure](../azure-resource-manager/resource-group-authenticate-service-principal.md).
+aspetto di presentazione tooautomate hello credenziale di creazione del processo, fare riferimento troppo[l'autenticazione di un'entità servizio con Azure Resource Manager](../azure-resource-manager/resource-group-authenticate-service-principal.md).
 
-Nelle sezioni rimanenti di questo articolo si presuppone che il codice sia all'inizio del metodo **Main** .
+Hello nelle restanti sezioni di questo articolo si presuppongono che il codice sia all'inizio di hello di hello **Main** metodo.
 
 ## <a name="create-a-stream-analytics-job"></a>Creare un processo di Analisi di flusso.
-Il codice seguente crea un processo di Analisi di flusso nel gruppo di risorse che è stato definito. Verranno aggiunti un input, un output e la trasformazione al processo in un secondo momento.
+Hello codice seguente crea un processo di flusso Analitica nel gruppo di risorse hello che sono state definite. Si aggiungerà un processo toohello input, output e la trasformazione in un secondo momento.
 
    ```
    // Create a streaming job
@@ -160,7 +160,7 @@ Il codice seguente crea un processo di Analisi di flusso nel gruppo di risorse c
    ```
 
 ## <a name="create-a-stream-analytics-input-source"></a>Creare un'origine di input di Analisi di flusso.
-Il codice seguente crea un'origine di input di Analisi di flusso con il tipo di origine di input BLOB e la serializzazione CSV. Per creare un'origine di input di hub eventi, usare **EventHubStreamInputDataSource** anziché **BlobStreamInputDataSource**. Analogamente, è possibile personalizzare il tipo di serializzazione dell'origine di input.
+Hello codice seguente crea un'origine di input flusso Analitica con tipo di origine di input blob hello e serializzazione CSV. utilizzare un'origine di input hub eventi, toocreate **EventHubStreamInputDataSource** anziché **BlobStreamInputDataSource**. Analogamente, è possibile personalizzare il tipo di serializzazione hello hello origine di input.
 
    ```
    // Create an input
@@ -192,20 +192,20 @@ Il codice seguente crea un'origine di input di Analisi di flusso con il tipo di 
    Input createInputResult = streamAnalyticsManagementClient.Inputs.CreateOrReplace(input, resourceGroupName, streamingJobName, inputName);
    ```
 
-Le origini di input, dall'archiviazione BLOB o un hub eventi, sono legate a un processo specifico. Per usare la stessa origine di input per processi diversi, è necessario chiamare nuovamente il metodo e specificare un nome diverso.
+Origini di input, dall'archiviazione Blob o un hub di eventi sono collegati tooa specifico processo. toouse hello stessa origine di input per diversi processi, è necessario chiamare nuovamente il metodo hello e specificare un nome di processo diverso.
 
 ## <a name="test-a-stream-analytics-input-source"></a>Testare un'origine di input di Analisi di flusso
-Il metodo **TestConnection** verifica se il processo di Analisi di flusso è in grado di connettersi all'origine di input, nonché altri aspetti specifici del tipo di origine di input. Ad esempio, nell'origine di input BLOB creata in precedenza, il metodo verifica che il nome dell'account di archiviazione e la coppia di chiavi possano essere usati per connettersi all'account di archiviazione, nonché verificare che il contenitore specificato esista.
+Hello **TestConnection** metodo verifica se il processo di flusso Analitica hello è in grado di tooconnect toohello input origine, nonché altri toohello di aspetti specifici tipo di origine di input. Ad esempio, in hello origine di input blob creato in un passaggio precedente, il metodo hello verifica che nome account di archiviazione hello e coppia di chiavi possa essere utilizzati tooconnect toohello account di archiviazione, nonché verificare che il contenitore specificato hello esiste.
 
    ```
-   // Test the connection to the input
+   // Test hello connection toohello input
    ResourceTestStatus testInputResult = streamAnalyticsManagementClient.Inputs.Test(resourceGroupName, streamingJobName, inputName);
    ```
 
 ## <a name="create-a-stream-analytics-output-target"></a>Creare una destinazione di output di Analisi di flusso
-La creazione di una destinazione di output è molto simile alla creazione di un'origine di input di Analisi di flusso. Analogamente alle origini di input, le destinazioni di output sono legate a un processo specifico. Per usare la stessa destinazione di output per processi diversi, è necessario chiamare nuovamente il metodo e specificare un nome diverso.
+Creazione di una destinazione di output è molto simile toocreating un'origine di input flusso Analitica. Come origini di input, output destinazioni sono tooa legati specifico processo. toouse hello stessa destinazione di output per i processi diversi, è necessario chiamare nuovamente il metodo hello e specificare un nome di processo diverso.
 
-Il codice seguente crea una destinazione di output (database SQL di Azure). È possibile personalizzare il tipo di dati della destinazione di output e/o il tipo di serializzazione.
+Hello di codice seguente crea una destinazione di output (database SQL di Azure). È possibile personalizzare il tipo di dati della destinazione dell'output di hello e/o tipo di serializzazione.
 
    ```
    // Create an output
@@ -224,32 +224,32 @@ Il codice seguente crea una destinazione di output (database SQL di Azure). È p
    ```
 
 ## <a name="test-a-stream-analytics-output-target"></a>Testare una destinazione di output di Analisi di flusso
-Una destinazione di output di Analisi di flusso dispone inoltre del metodo **TestConnection** per il test delle connessioni.
+Hello dispone di una destinazione di output flusso Analitica **TestConnection** metodo per testare le connessioni.
 
    ```
-   // Test the connection to the output
+   // Test hello connection toohello output
    ResourceTestStatus testOutputResult = streamAnalyticsManagementClient.Outputs.Test(resourceGroupName, streamingJobName, outputName);
    ```
 
 ## <a name="create-a-stream-analytics-transformation"></a>Creare una trasformazione di Analisi di flusso
-Il codice seguente crea una trasformazione di Analisi di flusso con la query "select * from Input" e specifica l'assegnazione di un'unità di streaming per il processo di Analisi di flusso. Per altre informazioni sulla regolazione di unità di streaming, vedere [Scalabilità dei processi di Analisi di flusso di Azure](stream-analytics-scale-jobs.md).
+Hello codice seguente crea una trasformazione flusso Analitica con query hello "Seleziona * da un Input" e specifica tooallocate un'unità di streaming per il processo di flusso Analitica hello. Per altre informazioni sulla regolazione di unità di streaming, vedere [Scalabilità dei processi di Analisi di flusso di Azure](stream-analytics-scale-jobs.md).
 
    ```
    // Create a transformation
    Transformation transformation = new Transformation()
    {
-       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with the value you put for the 'inputName' variable above or in a previous step
+       Query = "Select Id, Name from <your input name>", // '<your input name>' should be replaced with hello value you put for hello 'inputName' variable above or in a previous step
        StreamingUnits = 1
    };
    Transformation createTransformationResult = streamAnalyticsManagementClient.Transformations.CreateOrReplace(transformation, resourceGroupName, streamingJobName, transformationName);
    ```
 
-Analogamente all'input e all'output, una trasformazione è inoltre collegata a un processo di Analisi di flusso specifico in cui è stato creata.
+Come input e output, una trasformazione è anche toohello legati processo di flusso Analitica specifico che in cui è stato creato.
 
 ## <a name="start-a-stream-analytics-job"></a>Avvio di un processo di Analisi di flusso
-Dopo aver creato un processo di Analisi di flusso nonché gli input, gli output e la trasformazione, è possibile avviare il processo chiamando il metodo **Start** .
+Dopo aver creato un processo di flusso Analitica e la relativa uno o più input, output e trasformazione, è possibile avviare il processo di hello dal chiamante hello **avviare** metodo.
 
-Il codice di esempio seguente avvia un processo di Analisi di flusso con un'ora di inizio dell'output personalizzato impostata sulle 12:12:12 UTC del 12 dicembre 2012:
+Hello codice di esempio seguente avvia un processo di flusso Analitica con un output personalizzato inizio ora set tooDecember 12, 2012, 12:12:12 UTC:
 
    ```
    // Start a streaming job
@@ -262,7 +262,7 @@ Il codice di esempio seguente avvia un processo di Analisi di flusso con un'ora 
    ```
 
 ## <a name="stop-a-stream-analytics-job"></a>Arresto di un processo di Analisi di flusso
-È possibile arrestare un processo di Analisi di flusso in esecuzione chiamando il metodo **Stop** .
+È possibile arrestare un processo in esecuzione di flusso Analitica hello chiamante **arrestare** metodo.
 
    ```
    // Stop a streaming job
@@ -270,7 +270,7 @@ Il codice di esempio seguente avvia un processo di Analisi di flusso con un'ora 
    ```
 
 ## <a name="delete-a-stream-analytics-job"></a>Eliminazione di un processo di Analisi di flusso
-Il metodo **Delete** consente di eliminare il processo, nonché le risorse secondarie sottostanti, inclusi gli input, gli output e la trasformazione del processo.
+Hello **eliminare** metodo elimina il processo di hello nonché hello sottostante risorse secondario, inclusi uno o più input, output e la trasformazione del processo di hello.
 
    ```
    // Delete a streaming job
@@ -281,9 +281,9 @@ Il metodo **Delete** consente di eliminare il processo, nonché le risorse secon
 Per ulteriore assistenza, provare il [Forum di Analisi dei flussi di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Sono state fornite le nozioni di base dell'utilizzo di .NET SDK per creare ed eseguire i processi di analisi. Per altre informazioni, vedere gli argomenti seguenti:
+Si è appreso hello nozioni di base dell'utilizzo di un toocreate .NET SDK ed eseguire i processi analitica. toolearn vedere, più hello informazioni seguenti:
 
-* [Introduzione ad Analisi di flusso di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi di flusso di Azure](stream-analytics-scale-jobs.md)
 * [.NET SDK per la gestione di Analisi di flusso di Azure](https://msdn.microsoft.com/library/azure/dn889315.aspx).

@@ -1,6 +1,6 @@
 ---
-title: Criteri tra domini in Gestione API di Azure | Microsoft Docs
-description: Informazioni sui criteri tra domini disponibili per l'uso in Gestione API di Azure.
+title: aaaAzure gestione API di criteri tra domini | Documenti Microsoft
+description: Informazioni su hello criteri tra domini disponibili per l'utilizzo in Gestione API di Azure.
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: ddca9e35b44a21294abbb5eaa4418bcdb85494cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd5ebfd65b92ebd0c1f589a2bac669a3928d40b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-cross-domain-policies"></a>Criteri tra domini di Gestione API
-Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+In questo argomento fornisce un riferimento per i seguenti criteri di gestione API hello. Per informazioni sull'aggiunta e sulla configurazione dei criteri, vedere [Criteri di Gestione API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="CrossDomainPolicies"></a> Criteri tra domini  
   
--   [Permetti chiamate tra i domini](api-management-cross-domain-policies.md#AllowCrossDomainCalls) : rende accessibile l'API da client Adobe Flash e Microsoft Silverlight basati su browser.  
+-   [Consentire le chiamate tra domini](api-management-cross-domain-policies.md#AllowCrossDomainCalls) -rende accessibile hello API da client Adobe Flash e Microsoft Silverlight basati su browser.  
   
--   [CORS](api-management-cross-domain-policies.md#CORS) : aggiunge il supporto per CORS (Cross-Origin Resource Sharing) a un'operazione o a un'API per permettere le chiamate tra domini da client basati su browser.  
+-   [CORS](api-management-cross-domain-policies.md#CORS) -aggiunge la condivisione di risorse multiorigine (CORS) supporta l'operazione di tooan o chiama un'API tooallow tra domini da client basati su browser.  
   
--   [JSONP](api-management-cross-domain-policies.md#JSONP) : aggiunge il supporto per JSON con riempimento (JSONP) a un'operazione o a un'API per permettere le chiamate tra domini da client JavaScript basati su browser.  
+-   [JSONP](api-management-cross-domain-policies.md#JSONP) - aggiunge JSON con riempimento (JSONP) supporto tooan operazione o chiama un'API tooallow tra domini da client JavaScript basati su browser.  
   
 ##  <a name="AllowCrossDomainCalls"></a> Permetti chiamate tra i domini  
- Usare il criterio `cross-domain` pe rendere accessibile l'API da client Adobe Flash e Microsoft Silverlight basati su browser.  
+ Hello utilizzare `cross-domain` hello toomake criteri API accessibile da client Adobe Flash e Microsoft Silverlight basati su browser.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
 ```xml  
 <cross-domain>  
-   <!-Policy configuration is in the Adobe cross-domain policy file format,   
+   <!-Policy configuration is in hello Adobe cross-domain policy file format,   
       see http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html-->  
 </cross-domain>  
 ```  
@@ -57,19 +57,19 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|  
 |----------|-----------------|--------------|  
-|cross-domain|Elemento radice. Gli elementi figlio devono essere conformi alla [specifica dei file di criteri tra domini Adobe](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Sì|  
+|cross-domain|Elemento radice. Gli elementi figlio devono essere conformi toohello [specifica del file di criteri tra domini di Adobe](http://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html).|Sì|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:** in ingresso  
+-   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** globali  
   
 ##  <a name="CORS"></a> CORS  
- Il criterio `cors` aggiunge il supporto per CORS (Cross-Origin Resource Sharing) a un'operazione o a un'API per permettere le chiamate tra domini da client basati su browser.  
+ Hello `cors` criteri aggiunge la condivisione di risorse multiorigine (CORS) supporta l'operazione di tooan o chiama un'API tooallow tra domini da client basati su browser.  
   
- CORS permette a un browser e a un server di interagire e di determinare se permettere o meno richieste specifiche con origini diverse, ad esempio chiamate XMLHttpRequests effettuate da JavaScript in una pagina Web in altri domini. Ciò offre una maggiore flessibilità rispetto a permettere solo richieste con la stessa origine e una maggiore sicurezza rispetto a permettere tutte le richieste con origini diverse.  
+ CORS consente un browser e un server toointeract e determinare se tooallow specifico multiorigine richieste (ad esempio chiamate XMLHttpRequests eseguite da JavaScript su domini di tooother una pagina web). Ciò offre una maggiore flessibilità rispetto a permettere solo richieste con la stessa origine e una maggiore sicurezza rispetto a permettere tutte le richieste con origini diverse.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -91,7 +91,7 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 ```  
   
 ### <a name="example"></a>Esempio  
- In questo esempio viene illustrato come supportare richieste preliminari, ad esempio quelle con intestazioni personalizzate o metodi diversi da GET e POST. Per supportare le intestazioni personalizzate e altri verbi HTTP, consultare le sezioni `allowed-methods` e `allowed-headers` come illustrato nell'esempio seguente.  
+ In questo esempio viene illustrato come le richieste preliminari toosupport, ad esempio quelle con intestazioni personalizzate o metodi diversi da GET e POST. toosupport le intestazioni personalizzate e verbi HTTP aggiuntivi, utilizzare hello `allowed-methods` e `allowed-headers` sezioni come illustrato nell'esempio seguente hello.  
   
 ```xml  
 <cors allow-credentials="true">  
@@ -128,30 +128,30 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
 |CORS|Elemento radice.|Sì|N/D|  
-|allowed-origins|Contiene elementi `origin` che descrivono le origini consentite per le richieste tra domini. `allowed-origins` può contenere un unico elemento `origin` che specifichi `*` per consentire qualsiasi origine oppure uno o più elementi `origin` che contengano un URI.|Sì|N/D|  
-|origin|Il valore può essere `*` per consentire tutte le origini oppure un URI che specifichi una singola origine. L'URI deve includere uno schema, un host e una porta.|Sì|Se la porta viene omessa in un URI, vengono utilizzate la porta 80 per HTTP e la porta 443 per HTTPS.|  
-|allowed-methods|Questo elemento è obbligatorio se sono consentiti metodi diversi da GET o POST. Contiene elementi `method` che specificano i verbi HTTP supportati.|No|Se questa sezione non è presente, sono supportati i metodi GET e POST.|  
-|statico|Specifica un verbo HTTP.|È richiesto almeno un elemento `method` se è presente la sezione `allowed-methods`.|N/D|  
-|allowed-headers|Questo elemento contiene elementi `header` che specificano i nomi delle intestazioni che è possibile includere nella richiesta.|No|N/D|  
-|expose-headers|Questo elemento contiene elementi `header` che specificano i nomi delle intestazioni accessibili dal client.|No|N/D|  
-|intestazione|Specifica un nome di intestazione.|È richiesto almeno un elemento `header` in `allowed-headers` se è presente la sezione `expose-headers`.|N/D|  
+|allowed-origins|Contiene `origin` gli elementi che descrivono hello consentito le origini per le richieste tra domini. `allowed-origins`può contenere un singolo `origin` elemento che specifica `*` tooallow qualsiasi origine o di uno o più `origin` elementi che contengono un URI.|Sì|N/D|  
+|origin|Hello valore può essere `*` tooallow tutte le origini, oppure un URI che specifica una singola origine. Hello URI deve includere uno schema, l'host e porta.|Sì|Se la porta hello viene omessa in un URI, viene utilizzata la porta 80 per HTTP e viene utilizzata la porta 443 per HTTPS.|  
+|allowed-methods|Questo elemento è obbligatorio se sono consentiti metodi diversi da GET o POST. Contiene `method` elementi che specificano hello verbi HTTP è supportata.|No|Se questa sezione non è presente, sono supportati i metodi GET e POST.|  
+|statico|Specifica un verbo HTTP.|Almeno un `method` elemento è obbligatorio se hello `allowed-methods` sezione è presente.|N/D|  
+|allowed-headers|Questo elemento contiene `header` gli elementi che specificano i nomi delle intestazioni di hello che possono essere incluso nella richiesta di hello.|No|N/D|  
+|expose-headers|Questo elemento contiene `header` gli elementi che specificano i nomi delle intestazioni di hello che saranno accessibili dal client hello.|No|N/D|  
+|intestazione|Specifica un nome di intestazione.|Almeno un `header` elemento è obbligatorio in `allowed-headers` o `expose-headers` se hello sezione è presente.|N/D|  
   
 ### <a name="attributes"></a>Attributi  
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|allow-credentials|L'intestazione `Access-Control-Allow-Credentials` nella risposta preliminare verrà impostata sul valore di questo attributo e influirà sulla capacità del client di inviare credenziali in richieste tra domini.|No|false|  
-|preflight-result-max-age|L'intestazione `Access-Control-Max-Age` nella risposta preliminare verrà impostata sul valore di questo attributo e influirà sulla capacità dell'agente utente di memorizzare nella cache la risposta preliminare.|No|0|  
+|allow-credentials|Hello `Access-Control-Allow-Credentials` intestazione nella risposta preliminare hello verrà toohello impostare il valore di questo attributo e influiscono su hello possibilità toosubmit credenziali client in richieste tra domini.|No|false|  
+|preflight-result-max-age|Hello `Access-Control-Max-Age` intestazione nella risposta preliminare hello verrà toohello impostare il valore di questo attributo e influiscono sulla risposta preliminare toocache di capacità dell'agente utente hello.|No|0|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere usato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) del criterio seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
--   **Sezioni del criterio:** in ingresso  
+-   **Sezioni del criterio:** inbound  
   
 -   **Ambiti del criterio:** API, operazione  
   
 ##  <a name="JSONP"></a> JSONP  
- Il criterio `jsonp` aggiunge il supporto per JSON con riempimento (JSONP) a un'operazione o a un'API per permettere le chiamate tra domini da client JavaScript basati su browser. JSONP è un metodo usato in programmi JavaScript per richiedere dati da un server in un dominio diverso. JSONP supera le limitazioni applicate dalla maggior parte dei Web browser, in cui l'accesso alle pagine Web deve essere effettuato nello stesso dominio.  
+ Hello `jsonp` criteri aggiunge JSON con riempimento operazione tooan di supporto (JSONP) o le chiamate tra domini tooallow un'API da client JavaScript basati su browser. JSONP è un metodo usato nei dati di toorequest programmi JavaScript da un server in un dominio diverso. JSONP supera limitazione hello applicata dalla maggior parte dei browser in cui devono essere pagine di accesso tooweb hello nello stesso dominio.  
   
 ### <a name="policy-statement"></a>Istruzione del criterio  
   
@@ -165,9 +165,9 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
 <jsonp callback-parameter-name="cb" />  
 ```  
   
- Se si chiama il metodo senza il parametro di callback ?cb=XXX restituirà JSON semplice, senza wrapper di chiamata della funzione.  
+ Se si chiama il metodo hello senza il parametro di callback hello? cb = XXX restituirà JSON semplice (senza un wrapper di chiamata di funzione).  
   
- Se si aggiunge il parametro di callback `?cb=XXX`, restituirà un risultato JSONP, eseguendo il wrapping dei risultati JSON originali intorno alla funzione di callback, ad esempio `XYZ('<json result goes here>');`  
+ Se si aggiunge il parametro di callback hello `?cb=XXX` restituirà un risultato JSONP, wrapping risultati JSON originali hello per funzione di callback hello come`XYZ('<json result goes here>');`  
   
 ### <a name="elements"></a>Elementi  
   
@@ -179,10 +179,10 @@ Questo argomento fornisce un riferimento per i seguenti criteri di Gestione API.
   
 |Nome|Descrizione|Obbligatorio|Default|  
 |----------|-----------------|--------------|-------------|  
-|callback-parameter-name|Funzione JavaScript tra domini che ha come prefisso il nome completo del dominio in cui si trova la funzione.|Sì|N/D|  
+|callback-parameter-name|Hello chiamata alla funzione JavaScript tra domini con prefisso il nome di dominio completo hello in hello funzione risiede.|Sì|N/D|  
   
 ### <a name="usage"></a>Utilizzo  
- Questo criterio può essere utilizzato nelle [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e negli [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) di criteri seguenti.  
+ Questo criterio può essere utilizzato hello seguenti criteri [sezioni](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) e [ambiti](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sezioni del criterio:** in uscita  
   

@@ -1,5 +1,5 @@
 ---
-title: Calcolare i punteggi di benchmark per le VM Linux | Microsoft Docs
+title: benchmark aaaCompute punteggi per le macchine virtuali Linux | Documenti Microsoft
 description: Confrontare i punteggi di benchmark di CoreMark calcolo per le VM di Azure che eseguono Linux
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: 382c21343f1a41438277dc288dcdf136e4e1437e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2c1ca5fbd80cea030ac2cc22156c4e9444c6726
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Calcolare i punteggi di benchmark per le VM Linux
-I punteggi del benchmark CoreMark riportati di seguito mostrano le prestazioni di calcolo per la linea di VM ad alte prestazioni di Azure con Ubuntu. I punteggi di benchmark sul calcolo sono disponibili anche per le [VM Windows](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Hello seguente mostra i punteggi di CoreMark benchmark delle prestazioni per l'elemento lineup di macchina virtuale ad alte prestazioni di Azure in esecuzione Ubuntu di calcolo. I punteggi di benchmark sul calcolo sono disponibili anche per le [VM Windows](../windows/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>Serie A - Elevato utilizzo di calcolo
 | Dimensione | vCPU | Nodi NUMA | CPU | Esecuzioni | Iterazioni/sec | Deviazione standard |
@@ -84,9 +84,9 @@ I punteggi del benchmark CoreMark riportati di seguito mostrano le prestazioni d
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 a 3,2 GHz |28 |274.523 |5698 |
 
 ## <a name="about-coremark"></a>Informazioni su CoreMark
-I numeri di Linux sono stati calcolati eseguendo [CoreMark](http://www.eembc.org/coremark/faq.php) su Ubuntu. CoreMark è stato configurato con il numero di thread impostato sul numero di CPU virtuali e la concorrenza impostata su PThreads. Il numero di iterazioni è stato rettificato in base alle prestazioni previste per fornire un runtime di almeno 20 secondi (ma in genere molto di più). Il punteggio finale rappresentava il numero di iterazioni completate, diviso per la durata del test espressa in secondi. Ogni test è stato eseguito almeno sette volte per ogni VM. I test (ad eccezione di quelli della serie H) sono stati eseguiti nell'ottobre 2015 su più VM in ogni area pubblica di Azure in cui erano supportate le macchine virtuali alla data di esecuzione.
+I numeri di Linux sono stati calcolati eseguendo [CoreMark](http://www.eembc.org/coremark/faq.php) su Ubuntu. Concorrenza impostati tooPThreads coreMark è stato configurato con hello numero thread set toohello di CPU virtuali. numero di destinazione Hello di iterazioni è stato modificato in base alle prestazioni tooprovide un runtime di almeno 20 secondi (in genere molto più tempo). punteggio finale Hello rappresenta il numero di hello di iterazioni completato diviso hello numero di secondi che necessari test hello toorun. Ogni test è stato eseguito almeno sette volte per ogni VM. Test (tranne che per H series_ sono stati eseguiti in ottobre 2015 in più macchine virtuali in ogni hello area pubblica Azure VM è supportata data hello eseguire.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per conoscere le capacità di archiviazione, i dettagli sul disco e per considerazioni aggiuntive sulla scelta delle dimensioni delle macchine virtuali, vedere [Dimensioni delle macchine virtuali in Azure](sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
-* Per eseguire gli script CoreMark nelle VM Linux, scaricare il [pacchetto di script CoreMark](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
+* script di CoreMark toorun hello in macchine virtuali Linux, scaricare hello [CoreMark pack script](http://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip).
 

@@ -14,26 +14,26 @@
 ### Installare o aggiornare
 #### [Preparare i carichi di lavoro del server di Backup di Azure nel portale di Azure](backup-azure-microsoft-azure-backup.md)
 #### [Preparare i carichi di lavoro del server di Backup di Azure nel portale classico](backup-azure-microsoft-azure-backup-classic.md)
-#### [Aggiungere risorse di archiviazione al server di Backup di Azure](backup-mabs-add-storage.md)
-#### [Aggiornare il server di Backup di Azure alla versione 2](backup-mabs-upgrade-to-v2.md)
+#### [Aggiungere archiviazione tooAzure Backup Server](backup-mabs-add-storage.md)
+#### [Aggiornare il Server di Backup Azure toov.2](backup-mabs-upgrade-to-v2.md)
 #### [Installazione automatica del server di Backup di Azure](backup-mabs-unattended-install.md)
 ### Proteggere i carichi di lavoro
-#### [Usare il server di Backup di Azure per eseguire il backup di un server VMware](backup-azure-backup-server-vmware.md)
-#### [Usare il server di Backup di Azure per eseguire il backup di Exchange](backup-azure-exchange-mabs.md)
-#### [Usare il server di Backup di Azure per eseguire il backup di una farm di SharePoint](backup-azure-backup-sharepoint-mabs.md)
-#### [Usare il server di Backup di Azure per eseguire il backup di SQL](backup-azure-sql-mabs.md)
+#### [Utilizzare il Server di Backup di Azure tooback di un server VMware](backup-azure-backup-server-vmware.md)
+#### [Utilizzare il Server di Backup di Azure tooback backup di Exchange](backup-azure-exchange-mabs.md)
+#### [Utilizzare il Server di Backup di Azure tooback backup di una farm di SharePoint](backup-azure-backup-sharepoint-mabs.md)
+#### [Utilizzare il Server di Backup di Azure tooback di SQL](backup-azure-sql-mabs.md)
 #### [Proteggere lo stato del sistema e il ripristino bare metal](backup-mabs-system-state-and-bmr.md)
 ### [Ripristinare i dati da un server di Backup di Azure](backup-azure-alternate-dpm-server.md)
 
 ## Macchine virtuali di Azure
-### Preparare la macchina virtuale
+### Preparare hello VM
 #### [Preparare le macchine virtuali distribuite da Resource Manager](backup-azure-arm-vms-prepare.md)
 #### [Backup coerenti con l'applicazione di VM Linux](backup-azure-linux-app-consistent.md)
 #### [Preparare le macchine virtuali di Azure](backup-azure-vms-prepare.md)
 ### Pianificare l'ambiente
 #### [Pianificare l'infrastruttura di backup delle macchine virtuali](backup-azure-vms-introduction.md)
 ### Eseguire il backup delle VM
-#### [Backup di macchine virtuali di Azure in un insieme di credenziali di Servizi di ripristino](backup-azure-arm-vms.md)
+#### [Eseguire il backup di macchine virtuali di Azure insieme di credenziali di servizi di ripristino tooa](backup-azure-arm-vms.md)
 #### [Backup delle macchine virtuali crittografate](backup-azure-vms-encryption.md)
 #### [Eseguire il backup di macchine virtuali di Azure](backup-azure-vms.md)
 ### Gestire e monitorare le VM
@@ -55,10 +55,10 @@
 ## Data Protection Manager
 ### [Preparare carichi di lavoro DPM nel portale di Azure](backup-azure-dpm-introduction.md)
 ### [Preparare carichi di lavoro DPM nel portale classico](backup-azure-dpm-introduction-classic.md)
-### [Usare System Center DPM per eseguire il backup del server di Exchange](backup-azure-backup-exchange-server.md)
-### [Ripristinare i dati in un server DPM alternativo](backup-azure-alternate-dpm-server.md)
-### [Usare DPM per eseguire il backup di carichi di lavoro di SQL Server](backup-azure-backup-sql.md)
-### [Usare DPM per eseguire il backup di una farm di SharePoint](backup-azure-backup-sharepoint.md)
+### [Utilizzare System Center Data Protection Manager tooback di Exchange server](backup-azure-backup-exchange-server.md)
+### [Ripristinare il server DPM alternativo di dati tooan](backup-azure-alternate-dpm-server.md)
+### [Utilizzare Data Protection Manager tooback dei carichi di lavoro di SQL Server](backup-azure-backup-sql.md)
+### [Usare tooback Data Protection Manager configurare una farm di SharePoint](backup-azure-backup-sharepoint.md)
 
 ## Usare PowerShell
 ### [Macchine virtuali di Azure nel portale di Azure](backup-azure-vms-automation.md)
@@ -77,23 +77,23 @@
 ## Windows Server
 ### [Eseguire un backup dei file e delle cartelle di Windows Server](backup-configure-vault.md)
 ### [Eseguire un backup dello stato del sistema Windows Server](backup-azure-system-state.md)
-### [Recuperare i file da Azure a Windows Server](backup-azure-restore-windows-server.md)
+### [Ripristinare i file da Azure tooWindows Server](backup-azure-restore-windows-server.md)
 ### [Ripristinare lo stato del sistema Windows Server](backup-azure-restore-system-state.md)
 ### [Monitorare e gestire insiemi di credenziali di Servizi di ripristino](backup-azure-manage-windows-server.md)
-### Eseguire un backup e ripristino con il portale classico
-#### [Windows Server con il modello di distribuzione classica](backup-configure-vault-classic.md)
-#### [Gestire insiemi di credenziali di Backup con il modello di distribuzione classica](backup-azure-manage-windows-server-classic.md)
-#### [Ripristinare file in un server Windows usando il modello di distribuzione classica](backup-azure-restore-windows-server-classic.md)
+### Backup e ripristino tramite il portale classico di hello
+#### [Windows Server utilizzando il modello di distribuzione classica hello](backup-configure-vault-classic.md)
+#### [Gestire gli insiemi di credenziali di Backup utilizzando il modello di distribuzione classica hello](backup-azure-manage-windows-server-classic.md)
+#### [Ripristinare i file tooa Windows Server utilizzando il modello di distribuzione classica hello](backup-azure-restore-windows-server-classic.md)
 
 ## Insieme di credenziali dei servizi di ripristino
 ### [Panoramica degli insiemi di credenziali dei servizi di ripristino](backup-azure-recovery-services-vault-overview.md)
-### [Aggiornamento di un insieme di credenziali di backup a insieme di credenziali dei servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md)
+### [L'aggiornamento di un archivio di servizi di Backup dell'insieme di credenziali tooRecovery](backup-azure-upgrade-backup-to-recovery-services.md)
 ### [Eliminare un insieme di credenziali di Servizi di ripristino](backup-azure-delete-vault.md)
 
 ## Risoluzione dei problemi
 ### [Problemi relativi al backup delle macchine virtuali di Azure nel portale di Azure](backup-azure-vms-troubleshoot.md)
 ### [Problemi relativi al backup delle macchine virtuali di Azure nel portale classico](backup-azure-vms-troubleshoot-classic.md)
-### [Errore di backup delle VM di Azure: non è stato possibile comunicare con l'agente della macchina virtuale per lo stato dello snapshot a causa del timeout della sottoattività di creazione snapshot della macchina virtuale](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
+### [Si verifica un errore di Backup di macchine Virtuali di Azure: Impossibile comunicare con l'agente VM hello per lo stato dello snapshot: timeout della sottoattività di Snapshot VM](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
 ### [Rallentamento delle prestazioni di backup di file e cartelle in Backup di Azure](backup-azure-troubleshoot-slow-backup-performance-issue.md)
 ### [Risolvere i problemi del server di Backup di Azure](backup-azure-mabs-troubleshoot.md)
 

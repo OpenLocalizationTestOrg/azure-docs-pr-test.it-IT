@@ -1,6 +1,6 @@
 ---
-title: Monitorare le query utente in Azure SQL Data Warehouse | Documentazione Microsoft
-description: "Panoramica delle considerazioni, delle procedure consigliate e delle attività per il monitoraggio delle query utente in Azure SQL Data Warehouse."
+title: le query utente aaaMonitor in Azure SQL Data Warehouse | Documenti Microsoft
+description: "Panoramica di considerazioni hello, procedure consigliate e le attività per il monitoraggio delle query utente in Azure SQL Data Warehouse"
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,22 +15,22 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 65509a65c2b34553822cc02d7a7fa5a614adc57f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67639e81b04635452e1ed844fe2d7245aa96a4fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a>Monitorare le query utente in Azure SQL Data Warehouse
-Panoramica delle considerazioni, delle procedure consigliate e delle attività per il monitoraggio delle query utente in SQL Data Warehouse.
+Panoramica di considerazioni hello, procedure consigliate e le attività per il monitoraggio delle query utente in SQL Data Warehouse.
 
 | Categoria | Attività o considerazione | Descrizione |
 |:--- |:--- |:--- |
 | Rallentamento delle prestazioni |Trovare una query utente con esecuzione prolungata |[Trovare query con esecuzione prolungata][Find long-running queries] |
-| Concorrenza |Assegnare risorse simultanee a query utente |[Gestione della concorrenza e del carico di lavoro][Concurrency and workload management] |
+| Concorrenza |Assegnare risorse simultanee toouser query |[Gestione della concorrenza e del carico di lavoro][Concurrency and workload management] |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altri suggerimenti relativi alla gestione, andare alla [Panoramica della gestione][Management overview].
+Per ulteriori suggerimenti di gestione, visitare toohello [Cenni preliminari sulla gestione][Management overview].
 
 <!--Image references-->
 

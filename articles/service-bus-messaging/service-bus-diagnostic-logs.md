@@ -1,6 +1,6 @@
 ---
-title: Log di diagnostica del bus di servizio di Azure | Microsoft Docs
-description: Informazioni su come configurare i log di diagnostica per il bus di servizio in Azure.
+title: log di diagnostica del Bus di servizio aaaAzure | Documenti Microsoft
+description: Informazioni su come tooset backup log di diagnostica per il Bus di servizio in Azure.
 keywords: 
 documentationcenter: .net
 services: service-bus-messaging
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/27/2017
 ms.author: babanisa;sethm
-ms.openlocfilehash: 72e18444c83b84c5191a0aab3dc6983517167dd1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e48d6eaba6e865ae39f5b07ed6cd53d74c92e2ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-diagnostic-logs"></a>Log di diagnostica del bus di servizio
 
 È possibile visualizzare due tipi di log per il bus di servizio di Azure:
-* **[Log attività](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**. Questi log contengono informazioni sulle operazioni eseguite in un processo. I log sono sempre attivati.
-* **[Log di diagnostica](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**. È possibile configurare i log di diagnostica per informazioni più complete su tutto ciò che accade in un processo. I log di diagnostica coprono le attività che si verificano dal momento della creazione del processo fino alla sua eliminazione, inclusi gli aggiornamenti e le attività che si verificano durante l'esecuzione del processo.
+* **[Log attività](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md)**. Questi log contengono informazioni sulle operazioni eseguite in un processo. registri Hello sono sempre abilitati.
+* **[Log di diagnostica](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)**. È possibile configurare i log di diagnostica per informazioni più complete su tutto ciò che accade in un processo. Le attività di copertura di log di diagnostica da ora hello hello processo viene creato fino a quando non viene eliminato il processo di hello, inclusi gli aggiornamenti e le attività che si verificano durante l'esecuzione del processo di hello.
 
 ## <a name="turn-on-diagnostic-logs"></a>Attivare i log di diagnostica
 
-I log di diagnostica sono disabilitati per impostazione predefinita. Per abilitare i log di diagnostica, eseguire la procedura seguente:
+I log di diagnostica sono disabilitati per impostazione predefinita. i log di diagnostica tooenable, eseguire hello alla procedura seguente:
 
-1.  Nel [portale di Azure](https://portal.azure.com) in **Monitoraggio + Gestione** fare clic su **Log di diagnostica**.
+1.  In hello [portale di Azure](https://portal.azure.com)in **monitoraggio + gestione**, fare clic su **log di diagnostica**.
 
-    ![navigazione al pannello dei log di diagnostica](./media/service-bus-diagnostic-logs/image1.png)
+    ![pannello navigazione toodiagnostic log](./media/service-bus-diagnostic-logs/image1.png)
 
-2. Fare clic sulla risorsa da monitorare.  
+2. Fare clic sulla risorsa hello da toomonitor.  
 
 3.  Fare clic su **Attiva diagnostica**.
 
@@ -45,23 +45,23 @@ I log di diagnostica sono disabilitati per impostazione predefinita. Per abilita
 
     ![modifica dello stato dei log di diagnostica](./media/service-bus-diagnostic-logs/image3.png)
 
-5.  Impostare la destinazione di archiviazione desiderata, ad esempio un account di archiviazione, un hub eventi o Azure Log Analytics.
+5.  Destinazione di archiviazione hello set che si desidera. ad esempio, un account di archiviazione, un Hub eventi o Analitica di Log di Azure.
 
-6.  Salvare le nuove impostazioni di diagnostica.
+6.  Salvare le impostazioni di diagnostica nuovo hello.
 
-Le nuove impostazioni diventano effettive in circa 10 minuti. Trascorso questo tempo, i log vengono visualizzati nella destinazione di archiviazione configurata, all'interno del pannello **Log di diagnostica**.
+Le nuove impostazioni diventano effettive in circa 10 minuti. Successivamente, i log vengono visualizzati nella destinazione di archiviazione configurato hello, su hello **log di diagnostica** blade.
 
-Per altre informazioni sulla configurazione della diagnostica, vedere la [panoramica dei log di diagnostica di Azure](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md).
+Per ulteriori informazioni sulla configurazione di diagnostica, vedere hello [panoramica dei log di diagnostica Azure](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md).
 
 ## <a name="diagnostic-logs-schema"></a>Schema dei log di diagnostica
 
-Tutti i log vengono archiviati in formato JavaScript Object Notation (JSON). Ogni voce presenta campi stringa che usano il formato descritto nella sezione seguente.
+Tutti i log vengono archiviati in formato JavaScript Object Notation (JSON). Ogni voce include i campi stringa di formato hello descritti nella seguente sezione hello.
 
 ## <a name="operational-logs-schema"></a>Schema di log operativi
 
-I log nella categoria **OperationalLogs** acquisiscono i dati relativi al funzionamento del bus di servizio. In particolare, questi log acquisiscono il tipo di operazione, tra cui la creazione delle code, le risorse usate e lo stato dell'operazione.
+Registra in hello **OperationalLogs** categoria acquisire cosa accade durante operazioni del Bus di servizio. In particolare, tali registri acquisire il tipo di operazione hello, inclusa la creazione della coda, le risorse usate e lo stato dell'operazione hello hello.
 
-Le stringhe JSON dei log operativi includono gli elementi elencati nella seguente tabella:
+Le stringhe JSON registro operativo includono gli elementi elencati in hello nella tabella seguente:
 
 Nome | Descrizione
 ------- | -------
@@ -93,7 +93,7 @@ Di seguito è riportato un esempio di stringa JSON di log operativo:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Visitare i collegamenti seguenti per altre informazioni sul bus di servizio:
+Visitare hello toolearn collegamenti più sul Bus di servizio seguente:
 
-* [Introduzione al bus di servizio](service-bus-messaging-overview.md)
+* [Introduzione tooService Bus](service-bus-messaging-overview.md)
 * [Introduzione al bus di servizio](service-bus-dotnet-get-started-with-queues.md)

@@ -1,6 +1,6 @@
 ---
-title: Uso di Outlook in Azure RemoteApp | Documentazione di Microsoft
-description: Informazioni su come configurare e usare Outlook in Azure RemoteApp | Microsoft Azure
+title: Outlook per Azure RemoteApp aaaUsing | Documenti Microsoft
+description: Informazioni su come tooconfigure e utilizzare Outlook in Azure RemoteApp | Microsoft Azure
 services: remoteapp
 documentationcenter: 
 author: pavithir
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 3feb21385a8b7fa219153c16181887e34d6ea41a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 119d2629ac47bd8d20d617985a9b488068aa959f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-microsoft-outlook-in-azure-remoteapp"></a>Uso di Microsoft Outlook in Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
 Azure RemoteApp supporta Microsoft Outlook O365. Altre informazioni sul [funzionamento di Office in Azure RemoteApp](remoteapp-officesubscription.md). Per l'uso di Outlook in Azure RemoteApp è opportuno adottare alcune impostazioni consigliate.
 
 ## <a name="cached-mode"></a>Modalità cache
-La modalità cache è una configurazione consigliata per l'uso di Outlook in Azure RemoteApp. Quando si configura un account di Outlook 2013 per l'uso della modalità cache, Outlook 2013 funziona da una copia locale della cassetta postale di Microsoft Exchange dell'utente archiviata in un file di dati offline (file OST) nel computer dell'utente, insieme alla Rubrica offline. La cassetta postale nella cache e la Rubrica offline vengono aggiornate periodicamente dal servizio di O365. Altre informazioni sulle [differenze tra la modalità cache e la modalità online](https://technet.microsoft.com/library/jj683103.aspx).
+La modalità cache è una configurazione consigliata per l'uso di Outlook in Azure RemoteApp. Quando si configura un toouse account Outlook 2013 modalità cache, Outlook 2013 funziona da una copia locale della cassetta postale di Microsoft Exchange dell'utente di hello archiviati in un file di dati offline (file OST) nel computer dell'utente hello, insieme a hello Rubrica non in linea (RUBRICA OFFLINE). cassetta postale memorizzati nella cache di Hello e Rubrica non in linea vengono aggiornate periodicamente da hello servizio Office 365. Altre informazioni sui [le differenze tra la modalità online e memorizzati nella cache di hello](https://technet.microsoft.com/library/jj683103.aspx).
 
-L'utente può selezionare la **modalità cache** o la **modalità online** durante la configurazione dell'account o modificando le impostazioni dell'account. È anche possibile distribuire una modalità o l'altra usando lo Strumento di personalizzazione di Office o i Criteri di gruppo.  
+Hello utente può selezionare **modalità cache** o **modalità Online** durante l'installazione di account o modificando le impostazioni dell'account hello. È inoltre possibile distribuire una modalità o altri hello utilizzando hello Office strumento personalizzazione () o criteri di gruppo.  
 
 Vedere le [istruzioni dettagliate su come abilitare la modalità cache](https://technet.microsoft.com/library/c6f4cad9-c918-420e-bab3-8b49e1885034#proc).
 
 ## <a name="search"></a>Search
-In Azure RemoteApp, l'uso della ricerca all'interno di Outlook presenta alcune limitazioni. Azure RemoteApp usa macchine virtuali in pool per supportare le sessioni utente. L'indicizzazione della ricerca dipende dall'ID computer, che varia a seconda della macchina virtuale. È possibile che ogni volta che un utente accede ad Azure RemoteApp venga indirizzato a una nuova macchina virtuale. Ciò significa che, se si abilita la ricerca locale, l'indicizzatore viene eseguito ogni volta che l'ID computer cambia (quando l'utente è in una macchina virtuale diversa). A seconda delle dimensioni del file OST, l'esecuzione dell'indicizzatore può richiedere molto tempo e consumare risorse necessarie per altre applicazioni. La ricerca, quindi, può risultare lenta o non dare alcun risultato. L'uso di un profilo utente in modalità online risolverebbe il problema, ma le prestazioni complessive diminuirebbero per la mancanza di una cache locale. Vedere il collegamento precedente per altre informazioni sulle differenze tra modalità online e modalità cache. Purtroppo, in Outlook 2013 non è possibile disabilitare la ricerca locale/indicizzata e abilitare la ricerca online per impostazione predefinita.
+In Azure RemoteApp, l'uso della ricerca all'interno di Outlook presenta alcune limitazioni. Azure RemoteApp utilizza le sessioni utente di tooaccommodate macchine virtuali in pool. L'indicizzazione di ricerca dipende dall'ID macchina hello, che è diverso per le macchine virtuali diverse. È possibile che ogni volta che un utente accede a RemoteApp di Azure, sono diretto tooa nuova macchina virtuale. Che comporterebbe, se si abilita ricerca locale, l'indicizzatore di hello verrà eseguito ogni volta che cambia di ID di macchina hello (quando l'utente hello è in una macchina virtuale di diversa). A seconda delle dimensioni di hello di hello. File OST, indicizzatore hello potrebbe richiedere un toocomplete molto tempo e usare le risorse necessarie per le altre app. La ricerca, quindi, può risultare lenta o non dare alcun risultato. Utilizzando un profilo di account in modalità Online potrebbe risolvere il problema, ma le prestazioni complessive risentirebbero a causa di mancanza di toohello di una cache locale (vedere hello collegamento sopra per ulteriori informazioni sulla differenza tra la modalità online e memorizzati nella cache di hello). Purtroppo, in Outlook 2013 non è possibile disabilitare la ricerca locale/indicizzata e abilitare la ricerca online per impostazione predefinita.
 

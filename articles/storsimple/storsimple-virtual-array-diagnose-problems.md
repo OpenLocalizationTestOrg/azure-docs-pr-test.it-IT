@@ -1,6 +1,6 @@
 ---
-title: Risoluzione dei problemi relativi all'array virtuale StorSimple | Documentazione Microsoft
-description: "Descrive la capacità diagnostica di Gestione dispositivi StorSimple e illustra come usarla per la risoluzione dei problemi relativi all'array virtuale StorSimple."
+title: aaaTroubleshoot Array virtuale StorSimple | Documenti Microsoft
+description: "Descrive hello dispositivo StorSimple Manager diagnosticare funzionalità e viene spiegato come toouse, tootroubleshoot l'Array virtuale StorSimple."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: a75e68c84a50977b162ca4d3a4a02936ca78cb6b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b8e05d5ce6000424830059db450a0e662d19238
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-troubleshoot-the-storsimple-virtual-array"></a>Usare il servizio Gestione dispositivi StorSimple per eseguire la risoluzione dei problemi relativi all'array virtuale StorSimple
+# <a name="use-hello-storsimple-device-manager-service-tootroubleshoot-hello-storsimple-virtual-array"></a>Utilizzare hello tootroubleshoot di servizio StorSimple Manager dispositivo hello Array virtuale StorSimple
 ## <a name="overview"></a>Panoramica
 
-L'impostazione **Diagnostica e risoluzione dei problemi** nel pannello di riepilogo del servizio di Gestione dispositivi StorSimple evidenzia alcuni problemi comuni che possono verificarsi con l'array virtuale e come risolverli. Questa esercitazione presenta la funzionalità di risoluzione dei problemi in modalità self-service disponibile nel servizio Gestione dispositivi StorSimple.
+Hello StorSimple Gestione dispositivi offre un **diagnosticare e risolvere i problemi** impostato nel Pannello di riepilogo servizio hello, evidenziando alcuni dei problemi più comuni che hello che possono verificarsi con l'array virtuale e come toosolve essi. Questa esercitazione vengono descritti hello modalità self-service sulla risoluzione dei problemi funzionalità all'interno del servizio di gestione di dispositivi StorSimple hello.
 
 ![Diagnostica e risoluzione dei problemi](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-main.png)
 
 ## <a name="diagnose-and-solve-issues"></a>Diagnostica e risoluzione dei problemi
 
-È possibile visualizzare alcuni problemi comuni relativi all'array virtuale StorSimple ed esaminare le relative soluzioni a destra del pannello di riepilogo servizio di Gestione dispositivi StorSimple.
+È possibile visualizzare alcuni dei problemi comuni di hello con hello Array virtuale StorSimple e rivedere i problemi di hello soluzioni toothose direttamente dal pannello riepilogo servizio di gestione di dispositivi StorSimple.
 
-#### <a name="to-diagnose-an-issue-with-your-virtual-array"></a>Per diagnosticare un problema con l'array virtuale
+#### <a name="toodiagnose-an-issue-with-your-virtual-array"></a>un problema con l'array virtuale toodiagnose
 
-1. Fare clic sull'impostazione **Diagnostica e risoluzione dei problemi** nel riquadro a sinistra del pannello di riepilogo servizio di Gestione dispositivi StorSimple per visualizzare un elenco di problemi comuni.
+1. Fare clic su **diagnosticare e risolvere i problemi** impostazione in hello a sinistra del riquadro del tooview pannello riepilogo servizio di gestione di dispositivi StorSimple un elenco di problemi comuni.
 
-2. **Espandere** in corrispondenza del sintomo del problema riscontrato per esaminare i **passaggi consigliati** per la risoluzione del problema. È possibile anche esaminare i collegamenti alla documentazione dettagliata disponibili come ulteriore riferimento.
+2. **Espandere** su sintomo hello del problema hello riguardino tooreview **i passaggi consigliati** tooaid è risoluzione problema hello. Se si desidera, è possibile esaminare inoltre i collegamenti di documentazione dettagliata hello forniti per un'ulteriore riferimento.
    
     ![Risoluzione dei problemi](./media/storsimple-virtual-array-diagnose-problems/diagnose-problems-offline.png)
 
-3. Se non si riesce a trovare un riferimento a un problema o a risolvere il problema, contattare il supporto Microsoft per ulteriore assistenza.
+3. Se si toofind non è possibile un problema di tooyour di riferimento o risolvere il problema, contattare tooMicrosoft supporto tecnico per ulteriore assistenza.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come [registrare un ticket di supporto](storsimple-virtual-array-log-support-ticket.md)
+Informazioni su come troppo[accedere un ticket di supporto](storsimple-virtual-array-log-support-ticket.md)
 

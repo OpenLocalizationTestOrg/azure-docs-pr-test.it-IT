@@ -1,5 +1,5 @@
 ---
-title: Implementare applicazioni SaaS multi-tenant con il database SQL di Azure | Documentazione Microsoft
+title: applicazione SaaS multi-tenant di aaaImplement con Database SQL di Azure | Documenti Microsoft
 description: Implementare applicazioni SaaS multi-tenant con il database SQL di Azure.
 services: sql-database
 documentationcenter: 
@@ -16,23 +16,23 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/08/2017
 ms.author: AyoOlubek
-ms.openlocfilehash: 0aea69d86a51c38c99a72f46737de1eea27bef83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b87b8f296e2c20a8f674b56375f43fdc92df76d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a>Implementare applicazioni SaaS multi-tenant usando il database SQL di Azure
 
-Un'applicazione multi-tenant è un'applicazione ospitata in un ambiente cloud che fornisce lo stesso set di servizi a centinaia o migliaia di tenant che non condividono o non visualizzano i dati degli altri. Un esempio è un'applicazione SaaS che fornisce servizi ai tenant in un ambiente ospitato nel cloud. Questo modello consente di isolare i dati per ogni tenant e ottimizza la distribuzione delle risorse di costo. 
+Un'applicazione multi-tenant è un'applicazione ospitata in un ambiente cloud e che fornisce hello stesso insieme di servizi toohundreds o migliaia di tenant che ha non condividere o visualizzare i dati di altro. Un esempio è un'applicazione SaaS che offre servizi tootenants in un ambiente ospitato su cloud. Questo modello consente di isolare dati hello per ogni tenant e ottimizza distribuzione hello delle risorse per costo. 
 
-Questa esercitazione illustra come creare un'applicazione SaaS multi-tenant con database SQL di Azure.
+Questa esercitazione viene illustrato come toocreate un'applicazione SaaS multi-tenant con Database SQL di Azure.
 
 In questa esercitazione si apprenderà come:
 > [!div class="checklist"]
-> * Configurare un ambiente database per supportare un'applicazione SaaS multi-tenant, usando il modello database per ogni tenant
+> * Impostare un toosupport ambiente di database di un'applicazione SaaS multi-tenant, usando il modello di Database per tenant hello
 > * Creare un catalogo di tenant
-> * Eseguire il provisioning del database tenant e registrarlo nel catalogo di tenant
+> * Eseguire il provisioning di un database tenant e registrarlo nel catalogo di hello tenant
 > * Configurare un'applicazione Java di esempio 
 > * Accedere ai database tenant con una semplice applicazione console Java
 > * Eliminare un tenant
@@ -41,23 +41,23 @@ Se non si ha una sottoscrizione di Azure, [creare un account gratuito](https://a
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa esercitazione, accertarsi di avere:
+toocomplete questa esercitazione, verificare che sono:
 
-* Installato la versione più recente di PowerShell e di [Azure PowerShell SDK](http://azure.microsoft.com/downloads/)
+* Versione più recente di hello installato di PowerShell e hello [più recente di Azure PowerShell SDK](http://azure.microsoft.com/downloads/)
 
-* Installato la versione più recente di [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms). Installando SQL Server Management Studio viene installata anche la versione più recente di SQLPackage, un'utilità della riga di comando utilizzabile per automatizzare varie attività di sviluppo di database.
+* Versione più recente di hello installato di [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms). Versione più recente di hello di SQLPackage, un'utilità della riga di comando che può essere utilizzato tooautomate una gamma di attività di sviluppo del database viene installato anche l'installazione di SQL Server Management Studio.
 
-* Installato [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) e la [versione più recente di JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) nel computer in uso. 
+* Hello installato [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) hello e [più recente JAVA Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installati nel computer. 
 
-* Installato [Apache Maven](https://maven.apache.org/download.cgi). Maven è utilizzabile per gestire le dipendenze, compilare, testare ed eseguire il progetto Java di esempio
+* Installato [Apache Maven](https://maven.apache.org/download.cgi). Verrà utilizzato Maven toohelp gestire le dipendenze, compilare, testare ed eseguire progetto Java di esempio hello
 
 ## <a name="set-up-data-environment"></a>Configurare l'ambiente dati
 
-Verrà eseguito il provisioning di un database per ogni tenant. Il modello database per ogni tenant offre il massimo livello di isolamento tra tenant, con costi DevOps ridotti. Per ottimizzare i costi delle risorse cloud, verrà anche eseguito il provisioning dei database tenant in un pool elastico che consente di ottimizzare prezzi e prestazioni per un gruppo di database. Per informazioni su altri modelli di provisioning di database [vedere qui](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).
+Verrà eseguito il provisioning di un database per ogni tenant. modello di database per tenant Hello offre hello massimo grado di isolamento tra tenant, con un costo ridotto DevOps. costo di hello toooptimize delle risorse cloud, verrà inoltre eseguito il provisioning dei database tenant hello in un pool elastico che consente prestazioni di prezzo hello toooptimize per un gruppo di database. toolearn su altro database provisioning modelli [vedere qui](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).
 
-Seguire questi passaggi per creare un server SQL e un pool elastico che ospiterà tutti i database tenant. 
+Seguire toocreate questi passaggi, un server SQL e un pool elastico che ospiterà tutti i database tenant. 
 
-1. Creare variabili per archiviare i valori che verranno usati nel resto dell'esercitazione. Assicurarsi di modificare la variabile indirizzo IP per includere il proprio indirizzo IP 
+1. Creare variabili valori toostore che verranno utilizzati nel resto di hello di esercitazione hello. Verificare che toomodify hello IP indirizzo variabile tooinclude l'indirizzo IP 
    
    ```PowerShell 
    # Set an admin login and password for your database
@@ -69,15 +69,15 @@ Seguire questi passaggi per creare un server SQL e un pool elastico che ospiter�
    $tenant1 = "geolamice"
    $tenant2 = "ranplex"
    
-   # Store current client IP address (modify to include your IP address)
+   # Store current client IP address (modify tooinclude your IP address)
    $startIpAddress = 0.0.0.0 
    $endIpAddress = 0.0.0.0
    ```
    
-2. Accedere ad Azure e creare un server SQL e un pool elastico 
+2. Account di accesso tooAzure e creare un pool di server ed elastico SQL 
    
    ```PowerShell
-   # Login to Azure 
+   # Login tooAzure 
    Login-AzureRmAccount
    
    # Create resource group 
@@ -105,9 +105,9 @@ Seguire questi passaggi per creare un server SQL e un pool elastico che ospiter�
    
 ## <a name="create-tenant-catalog"></a>Creare il catalogo di tenant 
 
-In un'applicazione SaaS multi-tenant è importante sapere dove sono archiviate le informazioni per un tenant. Vengono in genere archiviate in un database del catalogo. Il database del catalogo viene usato per contenere un mapping tra un tenant e un database in cui sono archiviati i dati del tenant.  Si applica il modello base se viene usato un database a singolo tenant o multi-tenant.
+In un'applicazione SaaS multi-tenant, è importante tooknow memorizzazione informazioni per un tenant. Vengono in genere archiviate in un database del catalogo. database del catalogo Hello è toohold usato un mapping tra un tenant e un database in cui sono memorizzati i dati del tenant.  modello di base Hello si applica se multi-tenant o viene utilizzato un database singolo tenant.
 
-Seguire questi passaggi per creare un database di catalogo per l'applicazione SaaS di esempio.
+Seguire questi toocreate passaggi un database di catalogo per un'applicazione SaaS esempio hello.
 
 ```PowerShell
 # Create empty database in pool
@@ -116,7 +116,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName "tenantCatalog" `
     -ElasticPoolName "myElasticPool"
 
-# Create table to track mapping between tenants and their databases
+# Create table tootrack mapping between tenants and their databases
 $commandText = "
 CREATE TABLE Tenants
 (
@@ -138,7 +138,7 @@ Invoke-SqlCmd `
 ```
 
 ## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a>Eseguire il provisioning del database per 'tenant1' e registrare nel catalogo di tenant 
-Usare Powershell per eseguire il provisioning di un database per un nuovo tenant 'tenant1' e registrare il tenant nel catalogo. 
+Utilizzare Powershell tooprovision un database per un nuovo tenant 'tenant1' e registrare il tenant nel catalogo di hello. 
 
 ```PowerShell
 # Create empty database in pool for 'tenant1'
@@ -147,7 +147,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant1');"
@@ -161,7 +161,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register 'tenant1' in the tenant catalog 
+# Register 'tenant1' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant1', '$tenant1');"
 Invoke-SqlCmd `
@@ -175,7 +175,7 @@ Invoke-SqlCmd `
 ```
 
 ## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a>Eseguire il provisioning del database per 'tenant2' e registrare nel catalogo di tenant
-Usare Powershell per eseguire il provisioning di un database per un nuovo tenant 'tenant2' e registrare il tenant nel catalogo. 
+Utilizzare Powershell tooprovision un database per un nuovo tenant 'tenant2' e registrare il tenant nel catalogo di hello. 
 
 ```PowerShell
 # Create empty database in pool for 'tenant2'
@@ -184,7 +184,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant2 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant2');"
@@ -198,7 +198,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register tenant 'tenant2' in the tenant catalog 
+# Register tenant 'tenant2' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant2', '$tenant2');"
 Invoke-SqlCmd `
@@ -213,13 +213,13 @@ Invoke-SqlCmd `
 
 ## <a name="set-up-sample-java-application"></a>Configurare l'applicazione Java di esempio 
 
-1. Creare un progetto Maven. Digitare quanto segue in una finestra del prompt dei comandi:
+1. Creare un progetto Maven. Digitare il seguente hello in una finestra del prompt dei comandi:
    
    ```
    mvn archetype:generate -DgroupId=com.microsoft.sqlserver -DartifactId=mssql-jdbc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    ```
    
-2. Aggiungere la dipendenza, il livello di linguaggio e compilare l'opzione per supportare i file manifesto in file JAR nel file pom.xml:
+2. Aggiungere questa dipendenza, il livello di linguaggio e i file manifesto nel file di JAR toohello pom.xml toosupport opzione di compilazione:
    
    ```XML
    <dependency>
@@ -251,7 +251,7 @@ Invoke-SqlCmd `
    </build>
    ```
 
-3. Aggiungere il codice seguente nel file App.Java:
+3. Aggiungere il seguente hello in file App.java hello:
 
    ```java 
    package com.sqldbsamples;
@@ -306,7 +306,7 @@ Invoke-SqlCmd `
    
    System.out.println(" " + CMD_QUERY + " <NAME> - connect and tenant query tenant <NAME>");
    
-   System.out.println(" " + CMD_QUIT + " - quit the application\n");
+   System.out.println(" " + CMD_QUIT + " - quit hello application\n");
    
    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
    
@@ -352,7 +352,7 @@ Invoke-SqlCmd `
    
    private static void listTenants() {
    
-   // List all tenants that currently exist in the system
+   // List all tenants that currently exist in hello system
    
    String sql = "SELECT TenantName FROM Tenants";
    
@@ -380,7 +380,7 @@ Invoke-SqlCmd `
    
    private static void queryTenant(String name) {
    
-   // Query the data that was previously inserted into the primary database from the geo replicated database
+   // Query hello data that was previously inserted into hello primary database from hello geo replicated database
    
    String url = null;
    
@@ -445,21 +445,21 @@ Invoke-SqlCmd `
    }
    ```
 
-4. Salvare il file.
+4. Salvare il file hello.
 
-5. Passare alla console dei comandi ed eseguire
+5. Passare toocommand console ed eseguire
 
    ```bash
    mvn package
    ```
 
-6. Al termine, eseguire il comando seguente per eseguire l'applicazione 
+6. Al termine, eseguire hello dopo l'applicazione hello toorun 
    
    ```
    mvn -q -e exec:java "-Dexec.mainClass=com.sqldbsamples.App"
    ```
    
-L'output sarà simile al seguente se viene eseguito correttamente:
+Se l'operazione viene eseguita correttamente, output di Hello viene visualizzato come segue:
 
 ```
 ############################
@@ -474,15 +474,15 @@ LIST - list tenants
 
 QUERY <NAME> - connect and tenant query tenant <NAME>
 
-QUIT - quit the application
+QUIT - quit hello application
 
-* List the tenants
+* List hello tenants
 
 * Query tenants you created
 ```
 
 ## <a name="delete-first-tenant"></a>Eliminare il primo tenant 
-Usare PowerShell per eliminare il database tenant e la voce di catalogo per il primo tenant.
+Utilizzare PowerShell toodelete hello tenant database e del catalogo voce per il tenant prima hello.
 
 ```PowerShell
 # Remove 'tenant1' from catalog 
@@ -502,15 +502,15 @@ Remove-AzureRmSqlDatabase -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1
 ```
 
-Provare a connettersi a 'tenant1' usando l'applicazione Java. Si otterrà un errore che informa che il tenant non esiste.
+Provare a connettersi troppo utilizzando 'tenant1' hello applicazione Java. Si otterrà un errore per segnalare che tale tenant hello non esiste.
 
 ## <a name="next-steps"></a>Passaggi successivi 
 
 Questa esercitazione illustra come:
 > [!div class="checklist"]
-> * Configurare un ambiente database per supportare un'applicazione SaaS multi-tenant, usando il modello database per ogni tenant
+> * Impostare un toosupport ambiente di database di un'applicazione SaaS multi-tenant, usando il modello di Database per tenant hello
 > * Creare un catalogo di tenant
-> * Eseguire il provisioning del database tenant e registrarlo nel catalogo di tenant
+> * Eseguire il provisioning di un database tenant e registrarlo nel catalogo di hello tenant
 > * Configurare un'applicazione Java di esempio 
 > * Accedere ai database tenant con una semplice applicazione console Java
 > * Eliminare un tenant

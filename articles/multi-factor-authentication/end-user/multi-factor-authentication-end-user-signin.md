@@ -1,6 +1,6 @@
 ---
-title: Accesso con Azure MFA tramite verifica in due passaggi | Microsoft Docs
-description: Questa pagina offre indicazioni su dove trovare le istruzioni per visualizzare i diversi metodi di accesso disponibili con Azure MFA.
+title: "autenticazione a più fattori aaaAzure Accedi con verifica in due passaggi | Documenti Microsoft"
+description: Questa pagina forniranno per indicazioni su dove toogo toosee hello vari metodi di accesso disponibili con Azure MFA.
 keywords: autenticazione utente, esperienza di accesso con telefono cellulare, accesso con telefono dell'ufficio
 services: multi-factor-authentication
 documentationcenter: 
@@ -16,68 +16,68 @@ ms.date: 04/02/2017
 ms.author: kgremban
 ms.reviewer: librown
 ms.custom: end-user
-ms.openlocfilehash: d12115be61ca00dfb86dd822ccae9f9096fa796a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fcd5eb5e8426eda537db9e099bf247bde29c195b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="the-sign-in-experience-with-azure-multi-factor-authentication"></a>Esperienza di accesso con Azure Multi-Factor Authentication
+# <a name="hello-sign-in-experience-with-azure-multi-factor-authentication"></a>Hello esperienza di accesso con Azure multi-Factor Authentication
 > [!NOTE]
-> Lo scopo di questo articolo è di illustrare un'esperienza di accesso tipico. Per informazioni sull’accesso o per la risoluzione dei problemi, vedere [Problemi con Multi-Factor Authentication di Azure](multi-factor-authentication-end-user-troubleshoot.md).
+> Hello in questo articolo mira toowalk tramite un'esperienza di accesso tipico. Per informazioni sull'accesso o tootroubleshoot problemi, vedere [problemi con Azure multi-Factor Authentication](multi-factor-authentication-end-user-troubleshoot.md).
 
 ## <a name="what-will-your-sign-in-experience-be"></a>Come sarà l'esperienza di accesso?
-L'esperienza di accesso varia a seconda di ciò che si desidera usare come secondo fattore: una telefonata, un'app di autenticazione o un messaggio. Scegliere l'opzione che meglio descrive l'operazione:
+L'esperienza di accesso varia a seconda della scelta effettuata toouse come il secondo fattore: una chiamata telefonica, un'app di autenticazione o testi. Scegliere l'opzione hello che meglio descrive le operazioni:
 
 | Come si accede? | 
 | --- |
-| [Con una telefonata al cellulare o al telefono dell'ufficio](#signing-in-with-a-phone-call) |
-| [Con un messaggio sul cellulare](#signing-in-with-a-text-message)
-| [Con le notifiche dell'app Microsoft Authenticator](#signing-in-with-the-microsoft-authenticator-app-using-notification) |
-| [Con i codici di verifica dell'app Microsoft Authenticator](#signing-in-with-the-microsoft-authenticator-app-using-verification-code) |
+| [Con un telefono cellulare o dell'ufficio toomy telefonata](#signing-in-with-a-phone-call) |
+| [Con un telefono cellulare toomy testo](#signing-in-with-a-text-message)
+| [Le notifiche da app Microsoft Authenticator hello](#signing-in-with-the-microsoft-authenticator-app-using-notification) |
+| [Con i codici di verifica dall'app Microsoft Authenticator hello](#signing-in-with-the-microsoft-authenticator-app-using-verification-code) |
 | [Con un metodo alternativo, perché non è possibile usare subito il metodo preferito](#signing-in-with-an-alternate-method) |
 
 ## <a name="signing-in-with-a-phone-call"></a>Accesso tramite telefonata
-Le informazioni seguenti descrivono l'esperienza di verifica in due passaggi con una telefonata al cellulare o al telefono dell'ufficio.
+le seguenti informazioni Hello descrive telefono dell'ufficio o dell'esperienza di verifica in due passaggi hello mobili tooyour chiamata.
 
-1. Accedere a un'applicazione o servizio come Office 365 usando nome utente e password.  
+1. Accedi tooan applicazione o servizio, ad esempio Office 365 usando il nome utente e password.  
 2. Microsoft telefona all'utente.  
-3. Rispondere al telefono e premere il tasto #.  
+3. Rispondere hello telefono e premere il tasto di # hello.  
 
 ## <a name="signing-in-with-a-text-message"></a>Accesso tramite messaggio di testo
-Le informazioni seguenti descrivono l'esperienza di verifica in due passaggi tramite messaggio di testo al telefono cellulare:
+le seguenti informazioni Hello descrive hello esperienza di verifica in due passaggi con un telefono cellulare tooyour messaggio testo:
 
-1. Accedere a un'applicazione o servizio come Office 365 usando nome utente e password. 
+1. Accedi tooan applicazione o servizio, ad esempio Office 365 usando il nome utente e password. 
 2. Microsoft invia un messaggio di testo che contiene un codice numerico. 
-3. Immettere il codice nell'apposita casella sulla pagina di accesso. 
+3. Immettere il codice hello in hello apposita casella sulla pagina di accesso hello. 
 
-## <a name="signing-in-with-the-microsoft-authenticator-app"></a>Accesso con l'app Authenticator Microsoft 
-Le informazioni seguenti descrivono l'esperienza d'uso dell'app Microsoft Authenticator per le verifiche in due passaggi. Esistono due modi diversi di usare l'app. È possibile ricevere notifiche push sul dispositivo oppure aprire l'app per ottenere un codice di verifica.
+## <a name="signing-in-with-hello-microsoft-authenticator-app"></a>Accedere con l'app Microsoft Authenticator hello 
+Hello informazioni riportate di seguito viene descritta hello esperienza di uso dell'app di Microsoft Authenticator hello per le verifiche in due passaggi. Esistono due modi diversi toouse hello app. È possibile ricevere notifiche push sul dispositivo, oppure è possibile aprire hello app tooget un codice di verifica.
 
-### <a name="to-sign-in-with-a-notification-from-the-microsoft-authenticator-app"></a>Per eseguire l'accesso con una notifica dell'app Microsoft Authenticator
-1. Accedere a un'applicazione o servizio come Office 365 usando nome utente e password.
-2. Microsoft invia una notifica all'app Microsoft Authenticator sul dispositivo dell'utente.
+### <a name="toosign-in-with-a-notification-from-hello-microsoft-authenticator-app"></a>toosign con una notifica dall'app Microsoft Authenticator hello
+1. Accedi tooan applicazione o servizio, ad esempio Office 365 usando il nome utente e password.
+2. Microsoft invia un'app di Microsoft Authenticator toohello notifica sul dispositivo.
 
   ![Microsoft invia una notifica](./media/multi-factor-authentication-end-user-signin/notify.png)
 
-3. Aprire la notifica sul telefono e quindi selezionare la chiave **Verifica**. Se la società richiede un PIN, immetterlo qui.
+3. Notifica di hello aperto sul telefono e seleziona hello **verificare** chiave. Se la società richiede un PIN, immetterlo qui.
 4. Ora dovrebbe essere stato effettuato l'accesso.
 
-### <a name="to-sign-in-using-a-verification-code-with-the-microsoft-authenticator-app"></a>Per effettuare l'accesso usando un codice di verifica con l'app Microsoft Authenticator
+### <a name="toosign-in-using-a-verification-code-with-hello-microsoft-authenticator-app"></a>toosign utilizzando un codice di verifica con app Microsoft Authenticator hello
 
-Se si usa l'app Microsoft Authenticator per ottenere i codici di verifica, quando si apre l'app viene visualizzato un numero nel nome dell'account. Questo numero cambia ogni trenta secondi, pertanto non è possibile usare lo stesso numero di due volte. Quando viene richiesto un codice di verifica, aprire l'app e utilizzare il numero attualmente visualizzato. 
+Se si utilizzano i codici di verifica tooget app Authenticator Microsoft hello, quando si apre l'applicazione hello visibili un numero con il nome dell'account. Questo valore cambia ogni 30 secondi in modo che non si utilizza hello stesso numero di due volte. Quando viene richiesto un codice di verifica, aprire l'applicazione hello e utilizzare il numero è attualmente visualizzato. 
 
-1. Accedere a un'applicazione o servizio come Office 365 usando nome utente e password.
+1. Accedi tooan applicazione o servizio, ad esempio Office 365 usando il nome utente e password.
 2. Microsoft richiede un codice di verifica.
 
   ![Inserire il codice di verifica dell'app](./media/multi-factor-authentication-end-user-signin/verify3.png)
 
-3. Aprire l'app Microsoft Authenticator sul telefono e immettere il codice nella casella da cui si sta effettuando l'accesso.
+3. Aprire l'app Microsoft Authenticator hello sul telefono e immettere il codice hello nella casella di hello in cui si accede.
 
 ## <a name="signing-in-with-an-alternate-method"></a>Accesso con un metodo alternativo
-A volte non si dispone del telefono o del dispositivo configurato come metodo di verifica preferito. Per questo motivo è consigliabile configurare metodi di backup per l'account. Nella sezione seguente viene mostrato come effettuare l'accesso con un metodo alternativo quando il metodo principale può non essere disponibile.
+Non è a volte hello telefono o un dispositivo che è configurato come metodo di verifica preferita. Per questo motivo è consigliabile configurare metodi di backup per l'account. Hello nella sezione seguente illustra come toosign con un metodo alternativo quando il metodo principale potrebbe non essere disponibile.
 
-1. Accedere a un'applicazione o servizio come Office 365 usando nome utente e password.
+1. Accedi tooan applicazione o servizio, ad esempio Office 365 usando il nome utente e password.
 2. Selezionare **Usa un'opzione di verifica diversa**. Vengono visualizzate diverse opzioni di verifica in base al numero di opzioni configurate.
 3. Scegliere un metodo alternativo ed effettuare l’accesso.
 
@@ -87,6 +87,6 @@ A volte non si dispone del telefono o del dispositivo configurato come metodo di
 
 In caso di problemi di accesso con la verifica in due passaggi, è possibile ottenere altre informazioni in [Problemi con Multi-Factor Authentication di Azure](multi-factor-authentication-end-user-troubleshoot.md).
 
-Informazioni su come [Gestire le impostazioni della verifica in due passaggi](multi-factor-authentication-end-user-manage-settings.md).
+Informazioni su come troppo[gestire le impostazioni di verifica in due passaggi](multi-factor-authentication-end-user-manage-settings.md).
 
-Altre informazioni sull'[introduzione all'app Microsoft Authenticator](microsoft-authenticator-app-how-to.md) per poter effettuare l'accesso tramite notifiche, invece che con messaggi e telefonate. 
+Scoprire come troppo[introduzione app Microsoft Authenticator hello](microsoft-authenticator-app-how-to.md) in modo che è possibile utilizzare le notifiche toosign in, invece di testi e chiamate telefoniche. 

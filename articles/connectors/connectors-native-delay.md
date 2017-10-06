@@ -1,6 +1,6 @@
 ---
-title: Aggiungere ritardo nelle app per la logica | Microsoft Docs
-description: Panoramica delle azioni di ritardo e ritardo fino a e di come usarle con un'app per la logica di Azure.
+title: un ritardo nell'App per la logica aaaAdd | Documenti Microsoft
+description: Panoramica di hello ritardo e il ritardo-fino a quando le azioni e come toouse con un'app per la logica di Azure.
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,62 +15,62 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: 5f4f7052d48b4ca4ed91212d970551141e78e852
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e5bc9d639adbddc01ee0f6a4c68716f586d4344a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-delay-and-delay-until-actions"></a>Introduzione alle azioni si ritardo e ritardo fino a
-Le azioni di ritardo e "ritardo fino a" consentono di completare scenari di flusso di lavoro.
+# <a name="get-started-with-hello-delay-and-delay-until-actions"></a>Introduzione a hello ritardo e il ritardo-fino a quando le azioni
+Tramite il ritardo di hello e "ritardo-fino a quando non" azioni, è possibile completare gli scenari di flusso di lavoro.
 
 Ad esempio, è possibile:
 
-* Attendere fino a un determinato giorno della settimana per inviare un aggiornamento di stato tramite posta elettronica.
-* Ritardare il flusso di lavoro fino a quando una chiamata HTTP viene completata prima di riprendere e recuperare i risultati.
+* Attendere l'aggiornamento toosend un giorno della settimana lo stato tramite posta elettronica.
+* Ritardo del flusso di lavoro hello fino a quando una chiamata HTTP è ora toofinish prima di ripresa e recuperare i risultati di hello.
 
-Per iniziare a usare un'azione di ritardo in un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
+tooget avviato utilizzando l'azione di ritardo hello in un'app di logica, vedere [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="use-the-delay-actions"></a>Usare le azioni di ritardo
-Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. [Altre informazioni sulle azioni](connectors-overview.md).
+## <a name="use-hello-delay-actions"></a>Utilizzare le azioni di ritardo hello
+Un'azione è un'operazione che viene eseguita dal flusso di lavoro hello è definito in un'app di logica. [Altre informazioni sulle azioni](connectors-overview.md).
 
-Di seguito è riportata una sequenza di esempio di come usare un passaggio di ritardo in un'app per la logica:
+Di seguito è riportata una sequenza di esempio della modalità di passaggio toouse un ritardo in un'app di logica:
 
-1. Dopo aver aggiunto un trigger, fare clic su **Nuovo passaggio** per aggiungere un'azione.
-2. Cercare **ritardo** per visualizzare le azioni di ritardo. In questo esempio si selezionerà **Ritarda**.
+1. Dopo l'aggiunta di un trigger, fare clic su **nuovo passaggio** tooadd un'azione.
+2. Cercare **ritardo** toobring le azioni di ritardo hello. In questo esempio si selezionerà **Ritarda**.
    
     ![Azioni di ritardo](./media/connectors-native-delay/using-action-1.png)
-3. Completare tutte le proprietà dell'azione per configurare il ritardo.
+3. Completa eventuali di ritardo di hello azione proprietà tooconfigure hello.
    
     ![Configurazione del ritardo](./media/connectors-native-delay/using-action-2.png)
-4. Fare clic su **Salva** per pubblicare e attivare l'app per la logica.
+4. Fare clic su **salvare** toopublish e attivare hello logica app.
 
 ## <a name="action-details"></a>Informazioni dettagliate sulle azioni
-Il trigger di ricorrenza ha le proprietà seguenti che possono essere configurate.
+i trigger di ricorrenza Hello è hello seguenti proprietà che possono essere configurate.
 
 ### <a name="delay-action"></a>Azione Ritarda
-Questa azione ritarda l'esecuzione per un determinato intervallo di tempo.
+Questo hello ritardi azione eseguita per un determinato intervallo di tempo.
 Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Conteggio* |count |Il numero di unità di tempo di ritardo |
-| Unità* |unit |Unità di tempo: `Second`, `Minute`, `Hour` o `Day` |
+| Conteggio* |count |numero di Hello di toodelay unità di tempo |
+| Unità* |unit |unità di Hello di tempo: `Second`, `Minute`, `Hour`, o`Day` |
 
 <br>
 
 ### <a name="delay-until-action"></a>Azione Ritarda fino a
-Questa azione ritarda l'esecuzione fino a una data e ora specificate.
+Questa azione consente di ritardare hello eseguito fino a quando una data/ora specificata.
 Un asterisco (*) indica che è un campo obbligatorio.
 
 | Nome visualizzato | Nome proprietà | Descrizione |
 | --- | --- | --- |
-| Anno* |timestamp |L'anno di termine del ritardo (GMT) |
-| Mese* |timestamp |Il mese di termine del ritardo (GMT) |
-| Giorno* |timestamp |Il giorno di termine del ritardo (GMT) |
+| Anno* |timestamp |Hello anno toodelay finché (GMT) |
+| Mese* |timestamp |Hello mese toodelay finché (GMT) |
+| Giorno* |timestamp |Hello toodelay giorno finché (GMT) |
 
 <br>
 
 ## <a name="next-steps"></a>Passaggi successivi
-Provare ora a usare la piattaforma e [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare gli altri connettori disponibili nelle app per la logica esaminando l' [elenco di API](apis-list.md).
+A questo punto, provare a piattaforma hello e [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md). È possibile esplorare altri connettori disponibile in App per la logica di hello esaminando il nostro [elenco API](apis-list.md).
 

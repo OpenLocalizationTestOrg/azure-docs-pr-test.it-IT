@@ -1,6 +1,6 @@
 ---
-title: "Introduzione alla scalabilità automatica in Azure | Documentazione Microsoft"
-description: Informazioni su come ridimensionare la risorsa in Azure.
+title: "aaaGet avviato con scalabilità automatica in Azure | Documenti Microsoft"
+description: Informazioni su come tooscale la risorsa in Azure.
 author: rajram
 manager: rboucher
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: rajram
-ms.openlocfilehash: 68cb624b3ef4a77e7cfc949979e0b1949c2e5535
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6b3c3f4529018dcaf9691c538fec63dfbb3cea06
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-autoscale-in-azure"></a>Introduzione alla scalabilità automatica in Azure
-Questo articolo descrive come configurare l'impostazione di scalabilità automatica per la risorsa nel portale di Microsoft Azure.
+Questo articolo viene descritto come tooset backup delle impostazioni di scalabilità automatica per la risorsa nel portale di Microsoft Azure hello.
 
-La scalabilità automatica di Monitoraggio di Azure si applica solo a set di scalabilità di macchine virtuali, servizi cloud, piani di servizio app di Azure e ambienti di servizio app. 
+Azure scalabilità automatica di monitoraggio si applica solo set di scalabilità macchina toovirtual, servizi cloud, i piani di servizio App di Azure e gli ambienti del servizio App. 
 
-## <a name="discover-the-autoscale-settings-in-your-subscription"></a>Individuare le impostazioni di scalabilità automatica nella sottoscrizione
-È possibile individuare tutte le risorse per le quali è applicabile la scalabilità automatica in Monitoraggio di Azure. Eseguire i passaggi descritti di seguito per una procedura guidata:
+## <a name="discover-hello-autoscale-settings-in-your-subscription"></a>Individuare le impostazioni di scalabilità automatica hello nella sottoscrizione
+È possibile individuare tutte le risorse di hello per cui è applicabile in Monitor di Azure. Utilizzare hello alla procedura seguente per una procedura dettagliata:
 
-1. Aprire il [portale di Azure.][1]
-2. Fare clic sull'icona di Monitoraggio di Azure nel riquadro a sinistra.
+1. Aprire hello [portale di Azure.][1]
+2. Fare clic sull'icona di monitoraggio di Azure di hello nel riquadro di sinistra hello.
   ![Aprire Monitoraggio di Azure][2]
-3. Fare clic su **Scalabilità automatica** per visualizzare tutte le risorse per cui è applicabile, nonché il relativo stato corrente di scalabilità automatica.
+3. Fare clic su **scalabilità automatica** tooview tutte le risorse di hello per la cui scalabilità automatica è applicabile, nonché il relativo stato corrente di scalabilità automatica.
   ![Individuazione della scalabilità automatica nel Monitoraggio di Azure][3]
 
-È possibile usare il riquadro filtro nella parte superiore per ridurre l'ambito dell'elenco e selezionare le risorse in un gruppo di risorse specifico, i tipi di risorse specifici o una determinata risorsa.
+È possibile utilizzare il riquadro di filtro hello in hello tooscope alto verso il basso hello elencano tooselect le risorse in un determinato gruppo di risorse, tipi di risorsa specifico o una risorsa specifica.
 
-Per ogni risorsa verranno indicati il numero di istanze corrente e lo stato di scalabilità automatica. Lo stato di scalabilità automatica può essere:
+Per ogni risorsa, si trova il numero di istanze correnti di hello e stato scalabilità automatica hello. Hello stato scalabilità automatica può essere:
 
 - **Non configurato**: non è stata ancora abilitata la scalabilità automatica per questa risorsa.
 - **Configurato**: è stata abilitata la scalabilità automatica per questa risorsa.
@@ -44,84 +44,84 @@ Per ogni risorsa verranno indicati il numero di istanze corrente e lo stato di s
 
 ## <a name="create-your-first-autoscale-setting"></a>Creare la prima impostazione di scalabilità automatica
 
-Verrà ora illustrata una semplice procedura dettagliata per creare la prima impostazione di scalabilità automatica.
+Verrà ora passano attraverso un toocreate semplice procedura dettagliata la prima impostazione di scalabilità automatica.
 
-1. Aprire il pannello **Scalabilità automatica** in Monitoraggio di Azure e selezionare una risorsa da ridimensionare (la procedura seguente usa un piano di servizio app associato a un'app Web. È possibile [creare la prima app Web ASP.NET in Azure in 5 minuti][4]).
-2. Notare che il numero corrente di istanze per il ruolo è 1. Fare clic su **Abilita scalabilità automatica**.
+1. Aprire hello **scalabilità automatica** pannello in Monitor di Azure e selezionare una risorsa che si desidera tooscale. (hello procedura seguente utilizza un piano di servizio App associato a un'app web. È possibile [creare la prima app Web ASP.NET in Azure in 5 minuti][4]).
+2. Si noti che il numero di istanze correnti di hello è 1. Fare clic su **Abilita scalabilità automatica**.
   ![Impostazione di scalabilità per la nuova app Web][5]
-3. Specificare un nome per il set di scalabilità, quindi scegliere **Aggiungi una regola**. Si notino le opzioni per le regole di scalabilità visualizzate come riquadro contesto sul lato destro. Per impostazione predefinita viene applicata l'opzione per aumentare il numero di istanze di 1 se la percentuale CPU della risorsa supera il 70 per cento. Lasciare i valori predefiniti e fare clic su **Aggiungi**.
+3. Specificare un nome per la scala hello impostazione e quindi fare clic su **aggiungere una regola**. Notare le opzioni della regola scala hello aperti come un riquadro contesto sul lato destro hello. Per impostazione predefinita, consente di impostare l'istanza del conteggio di 1 se la percentuale di CPU della risorsa hello hello supera il 70% di hello opzione tooscale. Lasciare i valori predefiniti e fare clic su **Aggiungi**.
   ![Creare l'impostazione di scalabilità per un'app Web][6]
-4. È stata così creata la prima regola di scalabilità. Si noti che l'esperienza utente indica le procedure consigliate e che "È consigliabile includere almeno una regola di riduzione del numero di istanze". A tale scopo, procedere come segue:
+4. È stata così creata la prima regola di scalabilità. Si noti che hello UX consiglia di procedure consigliate e indica che ", è consigliabile toohave almeno una scala nella regola." toodo in modo:
   
     a. Fare clic su **Aggiungi regola**. 
 
-    b. Impostare **Operatore** a **Minore di**.
+    b. Impostare **operatore** troppo**minore**.
 
-    c. Impostare **Soglia** su **20**.
+    c. Impostare **soglia** troppo**20**.
 
-    d. Impostare **Operazione** su **Diminuisci il numero di**.
+    d. Impostare **operazione** troppo**ridurre il numero da**.
 
    A questo punto si avrà un'impostazione di scalabilità che aumenta/riduce il numero di istanze in base all'utilizzo della CPU.
    ![Scalabilità in base alla CPU][8]
 5. Fare clic su **Salva**.
 
-Congratulazioni. A questo punto è stata creata la prima impostazione di scalabilità automatica per l'app Web in base all'utilizzo della CPU.
+Congratulazioni. Ora è stato creato correttamente il primo tooautoscale di impostazione di scala app web in base all'utilizzo della CPU.
 
 > [!NOTE] 
-> Gli stessi passaggi sono applicabili ai set di scalabilità di macchine virtuali e al ruolo del servizio cloud.
+> stessi passaggi Hello sono applicabili tooget avviato con una scala di macchina virtuale ruolo del servizio cloud o di set.
 
 ## <a name="other-considerations"></a>Altre considerazioni
 ### <a name="scale-based-on-a-schedule"></a>Scalare in base a una pianificazione
-Oltre alla scalabilità basata sempre sulla CPU, è possibile impostare la scalabilità in modo diverso per giorni specifici della settimana.
+Inoltre tooscale basato sulla CPU, è possibile impostare la scala in modo diverso per specifici giorni della settimana hello.
 
 1. Fare clic su **Aggiungi una condizione di scalabilità**.
-2. L'impostazione della modalità e delle regole di scalabilità è uguale alla condizione predefinita.
-3. Selezionare **Ripeti in giorni specifici** per la pianificazione.
-4. Selezionare i giorni e l'ora di inizio/fine per l'applicazione della condizione di scalabilità.
+2. Impostazione delle regole di modalità e hello scala hello è hello stesso come condizione predefinita hello.
+3. Selezionare **ripetere giorni specifici** per la pianificazione di hello.
+4. Selezionare i giorni hello e l'ora di inizio e fine hello per quando condizione scala hello deve essere applicato.
 
 ![Condizione di scalabilità in base alla pianificazione][9]
 ### <a name="scale-differently-on-specific-dates"></a>Impostare la scalabilità in modo diverso per date specifiche
-Oltre alla scalabilità basata sempre sulla CPU, è possibile impostare la scalabilità in modo diverso per le date specifiche.
+Inoltre tooscale basato sulla CPU, è possibile impostare la scala in modo diverso per date specifiche.
 
 1. Fare clic su **Aggiungi una condizione di scalabilità**.
-2. L'impostazione della modalità e delle regole di scalabilità è uguale alla condizione predefinita.
-3. Selezionare **Specificare le date di inizio/fine** per la pianificazione.
-4. Selezionare i giorni e l'ora di inizio/fine per l'applicazione della condizione di scalabilità.
+2. Impostazione delle regole di modalità e hello scala hello è hello stesso come condizione predefinita hello.
+3. Selezionare **specificare date di inizio e fine** per la pianificazione di hello.
+4. Selezionare le date di inizio e fine hello e l'ora di inizio e fine hello per quando condizione scala hello deve essere applicato.
 
 ![Condizione di scalabilità in base alle date][10]
 
-### <a name="view-the-scale-history-of-your-resource"></a>Visualizzare la cronologia di scalabilità della risorsa
-Ogni volta che vengono aumentate o ridotte le prestazioni della risorsa, viene registrato un evento nel log attività. È possibile visualizzare la cronologia della scalabilità della risorsa per le ultime 24 ore passando alla scheda **Cronologia di esecuzione**.
+### <a name="view-hello-scale-history-of-your-resource"></a>Visualizzare la cronologia di scala hello della risorsa
+Ogni volta che la risorsa viene ridimensionata verso l'alto o verso il basso, viene registrato un evento nel registro attività hello. È possibile visualizzare cronologia scala hello della risorsa per hello nelle ultime 24 ore passando toohello **cronologia di esecuzione** scheda.
 
 ![Cronologia di esecuzione][11]
 
-Per visualizzare la cronologia della scalabilità completa (fino a 90 giorni), selezionare **Fare clic qui per visualizzare altri dettagli**. Si aprirà il log attività con Scalabilità automatica preselezionata per la risorsa e la categoria.
+Se si desidera una cronologia completa di scala di hello tooview (per backup too90 giorni), selezionare **fare clic qui toosee ulteriori dettagli**. log attività Hello apre con pre-selezionata per la risorsa e una categoria di scalabilità automatica.
 
-### <a name="view-the-scale-definition-of-your-resource"></a>Visualizzare la definizione di scalabilità della risorsa
-Scalabilità automatica è una risorsa di Azure Resource Manager. È possibile visualizzare la definizione del piano in JSON passando alla scheda **JSON**.
+### <a name="view-hello-scale-definition-of-your-resource"></a>Definizione della vista hello scala della risorsa
+Scalabilità automatica è una risorsa di Azure Resource Manager. È possibile visualizzare definizione scala hello in JSON passando toohello **JSON** scheda.
 
 ![Definizione del piano][12]
 
 È possibile apportare modifiche direttamente in JSON, se necessario. Queste modifiche saranno applicate dopo averle salvate.
 
 ### <a name="disable-autoscale-and-manually-scale-your-instances"></a>Disabilitare la scalabilità automatica e ridimensionare le istanze manualmente
-A volte può essere opportuno disabilitare l'impostazione di scalabilità corrente e ridimensionare la risorsa manualmente.
+Potrebbero esserci volte quando si desidera che l'impostazione di scala corrente toodisable e ridimensionare manualmente la risorsa.
 
-Fare clic sul pulsante **Disabilita scalabilità automatica** nella parte superiore.
+Fare clic su hello **disabilitare la scalabilità automatica** pulsante nella parte superiore di hello.
 ![Disabilita scalabilità automatica][13]
 
 > [!NOTE] 
-> Questa opzione disabilita la configurazione. Tuttavia, è possibile ritornare dopo aver abilitato nuovamente la scalabilità automatica. 
+> Questa opzione disabilita la configurazione. Tuttavia, è possibile tornare tooit dopo aver abilitato la scalabilità automatica nuovamente. 
 
-È ora possibile impostare il numero di istanze da ridimensionare manualmente.
+È ora possibile impostare il numero di hello di istanze che si desidera tooscale toomanually.
 
 ![Impostare la scalabilità manuale][14]
 
-È sempre possibile impostare nuovamente la scalabilità automatica facendo clic su **Abilita scalabilità automatica** e quindi su **Salva**.
+È sempre possibile tornare tooAutoscale facendo **abilitare la scalabilità automatica** e quindi **salvare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
-- [Creare un avviso di log attività per monitorare tutte le operazioni del motore di scalabilità automatica della sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
-- [Creare un avviso di log attività per monitorare tutte le operazioni di scalabilità automatica in riduzione e in aumento non riuscite per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
+- [Creare un avviso di Log attività toomonitor tutte le operazioni del motore di scalabilità automatica per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [Creare un avviso di Log attività toomonitor non riuscita. le operazioni di scala/scalabilità di scalabilità automatica per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
 
 <!--Reference-->
 [1]:https://portal.azure.com

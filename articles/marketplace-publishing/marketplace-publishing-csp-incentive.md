@@ -1,6 +1,6 @@
 ---
-title: Come visualizzare e modificare il Cloud Solution Provider "Incentivi rivenditore" | Documentazione Microsoft
-description: Informazioni su come visualizzare e modificare la selezione per il CSP "Incentivi rivenditore".
+title: aaaHow tooview e modificare hello Reseller Incentive del Provider di soluzioni Cloud | Documenti Microsoft
+description: Come tooview e modificare la selezione di Incentive Reseller CSP
 services: marketplace-publishing
 documentationcenter: na
 author: DavidBosland
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: DavidBosland
-ms.openlocfilehash: d6e6e13f352dea5c27939c39ecb8be97bf6990ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4702d0167c38d100755a872f9b23e49cc7a46ba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-the-azure-marketplace"></a>Visualizzare e modificare il Cloud Solution Provider "Incentivi rivenditore" in Azure Marketplace
-Il 15 marzo 2016 i Cloud Solution Provider (CSP) "Incentivi rivenditore" saranno disponibili per gli editori di Marketplace.  L'impostazione predefinita per questo valore di incentivo è **Sì**.  L'editore può decidere di rifiutare esplicitamente il programma di incentivi.  Questo articolo illustra come modificare l'impostazione nel profilo di pubblicazione e quindi come rifiutarla esplicitamente.
+# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-hello-azure-marketplace"></a>Visualizzare e modificare il Provider di soluzioni Cloud "Reseller Incentive" in hello Azure Marketplace
+15 marzo 2016 ci accerteremo hello Cloud Solution Provider (CSP) "Reseller Incentive" tooMarketplace disponibili server di pubblicazione.  Hello l'impostazione predefinita per questo valore incentivo è **Sì**.  Come server di pubblicazione è possibile decidere tooopt-out del programma di incentivi hello.  Questo articolo illustra come impostazione di hello toochange nel server di pubblicazione del profilo in modo è possibile rifiutare esplicitamente.
 
-Per visualizzare o modificare lo stato di "Incentivi rivenditore", seguire questa procedura:
+tooview o modificare lo stato "Reseller Incentive", seguire questi passaggi:
 
-1. Accedere con [l'account di pubblicazione di Microsoft Azure](https://publish.windowsazure.com/workspace)
+1. Accedi tooyour [account di Microsoft Azure pubblicazione](https://publish.windowsazure.com/workspace)
 
    ![Schermata di destinazione del profilo][1]
 2. Fare clic su **Editori**
 
    ![Schermata di destinazione del profilo - Collegamento Editori][2]
-3. Si notino le informazioni relative ai CSP nel profilo.  È disponibile un'**opzione per abilitare o disabilitare** "Incentivi rivenditore". Il valore predefinito è "Sì".
+3. Si noti hello informazioni nel profilo di CSP.  È presente un **passare toosay Sì o no** toohello "Reseller Incentive" - lo stato predefinito hello è "Sì".
 
    ![Profilo - Editori][3]
-4. Per modificare lo stato di "Incentivi rivenditore", accedere al profilo di pubblicazione quindi selezionare e salvare l'opzione desiderata:
+4. toochange lo stato di "Reseller Incentive" accedere al profilo di pubblicazione, quindi selezionare e salvare la scelta:
 
-   * Selezionare **Sì** per scegliere di fornire lo sconto del 20% ai CSP rivenditori di applicazioni e servizi elencati in Azure Marketplace.  In alternativa, selezionare **No** per rifiutare esplicitamente il programma di incentivi.  In entrambi i casi, i proventi dell'editore sono identici.
-   * Dopo aver effettuato una selezione fare clic su **Salva** nell'angolo in alto a destra.
+   * Selezionare **Sì** toochoose tooprovide hello sconto del 20% toohello CSP che sono rivendita applicazioni hello e i servizi siano stati elencati in hello Azure Marketplace.  Oppure selezionare **n** tooopt fuori programma incentivo.  In entrambi caso hello server di pubblicazione riceve hello pagamenti stesso.
+   * Dopo aver apportato una selezione di assicurarsi che si fa clic su **salvare** nell'angolo superiore destra hello.
 
    ![Profilo - Editori - caselle di modifica][4]
 

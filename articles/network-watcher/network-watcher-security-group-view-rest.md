@@ -1,6 +1,6 @@
 ---
-title: Analizzare la protezione di rete con la visualizzazione del gruppo di sicurezza di rete di Network Watcher di Azure - API REST | Documentazione Microsoft
-description: Questo articolo descrive come usare PowerShell per analizzare la protezione di macchine virtuali con la visualizzazione di un gruppo di sicurezza.
+title: sicurezza di rete aaaAnalyze con visualizzazione gruppo di sicurezza di controllo di rete di Azure - API REST | Documenti Microsoft
+description: In questo articolo viene descritto come toouse PowerShell tooanalyze un virtuale macchine protezione con visualizzazione del gruppo di sicurezza.
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: afced52b3ae6f3b7f400364f5ec7d049aa166590
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0858a64a9454816e05f06dadb9536ad0c755e90e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-rest-api"></a>Analizzare la protezione della macchina virtuale visualizzando un gruppo di sicurezza con l'API REST
 
@@ -28,17 +28,17 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-security-group-view-cli.md)
 > - [API REST](network-watcher-security-group-view-rest.md)
 
-La visualizzazione di un gruppo di sicurezza consente di recuperare le regole di sicurezza di rete configurate ed effettive applicate a una macchina virtuale. Questa funzionalità è utile per controllare e diagnosticare i gruppi di sicurezza di rete e le regole configurate in una macchina virtuale per verificare che il traffico viene consentito o negato in modo corretto. Questo articolo illustra come recuperare le regole di sicurezza effettive ed applicate a una macchina virtuale tramite l'API REST
+Visualizzazione del gruppo di sicurezza restituisce regole di sicurezza di rete configurate ed efficace di macchina virtuale tooa applicato. Questa funzionalità è utile tooaudit e diagnosticare i gruppi di sicurezza di rete e le regole configurate per il traffico tooensure una macchina virtuale viene correttamente consentito o negato. In questo articolo viene illustrata la funzionamento delle regole di sicurezza efficace e applicato di hello tooretrieve macchina virtuale tooa tramite l'API REST
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-In questo scenario, si chiama l'API REST di Network Watcher per ottenere la visualizzazione del gruppo di sicurezza per una macchina virtuale. ARMclient viene usato per chiamare l'API REST con PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
+In questo scenario, chiamare visualizzazione del gruppo protezione tooget hello hello API Rest Watcher di rete per una macchina virtuale. ARMclient è l'API REST di hello toocall utilizzati tramite PowerShell. ARMClient è reperibile in Chocolatey in [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) (ARMClient in Chocolatey)
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher. Lo scenario presuppone inoltre che esista e possa essere usato un gruppo di risorse con una macchina virtuale valida.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete. scenario di Hello si suppone inoltre che un gruppo di risorse con una macchina virtuale valida toobe utilizzato.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario illustrato in questo articolo recupera le regole di sicurezza effettive e applicate a una determinata macchina virtuale.
+scenario Hello illustrato in questo articolo consente di recuperare le regole di sicurezza efficace e applicato hello per una determinata macchina virtuale.
 
 ## <a name="log-in-with-armclient"></a>Accedere con ARMClient
 
@@ -48,10 +48,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Recuperare una macchina virtuale
 
-Eseguire lo script seguente per restituire una macchina virtuale Il codice seguente necessita delle variabili:
+Eseguire i seguenti script tooreturn un machineThe virtuale hello seguente di codice deve variabili:
 
-- **subscriptionId**: l'ID sottoscrizione può essere recuperato anche con il cmdlet **Get-AzureRMSubscription**.
-- **resourceGroupName**: il nome di un gruppo di risorse contenente le macchine virtuali.
+- **subscriptionId** -id sottoscrizione hello possono anche essere recuperati con hello **Get AzureRMSubscription** cmdlet.
+- **resourceGroupName** : hello nome di un gruppo di risorse contenente le macchine virtuali.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -60,7 +60,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-Le informazioni necessarie sono l'**id** sotto il tipo di `Microsoft.Compute/virtualMachines` in risposta, come illustrato nell'esempio seguente:
+le informazioni necessarie Hello sono hello **id** in tipo hello `Microsoft.Compute/virtualMachines` in risposta, come illustrato nel seguente esempio hello:
 
 ```json
 ...,
@@ -92,7 +92,7 @@ pute/virtualMachines/{vmName}/extensions/CustomScriptExtension"
 
 ## <a name="get-security-group-view-for-virtual-machine"></a>Ottenere la visualizzazione del gruppo di sicurezza per la macchina virtuale
 
-Nell'esempio seguente viene richiesta la visualizzazione del gruppo di sicurezza di una macchina virtuale di destinazione. I risultati di questo esempio possono essere usati per confrontare le regole e la sicurezza definite dall'origine per cercare la deviazione della configurazione.
+Hello di esempio seguente richiede vista gruppo di sicurezza hello di una macchina virtuale di destinazione. risultati dell'esempio Hello possono essere utilizzato toocompare toohello regole e sicurezza definiti da hello origine toolook deviazione della configurazione.
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -109,9 +109,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/securityGroupView?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="view-the-response"></a>Visualizzare la risposta
+## <a name="view-hello-response"></a>Visualizzazione hello risposta
 
-L'esempio seguente costituisce la risposta del comando precedente. I risultati mostrano tutte le regole di sicurezza effettive e applicate alla macchina virtuale, suddivise nei gruppi **NetworkInterfaceSecurityRules**, **DefaultSecurityRules** e **EffectiveSecurityRules**.
+Dopo l'esempio Hello è risposta hello restituita dal comando precedente hello. Hello risultati mostrano tutte le regole di sicurezza efficace e applicato hello nella macchina virtuale hello suddiviso in gruppi di **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, e  **EffectiveSecurityRules**.
 
 ```json
 
@@ -181,6 +181,6 @@ L'esempio seguente costituisce la risposta del comando precedente. I risultati m
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Consultare [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-security-group-view-powershell.md) (Verifica dei gruppi di sicurezza di rete con Network Watcher) per informazioni su come automatizzare la verifica dei gruppi di sicurezza di rete.
+Visitare [il controllo di sicurezza gruppi (rete) con Watcher di rete](network-watcher-security-group-view-powershell.md) toolearn come tooautomate convalida dei gruppi di sicurezza di rete.
 
 

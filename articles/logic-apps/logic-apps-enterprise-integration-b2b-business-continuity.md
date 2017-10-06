@@ -1,5 +1,5 @@
 ---
-title: 'Ripristino di emergenza per l''account di integrazione B2B: App per la logica di Azure | Microsoft Docs'
+title: ripristino aaaDisaster per account di integrazione B2B - App Azure per la logica | Documenti Microsoft
 description: Ripristino di emergenza delle app per la logica B2B
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,81 +14,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 4896d9da456bcc17b1a4d92259ef3d57f8575d8b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e86564a3c5a2607d22514936c606e2843cba0416
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-apps-b2b-cross-region-disaster-recovery"></a>Ripristino di emergenza tra più aree delle app per la logica B2B
 
-I carichi di lavoro B2B coinvolgono le transazioni di denaro, come ad esempio gli ordini e le fatture. In caso di un evento di emergenza, per un'azienda è essenziale eseguire rapidamente un ripristino per soddisfare i contratti di servizio a livello di business secondo gli accordi presi con i partner. In questo articolo viene illustrato come creare un piano di continuità aziendale per i carichi di lavoro B2B. 
+I carichi di lavoro B2B coinvolgono le transazioni di denaro, come ad esempio gli ordini e le fatture. Durante un evento di emergenza, è fondamentale per un hello toomeet di business tooquickly Ripristina che i contratti di servizio a livello aziendale concordati con i partner. In questo articolo viene illustrato come toobuild continuità aziendale un piano per i carichi di lavoro B2B. 
 
 * Preparazione al ripristino di emergenza 
-* Eseguire il failover all'area secondaria durante un evento di emergenza 
-* Eseguire il failover all'area primaria dopo un evento di emergenza
+* Eseguire il failover toosecondary area durante un evento di emergenza 
+* Eseguire il fallback tooprimary area dopo un evento di emergenza
 
 ## <a name="disaster-recovery-readiness"></a>Preparazione al ripristino di emergenza  
 
-1. Identificare un'area secondaria e crearvi un [account di integrazione](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md).
+1. Identifica un'area secondaria e creare un [account integrazione](../logic-apps/logic-apps-enterprise-integration-create-integration-account.md) nell'area secondaria hello.
 
-2. Aggiungere partner, schemi e contratti per i flussi di messaggi richiesti dove lo stato di esecuzione deve essere replicato nell'account di integrazione dell'area secondaria.
+2. Aggiungere partner, schemi e accordi per i flussi dei messaggi hello necessarie in cui hello stato esecuzione deve toobe replicati toosecondary area integrazione account.
 
    > [!TIP]
-   > Assicurare la coerenza degli elementi dell'account di integrazione secondo la convenzione di denominazione nelle aree. 
+   > Assicurarsi che sia la coerenza nella convenzione di denominazione dell'elemento di hello integrazione account in aree geografiche. 
 
-3. Per eseguire il pull dello stato di esecuzione dall'area primaria, creare un'app per la logica nell'area secondaria, 
+3. hello toopull stato di esecuzione dall'area primaria hello, creare un'app logica nell'area secondaria hello. 
 
    che deve avere un *trigger* e un'*azione*. 
-   Il trigger deve connettersi all'account di integrazione dell'area primaria, mentre l'azione deve connettersi all'account di integrazione dell'area secondaria. 
-   In base all'intervallo di tempo, il trigger esegue il sondaggio della tabella sullo stato di esecuzione dell'area primaria ed esegue il pull dei nuovi record, se presenti. L'azione li aggiorna nell'account di integrazione dell'area secondaria. 
-   Questa operazione consente di ottenere lo stato di runtime incrementale dall'area primaria a quella secondaria.
+   trigger Hello deve connettersi tooprimary account di integrazione di area e azione hello debba connettersi toosecondary account di integrazione di area. 
+   Trigger hello basato su intervallo di tempo hello, esegue il polling tabella dello stato di area primaria eseguire hello ed effettua il pull dei nuovi record hello, se presente. azione di Hello li aggiorna account di integrazione toosecondary area. 
+   In questo modo lo stato di runtime incrementale tooget dall'area toosecondary area primaria.
 
-4. La continuità aziendale nell'account di integrazione delle app per la logica è pensata per il supporto basato sui protocolli B2B - X12, AS2 ed EDIFACT. Per trovare la procedura dettagliata, selezionare i rispettivi collegamenti.
+4. Continuità aziendale in App per la logica integrazione account è progettato toosupport basato su protocolli B2B - X12, EDIFACT e AS2. passaggi dettagliati toofind, selezionare hello rispettivi collegamenti.
 
-5. Si consiglia di distribuire tutte le risorse dell'area primaria anche in un'area secondaria. 
+5. Hello raccomandazione è troppo toodeploy tutte le risorse area primaria in un'area secondaria. 
 
-   Le risorse dell'area primaria includono il database SQL di Azure o Azure Cosmos DB, il bus di servizio di Azure e Hub eventi di Azure usati per la messaggistica, Gestione API di Azure e la funzionalità App per la logica di Azure di Servizio app di Azure.   
+   Risorse di area primaria includono Database SQL di Azure o Azure Cosmos DB, Azure Service Bus e hub di eventi di Azure utilizzata per la messaggistica, gestione API di Azure e funzionalità di Azure logica App hello in Azure App Service.   
 
-6. Stabilire una connessione dall'area primaria a quella secondaria. Per eseguire il pull dello stato di esecuzione dall'area primaria, creare un'app per la logica nell'area secondaria, 
+6. Stabilire una connessione da un'area secondaria di tooa area primaria. hello toopull stato di esecuzione da un'area primaria, creare un'app logica in un'area secondaria. 
 
-   che deve avere un trigger e un'azione. 
-   Il trigger deve connettersi all'account di integrazione dell'area primaria, mentre 
-   l'azione deve connettersi all'account di integrazione dell'area secondaria. 
-   In base all'intervallo di tempo, il trigger esegue il sondaggio della tabella sullo stato di esecuzione dell'area primaria ed esegue il pull dei nuovi record, se presenti. 
-   L'azione li aggiorna nell'account di integrazione dell'area secondaria. 
-   Questa operazione consente di ottenere lo stato di runtime incrementale dall'area primaria a quella secondaria.
+   app per la logica Hello devono avere un trigger e un'azione. 
+   trigger Hello deve connettersi l'account di integrazione tooa area primaria. 
+   azione Hello deve connettersi l'account di integrazione tooa area secondaria. 
+   Trigger hello basato su intervallo di tempo hello, esegue il polling tabella dello stato di area primaria eseguire hello ed effettua il pull dei nuovi record hello, se presente. 
+   azione di Hello li aggiorna account di integrazione tooa area secondaria. 
+   Questo processo consente di stato di runtime incrementale tooget dall'area secondaria toohello di hello area primaria.
 
-La continuità aziendale nell'account di integrazione delle app per la logica offre il supporto basato sui protocolli B2B X12, AS2 ed EDIFACT. Per informazioni dettagliate sull'uso di X12 e AS2, vedere [X12](../logic-apps/logic-apps-enterprise-integration-b2b-business-continuity.md#x12) e [AS2](../logic-apps/logic-apps-enterprise-integration-b2b-business-continuity.md#as2) in questo articolo.
+Continuità aziendale in un account di integrazione di App per la logica fornisce supporto basato su protocolli B2B hello X12, AS2 ed EDIFACT. Per informazioni dettagliate sull'uso di X12 e AS2, vedere [X12](../logic-apps/logic-apps-enterprise-integration-b2b-business-continuity.md#x12) e [AS2](../logic-apps/logic-apps-enterprise-integration-b2b-business-continuity.md#as2) in questo articolo.
 
-## <a name="fail-over-to-a-secondary-region-during-a-disaster-event"></a>Eseguire il failover all'area secondaria durante un evento di emergenza
+## <a name="fail-over-tooa-secondary-region-during-a-disaster-event"></a>Eseguire il failover area secondaria tooa durante un evento di emergenza
 
-Durante un evento di emergenza, quando l'area primaria non è disponibile per la continuità aziendale, dirigere il traffico verso l'area secondaria. Un'area secondaria consente a un'azienda di ripristinare rapidamente le funzioni per soddisfare gli RPO/RTO concordati con i partner. Riduce al minimo gli sforzi per il failover da un'area a un'altra. 
+Durante un evento di emergenza, quando l'area primaria hello non è disponibile per la continuità aziendale, area secondaria toohello di traffico diretto. Consente di area secondaria toorecover un business rapidamente funzioni hello toomeet RPO/RTO concordato dai relativi partner. Inoltre riduce al minimo gli sforzi toofail dall'area tooanother un'area. 
 
-Esiste una latenza prevista durante la copia dei numeri di controllo dall'area primaria a quella secondaria. Per evitare l'invio ai partner di doppioni di numeri di controllo generati durante un evento di emergenza, è consigliabile incrementare i numeri di controllo negli accordi dell'area secondaria usando i [cmdlet di PowerShell](https://blogs.msdn.microsoft.com/david_burgs_blog/2017/03/09/fresh-of-the-press-new-azure-powershell-cmdlets-for-upcoming-x12-connector-disaster-recovery).
+È presente una latenza prevista durante la copia di numeri di controllo da un'area secondaria di tooa area primaria. invio controllo generato duplicati tooavoid numeri toopartners durante un evento di emergenza, hello consiglia di numeri di controllo tooincrement hello nei contratti di hello area secondaria utilizzando [i cmdlet di PowerShell](https://blogs.msdn.microsoft.com/david_burgs_blog/2017/03/09/fresh-of-the-press-new-azure-powershell-cmdlets-for-upcoming-x12-connector-disaster-recovery).
 
-## <a name="fall-back-to-a-primary-region-post-disaster-event"></a>Eseguire il fallback all'area primaria dopo un evento di emergenza
+## <a name="fall-back-tooa-primary-region-post-disaster-event"></a>Eseguire il fallback evento di post-emergenza tooa area primaria
 
-Per eseguire il fallback a un'area primaria quando è disponibile, seguire questa procedura:
+toofall tooa indietro primario area quando è disponibile, seguire questi passaggi:
 
-1. Interrompere l'accettazione dei messaggi dai partner nell'area secondaria.  
+1. Interrompere l'accettazione dei messaggi dei partner nell'area secondaria hello.  
 
-2. Incrementare i numeri di controllo generati per tutti i contratti dell'area primaria usando i [cmdlet di PowerShell](https://blogs.msdn.microsoft.com/david_burgs_blog/2017/03/09/fresh-of-the-press-new-azure-powershell-cmdlets-for-upcoming-x12-connector-disaster-recovery).  
+2. Incrementare i numeri di controllo hello generato per tutti i contratti di area primaria hello utilizzando [i cmdlet di PowerShell](https://blogs.msdn.microsoft.com/david_burgs_blog/2017/03/09/fresh-of-the-press-new-azure-powershell-cmdlets-for-upcoming-x12-connector-disaster-recovery).  
 
-3. Indirizzare il traffico dall'area secondaria all'area primaria.
+3. Traffico diretto dall'area primaria toohello di hello area secondaria.
 
-4. Controllare che l'app per la logica creata nell'area secondaria per il pull dello stato di esecuzione dall'area primaria sia abilitata.
+4. Verificare che app logica hello creato in hello area secondaria per il pull di stato di esecuzione dall'area primaria hello è abilitata.
 
 ## <a name="x12"></a>X12 
 
 La continuità aziendale per i documenti EDI X12 si basa sui numeri di controllo:
 
 > [!TIP]
-> È anche possibile usare [il modello di avvio rapido X12](https://azure.microsoft.com/documentation/templates/201-logic-app-x12-disaster-recovery-replication/) per creare app per la logica. La creazione degli account di integrazione primari e secondari è un prerequisito per l'uso del modello. Il modello consente di creare 2 app per la logica, una per i numeri di controllo ricevuti e l'altra per i numeri di controllo generati. I trigger e le azioni corrispondenti vengono creati nelle app per la logica collegando il trigger all'account di integrazione primario e l'azione a quello secondario.
+> È inoltre possibile utilizzare hello [X12 quick start modello](https://azure.microsoft.com/documentation/templates/201-logic-app-x12-disaster-recovery-replication/) toocreate logica app. Creazione account di integrazione primario e secondario sono prerequisiti toouse hello al modello. Hello modello consente di toocreate due logica App, uno per i numeri di controllo ricevuti e un altro per i numeri di controllo generato. Azioni e i rispettivi trigger vengono create in applicazioni logica hello, connessione hello trigger toohello integrazione primario account e hello azione toohello integrazione secondario.
 
 **Prerequisiti**
 
-Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare le impostazioni per la verifica dei duplicati nelle impostazioni di ricezione dell'accordo X12.
+tooenable il ripristino di emergenza per i messaggi in ingresso, selezionare le impostazioni di controllo duplicati hello in impostazioni di ricezione dell'accordo X12 hello.
 
 ![Selezionare le impostazioni per la verifica dei duplicati](./media/logic-apps-enterprise-integration-b2b-business-continuity/dupcheck.png)  
 
@@ -98,14 +98,14 @@ Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare
 
    ![Cercare X12](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn1.png)
 
-   Il trigger richiede di stabilire una connessione con l'account di integrazione. 
-   Il trigger deve connettersi all'account di integrazione dell'area primaria.
+   trigger Hello richiesto è tooestablish un account di integrazione tooan di connessione. 
+   Hello trigger deve essere connesso l'account di integrazione tooa area primaria.
 
-3. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area primaria* dall'elenco e scegliere **Crea**.   
+3. Immettere un nome di connessione, selezionare il *account integrazione area primaria* da hello elenco e scegliere **crea**.   
 
    ![Nome dell'account di integrazione dell'area primaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn2.png)
 
-4. L'impostazione **DateTime per avviare la sincronizzazione dei numeri di controllo** è facoltativa. Il campo **Frequenza** può essere impostato su **Giorno**, **Ora**, **Minuto** o **Secondo** con un intervallo.   
+4. Hello **numero sincronizzazione di data/ora toostart controllo** impostazione è facoltativa. Hello **frequenza** può essere impostato troppo**giorno**, **ora**, **minuto**, o **secondo** con un intervallo.   
 
    ![DateTime e Frequenza](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn3.png)
 
@@ -117,25 +117,25 @@ Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare
 
    ![Aggiungi o aggiorna numeri di controllo](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn5.png)
 
-7. Per collegare un'azione a un account di integrazione dell'area secondaria, selezionare **Modifica connessione** > **Aggiungi nuova connessione** per un elenco degli account di integrazione disponibili. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area secondaria* dall'elenco e scegliere **Crea**. 
+7. Selezionare un account di integrazione azione tooa area secondaria, tooconnect **Cambia connessione** > **Aggiungi nuova connessione** per un elenco di account di integrazione disponibile in hello. Immettere un nome di connessione, selezionare il *account integrazione area secondaria* da hello elenco e scegliere **crea**. 
 
    ![Nome dell'account di integrazione dell'area secondaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn6.png)
 
-8. Passare agli input non elaborati facendo clic sull'icona nell'angolo in alto a destra.
+8. Passare tooraw input facendo clic sull'icona di hello in alto a destra.
 
-   ![Passare agli input non elaborati](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12rawinputs.png)
+   ![Input tooraw commutatore](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12rawinputs.png)
 
-9. Selezionare Corpo nell'utilità di selezione del contenuto dinamico e salvare l'app per la logica.
+9. Selezionare corpo dalla selezione di contenuto dinamico hello e salvare hello logica app.
 
    ![Campi per il contenuto dinamico](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn7.png)
 
-   In base all'intervallo di tempo, il trigger esegue il sondaggio della tabella dei numeri di controllo ricevuti dell'area primaria ed esegue il pull dei nuovi record. 
-   L'azione aggiorna i record nell'account di integrazione dell'area secondaria. 
-   Se non ci sono aggiornamenti disponibili, lo stato del trigger appare come **Ignorato**.   
+   Trigger hello basato su intervallo di tempo hello, esegue il polling hello area primaria ricevuto controllo tabella ed effettua il pull dei nuovi record hello. 
+   azione di Hello Aggiorna i record di hello nell'account di integrazione di hello area secondaria. 
+   Se non sono disponibili aggiornamenti, come verrà visualizzato lo stato di trigger hello **ignorati**.   
 
    ![Tabella dei numeri di controllo](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12recevicedcn8.png)
 
-In base all'intervallo di tempo, lo stato di runtime incrementale viene replicato dall'area primaria a quella secondaria. Durante un evento di emergenza, quando l'area primaria non è disponibile, dirigere il traffico verso l'area secondaria per assicurare la continuità aziendale. 
+Basato su intervallo di tempo hello, lo stato di runtime incrementale hello replica da un'area secondaria di tooa area primaria. Durante un evento di emergenza, quando l'area primaria hello non area secondaria di toohello il traffico diretto disponibili per la continuità aziendale. 
 
 ## <a name="edifact"></a>EDIFACT 
 
@@ -143,7 +143,7 @@ La continuità aziendale per i documenti EDI EDIFACT si basa sui numeri di contr
 
 **Prerequisiti**
 
-Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare le impostazioni per la verifica dei duplicati nelle impostazioni di ricezione dell'accordo EDIFACT.
+tooenable il ripristino di emergenza per i messaggi in ingresso, selezionare le impostazioni di controllo duplicati hello in impostazioni di ricezione del contratto EDIFACT.
 
 ![Selezionare le impostazioni per la verifica dei duplicati](./media/logic-apps-enterprise-integration-b2b-business-continuity/edifactdupcheck.png)  
 
@@ -153,14 +153,14 @@ Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare
 
    ![Cercare EDIFACT](./media/logic-apps-enterprise-integration-b2b-business-continuity/edifactcn1.png)
 
-   Il trigger richiede di stabilire una connessione con l'account di integrazione. 
-   Il trigger deve connettersi all'account di integrazione dell'area primaria. 
+   trigger Hello richiesto è tooestablish un account di integrazione tooan di connessione. 
+   Hello trigger deve essere connesso l'account di integrazione tooa area primaria. 
 
-3. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area primaria* dall'elenco e scegliere **Crea**.    
+3. Immettere un nome di connessione, selezionare il *account integrazione area primaria* da hello elenco e scegliere **crea**.    
 
    ![Nome dell'account di integrazione dell'area primaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12CN2.png)
 
-4. L'impostazione **DateTime per avviare la sincronizzazione dei numeri di controllo** è facoltativa. Il campo **Frequenza** può essere impostato su **Giorno**, **Ora**, **Minuto** o **Secondo** con un intervallo.    
+4. Hello **numero sincronizzazione di data/ora toostart controllo** impostazione è facoltativa. Hello **frequenza** può essere impostato troppo**giorno**, **ora**, **minuto**, o **secondo** con un intervallo.    
 
    ![DateTime e Frequenza](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn3.png)
 
@@ -172,47 +172,47 @@ Per abilitare il ripristino di emergenza per i messaggi in ingresso, selezionare
 
    ![Aggiungi o aggiorna numeri di controllo](./media/logic-apps-enterprise-integration-b2b-business-continuity/EdifactChooseAction.png)
 
-8. Per collegare un'azione a un account di integrazione dell'area secondaria, selezionare **Modifica connessione** > **Aggiungi nuova connessione** per un elenco degli account di integrazione disponibili. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area secondaria* dall'elenco e scegliere **Crea**.
+8. Selezionare un account di integrazione azione tooa area secondaria, tooconnect **Cambia connessione** > **Aggiungi nuova connessione** per un elenco di account di integrazione disponibile in hello. Immettere un nome di connessione, selezionare il *account integrazione area secondaria* da hello elenco e scegliere **crea**.
 
    ![Nome dell'account di integrazione dell'area secondaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12cn6.png)
 
-9. Passare agli input non elaborati facendo clic sull'icona nell'angolo in alto a destra.
+9. Passare tooraw input facendo clic sull'icona di hello in alto a destra.
 
-   ![Passare agli input non elaborati](./media/logic-apps-enterprise-integration-b2b-business-continuity/Edifactrawinputs.png)
+   ![Input tooraw commutatore](./media/logic-apps-enterprise-integration-b2b-business-continuity/Edifactrawinputs.png)
 
-10. Selezionare Corpo nell'utilità di selezione del contenuto dinamico e salvare l'app per la logica.   
+10. Selezionare corpo dalla selezione di contenuto dinamico hello e salvare hello logica app.   
 
    ![Campi per il contenuto dinamico](./media/logic-apps-enterprise-integration-b2b-business-continuity/X12CN7.png)
 
-   In base all'intervallo di tempo, il trigger esegue il sondaggio della tabella dei numeri di controllo ricevuti dell'area primaria ed esegue il pull dei nuovi record.
-   L'azione aggiorna i record per l'account di integrazione dell'area secondaria. 
-   Se non ci sono aggiornamenti disponibili, lo stato del trigger appare come **Ignorato**.
+   Trigger hello basato su intervallo di tempo hello, esegue il polling hello area primaria ricevuto controllo tabella ed effettua il pull dei nuovi record hello.
+   azione di Hello Aggiorna account di integrazione di hello record toohello area secondaria. 
+   Se non sono disponibili aggiornamenti, come verrà visualizzato lo stato di trigger hello **ignorati**.
 
    ![Tabella dei numeri di controllo](./media/logic-apps-enterprise-integration-b2b-business-continuity/x12recevicedcn8.png)
 
-In base all'intervallo di tempo, lo stato di runtime incrementale viene replicato dall'area primaria a quella secondaria. Durante un evento di emergenza, quando l'area primaria non è disponibile, dirigere il traffico verso l'area secondaria per assicurare la continuità aziendale. 
+Basato su intervallo di tempo hello, lo stato di runtime incrementale hello replica da un'area secondaria di tooa area primaria. Durante un evento di emergenza, quando l'area primaria hello non area secondaria di toohello il traffico diretto disponibili per la continuità aziendale. 
 
 ## <a name="as2"></a>AS2 
 
-La continuità aziendale per i documenti che usano il protocollo AS2 si basai sull'ID di messaggio e sul valore MIC.
+Continuità aziendale per i documenti che usano il protocollo di AS2 hello è basata sull'ID di messaggio hello e valore MIC hello.
 
 > [!TIP]
-> È anche possibile usare [il modello di avvio rapido AS2](https://github.com/Azure/azure-quickstart-templates/pull/3302) per creare le app per la logica. La creazione degli account di integrazione primari e secondari è un prerequisito per l'uso del modello. Il modello consente di creare un'app per la logica, con un trigger e un'azione. L'app per la logica crea una connessione tra il trigger e l'account di integrazione primario e tra l'azione e l'account di integrazione secondario.
+> È inoltre possibile utilizzare hello [il modello di avvio rapido AS2](https://github.com/Azure/azure-quickstart-templates/pull/3302) toocreate logica app. Creazione account di integrazione primario e secondario sono prerequisiti toouse hello al modello. modello Hello consente di creare un'applicazione di logica che dispone di un trigger e un'azione. app per la logica Hello crea una connessione da un account di integrazione primario tooa trigger e un account di azione tooa integrazione secondario.
 
-1. Creare un'[app per la logica](../logic-apps/logic-apps-create-a-logic-app.md) nell'area secondaria.  
+1. Creare un [logica app](../logic-apps/logic-apps-create-a-logic-app.md) nell'area secondaria hello.  
 
 2. Cercare in **AS2** e selezionare **AS2 -When a MIC value is created** (AS2 - Quando viene creato un valore MIC).   
 
    ![Cercare AS2](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid1.png)
 
-   Il trigger richiede di stabilire una connessione con l'account di integrazione. 
-   Il trigger deve connettersi all'account di integrazione dell'area primaria. 
+   Un trigger viene richiesto un account di integrazione tooan tooestablish. 
+   Hello trigger deve essere connesso l'account di integrazione tooa area primaria. 
    
-3. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area primaria* dall'elenco e scegliere **Crea**.
+3. Immettere un nome di connessione, selezionare il *account integrazione area primaria* da hello elenco e scegliere **crea**.
 
    ![Nome dell'account di integrazione dell'area primaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid2.png)
 
-4. L'impostazione **DateTime per avviare la sincronizzazione del valore MIC** è facoltativa. Il campo **Frequenza** può essere impostato su **Giorno**, **Ora**, **Minuto** o **Secondo** con un intervallo.   
+4. Hello **sincronizzazione di valore DateTime toostart MIC** impostazione è facoltativa. Hello **frequenza** può essere impostato troppo**giorno**, **ora**, **minuto**, o **secondo** con un intervallo.   
 
    ![DateTime e Frequenza](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid3.png)
 
@@ -224,24 +224,24 @@ La continuità aziendale per i documenti che usano il protocollo AS2 si basai su
 
    ![Aggiunta o aggiornamento MIC](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid5.png)
 
-7. Per collegare un'azione a un account di integrazione secondario, selezionare **Modifica connessione** > **Aggiungi nuova connessione** per un elenco degli account di integrazione disponibili. Inserire un nome di connessione, selezionare l'*account di integrazione dell'area secondaria* dall'elenco e scegliere **Crea**.
+7. tooconnect account azione tooa integrazione secondario, selezionare **Cambia connessione** > **Aggiungi nuova connessione** per un elenco di account di integrazione disponibile in hello. Immettere un nome di connessione, selezionare il *account integrazione area secondaria* da hello elenco e scegliere **crea**.
 
    ![Nome dell'account di integrazione dell'area secondaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid6.png)
 
-8. Passare agli input non elaborati facendo clic sull'icona nell'angolo in alto a destra.
+8. Passare tooraw input facendo clic sull'icona di hello in alto a destra.
 
-   ![Passare agli input non elaborati](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2rawinputs.png)
+   ![Input tooraw commutatore](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2rawinputs.png)
 
-9. Selezionare Corpo nell'utilità di selezione del contenuto dinamico e salvare l'app per la logica.   
+9. Selezionare corpo dalla selezione di contenuto dinamico hello e salvare hello logica app.   
 
    ![Contenuto dinamico](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid7.png)
 
-   In base all'intervallo di tempo, il trigger esegue il sondaggio della tabella dell'area primaria ed esegue il pull dei nuovi record. L'azione li aggiorna nell'account di integrazione dell'area secondaria. 
-   Se non ci sono aggiornamenti disponibili, lo stato del trigger appare come **Ignorato**.  
+   Trigger hello basato su intervallo di tempo hello, esegue il polling tabella area primaria hello ed effettua il pull dei nuovi record hello. azione di Hello li aggiorna account di integrazione toohello area secondaria. 
+   Se non sono disponibili aggiornamenti, come verrà visualizzato lo stato di trigger hello **ignorati**.  
 
    ![Tabella dell'area primaria](./media/logic-apps-enterprise-integration-b2b-business-continuity/as2messageid8.png)
 
-In base all'intervallo di tempo, lo stato di runtime incrementale viene replicato dall'area primaria a quella secondaria. Durante un evento di emergenza, quando l'area primaria non è disponibile, dirigere il traffico verso l'area secondaria per assicurare la continuità aziendale. 
+Basato su intervallo di tempo hello, lo stato di runtime incrementale hello replica dall'area secondaria toohello di hello area primaria. Durante un evento di emergenza, quando l'area primaria hello non area secondaria di toohello il traffico diretto disponibili per la continuità aziendale. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 

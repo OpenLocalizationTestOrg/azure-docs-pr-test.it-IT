@@ -1,6 +1,6 @@
 ---
-title: Creare applicazioni che usano argomenti e sottoscrizioni del bus di servizio di Azure | Documentazione Microsoft
-description: "Introduzione alle funzionalità di pubblicazione/sottoscrizione offerte dagli argomenti e dalle sottoscrizioni del bus di servizio."
+title: le applicazioni che utilizzano gli argomenti del Bus di servizio di Azure e le sottoscrizioni aaaCreate | Documenti Microsoft
+description: "Introduzione toohello funzionalità di pubblicazione-sottoscrizione offerte da sottoscrizioni e gli argomenti del Bus di servizio."
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/07/2017
 ms.author: sethm
-ms.openlocfilehash: eb01120ce9578f716e5381c107faa93f0b36e358
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f6d7de46ace7bd5b49de612db213ced789308d91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-applications-that-use-service-bus-topics-and-subscriptions"></a>Creare applicazioni che usano argomenti e sottoscrizioni del bus di servizio
-Il bus di servizio di Azure supporta un set di tecnologie middleware orientate ai messaggi e basate sul cloud, incluso l'accodamento dei messaggi affidabile e la messaggistica di pubblicazione e sottoscrizione permanente. Questo articolo si basa sulle informazioni presentate in [Creare applicazioni che usano code del bus di servizio](service-bus-create-queues.md) e include un'introduzione alle funzionalità di pubblicazione/sottoscrizione offerte da argomenti del bus di servizio.
+Il bus di servizio di Azure supporta un set di tecnologie middleware orientate ai messaggi e basate sul cloud, incluso l'accodamento dei messaggi affidabile e la messaggistica di pubblicazione e sottoscrizione permanente. Questo articolo si basa sulle informazioni hello fornite nella [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md) e offre un'introduzione di funzionalità di pubblicazione/sottoscrizione toohello offerte da argomenti del Bus di servizio.
 
 ## <a name="evolving-retail-scenario"></a>Scenario di vendita al dettaglio in evoluzione
-Questo articolo usa lo scenario di vendita al dettaglio incluso in [Creare applicazioni che usano le code del bus di servizio](service-bus-create-queues.md). Richiamare i dati di vendita da singoli terminali di punto di vendita (POS) devono essere indirizzati a un sistema di gestione dell’inventario che utilizza i dati per determinare quando è necessario un nuovo approvvigionamento. Ogni terminale POS segnala i dati di vendita tramite l'invio di messaggi alla coda **DataCollectionQueue** dove rimangono fino a quando non vengono ricevuti dal sistema di gestione dell'inventario, come illustrato di seguito:
+In questo articolo continua uno scenario di vendita al dettaglio hello utilizzato [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md). Tenere presente che i dati di vendita da singoli terminali di punto di vendita (POS) devono essere indirizzato tooan sistema di gestione inventario che utilizza tale toodetermine dati quando è toobe un nuovo approvvigionamento. Ogni terminale segnala i dati di vendita tramite l'invio di messaggi toohello **DataCollectionQueue** coda, in cui rimangono finché vengono ricevuti dal sistema di gestione inventario hello, come illustrato di seguito:
 
 ![Bus di servizio 1](./media/service-bus-create-topics-subscriptions/IC657161.gif)
 
-Per sviluppare questo scenario, è stato aggiunto un nuovo requisito al sistema: il proprietario dell'archivio vuole essere in grado di monitorare le prestazioni dell'archivio in tempo reale.
+tooevolve questo scenario, un nuovo requisito è stato aggiunto il sistema toohello: proprietario del Negozio hello vuole toomonitor in grado di toobe come hello del Negozio in tempo reale.
 
-Per soddisfare questo requisito, il sistema deve "disattivare" il flusso di dati di vendita. Vogliamo ancora che ogni messaggio inviato dai terminali POS vengano inviati al sistema di gestione del magazzino come prima, ma si desidera un'altra copia di ogni messaggio che è possibile utilizzare per presentare la visualizzazione dashboard al proprietario del negozio.
+tooaddress questo requisito, il sistema hello deve "toccare" disattivare il flusso di dati di vendita hello. Si vuole comunque che ogni messaggio inviato da hello POS terminali toobe inviati sistema di gestione inventario toohello come prima, ma si desidera che un'altra copia di ogni messaggio che è possibile utilizzare toopresent hello dashboard toohello archivio utente.
 
-In qualsiasi situazione come questa, in cui si richiede che ogni messaggio venga letto da più parti, è possibile usare gli *argomenti* del bus di servizio. Gli argomenti forniscono un modello di pubblicazione/sottoscrizione, in cui ogni messaggio pubblicato viene reso disponibile a una o più sottoscrizioni registrate con l'argomento. Al contrario, con le code ogni messaggio viene ricevuto da un singolo consumer.
+In situazioni come questa, in cui è necessario toobe ogni messaggio usato da più parti, è possibile utilizzare il Bus di servizio *argomenti*. Argomenti forniscono un modello di pubblicazione/sottoscrizione in cui ogni messaggio pubblicato viene reso disponibile tooone o più sottoscrizioni registrate con l'argomento hello. Al contrario, con le code ogni messaggio viene ricevuto da un singolo consumer.
 
-I messaggi vengono inviati a un argomento nello stesso modo in cui vengono trasmessi a una coda. Tuttavia, i messaggi non vengono ricevuti dall'argomento direttamente, ma dalle sottoscrizioni. È possibile pensare alla sottoscrizione a un argomento come a una coda virtuale che riceve copie dei messaggi che sono stati inviati all'argomento. La procedura di ricezione dei messaggi da parte di una sottoscrizione è la stessa usata per la ricezione da parte di una coda.
+Argomento tooa in hello vengono inviati messaggi come inviati tooa coda. Tuttavia, i messaggi non vengono ricevuti dall'argomento hello direttamente. vengono ricevuti dalle sottoscrizioni. È possibile pensare di un argomento tooa sottoscrizione come una coda virtuale che riceve copie dei messaggi hello inviati toothat argomento. I messaggi vengono ricevuti da una sottoscrizione hello stesso modo in cui vengono ricevuti da una coda.
 
-Tornando allo scenario di vendita al dettaglio, la coda viene sostituita da un argomento e viene aggiunta una sottoscrizione che verrà usata dal componente del sistema di gestione del magazzino. Il sistema ora l'aspetto seguente:
+Tornando toohello uno scenario di vendita al dettaglio, coda hello viene sostituita da un argomento e una sottoscrizione viene aggiunto, è possibile utilizzare il componente di sistema hello Gestione inventario. sistema Hello viene visualizzato come segue:
 
 ![Bus di servizio 2](./media/service-bus-create-topics-subscriptions/IC657165.gif)
 
-La configurazione qui si comporta in modo identico alla precedente progettazione basata su coda. Ovvero i messaggi inviati all'argomento vengono instradati alla sottoscrizione **Inventory** e letti dal **sistema di gestione del magazzino**.
+configurazione Hello agisce in modo identico toohello precedente basato su coda progettazione. Ovvero, i messaggi inviati argomento toohello sono toohello indirizzato **inventario** sottoscrizione, da cui hello **sistema di gestione inventario** li Usa.
 
-Per supportare il dashboard di gestione, viene creata una seconda sottoscrizione nell'argomento, come illustrato di seguito:
+Nel dashboard di gestione hello toosupport ordine, si crea una seconda sottoscrizione in argomento hello, come illustrato di seguito:
 
 ![Bus di servizio 3](./media/service-bus-create-topics-subscriptions/IC657166.gif)
 
-Con questa configurazione, ogni messaggio da terminali POS viene reso disponibile a entrambe le sottoscrizioni **Dashboard** e **Inventory**.
+Con questa configurazione, ogni messaggio dai terminali hello POS è reso disponibile tooboth hello **Dashboard** e **inventario** sottoscrizioni.
 
-## <a name="show-me-the-code"></a>Mostra il codice
-L'articolo [Creare applicazioni che usano le code del bus di servizio](service-bus-create-queues.md) descrive come registrare un account di Azure e creare uno spazio dei nomi del servizio. Il modo più semplice per fare riferimento alle dipendenze del bus di servizio è di installare il [pacchetto Nuget](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) del bus di servizio. È possibile trovare le librerie del bus di servizio anche come parte di Azure SDK. Il download è disponibile nella [pagina di download di Azure SDK](https://azure.microsoft.com/downloads/).
+## <a name="show-me-hello-code"></a>Mostra il codice hello
+articolo Hello [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md) viene descritto come toosign fino a un account Azure e creare uno spazio dei nomi del servizio. dipendenze di Hello più semplice modo tooreference Bus di servizio è tooinstall hello Bus di servizio [pacchetto Nuget](https://www.nuget.org/packages/WindowsAzure.ServiceBus/). È inoltre possibile trovare hello le librerie del Bus di servizio come parte di hello Azure SDK. Hello è possibile scaricare hello [pagina di download di Azure SDK](https://azure.microsoft.com/downloads/).
 
-### <a name="create-the-topic-and-subscriptions"></a>Creare l'argomento e le sottoscrizioni
-Le operazioni di gestione per entità di messaggistica (code e argomenti di pubblicazione/sottoscrizione) del bus di servizio vengono eseguite tramite la classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager). Sono necessarie le credenziali appropriate per creare un'istanza **NamespaceManager** per un determinato spazio dei nomi. Il bus di servizio usa un modello di sicurezza basato su [SAS (Shared Access Signature, Firma di accesso condiviso)](service-bus-sas.md). La classe [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) rappresenta un provider di token di sicurezza con metodi factory incorporati che restituiscono alcuni provider di token noti. Per memorizzare le credenziali SAS, verrà usato un metodo [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_). L'istanza [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) viene costruita con l'indirizzo di base dello spazio dei nomi del bus di servizio e con il provider di token.
+### <a name="create-hello-topic-and-subscriptions"></a>Creazione di sottoscrizioni e argomento hello
+Le operazioni di gestione per il Bus di servizio, le entità di messaggistica (code e pubblicazione/sottoscrizione argomenti) vengono eseguite tramite hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe. Sono necessarie le credenziali appropriate in ordine toocreate un **NamespaceManager** istanza per un determinato spazio dei nomi. Il bus di servizio usa un modello di sicurezza basato su [SAS (Shared Access Signature, Firma di accesso condiviso)](service-bus-sas.md). Hello [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) classe rappresenta un provider di token di sicurezza con metodi factory incorporati restituzione di alcuni provider di token noti. Si userà un [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) le credenziali di firma di accesso condiviso di metodo toohold hello. Hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) istanza viene quindi costruita con indirizzo di base di spazio dei nomi Service Bus hello e provider di token hello hello.
 
-La classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) offre i metodi per creare, enumerare ed eliminare entità di messaggistica. Il codice riportato di seguito visualizza come l'istanza **NamespaceManager** viene creata e usata per definire l'argomento **DataCollectionTopic**.
+Hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe fornisce metodi toocreate, enumerare ed eliminare entità di messaggistica. Hello codice riportata di seguito viene illustrato come hello **NamespaceManager** istanza viene creata e utilizzata toocreate hello **DataCollectionTopic** argomento.
 
 ```csharp
 Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", "test-blog", string.Empty);
@@ -67,21 +67,21 @@ NamespaceManager namespaceManager = new NamespaceManager(uri, tokenProvider);
 namespaceManager.CreateTopic("DataCollectionTopic");
 ```
 
-Si noti che sono disponibili overload del metodo [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) che consentono di impostare le proprietà dell'argomento. Ad esempio, è possibile impostare il valore di durata (TTL) predefinito per i messaggi inviati all'argomento. Aggiungere successivamente le sottoscrizioni **Inventory** e **Dashboard**.
+Si noti che esistono overload di hello [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) metodo che consentono di proprietà tooset di argomento hello. Ad esempio, è possibile impostare hello time-to-live (TTL) predefinita per i messaggi inviati toohello argomento. Successivamente, aggiungere hello **inventario** e **Dashboard** sottoscrizioni.
 
 ```csharp
 namespaceManager.CreateSubscription("DataCollectionTopic", "Inventory");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard");
 ```
 
-### <a name="send-messages-to-the-topic"></a>Inviare messaggi all'argomento
-Per le operazioni di runtime su entità del bus di servizio, ad esempio l'invio e la ricezione di messaggi, un'applicazione deve prima creare un oggetto [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory). Simile alla classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager), l'istanza **MessagingFactory** viene creata a partire dall'indirizzo di base dello spazio dei nomi del servizio e dal provider di token.
+### <a name="send-messages-toohello-topic"></a>Inviare l'argomento toohello messaggi
+Per le operazioni di runtime su entità del bus di servizio, ad esempio l'invio e la ricezione di messaggi, un'applicazione deve prima creare un oggetto [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory). Toohello simile [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe hello **MessagingFactory** dall'indirizzo di base di spazio dei nomi servizio hello e provider di token hello hello viene creata l'istanza.
 
 ```
 MessagingFactory factory = MessagingFactory.Create(uri, tokenProvider);
 ```
 
-I messaggi inviati e ricevuti dagli argomenti del bus di servizio sono istanze della classe [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). Questa classe consiste di un insieme di proprietà standard, (ad esempio, [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) e [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), di un dizionario usato per mantenere le proprietà dell'applicazione e di un corpo di dati arbitrari dell'applicazione. Un'applicazione può impostare il corpo passando qualsiasi oggetto serializzabile (nell'esempio seguente passa un oggetto **SalesData** che rappresenta i dati di vendita dal terminale POS), che userà [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) per serializzare l'oggetto. In alternativa, può essere specificato un oggetto [Flusso](https://msdn.microsoft.com/library/system.io.stream.aspx).
+I messaggi inviati tooand ricevuto da argomenti del Bus di servizio, sono istanze di hello [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) classe. Questa classe è costituita da un set di proprietà standard (ad esempio [etichetta](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) e [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), un dizionario di proprietà dell'applicazione usato toohold e un corpo di dati applicazione arbitrari. Un'applicazione può impostare corpo hello passando qualsiasi oggetto serializzabile (hello seguente esempio di viene passata una **SalesData** oggetto che rappresenta i dati di vendita hello dal terminale POS hello), che verrà utilizzato hello [ DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) oggetto hello tooserialize. In alternativa, può essere specificato un oggetto [Flusso](https://msdn.microsoft.com/library/system.io.stream.aspx).
 
 ```csharp
 BrokeredMessage bm = new BrokeredMessage(salesData);
@@ -90,7 +90,7 @@ bm.Properties["StoreName"] = "Redmond";
 bm.Properties["MachineID"] = "POS_1";
 ```
 
-Il modo più semplice per inviare messaggi all'argomento consiste nell'usare [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_) per creare un oggetto [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender) direttamente dall'istanza di [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory):
+argomento con messaggi Hello più semplice modo toosend toohello è toouse [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_) toocreate un [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender) oggetto direttamente da hello [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) istanza di:
 
 ```csharp
 MessageSender sender = factory.CreateMessageSender("DataCollectionTopic");
@@ -98,9 +98,9 @@ sender.Send(bm);
 ```
 
 ### <a name="receive-messages-from-a-subscription"></a>Ricevere messaggi da una sottoscrizione
-Similmente a quanto accade con l'uso delle code, per ricevere messaggi da una sottoscrizione, è possibile usare un oggetto [MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver) che si crea direttamente da [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) tramite [CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_). È possibile usare una delle due diverse modalità di ricezione, **ReceiveAndDelete** e **PeekLock**, come illustrato in [Creare applicazioni che usano le code del bus di servizio](service-bus-create-queues.md).
+Le code di toousing simile, tooreceive messaggi da una sottoscrizione è possibile utilizzare un [MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver) oggetto creato direttamente tramite hello [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) utilizzando [ CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_). È possibile utilizzare uno di hello due diverse modalità di ricezione (**ReceiveAndDelete** e **PeekLock**), come illustrato in [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md).
 
-Si noti che, quando si crea un oggetto **MessageReceiver** per le sottoscrizioni, il parametro *entityPath* segue il formato `topicPath/subscriptions/subscriptionName`. Per creare quindi un oggetto **MessageReceiver** per la sottoscrizione **Inventory** dell'argomento **DataCollectionTopic**, *entityPath* deve essere impostato su `DataCollectionTopic/subscriptions/Inventory`. Il codice viene visualizzato come segue:
+Si noti che quando si crea un **MessageReceiver** per le sottoscrizioni, hello *entityPath* parametro è formato hello `topicPath/subscriptions/subscriptionName`. Pertanto, toocreate un **MessageReceiver** per hello **inventario** sottoscrizione di hello **DataCollectionTopic** argomento *entityPath*deve essere impostato troppo`DataCollectionTopic/subscriptions/Inventory`. codice Hello visualizzato come segue:
 
 ```csharp
 MessageReceiver receiver = factory.CreateMessageReceiver("DataCollectionTopic/subscriptions/Inventory");
@@ -117,30 +117,30 @@ catch (Exception e)
 ```
 
 ## <a name="subscription-filters"></a>Filtri di sottoscrizione
-Finora, in questo scenario tutti i messaggi inviati all'argomento sono resi disponibili per tutte le sottoscrizioni registrate. La frase chiave è "reso disponibile." Mentre nelle sottoscrizioni del bus di servizio tutti i messaggi vengono inviati all'argomento, l'utente può copiare solo un subset di tali messaggi nella coda virtuale delle sottoscrizioni. Questa operazione viene eseguita usando i *filtri* della sottoscrizione. Quando si crea una sottoscrizione, è possibile definire un'espressione di filtro sotto forma di predicato di stile SQL92 che usa le proprietà del messaggio, ovvero le proprietà di sistema, ad esempio [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label), e le proprietà dell'applicazione, ad esempio **StoreName** nell'esempio precedente.
+Finora, in questo scenario tutti i messaggi inviati argomento toohello vengono effettuati le sottoscrizioni disponibili tooall registrato. di seguito frase chiave Hello "diventa disponibile." Mentre le sottoscrizioni del Bus di servizio vedere tutti i messaggi inviati toohello argomento, è possibile copiare solo un subset della coda di sottoscrizione virtuale toohello tali messaggi. Questa operazione viene eseguita usando i *filtri* della sottoscrizione. Quando si crea una sottoscrizione, è possibile fornire un'espressione di filtro sotto forma di hello di un predicato di tipo SQL92 opera sulle proprietà del messaggio hello di hello, entrambi hello le proprietà di sistema (ad esempio, [etichetta](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) e un'applicazione hello proprietà, ad esempio **StoreName** nell'esempio precedente hello.
 
-Nell’evoluzione dello scenario per illustrare questo concetto, un secondo archivio deve essere aggiunto a questo scenario di vendita al dettaglio. I dati di vendita da tutti i terminali POS da entrambi gli archivi devono essere instradati al sistema di gestione centralizzato dell'inventario, ma un gestore dell'archivio che utilizza lo strumento dashboard è solo interessato sulle prestazioni di tale archivio. È possibile usare i filtri della sottoscrizione per ottenere questo risultato. Si noti che quando i terminali POS pubblicano messaggi, impostano anche la proprietà di applicazione **StoreName** nel messaggio. Ad esempio, in due archivi denominati **Redmond** e **Seattle**, i terminali POS dell'archivio di Redmond contrassegnano i messaggi di dati di vendita con uno **StoreName** uguale a **Redmond**, mentre i terminali POS dell'archivio di Seattle usano uno **StoreName** uguale a **Seattle**. Il gestore dell'archivio di Redmond desidera solo visualizzare i dati dai propri terminali POS. Il sistema viene visualizzato come segue:
+Evoluzione hello scenario tooillustrate questo, un secondo negozio è uno scenario di vendita al dettaglio tooour aggiunto toobe. Sistema di gestione inventario toohello centralizzata toobe indirizzato ancora su dati di vendita da tutti i terminali hello POS da entrambi gli archivi, ma un gestore dell'archivio utilizzando lo strumento dashboard hello è solo interessato prestazioni hello dell'archivio. È possibile utilizzare filtri tooachieve questa sottoscrizione. Si noti che quando i terminali hello POS pubblicano i messaggi, impostano hello **StoreName** proprietà applicazione messaggio hello. Ha due archivi, ad esempio **Redmond** e **Seattle**, i terminali hello POS hello Redmond archiviano i dati di vendita messaggi con timestamp un **StoreName** uguale troppo **Redmond**, mentre hello Seattle archivio utilizzare terminali POS un **StoreName** uguale troppo**Seattle**. gestore del negozio di Redmond archiviare solo hello Hello vuole toosee dati dal relativo terminali di punti vendita. sistema Hello visualizzato come segue:
 
 ![Servizio Bus4](./media/service-bus-create-topics-subscriptions/IC657167.gif)
 
-Per configurare questo routing, si crea la sottoscrizione **Dashboard** come segue:
+tooset di questo ciclo, si crea hello **Dashboard** sottoscrizione come indicato di seguito:
 
 ```csharp
 SqlFilter dashboardFilter = new SqlFilter("StoreName = 'Redmond'");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboardFilter);
 ```
 
-Con questo [filtro della sottoscrizione](/dotnet/api/microsoft.servicebus.messaging.sqlfilter), solo i messaggi con la proprietà **StoreName** impostata su **Redmond** vengono copiati nella coda virtuale per la sottoscrizione **Dashboard**. Tuttavia, i filtri della sottoscrizione presentano molti altri vantaggi. Le applicazioni possono avere più regole di filtro per ogni sottoscrizione oltre alla possibilità di modificare le proprietà di un messaggio quando passa alla coda virtuale di una sottoscrizione.
+Con questo [filtro di sottoscrizione](/dotnet/api/microsoft.servicebus.messaging.sqlfilter), solo i messaggi hello **StoreName** impostata troppo**Redmond** saranno copiati toohello coda virtuale hello **Dashboard** sottoscrizione. È molto più toosubscription tuttavia il filtro. Le applicazioni possono avere più regole di filtro per ogni sottoscrizione nelle proprietà hello toomodify delle possibilità di toohello di aggiunta di un messaggio quando viene posizionato coda virtuale tooa della sottoscrizione.
 
 ## <a name="summary"></a>Riepilogo
-Tutti i motivi per usare l'accodamento descritti in [Creare applicazioni che usano code del bus di servizio](service-bus-create-queues.md) sono validi anche per gli argomenti, in particolare:
+Tutti di hello motivi toouse Accodamento descritti nel [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md) si applicano anche tootopics, in particolare:
 
-* Disaccoppiamento temporale - producer e consumer del messaggio non devono necessariamente essere online contemporaneamente.
-* Livellamento del carico: i picchi di carico vengono livellati dall'argomento consentendo l'utilizzo di applicazioni di cui effettuare il provisioning per il carico medio invece che per il picco di carico.
-* Bilanciamento del carico: come con una coda, è possibile avere più consumer concorrenti in ascolto su una singola sottoscrizione, con ogni messaggio passato a uno solo dei consumer, ottenendo così il bilanciamento del carico.
-* Regime di controllo libero: è possibile evolvere la rete di messaggistica senza influire sugli endpoint esistenti, ad esempio, aggiungendo sottoscrizioni o modificando i filtri per un argomento per consentire nuovi consumer.
+* Disaccoppiamento temporale: messaggio producer e consumer non è in linea toobe in hello contemporaneamente.
+* Livellamento del carico: i picchi di carico vengono smussati dall'argomento di hello abilitando il provisioning per un carico medio anziché il carico massimo dispendiosa in termini di toobe di applicazioni.
+* Bilanciamento del carico: coda tooa simili, è possibile disporre di più consumer concorrenti in attesa su una singola sottoscrizione, con ogni messaggio passato tooonly consumer hello, in tal modo il bilanciamento del carico.
+* Regime di controllo: è possibile sviluppare hello messaggistica rete senza influire sull'endpoint esistente. ad esempio, l'aggiunta di sottoscrizioni o modificando i filtri tooa argomento tooallow di nuovi consumer.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Vedere [Creare applicazioni che usano le code del bus di servizio](service-bus-create-queues.md) per informazioni su come usare le code nello scenario di vendita al dettaglio POS.
+Vedere [creare applicazioni che utilizzano le code del Bus di servizio](service-bus-create-queues.md) per informazioni su come toouse code in uno scenario di vendita al dettaglio hello POS.
 

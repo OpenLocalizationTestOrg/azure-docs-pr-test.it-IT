@@ -1,6 +1,6 @@
 ---
-title: Usare .NET SDK per sviluppare applicazioni in Azure Data Lake Store | Documentazione Microsoft
-description: Usare .NET SDK con Azure Data Lake Store per creare un account Data Lake Store ed eseguire le relative operazioni di base
+title: applicazioni di toodevelop aaaUse hello .NET SDK in archivio Azure Data Lake | Documenti Microsoft
+description: Utilizzare SDK .NET di Azure Data Lake archivio toocreate un account archivio Data Lake ed eseguire operazioni di base in hello archivio Data Lake
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: nitinme
-ms.openlocfilehash: 70f94a07b0102e3135eaf85e5877e3502762d7e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cb3a1dfb2f6379f728069d66b0ee77ce0f838fe7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-net-sdk"></a>Introduzione ad Azure Data Lake Store con .NET SDK
 > [!div class="op_single_selector"]
@@ -33,40 +33,40 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Informazioni su come usare [Azure Data Lake Store .NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet) per eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare file di dati e così via. Per altre informazioni su Data Lake, vedere [Azure Data Lake Store](data-lake-store-overview.md).
+Informazioni su come hello toouse [Azure Data Lake archivio .NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet) tooperform operazioni di base, ad esempio, creare cartelle, caricare e scaricare i file di dati e così via. Per altre informazioni su Data Lake, vedere [Azure Data Lake Store](data-lake-store-overview.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-* **Visual Studio 2013, 2015 o 2017**. Le istruzioni seguenti fanno riferimento a Visual Studio 2015 Update 2.
+* **Visual Studio 2013, 2015 o 2017**. istruzioni di Hello seguente si usa Visual Studio 2015 Update 2.
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
 
-* **Account di Archivio Data Lake di Azure**. Per istruzioni su come creare un account, vedere [Introduzione ad Azure Data Lake Store tramite il portale di Azure](data-lake-store-get-started-portal.md)
+* **Account di Archivio Data Lake di Azure**. Per istruzioni su come toocreate un account, vedere [introduzione archivio Azure Data Lake](data-lake-store-get-started-portal.md)
 
-* **Creare un'applicazione di Azure Active Directory**. Usare l'applicazione Azure AD per autenticare l'applicazione Data Lake Store con Azure AD. Per l'autenticazione con Azure AD è possibile usare l'**autenticazione dell'utente finale** o l'**autenticazione da servizio a servizio**. Per altre informazioni e istruzioni su come eseguire l'autenticazione, vedere [Autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [Autenticazione da servizio a servizio](data-lake-store-authenticate-using-active-directory.md).
+* **Creare un'applicazione di Azure Active Directory**. Utilizzare un'applicazione hello Azure AD applicazione tooauthenticate hello archivio Data Lake con Azure AD. Esistono diversi approcci tooauthenticate con Azure AD, che sono **autenticazione dell'utente finale** o **authentication service to service**. Per istruzioni e ulteriori informazioni su come tooauthenticate, vedere [autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [authentication Service to service](data-lake-store-authenticate-using-active-directory.md).
 
 ## <a name="create-a-net-application"></a>Creare un'applicazione .NET
 1. Aprire Visual Studio e creare un'applicazione console.
-2. Scegliere **Nuovo** dal menu **File** e quindi fare clic su **Progetto**.
-3. In **Nuovo progetto**digitare o selezionare i valori seguenti:
+2. Da hello **File** menu, fare clic su **New**, quindi fare clic su **progetto**.
+3. Da **nuovo progetto**digitare o selezionare hello seguenti valori:
 
    | Proprietà | Valore |
    | --- | --- |
    | Categoria |Templates/Visual C#/Windows |
    | Modello |Applicazione console |
    | Nome |CreateADLApplication |
-4. Fare clic su **OK** per creare il progetto.
-5. Aggiungere i pacchetti NuGet al progetto.
+4. Fare clic su **OK** progetto hello toocreate.
+5. Aggiungere hello Nuget pacchetti tooyour progetto.
 
-   1. Fare clic con il pulsante destro del mouse sul nome del progetto in Esplora soluzioni e scegliere **Gestisci pacchetti NuGet**.
-   2. Nella scheda **Gestione pacchetti NuGet** verificare che l'opzione **Origine pacchetto** sia impostata su **nuget.org** e che la casella di controllo **Includi versione preliminare** sia selezionata.
-   3. Cercare e installare i pacchetti NuGet seguenti:
+   1. Nome del progetto in Esplora soluzioni hello hello destro e fare clic su **Gestisci pacchetti NuGet**.
+   2. In hello **Gestione pacchetti Nuget** scheda, assicurarsi che **origine pacchetto** è troppo**nuget.org** e che **Includi versione preliminare** casella di controllo viene selezionato.
+   3. Cercare e installare i seguenti pacchetti NuGet hello:
 
       * `Microsoft.Azure.Management.DataLake.Store` - Questa esercitazione usa v2.1.3-preview.
       * `Microsoft.Rest.ClientRuntime.Azure.Authentication` - Questa esercitazione usa la versione 2.2.12.
 
         ![Aggiungere un'origine Nuget](./media/data-lake-store-get-started-net-sdk/data-lake-store-install-nuget-package.png "Creare un nuovo account di Azure Data Lake")
-   4. Chiudere la finestra **Gestione pacchetti NuGet**.
-6. Aprire **Program.cs**, eliminare il codice esistente e quindi includere le istruzioni seguenti per aggiungere riferimenti agli spazi dei nomi.
+   4. Chiude hello **Gestione pacchetti Nuget**.
+6. Aprire **Program.cs**, eliminare il codice esistente hello e quindi includere hello seguendo le istruzioni tooadd riferimenti toonamespaces.
 
         using System;
         using System.IO;
@@ -78,7 +78,7 @@ Informazioni su come usare [Azure Data Lake Store .NET SDK](https://docs.microso
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
         using Microsoft.Rest.Azure.Authentication;
 
-7. Dichiarare le variabili come illustrato di seguito e specificare i valori per il nome di Data Lake Store e il nome del gruppo di risorse già esistenti. Assicurarsi anche che il nome file e percorso locale forniti esistano già nel computer. Aggiungere il frammento di codice seguente dopo le dichiarazioni dello spazio dei nomi.
+7. Dichiarare le variabili di hello come illustrato di seguito e fornire i valori hello per nome di archivio Data Lake e nome di gruppo di risorse hello che esiste già. Assicurarsi inoltre che deve essere presente nel computer di hello hello percorso e il nome locale che qui. Aggiungere hello seguente frammento di codice dopo le dichiarazioni dello spazio dei nomi di hello.
 
         namespace SdkSample
         {
@@ -94,8 +94,8 @@ Informazioni su come usare [Azure Data Lake Store .NET SDK](https://docs.microso
 
                 private static void Main(string[] args)
                 {
-                    _adlsAccountName = "<DATA-LAKE-STORE-NAME>"; // TODO: Replace this value with the name of your existing Data Lake Store account.
-                    _resourceGroupName = "<RESOURCE-GROUP-NAME>"; // TODO: Replace this value with the name of the resource group containing your Data Lake Store account.
+                    _adlsAccountName = "<DATA-LAKE-STORE-NAME>"; // TODO: Replace this value with hello name of your existing Data Lake Store account.
+                    _resourceGroupName = "<RESOURCE-GROUP-NAME>"; // TODO: Replace this value with hello name of hello resource group containing your Data Lake Store account.
                     _location = "East US 2";
                     _subId = "<SUBSCRIPTION-ID>";
 
@@ -107,34 +107,34 @@ Informazioni su come usare [Azure Data Lake Store .NET SDK](https://docs.microso
             }
         }
 
-Nelle sezioni rimanenti dell'articolo è possibile vedere come usare i metodi .NET disponibili per eseguire operazioni come autenticazione, caricamento di file e così via.
+In hello rimanenti sezioni dell'articolo hello, è possibile visualizzare come toouse hello .NET metodi tooperform le operazioni disponibili, ad esempio l'autenticazione, il caricamento di file e così via.
 
 ## <a name="authentication"></a>Autenticazione
 
 ### <a name="if-you-are-using-end-user-authentication-recommended-for-this-tutorial"></a>Se si usa l'autenticazione dell'utente finale (consigliata per questa esercitazione)
 
-Usare questo codice con un'applicazione nativa esistente di Azure AD per autenticare l'applicazione **in modo interattivo**, ovvero con la richiesta di immettere le credenziali di Azure.
+Utilizzare con un'applicazione nativa tooauthenticate di esistente AD Azure, l'applicazione **in modo interattivo**, che significa che sarà richiesto tooenter le credenziali di Azure.
 
-Per semplicità, il frammento seguente usa valori predefiniti per ID client e URI di reindirizzamento, funzionanti con qualsiasi sottoscrizione di Azure. Per completare più rapidamente questa esercitazione, è consigliabile adottare questo approccio. Nel frammento seguente specificare semplicemente il valore per l'ID del tenant. È possibile recuperarlo usando le istruzioni disponibili in [Creare un'applicazione di Active Directory](data-lake-store-end-user-authenticate-using-active-directory.md).
+Per semplicità, frammento hello seguente utilizza valori predefiniti per ID client e reindirizzamento URI che funzioneranno con qualsiasi sottoscrizione di Azure. toohelp aver completato questa esercitazione più velocemente, è consigliabile che utilizzare questo approccio. Nel seguente frammento di hello, è sufficiente fornire il valore di hello per l'ID del tenant. È possibile recuperare tramite istruzioni hello disponibili all'indirizzo [creare un'applicazione di Active Directory](data-lake-store-end-user-authenticate-using-active-directory.md).
 
     // User login via interactive popup
-    // Use the client ID of an existing AAD Web application.
+    // Use hello client ID of an existing AAD Web application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
-    var tenant_id = "<AAD_tenant_id>"; // Replace this string with the user's Azure Active Directory tenant ID
+    var tenant_id = "<AAD_tenant_id>"; // Replace this string with hello user's Azure Active Directory tenant ID
     var nativeClientApp_clientId = "1950a258-227b-4e31-a9cf-717495945fc2";
     var activeDirectoryClientSettings = ActiveDirectoryClientSettings.UsePromptOnly(nativeClientApp_clientId, new Uri("urn:ietf:wg:oauth:2.0:oob"));
     var creds = UserTokenProvider.LoginWithPromptAsync(tenant_id, activeDirectoryClientSettings).Result;
 
-Informazioni utili sul frammento di codice precedente:
+Un paio di aspetti tooknow su questo frammento di codice precedente:
 
-* Per completare più rapidamente l'esercitazione, questo frammento di codice usa un dominio di Azure AD e un ID client disponibili per impostazione predefinita per tutte le sottoscrizioni di Azure. È quindi possibile **usare questo frammento così com'è nell'applicazione**.
-* Se, tuttavia, si vuole usare il proprio dominio di Azure AD e il proprio ID client dell'applicazione, è necessario creare un'applicazione nativa di Azure AD e quindi usare l'ID tenant di Azure AD, l'ID client e l'URI di reindirizzamento per l'applicazione creata. Per istruzioni, vedere [Autenticazione dell'utente finale con Data Lake Store tramite Azure Active Directory](data-lake-store-end-user-authenticate-using-active-directory.md).
+* Questo frammento di codice toohelp completare l'esercitazione hello più velocemente, utilizza una Azure Active Directory ID client e di dominio che è disponibile per impostazione predefinita per tutte le sottoscrizioni di Azure. È quindi possibile **usare questo frammento così com'è nell'applicazione**.
+* Tuttavia, se desidera toouse il proprio dominio di Azure AD e ID client dell'applicazione, è necessario creare un'applicazione nativa AD Azure e quindi utilizzare hello Azure AD tenant ID, ID client e URI di reindirizzamento per un'applicazione hello è stato creato. Per istruzioni, vedere [Autenticazione dell'utente finale con Data Lake Store tramite Azure Active Directory](data-lake-store-end-user-authenticate-using-active-directory.md).
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-client-secret"></a>Se si usa l'autenticazione da servizio a servizio con il segreto client
-Il frammento di codice seguente può essere usato per autenticare l'applicazione in modo **non interattivo**, usando il segreto client, la chiave per un'applicazione o un'entità servizio. Usare il frammento con una "app Web" di Azure AD esistente. Per istruzioni su come creare l'applicazione Web di Azure AD e come recuperare l'ID client e il segreto client richiesti nel frammento di codice seguente, vedere [Autenticazione dell'utente finale con Data Lake Store tramite Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
+Hello seguente frammento di codice può essere utilizzato tooauthenticate applicazione **in modo non interattivo**, utilizzando la chiave privata client hello / chiave per un'entità servizio / dell'applicazione. Usare il frammento con una "app Web" di Azure AD esistente. Per istruzioni su come visualizzare un'applicazione web toocreate hello Azure AD e come tooretrieve hello client ID e segreto client richiesto nel seguente frammento di hello [creare applicazione Active Directory per l'autenticazione al servizio dati Archivio Lake](data-lake-store-authenticate-using-active-directory.md).
 
     // Service principal / appplication authentication with client secret / key
-    // Use the client ID of an existing AAD "Web App" application.
+    // Use hello client ID of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
 
     var domain = "<AAD-directory-domain>";
@@ -145,10 +145,10 @@ Il frammento di codice seguente può essere usato per autenticare l'applicazione
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>Se si usa l'autenticazione da servizio a servizio con il certificato
 
-Come terza opzione, il frammento seguente può essere usato per autenticare l'applicazione in modo **non interattivo**, usando il certificato per un'applicazione di Azure Active Directory o un'entità servizio. Usare il frammento con un'[applicazione di Azure AD con certificati](../azure-resource-manager/resource-group-authenticate-service-principal.md) esistente.
+Come una terza opzione, hello seguente frammento di codice può essere utilizzato tooauthenticate applicazione **in modo non interattivo**, per un'applicazione Azure Active Directory utilizza certificato hello / entità di servizio. Usare il frammento con un'[applicazione di Azure AD con certificati](../azure-resource-manager/resource-group-authenticate-service-principal.md) esistente.
 
     // Service principal / application authentication with certificate
-    // Use the client ID and certificate of an existing AAD "Web App" application.
+    // Use hello client ID and certificate of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
 
     var domain = "<AAD-directory-domain>";
@@ -158,16 +158,16 @@ Come terza opzione, il frammento seguente può essere usato per autenticare l'ap
     var creds = await ApplicationTokenProvider.LoginSilentWithCertificateAsync(domain, clientAssertionCertificate);
 
 ## <a name="create-client-objects"></a>Creare oggetti client
-Il frammento seguente crea gli account Data Lake Store e gli oggetti client del file system, usati per inviare richieste al servizio.
+Hello frammento di codice seguente crea account archivio Data Lake hello e filesystem oggetti client, che vengono utilizzati tooissue richiede toohello servizio.
 
-    // Create client objects and set the subscription ID
+    // Create client objects and set hello subscription ID
     _adlsClient = new DataLakeStoreAccountManagementClient(creds) { SubscriptionId = _subId };
     _adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(creds);
 
 ## <a name="list-all-data-lake-store-accounts-within-a-subscription"></a>Elencare tutti gli account Data Lake Store all'interno di una sottoscrizione
-Il frammento seguente elenca tutti gli account Data Lake Store all'interno di una determinata sottoscrizione di Azure.
+Hello frammento di codice seguente sono elencati tutti gli account archivio Data Lake all'interno di una specifica sottoscrizione di Azure.
 
-    // List all ADLS accounts within the subscription
+    // List all ADLS accounts within hello subscription
     public static async Task<List<DataLakeStoreAccount>> ListAdlStoreAccounts()
     {
         var response = await _adlsClient.Account.ListAsync();
@@ -183,7 +183,7 @@ Il frammento seguente elenca tutti gli account Data Lake Store all'interno di un
     }
 
 ## <a name="create-a-directory"></a>Creare una directory
-Il frammento seguente illustra il metodo `CreateDirectory` che è possibile usare per creare una directory in un account Data Lake Store.
+Hello seguente mostra un `CreateDirectory` metodo che è possibile utilizzare una directory all'interno di un account archivio Data Lake toocreate.
 
     // Create a directory
     public static async Task CreateDirectory(string path)
@@ -192,7 +192,7 @@ Il frammento seguente illustra il metodo `CreateDirectory` che è possibile usar
     }
 
 ## <a name="upload-a-file"></a>Caricare un file
-Il frammento seguente illustra il metodo `UploadFile` che è possibile usare per caricare file in un account Data Lake Store.
+Hello seguente mostra un `UploadFile` metodo che è possibile utilizzare tooupload file account archivio Data Lake tooa.
 
     // Upload a file
     public static void UploadFile(string srcFilePath, string destFilePath, bool force = true)
@@ -200,10 +200,10 @@ Il frammento seguente illustra il metodo `UploadFile` che è possibile usare per
         _adlsFileSystemClient.FileSystem.UploadFile(_adlsAccountName, srcFilePath, destFilePath, overwrite:force);
     }
 
-L'SDK supporta il caricamento e il download ricorsivi tra un percorso di file locale e un percorso di file Data Lake Store.    
+Hello SDK supporta ricorsiva caricamento e download tra un percorso file locale e un percorso di file di archivio Data Lake.    
 
 ## <a name="get-file-or-directory-info"></a>Ottenere informazioni su un file o una directory
-Il frammento seguente illustra il metodo `GetItemInfo` che è possibile usare per recuperare informazioni su un file o una directory disponibile in Data Lake Store.
+Hello seguente mostra un `GetItemInfo` metodo che è possibile utilizzare un file o directory disponibili tooretrieve informazioni nell'archivio Data Lake.
 
     // Get file or directory info
     public static async Task<FileStatusProperties> GetItemInfo(string path)
@@ -212,7 +212,7 @@ Il frammento seguente illustra il metodo `GetItemInfo` che è possibile usare pe
     }
 
 ## <a name="list-file-or-directories"></a>Elencare file o directory
-Il frammento seguente illustra il metodo `ListItem` che è possibile usare per elencare il file e le directory in un account Data Lake Store.
+Hello seguente mostra un `ListItem` metodo che è possibile utilizzare toolist hello file e directory in un account archivio Data Lake.
 
     // List files and directories
     public static List<FileStatusProperties> ListItems(string directoryPath)
@@ -221,7 +221,7 @@ Il frammento seguente illustra il metodo `ListItem` che è possibile usare per e
     }
 
 ## <a name="concatenate-files"></a>Concatenare file
-Il frammento seguente illustra il metodo `ConcatenateFiles` da usare per concatenare file.
+Hello seguente mostra un `ConcatenateFiles` metodo utilizzare file tooconcatenate.
 
     // Concatenate files
     public static Task ConcatenateFiles(string[] srcFilePaths, string destFilePath)
@@ -229,10 +229,10 @@ Il frammento seguente illustra il metodo `ConcatenateFiles` da usare per concate
         await _adlsFileSystemClient.FileSystem.ConcatAsync(_adlsAccountName, destFilePath, srcFilePaths);
     }
 
-## <a name="append-to-a-file"></a>Aggiungere a un file
-Il frammento seguente illustra il metodo `AppendToFile` da usare per aggiungere dati a un file già archiviato in un account Data Lake Store.
+## <a name="append-tooa-file"></a>Aggiungere file tooa
+Hello seguente mostra un `AppendToFile` metodo da utilizzare accodare il file di tooa dati già archiviati in un account archivio Data Lake.
 
-    // Append to file
+    // Append toofile
     public static async Task AppendToFile(string path, string content)
     {
         using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
@@ -242,7 +242,7 @@ Il frammento seguente illustra il metodo `AppendToFile` da usare per aggiungere 
     }
 
 ## <a name="download-a-file"></a>Scaricare un file
-Il frammento seguente illustra il metodo `DownloadFile` da usare per scaricare un file da un account Data Lake Store.
+Hello seguente mostra un `DownloadFile` metodo utilizzare toodownload un file da un account archivio Data Lake.
 
     // Download file
     public static void DownloadFile(string srcFilePath, string destFilePath)

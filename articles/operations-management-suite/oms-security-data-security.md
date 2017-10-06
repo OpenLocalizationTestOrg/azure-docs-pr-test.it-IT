@@ -1,5 +1,5 @@
 ---
-title: Sicurezza dei dati della soluzione Sicurezza e controllo di Operations Management Suite | Documentazione Microsoft
+title: aaaOperations gestione gruppo di sicurezza e protezione dei dati di controllo soluzione | Documenti Microsoft
 description: Questo documento illustra il modo in cui i dati vengono gestiti e protetti nella soluzione Sicurezza e controllo di Operations Management Suite.
 services: operations-management-suite
 documentationcenter: na
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: yurid
-ms.openlocfilehash: 3b6327b1f5150f32afd71639f32c55d823f1d1f0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c4181b3b491e4f7f0c57d7252eca78a819722d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operations-management-suite-security-and-audit-solution-data-security"></a>Sicurezza dei dati della soluzione Sicurezza e controllo di Operations Management Suite
-Per aiutare i clienti a evitare, rilevare e rispondere alle minacce, la [Soluzione Sicurezza e controllo di Operations Management Suite (OMS)](operations-management-suite-overview.md) raccoglie ed elabora i dati sulle risorse, tra cui:
+i clienti toohelp impedire, rilevare e rispondere toothreats, [soluzione di controllo e protezione di Operations Management Suite (OMS)](operations-management-suite-overview.md) raccoglie ed elabora i dati sulle risorse, che includono:
 
 * Registri eventi sicurezza
 * Tracciamento degli eventi di Windows (ETW)
@@ -32,30 +32,30 @@ Per aiutare i clienti a evitare, rilevare e rispondere alle minacce, la [Soluzio
 * Risultati della valutazione baseline
 * Risultati di Antimalware Assessment
 * Risultati della valutazione di aggiornamenti/patch
-* Flussi di Syslog abilitati esplicitamente nell'agente
+* Flussi i registri di sistema che sono abilitati in modo esplicito sull'agente hello
 
-Microsoft è fortemente impegnata nella protezione della privacy e della sicurezza dei dati. Microsoft è conforme alle più rigorose linee guida sulla sicurezza e sulla conformità in tutte le fasi, dalla codifica all'esecuzione di un servizio.
+Rendiamo impegni sicuro tooprotect hello privacy e protezione dei dati. Microsoft aderisce toostrict linee guida di conformità e sicurezza, dalla codifica toooperating un servizio.
 Questo articolo illustra il modo in cui i dati vengono gestiti e protetti nella soluzione Sicurezza e controllo di OMS.
 
 ## <a name="data-sources"></a>Origini dati
-La soluzione Sicurezza e controllo di OMS analizza i dati provenienti dalle macchine virtuali e dai computer fisici in cui è installato l'agente OMS. La soluzione Sicurezza e controllo di OMS può raccogliere informazioni di configurazione sugli eventi di sicurezza, ad esempio gli eventi Windows, i log di controllo, i log di IIS e i messaggi syslog. Esempi di tali dati sono: tipo e versione del sistema operativo, processi in esecuzione, nome computer, indirizzi IP, utente connesso e ID tenant.  
+Soluzione di controllo e sicurezza OMS analizzare i dati dalle macchine virtuali e i computer fisici in cui è installato l'agente OMS hello. La soluzione Sicurezza e controllo di OMS può raccogliere informazioni di configurazione sugli eventi di sicurezza, ad esempio gli eventi Windows, i log di controllo, i log di IIS e i messaggi syslog. Esempi di tali dati sono: tipo e versione del sistema operativo, processi in esecuzione, nome computer, indirizzi IP, utente connesso e ID tenant.  
 
 ## <a name="data-protection"></a>Protezione dati
-**Separazione dei dati:**i dati vengono mantenuti separati logicamente in ogni componente del servizio. Tutti i dati vengono contrassegnati in base all'organizzazione. Tale contrassegno persiste per tutto il ciclo di vita dei dati e viene applicato a ogni livello del servizio. 
+**La separazione dei dati**: dati vengono mantenuti separati logicamente in ogni componente servizio hello. Tutti i dati vengono contrassegnati in base all'organizzazione. Tale contrassegno persiste per tutto hello del ciclo di vita dei dati e viene applicato a ogni livello del servizio hello. 
 
-**Accesso ai dati**: per fornire raccomandazioni sulla sicurezza e analizzare le potenziali minacce alla sicurezza, il personale Microsoft può accedere alle informazioni raccolte o analizzate dai servizi, inclusi i file di dump di arresto anomalo del sistema. Microsoft rispetta le [condizioni di Microsoft Online Services](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31) e l'[Informativa sulla privacy](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx), in cui è specificato che Microsoft non userà i dati del cliente o ne ricaverà informazioni per scopi pubblicitari o commerciali simili. Per fornire raccomandazioni sulla sicurezza e analizzare le potenziali minacce alla sicurezza, il personale Microsoft può accedere alle informazioni raccolte o analizzate dai servizi, inclusi i file di dump di arresto anomalo del sistema. Microsoft userà i dati dei clienti solo se necessari per fornire i servizi di Azure, incluse le finalità compatibili con la fornitura di tali servizi. L'utente mantiene tutti i diritti sui propri dati.
+**Accesso ai dati**: tooprovide consigli relativi alla sicurezza e provare a potenziali minacce alla sicurezza, personale Microsoft potrebbero accedere a informazioni raccolte o analizzati dai servizi. È conforme toohello [condizioni per i servizi Online Microsoft](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31) e [informativa sulla Privacy](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx), quale stato che Microsoft non utilizza i dati dei clienti o derivare da esso per annunci o simili a scopo commerciale. consigli sulla sicurezza tooprovide e analizzare potenziali minacce alla sicurezza, il personale di Microsoft possono accedere a informazioni raccolte o analizzati dai servizi. Utilizziamo solo i dati dei clienti come tooprovide necessari con Azure servizi, inclusi motivi compatibile con tali servizi. Mantenere tutti i dati personalizzati tooyour diritti.
 
-**Uso dei dati**: Microsoft usa modelli e intelligence per le minacce trovati in più tenant per migliorare le funzionalità di prevenzione e rilevamento, in base alle garanzie relative alla privacy descritte nell'[Informativa sulla privacy](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx).
+**Utilizzo di dati**: Microsoft utilizza i modelli e sulle minacce visualizzata in più tenant tooenhance la funzionalità di rilevamento e prevenzione; avviene in conformità con impegni di privacy hello descritto in questo [sulla Privacy Istruzione](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx).
 
 > [!NOTE]
-> La posizione dei dati viene configurata a livello di area di lavoro di OMS, durante la creazione dell'area di lavoro, che fa parte del processo di configurazione iniziale della soluzione Sicurezza e controllo di OMS.
+> Percorso dei dati è configurata a livello di area di lavoro OMS hello, durante la creazione dell'area di lavoro hello, che fa parte del processo configurazione OMS Security and Audit iniziale hello.
 > 
 > 
 
 ## <a name="see-also"></a>Vedere anche
-Questo documento illustra in che modo vengono gestiti e protetti i dati in OMS. Per altre informazioni sulla soluzione Sicurezza e controllo di OMS, vedere:
+Questo documento illustra in che modo vengono gestiti e protetti i dati in OMS. toolearn ulteriori informazioni su sicurezza OMS e la soluzione di controllo, vedere:
 
 * [Panoramica di Operations Management Suite (OMS)](operations-management-suite-overview.md)
-* [Monitoraggio e gestione degli avvisi di sicurezza nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-responding-alerts.md)
+* [Monitoraggio e risposta tooSecurity avvisi nella soluzione di controllo e protezione di Operations Management Suite](oms-security-responding-alerts.md)
 * [Monitoraggio delle risorse nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-monitoring-resources.md)
 

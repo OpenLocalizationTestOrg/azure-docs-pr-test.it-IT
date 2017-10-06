@@ -1,6 +1,6 @@
 ---
-title: Avvio rapido in Azure - Creare VM Windows con PowerShell | Documentazione Microsoft
-description: Informazioni veloci su come creare una macchina virtuale Windows con PowerShell
+title: Avvio rapido - aaaAzure creare PowerShell VM di Windows | Documenti Microsoft
+description: Apprendere toocreate una macchina virtuale di Windows con PowerShell
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: neilpeterson
@@ -16,23 +16,23 @@ ms.workload: infrastructure
 ms.date: 05/02/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 8516cfa2272694496eb353a83eca77c13a516750
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5e92435bf7ee443a01c158fed91c356363e2f425
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-with-powershell"></a>Creare una macchina virtuale Windows con PowerShell
 
-Il modulo Azure PowerShell viene usato per creare e gestire le risorse di Azure dalla riga di comando di PowerShell o negli script. Questa guida descrive dettagliatamente l'uso di PowerShell per creare una macchina virtuale di Azure che esegue Windows Server 2016. Al termine della distribuzione, viene eseguita la connessione al server e viene installato IIS.  
+modulo di Azure PowerShell Hello è toocreate utilizzato e gestire risorse di Azure dalla riga di comando di PowerShell hello o negli script. Questa guida descrive l'utilizzo di PowerShell toocreate e macchina virtuale di Azure che esegue Windows Server 2016. Una volta completata la distribuzione, è connettersi toohello server e installare IIS.  
 
 Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
 
-Questa guida introduttiva richiede il modulo Azure PowerShell 3.6 o versioni successive. Eseguire ` Get-Module -ListAvailable AzureRM` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere come [installare il modulo Azure PowerShell](/powershell/azure/install-azurerm-ps).
+Questa Guida introduttiva richiede hello Azure PowerShell versione 3.6 o versioni successive del modulo. Eseguire ` Get-Module -ListAvailable AzureRM` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [modulo installare Azure PowerShell](/powershell/azure/install-azurerm-ps).
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure
+## <a name="log-in-tooazure"></a>Accedi tooAzure
 
-Accedere alla sottoscrizione di Azure con il comando `Login-AzureRmAccount` e seguire le istruzioni visualizzate.
+Accedere alla sottoscrizione di Azure con hello tooyour `Login-AzureRmAccount` comando e seguire hello le direzioni.
 
 ```powershell
 Login-AzureRmAccount
@@ -49,7 +49,7 @@ New-AzureRmResourceGroup -Name myResourceGroup -Location EastUS
 ## <a name="create-networking-resources"></a>Creare risorse di rete
 
 ### <a name="create-a-virtual-network-subnet-and-a-public-ip-address"></a>Creare una rete virtuale, una subnet e un indirizzo IP pubblico. 
-Queste risorse vengono usate per fornire la connettività di rete alla macchina virtuale e connetterla a Internet.
+Queste risorse sono la macchina virtuale utilizzati tooprovide rete connettività toohello e connetterla toohello internet.
 
 ```powershell
 # Create a subnet configuration
@@ -65,7 +65,7 @@ $pip = New-AzureRmPublicIpAddress -ResourceGroupName myResourceGroup -Location E
 ```
 
 ### <a name="create-a-network-security-group-and-a-network-security-group-rule"></a>Creare un gruppo di sicurezza di rete e una regola del gruppo di sicurezza di rete. 
-Il gruppo di sicurezza di rete protegge la macchina virtuale usando le regole in entrata e in uscita. In questo caso viene creata una regola in entrata per la porta 3389 che consente connessioni desktop remoto in ingresso. È necessario anche creare una regola in ingresso per la porta 80, che consente il traffico Web in ingresso.
+gruppo di sicurezza di rete Hello protegge una macchina virtuale hello utilizzando le regole in entrata e in uscita. In questo caso viene creata una regola in entrata per la porta 3389 che consente connessioni desktop remoto in ingresso. È anche necessario toocreate una regola in entrata per la porta 80, che consente il traffico web in ingresso.
 
 ```powershell
 # Create an inbound network security group rule for port 3389
@@ -83,8 +83,8 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName myResourceGroup -Locat
     -Name myNetworkSecurityGroup -SecurityRules $nsgRuleRDP,$nsgRuleWeb
 ```
 
-### <a name="create-a-network-card-for-the-virtual-machine"></a>Creare una scheda di rete per la macchina virtuale. 
-Creare una scheda di rete con [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) per la macchina virtuale. La scheda di rete connette la macchina virtuale a una subnet, a un gruppo di sicurezza di rete e a un indirizzo IP pubblico.
+### <a name="create-a-network-card-for-hello-virtual-machine"></a>Creare una scheda di rete per la macchina virtuale hello. 
+Creare una scheda di rete con [New AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) per la macchina virtuale hello. scheda di rete Hello connette hello macchina virtuale tooa subnet, il gruppo di sicurezza di rete e indirizzo IP pubblico.
 
 ```powershell
 # Create a virtual network card and associate with public IP address and NSG
@@ -94,7 +94,7 @@ $nic = New-AzureRmNetworkInterface -Name myNic -ResourceGroupName myResourceGrou
 
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
 
-Creare una configurazione di macchina virtuale. Questa configurazione include le impostazioni utilizzate quando si distribuisce la macchina virtuale, ad esempio l'immagine della macchina virtuale, la dimensione e la configurazione di autenticazione. Quando si esegue questo passaggio vengono chieste le credenziali. I valori immessi sono configurati come nome utente e password per la macchina virtuale.
+Creare una configurazione di macchina virtuale. Questa configurazione include le impostazioni di hello utilizzate quando si distribuisce una macchina virtuale hello, ad esempio un'immagine, dimensioni e l'autenticazione di configurazione della macchina virtuale. Quando si esegue questo passaggio vengono chieste le credenziali. i valori Hello immesse siano configurati come nome utente hello e una password per la macchina virtuale hello.
 
 ```powershell
 # Define a credential object
@@ -107,23 +107,23 @@ $vmConfig = New-AzureRmVMConfig -VMName myVM -VMSize Standard_DS2 | `
     -Skus 2016-Datacenter -Version latest | Add-AzureRmVMNetworkInterface -Id $nic.Id
 ```
 
-Creare la macchina virtuale con [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).
+Creare una macchina virtuale hello con [New AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm).
 
 ```powershell
 New-AzureRmVM -ResourceGroupName myResourceGroup -Location EastUS -VM $vmConfig
 ```
 
-## <a name="connect-to-virtual-machine"></a>Connettersi alla macchina virtuale
+## <a name="connect-toovirtual-machine"></a>Connettere la macchina toovirtual
 
-Dopo aver completato la distribuzione, creare una connessione desktop remoto con la macchina virtuale.
+Una volta completata la distribuzione di hello, creare una connessione desktop remoto con la macchina virtuale hello.
 
-Usare il comando [Get-AzureRmPublicIpAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress) per ottenere l'indirizzo IP pubblico della macchina virtuale. Annotare questo indirizzo IP, in modo da potersi connettere ad esso con il browser per testare la connettività Web in un passaggio futuro.
+Hello utilizzare [Get AzureRmPublicIpAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress) comando tooreturn hello indirizzo IP pubblico della macchina virtuale hello. Prendere nota dell'indirizzo IP per la connessione tooit con la connettività di web browser tootest in un passaggio successivo.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName myResourceGroup | Select IpAddress
 ```
 
-Usare il comando seguente per creare una sessione desktop remoto con la macchina virtuale. Sostituire l'indirizzo IP con l'indirizzo *publicIPAddress* della macchina virtuale. Quando richiesto, immettere le credenziali utilizzate durante la creazione della macchina virtuale.
+Comando che segue di hello utilizzare toocreate una sessione desktop remota con la macchina virtuale hello. Sostituire l'indirizzo IP hello con hello *publicIPAddress* della macchina virtuale. Quando richiesto, immettere le credenziali di hello utilizzate durante la creazione di macchine virtuali hello.
 
 ```bash 
 mstsc /v:<publicIpAddress>
@@ -131,21 +131,21 @@ mstsc /v:<publicIpAddress>
 
 ## <a name="install-iis-via-powershell"></a>Installare IIS tramite PowerShell
 
-Dopo avere eseguito l'accesso alla macchina virtuale di Azure, è possibile usare una singola riga di codice di PowerShell per installare IIS e abilitare la regola del firewall locale per consentire il traffico Web. Aprire un prompt di PowerShell ed eseguire questo comando:
+Ora che è stato effettuato in toohello macchina virtuale di Azure, è possibile utilizzare una singola riga di PowerShell tooinstall IIS e abilitare il traffico web tooallow di hello firewall locale regola. Aprire un prompt dei comandi di PowerShell ed eseguire hello comando seguente:
 
 ```powershell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 
-## <a name="view-the-iis-welcome-page"></a>Visualizzare la pagina iniziale di IIS
+## <a name="view-hello-iis-welcome-page"></a>Hello Visualizza la pagina iniziale di IIS
 
-Dopo l'installazione di IIS e l'apertura della porta 80 nella macchina virtuale da Internet, è possibile usare il Web browser preferito per visualizzare la pagina iniziale predefinita di IIS. Assicurarsi di usare l'indirizzo *publicIpAddress* descritto in precedenza per passare alla pagina predefinita. 
+Con IIS installato e la porta 80 è aperta nella VM da hello Internet, è possibile utilizzare un browser web la pagina iniziale tooview scelte hello predefinita IIS. Essere certi hello toouse *publicIpAddress* descritto in precedenza pagina predefinita di toovisit hello. 
 
 ![Sito IIS predefinito](./media/quick-create-powershell/default-iis-website.png) 
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Quando non servono più, è possibile usare il comando [Remove-AzureRmResourceGroup](/powershell/module/azurerm.resources/remove-azurermresourcegroup) per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.
+Quando non è più necessario, è possibile utilizzare hello [Remove AzureRmResourceGroup](/powershell/module/azurerm.resources/remove-azurermresourcegroup) comando gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup
@@ -153,7 +153,7 @@ Remove-AzureRmResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa guida introduttiva è stata distribuita una macchina virtuale semplice, è stata creata una regola del gruppo di sicurezza di rete ed è stato installato un server Web. Per altre informazioni sulle macchine virtuali di Azure, passare all'esercitazione per le VM di Windows.
+In questa guida introduttiva è stata distribuita una macchina virtuale semplice, è stata creata una regola del gruppo di sicurezza di rete ed è stato installato un server Web. toolearn informazioni sulle macchine virtuali di Azure, continuare l'esercitazione toohello per le macchine virtuali di Windows.
 
 > [!div class="nextstepaction"]
 > [Esercitazioni per le macchine virtuali di Windows in Azure](./tutorial-manage-vm.md)

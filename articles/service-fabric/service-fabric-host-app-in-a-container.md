@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'applicazione .NET in un contenitore in Azure Service Fabric | Microsoft Docs
-description: Viene illustrato come creare un pacchetto di un'applicazione .NET in Visual Studio in un contenitore Docker. La nuova app "contenitore" viene quindi distribuita in un cluster di Service Fabric.
+title: un'applicazione .NET in tooAzure un contenitore Service Fabric aaaDeploy | Documenti Microsoft
+description: Spiega in che modo un'applicazione .NET in Visual Studio in un contenitore Docker toopackage. Questa nuova app "container" viene quindi distribuita tooa cluster di Service Fabric.
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: mikhegn
-ms.openlocfilehash: 484db494e7975df950543d19bf841a4df7cdd139
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 094b0e71d76b2e56ffb9b23638dd8154b3aff5fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-net-application-in-a-windows-container-to-azure-service-fabric"></a>Distribuire un'applicazione .NET in un contenitore Windows in Azure Service Fabric
+# <a name="deploy-a-net-application-in-a-windows-container-tooazure-service-fabric"></a>Distribuire un'applicazione .NET in un tooAzure di contenitore di Windows Service Fabric
 
-Questa esercitazione illustra come distribuire un'applicazione ASP.NET esistente in un contenitore Windows in Azure.
+In questa esercitazione illustra come toodeploy un'applicazione ASP.NET esistente in un contenitore di Windows in Azure.
 
 In questa esercitazione si apprenderà come:
 
@@ -34,21 +34,21 @@ In questa esercitazione si apprenderà come:
 ## <a name="prerequisites"></a>Prerequisiti
 
 1. Installare [Docker CE per Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows?tab=description) in modo da poter eseguire i contenitori in Windows 10.
-2. Acquisire familiarità con le informazioni riportate nella [Guida introduttiva ai contenitori di Windows 10][link-container-quickstart].
-3. Scaricare l'applicazione di esempio [Fabrikam Fiber CallCenter][link-fabrikam-github].
+2. Acquisire familiarità con hello [Guida introduttiva di contenitori di Windows 10][link-container-quickstart].
+3. Scaricare hello [Fabrikam Fiber CallCenter] [ link-fabrikam-github] applicazione di esempio.
 4. Installare [Azure PowerShell][link-azure-powershell-install]
-5. Installare l'[estensione Strumenti di recapito continuo per Visual Studio 2017][link-visualstudio-cd-extension]
+5. Installare hello [estensione strumenti di distribuzione continua per Visual Studio 2017][link-visualstudio-cd-extension]
 6. Creare una [sottoscrizione di Azure][link-azure-subscription] e un [account di Visual Studio Team Services][link-vsts-account]. 
 7. [Creare un cluster in Azure](service-fabric-tutorial-create-cluster-azure-ps.md)
 
-## <a name="containerize-the-application"></a>Distribuire l'applicazione in un contenitore
+## <a name="containerize-hello-application"></a>Un'applicazione hello inserita in un contenitore
 
-Un [cluster di Service Fabric è ora in esecuzione in Azure](service-fabric-tutorial-create-cluster-azure-ps.md) e si è pronti quindi per creare e distribuire un'applicazione in un contenitore. Per avviare l'esecuzione dell'applicazione in un contenitore, è necessario aggiungere il **supporto per Docker** al progetto in Visual Studio. Quando si aggiunge il **supporto per Docker** all'applicazione, si verifica quanto segue. Per prima cosa, un _Dockerfile_ viene aggiunto al progetto. Questo nuovo file descrive il modo in cui l'immagine del contenitore deve essere compilata. In secondo luogo, alla soluzione viene aggiunto un nuovo progetto _docker-compose_. Il nuovo progetto contiene alcuni file docker-compose. I file docker-compose possono essere usati per descrivere le modalità di esecuzione del contenitore.
+Dopo avere creato un [cluster di Service Fabric è in esecuzione in Azure](service-fabric-tutorial-create-cluster-azure-ps.md) si toocreate pronto e distribuire un'applicazione nei contenitori. toostart in esecuzione l'applicazione in un contenitore, è necessario tooadd **Docker supporto** toohello progetto in Visual Studio. Quando si aggiungono **supporto Docker** toohello applicazione, si verifica quanto segue. Innanzitutto, un _Dockerfile_ è stato aggiunto il progetto toohello. Questo nuovo file viene descritto come immagine contenitore hello è toobe compilato. Quindi secondo, con un nuovo _comporre docker_ progetto viene aggiunto toohello soluzione. nuovo progetto Hello contiene alcuni docker-comporre i file. Comporre docker file possono essere utilizzati toodescribe le modalità di esecuzione contenitore hello.
 
 Per altre informazioni, vedere [Visual Studio Container Tools][link-visualstudio-container-tools].
 
 >[!NOTE]
->Se questa è la prima volta che si eseguono immagini del contenitori Windows sul computer in uso, è necessario che Docker CE ottenga le immagini di base per i contenitori. Le immagini usate in questa esercitazione sono pari a 14 GB. Procedere ed eseguire il comando seguente per ottenere le immagini di base:
+>Se è hello prima volta che si eseguono le immagini contenitore di Windows nel computer in uso, Docker CE necessario abbassare di immagini di base per i contenitori di hello. le immagini di Hello utilizzate in questa esercitazione sono 14 GB. Procedo ed eseguo hello seguendo le immagini di base hello toopull comando terminal:
 >```cmd
 >docker pull microsoft/mssql-server-windows-developer
 >docker pull microsoft/aspnet:4.6.2
@@ -56,17 +56,17 @@ Per altre informazioni, vedere [Visual Studio Container Tools][link-visualstudio
 
 ### <a name="add-docker-support"></a>Aggiungere il supporto di Docker
 
-Aprire il file [FabrikamFiber.CallCenter.sln][link-fabrikam-github] in Visual Studio.
+Aprire hello [FabrikamFiber.CallCenter.sln] [ link-fabrikam-github] file in Visual Studio.
 
-Fare clic con il pulsante destro del mouse sul progetto **FabrikamFiber.Web** > **Aggiungi** > **Supporto Docker**.
+Pulsante destro del mouse hello **FabrikamFiber.Web** progetto > **Aggiungi** > **Docker supporto**.
 
 ### <a name="add-support-for-sql"></a>Aggiungere il supporto per SQL
 
-Questa applicazione usa SQL come provider di dati, motivo per cui per eseguire l'applicazione è necessaria un'istanza di SQL Server. Fare riferimento a un'immagine del contenitore SQL Server nel file docker-compose.override.yml.
+Questa applicazione Usa SQL come provider di dati hello, in modo da un server SQL è un'applicazione hello toorun obbligatorio. Fare riferimento a un'immagine del contenitore SQL Server nel file docker-compose.override.yml.
 
-In Visual Studio aprire **Esplora soluzioni**, trovare **docker-compose** e aprire il file **docker-compose.override.yml**.
+In Visual Studio, aprire **Esplora**, trovare **comporre docker**e i file aperti hello **docker compose.override.yml**.
 
-Passare al nodo `services:` e aggiungere un nodo chiamato `db:` che definisce la voce di SQL Server per il contenitore.
+Passare toohello `services:` nodo, aggiungere un nodo denominato `db:` che definisce una voce di SQL Server hello per contenitore hello.
 
 ```yml
   db:
@@ -86,9 +86,9 @@ Passare al nodo `services:` e aggiungere un nodo chiamato `db:` che definisce la
 >Per il debug locale è possibile usare un'istanza di SQL Server a scelta, a condizione che sia raggiungibile dall'host. **localdb**, tuttavia, non supporta la comunicazione `container -> host`.
 
 >[!WARNING]
->L'esecuzione di SQL Server in un contenitore non consente di rendere persistenti i dati. Quando si arresta il contenitore, i dati vengono cancellati. Non usare questa configurazione per la produzione.
+>L'esecuzione di SQL Server in un contenitore non consente di rendere persistenti i dati. Quando si arresta il contenitore di hello, i dati vengono cancellati. Non usare questa configurazione per la produzione.
 
-Passare al nodo `fabrikamfiber.web:` e aggiungere un nodo figlio di nome `depends_on:`. Il questo modo si assicura che il servizio `db` (il contenitore SQL Server) venga avviato prima dell'applicazione Web (fabrikamfiber.web).
+Passare toohello `fabrikamfiber.web:` nodo e aggiungere un nodo figlio denominato `depends_on:`. Ciò garantisce che hello `db` avvio del servizio (contenitore di SQL Server hello) prima che l'applicazione web (fabrikamfiber.web).
 
 ```yml
   fabrikamfiber.web:
@@ -96,9 +96,9 @@ Passare al nodo `fabrikamfiber.web:` e aggiungere un nodo figlio di nome `depend
       - db
 ```
 
-### <a name="update-the-web-config"></a>Aggiornare il file di configurazione Web
+### <a name="update-hello-web-config"></a>Aggiornamento configurazione web hello
 
-Tornare al progetto **FabrikamFiber.Web** e aggiornare la stringa di connessione nel file **web.config** in modo che punti all'istanza di SQL Server nel contenitore.
+In hello **FabrikamFiber.Web** del progetto, stringa di connessione di aggiornamento hello in hello **Web. config** file toopoint toohello SQL Server nel contenitore hello.
 
 ```xml
 <add name="FabrikamFiber-Express" connectionString="Data Source=db,1433;Database=FabrikamFiber;User Id=sa;Password=Password1;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
@@ -107,31 +107,31 @@ Tornare al progetto **FabrikamFiber.Web** e aggiornare la stringa di connessione
 ```
 
 >[!NOTE]
->Se si desidera usare un'istanza di SQL Server diversa durante la creazione di una compilazione di rilascio dell'applicazione Web, aggiungere un'altra stringa di connessione al file web.release.config.
+>Se si desidera creare un Server SQL diverso durante la compilazione di una versione dell'applicazione web toouse, aggiungere un altro file web.release.config tooyour della stringa connessione.
 
 ### <a name="test-your-container"></a>Testare il contenitore
 
-Premere **F5** per eseguire l'applicazione ed eseguirne il debug nel contenitore.
+Premere **F5** nel contenitore di un'applicazione hello toorun ed eseguire il debug.
 
-Edge apre la pagina di avvio definita dell'applicazione usando l'indirizzo IP del contenitore nella rete NAT interna (in genere 172.x.x.x). Per altre informazioni sul debug delle applicazioni nei contenitori mediante Visual Studio 2017, vedere [questo articolo][link-debug-container].
+Bordo verrà visualizzata la pagina di avvio definite dell'applicazione utilizzando l'indirizzo IP hello del contenitore hello in rete NAT interna hello (in genere 172.x.x.x). toolearn ulteriori informazioni su debug di applicazioni in contenitori usando Visual Studio 2017, vedere [questo articolo][link-debug-container].
 
 ![esempio di fabrikam in un contenitore][image-web-preview]
 
-Il contenitore è ora pronto per la compilazione e l'inserimento come pacchetto in un'applicazione di Service Fabric. Dopo aver creato l'immagine del contenitore sul computer, è possibile eseguirne il push in qualsiasi registro contenitori e quindi estrarla in qualsiasi host per l'esecuzione.
+contenitore Hello è ora pronto toobe compilato e compresso in un'applicazione di Service Fabric. Dopo aver creato immagine contenitore hello compilato nel computer, è possibile inviare del Registro di sistema di tooany contenitore ed estrarlo tooany host toorun verso il basso.
 
-## <a name="get-the-application-ready-for-the-cloud"></a>Preparazione l'applicazione per il cloud
+## <a name="get-hello-application-ready-for-hello-cloud"></a>Prepararsi per il cloud hello applicazione hello
 
-Per preparare l'applicazione per l'esecuzione in Service Fabric di Azure, è necessario completare due passaggi:
+applicazione hello tooget pronta per l'esecuzione nell'infrastruttura di servizio in Azure, è necessario toocomplete due passaggi:
 
-1. Esporre la porta in cui si vuole poter raggiungere l'applicazione Web nel cluster di Service Fabric.
+1. Esporre porta hello in cui desideriamo tooreach in grado di toobe l'applicazione web in cluster di Service Fabric hello.
 2. Predisporre un database SQL di produzione pronto per l'applicazione.
 
-### <a name="expose-the-port-for-the-app"></a>Esporre la porta per l'app
-Il cluster di Service Fabric configurato presenta la porta *80* aperta per impostazione predefinita in Azure Load Balancer, che consente di bilanciare il traffico in ingresso nel cluster. È possibile esporre il contenitore su questa porta tramite il file docker-compose.ym.
+### <a name="expose-hello-port-for-hello-app"></a>Esporre porta hello per app hello
+cluster di Service Fabric Hello è stato configurato, è la porta *80* aperta per impostazione predefinita in hello bilanciamento del carico di Azure, che consente di bilanciare cluster toohello di traffico in ingresso. È possibile esporre il contenitore su questa porta tramite il file docker-compose.ym.
 
-In Visual Studio aprire **Esplora soluzioni**, trovare **docker-compose** e aprire il file **docker-compose.override.yml**.
+In Visual Studio, aprire **Esplora**, trovare **comporre docker**e i file aperti hello **docker compose.override.yml**.
 
-Modificare il nodo `fabrikamfiber.web:` e aggiungere un nodo figlio denominato `ports:`.
+Modificare hello `fabrikamfiber.web:` nodo, aggiungere un nodo figlio denominato `ports:`.
 
 Aggiungere una voce di stringa `- "80:80"`.
 
@@ -149,62 +149,62 @@ Aggiungere una voce di stringa `- "80:80"`.
 ```
 
 ### <a name="use-a-production-sql-database"></a>Usare un database SQL di produzione
-Durante l'esecuzione nell'ambiente di produzione, è necessario mantenere i dati persistenti nel database. Al momento non c'è modo di garantire la persistenza dei dati in un contenitore, pertanto non è possibile archiviare i dati di produzione in SQL Server in un contenitore.
+Durante l'esecuzione nell'ambiente di produzione, è necessario mantenere i dati persistenti nel database. Non sono attualmente disponibili dati di permanente di tooguarantee modo in un contenitore, pertanto non è possibile archiviare dati di produzione in SQL Server in un contenitore.
 
-È consigliabile usare un database SQL di Azure. Per configurare ed eseguire un SQL Server gestito in Azure, consultare l'articolo [Documentazione sul database SQL di Azure][link-azure-sql].
+È consigliabile usare un database SQL di Azure. tooset backup ed eseguire un Server gestito di SQL in Azure, visitare hello [Guida introduttiva di Azure SQL Database] [ link-azure-sql] articolo.
 
 >[!NOTE]
->Ricordarsi di modificare le stringhe di connessione a SQL Server nel file **web.release.config**all'interno del progetto **FabrikamFiber.Web**.
+>Occorre ricordare che toochange hello connessione stringhe toohello SQL server in hello **web.release.config** file hello **FabrikamFiber.Web** progetto.
 >
->Questa applicazione non funziona correttamente se i database SQL non sono raggiungibili. È possibile proseguire e distribuire l'applicazione senza un server SQL.
+>Questa applicazione non funziona correttamente se i database SQL non sono raggiungibili. È possibile scegliere toogo-ahead e distribuire un'applicazione hello senza un server SQL.
 
 ## <a name="deploy-with-visual-studio-team-services"></a>Distribuire con Visual Studio Team Services
 
-Per configurare la distribuzione con Visual Studio Team Services, è necessario installare l'[estensione Strumenti di recapito continuo per Visual Studio 2017][link-visualstudio-cd-extension]. Questa estensione facilita la distribuzione in Azure mediante la configurazione di Visual Studio Team Services e consente di distribuire l'app nel cluster di Service Fabric.
+tooset la distribuzione in Visual Studio Team Services, è necessario hello tooinstall [estensione strumenti di distribuzione continua per Visual Studio 2017][link-visualstudio-cd-extension]. Questa estensione rende facile toodeploy tooAzure tramite la configurazione di Visual Studio Team Services e ottenere il cluster di Service Fabric tooyour app distribuita.
 
-Per iniziare, il codice deve essere ospitato nel controllo del codice sorgente. Nella restante parte della sezione si presuppone l'uso di **git**.
+tooget avviato, il codice deve essere ospitato in controllo del codice sorgente. resto Hello di questa sezione presuppone **git** è in uso.
 
 ### <a name="set-up-a-vsts-repo"></a>Configurare un repository VSTS
-Nell'angolo inferiore destro di Visual Studio fare clic su **Aggiungi al controllo del codice sorgente** > **Git** (o su qualsiasi opzione desiderata).
+Nell'angolo in basso a destra di hello di Visual Studio, fare clic su **aggiungere tooSource controllo** > **Git** (o qualsiasi opzione desiderato).
 
-![fare clic sul pulsante del controllo del codice sorgente][image-source-control]
+![Premere il pulsante controllo origine hello][image-source-control]
 
-Nel riquadro _Team Explorer_ premere **Pubblica repository GIT**.
+In hello _Team Explorer_ riquadro, premere **pubblicare repository Git**.
 
 Selezionare il nome dell'archivio VSTS e premere **Repository**.
 
-![pubblicazione dell'archivio in VSTS][image-publish-repo]
+![pubblicare tooVSTS repository][image-publish-repo]
 
 Ora che il codice è sincronizzato con l'archivio del codice sorgente VSTS, è possibile configurare la distribuzione continua e il recapito continuo.
 
 ### <a name="setup-continuous-delivery"></a>Configurare il recapito continuo
 
-In _Esplora soluzioni_ fare clic con il pulsante destro del mouse sulla **soluzione** > **Configura recapito continuo**.
+In _Esplora_, hello rapida **soluzione** > **configurare la distribuzione continua**.
 
-Selezionare la sottoscrizione di Azure.
+Selezionare hello sottoscrizione Azure.
 
-Impostare **Tipo host** su **Cluster di Service Fabric**.
+Impostare **tipo Host** troppo**Cluster di Service Fabric**.
 
-Impostare **Target Host** (Host di destinazione) sul cluster di Service Fabric creato nella sezione precedente.
+Impostare **Host di destinazione** creato nella sezione precedente hello cluster di toohello service fabric.
 
-Scegliere un **Registro contenitori** in cui pubblicare il contenitore.
+Scegliere un **Registro di sistema contenitore** toopublish nel contenitore.
 
 >[!TIP]
->Usare il pulsante **Modifica** per creare un registro contenitori.
+>Hello utilizzare **modifica** pulsante toocreate del Registro di sistema un contenitore.
 
 Premere **OK**.
 
 ![impostazione dell'integrazione continua di Service Fabric][image-setup-ci]
    
-   Dopo aver completato la configurazione, il contenitore viene distribuito in Service Fabric. Ogni volta che si esegue il push degli aggiornamenti nel repository viene eseguita una nuova compilazione e una nuova versione.
+   Una volta completata la configurazione hello, il contenitore è distribuito tooService dell'infrastruttura. Ogni volta che si esegue il push del repository toohello aggiornamenti viene eseguita una nuova compilazione e versione.
    
    >[!NOTE]
-   >La compilazione delle immagini di contenitore richiede circa 15 minuti.
-   >La prima distribuzione nel cluster di Service Fabric comporta il download delle immagini del contenitore di base di Windows Server Core. Il completamento del download richiede altri 5-10 minuti.
+   >Immagini contenitore di compilazione hello necessari circa 15 minuti.
+   >cluster Service Fabric toohello Hello prima distribuzione comporta hello base Windows Server Core contenitore immagini toobe scaricato. download di Hello accetta toocomplete aggiuntive 5-10 minuti.
 
-Passare all'applicazione Fabrikam Call Center usando l'URL del cluster: ad esempio *http://mycluster.westeurope.cloudapp.azure.com*
+Esplora applicazione Fabrikam Call Center toohello utilizzando url hello del cluster: ad esempio, *http://mycluster.westeurope.cloudapp.azure.com*
 
-Dopo aver inserito la soluzione Fabrikam Call in un pacchetto e averla distribuita, è possibile aprire il [portale di Azure ][link-azure-portal] e visualizzare l'applicazione in esecuzione in Service Fabric. Per verificare l'applicazione, aprire un Web browser e passare all'URL del cluster di Service Fabric.
+Ora che si dispone di contenitore e di soluzione Fabrikam Call Center hello distribuita, è possibile aprire hello [portale di Azure] [ link-azure-portal] e vedere applicazione hello in esecuzione nell'infrastruttura del servizio. un'applicazione hello tootry, aprire un web browser e passare toohello URL del cluster di Service Fabric.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -217,10 +217,10 @@ In questa esercitazione si è appreso come:
 
 <!--   NOTE SURE WHAT WE SHOULD DO YET HERE
 
-Advance to the next tutorial to learn how to bind a custom SSL certificate to it.
+Advance toohello next tutorial toolearn how toobind a custom SSL certificate tooit.
 
 > [!div class="nextstepaction"]
-> [Bind an existing custom SSL certificate to Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
+> [Bind an existing custom SSL certificate tooAzure Web Apps](app-service-web-tutorial-custom-ssl.md)
 
 ## Next steps
 

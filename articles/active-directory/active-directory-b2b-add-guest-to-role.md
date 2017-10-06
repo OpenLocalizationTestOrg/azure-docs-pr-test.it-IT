@@ -1,6 +1,6 @@
 ---
-title: Aggiungere un utente di Collaborazione B2B di Azure Active Directory a un ruolo | Microsoft Docs
-description: Aggiungere un utente guest a un ruolo in Azure Active Directory
+title: ruolo di tooa aaaAdd un B2B di Azure Active Directory collaborazione utente | Documenti Microsoft
+description: Aggiungere un ruolo di tooa utente guest in Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -16,15 +16,15 @@ ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e816349ea971c997f655b4d51672dba666bc3e89
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ccc58a0c8ecc73f8e79a8d827efdc0ff93846a96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-permissions-to-users-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Concedere autorizzazioni agli utenti di organizzazioni partner nel tenant di Azure Active Directory
+# <a name="grant-permissions-toousers-from-partner-organizations-in-your-azure-active-directory-tenant"></a>Concedere le autorizzazioni toousers di organizzazioni partner nel tenant di Azure Active Directory
 
-Gli utenti di Collaborazione B2B di Azure Active Directory (Azure AD) vengono aggiunti come utenti guest alla directory e le autorizzazioni guest nella directory sono limitate per impostazione predefinita. Può essere necessario definire alcuni utenti guest per assegnare ruoli con privilegi elevati nell'organizzazione. Per supportare la definizione di ruoli con privilegi più elevati, gli utenti guest possono essere aggiunti a qualsiasi ruolo, in base alle esigenze dell'organizzazione.
+Gli utenti di collaborazione B2B di Active Directory (Azure AD) Azure vengono aggiunti come directory di toohello utenti guest e le autorizzazioni guest nella directory hello sono limitate per impostazione predefinita. L'azienda potrebbe essere necessario alcuni ruoli del privilegio superiore toofill utenti guest all'interno dell'organizzazione. toosupport definizione dei ruoli di privilegio superiore, gli utenti guest possono essere aggiunto tooany ruoli desiderati, in base alle esigenze dell'organizzazione.
 
 ## <a name="default-role"></a>Ruolo predefinito
 

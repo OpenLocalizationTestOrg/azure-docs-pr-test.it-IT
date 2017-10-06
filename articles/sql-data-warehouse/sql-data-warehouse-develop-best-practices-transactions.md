@@ -1,5 +1,5 @@
 ---
-title: Ottimizzazione delle transazioni per SQL Data Warehouse | Documentazione Microsoft
+title: le transazioni aaaOptimizing per SQL Data Warehouse | Documenti Microsoft
 description: Indicazioni sulle procedure consigliate per la scrittura di aggiornamenti di transazioni efficienti in Azure SQL Data Warehouse
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: f9f19d75a37351b3562ce8c2f3629df14c5437c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1a821161711db9460b7e10d3cf7ba498d711448b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimizing-transactions-for-sql-data-warehouse"></a>Ottimizzazione delle transazioni per SQL Data Warehouse
-Questo articolo illustra come ottimizzare le prestazioni del codice transazionale riducendo al contempo il rischio di rollback di lunga durata.
+Questo articolo spiega come toooptimize hello prestazioni del codice transazionale riducendo i rischi per i ripristini lungo.
 
 ## <a name="transactions-and-logging"></a>Transazioni e registrazione
-Le transazioni sono un componente importante in un motore di database relazionale. SQL Data Warehouse usa le transazioni durante la modifica dei dati. Queste operazioni possono essere esplicite o implicite. Le istruzioni singole `INSERT`, `UPDATE` e `DELETE` sono esempi di transazioni implicite. Le transazioni esplicite sono scritte in modo esplicito dallo sviluppatore con `BEGIN TRAN`, `COMMIT TRAN` o `ROLLBACK TRAN` e vengono usate in genere quando è necessario collegare più istruzioni di modifica in un'unica unità atomica. 
+Le transazioni sono un componente importante in un motore di database relazionale. SQL Data Warehouse usa le transazioni durante la modifica dei dati. Queste operazioni possono essere esplicite o implicite. Le istruzioni singole `INSERT`, `UPDATE` e `DELETE` sono esempi di transazioni implicite. Le transazioni esplicite sono scritti in modo esplicito da uno sviluppatore utilizzando `BEGIN TRAN`, `COMMIT TRAN` o `ROLLBACK TRAN` e vengono in genere usate quando le istruzioni di modifica più necessario toobe collegati in un'unica unità atomica. 
 
-Azure SQL Data Warehouse esegue il commit delle modifiche al database usando i log delle transazioni. Ogni distribuzione ha un proprio log delle transazioni. Le scritture del log delle transazioni avvengono in modo automatico e non è richiesta alcuna configurazione. Tuttavia, se da un lato questo processo garantisce la scrittura dall'altro provoca un sovraccarico nel sistema. È possibile ridurre al minimo tale impatto scrivendo codice efficiente a livello transazionale. Il codice efficiente a livello transazionale rientra in due categorie generali.
+Azure SQL Data Warehouse viene eseguito il commit del database toohello modifiche utilizzando i log delle transazioni. Ogni distribuzione ha un proprio log delle transazioni. Le scritture del log delle transazioni avvengono in modo automatico e non è richiesta alcuna configurazione. Tuttavia, durante questo processo garantisce la scrittura di hello introdurre un sovraccarico nel sistema hello. È possibile ridurre al minimo tale impatto scrivendo codice efficiente a livello transazionale. Il codice efficiente a livello transazionale rientra in due categorie generali.
 
 * Sfruttare costrutti di registrazione minima, dove possibile.
-* Elaborare i dati tramite batch con ambito per evitare singole transazioni a esecuzione prolungata.
-* Adottare un modello di cambio di partizione per apportare modifiche estese a una determinata partizione.
+* Elaborazione di dati con la forma singolare tooavoid con ambito batch transazioni a esecuzione prolungata
+* Adottare una modello per la partizione specificata tooa di grandi dimensioni modifiche del cambio di partizione
 
 ## <a name="minimal-vs-full-logging"></a>Confronto tra registrazione minima e registrazione completa
-A differenza delle operazioni con registrazione completa, che usano il log delle transazioni per tenere traccia di ogni modifica di riga, le operazioni con registrazione minima tengono traccia unicamente delle allocazioni di extent e delle modifiche ai metadati. La registrazione minima prevede quindi la registrazione delle sole informazioni necessarie per eseguire il rollback della transazione in caso di errore o di richiesta esplicita (`ROLLBACK TRAN`). Dato che nel log delle transazioni viene registrata una quantità di informazioni notevolmente inferiore, le operazioni con registrazione minima offrono prestazioni migliori rispetto alle operazioni con registrazione completa di dimensioni simili. Il minor numero di scritture nel log delle transazioni comporta anche la generazione di una quantità molto inferiore di dati di log e quindi operazioni di I/O più efficienti.
+A differenza delle operazioni con registrazione completa, che utilizzano traccia tookeep di hello transaction log di ogni modifica della riga, operazioni con registrazione minima tenere traccia delle allocazioni di extent e solo le modifiche dei metadati. Di conseguenza, la registrazione minima implica la registrazione solo informazioni hello sono obbligatorio toorollback hello di transazione nell'evento hello di un errore o di una richiesta esplicita (`ROLLBACK TRAN`). Come molto meno informazioni vengono rilevate nel log delle transazioni hello, un'operazione con registrazione minima offre prestazioni migliori rispetto a un'operazione completamente registrata con dimensione simili. Inoltre, in quanto un minor numero di scritture log delle transazioni hello, una minore quantità di dati di log viene generata e pertanto i/o più efficiente.
 
-I limiti di sicurezza delle transazioni si applicano solo alle operazioni con registrazione completa.
+limiti di sicurezza delle transazioni Hello si applicano solo operazioni toofully registrati.
 
 > [!NOTE]
-> le operazioni con registrazione minima possono partecipare alle transazioni esplicite. È possibile eseguire il rollback delle operazioni con registrazione minima, dal momento che viene tenuta traccia di tutte le modifiche alle strutture di allocazione. È importante comprendere che la registrazione delle modifiche è minima e non assente.
+> le operazioni con registrazione minima possono partecipare alle transazioni esplicite. Come vengono rilevate tutte le modifiche in strutture di allocazione, è possibile tooroll back minima operazioni registrate. È importante registrato toounderstand che modifica hello è "minima" non è non registrato.
 > 
 > 
 
 ## <a name="minimally-logged-operations"></a>Operazioni con registrazione minima
-Le operazioni indicate di seguito sono compatibili con la registrazione minima:
+Hello operazioni indicate di seguito sono in grado di corso la registrazione minima:
 
 * CREATE TABLE AS SELECT ([CTAS][CTAS])
 * INSERT..SELECT
@@ -62,12 +62,12 @@ Le operazioni indicate di seguito sono compatibili con la registrazione minima:
 -->
 
 > [!NOTE]
-> Le operazioni di spostamento dei dati interni (ad esempio `BROADCAST` e `SHUFFLE`) non sono interessate dal limite di sicurezza delle transazioni.
+> Operazioni di spostamento dei dati interni (ad esempio `BROADCAST` e `SHUFFLE`) non sono interessati da limite di sicurezza delle transazioni hello.
 > 
 > 
 
 ## <a name="minimal-logging-with-bulk-load"></a>Registrazione minima con caricamento bulk
-`CTAS` e `INSERT...SELECT` sono entrambe operazioni di caricamento bulk. Tuttavia, entrambe sono influenzate dalla definizione della tabella di destinazione e variano a seconda dello scenario di caricamento. La tabella riportata di seguito indica la registrazione completa o minima delle operazioni bulk elencate:  
+`CTAS` e `INSERT...SELECT` sono entrambe operazioni di caricamento bulk. Tuttavia, entrambi sono influenzate dalla definizione di tabella di destinazione hello e dipendono da uno scenario di carico hello. La tabella riportata di seguito indica la registrazione completa o minima delle operazioni bulk elencate:  
 
 | Indice primario | Scenario di caricamento | Modalità di registrazione |
 | --- | --- | --- |
@@ -78,22 +78,22 @@ Le operazioni indicate di seguito sono compatibili con la registrazione minima:
 | Indice columnstore cluster |Dimensioni batch >= 102.400 per ogni distribuzione allineata alle partizioni |**Minima** |
 | Indice columnstore cluster |Dimensioni batch < 102.400 per ogni distribuzione allineata alle partizioni |Completa |
 
-Si noti che eventuali scritture di aggiornamento di indici secondari o non cluster saranno sempre operazioni con registrazione completa.
+Vale la pena notare che eventuali scritture gli indici secondari o non cluster tooupdate sarà sempre completamente operazioni registrate.
 
 > [!IMPORTANT]
-> SQL Data Warehouse ha 60 distribuzioni. Di conseguenza, supponendo che tutte le righe siano distribuite in modo uniforme e che vengano inserite in una singola partizione, il batch dovrà contenere almeno 6.144.000 di righe per la registrazione minima durante la scrittura un indice columnstore cluster. Se la tabella è partizionata e le righe da inserire si estendono oltre i limiti della partizione, saranno necessari 6.144.000 di righe per limite di partizione, supponendo una distribuzione uniforme dei dati. Per la registrazione minima dell'inserimento nella distribuzione, ogni partizione in ogni distribuzione deve superare singolarmente la soglia di 102.400 righe.
+> SQL Data Warehouse ha 60 distribuzioni. Di conseguenza, presupponendo che tutte le righe sono distribuite uniformemente e di destinazione in una singola partizione, il batch sarà necessario righe toocontain 6,144,000 o toobe maggiore minima registrate durante la scrittura tooa indice Columnstore cluster. Se viene partizionata hello e righe hello inserite span dei limiti delle partizioni, è necessario 6,144,000 righe al limite della partizione presupponendo che anche la distribuzione dei dati. Ogni partizione in ogni distribuzione deve superare in modo indipendente soglia di righe per hello insert toobe registrazione minima in distribuzione hello 102.400 hello.
 > 
 > 
 
-Il caricamento di dati in una tabella non vuota con un indice cluster può spesso contenere una combinazione di righe con registrazione completa e con registrazione minima. Un indice cluster è un albero B (bilanciato) di pagine. Se la pagina in cui si scrive contiene già righe provenienti da un'altra transazione, la scrittura verrà eseguita con registrazione completa. Se invece la pagina è vuota, la scrittura verrà eseguita con registrazione minima.
+Il caricamento di dati in una tabella non vuota con un indice cluster può spesso contenere una combinazione di righe con registrazione completa e con registrazione minima. Un indice cluster è un albero B (bilanciato) di pagine. Se la pagina hello scritti tooalready contiene le righe da un'altra transazione, quindi tali operazioni di scrittura verrà registrate completamente. Tuttavia, se la pagina hello è vuota quindi pagina toothat di scrittura hello verrà minima registrato.
 
 ## <a name="optimizing-deletes"></a>Ottimizzazione delle eliminazioni
-`DELETE` è un'operazione con registrazione completa.  Per eliminare una grande quantità di dati da una tabella o una partizione spesso è più pratico usare `SELECT` per indicare i dati da conservare, operazione che può essere eseguita registrazione minima.  A tale scopo, creare una nuova tabella con [CTAS][CTAS].  Dopo averla creata, usare [RENAME][RENAME] per sostituire la tabella precedente con la quella nuova.
+`DELETE` è un'operazione con registrazione completa.  Se è necessario toodelete una grande quantità di dati in una tabella o una partizione, è spesso opportuno troppo`SELECT` dati hello desiderato tookeep, che può essere eseguito come un'operazione con registrazione minima.  tooaccomplish, creare una nuova tabella con [un'istruzione CTAS][CTAS].  Una volta creata, utilizzare [RINOMINARE] [ RENAME] tooswap la tabella precedente con la tabella hello appena creato.
 
 ```sql
 -- Delete all sales transactions for Promotions except PromotionKey 2.
 
---Step 01. Create a new table select only the records we want to kep (PromotionKey 2)
+--Step 01. Create a new table select only hello records we want tookep (PromotionKey 2)
 CREATE TABLE [dbo].[FactInternetSales_d]
 WITH
 (    CLUSTERED COLUMNSTORE INDEX
@@ -113,20 +113,20 @@ WHERE    [PromotionKey] = 2
 OPTION (LABEL = 'CTAS : Delete')
 ;
 
---Step 02. Rename the Tables to replace the 
-RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_d] TO [FactInternetSales];
+--Step 02. Rename hello Tables tooreplace hello 
+RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_d] too[FactInternetSales];
 ```
 
 ## <a name="optimizing-updates"></a>Ottimizzazione degli aggiornamenti
-`UPDATE` è un'operazione con registrazione completa.  Se è necessario aggiornare un numero elevato di righe in una tabella o in una partizione, spesso può risultare molto più efficiente usare un'operazione con registrazione minima, ad esempio [CTAS][CTAS].
+`UPDATE` è un'operazione con registrazione completa.  Se è necessario tooupdate un numero elevato di righe in una tabella o una partizione può essere spesso molto più efficiente toouse un'operazione con registrazione minima, ad esempio [un'istruzione CTAS] [ CTAS] toodo in modo.
 
-Nell'esempio seguente l'aggiornamento completo di una tabella è stato convertito in `CTAS` per consentire la registrazione minima.
+In hello esempio riportato di seguito un aggiornamento di tabelle complete è stato convertito tooa `CTAS` in modo che sia possibile la registrazione minima.
 
-In questo caso viene aggiunto a posteriori un importo di sconto alle vendite nella tabella:
+In questo caso aggiungiamo posteriori vendite toohello importo dello sconto nella tabella hello:
 
 ```sql
---Step 01. Create a new table containing the "Update". 
+--Step 01. Create a new table containing hello "Update". 
 CREATE TABLE [dbo].[FactInternetSales_u]
 WITH
 (    CLUSTERED INDEX
@@ -171,31 +171,31 @@ FROM    [dbo].[FactInternetSales]
 OPTION (LABEL = 'CTAS : Update')
 ;
 
---Step 02. Rename the tables
-RENAME OBJECT [dbo].[FactInternetSales]   TO [FactInternetSales_old];
-RENAME OBJECT [dbo].[FactInternetSales_u] TO [FactInternetSales];
+--Step 02. Rename hello tables
+RENAME OBJECT [dbo].[FactInternetSales]   too[FactInternetSales_old];
+RENAME OBJECT [dbo].[FactInternetSales_u] too[FactInternetSales];
 
---Step 03. Drop the old table
+--Step 03. Drop hello old table
 DROP TABLE [dbo].[FactInternetSales_old]
 ```
 
 > [!NOTE]
-> Per creare nuovamente tabelle di grandi dimensioni è possibile sfruttare le funzionalità di gestione del carico di lavoro di SQL Data Warehouse. Per altre informazioni, vedere la sezione relativa alla gestione del carico di lavoro nell'articolo sulla [concorrenza][concurrency].
+> Per creare nuovamente tabelle di grandi dimensioni è possibile sfruttare le funzionalità di gestione del carico di lavoro di SQL Data Warehouse. Per ulteriori informazioni, vedere toohello sezione relativa alla gestione del carico di lavoro in hello [concorrenza] [ concurrency] articolo.
 > 
 > 
 
 ## <a name="optimizing-with-partition-switching"></a>Ottimizzazione con cambio della partizione
-In caso di modifiche su larga scala in una [partizione di tabella][table partition] può risultare molto utile adottare un modello di cambio di partizione. Se si tratta di una modifica dei dati di notevole entità che si estende su più partizioni, una semplice operazione di iterazione nelle partizioni permette di ottenere lo stesso risultato.
+In caso di modifiche su larga scala in una [partizione di tabella][table partition] può risultare molto utile adottare un modello di cambio di partizione. Se hello la modifica dei dati è significativa e intervalli di più partizioni, quindi scorrere semplicemente partizioni hello raggiunge hello stesso risultato.
 
-I passaggi per eseguire un cambio di partizione sono indicati di seguito:
+di seguito sono riportati i passaggi di Hello tooperform un cambio di partizione:
 
 1. Creare una partizione di disattivazione vuota.
-2. Eseguire l'operazione di aggiornamento come CTAS.
-3. Disattivare i dati esistenti nella tabella di disattivazione.
-4. Attivare i nuovi dati.
-5. Eseguire la pulizia dei dati.
+2. Eseguire l'aggiornamento"hello" come una istruzione CTAS
+3. Hello esistente dati toohello la tabella di disattivazione
+4. Passare a nuovi dati hello
+5. Pulizia dei dati hello
 
-Tuttavia, per identificare le partizioni per il cambio è necessario compilare prima di tutto una routine di supporto, come quella riportata di seguito. 
+Tuttavia, toohelp identificare hello tooswitch di partizioni è necessario innanzitutto toobuild una routine di supporto, ad esempio hello uno riportato di seguito. 
 
 ```sql
 CREATE PROCEDURE dbo.partition_data_get
@@ -241,12 +241,12 @@ OPTION (LABEL = 'dbo.partition_data_get : CTAS : #ptn_data')
 GO
 ```
 
-Questa routine ottimizza il riutilizzo del codice e permette di mantenere più compatto l'esempio di cambio di partizione.
+Questa procedura consente di ottimizzare riutilizzo del codice e mantiene esempio più compatto del cambio di partizione hello.
 
-Il codice seguente illustra i cinque passaggi citati sopra per ottenere una routine di cambio di partizione completa.
+Hello di codice riportato di seguito cinque passaggi hello indicato in precedenza tooachieve una routine di cambio della partizione completa.
 
 ```sql
---Create a partitioned aligned empty table to switch out the data 
+--Create a partitioned aligned empty table tooswitch out hello data 
 IF OBJECT_ID('[dbo].[FactInternetSales_out]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_out]
@@ -268,7 +268,7 @@ WHERE 1=2
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Create a partitioned aligned table and update the data in the select portion of the CTAS
+--Create a partitioned aligned table and update hello data in hello select portion of hello CTAS
 IF OBJECT_ID('[dbo].[FactInternetSales_in]') IS NOT NULL
 BEGIN
     DROP TABLE [dbo].[FactInternetSales_in]
@@ -315,29 +315,29 @@ WHERE    OrderDateKey BETWEEN 20020101 AND 20021231
 OPTION (LABEL = 'CTAS : Partition Switch IN : UPDATE')
 ;
 
---Use the helper procedure to identify the partitions
---The source table
+--Use hello helper procedure tooidentify hello partitions
+--hello source table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales',20030101
 DECLARE @ptn_nmbr_src INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_src
 
---The "in" table
+--hello "in" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_in',20030101
 DECLARE @ptn_nmbr_in INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_in
 
---The "out" table
+--hello "out" table
 EXEC dbo.partition_data_get 'dbo','FactInternetSales_out',20030101
 DECLARE @ptn_nmbr_out INT = (SELECT ptn_nmbr FROM #ptn_data)
 SELECT @ptn_nmbr_out
 
---Switch the partitions over
+--Switch hello partitions over
 DECLARE @SQL NVARCHAR(4000) = '
-ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' TO [dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
-ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' TO [dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
+ALTER TABLE [dbo].[FactInternetSales]    SWITCH PARTITION '+CAST(@ptn_nmbr_src AS VARCHAR(20))    +' too[dbo].[FactInternetSales_out] PARTITION '    +CAST(@ptn_nmbr_out AS VARCHAR(20))+';
+ALTER TABLE [dbo].[FactInternetSales_in] SWITCH PARTITION '+CAST(@ptn_nmbr_in AS VARCHAR(20))    +' too[dbo].[FactInternetSales] PARTITION '        +CAST(@ptn_nmbr_src AS VARCHAR(20))+';'
 EXEC sp_executesql @SQL
 
---Perform the clean-up
+--Perform hello clean-up
 TRUNCATE TABLE dbo.FactInternetSales_out;
 TRUNCATE TABLE dbo.FactInternetSales_in;
 
@@ -347,9 +347,9 @@ DROP TABLE #ptn_data
 ```
 
 ## <a name="minimize-logging-with-small-batches"></a>Riduzione della registrazione con batch di piccole dimensioni
-Per operazioni di modifica dei dati di grandi dimensioni, può risultare utile suddividere l'operazione in blocchi o in batch per definire l'ambito dell'unità di lavoro.
+Per le operazioni di modifica di dati di grandi dimensioni, può avere senso toodivide hello operazione in unità di hello tooscope blocchi o i batch di lavoro.
 
-Di seguito viene fornito un esempio funzionante. Le dimensioni del batch sono state impostate su un numero simbolico per evidenziare la tecnica. Nella realtà le dimensioni del batch sarebbero notevolmente più grandi. 
+Di seguito viene fornito un esempio funzionante. dimensioni del batch Hello sono stata impostata una semplice numero tecnica di hello toohighlight tooa. In realtà la dimensione del batch hello sarebbe notevolmente maggiore. 
 
 ```sql
 SET NO_COUNT ON;
@@ -408,20 +408,20 @@ END
 ```
 
 ## <a name="pause-and-scaling-guidance"></a>Linee guida per la sospensione e il ridimensionamento
-Azure SQL Data Warehouse permette di sospendere, riprendere e ridimensionare il data warehouse su richiesta. Quando si sospende o si ridimensiona SQL Data Warehouse è importante sapere che le eventuali transazioni in corso vengono interrotte immediatamente, con il conseguente rollback delle transazioni aperte. Se il carico di lavoro ha avviato una modifica dei dati a esecuzione prolungata e incompleta prima dell'operazione di sospensione o ridimensionamento, occorre annullare l'operazione. Questo può influire sul tempo necessario a sospendere o ridimensionare il database Azure SQL Data Warehouse. 
+Azure SQL Data Warehouse permette di sospendere, riprendere e ridimensionare il data warehouse su richiesta. Quando si sospende o ridimensionare il Data Warehouse di SQL è importante toounderstand che qualsiasi pertanto le transazioni vengono terminate immediatamente. causa toobe eventuali transazioni aperte a rollback. Se il carico di lavoro ha rilasciato una lunga esecuzione e la modifica di dati incompleti precedente toohello sospensione o dell'operazione di ridimensionamento, quindi questo lavoro sarà necessario toobe annullata. Questo potrebbe influire sulle hello tempo toopause o ridimensionare il database di Azure SQL Data Warehouse. 
 
 > [!IMPORTANT]
 > `UPDATE` e `DELETE` sono operazioni con registrazione completa e qualsiasi operazione di annullamento o ripristino può richiedere molto più tempo rispetto alle operazioni con registrazione minima equivalenti. 
 > 
 > 
 
-Lo scenario migliore sarebbe consentire il completamento delle transazioni di modifica dei dati in corso prima di sospendere o ridimensionare SQL Data Warehouse. Tuttavia, questo potrebbe non essere sempre possibile. Per ridurre il rischio di un rollback troppo lungo, prendere in considerazione una delle opzioni seguenti:
+scenario migliore Hello è toolet in fase di trasferimento dati Modifica transazioni completo precedente toopausing o ridimensionamento SQL Data Warehouse. Tuttavia, questo potrebbe non essere sempre possibile. rischio hello toomitigate di un rollback lungo considerare una delle seguenti opzioni hello:
 
 * Riscrivere le operazioni a esecuzione prolungata con [CTAS][CTAS]
-* Suddividere l'operazione in blocchi e lavorare su un subset delle righe.
+* Suddividere operazione hello in blocchi. opera su un subset di righe hello
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere [Transazioni in SQL Data Warehouse][Transactions in SQL Data Warehouse] per altre informazioni su limiti transazionali e livelli di isolamento.  Per una panoramica delle altre procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
+Vedere [transazioni in SQL Data Warehouse] [ Transactions in SQL Data Warehouse] toolearn informazioni sui livelli di isolamento e i limiti transazionali.  Per una panoramica delle altre procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "Correggere le vulnerabilità del sistema operativo nel Centro sicurezza di Azure | Microsoft Docs"
-description: "Questo documento illustra come implementare la raccomandazione **Remediate OS vulnerabilities (Risolvi vulnerabilità del sistema operativo)** del Centro sicurezza di Azure."
+title: "le vulnerabilità del sistema operativo aaaRemediate in Centro sicurezza di Azure | Documenti Microsoft"
+description: "Questo documento viene illustrato come tooimplement hello raccomandazione Centro sicurezza di Azure * * OS correggere vulnerabilità * *."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,72 +14,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: e6b251d5b97c57b3b6f79d14e53fbed5ca37ecb0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 704103f7fb15835943d74b665d2bd56cb5e0a36d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="remediate-os-vulnerabilities-in-azure-security-center"></a>Risolvere le vulnerabilità del sistema operativo in Centro sicurezza di Azure
-Il Centro sicurezza di Azure analizza ogni giorno le configurazioni del sistema operativo delle macchine virtuali (VM) che potrebbero rendere la VM più vulnerabile agli attacchi e suggerisce le modifiche di configurazione per risolvere tali problemi. Il Centro sicurezza consiglia di risolvere le vulnerabilità quando la configurazione del sistema operativo della VM non corrisponde alle regole di configurazione consigliate.
+Centro sicurezza di Azure ogni giorno analizza il sistema operativo di macchina virtuale (VM) (sistema operativo) per le configurazioni che è possibile apportare hello VM più vulnerabile tooattack ed è consigliabile utilizzare le modifiche di configurazione tooaddress queste vulnerabilità. Centro sicurezza PC consiglia di risolvere le vulnerabilità quando configurazione del sistema operativo della macchina virtuale non corrisponde ad hello regole di configurazione consigliata.
 
 > [!NOTE]
-> Per altre informazioni sulle configurazioni specifiche monitorate, vedere l'[elenco delle regole di configurazione consigliate](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
+> Per ulteriori informazioni sulle configurazioni di hello specifici da monitorare, vedere hello [elenco delle regole di configurazione consigliata](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
+## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio.  Questo argomento non costituisce una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questo argomento non costituisce una guida dettagliata.
 >
 >
 
-1. Nel pannello **Indicazioni** selezionare **Correggi le vulnerabilità del sistema operativo**.
-   ![Remediate OS vulnerabilities (Risolvi vulnerabilità del sistema operativo)][1]
+1. In hello **indicazioni** pannello seleziona **vulnerabilità monitora e aggiorna sistema operativo**.
+   ![Remediate OS vulnerabilities][1]
 
-    Viene aperto il pannello **Correggi le vulnerabilità del sistema operativo**, in cui sono elencate le VM con configurazioni del sistema operativo che non corrispondono alle regole di configurazione consigliate.  Per ogni VM, il pannello identifica:
+    Hello **vulnerabilità monitora e aggiorna sistema operativo** pannello apre ed elenca le macchine virtuali con configurazioni del sistema operativo che non corrispondono a regole di configurazione consigliata hello.  Per ogni macchina virtuale, identifica pannello hello:
 
-   * **REGOLE NON RIUSCITE** : il numero di regole non riuscite nella configurazione del sistema operativo della VM.
-   * **ORA DELL'ULTIMA ANALISI** : data e ora dell'ultima volta in cui il Centro sicurezza ha verificato la configurazione del sistema operativo della VM.
-   * **STATO** : stato corrente della vulnerabilità:
+   * **REGOLE non è stato** -numero hello di regole hello configurazione del sistema operativo della macchina virtuale non è riuscita.
+   * **ORA dell'ultima analisi** - hello data e l'ora che il Centro sicurezza PC ultima verifica disponibilità aggiornamenti configurazione del sistema operativo della macchina virtuale di hello.
+   * **STATO** -hello stato corrente della vulnerabilità hello:
 
-     * Aperta: la vulnerabilità non è ancora stata applicata
-     * In corso: l'applicazione della vulnerabilità in corso e non è richiesta alcuna azione da parte dell'utente
-     * Risolta: la vulnerabilità è già stata risolta. Dopo che il problema è stato risolto, la voce viene visualizzata in grigio
-   * **GRAVITÀ** : tutte le vulnerabilità sono impostate su un livello di gravità bassa, vale a dire che è necessario gestire una vulnerabilità ma non è necessaria un'attenzione immediata.
+     * Apri: vulnerabilità hello è non stata risolta ancora
+     * In corso: Vulnerabilità hello attualmente applicato, è necessario alcun intervento da parte dell'utente
+     * Risolto: vulnerabilità hello è stato già risolto (quando hello problema è stato risolto, la voce hello è grigio)
+   * **GRAVITÀ** -tutte le vulnerabilità sono impostate tooa gravità bassa, vale a dire una vulnerabilità deve essere risolti, ma non richiede attenzione immediata.
 
-2. Selezionare una macchina virtuale. Si apre un pannello per la VM, in cui sono visualizzate le regole non riuscite.
+2. Selezionare una macchina virtuale. Un pannello per tale macchina virtuale viene aperto e le regole di hello che non sono stato.
    ![Regole di configurazione non riuscite][2]
 
-3. Selezionare una regola. In questo esempio selezioniamo **Le password devono essere conformi ai requisiti di complessità**. Verrà visualizzato un pannello che descrive la regola non riuscita e l'impatto. Esaminare i dettagli e valutare come verranno applicate le configurazioni del sistema operativo.
-  ![Descrizione della regola non riuscita][3]
+3. Selezionare una regola. In questo esempio selezioniamo **Le password devono essere conformi ai requisiti di complessità**. Un pannello apre hello non è stato possibile regola e hello impatto che descrive. Esaminare i dettagli di hello e prendere in considerazione le modalità di applicazione delle configurazioni del sistema operativo.
+  ![Descrizione per la regola non riuscito di hello][3]
 
-  Il Centro sicurezza usa l'enumerazione di configurazione comune (CCE) per assegnare identificatori univoci per le regole di configurazione. In questo pannello sono disponibili le informazioni seguenti:
+  Centro sicurezza PC utilizza identificatori univoci tooassign di enumerazione di configurazione comuni (CCE) per le regole di configurazione. Hello le seguenti informazioni verrà fornita in questo pannello:
 
   - NOME: nome della regola
   - GRAVITÀ: valore della gravità di CCE a livello critico, importante o di avviso
-  - CCIED: identificatore univoco di CCE per la regola
+  - CCIED - Identificatore univoco CCE per regola hello
   - DESCRIZIONE: descrizione della regola
   - VULNERABILITÀ: spiegazione della vulnerabilità o del rischio in caso di mancata applicazione della regola
   - IMPATTO: impatto sull'azienda quando viene applicata la regola
-  - VALORE PREVISTO: valore previsto quando il Centro sicurezza analizza la configurazione del sistema operativo della VM rispetto alla regola
-  - OPERAZIONE DI REGOLA: operazione di regola usata dal Centro sicurezza durante l'analisi della configurazione del sistema operativo della VM rispetto alla regola
-  - VALORE EFFETTIVO: valore restituito dopo l'analisi della configurazione del sistema operativo della VM rispetto alla regola
+  - VALORE previsto, ovvero Valore previsto quando il Centro sicurezza PC consente di analizzare la configurazione del sistema operativo VM rispetto regola hello
+  - OPERAZIONE di regola - Regola operazione utilizzata dal centro di sicurezza durante l'analisi della configurazione del sistema operativo VM rispetto regola hello
+  - Il valore effettivo: Valore restituito dopo l'analisi della configurazione del sistema operativo VM rispetto regola hello
   - RISULTATO DELLA VALUTAZIONE: risultati dell'analisi: riuscita, non riuscita
 
 ## <a name="see-also"></a>Vedere anche
-Questo documento illustra come implementare la raccomandazione "Remediate OS vulnerabilities" (Risolvi vulnerabilità del sistema operativo) del Centro sicurezza. È possibile esaminare il set di regole di configurazione [qui](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335). Il Centro sicurezza usa l'enumerazione di configurazione comune (CCE) per assegnare identificatori univoci per le regole di configurazione. Per altre informazioni, vedere la pagina relativa alla enumerazione [CCE](https://nvd.nist.gov/cce/index.cfm) .
+In questo articolo ha illustrato come tooimplement hello Centro sicurezza PC indicazione "del sistema operativo di correggere vulnerabilità." È possibile esaminare i set di regole di configurazione di hello [qui](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335). Centro sicurezza PC utilizza identificatori univoci di tooassign CCE (Common Configuration Enumeration) per le regole di configurazione. Visitare hello [CCE](https://nvd.nist.gov/cce/index.cfm) sito per ulteriori informazioni.
 
-Per altre informazioni sul Centro sicurezza, vedere le risorse seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere hello seguenti risorse:
 
 * [Supported platforms in Azure Security Center](security-center-os-coverage.md) (Piattaforme supportate nel Centro sicurezza di Azure): contiene un elenco di macchine virtuali Windows e Linux supportate.
-* [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare l'integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) -informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/): post di blog sulla sicurezza e sulla conformità di Azure.
 
 <!--Image references-->

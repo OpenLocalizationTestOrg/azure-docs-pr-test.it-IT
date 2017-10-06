@@ -1,6 +1,6 @@
 ---
-title: Spostare i dati da Amazon Simple Storage Service usando Data Factory | Microsoft Docs
-description: Informazioni su come spostare i dati da Amazon Simple Storage Service (S3) usando Azure Data Factory.
+title: aaaMove dati dal servizio di archiviazione semplice Amazon utilizzando Data Factory | Documenti Microsoft
+description: Per ulteriori informazioni vedere toomove dati dal servizio di archiviazione semplice Amazon (S3) usando Azure Data Factory.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 3e21f7dfccc3b235071344a28c7d94f65e6bf9ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a8cd2845fd1de74413bd0372f3aabfb4817549b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-amazon-simple-storage-service-by-using-azure-data-factory"></a>Spostare i dati da Amazon Simple Storage Service usando Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da Amazon Simple Storage Service (S3). Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia.
+Questo articolo spiega come hello toouse attività di copia dei dati di Azure Data Factory toomove dal servizio di archiviazione semplice Amazon (S3). È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello.
 
-È possibile copiare dati da Amazon S3 a qualsiasi archivio dati di sink supportato. Per un elenco degli archivi dati supportati come sink dall'attività di copia, vedere la tabella relativa agli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data Factory supporta attualmente solo lo spostamento di dati da Amazon S3 ad altri archivi dati, non da altri archivi dati ad Amazon S3.
+È possibile copiare i dati dall'archivio dati di Amazon S3 tooany supportati sink. Per un elenco di dati supportati archivi come sink dall'attività di copia hello, vedere hello [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tabella. Data Factory supporta attualmente solo lo spostamento dei dati dagli archivi di dati tooother S3 Amazon, ma non lo spostamento dei dati da altri dati archivia tooAmazon S3.
 
 ## <a name="required-permissions"></a>Autorizzazioni necessarie
-Per copiare i dati da Amazon S3, assicurarsi di avere le autorizzazioni indicate di seguito:
+dati toocopy S3 Amazon, verificare che sia stato concesso hello queste autorizzazioni:
 
 * `s3:GetObject` e `s3:GetObjectVersion` per le operazioni di oggetto Amazon S3.
-* `s3:ListBucket` per le operazioni di bucket Amazon S3. Se si usa la copia guidata di Data Factory, è necessario anche `s3:ListAllMyBuckets`.
+* `s3:ListBucket` per le operazioni di bucket Amazon S3. Se si utilizza Copia guidata di Data Factory, hello `s3:ListAllMyBuckets` è obbligatorio.
 
-Per informazioni dettagliate sull'elenco completo delle autorizzazioni di Amazon S3 con tutti i dettagli in [Specifying Permissions in a Policy](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html) (Specificare le autorizzazioni in un criterio).
+Per informazioni dettagliate sull'elenco completo di hello di Amazon S3 autorizzazioni, vedere [che specifica le autorizzazioni in un criterio](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 È possibile creare una pipeline con l'attività di copia che sposta i dati da un'origine Amazon S3 usando diversi strumenti o API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Per una procedura dettagliata, vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md).
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Per una procedura dettagliata, vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md).
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) .
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Per istruzioni dettagliate toocreate una pipeline con attività di copia, vedere hello [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink:
+Se si utilizzano strumenti o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti:
 
-1. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory.
-2. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia.
+1. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory.
+2. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello.
 3. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output.
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di Data Factory. Per un esempio con definizioni JSON per entità di Data factory usate per copiare dati da un archivio dati Amazon S3, vedere la sezione [Esempio JSON: copiare dati da Amazon S3 al BLOB di Azure](#json-example-copy-data-from-amazon-s3-to-azure-blob) di questo articolo.
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory. Per un esempio con le definizioni di JSON per le entità Data Factory dati toocopy utilizzato da un archivio dati S3 Amazon, vedere hello [esempio JSON: copiare i dati da Amazon S3 tooAzure Blob](#json-example-copy-data-from-amazon-s3-to-azure-blob) sezione di questo articolo.
 
 > [!NOTE]
 > Per informazioni dettagliate sui formati di compressione e i file supportati per l'attività di copia, vedere [Formati di compressione e file in Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di Data factory specifiche di Amazon S3.
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che vengono utilizzati toodefine Data Factory entità specifiche tooAmazon S3.
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-Un servizio collegato collega un archivio dati a una data factory. Viene creato un servizio collegato di tipo **AwsAccessKey** per collegare l'archivio dati Amazon S3 alla data factory. La tabella seguente fornisce la descrizione degli elementi JSON specifici del servizio collegato Amazon S3 (AwsAccessKey).
+Un servizio collegato di collegare una data factory tooa archivio di dati. Creare un servizio collegato di tipo **AwsAccessKey** toolink data factory di tooyour di archiviare i dati di Amazon S3. Hello nella tabella seguente fornisce il servizio di descrizione per JSON elementi specifici tooAmazon S3 (AwsAccessKey) collegati.
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| accessKeyID |ID della chiave di accesso segreta. |string |Sì |
-| secretAccessKey |La stessa chiave di accesso segreta. |La stringa segreta crittografata |Sì |
+| accessKeyID |ID della chiave di accesso privata hello. |string |Sì |
+| secretAccessKey |chiave di accesso per i segreti Hello stessa. |La stringa segreta crittografata |Sì |
 
 Di seguito è fornito un esempio:
 
@@ -77,22 +77,22 @@ Di seguito è fornito un esempio:
 ```
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Per specificare un set di dati per rappresentare i dati di input in un'archiviazione BLOB di Azure, impostare la proprietà del tipo del set di dati su **AmazonS3**. Impostare la proprietà **linkedServiceName** del set di dati sul nome del servizio collegato Amazon S3. Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). 
+toospecify toorepresent un set di dati di input troppo dati nell'archiviazione Blob di Azure, set di proprietà di tipo hello del set di dati hello**AmazonS3**. Set hello **linkedServiceName** servizio collegato di proprietà del nome di toohello hello set di dati di hello Amazon S3. Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). 
 
-Le sezioni come struttura, disponibilità e criteri sono simili per tutti i tipi di set di dati, ad esempio database SQL, BLOB di Azure e tabelle di Azure. La sezione **typeProperties** è diversa per ogni tipo di set di dati e contiene informazioni sulla posizione dei dati nell'archivio dati. La sezione **typeProperties** per un set di dati di tipo **AmazonS3**, che include il set di dati Amazon S3, presenta le proprietà seguenti:
+Le sezioni come struttura, disponibilità e criteri sono simili per tutti i tipi di set di dati, ad esempio database SQL, BLOB di Azure e tabelle di Azure. Hello **typeProperties** sezione è diverso per ogni tipo di set di dati e fornisce informazioni sulla posizione hello dei dati di hello nell'archivio dati hello. Hello **typeProperties** sezione per un set di dati di tipo **AmazonS3** (che include set di dati hello Amazon S3) ha hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| bucketName |Il nome del bucket S3. |string |Sì |
-| key |La chiave dell'oggetto S3. |string |No |
-| prefix |Il prefisso per la chiave dell'oggetto S3. Vengono selezionati gli oggetti le cui chiavi iniziano con questo prefisso. Si applica solo quando la chiave è vuota. |string |No |
-| version |La versione dell'oggetto S3 se è stato abilitato il controllo delle versioni S3. |String |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [Formato testo](data-factory-supported-file-and-compression-formats.md#text-format), [Formato JSON](data-factory-supported-file-and-compression-formats.md#json-format), [Formato AVRO](data-factory-supported-file-and-compression-formats.md#avro-format), [Formato OCR](data-factory-supported-file-and-compression-formats.md#orc-format) e [Formato Parquet](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per copiare i file così come sono tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No | |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**. I livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No | |
+| bucketName |nome di bucket Hello S3. |String |Sì |
+| key |chiave dell'oggetto Hello S3. |String |No |
+| prefix |Prefisso per la chiave dell'oggetto hello S3. Vengono selezionati gli oggetti le cui chiavi iniziano con questo prefisso. Si applica solo quando la chiave è vuota. |string |No |
+| version |versione di Hello dell'oggetto hello S3, se è abilitato il controllo delle versioni S3. |String |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per ulteriori informazioni, vedere hello [formato testo](data-factory-supported-file-and-compression-formats.md#text-format), [formato JSON](data-factory-supported-file-and-compression-formats.md#json-format), [formato Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [formato Orc](data-factory-supported-file-and-compression-formats.md#orc-format), e [formato Parquet ](data-factory-supported-file-and-compression-formats.md#parquet-format) sezioni. <br><br> Se si desidera che il file toocopy come-tra basate su file archivi (copia binaria), skip hello formato sezione in entrambe le definizioni di set di dati di input e output. |No | |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. tipi di Hello supportato sono: **GZip**, **Deflate**, **BZip2**, e **ZipDeflate**. livelli di Hello supportato sono: **ottimale** e **Fastest**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No | |
 
 
 > [!NOTE]
-> **bucketName + key** specifica la posizione dell'oggetto S3 in cui il bucket è il contenitore radice per gli oggetti S3 e key rappresenta il percorso completo all'oggetto S3.
+> **bucketName + tasto** specifica hello percorso dell'oggetto hello S3, dove è il contenitore radice hello per gli oggetti S3 e key oggetto toohello S3 percorso completo di hello.
 
 ### <a name="sample-dataset-with-prefix"></a>Set di dati di esempio con prefisso
 
@@ -143,7 +143,7 @@ Le sezioni come struttura, disponibilità e criteri sono simili per tutti i tipi
 ```
 
 ### <a name="dynamic-paths-for-s3"></a>Percorsi dinamici per S3
-Nell'esempio precedente vengono usati dei valori fissi per le proprietà **key** e **bucketName** nel set di dati Amazon S3.
+Hello esempio precedente Usa valori fissi per hello **chiave** e **bucketName** proprietà nel set di dati hello Amazon S3.
 
 ```json
 "key": "testFolder/test.orc",
@@ -157,19 +157,19 @@ Nell'esempio precedente vengono usati dei valori fissi per le proprietà **key**
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-È possibile eseguire la stessa operazione per la proprietà **prefix** di un set di dati di Amazon S3. Per un elenco delle funzioni e delle variabili, vedere [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md) .
+È possibile eseguire stesso hello per hello **prefisso** proprietà di un set di dati di Amazon S3. Per un elenco delle funzioni e delle variabili, vedere [Funzioni e variabili di sistema di Data Factory](data-factory-functions-variables.md) .
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, vedere l'articolo sulla [creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri. Le proprietà disponibili nella sezione **typeProperties** dell'attività variano in base al tipo di attività. Per l'attività di copia, le proprietà variano in base ai tipi di origine e sink. Se l'origine nell'attività di copia è di tipo **FileSystemSource**, che comprende Amazon S3, sono disponibili le proprietà seguenti nella sezione **typeProperties**:
+Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, vedere l'articolo sulla [creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri. Le proprietà disponibili nella hello **typeProperties** sezione dell'attività hello variano in base a ogni tipo di attività. Per attività di copia hello, le proprietà variano a seconda di hello tipi di origini e sink. Quando un'origine in attività di copia hello è di tipo **FileSystemSource** (che include Amazon S3), hello seguenti proprietà è disponibile in **typeProperties** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Specifica se elencare in modo ricorsivo gli oggetti S3 sotto la directory. |true/false |No |
+| ricorsiva |Specifica se l'elenco toorecursively S3 oggetti nella directory hello. |true/false |No |
 
-## <a name="json-example-copy-data-from-amazon-s3-to-azure-blob-storage"></a>Esempio JSON: copiare dati da Amazon S3 al BLOB di Azure
-Questo esempio illustra come copiare i dati da Amazon S3 all'archiviazione BLOB di Azure. I dati possono tuttavia essere copiati direttamente in [uno qualsiasi dei sink supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia in Data Factory.
+## <a name="json-example-copy-data-from-amazon-s3-tooazure-blob-storage"></a>Esempio JSON: copiare i dati da Amazon S3 tooAzure nell'archiviazione Blob
+Questo esempio viene illustrato come dati toocopy da Amazon S3 tooan archiviazione Blob di Azure. Tuttavia, dati possono essere copiati direttamente troppo[uno qualsiasi dei sink hello supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tramite attività di copia hello in Data Factory.
 
-L'esempio fornisce le definizioni JSON per le entità di data factory seguenti. È possibile usare queste definizioni per creare una pipeline per copiare dati da Amazon S3 a un archivio BLOB mediante il [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).   
+esempio Hello fornisce definizioni di JSON per hello seguenti entità Data Factory. È possibile utilizzare questi toocreate definizioni una pipeline di dati dall'archivio tooBlob S3 Amazon, toocopy utilizzando hello [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), o [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).   
 
 * Un servizio collegato di tipo [AwsAccessKey](#linked-service-properties).
 * Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -177,7 +177,7 @@ L'esempio fornisce le definizioni JSON per le entità di data factory seguenti. 
 * Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [FileSystemSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-Nell'esempio i dati vengono copiati da Amazon S3 a un BLOB di Azure ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati da Amazon S3 tooan blob di Azure ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
 ### <a name="amazon-s3-linked-service"></a>Servizio collegato Amazon S3
 
@@ -210,7 +210,7 @@ Nell'esempio i dati vengono copiati da Amazon S3 a un BLOB di Azure ogni ora. Le
 
 ### <a name="amazon-s3-input-dataset"></a>Set di dati di input Amazon S3
 
-Impostando **"external": "true"** si comunica al servizio Data Factory che il set di dati è esterno alla data factory. Impostare questa proprietà su true in un set di dati di input non generato da un'attività nella pipeline.
+Impostazione **"external": true** informa servizio Data Factory hello di set di dati hello è data factory di toohello esterno. Impostare tootrue questa proprietà su un set di dati di input che non è stato generato da un'attività nella pipeline hello.
 
 ```json
     {
@@ -237,7 +237,7 @@ Impostando **"external": "true"** si comunica al servizio Data Factory che il se
 
 ### <a name="azure-blob-output-dataset"></a>Set di dati di output del BLOB di Azure
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore hello hello ora di inizio.
 
 ```json
 {
@@ -298,7 +298,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 ### <a name="copy-activity-in-a-pipeline-with-an-amazon-s3-source-and-a-blob-sink"></a>Attività di copia in una pipeline con un'origine Amazon S3 e un sink BLOB
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **FileSystemSource** e il tipo di **sink** è impostato su **BlobSink**.
+pipeline Hello contiene un'attività di copia che è configurato toouse hello set di dati di input e output, senza che sia pianificato toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**FileSystemSource**, e **sink** tipo è stato impostato troppo**BlobSink**.
 
 ```json
 {
@@ -346,12 +346,12 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 }
 ```
 > [!NOTE]
-> Per eseguire il mapping dal set di dati di origine alle colonne dal set di dati sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+> vedere toomap colonne da un toocolumns di set di dati di origine da un set di dati sink [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere gli articoli seguenti:
+Vedere hello seguenti articoli:
 
-* Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md) .
+* toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento (attività di copia) dei dati in Data Factory e toooptimize modi diversi, vedere hello [copiare ottimizzazione Guida e alle prestazioni di attività](data-factory-copy-activity-performance.md).
 
-* Per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia, vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* Per istruzioni dettagliate per la creazione di una pipeline con attività di copia, vedere hello [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).

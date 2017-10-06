@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Riavviare macchine virtuali | Microsoft Docs
+title: aaaAzure CLI Script di esempio - riavviare le macchine virtuali | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Riavviare macchine virtuali in base al tag e all'ID
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 03/01/2017
 ms.author: allclark
 ms.custom: mvc
-ms.openlocfilehash: 4d0fe95287c91a4b656904f9007ceaaf866e155f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1ae07bd1d2be906553bef817385a4a333a10eca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restart-vms"></a>Riavviare le VM
 
@@ -28,53 +28,53 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
-Questo esempio illustra un paio di modi per ottenere alcune VM e riavviarle.
+Questo esempio viene illustrato un paio di modi tooget alcune macchine virtuali e riavviarle.
 
-Il primo riavvia tutte le VM nel gruppo di risorse.
+Hello riavvia innanzitutto tutte le macchine virtuali hello nel gruppo di risorse hello.
 
 ```bash
 az vm restart --ids $(az vm list --resource-group myResourceGroup --query "[].id" -o tsv)
 ```
 
-Il secondo ottiene le VM con tag tramite `az resouce list` e filtra le risorse che sono VM quindi riavvia queste VM.
+secondo ottiene hello Hello tag macchine virtuali con `az resouce list` Filtra le risorse toohello macchine virtuali e riavvia tali macchine virtuali.
 
 ```bash
 az vm restart --ids $(az resource list --tag "restart-tag" --query "[?type=='Microsoft.Compute/virtualMachines'].id" -o tsv)
 ```
 
-Questo esempio funziona in una shell Bash. Per le opzioni sull'esecuzione di script dell'interfaccia della riga di comando di Azure nel client Windows, vedere [Running the Azure CLI in Windows](../windows/cli-options.md) (Esecuzione dell'interfaccia della riga di comando di Azure in Windows).
+Questo esempio funziona in una shell Bash. Per opzioni all'esecuzione di script CLI di Azure su client Windows, vedere [in esecuzione hello CLI di Azure in Windows](../windows/cli-options.md).
 
 
 ## <a name="sample-script"></a>Script di esempio
 
-L'esempio prevede tre script.
-Il primo esegue il provisioning delle macchine virtuali.
-Usa l'opzione senza attesa in modo che il comando ritorni senza attendere per ogni VM di cui eseguire il provisioning.
-Il secondo attende il provisioning completo delle VM.
-Il terzo script riavvia tutte le VM di cui è stato eseguito il provisioning e quindi solo le VM con tag.
+esempio Hello ha tre script.
+Hello macchine virtuali di un primo disposizioni hello.
+Opzione no-wait hello viene utilizzato in modo comando hello viene restituita senza aspettare in ogni macchina virtuale toobe il provisioning.
+Hello secondo rimane in attesa hello macchine virtuali toobe eseguito il provisioning completo.
+script terzo Hello riavvia tutte le macchine virtuali hello che ha effettuato il provisioning e quindi hello solo tag macchine virtuali.
 
-### <a name="provision-the-vms"></a>Eseguire il provisioning delle VM
+### <a name="provision-hello-vms"></a>Eseguire il provisioning di hello macchine virtuali
 
-Questo script crea un gruppo di risorse e quindi crea tre VM da riavviare.
+Questo script crea un gruppo di risorse e quindi crea tre toorestart macchine virtuali.
 Due di queste vengono contrassegnate con tag.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Eseguire il provisioning delle VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/provision.sh "Provision hello VMs")]
 
 ### <a name="wait"></a>Attesa
 
-Questo script verifica lo stato del provisioning ogni 20 secondi, fino a quando viene completato il provisioning di tutte e tre le VM oppure il provisioning di una delle VM fallisce.
+Questo script verifica su hello ogni 20 secondi finché non vengono effettuato il provisioning di tutti e tre macchine virtuali, o uno di essi non tooprovision lo stato del provisioning.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Attendere che venga completato il provisioning della VM")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/wait.sh "Wait for hello VMs toobe provisioned")]
 
-### <a name="restart-the-vms"></a>Riavviare le VM
+### <a name="restart-hello-vms"></a>Riavviare le macchine virtuali hello
 
-Questo script riavvia tutte le VM nel gruppo di risorse e quindi riavvia solo le VM con tag.
+Questo script viene riavviato hello tutte le macchine virtuali nel gruppo di risorse hello e riavvia solo le macchine virtuali hello tag.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Riavviare le macchine virtuali in base al tag")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/restart-by-tag/restart.sh "Restart VMs by tag")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Dopo l'esecuzione dello script di esempio, eseguire il comando seguente per rimuovere i gruppi di risorse, le macchine virtuali e tutte le risorse correlate.
+Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove hello gruppi di risorse, le macchine virtuali e tutte le relative risorse.
 
 ```azurecli-interactive 
 az group delete -n myResourceGroup --no-wait --yes
@@ -82,19 +82,19 @@ az group delete -n myResourceGroup --no-wait --yes
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un gruppo di risorse, la macchina virtuale, il set di disponibilità, il bilanciamento del carico e tutte le risorse correlate. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza hello seguenti comandi toocreate un gruppo di risorse, macchina virtuale, set di disponibilità, bilanciamento del carico e tutte le relative risorse. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
-| [az vm create](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | Crea le macchine virtuali.  |
-| [az vm list](https://docs.microsoft.com/cli/azure/vm#list) | Si usa con `--query` per assicurare che venga eseguito il provisionign delle VM prima del loro riavvio e poi per ottenere gli ID delle VM e riavviarle. |
-| [az resource list](https://docs.microsoft.com/cli/azure/vm#list) | Si usa con `--query` per ottenere gli ID delle VM con il tag. |
-| [az vm restart](https://docs.microsoft.com/cli/azure/vm#list) | Riavvia le macchine virtuali. |
+| [az vm create](https://docs.microsoft.com/cli/azure/vm/availability-set#create) | Crea le macchine virtuali hello.  |
+| [az vm list](https://docs.microsoft.com/cli/azure/vm#list) | Utilizzato con `--query` tooensure hello macchine virtuali viene effettuato il provisioning prima di riavviarli, e quindi tooget hello gli ID di hello toorestart di macchine virtuali di loro. |
+| [az resource list](https://docs.microsoft.com/cli/azure/vm#list) | Utilizzato con `--query` tooget hello gli ID delle macchine virtuali hello mediante tag hello. |
+| [az vm restart](https://docs.microsoft.com/cli/azure/vm#list) | Consente di riavviare le macchine virtuali hello. |
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando della macchina virtuale sono reperibili nella [documentazione della VM Linux di Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Esempi di script di macchina virtuale aggiuntiva CLI sono reperibile in hello [documentazione VM Linux di Azure](../linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

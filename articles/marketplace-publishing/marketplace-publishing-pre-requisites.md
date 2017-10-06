@@ -1,6 +1,6 @@
 ---
-title: Prerequisiti non tecnici per la creazione di un'offerta per Azure Marketplace | Documentazione Microsoft
-description: Informazioni sui requisiti per la creazione e la distribuzione di un'offerta in Azure Marketplace per l'acquisto da parte di altri utenti.
+title: Prerequisiti aaaNon-tecnici per la creazione di un'offerta per hello Azure Marketplace | Documenti Microsoft
+description: Comprendere i requisiti di hello per la creazione e distribuzione di un toohello offerta Azure Marketplace per altri utenti toopurchase.
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,71 +14,71 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: hascipio
-ms.openlocfilehash: 4f86d444a2f2b97fd8605d480db358813bc39fd3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 472096863084cc58dc921313419ab60b1a08a3bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="general-prerequisites-for-creating-an-offer-for-the-azure-marketplace"></a>Prerequisiti generali per la creazione di un'offerta per Azure Marketplace
-Informazioni sui prerequisiti generali e relativi ai processi aziendali necessari per procedere con il processo di creazione dell'offerta.
+# <a name="general-prerequisites-for-creating-an-offer-for-hello-azure-marketplace"></a>Prerequisiti generali per la creazione di un'offerta per hello Azure Marketplace
+Comprendere i prerequisiti hello generale business-incentrato sui processi che sono necessari toomove avanti con hello offrono il processo di creazione.
 
 ## <a name="ensure-that-you-are-registered-as-a-seller-with-microsoft"></a>Assicurarsi di essere registrati come venditore con Microsoft
-Per istruzioni dettagliate su come registrare un account venditore con Microsoft, visitare [Creazione e registrazione dell'account](marketplace-publishing-accounts-creation-registration.md).
+Per istruzioni dettagliate su come registrare un account del venditore con Microsoft, visitare troppo[creazione di Account e la registrazione](marketplace-publishing-accounts-creation-registration.md).
 
-* **Se l'azienda è già registrata come venditore in Dev Center e si desidera creare una nuova offerta** , eseguire l'accesso al portale di pubblicazione con lo stesso ID di posta elettronica con cui si è eseguita la registrazione in Dev Center. Questo passaggio è necessario affinché Dev Center e il portale di pubblicazione siano collegati tra loro.
-* **Se l'azienda è già registrata come venditore Dev Center e si desidera modificare un'offerta esistente** , effettuare l'accesso al portale di pubblicazione con l'account di amministratore o con un account che viene aggiunto come coamministratore nel portale di pubblicazione. I passaggi per aggiungere un account di coamministratore sono riportati di seguito.
+* **Se l'azienda è già registrata come un venditore in hello Dev Center e si desidera una nuova offerta toocreate** quindi account di accesso toohello pubblicazione portale con hello stesso id con il centro per sviluppatori viene eseguita la registrazione di posta elettronica. Questo passaggio è obbligatorio in modo che hello portale Dev Center e la pubblicazione sono collegate tra loro.
+* **Se l'azienda è già registrata come un venditore in hello Dev Center e si desidera un'offerta esistente, tooedit** quindi entrambi toohello accesso pubblicazione portale con account di amministratore hello o con un account che viene aggiunto come co-amministratore in hello portale di pubblicazione . Passaggi tooadd un account di co-amministratore è indicato di seguito.
 
-## <a name="steps-to-add-a-co-admin-in-the-publishing-portal"></a>Passaggi per aggiungere un coamministratore nel portale di pubblicazione
-Gli amministratori del portale di pubblicazione possono aggiungere in un secondo momento altri membri dell'azienda che lavorano all'applicazione, ad esempio un coamministratore, nel portale di pubblicazione. **Come amministratore** , di seguito sono riportati i passaggi per aggiungere un coamministratore.
+## <a name="steps-tooadd-a-co-admin-in-hello-publishing-portal"></a>Passaggi tooadd co-amministratore in hello portale di pubblicazione
+Gli amministratori di hello pubblicazione portale è possibile aggiungere altri membri della società hello, che lavorano su un'applicazione hello, come co-amministratore in hello hello portale di pubblicazione. **Supponendo che siano salve,** riportati di seguito vengono hello passaggi tooadd un co-amministratore.
 
 > [!NOTE]
-> Per i nuovi utenti, prima di aggiungere un coamministratore nel portale di pubblicazione, assicurarsi di avere creato almeno un'applicazione nel portale di pubblicazione. Questa operazione è necessaria in quanto la scheda **AUTORI** viene visualizzata solo dopo avere creato almeno un'applicazione nel portale di pubblicazione.
+> Per i nuovi utenti, prima è necessario aggiungere un coamministratore hello pubblicazione portale, assicurarsi di avere creato almeno un'applicazione in hello portale di pubblicazione. Questa operazione è necessaria come hello **EDITORI** scheda viene visualizzata solo dopo la creazione di almeno un'applicazione in hello portale di pubblicazione.
 > 
 > 
 
-1. Assicurarsi che l'ID di posta elettronica del coamministratore sia un account Microsoft (MSA). In caso contrario, registrarlo come MSA mediante questo [collegamento](https://signup.live.com/signup?uaid=0089f09ccae94043a0f07c2aaf928831&lic=1).
-2. Verificare che sia presente almeno un'applicazione nell'account amministratore prima di tentare di aggiungere un coamministratore.
-3. Dopo aver completato i passaggi precedenti, eseguire l'accesso al portale di pubblicazione con l'ID di posta elettronica di coamministratore e quindi eseguire la disconnessione.
-4. Ora accedere al portale di pubblicazione con l'ID di posta elettronica di amministratore.
-5. Passare ad Autore -> selezionare l'account-> Amministratori -> Aggiungi il coamministratore (la schermata è riportata di seguito)
+1. Verificare che l'id di posta elettronica hello co-amministratore sia un account(MSA) Microsoft. In caso contrario, registrarlo come MSA mediante questo [collegamento](https://signup.live.com/signup?uaid=0089f09ccae94043a0f07c2aaf928831&lic=1).
+2. Verificare che sia presente almeno un'applicazione con account di amministratore hello prima di tentare di tooadd un co-amministratore.
+3. Dopo aver hello sopra i passaggi dell'operazione, account di accesso toohello pubblicazione portale con id di posta elettronica hello co-amministratore e quindi disconnettersi.
+4. Ora di accesso toohello pubblicazione portale con id di posta elettronica amministratore hello.
+5. Passare tooPublishers -> -> account selezionare amministratori -> Aggiungi co-salve (schermata specificato di seguito)
    
     ![disegno](media/marketplace-publishing-pre-requisites/imgAddAdmin_05.png)
-6. Assicurarsi che gli ID di posta elettronica forniti nelle varie fasi del processo di pubblicazione (ad esempio Dev Center, portale di pubblicazione) vengano monitorati per le comunicazioni provenienti da Microsoft.
+6. Verificare che posta elettronica ID fornito in hello varie fasi del processo (ad esempio Dev Center, portale di pubblicazione) di pubblicazione hello vengono monitorate per qualsiasi comunicazione da Microsoft.
 7. Per la registrazione in Dev Center, evitare di usare un account associato a una singola persona. Si consiglia di procedere in questo modo per eliminare la dipendenza da una singola persona.
 8. In caso di problemi durante la registrazione in Dev Center, creare un ticket mediante questo [collegamento](https://developer.microsoft.com/en-us/windows/support).
 
-## <a name="steps-to-delete-a-co-admin-in-the-publishing-portal"></a>Passaggi per eliminare un coamministratore nel portale di pubblicazione
-**Come amministratore** , di seguito sono riportati i passaggi per eliminare un coamministratore.
+## <a name="steps-toodelete-a-co-admin-in-hello-publishing-portal"></a>Passaggi toodelete co-amministratore in hello portale di pubblicazione
+**Supponendo che siano salve,** riportati di seguito viene hello passaggi toodelete un co-amministratore.
 
-1. Accedere al portale di pubblicazione con l'ID di posta elettronica di amministratore.
-2. Passare ad **Server di pubblicazione** -> selezionare il proprio account -> **Amministratori** -> **Co-Admins** (Coamministratori).
-3. Fare sulla **X** accanto al co-amministratore da eliminare (schermata riportata di seguito).
+1. Account di accesso toohello pubblicazione portale con id di posta elettronica amministratore hello.
+2. Passare troppo**editori** -> account -> Seleziona **amministratori** -> **coamministratori**.
+3. Fare clic su hello **X** pulsante Avanti toohello coamministratore si desidera eliminare tot (schermata specificato di seguito).
    
     ![disegno](media/marketplace-publishing-pre-requisites/imgDeleteAdmin_03.png)
 
 > [!IMPORTANT]
-> Non è necessario inserire le informazioni fiscali e bancarie dell'azienda se si intende pubblicare solo offerte gratuite (o Bring Your Own License).
+> Non si dispone informazioni fiscali e bank società toocomplete se si intendono offerte gratis toopublish (o porta la propria licenza).
 > 
-> Per iniziare, è necessario completare la registrazione dell'azienda. Tuttavia, mentre la società si occupa delle informazioni fiscali e bancarie nell'account Dev Center, gli sviluppatori possono iniziare a lavorare alla creazione dell'immagine di macchina virtuale nel [portale di pubblicazione](https://publish.windowsazure.com), ottenere la certificazione ed eseguire il testing nell'ambiente di gestione temporanea di Azure. L'approvazione completa dell'account venditore è necessaria solo per il passaggio finale di pubblicazione dell'offerta in Azure Marketplace.
+> registrazione di società Hello deve essere completato tooget avviato. Tuttavia, quando viene utilizzato l'azienda alle informazioni di imposte e bank hello nell'account di Microsoft Developer hello, gli sviluppatori di hello possono iniziare a lavorare sulla creazione di immagini di macchina virtuale hello in hello [portale pubblicazione](https://publish.windowsazure.com), ottenere il certificato, e verificata nell'ambiente di gestione temporanea Azure hello. Sarà necessario hello venditore completo account approvazione solo per l'ultimo passaggio di hello della pubblicazione il toohello offerta Azure Marketplace.
 > 
 > 
 
 ## <a name="acquire-an-azure-pay-as-you-go-subscription"></a>Acquisire una sottoscrizione di Azure con pagamento in base al consumo
-Si tratta della sottoscrizione che si userà per creare le immagini di VM e distribuire le immagini in [Azure Marketplace](https://azure.microsoft.com/marketplace/). Se non si dispone di una sottoscrizione esistente, iscriversi su https://account.windowsazure.com/signup?offer=ms-azr-0003p.
+Si tratta di sottoscrizione hello che consentono di utilizzare toocreate le immagini di macchina virtuale e mano su hello immagini toohello [Azure Marketplace](https://azure.microsoft.com/marketplace/). Se non si dispone di una sottoscrizione esistente, iscriversi su https://account.windowsazure.com/signup?offer=ms-azr-0003p.
 
 ## <a name="sell-from-countries"></a>Paesi di origine della vendita
 > [!WARNING]
-> Per vendere i propri servizi in Microsoft Azure Marketplace, è necessario assicurarsi che l'entità registrata si trovi in uno dei paesi di origine della vendita approvati. Questa limitazione viene applicata per motivi legati ai proventi e alla tassazione. Questo elenco di paesi verrà ampliato nel prossimo futuro perciò non rimane che attendere. Per l'elenco completo, vedere la sezione 1b delle [politiche di partecipazione ad Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
+> In ordine toosell dei servizi sul hello Azure Marketplace, è necessario assicurarsi che l'entità registrato è uno dei paesi hello approvato "vendere-from". Questa limitazione viene applicata per motivi legati ai proventi e alla tassazione. Si sta impegnando nella ricerca tooexpand questo elenco di paesi in hello prossimo futuro, pertanto in futuro. Per l'elenco completo di hello, vedere sezione 1b di hello [criteri la partecipazione di Azure Marketplace](http://go.microsoft.com/fwlink/?LinkID=526833).
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Quando vengono rispettati i prerequisiti non tecnici, occorre passare ai prerequisiti tecnici specifici dell'offerta. Fare clic sul collegamento all'articolo per il tipo di offerta corrispondente che si desidera creare per Azure Marketplace.
+Quando vengono soddisfatti i prerequisiti non tecnico hello, accanto è offerta hello prerequisiti tecnici specifici. Fare clic hello collegamento toohello articolo per il tipo di offerta rispettivi hello che si desidera toocreate per hello Azure Marketplace.
 
 * [Prerequisiti tecnici per le macchine virtuali](marketplace-publishing-vm-image-creation-prerequisites.md)
 * [Prerequisiti tecnici per il modello di soluzione](marketplace-publishing-solution-template-creation-prerequisites.md)
 
 ## <a name="see-also"></a>Vedere anche
-* [Guida introduttiva: Come pubblicare un'offerta in Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Guida introduttiva: come toopublish un toohello offerta Azure Marketplace](marketplace-publishing-getting-started.md)
 

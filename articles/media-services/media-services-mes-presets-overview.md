@@ -1,6 +1,6 @@
 ---
-title: "Set di impostazioni delle attività MES (Media Encoder Standard) | Microsoft Docs"
-description: Questo argomento fornisce una panoramica dei set di impostazioni per MES (Media Encoder Standard).
+title: set di impostazioni di aaaTask per MES (Media Encoder Standard) | Documenti Microsoft
+description: "Panoramica dei set di impostazioni di attività per MES (Media Encoder Standard) e offre argomento Hello."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako
-ms.openlocfilehash: 6fcdd361b7725b1a5136828cede24cdaac5dacc1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 56e098d6d8c8f84031421ec59f087f20370ba111
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="task-presets-for-mes-media-encoder-standard"></a>Set di impostazioni delle attività MES (Media Encoder Standard)
 
-**Media Encoder Standard** definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. Si consiglia di usare il set di impostazioni di "Flusso adattivo" se si vuole codificare un video per lo streaming con Servizi multimediali. Quando si specifica il set di impostazioni Media Encoder Standard [genera automaticamente un bitrate ladder](media-services-autogen-bitrate-ladder-with-mes.md). 
+**Media Encoder Standard** definisce un set di impostazioni di codifica che è possibile usare per la creazione di processi di codifica. È consigliabile hello toouse "Il flusso adattivo" predefinito se si desidera tooencode un video per streaming con servizi multimediali. Quando si specifica il set di impostazioni Media Encoder Standard [genera automaticamente un bitrate ladder](media-services-autogen-bitrate-ladder-with-mes.md). 
 
-Tuttavia, se è necessario personalizzare un set di impostazioni di codifica, è necessario prendere uno dei set di impostazioni di codifica definiti in questa sezione come modello per la configurazione personalizzata. Per informazioni sul significato di ogni elemento in questi set di impostazioni e sui valori possibili per ciascuno, vedere lo [schema di Media Encoder Standard](media-services-mes-schema.md).  
+Tuttavia, se è necessario toocustomize un set di impostazioni di codifica, è necessario effettuare una delle hello predefiniti definiti in questa sezione come modello per la configurazione personalizzata di codifica. Per una spiegazione di ogni elemento in tali mezzi predefiniti e i valori validi di hello per ogni elemento, vedere hello [schema Media Encoder Standard](media-services-mes-schema.md) argomento.  
   
 > [!NOTE]
->  Quando si usa un set di impostazioni per codifiche 4K, si dovrebbe ottenere il tipo di unità riservata `S3`. Per altre informazioni, vedere [Come scalare la codifica](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
+>  Quando si utilizza un set di impostazioni di codifica 4 KB, è necessario ottenere hello `S3` tipo di unità riservate. Per ulteriori informazioni, vedere [come tooScale codifica](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
   
-Quando si usa Media Encoder Standard, la rotazione è abilitata per impostazione predefinita. Se il video è stato registrato con uno smartphone o un altro dispositivo mobile in modalità verticale, per impostazione predefinita prima di codificarlo i set di impostazioni lo ruoteranno in modalità orizzontale (a differenza di quando si usa Azure Media Encoder, in cui la rotazione del video deve essere eseguita manualmente, come documentato in [questo](http://azure.microsoft.com/blog/2014/08/21/advanced-encoding-features-in-azure-media-encoder/) blog, nella sezione sulla rotazione del video).  
+Quando si usa Media Encoder Standard, la rotazione è abilitata per impostazione predefinita. Se il video è stato registrato su uno smartphone o altro dispositivo mobile in modalità verticale, quindi tali predefiniti, per impostazione predefinita, ruoterà li tooencoding precedente di modalità tooLandscape (a differenza di, quando si lavora con Azure Media Encoder, rotazione del video in cui è un'operazione manuale, come descritto in [questo](http://azure.microsoft.com/blog/2014/08/21/advanced-encoding-features-in-azure-media-encoder/) blog, in "Video rotazione").  
   
 Set di impostazioni disponibili:  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 1080p e audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-1080p-Audio-5.1.md) genera un set di 8 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa fra 6.000 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 1080p e Audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-1080p-Audio-5.1.md) produce un set di 8 file MP4 allineati GOP, comprese tra 6000 kbps too400 kbps e audio 5.1 AAC.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 1080p](media-services-mes-preset-H264-Multiple-Bitrate-1080p.md) genera un set di 8 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 6.000 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 1080p](media-services-mes-preset-H264-Multiple-Bitrate-1080p.md) produce un set di 8 file MP4 allineati GOP, comprese tra 6000 kbps too400 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 16x9 per iOS](media-services-mes-preset-H264-Multiple-Bitrate-16x9-for-iOS.md) genera un set di 8 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 8.500 e 200 kbps.  
+ [H264 bitrate multiplo con risoluzione 16x9 per iOS](media-services-mes-preset-H264-Multiple-Bitrate-16x9-for-iOS.md) produce un set di 8 file MP4 allineati GOP, compreso fra 8500 kbps too200 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 16x9 SD e audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD-Audio-5.1.md) genera un set di 5 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa fra 1.900 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 16x9 SD e Audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD-Audio-5.1.md) produce un set di 5 file MP4 allineati GOP, compreso tra 1900 kbps too400 kbps e audio 5.1 AAC.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 16x9 SD](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD.md) genera un set di 5 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 1.900 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 16x9 SD](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD.md) produce un set di 5 file MP4 allineati GOP, compreso tra 1900 kbps too400 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 4K e audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4K-Audio-5.1.md) genera un set di 12 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa fra 20.000 e 1.000 kbps.  
+ [H264 bitrate multiplo con risoluzione 4K e Audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4K-Audio-5.1.md) produce un set di file MP4 allineati GOP a 12, compreso fra 20000 kbps too1000 kbps e audio 5.1 AAC.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 4K](media-services-mes-preset-H264-Multiple-Bitrate-4K.md) genera un set di 12 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 20.000 e 1.000 kbps.  
+ [H264 bitrate multiplo con risoluzione 4K](media-services-mes-preset-H264-Multiple-Bitrate-4K.md) produce un set di file MP4 allineati GOP a 12, compreso fra 20000 kbps too1000 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 4x3 per iOS](media-services-mes-preset-H264-Multiple-Bitrate-4x3-for-iOS.md) genera un set di 8 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 8500 e 200 kbps.  
+ [H264 bitrate multiplo con risoluzione 4x3 per iOS](media-services-mes-preset-H264-Multiple-Bitrate-4x3-for-iOS.md) produce un set di 8 file MP4 allineati GOP, compreso fra 8500 kbps too200 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 4x3 SD e audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD-Audio-5.1.md) genera un set di 5 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa fra 1.600 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 4x3 SD e Audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD-Audio-5.1.md) produce un set di 5 file MP4 allineati GOP, compreso tra 1600 kbps too400 kbps e audio 5.1 AAC.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 4x3 SD](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD.md) genera un set di 5 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 1.600 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 4x3 SD](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD.md) produce un set di 5 file MP4 allineati GOP, compreso tra 1600 kbps too400 kbps e audio AAC stereo.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 720p e audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-720p-Audio-5.1.md) genera un set di 6 file MP4 con audio AAC 5.1 e allineamento GOP, con velocità compresa fra 3.400 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 720p e Audio 5.1](media-services-mes-preset-H264-Multiple-Bitrate-720p-Audio-5.1.md) produce un set di file MP4 allineati GOP a 6, comprese tra 3400 kbps too400 kbps e audio 5.1 AAC.  
   
- [Codec video H.264 a bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) genera un set di 6 file MP4 con audio AAC stereo e allineamento GOP, con velocità compresa fra 3.400 e 400 kbps.  
+ [H264 bitrate multiplo con risoluzione 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) produce un set di file MP4 allineati GOP a 6, comprese tra 3400 kbps too400 kbps e audio AAC stereo.  
   
  [Codec video H.264 a bitrate singolo con risoluzione 1080p e audio 5.1](media-services-mes-preset-H264-Single-Bitrate-1080p-Audio-5.1.md) genera un file MP4 con audio AAC 5.1 e una velocità in bit di 6.750 kbps.  
   
@@ -83,4 +83,4 @@ Set di impostazioni disponibili:
   
  [Codec video H.264 a bitrate singolo con risoluzione SD di bassa qualità per Android](media-services-mes-preset-H264-Single-Bitrate-Low-Quality-SD-for-Android.md) genera un file MP4 con audio AAC stereo e una velocità in bit di 56 kbps.  
   
- Per altre informazioni sui codificatori di servizi multimediali, vedere [Codifica su richiesta con i servizi multimediali di Azure](https://azure.microsoft.com/en-us/documentation/articles/media-services-encode-asset/).
+ Per ulteriori informazioni vedere codificatori servizi correlati tooMedia, [codifica su richiesta con servizi multimediali di Azure](https://azure.microsoft.com/en-us/documentation/articles/media-services-encode-asset/).

@@ -1,6 +1,6 @@
 ---
-title: Gestire eventi del ciclo di vita dei servizi cloud | Documentazione Microsoft
-description: Informazioni su come utilizzare i metodi del ciclo di vita di un ruolo del Servizio Cloud in .NET
+title: gli eventi del ciclo di vita del servizio di Cloud aaaHandle | Documenti Microsoft
+description: Informazioni su come hello del ciclo di vita di un ruolo del servizio Cloud possono essere utilizzati in .NET
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: eb78c05df3b3cdf3887334c11bdabd5cebb74747
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cc0ccc5f055b965202b6e081a6ab72ad5d39b034
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-the-lifecycle-of-a-web-or-worker-role-in-net"></a>Personalizzare il ciclo di vita di un ruolo Web o di lavoro in .NET
-Quando si crea un ruolo di lavoro, si estende la classe [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) che fornisce metodi per la sovrascrittura che consentono di rispondere agli eventi del ciclo di vita. Per i ruoli Web questa classe è facoltativa, molto utilizzata per rispondere agli eventi del ciclo di vita.
+# <a name="customize-hello-lifecycle-of-a-web-or-worker-role-in-net"></a>Personalizzare hello del ciclo di vita di un ruolo Web o di lavoro in .NET
+Quando si crea un ruolo di lavoro, si estende hello [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) classe che fornisce metodi per l'utente toooverride che consentono di rispondere a eventi toolifecycle. Per i ruoli web questa classe è facoltativa, è necessario utilizzare toorespond toolifecycle eventi.
 
-## <a name="extend-the-roleentrypoint-class"></a>Estendere la classe RoleEntryPoint
-La classe [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) include metodi che vengono chiamati da Azure quando **avvia**, **esegue** o **arresta** un ruolo Web o di lavoro. Facoltativamente, è possibile ignorare questi metodi per gestire l'inizializzazione, sequenze di arresto o il thread di esecuzione del ruolo. 
+## <a name="extend-hello-roleentrypoint-class"></a>Estendere una classe RoleEntryPoint hello
+Hello [RoleEntryPoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.aspx) classe include metodi che vengono chiamati da Azure quando si **inizia**, **esegue**, o **Arresta** un ruolo web o di lavoro. Facoltativamente, è possibile ignorare questi metodi toomanage ruolo inizializzazione, sequenze di arresto di ruolo o thread di esecuzione hello del ruolo hello. 
 
-Quando si estende **RoleEntryPoint**è necessario tenere presente i seguenti comportamenti dei metodi:
+Quando si estende **RoleEntryPoint**, è necessario essere consapevoli di hello seguenti comportamenti dei metodi di hello:
 
-* I metodi [OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) e [OnStop](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) restituiscono un valore booleano ed è quindi possibile che da questi metodi venga restituito **false**.
+* Hello [OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) e [OnStop](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstop.aspx) metodi restituiscono un valore booleano, pertanto è possibile tooreturn **false** da questi metodi.
   
-   Se il codice restituisce **false**il processo del ruolo viene interrotto improvvisamente, senza eseguire nessuna sequenza di arresto in programma. In generale, è consigliabile evitare la restituzione di **false** dal metodo **OnStart**.
+   Se il codice restituisce **false**, processo del ruolo hello viene terminato bruscamente, senza eseguire qualsiasi sequenza di arresto è possibile sul posto. In generale, è consigliabile evitare la restituzione **false** da hello **OnStart** metodo.
 * Qualsiasi eccezione non rilevata all'interno di un overload di un metodo **RoleEntryPoint** viene considerato come un'eccezione non gestita.
   
-   Se si verifica un'eccezione all'interno di uno dei metodi del ciclo di vita, Azure genera l’evento [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) e il processo viene interrotto. Quando il ruolo viene portato offline, viene riavviato da Azure. Quando si verifica un'eccezione non gestita, l’evento [Stopping](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.stopping.aspx) non viene generato e il metodo **OnStop** non viene chiamato.
+   Se si verifica un'eccezione all'interno di uno dei metodi del ciclo di vita di hello, Azure genererà hello [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) evento, e quindi viene terminato il processo di hello. Quando il ruolo viene portato offline, viene riavviato da Azure. Quando un'eccezione non gestita si verifica, hello [arresto](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.stopping.aspx) evento non viene generato e hello **OnStop** non viene chiamato.
 
-Se il ruolo non viene avviato o passa in modo ciclico tra gli stati di arresto, di inizializzazione e di occupato, il codice potrebbe generare un'eccezione non gestita all'interno di uno degli eventi del ciclo di vita ogni volta che il ruolo viene riavviato. In questo caso, utilizzare l’evento [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) per determinare la causa dell'eccezione e gestirla nel modo appropriato. Il ruolo potrebbe anche essere restituito dal metodo [Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) che causa il riavvio del ruolo. Per ulteriori informazioni sugli stati di distribuzione, vedere [problemi comuni che causano il riciclo dei ruoli](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md).
+Se il ruolo non si avvia, oppure il riciclo tra hello durante l'inizializzazione, occupati e arresto di stati, il codice potrebbe generare un'eccezione non gestita all'interno di uno degli eventi del ciclo di vita hello che ogni ruolo di hello ora viene riavviato. In questo caso, utilizzare hello [UnhandledException](https://msdn.microsoft.com/library/system.appdomain.unhandledexception.aspx) toodetermine evento hello causa dell'eccezione hello e gestirlo in modo appropriato. Il ruolo potrebbe restituire anche da hello [eseguire](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) (metodo), provocando toorestart ruolo hello. Per ulteriori informazioni sugli stati di distribuzione, vedere [tooRecycle comuni problemi che causa ruoli](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md).
 
 > [!NOTE]
-> Se si usano gli **strumenti di Azure per Microsoft Visual Studio** per sviluppare l'applicazione, i modelli di progetto di ruolo estendono automaticamente la classe **RoleEntryPoint** nei file *WebRole.cs* e *WorkerRole.cs*.
+> Se si utilizza hello **strumenti di Azure per Microsoft Visual Studio** toodevelop l'applicazione, modelli di progetto di ruolo hello estendono automaticamente hello **RoleEntryPoint** classe, hello *WebRole.cs* e *WorkerRole.cs* file.
 > 
 > 
 
 ## <a name="onstart-method"></a>Metodo OnStart
-Il metodo **OnStart** viene chiamato quando l'istanza del ruolo viene portata online da Azure. Mentre il codice OnStart viene eseguito, l'istanza del ruolo è contrassegnata come **occupata** e non verrà indirizzato alcun traffico esterno dal bilanciamento del carico. È possibile eseguire l'override di questo metodo per eseguire operazioni di inizializzazione, ad esempio implementare i gestori eventi e avviare la [diagnostica Azure](cloud-services-how-to-monitor.md).
+Hello **OnStart** metodo viene chiamato quando l'istanza del ruolo viene portata online da Azure. Durante l'esecuzione di codice OnStart hello, l'istanza del ruolo hello è contrassegnato come **occupato** sia tooit diretto dal servizio di bilanciamento del carico hello alcun traffico esterno. È possibile eseguire l'override di questo operazioni di inizializzazione tooperform (metodo), ad esempio l'implementazione dei gestori eventi e l'avvio di [diagnostica Azure](cloud-services-how-to-monitor.md).
 
-Se **OnStart** restituisce **true**, l'inizializzazione dell'istanza viene completata e Azure chiama il metodo **RoleEntryPoint.Run**. Se **OnStart** restituisce **false**, il ruolo termina immediatamente senza eseguire alcuna sequenza di arresto pianificata.
+Se **OnStart** restituisce **true**, istanza hello è inizializzata correttamente e Azure chiama hello **Roleentrypoint** metodo. Se **OnStart** restituisce **false**, ruolo hello termina immediatamente, senza l'esecuzione di tutte le sequenze di arresto pianificato.
 
-Il seguente esempio di codice illustra come eseguire l'override del metodo **OnStart** . Questo metodo configura e avvia un monitor di diagnostica all’avvio dell'istanza del ruolo e imposta il trasferimento dei dati di registrazione in un account di archiviazione:
+Hello seguente come esempio di codice hello toooverride **OnStart** metodo. Questo metodo configura e avvia un monitor di diagnostica quando l'istanza del ruolo hello viene avviato e impostato il trasferimento di account di archiviazione di dati tooa di registrazione:
 
 ```csharp
 public override bool OnStart()
@@ -64,21 +64,21 @@ public override bool OnStart()
 ```
 
 ## <a name="onstop-method"></a>Metodo OnStop
-Il metodo **OnStop** viene chiamato quando un'istanza del ruolo viene portata offline da Azure e prima della chiusura del processo. È possibile eseguire l'override di questo metodo per chiamare il codice necessario affinché l'istanza del ruolo effettui un arresto normale.
+Hello **OnStop** metodo viene chiamato quando un'istanza del ruolo viene portata offline da Azure e prima dell'uscita dal processo hello. È possibile eseguire l'override di questo codice toocall metodo necessario per toocleanly di istanza del ruolo arrestato.
 
 > [!IMPORTANT]
-> Il codice in esecuzione nel metodo **OnStop** presenta un tempo di completamento limitato quando viene chiamato per motivi diversi da un arresto avviato dall'utente. Trascorso tale tempo, il processo viene terminato ed è quindi necessario assicurarsi che il codice del metodo **OnStop** possa essere eseguito rapidamente o tolleri il mancato completamento. Il metodo **OnStop** viene chiamato dopo la generazione dell'evento **Stopping**.
+> Il codice in esecuzione in hello **OnStop** metodo ha un periodo di tempo limitato di toofinish quando viene chiamato per motivi diversi da un arresto avviato dall'utente. Trascorso tale tempo, hello processo viene terminato, pertanto è necessario assicurarsi che il codice in hello **OnStop** metodo possa essere eseguito rapidamente o tollerata toocompletion non è in esecuzione. Hello **OnStop** metodo viene chiamato dopo hello **arresto** viene generato l'evento.
 > 
 > 
 
 ## <a name="run-method"></a>Metodo Run
-È possibile eseguire l'override del metodo **Run** per implementare un thread a esecuzione prolungata per l'istanza del ruolo.
+È possibile eseguire l'override di hello **eseguire** metodo tooimplement un thread di lunga durata per l'istanza del ruolo.
 
-L’esecuzione dell'override del metodo **Run** non è obbligatoria, l'implementazione predefinita avvia un thread in costante stato di sospensione. Se si esegue l'override del metodo **Run** , il codice dovrebbe bloccarsi in modo indefinito. Se il metodo **Run** restituisce un valore, il ruolo viene riciclato normalmente in modo automatico. In altre parole, Azure genera l'evento **Stopping** e chiama il metodo **OnStop** in modo che le sequenze di arresto possano essere eseguite prima che il ruolo venga portato offline.
+Si esegue l'override di hello **eseguire** metodo non è obbligatorio; l'implementazione predefinita di hello avvia un thread in costante stato di sospensione. Se si esegue l'override di hello **eseguire** (metodo), il codice dovrebbe bloccarsi per un periodo illimitato. Se hello **eseguire** metodo viene restituito, hello ruolo automaticamente normalmente riciclato; in altre parole, Azure hello **arresto** eventi e chiamate hello **OnStop** metodo in modo che è possibile eseguire le sequenze di arresto prima hello ruolo venga portato offline.
 
-### <a name="implementing-the-aspnet-lifecycle-methods-for-a-web-role"></a>Implementazione dei metodi del ciclo di vita ASP.NET per un ruolo web
-È possibile utilizzare i metodi del ciclo di vita ASP.NET, oltre a quelli forniti dalla classe **RoleEntryPoint** , per gestire le sequenze di inizializzazione e di arresto per un ruolo web. Potrebbe essere utile per motivi di compatibilità se si trasferisce un'applicazione ASP.NET esistente in Azure. I metodi del ciclo di vita ASP.NET vengono chiamati dall'interno dei metodi **RoleEntryPoint** . Il metodo **Application\_Start** viene chiamato al termine del metodo **RoleEntryPoint.OnStart**. Il metodo **Application\_End** viene chiamato prima del metodo **RoleEntryPoint.OnStop**.
+### <a name="implementing-hello-aspnet-lifecycle-methods-for-a-web-role"></a>Implementazione dei metodi del ciclo di vita ASP.NET hello per un ruolo web
+È possibile utilizzare metodi del ciclo di vita ASP.NET hello, inoltre toothose fornito da hello **RoleEntryPoint** classe toomanage sequenze di inizializzazione e di arresto per un ruolo web. Potrebbe essere utile per motivi di compatibilità se si trasferisce un tooAzure di applicazioni ASP.NET esistenti. metodi del ciclo di vita ASP.NET Hello vengano chiamati dall'interno di hello **RoleEntryPoint** metodi. Hello **applicazione\_avviare** metodo viene chiamato dopo hello **Roleentrypoint** al termine di metodo. Hello **applicazione\_fine** metodo viene chiamato prima hello **Roleentrypoint** metodo viene chiamato.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come [creare un pacchetto del servizio cloud](cloud-services-model-and-package.md).
+Informazioni su come troppo[creare un pacchetto del servizio cloud](cloud-services-model-and-package.md).
 

@@ -1,5 +1,5 @@
 ---
-title: Introduzione a iOS per Azure AD v2 | Microsoft Docs
+title: Guida introduttiva di aaaAzure AD v2 iOS | Documenti Microsoft
 description: "Informazioni sulle modalità per le applicazioni iOS (Swift) per chiamare un'API che richiede token di accesso dall'endpoint di Azure Active Directory v2"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 08/22/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 608fe00d478945516b25b672709cd358c5e55ddb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 93a9ca2527a001265697203f0d2bfb883f8ff8fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-mobileanddesktopapp-ios-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-mobileanddesktopapp-ios-setup.md)]

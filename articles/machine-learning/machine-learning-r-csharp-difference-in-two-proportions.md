@@ -1,5 +1,5 @@
 ---
-title: (Deprecato) Differenza nel test sulle proporzioni - Azure | Documentazione Microsoft
+title: Differenza in percentuale di Test - Azure AAA(deprecated) | Documenti Microsoft
 description: (Deprecato) Differenza nel test sulle proporzioni
 services: machine-learning
 documentationcenter: 
@@ -16,47 +16,47 @@ ms.date: 01/06/2017
 ms.author: aniedea
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: a08f91ca76eef2562caeb9eb64cec5e549ed2f5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 820aad377f9dec12b0ef455974aaa95f6e8d723a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-difference-in-proportions-test"></a>(Deprecato) Differenza nel test sulle proporzioni
 
 > [!NOTE]
-> Microsoft DataMarket è in fase di ritiro e questa API è stata deprecata. 
+> è stata ritirata Hello Microsoft DataMarket e questa API è stata deprecata. 
 > 
-> Numerose API e molti esperimenti utili di esempio sono disponibili in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per altre informazioni sulla raccolta, vedere [Condividere e scoprire risorse in Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sono disponibili molte esperimenti di esempio utile e API hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per ulteriori informazioni sulla raccolta hello, vedere [condivisione e individuare le risorse in Cortana Intelligence Gallery hello](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Due proporzioni presentano differenze a livello statistico? Si supponga che un utente voglia confrontare due film per determinare se un film ha ottenuto una proporzione significativamente superiore di "mi piace" rispetto all'altro. Con un campione di grandi dimensioni, potrebbe esservi una differenza statisticamente significativa tra le proporzioni 0,50 e 0,51. Con un campione di piccole dimensioni, potrebbero non essere disponibili dati sufficienti per determinare se queste proporzioni sono effettivamente diverse. 
+Due proporzioni presentano differenze a livello statistico? Si supponga che un utente desideri toocompare due filmati toodetermine se un filmato ha una proporzione notevolmente maggiore di "mi piace' quando confrontati toohello altri. Con un esempio di grandi dimensioni, potrebbe esserci una differenza tra percentuali hello 0,50 e 0.51 statisticamente significativa. Con un piccolo esempio, si potrebbe non essere sufficiente toodetermine dati se queste proporzioni in realtà sono diverse. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Questo [servizio Web](https://datamarket.azure.com/dataset/aml_labs/prop_test) esegue una verifica dell'ipotesi relativa alla differenza tra le due proporzioni in base all'input utente del numero di successi e del numero totale di prove per i due gruppi di confronto. Questo scenario si può verificare in caso di chiamata del servizio Web dall’interno di un'app di confronto tra film, per comunicare a un utente se uno dei film è effettivamente più apprezzato rispetto all'altro sulla base delle classificazioni dei film.
+Questo [servizio web](https://datamarket.azure.com/dataset/aml_labs/prop_test) esegue un test di ipotesi di differenza hello in due proporzioni in base all'input utente hello numero di esiti positivi del numero totale di hello di versioni di valutazione per i gruppi di confronto hello 2. In uno scenario, il servizio web potrebbe essere chiamato all'interno di un'app di confronto di film, che indica hello se uno dei filmati hello è 'dinamica' più spesso degli altri, hello in base alle classificazioni di film.
 
-> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma lo scopo del servizio Web è anche fornire un esempio di come è possibile utilizzare Azure Machine Learning per creare servizi Web in codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. Il servizio Web può essere quindi pubblicato in Azure Marketplace e può essere usato da utenti e dispositivi in tutto il mondo, senza che l'autore del servizio Web debba configurare alcuna infrastruttura.
+> Questo servizio Web può essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma scopo hello del servizio web hello anche tooserve come esempio di come Azure Machine Learning è possibile servizi web utilizzati toocreate su codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. servizio web Hello può quindi essere pubblicata toohello Azure Marketplace e utilizzato da utenti e dispositivi attraverso HelloWorld con alcuna installazione dell'infrastruttura dall'autore hello del servizio web hello.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Uso del servizio Web
 Questo servizio accetta quattro argomenti ed esegue una verifica dell'ipotesi delle proporzioni.
 
-Gli argomenti di input sono i seguenti:
+gli argomenti di input Hello sono:
 
 * Successes1: numero di eventi con esito positivo nel campione 1.
 * Successes2: numero di eventi con esito positivo nel campione 2.
 * Total1: dimensione del campione 1.
 * Total2: dimensione del campione 2.
 
-L'output del servizio è il risultato della verifica dell'ipotesi, insieme alla statistica chi quadrato, ai gradi di libertà, al valore p, la proporzione nel campione 1/2 e ai limiti dell'intervallo di confidenza.
+output di Hello del servizio hello è risultato hello dell'ipotesi hello test insieme hello chi-quadrato statistica, df, p-valore e proporzioni nei limiti di 1/2 e l'intervallo di confidenza di esempio.
 
-> Questo servizio, come ospitato in Azure Marketplace, è un servizio OData ed è possibile utilizzare i metodi POST o GET per effettuare le chiamate. 
+> Questo servizio, ospitato in Azure Marketplace, hello è un servizio OData. questi può essere chiamati tramite i metodi POST o GET. 
 > 
 > 
 
-Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. Per un'app di esempio, vedere [qui](http://microsoftazuremachinelearning.azurewebsites.net/DifferenceInProportionsTest.aspx).
+Esistono diversi modi di utilizzo di servizio hello in modo automatico (è un'app di esempio [qui](http://microsoftazuremachinelearning.azurewebsites.net/DifferenceInProportionsTest.aspx)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Codice C# iniziale per l'uso del servizio Web:
     public class Input
@@ -90,11 +90,11 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
 
 ## <a name="creation-of-web-service"></a>Creazione del servizio Web
-> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). La schermata seguente mostra un esperimento per la creazione del servizio Web e codice di esempio per ogni modulo incluso nell'esperimento.
+> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). Di seguito è riportata una schermata dell'esperimento hello creato codice di esempio e servizio web hello per ciascuno dei moduli di hello all'interno di sperimentazione hello.
 > 
 > 
 
-In Azure Machine Learning è stato creato un nuovo esperimento vuoto con due moduli [Execute R Script][execute-r-script] (Esegui script R). Lo schema di dati nel primo modulo è definito, mentre il secondo modulo usa il comando prop.test in R per eseguire la verifica dell'ipotesi per due proporzioni. 
+In Azure Machine Learning è stato creato un nuovo esperimento vuoto con due moduli [Execute R Script][execute-r-script] (Esegui script R). Nel primo modulo hello schema dati hello è definito, mentre il secondo modulo hello utilizza il comando prop.test hello all'interno dei test di ipotesi R tooperform hello per le 2 proporzioni. 
 
 ### <a name="experiment-flow"></a>Flusso dell'esperimento
 ![Flusso dell'esperimento][2]
@@ -102,7 +102,7 @@ In Azure Machine Learning è stato creato un nuovo esperimento vuoto con due mod
 #### <a name="module-1"></a>Modulo 1:
     ####Schema definition  
     data.set=data.frame(successes1=50,successes2=60,total1=100,total2=100);
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
     dataset1 = maml.mapInputPort(1) #read data from input port
 
 
@@ -110,8 +110,8 @@ In Azure Machine Learning è stato creato un nuovo esperimento vuoto con due mod
     test=prop.test(c(dataset1$successes1[1],dataset1$successes2[1]),c(dataset1$total1[1],dataset1$total2[1])) #conduct hypothesis test
 
     result=data.frame(
-    result=ifelse(test$p.value<0.05,"The proportions are different!",
-    "The proportions aren't different statistically."),
+    result=ifelse(test$p.value<0.05,"hello proportions are different!",
+    "hello proportions aren't different statistically."),
     ChiSquarestatistic=round(test$statistic,2),df=test$parameter,
     pvalue=round(test$p.value,4),
     proportion1=round(test$estimate[1],4),
@@ -123,10 +123,10 @@ In Azure Machine Learning è stato creato un nuovo esperimento vuoto con due mod
 
 
 ## <a name="limitations"></a>Limitazioni
-Questo è un esempio molto semplice per la verifica della differenza tra due proporzioni. Come si può notare dall'esempio di codice precedente, il rilevamento degli errori non è implementato e il servizio presuppone che tutte le variabili siano continue.
+Questo è un esempio molto semplice per la verifica della differenza tra due proporzioni. Come si può notare dal codice di esempio hello precedente, non viene implementato alcun rilevamento di errori e servizio hello si presuppone che tutte le variabili di hello continua.
 
-## <a name="faq"></a>Domande frequenti
-Per le domande frequenti relative all'uso del servizio Web o alla pubblicazione in Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
+## <a name="faq"></a>domande frequenti
+Per domande frequenti sull'utilizzo del servizio web hello o pubblicazione toohello Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-difference-in-two-proportions/hyptest-img1.png
 [2]: ./media/machine-learning-r-csharp-difference-in-two-proportions/hyptest-img2.png

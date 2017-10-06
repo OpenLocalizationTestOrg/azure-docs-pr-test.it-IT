@@ -1,6 +1,6 @@
 ---
-title: "Introduzione al controllo della connettività in Azure Network Watcher | Microsoft Docs"
-description: "Questa pagina offre una panoramica della funzionalità di connettività di Network Watcher"
+title: archiviazione tooconnectivity aaaIntroduction Watcher di rete di Azure | Documenti Microsoft
+description: "Questa pagina viene fornita una panoramica di hello capacità di connessione Watcher di rete"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,46 +13,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: c29f5afe59f57112fe1f115df6bc53645f3c0d34
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 52fc4547f167cea2992a046859dc0550d136e80d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-connectivity-check-in-azure-network-watcher"></a>Introduzione al controllo della connettività in Azure Network Watcher
+# <a name="introduction-tooconnectivity-check-in-azure-network-watcher"></a>Introduzione tooconnectivity archiviazione Watcher di rete di Azure
 
-La funzionalità di connettività di Network Watcher consente di controllare una connessione TCP diretta da una macchina virtuale (VM) a un'altra, il nome di dominio completo (FQDN), l'URI o l'indirizzo IPv4. Gli scenari di rete sono complessi e vengono implementati mediante l'uso di gruppi di sicurezza di rete, firewall, route definite dall'utente e risorse fornite da Azure. La risoluzione dei problemi di connettività nella configurazioni complesse è un compito impegnativo. Network Watcher consente di ridurre il tempo necessario per individuare e rilevare i problemi di connettività. I risultati restituiti possono offrire informazioni dettagliate sulla causa del problema di connettività, ovvero se esso sia riconducibile a un problema della piattaforma o della configurazione utente. È possibile controllare la connettività con [PowerShell](network-watcher-connectivity-powershell.md), l'[interfaccia della riga di comando di Azure](network-watcher-connectivity-cli.md) e l'[API REST](network-watcher-connectivity-rest.md).
+Hello funzionalità di connettività di rete Watcher fornisce hello funzionalità toocheck una connessione TCP diretta da una macchina virtuale tooa macchina virtuale (VM), il nome di dominio completo (FQDN), un URI o l'indirizzo IPv4. Gli scenari di rete sono complessi e vengono implementati mediante l'uso di gruppi di sicurezza di rete, firewall, route definite dall'utente e risorse fornite da Azure. La risoluzione dei problemi di connettività nella configurazioni complesse è un compito impegnativo. Watcher di rete consente di ridurre hello quantità di tempo toofind e rilevare i problemi di connettività. risultati Hello restituiti forniscono informazioni dettagliate in sia un problema di connettività di scadenza tooa piattaforma o un problema di configurazione utente. È possibile controllare la connettività con [PowerShell](network-watcher-connectivity-powershell.md), l'[interfaccia della riga di comando di Azure](network-watcher-connectivity-cli.md) e l'[API REST](network-watcher-connectivity-rest.md).
 
 > [!IMPORTANT]
-> Il controllo della connettività richiede l'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per installare l'estensione in una VM Windows, vedere [Estensione macchina virtuale agente Azure Network Watcher per Windows](../virtual-machines/windows/extensions-nwa.md) e per una VM Linux VM vedere [Estensione macchina virtuale Azure Network Watcher Agent per Linux](../virtual-machines/linux/extensions-nwa.md).
+> Il controllo della connettività richiede un'estensione macchina virtuale `AzureNetworkWatcherExtension`. Per l'installazione dell'estensione hello in una macchina virtuale di Windows, visitare [estensione della macchina virtuale Azure rete Watcher agente per Windows](../virtual-machines/windows/extensions-nwa.md) e per la visita di VM Linux [estensione della macchina virtuale Azure rete Watcher agente per Linux](../virtual-machines/linux/extensions-nwa.md).
 
 ## <a name="response"></a>Response
 
-La tabella seguente illustra le proprietà restituite al termine dell'esecuzione di un controllo della connettività.
+Hello nella tabella seguente mostra le proprietà di hello restituite quando una verifica della connettività ha completato l'esecuzione.
 
 |Proprietà  |Descrizione  |
 |---------|---------|
-|ConnectionStatus     | Lo stato del controllo della connettività. I risultati possibili sono **Reachable** e **Unreachable**.        |
-|AvgLatencyInMs     | Latenza media durante il controllo della connettività in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
-|MinLatencyInMs     | Latenza minima durante il controllo della connettività in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
-|MaxLatencyInMs     | Latenza massima durante il controllo della connettività in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
-|ProbesSent     | Numero di probe inviati durante il controllo. Il valore massimo è 100.        |
-|ProbesFailed     | Numero di probe non riusciti durante il controllo. Il valore massimo è 100.        |
-|Hops     | Hop per percorso hop da origine a destinazione.        |
+|ConnectionStatus     | stato Hello di verifica della connettività hello. I risultati possibili sono **Reachable** e **Unreachable**.        |
+|AvgLatencyInMs     | Latenza media durante la verifica della connettività hello in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
+|MinLatencyInMs     | La latenza minima durante connettività hello controllare in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
+|MaxLatencyInMs     | La latenza massima di connettività hello durante la verifica in millisecondi. Visualizzata solo se lo stato del controllo è reachable.        |
+|ProbesSent     | Numero di probe inviato durante il controllo hello. Il valore massimo è 100.        |
+|ProbesFailed     | Numero di probe che non è riuscita durante il controllo hello. Il valore massimo è 100.        |
+|Hops     | Hop dal percorso di hop dall'origine toodestination.        |
 |Hops[].Type     | Tipo di risorsa. I valori possibili sono **Source**, **VirtualAppliance**, **VnetLocal** e **Internet**.        |
-|Hops[].Id | Identificatore univoco dell'hop.|
-|Hops[].Address | Indirizzo IP dell'hop.|
-|Hops[].ResourceId | ID risorsa dell'hop se l'hop è una risorsa di Azure. Se si tratta di una risorsa Internet, l'ID risorsa è **Internet**. |
-|Hops[].NextHopIds | Identificatore univoco dell'hop successivo.|
-|Hops[].Issues | Raccolta di problemi riscontrati durante il controllo in corrispondenza dell'hop. Se non sono stati riscontrati problemi, il valore è vuoto.|
-|Hops[].Issues[].Origin | Hop corrente in cui si è verificato il problema. I valori possibili sono:<br/> **Inbound**: il problema è nel collegamento dall'hop precedente a quello corrente<br/>**Outbound**: il problema è nel collegamento dall'hop corrente a quello successivo<br/>**Local**: il problema è nell'hop corrente.|
-|Hops[].Issues[].Severity | Gravità del problema rilevato. I valori possibili sono **Error** e **Warning**. |
-|Hops[].Issues[].Type |Tipo di problema rilevato. I valori possibili sono: <br/>**CPU**<br/>**Memoria**<br/>**GuestFirewall**<br/>**DnsResolution**<br/>**NetworkSecurityRule**<br/>**UserDefinedRoute** |
-|Hops[].Issues[].Context |Dettagli relativi al problema rilevato.|
-|Hops[].Issues[].Context[].key |Chiave della coppia chiave-valore restituita.|
-|Hops[].Issues[].Context[].value |Valore della coppia chiave-valore restituito.|
+|Hops[].Id | Identificatore univoco dell'hop hello.|
+|Hops[].Address | Indirizzo IP dell'hop hello.|
+|Hops[].ResourceId | ResourceID dell'hop hello se hop hello è una risorsa di Azure. Se si tratta di una risorsa Internet, l'ID risorsa è **Internet**. |
+|Hops[].NextHopIds | Identificatore univoco di Hello dell'hop successivo di hello eseguita.|
+|Hops[].Issues | Raccolta di problemi che si sono verificati durante il controllo hello tale hop. Se sono non stati problemi, il valore di hello è vuoto.|
+|Hops[].Issues[].Origin | Hop di corrente di hello, in cui si è verificato problema. I valori possibili sono:<br/> **Connessioni in entrata** -problema è collegamento hello hello precedente hop toohello corrente dell'hop<br/>**In uscita** -problema è collegamento hello hello corrente hop toohello dell'hop successivo<br/>**Locale** -problema è hop corrente hello.|
+|Hops[].Issues[].Severity | gravità Hello di hello problema rilevato. I valori possibili sono **Error** e **Warning**. |
+|Hops[].Issues[].Type |tipo di Hello del problema rilevato. I valori possibili sono: <br/>**CPU**<br/>**Memoria**<br/>**GuestFirewall**<br/>**DnsResolution**<br/>**NetworkSecurityRule**<br/>**UserDefinedRoute** |
+|Hops[].Issues[].Context |Dettagli relativi hello problema rilevato.|
+|Hops[].Issues[].Context[].key |La chiave di hello coppia chiave / valore restituito.|
+|Hops[].Issues[].Context[].value |Valore di hello coppia chiave / valore restituito.|
 
-Di seguito è riportato un esempio di un problema rilevato in un hop.
+Hello Ecco un esempio di un problema rilevato su un hop.
 
 ```json
 "Issues": [
@@ -71,20 +71,20 @@ Di seguito è riportato un esempio di un problema rilevato in un hop.
 ```
 ## <a name="fault-types"></a>Tipi di errore
 
-Il controllo della connettività restituisce i tipi di errore relativi alla connessione. La tabella seguente contiene un elenco dei tipi di errore attualmente restituiti.
+verifica della connettività Hello restituisce i tipi di errore relativi alla connessione hello. Hello nella tabella seguente fornisce un elenco di hello corrente tipi di errore restituito.
 
 |Tipo  |Descrizione  |
 |---------|---------|
 |CPU     | Utilizzo elevato della CPU.       |
 |Memoria     | Uso intensivo della memoria.       |
-|GuestFirewall     | Traffico bloccato a causa della configurazione del firewall di una macchina virtuale.        |
-|DNSResolution     | Risoluzione DNS non riuscita per l'indirizzo di destinazione.        |
+|GuestFirewall     | Il traffico viene bloccato a causa di configurazione del firewall tooa macchina virtuale.        |
+|DNSResolution     | Risoluzione DNS non riuscita per l'indirizzo di destinazione hello.        |
 |NetworkSecurityRule    | Traffico bloccato da una regola NSG. La regola viene restituita.        |
-|UserDefinedRoute|Traffico ignorato a causa di una route definita dall'utente o di sistema. |
+|UserDefinedRoute|Il traffico viene eliminato a causa di definito dall'utente tooa o di sistema. |
 
 ### <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come verificare la connettività a una risorsa, vedere: [Check connectivity with Azure Network Watcher](network-watcher-connectivity-powershell.md) (Controllare la connettività con Azure Network Watcher).
+Informazioni su come risorsa di tooa tooverify connettività visitando: [verificare la connettività con il Watcher di rete di Azure](network-watcher-connectivity-powershell.md).
 
 <!--Image references-->
 [1]: ./media/network-watcher-next-hop-overview/figure1.png

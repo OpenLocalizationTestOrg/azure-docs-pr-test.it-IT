@@ -1,5 +1,5 @@
 ---
-title: "Impostare e recuperare proprietà e metadati degli oggetti in Archiviazione di Azure | Microsoft Docs"
+title: "aaaSet e recuperare l'oggetto proprietà e metadati in archiviazione di Azure | Documenti Microsoft"
 description: "Archiviare i metadati personalizzati per oggetti di archiviazione di Azure, impostare e recuperare le proprietà di sistema."
 services: storage
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: marsma
-ms.openlocfilehash: 6af66607478c58874f00bcf017a35abfc37888df
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44f9243183014845964f337b476a6b0069dc0902
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-and-retrieve-properties-and-metadata"></a>Impostare e recuperare proprietà e metadati
 
-Oggetti nelle proprietà di sistema di supporto di Archiviazione di Azure e metadati definiti dall'utente, oltre ai dati che contengono. Questo articolo illustra la gestione delle proprietà di sistema e i metadati definiti dall'utente con la [Libreria client di archiviazione di Azure per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/).
+Oggetti nella proprietà di sistema di supporto di archiviazione di Azure e i metadati definiti dall'utente, inoltre toohello dati in che essi contenuti. Questo articolo illustra la gestione delle proprietà di sistema e i metadati definiti dall'utente con hello [Azure Storage Client Library per .NET](https://www.nuget.org/packages/WindowsAzure.Storage/).
 
-* **Proprietà di sistema**: proprietà di sistema su ogni risorsa di archiviazione. Alcune di esse possono essere lette o impostate, mentre altre sono di sola lettura. Anche se in modo non esplicito, alcune proprietà di sistema corrispondono a specifiche intestazioni HTTP standard. La libreria client di archiviazione di Azure gestisce tale funzionalità.
+* **Proprietà di sistema**: proprietà di sistema su ogni risorsa di archiviazione. Alcune di esse possono essere lette o impostate, mentre altre sono di sola lettura. In realtà hello, alcune proprietà di sistema corrispondono a intestazioni HTTP standard toocertain. libreria client di archiviazione di Azure Hello gestisce tale funzionalità.
 
-* **Metadati definiti dall'utente**: i metadati definiti dall'utente sono metadati specificati in una determinata risorsa, sotto forma di coppia nome-valore. È possibile usare i metadati per archiviare valori aggiuntivi con una risorsa di archiviazione. Questi valori di metadati aggiuntivi sono solo per le proprie esigenze e non influiscono sul comportamento della risorsa.
+* **I metadati definiti dall'utente**: i metadati definiti dall'utente sono i metadati specificati in una determinata risorsa in forma di hello di una coppia nome-valore. È possibile utilizzare i valori dei metadati toostore aggiuntivi con una risorsa di archiviazione. Questi valori di metadati aggiuntivi sono per solo le proprie esigenze e non influiscono sul comportamento delle risorse di hello.
 
-Il recupero dei valori di proprietà e dei metadati per una risorsa è un processo in due fasi. Prima di leggere questi valori, è necessario recuperarli in modo esplicito chiamando il metodo **FetchAttributes** .
+Il recupero dei valori di proprietà e dei metadati per una risorsa è un processo in due fasi. Prima di leggere questi valori, è necessario recuperarli in modo esplicito dal chiamante hello **FetchAttributes** metodo.
 
 > [!IMPORTANT]
-> I valori di proprietà e i metadati per una risorsa di archiviazione non vengono popolati a meno che non si chiami uno dei metodi **FetchAttributes** .
+> I valori di proprietà e i metadati per una risorsa di archiviazione non vengono popolati a meno che non si chiama uno dei hello **FetchAttributes** metodi.
 >
-> Verrà visualizzato un messaggio `400 Bad Request`, se una qualsiasi coppia nome/valore contiene caratteri non ASCII. Le coppie nome/valore di metadati sono intestazioni HTTP valide e devono essere conformi alle restrizioni imposte sulle intestazioni HTTP. È quindi consigliabile usare la codifica URL o la codifica Base64 per i nomi e i valori contenenti caratteri non ASCII.
+> Verrà visualizzato un messaggio `400 Bad Request`, se una qualsiasi coppia nome/valore contiene caratteri non ASCII. Coppie nome/valore dei metadati sono intestazioni HTTP valide e pertanto devono essere conformi tooall restrizioni imposte sulle intestazioni HTTP. È quindi consigliabile usare la codifica URL o la codifica Base64 per i nomi e i valori contenenti caratteri non ASCII.
 >
 
 ## <a name="setting-and-retrieving-properties"></a>Impostazione e recupero di proprietà
-Per recuperare i valori della proprietà, chiamare il metodo **FetchAttributes** sul BLOB o sul contenitore per popolare le proprietà, quindi leggere i valori.
+i valori delle proprietà tooretrieve, chiamata hello **FetchAttributes** metodo le proprietà di hello toopopulate blob o contenitore, quindi leggere i valori hello.
 
-Per impostare le proprietà di un oggetto, specificare il valore della proprietà, quindi chiamare il metodo **SetProperties** .
+proprietà tooset su un oggetto, specificare il valore di proprietà hello, quindi chiamare hello **SetProperties** metodo.
 
-L'esempio di codice seguente crea un contenitore e scrive alcuni dei valori delle proprietà in una finestra della console.
+Hello esempio di codice seguente crea un contenitore, quindi scrive alcuni della relativa finestra della console tooa valori proprietà.
 
 ```csharp
-//Parse the connection string for the storage account.
+//Parse hello connection string for hello storage account.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 
-//Create the service client object for credentialed access to the Blob service.
+//Create hello service client object for credentialed access toohello Blob service.
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Retrieve a reference to a container.
+// Retrieve a reference tooa container.
 CloudBlobContainer container = blobClient.GetContainerReference("mycontainer");
 
-// Create the container if it does not already exist.
+// Create hello container if it does not already exist.
 container.CreateIfNotExists();
 
 // Fetch container properties and write out their values.
@@ -66,36 +66,36 @@ Console.WriteLine();
 ```
 
 ## <a name="setting-and-retrieving-metadata"></a>Impostazione e recupero dei metadati
-È possibile specificare i metadati come uno o più coppie nome-valore in una risorsa BLOB o contenitore. Per impostare i metadati, aggiungere coppie nome-valore alla raccolta **Metadati** nella risorsa, quindi chiamare il metodo **SetMetadata** per salvare i valori nel servizio.
+È possibile specificare i metadati come uno o più coppie nome-valore in una risorsa BLOB o contenitore. i metadati tooset, aggiungere coppie nome-valore toohello **metadati** raccolta sulla risorsa hello, quindi chiamare hello **SetMetadata** hello toosave metodo valori toohello servizio.
 
 > [!NOTE]
-> Il nome dei metadati deve essere conforme alle convenzioni di denominazione degli identificatori C#.
+> nome Hello dei metadati deve essere conforme toohello convenzioni di denominazione per gli identificatori c#.
 >
 >
 
-Il seguente codice di esempio imposta i metadati in un contenitore. Un valore è impostato mediante l'utilizzo del metodo di raccolta **Aggiungi** . L'altro valore è impostato utilizzando la sintassi implicita chiave/valore. Entrambi sono validi.
+Hello esempio di codice seguente imposta i metadati in un contenitore. Un valore è impostato l'utilizzo dell'insieme di hello **Aggiungi** metodo. Hello altro valore viene impostato utilizzando la sintassi implicita chiave/valore. Entrambi sono validi.
 
 ```csharp
 public static void AddContainerMetadata(CloudBlobContainer container)
 {
-    //Add some metadata to the container.
+    //Add some metadata toohello container.
     container.Metadata.Add("docType", "textDocuments");
     container.Metadata["category"] = "guidance";
 
-    //Set the container's metadata.
+    //Set hello container's metadata.
     container.SetMetadata();
 }
 ```
 
-Per recuperare i metadati, chiamare il metodo **FetchAttributes** nel BLOB o nel contenitore per popolare la raccolta **Metadati**, quindi leggere i valori, come nell'esempio mostrato di seguito.
+i metadati tooretrieve, chiamata hello **FetchAttributes** metodo hello il toopopulate blob o contenitore **metadati** raccolta, quindi leggere i valori hello, come illustrato nel seguente esempio hello.
 
 ```csharp
 public static void ListContainerMetadata(CloudBlobContainer container)
 {
-    //Fetch container attributes in order to populate the container's properties and metadata.
+    //Fetch container attributes in order toopopulate hello container's properties and metadata.
     container.FetchAttributes();
 
-    //Enumerate the container's metadata.
+    //Enumerate hello container's metadata.
     Console.WriteLine("Container metadata:");
     foreach (var metadataItem in container.Metadata)
     {

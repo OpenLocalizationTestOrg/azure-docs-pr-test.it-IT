@@ -1,6 +1,6 @@
 ---
-title: Nessun gruppo di connettori funzionante trovato per un'applicazione Proxy di applicazione | Microsoft Docs
-description: Risoluzione dei problemi riscontrati quando non esiste alcun connettore funzionante in un gruppo di connettori per l'applicazione con Proxy di applicazione di Azure AD
+title: gruppo di connettori lavoro aaaNo trovato per un'applicazione Proxy dell'applicazione | Documenti Microsoft
+description: "Risolvere i problemi riscontrati quando è presente alcun lavoro connettore in un gruppo di connettori per l'applicazione con hello Proxy dell'applicazione Azure Active"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,56 +13,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 4945958deedc8a1d9989ff901192c03a5363b4dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4c4baf296b316db131929c9a7c618fb9960713e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="no-working-connector-group-found-for-an-application-proxy-application"></a>Nessun gruppo di connettori funzionante trovato per un'applicazione Proxy di applicazione
 
-Questo articolo fornisce istruzioni sulla risoluzione di problemi comuni riscontrati quando non viene rilevato un connettore per un'applicazione Proxy di applicazione integrata con Azure Active Directory.
+La Guida di questo articolo è tooresolve hello comuni problemi quando non vi è un connettore per un'applicazione Proxy di applicazione integrata con Azure Active Directory.
 
 ## <a name="overview-of-steps"></a>Panoramica dei passaggi
-Se nella propria applicazione non è presente alcun connettore funzionante in un gruppo di connettori, il problema può essere risolto in diversi modi:
+Se è presente alcun lavoro connettore in un gruppo di connettori per l'applicazione, esistono alcuni problemi di hello tooresolve modi:
 
--   Se il gruppo non contiene connettori, è possibile:
+-   Se non si dispone di alcun connettori nel gruppo di hello, è possibile:
 
-    -   Scaricare un nuovo connettore sul server locale corretto e assegnarlo a questo gruppo
+    -   Scaricare un nuovo connettore nel server locale destra hello e assegnare a questo gruppo toothis
 
-    -   Spostare un connettore attivo nel gruppo
+    -   Spostare un connettore attivo nel gruppo di hello
 
--   Se il gruppo non contiene connettori attivi, è possibile:
+-   Se non si dispone di alcun connettore attivo nel gruppo di hello, è possibile:
 
-    -   Identificare il motivo per cui il connettore è inattivo e risolvere il problema
+    -   Identificare il motivo di hello che il connettore è inattivo e risolvere
 
-    -   Spostare un connettore attivo nel gruppo
+    -   Spostare un connettore attivo nel gruppo di hello
 
-Per sapere quale di questi è il problema riscontrato, aprire il menu "Proxy di applicazione" nell'applicazione, quindi cercare il messaggio di avviso del gruppo di connettori. Specifica che il gruppo deve contenere almeno un connettore (se il gruppo non ne contiene alcuno) o che non vi sono connettori attivi (anche se sono inclusi probabilmente connettori inattivi).
+tooknow quale di questi problemi hello, aprire il menu di "Proxy dell'applicazione" hello nell'applicazione, confrontando il messaggio di avviso gruppo di connettori hello. Può specificare entrambi i gruppi che hello è necessario almeno un connettore (si dispone di nessuna gruppo hello) o che non dispone di alcun connettore attivo (anche se probabilmente si dispone di connettori inattivi).
 
    ![Selezione del gruppo di connettori nel portale di Azure](./media/application-proxy-connectivity-no-working-connector/no-active-connector.png)
 
-Per informazioni dettagliate su ognuna di queste opzioni, vedere la sezione corrispondente riportata di seguito. Ognuno di questi passaggi presuppone che si inizi dalla pagina di gestione del connettore. Se si sta analizzando il messaggio di errore sopra riportato, è possibile passare a questa pagina facendo clic sul messaggio di avviso. In alternativa, passare a **Azure Active Directory**, fare clic su **Applicazioni aziendali** e quindi su **Proxy di applicazione.**
+Per informazioni dettagliate su ognuna di queste opzioni, sezione hello corrispondente riportato di seguito. Ognuna di queste si presuppone che si inizi dalla pagina di gestione di hello connettore. Se si sta esaminando i messaggio di errore hello sopra riportato, è possibile passare toothis pagina facendo clic sul messaggio di avviso hello. In caso contrario disponibile selezionando troppo**Azure Active Directory**, fare clic su **applicazioni aziendali**, quindi **Proxy dell'applicazione.**
 
    ![Gestione del gruppo di connettori nel portale di Azure](./media/application-proxy-connectivity-no-working-connector/app-proxy.png)
 
 ## <a name="download-a-new-connector"></a>Scaricare un nuovo connettore
 
-Per scaricare un nuovo connettore, usare il pulsante "Scaricare il connettore" nella parte superiore della pagina.
+toodownload un nuovo connettore, utilizzare pulsante "Scarica connettore" hello nella parte superiore di hello della pagina hello.
 
-Si noti che il connettore deve essere installato su un computer che abbia una linea di visuale diretta all'applicazione back-end e si trova in genere sullo stesso server dell'applicazione. Dopo essere stato scaricato, il connettore viene visualizzato in questo menu. Fare clic sul connettore e usare l'elenco a discesa "Gruppo di connettori" per assicurarsi che appartenga al gruppo corretto. Salvare la modifica.
+esigenze del connettore hello nota toobe installato in un computer con l'applicazione di back-end toohello of di visibilità diretto e si trova in genere hello applicazione hello nello stesso server. Dopo aver scaricato, hello connettore dovrebbe essere visualizzato in questo menu. Fare clic su hello connettore e utilizzare hello "Gruppo di connettori" elenco a discesa toomake che appartiene a gruppo corretto toohello. Salvare modifiche hello.
 
-   ![Scaricare il connettore dal portale di Azure](./media/application-proxy-connectivity-no-working-connector/download-connector.png)
+   ![Scaricare il connettore hello da hello portale di Azure](./media/application-proxy-connectivity-no-working-connector/download-connector.png)
    
 ## <a name="move-an-active-connector"></a>Spostare un connettore attivo
 
-Se si dispone di un connettore attivo che deve appartenere a questo gruppo e ha una linea di visuale sull'applicazione back-end, è possibile spostare il connettore nel gruppo assegnato. A tale scopo, fare clic sul connettore. Nel campo "Gruppo di connettori", usare l'elenco a discesa per selezionare il gruppo corretto e fare clic su Salva.
+Se si dispone di un connettore attivo che deve appartenere toohello gruppo e che dispone di visibilità toohello l'applicazione back-end di destinazione, è possibile spostare hello connettore nel gruppo hello assegnato. toodo questa operazione, scegliere hello connettore. Nel campo "Gruppo di connettori" hello, utilizzare il gruppo corretto hello tooselect elenco a discesa hello e fare clic su Salva.
 
 ## <a name="resolve-an-inactive-connector"></a>Risolvere un connettore inattivo
 
-Se il gruppo include solo connettori inattivi, sono probabilmente in un computer che non dispone di tutte le porte necessarie sbloccate.
+Se hello solo connettori hello del gruppo sono inattivi, sono probabilmente su un computer che non sono stati sbloccati tutte le porte necessarie hello.
 
-Vedere il documento di risoluzione dei problemi relativi alle porte per informazioni dettagliate sull'analisi di questo problema.
+Vedere porte hello documento di risoluzione dei problemi per informazioni dettagliate su questo problema in corso.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Comprendere i connettori del proxy applicazione Azure AD](application-proxy-understand-connectors.md)

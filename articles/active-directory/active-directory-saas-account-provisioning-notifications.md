@@ -1,6 +1,6 @@
 ---
-title: Notifiche relative al provisioning dell'account | Documentazione Microsoft
-description: Come assicurarsi di ricevere notifiche relative ai problemi di provisioning utente che richiedono l'attenzione dell'utente abilitando le notifiche di provisioning dell'account.
+title: le notifiche di provisioning aaaAccount | Documenti Microsoft
+description: Informazioni su come tooensure la notifica dei problemi correlati toouser provisioning che richiedono attenzione abilitando le notifiche di provisioning dell'account.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: b99037fc28eca1a3ebffefb9e99991e74f52c9a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e33d1dd806fff43fc96f843a9dcddd7375d2e3c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="account-provisioning-notifications"></a>Notifiche relative al provisioning dell'account
-Con il provisioning utente, è possibile automatizzare il processo di gestione degli utenti nelle applicazioni SaaS di terze parti. <br>
-Anche se si tratta di un processo automatizzato, l'interazione con questo processo è richiesta di tanto in tanto. <br>
-È il caso, ad esempio, quando scade la password dell'account configurato per lo scambio dei dati con un'applicazione SaaS di terze parti. 
+Con il provisioning utente, è possibile automatizzare il processo di hello di gestione degli utenti nelle applicazioni SaaS di terze parti. <br>
+Si tratta di un processo automatizzato, l'interazione con questo processo è da tootime tempo richiesto. <br>
+Questo accade, ad esempio hello, quando password hello dell'account hello configurato tooexchange dati con un terzo di terze parti SaaS applicazione è scaduta. 
 
-Abilitando le notifiche di provisioning dell'account è possibile assicurarsi di ricevere notifiche relative ai problemi di provisioning utente che richiedono l'attenzione dell'utente.
+Abilitando le notifiche di provisioning dell'account, è possibile garantire la notifica di problemi correlati toouser provisioning che richiedono attenzione.
 
 È possibile attivare o disattivare le notifiche di provisioning dell'account come parte della configurazione del provisioning utenti per un'applicazione SaaS di terze parti.
 
 ![Provisioning utente][1] 
 
-Per attivare le notifiche di provisioning dell'account, selezionare la casella di controllo relativa nella finestra di dialogo **Conferma** e quindi digitare l'alias di posta elettronica del destinatario.
+le notifiche di provisioning dell'account tooactivate, selezionare hello casella di controllo correlato hello **conferma** nella pagina e alias del tipo di messaggio di posta elettronica hello del destinatario hello.
 
 ![Notifiche relative al provisioning dell'account][2]
 
-È possibile immettere un elenco di distribuzione come destinatario; tuttavia, è importante notare che l'e-mail di notifica contiene collegamenti ai report che sono accessibili solo agli amministratori di Azure AD.
+È possibile immettere una lista di distribuzione come destinatario. Tuttavia, è importante toonote che posta elettronica di notifica hello contiene collegamenti tooreports che accessibili solo dagli amministratori di hello Azure AD.
 
-Se sono state abilitate le notifiche di provisioning dell'account si riceveranno e-mail riguardo problemi di importanza critica correlati al provisioning utente. Tuttavia, per evitare un sovraccarico di posta elettronica, si riceverà un solo messaggio di notifica al giorno per ogni applicazione SaaS per cui sono abilitate le notifiche.
+Se sono abilitate le notifiche di provisioning dell'account si riceveranno e-mail riguardo problemi critici che sono correlati toouser provisioning. Tuttavia, tooavoid un sovraccarico di posta elettronica, è solo riceverà una notifica tramite posta elettronica al giorno per ogni SaaS applicazione hello notifica tramite posta elettronica è abilitata per.
 
 ## <a name="related-articles"></a>Articoli correlati
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
-* [Automatizzare il provisioning e il deprovisioning utenti in app SaaS](active-directory-saas-app-provisioning.md)
+* [Automatizzare tooSaaS utente Provisioning o Deprovisioning App](active-directory-saas-app-provisioning.md)
 * [Personalizzazione dei mapping degli attributi per il Provisioning dell’utente](active-directory-saas-customizing-attribute-mappings.md)
 * [Scrittura di espressioni per i mapping degli attributi](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [Ambito dei filtri per il Provisioning utente](active-directory-saas-scoping-filters.md)
-* [Uso di SCIM per abilitare il provisioning automatico di utenti e gruppi da Azure Active Directory alle applicazioni](active-directory-scim-provisioning.md)
-* [Elenco di esercitazioni pratiche sulla procedura di integrazione delle applicazioni SaaS](active-directory-saas-tutorial-list.md)
+* [Utilizzando SCIM tooenable il provisioning automatico degli utenti e gruppi da Azure Active Directory tooapplications](active-directory-scim-provisioning.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS](active-directory-saas-tutorial-list.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-account-provisioning-notifications/ic766307.png

@@ -1,5 +1,5 @@
 ---
-title: "Capacità dedicata per i processi del servizio di esecuzione Batch di Machine Learning | Documentazione Microsoft"
+title: "Capacità per i processi del servizio esecuzione Batch Machine Learning aaaDedicated | Documenti Microsoft"
 description: Panoramica dei servizi di Azure Batch per i processi di Machine Learning.
 services: machine-learning
 documentationcenter: 
@@ -13,44 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3879eb3d0c6fa9d74fff01b07f5c07d3991dfbbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bba7970bb31c50e5b0b9d5f4ff4f0d2dacf942e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-service-for-machine-learning-jobs"></a>Servizio Azure Batch per i processi di Machine Learning
 
-L'elaborazione di pool di Batch in Machine Learning fornisce la scalabilità gestita dal cliente per il servizio di esecuzione Batch di Azure Machine Learning. L'elaborazione batch classica per l'apprendimento automatico avviene in un ambiente multi-tenant, limitando il numero di processi simultanei che è possibile inviare, e i processi vengono accodati in base alla modalità First-In-First-Out. Non è quindi possibile prevedere con precisione quando verrà eseguito il processo.
+L'elaborazione di Machine Learning Batch Pool fornisce scalabilità gestita dal cliente per hello servizio esecuzione Batch di Azure Machine Learning. Elaborazione per machine learning classico batch viene eseguito in un ambiente multi-tenant, il numero di hello limiti di processi simultanei, è possibile inviare e i processi viene messe in coda con cadenza first-in-first-out. Non è quindi possibile prevedere con precisione quando verrà eseguito il processo.
 
-L'elaborazione di pool di Batch consente di creare pool a cui è possibile inviare i processi batch. Vengono controllati le dimensioni del pool e il pool specifico a cui viene inviato il processo. Il processo BES viene eseguito nel proprio spazio di elaborazione, assicurando prestazioni di elaborazione prevedibili e la possibilità di creare pool di risorse corrispondenti al carico di elaborazione inviato.
+L'elaborazione di batch Pool consente toocreate pool in cui è possibile inviare i processi batch. È possibile controllare le dimensioni di hello del pool di hello e toowhich pool hello processo viene inviato. Il processo di BES viene eseguito in proprio fornire spazio di elaborazione delle prestazioni di elaborazione stimabile e hello possibilità toocreate i pool di risorse che corrispondono a carico di elaborazione toohello inviati.
 
-## <a name="how-to-use-batch-pool-processing"></a>Procedura: Usare l'elaborazione di pool Batch
+## <a name="how-toouse-batch-pool-processing"></a>Come l'elaborazione Batch Pool toouse
 
-La configurazione dell'elaborazione di pool di Batch non è attualmente disponibile tramite il portale di Azure. Per usare l'elaborazione di pool di Batch, è necessario:
+Configurazione del Pool di elaborazione Batch non è attualmente disponibile tramite hello portale di Azure. toouse Pool Batch l'elaborazione, è necessario:
 
--   Chiamare CSS per creare un account di pool di Batch e ottenere un URL del servizio pool e una chiave di autorizzazione
+-   Chiamare CSS toocreate un Account del Pool di Batch e ottenere un URL del servizio del Pool e una chiave di autorizzazione
 -   Creare un nuovo servizio Web e un nuovo piano di fatturazione basati su Resource Manager
 
-Per creare il proprio account, contattare il Supporto tecnico Microsoft e fornire l'ID di sottoscrizione. Il personale è a disposizione per aiutare a determinare la capacità necessaria per lo scenario in uso. Configurerà quindi l'account con il numero massimo di pool che è possibile creare e il numero massimo di macchine virtuali (VM) che è possibile inserire in ogni pool. Al termine della configurazione dell'account viene fornito l'URL del servizio pool e una chiave di autorizzazione.
+toocreate il tuo account, chiamare il servizio clienti e supporto tecnico e fornire l'ID sottoscrizione. CSS funziona con si toodetermine hello capacità per il proprio scenario. CSS configura quindi l'account con numero massimo di hello di pool, è possibile creare e hello numero massimo di macchine virtuali (VM) che è possibile inserire in ciascun pool. Al termine della configurazione dell'account viene fornito l'URL del servizio pool e una chiave di autorizzazione.
 
-Dopo avere creato l'account, usare l'URL del servizio pool e la chiave di autorizzazione per eseguire le operazioni di gestione del pool sul pool Batch.
+Dopo aver creato l'account, utilizzare hello URL del servizio del Pool e l'autorizzazione tooperform chiave pool operazioni di gestione nel Pool di Batch.
 
 ![Architettura del servizio pool Batch.](media/machine-learning-dedicated-capacity-for-bes-jobs/pool-architecture.png)
 
-Creare i pool chiamando l'operazione di creazione dei pool per l'URL del servizio pool fornito dal Supporto tecnico. Quando si crea un pool, specificare il numero di VM e l'URL del file swagger.json di un nuovo servizio Web di Machine Learning basato su Resource Manager. Questo servizio Web viene fornito per definire l'associazione al piano di fatturazione. ll servizio pool Batch usa il file swagger.json per associare il pool a un piano di fatturazione. È possibile eseguire qualsiasi servizio Web BES scelto per il pool: quello nuovo basato su Resource Manager o quello classico.
+Creare pool chiamando l'operazione di creazione del Pool di hello all'URL di servizio del pool di hello che tooyou CSS fornito. Quando si crea un pool, specificare il numero di hello di macchine virtuali e l'URL di hello di hello swagger di un nuovo gestore di risorse basato su servizio web Machine Learning. Questo servizio web viene fornito l'associazione di fatturazione hello tooestablish. servizio del Pool di Batch di Hello utilizza hello swagger tooassociate hello pool con un piano di fatturazione. È possibile eseguire qualsiasi BES entrambi nuovo gestore di risorse basato su servizio web e classico, si sceglie nel pool di hello.
 
-È possibile usare qualsiasi nuovo servizio Web basato su Resource Manager, ma tenere presente che la fatturazione per i processi viene addebitata in base al piano di fatturazione associato al servizio scelto. È consigliabile creare un servizio Web e un nuovo piano di fatturazione specifici per l'esecuzione dei processi di pool Batch.
+È possibile utilizzare qualsiasi servizio web basato su nuovo gestore di risorse, ma tenere presente che la fatturazione per i processi di hello hello vengano addebitati rispetto al piano di fatturazione hello associato al servizio. È progettato per l'esecuzione di processi Batch Pool toocreate un servizio web e fatturazione nuovo piano.
 
 Per altre informazioni sulla creazione di servizi Web, vedere [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md).
 
-Dopo avere creato un pool, si invia un processo BES usando l'URL delle richieste Batch per il servizio Web. È possibile scegliere di inviarlo a un pool o usare l'elaborazione batch classica. Per inviare un processo a un pool Batch, aggiungere al corpo della richiesta di invio del processo il parametro seguente:
+Dopo aver creato un pool, si invia hello BES processo tramite hello Batch le richieste di URL per il servizio web hello. È possibile scegliere toosubmit è tooa tooclassic o del pool di elaborazione di batch. toosubmit un'elaborazione Pool tooBatch, aggiungere hello seguendo il corpo della richiesta parametro toohello processo invio:
 
 "AzureBatchPoolId":"&lt;ID pool&gt;"
 
-Se non si aggiunge il parametro, il processo viene eseguito nell'ambiente di elaborazione classico. Se sono disponibili risorse per il pool, il processo viene avviato immediatamente. Se non sono disponibili risorse per il pool, il processo viene accodato fino a quando non diventa disponibile una risorsa.
+Se non si aggiunge il parametro hello, processo di hello viene eseguito nell'ambiente di elaborazione batch classico hello. Se il pool di hello ha risorse disponibili, il processo di hello avvia immediatamente l'esecuzione. Se il pool di hello non dispone di liberare le risorse, il processo viene accodato fino a quando non è disponibile una risorsa.
 
-Se è necessario aumentare la capacità perché si raggiunge spesso la capacità massima dei pool, contattare il Supporto tecnico Microsoft e concordare un aumento delle quote.
+Se si ritiene che si raggiunge regolarmente i pool di capacità hello ed è necessario maggiore capacità, è possibile chiamare CSS e lavorare con un rappresentante tooincrease le quote.
 
 Richiesta di esempio:
 
@@ -97,7 +97,7 @@ https://ussouthcentral.services.azureml.net/subscriptions/80c77c7674ba4c8c82294c
 
 ## <a name="considerations-when-using-batch-pool-processing"></a>Considerazioni sull'elaborazione di pool Batch
 
-L'elaborazione di pool Batch è un servizio fatturabile sempre attivo che deve essere associato a un piano di fatturazione basato su Resource Manager. Verrà addebitato solo il numero di ore di calcolo in esecuzione nel pool, indipendentemente dal numero di processi eseguiti in questo periodo. Se si crea un pool, vengono addebitate le ore di calcolo di ogni macchina virtuale in essa contenuto fino all'eliminazione del pool, anche se non sono in esecuzione processi batch. La fatturazione per le macchine virtuali inizia con il completamento del provisioning e termina con l'eliminazione del batch. È possibile usare uno dei piani disponibili nella [pagina relativa ai prezzi di Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/).
+Pool di elaborazione batch è un servizio di fatturabile always-on e che richiede tooassociate è un gestore di risorse basato su piano di fatturazione. Verrà addebitato solo per il numero di ore di calcolo è in esecuzione il pool di hello; hello indipendentemente dal numero di hello dei processi eseguiti durante tale pool di tempo. Se si crea un pool, verrà addebitato per ore di calcolo hello di ogni macchina virtuale nel pool di hello fino a quando non viene eliminato il pool di hello, anche se nessun processo batch è in esecuzione nel pool di hello. La fatturazione per le macchine virtuali hello inizia quando hanno finito di provisioning e si arresta quando sono state eliminate. È possibile utilizzare uno dei piani di hello trovati in hello [dettagli prezzi di Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/).
 
 Esempio di fatturazione:
 
@@ -105,9 +105,9 @@ Se si crea un pool Batch con 2 macchine virtuali e lo si elimina dopo 24 ore, al
 
 Se si crea un pool Batch con 4 macchine virtuali e lo si elimina dopo 12 ore, al piano di fatturazione verranno addebitate 48 ore di calcolo.
 
-È consigliabile eseguire il polling dello stato del processo per determinare quando i processi sono stati completati. Al termine dell'esecuzione di tutti i processi, chiamare l'operazione di ridimensionamento del pool per impostare il numero di macchine virtuali del pool a zero. Se le risorse nel pool non sono sufficienti ed è necessario creare un nuovo pool, ad esempio per la fatturazione in base a un piano di fatturazione diverso, è possibile invece eliminare il pool al termine dell'elaborazione di tutti i processi.
+È consigliabile eseguire il polling hello processo stato toodetermine quando completamento dei processi. Quando tutti i processi hanno terminato l'esecuzione, chiamata hello ridimensionamento Pool tooset hello numero delle operazioni delle macchine virtuali in hello pool toozero. Se sono brevi su risorse del pool ed è necessario toocreate un nuovo pool, ad esempio toobill rispetto a un piano di fatturazione diverso, è possibile eliminare pool hello invece al termine del tutti i processi in esecuzione.
 
 
 | **Usare l'elaborazione di pool Batch quando**    | **Usare l'elaborazione di batch classica quando**  |
 |---|---|
-|È necessario eseguire un numero elevato di processi<br>Or<br/>È necessario che i processi vengano eseguiti immediatamente<br/>Or<br/>È necessario garantire la velocità effettiva. Ad esempio, è necessario eseguire alcuni processi in un determinato intervallo temporale e aumentare le risorse di calcolo in base alle esigenze.    | Si sta eseguendo un numero limitato di processi<br/>e<br/> non è necessario che i processi vengano eseguiti immediatamente |
+|È necessario un numero elevato di processi toorun<br>Or<br/>È necessario tooknow che i processi verranno eseguiti immediatamente<br/>Or<br/>È necessario garantire la velocità effettiva. Ad esempio necessario toorun un numero di processi in un determinato intervallo di tempo e desidera tooscale out del toomeet risorse di calcolo le proprie esigenze.    | Si sta eseguendo un numero limitato di processi<br/>e<br/> Non è necessario hello processi toorun immediatamente |

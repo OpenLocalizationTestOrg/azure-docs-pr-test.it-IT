@@ -1,6 +1,6 @@
 ---
 title: File di test Sipi | Documenti Microsoft
-description: File di test per verificare le dipendenze ReadyForTest
+description: Verifica dipendenze dei file toocheck ReadyForTest
 services: active-directory-b2c
 documentationcenter: 
 author: Sipi
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/13/2017
 ms.author: Sipi
-ms.openlocfilehash: 871d58818dcbaee5f7a5f07c19e2297ec6459a6f
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: afd3dc94dfb30926b316256fb06a768a391004f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sipi-test-file"></a>File di test Sipi
 
-Questa esercitazione introduttiva consente di registrare un'applicazione in un tenant di Microsoft Azure Active Directory (Azure AD) B2C in pochi minuti. Al termine, l'applicazione viene registrata per l'uso nel tenant di Azure B2C.
+Questa esercitazione introduttiva consente di registrare un'applicazione in un tenant di Microsoft Azure Active Directory (Azure AD) B2C in pochi minuti. Al termine, l'applicazione è registrata per l'uso nel tenant di Azure B2C hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per compilare un'applicazione che accetta l'iscrizione e l'accesso dell'utente, è necessario innanzi tutto registrarla con tenant di Azure Active Directory B2C. Per ottenere il tenant, seguire la procedura illustrata in [Azure Active Directory B2C: creare un tenant di Azure AD B2C](active-directory-b2c-get-started.md).
+toobuild un'applicazione che accetta consumer per l'abbonamento e l'accesso, è necessario innanzitutto un'applicazione hello tooregister con un tenant di Azure Active Directory B2C. Ottenere il proprio tenant utilizzando i passaggi descritti nella procedura hello [creare un tenant di Azure Active Directory B2C](active-directory-b2c-get-started.md).
 
-Le applicazioni create dal pannello Azure AD B2C nel portale di Azure devono essere gestite dalla stessa posizione. Le applicazioni B2C, se vengono modificate usando PowerShell o un altro portale, non sono più supportate e non funzionano con Azure AD B2C. Per altri dettagli, vedere la sezione [App con errori](#faulted-apps). 
+Le applicazioni create dal Pannello di Azure Active Directory B2C hello in hello portale di Azure devono essere gestite da hello nello stesso percorso. Se si modificano applicazioni B2C hello tramite PowerShell o un altro portale, essi diventano non supportati e non funzionano con Azure Active Directory B2C. Visualizzare i dettagli di hello [errore app](#faulted-apps) sezione. 
 
-## <a name="navigate-to-b2c-settings"></a>Passare alle impostazioni di B2C
+## <a name="navigate-toob2c-settings"></a>Passare a impostazioni tooB2C
 
-Accedere al [portale di Azure](https://portal.azure.com/) come amministratore globale del tenant di B2C. 
+Accedi toohello [portale di Azure](https://portal.azure.com/) come amministratore globale del tenant hello B2C hello. 
 
 [!INCLUDE [active-directory-b2c-switch-b2c-tenant](../includes/active-directory-b2c-switch-b2c-tenant.md)]
 
-Scegliere i passaggi successivi in base al tipo di applicazione da registrare:
+Scegliere i passaggi successivi in base al tipo di applicazione hello che registrazione:

@@ -1,6 +1,6 @@
 ---
-title: Salvare i messaggi dell'hub IoT nell'archivio dati di Azure | Microsoft Docs
-description: Usare l'app per le funzioni di Azure per salvare i messaggi dell'hub IoT nell'archiviazione tabelle di Azure. I messaggi dell'hub IoT contengono informazioni, come i dati di sensori, inviate dal dispositivo IoT.
+title: aaaSave l'hub IoT messaggi archiviazione dei dati tooAzure | Documenti Microsoft
+description: Utilizzare un toosave app Azure funzione tooyour di messaggi l'hub IoT archiviazione tabelle di Azure. messaggi di hub IoT Hello contengono informazioni, ad esempio dati del sensore, che viene inviati dal dispositivo IoT.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/16/2017
 ms.author: xshi
-ms.openlocfilehash: 06503f9564e00ef62587d02f2da4778974e246c5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: be72d9ba9a781822926364351b50f58f5d96e94a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="save-iot-hub-messages-that-contain-sensor-data-to-your-azure-table-storage"></a>Salvare i messaggi dell'hub IoT che contengono dati di sensori nell'archiviazione tabelle di Azure
+# <a name="save-iot-hub-messages-that-contain-sensor-data-tooyour-azure-table-storage"></a>Salvare i messaggi di hub IoT contenenti sensore dati tooyour archiviazione tabelle Azure
 
 ![Diagramma end-to-end](media/iot-hub-get-started-e2e-diagram/3.png)
 
@@ -29,104 +29,104 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="what-you-learn"></a>Contenuto dell'esercitazione
 
-Si apprenderà come creare un account di archiviazione di Azure e un'app per le funzioni di Azure per archiviare i messaggi dell'hub IoT nell'archiviazione tabelle di Azure.
+Viene illustrato come toocreate un account di archiviazione di Azure e un Azure funzione messaggi dell'hub IoT toostore app nell'archiviazione tabella.
 
 ## <a name="what-you-do"></a>Operazioni da fare
 
 - Creare un account di archiviazione di Azure
-- Preparare la connessione dell'hub IoT per la lettura dei messaggi.
+- Preparare l'hub IoT messaggi tooread di connessione.
 - Creare e distribuire un'app per le funzioni di Azure.
 
 ## <a name="what-you-need"></a>Elementi necessari
 
-- [Configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) in modo da soddisfare i requisiti seguenti:
+- [Configurare il dispositivo](iot-hub-raspberry-pi-kit-node-get-started.md) hello toocover seguenti requisiti:
   - Una sottoscrizione di Azure attiva
   - Un hub IoT nella sottoscrizione 
-  - Un'applicazione in esecuzione che invia messaggi all'hub IoT di Azure
+  - Un'applicazione in esecuzione che invia l'hub IoT tooyour messaggi
 
 ## <a name="create-an-azure-storage-account"></a>Creare un account di archiviazione di Azure
 
-1. Nel [portale di Azure](https://portal.azure.com/) fare clic su **Nuova** > **Archiviazione** > **Account di archiviazione** > **Crea**.
+1. In hello [portale di Azure](https://portal.azure.com/), fare clic su **New** > **archiviazione** > **account di archiviazione**  >   **Creare**.
 
-2. Immettere le informazioni necessarie per l'account di archiviazione:
+2. Immettere le informazioni necessarie per l'account di archiviazione hello hello:
 
-   ![Creare un account di archiviazione nel portale di Azure](media\iot-hub-store-data-in-azure-table-storage\1_azure-portal-create-storage-account.png)
+   ![Creare un account di archiviazione nel portale di Azure hello](media\iot-hub-store-data-in-azure-table-storage\1_azure-portal-create-storage-account.png)
 
-   * **Nome**: nome dell'account di archiviazione. Il nome deve essere univoco a livello globale.
+   * **Nome**: nome hello hello dell'account di archiviazione. nome Hello deve essere globalmente univoco.
 
-   * **Gruppo di risorse**: usare lo stesso gruppo di risorse usato da hub IoT.
+   * **Gruppo di risorse**: utilizzare hello stesso gruppo di risorse che usa l'hub IoT.
 
-   * **Aggiungi al dashboard**: selezionare questa opzione per semplificare l'accesso all'hub IoT dal dashboard.
+   * **PIN toodashboard**: selezionare questa opzione per l'hub IoT tooyour di facile accesso dal dashboard hello.
 
 3. Fare clic su **Crea**.
 
-## <a name="prepare-your-iot-hub-connection-to-read-messages"></a>Preparare la connessione dell'hub IoT per la lettura dei messaggi
+## <a name="prepare-your-iot-hub-connection-tooread-messages"></a>Preparare l'hub IoT messaggi tooread connessione
 
-L'hub IoT espone un endpoint predefinito compatibile con l'hub eventi per consentire alle applicazioni di leggere i messaggi dell'hub IoT. Nel frattempo, le applicazioni usano gruppi di consumer per leggere i dati dall'hub IoT. Prima di creare un'app per le funzioni di Azure per la lettura dei dati dall'hub IoT, è necessario:
+Hub IoT espone un evento incorporato endpoint compatibile con hub tooenable applicazioni tooread IoT hub dei messaggi. Nel frattempo, le applicazioni utilizzano dati tooread gruppi di consumer dall'hub IoT. Prima di creare un dati tooread app di Azure (funzione) dall'hub IoT, hello seguenti:
 
-- Ottenere la stringa di connessione dell'endpoint dell'hub IoT.
+- Ottenere la stringa di connessione hello dell'endpoint hub IoT.
 - Creare un gruppo di consumer per l'hub IoT.
 
-### <a name="get-the-connection-string-of-your-iot-hub-endpoint"></a>Ottenere la stringa di connessione dell'endpoint dell'hub IoT
+### <a name="get-hello-connection-string-of-your-iot-hub-endpoint"></a>Ottiene la stringa di connessione hello dell'endpoint hub IoT
 
 1. Aprire l'hub IoT.
 
-2. Nel riquadro **Hub IoT**, in **Messaggistica**, fare clic su **Endpoint**.
+2. In hello **IoT Hub** riquadro, in **messaggistica**, fare clic su **endpoint**.
 
-3. Nel riquadro destro, in **Endpoint predefiniti**, fare clic su **Eventi**.
+3. In hello destro in riquadro **gli endpoint predefiniti**, fare clic su **eventi**.
 
-4. Nel riquadro **Proprietà** prendere nota dei valori seguenti:
+4. In hello **proprietà** riquadro, hello nota seguenti valori:
    - Endpoint compatibile con l'hub eventi
    - Nome compatibile con l'hub eventi
 
-   ![Ottenere la stringa di connessione dell'endpoint dell'hub IoT nel portale di Azure](media\iot-hub-store-data-in-azure-table-storage\2_azure-portal-iot-hub-endpoint-connection-string.png)
+   ![Ottenere la stringa di connessione hello dell'endpoint hub IoT in hello portale di Azure](media\iot-hub-store-data-in-azure-table-storage\2_azure-portal-iot-hub-endpoint-connection-string.png)
 
-5. Nel riquadro **Hub IoT**, in **Impostazioni**, fare clic su **Criteri di accesso condivisi**.
+5. In hello **IoT Hub** riquadro, in **impostazioni**, fare clic su **criteri di accesso condiviso**.
 
 6. Fare clic su **iothubowner**.
 
-7. Prendere nota del valore presente in **Chiave primaria**.
+7. Hello nota **chiave primaria** valore.
 
-8. Creare la stringa di connessione dell'endpoint dell'hub IoT nel modo seguente:
+8. Creare la stringa di connessione hello dell'endpoint hub IoT come segue:
 
    `Endpoint=<Event Hub-compatible endpoint>;SharedAccessKeyName=iothubowner;SharedAccessKey=<Primary key>`
 
    > [!NOTE]
-   > Sostituire `<Event Hub-compatible endpoint>` e `<Primary key>` con i valori annotati in precedenza.
+   > Sostituire `<Event Hub-compatible endpoint>` e `<Primary key>` con i valori hello annotati in precedenza.
 
 ### <a name="create-a-consumer-group-for-your-iot-hub"></a>Creare un gruppo di consumer per l'hub IoT
 
 1. Aprire l'hub IoT.
 
-2. Nel riquadro **Hub IoT**, in **Messaggistica**, fare clic su **Endpoint**.
+2. In hello **IoT Hub** riquadro, in **messaggistica**, fare clic su **endpoint**.
 
-3. Nel riquadro destro, in **Endpoint predefiniti**, fare clic su **Eventi**.
+3. In hello destro in riquadro **gli endpoint predefiniti**, fare clic su **eventi**.
 
-4. Nel riquadro **Proprietà** immettere un nome in **Gruppi di consumer** e prendere nota del nome.
+4. In hello **proprietà** riquadro, in **gruppi di Consumer**, immettere un nome e quindi prendere nota di esso.
 
 5. Fare clic su **Salva**.
 
 ## <a name="create-and-deploy-an-azure-function-app"></a>Creare e distribuire un'app per le funzioni di Azure
 
-1. Nel [portale di Azure](https://portal.azure.com/) fare clic su **Nuovo** > **Calcolo** > **App per le funzioni** > **Crea**.
+1. In hello [portale di Azure](https://portal.azure.com/), fare clic su **New** > **calcolo** > **funzione App**  >   **Creare**.
 
-2. Immettere le informazioni necessarie per l'app per le funzioni.
+2. Immettere le informazioni necessarie per app di funzione hello hello.
 
-   ![Creare un'app per le funzioni nel portale di Azure](media\iot-hub-store-data-in-azure-table-storage\3_azure-portal-create-function-app.png)
+   ![Creare un'app di funzione in hello portale di Azure](media\iot-hub-store-data-in-azure-table-storage\3_azure-portal-create-function-app.png)
 
-   * **Nome app**: nome dell'app per le funzioni. Il nome deve essere univoco a livello globale.
+   * **Nome dell'app**: nome hello di hello funzione app. nome Hello deve essere globalmente univoco.
 
-   * **Gruppo di risorse**: usare lo stesso gruppo di risorse usato da hub IoT.
+   * **Gruppo di risorse**: utilizzare hello stesso gruppo di risorse che usa l'hub IoT.
 
-   * **Account di archiviazione**: selezionare l'account di archiviazione creato.
+   * **Account di archiviazione**: hello account di archiviazione creato.
 
-   * **Aggiungi al dashboard**: selezionare questa opzione per semplificare l'accesso all'app per le funzioni dal dashboard.
+   * **PIN toodashboard**: selezionare questa opzione per accedere facilmente toohello funzione app dal dashboard hello.
 
 3. Fare clic su **Crea**.
 
-4. Dopo aver creato l'app per le funzioni, aprirla.
+4. Dopo la funzione hello app è stata creata, aprirlo.
 
-5. Nell'app per le funzioni creare una nuova funzione seguendo questa procedura:
+5. Nell'app di funzione hello, creare una nuova funzione eseguendo hello seguenti:
 
    a. Fare clic su **Nuova funzione**.
 
@@ -134,49 +134,49 @@ L'hub IoT espone un endpoint predefinito compatibile con l'hub eventi per consen
 
    c. Fare clic su **Creare questa funzione** e quindi su **Nuova funzione**.
 
-   d. Selezionare **JavaScript** per il linguaggio e **Elaborazione dati** per lo scenario.
+   d. Selezionare **JavaScript** per Java hello e **l'elaborazione dati** per scenario hello.
 
-   e. Fare clic sul modello **EventHubTrigger-JavaScript**.
+   e. Fare clic su hello **EventHubTrigger JavaScript** modello.
 
-   f. Immettere le informazioni necessarie per il modello.
+   f. Immettere le informazioni necessarie per il modello di hello hello.
 
-      * **Assegnare un nome alla funzione**: nome della funzione.
+      * **Nome funzione di**: nome hello della funzione hello.
 
-      * **Nome hub eventi**: nome compatibile con l'hub eventi annotato in precedenza.
+      * **Nome dell'Hub eventi**: nome compatibile con hub di eventi hello annotato in precedenza.
 
-      * **Connessione dell'hub eventi**: fare clic su **Nuovo** per aggiungere la stringa di connessione dell'endpoint dell'hub IoT creata.
+      * **Connessione dell'Hub eventi**: stringa di connessione tooadd hello dell'endpoint hub IoT hello a cui è stato creato, fare clic su **New**.
 
    g. Fare clic su **Crea**.
 
-6. Configurare un output della funzione seguendo questa procedura:
+6. Configurare un output di hello funzione eseguendo hello seguenti:
 
    a. Fare clic su **Integrazione** > **Nuovo output** > **Archiviazione tabelle di Azure** > **Seleziona**.
 
-      ![Aggiungere l'archiviazione tabelle all'app per le funzioni nel portale di Azure](media\iot-hub-store-data-in-azure-table-storage\4_azure-portal-function-app-add-output-table-storage.png)
+      ![Aggiungi tabella archiviazione tooyour funzione app nel portale di Azure hello](media\iot-hub-store-data-in-azure-table-storage\4_azure-portal-function-app-add-output-table-storage.png)
 
-   b. Immettere le informazioni necessarie.
+   b. Immettere le informazioni necessarie hello.
 
-      * **Nome del parametro della tabella**: usare `outputTable`, che verrà usato nel codice di Funzioni di Azure.
+      * **Nome del parametro tabella**: utilizzare `outputTable`, che verrà utilizzata in hello Azure codice della funzione.
       
       * **Nome tabella**: usare `deviceData`.
 
-      * **Connessione dell'account di archiviazione**: fare clic su **nuovo** e selezionare o immettere l'account di archiviazione. Se l'account di archiviazione non viene visualizzato, vedere [Requisiti dell'account di archiviazione](https://docs.microsoft.com/azure/azure-functions/functions-create-function-app-portal#storage-account-requirements).
+      * **Connessione dell'account di archiviazione**: fare clic su **nuovo** e selezionare o immettere l'account di archiviazione. Se l'account di archiviazione hello non viene visualizzata, vedere [requisiti dell'account di archiviazione](https://docs.microsoft.com/azure/azure-functions/functions-create-function-app-portal#storage-account-requirements).
       
    c. Fare clic su **Salva**.
 
 7. In **Trigger** fare clic su **Hub eventi di Azure (eventHubMessages)**.
 
-8. In **Gruppo di consumer dell'hub eventi** immettere il nome del gruppo di consumer creato, quindi fare clic su **Salva**.
+8. In **gruppo di consumer dell'Hub eventi**, immettere il nome di hello del gruppo di consumer hello è creato e quindi fare clic su **salvare**.
 
-9. Fare clic sulla funzione creata a sinistra e quindi fare clic su **Visualizza file** a destra.
+9. Fare clic su funzione hello creato in hello a sinistra e quindi fare clic su **Visualizza file** su hello destra.
 
-10. Sostituire il codice in `index.js` con il codice seguente:
+10. Sostituire il codice hello in `index.js` con seguenti hello:
 
    ```javascript
    'use strict';
 
-   // This function is triggered each time a message is received in the IoT hub.
-   // The message payload is persisted in an Azure storage table
+   // This function is triggered each time a message is received in hello IoT hub.
+   // hello message payload is persisted in an Azure storage table
  
    module.exports = function (context, iotHubMessage) {
     context.log('Message received: ' + JSON.stringify(iotHubMessage));
@@ -194,22 +194,22 @@ L'hub IoT espone un endpoint predefinito compatibile con l'hub eventi per consen
 
 11. Fare clic su **Salva**.
 
-È stata creata l'app per le funzioni, che archivia i messaggi ricevuti dall'hub IoT nell'archiviazione tabelle di Azure.
+App di funzione hello è stata creata. che archivia i messaggi ricevuti dall'hub IoT nell'archiviazione tabelle di Azure.
 
 > [!NOTE]
-> È possibile usare il pulsante **Esegui** per testare l'app per le funzioni. Quando fa clic su **Esegui**, il messaggio di test viene inviato all'hub IoT. All'arrivo del messaggio, l'app per le funzioni si avvia e salva il messaggio nell'archiviazione tabelle di Azure. Il riquadro **Log** registra i dettagli del processo.
+> È possibile utilizzare hello **eseguire** pulsante tootest hello funzione app. Quando fa clic su **eseguire**, il messaggio di prova hello viene inviato l'hub IoT tooyour. all'arrivo di Hello del messaggio hello deve attivare hello funzione app toostart e quindi salvare archiviazione tabelle di tooyour messaggio hello. Hello **registri** riquadro registra informazioni dettagliate di hello del processo di hello.
 
 ## <a name="verify-your-message-in-your-table-storage"></a>Verificare il messaggio nell'archivio tabelle
 
-1. Eseguire l'applicazione di esempio nel dispositivo per inviare messaggi all'hub IoT.
+1. Eseguire l'applicazione di esempio hello in hub IoT tooyour di messaggi toosend di dispositivo.
 
 2. [Scaricare e installare Azure Storage Explorer](http://storageexplorer.com/).
 
-3. Aprire Storage Explorer, fare clic su **Add an Azure Account** (Aggiungi un account Azure)  >  **Accedi** e quindi accedere all'account Azure.
+3. Aprire Esplora risorse di archiviazione, fare clic su **aggiungere un Account Azure** > **Accedi**, quindi accedi tooyour account Azure.
 
 4. Fare clic sulla sottoscrizione di Azure > **Account di archiviazione** > account di archiviazione > **Tabelle** > **deviceData**.
 
-   Nella tabella `deviceData` saranno visibili i messaggi inviati dal dispositivo all'hub IoT.
+   Si dovrebbero essere visualizzati i messaggi inviati dall'hub IoT di tooyour dispositivo connesso hello `deviceData` tabella.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

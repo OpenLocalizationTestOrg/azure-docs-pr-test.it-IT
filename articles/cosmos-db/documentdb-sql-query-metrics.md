@@ -1,6 +1,6 @@
 ---
-title: Metriche di query SQL per l'API DocumentDB di Azure Cosmos DB | Microsoft Docs
-description: Informazioni su come instrumentare ed eseguire il debug delle prestazioni delle query SQL per le richieste di Azure Cosmos DB.
+title: aaaSQL le metriche di query per l'API DocumentDB DB Cosmos Azure | Documenti Microsoft
+description: "Informazioni sulla modalità debug e tooinstrument hello le prestazioni delle query SQL di Azure Cosmos DB richieste."
 keywords: sintassi sql, query sql, linguaggio di query json, concetti relativi ai database e query sql, funzioni di aggregazione
 services: cosmos-db
 documentationcenter: 
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: arramac
-ms.openlocfilehash: d928113e809e5ad43901e79dc256a8a39c210181
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2fee3786b7d48d254162699471943e316764b003
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tuning-query-performance-with-azure-cosmos-db"></a>Ottimizzazione delle prestazioni delle query con Azure Cosmos DB
-Azure Cosmos DB fornisce un'[API SQL per le query sui dati](documentdb-sql-query.md), senza che siano necessari schemi o indici secondari. In questo articolo vengono fornite le seguenti informazioni per gli sviluppatori:
+Azure Cosmos DB fornisce un'[API SQL per le query sui dati](documentdb-sql-query.md), senza che siano necessari schemi o indici secondari. Questo articolo fornisce le seguenti informazioni per gli sviluppatori hello:
 
 * Informazioni generali sull'esecuzione delle query SQL di Azure Cosmos DB
 * Dettagli sulle intestazioni di richiesta e risposta delle query e le opzioni SDK client
 * Suggerimenti e procedure consigliate per le prestazioni delle query
-* Esempi di come usare le statistiche di esecuzione di SQL per eseguire il debug delle prestazioni delle query
+* Esempi di come tooutilize SQL esecuzione statistiche toodebug le prestazioni delle query
 
 ## <a name="about-sql-query-execution"></a>Informazioni sull'esecuzione di query SQL
 
-In Azure Cosmos DB i dati vengono archiviati in contenitori, che possono raggiungere [dimensioni di archiviazione o velocità effettive delle richieste](partition-data.md) illimitate. Azure Cosmos DB esegue automaticamente il ridimensionamento dei dati tra le partizioni fisiche per gestire la crescita dei dati o l'aumento della velocità effettiva con provisioning. È possibile eseguire query SQL su qualsiasi contenitore usando l'API REST o uno dei [SDK di DocumentDB](documentdb-sdk-dotnet.md) supportati.
+In Azure Cosmos DB, vengono archiviati i dati in contenitori, che possono raggiungere dimensioni tooany [velocità effettiva di archiviazione dimensioni o richiesta](partition-data.md). Azure DB Cosmos scala facilmente dati tra partizioni fisiche in crescita dei dati toohandle copre hello o aumento della velocità effettiva di provisioning. È possibile emettere contenitore tooany di query SQL utilizzando hello API REST o uno dei hello supportato [SDK di DocumentDB](documentdb-sdk-dotnet.md).
 
-Una breve panoramica del partizionamento: si definisce una chiave di partizione come "city", che determina il modo in cui vengono suddivisi i dati tra le partizioni fisiche. I dati che appartengono a una singola chiave di partizione (ad esempio, "city" == "Seattle") vengono archiviati in una partizione fisica, ma in genere una singola partizione fisica contiene più chiavi di partizione. Quando una partizione raggiunge la dimensione di archiviazione, il servizio suddivide automaticamente la partizione in due nuove partizioni e divide la chiave di partizione in modo uniforme tra queste partizioni. Poiché le partizioni sono temporanee, le API usano un'astrazione "intervallo di chiavi di partizione", che indica gli intervalli degli hash delle chiavi di partizione. 
+Una breve panoramica del partizionamento: si definisce una chiave di partizione come "city", che determina il modo in cui vengono suddivisi i dati tra le partizioni fisiche. Chiave singola partizione di dati appartenente tooa (ad esempio, "city" = = "Seattle") vengono archiviati all'interno di una partizione fisica, ma in genere una singola partizione fisica dispone di più chiavi di partizione. Quando una partizione raggiunge la dimensione di archiviazione, hello servizio facilmente suddivide partizione hello in due nuove partizioni e divide la chiave di partizione hello in modo uniforme tra queste partizioni. Poiché le partizioni sono temporanee, hello API utilizzano un'astrazione di una "chiave intervallo di partizione", che indica gli intervalli hello degli hash di chiave di partizione. 
 
-Quando si esegue una query in Azure Cosmos DB, l'SDK esegue i passaggi logici seguenti:
+Quando si esegue un tooAzure query DB Cosmos, hello SDK consente di eseguire questi passaggi logici:
 
-* La query SQL viene analizzata per determinare il piano di esecuzione della query. 
-* Se la query include un filtro con la chiave di partizione, ad esempio `SELECT * FROM c WHERE c.city = "Seattle"`, viene indirizzata a una singola partizione. Se la query non contiene un filtro per la chiave di partizione, viene eseguita in tutte le partizioni e i risultati vengono uniti sul lato client.
-* La query viene eseguita in ogni partizione in serie o in parallelo, in base alla configurazione client. All'interno di ogni partizione, la query può richiedere uno o più round trip, a seconda della complessità della query, delle dimensioni di pagina configurate e della velocità effettiva con provisioning della raccolta. Ogni esecuzione restituisce il numero di [unità richiesta](request-units.md) usate dall'esecuzione della query e, facoltativamente, le statistiche sull'esecuzione della query. 
-* L'SDK riepiloga i risultati della query tra le partizioni. Ad esempio, se la query implica una clausola ORDER BY tra le partizioni, i risultati dalle singole partizioni vengono uniti e ordinati per restituire i risultati in base all'ordinamento globale. Se la query è un'aggregazione come `COUNT`, i conteggi relativi alle singole partizioni vengono sommati per produrre il conteggio globale.
+* Analizzare il piano di esecuzione di hello SQL query toodetermine hello query. 
+* Se la query hello include un filtro con la chiave di partizione hello, ad esempio `SELECT * FROM c WHERE c.city = "Seattle"`, è indirizzato tooa singola partizione. Se query hello non dispone di un filtro sulla chiave di partizione, quindi viene eseguita in tutte le partizioni e risultati vengono uniti lato client.
+* query Hello viene eseguito all'interno di ogni partizione in serie o parallela, in base alla configurazione di client. All'interno di ogni partizione, query hello potrebbe rendere uno o più round trip, a seconda della complessità della query hello, configurare dimensioni di pagina e il provisioning di velocità effettiva della raccolta hello. Ogni esecuzione restituisce il numero di hello di [unità richieste](request-units.md) utilizzati dall'esecuzione di query e, facoltativamente, le statistiche di esecuzione di query. 
+* Hello SDK esegue un riepilogo dei risultati di query hello tra partizioni. Ad esempio, se tra partizioni, query di hello implica una clausola ORDER BY, risultati dalle singole partizioni sono ordinati merge tooreturn risultati in base all'ordinamento a livello globale. Se la query hello è un'aggregazione come `COUNT`, i conteggi di hello da singole partizioni vengono sommati tooproduce hello conteggio complessivo.
 
-L'SDK offre varie opzioni per l'esecuzione di query. Ad esempio, in .NET queste opzioni sono disponibili nella classe `FeedOptions`. La tabella seguente illustra queste opzioni e il relativo impatto sul tempo di esecuzione delle query. 
+SDK di Hello offrono diverse opzioni per l'esecuzione di query. Ad esempio, in .NET queste opzioni sono disponibili in hello `FeedOptions` classe. Hello nella tabella seguente vengono descritte queste opzioni e l'impatto il tempo di esecuzione di query. 
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| `EnableCrossPartitionQuery` | Deve essere impostato su true per qualsiasi query che richiede l'esecuzione in più di una partizione. Si tratta di un flag esplicito che consente di trovare un compromesso adeguato per le prestazioni in fase di sviluppo. |
-| `EnableScanInQuery` | Deve essere impostato su true se è stata rifiutata esplicitamente l'indicizzazione, ma si vuole comunque eseguire la query tramite un'analisi. Applicabile solo se l'indicizzazione per il percorso di filtro richiesto è disabilitata. | 
-| `MaxItemCount` | Numero massimo di elementi da restituire per ogni round trip al server. Impostando -1, è possibile lasciare che sia il server a gestire il numero di elementi. In alternativa, è possibile ridurre questo valore per recuperare solo un numero limitato di elementi per ogni round trip. 
-| `MaxBufferedItemCount` | Questa è un'opzione sul lato client e viene usata per limitare l'uso della memoria durante l'esecuzione di clausole ORDER BY tra partizioni. Un valore più alto consente di ridurre la latenza di ordinamento tra partizioni. |
-| `MaxDegreeOfParallelism` | Ottiene o imposta il numero di operazioni simultanee eseguite sul lato client durante l'esecuzione di query in parallelo nel servizio database di Azure DocumentDB. Un valore di proprietà positivo limita il numero di operazioni simultanee al valore impostato. Se è impostato un valore minore di 0, il sistema decide automaticamente il numero di operazioni simultanee da eseguire. |
-| `PopulateQueryMetrics` | Consente la registrazione dettagliata delle statistiche sul tempo impiegato nelle varie fasi di esecuzione della query, come il tempo di compilazione, il tempo del ciclo di indice e il tempo di caricamento dei documenti. È possibile condividere l'output delle statistiche sulle query con il supporto tecnico di Azure per la diagnostica dei problemi di prestazioni delle query. |
-| `RequestContinuation` | È possibile riprendere l'esecuzione delle query passando il token di continuazione opaco restituito da qualsiasi query. Il token di continuazione incapsula tutti gli stati necessari per l'esecuzione delle query. |
-| `ResponseContinuationTokenLimitInKb` | È possibile limitare la dimensione massima del token di continuazione restituito dal server. Potrebbe essere necessario eseguire questa operazione se l'host applicazione applica limiti per le dimensioni delle intestazioni delle risposte. L'impostazione di questa opzione può determinare un aumento della durata complessiva e delle unità di richieste usate per la query.  |
+| `EnableCrossPartitionQuery` | È necessario impostare tootrue per le query che richiede toobe eseguita per più di una partizione. Si tratta di un tooenable flag esplicita è compromessi tra prestazioni tenendo toomake durante la fase di sviluppo. |
+| `EnableScanInQuery` | Deve essere impostato tootrue se è stata esplicitamente rifiutata l'indicizzazione, ma desidera comunque query hello toorun tramite un'analisi. Applicabile solo se l'indicizzazione per hello richieste solo percorso di filtro è disabilitato. | 
+| `MaxItemCount` | numero massimo di Hello di tooreturn elementi per ogni server toohello di andata e ritorno. Tramite l'impostazione troppo-1, è possibile consentire server hello gestire hello numero di elementi. In alternativa, è possibile ridurre questo tooretrieve valore solo un piccolo numero di elementi per ogni round trip. 
+| `MaxBufferedItemCount` | Questa è un'opzione sul lato client e utilizzata il consumo di memoria hello toolimit quando si esegue tra partizioni ORDER BY. Un valore più alto consente di ridurre la latenza di hello di ordinamento tra partizioni. |
+| `MaxDegreeOfParallelism` | Ottiene o imposta il numero di hello di operazioni simultanee eseguite sul lato client durante l'esecuzione di query parallele nel servizio di database Azure DocumentDB hello. Un valore di proprietà positivo limita hello valore del numero di operazioni simultanee toohello set. Se è impostato tooless a 0, il sistema di hello decide automaticamente il numero di hello di toorun operazioni simultanee. |
+| `PopulateQueryMetrics` | Consente la registrazione dettagliata delle statistiche sul tempo impiegato nelle varie fasi di esecuzione della query, come il tempo di compilazione, il tempo del ciclo di indice e il tempo di caricamento dei documenti. È possibile condividere l'output di statistiche sulle query con problemi di prestazioni delle query di supporto tecnico di Azure toodiagnose. |
+| `RequestContinuation` | È possibile riprendere l'esecuzione di query passando il token di continuazione opaco hello restituito da una query. token di continuazione Hello incapsula tutti gli stati necessari per l'esecuzione di query. |
+| `ResponseContinuationTokenLimitInKb` | È possibile limitare dimensioni massime di hello hello del token di continuazione restituito dal server hello. Potrebbe essere necessario tooset questo se l'applicazione disponga di limiti alle dimensioni dell'intestazione di risposta. Impostando questa opzione può aumentare hello RUs usato per le query hello e durata globali.  |
 
-Supponiamo ad esempio che venga richiesta una query con la chiave di partizione su una raccolta con `/city` come chiave di partizione e con una velocità effettiva con provisioning di 100.000 unità di richieste al secondo. Questa query può essere richiesta usando `CreateDocumentQuery<T>` in .NET in modo simile al seguente:
+Prendiamo ad esempio, un esempio di query su richiesta in una raccolta con la chiave di partizione `/city` come partizione di hello chiave e viene eseguito il provisioning con 100.000 UR/sec velocità effettiva. Richiesta la query usando `CreateDocumentQuery<T>` in .NET hello seguente:
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -72,7 +72,7 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 FeedResponse<dynamic> result = await query.ExecuteNextAsync();
 ```
 
-Il frammento SDK illustrato sopra corrisponde alla richiesta dell'API REST seguente:
+Hello frammento SDK illustrato sopra, corrisponde a toohello seguente richiesta di API REST:
 
 ```
 POST https://arramacquerymetrics-westus.documents.azure.com/dbs/db/colls/sample/docs HTTP/1.1
@@ -99,9 +99,9 @@ Expect: 100-continue
 {"query":"SELECT * FROM c WHERE c.city = 'Seattle'"}
 ```
 
-Ogni pagina di esecuzione della query corrisponde a un `POST` dell'API REST con l'intestazione `Accept: application/query+json` e la query SQL nel corpo. Ogni query effettua uno o più round trip al server con il token `x-ms-continuation` restituito tra il client e server per riprendere l'esecuzione. Le opzioni di configurazione in FeedOptions vengono passate al server sotto forma di intestazioni di richiesta. Ad esempio, `MaxItemCount` corrisponde a `x-ms-max-item-count`. 
+Ogni pagina di esecuzione della query corrisponde tooa API REST `POST` con hello `Accept: application/query+json` intestazione e query SQL hello nel corpo di hello. Ogni query rende uno o più server toohello trip con hello di arrotondamento `x-ms-continuation` token restituite tra l'esecuzione di tooresume hello client e server. opzioni di configurazione Hello FeedOptions vengono passate toohello server sotto forma di hello di intestazioni di richiesta. Ad esempio, `MaxItemCount` corrisponde troppo`x-ms-max-item-count`. 
 
-La richiesta restituisce la risposta seguente (troncata per una migliore leggibilità):
+richiesta Hello restituisce seguente hello (troncati per migliorare la leggibilità) risposta:
 
 ```
 HTTP/1.1 200 Ok
@@ -128,54 +128,54 @@ x-ms-gatewayversion: version=1.14.33.2
 Date: Tue, 27 Jun 2017 21:59:49 GMT
 ```
 
-Di seguito sono elencate le principali intestazioni di risposta restituite dalla query:
+intestazioni di risposta chiave Hello restituite dalla query hello includono hello informazioni seguenti:
 
 | Opzione | Descrizione |
 | ------ | ----------- |
-| `x-ms-item-count` | Il numero di elementi restituiti nella risposta. Questo dipende dal valore `x-ms-max-item-count` specificato, dal numero di elementi che possono essere contenuti nella dimensione massima del payload della risposta, dalla velocità effettiva con provisioning e dal tempo di esecuzione della query. |  
-| `x-ms-continuation:` | Il token di continuazione per riprendere l'esecuzione della query, se sono disponibili altri risultati. | 
-| `x-ms-documentdb-query-metrics` | Le statistiche della query per l'esecuzione. Si tratta di una stringa delimitata contenente le statistiche relative al tempo impiegato nelle varie fasi di esecuzione della query. Viene restituita se `x-ms-documentdb-populatequerymetrics` è impostato su `True`. | 
-| `x-ms-request-charge` | Il numero di [unità richiesta](request-units.md) usate dalla query. | 
+| `x-ms-item-count` | numero di Hello di elementi restituiti nella risposta hello. Questo dipende hello fornito `x-ms-max-item-count`, hello numero di elementi che è possibile adattare all'interno di hello dimensioni massime del payload della risposta, velocità effettiva di provisioning hello e il tempo di esecuzione di query. |  
+| `x-ms-continuation:` | Hello continuazione token tooresume l'esecuzione di query hello, se sono disponibili altri risultati. | 
+| `x-ms-documentdb-query-metrics` | statistiche sulle query Hello per l'esecuzione di hello. Si tratta di una stringa delimitata contenente le statistiche di tempo impiegato in hello diverse fasi di esecuzione di query. Restituito se `x-ms-documentdb-populatequerymetrics` è troppo`True`. | 
+| `x-ms-request-charge` | numero di Hello [unità richieste](request-units.md) utilizzati da query hello. | 
 
-Per informazioni dettagliate sulle intestazioni e le opzioni delle richieste API REST, vedere [Querying resources using the DocumentDB REST API](https://docs.microsoft.com/rest/api/documentdb/querying-documentdb-resources-using-the-rest-api) (Esecuzione di query su risorse con l'API REST di DocumentDB).
+Per informazioni dettagliate sulle opzioni e le intestazioni di richiesta di hello API REST, vedere [una query di risorse utilizzando l'API REST di DocumentDB hello](https://docs.microsoft.com/rest/api/documentdb/querying-documentdb-resources-using-the-rest-api).
 
 ## <a name="best-practices-for-query-performance"></a>Procedure consigliate per le prestazioni delle query
-Di seguito sono indicati i fattori più comuni che influiscono sulle prestazioni delle query di Azure Cosmos DB. In questo articolo verrà esaminato in modo approfondito ognuno di questi argomenti.
+di seguito Hello sono fattori più comuni di hello che influiscono sulle prestazioni di query di database di Azure Cosmos. In questo articolo verrà esaminato in modo approfondito ognuno di questi argomenti.
 
 | Fattore | Suggerimento | 
 | ------ | -----| 
-| Velocità effettiva con provisioning | Misurare le unità di richieste per ogni query e assicurarsi di disporre della velocità effettiva con provisioning richiesta per le query. | 
-| Partizionamento e chiavi di partizione | Favorire le query con il valore della chiave di partizione nella clausola del filtro per una latenza bassa. |
+| Velocità effettiva con provisioning | Misurare RU per ogni query e assicurarsi di disporre di velocità effettiva di provisioning obbligatorio hello per le query. | 
+| Partizionamento e chiavi di partizione | Ottimizza per le query con valore della chiave di partizione hello nella clausola di filtro hello per una latenza bassa. |
 | Opzioni per SDK e query | Seguire le procedure consigliate dell'SDK come la connettività diretta e ottimizzare le opzioni di esecuzione delle query sul lato client. |
-| Latenza di rete | Tenere conto del sovraccarico di rete nella misurazione e usare API multihosting per eseguire la lettura dall'area più vicina. |
-| Criterio di indicizzazione | Assicurarsi di disporre dei percorsi/criteri di indicizzazione necessari per la query. |
-| Metriche di esecuzione delle query | Analizzare le metriche di esecuzione delle query per identificare le potenziali riscritture di forme di dati e query.  |
+| Latenza di rete | Account per la rete overhead in misura e utilizzare multihosting tooread API da hello più vicino di area. |
+| Criterio di indicizzazione | Assicurarsi di aver richiesto hello percorsi/criteri di indicizzazione per query hello. |
+| Metriche di esecuzione delle query | Analizzare hello query esecuzione metriche tooidentify potenziale di riscrivere più volte le forme di dati e query.  |
 
 ### <a name="provisioned-throughput"></a>Velocità effettiva con provisioning
-In Cosmos DB è possibile creare contenitori di dati, ognuno con una velocità effettiva riservata espressa in unità richiesta (UR) al secondo. Una lettura di un documento di 1 KB è 1 UR e ogni operazione (incluse le query) è normalizzata secondo un numero fisso di UR in base alla relativa complessità. Se ad esempio è previsto un provisioning di 1000 UR/sec per il contenitore e si dispone di una query come `SELECT * FROM c WHERE c.city = 'Seattle'` che usa 5 UR, è possibile eseguire (1000 UR/sec) / (5 UR/query) = 200 query di questo tipo al secondo. 
+In Cosmos DB è possibile creare contenitori di dati, ognuno con una velocità effettiva riservata espressa in unità richiesta (UR) al secondo. Una lettura di un documento di 1 KB è 1 UR e ogni operazione (incluse le query) è normalizzato tooa numero fisso di destinatari in base a sua complessità. Se ad esempio è previsto un provisioning di 1000 UR/sec per il contenitore e si dispone di una query come `SELECT * FROM c WHERE c.city = 'Seattle'` che usa 5 UR, è possibile eseguire (1000 UR/sec) / (5 UR/query) = 200 query di questo tipo al secondo. 
 
-Se si inviano più di 200 query al secondo, il servizio inizia a limitare le velocità delle richieste in ingresso sopra il valore di 200 query al secondo. L'SDK gestisce automaticamente questo caso eseguendo un nuovo tentativo/backoff, pertanto è possibile osservare una latenza superiore per queste query. L'aumento della velocità effettiva con provisioning al valore richiesto migliora la velocità effettiva e la latenza delle query. 
+Se si invia più di 200 query/sec, hello avviato limitazione di velocità di richieste in ingresso di sopra di 200/s. Hello SDK gestiscono automaticamente questo caso eseguendo un tentativi/backoff, pertanto è possibile riscontrare una latenza più elevata per le query. Aumento hello il provisioning della velocità effettiva toohello necessario valore migliora la velocità effettiva e la latenza delle query. 
 
-Per altre informazioni sulle unità richiesta, vedere [Unità richiesta](request-units.md).
+toolearn più sulle unità di richiesta, vedere [unità richieste](request-units.md).
 
 ### <a name="partitioning-and-partition-keys"></a>Partizionamento e chiavi di partizione
-Con Azure Cosmos DB, in genere le query vengono eseguite nell'ordine seguente, dalla più veloce/più efficiente alla più lenta/meno efficiente. 
+Con Azure Cosmos DB, in genere le query eseguire in ordine da più veloce o più efficiente tooslower/meno efficiente hello. 
 
 * GET su una singola chiave di partizione e chiave di elemento
 * Query con una clausola di filtro su una singola chiave di partizione
 * Query senza una clausola di filtro di uguaglianza o basato su intervallo su qualsiasi proprietà
 * Query senza filtri
 
-Le query che devono consultare tutte le partizioni comportano una latenza più elevata e possono usare più UR. Poiché ogni partizione dispone dell'indicizzazione automatica per tutte le proprietà, in questo caso la query può essere fornita in modo efficiente dall'indice. È possibile eseguire più velocemente le query che interessano diverse partizioni usando le opzioni di parallelismo.
+Esegue una query che tooconsult necessità tutte le partizioni è necessario una latenza maggiore e sarà possibile utilizzare RUs superiore. Poiché ogni partizione ha l'indicizzazione automatica in tutte le proprietà, query hello può essere fornita in modo efficiente tra l'indice di hello in questo caso. È possibile apportare le query che interessano più veloce di partizioni utilizzando le opzioni di parallelismo hello.
 
-Per altre informazioni sul partizionamento e sulle chiavi di partizione, vedere [Partizionamento in Azure Cosmos DB](partition-data.md).
+toolearn informazioni sulle partizioni e le chiavi di partizione, vedere [partizionamento nel database di Azure Cosmos](partition-data.md).
 
 ### <a name="sdk-and-query-options"></a>Opzioni per SDK e query
-Per informazioni su come ottenere le migliori prestazioni sul lato client da Azure Cosmos DB, vedere [Suggerimenti sulle prestazioni](performance-tips.md) e [Test delle prestazioni](performance-testing.md). Sono inclusi l'uso degli SDK più recenti, la configurazione di impostazioni specifiche della piattaforma come il numero predefinito di connessioni, la frequenza della Garbage Collection e l'uso delle opzioni di connettività leggera come Direct/TCP. 
+Vedere [suggerimenti sulle prestazioni](performance-tips.md) e [test delle prestazioni](performance-testing.md) per la modalità tooget hello migliori prestazioni lato client dal database di Azure Cosmos. Incluso l'utilizzo di hello SDK più recente, impostazione delle configurazioni specifiche della piattaforma come numero predefinito di connessioni, frequenza di garbage collection e come utilizzare opzioni di connettività semplice come Direct/TCP. 
 
 
 #### <a name="max-item-count"></a>Numero massimo di elementi
-Per le query, il valore di `MaxItemCount` può avere un impatto significativo sulla durata delle query end-to-end. Ogni round trip al server restituirà un numero di elementi mai maggiore di quello specificato in `MaxItemCount` (100 elementi per impostazione predefinita). L'impostazione di un valore maggiore (-1 è il valore massimo e consigliato) migliora la durata complessiva delle query limitando il numero di round trip tra server e client, in particolare per le query con set di risultati di grandi dimensioni.
+Per le query, hello valore `MaxItemCount` può avere un impatto significativo sul tempo di query end-to-end. Ogni round trip toohello viene restituito non più di numero hello di elementi in `MaxItemCount` (valore predefinito è 100 elementi). Impostazione del valore maggiore di tooa (-1 è consigliato e massima) migliorerà la durata delle query complessiva, limitando il numero di hello di round trip tra server e client, in particolare per le query con il set di risultati di grandi dimensioni.
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -188,7 +188,7 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 ```
 
 #### <a name="max-degree-of-parallelism"></a>Massimo grado di parallelismo
-Per le query, ottimizzare `MaxDegreeOfParallelism` per identificare le configurazioni migliori per l'applicazione, in particolare se si eseguono query tra partizioni (senza un filtro per il valore della chiave di partizione). `MaxDegreeOfParallelism` controlla il numero massimo di attività in parallelo, ovvero il numero massimo di partizioni accessibili in parallelo. 
+Per le query, ottimizzare hello `MaxDegreeOfParallelism` le configurazioni hello tooidentify per l'applicazione, soprattutto se l'esecuzione di query tra partizioni (senza un filtro sul valore della chiave di partizione hello). `MaxDegreeOfParallelism`Controlla hello numero massimo di attività in parallelo, ad esempio, hello massimo toobe partizioni visitato in parallelo. 
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -202,11 +202,11 @@ IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
 ```
 
 Presupponendo che
-* D = Numero massimo predefinito di attività in parallelo (= numero totale di processori nel computer client)
+* D = numero massimo predefinito di attività in parallelo (= numero totale di processori nel computer client hello)
 * P = Numero massimo di attività in parallelo specificato dall'utente
-* N = Numero di partizioni cui è necessario accedere per rispondere a una query
+* N = numero di partizioni che deve toobe visitato per la risposta a una query
 
-Di seguito sono indicate le implicazioni sul comportamento delle query in parallelo per diversi valori di P.
+Di seguito sono le implicazioni di comportamento query parallele hello per diversi valori di P.
 * (P == 0) => Modalità seriale
 * (P == 1) => Massimo un'attività
 * (P > 1) => Attività in parallelo minime (P, N) 
@@ -215,15 +215,15 @@ Di seguito sono indicate le implicazioni sul comportamento delle query in parall
 Per le note sulla versione degli SDK e altre informazioni sulle classi e i metodi implementati, vedere [SDK di DocumentDB](documentdb-sdk-dotnet.md)
 
 ### <a name="network-latency"></a>Latenza di rete
-Per configurare la distribuzione globale e connettersi all'area più vicina, vedere [Distribuzione globale di Azure Cosmos DB](tutorial-global-distribution-documentdb.md). La latenza di rete ha un impatto significativo sulle prestazioni delle query quando è necessario eseguire più round trip o recuperare un set di risultati di grandi dimensioni dalla query. 
+Vedere [distribuzione globale di Azure Cosmos DB](tutorial-global-distribution-documentdb.md) tooset distribuzione globale di backup, e collegare l'area più vicina toohello. Latenza di rete ha un impatto significativo sulle prestazioni delle query quando è necessario toomake più round trip o recuperare un grande set di risultati di query hello. 
 
-La sezione sulle metriche di esecuzione delle query descrive come recuperare la durata di esecuzione delle query del server ( `totalExecutionTimeInMs`), in modo da poter differenziare tra il tempo impiegato dall'esecuzione delle query e quello impiegato per il trasferimento di rete.
+Hello sezione sulle metriche di esecuzione di query viene illustrato come tooretrieve hello server tempo di esecuzione di query ( `totalExecutionTimeInMs`), in modo che è possibile distinguere tra tempo impiegato per l'esecuzione di query e il tempo impiegato per il trasferimento di rete.
 
 ### <a name="indexing-policy"></a>Criterio di indicizzazione
-Per informazioni su percorsi, tipi e modalità di indicizzazione e sul relativo impatto sull'esecuzione delle query, vedere [Configurazione dei criteri di indicizzazione](indexing-policies.md). Per impostazione predefinita, i criteri di indicizzazione usano l'indicizzazione hash per le stringhe, che è efficace per le query di uguaglianza, ma non per le query di intervallo o orderby. Se sono necessarie query di intervallo per le stringhe, è consigliabile specificare il tipo di indice di intervallo per tutte le stringhe. 
+Per informazioni su percorsi, tipi e modalità di indicizzazione e sul relativo impatto sull'esecuzione delle query, vedere [Configurazione dei criteri di indicizzazione](indexing-policies.md). Per impostazione predefinita, hello criteri di indicizzazione utilizza Hash l'indicizzazione per le stringhe, che è efficace per le query di uguaglianza, ma non per le query di intervallo/ordine dalle query. Se è necessario le query di intervallo per le stringhe, è consigliabile specificare il tipo di indice di intervallo per tutte le stringhe di hello. 
 
 ## <a name="query-execution-metrics"></a>Metriche di esecuzione delle query
-È possibile ottenere metriche dettagliate sull'esecuzione delle query passando l'intestazione facoltativa `x-ms-documentdb-populatequerymetrics` (`FeedOptions.PopulateQueryMetrics` in .NET SDK). Il valore restituito in `x-ms-documentdb-query-metrics` contiene le seguenti coppie chiave-valore, pensate per risoluzione dei problemi più avanzati di esecuzione delle query. 
+È possibile ottenere le metriche dettagliate sull'esecuzione di query passando hello facoltativo `x-ms-documentdb-populatequerymetrics` intestazione (`FeedOptions.PopulateQueryMetrics` in hello .NET SDK). valore restituito in Hello `x-ms-documentdb-query-metrics` ha hello seguenti coppie chiave-valore per risoluzione dell'esecuzione di query avanzata. 
 
 ```cs
 IDocumentQuery<dynamic> query = client.CreateDocumentQuery(
@@ -245,8 +245,8 @@ IReadOnlyDictionary<string, QueryMetrics> metrics = result.QueryMetrics;
 | ------ | -----| ----------- |
 | `totalExecutionTimeInMs` | millisecondi | Tempo di esecuzione della query | 
 | `queryCompileTimeInMs` | millisecondi | Tempo di compilazione della query  | 
-| `queryLogicalPlanBuildTimeInMs` | millisecondi | Tempo per la creazione del piano della query logica | 
-| `queryPhysicalPlanBuildTimeInMs` | millisecondi | Tempo per la creazione del piano della query fisica | 
+| `queryLogicalPlanBuildTimeInMs` | millisecondi | Piano di query logica toobuild ora | 
+| `queryPhysicalPlanBuildTimeInMs` | millisecondi | Piano di query fisiche toobuild ora | 
 | `queryOptimizationTimeInMs` | millisecondi | Tempo impiegato per l'ottimizzazione della query | 
 | `VMExecutionTimeInMs` | millisecondi | Tempo impiegato per l'esecuzione della query | 
 | `indexLookupTimeInMs` | millisecondi | Tempo impiegato nel livello di indice fisico | 
@@ -257,27 +257,27 @@ IReadOnlyDictionary<string, QueryMetrics> metrics = result.QueryMetrics;
 | `retrievedDocumentSize` | byte | Dimensione totale dei documenti recuperati in byte  | 
 | `outputDocumentCount` | count | Numero di documenti di output | 
 | `writeOutputTimeInMs` | millisecondi | Tempo di esecuzione della query in millisecondi | 
-| `indexUtilizationRatio` | rapporto (<=1) | Rapporto del numero di documenti corrispondenti al filtro rispetto al numero di documenti caricati  | 
+| `indexUtilizationRatio` | rapporto (<=1) | Percentuale del numero di documenti corrispondente al numero di toohello hello filtro dei documenti caricati  | 
 
-L'SDK client può eseguire internamente più operazioni di query per servire la query in ogni partizione. Il client effettua più chiamate per ogni partizione se i risultati totali superano `x-ms-max-item-count`, se la query supera la velocità effettiva con provisioning per la partizione, se il payload della query raggiunge la dimensione massima per ogni pagina oppure se la query raggiunge il limite di timeout allocato dal sistema. Ogni esecuzione parziale della query restituisce un `x-ms-documentdb-query-metrics` per la pagina. 
+Hello client SDK possono internamente rendere più query tooserve hello query operazioni all'interno di ogni partizione. client Hello rende più di una chiamata per ogni singola partizione se superano i risultati totali hello `x-ms-max-item-count`, se query hello maggiore velocità effettiva di provisioning hello per partizione hello, o se hello payload query raggiunge dimensioni massime di hello per pagina se hello query raggiunge hello sistema allocata limite di timeout. Ogni esecuzione parziale della query restituisce un `x-ms-documentdb-query-metrics` per la pagina. 
 
-Di seguito sono riportate alcune query di esempio, con informazioni su come interpretare alcune delle metriche restituite dall'esecuzione delle query: 
+Ecco alcune query di esempio e in che modo toointerpret alcune metriche hello restituiti dall'esecuzione di query: 
 
 | Query | Metrica di esempio | Descrizione | 
 | ------ | -----| ----------- |
-| `SELECT TOP 100 * FROM c` | `"RetrievedDocumentCount": 101` | Il numero di documenti recuperati è 100+1 per la corrispondenza alla clausola TOP. Il tempo della query viene impiegato per lo più in `WriteOutputTime` e `DocumentLoadTime` poiché si tratta di un'analisi. | 
-| `SELECT TOP 500 * FROM c` | `"RetrievedDocumentCount": 501` | RetrievedDocumentCount è ora superiore (500+1 per la corrispondenza alla clausola TOP). | 
+| `SELECT TOP 100 * FROM c` | `"RetrievedDocumentCount": 101` | Hello numero di documenti recuperati è 100 + la clausola TOP 1 toomatch hello. Il tempo della query viene impiegato per lo più in `WriteOutputTime` e `DocumentLoadTime` poiché si tratta di un'analisi. | 
+| `SELECT TOP 500 * FROM c` | `"RetrievedDocumentCount": 501` | RetrievedDocumentCount è superiore (500 + 1 toomatch hello clausola TOP). | 
 | `SELECT * FROM c WHERE c.N = 55` | `"IndexLookupTime": "00:00:00.0009500"` | Vengono impiegati circa 0,9 ms in IndexLookupTime per la ricerca della chiave, perché viene eseguita una ricerca nell'indice `/N/?`. | 
 | `SELECT * FROM c WHERE c.N > 55` | `"IndexLookupTime": "00:00:00.0017700"` | Un tempo leggermente superiore (1,7 ms) viene impiegato per IndexLookupTime nel caso di un'analisi dell'intervallo, perché viene eseguita una ricerca nell'indice `/N/?`. | 
 | `SELECT TOP 500 c.N FROM c` | `"IndexLookupTime": "00:00:00.0017700"` | Il tempo trascorso in `DocumentLoadTime` è lo stesso delle query precedenti, ma con un valore `WriteOutputTime` inferiore perché viene eseguita la proiezione di una sola proprietà. | 
-| `SELECT TOP 500 udf.toPercent(c.N) FROM c` | `"UserDefinedFunctionExecutionTime": "00:00:00.2136500"` | Vengono impiegati circa 213 ms in `UserDefinedFunctionExecutionTime` per l'esecuzione della funzione definita dall'utente su ogni valore di `c.N`. |
-| `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(c.Name, 'Den')` | `"IndexLookupTime": "00:00:00.0006400", "SystemFunctionExecutionTime": "00:00:00.0074100"` | Vengono impiegati circa 0,6 ms in `IndexLookupTime` su `/Name/?`. La maggior parte del tempo di esecuzione della query (circa 7 ms) è in `SystemFunctionExecutionTime`. |
+| `SELECT TOP 500 udf.toPercent(c.N) FROM c` | `"UserDefinedFunctionExecutionTime": "00:00:00.2136500"` | Viene impiegato per circa 213 ms `UserDefinedFunctionExecutionTime` esecuzione hello funzione definita dall'utente su ogni valore di `c.N`. |
+| `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(c.Name, 'Den')` | `"IndexLookupTime": "00:00:00.0006400", "SystemFunctionExecutionTime": "00:00:00.0074100"` | Vengono impiegati circa 0,6 ms in `IndexLookupTime` su `/Name/?`. La maggior parte delle hello query il tempo di esecuzione (ms ~ 7) in `SystemFunctionExecutionTime`. |
 | `SELECT TOP 500 c.Name FROM c WHERE STARTSWITH(LOWER(c.Name), 'den')` | `"IndexLookupTime": "00:00:00", "RetrievedDocumentCount": 2491,  "OutputDocumentCount": 500` | La query viene eseguita come un'analisi perché usa `LOWER` e vengono restituiti 500 su 2491 documenti recuperati. |
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sulle parole chiave e gli operatori di query SQL supportati, vedere [Query SQL](documentdb-sql-query.md). 
-* Per informazioni sulle unità richiesta, vedere [Unità richiesta](request-units.md).
-* Per informazioni sui criteri di indicizzazione, vedere [Criteri di indicizzazione](indexing-policies.md) 
+* toolearn hello supportato gli operatori di query SQL sulle parole chiave, vedere [query SQL](documentdb-sql-query.md). 
+* toolearn sulle unità di richiesta, vedere [unità richieste](request-units.md).
+* toolearn sui criteri di indicizzazione, vedere [criteri di indicizzazione](indexing-policies.md) 
 
 

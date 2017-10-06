@@ -1,6 +1,6 @@
 ---
-title: Convalida XML - App per la logica di Azure | Microsoft Docs
-description: Convalida XML con gli schemi per le app per la logica di Azure e negli scenari B2B usando Enterprise Integration Pack
+title: aaaValidate XML - App Azure per la logica | Documenti Microsoft
+description: Convalida XML con schemi per le app di logica di Azure e gli scenari B2B usando hello Enterprise Integration Pack
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 8558efffa354cc4bb93820c837077ee997924c95
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 81f662d0ddf908657b54de8af0a75fff55782ef7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="validate-xml-for-enterprise-integration"></a>Enterprise Integration con convalida XML
 
-Spesso negli scenari B2B i partner di un contratto devono accertarsi che i messaggi scambiati siano validi prima di avviare l'elaborazione dei dati. In Enterprise Integration Pack, è possibile usare il connettore di convalida XML per convalidare i documenti in base a uno schema predefinito.
+Spesso in scenari B2B, partner hello in un contratto deve assicurarsi che i messaggi hello che dello scambio siano validi prima di poter avviare l'elaborazione dati. È possibile convalidare documenti rispetto a uno schema predefinito utilizzando hello usare hello convalida XML connettore in hello Enterprise Integration Pack.
 
-## <a name="validate-a-document-with-the-xml-validation-connector"></a>Come convalidare un documento con il connettore di convalida XML
+## <a name="validate-a-document-with-hello-xml-validation-connector"></a>Convalidare un documento con il connettore di convalida XML hello
 
-1. Creare un'app per la logica e [collegarla all'account di integrazione](../logic-apps/logic-apps-enterprise-integration-accounts.md "Informazioni su come collegare un account di integrazione a un'app per la logica") che contiene lo schema che verrà usato per convalidare i dati XML.
+1. Creare un'applicazione, la logica e [collegare l'account di integrazione di hello app toohello](../logic-apps/logic-apps-enterprise-integration-accounts.md "informazioni toolink un'app di logica di integrazione account tooa") con schema hello desiderate toouse per la convalida dei dati XML.
 
-2. Aggiungere un trigger **Richiesta - Alla ricezione di una richiesta HTTP** all'app per la logica.
+2. Aggiungere un **richiesta - viene ricevuta la richiesta HTTP quando** trigger tooyour logica app.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-1.png)
 
-3. Aggiungere l'azione **Convalida XML** selezionando **Aggiungi un'azione**.
+3. hello tooadd **convalida XML** azione, scegliere **aggiungere un'azione**.
 
-4. Immettere *xml* nella casella di ricerca per filtrare tutte le azioni su quella che si desidera. Selezionare **Convalida XML**.
+4. toofilter tutti hello toohello azioni quello che si desidera, immettere *xml* nella casella di ricerca hello. Selezionare **Convalida XML**.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-2.png)
 
-5. Per specificare il contenuto XML che si desidera convalidare, selezionare **CONTENUTO**.
+5. Selezionare toospecify hello contenuto XML che si desidera toovalidate, **contenuto**.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-1-5.png)
 
-6. Selezionare il tag del corpo come contenuto che si desidera convalidare.
+6. Selezionare i tag body hello come contenuto che si desidera toovalidate hello.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-3.png)
 
-7. Per specificare lo schema che desidera usare per convalidare il *contenuto* immesso in precedenza, scegliere **NOME SCHEMA**.
+7. schema di hello toospecify desiderato toouse per la convalida di hello precedente *contenuto* di input, scegliere **nome dello SCHEMA**.
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-4.png)
 
@@ -54,10 +54,10 @@ Spesso negli scenari B2B i partner di un contratto devono accertarsi che i messa
 
     ![](./media/logic-apps-enterprise-integration-xml/xml-5.png)
 
-A questo punto, la configurazione del connettore di convalida è completa. In un'applicazione reale è possibile archiviare i dati convalidati in un'app line-of-business (LOB), ad esempio SalesForce. Per inviare l'output della convalida a Salesforce, aggiungere un'azione.
+A questo punto, la configurazione del connettore di convalida è completa. In un'applicazione reale, è possibile che i dati di hello convalidato toostore in un'app di line-of-business (LOB) come SalesForce. toosend hello tooSalesforce output convalidato, aggiungere un'azione.
 
-Per testare l'azione di convalida, eseguire una richiesta all'endpoint HTTP.
+tootest l'azione di convalida, creare un endpoint HTTP toohello richiesta.
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Altre informazioni su Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack")   
+[Altre informazioni su Enterprise Integration Pack hello](../logic-apps/logic-apps-enterprise-integration-overview.md "apprendere Enterprise Integration Pack")   
 

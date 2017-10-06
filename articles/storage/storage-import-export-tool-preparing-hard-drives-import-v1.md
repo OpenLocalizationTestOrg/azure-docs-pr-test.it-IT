@@ -1,6 +1,6 @@
 ---
-title: Preparazione dei dischi rigidi per un processo di importazione in Importazione/Esportazione di Azure - versione 1 | Documentazione Microsoft
-description: Informazioni su come preparare i dischi rigidi usando lo strumento WAImportExport v1 per creare un processo di importazione per il servizio Importazione/Esportazione di Azure.
+title: "processo - v1 di importazione aaaPreparing unità disco rigido per un'importazione/esportazione di Azure | Documenti Microsoft"
+description: "Informazioni su come tooprepare unità disco rigido utilizzando hello WAImportExport v1 strumento toocreate un processo di importazione per il servizio di importazione/esportazione di Azure hello."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: cb330845ea623e49cc1d434dea9448c41b26413d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8803ac01b7c7a2ec2e3199231d7b4c04ceafd5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="preparing-hard-drives-for-an-import-job"></a>Preparazione dei dischi rigidi per un processo di importazione
-Per preparare uno o più dischi rigidi per il processo di importazione, seguire questi passaggi:
+tooprepare uno o più dischi rigidi per un processo di importazione, seguire questi passaggi:
 
--   identificare i dati da importare nel servizio BLOB
+-   Identificare tooimport dati hello in hello servizio Blob
 
--   identificare le directory virtuali di destinazione e i BLOB nel servizio BLOB
+-   Identificare le directory virtuali di destinazione e i BLOB nel servizio Blob hello
 
 -   determinare il numero di unità necessarie
 
--   copiare i dati su ogni disco rigido
+-   Copiare hello dati tooeach le unità disco rigido
 
- Per un flusso di lavoro di esempio vedere [Sample workflow to prepare hard drives for an import job](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md) (Flusso di lavoro di esempio per preparare i dischi rigidi al processo di importazione).
+ Per un flusso di lavoro di esempio, vedere [tooPrepare del flusso di lavoro di esempio unità disco rigido per un processo di importazione](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md).
 
-## <a name="identify-the-data-to-be-imported"></a>Identificare i dati da importare
- Il primo passaggio per la creazione di un processo di importazione è determinare le directory e i file da importare. Può trattarsi di un elenco di directory, di un elenco di file univoci o di una combinazione di entrambi gli elementi. Quando viene inclusa una directory, tutti i file nella directory e nelle relative sottodirectory faranno parte del processo di importazione.
+## <a name="identify-hello-data-toobe-imported"></a>Identificare hello toobe di dati importati
+ è toodetermine quali directory Hello primo passaggio toocreating un processo di importazione e file si stanno tooimport. Può trattarsi di un elenco di directory, di un elenco di file univoci o di una combinazione di entrambi gli elementi. Quando viene inclusa una directory, tutti i file nella directory hello e nelle relative sottodirectory faranno parte del processo di importazione hello.
 
 > [!NOTE]
->  Poiché le sottodirectory sono incluse in modo ricorsivo quando viene inclusa una directory principale, specificare solo la directory principale. Non è necessario specificare anche le relative sottodirectory.
+>  Poiché le sottodirectory sono incluse in modo ricorsivo quando è inclusa in una directory padre, specificare solo directory padre di hello. Non è necessario specificare anche le relative sottodirectory.
 >
->  Lo strumento Importazione/Esportazione di Microsoft Azure attualmente presenta la limitazione seguente: se una directory contiene più dati di quelli che può contenere un disco rigido, la directory deve essere suddivisa in directory più piccole. Ad esempio, se una directory contiene 2,5 TB di dati e la capacità del disco rigido è pari a 2 TB, è necessario suddividere la directory da 2,5 TB in directory più piccole. Questa limitazione verrà risolta in una versione successiva dello strumento.
+>  Attualmente, hello dello strumento di importazione/esportazione di Microsoft Azure ha hello seguente limitazione: se una directory contiene più dati di un disco rigido può contenere, directory hello deve quindi toobe suddivisa in directory di dimensioni minori. Ad esempio, se una directory contiene 2,5 TB di dati e hello capacità del disco rigido è pari a 2TB, quindi è necessario directory da 2,5 TB di toobreak hello in directory più piccole. Questa limitazione verrà risolta in una versione successiva dello strumento hello.
 
-## <a name="identify-the-destination-locations-in-the-blob-service"></a>Identificare i percorsi di destinazione nel servizio BLOB
- Per ogni directory o file che viene importato, è necessario identificare un BLOB o una directory virtuale di destinazione nel servizio BLOB di Azure. Usare queste destinazioni come input per lo strumento di importazione/esportazione di Azure. Si noti che le directory devono essere delimitate con il carattere barra "/".
+## <a name="identify-hello-destination-locations-in-hello-blob-service"></a>Identificare le posizioni di destinazione hello nel servizio blob hello
+ Per ogni directory o file che verrà importati, è necessario tooidentify una directory virtuale di destinazione o blob nel servizio Blob di Azure hello. Si utilizzerà queste destinazioni come input toohello strumento di importazione/esportazione di Azure. Si noti che le directory devono essere delimitate con il carattere di barra rovesciata hello "/".
 
- La tabella seguente mostra alcuni esempi di destinazioni BLOB:
+ Hello nella tabella seguente vengono illustrati alcuni esempi di destinazioni blob:
 
 |File o directory di origine|BLOB o directory virtuale di destinazione|
 |------------------------------|-------------------------------------------|
@@ -54,131 +54,131 @@ Per preparare uno o più dischi rigidi per il processo di importazione, seguire 
 |\\\myshare\john\music|https://mystorageaccount.blob.core.windows.net/music|
 
 ## <a name="determine-how-many-drives-are-needed"></a>Determinare il numero di unità necessarie
- Successivamente, è necessario determinare:
+ Successivamente, è necessario toodetermine:
 
--   Il numero di unità disco rigido necessarie per archiviare i dati.
+-   numero di Hello di dischi rigidi necessari dati hello toostore.
 
--   Le directory e/o i file autonomi che verranno copiati in ciascun disco rigido.
+-   Directory Hello e/o i file autonomi che saranno copiato tooeach del disco rigido.
 
- Assicurarsi di avere il numero di dischi rigidi necessari per archiviare i dati da trasferire.
+ Assicurarsi di avere hello numero di dischi rigidi che sono necessari dati hello toostore da trasferire.
 
-## <a name="copy-data-to-your-hard-drive"></a>Copiare i dati sul disco rigido
- Questa sezione descrive come chiamare lo strumento Importazione/Esportazione di Azure per copiare i dati su uno o più dischi rigidi. Ogni volta che si chiama lo strumento di importazione/esportazione di Azure, si crea una nuova *sessione di copia*. Creare almeno una sessione di copia per ogni unità su cui si copiano dati; in alcuni casi, potrebbe essere necessaria più di una sessione di copia per copiare tutti i dati su una sola unità. Ecco alcuni motivi per cui potrebbero essere necessarie più sessioni di copia:
+## <a name="copy-data-tooyour-hard-drive"></a>Copiare l'unità disco rigido di dati tooyour
+ In questa sezione viene descritto come toocall hello toocopy strumento di importazione/esportazione di Azure tooone i dati o più dischi rigidi. Ogni volta che si chiama hello strumento di importazione/esportazione di Azure, si crea un nuovo *copiare sessione*. Creare almeno una sessione di copia per ogni unità toowhich si copiano dati; In alcuni casi, potrebbe essere necessario più di una copia della sessione toocopy tutte le unità toosingle di dati. Ecco alcuni motivi per cui potrebbero essere necessarie più sessioni di copia:
 
 -   È necessario creare una sessione di copia separata per ogni unità su cui si copia.
 
--   Una sessione di copia può copiare sull'unità una sola directory o un solo BLOB. Se si copiano più directory, più BLOB o una combinazione di entrambi, è necessario creare più sessioni di copia.
+-   Una sessione di copia è possibile copiare una singola directory o un'unità toohello singolo blob. Se si copia una combinazione di entrambi, più BLOB o più directory, è necessario toocreate più sessioni di copia.
 
--   È possibile specificare le proprietà e i metadati che verranno impostati nei BLOB importati come parte del processo di importazione. Le proprietà o i metadati specificati per una sessione di copia verranno applicati a tutti i BLOB specificati in quella sessione di copia. Se si desidera specificare altre proprietà o metadati per alcuni BLOB, è necessario creare una sessione di copia separata. Per maggiori informazioni, vedere [Setting Properties and Metadata during the import process](storage-import-export-tool-setting-properties-metadata-import-v1.md) (Impostazione di proprietà e metadati durante il processo di importazione)
+-   È possibile specificare le proprietà e i metadati che verranno impostati nei blob hello importati come parte di un processo di importazione. proprietà Hello o i metadati specificati per una sessione di copia verranno applicati BLOB tooall specificati in tale sessione. Se si desidera toospecify proprietà o metadati diversi per alcuni BLOB, è necessario toocreate sessione di copia un oggetto separato. Vedere [impostazione delle proprietà e metadati durante il processo di importazione hello](storage-import-export-tool-setting-properties-metadata-import-v1.md)per ulteriori informazioni.
 
 > [!NOTE]
->  Se si dispone di più computer che soddisfano i requisiti descritti in [Setting Up the Azure Import/Export Tool](storage-import-export-tool-setup-v1.md) (Configurazione dello strumento Importazione/Esportazione di Azure), è possibile copiare i dati su più dischi rigidi in parallelo eseguendo un'istanza di questo strumento su ogni computer.
+>  Se si dispone di più computer che soddisfino i requisiti di hello descritti [impostazione hello strumento di importazione/esportazione di Azure](storage-import-export-tool-setup-v1.md), è possibile copiare i dischi rigidi toomultiple di dati in parallelo tramite l'esecuzione di un'istanza di questo strumento in ogni computer.
 
- Per ogni disco rigido preparato con lo strumento di importazione/esportazione di Azure, lo strumento creerà un singolo file journal. Per creare il processo di importazione sono necessari i file journal di tutte le unità. Il file journal può essere usato anche per riprendere la preparazione delle unità nel caso in cui lo strumento venga interrotto.
+ Per ogni disco rigido preparato con lo strumento di importazione/esportazione di Azure hello, hello creerà un singolo file journal. Sono necessari file journal hello da tutto il processo di importazione hello toocreate unità. file journal Hello può essere utilizzato tooresume preparazione dell'unità se lo strumento hello viene interrotta.
 
 ### <a name="azure-importexport-tool-syntax-for-an-import-job"></a>Sintassi dello strumento Importazione/Esportazione di Azure per il processo di importazione
- Per preparare le unità al processo di importazione, chiamare lo strumento Importazione/Esportazione di Azure con il comando **PrepImport**. I parametri da includere dipendono dal fatto che si tratti della prima sessione di copia o di una sessione di copia successiva.
+ unità tooprepare per un processo di importazione, chiamare hello strumento di importazione/esportazione di Azure con hello **PrepImport** comando. I parametri da includere varia a seconda se questo è hello prima sessione di copia o di una sessione di copia successive.
 
- La prima sessione di copia per un'unità richiede parametri aggiuntivi per specificare la chiave dell'account di archiviazione, la lettera dell'unità di destinazione, se l'unità deve essere formattata, se l'unità deve essere crittografata e in tal caso, la chiave BitLocker e la directory log. Di seguito è riportata la sintassi di una prima sessione di copia per copiare una directory o un singolo file:
+ prima sessione di copia per un'unità Hello richiede alcuni parametri aggiuntivi toospecify hello chiave account di archiviazione; lettera di unità di destinazione Hello. Se è necessario formattare l'unità di hello; Se l'unità di hello devono essere crittografati e in tal caso, hello chiave BitLocker. e la directory di log hello. Ecco sintassi hello per un toocopy di sessione di copia iniziale, una directory o un singolo file:
 
- **Prima sessione di copia per copiare una singola directory**
+ **Copiare prima sessione toocopy una singola directory**
 
  `WAImportExport PrepImport /sk:<StorageAccountKey> /csas:<ContainerSas> /t: <TargetDriveLetter> [/format] [/silentmode] [/encrypt] [/bk:<BitLockerKey>] [/logdir:<LogDirectory>] /j:<JournalFile> /id:<SessionId> /srcdir:<SourceDirectory> /dstdir:<DestinationBlobVirtualDirectory> [/Disposition:<Disposition>] [/BlobType:<BlockBlob|PageBlob>] [/PropertyFile:<PropertyFile>] [/MetadataFile:<MetadataFile>]`
 
- **Prima sessione di copia per copiare un singolo file**
+ **Copiare prima sessione toocopy un singolo file**
 
  `WAImportExport PrepImport /sk:<StorageAccountKey> /csas:<ContainerSas> /t: <TargetDriveLetter> [/format] [/silentmode] [/encrypt] [/bk:<BitLockerKey>] [/logdir:<LogDirectory>] /j:<JournalFile> /id:<SessionId> /srcfile:<SourceFile> /dstblob:<DestinationBlobPath> [/Disposition:<Disposition>] [/BlobType:<BlockBlob|PageBlob>] [/PropertyFile:<PropertyFile>] [/MetadataFile:<MetadataFile>]`
 
- Nelle sessioni di copia successive non è necessario specificare i parametri iniziali. Di seguito è riportata la sintassi di una sessione di copia successiva per copiare una directory o un singolo file:
+ Nelle sessioni di copia successive, non è necessario toospecify parametri iniziali di hello. Ecco un toocopy di sessione di copia successive sintassi hello una directory o un singolo file:
 
- **Sessione di copia successiva per copiare una singola directory**
+ **Le sessioni di copia successive toocopy una singola directory**
 
  `WAImportExport PrepImport /j:<JournalFile> /id:<SessionId> /srcdir:<SourceDirectory> /dstdir:<DestinationBlobVirtualDirectory> [/Disposition:<Disposition>] [/BlobType:<BlockBlob|PageBlob>] [/PropertyFile:<PropertyFile>] [/MetadataFile:<MetadataFile>]`
 
- **Sessione di copia successiva per copiare un singolo file**
+ **Le sessioni di copia successive toocopy un singolo file**
 
  `WAImportExport PrepImport /j:<JournalFile> /id:<SessionId> /srcfile:<SourceFile> /dstblob:<DestinationBlobPath> [/Disposition:<Disposition>] [/BlobType:<BlockBlob|PageBlob>] [/PropertyFile:<PropertyFile>] [/MetadataFile:<MetadataFile>]`
 
-### <a name="parameters-for-the-first-copy-session-for-a-hard-drive"></a>Parametri della prima sessione di copia per un disco rigido
- Ogni volta che si esegue lo strumento di importazione/esportazione di Azure per copiare i file sul disco rigido, lo strumento crea una sessione di copia. Ogni sessione di copia esegue la copia di una sola directory o un solo file su un disco rigido. Lo stato della sessione di copia viene scritto nel file journal. Se una sessione di copia viene interrotta (ad esempio a causa di un'interruzione di corrente del sistema), può essere ripresa eseguendo di nuovo lo strumento e specificando il file journal nella riga di comando.
+### <a name="parameters-for-hello-first-copy-session-for-a-hard-drive"></a>Parametri per hello copiare prima sessione per un'unità disco rigida
+ A ogni esecuzione dei file hello dello strumento di importazione/esportazione di Azure toocopy toohello disco rigido, lo strumento hello crea una sessione di copia. Ogni sessione viene copiata una singola directory o un singolo file tooa disco rigido. stato di Hello della sessione di copia hello viene scritto il file di registro toohello. Se una sessione di copia viene interrotta (ad esempio, a causa di interruzione dell'alimentazione del sistema tooa), può essere ripreso eseguire di nuovo lo strumento hello e specificando il file journal hello nella riga di comando hello.
 
 > [!WARNING]
->  Se si specifica il parametro **/format** per la prima sessione di copia, l'unità verrà formattata e tutti i dati sull'unità verranno cancellati. È consigliabile usare unità vuote solo per la sessione di copia.
+>  Se si specifica hello **formato** parametro per hello prima sessione di copia, hello unità verrà formattata e tutti i dati nell'unità hello verranno cancellati. È consigliabile usare unità vuote solo per la sessione di copia.
 
- Il comando usato per la prima sessione di copia per ogni unità richiede parametri diversi rispetto i comandi per le sessioni di copia successive. Nella tabella seguente sono elencati i parametri aggiuntivi disponibili per la prima sessione di copia:
+ comando Hello utilizzata per hello prima sessione di copia per ogni unità richiede parametri diversi comandi hello per le sessioni di copia successive. Hello nella tabella seguente elenca i parametri aggiuntivi hello che sono disponibili per hello prima sessione di copia:
 
 |Parametro della riga di comando|Descrizione|
 |-----------------------------|-----------------|
-|**/sk:**<StorageAccountKey\>|`Optional.` Chiave dell'account di archiviazione per l'account di archiviazione in cui verranno importati i dati. È necessario includere **/sk:**<StorageAccountKey\> oppure **/csas:**<ContainerSas\> in the command.|
-|**/csas:**<ContainerSas\>|`Optional`. La firma di accesso condiviso del contenitore da usare per importare i dati sull'account di archiviazione. È necessario includere **/sk:**<StorageAccountKey\> oppure **/csas:**<ContainerSas\> in the command.<br /><br /> Il valore per questo parametro deve iniziare con il nome del contenitore, seguito da un punto interrogativo (?) e dal token della firma di accesso condiviso. Ad esempio:<br /><br /> `mycontainer?sv=2014-02-14&sr=c&si=abcde&sig=LiqEmV%2Fs1LF4loC%2FJs9ZM91%2FkqfqHKhnz0JM6bqIqN0%3D&se=2014-11-20T23%3A54%3A14Z&sp=rwdl`<br /><br /> Le autorizzazioni, laddove specificato nell'URL o in un criterio di accesso archiviato, devono includere Lettura, Scrittura ed Eliminazione per i processi di importazione e Lettura, Scrittura ed Elenco per i processi di esportazione.<br /><br /> Quando viene specificato questo parametro, tutti i BLOB da importare o esportare devono trovarsi all'interno del contenitore specificato nella firma di accesso condiviso.|
-|**/t:**<TargetDriveLetter\>|`Required.` Lettera di unità del disco rigido di destinazione per la sessione di copia corrente, senza i due punti finali.|
-|**/format**|`Optional.` Specificare questo parametro se è necessario formattare l'unità. In caso contrario, ometterlo. Prima di formattare l'unità, verrà chiesta una conferma dalla console. Per evitare questa richiesta di conferma, specificare il parametro /silentmode.|
-|**/silentmode**|`Optional.` Specificare questo parametro per eliminare la richiesta di conferma per la formattazione dell'unità.|
-|**/encrypt**|`Optional.` Specificare questo parametro se l'unità non è ancora stata crittografata con BitLocker e deve essere crittografata tramite lo strumento. Se l'unità è già stata crittografata con BitLocker, omettere questo parametro e specificare il parametro `/bk`, fornendo la chiave BitLocker esistente.<br /><br /> Se si specifica il parametro `/format`, sarà necessario specificare anche il parametro `/encrypt`.|
-|**/bk:**<BitLockerKey\>|`Optional.`Se `/encrypt` viene specificato, omettere questo parametro. Se `/encrypt` viene omesso, è necessario aver già crittografato l'unità con BitLocker. Usare questo parametro per specificare la chiave di BitLocker. La crittografia di BitLocker è necessaria per tutti i dischi rigidi destinati ai processi di importazione.|
-|**/logdir:**<LogDirectory\>|`Optional.` La directory log specifica la directory da usare per archiviare i log dettagliati, nonché i file manifesti temporanei. Se non è specificata, come directory dei log viene usata la directory corrente.|
+|**/sk:**&lt;ChiaveAccountArchiviazione\>|`Optional.`chiave dell'account di archiviazione per i dati hello hello storage account toowhich Hello verrà importati. È necessario includere **/sk:**< StorageAccountKey\> o **/csas:**< ContainerSas\> nel comando hello.|
+|**/csas:**&lt;ContainerSas\>|`Optional`. contenitore Hello account di archiviazione toohello dati tooimport toouse SAS. È necessario includere **/sk:**< StorageAccountKey\> o **/csas:**< ContainerSas\> nel comando hello.<br /><br /> il valore di Hello per questo parametro deve iniziare con il nome di contenitore hello, seguito da un punto interrogativo (?) e un token SAS hello. ad esempio:<br /><br /> `mycontainer?sv=2014-02-14&sr=c&si=abcde&sig=LiqEmV%2Fs1LF4loC%2FJs9ZM91%2FkqfqHKhnz0JM6bqIqN0%3D&se=2014-11-20T23%3A54%3A14Z&sp=rwdl`<br /><br /> le autorizzazioni di Hello, se specificato nell'URL hello o in un criterio di accesso archiviati, devono includere lettura, scrittura ed eliminazione per i processi di importazione e lettura, scrittura ed elenco per i processi di esportazione.<br /><br /> Quando viene specificato questo parametro, tutti i BLOB toobe, importato o esportato deve essere all'interno del contenitore di hello specificato nella firma di accesso condiviso hello.|
+|**/t:**<TargetDriveLetter\>|`Required.`lettera di unità disco di destinazione hello hello copia sessione corrente, senza i due punti finali hello unità Hello.|
+|**/format**|`Optional.`Specificare questo parametro quando l'unità hello deve toobe formattata; in caso contrario, ometterlo. Prima di formattare unità hello hello, verrà chiesta una conferma dalla console. toosuppress hello conferma, specificare il parametro /silentmode. hello.|
+|**/silentmode**|`Optional.`Specificare questo parametro toosuppress hello di conferma per la formattazione dell'unità di hello.|
+|**/encrypt**|`Optional.`Specificare questo parametro se l'unità di hello non è ancora stata crittografata con BitLocker ed esigenze toobe crittografati dallo strumento hello. Se l'unità di hello è già stato crittografato con BitLocker, omettere questo parametro e specificare hello `/bk` parametro, fornendo chiave BitLocker esistente hello.<br /><br /> Se si specifica hello `/format` parametro, quindi è necessario specificare anche hello `/encrypt` parametro.|
+|**/bk:**&lt;BitLockerKey\>|`Optional.`Se `/encrypt` viene specificato, omettere questo parametro. Se `/encrypt` viene omesso, è necessario toohave già crittografato unità hello con BitLocker. Utilizzare questa chiave del parametro toospecify hello BitLocker. La crittografia di BitLocker è necessaria per tutti i dischi rigidi destinati ai processi di importazione.|
+|**/logdir:**&lt;LogDirectory\>|`Optional.`directory log Hello specifica che una directory toobe utilizzato log dettagliati toostore, nonché i file manifesti temporanei. Se non specificato, la directory corrente hello da utilizzare come directory dei log hello.|
 
 ### <a name="parameters-required-for-all-copy-sessions"></a>Parametri necessari per tutte le sessioni di copia
- Il file journal contiene lo stato di tutte le sessioni di copia per un disco rigido. Include inoltre le informazioni necessarie per creare il processo di importazione. Quando si esegue lo strumento Importazione/Esportazione di Azure, è sempre necessario specificare un file journal, nonché l'ID della sessione di copia:
+ file journal Hello contiene lo stato di hello per tutte le sessioni di copia per un disco rigido. Sono inoltre contenute informazioni di hello necessari toocreate hello importare il processo. È sempre necessario specificare un file journal quando è in esecuzione hello strumento di importazione/esportazione di Azure, nonché un ID di sessione di copia:
 
 |||
 |-|-|
 |Parametro della riga di comando|Descrizione|
-|**/j:**<JournalFile\>|`Required.` Percorso del file journal. Ogni unità deve contenere esattamente un file journal. Si noti che il file journal non deve trovarsi nell'unità di destinazione. L'estensione del file journal è `.jrn`.|
-|**/id:**<SessionId\>|`Required.` L'ID di sessione identifica una sessione di copia. Viene usato per garantire il recupero accurato di una sessione di copia interrotta. I file copiati in una sessione di copia vengono archiviati in una directory denominata in base all'ID di sessione nell'unità di destinazione.|
+|**/j:**&lt;JournalFile\>|`Required.`file journal di Hello percorso toohello. Ogni unità deve contenere esattamente un file journal. Si noti che file journal hello non deve trovarsi nell'unità di destinazione hello. estensione del file journal Hello è `.jrn`.|
+|**/id:**&lt;SessionId\>|`Required.`ID di sessione Hello identifica una sessione di copia. È utilizzato tooensure accurata del recupero di una sessione di copia interrotta. I file vengono copiati in una sessione di copia vengono archiviati in una directory denominata hello ID di sessione nell'unità di destinazione hello dopo.|
 
 ### <a name="parameters-for-copying-a-single-directory"></a>Parametri per copiare una singola directory
- Quando si copia una singola directory, si applicano i parametri obbligatori e facoltativi seguenti:
+ Quando si copia una singola directory, si applicano seguente hello necessarie e i parametri facoltativi:
 
 |Parametro della riga di comando|Descrizione|
 |----------------------------|-----------------|
-|**/srcdir:**<SourceDirectory\>|`Required.` Directory di origine contenente i file da copiare nell'unità di destinazione. Il percorso di directory deve essere un percorso assoluto, non un percorso relativo.|
-|**/dstdir:**<DestinationBlobVirtualDirectory\>|`Required.` Percorso alla directory virtuale di destinazione nell'account di archiviazione di Windows Azure. La directory virtuale può esistere già o meno.<br /><br /> È possibile specificare un contenitore o un prefisso di BLOB come `music/70s/`. La directory di destinazione deve iniziare con il nome del contenitore, seguito da una barra "/" e può facoltativamente includere una directory di BLOB virtuale che termina con "/".<br /><br /> Quando il contenitore di destinazione è il contenitore radice, è necessario specificare in modo esplicito il contenitore radice, inclusa la barra, ad esempio `$root/`. Poiché i BLOB nel contenitore radice non possono includere "/" nel nome, quando la directory di destinazione è il contenitore radice tutte le sottodirectory nella directory di origine non verranno copiate.<br /><br /> Assicurarsi di usare nomi di contenitore validi quando si specificano BLOB o directory virtuali di destinazione. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole. Per le regole sulla denominazione dei contenitori, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati).|
-|**/Disposition:**<rename&#124;no-overwrite&#124;overwrite>|`Optional.` Specifica il comportamento quando esiste già un BLOB con l'indirizzo specificato. I valori validi per questo parametro sono: `rename`, `no-overwrite` e `overwrite`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se non si specifica alcun valore, il valore predefinito è `rename`.<br /><br /> Il valore specificato per questo parametro ha effetto su tutti i file nella directory specificati dal parametro `/srcdir`.|
-|**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.` Specifica il tipo di BLOB per i BLOB di destinazione. I valori validi sono: `BlockBlob` e `PageBlob`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se non si specifica alcun valore, il valore predefinito è `BlockBlob`.<br /><br /> Nella maggior parte dei casi, è consigliato `BlockBlob`. Se si specifica `PageBlob`, la lunghezza di ogni file nella directory deve essere un multiplo di 512, le dimensioni di una pagina per i BLOB di pagine.|
-|**/PropertyFile:**<PropertyFile\>|`Optional.` Percorso del file delle proprietà per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
-|**/MetadataFile:**<MetadataFile\>|`Optional.` Percorso del file dei metadati per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
+|**/srcdir:**<SourceDirectory\>|`Required.`directory di origine Hello che contiene i file toobe copiati toohello unità di destinazione. percorso della directory Hello deve essere un percorso assoluto (non un percorso relativo).|
+|**/dstdir:**<DestinationBlobVirtualDirectory\>|`Required.`Hello percorso toohello directory virtuale di destinazione nell'account di archiviazione Windows Azure. la directory virtuale Hello può o non esiste già.<br /><br /> È possibile specificare un contenitore o un prefisso di BLOB come `music/70s/`. Hello directory di destinazione deve iniziare con il nome di contenitore hello, seguito da una barra rovesciata "/" e può includere una directory di blob virtuale che termina con "/".<br /><br /> Quando il contenitore di destinazione di hello è contenitore radice hello, è necessario specificare in modo esplicito contenitore radice hello, inclusa la barra hello, come `$root/`. Poiché i BLOB nel contenitore radice hello non può includere "/" nei relativi nomi, le eventuali sottodirectory nella directory di origine hello non verrà copiata quando directory di destinazione hello contenitore radice hello.<br /><br /> Essere toouse che i nomi di contenitore valido quando si specificano BLOB o directory virtuale di destinazione. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole. Per le regole sulla denominazione dei contenitori, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati).|
+|**/Disposition:**&lt;rename&amp;#124;no-overwrite&amp;#124;overwrite&gt;|`Optional.`Specifica il comportamento di hello quando un blob con hello specificato l'indirizzo esiste già. I valori validi per questo parametro sono: `rename`, `no-overwrite` e `overwrite`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se viene specificato alcun valore, valore predefinito di hello è `rename`.<br /><br /> valore specificato per questo parametro influisce su tutti i file nella directory hello specificata da hello hello Hello `/srcdir` parametro.|
+|**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.`Specifica il tipo di blob hello dei blob di destinazione hello. I valori validi sono: `BlockBlob` e `PageBlob`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se viene specificato alcun valore, valore predefinito di hello è `BlockBlob`.<br /><br /> Nella maggior parte dei casi, è consigliato `BlockBlob`. Se si specifica `PageBlob`, hello lunghezza di ogni file nella directory hello deve essere un multiplo delle dimensioni di hello 512, di una pagina per i BLOB di pagine.|
+|**/PropertyFile:**<PropertyFile\>|`Optional.`Percorso file di proprietà toohello per i BLOB di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
+|**/MetadataFile:**<MetadataFile\>|`Optional.`Percorso file di metadati toohello dei blob di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
 
 ### <a name="parameters-for-copying-a-single-file"></a>Parametri per copiare un singolo file
- Quando si copia un singolo file, si applicano i parametri obbligatori e facoltativi seguenti:
+ Quando la copia di un singolo file, hello parametri obbligatori e facoltativi seguenti:
 
 |Parametro della riga di comando|Descrizione|
 |----------------------------|-----------------|
-|**/srcfile:**<SourceFile\>|`Required.` Percorso completo del file da copiare. Il percorso di directory deve essere un percorso assoluto, non un percorso relativo.|
-|**/dstblob:**<DestinationBlobPath\>|`Required.` Percorso del BLOB di destinazione nell'account di archiviazione di Windows Azure. Il BLOB può esistere già o meno.<br /><br /> Specificare il nome del BLOB che inizia con il nome del contenitore. Il nome del BLOB non può iniziare con "/" o con il nome dell'account di archiviazione. Per le regole sulla denominazione dei BLOB, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati).<br /><br /> Quando il contenitore di destinazione è il contenitore radice, è necessario specificare in modo esplicito `$root` come contenitore, ad esempio `$root/sample.txt`. Si noti che i BLOB nel contenitore radice non possono includere "/" nei nomi.|
-|**/Disposition:**<rename&#124;no-overwrite&#124;overwrite>|`Optional.` Specifica il comportamento quando esiste già un BLOB con l'indirizzo specificato. I valori validi per questo parametro sono: `rename`, `no-overwrite` e `overwrite`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se non si specifica alcun valore, il valore predefinito è `rename`.|
-|**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.` Specifica il tipo di BLOB per i BLOB di destinazione. I valori validi sono: `BlockBlob` e `PageBlob`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se non si specifica alcun valore, il valore predefinito è `BlockBlob`.<br /><br /> Nella maggior parte dei casi, è consigliato `BlockBlob`. Se si specifica `PageBlob`, la lunghezza di ogni file nella directory deve essere un multiplo di 512, le dimensioni di una pagina per i BLOB di pagine.|
-|**/PropertyFile:**<PropertyFile\>|`Optional.` Percorso del file delle proprietà per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
-|**/MetadataFile:**<MetadataFile\>|`Optional.` Percorso del file dei metadati per i BLOB di destinazione. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
+|**/srcfile:**<SourceFile\>|`Required.`Hello percorso completo toohello file toobe copiato. percorso della directory Hello deve essere un percorso assoluto (non un percorso relativo).|
+|**/dstblob:**<DestinationBlobPath\>|`Required.`Hello percorso toohello blob di destinazione nell'account di archiviazione Windows Azure. blob Hello può o non esiste già.<br /><br /> Specificare hello blob nome che inizia con il nome di contenitore hello. nome del blob Hello non può iniziare con "/" o nome account di archiviazione hello. Per le regole sulla denominazione dei BLOB, vedere [Naming and Referencing Containers, Blobs, and Metadata](/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata) (Assegnazione di nome e riferimento a contenitori, BLOB e metadati).<br /><br /> Quando il contenitore di destinazione di hello è contenitore radice hello, è necessario specificare in modo esplicito `$root` come hello contenitore, ad esempio `$root/sample.txt`. I BLOB nel contenitore radice hello non possono includere "/" nei nomi.|
+|**/Disposition:**&lt;rename&amp;#124;no-overwrite&amp;#124;overwrite&gt;|`Optional.`Specifica il comportamento di hello quando un blob con hello specificato l'indirizzo esiste già. I valori validi per questo parametro sono: `rename`, `no-overwrite` e `overwrite`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se viene specificato alcun valore, valore predefinito di hello è `rename`.|
+|**/BlobType:**<BlockBlob&#124;PageBlob>|`Optional.`Specifica il tipo di blob hello dei blob di destinazione hello. I valori validi sono: `BlockBlob` e `PageBlob`. Si noti che questi valori distinguono tra maiuscole e minuscole. Se viene specificato alcun valore, valore predefinito di hello è `BlockBlob`.<br /><br /> Nella maggior parte dei casi, è consigliato `BlockBlob`. Se si specifica `PageBlob`, hello lunghezza di ogni file nella directory hello deve essere un multiplo delle dimensioni di hello 512, di una pagina per i BLOB di pagine.|
+|**/PropertyFile:**<PropertyFile\>|`Optional.`Percorso file di proprietà toohello per i BLOB di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
+|**/MetadataFile:**<MetadataFile\>|`Optional.`Percorso file di metadati toohello dei blob di destinazione hello. Per altre informazioni, vedere [Import/Export service Metadata and Properties File Format](storage-import-export-file-format-metadata-and-properties.md) (Formato dei file di metadati e delle proprietà del servizio Importazione/Esportazione).|
 
 ### <a name="resuming-an-interrupted-copy-session"></a>Ripresa di una sessione di copia interrotta
- Se una sessione di copia viene interrotta per qualsiasi motivo, è possibile riprenderla eseguendo lo strumento e specificando solo il file journal:
+ Se una sessione di copia viene interrotta per qualsiasi motivo, è possibile ripristinarla eseguendo lo strumento hello con solo i file journal hello specificato:
 
 ```
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /ResumeSession
 ```
 
- È possibile riprendere solo la sessione di copia più recente, se terminata in modo anomalo.
+ Solo hello ultima sessione di copia, se è stato terminato in modo anomalo, può essere ripresa.
 
 > [!IMPORTANT]
->  Quando si riprende una sessione di copia, non modificare le directory e i file dei dati di origine aggiungendo o rimuovendo file.
+>  Quando si riprende una sessione di copia, non modificare le directory e file di dati di origine hello aggiungendo o rimuovendo i file.
 
 ### <a name="aborting-an-interrupted-copy-session"></a>Abbandono di una sessione di copia interrotta
- Se una sessione di copia si blocca e non è possibile riprenderla, ad esempio perché una directory di origine risulta inaccessibile, è necessario interrompere la sessione corrente in modo da poter eseguire il rollback e avviare nuove sessioni di copia:
+ Se una sessione di copia viene interrotta e non è possibile tooresume (ad esempio, se una directory di origine e inaccessibile), è necessario terminare hello sessione corrente in modo che è possibile eseguire il rollback precedente e le nuove sessioni di copia possono essere avviate:
 
 ```
 WAImportExport.exe PrepImport /j:<JournalFile> /id:<SessionId> /AbortSession
 ```
 
- È possibile abbandonare solo la sessione di copia più recente, se terminata in modo anomalo. Si noti che, per un'unità, non è possibile interrompere la prima sessione di copia. È invece necessario riavviarla con un nuovo file journal.
+ Hello solo ultima sessione di copia, se è stato terminato in modo anomalo, può essere interrotta. Si noti che non è possibile terminare hello prima sessione di copia per un'unità. È invece necessario riavviare la sessione di copia hello con un nuovo file journal.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Configurazione dello strumento Importazione/Esportazione di Azure](storage-import-export-tool-setup-v1.md)
-* [Impostazione di proprietà e metadati durante il processo di importazione](storage-import-export-tool-setting-properties-metadata-import-v1.md)
-* [Sample workflow to prepare hard drives for an import job](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md) (Flusso di lavoro campione per preparare i dischi rigidi per un processo di importazione)
+* [Impostazione hello strumento di importazione/esportazione di Azure](storage-import-export-tool-setup-v1.md)
+* [Impostazione delle proprietà e metadati hello durante il processo di importazione](storage-import-export-tool-setting-properties-metadata-import-v1.md)
+* [Unità disco rigido tooprepare del flusso di lavoro di esempio per un processo di importazione](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow-v1.md)
 * [Quick reference for frequently used commands](storage-import-export-tool-quick-reference-v1.md) (Riferimento rapido per i comandi usati più di frequente) 
 * [Reviewing job status with copy log files](storage-import-export-tool-reviewing-job-status-v1.md) (Revisione dello stato dei processi con i file di log di copia)
 * [Riparazione di un processo di importazione](storage-import-export-tool-repairing-an-import-job-v1.md)
 * [Repairing an export job](storage-import-export-tool-repairing-an-export-job-v1.md) (Riparazione di un processo di esportazione)
-* [Risoluzione dei problemi relativi allo strumento Importazione/Esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)
+* [Risoluzione dei problemi hello strumento di importazione/esportazione di Azure](storage-import-export-tool-troubleshooting-v1.md)

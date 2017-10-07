@@ -1,6 +1,6 @@
 ---
-title: Replicare server fisici in Azure | Documentazione Microsoft
-description: Descrive come distribuire Azure Site Recovery per orchestrare la replica, il failover e il ripristino di server fisici Windows/Linux locali in Azure tramite il portale di Azure
+title: aaaReplicate server fisici tooAzure | Documenti Microsoft
+description: Viene descritto come toodeploy Azure Site Recovery tooorchestrate replica, il failover e ripristino di locale tooAzure server fisici Windows/Linux tramite hello portale di Azure
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -16,21 +16,21 @@ ms.date: 04/19/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: physical-walkthrough-overview
-ms.openlocfilehash: a9655ce1540c788d02d178eb619d2051cddda1c2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cf5928fb631f6858d57b27f6f21babc312714e21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ---
-# <a name="replicate-physical-machines-to-azure-by-using-site-recovery"></a>Replicare computer fisici in Azure con Site Recovery
+# <a name="replicate-physical-machines-tooazure-by-using-site-recovery"></a>Replicare macchine fisiche tooAzure tramite il ripristino del sito
 
 
-Questo articolo descrive come replicare computer fisici locali in Azure usando il servizio Azure Site Recovery nel portale di Azure.
+In questo articolo viene descritto come tooreplicate locale tooAzure computer fisici utilizzando il servizio di Azure Site Recovery hello hello portale di Azure.
 
-Se si vuole eseguire la migrazione di computer fisici in Azure (solo failover), leggere l'articolo [Eseguire la migrazione ad Azure con Site Recovery](site-recovery-migrate-to-azure.md).
+Se si desidera toomigrate macchine fisiche tooAzure (solo failover), lettura [tooAzure con il ripristino del sito di migrazione](site-recovery-migrate-to-azure.md) toolearn altre.
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="prerequisites"></a>Prerequisiti
@@ -38,19 +38,19 @@ Inserire commenti e domande nella parte inferiore di questo articolo oppure nel 
 **Requisiti di supporto** | **Dettagli**
 --- | ---
 **Azure** | Vedere i [requisiti di Azure](site-recovery-prereq.md#azure-requirements).
-**Server di configurazione locale** | Computer locale (computer fisico o VM VMware) che esegue Windows Server 2012 R2 o versione successiva. Questo server viene configurato durante la distribuzione di Site Recovery.<br/><br/> Per impostazione predefinita, in questo computer vengono installati anche il server di elaborazione e il server di destinazione master. Quando si esegue un aumento delle prestazioni, potrebbe essere necessario un server di elaborazione separato, che ha gli stessi requisiti del server di configurazione.<br/><br/> Altre informazioni su questi componenti sono reperibili in [Configurare l'ambiente di origine](site-recovery-set-up-vmware-to-azure.md#configuration-server-minimum-requirements).
-**VM locali** | I computer da replicare devono eseguire un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions) ed essere conformi ai [prerequisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
-**URL** | Il server di configurazione deve avere accesso a questi URL:<br/><br/> [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]<br/><br/> Se sono presenti regole del firewall basate sull'indirizzo IP, verificare che consentano la comunicazione con Azure.<br/></br> Consentire gli [intervalli IP del data center di Azure ](https://www.microsoft.com/download/confirmation.aspx?id=41653) e la porta (443) HTTPS.<br/></br> Consentire gli intervalli di indirizzi IP per l'area di Azure della sottoscrizione e per gli Stati Uniti occidentali (usati per il controllo di accesso e la gestione delle identità).<br/><br/> Consentire questo URL per il download di MySQL: http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi.
-**Servizio Mobility** | Il servizio deve essere installato in ogni computer da replicare.
+**Server di configurazione locale** | Computer locale (computer fisico o VM VMware) che esegue Windows Server 2012 R2 o versione successiva. Impostare il server di configurazione di hello durante la distribuzione di Site Recovery.<br/><br/> Per impostazione predefinita, vengono anche installati nel computer server di elaborazione hello e server di destinazione master. Quando le dimensioni, potrebbe essere necessario un server di elaborazione separato e dispone di hello stessi requisiti del server di configurazione hello.<br/><br/> Ulteriori informazioni su questi componenti in [configurare un ambiente di origine hello](site-recovery-set-up-vmware-to-azure.md#configuration-server-minimum-requirements).
+**VM locali** | Le macchine da tooreplicate deve essere in esecuzione un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions) e conforme con [Azure prerequisiti](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+**URL** | il server di configurazione di Hello deve accedere agli URL toothese:<br/><br/> [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]<br/><br/> Se si dispone di regole del firewall basato su indirizzi IP, assicurarsi che sia consentito tooAzure di comunicazione.<br/></br> Consenti hello [intervalli IP dei Data Center Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653) e hello porta HTTPS (443).<br/></br> Consenti gli intervalli di indirizzi IP per hello area della sottoscrizione di Azure e per Stati Uniti occidentali (utilizzato per la gestione di identità e controllo di accesso).<br/><br/> Consenti a questo URL per il download di MySQL hello: http://cdn.mysql.com/archives/mysql-5.5/mysql-5.5.37-win32.msi.
+**Servizio Mobility** | Questo servizio viene installato in ogni computer si desidera tooreplicate.
 
 ## <a name="limitations"></a>Limitazioni
 
 **Limitazione** | **Dettagli**
 --- | ---
-**Azzurro** | Gli account di archiviazione e di rete devono trovarsi nella stessa area dell'insieme di credenziali.<br/><br/> Se si usa un account di archiviazione Premium, è necessario anche un account di archiviazione Standard per archiviare i log di replica.<br/><br/> In India centrale e India meridionale non è possibile eseguire la replica in account Premium.
-**Server di configurazione locale** | Se si installa il server di configurazione in una VM VMware, il tipo di scheda della VM deve essere VMXNET3. In caso contrario, [installare questo aggiornamento](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1).<br/><br/> Se si usa una VM VMware, è necessario installarvi vSphere PowerCLI 6.0.<br/><br> Il computer non deve essere un controller di dominio.<br/><br/> Il computer deve avere un indirizzo IP statico.<br/><br/> Il nome host può contenere al massimo 15 caratteri e il sistema operativo deve essere in inglese.
-**Computer replicati** | Verificare le [limitazioni delle VM di Azure](site-recovery-prereq.md#azure-requirements).<br/><br/> Se si vuole abilitare la coerenza tra più VM, che permette di ripristinare insieme le VM che eseguono lo stesso carico di lavoro in un punto dati coerente, aprire la porta 20004 sulla VM.<br/><br/> Sono supportati tipi specifici di [archiviazione Linux](site-recovery-support-matrix-to-azure.md#support-for-storage).
-**Failback** | Non è possibile eseguire il failback da Azure a un computer fisico. Se si vuole eseguire il failback in locale dopo il failover, è necessario un ambiente VMware, in modo da poter eseguire il failback in una VM VMware.
+**Azzurro** | Gli account di archiviazione e rete devono essere in hello stessa area dell'insieme di credenziali di hello.<br/><br/> Se si utilizza un account di archiviazione premium, è necessario anche uno standard di archiviare i log di replica toostore account.<br/><br/> Non è possibile replicare gli account toopremium centrale e meridionale.
+**Server di configurazione locale** | Se si installa il server di configurazione di hello in una VM di VMware, hello il tipo di scheda di macchina virtuale deve essere VMXNET3. In caso contrario, [installare questo aggiornamento](https://kb.vmware.com/selfservice/microsites/search.do?cmd=displayKC&docType=kc&externalId=2110245&sliceId=1&docTypeID=DT_KB_1_1&dialogID=26228401&stateId=1).<br/><br/> Se si usa una VM VMware, è necessario installarvi vSphere PowerCLI 6.0.<br/><br> macchina Hello non deve essere un controller di dominio.<br/><br/> macchina di Hello deve essere un indirizzo IP statico.<br/><br/> nome host Hello deve essere di 15 caratteri o meno, e del sistema operativo hello deve essere in lingua inglese.
+**Computer replicati** | Verificare le [limitazioni delle VM di Azure](site-recovery-prereq.md#azure-requirements).<br/><br/> Se si desidera che la coerenza tra più macchine tooenable, che consente di computer che eseguono hello stesso carico di lavoro toobe ripristinati dati coerenti con l'insieme tooa punto, aprire la porta 20004 computer hello.<br/><br/> Sono supportati tipi specifici di [archiviazione Linux](site-recovery-support-matrix-to-azure.md#support-for-storage).
+**Failback** | Non è possibile eseguire dal computer fisico tooa Azure. Se si desidera toobe toofail in grado di back-tooon locale dopo il failover, è necessario un ambiente VMware in modo che è possibile eseguire il backup tooa VM VMware.
 
 
 ## <a name="set-up-azure"></a>Configurare Azure
@@ -63,24 +63,24 @@ Inserire commenti e domande nella parte inferiore di questo articolo oppure nel 
 
 2. Configurare un [account di archiviazione di Azure](../storage/storage-create-storage-account.md#create-a-storage-account) per i dati replicati.
 
-    a. L'account può essere Standard o [Premium](../storage/storage-premium-storage.md).
+    a. account di Hello può essere standard o [premium](../storage/storage-premium-storage.md).
 
     b. È possibile configurare un account in modalità classica o in Resource Manager.
 
-## <a name="prepare-the-configuration-server"></a>Preparare il server di configurazione
+## <a name="prepare-hello-configuration-server"></a>Preparare il server di configurazione di hello
 
 1. Installare Windows Server 2012 R2 o versione successiva in un server fisico locale o una VM VMware.
 
-2. Verificare che il computer abbia accesso agli URL elencati nella sezione [Prerequisiti](#prerequisites).
+2. Assicurarsi che il computer di hello abbia nell'URL di accesso toohello [prerequisiti](#prerequisites).
 
 ## <a name="prepare-for-mobility-service-installation"></a>Preparare l'installazione del servizio Mobility
 
-Se si vuole effettuare il push del servizio Mobility nel computer fisico, è necessario un account che possa essere usato dal server di elaborazione per accedere ai computer. L'account viene usato solo per l'installazione push. È possibile usare un account di dominio o locale:
+Se si desidera toopush hello mobilità servizio tooa del computer fisico, è necessario un account che può essere usato da hello processo server tooaccess hello macchine. Hello account viene utilizzato solo per l'installazione push hello. È possibile usare un account di dominio o locale:
 
-  - Per Windows, se non si usa un account di dominio è necessario disabilitare il Controllo dell'accesso utente remoto nel computer locale. A tale scopo, nel Registro di sistema, in **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System**, aggiungere la voce DWORD **LocalAccountTokenFilterPolicy** con un valore di 1. Per aggiungere la voce del Registro di sistema per Windows da un'interfaccia della riga di comando, digitare:
+  - Per Windows, se non si utilizza un account di dominio, è necessario il controllo di accesso remoto nel computer locale hello toodisable. toodo questa operazione, nel Registro di sistema hello **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System**, aggiungere una voce DWORD hello **LocalAccountTokenFilterPolicy**, con un valore pari a 1. Se si desidera voce del Registro di sistema di hello tooadd per Windows da un'interfaccia della riga di comando, digitare:
 
         ``REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1.``
-  - Per Linux, l'account deve essere un utente ROOT nel server Linux di origine.
+  - Per Linux, account di hello deve essere un utente root nel server di hello origine Linux.
 
 
 ## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
@@ -88,21 +88,21 @@ Se si vuole effettuare il push del servizio Mobility nel computer fisico, è nec
 [!INCLUDE [site-recovery-create-vault](../../includes/site-recovery-create-vault.md)]
 
 
-## <a name="select-the-protection-goal"></a>Selezionare l'obiettivo di protezione
+## <a name="select-hello-protection-goal"></a>Selezionare l'obiettivo di protezione hello
 
-Selezionare gli elementi da replicare e la posizione in cui eseguire la replica.
+Selezionare gli elementi si desidera tooreplicate e in cui si desidera tooreplicate per.
 
 1. Fare clic su **Insiemi di credenziali dei servizi di ripristino** > **insiemi di credenziali**.
-2. Nel menu delle **risorse** fare clic su **Site Recovery** > **Preparare l'infrastruttura** > **Obiettivo di protezione**.
+2. In hello **risorse** menu, fare clic su **Site Recovery** > **preparare l'infrastruttura** > **obiettivi della protezione dati**.
 
     ![Scegliere gli obiettivi](./media/site-recovery-vmware-to-azure/choose-goal-physical.PNG)
 
-3. In **Obiettivo di protezione** selezionare **In Azure** >  e quindi **Non virtualizzato/Altro**.
+3. In **obiettivi della protezione dati**selezionare **tooAzure** > **non virtualizzato / altri**.
 
 
-## <a name="set-up-the-source-environment"></a>Configurare l'ambiente di origine
+## <a name="set-up-hello-source-environment"></a>Configurare un ambiente di origine hello
 
-Configurare il server di configurazione, registrarlo nell'insieme di credenziali e individuare le VM.
+Configurare il server di configurazione di hello, registrarla nell'insieme di credenziali hello e individuare le macchine virtuali.
 
 1. Fare clic su **Site Recovery** > **Preparare l'infrastruttura** > **Origine**.
 2. Se non è disponibile un server di configurazione, fare clic su **+Server di configurazione**.
@@ -110,57 +110,57 @@ Configurare il server di configurazione, registrarlo nell'insieme di credenziali
     ![Impostare l'origine](./media/site-recovery-vmware-to-azure/set-source1.png)
 
 3. In **Aggiungi server** verificare che **Tipo di server** contenga **Server di configurazione**.
-4. Scaricare il file di installazione per l'**Installazione unificata di Azure Site Recovery**.
-5. Scaricare la **chiave di registrazione dell'insieme di credenziali**, che sarà necessaria quando si esegue l'Installazione unificata. La chiave è valida per cinque giorni dal momento in cui viene generata.
+4. Scaricare hello **installazione unificata di Site Recovery** file di installazione.
+5. Scaricare hello **chiave di registrazione dell'insieme di credenziali**. che sarà necessaria quando si esegue l'Installazione unificata. chiave di Hello è valida per cinque giorni dopo la generazione è.
 
    ![Impostare l'origine](./media/site-recovery-vmware-to-azure/set-source2.png)
 
 
 ## <a name="run-site-recovery-unified-setup"></a>Eseguire l'Installazione unificata di Site Recovery
 
-Prima di iniziare, eseguire le operazioni seguenti:
+Prima di iniziare, hello seguenti:
 
-- Ottenere una breve panoramica video. Il video descrive come replicare le VM VMware, ma il processo è simile a quello per la replica di computer fisici.
+- Ottenere una breve panoramica video. (video di hello viene descritto come elabora le macchine virtuali VMware tooreplicate ma hello è simile per la replica del computer fisico.)
 
     > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video1-Source-Infrastructure-Setup/player]
 
-- Nel server di configurazione verificare che il clock di sistema sia sincronizzato con un [server di riferimento ora](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Se è avanti o indietro di 15 minuti, l'installazione potrebbe avere esito negativo.
-- Eseguire l'installazione come amministratore locale nel server di configurazione.
-- Verificare che nel computer sia abilitato TLS 1.0.
+- Nel computer server di configurazione hello, verificare che l'orologio di sistema hello è sincronizzato con un [tempo server](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service). Se è avanti o indietro di 15 minuti, l'installazione potrebbe avere esito negativo.
+- Eseguire l'installazione come amministratore locale nel computer server di configurazione hello.
+- Assicurarsi che sia abilitato TLS 1.0 nel computer di hello.
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
 > [!NOTE]
-> Il server di configurazione può essere installato anche [dalla riga di comando](http://aka.ms/installconfigsrv).
+> può anche essere installato il server di configurazione di Hello [dalla riga di comando hello](http://aka.ms/installconfigsrv).
 
 
-## <a name="set-up-the-target-environment"></a>Configurare l'ambiente di destinazione
+## <a name="set-up-hello-target-environment"></a>Configurare un ambiente di destinazione hello
 
-Prima di configurare l'ambiente di destinazione, verificare di avere [una rete e un account di archiviazione di Azure](#set-up-azure).
+Prima configurare un ambiente di destinazione hello, verificare di avere toomake un [account di archiviazione di Azure e rete](#set-up-azure).
 
-1. Fare clic su **Preparare l'infrastruttura** > **Destinazione** e selezionare la sottoscrizione di Azure da usare.
+1. Fare clic su **preparare l'infrastruttura** > **destinazione**, e selezionare hello sottoscrizione di Azure da toouse.
 2. Specificare se per la destinazione deve essere usato il modello di distribuzione classica o di Resource Manager.
-3. Site Recovery verifica la disponibilità di uno o più account di archiviazione di Azure e reti compatibili.
+3. Il ripristino del sito controlla toomake certi di disporre di uno o più account di archiviazione di Azure compatibile e reti.
 
    ![Destinazione](./media/site-recovery-vmware-to-azure/gs-target.png)
 
-4. Se non si è creato un account di archiviazione o una rete, fare clic su **+Account di archiviazione** o **+Rete** per creare una rete o un account di Resource Manager inline.
+4. Se è stata creata una rete o un account di archiviazione, fare clic su **+ account di archiviazione** o **+ rete** toocreate un inline di account o rete di gestione risorse.
 
 ## <a name="set-up-replication-settings"></a>Configurare le impostazioni di replica
 
-Prima di iniziare, visualizzare questa breve panoramica video. Il video descrive come replicare le VM VMware, ma il processo è simile a quello per la replica di computer fisici.
+Prima di iniziare, visualizzare questa breve panoramica video. (video di hello viene descritto come elabora le macchine virtuali VMware tooreplicate ma hello è simile per la replica del computer fisico.)
 
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video2-vCenter-Server-Discovery-and-Replication-Policy/player]
 
-1. Per creare nuovi criteri di replica, fare clic su **Infrastruttura di Site Recovery** > **Criteri di replica** > **+Criteri di replica**.
+1. toocreate nuovi criteri di replica, fare clic su **dell'infrastruttura di Site Recovery** > **criteri di replica** > **+ criterio di replica**.
 2. In **Creare i criteri di replica** specificare un nome per i criteri.
-3. In **Soglia RPO**specificare il limite per RPO. Questo valore specifica la frequenza con cui vengono creati punti di ripristino dei dati. Se la replica continua supera questo limite, viene generato un avviso.
-4. In **Conservazione del punto di ripristino** specificare la durata in ore dell'intervallo di conservazione per ogni punto di ripristino. Le VM replicate possono essere ripristinate in qualsiasi punto all'interno di un intervallo. Per le macchine replicate nell'archiviazione Premium è supportato un intervallo di conservazione fino a 24 ore. Per le macchine replicate nell'archiviazione standard è supportato un intervallo di conservazione fino a 72 ore.
-5. In **Frequenza snapshot coerenti con l'app**specificare la frequenza, in minuti, per la creazione di punti di ripristino contenenti snapshot coerenti con l'applicazione. Fare clic su **OK** per creare i criteri.
+3. In **soglia RPO**, specificare il limite RPO hello. Questo valore specifica la frequenza con cui vengono creati punti di ripristino dei dati. Se la replica continua supera questo limite, viene generato un avviso.
+4. In **conservazione del punto di ripristino**, specificare per quanto tempo (in ore) è un intervallo di conservazione hello per ogni punto di ripristino. Macchine virtuali replicate possono essere ripristinati tooany punto in una finestra. Backup too24 conservazione ore è supportato per l'archiviazione replicata toopremium macchine. Backup too72 conservazione ore è supportato per l'archiviazione replicata toostandard macchine.
+5. In **Frequenza snapshot coerenti con l'app**specificare la frequenza, in minuti, per la creazione di punti di ripristino contenenti snapshot coerenti con l'applicazione. Fare clic su **OK** criteri hello toocreate.
 
     ![Criteri di replica](./media/site-recovery-vmware-to-azure/gs-replication2.png)
 
-6. Quando si creano nuovi criteri, questi vengono associati automaticamente al server di configurazione. Per impostazione predefinita vengono creati automaticamente criteri corrispondenti per il failback. Se, ad esempio, il criterio di replica è **rep-policy**, il criterio di failback sarà **rep-policy-failback**. Questi criteri non vengono usati fino a quando non si avvia un failback da Azure.  
+6. Quando si crea un nuovo criterio, è associata automaticamente a server di configurazione hello. Per impostazione predefinita vengono creati automaticamente criteri corrispondenti per il failback. Ad esempio, se hello criterio di replica è **rep criteri**, criteri di failback hello è **rep-criteri-failback**. Questi criteri non vengono usati fino a quando non si avvia un failback da Azure.  
 
 
 ## <a name="plan-capacity"></a>Pianificare la capacità
@@ -173,135 +173,135 @@ Prima di iniziare, visualizzare questa breve panoramica video. Il video descrive
 
 ## <a name="prepare-vms-for-replication"></a>Preparare le VM per la replica
 
-In tutti i computer da replicare deve essere installo il servizio Mobility. È possibile installare il servizio Mobility in diversi modi:
+Tutti i computer che si desidera tooreplicate devono essere installato servizio di mobilità di hello. È possibile installare il servizio di mobilità hello in diversi modi:
 
-- Installazione del servizio in modalità push dal server di elaborazione. Per usare questo metodo, è necessario preparare i computer.
-- Installazione con strumenti di distribuzione come System Center Configuration Manager o 	Configurazione dello stato desiderato di automazione di Azure.
-- Installare il servizio manualmente.
+- Installare il servizio di hello con un'installazione push dal server di elaborazione hello. Questo metodo è necessario macchine tooprepare in anticipo toouse.
+- Installare il servizio di hello utilizzando gli strumenti di distribuzione, ad esempio System Center Configuration Manager o di configurazione dello stato desiderato di automazione di Azure.
+- Installare manualmente il servizio di hello.
 
-[Altre informazioni](site-recovery-vmware-to-azure-install-mob-svc.md).
+[Altre informazioni](site-recovery-vmware-to-azure-install-mob-svc.md)
 
 
 ## <a name="enable-replication"></a>Abilitare la replica
 
 Prima di iniziare:
 
-- L'account utente di Azure deve disporre di determinate [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) per abilitare la replica di una nuova macchina virtuale in Azure.
-- Quando si aggiungono o si modificano VM, possono trascorrere 15 minuti o più prima che le modifiche diventino effettive e vengano visualizzate nel portale.
-- È possibile controllare l'ora dell'ultima individuazione di VM in **Server di configurazione** > **Ora ultimo contatto**.
-- Per aggiungere VM senza attendere l'individuazione pianificata, evidenziare il server di configurazione, senza selezionarlo, e fare clic su **Aggiorna**.
-- Se una VM è pronta per l'installazione push, il server di elaborazione installa automaticamente il servizio Mobility quando si abilita la replica.
-- Ottenere una breve panoramica video. Il video descrive come replicare le VM VMware, ma il processo è simile a quello per la replica di computer fisici.
+- L'account utente di Azure deve toohave determinati [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooenable replica di un nuovo tooAzure macchina virtuale.
+- Quando si aggiungono o si modificano le macchine virtuali, può richiedere too15 minuti o più effetti tootake modifiche e per essi tooappear nel portale di hello.
+- È possibile controllare l'ora di ultimo individuato hello per le macchine virtuali in **server di configurazione** > **ultimo contatto in**.
+- tooadd macchine virtuali senza attendere l'individuazione pianificata hello, evidenziazione hello del server di configurazione (non selezionata), fare clic su **aggiornamento**.
+- Se una macchina virtuale viene preparata per l'installazione push, il server di elaborazione hello installa automaticamente il servizio di mobilità hello quando si abilita la replica.
+- Ottenere una breve panoramica video. (video di hello viene descritto come elabora le macchine virtuali VMware tooreplicate ma hello è simile per la replica del computer fisico.)
 
     >[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video3-Protect-VMware-Virtual-Machines/player]
 
 
 ### <a name="exclude-disks-from-replication"></a>Escludere dischi dalla replica
 
-Per impostazione predefinita, vengono replicati tutti i dischi presenti in un computer. È possibile escludere dischi dalla replica. Ad esempio, è possibile evitare di replicare i dischi con dati temporanei o dati che vengono aggiornati ogni volta che un computer o un'applicazione viene riavviata, come pagefile.sys o tempdb di SQL Server.
+Per impostazione predefinita, vengono replicati tutti i dischi presenti in un computer. È possibile escludere dischi dalla replica. Ad esempio, non è possibile tooreplicate dischi con dati temporanei o dati che sono state aggiornate per ogni volta che un riavvio del computer o dell'applicazione (ad esempio, pagefile.sys o tempdb di SQL Server).
 
 ### <a name="replicate-vms"></a>Replicare le VM
 
 1. Fare clic su **Eseguire la replica dell'applicazione** > **Origine**.
 2. In **Origine** selezionare **Locale**.
-3. In **Percorso di origine** selezionare il nome del server di configurazione.
+3. In **percorso di origine**, selezionare il nome di server di hello configurazione.
 4. In **Tipo di computer** selezionare **Computer fisici**.
-5. In **Server di elaborazione** scegliere il server di elaborazione. Se non sono stati creati server di elaborazione aggiuntivi, questo sarà il server di configurazione. Fare quindi clic su **OK**.
+5. In **server di elaborazione**, scegliere il server di elaborazione hello. Se è ancora stato creato alcun server di elaborazione aggiuntive, questo server è il server di configurazione di hello. Fare quindi clic su **OK**.
 
     ![Abilitare la replica](./media/site-recovery-physical-to-azure/chooseVM.png)
 
-6. In **Destinazione** selezionare la **sottoscrizione** e il **gruppo di risorse** in cui si vuole creare le VM di Azure dopo il failover. Scegliere il modello di distribuzione (classica o di Resource Manager) da usare in Azure per le VM di cui viene effettuato il failover.
+6. In **destinazione**selezionare hello **sottoscrizione** hello e **gruppo di risorse** in cui si desidera toocreate hello macchine virtuali di Azure dopo il failover. Scegliere hello distribuzione modello che si desidera toouse in Azure (classica o gestione delle risorse) per hello sottoposte a failover le macchine virtuali.
 
-7. Selezionare l'account di archiviazione di Azure da usare per la replica dei dati. Se non si vuole usare un account già configurato, è possibile crearne uno nuovo.
+7. Selezionare l'account di archiviazione di Azure hello desiderato toouse per la replica dei dati. Se non si desidera toouse un account già stato configurato, è possibile creare uno nuovo.
 
-8. Selezionare la **rete** e la **subnet** di Azure a cui dovranno connettersi le VM di Azure dopo il failover. Scegliere **Configurare ora per le macchine virtuali selezionate** per applicare le impostazioni di rete a tutti i computer selezionati per la protezione. Scegliere **Configurare in seguito** per selezionare la rete di Azure per ogni computer. Se non si vuole usare una rete esistente, è possibile crearne una.
+8. Seleziona hello **rete Azure** e **Subnet** toowhich macchine virtuali di Azure connettersi dopo il failover. Selezionare **Configura ora per macchine virtuali selezionate** tooapply hello rete impostazione tooall macchine selezionate per la protezione. Selezionare **configurare successivamente** tooselect hello Azure rete al computer. Se non si desidera toouse una rete esistente, è possibile crearne uno.
 
     ![Abilitare la replica](./media/site-recovery-physical-to-azure/targetsettings.png)
 
-9. In **Computer fisici**, fare clic su **+Computer fisici** e inserire il **nome** e l'**indirizzo IP**. Scegliere il sistema operativo del computer da replicare. È necessario attendere alcuni minuti prima che i computer vengano individuati e visualizzati nell'elenco.
+9. In **macchine fisiche**, fare clic su **+ macchina fisica** e immettere hello **nome** e **indirizzo IP**. Scegliere hello del sistema operativo della macchina hello desiderato tooreplicate. Sono necessari alcuni minuti fino a quando i computer vengono individuati e visualizzati nell'elenco di hello.
 
     ![Abilitare la replica](./media/site-recovery-physical-to-azure/machineselect.png)
 
-10. In **Proprietà** > **Configura proprietà** selezionare l'account che verrà usato dal server di elaborazione per installare automaticamente il servizio Mobility nel computer.
-11. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **Tutti i dischi** e deselezionare i dischi da non replicare. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
+10. In **proprietà** > **configurare proprietà**, selezionare account hello toobe utilizzato da hello processo server tooautomatically installare il servizio Mobility hello computer hello.
+11. Per impostazione predefinita, vengono replicati tutti i dischi. Fare clic su **tutti i dischi**e Cancella tutti i dischi non si desidera tooreplicate. Fare quindi clic su **OK**. È possibile impostare proprietà aggiuntive delle VM in un secondo momento.
 
     ![Abilitare la replica](./media/site-recovery-physical-to-azure/configprop.png)
 
-12. In **Impostazioni della replica** > **Configura impostazioni di replica** verificare che siano selezionati i criteri di replica corretti. Se si modificano i criteri, le modifiche verranno applicate al computer di replica e ai nuovi computer.
-13. Abilitare la **Coerenza tra più VM** per raccogliere le macchine in un gruppo di replica e specificare un nome per il gruppo. Fare quindi clic su **OK**. Si noti che:
+12. In **le impostazioni di replica** > **configurare le impostazioni di replica**, verificare che hello si seleziona il criterio di replica corretto. Se si modifica un criterio, le modifiche vengono applicata toohello replica macchina e toonew macchine.
+13. Abilitare **la coerenza tra più macchine** se si desidera toogather macchine in un gruppo di replica e specificare un nome per il gruppo di hello. Fare quindi clic su **OK**. Si noti che:
 
     a. I computer nei gruppi di replica vengono replicati insieme e hanno punti di ripristino condivisi coerenti con l'arresto anomalo del sistema e coerenti con l'app in caso di failover.
 
-    b. È consigliabile raggruppare le macchine virtuali e i server fisici in modo da rispecchiare i carichi di lavoro. L'abilitazione della coerenza su più macchine virtuali può avere un impatto sulle prestazioni del carico di lavoro. Deve essere usata solo se i computer eseguono lo stesso carico di lavoro ed è necessaria la coerenza.
+    b. È consigliabile raggruppare le macchine virtuali e i server fisici in modo da rispecchiare i carichi di lavoro. L'abilitazione della coerenza su più macchine virtuali può avere un impatto sulle prestazioni del carico di lavoro. Deve essere utilizzato solo se i computer sono in esecuzione hello stesso carico di lavoro ed è necessaria la coerenza.
 
     ![Abilitare la replica](./media/site-recovery-physical-to-azure/policy.png)
 
-14. Fare clic su **Abilita la replica**. È possibile tenere traccia dello stato del processo **Abilita protezione** in **Impostazioni** > **Processi** > **Processi di Site Recovery**. Dopo l'esecuzione del processo **Finalizza protezione** la macchina virtuale è pronta per il failover.
+14. Fare clic su **Abilita la replica**. È possibile monitorare lo stato di avanzamento di hello **Abilita protezione** processo **impostazioni** > **processi** > **processi di ripristino del sito**. Dopo aver hello **finalizzazione della protezione** processo viene eseguito, hello macchina è pronta per il failover.
 
-Se si configura l'installazione push, dopo l'abilitazione della replica verrà installato il servizio Mobility. Dopo l'installazione push del servizio Mobility in un computer, verrà avviato un processo di protezione che non riuscirà. Dopo l'errore, è necessario riavviare manualmente tutti i computer. Il processo di protezione verrà quindi avviato nuovamente e verrà eseguita la replica iniziale.
+Dopo aver abilitato la replica, hello servizio di mobilità è installato se si configura l'installazione push. Dopo aver hello servizio di mobilità push installato in un computer, un processo di protezione viene avviata e non riesce. Dopo l'errore hello, è necessario toomanually riavviare ogni macchina. Quindi, il processo di protezione hello ricomincia e viene eseguita la replica iniziale.
 
 
 ### <a name="view-and-manage-azure-vm-properties"></a>Visualizzare e gestire le proprietà delle VM di Azure
 
-È consigliabile verificare le proprietà delle VM e apportare tutte le modifiche eventualmente necessarie.
+È consigliabile controllare le proprietà della VM hello e apportare le modifiche necessarie.
 
-1. Fare clic su **Elementi replicati** e selezionare il computer. Il pannello **Informazioni di base** visualizza informazioni sulle impostazioni e sullo stato dei computer.
-2. In **Proprietà** sono disponibili le informazioni su replica e failover per la VM.
-3. In **Calcolo e rete** > **Proprietà di calcolo** è possibile specificare le dimensioni di destinazione e il nome della VM di Azure. Se necessario, modificare il nome in modo che sia conforme ai [requisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements) .
-4. Modificare le impostazioni per la rete, la subnet e l'indirizzo IP di destinazione che verranno assegnati alla VM di Azure:
+1. Fare clic su **gli elementi replicati**e selezionare hello macchina. Hello **Essentials** pannello mostra le informazioni sulle impostazioni computer e lo stato.
+2. In **proprietà**, è possibile visualizzare la replica e le informazioni di failover per hello macchina virtuale.
+3. In **di calcolo e rete** > **calcolo proprietà**, è possibile specificare dimensioni delle macchine Virtuali di Azure hello nome e di destinazione. Modificare hello Nome toocomply con [requisiti Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements) se è necessario.
+4. Modificare le impostazioni per la rete di destinazione hello, subnet e indirizzi IP assegnati toohello macchina virtuale di Azure:
 
-    a. È possibile impostare l'indirizzo IP di destinazione.
+    a. È possibile impostare l'indirizzo IP di destinazione hello.
 
-    b.  Se non si specifica un indirizzo, il computer di cui è stato eseguito il failover usa DHCP.
+    b.  Se non si fornisce un indirizzo, hello failover userà DHCP.
 
     c. Se si imposta un indirizzo che non è disponibile al momento del failover, il failover non riesce.
 
-    d. Se l'indirizzo è disponibile nella rete di failover di test, è possibile usare lo stesso indirizzo IP di destinazione per il failover di test.
+    d. Hello stesso indirizzo IP di destinazione è utilizzabile per il test failover se è disponibile in rete di failover di test hello hello indirizzo.
 
-    e. Il numero di schede di rete dipende dalle dimensioni specificate per la macchina virtuale di destinazione:
+    e. numero di Hello di schede di rete dipende dalla dimensione hello specificata per la macchina virtuale di destinazione hello:
 
-     - Se il numero di schede di rete nel computer di origine è minore o uguale al numero di schede consentito per le dimensioni del computer di destinazione, la destinazione avrà lo stesso numero di schede dell'origine.
-     - Se il numero di schede per la macchina virtuale di origine supera il numero consentito per le dimensioni di destinazione, verrà usata la dimensione di destinazione massima.
-     - Ad esempio, se una macchina di origine ha due schede di rete e le dimensioni della macchina di destinazione ne supportano quattro, la macchina di destinazione avrà due schede. Se la macchina di origine ha due schede, ma le dimensioni di destinazione supportate ne consentono solo una, la macchina di destinazione avrà una sola scheda.     
-   - Se la macchina virtuale ha più schede di rete, si connetteranno tutte alla stessa rete.
-   - Se la macchina virtuale ha più schede di rete, la prima nell'elenco diventa la scheda di rete *predefinita* nella macchina virtuale di Azure.
-5. In **Dischi** vengono visualizzati il sistema operativo della VM e i dischi dati che vengono replicati.
+     - Se il numero di hello di schede di rete nel computer di origine hello hello uguale o minore, hello numero di schede consentite per le dimensioni del computer di destinazione hello, allora destinazione hello è hello origine hello stesso numero di schede.
+     - Se il numero di hello di schede per la macchina virtuale di origine hello supera hello numero consentito per le dimensioni di destinazione hello, quindi massimo di dimensioni di destinazione hello viene utilizzato.
+     - Ad esempio, se un computer di origine dispone di due schede di rete e le dimensioni del computer di destinazione hello supporta quattro, il computer di destinazione di hello è due schede. Se il computer di origine di hello ha due schede di dimensioni di destinazione supportato hello supportano solo una, il computer di destinazione hello ha una sola scheda.     
+   - Se macchina virtuale hello dispone di più schede di rete, tutte le connessione toohello stessa rete.
+   - Se macchina virtuale hello ha più schede di rete, quindi hello prima uno nell'elenco di hello diventa hello *predefinito* scheda di rete nella macchina virtuale di Azure hello.
+5. In **dischi**, è possibile vedere hello macchina virtuale del sistema operativo e i dischi dati hello che vengono replicati.
 
 ## <a name="run-a-test-failover"></a>Eseguire un failover di test
 
-Dopo aver completato la configurazione, eseguire un failover di test per verificare che tutti gli elementi funzionino come previsto. Guardare una rapida panoramica video prima di iniziare.
+Dopo avere impostato backup completo, eseguire una toomake di failover di test che tutto funzioni come previsto. Guardare una rapida panoramica video prima di iniziare.
 
 >[!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video4-Recovery-Plan-DR-Drill-and-Failover/player]
 
 
-1. Per eseguire il failover di una singola macchina, in **Impostazioni** > **Elementi replicati** fare clic su **Failover di test**.
+1. toofail su un singolo computer, in **impostazioni** > **elementi replicati**, fare clic su **failover di Test**.
 
     ![Failover di test](./media/site-recovery-vmware-to-azure/TestFailover.png)
 
-2. Per eseguire il failover di un piano di ripristino, in **Impostazioni** > **Piani di ripristino** fare clic con il pulsante destro del mouse sul piano e quindi scegliere **Failover di test**. Per creare un piano di ripristino, [seguire queste istruzioni](site-recovery-create-recovery-plans.md).  
-3. In **Failover di test** selezionare la rete di Azure a cui si connetteranno le VM di Azure dopo il failover.
-4. Fare clic su **OK** per iniziare il failover. Per tenere traccia dello stato del processo, fare clic sulla VM per visualizzarne le proprietà oppure fare clic sul processo **Failover di test** nel nome dell'insieme di credenziali > **Impostazioni** > **Processi** > **Processi di Site Recovery**.
-5. Al termine del failover sarà anche possibile visualizzare la macchina virtuale di Azure di replica in **Macchine virtuali** nel portale di Azure. Verificare che la macchina virtuale sia delle dimensioni appropriate, che sia connessa alla rete giusta e che sia in esecuzione.
-6. Se sono state [preparate le connessioni dopo il failover](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover), sarà possibile connettersi alla VM di Azure.
-7. Al termine, fare clic su  **	Pulisci failover di test** nel piano di ripristino. Fare clic su **Note** per registrare e salvare eventuali osservazioni associate al failover di test. Questo passaggio elimina le macchine virtuali create durante il failover di test.
+2. toofail sul ripristino di un piano, in **impostazioni** > **piani di ripristino**, piano hello rapida > **Failover di Test**. un piano di ripristino, toocreate [seguire queste istruzioni](site-recovery-create-recovery-plans.md).  
+3. In **Failover di Test**selezionare hello Azure rete toowhich macchine virtuali di Azure sono connesse dopo il failover viene eseguito.
+4. Fare clic su **OK** toobegin hello failover. È possibile monitorare lo stato di avanzamento facendo hello VM tooopen le relative proprietà o facendo clic su hello **Failover di Test** processo nel nome dell'insieme di credenziali > **impostazioni** > **processi**  >  **i processi di ripristino del sito**.
+5. Al termine del failover hello, inoltre deve essere in grado di replica hello toosee macchina di Azure vengono visualizzati nel portale di Azure hello > **macchine virtuali**. Assicurarsi che tale hello VM sia di dimensioni appropriate hello, che si è connesso toohello di rete appropriata e che sia in esecuzione.
+6. Se si [preparate per le connessioni dopo il failover](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover), dovrebbe essere in grado di tooconnect toohello macchina virtuale di Azure.
+7. Al termine, fare clic su **il failover di test di pulizia** nel piano di ripristino hello. In **note**, registrare e salvare eventuali commenti associati hello test failover. Questo passaggio consente di eliminare le macchine virtuali hello create durante il failover di test.
 
-Per altre informazioni, vedere il documento [Failover di test in Azure](site-recovery-test-failover-to-azure.md).
+Per ulteriori informazioni, vedere hello [Test failover tooAzure](site-recovery-test-failover-to-azure.md) documento.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Quando la replica è operativa, se si verifica un'interruzione viene eseguito il failover in Azure e vengono create VM di Azure dai dati replicati. È quindi possibile accedere a carichi di lavoro e app in Azure finché non viene effettuato il failback nella posizione primaria di nuovo operativa.
+Dopo la replica configurazione e in esecuzione, quando si verifica un'interruzione del servizio si esegue il failover tooAzure e macchine virtuali di Azure vengono create dai dati hello replicato. È quindi possibile accedere carichi di lavoro e le App in Azure, fino a quando non è la posizione primaria tooyour indietro quando vengono restituite le operazioni di toonormal.
 
-- Altre informazioni sui diversi tipi di failover e su come eseguirli sono disponibili [qui](site-recovery-failover.md).
+- [Altre informazioni](site-recovery-failover.md) sui diversi tipi di failover e modalità toorun li.
 - [Altre informazioni](site-recovery-migrate-to-azure.md#migrate-on-premises-vms-and-physical-servers) per eseguire la migrazione di computer invece della replica e del failback.
-- Durante la replica dei computer fisici, è possibile solo eseguire il failback in un ambiente VMware. [Informazioni sul failback](site-recovery-failback-azure-to-vmware.md).
+- Quando si replicano i computer fisici, è possibile solo eseguire il failback tooa VMware environment. [Informazioni sul failback](site-recovery-failback-azure-to-vmware.md).
 
 ## <a name="third-party-software-notices-and-information"></a>Informazioni e comunicazioni sul software di terze parti
 Do Not Translate or Localize
 
-The software and firmware running in the Microsoft product or service is based on or incorporates material from the projects listed below (collectively, “Third-Party Code”). Microsoft is not the original author of the Third-Party Code. The original copyright notice and license, under which Microsoft received such Third-Party Code, are set forth below.
+software Hello e in esecuzione nel firmware hello prodotto Microsoft o servizio è basato su o integra materiale proveniente dai hello progetti elencati sotto (collettivamente, "terze parti Code"). Microsoft non è autore hello di hello codice di terze parti. copyright originale Hello e la licenza, in cui Microsoft ha ricevuto tale codice di terze parti, sono set specificato di seguito.
 
-The information in Section A is regarding Third-Party Code components from the projects listed below. Such licenses and information are provided for informational purposes only. This Third-Party Code is being relicensed to you by Microsoft under Microsoft's software licensing terms for the Microsoft product or service.  
+informazioni di Hello nella sezione si riferisce il codice di terze parti componenti dei progetti hello elencati di seguito. Such licenses and information are provided for informational purposes only. Questo codice di terze parti è in corso tooyou relicensed da Microsoft in termini di hello prodotto o servizio Microsoft di licenza software Microsoft.  
 
-The information in Section B is regarding Third Party Code components that are being made available to you by Microsoft under the original licensing terms.
+informazioni di Hello nella sezione B sono per quanto riguarda i componenti del codice di terze parti che vengono eseguiti tooyou disponibili da Microsoft in condizioni di licenza originale hello.
 
-The complete file can be found on the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel, or otherwise.
+completo del file Hello è reperibile in hello [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=529428). Microsoft reserves all rights not expressly granted herein, whether by implication, estoppel, or otherwise.

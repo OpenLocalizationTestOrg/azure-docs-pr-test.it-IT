@@ -1,6 +1,6 @@
 ---
-title: Come un modello di Azure Machine Learning diventa un servizio Web | Documentazione Microsoft
-description: Panoramica dei meccanismi in base a cui il modello di Azure Machine Learning passa da esperimento di sviluppo a servizio Web operativo.
+title: un modello di Azure Machine Learning aaaHow diventa un servizio web | Documenti Microsoft
+description: Una panoramica dei meccanismi di hello di come il avanzamento del modello di Azure Machine Learning da uno sviluppo sperimentare tooan operativi del servizio Web.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,107 +14,107 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 008952b4fee6bffe1e20259dc86fd6d5122777ec
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bbe09fa8fa22662cf8ec4a8b6249d23c87c8ddf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-a-machine-learning-model-progresses-from-an-experiment-to-an-operationalized-web-service"></a>Modalità di passaggio di un modello di Machine Learning da esperimento a servizio Web operativo
-Azure Machine Learning Studio fornisce un'area di disegno che consente di sviluppare, eseguire, testare e ripetere un ***esperimento*** che rappresenta un modello di analisi predittiva. Sono disponibili diversi moduli che consentono di:
+# <a name="how-a-machine-learning-model-progresses-from-an-experiment-tooan-operationalized-web-service"></a>Come l'avanzamento un modello di Machine Learning da un esperimento di tooan operativi del servizio Web
+Azure Machine Learning Studio fornisce un'area di disegno interattivo che consente di toodevelop, eseguire, testare ed eseguire l'iterazione un ***sperimentare*** che rappresenta un modello di analisi predittiva. Sono disponibili diversi moduli che consentono di:
 
 * Immettere i dati nell'esperimento
-* Manipolare i dati
+* Modificare i dati di hello
 * Eseguire il training di un modello usando algoritmi di Machine Learning
-* Assegnare un punteggio al modello
-* Valutare i risultati
+* Modello di punteggio hello
+* Valutare i risultati di hello
 * Restituire i valori finali
 
 Quando l'esperimento soddisfa le esigenze, è possibile distribuirlo come ***servizio Web classico di Azure Machine Learning*** o come ***nuovo servizio Web di Azure Machine Learning***, per consentire agli utenti di inviare nuovi dati e ricevere i risultati.
 
-Questo articolo fornisce una panoramica dei meccanismi in base ai quali il modello di Machine Learning passa da esperimento di sviluppo a servizio Web operativo.
+In questo articolo viene fornita una panoramica dei meccanismi di hello di come l'avanzamento il modello di Machine Learning da un tooan esperimento di sviluppo operativi del servizio Web.
 
 > [!NOTE]
-> È possibile sviluppare e distribuire i modelli di Machine Learning in altri modi, ma questo articolo descrive come farlo con Machine Learning Studio. Per una descrizione su come creare un servizio Web predittivo classico con R, vedere il post di blog su [compilazione e distribuzione di app Web predittive con RStudio e Azure ML](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx).
+> Esistono altri modi toodevelop e distribuire modelli di machine learning, ma in questo articolo è incentrato sulle modalità di utilizzo di Machine Learning Studio. Ad esempio, una descrizione di come toocreate un servizio Web predittivo classico con R, vedere hello post di blog di tooread [compilazione & distribuire predittiva Web App utilizzando RStudio e Azure ML](http://blogs.technet.com/b/machinelearning/archive/2015/09/25/build-and-deploy-a-predictive-web-app-using-rstudio-and-azure-ml.aspx).
 > 
 > 
 
-Anche se Azure Machine Learning Studio è progettato principalmente per sviluppare e distribuire un *modello di analisi predittiva*, è possibile usare Studio per sviluppare un esperimento che non include un modello di analisi predittiva. Un esperimento, ad esempio, potrebbe limitarsi a inserire i dati, manipolarli e quindi generare l'output dei risultati. Proprio come un esperimento di analisi predittiva, è possibile distribuire questo esperimento non predittivo come servizio Web, ma il processo è più semplice perché l'esperimento non eseguirà il training né assegnerà un punteggio a un modello di Machine Learning. Anche se non rappresenta l'uso tipico di Studio, questo scenario verrà incluso nella discussione per offrire una panoramica completa del funzionamento di Studio.
+Mentre Azure Machine Learning Studio è toohelp progettato sviluppare e distribuire un *modello di analisi predittiva*, è possibile toouse Studio toodevelop un esperimento che non include un modello di analisi predittiva. Ad esempio, un esperimento potrebbe dati di solo input, modificare e quindi riportare i risultati di hello. Analogamente a un esperimento di analisi predittiva, è possibile distribuire questo non predittiva esperimento come servizio Web, ma è un processo più semplice perché non è di training o la valutazione di un modello di machine learning esperimento hello. Sebbene non sia hello tipico toouse Studio in questo modo, verrà incluso in discussione hello in modo che in questo modo una spiegazione completa del funzionamento di Studio.
 
 ## <a name="developing-and-deploying-a-predictive-web-service"></a>Sviluppo e distribuzione di un servizio Web predittivo
-Ecco le fasi seguite da una soluzione tipica mentre viene sviluppata e distribuita con Machine Learning Studio:
+Ecco le fasi hello una tipica soluzione segue quando si sviluppano e distribuirlo Machine Learning Studio:
 
 ![Flusso di distribuzione](media/machine-learning-model-progression-experiment-to-web-service/model-stages-from-experiment-to-web-service.png)
 
 *Figura 1 - Fasi di un modello di analisi predittiva tipico*
 
-### <a name="the-training-experiment"></a>Esperimento di training
-L'***esperimento di training*** rappresenta la fase iniziale dello sviluppo del servizio Web in Machine Learning Studio. Lo scopo dell'esperimento di training è di fornire un'area in cui sviluppare, testare, eseguire l'iterazione e infine il training di un modello di Machine Learning. È possibile eseguire il training anche di più modelli contemporaneamente mentre si cerca la soluzione migliore, ma, una volta terminata la sperimentazione, si selezionerà un solo modello sottoposto a training e si elimineranno gli altri dall'esperimento. Per un esempio di sviluppo di un esperimento di analisi predittiva, vedere [Sviluppare una soluzione di analisi predittiva per la valutazione del rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
+### <a name="hello-training-experiment"></a>esperimento di training Hello
+Hello ***esperimento di training*** hello fase iniziale di sviluppo il servizio Web Machine Learning Studio. Hello esperimento di training hello mira toogive un toodevelop sul posto, testare, eseguire l'iterazione e infine eseguire il training di un modello di machine learning. È possibile anche eseguire il training più modelli contemporaneamente quando si cerca la soluzione migliore di hello, ma dopo aver sperimentato si selezionerà un singolo stato sottoposto a training del modello ed eliminare hello rest da esperimento hello. Per un esempio di sviluppo di un esperimento di analisi predittiva, vedere [Sviluppare una soluzione di analisi predittiva per la valutazione del rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
 
-### <a name="the-predictive-experiment"></a>Esperimento predittivo
-Dopo avere eseguito il training del modello nell'esperimento di training, fare clic su **Set Up Web Service** (Configura servizio Web) e selezionare **Predictive Web Service** (Servizio Web predittivo) in Machine Learning Studio per avviare il processo di conversione dell'esperimento di training in un ***esperimento predittivo***. Lo scopo dell'esperimento predittivo è quello di usare il modello sottoposto a training per assegnare un punteggio ai nuovi dati, con l'obiettivo di renderlo infine operativo come servizio Web di Azure.
+### <a name="hello-predictive-experiment"></a>sperimentazione predittiva Hello
+Dopo aver creato un modello con training nell'esperimento di training, fare clic su **di servizio Web** e selezionare **servizio Web predittivo** nel processo di hello tooinitiate Machine Learning Studio di conversione del training Provare tooa ***esperimento predittiva***. scopo dell'esperimento predittiva hello Hello è toouse i modello con training tooscore nuovi dati, con l'obiettivo hello di infine diventare operativi come servizio Web di Azure.
 
-Questa conversione viene eseguita automaticamente con i passaggi seguenti:
+Questa conversione viene eseguita automaticamente tramite hello alla procedura seguente:
 
-* Conversione del set di moduli usati per il training in un singolo modulo che viene salvato come modello sottoposto a training
-* Eliminazione di eventuali moduli estranei non correlati all'assegnazione dei punteggi
-* Aggiunta di porte di input e di output che verranno usate dal servizio Web finale
+* Convertire il set di hello dei moduli utilizzati per il training in un unico modulo e salvarlo come un modello con training
+* Eliminare tutti i moduli estranei non correlati tooscoring
+* Aggiungere l'input e output porte hello eventuale Web verrà utilizzato dal servizio
 
-È possibile apportare altre modifiche per preparare l'esperimento predittivo per la distribuzione come servizio Web. Se, ad esempio, è necessario che il servizio Web restituisca solo un subset di risultati, è possibile aggiungere un modulo di filtro prima della porta di output.
+Potrebbero essere presenti ulteriori modifiche toomake tooget il toodeploy pronto predittiva esperimento come servizio Web. Ad esempio, se si desidera hello Web servizio toooutput solo un subset dei risultati, è possibile aggiungere un modulo di filtro porta di output di hello.
 
-In questo processo di conversione l'esperimento di training non viene rimosso. Al termine del processo, Studio includerà due schede: una per l'esperimento di training e una per l'esperimento predittivo. In questo modo, è possibile apportare modifiche all'esperimento di training prima di distribuire il servizio Web e ricompilare l'esperimento predittivo. In alternativa, è possibile salvare una copia dell'esperimento di training per iniziare un'altra linea di sperimentazione.
+In questo processo di conversione, non viene scartata esperimento di training hello. Una volta completato il processo di hello, si dispongono di due schede in Studio: uno per esperimento di training hello e uno per la prova predittiva hello. In questo modo è possibile apportare modifiche esperimento di training toohello prima di distribuire il servizio Web e ricompilare l'esperimento predittiva hello. Oppure è possibile salvare una copia di toostart esperimento di training hello un'altra riga di sperimentazione.
 
 > [!NOTE]
-> Quando si fa clic su **Predictive Web Service** (Servizio Web predittivo), si avvia un processo automatico di conversione dell'esperimento di training in esperimento predittivo, che nella maggior parte dei casi è un'operazione appropriata. Se però l'esperimento di training è complesso (ad esempio, con più percorsi per il training uniti insieme), è preferibile eseguire questa conversione manualmente. Per altre informazioni, vedere l'articolo relativo alla [preparazione del modello per la distribuzione in Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
+> Quando fa clic su **servizio Web predittivo** si avvia un processo automatico di tooconvert l'esperimento di training esperimento tooa predittiva, che funziona bene nella maggior parte dei casi. Se l'esperimento di training è complessa (ad esempio, si dispone di più percorsi per il training che si uniscono), è preferibile toodo questa conversione manualmente. Per ulteriori informazioni, vedere [come tooprepare il modello per la distribuzione in Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
 > 
 > 
 
-### <a name="the-web-service"></a>Servizio Web
-Quando l'esperimento predittivo soddisfa le esigenze, è possibile distribuire il servizio come servizio Web classico o nuovo servizio Web basato su Azure Resource Manager. Per rendere operativo il modello distribuendolo come *servizio Web classico di Machine Learning*, fare clic su **Deploy Web Service** (Distribuisci servizio Web) e selezionare **Deploy Web Service [Classic]** (Distribuisci servizio Web [Classico]). Per eseguire la distribuzione come *nuovo servizio Web di Machine Learning*, fare clic su **Deploy Web Service** (Distribuisci servizio Web) e selezionare **Deploy Web Service [New]** (Distribuisci servizio Web [Nuovo]). Gli utenti ora possono inviare i dati al modello con l'API REST del servizio Web e ricevere i risultati. Per altre informazioni, vedere [Come usare un servizio Web di Azure Machine Learning pubblicato da un esperimento di Machine Learning](machine-learning-consume-web-services.md).
+### <a name="hello-web-service"></a>Hello servizio Web
+Quando l'esperimento predittivo soddisfa le esigenze, è possibile distribuire il servizio come servizio Web classico o nuovo servizio Web basato su Azure Resource Manager. toooperationalize il modello di distribuzione come un *servizio Web di Learning classico macchina*, fare clic su **distribuzione servizio Web** e selezionare **distribuzione di un servizio Web [classica]**. toodeploy come *servizio nuovo Web di Machine Learning*, fare clic su **distribuzione servizio Web** e selezionare **distribuzione servizio Web [New]**. Gli utenti possono ora modello tooyour dati utilizzando l'API REST del servizio Web hello di inviare e ricevere i risultati di hello indietro. Per ulteriori informazioni, vedere [come un servizio Web di Azure Machine Learning tooconsume](machine-learning-consume-web-services.md).
 
-## <a name="the-non-typical-case-creating-a-non-predictive-web-service"></a>Caso non tipico: creazione di un servizio Web non predittivo
-Se l'esperimento non esegue il training di un modello di analisi predittiva, non è necessario creare sia un esperimento di training che un esperimento di assegnazione dei punteggi. C'è un solo esperimento ed è possibile distribuirlo come servizio Web. Machine Learning Studio rileva se l'esperimento contiene un modello predittivo analizzando i moduli usati.
+## <a name="hello-non-typical-case-creating-a-non-predictive-web-service"></a>non avviene Hello: creazione di un servizio Web non predittiva
+Se l'esperimento non eseguire il training un modello di analisi predittiva, sarà necessario toocreate sia un esperimento di training e un esperimento di assegnazione dei punteggi: è presente solo un esperimento e distribuirla come servizio Web. Machine Learning Studio rileva se l'esperimento contiene un modello predittivo analizzando i moduli di hello che è stato utilizzato.
 
 Dopo avere eseguito l'iterazione dell'esperimento e averlo verificato:
 
 1. Fare clic su **Set Up Web Service** (Configura servizio Web) e selezionare **Retraining Web Service** (Servizio Web di ripetizione del training). I nodi di input e di output verranno aggiunti automaticamente.
 2. Fare clic su **Run**
-3. Fare clic su **Deploy Web Service** (Distribuisci servizio Web) e selezionare **Deploy Web Service [Classic]** (Distribuisci servizio Web [Classico]) o **Deploy Web Service [New]** (Distribuisci servizio Web [Nuovo]), a seconda dell'ambiente in cui si vuole eseguire la distribuzione.
+3. Fare clic su **distribuzione servizio Web** e selezionare **distribuzione di un servizio Web [classica]** o **distribuzione servizio Web [New]** a seconda di hello ambiente toowhich si desideri toodeploy.
 
 Il servizio Web ora è distribuito ed è possibile accedervi e gestirlo proprio come si fa con un servizio Web predittivo.
 
 ## <a name="updating-your-web-service"></a>Aggiornamento del servizio Web
-Ora che l'esperimento è stato distribuito come servizio Web, cosa bisogna fare se è necessario aggiornarlo?
+Dopo aver distribuito l'esperimento come servizio Web, cosa accade se è necessario tooupdate è?
 
-Dipende da che cosa è necessario aggiornare:
+È necessario che dipende da tooupdate:
 
-**Si vuole cambiare l'input o l'output oppure si vuole modificare il modo in cui il servizio Web manipola i dati**
+**Si desidera toochange hello input o output o si desidera toomodify come servizio Web hello modifica i dati**
 
-Se non si intende cambiare il modello, ma solo il modo in cui il servizio Web gestisce i dati, è possibile modificare l'esperimento predittivo e quindi fare clic su **Deploy Web Service** (Distribuisci servizio Web) e selezionare di nuovo **Deploy Web Service [Classic]** (Distribuisci servizio Web [Classico]) o **Deploy Web Service [New]** (Distribuisci servizio Web [Nuovo]). Il servizio Web viene arrestato, l'esperimento predittivo aggiornato viene distribuito e il servizio Web viene riavviato.
+Se non si modificano il modello di hello, ma modificare solo la modalità di hello servizio Web gestione dati, è possibile modificare l'esperimento predittiva hello e quindi fare clic su **distribuzione servizio Web** e selezionare **distribuzione di un servizio Web [classica]** o **distribuzione servizio Web [New]** nuovamente. Hello servizio Web viene arrestato, hello esperimento predittiva aggiornato viene distribuito e hello servizio Web viene riavviato.
 
-Ecco un esempio: si supponga che l'esperimento predittivo restituisca l'intera riga di dati di input con il risultato previsto. È possibile stabilire che il servizio Web deve restituire solo il risultato. È possibile aggiungere un modulo **Project Columns** nell'esperimento predittivo, subito prima della porta di output, per escludere le colonne diverse da quella del risultato. Quando si fa clic su **Deploy Web Service** (Distribuisci servizio Web) e si seleziona di nuovo **Deploy Web Service [Classic]** (Distribuisci servizio Web [Classico]) o **Deploy Web Service [New]** (Distribuisci servizio Web [Nuovo]), il servizio Web viene aggiornato.
+Di seguito è riportato un esempio: si supponga che l'esperimento predittiva restituisce l'intera riga di hello di dati di input con hello risultato stimato. Si potrebbe decidere che il risultato restituito hello toojust di hello Web service. È possibile aggiungere un **Project Columns** modulo nell'esperimento predittiva hello, prima della porta, di output di hello tooexclude colonne diverso da hello risultato. Quando fa clic su **distribuzione servizio Web** e selezionare **distribuzione di un servizio Web [classica]** o **distribuzione servizio Web [New]** nuovamente, hello servizio Web viene aggiornato.
 
-**Si vuole ripetere il training del modello con i nuovi dati**
+**Si desidera tooretrain hello modello con nuovi dati**
 
-Per conservare il modello di Machine Learning, ripetendone però il training con i nuovi dati, sono disponibili due opzioni:
+Se si desidera tookeep il modello di machine learning, ma si desidera tooretrain, con i nuovi dati, sono disponibili due opzioni:
 
-1. **Ripetere il training del modello mentre il servizio Web è in esecuzione**: per ripetere il training del modello mentre il servizio Web predittivo è in esecuzione, è necessario apportare alcune modifiche all'esperimento di training per renderlo un ***esperimento di ripetizione del training*** e quindi distribuirlo come ***servizio Web di ripetizione del training***. Per istruzioni in proposito, vedere [Ripetere il training dei modelli di Machine Learning a livello di codice](machine-learning-retrain-models-programmatically.md).
-2. **Tornare all'esperimento di training originale e usare dati di training diversi per sviluppare il modello**: l'esperimento predittivo è collegato al servizio Web, ma l'esperimento di training non è direttamente collegato in questo modo. Se si modifica l'esperimento di training originale e si fa clic su **Set Up Web Service** (Configura servizio Web), verrà creato un *nuovo* esperimento predittivo che, se distribuito, creerà un *nuovo* servizio Web. Non verrà semplicemente aggiornato il servizio Web originale.
+1. **Ripetere il training del modello di hello mentre è in esecuzione il servizio Web hello** -se si desidera tooretrain modello mentre è in esecuzione il servizio Web predittivo di hello, è possibile farlo apportando poche modifiche toohello training esperimento toomake è un *** ripetizione di training esperimento***, quindi è possibile distribuirlo come una  ***i web* servizio**. Per istruzioni su come toodo questa operazione, vedere [Machine Learning ripetere il training dei modelli a livello di codice](machine-learning-retrain-models-programmatically.md).
+2. **Tornare indietro toohello esperimento di training originale e utilizza il modello di training diversi dati toodevelop** : l'esperimento predittiva è collegato toohello servizio Web, ma l'esperimento di training hello non è collegato direttamente in questo modo. Se si modifica esperimento di training originale hello e fare clic su **di servizio Web**, verrà creato un *nuova* predittiva provare che, quando viene distribuito, verrà creato un *nuova* Web servizio. Non solo aggiorna il servizio Web originale di hello.
    
-   Se è necessario modificare l'esperimento di training, aprirlo e fare clic su **Save As** (Salva con nome) per creare una copia. In questo modo l'esperimento di training, l'esperimento predittivo e il servizio Web originali rimarranno invariati. È quindi possibile creare un nuovo servizio Web con le modifiche. Una volta distribuito il nuovo servizio Web, è possibile decidere se arrestare il servizio Web precedente o se lasciarlo in esecuzione insieme a quello nuovo.
+   Se è necessario esperimento di training hello toomodify, aprirla e fare clic su **Salva con nome** toomake una copia. Lascerà esperimento di training originale intatto hello esperimento predittiva e servizio Web. È quindi possibile creare un nuovo servizio Web con le modifiche. Dopo aver distribuito hello nuovo servizio Web è possibile quindi decidere se toostop hello precedente del servizio Web o continuare a eseguire insieme hello uno nuovo.
 
-**Si vuole eseguire il training di un modello diverso**
+**Si desidera un modello diverso tootrain**
 
-Per apportare modifiche all'esperimento predittivo originale, ad esempio selezionando un algoritmo di Machine Learning diverso, provando un metodo di training diverso e così via, è necessario attenersi alla seconda procedura descritta sopra per ripetere il training del modello: aprire l'esperimento di training, fare clic su **Save As** (Salva con nome) per creare una copia e quindi avviare il nuovo percorso di sviluppo del modello, creazione dell'esperimento predittivo e distribuzione del servizio Web. Verrà così creato un nuovo servizio Web non correlato a quello originale. È possibile decidere se lasciare in esecuzione uno dei due oppure entrambi.
+Se si desidera toomake cambia tooyour originale predittiva esperimento, quali la selezione di un computer diverso, algoritmo di apprendimento sta tentando di un metodo diverso di training e così via, è necessario seconda procedura hello toofollow descritto in precedenza per la ripetizione di training del modello: Aprire l'esperimento di training hello, fare clic su **Salva con nome** toomake una copia e quindi avviare di nuovo percorso di sviluppo del modello, creazione esperimento predittiva hello e distribuzione di hello verso il basso hello servizio web. Verrà creato un nuovo servizio Web non correlati toohello originale, è possibile decidere quali tookeep uno o entrambi, in esecuzione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altri dettagli sul processo di sviluppo di un esperimento, vedere gli articoli seguenti:
+Per ulteriori informazioni sul processo di hello di sviluppo e test, vedere hello seguenti articoli:
 
-* Conversione dell'esperimento: vedere l'articolo relativo alla [preparazione del modello per la distribuzione in Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md).
-* Distribuzione del servizio Web: [Distribuire un servizio Web di Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md)
-* Ripetizione del training del modello: [Ripetere il training dei modelli di Machine Learning a livello di codice](machine-learning-retrain-models-programmatically.md)
+* conversione di sperimentazione hello - [come tooprepare il modello per la distribuzione in Azure Machine Learning Studio](machine-learning-convert-training-experiment-to-scoring-experiment.md)
+* distribuzione del servizio Web hello - [distribuire un servizio web Azure Machine Learning](machine-learning-publish-a-machine-learning-web-service.md)
+* i modelli di hello - [Machine Learning ripetere il training dei modelli a livello di codice](machine-learning-retrain-models-programmatically.md)
 
-Per esempi dell'intero processo, vedere:
+Per esempi dell'intero processo hello, vedere:
 
 * [Esercitazione di Machine Learning: Creare il primo esperimento in Azure Machine Learning Studio](machine-learning-create-experiment.md)
 * [Procedura dettagliata: Sviluppare una soluzione di analisi predittiva per la valutazione del rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md)

@@ -1,6 +1,6 @@
 ---
-title: Distribuire un contenitore Docker ASP.NET Core Linux in un host Docker remoto | Documentazione Microsoft
-description: Informazioni su come usare Visual Studio Tools per Docker per distribuire un'app Web ASP.NET Core in un contenitore Docker in esecuzione in una macchina virtuale Linux host Docker di Azure
+title: aaaDeploy host Docker remoto un ASP.NET Core Linux Docker contenitore tooa | Documenti Microsoft
+description: Informazioni su come toouse Visual Studio Tools per Docker toodeploy un Core di ASP.NET web contenitori di Docker tooa app in esecuzione in una macchina virtuale Linux di Azure Docker Host
 services: azure-container-service
 documentationcenter: .net
 author: mlearned
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/08/2016
 ms.author: mlearned
-ms.openlocfilehash: 4a87ee69f23779bf4f6f5db40bc05edbcfc7668d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27b0c6420628c73220200bc071b47a4cd89fff58
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-an-aspnet-container-to-a-remote-docker-host"></a>Distribuire un contenitore ASP.NET in un host Docker remoto
+# <a name="deploy-an-aspnet-container-tooa-remote-docker-host"></a>Distribuire un host di Docker remoto ASP.NET contenitore tooa
 ## <a name="overview"></a>Panoramica
-Docker è un motore contenitore leggero, simile in qualche modo a una macchina virtuale, che è possibile usare per ospitare applicazioni e servizi.
-Questa esercitazione illustra come usare l'estensione [Visual Studio Tools per Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) per distribuire un'app ASP.NET Core in un host Docker in Azure con PowerShell.
+Docker è un motore di contenitore leggero, simile per alcuni macchina virtuale tooa modi, che è possibile utilizzare toohost applicazioni e servizi.
+In questa esercitazione illustra utilizzando hello [Visual Studio Tools per Docker](https://docs.microsoft.com/en-us/dotnet/articles/core/docker/visual-studio-tools-for-docker) toodeploy estensione un host di ASP.NET Core app tooa Docker in Azure tramite PowerShell.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare l'esercitazione è necessario quanto segue:
+esempio Hello è toocomplete necessari in questa esercitazione:
 
-* Creare una VM host Docker in Azure, come descritto in [Come usare Docker Machine in Azure](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* Installare la versione più recente di [Visual Studio](https://www.visualstudio.com/downloads/)
-* Scaricare [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
+* Creare una macchina virtuale Host Docker di Azure, come descritto in [come toouse docker-computer con Azure](virtual-machines/linux/docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* Installare una versione più recente di hello di [Visual Studio](https://www.visualstudio.com/downloads/)
+* Scaricare hello [Microsoft ASP.NET Core 1.0 SDK](https://go.microsoft.com/fwlink/?LinkID=809122)
 * Installare [Docker per Windows](https://docs.docker.com/docker-for-windows/install/)
 
 ## <a name="1-create-an-aspnet-core-web-app"></a>1. Creare un'app Web ASP.NET Core
-La procedura seguente illustra la creazione di un'app ASP.NET Core di base che verrà usata in questa esercitazione.
+Hello passaggi seguenti illustrano come creare un'applicazione ASP.NET Core di base che verrà utilizzata in questa esercitazione.
 
 [!INCLUDE [create-aspnet5-app](../includes/create-aspnet5-app.md)]
 
 ## <a name="2-add-docker-support"></a>2. Aggiungere il supporto di Docker
 [!INCLUDE [create-aspnet5-app](../includes/vs-azure-tools-docker-add-docker-support.md)]
 
-## <a name="3-use-the-dockertaskps1-powershell-script"></a>3. Usare lo script di PowerShell DockerTask.ps1
-1. Aprire un prompt dei comandi di PowerShell nella directory radice del progetto. 
+## <a name="3-use-hello-dockertaskps1-powershell-script"></a>3. Utilizzare uno Script di PowerShell DockerTask.ps1 hello
+1. Aprire una directory radice toohello prompt dei comandi di PowerShell del progetto. 
    
    ```
    PS C:\Src\WebApplication1>
    ```
-2. La convalida dell'host remoto è in esecuzione. Dovrebbe essere visualizzato lo stato = Running 
+2. Convalidare host remoto hello è in esecuzione. Dovrebbe essere visualizzato lo stato = Running 
    
    ```
    docker-machine ls
@@ -55,7 +55,7 @@ La procedura seguente illustra la creazione di un'app ASP.NET Core di base che v
    MyDockerHost -        azure    Running   tcp://xxx.xxx.xxx.xxx:2376         v1.10.3
    ```
    
-3. Compilare l'app con il parametro -Build
+3. Compilazione hello app usando hello - parametro di compilazione
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Build -Environment Release -Machine mydockerhost
@@ -66,7 +66,7 @@ La procedura seguente illustra la creazione di un'app ASP.NET Core di base che v
    > ```  
    > 
    > 
-4. Eseguire l'app usando il parametro -Run
+4. Eseguire app hello, utilizzando hello - parametro di esecuzione
    
    ```
    PS C:\Src\WebApplication1> .\Docker\DockerTask.ps1 -Run -Environment Release -Machine mydockerhost
@@ -78,7 +78,7 @@ La procedura seguente illustra la creazione di un'app ASP.NET Core di base che v
    > 
    > 
    
-   Una volta completata l'esecuzione di Docker, i risultati visualizzati dovrebbero essere simili ai seguenti:
+   Al termine del processo di docker, verrà visualizzato risultati simili toohello segue:
    
    ![Visualizzare l'app][3]
 

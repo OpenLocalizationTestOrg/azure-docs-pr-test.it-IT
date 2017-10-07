@@ -1,5 +1,5 @@
 ---
-title: Configurare e usare l'API Recommendations di Machine Learning | Documentazione Microsoft
+title: aaaSet backup e utilizzare hello Machine Learning indicazioni API | Documenti Microsoft
 description: API Recommendations Microsoft create con le domande frequenti su Azure Machine Learning
 services: machine-learning
 documentationcenter: 
@@ -16,127 +16,127 @@ ms.date: 03/31/2017
 ms.author: luisca
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 3851589818bb8f4309bf3c65f17b115e0dcd27fa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 980bf1a36f3291275d9ef0fee9b4446f7e0cbecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="setting-up-and-using-machine-learning-recommendations-api-faq"></a>Domande frequenti sulla configurazione e sull'uso dell'API Recommendations di Machine Learning
 **Che cos'è RECOMMENDATIONS?**
 
 > [!NOTE]
-> È consigliabile iniziare usando l'API Recommendations di Servizi cognitivi invece di questa versione. Il Servizio cognitivo di Recommendations sostituirà questo servizio e verranno sviluppate nuove funzionalità. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
-> Per altre informazioni, vedere [Migrating to the new Cognitive Service](http://aka.ms/recomigrate)
+> È consigliabile iniziare utilizzando hello indicazioni API cognitivi servizio invece di questa versione. Hello servizio cognitivi indicazioni andrà a sostituire questo servizio e tutte le nuove funzionalità hello verranno sviluppate non esiste. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
+> Altre informazioni, vedere [toohello migrazione nuovo servizio cognitivi](http://aka.ms/recomigrate)
 > 
 > 
 
-RECOMMENDATIONS in Azure Machine Learning è un motore di raccomandazioni self-service in esecuzione in Azure, ideale per le organizzazioni e le attività che si basano sulle raccomandazioni per il cross-selling e l'upselling ai clienti. Si tratta di un'implementazione di "filtro collaborativo" che usa la fattorizzazione di matrice come algoritmo di base. Gli sviluppatori di applicazioni possono accedere a RECOMMENDATIONS tramite le API REST. 
+Per le organizzazioni e le aziende che si basano su toocross indicazioni offerte speciali e prodotti di offerte speciali e clienti tootheir servizi, indicazioni in Azure Machine Learning fornisce un motore indicazioni self-service. Si tratta di un'implementazione di "filtro collaborativo" che usa la fattorizzazione di matrice come algoritmo di base. Gli sviluppatori di applicazioni possono accedere a RECOMMENDATIONS tramite le API REST. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 **Quali funzionalità offre RECOMMENDATIONS?**
 
-RECOMMENDATIONS accetta come input un elemento o un insieme di elementi e restituisce un elenco di raccomandazioni rilevanti. Ad esempio, un cliente di un rivenditore online fa clic su un prodotto. Il rivenditore online invia il prodotto specifico come input a RECOMMENDATIONS, ottiene un elenco di prodotti e decide quale prodotto verrà visualizzato al cliente. È consigliabile usare RECOMMENDATIONS per ottimizzare il negozio online o per fornire informazioni al reparto vendite o al call center interno.
+RECOMMENDATIONS accetta come input un elemento o un insieme di elementi e restituisce un elenco di raccomandazioni rilevanti. Ad esempio, un cliente di un rivenditore online fa clic su un prodotto. punto vendita online Hello invia tale prodotto come input tooRECOMMENDATIONS, ottiene un elenco di prodotti in cambio e decide quali di questi prodotti verranno visualizzati toohello cliente. Si desidera toouse indicazioni toooptimize negozio online oppure anche tooinform l'interno center chiamata o di reparto vendite.
 
 **Sono previste limitazioni per l'utilizzo?**
 
-L'utilizzo di Recommendations ha le limitazioni seguenti:
+Indicazioni è hello limitazioni di utilizzo seguenti:
 
 * Numero massimo di modelli per sottoscrizione: 10
 * Numero massimo di elementi che possono essere inclusi nel catalogo: 100.000
-* Il numero massimo di punti di utilizzo mantenuti è ~5.000.000. I meno recenti saranno eliminati se ne vengono caricati o segnalati di nuovi.
+* numero massimo di Hello di punti di utilizzo che vengono conservati è ~ 5.000.000. Hello meno recente verrà eliminato verranno caricati o segnalati nuovi.
 * La dimensione massima dei dati che possono essere inviati per posta elettronica (ad esempio, importazione dei dati del catalogo o dei dati di utilizzo) è di 200 MB.
-* Il numero di transazioni al secondo (TPS) per una compilazione di un modello di raccomandazioni non attiva è di ~2 TPS. Una compilazione del modello di raccomandazioni attiva può includere un massimo di 20 TPS.
+* Il numero di transazioni al secondo (TPS) per una compilazione di un modello di raccomandazioni non attiva è di ~2 TPS. Una compilazione del modello indicazioni attivo può contenere fino too20 TPS.
 
 ## <a name="purchase-and-billing"></a>Acquisto e fatturazione
-**Qual è il costo di Recommendations durante il periodo di lancio?**
+**Indicazioni costa durante il periodo di avvio hello?**
 
-Recommendations è un servizio basato su sottoscrizione. Gli addebiti sono basati sul volume di transazioni al mese. Per informazioni sui prezzi, è possibile vedere la [pagina delle offerte](https://datamarket.azure.com/dataset/amla/recommendations) in Microsoft Azure Marketplace.
+Recommendations è un servizio basato su sottoscrizione. Gli addebiti sono basati sul volume di transazioni al mese. È possibile controllare hello [offrono pagina](https://datamarket.azure.com/dataset/amla/recommendations) in Microsoft Azure Marketplace per informazioni sui prezzi.
 
 **Sono previsti costi per la registrazione e l'archiviazione dell'attività utente tramite Recommendations?**
 
-Al momento no.
+Non un determinato momento hello.
 
 **È disponibile una versione di valutazione gratuita per Recommendations?**
 
-La versione di valutazione gratuita disponibile è limitata a 10.000 transazioni al mese.
+Non vi è un itinerario gratuito che è limitato too10, 000 transazioni al mese.
 
 **Quando verrà emessa la fattura per Recommendations?**
 
-Una sottoscrizione a pagamento è una sottoscrizione per cui sono previste tariffe mensili. Quando si acquista una sottoscrizione a pagamento, si riceve immediatamente l'addebito per il primo mese d'uso. Viene addebitato l'importo indicato accanto all'offerta nella pagina di sottoscrizione, con l'aggiunta di eventuali imposte applicabili. L'addebito mensile viene effettuato ogni mese nello stesso giorno di calendario in cui è stato effettuato l'acquisto originale, fino all'annullamento della sottoscrizione. 
+Una sottoscrizione a pagamento è una sottoscrizione per cui sono previste tariffe mensili. Quando si acquista una sottoscrizione a pagamento, riceve immediatamente l'addebito per hello primo utilizzo mese di. Si viene addebitato l'importo di hello associato hello offerta nella pagina di sottoscrizione hello (più le imposte applicabili). L'addebito mensile viene eseguita ogni mese in hello stesso calendario data di acquisto originale, fino a quando non si Annulla sottoscrizione hello. 
 
-**Come si esegue l'aggiornamento a servizi di livello superiore?**
+**Come eseguire l'aggiornamento del servizio di livello superiore tooa?**
 
-È possibile acquistare o aggiornare la sottoscrizione dalla [pagina delle offerte](https://datamarket.azure.com/dataset/amla/recommendations) in Microsoft Azure Marketplace.
+È possibile acquistare o aggiornare la sottoscrizione da hello [offrono pagina](https://datamarket.azure.com/dataset/amla/recommendations) pagina in Microsoft Azure Marketplace.
 
 Quando si aggiorna una sottoscrizione:
 
-* Le transazioni rimanenti nella sottoscrizione precedente non verranno aggiunte alla nuova sottoscrizione. 
-* Sarà necessario pagare il prezzo completo per la nuova sottoscrizione, anche se nella sottoscrizione precedente sono presenti transazioni non usate.
+* Le transazioni rimanenti nella sottoscrizione precedente non vengono aggiunti tooyour nuova sottoscrizione. 
+* Si paga il prezzo completo per la nuova sottoscrizione hello, anche se dispone di transazioni non usate nella sottoscrizione precedente.
 
-Processo per aggiornare una sottoscrizione:
+Processo tooupgrade una sottoscrizione:
 
-* Passare alla [pagina delle offerte](https://datamarket.azure.com/dataset/amla/recommendations).
-* Accedere al Marketplace se non è già stato fatto.
-* Nel riquadro a sinistra sono elencati tutti i piani disponibili. Fare clic sul pulsante di opzione del piano da aggiornare.
-* Per eseguire l'aggiornamento, fare clic su **OK**nella finestra di dialogo. Se non si vuole eseguire l'aggiornamento, fare clic su **Annulla**.
+* Nevigate toohello [offrono pagina](https://datamarket.azure.com/dataset/amla/recommendations).
+* Se non già effettuato l'accesso, accedi toohello Marketplace.
+* Nel riquadro di destra hello, sono elencati tutti i piani disponibili hello. Fare clic su pulsante di opzione hello per piano di hello da tooupgrade per.
+* Se si desidera tooupgrade, fare clic su **OK**. Se si desidera tooupgrade, fare clic su **Annulla**.
 
-**Importante** : esaminare attentamente la finestra di dialogo prima di eseguire l'aggiornamento, perché sono previste implicazioni a livello di fatturazione e uso.
+**Importante** la finestra di dialogo di hello leggere con attenzione prima di aggiornare poiché sono presenti le implicazioni di fatturazione e utilizzo.
 
-**Quando scade la sottoscrizione a Recommendations?**
+**Quando terminerà tooRecommendations la sottoscrizione?**
 
-La sottoscrizione avrà termine quando la si annulla. Per annullare le sottoscrizioni, vedere le istruzioni seguenti.
+La sottoscrizione avrà termine quando la si annulla. Se si desidera toocancel delle sottoscrizioni, vedere hello attenendosi alle istruzioni.
 
 **Come si annulla la sottoscrizione a Recommendations?**
 
-Per annullare la sottoscrizione, eseguire la procedura seguente. Se la sottoscrizione attuale è una sottoscrizione a pagamento, rimarrà attiva fino al termine del periodo di fatturazione corrente. Se è necessario annullarla con effetto immediato, contattare il [Supporto tecnico Microsoft](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn).
+toocancel la sottoscrizione, utilizzare hello seguendo i passaggi. Se la sottoscrizione corrente è una sottoscrizione a pagamento, la sottoscrizione rimarrà attiva fino a fine di hello hello periodo di fatturazione corrente. Se è necessario hello toobe annullamento effettiva immediatamente, contattare Microsoft all'indirizzo [supporto Microsoft](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn).
 
-**Nota** : non sono previsti rimborsi in caso di annullamento prima della fine di un periodo di fatturazione o per le transazioni non usate in un periodo di fatturazione.
+**Nota** non sono previsti rimborsi se annullare prima hello fine del periodo di fatturazione o per le transazioni inutilizzate in un periodo di fatturazione.
 
-* Passare alla [pagina delle offerte](https://datamarket.azure.com/dataset/amla/recommendations).
-* Accedere al Marketplace se non è già stato fatto.
-* Fare clic su **Annulla** a destra del nome e dello stato del set di dati. È possibile usare questa sottoscrizione fino al termine del periodo di fatturazione corrente o fino al raggiungimento del limite di transazioni, a seconda di quale evento si verifica per primo.
+* Passare toohello [offrono pagina](https://datamarket.azure.com/dataset/amla/recommendations).
+* Se non già effettuato l'accesso, accedi toohello Marketplace.
+* Fare clic su **Annulla** toohello destra del nome di set di dati hello e lo stato. È possibile usare questa sottoscrizione fino al raggiungimento fine hello di hello fatturazione periodo o il limite della transazione corrente (a seconda del valore si verifica per primo).
 
-Per annullare immediatamente la sottoscrizione e acquistarne una nuova, inviare un ticket al [Supporto tecnico Microsoft](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn).
+Se si desidera toocancel la sottoscrizione immediatamente così è possibile acquistare una nuova sottoscrizione, creare un ticket al [supporto Microsoft](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn).
 
 ## <a name="getting-started-with-recommendations"></a>Introduzione a Recommendations
 **Per quali utenti è consigliabile Recommendations?** 
 
-Recommendations in Machine Learning è ideale per le organizzazioni e le attività che si basano sulle raccomandazioni per il cross-selling e l'upselling di prodotti e servizi ai clienti. Se si ha un sito Web pubblico, una forza vendita, una forza vendita interna o un call center e se si offre un catalogo che include più di qualche decina di prodotti o servizi, l'uso di Recommendations può offrire molti vantaggi. 
+Indicazioni in Machine Learning è per le organizzazioni e le aziende che si basano sui consigli toocross-selling e indirizzare i prodotti o servizi tootheir clienti. Se si ha un sito Web pubblico, una forza vendita, una forza vendita interna o un call center e se si offre un catalogo che include più di qualche decina di prodotti o servizi, l'uso di Recommendations può offrire molti vantaggi. 
 
-Sperimentare l'uso di Recommendations è abbastanza semplice. La versione attuale basata su API richiede competenze di programmazione di base. Se è necessaria assistenza, rivolgersi al fornitore che ha sviluppato il sito Web. Se nell'organizzazione è disponibile un reparto IT o è presente uno sviluppatore interno, dovrebbe essere in grado di configurare Recommendations per l'uso nell'organizzazione. 
+Esperimenti con indicazioni è progettato toobe piuttosto semplice. versione di Hello corrente basate su API richiede competenze di programmazione di base. Se è necessaria assistenza, contattare il fornitore hello che ha sviluppato il sito Web. Se si dispone di un reparto IT interno o uno sviluppatore interno, dovrebbero essere in grado di tooget indicazioni toowork automaticamente. 
 
-**Quali sono i prerequisiti per la configurazione di Recommendations?**
+**Quali sono hello prerequisiti per la configurazione di suggerimenti?**
 
-Recommendations richiede la disponibilità di un log di scelte utente in relazione al catalogo. Se il log non è disponibile e si usa un sito Web pubblico, si potrà usare Recommendations per raccogliere automaticamente informazioni sulle attività degli utenti. 
+Raccomandazioni richiede la presenza di un log delle scelte dell'utente in relazione tooyour catalogo. Se il log non è disponibile e si usa un sito Web pubblico, si potrà usare Recommendations per raccogliere automaticamente informazioni sulle attività degli utenti. 
 
-Recommendations richiede anche un catalogo di prodotti o servizi. Se il catalogo non è disponibile, Recommendations può usare i dati di uso effettivi dei clienti per estrarre un catalogo. Un catalogo implicito non include elementi non segnalati come parte delle transazioni degli utenti.
+Recommendations richiede anche un catalogo di prodotti o servizi. Se non si dispone di catalogo hello, indicazioni possono utilizzare dati di utilizzo reali dei clienti hello e filtrare un catalogo. Un catalogo implicito non include elementi non segnalati come parte delle transazioni degli utenti.
 
-**Come si configura Recommendations per la prima volta?**
+**Come si impostano le indicazioni per hello prima volta?**
 
-Dopo la [sottoscrizione](https://datamarket.azure.com/dataset/amla/recommendations) a Recommendations, è necessario usare la documentazione dell'API disponibile nella [Guida introduttiva per l'API Recommendations di Azure Machine Learning](machine-learning-recommendation-api-quick-start-guide.md) per configurare il dispositivo.
+Dopo aver [sottoscrizione](https://datamarket.azure.com/dataset/amla/recommendations) tooRecommendations, è consigliabile utilizzare la documentazione di hello API hello [indicazioni di Azure Machine Learning - Guida introduttiva](machine-learning-recommendation-api-quick-start-guide.md) tooset servizio hello.
 
 **Dove è possibile trovare la documentazione sulle API?** 
 
-La documentazione sulle API è disponibile nella [Guida introduttiva per l'API Recommendations di Azure Machine Learning](machine-learning-recommendation-api-quick-start-guide.md).
+la documentazione dell'API Hello è [indicazioni di Azure Machine Learning-Guida introduttiva](machine-learning-recommendation-api-quick-start-guide.md).
 
-**Quali sono le opzioni disponibili per caricare i dati relativi al catalogo e all'utilizzo in Recommendations?**
+**Che cosa opzioni ho tooRecommendations di dati di utilizzo e di catalogo tooupload?**
 
-Per caricare i dati relativi al catalogo e all'utilizzo sono disponibili due opzioni: è possibile esportare questi dati dal sistema CRM o da altri log e caricarli in Recommendations oppure aggiungere tag al sito Web, in modo da tenere traccia delle attività degli utenti. Se si usa il secondo metodo, i dati saranno archiviati in Azure.
+Sono disponibili due opzioni per il caricamento dei dati di utilizzo e di catalogo: È possibile esportare dati hello dal sistema CRM o altri registri e caricarlo tooRecommendations o per aggiungere un sito Web tooyour tag che tengano traccia attività dell'utente. Se si usa quest'ultimo metodo hello, dati hello verranno archiviati in Azure.
 
 ## <a name="maintenance-and-support"></a>Manutenzione e supporto
 **Quali sono le dimensioni massime consentite per i set di dati?**
 
-Ogni set di dati può includere al massimo 100.000 elementi del catalogo e fino a 2048 MB di dati di utilizzo.
-Una sottoscrizione può anche includere un massimo di 10 set di dati (modelli).
+Ogni set di dati può contenere backup too100, gli elementi del catalogo 000 e backup too2048 MB di dati di utilizzo.
+Inoltre, una sottoscrizione può contenere i set di dati too10 (modelli).
 
 **Dove si può ottenere il supporto tecnico per Recommendations?**
 
-Il supporto tecnico è disponibile tramite il sito del [supporto tecnico di Microsoft Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning) .
+Il supporto tecnico è disponibile in hello [Microsoft Azure supporta](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning) sito.
 
-**Dove si trovano le condizioni per l'utilizzo?**
+**Dove trovare condizioni hello di utilizzo**
 
 [Condizioni del servizio relative all'API Recommentazions di Microsoft Azure Machine Learning](https://datamarket.azure.com/dataset/amla/recommendations#terms).
 

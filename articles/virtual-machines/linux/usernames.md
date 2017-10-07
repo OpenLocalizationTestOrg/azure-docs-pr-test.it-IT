@@ -1,6 +1,6 @@
 ---
-title: Selezione dei nomi utente per Linux | Microsoft Docs
-description: Informazioni su come selezionare i nomi utente per una macchina virtuale Linux in Azure.
+title: i nomi utente di Linux aaaSelecting | Documenti Microsoft
+description: Informazioni su come utente tooselect nomi per una macchina virtuale di Linux in Azure.
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 1874d72e5f88816036667932371ff28704d186c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c65e2ac46f40bb8c9d74cccbaf248a070c0fa6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="selecting-user-names-for-linux-on-azure"></a>Selezione dei nomi utente per Linux su Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Durante il provisioning di una macchina virtuale Linux in Azure è necessario specificare il nome di un utente non radice, che in un secondo momento è possibile utilizzare per accedere alla macchina virtuale. È possibile scegliere il nome del nuovo utente o se il provisioning avviene tramite il portale di Azure classico è possibile accettare il nome predefinito "azureuser".
+Quando si esegue il provisioning di una macchina virtuale di Linux in Azure è necessario specificare il nome di hello di un utente non radice che è possibile utilizzare in un secondo momento toolog in hello macchina virtuale. È possibile scegliere il nome di hello del nuovo utente hello o se il provisioning tramite hello portale di Azure classico è possibile accettare predefinito hello azureuser"nome".
 
-Nella maggior parte dei casi questo nuovo utente non esiste nell'immagine di base e viene creato durante il processo di provisioning. Se l'utente esiste nell'immagine della VM di base, l'agente Linux di Azure configura la password (e/o la chiave SSH) per tale utente in base alle informazioni specificate durante la creazione della VM.
+Nella maggior parte dei casi l'utente non esiste nell'immagine di base hello e verrà creato durante il processo di provisioning hello. Se l'utente di hello presente su immagine di macchina virtuale di base hello, agente Linux di Azure hello semplicemente configura quindi password hello e/o la chiave SSH per l'utente in base alle informazioni di hello specificata durante la creazione di hello macchina virtuale.
 
-**Tuttavia**, Linux definisce un set di nomi utente che non devono essere usati. Se si prova a eseguire il provisioning di una macchia virtuale Linux usando un utente di sistema esistente, definito come utente con un valore UID compreso tra 0 e 99, il processo avrà **esito negativo** . Un esempio tipico è rappresentato dall'utente `root` , il cui valore UID è 0.
+**Tuttavia**, Linux definisce un set di nomi utente che non devono essere usati. Hello provisioning processo verrà **esito negativo** se si tenta di tooprovision una VM Linux di un utente di sistema esistente, è definito come un utente con UID 0 e 99. Un esempio tipico è hello `root` utente, che ha UID 0.
 
 * Vedere anche: [Base standard di Linux - Intervalli ID utente](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-L'elenco seguente include utenti di sistema predefiniti comuni per CentOS e Ubuntu che non devono essere usati quando si effettua il provisioning di una macchina virtuale Linux in Azure. Questo elenco è solo un esempio. Vedere la documentazione specifica della distribuzione per assicurarsi che il nome utente scelto non sia in conflitto con un utente di sistema esistente.
+di seguito Hello è un elenco di utenti di sistema predefinito comune per CentOS e Ubuntu deve evitare di utilizzare durante il provisioning di una macchina virtuale di Linux in Azure. Questo elenco è solo un esempio, fare riferimento toohello documentazione per la distribuzione tooensure hello nome utente desiderato non è in conflitto con un utente di sistema esistente.
 
 ## <a name="centos"></a>CentOS
 * abrt

@@ -1,6 +1,6 @@
 ---
-title: Creare una macchina virtuale Windows usando un modello di Azure | Documentazione Microsoft
-description: Usare un modello di Resource Manager e PowerShell per creare facilmente una nuova macchina virtuale Windows.
+title: una macchina virtuale Windows da un modello in Azure aaaCreate | Documenti Microsoft
+description: Utilizzare un modello di gestione delle risorse e PowerShell tooeasily creare una nuova macchina virtuale di Windows.
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 07/18/2017
 ms.author: davidmu
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ddab80262fe27c1f5995858ec7de75d7c46df081
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 630111482c7dc046091632e2ed458ac143325d59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-from-a-resource-manager-template"></a>Creare una macchina virtuale Windows usando un modello di Resource Manager
 
-Questo articolo descrive come distribuire un modello di Azure Resource Manager tramite PowerShell. Il modello creato consente di distribuire una singola macchina virtuale che esegue Windows Server in una nuova rete virtuale con un'unica subnet.
+In questo articolo illustra come un gestore delle risorse Azure toodeploy modello di utilizzo di PowerShell. modello Hello creato consente di distribuire una singola macchina virtuale che esegue Windows Server in una nuova rete virtuale con una singola subnet.
 
-Per una descrizione dettagliata della risorsa macchina virtuale, vedere [Virtual machines in an Azure Resource Manager template](template-description.md) (Macchine virtuali in un modello di Azure Resource Manager). Per altre informazioni su tutte le risorse in un modello, vedere [Azure Resource Manager template walkthrough](../../azure-resource-manager/resource-manager-template-walkthrough.md) (Procedura dettagliata sui modelli di Azure Resource Manager).
+Per una descrizione dettagliata della risorsa di macchina virtuale hello, vedere [macchine virtuali in un modello di gestione risorse di Azure](template-description.md). Per ulteriori informazioni su tutte le risorse di hello in un modello, vedere [procedura dettagliata di modello di gestione risorse di Azure](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-L'esecuzione della procedura illustrata in questo articolo richiede circa cinque minuti.
+Richiede circa cinque minuti hello toodo i passaggi in questo articolo.
 
 ## <a name="install-azure-powershell"></a>Installare Azure PowerShell
 
-Per informazioni su come installare la versione più recente di Azure PowerShell, selezionare la sottoscrizione e accedere all'account, vedere [Come installare e configurare Azure PowerShell](../../powershell-install-configure.md).
+Vedere [come tooinstall e configurare Azure PowerShell](../../powershell-install-configure.md) per informazioni sull'installazione hello la versione più recente di Azure PowerShell, selezionando la sottoscrizione e la firma nell'account tooyour.
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
@@ -44,17 +44,17 @@ Tutte le risorse devono essere distribuite in un [gruppo di risorse](../../azure
     Get-AzureRmLocation | sort DisplayName | Select DisplayName
     ```
 
-2. Creare il gruppo di risorse nella località selezionata. Questo esempio descrive la creazione di un gruppo di risorse denominato **myResourceGroup** nella località **Stati Uniti occidentali**:
+2. Creare il gruppo di risorse hello in percorso hello selezionato. Questo esempio illustra la creazione di hello di un gruppo di risorse denominato **myResourceGroup** in hello **Stati Uniti occidentali** percorso:
 
     ```powershell   
     New-AzureRmResourceGroup -Name "myResourceGroup" -Location "West US"
     ```
 
-## <a name="create-the-files"></a>Creare i file
+## <a name="create-hello-files"></a>Creare file hello
 
-In questo passaggio si crea un file di modello che consente di distribuire le risorse e un file di parametri che fornisce i valori dei parametri nel modello. È possibile anche creare un file di autorizzazione da usare per eseguire operazioni in Azure Resource Manager.
+In questo passaggio si crea un file di modello che consente di distribuire risorse hello e un file di parametri che fornisce modelli di toohello valori di parametro. È inoltre possibile creare un file di autorizzazione che è utilizzati tooperform le operazioni di gestione risorse di Azure.
 
-1. Creare un file denominato *CreateVMTemplate.json* e aggiungervi questo codice JSON:
+1. Creare un file denominato *CreateVMTemplate.json* e aggiungere questo tooit codice JSON:
 
     ```json
     {
@@ -159,7 +159,7 @@ In questo passaggio si crea un file di modello che consente di distribuire le ri
     }
     ```
 
-2. Creare un file denominato *Parameters.json* e aggiungervi questo codice JSON:
+2. Creare un file denominato *Parameters.json* e aggiungere questo tooit codice JSON:
 
     ```json
     {
@@ -182,18 +182,18 @@ In questo passaggio si crea un file di modello che consente di distribuire le ri
     New-AzureStorageContainer -Name "templates" -Context $context -Permission Container
     ```
 
-4. Caricare i file nell'account di archiviazione:
+4. Caricare l'account di archiviazione toohello file hello:
 
     ```powershell
     Set-AzureStorageBlobContent -File "C:\templates\CreateVMTemplate.json" -Context $context -Container "templates"
     Set-AzureStorageBlobContent -File "C:\templates\Parameters.json" -Context $context -Container templates
     ```
 
-    Cambiare i percorsi -File nella posizione in cui sono stati archiviati i file.
+    Modifica hello - percorso del File toohello percorsi in cui sono archiviati i file hello.
 
-## <a name="create-the-resources"></a>Creare le risorse
+## <a name="create-hello-resources"></a>Creare risorse hello
 
-Distribuire il modello usando i parametri:
+Distribuire il modello di hello utilizzando parametri hello:
 
 ```powershell
 $templatePath = "https://" + $storageName + ".blob.core.windows.net/templates/CreateVMTemplate.json"
@@ -202,10 +202,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myResourceGroup" -Name "m
 ```
 
 > [!NOTE]
-> È inoltre possibile distribuire modelli e parametri da file locali. Per altre informazioni, vedere [Uso di Azure PowerShell con Archiviazione di Azure](../../storage/common/storage-powershell-guide-full.md).
+> È inoltre possibile distribuire modelli e parametri da file locali. vedere, più toolearn [tramite Azure PowerShell con l'archiviazione di Azure](../../storage/common/storage-powershell-guide-full.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Se si sono verificati problemi con la distribuzione, vedere [Risolvere errori comuni durante la distribuzione di risorse in Azure con Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
-- Informazioni su come creare e gestire una macchina virtuale sono disponibili in [Creare e gestire macchine virtuali di Windows con il modulo Azure PowerShell](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Se si sono verificati problemi con la distribuzione di hello, si potrebbe dare un'occhiata [risolvere i problemi relativi a errori comuni di distribuzione di Azure con Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
+- Informazioni su come toocreate e gestire una macchina virtuale in [creare e gestire macchine virtuali di Windows con il modulo di Azure PowerShell hello](tutorial-manage-vm.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

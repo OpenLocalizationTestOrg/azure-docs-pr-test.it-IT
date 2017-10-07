@@ -1,5 +1,5 @@
 ---
-title: Documentazione di Azure IoT Suite - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
+title: aaaAzure IoT Suite documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
 description: 
 services: iot-suite
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4d78758b718cb98a84a9ed8aed4c1b92db4ea59e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 83b006447e0d06d49ed7feace16b0db7d04d56f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-suite-documentation"></a>Documentazione di IoT Suite
 
-Inizia rapidamente a usare Microsoft Azure IoT Suite. Usa soluzioni preconfigurate e accelera lo sviluppo della tua soluzione IoT (Internet of Things, Internet delle cose). Aggiungi nuovi dispositivi e connetti quelli esistenti usando SDK per i dispositivi per più piattaforme, tra cui Linux, Windows e sistemi operativi in tempo reale. Passa facilmente da pochissimi sensori a milioni di dispositivi connessi contemporaneamente e affidati alla disponibilità globale di Azure, indipendentemente dalle dimensioni del tuo progetto.
+Inizia rapidamente a usare Microsoft Azure IoT Suite. Utilizzare soluzioni preconfigurate e accelerare lo sviluppo di hello della soluzione Internet delle cose (IoT). Aggiungi nuovi dispositivi e connetti quelli esistenti usando SDK per i dispositivi per più piattaforme, tra cui Linux, Windows e sistemi operativi in tempo reale. Semplice scalare da pochi toomillions sensori di dispositivi connessi contemporaneamente e si basano su disponibilità globale hello Azure&mdash;indipendentemente dalla modalità grandi o piccole il progetto.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -92,7 +92,7 @@ Inizia rapidamente a usare Microsoft Azure IoT Suite. Usa soluzioni preconfigura
                         <p><a href="/azure/iot-suite/iot-security-architecture">Architettura di sicurezza</a></p>
                         <p><a href="/azure/iot-suite/iot-security-best-practices">Procedure di sicurezza consigliate</a></p>
                         <p><a href="/azure/iot-suite/iot-suite-security-deployment">Proteggere la distribuzione di IoT</a></p>
-                        <p><a href="/azure/iot-suite/securing-iot-ground-up">Sicurezza sin dall'inizio</a></p>
+                        <p><a href="/azure/iot-suite/securing-iot-ground-up">Protezione da hello messa a terra</a></p>
                    </div>
                 </div>
             </div>

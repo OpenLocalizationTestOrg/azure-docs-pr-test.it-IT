@@ -1,6 +1,6 @@
 ---
-title: Passare valori complessi tra modelli di Azure | Documentazione Microsoft
-description: Mostra gli approcci consigliati per usare oggetti complessi per condividere i dati sullo stato con modelli di Azure Resource Manager e modelli collegati.
+title: aaaPass valori complessi tra modelli di Azure | Documenti Microsoft
+description: Mostra consigliabile approcci per l'utilizzo di dati relativi allo stato tooshare oggetti complessi con i modelli di gestione risorse di Azure e collegato.
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/26/2016
 ms.author: tomfitz
-ms.openlocfilehash: 23cc4321159a87b61c177b11381646af8bd9eb35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72df1dee351446cea6ce15269e6db288b1f1db79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="share-state-to-and-from-azure-resource-manager-templates"></a>Condividere lo stato tra modelli di Azure Resource Manager
-Questo argomento illustra le procedure consigliate per la gestione e la condivisione dello stato all'interno dei modelli. I parametri e le variabili illustrati in questo argomento sono esempi del tipo di oggetti che è possibile definire per organizzare facilmente i requisiti di distribuzione. Da questi esempi, è possibile implementare gli oggetti con valori di proprietà utili per l'ambiente.
+# <a name="share-state-tooand-from-azure-resource-manager-templates"></a>Condivisione dello stato tooand dai modelli di gestione risorse di Azure
+Questo argomento illustra le procedure consigliate per la gestione e la condivisione dello stato all'interno dei modelli. Hello parametri e variabili illustrate in questo argomento sono riportati alcuni esempi di tipo hello degli oggetti è possibile definire tooconveniently organizzare i requisiti di distribuzione. Da questi esempi, è possibile implementare gli oggetti con valori di proprietà utili per l'ambiente.
 
-Questo argomento fa parte di un white paper di dimensioni maggiori. Per leggere il documento completo, scaricare [World Class Resource Manager Templates Considerations and Proven Practices](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf) (Considerazioni e procedure consigliate sui modelli di Resource Manager a livello internazionale).
+Questo argomento fa parte di un white paper di dimensioni maggiori. scaricare hello tooread completo carta, [World classe Resource Manager modelli considerazioni e procedure consigliate di rivelati](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf).
 
 ## <a name="provide-standard-configuration-settings"></a>Uso di impostazioni di configurazione standard
-Anziché offrire un modello che fornisce la massima flessibilità e innumerevoli varianti, un modello comune fornisce una selezione di configurazioni note. In effetti, gli utenti possono selezionare taglie standard, come sandbox, small, medium e large. Altri esempi di taglie sono le offerte di prodotti, come Community Edition o Enterprise Edition. In altri casi, potrebbero essere configurazioni specifiche per i carichi di lavoro di una determinata tecnologia, ad esempio map reduce o no sql.
+Piuttosto che offrono un modello che fornisce la massima flessibilità e le variazioni innumerevoli, un modello comune è tooprovide una selezione di una configurazione conosciuta. In effetti, gli utenti possono selezionare taglie standard, come sandbox, small, medium e large. Altri esempi di taglie sono le offerte di prodotti, come Community Edition o Enterprise Edition. In altri casi, potrebbero essere configurazioni specifiche per i carichi di lavoro di una determinata tecnologia, ad esempio map reduce o no sql.
 
-Con gli oggetti complessi, è possibile creare variabili che contengono insiemi di dati, talvolta note come "contenitori di proprietà" e utilizzare tali dati per guidare la dichiarazione delle risorse nel modello. Questo approccio fornisce configurazioni note ed efficienti di dimensioni variabili, preconfigurate per i clienti. Senza configurazioni note, gli utenti del modello devono determinare autonomamente la dimensione del cluster, includere i limiti di risorse della piattaforma ed effettuare calcoli matematici per identificare il partizionamento risultante degli account di archiviazione e altre risorse (a causa della dimensione del cluster e dei limiti di risorse). Oltre a migliorare l'esperienza del cliente, un numero limitato di configurazioni note è più facile da supportare e consente di offrire un livello superiore di densità.
+Con gli oggetti complessi, è possibile creare le variabili che contengono raccolte di dati, talvolta noti anche come "elenchi di proprietà" e utilizzare tale dichiarazione della risorsa di hello toodrive dati nel modello. Questo approccio fornisce configurazioni note ed efficienti di dimensioni variabili, preconfigurate per i clienti. Senza configurazioni note, gli utenti del modello di hello devono determinare dimensioni cluster autonomamente, fattore nei vincoli di risorse di piattaforma ed eseguire matematiche tooidentify hello risultante partizionamento dell'account di archiviazione e altre risorse (a causa delle dimensioni toocluster e limitazioni delle risorse). Inoltre toomaking una migliore esperienza per cliente hello, alcune configurazioni note sono toosupport più semplice e consentono di offrire un livello di densità.
 
-Il seguente esempio mostra come definire variabili contenenti oggetti complessi per rappresentare raccolte di dati. Le raccolte definiscono i valori usati per le dimensioni della macchina virtuale, le impostazioni di rete, le impostazioni del sistema operativo e le impostazioni di disponibilità.
+Hello seguente esempio viene illustrato come le variabili di toodefine che contengono oggetti complessi per la rappresentazione di raccolte di dati. le raccolte di Hello definiscono i valori utilizzati per la dimensione della macchina virtuale, le impostazioni di rete, impostazioni del sistema operativo e disponibilità.
 
     "variables": {
       "tshirtSize": "[variables(concat('tshirtSize', parameters('tshirtSize')))]",
@@ -109,9 +109,9 @@ Il seguente esempio mostra come definire variabili contenenti oggetti complessi 
       }
     }
 
-Si noti che la variabile **tshirtSize** concatena la taglia delle t-shirt fornita tramite un parametro (**Small**, **Medium**, **Large**) al testo **tshirtSize**. Questa variabile viene usata per recuperare la variabile oggetto complesso associata per questa taglia.
+Si noti che hello **tshirtSize** variabile concatena magliette hello fornite tramite un parametro (**Small**, **Media**, **grande**) toohello testo **tshirtSize**. Utilizzare questa variabile di oggetto complesso associato hello tooretrieve variabile per tale magliette.
 
-È possibile fare riferimento a queste variabili in un secondo momento nel modello. La possibilità di fare riferimento a variabili denominate e alle relative proprietà semplifica la sintassi del modello e semplifica la comprensione del contesto. L'esempio seguente definisce una risorsa da distribuire usando gli oggetti indicati sopra per impostare i valori. Ad esempio, le dimensioni della VM vengono impostate recuperando il valore di `variables('tshirtSize').vmSize`, mentre il valore delle dimensioni del disco viene recuperato da `variables('tshirtSize').diskSize`. Inoltre, l'URI di un modello collegato viene impostato con il valore di `variables('tshirtSize').vmTemplate`.
+È quindi possibile fare riferimento a queste variabili in un secondo momento nel modello di hello. Hello possibilità tooreference denominato le variabili e le relative proprietà semplifica la sintassi dei modelli di hello e rende facile toounderstand contesto. Hello di esempio seguente definisce una risorsa toodeploy utilizzando oggetti hello illustrati in precedenza tooset valori. Ad esempio, hello dimensioni della macchina virtuale è impostato per il recupero del valore di hello per `variables('tshirtSize').vmSize` mentre il valore di hello per dimensioni del disco hello vengano recuperata dal `variables('tshirtSize').diskSize`. Inoltre, hello URI per un modello collegato viene impostato con il valore di hello per `variables('tshirtSize').vmTemplate`.
 
     "name": "master-node",
     "type": "Microsoft.Resources/deployments",
@@ -166,23 +166,23 @@ Si noti che la variabile **tshirtSize** concatena la taglia delle t-shirt fornit
       }
     }
 
-## <a name="pass-state-to-a-template"></a>Passaggio dello stato a un modello
+## <a name="pass-state-tooa-template"></a>Passaggio di stato tooa modello
 È possibile condividere lo stato in un modello tramite parametri forniti direttamente durante la distribuzione.
 
-La tabella seguente elenca i parametri di uso comune nei modelli.
+Hello seguenti tabella elenchi comunemente utilizzati parametri nei modelli.
 
 | Nome | Valore | Descrizione |
 | --- | --- | --- |
-| location |Stringa da un elenco vincolato di aree di Azure |Posizione in cui sono distribuite le risorse. |
-| storageAccountNamePrefix |String |Nome DNS univoco dell'account di archiviazione in cui vengono inseriti i dischi della VM |
-| domainName |String |Nome di dominio della VM Jumpbox accessibile pubblicamente nel formato: **{domainName}.{location}.cloudapp.com**, ad esempio: **mydomainname.westus.cloudapp.azure.com** |
-| adminUsername |Stringa |Nome utente per le VM |
-| adminPassword |Stringa |Password delle VM |
-| tshirtSize |Stringa da un elenco vincolato di taglie offerte |Dimensioni dell'unità di scala denominata di cui effettuare il provisioning. Ad esempio, "Small", "Medium", "Large" |
-| virtualNetworkName |Stringa |Nome della rete virtuale che l'utente vuole usare. |
-| enableJumpbox |Stringa da un elenco vincolato (abilitato/disabilitato) |Parametro che indica se abilitare Jumpbox per l'ambiente. Valori: "enabled", "disabled" |
+| location |Stringa da un elenco vincolato di aree di Azure |percorso di Hello in cui vengono distribuite le risorse di hello. |
+| storageAccountNamePrefix |String |Nome DNS univoco per l'Account di archiviazione in cui vengono collocati i dischi della macchina virtuale di hello hello |
+| domainName |String |Nome di dominio di hello accessibile pubblicamente jumpbox macchina virtuale in formato hello: **{domainName}. { percorso}.cloudapp.com** ad esempio: **mydomainname.westus.cloudapp.azure.com** |
+| adminUsername |String |Nome utente per hello macchine virtuali |
+| adminPassword |String |Password per hello macchine virtuali |
+| tshirtSize |Stringa da un elenco vincolato di taglie offerte |Hello denominato tooprovision dimensioni unità di scala. Ad esempio, "Small", "Medium", "Large" |
+| virtualNetworkName |String |Nome di rete virtuale hello hello consumer desidera toouse. |
+| enableJumpbox |Stringa da un elenco vincolato (abilitato/disabilitato) |Parametro che identifica se tooenable un jumpbox per ambiente hello. Valori: "enabled", "disabled" |
 
-Il parametro **tshirtSize** usato nella sezione precedente viene definito come:
+Hello **tshirtSize** parametro usato nella sezione precedente hello è definito come:
 
     "parameters": {
       "tshirtSize": {
@@ -194,21 +194,21 @@ Il parametro **tshirtSize** usato nella sezione precedente viene definito come:
           "Large"
         ],
         "metadata": {
-          "Description": "T-shirt size of the MongoDB deployment"
+          "Description": "T-shirt size of hello MongoDB deployment"
         }
       }
     }
 
 
-## <a name="pass-state-to-linked-templates"></a>Passaggio dello stato ai modelli collegati
-Quando ci si connette a modelli collegati, si usa spesso una combinazione di variabili statiche e generate.
+## <a name="pass-state-toolinked-templates"></a>Passare modelli toolinked stato
+Quando ci si connette toolinked modelli, spesso utilizzare una combinazione di statico e generato le variabili.
 
 ### <a name="static-variables"></a>Variabili statiche
-Le variabili statiche vengono usate spesso per fornire i valori di base, ad esempio URL, usati in un modello.
+Variabili statiche sono spesso valori di base tooprovide utilizzato, ad esempio, gli URL vengono utilizzati in un modello.
 
-Nell'estratto di modello seguente, `templateBaseUrl` specifica il percorso radice del modello in GitHub. La riga successiva compila una nuova variabile `sharedTemplateUrl` che concatena l'URL di base con il nome noto del modello di risorse condiviso. Sotto questa riga, una variabile oggetto complesso viene usata per archiviare una taglia, dove l'URL di base viene concatenato al percorso del modello di configurazione noto e archiviato nella proprietà `vmTemplate`.
+Nel seguente estratto di codice modello hello `templateBaseUrl` specifica il percorso radice hello per modello hello in GitHub. riga successiva Hello compila una nuova variabile `sharedTemplateUrl` che concatena hello l'URL di base con nome noto di hello del modello di risorse condivise hello. Sotto tale riga, una variabile oggetto complesso è toostore usato un magliette, dove l'URL di base hello è concatenato toohello noto percorso del modello di configurazione e archiviati in hello `vmTemplate` proprietà.
 
-Il vantaggio di questo approccio è di poter modificare la variabile statica solo in un'unica posizione, che la passa in tutti i modelli collegati se il percorso del modello cambia.
+Il vantaggio di Hello di questo approccio è che se il percorso di modello hello viene modificato, è necessario solo toochange variabile statica di hello in un'unica posizione, che viene passata in tutti i modelli di hello collegato.
 
     "variables": {
       "templateBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/postgresql-on-ubuntu/",
@@ -230,13 +230,13 @@ Il vantaggio di questo approccio è di poter modificare la variabile statica sol
     }
 
 ### <a name="generated-variables"></a>Variabili generate
-Oltre alle variabili statiche, numerose variabili vengono generate dinamicamente. Questa sezione identifica alcuni dei tipi comuni di variabili generate.
+Nelle variabili toostatic aggiunta, vengono generate in modo dinamico diverse variabili. In questa sezione vengono illustrati alcuni dei tipi di variabili generate comuni hello.
 
 #### <a name="tshirtsize"></a>tshirtSize
-A questo punto si ha familiarità con la variabile generata dagli esempi precedenti.
+Si ha familiarità con questa variabile generata dagli esempi hello precedenti.
 
 #### <a name="networksettings"></a>networkSettings
-In una capacità, funzionalità o modello di soluzione con ambito end-to-end, i modelli collegati di solito creano risorse esistenti in una rete. Un approccio semplice consiste nell'usare un oggetto complesso per archiviare le impostazioni di rete e passarle ai modelli collegati.
+In un hello capacità, funzionalità o il modello di soluzione con ambito end-to-end, modelli collegati in genere creano risorse esistenti in una rete. Un approccio semplice è toouse le impostazioni di rete toostore un oggetto complesso e passarli toolinked modelli.
 
 Di seguito è riportato un esempio di impostazioni di rete di comunicazione.
 
@@ -258,7 +258,7 @@ Di seguito è riportato un esempio di impostazioni di rete di comunicazione.
     }
 
 #### <a name="availabilitysettings"></a>availabilitySettings
-Le risorse create nei modelli collegati vengono spesso inserite in un set di disponibilità. Nell'esempio seguente, vengono specificati il nome del set di disponibilità e anche il conteggio di domini di errore e di domini di aggiornamento da usare.
+Le risorse create nei modelli collegati vengono spesso inserite in un set di disponibilità. Nel seguente esempio di hello, hello Nome set di disponibilità specificato e hello anche dominio di errore e aggiorna toouse conteggio di dominio.
 
     "availabilitySetSettings": {
       "name": "pgsqlAvailabilitySet",
@@ -266,10 +266,10 @@ Le risorse create nei modelli collegati vengono spesso inserite in un set di dis
       "udCount": 5
     }
 
-Se sono necessari più set di disponibilità (ad esempio, uno per i nodi master e un altro per i nodi dati), è possibile usare un nome come prefisso, specificare più set di disponibilità o seguire il modello mostrato prima per creare una variabile per una taglia specifica.
+Se è necessario più set di disponibilità (ad esempio, uno per i nodi principali) e un altro per i nodi di dati, è possibile utilizzare un nome come prefisso, specificare più set di disponibilità o di seguire il modello di hello illustrato in precedenza per la creazione di una variabile per una specifica magliette.
 
 #### <a name="storagesettings"></a>storageSettings
-I dettagli di archiviazione spesso vengono condivisi con i modelli collegati. Nell'esempio seguente, un oggetto *storageSettings* fornisce i dettagli sull'account di archiviazione e sui nomi dei contenitori.
+I dettagli di archiviazione spesso vengono condivisi con i modelli collegati. Nell'esempio hello riportato di seguito, un *storageSettings* oggetto fornisce informazioni dettagliate su hello i nomi degli account e il contenitore di archiviazione.
 
     "storageSettings": {
         "vhdStorageAccountName": "[parameters('storageAccountName')]",
@@ -278,9 +278,9 @@ I dettagli di archiviazione spesso vengono condivisi con i modelli collegati. Ne
     }
 
 #### <a name="ossettings"></a>osSettings
-Con i modelli collegati, potrebbe essere necessario passare le impostazioni del sistema operativo a vari tipi di nodi tra tipi di configurazione noti diversi. Un oggetto complesso consente di archiviare e condividere facilmente le informazioni sul sistema operativo e di supportare più scelte del sistema operativo per la distribuzione.
+Con i modelli collegati, potrebbe essere tipi di nodi toovarious le impostazioni del sistema operativo toopass tra tipi diversi di configurazione. Un oggetto complesso è un modo semplice toostore e condivisione di informazioni sul sistema operativo e lo rende anche più facile toosupport più sistemi operativi disponibili per la distribuzione.
 
-Il seguente esempio mostra un oggetto per *osSettings*:
+Hello esempio seguente viene illustrato un oggetto per *osSettings*:
 
     "osSettings": {
       "imageReference": {
@@ -292,7 +292,7 @@ Il seguente esempio mostra un oggetto per *osSettings*:
     }
 
 #### <a name="machinesettings"></a>machineSettings
-Una variabile generata, *machineSettings* è un oggetto complesso contenente una combinazione di variabili principali per la creazione di una nuova VM: nome utente e password dell'amministratore, un prefisso per i nomi delle VM e un riferimento a un'immagine del sistema operativo.
+Una variabile generata, *machineSettings* è un oggetto complesso contenente una combinazione di variabili principali per la creazione di una nuova VM: variabili di Hello includono nome utente dell'amministratore e la password, un prefisso per i nomi di macchina virtuale hello e riferimento a un'immagine del sistema operativo.
 
     "machineSettings": {
         "adminUsername": "[parameters('adminUsername')]",
@@ -306,17 +306,17 @@ Una variabile generata, *machineSettings* è un oggetto complesso contenente una
         }
     },
 
-Si noti che *osImageReference* recupera i valori della variabile *osSettings* definita nel modello principale. Ciò significa che è possibile modificare facilmente il sistema operativo per una VM, interamente o in base alla preferenza di un utente del modello.
+Si noti che *osImageReference* recupera hello valori hello *osSettings* variabile definita nel modello principale hello. Pertanto, è possibile modificare facilmente hello del sistema operativo per una macchina virtuale, interamente o in base alle preferenze hello di un consumer di modello.
 
 #### <a name="vmscripts"></a>vmScripts
-L'oggetto *vmScripts* contiene i dettagli sugli script per il download e l'esecuzione in un'istanza di una VM, inclusi i riferimenti esterni e interni. I riferimenti esterni includono l'infrastruttura.
-I riferimenti interni includono il software installato e la configurazione.
+Hello *vmScripts* oggetto contiene i dettagli sul toodownload script hello ed eseguire in un'istanza di macchina virtuale, inclusi i riferimenti esterni e interni. All'esterno di riferimenti includono infrastruttura hello.
+I riferimenti interni includono configurazione e hello installato software installato.
 
-La proprietà *scriptsToDownload* viene usata per elencare gli script per il download nella VM. Questo oggetto contiene anche i riferimenti agli argomenti della riga di comando per diversi tipi di azioni. Queste azioni includono l'esecuzione dell'installazione predefinita per ogni nodo, un'installazione eseguita dopo che tutti i nodi sono stati distribuiti ed eventuali altri script specifici di un determinato modello.
+Utilizzare hello *scriptsToDownload* hello toolist proprietà script toodownload toohello macchina virtuale. Inoltre, l'oggetto contiene argomenti della riga di toocommand riferimenti per i diversi tipi di azioni. Tali azioni includono l'esecuzione di installazione predefinita di hello per ogni singolo nodo, un'installazione che viene eseguito dopo che tutti i nodi vengono distribuiti e script aggiuntivi che possono essere specifico tooa modello specificato.
 
-Questo esempio deriva da un modello usato per distribuire MongoDB, che richiede un arbitro per offrire elevati livelli di disponibilità. *arbiterNodeInstallCommand* è stato aggiunto a *vmScripts* per installare l'arbitro.
+Questo esempio è tratto toodeploy un modello utilizzato MongoDB, che richiede un'analisi toodeliver la disponibilità elevata. Hello *arbiterNodeInstallCommand* è stato aggiunto troppo*vmScripts* analisi hello tooinstall.
 
-Nella sezione delle variabili è possibile trovare le variabili che definiscono il testo specifico per eseguire lo script con i valori appropriati.
+sezione variabili Hello è riportate le variabili di hello che definiscono hello testo specifico tooexecute hello lo script con i valori appropriati di hello.
 
     "vmScripts": {
         "scriptsToDownload": [
@@ -330,9 +330,9 @@ Nella sezione delle variabili è possibile trovare le variabili che definiscono 
 
 
 ## <a name="return-state-from-a-template"></a>Restituzione dello stato da un modello
-Non è solo possibile passare i dati a un modello, ma anche condividerli di nuovo con il modello chiamante. Nella sezione **outputs** di un modello collegato, è possibile specificare le coppie chiave/valore che possono essere utilizzate dal modello di origine.
+Non solo può passare i dati in un modello, è anche possibile chiamata modello di condivisione dati toohello indietro. In hello **restituisce** sezione di un modello collegato, è possibile specificare le coppie chiave/valore che possono essere utilizzate dal modello di origine hello.
 
-Il seguente esempio mostra come passare l'indirizzo IP privato generato in un modello collegato.
+Hello esempio seguente viene illustrato come toopass hello indirizzo IP privato generato in un modello collegato.
 
     "outputs": {
         "masterip": {
@@ -341,11 +341,11 @@ Il seguente esempio mostra come passare l'indirizzo IP privato generato in un mo
          }
     }
 
-All'interno del modello principale, è possibile usare tali dati con la sintassi seguente:
+Nel modello principale hello, è possibile utilizzare tali dati con hello la seguente sintassi:
 
     "[reference('master-node').outputs.masterip.value]"
 
-È possibile usare l'espressione seguente nella sezione outputs o nella sezione resources del modello principale. Non è possibile usare l'espressione nella sezione delle variabili in quanto si basa sullo stato di runtime. Per restituire il valore dal modello principale, usare:
+È possibile utilizzare l'espressione seguente nella sezione di output di hello o la sezione relativa alle risorse hello del modello principale hello. È possibile utilizzare l'espressione hello nella sezione variabili hello perché si basa sullo stato del runtime di hello. tooreturn questo valore dal modello principale hello, usare:
 
     "outputs": {
       "masterIpAddress": {
@@ -353,10 +353,10 @@ All'interno del modello principale, è possibile usare tali dati con la sintassi
         "type": "string"
       }
 
-Per un esempio di uso della sezione outputs di un modello collegato per la restituzione dei dischi dati per una macchina virtuale, vedere [Creazione di più dischi dati per una macchina virtuale](resource-group-create-multiple.md).
+Per un esempio di utilizzo hello restituisce una sezione di un modello collegato tooreturn di dischi di dati per una macchina virtuale, vedere [la creazione di più dischi dati per una macchina virtuale](resource-group-create-multiple.md).
 
 ## <a name="define-authentication-settings-for-virtual-machine"></a>Definizione delle impostazioni di autenticazione per la macchina virtuale
-È possibile usare il modello descritto in precedenza per le impostazioni di configurazione per specificare le impostazioni di autenticazione per una macchina virtuale. Creare un parametro per passare il tipo di autenticazione.
+È possibile utilizzare hello stesso modello illustrato in precedenza per la configurazione delle impostazioni toospecify hello impostazioni di autenticazione per una macchina virtuale. Creare un parametro per il passaggio in tipo di hello di autenticazione.
 
     "parameters": {
       "authenticationType": {
@@ -372,7 +372,7 @@ Per un esempio di uso della sezione outputs di un modello collegato per la resti
       }
     }
 
-Aggiungere le variabili per i diversi tipi di autenticazione e una variabile per archiviare il tipo usato per la distribuzione in base al valore del parametro.
+Aggiungere le variabili per i tipi di autenticazione diversi hello e una variabile toostore quale tipo viene usato per la distribuzione in base al valore di hello del parametro hello.
 
     "variables": {
       "osProfile": "[variables(concat('osProfile', parameters('authenticationType')))]",
@@ -400,7 +400,7 @@ Aggiungere le variabili per i diversi tipi di autenticazione e una variabile per
       }
     }
 
-Quando si definisce la macchina virtuale, si imposta **osProfile** sulla variabile creata.
+Quando si definisce una macchina virtuale hello, si imposta hello **osProfile** toohello variabile creata.
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -410,5 +410,5 @@ Quando si definisce la macchina virtuale, si imposta **osProfile** sulla variabi
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per informazioni sulle sezioni del modello, vedere [Creazione di modelli di Gestione risorse di Azure](resource-group-authoring-templates.md)
-* Per tutte le funzioni disponibili in un modello, vedere [Funzioni del modello di Gestione risorse di Azure](resource-group-template-functions.md)
+* toolearn sulle sezioni hello hello del modello di, vedere [la creazione di modelli di gestione risorse di Azure](resource-group-authoring-templates.md)
+* le funzioni hello toosee disponibili all'interno di un modello, vedere [funzioni di modello di gestione risorse di Azure](resource-group-template-functions.md)

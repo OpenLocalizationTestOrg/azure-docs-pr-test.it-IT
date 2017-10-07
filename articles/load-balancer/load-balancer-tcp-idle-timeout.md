@@ -1,5 +1,5 @@
 ---
-title: "Configurare il timeout di inattività TCP di Load Balancer | Microsoft Docs"
+title: "timeout di inattività TCP del servizio di bilanciamento carico di aaaConfigure | Documenti Microsoft"
 description: "Configurazione del timeout di inattività TCP di Load Balancer"
 services: load-balancer
 documentationcenter: na
@@ -13,45 +13,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d040fe6580b8ae777aecc9dd385ed33861530c38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bf0704b891f708e0a5bd7aa827441930f51cfaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-tcp-idle-timeout-settings-for-azure-load-balancer"></a>Configurazione del timeout di inattività TCP di Azure Load Balancer
 
-La configurazione predefinita di Azure Load Balancer prevede che il timeout di inattività sia impostato su 4 minuti. Se un periodo di inattività è più lungo del valore di timeout, non ci sono garanzie che venga mantenuta la sessione TCP o HTTP tra il client e il servizio cloud.
+La configurazione predefinita di Azure Load Balancer prevede che il timeout di inattività sia impostato su 4 minuti. Se un periodo di inattività supera il valore di timeout di hello, non c'è garanzia che hello TCP o HTTP sessione viene mantenuta tra client hello e il servizio cloud.
 
-Quando la connessione viene chiusa, l'applicazione client potrebbe ricevere il messaggio di errore seguente: "Connessione sottostante chiusa: una connessione che doveva restare attiva è stata chiusa dal server in modo imprevisto".
+Chiusura della connessione hello, l'applicazione client può ricevere hello seguente messaggio di errore: "hello connessione sottostante chiusa: una connessione che doveva toobe mantenuta attiva è stata chiusa dal server hello."
 
-Una prassi comune consiste nell'usare una connessione TCP keep-alive per mantenere la connessione attiva per un periodo più lungo. Per altre informazioni, vedere questi [esempi .NET](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx). Con la connessione keep-alive abilitata, i pacchetti vengono inviati durante i periodi di inattività della connessione. Questi pacchetti keep-alive garantiscono che il valore del timeout di inattività non venga mai raggiunto e che la connessione sia mantenuta per un lungo periodo.
+Una pratica comune è toouse un keep-alive TCP. Questa procedura mantiene connessione hello attivo per un periodo più lungo. Per altre informazioni, vedere questi [esempi .NET](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx). Keep-alive abilitata, i pacchetti vengono inviati durante i periodi di inattività della connessione hello. Questi pacchetti keep-alive assicurarsi che il valore di timeout di inattività hello non viene mai raggiunto e connessione hello viene mantenuta per un lungo periodo.
 
-Questa impostazione funziona solo per le connessioni in entrata. Per evitare di perdere la connessione, è necessario configurare l'impostazione keep-alive TCP con un intervallo minore rispetto all'impostazione di timeout di inattività o aumentare il valore del timeout di inattività. Per supportare tali scenari, è stato aggiunto il supporto per un timeout di inattività configurabile. È ora possibile impostare questo valore su una durata compresa tra 4 e 30 minuti.
+Questa impostazione funziona solo per le connessioni in entrata. tooavoid perdita della connessione hello, è necessario configurare hello keep-alive TCP con un intervallo minore di hello timeout di inattività impostazione o aumentare hello valore timeout di inattività. toosupport tali scenari, è stato aggiunto il supporto per un timeout di inattività. È ora possibile impostare per una durata pari a 4 minuti too30.
 
-La connessione TCP keep-alive è particolarmente adatta per gli scenari non vincolati alla durata della batteria, mentre non è consigliabile per le applicazioni mobili. L'uso di un'impostazione keep-alive TCP in un'applicazione per dispositivi mobili può far scaricare più velocemente la batteria del dispositivo.
+La connessione TCP keep-alive è particolarmente adatta per gli scenari non vincolati alla durata della batteria, mentre non è consigliabile per le applicazioni mobili. Con un TCP keep-alive in un'applicazione per dispositivi mobili possono svuotare batteria dispositivo hello più velocemente.
 
 ![Timeout TCP](./media/load-balancer-tcp-idle-timeout/image1.png)
 
-Nella sezione seguente è descritto come modificare le impostazioni del timeout di inattività in macchine virtuali e servizi cloud.
+Hello le sezioni seguenti descrivono come toochange nelle macchine virtuali, le impostazioni di timeout di inattività e i servizi cloud.
 
-## <a name="configure-the-tcp-timeout-for-your-instance-level-public-ip-to-15-minutes"></a>Configurazione del timeout TCP per l'IP pubblico a livello di istanza su 15 minuti
+## <a name="configure-hello-tcp-timeout-for-your-instance-level-public-ip-too15-minutes"></a>Configurare timeout TCP hello per i minuti di too15 IP pubblici a livello di istanza
 
 ```powershell
 Set-AzurePublicIP -PublicIPName webip -VM MyVM -IdleTimeoutInMinutes 15
 ```
 
-`IdleTimeoutInMinutes` è facoltativo. Se non impostato, il timeout predefinito è 4 minuti. L'intervallo di timeout accettabile è compreso tra 4 e 30 minuti.
+`IdleTimeoutInMinutes` è facoltativo. Se non è impostata, il timeout predefinito hello è 4 minuti. intervallo di timeout accettabile Hello è 4 too30 minuti.
 
-## <a name="set-the-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>Impostazione del timeout di inattività durante la creazione di un endpoint di Azure in una macchina virtuale
+## <a name="set-hello-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>Impostare i timeout di inattività hello durante la creazione di un endpoint di Azure in una macchina virtuale
 
-Per modificare l'impostazione di timeout per un endpoint, usare il codice seguente:
+toochange hello timeout impostazione per un endpoint, utilizzare hello seguente:
 
 ```powershell
 Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn" -Protocol "tcp" -PublicPort 80 -LocalPort 8080 -IdleTimeoutInMinutes 15| Update-AzureVM
 ```
 
-Per recuperare la configurazione del timeout di inattività, usare il comando seguente:
+tooretrieve la configurazione di timeout di inattività, utilizzare hello comando seguente:
 
     PS C:\> Get-AzureVM -ServiceName "MyService" -Name "MyVM" | Get-AzureEndpoint
     VERBOSE: 6:43:50 PM - Completed Operation: Get Deployment
@@ -71,9 +71,9 @@ Per recuperare la configurazione del timeout di inattività, usare il comando se
     InternalLoadBalancerName :
     IdleTimeoutInMinutes : 15
 
-## <a name="set-the-tcp-timeout-on-a-load-balanced-endpoint-set"></a>Impostazione del timeout TCP su un set di endpoint con carico bilanciato
+## <a name="set-hello-tcp-timeout-on-a-load-balanced-endpoint-set"></a>Impostare i timeout TCP hello in un set di endpoint con bilanciamento del carico
 
-Se gli endpoint fanno parte di un set di endpoint con carico bilanciato, è necessario impostare il timeout TCP sul set di endpoint con carico bilanciato. ad esempio:
+Se gli endpoint sono parte di un set di endpoint con bilanciamento del carico, è necessario impostare timeout TCP hello in set di endpoint con carico bilanciato hello. ad esempio:
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Protocol tcp -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 -IdleTimeoutInMinutes 15
@@ -81,9 +81,9 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 
 ## <a name="change-timeout-settings-for-cloud-services"></a>Modifica delle impostazioni di timeout per i servizi cloud
 
-È possibile usare Azure SDK per aggiornare il servizio cloud. Le impostazioni degli endpoint per i servizi cloud vengono effettuate nel file .csdef. L'aggiornamento il timeout TCP per la distribuzione di un servizio cloud richiede un aggiornamento della distribuzione. Fa eccezione il caso in cui il timeout TCP sia specificato solo per un indirizzo IP pubblico. Le impostazioni degli indirizzi IP pubblici si trovano nel file .cscfg e possono essere aggiornate tramite l'aggiornamento della distribuzione.
+È possibile utilizzare hello Azure SDK tooupdate il servizio cloud. File con estensione csdef hello è effettuare le impostazioni di endpoint per i servizi cloud. L'aggiornamento di hello timeout TCP per la distribuzione di un servizio cloud richiede un aggiornamento della distribuzione. Un'eccezione è se hello TCP timeout viene specificato solo per un indirizzo IP pubblico. Impostazioni dell'IP pubbliche sono nel file con estensione cscfg hello e aggiornarle tramite l'aggiornamento e aggiornamento della distribuzione.
 
-Le modifiche del file con estensione csdef per le impostazioni di endpoint sono:
+modifiche di csdef Hello per le impostazioni di endpoint sono:
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -93,7 +93,7 @@ Le modifiche del file con estensione csdef per le impostazioni di endpoint sono:
 </WorkerRole>
 ```
 
-Le modifiche al file .cscfg per l'impostazione di timeout negli indirizzi IP pubblici sono le seguenti:
+le modifiche apportate al file con estensione cscfg Hello per l'impostazione di timeout hello su indirizzi IP pubblici sono:
 
 ```xml
 <NetworkConfiguration>
@@ -110,7 +110,7 @@ Le modifiche al file .cscfg per l'impostazione di timeout negli indirizzi IP pub
 
 ## <a name="rest-api-example"></a>Esempio di API REST
 
-È possibile configurare il timeout di inattività TCP l'API Gestione dei servizi. Controllare che l'intestazione `x-ms-version` sia impostata sulla versione `2014-06-01` o successiva. Aggiornare la configurazione degli endpoint di input specificati con carico bilanciato in tutte le macchine virtuali di una distribuzione.
+È possibile configurare i timeout di inattività TCP hello mediante API di Gestione servizio hello. Verificare che tale hello `x-ms-version` intestazione è impostata tooversion `2014-06-01` o versione successiva. Aggiorna configurazione hello di hello specifica gli endpoint di input con bilanciamento del carico in tutte le macchine virtuali in una distribuzione.
 
 ### <a name="request"></a>Richiesta
 

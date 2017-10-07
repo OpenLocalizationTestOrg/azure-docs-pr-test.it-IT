@@ -1,6 +1,6 @@
 ---
-title: Spostare dati in un database SQL di Azure per Azure Machine Learning | Microsoft Docs
-description: Creare una tabella SQL e caricare dati in tabelle SQL
+title: aaaMove tooan di dati nel Database SQL di Azure per Azure Machine Learning | Documenti Microsoft
+description: Creare una tabella SQL e caricare dati tooSQL tabella
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: dfd1649b666c3793339f8624bdf77aa92cca4e88
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b33ef836f42c17a56794baf763281e9998b16bef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-an-azure-sql-database-for-azure-machine-learning"></a>Spostamento dei dati in un database di SQL Azure per Azure Machine Learning
-Questo argomento indica le opzioni per lo spostamento dei dati da file flat, con estensione csv o tsv, o da dati archiviati in SQL Server locale a un database SQL di Azure. Queste attività per lo spostamento dei dati nel cloud fanno parte del Processo di analisi scientifica dei dati per i team.
+# <a name="move-data-tooan-azure-sql-database-for-azure-machine-learning"></a>Spostare dati tooan Database SQL di Azure per Azure Machine Learning
+In questo argomento vengono descritte le opzioni di hello per lo spostamento dei dati da file flat (formati CSV o TSV) o dai dati archiviati in un database di SQL Azure tooan di SQL Server locale. Queste attività per lo spostamento dati nel cloud toohello fanno parte del processo di analisi scientifica dei dati di Team hello.
 
-Per un argomento che descrive le opzioni per lo spostamento dei dati a SQL Server locale per Machine Learning, vedere [Spostamento dei dati in SQL Server in una macchina virtuale di Azure](machine-learning-data-science-move-sql-server-virtual-machine.md).
+Per un argomento che descrive le opzioni di hello per lo spostamento dati tooan locali di SQL Server per Machine Learning, vedere [spostare dati tooSQL Server in una macchina virtuale Azure](machine-learning-data-science-move-sql-server-virtual-machine.md).
 
-Il seguente **menu** si collega ad argomenti che descrivono come inserire dati in ambienti di destinazione in cui i dati possono essere archiviati ed elaborati durante il Processo di analisi scientifica dei dati per i team (TDSP).
+esempio Hello **menu** collegamenti tootopics che descrivono come dati tooingest in ambienti di destinazione in cui i dati hello possono essere archiviati ed elaborati durante hello Team Data Science processo (TDSP).
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
-Nella tabella seguente vengono riepilogate le opzioni per lo spostamento dei dati a un database di SQL Azure.
+Hello nella tabella seguente sono riepilogate le opzioni di hello per lo spostamento dati tooan Database SQL di Azure.
 
 | <b>SOURCE</b> | <b>DESTINATION: database SQL di Azure</b> |
 | --- | --- |
 | <b>File flat (con formato CSV o TSV)</b> |<a href="#bulk-insert-sql-query">Inserimento di massa query SQL |
-| <b>SQL Server locale</b> |1. <a href="#export-flat-file">Esportazione in un file flat<br> 2. <a href="#insert-tables-bcp">Migrazione guidata database SQL<br> 3. <a href="#db-migration">Backup e ripristino database<br> 4. <a href="#adf">Data factory di Azure |
+| <b>SQL Server locale</b> |1. <a href="#export-flat-file">Esportazione tooFlat File<br> 2. <a href="#insert-tables-bcp">Migrazione guidata database SQL<br> 3. <a href="#db-migration">Backup e ripristino database<br> 4. <a href="#adf">Data factory di Azure |
 
 ## <a name="prereqs"></a>Prerequisiti
-Questa procedura descritta di seguito richiede di disporre di:
+procedure di Hello descritte di seguito è necessario disporre di:
 
 * Una **sottoscrizione di Azure**. Se non si ha una sottoscrizione, è possibile iscriversi per provare una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
-* Un **account di archiviazione Azure**. In questa esercitazione si userà un account di archiviazione di Azure per archiviare i dati. Se non si dispone di un account di archiviazione di Azure, vedere l'articolo [Creare un account di archiviazione di Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) . Dopo avere creato l'account di archiviazione, è necessario ottenere la chiave dell'account usata per accedere alla risorsa di archiviazione. Vedere la sezione [Gestire le chiavi di accesso alle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
-* Accesso a un **database SQL di Azure**. Se è necessario impostare un database di SQL Azure, la [Guida introduttiva al database SQL di Microsoft Azure](../sql-database/sql-database-get-started.md) fornisce informazioni su come eseguire il provisioning di una nuova istanza di un database di SQL Azure.
-* Installazione e configurazione di **Azure PowerShell** in locale. Per istruzioni, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+* Un **account di archiviazione Azure**. Utilizzare un account di archiviazione di Azure per archiviare i dati di hello in questa esercitazione. Se non si dispone di un account di archiviazione di Azure, vedere hello [creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account) articolo. Dopo aver creato l'account di archiviazione hello, è necessario account hello tooobtain chiave utilizzata l'archiviazione di hello tooaccess. Vedere la sezione [Gestire le chiavi di accesso alle risorse di archiviazione](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys).
+* Accesso tooan **Database SQL di Azure**. Se è necessario impostare un Database SQL di Azure, [Guida introduttiva a Database SQL di Microsoft Azure](../sql-database/sql-database-get-started.md) fornisce informazioni su come tooprovision una nuova istanza di un Database di SQL Azure.
+* Installazione e configurazione di **Azure PowerShell** in locale. Per istruzioni, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
-**Dati**: i processi di migrazione vengono illustrati usando il [set di dati NYC Taxi](http://chriswhong.com/open-data/foil_nyc_taxi/). Il set di dati NYC Taxi contiene informazioni sulle tariffe e sui dati delle tratte ed è disponibile nell'archivio BLOB di Azure ([dati NYC Taxi](http://www.andresmh.com/nyctaxitrips/)). Un esempio e una descrizione di questi file sono inclusi in [Descrizione del set di dati relativo alle corse dei taxi di NYC](machine-learning-data-science-process-sql-walkthrough.md#dataset).
+**Dati**: vengono illustrati i processi di migrazione hello utilizzando hello [NYC Taxi dataset](http://chriswhong.com/open-data/foil_nyc_taxi/). contiene informazioni sui dati di andata e ritorno e fiere Hello NYC Taxi set di dati ed è disponibile in archiviazione blob di Azure: [NYC Taxi dati](http://www.andresmh.com/nyctaxitrips/). Un esempio e una descrizione di questi file sono inclusi in [Descrizione del set di dati relativo alle corse dei taxi di NYC](machine-learning-data-science-process-sql-walkthrough.md#dataset).
 
-È possibile adattare le procedure descritte di seguito a un set di dati personalizzati o seguire i passaggi come descritto utilizzando il set di dati NYC Taxi. Per caricare il set di dati NYC Taxi nel database di SQL Server locale, seguire la procedura descritta in [Importazione in blocco dei dati nel database SQL Server](machine-learning-data-science-process-sql-walkthrough.md#dbload). Queste istruzioni sono per SQL Server in una macchina virtuale di Azure, ma la procedura per il caricamento in SQL Server locale è la stessa.
+È possibile adattare hello procedure tooa qui descritto set di dati personalizzati o seguire i passaggi di hello, come descritto utilizzando hello NYC Taxi set di dati. hello tooupload NYC Taxi set di dati nel database di SQL Server locale, attenersi alla procedura hello [importazione Bulk dei dati nel Database di SQL Server](machine-learning-data-science-process-sql-walkthrough.md#dbload). Queste istruzioni sono valide per un Server SQL in una macchina virtuale di Azure, ma procedure hello per il caricamento toohello on-premise SQL Server è hello stesso.
 
-## <a name="file-to-azure-sql-database"></a> Spostamento dei dati da un'origine di file flat a un database SQL Azure
-I dati nei file flat (nel formato CSV o TSV) possono essere spostati a un database Azure SQL mediante un inserimento di massa query SQL.
+## <a name="file-to-azure-sql-database"></a>Spostamento dei dati da un database di SQL Azure tooan origine file flat
+I dati in file flat (in formato CSV o TSV) possono essere spostato tooan database di SQL Azure mediante una Query SQL di Bulk Insert.
 
 ### <a name="bulk-insert-sql-query"></a> Inserimento di massa query SQL
-I passaggi per la procedura utilizzando l’inserimento di massa query SQL sono simili a quelli descritti nelle sezioni per lo spostamento dei dati da un'origine di file flat a un Server SQL in una VM di Azure. Per altre informazioni, vedere [Inserimento di massa query SQL](machine-learning-data-science-move-sql-server-virtual-machine.md#insert-tables-bulkquery).
+passaggi di Hello per procedure hello utilizzando la Query SQL di inserimento Bulk hello sono simili toothose descritte nelle sezioni hello per lo spostamento dei dati da un tooSQL origine file flat Server in una macchina virtuale di Azure. Per altre informazioni, vedere [Inserimento di massa query SQL](machine-learning-data-science-move-sql-server-virtual-machine.md#insert-tables-bulkquery).
 
-## <a name="sql-on-prem-to-sazure-sql-database"></a> Spostamento dei dati da SQL Server locale a un database SQL di Azure
-Se i dati di origine vengono archiviati in SQL Server locale, esistono varie possibilità per lo spostamento di dati in un database SQL di Azure:
+## <a name="sql-on-prem-to-sazure-sql-database"></a>Spostamento dei dati dal database SQL di Azure tooan di SQL Server locale
+Se i dati di origine hello sono archiviati in un Server SQL locale, esistono diverse possibilità per il database di SQL Azure tooan hello dati mobile:
 
-1. [Esportazione in un file flat](#export-flat-file)
+1. [Esportazione tooFlat File](#export-flat-file)
 2. [Migrazione guidata database SQL](#insert-tables-bcp)
 3. [Backup e ripristino database](#db-migration)
-4. [Data Factory di Azure](#adf)
+4. [Data factory di Azure](#adf)
 
-I passaggi per i primi tre sono molto simili a tali sezioni in [Spostamento dei dati in SQL Server in una macchina virtuale di Azure](machine-learning-data-science-move-sql-server-virtual-machine.md) che coprono la medesima procedura. Le istruzioni seguenti forniscono i collegamenti alle sezioni appropriate al riguardo.
+passaggi per hello primi tre Hello sono molto simili sezioni toothose [spostare dati tooSQL Server in una macchina virtuale Azure](machine-learning-data-science-move-sql-server-virtual-machine.md) che coprono la medesima procedura. Sezioni appropriate toohello di collegamenti in questo argomento vengono fornite in hello attenendosi alle istruzioni.
 
-### <a name="export-flat-file"></a>Esportazione in un file flat
-La procedura di questo processo di esportazione in un file flat è simile a quella descritta in [Esportazione in un file flat](machine-learning-data-science-move-sql-server-virtual-machine.md#export-flat-file).
+### <a name="export-flat-file"></a>Esportazione tooFlat File
+passaggi di Hello del file flat tooa esportazione sono simili toothose analizzate in [esportare tooFlat File](machine-learning-data-science-move-sql-server-virtual-machine.md#export-flat-file).
 
 ### <a name="insert-tables-bcp"></a>Migrazione guidata database SQL
-I passaggi per utilizzare la migrazione guidata nel database SQL sono simili a quelli descritti in [Migrazione guidata database SQL](machine-learning-data-science-move-sql-server-virtual-machine.md#sql-migration).
+passaggi per l'utilizzo di hello migrazione guidata Database SQL Hello sono simili toothose analizzate in [migrazione guidata Database SQL](machine-learning-data-science-move-sql-server-virtual-machine.md#sql-migration).
 
 ### <a name="db-migration"></a>Backup e ripristino database
-I passaggi per l'utilizzo del backup e ripristino del database sono simili a quelli descritti in [Backup e ripristino database](machine-learning-data-science-move-sql-server-virtual-machine.md#sql-backup).
+passaggi di Hello per l'utilizzo di database eseguire il backup e ripristino sono simili toothose analizzate in [back backup e ripristino dei Database](machine-learning-data-science-move-sql-server-virtual-machine.md#sql-backup).
 
 ### <a name="adf"></a>Data Factory di Azure
-La procedura per lo spostamento di dati in un database SQL di Azure con Azure Data Factory (ADF) è illustrata nell'argomento [Spostare i dati da SQL Server locale a SQL Azure con Azure Data Factory](machine-learning-data-science-move-sql-azure-adf.md). Questo argomento descrive come spostare i dati da un database di SQL Server locale a un database SQL di Azure tramite l'archiviazione BLOB di Azure con ADF.
+procedura di Hello per database SQL di Azure tooan dati mobile con Azure Data Factory (ADF) è fornito nell'argomento hello [spostare i dati da un tooSQL di server SQL Azure con Azure Data Factory locale](machine-learning-data-science-move-sql-azure-adf.md). In questo argomento viene illustrato come toomove dati da un tooan di database di SQL Server on-premise SQL Azure database tramite l'archiviazione Blob di Azure utilizzando ADF.
 
-È consigliabile usare ADF quando i dati devono essere migrati continuamente in uno scenario ibrido che accede a risorse locali e cloud e quando i dati sono transazionali o devono essere modificati o avere una logica di business aggiunta durante la migrazione. L’ADF consente la pianificazione e il monitoraggio dei processi utilizzando semplici script JSON che gestiscono lo spostamento dei dati su base periodica. ADF dispone anche di altre funzionalità quali il supporto di operazioni complesse.
+È consigliabile utilizzare ADF quando dati esigenze toobe continuamente la migrazione in uno scenario ibrido che consente di accedere sia in locale e risorse del cloud e quando viene sottoposto a transazione dati hello o se deve toobe modificato o logica di business aggiunti tooit quando viene eseguita la migrazione. ADF consente hello pianificazione e monitoraggio dei processi utilizzando semplici script JSON che gestiscono lo spostamento di hello dei dati su base periodica. ADF dispone anche di altre funzionalità quali il supporto di operazioni complesse.

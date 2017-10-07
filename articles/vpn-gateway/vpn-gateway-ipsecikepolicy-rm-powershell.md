@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: yushwang
-ms.openlocfilehash: 798014b6e8d4495db99ef2e2d2ea487ae7d02fd0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f8d2e29276efdec7071f2aa0d463b1abd64a5253
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-ipsecike-policy-for-s2s-vpn-or-vnet-to-vnet-connections"></a>Configurare criteri IPsec/IKE per connessioni VPN da sito a sito o da rete virtuale a rete virtuale
 
-Questo articolo illustra la procedura di configurazione dei criteri IPsec/IKE per connessioni VPN da sito a sito o da rete virtuale a rete virtuale tramite il modello di distribuzione Resource Manager e PowerShell.
+In questo articolo illustra i passaggi di hello tooconfigure criteri IPsec/IKE per le connessioni VPN da sito a sito o di rete virtuale a con modello di distribuzione di gestione risorse di hello e PowerShell.
 
 ## <a name="about"></a>Informazioni sui parametri dei criteri IPsec e IKE per gateway VPN di Azure
-Lo standard di protocollo IPsec e IKE supporta un'ampia gamma di algoritmi di crittografia in varie combinazioni. Vedere l'articolo [About cryptographic requirements and Azure VPN gateways](vpn-gateway-about-compliance-crypto.md) (Informazioni sui requisiti di crittografia e i gateway VPN di Azure) per informazioni su come questo può contribuire ad assicurare che la connettività cross-premise e da rete virtuale a rete virtuale soddisfi i requisiti di conformità o sicurezza.
+Lo standard di protocollo IPsec e IKE supporta un'ampia gamma di algoritmi di crittografia in varie combinazioni. Fare riferimento troppo[sui requisiti di crittografia e i gateway VPN di Azure](vpn-gateway-about-compliance-crypto.md) toosee come questo consente di garantire cross-premise e la connettività di rete virtuale a soddisfare i requisiti di conformità o la sicurezza.
 
-Questo articolo fornisce istruzioni per creare e configurare un criterio IPsec/IKE e applicarlo a una connessione nuova o esistente:
+In questo articolo fornisce istruzioni toocreate e configurare un criterio IPsec/IKE e applicare una connessione nuova o esistente tooa:
 
-* [Parte 1: Flusso di lavoro per creare e impostare criteri IPsec/IKE](#workflow)
+* [Parte 1 - toocreate del flusso di lavoro e impostare i criteri IPsec/IKE](#workflow)
 * [Parte 2: Algoritmi di crittografia supportati e vantaggi chiave](#params)
 * [Parte 3: Creare una nuova connessione VPN da sito a sito con criteri IPsec/IKE](#crossprem)
 * [Parte 4: Creare una nuova connessione da rete virtuale a rete virtuale con criteri IPsec/IKE](#vnet2vnet)
 * [Parte 5: Gestire (creare, aggiungere, rimuovere) criteri IPsec/IKE per una connessione](#managepolicy)
 
 > [!IMPORTANT]
-> 1. Si noti che il criterio IPsec/IKE funziona solo sugli SKU di gateway seguenti:
+> 1. Si noti che i criteri IPsec/IKE funziona solo su hello SKU di gateway di seguito:
 >    * ***VpnGw1, VpnGw2, VpnGw3*** (basato su route)
 >    * ***Standard*** e ***HighPerformance*** (basato su route)
 > 2. Per una determinata connessione è possibile specificare ***una*** sola combinazione di criteri.
 > 3. È necessario specificare tutti gli algoritmi e i parametri sia per IKE (modalità principale) che per IPsec (modalità rapida). Non è consentito specificare criteri parziali.
-> 4. Consultare le specifiche del fornitore del dispositivo VPN per verificare che i criteri siano supportati dai dispositivi VPN locali. Non è possibile stabilire connessioni da sito a sito o da rete virtuale a rete virtuale se i criteri non sono compatibili.
+> 4. Consultare le specifiche di fornitore dispositivo VPN criteri hello tooensure sono supportato nei dispositivi VPN locali. S2S o connessioni di rete virtuale a non è possibile stabilire se i criteri di hello non sono compatibili.
 
-## <a name ="workflow"></a>Parte 1: Flusso di lavoro per creare e impostare criteri IPsec/IKE
-Questa sezione descrive il flusso di lavoro per creare e aggiornare i criteri IPsec/IKE per una connessione VPN da sito a sito o da rete virtuale a rete virtuale:
+## <a name ="workflow"></a>Parte 1 - toocreate del flusso di lavoro e impostare i criteri IPsec/IKE
+Questa sezione vengono descritti hello del flusso di lavoro toocreate e aggiornamento IPsec/IKE criteri su una connessione VPN S2S o di rete virtuale a:
 1. Creare una rete virtuale e un gateway VPN
 2. Creare un gateway di rete locale per una connessione cross-premises o un'altra rete virtuale e gateway per una connessione da rete virtuale a rete virtuale
 3. Creare un criterio IPsec/IKE con gli algoritmi e i parametri selezionati
-4. Creare una connessione (IPsec o da rete virtuale a rete virtuale) con il criterio IPsec/IKE
+4. Creare una connessione VNet2VNet (IPsec) con i criteri IPsec/IKE hello
 5. Aggiungere, aggiornare o rimuovere un criterio IPsec/IKE per una connessione esistente
 
-Le istruzioni di questo articolo consentono di impostare e configurare criteri IPsec/IKE come illustrato nel diagramma:
+istruzioni di Hello in questo articolo consente di impostare e configurare i criteri IPsec/IKE, come illustrato nel diagramma hello:
 
 ![ipsec-ike-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/ipsecikepolicy.png)
 
 ## <a name ="params"></a>Parte 2: Algoritmi di crittografia supportati e vantaggi chiave
 
-La tabella seguente riporta l'elenco degli algoritmi di crittografia e dei tipi di attendibilità della chiave supportati e configurabili dai clienti:
+Hello nella tabella seguente sono elencati gli algoritmi di crittografia supportato hello e vantaggi chiave configurabile da parte dei clienti hello:
 
 | **IPsec/IKEv2**  | **Opzioni**    |
 | ---  | --- 
@@ -73,9 +73,9 @@ La tabella seguente riporta l'elenco degli algoritmi di crittografia e dei tipi 
 |  |  |
 
 > [!IMPORTANT]
-> 1. **Se GCMAES viene usato per l'algoritmo di crittografia IPsec, è necessario selezionare lo stesso algoritmo GCMAES e la stessa lunghezza della chiave per l'integrità IPsec, ad esempio, GCMAES128 per entrambi**
-> 2. Nei gateway VPN di Azure la durata dell'associazione di sicurezza IKEv2 (modalità principale) è fissata a 28800 secondi
-> 3. Impostando "UsePolicyBasedTrafficSelectors" su $True per una connessione, si configura il gateway VPN di Azure per la connessione al firewall VPN locale basato su criteri. Se si abilita PolicyBasedTrafficSelectors, è necessario verificare che i selettori di traffico corrispondenti siano definiti nel dispositivo VPN con tutte le combinazioni dei prefissi della rete locale (gateway di rete locale) da/verso i prefissi della rete virtuale di Azure, anziché any-to-any. Se i prefissi della rete locale sono 10.1.0.0/16 e 10.2.0.0/16 e i prefissi della rete virtuale sono 192.168.0.0/16 e 172.16.0.0/16, ad esempio, è necessario specificare i selettori di traffico seguenti:
+> 1. **Se GCMAES viene usato per l'algoritmo di crittografia IPsec, è necessario selezionare hello stesso algoritmo GCMAES e lunghezza della chiave per l'integrità IPsec; ad esempio, l'uso di GCMAES128 per entrambe**
+> 2. Durata SA modalità principale di IKEv2 è fissata a 28.800 secondi nei gateway VPN di Azure hello
+> 3. L'impostazione "UsePolicyBasedTrafficSelectors" troppo$ True in una connessione configurerà hello Azure VPN gateway tooconnect toopolicy firewall basato su VPN in locale. Se si abilita PolicyBasedTrafficSelectors, è necessario il dispositivo VPN è hello corrispondente selettori di traffico definiti con tutte le combinazioni del locale (gateway di rete locale) dei prefissi di rete da e verso i prefissi di rete virtuale di Azure, hello tooensure anziché any-a-qualsiasi. Ad esempio, se i prefissi di rete locale sono 10.1.0.0/16 e 10.2.0.0/16 e i prefissi di rete virtuale sono 192.168.0.0/16 e 172.16.0.0/16, è necessario hello toospecify selettori di traffico seguenti:
 >    * 10.1.0.0/16 <====> 192.168.0.0/16
 >    * 10.1.0.0/16 <====> 172.16.0.0/16
 >    * 10.2.0.0/16 <====> 192.168.0.0/16
@@ -83,7 +83,7 @@ La tabella seguente riporta l'elenco degli algoritmi di crittografia e dei tipi 
 
 Per altre informazioni sui selettori di traffico basati su criteri, vedere [Connettere più dispositivi VPN basati su criteri locali](vpn-gateway-connect-multiple-policybased-rm-ps.md).
 
-La tabella seguente elenca i gruppi di Diffie-Hellman corrispondenti supportati dal criterio personalizzato:
+Nella seguente sono elencati nella tabella Hello hello corrispondente gruppi Diffie-Hellman supportato dai criteri personalizzati di hello:
 
 | **Gruppo Diffie-Hellman**  | **DHGroup**              | **PFSGroup** | **Lunghezza chiave** |
 | --- | --- | --- | --- |
@@ -94,11 +94,11 @@ La tabella seguente elenca i gruppi di Diffie-Hellman corrispondenti supportati 
 | 20                        | ECP384                   | ECP284       | ECP a 384 bit    |
 | 24                        | DHGroup24                | PFS24        | MODP a 2048 bit  |
 
-Per altre informazioni, vedere [RFC3526](https://tools.ietf.org/html/rfc3526) e [RFC5114](https://tools.ietf.org/html/rfc5114).
+Fare riferimento troppo[RFC3526](https://tools.ietf.org/html/rfc3526) e [RFC5114](https://tools.ietf.org/html/rfc5114) per altri dettagli.
 
 ## <a name ="crossprem"></a>Parte 3: Creare una nuova connessione VPN da sito a sito con criteri IPsec/IKE
 
-Questa sezione illustra i passaggi per la creazione di una connessione VPN da sito a sito con un criterio IPsec/IKE. La procedura seguente crea la connessione illustrata nel diagramma:
+In questa sezione vengono illustrati i passaggi hello di creazione di una connessione VPN S2S con un criterio IPsec/IKE. Hello seguito crea hello connessione come illustrato nel diagramma hello:
 
 ![s2s-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/s2spolicy.png)
 
@@ -107,13 +107,13 @@ Per altre istruzioni dettagliate per la creazione di una connessione VPN da sito
 ### <a name="before"></a>Prima di iniziare
 
 * Verificare di possedere una sottoscrizione di Azure. Se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) oppure iscriversi per ottenere un [account gratuito](https://azure.microsoft.com/pricing/free-trial/).
-* Installare i cmdlet di PowerShell per Azure Resource Manager. Per altre informazioni sull'installazione di cmdlet PowerShell, vedere [Overview of Azure PowerShell](/powershell/azure/overview) (Panoramica di Azure PowerShell).
+* Installare i cmdlet di PowerShell di gestione risorse di Azure hello. Vedere [Panoramica di Azure PowerShell](/powershell/azure/overview) per ulteriori informazioni sull'installazione dei cmdlet di PowerShell hello.
 
-### <a name="createvnet1"></a>Passaggio 1: Creare la rete virtuale, il gateway VPN e il gateway di rete locale
+### <a name="createvnet1"></a>Passaggio 1: creare una rete virtuale hello gateway VPN e gateway di rete locale
 
 #### <a name="1-declare-your-variables"></a>1. Dichiarare le variabili
 
-Per questo esercizio, si inizierà dichiarando le variabili. Assicurarsi di sostituire i valori con quelli reali durante la configurazione per la produzione.
+Per questo esercizio, si inizierà dichiarando le variabili. Essere certi tooreplace hello i valori con valori personalizzati durante la configurazione per la produzione.
 
 ```powershell
 $Sub1          = "<YourSubscriptionName>"
@@ -140,11 +140,11 @@ $LNGPrefix62   = "10.62.0.0/16"
 $LNGIP6        = "131.107.72.22"
 ```
 
-#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2. Connettersi alla sottoscrizione e creare un nuovo gruppo di risorse
+#### <a name="2-connect-tooyour-subscription-and-create-a-new-resource-group"></a>2. Connettere tooyour sottoscrizione e creare un nuovo gruppo di risorse
 
-Verificare di passare alla modalità PowerShell per usare i cmdlet di Gestione risorse. Per altre informazioni, vedere [Uso di Windows PowerShell con Gestione risorse](../powershell-azure-resource-manager.md).
+Accertarsi di passare hello toouse di modalità tooPowerShell cmdlet di gestione risorse. Per altre informazioni, vedere [Uso di Windows PowerShell con Gestione risorse](../powershell-azure-resource-manager.md).
 
-Aprire la console di PowerShell e connettersi al proprio account. Per connettersi, usare l'esempio seguente:
+Aprire la console di PowerShell e tooyour account di connessione. Utilizzare hello toohelp esempio che ci si connette seguenti:
 
 ```powershell
 Login-AzureRmAccount
@@ -152,9 +152,9 @@ Select-AzureRmSubscription -SubscriptionName $Sub1
 New-AzureRmResourceGroup -Name $RG1 -Location $Location1
 ```
 
-#### <a name="3-create-the-virtual-network-vpn-gateway-and-local-network-gateway"></a>3. Creare la rete virtuale, il gateway VPN e il gateway di rete locale
+#### <a name="3-create-hello-virtual-network-vpn-gateway-and-local-network-gateway"></a>3. Creare la rete virtuale hello, gateway VPN e gateway di rete locale
 
-L'esempio seguente crea la rete virtuale, TestVNet1 con tre subnet e il gateway VPN. Quando si sostituiscono i valori, è importante che la subnet gateway venga denominata sempre esattamente GatewaySubnet. Se si assegnano altri nomi, la creazione del gateway ha esito negativo.
+Hello seguente esempio crea rete virtuale di hello, TestVNet1, con tre subnet e il gateway VPN hello. Quando si sostituiscono i valori, è importante che la subnet gateway venga denominata sempre esattamente GatewaySubnet. Se si assegnano altri nomi, la creazione del gateway ha esito negativo.
 
 ```powershell
 $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
@@ -177,7 +177,7 @@ New-AzureRmLocalNetworkGateway -Name $LNGName6 -ResourceGroupName $RG1 -Location
 
 #### <a name="1-create-an-ipsecike-policy"></a>1. Creare un criterio IPsec/IKE
 
-Lo script di esempio che segue crea un criterio IPsec/IKE con gli algoritmi e i parametri seguenti:
+Hello lo script di esempio seguente crea un criterio IPsec/IKE con hello seguenti algoritmi e parametri:
 
 * IKEv2: AES256, SHA384, DHGroup24
 * IPsec: AES256, SHA256, PFS24, durata dell'associazione di sicurezza 7200 secondi e 2048 KB
@@ -186,7 +186,7 @@ Lo script di esempio che segue crea un criterio IPsec/IKE con gli algoritmi e i 
 $ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
 ```
 
-Se si usa GCMAES per IPsec, è necessario usare lo stesso algoritmo e la stessa lunghezza della chiave GCMAES per la crittografia e l'integrità IPsec, ad esempio:
+Se si utilizza GCMAES per IPsec, è necessario utilizzare hello stesso algoritmo GCMAES e lunghezza della chiave per la crittografia di IPsec e integrità, ad esempio:
 
 * IKEv2: AES256, SHA384, DHGroup24
 * IPsec: **GCMAES256, GCMAES256**, PFS24, durata dell'associazione di sicurezza 7200 secondi e 2048 KB
@@ -195,9 +195,9 @@ Se si usa GCMAES per IPsec, è necessario usare lo stesso algoritmo e la stessa 
 $ipsecpolicy6 = New-AzureRmIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup24 -IpsecEncryption GCMAES256 -IpsecIntegrity GCMAES256 -PfsGroup PFS24 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 2048
 ```
 
-#### <a name="2-create-the-s2s-vpn-connection-with-the-ipsecike-policy"></a>2. Creare la connessione VPN da sito a sito con i criteri IPsec/IKE
+#### <a name="2-create-hello-s2s-vpn-connection-with-hello-ipsecike-policy"></a>2. Creare una connessione VPN S2S hello con hello criteri IPsec/IKE
 
-Creare una connessione VPN da sito a sito e applicare il criterio IPsec/IKE creato in precedenza.
+Creare una connessione VPN S2S e applicare i criteri IPsec/IKE hello creato in precedenza.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
@@ -206,25 +206,25 @@ $lng6 = Get-AzureRmLocalNetworkGateway  -Name $LNGName6 -ResourceGroupName $RG1
 New-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng6 -Location $Location1 -ConnectionType IPsec -IpsecPolicies $ipsecpolicy6 -SharedKey 'AzureA1b2C3'
 ```
 
-È possibile aggiungere facoltativamente "-UsePolicyBasedTrafficSelectors $True" al cmdlet di creazione della connessione per abilitare il gateway VPN di Azure per la connessione a dispositivi VPN basati su criteri locali, come descritto sopra.
+È possibile aggiungere facoltativamente "-UsePolicyBasedTrafficSelectors $True" toohello creare connessione cmdlet tooenable Azure VPN gateway tooconnect toopolicy dispositivi basati su VPN in locale, come descritto in precedenza.
 
 > [!IMPORTANT]
-> Dopo aver specificato un criterio IPsec/IKE per una connessione, il gateway VPN di Azure invierà o accetterà la proposta IPsec/IKE con gli algoritmi di crittografia e i principali vantaggi specificati per una particolare connessione. Assicurarsi che il dispositivo VPN locale per la connessione usi o accetti l'esatta combinazione di criteri. In caso contrario, il tunnel VPN da sito a sito non verrà stabilito.
+> Una volta specificato una connessione di un criterio IPsec/IKE, gateway VPN di Azure hello solo invierà o accettare hello IPsec/IKE proposta con gli algoritmi di crittografia specificati e per i livelli di chiave in tale particolare connessione. Assicurarsi che il dispositivo VPN locale per la connessione hello utilizza o accetta combinazione esatta criteri hello, in caso contrario non stabilisce tunnel VPN S2S hello.
 
 
 ## <a name ="vnet2vnet"></a>Parte 4: Creare una nuova connessione da rete virtuale a rete virtuale con criteri IPsec/IKE
 
-La procedura di creazione di una connessione da rete virtuale a rete virtuale con un criterio IPsec/IKE è simile a quella di una connessione VPN da sito a sito. Gli script di esempio seguenti creano la connessione come illustrato nel diagramma:
+passaggi di Hello di creazione di una connessione di rete virtuale a con un criterio IPsec/IKE sono simili toothat di una connessione VPN S2S. Hello seguente script di esempio creare hello connessione come illustrato nel diagramma hello:
 
 ![v2v-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/v2vpolicy.png)
 
-Per la procedura dettagliata di creazione di una connessione da rete virtuale a rete virtuale, vedere [Creare una connessione tra reti virtuali](vpn-gateway-vnet-vnet-rm-ps.md) . È necessario completare la [Parte 3](#crossprem) per creare e configurare TestVNet1 e il gateway VPN.
+Per la procedura dettagliata di creazione di una connessione da rete virtuale a rete virtuale, vedere [Creare una connessione tra reti virtuali](vpn-gateway-vnet-vnet-rm-ps.md) . È necessario completare [parte 3](#crossprem) toocreate e configurare TestVNet1 e hello Gateway VPN.
 
-### <a name="createvnet2"></a>Passaggio 1: Creare la seconda rete virtuale e un gateway VPN
+### <a name="createvnet2"></a>Passaggio 1: creare una seconda rete virtuale hello e gateway VPN
 
 #### <a name="1-declare-your-variables"></a>1. Dichiarare le variabili
 
-Sostituire i valori con quelli desiderati per la propria configurazione.
+Essere tooreplace che i valori hello con hello quelli che si desidera toouse per la configurazione.
 
 ```powershell
 $RG2          = "TestPolicyRG2"
@@ -246,7 +246,7 @@ $Connection21 = "VNet2toVNet1"
 $Connection12 = "VNet1toVNet2"
 ```
 
-#### <a name="2-create-the-second-virtual-network-and-vpn-gateway-in-the-new-resource-group"></a>2. Creare la seconda rete virtuale e un gateway VPN nel nuovo gruppo di risorse
+#### <a name="2-create-hello-second-virtual-network-and-vpn-gateway-in-hello-new-resource-group"></a>2. Creare seconda rete virtuale hello e gateway VPN nel nuovo gruppo di risorse hello
 
 ```powershell
 New-AzureRmResourceGroup -Name $RG2 -Location $Location2
@@ -265,13 +265,13 @@ $gw2ipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GW2IPconf1 -Subnet
 New-AzureRmVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gw2ipconf1 -GatewayType Vpn -VpnType RouteBased -GatewaySku HighPerformance
 ```
 
-### <a name="step-2---create-a-vnet-tovnet-connection-with-the-ipsecike-policy"></a>Passaggio 2: Creare una connessione da rete virtuale a rete virtuale con il criterio IPsec/IKE
+### <a name="step-2---create-a-vnet-tovnet-connection-with-hello-ipsecike-policy"></a>Passaggio 2: creare una connessione di rete virtuale toVNet con hello criteri IPsec/IKE
 
-Come per la connessione VPN da sito a sito, creare un criterio IPsec/IKE e quindi applicare i criteri alla nuova connessione.
+Toohello simile connessione VPN S2S, creare un criterio IPsec/IKE, applicare toopolicy toohello nuova connessione.
 
 #### <a name="1-create-an-ipsecike-policy"></a>1. Creare un criterio IPsec/IKE
 
-Lo script di esempio seguente crea un criterio IPsec/IKE diverso con gli algoritmi e i parametri seguenti:
+Hello lo script di esempio seguente crea un criterio IPsec/IKE diverso con hello seguenti algoritmi e parametri:
 * IKEv2: AES128, SHA1, DHGroup14
 * IPsec: GCMAES128, GCMAES128, PFS14, durata dell'associazione di sicurezza 7200 secondi e 4096 KB
 
@@ -279,9 +279,9 @@ Lo script di esempio seguente crea un criterio IPsec/IKE diverso con gli algorit
 $ipsecpolicy2 = New-AzureRmIpsecPolicy -IkeEncryption AES128 -IkeIntegrity SHA1 -DhGroup DHGroup14 -IpsecEncryption GCMAES128 -IpsecIntegrity GCMAES128 -PfsGroup PFS14 -SALifeTimeSeconds 7200 -SADataSizeKilobytes 4096
 ```
 
-#### <a name="2-create-vnet-to-vnet-connections-with-the-ipsecike-policy"></a>2. Creare connessioni da rete virtuale a rete virtuale con criteri IPsec/IKE
+#### <a name="2-create-vnet-to-vnet-connections-with-hello-ipsecike-policy"></a>2. Creare connessioni di rete virtuale a con hello criteri IPsec/IKE
 
-Creare una connessione da rete virtuale a rete virtuale e applicare il criterio IPsec/IKE creato. In questo esempio entrambi i gateway sono nella stessa sottoscrizione. È possibile creare e configurare entrambe le connessioni con lo stesso criterio IPsec/IKE nella stessa sessione di PowerShell.
+Creare una connessione di rete e applicare criteri IPsec/IKE hello creati. In questo esempio, entrambi i gateway sono in hello stessa sottoscrizione. È possibile toocreate e configurare entrambe le connessioni con hello stesso criterio IPsec/IKE in hello stessa sessione di PowerShell.
 
 ```powershell
 $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
@@ -293,29 +293,29 @@ New-AzureRmVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupNam
 ```
 
 > [!IMPORTANT]
-> Dopo aver specificato un criterio IPsec/IKE per una connessione, il gateway VPN di Azure invierà o accetterà la proposta IPsec/IKE con gli algoritmi di crittografia e i principali vantaggi specificati per una particolare connessione. Assicurarsi che i criteri IPsec per entrambe le connessioni siano gli stessi. In caso contrario, la connessione da rete virtuale a rete virtuale non verrà stabilita.
+> Una volta specificato una connessione di un criterio IPsec/IKE, gateway VPN di Azure hello solo invierà o accettare hello IPsec/IKE proposta con gli algoritmi di crittografia specificati e per i livelli di chiave in tale particolare connessione. Verificare che hello criteri IPsec per entrambe le connessioni sono hello stesso, in caso contrario non stabilisce la connessione di rete virtuale a.
 
-Dopo aver completato questi passaggi, la connessione verrà stabilita in pochi minuti e si avrà la topologia di rete seguente, come illustrato all'inizio:
+Dopo aver completato questi passaggi, hello connessione tra qualche minuto e sarà necessario dopo la topologia della rete, come illustrato in inizio hello hello:
 
 ![ipsec-ike-policy](./media/vpn-gateway-ipsecikepolicy-rm-powershell/ipsecikepolicy.png)
 
 
 ## <a name ="managepolicy"></a>Parte 5: Aggiornare i criteri IPsec/IKE per una connessione
 
-L'ultima sezione illustra come gestire criteri IPsec/IKE per una connessione da sito a sito o da rete virtuale a rete virtuale esistente. La procedura descritta di seguito illustra le operazioni seguenti su una connessione:
+ultima sezione Hello illustra come toomanage criteri IPsec/IKE per una connessione esistente S2S o di rete virtuale a. esercizio Hello riportato di seguito illustra hello dopo le operazioni su una connessione:
 
-1. Mostrare il criterio IPsec/IKE di una connessione
-2. Aggiungere o aggiornare il criterio IPsec/IKE per una connessione
-3. Rimuovere il criterio IPsec/IKE da una connessione
+1. Mostra i criteri IPsec/IKE hello di una connessione
+2. Aggiungere o aggiornare la connessione di tooa criteri IPsec/IKE hello
+3. Rimuovere i criteri IPsec/IKE hello da una connessione
 
-Gli stessi passaggi si applicano sia alle connessioni da sito a sito sia alle connessioni da rete virtuale a rete virtuale.
+Hello stessi passaggi si applicano tooboth S2S e le connessioni di rete virtuale a.
 
 > [!IMPORTANT]
-> Il criterio IPsec/IKE è supportato solo nei gateway VPN *Standard* e *Prestazioni elevate* basati su route di Azure. Non funziona sullo SKU per il gateway Basic o il gateway VPN basato su criteri.
+> Il criterio IPsec/IKE è supportato solo nei gateway VPN *Standard* e *Prestazioni elevate* basati su route di Azure. Non funziona su gateway Basic hello SKU o gateway VPN basata su criteri di hello.
 
-#### <a name="1-show-the-ipsecike-policy-of-a-connection"></a>1. Mostrare il criterio IPsec/IKE di una connessione
+#### <a name="1-show-hello-ipsecike-policy-of-a-connection"></a>1. Mostra i criteri IPsec/IKE hello di una connessione
 
-L'esempio seguente illustra come ottenere il criterio IPsec/IKE configurato su una connessione. Gli script continuano dagli esercizi precedenti.
+Hello di esempio seguente viene illustrato come tooget hello criteri IPsec/IKE configurato su una connessione. gli script di Hello continuano anche da esercizi hello precedenti.
 
 ```powershell
 $RG1          = "TestPolicyRG1"
@@ -324,7 +324,7 @@ $connection6  = Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -
 $connection6.IpsecPolicies
 ```
 
-L'ultimo comando elenca i criteri IPsec/IKE correnti configurati per la connessione, se esistenti. L'output di esempio seguente si riferisce alla connessione:
+ultimo comando Hello sono elencati i criteri IPsec/IKE correnti hello configurato nella connessione hello, se è presente uno. Hello output di esempio seguente è per la connessione hello:
 
 ```powershell
 SALifeTimeSeconds   : 3600
@@ -337,11 +337,11 @@ DhGroup             : DHGroup24
 PfsGroup            : PFS24
 ```
 
-Se non c'è alcun criterio IPsec/IKE configurato, il comando (PS> $connection6.policy) non restituisce nulla. Ciò non significa che IPsec/IKE non sia configurato per la connessione, ma che non c'è alcun criterio IPsec/IKE personalizzato. La connessione effettiva usa il criterio predefinito negoziato tra il dispositivo VPN locale e il gateway VPN di Azure.
+Se non è configurato alcun criterio IPsec/IKE, hello comando (PS > $connection6.policy) Ottiene un oggetto vuoto restituito. Ciò significa IPsec/IKE non è configurato nella connessione di hello, ma che non vi sia alcun criterio IPsec/IKE personalizzato. connessione effettiva Hello utilizza criteri predefiniti hello negoziato tra il dispositivo VPN locale e hello gateway VPN di Azure.
 
 #### <a name="2-add-or-update-an-ipsecike-policy-for-a-connection"></a>2. Aggiungere o aggiornare un criterio IPsec/IKE per una connessione
 
-La procedura per aggiungere un nuovo criterio o aggiornare un criterio esistente per una connessione è la stessa: creare un nuovo criterio, quindi applicare il nuovo criterio alla connessione.
+Hello passaggi tooadd un nuovo criterio o aggiornamento di un criterio esistente in una connessione sono hello stesso: creare un nuovo criterio, quindi applicare una nuova connessione di toohello criteri hello.
 
 ```powershell
 $RG1          = "TestPolicyRG1"
@@ -353,20 +353,20 @@ $newpolicy6   = New-AzureRmIpsecPolicy -IkeEncryption AES128 -IkeIntegrity SHA1 
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6 -IpsecPolicies $newpolicy6
 ```
 
-Per abilitare "UsePolicyBasedTrafficSelectors" quando ci si connette a un dispositivo VPN basato su criteri locale, aggiungere il parametro "-UsePolicyBaseTrafficSelectors" al cmdlet o impostarlo su $False per disabilitare l'opzione:
+tooenable "UsePolicyBasedTrafficSelectors" quando la connessione tooan locale dispositivo VPN basata su criteri, aggiungere hello "-UsePolicyBaseTrafficSelectors" parametro toohello cmdlet o impostarlo troppo opzione hello di $ toodisable False:
 
 ```powershell
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6 -IpsecPolicies $newpolicy6 -UsePolicyBasedTrafficSelectors $True
 ```
 
-È possibile ottenere di nuovo la connessione per verificare se i criteri sono aggiornati.
+È possibile ottenere la connessione hello nuovamente toocheck se hello criteri vengono aggiornati.
 
 ```powershell
 $connection6  = Get-AzureRmVirtualNetworkGatewayConnection -Name $Connection16 -ResourceGroupName $RG1
 $connection6.IpsecPolicies
 ```
 
-Verrà visualizzato l'output dell'ultima riga, come illustrato nell'esempio seguente:
+Verrà visualizzato l'output di hello dall'ultima riga hello, come illustrato nell'esempio seguente hello:
 
 ```powershell
 SALifeTimeSeconds   : 3600
@@ -381,7 +381,7 @@ PfsGroup            : None
 
 #### <a name="3-remove-an-ipsecike-policy-from-a-connection"></a>3. Rimuovere un criterio IPsec/IKE da una connessione
 
-Dopo la rimozione dei criteri personalizzati da una connessione, il gateway VPN di Azure ripristina l'[elenco predefinito delle proposte IPsec/IKE](vpn-gateway-about-vpn-devices.md) e rinegozia l'handshake IKE con il dispositivo VPN locale.
+Dopo aver rimosso i criteri personalizzati di hello da una connessione, gateway VPN di Azure hello torna indietro toohello [elenco predefinito delle proposte di IPsec/IKE](vpn-gateway-about-vpn-devices.md) e nuovamente negozia con il dispositivo VPN locale.
 
 ```powershell
 $RG1           = "TestPolicyRG1"
@@ -394,10 +394,10 @@ $connection6.IpsecPolicies.Remove($currentpolicy)
 Set-AzureRmVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection6
 ```
 
-È possibile usare lo stesso script per verificare se il criterio è stato rimosso dalla connessione.
+È possibile utilizzare hello toocheck script stesso, se il criterio di hello è stato rimosso dalla connessione hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 Per altri dettagli sui selettori di traffico basati su criteri, vedere l'articolo su come [connettere più dispositivi VPN basati su criteri locali](vpn-gateway-connect-multiple-policybased-rm-ps.md).
 
-Dopo aver completato la connessione, è possibile aggiungere macchine virtuali alle reti virtuali. Per i passaggi, vedere [Creare la prima macchina virtuale](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) .
+Una volta completata la connessione, è possibile aggiungere macchine virtuali tooyour le reti virtuali. Per i passaggi, vedere [Creare la prima macchina virtuale](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) .

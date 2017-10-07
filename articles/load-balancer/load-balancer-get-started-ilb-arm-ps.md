@@ -1,6 +1,6 @@
 ---
-title: Creare un servizio di bilanciamento del carico interno di Azure - PowerShell | Documentazione Microsoft
-description: Informazioni su come creare un servizio di bilanciamento del carico interno in Gestione risorse con PowerShell
+title: Azure interna aaaCreate bilanciamento del carico - PowerShell | Documenti Microsoft
+description: Informazioni su come toocreate un interno bilanciamento del carico con PowerShell in Gestione risorse
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 7bd31ab8f52ec5e81f6966000554be46eaa59396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4b9657c77aa32a142de49ff7871ed6a396b22223
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-internal-load-balancer-using-powershell"></a>Creare un servizio di bilanciamento del carico interno con PowerShell
 
@@ -31,29 +31,29 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!NOTE]
-> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  Questo articolo illustra il modello di distribuzione Resource Manager che Microsoft consiglia di usare per le distribuzioni più recenti in sostituzione del [modello di distribuzione classica](load-balancer-get-started-ilb-classic-ps.md).
+> Azure offre due modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md).  In questo articolo viene illustrato l'utilizzo modello di distribuzione di gestione delle risorse hello, si consiglia di per la maggior parte delle nuove distribuzioni anziché hello [modello di distribuzione classica](load-balancer-get-started-ilb-classic-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-La procedura seguente illustra come creare un servizio di bilanciamento del carico interno usando Azure Resource Manager con PowerShell. Con Azure Resource Manager, gli elementi per creare un servizio di bilanciamento del carico interno vengono configurati singolarmente e poi integrati per creare un servizio di bilanciamento del carico.
+Hello alla procedura seguente viene illustrato come toocreate un interno bilanciamento del carico con Gestione risorse di Azure PowerShell. Con Gestione risorse di Azure, hello elementi toocreate un bilanciamento del carico interno vengono configurate singolarmente e quindi combinati toocreate un bilanciamento del carico.
 
-È necessario creare e configurare gli oggetti seguenti per distribuire un servizio di bilanciamento del carico.
+È necessario toocreate e configurare hello oggetti toodeploy un bilanciamento del carico seguenti:
 
-* Configurazione di IP front-end: configurazione dell'indirizzo IP privato per il traffico di rete in ingresso.
-* Pool di indirizzi back end: configurazione delle interfacce di rete che riceveranno il traffico con carico bilanciato proveniente dal pool di indirizzi IP front end.
-* Regole di bilanciamento del carico: configurazione delle porte di origine e locali per il servizio di bilanciamento del carico.
-* Probe: configurazione del probe dello stato di integrità per le istanze di macchina virtuale.
-* Regole NAT in ingresso: configurazione delle regole della porta per accedere direttamente a una delle istanze di macchina virtuale.
+* Configurazione IP end front - configurerà l'indirizzo IP privato hello in arrivo il traffico di rete
+* Pool di indirizzi back-end - configurerà le interfacce di rete hello che riceveranno il traffico con carico bilanciato hello in arrivo dal pool IP front-end
+* Regole di bilanciamento del carico - di origine e configurazione della porta locale per hello bilanciamento del carico.
+* Probe - configura i probe di stato di integrità hello per le istanze di macchina virtuale hello.
+* Regole NAT in ingresso - configurare l'accesso alla toodirectly regole di porta hello una delle istanze di macchine virtuali hello.
 
 È possibile ottenere altre informazioni sui componenti del servizio di bilanciamento del carico con Gestione risorse di Azure in [Supporto di Gestione risorse di Azure per il bilanciamento del carico](load-balancer-arm.md).
 
-La procedura seguente illustra come configurare un servizio di bilanciamento del carico tra due macchine virtuali.
+Hello passaggi seguenti illustrano come tooconfigure un bilanciamento del carico tra due macchine virtuali.
 
-## <a name="setup-powershell-to-use-resource-manager"></a>Configurare PowerShell per l'uso di Gestione risorse
+## <a name="setup-powershell-toouse-resource-manager"></a>Il programma di installazione PowerShell toouse Gestione risorse
 
-Assicurarsi di disporre della versione di produzione più recente del modulo Azure per PowerShell e di aver configurato correttamente PowerShell per l'accesso alla sottoscrizione di Azure.
+Assicurarsi di disporre hello ultima versione di produzione di hello modulo Azure per PowerShell e PowerShell è installato installazione tooaccess correttamente la sottoscrizione di Azure.
 
 ### <a name="step-1"></a>Passaggio 1
 
@@ -63,17 +63,17 @@ Login-AzureRmAccount
 
 ### <a name="step-2"></a>Passaggio 2
 
-Controllare le sottoscrizioni per l'account
+Controllare le sottoscrizioni di hello per account hello
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Verrà richiesto di eseguire l'autenticazione con le proprie credenziali.
+Sarà richiesto tooAuthenticate con le credenziali.
 
 ### <a name="step-3"></a>Passaggio 3
 
-Scegliere quali sottoscrizioni Azure usare.
+Scegliere quali di toouse le sottoscrizioni di Azure.
 
 ```powershell
 Select-AzureRmSubscription -Subscriptionid "GUID of subscription"
@@ -87,13 +87,13 @@ Creare un nuovo gruppo di risorse (ignorare questo passaggio se si usa un gruppo
 New-AzureRmResourceGroup -Name NRP-RG -location "West US"
 ```
 
-Azure Resource Manager richiede che tutti i gruppi di risorse specifichino una località. che viene usato come percorso predefinito per le risorse presenti in tale gruppo di risorse. Assicurarsi che tutti i comandi per creare un servizio di bilanciamento del carico usino lo stesso gruppo di risorse.
+Gestione risorse di Azure richiede che tutti i gruppi di risorse specifichino un percorso Viene utilizzato come percorso predefinito di hello per le risorse in tale gruppo di risorse. Assicurarsi che tutti i comandi toocreate utilizzerà un bilanciamento del carico hello stesso gruppo di risorse.
 
-Nell'esempio precedente sono stati creare un gruppo di risorse denominato "NRP-RG" e la località "West US".
+In hello esempio precedente viene creato un gruppo di risorse denominato "NRP-RG" e il percorso "Stati Uniti occidentali".
 
 ## <a name="create-virtual-network-and-a-private-ip-address-for-front-end-ip-pool"></a>Creare la rete virtuale e un indirizzo IP privato per il pool di indirizzi IP front-end
 
-Crea una subnet per la rete virtuale e la assegna alla variabile $backendSubnet
+Crea una subnet per la rete virtuale hello e assegna toovariable $backendSubnet
 
 ```powershell
 $backendSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -AddressPrefix 10.0.2.0/24
@@ -105,15 +105,15 @@ Creare una rete virtuale:
 $vnet= New-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $backendSubnet
 ```
 
-Crea la rete virtuale e aggiunge la subnet lb-subnet-be alla rete virtuale NRPVNet e la assegna alla variabile $vnet
+Crea rete virtuale hello e aggiunge una rete virtuale di essere lb-subnet toohello subnet hello NRPVNet e assegna toovariable $vnet
 
 ## <a name="create-front-end-ip-pool-and-backend-address-pool"></a>Creare il pool di indirizzi IP front-end e il pool di indirizzi back-end
 
-Configurazione di un pool di indirizzi IP front-end per il traffico di rete in ingresso del servizio di bilanciamento del carico e un pool di indirizzi back-end per ricevere il traffico sottoposto a bilanciamento del carico.
+Impostazione di un pool IP front-end per hello in arrivo carico del traffico di rete del servizio di bilanciamento e traffico con carico bilanciato di back-end indirizzi pool tooreceive hello.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Creare un pool IP front-end usando l'indirizzo IP privato 10.0.2.5 per la subnet 10.0.2.0/24 che sarà l'endpoint del traffico di rete in ingresso.
+Creare un pool IP di front-end utilizzando l'indirizzo IP privato hello 10.0.2.5 per hello subnet 10.0.2.0/24 che sarà l'endpoint del traffico di rete in ingresso hello.
 
 ```powershell
 $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -PrivateIpAddress 10.0.2.5 -SubnetId $vnet.subnets[0].Id
@@ -121,7 +121,7 @@ $frontendIP = New-AzureRmLoadBalancerFrontendIpConfig -Name LB-Frontend -Private
 
 ### <a name="step-2"></a>Passaggio 2
 
-Configurare un pool di indirizzi back-end usato per ricevere il traffico in ingresso dal pool di indirizzi IP front-end:
+Configurare un pool di indirizzi back-end utilizzato traffico in ingresso tooreceive dal pool IP front-end:
 
 ```powershell
 $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backend"
@@ -129,7 +129,7 @@ $beaddresspool= New-AzureRmLoadBalancerBackendAddressPoolConfig -Name "LB-backen
 
 ## <a name="create-lb-rules-nat-rules-probe-and-load-balancer"></a>Creare regole di bilanciamento del carico, regole NAT, probe e il servizio di bilanciamento del carico
 
-Dopo aver creato il pool di indirizzi IP front-end e il pool di indirizzi back-end, è necessario creare le regole che faranno parte della risorsa di bilanciamento carico:
+Dopo la creazione di pool IP front-end di hello e pool di indirizzi back-end di hello, è necessario utilizzare le regole di hello toocreate apparterranno toohello risorsa di bilanciamento del carico:
 
 ### <a name="step-1"></a>Passaggio 1
 
@@ -143,16 +143,16 @@ $healthProbe = New-AzureRmLoadBalancerProbeConfig -Name "HealthProbe" -RequestPa
 $lbrule = New-AzureRmLoadBalancerRuleConfig -Name "HTTP" -FrontendIpConfiguration $frontendIP -BackendAddressPool $beAddressPool -Probe $healthProbe -Protocol Tcp -FrontendPort 80 -BackendPort 80
 ```
 
-L'esempio precedente crea gli elementi seguenti:
+esempio Hello precedente crea hello seguenti elementi:
 
-* Regola NAT secondo cui tutto il traffico in ingresso sulla porta 3441 passerà alla porta 3389.
-* Seconda regola NAT secondo cui tutto il traffico in ingresso sulla porta 3442 passerà alla porta 3389.
-* Regola di bilanciamento del carico per bilanciare il carico di tutto il traffico in ingresso sulla porta pubblica 80 alla porta locale 80 nel pool di indirizzi back-end.
-* Regola probe per il controllo dello stato di integrità del percorso "HealthProbe.aspx"
+* La regola NAT tutti in ingresso che il traffico tooport 3441 entra tooport 3389.
+* una seconda regola NAT tutti in ingresso che il traffico tooport 3442 entra tooport 3389.
+* una regola di bilanciamento del carico che caricherà bilanciare tutto il traffico in ingresso sulla porta di porta pubblica 80 toolocal 80 nel pool di indirizzi back-end hello.
+* una regola di probe che controlla lo stato di integrità hello per il percorso "HealthProbe.aspx"
 
 ### <a name="step-2"></a>Passaggio 2
 
-Creare il servizio di bilanciamento del carico aggiungendo tutti gli oggetti (regole NAT, regole di bilanciamento del carico, configurazioni di probe):
+Creazione di bilanciamento del carico hello sommando tutti gli oggetti (le regole NAT, regole di bilanciamento del carico, le configurazioni di probe):
 
 ```powershell
 $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Location "West US" -FrontendIpConfiguration $frontendIP -InboundNatRule $inboundNATRule1,$inboundNatRule2 -LoadBalancingRule $lbrule -BackendAddressPool $beAddressPool -Probe $healthProbe
@@ -160,11 +160,11 @@ $NRPLB = New-AzureRmLoadBalancer -ResourceGroupName "NRP-RG" -Name "NRP-LB" -Loc
 
 ## <a name="create-network-interfaces"></a>Creare interfacce di rete
 
-Dopo aver creato il servizio di bilanciamento del carico interno, è necessario definire quali interfacce di rete riceveranno il traffico di rete con bilanciamento del carico in ingresso, regole NAT e probe. In questo caso, l'interfaccia di rete viene configurata singolarmente e può essere assegnata a una macchina virtuale in un secondo momento.
+Dopo la creazione di bilanciamento del carico interno hello, è necessario definire le interfacce di rete verranno ricevuto hello in arrivo con carico bilanciato il traffico di rete, le regole NAT e probe. in questo caso, l'interfaccia di rete Hello viene configurata singolarmente e può essere assegnato macchina virtuale tooa in un secondo momento.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Ottenere la rete virtuale di risorse e la subnet per creare interfacce di rete:
+Ottenere risorse hello virtuale rete e subnet toocreate interfacce di rete:
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
@@ -172,7 +172,7 @@ $vnet = Get-AzureRmVirtualNetwork -Name NRPVNet -ResourceGroupName NRP-RG
 $backendSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name LB-Subnet-BE -VirtualNetwork $vnet
 ```
 
-In questo passaggio viene creata un'interfaccia di rete che farà parte del pool di back-end del servizio di bilanciamento del carico e che assocerà la prima regola NAT per RDP per questa interfaccia di rete:
+Questo passaggio viene creata un'interfaccia di rete che appartengono a pool back-end di bilanciamento del carico toohello e associare la regola NAT prima hello per RDP per questa interfaccia di rete:
 
 ```powershell
 $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic1-be -Location "West US" -PrivateIpAddress 10.0.2.6 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[0]
@@ -182,13 +182,13 @@ $backendnic1= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-n
 
 Creare una seconda interfaccia di rete denominata LB-Nic2-BE:
 
-In questo passaggio viene creata una seconda interfaccia di rete, che sarà assegnata allo stesso pool di back-end del servizio di bilanciamento del carico e che assocerà la seconda regola NAT creata per RDP:
+Questo passaggio viene creata una seconda interfaccia di rete, assegnazione toohello il bilanciamento del carico stesso terminare pool e associare la regola NAT secondo hello creato per RDP:
 
 ```powershell
 $backendnic2= New-AzureRmNetworkInterface -ResourceGroupName "NRP-RG" -Name lb-nic2-be -Location "West US" -PrivateIpAddress 10.0.2.7 -Subnet $backendSubnet -LoadBalancerBackendAddressPool $nrplb.BackendAddressPools[0] -LoadBalancerInboundNatRule $nrplb.InboundNatRules[1]
 ```
 
-Il risultato finale sarà simile al seguente:
+risultato finale Hello mostrerà seguente hello:
 
     $backendnic1
 
@@ -240,17 +240,17 @@ Output previsto:
 
 ### <a name="step-3"></a>Passaggio 3
 
-Usare il comando Add-AzureRmVMNetworkInterface per assegnare la scheda di rete a una macchina virtuale.
+Utilizzare hello comando Add-AzureRmVMNetworkInterface tooassign hello NIC tooa macchina virtuale.
 
-Vedere il documento [Creare una VM Windows con Resource Manager e PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json) per le istruzioni dettagliate su come creare una macchina virtuale e assegnare una scheda di interfaccia di rete.
+È possibile trovare istruzioni dettagliate toocreate una macchina virtuale hello e assegnare tooa NIC seguente documentazione hello: [creare una macchina virtuale di Azure con PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json).
 
-## <a name="add-the-network-interface"></a>Aggiungere l'interfaccia di rete
+## <a name="add-hello-network-interface"></a>Aggiungere l'interfaccia di rete hello
 
-Se è già stata creata una macchina virtuale, è possibile aggiungere l'interfaccia di rete seguendo questa procedura:
+Se si dispone già di una macchina virtuale creata, è possibile aggiungere l'interfaccia di rete hello con hello alla procedura seguente:
 
 ### <a name="step-1"></a>Passaggio 1
 
-Se non è ancora stata eseguita questa operazione, caricare la risorsa di bilanciamento del carico in una variabile. La variabile usata viene chiamata $lb e usa gli stessi nomi della risorsa di bilanciamento del carico creata in precedenza.
+Caricare la risorsa di servizio di bilanciamento carico hello in una variabile (se non è stato fatto che ancora). variabile di Hello utilizzato è denominato $lb e utilizzare hello stessi nomi di risorsa di bilanciamento del carico hello creati in precedenza.
 
 ```powershell
 $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
@@ -258,7 +258,7 @@ $lb = Get-AzureRmLoadBalancer –name NRP-LB -resourcegroupname NRP-RG
 
 ### <a name="step-2"></a>Passaggio 2
 
-Caricare la configurazione back-end in una variabile.
+Carica la variabile tooa di configurazione back-end di hello.
 
 ```powershell
 $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -LoadBalancer $lb
@@ -266,7 +266,7 @@ $backend = Get-AzureRmLoadBalancerBackendAddressPoolConfig -name backendpool1 -L
 
 ### <a name="step-3"></a>Passaggio 3
 
-Caricare l'interfaccia di rete già creata in una variabile. Il nome della variabile usata è $nic. Il nome dell'interfaccia di rete usata è lo stesso dell'esempio precedente.
+Caricare l'interfaccia di rete hello già creato in una variabile. nome della variabile Hello utilizzato è $ scheda di rete. nome di interfaccia di rete Hello utilizzato è hello stesso esempio hello precedente.
 
 ```powershell
 $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
@@ -274,7 +274,7 @@ $nic = Get-AzureRmNetworkInterface –name lb-nic1-be -resourcegroupname NRP-RG
 
 ### <a name="step-4"></a>Passaggio 4
 
-Modificare la configurazione back-end nell'interfaccia di rete.
+Modificare la configurazione back-end di hello nell'interfaccia di rete hello.
 
 ```powershell
 $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
@@ -282,18 +282,18 @@ $nic.IpConfigurations[0].LoadBalancerBackendAddressPools=$backend
 
 ### <a name="step-5"></a>Passaggio 5
 
-Salvare l'oggetto interfaccia di rete.
+Salvare un oggetto di interfaccia di rete hello.
 
 ```powershell
 Set-AzureRmNetworkInterface -NetworkInterface $nic
 ```
 
-Dopo che un'interfaccia di rete viene aggiunta al pool di back-end di bilanciamento del carico, inizia a ricevere il traffico di rete in base alle regole di bilanciamento del carico per la risorsa di bilanciamento carico.
+Dopo l'aggiunta di un'interfaccia di rete pool back-end di bilanciamento del carico toohello, avvia la ricezione di traffico di rete in base alle regole per la risorsa del servizio di bilanciamento carico di bilanciamento del carico di hello.
 
 ## <a name="update-an-existing-load-balancer"></a>Aggiornare un bilanciamento del carico esistente
 
 ### <a name="step-1"></a>Passaggio 1
-Usare il servizio di bilanciamento del carico dall'esempio precedente, assegnare l'oggetto del servizio di bilanciamento del carico alla variabile $slb usando Get-AzureRmLoadBalancer
+Usa bilanciamento del carico hello dall'esempio hello precedente, assegnare $slb utilizzando Get-AzureRmLoadBalancer toovariable di oggetto servizio di bilanciamento carico
 
 ```powershell
 $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
@@ -301,7 +301,7 @@ $slb = Get-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 
 ### <a name="step-2"></a>Passaggio 2
 
-Nell'esempio seguente, si aggiungerà una nuova regola NAT in ingresso mediante la porta 81 nel front-end e la porta 8181 per il pool di back-end a un bilanciamento del carico esistente
+Nell'esempio seguente di hello, si aggiungerà una nuova regola NAT in ingresso utilizzando la porta 81 nel front-end hello e porta 8181 per il backup di hello end di bilanciamento del carico di pool tooan esistente
 
 ```powershell
 $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConfiguration $slb.FrontendIpConfigurations[0] -FrontendPort 81  -BackendPort 8181 -Protocol Tcp
@@ -309,7 +309,7 @@ $slb | Add-AzureRmLoadBalancerInboundNatRuleConfig -Name NewRule -FrontendIpConf
 
 ### <a name="step-3"></a>Passaggio 3
 
-Salvare la nuova configurazione utilizzando Set AzureLoadBalancer
+Salvare hello nuova configurazione utilizzando Set-AzureLoadBalancer
 
 ```powershell
 $slb | Set-AzureRmLoadBalancer
@@ -317,14 +317,14 @@ $slb | Set-AzureRmLoadBalancer
 
 ## <a name="remove-a-load-balancer"></a>Rimuovere un bilanciamento del carico
 
-Usare il comando Remove-AzureRmLoadBalancerr per eliminare un servizio di bilanciamento del carico creato in precedenza denominato "NRP-LB" in un gruppo di risorse denominato "NRP-RG"
+Utilizzare hello comando Remove-AzureRmLoadBalancer toodelete un bilanciamento del carico creato in precedenza denominata "NRP-LB" in un gruppo di risorse denominato "NRP-RG"
 
 ```powershell
 Remove-AzureRmLoadBalancer -Name NRPLB -ResourceGroupName NRP-RG
 ```
 
 > [!NOTE]
-> È possibile utilizzare l’opzione facoltativa - Forzare per evitare la richiesta di eliminazione.
+> È possibile utilizzare hello facoltativo switch - Force tooavoid hello Richiedi l'eliminazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

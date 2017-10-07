@@ -1,6 +1,6 @@
 ---
-title: Creare e gestire regole del firewall di Database di Azure per PostgreSQL tramite l'interfaccia della riga di comando di Azure | Microsoft Docs
-description: Questo articolo descrive come creare e gestire regole del firewall di Database di Azure per PostgreSQL tramite l'interfaccia della riga di comando di Azure.
+title: aaaCreate e gestire i Database di Azure per le regole firewall PostgreSQL mediante Azure CLI | Documenti Microsoft
+description: Questo articolo viene descritto come toocreate e gestire i Database di Azure per le regole firewall PostgreSQL tramite riga di comando CLI di Azure.
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,70 +10,70 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: 6f081416dd7d78f0153b3fda21a340a8c1a70c5f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06e34c9e3996c2ec3df63191d794bc34d0ca0cf2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-azure-database-for-postgresql-firewall-rules-using-azure-cli"></a>Creare e gestire regole del firewall di Database di Azure per PostgreSQL tramite l'interfaccia della riga di comando di Azure
-Le regole del firewall a livello di server consentono agli amministratori di gestire l'accesso a un'istanza di Database di Azure per il server PostgreSQL da uno specifico indirizzo IP o intervallo di indirizzi IP. Usando pratici comandi dell'interfaccia della riga di comando di Azure è possibile creare, aggiornare, eliminare, elencare e visualizzare le regole del firewall per gestire il server. Per una panoramica dei firewall di Database di Azure per PostgreSQL, vedere [Azure Database for PostgreSQL Server firewall rules](concepts-firewall-rules.md) (Regole del firewall di Database di Azure per il server PostgreSQL)
+Le regole del firewall a livello di server abilitare amministratori toomanage accesso tooan Database di Azure per PostgreSQL Server da un indirizzo IP specifico o l'intervallo di indirizzi IP. Usare i comandi CLI di Azure pratici, è possibile creare, aggiornare, eliminare, elencare e Mostra toomanage regole firewall del server. Per una panoramica dei firewall di Database di Azure per PostgreSQL, vedere [Azure Database for PostgreSQL Server firewall rules](concepts-firewall-rules.md) (Regole del firewall di Database di Azure per il server PostgreSQL)
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per proseguire con questa guida, si richiedono:
+toostep tramite questa procedura-tooguide, è necessario:
 - Un [server e un database di Database di Azure per PostgreSQL](quickstart-create-server-database-azure-cli.md)
-- Installare l'utilità della riga di comando [Azure CLI 2.0](/cli/azure/install-azure-cli) o usare Azure Cloud Shell nel browser.
+- Installare [CLI di Azure 2.0](/cli/azure/install-azure-cli) riga di comando utilità oppure utilizzare hello Azure Cloud Shell nel browser hello.
 
 ## <a name="configure-firewall-rules-for-azure-database-for-postgresql"></a>Configurare le regole del firewall di Database di Azure per PostgreSQL
-I comandi [az postgres server firewall-rule-](/cli/azure/postgres/server/firewall-rule) vengono usati per configurare le regole del firewall.
+Hello [az postgres regola firewall del server-](/cli/azure/postgres/server/firewall-rule) comandi sono utilizzati tooconfigure regole del firewall.
 
 ## <a name="list-firewall-rules"></a>Elencare le regole del firewall 
-Per elencare le regole del firewall del server esistenti sul server, eseguire il comando [az postgres server firewall-rule list](/cli/azure/postgres/server/firewall-rule#list).
+toolist hello esistente, le regole firewall del server nel server di hello, eseguire hello [elenco regola firewall di az postgres server](/cli/azure/postgres/server/firewall-rule#list) comando.
 ```azurecli-interactive
 az postgres server firewall-rule list --resource-group myresourcegroup --server mypgserver-20170401
 ```
-L'output elenca le eventuali regole presenti, per impostazione predefinita in formato JSON. È possibile usare l'opzione `--output table` per ottenere un formato di tabella più leggibile come output.
+output di Hello Elenca le regole di hello, se presente, per impostazione predefinita in JSON di formato. È possibile utilizzare l'opzione hello `--output table` per un formato più leggibile di tabella come output di hello.
 ```azurecli-interactive
 az postgres server firewall-rule list --resource-group myresourcegroup --server mypgserver-20170401 --output table
 ```
 ## <a name="create-firewall-rule"></a>Creare la regola del firewall
-Per creare una nuova regola del firewall sul server, eseguire il comando [az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create). 
+una nuova regola firewall nel server di hello, eseguire hello toocreate [az postgres regola firewall del server-creare](/cli/azure/postgres/server/firewall-rule#create) comando. 
 
-Questo esempio consente un intervallo di tutti gli indirizzi IP per accedere al server **mypgserver-20170401.postgres.database.azure.com**
+In questo esempio consente un intervallo di tutti i server di hello tooaccess di indirizzi IP **mypgserver 20170401.postgres.database.azure.com**
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myresourcegroup  --server mypgserver-20170401 --name "AllowIpRange" --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 ```
-Per consentire l'accesso a un solo indirizzo IP, specificare lo stesso valore come indirizzo IP iniziale e finale, come nell'esempio seguente.
+tooallow un tooaccess di indirizzo IP specifico, fornire hello stesso indirizzo come hello IP iniziale e IP finale, come nel seguente esempio.
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myresourcegroup  
 --server mypgserver-20170401 --name "AllowSingleIpAddress" --start-ip-address 13.83.152.1 --end-ip-address 13.83.152.1
 ```
-Al termine dell'operazione, l'output del comando elenca i dettagli della regola del firewall creata, per impostazione predefinita in formato JSON. Se si verifica un errore, l'output visualizza invece il testo di un messaggio di errore.
+Al completamento dell'operazione, l'output del comando hello Elenca i dettagli di hello hello regola del firewall creata per impostazione predefinita in formato JSON. Se si verifica un errore, hello output invece showserror testo del messaggio.
 
 ## <a name="update-firewall-rule"></a>Aggiornare la regola del firewall 
-Aggiornare una regola del firewall esistente sul server usando il comando [az postgres server firewall-rule update](/cli/azure/postgres/server/firewall-rule#update). Specificare il nome della regola del firewall esistente come input e gli attributi dell'indirizzo IP iniziale e finale per l'aggiornamento.
+Aggiornare una regola firewall esistente sul server hello utilizzando [aggiornamento regola firewall del server az postgres](/cli/azure/postgres/server/firewall-rule#update) comando. Specificare il nome di hello della regola firewall esistente hello come input e hello inizio IP e fine IP attributi tooupdate.
 ```azurecli-interactive
 az postgres server firewall-rule update --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange" --start-ip-address 13.83.152.0 --end-ip-address 13.83.152.255
 ```
-Al termine dell'operazione, l'output del comando elenca i dettagli della regola del firewall aggiornata, per impostazione predefinita in formato JSON. Se si verifica un errore, l'output visualizza invece il testo di un messaggio di errore.
+Al completamento dell'operazione, l'output del comando hello Elenca i dettagli di hello hello regola del firewall che sono state aggiornate, per impostazione predefinita in formato JSON. Se si verifica un errore, hello output invece showserror testo del messaggio.
 > [!NOTE]
-> Se la regola del firewall non esiste, viene creata dal comando di aggiornamento.
+> Se non esiste una regola del firewall hello, viene creato dal comando di aggiornamento hello.
 
 ## <a name="show-firewall-rule-details"></a>Visualizzare i dettagli di una regola del firewall
-È inoltre possibile visualizzare i dettagli di una regola del firewall esistente per un server eseguendo il comando [az postgres server firewall-rule show](/cli/azure/postgres/server/firewall-rule#show).
+È inoltre possibile visualizzare firewall esistente hello dettagli regola per un server eseguendo [Mostra regola firewall di az postgres server](/cli/azure/postgres/server/firewall-rule#show) comando.
 ```azurecli-interactive
 az postgres server firewall-rule show --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange"
 ```
-Al termine dell'operazione, l'output del comando elenca i dettagli della regola del firewall specificata, per impostazione predefinita in formato JSON. Se si verifica un errore, l'output visualizza invece il testo di un messaggio di errore.
+Al completamento dell'operazione, l'output del comando hello Elenca i dettagli di hello hello regola del firewall che è stato specificato, per impostazione predefinita in formato JSON. Se si verifica un errore, hello output invece showserror testo del messaggio.
 
 ## <a name="delete-firewall-rule"></a>Eliminare la regola del firewall
-Per revocare l'accesso per un intervallo IP dal server, eliminare una regola del firewall esistente eseguendo il comando [az postgres server firewall-rule delete](/cli/azure/postgres/server/firewall-rule#delete). Specificare il nome della regola del firewall esistente.
+accesso toorevoke per un intervallo IP dal server di hello, eliminare una regola firewall esistente eseguendo hello [az postgres regola firewall del server-eliminare](/cli/azure/postgres/server/firewall-rule#delete) comando. Specificare il nome di hello della regola firewall esistente hello.
 ```azurecli-interactive
 az postgres server firewall-rule delete --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange"
 ```
-Al completamento dell'operazione non verrà visualizzato alcun output. In caso di errore, viene restituito il testo di un messaggio di errore.
+Al completamento dell'operazione non verrà visualizzato alcun output. In caso di errore, viene restituito testo del messaggio hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Analogamente, è possibile usare un Web browser per [creare e gestire le regole del firewall di Database di Azure per PostgreSQL usando il portale di Azure](howto-manage-firewall-using-portal.md)
+- Analogamente, è possibile utilizzare un web browser troppo[creare e gestire i Database di Azure per le regole firewall PostgreSQL utilizzando hello portale di Azure](howto-manage-firewall-using-portal.md)
 - Altre informazioni sulle [regole del firewall di Database di Azure per il server PostgreSQL](concepts-firewall-rules.md)
-- Per informazioni sulla connessione a un'istanza di Database di Azure per il server PostgreSQL, vedere [Connection libraries for Azure Database for PostgreSQL](concepts-connection-libraries.md) (Raccolte di connessioni per Database di Azure per PostgreSQL)
+- Per informazioni sulla connessione tooan Database di Azure per server PostgreSQL, vedere [raccolte di connessioni per il Database di Azure per PostgreSQL](concepts-connection-libraries.md)

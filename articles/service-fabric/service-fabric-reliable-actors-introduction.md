@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Reliable Actors di Service Fabric| Documentazione Microsoft
-description: Introduzione al modello di programmazione Service Fabric Reliable Actors
+title: aaaService infrastruttura affidabile attori Panoramica | Documenti Microsoft
+description: Introduzione toohello Service Fabric Reliable Actors modello di programmazione.
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: e89be04a0d6fe90a89e293e67d42f0204eb7000a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab010cbf936c6cf723b3d453ef95a9bf51f76c95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-service-fabric-reliable-actors"></a>Introduzione a Service Fabric Reliable Actors
-Reliable Actors è un framework di applicazione Service Fabric basato sul criterio [Actor virtuale](http://research.microsoft.com/en-us/projects/orleans/). L'API Reliable Actors offre un modello di programmazione a thread singolo basato sulle garanzie di affidabilità e scalabilità offerte da Service Fabric.
+# <a name="introduction-tooservice-fabric-reliable-actors"></a>Introduzione tooService infrastruttura Reliable Actors
+Reliable Actors è un framework di applicazione di Service Fabric in base a hello [Actor virtuale](http://research.microsoft.com/en-us/projects/orleans/) modello. Hello affidabile attori API fornisce un modello di programmazione a thread singolo compilato in hello scalabilità e affidabilità garanzie fornite dall'infrastruttura del servizio.
 
 ## <a name="what-are-actors"></a>Che cosa sono gli attori?
-Un attore è un'unità isolata e indipendente di calcolo e di stato con esecuzione a thread singolo. Il [criterio Actor](https://en.wikipedia.org/wiki/Actor_model) è un modello di calcolo per sistemi simultanei o distribuiti in cui è possibile eseguire un numero elevato di attori simultaneamente e indipendente. Gli attori possono comunicare tra loro e possono creare altri attori.
+Un attore è un'unità isolata e indipendente di calcolo e di stato con esecuzione a thread singolo. Hello [modello attore](https://en.wikipedia.org/wiki/Actor_model) è un modello di calcolo per i sistemi simultanei o distribuiti che un numero elevato di questi operatori possono essere eseguite simultaneamente in modo indipendente. Gli attori possono comunicare tra loro e possono creare altri attori.
 
-### <a name="when-to-use-reliable-actors"></a>Quando usare Reliable Actors
-Service Fabric Reliable Actors è un'implementazione dello schema progettuale dell'attore. Come per gli altri schemi progettuali del software, la scelta di usare un criterio specifico dipende dalla capacità di un problema di progettazione software di seguire lo schema.
+### <a name="when-toouse-reliable-actors"></a>Quando toouse Reliable Actors
+Servizio Fabric Reliable Actors è un'implementazione del modello di progettazione di hello attore. Come con qualsiasi modello di progettazione del software, decisione hello se toouse un pattern specifico viene eseguito in base a o meno un software per progettare problema soddisfa il criterio di hello.
 
-Sebbene lo schema progettuale dell'attore possa risultare idoneo per vari problemi e scenari di sistemi distribuiti, occorre valutare attentamente i limiti dello schema e il framework in cui viene implementato. In generale conviene prendere in considerazione il criterio dell'attore per modellare il problema o lo scenario nei casi seguenti:
+Sebbene l'attore hello progettazione modello può essere che ideale tooa numerosi problemi di sistemi distribuiti e gli scenari, un'attenta considerazione dei vincoli di hello del criterio di hello e framework hello implementarlo deve essere eseguita. Come indicazione generale, prendere in considerazione hello attore modello toomodel il problema o scenario se:
 
 * Il problema riguarda un gran numero (migliaia o più) di piccole unità indipendenti e isolate di stato e logica.
-* Si desidera usare oggetti a thread singolo che non richiedono un'interazione significativa con componenti esterni, incluse query dello stato tra un insieme di attori.
+* Si desidera toowork con oggetti a thread singolo che non richiedono una notevole interazione da componenti esterni, incluse l'esecuzione di query dello stato in un set di attori.
 * Le istanze degli attori non bloccano i chiamanti con ritardi imprevedibili eseguendo operazioni I/O.
 
 ## <a name="actors-in-service-fabric"></a>Attori in Service Fabric
-In Service Fabric gli attori sono implementati nel framework Reliable Actors: un framework di applicazioni imperniato sul criterio attore e basato su [Service Fabric Reliable Services](service-fabric-reliable-services-introduction.md). Ogni servizio di tipo Reliable Actor che viene scritto è di fatto un servizio Reliable partizionato con stato.
+In Service Fabric, attori vengono implementati in framework Reliable Actors hello: un framework di applicazione basato su attori modello compilato in cima [affidabili servizi dell'infrastruttura](service-fabric-reliable-services-introduction.md). Ogni servizio di tipo Reliable Actor che viene scritto è di fatto un servizio Reliable partizionato con stato.
 
-Ogni attore è definito come un'istanza di un tipo di attore, come un oggetto .NET è un'istanza di un tipo .NET. Ad esempio, può essere definito un tipo di attore che implementa la funzionalità di una calcolatrice e possono esistere molti attori di quel tipo distribuiti su vari nodi di un cluster. Ciascuno di questi attori è identificato in modo univoco da un ID.
+Ogni attore è definito come un'istanza di un tipo attore, identici toohello modo un oggetto .NET è un'istanza di un tipo .NET. Potrebbe esserci più attori di quel tipo distribuiti su vari nodi in un cluster, ad esempio, potrebbe esserci un tipo actor che implementa la funzionalità di hello di una calcolatrice. Ciascuno di questi attori è identificato in modo univoco da un ID.
 
 ### <a name="actor-lifetime"></a>Durata attore
-Gli attori Service Fabric sono virtuali, vale a dire che la loro durata non è correlata alla loro rappresentazione in memoria. Di conseguenza, non devono essere esplicitamente create o eliminate. Il runtime di Reliable Actors attiva automaticamente un attore la prima volta che riceve una richiesta per l'ID attore. Se un attore rimane inutilizzato per un determinato periodo di tempo, il runtime di Reliable Actors esegue la Garbage Collection dell'oggetto in memoria. Mantiene inoltre conoscenza dell'esistenza dell'attore, nel caso in cui debba essere riattivato in un secondo momento. Per altre informazioni, vedere [Ciclo di vita degli attori e Garbage Collection](service-fabric-reliable-actors-lifecycle.md).
+Gli attori di Service Fabric sono virtuali, che significa che la durata non rappresentazione in memoria vincolata tootheir. Di conseguenza, non è necessario toobe creato o eliminato in modo esplicito. runtime Reliable Actors Hello attiva automaticamente hello un attore prima volta che riceve una richiesta per tale ID attore. Se un attore non viene utilizzato per un periodo di tempo, hello Reliable Actors runtime garbage-raccoglie oggetti in memoria hello. Anche manterrà conoscenza dell'esistenza dell'attore hello dovrebbe essere necessario toobe riattivati in un secondo momento. Per altre informazioni, vedere [Ciclo di vita degli attori e Garbage Collection](service-fabric-reliable-actors-lifecycle.md).
 
-L'astrazione della durata dell'attore virtuale produce alcune avvertenze in seguito al modello di attore virtuale, infatti in alcuni casi l'implementazione di Reliable Actors devia dal modello.
+Questa astrazione durata actor virtuale esegue alcune raccomandazioni come risultato modello actor virtuale hello e in realtà hello implementazione Reliable Actors devia orari da questo modello.
 
-* Un attore viene automaticamente attivato, causando la costruzione di un oggetto attore, quando all'ID attore viene inviato un messaggio per la prima volta. Dopo un po' di tempo viene eseguita la Garbage Collection dell'oggetto attore. In futuro viene costruito un nuovo oggetto attore quando l'ID attore viene usato di nuovo. Quando un attore viene archiviato nella gestione stati, la durata del suo stato supera quella dell'oggetto.
-* La chiamata di un qualsiasi metodo di attore per l'ID attore attiva l'attore. Per questo motivo il runtime richiama implicitamente il costruttore dei tipi di attore. Il codice client pertanto non può trasmettere i parametri al costruttore del tipo di attore, anche se i parametri possono essere trasmessi al costruttore dell'attore tramite il servizio stesso. Di conseguenza, se l'attore richiede i parametri di inizializzazione dal client, gli attori possono essere costruiti in uno stato inizializzato parzialmente nel momento in cui gli altri metodi vengono chiamati su di esso. Non è presente alcun punto di ingresso singolo per l'attivazione di un attore dal client.
-* Sebbene Reliable Actors crei in modo implicito oggetti attore, è possibile eliminare in modo esplicito un attore e il suo stato.
+* Un attore viene attivato automaticamente (causando un attore toobe oggetto costruito) hello prima volta che un messaggio viene inviato ID attore tooits Dopo un certo periodo di tempo, l'oggetto attore hello è sottoposto a garbage collection. In hello futuro, utilizzando di nuovo ID attore hello provoca un attore nuovo toobe oggetto costruito. Stato di un attore sia maggiore di quella durata dell'oggetto hello quando archiviata nel gestore degli stati hello.
+* La chiamata di un qualsiasi metodo di attore per l'ID attore attiva l'attore. Per questo motivo, attore hanno il relativo costruttore chiamato in modo implicito dal runtime di hello. Pertanto, il codice client non è possibile passare al costruttore del tipo di parametri toohello attore, anche se i parametri possono essere passati costruttore toohello actor dal servizio hello stesso. il risultato di Hello è che gli attori possono essere costruiti in uno stato parzialmente inizializzata da altri metodi vengono chiamati su di esso, tempo di hello se attore hello richiede parametri di inizializzazione da client hello. Non è presente alcun singolo punto di ingresso per l'attivazione di un attore da client hello hello.
+* Sebbene Reliable Actors creare in modo implicito oggetti attore. è hello possibilità tooexplicitly eliminare un attore e il relativo stato.
 
 ### <a name="distribution-and-failover"></a>Distribuzione e failover
-Per garantire scalabilità e affidabilità, Service Fabric distribuisce gli attori all'interno del cluster e ne esegue automaticamente la migrazione dai nodi non riusciti a quelli integri, se richiesto. Questa è un'astrazione su un [Reliable Service partizionato con stato](service-fabric-concepts-partitioning.md). La distribuzione, la scalabilità, l'affidabilità e il failover automatico sono disponibili in virtù del fatto che gli attori sono in esecuzione all'interno di un Reliable Service con stato chiamato *servizio Actor*.
+tooprovide scalabilità e affidabilità, Service Fabric distribuisce gli attori in tutto il cluster hello e automaticamente consente di migrare da nodi con errori toohealthy quelli come richiesto. Questa è un'astrazione su un [Reliable Service partizionato con stato](service-fabric-concepts-partitioning.md). Distribuzione, la scalabilità, affidabilità e il failover automatico vengono forniti in virtù dei fatti hello attori in esecuzione all'interno di un servizio affidabile con stato chiamato hello *servizio Actor*.
 
-Gli attori vengono distribuiti tra le partizioni del servizio Actor e le partizioni a loro volta vengono distribuite tra i nodi in un cluster Service Fabric. Ogni partizione del servizio contiene un set di attori. Service Fabric gestisce la distribuzione e il failover delle partizioni del servizio.
+Le partizioni siano distribuite in nodi hello in un cluster di Service Fabric attori vengono distribuiti tra partizioni hello di hello servizio Actor. Ogni partizione del servizio contiene un set di attori. Service Fabric gestisce la distribuzione e il failover delle partizioni servizio hello.
 
-Ad esempio, quando un servizio Actor con nove partizioni viene distribuito in tre nodi usando la posizione di partizione attore predefinita:
+Ad esempio, un servizio actor con nove partizioni distribuiti vengono distribuiti i nodi utilizzando il posizionamento di partizione hello predefinito attore thusly toothree:
 
 ![Distribuzione di Reliable Actors][2]
 
-Il framework attore gestisce automaticamente le impostazioni dello schema di partizionamento e dell'intervallo di chiavi. In tal modo la scelta è più semplice, ma occorre tenere presente alcune considerazioni:
+Hello attore Framework gestisce le impostazioni di intervallo dello schema e la chiave di partizione per l'utente. In tal modo la scelta è più semplice, ma occorre tenere presente alcune considerazioni:
 
-* Reliable Services consente di scegliere uno schema di partizionamento, un intervallo di chiavi nel caso in cui si usi uno schema di partizionamento con intervallo e un conteggio partizioni. Reliable Actors si limita allo schema di partizionamento dell'intervallo, lo schema uniforme Int64, e richiede l'uso di tutto l'intervallo di chiavi Int64.
+* Servizi affidabili consente toochoose uno schema di partizionamento, l'intervallo di chiavi (quando si usa un intervallo di schema di partizionamento) e il numero di partizione. Reliable Actors è schema di partizionamento toohello limitato intervallo (schema Int64 uniforme hello) e richiede l'utilizzo di hello completo Int64 intervalli di chiavi.
 * Per impostazione predefinita, gli attori vengono posizionati in modo casuale nelle partizioni, in modo che la distribuzione risulti uniforme.
 * Poiché gli attori vengono posizionati in modo casuale, è prevedibile che le operazioni dell'attore richiedano sempre la comunicazione di rete, incluse la serializzazione e deserializzazione dei dati di chiamata del metodo, la latenza riscontrata e il sovraccarico.
-* Negli scenari avanzati è possibile controllare il posizionamento della partizione dell'attore usando gli ID attore Int64 che eseguono il mapping su partizioni specifiche. Questo metodo può tuttavia comportare una distribuzione sbilanciata degli attori tra le partizioni.
+* In scenari avanzati, è la selezione di partizione attore toocontrol possibili con attore Int64 ID che eseguono il mapping delle partizioni toospecific. Questo metodo può tuttavia comportare una distribuzione sbilanciata degli attori tra le partizioni.
 
-Per altre informazioni sul partizionamento dei servizi attore vedere [Concetti relativi alla partizione per gli attori](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors).
+Per ulteriori informazioni sulla modalità di partizionamento servizi actor di, vedere troppo[partizionamento concetti per attori](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors).
 
 ### <a name="actor-communication"></a>Comunicazione tra attori
-Le interazioni tra gli attori sono definite in un'interfaccia condivisa dall'attore che implementa l'interfaccia e dal client che ottiene un proxy per un attore tramite l'interfaccia stessa. Dato che questa interfaccia viene usata per richiamare i metodi dell'attore in modo asincrono, ogni metodo nell'interfaccia deve comportare la restituzione di Task.
+Interazioni attore sono definite in un'interfaccia che viene condiviso da attore hello che implementa l'interfaccia hello e hello client che consente di ottenere un proxy attore tooan tramite hello stessa interfaccia. Poiché questa interfaccia è utilizzata tooinvoke attore metodi in modo asincrono, ogni metodo nell'interfaccia hello deve essere restituzione di attività.
 
-Le chiamate ai metodi e le relative risposte risultano nelle richieste di rete eseguite nel cluster, pertanto gli argomenti e i tipi di risultati delle attività restituite devono essere serializzabili dalla piattaforma. In particolare, devono essere [contratto dati serializzabili](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).
+Chiamate ai metodi e le relative risposte implicano, in richieste di rete tra cluster hello, argomenti hello in tal caso e tipi di risultati hello delle attività hello che restituiscono deve essere serializzabile dalla piattaforma hello. In particolare, devono essere [contratto dati serializzabili](service-fabric-reliable-actors-notes-on-actor-type-serialization.md).
 
-#### <a name="the-actor-proxy"></a>Proxy dell'attore
-L'API client Reliable Actors consente la comunicazione tra un'istanza di attore e un client di attore. Per comunicare con un attore, un client crea un oggetto proxy di attore che implementa l'interfaccia dell'attore. Il client interagisce con l'attore richiamando metodi sull'oggetto proxy. Il proxy dell'attore può essere usato per la comunicazione tra client e attore e tra attore e attore.
+#### <a name="hello-actor-proxy"></a>proxy attore Hello
+API client di Reliable Actors Hello fornisce la comunicazione tra un'istanza di attore e un client attore. toocommunicate con un attore, un client crea un oggetto proxy attore che implementa l'interfaccia di hello attore. client Hello interagisce con attore hello per richiamare metodi su oggetti proxy hello. proxy attore Hello è utilizzabile per la comunicazione client-a-attore e attore-a-attore.
 
 ```csharp
 // Create a randomly distributed actor ID
@@ -82,7 +82,7 @@ ActorId actorId = ActorId.CreateRandom();
 // This only creates a proxy object, it does not activate an actor or invoke any methods yet.
 IMyActor myActor = ActorProxy.Create<IMyActor>(actorId, new Uri("fabric:/MyApp/MyActorService"));
 
-// This will invoke a method on the actor. If an actor with the given ID does not exist, it will be activated by this method call.
+// This will invoke a method on hello actor. If an actor with hello given ID does not exist, it will be activated by this method call.
 await myActor.DoWorkAsync();
 ```
 
@@ -93,54 +93,54 @@ ActorId actorId = new ActorId("Actor1");
 // This only creates a proxy object, it does not activate an actor or invoke any methods yet.
 MyActor myActor = ActorProxyBase.create(actorId, new URI("fabric:/MyApp/MyActorService"), MyActor.class);
 
-// This will invoke a method on the actor. If an actor with the given ID does not exist, it will be activated by this method call.
+// This will invoke a method on hello actor. If an actor with hello given ID does not exist, it will be activated by this method call.
 myActor.DoWorkAsync().get();
 ```
 
 
-Osservare come le due porzioni di informazioni usate per creare l'oggetto proxy dell'attore siano l'ID dell'attore e il nome dell'applicazione. L'ID attore identifica in modo univoco l'attore, mentre il nome dell'applicazione identifica l' [applicazione Service Fabric](service-fabric-reliable-actors-platform.md#application-model) in cui è distribuito l'attore.
+Si noti che i tipi di informazioni hello due utilizzato oggetto proxy attore di hello toocreate sono hello attore ID e nome dell'applicazione hello. ID attore Hello identifica in modo univoco l'attore hello, mentre il nome dell'applicazione hello identifica hello [applicazione di Service Fabric](service-fabric-reliable-actors-platform.md#application-model) in cui è distribuito attore hello.
 
-La classe `ActorProxy`(C#) / `ActorProxyBase`(Java) sul lato client esegue la risoluzione necessaria per individuare l'attore in base al relativo ID e aprire un canale di comunicazione con esso. In caso di errore di comunicazione e failover, la classe tenta di individuare nuovamente l'attore. Il recapito dei messaggi, di conseguenza, presenta le caratteristiche seguenti:
+Hello `ActorProxy`(c#) o `ActorProxyBase`classe (linguaggio) sul lato client hello esegue attore di hello risoluzione necessarie toolocate hello dall'ID e aprire un canale di comunicazione con esso. Effettua inoltre attore hello toolocate nei casi di hello di errori di comunicazione e di failover. Di conseguenza, il recapito dei messaggi è hello seguenti caratteristiche:
 
 * Il recapito del messaggio è il massimo sforzo.
-* Gli attori possono ricevere messaggi duplicati dallo stesso client.
+* Gli attori possono ricevere messaggi duplicati da hello client stesso.
 
 ### <a name="concurrency"></a>Concorrenza
-Il runtime di Reliable Actors rappresenta un modello semplice di accesso a turno per accedere ai metodi degli attori. Ciò significa che, in qualsiasi momento, all'interno del codice oggetto dell'attore non può essere attivo più di un thread. L'accesso a turno semplifica notevolmente i sistemi simultanei, poiché non occorrono meccanismi di sincronizzazione per l'accesso ai dati. I sistemi devono inoltre essere progettati tenendo in particolare considerazione la natura di accesso a thread singolo di ogni istanza dell'attore.
+Hello Reliable Actors runtime fornisce un modello di accesso basato su semplice per accedere ai metodi attore. Ciò significa che, in qualsiasi momento, all'interno del codice oggetto dell'attore non può essere attivo più di un thread. L'accesso a turno semplifica notevolmente i sistemi simultanei, poiché non occorrono meccanismi di sincronizzazione per l'accesso ai dati. Significa anche i sistemi devono essere progettati con considerazioni relative alla natura a thread singolo accesso hello di ogni istanza attore.
 
-* Un'istanza di un solo attore non può elaborare più di una richiesta alla volta. Se si prevede di gestire richieste simultanee, un'istanza di un attore può causare un collo di bottiglia della velocità effettiva.
-* Gli attori possono bloccarsi a vicenda se esiste una richiesta circolare tra due attori mentre viene eseguita una richiesta esterna a uno degli attori. Il runtime dell'attore causa automaticamente il timeout delle chiamate dell'attore e genera un'eccezione al chiamante per interrompere le possibili situazioni di deadlock.
+* Un'istanza di un solo attore non può elaborare più di una richiesta alla volta. Un'istanza di attore può causare un collo di bottiglia della velocità effettiva in caso di richieste simultanee toohandle previsto.
+* Gli attori possono causare un deadlock tra loro se esiste una richiesta circolare tra due attori durante una richiesta esterna è tooone degli attori hello contemporaneamente. Hello attore runtime verrà automaticamente una volta sulla attore chiama e generare un toointerrupt chiamante di eccezione toohello situazione di blocco critico.
 
 ![Comunicazioni di Reliable Actors][3]
 
 #### <a name="turn-based-access"></a>Accesso basato su turni
-Un turno consiste nell'esecuzione completa di un metodo di un attore in risposta a una richiesta eseguita da altri attori o client oppure nell'esecuzione completa di un callback di [timer/promemoria](service-fabric-reliable-actors-timers-reminders.md) . Anche se questi metodi e callback sono asincroni, il runtime di Actors non ne esegue l'interfoliazione. Un turno deve essere interamente completato prima che sia consentito un nuovo turno. In altre parole, un metodo di un attore o un callback di timer/promemoria in esecuzione deve essere interamente completato prima che sia consentita una nuova chiamata a un metodo o a un callback. Un metodo o un callback è considerato completato se è stata restituita l'esecuzione e se l'attività restituita dal metodo o dal callback è stata completata. È opportuno sottolineare che la concorrenza basata su turni viene rispettata anche su metodi, timer e callback diversi.
+Una volta è costituito da hello esecuzione completa di un metodo attore nella richiesta tooa risposta da un client o altri attori o completare l'esecuzione hello di un [timer/promemoria](service-fabric-reliable-actors-timers-reminders.md) callback. Anche se questi metodi e i callback asincroni, il runtime di attori hello non interleave. Un turno deve essere interamente completato prima che sia consentito un nuovo turno. In altre parole, un callback di metodo o timer/promemoria attore attualmente in esecuzione deve essere completamente terminato prima di un nuovo metodo di chiamata tooa o callback è consentito. Un metodo o il callback viene considerato toohave completata se l'esecuzione di hello ha restituito dal metodo hello o di completamento dell'attività di callback e hello restituito dal metodo hello o un callback. È opportuno sottolineare che la concorrenza basata su turni viene rispettata anche su metodi, timer e callback diversi.
 
-Per applicare la concorrenza basata su turni, il runtime di Actors acquisisce un blocco per ogni attore all'inizio di un turno e lo rilascia alla fine del turno. Pertanto, la concorrenza basata su turni viene applicata a livello di singolo attore e non per più attori. I metodi e i callback di timer/promemoria degli attori possono essere eseguiti simultaneamente per conto di diversi attori.
+runtime attori Hello impone concorrenza basato su acquisendo un blocco actor all'inizio di hello di una volta e attivare il rilascio blocco hello alla fine hello hello. Pertanto, la concorrenza basata su turni viene applicata a livello di singolo attore e non per più attori. I metodi e i callback di timer/promemoria degli attori possono essere eseguiti simultaneamente per conto di diversi attori.
 
-L'esempio seguente illustra questi concetti. Si consideri un tipo di attore che implementa due metodi asincroni, ad esempio *Method1* e *Method2*, un timer e un promemoria. Il diagramma seguente illustra un esempio di sequenza temporale per l'esecuzione di questi metodi e callback per conto di due attori, *ActorId1* e *ActorId2*, appartenenti a questo tipo.
+Hello di esempio seguente viene illustrato hello sopra i concetti. Si consideri un tipo di attore che implementa due metodi asincroni, ad esempio *Method1* e *Method2*, un timer e un promemoria. diagramma di Hello seguente viene illustrato un esempio di una sequenza temporale per l'esecuzione di hello di questi metodi e i callback per conto di due attori (*ActorId1* e *ActorId2*) che appartengono toothis attore tipo.
 
 ![Accesso e concorrenza basata su turni del runtime di Reliable Actors][1]
 
 Il diagramma adotta queste convenzioni:
 
-* Ogni linea verticale mostra il flusso logico di esecuzione di un metodo o di un callback per conto di un attore specifico.
-* Gli eventi contrassegnati su ogni linea verticale sono riportati in ordine cronologico, con gli eventi più recenti elencati sotto quelli meno recenti.
-* Per le sequenze temporali vengono usati colori diversi, corrispondenti a diversi attori.
-* L'evidenziazione viene usata per indicare la durata in cui il blocco per attore è attivato per conto di un metodo o di un callback.
+* Ogni linea verticale mostra il flusso logico hello dell'esecuzione di un metodo o un callback per conto dell'attore un particolare.
+* gli eventi di Hello contrassegnati su ogni linea verticale si verificano in ordine cronologico, con gli eventi più recenti che si verificano di sotto di quelle meno recenti.
+* Vengono utilizzati colori diversi per le sequenze temporali corrispondenti toodifferent attori.
+* Evidenziazione è durata hello tooindicate utilizzato per la quale hello actor blocco per conto di un metodo o un callback.
 
-Alcuni elementi importanti da considerare:
+Tooconsider alcuni punti importanti:
 
-* Mentre *Method1* è in esecuzione per conto di *ActorId2* in risposta alla richiesta client *xyz789*, arriva un'altra richiesta client *abc123* per l'esecuzione di *Method1* da parte di *ActorId2*. La seconda esecuzione di *Method1* tuttavia non inizia finché non è terminata l'esecuzione precedente. Analogamente, un promemoria registrato da *ActorId2* viene attivato mentre *Method1* è in esecuzione in risposta alla richiesta client *xyz789*. Il callback di promemoria viene eseguito solo dopo che entrambe le esecuzioni di *Method1* sono state completate. Tutto ciò è regolato dalla concorrenza basata su turni applicata per *ActorId2*.
-* Questa concorrenza basata sui turni viene applicata analogamente anche per *ActorId1*, come dimostrato dall'esecuzione di *Method1*, *Method2* e del callback del timer per conto di *ActorId1* eseguito in modalità seriale.
+* Mentre *Method1* è in esecuzione per conto di *ActorId2* nella richiesta di risposta tooclient *xyz789*, un'altra richiesta del client (*abc123*) arriva che richiede inoltre *Method1* toobe eseguito da *ActorId2*. Tuttavia, hello seconda esecuzione di *Method1* non viene avviato finché termina l'esecuzione precedente hello. Analogamente, un promemoria registrata da *ActorId2* generato durante *Method1* viene eseguito nella richiesta di risposta tooclient *xyz789*. Hello callback promemoria viene eseguita solo dopo che entrambe le esecuzioni di *Method1* sono state completate. Tutte queste operazioni a causa della concorrenza basata su tooturn viene applicata per *ActorId2*.
+* Analogamente, basato su concorrenza viene anche applicata per *ActorId1*, come illustrato dall'esecuzione hello *Method1*, *Method2*, e hello callback del timer per conto di *ActorId1* il problema in modo seriale.
 * L'esecuzione di *Method1* per conto di *ActorId1* si sovrappone all'esecuzione per conto di *ActorId2*. Questo accade perché la concorrenza basata su turni viene applicata solo all'interno di un attore e non tra più attori.
-* In alcune esecuzioni di metodo o callback, l'oggetto `Task`(C#) / `CompletableFuture`(Java) restituito dal metodo o dal callback viene completato solo dopo la restituzione del metodo. In altre esecuzioni, l'operazione asincrona risulta già completata al momento della restituzione del metodo o del callback. In entrambi i casi, il blocco per attore viene rilasciato soltanto dopo la restituzione del metodo o del callback e il completamento dell'operazione asincrona.
+* In alcune delle esecuzioni di metodo/callback hello, hello `Task`(c#) o `CompletableFuture`(linguaggio) restituito da hello metodo/callback termina una volta completato il metodo hello. In alcuni altri, operazione asincrona di hello è già terminata dal tempo hello hello metodo/callback restituisce. In entrambi i casi, hello actor viene sbloccata solo dopo che entrambi hello metodo/callback restituisce e completamento dell'operazione asincrona di hello.
 
 #### <a name="reentrancy"></a>Rientranza
-Per impostazione predefinita, il runtime di Actors consente la reentrancy. In altre parole, se un metodo dell'*Actor A* chiama un metodo sull'*Actor B*, che a sua volta chiama un altro metodo sull'*Actor A*, il metodo può essere eseguito. perché fa parte dello stesso contesto logico della catena di chiamate. Tutte le chiamate di timer e promemoria iniziano con il nuovo contesto logico di chiamate. Per altre informazioni, vedere [Rientranza di Reliable Actors](service-fabric-reliable-actors-reentrancy.md).
+il runtime di attori Hello consente reentrancy per impostazione predefinita. Questo significa che se un metodo attore *attore A* chiama un metodo su *attore B*, che a sua volta chiama un altro metodo in *attore A*, che metodo è consentito toorun. Infatti, fa parte di hello stesso contesto logico della catena di chiamate. Tutte le chiamate timer e promemoria iniziano con il nuovo contesto di chiamata logico hello. Vedere hello [reentrancy Reliable Actors](service-fabric-reliable-actors-reentrancy.md) per altri dettagli.
 
 #### <a name="scope-of-concurrency-guarantees"></a>Ambito delle garanzie di concorrenza
-Il runtime di Actors fornisce queste garanzie di concorrenza nelle situazioni in cui controlla le chiamate di questi metodi, ad esempio per le chiamate di metodi eseguite in risposta a una richiesta client e per i callback di promemoria e timer. Tuttavia, se il codice dell'attore richiama direttamente questi metodi al di fuori dei meccanismi forniti dal runtime di Actors, il runtime non può offrire alcuna garanzia di concorrenza. Ad esempio, se il metodo viene richiamato nel contesto di un'attività non associata all'attività restituita dai metodi dell'attore oppure se viene richiamato da un thread che l'attore crea in modo autonomo, il runtime non può fornire garanzie di concorrenza. Per eseguire operazioni in background, pertanto, gli attori devono usare specifici [timer e promemoria](service-fabric-reliable-actors-timers-reminders.md) che rispettano la concorrenza basata su turni.
+il runtime di attori Hello fornisce le garanzie di concorrenza in situazioni in cui tale vincolo controlla chiamata hello di questi metodi. Ad esempio, fornisce le garanzie hello nelle chiamate ai metodi che viene eseguite nella richiesta client tooa di risposta, nonché per i callback del timer e promemoria. Tuttavia, se codice attore hello richiama direttamente questi metodi di fuori di meccanismi di hello forniti dal runtime di attori hello, hello runtime non fornisce alcuna garanzia di concorrenza. Ad esempio, se il metodo hello viene richiamato nel contesto di hello di alcune attività che non sia associata con attività hello restituiti dai metodi attore hello, hello runtime non fornisce garanzie di concorrenza. Se il metodo hello viene richiamato da un thread in tale attore hello crea autonomamente, quindi hello runtime non può anche fornire le garanzie di concorrenza. Pertanto, le operazioni in background tooperform, attori devono utilizzare [timer attore e i promemoria attore](service-fabric-reliable-actors-timers-reminders.md) che rispettano concorrenza basata su attiva.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per iniziare, creare il primo servizio Reliable Actors:

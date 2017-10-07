@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure ExpressRoute - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come configurare e gestire una connessione ExpressRoute privata ai servizi cloud di Microsoft dall'infrastruttura locale o dall'impianto di colocazione.
+title: aaaAzure documentazione di ExpressRoute - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come tooconfigure e gestire servizi di cloud tooMicrosoft di connessione di ExpressRoute privata dalla funzione di infrastruttura o la condivisione percorso locale.
 services: expressroute
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 1c9d64f415a94c35bc6e41706ce78b0da34a0131
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aad3408378b3d492ffa3c9c11a7bb5066567bb8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="expressroute-documentation"></a>Documentazione di ExpressRoute
 
-Informazioni su come usare ExpressRoute per configurare una connessione rapida e privata ai servizi cloud di Microsoft dall'infrastruttura locale Informazioni su come usare ExpressRoute per configurare una connessione rapida e privata ai servizi cloud di Microsoft dall'infrastruttura locale o dall'impianto di colocazione. Esercitazioni, API REST e altri documenti in cui viene illustrato come configurare e gestire un circuito ExpressRoute.
+Informazioni su come toouse ExpressRoute tooset backup tooMicrosoft una connessione veloce e private cloud services dalla funzione di infrastruttura o la condivisione percorso locale. Esercitazioni, API REST e altri documenti in cui viene illustrato come configurare e gestire un circuito ExpressRoute.
 
 <ul class="panelContent cardsFTitle">
     <li>

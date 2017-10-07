@@ -1,6 +1,6 @@
 ---
-title: Gestire volumi StorSimple | Microsoft Docs
-description: Viene illustrato come aggiungere, modificare, monitorare ed eliminare i volumi StorSimple e come portarli offline, se necessario.
+title: aaaManage i volumi StorSimple | Documenti Microsoft
+description: Viene illustrato come tooadd, modificare, monitorare ed eliminare i volumi StorSimple e come tootake, non in linea se necessario.
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/11/2016
 ms.author: v-sharos
-ms.openlocfilehash: 31ed9dad8ba56a3746873b7b35e678e97743fbfe
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8dc646261ee2ad8f2b80291518716f4de55b63f8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-manage-volumes"></a>Per gestire il volume, è possibile usare il servizio StorSimple Manager.
+# <a name="use-hello-storsimple-manager-service-toomanage-volumes"></a>Utilizzare i volumi di toomanage servizio StorSimple Manager hello
 [!INCLUDE [storsimple-version-selector-manage-volumes](../../includes/storsimple-version-selector-manage-volumes.md)]
 
 ## <a name="overview"></a>Panoramica
-In questa esercitazione viene illustrato come utilizzare il servizio StorSimple Manager per creare e gestire i volumi nel dispositivo StorSimple e nel dispositivo virtuale StorSimple.
+In questa esercitazione viene illustrato come toouse hello toocreate servizio StorSimple Manager e gestire i volumi nel dispositivo StorSimple hello e dispositivo virtuale StorSimple.
 
-Il servizio StorSimple Manager è un’estensione del portale di Azure classico che permette di gestire la soluzione StorSimple da una singola interfaccia Web. Oltre che per la gestione dei volumi, è possibile usare il servizio StorSimple Manager per creare e gestire servizi StorSimple, visualizzare e gestire dispositivi, visualizzare avvisi, visualizzare e gestire i criteri di backup e il catalogo di backup.
+servizio StorSimple Manager Hello è un'estensione di hello portale classico di Azure che consente di gestire la soluzione StorSimple da una singola interfaccia web. Nei volumi toomanaging aggiunta, è possibile utilizzare toocreate servizio StorSimple Manager di hello e gestire i servizi StorSimple, visualizzare e gestire i dispositivi, visualizzare gli avvisi e visualizzare e gestire criteri di backup e di catalogo di backup hello.
 
 > [!NOTE]
 > StorSimple di Azure consente di creare solo volumi di thin provisioning. Non è possibile creare volumi con provisioning completo o parziale in un sistema StorSimple di Azure.
 > 
-> Il thin provisioning è una tecnologia di virtualizzazione in cui le risorse di archiviazione disponibili risultano maggiori delle risorse fisiche. Anziché riservare in anticipo risorse di archiviazione sufficienti, StorSimple usa il thin provisioning per allocare esattamente la quantità di spazio necessaria per soddisfare i requisiti correnti. La natura elastica dell'archiviazione cloud facilita questo approccio, consentendo a StorSimple di aumentare o diminuire le risorse di archiviazione nel cloud in base alle variazioni nella domanda.
+> Thin provisioning è una tecnologia di virtualizzazione in cui archiviazione disponibili risultano tooexceed di risorse fisiche. Anziché riservare in anticipo spazio di archiviazione sufficiente, Azure StorSimple Usa tooallocate di provisioning thin sufficiente spazio toomeet corrente. natura elastica di Hello dell'archiviazione cloud facilita questo approccio perché StorSimple di Azure è possibile aumentare o diminuire cloud archiviazione toomeet cambiare della domanda.
 > 
 > 
 
-## <a name="the-volumes-page"></a>La pagina Volumi
-La pagina **Volumi** consente di gestire i volumi di archiviazione forniti nel dispositivo StorSimple di Microsoft Azure per gli iniziatori (server). La pagina riporta l'elenco dei volumi nel dispositivo StorSimple.
+## <a name="hello-volumes-page"></a>pagina volumi Hello
+Hello **volumi** pagina permette di volumi di archiviazione hello toomanage sono a provisioning nel dispositivo Microsoft Azure StorSimple hello per gli iniziatori (server). Viene visualizzato l'elenco di hello dei volumi nel dispositivo StorSimple.
 
  ![Pagina dei volumi](./media/storsimple-manage-volumes/HCS_VolumesPage.png)
 
 Un volume è costituito da una serie di attributi:
 
-* **Nome** : un nome descrittivo che deve essere univoco e consente di identificare il volume. Questo nome viene utilizzato anche nei rapporti di monitoraggio quando di applica un filtro su un volume specifico.
-* **Stato** : online oppure offline. Se un volume è offiline, non è visibile agli iniziatori (server) a cui è consentito l'accesso per utilizzare il volume.
-* **Capacità** : specifica le dimensioni del volume percepite dall'iniziatore (server). La capacità specifica la quantità totale di dati che può essere archiviata dall’iniziatore (server). Viene eseguito il thin provisioning del volumi e i dati vengono deduplicati. Ciò implica che il dispositivo non prealloca la capacità di archiviazione fisica internamente o nel cloud in base alle capacità del volume configurato. La capacità del volume viene allocata e utilizzata su richiesta.
-* **Tipo** : può essere a livelli o di archiviazione (un sottotipo del tipo a livelli)
-* **Accesso** : specifica gli iniziatori (server) a cui è consentito l'accesso a questo volume. Agli iniziatori che non sono membri del record di controllo di accesso (ACR) associato al volume non verrà visualizzato il volume.
-* **Monitoraggio** : specifica se un volume viene monitorato. Un volume avrà il monitoraggio abilitato per impostazione predefinita quando viene creato. Il monitoraggio sarà però disabilitato per un clone del volume. Per abilitare il monitoraggio per un volume, seguire le istruzioni riportare in Monitorare un volume.
+* **Nome** : un nome descrittivo che deve essere univoco e consente di identificare il volume di hello. Questo nome viene utilizzato anche nei rapporti di monitoraggio quando di applica un filtro su un volume specifico.
+* **Stato** : online oppure offline. Se un volume offline, non è visibile tooinitiators (server) che è consentito l'accesso toouse hello volume.
+* **Capacità** : specifica le dimensioni volume hello è, base alla percezione dell'iniziatore hello (server). La capacità specifica quantità totale di hello di dati che possono essere archiviati dall'iniziatore hello (server). Viene eseguito il thin provisioning del volumi e i dati vengono deduplicati. Ciò implica che il dispositivo non esegue la preallocazione della capacità di archiviazione fisica internamente o nel cloud hello in tooconfigured capacità del volume di base. capacità del volume Hello viene allocata e usata su richiesta.
+* **Tipo** -tipo di volume hello può essere a più livelli o dell'archivio (un sottotipo del tipo a livelli)
+* **Accesso** – specifica iniziatori hello (server) che sono consentiti l'accesso toothis volume. Gli iniziatori che non sono membri di record di controllo di accesso (ACR) associato al volume hello non verranno visualizzato il volume di hello.
+* **Monitoraggio** : specifica se un volume viene monitorato. Un volume avrà il monitoraggio abilitato per impostazione predefinita quando viene creato. Il monitoraggio sarà però disabilitato per un clone del volume. tooenable monitoraggio per un volume, seguire le istruzioni hello monitoraggio un volume.
 
-Le attività più comuni associate a un volume sono:
+attività più comuni di Hello associata a un volume sono:
 
 * Aggiungere un volume
 * Modificare un volume
@@ -60,88 +60,88 @@ Le attività più comuni associate a un volume sono:
 ## <a name="add-a-volume"></a>Aggiungere un volume
 Il [volume è stato creato](storsimple-deployment-walkthrough-u1.md#step-6-create-a-volume) durante la distribuzione della soluzione StorSimple. L’aggiunta di un volume è una procedura simile.
 
-### <a name="to-add-a-volume"></a>Per aggiungere un volume
-1. Nella pagina **Dispositivi** fare doppio clic sul dispositivo dopo averlo selezionato e quindi scegliere la scheda **Contenitori dei volumi**.
-2. Selezionare un contenitore di volumi e fare clic sulla freccia nella riga corrispondente per accedere ai volumi associati al contenitore.
-3. Fare clic su **Add** nella parte inferiore della pagina. Verrà avviata la procedura guidata Aggiungi volume.
+### <a name="tooadd-a-volume"></a>tooadd un volume
+1. In hello **dispositivi** pagina, selezionare il dispositivo di hello, fare doppio clic e quindi fare clic su hello **contenitori di volumi** scheda.
+2. Selezionare un contenitore del volume e fare clic sulla freccia hello hello corrispondente riga tooaccess hello volumi associati al contenitore hello.
+3. Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello. viene avviata l'aggiunta guidata volume Hello.
    
      ![Aggiungi procedura guidata del volume Impostazioni di base](./media/storsimple-manage-volumes/AddVolume1.png)
-4. Nella procedura guidata Aggiungi un volume, in **Impostazioni di base**, procedere come segue:
+4. In hello Aggiungi un volume, in **le impostazioni di base**, hello seguenti:
    
    1. Digitare un **Nome** per il volume.
-   2. Specificare la **Capacità fornita** per il volume in GB o TB. La capacità deve essere compresa tra 1 GB e 64 TB per un dispositivo fisico. La capacità massima che è possibile fornire per un volume su un dispositivo virtuale StorSimple è di 30 TB.
-   3. Selezionare un valore di **Tipo di utilizzo** per il volume. Se si usa il volume a livelli per i dati di archiviazione, selezionando la casella di controllo **Usare questo volume per i dati di archivio a cui si accede non di frequente** si porta a 512 KB la dimensione del blocco di deduplicazione per il volume. Se non si seleziona questa opzione, il volume a livelli corrispondente utilizzerà una dimensione del blocco di 64 KB. Una dimensione maggiore del blocco di deduplicazione consente al dispositivo di accelerare il trasferimento dei dati di archiviazione di grandi dimensioni nel cloud. In precedenza i volumi a livelli erano chiamati volumi principali.
-   4. Fare clic sull'icona freccia ![Icona freccia](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)per passare alla pagina **Impostazioni aggiuntive** .
+   2. Specificare hello **capacità fornita** per il volume in GB o TB. capacità di Hello deve essere compreso tra 1 GB e 64 TB per un dispositivo fisico. capacità massima di Hello che è possibile effettuare il provisioning per un volume su un dispositivo virtuale StorSimple è di 30 TB.
+   3. Seleziona hello **tipo di utilizzo** per il volume. Se si utilizza un volume a livelli per i dati di archiviazione, la selezione di hello hello **usare questo volume per i dati dell'archivio si accede di frequente** le dimensioni del blocco hello deduplicazione per il volume di casella di controllo too512 KB. Se non si seleziona questa opzione, il volume a livelli corrispondente hello utilizzerà una dimensione del blocco di 64 KB. Dimensioni del blocco più grande deduplicazione consentono trasferimento di hello dispositivi tooexpedite hello del cloud toohello dati dell'archivio di grandi dimensioni. (I volumi a livelli precedentemente chiamati volumi primari).
+   4. Fare clic sull'icona di freccia hello ![icona freccia](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)toogo toohello **impostazioni aggiuntive** pagina.
       
         ![Aggiungi procedura guidata del volume Impostazioni aggiuntive](./media/storsimple-manage-volumes/AddVolume2.png)
 5. Nella finestra di dialogo **Impostazioni aggiuntive**, aggiungere un nuovo record di controllo di accesso (ACR):
    
-   1. Selezionare un record di controllo di accesso (ACR) dall'elenco a discesa. In alternativa, è possibile aggiungere un nuovo ACR. Gli ACR determinano quali host possono accedere ai volumi creando una corrispondenza tra il nome qualificato ISCSI dell'host e quello elencato nel record.
-   2. È consigliabile abilitare un backup predefinito tramite la selezione della casella di controllo **Abilita un criterio di backup predefinito per questo volume** .
-   3. Fare clic sull'icona del segno di spunta  ![Icona del segno di spunta](./media/storsimple-manage-volumes/HCS_CheckIcon.png) per creare il volume con le impostazioni specificate.
+   1. Selezionare un record di controllo di accesso (ACR) dall'elenco a discesa hello. In alternativa, è possibile aggiungere un nuovo ACR. ACR determinano quali host possono accedere ai volumi da hello corrispondente ospitare IQN con quello elencato nel record di hello.
+   2. Si consiglia di abilitare un backup predefinito selezionando hello **abilitare un backup predefinito per questo volume** casella di controllo.
+   3. Fare clic sull'icona di controllo hello ![Icona del segno di spunta](./media/storsimple-manage-volumes/HCS_CheckIcon.png) volume di hello toocreate con hello specificato le impostazioni.
 
-Il volume è pronto per l'utilizzo.
+Il nuovo volume è ora pronto toouse.
 
 ## <a name="modify-a-volume"></a>Modificare un volume
-Modificare un volume quando occorre espanderlo o modificare gli host che vi accedono.
+Modificare un volume quando è necessario tooexpand o modifica gli host che accedono a volume hello hello.
 
 > [!IMPORTANT]
-> * Se si modifica la dimensione del volume nel dispositivo, è necessario modificare anche le esigenze di dimensioni del volume sull’host.
-> * Le procedure host-side descritte di seguito sono per Windows Server 2012 (2012R2). Procedure per Linux o altri sistemi operativi host saranno diverse. Quando si modifica il volume di un host che esegue un altro sistema operativo, fare riferimento alle istruzioni del sistema operativo dell’host.
+> * Se si modifica la dimensione del volume hello sul dispositivo hello, dimensioni del volume hello devono toobe modificato anche l'host hello.
+> * procedure sul lato host Hello descritte di seguito sono per Windows Server 2012 (versione 2012 R2). Procedure per Linux o altri sistemi operativi host saranno diverse. Vedere le istruzioni di sistema operativo host tooyour quando si modifica il volume di hello in un host in esecuzione un altro sistema operativo.
 > 
 > 
 
-### <a name="to-modify-a-volume"></a>Per modificare un volume
-1. Nella pagina **Dispositivi** selezionare il dispositivo, fare doppio clic su esso e quindi sulla scheda **Contenitore del volume**. Nella pagina vengono elencati in formato tabulare tutti i contenitori di volumi associati al dispositivo.
-2. Selezionare un contenitore di volumi e fare clic per visualizzare l'elenco di tutti i volumi all'interno del contenitore.
-3. Nella pagina **Volumi** selezionare un volume e fare clic su **Modifica**.
-4. Nella procedura guidata Aggiungi volume, in **Impostazioni di base**, procedere come segue:
+### <a name="toomodify-a-volume"></a>toomodify un volume
+1. In hello **dispositivi** pagina, selezionare il dispositivo di hello, fare doppio clic e quindi fare clic su hello **contenitore del Volume** scheda. Questa pagina elenca in formato tabulare tutti i contenitori di volumi di hello associati al dispositivo hello.
+2. Selezionare un contenitore di volumi e farvi clic sopra elenco hello toodisplay di tutti i volumi di hello all'interno del contenitore di hello.
+3. In hello **volumi** pagina, selezionare un volume e fare clic su **modifica**.
+4. In hello Modifica guidata volume in **le impostazioni di base**, è possibile eseguire il seguente hello:
    
-   * Modificare **Nome** e **Tipo** se si vuole modificare un volume a livelli in un volume di archiviazione selezionando la casella di controllo **Usare questo volume per i dati di archivio a cui si accede non di frequente** per modificare la dimensione del blocco di deduplicazione per il volume in 512 KB.
-   * Aumentare la **Capacità fornita**. La **Capacità fornita** può essere solo aumentata. Non è possibile ridurre un volume dopo averlo creato.
+   * Modifica hello **nome** e **tipo** se si desidera toomodify un volume di archiviazione tooan volume a livelli selezionando hello **usare questo volume per i dati dell'archivio si accede di frequente** casella di controllo toochange hello deduplicazione dimensioni del blocco per il volume too512 KB.
+   * Aumentare hello **capacità fornita**. Hello **capacità fornita** può solo essere aumentato. Non è possibile ridurre un volume dopo averlo creato.
      
      > [!NOTE]
-     > Non è possibile modificare un contenitore di volumi dopo che è stato assegnato a un volume.
+     > È possibile modificare il contenitore di volumi hello dopo l'assegnazione tooa volume.
      > 
      > 
-5. In **Impostazioni aggiuntive**, procedere come segue:
+5. In **impostazioni aggiuntive**, è possibile eseguire il seguente hello:
    
-   * Modificare gli ACR, purché il volume sia offline. Se il volume è online, sarà necessario portarlo prima offline. Fare riferimento ai passaggi riportati in [Portare un volume offline](#take-a-volume-offline) prima di modificare gli ACR.
-   * Modificare l’elenco di ACR dopo aver portato il volume offiline.
+   * Modificare ACR hello, purché hello volume è offline. Se il volume di hello è online, sarà necessario tootake il primo non in linea. Fare riferimento passaggi toohello [portare offline un volume](#take-a-volume-offline) hello toomodifying precedente record.
+   * Modificare l'elenco di hello di ACR dopo che il volume di hello è offline.
      
      > [!NOTE]
-     > Non è possibile modificare l’opzione **Abilita backup predefinito per questo volume** per il volume.
+     > Non è possibile modificare hello **abilitare un backup predefinito per questo volume** opzione per il volume di hello.
      > 
      > 
-6. Salvare le modifiche scegliendo l'icona del segno di spunta  ![icona del segno di spunta](./media/storsimple-manage-volumes/HCS_CheckIcon.png). Il portale di Azure classico mostrerà un messaggio di volume dell’aggiornamento. Quando il volume è stato aggiornato verrà mostrato un messaggio di conferma.
-7. Se si sta espandendo un volume, completare i passaggi seguenti nel computer host Windows:
+6. Salvare le modifiche facendo clic sull'icona di controllo hello ![icona del segno di spunta](./media/storsimple-manage-volumes/HCS_CheckIcon.png). portale di Azure classico Hello visualizzerà un messaggio di volume ad aggiornamento. Quando è stata aggiornata volume hello visualizzerà un messaggio di conferma.
+7. Se si vuole espandere un volume, completare hello nel computer host Windows come segue:
    
-   1. Accedere a **Gestione Computer** ->**Gestione disco**.
+   1. Andare troppo**Gestione Computer** ->**Gestione disco**.
    2. Fare clic con il pulsante destro del mouse su **Gestione disco** e selezionare **Rescan Disks** (Ripeti analisi dischi).
-   3. Nell'elenco dei dischi, selezionare il volume che è stato aggiornato, fare clic con il pulsante destro del mouse e quindi selezionare **Estendi Volume**. Verrà avviata la procedura guidata Estendi volume. Fare clic su **Avanti**.
-   4. Completare la procedura guidata accettando i valori predefiniti. Dopo aver completato la procedura guidata, il volume dovrebbe mostrare l'aumento delle dimensioni.
+   3. Nell'elenco di hello dei dischi, selezionare il volume hello che è stato aggiornato, pulsante destro del mouse e quindi selezionare **Estendi Volume**. Avvia procedura guidata Estendi Volume Hello. Fare clic su **Avanti**.
+   4. Completare l'installazione guidata di hello, accettando i valori predefiniti di hello. Al termine, la procedura guidata hello volume hello presenteranno dimensioni hello aumentato.
 
-![Video disponibile](./media/storsimple-manage-volumes/Video_icon.png) **Video disponibile**
+![Video disponibile](./media/storsimple-manage-volumes/Video_icon.png)**Video disponibile**
 
-Per guardare un video che illustra come espandere un volume, fare clic [qui](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/).
+toowatch un video che illustra come tooexpand un volume, fare clic su [qui](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/).
 
 ## <a name="take-a-volume-offline"></a>Portare un volume offline
-Potrebbe essere necessario portare un volume offline per modificarlo o eliminarlo. Quando un volume è offline, non è disponibile per l'accesso in lettura/scrittura. È necessario portare offline il volume nell'host e sul dispositivo. Per portare un volume offline, eseguire i passaggi seguenti:
+Potrebbe essere necessario tootake un volume offline quando si pianifica toomodify o eliminarlo. Quando un volume è offline, non è disponibile per l'accesso in lettura/scrittura. Sarà necessario tootake hello volume offline nell'host di hello e sul dispositivo hello. Eseguire hello seguendo i passaggi tootake un volume offline.
 
-### <a name="to-take-a-volume-offline"></a>Per portare un volume offline
-1. Assicurarsi che il volume in questione non sia in uso prima di portarlo offline.
-2. Portare offline il volume prima nell'host. Ciò consente di eliminare qualsiasi potenziale rischio di danneggiamento dei dati nel volume. Per i passaggi specifici, vedere le istruzioni per il sistema operativo dell’host.
-3. Quando l'host è offline, portare il volume nel dispositivo offline eseguendo i passaggi seguenti:
+### <a name="tootake-a-volume-offline"></a>tootake un volume offline
+1. Assicurarsi che il volume di hello in questione non è in uso prima di portarlo offline.
+2. Portare hello volume offline nell'host di hello prima. In questo modo si evita i potenziali rischi di danneggiamento dei dati nel volume hello. Per passaggi specifici, vedere toohello istruzioni per il sistema operativo host.
+3. Dopo aver hello host è offline, portare il volume di hello sul dispositivo hello offline eseguendo hello alla procedura seguente:
    
-   1. Nella pagina **Dispositivi** fare doppio clic sul dispositivo dopo averlo selezionato e quindi scegliere la scheda **Contenitori dei volumi**. Nella scheda **Contenitori di volumi** vengono elencati in formato tabulare tutti i contenitori di volumi associati al dispositivo.
-   2. Selezionare un contenitore di volumi e fare clic per visualizzare l'elenco di tutti i volumi all'interno del contenitore.
+   1. In hello **dispositivi** pagina, selezionare il dispositivo di hello, fare doppio clic e quindi fare clic su hello **contenitori di volumi** hello scheda **contenitori di volumi** scheda elenchi in formato tabulare tutti Hello contenitori dei volumi associati al dispositivo hello.
+   2. Selezionare un contenitore di volumi e farvi clic sopra elenco hello toodisplay di tutti i volumi di hello all'interno del contenitore di hello.
    3. Selezionare un volume e fare clic su **Offline**.
-   4. Alla richiesta di conferma fare clic su **Sì**. Il volume sarà offline.
+   4. Alla richiesta di conferma fare clic su **Sì**. Hello volume dovrebbe essere offline.
       
-      Quando un volume è offline, l’opzione **Porta online** diventa disponibile.
+      Dopo che un volume è offline, hello **in linea** opzione diventa disponibile.
 
 > [!NOTE]
-> Il comando **Porta offline** invia al dispositivo una richiesta di portare il volume offline. Se gli host stanno ancora utilizzando il volume, le connessioni saranno interrotte ma il volume sarà portato offline.
+> Hello **non in linea** comando invia un volume hello tootake dispositivo toohello offline. Se l'host siano ancora utilizzando il volume di hello, ciò comporta l'interruzione delle connessioni, ma disconnettere volume hello non avrà esito negativo.
 > 
 > 
 
@@ -151,30 +151,30 @@ Potrebbe essere necessario portare un volume offline per modificarlo o eliminarl
 > 
 > 
 
-Completare la procedura seguente per eliminare un volume.
+Completare hello seguendo i passaggi toodelete un volume.
 
-### <a name="to-delete-a-volume"></a>Per eliminare un volume
-1. Nella pagina **Dispositivi** fare doppio clic sul dispositivo dopo averlo selezionato e quindi scegliere la scheda **Contenitori dei volumi**.
-2. Selezionare il contenitore di volumi contenente il volume che si desidera eliminare. Fare clic sul contenitore di volumi per accedere alla pagina **Volumi** .
-3. Tutti i volumi associati a questo contenitore vengono visualizzati in formato tabulare. Verificare lo stato del volume che si desidera eliminare. Se il volume che si desidera eliminare non è offline, portarlo innanzitutto offline seguendo i passaggi indicati in [Portare un volume offline](#take-a-volume-offline).
-4. Quando il volume è offline, fare clic su **Elimina** in fondo alla pagina.
-5. Alla richiesta di conferma fare clic su **Sì**. Il volume verrà eliminato e nella pagina **Volumi** sarà visualizzato l’elenco aggiornato di volumi presenti nel contenitore.
+### <a name="toodelete-a-volume"></a>toodelete un volume
+1. In hello **dispositivi** pagina, selezionare il dispositivo di hello, fare doppio clic e quindi fare clic su hello **contenitori di volumi** scheda.
+2. Selezionare contenitore del volume hello con volume hello da toodelete. Fare clic su hello tooaccess contenitore volume di hello **volumi** pagina.
+3. Tutti i volumi di hello associati al contenitore vengono visualizzati in formato tabulare. Controllare lo stato di hello del volume hello desiderato toodelete. Se volume hello da toodelete non è offline, le operazioni non in linea hello in primo luogo, seguenti [portare offline un volume](#take-a-volume-offline).
+4. Dopo che il volume di hello è offline, fare clic su **eliminare** nella parte inferiore di hello della pagina hello.
+5. Alla richiesta di conferma fare clic su **Sì**. volume Hello verrà eliminata e hello **volumi** pagina verrà visualizzato l'elenco di hello aggiornato di volumi all'interno del contenitore di hello.
 
-## <a name="monitor-a-volume"></a>Monitorare a volume
-Il monitoraggio del volume consente di raccogliere le statistiche correlate all’I/O per un volume. Il monitoraggio è abilitato per impostazione predefinita per i primi 32 volumi creati dall'utente. Il monitoraggio di ulteriori volumi è disabilitato per impostazione predefinita. Il monitoraggio di volumi clonati è disabilitato per impostazione predefinita.
+## <a name="monitor-a-volume"></a>Monitorare un volume
+Il monitoraggio dei volumi consente toocollect relativi ai / O le statistiche per un volume. Il monitoraggio è attivato per impostazione predefinita per hello primi 32 volumi creati. Il monitoraggio di ulteriori volumi è disabilitato per impostazione predefinita. Il monitoraggio di volumi clonati è disabilitato per impostazione predefinita.
 
-Per abilitare o disabilitare il monitoraggio per un volume, eseguire i passaggi seguenti.
+Eseguire i seguenti passaggi tooenable hello o disabilitare il monitoraggio per un volume.
 
-### <a name="to-enable-or-disable-volume-monitoring"></a>Per abilitare o disabilitare il monitoraggio del volume
-1. Nella pagina **Dispositivi** fare doppio clic sul dispositivo dopo averlo selezionato e quindi scegliere la scheda **Contenitori dei volumi**.
-2. Selezionare il contenitore del volume in cui risiede il volume, quindi fare clic sul contenitore del volume per accedere alla pagina **Volumi** .
-3. Tutti i volumi associati a questo contenitore vengono elencati in formato tabulare. Fare clic e selezionare il volume o un clone del volume.
-4. Nella parte inferiore della pagina fare clic su **Modifica**.
-5. Nella procedura guidata Modifica volume in **Impostazioni di base**, selezionare **Abilita** o **Disabilita** dall'elenco a discesa **Monitoraggio**.
+### <a name="tooenable-or-disable-volume-monitoring"></a>tooenable o disabilitare il monitoraggio dei volumi
+1. In hello **dispositivi** pagina, selezionare il dispositivo di hello, fare doppio clic e quindi fare clic su hello **contenitori di volumi** scheda.
+2. Selezionare il contenitore di volumi hello in cui hello risiede volume e quindi fare clic su hello tooaccess contenitore volume di hello **volumi** pagina.
+3. Nella visualizzazione tabulare hello sono elencati tutti i volumi di hello associati a questo contenitore. Selezionare il volume di hello o un clone di volume.
+4. Nella parte inferiore di hello della pagina hello, fare clic su **modifica**.
+5. Nella procedura guidata Modifica Volume hello in **le impostazioni di base**selezionare **abilitare** o **disabilitare** da hello **monitoraggio** elenco a discesa.
    
     ![Modificare le impostazioni di base di un volume](./media/storsimple-manage-volumes/HCS_MonitorVolumeM.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni su come [clonare un volume StorSimple](storsimple-clone-volume.md)
-* Informazioni su come [utilizzare il servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Informazioni su come troppo[clonare un volume StorSimple](storsimple-clone-volume.md).
+* Informazioni su come troppo[utilizzare hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
 

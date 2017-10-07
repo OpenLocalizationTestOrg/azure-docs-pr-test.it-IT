@@ -1,6 +1,6 @@
 ---
-title: Configurare Azure Key Vault per le macchine virtuali Linux | Microsoft Docs
-description: Come configurare Azure Key Vault da usare con una macchina virtuale di Azure Resource Manager con l'interfaccia della riga di comando 2.0.
+title: aaaSet di insieme di credenziali chiave di Azure per le macchine virtuali Linux | Documenti Microsoft
+description: Come tooset di insieme di credenziali chiave per l'utilizzo con una macchina virtuale di gestione risorse di Azure con hello CLI 2.0.
 services: virtual-machines-linux
 documentationcenter: 
 author: singhkays
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: vm-linux
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: singhkay
-ms.openlocfilehash: 2cc9b4c978e9a4deb0c8443c4b0f9e301a7cf492
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a5dc1fbe59a71b4456ba5b9bbacdb90440064757
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-set-up-key-vault-for-virtual-machines-with-the-azure-cli-20"></a>Come configurare Key Vault per le macchine virtuali con l'interfaccia della riga di comando 2.0
+# <a name="how-tooset-up-key-vault-for-virtual-machines-with-hello-azure-cli-20"></a>Come tooset di insieme di credenziali chiave per le macchine virtuali con hello Azure CLI 2.0
 
-Nello stack di Azure Resource Manager i segreti e i certificati vengono modellati come risorse offerte tramite Key Vault. Per altre informazioni sugli insiemi di credenziali delle chiavi di Azure, vedere [Informazioni sull'insieme di credenziali delle chiavi di Azure](../../key-vault/key-vault-whatis.md) Per consentire l'uso di Key Vault con le macchine virtuali di Azure Resource Manager è necessario impostare su true la proprietà *EnabledForDeployment* in Key Vault. In questo articolo viene illustrato come configurare Key Vault delle chiavi per l'uso con macchine virtuali di Azure tramite l'interfaccia della riga di comando di Azure 2.0. È possibile anche eseguire questi passaggi tramite l'[interfaccia della riga di comando di Azure 1.0](key-vault-setup-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Nello stack di gestione risorse di Azure hello, segreti/certificati vengono modellati come risorse fornite dall'insieme di credenziali chiave. toolearn ulteriori informazioni sull'insieme di credenziali chiave di Azure, vedere [che cos'è l'insieme di credenziali chiave di Azure?](../../key-vault/key-vault-whatis.md) Affinché toobe insieme di credenziali chiave utilizzato con le macchine virtuali di Azure Resource Manager, hello *EnabledForDeployment* in insieme di credenziali chiave deve essere impostata tootrue. Questo articolo illustra come tooset di insieme di credenziali chiave per l'utilizzo con macchine virtuali di Azure (VM) utilizzando hello CLI di Azure 2.0. È anche possibile eseguire questi passaggi con hello [CLI di Azure 1.0](key-vault-setup-cli-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Per eseguire questi passaggi è necessario aver installato la versione più recente dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-az-cli2) e aver effettuato l'accesso a un account Azure con il comando [az login](/cli/azure/#login).
+tooperform questi passaggi, è necessario hello più recente [CLI di Azure 2.0](/cli/azure/install-az-cli2) installato e registrato con un account Azure tooan [accesso az](/cli/azure/#login).
 
 ## <a name="create-a-key-vault"></a>Creare un insieme di credenziali delle chiavi
-Creare un insieme di credenziali delle chiavi e assegnare i criteri di distribuzione con [az keyvault create](/cli/azure/keyvault#create). Nell'esempio seguente viene creato un insieme di credenziali delle chiavi denominato `myKeyVault` nel gruppo di risorse `myResourceGroup`:
+Creare un insieme di credenziali chiave e assegnare criteri di distribuzione hello con [keyvault az creare](/cli/azure/keyvault#create). esempio Hello crea un insieme di credenziali chiave denominata `myKeyVault` in hello `myResourceGroup` gruppo di risorse:
 
 ```azurecli
 az keyvault create -l westus -n myKeyVault -g myResourceGroup --enabled-for-deployment true
 ```
 
 ## <a name="update-a-key-vault-for-use-with-vms"></a>Aggiornare un insieme di credenziali delle chiavi per l'uso con le macchine virtuali
-Impostare i criteri di distribuzione per un insieme di credenziali delle chiavi esistente con [az keyvault update](/cli/azure/keyvault#update). Il comando seguente aggiorna l'insieme di credenziali delle chiavi denominato `myKeyVault` nel gruppo di risorse `myResourceGroup`:
+Impostare i criteri di distribuzione hello in un insieme di credenziali chiave esistente con [aggiornamento keyvault az](/cli/azure/keyvault#update). gli aggiornamenti seguenti Hello hello chiave dell'insieme di credenziali denominato `myKeyVault` in hello `myResourceGroup` gruppo di risorse:
 
 ```azurecli
 az keyvault update -n myKeyVault -g myResourceGroup --set properties.enabledForDeployment=true
 ```
 
-## <a name="use-templates-to-set-up-key-vault"></a>Utilizzare modelli per configurare l'insieme di credenziali delle chiavi
-Se si usa un modello è necessario impostare come segue la proprietà `enabledForDeployment` su `true` per la risorsa Key Vault:
+## <a name="use-templates-tooset-up-key-vault"></a>Utilizzare tooset di modelli di insieme di credenziali chiave
+Quando si utilizza un modello, è necessario hello tooset `enabledForDeployment` proprietà troppo`true` per la risorsa di hello insieme di credenziali chiave come indicato di seguito:
 
 ```json
 {

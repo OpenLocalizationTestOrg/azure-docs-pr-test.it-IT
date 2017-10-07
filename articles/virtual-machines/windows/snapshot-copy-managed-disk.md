@@ -1,6 +1,6 @@
 ---
-title: Copiare un disco gestito di Azure per il backup | Microsoft Docs
-description: Informazioni su come creare una copia di un disco gestito di Azure da usare per il backup o sulla risoluzione dei problemi relativi al disco.
+title: aaaCreate una copia di un disco gestito di Azure per eseguire il backup | Documenti Microsoft
+description: Informazioni su come toocreate una copia di un toouse disco gestito di Azure per eseguire il backup o sulla risoluzione dei problemi di disco problemi.
 documentationcenter: 
 author: cwatson-cat
 manager: timlt
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/9/2017
 ms.author: cwatson
-ms.openlocfilehash: a7527b12f4f0d2b45713a0c0109d81ff51293fd8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2f33dbbee624bcd813f3c7c3e3401072d0933714
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>Creare una copia di un disco rigido virtuale archiviato come disco gestito di Azure usando snapshot gestiti
-Creare uno snapshot di un disco gestito per il backup o creare un disco gestito dallo snapshot e collegarlo a una macchina virtuale di prova per risolvere i problemi. Uno snapshot gestito è una copia temporizzata completa di un disco gestito di macchina virtuale. Uno snapshot crea una copia di sola lettura del disco rigido virtuale che, per impostazione predefinita, viene memorizzato come disco gestito Standard. Per altre informazioni sui dischi gestiti, vedere [Azure Managed Disks overview](managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Panoramica di Azure Managed Disks).
+Creare uno snapshot di un disco gestito per il backup o creare un disco gestito da snapshot hello e collegarlo tootroubleshoot macchina virtuale di test tooa. Uno snapshot gestito è una copia temporizzata completa di un disco gestito di macchina virtuale. Uno snapshot crea una copia di sola lettura del disco rigido virtuale che, per impostazione predefinita, viene memorizzato come disco gestito Standard. Per altre informazioni sui dischi gestiti, vedere [Azure Managed Disks overview](managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Panoramica di Azure Managed Disks).
 
 Per informazioni sui prezzi, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/managed-disks/). 
 
 ## <a name="before-you-begin"></a>Prima di iniziare
-Se si usa PowerShell, verificare di avere la versione più recente del modulo di PowerShell AzureRM.Compute. Eseguire il comando seguente per installarlo.
+Se si usa PowerShell, assicurarsi di aver hello la versione più recente del modulo AzureRM.Compute PowerShell hello. Eseguire hello seguenti comando tooinstall.
 
 ```
 Install-Module AzureRM.Compute -RequiredVersion 2.6.0
 ```
-Per altre informazioni, vedere [Azure PowerShell Versioning](/powershell/azure/overview) (Controllo delle versioni di Azure PowerShell).
+Per altre informazioni, vedere [Controllo delle versioni di Azure PowerShell](/powershell/azure/overview).
 
-## <a name="copy-the-vhd-with-a-snapshot"></a>Copiare il disco rigido virtuale con uno snapshot
-Usare il portale di Azure o PowerShell per creare uno snapshot del disco gestito.
+## <a name="copy-hello-vhd-with-a-snapshot"></a>Copiare hello disco rigido virtuale con uno snapshot
+Utilizzare hello portale di Azure o PowerShell tootake uno snapshot di hello disco gestito.
 
-### <a name="use-azure-portal-to-take-a-snapshot"></a>Usare il portale di Azure per creare uno snapshot 
+### <a name="use-azure-portal-tootake-a-snapshot"></a>Utilizzare tootake portale Azure uno snapshot 
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. In alto a sinistra fare clic su **Nuovo** e cercare **Snapshot**.
-3. Nel pannello Snapshot, fare clic su **Crea**.
-4. Immettere un **Nome** per lo snapshot.
-5. Selezionare un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md#resource-groups) esistente o specificare il nome di un nuovo gruppo. 
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. A partire da in alto a sinistra di hello, fare clic su **New** e cercare **snapshot**.
+3. Nel Pannello di Snapshot hello, fare clic su **crea**.
+4. Immettere un **nome** per snapshot hello.
+5. Selezionare un oggetto esistente [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md#resource-groups) o nome di tipo hello uno nuovo. 
 6. Selezionare una località per il data center di Azure.  
-7. Per **Disco di origine**, selezionare il disco gestito di cui creare lo snapshot.
-8. Selezionare il **tipo di account** da usare per archiviare lo snapshot. È consigliabile usare il tipo **Standard_LRS** a meno che non sia necessario archiviare lo snapshot su un disco a prestazioni elevate.
+7. Per **disco di origine**, selezionare hello toosnapshot disco gestito.
+8. Seleziona hello **tipo di Account** snapshot di hello toostore toouse. È consigliabile usare il tipo **Standard_LRS** a meno che non sia necessario archiviare lo snapshot su un disco a prestazioni elevate.
 9. Fare clic su **Crea**.
 
-### <a name="use-powershell-to-take-a-snapshot"></a>Utilizzare PowerShell per creare uno snapshot
-La procedura seguente mostra come ottenere il disco rigido virtuale da copiare, creare le configurazioni di snapshot e ottenere uno snapshot del disco tramite il cmdlet New-AzureRmSnapshot<!--Add link to cmdlet when available-->. 
+### <a name="use-powershell-tootake-a-snapshot"></a>Utilizzare PowerShell tootake uno snapshot
+Hello passaggi seguenti mostrano come tooget hello VHD disco toobe copiati, creare configurazioni di snapshot di hello e uno snapshot del disco hello utilizzando il cmdlet New-AzureRmSnapshot hello<!--Add link toocmdlet when available-->. 
 
 1. Impostare alcuni parametri. 
 
@@ -59,27 +59,27 @@ $location = 'southeastasia'
 $dataDiskName = 'ContosoMD_datadisk1' 
 $snapshotName = 'ContosoMD_datadisk1_snapshot1'  
 ```
-  Sostituire i valori dei parametri:
-  -  "myResourceGroup" con il gruppo di risorse della macchina virtuale.
-  -  "southeastasia" con la posizione geografica in cui si desidera archiviare lo snapshot gestito. <!---How do you look these up? -->
-  -  "ContosoMD_datadisk1" con il nome del disco del disco rigido virtuale da copiare.
-  -  "ContosoMD_datadisk1_snapshot1" con il nome da utilizzare per il nuovo snapshot.
+  Sostituire i valori di parametro hello:
+  -  "myResourceGroup" con il gruppo di risorse della macchina virtuale di hello.
+  -  "southeastasia" con l'area geografica hello in cui si desidera lo Snapshot gestito archiviato. <!---How do you look these up? -->
+  -  "ContosoMD_datadisk1" con il nome di hello del disco VHD hello che si desidera toocopy.
+  -  "ContosoMD_datadisk1_snapshot1" con hello nome che si desidera toouse del nuovo snapshot hello.
 
-2. Ottenere il disco rigido virtuale da copiare.
+2. Ottenere hello VHD disco toobe copiati.
 
  ```powershell
 $disk = Get-AzureRmDisk -ResourceGroupName $resourceGroupName -DiskName $dataDiskName 
 ```
-3. Creare le configurazioni di snapshot. 
+3. Creare configurazioni di snapshot di hello. 
 
  ```powershell
 $snapshot =  New-AzureRmSnapshotConfig -SourceUri $disk.Id -CreateOption Copy -Location $location 
 ```
-4. Ottenere lo snapshot.
+4. Creare snapshot hello.
 
  ```powershell
 New-AzureRmSnapshot -Snapshot $snapshot -SnapshotName $snapshotName -ResourceGroupName $resourceGroupName 
 ```
-Se si prevede di usare lo snapshot per creare un disco gestito e associarlo a una macchina virtuale a prestazioni elevate, usare il parametro `-AccountType Premium_LRS` con il comando New-AzureRmSnapshot. Il parametro crea lo snapshot in modo tale che venga archiviato come un disco gestito Premium. I dischi gestiti Premium sono più costosi di quelli Standard. Pertanto, assicurarsi che l'opzione Premium sia realmente necessaria prima di usare tale parametro.
+Se si prevede toouse hello snapshot toocreate un disco gestito e collegarlo a una macchina virtuale che deve toobe a prestazioni elevate, utilizzare il parametro hello `-AccountType Premium_LRS` con il comando New-AzureRmSnapshot hello. il parametro Hello Crea snapshot hello in modo che viene archiviato come un disco gestito Premium. I dischi gestiti Premium sono più costosi di quelli Standard. Pertanto, assicurarsi che l'opzione Premium sia realmente necessaria prima di usare tale parametro.
 
 

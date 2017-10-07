@@ -1,6 +1,6 @@
 ---
-title: 'Esempio di script dell''interfaccia della riga di comando di Azure: snapshot di esportazione/copia come disco rigido virtuale in un account di archiviazione di un''area diversa | Microsoft Docs'
-description: 'Esempio di script dell''interfaccia della riga di comando di Azure: snapshot di esportazione/copia come disco rigido virtuale in un account di archiviazione nella stessa sottoscrizione o in una sottoscrizione diversa'
+title: aaaAzure CLI Script di esempio - snapshot di esportazione o copia come account di archiviazione VHD tooa in area diversa | Documenti Microsoft
+description: Esempio di Script Azure CLI - snapshot di esportazione o copia come account di archiviazione tooa disco rigido virtuale nella sottoscrizione uguale o diverso
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: a6ea65aba91641ece415db4df6ae9c17b42a0954
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 945f83d2ed715642156ca7b252af08559c652b14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-cli"></a>Snapshot gestiti di esportazione/copia come disco rigido virtuale in un account di archiviazione di un'area diversa con l'interfaccia della riga di comando
+# <a name="exportcopy-managed-snapshots-as-vhd-tooa-storage-account-in-different-region-with-cli"></a>Esportazione o copia snapshot gestito come account di archiviazione tooa disco rigido virtuale in un paese diverso con CLI
 
-Questo script consente di esportare uno snapshot gestito in un account di archiviazione di un'area diversa. Per prima cosa viene generato l'URI di firma di accesso condiviso dello snapshot, che viene poi usato per copiare lo snapshot in un account di archiviazione di un'area diversa. Usare questo script per gestire il backup dei dischi gestiti in un'area diversa per il ripristino di emergenza. 
+Questo script consente di esportare un account di archiviazione snapshot gestito tooa in area diversa. Innanzitutto genera hello URI SAS dello snapshot hello e Usa quindi toocopy è tooa account di archiviazione in paese diverso. Utilizzare il backup di toomaintain script dei dischi gestiti nell'area geografica diversa per il ripristino di emergenza. 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,17 +32,17 @@ Questo script consente di esportare uno snapshot gestito in un account di archiv
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-azurecli[principale](../../../cli_scripts/virtual-machine/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "Copia snapshot")]
+[!code-azurecli[main](../../../cli_scripts/virtual-machine/copy-snapshots-to-storage-account/copy-snapshots-to-storage-account.sh "Copy snapshot")]
 
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per generare l'URI di firma di accesso condiviso per uno snapshot gestito e copia lo snapshot in un account di archiviazione usando tale URI. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script Usa i comandi toogenerate seguente URI SAS per un gestito hello snapshot e copie snapshot tooa account di archiviazione utilizzando URI SAS. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
-| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | Genera SAS di sola lettura usati per copiare il file VHD sottostante in un account di archiviazione o scaricarlo in locale  |
-| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | Copia un BLOB in modo asincrono da un account di archiviazione a un altro |
+| [az snapshot grant-access](https://docs.microsoft.com/cli/azure/snapshot#grant-access) | Genera l'errore SAS di sola lettura toocopy utilizzati account di archiviazione tooa file disco rigido virtuale sottostante o scaricarlo tooon locale  |
+| [az storage blob copy start](https://docs.microsoft.com/en-us/cli/azure/storage/blob/copy#start) | Copia un blob in modo asincrono da un tooanother di account di archiviazione |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
@@ -50,6 +50,6 @@ Questo script usa i comandi seguenti per generare l'URI di firma di accesso cond
 
 [Creare una macchina virtuale da un disco gestito](./virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fcli%2fmodule%2ftoc.json)
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando di dischi gestiti e della macchina virtuale aggiuntiva sono reperibili nella [documentazione della macchina virtuale Linux di Azure](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Macchina virtuale aggiuntiva e i dischi gestiti esempi di script CLI sono reperibile in hello [documentazione VM Linux di Azure](../../app-service-web/app-service-cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).

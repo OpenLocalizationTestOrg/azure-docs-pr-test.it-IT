@@ -1,5 +1,5 @@
 ---
-title: Protezione della rete nel Centro sicurezza di Azure | Documentazione Microsoft
+title: aaaProtecting la rete in Centro sicurezza di Azure | Documenti Microsoft
 description: "Questo documento illustra le raccomandazioni presenti nel Centro sicurezza di Azure che facilitano la protezione della rete di Azure e garantiscano la conformità ai criteri di sicurezza."
 services: security-center
 documentationcenter: na
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/16/2016
 ms.author: terrylan
-ms.openlocfilehash: 00b715507a7c3a4d784b800e7bf0c700f6ea6ff1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 053738da432edf13b40172fb44d2044702dd8211
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protecting-your-network-in-azure-security-center"></a>Protezione della rete nel Centro sicurezza di Azure
-Il Centro sicurezza di Azure analizza lo stato di sicurezza delle risorse di Azure. Quando il Centro sicurezza identifica potenziali vulnerabilità della sicurezza, crea raccomandazioni utili per definire il processo di configurazione dei controlli necessari.  Le raccomandazioni sono applicabili ai tipi di risorse di Azure, ovvero macchine virtuali, risorse di rete, SQL e applicazioni.
+Centro sicurezza di Azure consente di analizzare lo stato di sicurezza hello delle risorse di Azure. Quando il Centro sicurezza PC identifica potenziali vulnerabilità di sicurezza, viene creato indicazioni che consentono di eseguire il processo di hello di configurazione dei controlli di hello necessita.  Consigli si applicano a tipi di risorse tooAzure: macchine virtuali (VM), rete, SQL e le applicazioni.
 
-Questo articolo illustra le raccomandazioni applicabili alla rete.  Le raccomandazioni per le risorse di rete sono incentrate sui firewall di nuova generazione, sui gruppi di sicurezza di rete, sulla configurazione delle regole di traffico in ingresso e altro ancora.  Usare la tabella seguente come riferimento per conoscere le raccomandazioni disponibili per la rete e gli effetti che producono se si decide di metterle in pratica.
+Questo articolo illustra indicazioni applicabili tooyour rete.  Le raccomandazioni per le risorse di rete sono incentrate sui firewall di nuova generazione, sui gruppi di sicurezza di rete, sulla configurazione delle regole di traffico in ingresso e altro ancora.  Tabella di hello utilizzare riportata di seguito come un riferimento di toohelp comprendere indicazioni di rete disponibile hello e ciascuna di esse cosa se lo si applica.
 
 ## <a name="available-network-recommendations"></a>Indicazioni disponibili per la rete
 | Raccomandazione | Descrizione |
 | --- | --- |
-| [Aggiungi un firewall di nuova generazione](security-center-add-next-generation-firewall.md) |Il Centro sicurezza di Azure consiglia di aggiungere un firewall di nuova generazione di un partner Microsoft per aumentare i meccanismi di protezione per la sicurezza. |
-| [Indirizza il traffico solo tramite il firewall di nuova generazione](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only) |Consiglia di configurare le regole del gruppo di sicurezza di rete che forzano il traffico in ingresso alla VM tramite il firewall di nuova generazione. |
+| [Aggiungi un firewall di nuova generazione](security-center-add-next-generation-firewall.md) |Consiglia di aggiungere un Firewall di generazione successiva (NGFW) da un tooincrease partner Microsoft i meccanismi di protezione. |
+| [Indirizza il traffico solo tramite il firewall di nuova generazione](security-center-add-next-generation-firewall.md#route-traffic-through-ngfw-only) |Consiglia di configurare regole di gruppo () sicurezza di rete che impongono il traffico in entrata tooyour VM tramite il NGFW. |
 | [Abilita i gruppi di sicurezza di rete sulle subnet o sulle macchine virtuali](security-center-enable-network-security-groups.md) |Consiglia di attivare i gruppo di sicurezza di rete sulle subnet o sulle macchine virtuali. |
 | [Limita l'accesso tramite un endpoint con connessione Internet](security-center-restrict-access-through-internet-facing-endpoints.md) |Consiglia di configurare le regole del traffico in ingresso per i gruppi di sicurezza di rete. |
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni sulle raccomandazioni applicabili ad altri tipi di risorse di Azure, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni sui suggerimenti che si applicano tooother tipi di risorse di Azure, vedere l'esempio hello:
 
 * [Protezione delle macchine virtuali nel Centro sicurezza di Azure](security-center-virtual-machine-recommendations.md)
 * [Protecting your applications in Azure Security Center](security-center-application-recommendations.md)
 * [Protezione del servizio SQL di Azure nel Centro sicurezza di Azure](security-center-sql-service-recommendations.md)
 
-Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
 
-* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.

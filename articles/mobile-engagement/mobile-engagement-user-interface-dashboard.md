@@ -1,6 +1,6 @@
 ---
-title: Interfaccia utente di Azure Mobile Engagement - Dashboard
-description: Informazioni su come visualizzare e gestire i grafici dei dati relativi all'applicazione usando Azure Mobile Engagement
+title: aaaAzure interfaccia utente di Engagement Mobile - Dashboard
+description: Informazioni su come tooview e gestire grafici dei dati relativi all'applicazione con Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: eaf5a2f9fdfcec33e8b4e2ddf77505980cd37c5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d834c01cb748a962d50006398b75b381fa6d8cef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a>Come visualizzare e gestire i grafici dei dati relativi all'applicazione
-La sezione Dashboard dell'interfaccia utente consente ai clienti di creare grafici personalizzati. In questo modo, potranno sfruttare al meglio il tempo fornendo informazioni precise, invece di cercarle nella sezione delle analisi. Nel dashboard vengono visualizzate le tendenze dell'applicazione e il conteggio degli utenti attivi, suddivisi in base alle differenti versioni dell'applicazione e per un determinato periodo di tempo (ora, giorno, settimana, mese, personalizzato). Le tendenze visualizzate sono basate sugli ultimi 7 giorni.
+# <a name="how-tooview-and-manage-charts-of-data-about-your-application"></a>Come tooview e gestire grafici dei dati relativi all'applicazione
+sezione di Dashboard di hello l'interfaccia utente personalizzata toocreate clienti Hello grafici toomaximize importantissime fornendo le informazioni esatte hello desiderano invece di cercare nella sezione analitica hello. Un dashboard Mostra le tendenze di hello dell'applicazione e hello conta utente attive per versioni diverse di hello dell'applicazione durante un determinato momento (ora/giorno/settimana/mese/personalizzato). tendenze Hello illustrate sono basate su hello ultimi 7 giorni.
 
 ### <a name="see-also"></a>Vedere anche
 * [Guida alla risoluzione dei problemi - Analytics][Link 21]
 
 ## <a name="dashboard"></a>Dashboard
-* È possibile aggiungere grafici a un dashboard vuoto selezionando l'azione "Invia a dashboard" dal menu ingranaggio di qualsiasi grafico presente nella sezione Analisi dell'interfaccia utente che si desidera visualizzare nel dashboard
+* È possibile aggiungere dashboard vuoto tooan di grafici scegliendo azione hello "trasmissione toodashboard" dal menu di ingranaggio hello di qualsiasi grafico nella sezione Analitica hello di hello dell'interfaccia utente che si desidera toosee in un dashboard.
 
 ## <a name="-add-a-dashboard"></a>+ (Aggiungi un dashboard)
-* È possibile utilizzare l'elemento "+" del menu della barra multifunzione per creare un nuovo dashboard da visualizzare nel menu della barra multifunzione.
+* È possibile utilizzare hello "+" della barra multifunzione menu elemento toocreate un nuovo dashboard verranno visualizzati nel menu della barra multifunzione hello.
 
 ## <a name="gear-menu"></a>Menu ingranaggio
-* È possibile utilizzare il menu ingranaggio di un dashboard per eliminare, rinominare, condividere o pianificare (ricezione e-mail) gli elementi del dashboard. È possibile utilizzare l'opzione Pianifica per definire la pianificazione in base alla quale si desidera ricevere il dashboard personalizzato tramite posta elettronica. È possibile pianificare di riceverlo ogni giorno, ogni settimana oppure ogni mese. È possibile scegliere l'ora del giorno, il giorno della settimana o il giorno del mese in cui si desidera ricevere il messaggio e-mail. L'indirizzo e-mail e il fuso orario si basano sulle impostazioni configurate nella sezione Account personale dell'interfaccia utente.
+* È possibile utilizzare il menu ingranaggio hello di un dashboard tooDelete, ridenominazione, condivisione o pianificazione (ricezione di posta elettronica) del dashboard. È possibile utilizzare il dashboard personalizzato hello opzione toodefine hello pianificazione in cui si desidera tooreceive tramite posta elettronica. È possibile pianificare tooreceive giornaliero, settimanale o mensile. È possibile scegliere l'ora di hello del giorno hello e hello giorno della settimana hello o giorno del mese di hello quando desideri posta elettronica hello tooreceive. L'indirizzo di posta elettronica e il fuso orario sono in base alle impostazioni di hello che Hello sezione Account personale di hello dell'interfaccia utente è stato configurato.
   
   ![dashboard1][34]
 

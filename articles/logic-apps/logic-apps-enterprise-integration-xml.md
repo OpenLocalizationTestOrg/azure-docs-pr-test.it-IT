@@ -1,6 +1,6 @@
 ---
-title: Usare i messaggi XML nei flussi di lavoro - App per la logica di Azure | Microsoft Docs
-description: Elaborare, convalidare, trasformare e migliorare i messaggi XML nelle app per la logica e negli scenari aziendali usando Enterprise Integration Pack
+title: messaggi nei flussi di lavoro - App Azure per la logica di aaaWorking con XML | Documenti Microsoft
+description: Elaborare, convalidare, trasformare e arricchire XML messaggi in App per la logica e l'utilizzo di business tooscenarios hello Enterprise Integration Pack
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,27 +15,27 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 02/27/2017
 ms.author: LADocs; mandia
-ms.openlocfilehash: 3fec4935f5317be4bf8c9e05f1c24a7c05381b1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f90ae89fef0a4bd17286adbce398e573940bb790
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="validate-and-transform-xml-encode-and-decode-flat-files-and-enrich-messages-features-in-logic-apps"></a>Convalidare e trasformare il linguaggio XML, codificare e decodificare file flat e migliorare le funzionalità di messaggi nelle app per la logica
 
-Grazie all'uso delle app per la logica, è possibile elaborare i messaggi XML che si inviano e si ricevono. Questa funzionalità è inclusa in Enterprise Integration Pack. Per gli utenti con uno sfondo a BizTalk Server, Enterprise Integration Pack offre funzionalità simili per trasformare e convalidare i messaggi, usare i file flat e persino servirsi di XPath per migliorare o estrarre le proprietà specifiche di un messaggio. 
+Usare la logica App, è necessario hello possibilità tooprocess messaggi XML inviati e ricevuti. Questa funzionalità è inclusa con hello Enterprise Integration Pack. Per gli utenti con uno sfondo di BizTalk Server, hello Enterprise Integration Pack offre tootransform funzionalità simili e convalidare i messaggi, utilizzare i file flat e anche utilizzare XPath tooenrich o estrarre le proprietà specifiche da un messaggio. 
 
-Per gli utenti che non hanno familiarità con questo spazio, queste funzionalità ampliano le modalità di elaborazione dei messaggi nel flusso di lavoro. Ad esempio, in uno scenario Business-to-Business in cui si usano schemi XML specifici, è possibile usare Enterprise Integration Pack per migliorare le modalità di elaborazione aziendale dei messaggi. 
+Per gli utenti che sono di nuovo spazio toothis, queste funzionalità espandere la modalità di elaborazione messaggi all'interno del flusso di lavoro. Ad esempio, se sono in uno scenario business-to-business e lavorare con schemi XML specifici, è possibile utilizzare hello Enterprise Integration Pack tooenhance come la società elabora questi messaggi. 
 
-Enterprise Integration Pack include: 
+Hello Enterprise Integration Pack include: 
 
 * [Convalida dei messaggi XML](logic-apps-enterprise-integration-xml-validation.md "Informazioni sulla convalida dei messaggi XML"): consente di convalidare un messaggio XML in entrata o in uscita rispetto a uno schema specifico.
-* [Trasformazione dei messaggi XML](../logic-apps/logic-apps-enterprise-integration-transform.md "Informazioni sulle mappe e le trasformazioni di messaggi XML"): consente di convertire o personalizzare un messaggio XML in base ai propri requisiti o a quelli di un partner.
-* [Codifica e decodifica del file flat](logic-apps-enterprise-integration-flatfile.md "Informazioni sulla codifica o decodifica del file flat"): consente di codificare o decodificare un file flat. Ad esempio, SAP accetta e invia file IDOC in formato file flat. Molte piattaforme di integrazione creano messaggi XML, tra cui App per la logica. Pertanto, è possibile creare un'app per la logica che usi il codificatore di file flat per "convertire" i file XML in file flat. 
-* [XPath](https://msdn.microsoft.com/library/mt643789.aspx): consente di arricchire un messaggio ed estrarre le proprietà specifiche del messaggio. È possibile quindi usare le proprietà estratte per indirizzare il messaggio a un endpoint intermedio o di destinazione.
+* [Trasformazione XML](../logic-apps/logic-apps-enterprise-integration-transform.md "ulteriori informazioni sulle trasformazioni di messaggi XML e mappe") : convertire o personalizzare un messaggio XML basato su requisiti o requisiti hello di un partner.
+* [Codifica e decodifica del file flat](logic-apps-enterprise-integration-flatfile.md "Informazioni sulla codifica o decodifica del file flat"): consente di codificare o decodificare un file flat. Ad esempio, SAP accetta e invia file IDOC in formato file flat. Molte piattaforme di integrazione creano messaggi XML, tra cui App per la logica. In tal caso, è possibile creare un'app di logica che utilizza hello file flat codificatore troppo "conversione" file tooflat di file XML. 
+* [XPath](https://msdn.microsoft.com/library/mt643789.aspx) - arricchire il messaggio ed estrarre le proprietà specifiche dal messaggio hello. È possibile quindi utilizzare hello estratti destinazione tooa dei messaggi hello tooroute proprietà o un endpoint intermedio.
 
 ## <a name="try-it-out"></a>Provare il servizio
-[Distribuire un'app per la logica completamente operativa](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-veter-pipeline) (campione di GitHub) usando le funzionalità XML di App per la logica di Azure.
+[Distribuire un'app logica completamente operativa ](https://github.com/Azure/azure-quickstart-templates/tree/master/201-logic-app-veter-pipeline) (esempio di GitHub) utilizzando le funzionalità XML hello nelle app di logica di Azure.
 
 ## <a name="learn-more"></a>Altre informazioni
-[Altre informazioni su Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md "Informazioni su Enterprise Integration Pack")
+[Altre informazioni su Enterprise Integration Pack hello](../logic-apps/logic-apps-enterprise-integration-overview.md "apprendere Enterprise Integration Pack")

@@ -1,5 +1,5 @@
 ---
-title: Creare un database Oracle in una VM di Azure | Microsoft Docs
+title: aaaCreate un database Oracle in una macchina virtuale di Azure | Documenti Microsoft
 description: Ottenere rapidamente un database Oracle 12c operativo nell'ambiente Azure.
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/17/2017
 ms.author: rclaus
-ms.openlocfilehash: 8683b016c4db2c66fb1dd994405b70c3d137a7fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83205154c3275d5f57b46c8acfb0cb4e5c68a412
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-oracle-database-in-an-azure-vm"></a>Creare un database Oracle in una VM di Azure
 
-Questa guida descrive nei dettagli l'uso dell'interfaccia della riga di comando di Azure per distribuire una macchina virtuale di Azure dall'[immagine della raccolta Marketplace di Oracle](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) per creare un database Oracle 12c. Dopo avere distribuito il server, verrà effettuata la connessione via SSH per configurare il database Oracle. 
+Questa guida descrive con hello Azure CLI toodeploy una macchina virtuale di Azure da hello [immagine della raccolta marketplace Oracle](https://azuremarketplace.microsoft.com/marketplace/apps/Oracle.OracleDatabase12102EnterpriseEdition?tab=Overview) in un database Oracle 12C ordine toocreate. Dopo aver distribuito il server di hello, verrà effettuata la connessione via SSH nel database di Oracle hello tooconfigure ordine. 
 
 Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) prima di iniziare.
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa guida introduttiva è necessario eseguire la versione 2.0.4 o successiva dell'interfaccia della riga di comando di Azure. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli).
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa Guida rapida richiede che sia in esecuzione hello Azure CLI versione 2.0.4 o versioni successive. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. Un gruppo di risorse di Azure è un contenitore logico in cui le risorse di Azure vengono distribuite e gestite. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *stati uniti orientali*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
 ```
 ## <a name="create-virtual-machine"></a>Crea macchina virtuale
 
-Per crea una macchina virtuale (VM), usare il comando [az vm create](/cli/azure/vm#create). 
+toocreate una macchina virtuale (VM), utilizzare hello [creare vm az](/cli/azure/vm#create) comando. 
 
-L'esempio seguente crea una VM denominata `myVM`. Crea anche le chiavi SSH se non esistono già in un percorso predefinito. Per usare un set specifico di chiavi, utilizzare l'opzione `--ssh-key-value`.  
+esempio Hello crea una macchina virtuale denominata `myVM`. Crea anche le chiavi SSH se non esistono già in una posizione predefinita. toouse uno specifico set di chiavi, utilizzare hello `--ssh-key-value` opzione.  
 
 ```azurecli-interactive 
 az vm create \
@@ -56,7 +56,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-In seguito alla creazione della VM, l'interfaccia della riga di comando di Azure visualizza informazioni simili a quelle dell'esempio seguente. Notare il valore di `publicIpAddress`. Questo indirizzo verrà usato per accedere alla VM.
+Dopo aver creato una macchina virtuale hello, CLI di Azure consente di visualizzare informazioni toohello simile esempio seguente. Si noti il valore di hello per `publicIpAddress`. Utilizzare questo hello tooaccess indirizzo macchina virtuale.
 
 ```azurecli
 {
@@ -71,26 +71,26 @@ In seguito alla creazione della VM, l'interfaccia della riga di comando di Azure
 }
 ```
 
-## <a name="connect-to-the-vm"></a>Connettersi alla VM
+## <a name="connect-toohello-vm"></a>Connettersi toohello VM
 
-Per creare una sessione SSH con la VM, usare il comando seguente. Sostituire l'indirizzo IP con il valore di `publicIpAddress` della VM.
+toocreate una sessione SSH con hello macchina virtuale, utilizzare hello comando seguente. Sostituire l'indirizzo IP hello con hello `publicIpAddress` valore per la macchina virtuale.
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-## <a name="create-the-database"></a>Creare il database
+## <a name="create-hello-database"></a>Creare database hello
 
-Il software Oracle è già installato nell'immagine del Marketplace. Creare un database di esempio come segue. 
+il software Oracle Hello è già installato in un'immagine del Marketplace hello. Creare un database di esempio come segue. 
 
-1.  Passare all'utente con privilegi avanzati *oracle*, quindi inizializzare il listener per la registrazione:
+1.  Passare toohello *oracle* utente avanzato, quindi inizializzare hello listener per la registrazione:
 
     ```bash
     $ sudo su - oracle
     $ lsnrctl start
     ```
 
-    L'output è simile al seguente:
+    output di Hello è simile toohello seguenti:
 
     ```bash
     Copyright (c) 1991, 2014, Oracle.  All rights reserved.
@@ -98,11 +98,11 @@ Il software Oracle è già installato nell'immagine del Marketplace. Creare un d
     Starting /u01/app/oracle/product/12.1.0/dbhome_1/bin/tnslsnr: please wait...
 
     TNSLSNR for Linux: Version 12.1.0.2.0 - Production
-    Log messages written to /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
+    Log messages written too/u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening on: (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
 
-    Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
-    STATUS of the LISTENER
+    Connecting too(ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+    STATUS of hello LISTENER
     ------------------------
     Alias                     LISTENER
     Version                   TNSLSNR for Linux: Version 12.1.0.2.0 - Production
@@ -114,11 +114,11 @@ Il software Oracle è già installato nell'immagine del Marketplace. Creare un d
     Listener Log File         /u01/app/oracle/diag/tnslsnr/myVM/listener/alert/log.xml
     Listening Endpoints Summary...
     (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=myVM.twltkue3xvsujaz1bvlrhfuiwf.dx.internal.cloudapp.net)(PORT=1521)))
-    The listener supports no services
-    The command completed successfully
+    hello listener supports no services
+    hello command completed successfully
     ```
 
-2.  Creare il database:
+2.  Crea database hello:
 
     ```bash
     dbca -silent \
@@ -140,17 +140,17 @@ Il software Oracle è già installato nell'immagine del Marketplace. Creare un d
            -ignorePreReqs
     ```
 
-    La creazione del database richiede alcuni minuti.
+    Accetta alcuni database di hello toocreate minuti.
 
 3. Impostare le variabili Oracle
 
-Prima della connessione, è necessario configurare due variabili di ambiente: *ORACLE_HOME* e *ORACLE_SID*.
+Prima di connettersi, è necessario tooset due variabili di ambiente: *ORACLE_HOME* e *ORACLE_SID*.
 
 ```bash
 ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
 ORACLE_SID=cdb1; export ORACLE_SID
 ```
-È anche possibile aggiungere le variabili ORACLE_HOME e ORACLE_SID al file con estensione bashrc. In questo modo, le variabili di ambiente verranno salvate per gli accessi successivi. Verificare che le seguenti istruzioni siano state aggiunte al file `~/.bashrc` usando l'editor scelto.
+È anche possibile aggiungere ORACLE_HOME e ORACLE_SID file .bashrc toohello di variabili. Le variabili di ambiente hello futuri accessi salvati. Verificare i seguenti hello istruzioni sono state aggiunte toohello `~/.bashrc` file utilizzando l'editor di propria scelta.
 
 ```bash
 # Add ORACLE_HOME. 
@@ -161,27 +161,27 @@ export ORACLE_SID=cdb1
 
 ## <a name="oracle-em-express-connectivity"></a>Connettività a Oracle EM Express
 
-Per ottenere uno strumento di gestione dell'interfaccia utente grafica da usare per esplorare il database, configurare Oracle EM Express. Per connettersi a Oracle EM Express, prima di tutto è necessario configurare la porta in Oracle. 
+Strumento di gestione interfaccia utente grafica che è possibile utilizzare database hello tooexplore, configurare Oracle EM Express. tooconnect tooOracle EM Express, è necessario innanzitutto impostare porta hello in Oracle. 
 
-1. Connettersi al database usando sqlplus:
+1. La connessione a database tooyour sqlplus utilizzando:
 
     ```bash
     sqlplus / as sysdba
     ```
 
-2. Dopo la connessione, impostare la porta 5502 per EM Express
+2. Una volta connessi, impostare la porta hello 5502 per Express EM
 
     ```bash
     exec DBMS_XDB_CONFIG.SETHTTPSPORT(5502);
     ```
 
-3. Aprire il contenitore PDB1 se non è già aperto, ma prima controllare lo stato:
+3. Contenitore hello aprire PDB1 se non è già aperto, ma prima controllare hello lo stato di:
 
     ```bash
     select con_id, name, open_mode from v$pdbs;
     ```
 
-    L'output è simile al seguente:
+    output di Hello è simile toohello seguenti:
 
     ```bash
       CON_ID NAME                           OPEN_MODE 
@@ -190,55 +190,55 @@ Per ottenere uno strumento di gestione dell'interfaccia utente grafica da usare 
       3           PDB1                      MOUNT
     ```
 
-4. Se OPEN_MODE per `PDB1` non è READ WRITE, usare i comandi seguenti per aprire PDB1:
+4. Se hello OPEN_MODE per `PDB1` non è di lettura e scrittura, quindi eseguire hello seguenti comandi tooopen PDB1:
 
    ```bash
     alter session set container=pdb1;
     alter database open;
    ```
 
-È necessario digitare `quit` per terminare la sessione sqlplus e `exit` per disconnettere l'utente Oracle.
+È necessario tootype `quit` tooend hello sqlplus sessione e il tipo `exit` toologout dell'utente oracle hello.
 
 ## <a name="automate-database-startup-and-shutdown"></a>Automatizzare l'avvio e l'arresto del database
 
-Per impostazione predefinita, il database Oracle non viene avviato automaticamente quando si riavvia la VM. Per configurare il database Oracle perché venga avviato automaticamente, accedere prima di tutto come utente ROOT. Quindi creare e aggiornare alcuni file di sistema.
+database Oracle Hello per impostazione predefinita non viene avviato automaticamente quando si riavvia hello macchina virtuale. tooset backup hello Oracle database toostart automaticamente, prima di tutto Accedi come radice. Quindi creare e aggiornare alcuni file di sistema.
 
 1. Accedere come utente ROOT
     ```bash
     sudo su -
     ```
 
-2.  Usando l'editor preferito modificare il file `/etc/oratab` e il valore predefinito `N` in `Y`:
+2.  Utilizzando l'editor preferito, modificare il file di hello `/etc/oratab` e modificare l'impostazione predefinita hello `N` troppo`Y`:
 
     ```bash
     cdb1:/u01/app/oracle/product/12.1.0/dbhome_1:Y
     ```
 
-3.  Creare un file denominato `/etc/init.d/dbora` e incollare i contenuti seguenti:
+3.  Creare un file denominato `/etc/init.d/dbora` e Incolla hello seguente contenuto:
 
     ```
     #!/bin/sh
     # chkconfig: 345 99 10
     # Description: Oracle auto start-stop script.
     #
-    # Set ORA_HOME to be equivalent to $ORACLE_HOME.
+    # Set ORA_HOME toobe equivalent too$ORACLE_HOME.
     ORA_HOME=/u01/app/oracle/product/12.1.0/dbhome_1
     ORA_OWNER=oracle
 
     case "$1" in
     'start')
-        # Start the Oracle databases:
-        # The following command assumes that the Oracle sign-in
-        # will not prompt the user for any values.
+        # Start hello Oracle databases:
+        # hello following command assumes that hello Oracle sign-in
+        # will not prompt hello user for any values.
         # Remove "&" if you don't want startup as a background process.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbstart $ORA_HOME" &
         touch /var/lock/subsys/dbora
         ;;
 
     'stop')
-        # Stop the Oracle databases:
-        # The following command assumes that the Oracle sign-in
-        # will not prompt the user for any values.
+        # Stop hello Oracle databases:
+        # hello following command assumes that hello Oracle sign-in
+        # will not prompt hello user for any values.
         su - $ORA_OWNER -c "$ORA_HOME/bin/dbshut $ORA_HOME" &
         rm -f /var/lock/subsys/dbora
         ;;
@@ -260,7 +260,7 @@ Per impostazione predefinita, il database Oracle non viene avviato automaticamen
     ln -s /etc/init.d/dbora /etc/rc.d/rc5.d/S99dbora
     ```
 
-6.  Per testare le modifiche, riavviare la VM:
+6.  tootest le modifiche, riavviare hello VM:
 
     ```bash
     reboot
@@ -268,9 +268,9 @@ Per impostazione predefinita, il database Oracle non viene avviato automaticamen
 
 ## <a name="open-ports-for-connectivity"></a>Aprire le porte per la connettività
 
-Il passaggio finale consiste nel configurare alcuni endpoint esterni. Per configurare il gruppo di sicurezza di rete di Azure che protegge la VM, prima di tutto chiudere la sessione SSH nella VM, anche se la sessione dovrebbe essere stata chiusa durante il riavvio nel passaggio precedente. 
+attività finale Hello è tooconfigure alcuni endpoint esterno. tooset backup hello Azure gruppo di sicurezza di rete che protegge hello VM, terminare la sessione SSH in hello VM (deve avere stato espulso dalla SSH durante il riavvio nel passaggio precedente). 
 
-1.  Per aprire l'endpoint usato per accedere al database Oracle in modalità remota, creare una regola del gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create) come segue: 
+1.  endpoint di hello tooopen che si utilizzi tooaccess hello Oracle database in modalità remota, creare una regola gruppo di sicurezza di rete con [creare una regola gruppo rete az](/cli/azure/network/nsg/rule#create) come indicato di seguito: 
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -282,7 +282,7 @@ Il passaggio finale consiste nel configurare alcuni endpoint esterni. Per config
         --destination-port-range 1521
     ```
 
-2.  Per aprire l'endpoint usato per accedere a Oracle EM Express in modalità remota, creare una regola del gruppo di sicurezza di rete con [az network nsg rule create](/cli/azure/network/nsg/rule#create) come segue:
+2.  endpoint di hello tooopen utilizzare tooaccess Express EM Oracle in modalità remota, creare una regola gruppo di sicurezza di rete con [creare una regola gruppo rete az](/cli/azure/network/nsg/rule#create) come indicato di seguito:
 
     ```azurecli-interactive
     az network nsg rule create \
@@ -294,7 +294,7 @@ Il passaggio finale consiste nel configurare alcuni endpoint esterni. Per config
         --destination-port-range 5502
     ```
 
-3. Se necessario, ottenere di nuovo l'indirizzo IP pubblico della VM con [az network public-ip show](/cli/azure/network/public-ip#show).
+3. Se è necessario ottenere l'indirizzo IP pubblico hello della macchina virtuale con [Mostra public-ip di rete az](/cli/azure/network/public-ip#show) come indicato di seguito:
 
     ```azurecli-interactive
     az network public-ip show \
@@ -310,13 +310,13 @@ Il passaggio finale consiste nel configurare alcuni endpoint esterni. Per config
     https://<VM ip address or hostname>:5502/em
     ```
 
-È possibile eseguire l'accesso usando l'account **SYS** e selezionare la casella di controllo **as sysdba**. Usare la password **OraPasswd1** impostata durante l'installazione. 
+È possibile accedere tramite hello **SYS** account e controllare hello **come sysdba** casella di controllo. Utilizzare password hello **OraPasswd1** che impostato durante l'installazione. 
 
-![Screenshot della pagina di accesso a Oracle OEM Express](./media/oracle-quick-start/oracle_oem_express_login.png)
+![Schermata della pagina di accesso Oracle OEM Express hello](./media/oracle-quick-start/oracle_oem_express_login.png)
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Al termine dell'esplorazione di un primo database Oracle in Azure e quando la macchina virtuale non è più necessaria, è possibile usare il comando [az group delete](/cli/azure/group#delete) per rimuovere il gruppo di risorse la macchina virtuale e tutte le risorse correlate.
+Dopo aver esplorazione di un database Oracle in Azure e hello VM non è più necessario, è possibile utilizzare hello [eliminazione gruppo az](/cli/azure/group#delete) comando gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup
@@ -326,4 +326,4 @@ az group delete --name myResourceGroup
 
 Informazioni su altre [soluzioni Oracle in Azure](oracle-considerations.md). 
 
-Provare a eseguire l'esercitazione [Installing and Configuring Oracle Automated Storage Management (Installazione e configurazione di Oracle Automated Storage Management)](configure-oracle-asm.md).
+Provare a hello [installazione e configurazione di gestione di archiviazione automatica di Oracle](configure-oracle-asm.md) esercitazione.

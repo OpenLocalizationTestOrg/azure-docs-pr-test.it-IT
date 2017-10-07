@@ -1,6 +1,6 @@
 ---
-title: Gestire gli asset di dati in Azure Data Catalog | Microsoft Docs
-description: "L'articolo illustra come controllare la visibilità e la proprietà degli asset di dati registrati in Azure Data Catalog."
+title: aaaManage asset di dati in Azure Data Catalog | Documenti Microsoft
+description: "articolo Hello evidenzia come toocontrol visibilità e la proprietà di asset di dati registrata in Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,61 +15,61 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 8b9159b7bc4f7b2dac12d9012c6c903e75a6ac16
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 48a634b92d7da19c32c9e551f295eec257f54f1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-data-assets-in-azure-data-catalog"></a>Gestire gli asset di dati in Azure Data Catalog
 ## <a name="introduction"></a>Introduzione
-Azure Data Catalog è progettato per l'individuazione delle origini dati, per poter comprendere e trovare facilmente le origini dati necessarie per eseguire analisi e prendere decisioni. Le funzionalità di individuazione fanno veramente la differenza quando tutti gli utenti hanno la possibilità di trovare e comprendere la più ampia gamma di origini dati disponibili. Con questi elementi, il comportamento predefinito di Data Catalog prevede che tutte le origini dati registrate siano visibili e individuabili da tutti gli utenti del catalogo.
+Azure Data Catalog è progettato per l'individuazione dell'origine dati, in modo che è possibile individuare facilmente e comprendere le origini dati hello è necessario analysis tooperform e prendere decisioni. Queste funzionalità di individuazione verificare l'impatto maggiore sul hello quando gli utenti di trovare e comprendere più ampia gamma di hello delle origini dati disponibili. Con questi elementi presenti, il comportamento predefinito hello del catalogo dati è per tutti i dati registrati origini toobe visibile tooand individuabili tutti gli utenti del catalogo.
 
-Data Catalog non consente di accedere ai dati stessi. L'accesso ai dati è controllato dal proprietario dell'origine dati. Data Catalog consente di trovare le origini dati e di visualizzare i metadati correlati alle origini registrate nel catalogo.
+Catalogo dati non consentono di accedere ai dati toohello stesso. Accesso ai dati è controllato dal proprietario hello dell'origine dati hello. Con il catalogo dati, è possibile individuare le origini dati e visualizzare i metadati hello origini toohello correlati che vengono registrate nel catalogo di hello.
 
-In alcune situazioni tuttavia le origini dati devono essere visibili solo a utenti specifici o ai membri di gruppi specifici. In tali scenari gli utenti possono acquisire la proprietà di asset di dati registrati nel catalogo e quindi di controllare la visibilità degli asset di cui sono proprietari.
+Potrebbero esserci delle situazioni, tuttavia, in cui devono essere solo origini dati utenti toospecific visibili, o toomembers di gruppi specifici. In questi scenari, gli utenti possono diventare proprietari di asset di dati registrati all'interno del catalogo hello e quindi controllare la visibilità di hello degli asset hello che sono proprietari.
 
 > [!NOTE]
-> Le funzionalità descritte in questo articolo sono disponibili solo nell'edizione Standard di Azure Data Catalog. L'edizione gratuita non offre funzionalità relative alla proprietà e alla limitazione della visibilità di asset di dati.
+> funzionalità di Hello descritto in questo articolo è disponibile solo nell'edizione Standard di Azure Data Catalog hello. Hello edizione gratuita non fornisce funzionalità per la proprietà e per limitare la visibilità di asset di dati.
 >
 >
 
 ## <a name="manage-ownership-of-data-assets"></a>Gestire la proprietà degli asset di dati
-Per impostazione predefinita, gli asset di dati registrati in Data Catalog sono senza proprietario. Qualsiasi utente con l'autorizzazione necessaria per accedere al catalogo può trovare e annotare questi asset. Gli utenti possono acquisire la proprietà di asset di dati senza proprietario e quindi limitarne la visibilità.
+Per impostazione predefinita, gli asset di dati registrati in Data Catalog sono senza proprietario. Qualsiasi utente con il catalogo di hello tooaccess di autorizzazione può individuare e annotare queste risorse. Gli utenti possono diventare proprietari di asset di dati senza proprietario e quindi limitare la visibilità di hello degli asset hello che sono proprietari.
 
-Quando un asset di dati in Data Catalog ha dei proprietari, solo gli utenti autorizzati dai proprietari possono trovare l'asset e visualizzarne i metadati e solo i proprietari possono eliminare l'asset dal catalogo.
+Quando un asset di dati nel catalogo dati è di proprietà, solo gli utenti autorizzati dai proprietari hello possono individuare asset hello e visualizzarne i metadati e solo i proprietari di hello possono eliminare asset hello dal catalogo hello.
 
 > [!NOTE]
-> In Data Catalog la proprietà interessa unicamente i metadati archiviati nel catalogo. La proprietà non conferisce autorizzazioni per l'origine dati sottostante.
+> Proprietà nel catalogo dati interessa solo i metadati di hello archiviati nel catalogo di hello. La proprietà non conferisce tutte le autorizzazioni per l'origine dati sottostante hello.
 >
 >
 
 ### <a name="take-ownership"></a>Diventare proprietario
-Per acquisire la proprietà di asset di dati, gli utenti possono selezionare l'opzione **Diventa proprietario** nel portale di Data Catalog. Non sono necessarie speciali autorizzazioni per diventare proprietario di un asset di dati senza proprietario. Qualsiasi utente può diventare proprietario di un asset di dati senza proprietario.
+Gli utenti possono diventare proprietari di asset di dati selezionando hello **Take Ownership** opzione nel portale di hello catalogo dati. Autorizzazioni speciali non sono necessari tootake proprietà di un asset di dati senza proprietario. Qualsiasi utente può diventare proprietario di un asset di dati senza proprietario.
 
 ### <a name="add-owners-and-co-owners"></a>Aggiungere proprietari e comproprietari
 Se un asset di dati ha già un proprietario, gli altri utenti non possono semplicemente diventare proprietari. Devono essere aggiunti come comproprietari da un proprietario esistente. Qualsiasi proprietario può aggiungere altri utenti o gruppi di sicurezza come comproprietari.
 
 > [!NOTE]
-> È consigliabile che ogni asset di dati con proprietari abbia almeno due proprietari.
+> Si è un migliore toohave practice almeno due utenti come proprietari per qualsiasi proprietà dell'asset di dati.
 >
 >
 
 ### <a name="remove-owners"></a>Rimuovere i proprietari
 Qualsiasi proprietario di asset può rimuovere i relativi comproprietari.
 
-Un proprietario di un asset che rimuove se stesso come proprietario, non potrà più gestire l'asset. Se il proprietario di un asset rimuove se stesso come proprietario e non esistono altri comproprietari, l'asset torna allo stato senza proprietario.
+Un proprietario asset rimuove aggiungersi come proprietario non è più possibile gestire asset hello. Se esistono altri CO-proprietari proprietario dell'asset hello rimuove aggiungersi come proprietario, asset hello Ripristina tooan senza proprietario dello stato.
 
 ## <a name="control-visibility"></a>Controllare la visibilità
-La visibilità degli asset di dati è controllata dai relativi proprietari. Per limitare la visibilità come impostazione predefinita, in cui tutti gli utenti di Data Catalog possono trovare e visualizzare l'asset di dati, il proprietario dell'asset può alternare l'impostazione di visibilità tra **Tutti** e **Proprietario e questi utenti** nelle proprietà dell'asset. I proprietari possono quindi aggiungere utenti e gruppi di sicurezza specifici.
+Proprietari di asset di dati è possono controllare la visibilità di hello degli asset di dati hello che sono proprietari. visibilità toorestrict come valore predefinito di hello, in cui tutti i Data Catalog, gli utenti possono individuare e visualizzare hello asset di dati, proprietario dell'asset hello può attivare o hello visibilità impostazione **Everyone** troppo**proprietari e utenti** nelle proprietà hello asset hello. I proprietari possono quindi aggiungere utenti e gruppi di sicurezza specifici.
 
 > [!NOTE]
-> Quando è possibile, la proprietà dell'asset e le autorizzazioni di visibilità devono essere assegnate a gruppi di sicurezza e non a singoli utenti.
+> Quando possibile, devono essere assegnate le autorizzazioni di proprietà e la visibilità di asset, toosecurity gruppi e non agli utenti di tooindividual.
 >
 >
 
 ## <a name="catalog-administrators"></a>Amministratori del catalogo
-Gli amministratori di Data Catalog sono implicitamente comproprietari di tutti gli asset nel catalogo. I proprietari di asset non possono rimuovere la visibilità dagli amministratori, che possono gestire la proprietà e la visibilità per tutti gli asset di dati nel catalogo.
+Gli amministratori del catalogo dati sono implicitamente comproprietari di tutte le risorse nel catalogo di hello. Proprietari della risorsa non è possibile rimuovere la visibilità da parte degli amministratori e gli amministratori possono gestire proprietà e la visibilità per tutti gli asset di dati nel catalogo di hello.
 
 ## <a name="summary"></a>Riepilogo
-Il modello di crowdsourcing di Data Catalog per l'individuazione di asset di dati e metadati consente a tutti gli utenti del catalogo di contribuire all'individuazione. L'edizione Standard di Data Catalog è progettata per la proprietà e la gestione per poter limitare la visibilità e l'uso di asset di dati specifici.
+Hello catalogo dati crowdsourcing modello toometadata e dati di individuazione consente a tutti i toocontribute gli utenti del catalogo e individuare. Hello edizione Standard di catalogo dati è progettato per la gestione e la proprietà visibilità hello toolimit e l'uso di asset di dati specifico.

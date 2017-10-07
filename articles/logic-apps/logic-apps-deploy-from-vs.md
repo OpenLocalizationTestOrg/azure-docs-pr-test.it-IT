@@ -1,5 +1,5 @@
 ---
-title: Creare, compilare e distribuire le app per la logica in Visual Studio - App per la logica di Azure | Microsoft Docs
+title: aaaCreate, compilare e distribuire App in Visual Studio - App Azure per la logica per la logica | Documenti Microsoft
 description: Creare progetti di Visual Studio per poter progettare, compilare e distribuire app per la logica di Azure.
 author: jeffhollan
 manager: anneta
@@ -15,96 +15,96 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 2/14/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: e7f5cf483d22e4c60dedbe5176ceb0bc8b2b6e66
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5154cb05f9a48e9f0f2381a6953947217f7bb114
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-build-and-deploy-azure-logic-apps-in-visual-studio"></a>Progettare, compilare e distribuire app per la logica di Azure in Visual Studio
 
-Anche se il [portale di Azure](https://portal.azure.com/) è uno strumento eccellente per la creazione e la gestione delle app per la logica di Azure, è possibile usare Visual Studio per progettarle, compilarle e distribuirle. Visual Studio offre strumenti avanzati, come la finestra di progettazione di app per la logica, per creare app per la logica, configurare i modelli di distribuzione e automazione e distribuirli in qualsiasi ambiente. 
+Sebbene hello [portale di Azure](https://portal.azure.com/) offre un modo eccellente per si toocreate e gestire le app di logica di Azure, è possibile utilizzare Visual Studio per la progettazione, compilazione e distribuzione di App per la logica. Visual Studio fornisce strumenti avanzati come hello progettazione applicazione logica per l'utente toocreate logica App, configurare i modelli di distribuzione e l'automazione e distribuire l'ambiente tooany. 
 
-Per un'introduzione alle app per la logica di Azure, imparare a [creare la prima app per la logica nel Portale di Azure](logic-apps-create-a-logic-app.md).
+informazioni su tooget iniziare con le app di logica di Azure, [come toocreate la prima app logica nel portale di Azure hello](logic-apps-create-a-logic-app.md).
 
 ## <a name="installation-steps"></a>Procedura di installazione
 
-Per installare e configurare gli strumenti di Visual Studio per le app per la logica di Azure, seguire questi passaggi.
+tooinstall e configurare gli strumenti di Visual Studio per le app di logica di Azure, seguire questi passaggi.
 
 ### <a name="prerequisites"></a>Prerequisiti
 
 * [Visual Studio 2017](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx) o Visual Studio 2015
 * [Versione più recente di Azure SDK](https://azure.microsoft.com/downloads/) (2.9.1 o versione successiva)
 * [Azure PowerShell](https://github.com/Azure/azure-powershell#installation)
-* Accesso al Web mentre viene usata la finestra di progettazione incorporata
+* Web toohello Access quando si utilizza Progettazione incorporato hello
 
 ### <a name="install-visual-studio-tools-for-azure-logic-apps"></a>Installare gli strumenti di Visual Studio per le app per la logica di Azure
 
-Dopo aver installato i prerequisiti:
+Dopo aver installato i prerequisiti di hello:
 
-1. Aprire Visual Studio. Scegliere **Estensioni e aggiornamenti** dal menu **Strumenti**.
-2. Espandere la categoria **In rete** per poter eseguire le ricerche in rete.
+1. Aprire Visual Studio. In hello **strumenti** dal menu **estensioni e aggiornamenti**.
+2. Espandere hello **Online** categoria, eseguire la ricerca online.
 3. Sfogliare o cercare **App per la logica** per visualizzare **Azure Logic Apps Tools for Visual Studio** (Strumenti per app per la logica di Azure per Visual Studio).
-4. Fare clic sul pulsante **Scarica** per scaricare e installare l'estensione.
+4. toodownload e l'estensione di hello installazione, fare clic su **scaricare**.
 5. Al termine dell'installazione riavviare Visual Studio.
 
 > [!NOTE]
-> È anche possibile scaricare gli [strumenti per Visual Studio 2017 di app per la logica di Azure](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio-18551) e gli [strumenti per Visual Studio 2015 di app per la logica di Azure](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio) direttamente da Visual Studio Marketplace.
+> È inoltre possibile scaricare [Azure logica App Tools per Visual Studio 2017](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio-18551) hello e [Azure logica App Tools per Visual Studio 2015](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio) direttamente da Visual Studio Marketplace hello.
 
-Al completamento dell'installazione è possibile usare il progetto Gruppo di risorse di Azure con la Progettazione delle app per la logica.
+Al termine dell'installazione, è possibile utilizzare il progetto di gruppo di risorse di Azure hello con logica di progettazione di App.
 
 ## <a name="create-your-project"></a>Creare il progetto
 
-1. Nel menu **File**, andare in **Nuovo**e selezionare **Progetto**. Oppure per aggiungere il progetto a una soluzione esistente, andare in **Aggiungi**e selezionare **Nuovo progetto**.
+1. In hello **File** dal menu Vai troppo**New**e selezionare **progetto**. O tooadd tooan il progetto esistente di soluzione, andare troppo**Aggiungi**e selezionare **nuovo progetto**.
 
     ![File menu](./media/logic-apps-deploy-from-vs/filemenu.png)
 
-2. Nella finestra **Nuovo progetto** cercare **Cloud** e selezionare **Gruppo di risorse di Azure**. Assegnare un nome al progetto e fare clic su **OK**.
+2. In hello **nuovo progetto** finestra Trova **Cloud**e selezionare **il gruppo di risorse di Azure**. Assegnare un nome al progetto e fare clic su **OK**.
 
     ![Add new project](./media/logic-apps-deploy-from-vs/addnewproject.png)
 
-3. Selezionare il modello **App per la logica** che crea un modello di distribuzione delle app per la logica vuoto che è possibile usare. Dopo aver selezionato il modello, fare clic su **OK**.
+3. Seleziona hello **logica App** modello, che viene creato un modello di distribuzione app vuota logica toouse. Dopo aver selezionato il modello, fare clic su **OK**.
 
     ![Selezionare il modello App per la logica](./media/logic-apps-deploy-from-vs/selectazuretemplate1.png)
 
-    Il progetto di app per la logica viene aggiunto alla soluzione. 
-    Il file di distribuzione verrà visualizzato in Esplora soluzioni.
+    È stato aggiunto a questo punto soluzione logica app progetto tooyour. 
+    In Esplora soluzioni hello, dovrebbe essere visualizzato il file di distribuzione.
 
     ![File di distribuzione](./media/logic-apps-deploy-from-vs/deployment.png)
 
 ## <a name="create-your-logic-app-with-logic-app-designer"></a>Creare l'app per la logica con la finestra di progettazione
 
-Dopo aver creato un progetto Gruppo di risorse di Azure contenente un'app per la logica, è possibile aprire Progettazione app per la logica in Visual Studio per creare il flusso di lavoro. 
+Quando si dispone di un progetto di gruppo di risorse di Azure che contiene una logica app, è possibile aprire hello logica di progettazione di App in Visual Studio toocreate il flusso di lavoro. 
 
 > [!NOTE]
-> La finestra di progettazione richiede una connessione internet ai connettori di query per i dati e le proprietà disponibili. Ad esempio, se si utilizza il connettore di Dynamics CRM Online, la finestra di progettazione richiede l'istanza CRM per visualizzare le proprietà predefinite e personalizzate disponibili.
+> finestra di progettazione Hello richiede una connessione a internet eseguire una query troppo connettori per i dati e le proprietà disponibili. Ad esempio, se si utilizza hello connettore di Dynamics CRM Online, progettazione hello query il personalizzato CRM istanza tooshow disponibile e le proprietà predefinite.
 
 1. Fare clic con il pulsante destro del mouse sul file `<template>.json` e scegliere **Open with Logic App Designer** (Apri con Progettazione app per la logica). (`Ctrl+L`)
 
 2. Scegliere la sottoscrizione di Azure, il gruppo di risorse e la posizione per il modello di distribuzione.
 
     > [!NOTE]
-    > Progettando un'app per la logica verranno create risorse di connessione API per l'esecuzione di query per ottenere le proprietà durante la progettazione. Il gruppo di risorse selezionato viene usato da Visual Studio per creare tali connessioni durante la fase di progettazione. Per visualizzare o modificare qualsiasi connessione API, andare nel Portale di Azure e cercare **Connessioni API**.
+    > Progettando un'app per la logica verranno create risorse di connessione API per l'esecuzione di query per ottenere le proprietà durante la progettazione. Visual Studio Usa il toocreate gruppo di risorse selezionato tali connessioni in fase di progettazione. tooview o modificare le connessioni di API, recarsi toohello portale di Azure e cercare **connessioni API**.
 
     ![Selezione della sottoscrizione](./media/logic-apps-deploy-from-vs/designer_picker.png)
 
-    La finestra di progettazione usa la definizione nel file `<template>.json` per il rendering.
+    finestra di progettazione di Hello Usa definizione hello in hello `<template>.json` file per il rendering.
 
 4. Creare e progettare l'app per la logica. Il modello di distribuzione viene aggiornato con le modifiche.
 
     ![Progettazione app per la logica in Visual Studio](./media/logic-apps-deploy-from-vs/designer_in_vs.png)
 
-Visual Studio aggiunge le risorse `Microsoft.Web/connections` al file di risorse per tutte le connessioni necessarie all'app per la logica per funzionare. Queste proprietà di connessione possono essere impostate al momento della distribuzione ed essere gestite successivamente in **Connessioni API** nel portale di Azure.
+Visual Studio aggiunge `Microsoft.Web/connections` troppo la risorsa del file di risorse per tutte le connessioni app logica deve toofunction. Queste proprietà di connessione possono essere impostate durante la distribuzione e gestite dopo aver distribuito **connessioni API** in hello portale di Azure.
 
-### <a name="switch-to-json-code-view"></a>Passare alla visualizzazione del codice JSON
+### <a name="switch-toojson-code-view"></a>Visualizzazione di codice tooJSON commutatore
 
-È possibile selezionare la scheda **Visualizzazione Codice** nella parte inferiore della finestra di progettazione per visualizzare la rappresentazione JSON dell'app per la logica.
+hello tooshow rappresentazione JSON per l'app di logica, seleziona hello **visualizzazione codice** scheda nella parte inferiore di hello della finestra di progettazione hello.
 
-Per tornare al file di risorse JSON completo, fare clic con il pulsante destro del mouse su `<template>.json` e scegliere **Apri**.
+tooswitch toohello completo della risorsa JSON di eseguire il pulsante destro del mouse hello `<template>.json` file e selezionare **aprire**.
 
-### <a name="add-references-for-dependent-resources-to-visual-studio-deployment-templates"></a>Aggiungere riferimenti per le risorse dipendenti ai modelli di distribuzione di Visual Studio
+### <a name="add-references-for-dependent-resources-toovisual-studio-deployment-templates"></a>Aggiungere i riferimenti per i modelli di distribuzione di risorse dipendenti tooVisual Studio
 
-Quando si vuole che l'app per la logica faccia riferimento alle risorse dipendenti, è possibile usare le [funzioni del modello di Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-functions) nel modello di distribuzione di app per la logica. Ad esempio, l'utente può fare in modo che l'app per la logica faccia riferimento a una funzione di Azure o a un account di integrazione che si desidera distribuire insieme all'app per la logica. Seguire queste linee guida sull'uso dei parametri nel modello di distribuzione in modo che la Progettazione app per la logica esegua il rendering correttamente. 
+Quando si desidera che la logica app tooreference da risorse dipendenti, è possibile utilizzare [funzioni di modello di gestione risorse di Azure](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-functions) nel modello di distribuzione di app logica. Ad esempio, è consigliabile il tooreference app logica un account Azure funzione o di integrazione che si desidera toodeploy insieme all'app di logica. Seguire queste linee guida sulle modalità di rendering correttamente toouse parametri nel modello di distribuzione in modo che hello progettazione applicazione logica. 
 
 È possibile usare i parametri dell'app per la logica in questi tipi di trigger e azioni:
 
@@ -114,7 +114,7 @@ Quando si vuole che l'app per la logica faccia riferimento alle risorse dipenden
 *   URL di runtime della connessione API
 *   Percorso di connessione API
 
-Ed è possibile usare le funzioni di modello, ad esempio parametri, variabili, resourceId, CONCAT e così via. Ad esempio, ecco come è possibile sostituire l'ID di risorsa della funzione di Azure:
+Ed è possibile usare le funzioni di modello, ad esempio parametri, variabili, resourceId, CONCAT e così via. Ad esempio, ecco come è possibile sostituire l'ID di risorsa di Azure funzione hello:
 
 ```
 "parameters":{
@@ -140,7 +140,7 @@ E dove si useranno i parametri:
     "runAfter":{}
 }
 ```
-È anche possibile, ad esempio, impostare il parametro per l'operazione di invio messaggio del bus di servizio:
+Un altro esempio è possibile parametrizzare hello Bus di servizio invia l'operazione di messaggio:
 
 ```
 "Send_message": {
@@ -169,7 +169,7 @@ E dove si useranno i parametri:
 
 
 > [!NOTE] 
-> Affinché la Progettazione dell'app per la logica funzioni quando si usano i parametri, è necessario fornire valori predefiniti, ad esempio:
+> Per hello progettazione applicazione logica toowork quando si utilizzano parametri, è necessario fornire valori predefiniti, ad esempio:
 > 
 > ```
 > "parameters": {
@@ -183,50 +183,50 @@ E dove si useranno i parametri:
 
 ### <a name="save-your-logic-app"></a>Salvare l'app per la logica
 
-Per salvare l'app per la logica in qualsiasi momento, andare in **File** > **Salva**. (`Ctrl+S`) 
+toosave app logica in qualsiasi momento, andare troppo**File** > **salvare**. (`Ctrl+S`) 
 
-Se quando si salva l'applicazione l'app per la logica presenta errori, questi vengono visualizzati in Visual Studio nella finestra **Output**.
+Se l'applicazione di logica ha tutti gli errori quando si salva l'applicazione, vengono visualizzati in Visual Studio hello **output** finestra.
 
 ## <a name="deploy-your-logic-app-from-visual-studio"></a>Distribuire l'app per la logica da Visual Studio
 
 Dopo aver configurato l'app, è possibile distribuirla direttamente da Visual Studio in pochi passaggi. 
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto e scegliere **Distribuisci** > **Nuova distribuzione...**
+1. In Esplora risorse, mouse sul progetto e passare troppo**Distribuisci** > **nuova distribuzione...**
 
     ![New deployment](./media/logic-apps-deploy-from-vs/newdeployment.png)
 
-2. Quando verrà richiesto, accedere alla sottoscrizione di Azure. 
+2. Quando richiesto, accedere tooyour sottoscrizione di Azure. 
 
-3. A questo punto è necessario selezionare i dettagli del gruppo di risorse in cui si desidera distribuire l'app per la logica. Al termine, fare clic su **Distribuisci**.
+3. A questo punto è necessario selezionare i dettagli di hello per il gruppo di risorse hello in cui si desidera toodeploy app logica. Al termine, fare clic su **Distribuisci**.
 
     > [!NOTE]
-    > Assicurarsi di selezionare il modello e i parametri corretti per il gruppo di risorse. Ad esempio, se si desidera distribuire in un ambiente di produzione, scegliere il file dei parametri di produzione.
+    > Assicurarsi di selezionare il modello corretto di hello e file dei parametri per il gruppo di risorse hello. Ad esempio, se si desidera toodeploy tooa ambiente di produzione, scegliere file dei parametri di produzione hello.
 
-    ![Deploy to resource group](./media/logic-apps-deploy-from-vs/deploytoresourcegroup.png)
+    ![Distribuire un gruppo di tooresource](./media/logic-apps-deploy-from-vs/deploytoresourcegroup.png)
 
-    Lo stato di distribuzione viene visualizzato nella finestra **Output**. 
-    Potrebbe essere necessario selezionare **Provisioning Azure** nell'elenco **Mostra output di**.
+    viene visualizzato lo stato di distribuzione Hello in hello **Output** finestra. 
+    Potrebbe essere tooselect **Azure Provisioning** in hello **Mostra output di** elenco.
 
     ![Output dello stato di distribuzione](./media/logic-apps-deploy-from-vs/output.png)
 
-In futuro sarà possibile modificare l'app per la logica nel controllo del codice sorgente e usare Visual Studio per distribuire nuove versioni.
+In futuro hello, è possibile modificare l'applicazione logica in un controllo del codice sorgente e utilizzare le nuove versioni toodeploy di Visual Studio.
 
 > [!NOTE]
-> Se si modifica la definizione direttamente nel Portale di Azure, tali modifiche saranno sovrascritte alla successiva distribuzione da Visual Studio. 
+> Se si modifica direttamente la definizione di hello in hello portale di Azure, tali modifiche vengono sovrascritte durante la distribuzione da Visual Studio successivo. 
 
-## <a name="add-your-logic-app-to-an-existing-resource-group-project"></a>Aggiungere un'app per la logica a un progetto Gruppo di risorse esistente
+## <a name="add-your-logic-app-tooan-existing-resource-group-project"></a>Aggiungere il progetto di gruppo di risorse esistente logica app tooan
 
-Se si dispone di un progetto Gruppo di risorse esistente, è possibile aggiungere l'app per la logica al progetto nella finestra Struttura JSON. È inoltre possibile aggiungere un'altra app per la logica con l'applicazione creata in precedenza.
+Se si dispone di un progetto di gruppo di risorse esistente, è possibile aggiungere il progetto di logica app toothat nella finestra Struttura JSON hello. È anche possibile aggiungere un'altra app logica insieme app hello creato in precedenza.
 
-1. Aprire il file `<template>.json` .
+1. Aprire hello `<template>.json` file.
 
-2. Per aprire la finestra Struttura JSON andare in **Visualizza** > **Altre finestre** > **Struttura JSON**.
+2. hello tooopen finestra Struttura JSON, andare troppo**vista** > **altre finestre** > **struttura JSON**.
 
-3. Per aggiungere una risorsa al file del modello, fare clic su **Aggiungi risorsa** nella parte superiore della finestra Struttura JSON. Oppure nella finestra Struttura JSON fare clic con il tasto destro del mouse su **risorse**e selezionare **Aggiungi nuova risorsa**.
+3. Fare clic su un file modello di risorsa toohello, tooadd **Aggiungi risorsa** nella parte superiore di hello della finestra Struttura JSON hello. Nella finestra Struttura JSON hello mouse oppure **risorse**e selezionare **Aggiungi nuova risorsa**.
 
     ![Finestra Struttura JSON](./media/logic-apps-deploy-from-vs/jsonoutline.png)
     
-4. Nella finestra di dialogo **Aggiungi risorsa**, individuare e selezionare **App per la logica**. Dare un nome all'app per la logica e scegliere **Aggiungi**.
+4. In hello **Aggiungi risorsa** la finestra di dialogo, trovare e selezionare **logica App**. Dare un nome all'app per la logica e scegliere **Aggiungi**.
 
     ![Aggiungere una risorsa](./media/logic-apps-deploy-from-vs/addresource.png)
 
@@ -234,5 +234,5 @@ Se si dispone di un progetto Gruppo di risorse esistente, è possibile aggiunger
 
 * [Gestire le app per la logica con Visual Studio Cloud Explorer](logic-apps-manage-from-vs.md)
 * [Visualizzare esempi e scenari comuni](logic-apps-examples-and-scenarios.md)
-* [Introduzione all'automazione dei processi aziendali con le app per la logica di Azure](http://channel9.msdn.com/Events/Build/2016/T694)
-* [Informazioni su come integrare i sistemi con le app per la logica di Azure](http://channel9.msdn.com/Events/Build/2016/P462)
+* [Informazioni su come i processi di business tooautomate con Azure logica App](http://channel9.msdn.com/Events/Build/2016/T694)
+* [Informazioni su come toointegrate i sistemi con Azure logica App](http://channel9.msdn.com/Events/Build/2016/P462)

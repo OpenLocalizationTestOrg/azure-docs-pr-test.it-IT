@@ -1,6 +1,6 @@
 ---
-title: 'Migrazione: Microsoft Threat Modeling Tool - Azure | Microsoft Docs'
-description: Pagina di mitigazione per Microsoft Threat Modeling Tool che riporta possibili soluzioni di prevenzione per le minacce generate maggiormente esposte.
+title: aaaMitigations - modellazione strumento Microsoft Threat - Azure | Documenti Microsoft
+description: "Pagina le misure di attenuazione per hello dello strumento Microsoft Threat modellazione evidenziazione possibili soluzioni toohello più esposta generato minacce."
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 07ef1fd3d81d795c9164741d22b5a689f86bd720
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 000c0980d976b09fc9287e582e3776efaf7e390c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-threat-modeling-tool-mitigations"></a>Mitigazioni di Microsoft Threat Modeling Tool
 
-Microsoft Threat Modeling Tool è un elemento principale di Microsoft Security Development Lifecycle (SDL). Consente ai progettisti di software di identificare e ridurre tempestivamente i potenziali problemi di sicurezza, quando sono relativamente semplici e convenienti da risolvere. Di conseguenza, riduce notevolmente i costi totali di sviluppo. Inoltre, lo strumento è progettato pensando agli esperti non relativi alla sicurezza, poiché semplifica la modellazione delle minacce per tutti gli sviluppatori fornendo istruzioni chiare sulla creazione e sull'analisi dei modelli di rischio.
+Strumento di modellazione delle minacce Hello è un elemento principale di hello Microsoft Security Development Lifecycle (SDL). Consente di software progettisti tooidentify e attenuare i potenziali problemi di sicurezza in anticipo, quando sono tooresolve relativamente semplice e conveniente. Di conseguenza, riduce notevolmente il costo totale di hello di sviluppo. Inoltre, è progettato strumento hello con gli esperti di protezione non presente, semplificando la modellazione delle minacce per tutti gli sviluppatori fornendo indicazioni precise sulla creazione e l'analisi dei modelli di rischio.
 
-Visitare **[Threat Modeling Tool](./azure-security-threat-modeling-tool.md)** oggi stesso per iniziare!
+Visitare hello  **[strumento di modellazione delle minacce](./azure-security-threat-modeling-tool.md)**  tooget subito!
 
 ## <a name="mitigation-categories"></a>Categorie di mitigazione
 
-Le soluzioni di prevenzione di Threat Modeling Tool sono suddivise in base al contesto di sicurezza dell'applicazione Web, costituito dai seguenti elementi:
+le misure di attenuazione strumento di modellazione delle minacce Hello sono suddivisi in base toohello Frame di sicurezza dell'applicazione Web, costituito dai seguenti hello:
 
 | Categoria | Descrizione |
 | -------- | ----------- |
-| **[Controllo e registrazione](./azure-security-threat-modeling-tool-auditing-and-logging.md)** | Chi ha fatto cosa e quando? Controllo e registrazione fanno riferimento al modo in cui l'applicazione registra gli eventi di sicurezza |
-| **[Autenticazione](./azure-security-threat-modeling-tool-authentication.md)** | Chi si sta autenticando? L'autenticazione è il processo che permette a un'entità di dimostrare l'identità di un'altra entità, in genere mediante l'uso di credenziali, come un nome utente e una password |
+| **[Controllo e registrazione](./azure-security-threat-modeling-tool-auditing-and-logging.md)** | Chi ha fatto cosa e quando? Il controllo e registrazione, vedere toohow l'applicazione registra gli eventi di sicurezza |
+| **[Autenticazione](./azure-security-threat-modeling-tool-authentication.md)** | Chi si sta autenticando? L'autenticazione è il processo di hello in cui un'entità verifica identità hello di un'altra entità, in genere tramite le credenziali, ad esempio un nome utente e password |
 | **[Autorizzazione](./azure-security-threat-modeling-tool-authorization.md)** | Cosa fare L'autorizzazione è il modo in cui l'applicazione fornisce controlli sull'accesso per risorse e operazioni |
 | **[Sicurezza delle comunicazioni](./azure-security-threat-modeling-tool-communication-security.md)** | Con si sta parlando? La protezione delle comunicazioni garantisce che tutte le comunicazioni siano eseguite nel modo più sicuro possibile |
-| **[Gestione della configurazione](./azure-security-threat-modeling-tool-configuration-management.md)** | A nome di chi è eseguita l'applicazione? A quale database si connette? Come viene amministrata l'applicazione? Come vengono protette queste impostazioni? La gestione della configurazione fa riferimento al modo in cui l'applicazione gestisce questi problemi operativi |
-| **[Crittografia](./azure-security-threat-modeling-tool-cryptography.md)** | Come si mantengono i segreti (la riservatezza)? Come si mettono a prova di manomissione i dati o le librerie (integrità)? Come vengono creati i valori di inizializzazione casuali che devono essere crittograficamente sicuri? La crittografia fa riferimento al modo in cui l'applicazione garantisce riservatezza e integrità |
-| **[Gestione delle eccezioni](./azure-security-threat-modeling-tool-exception-management.md)** | Quando una chiamata del metodo nell'applicazione ha esito negativo, che cosa fa l'applicazione? Quanto viene rivelato? Si restituiscono informazioni di errore descrittive agli utenti finali? Si passano informazioni importanti sull'eccezione al chiamante? L'applicazione ha esito negativo correttamente? |
-| **[Convalida dell'input](./azure-security-threat-modeling-tool-input-validation.md)** | Come è possibile sapere che l'input che l'applicazione riceve è valido e sicuro? La convalida dell'input fa riferimento al modo in cui l'applicazione filtra, elimina o respinge gli input prima di un'ulteriore elaborazione. Considerare la limitazione dell'input tramite punti di ingresso e la codifica dell'output tramite punti di uscita. Ci si fida dei dati dalle fonti come i database e la condivisione di file? |
-| **[Dati sensibili](./azure-security-threat-modeling-tool-sensitive-data.md)** | In che modo l'applicazione gestisce dati sensibili? I dati sensibili si riferiscono al modo in cui l'applicazione gestisce tutti i dati che devono essere protetti in memoria, nella rete, o in archivi permanenti |
-| **[Gestione delle sessioni](./azure-security-threat-modeling-tool-session-management.md)** | In che modo l'applicazione gestisce e protegge le sessioni utente? Una sessione fa riferimento a una serie di interazioni correlate tra un utente e l'applicazione Web |
+| **[Gestione della configurazione](./azure-security-threat-modeling-tool-configuration-management.md)** | A nome di chi è eseguita l'applicazione? A quale database si connette? Come viene amministrata l'applicazione? Come vengono protette queste impostazioni? Gestione della configurazione fa riferimento toohow l'applicazione gestisce questi problemi operativi |
+| **[Crittografia](./azure-security-threat-modeling-tool-cryptography.md)** | Come si mantengono i segreti (la riservatezza)? Come si mettono a prova di manomissione i dati o le librerie (integrità)? Come vengono creati i valori di inizializzazione casuali che devono essere crittograficamente sicuri? Crittografia si intende toohow l'applicazione impone la riservatezza e integrità |
+| **[Gestione delle eccezioni](./azure-security-threat-modeling-tool-exception-management.md)** | Quando una chiamata del metodo nell'applicazione ha esito negativo, che cosa fa l'applicazione? Quanto viene rivelato? Si restituiscono errore brevi informazioni tooend gli utenti? Si passa chiamante toohello indietro di eccezione importanti informazioni? L'applicazione ha esito negativo correttamente? |
+| **[Convalida dell'input](./azure-security-threat-modeling-tool-input-validation.md)** | Come si capisce che l'applicazione riceve input di hello è valido e sicuro? Convalida dell'input fa riferimento toohow l'applicazione filtra, Annulla o rifiuta di input prima di un'ulteriore elaborazione. Considerare la limitazione dell'input tramite punti di ingresso e la codifica dell'output tramite punti di uscita. Ci si fida dei dati dalle fonti come i database e la condivisione di file? |
+| **[Dati sensibili](./azure-security-threat-modeling-tool-sensitive-data.md)** | In che modo l'applicazione gestisce dati sensibili? I dati sensibili fa riferimento l'applicazione gestisce i dati che devono essere protetti in memoria, rete hello o negli archivi permanenti toohow |
+| **[Gestione delle sessioni](./azure-security-threat-modeling-tool-session-management.md)** | In che modo l'applicazione gestisce e protegge le sessioni utente? Una sessione si riferisce tooa serie di interazioni correlate tra un utente e l'applicazione Web |
 
 Ciò consente di identificare:
 
-* Il punto in cui vengono eseguiti gli errori più comuni
-* Dove si trovano i miglioramenti più utilizzabili
+* Dove è hello errori più comuni
+* Dove è hello miglioramenti più utilizzabili
 
-Di conseguenza, queste categorie vengono usate per focalizzarsi e definire le priorità del lavoro legato alla sicurezza, in modo che se si sa che i problemi di sicurezza più prevalenti si verificano nelle categorie di convalida, autenticazione e autorizzazione input, è possibile iniziare da questo punto. Per altre informazioni, visitare **[questo collegamento al brevetto](https://www.google.com/patents/US7818788)**
+Di conseguenza, utilizzare toofocus queste categorie e classificare il lavoro di protezione, in modo che se si conoscono i problemi di sicurezza più prevalenti hello si verificano nelle categorie di autorizzazione, autenticazione e la convalida inpue hello, è possibile partire da qui. Per altre informazioni, visitare **[questo collegamento al brevetto](https://www.google.com/patents/US7818788)**
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sulle categorie di minacce utilizzate dallo strumento per generare possibili minacce di progettazione, visitare **[Minacce di Threat Modeling Tool](./azure-security-threat-modeling-tool-threats.md)**.
+Visitare  **[minacce dello strumento di modellazione minaccia](./azure-security-threat-modeling-tool-threats.md)**  toolearn ulteriori informazioni sugli hello minaccia strumento hello categorie utilizza toogenerate minacce di progettazione.

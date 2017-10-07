@@ -1,6 +1,6 @@
 ---
-title: Creare cluster Hadoop mediante modelli - Azure Microsoft Azure HDInsight | Documentazione Microsoft
-description: Informazioni su come creare cluster per HDInsight usando modelli di Resource Manager
+title: aaaCreate Hadoop cluster utilizzando modelli - HDInsight di Azure | Documenti Microsoft
+description: Informazioni su come cluster toocreate per HDInsight utilizzando modelli di gestione risorse
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/30/2017
 ms.author: jgao
-ms.openlocfilehash: b2cdc954530daea2a641599c946ce3787149e762
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 92a6c1d888e401a11537dba34f188245ac17f448
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-hadoop-clusters-in-hdinsight-by-using-resource-manager-templates"></a>Creare cluster Hadoop in HDInsight mediante modelli di Resource Manager
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-In questo articolo vengono illustrati diversi modi per creare cluster Azure HDInsight con modelli Azure Resource Manager. Per altre informazioni, vedere [Distribuire un'applicazione con il modello di Gestione risorse di Azure](../azure-resource-manager/resource-group-template-deploy.md). Per informazioni su altri strumenti e funzionalità per la creazione di cluster, fare clic sul selettore di schede nella parte superiore della pagina o vedere [Metodi di creazione di cluster](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods).
+In questo articolo vengono modi toocreate Azure HDInsight cluster con i modelli di gestione risorse di Azure. Per altre informazioni, vedere [Distribuire un'applicazione con il modello di Gestione risorse di Azure](../azure-resource-manager/resource-group-template-deploy.md). toolearn su altri strumenti di creazione del cluster e le funzionalità, fare clic su selettore scheda hello in primo piano hello di questa pagina o vedere [metodi di creazione del Cluster](hdinsight-hadoop-provision-linux-clusters.md#cluster-setup-methods).
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-Per seguire le istruzioni di questo articolo sono necessari:
+istruzioni di hello toofollow in questo articolo, è necessario:
 
 * Una [sottoscrizione di Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Azure PowerShell e/o l'interfaccia della riga di comando di Azure.
@@ -38,42 +38,42 @@ Per seguire le istruzioni di questo articolo sono necessari:
 [!INCLUDE [use-latest-version](../../includes/hdinsight-use-latest-powershell-and-cli.md)]
 
 ### <a name="resource-manager-templates"></a>Modelli di Gestione risorse
-I modelli di Resource Manager consentono di creare quanto segue per l'applicazione in un'unica operazione coordinata:
-* Cluster HDInsight e le relative risorse dipendenti, come ad esempio l'account di archiviazione predefinito
-* Altre risorse, come ad esempio il database SQL di Azure per usare Apache Sqoop
+Un modello di gestione risorse rende facile toocreate hello seguenti per l'applicazione in un'operazione singola, coordinata:
+* Cluster HDInsight e le relative risorse dipendenti (ad esempio account di archiviazione predefinito hello)
+* Altre risorse (ad esempio, Database SQL di Azure toouse Apache Sqoop)
 
-Nel modello si definiscono le risorse necessarie per l'applicazione. È anche possibile specificare i parametri di distribuzione per immettere valori per ambienti diversi. Il modello è composto da JSON ed espressioni da usare per creare valori per la distribuzione.
+Nel modello di hello, definire le risorse hello necessarie per un'applicazione hello. È inoltre possibile specificare i valori tooinput i parametri di distribuzione per diversi ambienti. modello Hello è costituito da JSON ed espressioni si utilizzano valori tooconstruct per la distribuzione.
 
-È possibile trovare modelli di HDInsight di esempio in [Modelli di avvio rapido di Azure](https://azure.microsoft.com/resources/templates/?term=hdinsight). Usare lo strumento multipiattaforma [Visual Studio Code](https://code.visualstudio.com/#alt-downloads) con l'[estensione per Resource Manager](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) o un editor di testo per salvare il modello in un file sulla workstation. Si apprenderà come chiamare il modello usando metodi diversi.
+È possibile trovare modelli di HDInsight di esempio in [Modelli di avvio rapido di Azure](https://azure.microsoft.com/resources/templates/?term=hdinsight). Utilizzare multipiattaforma [codice di Visual Studio](https://code.visualstudio.com/#alt-downloads) con hello [estensione Gestione risorse](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools) o un modello hello toosave editor di testo in un file nella workstation. Viene illustrato come toocall hello modello utilizzando metodi diversi.
 
-Per altre informazioni sui modelli di Resource Manager, vedere gli articoli seguenti:
+Per ulteriori informazioni sui modelli di gestione delle risorse, vedere hello seguenti articoli:
 
 * [Creazione di modelli di Gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md)
 * [Distribuire un'applicazione con i modelli di Azure Resource Manager](../azure-resource-manager/resource-group-template-deploy.md)
 
 ## <a name="generate-templates"></a>Generare modelli
 
-Tramite il portale di Azure è possibile configurare tutte le proprietà di un cluster e salvare il modello prima di distribuirlo, in modo da poterlo riutilizzare.
+Utilizzando hello portale di Azure, è possibile configurare tutte le proprietà di hello di un cluster e quindi salvare il modello di hello prima di distribuirlo. È quindi possibile riutilizzare il modello di hello.
 
-**Per generare un modello usando il portale di Azure**
+**un modello usando il portale di Azure hello toogenerate**
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. Fare clic su **Nuovo** nel menu a sinistra, su **Intelligence e analisi** e quindi su **HDInsight**.
-3. Immettere le proprietà seguendo le istruzioni. È possibile usare l'opzione **Creazione rapida** o **Personalizza**.
-4. Nella scheda **Riepilogo** fare clic su **Scarica modello e parametri**:
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Fare clic su **New** scegliere dal menu a sinistra, hello **Intelligence + analitica**, quindi fare clic su **HDInsight**.
+3. Seguono hello istruzioni tooenter proprietà. È possibile utilizzare entrambi hello **creazione rapida** o hello **personalizzato** opzione.
+4. In hello **riepilogo** scheda, fare clic su **Scarica modello e i parametri**:
 
     ![Download del modello di Resource Manager per la creazione del cluster HDInsight Hadoop](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-download.png)
 
-    Viene visualizzato l'elenco di file del modello, file dei parametri ed esempi di codice necessari per distribuire il modello:
+    Verrà visualizzato un elenco di file di modello hello, file dei parametri e modello di codice campioni utilizzati toodeploy hello:
 
     ![Opzioni di download del modello di Resource Manager per la creazione del cluster HDInsight Hadoop](./media/hdinsight-hadoop-create-linux-clusters-arm-templates/hdinsight-create-cluster-resource-manager-template-download-options.png)
 
-    Da questa pagina è possibile scaricare il modello e salvarlo nella libreria di modelli oppure distribuirlo.
+    Da qui, si può scaricare il modello di hello, salvarlo tooyour libreria di modelli o distribuire il modello di hello.
 
-    Per accedere a un modello nella libreria, fare clic su **Altri servizi** nel menu a sinistra e quindi fare clic su **Modelli** (nella categoria **Altro**).
+    Fare clic su un modello nella libreria, tooaccess **più servizi** dal menu a sinistra di hello e quindi fare clic su **modelli** (in hello **altri** categoria).
 
     > [!Note]
-    > Il modello e il file dei parametri devono essere usati insieme. in caso contrario, è possibile che si ottengano risultati imprevisti. Il valore predefinito della proprietà **clusterKind**, ad esempio, è sempre **hadoop**, indipendentemente da quanto specificato prima di scaricare il modello.
+    > file di modello e i parametri di Hello deve essere usato insieme. in caso contrario, è possibile che si ottengano risultati imprevisti. Ad esempio, hello predefinito **clusterKind** valore della proprietà è sempre **hadoop**, nonostante ciò che si specifica prima di scaricare il modello di hello.
 
 
 
@@ -81,9 +81,9 @@ Tramite il portale di Azure è possibile configurare tutte le proprietà di un c
 
 La procedura seguente consente di creare un cluster Hadoop in HDInsight.
 
-1. Salvare nella workstation il file JSON dell'[Appendice](#appx-a-arm-template). Nello script di PowerShell il nome del file è `C:\HDITutorials-ARM\hdinsight-arm-template.json`.
-2. Se necessario, impostare i parametri e le variabili.
-3. Eseguire il modello tramite lo script PowerShell seguente:
+1. Salvare il file JSON di hello in hello [appendice](#appx-a-arm-template) tooyour workstation. In uno script di PowerShell hello, il nome di file hello è `C:\HDITutorials-ARM\hdinsight-arm-template.json`.
+2. Se necessario, impostare hello parametri e variabili.
+3. Eseguire il modello di hello usando hello lo script di PowerShell seguente:
 
         ####################################
         # Set these variables
@@ -110,10 +110,10 @@ La procedura seguente consente di creare un cluster Hadoop in HDInsight.
         #endregion
 
         ####################################
-        # Connect to Azure
+        # Connect tooAzure
         ####################################
-        #region - Connect to Azure subscription
-        Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+        #region - Connect tooAzure subscription
+        Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
         try{Get-AzureRmContext}
         catch{Login-AzureRmAccount}
         #endregion
@@ -121,7 +121,7 @@ La procedura seguente consente di creare un cluster Hadoop in HDInsight.
         # Create a resource group
         New-AzureRmResourceGroup -Name $resourceGroupName -Location $Location
 
-        # Create cluster and the dependent storage account
+        # Create cluster and hello dependent storage account
         $parameters = @{clusterName="$hdinsightClusterName"}
 
         New-AzureRmResourceGroupDeployment `
@@ -133,53 +133,53 @@ La procedura seguente consente di creare un cluster Hadoop in HDInsight.
         # List cluster
         Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $hdinsightClusterName
 
-    Lo script PowerShell configura soltanto il nome del cluster. Il nome dell'account di archiviazione è hardcoded nel modello. Viene richiesto di immettere la password utente del cluster. Il nome utente predefinito è **admin**. Viene richiesto anche di immettere la password utente SSH. Il nome utente SSH predefinito è **sshuser**.  
+    script di PowerShell Hello configura solo il nome di cluster hello. nome account di archiviazione Hello è hardcoded nel modello di hello. Si è password utente della richiesta tooenter hello cluster. (nome utente predefinito hello **admin**.) Si è anche richiesta tooenter password dell'utente SSH hello. (nome utente SSH predefinito di hello **sshuser**.)  
 
 Per altre informazioni, vedere [Distribuire con PowerShell](../azure-resource-manager/resource-group-template-deploy.md#deploy-local-template).
 
 ## <a name="deploy-with-cli"></a>Eseguire la distribuzione con l'interfaccia della riga di comando
-Nell'esempio seguente viene usata l'interfaccia della riga di comando di Azure. Vengono creati un cluster e i relativi account di archiviazione e contenitore dipendenti chiamando un modello di Resource Manager:
+Hello seguente esempio Usa Azure interfaccia della riga di comando (CLI). Vengono creati un cluster e i relativi account di archiviazione e contenitore dipendenti chiamando un modello di Resource Manager:
 
     azure login
     azure config mode arm
     azure group create -n hdi1229rg -l "East US"
     azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "C:\HDITutorials-ARM\hdinsight-arm-template.json"
 
-Viene richiesto di immettere:
-* Il nome del cluster.
-* La password utente del cluster. Il nome utente predefinito è **admin**.
-* La password utente SSH. Il nome utente SSH predefinito è **sshuser**.
+Si è tooenter richiesta:
+* nome del cluster Hello.
+* password dell'utente cluster Hello. (nome utente predefinito hello **admin**.)
+* password dell'utente SSH Hello. (nome utente SSH predefinito di hello **sshuser**.)
 
-Il codice seguente specifica i parametri inline:
+Hello seguente di codice sono disponibili parametri inline:
 
     azure group deployment create --resource-group "hdi1229rg" --name "hdi1229" --template-file "c:\Tutorials\HDInsightARM\create-linux-based-hadoop-cluster-in-hdinsight.json" --parameters '{\"clusterName\":{\"value\":\"hdi1229\"},\"clusterLoginPassword\":{\"value\":\"Pass@word1\"},\"sshPassword\":{\"value\":\"Pass@word1\"}}'
 
-## <a name="deploy-with-the-rest-api"></a>Distribuire con l'API REST
-Vedere [Distribuire con l'API REST](../azure-resource-manager/resource-group-template-deploy-rest.md).
+## <a name="deploy-with-hello-rest-api"></a>Distribuire con hello API REST
+Vedere [Distribuisci con hello API REST](../azure-resource-manager/resource-group-template-deploy-rest.md).
 
 ## <a name="deploy-with-visual-studio"></a>Distribuire con Visual Studio
- Usare Visual Studio per creare un progetto del gruppo di risorse e distribuirlo in Azure mediante l'interfaccia utente. Selezionare il tipo di risorse da includere nel progetto. Tali risorse vengono aggiunte automaticamente al modello di Resource Manager. Il progetto fornisce anche uno script di PowerShell per distribuire il modello.
+ Usare Visual Studio toocreate un progetto di gruppo di risorse e distribuirlo tooAzure tramite interfaccia utente di hello. Selezionare il tipo di hello di tooinclude risorse nel progetto. Tali risorse vengono aggiunti automaticamente il modello di gestione risorse di toohello. progetto di Hello fornisce anche un modello di hello toodeploy script PowerShell.
 
-Per un'introduzione all'uso di Visual Studio con gruppi di risorse, vedere [Creazione e distribuzione di gruppi di risorse di Azure tramite Visual Studio](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
+Per un'introduzione toousing Visual Studio con gruppi di risorse, vedere [creazione e distribuzione di gruppi di risorse di Azure tramite Visual Studio](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md).
 
 ## <a name="troubleshoot"></a>Risoluzione dei problemi
 
 Se si verificano problemi di creazione dei cluster HDInsight, vedere i [requisiti dei controlli di accesso](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questo articolo ha spiegato vari modi per creare un cluster HDInsight. Per altre informazioni, vedere gli articoli seguenti:
+In questo articolo sono state fornite diverse modi toocreate un cluster HDInsight. toolearn informazioni, vedere hello seguenti articoli:
 
-* Per un esempio di distribuzione delle risorse tramite la libreria client .NET, vedere [Distribuire le risorse usando le librerie .NET e un modello](../virtual-machines/windows/csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Per un esempio di distribuzione delle risorse tramite una libreria client .NET di hello, vedere [distribuire le risorse tramite librerie .NET e un modello](../virtual-machines/windows/csharp-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 * Per un esempio dettagliato di distribuzione di un'applicazione, vedere [Effettuare il provisioning di microservizi e distribuirli in modo prevedibile in Azure](../app-service-web/app-service-deploy-complex-application-predictably.md).
-* Per indicazioni sulla distribuzione della soluzione in ambienti diversi, vedere [Ambienti di sviluppo e test in Microsoft Azure](../solution-dev-test-environments.md).
-* Per informazioni sulle sezioni del modello di Azure Resource Manager, vedere [Creazione di modelli](../azure-resource-manager/resource-group-authoring-templates.md).
-* Per un elenco delle funzioni che è possibile usare in un modello di Azure Resource Manager, vedere [Funzioni di modello](../azure-resource-manager/resource-group-template-functions.md).
+* Per istruzioni sulla distribuzione negli ambienti toodifferent soluzione, vedere [gli ambienti di sviluppo e test in Microsoft Azure](../solution-dev-test-environments.md).
+* toolearn sulle sezioni hello del modello di gestione risorse di Azure hello, vedere [creazione di modelli](../azure-resource-manager/resource-group-authoring-templates.md).
+* Per un elenco di funzioni hello è possibile utilizzare un modello di gestione risorse di Azure, vedere [funzioni di modello](../azure-resource-manager/resource-group-template-functions.md).
 
-## <a name="appendix-resource-manager-template-to-create-a-hadoop-cluster"></a>Appendice: modello di Resource Manager per creare un cluster Hadoop
-Il modello di Azure Resource Manager seguente crea un cluster Hadoop basato su Linux con l'account di archiviazione di Azure dipendente.
+## <a name="appendix-resource-manager-template-toocreate-a-hadoop-cluster"></a>Appendice: Gestione risorse modello toocreate un cluster Hadoop
+Hello seguente modello di gestione risorse di Azure crea un cluster Hadoop basati su Linux con hello dipendenti account di archiviazione Azure.
 
 > [!NOTE]
-> L'esempio include informazioni di configurazione per il metastore Hive e il metastore Oozie. Prima di utilizzare il modello, rimuovere o configurare la sezione.
+> L'esempio include informazioni di configurazione per il metastore Hive e il metastore Oozie. Rimuovere la sezione hello o configurare sezione hello prima di usare il modello di hello.
 >
 >
 
@@ -190,33 +190,33 @@ Il modello di Azure Resource Manager seguente crea un cluster Hadoop basato su L
         "clusterName": {
         "type": "string",
         "metadata": {
-            "description": "The name of the HDInsight cluster to create."
+            "description": "hello name of hello HDInsight cluster toocreate."
         }
         },
         "clusterLoginUserName": {
         "type": "string",
         "defaultValue": "admin",
         "metadata": {
-            "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+            "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
         }
         },
         "clusterLoginPassword": {
         "type": "securestring",
         "metadata": {
-            "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+            "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
         }
         },
         "sshUserName": {
         "type": "string",
         "defaultValue": "sshuser",
         "metadata": {
-            "description": "These credentials can be used to remotely access the cluster."
+            "description": "These credentials can be used tooremotely access hello cluster."
         }
         },
         "sshPassword": {
         "type": "securestring",
         "metadata": {
-            "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+            "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
         }
         },
         "location": {
@@ -238,7 +238,7 @@ Il modello di Azure Resource Manager seguente crea un cluster Hadoop basato su L
             "Australia Southeast"
         ],
         "metadata": {
-            "description": "The location where all azure resources will be deployed."
+            "description": "hello location where all azure resources will be deployed."
         }
         },
         "clusterType": {
@@ -251,14 +251,14 @@ Il modello di Azure Resource Manager seguente crea un cluster Hadoop basato su L
             "spark"
         ],
         "metadata": {
-            "description": "The type of the HDInsight cluster to create."
+            "description": "hello type of hello HDInsight cluster toocreate."
         }
         },
         "clusterWorkerNodeCount": {
         "type": "int",
         "defaultValue": 2,
         "metadata": {
-            "description": "The number of nodes in the HDInsight cluster."
+            "description": "hello number of nodes in hello HDInsight cluster."
         }
         }
     },
@@ -382,11 +382,11 @@ Il modello di Azure Resource Manager seguente crea un cluster Hadoop basato su L
     }
     }
 
-## <a name="appendix-resource-manager-template-to-create-a-spark-cluster"></a>Appendice: modello di Resource Manager per creare un cluster Spark
+## <a name="appendix-resource-manager-template-toocreate-a-spark-cluster"></a>Appendice: Gestione risorse modello toocreate un cluster Spark
 
-In questa sezione viene fornito un modello di Resource Manager che è possibile usare per creare un cluster HDInsight Spark. Questo modello include le configurazioni per `spark-defaults` e `spark-thrift-sparkconf` (per i cluster Spark 1.6) e `spark2-defaults` e `spark2-thrift-sparkconf` (per i cluster Spark 2). Oltre a ciò, HDInsight calcola e imposta le configurazioni, come `spark.executor.instances`, `spark.executor.memory` e `spark.executor.cores` in base alla dimensione del cluster. 
+In questa sezione fornisce un modello di gestione risorse che è possibile utilizzare un cluster HDInsight Spark toocreate. Questo modello include le configurazioni per `spark-defaults` e `spark-thrift-sparkconf` (per i cluster Spark 1.6) e `spark2-defaults` e `spark2-thrift-sparkconf` (per i cluster Spark 2). Inoltre, toothis HDInsight calcola e imposta le configurazioni, ad esempio `spark.executor.instances`, `spark.executor.memory`, e `spark.executor.cores` in base alle dimensioni di cluster hello. 
 
-Se si imposta un parametro in una sezione come parte del modello stesso, HDInsight non calcola e imposta gli altri parametri della stessa sezione. Ad esempio, il parametro `spark.executor.instances` è nella configurazione `spark-defaults`. Se si imposta un altro parametro (ad esempio, `spark.yarn.exector.memoryOverhead`) nella configurazione `spark-defaults`, HDInsight non calcola e imposta il parametro `spark.executor.instances`.
+Se si imposta alcun un parametro in una sezione come parte del modello hello, HDInsight non calcolare e impostare hello altri parametri di hello stessa sezione. Ad esempio, parametro `spark.executor.instances` in hello `spark-defaults` configurazione. Se si imposta un altro parametro (ad esempio, `spark.yarn.exector.memoryOverhead`) in hello `spark-defaults` configurazione, HDInsight non calcolare e impostare hello `spark.executor.instances` nonché parametro.
 
     {
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
@@ -395,27 +395,27 @@ Se si imposta un parametro in una sezione come parte del modello stesso, HDInsig
         "clusterName": {
             "type": "string",
             "metadata": {
-                "description": "The name of the HDInsight cluster to create."
+                "description": "hello name of hello HDInsight cluster toocreate."
             }
         },
         "clusterLoginUserName": {
             "type": "string",
             "defaultValue": "admin",
             "metadata": {
-                "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+                "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
             }
         },
         "clusterLoginPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
         },
         "location": {
             "type": "string",
             "defaultValue": "southcentralus",
             "metadata": {
-                "description": "The location where all azure resources will be deployed."
+                "description": "hello location where all azure resources will be deployed."
             }
         },
         "clusterVersion": {
@@ -429,27 +429,27 @@ Se si imposta un parametro in una sezione come parte del modello stesso, HDInsig
             "type": "int",
             "defaultValue": 4,
             "metadata": {
-                "description": "The number of nodes in the HDInsight cluster."
+                "description": "hello number of nodes in hello HDInsight cluster."
             }
         },
         "clusterKind": {
             "type": "string",
             "defaultValue": "SPARK",
             "metadata": {
-                "description": "The type of the HDInsight cluster to create."
+                "description": "hello type of hello HDInsight cluster toocreate."
             }
         },
         "sshUserName": {
             "type": "string",
             "defaultValue": "sshuser",
             "metadata": {
-                "description": "These credentials can be used to remotely access the cluster."
+                "description": "These credentials can be used tooremotely access hello cluster."
             }
         },
         "sshPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
             }
         }
     },

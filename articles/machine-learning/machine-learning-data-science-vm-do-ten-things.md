@@ -1,6 +1,6 @@
 ---
-title: Dieci cose da fare con la macchina virtuale data science | Documentazione Microsoft
-description: "Eseguire diverse attività di esplorazione e modellazione dei dati nella macchina virtuale per l'analisi scientifica dei dati."
+title: aaaTen operazioni da eseguire nella macchina virtuale di analisi scientifica dei dati di hello | Documenti Microsoft
+description: "Eseguire varie attività di modellazione ed esplorazione dei dati in analisi scientifica dei dati hello macchina virtuale."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: gokuma;weig;bradsev
-ms.openlocfilehash: 45af1cd3a05b483429d2307659f1882ef28921f6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4dfe22f14f00208c63e26ce44b05123c9ac4b850
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="ten-things-you-can-do-on-the-data-science-virtual-machine"></a>Dieci cose da fare con la macchina virtuale per l'analisi scientifica dei dati
-La macchina virtuale per l'analisi scientifica dei dati (DSVM, Data Science Virtual Machine) di Microsoft è un ambiente di sviluppo di analisi scientifica dei dati avanzato che consente di eseguire diverse attività di esplorazione e modellazione dati. L'ambiente è già compilato e in bundle in diversi strumenti comuni di analisi dei dati che consentono di iniziare a usare rapidamente e facilmente l'analisi per le distribuzioni locali, cloud o ibride. DSVM è ben integrata con diversi servizi di Azure e può leggere ed elaborare dati già archiviati in Azure, in Azure SQL Data Warehouse, Azure Data Lake, Archiviazione di Azure o in Azure Cosmos DB. Può anche sfruttare altri strumenti di analisi come Azure Machine Learning e Azure Data Factory.
+# <a name="ten-things-you-can-do-on-hello-data-science-virtual-machine"></a>Dieci operazioni che è possibile eseguire su analisi scientifica dei dati hello macchina virtuale
+Hello Microsoft Data Science macchina virtuale (DSVM) è un ambiente di sviluppo dell'analisi scientifica dei dati potente che consente di tooperform varie attività di esplorazione e modellazione dei dati. Hello ambiente viene fornito già compilato e in dotazione con i dati più diffusi diversi strumenti analitica che consentono di tooget facile iniziare rapidamente con l'analisi per On-Premise, Cloud o ibrida distribuzioni. Hello DSVM collabora a stretto contatto con molti servizi di Azure ed è in grado di tooread ed elaborare dati che sono già archiviati in Azure, Azure SQL Data Warehouse, Azure Data Lake, archiviazione di Azure o nel database di Azure Cosmos. Può anche sfruttare altri strumenti di analisi come Azure Machine Learning e Azure Data Factory.
 
-Questo articolo illustra come usare DSVM per eseguire diverse attività di analisi scientifica dei dati e interagire con altri servizi di Azure. Ecco alcune attività che è possibile eseguire con DSVM:
+In questo articolo viene illustrato come toouse il tooperform DSVM analisi scientifica dei dati di varie attività e interagire con altri servizi di Azure. Ecco alcune delle operazioni di hello che è possibile eseguire sul hello DSVM:
 
-1. Esplorare dati e sviluppare modelli in locale in DSVM usando Microsoft R Server e Python
-2. Usare un notebook di Jupyter per sperimentare con i dati in un browser usando Python 2, Python 3 e Microsoft R, una versione di R pronta per l'azienda progettata per la scalabilità e le prestazioni
+1. Esplorare i dati e lo sviluppo di modelli in locale hello DSVM utilizzando Microsoft R Server, Python
+2. Usare un tooexperiment notebook Jupyter con i dati in un browser utilizzando una versione di pronto dell'organizzazione di R progettato per la scalabilità e prestazioni di Python 2, 3 Python, Microsoft R
 3. Rendere operativi i modelli compilati usando R e Python in Azure Machine Learning in modo che le applicazioni client possano accedere ai modelli con una semplice interfaccia di servizi Web
 4. Amministrare le risorse di Azure usando il portale di Azure o PowerShell
 5. Estendere lo spazio di archiviazione e condividere codice o set di dati su larga scala con l'intero team creando un archivio file di Azure come unità installabile in DSVM
-6. Condividere il codice con il team usando GitHub e accedere all'archivio con i client Git preinstallati (Git Bash, Git GUI).
+6. Condividere codice con il team tramite GitHub e accedere repository utilizzando hello pre-installate client Git - Git Bash, GUI Git.
 7. Accedere a diversi servizi dati e analisi di Azure, ad esempio Archiviazione BLOB di Azure, Azure Data Lake, Azure HDInsight (Hadoop), Azure Cosmos DB, Azure SQL Data Warehouse e database
-8. Compilare report e dashboard usando Power BI Desktop preinstallato in DSVM e distribuirli nel cloud
-9. Ridimensionare in modo dinamico DSVM per poter soddisfare le esigenze del progetto
+8. Creare report e dashboard tramite Power BI Desktop pre-installato hello DSVM hello e distribuirle nel cloud hello
+9. Applicare la scalabilità dinamicamente il toomeet DSVM che richiesto dal progetto
 10. Installare strumenti aggiuntivi nella macchina virtuale   
 
 > [!NOTE]
-> Per molti dei servizi di archiviazione e analisi dei dati aggiuntivi elencati in questo articolo vengono applicati costi di utilizzo aggiuntivi. Per altri dettagli, vedere la pagina [Prezzi di Azure](https://azure.microsoft.com/pricing/) .
+> Spese aggiuntive si applicano per molti servizi hello dati aggiuntivi analitica e archiviazione elencate in questo articolo. Consultare toohello [dei prezzi di Azure](https://azure.microsoft.com/pricing/) pagina per informazioni dettagliate.
 > 
 > 
 
 **Prerequisiti**
 
 * È necessaria una sottoscrizione di Azure. È possibile iscriversi per una versione di valutazione gratuita di Azure [qui](https://azure.microsoft.com/free/).
-* Le istruzioni per il provisioning di una macchina virtuale per l'analisi scientifica dei dati nel portale di Azure sono disponibili nel documento relativo alla [creazione di una macchina virtuale](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
+* Istruzioni per il provisioning di una macchina virtuale di analisi scientifica dei dati nel portale di Azure hello [la creazione di una macchina virtuale](https://portal.azure.com/#create/microsoft-ads.standard-data-science-vmstandard-data-science-vm).
 
 ## <a name="1-explore-data-and-develop-models-using-microsoft-r-server-or-python"></a>1. Esplorare dati e sviluppare modelli usando Microsoft R Server o Python
-È possibile usare linguaggi come R e Python per eseguire l'analisi dei dati direttamente in DSVM.
+È possibile utilizzare linguaggi come R e Python toodo analitica i dati direttamente nel hello DSVM.
 
-Per R, è possibile usare un IDE chiamato "Revolution R Enterprise 8.0" presente nel menu Start o nel desktop. Microsoft ha fornito librerie aggiuntive oltre a Open source/CRAN-R per consentire l'analisi scalabile e offrire la possibilità di analizzare dati di dimensioni maggiori di quelle consentite dalla memoria eseguendo un'analisi parallela in blocchi. È anche possibile installare l'IDE R di desiderato, ad esempio [RStudio](https://www.rstudio.com/products/rstudio-desktop/).
+Per R, è possibile utilizzare un ambiente di sviluppo integrato denominato "Revolution R Enterprise 8.0" sono disponibili nel menu start hello o desktop hello. Librerie aggiuntive sopra hello Apri origine/CRAN-R tooenable scalabile analitica e hello possibilità tooanalyze dati più grande delle dimensioni di memoria hello consentita in questo modo parallelo analisi blocchi forniti da Microsoft. È anche possibile installare l'IDE R di desiderato, ad esempio [RStudio](https://www.rstudio.com/products/rstudio-desktop/).
 
-Per Python, è possibile usare un IDE come Visual Studio Community Edition in cui è preinstallata l'estensione Python Tools for Visual Studio (PTVS). Per impostazione predefinita, in PTVS è configurato solo Python 2.7 di base, senza librerie di analisi come SciKit o Pandas. Per abilitare Anaconda Python 2.7 e 3.5, è necessario eseguire queste operazioni:
+Per Python, è possibile utilizzare un IDE come Visual Studio Community Edition che ha hello strumenti Python per l'estensione di Visual Studio (PTVS) pre-installato. Per impostazione predefinita, in PTVS è configurato solo Python 2.7 di base, senza librerie di analisi come SciKit o Pandas. In ordine tooenable Anaconda Python 2.7 e 3.5, è necessario seguente hello toodo:
 
-* Creare ambienti personalizzati per ogni versione passando a **Strumenti** -> **Python Tools** -> **Python Environments** (Strumenti Python -> Ambienti Python) e quindi facendo clic su "**+ Custom**" (+ Personalizza) in Visual Studio 2015 Community Edition.
-* Immettere una descrizione e impostare i percorsi con il prefisso dell'ambiente come *c:\anaconda* per Anaconda Python 2.7 OPPURE *c:\anaconda\envs\py35* per Anaconda Python 3.5.
-* Fare clic su **Rilevamento automatico** e quindi su **Applica** per salvare l'ambiente.
+* Creare ambienti personalizzati per ogni versione passando troppo**strumenti** -> **Python Tools** -> **ambienti Python** e quindi fare clic su " **+ Personalizzato**"in Visual Studio 2015 Community Edition hello
+* Immettere una descrizione e impostare l'ambiente di hello percorsi prefisso come *c:\anaconda* per Anaconda Python 2.7 o *c:\anaconda\envs\py35* per Anaconda Python 3.5
+* Fare clic su **rilevamento automatico** e quindi **applica** ambiente hello toosave.
 
-Ecco come appare la configurazione dell'ambiente personalizzato in Visual Studio.
+Di seguito è riportato il programma di installazione di hello ambiente personalizzato simile in Visual Studio.
 
 ![Configurazione di PTVS](./media/machine-learning-data-science-vm-do-ten-things/PTVSSetup.png)
 
-Per altri dettagli su come creare gli ambienti Python, vedere la [documentazione relativa a PTVS](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it) .
+Vedere hello [documentazione PTVS](https://github.com/Microsoft/PTVS/wiki/Selecting-and-Installing-Python-Interpreters#hey-i-already-have-an-interpreter-on-my-machine-but-ptvs-doesnt-seem-to-know-about-it) per altre informazioni su come toocreate ambienti Python.
 
-A questo punto è possibile iniziare a creare un nuovo progetto Python. Passare a **File** -> **Nuovo** -> **Progetto** -> **Python** e selezionare il tipo di applicazione Python da compilare. È possibile impostare l'ambiente Python per il progetto corrente sulla versione desiderata, ad esempio Anaconda 2.7 o 3.5. Fare clic con il pulsante destro del mouse su **Python Environments** (Ambienti Python), selezionare **Aggiungi/Rimuovi Python Environments** e quindi selezionare l'ambiente desiderato da associare al progetto. È possibile trovare altre informazioni sull'uso di PTVS nella pagina di [documentazione](https://github.com/Microsoft/PTVS/wiki) del prodotto.
+Ora è l'impostazione toocreate un nuovo progetto di Python. Passare troppo**File** -> **New** -> **progetto** -> **Python** e selezionare il tipo di hello di Applicazione Python che si sta compilando. È possibile impostare l'ambiente Python hello hello corrente progetto toohello versione desiderata (Anaconda 2.7 o 3.5): pulsante destro del mouse hello **ambiente Python**selezionare **gli ambienti Python Aggiungi/Rimuovi**, e quindi seleziona hello desiderato tooassociate ambiente progetto hello. È possibile trovare ulteriori informazioni sull'utilizzo di PTVS prodotto hello [documentazione](https://github.com/Microsoft/PTVS/wiki) pagina.
 
-## <a name="2-using-a-jupyter-notebook-to-explore-and-model-your-data-with-python-or-r"></a>2. Uso di un notebook di Jupyter per esplorare e modellare i dati con Python o R
-Il notebook di Jupyter è un ambiente avanzato che fornisce un "IDE" basato su browser per l'esplorazione e la modellazione dei dati. È possibile usare Python 2, Python 3 o R, sia open source che Microsoft R Server, in un notebook di Jupyter.
+## <a name="2-using-a-jupyter-notebook-tooexplore-and-model-your-data-with-python-or-r"></a>2. Usando i dati di un modello e un server Jupyter Notebook tooexplore con Python o R
+Hello Server Jupyter Notebook è un ambiente potente che fornisce basate su browser "IDE" per la modellazione e l'esplorazione dei dati. È possibile utilizzare Python 2, 3 Python o R (Open Source e Microsoft R Server hello) in un server Jupyter Notebook.
 
-Per avviare il notebook di Jupyter, fare clic sull'icona del menu Start o sull'icona del desktop denominata **Notebook di Jupyter**. In DSVM è anche possibile passare a "https://localhost:9999/" per accedere al notebook di Jupyter. Se viene richiesta una password, seguire le istruzioni fornite nella sezione ***Come creare una password complessa nel server notebook di Jupyter*** dell'argomento [Eseguire il provisioning di una macchina virtuale per l'analisi scientifica dei dati di Microsoft](machine-learning-data-science-provision-vm.md) per creare una password complessa per l'accesso a Jupyter Notebook. 
+hello toolaunch server Jupyter Notebook fare clic sull'icona del menu start hello / icona sul desktop denominato **server Jupyter Notebook**. In hello DSVM è inoltre possibile esplorare troppo "https://localhost:9999 /" tooaccess hello Jupiter Notebook. Se viene richiesto di immettere una password, usare le istruzioni fornite in hello ***come una password complessa nel server notebook jupyter hello toocreate*** sezione di hello [hello provisioning macchina virtuale di Microsoft Data Science](machine-learning-data-science-provision-vm.md)toocreate argomento un server Jupyter notebook hello tooaccess di una password complessa. 
 
-Una volta effettuato l'accesso al notebook, viene visualizzata una directory contenente alcuni notebook di esempio inclusi nel pacchetto DSVM. A questo punto è possibile:
+Dopo aver aperto notebook hello, dovrebbe essere una directory che contiene alcuni blocchi appunti di esempio che sono sotto forma di pacchetto in hello DSVM. A questo punto è possibile:
 
-* Fare clic sul notebook per visualizzare il codice.
+* Fare clic sul codice hello toosee di hello notebook.
 * Eseguire ogni cella premendo **MAIUSC+INVIO**.
-* Eseguire l'intero notebook facendo clic su **Cell** -> **Run** (Cella -> Esegui).
-* Creare un nuovo notebook facendo clic sull'icona di Jupyter nell'angolo in alto a sinistra. Fare quindi clic sul pulsante **New** (Nuovo) a destra e infine scegliere il linguaggio del notebook, detto anche kernel.   
+* eseguire l'intero blocco hello facendo clic su **cella** -> **eseguire**
+* creare un nuovo blocco appunti facendo clic sul hello icona Jupyter (angolo superiore sinistro) e quindi fare clic su **New** pulsante hello destro, quindi scegliere il linguaggio di notebook hello (noto anche come kernel).   
 
 > [!NOTE]
-> Attualmente sono supportati Python 2.7, Python 3.5 e R. Il kernel R supporta la programmazione sia in R open source che in Microsoft R Server scalabile aziendale.   
+> Attualmente è supportato Python 2.7, Python 3.5 e R. kernel hello R supporta la programmazione in R Open source nonché a enterprise hello scalabile Microsoft R Server.   
 > 
 > 
 
-Una volta effettuato l'accesso al notebook, è possibile esplorare i dati, compilare il modello e testare il modello usando le librerie preferite.
+Una volta nel blocco note hello è possibile esplorare i dati, compilare il modello di hello, hello modello con le librerie di test.
 
 ## <a name="3-build-models-using-r-or-python-and-operationalize-them-using-azure-machine-learning"></a>3. Compilare modelli usando R o Python e renderli operativi con Azure Machine Learning
-Una volta compilato e convalidato il modello, il passaggio successivo consiste in genere nel distribuirlo nell'ambiente di produzione. Ciò consente alle applicazioni client di richiamare le stime del modello in tempo reale o in modalità batch. Azure Machine Learning offre un meccanismo per rendere operativo il modello compilato in R o Python.
+Dopo aver compilato e convalidato il passaggio successivo hello di modello è in genere toodeploy in produzione. In questo modo, il client stime modello hello tooinvoke di applicazioni in un tempo reale o in base a una modalità batch. Azure Machine Learning fornisce un meccanismo toooperationalize un modello compilato in R o Python.
 
-Quando si rende operativo il modello in Azure Machine Learning, viene esposto un servizio Web che consente ai client di effettuare chiamate REST che passano i parametri di input e ricevono le stime dal modello come output.   
+Quando si rende operativo il modello in Azure Machine Learning, viene esposto un servizio web che consente ai client le chiamate REST toomake che passano nei parametri di input e di ricezione stime dal modello hello come output.   
 
 > [!NOTE]
-> Se non si è ancora iscritti ad Azure Machine Learning, è possibile ottenere un'area di lavoro gratuita o standard visitando la home page di [Azure Machine Learning Studio](https://studio.azureml.net/) e facendo clic su "Get Started" (Per iniziare).   
+> Se non è ancora iscritti per Azure Machine Learning, è possibile ottenere un'area di lavoro gratuita o un'area di lavoro standard visitando hello [Azure Machine Learning Studio](https://studio.azureml.net/) home page e facendo clic su "Introduzione".   
 > 
 > 
 
 ### <a name="build-and-operationalize-python-models"></a>Compilare e rendere operativi i modelli Python
-Di seguito è riportato un frammento di codice sviluppato in un notebook di Jupyter con Python che compila un semplice modello con la libreria SciKit-learn.
+Di seguito è riportato un frammento di codice sviluppato in un server Jupyter Notebook di Python che consente di creare un modello semplice utilizzando hello informazioni SciKit libreria.
 
     #IRIS classification
     from sklearn import datasets
@@ -105,7 +105,7 @@ Di seguito è riportato un frammento di codice sviluppato in un notebook di Jupy
     X, y = iris.data, iris.target
     clf.fit(X, y)
 
-Il metodo usato per distribuire i modelli di Python in Azure Machine Learning consiste nell'eseguire il wrapping della stima del modello in una funzione e nel decorarla con gli attributi forniti dalla libreria di Azure Machine Learning che identificano l'ID, la chiave API, i parametri di input e i parametri restituiti dell'area di lavoro di Azure Machine Learning.  
+metodo Hello utilizzato toodeploy il tooAzure modelli python Machine Learning esegue il wrapping hello stima del modello di hello in una funzione e decora con gli attributi forniti dalla libreria python di Azure Machine Learning pre-installata hello che identificano il computer di Azure ID area di lavoro di apprendimento e la chiave API hello di input e restituire i parametri.  
 
     from azureml import services
     @services.publish(workspaceid, auth_token)
@@ -115,7 +115,7 @@ Il metodo usato per distribuire i modelli di Python in Azure Machine Learning co
      inputArray = [sep_l, sep_w, pet_l, pet_w]
     return clf.predict(inputArray)
 
-Un client può ora effettuare chiamate al servizio Web. Esistono pratici wrapper che costruiscono le richieste dell'API REST. Ecco un codice di esempio per utilizzare il servizio Web.
+Un client possa ora effettuare chiamate toohello web service. Sono disponibili wrapper praticità per costruire le richieste API REST di hello. Di seguito è un servizio web di hello tooconsume di codice di esempio.
 
     # Consume through web service URL and keys
     from azureml import services
@@ -129,23 +129,23 @@ Un client può ora effettuare chiamate al servizio Web. Esistono pratici wrapper
 
 
 > [!NOTE]
-> La libreria di Azure Machine Learning è attualmente supportata solo in Python 2.7.   
+> libreria di Azure Machine Learning Hello è supportata solo su Python 2.7 attualmente.   
 > 
 > 
 
 ### <a name="build-and-operationalize-r-models"></a>Compilare e rendere operativi i modelli R
-È possibile distribuire in Azure Machine Learning i modelli R compilati nella macchina virtuale per l'analisi scientifica dei dati o altrove in modo simile a come è stato fatto per Python. Ecco i passaggi necessari:
+È possibile distribuire i modelli di R compilati nel hello macchina virtuale di analisi scientifica dei dati o in un' posizione in Azure Machine Learning in modo simile toohow che completamento per Python. Sua hello passaggi:
 
-* Creare un file settings.json per fornire l'ID area di lavoro e il token di autorizzazione, come illustrato nel codice di esempio seguente.
-* Scrivere un wrapper per la funzione di stima del modello.
-* Chiamare ```publishWebService``` nella libreria di Azure Machine Learning per passare il wrapper della funzione.  
+* creare un tooprovide file Settings l'ID area di lavoro e l'autenticazione del token come illustrato nel seguente esempio di codice hello.
+* scrivere un wrapper per il modello di hello predict-funzione.
+* chiamare ```publishWebService``` in Azure Machine Learning libreria toopass wrapper funzione hello hello.  
 
-Ecco la procedura e i frammenti di codice che è possibile usare per configurare, creare, pubblicare e usare un modello come servizio Web in Azure Machine Learning.
+Di seguito è hello procedure e frammenti di codice che possono essere utilizzato tooset up, compilare, pubblicare e utilizzare un modello come un servizio web in Azure Machine Learning.
 
 #### <a name="setup"></a>Configurazione
-1. Installare il pacchetto R di Machine Learning digitando ```install.packages("AzureML")``` nell'IDE Revolution R Enterprise 8.0 o nell'IDE R.
-2. Scaricare RTools da [qui](https://cran.r-project.org/bin/windows/Rtools/). Per rendere operativo il pacchetto R in Machine Learning, l'utilità zip, denominata zip.exe, deve trovarsi nel percorso.
-3. Nella home directory creare un file settings.json in una directory denominata ```.azureml``` e immettere i parametri dall'area di lavoro di Azure Machine Learning:
+1. Installare il pacchetto di Machine Learning R hello digitando ```install.packages("AzureML")``` Revolution R Enterprise 8.0 IDE o l'IDE di R.
+2. Scaricare RTools da [qui](https://cran.r-project.org/bin/windows/Rtools/). È necessario hello zip utilità percorso hello (e denominato zip.exe) toooperationalize il pacchetto R in Machine Learning.
+3. Creare un file Settings in una directory denominata ```.azureml``` nella directory principale e immettere i parametri di hello dall'area di lavoro di Azure Machine Learning:
 
 Struttura del file settings.json:
 
@@ -165,48 +165,48 @@ Struttura del file settings.json:
     train <- sleepstudy[sample(nrow(sleepstudy), 120),]
     m <- lm(Reaction ~ Days + Subject, data = train)
 
-    # Define a prediction function to publish based on the model:
+    # Define a prediction function toopublish based on hello model:
     sleepyPredict <- function(newdata){
           predict(m, newdata=newdata)
     }
 
     ep <- publishWebService(ws, fun = sleepyPredict, name="sleepy lm", inputSchema = sleepstudy, data.frame=TRUE)
 
-#### <a name="consume-the-model-deployed-in-azure-machine-learning"></a>Utilizzare il modello distribuito in Azure Machine Learning
-Per usare il modello da un'applicazione client si usa la libreria di Azure Machine Learning per cercare per nome il servizio Web pubblicato usando la chiamata API `services` per determinare l'endpoint. Sarà quindi sufficiente chiamare la funzione `consume` e passare il frame di dati di cui eseguire la stima.
-Il codice seguente consente di utilizzare il modello pubblicato come servizio Web di Azure Machine Learning.
+#### <a name="consume-hello-model-deployed-in-azure-machine-learning"></a>Utilizzare il modello di hello distribuito in Azure Machine Learning
+modello di hello tooconsume da un'applicazione client, utilizziamo hello Azure Machine Learning libreria toolook backup hello servizio web pubblicato per nome utilizzando hello `services` endpoint hello toodetermine chiamata dell'API. È sufficiente chiamare hello `consume` funzione e passare hello toobe di frame di dati previsto.
+Hello seguente di codice è il modello di hello tooconsume utilizzati pubblicato come servizio web di Azure Machine Learning.
 
     library(AzureML)
     library(lme4)
     ws <- workspace(config="~/.azureml/settings.json")
 
     s <-  services(ws, name = "sleepy lm")
-    s <- tail(s, 1) # use the last published function, in case of duplicate function names
+    s <- tail(s, 1) # use hello last published function, in case of duplicate function names
 
     ep <- endpoints(ws, s)
 
     # OK, try this out, and compare with raw data
     ans = consume(ep, sleepstudy)$ans
 
-Altre informazioni sulla libreria R di Azure Machine Learning sono disponibili [qui](https://cran.r-project.org/web/packages/AzureML/AzureML.pdf).
+Sono disponibili ulteriori informazioni sulla libreria di Azure Machine Learning R hello [qui](https://cran.r-project.org/web/packages/AzureML/AzureML.pdf).
 
 ## <a name="4-administer-your-azure-resources-using-azure-portal-or-powershell"></a>4. Amministrare le risorse di Azure usando il portale di Azure o PowerShell
-DSVM non solo consente di compilare la soluzione di analisi in locale nella macchina virtuale, ma anche di accedere ai servizi nel cloud di Microsoft Azure. Azure offre diversi servizi di calcolo, archiviazione e analisi dei dati e altri servizi amministrabili e accessibili da DSVM.
+Hello DSVM consente non solo toobuild soluzione analitica localmente sul hello macchina virtuale, ma consente anche tooaccess servizi nel cloud di Microsoft Azure. Azure offre diversi servizi di calcolo, archiviazione e analisi dei dati e altri servizi amministrabili e accessibili da DSVM.
 
-Per amministrare la sottoscrizione di Azure e le risorse cloud, è possibile usare il browser e accedere al [portale di Azure](https://portal.azure.com). È anche possibile usare Azure PowerShell per amministrare le risorse e la sottoscrizione di Azure con uno script.
-È possibile eseguire Azure PowerShell da un collegamento "Microsoft Azure PowerShell" sul desktop o nel menu Start. Per altre informazioni su come amministrare le risorse e la sottoscrizione di Azure con gli script di Windows PowerShell, vedere la [documentazione di Microsoft Azure PowerShell](../powershell-azure-resource-manager.md) .
+tooadminister le risorse di sottoscrizione e nel cloud Azure è possibile utilizzare il browser e il punto toothe [portale di Azure](https://portal.azure.com). Sottoscrizione di Azure e alle risorse tramite uno script, è possibile utilizzare anche tooadminister Azure Powershell.
+È possibile eseguire Azure Powershell da un collegamento sul desktop hello o da hello menu intitolato "Microsoft Azure Powershell" di avvio. Per altre informazioni su come amministrare le risorse e la sottoscrizione di Azure con gli script di Windows PowerShell, vedere la [documentazione di Microsoft Azure PowerShell](../powershell-azure-resource-manager.md) .
 
 ## <a name="5-extend-your-storage-space-with-a-shared-file-system"></a>5. Estendere lo spazio di archiviazione con un file system condiviso
-Gli esperti di gestione dati possono condividere grandi set di dati, codice o alte risorse all'interno del team. In DSVM sono disponibili circa 70 GB di spazio. Per estendere lo spazio di archiviazione, è possibile usare il Servizio file di Azure e installarlo in DSVM o accedervi tramite l'API REST.   
+Gli esperti di dati possono condividere i set di dati di grandi dimensioni, codice o altre risorse all'interno del team di hello. Hello DSVM stesso è di circa 70GB di spazio disponibile. tooextend lo spazio di archiviazione, è possibile utilizzare hello servizio File di Azure e montarlo in hello DSVM o accedervi tramite un'API REST.   
 
 > [!NOTE]
-> La quantità massima di spazio della condivisione del Servizio file di Azure è di 5 TB e il limite delle dimensioni dei singoli file è di 1 TB.   
+> lo spazio massimo di Hello della condivisione File servizio hello è 5TB e il limite di dimensioni di singoli file è di 1TB.   
 > 
 > 
 
-È possibile usare Azure Powershell per creare una condivisione del Servizio file di Azure. Ecco lo script da eseguire in Azure PowerShell per creare una condivisione del Servizio file di Azure.
+È possibile usare Azure Powershell toocreate una condivisione di File di servizio. Di seguito è toorun script hello in Azure PowerShell toocreate una condivisione di File di Azure del servizio.
 
-    # Authenticate to Azure.
+    # Authenticate tooAzure.
     Login-AzureRmAccount
     # Select your subscription
     Get-AzureRmSubscription –SubscriptionName "<your subscription name>" | Select-AzureRmSubscription
@@ -219,41 +219,41 @@ Gli esperti di gestione dati possono condividere grandi set di dati, codice o al
 
     # Create a Azure File Service Share
     $s = New-AzureStorageShare <<teamsharename>>
-    # Create a directory under the FIle share. You can give it any name
+    # Create a directory under hello FIle share. You can give it any name
     New-AzureStorageDirectory -Share $s -Path <directory name>
-    # List the share to confirm that everything worked
+    # List hello share tooconfirm that everything worked
     Get-AzureStorageFile -Share $s
 
 
-A questo punto, dopo avere creato una condivisione file di Azure, è possibile installarla in una macchina virtuale in Azure. È consigliabile che la VM sia nello stesso data center di Azure dell'account di archiviazione per evitare la latenza e gli addebiti per il trasferimento dei dati. Ecco i comandi per installare l'unità in DSVM, che è possibile eseguire in Azure PowerShell.
+A questo punto, dopo avere creato una condivisione file di Azure, è possibile installarla in una macchina virtuale in Azure. È consigliabile che hello VM è nella stessa data center di Azure come latenza tooavoid account di archiviazione hello e dati gli addebiti di trasferimento. Di seguito sono unità di hello comandi toomount hello in hello DSVM che è possibile eseguire in Azure Powershell.
 
-    # Get storage key of the storage account that has the Azure file share from Azure portal. Store it securely on the VM to avoid prompted in next command.
+    # Get storage key of hello storage account that has hello Azure file share from Azure portal. Store it securely on hello VM tooavoid prompted in next command.
     cmdkey /add:<<mydatadisk>>.file.core.windows.net /user:<<mydatadisk>> /pass:<storage key>
 
-    # Mount the Azure file share as Z: drive on the VM. You can chose another drive letter if you wish
+    # Mount hello Azure file share as Z: drive on hello VM. You can chose another drive letter if you wish
     net use z:  \\<mydatadisk>.file.core.windows.net\<<teamsharename>>
 
 
-Ora è possibile accedere a questa unità come a qualsiasi altra unità della VM.
+È ora possibile accedere questa unità come si farebbe per qualsiasi unità normale su hello VM.
 
 ## <a name="6-share-code-with-your-team-using-github"></a>6. Condividere il codice con il team usando GitHub
-GitHub è un archivio di codice dove è possibile trovare numerosi codici di esempio e origini per strumenti diversi usando svariate tecnologie condivise dalla community degli sviluppatori. Usa Git come tecnologia per tenere traccia delle versioni dei file di codice e per archiviarle. GitHub è anche una piattaforma in cui è possibile creare il proprio archivio in cui archiviare la documentazione e il codice condiviso del team, implementare il controllo della versione e anche controllare chi ha l'accesso per visualizzare il codice e per contribuirvi. Per altre informazioni sull'uso di Git, visitare le [pagine della guida di GitHub](https://help.github.com/). È possibile usare GitHub per collaborare con il team, usare il codice sviluppato dalla community e contribuire al codice della community.
+GitHub è un repository di codice in cui è possibile trovare una notevole quantità di codice di esempio e origini per diversi strumenti con varie tecnologie condivise da una community di sviluppatori hello. Git viene utilizzato come hello versioni tootrack e l'archivio della tecnologia dei file di codice hello. GitHub è inoltre una piattaforma in cui è possibile creare la propria toostore repository codice condiviso e la documentazione, il team implementa il controllo delle versioni e controllo che dispongono dell'accesso tooview e fornire codice. Visitare hello [pagine della Guida di GitHub](https://help.github.com/) per ulteriori informazioni sull'uso di Git. È possibile utilizzare GitHub come uno dei hello modi toocollaborate con il team, usare il codice sviluppato dalla community di hello e collaborazione della community toohello indietro di codice.
 
-In DSVM sono già caricati gli strumenti client sia nella riga di comando sia nella GUI per accedere al repository GitHub. Lo strumento da riga di comando per usare con Git e GitHub si chiama Git Bash. Visual Studio installato in DSVM include le estensioni Git. È possibile trovare le icone di avvio per questi strumenti nel menu Start e sul desktop.
+Hello DSVM include già caricato con gli strumenti client sia come ben GUI tooaccess repository GitHub della riga di comando. Hello strumento da riga di comando toowork con Git e GitHub viene chiamato Git Bash. Visual Studio installata sul hello DSVM dispone di estensioni di Git hello. È possibile trovare le icone di avvio per questi strumenti nel menu start hello e sul desktop hello.
 
-Per scaricare il codice da un repository GitHub, usare il comando ```git clone```. Ad esempio, per scaricare il repository di analisi scientifica dei dati pubblicato da Microsoft nella directory corrente, è possibile eseguire il comando seguente in ```git-bash```.
+codice toodownload da un repository GitHub utilizzare hello ```git clone``` comando. Ad esempio repository di toodownload analisi scientifica dei dati pubblicati da Microsoft nella directory corrente hello è possibile eseguire hello comando seguente, una volta nel ```git-bash```.
 
     git clone https://github.com/Azure/Azure-MachineLearning-DataScience.git
 
-In Visual Studio è possibile eseguire la stessa operazione di clonazione. Per accedere agli strumenti Git e GitHub in Visual Studio, vedere lo screenshot seguente.
+In Visual Studio, è possibile effettuare hello stessa operazione di clonazione. Hello cattura di schermata seguente mostra come tooaccess Git e GitHub degli strumenti in Visual Studio.
 
 ![Git in Visual Studio](./media/machine-learning-data-science-vm-do-ten-things/VSGit.PNG)
 
-In github.com sono disponibili altre informazioni sull'uso di Git per lavorare con l'archivio GitHub da diverse risorse. Il [foglio informativo](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) è un riferimento utile.
+È possibile trovare ulteriori informazioni sull'uso di Git toowork con il repository GitHub da diverse risorse disponibili in github.com. Hello [foglio informativo](https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf) è un utile riferimento.
 
 ## <a name="7-access-various-azure-data-and-analytics-services"></a>7. Accedere a diversi servizi dati e analisi di Azure
 ### <a name="azure-blob"></a>BLOB Azure
-BLOB di Azure è una risorsa di archiviazione cloud conveniente e affidabile per piccole e grandi quantità di dati. Si vedrà ora come è possibile spostare dati nel BLOB di Azure e accedere ai dati archiviati in un BLOB di Azure.
+BLOB di Azure è una risorsa di archiviazione cloud conveniente e affidabile per piccole e grandi quantità di dati. Esaminiamo come è possibile spostare tooAzure dati Blob e accedere ai dati archiviati in un Blob di Azure.
 
 **Prerequisito**
 
@@ -261,52 +261,52 @@ BLOB di Azure è una risorsa di archiviazione cloud conveniente e affidabile per
 
 ![Create_Azure_Blob](./media/machine-learning-data-science-vm-do-ten-things/Create_Azure_Blob.PNG)
 
-* Verificare che lo strumento da riga di comando AzCopy preinstallato sia disponibile in ```C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe```. È possibile aggiungere la directory contenente il file azcopy.exe alla variabile di ambiente PATH per evitare di digitare il percorso completo del comando quando si esegue lo strumento. Per altre informazioni su AzCopy, vedere la [documentazione di AzCopy](../storage/common/storage-use-azcopy.md)
-* Avviare lo strumento Esplora archivi di Azure. È possibile scaricarlo da [Esplora archivi di Microsoft Azure](http://storageexplorer.com/). 
+* Verificare che hello pre-installato da riga di comando strumento AzCopy si trova in corrispondenza ```C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy.exe```. È possibile aggiungere hello directory contenitore hello azcopy.exe tooyour ambiente tooavoid variabile digitando hello comando completo percorso quando si esegue questo strumento. Per ulteriori informazioni sullo strumento AzCopy, vedere troppo[documentazione AzCopy](../storage/common/storage-use-azcopy.md)
+* Avviare lo strumento di hello Azure Storage Explorer. È possibile scaricarlo da [Esplora archivi di Microsoft Azure](http://storageexplorer.com/). 
 
 ![AzureStorageExplorer_v4](./media/machine-learning-data-science-vm-do-ten-things/AzureStorageExplorer_v4.png)
 
-**Spostare i dati dalla VM al BLOB di Azure: AzCopy**
+**Spostare i dati da una macchina virtuale tooAzure Blob: AzCopy**
 
-Per spostare i dati tra i file locali e l'archiviazione BLOB, è possibile usare AzCopy nella riga di comando o in PowerShell:
+toomove dati tra i file locali e l'archiviazione blob, è possibile usare AzCopy nella riga di comando o PowerShell:
 
     AzCopy /Source:C:\myfolder /Dest:https://<mystorageaccount>.blob.core.windows.net/<mycontainer> /DestKey:<storage account key> /Pattern:abc.txt
 
-Sostituire **C:\myfolder** con il percorso di archiviazione del file, **mystorageaccount** con il nome dell'account di archiviazione BLOB, **mycontainer** con il nome del contenitore e **storage account key** con la chiave di accesso alle risorse di archiviazione BLOB. È possibile trovare le credenziali dell'account di archiviazione nel [portale di Azure](https://portal.azure.com).
+Sostituire **C:\myfolder** toohello percorso in cui è archiviato il file, **mystorageaccount** nome account di archiviazione blob di tooyour, **mycontainer** il nome del contenitore toohello **chiave account di archiviazione** chiave di accesso di archiviazione blob tooyour. È possibile trovare le credenziali dell'account di archiviazione nel [portale di Azure](https://portal.azure.com).
 
 ![StorageAccountCredential_v2](./media/machine-learning-data-science-vm-do-ten-things/StorageAccountCredential_v2.png)
 
 Eseguire il comando AzCopy in PowerShell o al prompt dei comandi. Ecco un esempio di utilizzo del comando AzCopy:
 
-    # Copy *.sql from local machine to a Azure Blob
+    # Copy *.sql from local machine tooa Azure Blob
     "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy" /Source:"c:\Aaqs\Data Science Scripts" /Dest:https://[ENTER STORAGE ACCOUNT].blob.core.windows.net/[ENTER CONTAINER] /DestKey:[ENTER STORAGE KEY] /S /Pattern:*.sql
 
-    # Copy back all files from Azure Blob container to Local machine
+    # Copy back all files from Azure Blob container tooLocal machine
 
     "C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy\azcopy" /Dest:"c:\Aaqs\Data Science Scripts\temp" /Source:https://[ENTER STORAGE ACCOUNT].blob.core.windows.net/[ENTER CONTAINER] /SourceKey:[ENTER STORAGE KEY] /S
 
 
 
-Una volta eseguito il comando AzCopy per la copia in un BLOB di Azure, il file viene visualizzato in Azure Storage Explorer entro breve.
+Dopo aver eseguito la tooan toocopy di AzCopy comando è visualizzato il file del blob di Azure viene visualizzato in Esplora archivi Azure a breve.
 
 ![AzCopy_run_finshed_Storage_Explorer_v3](./media/machine-learning-data-science-vm-do-ten-things/AzCopy_run_finshed_Storage_Explorer_v3.png)
 
-**Spostare i dati dalla VM al BLOB di Azure: Azure Storage Explorer**
+**Spostare i dati da una macchina virtuale tooAzure Blob: Azure Storage Explorer**
 
-È anche possibile caricare i dati dal file locale nella VM usando Azure Storage Explorer:
+È inoltre possibile caricare i dati da file locale hello nella macchina virtuale tramite Esplora archivi Azure:
 
-* Per caricare dati in un contenitore, selezionare il contenitore di destinazione e fare clic sul pulsante **Carica**.![Caricare in Storage Explorer](./media/machine-learning-data-science-vm-do-ten-things/storage-accounts.png)
-* Fare clic su **...** a destra della casella **File**, selezionare uno o più file da caricare dal file system e fare clic su **Carica** per iniziare a caricare i file.![Caricare i file nel BLOB](./media/machine-learning-data-science-vm-do-ten-things/upload-files-to-blob.png)
+* contenitore di tooa dati tooupload, hello contenitore e fare clic su di destinazione selezionare hello **caricare** pulsante.![ Carica in Esplora archivi](./media/machine-learning-data-science-vm-do-ten-things/storage-accounts.png)
+* Fare clic su hello **...**  toohello diritto di hello **file** , selezionare uno o più tooupload file dal file system di hello e fare clic su **caricare** toobegin caricamento file hello.![ Caricare file tooblob](./media/machine-learning-data-science-vm-do-ten-things/upload-files-to-blob.png)
 
 **Leggere i dati dal BLOB di Azure: modulo Reader di Machine Learning**
 
-In Azure Machine Learning Studio è possibile usare un **modulo Import Data** per leggere i dati dal BLOB.
+In Azure Machine Learning Studio è possibile utilizzare un **modulo Importa dati** dati tooread il blob.
 
 ![AML_ReaderBlob_Module_v3](./media/machine-learning-data-science-vm-do-ten-things/AML_ReaderBlob_Module_v3.png)
 
 **Leggere i dati dal BLOB di Azure: ODBC Python**
 
-È possibile usare la libreria **BlobService** per leggere i dati direttamente dal BLOB in Jupyter Notebook o in un programma Python.
+È possibile utilizzare **BlobService** dati tooread libreria direttamente dal blob in un programma server Jupyter Notebook o Python.
 
 Prima di tutto importare i pacchetti necessari:
 
@@ -338,7 +338,7 @@ Quindi collegare le credenziali dell'account BLOB di Azure e leggere i dati dal 
     blob_service = BlobService(account_name=STORAGEACCOUNTNAME,account_key=STORAGEACCOUNTKEY)
     blob_service.get_blob_to_path(CONTAINERNAME,BLOBNAME,LOCALFILE)
     t2 = time.time()
-    print(("It takes %s seconds to download "+BLOBNAME) % (t2 - t1))
+    print(("It takes %s seconds toodownload "+BLOBNAME) % (t2 - t1))
 
     #unzipping downloaded files if needed
     #with zipfile.ZipFile(ZIPPEDLOCALFILE, "r") as z:
@@ -346,14 +346,14 @@ Quindi collegare le credenziali dell'account BLOB di Azure e leggere i dati dal 
 
     df1 = pd.read_csv(LOCALFILE, header=0)
     df1.columns = ['medallion','hack_license','vendor_id','rate_code','store_and_fwd_flag','pickup_datetime','dropoff_datetime','passenger_count','trip_time_in_secs','trip_distance','pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude']
-    print 'the size of the data is: %d rows and  %d columns' % df1.shape
+    print 'hello size of hello data is: %d rows and  %d columns' % df1.shape
 
-I dati vengono letti come frame di dati:
+sono possibile leggerlo dati Hello come frame di dati:
 
 ![IPNB_data_readin](./media/machine-learning-data-science-vm-do-ten-things/IPNB_data_readin.PNG)
 
 ### <a name="azure-data-lake"></a>Azure Data Lake
-Un Archivio Azure Data Lake è un repository con iperscalabilità per i carichi di lavoro di analisi dei Big Data compatibile con Hadoop Distributed File System (HDFS). Funziona con l'ecosistema Hadoop e con Azure Data Lake Analytics. Verrà illustrato come è possibile spostare i dati nell'Archivio Azure Data Lake ed eseguire analisi con Analisi Azure Data Lake.
+Un Archivio Azure Data Lake è un repository con iperscalabilità per i carichi di lavoro di analisi dei Big Data compatibile con Hadoop Distributed File System (HDFS). Funziona con l'ecosistema di Hadoop hello sia hello Azure Data Lake Analitica. Ecco come è possibile spostare i dati in archivio Azure Data Lake hello ed eseguire analitica usando Azure Data Lake Analitica.
 
 **Prerequisito**
 
@@ -361,29 +361,29 @@ Un Archivio Azure Data Lake è un repository con iperscalabilità per i carichi 
 
 ![Azure_Data_Lake_Create_v2](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_Create_v2.png)
 
-* **Azure Data Lake Tools** in **Visual Studio** disponibile da questo [collegamento](https://www.microsoft.com/download/details.aspx?id=49504) è già installato in Visual Studio Community Edition nella macchina virtuale. Dopo avere avviato Visual Studio e avere effettuato l'accesso alla sottoscrizione di Azure, l'archivio e l'account di Azure Data Analytics vengono visualizzati nel panello sinistro di Visual Studio.
+* Hello **Azure Data Lake Tools** in **Visual Studio** trovare questo [collegamento](https://www.microsoft.com/download/details.aspx?id=49504) è già installato in Visual Studio Community Edition che si trova su una macchina virtuale hello hello. Dopo aver avviato Visual Studio e registrazione nella sottoscrizione di Azure, si dovrebbe essere l'account di Azure dati Analitica e l'archiviazione nel riquadro sinistro di hello di Visual Studio.
 
 ![Azure_Data_Lake_PlugIn_v2](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_PlugIn_v2.PNG)
 
-**Spostare i dati dalla VM a Data Lake: Azure Data Lake Explorer**
+**Spostare i dati da una macchina virtuale tooData Lake: esplorazione di Azure Data Lake**
 
-È possibile usare **Azure Data Lake Explorer** per caricare i dati dai file locali della macchina virtuale nell'archivio di Data Lake.
+È possibile utilizzare **Azure Data Lake Explorer** dati tooupload da file locali di hello nell'archiviazione Lake tooData macchina virtuale.
 
 ![Azure_Data_Lake_UploadData](./media/machine-learning-data-science-vm-do-ten-things/Azure_Data_Lake_UploadData.PNG)
 
-È anche possibile creare una pipeline di dati per lo spostamento dei dati da e verso Azure Data Lake tramite [Azure Data Factory (ADF)](https://azure.microsoft.com/services/data-factory/). Per una guida dettagliata della compilazione di pipeline di dati, vedere questo [articolo](https://azure.microsoft.com/blog/creating-big-data-pipelines-using-azure-data-lake-and-azure-data-factory/) .
+È anche possibile compilare un tooproductionize pipeline di dati del tooor lo spostamento dei dati da Azure Data Lake tramite hello [Azure dati Factory(ADF)](https://azure.microsoft.com/services/data-factory/). Vedere toothis [articolo](https://azure.microsoft.com/blog/creating-big-data-pipelines-using-azure-data-lake-and-azure-data-factory/) tooguide è tra i dati di hello passaggi toobuild hello pipeline.
 
-**Leggere i dati dal BLOB di Azure a Data Lake: U-SQL**
+**Leggere i dati da Azure Blob tooData Lake: U-SQL**
 
-Se i dati si trovano nell'archivio BLOB di Azure, è possibile leggerli direttamente dal BLOB di archiviazione di Azure nella query U-SQL. Prima di scrivere la query U-SQL, verificare che l'account di archiviazione BLOB sia collegato ad Azure Data Lake. Passare al **portale di Azure**, individuare il dashboard di Azure Data Lake Analytics, fare clic su **Aggiungi origine dati**, selezionare **Archiviazione di Azure** come tipo di archiviazione e inserire il nome e la chiave dell'account di archiviazione di Azure. Sarà ora possibile fare riferimento ai dati archiviati nell'account di archiviazione.
+Se i dati si trovano nell'archivio BLOB di Azure, è possibile leggerli direttamente dal BLOB di archiviazione di Azure nella query U-SQL. Prima di composizione di query U-SQL, assicurarsi che l'account di archiviazione blob è tooyour collegato Azure Data Lake. Andare troppo**portale di Azure**, trovare il dashboard di Azure Data Lake Analitica, fare clic su **Aggiungi origine dati**, selezionare il tipo di archiviazione troppo**di archiviazione di Azure** e plug-in di archiviazione di Azure Nome dell'account e la chiave. Si è tooreference in grado di dati di hello archiviati nell'account di archiviazione hello.
 
 ![Immettere l'account di archiviazione e la chiave](./media/machine-learning-data-science-vm-do-ten-things/Link_Blob_to_ADLA_v2.PNG)
 
-In Visual Studio è possibile leggere i dati dall'archivio BLOB, modificarli, progettare funzionalità e pubblicare i dati risultanti in Azure Data Lake o nell'archivio BLOB di Azure. Quando si fa riferimento ai dati nell'archiviazione BLOB, usare **wasb://**; quando si fa riferimento ai dati in Azure Data Lake, usare **swbhdfs://**
+In Visual Studio, è possibile leggere i dati dall'archiviazione blob, eseguire alcune manipolazione dei dati, progettazione di funzionalità e output hello risultante data tooeither Azure Data Lake o archiviazione Blob di Azure. Quando si fa riferimento a dati hello nell'archiviazione blob, utilizzare **wasb: / /**; quando si fa riferimento a dati hello in Azure Data Lake, utilizzare **swbhdfs: / /**
 
 ![Frame di dati](./media/machine-learning-data-science-vm-do-ten-things/USQL_Read_Blob_v2.PNG)
 
-È possibile usare le query U-SQL seguenti in Visual Studio:
+È possibile utilizzare hello seguente query U-SQL in Visual Studio:
 
     @a =
         EXTRACT medallion string,
@@ -416,59 +416,59 @@ In Visual Studio è possibile leggere i dati dall'archivio BLOB, modificarli, pr
         GROUP BY vendor_id;
 
     OUTPUT @b   
-    TO "swebhdfs://<Azure Data Lake Storage Account Name>.azuredatalakestore.net/<Folder Name>/<Output Data File Name>"
+    too"swebhdfs://<Azure Data Lake Storage Account Name>.azuredatalakestore.net/<Folder Name>/<Output Data File Name>"
     USING Outputters.Csv();
 
     OUTPUT @b   
-    TO "wasb://<Container name>@<Azure Blob Storage Account Name>.blob.core.windows.net/<Output Data File Name>"
+    too"wasb://<Container name>@<Azure Blob Storage Account Name>.blob.core.windows.net/<Output Data File Name>"
     USING Outputters.Csv();
 
 
 
-Dopo che la query è stata inviata al server, viene visualizzato un diagramma che illustra lo stato del processo.
+Dopo che la query è inviata toohello server, viene visualizzato un diagramma che illustra lo stato di hello del processo.
 
 ![Diagramma dello stato del processo](./media/machine-learning-data-science-vm-do-ten-things/USQL_Job_Status.PNG)
 
 **Effettuare una query dei dati in Data Lake: U-SQL**
 
-Dopo che il set di dati è stato inserito in Azure Data Lake, è possibile usare il [linguaggio U-SQL](../data-lake-analytics/data-lake-analytics-u-sql-get-started.md) per l'esecuzione di query e l'esplorazione dei dati. Il linguaggio U-SQL è simile a T-SQL, ma combina alcune funzionalità di C# in modo che gli utenti possano scrivere moduli personalizzati, funzioni definite dall'utente e così via. È possibile usare gli script del passaggio precedente.
+Set di dati hello vengono acquisiti in Azure Data Lake, è possibile utilizzare [U-SQL language](../data-lake-analytics/data-lake-analytics-u-sql-get-started.md) tooquery ed esplorare i dati di hello. Linguaggio U-SQL è simile tooT-SQL, ma combina alcune funzionalità di c# in modo che gli utenti possono scrivere moduli personalizzati e funzioni definite dall'utente e così via. È possibile utilizzare script hello nel passaggio precedente hello.
 
-Dopo l'invio della query al server, in **Azure Data Lake Explorer** sarà disponibile il file tripdata_summary.CSV. Per visualizzare i dati in anteprima, fare clic sul file con il pulsante destro del mouse.
+Dopo aver inviato tooserver, tripdata_summary query hello. CSV sono reperibili poco **Azure Data Lake Explorer**, è possibile visualizzare l'anteprima dati hello dal file hello pulsante destro del mouse.
 
 ![File in Azure Data Lake Explorer](./media/machine-learning-data-science-vm-do-ten-things/USQL_create_summary.png)
 
-Per visualizzare le informazioni del file:
+informazioni sui file di hello toosee:
 
 ![Riepilogo del file](./media/machine-learning-data-science-vm-do-ten-things/USQL_tripdata_summary.png)
 
 ### <a name="hdinsight-hadoop-clusters"></a>Cluster Hadoop di HDInsight
-Azure HDInsight è un servizio di Apache Hadoop, Spark, HBase e Storm gestito nel cloud. È possibile utilizzare facilmente i cluster Azure HDInsight dalla macchina virtuale di analisi scientifica dei dati.
+Azure HDInsight è un servizio gestito di Apache Hadoop, Spark, HBase e Storm nel cloud hello. È possibile utilizzare facilmente con i cluster HDInsight di Azure dalla macchina virtuale di analisi scientifica dei dati hello.
 
 **Prerequisito**
 
-* Creare l'account di archiviazione BLOB di Azure nel [portale di Azure](https://portal.azure.com). Questo account di archiviazione viene usato per archiviare i dati per i cluster HDInsight.
+* Creare l'account di archiviazione BLOB di Azure nel [portale di Azure](https://portal.azure.com). Questo account di archiviazione è dati toostore utilizzato per i cluster HDInsight.
 
 ![Creare un account di archiviazione BLOB di Azure](./media/machine-learning-data-science-vm-do-ten-things/Create_Azure_Blob.PNG)
 
 * Personalizzare i cluster Hadoop di Azure HDInsight nel [portale di Azure](machine-learning-data-science-customize-hadoop-cluster.md)
   
-  * È necessario collegare l'account di archiviazione creato al cluster HDInsight al momento della creazione. Questo account di archiviazione viene usato per accedere ai dati che possono essere elaborati all'interno del cluster.
+  * È necessario collegare l'account di archiviazione hello creato con il cluster HDInsight quando viene creato. Questo account di archiviazione viene utilizzato per accedere ai dati che possono essere elaborati all'interno di cluster hello.
 
-![Collegamento all'account di archiviazione creato con il cluster HDInsight](./media/machine-learning-data-science-vm-do-ten-things/Create_HDI_v4.PNG)
+![Collegamento toostorage account creato con il cluster HDInsight](./media/machine-learning-data-science-vm-do-ten-things/Create_HDI_v4.PNG)
 
-* È necessario abilitare l' **accesso remoto** al nodo head del cluster dopo la creazione. Ricordare le credenziali di accesso remoto specificate qui, diverse da quelle specificate durante la creazione del cluster, poiché saranno necessarie per completare la procedura seguente.
+* È necessario abilitare **accesso remoto** toohello nodo head del cluster di hello dopo averlo creato. Memorizza le credenziali di accesso remoto hello è possibile specificare (diverse da quelle specificate per il cluster hello al momento della relativa creazione): non è presente la procedura successiva hello.
 
 ![Abilitare l'accesso remoto](./media/machine-learning-data-science-vm-do-ten-things/Create_HDI_dashboard_v3.PNG)
 
-* Creare un'area di lavoro di Azure Machine Learning. Gli esperimenti di Machine Learning vengono archiviati in questa area di lavoro di Machine Learning. Selezionare le opzioni evidenziate nel portale, come illustrato nello screenshot seguente:
+* Creare un'area di lavoro di Azure Machine Learning. Gli esperimenti di Machine Learning vengono archiviati in questa area di lavoro di Machine Learning. Selezionare opzioni di hello evidenziato nel portale, come illustrato nella seguente schermata hello:
 
 ![Creare un'area di lavoro di Machine Learning di Azure](./media/machine-learning-data-science-vm-do-ten-things/Create_ML_Space.PNG)
 
-* Immettere quindi i parametri per l'area di lavoro
+* Quindi immettere i parametri di hello per l'area di lavoro
 
 ![Immettere i parametri dell'area di lavoro di Machine Learning](./media/machine-learning-data-science-vm-do-ten-things/Create_ML_Space_step2_v2.PNG)
 
-* Caricare i dati con IPython Notebook. Importare prima di tutto i pacchetti necessari, inserire le credenziali, creare un database nell'account di archiviazione, quindi caricare i dati nei cluster HDI.
+* Caricare i dati con IPython Notebook. È innanzitutto necessario importare pacchetti richiesti, inserire le credenziali, creare un database nell'account di archiviazione, quindi caricare cluster tooHDI di dati.
 
         #Import required Packages
         import pyodbc
@@ -485,7 +485,7 @@ Azure HDInsight è un servizio di Apache Hadoop, Spark, HBase e Storm gestito ne
         warnings.filterwarnings("ignore", category=UserWarning, module='urllib2')
 
 
-        #Create the connection to Hive using ODBC
+        #Create hello connection tooHive using ODBC
         SERVER_NAME='xxx.azurehdinsight.net'
         DATABASE_NAME='nyctaxidb'
         USERID='xxx'
@@ -551,7 +551,7 @@ Azure HDInsight è un servizio di Apache Hadoop, Spark, HBase e Storm gestito ne
         cursor.execute(queryString)
 
 
-        #Upload data from blob storage to HDI cluster
+        #Upload data from blob storage tooHDI cluster
         for i in range(1,13):
             queryString = "LOAD DATA INPATH 'wasb:///nyctaxitripraw2/trip_data_%d.csv' INTO TABLE nyctaxidb2.trip PARTITION (month=%d);"%(i,i)
             cursor.execute(queryString)
@@ -559,17 +559,17 @@ Azure HDInsight è un servizio di Apache Hadoop, Spark, HBase e Storm gestito ne
             cursor.execute(queryString)
 
 
-* In alternativa è possibile seguire questa [procedura dettagliata](machine-learning-data-science-process-hive-walkthrough.md) per caricare i dati relativi ai taxi di New York nel cluster HDI. I passaggi più importanti includono:
+* In alternativa, è possibile seguire questo [procedura dettagliata](machine-learning-data-science-process-hive-walkthrough.md) tooupload cluster tooHDI di NYC Taxi dati. I passaggi più importanti includono:
   
-  * AzCopy: scaricare i file CSV compressi dal BLOB pubblico alla cartella locale
-  * AzCopy: caricare i file CSV decompressi dalla cartella locale al cluster HDI
-  * Accedere al nodo head del cluster Hadoop e preparare l'analisi esplorativa dei dati
+  * AzCopy: download compresso CSV dalla cartella locale di blob pubblici tooyour
+  * AzCopy: caricare decompresso CSV dal cluster tooHDI cartella locale
+  * Accedere al nodo head di hello del cluster Hadoop e la preparazione per l'analisi esplorativa dei dati
 
-Dopo aver caricato i dati nel cluster HDI, è possibile controllarli in Azure Storage Explorer. Nel cluster HDI è stato creato un database nyctaxidb.
+Dopo aver caricato tooHDI cluster dati hello, è possibile controllare i dati in Azure Storage Explorer. Nel cluster HDI è stato creato un database nyctaxidb.
 
 **Esplorazione dei dati: query Hive in Python**
 
-Poiché i dati si trovano nel cluster Hadoop, è possibile usare il pacchetto pyodbc per connettersi ai cluster Hadoop ed eseguire una query sul database con Hive per l'esplorazione e la progettazione di funzionalità. È possibile visualizzare le tabelle esistenti create nel passaggio del prerequisito.
+Poiché i dati di hello sono in cluster Hadoop, è possibile utilizzare hello pyodbc pacchetto tooconnect tooHadoop cluster e database di query utilizzando Progettazione di funzionalità e l'esplorazione toodo Hive. È possibile visualizzare le tabelle esistenti di hello che è creati nel passaggio dei prerequisiti di hello.
 
     queryString = """
         show tables in nyctaxidb2;
@@ -579,7 +579,7 @@ Poiché i dati si trovano nel cluster Hadoop, è possibile usare il pacchetto py
 
 ![Visualizzare tabelle esistenti](./media/machine-learning-data-science-vm-do-ten-things/Python_View_Existing_Tables_Hive_v3.PNG)
 
-Verrà ora esaminato il numero di record per ogni mese e le frequenze delle corse per le quali è stata lasciata una mancia o meno nella tabella delle corse:
+Esaminiamo il numero di hello di record in ogni mese e hello le frequenze di inclinato o non presente nella tabella di andata e ritorno hello:
 
     queryString = """
         select month, count(*) from nyctaxidb.trip group by month;
@@ -615,7 +615,7 @@ Verrà ora esaminato il numero di record per ogni mese e le frequenze delle cors
 
 ![Tracciato della frequenze delle mance](./media/machine-learning-data-science-vm-do-ten-things/Exploration_Frequency_tip_or_not_v3.PNG)
 
-È anche possibile calcolare la distanza tra il punto di partenza e il punto di arrivo e quindi confrontarla con la distanza della corsa.
+È possibile anche calcolare distanza hello tra il percorso di prelievo e dropoff e confrontare quindi toohello attivarsi distanza.
 
     queryString = """
                     select pickup_longitude, pickup_latitude, dropoff_longitude, dropoff_latitude, trip_distance, trip_time_in_secs,
@@ -645,7 +645,7 @@ Verrà ora esaminato il numero di record per ogni mese e le frequenze delle cors
     plt.scatter(df['direct_distance'], df['trip_distance'])
 
 
-![Tracciato della distanza partenza/arrivo rispetto alla distanza delle corse](./media/machine-learning-data-science-vm-do-ten-things/Exploration_direct_distance_trip_distance_v2.PNG)
+![Tracciato di distanza tootrip prelievo/dropoff distanza](./media/machine-learning-data-science-vm-do-ten-things/Exploration_direct_distance_trip_distance_v2.PNG)
 
 Verrà ora preparato un set di dati sottocampionati (1%) per la modellazione. È possibile usare questi dati nel modulo Reader di Machine Learning.
 
@@ -685,7 +685,7 @@ Verrà ora preparato un set di dati sottocampionati (1%) per la modellazione. È
         """
         cursor.execute(queryString)
 
-        --- now insert contents of the join into the preceding internal table
+        --- now insert contents of hello join into hello preceding internal table
 
         queryString = """
         insert overwrite table nyctaxi_downsampled_dataset_testNEW
@@ -771,7 +771,7 @@ Verrà ora preparato un set di dati sottocampionati (1%) per la modellazione. È
         """
         cursor.execute(queryString)
 
-Dopo poco, è possibile vedere che i dati sono stati caricati nei cluster Hadoop:
+Dopo un periodo di tempo, è possibile visualizzare dati hello sono stati caricati nel cluster Hadoop:
 
     queryString = """
         select * from nyctaxi_downsampled_dataset limit 10;
@@ -784,50 +784,50 @@ Dopo poco, è possibile vedere che i dati sono stati caricati nei cluster Hadoop
 
 **Leggere i dati da HDI con il modulo Reader di Machine Learning**
 
-È anche possibile usare il modulo **Reader** in Machine Learning Studio per accedere al database nel cluster Hadoop. Collegare le credenziali dei cluster HDI e l'account di archiviazione di Azure per poter compilare modelli di Machine Learning usando il database nei cluster HDI.
+È inoltre possibile utilizzare hello **lettore** modulo di Machine Learning Studio tooaccess hello database in un cluster Hadoop. Collegare le credenziali di hello dei cluster HDI e Account di archiviazione Azure tooenable compilazione sta eseguendo un'operazione di machine learning i modelli di utilizzo di database in cluster HDI.
 
 ![Proprietà del modulo Reader](./media/machine-learning-data-science-vm-do-ten-things/AML_Reader_Hive.PNG)
 
-È quindi possibile visualizzare il set di dati con i punteggi:
+Hello set di dati con punteggio possono quindi essere visualizzati:
 
 ![Visualizzare il set di dati con i punteggi](./media/machine-learning-data-science-vm-do-ten-things/AML_Model_Results.PNG)
 
 ### <a name="azure-sql-data-warehouse--databases"></a>Azure SQL Data Warehouse e database
 Azure SQL Data Warehouse è un data warehouse elastico distribuito come servizio con l'esperienza di classe enterprise di SQL Server.
 
-È possibile effettuare il provisioning di Azure SQL Data Warehouse seguendo le istruzioni fornite in questo [articolo](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md). Dopo il provisioning di Azure SQL Data Warehouse, è possibile seguire questa [procedura dettagliata](machine-learning-data-science-process-sqldw-walkthrough.md) per il caricamento dei dati, l'esplorazione e la modellazione usando i dati disponibili in SQL Data Warehouse.
+È possibile eseguire il provisioning di Azure SQL Data Warehouse seguendo le istruzioni di hello fornite in questo [articolo](../sql-data-warehouse/sql-data-warehouse-get-started-provision.md). Una volta che viene effettuato il provisioning di Azure SQL Data Warehouse, è possibile utilizzare questo [procedura dettagliata](machine-learning-data-science-process-sqldw-walkthrough.md) di caricamento dei dati toodo, esplorazione e modellazione utilizzando i dati all'interno di hello SQL Data Warehouse.
 
 #### <a name="azure-cosmos-db"></a>Azure Cosmos DB
-Azure Cosmos DB è un database NoSQL sul cloud. Consente di utilizzare documenti come JSON e di archiviarli ed eseguire query su di essi.
+DB Cosmos Azure è un database NoSQL nel cloud hello. Consente si toowork con i documenti come JSON e consente toostore ed eseguire query sui documenti hello.
 
-Per accedere ad Azure Cosmos DB da DSVM, è necessario eseguire questa procedura preliminare.
+È necessario hello toodo seguenti per ogni ora passaggi tooaccess Azure Cosmos DB dagli hello DSVM.
 
 1. Installare l'SDK DocumentDB Python eseguendo ```pip install pydocumentdb``` al prompt dei comandi
 2. Creare l'account e il database Azure Cosmos DB nel [portale di Azure](https://portal.azure.com)
-3. Scaricare "Azure Cosmos DB Migration Tool" da [qui](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d) ed estrarlo nella directory desiderata
-4. Importare in Cosmos DB i dati JSON (dati sui vulcani) archiviati in un [BLOB pubblico](https://cahandson.blob.core.windows.net/samples/volcano.json) con i parametri di comando seguenti per lo strumento di migrazione, ovvero dtui.exe dalla directory in cui è stato installato Cosmos DB Migration Tool. Immettere i percorsi di origine e di destinazione con questi parametri:
+3. Scaricare "Strumento di migrazione DB Cosmos di Azure" da [qui](http://www.microsoft.com/downloads/details.aspx?FamilyID=cda7703a-2774-4c07-adcc-ad02ddc1a44d) ed estrarre tooa directory scelta
+4. Importare i dati JSON (dati volcano) archiviati in un [blob pubblici](https://cahandson.blob.core.windows.net/samples/volcano.json) in DB Cosmos con seguente comando parametri toohello strumento di migrazione (dtui.exe dalla directory hello in cui è installato lo strumento di migrazione DB Cosmos hello). Immettere percorso di origine e destinazione hello con i seguenti parametri:
    
     /s:JsonFile /s.Files:https://cahandson.blob.core.windows.net/samples/volcano.json /t:DocumentDBBulk /t.ConnectionString:AccountEndpoint=https://[DocDBAccountName].documents.azure.com:443/;AccountKey=[[KEY];Database=volcano /t.Collection:volcano1
 
-Dopo avere importato i dati è possibile passare a Jupyter e aprire il notebook denominato *DocumentDBSample* contenente il codice Python per accedere a DocumentDB ed eseguire alcune query di base. Per altre informazioni su Cosmos DB, vedere la [pagina della documentazione](https://docs.microsoft.com/azure/cosmos-db/) del servizio.
+Quando si importano dati hello, è possibile passare tooJupyter e blocco note aprire hello intitolata *DocumentDBSample* che contiene python codice tooaccess DocumentDB ed eseguire alcune query di base. Maggiori informazioni su DB Cosmos visitando servizio hello [pagina della documentazione](https://docs.microsoft.com/azure/cosmos-db/).
 
-## <a name="8-build-reports-and-dashboard-using-the-power-bi-desktop"></a>8. Compilare report e dashboard usando Power BI Desktop
-Viene ora visualizzato in Power BI il file JSON sui vulcani usato nell'esempio precedente di Cosmos DB per ottenere informazioni visive sui dati. I passaggi dettagliati sono disponibili nell' [articolo relativo a Power BI](../cosmos-db/powerbi-visualize.md). Ecco i passaggi principali:
+## <a name="8-build-reports-and-dashboard-using-hello-power-bi-desktop"></a>8. Creare report e dashboard tramite Power BI Desktop hello
+Segnalare il problema, visualizzare i file JSON Volcano hello che è stato illustrato nell'esempio sopra riportato DB Cosmos in Power BI toogain visual approfondite dati hello hello. I passaggi dettagliati sono disponibili in hello [articolo Power BI](../cosmos-db/powerbi-visualize.md). Ecco i passaggi di alto livello hello:
 
-1. Aprire Power BI Desktop ed eseguire "Recupera dati". Specificare l'URL come: https://cahandson.blob.core.windows.net/samples/volcano.json
-2. Verranno visualizzati i record JSON importati come elenco.
-3. Convertire l'elenco in una tabella in modo che Power BI possa usare gli stessi dati.
-4. Espandere le colonne facendo clic sull'icona di espansione, ovvero l'icona con "una freccia verso sinistra e una freccia verso destra" a destra della colonna.
-5. La posizione è un campo "Record". Espandere il record e selezionare solo le coordinate. La coordinata è una colonna elenco.
-6. Aggiungere una nuova colonna per convertire la colonna dell'elenco di coordinate in una colonna LatLong con valori delimitati da virgole concatenando i due elementi nel campo dell'elenco di coordinate con la formula ```Text.From([coordinates]{1})&","&Text.From([coordinates]{0})```.
-7. Convertire infine la colonna ```Elevation``` in Decimali e fare clic su **Chiudi** e **Applica**.
+1. Aprire Power BI Desktop ed eseguire "Recupera dati". Specificare l'URL come hello: https://cahandson.blob.core.windows.net/samples/volcano.json
+2. Dovrebbe essere importato come un elenco di record di hello JSON
+3. Convertire tabella tooa di hello elenco in modo che Power BI può lavorare con hello stesso
+4. Espandere le colonne di hello facendo clic su hello espandono l'icona (Buongiorno uno con l'icona di "freccia sinistra e una freccia a destra" hello in hello destra della colonna hello)
+5. La posizione è un campo "Record". Espandere i record di hello e selezionare solo le coordinate di hello. La coordinata è una colonna elenco.
+6. Aggiungere una nuova colonna tooconvert hello elenco coordinate colonna in una colonna di LatLong separata da virgole concatenazione elementi hello due nel campo elenco coordinate hello utilizzando la formula hello ```Text.From([coordinates]{1})&","&Text.From([coordinates]{0})```.
+7. Convertire infine hello ```Elevation``` tooDecimal di colonna e seleziona hello **Chiudi** e **applica**.
 
-Anziché eseguire i passaggi precedenti, è possibile incollare il codice seguente che inserisce nello script i passaggi usati nell'editor avanzato in Power BI, in modo da poter scrivere le trasformazioni dei dati in un linguaggio di query.
+Anziché passaggi precedenti, è possibile incollare hello seguente di codice che consente di generare script hello passaggi utilizzati in hello Editor avanzato in Power BI che consente le trasformazioni dei dati hello toowrite in un linguaggio di query.
 
     let
         Source = Json.Document(Web.Contents("https://cahandson.blob.core.windows.net/samples/volcano.json")),
-        #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
-        #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"Volcano Name", "Country", "Region", "Location", "Elevation", "Type", "Status", "Last Known Eruption", "id"}, {"Volcano Name", "Country", "Region", "Location", "Elevation", "Type", "Status", "Last Known Eruption", "id"}),
+        #"Converted tooTable" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+        #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted tooTable", "Column1", {"Volcano Name", "Country", "Region", "Location", "Elevation", "Type", "Status", "Last Known Eruption", "id"}, {"Volcano Name", "Country", "Region", "Location", "Elevation", "Type", "Status", "Last Known Eruption", "id"}),
         #"Expanded Location" = Table.ExpandRecordColumn(#"Expanded Column1", "Location", {"coordinates"}, {"coordinates"}),
         #"Added Custom" = Table.AddColumn(#"Expanded Location", "LatLong", each Text.From([coordinates]{1})&","&Text.From([coordinates]{0})),
         #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"Elevation", type number}})
@@ -836,33 +836,33 @@ Anziché eseguire i passaggi precedenti, è possibile incollare il codice seguen
 
 
 
-I dati sono ora inclusi nel modello di dati di Power BI. Power BI Desktop deve avere ora un aspetto simile al seguente:
+Dati hello è ora disponibile nel modello di dati di Power BI. Power BI Desktop deve avere ora un aspetto simile al seguente:
 
 ![Power BI Desktop](./media/machine-learning-data-science-vm-do-ten-things/PowerBIVolcanoData.png)
 
-È possibile avviare la compilazione di report e visualizzazioni usando il modello di dati. Per compilare un report, è possibile seguire i passaggi in questo [articolo relativo a Power BI](../cosmos-db/powerbi-visualize.md#build-the-reports) . Il risultato finale è un report simile al seguente.
+È possibile avviare la creazione di report e visualizzazioni con modello di dati hello. È possibile seguire i passaggi di hello in questo [articolo Power BI](../cosmos-db/powerbi-visualize.md#build-the-reports) toobuild un report. risultato finale Hello è un report simile al seguente hello.
 
 ![Visualizzazione report di Power BI Desktop - Connettore Power BI](./media/machine-learning-data-science-vm-do-ten-things/power_bi_connector_pbireportview2.png)
 
-## <a name="9-dynamically-scale-your-dsvm-to-meet-your-project-needs"></a>9. Ridimensionare in modo dinamico DSVM per poter soddisfare le esigenze del progetto
-È possibile aumentare e ridurre le prestazioni di DSVM per soddisfare le esigenze del progetto. Se non è necessario usare la VM la sera o nei fine settimana, è sufficiente arrestarla dal [portale di Azure](https://portal.azure.com).
+## <a name="9-dynamically-scale-your-dsvm-toomeet-your-project-needs"></a>9. Applicare la scalabilità dinamicamente il toomeet DSVM che richiesto dal progetto
+È possibile scalarle toomeet DSVM hello che richiesto dal progetto. Se non è necessario toouse hello VM sera hello o nei fine settimana, è possibile semplicemente arrestare hello VM da hello [portale di Azure](https://portal.azure.com).
 
 > [!NOTE]
-> Vengono addebitati i costi di calcolo se si usa solo il pulsante di arresto del sistema operativo nella macchina virtuale.  
+> Essere addebitati anche se si utilizza solo pulsante di arresto del sistema operativo hello in hello macchina virtuale.  
 > 
 > 
 
-Se è necessario gestire analisi su larga scala e si ha bisogno di più CPU e/o memoria e/o capacità disco, è possibile trovare un'ampia scelta di dimensioni di macchina virtuale in termini di core CPU, capacità di memoria e tipi di disco (incluse le unità SSD), che soddisfano qualsiasi esigenza di calcolo e di budget. L'elenco completo di VM con i rispettivi prezzi di calcolo orario è disponibile nella pagina [Prezzi di Macchine virtuali di Azure](https://azure.microsoft.com/pricing/details/virtual-machines/) .
+Se è necessario toohandle analisi su larga scala e necessario aumentare la capacità della CPU, memoria o disco sono disponibili diverse dimensioni delle macchine Virtuali in termini di core CPU, memoria e tipi di disco (incluse le unità SSD) che soddisfano le esigenze bilancio e il calcolo. Hello elenco completo delle macchine virtuali con il piano tariffario calcolo oraria è disponibile in hello [prezzi delle macchine virtuali di Azure](https://azure.microsoft.com/pricing/details/virtual-machines/) pagina.
 
-Allo stesso modo, se le esigenze di capacità di elaborazione della VM diminuiscono, ad esempio se si è spostato un carico di lavoro principale in un cluster Hadoop o Spark, è possibile passare a un piano inferiore per il cluster dal [portale di Azure](https://portal.azure.com) tramite le impostazioni dell'istanza della VM. Ecco uno screenshot.
+Analogamente, se si riduce la necessità di capacità di elaborazione di macchina virtuale (ad esempio: è stato spostato tooa un carico di lavoro principali Hadoop o in un cluster Spark), è possibile scalare verso il basso cluster hello da hello [portale di Azure](https://portal.azure.com) e in uscita toohello impostazioni della macchina virtuale istanza. Ecco uno screenshot.
 
 ![Impostazioni dell'istanza della VM](./media/machine-learning-data-science-vm-do-ten-things/VMScaling.PNG)
 
 ## <a name="10-install-additional-tools-on-your-virtual-machine"></a>10. Installare strumenti aggiuntivi nella macchina virtuale
-Sono stati inclusi in un pacchetto diversi strumenti che consentono di soddisfare molte delle comuni esigenze di analisi dei dati e di risparmiare sia tempo, perché si evita di dover installare e configurare gli ambienti uno alla volta, sia denaro, perché si pagano solo le risorse usate.
+È stato incluso nel pacchetto di diversi strumenti che si ritiene che sono in grado di tooaddress numerose esigenze di analitica dei dati comuni hello e che deve risparmiare tempo evitando con tooinstall e configurare gli ambienti uno alla volta e risparmiare denaro pagando solo per le risorse utilizzare.
 
-È possibile sfruttare altri servizi dati e di analisi di Azure, come illustrato in questo articolo, per migliorare l'ambiente di analisi. È possibile che in alcuni casi siano necessari strumenti aggiuntivi, inclusi alcuni strumenti proprietari di terze parti. L'accesso amministrativo completo alla macchina virtuale consente di installare i nuovi strumenti necessari. È anche possibile installare pacchetti aggiuntivi in Python e in R non preinstallati. Per Python è possibile usare ```conda``` o ```pip```. Per R è possibile usare ```install.packages()``` nella console di R oppure usare l'IDE e scegliere "**Packages** -> **Install Packages...**" (Pacchetti -> Installa pacchetti...).
+È possibile usare altri dati di Azure e servizi analitica profilato in questo articolo di tooenhance ambiente analitica. È possibile che in alcuni casi siano necessari strumenti aggiuntivi, inclusi alcuni strumenti proprietari di terze parti. Disporre dell'accesso amministrativo completo in hello macchina virtuale tooinstall nuovi strumenti che necessari. È anche possibile installare pacchetti aggiuntivi in Python e in R non preinstallati. Per Python è possibile usare ```conda``` o ```pip```. R è possibile utilizzare hello ```install.packages()``` in hello R console oppure utilizzare hello IDE e scegliere "**pacchetti** -> **pacchetti di installazione...** ".
 
 ## <a name="summary"></a>Riepilogo
-Queste sono solo alcune delle attività che è possibile eseguire nella macchina virtuale per l'analisi scientifica dei dati di Microsoft. Ce ne sono molte altre che è possibile eseguire per renderla un ambiente di analisi efficace.
+Questi sono solo alcune delle operazioni di hello che è possibile eseguire nella macchina virtuale di Microsoft Data Science hello. Sono disponibili molte altre operazioni che è possibile eseguire toomake è un ambiente analitica effettivo.
 

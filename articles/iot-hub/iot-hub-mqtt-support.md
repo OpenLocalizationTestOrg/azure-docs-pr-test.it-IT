@@ -1,6 +1,6 @@
 ---
-title: Informazioni sul supporto MQTT dell'hub IoT di Azure | Documentazione Microsoft
-description: Guida per sviluppatori - Supporto per dispositivi che si connettono a un endpoint che usa dispositivi dell'hub IoT con il protocollo MQTT. Sono incluse informazioni sul supporto MQTT integrato in Azure IoT SDK per dispositivi.
+title: supporto di Azure IoT Hub MQTT aaaUnderstand | Documenti Microsoft
+description: Sviluppatore Guida - supporto per i dispositivi si connettono a endpoint che utilizzano il dispositivo di IoT Hub utilizzando tooan hello protocollo MQTT. Include informazioni sul supporto MQTT integrato in hello Azure IoT dispositivo SDK.
 services: iot-hub
 documentationcenter: .net
 author: kdotchkoff
@@ -15,29 +15,29 @@ ms.workload: na
 ms.date: 07/11/2017
 ms.author: kdotchko
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: eab70c1aa9c49a137c2ac1012449d57915fb0d27
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e461687963138987acdf1f4e0e34c453744ea191
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="communicate-with-your-iot-hub-using-the-mqtt-protocol"></a>Comunicare con l'hub IoT tramite il protocollo MQTT
+# <a name="communicate-with-your-iot-hub-using-hello-mqtt-protocol"></a>Comunicare con l'hub IoT protocollo MQTT hello
 
-L'hub IoT consente ai dispositivi di comunicare con gli endpoint dei dispositivi dell'hub IoT usando il protocollo [MQTT v3.1.1][lnk-mqtt-org] sulla porta 8883 o MQTT v3.1.1 con protocollo WebSocket sulla porta 443. L'hub IoT richiede che tutte le comunicazioni del dispositivo siano protette tramite TLS/SSL (pertanto l'hub IoT non supporta connessioni non protette sulla porta 1883).
+IoT Hub consente toocommunicate dispositivi con hello Hub IoT dispositivo endpoint che utilizzano hello [MQTT v3.1.1] [ lnk-mqtt-org] protocollo sulla porta 8883 o v3.1.1 MQTT attraverso il protocollo WebSocket sulla porta 443. IoT Hub richiede tutti toobe di comunicazione dispositivo protetta tramite TLS/SSL (di conseguenza, IoT Hub non supporta le connessioni non sicure attraverso la porta 1883).
 
-## <a name="connecting-to-iot-hub"></a>Connessione all'hub IoT
+## <a name="connecting-tooiot-hub"></a>Connessione tooIoT Hub
 
-Un dispositivo può usare il protocollo MQTT per connettersi a un hub IoT usando le librerie disponibili negli [Azure IoT SDK][lnk-device-sdks] o direttamente con il protocollo MQTT.
+Un dispositivo può usare hub IoT di hello MQTT protocollo tooconnect tooan tramite l'utilizzo delle librerie di hello in hello [Azure IoT SDK] [ lnk-device-sdks] o utilizzando il protocollo MQTT hello direttamente.
 
-## <a name="using-the-device-sdks"></a>Uso degli SDK per dispositivi
+## <a name="using-hello-device-sdks"></a>Utilizzo di hello dispositivo SDK
 
-Gli [SDK per dispositivi][lnk-device-sdks] che supportano il protocollo MQTT sono disponibili per Java, Node.js, C, C# e Python. Gli SDK per dispositivi usano la stringa di connessione dell'hub IoT standard per stabilire una connessione a un hub IoT. Per usare il protocollo MQTT, il parametro del protocollo del client deve essere impostato su **MQTT**. Per impostazione predefinita, gli SDK per dispositivi si connettono a un hub IoT con il flag **CleanSession** impostato su **0** e usano **QoS 1** per lo scambio di messaggi con l'hub IoT.
+[Dispositivo SDK] [ lnk-device-sdks] tale hello supporto protocollo MQTT sono disponibili per Java, Node.js, C, c# e Python. uso del dispositivo di Hello SDK hello standard IoT Hub connessione stringa tooestablish un hub IoT tooan di connessione. protocollo MQTT toouse hello, hello client protocollo parametro deve essere impostato troppo**MQTT**. Per impostazione predefinita, il dispositivo di hello SDK connettersi tooan IoT Hub con hello **CleanSession** flag impostato troppo**0** e utilizzare **1 QoS** per scambio di messaggi con l'hub IoT hello.
 
-Quando un dispositivo è connesso a un hub IoT, gli SDK per dispositivi forniscono i metodi che consentono al dispositivo di inviare messaggi a un hub IoT e di riceverne.
+Quando un dispositivo è connesso tooan hub IoT, dispositivo hello SDK forniscono metodi che consentono di messaggi di toosend dispositivo hello tooand ricevere messaggi da un hub IoT.
 
-La tabella seguente include i collegamenti a esempi di codice per ogni linguaggio supportato e specifica il parametro da usare per stabilire una connessione all'hub IoT con il protocollo MQTT.
+Hello nella tabella seguente sono contenuti collegamenti toocode esempi per ogni lingua supportata e specifica hello parametro toouse tooestablish tooIoT una connessione Hub utilizzando il protocollo MQTT hello.
 
-| Linguaggio | Parametro del protocollo |
+| Lingua | Parametro del protocollo |
 | --- | --- |
 | [Node.js][lnk-sample-node] |azure-iot-device-mqtt |
 | [Java][lnk-sample-java] |IotHubClientProtocol.MQTT |
@@ -45,78 +45,78 @@ La tabella seguente include i collegamenti a esempi di codice per ogni linguaggi
 | [C#][lnk-sample-csharp] |TransportType.Mqtt |
 | [Python][lnk-sample-python] |IoTHubTransportProvider.MQTT |
 
-### <a name="migrating-a-device-app-from-amqp-to-mqtt"></a>Migrazione di un'app per dispositivo da AMQP a MQTT
+### <a name="migrating-a-device-app-from-amqp-toomqtt"></a>Migrazione di un'app di dispositivo da tooMQTT AMQP
 
-Se si usano gli [SDK per dispositivi][lnk-device-sdks], per passare da AMQP a MQTT è necessario modificare il parametro del protocollo nell'inizializzazione client come indicato in precedenza.
+Se si utilizza hello [dispositivo SDK][lnk-device-sdks], il passaggio da Usa AMQP tooMQTT, è necessario modificare il parametro di protocollo hello nell'inizializzazione del client hello come indicato in precedenza.
 
-Quando si esegue questa operazione, controllare gli elementi seguenti:
+In tal caso, verificare che hello toocheck seguenti elementi:
 
-* AMQP restituisce errori per diverse condizioni, mentre MQTT termina la connessione. Di conseguenza, la logica di gestione delle eccezioni potrebbe richiedere alcune modifiche.
-* MQTT non supporta le operazioni di *rifiuto* quando si ricevono [messaggi da cloud a dispositivo][lnk-messaging]. Se l'app back-end deve ricevere una risposta dall'app per dispositivo, considerare la possibilità di usare [metodi diretti][lnk-methods].
+* AMQP restituisce gli errori per diverse condizioni, mentre MQTT termina la connessione hello. Di conseguenza, la logica di gestione delle eccezioni potrebbe richiedere alcune modifiche.
+* Non supporta hello MQTT *rifiutare* operazioni durante la ricezione [messaggi da cloud a dispositivo][lnk-messaging]. Se l'app back-end deve tooreceive una risposta da app per dispositivi hello, è consigliabile utilizzare [diretta metodi][lnk-methods].
 
-## <a name="using-the-mqtt-protocol-directly"></a>Uso del protocollo MQTT direttamente
-Se un dispositivo non può usare gli SDK per dispositivi, può comunque connettersi agli endpoint pubblici del dispositivo tramite il protocollo MQTT sulla porta 8883. Nel pacchetto **CONNECT** il dispositivo deve usare i valori seguenti:
+## <a name="using-hello-mqtt-protocol-directly"></a>Protocollo hello MQTT direttamente
+Se un dispositivo non è possibile usare il dispositivo di hello SDK, è possibile connettersi ancora gli endpoint pubblici dispositivo toohello protocollo MQTT hello sulla porta 8883. In hello **CONNETTI** dispositivo hello pacchetto deve utilizzare hello seguenti valori:
 
-* Per il campo **ClientId** usare **deviceId**.
-* Per il campo **Username** usare `{iothubhostname}/{device_id}/api-version=2016-11-14`, dove {iothubhostname} rappresenta il record CName completo dell'hub IoT.
+* Per hello **ClientId** campo, utilizzare hello **deviceId**.
+* Per hello **Username** campo, utilizzare `{iothubhostname}/{device_id}/api-version=2016-11-14`, dove {iothubhostname} è hello CName completo dell'hub IoT hello.
 
-    Ad esempio, se il nome dell'hub IoT è **contoso.azure-devices.net** e il nome del dispositivo è **MyDevice01**, il campo **Username** completo deve contenere `contoso.azure-devices.net/MyDevice01/api-version=2016-11-14`.
-* Per il campo **Password** usare un token di firma di accesso condiviso. Il formato del token di firma di accesso condiviso è identico a quello per i protocolli HTTP e AMQP:<br/>`SharedAccessSignature sig={signature-string}&se={expiry}&sr={URL-encoded-resourceURI}`.
+    Ad esempio, se hello nome dell'hub IoT è **contoso.azure devices.net** e nome hello del dispositivo è **MyDevice01**, hello completo **Username** campo deve contenere `contoso.azure-devices.net/MyDevice01/api-version=2016-11-14`.
+* Per hello **Password** campo, utilizzare un token di firma di accesso condiviso. formato Hello del token di firma di accesso condiviso è hello hello stesso per entrambi hello HTTP e protocolli AMQP:<br/>`SharedAccessSignature sig={signature-string}&se={expiry}&sr={URL-encoded-resourceURI}`.
 
-    Per altre informazioni su come generare i token di firma di accesso condiviso, vedere la sezione sui dispositivi nell'articolo [Uso dei token di sicurezza dell'hub IoT][lnk-sas-tokens].
+    Per ulteriori informazioni su come toogenerate i token di firma di accesso condiviso, vedere la sezione di dispositivo di hello della [i token di sicurezza tramite l'IoT Hub][lnk-sas-tokens].
 
-    Durante il test è anche possibile usare lo strumento [Device Explorer][lnk-device-explorer] per generare rapidamente un token di firma di accesso condiviso da copiare e incollare nel codice:
+    Durante il test, è inoltre possibile utilizzare hello [Esplora dispositivo] [ lnk-device-explorer] tooquickly strumento generare un token di firma di accesso condiviso che è possibile copiare e incollare nel codice:
 
-  1. Andare alla scheda **Management** (Gestione) di **Device Explorer**.
+  1. Passare toohello **Management** scheda **Esplora dispositivo**.
   2. Fare clic su **SAS Token** in alto a destra.
-  3. In **SASTokenForm** selezionare il dispositivo nell'elenco a discesa **DeviceID**. Impostare il valore **TTL**.
-  4. Fare clic su **Generate** per creare il token.
+  3. In **SASTokenForm**, selezionare il dispositivo in hello **DeviceID** elenco a discesa. Impostare il valore **TTL**.
+  4. Fare clic su **genera** toocreate il token.
 
-     Il token di firma di accesso condiviso generato ha questa struttura: `HostName={your hub name}.azure-devices.net;DeviceId=javadevice;SharedAccessSignature=SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
+     token di firma di accesso condiviso generata Hello ha questa struttura: `HostName={your hub name}.azure-devices.net;DeviceId=javadevice;SharedAccessSignature=SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
 
-     La porzione di questo token da usare come campo **Password** per connettersi usando MQTT è: `SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
+     parte di questo token toouse come hello Hello **Password** è tooconnect campo utilizzando MQTT: `SharedAccessSignature sr={your hub name}.azure-devices.net%2Fdevices%2FMyDevice01%2Fapi-version%3D2016-11-14&sig=vSgHBMUG.....Ntg%3d&se=1456481802`.
 
-Per i pacchetti di connessione e disconnessione di MQTT l'hub IoT genera un evento nel canale **Monitoraggio operazioni** con ulteriori informazioni in grado di contribuire a risolvere i problemi di connettività.
+Per MQTT connettere e disconnettere i pacchetti, IoT Hub genera un evento su hello **operazioni di monitoraggio** canale con informazioni aggiuntive che consentono di problemi di connettività tootroubleshoot.
 
 ### <a name="sending-device-to-cloud-messages"></a>Invio di messaggi da dispositivo a cloud
 
-Dopo avere stabilito una connessione, un dispositivo può inviare messaggi all'hub IoT usando `devices/{device_id}/messages/events/` o `devices/{device_id}/messages/events/{property_bag}` come **nome di argomento**. L'elemento `{property_bag}` consente al dispositivo di inviare messaggi con proprietà aggiuntive in un formato con codifica URL. Ad esempio:
+Dopo aver apportato una connessione ha esito positivo, un dispositivo può inviare messaggi tooIoT Hub utilizzando `devices/{device_id}/messages/events/` o `devices/{device_id}/messages/events/{property_bag}` come un **il nome dell'argomento**. Hello `{property_bag}` elemento consente i messaggi di hello dispositivo toosend con proprietà aggiuntive in un formato con codifica url. ad esempio:
 
 ```
 RFC 2396-encoded(<PropertyName1>)=RFC 2396-encoded(<PropertyValue1>)&RFC 2396-encoded(<PropertyName2>)=RFC 2396-encoded(<PropertyValue2>)…
 ```
 
 > [!NOTE]
-> Questo elemento `{property_bag}`usa la stessa codifica delle stringhe di query nel protocollo HTTP.
+> Questo `{property_bag}` elemento Usa hello stessa codifica per le stringhe di query nel protocollo hello HTTP.
 >
 >
 
-L'app per dispositivo può usare anche `devices/{device_id}/messages/events/{property_bag}` come **nome argomento Will** per definire *messaggi Will* da inoltrare come messaggio di telemetria.
+app per dispositivi Hello inoltre è possibile utilizzare `devices/{device_id}/messages/events/{property_bag}` come hello **il nome dell'argomento verrà** toodefine *i messaggi di* toobe inoltrati come un messaggio di dati di telemetria.
 
-- L'hub IoT non supporta i messaggi di QoS 2. Quando un'app per dispositivo pubblica un messaggio con **QoS 2**, l'hub IoT chiude la connessione di rete.
-- L'hub IoT non rende persistenti i messaggi di mantenimento. Se un dispositivo invia un messaggio con il flag **RETAIN** impostato su 1, l'hub IoT aggiunge al messaggio la proprietà dell'applicazione **x-opt-retain**. In tal caso, anziché rendere persistente il messaggio di mantenimento, l'hub IoT passa invece all'app back-end.
-- L'hub IoT supporta solo una connessione MQTT attiva per ogni dispositivo. Qualsiasi nuova connessione MQTT per conto dello stesso ID di dispositivo causa la perdita della connessione esistente da parte dell'hub IoT.
+- L'hub IoT non supporta i messaggi di QoS 2. Se un'app dispositivo pubblica un messaggio con **QoS 2**, IoT Hub chiude la connessione di rete hello.
+- L'hub IoT non rende persistenti i messaggi di mantenimento. Se un dispositivo invia un messaggio con hello **MANTIENI** too1 impostato, l'IoT Hub aggiunge hello **x-opt-conserva** messaggio toohello di proprietà dell'applicazione. In questo caso, anziché salvare in modo permanente hello mantenere messaggio, l'IoT Hub passa toohello back-end app.
+- L'hub IoT supporta solo una connessione MQTT attiva per ogni dispositivo. Qualsiasi nuova connessione MQTT per conto di hello lo stesso ID dispositivo provoca l'IoT Hub toodrop hello esistente.
 
 Per altre informazioni, vedere [Guida per gli sviluppatori sulla messaggistica][lnk-messaging].
 
 ### <a name="receiving-cloud-to-device-messages"></a>Ricezione di messaggi da cloud a dispositivo
 
-Per ricevere messaggi dall'hub IoT, un dispositivo deve eseguire la sottoscrizione con `devices/{device_id}/messages/devicebound/#` come **filtro di argomento**. Il carattere jolly a più livelli **#** nel filtro argomento viene utilizzato solo per consentire al dispositivo di ricevere proprietà aggiuntive nel nome dell'argomento. L'hub IoT on consente l'utilizzo di caratteri jolly **#** o **?** per il filtro di argomenti secondari. Poiché l'hub IoT non è un broker di messaggistica di pubblicazione e sottoscrizione generico, supporta solo i nomi di argomento e i filtri di argomento documentati .
+i messaggi tooreceive dall'IoT Hub, un dispositivo deve eseguire la sottoscrizione con `devices/{device_id}/messages/devicebound/#` come un **filtro argomento**. carattere jolly a più livelli di Hello  **#**  in hello argomento filtro viene utilizzato solo tooallow hello proprietà aggiuntive del dispositivo tooreceive nel nome di argomento hello. IoT Hub non consente l'utilizzo di hello di hello  **#**  o **?** per il filtro di argomenti secondari. Poiché l'IoT Hub non è un broker di messaggistica di pubblicazione-sottoscrizione generale, supporta solo nomi di argomento hello documentato e filtri di argomento.
 
-Il dispositivo non riceverà i messaggi dall'hub IoT prima di aver effettuato la sottoscrizione all'endpoint del dispositivo specifico, rappresentato dal filtro argomento `devices/{device_id}/messages/devicebound/#`. Dopo aver stabilito la sottoscrizione correttamente, il dispositivo inizierà a ricevere solo messaggi da cloud a dispositivo che gli sono stati inviati dopo la sottoscrizione. Se il dispositivo si connette con il flag **CleanSession** impostato su **0**, la sottoscrizione sarà mantenuta tra sessioni diverse. In questo caso, alla connessione successiva con **CleanSession 0** il dispositivo riceverà i messaggi in sospeso che gli sono stati inviati mentre era disconnesso. Se il dispositivo usa il flag **CleanSession** impostato su **1** tuttavia, non riceverà i messaggi dall'hub IoT fino a quando non si registra presso l'endpoint del dispositivo.
+Hello dispositivo non ricevere messaggi dall'IoT Hub, fino a quando non completata che ha sottoscritto endpoint specifico del dispositivo tooits, rappresentato da hello `devices/{device_id}/messages/devicebound/#` filtro argomento. Dopo aver stabilito sottoscrizione ha esito positivo, il dispositivo di hello avvia la ricezione dei messaggi solo cloud a dispositivo che sono stati inviati tooit volta hello di sottoscrizione hello. Se si connette il dispositivo hello con **CleanSession** flag impostato troppo**0**, sottoscrizione hello viene mantenuto tra sessioni diverse. In questo caso, hello alla successiva connessione con **CleanSession 0** dispositivo hello riceve messaggi in sospeso che sono stati inviati tooit mentre è stato disconnesso. Se il dispositivo hello Usa **CleanSession** flag impostato troppo**1** , tuttavia, non riceve i messaggi dall'IoT Hub fino a quando non sottoscrive tooits dispositivo endpoint.
 
-L'hub IoT recapita i messaggi con il **nome di argomento** `devices/{device_id}/messages/devicebound/` o `devices/{device_id}/messages/devicebound/{property_bag}` se sono presenti proprietà dei messaggi. `{property_bag}` contiene coppie chiave/valore con codifica URL di proprietà dei messaggi. Solo le proprietà dell'applicazione e le proprietà di sistema configurabili dall'utente, ad esempio **messageId** o **correlationId**, sono incluse nel contenitore delle proprietà. I nomi delle proprietà di sistema hanno il prefisso **$**. Le proprietà dell'applicazione usano il nome della proprietà originale senza il prefisso.
+IoT Hub recapita i messaggi con hello **il nome dell'argomento** `devices/{device_id}/messages/devicebound/`, o `devices/{device_id}/messages/devicebound/{property_bag}` se sono presenti eventuali proprietà di messaggio. `{property_bag}` contiene coppie chiave/valore con codifica URL di proprietà dei messaggi. Solo le proprietà dell'applicazione e le proprietà di sistema definibile dall'utente (ad esempio **messageId** o **correlationId**) sono inclusi nel contenitore delle proprietà di hello. I nomi di proprietà di sistema hanno prefisso hello  **$** , le proprietà dell'applicazione utilizzano hello nome della proprietà originale senza il prefisso.
 
-Quando un'app del dispositivo esegue una sottoscrizione a un argomento con **QoS 2**, l'hub IoT concede il livello QoS 1 massimo nel pacchetto **SUBACK**. Successivamente, l'hub IoT invierà i messaggi al dispositivo tramite QoS 1.
+Quando un'app dispositivo sottoscrive argomento tooa con **QoS 2**, IoT Hub concede massima QoS livello 1 in hello **SUBACK** pacchetto. Successivamente, l'IoT Hub recapita dispositivo toohello messaggi con QoS 1.
 
 ### <a name="retrieving-a-device-twins-properties"></a>Recupero delle proprietà dei dispositivi gemelli
 
-Un dispositivo effettua la sottoscrizione a `$iothub/twin/res/#` per ricevere le risposte dell'operazione. Invia quindi un messaggio vuoto all'argomento `$iothub/twin/GET/?$rid={request id}`, con un valore popolato per **request id**. Il servizio invierà quindi un messaggio di risposta con i dati del dispositivo gemello nell'argomento `$iothub/twin/res/{status}/?$rid={request id}`, usando lo stesso **ID richiesta** della richiesta.
+Innanzitutto, un dispositivo sottoscrive troppo`$iothub/twin/res/#`, le risposte dell'operazione di tooreceive hello. Quindi, invia un messaggio vuoto di tootopic `$iothub/twin/GET/?$rid={request id}`, con un valore popolato per **id richiesta**. servizio hello invia un messaggio di risposta contenente i dati di un doppio dispositivo hello in argomento `$iothub/twin/res/{status}/?$rid={request id}`, utilizzando hello stesso  **id richiesta** come richiesta hello.
 
 L'ID richiesta può essere qualsiasi valore valido per la proprietà di un messaggio, come descritto nella [Guida per gli sviluppatori sulla messaggistica dell'hub IoT][lnk-messaging], e lo stato viene convalidato come valore intero.
-Il corpo della risposta contiene la sezione delle proprietà del dispositivo gemello:
+corpo della risposta Hello contiene sezione proprietà hello doppi dispositivo hello:
 
-Il corpo della voce del registro delle identità sarà limitato al membro "properties", ad esempio:
+corpo Hello della voce del Registro di sistema di identità hello limitata membro "proprietà" toohello, ad esempio:
 
         {
             "properties": {
@@ -132,7 +132,7 @@ Il corpo della voce del registro delle identità sarà limitato al membro "prope
             }
         }
 
-I possibili codici di stato sono i seguenti:
+Hello codici di stato possibili sono:
 
 |Stato | Descrizione |
 | ----- | ----------- |
@@ -144,23 +144,23 @@ Per altre informazioni, vedere la [Guida per gli sviluppatori sui dispositivi ge
 
 ### <a name="update-device-twins-reported-properties"></a>Aggiornare le proprietà segnalate di un dispositivo gemello
 
-La sequenza seguente descrive in che modo un dispositivo aggiorna le proprietà dichiarate in un dispositivo gemello nell'hub IoT:
+Hello sequenza seguente descrive la modalità di aggiornamento hello in un dispositivo di proprietà in un doppio dispositivo hello nell'IoT Hub segnalato:
 
-1. Un dispositivo deve prima sottoscrivere l'argomento `$iothub/twin/res/#` per ricevere le risposte dell'operazione dall'hub IoT.
+1. Un dispositivo deve prima sottoscrizione toohello `$iothub/twin/res/#` le risposte dell'operazione di argomento tooreceive hello dall'IoT Hub.
 
-1. Un dispositivo invia un messaggio che contiene l'aggiornamento di un dispositivo gemello per l'argomento `$iothub/twin/PATCH/properties/reported/?$rid={request id}`. Questo messaggio include un valore **request id**.
+1. Un dispositivo invia un messaggio che contiene hello dispositivo un doppio update toohello `$iothub/twin/PATCH/properties/reported/?$rid={request id}` argomento. Questo messaggio include un valore **request id**.
 
-1. Il servizio invia un messaggio di risposta che contiene il nuovo valore ETag per la raccolta di proprietà dichiarate sull'argomento `$iothub/twin/res/{status}/?$rid={request id}`. Questo messaggio di risposta usa lo stesso valore **request id** della richiesta.
+1. Hello servizio, quindi invia un messaggio di risposta contenente hello nuovo valore ETag per la raccolta di proprietà riportato su un argomento di hello `$iothub/twin/res/{status}/?$rid={request id}`. Questo messaggio di risposta utilizza hello stesso **id richiesta** come richiesta hello.
 
-Il corpo del messaggio di richiesta contiene un documento JSON che specifica nuovi valori per le proprietà segnalate. Non è possibile modificare altre proprietà o altri metadati.
-Ogni membro nel documento JSON aggiorna o aggiunge il membro corrispondente nel documento del dispositivo gemello. Un membro impostato su `null` elimina il membro dall'oggetto contenitore. Ad esempio:
+corpo del messaggio Hello richiesta contiene un documento JSON, che fornisce nuovi valori per le proprietà segnalate (nessuna altra proprietà o metadati possono essere modificato).
+Ogni membro nel documento JSON hello aggiorna o aggiunta un membro corrispondente hello documento del hello dispositivo disponibilità di una copia. Un membro è stato impostato troppo`null`, eliminazioni hello hello contenente l'oggetto membro. ad esempio:
 
         {
             "telemetrySendFrequency": "35m",
             "batteryLevel": 60
         }
 
-I possibili codici di stato sono i seguenti:
+Hello codici di stato possibili sono:
 
 |Stato | Descrizione |
 | ----- | ----------- |
@@ -173,45 +173,45 @@ Per altre informazioni, vedere la [Guida per gli sviluppatori sui dispositivi ge
 
 ### <a name="receiving-desired-properties-update-notifications"></a>Ricezione delle notifiche di aggiornamento delle proprietà desiderate
 
-Quando un dispositivo è connesso, l'hub IoT invia notifiche all'argomento `$iothub/twin/PATCH/properties/desired/?$version={new version}`, con il contenuto dell'aggiornamento eseguito dal back-end della soluzione. Ad esempio:
+Quando è connesso un dispositivo, l'IoT Hub invia argomento toohello notifiche `$iothub/twin/PATCH/properties/desired/?$version={new version}`, che includono il contenuto di hello di hello aggiornamento eseguita dal back-end di hello soluzione. ad esempio:
 
         {
             "telemetrySendFrequency": "5m",
             "route": null
         }
 
-Come per gli aggiornamenti delle proprietà, i valori `null` indicano l'eliminazione del membro dell'oggetto JSON.
+Come per gli aggiornamenti delle proprietà, `null` indica i valori che hello JSON dell'oggetto membro eliminato.
 
 
 > [!IMPORTANT] 
-> L'hub IoT genera notifiche di modifica solo quando i dispositivi sono connessi. Assicurarsi di implementare il [flusso di riconnessione del dispositivo][lnk-devguide-twin-reconnection] per mantenere la sincronizzazione delle proprietà desiderate tra l'hub IoT e l'app per dispositivo.
+> L'hub IoT genera notifiche di modifica solo quando i dispositivi sono connessi. Verificare che hello tooimplement [flusso riconnessione dispositivo] [ lnk-devguide-twin-reconnection] tookeep hello desiderato la sincronizzazione tra l'IoT Hub e hello app per dispositivi di proprietà.
 
 Per altre informazioni, vedere la [Guida per gli sviluppatori sui dispositivi gemelli][lnk-devguide-twin].
 
-### <a name="respond-to-a-direct-method"></a>Rispondere a un metodo diretto
+### <a name="respond-tooa-direct-method"></a>Rispondere tooa dirette del metodo
 
-Un dispositivo deve effettuare la sottoscrizione a `$iothub/methods/POST/#`. L'hub IoT invia le richieste di metodo all'argomento `$iothub/methods/POST/{method name}/?$rid={request id}` con un codice JSON valido o un corpo vuoto.
+Innanzitutto, un dispositivo ha toosubscribe troppo`$iothub/methods/POST/#`. IoT Hub invia l'argomento del metodo richieste toohello `$iothub/methods/POST/{method name}/?$rid={request id}`, con un corpo vuoto o un JSON valido.
 
-Per rispondere, il dispositivo invia all'argomento `$iothub/methods/res/{status}/?$rid={request id}` un messaggio con un codice JSON valido o un corpo vuoto, dove l'**ID della richiesta** deve corrispondere al valore presente nel messaggio della richiesta e lo **stato** deve essere un numero intero.
+toorespond, dispositivo hello invia un messaggio con un JSON valido o di un corpo vuoto toohello argomento `$iothub/methods/res/{status}/?$rid={request id}`, dove **id richiesta** è toomatch hello uno nel messaggio di richiesta, hello e **stato** ha toobe un numero intero .
 
 Per altre informazioni, vedere la [Guida per gli sviluppatori sui metodi diretti][lnk-methods].
 
-### <a name="additional-considerations"></a>Ulteriori considerazioni
+### <a name="additional-considerations"></a>Considerazioni aggiuntive
 
-Se è necessario personalizzare il comportamento del protocollo MQTT sul lato cloud, è infine consigliabile vedere [Gateway del protocollo IoT Azure][lnk-azure-protocol-gateway], che descrive come distribuire un gateway del protocollo personalizzato con prestazioni elevate che si interfaccia direttamente con l'hub IoT. Il gateway del protocollo IoT Azure consente di personalizzare il protocollo del dispositivo per supportare le distribuzioni di MQTT cosiddette "brownfield" o altri protocolli personalizzati. Questo approccio richiede tuttavia l'esecuzione e la gestione di un gateway di protocollo personalizzato.
+In considerazione finale, se è necessario comportamento del protocollo MQTT hello toocustomize sul lato cloud hello, è necessario rivedere hello [gateway del protocollo Azure IoT] [ lnk-azure-protocol-gateway] che consente ad alte prestazioni toodeploy gateway di protocollo personalizzato che interagisce direttamente con l'IoT Hub. gateway del protocollo Hello Azure IoT consente di toocustomize hello dispositivo protocollo tooaccommodate brownfield MQTT le distribuzioni o altri protocolli personalizzati. Questo approccio richiede tuttavia l'esecuzione e la gestione di un gateway di protocollo personalizzato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sul protocollo MQTT, vedere la [documentazione di MQTT][lnk-mqtt-docs].
+toolearn ulteriori informazioni su protocollo MQTT hello, vedere hello [documentazione MQTT][lnk-mqtt-docs].
 
-Per altre informazioni sulla pianificazione della distribuzione dell'hub IoT, vedere:
+toolearn ulteriori informazioni sulla pianificazione della distribuzione di IoT Hub, vedere:
 
 * [Catalogo dei dispositivi Azure Certified per IoT][lnk-devices]
 * [Supportare protocolli aggiuntivi][lnk-protocols]
 * [Eseguire il confronto con Hub eventi][lnk-compare]
 * [Scalabilità, disponibilità elevata e ripristino di emergenza][lnk-scaling]
 
-Per altre informazioni sulle funzionalità dell'hub IoT, vedere:
+toofurther esplorare le funzionalità di hello di IoT Hub, vedere:
 
 * [Guida per gli sviluppatori dell'hub IoT][lnk-devguide]
 * [Simulazione di un dispositivo con Azure IoT Edge][lnk-iotedge]

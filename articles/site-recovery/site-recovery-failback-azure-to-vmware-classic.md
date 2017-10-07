@@ -1,6 +1,6 @@
 ---
-title: Eseguire il failback di una macchina virtuale VMware da Azure nel portale classico | Documentazione Microsoft
-description: Informazioni sul failback nel sito locale dopo il failover dei server fisici e delle macchine virtuali VMware in Azure.
+title: aaaFail nuovamente le macchine virtuali VMware da Azure nel portale classico hello | Documenti Microsoft
+description: Informazioni sulle toohello indietro nel sito locale dopo il failover di macchine virtuali VMware e server fisici tooAzure con esito negativo.
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,128 +14,128 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 06/05/2017
 ms.author: ruturajd
-ms.openlocfilehash: 82d5eb7fd13b1e9700a3e9bc2d30775e9c129749
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 80bc3ab2708a5df953c6532b353da19a4c44ac34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site-classic-portal"></a>Eseguire il failback di server fisici e macchine virtuali VMware nel sito locale (portale classico)
+# <a name="fail-back-vmware-virtual-machines-and-physical-servers-toohello-on-premises-site-classic-portal"></a>Eseguire il backup le macchine virtuali VMware e server fisici toohello nel sito locale (portale classico)
 > [!div class="op_single_selector"]
-> * [portale di Azure](site-recovery-failback-azure-to-vmware.md)
+> * [Portale di Azure](site-recovery-failback-azure-to-vmware.md)
 > * [Portale di Azure classico](site-recovery-failback-azure-to-vmware-classic.md)
-> * [Portale di Azure classico (legacy)](site-recovery-failback-azure-to-vmware-classic-legacy.md)
+> * [Portale di Azure classico (Legacy)](site-recovery-failback-azure-to-vmware-classic-legacy.md)
 >
 >
 
-Questo articolo descrive come eseguire il failback di macchine virtuali di Azure da Azure al sito locale. Seguire le istruzioni riportate in questo articolo per eseguire il failback delle macchine virtuali VMware o dei server fisici Windows/Linux dopo aver eseguito il failover dal sito locale in Azure seguendo questa [esercitazione](site-recovery-vmware-to-azure-classic.md).
+In questo articolo viene descritto come toofail eseguire il backup delle macchine virtuali di Azure da sito locale toohello Azure. Seguire le istruzioni di hello in questo articolo, quando si è pronti toofail nuovamente le macchine virtuali VMware o i server fisici Windows/Linux dopo che hai eseguito il failover da hello locale del sito tooAzure usando questa [esercitazione](site-recovery-vmware-to-azure-classic.md).
 
-## <a name="overview"></a>Overview
-Questo diagramma illustra l'architettura di failback per questo scenario.
+## <a name="overview"></a>Panoramica
+Questo diagramma mostra l'architettura di failback hello per questo scenario.
 
-Usare questa architettura quando il server di elaborazione è locale e si usa ExpressRoute.
+Utilizzare questa architettura quando il server di elaborazione di hello è locale e si usa ExpressRoute.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture.png)
 
-Usare questa architettura quando il server di elaborazione è in Azure e si dispone di una rete VPN o di una connessione ExpressRoute.
+Utilizzare questa architettura quando il server di elaborazione hello è in Azure e si dispone di una VPN o una connessione ExpressRoute.
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
 
-Per vedere l'elenco completo delle porte e il diagramma che illustra l'architettura di failback, fare riferimento all'immagine sotto
+elenco completo di hello toosee delle porte e diagramma architechture di failback hello vedere toohello immagine riportata di seguito
 
 ![](./media/site-recovery-failback-azure-to-vmware-classic/Failover-Failback.png)
 
 Funzionamento del failback:
 
-* Dopo aver eseguito il failover in Azure, eseguire il failback nel sito locale procedendo come segue:
-  * **Fase 1**: abilitare la riprotezione delle VM di Azure in modo che inizino la replica nelle macchine virtuali di VMware in esecuzione nel sito locale. Abilitando la riprotezione le macchine virtuali vengono spostate in un gruppo di protezione di failback creato automaticamente al momento della creazione del gruppo di protezione di failover originario. Se il gruppo di protezione di failover è stato aggiunto a un piano di ripristino, anche il gruppo di protezione di failback è stato aggiunto automaticamente al piano.  Durante la riprotezione viene specificato come pianificare il failback.
-  * **Fase 2**: dopo la replica delle VM di Azure nel sito locale, eseguire un failover per il failback da Azure.
-  * **Fase 3**: dopo aver eseguito il failback dei dati, abilitare la riprotezione delle macchine virtuali locali in cui è stato eseguito il failback, in modo che inizino la replica in Azure.
+* Dopo aver eseguito il failover tooAzure, non si tooyour indietro nel sito locale in alcune fasi:
+  * **Fase 1**: proteggere nuovamente hello macchine virtuali di Azure in modo che inizino a replicare le macchine virtuali tooVMware nascosto in esecuzione nel sito locale. Abilitazione di una nuova protezione Sposta hello macchina virtuale in un gruppo protezione dati di failback è stato creato automaticamente quando si originariamente creato il gruppo di protezione di hello failover. Se è stato aggiunto il piano di ripristino failover tooa gruppo protezione dati gruppo di protezione dati hello failback è stato automaticamente anche aggiunto toohello piano.  Durante la riprotezione specificare come eseguire il tooplan toofail.
+  * **Fase 2**: dopo la replica da sito locale tooyour le macchine virtuali di Azure, si esegue un'esito negativo su toofail da Azure.
+  * **Fase 3**: dopo che i dati ha eseguito nuovamente, si ricrea la protezione hello le macchine virtuali in locale che è stato eseguito il backup, in modo che inizino tooAzure di replica.
 
 
   [!VIDEO https://channel9.msdn.com/Blogs/Azure/Enhanced-VMware-to-Azure-Failback/player]
 
-### <a name="failback-to-the-original-or-alternate-location"></a>Eseguire il failback nella posizione originaria o in una posizione alternativa
-Se è stato eseguito il failover di una macchina virtuale VMware è possibile eseguire il failback nella stessa macchina virtuale di origine, se è ancora presente in locale. In questo scenario viene eseguito il failback delle sole modifiche differenziali. Si noti che:
+### <a name="failback-toohello-original-or-alternate-location"></a>Il failback toohello percorso originale o alternativo
+Se è stato eseguito il failover una VM VMware è possibile eseguire il backup toohello stessa macchina virtuale di origine se esiste ancora locale. In questo scenario solo le modifiche delta di hello non verranno eseguiti nuovamente. Si noti che:
 
-* Se è stato eseguito il failover di server fisici, il failback viene sempre eseguito in una nuova macchina virtuale VMware.
+* Se è stato eseguito il failover server fisici, quindi eseguire il failback è sempre tooa nuova VM VMware.
   * Prima di eseguire il failback di una computer fisico, ricordare che
-  * Un computer fisico protetto viene restituito come macchina virtuale dopo aver effettuato il failover da Azure in VMware.
-  * È necessario individuare almeno un server di destinazione master e gli host ESX/ESXi necessari per il failback.
-* Se si esegue il failback nella macchina virtuale originaria è necessario quanto segue:
+  * Computer fisico protetti, verrà ripristinato come una macchina virtuale durante il failover da Azure tooVMware
+  * Verificare che si scopre di almeno un server di destinazione Master insieme toowhich di host ESX/ESXi necessarie hello è necessario toofailback.
+* Se non è nuovo, è necessario toohello originale VM hello segue:
 
-  * Se la macchina virtuale è gestita da un server vCenter, l'host ESX della destinazione master deve avere accesso all'archivio dati delle macchine virtuali.
-  * Se la VM si trova in un host ESX ma non è gestita da vCenter, il relativo disco rigido deve trovarsi in un archivio dati accessibile da parte dell'host della destinazione master.
-  * Se la macchina virtuale si trova in un host ESX e non usa vCenter, è necessario completare l'individuazione dell'host ESX della destinazione master prima di abilitare la riprotezione. Questa opzione è valida anche per il failback di server fisici.
-  * Se è presente una macchina virtuale locale, è anche possibile eliminarla prima di eseguire il failback. Il failback crea quindi una nuova macchina virtuale nello stesso host dell'host ESX di destinazione master.
-* Quando si esegue il failback in una posizione alternativa i dati vengono ripristinati nello stesso archivio dati e nello stesso host ESX usati dal server di destinazione master locale.
+  * Se hello macchina virtuale è gestito da un server vCenter host ESX di destinazione Master hello necessario archivio dati di accesso toohello macchine virtuali.
+  * Se è in un host ESX hello VM ma non è gestito da vCenter quindi il disco rigido hello di hello VM deve essere in un archivio dati accessibile dall'host del MT hello.
+  * Se la macchina virtuale è in un host ESX e non utilizza vCenter è necessario completare l'individuazione dell'host ESX hello di hello MT prima ricrea la protezione. Questa opzione è valida anche per il failback di server fisici.
+  * Un'altra opzione (se hello locale esiste macchina virtuale) è toodelete prima eseguire un failback. Il failback verrà quindi creare una nuova macchina virtuale sulla hello stesso host come host ESX di destinazione master hello.
+* Quando i dati di hello failback tooan percorso alternativo sarà ripristinato toohello stesso archivio dati e hello stesso host ESX utilizzato dal server di destinazione master locale hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Per eseguire il failback di server fisici e macchine virtuali VMware, è necessario un ambiente VMware. Il failback in un server fisico non è supportato.
-* Per eseguire il failback è necessaria una rete di Azure creata al momento dell'impostazione iniziale della protezione. Il failback richiede una connessione VPN o ExpressRoute dalla rete di Azure in cui si trovano le macchine virtuali di Azure al sito locale.
-* Se le macchine virtuali in cui si vuole eseguire il failback sono gestite da un server vCenter, assicurarsi di avere le autorizzazioni necessarie per l'individuazione di macchine virtuali nei server vCenter. [Altre informazioni](site-recovery-vmware-to-azure-classic.md).
-* Se in una macchina virtuale sono presenti snapshot la riprotezione avrà esito negativo. È possibile eliminare gli snapshot o i dischi.
-* Prima di eseguire il failback è necessario creare alcuni componenti:
-  * **Creare un server di elaborazione in Azure**. Si tratta di una macchina virtuale di Azure che è necessario creare e lasciare in esecuzione durante il failback. È possibile eliminare la macchina al termine del failback.
-  * **Creare un server di destinazione master**: il server di destinazione master invia e riceve i dati di failback. Nel server di gestione creato in locale è installato un server di destinazione master per impostazione predefinita. Tuttavia, a seconda del volume di traffico sottoposto a failback, potrebbe essere necessario creare un server di destinazione master separato per il failback.
-  * Per creare un server di destinazione master aggiuntivo in esecuzione su Linux, è necessario configurare la macchina virtuale Linux prima di installare il server di destinazione master, come descritto di seguito.
-* Quando si esegue un failback, è necessario un server di configurazione locale. Durante il failback, la macchina virtuale deve esistere nel database del server di configurazione, altrimenti il failback non avrà esito positivo. Assicurarsi pertanto di pianificare backup regolari del server. In caso di emergenza, è necessario ripristinare il server con lo stesso indirizzo IP in modo che il failback funzioni.
+* È necessario un ambiente VMware in ordine toofail le macchine virtuali VMware e di server fisici. In mancanza di back-tooa server fisico non è supportata.
+* Nel toofail ordine nuovamente è necessario avere creato una rete di Azure quando si imposta inizialmente la protezione. Il failback richiede una connessione VPN o ExpressRoute da hello Azure rete in cui hello macchine virtuali di Azure sono toohello si trova nel sito locale.
+* Se le macchine virtuali hello desideri tooare di back-toofail gestiti da un server vCenter, è necessario assicurarsi di che disporre delle autorizzazioni di hello necessario per l'individuazione delle macchine virtuali in vCenter server toomake. [Altre informazioni](site-recovery-vmware-to-azure-classic.md).
+* Se in una macchina virtuale sono presenti snapshot la riprotezione avrà esito negativo. È possibile eliminare gli snapshot hello o dischi hello.
+* Prima eseguire il failback è necessario toocreate un numero di componenti:
+  * **Creare un server di elaborazione in Azure**. Si tratta di una macchina virtuale di Azure, è necessario toocreate e continuare l'esecuzione durante il failback. È possibile eliminare la macchina hello dopo aver completato il failback.
+  * **Creare un server di destinazione master**: server di destinazione master hello Invia e riceve i dati di failback. server di gestione di Hello è creata in locale dispone di un server di destinazione master installato per impostazione predefinita. A seconda di volume hello del traffico di backup non riuscito, tuttavia, potrebbe essere necessario toocreate un server di destinazione master separata per il failback.
+  * Se si desidera toocreate un server di destinazione master aggiuntive in esecuzione in Linux, è necessario tooset backup hello VM Linux prima di installare il server di destinazione master hello, come descritto di seguito.
+* Quando si esegue un failback, è necessario un server di configurazione locale. Durante il failback, macchina virtuale hello deve esistere nel database del server Configuration hello, in mancanza di cui eseguire il failback non si abbia esito positivo. Assicurarsi pertanto di pianificare backup regolari del server. In caso di emergenza, sarà necessario toorestore con hello stesso indirizzo IP in modo che funzionino failback.
 
-## <a name="set-up-the-process-server-in-azure"></a>Configurare il server di elaborazione in Azure
-È necessario installare un server di elaborazione in Azure per permettere alle macchine virtuali di Azure di rinviare i dati al server di destinazione master locale.
+## <a name="set-up-hello-process-server-in-azure"></a>Configurare il server di elaborazione hello in Azure
+È necessario tooinstall un server di elaborazione in Azure in modo da macchine virtuali di Azure hello può inviare i server di destinazione master locale tooon indietro hello dati.
 
-1. Nel portale di Site Recovery selezionare **Server di configurazione** per aggiungere un nuovo server di elaborazione.
+1. Nel portale di Site Recovery hello > **server di configurazione** selezionare tooadd un nuovo server di elaborazione.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps1.png)
-2. Specificare un nome per il server di elaborazione e immettere un nome e una password per connettersi alla macchina virtuale di Azure come amministratore. In **Server di configurazione** selezionare il server di gestione locale e specificare la rete di Azure in cui distribuire il server di elaborazione. La rete deve essere quella in cui si trovano le macchine virtuali di Azure. Specificare un indirizzo IP univoco dalla subnet selezionata e avviare la distribuzione.
+2. Specificare un nome di server di processo e immettere un nome e una password da utilizzare tooconnect toohello macchina virtuale di Azure come amministratore. In **Server di configurazione** selezionare server di gestione locale hello e specificare hello Azure in cui hello devono essere distribuiti i server di elaborazione di rete. Deve trattarsi di rete hello in cui si trovano le macchine virtuali di Azure hello. Specificare l'indirizzo IP dalla subnet selezionare hello e iniziare la distribuzione.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps2.png)
 
-   Verrà attivato un processo di distribuzione del server di elaborazione.
+   Verrà attivato un server di elaborazione hello toodeploy processo
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/ps3.png)
 
-   Dopo che il server di elaborazione è stato distribuito in Azure, è possibile accedere al server usando le credenziali specificate. Al primo accesso viene visualizzata la finestra di dialogo del server di elaborazione. Digitare l'indirizzo IP e la passphrase del server di gestione locale. Lasciare la porta 443 come impostazione predefinita. È anche possibile lasciare la porta 9443 come impostazione predefinita per la replica dei dati a meno che questa impostazione non sia stata specificamente modificata durante la configurazione del server di gestione locale.
+   Dopo aver hello server di elaborazione viene distribuito in Azure è possibile accedere utilizzando le credenziali di hello specificato. Hello al primo accesso nella finestra di dialogo server hello processo verrà eseguito. Tipo di indirizzo IP hello hello locale del server di gestione e la passphrase. Lasciare l'impostazione della porta 443 hello. È anche possibile lasciare hello porta 9443 predefinita per la replica dei dati a meno che non specificamente modificato questa impostazione quando si configura server di gestione locale hello.
 
    > [!NOTE]
-   > Il server non è visibile nelle **proprietà della macchina virtuale**, ma solo nella scheda **Server** del server di gestione in cui è stato registrato. Possono essere necessari circa 10-15 minuti perché il server di elaborazione venga visualizzato.
+   > server Hello non saranno visibili in **proprietà della macchina virtuale**. È visibile solo in hello **server** scheda hello toowhich di server di gestione è stato registrato. Può richiedere circa 10-15 minuti per hello processo server tooappear.
    >
    >
 
-## <a name="set-up-the-master-target-server-on-premises"></a>Configurare il server di destinazione master in locale
-Il server di destinazione master riceve i dati di failback. Un server di destinazione master viene installato automaticamente nel server di gestione locale, ma se si esegue il failback di una grande quantità di dati potrebbe essere necessario configurare un server di destinazione master aggiuntivo. Procedere come segue:
+## <a name="set-up-hello-master-target-server-on-premises"></a>Impostare hello destinazione master server locale
+server di destinazione master Hello riceve i dati di failback hello. Un server di destinazione master viene installato automaticamente nel server di gestione locale hello ma sta failback una grande quantità di dati, potrebbe essere necessario tooset di un server di destinazione master aggiuntive. Procedere come segue:
 
 > [!NOTE]
-> Per installare un server di destinazione master in Linux, seguire le istruzioni riportate nella procedura successiva.
+> Se si desidera tooinstall un server di destinazione master in Linux, seguire le istruzioni hello nella procedura successiva hello.
 >
 >
 
-1. Se si installa il server di destinazione master in Windows, aprire la pagina Avvio rapido dalla macchina virtuale in cui si sta installando il server di destinazione master e scaricare il file di installazione per l'installazione guidata unificata di Azure Site Recovery.
-2. Eseguire la configurazione, quindi in **Prima di iniziare** selezionare **Add additional process servers to scale out deployment** (Aggiungere server di elaborazione per aumentare le istanze di distribuzione).
-3. Completare la procedura guidata come per la [configurazione del server di gestione](site-recovery-vmware-to-azure-classic.md). Nella pagina **Dettagli del server di configurazione** specificare l'indirizzo IP del server di destinazione master e una passphrase per accedere alla macchina virtuale.
+1. Se si installa il server di destinazione master hello in Windows, aprire pagina avvio rapido hello da hello macchina virtuale in cui si sta installando il server di destinazione master hello e scaricare i file di installazione hello per la procedura guidata di installazione unificata di Azure Site Recovery hello.
+2. Eseguire l'installazione e nella **prima di iniziare** selezionare **aggiungere processo aggiuntivo server tooscale distribuzione**.
+3. Creazione guidata hello completo in hello allo stesso modo, si ha quando si [configurare il server di gestione di hello](site-recovery-vmware-to-azure-classic.md). In hello **i dettagli di configurazione Server** , specificare l'indirizzo IP di hello del server di destinazione master e un hello tooaccess passphrase macchina virtuale.
 
-### <a name="set-up-a-linux-vm-as-the-master-target-server"></a>Configurare una macchina virtuale Linux come server di destinazione master
-Per configurare il server di gestione che esegue il server di destinazione master come una macchina virtuale Linux è necessario installare il sistema operativo minimo CentOS 6.6, recuperare gli ID SCSI per ogni disco rigido SCSI, installare alcuni pacchetti aggiuntivi e applicare alcune modifiche personalizzate.
+### <a name="set-up-a-linux-vm-as-hello-master-target-server"></a>Impostato come server di destinazione master hello una VM Linux
+tooset di server di gestione di hello in esecuzione il server di destinazione master hello come una macchina virtuale, occorre tooinstall hello cento Linux) 6.6 S minima del sistema operativo, recuperare gli ID SCSI hello per ogni disco rigido SCSI, installare alcuni pacchetti aggiuntivi e applicare alcune modifiche personalizzate.
 
 #### <a name="install-centos-66"></a>Installare CentOS 6.6
-1. Installare il sistema operativo minimo CentOS 6.6 nella macchina virtuale del server di gestione. Lasciare l'immagine ISO in un'unità DVD e avviare il sistema. Ignorare il test dei supporti, selezionare Inglese (Stati Uniti) come lingua, selezionare **Dispositivi di archiviazione di base**, verificare che il disco rigido non contenga dati importanti e fare clic su **Sì**. Tutti i dati verranno rimossi. Immettere il nome host del server di gestione e selezionare la scheda di rete del server.  Nella finestra di dialogo **Modifica del sistema** selezionare ** Connetti automaticamente** e aggiungere un indirizzo IP statico, una rete e le impostazioni DNS. Specificare un fuso orario e una password radice per accedere al server di gestione.
-2. Quando viene richiesto il tipo di installazione, selezionare **Crea layout personalizzato** come partizione. Dopo aver fatto clic su **Avanti** select **Gratuito** e fare clic su Crea. Creare **/**, **/var/crash** e **/home partitions** con **FS Type:** **ext4**. Creare la partizione di scambio con **FS Type: swap**.
-3. Se vengono rilevati dispositivi preesistenti viene visualizzato un messaggio di avviso. Fare clic su **Formatta** per formattare l'unità con le impostazioni della partizione. Fare clic su **Scrivi modifica su disco** per applicare le modifiche della partizione.
-4. Selezionare **Installa caricatore di avvio** > **Avanti** per installare il caricatore di avvio nella partizione radice.
+1. Installare il sistema operativo minimo di hello 6.6 CentOS nel server di gestione di hello macchina virtuale. Mantenere hello ISO in un sistema di hello avvio e l'unità DVD. Ignora hello media test, selezionare l'inglese alla lingua hello, selezionare **base dispositivi di archiviazione**, verificare che hello unità disco rigido non dispone di tutti i dati importanti e fare clic su **Sì**, rimuovere tutti i dati. Immettere il nome host hello hello del server di gestione e selezionare la scheda di rete server hello.  In hello **modifica sistema** finestra di dialogo selezionare * * connettersi automaticamente * * e aggiungere un indirizzo IP statico, rete e le impostazioni DNS. Specificare un fuso orario e un server di gestione radice password tooaccess hello.
+2. Quando richiesto il tipo di installazione hello si desidera selezionare **creare Layout personalizzati** come partizione di hello. Dopo aver fatto clic su **Avanti** select **Gratuito** e fare clic su Crea. Creare **/**, **/var/crash** e **/home partitions** con **FS Type:** **ext4**. Creare una partizione di scambio hello come **tipo ADFS: scambio**.
+3. Se vengono rilevati dispositivi preesistenti viene visualizzato un messaggio di avviso. Fare clic su **formato** unità hello tooformat con le impostazioni della partizione hello. Fare clic su **scrittura modificare toodisk** tooapply le modifiche alle partizioni di hello.
+4. Selezionare **caricatore di avvio installazione** > **Avanti** caricatore di avvio tooinstall hello nella partizione radice hello.
 5. Al termine dell'installazione, fare clic su **Riavvia**.
 
-#### <a name="retrieve-the-scsi-ids"></a>Recuperare gli ID SCSI
-1. Dopo l'installazione, recuperare gli ID SCSI per ogni disco rigido SCSI nella macchina virtuale. A tale scopo, arrestare la VM del server di gestione nelle proprietà della VM in VMware, fare clic con il pulsante destro del mouse sulla voce della VM > **Modifica impostazioni** > **Opzioni**.
-2. Selezionare **Avanzate** > **Generale** e fare clic su **Parametri di configurazione**. Quando il computer è in esecuzione questa opzione è disattivata. Per attivarla è necessario arrestare il computer.
-3. Se la riga **disk.EnableUUID** esiste, verificare che il valore sia impostato su **True**, con distinzione tra maiuscole e minuscole. Se il valore è già impostato su True, è possibile annullare e testare il comando SCSI in un sistema operativo guest dopo l'avvio.
-4. Se la riga non esiste, fare clic su **Aggiungi riga** e aggiungerla impostando il valore su **True**. Non usare le virgolette doppie.
+#### <a name="retrieve-hello-scsi-ids"></a>Recuperare gli ID SCSI hello
+1. Dopo l'installazione di recuperare gli ID SCSI hello per ogni disco rigido SCSI nella macchina virtuale hello. toodo questo Arresta il server di gestione di hello macchina virtuale, nell'hello VM proprietà in VMware, fare clic sulla voce VM hello > **Modifica impostazioni** > **opzioni**.
+2. Selezionare **Avanzate** > **Generale** e fare clic su **Parametri di configurazione**. Questa opzione sarà de-active quando hello macchina è in esecuzione. toomake it hello active macchina deve essere arrestata.
+3. Se hello riga **disco. EnableUUID** esiste assicurarsi hello è impostato troppo**True** (maiuscole / minuscole). Se è già è possibile annullare e testare il comando SCSI hello all'interno di un sistema operativo guest dopo che viene avviato.
+4. Se la riga hello non esistente fare clic su **Aggiungi riga** – e aggiungerla con hello **True** valore. Non usare le virgolette doppie.
 
 #### <a name="install-additional-packages"></a>Installare pacchetti aggiuntivi
-È necessario scaricare e installare alcuni pacchetti aggiuntivi.
+Si sarà necessario toodownload e installare alcuni pacchetti aggiuntivi.
 
-1. Assicurarsi che il server di destinazione master sia connesso a Internet.
-2. Eseguire questo comando per scaricare e installare 15 pacchetti dal repository di CentOS: **# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools**.
-3. Se le macchine di origine da proteggere eseguono Linux con il file system Reiser o XFS per il dispositivo di avvio o radice, è necessario scaricare e installare pacchetti aggiuntivi come indicato di seguito:
+1. Verificare che il server di destinazione master hello sia connesso toohello internet.
+2. Eseguire toodownload questo comando e installare i 15 pacchetti dal repository CentOS hello: **yum # installare – y xfsprogs perl lsscsi rsync wget kexec-strumenti**.
+3. Se si proteggono macchine di origine hello sono in esecuzione Linux wit Reiser XFS del file system per la radice di hello o avviare dispositivo, allora è necessario scaricare e installare pacchetti aggiuntivi, come indicato di seguito:
 
    * # <a name="cd-usrlocal"></a>cd /usr/local
    * # <a name="wget-httpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpmhttpelrepoorglinuxelrepoel6x8664rpmskmod-reiserfs-00-1el6elrepox8664rpm"></a>wget [http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm](http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm)
@@ -145,46 +145,46 @@ Per configurare il server di gestione che esegue il server di destinazione maste
    * # <a name="rpm-ivh-xfsprogs-311-16el6x8664rpm"></a>rpm –ivh xfsprogs-3.1.1-16.el6.x86_64.rpm
 
 #### <a name="apply-custom-changes"></a>Applicare modifiche personalizzate
-Per applicare modifiche personalizzate dopo aver completato i passaggi successivi all'installazione e aver installato i pacchetti, eseguire queste operazioni:
+Eseguire hello seguenti modifiche personalizzate tooapply dopo avere acquisito i passaggi di post-installazione completa di hello e i pacchetti hello installati:
 
-1. Copiare il file binario di RHEL 6-64 Unified Agent nella macchina virtuale. Eseguire questo comando per decomprimere il file binario: **tar –zxvf <file name>**
-2. Eseguire questo comando per concedere le autorizzazioni: **#chmod 755 ./ApplyCustomChanges.sh**
-3. Eseguire lo script: **# ./ApplyCustomChanges.sh**. Eseguire lo script solo una volta. Riavviare il server dopo l'esecuzione dello script.
+1. Copiare toohello binario di hello RHEL 6-64 unificata agente VM. Eseguire questo comando toountar hello binario: **tar – zxvf<file name>**
+2. Autorizzazioni di toogive questo comando di esecuzione: **# chmod 755./ApplyCustomChanges.sh**
+3. Eseguire script hello: **./ApplyCustomChanges.sh #**. È consigliabile eseguire solo script hello, una volta. Riavviare il server di hello dopo hello script viene eseguito correttamente.
 
-## <a name="run-the-failback"></a>Eseguire il failback
-### <a name="reprotect-the-azure-vms"></a>Abilitare la riprotezione delle macchine virtuali di Azure
-1. Nel portale di Site Recovery > scheda **Computer** selezionare la VM di cui è stato eseguito il failover e fare clic su **Riproteggi**.
-2. In **Server di destinazione master** e **Server di elaborazione** selezionare il server di destinazione master locale e il server di elaborazione della VM di Azure.
-3. Selezionare l'account configurato per la connessione alla macchina virtuale.
-4. Selezionare la versione del failback del gruppo di protezione. Ad esempio, se la macchina virtuale è protetta in PG1, è necessario selezionare PG1_Failback.
-5. Per eseguire il ripristino in un percorso alternativo, selezionare l'unità di conservazione e l'archivio dati configurati per il server di destinazione master. Quando si esegue il failback al sito locale, le macchine virtuali VMware nel piano di protezione di failback usano lo stesso archivio dati del server di destinazione master. Per ripristinare la macchina virtuale di Azure di replica nella stessa macchina virtuale locale, quest'ultima deve già trovarsi nello stesso archivio dati del server di destinazione master. Se non è presente alcuna macchina virtuale in locale, ne viene creata una nuova durante la riprotezione.
+## <a name="run-hello-failback"></a>Eseguire il failback hello
+### <a name="reprotect-hello-azure-vms"></a>Riproteggere hello macchine virtuali di Azure
+1. Nel portale di Site Recovery hello > **macchine** scheda selezionare hello macchina virtuale che è stato eseguito il failover e fare clic su **riproteggere**.
+2. In **Server di destinazione Master** e **Server di elaborazione** selezionare server di destinazione master locale hello e server di elaborazione hello macchina virtuale di Azure.
+3. Selezionare l'account di hello che è configurato per la connessione toohello macchina virtuale.
+4. Selezionare versione failback hello del gruppo protezione dati hello. Se, ad esempio hello macchina virtuale è protetta in PG1, è necessario tooselect PG1_Failback.
+5. Se si desidera toorecover tooan un percorso alternativo, selezionare l'unità di conservazione hello e l'archivio dati configurato per il server di destinazione master hello. Quando non si toohello indietro locale sito hello le macchine virtuali VMware nel piano di protezione di failback hello utilizzerà hello stesso archivio dati come server di destinazione master hello. Se si desidera toorecover hello replica macchina virtuale di Azure toohello stesso locale VM hello locale VM deve già essere in hello stesso archivio dati come hello master server di destinazione. Se non è presente alcuna macchina virtuale in locale, ne viene creata una nuova durante la riprotezione.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback1.png)
-6. Dopo aver fatto clic su **OK** per avviare la riprotezione, inizia un processo di replica della VM da Azure al sito locale. È possibile monitorare l'avanzamento nella scheda **Processi** .
+6. Dopo aver fatto clic **OK** toobegin riprotezione un processo inizia tooreplicate hello macchina virtuale da sito locale toohello Azure. È possibile monitorare lo stato di avanzamento hello in hello **processi** scheda.
 
    ![](./media/site-recovery-failback-azure-to-vmware-classic/failback2.png)
 
-### <a name="run-a-failover-to-the-on-premises-site"></a>Eseguire un failover nel sito locale
-Dopo la riprotezione la macchina virtuale viene spostata nella versione di failback del relativo gruppo di protezione e viene aggiunta automaticamente all'eventuale piano di ripristino usato per il failover in Azure.
+### <a name="run-a-failover-toohello-on-premises-site"></a>Eseguire un failover toohello nel sito locale
+Dopo hello nuova VM spostata toohello failback versione del gruppo protezione dati e viene aggiunto automaticamente il piano di ripristino toohello utilizzato per hello failover tooAzure se è presente.
 
-1. Nella pagina **Piani di ripristino** selezionare il piano di ripristino che contiene il gruppo di failback e fare clic su **Failover** > **Failover non pianificato**.
-2. In **Conferma failover** verificare la direzione del failover (Azure) e selezionare il punto di ripristino da usare per il failover. Usare il più recente. Se nella configurazione delle proprietà della replica sono state abilitate **più VM**, è possibile ripristinare fino all'ultimo punto di ripristino coerente con l'app o l'arresto anomalo del sistema. Fare clic sul segno di spunta per avviare il failover.
-3. Durante il failover, Site Recovery arresta le macchine virtuali di Azure. Assicurarsi che il failback sia stato completato e quindi verificare che le macchine virtuali di Azure siano state arrestate come previsto.
+1. In hello **piani di ripristino** piano di ripristino selezionare hello pagina contenente il gruppo di failback hello e fare clic su **Failover** > **Failover non pianificato**.
+2. In **conferma Failover** controllare la direzione del failover hello (tooAzure) e selezionare il punto di ripristino hello da toouse per il failover hello (versione più recente). Se è stata abilitata **Multi-VM** durante la configurazione delle proprietà di replica è possibile ripristinare app più recente toohello o un punto di ripristino coerenti con l'arresto anomalo del sistema. Fare clic su hello segno di spunta toostart hello failover.
+3. Durante il failover, il ripristino del sito verrà arrestato hello macchine virtuali di Azure. Dopo aver verificato che il failback completata come previsto, è possibile per controllare tale hello che macchine virtuali di Azure è state arrestate nel modo previsto.
 
-### <a name="reprotect-the--on-premises-site"></a>Riproteggere il sito locale
-Al termine del failback i dati si trovano nuovamente nel sito locale, ma non sono protetti. Per avviare nuovamente la replica in Azure, eseguire queste operazioni:
+### <a name="reprotect-hello--on-premises-site"></a>Ricrea la protezione da sito locale hello
+Il failback al termine dei dati saranno in hello nel sito locale, ma non protetto. tooAzure replica toostart nuovamente hello seguenti:
 
-1. Nel portale di Site Recovery > scheda **Computer** selezionare le VM di cui è stato eseguito il failback e fare clic su **Riproteggi**.
-2. Dopo aver verificato il funzionamento della replica di Azure, in Azure è possibile eliminare le macchine virtuali di Azure (attualmente non in esecuzione) di cui è stato eseguito il failback.
+1. Nel portale di Site Recovery hello > **macchine** hello selezionare le macchine virtuali non sono stato nuovamente e fare clic su scheda **riproteggere**.
+2. Dopo aver verificato che tooAzure replica funziona come previsto, è possibile eliminare hello macchine virtuali di Azure (attualmente non è in esecuzione) che non sono state nuovamente in Azure.
 
 ### <a name="common-issues-in-failback"></a>Problemi comuni di failback
-1. Se si esegue l'individuazione di vCenter con utente di sola lettura e la protezione delle macchine virtuali, il processo funziona e il failover viene eseguito. Al momento della riprotezione, si verificherà un errore poiché non è stato possibile individuare gli archivi dati. Non verranno quindi visualizzati gli archivi dati elencati durante la riprotezione. Per risolvere questo problema, è possibile aggiornare le credenziali di vCenter usando un account appropriato che abbia le autorizzazioni, quindi ripetere il processo. [Altre informazioni](site-recovery-vmware-to-azure-classic.md)
-2. Quando si esegue il failback di una macchina virtuale Linux e l'esecuzione è locale, si noti che il pacchetto di gestione reti viene disinstallato dal computer. Quando la macchina virtuale viene infatti ripristinata in Azure, il pacchetto di gestione reti viene rimosso.
-3. Se per la configurazione di una macchina virtuale viene usato un indirizzo IP statico e viene effettuato il failover in Azure, l'indirizzo IP viene acquisito tramite DHCP. Quando il failover viene effettuato di nuovo in locale, la macchina virtuale continua a usare il protocollo DHCP per acquisire l'indirizzo IP. Se necessario, accedere manualmente al computer e impostare l'indirizzo IP nell'indirizzo statico.
-4. Se si usa l'edizione gratuita di ESXi 5.5 o di vSphere 6 Hypervisor, sarà possibile effettuare il failover, ma non eseguire il failback. Sarà necessario scegliere l'aggiornamento alla licenza di valutazione per abilitare il failback.
+1. Se si esegue l'individuazione di vCenter con utente di sola lettura e la protezione delle macchine virtuali, il processo funziona e il failover viene eseguito. In fase di hello di Riprotezione, non riuscirà perché non possono essere individuati archivi dati hello. Come un sintomo non si vedranno archivi dati hello elencati proteggendo nuovamente. tooresolve, è possibile aggiornare le credenziali di hello vCenter con l'account appropriato che dispone delle autorizzazioni e ritentare il processo di hello. [Altre informazioni](site-recovery-vmware-to-azure-classic.md)
+2. Quando si failback una VM Linux ed eseguirlo in locale, verrà visualizzato il pacchetto di gestione di rete hello viene disinstallato dal computer hello. Questo avviene perché quando viene recuperato il hello VM in Azure, il pacchetto di gestione di rete hello viene rimosso.
+3. Quando una macchina virtuale è configurata con l'indirizzo IP statico e failover tooAzure, indirizzo IP hello viene acquisito tramite DHCP. Quando si esegue il failover locale tooOn indietro, hello VM continua l'indirizzo IP toouse DHCP tooacquire hello. Sarà necessario accesso toomanually macchina hello e l'indirizzo IP di hello set di backup tooStatic indirizzo se necessario.
+4. Se si usa l'edizione gratuita di ESXi 5.5 o di vSphere 6 Hypervisor, sarà possibile effettuare il failover, ma non eseguire il failback. Sarà possibile devono tooupgrade tooeither licenza di valutazione tooenable failback.
 
 ## <a name="failing-back-with-expressroute"></a>Eseguire il failback con ExpressRoute
-È possibile eseguire il failback usando una connessione VPN o Azure ExpressRoute. Per usare ExpressRoute occorre tenere presente quanto segue:
+È possibile eseguire il failback usando una connessione VPN o Azure ExpressRoute. Se si desidera seguente hello nota di toouse ExpressRoute:
 
-* ExpressRoute deve essere configurato nella rete virtuale di Azure in cui viene eseguito il failover dei computer di origine e in cui si trovano le macchine virtuali di Azure dopo il failover.
-* I dati vengono replicati in un account di archiviazione di Azure in un endpoint pubblico. È necessario configurare il peering pubblico in ExpressRoute specificando il data center di destinazione per consentire l'uso di ExpressRoute da parte della replica di Site Recovery.
+* ExpressRoute deve essere configurate in hello rete virtuale di Azure toowhich origine failover macchine su e in cui le macchine virtuali di Azure si trovano dopo il failover hello.
+* I dati sono replicati tooan account di archiviazione di Azure in un endpoint pubblico. È necessario configurare peering pubblico di ExpressRoute con hello destinazione data center per il ripristino del sito replica toouse ExpressRoute.

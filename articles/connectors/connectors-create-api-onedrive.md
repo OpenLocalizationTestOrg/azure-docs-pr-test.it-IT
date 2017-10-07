@@ -1,6 +1,6 @@
 ---
-title: Aggiungere il connettore OneDrive nelle app per la logica | Documentazione Microsoft
-description: Panoramica del connettore OneDrive con i parametri dell'API REST.
+title: connettore di OneDrive aaaAdd hello nelle App logica | Documenti Microsoft
+description: Panoramica del connettore di hello OneDrive con i parametri di API REST
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,80 +15,80 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 63bd33bf4e09b98aa53dcfec9fcc4a0109204952
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8303794bb3c2844de288f87f40639abb84c160fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-onedrive-connector"></a>Introduzione al connettore OneDrive
-Connettersi a OneDrive per gestire i file, ad esempio, caricare, recuperare ed eliminare i file e altro ancora. 
+# <a name="get-started-with-hello-onedrive-connector"></a>Iniziare con il connettore di OneDrive hello
+Connettersi tooOneDrive toomanage dei file, inclusi il caricamento, get, eliminare i file e molto altro. 
 
 Con OneDrive è possibile: 
 
 * Creare un flusso di lavoro mediante l'archiviazione di file in OneDrive o aggiornare i file esistenti in OneDrive. 
-* Usare trigger per avviare il flusso di lavoro quando un file viene creato o aggiornato in OneDrive.
-* Usare le azioni per creare un file, eliminarlo e così via. Ad esempio, creare un nuovo file in OneDrive (azione) quando viene ricevuto un nuovo messaggio di posta elettronica di Office 365 con un allegato (trigger).
+* Utilizzare trigger toostart il flusso di lavoro quando un file viene creato o aggiornato all'interno di OneDrive.
+* Usare azioni toocreate un file, eliminare un file e altro ancora. Ad esempio, creare un nuovo file in OneDrive (azione) quando viene ricevuto un nuovo messaggio di posta elettronica di Office 365 con un allegato (trigger).
 
-Questo argomento illustra come usare il connettore OneDrive in un'app per la logica ed elenca i trigger e le azioni.
+Questo argomento viene illustrato come toouse hello OneDrive connettore in un'app di logica e anche gli elenchi di hello azioni e trigger.
 
-Per altre informazioni sulle app per la logica, vedere [Cosa sono le app per la logica](../logic-apps/logic-apps-what-are-logic-apps.md) e [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
+toolearn informazioni sulle App per la logica, vedere [quali sono le app logica](../logic-apps/logic-apps-what-are-logic-apps.md) e [creare un'app di logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-to-onedrive"></a>Connettersi a OneDrive
-Prima che l'app per la logica possa accedere a qualsiasi servizio, è necessario creare una *connessione* al servizio. Una connessione fornisce la connettività tra un'app per la logica e un altro servizio. Ad esempio, per connettersi a OneDrive, è necessaria prima di tutto una *connessione* a OneDrive. Per creare una connessione, immettere le credenziali che si usano normalmente per accedere al servizio a cui si vuole connettersi. Quindi, per creare la connessione a OneDrive, immettere le credenziali dell'account OneDrive.
+## <a name="connect-tooonedrive"></a>Connettersi tooOneDrive
+Prima che la logica app possa accedere a qualsiasi servizio, creare innanzitutto un *connessione* toohello servizio. Una connessione fornisce la connettività tra un'app per la logica e un altro servizio. Ad esempio, tooOneDrive tooconnect, è necessario innanzitutto un OneDrive *connessione*. toocreate una connessione, immettere le credenziali di hello utilizzato normalmente il servizio di hello tooaccess desiderato tooconnect per. In tal caso, OneDrive, immettere hello credenziali tooyour OneDrive toocreate hello connessione ad account di.
 
-### <a name="create-the-connection"></a>Creare la connessione
-> [!INCLUDE [Steps to create a connection to OneDrive](../../includes/connectors-create-api-onedrive.md)]
+### <a name="create-hello-connection"></a>Creare una connessione hello
+> [!INCLUDE [Steps toocreate a connection tooOneDrive](../../includes/connectors-create-api-onedrive.md)]
 > 
 > 
 
 ## <a name="use-a-trigger"></a>Usare un trigger
-Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. I trigger eseguono il "polling" del servizio agli intervalli e con la frequenza desiderati. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un trigger è un evento che può essere utilizzato toostart flusso di lavoro hello definito in un'app di logica. I trigger "polling" servizio hello in corrispondenza di un intervallo e la frequenza desiderata. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Nell'app per la logica digitare "onedrive" per ottenere l'elenco dei trigger:  
+1. Nell'app logica hello, digitare "onedrive" tooget un elenco dei trigger hello:  
    
     ![](./media/connectors-create-api-onedrive/onedrive-1.png)
-2. Selezionare **Quando viene modificato un file**. Se esiste già una connessione, selezionare il pulsante Mostra selezione per selezionare una cartella.
+2. Selezionare **Quando viene modificato un file**. Se esiste già una connessione, quindi selezionare hello selezione Mostra pulsante tooselect una cartella.
    
     ![](./media/connectors-create-api-onedrive/sample-folder.png)
    
-    Se viene chiesto di effettuare l'accesso, immettere i dettagli di accesso per creare la connessione. La sezione [Creare la connessione](connectors-create-api-onedrive.md#create-the-connection) di questo argomento elenca i passaggi necessari. 
+    Nel caso di richiesta toosign in, quindi immettere hello sign in connessione hello toocreate di dettagli. [Creare una connessione hello](connectors-create-api-onedrive.md#create-the-connection) in questo argomento vengono elencati i passaggi di hello. 
    
    > [!NOTE]
-   > In questo esempio l'app per la logica viene eseguita quando viene aggiornato un file nella cartella scelta. Per vedere i risultati del trigger, aggiungere un'altra azione che invia un messaggio di posta elettronica al proprio indirizzo. Ad esempio, aggiungere l'azione di Office 365 Outlook *Invia un messaggio di posta elettronica* per ricevere un messaggio di posta elettronica quando un file viene aggiornato. 
+   > In questo esempio hello logica app viene eseguita quando un file nella cartella hello che scelto viene aggiornato. risultati di hello toosee del trigger, aggiungere un'altra azione che invia un messaggio di posta elettronica. Ad esempio, aggiungere hello Outlook di Office 365 *invia un messaggio di posta elettronica* azione che tramite posta elettronica quando viene aggiornato un file. 
 
-3. Selezionare il pulsante **Modifica** e impostare i valori **Frequenza** e **Intervallo**. Ad esempio, se si vuole che il trigger esegua il poll ogni 15 minuti, impostare **Frequenza** su **Minuto** e **Intervallo** su **15**. 
+3. Seleziona hello **modifica** pulsante e impostare hello **frequenza** e **intervallo** valori. Ad esempio, se si desidera hello trigger toopoll ogni 15 minuti, quindi impostare hello **frequenza** troppo**minuto**e set hello **intervallo** troppo**15**. 
    
     ![](./media/connectors-create-api-onedrive/trigger-properties.png)
-4. Scegliere **Salva** nell'angolo in alto a sinistra della barra degli strumenti per salvare le modifiche. L'app per la logica viene salvata e può essere attivata automaticamente.
+4. **Salvare** le modifiche (angolo superiore sinistro della barra degli strumenti hello). L'app per la logica viene salvata e può essere attivata automaticamente.
 
 ## <a name="use-an-action"></a>Usare un'azione
-Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un'azione è un'operazione effettuata dal flusso di lavoro hello definito in un'app di logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Selezionare il segno più. Sono disponibili varie opzioni: **Aggiungi un'azione**, **Aggiungi una condizione** e le opzioni in **Altro**.
+1. Selezionare hello sul segno più. Vedrai diverse opzioni: **aggiungere un'azione**, **aggiungere una condizione**, o uno dei hello **più** opzioni.
    
     ![](./media/connectors-create-api-onedrive/add-action.png)
 2. Selezionare **Aggiungi un'azione**.
-3. Nella casella di testo digitare "onedrive" per ottenere l'elenco di tutte le azioni disponibili.
+3. Nella casella di testo hello, digitare "onedrive" tooget un elenco di tutte le azioni disponibili hello.
    
     ![](./media/connectors-create-api-onedrive/onedrive-actions.png) 
-4. Nell'esempio scegliere **OneDrive - Crea file**. Se esiste già una connessione, selezionare il **percorso della cartella** in cui inserire il file, immettere il **nome del file** e scegliere il **contenuto del file** desiderato:  
+4. Nell'esempio scegliere **OneDrive - Crea file**. Se esiste già una connessione, quindi selezionare hello **percorso della cartella** tooput hello file, immettere hello **nome File**e scegliere hello **contenuto File** desiderato:  
    
     ![](./media/connectors-create-api-onedrive/sample-action.png)
    
-    Se viene richiesto di inserire le informazioni di connessione, immettere i dettagli per creare la connessione. La sezione [Creare la connessione](connectors-create-api-onedrive.md#create-the-connection) di questo argomento descrive queste proprietà. 
+    Se viene chiesto di hello informazioni di connessione, quindi immettere connessione hello toocreate dettagli di hello. [Creare una connessione hello](connectors-create-api-onedrive.md#create-the-connection) in questo argomento vengono descritte queste proprietà. 
    
    > [!NOTE]
-   > In questo esempio creiamo un nuovo file in una cartella di OneDrive. Per creare il file di OneDrive è possibile usare l'output di un altro trigger. Ad esempio aggiungere il trigger di Office 365 Outlook *All'arrivo di un nuovo messaggio di posta elettronica*. Quindi aggiungere l'azione di OneDrive *Crea file* che usa i campi Allegati e Content-Type in un ciclo ForEach per creare il nuovo file in OneDrive. 
+   > In questo esempio creiamo un nuovo file in una cartella di OneDrive. È possibile utilizzare l'output da un altro file di OneDrive hello di toocreate trigger. Ad esempio, aggiungere hello Outlook di Office 365 *all'arrivo di un nuovo indirizzo e-mail* trigger. Aggiungere quindi hello OneDrive *crea file* azione che utilizza hello allegati e i campi di tipo di contenuto all'interno di ForEach toocreate hello nuovo file in OneDrive. 
    > 
    > ![](./media/connectors-create-api-onedrive/foreach-action.png)
 
-5. Scegliere **Salva** nell'angolo in alto a sinistra della barra degli strumenti per salvare le modifiche. L'app per la logica viene salvata e può essere attivata automaticamente.
+5. **Salvare** le modifiche (angolo superiore sinistro della barra degli strumenti hello). L'app per la logica viene salvata e può essere attivata automaticamente.
 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/onedriveconnector/).
+Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/onedriveconnector/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare all' [elenco di API](apis-list.md).
+Tornare indietro toohello [elenco API](apis-list.md).

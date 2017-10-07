@@ -1,6 +1,6 @@
 ---
-title: Esercitazione sull'anteprima dei sinonimi in Ricerca di Azure | Microsoft Docs
-description: "Aggiungere la funzionalità di anteprima dei sinonimi a un indice in Ricerca di Azure."
+title: aaaSynonyms anteprima esercitazione in ricerca di Azure | Documenti Microsoft
+description: "Aggiungere l'indice di tooan funzionalità di anteprima di hello sinonimi in ricerca di Azure."
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -12,33 +12,33 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 03/31/2017
 ms.author: heidist
-ms.openlocfilehash: 014959ed471f796d2184f0f8ff10d15cdc8a2ec6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 055c1cbafb945823a3dc4da0c522db236b1d192c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="synonym-preview-c-tutorial-for-azure-search"></a>Esercitazione sui sinonimi (anteprima) in C# per Ricerca di Azure
 
-I sinonimi espandono una query tramite la corrispondenza con termini considerati semanticamente uguali al termine di input. È ad esempio possibile che si voglia che il termine "auto" consenta di rilevare corrispondenze con documenti contenenti i termini "automobile" o "veicolo".
+Sinonimi espandere una query di corrispondenza in base alle esigenze considerato come termine di input toohello semanticamente equivalente. Ad esempio, è consigliabile che documenti toomatch "car" che contiene termini di hello "automobile" o "vehicle".
 
-In Ricerca di Azure i sinonimi sono definiti in una *mappa di sinonimi* tramite *regole di mapping* che associano termini equivalenti. È possibile creare più mappe di sinonimi, inserirle come risorse a livello di servizio disponibili per qualsiasi indice e quindi fare riferimento alla mappa da usare a livello di campo. In fase di query, oltre a eseguire ricerche in un indice, Ricerca di Azure esegue una ricerca in una mappa di sinonimi, se tale mappa viene specificata nei campi usati nella query.
+In Ricerca di Azure i sinonimi sono definiti in una *mappa di sinonimi* tramite *regole di mapping* che associano termini equivalenti. È possibile creare più mappe sinonimo, registrarli come indice tooany disponibile la risorsa a livello di servizio e quindi fare riferimento quali uno toouse a livello di campo hello. In fase di query inoltre toosearching un indice, ricerca di Azure effettua una ricerca in una mappa del sinonimo, se ne è stato specificato nei campi utilizzati nella query hello.
 
 > [!NOTE]
-> La funzionalità relativa ai sinonimi è attualmente disponibile in anteprima ed è supportata solo nelle versioni più recenti dell'anteprima di API e SDK (api-version=2016-09-01-Preview, SDK versione 4.x-anteprima). Non è attualmente disponibile alcun supporto nel portale di Azure. Le API disponibili in anteprima non rientrano nel Contratto di servizio e le funzionalità disponibili in anteprima possono subire modifiche, quindi non è consigliabile usarle nelle applicazioni di produzione.
+> sinonimi Hello funzionalità è attualmente in anteprima e solo supportati in hello anteprima più recente di API e le versioni SDK (api-version = 2016-09-01-Preview, anteprima di SDK versione 4. x). Non è attualmente disponibile alcun supporto nel portale di Azure. Le API disponibili in anteprima non rientrano nel Contratto di servizio e le funzionalità disponibili in anteprima possono subire modifiche, quindi non è consigliabile usarle nelle applicazioni di produzione.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-I requisiti per l'esercitazione includono i seguenti:
+Requisiti dell'esercitazione includono hello informazioni seguenti:
 
 * [Visual Studio](https://www.visualstudio.com/downloads/)
 * [Servizio Ricerca di Azure](search-create-service-portal.md)
 * [Versione di anteprima della libreria Microsoft.Azure.Search .NET](https://aka.ms/search-sdk-preview)
-* [Come utilizzare Ricerca di Azure da un'applicazione .NET](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)
+* [La modalità di ricerca di Azure toouse da un'applicazione .NET](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)
 
 ## <a name="overview"></a>Panoramica
 
-Le query di tipo "prima e dopo" illustrano il valore dei sinonimi. In questa esercitazione viene usata un'applicazione di esempio che esegue query e restituisce risultati in un indice di esempio. L'applicazione di esempio crea un indice di dimensioni ridotte denominato "hotels", popolato con due documenti. L'applicazione esegue query di ricerca usando termini e frasi non visualizzati nell'indice, abilita la funzionalità relativa ai sinonimi e quindi esegue di nuovo le stesse ricerche. Il codice seguente illustra il flusso complessivo.
+Query di prima e dopo illustrano valore hello di sinonimi. In questa esercitazione viene usata un'applicazione di esempio che esegue query e restituisce risultati in un indice di esempio. applicazione di esempio Hello crea un indice di dimensioni ridotte denominato "Hotel" popolato con i due documenti. un'applicazione Hello esegue query di ricerca mediante i termini e le frasi che non sono presenti nell'indice hello, funzionalità hello sinonimi, quindi problemi hello ricerche stesso nuovamente. codice Hello riportato di seguito viene illustrato hello flusso globale.
 
 ```csharp
   static void Main(string[] args)
@@ -63,53 +63,53 @@ Le query di tipo "prima e dopo" illustrano il valore dei sinonimi. In questa ese
       Console.WriteLine("{0}", "Adding synonyms...\n");
       UploadSynonyms(serviceClient);
       EnableSynonymsInHotelsIndex(serviceClient);
-      Thread.Sleep(10000); // Wait for the changes to propagate
+      Thread.Sleep(10000); // Wait for hello changes toopropagate
 
       RunQueriesWithNonExistentTermsInIndex(indexClientForQueries);
 
-      Console.WriteLine("{0}", "Complete.  Press any key to end application...\n");
+      Console.WriteLine("{0}", "Complete.  Press any key tooend application...\n");
 
       Console.ReadKey();
   }
 ```
-Per informazioni sulla procedura per la creazione e il popolamento dell'indice di esempio, vedere [Come utilizzare Ricerca di Azure da un'applicazione .NET](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk).
+Hello toocreate passaggi e popolare l'indice di esempio hello vengono spiegate in [come toouse ricerca di Azure da un'applicazione .NET](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk).
 
 ## <a name="before-queries"></a>Query di tipo "prima"
 
 In `RunQueriesWithNonExistentTermsInIndex` vengono eseguite query di ricerca con i termini "five star", "internet" ed "economy AND hotel".
 ```csharp
-Console.WriteLine("Search the entire index for the phrase \"five star\":\n");
+Console.WriteLine("Search hello entire index for hello phrase \"five star\":\n");
 results = indexClient.Documents.Search<Hotel>("\"five star\"", parameters);
 WriteDocuments(results);
 
-Console.WriteLine("Search the entire index for the term 'internet':\n");
+Console.WriteLine("Search hello entire index for hello term 'internet':\n");
 results = indexClient.Documents.Search<Hotel>("internet", parameters);
 WriteDocuments(results);
 
-Console.WriteLine("Search the entire index for the terms 'economy' AND 'hotel':\n");
+Console.WriteLine("Search hello entire index for hello terms 'economy' AND 'hotel':\n");
 results = indexClient.Documents.Search<Hotel>("economy AND hotel", parameters);
 WriteDocuments(results);
 ```
-Nessuno dei due documenti indicizzati contiene questi termini, quindi si ottiene l'output seguente dal primo comando `RunQueriesWithNonExistentTermsInIndex`.
+Nessuno dei documenti indicizzati due hello contengono termini di hello, per esempio hello prima di tutto l'output di hello `RunQueriesWithNonExistentTermsInIndex`.
 ~~~
-Search the entire index for the phrase "five star":
+Search hello entire index for hello phrase "five star":
 
 no document matched
 
-Search the entire index for the term 'internet':
+Search hello entire index for hello term 'internet':
 
 no document matched
 
-Search the entire index for the terms 'economy' AND 'hotel':
+Search hello entire index for hello terms 'economy' AND 'hotel':
 
 no document matched
 ~~~
 
 ## <a name="enable-synonyms"></a>Abilitare i sinonimi
 
-L'abilitazione dei sinonimi è un processo in due passaggi. Vengono prima di tutto definite e caricate le regole dei sinonimi e quindi vengono configurati i campi per usarle. Il processo viene illustrato in `UploadSynonyms` e `EnableSynonymsInHotelsIndex`.
+L'abilitazione dei sinonimi è un processo in due passaggi. È innanzitutto definire e caricare le regole di sinonimo e quindi configurare i campi toouse li. il processo di Hello è descritto in `UploadSynonyms` e `EnableSynonymsInHotelsIndex`.
 
-1. Aggiungere una mappa di sinonimi al servizio di ricerca. In `UploadSynonyms` vengono definite quattro regole nella mappa di sinonimi 'desc-synonymmap' e viene eseguito il caricamento nel servizio.
+1. Aggiungere un servizio di ricerca tooyour mappa sinonimo. In `UploadSynonyms`, si definiscono quattro regole nella mappa di sinonimo 'desc synonymmap' e toohello servizio di caricamento.
 ```csharp
     var synonymMap = new SynonymMap()
     {
@@ -123,9 +123,9 @@ L'abilitazione dei sinonimi è un processo in due passaggi. Vengono prima di tut
 
     serviceClient.SynonymMaps.CreateOrUpdate(synonymMap);
 ```
-Una mappa di sinonimi deve essere conforme al formato `solr` dello standard open source. Il formato viene illustrato in [Synonyms in Azure Search](search-synonyms.md) (Sinonimi in Ricerca di Azure) nella sezione `Apache Solr synonym format`.
+Una mappa di sinonimo deve essere conforme a standard di origine aprire toohello `solr` formato. viene illustrato il formato di Hello in [sinonimi in ricerca di Azure](search-synonyms.md) nella sezione hello `Apache Solr synonym format`.
 
-2. Configurare i campi disponibili per la ricerca per l'uso della mappa di sinonimi nella definizione dell'indice. In `EnableSynonymsInHotelsIndex` vengono abilitati i sinonimi in due campi, `category` e `tags`, tramite l'impostazione della proprietà `synonymMaps` sul nome della mappa di sinonimi appena caricata.
+2. Configurare i campi ricercabili toouse hello sinonimo mappa nella definizione dell'indice hello. In `EnableSynonymsInHotelsIndex`, si abilita sinonimi due campi `category` e `tags` dall'impostazione hello `synonymMaps` toohello nome della proprietà di hello appena caricato mappa sinonimo.
 ```csharp
   Index index = serviceClient.Indexes.Get("hotels");
   index.Fields.First(f => f.Name == "category").SynonymMaps = new[] { "desc-synonymmap" };
@@ -133,37 +133,37 @@ Una mappa di sinonimi deve essere conforme al formato `solr` dello standard open
 
   serviceClient.Indexes.CreateOrUpdate(index);
 ```
-Quando si aggiunge una mappa di sinonimi, non è necessario ricompilare l'indice. È possibile aggiungere una mappa di sinonimi al servizio e quindi correggere le definizioni di campi esistenti in qualsiasi indice in modo da usare la nuova mappa di sinonimi. L'aggiunta di nuovi attributi non ha alcun impatto sulla disponibilità dell'indice. Ciò vale anche per la disabilitazione dei sinonimi per un campo. È possibile impostare semplicemente la proprietà `synonymMaps` su un elenco vuoto.
+Quando si aggiunge una mappa di sinonimi, non è necessario ricompilare l'indice. È possibile aggiungere un servizio di tooyour sinonimo mappa e quindi modificare le definizioni di campo esistente in qualsiasi indice toouse hello nuovo sinonimo mapping. aggiunta di Hello di nuovi attributi non ha alcun impatto sulla disponibilità di indice. Ciò vale anche la disabilitazione di sinonimi per un campo di Hello. È possibile impostare semplicemente hello `synonymMaps` elenco di proprietà tooan vuoto.
 ```csharp
   index.Fields.First(f => f.Name == "category").SynonymMaps = new List<string>();
 ```
 
 ## <a name="after-queries"></a>Query di tipo "dopo"
 
-Dopo il caricamento della mappa di sinonimi e l'aggiornamento dell'indice per l'uso della mappa di sinonimi, la seconda chiamata `RunQueriesWithNonExistentTermsInIndex` restituisce quanto segue:
+Dopo la mappa di sinonimo hello viene caricata e indice hello è mappa sinonimo di hello toouse aggiornato, hello secondo `RunQueriesWithNonExistentTermsInIndex` chiamata genera seguente hello:
 
 ~~~
-Search the entire index for the phrase "five star":
+Search hello entire index for hello phrase "five star":
 
 Name: Fancy Stay        Category: Luxury        Tags: [pool, view, wifi, concierge]
 
-Search the entire index for the term 'internet':
+Search hello entire index for hello term 'internet':
 
 Name: Fancy Stay        Category: Luxury        Tags: [pool, view, wifi, concierge]
 
-Search the entire index for the terms 'economy' AND 'hotel':
+Search hello entire index for hello terms 'economy' AND 'hotel':
 
 Name: Roach Motel       Category: Budget        Tags: [motel, budget]
 ~~~
-La prima query trova il documento dalla regola `five star=>luxury`. La seconda query espande la ricerca usando `internet,wifi` e la terza usando `hotel, motel` e `economy,inexpensive=>budget` nell'individuazione di documenti corrispondenti.
+prima query Hello trova hello documento dalla regola hello `five star=>luxury`. seconda query Hello espande hello ricerca tramite `internet,wifi` e hello terzo utilizzando sia `hotel, motel` e `economy,inexpensive=>budget` nella ricerca di documenti hello di corrispondenza con.
 
-L'aggiunta di sinonimi modifica completamente l'esperienza di ricerca. In questa esercitazione le query originali non sono in grado di restituire risultati significativi, anche se i documenti nell'indice sono rilevanti. Abilitando i sinonimi, è possibile espandere un indice in modo da includere termini di uso comune, senza modifiche ai dati sottostanti dell'indice.
+Aggiunta di sinonimi completamente modifica hello un'esperienza di ricerca. In questa esercitazione, query originale hello Impossibile risultati significativi tooreturn anche se erano rilevanti documenti hello nel nostro indice. Abilitando i sinonimi, è possibile espandere un tooinclude indice termini di uso comune, senza dati toounderlying modifiche nell'indice hello.
 
 ## <a name="sample-application-source-code"></a>Esempio di codice sorgente dell'applicazione
-Il codice sorgente completo dell'applicazione di esempio utilizzata è disponibile in questa procedura dettagliata su [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms).
+È possibile trovare il codice sorgente completo hello dell'applicazione di esempio hello utilizzato in questa procedura dettagliata su [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Vedere [How to use synonyms in Azure Search](search-synonyms.md) (Come usare i sinonimi in Ricerca di Azure)
+* Revisione [come sinonimi toouse in ricerca di Azure](search-synonyms.md)
 * Vedere [Synonyms REST API documentation](https://aka.ms/rgm6rq) (Documentazione sull'API REST Synonyms)
-* Vedere le guide di riferimento di [SDK di .NET](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) e [API REST](https://docs.microsoft.com/rest/api/searchservice/).
+* Individuare i riferimenti di hello per hello [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) e [API REST](https://docs.microsoft.com/rest/api/searchservice/).

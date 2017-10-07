@@ -1,5 +1,5 @@
 ---
-title: Risorse per lo sviluppo di un data warehouse in Azure | Documentazione Microsoft
+title: aaaResources per lo sviluppo di un data warehouse di Azure | Documenti Microsoft
 description: Concetti di sviluppo, decisioni di progettazione, suggerimenti e tecniche di codifica per SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,17 +15,17 @@ ms.workload: data-services
 ms.custom: develop
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: b85a4f09e561e429aa5bf46ec680014487fb40c7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67e3a6a3e2664919c3445ea5d5eba251054de020
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-decisions-and-coding-techniques-for-sql-data-warehouse"></a>Decisioni di progettazione e tecniche di codifica per SQL Data Warehouse
-Esaminare questi articoli sullo sviluppo per capire meglio le decisioni chiave nella progettazione, i suggerimenti e le tecniche di codifica per SQL Data Warehouse.
+Esaminare gli articoli di sviluppo toobetter comprendere principali decisioni di progettazione, suggerimenti e tecniche per SQL Data Warehouse.
 
 ## <a name="key-design-decisions"></a>Decisioni chiave nella progettazione
-Gli articoli seguenti illustrano alcuni dei concetti chiave e alcune delle decisioni di progettazione che sarà necessario conoscere per lo sviluppo del data warehouse distribuito tramite SQL Data Warehouse:
+Hello articoli seguenti evidenziano alcuni dei concetti chiave hello e sulle decisioni di progettazione, che sarà necessario toounderstand per lo sviluppo di hello della warehouse dati distribuiti tramite SQL Data Warehouse:
 
 * [connessioni][connections]
 * [concorrenza][concurrency]
@@ -50,7 +50,7 @@ Questi articoli illustrano le tecniche di codifica, i consigli e i suggerimenti 
 * [assegnazione di variabili][variable assignment]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver letto gli articoli sullo sviluppo, esaminare la pagina relativa agli [argomenti di riferimento per Transact-SQL][Transact-SQL reference] per altri dettagli sulla sintassi supportata per SQL Data Warehouse.
+Dopo aver attraverso gli articoli di sviluppo hello esaminare hello [riferimento a Transact-SQL] [ Transact-SQL reference] per ulteriori informazioni sulla sintassi di hello è supportato per SQL Data Warehouse.
 
 <!--Image references-->
 

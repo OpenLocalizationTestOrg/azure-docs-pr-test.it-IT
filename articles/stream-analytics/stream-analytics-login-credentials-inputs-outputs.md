@@ -1,6 +1,6 @@
 ---
 title: 'Analisi di flusso: Ruotare le credenziali di accesso per input e output | Documentazione Microsoft'
-description: Informazioni su come aggiornare le credenziali di input e output di Analisi dei flussi.
+description: Informazioni su come hello tooupdate le credenziali per l'output e input flusso Analitica.
 keywords: credenziali di accesso
 services: stream-analytics
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 2cb995a3969a8cb025f371ed0ab160cd04b0454d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac2374c539012b66ab390656c5750024e02f6bdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="rotate-login-credentials-for-inputs-and-outputs-in-stream-analytics-jobs"></a>Ruotare le credenziali di accesso per input e output nei processi di analisi di flusso
 ## <a name="abstract"></a>Sunto
-Analisi dei flussi di Azure, al momento, non consente di sostituire le credenziali su input/output durante l’esecuzione del processo.
+Analitica di flusso di Azure attualmente non consente sostituendo le credenziali di hello su un input/output durante il processo di hello è in esecuzione.
 
-Nonostante Analisi di flusso di Azure supporti la ripresa di un processo dall’ultimo output, abbiamo voluto condividere l’intero processo per ridurre l’intervallo fra l’arresto e l’avvio del processo e la rotazione delle credenziali di accesso.
+Mentre Analitica di flusso di Azure supporta la ripresa di un processo dall'ultimo output, Desideravamo intero processo di hello tooshare per ridurre al minimo ritardo hello tra hello l'arresto e avvio del processo di hello e la rotazione di credenziali di accesso hello.
 
-## <a name="part-1---prepare-the-new-set-of-credentials"></a>Parte 1 - Preparare il nuovo set di credenziali:
-Questa parte è applicabile ai seguenti input/output:
+## <a name="part-1---prepare-hello-new-set-of-credentials"></a>Parte 1: preparare nuovo set di credenziali di hello:
+Questa parte è applicabile toohello degli input/output seguente:
 
 * Archiviazione BLOB
 * Hub eventi
@@ -38,51 +38,51 @@ Questa parte è applicabile ai seguenti input/output:
 Per altri input/output, andare alla Parte 2.
 
 ### <a name="blob-storagetable-storage"></a>Archiviazione BLOB/Archiviazione tabelle
-1. Andare all'estensione di Archiviazione nel portale di gestione di Azure:   
+1. Visitare toohello dell'estensione di archiviazione nel portale di gestione di Azure hello:  
    ![graphic1][graphic1]
-2. Individuare l’archiviazione usata dal processo e accedervi:   
+2. Individuare utilizzato dal processo di archiviazione di hello e passare al suo interno:  
    ![graphic2][graphic2]
-3. Fare clic sul comando Gestisci chiavi di accesso:   
+3. Fare clic sul comando Gestisci chiavi di accesso hello:  
    ![graphic3][graphic3]
-4. Tra la chiave di accesso primaria e la chiave di accesso secondaria, **selezionare quella non usata dal processo**.
+4. Tra hello chiave di accesso primaria e chiave di accesso secondaria, hello **pick hello non utilizzato dal processo di**.
 5. Premere l’opzione di rigenerazione:   
    ![graphic4][graphic4]
-6. Copiare la chiave appena generata:   
+6. Copiare la chiave hello appena generato:  
    ![graphic5][graphic5]
-7. Continuare con la Parte 2.
+7. Continuare tooPart 2.
 
 ### <a name="event-hubs"></a>Hub eventi
-1. Andare all'estensione del bus di servizio sul portale di gestione di Azure:   
+1. Passare l'estensione di Service Bus toohello nel portale di gestione di Azure hello:  
    ![graphic6][graphic6]
-2. Individuare lo spazio dei nomi del bus di servizio usato dal processo e accedervi:   
+2. Individuare hello Namespace Bus di servizio utilizzato per il processo e passare al suo interno:  
    ![graphic7][graphic7]
-3. Se il processo usa criteri di accesso condivisi sullo spazio dei nomi del bus di servizio, saltare al passaggio 6  
-4. Andare alla scheda Hub eventi:   
+3. Se il processo utilizza un criterio di accesso condiviso su hello Service Bus Namespace, passare toostep 6  
+4. Consente di passare toohello scheda di hub eventi:  
    ![graphic8][graphic8]
-5. Individuare l’hub eventi usato dal processo e accedervi:   
+5. Individuare hello utilizzato dal processo di Hub di eventi e passare al suo interno:  
    ![graphic9][graphic9]
-6. Andare alla scheda Configura:   
+6. Consente di passare toohello scheda Configura:  
    ![graphic10][graphic10]
-7. Nell’elenco a discesa Nome criteri, individuare i criteri di accesso condivisi usati dal processo:   
+7. Nel menu a discesa Nome criterio hello, individuare i criteri di accesso condiviso hello utilizzato dal processo di:  
    ![graphic11][graphic11]
-8. Tra la chiave primaria e la chiave secondaria, **selezionare quella non usata dal processo**.  
+8. Tra hello chiave primaria e chiave secondaria, hello **pick hello non utilizzato dal processo di**.  
 9. Premere l’opzione di rigenerazione:   
    ![graphic12][graphic12]
-10. Copiare la chiave appena generata:   
+10. Copiare la chiave hello appena generato:  
    ![graphic13][graphic13]
-11. Continuare con la Parte 2.  
+11. Continuare tooPart 2.  
 
 ### <a name="sql-database"></a>Database SQL
 > [!NOTE]
-> Nota: sarà necessario connettersi al servizio Database SQL. Verrà mostrato come eseguire l'operazione usando lo strumento di gestione sul portale di gestione di Azure. Tuttavia, è anche possibile scegliere uno strumento sul lato client come SQL Server Management Studio.
+> Nota: è necessario tooconnect toohello servizio Database SQL. Verrà tooshow come toodo questo utilizzando hello esperienza di gestione nel portale di gestione di Azure hello ma è possibile scegliere toouse nonché uno strumento sul lato client, ad esempio SQL Server Management Studio.
 >
 > 
 
-1. Andare all'estensione del database SQL sul portale di gestione di Azure:   
+1. Passare l'estensione database SQL toohello nel portale di gestione di Azure hello:  
    ![graphic14][graphic14]
-2. Individuare il database SQL usato dal processo e **fare clic sul collegamento al server** sulla stessa riga:  
+2. Individuare i Database SQL utilizzato dal processo di hello e **fare clic su server hello** collegamento su hello stessa riga:  
    ![graphic15][graphic15]
-3. Fare clic sul comando Gestisci:   
+3. Fare clic sul comando Gestisci hello:  
    ![graphic16][graphic16]
 4. Digitare master del database:   
    ![graphic17][graphic17]
@@ -90,86 +90,86 @@ Per altri input/output, andare alla Parte 2.
    ![graphic18][graphic18]
 6. Fare clic su Nuova query:   
    ![graphic19][graphic19]
-7. Immettere la query seguente sostituendo <login_name> con il nome utente e sostituendo <enterStrongPasswordHere> con la nuova password:  
+7. Tipo di hello seguente query sostituendo < login_name > con il nome utente e la sostituzione <enterStrongPasswordHere> con la nuova password:  
    `CREATE LOGIN <login_name> WITH PASSWORD = '<enterStrongPasswordHere>'`
 8. Fare clic su Esegui:   
    ![graphic20][graphic20]
-9. Tornare al passaggio 2 e, questa volta, fare clic sul database:   
+9. Tornare indietro toostep 2 e questa volta scegliere database hello:  
    ![graphic21][graphic21]
-10. Fare clic sul comando Gestisci:   
+10. Fare clic sul comando Gestisci hello:  
    ![graphic22][graphic22]
 11. Digitare il nome utente, la password e fare clic su Accedi:   
    ![graphic23][graphic23]
 12. Fare clic su Nuova query:   
    ![graphic24][graphic24]
-13. Immettere la query seguente sostituendo <user_name> con il nome con cui identificare l'accesso nel contesto di questo database (è possibile indicare lo stesso valore assegnato per <login_name>, ad esempio) e sostituendo <login_name> con il nuovo nome utente:  
+13. Digitare nella seguente query sostituendo < nome_utente > con un nome con cui si desidera tooidentify hello questo account di accesso nel contesto di hello del database (è possibile fornire hello stesso valore scelto per < login_name >, ad esempio) e sostituendo < login_name > con il nuovo nome utente:  
    `CREATE USER <user_name> FROM LOGIN <login_name>`
 14. Fare clic su Esegui:   
    ![graphic25][graphic25]
-15. A questo punto è necessario assegnare al nuovo utente gli stessi ruoli e privilegi che aveva l'utente originale.
-16. Continuare con la Parte 2.
+15. A questo punto è necessario fornire un nuovo utente hello stessi ruoli e i privilegi assegnati all'utente originale.
+16. Continuare tooPart 2.
 
-## <a name="part-2-stopping-the-stream-analytics-job"></a>Parte 2: arresto del processo di Analisi dei flussi
-1. Andare all'estensione di Analisi di flusso sul portale di gestione di Azure:   
+## <a name="part-2-stopping-hello-stream-analytics-job"></a>Parte 2: Arresto hello Analitica del processo di flusso
+1. Visitare estensione Analitica flusso toohello nel portale di gestione di Azure hello:  
    ![graphic26][graphic26]
 2. Individuare il processo e accedervi:   
    ![graphic27][graphic27]
-3. Andare nella scheda Input o nella scheda Output a seconda se si stanno ruotando le credenziali su un Input o su un Output.  
+3. Passare toohello input scheda o hello output in base a rotazione se credenziali hello su un Input o su un Output.  
    ![graphic28][graphic28]
-4. Fare clic sul comando Arresta e confermare l’arresto del processo:   
-   ![graphic29][graphic29] Attendere l'arresto del processo.
-5. Individuare l’input/output su cui ruotare le credenziali e accedervi:   
+4. Fare clic sul comando di arresto hello e confermare processo hello è stato arrestato.  
+   ![graphic29][graphic29] attendere toostop processo hello.
+5. Individuare hello input/output desiderato credenziali toorotate on e passare al suo interno:  
    ![graphic30][graphic30]
-6. Andare alla Parte 3.
+6. Procedere tooPart 3.
 
-## <a name="part-3-editing-the-credentials-on-the-stream-analytics-job"></a>Parte 3: modifica delle credenziali sul processo di Analisi dei flussi
+## <a name="part-3-editing-hello-credentials-on-hello-stream-analytics-job"></a>Parte 3: Modifica delle credenziali di hello nel processo di flusso Analitica hello
 ### <a name="blob-storagetable-storage"></a>Archiviazione BLOB/Archiviazione tabelle
-1. Individuare il campo Chiave dell'account di archiviazione e incollarvi la chiave appena generata:   
+1. Trovare il campo chiave dell'Account di archiviazione hello e incollare la chiave appena generata:  
    ![graphic31][graphic31]
-2. Fare clic sul comando Salva e confermare il salvataggio delle modifiche:   
+2. Fare clic sul comando Salva hello e confermare il salvataggio delle modifiche:  
    ![graphic32][graphic32]
 3. Al salvataggio delle modifiche, verrà automaticamente avviato un test di connessione. Assicurarsi che abbia esito positivo.
-4. Andare alla Parte 4.
+4. Procedere tooPart 4.
 
 ### <a name="event-hubs"></a>Hub eventi
-1. Individuare il campo Chiave di criterio dell’hub eventi e incollarvi la chiave appena generata:   
+1. Trovare il campo chiave criterio Hub eventi hello e incollare la chiave appena generata:  
    ![graphic33][graphic33]
-2. Fare clic sul comando Salva e confermare il salvataggio delle modifiche:   
+2. Fare clic sul comando Salva hello e confermare il salvataggio delle modifiche:  
    ![graphic34][graphic34]
 3. Al salvataggio delle modifiche, verrà automaticamente avviato un test di connessione. Assicurarsi che abbia esito positivo.
-4. Andare alla Parte 4.
+4. Procedere tooPart 4.
 
 ### <a name="power-bi"></a>Power BI
-1. Fare clic su Rinnova autorizzazione:  
+1. Fare clic su autorizzazione rinnovo hello:  
 
    ![graphic35][graphic35]
-2. Si otterrà la conferma seguente:  
+2. Verrà visualizzato hello seguito conferma:  
 
    ![graphic36][graphic36]
-3. Fare clic sul comando Salva e confermare il salvataggio delle modifiche:   
+3. Fare clic sul comando Salva hello e confermare il salvataggio delle modifiche:  
    ![graphic37][graphic37]
 4. Al salvataggio delle modifiche, verrà automaticamente avviato un test di connessione. Assicurarsi che abbia esito positivo.
-5. Andare alla Parte 4.
+5. Procedere tooPart 4.
 
 ### <a name="sql-database"></a>Database SQL
-1. Individuare i campi Nome utente e Password e incollarvi il set di credenziali appena create:   
+1. Trovare i campi nome utente e Password di hello e incollare l'insieme di credenziali appena creato:  
    ![graphic38][graphic38]
-2. Fare clic sul comando Salva e confermare il salvataggio delle modifiche:   
+2. Fare clic sul comando Salva hello e confermare il salvataggio delle modifiche:  
    ![graphic39][graphic39]
 3. Al salvataggio delle modifiche, verrà automaticamente avviato un test di connessione. Assicurarsi che abbia esito positivo.  
-4. Andare alla Parte 4.
+4. Procedere tooPart 4.
 
 ## <a name="part-4-starting-your-job-from-last-stopped-time"></a>Parte 4: avvio del processo dall’ora dell’ultimo arresto
-1. Uscire da Input/Output:   
+1. Abbandona hello Input/Output:  
    ![graphic40][graphic40]
-2. Fare clic sul comando di avvio:   
+2. Fare clic sul comando di avvio hello:  
    ![graphic41][graphic41]
-3. Selezionare l’ora dell’ultimo arresto e fare clic su OK:   
+3. Selezionare ora ultimo arresto hello e fare clic su OK:  
    ![graphic42][graphic42]
-4. Andare alla Parte 5.  
+4. Procedere tooPart 5.  
 
-## <a name="part-5-removing-the-old-set-of-credentials"></a>Parte 5: rimozione del set di credenziali precedente
-Questa parte è applicabile ai seguenti input/output:
+## <a name="part-5-removing-hello-old-set-of-credentials"></a>Parte 5: Rimozione di hello precedente set di credenziali
+Questa parte è applicabile toohello degli input/output seguente:
 
 * Archiviazione BLOB
 * Hub eventi
@@ -177,18 +177,18 @@ Questa parte è applicabile ai seguenti input/output:
 * Archiviazione tabelle
 
 ### <a name="blob-storagetable-storage"></a>Archiviazione BLOB/Archiviazione tabelle
-Ripetere la Parte 1 per la chiave di accesso usata in precedenza dal processo per rinnovare la chiave di accesso ora inutilizzata.
+Ripetere parte 1 per la chiave di accesso utilizzato dal processo di hello toorenew hello ora inutilizzati chiave di accesso.
 
 ### <a name="event-hubs"></a>Hub eventi
-Ripetere la Parte 1 per la chiave usata in precedenza dal processo per rinnovare la chiave ora inutilizzata.
+Ripetere parte 1 per la chiave utilizzata per il processo di hello toorenew hello chiave ora inutilizzati.
 
 ### <a name="sql-database"></a>Database SQL
-1. Tornare alla finestra delle query dalla Parte 1 Passaggio 7 e immettere la query seguente, sostituendo <previous_login_name> con il nome utente usato in precedenza dal processo:  
+1. Tornare indietro toohello finestra di query da parte 1 passaggio 7 e tipo di query seguente, sostituendo < previous_login_name > con il nome utente utilizzato in precedenza per il processo di hello di hello:  
    `DROP LOGIN <previous_login_name>`  
 2. Fare clic su Esegui:   
    ![graphic43][graphic43]  
 
-Si dovrebbe ottenere la conferma seguente: 
+È necessario ottenere hello seguito conferma: 
 
     Command(s) completed successfully.
 
@@ -196,7 +196,7 @@ Si dovrebbe ottenere la conferma seguente:
 Per assistenza, provare il [Forum di Analisi di flusso di Azure](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Introduzione ad Analisi dei flussi di Azure](stream-analytics-introduction.md)
+* [Introduzione tooAzure flusso Analitica](stream-analytics-introduction.md)
 * [Introduzione all'uso di Analisi dei flussi di Azure](stream-analytics-real-time-fraud-detection.md)
 * [Ridimensionare i processi di Analisi dei flussi di Azure](stream-analytics-scale-jobs.md)
 * [Informazioni di riferimento sul linguaggio di query di Analisi dei flussi di Azure](https://msdn.microsoft.com/library/azure/dn834998.aspx)

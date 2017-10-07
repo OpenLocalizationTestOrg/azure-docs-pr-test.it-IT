@@ -1,6 +1,6 @@
 ---
-title: Usare Hub di notifica per inviare le ultime notizie (Windows Universal)
-description: Usare Hub di notifica di Azure con i tag nella registrazione per inviare le ultime notizie a un'app Windows universale.
+title: aaaUse gli hub di notifica toosend le ultime notizie (universale di Windows)
+description: Usare gli hub di notifica di Azure con i tag in hello registrazione toosend ultime notizie tooa applicazioni universali di Windows.
 services: notification-hubs
 documentationcenter: windows
 author: ysxu
@@ -14,30 +14,30 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 0e945b5626a08fcb428131f2abb465c2c141011a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f102d286d2c7bd387fcfa2c7eab2ba31a0298517
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-breaking-news"></a>Uso di Hub di notifica per inviare le ultime notizie
+# <a name="use-notification-hubs-toosend-breaking-news"></a>Utilizzare gli hub di notifica toosend le ultime notizie
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 ## <a name="overview"></a>Panoramica
-Questo argomento descrive come usare Hub di notifica di Azure per trasmettere le notifiche relative alle ultime notizie a un'app di Windows Store o Windows Phone 8.1 (non Silverlight). Se si sviluppano app per Windows Phone 8.1 Silverlight, fare riferimento alla versione [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) . Al termine dell'esercitazione, si sarà appreso a effettuare la registrazione alle categorie di ultime notizie desiderate e ricevere le notifiche push solo da tali categorie. Questo scenario è un modello comune per molte app che prevedono l'invio di notifiche a gruppi di utenti che hanno in precedenza manifestato il proprio interesse verso tali app, ad esempio lettori di feed RSS, app per fan di musica e così via. 
+In questo argomento illustra come toouse gli hub di notifica di Azure toobroadcast ultime notizie notifiche tooa Windows Store o app di Windows Phone 8.1 (non Silverlight). Se la destinazione è Windows Phone 8.1 Silverlight, vedere toohello [Windows Phone](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md) versione. Al termine, verrà essere in grado di tooregister per l'interruzione delle categorie di notizie, che si è interessati e ricevere notifiche di push solo per quelle categorie. Questo scenario è un modello comune per molte applicazioni in cui le notifiche hanno inviato toobe toogroups di utenti che hanno dichiarato in precedenza interesse in essi, ad esempio lettore RSS, le App per fan e così via. 
 
-È possibile abilitare gli scenari di trasmissione includendo uno o più *tag* durante la creazione di una registrazione nell'hub di notifica. Quando le notifiche vengono inviate a un tag, tutti i dispositivi che hanno effettuato la registrazione al tag riceveranno la notifica. Poiché i tag sono costituiti da stringhe, non è necessario eseguire il provisioning anticipatamente. Per ulteriori informazioni sui tag, vedere [Espressioni di routing e tag  per hub di notifica](notification-hubs-tags-segment-push-message.md).
+Scenari di trasmissione sono abilitati per includere uno o più *tag* durante la creazione di una registrazione nell'hub di notifica hello. Quando le notifiche vengono inviate tooa tag, tutti i dispositivi che sono registrati per il tag di hello riceverà la notifica hello. Poiché i tag sono semplicemente stringhe, essi non è toobe in precedenza. Per ulteriori informazioni sui tag, vedere troppo[Routing hub di notifica ed espressioni Tag](notification-hubs-tags-segment-push-message.md).
 
 > [!NOTE]
 > Progetti creati con Windows Store e Windows Phone 8.1 o versioni precedenti non sono supportati in Visual Studio 2017.  Per altre informazioni, vedere [Selezione della piattaforma e compatibilità di Visual Studio 2017](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs). 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questo argomento si basa sull'app creata nell'esercitazione [Introduzione ad Hub di notifica][get-started]. Prima di iniziare questa esercitazione, è necessario completare le procedure illustrate in [Introduzione ad Hub di notifica][get-started].
+In questo argomento è basato sull'app hello è stato creato in [iniziare con gli hub di notifica][get-started]. Prima di iniziare questa esercitazione, è necessario completare le procedure illustrate in [Introduzione ad Hub di notifica][get-started].
 
-## <a name="add-category-selection-to-the-app"></a>Aggiungere la selezione delle categorie all'app
-Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente alla pagina principale esistente per consentire all'utente di selezionare le categorie per le quali registrarsi. Le categorie selezionate da un utente sono archiviate nel dispositivo. All'avvio dell'app, viene creata una registrazione nell'hub di notifica con le categorie selezionate come tag.
+## <a name="add-category-selection-toohello-app"></a>Aggiungi categoria selezione toohello app
+Hello primo passaggio consiste tooadd hello UI elementi tooyour esistente pagina principale che consentono di hello utente tooselect categorie tooregister. categorie di Hello selezionate da un utente vengono archiviate nel dispositivo hello. Quando viene avviata l'applicazione hello, viene creata una registrazione del dispositivo nell'hub di notifica con categorie hello selezionata sotto forma di tag.
 
-1. Aprire il file di progetto MainPage.xaml, quindi copiare il codice seguente nell'elemento **Grid** :
+1. Aprire il file di progetto di hello MainPage. XAML, quindi hello copia seguente di codice hello **griglia** elemento:
    
         <Grid>
             <Grid.RowDefinitions>
@@ -60,13 +60,13 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
             <ToggleSwitch Header="Sports" Name="SportsToggle" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"/>
             <Button Name="SubscribeButton" Content="Subscribe" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="SubscribeButton_Click"/>
         </Grid>
-2. Fare clic con il pulsante destro del mouse sul progetto **Shared** e aggiungere una nuova classe denominata **Notifications**, aggiungere il modificatore **public** alla definizione della classe, quindi aggiungere le istruzioni **using** seguenti al nuovo file di codice:
+2. Fare clic con il pulsante destro hello **Shared** del progetto e aggiungere una nuova classe denominata **notifiche**, aggiungere hello **pubblica** toohello modificatore definizione di classe, quindi aggiungere hello seguente **utilizzando** istruzioni toohello nuovo file di codice:
    
         using Windows.Networking.PushNotifications;
         using Microsoft.WindowsAzure.Messaging;
         using Windows.Storage;
         using System.Threading.Tasks;
-3. Copiare il codice seguente nella nuova classe **Notifications** :
+3. Il codice seguente di hello di copia nel nuovo hello **notifiche** classe:
    
         private NotificationHub hub;
    
@@ -96,7 +96,7 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
                 categories = RetrieveCategories();
             }
    
-            // Using a template registration to support notifications across platforms.
+            // Using a template registration toosupport notifications across platforms.
             // Any template notifications that contain messageParam and a corresponding tag expression
             // will be delivered for this registration.
    
@@ -106,29 +106,29 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
                     categories);
         }
    
-    Questa classe utilizza l'archiviazione locale per archiviare le categorie di notizie che il dispositivo deve ricevere. Anziché chiamare il metodo *RegisterNativeAsync*, chiamare *RegisterTemplateAsync* per la registrazione delle categorie usando una registrazione di modello. 
+    Questa classe utilizza hello archiviazione locale toostore hello le categorie di notizie, che in questo dispositivo è tooreceive. Si noti che, anziché chiamare hello *RegisterNativeAsync* metodo viene chiamato *RegisterTemplateAsync* tooregister per le categorie di hello mediante un modello di registrazione. 
    
-    Verrà inoltre fornito un nome per il modello ("simpleWNSTemplateExample") in quanto può essere necessario registrare più modelli, ad esempio uno per le notifiche di tipo avviso popup e uno per le notifiche di tipo riquadro. In questo caso, per avere la possibilità di aggiornare o eliminare i modelli è necessario assegnare loro un nome.
+    È inoltre fornire un nome per il modello di hello ("simpleWNSTemplateExample"), perché potrebbe essere opportuno tooregister più di un modello, ad esempio uno per le notifiche di tipo avviso popup e uno per i riquadri e dobbiamo tooname in ordine tooupdate in grado di toobe o eliminarli.
    
-    Si noti che, se un dispositivo registra più modelli con lo stesso tag, un messaggio in arrivo destinato a tale tag ha come esito il recapito al dispositivo di più notifiche, una per ogni modello. Questo comportamento risulta utile quando lo stesso messaggio logico deve avere produrre più notifiche visive, ad esempio visualizzare sia una notifica badge che una notifica di tipo avviso popup in un'app di Windows Store.
+    Si noti che se si registra un dispositivo più modelli con hello stesso tag, un messaggio in arrivo di destinazione che tag comporta più notifiche recapitati dispositivo toohello (uno per ogni modello). Questo comportamento è utile quando hello stesso messaggio logico ha tooresult in più notifiche visive, ad esempio che illustra un badge sia un avviso popup in un'applicazione Windows Store.
    
     Per altre informazioni sui modelli, vedere [Modelli](notification-hubs-templates-cross-platform-push-messages.md).
-4. Nel file di progetto App.xaml.cs aggiungere la proprietà seguente alla classe **App** :
+4. Nel file di progetto App.xaml.cs hello, aggiungere hello seguente proprietà toohello **App** classe:
    
         public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
    
-    Questa proprietà viene utilizzata per creare un'istanza **Notifications** e accedervi.
+    Questa proprietà è utilizzata toocreate e accesso un **notifiche** istanza.
    
-    Nel codice precedente sostituire i segnaposto `<hub name>` e `<connection string with listen access>` con il nome dell'hub di notifica e la stringa di connessione per *DefaultListenSharedAccessSignature* ottenuta in precedenza.
+    In hello di sopra di codice, sostituire hello `<hub name>` e `<connection string with listen access>` segnaposto con la notifica hub hello nome e la stringa di connessione per *DefaultListenSharedAccessSignature* ottenuti in precedenza.
    
    > [!NOTE]
-   > Poiché le credenziali che sono distribuite con un'app client in genere non sono sicure, distribuire solo la chiave per l'accesso Listen con l'app client. L'accesso Listen consente all'app di registrarsi per le notifiche ma le registrazioni esistenti non possono essere modificate e le notifiche non possono essere inviate. La chiave di accesso completo viene usata in un servizio back-end sicuro per l'invio delle notifiche e la modifica delle registrazioni esistenti.
+   > Poiché le credenziali che vengono distribuite con un'applicazione client non sono in genere sicure, deve essere distribuito solo chiave hello per l'accesso in ascolto con l'applicazione client. Abilita accesso che tooregister l'app per le notifiche, ma le registrazioni esistenti non può essere modificato in attesa e non possono essere inviate le notifiche. chiave di accesso completo Hello viene utilizzata in un servizio back-end protetto per l'invio di notifiche e la modifica delle registrazioni esistenti.
    > 
    > 
-5. In MainPage.xaml.cs aggiungere la riga seguente:
+5. Aggiungere il file MainPage.xaml.cs, hello successiva riga:
    
         using Windows.UI.Popups;
-6. Aggiungere quindi il metodo seguente nel file di progetto MainPage.xaml.cs:
+6. Nel file di progetto MainPage.xaml.cs hello, aggiungere al metodo hello:
    
         private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -147,19 +147,19 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
             await dialog.ShowAsync();
         }
    
-    Questo metodo crea un elenco di categorie e utilizza la classe **Notifications** per archiviare l'elenco nell'archiviazione locale e registrare i tag corrispondenti nell'hub di notifica. Se le categorie vengono modificate, la registrazione viene ricreata con le nuove categorie.
+    Questo metodo crea un elenco di categorie e utilizza hello **notifiche** classe elenco hello toostore nella memoria locale hello e registrare i corrispondenti tag di hello con l'hub di notifica. Quando vengono modificate le categorie, registrazione hello viene ricreata con le nuove categorie hello.
 
-L'app può quindi archiviare un set di categorie nell'archiviazione locale del dispositivo ed effettuare la registrazione con l'hub di notifica ogni volta che l'utente modifica la selezione di categorie.
+L'app è in grado di toostore un set di categorie in archiviazione locale nel dispositivo hello e registrare con hub di notifica hello ogni volta che le modifiche dell'utente hello hello selezione di categorie.
 
 ## <a name="register-for-notifications"></a>Registrazione per le notifiche
-Questa procedura consente di effettuare la registrazione con l'hub di notifica all'avvio usando le categorie archiviate nella risorsa di archiviazione locale.
+Questi passaggi registrare con l'hub di notifica hello all'avvio mediante le categorie di hello che sono state archiviate nel servizio di archiviazione locale.
 
 > [!NOTE]
-> Poiché l'URI di canale assegnato dal servizio di notifica Windows può cambiare in qualsiasi momento, è necessario ripetere di frequente la registrazione per le notifiche per evitare errori di notifica. In questo esempio viene effettuata la registrazione per le notifiche a ogni avvio dell'app. Per le app che vengono eseguite di frequente, oltre una volta al giorno, è possibile ignorare la registrazione per conservare la larghezza di banda qualora sia trascorso meno di un giorno dalla registrazione precedente.
+> Poiché il canale di hello URI assegnato dal servizio di notifica di Windows (WNS) hello può cambiare in qualsiasi momento, è consigliabile registrare per le notifiche di frequente errori di notifica tooavoid. Questo esempio viene registrato per notifica ogni volta che viene avviata l'applicazione hello. Per le app che vengono eseguite frequentemente, più di una volta al giorno, è possibile probabilmente ignorare la larghezza di banda di registrazione toopreserve se meno di un giorno è trascorso registrazione precedente hello.
 > 
 > 
 
-1. Aprire il file App.xaml.cs e aggiornare il metodo **InitNotificationsAsync** per usare la classe `notifications` per la sottoscrizione in base alle categorie.
+1. Hello di file e aggiornamento App.xaml.cs hello aprire **InitNotificationsAsync** hello toouse metodo `notifications` classe toosubscribe in base alle categorie.
    
         // *** Remove or comment out these lines *** 
         //var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
@@ -168,8 +168,8 @@ Questa procedura consente di effettuare la registrazione con l'hub di notifica a
    
         var result = await notifications.SubscribeToCategories();
    
-    In questo modo, ogni volta che l'app viene avviata vengono recuperate le categorie dall'archiviazione locale e viene richiesta una registrazione per queste categorie. Il metodo **InitNotificationsAsync** è stato creato nell'ambito dell'esercitazione [Introduzione ad Hub di notifica][get-started].
-2. Nel file di progetto MainPage.xaml.cs aggiungere il codice seguente nel metodo *OnNavigatedTo* :
+    Ciò assicura che ogni volta che viene avviata l'applicazione hello Recupera categorie hello dall'archiviazione locale e richiede una registrazione per queste categorie. Hello **InitNotificationsAsync** metodo è stato creato come parte di hello [iniziare con gli hub di notifica] [ get-started] esercitazione.
+2. Nel file di progetto MainPage.xaml.cs hello, aggiungere hello seguente codice toohello *OnNavigatedTo* metodo:
    
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -183,45 +183,45 @@ Questa procedura consente di effettuare la registrazione con l'hub di notifica a
             if (categories.Contains("Sports")) SportsToggle.IsOn = true;
         }
    
-    La pagina principale viene aggiornata in base allo stato delle categorie salvate in precedenza.
+    Questa pagina principale di hello gli aggiornamenti in base allo stato di hello di precedentemente salvato categorie.
 
-Ora l'app è completa e può quindi archiviare un set di categorie nell'archiviazione locale del dispositivo ed effettuare la registrazione con l'hub di notifica ogni volta che l'utente modifica la selezione di categorie. Verrà ora definito un back-end per l'invio delle notifiche delle categorie all'app.
+app Hello è completo ed è possibile archiviare un set di categorie in hello dispositivo archiviazione locale utilizzato tooregister con hub di notifica hello ogni volta che le modifiche dell'utente hello hello selezione di categorie. Successivamente, verrà definito un back-end che può inviare categoria notifiche toothis app.
 
 ## <a name="sending-tagged-notifications"></a>Invio di notifiche con tag
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="run-the-app-and-generate-notifications"></a>Eseguire l'app e generare notifiche
-1. In Visual Studio premere F5 per compilare e avviare l'app.
+## <a name="run-hello-app-and-generate-notifications"></a>Eseguire app hello e generare le notifiche
+1. In Visual Studio, premere F5 toocompile e avviare l'applicazione hello.
    
     ![][1]
    
-    Si noti che l'interfaccia utente dell'app fornisce un set di interruttori che consentono di scegliere le categorie per le quali effettuare la sottoscrizione.
+    Si noti che app hello di che dell'interfaccia utente fornisce un set attiva o disattiva che consente di scegliere toosubscribe categorie hello per.
 2. Abilitare uno o più interruttori di categorie e quindi fare clic su **Subscribe**.
    
-    L'app converte le categorie selezionate in tag e richiede una nuova registrazione del dispositivo per i tag selezionati dall'hub di notifica. Le categorie registrate vengono restituite e visualizzate in una finestra di dialogo.
+    applicazione Hello converte le categorie selezionata hello in tag e richiede una nuova registrazione di dispositivi per i tag hello selezionato dall'hub di notifica hello. Hello categorie registrate vengono restituite e visualizzate in una finestra di dialogo.
    
     ![][19]
-3. Inviare una nuova notifica dal back-end in uno dei modi seguenti:
+3. Inviare una notifica dal back-end hello in uno dei seguenti modi hello:
    
-   * **App console:** avviare l'app console.
+   * **Applicazione console:** avviare app console hello.
    * **Java/PHP** : eseguire l'app o lo script.
      
-     Le notifiche per le categorie selezionate vengono visualizzate come notifiche di tipo avviso popup.
+     Le notifiche per le categorie di hello selezionato vengono visualizzati come le notifiche di tipo avviso popup.
      
      ![][14]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione si è appreso a trasmettere le ultime novità per categoria. Per informazioni su altri scenari avanzati di Hub di notifica, provare a completare le seguenti esercitazioni:
+In questa esercitazione è stato appreso come toobroadcast le ultime notizie per categoria. Provare a eseguire una delle seguenti esercitazioni che evidenziano altri scenari avanzati di hub di notifica hello:
 
-* [Usare Hub di notifica per la trasmissione di notizie localizzate]
+* [Utilizzare gli hub di notifica toobroadcast localizzata ultime notizie]
   
-    Informazioni su come espandere l'app relativa alle ultime novità per abilitare l'invio di notifiche localizzate.
+    Informazioni su come hello tooexpand interrompere l'invio di notizie app tooenable localizzata notifiche.
 
 <!-- Anchors. -->
-[Add category selection to the app]: #adding-categories
+[Add category selection toohello app]: #adding-categories
 [Register for notifications]: #register
 [Send notifications from your back-end]: #send
-[Run the app and generate notifications]: #test-app
+[Run hello app and generate notifications]: #test-app
 [Next Steps]: #next-steps
 
 <!-- Images. -->
@@ -234,11 +234,11 @@ In questa esercitazione si è appreso a trasmettere le ultime novità per catego
 
 <!-- URLs.-->
 [get-started]: /manage/services/notification-hubs/getting-started-windows-dotnet/
-[Usare Hub di notifica per la trasmissione di notizie localizzate]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[Utilizzare gli hub di notifica toobroadcast localizzata ultime notizie]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs How-toofor Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253

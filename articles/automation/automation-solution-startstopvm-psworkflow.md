@@ -1,6 +1,6 @@
 ---
-title: Avvio e arresto di macchine virtuali con Automazione di Azure - Flusso di lavoro PowerShell | Documentazione Microsoft
-description: Versione grafica dello scenario di Automazione di Azure che include runbook per l'avvio e l'arresto di macchine virtuali classiche.
+title: aaaStarting e l'arresto di macchine virtuali con automazione di Azure - flusso di lavoro PowerShell | Documenti Microsoft
+description: Versione con interfaccia grafica dello scenario di automazione di Azure inclusi runbook toostart e arrestare macchine virtuali classiche.
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -15,20 +15,20 @@ ms.workload: infrastructure-services
 ms.date: 07/06/2016
 ms.author: magoedte;bwren
 redirect_url: https://docs.microsoft.com/azure/automation/automation-solution-vm-management
-redirect_document_id: FALSE
-ms.openlocfilehash: 95a7b02b0d11bf18c398daea48d16e0ead30b543
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: False
+ms.openlocfilehash: 273631c7fc5ddb989b3bbdc82b470ac3af6ee482
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-automation-scenario---starting-and-stopping-virtual-machines"></a>Scenario di Automazione di Azure - Avvio e arresto delle macchine virtuali
-Questo scenario di Automazione di Azure include runbook per l'avvio e l'arresto di macchine virtuali classiche.  È possibile usare questo scenario per le operazioni seguenti:  
+Questo scenario di automazione di Azure include runbook toostart e arrestare macchine virtuali classiche.  È possibile utilizzare questo scenario per hello seguenti:  
 
-* Usare i runbook senza modifiche nell'ambiente in uso.
-* Modificare i runbook per eseguire funzionalità personalizzate.  
-* Chiamare i runbook da un altro runbook come parte di una soluzione completa.
-* Usare i runbook come esercitazioni per acquisire familiarità con i concetti di creazione dei runbook.
+* Usare i runbook di hello senza alcuna modifica nel proprio ambiente.
+* Modificare hello runbook tooperform personalizzato funzionalità.  
+* Chiamare hello runbook da un altro runbook come parte di una soluzione completa.
+* Usare i runbook di hello come creazione concetti dei runbook toolearn esercitazioni.
 
 > [!div class="op_single_selector"]
 > * [Grafico](automation-solution-startstopvm-graphical.md)
@@ -36,78 +36,78 @@ Questo scenario di Automazione di Azure include runbook per l'avvio e l'arresto 
 > 
 > 
 
-Questa è la versione del flusso di lavoro PowerShell per lo scenario con runbook. È disponibile anche usando [runbook grafici](automation-solution-startstopvm-graphical.md).
+Si tratta di hello versione del runbook del flusso di lavoro di PowerShell di questo scenario. È disponibile anche usando [runbook grafici](automation-solution-startstopvm-graphical.md).
 
-## <a name="getting-the-scenario"></a>Come ottenere lo scenario
-Questo scenario è costituito da due runbook del flusso di lavoro PowerShell che è possibile scaricare dai collegamenti seguenti.  Per i collegamenti ai runbook grafici, vedere la [versione grafica](automation-solution-startstopvm-graphical.md) di questo scenario.
+## <a name="getting-hello-scenario"></a>Scenario di recupero hello
+Questo scenario è costituito da due runbook del flusso di lavoro di PowerShell che è possibile scaricare da hello seguenti collegamenti.  Vedere hello [versione grafica](automation-solution-startstopvm-graphical.md) di questo scenario per i runbook grafici toohello di collegamenti.
 
 | Runbook | Collegamento | Tipo | Descrizione |
 |:--- |:--- |:--- |:--- |
 | Start-AzureVMs |[Avviare le macchine virtuali classiche di Azure](https://gallery.technet.microsoft.com/Start-Azure-Classic-VMs-86ef746b) |Flusso di lavoro PowerShell |Avvia tutte le macchine virtuali classiche in una sottoscrizione di Azure o tutte le macchine virtuali con un nome di servizio specifico. |
 | Stop-AzureVMs |[Arrestare le macchine virtuali classiche di Azure](https://gallery.technet.microsoft.com/Stop-Azure-Classic-VMs-7a4ae43e) |Flusso di lavoro PowerShell |Arresta tutte le macchine virtuali in un account di automazione o tutte le macchine virtuali con un nome di servizio specifico. |
 
-## <a name="installing-and-configuring-the-scenario"></a>Installazione e configurazione dello scenario
-### <a name="1-install-the-runbooks"></a>1. Installare i runbook
-Dopo aver scaricato i runbook, è possibile importarli usando la procedura descritta nell'articolo relativo all' [importazione di un runbook](http://msdn.microsoft.com/library/dn643637.aspx#ImportRunbook).
+## <a name="installing-and-configuring-hello-scenario"></a>Installazione e configurazione di uno scenario di hello
+### <a name="1-install-hello-runbooks"></a>1. Installare i runbook hello
+Dopo aver scaricato hello runbook, è possibile importarli nella procedura hello in [importazione di un Runbook](http://msdn.microsoft.com/library/dn643637.aspx#ImportRunbook).
 
-### <a name="2-review-the-description-and-requirements"></a>2. Esaminare la descrizione e i requisiti
-I runbook includono testo di supporto commentato contenente una descrizione e gli asset necessari.  Le stesse informazioni sono disponibili anche in questo articolo.
+### <a name="2-review-hello-description-and-requirements"></a>2. Descrizione di revisione hello e requisiti
+i runbook Hello includono il testo della Guida in linea impostata come commento che include una descrizione e le risorse necessarie.  È inoltre possibile ottenere hello stesse informazioni in questo articolo.
 
 ### <a name="3-configure-assets"></a>3. Configurare gli asset
-I runbook richiedono gli asset seguenti, che devono essere creati e popolati con i valori appropriati.
+i runbook di Hello richiedono hello seguenti risorse che è necessario creare e popolare con i valori appropriati.
 
 | Tipo di risorsa | Nome dell’asset | Descrizione |
 |:--- |:--- |:--- |:--- |
-| Credenziali |AzureCredential |Contiene le credenziali per un account che dispone delle autorizzazioni per avviare e arrestare le macchine virtuali nella sottoscrizione di Azure.  In alternativa, è possibile specificare un altro asset di tipo credenziali nel parametro **Credential** dell'attività **Add-AzureAccount**. |
-| Variabile |AzureSubscriptionId |Contiene l'ID sottoscrizione della sottoscrizione di Azure. |
+| Credenziali |AzureCredential |Contiene le credenziali per un account che dispone di autorità toostart e arrestare le macchine virtuali nella sottoscrizione di Azure hello.  In alternativa, è possibile specificare un altro asset delle credenziali in hello **credenziali** parametro di hello **Add-AzureAccount** attività. |
+| Variabile |AzureSubscriptionId |Contiene l'ID sottoscrizione hello della sottoscrizione Azure. |
 
-## <a name="using-the-scenario"></a>Uso dello scenario
-### <a name="parameters"></a>Parametri
-Ogni runbook è associato ai parametri seguenti.  È necessario fornire valori per tutti i parametri obbligatori ed è possibile facoltativamente specificare i valori per gli altri parametri a seconda delle esigenze.
+## <a name="using-hello-scenario"></a>Uno scenario di hello
+### <a name="parameters"></a>parameters
+ogni runbook Hello avere hello seguenti parametri.  È necessario fornire valori per tutti i parametri obbligatori ed è possibile facoltativamente specificare i valori per gli altri parametri a seconda delle esigenze.
 
 | Parametro | Tipo | Mandatory | Descrizione |
 |:--- |:--- |:--- |:--- |
-| ServiceName |string |No |Se viene specificato un valore, verranno avviate o arrestate tutte le macchine virtuali con lo stesso nome di servizio.  Se invece non viene specificato alcun valore, verranno avviate o arrestate tutte le macchine virtuali classiche della sottoscrizione di Azure. |
-| AzureSubscriptionIdAssetName |string |No |Contiene il nome dell' [asset di tipo variabile](#installing-and-configuring-the-scenario) che include l'ID sottoscrizione della sottoscrizione di Azure.  Se non si specifica un valore, verrà usato *AzureSubscriptionId* . |
-| AzureCredentialAssetName |string |No |Contiene il nome dell' [asset di tipo credenziali](#installing-and-configuring-the-scenario) che include le credenziali per il runbook da usare.  Se non si specifica un valore, verrà usato *AzureCredential* . |
+| ServiceName |string |No |Se viene specificato un valore, verranno avviate o arrestate tutte le macchine virtuali con lo stesso nome di servizio.  Se non viene fornito alcun valore, tutte le macchine virtuali classiche nella sottoscrizione di Azure hello sono avviate o arrestate. |
+| AzureSubscriptionIdAssetName |string |No |Contiene il nome di hello di hello [asset della variabile](#installing-and-configuring-the-scenario) che contiene l'ID sottoscrizione hello della sottoscrizione Azure.  Se non si specifica un valore, verrà usato *AzureSubscriptionId* . |
+| AzureCredentialAssetName |string |No |Contiene il nome di hello di hello [asset delle credenziali](#installing-and-configuring-the-scenario) che contiene le credenziali di hello per toouse runbook hello.  Se non si specifica un valore, verrà usato *AzureCredential* . |
 
-### <a name="starting-the-runbooks"></a>Avvio dei runbook
-È possibile usare uno dei metodi descritti in [Avvio di un Runbook in Automazione di Azure](automation-starting-a-runbook.md) per avviare uno dei runbook di questo scenario.
+### <a name="starting-hello-runbooks"></a>Esecuzione dei runbook hello
+È possibile utilizzare uno dei metodi di hello in [avvio di un runbook in automazione di Azure](automation-starting-a-runbook.md) toostart uno dei runbook hello in questo scenario.
 
-I comandi di esempio seguenti usano Windows PowerShell per eseguire **StartAzureVMs** per avviare tutte le macchine virtuali con nome di servizio *MyVMService*.
+Hello seguenti comandi di esempio utilizza Windows PowerShell toorun **StartAzureVMs** toostart tutte le macchine virtuali con il nome di servizio hello *MyVMService*.
 
     $params = @{"ServiceName"="MyVMService"}
     Start-AzureAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "Start-AzureVMs" –Parameters $params
 
 ### <a name="output"></a>Output
-I runbook [restituiranno un messaggio](automation-runbook-output-and-messages.md) per ogni macchina virtuale indicando se l'istruzione di avvio o di arresto è stata inviata correttamente.  È possibile cercare una stringa specifica nell'output per determinare il risultato per ogni runbook.  Nella tabella seguente sono elencate le stringhe di output possibili.
+i runbook Hello verranno [un messaggio di output](automation-runbook-output-and-messages.md) per ogni macchina virtuale che indica se hello avvio o l'istruzione stop è stata inviata correttamente.  È possibile cercare una stringa specifica in hello output toodetermine hello risultato per ogni runbook.  Nella hello nella tabella seguente sono elencate le stringhe di output possibili Hello.
 
 | Runbook | Condizione | Message |
 |:--- |:--- |:--- |
 | Start-AzureVMs |Macchina virtuale già in esecuzione |MyVM is already running |
 | Start-AzureVMs |Richiesta di avvio per la macchina virtuale inviata correttamente |MyVM has been started |
-| Start-AzureVMs |Richiesta di avvio per la macchina virtuale non riuscita |MyVM failed to start |
+| Start-AzureVMs |Richiesta di avvio per la macchina virtuale non riuscita |Toostart MyVM non riuscita |
 | Stop-AzureVMs |Macchina virtuale già arrestata |MyVM is already stopped |
 | Stop-AzureVMs |Richiesta di arresto per la macchina virtuale inviata correttamente |MyVM è stata già arrestata |
-| Stop-AzureVMs |Richiesta di arresto la macchina virtuale non riuscita |Errore di avvio di MyVM |
+| Stop-AzureVMs |Richiesta di arresto la macchina virtuale non riuscita |Toostop MyVM non riuscita |
 
-Il frammento di codice di un runbook seguente ad esempio tenta di avviare tutte le macchine virtuali con nome di servizio *MyServiceName*.  Se una delle azioni di avvio ha esito negativo, è possibile eseguire le azioni di errore.
+Ad esempio, hello seguente frammento di codice da un runbook tenta toostart tutte le macchine virtuali con il nome di servizio hello *MyServiceName*.  Se uno di hello avvia le richieste di errore, è possono eseguire le azioni di errore.
 
     $results = Start-AzureVMs -ServiceName "MyServiceName"
     foreach ($result in $results) {
         if ($result -like "* has been started" ) {
-            # Action to take in case of success.
+            # Action tootake in case of success.
         }
         else {
-            # Action to take in case of error.
+            # Action tootake in case of error.
         }
     }
 
 
 ## <a name="detailed-breakdown"></a>Scomposizione dettagliata
-Di seguito è riportata una scomposizione dettagliata dei runbook di questo scenario.  È possibile usare queste informazioni per personalizzare i runbook o semplicemente per acquisire familiarità per la creazione di scenari di automazione personalizzati.
+Di seguito è una suddivisione dettagliata dei runbook hello in questo scenario.  È possibile utilizzare queste informazioni tooeither personalizzare runbook hello o toolearn solo da essi per la creazione di propri scenari di automazione.
 
-### <a name="parameters"></a>Parametri
+### <a name="parameters"></a>parameters
     param (
         [Parameter(Mandatory=$false)]
         [String]  $AzureCredentialAssetName = 'AzureCredential',
@@ -119,29 +119,29 @@ Di seguito è riportata una scomposizione dettagliata dei runbook di questo scen
         [String] $ServiceName
     )
 
-Il flusso di lavoro inizia ottenendo i valori per i [parametri di input](#using-the-scenario).  Se non sono specificati i nomi degli asset verranno usati i nomi predefiniti.
+Hello flusso di lavoro viene avviata tramite il recupero dei valori hello per hello [i parametri di input](#using-the-scenario).  Se non sono specificati i nomi delle risorse hello vengono usati nomi predefiniti.
 
 ### <a name="output"></a>Output
     # Returns strings with status messages
     [OutputType([String])]
 
-Questa riga dichiara che l'output del runbook sarà una stringa.  Non è obbligatoria, ma è una procedura consigliata se il runbook viene usato come [runbook figlio](automation-child-runbooks.md) , affinché un runbook padre conosca il tipo di output previsto.
+Questa riga dichiara che l'output di hello del runbook hello sarà una stringa.  Non è obbligatorio ma è consigliabile per quando il runbook hello viene utilizzato come un [runbook figlio](automation-child-runbooks.md) in modo che un runbook padre conoscano l'output di hello digitare tooexpect.
 
 ### <a name="authentication"></a>Autenticazione
-    # Connect to Azure and select the subscription to work against
+    # Connect tooAzure and select hello subscription toowork against
     $Cred = Get-AutomationPSCredential -Name $AzureCredentialAssetName
     $null = Add-AzureAccount -Credential $Cred -ErrorAction Stop
     $SubId = Get-AutomationVariable -Name $AzureSubscriptionIdAssetName
     $null = Select-AzureSubscription -SubscriptionId $SubId -ErrorAction Stop
 
-Le righe successive impostano le [credenziali](automation-credentials.md) e la sottoscrizione di Azure che verranno usate per il resto del runbook.
-Viene usato prima **Get-AutomationPSCredential** per ottenere l'asset contenente le credenziali con l'accesso per l'avvio e l'arresto delle macchine virtuali nella sottoscrizione di Azure. **Add-AzureAccount** usa quindi questo asset per impostare le credenziali.  L'output viene assegnato a una variabile fittizia in modo da non essere incluso nell'output del runbook.  
+set di righe successive Hello hello [credenziali](automation-credentials.md) e sottoscrizione di Azure che verrà utilizzato per il resto di hello del runbook hello.
+Prima di tutto utilizziamo **Get-AutomationPSCredential** asset hello tooget che contiene le credenziali di hello con accesso toostart e arrestare le macchine virtuali in hello sottoscrizione di Azure. **Aggiungere-AzureAccount** utilizza quindi questo credenziali hello tooset di asset.  output di Hello viene assegnato variabile fittizia tooa in modo che non non è incluso nell'output del runbook hello.  
 
-L'asset di tipo variabile con l'ID sottoscrizione viene quindi recuperato con **Get-AutomationVariable** e il set di sottoscrizioni con **Select-AzureSubscription**.
+asset della variabile di Hello con sottoscrizione hello ID viene quindi recuperato con **Get-AutomationVariable** e sottoscrizione hello impostata con **Select-AzureSubscription**.
 
 ### <a name="get-vms"></a>Ottenere le macchine virtuali
-    # If there is a specific cloud service, then get all VMs in the service,
-    # otherwise get all VMs in the subscription.
+    # If there is a specific cloud service, then get all VMs in hello service,
+    # otherwise get all VMs in hello subscription.
     if ($ServiceName)
     {
         $VMs = Get-AzureVM -ServiceName $ServiceName
@@ -151,38 +151,38 @@ L'asset di tipo variabile con l'ID sottoscrizione viene quindi recuperato con **
         $VMs = Get-AzureVM
     }
 
-**Get-AzureVM** viene usato per recuperare le macchine virtuali che verranno usate dal runbook.  Se viene specificato un valore nella variabile di input **ServiceName** , verranno recuperate solo le macchine virtuali con lo stesso nome di servizio.  Se invece la variabile **ServiceName** è vuota, verranno recuperate tutte le macchine virtuali.
+**Get-AzureVM** è usato tooretrieve hello hello runbook funzionerà con le macchine virtuali.  Se viene fornito un valore in hello **ServiceName** input variabile, quindi solo hello le macchine virtuali con lo stesso nome di servizio vengono recuperate.  Se invece la variabile **ServiceName** è vuota, verranno recuperate tutte le macchine virtuali.
 
 ### <a name="startstop-virtual-machines-and-send-output"></a>Avviare/arrestare le macchine virtuali e inviare l'output
-    # Start each of the stopped VMs
+    # Start each of hello stopped VMs
     foreach ($VM in $VMs)
     {
         if ($VM.PowerState -eq "Started")
         {
-            # The VM is already started, so send notice
+            # hello VM is already started, so send notice
             Write-Output ($VM.InstanceName + " is already running")
         }
         else
         {
-            # The VM needs to be started
+            # hello VM needs toobe started
             $StartRtn = Start-AzureVM -Name $VM.Name -ServiceName $VM.ServiceName -ErrorAction Continue
 
             if ($StartRtn.OperationStatus -ne 'Succeeded')
             {
-                # The VM failed to start, so send notice
-                Write-Output ($VM.InstanceName + " failed to start")
+                # hello VM failed toostart, so send notice
+                Write-Output ($VM.InstanceName + " failed toostart")
             }
             else
             {
-                # The VM started, so send notice
+                # hello VM started, so send notice
                 Write-Output ($VM.InstanceName + " has been started")
             }
         }
     }
 
-Le righe successive eseguono i passaggi per ogni macchina virtuale.  Viene prima verificata l'impostazione di **PowerState** della macchina virtuale per controllare se è già in esecuzione o arrestata, a seconda del runbook.  Se lo stato è già quello di destinazione, viene restituito un messaggio per l'output e il runbook termina.  In caso contrario, viene usato **Start-AzureVM** o **Stop-AzureVM** per tentare di avviare o arrestare la macchina virtuale con il risultato della richiesta archiviato in una variabile.  Verrà quindi restituito all'output un messaggio che specifica se la richiesta di avvio o di arresto è stata inviata correttamente.
+le righe successive Hello eseguire ogni macchina virtuale.  Prima di tutto hello **alimentazione** di hello macchina virtuale è toosee selezionata se è già in esecuzione o arrestato, a seconda di hello runbook.  Se è già in stato di destinazione hello, toooutput e si termina di runbook hello viene inviato un messaggio.  In caso contrario, quindi **Start-AzureVM** o **Stop-AzureVM** è utilizzato tooattempt toostart o arrestare hello macchina virtuale con il risultato di hello della variabile di hello richiesta tooa stored.  Un messaggio viene quindi inviato toooutput che specifica se hello richiesta toostart o l'arresto è stata inviata correttamente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per ulteriori informazioni sull’utilizzo dei runbook figlio, vedere [Runbook figlio in Automazione di Azure](automation-child-runbooks.md)
-* Per ulteriori informazioni sui messaggi di output durante l'esecuzione di runbook e la registrazione per la risoluzione dei problemi, vedere [Output di runbook e messaggi in Automazione di Azure](automation-runbook-output-and-messages.md)
+* toolearn più sull'utilizzo dei runbook figlio, vedere [figlio runbook in automazione di Azure](automation-child-runbooks.md)
+* toolearn altre informazioni sull'output di risolvere i messaggi durante l'esecuzione di runbook e toohelp di registrazione, vedere [Runbook output e i messaggi in automazione di Azure](automation-runbook-output-and-messages.md)
 

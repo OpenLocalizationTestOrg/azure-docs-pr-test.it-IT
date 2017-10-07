@@ -1,6 +1,6 @@
 ---
-title: Analizzare la sicurezza di rete con la visualizzazione del gruppo di sicurezza di Azure Network Watcher - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: Questo articolo descrive come usare l'interfaccia della riga di comando di Azure 2.0 per analizzare la sicurezza di una macchina virtuale con la visualizzazione del gruppo di sicurezza.
+title: sicurezza di rete aaaAnalyze con visualizzazione gruppo di sicurezza di controllo di rete di Azure - CLI di Azure 2.0 | Documenti Microsoft
+description: In questo articolo viene descritto come tooanalyze toouse CLI di Azure 2.0 a virtuale macchine protezione con visualizzazione del gruppo di sicurezza.
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 1756e14819e3b7c79361c193413a1fcd7f24a4e6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 31a4cd628f54d7548f495251fd275f099e79a060
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-azure-cli-20"></a>Analizzare la sicurezza della macchina virtuale con la visualizzazione del gruppo di sicurezza usando l'interfaccia della riga di comando di Azure 2.0
 
@@ -28,30 +28,30 @@ ms.lasthandoff: 07/11/2017
 > - [Interfaccia della riga di comando 2.0](network-watcher-security-group-view-cli.md)
 > - [API REST](network-watcher-security-group-view-rest.md)
 
-La visualizzazione di un gruppo di sicurezza consente di recuperare le regole di sicurezza di rete configurate ed effettive applicate a una macchina virtuale. Questa funzionalità è utile per controllare e diagnosticare i gruppi di sicurezza di rete e le regole configurate in una macchina virtuale per verificare che il traffico viene consentito o negato in modo corretto. Questo articolo illustra come recuperare le regole di sicurezza configurate ed effettive applicate a una macchina virtuale tramite l'interfaccia della riga di comando di Azure
+Visualizzazione del gruppo di sicurezza restituisce regole di sicurezza di rete configurate ed efficace di macchina virtuale tooa applicato. Questa funzionalità è utile tooaudit e diagnosticare i gruppi di sicurezza di rete e le regole configurate per il traffico tooensure una macchina virtuale viene correttamente consentito o negato. In questo articolo viene illustrata la modalità di configurazione tooretrieve hello e la macchina virtuale di sicurezza efficace regole tooa mediante Azure CLI
 
 
-Questo articolo usa l'interfaccia della riga di comando di nuova generazione per il modello di distribuzione di gestione delle risorse, ovvero l'interfaccia della riga di comando di Azure 2.0, disponibile per Windows, Mac e Linux.
+In questo articolo utilizza la nuova generazione CLI per modello di distribuzione Gestione risorse hello, CLI di Azure 2.0, che è disponibile per Windows, Mac e Linux.
 
-Per eseguire i passaggi indicati in questo articolo è necessario [installare l'interfaccia della riga di comando di Azure per Mac, Linux e Windows (interfaccia della riga di comando di Azure)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
+hello tooperform i passaggi in questo articolo, è necessario troppo[installare hello interfaccia della riga di comando di Azure per Mac, Linux e Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2).
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo scenario presuppone il completamento dei passaggi descritti in [Creare un servizio Network Watcher](network-watcher-create.md) per creare un servizio Network Watcher.
+Questo scenario si presuppone che si sono già stati seguiti i passaggi di hello in [creare un controllo di rete](network-watcher-create.md) toocreate Watcher di rete.
 
 ## <a name="scenario"></a>Scenario
 
-Lo scenario illustrato in questo articolo recupera le regole di sicurezza configurate ed effettive applicate a una determinata macchina virtuale.
+scenario di Hello illustrato in questo articolo recupera hello configurato e le regole di sicurezza efficace per una macchina virtuale specificata.
 
 ## <a name="get-a-vm"></a>Ottenere una macchina virtuale
 
-È necessario che una macchina virtuale esegua il cmdlet `vm list`. Il comando seguente elenca le macchine virtuali in un gruppo di risorse:
+Una macchina virtuale è obbligatorio toorun hello `vm list` cmdlet. Hello comando riportato di seguito sono elencate hello le macchine virtuali in un gruppo di risorse:
 
 ```azurecli
 az vm list -resource-group resourceGroupName
 ```
 
-Se la macchina virtuale è nota, è possibile usare il cmdlet `vm show` per ottenere il relativo ID della risorsa:
+Quando si è certi di macchina virtuale hello, è possibile utilizzare hello `vm show` tooget cmdlet relativi Id di risorsa:
 
 ```azurecli
 az vm show -resource-group resourceGroupName -name virtualMachineName
@@ -59,15 +59,15 @@ az vm show -resource-group resourceGroupName -name virtualMachineName
 
 ## <a name="retrieve-security-group-view"></a>Recuperare la visualizzazione del gruppo di sicurezza
 
-Il passaggio successivo prevede il recupero del risultato della visualizzazione del gruppo di sicurezza.
+passaggio successivo Hello è tooretrieve hello sicurezza gruppo Visualizza il risultato.
 
 ```azurecli
 az network watcher show-security-group-view --resource-group resourceGroupName --vm vmName
 ```
 
-## <a name="viewing-the-results"></a>Visualizzazione dei risultati
+## <a name="viewing-hello-results"></a>Visualizzazione dei risultati hello
 
-L'esempio seguente è una risposta abbreviata dei risultati restituiti. I risultati mostrano tutte le regole di sicurezza effettive e applicate alla macchina virtuale, suddivise nei gruppi **NetworkInterfaceSecurityRules**, **DefaultSecurityRules** e **EffectiveSecurityRules**.
+Hello seguito è riportata una risposta abbreviata di hello risultati restituiti. Hello risultati mostrano tutte le regole di sicurezza efficace e applicato hello nella macchina virtuale hello suddiviso in gruppi di **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, e  **EffectiveSecurityRules**.
 
 ```json
 {
@@ -159,6 +159,6 @@ L'esempio seguente è una risposta abbreviata dei risultati restituiti. I risult
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Consultare [Auditing Network Security Groups (NSG) with Network Watcher](network-watcher-nsg-auditing-powershell.md) (Verifica dei gruppi di sicurezza di rete con Network Watcher) per informazioni su come automatizzare la verifica dei gruppi di sicurezza di rete.
+Visitare [il controllo di sicurezza gruppi (rete) con Watcher di rete](network-watcher-nsg-auditing-powershell.md) toolearn come tooautomate convalida dei gruppi di sicurezza di rete.
 
-Per altre informazioni sulle regole di sicurezza applicate alle risorse di rete, leggere la [panoramica sulla visualizzazione di gruppo di sicurezza](network-watcher-security-group-view-overview.md).
+Ulteriori informazioni sulle regole di sicurezza hello che sono risorse di rete applicati tooyour visitando [Visualizza panoramica gruppo di sicurezza](network-watcher-security-group-view-overview.md)

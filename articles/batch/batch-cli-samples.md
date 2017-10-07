@@ -1,5 +1,5 @@
 ---
-title: Esempi dell'interfaccia della riga di comando di Azure Batch | Documentazione Microsoft
+title: Esempi di CLI Batch aaaAzure | Documenti Microsoft
 description: Esempi di codice dell'interfaccia della riga di comando di Azure Batch
 services: batch
 documentationcenter: 
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: antisch
-ms.openlocfilehash: 51fd27536994ca36bf9559a780660c3a16bf30cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d700a6edebd35a3b2bb86926d1e57d4a33584b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-batch-cli-samples"></a>Esempi di codice dell'interfaccia della riga di comando di Azure Batch
 
 ## <a name="tutorials-with-sample-shell-scripts"></a>Esercitazioni con script della shell di esempio
 
-La tabella seguente fornisce collegamenti a script Bash, compilati tramite l'interfaccia della riga di comando di Azure, che dimostrano l'uso del servizio Batch.
+Hello nella tabella seguente sono inclusi collegamenti toobash script compilato utilizzando hello CLI di Azure che illustrano l'utilizzo del servizio Batch hello.
 
 | Script | Note |
 |---|---|
@@ -35,4 +35,4 @@ La tabella seguente fornisce collegamenti a script Bash, compilati tramite l'int
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).

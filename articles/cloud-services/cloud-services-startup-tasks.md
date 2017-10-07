@@ -1,6 +1,6 @@
 ---
-title: "Eseguire attività di avvio in Servizi cloud di Azure | Documentazione Microsoft"
-description: "Le attività di avvio consentono di preparare l'ambiente del servizio cloud per l'app. Questo argomento illustra il funzionamento e la modalità di esecuzione delle attività di avvio"
+title: "Attività di avvio di servizi Cloud di Azure aaaRun | Documenti Microsoft"
+description: "Le attività di avvio consentono di preparare l'ambiente del servizio cloud per l'app. Spiega che l'attività di avvio del lavoro e la modalità toomake li"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 1c1b3aa86dc8211de0c07c9fb68da5685c86f551
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3391a5d7434164f59972b8e497e5c34e33409543
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-and-run-startup-tasks-for-a-cloud-service"></a>Come configurare ed eseguire attività di avvio per un servizio cloud
-È possibile usare le attività di avvio per eseguire operazioni prima dell'avvio di un ruolo. Le operazioni che si possono eseguire sono l'installazione di un componente, la registrazione dei componenti COM, l'impostazione delle chiavi del Registro di sistema o l'avvio di un processo a esecuzione prolungata.
+# <a name="how-tooconfigure-and-run-startup-tasks-for-a-cloud-service"></a>Modalità di avvio tooconfigure ed eseguire attività per un servizio cloud
+È possibile utilizzare le operazioni di avvio attività tooperform prima dell'avvio di un ruolo. Le operazioni che è possibile tooperform includono l'installazione di un componente, la registrazione dei componenti COM, impostano le chiavi del Registro di sistema o l'avvio di un processo a esecuzione prolungata.
 
 > [!NOTE]
-> Le attività di avvio non sono applicabili ai ruoli VM, ma solo ai ruoli Web e di lavoro del servizio cloud.
+> Attività di avvio non sono applicabili tooVirtual macchine, solo tooCloud servizio Web e ruoli di lavoro.
 > 
 > 
 
 ## <a name="how-startup-tasks-work"></a>Funzionamento delle attività di avvio
-Le attività di avvio sono azioni effettuate prima dell'inizio dei ruoli e vengono definite nel file [ServiceDefinition.csdef] usando l'elemento [Task] all'interno dell'elemento [Startup]. Spesso le attività di avvio sono file batch, ma possono essere anche applicazioni console o file batch tramite i quali si avviano script di PowerShell.
+Attività di avvio sono azioni che vengono eseguite prima che i ruoli begin e definiti in hello [Servicedefinition] file utilizzando hello [attività] elemento all'interno di hello [avvio]elemento. Spesso le attività di avvio sono file batch, ma possono essere anche applicazioni console o file batch tramite i quali si avviano script di PowerShell.
 
-Le variabili di ambiente passano informazioni all'interno di un'attività di avvio e le risorse di archiviazione locale possono essere usate per il passaggio all'esterno di un'attività di avvio. In una variabile di ambiente può essere ad esempio specificato il percorso di un programma che si desidera installare e i file possono essere scritti nelle risorse di archiviazione locale e letti successivamente dai ruoli.
+Le variabili di ambiente passano informazioni all'interno di un'attività di avvio e archiviazione locale può essere utilizzato toopass informazioni da un'attività di avvio. Ad esempio, una variabile di ambiente può specificare programma tooa di hello percorso desiderato tooinstall e i file possono essere scritti archiviazione toolocal che può quindi essere letti successivamente dai ruoli.
 
-Con l'attività di avvio è possibile registrare informazioni ed errori nella directory specificata dalla variabile di ambiente **TEMP** . Durante l'attività di avvio, la variabile di ambiente **TEMP** viene risolta nella directory *C:\\Resources\\temp\\[guid].[nomeruolo]\\RoleTemp* nell'esecuzione nel cloud.
+L'attività di avvio è possibile registrare informazioni e directory di toohello errori specificata da hello **TEMP** variabile di ambiente. Durante l'attività di avvio, hello hello **TEMP** variabile di ambiente risolve toohello *c:\\risorse\\temp\\[guid]. [ roleName]\\RoleTemp* directory durante l'esecuzione nel cloud hello.
 
-Le attività di avvio possono inoltre essere eseguite più volte tra un riavvio e l'altro. Ad esempio, l'attività di avvio viene eseguita a ogni riciclo del ruolo e tali ricicli non includono necessariamente un riavvio. Le attività di avvio devono essere scritte in modo da poter essere eseguite più volte senza problemi.
+Le attività di avvio possono inoltre essere eseguite più volte tra un riavvio e l'altro. Ad esempio, verrà eseguita l'attività di avvio hello ogni volta che viene riciclato il ruolo di hello e ricicli dei ruoli non includono necessariamente un riavvio. Attività di avvio devono essere scritti in modo che consenta loro toorun più volte senza problemi.
 
-Le attività di avvio devono terminare con un valore di **errorlevel** (o codice di uscita) uguale a zero perché il processo di avvio possa essere completato. Se l'attività di avvio termina con un valore di **errorlevel**diverso da zero, il ruolo non verrà avviato.
+Attività di avvio devono terminare con un **errorlevel** (o codice di uscita) pari a zero per hello avvio processo toocomplete. Se un'attività di avvio termina con un diverso da zero **errorlevel**, hello ruolo non verrà avviato.
 
 ## <a name="role-startup-order"></a>Sequenza di avvio di un ruolo
-Di seguito è riportata la procedura di avvio di un ruolo in Azure:
+Hello procedura elenchi hello ruolo avvio in Azure:
 
-1. L'istanza viene contrassegnata con lo stato **Avvio in corso** e non riceve traffico.
-2. Tutte le attività di avvio vengono eseguite in base al relativo attributo **taskType** .
+1. istanza di Hello è contrassegnata come **iniziale** e non riceve traffico.
+2. Tutte le attività di avvio vengono eseguite in base tootheir **taskType** attributo.
    
-   * Le attività di tipo **simple** vengono eseguite in modo sincrono, una alla volta.
-   * Le attività di tipo **background** e **foreground** vengono avviate in modo asincrono, in parallelo all'attività di avvio.  
+   * Hello **semplice** attività vengono eseguite in modo sincrono, uno alla volta.
+   * Hello **background** e **in primo piano** attività sono attività di avvio toohello parallela e avviato in modo asincrono.  
      
      > [!WARNING]
-     > È possibile che IIS non sia stato configurato completamente nella fase delle attività di avvio del processo di avvio, pertanto potrebbero non essere disponibili dati specifici per il ruolo. Per le attività di avvio che richiedono dati specifici per il ruolo è necessario usare [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx).
+     > IIS potrebbe non essere completamente configurato durante la fase di attività di avvio hello nel processo di avvio hello, pertanto potrebbero non essere disponibili dati specifici del ruolo. Per le attività di avvio che richiedono dati specifici per il ruolo è necessario usare [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx).
      > 
      > 
-3. Viene avviato il processo host del ruolo e il sito viene creato in IIS.
-4. Viene chiamato il metodo [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) .
-5. L'istanza viene contrassegnata con lo stato **Pronto** e il traffico viene indirizzato all'istanza.
-6. Viene chiamato il metodo [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) .
+3. processo host del ruolo Hello viene avviato e viene creato il sito di hello in IIS.
+4. Hello [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) metodo viene chiamato.
+5. istanza di Hello è contrassegnata come **pronto** e il traffico indirizzato toohello istanza.
+6. Hello [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) metodo viene chiamato.
 
 ## <a name="example-of-a-startup-task"></a>Esempio di attività di avvio
-Le attività di avvio vengono definite nel file [ServiceDefinition.csdef] nell'elemento **Task** . L'attributo **commandLine** specifica il nome e i parametri del file batch o del comando di console di avvio, l'attributo **executionContext** specifica il livello di privilegio dell'attività di avvio e l'attributo **taskType** specifica la modalità di esecuzione dell'attività.
+Attività di avvio vengono definite nel hello [Servicedefinition] file hello **attività** elemento. Hello **commandLine** attributo specifica il nome di hello e parametri del batch di avvio hello file o comando della console, hello **executionContext** attributo specifica il livello di privilegio hello dell'avvio di hello attività e hello **taskType** attributo specifica l'esecuzione delle attività hello.
 
-In questo esempio viene creata la variabile di ambiente **MyVersionNumber** per l'attività di avvio e il relativo valore viene impostato su "**1.0.0.0**".
+In questo esempio, una variabile di ambiente **MyVersionNumber**, viene creato per attività di avvio hello e impostare il valore di toohello "**1.0.0.0**".
 
 **ServiceDefinition.csdef**:
 
@@ -74,76 +74,76 @@ In questo esempio viene creata la variabile di ambiente **MyVersionNumber** per 
 </Startup>
 ```
 
-Nell'esempio seguente il file batch **Startup.cmd** scrive la riga "The current version is 1.0.0.0" nel file StartupLog.txt nella directory specificata dalla variabile di ambiente TEMP. La riga `EXIT /B 0` assicura che l'attività di avvio termini con un argomento **errorlevel** uguale a zero.
+Nell'esempio seguente di hello, hello **Startup.cmd** file batch scrive la riga hello "la versione corrente di hello is 1.0.0.0" toohello StartupLog.txt file nella directory hello specificata dalla variabile di ambiente TEMP hello. Hello `EXIT /B 0` riga assicura l'attività di avvio hello termina con un **errorlevel** pari a zero.
 
 ```cmd
-ECHO The current version is %MyVersionNumber% >> "%TEMP%\StartupLog.txt" 2>&1
+ECHO hello current version is %MyVersionNumber% >> "%TEMP%\StartupLog.txt" 2>&1
 EXIT /B 0
 ```
 
 > [!NOTE]
-> In Visual Studio la proprietà **Copia nella directory di output** per il file batch di avvio deve essere impostata su **Copia sempre** per garantire la distribuzione corretta del file batch di avvio nel progetto in Azure (**approot\\bin** per i ruoli Web e **approot** per i ruoli di lavoro).
+> In Visual Studio, hello **copiare tooOutput Directory** proprietà per il file batch di avvio deve essere impostata troppo**Copia sempre** toobe assicurarsi che il file batch di avvio sia correttamente distribuito tooyour in Azure (**approot\\bin** per i ruoli Web, e **approot** per i ruoli di lavoro).
 > 
 > 
 
 ## <a name="description-of-task-attributes"></a>Descrizione degli attributi di Task
-Di seguito vengono descritti gli attributi dell'elemento **Task** nel file [ServiceDefinition.csdef] :
+Hello seguito vengono descritti gli attributi di hello di hello **attività** elemento hello [Servicedefinition] file:
 
-**commandLine** : specifica la riga di comando per l'attività di avvio, come indicato di seguito.
+**riga di comando** -specifica la riga di comando hello per attività di avvio hello:
 
-* Il comando, con i parametri della riga di comando facoltativi, che inizia l'attività di avvio.
-* Questo è spesso il nome del file batch con estensione cmd o bat.
-* L'attività è relativa alla cartella AppRoot\\Bin per la distribuzione. Le variabili di ambiente non vengono espanse per determinare il percorso e il file dell'attività. Se è necessaria l'espansione dell'ambiente, è possibile creare un piccolo script con estensione cmd con il quale richiamare l'attività di avvio.
+* Hello comando, con i parametri della riga di comando facoltativi, che inizia l'attività di avvio hello.
+* Questo è spesso hello filename di un file con estensione cmd o bat di batch.
+* attività Hello è relativo toohello AppRoot\\cartella Bin per la distribuzione di hello. Le variabili di ambiente non vengono espanse per determinare il percorso di hello e dell'attività hello. Se è necessaria l'espansione dell'ambiente, è possibile creare un piccolo script con estensione cmd con il quale richiamare l'attività di avvio.
 * Può essere un'applicazione console o un file batch che avvia uno [script di PowerShell](cloud-services-startup-tasks-common.md#create-a-powershell-startup-task).
 
-**executionContext** : specifica il livello di privilegio per l'attività di avvio. Il livello di privilegio può essere limitato o elevato:
+**executionContext** -specifica il livello di privilegio hello per attività di avvio hello. livello di privilegio Hello può essere limitata o con privilegi elevato:
 
 * **limitato**  
-  : l'attività di avvio viene eseguita con gli stessi privilegi del ruolo. Quando anche l'attributo **executionContext** dell'elemento [Runtime] è **limitato**, vengono usati i privilegi utente.
+  attività di avvio Hello viene eseguito con hello stessi privilegi del ruolo hello. Quando hello **executionContext** attributo per hello [Runtime] elemento è **limitato**, quindi vengono utilizzati i privilegi di utente.
 * **elevato**  
-  : l'attività di avvio viene eseguita con privilegi di amministratore. In questo modo attraverso le attività di avvio è possibile installare programmi, apportare modifiche alla configurazione di IIS, effettuare modifiche al Registro di sistema e altre attività a livello di amministratore senza aumentare il livello di privilegio del ruolo.  
+  attività di avvio Hello viene eseguito con privilegi di amministratore. In questo modo le attività di avvio programmi tooinstall, apportare modifiche alla configurazione di IIS, eseguire le modifiche del Registro di sistema e altre attività a livello di amministratore senza aumentare il livello di privilegio hello del ruolo hello stesso.  
 
 > [!NOTE]
-> Il livello di privilegio dell'attività di avvio non deve essere necessariamente uguale al livello di privilegio del ruolo.
+> Hello il livello di privilegio dell'attività di avvio non è necessario toobe hello stesso come ruolo hello stesso.
 > 
 > 
 
-**taskType** : specifica la modalità di esecuzione di un'attività di avvio.
+**taskType** -specifica hello modo un'attività di avvio viene eseguito.
 
 * **simple**  
-  vengono eseguite in modo sincrono, una alla volta, nell'ordine specificato nel file [ServiceDefinition.csdef] . Quando un'attività di avvio **simple** termina con un valore **errorlevel** uguale a zero, viene eseguita l'attività di avvio **simple** successiva. Se non sono presenti altre attività di avvio **simple** da eseguire, viene avviato il ruolo.   
+  Le attività vengono eseguite in modo sincrono, uno alla volta, nell'ordine di hello specificato in hello [Servicedefinition] file. Quando uno **semplice** attività di avvio termina con un **errorlevel** pari a zero, hello successivamente **semplice** viene eseguita l'attività di avvio. Se non sono più **semplice** tooexecute, le attività di avvio, quindi verrà avviato il ruolo hello stesso.   
   
   > [!NOTE]
-  > Se l'attività **simple** termina con un valore **errorlevel** diverso da zero, l'istanza viene bloccata. Le successive attività di avvio **simple** e il ruolo non vengono avviati.
+  > Se hello **semplice** attività termina con un diverso da zero **errorlevel**, hello istanza viene bloccata. Le successive **semplice** attività di avvio e ruolo hello stesso, non verrà avviato.
   > 
   > 
   
-    Per assicurarsi che il file batch termini con un valore **errorlevel** uguale a zero, eseguire il comando `EXIT /B 0` al termine del processo del file batch.
+    tooensure che il file batch termina con un **errorlevel** pari a zero, eseguire il comando hello `EXIT /B 0` alla fine di hello del processo del file batch.
 * **background**  
-  vengono eseguite in modo asincrono, in parallelo con l'avvio del ruolo.
+  Le attività vengono eseguite in modo asincrono, in parallelo con avvio hello del ruolo hello.
 * **foreground**  
-  vengono eseguite in modo asincrono, in parallelo con l'avvio del ruolo. La differenza principale tra un'attività **foreground** e un'attività **background** è che l'attività **foreground** impedisce il riciclo o l'arresto del ruolo fino al termine dell'attività. Le attività **background** non prevedono questa restrizione.
+  Le attività vengono eseguite in modo asincrono, in parallelo con avvio hello del ruolo hello. Hello differenza fondamentale tra un **in primo piano** e **background** attività è che un **in primo piano** attività impedisce ruolo hello dal riciclo o arresto fino a quando non dispone di attività hello è terminata. Hello **background** attività non dispone di questa restrizione.
 
 ## <a name="environment-variables"></a>Variabili di ambiente
-Le variabili di ambiente costituiscono un modo per passare le informazioni a un'attività di avvio. È ad esempio possibile inserire il percorso di un BLOB contenente un programma da installare, i numeri di porta che verranno usati dal ruolo o impostazioni per controllare le funzionalità dell'attività di avvio.
+Le variabili di ambiente sono un'attività di avvio tooa modo toopass informazioni. Ad esempio, è possibile inserire hello percorso tooa blob che contiene tooinstall un programma, o numeri di porta che verrà utilizzato il ruolo o funzionalità toocontrol le impostazioni dell'attività di avvio.
 
-Esistono due tipi di variabili di ambiente per le attività di avvio: le variabili di ambiente statiche e le variabili di ambiente basate sui membri della classe [RoleEnvironment] . Entrambi si trovano nella sezione [Environment] del file [ServiceDefinition.csdef] e per entrambi vengono usati l'elemento [Variable] e l'attributo **name**.
+Esistono due tipi di variabili di ambiente per attività di avvio. variabili di ambiente statiche e variabili di ambiente basano sui membri di hello [ RoleEnvironment] classe. Sono entrambi hello [ambiente] sezione di hello [Servicedefinition] file ed entrambi hello utilizzare [variabile] elemento e **nome** attributo.
 
-Per le variabili di ambiente statiche viene usato l'attributo **value** dell'elemento [Variable] . Nell'esempio precedente viene creata la variabile di ambiente **MyVersionNumber** con un valore statico di "**1.0.0.0**". Un altro esempio potrebbe essere la creazione di una variabile di ambiente **StagingOrProduction** impostabile manualmente sui valori "**staging**" o "**production**" per eseguire azioni di avvio diverse in base al valore della variabile di ambiente **StagingOrProduction**.
+Hello utilizza le variabili di ambiente statiche **valore** attributo di hello [variabile] elemento. esempio Hello precedente crea la variabile di ambiente hello **MyVersionNumber** che ha un valore statico di "**1.0.0.0**". Un altro esempio sarebbe toocreate un **StagingOrProduction** variabile di ambiente che è possibile impostare manualmente toovalues di "**di gestione temporanea**"o"**produzione**" tooperform azioni di avvio diverse in base al valore di hello di hello **StagingOrProduction** variabile di ambiente.
 
-Per le variabili di ambiente basate sui membri della classe RoleEnvironment non viene usato l'attributo **value** dell'elemento [Variable] . Viene invece usato l'elemento figlio [RoleInstanceValue], con il valore appropriato dell'attributo **XPath**, per creare una variabile di ambiente basata su un membro specifico della classe [RoleEnvironment]. I valori dell'attributo **XPath** per accedere ai diversi valori di [RoleEnvironment] sono disponibili [qui](cloud-services-role-config-xpath.md).
+Le variabili di ambiente basate sui membri della classe RoleEnvironment hello non utilizzano hello **valore** attributo di hello [variabile] elemento. In alternativa, hello [RoleInstanceValue] elemento figlio, con hello appropriato **XPath** valore dell'attributo, viene utilizzati toocreate una variabile di ambiente in base a un membro specifico di hello [ RoleEnvironment] classe. I valori per hello **XPath** attributo tooaccess vari [ RoleEnvironment] sono disponibili valori [qui](cloud-services-role-config-xpath.md).
 
-Per creare una variabile di ambiente che sia "**true**" se l'istanza è in esecuzione nell'emulatore di calcolo e "**false**" se è in esecuzione nel cloud, ad esempio, usare gli elementi [Variable] e [RoleInstanceValue] seguenti:
+Ad esempio, toocreate una variabile di ambiente che è "**true**" quando l'istanza di hello è in esecuzione nell'emulatore di calcolo, hello e "**false**" durante l'esecuzione nel cloud hello, utilizzare l'esempio hello [variabile] e [RoleInstanceValue] elementi:
 
 ```xml
 <Startup>
     <Task commandLine="Startup.cmd" executionContext="limited" taskType="simple">
         <Environment>
 
-            <!-- Create the environment variable that informs the startup task whether it is running
-                in the Compute Emulator or in the cloud. "%ComputeEmulatorRunning%"=="true" when
-                running in the Compute Emulator, "%ComputeEmulatorRunning%"=="false" when running
-                in the cloud. -->
+            <!-- Create hello environment variable that informs hello startup task whether it is running
+                in hello Compute Emulator or in hello cloud. "%ComputeEmulatorRunning%"=="true" when
+                running in hello Compute Emulator, "%ComputeEmulatorRunning%"=="false" when running
+                in hello cloud. -->
 
             <Variable name="ComputeEmulatorRunning">
                 <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
@@ -155,15 +155,15 @@ Per creare una variabile di ambiente che sia "**true**" se l'istanza è in esecu
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Informazioni su come eseguire alcune [attività di avvio comuni](cloud-services-startup-tasks-common.md) con il servizio cloud.
+Informazioni su come tooperform alcuni [comuni attività di avvio](cloud-services-startup-tasks-common.md) con il servizio Cloud.
 
 [Creare il pacchetto](cloud-services-model-and-package.md) del servizio cloud.  
 
-[ServiceDefinition.csdef]: cloud-services-model-and-package.md#csdef
-[Task]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
-[Startup]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
+[Servicedefinition]: cloud-services-model-and-package.md#csdef
+[attività]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
+[avvio]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
 [Runtime]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Runtime
-[Environment]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
-[Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
+[ambiente]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
+[variabile]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
-[RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
+[ RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx

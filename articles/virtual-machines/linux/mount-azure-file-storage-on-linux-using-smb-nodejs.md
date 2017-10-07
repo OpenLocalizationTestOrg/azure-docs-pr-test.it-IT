@@ -1,6 +1,6 @@
 ---
-title: Montare Archiviazione file di Azure in VM Linux usando SMB con l'interfaccia della riga di comando di Azure 1.0 | Microsoft Docs
-description: Come montare Archiviazione file di Azure in VM Linux usando SMB
+title: archiviazione di File di Azure nelle macchine virtuali Linux con SMB 1.0 CLI di Azure aaaMount | Documenti Microsoft
+description: Come toomount archiviazione di File di Azure nelle macchine virtuali Linux tramite SMB
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/07/2016
 ms.author: v-livech
-ms.openlocfilehash: 4951860630f0aad107d0846d52ebe4423ee0b91c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14a4224228cadb0ae2f05e8e5c8022ee84f138a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mount-azure-file-storage-on-linux-vms-by-using-smb-with-azure-cli-10"></a>Montare Archiviazione file di Azure in VM Linux usando SMB con l'interfaccia della riga di comando di Azure 1.0
 
-Questo articolo illustra come montare Archiviazione file di Azure in una VM Linux usando il protocollo Server Message Block (SMB). Archiviazione file offre condivisioni file nel cloud tramite il protocollo SMB standard. I requisiti sono:
+Questo articolo illustra come archiviazione di File di Azure in una VM Linux utilizzando toomount hello protocollo Server Message Block (SMB). Archiviazione di file offre le condivisioni file nel cloud hello tramite il protocollo SMB standard di hello. requisiti di Hello sono:
 
 * Un [account Azure](https://azure.microsoft.com/pricing/free-trial/)
 * [File di chiavi pubbliche e private Secure Shell (SSH)](mac-create-ssh-keys.md)
 
-## <a name="cli-versions-to-use"></a>Versioni dell'interfaccia della riga di comando da usare
-È possibile completare l'attività usando una delle versioni seguenti dell'interfaccia della riga di comando:
+## <a name="cli-versions-toouse"></a>Toouse di versioni CLI
+È possibile completare l'attività hello utilizzando una delle seguenti versioni di interfaccia della riga di comando (CLI) hello:
 
-- [Interfaccia della riga di comando di Azure 1.0](#quick-commands): l'interfaccia della riga di comando per i modelli di distribuzione classica e di gestione delle risorse (questo articolo)
-- [Interfaccia della riga di comando di Azure 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json): interfaccia della riga di comando di nuova generazione per il modello di distribuzione Resource Manager
+- [Azure CLI 1.0](#quick-commands) : l'interfaccia CLI per hello classic risorse Gestione modelli di distribuzione e (in questo articolo)
+- [Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)-la prossima generazione CLI per modello di distribuzione di gestione risorse hello
 
 
 ## <a name="quick-commands"></a>Comandi rapidi
-Per eseguire rapidamente l'attività, seguire i passaggi in questa sezione. Per informazioni più dettagliate e di contesto, iniziare con la sezione ["Procedura dettagliata"](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough).
+attività hello tooaccomplish rapidamente, procedura hello in questa sezione. Per ulteriori informazioni e il contesto, iniziare in corrispondenza di hello ["Procedura dettagliata"](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough) sezione.
 
 ### <a name="prerequisites"></a>Prerequisiti
 * Un gruppo di risorse
@@ -49,20 +49,20 @@ Per eseguire rapidamente l'attività, seguire i passaggi in questa sezione. Per 
 
 Sostituire gli esempi con le impostazioni desiderate.
 
-### <a name="create-a-directory-for-the-local-mount"></a>Creare una directory per il montaggio locale
+### <a name="create-a-directory-for-hello-local-mount"></a>Creare una directory di montaggio locale hello
 
 ```bash
 mkdir -p /mnt/mymountpoint
 ```
 
-### <a name="mount-the-file-storage-smb-share-to-the-mount-point"></a>Montare la condivisione SMB di archiviazione file sul punto di montaggio
+### <a name="mount-hello-file-storage-smb-share-toohello-mount-point"></a>Punto di montaggio di hello File archiviazione SMB condivisione toohello di montaggio
 
 ```bash
 sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 ```
 
-### <a name="persist-the-mount-after-a-reboot"></a>Rendere persistente il montaggio dopo un riavvio
-Aggiungere la riga seguente a `/etc/fstab`:
+### <a name="persist-hello-mount-after-a-reboot"></a>Persistenza mount hello dopo il riavvio
+Aggiungere hello successiva riga troppo`/etc/fstab`:
 
 ```bash
 //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
@@ -70,13 +70,13 @@ Aggiungere la riga seguente a `/etc/fstab`:
 
 ## <a name="detailed-walkthrough"></a>Procedura dettagliata
 
-L'archiviazione file offre condivisioni file nel cloud che usano il protocollo SMB standard. Con la versione più recente di archiviazione file è anche possibile montare una condivisione di file da un sistema operativo che supporta SMB 3.0. Quando si usa un montaggio SMB in Linux è possibile eseguire facilmente copie di backup in un percorso di archiviazione affidabile e permanente supportato da un Contratto di servizio.
+Archiviazione di file offre le condivisioni file cloud hello che utilizzano il protocollo SMB standard di hello. Con una versione più recente di hello di archiviazione di File, è inoltre possibile collegare una condivisione file da qualsiasi sistema operativo che supporta SMB 3.0. Quando si utilizza un montaggio SMB su Linux, si ottiene backup semplice tooa affidabile e permanente archiviazione percorso di archiviazione supportata da un contratto di servizio.
 
-Lo spostamento di file da una VM a un montaggio SMB ospitato nell'archiviazione file è un ottimo modo per eseguire il debug dei log, dato che la stessa condivisione SMB può essere montata in locale in workstation Mac, Linux o Windows. SMB non è la soluzione migliore per eseguire lo streaming di log applicazioni o Linux in tempo reale perché il protocollo SMB non è stato creato per la gestione di attività di registrazione così impegnative. Per raccogliere l'output di log applicazioni o Linux è preferibile usare uno strumento dedicato con livello di registrazione unificato come Fluentd piuttosto che SMB.
+Lo spostamento di file da un montaggio SMB tooan di macchina virtuale ospitata in archiviazione di File è che toodebug un ottimo modo Registra. Ciò accade perché hello condivisione SMB stesso può essere installato localmente tooyour workstation di Windows, Linux o Mac. SMB non è hello la soluzione migliore per lo streaming di Linux o registrata dall'applicazione in tempo reale, poiché il protocollo SMB hello non compilato toohandle loro registrazione elevato. Per raccogliere l'output di log applicazioni o Linux è preferibile usare uno strumento dedicato con livello di registrazione unificato come Fluentd piuttosto che SMB.
 
-Per questa procedura dettagliata vengono definiti i prerequisiti necessari prima per creare la condivisione di Archiviazione file di Azure e quindi per montarla tramite SMB in una VM Linux.
+Per questa procedura dettagliata, è creare prerequisiti hello necessari toofirst creare la condivisione di archiviazione di File hello e quindi montare tramite SMB in una VM Linux.
 
-1. Creare un account di archiviazione di Azure usando il codice seguente:
+1. Creare un account di archiviazione di Azure utilizzando hello seguente codice:
 
     ```azurecli
     azure storage account create myStorageAccount \
@@ -86,17 +86,17 @@ Per questa procedura dettagliata vengono definiti i prerequisiti necessari prima
     -g myResourceGroup
     ```
 
-2. Visualizzare le chiavi dell'account di archiviazione.
+2. Mostra chiavi dell'account di archiviazione hello.
 
-    Quando si crea un account di archiviazione, le chiavi dell'account vengono create a coppie perché possano essere ruotate senza interrompere il servizio. Quando si passa alla seconda chiave della coppia, viene creata una nuova coppia di chiavi. Le nuove chiavi dell'account di archiviazione vengono sempre create a coppie in modo da avere sempre a disposizione almeno una chiave di archiviazione non usata alla quale passare. Per visualizzare le chiavi dell'account di archiviazione usare il codice seguente:
+    Quando si crea un account di archiviazione, le chiavi dell'account hello vengono create in coppie, in modo che possono essere ruotate senza interruzione del servizio. Quando si passa toohello seconda chiave nella coppia hello, si crea una nuova coppia di chiavi. Nuove chiavi dell'account di archiviazione vengono sempre create in coppie, accertarsi di disporre sempre di almeno uno spazio di archiviazione inutilizzato di tooswitch pronto chiave per. chiavi dell'account di archiviazione hello tooshow, utilizzare hello seguente codice:
 
     ```azurecli
     azure storage account keys list myStorageAccount \
     --resource-group myResourceGroup
     ```
-3. Creare la condivisione di Archiviazione file.
+3. Creare la condivisione di archiviazione di File hello.
 
-    La condivisione di Archiviazione file contiene la condivisione SMB. La quota è sempre espressa in gigabyte (GB). Per creare la condivisione di Archiviazione file usare il codice seguente:
+    condivisione di File di archiviazione Hello contiene una condivisione SMB hello. quota Hello è sempre espressa in gigabyte (GB). toocreate hello condivisione File di archiviazione, usare hello seguente codice:
 
     ```azurecli
     azure storage share create mystorageshare \
@@ -105,23 +105,23 @@ Per questa procedura dettagliata vengono definiti i prerequisiti necessari prima
     --account-key nPOgPR<--snip-->4Q==
     ```
 
-4. Creare la directory del punto di montaggio.
+4. Creare la directory di punto di montaggio hello.
 
-    Nel file system di Linux è necessario creare una directory locale nella quale montare la condivisione SMB. Qualsiasi elemento scritto o letto dalla directory di montaggio locale viene inoltrato alla condivisione SMB ospitata in Archiviazione file. Per creare la directory usare il codice seguente:
+    È necessario creare una directory locale in hello toomount hello Linux file system per di condivisione SMB. Qualsiasi elemento scritto o letto dalla directory di montaggio locale hello viene inoltrato toohello condivisione SMB ospitata in archiviazione di File. directory di hello toocreate, utilizzare hello seguente codice:
 
     ```bash
     sudo mkdir -p /mnt/mymountdirectory
     ```
 
-5. Montare la condivisione SMB usando il codice seguente:
+5. Montare hello condivisione SMB tramite hello seguente codice:
 
     ```azurecli
     sudo mount -t cifs //myStorageAccount.file.core.windows.net/mystorageshare /mnt/mymountdirectory -o vers=3.0,username=myStorageAccount,password=myStorageAccountkey,dir_mode=0777,file_mode=0777
     ```
 
-6. Rendere persistente il montaggio SMB dopo il riavvio.
+6. Mantenere hello SMB montare il riavvio del sistema.
 
-    Quando si riavvia la VM Linux, durante la fase di arresto viene smontata la condivisione SMB montata. Per rimontare la condivisione SMB all'avvio, è necessario aggiungere una riga al file /etc/fstab di Linux. Linux usa il file fstab per elencare i file system da montare durante la fase di avvio. Aggiungendo la condivisione SMB si garantisce che la condivisione di archiviazione file costituisca un file system montato in modo permanente per la VM Linux. L'aggiunta della condivisione SMB di archiviazione file in una nuova VM è possibile quando si usa cloud-init.
+    Quando si riavvia hello VM Linux, hello montata condivisione SMB viene disinstallata durante l'arresto. condivisione SMB di tooremount hello all'avvio del sistema, è necessario aggiungere un toohello riga /etc/fstab. Linux. Linux Usa hello fstab file toolist hello file System che deve toomount durante il processo di avvio hello. Aggiunta condivisione SMB di hello garantisce che la condivisione archiviazione File hello è un sistema di file montati in modo permanente per hello VM Linux. Aggiunta di hello File archiviazione SMB condivisione tooa nuova macchina virtuale è possibile quando si utilizza cloud init.
 
     ```bash
     //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
@@ -129,6 +129,6 @@ Per questa procedura dettagliata vengono definiti i prerequisiti necessari prima
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Uso di cloud-init per personalizzare una VM Linux durante la creazione](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Aggiungere un disco a una VM Linux](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Crittografare i dischi di una VM Linux usando l'interfaccia della riga di comando di Azure](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Utilizzo di cloud init toocustomize una VM Linux durante la creazione](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Aggiungere un tooa disco VM Linux](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [Crittografare i dischi in una VM Linux con hello CLI di Azure](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

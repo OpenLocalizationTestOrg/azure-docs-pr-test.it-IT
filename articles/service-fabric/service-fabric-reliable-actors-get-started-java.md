@@ -1,6 +1,6 @@
 ---
-title: Creare il primo microservizio di Azure basato su attori in Java | Documentazione Microsoft
-description: Questa esercitazione illustra la procedura per la creazione, il debug e la distribuzione di un semplice servizio basato su attore usando Service Fabric Reliable Actors.
+title: aaaCreate il primo microservizio Azure basato su attori in Java | Documenti Microsoft
+description: In questa esercitazione vengono illustrati i passaggi hello di creazione, il debug e distribuzione di un servizio basato su attori semplice usando Service Fabric Reliable Actors.
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/04/2017
 ms.author: vturecek
-ms.openlocfilehash: 288f1ed1016f50031065e66444d2562427194dc7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 24718a8d7034360c53597f139169580f1a6ce732
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-reliable-actors"></a>Introduzione a Reliable Actors
 > [!div class="op_single_selector"]
@@ -27,37 +27,37 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Questo articolo illustra le nozioni fondamentali di Azure Service Fabric Reliable Actors e le procedure per creare e distribuire una semplice applicazione Reliable Actors in Java.
+In questo articolo vengono illustrati concetti fondamentali di hello di Azure Service Fabric Reliable Actors e viene illustrato come creare e distribuire una semplice applicazione Reliable Actor in Java.
 
 ## <a name="installation-and-setup"></a>Installazione e configurazione
-Prima di iniziare, assicurarsi che nel computer sia configurato l'ambiente di sviluppo di Service Fabric.
-Se è necessario configurarlo, andare alla [guida introduttiva per Mac](service-fabric-get-started-mac.md) o alla [guida introduttiva per Linux](service-fabric-get-started-linux.md).
+Prima di iniziare, verificare di che aver ambiente di sviluppo di Service Fabric hello configurare nel computer.
+Se è necessario tooset, configurarlo, andare troppo[introduzione su Mac](service-fabric-get-started-mac.md) o [introduzione in Linux](service-fabric-get-started-linux.md).
 
 ## <a name="basic-concepts"></a>Concetti di base
-Per iniziare a usare Reliable Actors, è sufficiente comprendere solo alcuni concetti di base:
+tooget introduttiva Reliable Actors, è solo necessario toounderstand alcuni concetti di base:
 
-* **Servizio attore**. Reliable Actors viene fornito in pacchetti di servizi Reliable Services che possono essere distribuiti nell'infrastruttura Service Fabric. Le istanze di Actors vengono attivate in un'istanza del servizio denominata.
-* **Registrazione attore**. Come con Reliable Services, un servizio Reliable Actor deve essere registrato con il runtime di Service Fabric. In più, il tipo di attore deve essere registrato con il runtime di Actor.
-* **Interfaccia attore**. Questa interfaccia viene usata per definire l'interfaccia pubblica fortemente tipizzata di un attore. In base alla terminologia modello di Reliable Actors, questa interfaccia definisce i tipi di messaggi che l'attore può comprendere ed eseguire. L'interfaccia attore viene usata da altri attori o applicazioni client per "inviare" messaggi all'attore (in modo asincrono). Reliable Actors può implementare più interfacce.
-* **Classe ActorProxy**. La classe ActorProxy viene usata dalle applicazioni client per richiamare i metodi esposti tramite l'interfaccia attore. La classe ActorProxy fornisce due funzionalità importanti:
+* **Servizio attore**. Reliable Actors sono inclusi nei servizi affidabili che può essere distribuito nell'infrastruttura di Service Fabric hello. Le istanze di Actors vengono attivate in un'istanza del servizio denominata.
+* **Registrazione attore**. Come con i servizi affidabili, un servizio Reliable Actor deve toobe registrato con il runtime di Service Fabric hello. Inoltre, è necessario toobe registrato con il runtime di attore hello tipo attore hello.
+* **Interfaccia attore**. interfaccia attore Hello è toodefine utilizzata un'interfaccia pubblica fortemente tipizzata di un attore. Nella terminologia dei modelli Reliable Actor hello, interfaccia attore hello definisce hello tipi di messaggi hello attore possono comprendere ed elaborare. interfaccia attore Hello viene utilizzato da altri attori e le applicazioni client troppo "inviano" (in modo asincrono) attore toohello messaggi. Reliable Actors può implementare più interfacce.
+* **Classe ActorProxy**. classe ActorProxy Hello viene utilizzato da client applicazioni tooinvoke hello metodi esposti tramite l'interfaccia di hello attore. classe ActorProxy Hello offre due funzionalità importanti:
   
-  * Risoluzione dei nomi: la classe è in grado di individuare l'attore nel cluster, ossia trovare il nodo del cluster in cui è ospitato.
-  * Gestione degli errori: la classe può ripetere le chiamate al metodo e risolvere nuovamente la posizione dell'attore, ad esempio dopo un errore che richiede lo spostamento dell'attore in un altro nodo del cluster.
+  * Risoluzione dei nomi: è in grado di toolocate attore di hello cluster hello (Trova hello nodo del cluster di hello in cui è ospitato).
+  * Gestione degli errori: può ripetere chiamate al metodo e risolvere nuovamente il percorso di attore hello dopo, ad esempio, un errore che richiede hello attore toobe rilocato tooanother nodo cluster hello.
 
-È opportuno citare le regole seguenti relative alle interfacce dell'attore:
+Hello alle regole che riguardano le interfacce tooactor è utile citare:
 
 * I metodi di interfaccia dell'attore non possono essere sottoposti a overload.
 * I metodi di interfaccia dell'attore non accettano parametri facoltativi, out o ref.
 * Non sono supportate interfacce generiche.
 
 ## <a name="create-an-actor-service"></a>Creare un servizio Actor
-Per iniziare, creare una nuova applicazione di Service Fabric. Service Fabric SDK per Linux include un generatore Yeoman per la creazione dello scaffolding per un'applicazione di Service Fabric con un servizio senza stato. Iniziare eseguendo il comando Yeoman seguente:
+Per iniziare, creare una nuova applicazione di Service Fabric. Hello Service Fabric SDK per Linux include un Yeoman lo scaffolding di hello tooprovide generatore di un'applicazione di Service Fabric con un servizio senza stato. Avviare eseguendo hello seguenti Yeoman comando:
 
 ```bash
 $ yo azuresfjava
 ```
 
-Seguire le istruzioni per creare un **servizio Actor senza stato**. Per questa esercitazione, denominare l'applicazione "HelloWorldActorApplication" e il servizio Actor "HelloWorldActor". Verrà creato lo scaffolding seguente:
+Seguire hello istruzioni toocreate un **servizio Actor affidabile**. Per questa esercitazione, denominare hello applicazione "HelloWorldActorApplication" e hello attore "HelloWorldActor". verrà creato dopo lo scaffolding Hello:
 
 ```bash
 HelloWorldActorApplication/
@@ -100,10 +100,10 @@ HelloWorldActorApplication/
 ```
 
 ## <a name="reliable-actors-basic-building-blocks"></a>Blocchi predefiniti di base di Reliable Actors
-I concetti fondamentali descritti in precedenza si traducono nei blocchi predefiniti di base di un servizio Reliable Actor.
+concetti di base Hello descritti in precedenza si traducono in hello blocchi predefiniti di base di un servizio Reliable Actor.
 
 ### <a name="actor-interface"></a>Interfaccia dell'attore
-Questo blocco include la definizione dell'interfaccia per l'attore. Questa interfaccia definisce il contratto dell'attore che è condiviso dall'implementazione dell'attore e i client che chiamano l'attore, quindi è in genere opportuno definirlo in una posizione separata rispetto all'implementazione dell'attore e può essere condiviso da molti altri servizi o applicazioni client.
+Contiene la definizione di interfaccia hello per attore hello. Questa interfaccia definisce contratto attore hello condiviso da implementazione attore hello e i client hello chiamata attore hello, pertanto è in genere senso toodefine in una posizione separati dall'implementazione attore hello e può essere condiviso da diversi altri servizi o applicazioni client.
 
 `HelloWorldActorInterface/src/reliableactor/HelloWorldActor.java`:
 
@@ -117,7 +117,7 @@ public interface HelloWorldActor extends Actor {
 ```
 
 ### <a name="actor-service"></a>Servizio Actor
-Questo blocco contiene l'implementazione dell'attore e il codice di registrazione dell'attore. La classe dell'attore implementa l'interfaccia dell'attore. Questa è la posizione in cui l'attore svolge il suo lavoro.
+Questo blocco contiene l'implementazione dell'attore e il codice di registrazione dell'attore. classe attore Hello implementa interfaccia attore hello. Questa è la posizione in cui l'attore svolge il suo lavoro.
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorImpl`:
 
@@ -148,7 +148,7 @@ public class HelloWorldActorImpl extends ReliableActor implements HelloWorldActo
 ```
 
 ### <a name="actor-registration"></a>Registrazione dell'attore
-Il servizio Actor deve essere registrato con un tipo di servizio nel runtime di Service Fabric. Perché il servizio Actor possa eseguire le istanze degli attori, è necessario che anche il proprio tipo di attore sia registrato con il servizio Actor. Il metodo di registrazione `ActorRuntime` esegue questa attività per gli attori.
+servizio actor Hello deve essere registrato con un tipo di servizio nel runtime di Service Fabric hello. Per consentire hello servizio Actor toorun le istanze di attore, il tipo di attore inoltre deve essere registrato con hello servizio Actor. Hello `ActorRuntime` metodo di registrazione, questa operazione viene eseguita per attori.
 
 `HelloWorldActor/src/reliableactor/HelloWorldActorHost`:
 
@@ -171,14 +171,14 @@ public class HelloWorldActorHost {
 ```
 
 ### <a name="test-client"></a>Client di prova
-Questa è una semplice applicazione client di test che è possibile eseguire separatamente dall'applicazione di Service Fabric per testare il servizio attore. Questo è un esempio della posizione in cui è possibile usare ActorProxy per attivare e comunicare con le istanze dell'attore. Non viene distribuito con il servizio.
+Si tratta di un'applicazione client di test semplice è possibile eseguire separatamente da tootest applicazione di Service Fabric hello del servizio actor. Questo è un esempio di dove hello ActorProxy può essere tooactivate utilizzato e comunicare con istanze attore. Non viene distribuito con il servizio.
 
-### <a name="the-application"></a>Applicazione
-Infine, l'applicazione che include il servizio dell'attore e qualsiasi altro servizio aggiunto in futuro per la distribuzione. Contiene il file *ApplicationManifest.xml* e segnaposto per il pacchetto del servizio dell'attore.
+### <a name="hello-application"></a>applicazione Hello
+Infine, i pacchetti di applicazione hello hello servizio actor e altri servizi che è possibile aggiungere in hello futura insieme per la distribuzione. Contiene hello *ApplicationManifest.xml* e segnaposto per il pacchetto di servizio actor hello.
 
-## <a name="run-the-application"></a>Eseguire l'applicazione
+## <a name="run-hello-application"></a>Eseguire un'applicazione hello
 
-Lo scaffolding Yeoman include uno script Gradle per compilare l'applicazione e script Bash per distribuire ed eliminare l'applicazione. Per distribuire l'applicazione, prima di tutto compilarla con Gradle:
+Hello Yeoman scaffolding include un gradle script toobuild hello applicazione e bash script toodeploy e rimuovere l'applicazione. applicazione hello toodeploy, prima dell'applicazione hello compilazione con gradle:
 
 ```bash
 $ gradle
@@ -188,8 +188,8 @@ Si otterrà un pacchetto dell'applicazione di Service Fabric che può essere dis
 
 ### <a name="deploy-service-fabric-cli"></a>Distribuire l'interfaccia della riga di comando di Service Fabric
 
-Lo script install.sh contiene i comandi dell'interfaccia della riga di comando di Service Fabric (sfctl) necessari per distribuire il pacchetto dell'applicazione.
-Eseguire lo script install.sh per distribuire l'applicazione.
+script install.sh Hello contiene hello necessarie servizio infrastruttura CLI (sfctl) comandi toodeploy hello pacchetto dell'applicazione.
+Eseguire un'applicazione hello hello install.sh script toodeploy.
 
 ```bash
 $ ./install.sh

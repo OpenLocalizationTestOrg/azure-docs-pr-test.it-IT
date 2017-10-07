@@ -1,6 +1,6 @@
 ---
-title: Creare una regola di Azure Load Balancer per un cluster
-description: Configurare un'istanza di Azure Load Balancer per aprire le porte per un cluster di Azure Service Fabric.
+title: aaaCreate una regola per un cluster di bilanciamento del carico di Azure
+description: Configurare le porte tooopen un bilanciamento del carico di Azure per il cluster di Azure Service Fabric.
 services: service-fabric
 documentationcenter: na
 author: thraka
@@ -14,93 +14,93 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/22/2017
 ms.author: adegeo
-ms.openlocfilehash: c99c4d9f343ca97fd3cd363fb54feaf5507bb77c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4a40f62422bd895d782be8cbaace5f4e1af81db3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="open-ports-for-a-service-fabric-cluster"></a>Aprire le porte per un cluster di Service Fabric
 
-Il servizio di bilanciamento del carico distribuito con il cluster di Azure Service Fabric indirizza il traffico all'app eseguita in un nodo. Se si modifica l'app per usare una porta diversa, è necessario esporre tale porta (o eseguire l'instradamento a un'altra porta) in Azure Load Balancer.
+bilanciamento del carico Hello distribuito con il cluster di Azure Service Fabric indirizza il traffico tooyour app in esecuzione in un nodo. Se si modifica il toouse app una porta diversa, è necessario esporre tale porta (o indirizzare una porta diversa) in hello bilanciamento del carico di Azure.
 
-Al momento della distribuzione del cluster di Service Fabric in Azure, è stato creato automaticamente un servizio di bilanciamento del carico. Se non è disponibile un servizio di bilanciamento del carico, vedere l'articolo su come [configurare un servizio di bilanciamento del carico con connessione Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
+Quando è stato distribuito il tooAzure di servizio dell'infrastruttura cluster, è stato creato automaticamente un servizio di bilanciamento del carico. Se non è disponibile un servizio di bilanciamento del carico, vedere l'articolo su come [configurare un servizio di bilanciamento del carico con connessione Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
 
 ## <a name="configure-service-fabric"></a>Configurare Service Fabric
 
-Il file di configurazione **ServiceManifest.xml** dell'applicazione di Service Fabric definisce gli endpoint che verranno usati dall'applicazione. Dopo l'aggiornamento del file di configurazione per definire un endpoint, è necessario aggiornare il servizio di bilanciamento del carico per esporre tale porta o un'altra. Per altre informazioni sulla creazione dell'endpoint di Service Fabric, vedere l'articolo su come [configurare un endpoint](service-fabric-service-manifest-resources.md).
+L'applicazione di Service Fabric **ServiceManifest.xml** file di configurazione definisce gli endpoint hello l'applicazione prevede toouse. Al termine del file di configurazione hello è stata aggiornata toodefine un endpoint, bilanciamento del carico hello deve essere aggiornato tooexpose tale (o una diversa) porta. Per ulteriori informazioni su come toocreate hello endpoint dell'infrastruttura del servizio, vedere [un Endpoint del programma di installazione](service-fabric-service-manifest-resources.md).
 
 ## <a name="create-a-load-balancer-rule"></a>Creare una regola di bilanciamento del carico
 
-Una regola di bilanciamento del carico apre una porta con connessione Internet e inoltra il traffico alla porta del nodo interno usata dall'applicazione. Se non è disponibile un servizio di bilanciamento del carico, vedere l'articolo su come [configurare un servizio di bilanciamento del carico con connessione Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
+Una regola di bilanciamento del carico viene aperta una porta con connessione internet e inoltra porta traffico toohello interno del nodo utilizzata dall'applicazione. Se non è disponibile un servizio di bilanciamento del carico, vedere l'articolo su come [configurare un servizio di bilanciamento del carico con connessione Internet](..\load-balancer\load-balancer-get-started-internet-portal.md).
 
-Per creare una regola di bilanciamento del carico, è necessario raccogliere le informazioni seguenti:
+regola toocreate un bilanciamento del carico, è necessario hello toocollect le seguenti informazioni:
 
 - Nome del servizio di bilanciamento del carico.
-- Gruppo di risorse del servizio di bilanciamento del carico e del cluster di Service Fabric.
+- Gruppo di risorse di hello bilanciamento del carico e cluster di service fabric.
 - Porta esterna.
 - Porta interna.
 
 ## <a name="azure-cli"></a>Interfaccia della riga di comando di Azure
 >[!NOTE]
->Se è necessario determinare il nome del servizio di bilanciamento del carico, usare questo comando per ottenere rapidamente un elenco di tutti i servizi di bilanciamento del carico e i gruppi di risorse associati.
+>Se è necessario il nome hello toodetermine di bilanciamento del carico hello, utilizzare un elenco di tutti i servizi di bilanciamento del carico e i gruppi di risorse hello associata get di tooquickly questo comando.
 >
 >`az network lb list --query "[].{ResourceGroup: resourceGroup, Name: name}"`
 >
 
-Per creare una regola di bilanciamento del carico con l'**interfaccia della riga di comando di Azure** è sufficiente un solo comando. Per creare una nuova regola è necessario sapere solo il nome del servizio di bilanciamento del carico e quello del gruppo di risorse.
+È sufficiente un singolo comando toocreate una regola di bilanciamento del carico con hello **CLI di Azure**. È sufficiente tooknow sia nome hello del carico hello bilanciamento e risorse toocreate gruppo una nuova regola.
 
 ```azurecli
 az network lb rule create --backend-port 40000 --frontend-port 39999 --protocol Tcp --lb-name LB-svcfab3 -g svcfab_cli -n my-app-rule
 ```
 
-Il comando dell'interfaccia della riga di comando di Azure include alcuni parametri descritti nella tabella seguente:
+Hello comando CLI di Azure dispone di alcuni parametri descritti nella seguente tabella hello:
 
 | . | Descrizione |
 | --------- | ----------- |
-| `--backend-port`  | Porta su cui è in ascolto l'applicazione di Service Fabric. |
-| `--frontend-port` | Porta esposta dal servizio di bilanciamento del carico per le connessioni esterne. |
-| `-lb-name` | Nome del servizio di bilanciamento del carico da modificare. |
-| `-g`       | Gruppo di risorse che include sia il servizio di bilanciamento del carico che il cluster di Service Fabric. |
-| `-n`       | Nome scelto per la regola. |
+| `--backend-port`  | applicazione di Hello porta hello service fabric è in ascolto. |
+| `--frontend-port` | hello porta Hello caricare espone di bilanciamento del carico per le connessioni esterne. |
+| `-lb-name` | nome Hello di hello caricare toochange di bilanciamento del carico. |
+| `-g`       | gruppo di risorse Hello con bilanciamento del carico hello sia cluster di service fabric. |
+| `-n`       | Hello scelto il nome della regola hello. |
 
 
 >[!NOTE]
->Per altre informazioni in merito, vedere l'articolo su come [creare un servizio di bilanciamento del carico con l'interfaccia della riga di comando di Azure](..\load-balancer\load-balancer-get-started-internet-arm-cli.md).
+>Per ulteriori informazioni su come toocreate un bilanciamento del carico con hello CLI di Azure, vedere [creare un servizio di bilanciamento del carico con hello Azure CLI](..\load-balancer\load-balancer-get-started-internet-arm-cli.md).
 
 ## <a name="powershell"></a>PowerShell
 
 >[!NOTE]
->Se è necessario determinare il nome del servizio di bilanciamento del carico, usare questo comando per ottenere rapidamente un elenco di tutti i servizi di bilanciamento del carico e i gruppi di risorse associati.
+>Se è necessario il nome hello toodetermine di bilanciamento del carico hello, utilizzare un elenco di tutti i servizi di bilanciamento del carico e i gruppi di risorse associati get di tooquickly questo comando.
 >
 >`Get-AzureRmLoadBalancer | Select Name, ResourceGroupName`
 
-PowerShell è un po' più complesso rispetto all'interfaccia della riga di comando di Azure. A livello concettuale, per creare una regola è necessario completare i passaggi seguenti.
+PowerShell è leggermente più complicato hello CLI di Azure. Concettualmente, eseguire hello seguendo i passaggi toocreate una regola.
 
-1. Recuperare il servizio di bilanciamento del carico da Azure.
+1. Ottenere bilanciamento del carico hello da Azure.
 2. Creare una regola.
-3. Aggiungere la regola al servizio di bilanciamento del carico.
-4. Aggiornare il servizio di bilanciamento del carico.
+3. Aggiungere toohello hello regola il bilanciamento del carico.
+4. Aggiorna bilanciamento del carico di hello.
 
 ```powershell
-# Get the load balancer
+# Get hello load balancer
 $lb = Get-AzureRmLoadBalancer -Name LB-svcfab3 -ResourceGroupName svcfab_cli
 
-# Create the rule based on information from the load balancer.
+# Create hello rule based on information from hello load balancer.
 $lbrule = New-AzureRmLoadBalancerRuleConfig -Name my-app-rule7 -Protocol Tcp -FrontendPort 39990 -BackendPort 40009 `
                                             -FrontendIpConfiguration $lb.FrontendIpConfigurations[0] `
                                             -BackendAddressPool  $lb.BackendAddressPools[0] `
                                             -Probe $lb.Probes[0]
 
-# Add the rule to the load balancer
+# Add hello rule toohello load balancer
 $lb.LoadBalancingRules.Add($lbrule)
 
-# Update the load balancer on Azure
+# Update hello load balancer on Azure
 $lb | Set-AzureRmLoadBalancer
 ```
 
-Nel comando `New-AzureRmLoadBalancerRuleConfig`, `-FrontendPort` rappresenta la porta esposta dal servizio di bilanciamento del carico per le connessioni esterne, mentre `-BackendPort` rappresenta la porta su cui è in ascolto l'app di Service Fabric.
+Riguardanti hello `New-AzureRmLoadBalancerRuleConfig` comando hello `-FrontendPort` espone rappresenta hello porta hello bilanciamento del carico per le connessioni esterne e hello `-BackendPort` rappresenta hello porta hello service fabric app è in ascolto.
 
 >[!NOTE]
->Per altre informazioni in merito, vedere l'articolo su come [creare un servizio di bilanciamento del carico con PowerShell](..\load-balancer\load-balancer-get-started-internet-arm-ps.md).
+>Per ulteriori informazioni su come toocreate un bilanciamento del carico con PowerShell, vedere [creare un servizio di bilanciamento del carico con PowerShell](..\load-balancer\load-balancer-get-started-internet-arm-ps.md).
 

@@ -1,5 +1,5 @@
 ---
-title: Backup automatici e con ridondanza geografica del database SQL di Azure | Microsoft Docs
+title: backup del Database SQL aaaAzure automatica, con ridondanza geografica | Documenti Microsoft
 description: Il database SQL crea automaticamente e ripetutamente una copia di backup locale del database a pochi minuti l'una dall'altra e usa l'archiviazione con ridondanza geografica e accesso in lettura di Azure per la ridondanza geografica.
 services: sql-database
 documentationcenter: 
@@ -15,66 +15,66 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/05/2017
 ms.author: carlrab
-ms.openlocfilehash: 88ee5b5c4a57b67190f3da2ebc8aed0964b804d5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8aff5356e8142707dd7cd2533a4aa5ea8fec866d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="learn-about-automatic-sql-database-backups"></a>Informazioni sui backup automatici del database SQL
 
-Il database SQL crea automaticamente i backup del database e usa l'archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) di Azure per fornire una ridondanza geografica. Questi backup vengono creati automaticamente e senza costi aggiuntivi. Non è necessario intervenire manualmente per eseguire i backup. I backup dei database sono una parte essenziale di qualsiasi strategia di continuità aziendale e ripristino di emergenza, perché proteggono i dati dal danneggiamento o dall'eliminazione accidentale. Se si desidera mantenere i backup in un contenitore di archiviazione è possibile configurare un criterio di conservazione dei backup a lungo termine. Per altre informazioni, vedere [Long-term retention](sql-database-long-term-retention.md) (Conservazione a lungo termine).
+Database SQL Crea backup dei database e automaticamente Usa Azure archiviazione con ridondanza geografica e accesso in lettura (RA-GRS) tooprovide ridondanza geografica. Questi backup vengono creati automaticamente e senza costi aggiuntivi. Non è necessario toodo nulla toomake che li verificarsi. I backup dei database sono una parte essenziale di qualsiasi strategia di continuità aziendale e ripristino di emergenza, perché proteggono i dati dal danneggiamento o dall'eliminazione accidentale. Se si desidera tookeep backup in un contenitore di archiviazione è possibile configurare un criterio di conservazione dei backup a lungo termine. Per altre informazioni, vedere [Long-term retention](sql-database-long-term-retention.md) (Conservazione a lungo termine).
 
 ## <a name="what-is-a-sql-database-backup"></a>Informazioni sul backup del database SQL
 
-Il database SQL usa la tecnologia di SQL Server per creare backup [completi](https://msdn.microsoft.com/library/ms186289.aspx), [differenziali](https://msdn.microsoft.com/library/ms175526.aspx) e del [log delle transazioni](https://msdn.microsoft.com/library/ms191429.aspx). I backup del log delle transazioni vengono eseguiti in genere ogni 5-10 minuti e tale frequenza è determinata dal livello di prestazioni e dalla quantità delle attività del database. I backup del log delle transazioni, con backup completi e differenziali, consentono di ripristinare un database a un punto specifico nel tempo nello stesso server che ospita il database. Quando si ripristina un database, il servizio individua i backup completi, differenziali e del log delle transazioni da ripristinare.
+Database SQL utilizza toocreate tecnologia SQL Server [completo](https://msdn.microsoft.com/library/ms186289.aspx), [differenziale](https://msdn.microsoft.com/library/ms175526.aspx), e [log delle transazioni](https://msdn.microsoft.com/library/ms191429.aspx) backup. backup del log delle transazioni Hello in genere eseguita ogni 5-10 minuti, con frequenza hello in base a livello di prestazioni hello e la quantità di attività del database. Backup del log delle transazioni, con backup completi e differenziali, consentono di un database tooa specifico punto nel tempo toohello toorestore stesso server che ospita il database di hello. Quando si ripristina un database, hello determina quali completo, differenziale servizio e i backup del log delle transazioni necessario toobe ripristinato.
 
 
 È possibile usare questi backup per:
 
-* Ripristinare un database in un punto nel tempo entro il periodo di memorizzazione. Questa operazione creerà un nuovo database nello stesso server del database originale.
-* Ripristinare un database eliminato al momento in cui è stato eliminato o a qualsiasi momento del periodo di conservazione. Il database eliminato può essere ripristinato solo nello stesso server in cui è stato creato il database originale.
-* Ripristinare un database in un'altra area geografica. Ciò consente di eseguire un ripristino di emergenza geografico quando è impossibile accedere al server e al database. Crea un nuovo database in qualsiasi server esistente ovunque nel mondo. 
-* Ripristinare un database da un backup specifico nell'insieme di credenziali di Servizi di ripristino di Azure. Ciò consente di ripristinare una versione precedente del database per soddisfare una richiesta di conformità o di eseguire una versione precedente dell'applicazione. Vedere [Conservazione a lungo termine](sql-database-long-term-retention.md).
-* Per eseguire un ripristino, vedere l'articolo su come [ripristinare un database da un backup](sql-database-recovery-using-backups.md).
+* Ripristinare un database tooa punto nel tempo entro il periodo di memorizzazione hello. Questa operazione consente di creare un nuovo database in hello stesso server del database originale hello.
+* Ripristinare un database eliminato toohello che è stata eliminata qualsiasi fase o entro il periodo di memorizzazione hello. database Hello eliminato può essere ripristinato solo hello stesso server in cui è stato creato il database originale di hello.
+* Ripristinare una regione geografica tooanother di database. In questo modo si toorecover di emergenza geografica quando è possibile accedere a server e al database. Crea un nuovo database in qualsiasi server esistente in un punto qualsiasi nella HelloWorld. 
+* Ripristinare un database da un backup specifico nell'insieme di credenziali di Servizi di ripristino di Azure. In questo modo è una versione precedente di hello database toosatisfy una richiesta di conformità toorestore o toorun una versione precedente di un'applicazione hello. Vedere [Conservazione a lungo termine](sql-database-long-term-retention.md).
+* tooperform un ripristino, vedere [ripristinare database da backup](sql-database-recovery-using-backups.md).
 
 > [!NOTE]
-> In Archiviazione di Azure il termine *replica* fa riferimento alla copia dei file da una località a un'altra. La *replica di database* di SQL fa riferimento a più database secondari sincronizzati con un database primario. 
+> Nell'archiviazione di Azure, il termine hello *replica* fa riferimento il file toocopying da tooanother un'unica posizione. SQL *replica di database* fa riferimento a database secondari toomultiple tookeeping sincronizzati con un database primario. 
 > 
 
 ## <a name="how-much-backup-storage-is-included-at-no-cost"></a>Quanto spazio di archiviazione di backup è incluso senza costi aggiuntivi?
-Il database SQL offre fino al 200% delle risorse di archiviazione massime del database sottoposto a provisioning come risorsa di archiviazione di backup senza costi aggiuntivi. Se si usa ad esempio un'istanza di database Standard con una dimensione di database con provisioning pari a 250 GB, sono disponibili 500 GB di archiviazione di backup senza costi aggiuntivi. Se il database supera le risorse di archiviazione di backup fornite, è possibile scegliere di ridurre il periodo di conservazione contattando il supporto tecnico di Azure. È anche possibile pagare per ottenere risorse di archiviazione di backup aggiuntive, fatturate in base alla tariffa Standard per l'Archiviazione con ridondanza geografica e accesso in lettura. 
+Database SQL fornisce too200% dello spazio di archiviazione massime del database sottoposto a provisioning come archiviazione di backup senza alcun costo aggiuntivo. Se si usa ad esempio un'istanza di database Standard con una dimensione di database con provisioning pari a 250 GB, sono disponibili 500 GB di archiviazione di backup senza costi aggiuntivi. Se il database supera hello fornita l'archiviazione di backup, è possibile scegliere periodo di memorizzazione hello tooreduce contattando il supporto tecnico di Azure. Un'altra opzione è toopay per spazio di archiviazione extra backup viene fatturato alla tariffa di hello standard archiviazione accesso in lettura geograficamente ridondante (RA-GRS). 
 
 ## <a name="how-often-do-backups-happen"></a>Con quale frequenza si verificano i backup?
-I backup di database completi vengono eseguiti settimanalmente, i backup differenziali di solito sono eseguiti a intervalli di poche ore e i backup del log delle transazioni ogni 5-10 minuti. Il primo backup completo viene pianificato subito dopo la creazione di un database. Il completamento richiede in genere 30 minuti, ma potrebbe richiedere più tempo se le dimensioni del database sono elevate. Il backup iniziale, ad esempio, può richiedere più tempo in un database ripristinato o in una copia del database. Dopo il primo backup completo, l'esecuzione di tutti i successivi backup è pianificata e gestita automaticamente in background. Il momento esatto per l'esecuzione dei backup di database è determinato dal servizio SQL Database in modo da bilanciare il carico di lavoro complessivo del sistema. 
+I backup di database completi vengono eseguiti settimanalmente, i backup differenziali di solito sono eseguiti a intervalli di poche ore e i backup del log delle transazioni ogni 5-10 minuti. primo backup completo di Hello è pianificato subito dopo la creazione di un database. In genere viene completata entro 30 minuti, ma può richiedere più tempo quando hello database è di dimensioni significative. Ad esempio, il backup iniziale hello può richiedere più tempo in un database ripristinato o una copia del database. Dopo aver hello primo backup completo, tutti i backup ulteriore pianificazione automaticamente e gestiti automaticamente in background hello. intervallo esatto di Hello di tutti i backup del database è determinato dall'hello servizio Database SQL è un compromesso tra hello complessivo carico di lavoro di sistema. 
 
-La replica geografica della risorsa di archiviazione di backup viene eseguita in base alla pianificazione della replica di Archiviazione di Azure.
+archiviazione di backup Hello-replica geografica si verifica in base a una pianificazione della replica di archiviazione di Azure hello.
 
 ## <a name="how-long-do-you-keep-my-backups"></a>Quanto tempo vengono conservati i backup?
-Ogni backup del Database SQL ha un periodo di memorizzazione che si basa sul [livello del servizio](sql-database-service-tiers.md) del database. Il periodo di memorizzazione per un database nel:
+Ogni backup del Database SQL dispone di un periodo di memorizzazione che si basa sull'hello [livello di servizio](sql-database-service-tiers.md) del database hello. periodo di memorizzazione Hello per un database nel:
 
 
 * Il livello di servizio Base è 7 giorni.
 * livello di servizio Standard è di 35 giorni.
 * livello di servizio premium è di 35 giorni.
 
-Se si esegue il downgrade del database dai livelli di servizio Standard o Premium al Basic, i backup vengono salvati per sette giorni. Tutti i backup esistenti più vecchi di sette giorni non sono più disponibili. 
+Se si esegue il downgrade del database da hello Standard o tooBasic livelli di servizio Premium, vengono salvati i backup hello per sette giorni. Tutti i backup esistenti più vecchi di sette giorni non sono più disponibili. 
 
-Se si aggiorna il database dal livello del servizio Basic a Standard o Premium, il database SQL mantiene i backup esistenti fino a 35 giorni. Allo scadere dei 35, il database conserva i nuovi backup.
+Se si aggiorna il database da tooStandard livello di servizio Basic hello o Premium, Database SQL consente di mantenere i backup esistenti fino a quando non sono 35 giorni. Allo scadere dei 35, il database conserva i nuovi backup.
 
-Se si elimina un database, il database SQL mantiene i backup come farebbe con un database online. Si supponga, ad esempio, che si elimina un database con livello di servizio Basic e periodo di conservazione di sette giorni. Per tre giorni viene conservato un backup dei quattro giorni precedenti.
+Se si elimina un database, Database SQL mantiene backup hello hello esattamente come avviene per un database online. Si supponga, ad esempio, che si elimina un database con livello di servizio Basic e periodo di conservazione di sette giorni. Per tre giorni viene conservato un backup dei quattro giorni precedenti.
 
 > [!IMPORTANT]
-> Se si elimina SQL Server di Azure che ospita i database SQL, vengono eliminati anche tutti i database appartenenti al server e non sarà possibile recuperarli. Non è possibile ripristinare un server eliminato.
+> Se si elimina il server di SQL Azure hello che ospita i database SQL, tutti i database appartenenti a toohello server vengono anche eliminati e non possono essere recuperati. Non è possibile ripristinare un server eliminato.
 > 
 
-## <a name="how-to-extend-the-backup-retention-period"></a>Come estendere il periodo di conservazione dei backup?
-Se l'applicazione richiede che i backup siano disponibili per un periodo di tempo più lungo, è possibile estendere il periodo di conservazione predefinito configurando il criterio di conservazione dei backup a lungo termine per singoli database (criterio LTR). Ciò consente di estendere il periodo di conservazione predefinito da 35 giorni fino a 10 anni. Per altre informazioni, vedere [Long-term retention](sql-database-long-term-retention.md) (Conservazione a lungo termine).
+## <a name="how-tooextend-hello-backup-retention-period"></a>Hello tooextend backup come periodo di conservazione?
+Se l'applicazione richiede che i backup di hello sono disponibili per periodo di tempo più lungo è possibile estendere il periodo di memorizzazione predefinite di hello configurando hello i criteri di conservazione dei backup a lungo termine per i singoli database (criteri LTR). In questo modo tooextend hello it compilato periodo in anni di too10 tooup 35 giorni. Per altre informazioni, vedere [Long-term retention](sql-database-long-term-retention.md) (Conservazione a lungo termine).
 
-Dopo aver aggiunto il criterio LTR a un database tramite il portale di Azure o l'API, i backup settimanali completi del database verranno copiati automaticamente nel proprio insieme di credenziali di Servizio Backup di Azure. Se il database è crittografato con TDE, i backup vengono crittografati automaticamente quando i dati sono inattivi.  L'insieme di credenziali dei servizi eliminerà automaticamente i backup scaduti in base ai loro timestamp e al criterio LTR.  Non è quindi necessario gestire la pianificazione di backup o preoccuparsi di operazioni di pulitura dei vecchi file. L'API di ripristino supporta i backup archiviati nell'insieme di credenziali, purché l'insieme di credenziali si trovi nella stessa sottoscrizione del database SQL. È possibile usare il portale di Azure o PowerShell per accedere a questi backup.
+Dopo aver aggiunto i database di hello LTR criterio tooa tramite il portale di Azure o l'API, hello settimanale backup completo del database verrà automaticamente copiati tooyour proprietari credenziali del servizio di Azure Backup. Se il database viene crittografato con i backup hello TDE vengono crittografati automaticamente inattivi.  insieme di credenziali di servizi di Hello eliminerà automaticamente i backup scaduti in base ai timestamp e i criteri LTR hello.  In modo non è necessario toomanage pianificazione del backup hello o preoccupare pulizia hello di hello file obsoleti. supporta l'API ripristino Hello come insieme di credenziali hello è insieme di credenziali di backup archiviati in hello hello stessa sottoscrizione del database SQL. È possibile utilizzare hello portale di Azure o PowerShell tooaccess questi backup.
 
 > [!TIP]
-> Per informazioni di guida, vedere [Configurare e ripristinare dalla conservazione dei backup a lungo termine del database SQL di Azure](sql-database-long-term-backup-retention-configure.md)
+> Per una procedura-tooguide, vedere [Configura e il ripristino da conservazione dei backup a lungo termine di Database SQL di Azure](sql-database-long-term-backup-retention-configure.md)
 >
 
 ## <a name="are-backups-encrypted"></a>I backup sono crittografati?
@@ -83,8 +83,8 @@ Quando la crittografia TDE viene abilitata per un database SQL di Azure, anche i
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- I backup dei database sono una parte essenziale di qualsiasi strategia di continuità aziendale e ripristino di emergenza, perché proteggono i dati dal danneggiamento o dall'eliminazione accidentale. Per informazioni sulle altre soluzioni di continuità aziendale del database SQL Azure, vedere [Panoramica della continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).
-- Per eseguire il ripristino temporizzato nel portale di Azure, vedere l'articolo sul [ripristino temporizzato nel portale di Azure](sql-database-recovery-using-backups.md).
-- Per eseguire il ripristino temporizzato usando PowerShell, vedere l'articolo sul [ripristino temporizzato con PowerShell](scripts/sql-database-restore-database-powershell.md).
-- Per configurare, gestire e ripristinare dalla conservazione a lungo termine di backup automatici in un insieme di credenziali di Servizi di ripristino di Azure tramite il portale di Azure, vedere l'articolo sulla [gestione della conservazione a lungo termine dei backup tramite il portale di Azure](sql-database-long-term-backup-retention-configure.md).
-- Per configurare, gestire e ripristinare dalla conservazione a lungo termine di backup automatici in un insieme di credenziali di Servizi di ripristino di Azure tramite Powershell, vedere l'articolo sulla [gestione della conservazione a lungo termine dei backup tramite il portale di PowerShell](sql-database-long-term-backup-retention-configure.md).
+- I backup dei database sono una parte essenziale di qualsiasi strategia di continuità aziendale e ripristino di emergenza, perché proteggono i dati dal danneggiamento o dall'eliminazione accidentale. toolearn circa hello altre soluzioni di continuità di business di Database SQL di Azure, vedere [Panoramica di continuità aziendale](sql-database-business-continuity.md).
+- vedere toorestore tooa punto nel tempo tramite il portale di Azure, hello [ripristinare database tooa punto nel tempo tramite il portale di Azure hello](sql-database-recovery-using-backups.md).
+- toorestore tooa punto nel tempo tramite PowerShell, vedere [database tooa punto di ripristino temporizzato tramite PowerShell](scripts/sql-database-restore-database-powershell.md).
+- tooconfigure, gestire e ripristinare da conservazione a lungo termine dei backup automatizzati in un insieme di credenziali di servizi di ripristino di Azure utilizzando hello Azure portale, vedere [con conservazione dei backup a lungo termine Gestisci hello Azure portal](sql-database-long-term-backup-retention-configure.md).
+- tooconfigure, gestire e di ripristino dalla memorizzazione a lungo termine dei backup automatizzati in un insieme di credenziali di servizi di ripristino di Azure tramite PowerShell, vedere [gestire la conservazione di backup a lungo termine tramite PowerShell](sql-database-long-term-backup-retention-configure.md).

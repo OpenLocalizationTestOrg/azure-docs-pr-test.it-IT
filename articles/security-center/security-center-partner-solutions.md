@@ -1,6 +1,6 @@
 ---
-title: Gestione delle soluzioni dei partner nel Centro sicurezza di Azure | Microsoft Docs
-description: "Questo documento descrive in modo dettagliato il modo in cui il Centro sicurezza di Azure permette di monitorare in modo immediato lo stato di integrità delle soluzioni dei partner integrate nella sottoscrizione di Azure."
+title: soluzioni per i partner aaaManaging nel Centro protezione di Azure | Documenti Microsoft
+description: "Questo documento illustra come Centro sicurezza di Azure consente di monitoraggio in uno stato di integrità hello panoramica delle soluzioni di partner integrato con la sottoscrizione di Azure."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2017
 ms.author: terrylan
-ms.openlocfilehash: 2ebb930e877c5027f4d7b0a316a7f5ebe84471b1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fc97aedf709b9044bfd3d4ecae0b58d5fa716bbb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitoring-partner-solutions-with-azure-security-center"></a>Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure
-Questo documento contiene informazioni dettagliate su come monitorare lo stato di integrità delle soluzioni dei partner nel Centro sicurezza di Azure.
+Questo documento illustra come toomonitor hello lo stato di integrità delle soluzioni di partner in Centro sicurezza di Azure.
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio. Questo argomento non costituisce una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione. Questo argomento non costituisce una guida dettagliata.
 >
 >
 
 ## <a name="monitoring-partner-solutions"></a>Monitoraggio delle soluzioni dei partner
-Il riquadro **Soluzioni partner** nel pannello **Centro sicurezza** permette di monitorare in modo immediato lo stato di integrità delle soluzioni dei partner integrate nella sottoscrizione di Azure.
+Hello **soluzioni Partner** riquadro hello **Centro sicurezza PC** consente di blade monitorare in uno stato di integrità hello immediatamente partner delle soluzioni dell'utente che vengono integrati con la sottoscrizione di Azure.
 
 ![Riquadro Soluzioni partner][1]
 
-Il riquadro **Soluzioni partner** mostra il numero di soluzioni dei partner integrate con la sottoscrizione. Se non sono presenti soluzioni integrate, il riquadro visualizza il numero zero.
+Hello **soluzioni Partner** riquadro Visualizza il numero di hello di soluzioni per i partner integrato con la sottoscrizione. Se non esistono soluzioni integrate, riquadro hello viene visualizzato il numero di hello zero.
 
-Per visualizzare l'integrità delle soluzioni dei partner:
+integrità di hello tooview partner delle soluzioni dell'utente:
 
-1. Selezionare il riquadro **Soluzioni partner** . Viene visualizzato il pannello **Soluzioni partner** con un elenco di soluzioni dei partner connesse al Centro sicurezza.
+1. Seleziona hello **soluzioni Partner** riquadro. Hello **soluzioni Partner** apre blade che visualizza un elenco di partner delle soluzioni dell'utente connesso tooSecurity Center.
 
    ![Soluzioni partner][3]
 
-   Una soluzione partner può avere uno degli stati seguenti:
+   può essere stato Hello di una soluzione di partner:
 
    * Protetto (verde): nessun problema di integrità.
    * Danneggiato (rosso): è presente un problema di integrità che richiede attenzione immediata.
-   * Segnalazione arrestata (arancione): la soluzione ha arrestato la segnalazione dello stato di integrità.
-   * Sconosciuto (arancione): l'integrità della soluzione è attualmente sconosciuta, a causa di un processo di aggiunta di una nuova risorsa alla soluzione esistente non riuscito.
-   * Non segnalato (grigio): la soluzione non ha ancora inviato alcuna segnalazione. Lo stato di una soluzione può non essere segnalato se la soluzione è stata connessa recentemente ed è ancora in fase di distribuzione.
+   * Segnalazione arresto (arancione) - soluzione hello è stato arrestato reporting relativa integrità.
+   * Lo stato di protezione sconosciuto (arancione) - stato hello della soluzione hello è sconosciuto al momento a causa di processo tooa non riuscito di aggiungere una nuova soluzione esistente toohello di risorse.
+   * Non segnalato (grigio) - non è stato segnalato qualsiasi soluzione hello ancora, lo stato di una soluzione potrebbe essere segnalato se recentemente è stato connesso e viene effettuata la distribuzione.
 
-2. Selezionare una soluzione dei partner. In questo esempio viene selezionata la soluzione **Qualys**.  Viene visualizzato un pannello che mostra che lo stato della soluzione partner e le risorse associate alla soluzione. Selezionare **Console della soluzione** per aprire l'esperienza di gestione dei partner per questa soluzione.
+2. Selezionare una soluzione dei partner. In questo esempio, consente di seleziona hello **Qualys** soluzione.  Un pannello apre visualizzando lo stato di hello della soluzione di partner hello e della soluzione hello le risorse associate. Selezionare **console soluzione** esperienza di gestione dei partner hello tooopen per questa soluzione.
 
    ![Dettagli della soluzione di un partner][4]
-3. Tornare al pannello **Qualys** e selezionare **Collega la macchina virtuale**. Verrà visualizzato il pannello **Collega applicazioni** . In questo pannello è possibile connettere risorse alla soluzione del partner.
+3. Tornare indietro toohello **Qualys** pannello e selezionare **collegamento VM**. Hello **collegamento applicazioni** apre blade. Qui è possibile connettersi soluzione partner toohello di risorse.
 
-   ![Collegare risorse alla soluzione di un partner][5]
+   ![Collegamento risorse toopartner soluzione][5]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questo documento ha presentato il riquadro **Soluzioni partner** del Centro sicurezza. Per altre informazioni sul Centro sicurezza, vedere gli articoli seguenti:
+In questo documento è stato introdotto toohello **soluzioni dei Partner** riquadro in Centro sicurezza PC. toolearn ulteriori informazioni su Centro di sicurezza, vedere hello seguenti articoli:
 
-* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) , informazioni come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni facilitano la protezione delle risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
-* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : informazioni e notizie aggiornate sulla sicurezza di Azure.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) : informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) , informazioni come avvisi toosecurity toomanage e rispondere.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'utilizzo di hello servizio di ricerca.
+* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) , ottenere informazioni e notizie sicurezza di Azure hello.
 
 <!--Image references-->
 [1]: ./media/security-center-partner-solutions/partner-solutions-tile.png

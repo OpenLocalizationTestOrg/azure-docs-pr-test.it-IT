@@ -16,37 +16,37 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 06/30/2017
 ms.author: carlrab
-ms.openlocfilehash: b25ff5331f119efd44c61808f7d1d5decb226bd6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b27b78788614d32e6c0c4267fe0ce504ebd2f444
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-performance-options-are-available-for-an-azure-sql-database"></a>Opzioni di prestazioni disponibili per un database SQL di Azure
 
-Il [database SQL di Azure](sql-database-technical-overview.md) offre quattro livelli di servizio per i database sia singoli che [in pool](sql-database-elastic-pool.md): **Basic**, **Standard**, **Premium** e **Premium RS**. Ogni livello di servizio include più livelli di prestazioni ([DTU](sql-database-what-is-a-dtu.md)) e opzioni di archiviazione per la gestione di carichi di lavoro e dimensioni dei dati differenti. Livelli di prestazioni più elevati offrono risorse di calcolo e di archiviazione aggiuntive progettate per garantire un aumento della velocità effettiva e della capacità. È possibile cambiare i livelli di servizio e di prestazioni e lo spazio di archiviazione in modo dinamico senza tempi di inattività. 
+Il [database SQL di Azure](sql-database-technical-overview.md) offre quattro livelli di servizio per i database sia singoli che [in pool](sql-database-elastic-pool.md): **Basic**, **Standard**, **Premium** e **Premium RS**. All'interno di ogni livello di servizio sono più livelli di prestazioni ([Dtu](sql-database-what-is-a-dtu.md)) e toohandle dimensioni di dati e i carichi di lavoro diverse opzioni di archiviazione. Livelli di prestazioni superiore forniscono di calcolo e le risorse di archiviazione progettata capacità e toodeliver aumento della velocità effettiva. È possibile cambiare i livelli di servizio e di prestazioni e lo spazio di archiviazione in modo dinamico senza tempi di inattività. 
 - I livelli di servizio **Basic**, **Standard** e **Premium** garantiscono un tempo di attività previsto dal contratto di servizio del 99,99%, opzioni di continuità aziendale flessibili, funzionalità di sicurezza e fatturazione su base oraria. 
-- Il livello **Premium RS** offre gli stessi livelli di prestazioni di Premium con un contratto di servizio ridotto, perché viene eseguito con un numero inferiore di copie ridondanti rispetto a un database negli altri livelli di servizio. In caso di errore del servizio, quindi, potrebbe essere necessario recuperare il database da un backup con un ritardo massimo di 5 minuti.
+- Hello **Premium RS** livello fornisce hello stessi livelli di prestazioni come hello livello Premium con un contratto di servizio ridotto perché è in esecuzione con un numero inferiore di copie ridondanti rispetto a un database in hello altri livelli di servizio. In tal caso, nell'evento hello di un errore del servizio, potrebbe essere necessario toorecover il database da un backup con backup tooa ritardo di 5 minuti.
 
 > [!IMPORTANT]
-> Un database SQL di Azure ottiene un set garantito di risorse e le caratteristiche di prestazioni previste per il database non saranno influenzate da altri database in Azure. 
+> Un database SQL di Azure Ottiene un set di risorse garantito e hello previsto caratteristiche delle prestazioni del database non sono interessate da qualsiasi altro database in Azure. 
 
 ## <a name="choosing-a-service-tier"></a>Scelta di un piano di servizio
-Nella tabella seguente sono riportati esempi dei livelli ottimali adatti ai carichi di lavoro di diverse applicazioni.
+Hello nella tabella seguente vengono forniti esempi dei livelli di hello migliori adatti per carichi di lavoro di applicazioni diverso.
 
 | Livello di servizio | Carichi di lavoro di destinazione |
 | :--- | --- |
 | **Basic** | Più adatto per un database di piccole dimensioni, che supporta in genere una singola operazione attiva in un determinato momento. Ad esempio, database usati per lo sviluppo o i test oppure applicazioni su scala ridotta usate raramente. |
-| **Standard** |Opzione per le applicazioni cloud con requisiti di prestazioni I/O bassi o medi, supporto di più query contemporaneamente. Ad esempio, applicazioni web o per gruppi di lavoro. |
+| **Standard** |toooption-Vai Hello per le applicazioni cloud con requisiti di prestazioni dei / o toomedium bassa, supporto di più query contemporaneamente. Ad esempio, applicazioni web o per gruppi di lavoro. |
 | **Premium** | Progettato per volumi di transazioni elevati con alti requisiti di prestazioni I/O che supportano più utenti contemporaneamente. Ad esempio, database che supportano applicazioni mission-critical. |
-| **Premium RS** | Progettato per carichi di lavoro con un numero elevato di operazioni di I/O che non richiedono una garanzia di disponibilità massima. Gli esempi includono test di carichi di lavoro ad alte prestazioni e carichi di lavoro di analisi in cui il database non è il sistema di registrazione. |
+| **Premium RS** | Progettato per carichi di lavoro con utilizzo intensivo dei / o che non richiedono le garanzie di disponibilità più elevate hello. Esempi di test ad alte prestazioni dei carichi di lavoro o un carico di lavoro analitico in database hello non sistema hello del record. |
 |||
 
-È possibile creare database singoli con risorse dedicate in un livello di servizio, con un [livello di prestazioni](sql-database-service-tiers.md#single-database-service-tiers-and-performance-levels) specifico, oppure creare database in un [pool elastico SQL](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus). In un pool elastico SQL, le risorse di calcolo e di archiviazione sono condivise tra più database in un singolo server logico. 
+È possibile creare database singoli con risorse dedicate in un livello di servizio, con un [livello di prestazioni](sql-database-service-tiers.md#single-database-service-tiers-and-performance-levels) specifico, oppure creare database in un [pool elastico SQL](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus). In un pool elastico SQL, le risorse di calcolo e archiviazione hello sono condivise tra più database all'interno di un singolo server logico. 
 
 Le risorse disponibili per i database singoli sono espresse in unità di transazione di database (DTU), mentre quelle per i pool elastici SQL sono espresse in unità di transazione di database elastico (eDTU). Per altre informazioni su DTU ed eDTU, vedere [Unità di transazione di database (DTU) e unità di transazione di database elastico (eDTU)](sql-database-what-is-a-dtu.md).
 
-Per decidere il livello di servizio da usare, stabilire innanzitutto le funzionalità minime necessarie del database:
+toodecide in un livello di servizio, avviare mediante la determinazione delle funzionalità del database minima hello è necessario:
 
 | **Funzionalità del livello di servizio** | **Basic** | **Standard** | **Premium** | **Premium RS**|
 | :-- | --: | --: | --: | --: |
@@ -60,18 +60,18 @@ Per decidere il livello di servizio da usare, stabilire innanzitutto le funziona
 ||||||
 
 > [!IMPORTANT]
-> Lo spazio di archiviazione fino a 4 TB è attualmente disponibile nelle aree seguenti: Stati Uniti orientali 2, Stati Uniti occidentali, US Gov Virginia, Europa occidentale, Germania centrale, Asia sud-orientale, Giappone orientale, Australia orientale, Canada centrale e Canada orientale. Vedere le [limitazioni correnti per l'opzione 4 TB](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
+> Archiviazione di backup too4 TB è attualmente disponibile in hello seguenti aree: ci East2, Stati Uniti occidentali, ci Gov Virginia, Europa occidentale, Germania centrale, Sud Asia sudorientale, Giappone orientale, Australia orientale, Canada centrale e Canada orientale. Vedere le [limitazioni correnti per l'opzione 4 TB](sql-database-service-tiers.md#current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize)
 >
 
-Dopo aver individuato il livello di servizio appropriato, è possibile determinare il livello di prestazioni (ossia il numero di DTU) e lo spazio di archiviazione del database. 
+Dopo aver determinato il livello di servizio appropriato hello, si è pronti toodetermine livello di prestazioni hello (numero hello di Dtu) e la quantità di archiviazione hello per database hello. 
 
-- I livelli di prestazioni S2 e S3 del livello **Standard** sono in molti casi un valido punto di partenza. 
-- Per i database con requisiti elevati in termini di CPU o I/O, i livelli di prestazioni del livello **Premium** sono il punto di partenza ottimale. 
-- Il livello **Premium** offre più CPU e I/O iniziale 10 volte superiore rispetto al livello di prestazioni più elevato del livello **Standard**.
-- Il livello **Premium RS** offre le prestazioni del livello **Premium** a un costo inferiore, ma con un contratto di servizio ridotto.
+- livelli di prestazioni S2 e S3 in hello Hello **Standard** livello sono spesso un buon punto di partenza. 
+- Per i database con requisiti elevati di utilizzo della CPU o dei / o, i livelli di prestazioni in hello hello **Premium** livello sono il punto di partenza destra di hello. 
+- Hello **Premium** livello offre una quantità di CPU e inizia in base 10 volte più operazioni dei / o rispetto toohello massimo livello di prestazioni in hello **Standard** livello.
+- Hello **PremiumRS** livello offre prestazioni di hello di hello **Premium** livello a un costo inferiore, ma con un contratto di servizio ridotto.
 
 > [!IMPORTANT]
-> Per informazioni sul raggruppamento di database in pool elastici SQL per la condivisione delle risorse di calcolo e di archiviazione, vedere l'argomento relativo ai [pool elastici SQL](sql-database-elastic-pool.md). Il resto di questo argomento è incentrato sui livelli di servizio e di prestazioni per i database singoli.
+> Hello revisione [pool elastico SQL](sql-database-elastic-pool.md) per hello informazioni sul raggruppamento di database in elastico SQL pool di risorse di calcolo e archiviazione tooshare. resto Hello di questo argomento è incentrato sui livelli di servizio e livelli di prestazioni per i singoli database.
 >
 
 ## <a name="single-database-service-tiers-and-performance-levels"></a>Livelli di servizio e di prestazioni per database singoli
@@ -86,45 +86,45 @@ Dopo aver selezionato inizialmente un livello di servizio e di prestazioni, è p
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-dynamically-scale-up-or-scale-down/player]
 >
 
-La modifica del livello di servizio e/o di prestazioni di un database crea una replica del database originale al nuovo livello di prestazioni, quindi passa le connessioni alla replica. Durante il processo non si verificano perdite di dati, tuttavia durante il breve intervallo nel quale si passa alla replica, le connessioni sono disabilitate e può verificarsi il rollback di alcune transazioni in-flight. Il tempo impiegato per il passaggio è variabile, ma è in genere inferiore a 4 secondi e nel 99% dei casi è inferiore a 30 secondi. Se quando le connessioni vengono disabilitate è in elaborazione un elevato numero di transazioni, il tempo impiegato potrebbe essere superiore.  
+Modifica del livello hello servizio livello e/o le prestazioni di un database consente di creare una replica del database originale hello hello nuovo livello di prestazioni per poi passa connessioni toohello replica. Nessun dato venga perso durante questo processo, ma durante hello breve istante quando si passa sulla replica toohello, le connessioni toohello database sono disabilitate, pertanto possono essere eseguito il rollback alcune transazioni in corso. durata Hello per passare hello varia, ma è in genere meno di 4 secondi è inferiore a 30 secondi 99% di tempo hello. Se sono presenti un numero elevato di transazioni in corso in connessioni momento hello sono disabilitate, hello periodo di tempo per passare hello può essere più lungo.  
 
-La durata dell'intero processo di scalabilità verticale dipende dalla dimensione e dal livello di servizio del database prima e dopo la modifica. Ad esempio, il passaggio di un database di 250 GB al livello di servizio Standard o dal livello di servizio Standard a un altro livello o nell'ambito dello stesso livello di servizio Standard viene completato entro 6 ore. Per un database delle stesse dimensioni in fase di modifica dei livelli di prestazioni all'interno del livello di servizio Premium, il completamento dovrebbe avvenire entro 3 ore.
+durata Hello dell'intero processo di scalabilità verticale hello dipende dalla dimensione entrambi hello e livello di servizio di hello database prima e dopo la modifica di hello. Ad esempio, il passaggio di un database di 250 GB al livello di servizio Standard o dal livello di servizio Standard a un altro livello o nell'ambito dello stesso livello di servizio Standard viene completato entro 6 ore. Per un database di hello stessa dimensione a modifica i livelli di prestazioni all'interno di livello di servizio Premium hello, l'operazione dovrebbe completarsi in 3 ore.
 
 > [!TIP]
-> Per controllare lo stato di un'operazione di ridimensionamento di un database SQL in corso, è possibile usare la query seguente: ```select * from sys.dm_operation_status```.
+> toocheck stato hello di un database SQL in corso l'operazione di ridimensionamento, è possibile utilizzare hello seguente query: ```select * from sys.dm_operation_status```.
 >
 
-* Se si esegue l'aggiornamento a un livello di servizio o di prestazioni superiore, le dimensioni massime del database non aumentano a meno che non si specifichino esplicitamente dimensioni massime più elevate.
-* Per effettuare il downgrade di un database, le relative dimensioni devono essere inferiori alle dimensioni massime consentite per il livello di servizio di destinazione. 
-* Quando si aggiorna un database con [replica geografica](sql-database-geo-replication-portal.md) abilitata, l'indicazione generale è aggiornare i database secondari al livello di prestazioni desiderato prima di aggiornare il database primario. Durante l'aggiornamento a un'edizione diversa è necessario aggiornare per primo il database secondario. 
-* Quando si effettua il downgrade di un database con [replica geografica](sql-database-geo-replication-portal.md) abilitata, l'indicazione generale è di eseguire il downgrade dei database primari al livello di prestazioni desiderato prima di eseguire questa operazione per il database secondario. Al momento del downgrade a un'edizione diversa, è necessario eseguire questa operazione iniziando dal database primario. 
+* Se si sta aggiornando tooa servizio livello o prestazioni livello superiore, hello dimensioni massime del database non aumenta a meno che non si specifichi una dimensione massima più grande.
+* toodowngrade un database, database hello deve essere minore di hello dimensioni massime di consentite del livello di servizio di destinazione hello. 
+* Quando si aggiorna un database con [-replica geografica](sql-database-geo-replication-portal.md) abilitata, di aggiornare il livello di prestazioni desiderati toohello database secondari prima di aggiornare il database primario hello (generale). Quando l'aggiornamento tooa edizione diversa aggiornamento dei hello database secondario prima di tutto è obbligatorio. 
+* Quando il downgrade di un database con [-replica geografica](sql-database-geo-replication-portal.md) abilitato, effettuare il downgrade relativo livello di prestazioni desiderati toohello database primario prima del downgrade database secondario hello (generale). Quando downgrade tooa edizione diversa downgrade hello database primario per primo è obbligatorio. 
 
-* Le offerte per il ripristino del servizio sono diverse per i vari livelli di servizio. In caso di downgrade al livello **Basic**, il periodo di conservazione dei backup sarà inferiore. Vedere l'articolo relativo ai [backup del database SQL di Azure](sql-database-automated-backups.md).
-* Le nuove proprietà del database non vengono applicate finché non sono state completate le modifiche.
+* Hello offerte di servizi di ripristino sono diverse per hello vari livelli di servizio. Se si effettua il downgrade toohello **base** livello, si disporrà di un periodo di conservazione dei backup inferiore - vedere [backup del Database SQL Azure](sql-database-automated-backups.md).
+* Hello nuove proprietà hello database non vengono applicate fino al completamento delle modifiche hello.
 
 
 ## <a name="current-limitations-of-p11-and-p15-databases-with-4-tb-maxsize"></a>Limitazioni correnti dei database P11 e P15 con dimensioni massime di 4 TB
 
-Come illustrato in precedenza, le dimensioni massime di 4 TB per i database P11 e P15 sono supportate in alcune aree. Ai database P11 e P15 con dimensioni massime di 4 TB si applicano le considerazioni e le limitazioni seguenti:
+Come illustrato in precedenza, le dimensioni massime di 4 TB per i database P11 e P15 sono supportate in alcune aree. Hello considerazioni e le limitazioni seguenti si applicano tooP11 e database P15 con valore maxsize di 4 TB:
 
-- Se durante la creazione di un database si sceglie l'opzione da 4 TB (usando un valore di 4 TB o 4096 GB) e si effettua il provisioning del database in un'area non supportata, il comando di creazione avrà esito negativo e restituirà un errore.
-- Per i database P11 e P15 che si trovano in una delle aree supportate, è possibile aumentare lo spazio di archiviazione massimo fino a 4 TB. È possibile verificarlo usando [SELECT DATABASEPROPERTYEX](https://msdn.microsoft.com/library/ms186823.aspx) o esaminando le dimensioni del database nel portale di Azure. È possibile eseguire l'aggiornamento di un database P11 o P15 esistente solo tramite un accesso entità a livello del server o come membri del ruolo del database dbmanager. 
-- Se un'operazione di aggiornamento viene eseguita in un'area supportata, la configurazione viene aggiornata immediatamente. Il database rimane online durante il processo di aggiornamento. Tuttavia, non è possibile usare tutti i 4 TB di memoria fino al completamento dell'aggiornamento dei file del database alle nuove dimensioni massime. Il tempo necessario dipende dalle dimensioni del database in corso di aggiornamento.  
-- Durante la creazione o l'aggiornamento di un database P11 o P15, è possibile scegliere solamente 1 TB o 4 TB di dimensioni massime. Gli account di archiviazione intermedi non sono attualmente supportati. Quando si crea un database P11 o P15, l'opzione di archiviazione predefinita di 1 TB è preselezionata. Per i database che si trovano in una delle aree supportate, lo spazio di archiviazione massimo di un database singolo nuovo o esistente può essere aumentato fino a 4 TB. In tutte le altre aree, le dimensioni massime non possono essere aumentate oltre 1 TB. Quando si seleziona l'opzione da 4 TB di spazio di archiviazione incluso, il prezzo non cambia.
-- Un database dalle dimensioni massime di 4 TB non potrà essere modificato a 1 TB, anche se la memoria usata non supera quest'ultimo valore. Pertanto, non è possibile eseguire il downgrade da P11 o P15 da 4 TB a P11 o P15 da 1 TB o a un livello di prestazioni minore, ad esempio P1-P6, fino a quando non verranno fornite opzioni di archiviazione aggiuntive per tutti gli altri livelli di prestazioni. Questa restrizione si applica anche agli scenari di ripristino e copia, inclusi gli scenari temporizzati, il ripristino geografico, la conservazione backup a lungo termine e la copia del database. Dopo avere configurato un database con l'opzione da 4 TB, tutte le operazioni di ripristino di tale database devono essere eseguite in un database P11/P15 con dimensioni massime di 4 TB.
-- La creazione e l'aggiornamento di un database P11/P15 in un'area non supportata avranno esito negativo, con il seguente messaggio di errore: **P11 and P15 database with up to 4TB of storage are available in US East2, West US, US Gov Virginia, West Europe, Germany Central, South East Asia, Japan East, Australia East, Canada Central, and Canada East.** (I database P11 e P15 con memoria massima di 4 TB sono disponibili nelle aree Stati Uniti orientali 2, Stati Uniti occidentali, US Gov Virginia, Europa occidentale, Germania centrale, Asia sud-orientale, Giappone orientale, Australia orientale, Canada centrale e Canada orientale).
+- Se si sceglie l'opzione maxsize di 4 TB hello durante la creazione di un database (tramite un valore da 4 TB o 4096 GB), hello creare comando non riesce con un errore se viene eseguito il provisioning di database hello in un'area non supportata.
+- Per esistente P11 P15 database e che si trova in una delle aree di hello è supportato, è possibile aumentare hello maxsize archiviazione too4 TB. Ciò può essere verificato utilizzando hello [selezionare DATABASEPROPERTYEX](https://msdn.microsoft.com/library/ms186823.aspx) o tramite l'analisi delle dimensioni del database nel portale di Azure hello hello. L'aggiornamento un P11 esistente o P15 database può essere eseguito solo dai membri del ruolo del database dbmanager hello o un account di accesso a livello di server principale. 
+- Se viene eseguita un'operazione di aggiornamento una configurazione di hello area supportata viene aggiornata immediatamente. database Hello rimane online durante il processo di aggiornamento hello. Tuttavia, non è possibile utilizzare hello completo da 4 TB di spazio di archiviazione fino a quando non sono stati hello database effettivo file aggiornato toohello nuovo maxsize. lunghezza Hello di tempo necessaria dipende sulle dimensioni di hello del database hello in corso l'aggiornamento.  
+- Durante la creazione o l'aggiornamento di un database P11 o P15, è possibile scegliere solamente 1 TB o 4 TB di dimensioni massime. Gli account di archiviazione intermedi non sono attualmente supportati. Quando si crea un P11/P15, opzione di archiviazione hello predefinito di 1 TB è già selezionato. Per i database che si trova in una delle aree di hello è supportato, è possibile aumentare hello too4TB massima di archiviazione per un singolo database nuovo o esistente. In tutte le altre aree, le dimensioni massime non possono essere aumentate oltre 1 TB. prezzo Hello non cambia quando si seleziona 4 TB di spazio di archiviazione incluso.
+- Hello 4 TB database maxsize non può essere modificato too1 TB anche se hello spazio di archiviazione effettivo utilizzato è di sotto di 1 TB. Di conseguenza, è possibile effettuare il downgrade un tooa P11 - 4 TB/P15 - 4 TB P11 - 1 TB/P15 - 1 TB o un livello di prestazioni più basso, ad esempio, tooP1-P6) fino a quando non forniamo opzioni di archiviazione aggiuntive per il resto di hello di hello livelli di prestazioni. Questa restrizione si applica anche punto nel tempo, inclusi gli scenari di copia e ripristino di toohello geografica il ripristino a lungo termine-backup di conservazione e copia del database. Dopo aver configurato un database con l'opzione di 4 TB hello, tutte le operazioni di ripristino del database devono essere eseguite in un P11/P15 con valore maxsize di 4 TB.
+- Quando la creazione o l'aggiornamento di un database P11/P15 in un'area non supportata, hello crea o si verifica un errore di operazione di aggiornamento con hello seguente messaggio di errore: **P11 e P15 database con backup too4TB di archiviazione sono disponibili in Microsoft East2, Stati Uniti occidentali, Virginia ci Gov, Europa occidentale, Germania centrali, Asia sudorientale, Giappone orientale, Australia orientale, Canada centrale e Canada orientale.**
 - Per gli scenari di replica geografica attiva:
-   - Impostazione di una relazione di replica geografica: se il database primario è P11 o P15, devono esserlo anche i database secondari. I livelli di prestazioni inferiori non vengono accettati come database secondari in quanto non supportano l'opzione da 4 TB.
-   - Aggiornamento del database primario in una relazione di replica geografica: portando a 4 TB le dimensioni massime di un database primario, viene attivata la stessa modifica nel database secondario. Entrambi gli aggiornamenti devono avere esito positivo per applicare la modifica al database primario. Si applicano limitazioni per l'opzione da 4 TB (vedere sopra). Se il database secondario si trova in un'area che non supporta l'opzione da 4 TB, il database primario non viene aggiornato.
-- Il servizio di importazione/esportazione per caricare i database P11 o P15 da 4 TB non è supportato. Usare SqlPackage.exe per [importare](sql-database-import.md) ed [esportare](sql-database-export.md) i dati.
+   - Impostazione di una relazione di replica geografica: se il database primario hello è P11 o P15, hello secondary(ies) deve anche essere P11 o P15; livelli di prestazioni inferiori vengono rifiutati come database secondari, poiché non sono in grado di supportare 4 TB.
+   - L'aggiornamento del database primario hello in una relazione di replica geografica: hello maxsize too4 TB in un database primario modifica attiva hello stesso modifica nel database secondario hello. Entrambi gli aggiornamenti devono essere completate correttamente per la modifica di hello in effetto tootake primario hello. Area per l'opzione di 4TB hello limitazioni (vedere sopra). Se hello secondario si trova in un'area che non supporta 4 TB, hello primario non viene aggiornata.
+- Non è possibile utilizzare il servizio di importazione/esportazione hello per caricare i database P11 - 4TB/P15 - 4TB. Utilizzare SqlPackage.exe troppo[importare](sql-database-import.md) e [esportare](sql-database-export.md) dati.
 
-## <a name="manage-single-database-service-tiers-and-performance-levels-using-the-azure-portal"></a>Gestire i livelli di servizio e di prestazioni per database singoli con il portale di Azure
+## <a name="manage-single-database-service-tiers-and-performance-levels-using-hello-azure-portal"></a>Gestire i livelli di servizio singolo database e i livelli di prestazioni utilizzando hello portale di Azure
 
-Per impostare o modificare il livello di servizio, il livello di prestazioni o lo spazio di archiviazione per un database SQL di Azure nuovo o esistente con il portale di Azure, aprire la finestra **Configura prestazioni** relativa al database facendo clic su **Piano tariffario (piano DTU)**, come illustrato nello screenshot seguente. 
+tooset o modifica hello a livello di servizio, il livello di prestazioni o la quantità di archiviazione per un database SQL di Azure nuova o esistente utilizzando hello portale di Azure, aprire hello **configurare prestazioni** finestra per il database, fare clic su ** Piano tariffario (scala Dtu)** , come illustrato nella seguente schermata hello. 
 
-- Impostare o modificare il livello di servizio selezionando quello per il proprio carico di lavoro. 
-- Impostare o modificare il livello di prestazioni (**DTU**) all'interno di un livello di servizio usando il dispositivo di scorrimento **DTU**.
-- Impostare o modificare lo spazio di archiviazione per il livello di prestazioni usando il dispositivo di scorrimento **Archiviazione**. 
+- Impostare o modificare il livello di servizio hello selezionando il livello di servizio hello il carico di lavoro. 
+- Impostare o modificare il livello di prestazioni hello (**Dtu**) all'interno di un livello di servizio utilizzando hello **DTU** dispositivo di scorrimento.
+- Impostare o modificare la quantità di archiviazione hello per il livello di prestazioni hello utilizzando hello **archiviazione** dispositivo di scorrimento. 
 
   ![Configurare il livello di servizio e di prestazioni](./media/sql-database-service-tiers/service-tier-performance-level.png)
 
@@ -134,21 +134,21 @@ Per impostare o modificare il livello di servizio, il livello di prestazioni o l
 
 ## <a name="manage-single-database-service-tiers-and-performance-levels-using-powershell"></a>Gestire i livelli di servizio e di prestazioni per database singoli con PowerShell
 
-Per impostare o modificare i livelli di servizio, i livelli di prestazioni e lo spazio di archiviazione per database SQL di Azure con PowerShell, usare i cmdlet di PowerShell seguenti. Se è necessario installare o aggiornare PowerShell, vedere l'articolo su come [installare il modulo Azure PowerShell](/powershell/azure/install-azurerm-ps). 
+tooset o modificare livelli di servizio di database SQL di Azure, i livelli di prestazioni e la quantità di archiviazione usando PowerShell, utilizzare i cmdlet di PowerShell seguente hello. Se è necessario tooinstall o l'aggiornamento di PowerShell, vedere [modulo installare Azure PowerShell](/powershell/azure/install-azurerm-ps). 
 
 | Cmdlet | Descrizione |
 | --- | --- |
 |[New-AzureRmSqlDatabase](/powershell/module/azurerm.sql/new-azurermsqldatabase)|Crea un database |
 |[Get-AzureRmSqlDatabase](/powershell/module/azurerm.sql/get-azurermsqldatabase)|Recupera uno o più database|
-|[Set-AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqldatabase)|Imposta le proprietà di un database oppure sposta un database esistente in un pool elastico|
+|[Set-AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqldatabase)|Imposta le proprietà per un database oppure sposta un database esistente in un pool elastico|
 
 
 > [!TIP]
-> Per uno script di esempio di PowerShell che monitora le metriche delle prestazioni di un database, lo ridimensiona passando a un livello di prestazioni superiore e crea una regola di avviso per una delle metriche delle prestazioni, vedere [Monitorare e ridimensionare un database SQL singolo usando PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md).
+> Per uno script di esempio di PowerShell che consente di monitorare le metriche delle prestazioni di hello di un database, si ridimensiona il livello di prestazioni superiore tooa e crea una regola di avviso su una delle metriche delle prestazioni di hello, vedere [monitoraggio e la scala di un singolo SQL database mediante PowerShell](scripts/sql-database-monitor-and-scale-database-powershell.md).
 
-## <a name="manage-single-database-service-tiers-and-performance-levels-using-the-azure-cli"></a>Gestire i livelli di servizio e di prestazioni per database singoli con l'interfaccia della riga di comando di Azure
+## <a name="manage-single-database-service-tiers-and-performance-levels-using-hello-azure-cli"></a>Gestire i livelli di servizio singolo database e i livelli di prestazioni utilizzando hello CLI di Azure
 
-Per impostare o modificare i livelli di servizio, i livelli di prestazioni e lo spazio di archiviazione per database SQL di Azure con l'interfaccia della riga di comando di Azure, usare i [comandi per database SQL](/cli/azure/sql/db) seguenti. Usare [Cloud Shell](/azure/cloud-shell/overview) per eseguire l'interfaccia della riga di comando nel browser o [installarla](/cli/azure/install-azure-cli) in macOS, Linux o Windows. Per creare e gestire pool elastici SQL, vedere l'articolo relativo ai [pool elastici](sql-database-elastic-pool.md).
+tooset o modificare livelli di servizio di database SQL di Azure, i livelli di prestazioni e la quantità di archiviazione utilizzando l'interfaccia CLI di Azure, hello utilizza hello [Database SQL di Azure CLI](/cli/azure/sql/db) comandi. Hello utilizzare [Shell Cloud](/azure/cloud-shell/overview) toorun hello CLI nel browser o [installare](/cli/azure/install-azure-cli) sul macOS, Linux o Windows. Per creare e gestire i pool elastici SQL, vedere [Pool elastici](sql-database-elastic-pool.md).
 
 | Cmdlet | Descrizione |
 | --- | --- |
@@ -160,33 +160,33 @@ Per impostare o modificare i livelli di servizio, i livelli di prestazioni e lo 
 |[az sql db update](/cli/azure/sql/db#update)|Aggiorna un database|
 
 > [!TIP]
-> Per uno script di esempio dell'interfaccia della riga di comando di Azure che ridimensiona un database SQL di Azure singolo passando a un livello di prestazioni diverso dopo l'esecuzione di query sulle dimensioni del database, vedere l'articolo su come [usare l'interfaccia della riga di comando per monitorare e ridimensionare un database SQL singolo](scripts/sql-database-monitor-and-scale-database-cli.md).
+> Per uno script di esempio CLI di Azure che viene ridimensionata in un unico livello di prestazioni diverse tooa database SQL di Azure dopo l'esecuzione di query su informazioni sulle dimensioni hello del database di hello, vedere [toomonitor CLI di utilizzo e la scala di un singolo database SQL](scripts/sql-database-monitor-and-scale-database-cli.md).
 >
 
 ## <a name="manage-single-database-service-tiers-and-performance-levels-using-transact-sql"></a>Gestire i livelli di servizio e di prestazioni per database singoli con Transact-SQL
 
-Per impostare o modificare i livelli di servizio, i livelli di prestazioni e lo spazio di archiviazione per database SQL di Azure con Transact-SQL, usare i comandi T-SQL seguenti. È possibile eseguire questi comandi usando il portale di Azure, [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), [Visual Studio Code](https://code.visualstudio.com/docs) o qualsiasi altro programma che può connettersi a un server di database SQL di Azure e passare comandi Transact-SQL. 
+tooset o modificare livelli di servizio di database SQL di Azure, i livelli di prestazioni e la quantità di archiviazione con Transact-SQL, utilizzare i comandi T-SQL seguente hello. È possibile eseguire questi comandi utilizzando il portale di Azure, hello [SQL Server Management Studio](/sql/ssms/use-sql-server-management-studio), [codice di Visual Studio](https://code.visualstudio.com/docs), o qualsiasi altro programma che è possibile connettere il server di Database SQL di Azure tooan e passare a Transact-SQL comandi. 
 
 | Comando | Descrizione |
 | --- | --- |
-|[CREATE DATABASE (database SQL di Azure)](/sql/t-sql/statements/create-database-azure-sql-database)|Crea un nuovo database. Per creare un nuovo database è necessario essere connessi al database master.|
+|[CREATE DATABASE (database SQL di Azure)](/sql/t-sql/statements/create-database-azure-sql-database)|Crea un nuovo database. È necessario essere connessi toohello database master toocreate un nuovo database.|
 | [ALTER DATABASE (database SQL di Azure)](/sql/t-sql/statements/alter-database-azure-sql-database) |Modifica un database SQL di Azure. |
-|[sys.database_service_objectives (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Restituisce l'edizione (livello di servizio), l'obiettivo di servizio (piano tariffario) e il nome del pool elastico, se presente, di un database SQL di Azure o un'istanza di Azure SQL Data Warehouse. Se si è connessi al database master in un server di database SQL di Azure, restituisce informazioni su tutti i database. Per Azure SQL Data Warehouse, è necessario essere connessi al database master.|
-|[sys.database_usage (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-usage-azure-sql-database)|Elenca il numero, il tipo e la durata dei database in un server di database SQL di Azure.|
+|[sys.database_service_objectives (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-service-objectives-azure-sql-database)|Restituisce hello edizione (livello di servizio), l'obiettivo di servizio (livello di prezzo) e nome del pool elastico, se presente, per un database SQL di Azure o un Data Warehouse di SQL Azure. Se connesso al database master di toohello in un server di Database SQL di Azure, restituisce informazioni su tutti i database. Per Azure SQL Data Warehouse, è necessario essere connessi toohello database master.|
+|[sys.database_usage (database SQL di Azure)](/sql/relational-databases/system-catalog-views/sys-database-usage-azure-sql-database)|Elenca il numero di hello, tipo e durata di database in un server di Database SQL di Azure.|
 
-L'esempio seguente illustra la modifica delle dimensioni massime con il comando ALTER DATABASE:
+Hello riportato di seguito hello maxsize viene modificata utilizzando il comando di ALTER DATABASE hello:
 
  ```sql
 ALTER DATABASE <myDatabaseName> 
    MODIFY (MAXSIZE = 4096 GB);
 ```
 
-## <a name="manage-single-databases-using-the-rest-api"></a>Gestire database singoli con l'API REST
+## <a name="manage-single-databases-using-hello-rest-api"></a>Gestire singoli database utilizzando l'API REST hello
 
-Per impostare o modificare i livelli di servizio, i livelli di prestazioni e lo spazio di archiviazione per database SQL di Azure con l'API REST, vedere [Azure SQL Database REST API](/rest/api/sql/) (API REST per database SQL di Azure).
+vedere tooset o modificare livelli di servizio di database SQL di Azure, i livelli di prestazioni e la quantità di archiviazione utilizzando l'API REST di hello [API REST di Azure SQL Database](/rest/api/sql/).
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 * Altre informazioni sulle [DTU](sql-database-what-is-a-dtu.md).
-* Per informazioni sul monitoraggio dell'utilizzo di DTU, vedere l'articolo relativo a [monitoraggio e ottimizzazione delle prestazioni](sql-database-troubleshoot-performance.md).
+* toolearn sul monitoraggio dell'utilizzo DTU, vedere [monitoraggio e ottimizzazione delle prestazioni](sql-database-troubleshoot-performance.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Progettare il primo database SQL di Azure - C# | Microsoft Docs
-description: Informazioni su come progettare il primo database SQL di Azure e connettersi a esso con un programma C# tramite ADO.NET.
+title: aaaDesign il database SQL di Azure prima - c# | Documenti Microsoft
+description: Informazioni su toodesign di un database SQL di Azure e connettersi tooit con un programma c# tramite ADO.NET.
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,20 +16,20 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 07/31/2017
 ms.author: genemi;carlrab
-ms.openlocfilehash: d9731cf5399cce6f103129ccda521f2867bd8da6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8161de24bff1ec2fa307efa93adab2bd1b761fd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="design-an-azure-sql-database-and-connect-with-cx23-and-adonet"></a>Progettare un database SQL di Azure e connettersi con C&#x23; e ADO.NET
 
-Il database SQL di Azure è un database relazionale come servizio (DBaaS, Database-As-A-Service) disponibile in Microsoft Cloud ("Azure"). In questa esercitazione viene illustrato come usare il portale di Azure e ADO.NET con Visual Studio per eseguire queste operazioni: 
+Database SQL di Azure è un relazionale database-come a un servizio (DBaaS) in hello Cloud Microsoft ("Azure"). In questa esercitazione, è illustrato come toouse hello portale di Azure e ADO.NET con Visual Studio per: 
 
 > [!div class="checklist"]
-> * Creare un database nel portale di Azure
-> * Impostare una regola del firewall a livello di server nel portale di Azure
-> * Connettersi al database con ADO.NET e Visual Studio
+> * Creare un database in hello portale di Azure
+> * Impostare una regola firewall di livello server nel portale di Azure hello
+> * La connessione a database toohello con ADO.NET e Visual Studio
 > * Creare tabelle con ADO.NET
 > * Inserire, aggiornare ed eliminare dati con ADO.NET 
 > * Eseguire query sui dati con ADO.NET
@@ -40,14 +40,14 @@ Se non si ha una sottoscrizione di Azure, [creare un account gratuito](https://a
 
 Un'installazione di [Visual Studio Community 2017, Visual Studio Professional 2017 o Visual Studio Enterprise 2017](https://www.visualstudio.com/downloads/).
 
-<!-- The following included .md, sql-database-tutorial-portal-create-firewall-connection-1.md, is long.
+<!-- hello following included .md, sql-database-tutorial-portal-create-firewall-connection-1.md, is long.
 And it starts with a ## H2.
 -->
 
 [!INCLUDE [sql-database-tutorial-portal-create-firewall-connection-1](../../includes/sql-database-tutorial-portal-create-firewall-connection-1.md)]
 
 
-<!-- The following included .md, sql-database-csharp-adonet-create-query-2.md, is long.
+<!-- hello following included .md, sql-database-csharp-adonet-create-query-2.md, is long.
 And it starts with a ## H2.
 -->
 
@@ -56,17 +56,17 @@ And it starts with a ## H2.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Questa esercitazione ha illustrato le attività di base che è possibile eseguire con i database, come creare database e tabelle, caricare dati, eseguire query sui dati e ripristinare un database a un momento precedente. Si è appreso come:
+In questa esercitazione è stato attività di base del database, ad esempio creare un database e tabelle, caricare e query sui dati e hello database tooa precedente punto di ripristino temporizzato. Si è appreso come:
 > [!div class="checklist"]
 > * Creare un database
 > * Configurare una regola del firewall
-> * Connettersi al database con [Visual Studio e C#](sql-database-connect-query-dotnet-visual-studio.md)
+> * La connessione a database toohello con [c# e Visual Studio](sql-database-connect-query-dotnet-visual-studio.md)
 > * Creare tabelle
 > * Inserire, aggiornare ed eliminare i dati
 > * Eseguire query sui dati
 
-Passare all'esercitazione successiva per ottenere informazioni sulla migrazione dei dati.
+Spostare toohello toolearn esercitazione successiva sulla migrazione dei dati.
 
 > [!div class="nextstepaction"]
->[Eseguire la migrazione di un database SQL Server a un database SQL di Azure](sql-database-migrate-your-sql-server-database.md)
+>[Eseguire la migrazione del tooAzure di database di SQL Server Database SQL](sql-database-migrate-your-sql-server-database.md)
 

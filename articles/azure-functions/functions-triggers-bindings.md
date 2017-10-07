@@ -1,6 +1,6 @@
 ---
-title: Usare trigger e associazioni in Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare trigger e associazioni in Funzioni di Azure per connettere l'esecuzione del codice a eventi online e servizi basati su cloud.
+title: aaaWork con trigger e le associazioni in funzioni di Azure | Documenti Microsoft
+description: Informazioni su come toouse attiva e le associazioni in funzioni di Azure tooconnect l'eventi tooonline esecuzione di codice e i servizi basati su cloud.
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: donnam
-ms.openlocfilehash: cc41debb2523df77be4db05817a4c7ac55604439
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb2ebfca172fcc8c0f479adbcfec99e90fc33615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-triggers-and-bindings-concepts"></a>Concetti di Trigger e associazioni di Funzioni di Azure
-Funzioni di Azure consente di scrivere codice in risposta agli eventi in Azure e in altri servizi, tramite *trigger* e *associazioni*. In questo articolo viene fornita una panoramica concettuale di trigger e associazioni per tutti i linguaggi di programmazione supportati. Le funzionalità comuni a tutte le associazioni sono descritte di seguito.
+Funzioni di Azure consente toowrite codice in risposta tooevents in Azure e altri servizi, tramite *trigger* e *associazioni*. In questo articolo viene fornita una panoramica concettuale di trigger e associazioni per tutti i linguaggi di programmazione supportati. Funzionalità comuni tooall associazioni sono descritte di seguito.
 
 ## <a name="overview"></a>Panoramica
 
-I trigger e le associazioni sono un modo dichiarativo per definire come viene invocata una funzione e con quali dati opera. Un *trigger* definisce come viene richiamata una funzione. Una funzione deve avere esattamente un trigger. I trigger hanno dei dati associati, ovvero in genere il payload che ha attivato la funzione. 
+I trigger e le associazioni sono toodefine una modalità dichiarativa per la modalità in cui viene richiamata una funzione e i dati che funziona con. Un *trigger* definisce come viene richiamata una funzione. Una funzione deve avere esattamente un trigger. I trigger sono associati dati, ovvero in genere payload hello che ha attivato la funzione hello. 
 
-Le *associazioni* di input e output forniscono una modalità dichiarativa per connettersi ai dati dall'interno del codice. Analogamente ai trigger, specificare le stringhe di connessione e le altre proprietà nella configurazione della funzione. Le associazioni sono facoltative e una funzione può avere più associazioni di input e output. 
+Input e output *associazioni* forniscono un toodata tooconnect modalità dichiarativa dall'interno del codice. Tootriggers simile, specificare le stringhe di connessione e altre proprietà nella configurazione di funzione. Le associazioni sono facoltative e una funzione può avere più associazioni di input e output. 
 
-Usando i trigger e le associazioni, è possibile scrivere codice più generico e non impostare come hardcoded i dettagli dei servizi con cui interagisce. I dati provenienti dai servizi diventano semplicemente valori di input per il codice della funzione. Per restituire i dati a un altro servizio (ad esempio la creazione di una nuova riga nell'archiviazione tabelle di Azure), usare il valore restituito del metodo. In alternativa, se è necessario restituire più valori, usare un oggetto di supporto. I trigger e le associazioni presentano una proprietà **nome**, che è un identificatore che si usa nel codice per accedere all'associazione.
+Tramite i trigger e le associazioni, è possibile scrivere codice che è più generico e non impostare come hardcoded i dettagli di hello dei servizi di hello con cui interagisce. I dati provenienti dai servizi diventano semplicemente valori di input per il codice della funzione. servizio di tooanother toooutput dati (ad esempio creando una nuova riga nell'archiviazione tabelle di Azure), utilizzare il valore restituito di hello del metodo hello. In alternativa, se è necessario toooutput più valori, utilizzare un oggetto di supporto. I trigger e le associazioni presentano un **nome** proprietà, che è un identificatore è utilizzare nell'associazione di hello tooaccess codice.
 
-È possibile configurare i trigger e le associazioni nella scheda **Integrazione** nel portale delle Funzioni di Azure. Dietro le quinte, l'interfaccia utente modifica un file denominato file *function.json* nella directory della funzione. È possibile modificare questo file passando all'**Editor avanzato**.
+È possibile configurare i trigger e le associazioni in hello **integrazione** scheda nel portale di Azure funzioni hello. In realtà hello, hello dell'interfaccia utente modifica un file denominato *function.json* file nella directory di funzione hello. È possibile modificare questo file modificando toohello **editor avanzato**.
 
-La tabella seguente mostra i trigger e le associazioni supportate con le Funzioni di Azure. 
+Hello nella tabella seguente mostra i trigger di hello e associazioni che sono supportate con le funzioni di Azure. 
 
 [!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
 
 ### <a name="example-queue-trigger-and-table-output-binding"></a>Esempio: trigger di coda e tabella di associazione di output
 
-Si supponga di voler scrivere una nuova riga in archiviazione tabelle di Azure ogni volta che viene visualizzato un messaggio nuovo in archiviazione code di Azure. Questo scenario può essere implementato tramite un trigger della coda di Azure e una tabella di associazione di output. 
+Si supponga toowrite un tooAzure riga nuova archiviazione tabella ogni volta che viene visualizzato un nuovo messaggio nella coda di archiviazione di Azure. Questo scenario può essere implementato tramite un trigger della coda di Azure e una tabella di associazione di output. 
 
-Un trigger della coda richiede le informazioni seguenti nella scheda **Integrazione**:
+Un trigger di coda richiede le seguenti informazioni in hello hello **integrazione** scheda:
 
-* Il nome dell'impostazione dell'app che contiene la stringa di connessione dell'account di archiviazione per la coda
-* Il nome della coda
-* L'identificatore nel codice per leggere il contenuto del messaggio in coda, ad esempio `order`.
+* nome di Hello dell'impostazione di app hello che contiene una stringa di connessione account di archiviazione di hello per coda hello
+* nome della coda Hello
+* Hello, ad esempio l'identificatore del contenuto di hello tooread codice del messaggio della coda hello `order`.
 
-Per scrivere in archiviazione tabelle di Azure, usare un'associazione di output con i dettagli seguenti:
+toowrite tooAzure archiviazione tabelle, utilizzare un'associazione di output con hello seguenti dettagli:
 
-* Il nome dell'impostazione dell'app che contiene la stringa di connessione dell'account di archiviazione per la tabella
-* Il nome della tabella
-* L'identificatore nel codice per creare elementi di output o il valore restituito dalla funzione.
+* nome di Hello dell'impostazione di app hello che contiene una stringa di connessione account di archiviazione di hello per tabella hello
+* nome della tabella Hello
+* Identificatore Hello in toocreate il codice di output elementi o hello il valore restituito dalla funzione hello.
 
-Le associazioni usano le impostazioni app per le stringhe di connessione per applicare la migliore pratica in base alla quale *function.json* non contiene i segreti di servizio.
+Associazioni utilizzano le impostazioni dell'app per hello tooenforce di connessione stringhe best practice che *function.json* non contiene i segreti di servizio.
 
-Quindi, usare gli identificatori che vengono forniti per l'integrazione con archiviazione di Azure nel codice.
+Quindi, utilizzare gli identificatori di hello toointegrate fornite con l'archiviazione di Azure nel codice.
 
 ```cs
 #r "Newtonsoft.Json"
 
 using Newtonsoft.Json.Linq;
 
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The method return value creates a new row in Table Storage
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello method return value creates a new row in Table Storage
 public static Person Run(JObject order, TraceWriter log)
 {
     return new Person() { 
@@ -85,8 +85,8 @@ public class Person
 ```
 
 ```javascript
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The second parameter to context.done is used as the value for the new row
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello second parameter toocontext.done is used as hello value for hello new row
 module.exports = function (context, order) {
     order.PartitionKey = "Orders";
     order.RowKey = generateRandomId(); 
@@ -100,7 +100,7 @@ function generateRandomId() {
 }
 ```
 
-Ecco il *function.json* che corrisponde al codice precedente. Si noti che si può usare la stessa configurazione, indipendentemente dal linguaggio di implementazione della funzione.
+Ecco hello *function.json* toohello precedente codice corrispondente. Si noti che è possibile utilizzare configurazione stesso, indipendentemente dal linguaggio hello di implementazione della funzione hello di hello.
 
 ```json
 {
@@ -122,7 +122,7 @@ Ecco il *function.json* che corrisponde al codice precedente. Si noti che si pu�
   ]
 }
 ```
-Per visualizzare e modificare i contenuti della *funzione .json* nel portale di Azure, fare clic sull'opzione **Editor avanzato** nella scheda **Integrazione** della funzione.
+contenuto di hello tooview e modifica di *function.json* in hello portale di Azure, fare clic su hello **editor avanzato** opzione hello **integrazione** scheda della funzione.
 
 Per altri esempi di codice e informazioni dettagliate sull'integrazione con archiviazione di Azure, vedere [Associazioni del BLOB del servizio di archiviazione di Funzioni di Azure](functions-bindings-storage.md).
 
@@ -130,13 +130,13 @@ Per altri esempi di codice e informazioni dettagliate sull'integrazione con arch
 
 Tutti i trigger e le associazioni hanno una proprietà `direction`:
 
-- Per i trigger, la direzione è sempre `in`
+- Per i trigger, è sempre direzione hello`in`
 - Le associazioni di input e di output usano `in` e `out`
-- Alcune associazioni supportano una direzione speciale `inout`. Se si usa `inout`, solo l'**Editor avanzato** è disponibile nelle scheda **Integrazione**.
+- Alcune associazioni supportano una direzione speciale `inout`. Se si utilizza `inout`, solo hello **editor avanzato** è disponibile in hello **integrazione** scheda.
 
-## <a name="using-the-function-return-type-to-return-a-single-output"></a>Uso del tipo restituito della funzione per restituire un singolo output
+## <a name="using-hello-function-return-type-tooreturn-a-single-output"></a>Utilizzando tooreturn tipo restituito di funzione hello un singolo output
 
-Nell'esempio precedente viene illustrato come usare il valore restituito della funzione per offrire l'output a un'associazione, che si può fare tramite il parametro nome speciale `$return`. (Questa opzione è supportata solo nei linguaggi che dispongono di un valore restituito, ad esempio C#, JavaScript e F#). Se una funzione dispone di più associazioni di output, usare `$return` per una sola delle associazioni di output. 
+Hello esempio precedente viene illustrato come toouse hello funzione valore restituito tooprovide output tooa binding, che è possibile utilizzare il parametro di nome speciale hello `$return`. (Questa opzione è supportata solo nei linguaggi che dispongono di un valore restituito, ad esempio C#, JavaScript e F#). Se una funzione include più associazioni di output, utilizzare `$return` per solo una delle associazioni di output di hello. 
 
 ```json
 // excerpt of function.json
@@ -148,7 +148,7 @@ Nell'esempio precedente viene illustrato come usare il valore restituito della f
 }
 ```
 
-Gli esempi seguenti mostrano come i tipi restituiti vengono usati con le associazioni di output in C#, JavaScript e F#.
+esempi di Hello seguente mostra come restituiscono tipi vengono utilizzati con le associazioni di output in c#, JavaScript e F #.
 
 ```cs
 // C# example: use method return value for output binding
@@ -171,7 +171,7 @@ public static Task<string> Run(WorkItem input, TraceWriter log)
 ```
 
 ```javascript
-// JavaScript: return a value in the second parameter to context.done
+// JavaScript: return a value in hello second parameter toocontext.done
 module.exports = function (context, input) {
     var json = JSON.stringify(input);
     context.log('Node.js script processed queue message', json);
@@ -189,9 +189,9 @@ let Run(input: WorkItem, log: TraceWriter) =
 
 ## <a name="binding-datatype-property"></a>Proprietà Binding dataType
 
-In .NET usare i tipi per definire il tipo di dati per i dati di input. Ad esempio, usare `string` da associare al testo di un trigger di coda e una matrice di byte da leggere in formato binario.
+In .NET, utilizzare hello tipi toodefine hello data type per dati di input. Ad esempio, utilizzare `string` toobind toohello testo di un trigger di coda e un tooread di matrice di byte in formato binario.
 
-Per le lingue che vengono digitate in modo dinamico, ad esempio JavaScript, usare la proprietà `dataType` nella definizione di associazione. Ad esempio, per leggere il contenuto di una richiesta HTTP in formato binario, usare il tipo `binary`:
+Per le lingue che vengono digitate in modo dinamico, ad esempio JavaScript, usare hello `dataType` proprietà nella definizione di associazioni hello. Ad esempio, tooread hello contenuto di una richiesta HTTP in formato binario, utilizzare il tipo di hello `binary`:
 
 ```json
 {
@@ -205,13 +205,13 @@ Per le lingue che vengono digitate in modo dinamico, ad esempio JavaScript, usar
 Altre opzioni per `dataType` sono `stream` e `string`.
 
 ## <a name="resolving-app-settings"></a>Risoluzione di impostazioni app
-Come procedura consigliata, i segreti e le stringhe di connessione devono essere gestiti tramite le impostazioni dell'app, invece dei file di configurazione. Ciò limita l'accesso a questi segreti e rende sicuro archiviare *function.json* in un repository di controllo sorgente pubblico.
+Come procedura consigliata, i segreti e le stringhe di connessione devono essere gestiti tramite le impostazioni dell'app, invece dei file di configurazione. Questo limita accesso toothese segreti e rende sicuro toostore *function.json* in un repository di controllo del codice sorgente pubblico.
 
-Le impostazioni dell'app sono utili anche ogni volta che si desidera modificare la configurazione in base all'ambiente. Ad esempio, in un ambiente di test, si potrebbe voler monitorare un contenitore di archiviazione BLOB o di coda diverso.
+Le impostazioni dell'App sono utili anche ogni volta che si desidera configurazione toochange basata sull'ambiente hello. In un ambiente di test, ad esempio, è consigliabile toomonitor un diverso contenitore di archiviazione blob o coda.
 
-Le impostazioni dell'app vengono risolte ogni volta che un valore è racchiuso tra simboli di percentuale, ad esempio `%MyAppSetting%`. Si noti che la proprietà `connection` di trigger e associazioni è un caso speciale e risolve automaticamente i valori come impostazioni dell'app. 
+Le impostazioni dell'app vengono risolte ogni volta che un valore è racchiuso tra simboli di percentuale, ad esempio `%MyAppSetting%`. Si noti che hello `connection` proprietà delle associazioni e i trigger è un caso speciale e risolve automaticamente i valori come impostazioni dell'app. 
 
-L'esempio seguente è un trigger di coda che usa un'impostazione dell'app `%input-queue-name%` per definire la coda di trigger.
+esempio Hello è un trigger di coda che utilizza un'impostazione app `%input-queue-name%` toodefine hello coda tootrigger in.
 
 ```json
 {
@@ -229,9 +229,9 @@ L'esempio seguente è un trigger di coda che usa un'impostazione dell'app `%inpu
 
 ## <a name="trigger-metadata-properties"></a>Proprietà dei metadati di trigger
 
-Oltre al payload dei dati offerto da un trigger (ad esempio, il messaggio di coda che ha attivato una funzione), molti trigger forniscono i valori dei metadati aggiuntivi. Questi valori possono essere usati come parametri di input in C# e F# o come proprietà nell'oggetto `context.bindings` in JavaScript. 
+In aggiunta toohello payload dei dati forniti da un trigger (ad esempio hello coda dei messaggi che ha attivato una funzione), molti trigger fornire i valori di metadati aggiuntivi. Questi valori possono essere utilizzati come parametri di input in c# e F # o proprietà hello `context.bindings` oggetto in JavaScript. 
 
-Ad esempio, un trigger di coda supporta le proprietà seguenti:
+Ad esempio, un trigger di coda supporta hello le proprietà seguenti:
 
 * QueueTrigge: attivazione del contenuto del messaggio, se una stringa valida
 * DequeueCount
@@ -241,9 +241,9 @@ Ad esempio, un trigger di coda supporta le proprietà seguenti:
 * NextVisibleTime
 * PopReceipt
 
-I dettagli delle proprietà dei metadati per ogni trigger sono descritti nell'argomento di riferimento corrispondente. La documentazione è disponibile anche nella scheda **Integrazione** del portale nella sezione **Documentazione** sotto l'area di configurazione dell'associazione.  
+Dettagli delle proprietà dei metadati per tutti i trigger sono descritti nell'argomento di riferimento corrispondente hello. La documentazione è disponibile anche in hello **integrazione** scheda della finestra del portale hello hello **documentazione** sezione sotto l'area di configurazione dell'associazione hello.  
 
-Ad esempio, poiché i trigger BLOB presentano alcuni ritardi, è possibile usare un trigger della coda per l'esecuzione della funzione (vedere [Trigger del BLOB del servizio di archiviazione](functions-bindings-storage-blob.md#storage-blob-trigger). Il messaggio della coda contiene il filename del BLOB da attivare. Con l'uso della proprietà dei metadati `queueTrigger`, è possibile specificareper intero questo comportamento nella configurazione, invece che nel codice.
+Ad esempio, poiché i trigger di blob presentano alcuni ritardi, è possibile utilizzare un toorun trigger coda la funzione (vedere [Trigger di archiviazione Blob](functions-bindings-storage-blob.md#storage-blob-trigger). messaggio della coda di Hello conterrebbe hello blob filename tootrigger in. Utilizzo di hello `queueTrigger` proprietà dei metadati, è possibile specificare questo comportamento in configurazione, anziché il codice.
 
 ```json
   "bindings": [
@@ -263,15 +263,15 @@ Ad esempio, poiché i trigger BLOB presentano alcuni ritardi, è possibile usare
   ]
 ```
 
-Le proprietà dei metadati da un trigger possono anche essere usate in una *espressione dell'associazione* per un'altra associazione, come descritto nella sezione seguente.
+Proprietà di metadati da un trigger possono essere utilizzate anche un *espressione dell'associazione* per l'associazione di un altro, come hello descritto nella sezione seguente.
 
 ## <a name="binding-expressions-and-patterns"></a>Modelli ed espressioni di associazione
 
-Una delle funzionalità più potenti di trigger e associazioni sono le *espressioni di associazione*. All'interno dell'associazione, è possibile definire delle espressioni di modello che possono quindi essere usate in altre associazioni o nel codice. I metadati del trigger possono essere usati anche nelle espressioni di associazione, come illustrato nell'esempio nella sezione precedente.
+Una delle funzionalità più potenti di hello di trigger e le associazioni è *espressioni di associazione*. All'interno dell'associazione, è possibile definire delle espressioni di modello che possono quindi essere usate in altre associazioni o nel codice. Metadati di trigger possono essere utilizzati anche nell'associazione di espressioni, come illustrato nell'esempio hello nella precedente sezione hello.
 
-Ad esempio, si supponga che si desidera ridimensionare le immagini in un contenitore di archiviazione BLOB specifico, simile al modello di **ridimensionamento immagine** nella pagina **Nuova funzione**. Passare a **Nuova funzione** -> Linguaggio **C#** -> Scenario **Esempi** -> **ImageResizer-CSharp**. 
+Ad esempio, si supponga di voler tooresize immagini nel contenitore di archiviazione blob specifico, simile toohello **dimensioni immagine** modello hello **nuova funzione** pagina. Andare troppo**nuova funzione** -> lingua **c#** -> Scenario **esempi** -> **ImageResizer CSharp**. 
 
-Ecco la definizione di *function.json*:
+Ecco hello *function.json* definizione:
 
 ```json
 {
@@ -294,10 +294,10 @@ Ecco la definizione di *function.json*:
 }
 ```
 
-Si noti che il parametro `filename` viene usato nella definizione del trigger BLOB e anche nell'associazione output di BLOB. Questo parametro può essere usato anche nel codice della funzione.
+Si noti che hello `filename` parametro viene utilizzato nella definizione del trigger blob hello nonché a blob hello associazione di output. Questo parametro può essere usato anche nel codice della funzione.
 
 ```csharp
-// C# example of binding to {filename}
+// C# example of binding too{filename}
 public static void Run(Stream image, string filename, Stream imageSmall, TraceWriter log)  
 {
     log.Info($"Blob trigger processing: {filename}");
@@ -310,7 +310,7 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 
 
 ### <a name="random-guids"></a>GUID casuali
-Funzioni di Azure fornisce una sintassi utile per la generazione di GUID nelle associazioni, tramite l'espressione dell'associazione `{rand-guid}`. Nell'esempio seguente questa operazione viene usata per generare un nome del BLOB univoco: 
+Funzioni di Azure fornisce una sintassi pratici per la generazione di GUID nelle associazioni, tramite hello `{rand-guid}` espressione dell'associazione. Hello esempio seguente viene utilizzato questo toogenerate un nome univoco di blob: 
 
 ```json
 {
@@ -323,7 +323,7 @@ Funzioni di Azure fornisce una sintassi utile per la generazione di GUID nelle a
 
 ### <a name="current-time"></a>Ora corrente
 
-È possibile usare l'espressione di associazione `DateTime`, che viene risolta in `DateTime.UtcNow`.
+È possibile utilizzare l'espressione di associazione hello `DateTime`, che viene risolta troppo`DateTime.UtcNow`.
 
 ```json
 {
@@ -334,11 +334,11 @@ Funzioni di Azure fornisce una sintassi utile per la generazione di GUID nelle a
 }
 ```
 
-## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a>Associare le proprietà di input personalizzate in un'espressione di associazione
+## <a name="bind-toocustom-input-properties-in-a-binding-expression"></a>Associare le proprietà di input toocustom in un'espressione di associazione
 
-Le espressioni di associazione possono anche fare riferimento alle proprietà definite nel payload del trigger stesso. Ad esempio, si potrebbe voler associare in modo dinamico ad un file di archiviazione BLOB un filename fornito da un webhook.
+Associazione di espressioni può anche fare riferimento alle proprietà che sono definite nel payload di hello trigger stesso. Ad esempio, è consigliabile toodynamically file di archiviazione blob di tooa binding da un nome specificato in un webhook.
 
-Ad esempio, la seguente *function.json* usa una proprietà denominata `BlobName` dal payload del trigger:
+Ad esempio, hello seguente *function.json* Usa una proprietà denominata `BlobName` dal payload trigger hello:
 
 ```json
 {
@@ -365,7 +365,7 @@ Ad esempio, la seguente *function.json* usa una proprietà denominata `BlobName`
 }
 ```
 
-A tale scopo in C# e F #, è necessario definire un POCO che definisce i campi che saranno deserializzati nel payload del trigger.
+tooaccomplish questo in c# e F #, è necessario definire un POCO che definisce i campi di hello che verranno deserializzati payload trigger hello.
 
 ```csharp
 using System.Net;
@@ -387,7 +387,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, str
 }
 ```
 
-In JavaScript, viene eseguita automaticamente la deserializzazione di JSON ed è possibile usare direttamente le proprietà.
+In JavaScript, viene eseguita automaticamente la deserializzazione JSON ed è possibile utilizzare direttamente le proprietà di hello.
 
 ```javascript
 module.exports = function (context, info) {
@@ -407,10 +407,10 @@ module.exports = function (context, info) {
 
 ## <a name="configuring-binding-data-at-runtime"></a>Configurazione dell'associazione di dati in fase di runtime
 
-In C# e altri linguaggi .NET, è possibile usare un metodo di associazione imperativa anziché dichiarativa in *function.json*. L'associazione imperativa è utile quando i parametri di associazione devono essere calcolati in fase di runtime invece che in fase di progettazione. Per altre informazioni, vedere [Associazione in fase di runtime tramite le associazioni imperative](functions-reference-csharp.md#imperative-bindings) nel riferimento per sviluppatori C#.
+In c# e altri linguaggi .NET, è possibile utilizzare un modello di associazione imperativa, come toohello anziché associazioni dichiarativa *function.json*. Associazione imperativo è utile quando i parametri di associazione necessario toobe calcolato in fase di runtime anziché di progettazione. toolearn informazioni, vedere [associazione in fase di esecuzione tramite i binding imperativo](functions-reference-csharp.md#imperative-bindings) nella Guida di riferimento per sviluppatori hello in c#.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni su questi elementi, vedere gli articoli indicati di seguito:
+Per ulteriori informazioni su una particolare associazione, vedere hello seguenti articoli:
 
 - [HTTP e webhook](functions-bindings-http-webhook.md)
 - [Timer](functions-bindings-timer.md)

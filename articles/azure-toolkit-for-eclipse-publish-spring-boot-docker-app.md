@@ -1,6 +1,6 @@
 ---
-title: Pubblicare un'app Spring Boot come contenitore Docker usando il Toolkit di Azure per Eclipse | Microsoft Docs
-description: Informazioni su come pubblicare un'app Web in Microsoft Azure come contenitore Docker usando il Toolkit di Azure per Eclipse.
+title: un'app Spring avvio come un contenitore Docker utilizzando aaaPublish hello Azure Toolkit per Eclipse | Documenti Microsoft
+description: Informazioni su come toopublish un tooMicrosoft app web Azure come un contenitore Docker usando hello Azure Toolkit per Eclipse.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,27 +14,27 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: robmcm
-ms.openlocfilehash: fcb60fcfbda26f5f37bfb0edcb01f8737188b6bc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29390c49c339a1ebb87cb3951b21cea01c0da15f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-the-azure-toolkit-for-eclipse"></a>Pubblicare un'app Spring Boot come contenitore Docker usando il Toolkit di Azure per Eclipse
+# <a name="publish-a-spring-boot-app-as-a-docker-container-by-using-hello-azure-toolkit-for-eclipse"></a>Pubblicare un'app Spring avvio come un contenitore Docker usando hello Azure Toolkit per Eclipse
 
-[Spring Framework] è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello enterprise. Uno dei progetti più comuni che si basa su questa piattaforma è [Spring Boot], che fornisce un approccio semplificato per la creazione di applicazioni Java autonome.
+Hello [Spring Framework] è una soluzione open source che consente agli sviluppatori Java di creare applicazioni di livello aziendale. Uno dei progetti comuni a più di hello che viene compilato in cui piattaforma è [avvio Spring], che fornisce un approccio semplificato per la creazione di applicazioni Java autonomo.
 
-[Docker] è una soluzione open source che consente agli sviluppatori di automatizzare la distribuzione, il ridimensionamento e la gestione delle applicazioni in esecuzione nei contenitori.
+[Docker] è una soluzione open source che consente agli sviluppatori di automatizzare la distribuzione di hello, scalabilità e gestione delle applicazioni in esecuzione nei contenitori.
 
-Questa esercitazione illustra i passaggi per distribuire un'applicazione Spring Boot come contenitore Docker in Microsoft Azure usando il Toolkit di Azure per Eclipse.
+In questa esercitazione illustra hello passaggi toodeploy un'applicazione di avvio molla come un tooMicrosoft contenitore Docker Azure tramite hello Azure Toolkit per Eclipse.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## <a name="clone-the-default-spring-boot-docker-repository"></a>Clonare il repository Docker Spring Boot
+## <a name="clone-hello-default-spring-boot-docker-repository"></a>Clonare il repository di Docker avvio Spring hello predefinito
 
-### <a name="import-the-public-repository"></a>Importare il repository pubblico
+### <a name="import-hello-public-repository"></a>Archivio pubblico hello di importazione
 
-I passaggi seguenti illustrano la clonazione del repository Docker Spring Boot nel computer locale tramite IntelliJ. Se si intende usare una riga di comando, vedere [Deploy a Spring Boot application on Linux in Azure Container Service][Deploy Spring Boot on Linux in ACS] (Distribuire un'applicazione Spring Boot in Linux nel servizio contenitore di Azure).
+Hello passaggi seguenti consentono di eseguire la clonazione di computer locale tooyour hello Spring avvio Docker repository utilizzando IntelliJ. Se si desidera toouse una riga di comando, vedere [distribuire un'applicazione di avvio molla su Linux nel servizio contenitore di Azure][Deploy Spring Boot on Linux in ACS].
 
 1. Aprire Eclipse.
 
@@ -42,7 +42,7 @@ I passaggi seguenti illustrano la clonazione del repository Docker Spring Boot n
 
    ![Opzione Import (Importa) del menu File][CL01]
 
-1. Quando viene visualizzata la finestra di dialogo **Import** (Importa):
+1. Quando hello **importazione** verrà visualizzata la finestra di dialogo:
 
    a. Espandere **Git**.
 
@@ -52,7 +52,7 @@ I passaggi seguenti illustrano la clonazione del repository Docker Spring Boot n
 
    ![Finestra di dialogo Import (Importa)][CL02]
 
-1. Nella pagina **Select Repository Source** (Seleziona origine repository):
+1. In hello **selezionare l'origine del Repository** pagina:
 
    a. Selezionare **Clone URI** (Clona URI).
    
@@ -60,37 +60,37 @@ I passaggi seguenti illustrano la clonazione del repository Docker Spring Boot n
 
    ![Selezionare la pagina origine del repository][CL03]
 
-1. Nella pagina **Select Repository Source** (Seleziona origine repository):
+1. In hello **Git Repository di origine** pagina:
 
-   a. Per **URI**, immettere `https://github.com/spring-guides/gs-spring-boot-docker.git`. Questo passaggio inserisce automaticamente i valori corretti nei campi **Host** e **Repository path** (Percorso repository).
+   a. Per **URI**, immettere `https://github.com/spring-guides/gs-spring-boot-docker.git`. Questo passaggio deve popolare automaticamente hello **Host** e **il percorso del Repository** i campi con hello correggere i valori.
    
-   b. Il repository Spring Boot è pubblico, quindi non è necessario immettere il nome utente e la password Git.
+   b. repository di avvio Spring Hello è pubblica, pertanto non è necessario tooenter nome Git utente e password.
    
    c. Fare clic su **Avanti**.
 
    ![Pagina del repository Git di origine][CL04]
 
-1. Nella pagina **Branch selection** (Selezione ramo) fare clic su **Next** (Avanti).
+1. In hello **selezione ramo** pagina, fare clic su **Avanti**.
 
    ![Pagina Branch Selection (Selezione ramo)][CL05]
 
-1. Nella pagina **Local Destination** (Destinazione locale):
+1. In hello **destinazione locale** pagina:
 
-   a. Specificare la cartella locale per il repository locale.
+   a. Specificare hello cartella locale in cui si desidera il repository locale.
    
    b. Fare clic su **Avanti**.
 
    ![Pagina Local Destination (Destinazione locale)][CL06]
 
-1. Nella pagina **Select a wizard to use for importing projects (Selezionare una procedura guidata per l'importazione di progetti)**:
+1. In hello **toouse una procedura guidata per l'importazione di progetti selezionare** pagina:
 
    a. Selezionare **Import as a general project** (Importa come progetto generale).
    
    b. Fare clic su **Avanti**.
 
-   ![Pagina Select a wizard to use for importing projects (Selezionare una procedura guidata per l'importazione di progetti)][CL07]
+   !["Seleziona toouse una procedura guidata per l'importazione di progetti"][CL07]
 
-1. Nella pagina **Import Projects** (Importa progetti):
+1. In hello **importazione progetti** pagina:
 
    a. Specificare il nome del progetto.
    
@@ -98,19 +98,19 @@ I passaggi seguenti illustrano la clonazione del repository Docker Spring Boot n
 
    ![Pagina Import Projects (Importa progetti)][CL08]
 
-1. Dopo aver clonato il repository, tutti i file vengono elencati in Eclipse.
+1. Quando è clonare il repository di hello, vengono visualizzati tutti i file hello elencati in Eclipse.
 
    ![Repository locale][CL09]
 
 ### <a name="create-a-maven-project-from-your-local-repository"></a>Creare un progetto Maven dal repository locale
 
-Il repository Docker Spring Boot contiene un progetto Maven completato che verrà usato per questa esercitazione. 
+repository di Docker avvio Spring Hello contiene un progetto di Maven completato, che verrà utilizzato per questa esercitazione. 
 
 1. Fare clic su **File** > **Import** (Importa).
 
-   ![Importare i comandi del menu File][CL01]
+   ![Importare i comandi nel menu File hello][CL01]
 
-1. Quando viene visualizzata la finestra di dialogo **Import** (Importa):
+1. Quando hello **importazione** verrà visualizzata la finestra di dialogo:
 
    a. Espandere **Maven**.
    
@@ -120,83 +120,83 @@ Il repository Docker Spring Boot contiene un progetto Maven completato che verr�
 
    ![Finestra di dialogo Import (Importa)][MV01]
 
-1. Nella pagina **Maven Projects** (Progetti Maven):
+1. In hello **progetti Maven** pagina:
 
-   a. Per **Root Directory** (Directory radice) specificare la cartella **complete** (completo) nel repository locale.
+   a. Per **Directory radice**, specificare hello **completo** cartella nel repository locale.
    
-   b. Espandere la sezione **Advanced** (Avanzate) e immettere un nome personalizzato per **Name template** (Modello nome).
+   b. Espandere hello **avanzate** sezione e immettere un nome personalizzato per **modello nome**.
    
-   c. Selezionare la casella per il file **pom.xml** nel progetto.
+   c. Casella di selezione hello hello **pom.xml** file nel progetto hello.
    
    d. Fare clic su **Finish**.
 
    ![Pagina Maven Projects (Progetti Maven)][MV02]
 
-1. Dopo aver aperto correttamente il progetto Maven, viene visualizzato un secondo progetto in Eclipse.
+1. Quando il progetto di Maven hello viene aperto correttamente, viene visualizzato un secondo progetto elencato in Eclipse.
 
    ![Progetto Maven locale][MV03]
 
 ## <a name="build-your-spring-boot-app-by-using-maven"></a>Compilazione dell'app Spring Boot mediante Maven
 
-1. In Project Explorer di Eclipse selezionare il progetto Maven.
+1. In Project Explorer di Eclipse hello, selezionare il progetto di Maven hello.
 
 1. Fare clic su **Run** > **Run As** > **Maven build** (Esegui > Esegui come > Compilazione Maven)
 
-   ![Comandi per esecuzione come compilazione Maven][BU01]
+   ![Comandi toorun come compilazione Maven][BU01]
 
-1. Dopo la compilazione corretta dell'applicazione, viene elencato lo stato nella finestra della console.
+1. Quando l'applicazione viene compilata correttamente, finestra di console hello Mostra stato hello.
 
    ![Completamento della compilazione Maven][BU02]
 
-## <a name="publish-your-web-app-to-azure-by-using-a-docker-container"></a>Pubblicare l'app Web in Azure usando un contenitore Docker
+## <a name="publish-your-web-app-tooazure-by-using-a-docker-container"></a>Pubblicare il tooAzure app web con un contenitore Docker
 
-1. In Project Explorer di Eclipse selezionare il progetto Maven.
+1. In Project Explorer di Eclipse hello, selezionare il progetto di Maven hello.
 
-1. Fare clic sul menu **Publish** (Pubblica) di Azure e quindi su **Publish as Docker container** (Pubblica come contenitore Docker).
+1. Fare clic su hello Azure **pubblica** menu e quindi fare clic su **pubblica come contenitore Docker**.
 
    ![Comando Publish as Docker Container (Pubblica come contenitore Docker)][PU01]
 
-1. Quando viene visualizzata la finestra di dialogo **Deploy Docker Container on Azure** (Distribuisci contenitore Docker in Azure):
+1. Quando hello **distribuzione contenitore Docker in Azure** viene visualizzata la finestra di dialogo:
 
    a. Immettere il nome di un'immagine Docker personalizzata.
    
-   b. Per **Artifact to deploy** (Elemento da distribuire), specificare il percorso del file **gs-spring-boot-docker-0.1.0.jar** appena compilato.
+   b. Per **artefatto toodeploy**, specificare hello percorso toohello **gs-spring-avvio-docker-0.1.0.jar** file appena compilato.
 
    ![Specificare le opzioni per Docker][PU02]
 
    Verranno visualizzati tutti gli host Docker esistenti. 
 
-1. Se si sceglie di eseguire la distribuzione in un host esistente, è possibile procedere al passaggio 5. In alternativa, per creare un host seguire questa procedura:
+1. Se si sceglie toodeploy tooan esistente host, è possibile ignorare toostep 5. In caso contrario, utilizzare hello seguendo i passaggi toocreate un host:
 
    a. Fare clic su **Aggiungi**.
 
       ![Aggiungere un nuovo host Docker][PU03]
 
-   b. Quando viene visualizzata la finestra di dialogo **Create Docker Host** (Crea host Docker), è possibile scegliere di accettare le impostazioni predefinite oppure specificare impostazioni personalizzate per il nuovo host Docker. Per una descrizione dettagliata delle varie impostazioni vedere [Pubblicare un'app Web come contenitore Docker usando il Toolkit di Azure per IntelliJ][Publish Container with Azure Toolkit]. Dopo aver specificato le impostazioni da usare, fare clic su **Next** (Avanti).
+   b. Quando hello **creare Host Docker** viene visualizzata la finestra di dialogo, è possibile scegliere le impostazioni predefinite hello tooaccept o è possibile specificare le impostazioni personalizzate per il nuovo host Docker. (Per una descrizione dettagliata di hello diverse impostazioni, vedere [pubblicare un'app web come un contenitore Docker usando hello Azure Toolkit per IntelliJ][Publish Container with Azure Toolkit].) Fare clic su **Avanti** una volta specificate le impostazioni toouse.
 
       ![Specificare le opzioni per l'host Docker][PU04]
 
-   c. È possibile scegliere di usare le credenziali di accesso esistenti da un insieme di credenziali delle chiavi di Azure oppure immettere nuove credenziali di accesso per l'host Docker. Dopo aver specificato le opzioni, fare clic su **Finish** (Fine).
+   c. È possibile scegliere le credenziali di accesso esistente toouse da un insieme di credenziali chiave di Azure, oppure è possibile scegliere tooenter nuove credenziali di accesso di Docker. Dopo aver specificato le opzioni, fare clic su **Finish** (Fine).
 
       ![Specificare le credenziali per l'host Docker][PU05]
 
 1. Selezionare l'host Docker e quindi fare clic su **Next** (Avanti).
 
-   ![Selezionare l'host Docker da usare][PU06]
+   ![Selezionare toouse host Docker][PU06]
 
-1. Nell'ultima pagina della finestra di dialogo **Deploying Docker Container on Azure** (Distribuzione contenitore Docker in Azure), specificare le opzioni seguenti:
+1. Hello ultima pagina di hello **distribuzione contenitore Docker in Azure** finestra di dialogo specificare hello le opzioni seguenti:
 
-   a. È possibile scegliere di specificare un nome personalizzato per il contenitore che ospiterà il contenitore Docker oppure accettare il valore predefinito.
+   a. È possibile scegliere un nome personalizzato per il contenitore hello che ospiterà il contenitore Docker toospecify oppure è possibile accettare l'impostazione predefinita di hello.
 
-   b. Immettere le porte TCP per l'host Docker usando la sintassi seguente: *[porta esterna]*:*[porta interna]*. **80:8080** ad esempio specifica una porta esterna 80 e la porta interna predefinita di Spring Boot 8080.
+   b. Immettere le porte TCP hello per l'host docker usando hello la seguente sintassi: *[porta esterna]*:*[porta interna]*. Ad esempio, **80:8080** specifica una porta esterna dell'80 e la porta interna Spring avvio hello predefinita del 8080.
    
-      Se la porta interna è stata personalizzata, ad esempio modificando il file application.yml, è necessario specificare il numero di porta per il corretto funzionamento del routing in Azure.
+      Se è stato personalizzato la porta interna (ad esempio, modificando il file di application.yml hello), è necessario il numero di porta hello toospecify per hello toooccur routing corretto in Azure.
 
    c. Dopo aver configurato queste opzioni, fare clic su **Finish** (Fine).
 
    ![Distribuire un contenitore Docker in Azure][PU07]
 
-1. Al termine della pubblicazione da parte del Toolkit di Azure, nel Log attività di Azure viene indicato lo stato **Pubblicato**.
+1. Al termine hello Azure Toolkit pubblicazione, hello Visualizza Log attività Azure **pubblicato** per lo stato di hello.
 
    ![Distribuzione dell'host Docker completata][PU08]
 
@@ -210,7 +210,7 @@ Il repository Docker Spring Boot contiene un progetto Maven completato che verr�
 [Deploy Spring Boot on Linux in ACS]:container-service/kubernetes/container-service-deploy-spring-boot-app-on-linux.md
 [Docker]: https://www.docker.com/
 [Publish Container with Azure Toolkit]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
-[Spring Boot]: http://projects.spring.io/spring-boot/
+[avvio Spring]: http://projects.spring.io/spring-boot/
 [Spring Framework]: https://spring.io/
 
 <!-- IMG List -->

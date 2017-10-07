@@ -1,6 +1,6 @@
 ---
-title: Usare etichette per instrumentare query in SQL Data Warehouse | Microsoft Docs
-description: Suggerimenti per l'uso di etichette per instrumentare query in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
+title: aaaUse tooinstrument query in SQL Data Warehouse di etichette | Documenti Microsoft
+description: Suggerimenti per l'utilizzo di query tooinstrument etichette in Azure SQL Data Warehouse per lo sviluppo di soluzioni.
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 9e75bbe528a427724a623305fbd45e2277e9d0af
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82e7ea98e1417134227f1d7c529fdaf2f1df3853
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-labels-to-instrument-queries-in-sql-data-warehouse"></a>Usare etichette per instrumentare query in SQL Data Warehouse
+# <a name="use-labels-tooinstrument-queries-in-sql-data-warehouse"></a>Utilizzare le query tooinstrument di etichette in SQL Data Warehouse
 SQL Data Warehouse supporta un concetto detto etichette di query. Prima di approfondire il concetto, eccone un esempio:
 
 ```sql
@@ -31,11 +31,11 @@ OPTION (LABEL = 'My Query Label')
 ;
 ```
 
-L'ultima riga contrassegna la stringa 'My Query Label' per la query. Ciò è particolarmente utile in quanto l'etichetta supporta la query tramite le DMV. In questo modo si dispone di un meccanismo per tenere traccia di query problematiche e per identificare lo stato di avanzamento tramite un'esecuzione ETL.
+L'ultima riga tag query toohello di hello stringa 'My Query Label'. Ciò è particolarmente utile come etichetta di hello è in grado query tramite hello DMV. Ciò offre a un meccanismo tootrack verso il basso di query problematiche e anche toohelp identificare lo stato di avanzamento tramite un'esecuzione ETL.
 
-Una buona convenzione di denominazione è estremamente utile in questo caso. Ad esempio, una stringa simile a ' PROJECT : PROCEDURE : STATEMENT : COMMENT' può facilitare l'identificazione della query in tutto il codice nel controllo del codice sorgente.
+Una buona convenzione di denominazione è estremamente utile in questo caso. Ad esempio qualcosa di simile a ' progetto: procedura: istruzione: commento ' Guida toouniquely identificare query hello in tra tutto il codice hello nel controllo del codice sorgente.
 
-Per la ricerca in base all'etichetta, è possibile usare la query seguente che usa le viste a gestione dinamica:
+viste a gestione dinamica di hello toosearch dall'etichetta, è possibile utilizzare hello seguente query che utilizza:
 
 ```sql
 SELECT  *
@@ -45,7 +45,7 @@ WHERE   r.[label] = 'My Query Label'
 ```
 
 > [!NOTE]
-> È essenziale racchiudere tra parentesi quadre o virgolette doppie la parola label durante l'esecuzione della query. Label è una parola riservata e causa un errore se non viene delimitata.
+> È essenziale che eseguire il wrapping delle parentesi quadre o virgolette doppie etichetta parola hello quando si eseguono query. Label è una parola riservata e causa un errore se non viene delimitata.
 > 
 > 
 

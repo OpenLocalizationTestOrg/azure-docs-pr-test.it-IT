@@ -1,6 +1,6 @@
 ---
-title: Caricare un file VHD in Azure DevTest Labs usando Esplora archivi di Microsoft Azure | Microsoft Docs
-description: Caricare un file VHD nell'account di archiviazione del lab usando Esplora archivi di Microsoft Azure
+title: disco rigido virtuale aaaUpload file tooAzure DevTest Labs tramite Esplora archivi di Microsoft Azure | Documenti Microsoft
+description: Caricare l'account di archiviazione del toolab file disco rigido virtuale tramite Esplora archivi di Microsoft Azure
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 502e2536fb0fd2e9dfc4c7b85a6fb4e18202f38f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 686691e3676cea4b2d7cd8bf045bc43a792c667e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-vhd-file-to-labs-storage-account-using-microsoft-azure-storage-explorer"></a>Caricare un file VHD nell'account di archiviazione del lab usando Esplora archivi di Microsoft Azure
+# <a name="upload-vhd-file-toolabs-storage-account-using-microsoft-azure-storage-explorer"></a>Caricare l'account di archiviazione del toolab file disco rigido virtuale tramite Esplora archivi di Microsoft Azure
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-In Azure DevTest Labs è possibile usare i file VHD per creare immagini personalizzate da usare per il provisioning di macchine virtuali. In questo articolo viene illustrato come usare [Esplora archivi di Microsoft Azure](../vs-azure-tools-storage-manage-with-storage-explorer.md) per caricare un file VHD nell'account di archiviazione di un lab. Dopo avere caricato il file VHD, vedere la [sezione Passaggi successivi](#next-steps) per un elenco di articoli che illustrano come creare un'immagine personalizzata dal file VHD caricato. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
+In Azure DevTest Labs, i file VHD possono essere utilizzato toocreate immagini personalizzate, che sono utilizzati tooprovision le macchine virtuali. Questo articolo illustra come toouse [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) account di archiviazione dell'ambiente di test di tooa tooupload un disco rigido virtuale del file. Dopo aver caricato il file VHD, hello [passaggi successivi sezione](#next-steps) elenca alcuni articoli che illustrano come un'immagine personalizzata da hello toocreate caricamento del file di disco rigido virtuale. Per altre informazioni sui dischi e sui dischi rigidi virtuali in Azure, vedere [Informazioni sui dischi e sui dischi rigidi virtuali per le macchine virtuali](../virtual-machines/linux/about-disks-and-vhds.md)
 
 ## <a name="step-by-step-instructions"></a>Istruzioni dettagliate
 
-La procedura seguente illustra come caricare un file VHD in DevTest Labs usando [Esplora archivi di Microsoft Azure](../vs-azure-tools-storage-manage-with-storage-explorer.md).
+Hello seguenti passaggi percorso di caricamento di un disco rigido virtuale del file Labs tooDevTest utilizzando [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md).
 
-1. [Scaricare e installare la versione più recente di Esplora archivi di Microsoft Azure](http://www.storageexplorer.com).
+1. [Scaricare e installare hello la versione più recente di Microsoft Azure Storage Explorer hello](http://www.storageexplorer.com).
 
-1. Ottenere il nome dell'account di archiviazione del lab usando il portale di Azure:
+1. Ottenere il nome di hello dell'account di archiviazione dell'ambiente di test di hello utilizzando hello portale di Azure:
 
-    1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+    1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
     
-    1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
+    1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
     
-    1. Nell'elenco dei lab selezionare il lab desiderato.  
+    1. Elenco dei laboratori hello selezionare lab desiderato hello.  
     
-    1. Nel pannello del lab selezionare **Configurazione**. 
+    1. Nel pannello del lab hello, selezionare **configurazione**. 
     
-    1. Nel pannello **Configurazione** del lab selezionare **Immagini personalizzate (dischi rigidi virtuali)**.
+    1. Lab hello **configurazione** pannello seleziona **immagini personalizzate (VHD)**.
     
-    1. Nel pannello **Immagini personalizzate** selezionare **+Aggiungi**. 
+    1. In hello **immagini personalizzate** pannello selezionare **+ Aggiungi**. 
     
-    1. Nel pannello **Immagine personalizzata** selezionare **VHD**.
+    1. In hello **immagine personalizzata** pannello seleziona **VHD**.
     
-    1. Nel pannello **VHD** selezionare l'opzione **Carica un file VHD con PowerShell**.
+    1. In hello **VHD** pannello seleziona **caricare un disco rigido virtuale con PowerShell**.
     
         ![Carica un file VHD con PowerShell][0]
     
-    1. Nel pannello **Upload an image using PowerShell** (Carica un'immagine usando PowerShell) è visualizzata una chiamata al cmdlet **Add-AzureVhd**. Il primo parametro (*Destination*) contiene il nome dell'account di archiviazione per il lab nel formato seguente:
+    1. Hello **carica un'immagine con PowerShell** pannello viene visualizzato un toohello chiamata **Add-AzureVhd** cmdlet. primo parametro Hello (*destinazione*) il nome di account di archiviazione di hello per lab hello in hello seguente formato:
     
         https://<STORAGE-ACCOUNT-NAME>.blob.core.windows.net/uploads/... 
 
-    1. Prendere nota del nome dell'account di archiviazione usato nei passaggi successivi.
+    1. Prendere nota del nome di account di archiviazione hello perché è usato nei passaggi successivi.
     
-1. Connettersi a un account di sottoscrizione di Azure usando Esplora archivi.
+1. Connettersi tooan account di sottoscrizione di Azure tramite Esplora archivi.
 
     > [!TIP] 
     > 
-    > Esplora archivi supporta diverse opzioni di connessione. In questa sezione viene illustrato come connettersi a un account di archiviazione associato alla sottoscrizione di Azure. Per visualizzare altre opzioni di connessione supportate da Esplora archivi, vedere l'articolo [Introduzione a Esplora archivi](../vs-azure-tools-storage-manage-with-storage-explorer.md).
+    > Esplora archivi supporta diverse opzioni di connessione. In questa sezione viene illustrato l'account di archiviazione tooa connessione associato alla sottoscrizione di Azure. toosee hello altre opzioni di connessione supportate da Esplora archivi, consultare l'articolo toohello [Introduzione a soluzioni di archiviazione](../vs-azure-tools-storage-manage-with-storage-explorer.md).
  
     1. Aprire Esplora archivi.
     
@@ -70,59 +70,59 @@ La procedura seguente illustra come caricare un file VHD in DevTest Labs usando 
     
         ![Azure Account settings][1]
     
-    1. Nel riquadro sinistro vengono visualizzati gli account Microsoft a cui si è connessi. Per connettersi a un altro account, selezionare **Aggiungi un account**e seguire le istruzioni nelle finestre di dialogo per accedere con un account Microsoft associato ad almeno una sottoscrizione di Azure attiva.
+    1. riquadro di sinistra Hello consente di visualizzare gli account Microsoft hello a che è effettuato l'accesso. tooconnect tooanother account, selezionare **aggiungere un account**e seguire hello toosign di finestre di dialogo con un account Microsoft associato ad almeno una sottoscrizione di Azure attiva.
     
         ![Aggiungi un account][2]
     
-    1. Dopo avere effettuato l'acceso con un account Microsoft, il riquadro sinistro verrà popolato con le sottoscrizioni di Azure associate a quell'account. Selezionare le sottoscrizioni di Azure da utilizzare e quindi selezionare **Applica**. Selezionando **Tutte le sottoscrizioni** , viene alternata la selezione di tutte o di nessuna delle sottoscrizioni di Azure elencate.
+    1. Quando si accede correttamente con un account Microsoft, riquadro di sinistra hello popola con hello le sottoscrizioni di Azure associate all'account. Selezionare le sottoscrizioni di Azure a cui desidera toowork e quindi selezionare di hello **applica**. (Selezione **tutte le sottoscrizioni** hello di attiva o disattiva la selezione di tutti o nessuno dei hello elencate le sottoscrizioni di Azure.)
     
         ![Selezionare le sottoscrizioni di Azure][3]
     
-    1. Il riquadro sinistro mostra gli account di archiviazione associati alle sottoscrizioni di Azure selezionate.
+    1. riquadro di sinistra Hello consente di visualizzare gli account di archiviazione hello associati alle sottoscrizioni Azure hello selezionato.
     
         ![Sottoscrizioni di Azure selezionate][4]
 
-1. Individuare l'account di archiviazione del lab:
+1. Individuare l'account di archiviazione dell'ambiente di test di hello:
 
-    1. Nel riquadro sinistro di Esplora archivi, individuare ed espandere il nodo per la sottoscrizione di Azure proprietaria del lab.
+    1. Nel riquadro sinistro di Esplora archivi hello, individuare ed espandere nodo hello per la sottoscrizione di Azure che possiede lab hello hello.
     
-    1. Nel nodo della sottoscrizione, espandere **Account di archiviazione**.
+    1. Nel nodo della sottoscrizione hello, espandere **gli account di archiviazione**.
 
-    1. Espandere il nodo dell'account di archiviazione del lab per mostrare i nodi per **Contenitori BLOB**, **Condivisioni file**, **Code** e **Tabelle**.
+    1. Espandere i nodi del lab hello storage account nodo tooreveal per **contenitori Blob**, **condivisioni File**, **code**, e **tabelle**.
     
-    1. Espandere il nodo **Contenitori BLOB**.
+    1. Espandere hello **contenitori Blob** nodo.
     
-    1. Selezionare il contenitore BLOB dei caricamenti per visualizzarne il contenuto nel riquadro di destra.
+    1. Selezionare il contenuto di hello caricamenti blob contenitore toodisplay nel riquadro di destra hello.
         
         ![Caricare una directory][5]
 
-1. Caricare il file VHD tramite Esplora archivi:
+1. Caricare file VHD hello tramite Esplora archivi:
 
-    1. Nel riquadro di destra di Esplora archivi dovrebbe essere visualizzato un elenco dei BLOB nel contenitore BLOB dei **caricamenti** dell'account di archiviazione del lab. Sulla barra degli strumenti dell'editor di blob, selezionare **Carica** 
+    1. Nel riquadro destro di Esplora archivi hello, vedrai un elenco di BLOB hello in hello **Carica** contenitore blob dell'account di archiviazione dell'ambiente di test di hello. Nella barra degli strumenti editor blob hello, selezionare **caricare** 
         
         ![Pulsante Carica][6]
     
-    1. Dal menu a discesa **Carica**, selezionare **Carica file...**.
+    1. Da hello **caricare** menu a discesa, seleziona **caricare i file...** .
     
-    1. Nella finestra di dialogo **Carica file**, selezionare i puntini di sospensione.
+    1. In hello **caricare file** finestra di dialogo, i puntini di sospensione hello selezionare.
         
         ![Selezionare il file][8]  
 
-    1. Nella finestra di dialogo **Seleziona file da caricare** selezionare il file VHD desiderato, quindi selezionare **Apri**.
+    1. In hello **tooupload selezionare file** finestra di dialogo Sfoglia toohello desiderato di file VHD, selezionarlo e quindi selezionare **aprire**.
     
-    1. Verrà nuovamente visualizzata la finestra di dialogo **Carica file**, modificare **Tipo BLOB** in **BLOB di pagine**.
+    1. Quando restituito toohello **caricare file** finestra di dialogo Modifica **Blob tipo** troppo**Blob di pagine**.
     
     1. Selezionare **Carica**.
 
         ![Selezionare il file][9]  
     
-    1. Il riquadro **Log attività** di Esplora archivi mostra lo stato di download e i collegamenti per annullare il caricamento. Il processo di caricamento di un file VHD può richiedere molto tempo a seconda delle dimensioni del file VHD e della velocità della connessione. 
+    1. Esplora archivi Hello **Log attività** riquadro viene visualizzato lo stato di download hello (insieme ai collegamenti toocancel hello caricamento). processo Hello di caricamento di un file VHD può essere lungo a seconda delle dimensioni di hello del file VHD hello e la velocità della connessione. 
 
         ![Stato upload-file][10]  
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando il portale di Azure](devtest-lab-create-template.md)
+- [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD utilizzando hello portale di Azure](devtest-lab-create-template.md)
 - [Creare un'immagine personalizzata in Azure DevTest Labs da un file VHD usando PowerShell](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 
 [0]: ./media/devtest-lab-upload-vhd-using-storage-explorer/upload-image-using-psh.png

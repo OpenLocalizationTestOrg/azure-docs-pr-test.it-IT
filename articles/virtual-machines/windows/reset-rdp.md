@@ -1,6 +1,6 @@
 ---
-title: Reimpostare la password o la configurazione di Desktop remoto in una VM Windows | Microsoft Docs
-description: Informazioni su come reimpostare la password di un account o i servizi Desktop remoto in una VM Windows tramite il portale di Azure o Azure PowerShell.
+title: aaaReset hello password o la configurazione di Desktop remoto in una macchina virtuale Windows | Documenti Microsoft
+description: Informazioni su come hello tooreset password dell'account o i Servizi Desktop remoto in una macchina virtuale Windows usando il portale di Azure o Azure PowerShell.
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: genli
-ms.openlocfilehash: 2e002e3f336422b8fa1eceece889cd083e355a68
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5258df7196621f0adb50debd08dd248922a966de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-the-remote-desktop-service-or-its-login-password-in-a-windows-vm"></a>Come reimpostare il servizio Desktop remoto o la relativa password di accesso in una VM Windows
-Se non è possibile connettersi a una macchina virtuale Windows, è possibile reimpostare la password di amministratore locale o la configurazione del servizio Desktop remoto. È possibile usare il portale di Azure o l'estensione di accesso alla VM in Azure PowerShell per reimpostare la password. Se si usa PowerShell, verificare che il [modulo di PowerShell più recente sia installato e configurato](/powershell/azure/overview) e di avere eseguito l'accesso alla sottoscrizione di Azure. È anche possibile [eseguire questi passaggi per le macchine virtuali create con il modello di distribuzione classica](reset-rdp.md).
+# <a name="how-tooreset-hello-remote-desktop-service-or-its-login-password-in-a-windows-vm"></a>Come tooreset hello servizio Desktop remoto o la password di account di accesso in una macchina virtuale Windows
+Se non è possibile connettersi tooa Windows virtual machine (VM), è possibile reimpostare la password di amministratore locale hello o ripristinare hello Desktop remoto configurazione del servizio. È possibile utilizzare l'estensione di accesso alla VM Azure portal o hello hello in Azure PowerShell tooreset hello. la password. Se si usa PowerShell, assicurarsi di aver hello [modulo di PowerShell più recente installato e configurato](/powershell/azure/overview) e vengono firmati in tooyour sottoscrizione di Azure. È anche possibile [eseguire questi passaggi per macchine virtuali create con modello di distribuzione classica hello](reset-rdp.md).
 
-## <a name="ways-to-reset-configuration-or-credentials"></a>Modalità per ripristinare la configurazione o le credenziali
+## <a name="ways-tooreset-configuration-or-credentials"></a>Configurazione tooreset metodi o le credenziali
 È possibile reimpostare i Servizi Desktop remoto e le credenziali in modi diversi, in base alle esigenze specifiche:
 
-- [Ripristinare con il Portale di Azure](#azure-portal)
+- [Reimpostare usando hello portale di Azure](#azure-portal)
 - [Ripristinare con Azure PowerShell](#vmaccess-extension-and-powershell)
 
 ## <a name="azure-portal"></a>Portale di Azure
-Per espandere il menu del portale, fare clic sulle tre barre nell'angolo superiore sinistro e quindi fare clic su **Macchine virtuali**:
+menu del portale hello tooexpand, fare clic sulle barre hello tre nell'angolo superiore sinistro di hello e quindi fare clic su **macchine virtuali**:
 
 ![Cercare la macchina virtuale di Azure](./media/reset-rdp/Portal-Select-VM.png)
 
-### <a name="reset-the-local-administrator-account-password"></a>**Reimpostare una password dell'account amministratore locale**
+### <a name="reset-hello-local-administrator-account-password"></a>**La reimpostazione della password dell'account amministratore locale hello**
 
-Selezionare la macchina virtuale Windows, quindi fare clic su **Supporto e risoluzione dei problemi** > **Reimposta password**. Viene visualizzato il pannello per la reimpostazione della password:
+Selezionare la macchina virtuale Windows, quindi fare clic su **Supporto e risoluzione dei problemi** > **Reimposta password**. viene visualizzato il pannello di reimpostazione della password Hello:
 
 ![Pagina di reimpostazione della password](./media/reset-rdp/Portal-RM-PW-Reset-Windows.png)
 
-Immettere il nome utente e una nuova password, quindi fare clic su **Aggiorna**. Provare a connettersi di nuovo alla macchina virtuale.
+Immettere nome utente hello e una nuova password, quindi fare clic su **aggiornamento**. Provare a riconnettersi tooyour macchina virtuale.
 
-### <a name="reset-the-remote-desktop-service-configuration"></a>**Reimpostare la configurazione del servizio Desktop remoto**
+### <a name="reset-hello-remote-desktop-service-configuration"></a>**Reimposta configurazione del servizio Desktop remoto hello**
 
-Selezionare la macchina virtuale Windows, quindi fare clic su **Supporto e risoluzione dei problemi** > **Reimposta password**. Viene visualizzato il pannello per la reimpostazione della password. 
+Selezionare la macchina virtuale Windows, quindi fare clic su **Supporto e risoluzione dei problemi** > **Reimposta password**. Pannello di reimpostazione della password Hello viene visualizzato. 
 
 ![Ripristinare la configurazione RDP](./media/reset-rdp/Portal-RM-RDP-Reset.png)
 
-Selezionare **Reset configuration only** (Ripristina solo la configurazione) dal menu a discesa, quindi fare clic su **Aggiorna**. Provare a connettersi di nuovo alla macchina virtuale.
+Selezionare **configurazione per la reimpostazione solo** dal menu a discesa hello, quindi fare clic su **aggiornamento**. Provare a riconnettersi tooyour macchina virtuale.
 
 
 ## <a name="vmaccess-extension-and-powershell"></a>Estensione VMAccess e PowerShell
-Verificare che il [modulo di PowerShell più recente sia installato e configurato](/powershell/azure/overview) e di avere eseguito l'accesso alla sottoscrizione di Azure con il cmdlet `Login-AzureRmAccount`.
+Assicurarsi di avere hello [modulo di PowerShell più recente installato e configurato](/powershell/azure/overview) e vengono firmati nella sottoscrizione di Azure con hello tooyour `Login-AzureRmAccount` cmdlet.
 
-### <a name="reset-the-local-administrator-account-password"></a>**Reimpostare una password dell'account amministratore locale**
-Ripristinare la password o il nome utente di amministratore usando il cmdlet di PowerShell [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension). Creare le credenziali dell'account come segue:
+### <a name="reset-hello-local-administrator-account-password"></a>**La reimpostazione della password dell'account amministratore locale hello**
+Reimpostazione hello amministratore password o nome utente con hello [Set AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) cmdlet di PowerShell. Creare le credenziali dell'account come segue:
 
 ```powershell
 $cred=Get-Credential
 ```
 
 > [!NOTE] 
-> Se si digita un nome diverso rispetto all'account di amministratore locale attuale sulla macchina virtuale, l'estensione VMAccess assegnerà un nuovo nome all'account amministratore locale, assegnerà la password specificata a tale account ed effettuerà la disconnessione da Desktop remoto. Se l'account amministratore locale sulla macchina virtuale è disabilitato, l'estensione VMAccess lo abilita.
+> Se si digita un nome diverso account amministratore locale corrente hello nella VM, hello estensione VMAccess Rinomina l'account amministratore locale hello, assegna l'account toothat password specificata e genera un evento di disconnessione di Desktop remoto. Se l'account amministratore locale hello la macchina virtuale è disabilitato, viene abilitato hello estensione VMAccess.
 
-Nell'esempio seguente le credenziali della macchina virtuale denominata `myVM` nel gruppo di risorse denominato `myResourceGroup` vengono aggiornate alle credenziali specificate.
+dopo gli aggiornamenti di esempio Hello hello macchina virtuale denominata `myVM` nel gruppo di risorse hello denominato `myResourceGroup` toohello credenziali specificate.
 
 ```powershell
 Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM" `
@@ -73,8 +73,8 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM"
     -Password $cred.GetNetworkCredential().Password -typeHandlerVersion "2.0"
 ```
 
-### <a name="reset-the-remote-desktop-service-configuration"></a>**Reimpostare la configurazione del servizio Desktop remoto**
-Reimpostare l'accesso remoto alla macchina virtuale con il cmdlet di PowerShell [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension). Nell'esempio seguente viene ripristinata l'estensione di accesso denominata `myVMAccess` nella macchina virtuale denominata `myVM` nel gruppo di risorse `myResourceGroup`:
+### <a name="reset-hello-remote-desktop-service-configuration"></a>**Reimposta configurazione del servizio Desktop remoto hello**
+Ripristinare accesso remoto tooyour VM con hello [Set AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) cmdlet di PowerShell. esempio Hello Reimposta estensione accesso hello denominata `myVMAccess` nella macchina virtuale denominata hello `myVM` in hello `myResourceGroup` gruppo di risorse:
 
 ```powershell
 Set-AzureRmVMAccessExtension -ResourceGroupName "myResoureGroup" -VMName "myVM" `
@@ -82,17 +82,17 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResoureGroup" -VMName "myVM" 
 ```
 
 > [!TIP]
-> In qualsiasi momento una VM può avere un solo agente di accesso. Per impostare le proprietà dell'agente di accesso alla macchina virtuale, è possibile usare l'opzione `-ForceRerun`. Quando si usa `-ForceRerun`, assicurarsi di usare lo stesso nome per l'agente di accesso alla macchina virtuale impostato nei comandi precedenti.
+> In qualsiasi momento una VM può avere un solo agente di accesso. la proprietà agente tooset hello VM accesso correttamente, hello `-ForceRerun` opzione può essere utilizzata. Quando si utilizza `-ForceRerun`, assicurarsi che toouse hello dello stesso nome per l'agente di accesso alla macchina virtuale hello utilizzato in tutti i comandi precedenti.
 
-Se non è ancora possibile connettersi in remoto alla macchina virtuale, vedere altre procedure da provare in [Risolvere i problemi di connessioni Desktop remoto a una macchina virtuale di Azure che esegue Windows](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Se non è possibile connettersi in remoto macchina virtuale tooyour, vedere più passaggi tootry in [risolvere i problemi di Desktop remoto connessioni tooa basati su Windows macchina virtuale di Azure](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Se l'estensione di accesso alla VM di Azure non risponde ed è impossibile reimpostare la password, [reimpostare la password di Windows locale offline](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Questo metodo è un processo più avanzato e richiede di connettere il disco rigido virtuale della VM problematica a un'altra VM. Seguire prima i passaggi illustrati in questo articolo e provare a reimpostare la password offline solo come ultima risorsa.
+Se non risponde hello estensione accesso alle macchine Virtuali di Azure e si desidera password hello tooreset non è possibile, è possibile [reimpostazione hello locale password di Windows non in linea](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Questo metodo è un processo più avanzato e richiede tooconnect hello disco rigido virtuale di hello problematico VM tooanother macchina virtuale. Seguire i passaggi di hello descritte in questo articolo innanzitutto e cercano solo metodo di reimpostazione della password non in linea hello come ultima risorsa.
 
 [Estensioni VM e funzionalità di Azure](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[Connettersi a una macchina virtuale di Azure con RDP o SSH](http://msdn.microsoft.com/library/azure/dn535788.aspx)
+[Connettersi tooan macchina virtuale di Azure con RDP o SSH](http://msdn.microsoft.com/library/azure/dn535788.aspx)
 
-[Risolvere i problemi di connessioni Desktop remoto a una macchina virtuale di Azure basata su Windows](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[Risolvere i problemi relativi a Desktop remoto connessioni tooa basati su Windows macchina virtuale di Azure](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

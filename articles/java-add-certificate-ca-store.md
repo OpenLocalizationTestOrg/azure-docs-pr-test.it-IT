@@ -1,6 +1,6 @@
 ---
-title: Aggiungere un certificato all'archivio CA Java | Microsoft Docs
-description: "Informazioni su come aggiungere un certificato dell'autorità di certificazione (CA) all'archivio certificati CA Java (cacerts) per il servizio Twilio o il bus di servizio di Azure."
+title: "archivio certificati Autorità di certificazione Java toohello aaaAdd | Documenti Microsoft"
+description: Informazioni su come tooadd archiviare un certificato della CA certificato toohello Java certificato della CA (cacerts) per il servizio di Twilio o Azure Service Bus.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,45 +14,45 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 4f3ec837588c6e959e82108ca25ab4289e40d3f5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 030e43129580023942dee662e72d2f443167f308
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="adding-a-certificate-to-the-java-ca-certificates-store"></a>Aggiunta di un certificato all'archivio certificati CA Java
-La procedura seguente illustra come aggiungere un certificato dell'Autorità di certificazione (CA) all'archivio certificati CA Java (cacerts). L'esempio usa il certificato CA necessario per il servizio Twilio. Più avanti in questo argomento vengono riportate le informazioni per installare il certificato CA per il bus di servizio di Azure. 
+# <a name="adding-a-certificate-toohello-java-ca-certificates-store"></a>Aggiunta di un archivio di certificati CA Java di toohello certificato
+Hello alla procedura seguente viene illustrato in che modo tooadd un certificato della CA certificato toohello Java certificato della CA (cacerts) archiviate. esempio Hello utilizzato per il certificato CA hello richiesta da hello Twilio servizio. Le informazioni fornite più avanti in argomento hello viene descritto come certificato di hello tooinstall autorità di certificazione per hello Azure Service Bus. 
 
-È possibile usare lo strumento Keytool per aggiungere il certificato CA prima di comprimere il JDK e di aggiungerlo alla cartella **approot** del progetto Azure. In alternativa, è possibile eseguire un'attività di avvio in Azure che usa lo strumento Keytool per aggiungere il certificato. Questo esempio presuppone che il certificato CA venga aggiunto prima della compressione del JDK. Verrà inoltre usato un certificato CA specifico, ma i passaggi per ottenere un certificato CA diverso e per importarlo nell'archivio cacerts sono simili.
+È possibile utilizzare keytool tooadd hello autorità di certificazione certificato precedente toozipping il JDK e aggiungerlo tooyour progetto Azure **approot** cartella oppure è Impossibile eseguire un'attività di avvio di Azure che utilizza keytool tooadd hello certificato. Si presuppone che si aggiungerà un'autorità di certificazione certificato precedente toohello JDK viene compresso. Inoltre, verrà utilizzato un certificato della CA specifico esempio hello, ma i passaggi di hello di ottenere un certificato della CA diverso e importarli hello cacerts archivio sarebbe simile.
 
-## <a name="to-add-a-certificate-to-the-cacerts-store"></a>Per aggiungere un certificato all'archivio cacerts
-1. Al prompt dei comandi impostato sulla cartella **jdk\jre\lib\security** del JDK eseguire il comando seguente per verificare quali certificati sono installati:
+## <a name="tooadd-a-certificate-toohello-cacerts-store"></a>archiviare un cacerts toohello certificato tooadd
+1. In un prompt dei comandi che è impostato del JDK tooyour **jdk\jre\lib\security** cartella, eseguire hello toosee vengono installati i certificati seguenti:
    
     `keytool -list -keystore cacerts`
    
-    Verrà richiesto di immettere la password dell'archivio. La password predefinita è **changeit**. Se si desidera cambiarla, vedere la documentazione dello strumento Keytool all'indirizzo <http://docs.oracle.com/javase/7/docs/technotes/tools/windows/keytool.html>. Questo esempio presuppone che il certificato con ID digitale MD5 67:CB:9D:C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4 non sia presente nell'elenco e che si desideri importarlo. Questo specifico certificato è necessario per il servizio API Twilio.
-2. Ottenere il certificato dall'elenco di [certificati radice GeoTrust](http://www.geotrust.com/resources/root-certificates/). Fare clic con il pulsante destro del mouse sul collegamento relativo al certificato con numero di serie 35:DE:F4:CF e salvarlo nella cartella **jdk\jre\lib\security**. Ai fini di questo esempio, è stato salvato in un file denominato **Equifax\_Secure\_Certificate\_Authority.cer**.
-3. Importare il certificato tramite il comando seguente:
+    Verrà richiesto di hello archivio password. password predefinita Hello è **modificare**. (Se si desidera password hello toochange, vedere documentazione hello in <http://docs.oracle.com/javase/7/docs/technotes/tools/windows/keytool.html>.) In questo esempio si presuppone che tale certificato hello con 67:CB:9 impronta digitale MD5 D: C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4 non è presente e che si desidera tooimport it (è necessaria questa particolare certificato dal servizio API di Twilio hello).
+2. Ottenere il certificato di hello dall'elenco di hello dei certificati elencati in [i certificati radice GeoTrust](http://www.geotrust.com/resources/root-certificates/). Fare doppio clic su collegamento hello per certificato hello con numero di serie 35:DE:F4:CF e salvarlo toohello **jdk\jre\lib\security** cartella. Ai fini di questo esempio, è stato salvato il file tooa denominato **Equifax\_sicura\_certificato\_Authority.cer**.
+3. Importare il certificato di hello tramite hello comando seguente:
    
     `keytool -keystore cacerts -importcert -alias equifaxsecureca -file Equifax_Secure_Certificate_Authority.cer`
    
-    Quando viene richiesto se considerare attendibile il certificato, verificare che l'ID digitale MD5 sia 67:CB:9D:C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4 e rispondere digitando **y**.
-4. Eseguire il comando seguente per verificare se il certificato CA è stato importato correttamente:
+    Quando viene richiesto tootrust questo certificato, se il certificato di hello ha 67:CB:9 impronta digitale MD5 D: C0:13:24:8A:82:9B:B2:17:1E:D1:1B:EC:D4, rispondere digitando **y**.
+4. Esecuzione hello seguente certificato di CA hello tooensure comando sia stato importato correttamente:
    
     `keytool -list -keystore cacerts`
-5. Comprimere il JDK e aggiungerlo alla cartella **approot** del progetto Azure.
+5. Comprimere hello JDK e aggiungerlo tooyour progetto Azure **approot** cartella.
 
 Per informazioni sullo strumento Keytool, vedere <http://docs.oracle.com/javase/7/docs/technotes/tools/windows/keytool.html>.
 
 ## <a name="azure-root-certificates"></a>Certificati radice di Azure
-Le applicazioni che usano i servizi di Azure, ad esempio il bus di servizio di Azure, devono considerare attendibile il certificato Baltimore CyberTrust Root. A partire dal 15 aprile 2013 è iniziata la migrazione di Azure da GTE CyberTrust Global Root a Baltimore CyberTrust Root. Questa migrazione ha richiesto diverse settimane di tempo.
+Le applicazioni che usano servizi di Azure (ad esempio Azure Service Bus) necessario certificato radice Baltimore CyberTrust di hello tootrust. (A partire dal 15 aprile 2013, Azure è stata avviata la migrazione da hello GTE CyberTrust Root globale toohello Baltimore CyberTrust Root. Questa migrazione ha impiegato più mesi toocomplete.)
 
-È possibile che il certificato Baltimore sia già installato nell'archivio cacerts, quindi eseguire prima il comando **keytool -list** per verificare se esiste già.
+Hello Baltimore certificato potrebbe già essere installato nell'archivio cacerts, pertanto tenere presente hello toorun **keytool-elenco** comando toosee prima se esiste già.
 
-Se è necessario aggiungere Baltimore CyberTrust Root, il numero di serie è 02:00:00:b9 e l'impronta digitale SHA1 è d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74. Può essere scaricato da <https://cacert.omniroot.com/bc2025.crt>, salvato in un file locale con estensione **.cer** e quindi importato con **keytool** come illustrato in precedenza.
+Se è necessario tooadd hello Baltimore CyberTrust Root, che include il numero di serie 02:00:00:b9 e SHA1 fingerprint d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2 c: 78:db:28:52:ca:e4:74. Può essere scaricato da <https://cacert.omniroot.com/bc2025.crt>, salvare file locale tooa con estensione **con estensione cer**e quindi importate con **keytool** come illustrato in precedenza.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sui certificati radice usati da Azure, vedere l'articolo relativo alla [migrazione dei certificati radice di Azure](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx).
+Per ulteriori informazioni sui certificati radice hello utilizzato da Azure, vedere [Azure radice certificato migrazione](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx).
 
 Per altre informazioni su Java, vedere [Azure for Java developers](/java/azure) (Azure per sviluppatori Java).
 

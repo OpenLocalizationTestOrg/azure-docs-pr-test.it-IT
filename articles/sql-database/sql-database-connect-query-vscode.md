@@ -1,8 +1,8 @@
 ---
 title: 'Visual Studio Code: Connettersi ed eseguire query sui dati nel database SQL di Azure | Microsoft Docs'
-description: Informazioni su come connettersi a un database SQL in Azure tramite Visual Studio Code. Eseguire quindi istruzioni Transact-SQL (T-SQL) per eseguire query e modificare i dati.
+description: Informazioni su come tooconnect tooSQL Database in Azure utilizzando Visual Studio Code. Quindi, eseguire istruzioni Transact-SQL (T-SQL) tooquery e modifica dati.
 metacanonical: 
-keywords: connettersi al database SQL
+keywords: la connessione a database toosql
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -17,30 +17,30 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/20/2017
 ms.author: carlrab
-ms.openlocfilehash: 4076b1e7ab3a70009217a1deff72da4bff0dc871
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed8bdbfc3271b463a21cde5ff6b5f05fd0ff51d1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-sql-database-use-visual-studio-code-to-connect-and-query-data"></a>Database SQL di Azure: Usare Visual Studio Code per connettersi ai dati ed eseguire query
+# <a name="azure-sql-database-use-visual-studio-code-tooconnect-and-query-data"></a>Database SQL di Azure: Tooconnect ed eseguire query sui dati di utilizzare Visual Studio Code
 
-[Visual Studio Code](https://code.visualstudio.com/docs) è un editor grafico di codice per Linux, macOS e Windows che supporta le estensioni, tra cui l'[estensione mssql](https://aka.ms/mssql-marketplace), per le query di Microsoft SQL Server, database SQL di Azure e SQL Data Warehouse. Questa guida introduttiva illustra come usare Visual Studio Code per connettersi a un database SQL di Azure e quindi usare istruzioni Transact-SQL per eseguire query e inserire, aggiornare ed eliminare dati nel database.
+[Codice di Visual Studio](https://code.visualstudio.com/docs) è un editor di codice con interfaccia grafica per Linux, macOS, e Windows che supporti le estensioni, tra cui hello [estensione mssql](https://aka.ms/mssql-marketplace) per le query di Microsoft SQL Server, Database SQL di Azure e SQL Data Warehouse. Questa Guida introduttiva viene illustrato come database di SQL Azure tooan tooconnect codice di Visual Studio toouse e tooquery istruzioni di utilizzo di Transact-SQL, inserire, aggiornare ed eliminare dati nel database di hello.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Questa guida introduttiva usa come punto di partenza le risorse create in una delle guide introduttive seguenti:
+Questa Guida introduttiva viene utilizzata come le risorse di hello punto iniziale create in una di queste guide introduttive:
 
 - [Creare un database: portale](sql-database-get-started-portal.md)
 - [Creare un database: interfaccia della riga di comando](sql-database-get-started-cli.md)
 - [Creare un database: PowerShell](sql-database-get-started-powershell.md)
 
-Prima di iniziare, assicurarsi di avere installato la versione più recente di [Visual Studio Code](https://code.visualstudio.com/Download) e di aver caricato l'[estensione mssql](https://aka.ms/mssql-marketplace). Per istruzioni sull'installazione dell'estensione mssql, vedere [Install VS Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code) (Installare Visual Studio Code) e [mssql for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql) (mssql per Visual Studio Code). 
+Prima di iniziare, verificare che è stata installata hello la versione più recente di [codice di Visual Studio](https://code.visualstudio.com/Download) e hello caricati [mssql estensione](https://aka.ms/mssql-marketplace). Per istruzioni di installazione per l'estensione mssql hello, vedere [installare Visual Studio Code](https://docs.microsoft.com/sql/linux/sql-server-linux-develop-use-vscode#install-vs-code) e vedere [mssql per Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql). 
 
 ## <a name="configure-vs-code"></a>Configurare Visual Studio Code 
 
 ### <a name="mac-os"></a>**Mac OS**
-Per macOS è necessario installare OpenSSL. Si tratta di un prerequisito per DotNet Core, che viene usato dall'estensione mssql. Aprire il terminale e immettere i comandi seguenti per installare **brew** e **OpenSSL**. 
+Per macOS, è necessario tooinstall OpenSSL ovvero prerequisiti per DotNet tale estensione mssql utilizzata. Aprire terminale e immettere i seguenti comandi tooinstall hello **brew** e **OpenSSL**. 
 
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -61,64 +61,64 @@ Non è necessaria alcuna configurazione speciale.
 
 ## <a name="sql-server-connection-information"></a>Informazioni di connessione SQL Server
 
-Ottenere le informazioni di connessione necessarie per connettersi al database SQL di Azure. Nelle procedure successive saranno necessari il nome completo del server, il nome del database e le informazioni di accesso.
+Ottenere il database di SQL Azure toohello hello connessione le informazioni necessarie tooconnect. Sarà necessario hello nome completo del server, nome del database e le informazioni di accesso nelle procedure successive hello.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Scegliere **Database SQL** dal menu a sinistra, quindi fare clic sul database nella pagina **Database SQL**. 
-3. Nella pagina **Panoramica** per il database, verificare il nome completo del server, come mostrato nell'immagine seguente. È possibile passare il puntatore sul nome del server per visualizzare l'opzione **Fare clic per copiare**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Selezionare **database SQL** dal menu a sinistra di hello, scegliere il database in hello **database SQL** pagina. 
+3. In hello **Panoramica** pagina per il database, revisione hello nome completo del server come illustrato nella seguente immagine hello. È possibile passare il mouse su toobring nome di server hello backup hello **fare clic su toocopy** opzione.
 
    ![informazioni di connessione](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. Se si sono dimenticate le informazioni di accesso per il server del database SQL di Azure, passare alla pagina del server del database SQL per visualizzare il nome dell'amministratore del server e, se necessario, reimpostare la password. 
+4. Se si hanno dimenticato di informazioni di accesso hello del server di Database SQL di Azure, passare toohello Database di SQL server pagina tooview hello admin nome del server e, se necessario, reimpostare la password di hello. 
 
-## <a name="set-language-mode-to-sql"></a>Impostare la modalità linguaggio SQL
+## <a name="set-language-mode-toosql"></a>Set language modalità tooSQL
 
-Impostare la modalità linguaggio su **SQL** in Visual Studio Code per abilitare i comandi mssql e T-SQL IntelliSense.
+Impostare la modalità di linguaggio hello è troppo**SQL** in T-SQL IntelliSense e di comandi di Visual Studio Code tooenable mssql.
 
 1. Aprire una nuova finestra di Visual Studio Code. 
 
-2. Fare clic su **Testo normale** nell'angolo inferiore destro della barra di stato.
-3. Nel menu a discesa **Seleziona modalità linguaggio** che viene visualizzato, digitare **SQL** e quindi premere **INVIO** per impostare la modalità del linguaggio su SQL. 
+2. Fare clic su **testo normale** in hello angolo inferiore destro della barra di stato hello.
+3. In hello **la modalità di selezione lingua** dal menu a discesa che consente di aprire, digitare **SQL**, quindi premere **invio** tooset hello language modalità tooSQL. 
 
    ![Modalità linguaggio SQL](./media/sql-database-connect-query-vscode/vscode-language-mode.png)
 
-## <a name="connect-to-your-database"></a>Connettersi al database
+## <a name="connect-tooyour-database"></a>La connessione a database tooyour
 
-Usare Visual Studio Code per stabilire una connessione al server del database SQL di Azure.
+Utilizzare Visual Studio Code tooestablish un server di Database SQL di Azure tooyour di connessione.
 
 > [!IMPORTANT]
-> Prima di continuare, assicurarsi di avere a portata di mano le informazioni su server, database e account di accesso. Se si modifica lo stato attivo dopo aver iniziato a immettere le informazioni sul profilo di connessione in Visual Studio Code, sarà necessario riavviare la creazione del profilo di connessione.
+> Prima di continuare, assicurarsi di avere a portata di mano le informazioni su server, database e account di accesso. Dopo l'inizio di immissione di informazioni sul profilo di connessione hello, se si modifica lo stato attivo dal codice di Visual Studio, è necessario toorestart Creazione profilo di connessione hello.
 >
 
-1. In Visual Studio Code premere **CTRL+MAIUSC+P** o **F1** per aprire il riquadro comandi.
+1. Nel codice di Visual Studio, premere **CTRL + MAIUSC + P** (o **F1**) tooopen hello riquadro comandi.
 
 2. Digitare **sqlcon** e premere **INVIO**.
 
-3. Premere **INVIO** per selezionare **Create Connection Profile** (Creare profilo di connessione). Verrà creato un profilo di connessione per l'istanza di SQL Server.
+3. Premere **invio** tooselect **Crea profilo di connessione**. Verrà creato un profilo di connessione per l'istanza di SQL Server.
 
-4. Seguire le istruzioni per specificare le proprietà di connessione per il nuovo profilo di connessione. Dopo aver specificato ogni valore, premere **INVIO** per continuare. 
+4. Seguire hello richieste toospecify hello le proprietà di connessione per il nuovo profilo di connessione hello. Dopo aver specificato ogni valore, premere **invio** toocontinue. 
 
    | Impostazione       | Valore consigliato | Descrizione |
    | ------------ | ------------------ | ------------------------------------------------- | 
-   | **Nome server | Nome completo del server | Il nome sarà simile a: **mynewserver20170313.database.windows.net**. |
-   | **Database name** (Nome database) | mySampleDatabase | Nome del database a cui connettersi. |
-   | **Autenticazione** | Account di accesso SQL| L'autenticazione SQL è il solo tipo di autenticazione configurato in questa esercitazione. |
-   | **Nome utente** | Account amministratore del server | Si tratta dell'account specificato quando è stato creato il server. |
-   | **Password (SQL Login)** (Password - Account di accesso SQL) | Password per l'account amministratore del server | Si tratta della password specificata quando è stato creato il server. |
-   | **Save Password?** (Salvare la password?) | Sì o No | Selezionare Sì se non si vuole immettere la password ogni volta. |
+   | **Nome server | nome completo del server Hello | Hello il nome deve essere simile al seguente: **mynewserver20170313.database.windows.net**. |
+   | **Database name** (Nome database) | mySampleDatabase | nome Hello di hello database toowhich tooconnect. |
+   | **Autenticazione** | Account di accesso SQL| L'autenticazione di SQL è hello unico tipo di autenticazione che è stato configurato in questa esercitazione. |
+   | **Nome utente** | account amministratore di server Hello | Si tratta di hello con l'account specificato durante la creazione di server hello. |
+   | **Password (SQL Login)** (Password - Account di accesso SQL) | password Hello per l'account di amministratore del server | Si tratta hello password specificata durante la creazione di server hello. |
+   | **Save Password?** (Salvare la password?) | Sì o No | Selezionare Sì se non si desidera che la password di hello tooenter ogni volta. |
    | **Immettere un nome per questo profilo** | Nome del profilo, ad esempio **mySampleDatabase** | Un nome del profilo salvato velocizza la connessione agli accessi successivi. | 
 
-5. Premere il tasto **ESC** per chiudere il messaggio che informa che il profilo è stato creato e connesso.
+5. Hello premere **ESC** chiave tooclose informazioni sul messaggio che informa che il profilo di hello è creato e collegato.
 
-6. Verificare la connessione nella barra di stato.
+6. Verificare la connessione nella barra di stato hello.
 
    ![Stato della connessione](./media/sql-database-connect-query-vscode/vscode-connection-status.png)
 
 ## <a name="query-data"></a>Eseguire query sui dati
 
-Usare il codice seguente per eseguire una query per individuare i primi 20 prodotti per categoria usando l'istruzione [SELECT](https://msdn.microsoft.com/library/ms189499.aspx) di Transact-SQL.
+Tooquery per primi 20 prodotti di hello di codice seguente di hello utilizzare per categoria utilizzando hello [selezionare](https://msdn.microsoft.com/library/ms189499.aspx) istruzione Transact-SQL.
 
-1. Nella finestra dell'**editor** immettere la query seguente nella finestra di query vuota:
+1. In hello **Editor** finestra immettere hello query nella finestra query vuota hello seguenti:
 
    ```sql
    SELECT pc.Name as CategoryName, p.name as ProductName
@@ -127,15 +127,15 @@ Usare il codice seguente per eseguire una query per individuare i primi 20 prodo
    ON pc.productcategoryid = p.productcategoryid;
    ```
 
-2. Premere **CTRL+MAIUSC+E** per recuperare dati dalle tabelle Product e ProductCategory.
+2. Premere **CTRL + MAIUSC + E** tooretrieve dati da tabelle Product e ProductCategory hello.
 
     ![Query](./media/sql-database-connect-query-vscode/query.png)
 
 ## <a name="insert-data"></a>Inserire dati
 
-Usare il codice seguente per inserire un nuovo prodotto nella tabella SalesLT.Product usando l'istruzione [INSERT](https://msdn.microsoft.com/library/ms174335.aspx) di Transact-SQL.
+Utilizzare hello di codice seguente tooinsert un nuovo prodotto nella tabella SalesLT.Product hello utilizzando hello [inserire](https://msdn.microsoft.com/library/ms174335.aspx) istruzione Transact-SQL.
 
-1. Nella finestra dell'**editor** eliminare la query precedente e immettere la query seguente:
+1. In hello **Editor** finestra, eliminare la query precedente hello e immettere hello seguente query:
 
    ```sql
    INSERT INTO [SalesLT].[Product]
@@ -157,13 +157,13 @@ Usare il codice seguente per inserire un nuovo prodotto nella tabella SalesLT.Pr
            ,GETDATE() );
    ```
 
-2. Premere **CTRL+MAIUSC+E** per inserire una nuova riga nella tabella Product.
+2. Premere **CTRL + MAIUSC + E** tooinsert una nuova riga nella tabella Product hello.
 
 ## <a name="update-data"></a>Aggiornare i dati
 
-Usare il codice seguente per aggiornare il nuovo prodotto aggiunto in precedenza usando l'istruzione [UPDATE](https://msdn.microsoft.com/library/ms177523.aspx) di Transact-SQL.
+Esempio di codice seguente di hello utilizzare nuovo prodotto hello tooupdate precedentemente aggiunto mediante hello [aggiornamento](https://msdn.microsoft.com/library/ms177523.aspx) istruzione Transact-SQL.
 
-1.  Nella finestra dell'**editor** eliminare la query precedente e immettere la query seguente:
+1.  In hello **Editor** finestra, eliminare la query precedente hello e immettere hello seguente query:
 
    ```sql
    UPDATE [SalesLT].[Product]
@@ -171,22 +171,22 @@ Usare il codice seguente per aggiornare il nuovo prodotto aggiunto in precedenza
    WHERE Name = 'myNewProduct';
    ```
 
-2. Premere **CTRL+MAIUSC+E** per aggiornare la riga specificata nella tabella Product.
+2. Premere **CTRL + MAIUSC + E** tooupdate riga specificata di hello nella tabella Product hello.
 
 ## <a name="delete-data"></a>Eliminare i dati
 
-Usare il codice seguente per eliminare il nuovo prodotto aggiunto in precedenza usando l'istruzione [DELETE](https://msdn.microsoft.com/library/ms189835.aspx) di Transact-SQL.
+Esempio di codice seguente di hello utilizzare nuovo prodotto hello toodelete precedentemente aggiunto mediante hello [eliminare](https://msdn.microsoft.com/library/ms189835.aspx) istruzione Transact-SQL.
 
-1. Nella finestra dell'**editor** eliminare la query precedente e immettere la query seguente:
+1. In hello **Editor** finestra, eliminare la query precedente hello e immettere hello seguente query:
 
    ```sql
    DELETE FROM [SalesLT].[Product]
    WHERE Name = 'myNewProduct';
    ```
 
-2. Premere **CTRL+MAIUSC+E** per eliminare la riga specificata nella tabella Product.
+2. Premere **CTRL + MAIUSC + E** toodelete riga specificata di hello nella tabella Product hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per connettersi ed eseguire una query usando SQL Server Management Studio, vedere [Connettersi ed eseguire una query con SSMS](sql-database-connect-query-ssms.md).
+- tooconnect e query tramite SQL Server Management Studio, vedere [Connect e query con SQL Server Management Studio](sql-database-connect-query-ssms.md).
 - Per un articolo di MSDN Magazine sull'uso di Visual Studio Code, vedere il post di blog [Crea un IDE di database con estensione MSSQL](https://msdn.microsoft.com/magazine/mt809115).

@@ -1,6 +1,6 @@
 ---
-title: Come preparare il modello per la distribuzione in Azure Machine Learning Studio | Microsoft Docs
-description: Come preparare il modello con training per la distribuzione come servizio Web convertendo l'esperimento di training di Machine Learning Studio in un esperimento predittivo.
+title: aaaHow tooprepare il modello per la distribuzione in Azure Machine Learning Studio | Documenti Microsoft
+description: Come tooprepare il modello con training per la distribuzione come web service convertendo il training di Machine Learning Studio provare tooa predittiva esperimento.
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: garye
-ms.openlocfilehash: 716a9a9b723df7ff6eb111fa40f2b5941d57d67a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d25bc68be63679a803bfc24a9e29e009a9263f5f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-prepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>Come preparare il modello per la distribuzione in Azure Machine Learning Studio
+# <a name="how-tooprepare-your-model-for-deployment-in-azure-machine-learning-studio"></a>Come tooprepare il modello per la distribuzione in Azure Machine Learning Studio
 
-Azure Machine Learning Studio offre gli strumenti necessari per sviluppare un modello di analisi predittiva e quindi renderlo operativo distribuendolo come servizio Web di Azure.
+Consente di Azure Machine Learning Studio che Hello strumenti necessari toodevelop un modello analitica predittiva e quindi rendere operativo il mediante la distribuzione come un servizio web di Azure.
 
-A tale scopo, è necessario utilizzare Studio per creare un esperimento, chiamato *esperimento di training*, in cui eseguire il training del modello, assegnare un punteggio al modello e modificarlo. Quando si è soddisfatti del risultato, è possibile procedere alla distribuzione del modello convertendo l'esperimento di training in un *esperimento predittivo* configurato in modo da assegnare un punteggio ai dati utente.
+toodo, si utilizza toocreate Studio un esperimento - chiamato un *esperimento di training* - in cui eseguire il training, assegnare un punteggio e modificare il modello. Dopo aver verificato, si ottiene il toodeploy pronto modello convertendo il tooa esperimento di training *esperimento predittiva* che è configurato tooscore dati dell'utente.
 
 Un esempio di questo processo è disponibile in [Procedura dettagliata: Sviluppare una soluzione di analisi predittiva per la valutazione del rischio di credito in Azure Machine Learning](machine-learning-walkthrough-develop-predictive-solution.md).
 
-Questo articolo contiene informazioni approfondite su come convertire un esperimento di training in un esperimento predittivo e successivamente distribuirlo. La comprensione di questi dettagli è fondamentale per imparare a configurare il modello distribuito in modo da renderlo più efficace.
+In questo articolo prende un approfondimento dettagli hello di come un esperimento di training viene convertito in un esperimento predittivo e la modalità di distribuzione che esperimento predittiva. In base a questi dettagli, è possibile ottenere informazioni come tooconfigure toomake il modello distribuito è più efficace.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="overview"></a>Panoramica 
 
-Il processo di conversione di un esperimento di training in un esperimento predittivo prevede tre passaggi:
+Hello di conversione di un esperimento di training esperimento tooa predittiva prevede tre passaggi:
 
-1. Sostituire i moduli di algoritmi di Machine Learning con il modello di training.
-2. Organizzare l'esperimento solo per i moduli necessari alla valutazione. Un esperimento di training include alcuni moduli che sono necessari per il training, ma che non lo saranno più al termine del training.
-3. Definire in che modo il modello accetterà i dati dall'utente del servizio Web e quali dati restituirà.
+1. Sostituire con il modello con training moduli di algoritmo di apprendimento automatico hello.
+2. Trim hello esperimento tooonly i moduli che sono necessari per il punteggio. Un esperimento di training include un numero di moduli che sono necessari per il training, ma non sono necessarie dopo il training del modello hello.
+3. Definire il modello accetta i dati utente del servizio web hello e quali dati verranno restituiti.
 
 > [!TIP]
-> Durante l'esperimento di training, è stato eseguito il training ed è stato assegnato un punteggio al modello utilizzando i propri dati. In seguito alla distribuzione, tuttavia, gli utenti invieranno nuovi dati al modello che, a sua volta, restituirà i risultati della previsione. Quando dunque si converte l'esperimento di training in un esperimento predittivo per prepararlo per la distribuzione, è importante considerare in che modo il modello verrà utilizzato da altri utenti.
+> Durante l'esperimento di training, è stato eseguito il training ed è stato assegnato un punteggio al modello utilizzando i propri dati. Ma una volta distribuito, gli utenti inviano di nuovo modello di dati tooyour e verranno restituiti i risultati di stima. In tal caso, quando si converte il tooget predittiva esperimento di training esperimento tooa pronto per la distribuzione, tenere in considerazione come modello hello verrà usato da altri utenti.
 > 
 > 
 
 ## <a name="set-up-web-service-button"></a>Pulsante Set Up Web Service
-Dopo aver eseguito l'esperimento (fare clic su **RUN** (ESEGUI) nella parte inferiore dell'area di disegno dell'esperimento), fare clic sul pulsante **Set Up Web Service** (Configura servizio Web) scegliendo l'opzione **Predictive Web Service** (Servizio Web predittivo). **Set Up Web Service** (Configura servizio Web) esegue automaticamente i tre passaggi necessari per convertire l'esperimento di training in un esperimento predittivo:
+Dopo aver eseguito l'esperimento (fare clic su **eseguire** nella parte inferiore di hello dell'area di disegno esperimento hello), fare clic su hello **di servizio Web** pulsante (Seleziona hello **servizio Web predittivo** opzione). **Configura Service Web** esegue per si hello tre passaggi di conversione esperimento predittiva tooa esperimento di training:
 
-1. Salva il modello di training nella sezione dei **modelli di training** della tavolozza del modulo (a sinistra dell'area di disegno dell'esperimento). Sostituisce quindi l'algoritmo di Machine Learning e i moduli [Train Model] [ train-model] (Modello di training) con il modello di training salvato.
+1. Salva il modello con training nella hello **modelli con training** sezione della tavolozza modulo hello (toohello a sinistra dell'area di disegno esperimento hello). Sostituisce quindi l'algoritmo di apprendimento automatico hello e [Train Model] [ train-model] moduli con hello salvato training del modello.
 2. Analizza l'esperimento e rimuove i moduli chiaramente usati solo per il training e non più necessari.
 3. Inserisce moduli di _input_ e di _output del servizio Web_ in posizioni predefinite nell'esperimento (questi moduli accettano e restituiscono i dati utente).
 
-Ad esempio, il seguente esperimento esegue il training di un modello di albero delle decisioni incrementato a due classi utilizzando dati di classificazione di esempio:
+Ad esempio, un modello di albero delle decisioni con Boosting due classi utilizzando i dati di esempio census seguente hello provare treni:
 
 ![esperimento di training][figure1]
 
-I moduli nell'esperimento eseguono fondamentalmente quattro diverse funzioni:
+i moduli di Hello in questo esperimento eseguono fondamentalmente quattro diverse funzioni:
 
 ![Funzioni del modulo][figure2]
 
-Quando si converte l'esperimento di training in un esperimento predittivo, alcuni di questi moduli non sono più necessari o hanno a questo punto uno scopo diverso:
+Quando si converte questo esperimento di training esperimento tooa predittiva, alcuni di questi moduli non sono più necessari o ora uno scopo diverso:
 
-* **Data** (Dati): i dati in questo set di dati di esempio non vengono usati durante l'assegnazione di un punteggio. L'utente del servizio Web fornisce i dati da classificare. Tuttavia, i metadati di questo set di dati, ad esempio i tipi di dati, vengono usati dal modello sottoposto a training. È quindi necessario mantenere il set di dati nell'esperimento predittivo perché possa fornire questi metadati.
+* **Dati** -dati hello in questo set di dati di esempio non viene utilizzati durante l'assegnazione dei punteggi - utente hello del servizio web hello fornirà hello toobe di dati con punteggio. Tuttavia, i metadati di hello da questo set di dati, ad esempio tipi di dati, viene utilizzato dal modello con training hello. Pertanto è necessario il set di dati di tookeep hello nell'esperimento predittiva hello in modo da poter fornire i metadati.
 
-* **Prep**: in base ai dati utente che verranno inviati per la classificazione, i moduli potrebbero non essere necessari per elaborare i dati in ingresso. Il pulsante **Set Up Web Service** (Configura servizio Web) non agisce su questi moduli, pertanto è necessario decidere come gestirli.
+* **Prepara** : a seconda dei dati utente hello che verranno inviate per il punteggio, questi moduli possono o non sia necessario tooprocess dati in entrata hello. Hello **di servizio Web** pulsante non tocchi questi, è necessario toodecide come si desidera toohandle li.
   
-    In questo esempio alcuni valori nel set di dati di esempio potrebbero essere mancanti, pertanto è stato aggiunto un modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) per gestirli. Il set di dati di esempio include, inoltre, colonne che non sono necessarie per il training del modello. È stato pertanto incluso un modulo [Select columns in Dataset][select-columns] (Seleziona colonne nel set di dati) per escludere le colonne aggiuntive dal flusso di dati. Se si è certi che i dati inviati per la classificazione tramite il servizio Web non presentino valori mancanti, è possibile rimuovere il modulo [Clean Missing Data][clean-missing-data]. Poiché tuttavia il modulo [Select Columns in Dataset][select-columns] (Seleziona colonne nel set di dati) consente di definire le colonne di dati previste dal modello di training, è necessario mantenerlo.
+    Ad esempio, in questo esempio hello esempio set di dati potrebbe essere i valori mancanti, pertanto un [Clean Missing Data] [ clean-missing-data] modulo è stato incluso toodeal con essi. Set di dati campione hello include inoltre le colonne non modello hello tootrain necessari. Pertanto un [selezionare le colonne nel set di dati] [ select-columns] modulo è stato incluso tooexclude queste colonne aggiuntive da hello del flusso di dati. Se i dati di hello che verranno inviati per l'assegnazione dei punteggi tramite hello servizio web non sarà disponibili i valori mancanti, quindi è possibile rimuovere hello [Clean Missing Data] [ clean-missing-data] modulo. Tuttavia, poiché hello [selezionare le colonne nel set di dati] [ select-columns] modulo consente di definire le colonne di hello dei dati prevede che tale modello con training hello, che il modulo richiede tooremain.
 
-* **Train** (Training): questi moduli vengono usati per eseguire il training del modello. Quando si fa clic su **Set Up Web Service** (Configura servizio Web), questi moduli vengono sostituiti con un singolo modulo contenente il modello sottoposto a training. Il nuovo modulo viene salvato nella sezione **Trained Models** (Modelli sottoposti a training) della tavolozza dei moduli.
+* **Train** -questi moduli sono modello hello tootrain utilizzato. Quando fa clic su **di servizio Web**, questi moduli vengono sostituiti con un singolo modulo che contiene il modello di hello training. Questo nuovo modulo viene salvato in hello **modelli con training** sezione della tavolozza modulo hello.
 
-* **Score** (Punteggio): in questo esempio il modulo [Split Data][split] (Dividi dati) viene usato per suddividere il flusso di dati in dati di test e dati di training. Poiché nell'esperimento predittivo non si esegue più il training, è possibile rimuovere [Split Data][split] (Dividi dati). In modo analogo, il secondo modulo [Score Model][score-model] (Assegna punteggio al modello) e il modulo [Evaluate Model][evaluate-model] (Valuta modello) vengono usati per confrontare i risultati dei dati di test, pertanto questi moduli non sono necessari nell'esperimento predittivo. Il modulo rimanente [Score Model][score-model] è però necessario per restituire un risultato relativo all'assegnazione del punteggio tramite il servizio Web.
+* **Punteggio** : In questo esempio hello [dati divisi] [ split] modulo è utilizzato toodivide flusso di dati hello in dati di test e dati di training. Nell'esperimento predittiva hello, ci stiamo non training più, questa operazione [dati divisi] [ split] può essere rimosso. Analogamente, hello secondo [Score Model] [ score-model] modulo e hello [Evaluate Model] [ evaluate-model] modulo vengono utilizzati toocompare risultati test hello i dati, pertanto questi moduli non sono necessarie in hello predittiva provare. Hello rimanenti [Score Model] [ score-model] modulo, tuttavia, è necessario tooreturn un punteggio di risultati tramite servizio web hello.
 
 Ecco come appare l'esempio dopo aver fatto clic su **Set Up Web Service**:
 
 ![Esperimento predittivo convertito][figure3]
 
-Le operazioni eseguite da **Set Up Web Service** (Configura sevizio Web) potrebbero essere sufficienti per preparare l'esperimento per la distribuzione come servizio Web. Tuttavia, potrebbe essere necessario eseguire ulteriori operazioni specifiche per l'esperimento.
+Hello lavoro svolto dal **di servizio Web** potrebbe essere sufficiente tooprepare toobe l'esperimento distribuita come servizio web. Tuttavia, è consigliabile toodo alcuni esperimento tooyour specifico di operazioni aggiuntive.
 
 ### <a name="adjust-input-and-output-modules"></a>Regolazione dei moduli di input e output
-Nell'esperimento di training è stato utilizzato un set di dati di training e quindi sono state eseguite delle operazioni di elaborazione per ottenere i dati in un formato utile all'algoritmo Machine Learning necessario. Se i dati che si prevede di ricevere tramite il servizio Web non richiedono questo tipo di elaborazione, è possibile ignorarli. A questo scopo, connettere l'output del modulo **Web service input** (Input servizio Web) a un altro modulo nell'esperimento. I dati dell'utente verranno inviati in questa posizione nel modello.
+Nell'esperimento di training, è utilizzato un set di dati di training e quindi ha alcuni tooget elaborazione hello dati in un form che hello necessario l'algoritmo di apprendimento automatico. Se non è necessario l'elaborazione dati hello previsti tooreceive tramite servizio web hello, è possibile ignorare: connettere hello output di hello **il modulo di input del servizio Web** tooa modulo diverso nell'esperimento. dati dell'utente Hello arriverà ora nel modello di hello in questa posizione.
 
-Per impostazione predefinita, ad esempio, **Set Up Web Service** (Configura servizio Web) inserisce il modulo **Web service input** (Input del servizio Web) all'inizio del flusso di dati, come illustrato nella figura precedente. È tuttavia possibile posizionare manualmente **Web service input** (Input servizio Web) dopo i moduli di elaborazione dei dati:
+Ad esempio, per impostazione predefinita **di servizio Web** inserisce hello **input del servizio Web** modulo nella parte superiore di hello del flusso di dati, come illustrato nella figura hello precedente. Ma è possibile posizionare manualmente hello **input del servizio Web** oltre i moduli di elaborazione dati hello:
 
-![Spostamento del modulo web service input][figure4]
+![Input del servizio web hello mobile][figure4]
 
-I dati di input forniti tramite il servizio Web ora passano direttamente al modulo Score Model senza pre-elaborazione.
+dati di input Hello fornito tramite hello servizio web passerà direttamente nel modulo di modello di punteggio hello senza alcuna pre-elaborazione.
 
-In modo analogo, per impostazione predefinita, **Set Up Web Service** inserisce il modulo di output del servizio Web in fondo al flusso di dati. In questo esempio il servizio Web restituisce all'utente l'output del modulo [Score Model][score-model] (Assegna punteggio al modello) che include il vettore dei dati di input completo, oltre ai risultati dell'assegnazione del punteggio.
-Se però si preferisce restituire un valore diverso, è possibile aggiungere moduli aggiuntivi prima del modulo **Web service output** (Output servizio Web). 
+Analogamente, per impostazione predefinita **di servizio Web** inserisce hello modulo output del servizio Web nella parte inferiore di hello del flusso di dati. In questo esempio, servizio web hello restituirà l'output di hello hello utente toohello [Score Model] [ score-model] modulo, che include il vettore di dati di input completo hello e hello punteggio risultati.
+Tuttavia, se si desidera tooreturn qualcosa diverso, è possibile aggiungere moduli aggiuntivi prima di hello **output del servizio Web** modulo. 
 
-Per restituire, ad esempio, solo i risultati dell'assegnazione del punteggio e non l'intero vettore dei dati di input, aggiungere un modulo [Select Columns in Dataset][select-columns] (Seleziona colonne nel set di dati) per escludere tutte le colonne ad eccezione dei risultati dell'assegnazione del punteggio. Spostare quindi il modulo **Web service output** (Output servizio Web) nell'output del modulo [Select Columns in Dataset][select-columns] (Seleziona colonne nel set di dati). L'esperimento è simile al seguente:
+Ad esempio, tooreturn solo hello punteggio i risultati e non hello intera vettore di dati di input, aggiungere un [selezionare le colonne nel set di dati] [ select-columns] tooexclude modulo tutte le colonne tranne hello punteggio risultati. Spostare quindi hello **output del servizio Web** toohello output del modulo di hello [selezionare le colonne nel set di dati] [ select-columns] modulo. sperimentazione Hello è simile al seguente:
 
-![Spostamento del modulo web service output][figure5]
+![Lo spostamento di output del servizio web hello][figure5]
 
 ### <a name="add-or-remove-additional-data-processing-modules"></a>Aggiungere o rimuovere i moduli di elaborazione dati aggiuntivi
-Se presenti nell'esperimento, è possibile rimuove i moduli di cui si è certi che non saranno utili per la classificazione. Ad esempio, poiché il modulo **Web service input** (Input servizio Web) è stato spostato in un punto successivo ai moduli di elaborazione dei dati, è possibile rimuovere il modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) dall'esperimento predittivo.
+Se presenti nell'esperimento, è possibile rimuove i moduli di cui si è certi che non saranno utili per la classificazione. Ad esempio, quando è stata spostata hello **input del servizio Web** tooa modulo punto dopo hello moduli per l'elaborazione dati, è possibile rimuovere hello [Clean Missing Data] [ clean-missing-data] modulo da sperimentazione predittiva Hello.
 
 L'esperimento predittivo ora appare come illustrato di seguito:
 
@@ -103,21 +103,21 @@ L'esperimento predittivo ora appare come illustrato di seguito:
 
 
 ### <a name="add-optional-web-service-parameters"></a>Aggiungere parametri facoltativi al servizio Web
-In alcuni casi, è possibile consentire all'utente del servizio Web di modificare il comportamento dei moduli quando si accede al servizio. *I parametri del servizio Web* consentono di eseguire questa operazione.
+In alcuni casi, è consigliabile utente hello tooallow il comportamento hello toochange del servizio web di moduli quando accede al servizio hello. *I parametri di servizio Web* consentono toodo questo.
 
-Un esempio comune è la configurazione di un modulo [Import Data][import-data] (Importa dati) per consentire all'utente del servizio Web distribuito di specificare un'origine dati diversa quando si accede al servizio Web oppure la configurazione di un modulo [Export Data][export-data] (Esporta dati) in modo che sia possibile specificare una destinazione differente.
+Un esempio comune sta configurando un [l'importazione dei dati] [ import-data] modulo pertanto utente hello di hello distribuita il servizio web è possibile specificare un'origine dati diversa quando accede al servizio web hello. oppure la configurazione di un modulo [Export Data][export-data] (Esporta dati) in modo che sia possibile specificare una destinazione differente.
 
-È possibile definire i parametri del servizio Web e associarli a uno o più parametri di modulo e specificare se sono obbligatori o facoltativi. Effettuando l'accesso al servizio e modificando adeguatamente le azioni del modulo, l'utente del servizio Web fornisce valori per tali parametri.
+È possibile definire i parametri del servizio Web e associarli a uno o più parametri di modulo e specificare se sono obbligatori o facoltativi. utente Hello del servizio web hello fornisce valori per questi parametri quando si accede servizio hello e azioni modulo hello verranno modificate di conseguenza.
 
-Per ulteriori informazioni sui parametri del servizio Web e su come usarli, vedere [Usare i parametri del servizio Web di Azure Machine Learning][webserviceparameters].
+Per ulteriori informazioni sui parametri del servizio Web e come toouse, vedere [utilizzando Azure Machine Learning parametri del servizio Web][webserviceparameters].
 
 [webserviceparameters]: machine-learning-web-service-parameters.md
 
 
-## <a name="deploy-the-predictive-experiment-as-a-web-service"></a>Distribuire l'esperimento predittivo come servizio Web
-Ora che l'esperimento predittivo è stato sufficientemente preparato, è possibile distribuirlo come servizio Web di Azure. Usando il servizio Web, gli utenti possono inviare dati al modello che poi restituirà le stime.
+## <a name="deploy-hello-predictive-experiment-as-a-web-service"></a>Distribuire l'esperimento predittiva hello come un servizio web
+Ora che esperimento predittiva hello sufficientemente preparato, è possibile distribuirlo come servizio web di Azure. Usa servizio web hello, gli utenti possono inviare modello tooyour dati modello hello restituirà le previsioni.
 
-Per altre informazioni sul processo di distribuzione completo, vedere [Distribuire un servizio Web di Azure Machine Learning][deploy].
+Per ulteriori informazioni sul processo di distribuzione completa di hello, vedere [distribuire un servizio web Azure Machine Learning][deploy]
 
 [deploy]: machine-learning-publish-a-machine-learning-web-service.md
 

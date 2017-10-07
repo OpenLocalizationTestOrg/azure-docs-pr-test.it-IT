@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Hub di notifica di Azure - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: Informazioni su come inviare notifiche push da qualsiasi back-end per tutti i dispositivi mobili con hub di notifica. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
+title: aaaAzure documentazione degli hub di notifica - esercitazioni, riferimenti alle API | Documenti Microsoft
+description: Informazioni su come toosend notifiche push da qualsiasi dispositivo mobile tooany di back-end con gli hub di notifica. Esercitazioni, informazioni di riferimento sulle API e altri documenti.
 services: notification-hubs
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8657415f61d9977ad90883278f8737609248fed6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 050c70c32f50eb495cd53a6bfa5549d6ae189d89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="notification-hubs-documentation"></a>Documentazione su Hub di notifica
 
-Informazioni su come usare Hub di notifica, un motore di notifica push multipiattaforma e scalabile per inviare rapidamente milioni di messaggi. Esercitazioni, informazioni di riferimento sulle API e altri documenti in cui viene illustrato come impostare e inviare notifiche push da qualsiasi back-end a qualsiasi dispositivo mobile. 
+Informazioni su come toouse gli hub di notifica, motore di una notifica di push multipiattaforma e scalabile per l'invio rapidamente milioni di messaggi. Esercitazioni, riferimenti ad API e altra documentazione illustrano come tooset backup e inviare notifiche push da qualsiasi dispositivo mobile tooany di back-end. 
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Informazioni su come usare Hub di notifica, un motore di notifica push multipiat
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione all'invio di notifiche push ad Android (FCM) con Hub di notifica di Azure</h3>
+                        <h3>Iniziare l'invio di notifiche di push tooAndroid (FCM) con gli hub di notifica di Azure</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@ Informazioni su come usare Hub di notifica, un motore di notifica push multipiat
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione all'invio di notifiche push ad app Chrome con Hub di notifica di Azure</h3>
+                        <h3>Iniziare l'invio di notifiche tooChrome App con Azure hub di notifica push</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@ Informazioni su come usare Hub di notifica, un motore di notifica push multipiat
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Introduzione all'invio di notifiche push a iOS con Hub di notifica di Azure</h3>
+                        <h3>Iniziare l'invio di tooiOS di notifiche push con hub di notifica di Azure</h3>
                     </div>
                 </div>
             </div>

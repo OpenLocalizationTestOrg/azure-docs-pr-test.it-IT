@@ -1,5 +1,5 @@
 ---
-title: Esercitazione sul servizio contenitore di Azure - Distribuire un cluster | Microsoft Docs
+title: esercitazione per il servizio contenitore aaaAzure - distribuire Cluster | Documenti Microsoft
 description: Esercitazione sul servizio contenitore di Azure - Distribuire un cluster
 services: container-service
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.workload: na
 ms.date: 08/21/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: 472697c1f0c18859087d7b448e1786d85c27aca0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c4c8cc95c88d9c2077d0322f57e5d3159e2dd0ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-a-kubernetes-cluster-in-azure-container-service"></a>Distribuire un cluster Kubernetes nel servizio contenitore di Azure
 
@@ -29,56 +29,56 @@ Kubernetes fornisce una piattaforma distribuita per applicazioni in contenitori.
 
 > [!div class="checklist"]
 > * Distribuzione di un cluster del servizio contenitore di Azure Kubernetes
-> * Installazione dell'interfaccia della riga di comando Kubernetes (kubectl)
+> * Installazione di hello Kubernetes CLI (kubectl)
 > * Configurazione di kubectl
 
-Nelle esercitazioni successive, l'applicazione Azure Vote viene distribuita nel cluster, ridimensionata, aggiornata e Operations Management Suite viene configurato per monitorare il cluster Kubernetes.
+Nelle esercitazioni successive, hello Azure voto applicazione viene distribuita cluster toohello, scalato, aggiornate e Operations Management Suite è cluster Kubernetes di hello toomonitor configurato.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Nelle esercitazioni precedenti, un'immagine del contenitore è stata creata e caricata in un'istanza di Registro contenitori di Azure. Se questi passaggi non sono stati ancora eseguiti e si vuole procedere, tornare a [Tutorial 1 – Create container images](./container-service-tutorial-kubernetes-prepare-app.md) (Esercitazione 1: Creare immagini del contenitore).
+Nelle esercitazioni precedenti, un'immagine contenitore è stata creata e caricato l'istanza del Registro di sistema di Azure contenitore tooan. Se si è già questi passaggi e si desidera toofollow lungo, restituire troppo[esercitazione 1: creare le immagini contenitore](./container-service-tutorial-kubernetes-prepare-app.md).
 
 ## <a name="create-kubernetes-cluster"></a>Creare un cluster Kubernetes
 
-Nell'[esercitazione precedente](./container-service-tutorial-kubernetes-prepare-acr.md) è stato creato un gruppo di risorse denominato *myResourceGroup*. Se questa operazione non è stata ancora eseguita, creare ora il gruppo di risorse.
+In hello [esercitazione precedente](./container-service-tutorial-kubernetes-prepare-acr.md), un gruppo di risorse denominato *myResourceGroup* è stato creato. Se questa operazione non è stata ancora eseguita, creare ora il gruppo di risorse.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location westeurope
 ```
 
-Creare un cluster Kubernetes nel servizio contenitore di Azure con il comando [az acs create](/cli/azure/acs#create). 
+Creare un cluster di Kubernetes nel servizio contenitore di Azure con hello [az acs creare](/cli/azure/acs#create) comando. 
 
-L'esempio seguente crea un cluster denominato *myK8sCluster* con un nodo master Linux e tre nodi agente Linux.
+esempio Hello crea un cluster denominato *myK8sCluster* con uno Linux master nodo e i tre nodi di agente di Linux.
 
 ```azurecli-interactive 
 az acs create --orchestrator-type=kubernetes --resource-group myResourceGroup --name=myK8SCluster --generate-ssh-keys 
 ```
 
-Dopo alcuni minuti, il comando viene completato e restituisce le informazioni in formato JSON sulla distribuzione del servizio contenitore di Azure.
+Dopo alcuni minuti, completamento del comando hello e restituisce json formattato informazioni sulla distribuzione di hello ACS.
 
-## <a name="install-the-kubectl-cli"></a>Installare l'interfaccia della riga di comando di kubectl
+## <a name="install-hello-kubectl-cli"></a>Installare hello kubectl CLI
 
-Per connettersi al cluster Kubernetes dal computer client, usare [kubectl](https://kubernetes.io/docs/user-guide/kubectl/), il client da riga di comando di Kubernetes. 
+tooconnect toohello Kubernetes cluster da computer client, utilizzare [kubectl](https://kubernetes.io/docs/user-guide/kubectl/), client di hello Kubernetes della riga di comando. 
 
-Se si usa Azure CloudShell, `kubectl` è già installato. Se lo si vuole installare in locale, usare il comando [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli).
+Se si usa Azure CloudShell, `kubectl` è già installato. Se si desidera tooinstall utilizzi localmente, hello [az acs kubernetes install-cli](/cli/azure/acs/kubernetes#install-cli) comando.
 
-Se è in esecuzione in Linux o MacOS, potrebbe essere necessario procedere all'esecuzione con sudo. In Windows accertarsi che la shell sia stata eseguita come amministratore.
+Se in esecuzione Linux o Mac OS, potrebbe essere toorun con sudo. In Windows accertarsi che la shell sia stata eseguita come amministratore.
 
 ```azurecli-interactive 
 az acs kubernetes install-cli 
 ```
 
-In Windows l'installazione predefinita è *c:\program files (x86)\kubectl.exe*. Potrebbe essere necessario aggiungere questo file al percorso di Windows. 
+In Windows, è l'installazione predefinita di hello *c:\program files (x86)\kubectl.exe*. Potrebbe essere necessario tooadd questo percorso di file toohello Windows. 
 
 ## <a name="connect-with-kubectl"></a>Connettersi con kubectl
 
-Per configurare `kubectl` per connettersi al cluster Kubernetes, eseguire il comando [az acs kubernetes get-credentials](/cli/azure/acs/kubernetes#get-credentials).
+tooconfigure `kubectl` tooconnect tooyour Kubernetes cluster, eseguire hello [az acs kubernetes get-credenziali](/cli/azure/acs/kubernetes#get-credentials) comando.
 
 ```azurecli-interactive 
 az acs kubernetes get-credentials --resource-group=myResourceGroup --name=myK8SCluster
 ```
 
-Per verificare la connessione al cluster, eseguire il comando [kubectl get nodes](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get).
+tooverify hello connessione tooyour cluster esegue hello [kubectl ottenere nodi](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) comando.
 
 ```azurecli-interactive
 kubectl get nodes
@@ -94,18 +94,18 @@ k8s-agent-98dc3136-2    Ready                      5m        v1.6.2
 k8s-master-98dc3136-0   Ready,SchedulingDisabled   5m        v1.6.2
 ```
 
-Al termine dell'esercitazione, sarà disponibile un cluster Kubernetes del servizio contenitore di Azure pronto per i carichi di lavoro. Nelle esercitazioni successive, in questo cluster viene distribuita un'applicazione multi-contenitore, quindi viene scalata orizzontalmente, aggiornata e monitorata.
+Al termine dell'esercitazione, sarà disponibile un cluster Kubernetes del servizio contenitore di Azure pronto per i carichi di lavoro. Nelle esercitazioni successive, un'applicazione multi-contenitore è distribuito toothis cluster, la scalabilità, aggiornate e monitorati.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione è stato distribuito un cluster Kubernetes del servizio contenitore di Azure. Sono stati completati i passaggi seguenti:
+In questa esercitazione è stato distribuito un cluster Kubernetes del servizio contenitore di Azure. sono stata completata Hello alla procedura seguente:
 
 > [!div class="checklist"]
 > * Distribuzione di un cluster Kubernets del servizio contenitore di Azure
-> * Installazione dell'interfaccia della riga di comando di Kubernetes (kubectl)
+> * Hello installato Kubernetes CLI (kubectl)
 > * Configurazione di kubectl
 
-Passare all'esercitazione successiva per apprendere come eseguire l'applicazione nel cluster.
+Spostare toohello Avanti toolearn esercitazione sull'esecuzione dell'applicazione in cluster hello.
 
 > [!div class="nextstepaction"]
 > [Distribuire un'applicazione in Kubernetes](./container-service-tutorial-kubernetes-deploy-application.md)

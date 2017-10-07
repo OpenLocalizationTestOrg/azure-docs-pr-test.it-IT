@@ -16,81 +16,81 @@ ms.date: 03/31/2017
 ms.author: luisca
 ROBOTS: NOINDEX
 redirect_url: machine-learning-datamarket-deprecation
-redirect_document_id: TRUE
-ms.openlocfilehash: 8f27962d097bffc2a03de80244ae41d6573a4bf3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 4c5f0eee4aa04ce823321d52985374c52850f0d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-machine-learning-recommendations---javascript-integration"></a>Raccomandazioni di Azure Machine Learning - Integrazione con JavaScript
 > [!NOTE]
-> È consigliabile iniziare usando l'API Recommendations di Servizi cognitivi invece di questa versione. Il Servizio cognitivo di Recommendations sostituirà questo servizio e verranno sviluppate nuove funzionalità. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
-> Per altre informazioni, vedere [Migrating to the new Cognitive Service](http://aka.ms/recomigrate)
+> È consigliabile iniziare utilizzando hello indicazioni API cognitivi servizio invece di questa versione. Hello servizio cognitivi indicazioni andrà a sostituire questo servizio e tutte le nuove funzionalità hello verranno sviluppate non esiste. Il servizio include nuove funzionalità come il supporto in batch, una migliore funzione di Esplora API, una superficie API più pulita, un'esperienza più coerente in termini di iscrizione e fatturazione e così via.
+> Altre informazioni, vedere [toohello migrazione nuovo servizio cognitivi](http://aka.ms/recomigrate)
 > 
 > 
 
-Questo documento illustra come integrare il sito usando JavaScript. JavaScript consente di inviare eventi di acquisizione dei dati e utilizzare raccomandazioni dopo aver creato un modello di raccomandazione. Tutte le operazioni eseguite tramite JS possono essere eseguite anche dal lato server.
+Questo documento illustrano come toointegrate del sito utilizzando JavaScript. Hello JavaScript consente toosend gli eventi di acquisizione dei dati e indicazioni tooconsume dopo aver creato un modello di raccomandazione. Tutte le operazioni eseguite tramite JS possono essere eseguite anche dal lato server.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="1-general-overview"></a>1. Panoramica generale
 L'integrazione del sito con Azure ML Recommendations si articola in 2 fasi:
 
-1. Invio di eventi ad Azure ML Recommendations. In tal modo verrà creato un modello di raccomandazione.
-2. Utilizzo delle raccomandazioni. Dopo aver creato il modello, è possibile utilizzare le raccomandazioni. Questo documento non spiega come creare un modello. Per altre informazioni a riguardo, leggere la guida introduttiva.
+1. Invio di eventi ad Azure ML Recommendations. In questo modo toobuild un modello di raccomandazione.
+2. Utilizzare indicazioni hello. Una volta creato il modello di hello è possibile utilizzare indicazioni hello. (Questo documento vengono descritte le modalità toobuild un modello, leggere hello tooget Guida introduttiva ulteriori informazioni su come).
 
 <ins>Fase I</ins>
 
-Nella prima fase si inserisce nelle pagine HTML una piccola libreria JavaScript che consente l'invio di eventi nel momento in cui si verificano nella pagina HTML ai server di Azure ML Recommendations (tramite DataMarket):
+In hello prima fase di che nelle pagine html si inserisce una piccola libreria JavaScript che consente hello eventi toosend pagina che si verificano nella pagina html hello nei server di Azure ML raccomandazioni (tramite Data Market):
 
 ![Drawing1][1]
 
 <ins>Fase II</ins>
 
-Nella seconda fase, per visualizzare le raccomandazioni nella pagina si seleziona una delle opzioni seguenti:
+In hello seconda fase, quando si desidera consigli hello tooshow pagina hello selezionare una delle seguenti opzioni hello:
 
-1. Il server (in fase di rendering della pagina) chiama il server di Azure ML Recommendations (tramite DataMarket) per ottenere le raccomandazioni. I risultati includono un elenco di ID di elementi. Il server deve arricchire i risultati con i metadati degli elementi, ad esempio immagini e descrizione, e inviare la pagina creata al browser.
+1. il server (in fase di hello del rendering della pagina) chiama indicazioni tooget Azure ML indicazioni Server (tramite Data Market). risultati di Hello includono un elenco di id degli elementi. Il server deve risultati hello tooenrich con gli elementi di hello metadati (ad esempio immagini, descrizione) e inviare hello creato pagina toohello browser.
 
 ![Drawing2][2]
 
-2. L'altra opzione prevede di usare il piccolo file JavaScript della fase I per ottenere un semplice elenco degli elementi raccomandati. I dati ricevuti in questo caso sono più snelli rispetto a quelli che si ricevono utilizzando la prima opzione.
+2. hello è toouse hello JavaScript file di piccole dimensioni da una tooget fase un semplice elenco di elementi consigliati. dati Hello qui ricevuti sono più snelli di hello prima opzione hello.
 
 ![Drawing3][3]
 
 ## <a name="2-prerequisites"></a>2. Prerequisiti
-1. Creare un nuovo modello usando le API. Per istruzioni su come eseguire questa operazione, vedere la guida introduttiva.
-2. Codificare &lt;dataMarketUser&gt;:&lt;dataMarketKey&gt; con codifica base64. Questi dati verranno usati per l'autenticazione di base che consente al codice JS di chiamare le API.
+1. Creare un nuovo modello utilizzando le API di hello. Vedere la Guida introduttiva di hello sul toodo è.
+2. Codificare &lt;dataMarketUser&gt;:&lt;dataMarketKey&gt; con codifica base64. (Questo verrà utilizzato per hello l'autenticazione di base tooenable hello JS codice toocall hello API).
 
 ## <a name="3-send-data-acquisition-events-using-javascript"></a>3. Inviare eventi di acquisizione dei dati tramite JavaScript
-Per inviare eventi in modo semplice, seguire questa procedura:
+Hello passaggi facilitare l'invio di eventi:
 
-1. Includere la libreria JQuery nel codice. È possibile scaricarla da nuget all'URL seguente.
+1. Includere la libreria JQuery nel codice. È possibile scaricarlo da nuget in hello URL seguente.
    
      http://www.nuget.org/packages/jQuery/1.8.2
-2. Includere la libreria JavaScript di Recommendations disponibile all'URL seguente: http://aka.ms/RecoJSLib1
-3. Inizializzare la libreria di Azure ML Recommendations con i parametri appropriati.
+2. Libreria Script Java indicazioni hello dal seguente URL hello includono: http://aka.ms/RecoJSLib1
+3. Inizializzare la libreria di Azure ML indicazioni con i parametri appropriati hello.
    
-     <script> AzureMLRecommendationsStart("<base64encoding of username:key>", "<model_id>"); </script>
-4. Inviare l'evento appropriato. Vedere la sezione dettagliata di seguito in merito a tutti i tipi di eventi, esempio di evento Click, <script> se (typeof AzureMLRecommendationsEvent = = "undefined") {         
+     <script>AzureMLRecommendationsStart ("<base64encoding of username:key>", "< model_id >"); </script> 
+4. Eventi di trasmissione hello appropriato. Vedere la sezione dettagliata di seguito in merito a tutti i tipi di eventi, esempio di evento Click, <script> se (typeof AzureMLRecommendationsEvent = = "undefined") {         
                      AzureMLRecommendationsEvent = []; } AzureMLRecommendationsEvent.push({ event: "click", item: "18321116" }); </script>
 
 ### <a name="31----limitations-and-browser-support"></a>3.1.    Limitazioni e supporto browser
 Di seguito viene fornita un'implementazione di riferimento così com'è. Tutti i principali browser dovrebbero essere supportati.
 
 ### <a name="32----type-of-events"></a>3.2.    Tipi di eventi
-La libreria supporta 5 tipi di eventi: Click, Recommendation Click, Add to Shop Cart, Remove from Shop Cart e Purchase. Esiste un evento aggiuntivo, denominato Login, che viene usato per impostare il contesto dell'utente.
+Sono disponibili 5 tipi di evento che supporta la libreria di hello: fare clic su, fare clic su indicazione, aggiungere tooShop carrello, rimuovere dal reparto carrello e l'acquisto. È un evento aggiuntivo che è usato tooset hello utente contesto denominato account di accesso.
 
 #### <a name="321-click-event"></a>3.2.1. Evento Click
-Questo evento deve essere usato ogni volta che un utente fa clic su un elemento. In genere, quando un utente fa clic su un elemento, si apre una nuova pagina contenente i dettagli dell'elemento dove l'evento deve essere attivato.
+Questo evento deve essere usato ogni volta che un utente fa clic su un elemento. In genere quando l'utente fa clic su un elemento di una nuova pagina viene aperto con i dettagli dell'elemento hello; in questa pagina, questo evento dovrebbe essere attivato.
 
 Parametri
 
 * event (stringa, obbligatorio) - "click"
-* item (stringa, obbligatorio) - identificatore univoco dell'elemento
-* itemName (stringa, facoltativo) - nome dell'elemento
-* itemDescription (stringa, facoltativo) - descrizione dell'elemento
-* itemCategory (stringa, facoltativo) - categoria dell'elemento
+* elemento (string, obbligatorio) - identificatore univoco dell'elemento hello
+* itemName (stringa, facoltativo) nome hello dell'elemento di hello
+* Descrizione articolo (stringa, facoltativo) - Descrizione hello dell'elemento di hello
+* itemCategory (stringa, facoltativo) categoria hello dell'elemento hello
   
         <script>
             if (typeof AzureMLRecommendationsEvent == "undefined") { AzureMLRecommendationsEvent = []; }
@@ -106,17 +106,17 @@ In alternativa, con dati facoltativi:
 
 
 #### <a name="322-recommendation-click-event"></a>3.2.2. Evento Recommendation Click
-Questo evento deve essere usato ogni volta che un utente fa clic su un elemento ricevuto da Azure ML Recommendations come elemento raccomandato. In genere, quando un utente fa clic su un elemento, si apre una nuova pagina contenente i dettagli dell'elemento dove l'evento deve essere attivato.
+Questo evento deve essere usato ogni volta che un utente fa clic su un elemento ricevuto da Azure ML Recommendations come elemento raccomandato. In genere quando l'utente fa clic su un elemento di una nuova pagina viene aperto con i dettagli dell'elemento hello; in questa pagina, questo evento dovrebbe essere attivato.
 
 Parametri
 
 * event (stringa, obbligatorio) - "recommendationclick"
-* item (stringa, obbligatorio) - identificatore univoco dell'elemento
-* itemName (stringa, facoltativo) - nome dell'elemento
-* itemDescription (stringa, facoltativo) - descrizione dell'elemento
-* itemCategory (stringa, facoltativo) - categoria dell'elemento
-* seeds (matrice di stringhe, facoltativo) - semi che hanno generato la query di raccomandazione
-* recoList (matrice di stringhe, facoltativo) - il risultato della richiesta di raccomandazione che ha generato l'elemento selezionato
+* elemento (string, obbligatorio) - identificatore univoco dell'elemento hello
+* itemName (stringa, facoltativo) nome hello dell'elemento di hello
+* Descrizione articolo (stringa, facoltativo) - Descrizione hello dell'elemento di hello
+* itemCategory (stringa, facoltativo) categoria hello dell'elemento hello
+* i valori di inizializzazione (matrice di stringhe, facoltativo) - hello i valori di inizializzazione che ha generato query raccomandazione hello.
+* recoList (matrice di stringhe, facoltativo) - hello risultato della richiesta di indicazione hello che ha generato l'elemento hello che è stato fatto clic.
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -132,14 +132,14 @@ In alternativa, con dati facoltativi:
 
 
 #### <a name="323-add-shopping-cart-event"></a>3.2.3. Evento Add Shopping Cart
-Questo evento deve essere usato quando l'utente aggiunge un elemento al carrello acquisti.
+Questo evento deve essere utilizzato quando l'utente di hello aggiungere un elemento di toohello carrello degli acquisti.
 Parametri
 
 * event (stringa, obbligatorio) - "addshopcart"
-* item (stringa, obbligatorio) - identificatore univoco dell'elemento
-* itemName (stringa, facoltativo) - nome dell'elemento
-* itemDescription (stringa, facoltativo) - descrizione dell'elemento
-* itemCategory (stringa, facoltativo) - categoria dell'elemento
+* elemento (string, obbligatorio) - identificatore univoco dell'elemento hello
+* itemName (stringa, facoltativo) nome hello dell'elemento di hello
+* Descrizione articolo (stringa, facoltativo) - Descrizione hello dell'elemento di hello
+* itemCategory (stringa, facoltativo) categoria hello dell'elemento hello
   
         <script>
             if (typeof AzureMLRecommendationsEvent == "undefined") { AzureMLRecommendationsEvent = []; }
@@ -147,15 +147,15 @@ Parametri
         </script>
 
 #### <a name="324-remove-shopping-cart-event"></a>3.2.4. Evento Remove Shopping Cart
-Questo evento deve essere usato quando l'utente rimuove un elemento dal carrello acquisti.
+Questo evento deve essere utilizzato quando l'utente hello rimuove un elemento toohello carrello acquisti.
 
 Parametri
 
 * event (stringa, obbligatorio) - "removeshopcart"
-* item (stringa, obbligatorio) - identificatore univoco dell'elemento
-* itemName (stringa, facoltativo) - nome dell'elemento
-* itemDescription (stringa, facoltativo) - descrizione dell'elemento
-* itemCategory (stringa, facoltativo) - categoria dell'elemento
+* elemento (string, obbligatorio) - identificatore univoco dell'elemento hello
+* itemName (stringa, facoltativo) nome hello dell'elemento di hello
+* Descrizione articolo (stringa, facoltativo) - Descrizione hello dell'elemento di hello
+* itemCategory (stringa, facoltativo) categoria hello dell'elemento hello
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -163,18 +163,18 @@ Parametri
         </script>
 
 #### <a name="325-purchase-event"></a>3.2.5. Evento Purchase
-Questo evento deve essere usato quando l'utente ha acquistato gli elementi nel carrello.
+Questo evento deve essere utilizzato quando l'utente hello ha acquistato il carrello acquisti.
 
 Parametri
 
 * event (stringa) - "purchase"
 * items (acquistati) - matrice contenente una voce per ogni elemento acquistato<br><br>
   Formato elementi acquistati:
-  * item (stringa) - identificatore univoco dell'elemento.
+  * elemento (string) - identificatore univoco dell'elemento hello.
   * count (numero intero o stringa) - numero di elementi che sono stati acquistati
-  * price (float o stringa) - campo facoltativo - prezzo dell'elemento
+  * prezzo (float o string) - campo facoltativo - hello prezzo dell'articolo hello.
 
-L'esempio seguente illustra l'acquisto di 3 elementi (33, 34, 35), di cui due con tutti i campi popolati (item, count, price) e uno (item 34) privo di prezzo.
+esempio di Hello seguente mostra l'acquisto di 3 elementi (33, 34, 35), due con tutti i campi popolati (elemento, count, prezzo) e uno (elemento 34) senza un prezzo.
 
         <script>
             if ( typeof AzureMLRecommendationsEvent == "undefined"){ AzureMLRecommendationsEvent = []; }
@@ -182,14 +182,14 @@ L'esempio seguente illustra l'acquisto di 3 elementi (33, 34, 35), di cui due co
         </script>
 
 #### <a name="326-user-login-event"></a>3.2.6. Evento User Login
-La libreria degli eventi di Azure ML Recommendations crea e usa un cookie per identificare gli eventi che provengono dallo stesso browser. Per migliorare i risultati del modello, Azure ML Recommendations consente di impostare un'identificazione univoca dell'utente che sostituirà l'utilizzo del cookie.
+Azure ML indicazioni evento libreria consente di creare e utilizzare un cookie negli eventi tooidentify ordine da cui proviene hello browser stesso. Nel modello di ordine tooimprove hello risultati Azure ML indicazioni consente tooset un'identificazione univoca di utente che eseguirà l'override dell'utilizzo di cookie hello.
 
-Questo evento deve essere usato dopo l'accesso dell'utente al sito.
+Questo evento deve essere utilizzato dopo sito tooyour account di accesso utente di hello.
 
 Parametri
 
 * event (stringa) - "userlogin"
-* user (stringa) - identificazione univoca dell'utente
+* utente (string) - identificazione univoca dell'utente hello.
   
         <script>
             if (typeof AzureMLRecommendationsEvent=="undefined") { AzureMLRecommendationsEvent = []; }
@@ -197,25 +197,25 @@ Parametri
         </script>
 
 ## <a name="4-consume-recommendations-via-javascript"></a>4. Utilizzare le raccomandazioni tramite JavaScript
-Il codice che utilizza la raccomandazione viene attivato da alcuni eventi JavaScript nella pagina Web del client. Le risposta alla raccomandazione include gli ID degli elementi raccomandati con i relativi nomi e valutazioni. È preferibile usare questa opzione solo per la visualizzazione di un elenco degli elementi consigliati. Le attività di gestione più complesse, ad esempio l'aggiunta dei metadati dell'elemento, devono essere eseguite sull'integrazione lato server.
+codice Hello che utilizza la raccomandazione hello viene attivato da un evento JavaScript dalla pagina Web del client hello. risposta di raccomandazione Hello include hello gli ID degli elementi, i relativi nomi e le classificazioni consigliati. È toouse migliore, è necessario eseguire questa opzione solo per visualizzare un elenco di elementi - più complessi la gestione (ad esempio l'aggiunta di metadati dell'elemento hello) consigliato hello sull'integrazione di lato server hello.
 
 ### <a name="41-consume-recommendations"></a>4.1 Utilizzare le raccomandazioni
-Per utilizzare le raccomandazioni, è necessario includere nella pagina le librerie JavaScript obbligatorie e chiamare AzureMLRecommendationsStart. Vedere la sezione 2.
+le raccomandazioni tooconsume che necessarie tooinclude hello necessarie librerie JavaScript nella pagina e toocall AzureMLRecommendationsStart. Vedere la sezione 2.
 
-Per utilizzare le raccomandazioni per uno o più elementi, è necessario chiamare un metodo denominato AzureMLRecommendationsGetI2IRecommendation.
+indicazioni tooconsume per uno o più elementi, è necessario toocall chiamato un metodo: AzureMLRecommendationsGetI2IRecommendation.
 
 Parametri
 
-* items (matrice di stringhe) - uno o più elementi per i quali ottenere le raccomandazioni Se si usa una build Fbt, qui sarà possibile impostare un solo elemento.
+* gli elementi (matrice di stringhe): uno o più elementi tooget consigli. Se si usa una build Fbt, qui sarà possibile impostare un solo elemento.
 * numberOfResults (numero intero) - numero dei risultati richiesti
-* includeMetadata (booleano, facoltativo) - se impostato su 'true' indica che il campo di metadati deve essere popolato nel risultato
-* Funzione di elaborazione - una funzione che gestirà le raccomandazioni restituite I dati vengono restituiti come matrice di:
+* includeMetadata (valore booleano, facoltativo) - se impostato too'true' indica il campo di metadati hello deve essere popolato nel risultato hello.
+* L'elaborazione di funzione, una funzione che gestirà indicazioni hello restituito. Hello dati vengono restituiti come matrice di:
   * Item - ID univoco dell'elemento
   * name - nome dell'elemento (se esiste nel catalogo)
   * rating - valutazione della raccomandazione
-  * metadata - stringa che rappresenta i metadati dell'elemento
+  * metadati - stringa che rappresenta i metadati di hello dell'elemento hello
 
-Esempio: il codice seguente richiede 8 raccomandazioni per l'elemento "64f6eb0d-947a-4c18-a16c-888da9e228ba" e, poiché il parametro includeMetadata non è specificato, è implicito che i metadati non sono obbligatori. I risultati vengono quindi concatenati in un buffer.
+Esempio: le richieste di hello seguente codice 8 indicazioni per l'elemento "64f6eb0d-947a-4c18-a16c-888da9e228ba" (e non specificando includeMetadata - implicitamente dichiara che i metadati non sono necessario), quindi concatenare i risultati di hello in un buffer.
 
         <script>
              var reco = AzureMLRecommendationsGetI2IRecommendation(["64f6eb0d-947a-4c18-a16c-888da9e228ba"], 8, false, function (reco) {

@@ -1,6 +1,6 @@
 ---
-title: Configurare la telemetria di Servizi multimediali di Azure con REST | Microsoft Docs
-description: Questo articolo illustra come usare i dati di telemetria di Servizi multimediali di Azure usando le API REST.
+title: dati di telemetria di servizi multimediali di Azure con REST aaaConfiguring | Documenti Microsoft
+description: Questo articolo illustra come toouse hello telemetria di servizi multimediali di Azure tramite l'API REST...
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>Configurare la telemetria di Servizi multimediali di Azure con REST
 
-Questo argomento descrive in generale i possibili passaggi da eseguire per configurare la telemetria di Servizi multimediali di Azure usando l'API REST. 
+Questo argomento descrive i passaggi generali che è possibile eseguire durante la configurazione di telemetria di hello Azure Media Services (AMS) tramite l'API REST. 
 
 >[!NOTE]
->Per una spiegazione dettagliata della telemetria AMS e di come usarla, vedere l'argomento di [panoramica](media-services-telemetry-overview.md).
+>Per informazioni su cosa hello è telemetria AMS e come tooconsume, vedere hello [Panoramica](media-services-telemetry-overview.md) argomento.
 
-Questo argomento descrive come:
+Hello passaggi descritti in questo argomento sono:
 
-- Associare l'account di archiviazione a un account Servizi multimediali
-- Acquisire gli endpoint di notifica
+- Recupero di account di archiviazione hello associata a un account di servizi multimediali
+- Recupero degli endpoint di notifica hello
 - Creare un endpoint di notifica per il monitoraggio. 
 
-    Per creare un endpoint di notifica, impostare la proprietà EndPointType su AzureTable (2) e endPointAddress sulla tabella di archiviazione (ad esempio, https://telemetryvalidationstore.table.core.windows.net/).
+    toocreate un Endpoint di notifica, impostare hello EndPointType tooAzureTable (2) e tabella di archiviazione endPontAddress set toohello (ad esempio, https://telemetryvalidationstore.table.core.windows.net/).
   
-- Ottenere le configurazioni di monitoraggio
+- Ottenere le configurazioni di monitoraggio hello
 
-    Creare un'impostazione di configurazione del monitoraggio per i servizi da monitorare. È consentita una sola impostazione di configurazione del monitoraggio. 
+    Creare una configurazione di monitoraggio delle impostazioni per hello servizi si desidera toomonitor. È consentita una sola impostazione di configurazione del monitoraggio. 
 
 - Aggiungere una configurazione di monitoraggio
 
 
  
-## <a name="get-the-storage-account-associated-with-a-media-services-account"></a>Associare l'account di archiviazione a un account Servizi multimediali
+## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a>Ottenere l'account di archiviazione hello associata a un account di servizi multimediali
 
 ###<a name="request"></a>Richiesta
 
@@ -71,7 +71,7 @@ Questo argomento descrive come:
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-the-notification-endpoints"></a>Acquisire gli endpoint di notifica
+## <a name="get-hello-notification-endpoints"></a>Ottenere gli endpoint di notifica hello
 
 ###<a name="request"></a>Richiesta
 
@@ -125,7 +125,7 @@ Questo argomento descrive come:
     }
 
 >[!NOTE]
->Non dimenticare di modificare il valore "https://telemetryvalidationstore.table.core.windows.net" con l'account di archiviazione.
+>Non dimenticare di account di archiviazione tooyour toochange hello "https://telemetryvalidationstore.table.core.windows.net" valore.
 
 ###<a name="response"></a>Response
 
@@ -146,7 +146,7 @@ Questo argomento descrive come:
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-the-monitoring-configurations"></a>Ottenere le configurazioni di monitoraggio
+## <a name="get-hello-monitoring-configurations"></a>Ottenere le configurazioni di monitoraggio hello
 
 ### <a name="request"></a>Richiesta
 

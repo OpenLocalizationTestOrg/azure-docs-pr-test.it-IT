@@ -1,6 +1,6 @@
 ---
-title: Inviare processi MapReduce con HDInsight .NET SDK - Azure | Microsoft Docs
-description: Informazioni su come inviare processi MapReduce ad Azure HDInsight Hadoop con HDInsight .NET SDK.
+title: i processi MapReduce aaaSubmit tramite HDInsight .NET SDK - Azure | Documenti Microsoft
+description: Informazioni su come i processi di MapReduce toosubmit tooAzure HDInsight Hadoop tramite HDInsight .NET SDK.
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: 015435270c31bafea0ebf5303b459338755c1410
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d00e31400b8fa47982c31d00bfdcdb304bcb0b59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-mapreduce-jobs-using-hdinsight-net-sdk"></a>Eseguire processi MapReduce con HDInsight .NET SDK
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-Informazioni su come inviare processi MapReduce con HDInsight .NET SDK. I cluster HDInsight includono un file JAR con alcuni esempi di MapReduce. Il file JAR è */example/jars/hadoop-mapreduce-examples.jar*.  Uno degli esempi è *wordcount*. Per inviare un processo wordcount, è necessario sviluppare un'applicazione console C#.  Il processo legge il file */example/data/gutenberg/davinci.txt* e restituisce i risultati in */example/data/davinciwordcount*.  Se si vuole eseguire di nuovo l'applicazione, è necessario pulire la cartella di output.
+Informazioni su come i processi MapReduce toosubmit tramite HDInsight .NET SDK. I cluster HDInsight includono un file JAR con alcuni esempi di MapReduce. file jar Hello è */example/jars/hadoop-mapreduce-examples.jar*.  Uno degli esempi di hello è *wordcount*. Si sviluppa un toosubmit dei applicazione dei console c# un processo wordcount.  processo Hello legge hello */example/data/gutenberg/davinci.txt* file e gli output hello risultati troppo*/example/data/davinciwordcount*.  Se si desidera un'applicazione hello toorerun, è necessario pulire la cartella di output hello.
 
 > [!NOTE]
-> I passaggi descritti in questo articolo devono essere eseguiti da un client Windows. Per informazioni sull'uso di un client Linux, OS X o Unix con Hive, usare il selettore di schede visualizzato all'inizio dell'articolo.
+> passaggi di Hello in questo articolo devono essere eseguiti da un client di Windows. Per informazioni sull'uso di un Linux, OS X o toowork client Unix con Hive, usare il selettore di scheda hello visualizzato nella parte superiore di hello di articolo hello.
 > 
 > 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per eseguire le procedure descritte nell'articolo sono necessari gli elementi seguenti:
+Prima di iniziare questo articolo, è necessario disporre di hello seguenti elementi:
 
 * **Un cluster Hadoop in HDInsight**. Vedere [Introduzione all'uso di Hadoop basato su Linux in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).
 * **Visual Studio 2013/2015/2017**.
 
 ## <a name="submit-mapreduce-jobs-using-hdinsight-net-sdk"></a>Inviare processi MapReduce mediante HDInsight .NET SDK
-HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei cluster HDInsight da .NET. 
+Hello HDInsight .NET SDK fornisce librerie client .NET, che rende più semplice toowork con i cluster HDInsight da .NET. 
 
-**Inviare i processi**
+**processi tooSubmit**
 
 1. Creare un'applicazione console C# in Visual Studio.
-2. Dalla console di Gestione pacchetti NuGet eseguire il comando seguente:
+2. Nella Console di gestione pacchetti Nuget hello, eseguire hello comando seguente:
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-3. Usare il codice seguente:
+3. Utilizzare hello seguente codice:
    
         using System.Collections.Generic;
         using System.IO;
@@ -79,14 +79,14 @@ HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei clus
    
                 static void Main(string[] args)
                 {
-                    System.Console.WriteLine("The application is running ...");
+                    System.Console.WriteLine("hello application is running ...");
    
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = existingClusterUsername, Password = existingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(existingClusterUri, clusterCredentials);
    
                     SubmitMRJob();
    
-                    System.Console.WriteLine("Press ENTER to continue ...");
+                    System.Console.WriteLine("Press ENTER toocontinue ...");
                     System.Console.ReadLine();
                 }
    
@@ -101,13 +101,13 @@ HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei clus
                         Arguments = args
                     };
    
-                    System.Console.WriteLine("Submitting the MR job to the cluster...");
+                    System.Console.WriteLine("Submitting hello MR job toohello cluster...");
                     var jobResponse = _hdiJobManagementClient.JobManagement.SubmitMapReduceJob(paras);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
    
-                    System.Console.WriteLine("Waiting for the job completion ...");
+                    System.Console.WriteLine("Waiting for hello job completion ...");
    
                     // Wait for job completion
                     var jobDetail = _hdiJobManagementClient.JobManagement.GetJob(jobId).JobDetail;
@@ -124,15 +124,15 @@ HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei clus
         
                     if (jobDetail.ExitValue == 0)
                     {
-                        // Create the storage account object
+                        // Create hello storage account object
                         CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=" + 
                             defaultStorageAccountName + 
                             ";AccountKey=" + defaultStorageAccountKey);
         
-                        // Create the blob client.
+                        // Create hello blob client.
                         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
         
-                        // Retrieve reference to a previously created container.
+                        // Retrieve reference tooa previously created container.
                         CloudBlobContainer container = blobClient.GetContainerReference(defaultStorageContainerName);
         
                         CloudBlockBlob blockBlob = container.GetBlockBlobReference(outputFolder.Substring(1) + "/part-r-00000");
@@ -163,18 +163,18 @@ HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei clus
                 }
             }
         }
-4. Premere **F5** per eseguire l'applicazione.
+4. Premere **F5** toorun un'applicazione hello.
 
-Per eseguire nuovamente il processo, è necessario cambiare il nome della cartella di output del processo, che nell'esempio è: "/example/data/davinciwordcount".
+il processo di hello toorun nuovamente, è necessario modificare hello output cartella nome del processo, nell'esempio hello, è "/ esempio/data/davinciwordcount".
 
-Al completamento del processo, l'applicazione stampa il contenuto del file di output "part-r-00000".
+Quando hello viene completato correttamente, un'applicazione hello stampa contenuto hello del file di output di hello "parte-r-00000".
 
 ## <a name="next-steps"></a>Passaggi successivi
-Questo articolo ha spiegato vari modi per creare un cluster HDInsight. Per altre informazioni, vedere gli articoli seguenti:
+In questo articolo sono state fornite diverse modi toocreate un cluster HDInsight. toolearn informazioni, vedere hello seguenti articoli:
 
 * Per l'invio di un processo Hive, vedere [Eseguire query Hive con HDInsight .NET SDK](hdinsight-hadoop-use-hive-dotnet-sdk.md).
 * Per creare cluster HDInsight, vedere [Creare cluster Hadoop basati su Linux in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 * Per gestire cluster HDInsight, vedere [Gestire cluster Hadoop in HDInsight](hdinsight-administer-use-portal-linux.md).
-* Per informazioni su HDInsight .NET SDK, vedere [HDInsight .NET SDK reference](https://msdn.microsoft.com/library/mt271028.aspx) (Informazioni di riferimento su HDInsight .NET SDK).
-* Per usare l'autenticazione non interattiva in Azure, vedere [Creare applicazioni .NET HDInsight di autenticazione non interattive](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
+* Per l'apprendimento hello HDInsight .NET SDK, vedere [riferimento HDInsight .NET SDK](https://msdn.microsoft.com/library/mt271028.aspx).
+* Per non interattivo autenticare tooAzure, vedere [creare applicazioni di HDInsight .NET di autenticazione non interattivo](hdinsight-create-non-interactive-authentication-dotnet-applications.md).
 

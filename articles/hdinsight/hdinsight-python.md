@@ -1,6 +1,6 @@
 ---
-title: 'Funzioni definite dall''utente di Python con Apache Hive e Pig: Azure HDInsight | Microsoft Docs'
-description: Informazioni su come usare le funzioni definite dall'utente di Python da Hive e Pig in HDInsight, lo stack di tecnologie Hadoop in Azure.
+title: funzione definita dall'utente con Apache Hive e Pig - Azure HDInsight aaaPython | Documenti Microsoft
+description: Informazioni su come stack di chiamate toouse Python utente definite funzioni (UDF) dall'Hive e Pig in HDInsight, hello tecnologia di Hadoop su Azure.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,37 +16,37 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 9b67ded05a52f1e68580434667495cf6cf939871
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 26d8160cc6ed7fc22c3f06f7c1c9954c224b2366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a>Usare le funzioni definite dall'utente di Python (UDF) con Hive e Pig in HDInsight
 
-Informazioni su come usare le funzioni definite dall'utente di Python con Apache Hive e Pig in Hadoop in Azure HDInsight.
+Informazioni su come toouse Python definito dall'utente (UDF) di funzioni con Apache Hive e Pig in Hadoop in HDInsight di Azure.
 
 ## <a name="python"></a>Python in HDInsight
 
-Python 2.7 viene installato per impostazione predefinita in HDInsight 3.0 e versioni successive. Apache Hive può essere usato con questa versione di Python per l'elaborazione di flussi. L'elaborazione di flussi usa STDOUT e STDIN per passare i dati tra Hive e la funzione definita dall'utente.
+Python 2.7 viene installato per impostazione predefinita in HDInsight 3.0 e versioni successive. Apache Hive può essere usato con questa versione di Python per l'elaborazione di flussi. L'elaborazione di flusso Usa STDOUT e STDIN dati toopass tra Hive e hello funzione definita dall'utente.
 
-HDInsight include anche Jython, un'implementazione di Python scritta in Java. Jython viene eseguito direttamente in Java Virtual Machine e non usa lo streaming. Jython è l'interprete Python consigliato quando si usa Python con Pig.
+HDInsight include anche Jython, un'implementazione di Python scritta in Java. Jython viene eseguito direttamente sulla macchina virtuale Java hello e non utilizzare il flusso. Jython è hello consigliato interprete Python quando si usa Python con Pig.
 
 > [!WARNING]
-> La procedura in questo documento parte dai presupposti seguenti: 
+> passaggi di Hello in questo documento si hello seguenti presupposti: 
 >
-> * L'utente deve creare gli script Python in un ambiente di sviluppo locale.
-> * Caricare gli script in HDInsight usando il comando `scp` da una sessione Bash locale o lo script di PowerShell presente.
+> * Script Python hello è creare nell'ambiente di sviluppo locale.
+> * Caricare tooHDInsight script hello utilizzando entrambi hello `scp` comando da una sessione Bash locale o hello fornito uno script di PowerShell.
 >
-> Se si desidera usare l'anteprima [Azure Cloud Shell (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) con HDInsight, è necessario:
+> Se si desidera hello toouse [Shell di Cloud di Azure (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) anteprima toowork con HDInsight, è necessario:
 >
-> * Creare gli script all'interno dell'ambiente Cloud Shell.
-> * Usare `scp` per caricare i file da Cloud Shell in HDInsight.
-> * Usare `ssh` da Cloud Shell per connettersi a HDInsight ed eseguire gli esempi.
+> * Creare script hello all'interno di ambiente della shell hello cloud.
+> * Utilizzare `scp` file hello tooupload hello cloud tooHDInsight shell.
+> * Utilizzare `ssh` da hello cloud shell tooconnect tooHDInsight ed esempi di esecuzione hello.
 
 ## <a name="hivepython"></a>UDF di Hive
 
-Python può essere usato come funzione definita dall'utente da Hive tramite l'istruzione `TRANSFORM` di HiveQL. Ad esempio, HiveQL seguente richiama il file `hiveudf.py` archiviato nell'account di archiviazione di Azure predefinito per il cluster.
+Python può essere utilizzato come una funzione definita dall'utente dall'Hive tramite HiveQL hello `TRANSFORM` istruzione. Ad esempio, hello HiveQL seguente richiama hello `hiveudf.py` file archiviato nell'account di archiviazione di Azure hello predefinito per il cluster hello.
 
 **HDInsight basato su Linux**
 
@@ -73,20 +73,20 @@ ORDER BY clientid LIMIT 50;
 ```
 
 > [!NOTE]
-> Nei cluster HDInsight basati su Windows la clausola `USING` deve specificare il percorso completo di python.exe.
+> Nei cluster HDInsight basati su Windows, hello `USING` clausola deve specificare toopython.exe percorso completo hello.
 
 Ecco cosa fa l'esempio:
 
-1. L'istruzione `add file` all'inizio del file aggiunge il file `hiveudf.py` alla cache distribuita ed è quindi accessibile a tutti i nodi del cluster.
-2. L'istruzione `SELECT TRANSFORM ... USING` seleziona i dati da `hivesampletable`. Passa anche i valori clientid, devicemake e devicemodel nello script `hiveudf.py`.
-3. La clausola `AS` descrive i campi restituiti da `hiveudf.py`.
+1. Hello `add file` istruzione all'inizio di hello del file hello aggiunge hello `hiveudf.py` toohello file distribuito cache, in modo che sia accessibile da tutti i nodi nel cluster hello.
+2. Hello `SELECT TRANSFORM ... USING` istruzione vengono selezionati dati hello `hivesampletable`. Passa inoltre clientid hello e devicemake devicemodel valori toohello `hiveudf.py` script.
+3. Hello `AS` clausola descrive campi hello restituiti da `hiveudf.py`.
 
 <a name="streamingpy"></a>
 
-### <a name="create-the-hiveudfpy-file"></a>Creare il file hiveudf.py
+### <a name="create-hello-hiveudfpy-file"></a>Creare file hiveudf.py hello
 
 
-Nell'ambiente di sviluppo creare un file di testo denominato `hiveudf.py`. Usare il codice seguente come contenuto del file:
+Nell'ambiente di sviluppo creare un file di testo denominato `hiveudf.py`. Utilizzare hello seguente di codice come contenuto di hello del file hello:
 
 ```python
 #!/usr/bin/env python
@@ -105,34 +105,34 @@ while True:
     print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])
 ```
 
-Lo script esegue le azioni seguenti:
+Questo script esegue hello seguenti azioni:
 
 1. Leggere una riga di dati da STDIN.
-2. Il carattere di nuova riga finale viene rimosso con `string.strip(line, "\n ")`.
-3. Durante l'elaborazione di flussi tutti i valori sono contenuti in un'unica riga sono separati da un carattere di tabulazione. Si può quindi usare `string.split(line, "\t")` per dividere l'input in corrispondenza di ogni tabulazione, in modo da restituire solo i campi.
-4. Al termine dell'elaborazione, l'output deve essere scritto in STDOUT in un'unica riga, con i campi separati da tabulazioni. Ad esempio, `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.
-5. Il ciclo `while` si ripete finché non viene letta alcuna `line`.
+2. Hello carattere di nuova riga finale viene rimosso mediante `string.strip(line, "\n ")`.
+3. Quando si esegue l'elaborazione del flusso, una singola riga contiene tutti i valori hello con un carattere di tabulazione tra ogni valore. Pertanto, `string.split(line, "\t")` può essere utilizzato toosplit hello l'input in ogni scheda, restituendo solo i campi di hello.
+4. Una volta completata l'elaborazione, è possibile che l'output di hello deve scritto tooSTDOUT come una singola riga, con una scheda tra ogni campo. ad esempio `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.
+5. Hello `while` ciclo si ripete fino a quando non `line` è di lettura.
 
-Lo script di output è una concatenazione di valori di input per `devicemake` e `devicemodel` e un hash del valore concatenato.
+output di Hello dello script è una concatenazione di valori di input per hello `devicemake` e `devicemodel`, e un hash di hello valore concatenato.
 
-Per informazioni su come eseguire questo esempio nel cluster HDInsight, vedere [Esecuzione degli esempi](#running) .
+Vedere [esecuzione esempi hello](#running) come toorun in questo esempio il cluster HDInsight.
 
 ## <a name="pigpython"></a>UDF di Pig
 
-Si può usare uno script di Python come funzione definita dall'utente da Pig tramite l'istruzione `GENERATE`. È possibile eseguire lo script usando Jython o C Python.
+Script Python può essere utilizzato come una funzione definita dall'utente da Pig tramite hello `GENERATE` istruzione. È possibile eseguire script hello utilizzando Jython o Python C.
 
-* Jython viene eseguito su JVM e può essere chiamato in modo nativo da Pig.
-* C Python è un processo esterno, pertanto i dati di Pig su JVM vengono inviati allo script in esecuzione in un processo di Python. Quindi l'output dello script di Python viene inviato in Pig.
+* Jython viene eseguito su hello JVM e può essere chiamato in modo nativo da Pig.
+* C Python è un processo esterno, pertanto dati hello Pig in hello JVM viene inviato toohello script in esecuzione in un processo di Python. output di Hello di script Python hello viene inviato nuovamente nel Pig.
 
-Per specificare l'interprete Python, usare `register` quando si fa riferimento allo script di Python. Negli esempi seguenti gli script vengono registrati con Pig come `myfuncs`:
+interprete Python di hello toospecify, utilizzare `register` quando si fa riferimento a script Python hello. Hello negli esempi seguenti registrarsi script Pig come `myfuncs`:
 
-* **Per usare Jython**: `register '/path/to/pigudf.py' using jython as myfuncs;`
-* **Per usare C Python**: `register '/path/to/pigudf.py' using streaming_python as myfuncs;`
+* **toouse Jython**:`register '/path/to/pigudf.py' using jython as myfuncs;`
+* **toouse Python C**:`register '/path/to/pigudf.py' using streaming_python as myfuncs;`
 
 > [!IMPORTANT]
-> Quando si usa Jython, il percorso al file pig_jython può essere un percorso locale o un percorso WASB://. Tuttavia, quando si usa C Python, è necessario fare riferimento un file nel file system locale del nodo che si usa per inviare il processo Pig.
+> Quando si utilizza Jython, hello percorso toohello pig_jython file può essere un percorso locale o un WASB: / / percorso. Tuttavia, quando si usa Python C, è necessario fare riferimento un file hello file System locale del nodo hello che si sta utilizzando un processo Pig di hello toosubmit.
 
-Una volta trascorsa la registrazione, Pig Latin per questo esempio è lo stesso per entrambi:
+Una volta dopo la registrazione, hello latino Pig per questo esempio hello stesso per entrambi:
 
 ```pig
 LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
@@ -143,19 +143,19 @@ DUMP DETAILS;
 
 Ecco cosa fa l'esempio:
 
-1. La prima riga carica il file di dati di esempio `sample.log` in `LOGS`. Definisce anche ogni record come `chararray`.
-2. La riga successiva esclude tutti i valori Null, archiviando il risultato dell'operazione in `LOG`.
-3. Esegue quindi l'iterazione sui record in `LOG` e usa `GENERATE` per richiamare il metodo `create_structure` contenuto nello script di Python/Jython caricato come `myfuncs`. `LINE` viene usato per passare il record corrente alla funzione.
-4. Viene infine eseguito il dump degli output in STDOUT con il comando `DUMP`. Questo comando visualizza i risultati al termine dell'operazione.
+1. Hello prima riga Carica file di dati di esempio hello, `sample.log` in `LOGS`. Definisce anche ogni record come `chararray`.
+2. riga successiva Hello esclude tramite filtro i valori null, archiviando hello risultato dell'operazione di hello in `LOG`.
+3. Successivamente, scorre record hello `LOG` e utilizza `GENERATE` tooinvoke hello `create_structure` metodo contenuto nello script Python/Jython hello caricato come `myfuncs`. `LINE`viene utilizzato toopass funzione toohello record corrente hello.
+4. Infine, gli output di hello sono tooSTDOUT dumping tramite hello `DUMP` comando. Questo comando Visualizza i risultati di hello al termine dell'operazione di hello.
 
-### <a name="create-the-pigudfpy-file"></a>Creare il file pigudf.py
+### <a name="create-hello-pigudfpy-file"></a>Creare file pigudf.py hello
 
-Nell'ambiente di sviluppo creare un file di testo denominato `pigudf.py`. Usare il codice seguente come contenuto del file:
+Nell'ambiente di sviluppo creare un file di testo denominato `pigudf.py`. Utilizzare hello seguente di codice come contenuto di hello del file hello:
 
 <a name="streamingpy"></a>
 
 ```python
-# Uncomment the following if using C Python
+# Uncomment hello following if using C Python
 #from pig_util import outputSchema
 
 @outputSchema("log: {(date:chararray, time:chararray, classname:chararray, level:chararray, detail:chararray)}")
@@ -166,61 +166,61 @@ def create_structure(input):
     return date, time, classname, level, detail
 ```
 
-Nell'esempio Pig Latin l'input di `LINE` è stato definito come chararray perché non contiene uno schema coerente. Con lo script Python i dati vengono trasformati in uno schema coerente per l'output.
+Nell'esempio Pig latino hello è definito hello `LINE` di input come un chararray perché nessuno schema coerente per l'input hello. Hello script Python Trasforma dati hello in uno schema coerente per l'output.
 
-1. L'istruzione `@outputSchema` definisce il formato dei dati che verranno restituiti a Pig. In questo caso si tratta di un **contenitore di dati**, ovvero un tipo di dati Pig. Il contenitore include i seguenti campi, che sono tutti chararray (stringhe):
+1. Hello `@outputSchema` istruzione definisce il formato di hello dei dati di hello restituito tooPig. In questo caso si tratta di un **contenitore di dati**, ovvero un tipo di dati Pig. contenitore Hello contiene hello seguenti campi, ognuno dei quali sono chararray (stringhe):
 
-   * date - data di creazione della voce del log
-   * time - ora di creazione della voce del log
-   * classname - nome della classe per cui è stata creata la voce
-   * level - livello del log
-   * detail - dettagli relativi alla voce di log
+   * Data - hello data hello voce del log è stata creata
+   * ora - hello voce di log hello è stato creato
+   * ClassName - voce hello nome di classe hello è stato creato per
+   * livello - hello log
+   * voce di log dettagliate per hello - dettagli
 
-2. Successivamente `def create_structure(input)` definisce la funzione a cui Pig passerà le voci.
+2. Successivamente, hello `def create_structure(input)` definisce una funzione hello Pig passa voci.
 
-3. I dati di esempio in `sample.log` sono per lo più conformi allo schema date, time, classname, level e detail che si intende restituire. Contengono tuttavia alcune righe che iniziano con `*java.lang.Exception*`. Queste righe devono essere modificate in modo che corrispondano allo schema. L'istruzione `if` verifica la presenza di queste righe, quindi forza i dati di input a spostare la stringa `*java.lang.Exception*` alla fine, portando i dati in linea con lo schema di output previsto.
+3. dati di esempio, Hello `sample.log`, principalmente toohello data, ora, NomeClasse, livello, è conforme e schema desideriamo tooreturn in dettaglio. Contengono tuttavia alcune righe che iniziano con `*java.lang.Exception*`. Queste righe devono essere schema hello toomatch modificato. Hello `if` istruzione verifica la presenza di quelli quindi terapeutici hello hello toomove dati di input `*java.lang.Exception*` fine toohello stringa, riportare hello dati in linea con il nostro schema output previsto.
 
-4. Viene quindi usato il comando `split` per dividere i dati in corrispondenza dei primi quattro spazi. L'output viene assegnato in `date`, `time`, `classname`, `level` e `detail`.
+4. Successivamente, hello `split` comando è utilizzati toosplit hello dati hello prima quattro spazi. output di Hello viene assegnato in `date`, `time`, `classname`, `level`, e `detail`.
 
-5. I valori vengono infine restituiti a Pig.
+5. Infine, i valori hello vengono restituiti tooPig.
 
-Quando i dati vengono restituiti a Pig, lo schema sarà coerente, come definito nell'istruzione `@outputSchema`.
+Quando vengono restituiti i dati di hello tooPig ha uno schema coerente, come definito in hello `@outputSchema` istruzione.
 
-## <a name="running"></a>Caricare ed eseguire gli esempi
+## <a name="running"></a>Caricare ed eseguire gli esempi di hello
 
 > [!IMPORTANT]
-> La procedura per **SSH** può essere eseguita solo con un cluster HDInsight basato su Linux. La procedura per **PowerShell** può essere eseguita con un cluster HDInsight basato su Linux o su Windows, ma è necessario un client Windows.
+> Hello **SSH** procedura funziona solo con un cluster HDInsight basati su Linux. Hello **PowerShell** passaggi lavorare con i cluster HDInsight basati su Windows o Linux, ma richiede un client di Windows.
 
 ### <a name="ssh"></a>SSH
 
 Per altre informazioni sull'uso di SSH, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-1. Usare `scp` per copiare i file nel cluster HDInsight. Ad esempio, il comando seguente copia i file in un cluster denominato **mycluster**.
+1. Utilizzare `scp` cluster di HDInsight tooyour file hello toocopy. Ad esempio, hello comando copie hello cluster tooa file denominato seguente **mycluster**.
 
     ```bash
     scp hiveudf.py pigudf.py myuser@mycluster-ssh.azurehdinsight.net:
     ```
 
-2. Usare SSH per connettersi al cluster.
+2. Usare SSH tooconnect toohello cluster.
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
     ```
 
-3. Dalla sessione SSH, aggiungere i file python caricati in precedenza nell'archivio WASB per il cluster.
+3. Dalla sessione SSH hello, aggiungere i file di python hello caricato precedentemente archiviazione WASB toohello per cluster hello.
 
     ```bash
     hdfs dfs -put hiveudf.py /hiveudf.py
     hdfs dfs -put pigudf.py /pigudf.py
     ```
 
-Dopo il caricamento dei file, usare la procedura seguente per eseguire i processi Hive e Pig.
+Dopo aver caricato il file hello, seguente hello utilizzare passaggi toorun hello Hive e processi Pig.
 
-#### <a name="use-the-hive-udf"></a>Usare l'UDF di Hive
+#### <a name="use-hello-hive-udf"></a>Utilizzare hello Hive definita dall'utente
 
-1. Usare il comando `hive` per avviare la shell di Hive. Una volta caricata la shell, verrà visualizzato un prompt `hive>` .
+1. Hello utilizzare `hive` toostart hello hive shell dei comandi. Verrà visualizzato un `hive>` richiedere una volta caricate shell hello.
 
-2. Immettere la query seguente al prompt `hive>`:
+2. Immettere hello seguente query hello `hive>` prompt dei comandi:
 
    ```hive
    add file wasb:///hiveudf.py;
@@ -231,7 +231,7 @@ Dopo il caricamento dei file, usare la procedura seguente per eseguire i process
    ORDER BY clientid LIMIT 50;
    ```
 
-3. Dopo l'immissione dell'ultima riga il processo dovrebbe essere avviato. Al termine del processo, restituisce un output simile al seguente esempio:
+3. Dopo aver immesso l'ultima riga hello, deve iniziare il processo di hello. Al termine del processo di hello, verrà restituito toohello simili di output esempio seguente:
 
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -239,11 +239,11 @@ Dopo il caricamento dei file, usare la procedura seguente per eseguire i process
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
 
-#### <a name="use-the-pig-udf"></a>Usare l'UDF di Pig
+#### <a name="use-hello-pig-udf"></a>Utilizzare hello Pig funzione definita dall'utente
 
-1. Usare il comando `pig` per avviare la shell. Dopo il caricamento della shell, viene visualizzato un prompt `grunt>`.
+1. Hello utilizzare `pig` toostart hello shell dei comandi. Viene visualizzato un `grunt>` richiedere una volta caricate shell hello.
 
-2. Al prompt `grunt>` immettere le istruzioni seguenti:
+2. Immettere hello seguendo le istruzioni nel hello `grunt>` prompt dei comandi:
 
    ```pig
    Register wasb:///pigudf.py using jython as myfuncs;
@@ -253,7 +253,7 @@ Dopo il caricamento dei file, usare la procedura seguente per eseguire i process
    DUMP DETAILS;
    ```
 
-3. Dopo l'immissione della riga seguente, il processo dovrebbe essere avviato. Al termine del processo, restituisce un output simile ai dati seguenti:
+3. Dopo aver immesso hello successiva riga, deve iniziare il processo di hello. Al termine del processo di hello, verrà restituito toohello simili di output dati seguenti:
 
         ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
         ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -261,21 +261,21 @@ Dopo il caricamento dei file, usare la procedura seguente per eseguire i process
         ((2012-02-03,20:11:56,SampleClass3,[TRACE],verbose detail for id 1718828806))
         ((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
-4. Usare `quit` per chiudere la shell Grunt e quindi il prompt seguente per modificare il file pigudf.py nel file system locale:
+4. Utilizzare `quit` tooexit hello shell Grunt e quindi utilizzare hello seguenti tooedit hello pigudf.py file hello file System locale:
 
     ```bash
     nano pigudf.py
     ```
 
-5. Una volta nell'editor, rimuovere i simboli di commenti dalla riga seguente rimuovendo il carattere `#` dall'inizio della riga:
+5. Una volta nell'editor di hello, rimuovere il commento hello successiva riga rimuovendo hello `#` caratteri dall'inizio di hello della riga hello:
 
     ```bash
     #from pig_util import outputSchema
     ```
 
-    Una volta apportata la modifica, usare Ctrl + X per uscire dall'editor. Selezionare Y e quindi INVIO per salvare le modifiche.
+    Una volta effettuato modifica hello, utilizzare l'editor di hello tooexit Ctrl + X. Selezionare Y e quindi immettere toosave hello modifiche.
 
-6. Usare il comando `pig` per avviare di nuovo la shell. Una volta al prompt `grunt>` usare la riga seguente per eseguire il script di Python con l'interprete C Python.
+6. Hello utilizzare `pig` toostart hello shell dei comandi nuovamente. Una volta visualizzato hello `grunt>` prompt, usare lo script Python di hello toorun usando interprete Python C hello seguente hello.
 
    ```pig
    Register 'pigudf.py' using streaming_python as myfuncs;
@@ -285,17 +285,17 @@ Dopo il caricamento dei file, usare la procedura seguente per eseguire i process
    DUMP DETAILS;
    ```
 
-    Una volta completato questo processo, si dovrebbe vedere lo stesso risultato di quando è stato eseguito lo script in precedenza con Jython.
+    Dopo aver completato questo processo, dovrebbe essere stesso output di hello come quando è stato precedentemente eseguito script hello utilizzando Jython.
 
-### <a name="powershell-upload-the-files"></a>PowerShell: Caricare i file
+### <a name="powershell-upload-hello-files"></a>PowerShell: Caricare i file di hello
 
-È possibile usare PowerShell per caricare i file nel server di HDInsight. Usare lo script seguente per caricare i file di Python:
+È possibile utilizzare PowerShell tooupload hello file toohello HDInsight per il server. Utilizzare i seguenti file di script tooupload hello Python hello:
 
 > [!IMPORTANT] 
-> I passaggi descritti in questa sezione usano Azure PowerShell. Per altre informazioni sull'uso di Azure PowerShell, vedere [Come installare e configurare Azure PowerShell](/powershell/azure/overview).
+> passaggi di Hello in questa sezione utilizzano Azure PowerShell. Per ulteriori informazioni sull'utilizzo di Azure PowerShell, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview).
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -304,8 +304,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-# Change the path to match the file location on your system
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+# Change hello path toomatch hello file location on your system
 $pathToStreamingFile = "C:\path\to\hiveudf.py"
 $pathToJythonFile = "C:\path\to\pigudf.py"
 
@@ -317,7 +317,7 @@ $storageAccountKey=(Get-AzureRmStorageAccountKey `
     -Name $storageAccountName `
 -ResourceGroupName $resourceGroup)[0].Value
 
-#Create a storage content and upload the file
+#Create a storage content and upload hello file
 $context = New-AzureStorageContext `
     -StorageAccountName $storageAccountName `
     -StorageAccountKey $storageAccountKey
@@ -335,22 +335,22 @@ Set-AzureStorageBlobContent `
     -Context $context
 ```
 > [!IMPORTANT]
-> Modifica il valore `C:\path\to` per il percorso dei file in un ambiente di sviluppo.
+> Hello modifica `C:\path\to` toohello percorso toohello file nell'ambiente di sviluppo di valore.
 
-Questo script recupera le informazioni relative al cluster HDInsight, quindi estrae l'account e la chiave dell'account di archiviazione predefinito e carica i file nella radice del contenitore.
+Questo script recupera le informazioni per il cluster HDInsight, quindi estrae account hello e una chiave per l'account di archiviazione predefinito hello e caricamenti hello radice toohello file contenitore hello.
 
 > [!NOTE]
-> Per altre informazioni sul caricamento dei file, vedere il documento [Caricare dati per processi Hadoop in HDInsight](hdinsight-upload-data.md).
+> Per ulteriori informazioni sul caricamento di file, vedere hello [caricare dati per i processi di Hadoop in HDInsight](hdinsight-upload-data.md) documento.
 
-#### <a name="powershell-use-the-hive-udf"></a>PowerShell: usare l'UDF di Hive
+#### <a name="powershell-use-hello-hive-udf"></a>PowerShell: Utilizzo hello Hive definita dall'utente
 
-PowerShell può essere usato anche per eseguire in remoto le query Hive. Usare lo script di PowerShell seguente per eseguire una query di Hive che usa lo script **hiveudf.py**:
+PowerShell può essere anche le query Hive tooremotely utilizzati eseguire. Hello utilizzare seguente script di PowerShell toorun una query Hive che utilizza **hiveudf.py** script:
 
 > [!IMPORTANT]
-> Prima dell'esecuzione, lo script richiede le informazioni sull'account HTTPS/Amministratore per il cluster HDInsight.
+> Prima dell'esecuzione, script hello chiede hello HTTPs/Admin informazioni dell'account per il cluster HDInsight.
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -359,10 +359,10 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
-# If using a Windows-based HDInsight cluster, change the USING statement to:
+# If using a Windows-based HDInsight cluster, change hello USING statement to:
 # "USING 'D:\Python27\python.exe hiveudf.py' AS " +
 $HiveQuery = "add file wasb:///hiveudf.py;" +
                 "SELECT TRANSFORM (clientid, devicemake, devicemodel) " +
@@ -378,25 +378,25 @@ $job = Start-AzureRmHDInsightJob `
     -ClusterName $clusterName `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
-Write-Host "Wait for the Hive job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Hive job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -JobId $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #   -Clustername $clusterName `
 #   -JobId $job.JobId `
 #   -HttpCredential $creds `
 #   -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-L'output del processo **Hive** sarà simile al seguente esempio:
+output di hello Hello **Hive** processo compariranno simile toohello esempio seguente:
 
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -406,13 +406,13 @@ L'output del processo **Hive** sarà simile al seguente esempio:
 
 #### <a name="pig-jython"></a>Pig (Jython)
 
-PowerShell può essere usato anche per eseguire processi di Pig Latin. Per eseguire un processo di Pig Latin che usa lo script **pigudf.py**, usare lo script di PowerShell seguente:
+PowerShell può essere anche usato toorun latino Pig processi. un processo Pig latino che utilizza hello toorun **pigudf.py** script, utilizzare hello lo script di PowerShell seguente:
 
 > [!NOTE]
-> Durante l'invio remoto di un processo con PowerShell, non è possibile usare C Python come interprete.
+> Quando si inviano in remoto un processo tramite PowerShell, non è possibile toouse Python C come interprete hello.
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -421,8 +421,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
 $PigQuery = "Register wasb:///pigudf.py using jython as myfuncs;" +
             "LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);" +
@@ -437,25 +437,25 @@ $job = Start-AzureRmHDInsightJob `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
 
-Write-Host "Wait for the Pig job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Pig job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -Job $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #    -Clustername $clusterName `
 #    -JobId $job.JobId `
 #    -HttpCredential $creds `
 #    -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-L'output del processo **Pig** sarà simile ai dati seguenti:
+output di hello Hello **Pig** processo compariranno simile toohello dati seguenti:
 
     ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
     ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -467,13 +467,13 @@ L'output del processo **Pig** sarà simile ai dati seguenti:
 
 ### <a name="errors-when-running-jobs"></a>Errori durante l'esecuzione di processi
 
-Quando si esegue il processo hive, è possibile riscontrare un errore simile al testo seguente:
+Quando si esegue il processo di hive hello, è possibile riscontrare un toohello simile di errore seguente testo:
 
-    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing to your custom script. It may have crashed with an error.
+    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing tooyour custom script. It may have crashed with an error.
 
-Questo problema potrebbe essere causato dalle terminazioni di riga nel file di Python. Molti editor di Windows usano per impostazione predefinita CRLF come terminazione di riga, mentre le applicazioni Linux prevedono in genere LF.
+Questo problema può essere causato da file Python hello terminazioni di riga hello. Molti editor di Windows predefinito toousing CR/LF come terminazione di riga hello, ma le applicazioni Linux prevedono in genere LF.
 
-È possibile usare le istruzioni di PowerShell seguenti per rimuovere i caratteri CR prima di caricare il file in HDInsight:
+È possibile utilizzare i caratteri di hello CR tooremove di PowerShell istruzioni prima di caricare tooHDInsight file hello hello:
 
 ```powershell
 $original_file ='c:\path\to\hiveudf.py'
@@ -483,7 +483,7 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 
 ### <a name="powershell-scripts"></a>Script di PowerShell
 
-Entrambi gli script di esempio di PowerShell usati per eseguire gli esempi contengono una riga impostata come commento che mostra l'output degli errori relativi al processo. Se l'output previsto per il processo non viene visualizzato, rimuovere i simboli di commento dalla riga seguente e verificare se le informazioni di errore indicano un problema.
+Entrambi hello esempio gli script di PowerShell utilizzati esempi hello toorun contiene una riga di commento che viene visualizzato l'output di errore per il processo di hello. Se non viene visualizzato l'output di hello previsto per il processo di hello, rimuovere il commento seguente hello di riga e visualizzare informazioni sull'errore hello indica un problema relativo.
 
 ```powershell
 # Get-AzureRmHDInsightJobOutput `
@@ -493,18 +493,18 @@ Entrambi gli script di esempio di PowerShell usati per eseguire gli esempi conte
         -DisplayOutputType StandardError
 ```
 
-Le informazioni sull'errore (STDERR) e il risultato del processo (STDOUT) vengono anche registrati nell'archivio di HDInsight.
+informazioni sull'errore Hello (STDERR) e il risultato di hello del processo di hello (STDOUT) vengono anche registrati tooyour HDInsight archiviazione.
 
-| Processo | File nel contenitore BLOB da verificare |
+| Processo | Esaminare questi file nel contenitore blob hello |
 | --- | --- |
 | Hive |/HivePython/stderr<p>/HivePython/stdout |
 | Pig |/PigPython/stderr<p>/PigPython/stdout |
 
 ## <a name="next"></a>Passaggi successivi
 
-Se è necessario caricare moduli Python non forniti per impostazione predefinita, vedere [Come distribuire un modulo in Azure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).
+Se è necessario moduli Python tooload che non sono disponibili per impostazione predefinita, vedere [come toodeploy tooAzure un modulo HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).
 
-Per altre modalità d'uso di Pig e Hive e per informazioni su come usare MapReduce, vedere i documenti seguenti:
+Per altri modi toouse Pig, Hive e toolearn sull'utilizzo di MapReduce, vedere hello seguenti documenti:
 
 * [Usare Hive con HDInsight](hdinsight-use-hive.md)
 * [Usare Pig con HDInsight](hdinsight-use-pig.md)

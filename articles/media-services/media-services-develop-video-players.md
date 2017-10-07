@@ -1,6 +1,6 @@
 ---
-title: Sviluppo di applicazioni di lettore video
-description: "L'argomento offre collegamenti a Player Framework e plug-in che è possibile usare per sviluppare le applicazioni client in modo che usino i flussi multimediali da Servizi multimediali."
+title: applicazioni di lettore video aaaDevelop
+description: "argomento Hello tooPlayer Framework collegamenti e i plug-in che è possibile utilizzare toodevelop proprie applicazioni client che utilizzano i flussi multimediali da servizi multimediali."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 0e88baed8188890e80d4c2e7ee9d510fdabf6e43
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a66daa4f006a1f05271cc9ed6a02ea7ee460321d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-video-player-applications"></a>Sviluppo di applicazioni di lettore video
 ## <a name="overview"></a>Panoramica
-Servizi multimediali di Azure fornisce gli strumenti necessari per creare applicazioni lettore client avanzate e dinamiche per la maggior parte delle piattaforme, inclusi dispositivi iOS, dispositivi Android, Windows, Windows Phone, Xbox e set-top box. Questo argomento offre anche collegamenti a SDK e Player Framework, che è possibile usare per sviluppare le applicazioni client in modo che usino i flussi multimediali da Servizi multimediali di Azure.
+Servizi multimediali di Azure fornisce gli strumenti hello necessario toocreate completi, applicazioni di lettore client dinamiche per la maggior parte delle piattaforme, tra cui: iOS, dispositivi, i dispositivi Android, Windows, Windows Phone, Xbox e Set-top caselle. In questo argomento fornisce inoltre i collegamenti tooSDKs e Player Framework che è possibile utilizzare toodevelop proprie applicazioni client che utilizzano i flussi multimediali da servizi multimediali di Azure.
 
 >[!NOTE]
->Quando l'account AMS viene creato, un endpoint di streaming **predefinito** viene aggiunto all'account con stato **Arrestato**. Per avviare lo streaming del contenuto e sfruttare i vantaggi della creazione dinamica dei pacchetti e della crittografia dinamica, l'endpoint di streaming da cui si vuole trasmettere il contenuto deve essere nello stato **In esecuzione**. 
+>Quando viene creato l'account di sistema AMS un **predefinito** endpoint di streaming viene aggiunto l'account tooyour in hello **arrestato** stato. lo streaming del contenuto e intraprendere sfruttare creazione dinamica dei pacchetti e la crittografia dinamica, toostart hello endpoint di streaming da cui si desidera in hello del contenuto toostream è toobe **esecuzione** stato. 
  
 ## <a name="azure-media-player"></a>Azure Media Player
-[Azure Media Player](http://aka.ms/ampinfo) è un lettore video Web progettato per consentire la riproduzione di contenuti multimediali da Servizi multimediali di Microsoft Azure su una vasta gamma di browser e dispositivi. Azure Media Player usa standard di settore come HTML5, MSE (Media Source Extensions) ed EME (Encrypted Media Extensions) per fornire un'esperienza di streaming adattivo completa. Se questi standard non sono disponibili in un dispositivo o in un browser, Azure Media Player usa una tecnologia di fallback come Flash o Silverlight. Indipendentemente dalla tecnologia di riproduzione usata, quindi, gli sviluppatori disporranno di un'interfaccia JavaScript unificata per accedere alle API. In questo modo, i contenuti distribuiti da Servizi multimediali di Azure potranno essere riprodotti su un'ampia gamma di dispositivi e browser senza alcuna operazione aggiuntiva.
+[Azure Media Player](http://aka.ms/ampinfo) un lettore video web compilato tooplay indietro i contenuti multimediali da servizi multimediali di Microsoft Azure su una vasta gamma di browser e dispositivi. Azure Media Player utilizza standard del settore, ad esempio HTML5, supporto di origine Extensions (MSE) e le estensioni di supporto crittografato (EME) tooprovide un'esperienza di streaming adattivo approfondita. Se questi standard non sono disponibili in un dispositivo o in un browser, Azure Media Player usa una tecnologia di fallback come Flash o Silverlight. Indipendentemente dalla tecnologia di riproduzione hello usata, gli sviluppatori avranno un tooaccess di interfaccia unificata JavaScript API. In questo modo per il contenuto fornito da servizi multimediali di Azure toobe riprodotto in un'ampia gamma di dispositivi e browser senza alcuno sforzo aggiuntivo.
 
-Servizi multimediali di Microsoft Azure consente di distribuire contenuti nei formati di streaming DASH, Smooth Streaming e HLS per consentirne la riproduzione. Azure Media Player prende in considerazione tutti i vari formati e automaticamente riproduce il link migliore in base alle funzionalità della piattaforma o del browser. Servizi multimediali di Microsoft Azure consente inoltre la crittografia dinamica degli asset con la crittografia PlayReady o la crittografia della busta AES a 128 bit. Anche Azure Media Player consente la decrittografia di contenuti crittografati con PlayReady o AES a 128 bit, se correttamente configurati. 
+Servizi multimediali di Microsoft Azure consente toobe contenuto fornito con DASH, Smooth Streaming e HLS tooplay formati di streaming di eseguire il contenuto. Azure Media Player prende in considerazione questi diversi formati e automaticamente svolto hello collegamento migliore in base alle funzionalità di piattaforma/browser hello. Servizi multimediali di Microsoft Azure consente inoltre la crittografia dinamica degli asset con la crittografia PlayReady o la crittografia della busta AES a 128 bit. Anche Azure Media Player consente la decrittografia di contenuti crittografati con PlayReady o AES a 128 bit, se correttamente configurati. 
 
 Per altre informazioni:
 
 * [Azure Media Player](http://aka.ms/ampinfo)
 * [Documentazione di Azure Media Player](http://aka.ms/ampdocs) 
 * [Blog di introduzione ad Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)
-* [Iscriversi per restare aggiornati sulle ultime novità di Azure Media Player](http://aka.ms/ampsignup)
+* [Effettuare l'iscrizione toostay backup toodate con hello più recenti da Azure Media Player](http://aka.ms/ampsignup)
 * [Aggiungere richieste di nuove funzionalità, idee e commenti e suggerimenti](http://aka.ms/ampuservoice) 
 
 ## <a name="other-tools-for-creating-player-applications"></a>Altri strumenti per la creazione di applicazioni di lettore
-È possibile usare anche uno dei seguenti SDK:
+È inoltre possibile utilizzare uno qualsiasi dei seguenti SDK hello:
 
 * [Smooth Streaming Client SDK](http://www.iis.net/downloads/microsoft/smooth-streaming) 
 * [App Smooth Streaming Windows Store](media-services-build-smooth-streaming-apps.md)
@@ -52,15 +52,15 @@ Per altre informazioni:
 * [Sviluppo di applicazioni video per XBox](http://xbox.create.msdn.com/) 
 
 ## <a name="advertising"></a>Pubblicità
-Servizi multimediali di Azure offre il supporto per l'inserimento di annunci tramite la piattaforma Windows Media Platform, ovvero i player framework. Player Framework con supporto per gli annunci sono disponibili per i dispositivi Windows 8, Silverlight, Windows Phone 8 e iOS. Ciascun Player Framework contiene un codice di esempio che illustra come eseguire l'implementazione di un'applicazione di lettore. Nei file multimediali è possibile inserire tre tipi di annunci.
+Servizi multimediali di Azure fornisce il supporto per l'inserimento di annunci tramite hello Windows Media Platform: Player Framework. Player Framework con supporto per gli annunci sono disponibili per i dispositivi Windows 8, Silverlight, Windows Phone 8 e iOS. Ogni player framework contiene un codice di esempio che illustra come tooimplement un'applicazione Windows Media player. Nei file multimediali è possibile inserire tre tipi di annunci.
 
-Lineari: annunci con frequenza massima che interrompono il video principale
+Lineari: annunci con frequenza massima che Pausa video principale hello
 
-Non lineari: annunci sovrapposti visualizzati durante la riproduzione del video principale, in genere un logo o un'altra immagine statica all'interno del lettore
+Non lineari: annunci sovrapposti visualizzati durante la riproduzione di video principale hello, in genere un logo o altra immagine statica inserito all'interno di Windows Media player hello
 
-Complementari: annunci visualizzati all'esterno del lettore
+Complementari: annunci visualizzati all'esterno di Windows Media player hello
 
-Gli annunci possono essere inseriti in qualsiasi punto della sequenza temporale del video principale. È necessario indicare al lettore quando riprodurre l'annuncio e quali annunci riprodurre. Questa operazione viene eseguita mediante una serie di file standard basati su XML: Video Ad Service Template (VAST), Digital Video Multiple Ad Playlist (VMAP), Media Abstract Sequencing Template (MAST) e Digital Video Player Ad Interface Definition (VPAID). I file VAST indicano quali annunci visualizzare, mentre i file VMAP specificano quando riprodurre i vari annunci e contengono XML VAST. I file MAST rappresentano invece un altro modo di riprodurre in sequenza annunci contenenti XML VAST. I file VPAID, infine, definiscono un'interfaccia tra il lettore video e l'annuncio o il server di annunci. Per altre informazioni, vedere [Inserimento di annunci](https://msdn.microsoft.com/library/dn387398.aspx).
+Gli annunci possono essere inseriti in qualsiasi punto della sequenza temporale del video principale hello. È necessario indicare quando tooplay hello Active Directory e che il lettore hello tooplay annunci. Questa operazione viene eseguita mediante una serie di file standard basati su XML: Video Ad Service Template (VAST), Digital Video Multiple Ad Playlist (VMAP), Media Abstract Sequencing Template (MAST) e Digital Video Player Ad Interface Definition (VPAID). I file VAST specificano quali toodisplay annunci. File VMAP specificano quando tooplay vari annunci e contengono XML VAST. I file MAST rappresentano un altro toosequence annunci di modo che possono contenere XML VAST. I file VPAID definiscono un'interfaccia tra lettore video hello e ad hello o un server Active Directory. Per altre informazioni, vedere [Inserimento di annunci](https://msdn.microsoft.com/library/dn387398.aspx).
 
 Per informazioni sul supporto di sottotitoli codificati e annunci nei video in streaming live, vedere [Sottotitoli codificati supportati e standard per l'inserimento di annunci](https://msdn.microsoft.com/library/c49e0b4d-357e-4cca-95e5-2288924d1ff3#caption_ad).
 

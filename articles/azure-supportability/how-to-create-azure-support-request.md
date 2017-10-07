@@ -1,6 +1,6 @@
 ---
-title: Come creare una richiesta di supporto di Azure | Documentazione Microsoft
-description: Come creare una richiesta di supporto di Azure.
+title: aaaHow toocreate una richiesta di supporto tecnico di Azure | Documenti Microsoft
+description: "Toocreate di Azure supporta la modalità richiesta."
 services: Azure Supportability
 documentationcenter: 
 author: ganganarayanan
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: gangan
-ms.openlocfilehash: 70a4762383d64dc8d568c628cf260ebd8f2d179d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 19283a8cc1c4fc6b8277efdc60640bec8a90d40a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-an-azure-support-request"></a>Come creare una richiesta di supporto in Azure
+# <a name="how-toocreate-an-azure-support-request"></a>Supporto di richiesta delle toocreate di Azure
 ## <a name="summary"></a>Riepilogo
-I clienti di Azure è possono creare e gestire le richieste di supporto nel portale di Azure, [https://portal.azure.com](https://portal.azure.com).
+I clienti di Azure è possono creare e gestire le richieste di assistenza nel portale di Azure hello [https://portal.azure.com](https://portal.azure.com).
 
 > [!NOTE]
-> Il portale di Azure per la Germania è [https://portal.microsoftazure.de](https://portal.microsoftazure.de) e il portale di Azure per il governo degli Stati Uniti è [https://portal.azure.us](https://portal.azure.us).
+> Portale di Azure per la Germania è [https://portal.microsoftazure.de](https://portal.microsoftazure.de) portale Azure del governo degli Stati Uniti hello è [https://portal.azure.us](https://portal.azure.us).
 > 
 > 
 
-In base ai suggerimenti dei clienti, abbiamo aggiornato l'esperienza relativa alla richiesta di supporto per concentrarsi su tre obiettivi principali:
+In base ai suggerimenti dei clienti, sono stati aggiornati hello toofocus esperienza richiesta di supporto su tre obiettivi principali:
 
-* **Semplificazione**: meno operazioni e pannelli per semplificare il processo di invio di una richiesta di supporto.
-* **Integrazione**: quando si risolve un problema relativo a una risorsa Azure deve risultare semplice aprire una richiesta di supporto relativa alla risorsa senza cambiare contesto.
-* **Efficienza**: raccolta delle informazioni chiave necessarie per il tecnico di supporto per risolvere il problema in modo efficiente.
+* **Semplificata**: ridurre clic pannelli toomake hello processo e invio di una semplice richiesta di supporto.
+* **Integrata**: quando si sta cercando di risolvere un problema con una risorsa di Azure, deve essere tooopen facilmente una richiesta di supporto per tale risorsa senza cambio di contesto.
+* **Efficiente**: Gather hello informazioni sulla chiave necessario tooefficiently il tecnico del supporto di risolvere il problema.
 
-## <a name="getting-started"></a>Introduzione
-È possibile creare una richiesta di supporto dal menu di navigazione in alto o direttamente dal pannello di una risorsa.
+## <a name="getting-started"></a>introduttiva
+È possibile creare una richiesta di supporto dal menu di navigazione superiore hello o direttamente da un pannello della risorsa.
 
-**Dalla barra di spostamento in alto**
+**Nella barra di spostamento superiore hello**
 
 ![Nuova richiesta di supporto](./media/how-to-create-azure-support-request/NewSupportRequest.png)
 
@@ -47,10 +47,10 @@ In base ai suggerimenti dei clienti, abbiamo aggiornato l'esperienza relativa al
 ![Nel contesto](./media/how-to-create-azure-support-request/Incontext.png)
 
 ## <a name="basics"></a>Nozioni di base
-Il primo passaggio del processo di richiesta di supporto consiste nella raccolta di informazioni di base sul problema e sul piano di supporto.
+Hello primo passaggio del processo di richiesta di supporto hello raccoglie informazioni di base del problema e il piano di supporto.
 
 Si prenda ad esempio il caso in cui si riscontrino problemi tecnici con la macchina virtuale e si sospetti un problema di connettività di rete.
-Selezionando come servizio "la macchina virtuale che esegue Windows" e come risorsa il nome della macchina virtuale, nel primo passaggio della procedura guidata viene avviato il processo di richiesta di supporto per il problema.
+La selezione di hello ("macchina virtuale che esegue Windows") del servizio e hello resource (hello nome della macchina virtuale) nel primo passaggio di hello del processo di hello guidata avvio hello di ottenere informazioni della Guida per questo problema.
 
 ![Pannello Nozioni di base](./media/how-to-create-azure-support-request/Basics.png)
 
@@ -60,49 +60,49 @@ Selezionando come servizio "la macchina virtuale che esegue Windows" e come riso
 > 
 
 ## <a name="problem"></a>Problema
-Il secondo passaggio della procedura guidata consiste nella raccolta di altre informazioni sul problema. In questa fase l'indicazione di informazioni precise consente di inoltrare la pratica al tecnico di supporto più adatto a risolvere il problema e di avviare la diagnosi del problema il prima possibile.
+secondo passaggio di Hello della procedura guidata hello raccoglie ulteriori dettagli sul problema hello. Informazioni accurate in questo passaggio consente di progettare il miglior supporto toohello maiuscole per problema hello e diagnosticare il problema di hello presto toobegin tooroute.
 
 ![Pannello Problema](./media/how-to-create-azure-support-request/Problem.png)
 
-Proseguendo con il precedente esempio relativo alla connettività della macchina virtuale, è necessario compilare il modulo per segnalare un problema di connettività di rete e fornire ulteriori dettagli relativi al problema, inclusa l'ora approssimativa in cui si è verificato il problema.
+Continuando con hello macchina virtuale connettività esempio precedente, si compilabili tooindicate questo form un problema di connettività di rete e consente di offrire altri dettagli sul problema hello, inclusi ora approssimativa hello in caso si verifichi hello problema.
 
 ## <a name="related-help"></a>Guida correlata
-Per alcuni problemi sono disponibili i collegamenti alla Guida correlata per la risoluzione del problema. Se i documenti consigliati non sono utili è possibile proseguire il processo di creazione di una richiesta di supporto.
+Per alcuni problemi, forniamo correlati della Guida problema hello tootroubleshoot di collegamenti. Se hello documenti non hanno alcuna utilità, è possibile continuare tramite hello processo toocreate una richiesta di supporto.
 ![Guida correlata](./media/how-to-create-azure-support-request/RelatedHelp.png)
 
 ## <a name="contact-information"></a>Informazioni di contatto
-L'ultimo passaggio della procedura guidata consiste nella conferma delle informazioni di contatto per indicare come essere raggiunti.
+al termine della procedura guidata hello Hello conferma le informazioni di contatto in modo da sapere come tooreach è.
 ![Informazioni di contatto](./media/how-to-create-azure-support-request/ContactInformation.png)
 
-A seconda della gravità del problema, verrà richiesto di indicare se si desidera essere contattati in orari lavorativi o se si preferisce una risposta 24x7, che implica la possibilità di essere contattati in qualsiasi momento.
+A seconda della gravità hello del problema, potrebbe essere necessario tooindicate se desideri toocontact durante l'orario di ufficio o se si preferisce una 24x7 risposta, ovvero di contatto in qualsiasi momento.
 ![Informazioni di contatto 24x7](./media/how-to-create-azure-support-request/ContactInformation-2.png)
 
 ## <a name="manage-support-requests"></a>Gestire le richieste di supporto
-Dopo aver creato la richiesta di supporto è possibile visualizzarne i dettagli nella pagina **Gestisci richieste di supporto** .
+Dopo aver creato la richiesta di supporto hello, è possibile visualizzare i dettagli di hello da hello **gestire le richieste di supporto** pagina.
 
-**Dalla barra di spostamento in alto**
+**Nella barra di spostamento superiore hello**
 
 ![Collegamento Gestire una richiesta di supporto](./media/how-to-create-azure-support-request/ManageSupportRequest-link.png)
 
-Nella pagina **Gestisci richieste di supporto** è possibile visualizzare tutte le richieste di supporto e il relativo stato.
+In hello **Gestisci richieste di supporto** pagina, è possibile visualizzare tutte le richieste di supporto e il relativo stato.
 ![Gestire una richiesta di supporto](./media/how-to-create-azure-support-request/ManageSupportRequest.png)
 
-Selezionare la richiesta di supporto per visualizzarne i dettagli, tra cui gravità e quando è previsto che un tecnico di supporto risponda.
+Selezionare hello richiesta tooview dettagli sul supporto, tra cui gravità e il tempo di hello previsto che necessario per un toorespond di supporto tecnico.
 ![VID](./media/how-to-create-azure-support-request/VID.png)
 
-Se si desidera modificare la gravità della richiesta, fare clic sul riquadro **Impatto aziendale** . Nell'esempio precedente la richiesta è impostata sul livello di gravità C.
+Se si desidera gravità hello toochange della richiesta di hello, fare clic su hello **impatto aziendale** riquadro. Nell'esempio precedente hello richiesta hello è attualmente impostato tooSeverity C.
 
-Facendo clic sul riquadro viene visualizzato l'elenco di livelli di gravità che è possibile assegnare a una richiesta di supporto aperta.
+Fare clic su Mostra riquadro hello hello elenco di livelli di gravità è possibile assegnare tooan richiesta di supporto aperta.
 
 > [!NOTE]
-> Il livello di gravità massimo dipende dal piano di supporto. [Altre informazioni sui piani di supporto](https://azure.microsoft.com/support/plans).
+> livello di gravità massimo Hello varia a seconda del piano di supporto. [Altre informazioni sui piani di supporto](https://azure.microsoft.com/support/plans).
 > 
 > 
 
 ![VID-2](./media/how-to-create-azure-support-request/VID-2.png)
 
 ## <a name="feedback"></a>Commenti e suggerimenti
-Commenti e suggerimenti sono sempre graditi. È possibile inviare [suggerimenti](https://feedback.azure.com/forums/266794-support-feedback). È possibile inoltre comunicare tramite [Twitter](https://twitter.com/azuresupport) o i [forum MSDN](https://social.msdn.microsoft.com/Forums/azure).
+Ci sono sempre toofeedback aperti e i suggerimenti! È possibile inviare [suggerimenti](https://feedback.azure.com/forums/266794-support-feedback). Inoltre, è possibile coinvolgere con noi tramite [Twitter](https://twitter.com/azuresupport) o hello [forum MSDN](https://social.msdn.microsoft.com/Forums/azure).
 
 ## <a name="learn-more"></a>Altre informazioni
 [Domande frequenti relative al supporto tecnico Azure](https://azure.microsoft.com/support/faq)

@@ -1,5 +1,5 @@
 ---
-title: Note sulla versione del gateway di gestione dati | Microsoft Docs
+title: note sulla aaaRelease per Gateway di gestione dati | Documenti Microsoft
 description: Note sulla versione di Gateway di gestione dati
 services: data-factory
 author: nabhishek
@@ -14,16 +14,16 @@ ms.topic: article
 ms.date: 06/19/2017
 ms.author: abnarain
 published: True
-ms.openlocfilehash: c052d7e9f757164429ce867201b96305e405dce9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3165d7537410a0531e0bb7f7fe584767f9155574
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="release-notes-for-data-management-gateway"></a>Note sulla versione di Gateway di gestione dati
-Una delle maggiori difficoltà relative all'integrazione moderna dei dati consiste nello spostamento di dati da ambienti locali al cloud e viceversa. Data Factory esegue questa integrazione con Gateway di gestione dati, un agente che è possibile installare in locale per abilitare lo spostamento di dati ibridi.
+Una delle sfide hello per l'integrazione di dati più recenti è toomove dati tooand da toocloud locale. Data Factory rende l'integrazione con i Gateway di gestione dati, ovvero un agente che è possibile installare lo spostamento di dati locale tooenable ibrido.
 
-Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione dati e su come usarlo:
+Vedere i seguenti articoli per informazioni dettagliate su Gateway di gestione dati hello e come toouse è:
 
 *  [Gateway di gestione dati](data-factory-data-management-gateway.md)
 *  [Spostare dati tra un ambiente locale e il cloud mediante Azure Data Factory](data-factory-move-data-between-onprem-and-cloud.md)
@@ -32,9 +32,9 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 ## <a name="current-version-21063477"></a>VERSIONE CORRENTE (2.10.6347.7)
 
 ### <a name="enhancements-"></a>Miglioramenti
-- È possibile aggiungere le voci DNS per aggiungere il bus di servizio all'elenco elementi consentiti, invece di inserire in tale elenco tutti gli indirizzi IP di Azure IP dal firewall (se necessario). È possibile trovare la rispettiva voce DNS nel portale di Azure (Data Factory -> "Creare e distribuire" -> "Gateway" -> "serviceUrls" (in JSON)
+- È possibile aggiungere bus di servizio toowhitelist le voci DNS anziché whitelist tutti gli indirizzi IP di Azure da un firewall (se necessario). È possibile trovare la rispettiva voce DNS nel portale di Azure (Data Factory -> "Creare e distribuire" -> "Gateway" -> "serviceUrls" (in JSON)
 - Il connettore HDFS supporta ora il certificato pubblico autofirmato, consentendo di saltare la convalida SSL.
-- Corretto: problema relativo al gateway offline durante l'aggiornamento (a causa di uno sfasamento del clock)
+- Problema risolto: Problema con gateway offline durante l'aggiornamento (in scadenza inclinazione tooclock)
 
 
 
@@ -42,12 +42,12 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 
 ## <a name="2963132"></a>2.9.6313.2
 ### <a name="enhancements-"></a>Miglioramenti
--   È possibile aggiungere le voci DNS per aggiungere il bus di servizio all'elenco elementi consentiti, invece di inserire in tale elenco tutti gli indirizzi IP di Azure IP dal firewall (se necessario). Altri dettagli sono disponibili qui.
--   È ora possibile copiare i dati in/da un singolo BLOB in blocchi fino a 4,75 TB, che corrisponde alle dimensioni massime supportate per i BLOB in blocchi. Il limite precedente era di 195 GB.
+-   È possibile aggiungere toowhitelist le voci DNS Service Bus anziché whitelist tutti gli indirizzi IP di Azure da un firewall (se necessario). Altri dettagli sono disponibili qui.
+-   È ora possibile copiare dati da e verso un blob in blocchi singolo backup too4.75 TB, ovvero dimensioni hello massimo supportato di blob in blocchi. Il limite precedente era di 195 GB.
 -   Corretto: problema relativo alla memoria esaurita durante la decompressione di alcuni file di piccole dimensioni durante l'attività di copia.
--   Corretto: problema relativo all'indice non compreso nell'intervallo durante la copia da Document DB a un'istanza locale di SQL Server con funzionalità di idempotenza.
+-   Problema risolto: Indice fuori problema intervallo durante la copia da DB documento tooan SQL Server locale con funzionalità idempotenza.
 -   Corretto: lo script di pulizia di SQL non funziona con l'istanza locale di SQL Server dalla Copia guidata.
--   Corretto: il nome di colonna con uno spazio finale non funziona nell'attività di copia.
+-   Problema risolto: Nome della colonna con lo spazio alla fine di hello non funziona nell'attività di copia.
 
 ## <a name="28662833"></a>2.8.66283.3
 ### <a name="enhancements-"></a>Miglioramenti
@@ -71,58 +71,58 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 
 ## <a name="2561641"></a>2.5.6164.1
 ### <a name="enhancements"></a>Miglioramenti
-- Esperienza di registrazione del gateway migliorata e più affidabile. L'esperienza risulta più efficiente grazie alla possibilità di tenere traccia dello stato di avanzamento durante il processo di registrazione del gateway.
-- Miglioramento del processo di ripristino del gateway. Con questo aggiornamento è possibile ripristinare il gateway anche se non si ha il relativo file di backup. Sarà necessario reimpostare le credenziali del servizio collegato nel portale.
+- Migliore e più affidabile Gateway registrazione esperienza-ora è possibile monitorare lo stato di avanzamento durante il processo di registrazione Gateway hello, che rende la registrazione di hello esperienza più reattiva.
+- Miglioramento Gateway ripristino configurazione di processo, è comunque possibile ripristinare i gateway anche se i file di backup gateway hello con questo aggiornamento non si dispone. In questo caso è necessario tooreset le credenziali di servizio collegato nel portale.
 - Correzione di bug.
 
 ## <a name="2461511"></a>2.4.6151.1
 
 ### <a name="whats-new"></a>Novità
 
-- È ora possibile archiviare localmente le credenziali dell'origine dati. Le credenziali vengono crittografate. Le credenziali dell'origine dati possono essere recuperate e ripristinate usando il file di backup che può essere esportato dal gateway esistente, operando in locale.
+- È ora possibile archiviare localmente le credenziali dell'origine dati. Hello credenziali vengono crittografate. le credenziali dell'origine dati Hello possono essere ripristinate e ripristino i file di backup hello che possono essere esportati da hello locale tutti i Gateway esistente.
 
 ### <a name="enhancements-"></a>Miglioramenti
 
 - Esperienza di registrazione gateway migliorata e più affidabile.
-- Supporto del rilevamento automatico della configurazione QuoteChar per il formato di testo in copia guidata e aumento dell'accuratezza di rilevamento del formato generale.
+- Supporta il rilevamento automatico della configurazione QuoteChar di formato di testo in copia guidata e migliorare hello accuratezza di rilevamento di formato generale.
 
 ## <a name="2361002"></a>2.3.6100.2
 
 - Support del rilevamento automatico di firstRowAsHeader e SkipLineCount nella copia guidata per i file di testo in HDFS e nel file system locale.
-- Miglioramento della stabilità della connessione di rete tra il gateway e il bus di servizio
+- Migliorare la stabilità di hello della connessione di rete tra i gateway e Bus di servizio
 - Alcune correzioni di bug
 
 
 ## <a name="2260721"></a>2.2.6072.1
 
-*  Supporta l'impostazione proxy HTTP per il gateway tramite Gestione configurazione del gateway. Se configurato, l'accesso tramite proxy HTTP è disponibile per il BLOB di Azure, le tabelle di Azure, Azure Data Lake e Document DB.
-*  Supporta la gestione delle intestazioni per il formato di testo quando si copiano dati da e verso BLOB di Azure, Azure Data Lake Store, File System locale e HDFS locale.
-*  Supporta la copia di dati dal BLOB di accodamento e BLOB di pagine, oltre al BLOB in blocchi già supportato.
-*  Introduce un nuovo stato del gateway **Online (Limited)**(Online (limitato)), che indica che la funzionalità principale del gateway funziona ad eccezione del supporto delle operazioni interattive per la copia guidata.
-*  Migliora la solidità della registrazione del gateway con la chiave di registrazione.
+*  Supporta l'impostazione proxy HTTP per l'utilizzo di gateway hello hello Gateway Configuration Manager. Se configurato, l'accesso tramite proxy HTTP è disponibile per il BLOB di Azure, le tabelle di Azure, Azure Data Lake e Document DB.
+*  Intestazione supporta gestione TextFormat quando si copiano dati dal File System locale tooAzure Blob, archivio Azure Data Lake e HDFS in locale.
+*  Supporta la copia dei dati da Blob di accodamento e Blob di pagine insieme hello già supportati Blob in blocchi.
+*  Introduce un nuovo stato del gateway **Online (limitato)**, che indica che le funzionalità principali di hello del gateway hello funziona ad eccezione di supporto delle operazioni interattive hello per la copia guidata.
+*  Migliora l'affidabilità di hello di registrazione del gateway mediante la chiave di registrazione.
 
 ## <a name="216040"></a>2.1.6040.
 
-*  Il driver DB2 è ora incluso nel pacchetto di installazione del gateway. Non è necessario installarlo separatamente.
-*  Il driver DB2 supporta ora z/OS e DB2 for i (AS/400) oltre alle piattaforme già supportate (Linux, Unix e Windows).
+*  Driver DB2 è incluso nel pacchetto di installazione di gateway hello ora. Non è necessario tooinstall è separatamente.
+*  Driver DB2 supporta ora z/OS e DB2 per i (AS / 400) insieme a piattaforme di hello già supportate (Windows, Linux e Unix).
 *  Supporta l'uso di Azure Cosmos DB come origine o destinazione per gli archivi dati locali.
-*  Supporta la copia di dati da e nell'archivio BLOB ad accesso frequente o sporadico con l'account di archiviazione di uso generico già supportato.
-*  Consente di connettersi a SQL Server locale tramite il gateway con privilegi di accesso remoto.  
+*  Supporta la copia di archiviazione dei dati blob da/toocold/hot insieme hello già supportati account di archiviazione generico.
+*  Consente di tooconnect tooon locale SQL Server tramite il gateway con privilegi di accesso remoto.  
 
 ## <a name="2060131"></a>2.0.6013.1
 
-*  È possibile selezionare la lingua/cultura che verrà usata da un gateway durante l'installazione manuale.
+*  È possibile selezionare hello lingua toobe utilizzato da un gateway durante l'installazione manuale.
 
-*  Quando il gateway non funziona come previsto, è possibile scegliere di inviare a Microsoft i log di gateway degli ultimi sette giorni per agevolare la risoluzione del problema. Se il gateway non è connesso al servizio cloud, è possibile scegliere di salvare e archiviare i log del gateway.  
+*  Quando il gateway non funziona come previsto, è possibile scegliere toosend registri del gateway di ultimi sette giorni tooMicrosoft toofacilitate risoluzione dei problemi di rilascio hello. Se il gateway non è connesso toohello servizio cloud, è possibile scegliere toosave e archiviare i registri del gateway.  
 
 *  Miglioramenti all'interfaccia utente per la gestione della configurazione gateway:
 
-    *  Stato del gateway più visibile sulla scheda Home.
+    *  Rendere più visibile nella scheda Home di hello lo stato del gateway.
 
     *  Controlli riorganizzati e semplificati.
 
-    *  È possibile copiare dati da un archivio tramite lo [strumento di anteprima della copia senza codice](data-factory-copy-data-wizard-tutorial.md). Per informazioni generiche su questa funzionalità, vedere [Copia di staging](data-factory-copy-activity-performance.md#staged-copy) .
-*  Gateway di gestione dati consente di inserire i dati direttamente da un database di SQL Server locale in Azure Machine Learning.
+    *  È possibile copiare dati da un archivio utilizzando hello [strumento anteprima senza codice copia](data-factory-copy-data-wizard-tutorial.md). Per informazioni generiche su questa funzionalità, vedere [Copia di staging](data-factory-copy-activity-performance.md#staged-copy) .
+*  È possibile utilizzare dati tooingress Gateway di gestione dati direttamente da un database di SQL Server locale in Azure Machine Learning.
 
 *  Miglioramenti delle prestazioni
 
@@ -134,9 +134,9 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 
 ## <a name="11159181"></a>1.11.5918.1
 
-*  La dimensione massima del registro eventi del gateway è aumentata da 1 MB a 40 MB.
+*  Dimensione massima del registro eventi del gateway hello è stato aumentato da 1 MB too40 MB.
 
-*  Nel caso in cui sia necessario un riavvio durante l'aggiornamento automatico del gateway, viene visualizzata una finestra di dialogo di avviso. È possibile scegliere di riavviare subito o in un secondo tempo.
+*  Nel caso in cui sia necessario un riavvio durante l'aggiornamento automatico del gateway, viene visualizzata una finestra di dialogo di avviso. È possibile scegliere toorestart destra quindi o versione successiva.
 
 *  In caso di errore dell'aggiornamento automatico, il programma di installazione del gateway ritenta l'aggiornamento automatico al massimo tre volte.
 
@@ -156,8 +156,8 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 
 *  Funzionalità di aggiornamento automatico senza intervento dell'utente
 *  Nuova icona dell'area di notifica con indicatori di stato del gateway
-*  Possibilità di scegliere "Aggiorna adesso" dal client
-*  Possibilità di impostare l'ora di pianificazione dell'aggiornamento
+*  Capacità troppo "Aggiorna" da client hello
+*  Ora pianificazione dell'aggiornamento tooset possibilità
 *  Script di PowerShell per attivare o disattivare l'aggiornamento automatico
 *  Supporto per il formato JSON  
 *  Miglioramenti delle prestazioni
@@ -237,12 +237,12 @@ Vedere gli articoli seguenti per informazioni dettagliate su Gateway di gestione
 ### <a name="1454921"></a>1.4.5492.1
 
 *  File binario unificato che supporta il servizio Data factory di Microsoft Azure e il servizio Power BI di Office 365
-*  Perfezionamento dell'interfaccia utente di configurazione e del processo di registrazione
+*  Ridefinire il processo di registrazione e l'interfaccia utente di configurazione hello
 *  Data Factory di Azure: supporto di ingresso e uscita in Azure per l'origine dati SQL Server
 
 ### <a name="1253031"></a>1.2.5303.1
 
-*  Risoluzione del problema di timeout per supportare connessioni alle origini dati più dispersive in termini di tempo.
+*  Correggere timeout problema toosupport più connessioni a origini dati richiede molto tempo.
 
 ### <a name="1155268"></a>1.1.5526.8
 

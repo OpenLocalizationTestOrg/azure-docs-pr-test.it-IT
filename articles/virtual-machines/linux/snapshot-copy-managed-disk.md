@@ -1,6 +1,6 @@
 ---
-title: Copiare un disco gestito di Azure per il backup | Documentazione Microsoft
-description: Informazioni su come creare una copia di un disco gestito di Azure da usare per il backup o sulla risoluzione dei problemi relativi al disco.
+title: aaaCopy del disco per il backup di un gestito di Azure | Documenti Microsoft
+description: Informazioni su come toocreate una copia di un toouse disco gestito di Azure per eseguire il backup o sulla risoluzione dei problemi di disco problemi.
 documentationcenter: 
 author: squillace
 manager: timlt
@@ -13,33 +13,33 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 2/6/2017
 ms.author: rasquill
-ms.openlocfilehash: c91367ef11c9d531bebac7c069d2df586607ec29
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41b91c2d68eb5be9c493a66be5f7d085a70450d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>Creare una copia di un disco rigido virtuale archiviato come disco gestito di Azure usando snapshot gestiti
-Creare uno snapshot di un disco gestito per il backup o creare un disco gestito dallo snapshot e collegarlo a una macchina virtuale di prova per risolvere i problemi. Uno snapshot gestito è una copia temporizzata completa di un disco gestito di macchina virtuale. Uno snapshot crea una copia di sola lettura del disco rigido virtuale che, per impostazione predefinita, viene memorizzato come disco gestito Standard. 
+Creare uno snapshot di un disco gestito per il backup o creare un disco gestito da snapshot hello e collegarlo tootroubleshoot macchina virtuale di test tooa. Uno snapshot gestito è una copia temporizzata completa di un disco gestito di macchina virtuale. Uno snapshot crea una copia di sola lettura del disco rigido virtuale che, per impostazione predefinita, viene memorizzato come disco gestito Standard. 
 
-Per informazioni sui prezzi, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/managed-disks/). <!--Add link to topic or blog post that explains managed disks. -->
+Per informazioni sui prezzi, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/managed-disks/). <!--Add link tootopic or blog post that explains managed disks. -->
 
-Usare il portale di Azure o l'interfaccia della riga di comando Azure 2.0 per creare uno snapshot del disco gestito.
+Utilizzare entrambi hello Azure tootake di CLI di Azure 2.0 portale o hello uno snapshot di hello disco gestito.
 
-## <a name="use-azure-cli-20-to-take-a-snapshot"></a>Usare l'interfaccia della riga di comando Azure 2.0 per creare uno snapshot
+## <a name="use-azure-cli-20-tootake-a-snapshot"></a>Utilizzare Azure CLI 2.0 tootake uno snapshot
 
 > [!NOTE] 
-> L'esempio seguente richiede che sia installata l'interfaccia della riga di comando Azure 2.0 e che venga eseguito l'accesso all'account Azure.
+> Hello esempio seguente richiede hello Azure CLI 2.0 installati e registrati nell'account Azure.
 
-La procedura seguente illustra come ottenere e creare uno snapshot di un disco del sistema operativo gestito usando il comando `az snapshot create` con il parametro `--source-disk`. Nell'esempio seguente si presuppone che esista una macchina virtuale denominata `myVM` creata con un disco del sistema operativo gestito nel gruppo di risorse `myResourceGroup`.
+Hello passaggi seguenti viene illustrato come tooobtain e creare uno snapshot di un sistema operativo gestito disco utilizzando hello `az snapshot create` con hello `--source-disk` parametro. Hello seguente si presuppone che sia presente una macchina virtuale denominata `myVM` creato con un disco del sistema operativo gestito in hello `myResourceGroup` gruppo di risorse.
 
 ```azure-cli
-# take the disk id with which to create a snapshot
+# take hello disk id with which toocreate a snapshot
 osDiskId=$(az vm show -g myResourceGroup -n myVM --query "storageProfile.osDisk.managedDisk.id" -o tsv)
 az snapshot create -g myResourceGroup --source "$osDiskId" --name osDisk-backup
 ```
 
-L'output dovrebbe essere simile a quanto segue:
+output di Hello dovrebbe essere simile al seguente:
 
 ```json
 {
@@ -66,18 +66,18 @@ L'output dovrebbe essere simile a quanto segue:
 }
 ```
 
-## <a name="use-azure-portal-to-take-a-snapshot"></a>Usare il portale di Azure per creare uno snapshot 
+## <a name="use-azure-portal-tootake-a-snapshot"></a>Utilizzare tootake portale Azure uno snapshot 
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
-2. In alto a sinistra fare clic su **Nuovo** e cercare **Snapshot**.
-3. Nel pannello Snapshot, fare clic su **Crea**.
-4. Immettere un **Nome** per lo snapshot.
-5. Selezionare un [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md#resource-groups) esistente o specificare il nome di un nuovo gruppo. 
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. A partire da hello angolo superiore sinistro, fare clic su **New** e cercare **snapshot**.
+3. Nel Pannello di Snapshot hello, fare clic su **crea**.
+4. Immettere un **nome** per snapshot hello.
+5. Selezionare un oggetto esistente [gruppo di risorse](../../azure-resource-manager/resource-group-overview.md#resource-groups) o nome di tipo hello uno nuovo. 
 6. Selezionare una località per il data center di Azure.  
-7. Per **Disco di origine**, selezionare il disco gestito di cui creare lo snapshot.
-8. Selezionare il **tipo di account** da usare per archiviare lo snapshot. È consigliabile usare il tipo **Standard_LRS** a meno che non sia necessario archiviare lo snapshot su un disco a prestazioni elevate.
+7. Per **disco di origine**, selezionare hello toosnapshot disco gestito.
+8. Seleziona hello **tipo di Account** snapshot di hello toostore toouse. È consigliabile usare il tipo **Standard_LRS** a meno che non sia necessario archiviare lo snapshot su un disco a prestazioni elevate.
 9. Fare clic su **Crea**.
 
-Se si prevede di usare lo snapshot per creare un disco gestito e associarlo a una macchina virtuale a prestazioni elevate, usare il parametro `--sku Premium_LRS` con il comando `az snapshot create`. In questo modo si crea lo snapshot in modo tale che venga archiviato come un disco gestito Premium. Managed Disks Premium offre prestazioni migliori perché consiste in unità SSD, ma con un costo superiore rispetto ai dischi Standard (HDD).
+Se si prevede toouse hello snapshot toocreate un disco gestito e collegarlo a una macchina virtuale che deve toobe a prestazioni elevate, utilizzare il parametro hello `--sku Premium_LRS` con hello `az snapshot create` comando. Questo crea snapshot hello in modo che viene archiviato come un disco gestito Premium. Managed Disks Premium offre prestazioni migliori perché consiste in unità SSD, ma con un costo superiore rispetto ai dischi Standard (HDD).
 
 

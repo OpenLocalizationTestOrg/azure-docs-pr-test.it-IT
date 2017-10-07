@@ -1,6 +1,6 @@
 ---
-title: 'Connettere Raspberry Pi (Node) ad Azure IoT: lezione 4: Modificare l''app | Documentazione Microsoft'
-description: Personalizzare i messaggi per modificare il comportamento di accensione e spegnimento del LED.
+title: 'Connettersi Raspberry Pi (nodo) tooAzure IoT - lezione 4: modificare app | Documenti Microsoft'
+description: Personalizzare hello toochange di messaggi hello LED di attivare e disattivare il comportamento.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,30 +17,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: b2ae23ac9cc1723936c4b4e1900b95cdcde744df
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 99b542fcb8639add0f5a0f7a49dd8abd0e224a51
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-on-and-off-behavior-of-the-led"></a>Modificare il comportamento di accensione e spegnimento del LED
+# <a name="change-hello-on-and-off-behavior-of-hello-led"></a>Modificare hello e disattivare il comportamento di hello LED
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-Personalizzare i messaggi per modificare il comportamento di accensione e spegnimento del LED. In caso di problemi cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+Personalizzare hello toochange di messaggi hello LED di attivare e disattivare il comportamento. Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
-Usare funzioni aggiuntive di Node.js per modificare il comportamento di accensione e spegnimento del LED.
+Utilizzare hello toochange funzioni di Node.js aggiuntiva LED di attivare e disattivare il comportamento.
 
 ## <a name="what-you-need"></a>Elementi necessari
-È necessario aver completato la sezione [Eseguire l'applicazione di esempio per ricevere messaggi da cloud a dispositivo](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).
+È necessario avere completato correttamente [eseguire un'applicazione di esempio in tooreceive Raspberry Pi messaggi da cloud a dispositivo](iot-hub-raspberry-pi-kit-node-lesson4-send-cloud-to-device-messages.md).
 
 ## <a name="add-nodejs-functions"></a>Aggiungere funzioni di Node.js
-1. Aprire l'applicazione di esempio in Visual Studio Code usando i comandi seguenti:
+1. Aprire l'applicazione di esempio hello nel codice di Visual Studio eseguendo hello seguenti comandi:
    
    ```bash
    cd Lesson4
    code .
    ```
-2. Aprire il file `app.js` e quindi aggiungere le funzioni seguenti alla fine:
+2. Aprire hello `app.js` file e quindi aggiungere hello seguenti funzioni alla fine di hello:
    
    ```javascript
    function turnOnLED() {
@@ -53,7 +53,7 @@ Usare funzioni aggiuntive di Node.js per modificare il comportamento di accensio
    ```
    
    ![File app.js con funzioni aggiunte](media/iot-hub-raspberry-pi-lessons/lesson4/updated_app_js.png)
-3. Aggiungere le condizioni seguenti prima di quella predefinita nel blocco switch-case della funzione `receiveMessageCallback`:
+3. Aggiungere hello seguente condizioni prima di quello predefinito di hello in blocco switch case hello di hello `receiveMessageCallback` funzione:
    
    ```javascript
    case 'on':
@@ -64,8 +64,8 @@ Usare funzioni aggiuntive di Node.js per modificare il comportamento di accensio
      break;
    ```
    
-   A questo punto è stata configurata l'applicazione di esempio per rispondere a più istruzioni tramite messaggi. L'istruzione "on" accende il LED, mentre l'istruzione "off" lo spegne.
-4. Aprire il file gulpfile.js e quindi aggiungere una nuova funzione prima della funzione `sendMessage`:
+   Ora è configurata hello applicazione toorespond toomore le istruzioni di esempio tramite i messaggi. Hello "on" istruzione attiva hello LED e hello "off" istruzione Disattiva hello LED.
+4. Aprire il file gulpfile.js hello e quindi aggiungere una nuova funzione prima della funzione hello `sendMessage`:
    
    ```javascript
    var buildCustomMessage = function (messageId) {
@@ -80,26 +80,26 @@ Usare funzioni aggiuntive di Node.js per modificare il comportamento di accensio
    ```
    
    ![File gulpfile.js con funzione aggiunta](media/iot-hub-raspberry-pi-lessons/lesson4/updated_gulpfile.png)
-5. Nella funzione `sendMessage` sostituire la riga `var message = buildMessage(sentMessageCount);` con la nuova riga illustrata nel frammento seguente:
+5. In hello `sendMessage` di funzione, sostituire la riga hello `var message = buildMessage(sentMessageCount);` con una nuova riga hello mostrata nel seguente frammento di codice hello:
    
    ```javascript
    var message = buildCustomMessage(sentMessageCount);
    ```
-6. Salvare tutte le modifiche.
+6. Salvare tutte le modifiche di hello.
 
-### <a name="deploy-and-run-the-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio
-Distribuire ed eseguire l'applicazione di esempio nel dispositivo Pi eseguendo questo comando:
+### <a name="deploy-and-run-hello-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio hello
+Distribuire ed eseguire l'applicazione di esempio hello Pi eseguendo hello comando seguente:
 
 ```bash
 gulp deploy && gulp run
 ```
 
-Il LED deve rimanere acceso per due secondi e quindi spento per altri due secondi. L'ultimo messaggio "stop" arresta l'esecuzione dell'applicazione di esempio.
+Si noterà accendere hello LED per due secondi e quindi disattivare per un altro due secondi. il messaggio "stop" ultimo Hello arresta l'applicazione di esempio hello esecuzione.
 
 ![Applicazione di esempio con messaggi di accensione e spegnimento](media/iot-hub-raspberry-pi-lessons/lesson4/gulp_on_and_off.png)
 
-Congratulazioni. I messaggi inviati dall'hub IoT al dispositivo Pi sono stati personalizzati.
+Congratulazioni. È stato personalizzato correttamente i messaggi hello inviati tooPi dall'hub IoT.
 
 ### <a name="summary"></a>Riepilogo
-Questa sezione facoltativa illustra come personalizzare i messaggi per consentire all'applicazione di esempio di controllare il comportamento di accensione e spegnimento del LED in modo diverso.
+Questa sezione facoltativa viene illustrata la modalità toocustomize dei messaggi in modo che l'applicazione di esempio hello può controllare hello e disattivare il comportamento di hello LED in modo diverso.
 

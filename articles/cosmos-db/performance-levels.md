@@ -1,6 +1,6 @@
 ---
-title: Livelli di prestazioni dell'API DocumentDB | Microsoft Docs
-description: "Informazioni sul modo in cui i livelli di prestazioni dell'API DocumentDB consentono di riservare la velocità effettiva per singolo contenitore."
+title: livelli di prestazioni aaaDocumentDB API | Documenti Microsoft
+description: "Informazioni su come livelli di prestazioni di DocumentDB API consentono di velocità effettiva tooreserve in base al contenitore."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,42 +15,42 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d4733e57eb760dbb8e8ca96f6ba55671d1742f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 716bc11ae238dbb0feebf004ed8d5f8a7515ec6f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>Ritiro dei livelli di prestazioni S1, S2 e S3
+# <a name="retiring-hello-s1-s2-and-s3-performance-levels"></a>Ritiro di livelli di prestazioni S1, S2 e S3 hello
 
 > [!IMPORTANT] 
-> I livelli di prestazioni S1, S2 e S3 descritti in questo articolo sono in fase di ritiro e non sono più disponibili per i nuovi account API DocumentDB.
+> Hello S1, S2 e S3 livelli di prestazioni descritti in questo articolo verranno ritirati e non sono più disponibili per i nuovi account API DocumentDB.
 >
 
-Questo articolo offre una panoramica dei livelli di prestazioni S1, S2 e S3 e descrive come, il 1° agosto 2017, verrà eseguita la migrazione delle raccolte che usano questi livelli di prestazioni a raccolte a partizione singola. Dopo la lettura di questo articolo, si potrà rispondere alle domande seguenti:
+In questo articolo viene fornita una panoramica dei livelli di prestazioni S1, S2 e S3 e viene illustrato come le raccolte di hello che usano questi livelli di prestazioni saranno le raccolte con partizione toosingle migrati sul 1 ° agosto 2017. Dopo aver letto questo articolo, sarà in grado di tooanswer hello seguenti domande:
 
-- [Perché i livelli di prestazioni S1, S2 e S3 sono in fase di ritiro?](#why-retired)
-- [Che differenze ci sono tra le raccolte a partizione singola e partizionate e i livelli di prestazioni S1, S2 e S3?](#compare)
-- [Cosa bisogna fare per garantire l'accesso ininterrotto ai dati?](#uninterrupted-access)
-- [Dopo la migrazione, come cambierà una raccolta esistente?](#collection-change)
-- [Dopo la migrazione a raccolte a partizione singola, come cambierà la fatturazione?](#billing-change)
+- [Perché sono le prestazioni di S1, S2 e S3 hello livelli ritirati?](#why-retired)
+- [Come raccolte con partizione singola e le raccolte partizionate confrontare toohello S1, S2, livelli di prestazioni S3?](#compare)
+- [Cosa è necessario tooensure toodo ininterrotta accedere ai dati toomy?](#uninterrupted-access)
+- [Come cambierà la raccolta dopo la migrazione di hello?](#collection-change)
+- [Come la fatturazione cambieranno dopo che sono le raccolte con partizione toosingle migrati?](#billing-change)
 - [Come bisogna comportarsi se sono necessari più di 10 GB di spazio di archiviazione?](#more-storage-needed)
-- [È possibile passare tra i livelli di prestazioni S1, S2 e S3 prima del 1° agosto 2017?](#change-before)
+- [È possibile modificare tra livelli di prestazioni di S1, S2 e S3 hello prima 1 agosto 2017?](#change-before)
 - [Come è possibile sapere quando sarà stata eseguita la migrazione di una raccolta?](#when-migrated)
-- [Come è possibile seguire autonomamente la migrazione dai livelli di prestazioni S1, S2 e S3 alle raccolte a partizione singola?](#migrate-diy)
+- [Come la migrazione da hello S1, S2, S3 prestazioni livelli toosingle le raccolte con partizione in modo personalizzato?](#migrate-diy)
 - [Quali sono le conseguenze per i clienti EA?](#ea-customer)
 
 <a name="why-retired"></a>
 
-## <a name="why-are-the-s1-s2-and-s3-performance-levels-being-retired"></a>Perché i livelli di prestazioni S1, S2 e S3 sono in fase di ritiro?
+## <a name="why-are-hello-s1-s2-and-s3-performance-levels-being-retired"></a>Perché sono le prestazioni di S1, S2 e S3 hello livelli ritirati?
 
-I livelli di prestazioni S1, S2 e S3 non offrono la stessa flessibilità delle raccolte dell'API DocumentDB. Con i livelli di prestazioni S1, S2 e S3, la velocità effettiva e la capacità di archiviazione sono preimpostate e non offrono elasticità. Azure Cosmos DB offre ora la possibilità di personalizzare questi valori garantendo una flessibilità decisamente superiore per il ridimensionamento in base alle proprie esigenze.
+livelli di prestazioni S1, S2 e S3 Hello non non offrono hello una flessibilità che offre le raccolte di API DocumentDB. Con hello S1, S2, livelli di prestazioni S3 entrambi hello velocità effettiva e capacità di archiviazione sono state già impostate e non ha inviato l'elasticità. DB Cosmos Azure offre ora hello possibilità toocustomize la velocità effettiva e l'archiviazione, offrendo maggiore flessibilità in tooscale il possibilità in base alle esigenze.
 
 <a name="compare"></a>
 
-## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-to-the-s1-s2-s3-performance-levels"></a>Che differenze ci sono tra le raccolte a partizione singola e partizionate e i livelli di prestazioni S1, S2 e S3?
+## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-toohello-s1-s2-s3-performance-levels"></a>Come raccolte con partizione singola e le raccolte partizionate confrontare toohello S1, S2, livelli di prestazioni S3?
 
-Nella tabella seguente vengono confrontate le opzioni di archiviazione e di velocità effettiva disponibili in raccolte a partizione singola, raccolte partizionate e livelli di prestazioni S1, S2 e S3. Di seguito è riportato un esempio per l'area Stati Uniti orientali 2:
+Hello nella tabella seguente confronta hello velocità effettiva e l'archiviazione opzioni disponibili nelle raccolte con partizione singola, le raccolte partizionate e S1, S2, livelli di prestazioni S3. Di seguito è riportato un esempio per l'area Stati Uniti orientali 2:
 
 |   |Raccolta partizionata|Raccolta a partizione singola|S1|S2|S3|
 |---|---|---|---|---|---|
@@ -63,103 +63,103 @@ Per i clienti EA, è consigliabile fare riferimento a [Quali sono le conseguenze
 
 <a name="uninterrupted-access"></a>
 
-## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>Cosa bisogna fare per garantire l'accesso ininterrotto ai dati?
+## <a name="what-do-i-need-toodo-tooensure-uninterrupted-access-toomy-data"></a>Cosa è necessario tooensure toodo ininterrotta accedere ai dati toomy?
 
-Niente, perché Cosmos DB gestisce automaticamente la migrazione. Per chi usa una raccolta S1, S2 o S3, il 31 luglio 2017 verrà eseguita la migrazione a una raccolta a partizione singola. 
+Nothing, Cosmos DB gestisce migrazione hello automaticamente. Se si dispone di una raccolta S1, S2 o S3, la raccolta corrente sarà migrato tooa singola partizione raccolta 31 luglio 2017. 
 
 <a name="collection-change"></a>
 
-## <a name="how-will-my-collection-change-after-the-migration"></a>Dopo la migrazione, come cambierà una raccolta esistente?
+## <a name="how-will-my-collection-change-after-hello-migration"></a>Come cambierà la raccolta dopo la migrazione di hello?
 
-Se si dispone di una raccolta S1, verrà eseguita la migrazione a una raccolta a partizione singola con una velocità effettiva di 400 UR/sec, cioè la velocità effettiva minima disponibile per le raccolte a partizione singola. Tuttavia, il costo di 400 UR/sec in una raccolta a partizione singola corrisponde approssimativamente a quello di 250 UR/sec pagato in una raccolta S1, per cui i 150 UR/sec aggiuntivi sono praticamente gratuiti.
+Se si dispone di una raccolta di S1, sarà migrato tooa singola partizione insieme con velocità effettiva di 400 UR/sec. 400 UR/sec è la velocità effettiva più bassa a hello disponibile con le raccolte con partizione singola. Tuttavia, il costo di hello di 400 UR/sec in una raccolta di singola partizione è di circa hello come se sono stati paga con la raccolta di S1 hello e 250 UR/sec: in modo non di pagamento per hello extra 150 tooyou disponibili di UR/sec.
 
-Se si dispone di una raccolta S2, verrà eseguita la migrazione a una raccolta a partizione singola con una velocità effettiva di 1000 UR/sec. Non sarà percepita nessuna modifica al livello di velocità effettiva.
+Se si dispone di una raccolta di S2, sarà migrato tooa singola partizione insieme con 1 K UR/sec. Non verrà visualizzato alcun livello di velocità effettiva tooyour di modifica.
 
-Se si dispone di una raccolta S3, verrà eseguita la migrazione a una raccolta a partizione singola con una velocità effettiva di 2500 UR/sec. Non sarà percepita nessuna modifica al livello di velocità effettiva.
+Se si dispone di una raccolta di S3, sarà migrato tooa singola partizione insieme con 2.5 K UR/sec. Non verrà visualizzato alcun livello di velocità effettiva tooyour di modifica.
 
-In ognuno di questi casi dopo la migrazione della raccolta sarà possibile personalizzare il livello di velocità effettiva o aumentarla e ridurla in base alle proprie esigenze, per offrire agli utenti un accesso a bassa latenza. Per modificare il livello di velocità effettiva dopo la migrazione della raccolta, è sufficiente aprire il proprio account Cosmos DB nel portale di Azure, fare clic su Piano, scegliere la raccolta e quindi modificare il livello di velocità effettiva come illustrato nello screenshot seguente:
+In ognuno di questi casi, dopo la migrazione, la raccolta di è che saranno in grado di toocustomize il livello di velocità effettiva o applicarvi la scalabilità verticale come utenti tooyour di bassa latenza accesso tooprovide necessari. livello di velocità effettiva hello toochange dopo la raccolta ha eseguito la migrazione, aprire semplicemente l'account DB Cosmos in hello portale di Azure, fare clic su scala, scegliere la raccolta e quindi modificare il livello di velocità effettiva di hello, come illustrato nella seguente schermata hello:
 
-![Come ridimensionare la velocità effettiva nel Portale di Azure](./media/performance-levels/portal-scale-throughput.png)
+![La velocità effettiva tooscale in hello portale di Azure](./media/performance-levels/portal-scale-throughput.png)
 
 <a name="billing-change"></a>
 
-## <a name="how-will-my-billing-change-after-im-migrated-to-the-single-partition-collections"></a>Dopo la migrazione alle raccolte a partizione singola, come cambierà la fatturazione?
+## <a name="how-will-my-billing-change-after-im-migrated-toohello-single-partition-collections"></a>Come la fatturazione cambieranno dopo che sono raccolte con partizione singola toohello migrati?
 
-Si supponga di avere a disposizione 10 raccolte S1, ciascuna con 1 GB di spazio di archiviazione, nell'area degli Stati Uniti orientali e di eseguire la migrazione di queste raccolte a 10 raccolte a partizione singola con 400 UR/sec (livello minimo). Se si mantengono le 10 raccolte a partizione singola per un mese intero, la fattura sarà simile a questa:
+Presupponendo che si hanno 10 raccolte S1, 1 GB di spazio di archiviazione per ogni, nell'area Stati Uniti orientali hello, e si esegue la migrazione di queste 10 S1 raccolte too10 raccolte con partizione singola 400 UR/sec (livello minimo di hello). La fattura sarà simile al seguente se si mantengono le raccolte con partizione singola 10 hello per un intero mese:
 
-![Differenza tra i prezzi di 10 raccolte S1 e quelli di 10 raccolte a partizione singola](./media/performance-levels/s1-vs-standard-pricing.png)
+![Come S1 prezzi per le 10 raccolte Confronta too10 raccolte con prezzi per un insieme di singola partizione](./media/performance-levels/s1-vs-standard-pricing.png)
 
 <a name="more-storage-needed"></a>
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>Come bisogna comportarsi se sono necessari più di 10 GB di spazio di archiviazione?
 
-Se si ha una raccolta con livello di prestazioni S1, S2 o S3 o una raccolta a partizione singola con spazio di archiviazione disponibile di 10 GB, è possibile usare lo strumento di migrazione dati di Cosmos DB per eseguire la migrazione dei dati a una raccolta partizionata con spazio di archiviazione quasi illimitato. Per informazioni sui vantaggi di una raccolta partizionata, vedere l'articolo relativo a [partizionamento e scalabilità in Azure Cosmos DB](documentdb-partition-data.md). Per informazioni su come eseguire la migrazione di una raccolta S1, S2, S3 o di una raccolta a partizione singola a una raccolta partizionata vedere [Migrazione da raccolte a partizione singola a raccolte partizionate](documentdb-partition-data.md#migrating-from-single-partition). 
+Se si dispone di una raccolta con un livello di prestazioni S1, S2 o S3 o dispone di una raccolta di sola partizione, ognuno dei quali dispone di 10 GB di spazio di archiviazione disponibile, è possibile utilizzare hello migrazione dei dati DB Cosmos strumento toomigrate tooa i dati partizionati insieme con virtualmente archiviazione illimitata. Per informazioni sui vantaggi di hello di una raccolta partizionata, vedere [partizionamento e la scalabilità in Azure Cosmos DB](documentdb-partition-data.md). Per informazioni su come toomigrate le S1, S2, S3 o raccolta tooa partizionata raccolta singola partizione, vedere [la migrazione da una singola partizione toopartitioned raccolte](documentdb-partition-data.md#migrating-from-single-partition). 
 
 <a name="change-before"></a>
 
-## <a name="can-i-change-between-the-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>È possibile passare tra i livelli di prestazioni S1, S2 e S3 prima del 1° agosto 2017?
+## <a name="can-i-change-between-hello-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>È possibile modificare tra livelli di prestazioni di S1, S2 e S3 hello prima 1 agosto 2017?
 
-Solo gli account già esistenti con livelli di prestazioni S1, S2 e S3 potranno cambiare livelli tramite il portale o a livello di programmazione. Dal 1° agosto 2017 i livelli di prestazioni S1, S2 e S3 non saranno più disponibili. Se si passa da S1, S3 o S3 a una raccolta a partizione singola non è possibile tornare ai livelli di prestazioni S1, S2 o S3.
+Solo gli account esistenti con le prestazioni S1, S2 e S3 verranno in grado di toochange e modificare i livelli di livello delle prestazioni tramite il portale di hello o a livello di codice. Entro il 1 ° agosto 2017 S1, S2, hello e livelli di prestazioni S3 non saranno disponibili. Se si modifica dalla raccolta di sola partizione tooa S1, S3 o S3, è possibile restituire toohello livelli di prestazioni S1, S2 o S3.
 
 <a name="when-migrated"></a>
 
 ## <a name="how-will-i-know-when-my-collection-has-migrated"></a>Come è possibile sapere quando sarà stata eseguita la migrazione di una raccolta?
 
-La migrazione verrà eseguita il 31 luglio 2017. Se l'utente ha una raccolta che usa i livelli di prestazioni S1, S2 o S3, verrà contattato per posta elettronica dal team di Cosmos DB prima della migrazione. Al termine della migrazione, il 1° agosto 2017, sul Portale di Azure verrà mostrato che la raccolta usa il piano tariffario Standard.
+migrazione di Hello verificherà su 31 luglio 2017. Se si dispone di una raccolta che utilizza hello S1, S2 o S3 livelli di prestazioni, il team di DB Cosmos hello contatterà l'utente tramite posta elettronica prima della migrazione hello. Al termine della migrazione hello, su 1 agosto 2017, verrà visualizzato hello portale di Azure che viene utilizzata la raccolta di prezzo Standard.
 
-![Come verificare che è stata eseguita la migrazione della raccolta al piano tariffario Standard](./media/performance-levels/portal-standard-pricing-applied.png)
+![Il modo tooconfirm la raccolta di cui eseguire la migrazione piano tariffario Standard toohello](./media/performance-levels/portal-standard-pricing-applied.png)
 
 <a name="migrate-diy"></a>
 
-## <a name="how-do-i-migrate-from-the-s1-s2-s3-performance-levels-to-single-partition-collections-on-my-own"></a>Come è possibile eseguire autonomamente la migrazione dai livelli di prestazioni S1, S2, S3 a raccolte a partizione singola?
+## <a name="how-do-i-migrate-from-hello-s1-s2-s3-performance-levels-toosingle-partition-collections-on-my-own"></a>Come la migrazione da hello S1, S2, S3 prestazioni livelli toosingle le raccolte con partizione in modo personalizzato?
 
-È possibile eseguire la migrazione dai livelli di prestazioni S1, S2 e S3 a raccolte a partizione singola tramite il Portale di Azure o a livello di programmazione. È possibile farlo autonomamente prima del 1° agosto per poter beneficiare delle opzioni di flessibilità della velocità effettiva disponibili con le raccolte a partizione singola; in alternativa la migrazione verrà eseguita da Microsoft il 31 luglio 2017.
+È possibile migrare da hello S1, S2, e le raccolte con partizione toosingle hello portale di Azure utilizzando i livelli di prestazioni S3 o a livello di codice. È possibile farlo nel proprio prima toobenefit 1 agosto dalle opzioni flessibili di velocità effettiva di hello disponibili con le raccolte con partizione singola o su 31 luglio 2017 trasferiremo le raccolte per l'utente.
 
-**Per eseguire la migrazione delle raccolte a partizione singola tramite il Portale di Azure**
+**raccolte con partizione toosingle toomigrate utilizzando hello portale di Azure**
 
-1. Nel [**portale di Azure**](https://portal.azure.com) fare clic su **Azure Cosmos DB** e quindi selezionare l'account Cosmos DB da modificare. 
+1. In hello [ **portale di Azure**](https://portal.azure.com), fare clic su **Azure Cosmos DB**, quindi selezionare hello Cosmos DB account toomodify. 
  
-    Se la voce **Azure Cosmos DB** non è inclusa nell'indice, fare clic su >, scorrere fino a **Database** e selezionare **Azure Cosmos DB** e quindi l'account DocumentDB.  
+    Se **Azure Cosmos DB** non è in hello Jumpbar, fare clic su >, scorrere troppo**database**selezionare **Azure Cosmos DB**, quindi selezionare l'account DocumentDB hello.  
 
-2. Nel menu delle risorse fare clic su **Piano** in **Contenitori**, selezionare la raccolta da modificare nell'elenco a discesa e quindi fare clic su **Piano tariffario**. Gli account che usano la velocità effettiva predefinita hanno un piano tariffario S1, S2 o S3.  Nel pannello **Scegliere il piano tariffario** fare clic su **Standard** per modificare la velocità effettiva definita dall'utente e quindi su **Seleziona** per salvare la modifica.
+2. Menu risorse hello in **contenitori**, fare clic su **scala**selezionare hello raccolta toomodify dall'elenco a discesa hello e quindi fare clic su **tariffario**. Gli account che usano la velocità effettiva predefinita hanno un piano tariffario S1, S2 o S3.  In hello **scegliere il piano tariffario** pannello, fare clic su **Standard** toochange definito toouser velocità effettiva, quindi fare clic su **selezionare** toosave la modifica.
 
-    ![Screenshot del pannello Impostazioni che mostra dove modificare il valore della velocità effettiva](./media/performance-levels/change-performance-set-thoughput.png)
+    ![Cattura di schermata del pannello impostazioni hello che mostra dove toochange hello il valore di velocità effettiva](./media/performance-levels/change-performance-set-thoughput.png)
 
-3. Nel pannello **Piano** il **piano tariffario** è impostato su **Standard** e nella casella **Velocità effettiva (UR/sec)** viene visualizzato un valore predefinito di 400. Impostare la velocità effettiva tra 400 e 10.000 [unità richiesta](request-units.md)al secondo (UR/sec). Il contenuto di **Fattura mensile stimata** nella parte inferiore della pagina viene aggiornato automaticamente per fornire una stima del costo mensile. 
+3. In hello **scala** blade, hello **tariffario** è stato modificato anche**Standard** hello e **velocità effettiva (UR/sec)** viene visualizzata con un valore predefinito di 400. Velocità effettiva di hello set compreso tra 400 e 10.000 [unità richieste](request-units.md)al secondo (UR/sec). Hello **fattura mensile stimato** nella parte inferiore di hello di hello pagina Aggiorna automaticamente tooprovide una stima del costo mensile hello. 
 
     >[!IMPORTANT] 
-    > Dopo aver salvato le modifiche ed essere passati al piano tariffario Standard, non è possibile tornare ai livelli di prestazioni S1, S2 o S3.
+    > Dopo aver salvato le modifiche e spostare piano tariffario Standard toohello, è possibile eseguire il rollback toohello livelli di prestazioni S1, S2 o S3.
 
-4. Fare clic su **Salva** per salvare le modifiche.
+4. Fare clic su **salvare** toosave le modifiche.
 
-    Se è necessaria una velocità effettiva maggiore di 10.000 UR/sec o uno spazio di archiviazione maggiore di 10 GB è possibile creare una raccolta partizionata. Per eseguire la migrazione di una raccolta a partizione singola a una raccolta partizionata vedere [Migrazione da raccolte a partizione singola a raccolte partizionate](documentdb-partition-data.md#migrating-from-single-partition).
+    Se è necessaria una velocità effettiva maggiore di 10.000 UR/sec o uno spazio di archiviazione maggiore di 10 GB è possibile creare una raccolta partizionata. toomigrate una raccolta partizionata tooa raccolta singola partizione, vedere [la migrazione da una singola partizione toopartitioned raccolte](documentdb-partition-data.md#migrating-from-single-partition).
 
     > [!NOTE]
-    > Il passaggio dai livelli S1, S2 o S3 al livello Standard può richiedere fino a 2 minuti.
+    > Minuti too2 potrebbe richiedere la modifica da tooStandard S1, S2 o S3.
     > 
     > 
 
-**Per eseguire la migrazione alle raccolte a partizione singola tramite .NET SDK**
+**utilizzando le raccolte con partizione toosingle toomigrate hello .NET SDK**
 
-Un'altra opzione per la modifica dei livelli di prestazioni degli insiemi è tramite SDK. Questa sezione illustra solo la modifica del livello di prestazioni di una raccolta tramite l'[API .NET DocumentDB](documentdb-sdk-dotnet.md), ma il processo per gli altri SDK è simile.
+Un'altra opzione per la modifica dei livelli di prestazioni degli insiemi è tramite SDK. Questa sezione sono disponibili solo se si modificano prestazioni di una raccolta di livello utilizzando il nostro [API .NET di DocumentDB](documentdb-sdk-dotnet.md), ma il processo di hello è simile per altri SDK di questo.
 
-Di seguito è riportato un frammento di codice per modificare la velocità effettiva della raccolta a 5000 unità richiesta al secondo:
+Di seguito è riportato un frammento di codice per la modifica hello insieme velocità effettiva too5, 000 unità di richiesta al secondo:
     
 ```C#
-    //Fetch the resource to be updated
+    //Fetch hello resource toobe updated
     Offer offer = client.CreateOfferQuery()
                       .Where(r => r.ResourceLink == collection.SelfLink)    
                       .AsEnumerable()
                       .SingleOrDefault();
 
-    // Set the throughput to 5000 request units per second
+    // Set hello throughput too5000 request units per second
     offer = new OfferV2(offer, 5000);
 
-    //Now persist these changes to the database by replacing the original resource
+    //Now persist these changes toohello database by replacing hello original resource
     await client.ReplaceOfferAsync(offer);
 ```
 
-Visitare [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) per visualizzare ulteriori esempi e ulteriori informazioni sui metodi della nostra offerta:
+Visitare [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) tooview ulteriori esempi e ulteriori informazioni sui metodi offerta:
 
 * [**ReadOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readofferasync.aspx)
 * [**ReadOffersFeedAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readoffersfeedasync.aspx)
@@ -170,11 +170,11 @@ Visitare [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documen
 
 ## <a name="how-am-i-impacted-if-im-an-ea-customer"></a>Quali sono le conseguenze per i clienti EA?
 
-Il prezzo resterà bloccato per i clienti EA fino alla scadenza del contratto in vigore.
+I clienti EA saranno prezzo protetto fino al fine di hello del contratto corrente.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sui prezzi e sulla gestione dei dati con Azure Cosmos DB, vedere le risorse seguenti:
+toolearn ulteriori informazioni sui prezzi e la gestione dei dati con Azure Cosmos DB, è esplorare queste risorse:
 
-1.  [Partizionamento dei dati in Cosmos DB](documentdb-partition-data.md). Informazioni sulla differenza tra contenitore a partizione singola e contenitori partizionati e suggerimenti sull'implementazione di una strategia di partizionamento per eseguire facilmente il ridimensionamento.
-2.  [Prezzi di Cosmos DB](https://azure.microsoft.com/pricing/details/cosmos-db/). Informazioni sui costi del provisioning della velocità effettiva e del consumo di spazio di archiviazione.
-3.  [Unità richiesta](request-units.md). Analisi del consumo di velocità effettiva per i diversi tipi di operazione, ad esempio lettura, scrittura, query.
+1.  [Partizionamento dei dati in Cosmos DB](documentdb-partition-data.md). Comprendere la differenza hello tra contenitore singola partizione e contenitori partizionati, nonché suggerimenti sull'implementazione di un esempio di strategia partizionamento tooscale senza problemi.
+2.  [Prezzi di Cosmos DB](https://azure.microsoft.com/pricing/details/cosmos-db/). Informazioni sui costi di hello del provisioning di velocità effettiva e l'utilizzo di archiviazione.
+3.  [Unità richiesta](request-units.md). Comprendere il consumo di hello di velocità effettiva per i tipi di operazione diversa, ad esempio lettura, scrittura, Query.

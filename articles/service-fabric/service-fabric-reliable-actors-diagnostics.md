@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio e diagnostica degli attori | Documentazione Microsoft
-description: "Questo articolo illustra le funzionalità di diagnostica e monitoraggio delle prestazioni disponibili nel runtime di Service Fabric Reliable Actors, inclusi gli eventi e i contatori delle prestazioni emessi dal runtime."
+title: aaaActors diagnostica e monitoraggio | Documenti Microsoft
+description: "Questo articolo descrive diagnostica hello e funzionalità nel runtime di Service Fabric Reliable Actors hello, inclusi gli eventi di hello e i contatori delle prestazioni generati dal componente di monitoraggio delle prestazioni."
 services: service-fabric
 documentationcenter: .net
 author: abhishekram
@@ -14,161 +14,161 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: abhisram
-ms.openlocfilehash: 1c53a6bbe0152f6f2b9666e6059af7c6d02e481f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5b266d67875722feef5c5be8861bda6d8132a7d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnostics-and-performance-monitoring-for-reliable-actors"></a>Diagnostica e monitoraggio delle prestazioni per Reliable Actors
-Il runtime di Reliable Actors rende disponibili eventi [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) e [contatori delle prestazioni](https://msdn.microsoft.com/library/system.diagnostics.performancecounter.aspx), che forniscono informazioni utili per comprendere il funzionamento del runtime e per eseguire la risoluzione dei problemi e il monitoraggio delle prestazioni.
+Hello Reliable Actors runtime genera [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) gli eventi e [i contatori delle prestazioni](https://msdn.microsoft.com/library/system.diagnostics.performancecounter.aspx). Questi forniscono informazioni dettagliate sui funzionamento runtime hello e agevolare la risoluzione dei problemi e il monitoraggio delle prestazioni.
 
 ## <a name="eventsource-events"></a>Eventi EventSource
-Il nome provider di EventSource per il runtime di Reliable Actors è "Microsoft-ServiceFabric-Actors". Gli eventi provenienti da questa origine vengono visualizzati nella finestra degli [eventi di diagnostica](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) quando l'applicazione attore viene sottoposta a [debug in Visual Studio](service-fabric-debugging-your-application.md).
+nome del provider Hello EventSource per hello Reliable Actors runtime è "Microsoft-ServiceFabric-attori". Gli eventi dall'origine di eventi vengono visualizzati in hello [gli eventi di diagnostica](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) finestra quando è in corso un'applicazione hello attore [il debug in Visual Studio](service-fabric-debugging-your-application.md).
 
-Alcuni esempi di strumenti e tecnologie che consentono di raccogliere e/o visualizzare eventi EventSource sono [PerfView](http://www.microsoft.com/download/details.aspx?id=28567), [Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md), [Semantic Logging](https://msdn.microsoft.com/library/dn774980.aspx) e [Microsoft TraceEvent Library](http://www.nuget.org/packages/Microsoft.Diagnostics.Tracing.TraceEvent).
+Sono esempi di strumenti e tecnologie che consentono di raccogliere e/o la visualizzazione di eventi EventSource [PerfView](http://www.microsoft.com/download/details.aspx?id=28567), [diagnostica Azure](../cloud-services/cloud-services-dotnet-diagnostics.md), [registrazione semantica](https://msdn.microsoft.com/library/dn774980.aspx)e hello [ Oggetto TraceEvent libreria](http://www.nuget.org/packages/Microsoft.Diagnostics.Tracing.TraceEvent).
 
 ### <a name="keywords"></a>Parole chiave
-Tutti gli eventi appartenenti a EventSource di Reliable Actors sono associati a una o più parole chiave. Questo consente di filtrare gli eventi che vengono raccolti. Sono definiti i bit delle parole chiave seguenti:
+Tutti gli eventi che appartengono toohello affidabile EventSource attori sono associati uno o più parole chiave. Questo consente di filtrare gli eventi che vengono raccolti. viene definito Hello seguente bits (parola chiave).
 
 | Bit | Descrizione |
 | --- | --- |
-| 0x1 |Set di eventi importanti che riepilogano il funzionamento del runtime di Fabric Actors. |
-| 0x2 |Set di eventi che descrivono le chiamate ai metodi degli attori. Per altre informazioni, vedere l' [argomento introduttivo sugli attori](service-fabric-reliable-actors-introduction.md). |
-| 0x4 |Set di eventi relativi allo stato dell'attore. Per altre informazioni, vedere l'argomento relativo alla [gestione dello stato degli attori](service-fabric-reliable-actors-state-management.md). |
-| 0x8 |Set di eventi correlati alla concorrenza basata su turni nell'attore. Per altre informazioni, vedere l'argomento relativo alla [concorrenza](service-fabric-reliable-actors-introduction.md#concurrency). |
+| 0x1 |Set di eventi importanti che riepilogano operazione hello di hello attori dell'infrastruttura runtime. |
+| 0x2 |Set di eventi che descrivono le chiamate ai metodi degli attori. Per ulteriori informazioni, vedere hello [argomento introduttivo su attori](service-fabric-reliable-actors-introduction.md). |
+| 0x4 |Set di eventi correlati tooactor stato. Per ulteriori informazioni, vedere l'argomento hello in [gestione dello stato actor](service-fabric-reliable-actors-state-management.md). |
+| 0x8 |Set di eventi correlati tooturn concorrenza basata su attore hello. Per ulteriori informazioni, vedere l'argomento hello in [concorrenza](service-fabric-reliable-actors-introduction.md#concurrency). |
 
 ## <a name="performance-counters"></a>Contatori delle prestazioni
-Il runtime di Reliable Actors definisce le categorie di contatori delle prestazioni seguenti.
+Hello Reliable Actors runtime definisce hello seguenti categorie di contatori delle prestazioni.
 
 | Categoria | Descrizione |
 | --- | --- |
-| Service Fabric Actor |Contatori specifici degli attori di Azure Service Fabric, ad esempio per il tempo necessario per salvare lo stato di un attore |
-| Service Fabric Actor Method |Contatori specifici dei metodi implementati dagli attori di Service Fabric, ad esempio per la frequenza con cui viene richiamato un metodo di un attore |
+| Service Fabric Actor |I contatori di attori di Service Fabric tooAzure specifico, ad esempio durata dello stato actor toosave |
+| Service Fabric Actor Method |Contatori specifici toomethods implementata da attori di Service Fabric, ad esempio la frequenza con cui viene richiamato un metodo di attore |
 
-Ognuna di queste categorie include uno o più contatori.
+Ciascuna hello sopra le categorie dispone di uno o più contatori.
 
-L'applicazione [Performance Monitor di Windows](https://technet.microsoft.com/library/cc749249.aspx) , disponibile per impostazione predefinita nel sistema operativo Windows, può essere usata per raccogliere e visualizzare i dati dei contatori delle prestazioni. [Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) rappresenta una valida alternativa per la raccolta di tali dati e il relativo caricamento nelle tabelle di Azure.
+Hello [Windows Performance Monitor](https://technet.microsoft.com/library/cc749249.aspx) applicazione disponibile per impostazione predefinita nel sistema operativo di Windows hello può essere utilizzato toocollect e visualizzazione dati contatore delle prestazioni. [Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) è un'altra opzione per raccogliere i dati dei contatori delle prestazioni e caricarli tooAzure tabelle.
 
 ### <a name="performance-counter-instance-names"></a>Nomi delle istanze dei contatori delle prestazioni
-Un cluster con un numero elevato di servizi attore o di partizioni di servizi attore disporrà di un numero considerevole di istanze di contatori delle prestazioni degli attori. I nomi delle istanze possono facilitare l'identificazione della [partizione](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors) specifica e del metodo dell'attore (se applicabile) a cui l'istanza è associata.
+Un cluster con un numero elevato di servizi attore o di partizioni di servizi attore disporrà di un numero considerevole di istanze di contatori delle prestazioni degli attori. Hello i nomi delle istanze di contatore di prestazioni consente di identificare specifici hello [partizione](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors) e metodo actor (se applicabile) a cui è associata a tale istanza del contatore delle prestazioni hello.
 
 #### <a name="service-fabric-actor-category"></a>Categoria Service Fabric Actor
-Per la categoria `Service Fabric Actor`, i nomi delle istanze dei contatori sono nel formato seguente:
+Per categoria hello `Service Fabric Actor`, sono i nomi delle istanze di contatore hello in hello seguente formato:
 
 `ServiceFabricPartitionID_ActorsRuntimeInternalID`
 
-*ServiceFabricPartitionID* è la rappresentazione sotto forma di stringa dell'ID partizione di Service Fabric a cui è associata l'istanza del contatore delle prestazioni. L'ID partizione è un GUID e la relativa rappresentazione di stringa viene generata tramite il metodo [`Guid.ToString`](https://msdn.microsoft.com/library/97af8hh4.aspx) con l'identificatore di formato "D".
+*ServiceFabricPartitionID* è la rappresentazione di stringa hello di hello Service Fabric ID di partizione che hello istanza del contatore delle prestazioni è associato. ID di partizione Hello è un GUID e rappresentazione di stringa viene generato tramite hello [ `Guid.ToString` ](https://msdn.microsoft.com/library/97af8hh4.aspx) metodo con l'identificatore di formato "D".
 
-*ActorRuntimeInternalID* è la rappresentazione sotto forma di stringa di un numero intero a 64 bit generato dal runtime di Fabric Actors per l'uso interno. Viene incluso nel nome dell'istanza del contatore delle prestazioni per assicurarne l'univocità ed evitare conflitti con altri nomi di istanze di contatori delle prestazioni. Agli utenti non serve tentare di interpretare questa parte del nome dell'istanza del contatore delle prestazioni.
+*ActorRuntimeInternalID* è la rappresentazione di stringa hello di un intero a 64 bit che viene generato dal runtime di hello attori dell'infrastruttura per l'uso interno. Questo è incluso nell'istanza del contatore delle prestazioni hello Nome tooensure l'unicità ed evitare conflitti con gli altri nomi di istanza del contatore delle prestazioni. Gli utenti non devono tentare toointerpret questa parte del nome dell'istanza del contatore delle prestazioni hello.
 
-Di seguito è riportato un esempio di un nome di istanza per un contatore appartenente alla categoria `Service Fabric Actor` :
+Hello seguito è riportato un esempio di un nome di istanza di contatore per un contatore che appartiene toohello `Service Fabric Actor` categoria:
 
 `2740af29-78aa-44bc-a20b-7e60fb783264_635650083799324046`
 
-Nell'esempio precedente `2740af29-78aa-44bc-a20b-7e60fb783264` è la rappresentazione di stringa dell'ID partizione di Service Fabric e `635650083799324046` è l'ID a 64 bit generato per l'uso interno del runtime.
+Nell'esempio hello sopra, `2740af29-78aa-44bc-a20b-7e60fb783264` è la rappresentazione di stringa hello dell'ID di partizione di Service Fabric hello, e `635650083799324046` utilizzare hello 64-bit ID generato per hello runtime interno.
 
 #### <a name="service-fabric-actor-method-category"></a>Categoria Service Fabric Actor Method
-Per la categoria `Service Fabric Actor Method`, i nomi delle istanze dei contatori sono nel formato seguente:
+Per categoria hello `Service Fabric Actor Method`, sono i nomi delle istanze di contatore hello in hello seguente formato:
 
 `MethodName_ActorsRuntimeMethodId_ServiceFabricPartitionID_ActorsRuntimeInternalID`
 
-*MethodName* è il nome del metodo dell'attore a cui è associata l'istanza del contatore delle prestazioni. Il formato del nome del metodo è determinato in base a una parte della logica del runtime di Fabric Actors che cerca di trovare un compromesso tra la leggibilità del nome e i vincoli relativi alla lunghezza massima dei nomi delle istanze dei contatori delle prestazioni in Windows.
+*NomeMetodo* è associato alcun nome di hello del metodo attore hello hello istanza del contatore delle prestazioni. formato di Hello del nome di metodo hello è determinato in base a una logica di runtime dell'infrastruttura attori hello tale da bilanciare la leggibilità hello del nome hello con vincoli sulla lunghezza massima di hello di nomi di istanza del contatore delle prestazioni hello in Windows.
 
-*ActorsRuntimeMethodId* è la rappresentazione sotto forma di stringa di un numero intero a 32 bit generato dal runtime di Fabric Actors per l'uso interno. Viene incluso nel nome dell'istanza del contatore delle prestazioni per assicurarne l'univocità ed evitare conflitti con altri nomi di istanze di contatori delle prestazioni. Agli utenti non serve tentare di interpretare questa parte del nome dell'istanza del contatore delle prestazioni.
+*ActorsRuntimeMethodId* è la rappresentazione di stringa hello di intero a 32 bit che viene generato dal runtime di hello attori dell'infrastruttura per l'uso interno. Questo è incluso nell'istanza del contatore delle prestazioni hello Nome tooensure l'unicità ed evitare conflitti con gli altri nomi di istanza del contatore delle prestazioni. Gli utenti non devono tentare toointerpret questa parte del nome dell'istanza del contatore delle prestazioni hello.
 
-*ServiceFabricPartitionID* è la rappresentazione sotto forma di stringa dell'ID partizione di Service Fabric a cui è associata l'istanza del contatore delle prestazioni. L'ID partizione è un GUID e la relativa rappresentazione di stringa viene generata tramite il metodo [`Guid.ToString`](https://msdn.microsoft.com/library/97af8hh4.aspx) con l'identificatore di formato "D".
+*ServiceFabricPartitionID* è la rappresentazione di stringa hello di hello Service Fabric ID di partizione che hello istanza del contatore delle prestazioni è associato. ID di partizione Hello è un GUID e rappresentazione di stringa viene generato tramite hello [ `Guid.ToString` ](https://msdn.microsoft.com/library/97af8hh4.aspx) metodo con l'identificatore di formato "D".
 
-*ActorRuntimeInternalID* è la rappresentazione sotto forma di stringa di un numero intero a 64 bit generato dal runtime di Fabric Actors per l'uso interno. Viene incluso nel nome dell'istanza del contatore delle prestazioni per assicurarne l'univocità ed evitare conflitti con altri nomi di istanze di contatori delle prestazioni. Agli utenti non serve tentare di interpretare questa parte del nome dell'istanza del contatore delle prestazioni.
+*ActorRuntimeInternalID* è la rappresentazione di stringa hello di un intero a 64 bit che viene generato dal runtime di hello attori dell'infrastruttura per l'uso interno. Questo è incluso nell'istanza del contatore delle prestazioni hello Nome tooensure l'unicità ed evitare conflitti con gli altri nomi di istanza del contatore delle prestazioni. Gli utenti non devono tentare toointerpret questa parte del nome dell'istanza del contatore delle prestazioni hello.
 
-Di seguito è riportato un esempio di un nome di istanza per un contatore appartenente alla categoria `Service Fabric Actor Method` :
+Hello seguito è riportato un esempio di un nome di istanza di contatore per un contatore che appartiene toohello `Service Fabric Actor Method` categoria:
 
 `ivoicemailboxactor.leavemessageasync_2_89383d32-e57e-4a9b-a6ad-57c6792aa521_635650083804480486`
 
-Nell'esempio precedente `ivoicemailboxactor.leavemessageasync` è il nome del metodo, `2` è l'ID a 32 bit generato per l'uso interno del runtime, `89383d32-e57e-4a9b-a6ad-57c6792aa521` è la rappresentazione di stringa dell'ID partizione di Service Fabric e `635650083804480486` è l'ID a 64 bit generato per l'uso interno del runtime.
+Nell'esempio hello sopra, `ivoicemailboxactor.leavemessageasync` è il nome di metodo hello, `2` è hello utilizzare 32 bit ID generato per interno del runtime di hello, `89383d32-e57e-4a9b-a6ad-57c6792aa521` è la rappresentazione di stringa hello dell'ID di partizione di Service Fabric hello, e `635650083804480486` hello 64-bit ID generato per uso interno del runtime di hello.
 
 ## <a name="list-of-events-and-performance-counters"></a>Elenco degli eventi e dei contatori delle prestazioni
 ### <a name="actor-method-events-and-performance-counters"></a>Eventi dei metodi degli attori e relativi contatori delle prestazioni
-Il runtime di Reliable Actors rende disponibili gli eventi seguenti relativi ai [metodi degli attori](service-fabric-reliable-actors-introduction.md).
+Hello Reliable Actors dall'esecuzione hello dopo gli eventi correlati troppo[metodi attore](service-fabric-reliable-actors-introduction.md).
 
 | Nome evento | ID evento | Level | Parole chiave | Descrizione |
 | --- | --- | --- | --- | --- |
-| ActorMethodStart |7 |Dettagliato |0x2 |Il runtime di Actors sta per richiamare un metodo di un attore. |
-| ActorMethodStop |8 |Dettagliato |0x2 |È terminata l'esecuzione di un metodo di un attore, ovvero la chiamata asincrona del runtime al metodo ha restituito il controllo e l'attività restituita dal metodo stesso è stata completata. |
-| ActorMethodThrewException |9 |Avviso |0x3 |È stata generata un'eccezione durante l'esecuzione di un metodo di un attore durante la chiamata asincrona del runtime al metodo o durante l'esecuzione dell'attività restituita dal metodo stesso. Questo evento indica un problema relativo al codice dell'attore che deve essere analizzato. |
+| ActorMethodStart |7 |Dettagliato |0x2 |Runtime di attori riguarda tooinvoke un metodo attore. |
+| ActorMethodStop |8 |Dettagliato |0x2 |È terminata l'esecuzione di un metodo di un attore, Vale a dire, restituzione del metodo del runtime hello chiamata asincrona toohello attore e completamento dell'attività hello restituito dal metodo attore hello. |
+| ActorMethodThrewException |9 |Avviso |0x3 |È stata generata un'eccezione durante l'esecuzione di hello di un metodo attore, durante il metodo actor toohello chiamata asincrona di hello del runtime o durante l'esecuzione di hello dell'attività hello restituito dal metodo actor di hello. Questo evento indica un tipo di errore nel codice attore hello analisi necessaria. |
 
-Il runtime di Reliable Actors pubblica i contatori delle prestazioni seguenti relativi all'esecuzione dei metodi degli attori.
+runtime Reliable Actors Hello pubblica hello dopo l'esecuzione di toohello correlati i contatori delle prestazioni dei metodi attore.
 
 | Nome categoria | Nome contatore | Descrizione |
 | --- | --- | --- |
-| Service Fabric Actor Method |Invocations/Sec |Numero di volte in cui il metodo del servizio attore viene richiamato al secondo |
-| Service Fabric Actor Method |Average milliseconds per invocation |Tempo necessario per eseguire il metodo del servizio attore in millisecondi |
-| Service Fabric Actor Method |Exceptions thrown/Sec |Numero di volte in cui il metodo del servizio attore ha generato un'eccezione al secondo |
+| Service Fabric Actor Method |Invocations/Sec |Numero di volte in cui viene chiamato metodo del servizio actor hello al secondo |
+| Service Fabric Actor Method |Average milliseconds per invocation |Tempo impiegato tooexecute hello metodo del servizio actor in millisecondi |
+| Service Fabric Actor Method |Exceptions thrown/Sec |Numero di volte in cui hello metodo del servizio actor ha generato un'eccezione al secondo |
 
 ### <a name="concurrency-events-and-performance-counters"></a>Eventi di concorrenza e relativi contatori delle prestazioni
-Il runtime di Reliable Actors emette gli eventi seguenti relativi alla [concorrenza](service-fabric-reliable-actors-introduction.md#concurrency).
+Hello Reliable Actors dall'esecuzione hello dopo gli eventi correlati troppo[concorrenza](service-fabric-reliable-actors-introduction.md#concurrency).
 
 | Nome evento | ID evento | Level | Parole chiave | Descrizione |
 | --- | --- | --- | --- | --- |
-| ActorMethodCallsWaitingForLock |12 |Dettagliato |0x8 |Questo evento viene scritto all'inizio di ogni nuovo turno in un attore. Include il numero di chiamate dell'attore in sospeso, in attesa di acquisire il blocco per attore che applica la concorrenza basata su turni. |
+| ActorMethodCallsWaitingForLock |12 |Dettagliato |0x8 |Questo evento viene scritto all'inizio di hello di ogni nuovo turno un attore. Contiene il numero di hello di chiamate actor in attesa di blocco actor di hello tooacquire che applica la concorrenza basato su in sospeso. |
 
-Il runtime di Reliable Actors pubblica i contatori delle prestazioni seguenti relativi alla concorrenza.
+runtime Reliable Actors Hello pubblica hello seguente tooconcurrency correlati di contatori delle prestazioni.
 
 | Nome categoria | Nome contatore | Descrizione |
 | --- | --- | --- |
-| Service Fabric Actor |# of actor calls waiting for actor lock |Numero di chiamate dell'attore in sospeso, in attesa di acquisire il blocco per attore che applica la concorrenza basata su turni. |
-| Service Fabric Actor |Average milliseconds per lock wait |Tempo richiesto (in millisecondi) per acquisire il blocco per attore che applica la concorrenza basata su turni. |
-| Service Fabric Actor |Average milliseconds actor lock held |Tempo (in millisecondi) per il quale il blocco per attore è attivato |
+| Service Fabric Actor |# of actor calls waiting for actor lock |Numero di chiamate actor in attesa di blocco actor di hello tooacquire che applica la concorrenza basato su in sospeso |
+| Service Fabric Actor |Average milliseconds per lock wait |Tempo di blocco di hello tooacquire eseguito (in millisecondi) per ogni attore applica concorrenza basato su |
+| Service Fabric Actor |Average milliseconds actor lock held |Tempo (in millisecondi) per cui hello actor blocco |
 
 ### <a name="actor-state-management-events-and-performance-counters"></a>Eventi di gestione dello stato degli attori e relativi contatori delle prestazioni
-Il runtime di Reliable Actors emette gli eventi seguenti relativi alla [gestione dello stato degli attori](service-fabric-reliable-actors-state-management.md).
+Hello Reliable Actors dall'esecuzione hello dopo gli eventi correlati troppo[gestione dello stato actor](service-fabric-reliable-actors-state-management.md).
 
 | Nome evento | ID evento | Level | Parole chiave | Descrizione |
 | --- | --- | --- | --- | --- |
-| ActorSaveStateStart |10 |Dettagliato |0x4 |Il runtime di Actors sta per salvare lo stato di un attore. |
-| ActorSaveStateStop |11 |Dettagliato |0x4 |Il runtime di Actors ha finito di salvare lo stato di un attore. |
+| ActorSaveStateStart |10 |Dettagliato |0x4 |Runtime di attori è sullo stato di toosave hello attore. |
+| ActorSaveStateStop |11 |Dettagliato |0x4 |Runtime di attori ha terminato il salvataggio dello stato actor hello. |
 
-Il runtime di Reliable Actors pubblica i contatori delle prestazioni seguenti relativi alla gestione dello stato degli attori.
+runtime Reliable Actors Hello pubblica hello seguendo la gestione dello stato di tooactor correlati i contatori delle prestazioni.
 
 | Nome categoria | Nome contatore | Descrizione |
 | --- | --- | --- |
-| Service Fabric Actor |Average milliseconds per save state operation |Tempo necessario per salvare lo stato dell'attore in millisecondi |
-| Service Fabric Actor |Average milliseconds per load state operation |Tempo richiesto per caricare lo stato dell'attore in millisecondi |
+| Service Fabric Actor |Average milliseconds per save state operation |Tempo impiegato toosave dello stato di actor in millisecondi |
+| Service Fabric Actor |Average milliseconds per load state operation |Tempo impiegato dello stato di tooload actor in millisecondi |
 
-### <a name="events-related-to-actor-replicas"></a>Eventi relativi alle repliche di attori
-Il runtime di Reliable Actors rende disponibili gli eventi seguenti relativi alle [repliche di attori](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors).
+### <a name="events-related-tooactor-replicas"></a>Gli eventi correlati tooactor repliche
+Hello Reliable Actors dall'esecuzione hello dopo gli eventi correlati troppo[repliche attore](service-fabric-reliable-actors-platform.md#service-fabric-partition-concepts-for-actors).
 
 | Nome evento | ID evento | Level | Parole chiave | Descrizione |
 | --- | --- | --- | --- | --- |
-| ReplicaChangeRoleToPrimary |1 |Informazioni |0x1 |Il ruolo della replica dell'attore è cambiato e la replica è diventata primaria. Ciò significa che gli attori per questa partizione verranno creati all'interno della replica. |
-| ReplicaChangeRoleFromPrimary |2 |Informazioni |0x1 |Il ruolo della replica dell'attore è cambiato e la replica non è più primaria. Ciò significa che gli attori per questa partizione non verranno più creati all'interno della replica. Non verranno recapitate nuove richieste agli attori già creati all'interno della replica. Gli attori verranno distrutti dopo il completamento di qualsiasi richiesta in corso. |
+| ReplicaChangeRoleToPrimary |1 |Informazioni |0x1 |Replica attore modificato tooPrimary ruolo. Ciò implica che gli attori hello per la partizione verranno creati all'interno di questa replica. |
+| ReplicaChangeRoleFromPrimary |2 |Informazioni |0x1 |Replica attore modificato toonon ruolo primario. Ciò implica che non è più attori hello per la partizione verranno creati all'interno di questa replica. Nessuna nuova richiesta verrà recapitata tooactors già creati all'interno di questa replica. gli attori Hello verranno eliminati dopo il completamento di tutte le richieste in corso. |
 
 ### <a name="actor-activation-and-deactivation-events-and-performance-counters"></a>Eventi di attivazione e disattivazione degli attori e contatori delle prestazioni
-Il runtime di Reliable Actors emette gli eventi seguenti relativi all' [attivazione e disattivazione degli attori](service-fabric-reliable-actors-lifecycle.md).
+Hello Reliable Actors dall'esecuzione hello dopo gli eventi correlati troppo[attore attivazione e disattivazione](service-fabric-reliable-actors-lifecycle.md).
 
 | Nome evento | ID evento | Level | Parole chiave | Descrizione |
 | --- | --- | --- | --- | --- |
 | ActorActivated |5 |Informazioni |0x1 |Un attore è stato attivato. |
 | ActorDeactivated |6 |Informazioni |0x1 |Un attore è stato disattivato. |
 
-Il runtime di Reliable Actors pubblica i contatori delle prestazioni seguenti relativi all’attivazione e alla disattivazione degli attori.
+runtime Reliable Actors Hello pubblica hello seguenti contatori delle prestazioni correlati tooactor attivazione e disattivazione.
 
 | Nome categoria | Nome contatore | Descrizione |
 | --- | --- | --- |
-| Service Fabric Actor |Average OnActivateAsync milliseconds |Tempo necessario per eseguire il metodo OnActivateAsync in millisecondi |
+| Service Fabric Actor |Average OnActivateAsync milliseconds |Tempo tooexecute del metodo OnActivateAsync in millisecondi |
 
 ### <a name="actor-request-processing-performance-counters"></a>Contatori delle prestazioni di elaborazione delle richieste degli attori
-Quando un client richiama un metodo tramite un oggetto proxy di attore, viene generato un messaggio di richiesta inviato in rete al servizio attore. Il servizio elabora il messaggio di richiesta e invia una risposta al client. Il runtime di Reliable Actors pubblica i contatori delle prestazioni seguenti relativi all’elaborazione delle richieste degli attori.
+Quando un client richiama un metodo tramite un oggetto proxy attore, comporta un messaggio di richiesta inviato servizio actor toohello di rete hello. servizio di Hello elabora il messaggio di richiesta di hello e invia un client toohello indietro di risposta. runtime Reliable Actors Hello pubblica hello dopo l'elaborazione della richiesta tooactor correlati i contatori delle prestazioni.
 
 | Nome categoria | Nome contatore | Descrizione |
 | --- | --- | --- |
-| Service Fabric Actor |# of outstanding requests |Numero di richieste elaborate nel servizio |
-| Service Fabric Actor |Average milliseconds per request |Tempo richiesto (in millisecondi) dal servizio per elaborare una richiesta |
-| Service Fabric Actor |Average milliseconds for request deserialization |Tempo richiesto (in millisecondi) per deserializzare il messaggio di richiesta dell’attore quando viene ricevuto nel servizio |
-| Service Fabric Actor |Average milliseconds for response serialization |Tempo richiesto (in millisecondi) per serializzare il messaggio di risposta dell’attore nel servizio prima dell’invio della risposta al client |
+| Service Fabric Actor |# of outstanding requests |Numero di richieste elaborate nel servizio hello |
+| Service Fabric Actor |Average milliseconds per request |Tempo impiegato (in millisecondi) dal hello servizio tooprocess una richiesta |
+| Service Fabric Actor |Average milliseconds for request deserialization |Ora ottenuta (in millisecondi) toodeserialize attore messaggio di richiesta quando viene ricevuto nel servizio hello |
+| Service Fabric Actor |Average milliseconds for response serialization |Tempo tooserialize eseguito (in millisecondi) hello attore messaggio di risposta al servizio hello prima dell'invio risposta hello client toohello |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Modalità d'uso della piattaforma Service Fabric da parte di Reliable Actors](service-fabric-reliable-actors-platform.md)
+* [Utilizzo di piattaforma Service Fabric hello Reliable Actors](service-fabric-reliable-actors-platform.md)
 * [Documentazione di riferimento delle API di Actors](https://msdn.microsoft.com/library/azure/dn971626.aspx)
 * [Codice di esempio](https://github.com/Azure/servicefabric-samples)
 * [Provider di EventSource in PerfView](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/)

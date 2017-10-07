@@ -1,6 +1,6 @@
 ---
-title: Esperimento semplice in Machine Learning Studio | Documentazione di Microsoft
-description: "Questa esercitazione di Machine Learning illustra un esperimento semplice di analisi scientifica dei dati. Verrà stimato il prezzo di un'automobile usando un algoritmo di regressione."
+title: aaaA semplice esperimento in Machine Learning Studio | Documenti Microsoft
+description: "Questa esercitazione di Machine Learning illustra un esperimento semplice di analisi scientifica dei dati. Si sarà stimare prezzo hello di un'automobile usando un algoritmo di regressione."
 keywords: esperimento,regressione lineare,algoritmi di machine learning,esercitazione su machine learning,tecniche di modellazione predittiva,esperimento di analisi scientifica dei dati
 services: machine-learning
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: 0539e9d04c61d35de56a29d350c07654c095c576
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb215851d380acf7d0f4934a426283369f9c4ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-tutorial-create-your-first-data-science-experiment-in-azure-machine-learning-studio"></a>Esercitazione di Machine Learning: Creare il primo esperimento di analisi scientifica dei dati in Azure Machine Learning Studio
 
 Questa esercitazione è destinata agli utenti che non hanno mai usato **Azure Machine Learning Studio**.
 
-In questa esercitazione verrà illustrato come usare per la prima volta Studio per creare un esperimento di Machine Learning. L'esperimento testerà un modello analitico che stima il prezzo di un'automobile in base a diverse variabili, ad esempio la marca e le specifiche tecniche.
+In questa esercitazione verranno esaminati come toouse Studio hello per la prima volta toocreate un esperimento di machine learning. sperimentazione Hello testerà un modello analitico che stima il prezzo di hello di un'automobile in base alle diverse variabili, ad esempio le specifiche tecniche e verificare.
 
 > [!NOTE]
-> Questa esercitazione offre le nozioni di base su come trascinare moduli nell'esperimento, connetterli, eseguire l'esperimento ed esaminare i risultati. Non verrà invece illustrato l'argomento generale di Machine Learning o come selezionare e usare i numerosi algoritmi predefiniti (più di 100) e i moduli di gestione dei dati inclusi in Studio.
+> Questa esercitazione Mostra nozioni fondamentali di hello dei moduli come toodrag e rilascio nell'esperimento, collegarli, eseguire l'esperimento hello e visualizzare risultati hello. Non verrà toodiscuss hello argomento generale di machine learning o come tooselect e utilizzare hello 100 + dati e algoritmi manipolazione dei moduli predefiniti inclusi in Studio.
 >
->Se non si ha familiarità con Machine Learning, è consigliabile vedere la serie di video [Analisi scientifica dei dati per principianti](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). Questa serie di video rappresenta un'introduzione completa a Machine Learning e usa linguaggio e concetti semplici.
+>Se si è nuovo learning toomachine, hello serie di video [analisi scientifica dei dati per i principianti](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) potrebbe essere toostart un buon punto. Questa serie di video è un learning toomachine introduzione grande utilizzando concetti e il linguaggio naturale.
 >
->Se si ha familiarità con Machine Learning, ma si vuole approfondire la conoscenza su Machine Learning Studio e sugli algoritmi inclusi, vedere:
+>Se si ha familiarità con machine learning, ma si sta cercando le informazioni di carattere generale su Machine Learning Studio e hello algoritmi di machine learning che contiene, di seguito sono riportate alcune risorse validi:
 >
 - [Cos'è Machine Learning Studio?](machine-learning-what-is-ml-studio.md) : questa è una panoramica generale di Studio.
-- [Nozioni fondamentali di Machine Learning con esempi di algoritmi](machine-learning-basics-infographic-with-algorithm-examples.md): questa infografica è molto utile se si vuole acquisire una maggiore conoscenza sui diversi tipi di algoritmi di Machine Learning inclusi in Machine Learning Studio.
-- [Machine Learning Guide](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) (Guida di Machine Learning): questa guida offre informazioni simili all'infografica, ma in formato interattivo.
-- [Foglio informativo sugli algoritmi di Machine Learning](machine-learning-algorithm-cheat-sheet.md) e [Come scegliere gli algoritmi di Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md): questo poster scaricabile e l'articolo relativo illustrano in modo più approfondito gli algoritmi di Studio.
-- [Machine Learning Studio: Algorithm and Module Help](https://msdn.microsoft.com/library/azure/dn905974.aspx) (Machine Learning Studio: Guida agli algoritmi e ai moduli): questa è una guida di riferimento completa sui moduli di Studio e include gli algoritmi di Machine Learning.
+- [Nozioni di base con esempi di algoritmi di apprendimento computer](machine-learning-basics-infographic-with-algorithm-examples.md) -questo infografica è utile se si desidera toolearn informazioni sui diversi tipi di hello algoritmi di machine learning inclusi in Machine Learning Studio.
+- [Machine Learning Guida](https://gallery.cortanaintelligence.com/Tutorial/Machine-Learning-Guide-1) -questa guida vengono fornite le informazioni simili di hello infografica precedente, ma in un formato interattivo.
+- [Machine learning foglio informativo algoritmo](machine-learning-algorithm-cheat-sheet.md) e [come algoritmi toochoose per Microsoft Azure Machine Learning](machine-learning-algorithm-choice.md) -questo articolo e il poster scaricabile discutere algoritmi Studio hello in profondità.
+- [Machine Learning Studio: Algoritmo e modulo della Guida](https://msdn.microsoft.com/library/azure/dn905974.aspx) -si tratta di hello riferimento completo di tutti i moduli di Studio, inclusi gli algoritmi di machine learning,
 
 <!-- -->
 
@@ -46,299 +46,299 @@ In questa esercitazione verrà illustrato come usare per la prima volta Studio p
 
 ## <a name="how-does-machine-learning-studio-help"></a>Vantaggi di Machine Learning Studio
 
-Machine Learning Studio semplifica la configurazione di un esperimento grazie a moduli a trascinamento preprogrammati con tecniche di modellazione predittiva.
+Machine Learning Studio rende facile tooset di un esperimento usando i moduli di trascinamento e rilascio preprogrammati con le tecniche di modellazione predittiva.
 
-L'uso di un'area di lavoro interattiva grafica consente di selezionare e trascinare ***set di dati*** e ***moduli*** di analisi in un'area di disegno interattiva. Questi vengono successivamente connessi per creare un ***esperimento*** da eseguire in Machine Learning Studio.
-È possibile ***creare un modello***, ***eseguire il training del modello***, ***assegnare un punteggio e testare il modello***.
+L'uso di un'area di lavoro interattiva grafica consente di selezionare e trascinare ***set di dati*** e ***moduli*** di analisi in un'area di disegno interattiva. Si connette tooform insieme un ***sperimentare*** che vengono eseguiti in Machine Learning Studio.
+Si ***creare un modello***, ***Training modello di hello***, e ***punteggio e test hello modello***.
 
-È possibile anche scorrere la struttura del modello, modificare l'esperimento ed eseguirlo di nuovo fino a quando non restituisce i risultati appropriati. Quando il modello è pronto, è possibile pubblicarlo come ***servizio Web*** in modo che altri utenti possano inviare nuovi dati e ottenere stime in cambio.
+È possibile eseguire l'iterazione sulla struttura del modello, la modifica di sperimentazione hello e si esegue fino a quando offre hello risultati che si sta cercando. Quando il modello è pronto, è possibile pubblicarlo come ***servizio Web*** in modo che altri utenti possano inviare nuovi dati e ottenere stime in cambio.
 
 ## <a name="open-machine-learning-studio"></a>Aprire Machine Learning Studio
 
-Per avviare Studio, andare a [https://studio.azureml.net](https://studio.azureml.net). Se è già stato effettuato l'accesso a Machine Learning Studio in precedenza, fare clic su **Sign In** (Accedi). In caso contrario fare clic su **Sign up here** (Effettuare l'iscrizione qui) e scegliere un'opzione gratuita o a pagamento.
+tooget introduttiva Studio, andare troppo[https://studio.azureml.net](https://studio.azureml.net). Se è già stato effettuato l'accesso a Machine Learning Studio in precedenza, fare clic su **Sign In** (Accedi). In caso contrario fare clic su **Sign up here** (Effettuare l'iscrizione qui) e scegliere un'opzione gratuita o a pagamento.
 
-![Accedere a Machine Learning Studio][sign-in-to-studio]
+![Accedi tooMachine Learning Studio][sign-in-to-studio]
 <br/>
-***Accedere a Machine Learning Studio***
+***Accedi tooMachine Learning Studio***
 
-## <a name="five-steps-to-create-an-experiment"></a>Cinque passaggi per la creazione di un esperimento
+## <a name="five-steps-toocreate-an-experiment"></a>Cinque passaggi toocreate un esperimento
 
-In questa esercitazione di Machine Learning, si seguiranno cinque passaggi di base per compilare un esperimento in Machine Learning Studio per creare un modello, eseguire il training e assegnare un punteggio:
+In questa esercitazione machine learning sarà seguire cinque passaggi di base toobuild un esperimento di Machine Learning Studio toocreate, eseguire il training e assegnare un punteggio del modello:
 
 - **Creare un modello**
     - [Passaggio 1: Ottenere i dati]
-    - [Passaggio 2: Preparare i dati]
+    - [Passaggio 2: Preparare i dati di hello]
     - [Passaggio 3: Definire le caratteristiche]
-- **Eseguire il training del modello**
+- **Modello di hello Train**
     - [Passaggio 4: Scegliere e applicare un algoritmo di apprendimento]
-- **Assegnare un punteggio e testare il modello**
+- **Punteggio e test hello modello**
     - [Passaggio 5: Stimare i prezzi delle nuove automobili]
 
 [Passaggio 1: Ottenere i dati]: #step-1-get-data
-[Passaggio 2: Preparare i dati]: #step-2-prepare-the-data
+[Passaggio 2: Preparare i dati di hello]: #step-2-prepare-the-data
 [Passaggio 3: Definire le caratteristiche]: #step-3-define-features
 [Passaggio 4: Scegliere e applicare un algoritmo di apprendimento]: #step-4-choose-and-apply-a-learning-algorithm
 [Passaggio 5: Stimare i prezzi delle nuove automobili]: #step-5-predict-new-automobile-prices
 
 > [!TIP] 
-> Per una copia di lavoro dell'esperimento seguente, visitare il sito Web [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com). Passare a **[Your first data science experiment - Automobile price prediction](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)** (Primo esperimento scientifico sui dati - stima dei prezzi delle automobili) e fare clic su **Open in Studio** (Apri in Studio) per scaricare una copia dell'esperimento nell'area di lavoro di Machine Learning Studio.
+> È possibile trovare una copia di lavoro di hello seguente esperimento nella hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com). Andare troppo**[l'analisi scientifica dei dati prima di provare - stima prezzo Automobile](https://gallery.cortanaintelligence.com/Experiment/Your-first-data-science-experiment-Automobile-price-prediction-1)**  e fare clic su **Open in Studio** toodownload una copia dell'esperimento hello nel Machine Learning Area di lavoro di Studio.
 
 
 ## <a name="step-1-get-data"></a>Passaggio 1: Ottenere i dati
 
-La prima operazione per eseguire un esperimento in Machine Learning è ottenere i dati.
-In Machine Learning Studio sono disponibili numerosi set di dati di esempio da usare oppure è possibile importare dati da molte altre origini. Per questo esempio, verrà usato il set di dati di esempio **Automobile price data (Raw)** (Dati non elaborati sui prezzi delle automobili) incluso nell'area di lavoro.
+Hello occorre innanzitutto tooperform l'apprendimento è dati.
+In Machine Learning Studio sono disponibili numerosi set di dati di esempio da usare oppure è possibile importare dati da molte altre origini. In questo esempio utilizzeremo i set di dati campione hello, **dati prezzo Automobile (Raw)**, che è incluso nell'area di lavoro.
 Questo set di dati include voci per diverse automobili e include informazioni su marca, modello, specifiche tecniche e prezzo.
 
-Di seguito viene illustrato come ottenere il set di dati nell'esperimento.
+Ecco come tooget hello set di dati nell'esperimento.
 
-1. Creare un nuovo esperimento facendo clic su **+NEW** (NUOVO) nella parte inferiore della finestra di Machine Learning Studio, selezionare **EXPERIMENT** (ESPERIMENTO) e scegliere **Blank Experiment** (Esperimento vuoto).
+1. Creare un nuovo esperimento facendo **+ nuovo** nella parte inferiore di hello della finestra di Machine Learning Studio hello, selezionare **SPERIMENTARE**, quindi selezionare **sperimentare vuoto**.
 
-2. All'esperimento viene assegnato un nome predefinito visualizzato nella parte superiore dell'area di disegno. Selezionare il testo e rinominarlo in modo significativo, ad esempio **Stima prezzi automobili**. Il nome non deve essere univoco.
+2. sperimentazione Hello viene assegnato un nome predefinito visualizzato nella parte superiore di hello dell'area di disegno hello. Selezionare il testo e rinominarlo toosomething significativo, ad esempio, **stima prezzo Automobile**. nome Hello non deve necessariamente toobe univoco.
 
-    ![Rinominare l'esperimento][rename-experiment]
+    ![Rinominare l'esperimento hello][rename-experiment]
 
-2. A sinistra dell'area di disegno dell'esperimento è presente una tavolozza di set di dati e moduli. Digitare **automobile** nella casella di ricerca nella parte superiore della tavolozza per trovare il set di dati denominato **Automobile price data (Raw)**. Trascinare il set di dati nell'area di disegno dell'esperimento.
+2. toohello a sinistra dell'area di disegno esperimento hello è una tavolozza dei moduli e dei set di dati. Tipo **automobile** nella casella di ricerca hello nella parte superiore di hello del dataset hello toofind tavolozza con etichettato **dati prezzo Automobile (Raw)**. Trascinare l'area di disegno di set di dati toohello esperimento.
 
-    ![Individuare il set di dati delle automobili e trascinarlo nell'area di disegno dell'esperimento][type-automobile]
+    ![Trovare set di dati automobili hello e trascinarlo nell'area di disegno esperimento hello][type-automobile]
     <br/>
-    ***Individuare il set di dati di automobili e trascinarlo nell'area di disegno esperimento***
+    ***Trovare set di dati automobili hello e trascinarlo nell'area di disegno esperimento hello***
 
-Per visualizzare l'aspetto dei dati, fare clic sulla porta di output nella parte inferiore del set di dati relativo alle automobili e selezionare **Visualize**.
+toosee questo aspetto dati like, fare clic sulla porta di output di hello nella parte inferiore di hello del set di dati automobili hello e quindi selezionare **Visualizza**.
 
-![Fare clic sulla porta di output e selezionare "Visualize"][select-visualize]
- (Visualizza)<br/>
-***Fare clic sulla porta di output e selezionare "Visualize"*** (Visualizza)
-
-> [!TIP]
-> I set di dati e i moduli hanno porte di input e output rappresentate da piccoli cerchi: le porte di input nella parte superiore e le porte di output nella parte inferiore.
-Per creare un flusso di dati nell'esperimento, connettere una porta di output di un modulo a una porta di input di un altro.
-In qualsiasi momento, è possibile fare clic sulla porta di output di un set di dati o di un modulo per visualizzare l'aspetto dei dati in tale punto specifico del flusso di dati.
-
-In questo set di dati di esempio, ogni istanza di un'automobile viene rappresentata da una riga e le variabili associate a ogni automobile vengono rappresentate da colonne. In base alle variabili per un'automobile specifica, si proverà a stimare il prezzo nella colonna che si trova all'estrema destra, ovvero la colonna 26 denominata "price" (prezzo).
-
-![Visualizzare i dati delle automobili nella finestra di visualizzazione dei dati][visualize-auto-data]
+![Fare clic sulla porta di output di hello e selezionare "Visualizza"][select-visualize]
 <br/>
-***Visualizzare i dati delle automobili nella finestra di visualizzazione dei dati***
-
-Chiudere la finestra di visualizzazione facendo clic sulla "**x**" nell'angolo superiore destro.
-
-## <a name="step-2-prepare-the-data"></a>Passaggio 2: Preparare i dati
-
-Prima di poter analizzare un set di dati è in genere necessario pre-elaborarlo. Ad esempio, si potrebbe notare l'assenza di valori nelle colonne di diverse righe. Per consentire al modello di analizzare correttamente i dati, è necessario eseguire la pulizia di questi valori mancanti. In questo caso verranno rimosse le righe con i valori mancanti. Inoltre, la colonna **normalized-losses** ha molti valori mancanti, pertanto verrà esclusa completamente dal modello.
+***Fare clic sulla porta di output di hello e selezionare "Visualizza"***
 
 > [!TIP]
-> La pulizia dei valori mancanti dai dati di input è un prerequisito all'uso della maggior parte dei moduli.
+> Set di dati e i moduli con input e le porte di output rappresentate da cerchi piccoli - porte di input nella parte superiore di hello, porte nella parte inferiore di hello di output.
+toocreate un flusso di dati attraverso l'esperimento, si accede di una porta di output della porta di input tooan un modulo di un altro.
+In qualsiasi momento, è possibile scegliere quali dati hello sono simile a questo punto nel flusso di dati hello porta di output di hello del toosee set di dati o un modulo.
 
-Si aggiunge prima un modulo che rimuove completamente la colonna **normalized-losses** (perdite normalizzate) e si aggiunge un altro modulo che rimuove tutte le righe con dati mancanti.
+In questo set di dati di esempio, ogni istanza di un'automobile viene visualizzato come una riga e le variabili di hello associate a ogni automobile vengono visualizzati come colonne. Dato variabili hello di un'automobile specifica, verrà tootry toopredict hello prezzo colonna estrema destra "(price colonna 26, intitolata").
 
-1. Digitare **select columns** (seleziona colonne) nella casella di ricerca nella parte superiore del pannello dei moduli per trovare il modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) e trascinarlo nell'area di disegno. Questo modulo consente di selezionare le colonne di dati da includere o escludere nel modello.
+![Visualizzare i dati di un'automobile hello nella finestra di visualizzazione dati hello][visualize-auto-data]
+<br/>
+***Visualizzare i dati di un'automobile hello nella finestra di visualizzazione dati hello***
 
-2. Connettere la porta di output del set di dati **Automobile price data (Raw)** (Dati non elaborati sui prezzi delle automobili) alla porta di input del modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati).
+Finestra di visualizzazione hello Chiudi facendo hello "**x**" nell'angolo superiore destro di hello.
 
-    ![Aggiungere il modulo "Select Columns in Dataset" all'area di disegno dell'esperimento e connetterlo][type-select-columns]
+## <a name="step-2-prepare-hello-data"></a>Passaggio 2: Preparare i dati di hello
+
+Prima di poter analizzare un set di dati è in genere necessario pre-elaborarlo. Ad esempio, è possibile aver notato hello i valori presenti nelle colonne di hello delle varie righe mancanti. Questi valori mancanti necessario toobe puliti quindi modello hello è possibile analizzare dati hello correttamente. In questo caso verranno rimosse le righe con i valori mancanti. Inoltre, hello **perdite normalizzato** colonna ha una proporzione elevata di valori mancanti, che dunque verrà escluso tale colonna dal modello hello completamente.
+
+> [!TIP]
+> Pulizia hello mancano i valori dei dati di input è un prerequisito per utilizzando la maggior parte dei moduli di hello.
+
+Si aggiunge un modulo che rimuove hello **perdite normalizzato** colonna completamente, quindi è aggiungere un altro modulo che rimuove tutte le righe che mancano alcuni dati.
+
+1. Tipo **selezionare colonne** nella casella di ricerca hello nella parte superiore di hello di hello toofind tavolozza di hello modulo [selezionare le colonne nel set di dati] [ select-columns] modulo, quindi trascinarlo toohello esperimento canvas . Questo modulo consente tooselect quali colonne di dati si desidera tooinclude o escludere hello modello.
+
+2. Connettere hello porta di output di hello **dati prezzo Automobile (Raw)** toohello set di dati di input porta hello [selezionare le colonne nel set di dati] [ select-columns] modulo.
+
+    ![Aggiungere l'area di disegno hello "Selezionare le colonne nel set di dati" modulo toohello sperimentazione e connetterla][type-select-columns]
     <br/>
-    ***Aggiungere il modulo "Selezionare le colonne nel set di dati" per l'area di disegno di sperimentazione e connetterlo***
+    ***Aggiungere l'area di disegno hello "Selezionare le colonne nel set di dati" modulo toohello sperimentazione e connetterla***
 
-3. Fare clic su [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) e fare clic su **Launch column selector** (Avvia selettore di colonna) nel riquadro **Properties** (Proprietà).
+3. Fare clic su hello [selezionare le colonne nel set di dati] [ select-columns] modulo e fare clic su **selettore di colonna avvio** in hello **proprietà** riquadro.
 
-    - A sinistra, fare clic su **With rules**
-    - In **Begin With** (Inizia con), fare clic su **All columns** (Tutte le colonne). In questo modo, [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) analizzerà tutte le colonne, ad eccezione di quelle che verranno escluse.
-    - Negli elenchi a discesa selezionare **Escludi** e **nomi colonna**, quindi fare clic all'interno della casella di testo. Verrà visualizzato un elenco di colonne. Selezionare **normalized-losses** per aggiungere la colonna alla casella di testo.
-    - Fare clic sul pulsante del segno di spunta (OK) per chiudere il selettore di colonne (nella parte inferiore destra).
+    - A sinistra di hello, fare clic su **con regole**
+    - In **Begin With** (Inizia con), fare clic su **All columns** (Tutte le colonne). In questo modo [selezionare le colonne nel set di dati] [ select-columns] toopass tramite tutte le colonne di hello (tranne le colonne siamo su tooexclude).
+    - Hello elenchi a discesa, selezionare **escludere** e **i nomi delle colonne**e quindi fare clic nella casella di testo hello. Verrà visualizzato un elenco di colonne. Selezionare **perdite normalizzato**, e è aggiunto toohello casella di testo.
+    - Fare clic sul selettore di colonna hello per la tooclose pulsante hello segno di spunta (OK) (in basso a destra hello).
 
-    ![Avviare il selettore di colonna ed escludere la colonna "normalized-losses"][launch-column-selector]
+    ![Avvia selettore di colonna hello ed escludere la colonna "perdite normalizzato" hello][launch-column-selector]
     <br/>
-    ***Avviare il selettore di colonna e di escludere la colonna "perdite normalizzato"***
+    ***Avvia selettore di colonna hello ed escludere la colonna "perdite normalizzato" hello***
 
-    Il riquadro delle proprietà del modulo **Select Columns in Dataset** indica ora che verranno analizzate tutte le colonne del set di dati, a eccezione di **normalized-losses**.
+    Riquadro delle proprietà ora hello per **selezionare le colonne nel set di dati** indica il passaggio attraverso tutte le colonne dal set di dati di hello tranne **perdite normalizzato**.
 
-    ![Il riquadro delle proprietà visualizza che la colonna "normalized-losses" è stata esclusa][showing-excluded-column]
+    ![riquadro Proprietà Hello mostra che colonna hello "perdite normalizzato" viene escluso][showing-excluded-column]
     <br/>
-    ***Il riquadro Proprietà mostra che la colonna "perdite normalizzato" è stato escluso***
+    ***riquadro Proprietà Hello mostra che colonna hello "perdite normalizzato" viene escluso***
 
     > [!TIP]
-    È possibile aggiungere un commento a un modulo facendo doppio clic sul modulo e immettendo del testo. In tal modo sarà possibile individuare subito l'operazione eseguita dal modulo nell'esperimento. In questo caso, fare doppio clic sul modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) e immettere il commento "Escludi perdite normalizzate".
+    È possibile aggiungere un modulo tooa commento facendo doppio clic su modulo hello e immissione di testo. Ciò consente di visualizzare a colpo d'occhio esegue il modulo hello nell'esperimento. In questo caso fare doppio clic su hello [selezionare le colonne nel set di dati] [ select-columns] modulo e il tipo hello commento "Exclude normalizzato perdite".
     >
     >
 
 
-    ![Fare doppio clic su un modulo per aggiungere un commento][add-comment]
+    ![Fare doppio clic su un tooadd modulo un commento][add-comment]
     <br/>
-    ***Fare doppio clic su un modulo per aggiungere un commento***
+    ***Fare doppio clic su un tooadd modulo un commento***
 
-3. Trascinare il modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) nell'area di disegno dell'esperimento e connetterlo al modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati). Nel riquadro delle **proprietà** selezionare **Remove entire row** (Rimuovi riga intera) in **modalità Cleaning** (Pulizia). Questa operazione indica al modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) di pulire i dati rimuovendo le righe con valori mancanti. Fare doppio clic sul modulo e digitare il commento "Rimuovi righe valori mancanti".
+3. Hello trascinare [Clean Missing Data] [ clean-missing-data] toohello modulo provare l'area di disegno e connetterla toohello [selezionare le colonne nel set di dati] [ select-columns] modulo. In hello **proprietà** riquadro, selezionare **Rimuovi intera riga** in **modalità di pulizia**. In questo modo [Clean Missing Data] [ clean-missing-data] dati hello tooclean rimuovendo le righe che contengono i valori mancanti. Fare doppio clic sul modulo hello e digitare il commento hello "Rimuovi righe valore mancante".
 
-    ![Impostare la modalità di pulizia a "Remove entire row" (Rimuovi riga intera) per il modulo "Clean Missing Data"][set-remove-entire-row]
-     (Pulisci dati mancanti)<br/>
-    ***Impostare la modalità di pulizia "Rimuovere l'intera riga" per il modulo "Clean Missing Data"***
+    ![Impostare la modalità di pulizia hello troppo "Rimuovi intera riga" per il modulo "Clean Missing Data" hello][set-remove-entire-row]
+    <br/>
+    ***Impostare la modalità di pulizia hello troppo "Rimuovi intera riga" per il modulo "Clean Missing Data" hello***
 
-4. Eseguire l'esperimento facendo clic su **RUN** (ESEGUI) nella parte inferiore della pagina.
+4. Eseguire l'esperimento hello facendo **eseguire** nella parte inferiore di hello della pagina hello.
 
-    Al termine dell'esecuzione dell'esperimento, tutti i moduli saranno contraddistinti da un segno di spunta verde per indicarne il corretto completamento. Si noti anche lo stato **Finished running** nell'angolo in alto a destra.
+    Al termine dell'esecuzione esperimento hello, tutti i moduli di hello hanno tooindicate un segno di spunta verde che è state completata. Si noti inoltre hello **al termine dell'esecuzione** stato nell'angolo superiore destro di hello.
 
-![Dopo l'esecuzione, l'esperimento dovrebbe avere l'aspetto seguente][early-experiment-run]
+![Dopo l'esecuzione, esperimento hello dovrebbe essere simile al seguente][early-experiment-run]
 <br/>
-***Dopo l'esecuzione, l'esperimento dovrebbe avere l'aspetto seguente***
+***Dopo l'esecuzione, esperimento hello dovrebbe essere simile al seguente***
 
 > [!TIP]
-> Perché è stato eseguito l'esperimento ora? Con l'esecuzione dell'esperimento, le definizioni delle colonne per i dati passano dal set di dati, attraverso i moduli [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) e [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti). Ciò significa che tutti i moduli connessi a [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) avranno anche queste stesse informazioni.
+> Motivo per cui è stata eseguiamo esperimento hello ora? Per esperimento hello in esecuzione, le definizioni di colonna hello per i dati passano dal set di dati hello tramite hello [selezionare le colonne nel set di dati] [ select-columns] modulo e tramite hello [Clean Missing Data] [ clean-missing-data] modulo. Ciò significa che tutti i moduli la connessione è troppo[Clean Missing Data] [ clean-missing-data] anche avrà le stesse informazioni.
 
-Fino a questo punto dell'esperimento sono stati solo puliti i dati. Per visualizzare il set di dati pulito, fare clic sulla porta di output sinistra del modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) e selezionare **Visualize** (Visualizza). Si noti che la colonna **normalized-losses** non è più inclusa e che non ci sono valori mancanti.
+Svolto nella sperimentazione hello punto toothis è dati hello pulita. Se si desidera tooview hello pulito set di dati, fare clic su hello lasciato la porta di output di hello [Clean Missing Data] [ clean-missing-data] modulo e selezionare **Visualizza**. Si noti che hello **perdite normalizzato** colonna non viene più fornita e non sono presenti valori mancanti.
 
-A questo punto, una volta puliti i dati è possibile specificare le caratteristiche da usare nel modello predittivo.
+Ora che i dati di hello sono puliti, si è pronti toospecify quali funzionalità è archivieranno toouse nel modello predittivo hello.
 
 ## <a name="step-3-define-features"></a>Passaggio 3: Definire le caratteristiche
 
 In Machine Learning le *caratteristiche* sono singole proprietà misurabili di un elemento a cui si è interessati. Nel set di dati corrente ogni riga rappresenta un'automobile e ogni colonna è una caratteristica di tale automobile.
 
-Per cercare un set di caratteristiche adeguato per creare un modello predittivo, è necessario sperimentare e conoscere approfonditamente il problema che si desidera risolvere. Alcune caratteristiche sono infatti migliori di altre per le stime. Alcune caratteristiche sono strettamente correlate ad altre e possono essere rimosse. Ad esempio, city-mpg e highway-mpg sono strettamente correlate ed è possibile rimuoverne una senza influire in modo significativo sulla stima.
+Ricerca di un set ottimo di funzionalità per la creazione di un modello predittivo richiede informazioni sui problemi di hello e sperimentazione desiderate toosolve. Alcune funzionalità sono migliori per la stima destinazione hello rispetto ad altri. Alcune caratteristiche sono strettamente correlate ad altre e possono essere rimosse. Ad esempio, città mpg e autostrada mpg sono strettamente correlati in modo da poter mantenere uno e rimuovere altri hello senza stima hello in maniera significativa.
 
-Verrà ora creato un modello che usa un sottoinsieme delle caratteristiche del set di dati. È possibile tornare più tardi e selezionare caratteristiche diverse, eseguire di nuovo l'esperimento e verificare se i risultati ottenuti sono migliori. Per iniziare verranno tuttavia provate le funzionalità seguenti:
+Creare ora un modello che utilizza un sottoinsieme di funzionalità hello nel set di dati. È possibile tornare più avanti e selezionare diverse funzionalità, eseguire nuovamente l'esperimento hello e vedere se si ottengono risultati migliori. Toostart, ma si proverà hello seguenti caratteristiche:
 
     make, body-style, wheel-base, engine-size, horsepower, peak-rpm, highway-mpg, price
 
 
-1. Trascinare un altro modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) nell'area di disegno dell'esperimento. Connettere la porta di output sinistra del modulo [Clean Missing Data][clean-missing-data] (Pulisci dati mancanti) alla porta di input del modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati).
+1. Trascinare un'altra [selezionare le colonne nel set di dati] [ select-columns] toohello modulo provare l'area di disegno. Connettersi a sinistra sulla porta di output di hello hello [Clean Missing Data] [ clean-missing-data] input toohello modulo di hello [selezionare le colonne nel set di dati] [ select-columns] modulo.
 
-    ![Connettere il modulo "Select Columns in Dataset" al modulo "Clean Missing Data"][connect-clean-to-select]
+    ![Connettersi hello "Selezionare le colonne nel set di dati" toohello "Clean Missing Data" modulo][connect-clean-to-select]
     <br/>
-    ***Collegare il modulo "Selezionare le colonne nel set di dati" per il modulo "Clean Missing Data"***
+    ***Connettersi hello "Selezionare le colonne nel set di dati" toohello "Clean Missing Data" modulo***
 
-2. Fare doppio clic sul modulo e digitare "Selezionare le caratteristiche per la stima".
+2. Fare doppio clic sul modulo hello e digitare "Selezionare le funzionalità per la stima."
 
-2. Fare clic su **Launch column selector** nel riquadro **Proprietà**.
+2. Fare clic su **selettore di colonna avvio** in hello **proprietà** riquadro.
 
 3. Fare clic su **With rules**(Con regole).
 
-4. In **Begin With** (Inizia con), fare clic su **No columns** (Nessuna colonna). Nella riga del filtro, scegliere **Include** (Includi) e **i nomi delle colonne** e selezionare l'elenco dei nomi delle colonne nella casella di testo. Ciò indica al modulo di non analizzare le colonne (caratteristiche), a eccezione di quelle specificate.
+4. In **Begin With** (Inizia con), fare clic su **No columns** (Nessuna colonna). Nella riga di filtro hello, selezionare **Include** e **i nomi delle colonne** e selezionare l'elenco di nomi di colonna nella casella di testo hello. In questo modo hello modulo toonot iterazione (funzionalità) tutte le colonne tranne quelle che si specificano hello.
 
-5. Fare clic sul pulsante di segno di spunta (OK).
+5. Fare clic su hello segno di spunta (OK).
 
-    ![Selezionare le colonne (caratteristiche) da includere nella stima][select-columns-to-include]
+    ![Selezionare tooinclude colonne (funzionalità) hello nella stima hello][select-columns-to-include]
     <br/>
-    ***Selezionare le colonne (funzionalità) da includere nella stima***
+    ***Selezionare tooinclude colonne (funzionalità) hello nella stima hello***
 
-Questa operazione produce un set di dati filtrato contenente solo le caratteristiche che si vuole passare all'algoritmo di apprendimento che si userà nel passaggio successivo. In seguito, è possibile tornare indietro e provare a selezionare caratteristiche diverse.
+Ciò produce un set di dati filtrato contenente solo le funzioni hello che desideriamo toohello toopass verrà usato nel passaggio successivo hello algoritmo di apprendimento. In seguito, è possibile tornare indietro e provare a selezionare caratteristiche diverse.
 
 ## <a name="step-4-choose-and-apply-a-learning-algorithm"></a>Passaggio 4: Scegliere e applicare un algoritmo di apprendimento
 
-I dati sono pronti, di conseguenza la creazione del modello predittivo implica la fase di training e test. Questi dati verranno usati per il training del modello e verrà testata la sua capacità di precisione per stimare i prezzi.
-<!-- For now, don't worry about *why* we need to train and then test a model.-->
+Ora che i dati di hello sono pronti, la costruzione di un modello predittivo costituito training e test. Verrà usato il modello di dati tootrain hello e quindi verrà eseguito un test hello modello toosee la misura è in grado di toopredict prezzi.
+<!-- For now, don't worry about *why* we need tootrain and then test a model.-->
 
-*Classificazione* e *regressione* sono due tipi di algoritmi di Machine Learning sottoposti a supervisione. La classificazione stima una risposta da un set di categorie definito, ad esempio un colore (rosso, blu o verde). La regressione viene usata per stimare un numero.
+*Classificazione* e *regressione* sono due tipi di algoritmi di Machine Learning sottoposti a supervisione. La classificazione stima una risposta da un set di categorie definito, ad esempio un colore (rosso, blu o verde). La regressione è toopredict usato un numero.
 
-Poiché si vuole stimare il prezzo, ovvero un numero, si userà un algoritmo di regressione. Per questo esempio, verrà usato un modello *a regressione lineare* semplice.
+Dal momento che il prezzo toopredict, che è un numero, verrà utilizzato un algoritmo di regressione. Per questo esempio, verrà usato un modello *a regressione lineare* semplice.
 
 > [!TIP]
-> Per altre informazioni sui diversi tipi di algoritmi di Machine Learning e su quando usarli, è consigliabile vedere il primo video [Le cinque domande a cui risponde l'analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) della serie Analisi scientifica dei dati per principianti. È anche possibile esaminare l'infografica [Nozioni fondamentali di Machine Learning con esempi di algoritmi](machine-learning-basics-infographic-with-algorithm-examples.md) oppure scaricare il [Foglio informativo sugli algoritmi di Machine Learning](machine-learning-algorithm-cheat-sheet.md).
+> Se si desidera toolearn informazioni sui diversi tipi di algoritmi di machine learning e quando toouse loro, si potrebbe visualizzare video prima hello in hello analisi scientifica dei dati per serie di utenti meno esperti, [hello cinque domande risposte di analisi scientifica dei dati](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md). È anche possibile consultare hello infografica [computer nozioni di base con esempi di algoritmi di apprendimento](machine-learning-basics-infographic-with-algorithm-examples.md), o estrarlo hello [Machine learning foglio informativo algoritmo](machine-learning-algorithm-cheat-sheet.md).
 
-Il training del modello viene eseguito tramite l'assegnazione di un set di dati che include i prezzi. Il modello analizza i dati e cerca le correlazioni tra le caratteristiche di un'automobile e il prezzo. Il modello viene quindi testato: viene assegnato un set di caratteristiche per le automobili di cui si ha familiarità e viene visualizzata la precisione con la quale il modello stima il prezzo noto.
+Abbiamo Training modello di hello mediante l'assegnazione di un set di dati che include il prezzo di hello. modello Hello analizza dati hello e cercare le correlazioni tra le funzionalità di un'automobile e il prezzo. Quindi verrà eseguito un test del modello di hello - verrà assegnargli un set di funzionalità per automobili che si ha familiarità con e vedere come chiudere hello prevede prezzo di toopredicting hello noti.
 
-Il training e il test del modello verranno eseguiti con dati separati in un set di dati per il training e in un set di dati per il test.
+Si userà i dati per il training del modello di hello e testarlo suddividendo dati hello in training e il testing di set di dati separato.
 
-1. Selezionare e trascinare il modulo [Split Data][split] (Dividi dati) nell'area di disegno dell'esperimento e connetterlo all'output dell'ultimo modulo [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati).
+1. Selezionare e trascinare hello [dati divisi] [ split] toohello modulo provare l'area di disegno e connetterla toohello ultima [selezionare le colonne nel set di dati] [ select-columns] modulo.
 
-2. Fare clic sul modulo [Split Data][split] (Dividi dati) per selezionarlo. Trovare l'opzione **Fraction of rows in the first output dataset** (Frazione di righe nel primo set di dati di output) nel riquadro delle **proprietà** a destra dell'area di disegno e impostarlo a 0,75. In questo modo verrà usato il 75% dei dati per eseguire il training del modello e il 25% per il test. Successivamente è possibile sperimentare percentuali diverse.
+2. Fare clic su hello [dati divisi] [ split] tooselect modulo è. Trovare hello **frazione di righe in hello set di dati di output prima** (in hello **proprietà** toohello riquadro a destra dell'area di disegno hello) e impostarlo too0.75. In questo modo, verrà usata al 75% hello tootrain hello di modello di data e contenere il 25% per il testing (in un secondo momento, è possibile sperimentare con diverse percentuali).
 
-    ![Impostare la frazione di divisione del modulo "Split Data" a 0,75][set-split-data-percentage]
+    ![Set hello dividere frazione di hello "Suddivisione dei dati" modulo too0.75][set-split-data-percentage]
     <br/>
-    ***Impostare la frazione di divisione del modulo "Suddivisione dei dati" 0,75***
+    ***Set hello dividere frazione di hello "Suddivisione dei dati" modulo too0.75***
 
     > [!TIP]
-    > Modificando il parametro **Random seed** , è possibile ottenere esempi casuali diversi per training e test. Questo parametro controlla il seeding del generatore di numeri pseudocasuali.
+    > Modificando hello **Random seed** parametro, è possibile produrre diversi campioni casuale per il training e testing. Questo parametro controlla il seeding del generatore di numeri pseudo-casuali hello hello.
 
-2. Eseguire l'esperimento. Durante l'esecuzione dell'esperimento, i moduli [Select Columns in Dataset][select-columns] (Seleziona colonne in set di dati) e [Split Data][split] (Dividi dati) passano le definizioni di colonna ai moduli che saranno aggiunti successivamente.  
+2. Eseguire l'esperimento hello. Quando viene eseguito l'esperimento hello, hello [selezionare le colonne nel set di dati] [ select-columns] e [dati divisi] [ split] moduli passare toohello le definizioni di colonna moduli che verranno aggiunte successivamente.  
 
-3. Per selezionare l'algoritmo di apprendimento, espandere la categoria **Machine Learning** nella tavolozza dei moduli a sinistra dell'area di disegno e quindi espandere **Initialize Model** (Inizializza modello). Verranno visualizzate diverse categorie di moduli che possono essere usate per inizializzare gli algoritmi di Machine Learning. Per questo esperimento, selezionare il modulo [Linear Regression][linear-regression] (Regressione lineare) della categoria **Regression** (Regressione) e trascinarlo nell'area di disegno dell'esperimento.
-È anche possibile trovare il modulo digitando "linear regression" nella casella di ricerca della tavolozza.
+3. hello tooselect, algoritmo di apprendimento espandere hello **Machine Learning** categoria hello modulo tavolozza toohello a sinistra di hello area di disegno e quindi espandere **inizializzare modello**. Consente di visualizzare diverse categorie di moduli che possono essere algoritmi utilizzati tooinitialize machine learning. Per questo esercizio, selezionare hello [Linear Regression] [ linear-regression] modulo in hello **regressione** categoria e trascinarlo toohello esperimento canvas.
+(È possibile anche trovare hello modulo digitando "linear regression" nella casella di ricerca tavolozza hello.)
 
-4. Trovare e trascinare il modulo [Train Model][train-model] (Training modello) nell'area di disegno dell'esperimento. Connettere la porta di output del modulo [Linear Regression][linear-regression] (Regressione lineare) alla porta di input sinistra del modulo [Train Model][train-model] (Training modello) e connettere la porta di output sinistra dei dati per il training del modulo [Split Data][split] (Dividi dati) alla porta di input destra del modulo [Train Model][train-model] (Training modello).
+4. Individuare e trascinare hello [Train Model] [ train-model] toohello modulo provare l'area di disegno. Connettere l'output di hello di hello [Linear Regression] [ linear-regression] toohello modulo lasciato input di hello [Train Model] [ train-model] modulo e connettersi hello la formazione di output dei dati (porta a sinistra) di hello [dati divisi] [ split] input di destra toohello modulo di hello [Train Model] [ train-model] modulo.
 
-    ![Connettere il modulo "Train Model" ai moduli "Linear Regression" e "Split Data"][connect-train-model]
+    ![Connettersi hello "Train Model" modulo tooboth hello "Linear Regression" e "Suddivisione dei dati" moduli][connect-train-model]
     <br/>
-    ***Connettere il modulo "Train Model" moduli "Linear Regression" sia "Suddivisione dei dati"***
+    ***Connettersi hello "Train Model" modulo tooboth hello "Linear Regression" e "Suddivisione dei dati" moduli***
 
-5. Fare clic sul modulo [Train Model][train-model] (Training modello), fare clic su **Launch column selector** (Avvia selettore di colonna) nel riquadro **Properties** (Proprietà) e quindi selezionare la colonna **price** (prezzo). Questo è il valore che si intende stimare con il modello.
+5. Fare clic su hello [Train Model] [ train-model] modulo, fare clic su **selettore di colonna avvio** in hello **proprietà** riquadro e quindi seleziona hello **prezzo** colonna. Questo è il valore di hello che il modello è toopredict continua.
 
-    Per selezionare la colonna **price** nel selettore delle colonne, spostarla dall'elenco **Available columns** (Colonne disponibili) all'elenco **Selected columns** (Colonne selezionate).
+    Si seleziona hello **prezzo** colonna nel selettore di colonna hello spostandola hello **colonne disponibili** elenco toohello **colonne selezionate** elenco.
 
-    ![Selezionare la colonna price per il modulo "Train Model"][select-price-column]
+    ![Selezionare una colonna prezzo hello per il modulo "Train Model" hello][select-price-column]
     <br/>
-    ***Selezionare la colonna di prezzo per il modulo "Train Model"***
+    ***Selezionare una colonna prezzo hello per il modulo "Train Model" hello***
 
-6. Eseguire l'esperimento.
+6. Eseguire l'esperimento hello.
 
-Il risultato è un modello di regressione, del quale è stato eseguito il training, che può essere usato per assegnare un punteggio ai nuovi dati delle automobili per effettuare stime sui prezzi.
+È ora disponibile un modello di regressione con training che può essere utilizzato tooscore nuove automobili dati toomake prezzo stime.
 
-![Dopo l'esecuzione, l'esperimento dovrebbe avere l'aspetto seguente][second-experiment-run]
+![Dopo l'esecuzione, esperimento hello dovrebbe essere simile al seguente][second-experiment-run]
 <br/>
-***Dopo l'esecuzione, l'esperimento dovrebbe avere l'aspetto seguente***
+***Dopo l'esecuzione, esperimento hello dovrebbe essere simile al seguente***
 
 ## <a name="step-5-predict-new-automobile-prices"></a>Passaggio 5: Stimare i prezzi delle nuove automobili
 
-Dopo aver eseguito il training del modello usando il 75% dei dati, è possibile usarlo per classificare il restante 25% e verificarne il funzionamento.
+Ora che è stata Training modello di hello utilizzando pari al 75% dei dati, è possibile usarlo tooscore hello altri 25 percento hello dati toosee prestazioni nostri funzioni del modello.
 
-1. Trovare e trascinare il modulo [Score Model][score-model] (Modello di punteggio) nell'area di disegno dell'esperimento. Connettere la porta di output del modulo [Train Model][train-model] (Training modello) alla porta di input sinistra del modulo [Score Model][score-model] (Modello di punteggio). Connettere la porta di output dei dati di test (porta destra) del modulo [Split Data][split] alla porta di input destra [Score Model][score-model] (Modello di punteggio).
+1. Individuare e trascinare hello [Score Model] [ score-model] toohello modulo provare l'area di disegno. Connettere l'output di hello di hello [Train Model] [ train-model] toohello modulo porta di input di sinistra [Score Model][score-model]. Connettersi hello test output dei dati (porta a destra) di hello [dati divisi] [ split] porta di input destra toohello modulo [Score Model][score-model].
 
-    ![Connettere il modulo "Score Model" ai moduli "Train Model" e "Split Data"][connect-score-model]
+    ![Connettersi hello "Score Model" modulo tooboth hello "Train Model" e "Suddivisione dei dati" moduli][connect-score-model]
     <br/>
-    ***Connettere il modulo "Score Model" moduli "Train Model" sia "Suddivisione dei dati"***
+    ***Connettersi hello "Score Model" modulo tooboth hello "Train Model" e "Suddivisione dei dati" moduli***
 
-2. Eseguire l'esperimento e visualizzare l'output del modulo [Score Model][score-model] (Modello di punteggio), fare clic sulla porta di output di [Score Model][score-model] (Modello di punteggio) e selezionare **Visualize** (Visualizza). L'output mostra i valori stimati per il prezzo e i valori noti dai dati di test.  
+2. Eseguire l'esperimento hello e visualizzare l'output di hello di hello [Score Model] [ score-model] modulo (fare clic sulla porta di output di hello del [Score Model] [ score-model] e selezionare **Visualizzare**). Mostra output di Hello hello valori stimati per prezzo e hello valori noti hello dei dati dei test.  
 
-    ![Output del modulo "Score Model"][score-model-output]
+    ![Output di hello "Score Model" modulo][score-model-output]
     <br/>
-    ***Output del modulo "Score Model"***
+    ***Output di hello "Score Model" modulo***
 
-3. Alla fine viene testata la qualità dei risultati. Selezionare e trascinare il modulo [Evaluate Model][evaluate-model] (Modello di valutazione) nell'area di disegno dell'esperimento e connettere la porta di output del modulo [Score Model][score-model] (Modello di punteggio) alla porta di input sinistra del modulo [Evaluate Model][evaluate-model] (Modello di valutazione).
+3. Infine, verranno testate qualità hello dei risultati di hello. Selezionare e trascinare hello [Evaluate Model] [ evaluate-model] toohello modulo provare l'area di disegno e connettere l'output di hello di hello [Score Model] [ score-model] modulo toohello input di sinistra [Evaluate Model][evaluate-model].
 
     > [!TIP]
-    > Ci sono due porte di input nel modulo [Evaluate Model][evaluate-model] (Modello di punteggio) perché può essere usato per confrontare due modelli affiancati. In un secondo momento, è possibile aggiungere un altro algoritmo all'esperimento e usare il modulo [Evaluate Model][evaluate-model] (Modello di punteggio) per vedere quale modello produce i risultati migliori.
+    > Non sono presenti due porte di input in hello [Evaluate Model] [ evaluate-model] modulo poiché può essere utilizzato toocompare due modelli side-by. In un secondo momento, è possibile aggiungere un altro esperimento toohello di algoritmo e usare [Evaluate Model] [ evaluate-model] toosee quello che offre risultati migliori.
 
-4. Eseguire l'esperimento.
+4. Eseguire l'esperimento hello.
 
-Per visualizzare l'output del modulo [Evaluate Model][evaluate-model], fare clic sulla porta di output e selezionare **Visualize** (Visualizza).
+output di hello tooview da hello [Evaluate Model] [ evaluate-model] modulo, fare clic sulla porta di output di hello e quindi selezionare **Visualizza**.
 
-![Risultati di valutazione dell'esperimento][evaluation-results]
+![Risultati della valutazione per esperimento hello][evaluation-results]
 <br/>
-***Risultati di valutazione dell'esperimento***
+***Risultati della valutazione per esperimento hello***
 
-Per il modello vengono visualizzate le seguenti statistiche:
+Hello seguendo le statistiche viene visualizzato per il nostro modello:
 
-- **Mean Absolute Error** (MAE, errore assoluto medio): media degli errori assoluti (un *errore* è la differenza tra il valore stimato e quello effettivo).
-- **Root Mean Squared Error** (RMSE, radice errore quadratico medio): radice quadrata della media degli errori quadratici delle stime effettuate sul set di dati di test.
-- **Relative Absolute Error**(errore assoluto relativo): media degli errori assoluti relativamente alla differenza assoluta tra i valori effettivi e la media di tutti i valori effettivi.
-- **Relative Squared Error**(errore quadratico relativo): media degli errori quadratici relativamente alla differenza quadratica tra i valori effettivi e la media di tutti i valori effettivi.
-- **Coefficient of Determination** (coefficiente di determinazione): noto anche come **valore quadratico R**, è una metrica statistica che indica l'esattezza del modello rispetto ai dati.
+- **Errore assoluto medio** (MAE): hello media degli errori assoluti (un *errore* hello differenze hello previsto valore e il valore effettivo hello).
+- **Errore quadratico medio radice** (RMSE): hello di radice quadrata della media hello di errori al quadrato di stime effettuate nel set di dati di hello test.
+- **Errore assoluto relativo**: hello Media errori assoluto relativo toohello assoluto basso tra i valori effettivi e Media hello di tutti i valori effettivi.
+- **Errore quadratico relativo**: Media hello di errori al quadrato relativo toohello al quadrato differenza tra i valori effettivi hello e Media hello di tutti i valori effettivi.
+- **Coefficiente di determinazione**: anche noto come hello **R al quadrato valore**, si tratta di una metrica statistica che indica l'idoneità un modello di rapporto dati hello.
 
-Per ogni statistica di errore, sono preferibili i valori più piccoli. Un valore più piccolo indica che le stime sono più vicine ai valori effettivi. Per **Coefficient of Determination**più il valore si avvicina a uno (1,0) più le stime sono migliori.
+Per ogni errore hello statistiche, più piccolo sono consigliabile. Un valore inferiore indica che le stime hello corrispondano maggiormente i valori effettivi hello. Per **coefficiente di determinazione**, hello più vicino il relativo valore è tooone (1.0), stime hello migliori hello.
 
 ## <a name="final-experiment"></a>Esperimento finale
 
-L'esperimento dovrebbe avere un aspetto simile al seguente:
+sperimentazione finale Hello dovrebbe essere simile al seguente:
 
-![Esperimento finale][complete-linear-regression-experiment]
+![sperimentazione finale Hello][complete-linear-regression-experiment]
 <br/>
-***Esperimento finale***
+***sperimentazione finale Hello***
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver completato la prima esercitazione di Machine Learning e impostato l'esperimento, è possibile migliorare il modello e successivamente distribuirlo come servizio Web predittivo.
+Ora che si aver completato l'esercitazione di hello prima machine learning e imposta esperimento, è possibile continuare il modello di hello tooimprove e quindi distribuirla come servizio web predittivo.
 
-- **Eseguire l'iterazione per migliorare il modello**: ad esempio, è possibile modificare le caratteristiche usate per la stima. In alternativa, è possibile modificare le proprietà dell'algoritmo [Linear Regression][linear-regression] (Regressione lineare) oppure provare un algoritmo diverso. È anche possibile aggiungere contemporaneamente più algoritmi di Machine Learning all'esperimento e confrontarne due usando il modulo [Evaluate Model][evaluate-model] (Modello di valutazione).
-Per un esempio di come confrontare più modelli in un esperimento singolo, vedere [Compare Regressors](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) (Confrontare regressori) in [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com).
+- **Eseguire l'iterazione del modello di hello tooimprove tootry** -ad esempio, è possibile modificare le funzionalità di hello è utilizzare la stima. Oppure è possibile modificare le proprietà di hello di hello [Linear Regression] [ linear-regression] algoritmo o tenta di tutto un algoritmo diverso. È anche possibile aggiungere più esperimento di machine learning algoritmi tooyour in una sola volta e confrontare i due di essi utilizzando hello [Evaluate Model] [ evaluate-model] modulo.
+Per un esempio di come toocompare più modelli in un esperimento singolo, vedere [Compare Regressors](https://gallery.cortanaintelligence.com/Experiment/Compare-Regressors-5) in hello [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com).
 
     > [!TIP]
-    > Usare il pulsante **SAVE AS** (SALVA CON NOME) nella parte inferiore della pagina per copiare eventuali iterazioni dell'esperimento. È possibile visualizzare tutte le iterazioni dell'esperimento facendo clic su **VIEW RUN HISTORY** (VISUALIZZA LA CRONOLOGIA DI ESECUZIONE) nella parte inferiore della pagina. Per altre informazioni, vedere [Gestire iterazioni dell'esperimento in Azure Machine Learning Studio][runhistory].
+    > toocopy qualsiasi iterazione dell'esperimento, utilizzare hello **SAVE AS** pulsante nella parte inferiore di hello della pagina hello. È possibile visualizzare tutte le iterazioni di hello dell'esperimento facendo **Visualizza cronologia di esecuzione** nella parte inferiore di hello della pagina hello. Per altre informazioni, vedere [Gestire iterazioni dell'esperimento in Azure Machine Learning Studio][runhistory].
 
 [runhistory]: machine-learning-manage-experiment-iterations.md
 
-- **Distribuire il modello come servizio Web predittivo**: se si è soddisfatti con i risultati del modello, è possibile distribuirlo come servizio Web per stimare prezzi di automobili usando dati nuovi. Per altre informazioni dettagliate, vedere [Distribuire un servizio Web di Azure Machine Learning][publish].
+- **Distribuire il modello di hello come un servizio web predittivo** : quando si è soddisfatti del modello, è possibile distribuire un toobe di servizio web utilizzato prezzi delle automobili toopredict utilizzando nuovi dati. Per altre informazioni dettagliate, vedere [Distribuire un servizio Web di Azure Machine Learning][publish].
 
 [publish]: machine-learning-publish-a-machine-learning-web-service.md
 
-Per altre informazioni: Per una procedura più completa e dettagliata del processo di creazione, training, assegnazione di punteggi e distribuzione di un modello, vedere [Sviluppare una soluzione predittiva con Azure Machine Learning][walkthrough].
+Desidera toolearn altre? Per una procedura dettagliata più ampia e dettagliata del processo di hello di creazione, training, valutazione e distribuzione di un modello, vedere [sviluppare una soluzione predittiva mediante Azure Machine Learning][walkthrough].
 
 [walkthrough]: machine-learning-walkthrough-develop-predictive-solution.md
 
@@ -356,7 +356,7 @@ Per altre informazioni: Per una procedura più completa e dettagliata del proces
 [evaluation-results]:./media/machine-learning-create-experiment/evaluation-results.png
 [complete-linear-regression-experiment]:./media/machine-learning-create-experiment/complete-linear-regression-experiment.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [type-automobile]:./media/machine-learning-create-experiment/type-automobile.png
 [type-select-columns]:./media/machine-learning-create-experiment/type-select-columns.png
 [launch-column-selector]:./media/machine-learning-create-experiment/launch-column-selector.png
@@ -365,7 +365,7 @@ Per altre informazioni: Per una procedura più completa e dettagliata del proces
 
 [set-split-data-percentage]:./media/machine-learning-create-experiment/set-split-data-percentage.png
 
-<!-- temporarily switching GIFs to PNGs to remove animation --> 
+<!-- temporarily switching GIFs tooPNGs tooremove animation --> 
 [connect-train-model]:./media/machine-learning-create-experiment/connect-train-model.png
 [select-price-column]:./media/machine-learning-create-experiment/select-price-column.png
 

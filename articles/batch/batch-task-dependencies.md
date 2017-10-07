@@ -1,6 +1,6 @@
 ---
-title: "Usare le relazioni tra attività per eseguire attività basate sul completamento di altre attività: Azure Batch | Microsoft Docs"
-description: "Creare attività che dipendono dal completamento di altre attività per l'elaborazione di carichi di lavoro di tipo MapReduce e carichi di lavoro Big Data simili in Azure Batch."
+title: "attività di aaaUse toorun di dipendenze in base hello completamento di altre attività - Azure Batch | Documenti Microsoft"
+description: "Creare le attività che dipendono dal completamento hello di altre attività per l'elaborazione di stile MapReduce e i dati di grandi dimensioni simili carichi di lavoro nel Batch di Azure."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,32 +15,32 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 465306d2de8d1dbe6ba1f0cd74be720b78a50de3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: faf08ec38cb30b1f66acd51e256c31aea6215c62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-task-dependencies-to-run-tasks-that-depend-on-other-tasks"></a>Creare relazioni tra attività per eseguire attività che dipendono da altre attività
+# <a name="create-task-dependencies-toorun-tasks-that-depend-on-other-tasks"></a>Creare relazioni tra attività attività toorun che dipendono da altre attività
 
-È possibile definire dipendenze delle attività per eseguire un'attività o un set di attività solo dopo il completamento di un'attività padre. Ecco alcuni degli scenari in cui le dipendenze delle attività sono utili:
+È possibile definire attività dipendenze toorun un'attività o un set di attività solo dopo che un'attività padre è stata completata. Ecco alcuni degli scenari in cui le dipendenze delle attività sono utili:
 
-* Carichi di lavoro di tipo MapReduce nel cloud.
+* Stile MapReduce i carichi di lavoro nel cloud hello.
 * Processi le cui attività di elaborazione dati può essere espressa come grafo aciclico diretto (DAG).
-* Processi di pre-rendering e post-rendering, in cui ogni attività deve essere completata prima di poter avviare quella successiva.
-* Qualsiasi altro processo in cui le attività downstream dipendono l'output delle attività upstream.
+* Dopo il rendering e il pre-rendering di elabora, in cui ogni attività è necessario completare prima di poter iniziare l'attività successiva hello.
+* Qualsiasi altro processo in cui attività downstream dipendono dall'output di hello delle attività a monte.
 
-Tramite le dipendenze delle attività di Batch è possibile creare attività di cui pianificare l'esecuzione nei nodi di calcolo dopo il completamento di una o più attività padre. Ad esempio, è possibile creare un processo che esegue il rendering di ogni fotogramma di un film 3D con le attività parallele separate. L'attività finale, ovvero "attività di unione", unisce i fotogrammi sottoposti a rendering in un filmato completo solo dopo che è stato eseguito il rendering di tutti i fotogrammi.
+Con le relazioni tra attività Batch, è possibile creare attività pianificate per l'esecuzione in nodi di calcolo dopo il completamento di hello di uno o più attività padre. Ad esempio, è possibile creare un processo che esegue il rendering di ogni fotogramma di un film 3D con le attività parallele separate. attività finale Hello - hello "attività merge" - unioni hello fotogrammi sottoposti a rendering in film completo di hello solo dopo che tutti i frame è stato correttamente eseguito il rendering.
 
-Per impostazione predefinita, l'esecuzione delle attività dipendenti è pianificata solo dopo il corretto completamento dell'attività padre. È possibile specificare un'azione di dipendenza per sostituire il comportamento predefinito ed eseguire attività quando l'attività padre non riesce. Per informazioni dettagliate, vedere la sezione [Azioni di dipendenza](#dependency-actions).  
+Per impostazione predefinita, le attività dipendenti pianificate per l'esecuzione solo dopo che l'attività padre hello è stata completata. È possibile specificare un dipendenza azione toooverride hello il comportamento predefinito ed eseguire attività quando l'attività padre hello ha esito negativo. Vedere hello [azioni dipendenza](#dependency-actions) sezione per informazioni dettagliate.  
 
-È possibile creare attività che dipendono da altre attività in una relazione uno-a-uno o uno-a-molti. È anche possibile creare una dipendenza da un intervallo, in cui un'attività dipende dal completamento di un gruppo di attività all'interno di un intervallo di ID attività specifico. È possibile combinare questi tre scenari di base per creare relazioni molti-a-molti.
+È possibile creare attività che dipendono da altre attività in una relazione uno-a-uno o uno-a-molti. È inoltre possibile creare una dipendenza di intervallo in cui un'attività dipende dal completamento di hello di un gruppo di attività all'interno di un intervallo di ID attività specificato. È possibile combinare queste tre relazioni molti-a-molti toocreate di scenari di base.
 
 ## <a name="task-dependencies-with-batch-net"></a>Relazioni tra attività con Batch .NET
-Questo articolo illustra la configurazione di relazioni tra attività tramite la libreria [Batch .NET][net_msdn]. Viene illustrato prima come [abilitare le dipendenze tra attività](#enable-task-dependencies) nei processi, quindi viene spiegato come [configurare un'attività con dipendenze](#create-dependent-tasks). Viene inoltre descritto come specificare un'azione di dipendenza per l'esecuzione di attività dipendenti se l'attività padre non riesce. Vengono infine illustrati gli [scenari delle relazione](#dependency-scenarios) supportate da Batch.
+In questo articolo viene illustrato come dipendenze di attività tooconfigure utilizzando hello [.NET per Batch] [ net_msdn] libreria. Viene innanzitutto illustrata la modalità è troppo[abilitare la relazione tra attività](#enable-task-dependencies) nei processi e quindi illustra come troppo[configurare un'attività con le dipendenze](#create-dependent-tasks). È anche descrivere come toospecify un dipendenza azione toorun attività dipendente se padre hello ha esito negativo. Infine, approfondiremo hello [scenari dipendenza](#dependency-scenarios) che supporta Batch.
 
 ## <a name="enable-task-dependencies"></a>Abilitare le relazioni tra attività
-Per usare le dipendenze delle attività nell'applicazione Batch, è innanzitutto necessario configurare il processo per l'uso delle dipendenze. In Batch .NET abilitare la funzionalità in [CloudJob][net_cloudjob] impostando la rispettiva proprietà [UsesTaskDependencies][net_usestaskdependencies] su `true`:
+dipendenze di attività toouse Batch nell'applicazione in uso, è necessario configurare le dipendenze di attività toouse di hello del processo. In .NET per Batch, abilitarlo nel [CloudJob] [ net_cloudjob] impostando il relativo [UsesTaskDependencies] [ net_usestaskdependencies] proprietà troppo`true`:
 
 ```csharp
 CloudJob unboundJob = batchClient.JobOperations.CreateJob( "job001",
@@ -50,10 +50,10 @@ CloudJob unboundJob = batchClient.JobOperations.CreateJob( "job001",
 unboundJob.UsesTaskDependencies = true;
 ```
 
-Nel frammento di codice precedente "batchClient" è un'istanza della classe [BatchClient][net_batchclient].
+Nel precedente frammento di codice di hello, "batchClient" è un'istanza di hello [BatchClient] [ net_batchclient] classe.
 
 ## <a name="create-dependent-tasks"></a>Creare attività dipendenti
-Per creare un'attività che dipende dal completamento di una o più attività padre, è possibile specificare che l'attività "dipende" dalle altre attività. In Batch .NET configurare la proprietà [CloudTask][net_cloudtask].[DependsOn][net_dependson] con un'istanza della classe [TaskDependencies][net_taskdependencies]:
+toocreate un'attività che dipende dal completamento hello di uno o più attività padre, è possibile specificare l'attività "dipende" hello che hello altre attività. In .NET per Batch, configurare hello [CloudTask][net_cloudtask].[ DependsOn] [ net_dependson] proprietà con un'istanza di hello [TaskDependencies] [ net_taskdependencies] classe:
 
 ```csharp
 // Task 'Flowers' depends on completion of both 'Rain' and 'Sun'
@@ -64,29 +64,29 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 },
 ```
 
-Questo frammento di codice crea un'attività dipendente con ID attività "Flowers". L'attività "Flowers" dipende dalle attività "Rain" e "Sun". L'esecuzione dell'attività "Flowers" in un nodo di calcolo verrà pianificata solo dopo il corretto completamento delle attività "Rain" e "Sun".
+Questo frammento di codice crea un'attività dipendente con ID attività "Flowers". Hello "Fiori" attività dipende dalle attività "Ora" e "Sun". L'attività "Fiori" sarà toorun pianificato su un nodo di calcolo solo dopo l'attività "Ora" e "Sun" sono stati completati correttamente.
 
 > [!NOTE]
-> Un'attività viene considerata correttamente completata quando l'attività è in **stato completato** e il **codice di uscita** è `0`. In Batch .NET ciò corrisponde a un valore della proprietà [CloudTask][net_cloudtask].[State][net_taskstate] pari a `Completed` e il valore della proprietà [TaskExecutionInformation][net_taskexecutioninformation].[ExitCode][net_exitcode] è `0`.
+> Un'attività viene considerata toobe completata correttamente quando è in hello **completato** stato e il relativo **codice di uscita** è `0`. In .NET per Batch, ciò significa un [CloudTask][net_cloudtask].[ Stato] [ net_taskstate] valore della proprietà `Completed` e hello del CloudTask [TaskExecutionInformation][net_taskexecutioninformation].[ Codice di uscita] [ net_exitcode] valore della proprietà è `0`.
 > 
 > 
 
 ## <a name="dependency-scenarios"></a>scenari delle relazione
-In Azure Batch è possibile usare tre scenari di relazioni tra attività di base, ovvero uno-a-uno, uno-a-molti e la relazione tra intervalli di ID. Questi scenari possono essere combinati per ottenere un quarto scenario, ovvero molti-a-molti.
+In Azure Batch è possibile usare tre scenari di relazioni tra attività di base, ovvero uno-a-uno, uno-a-molti e la relazione tra intervalli di ID. Possono essere combinati tooprovide un quarto scenario, molti-a-molti.
 
 | Scenario&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Esempio |  |
 |:---:| --- | --- |
 |  [Uno-a-uno](#one-to-one) |L'*attivitàB* dipende dall'*attivitàA* <p/> L'*attivitàB* sarà pianificata per l'esecuzione solo dopo il completamento corretto dell'*attivitàA* |![Diagramma: relazione uno-a-uno tra attività][1] |
 |  [Uno-a-molti](#one-to-many) |L'*attivitàC* dipende sia dall'*attivitàA* che dall'*attivitàB*. <p/> L'*attivitàC* sarà pianificata per l'esecuzione solo dopo il completamento corretto dell'*attivitàA* e dell'*attivitàB* |![Diagramma: relazione uno-a-molti tra attività][2] |
-|  [Intervallo di ID attività](#task-id-range) |L'*attivitàD* dipende da un intervallo di attività <p/> L'*attivitàD* sarà pianificata per l'esecuzione solo dopo il completamento corretto delle attività con ID compresi tra *1* e *10* |![Diagramma: relazione tra intervalli di ID attività][3] |
+|  [Intervallo di ID attività](#task-id-range) |L'*attivitàD* dipende da un intervallo di attività <p/> *taskD* non verrà pianificato per l'esecuzione fino a quando le attività con ID hello *1* tramite *10* sono stati completati correttamente |![Diagramma: relazione tra intervalli di ID attività][3] |
 
 > [!TIP]
-> È possibile creare relazioni **molti-a-molti**, ad esempio relazioni in cui le attività C, D, E e F dipendono dalle attività A e B. Questo tipo di relazione risulta utile, ad esempio, negli scenari di pre-elaborazione parallelizzata, in cui le attività downstream dipendono dall'output di più attività upstream.
+> È possibile creare **molti-a-molti** relazioni, ad esempio in cui attività C, D, E e F ogni dipende da attività A e B. Ciò è utile, ad esempio, negli scenari di pre-elaborazione parallelizzati in cui le attività downstream dipendono dall'output di hello di più attività upstream.
 > 
-> Negli esempi di questa sezione un'attività dipendente viene eseguita solo dopo che le attività padre vengono completate correttamente. Questo comportamento è quello predefinito per un'attività dipendente. È possibile eseguire un'attività dipendente dopo che un'attività padre non riesce specificando un'azione di dipendenza per sostituire il comportamento predefinito. Per informazioni dettagliate, vedere la sezione [Azioni di dipendenza](#dependency-actions).
+> Negli esempi di hello in questa sezione, un'attività dipendente viene eseguito solo dopo che l'attività padre hello completata correttamente. Questo comportamento è hello predefinito per un'attività dipendente. Dopo che un'attività padre non riesce, specificando un comportamento predefinito di hello toooverride di azione di dipendenza, è possibile eseguire un'attività dipendente. Vedere hello [azioni dipendenza](#dependency-actions) sezione per informazioni dettagliate.
 
 ### <a name="one-to-one"></a>Uno-a-uno
-In una relazione uno-a-uno un'attività dipende dal corretto completamento di una sola attività padre. Per creare la dipendenza, specificare un solo ID attività nel metodo statico [TaskDependencies][net_taskdependencies].[OnId][net_onid] quando si popola la proprietà [DependsOn][net_dependson] di [CloudTask][net_cloudtask].
+In una relazione uno-a un'attività dipende dal completamento hello dell'attività padre. toocreate hello dipendenza, fornire un toohello ID singola attività [TaskDependencies][net_taskdependencies].[ OnId] [ net_onid] metodo statico quando si popola hello [DependsOn] [ net_dependson] proprietà di [CloudTask] [ net_cloudtask].
 
 ```csharp
 // Task 'taskA' doesn't depend on any other tasks
@@ -100,7 +100,7 @@ new CloudTask("taskB", "cmd.exe /c echo taskB")
 ```
 
 ### <a name="one-to-many"></a>Uno-a-molti
-In una relazione uno-a-molti un'attività dipende dal completamento di più attività padre. Per creare la dipendenza, specificare una raccolta di ID attività nel metodo statico [TaskDependencies][net_taskdependencies].[OnId][net_onids] quando si popola la proprietà [DependsOn][net_dependson] di [CloudTask][net_cloudtask].
+In una relazione uno-a-molti, un'attività dipende dal completamento di hello di più attività padre. toocreate hello dipendenza, offrono un insieme di attività ID toohello [TaskDependencies][net_taskdependencies].[ OnIds] [ net_onids] metodo statico quando si popola hello [DependsOn] [ net_dependson] proprietà di [CloudTask] [ net_cloudtask].
 
 ```csharp
 // 'Rain' and 'Sun' don't depend on any other tasks
@@ -116,13 +116,13 @@ new CloudTask("Flowers", "cmd.exe /c echo Flowers")
 ``` 
 
 ### <a name="task-id-range"></a>Intervallo di ID attività
-In una dipendenza da un intervallo di attività padre un'attività dipende dal completamento delle attività il cui ID è compreso all'interno di un intervallo.
-Per creare la dipendenza, specificare il primo e l'ultimo ID attività dell'intervallo nel metodo statico [TaskDependencies][net_taskdependencies].[OnIdRange][net_onidrange] quando si popola la proprietà [DependsOn][net_dependson] di [CloudTask][net_cloudtask].
+Una dipendenza su un intervallo di attività padre, un'attività dipende dal completamento di hello hello delle attività i cui ID sono situati all'interno di un intervallo.
+dipendenza hello toocreate, fornire hello prima e ultima attività ID in hello intervallo toohello [TaskDependencies][net_taskdependencies].[ OnIdRange] [ net_onidrange] metodo statico quando si popola hello [DependsOn] [ net_dependson] proprietà di [CloudTask] [net_cloudtask].
 
 > [!IMPORTANT]
-> Quando si usano intervalli di ID attività per le relazioni, gli ID attività inclusi nell'intervallo *devono* essere rappresentazioni di stringa di valori interi.
+> Quando si usano gli intervalli di ID attività per le dipendenze, hello ID attività nell'intervallo di hello *deve* da rappresentazioni di stringa di valori integer.
 > 
-> Ogni attività compresa nell'intervallo deve soddisfare la dipendenza attraverso il corretto completamento o il completamento con un errore associato a un'azione di dipendenza impostata su **Satisfy**. Per informazioni dettagliate, vedere la sezione [Azioni di dipendenza](#dependency-actions).
+> Ogni attività nell'intervallo di hello devono soddisfare dipendenza hello, completamento o completando con un errore che è mappata tooa dipendenza azione impostare troppo**Satisfies**. Vedere hello [azioni dipendenza](#dependency-actions) sezione per informazioni dettagliate.
 >
 >
 
@@ -137,38 +137,38 @@ new CloudTask("3", "cmd.exe /c echo 3"),
 // Task 4 depends on a range of tasks, 1 through 3
 new CloudTask("4", "cmd.exe /c echo 4")
 {
-    // To use a range of tasks, their ids must be integer values.
-    // Note that we pass integers as parameters to TaskIdRange,
-    // but their ids (above) are string representations of the ids.
+    // toouse a range of tasks, their ids must be integer values.
+    // Note that we pass integers as parameters tooTaskIdRange,
+    // but their ids (above) are string representations of hello ids.
     DependsOn = TaskDependencies.OnIdRange(1, 3)
 },
 ```
 
 ## <a name="dependency-actions"></a>Azioni di dipendenza
 
-Per impostazione predefinita, un'attività o un set di attività dipendenti vengono eseguite solo dopo il corretto completamento di un'attività padre. In alcuni scenari potrebbe essere necessario eseguire attività dipendenti anche se l'attività padre non riesce. È possibile sostituire il comportamento predefinito specificando un'azione di dipendenza. Un'azione di dipendenza specifica se un'attività dipendente è idonea per l'esecuzione in base alla riuscita o meno dell'attività padre. 
+Per impostazione predefinita, un'attività o un set di attività dipendenti vengono eseguite solo dopo il corretto completamento di un'attività padre. In alcuni scenari, è consigliabile attività dipendenti toorun anche se l'attività padre hello ha esito negativo. È possibile eseguire l'override di comportamento predefinito di hello specificando un'azione di dipendenza. Un'azione di dipendenza specifica se un'attività dipendente è idoneo toorun, in base a hello riuscita o meno delle attività padre hello. 
 
-Si supponga, ad esempio, un'attività dipendente in attesa di dati dal completamento dell'attività upstream. Se l'attività upstream non riesce, l'attività dipendente potrebbe comunque essere eseguita usando dati meno recenti. In questo caso, un'azione di dipendenza può specificare che l'attività dipendente è idonea per l'esecuzione nonostante l'errore dell'attività padre.
+Ad esempio, si supponga che un'attività dipendente è in attesa di dati dal completamento hello dell'attività upstream hello. Se attività upstream hello non riesce, l'attività dipendente hello potrebbe essere ancora in grado di toorun i dati obsoleti. In questo caso, un'azione di dipendenza è possibile specificare che tale attività dipendente hello è idoneo toorun nonostante l'errore hello dell'attività padre hello.
 
-Un'azione di dipendenza è basata su una condizione di uscita per l'attività padre. È possibile specificare un'azione di dipendenza per una qualsiasi delle condizioni di uscita seguenti. Per .NET, vedere la classe [ExitConditions][net_exitconditions] per altre informazioni.
+Un'azione di dipendenza si basa su una condizione di uscita per l'attività padre hello. È possibile specificare un'azione di dipendenza per una delle seguenti condizioni di uscita; hello per .NET, vedere hello [ExitConditions] [ net_exitconditions] classe per informazioni dettagliate:
 
 - Quando si verifica un errore di pre-elaborazione.
-- Quando si verifica un errore di caricamento dei file. Se l'attività si chiude con un codice di uscita specificato tramite **exitCodes** o **exitCodeRanges** e quindi si verifica un errore di caricamento dei file, l'azione specificata dal codice di uscita ha la precedenza.
-- Quando l'attività termina con un codice di uscita definito dalla proprietà **ExitCodes**.
-- Quando l'attività termina con un codice di uscita compreso in un intervallo specificato dalla proprietà **ExitCodeRanges**.
-- Il caso predefinito, ovvero se l'attività si chiude con un codice di uscita non definito da **ExitCodes** o **ExitCodeRanges** oppure se l'attività si chiude con un errore di pre-elaborazione e la proprietà **PreProcessingError** non è stata configurata o se l'attività ha esito negativo con un errore di caricamento dei file e la proprietà **FileUploadError** non è stata configurata. 
+- Quando si verifica un errore di caricamento dei file. Se l'attività hello viene terminata con un codice di uscita specificato tramite **exitCodes** o **exitCodeRanges**e quindi si verifica un errore di caricamento di file, l'azione hello specificata da hello uscita codice avrà la precedenza.
+- Quando attività hello termina con un codice di uscita definito da hello **ExitCodes** proprietà.
+- Quando attività hello termina con un codice di uscita che rientra in un intervallo specificato da hello **ExitCodeRanges** proprietà.
+- Hello caso predefinito, se l'attività hello termina con un codice di uscita non è definito da **ExitCodes** o **ExitCodeRanges**, o se l'attività hello termina con un errore di pre-elaborazione e hello **PreProcessingError**  non è impostata, o se hello attività non riesce e genera un file di caricamento di errore e hello **FileUploadError** non è impostata. 
 
-Per specificare un'azione di dipendenza in .NET, impostare la proprietà [ExitOptions][net_exitoptions].[DependencyAction][net_dependencyaction] per la condizione di uscita. La proprietà **DependencyAction** accetta uno di questi due valori:
+un'azione di dipendenza in .NET, hello set toospecify [ExitOptions][net_exitoptions].[ DependencyAction] [ net_dependencyaction] proprietà per la condizione di uscita hello. Hello **DependencyAction** proprietà prende uno dei due valori:
 
-- L'impostazione della proprietà **DependencyAction** su **Satisfy** indica che le attività dipendenti sono idonee per l'esecuzione se l'attività padre termina con un errore specificato.
-- L'impostazione della proprietà **DependencyAction** su **Block** indica che le attività dipendenti non sono idonee per l'esecuzione.
+- Hello impostazione **DependencyAction** proprietà troppo**Satisfies** indica che le attività dipendenti sono idonei toorun se l'attività padre hello termina con un errore specificato.
+- Hello impostazione **DependencyAction** proprietà troppo**blocco** indica che le attività dipendenti non sono idonee toorun.
 
-L'impostazione predefinita per la proprietà **DependencyAction** è **Satisfy** per il codice di uscita 0 e **Block** per tutte le altre condizioni di uscita.
+impostazione predefinita per hello Hello **DependencyAction** proprietà **Satisfies** per il codice di uscita 0, e **blocco** per tutte le altre condizioni di uscita.
 
-Il frammento di codice seguente imposta la proprietà **DependencyAction** per un'attività padre. Se l'attività padre termina con un errore di pre-elaborazione o con i codici di errore specificati, l'attività dipendente viene bloccata. Se l'attività padre termina con qualsiasi altro errore diverso da zero, l'attività dipendente è idonea per l'esecuzione.
+frammento di codice seguente Hello imposta hello **DependencyAction** proprietà per un'attività padre. Se l'attività padre hello termina con un errore di pre-elaborazione o con hello hello dipendenti codici di errore specificato, l'attività è bloccata. Se l'attività padre hello viene terminato con un altro errore diverso da zero, l'attività dipendente hello è toorun idonei.
 
 ```csharp
-// Task A is the parent task.
+// Task A is hello parent task.
 new CloudTask("A", "cmd.exe /c echo A")
 {
     // Specify exit conditions for task A and their dependency actions.
@@ -179,13 +179,13 @@ new CloudTask("A", "cmd.exe /c echo A")
         {
             DependencyAction = DependencyAction.Block
         },
-        // If task A exits with the specified error codes, block any downstream tasks (in this example, task B).
+        // If task A exits with hello specified error codes, block any downstream tasks (in this example, task B).
         ExitCodes = new List<ExitCodeMapping>
         {
             new ExitCodeMapping(10, new ExitOptions() { DependencyAction = DependencyAction.Block }),
             new ExitCodeMapping(20, new ExitOptions() { DependencyAction = DependencyAction.Block })
         },
-        // If task A succeeds or fails with any other error, any downstream tasks become eligible to run 
+        // If task A succeeds or fails with any other error, any downstream tasks become eligible toorun 
         // (in this example, task B).
         Default = new ExitOptions
         {
@@ -193,7 +193,7 @@ new CloudTask("A", "cmd.exe /c echo A")
         }
     }
 },
-// Task B depends on task A. Whether it becomes eligible to run depends on how task A exits.
+// Task B depends on task A. Whether it becomes eligible toorun depends on how task A exits.
 new CloudTask("B", "cmd.exe /c echo B")
 {
     DependsOn = TaskDependencies.OnId("A")
@@ -201,18 +201,18 @@ new CloudTask("B", "cmd.exe /c echo B")
 ```
 
 ## <a name="code-sample"></a>Esempio di codice
-Il progetto di esempio [TaskDependencies][github_taskdependencies] è uno degli [esempi di codice di Azure Batch][github_samples] disponibili in GitHub. Questa soluzione di Visual Studio mostra:
+Hello [TaskDependencies] [ github_taskdependencies] progetto di esempio è uno dei hello [esempi di codice di Azure Batch] [ github_samples] su GitHub. Questa soluzione di Visual Studio mostra:
 
-- Come abilitare la dipendenza delle attività in un processo
-- Come creare attività che dipendono da altre attività
-- Come eseguire queste attività in un pool di nodi di calcolo.
+- Come tooenable attività dipendenza su un processo
+- Modalità toocreate attività da cui dipendono altre attività
+- Modalità tooexecute quelli delle attività in un pool di nodi di calcolo.
 
 ## <a name="next-steps"></a>Passaggi successivi
 ### <a name="application-deployment"></a>Distribuzione dell'applicazione
-La funzionalità [Pacchetti dell'applicazione](batch-application-packages.md) di Batch offre un modo semplice per distribuire e controllare le versioni delle applicazioni eseguite dalle attività nei nodi di calcolo.
+Hello [pacchetti di applicazioni](batch-application-packages.md) funzionalità di Batch fornisce un modo semplice distribuire tooboth e la versione applicazioni hello le attività eseguite in nodi di calcolo.
 
 ### <a name="installing-applications-and-staging-data"></a>Installazione delle applicazioni e staging dei dati
-Per una panoramica dei metodi di preparazione dei nodi per l'esecuzione di attività, vedere [Installing applications and staging data on Batch compute nodes][forum_post] (Installazione di applicazioni e staging dei dati nei nodi di calcolo di Batch) nel forum di Azure Batch. Scritto da uno dei membri del team di Azure Batch, questo post è una panoramica utile dei diversi modi disponibili per copiare applicazioni, dati di input di attività e altri file nei nodi di calcolo.
+Vedere [l'installazione di applicazioni e dati in Batch di gestione temporanea di nodi di calcolo] [ forum_post] nel forum di Azure Batch hello per una panoramica dei metodi per la preparazione dei nodi toorun attività. Scritti da uno dei membri del team hello Azure Batch, che questo post di è una buona panoramica sulle applicazioni di toocopy hello modi diversi, i dati di input attività e altri tooyour file nodi di calcolo.
 
 [forum_post]: https://social.msdn.microsoft.com/Forums/en-US/87b19671-1bdf-427a-972c-2af7e5ba82d9/installing-applications-and-staging-data-on-batch-compute-nodes?forum=azurebatch
 [github_taskdependencies]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/TaskDependencies

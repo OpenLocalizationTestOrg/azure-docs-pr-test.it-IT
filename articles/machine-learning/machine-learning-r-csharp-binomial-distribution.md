@@ -1,5 +1,5 @@
 ---
-title: (Deprecato) Binomial Distribution Suite - Azure | Documentazione Microsoft
+title: 'AAA(deprecated) distribuzione binomiale Suite: Azure | Documenti Microsoft'
 description: (Deprecato) Binomial Distribution Suite
 services: machine-learning
 documentationcenter: 
@@ -16,67 +16,67 @@ ms.date: 01/06/2017
 ms.author: ireiter
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 6f0a6d06e7401c8360a92a707a0552f41ff3657c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 6f94436cd19abeb518d179f340c8d4f43fcf4520
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-binomial-distribution-suite"></a>(Deprecato) Binomial Distribution Suite
 
 > [!NOTE]
-> Microsoft DataMarket è in fase di ritiro e questa API è stata deprecata. 
+> è stata ritirata Hello Microsoft DataMarket e questa API è stata deprecata. 
 > 
-> Numerose API e molti esperimenti utili di esempio sono disponibili in [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per altre informazioni sulla raccolta, vedere [Condividere e scoprire risorse in Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Sono disponibili molte esperimenti di esempio utile e API hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com). Per ulteriori informazioni sulla raccolta hello, vedere [condivisione e individuare le risorse in Cortana Intelligence Gallery hello](machine-learning-gallery-how-to-use-contribute-publish.md).
 
-Binomial Distribution Suite è un insieme di servizi Web di esempio ([Binomial Generator](https://datamarket.azure.com/dataset/aml_labs/bdg5), [Probability Calculator](https://datamarket.azure.com/dataset/aml_labs/bdp4), [Quantile Calculator](https://datamarket.azure.com/dataset/aml_labs/bdq5)) che semplificano la generazione e la gestione delle distribuzioni binomiali. I servizi permettono la generazione di una sequenza di distribuzioni binomiali di qualsiasi lunghezza, calcolando i quantili rispetto alla probabilità specificata e calcolando la probabilità in base a un quantile specificato. Ogni servizio emette output diversi, in base al servizio selezionato, come illustrato più avanti. Binomial Distribution Suite è basato sulle funzioni qbinom, rbinom e pbinom del codice R, incluse nel pacchetto statistico R. 
+Distribuzione binomiale Suite Hello è un set di servizi web di esempio ([binomiale generatore](https://datamarket.azure.com/dataset/aml_labs/bdg5), [calcolatrice probabilità](https://datamarket.azure.com/dataset/aml_labs/bdp4), [Quantile Calcolatrice](https://datamarket.azure.com/dataset/aml_labs/bdq5)) che consentono di generare e gestione di binomiale. Hello services consente la generazione di una sequenza di distribuzione binomiale di qualsiasi lunghezza, il calcolo dei quantili fuori specificato da un determinato quantile probabilità e il calcolo di probabilità. Ognuno dei servizi hello genera output diversi basati sul servizio hello selezionato (vedere la descrizione riportata di seguito). Distribuzione binomiale Suite Hello dipende hello R funzioni qbinom rbinom e pbinom, che sono inclusi nel pacchetto di hello R statistiche. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> Questi servizi Web possono essere utilizzato dagli utenti: potenzialmente tramite un'app mobile, un sito Web o anche in un computer locale, ad esempio. Ma lo scopo del servizio Web è anche un esempio di come è possibile utilizzare Azure Machine Learning per creare servizi Web in codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. Il servizio Web può essere quindi pubblicato in Azure Marketplace e può essere usato da utenti e dispositivi in tutto il mondo, senza che l'autore del sito Web debba configurare alcuna infrastruttura.
+> Questi servizi web che poteva essere usati dagli utenti: potenzialmente direttamente nel marketplace hello, tramite un'app per dispositivi mobili, tramite un sito Web, o anche in un computer locale, ad esempio. Ma scopo hello del servizio web hello anche tooserve come esempio di come Azure Machine Learning è possibile servizi web utilizzati toocreate su codice R. Con poche righe di codice R e la selezione di alcuni pulsanti in Azure Machine Learning Studio è possibile creare un esperimento con codice R e pubblicarlo come servizio Web. servizio web Hello può quindi essere pubblicata toohello Azure Marketplace e non utilizzati da utenti e dispositivi attraverso HelloWorld – alcuna installazione dell'infrastruttura dall'autore hello del servizio web hello è obbligatorio.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Uso del servizio Web
-Binomial Distribution Suite include i tre servizi seguenti:
+Hello binomiale Suite include hello dopo 3 servizi.
 
 ### <a name="binomial-distribution-quantile-calculator"></a>Binomial Distribution Quantile Calculator
-Questo servizio accetta quattro argomenti di una distribuzione normale e calcola il quantile associato.
-Gli argomenti di input sono i seguenti:
+Il servizio accetta 4 argomenti di una distribuzione normale e calcola i quantili hello associata.
+gli argomenti di input Hello sono:
 
 * p: probabilità aggregata singola di più prove.  
-* size: numero di prove.
-* prob: probabilità di successo in una prova.
-* Side: L per la parte inferiore della distribuzione, U per la parte superiore della distribuzione. 
+* dimensione - numero hello di prove.
+* probabilità - probabilità hello di successo in una versione di valutazione.
+* Lato - L per lato inferiore di hello della distribuzione di hello, U sul lato superiore di hello della distribuzione hello. 
 
-L'output del servizio corrisponde al quantile calcolato associato alla probabilità specificata.
+output di Hello del servizio hello è quantile hello calcolato che è associato a hello dato probabilità.
 
 ### <a name="binomial-distribution-probability-calculator"></a>Binomial Distribution Probability Calculator
-Questo servizio accetta quattro argomenti di una distribuzione binomiale e calcola la probabilità associata.
-Gli argomenti di input sono i seguenti:
+Il servizio accetta 4 argomenti di una distribuzione binomiale e calcola la probabilità associata hello.
+gli argomenti di input Hello sono:
 
 * q: singolo quantile di un evento con distribuzione binomiale. 
-* size: numero di prove.
-* prob: probabilità di successo in una prova.
-* side: L per la parte inferiore della distribuzione, U per la parte superiore della distribuzione oppure E che equivale a un numero singolo di successi.
+* dimensione - numero hello di prove.
+* probabilità - probabilità hello di successo in una versione di valutazione.
+* lato - L per lato inferiore di hello della distribuzione di hello, U sul lato superiore di hello della distribuzione hello o E che è uguale tooa singolo numero di esiti positivi.
 
-L'output del servizio corrisponde alla probabilità calcolata associata al quantile specificato.
+output di Hello del servizio hello è hello calcolata la probabilità che è associato a hello specificato di quantili.
 
 ### <a name="binomial-distribution-generator"></a>Binomial Distribution Generator
-Questo servizio accetta tre argomenti di una distribuzione binomiale e genera una sequenza casuale di numeri distribuiti in modo binomiale. È necessario fornire gli argomenti seguenti nella richiesta:
+Questo servizio accetta tre argomenti di una distribuzione binomiale e genera una sequenza casuale di numeri distribuiti in modo binomiale. Hello seguenti devono essere specificati argomenti tooit richiesta hello:
 
 * n: numero di osservazioni. 
 * size: numero di prove.
 * prob: probabilità di successo.
 
-L'output del servizio corrisponde a una sequenza di lunghezza n con una distribuzione binomiale basata sugli argomenti size e prob.
+output di Hello del servizio hello è una sequenza di lunghezza n con una distribuzione binomiale basata sugli argomenti di dimensioni e la probabilità di hello.
 
-> Questo servizio, come ospitato in Azure Marketplace, è un servizio OData ed è possibile utilizzare i metodi POST o GET per effettuare le chiamate. 
+> Questo servizio, ospitato in Azure Marketplace, hello è un servizio OData. questi può essere chiamati tramite i metodi POST o GET. 
 > 
 > 
 
-Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. Per app di esempio, vedere qui: [Generator](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionGenerator.aspx), [Probability Calculator](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionProbabilityCalculator.aspx), [Quantile Calculator](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionQuantileCalculator). 
+Esistono diversi modi di utilizzo di servizio hello in modo automatico (app di esempio in questa sezione sono: [generatore](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionGenerator.aspx), [calcolatrice probabilità](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionProbabilityCalculator.aspx), [Quantile Calcolatrice](http://microsoftazuremachinelearning.azurewebsites.net/BinomialDistributionQuantileCalculator)). 
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Codice C# iniziale per l'uso del servizio Web:
 ### <a name="binomial-distribution-quantile-calculator"></a>Binomial Distribution Quantile Calculator
@@ -174,7 +174,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
 
 ## <a name="creation-of-web-service"></a>Creazione del servizio Web
-> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). La schermata seguente mostra un esperimento per la creazione del servizio Web e codice di esempio per ogni modulo incluso nell'esperimento.
+> Questo servizio Web è stato creato tramite Azure Machine Learning. Per una versione di prova gratuita e per video introduttivi sulla creazione di esperimenti e sulla [pubblicazione di servizi Web](machine-learning-publish-a-machine-learning-web-service.md), vedere [azure.com/ml](http://azure.com/ml). Di seguito è riportata una schermata dell'esperimento hello creato codice di esempio e servizio web hello per ciascuno dei moduli di hello all'interno di sperimentazione hello.
 > 
 > 
 
@@ -184,7 +184,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 #### <a name="module-1"></a>Modulo 1:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(p=0.1,size=10,prob=.5,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 #### <a name="module-2"></a>Modulo 2:
     dataset1 <- maml.mapInputPort(1) # class: data.frame
     param = dataset1
@@ -220,7 +220,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
     output = as.data.frame(quantile)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 
@@ -230,7 +230,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 #### <a name="module-1"></a>Modulo 1:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(q=5,size=10,prob=.5,side='L');
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
 
 #### <a name="module-2"></a>Modulo 2:
@@ -256,7 +256,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
     output = as.data.frame(prob)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ### <a name="binomial-distribution-generator"></a>Binomial Distribution Generator
@@ -265,7 +265,7 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 #### <a name="module-1"></a>Modulo 1:
     #data schema with example data (replaced with data from web service)
     data.set=data.frame(n=50,size=10,p=.5);
-    maml.mapOutputPort("data.set"); #send data to output port
+    maml.mapOutputPort("data.set"); #send data toooutput port
 
 #### <a name="module-2"></a>Modulo 2:
     dataset1 <- maml.mapInputPort(1) # class: data.frame
@@ -274,14 +274,14 @@ Sono disponibili molte opzioni per l'uso del servizio in modalità automatica. P
 
     output = as.data.frame(t(dist))
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("output");
 
 ## <a name="limitations"></a>Limitazioni
-Questi sono esempi molto semplici relativi alla distribuzione binomiale. Come si può notare dal codice di esempio precedente, è implementata un rilevamento limitato degli errori.
+Questi sono esempi molto semplici che circonda hello binomiale. Come si può notare dal codice di esempio hello precedente, il rilevamento di errori poco viene implementato.
 
-## <a name="faq"></a>Domande frequenti
-Per le domande frequenti relative all'uso del servizio Web o alla pubblicazione in Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
+## <a name="faq"></a>domande frequenti
+Per domande frequenti sull'utilizzo del servizio web hello o pubblicazione toohello Azure Marketplace, vedere [qui](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-binomial-distribution/binomial_1.png
 

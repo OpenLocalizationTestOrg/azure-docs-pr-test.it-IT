@@ -1,6 +1,6 @@
 ---
-title: Come usare il pacchetto di contenuto Power BI di Azure Active Directory | Microsoft Docs
-description: Informazioni su come usare il pacchetto di contenuto Power BI di Azure Active Directory
+title: aaaHow toouse hello Azure Active Directory Power BI pacchetto di contenuto | Documenti Microsoft
+description: Informazioni su come toouse hello Azure Active Directory Power BI pacchetto di contenuto
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -13,29 +13,29 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5c642bb814a279756e8391f12fdc86b6ec0b4a8f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d07d678aedbe3089c4ea5f981f72311bdb389a17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-azure-active-directory-power-bi-content-pack"></a>Come usare il pacchetto di contenuto Power BI di Azure Active Directory
+# <a name="how-toouse-hello-azure-active-directory-power-bi-content-pack"></a>Come toouse hello Azure Active Directory Power BI pacchetto di contenuto
 
-Comprendere in che modo gli utenti adottano e usano le funzionalità di Azure Active Directory è fondamentale per l'amministratore IT. Consente di pianificare l'infrastruttura IT e la comunicazione per incrementare l'utilizzo e sfruttare al meglio le funzionalità di AAD. Il pacchetto di contenuto Power BI per Azure Active Directory consente di analizzare ulteriormente i dati per comprendere come usarli per ottenere informazioni più approfondite sulle attività svolte nell'istanza di Azure Active Directory per le varie funzionalità sulle quali si fa particolare affidamento.  Con l'integrazione delle API di Azure Active Directory in Power BI, è possibile scaricare facilmente i pacchetti di contenuto preesistenti e ottenere informazioni dettagliate per tutte le attività all'interno di Azure Active Directory usando l'esperienza di visualizzazione avanzata offerta da Power BI. È possibile creare dashboard personalizzati e condividerli con altri utenti nell'organizzazione. 
+Comprendere in che modo gli utenti adottano e usano le funzionalità di Azure Active Directory è fondamentale per l'amministratore IT. Consente l'utilizzo di tooincrease di comunicazione e l'infrastruttura IT e tooget hello più fuori funzionalità AAD tooplan. Il contenuto di Power BI Pack per Azure Active Directory hello toofurther possibilità consente di analizzare toounderstand i dati come è possibile utilizzare questo dati toogather più approfondite cosa accade in Azure Active Directory per hello diverse capacità è molto si basano su.  Con l'integrazione di hello delle API di Azure Active Directory in Power BI, è possibile scaricare i pacchetti di contenuto preesistente hello facilmente e informazioni approfondite attività hello tooall all'interno di Azure Active Directory utilizzando l'esperienza di visualizzazione avanzata che offre Power BI. È possibile creare dashboard personalizzati e condividerli con altri utenti nell'organizzazione. 
 
-Questo argomento offre istruzioni dettagliate su come installare e usare il pacchetto di contenuto nel proprio ambiente.
+In questo argomento fornisce si con istruzioni dettagliate su come tooinstall e utilizzare hello contenuto pack nell'ambiente in uso.
 
-## <a name="installation"></a>Installare  
+## <a name="installation"></a>Installazione  
 
-**Per installare il pacchetto di contenuto di Power BI:**
+**hello tooinstall pacchetto di contenuto di Power BI:**
 
-1. Accedere a [Power BI](https://app.powerbi.com/groups/me/getdata/services) con l'account di Power BI, ovvero lo stesso account di Office 365 o Azure AD.
+1. Accedere a [Power BI](https://app.powerbi.com/groups/me/getdata/services) con l'Account di Power BI (si tratta di hello stesso account utilizzato per l'Account di Active Directory di Azure o Office 365).
 
-2. Selezionare **Recupera dati** nella parte inferiore del riquadro di spostamento a sinistra.
+2. Nella parte inferiore di hello del riquadro di spostamento a sinistra di hello, selezionare **recupera dati**.
 
     ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/01.png)
  
-3. Nella casella **Servizi** fare clic su **Ottieni**.
+3. In hello **servizi** fare clic su **ottenere**.
    
     ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/02.png)
 
@@ -46,7 +46,7 @@ Questo argomento offre istruzioni dettagliate su come installare e usare il pacc
 5.  Quando richiesto, digitare l'ID tenant di Azure AD e quindi fare clic su **Avanti**.
 
     > [!TIP] 
-    > Un modo rapido per ottenere l'ID del tenant di Office 365 / Azure AD consiste nell'accedere al portale di Azure AD, eseguire il drill-down fino alla directory e copiare l'ID dall'URL seguente: https://manage.windowsazure.com/woodgroveonline.com#Workspaces/ActiveDirectoryExtension/Directory/<tenantid>/directoryQuickStart
+    > Un hello tooget rapidamente Id Tenant per il tenant di Office 365 / Azure AD è toologin toohello portale di Azure AD, il drill-down directory toohello e copiare ID hello dal seguente URL hello: https://manage.windowsazure.com/woodgroveonline.com#Workspaces/ ActiveDirectoryExtension/Directory/<tenantid>/directoryQuickStart
 
     ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/04.png) 
 
@@ -60,7 +60,7 @@ Questo argomento offre istruzioni dettagliate su come installare e usare il pacc
  
     ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/06.png) 
 
-8.  Nella finestra di dialogo di consenso dell'app, fare clic su **Accetta**.
+8.  Nella finestra di dialogo di consenso hello app, fare clic su **Accept**.
  
 9.  Fare clic sul dashboard dei log attività di Azure Active Directory, dopo che è stato creato.
  
@@ -68,46 +68,46 @@ Questo argomento offre istruzioni dettagliate su come installare e usare il pacc
 
 ## <a name="what-can-i-do-with-this-content-pack"></a>Operazioni eseguibili con il pacchetto di contenuto
 
-Prima di esaminare le operazioni eseguibili con questo pacchetto di contenuto, verrà illustrata una breve anteprima dei diversi report presenti nel pacchetto. I dati dei report si riferiscono agli **ultimi 30 giorni**.
+Prima di passare è possibile procedere con questo pacchetto di contenuto, visualizzare in anteprima Ecco hello vari report nel contenuto hello pack. Report dati torna toohello **ultimi 30 giorni**.
 
 ### <a name="reports-included-in-this-version-of-azure-active-directory-logs-content-pack"></a>Report inclusi in questa versione del pacchetto di contenuto dei log di Azure Active Directory
 
-**Report di utilizzo e tendenza delle app**: informazioni approfondite sulle app usate nell'organizzazione e su quali vengono usate più frequentemente e quando. Con questo report è possibile ottenere informazioni dettagliate sull'uso di un'app implementata di recente nell'organizzazione oppure scoprire quali app vengono usate maggiormente. In questo modo è possibile migliorare l'utilizzo se emerge che l'app non viene usata.
+**Report di utilizzo delle App e di tendenza**: ottenere informazioni approfondite App hello nell'organizzazione e quelle che vengono utilizzate più hello e quando. È possibile utilizzare questo report toogather approfondite sull'utilizzo di un'app è stato implementato all'interno dell'organizzazione o scoprire quali App vengono utilizzati di frequente. In questo modo, è possibile migliorare l'utilizzo se viene visualizzato se hello app non è in uso.
 
-**Accessi in base a posizioni e utenti**: informazioni dettagliate su tutti gli accessi eseguiti con l'identità di Azure e sull'identità degli utenti. È così possibile esaminare in dettaglio i singoli accessi e rispondere a domande come:
+**Accessi dagli utenti e posizione**: ottenere informazioni approfondite tutti hello accessi eseguiti utilizzando l'identità di Azure e fornisce informazioni in identità hello hello utenti. È così possibile esaminare in dettaglio i singoli accessi e rispondere a domande come:
 
 - Da dove ha effettuato l'accesso questo utente?
-- Quale utente ha il maggior numero di accessi e da dove accede? 
-- L'accesso è stato eseguito correttamente?  
+- L'utente che ha hello la maggior parte degli accessi e in cui sono Accedi da? 
+- Completata Accedi hello?  
  
 È possibile esaminare i dettagli facendo clic su una data o posizione specifica.
 
 **Utenti univoci per ogni app**: ottenere una visualizzazione di tutti gli utenti univoci che usano un'app specifica. Comprende solo gli utenti che hanno completato "*correttamente*" l'accesso a un'applicazione.
 
-**Accessi dei dispositivi**: visualizzazione del tipo del sistema operativo e dei browser usati dagli utenti dell'organizzazione con informazioni dettagliate sugli utenti stessi, tra cui:
+**Dispositivo accessi**: ottenere una visualizzazione di tipo hello del sistema operativo e browser in uso da parte degli utenti dell'organizzazione con informazioni dettagliate sugli utenti hello tra cui:
 
 - User Name
 - Indirizzo IP
 - Località 
 - Stato accesso 
 
-Con questo report è possibile comprendere i diversi profili dei dispositivi usati all'interno dell'organizzazione e determinare i criteri dei dispositivi in base alle funzioni usate
+Con questo report, è possibile comprendere hello diversi profili di dispositivo utilizzato all'interno dell'organizzazione e determinano i criteri per i dispositivi in base a ciò che viene utilizzato
 
-**Grafico a imbuto SSPR**: informazioni su come vengono reimpostate le password all'interno dell'organizzazione. È possibile ottenere informazioni sul numero di reimpostazioni delle password tentate tramite lo strumento SSPR e quante di esse hanno avuto esito positivo. Analizzare gli errori di reimpostazione delle password usando il grafico a imbuto SSPR e comprendere perché si sono verificati determinati errori. Questo report offre una comprensione più approfondita della modalità d'uso dello strumento SSPR all'interno dell'organizzazione in modo da prendere decisioni efficaci.
+**Grafico a imbuto SSPR**: informazioni su come vengono reimpostate le password all'interno dell'organizzazione. Inserire una finestra Visualizza il numero di password Reimposta tentate tramite lo strumento SSPR hello e quanti di essi hanno avuto esito positivo. Un'analisi più approfondita in errore di reimpostazione Password di hello utilizzando a imbuto SSPR hello e capire perché alcuni errori si sono verificati. Questo report offre una comprensione più approfondita della modalità di utilizzo dello strumento SSPR hello all'interno dell'organizzazione in modo da prendere decisioni circostanziate hello.
 
 ## <a name="customizing-azure-ad-activity-content-pack"></a>Personalizzazione del pacchetto di contenuto per le attività di Azure AD
 
-**Modificare la visualizzazione**: è possibile modificare la visualizzazione di un report facendo clic su **Modifica Report** e selezionando la visualizzazione desiderata.
+**Cambiare visualizzazione**: È possibile modificare una visualizzazione del report, fare clic su **Modifica Report** e visualizzazione di hello da selezionare.
  
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/09.png) 
  
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/10.png) 
 
-**Aggiungere altri campi**: è possibile aggiungere o rimuovere un campo per il report selezionando l'oggetto visivo per il quale si intende aggiungere o rimuovere il campo. Nell'esempio seguente viene aggiunto il campo "Stato accesso" alla vista tabella. 
+**Includere campi aggiuntivi**: È possibile aggiungere un report toohello campo o rimuoverlo selezionando toowhich visual di hello si desidera che il campo di hello tooadd/Rimuovi. Nell'esempio hello seguente, si sta aggiungendo "stato di accesso" campo toohello tabella vista. 
  
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/11.png) 
 
-**Aggiungere visualizzazioni al dashboard**: è possibile personalizzare il dashboard aggiungendo visualizzazioni personalizzate del report. Nell'esempio seguente, un nuovo filtro denominato "Stato di accesso" è stato aggiunto e incluso nel report. È stata anche modificata la visualizzazione da grafico a barre a grafico a linee. Questo nuovo oggetto visivo può essere aggiunto al dashboard.
+**Dashboard di pin visualizzazioni tooyour**: È possibile personalizzare il dashboard e includere visualizzazioni toohello un report personalizzato e aggiungerlo toohello dashboard. Nel seguente esempio hello aggiunto un nuovo filtro denominato "stato di accesso" e viene incluso nel report hello. Inoltre modificato visualizzazione hello da grafico a linee tooa grafico a barre e può aggiungere questo nuovo dashboard toohello visual.
 
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/12.png) 
 
@@ -117,7 +117,7 @@ Con questo report è possibile comprendere i diversi profili dei dispositivi usa
  
 
 
-**Condivisione del dashboard**: dopo aver creato il contenuto desiderato, è possibile condividere il dashboard con gli utenti dell'organizzazione. Si noti che quando si condivide il report, gli utenti possono vedere i campi selezionati nel report stesso.
+**La condivisione di dashboard**: dopo aver creato il contenuto di hello che si desidera, è possibile condividere il dashboard di hello con utenti hello all'interno dell'organizzazione. Si tenga presente che quando si condividono i report di hello, possono essere visualizzate campi hello selezionati nel report hello.
  
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/14.png) 
 
@@ -125,21 +125,21 @@ Con questo report è possibile comprendere i diversi profili dei dispositivi usa
 
 ## <a name="scheduling-a-daily-refresh-of-your-power-bi-report"></a>Pianificazione di un aggiornamento giornaliero dei report di Power BI
 
-Per pianificare un aggiornamento giornaliero dei report di Power BI, passare a **Set di dati > Impostazioni > Pianifica aggiornamenti** e procedere come illustrato di seguito.
+tooschedule un aggiornamento giornaliero dei report di Power BI, andare troppo**set di dati > Impostazioni > pianificazione dell'aggiornamento** e impostarlo come illustrato di seguito.
  
 ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/15.png) 
 
-## <a name="updating-to-newer-version-of-content-pack"></a>Aggiornamento alla versione più recente del pacchetto di contenuto
+## <a name="updating-toonewer-version-of-content-pack"></a>L'aggiornamento di versione toonewer del pacchetto di contenuto
 
-Se si vuole aggiornare il pacchetto di contenuto per ottenere una versione più recente:
+Se si desidera tooupdate il pacchetto di contenuto tooget una versione più recente:
 
-- Scaricare il nuovo pacchetto di contenuto e configurarlo in base alle istruzioni riportate in questo articolo.
+- Scaricare di nuovo pacchetto di contenuto hello e configurarlo in base alle istruzioni riportate in questo articolo.
 
-- Dopo aver configurato il pacchetto, passare a **Origine dati > Impostazioni > Credenziali origine dati** e immettere nuovamente le credenziali come illustrato di seguito
+- Dopo aver impostato il, andare troppo**origine dati > Impostazioni > le credenziali dell'origine dati** e immettere nuovamente le credenziali, come illustrato di seguito
 
     ![Pacchetto di contenuto Power BI di Azure Active Directory](./media/active-directory-reporting-power-bi-content-pack-how-to/16.png) 
 
-Quando la nuova versione del pacchetto di contenuto è pronta per l'uso, è possibile rimuovere la versione precedente, se necessario, eliminando i report e i set di dati sottostanti associati.
+Come nuova versione di hello del pacchetto di contenuto hello funziona, è possibile rimuovere la versione precedente di hello se necessario, l'eliminazione di report sottostanti hello e set di dati associata a tale pacchetto di contenuto.
 
 ## <a name="still-having-issues"></a>Se i problemi persistono 
 
@@ -148,4 +148,4 @@ Vedere la [Guida per la risoluzione dei problemi](active-directory-reporting-tro
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per una panoramica della creazione di report, vedere [Creazione di report in Azure Active Directory](active-directory-reporting-azure-portal.md).
+Per una panoramica di gestione di report, vedere hello [Azure Active Directory reporting](active-directory-reporting-azure-portal.md).

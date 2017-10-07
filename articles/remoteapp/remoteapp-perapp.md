@@ -1,6 +1,6 @@
 ---
-title: Pubblicare applicazioni per singoli utenti in una raccolta di Azure RemoteApp (anteprima) | Documentazione Microsoft
-description: Informazioni su come pubblicare app per i singoli utenti, invece di basarsi sui gruppi, in Azure RemoteApp.
+title: gli utenti di tooindividual applicazioni aaaPublish in una raccolta RemoteApp di Azure (anteprima) | Documenti Microsoft
+description: "Informazioni su come pubblicare gli utenti tooindividual App, anziché in base a gruppi, in Azure RemoteApp."
 services: remoteapp-preview
 documentationcenter: 
 author: piotrci
@@ -14,92 +14,92 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 11/23/2016
 ms.author: piotrci
-ms.openlocfilehash: c94ffffdec3e46ed08d941ee58dcf17b432e1dad
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 87b435552ddbfc2c6d03aeb01d95a44985e71f9f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-applications-to-individual-users-in-an-azure-remoteapp-collection-preview"></a>Pubblicare applicazioni per singoli utenti in una raccolta di Azure RemoteApp (anteprima)
+# <a name="publish-applications-tooindividual-users-in-an-azure-remoteapp-collection-preview"></a>Pubblicare gli utenti tooindividual applicazioni in una raccolta RemoteApp di Azure (anteprima)
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Questo articolo illustra come pubblicare applicazioni per singoli utenti in una raccolta di Azure RemoteApp. Si tratta di una nuova funzionalità di Azure RemoteApp, attualmente disponibile in anteprima privata e solo per alcuni utenti selezionati per finalità di valutazione.
+Questo articolo viene illustrato come gli utenti di tooindividual applicazioni toopublish in una raccolta di Azure RemoteApp. Questa è una nuova funzionalità in Azure RemoteApp, attualmente in anteprima privata e adottato disponibili tooselect solo a scopo di valutazione.
 
-In origine Azure RemoteApp consentiva solo un modo per pubblicare le applicazioni: l'amministratore pubblicava le app dall'immagine e le app risultavano visibili a tutti gli utenti della raccolta.
+Origine RemoteApp di Azure abilitata solo una modalità di pubblicazione di applicazioni: amministratore hello pubblicare le app dall'immagine hello e saranno visibili tooall utenti nella raccolta di hello.
 
-Uno scenario comune consiste nell'includere molte applicazioni in una singola immagine e distribuire una sola raccolta per ridurre i costi di gestione. Spesso non tutte le applicazioni sono rilevanti per tutti gli utenti. Gli amministratori preferirebbero pubblicare app per i singoli utenti, in modo che gli utenti non vedano applicazioni non necessari nei rispettivi feed dell'applicazione.
+Uno scenario comune è tooinclude molte applicazioni in una singola immagine e la distribuzione dei costi di gestione tooreduce di ordine di una raccolta. Spesso non tutte le applicazioni sono rilevanti tooall utenti: gli amministratori preferisce agli utenti di tooindividual App toopublish in modo non visualizzano le applicazioni non necessarie nella propria applicazione feed.
 
-Questa operazione è ora possibile in Azure RemoteApp, attualmente disponibile come funzionalità in anteprima limitata. Ecco un breve riepilogo della nuova funzionalità:
+Questa operazione è ora possibile in Azure RemoteApp, attualmente disponibile come funzionalità in anteprima limitata. Ecco un breve riepilogo delle nuove funzionalità di hello:
 
 1. È possibile impostare una delle due modalità seguenti per una raccolta:
    
-   * La modalità raccolta originale, in cui tutti gli utenti di una raccolta possono visualizzare tutte le applicazioni pubblicate. Si tratta della modalità predefinita.
-   * La nuova modalità applicazione, in cui gli utenti possono visualizzare solo le applicazioni assegnate in modo esplicito a loro.
-2. In questo momento è possibile abilitare la modalità applicazione solo usando i cmdlet di PowerShell di Azure RemoteApp.
+   * Hello originale modalità di raccolta, in cui è possono visualizzare tutti gli utenti in una raccolta di applicazioni pubblicate tutte. Questa è una modalità predefinita di hello.
+   * modalità applicazione nuova Hello, in cui gli utenti visualizzano solo le applicazioni che sono state assegnate esplicitamente toothem
+2. Un determinato momento hello modalità applicazione hello può essere abilitata solo tramite i cmdlet PowerShell di Azure RemoteApp.
    
-   * Se viene abilitata la modalità applicazione, l'assegnazione utente nella raccolta non può essere gestita tramite il portale di Azure. L'assegnazione utente deve essere gestita tramite cmdlet di PowerShell.
-3. Gli utenti potranno visualizzare solo le applicazioni pubblicate direttamente per loro. Un utente potrà comunque avviare le altre applicazioni disponibili nell'immagine accedendo direttamente alle applicazioni nel sistema operativo.
+   * Impostare la modalità di tooapplication, assegnazione di utente nella raccolta di hello quando non può essere gestita tramite hello portale di Azure. Assegnazione utente ha toobe gestite tramite cmdlet di PowerShell.
+3. Gli utenti visualizzeranno solo le applicazioni di hello pubblicate direttamente toothem. Tuttavia, è comunque possibile per un utente toolaunch hello altre applicazioni disponibili sull'immagine di hello accedendovi direttamente nel sistema operativo di hello.
    
-   * Questa funzionalità non offre un blocco sicuro delle applicazioni. Limita solo la visibilità nel feed dell'applicazione.
-   * Se è necessario isolare utenti dalle applicazioni, occorrerà usare raccolte separate.
+   * Questa funzionalità non fornisce un blocco di protezione delle applicazioni. Limita solo la visibilità in un'applicazione hello feed.
+   * Se è necessario tooisolate utenti dalle applicazioni, è necessario raccolte separate toouse a tale scopo.
 
-## <a name="how-to-get-azure-remoteapp-powershell-cmdlets"></a>Come ottenere i cmdlet di PowerShell di Azure RemoteApp
-Per provare la nuova funzionalità in anteprima, è necessario usare i cmdlet di Azure PowerShell. Non è attualmente possibile usare il portale di gestione di Azure per abilitare la nuova modalità di pubblicazione delle applicazioni.
+## <a name="how-tooget-azure-remoteapp-powershell-cmdlets"></a>Come tooget cmdlet PowerShell di Azure RemoteApp
+tootry hello nuove funzionalità di anteprima, sarà necessario toouse cmdlet di Azure PowerShell. Non è attualmente possibile toouse hello Azure tooenable portale hello nuova applicazione pubblicazione modalità di gestione.
 
-Assicurarsi prima di tutto che il [modulo Azure PowerShell](/powershell/azure/overview) sia installato.
+In primo luogo, accertarsi di avere hello [modulo Azure PowerShell](/powershell/azure/overview) installato.
 
-Avviare quindi la console di PowerShell in modalità amministratore ed eseguire il cmdlet seguente:
+Avviare console di PowerShell hello in modalità amministratore e hello esecuzione seguente cmdlet:
 
         Add-AzureAccount
 
-Verranno richiesti il nome utente e la password di Azure. Dopo l'accesso, sarà possibile eseguire i cmdlet di Azure RemoteApp con le sottoscrizioni di Azure.
+Verranno richiesti il nome utente e la password di Azure. Una volta effettuato l'accesso, sarà in grado di toorun i cmdlet di Azure RemoteApp contro le sottoscrizioni di Azure.
 
-## <a name="how-to-check-which-mode-a-collection-is-in"></a>Come verificare la modalità di una raccolta
-Eseguire il cmdlet seguente:
+## <a name="how-toocheck-which-mode-a-collection-is-in"></a>Come toocheck quale modalità è in una raccolta
+Eseguire hello seguente cmdlet:
 
         Get-AzureRemoteAppCollection <collectionName>
 
-![Verificare la modalità raccolta](./media/remoteapp-perapp/araacllelvel.png)
+![Verificare la modalità di raccolta hello](./media/remoteapp-perapp/araacllelvel.png)
 
-La proprietà AclLevel può avere i valori seguenti:
+proprietà AclLevel Hello può avere hello seguenti valori:
 
-* Collection: modalità di pubblicazione originale. Tutti gli utenti vedono tutte le app pubblicate.
-* Application: nuova modalità di pubblicazione. Gli utenti vedono solo le app pubblicate direttamente per loro.
+* Raccolta: hello pubblicazione modalità originale. Tutti gli utenti vedono tutte le app pubblicate.
+* Dell'applicazione: modalità hello nuova pubblicazione. Gli utenti vedono solo le app hello pubblicato direttamente toothem.
 
-## <a name="how-to-switch-to-application-publishing-mode"></a>Come cambiare la modalità di pubblicazione dell'applicazione
-Eseguire il cmdlet seguente:
+## <a name="how-tooswitch-tooapplication-publishing-mode"></a>La modalità di pubblicazione tooapplication tooswitch
+Eseguire hello seguente cmdlet:
 
         Set-AzureRemoteAppCollection -CollectionName -AclLevel Application
 
-Lo stato di pubblicazione dell'applicazione verrà conservato. Inizialmente tutti gli utenti vedranno tutte le app pubblicate in origine.
+Stato di pubblicazione dell'applicazione verrà mantenuto: inizialmente tutti gli utenti visualizzino tutte le app pubblicate di hello originale.
 
-## <a name="how-to-list-users-who-can-see-a-specific-application"></a>Come elencare utenti che possono vedere un'applicazione specifica
-Eseguire il cmdlet seguente:
+## <a name="how-toolist-users-who-can-see-a-specific-application"></a>Come gli utenti toolist chi possono visualizzare un'applicazione specifica
+Eseguire hello seguente cmdlet:
 
         Get-AzureRemoteAppUser -CollectionName <collectionName> -Alias <appAlias>
 
-Vengono elencati tutti gli utenti che possono vedere l'applicazione.
+Elenca tutti gli utenti possono vedere applicazione hello.
 
-Nota: è possibile vedere gli alias dell'applicazione, definiti "alias app" nella sintassi precedente, eseguendo Get-AzureRemoteAppProgram -CollectionName <collectionName>.
+Nota: È possibile visualizzare gli alias dell'applicazione hello (denominati "alias app" nella sintassi hello) tramite l'esecuzione di Get-AzureRemoteAppProgram - NomeRaccolta <collectionName>.
 
-## <a name="how-to-assign-an-application-to-a-user"></a>Come assegnare un'applicazione a un utente
-Eseguire il cmdlet seguente:
+## <a name="how-tooassign-an-application-tooa-user"></a>Come un utente dell'applicazione tooa tooassign
+Eseguire hello seguente cmdlet:
 
         Add-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
-L'utente potrà ora vedere l'applicazione nel client Azure RemoteApp e potrà connettersi all'app.
+utente Hello visualizzata applicazione hello nel client di Azure RemoteApp hello e sarà in grado di tooconnect tooit.
 
-## <a name="how-to-remove-an-application-from-a-user"></a>Come rimuovere un'applicazione da un utente
-Eseguire il cmdlet seguente:
+## <a name="how-tooremove-an-application-from-a-user"></a>Come tooremove un'applicazione da un utente
+Eseguire hello seguente cmdlet:
 
         Remove-AzureRemoteAppUser -CollectionName <collectionName> -UserUpn <user@domain.com> -Type <OrgId|MicrosoftAccount> -Alias <appAlias>
 
 ## <a name="providing-feedback"></a>Inviare commenti e suggerimenti
-Siamo lieti di ricevere commenti e suggerimenti su questa funzionalità in anteprima. Compilare il [sondaggio](http://www.instant.ly/s/FDdrb) per condividere la propria opinione.
+Siamo lieti di ricevere commenti e suggerimenti su questa funzionalità in anteprima. Compilare hello [sondaggio](http://www.instant.ly/s/FDdrb) toolet ci sapere cosa ne pensi.
 
-## <a name="havent-had-a-chance-to-try-the-preview-feature"></a>Se non è stato possibile provare la funzionalità in anteprima
-Se non si è ancora autorizzati a provare l'anteprima, usare questo [sondaggio](http://www.instant.ly/s/AY83p) per richiedere l'accesso.
+## <a name="havent-had-a-chance-tootry-hello-preview-feature"></a>Non ho avuto una funzionalità di anteprima di probabilità tootry hello?
+Se non hanno partecipato in anteprima hello ancora, utilizzare questo [sondaggio](http://www.instant.ly/s/AY83p) toorequest accesso.
 

@@ -1,5 +1,5 @@
 ---
-title: Esempio di script dell'interfaccia della riga di comando di Azure - Installare IIS | Microsoft Docs
+title: aaaAzure CLI Script di esempio - installare IIS | Documenti Microsoft
 description: Esempio di script dell'interfaccia della riga di comando di Azure - Installare IIS
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-Windows
 ms.workload: infrastructure
 ms.date: 02/28/2017
 ms.author: nepeters
-ms.openlocfilehash: 426418c01b23845372443af5b8f4e826fb321f7d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2fabc9522f424cab4c672084ba8bedfd623c87cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quick-create-a-virtual-machine-with-the-azure-cli"></a>Creare rapidamente una macchina virtuale con l'interfaccia della riga di comando di Azure
+# <a name="quick-create-a-virtual-machine-with-hello-azure-cli"></a>Creare rapidamente una macchina virtuale con hello CLI di Azure
 
-Questo script crea una macchina virtuale di Azure con Windows Server 2016 e usa l'estensione dello script personalizzato di Macchina virtuale di Azure per installare IIS. Dopo l'esecuzione dello script, è possibile accedere al sito Web IIS predefinito tramite l'indirizzo IP pubblico della macchina virtuale.
+Questo script crea una macchina virtuale di Azure che esegue Windows Server 2016 e utilizza l'estensione Script personalizzata della macchina virtuale Azure di hello tooinstall IIS. Dopo l'esecuzione di script hello, è possibile accedere il sito Web IIS predefinito hello in indirizzo IP pubblico hello della macchina virtuale hello.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -31,11 +31,11 @@ Questo script crea una macchina virtuale di Azure con Windows Server 2016 e usa 
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-windows-iis/create-vm-windows-iis.sh "Creazione rapida della macchina virtuale")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-machine/create-vm-windows-iis/create-vm-windows-iis.sh "Quick Create VM")]
 
 ## <a name="clean-up-deployment"></a>Pulire la distribuzione 
 
-Eseguire questo comando per rimuovere il gruppo di risorse, la macchina virtuale e tutte le risorse correlate.
+Comando che segue hello esecuzione gruppo di risorse tooremove hello, macchina virtuale e tutte le relative risorse.
 
 ```azurecli-interactive 
 az group delete --name myResourceGroup --yes
@@ -43,18 +43,18 @@ az group delete --name myResourceGroup --yes
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un gruppo di risorse, la macchina virtuale e tutte le risorse correlate. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza i seguenti comandi toocreate un gruppo di risorse, la macchina virtuale, hello e tutte risorse correlate. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse. |
-| [az vm create](https://docs.microsoft.com/cli/azure/vm#create) | Consente di creare la macchina virtuale e la connette alla scheda di rete, alla rete virtuale, alla subnet e al gruppo di sicurezza di rete. Questo comando specifica anche l'immagine della macchina virtuale da usare e le credenziali di amministrazione.  |
-| [az vm open-port](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | Consente di creare una regola del gruppo di sicurezza di rete per consentire il traffico in ingresso. In questo esempio, la porta 80 è aperta al traffico HTTP. |
-| [azure vm extension set](https://docs.microsoft.com/cli/azure/vm/extension#set) | Consente di aggiungere ed eseguire un'estensione di macchina virtuale in una VM. In questo esempio, l'estensione dello script personalizzato è usata per installare IIS.|
+| [az vm create](https://docs.microsoft.com/cli/azure/vm#create) | Crea macchina virtuale hello e lo connette una scheda di rete toohello, rete virtuale, subnet e il gruppo di sicurezza di rete. Questo comando specifica inoltre toobe immagine di macchina virtuale hello usato e le credenziali amministrative.  |
+| [az vm open-port](https://docs.microsoft.com/cli/azure/network/nsg/rule#create) | Crea un tooallow di regola gruppo di sicurezza rete il traffico in ingresso. In questo esempio, la porta 80 è aperta al traffico HTTP. |
+| [azure vm extension set](https://docs.microsoft.com/cli/azure/vm/extension#set) | Aggiunge e viene eseguito un tooa di estensione della macchina virtuale macchina virtuale. In questo esempio, un'estensione personalizzata hello è tooinstall utilizzato IIS.|
 | [az group delete](https://docs.microsoft.com/cli/azure/vm/extension#set) | Consente di eliminare un gruppo di risorse incluse tutte le risorse annidate. |
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sull'interfaccia della riga di comando di Azure, vedere la [documentazione sull'interfaccia della riga di comando di Azure](https://docs.microsoft.com/cli/azure/overview).
+Per ulteriori informazioni su hello CLI di Azure, vedere [documentazione CLI di Azure](https://docs.microsoft.com/cli/azure/overview).
 
-Altri esempi di script dell'interfaccia della riga di comando della macchina virtuale sono reperibili nella [documentazione della macchina virtuale Windows Azure](../windows/cli-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Esempi di script di macchina virtuale aggiuntiva CLI sono reperibile in hello [documentazione macchina virtuale Windows Azure](../windows/cli-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

@@ -1,6 +1,6 @@
 ---
-title: "Panoramica sulle funzionalità di database SQL di Azure | Documentazione Microsoft"
-description: "Questa pagina fornisce una panoramica dei database e server logici del database SQL di Azure e include una matrice di supporto delle funzionalità con collegamenti per ogni funzionalità elencata."
+title: Panoramica delle caratteristiche del Database SQL aaaAzure | Documenti Microsoft
+description: "Questa pagina viene fornita una panoramica di database e server logici di Database SQL di Azure hello e include una matrice di supporto di funzionalità con collegamenti di ogni funzionalità elencate."
 services: sql-database
 documentationcenter: na
 author: CarlRabeler
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 08/25/2017
 ms.author: carlrab
-ms.openlocfilehash: 4ef119d5218c844f3949bf4fc17fb320a7cbf7b4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 463c88edcd38eabbc768cfb701bc74461836aa36
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-features"></a>Funzionalità di database SQL di Azure
 
-Il database SQL di Azure condivide con SQL Server una base codici comune e, a livello di database, supporta la maggior parte delle stesse funzionalità. La differenza più rilevante tra il database SQL di Azure e SQL Server è a livello di istanza. 
+Condivide una codebase comune con SQL Server di Database SQL di Azure e, a livello di database hello, supporta la maggior parte di hello stesse funzionalità. Hello principali differenze tra i Database di SQL Azure e SQL Server sono a livello di istanza hello. 
 
-Altre funzionalità continueranno a essere aggiunte al database SQL. È quindi consigliabile visitare la pagina Web Aggiornamenti del servizio di Azure e usare i filtri disponibili:
+Continuiamo tooadd funzionalità tooAzure Database SQL. In modo che incoraggia la collaborazione è toovisit il nostro servizio Aggiorna pagina Web per Azure e toouse i relativi filtri:
 
-* Filtrato per [servizio Database SQL](https://azure.microsoft.com/updates/?service=sql-database).
-* Filtrato per Disponibilità generale [annunci](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) per le funzionalità del database SQL.
+* Filtrato toohello [servizio Database SQL](https://azure.microsoft.com/updates/?service=sql-database).
+* Filtrati tooGeneral disponibilità [annunci (GA)](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) per le funzionalità di Database SQL.
 
 ## <a name="sql-server-and-sql-database-feature-support"></a>Supporto delle funzionalità di SQL Server e del database SQL
 
-La tabella seguente elenca le principali funzionalità di SQL Server. Per ogni funzionalità, indica se è supportata e offre un collegamento ad altre informazioni sulla funzionalità stessa. Per le differenze di Transact-SQL da considerare quando si esegue la migrazione di una soluzione di database esistente, vedere [Risoluzione delle differenze di Transact-SQL durante la migrazione al database SQL](sql-database-transact-sql-information.md).
+Hello nella tabella seguente sono elencate le funzionalità principali di hello di SQL Server e vengono fornite informazioni sul supporto di ogni particolare funzionalità e un collegamento toomore informazioni hello caratteristiche. Per le differenze di Transact-SQL tooconsider durante la migrazione di una soluzione di database esistente, vedere [differenze risoluzione Transact-SQL durante la migrazione tooSQL Database](sql-database-transact-sql-information.md).
 
 
 | **Funzionalità SQL Server** | **Supportata nel database SQL di Azure** | 
@@ -127,5 +127,5 @@ La tabella seguente elenca le principali funzionalità di SQL Server. Per ogni f
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per informazioni sul servizio di Database SQL di Azure, vedere [Informazioni sul database SQL](sql-database-technical-overview.md)
-- Per informazioni sul supporto di Transact-SQL e sulle differenze, vedere [Risoluzione delle differenze di Transact-SQL durante la migrazione al database SQL](sql-database-transact-sql-information.md).
+- Per informazioni su hello servizio Database SQL di Azure, vedere [che cos'è il Database SQL?](sql-database-technical-overview.md)
+- Per informazioni sul supporto di Transact-SQL e le differenze, vedere [differenze risoluzione Transact-SQL durante la migrazione tooSQL Database](sql-database-transact-sql-information.md).

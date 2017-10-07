@@ -1,7 +1,7 @@
 ---
-title: "Trasferire la proprietà della sottoscrizione di Azure a un altro account | Microsoft Docs"
-description: Questo articolo descrive come trasferire una sottoscrizione di Azure a un altro utente e contiene alcune domande frequenti (FAQ) sul processo
-keywords: trasferire la sottoscrizione di Azure, trasferimento della sottoscrizione di Azure, spostare una sottoscrizione di Azure su account, cambiare il proprietario della sottoscrizione di Azure, trasferire la sottoscrizione di Azure a un altro account
+title: "account di sottoscrizione di Azure proprietà tooanother aaaTransfer | Documenti Microsoft"
+description: Viene descritto come tootransfer un utente tooanother sottoscrizione di Azure e alcune domande frequenti (FAQ) sul processo hello
+keywords: trasferire la sottoscrizione di trasferimento di sottoscrizione di azure, azure, spostare account tooanother sottoscrizione di azure, azure cambiare il proprietario della sottoscrizione, account di azure trasferimento sottoscrizione tooanother
 services: 
 documentationcenter: 
 author: genlin
@@ -17,144 +17,144 @@ ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8a856c39eb11546f35cb4e8c21e6bdcce98857a8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d2d9f5d9ccd34738701493e5f31c2f83a02f5d48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="transfer-ownership-of-an-azure-subscription-to-another-account"></a>Trasferimento della proprietà di una sottoscrizione di Azure a un altro account
+# <a name="transfer-ownership-of-an-azure-subscription-tooanother-account"></a>Trasferire la proprietà di un account di sottoscrizione di Azure tooanother
 
-Il trasferimento di proprietà di una sottoscrizione a un altro utente è previsto per le sottoscrizioni con pagamento in base al consumo, Visual Studio, Action Pack o BizSpark nel Centro account. Il trasferimento dei servizi esterni di Azure è supportato anche per questi tipi di sottoscrizione. 
+È possibile trasferire l'utente per le sottoscrizioni a pagamento a consumo, Visual Studio, Service Pack di azione o BizSpark nel centro Account hello tooanother della sottoscrizione. Un sostegno trasferimento hello Azure servizi esterni per questi tipi di sottoscrizione anche. 
 
-Potrebbe essere necessario trasferire la proprietà di una sottoscrizione di Azure se:
+È possibile tootransfer la proprietà di una sottoscrizione Azure se si:
 
-* È necessario trasferire la proprietà della fatturazione della propria sottoscrizione di Azure ad altri.
-* Si vuole cambiare l'account usato per accedere ad Azure. È stato usato l'account Microsoft personale, ma si voleva invece usare quello aziendale o dell'istituto di istruzione.
-* Si vuole spostare la sottoscrizione di Azure da una directory a un'altra.
-* Azure e Office 365 sono in tenant diversi e si vogliono consolidare.
+* Necessario toohand la proprietà di fatturazione di toosomeone la sottoscrizione di Azure else.
+* Desidera account hello toochange utilizzate toosign iscrizione a Azure. Forse è utilizzato l'Account Microsoft ma deve invece toouse l'account aziendale o dell'istituto di istruzione.
+* Desidera toomove sottoscrizione Azure da una directory tooanother.
+* Presenti diversi tenant di Azure e Office 365 e si desidera tooconsolidate.
 
-Per modificare la sottoscrizione passando a un'offerta diversa, vedere [Trasferire la sottoscrizione di Azure a un'altra offerta](billing-how-to-switch-azure-offer.md). 
+toochange offrono il tooa di sottoscrizione diverso, vedere [cambiare l'offerta di sottoscrizione di Azure tooanother](billing-how-to-switch-azure-offer.md). 
 
 ## <a name="transfer-ownership-of-an-azure-subscription"></a>Trasferimento della proprietà di una sottoscrizione di Azure
 > [!VIDEO https://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/Transfer-an-Azure-subscription/player]
 >
 >
 
-1. Accedere a <https://account.windowsazure.com/Subscriptions>. È necessario essere amministratore account per eseguire un trasferimento di proprietà. Per individuare l'amministratore account della sottoscrizione, vedere [Domande frequenti](#faq).
+1. Accedere a <https://account.windowsazure.com/Subscriptions>. È necessario toobe hello tooperform amministratore dell'Account di un trasferimento di proprietà. toofind che è amministratore dell'Account di sottoscrizione hello, hello vedere hello [domande frequenti](#faq).
 
-2. Selezionare la sottoscrizione da trasferire.
+2. Selezionare tootransfer sottoscrizione hello.
 
-3. Fare clic sull'opzione **Trasferisci sottoscrizione** . Se non viene visualizzato il pulsante, vedere [Domande frequenti](#no-button).
+3. Fare clic su hello **sottoscrizione trasferimento** opzione. Vedere [domande frequenti su](#no-button) se non viene visualizzato il pulsante di hello.
 
    ![Scheda delle sottoscrizioni dell'account Azure](./media/billing-subscription-transfer/image1.png)
-4. Specificare il destinatario.
+4. Consente di specificare il destinatario di hello.
 
    ![Finestra di dialogo Trasferisci sottoscrizione](./media/billing-subscription-transfer/image2.PNG)
-5. Il destinatario riceve automaticamente un messaggio e-mail con un link per l'accettazione.
+5. destinatario Hello ottiene automaticamente un messaggio di posta elettronica con un collegamento di accettazione.
 
-   ![Messaggio di posta elettronica di trasferimento della sottoscrizione al destinatario](./media/billing-subscription-transfer/image3.png)
-6. Il destinatario deve fare clic sul link e seguire le istruzioni, inclusa l'immissione delle informazioni sul pagamento.
+   ![Toorecipient di posta elettronica trasferimento di sottoscrizione](./media/billing-subscription-transfer/image3.png)
+6. destinatario Hello fa clic sul collegamento hello e segue le istruzioni di hello, inclusi immettendo le relative informazioni di pagamento.
 
    ![Prima pagina Web del trasferimento della sottoscrizione](./media/billing-subscription-transfer/image4.png)
 
    ![Seconda pagina Web del trasferimento della sottoscrizione](./media/billing-subscription-transfer/image5.png)
-7. Completamento della procedura La sottoscrizione è stata trasferita.
+7. Completamento della procedura sottoscrizione Hello verrà trasferito.
 
 ## <a name="transfer-subscription-ownership-for-enterprise-agreement-ea-customers"></a>Trasferire la proprietà di una sottoscrizione per i clienti con contratto Enterprise (EA, Enterprise Agreement)
-L'amministratore Enterprise può trasferire la proprietà delle sottoscrizioni nell'ambito di una registrazione. Per iniziare, vedere [Transfer Account Ownership](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) (Trasferire la proprietà account) nel portale EA.
+Hello amministratore dell'organizzazione può trasferire la proprietà di sottoscrizioni all'interno di una registrazione. tooget introduzione, vedere [trasferire la proprietà Account](https://ea.azure.com/helpdocs/changeAccountOwnerForASubscription) nel portale di hello EA.
 
 ## <a name="next-steps-after-accepting-ownership-of-a-subscription"></a>Passaggi successivi all'accettazione della proprietà di una sottoscrizione
-1. A questo punto si è l'amministratore dell'account. Rivedere e aggiornare l’amministratore del servizio e i co-amministratori. Gestire gli amministratori nel [portale di Azure classico](https://manage.windowsazure.com) accedendo alle impostazioni. [Altre informazioni sui ruoli di amministratore](billing-add-change-azure-subscription-administrator.md).
+1. Si è ora hello amministratore dell'Account. Rivedere e aggiornare hello amministratore del servizio e coamministratori. Gestire amministratori in hello [portale di Azure classico](https://manage.windowsazure.com) passando tooSettings. [Altre informazioni sui ruoli di amministratore](billing-add-change-azure-subscription-administrator.md).
 
-2. Per la sottoscrizione e i servizi è anche usare il controllo degli accessi in base al ruolo. Visitare il [portale di Azure](https://portal.azure.com). [Altre informazioni sul controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md)
+2. Per la sottoscrizione e i servizi è anche usare il controllo degli accessi in base al ruolo. Visitare hello [portale di Azure](https://portal.azure.com). [Altre informazioni sul controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md)
 
 3. Aggiornare le credenziali associate ai servizi della sottoscrizione, tra cui:
    
-   * Certificati di gestione che concedono all'utente privilegi di amministratore per le risorse della sottoscrizione. Per altre informazioni, vedere [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
+   * Certificati di gestione che concedono diritti di amministratore utente hello toosubscription risorse. Per altre informazioni, vedere [Create and upload a management certificate for Azure](../cloud-services/cloud-services-certs-create.md)
    
    * Chiavi di accesso per servizi quali Archiviazione. Per altre informazioni, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
    
    * Credenziali di accesso remoto per servizi quali macchine virtuali di Azure. 
 
-4. [Aggiornare gli avvisi di fatturazione per questa sottoscrizione](billing-set-up-alerts.md) tramite il [Centro account di Azure](https://account.windowsazure.com/Subscriptions). 
+4. [Aggiornare gli avvisi di fatturazione per questa sottoscrizione](billing-set-up-alerts.md) in hello [centro Account Azure](https://account.windowsazure.com/Subscriptions). 
 
-5. Se si lavora con un partner, è consigliabile aggiornare l'ID partner nella sottoscrizione. È possibile aggiornare l'ID partner nel [Centro account di Azure](https://account.windowsazure.com/Subscriptions).
+5. Se si lavora con un partner, prendere in considerazione l'aggiornamento di ID del partner hello in questa sottoscrizione. È possibile aggiornare l'ID partner hello in hello [centro Account Azure](https://account.windowsazure.com/Subscriptions).
 
 <a id="faq"></a>
 
 ## <a name="frequently-asked-questions-faq"></a>Domande frequenti
-* <a name="whoisaa"></a> **Chi è l'amministratore account della sottoscrizione?**
+* <a name="whoisaa"></a>**Chi è l'amministratore dell'account di sottoscrizione hello hello?**
 
-  L'amministratore account è la persona che ha eseguito l'accesso o ha acquistato la sottoscrizione di Azure. È autorizzato ad accedere al [Centro account](https://account.windowsazure.com/Home/Index) ed eseguire diverse attività di gestione, ad esempio creare e annullare sottoscrizioni, modificare la fatturazione per una sottoscrizione oppure modificare l'amministratore del servizio. Se non si conosce l'amministratore account per una sottoscrizione, seguire questa procedura per individuarlo.
+  amministratore dell'account Hello è hello persona iscritti a o acquistati hello sottoscrizione di Azure. Ma sono autorizzati tooaccess hello [centro Account](https://account.windowsazure.com/Home/Index) ed eseguire varie attività di gestione, ad esempio creare sottoscrizioni, annullare sottoscrizioni, modificare la fatturazione hello per una sottoscrizione oppure modificare hello amministratore del servizio. Se non si è certi che l'amministratore dell'account hello è per una sottoscrizione, utilizzare hello seguendo i passaggi toofind out.
 
-  1. Accedere al [portale di Azure](https://portal.azure.com).
-  2. Nel menu Hub, selezionare **Sottoscrizione**.
-  3. Scegliere la sottoscrizione da controllare e quindi controllare la sezione **Impostazioni**.
-  4. Selezionare **Proprietà**. L'amministratore account della sottoscrizione viene visualizzato nella casella **Amministratore account** .  
+  1. Accedi toohello [portale di Azure](https://portal.azure.com).
+  2. Nel menu Hub hello, selezionare **sottoscrizione**.
+  3. Selezionare la sottoscrizione di hello toocheck desiderato e quindi cercare in **impostazioni**.
+  4. Selezionare **Proprietà**. amministratore dell'account di sottoscrizione hello Hello viene visualizzato in hello **amministratore dell'Account** casella.  
 
 * **Vengono trasferite tutte le risorse? Anche gruppi di risorse, macchine virtuali, dischi e altri servizi in esecuzione?**
 
-  Sì, tutte le risorse, come macchine virtuali, dischi e siti Web, vengono trasferite al nuovo proprietario. I [ruoli di amministratore](billing-add-change-azure-subscription-administrator.md) e i criteri di [controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md) eventualmente configurati, invece, non vengono trasferiti tra directory diverse.
+  Sì, tutte le risorse come le macchine virtuali, dischi e i siti Web trasferire toohello nuovo proprietario. I [ruoli di amministratore](billing-add-change-azure-subscription-administrator.md) e i criteri di [controllo degli accessi in base al ruolo](../active-directory/role-based-access-control-configure.md) eventualmente configurati, invece, non vengono trasferiti tra directory diverse.
 
-* <a id="no-button"></a> **Perché non viene visualizzato il pulsante Transfer Subscription (Trasferisci sottoscrizione)?**
+* <a id="no-button"></a>**Perché non vedo hello trasferimento sottoscrizione pulsante?**
 
-  La mancata visualizzazione del pulsante **Transfer Subscription** (Trasferisci sottoscrizione) indica che il trasferimento della sottoscrizione non è supportato per l'offerta. [Contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+  Se non viene visualizzato hello **sottoscrizione trasferimento** pulsante, quindi non è supportato il trasferimento di sottoscrizione per l'offerta. [Contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
 * **Il trasferimento della sottoscrizione comporta tempi di inattività del servizio?**
 
-  Il trasferimento non incide in alcun modo sul servizio. Viene annullata la sottoscrizione dell'attuale amministratore account e ne viene creata una nuova per l'account del destinatario, associando però i servizi di Azure sottostanti alla nuova sottoscrizione. L'ID sottoscrizione rimane invariato.
+  Non è disponibile alcun servizio toohello impatto. Il trasferimento della sottoscrizione hello Annulla sottoscrizione hello in hello corrente Account amministratore e crea una sottoscrizione con account del destinatario hello. nuova sottoscrizione Hello è toohello associati servizi di Azure sottostante. Hello sottoscrizione ID rimane hello stesso.
 
-* **Come è possibile usare questo processo per cambiare la directory della sottoscrizione?**
+* **Utilizzo di questa directory hello toochange di processo per la sottoscrizione**
 
-  Viene creata una sottoscrizione di Azure nella directory a cui appartiene l'amministratore account. Per modificare la directory, trasferire la sottoscrizione a un account utente nella directory di destinazione. Quando tale utente avrà completato i passaggi per accettare il trasferimento, la sottoscrizione passa automaticamente alla directory di destinazione.
+  Una sottoscrizione di Azure viene creata nella directory hello che hello appartiene amministratore dell'Account. directory di hello toochange, account utente nella directory di destinazione hello trasferimento hello sottoscrizione tooa. Al termine di hello passaggi tooaccept trasferimento, tale utente sottoscrizione hello viene automaticamente spostato toohello directory di destinazione.
 
-* **Se si rileva la proprietà della fatturazione di una sottoscrizione da un'altra organizzazione, quest'ultima continua ad avere accesso alle risorse del nuovo proprietario?**
+* **Se assumere la proprietà di fatturazione di una sottoscrizione da un'altra organizzazione, continuano toohave accedere alle risorse di toomy?**
 
-  Se la sottoscrizione viene trasferita a un altro tenant, gli utenti associati al tenant precedente perdono l'accesso alla sottoscrizione. Anche se un utente non è più amministratore del servizio o coamministratore, potrebbe avere ancora accesso alla sottoscrizione tramite altri meccanismi di sicurezza, tra cui:
+  Se la sottoscrizione hello tooanother trasferiti tenant, gli utenti di hello associati tenant precedente hello perdono accesso toohello sottoscrizione. Anche se un utente non è un amministratore del servizio o coamministratore più, potrebbe essere ancora hanno accesso toohello sottoscrizione tramite altri meccanismi di sicurezza, tra cui:
 
-  * Certificati di gestione che concedono all'utente privilegi di amministratore per le risorse della sottoscrizione. Per altre informazioni, vedere [Creare e caricare un certificato di gestione per Azure](../cloud-services/cloud-services-certs-create.md).
+  * Certificati di gestione che concedono diritti di amministratore utente hello toosubscription risorse. Per altre informazioni, vedere [Creare e caricare un certificato di gestione per Azure](../cloud-services/cloud-services-certs-create.md).
   * Chiavi di accesso per servizi quali Archiviazione. Per altre informazioni, vedere [Informazioni sugli account di archiviazione di Azure](../storage/common/storage-create-storage-account.md).
   * Credenziali di accesso remoto per servizi quali macchine virtuali di Azure.
 
- Se il destinatario deve limitare l'accesso alle risorse, deve prendere in considerazione l'aggiornamento degli eventuali segreti associati al servizio. La maggior parte delle risorse può essere aggiornate usando la procedura seguente:
+ Se il destinatario hello deve accedere alle risorse di tootheir toorestrict, è consigliabile aggiornare alcun dato segreto associato hello servizio. La maggior parte delle risorse possono essere aggiornate tramite hello alla procedura seguente:
 
-    1. Accedere al [portale di Azure](https://portal.azure.com).
-    2. Scegliere **Tutte le risorse** dal menu Hub.
-    3. Selezionare la risorsa. 
-    4. Nel pannello della risorsa fare clic su **Impostazioni**. Qui è possibile visualizzare e aggiornare i segreti esistenti.
+    1. Passare toohello [portale di Azure](https://portal.azure.com).
+    2. Nel menu Hub hello, selezionare **tutte le risorse**.
+    3. Selezionare la risorsa hello. 
+    4. Nel pannello della risorsa hello, fare clic su **impostazioni**. Qui è possibile visualizzare e aggiornare i segreti esistenti.
 
-* **Se si trasferisce la sottoscrizione nel corso del ciclo di fatturazione, il destinatario dovrà pagare il ciclo intero?**
+* **Se trasferisce la sottoscrizione di hello centro hello di hello del ciclo di fatturazione, pagamento destinatario di hello per la fatturazione intera hello ciclo?**
 
-  Il mittente è responsabile del pagamento per qualsiasi utilizzo segnalato fino al momento in cui il trasferimento viene completato. Il destinatario è responsabile per l'utilizzo segnalato dal momento del trasferimento in avanti. È possibile che un utilizzo sia avvenuto prima del trasferimento, ma sia stato segnalato successivamente. In questo caso l'uso è incluso nella fattura del destinatario.
+  mittente Hello è responsabile del pagamento per l'utilizzo che è stato segnalato toohello un punto di trasferimento hello è completato. destinatario Hello è responsabile dell'utilizzo segnalato dal tempo hello del trasferimento in poi. È possibile che un utilizzo sia avvenuto prima del trasferimento, ma sia stato segnalato successivamente. utilizzo di Hello è incluso nella fattura del destinatario hello.
 
-* **Il destinatario ha accesso alla cronologia di utilizzo e di fatturazione?**
+* **Destinatario hello dispone di accesso toousage e cronologia di fatturazione?**
 
-  Le sole informazioni disponibili per il destinatario riguardano l'importo dell'ultima fattura oppure, se la sottoscrizione è stata trasferita prima dell'emissione della prima fattura, il saldo attuale. Il resto della cronologia di fatturazione e utilizzo non viene trasferito con la sottoscrizione.
+  destinatario toohello disponibili solo le informazioni di Hello quantità hello di fattura ultimo hello o se è stato trasferito sottoscrizione hello prima generazione primo effetto hello, hello saldo corrente. resto Hello della cronologia di fatturazione e di utilizzo di hello non vengono trasferiti con sottoscrizione hello.
 
-* **L'offerta può essere modificata durante un trasferimento?**
+* **Offerta hello può essere modificato durante un trasferimento?**
 
-  L'offerta deve rimanere invariata. Per modificare l'offerta, vedere [Trasferire la sottoscrizione di Azure a un'altra offerta](billing-how-to-switch-azure-offer.md).
+  Hello offerta deve rimanere hello stesso. toochange offerta, vedere [cambiare l'offerta di sottoscrizione di Azure tooanother](billing-how-to-switch-azure-offer.md).
 
-* **È possibile trasferire una sottoscrizione a un account utente in un altro paese?**
+* **È possibile trasferire un account utente di sottoscrizione tooa in un altro paese?**
 
-  No, il trasferimento di una sottoscrizione a un account utente in un altro paese non è supportato. L'account utente del destinatario deve essere nello stesso paese.
+  No, il trasferimento di un account utente di sottoscrizione tooa in un altro paese non è supportato. account utente del destinatario Hello hello deve essere dello stesso paese.
 
-* **Il destinatario può usare un metodo di pagamento diverso?**
+* **Destinatario hello consente un metodo di pagamento diversa?**
 
-  Sì. Tuttavia, la cronologia di fatturazione della sottoscrizione verrà suddivisa tra i due account.  
+  Sì. Ma cronologia della fatturazione della sottoscrizione di hello è suddiviso in due account.  
 
-* **Il metodo di pagamento è in qualche modo interessato dal trasferimento di una sottoscrizione di Azure?**
+* **Il metodo di pagamento hello impatto sui dopo il trasferimento di una sottoscrizione di Azure?**
 
-  Per accettare un trasferimento di sottoscrizione, è necessario specificare una carta di credito o un metodo di pagamento analogo. Ad esempio, se Bob trasferisce una sottoscrizione a Jane e Jane accetta il trasferimento, Jane deve specificare anche il metodo di pagamento usato per la sottoscrizione. Al termine del trasferimento, la fattura per la sottoscrizione viene fatta a Jane, non a Bob.
+  tooaccept un trasferimento di sottoscrizione, una carta di credito o il metodo di pagamento simile è obbligatorio toopay per sottoscrizione hello. Ad esempio, se Bob trasferisce tooJane una sottoscrizione e Jane accetta trasferimento hello, Jane è necessario fornire un toopay di metodo di pagamento per la sottoscrizione di hello. Dopo aver completato il trasferimento di hello, Jane viene fatturata per sottoscrizione hello non Bob.
 
-* **Come si esegue la migrazione di dati e servizi per la sottoscrizione di Azure a una nuova sottoscrizione?**
+* **Come eseguire la migrazione dei dati e servizi per la sottoscrizione toonew sottoscrizione di Azure**
 
-  Se non è possibile trasferire la proprietà di una sottoscrizione, eseguire la migrazione manuale delle risorse. Vedere [Move resources to new resource group or subscription](../azure-resource-manager/resource-group-move-resources.md) (Spostare le risorse in un nuovo gruppo o sottoscrizione).
+  Se non è possibile trasferire la proprietà di una sottoscrizione, eseguire la migrazione manuale delle risorse. Vedere [spostare sottoscrizione o il gruppo di risorse toonew risorse](../azure-resource-manager/resource-group-move-resources.md).
 
 
 
 ## <a name="need-help-contact-support"></a>Richiesta di assistenza Contattare il supporto tecnico.
-Se si necessita ancora di assistenza, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) per ottenere una rapida risoluzione del problema. 
+Se è ancora necessario della Guida, [contattare il supporto tecnico](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget risolta il problema. 
 
 

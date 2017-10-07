@@ -1,5 +1,5 @@
 ---
-title: Centro sicurezza di Azure e macchine virtuali Windows in Azure | Microsoft Docs
+title: aaaAzure Centro sicurezza PC e Windows virtuali in Azure | Documenti Microsoft
 description: Informazioni sulla sicurezza delle macchine virtuali Windows in Azure con il Centro sicurezza di Azure.
 services: virtual-machines-windows
 documentationcenter: virtual-machines
@@ -16,11 +16,11 @@ ms.workload: infrastructure
 ms.date: 05/01/2017
 ms.author: nepeters
 ms.custom: mvc
-ms.openlocfilehash: adb00e28b0b204858a763f83836ee2ac96f8f9e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 238bf4e266a24a536d35dd647db6056ab39a1f1a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-virtual-machine-security-by-using-azure-security-center"></a>Monitorare la sicurezza delle macchine virtuali con il Centro sicurezza di Azure
 
@@ -34,104 +34,104 @@ Il Centro sicurezza di Azure consente di ottenere visibilità nelle procedure pe
 
 ## <a name="security-center-overview"></a>Panoramica del Centro sicurezza di Azure
 
-Il Centro sicurezza aiuta a identificare i potenziali problemi di configurazione e le minacce specifiche alla sicurezza delle macchina virtuale. Questi possono includere macchine virtuali mancanti dei gruppi di sicurezza di rete, dischi non crittografati e attacchi di forza bruta Remote Desktop Protocol (RDP). Queste informazioni vengono mostrate nel dashboard del Centro sicurezza sotto forma di grafici di facile lettura.
+Il Centro sicurezza aiuta a identificare i potenziali problemi di configurazione e le minacce specifiche alla sicurezza delle macchina virtuale. Questi possono includere macchine virtuali mancanti dei gruppi di sicurezza di rete, dischi non crittografati e attacchi di forza bruta Remote Desktop Protocol (RDP). Hello informazioni vengono visualizzate nel dashboard di Centro sicurezza PC hello nei grafici di facile lettura.
 
-Per accedere al dashboard del Centro sicurezza, nel portale di Azure selezionare nel menu **Centro sicurezza**. Nel dashboard è possibile visualizzare l'integrità della sicurezza dell'ambiente Azure, accedere a una serie di raccomandazioni valide e visualizzare lo stato corrente degli avvisi di minaccia. È possibile espandere ogni grafico di alto livello per visualizzare altri dettagli.
+tooaccess hello dashboard Centro sicurezza PC, nel portale di Azure, dal menu di hello, seleziona hello **Centro sicurezza PC**. Nel dashboard di hello, può visualizzare hello integrità di protezione dell'ambiente Azure, trovare un conteggio dei consigli correnti e hello lo stato corrente degli avvisi di minaccia di visualizzazione. È possibile espandere ogni toosee grafico di alto livello dettaglio.
 
 ![Dashboard del Centro sicurezza](./media/tutorial-azure-security/asc-dash.png)
 
-Il Centro sicurezza va oltre l'individuazione dei dati per offrire raccomandazioni sui problemi rilevati. Ad esempio, se una macchina virtuale è stata distribuita senza un gruppo di sicurezza di rete collegato, il Centro sicurezza consente di visualizzare una raccomandazione, con una procedura di correzione da eseguire. Offre la correzione automatica senza lasciare il contesto del Centro sicurezza.  
+Centro sicurezza PC va oltre indicazioni tooprovide di individuazione dati per i problemi rilevati. Ad esempio, se una macchina virtuale è stata distribuita senza un gruppo di sicurezza di rete collegato, il Centro sicurezza consente di visualizzare una raccomandazione, con una procedura di correzione da eseguire. Monitoraggio e aggiornamento automatizzato viene visualizzato senza uscire da contesto hello del Centro sicurezza PC.  
 
-![Consigli](./media/tutorial-azure-security/recommendations.png)
+![Raccomandazioni](./media/tutorial-azure-security/recommendations.png)
 
-## <a name="set-up-data-collection"></a>Configurare la raccolta dei dati
+## <a name="set-up-data-collection"></a>configurare la raccolta dei dati
 
-Per ottenere la visibilità sulle configurazioni di sicurezza delle macchine virtuali, è necessario prima configurare la raccolta dei dati nel Centro sicurezza. Ciò comporta l'abilitazione della raccolta dei dati e la creazione di un account di archiviazione di Azure per contenere i dati raccolti. 
+Prima di poter ottenere visibilità in configurazioni di protezione VM, è necessario tooset Centro sicurezza PC la raccolta dei dati. Ciò comporta l'abilitazione della raccolta di dati e la creazione di un account di archiviazione di Azure toohold raccolti dati. 
 
-1. Nel dashboard del Centro sicurezza fare clic su **Criteri di sicurezza** e selezionare la sottoscrizione in uso. 
+1. Nel dashboard del Centro sicurezza PC hello, fare clic su **criteri di sicurezza**, quindi selezionare la sottoscrizione. 
 2. Per **Raccolta di dati** selezionare **On** (Abilitata).
-3. Per creare un account di archiviazione, selezionare **Scegliere un account di archiviazione**. Quindi selezionare **OK**.
-4. Nel pannello **Criteri di sicurezza** selezionare **Salva**. 
+3. Selezionare un account di archiviazione, toocreate **scegliere un account di archiviazione**. Quindi selezionare **OK**.
+4. In hello **criteri di sicurezza** pannello seleziona **salvare**. 
 
-L'agente di raccolta dati del Centro sicurezza viene quindi installato in tutte le macchine virtuali e la raccolta dei dati ha inizio. 
+agente di raccolta dati di Hello Centro sicurezza PC viene installato in tutte le macchine virtuali e inizi la raccolta dei dati. 
 
 ## <a name="set-up-a-security-policy"></a>Configurare un criterio di sicurezza
 
-I criteri di sicurezza vengono usati per definire gli elementi per cui il Centro sicurezza raccoglie i dati e genera raccomandazioni. È possibile applicare criteri di sicurezza diversi per set di risorse di Azure diversi. Sebbene per impostazione predefinita le risorse di Azure vengono valutate per tutti gli elementi dei criteri, è possibile disattivare gli elementi di criteri individuali per tutte le risorse di Azure o per un gruppo di risorse. Per informazioni approfondite sui criteri di sicurezza del Centro sicurezza, vedere [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](../../security-center/security-center-policies.md). 
+Criteri di sicurezza sono elementi di hello toodefine utilizzato per il quale il Centro sicurezza PC raccoglie i dati e fornisce consigli. È possibile applicare set toodifferent criteri di sicurezza diversi di risorse di Azure. Sebbene per impostazione predefinita le risorse di Azure vengono valutate per tutti gli elementi dei criteri, è possibile disattivare gli elementi di criteri individuali per tutte le risorse di Azure o per un gruppo di risorse. Per informazioni approfondite sui criteri di sicurezza del Centro sicurezza, vedere [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](../../security-center/security-center-policies.md). 
 
-Per configurare i criteri di sicurezza per tutte le risorse di Azure:
+tooset i criteri di sicurezza per tutte le risorse di Azure:
 
-1. Nel dashboard del Centro sicurezza selezionare **Criteri di sicurezza** e quindi la sottoscrizione in uso.
+1. Nel dashboard del Centro sicurezza PC hello, selezionare **criteri di sicurezza**, quindi selezionare la sottoscrizione.
 2. Selezionare **Prevention policy** (Criteri di protezione).
-3. Attivare o disattivare gli elementi dei criteri che si desidera applicare a tutte le risorse di Azure.
+3. Attivare o disattivare gli elementi dei criteri che si desidera tooapply tooall risorse di Azure.
 4. Al termine della selezione delle impostazioni, selezionare **OK**.
-5. Nel pannello **Criteri di sicurezza** selezionare **Salva**. 
+5. In hello **criteri di sicurezza** pannello seleziona **salvare**. 
 
-Per configurare un criterio per un gruppo di risorse specifico:
+tooset i criteri per un determinato gruppo di risorse:
 
-1. Nel dashboard del Centro sicurezza selezionare **Criteri di sicurezza** e quindi un gruppo di risorse.
+1. Nel dashboard del Centro sicurezza PC hello, selezionare **criteri di sicurezza**, quindi selezionare un gruppo di risorse.
 2. Selezionare **Prevention policy** (Criteri di protezione).
-3. Attivare o disattivare gli elementi dei criteri che si desidera applicare al gruppo di risorse.
+3. Attivare o disattivare gli elementi dei criteri che si desidera tooapply toohello gruppo di risorse.
 4. In **EREDITARIETÀ** selezionare **Univoco**.
 5. Al termine della selezione delle impostazioni, selezionare **OK**.
-6. Nel pannello **Criteri di sicurezza** selezionare **Salva**.  
+6. In hello **criteri di sicurezza** pannello seleziona **salvare**.  
 
 È anche possibile disattivare la raccolta dei dati per un gruppo di risorse specifico in questa pagina.
 
-Nell'esempio seguente sono stati creati criteri univoci per un gruppo di risorse denominato *myResoureGroup*. In questi criteri sono state disabilitate le raccomandazioni relative alla crittografia del disco e al firewall dell'applicazione Web.
+Nell'esempio seguente di hello, un criterio univoco è stato creato per un gruppo di risorse denominato *myResoureGroup*. In questi criteri sono state disabilitate le raccomandazioni relative alla crittografia del disco e al firewall dell'applicazione Web.
 
 ![Criteri univoci](./media/tutorial-azure-security/unique-policy.png)
 
 ## <a name="view-vm-configuration-health"></a>Visualizzare lo stato della configurazione delle VM
 
-Dopo aver attivato la raccolta dei dati e impostato un criterio di sicurezza, il Centro sicurezza inizia a generare avvisi e raccomandazioni. Man mano che le macchine virtuali vengono distribuite, viene installato l'agente di raccolta dati. Il Centro sicurezza viene quindi popolato con i dati per le nuove macchine virtuali. Per informazioni dettagliate sullo stato di configurazione delle macchine virtuali, vedere [Protezione delle macchine virtuali nel Centro sicurezza di Azure](../../security-center/security-center-virtual-machine-recommendations.md). 
+Dopo aver attivato la raccolta dei dati e impostare un criterio di sicurezza, il Centro sicurezza PC inizia indicazioni e tooprovide avvisi. Come vengono distribuite le macchine virtuali, è installato l'agente di raccolta dati hello. Centro sicurezza PC viene quindi popolato con i dati per hello nuove macchine virtuali. Per informazioni dettagliate sullo stato di configurazione delle macchine virtuali, vedere [Protezione delle macchine virtuali nel Centro sicurezza di Azure](../../security-center/security-center-virtual-machine-recommendations.md). 
 
-Man mano che i dati vengono raccolti, i dati relativi all'integrità delle risorse di ogni macchina virtuale e delle risorse di Azure correlate vengono aggregati. Le informazioni vengono mostrate in un grafico di facile lettura. 
+Come vengono raccolti i dati vengono aggregati integrità delle risorse hello per ogni macchina virtuale e le risorse di Azure correlate. Hello informazioni vengono visualizzate in un grafico di facile lettura. 
 
-Per visualizzare l'integrità risorse:
+integrità delle risorse tooview:
 
-1.  Nel dashboard del Centro sicurezza, in **Integrità della sicurezza delle risorse** selezionare **Calcolo**. 
-2.  Nel pannello **Calcolo** selezionare **Macchine virtuali**. Questa visualizzazione riepiloga lo stato della configurazione di tutte le macchine virtuali.
+1.  Nel dashboard del Centro sicurezza PC hello, in **integrità delle risorse di sicurezza**selezionare **calcolo**. 
+2.  In hello **calcolo** pannello seleziona **macchine virtuali**. Questa visualizzazione fornisce un riepilogo dello stato di configurazione hello per tutte le macchine virtuali.
 
 ![Stato del calcolo](./media/tutorial-azure-security/compute-health.png)
 
-Per visualizzare tutte le raccomandazioni per una macchina virtuale, selezionare la macchina virtuale. Le raccomandazioni e le correzioni sono descritte più dettagliatamente nella sezione successiva di questa esercitazione.
+toosee tutte le indicazioni per una macchina virtuale, selezionare hello macchina virtuale. Risoluzione di problemi e suggerimenti sono descritte più dettagliatamente nella sezione successiva di hello di questa esercitazione.
 
 ## <a name="remediate-configuration-issues"></a>Risolvere i problemi di configurazione
 
-Quando il Centro sicurezza inizia a popolarsi con i dati di configurazione, le raccomandazioni vengono generate in base ai criteri di sicurezza configurati. Se ad esempio è stata configurata una macchina virtuale senza un gruppo di sicurezza di rete associato, viene generata una raccomandazione per crearne uno. 
+Dopo l'avvio di Centro sicurezza PC toopopulate con dati di configurazione, raccomandazioni in base ai criteri di sicurezza hello impostati. Se una macchina virtuale è stata configurata senza un gruppo di sicurezza di rete associati, ad esempio, un'indicazione è toocreate uno. 
 
-Per visualizzare un elenco di tutte le raccomandazioni: 
+toosee un elenco di tutte le indicazioni: 
 
-1. Nel dashboard del Centro sicurezza selezionare **Raccomandazioni**.
-2. Selezionare una raccomandazione specifica. Viene visualizzato un elenco di tutte le risorse per cui si applica la raccomandazione.
-3. Per applicare una raccomandazione, selezionare una risorsa specifica. 
-4. Seguire le istruzioni per la procedura di correzione. 
+1. Nel dashboard del Centro sicurezza PC hello, selezionare **indicazioni**.
+2. Selezionare una raccomandazione specifica. Viene visualizzato un elenco di tutte le risorse per cui si applica l'indicazione di hello.
+3. tooapply una raccomandazione, selezionare una risorsa specifica. 
+4. Seguire le istruzioni di hello per la procedura di correzione. 
 
-Il Centro sicurezza offre in molti casi le procedure pratiche per applicare una raccomandazione senza uscire dal Centro sicurezza. Nell'esempio seguente il Centro sicurezza rileva un gruppo di sicurezza di rete che dispone di una regola in entrata senza restrizioni. Nella pagina di raccomandazione è possibile selezionare il pulsante **Modifica le regole in ingresso**. Viene visualizzata l'interfaccia utente necessaria per modificare la regola. 
+In molti casi, il Centro sicurezza PC viene descritta la procedura che è possibile eseguire una raccomandazione tooaddress senza uscire da Centro sicurezza PC. Nell'esempio seguente di hello, Centro sicurezza PC rileva un gruppo di sicurezza di rete con una regola in entrata senza restrizioni. Nella pagina di raccomandazione hello, è possibile selezionare hello **modificare le regole in entrata** pulsante. verrà visualizzata la finestra di Hello dell'interfaccia utente che è necessario toomodify hello regola. 
 
-![Consigli](./media/tutorial-azure-security/remediation.png)
+![Raccomandazioni](./media/tutorial-azure-security/remediation.png)
 
 Le raccomandazioni risolte vengono contrassegnate come tali. 
 
 ## <a name="view-detected-threats"></a>Visualizzare le minacce rilevate
 
-Oltre alle raccomandazioni per la configurazione delle risorse, il Centro sicurezza mostra avvisi di rilevamento di minacce. La funzionalità di avviso di sicurezza aggrega i dati raccolti da ogni macchina virtuale, dai log di rete di Azure e dalle soluzioni partner collegate per rilevare le minacce alla sicurezza per le risorse di Azure. Per informazioni dettagliate sulle funzionalità di rilevamento delle minacce nel Centro sicurezza, vedere [Funzionalità di rilevamento del Centro sicurezza di Azure](../../security-center/security-center-detection-capabilities.md).
+Inoltre consigli sulla configurazione di tooresource, centro di sicurezza consente di visualizzare gli avvisi di rilevamento minacce. funzionalità degli avvisi di sicurezza Hello aggrega i dati raccolti da ogni macchina virtuale, i log di rete di Azure e partner connesso soluzioni toodetect minacce per la sicurezza contro le risorse di Azure. Per informazioni dettagliate sulle funzionalità di rilevamento delle minacce nel Centro sicurezza, vedere [Funzionalità di rilevamento del Centro sicurezza di Azure](../../security-center/security-center-detection-capabilities.md).
 
-Per accedere alla funzionalità degli avvisi di sicurezza, è necessario aumentare il piano tariffario del Centro sicurezza da *Gratuito* a *Standard*. Quando si passa a questo piano tariffario superiore, è disponibile una **versione di prova gratuita** di 30 giorni. 
+funzionalità degli avvisi di sicurezza Hello richiede il Centro sicurezza PC hello prezzi toobe livello aumentato da *libero* troppo*Standard*. 30 giorni **versione di valutazione gratuita** è disponibile quando si sposta toothis maggiore livello di prezzo. 
 
-Per modificare il piano tariffario:  
+livello di prezzo hello toochange:  
 
-1. Nel dashboard del Centro sicurezza fare clic su **Criteri di sicurezza** e selezionare la sottoscrizione in uso.
+1. Nel dashboard del Centro sicurezza PC hello, fare clic su **criteri di sicurezza**, quindi selezionare la sottoscrizione.
 2. Selezionare **Piano tariffario**.
-3. Selezionare il nuovo piano e quindi **Seleziona**.
-4. Nel pannello **Criteri di sicurezza** selezionare **Salva**. 
+3. Selezionare il nuovo livello di hello, quindi **selezionare**.
+4. In hello **criteri di sicurezza** pannello seleziona **salvare**. 
 
-Dopo che il piano tariffario è stato modificato, il grafico degli avvisi di sicurezza inizia a popolarsi man mano che vengono rilevate minacce alla sicurezza.
+Dopo aver modificato hello a livello di prezzo, grafico gli avvisi di sicurezza hello inizia toopopulate quando vengono rilevati minacce alla sicurezza.
 
 ![Avvisi di sicurezza](./media/tutorial-azure-security/security-alerts.png)
 
-Selezionare un avviso per visualizzare le informazioni. Ad esempio, è possibile visualizzare una descrizione della minaccia, il tempo di rilevamento, tutti i tentativi di minaccia e la correzione consigliata. Nell'esempio seguente è stato rilevato un attacco di forza bruta RDP, con 294 tentativi RDP non riusciti. Viene indicata una risoluzione consigliata.
+Selezionare un avviso tooview informazioni. Ad esempio, è possibile visualizzare una descrizione del rischio di hello, ora del rilevamento hello, tutti i tentativi di minaccia e hello correzione consigliata. Nell'esempio seguente di hello, è stato rilevato un attacco di forza bruta RDP, con 294 tentativi non riusciti RDP. Viene indicata una risoluzione consigliata.
 
 ![Attacco RDP](./media/tutorial-azure-security/rdp-attack.png)
 
@@ -144,7 +144,7 @@ In questa esercitazione viene configurato il Centro sicurezza di Azure e vengono
 > * visualizzare e risolvere i problemi di integrità della configurazione
 > * esaminare le minacce rilevate
 
-Passare all'esercitazione successiva per imparare a creare una pipeline CI/CD con Visual Studio Team Services e una macchina virtuale Windows che esegue IIS.
+Spostare toolearn esercitazione successiva toohello come un elemento di configurazione/CD toocreate pipeline con Visual Studio Team Services e di una macchina virtuale Windows in esecuzione IIS.
 
 > [!div class="nextstepaction"]
 > [Pipeline CI/CD di Visual Studio Team Services](./tutorial-vsts-iis-cicd.md)

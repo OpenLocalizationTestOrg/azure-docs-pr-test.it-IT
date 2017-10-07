@@ -1,5 +1,5 @@
 ---
-title: Guida per l'uso di PolyBase in SQL Data Warehouse | Microsoft Docs
+title: aaaGuide per l'utilizzo di PolyBase in SQL Data Warehouse | Documenti Microsoft
 description: Linee guida e consigli per l'uso di PolyBase in scenari di SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.date: 6/5/2016
 ms.custom: loading
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 6938b92d8e5b46d908dc5b2155bdfdc89bb1dc8c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b05e4c5d528f2fe1c60d6855b5333065f0c908ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="guide-for-using-polybase-in-sql-data-warehouse"></a>Guida per l'uso di PolyBase in SQL Data Warehouse
 Questa guida offre informazioni pratiche per l'uso di PolyBase in SQL Data Warehouse.
 
-Per iniziare, seguire l'esercitazione [Caricamento dei dati con PolyBase][Load data with PolyBase].
+tooget introduzione, vedere hello [caricano dati con PolyBase] [ Load data with PolyBase] esercitazione.
 
 ## <a name="rotating-storage-keys"></a>Rotazione delle chiavi di archiviazione
-A volte si desidererà modificare la chiave di accesso per l'archiviazione blob per motivi di sicurezza.
+Da ora tootime è l'archiviazione blob toochange hello accesso tooyour chiave per motivi di sicurezza.
 
-Il modo più elegante per eseguire questa operazione consiste nel seguire un processo noto come "ruotare le chiavi". Si sarà notato che siano due chiavi di archiviazione per l'account di archiviazione blob. Si tratta in modo che è possibile eseguire la transizione
+Hello più elegante tooperform modo che questa attività è toofollow un processo noto come "rotazione delle chiavi di hello". Si sarà notato che siano due chiavi di archiviazione per l'account di archiviazione blob. Si tratta in modo che è possibile eseguire la transizione
 
 Ruotare le chiavi dell'account di archiviazione di Azure è un processo semplice tre passaggio
 
-1. Creare seconda credenziale con ambito database in base alla chiave di accesso di archiviazione secondario
+1. Creare seconda credenziali con ambito database basata sulla chiave di accesso di archiviazione secondaria hello
 2. Creare una seconda origine dati esterna in base a questa nuova credenziale
-3. Eliminare e creare le tabelle esterne che puntano alla nuova origine dati esterna
+3. Eliminare e creare tabelle esterne di hello verso toohello nuova origine dati esterna
 
-Dopo aver migrato esterno tutte le tabelle per la nuova origine dati esterna, quindi è possibile eseguire attività di pulizia:
+Quando è stata eseguita la migrazione di tutte le tabelle esterne toohello nuova origine dati esterna, quindi è possibile eseguire hello eseguire la pulizia delle attività:
 
 1. Eliminare prima origine dati esterna
-2. Credenziali in base alla chiave di accesso di archiviazione primaria con ambito database primo di rilascio
-3. Accedere a Azure e rigenerare la chiave di accesso primaria pronta per la volta successiva
+2. Credenziali basata sulla chiave di accesso di archiviazione primaria hello con ambito database prima di rilascio
+3. Accedere ad Azure e rigenerare la chiave di accesso primaria hello pronto per hello successivo
 
 ## <a name="query-azure-blob-storage-data"></a>Eseguire query sui dati di archiviazione BLOB di Azure
-Le query su tabelle esterne usano semplicemente il nome della tabella come se fosse una tabella relazionale.
+Le query su tabelle esterne è sufficiente utilizzano il nome di tabella hello come se fosse una tabella relazionale.
 
 ```sql
 -- Query Azure storage resident data via external table.
@@ -53,21 +53,21 @@ SELECT * FROM [ext].[CarSensor_Data]
 ```
 
 > [!NOTE]
-> Una query su una tabella esterna può avere esito negativo con l'errore *"Query interrotta: è stata raggiunta la soglia massima durante la lettura da un'origine esterna"*. Indica che i dati esterni contengono record *sporchi* . Un record di dati viene considerato "sporco" se i tipi/numero dei dati effettivi delle colonne non corrispondono a definizioni di colonna della tabella esterna o se i dati non sono conformi al formato di file esterno specificato. Per risolvere questo problema, assicurarsi che la tabella esterna e le definizioni del formato del file esterno siano corrette e i dati esterni siano conformi a queste definizioni. Nel caso in cui un subset di record di dati esterni sia sporco, è possibile scegliere di rifiutare tali record per le query utilizzando le opzioni di rifiuto in CREATE EXTERNAL TABLE DDL.
+> Una query su una tabella esterna può avere esito negativo con errore hello *"Query interrotta--è stata raggiunta la soglia massima di rifiuti di hello durante la lettura da un'origine esterna"*. Indica che i dati esterni contengono record *sporchi* . Un record di dati viene considerato come 'danneggiato' se i dati effettivi hello tipi/numero di colonne non corrispondono a definizioni di colonna hello della tabella esterna hello o se non è conforme il formato di file esterno specificato toohello dati hello. toofix, verificare che la tabella esterna e le definizioni di formato di file esterno siano corrette e che le definizioni di toothese è conforme ai dati esterni. Nel caso in cui un subset di record di dati esterni vengono modificati, è possibile scegliere tooreject questi record per le query utilizzando le opzioni di rifiuto hello CREATE EXTERNAL TABLE DDL.
 > 
 > 
 
 ## <a name="load-data-from-azure-blob-storage"></a>Caricare dati dall'archiviazione BLOB di Azure
-Questo esempio carica i dati dall'archiviazione BLOB di Azure nel database di SQL Data Warehouse.
+In questo esempio carica i dati dal database Data Warehouse tooSQL di archiviazione blob di Azure.
 
-Archiviando i dati direttamente viene eliminato il tempo di trasferimento dei dati per le query. L'archiviazione dei dati con un indice columnstore migliora le prestazioni delle query di analisi fino a 10 volte.
+L'archiviazione dei dati direttamente rimuove il tempo di trasferimento dati hello per le query. L'archiviazione dei dati con un indice columnstore consente di migliorare le prestazioni delle query per le query di analisi da backup too10x.
 
-Questo esempio usa l'istruzione CREATE TABLE AS SELECT per caricare i dati. La nuova tabella eredita le colonne indicate nella query. Eredita i tipi di dati di tali colonne dalla definizione della tabella esterna.
+In questo esempio utilizza i dati di tooload istruzione CREATE TABLE AS SELECT hello. nuova tabella Hello eredita le colonne di hello denominate query hello. Eredita i tipi di dati hello di tali colonne dalla definizione della tabella esterna hello.
 
-CREATE TABLE AS SELECT è un’istruzione con elevate prestazioni di Transact-SQL che carica i dati in parallelo per tutti i nodi di calcolo di SQL Data Warehouse.  È stata sviluppata in origine per il motore di elaborazione a elevato parallelismo (MPP) nel sistema di piattaforma di analisi ed è ora inclusa in SQL Data Warehouse.
+CREATE TABLE AS SELECT è un efficiente elevata istruzione Transact-SQL che carica i dati di hello in parallelo tooall hello calcolo i nodi del proprio SQL Data Warehouse.  Questa è stata sviluppata per il motore di elaborazione parallela massiva (. MPP) hello nel sistema di piattaforma Analitica ed è ora in SQL Data Warehouse.
 
 ```sql
--- Load data from Azure blob storage to SQL Data Warehouse
+-- Load data from Azure blob storage tooSQL Data Warehouse
 
 CREATE TABLE [dbo].[Customer_Speed]
 WITH
@@ -84,7 +84,7 @@ FROM   [ext].[CarSensor_Data]
 Vedere [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)].
 
 ## <a name="create-statistics-on-newly-loaded-data"></a>Creare statistiche sui dati appena caricati
-SQL Data Warehouse di Azure non supporta ancora le statistiche di creazione automatica o aggiornamento automatico.  Per ottenere le migliori prestazioni dalle query, è importante creare statistiche per tutte le colonne di tutte le tabelle dopo il primo caricamento o dopo eventuali modifiche sostanziali dei dati.  Per una spiegazione dettagliata delle statistiche, vedere l'argomento [Statistiche][Statistics] nel gruppo di argomenti sullo sviluppo.  Di seguito è possibile vedere un rapido esempio di come creare statistiche nella tabella caricata in questo esempio.
+SQL Data Warehouse di Azure non supporta ancora le statistiche di creazione automatica o aggiornamento automatico.  Ordine tooget hello prestazioni migliori dalle query, è importante creare statistiche per tutte le colonne di tutte le tabelle dopo il primo caricamento hello o si verificano modifiche sostanziali in dati hello.  Per una spiegazione dettagliata delle statistiche, vedere hello [statistiche] [ Statistics] argomento nel gruppo di sviluppare hello degli argomenti.  Di seguito è riportato un esempio di come statistiche toocreate sulla tabella hello caricati in questo esempio.
 
 ```sql
 create statistics [SensorKey] on [Customer_Speed] ([SensorKey]);
@@ -94,10 +94,10 @@ create statistics [Speed] on [Customer_Speed] ([Speed]);
 create statistics [YearMeasured] on [Customer_Speed] ([YearMeasured]);
 ```
 
-## <a name="export-data-to-azure-blob-storage"></a>Esportare i dati in archiviazione BLOB di Azure
-Questa sezione illustra come esportare i dati da SQL Data Warehouse nella risorsa di archiviazione BLOB di Azure. In questo esempio si utilizza CREATE EXTERNAL TABLE AS SELECT che è un’istruzione con elevate prestazioni di Transact-SQL per esportare i dati in parallelo da tutti i nodi di calcolo.
+## <a name="export-data-tooazure-blob-storage"></a>Esportazione di archiviazione blob di dati tooAzure
+Questa sezione illustra la modalità di archiviazione blob dati tooexport tooAzure SQL Data Warehouse. Questo esempio Usa CREATE EXTERNAL TABLE AS SELECT che è un elevata ad alte prestazioni di Transact-SQL istruzione tooexport hello dati in parallelo da tutti i nodi di calcolo di hello.
 
-Nell'esempio seguente si crea una tabella esterna Weblogs2014 utilizzando le definizioni delle colonne e dati dalla tabella dbo.Weblogs. La definizione della tabella esterna viene archiviata in SQL Data Warehouse e i risultati dell’istruzione SELECT sono esportati nella directory "/ archiviazione/log2014 /" nel contenitore BLOB specificato dall'origine dati. I dati vengono esportati nel formato di file di testo specificato.
+Hello seguente viene creata una tabella esterna Weblogs2014 utilizzando le definizioni delle colonne e dati da dbo. Tabella di blog. definizione della tabella esterna Hello viene archiviato in SQL Data Warehouse e i risultati di hello dell'istruzione SELECT hello sono esportato toohello "/ / log2014/archiviare" directory nel contenitore blob hello specificato dall'origine dati hello. Hello dati vengono esportati nel formato di file di testo specificato hello.
 
 ```sql
 CREATE EXTERNAL TABLE Weblogs2014 WITH
@@ -118,21 +118,21 @@ WHERE
     AND DateRequested < '01/01/2015';
 ```
 ## <a name="isolate-loading-users"></a>Isolare il caricamento degli utenti
-È spesso necessario fare in modo che più utenti possano caricare dati in un data warehouse SQL. Dato che [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] richiede autorizzazioni CONTROL per il database, il risultato sarà la presenza di più utenti con accesso di controllo su tutti gli schemi. Per limitare questa situazione, è possibile usare l'istruzione DENY CONTROL.
+Vi è spesso un toohave necessità più utenti che possono caricare dati in un data Warehouse SQL. Poiché hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] richiede autorizzazioni di controllo del database di hello, si finirà con più utenti con accesso di controllo su tutti gli schemi. toolimit, è possibile utilizzare l'istruzione DENY controllo hello.
 
 Esempio: si supponga che esistano gli schemi di database schema_A per reparto A e schema_B per reparto B e di consentire agli utenti di database utente_A e utente _B di effettuare caricamenti PolyBase rispettivamente in reparto A e B. A entrambi gli utenti sono state concesse le autorizzazioni di database CONTROL.
-Gli autori di schema A e B usano a questo punto DENY per bloccare i rispettivi schemi:
+creatori di Hello dello schema A e B ora bloccare i relativi schemi utilizzando l'istruzione DENY:
 
 ```sql
-   DENY CONTROL ON SCHEMA :: schema_A TO user_B;
-   DENY CONTROL ON SCHEMA :: schema_B TO user_A;
+   DENY CONTROL ON SCHEMA :: schema_A toouser_B;
+   DENY CONTROL ON SCHEMA :: schema_B toouser_A;
 ```   
- In questo modo, utente_A e utente_B dovrebbero ora essere esclusi dall'accesso allo schema del reparto dell'altro utente.
+ Con questa operazione, user_A ed user_B dovrebbe ora essere bloccato da hello dello schema di altro reparto.
  
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni sullo spostamento di dati in SQL Data Warehouse, vedere [Panoramica sulla migrazione di dati][data migration overview].
+toolearn ulteriori informazioni su tooSQL lo spostamento di dati Data Warehouse, vedere hello [Cenni preliminari sulla migrazione di dati][data migration overview].
 
 <!--Image references-->
 

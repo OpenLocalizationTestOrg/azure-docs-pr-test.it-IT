@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Configurazione di LucidChart per il provisioning utenti automatico con Azure Active Directory | Microsoft Docs'
-description: Informazioni su come configurare Azure Active Directory per effettuare automaticamente il provisioning e il deprovisioning degli account utente in LucidChart.
+description: Informazioni su come tooconfigure Azure Active Directory tooautomatically il provisioning e il de-provisioning account utente di tooLucidChart.
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,82 +14,82 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 1f9344a5e750360e21ed7dc8e3ed013c2c2e1a45
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: d3af45141731215f2edc8942ad21b016468c1e38
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-lucidchart-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di LucidChart per il provisioning utenti automatico
 
 
-Questa esercitazione descrive le procedure da eseguire in LucidChart e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a LucidChart. 
+obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform in LucidChart e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooLucidChart. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
-*   Un tenant di Azure Active Directory
-*   Un tenant di LucidChart con il [piano Enterprise](https://www.lucidchart.com/user/117598685#/subscriptionLevel) o superiore abilitato 
+*   Tenant di Azure Active Directory
+*   Un tenant di LucidChart con hello [piano Enterprise](https://www.lucidchart.com/user/117598685#/subscriptionLevel) o meglio abilitato 
 *   Un account utente in LucidChart con autorizzazioni di amministratore 
 
-## <a name="assigning-users-to-lucidchart"></a>Assegnazione di utenti a LucidChart
+## <a name="assigning-users-toolucidchart"></a>L'assegnazione di utenti tooLucidChart
 
-Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, vengono sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD. 
+Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatico, solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD è sincronizzato. 
 
-Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere all'app LucidChart. Dopo aver stabilito questo, è possibile assegnare tali utenti all'app LucidChart seguendo le istruzioni riportate nell'articolo seguente:
+Prima di configurare e abilitare hello provisioning del servizio, è necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano hello utenti devono accedere tooyour LucidChart app. Una volta deciso, è possibile assegnare queste app di LucidChart tooyour utenti seguendo le istruzioni di hello qui:
 
-[Assegnare un utente o gruppo a un'app aziendale](active-directory-coreapps-assign-user-azure-portal.md)
+[Assegnare un'applicazione aziendale tooan utente o gruppo](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-lucidchart"></a>Suggerimenti importanti per l'assegnazione di utenti a LucidChart
+### <a name="important-tips-for-assigning-users-toolucidchart"></a>Suggerimenti importanti per l'assegnazione di utenti tooLucidChart
 
-*   È consigliabile assegnare un singolo utente di Azure AD a LucidChart per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile che un singolo utente AD Azure viene assegnato hello tootest tooLucidChart configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un utente a LucidChart, è necessario selezionare il ruolo **Utente** o un altro ruolo specifico dell'applicazione valido, se disponibile, nella finestra di dialogo di assegnazione. Poiché il ruolo **Accesso predefinito** non è applicabile per il provisioning, i relativi utenti vengono ignorati.
+*   Quando si assegna un tooLucidChart utente, è necessario selezionare entrambi hello **utente** ruolo, o un altro valido specifici dell'applicazione, se disponibile, nella finestra di dialogo assegnazione hello. Hello **accesso predefinito** ruolo non funziona per il provisioning e gli utenti vengono ignorati.
 
 
-## <a name="configuring-user-provisioning-to-lucidchart"></a>Configurazione del provisioning utenti in LucidChart 
+## <a name="configuring-user-provisioning-toolucidchart"></a>Configurazione tooLucidChart di provisioning dell'utente 
 
-Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente di LucidChart e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in LucidChart in base all'assegnazione di utenti e gruppi in Azure AD.
+Questa sezione viene illustrato come tramite la connessione API di provisioning dell'account del tooLucidChart di Azure AD utente e la configurazione di provisioning del servizio toocreate hello, aggiornare e disabilitare gli account utente assegnato in LucidChart in base all'assegnazione di utenti e gruppi in Azure AD .
 
 > [!TIP]
-> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per LucidChart, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per LucidChart, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
 
-### <a name="configure-automatic-user-account-provisioning-to-lucidchart-in-azure-ad"></a>Configurare il provisioning automatico degli account utente in LucidChart con Azure AD
+### <a name="configure-automatic-user-account-provisioning-toolucidchart-in-azure-ad"></a>Configurare l'account utente automatico provisioning tooLucidChart in Azure AD
 
 
-1. Nel [portale di Azure](https://portal.azure.com) passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
+1. In hello [portale di Azure](https://portal.azure.com), Sfoglia toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
 
-2. Se si è già configurato LucidChart per l'accesso Single Sign-On, cercare l'istanza di LucidChart usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **LucidChart** nella raccolta di applicazioni. Selezionare LucidChart nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
+2. Se è già stato configurato LucidChart per single sign-on, eseguire la ricerca per l'istanza di LucidChart mediante il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **LucidChart** nella raccolta di applicazione hello. Selezionare LucidChart dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
 
-3. Selezionare l'istanza di LucidChart e quindi la scheda **Provisioning**.
+3. Selezionare l'istanza di LucidChart, quindi selezionare hello **Provisioning** scheda.
 
-4. Impostare **Modalità di provisioning** su **Automatico**.
+4. Set hello **modalità di Provisioning** troppo**automatica**.
 
     ![Provisioning di LucidChart](./media/active-directory-saas-lucidchart-provisioning-tutorial/LucidChart1.png)
 
-5. Nella sezione **Credenziali amministratore** immettere il **Token segreto** generato dall'account di LucidChart. È possibile trovare il token nell'account: **Team** > **App Integration** > **SCIM** (Team, Integrazione app, SCIM). 
+5. In hello **credenziali di amministratore** sezione, hello input **segreto Token** generato dall'account del LucidChart (è possibile trovare il token hello con l'account: **Team**  >  **Integrazione dell'applicazione** > **SCIM**). 
 
     ![Provisioning di LucidChart](./media/active-directory-saas-lucidchart-provisioning-tutorial/LucidChart2.png)
 
-6. Nel portale di Azure fare clic su **Test connessione** per verificare che Azure AD possa connettersi all'app LucidChart. Se la connessione non riesce, verificare che l'account LucidChart abbia autorizzazioni di amministratore e ripetere il passaggio 5.
+6. Nel portale di Azure hello, fare clic su **Test connessione** tooensure Azure AD può connettersi tooyour LucidChart app. Se hello connessione non riesce, verificare che l'account LucidChart disponga delle autorizzazioni di amministratore e riprovare a eseguire il passaggio 5.
 
-7. Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo "Invia una notifica di posta elettronica in caso di errore".
+7. Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e controllo hello casella di controllo "Invia una notifica di posta elettronica quando si verifica un errore".
 
 8. Fare clic su **Salva**. 
 
-9. Nella sezione Mapping selezionare **Synchronize Azure Active Directory Users to LucidChart** (Sincronizza utenti di Azure Active Directory in LucidChart).
+9. Nella sezione mapping hello, selezionare **tooLucidChart sincronizzare Active Directory gli utenti di Azure**.
 
-10. Nella sezione **Mapping degli attributi** esaminare gli attributi utente che vengono sincronizzati da Azure AD a LucidChart. Gli attributi selezionati come proprietà **corrispondenti** vengono usati per trovare le corrispondenze con gli account utente in LucidChart per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
+10. In hello **mapping degli attributi** sezione, esaminare gli attributi utente hello che vengono sincronizzati da tooLucidChart di Azure AD. gli attributi selezionati come Hello **corrispondenza** proprietà sono utilizzate toomatch hello gli account utente in LucidChart per operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
 
-11. Per abilitare il servizio di provisioning di Azure AD per LucidChart, impostare **Stato del provisioning** su **Sì** nella sezione **Impostazioni**.
+11. tooenable hello servizio provisioning di Azure AD per LucidChart, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
 
 12. Fare clic su **Salva**. 
 
-L'operazione avvia la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a LucidChart nella sezione Utenti e gruppi. La sincronizzazione iniziale richiede più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning che descrivono tutte le azioni eseguite dal servizio di provisioning.
+Questa operazione avvia la sincronizzazione iniziale di hello di eventuali utenti o gruppi assegnati tooLucidChart in hello gli utenti e gruppi. la sincronizzazione iniziale Hello accetta più tooperform di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite da hello provisioning del servizio.
 
-Per altre informazioni sulla lettura dei log di provisioning di Azure AD, vedere [Esercitazione: creazione di report sul provisioning automatico degli account utente](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Per ulteriori informazioni sulla modalità di registrazione tooread provisioning di hello Azure AD, vedere [creazione di report per il provisioning utente automatico account](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
@@ -99,4 +99,4 @@ Per altre informazioni sulla lettura dei log di provisioning di Azure AD, vedere
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Informazioni su come esaminare i log e ottenere report sulle attività di provisioning](active-directory-saas-provisioning-reporting.md)
+* [Informazioni su modalità di registrazione tooreview e ottengono report sull'attività di provisioning](active-directory-saas-provisioning-reporting.md)

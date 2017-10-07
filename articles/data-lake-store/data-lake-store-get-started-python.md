@@ -1,6 +1,6 @@
 ---
-title: Usare Python SDK per iniziare a usare Azure Data Lake Store | Documentazione Microsoft
-description: Informazioni su come usare Python SDK insieme agli account Data Lake Store e al file system.
+title: aaaUse hello Python SDK tooget avviato con l'archivio Azure Data Lake | Documenti Microsoft
+description: Informazioni su come toouse Python SDK toowork con account archivio Data Lake e hello del file system.
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 375a603360ac249fc1b08923a94c85652390a3fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7061fdf25ef607608bab618a20ddd3d6fc7af01d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-python"></a>Introduzione ad Azure Data Lake Store con Python
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Informazioni su come usare Python SDK per Azure e Azure Data Lake Store per eseguire operazioni di base, ad esempio creare cartelle, caricare e scaricare file di dati e così via. Per altre informazioni su Data Lake, vedere [Azure Data Lake Store](data-lake-store-overview.md).
+Informazioni su come toouse hello SDK Python per operazioni di base tooperform Azure e archivio Azure Data Lake, ad esempio creano cartelle, caricare e scaricare i file di dati e così via. Per altre informazioni su Data Lake, vedere [Azure Data Lake Store](data-lake-store-overview.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
@@ -42,17 +42,17 @@ Informazioni su come usare Python SDK per Azure e Azure Data Lake Store per eseg
 
 * **Una sottoscrizione di Azure**. Vedere [Ottenere una versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/).
 
-* **Creare un'applicazione di Azure Active Directory**. Usare l'applicazione Azure AD per autenticare l'applicazione Data Lake Store con Azure AD. Per l'autenticazione con Azure AD è possibile usare l'**autenticazione dell'utente finale** o l'**autenticazione da servizio a servizio**. Per altre informazioni e istruzioni su come eseguire l'autenticazione, vedere [Autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [Autenticazione da servizio a servizio](data-lake-store-authenticate-using-active-directory.md).
+* **Creare un'applicazione di Azure Active Directory**. Utilizzare un'applicazione hello Azure AD applicazione tooauthenticate hello archivio Data Lake con Azure AD. Esistono diversi approcci tooauthenticate con Azure AD, che sono **autenticazione dell'utente finale** o **authentication service to service**. Per istruzioni e ulteriori informazioni su come tooauthenticate, vedere [autenticazione dell'utente finale](data-lake-store-end-user-authenticate-using-active-directory.md) o [authentication Service to service](data-lake-store-authenticate-using-active-directory.md).
 
-## <a name="install-the-modules"></a>Installare i moduli
+## <a name="install-hello-modules"></a>Installare i moduli di hello
 
-Per gestire Data Lake Store usando Python, è necessario installare tre moduli.
+toowork con archivio Data Lake usando Python, è necessario tooinstall tre moduli.
 
-* Il modulo `azure-mgmt-resource` include i moduli Azure per Active Directory e così via.
-* Il modulo `azure-mgmt-datalake-store` include le operazioni di gestione account di Azure Data Lake Store. Per altre informazioni su questo modulo, vedere la [documentazione di riferimento al modulo di gestione di Azure Data Lake Store](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html).
-* Il modulo `azure-datalake-store` include le operazioni del file system di Azure Data Lake Store. Per altre informazioni su questo modulo, vedere la [documentazione di riferimento al modulo del file system di Azure Data Lake Store](http://azure-datalake-store.readthedocs.io/en/latest/).
+* Hello `azure-mgmt-resource` modulo. include i moduli Azure per Active Directory e così via.
+* Hello `azure-mgmt-datalake-store` modulo. Sono incluse le operazioni di gestione account archivio Azure Data Lake hello. Per altre informazioni su questo modulo, vedere la [documentazione di riferimento al modulo di gestione di Azure Data Lake Store](http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html).
+* Hello `azure-datalake-store` modulo. Sono incluse le operazioni di filesystem hello archivio Azure Data Lake. Per altre informazioni su questo modulo, vedere la [documentazione di riferimento al modulo del file system di Azure Data Lake Store](http://azure-datalake-store.readthedocs.io/en/latest/).
 
-Per installare i moduli, usare i comandi seguenti.
+Utilizzare hello seguenti moduli hello tooinstall di comandi.
 
 ```
 pip install azure-mgmt-resource
@@ -62,9 +62,9 @@ pip install azure-datalake-store
 
 ## <a name="create-a-new-python-application"></a>Creare una nuova applicazione Python
 
-1. In un IDE a scelta creare una nuova applicazione Python, ad esempio **mysample.py**.
+1. Nell'IDE di propria scelta hello, ad esempio, creare una nuova applicazione Python, **mysample.py**.
 
-2. Aggiungere le righe seguenti per importare i moduli necessari
+2. Aggiungere hello seguenti moduli hello necessario tooimport di righe
 
     ```
     ## Use this only for Azure AD service-to-service authentication
@@ -91,11 +91,11 @@ pip install azure-datalake-store
     import logging, getpass, pprint, uuid, time
     ```
 
-3. Salvare le modifiche a mysample.py.
+3. Salvare le modifiche toomysample.py.
 
 ## <a name="authentication"></a>Autenticazione
 
-Questa sezione descrive le diverse modalità di autenticazione con Azure AD. Le opzioni disponibili sono:
+In questa sezione, si parlerà hello modi tooauthenticate con Azure AD. Hello opzioni disponibili sono:
 
 * Autenticazione dell'utente finale
 * Autenticazione da servizio a servizio
@@ -105,39 +105,39 @@ Questa sezione descrive le diverse modalità di autenticazione con Azure AD. Le 
 
 ### <a name="end-user-authentication-for-account-management"></a>Autenticazione dell'utente finale per la gestione degli account
 
-Per le operazioni di gestione degli account, ad esempio creare o eliminare account Data Lake Store e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. È necessario specificare il nome utente e la password per un utente di Azure AD. L'utente non deve essere configurato per l'autenticazione a più fattori.
+Utilizzare questo tooauthenticate con Azure AD per operazioni di gestione di account (creazione/eliminazione account archivio Data Lake, ecc.). È necessario specificare il nome utente e la password per un utente di Azure AD. Si noti che l'utente hello non deve essere configurato per l'autenticazione a più fattori.
 
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     credentials = UserPassCredentials(user, password)
 
 ### <a name="end-user-authentication-for-filesystem-operations"></a>Autenticazione dell'utente finale per le operazioni del file system
 
-Per le operazioni di gestione del file system, ad esempio creare cartelle, caricare file e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. Usare questo tipo di autenticazione con un'applicazione **client nativa** di Azure AD. L'utente AD Azure del quale sono state specificate le credenziali non deve essere configurato per l'autenticazione a più fattori.
+Utilizzare questo tooauthenticate con Azure AD per le operazioni di file System (Crea cartella file di caricamento, e così via). Usare questo tipo di autenticazione con un'applicazione **client nativa** di Azure AD. utente Hello Azure AD per che fornire le credenziali non deve essere configurati per l'autenticazione a più fattori.
 
     tenant_id = 'FILL-IN-HERE'
     client_id = 'FILL-IN-HERE'
-    user = input('Enter the user to authenticate with that has permission to subscription: ')
+    user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
     password = getpass.getpass()
 
     token = lib.auth(tenant_id, user, password, client_id)
 
 ### <a name="service-to-service-authentication-with-client-secret-for-account-management"></a>Autenticazione da servizio a servizio con segreto client per la gestione degli account
 
-Per le operazioni di gestione degli account, ad esempio creare o eliminare account Data Lake Store e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. Il frammento di codice seguente può essere usato per autenticare l'applicazione in modo non interattivo, usando il segreto client per un'applicazione o un'entità servizio. Usare questo frammento con un'app Web di Azure AD esistente.
+Utilizzare questo tooauthenticate con Azure AD per operazioni di gestione di account (creazione/eliminazione account archivio Data Lake, ecc.). Hello seguente frammento di codice può essere utilizzato tooauthenticate l'applicazione in modo non interattivo, utilizzando la chiave privata client hello per un'entità applicazione / servizio. Usare questo frammento con un'app Web di Azure AD esistente.
 
     credentials = ServicePrincipalCredentials(client_id = 'FILL-IN-HERE', secret = 'FILL-IN-HERE', tenant = 'FILL-IN-HERE')
 
 ### <a name="service-to-service-authentication-with-client-secret-for-filesystem-operations"></a>Autenticazione da servizio a servizio con segreto client per le operazioni del file system
 
-Per le operazioni di gestione del file system, ad esempio creare cartelle, caricare file e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. Il frammento di codice seguente può essere usato per autenticare l'applicazione in modo non interattivo, usando il segreto client per un'applicazione o un'entità servizio. Usare questo frammento con un'app Web di Azure AD esistente.
+Utilizzare questo tooauthenticate con Azure AD per le operazioni di file System (Crea cartella file di caricamento, e così via). Hello seguente frammento di codice può essere utilizzato tooauthenticate l'applicazione in modo non interattivo, utilizzando la chiave privata client hello per un'entità applicazione / servizio. Usare questo frammento con un'app Web di Azure AD esistente.
 
     token = lib.auth(tenant_id = 'FILL-IN-HERE', client_secret = 'FILL-IN-HERE', client_id = 'FILL-IN-HERE')
 
 ### <a name="multi-factor-authentication-for-account-management"></a>Multi-Factor Authentication per la gestione degli account
 
-Per le operazioni di gestione degli account, ad esempio creare o eliminare account Data Lake Store e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. Il frammento di codice seguente consente di autenticare l'applicazione con Multi-Factor Authentication. Usare questo frammento con un'app Web di Azure AD esistente.
+Utilizzare questo tooauthenticate con Azure AD per operazioni di gestione di account (creazione/eliminazione account archivio Data Lake, ecc.). Hello frammento di codice seguente può essere utilizzato tooauthenticate l'applicazione utilizza l'autenticazione a più fattori. Usare questo frammento con un'app Web di Azure AD esistente.
 
     authority_host_url = "https://login.microsoftonline.com"
     tenant = "FILL-IN-HERE"
@@ -154,13 +154,13 @@ Per le operazioni di gestione degli account, ad esempio creare o eliminare accou
 
 ### <a name="multi-factor-authentication-for-filesystem-management"></a>Multi-Factor Authentication per la gestione del file system
 
-Per le operazioni di gestione del file system, ad esempio creare cartelle, caricare file e così via, è necessario eseguire questo tipo di autenticazione con Azure AD. Il frammento di codice seguente consente di autenticare l'applicazione con Multi-Factor Authentication. Usare questo frammento con un'app Web di Azure AD esistente.
+Utilizzare questo tooauthenticate con Azure AD per le operazioni di file System (Crea cartella file di caricamento, e così via). Hello frammento di codice seguente può essere utilizzato tooauthenticate l'applicazione utilizza l'autenticazione a più fattori. Usare questo frammento con un'app Web di Azure AD esistente.
 
     token = lib.auth(tenant_id='FILL-IN-HERE')
 
 ## <a name="create-an-azure-resource-group"></a>Creare un gruppo di risorse di Azure
 
-Per creare un gruppo di risorse di Azure usare il frammento di codice seguente:
+Utilizzare hello seguente frammento di codice toocreate un gruppo di risorse di Azure:
 
     ## Declare variables
     subscriptionId= 'FILL-IN-HERE'
@@ -183,7 +183,7 @@ Per creare un gruppo di risorse di Azure usare il frammento di codice seguente:
 
 ## <a name="create-clients-and-data-lake-store-account"></a>Creare client e account Data Lake Store
 
-Il frammento seguente crea prima il client account Data Lake Store, poi usa l'oggetto client per creare un account Data Lake Store e infine crea un oggetto client per il file system.
+Hello seguente frammento di codice prima crea client account archivio Data Lake di hello. Usa hello client oggetto toocreate un account archivio Data Lake. Infine, hello frammento consente di creare un oggetto client di file System.
 
     ## Declare variables
     subscriptionId = 'FILL-IN-HERE'
@@ -204,9 +204,9 @@ Il frammento seguente crea prima il client account Data Lake Store, poi usa l'og
     ## Create a filesystem client object
     adlsFileSystemClient = core.AzureDLFileSystem(token, store_name=adlsAccountName)
 
-## <a name="list-the-data-lake-store-accounts"></a>Elencare gli account Data Lake Store
+## <a name="list-hello-data-lake-store-accounts"></a>Elenco di account archivio Data Lake hello
 
-    ## List the existing Data Lake Store accounts
+    ## List hello existing Data Lake Store accounts
     result_list_response = adlsAcctClient.account.list()
     result_list = list(result_list_response)
     for items in result_list:

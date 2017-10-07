@@ -1,6 +1,6 @@
 ---
-title: Creare account RunAs di Automazione di Azure | Microsoft Docs
-description: Questo articolo descrive come aggiornare l'account di Automazione e creare account RunAs con PowerShell o dal portale.
+title: account di automazione runas di Azure aaaCreate | Documenti Microsoft
+description: Questo articolo viene descritto come tooupdate l'automazione dell'account e creare gli account RunAs con PowerShell o dal portale di hello.
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/27/2017
 ms.author: magoedte
-ms.openlocfilehash: eaf6eb49bbfe4572827fcc101d1f552b48ab91e6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 94eb54fa0b518056a726d17146c63411e248273b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="update-your-automation-account-authentication-with-run-as-accounts"></a>Aggiornare l'autenticazione dell'account di Automazione con account RunAs 
-È possibile aggiornare l'account di Automazione esistente dal portale o con PowerShell se:
+È possibile aggiornare l'account di automazione esistente dal portale hello o se l'utilizzo di PowerShell:
 
-* Si crea un account di Automazione ma si sceglie di non creare l'account RunAs.
-* Si usa già un account di Automazione per gestire le risorse di Resource Manager e lo si vuole aggiornare per includere l'account RunAs per l'autenticazione dei runbook.
-* Si usa già un account di Automazione per gestire le risorse classiche e lo si vuole aggiornare per usare l'account RunAs classico anziché creare un nuovo account ed eseguire la migrazione di runbook e asset nel nuovo account.   
-* Si vuole creare un account RunAs e un account RunAs classico usando un certificato rilasciato dall'autorità di certificazione globale (enterprise).
+* Si crea un account di automazione, ma rifiuta toocreate account RunAs hello.
+* Già in uso un risorse di gestione risorse di automazione account toomanage e si desidera tooupdate hello account tooinclude hello account RunAs per l'autenticazione di runbook.
+* Già in uso un'automazione account toomanage classico alle risorse e si desidera tooupdate è toouse hello Classic account RunAs anziché creare un nuovo account e la migrazione tooit i runbook e le risorse.   
+* Si desidera toocreate Esegui come e un classico account RunAs utilizzando un certificato rilasciato dall'autorità di certificazione dell'organizzazione (CA).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* Lo script può essere eseguito solo in Windows 10 e Windows Server 2016 con i moduli di Azure Resource Manager 3.0.0 e versioni successive. Non sono supportate le versioni precedenti di Windows.
-* Azure PowerShell 1.0 e versioni successive. Per informazioni su PowerShell 1.0, vedere [come installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs).
-* Un account di automazione, a cui viene fatto riferimento come valore per i parametri *-AutomationAccountName* e *-ApplicationDisplayName* nello script di PowerShell seguente.
+* Hello script può essere eseguito solo in Windows 10 e Windows Server 2016 con moduli di gestione risorse di Azure 3.0.0 e versioni successive. Non sono supportate le versioni precedenti di Windows.
+* Azure PowerShell 1.0 e versioni successive. Per informazioni sulla versione di hello PowerShell 1.0, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs).
+* Un account di automazione cui viene fatto riferimento come valore hello hello *– AutomationAccountName* e *- ApplicationDisplayName* parametri hello lo script di PowerShell seguente.
 
-Per ottenere i valori per i parametri *SubscriptionID*, *ResourceGroup* e *AutomationAccountName*, obbligatori per gli script, seguire questa procedura:
+i valori hello tooget per *SubscriptionID*, *gruppo di risorse*, e *AutomationAccountName*, che sono parametri obbligatori per lo script hello, hello seguenti:
 
-1. Nel portale di Azure scegliere l'account di Automazione nel pannello **Account di Automazione** e selezionare **Tutte le impostazioni**.  
-2. Nel pannello **Tutte le impostazioni** selezionare **Proprietà** in **Impostazioni account**. 
-3. Prendere nota dei valori nel pannello **Proprietà**.<br><br> ![Pannello "Proprietà" dell'account di Automazione](media/automation-create-runas-account/automation-account-properties.png)  
+1. In hello portale di Azure, selezionare l'account di automazione in hello **account di automazione** blade e quindi selezionare **tutte le impostazioni**.  
+2. In hello **tutte le impostazioni** pannello, in **impostazioni Account**selezionare **proprietà**. 
+3. Notare i valori hello in hello **proprietà** blade.<br><br> ![Pannello di "Proprietà" Hello automazione account](media/automation-create-runas-account/automation-account-properties.png)  
 
-### <a name="required-permissions-to-update-your-automation-account"></a>Autorizzazioni necessarie per l'aggiornamento dell'account di Automazione
-Per aggiornare un account di Automazione, è necessario avere le autorizzazioni e i privilegi specifici seguenti, necessari per il completamento di questo argomento.   
+### <a name="required-permissions-tooupdate-your-automation-account"></a>Necessarie autorizzazioni tooupdate l'account di automazione
+tooupdate un account di automazione, è necessario disporre di privilegi specifici seguenti hello e le autorizzazioni necessarie toocomplete in questo argomento.   
  
-* L'account utente di AD deve essere aggiunto a un ruolo con autorizzazioni equivalenti al ruolo Collaboratore per le risorse di Microsoft.Automation, come indicato nell'articolo [Controllo degli accessi in base al ruolo in Automazione di Azure](automation-role-based-access-control.md#contributor-role-permissions).  
-* Gli utenti non amministratori nel tenant di Azure AD possono [registrare le applicazioni di AD](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions) se le impostazioni delle registrazioni dell'app sono impostate su **Sì**.  Se le impostazioni delle registrazioni dell'app sono impostate su **No**, l'utente che esegue questa azione deve essere un amministratore globale in Azure AD. 
+* L'account utente di Active Directory deve toobe tooa aggiunto ruolo con ruolo di collaboratore toohello equivalenti autorizzazioni per le risorse di Microsoft, come illustrato nell'articolo [controllo di accesso basato sui ruoli in automazione di Azure](automation-role-based-access-control.md#contributor-role-permissions).  
+* Gli utenti senza privilegi di amministratore nel tenant di Azure AD possono [registrare applicazioni AD](../azure-resource-manager/resource-group-create-service-principal-portal.md#check-azure-subscription-permissions) se registrazioni di App hello impostazione è troppo**Sì**.  Se le registrazioni di app hello impostazione è troppo**n**, utente hello eseguendo questa azione deve essere un amministratore globale di Azure AD. 
 
-Se l'utente non è membro dell'istanza di Active Directory della sottoscrizione prima dell'aggiunta al ruolo di amministratore globale/coamministratore della sottoscrizione, viene aggiunto ad Active Directory come guest. In questa situazione si riceve un avviso di tipo "L'utente non è autorizzato a creare..." nel pannello **Aggiungi account di Automazione**. Gli utenti che prima sono stati aggiunti al ruolo di amministratore globale/coamministratore possono essere rimossi dall'istanza di Active Directory della sottoscrizione e aggiunti nuovamente per renderli utenti completi in Active Directory. Per verificare questa situazione dal riquadro **Azure Active Directory** nel portale di Azure selezionare **Utenti e gruppi**, **Tutti gli utenti** e, dopo avere selezionato l'utente specifico, selezionare **Profilo**. Il valore dell'attributo **Tipo utente** nel profilo utente non deve essere **Guest**.
+Se non si un membro di istanza di Active Directory della sottoscrizione hello prima dell'aggiunta di toohello amministratore/coamministratore ruolo globale della sottoscrizione di hello, tooActive Directory aggiunti come guest. In questo caso, viene visualizzato un "non si dispone delle autorizzazioni toocreate..." visualizzazione dell'avviso hello **aggiungere Account di automazione** blade. Gli utenti che sono stati aggiunti toohello amministratore/coamministratore ruolo globale può essere rimosso dall'istanza di Active Directory della sottoscrizione hello e riaggiunto toomake prima li un utente in Active Directory completa. tooverify tale situazione, hello **Azure Active Directory** riquadro nel portale di Azure selezionare hello **utenti e gruppi**selezionare **tutti gli utenti** e, dopo aver selezionato hello un utente specifico, seleziona **profilo**. valore di hello Hello **tipo utente** attributo del profilo utenti hello non deve essere uguale **Guest**.
 
-## <a name="create-run-as-account-from-the-portal"></a>Creare un account RunAs dal portale
-La procedura descritta in questa sezione consente di aggiornare un account di Automazione di Azure dal portale di Azure.  Creare gli account RunAs e RunAs classico separatamente; se non è necessario gestire risorse nel portale di Azure classico, è possibile creare solo l'account RunAs di Azure.  
+## <a name="create-run-as-account-from-hello-portal"></a>Creare account RunAs dal portale hello
+In questa sezione, eseguire hello seguendo i passaggi tooupdate l'account di automazione di Azure dal portale di Azure hello.  Creerai hello account RunAs e classico runas singolarmente, e se non sono necessarie risorse toomanage nel portale di Azure classico hello, è possibile creare hello Azure account RunAs.  
 
-Questo processo crea gli elementi seguenti nell'account di Automazione.
+il processo di Hello crea hello elementi nell'account di automazione.
 
 **Per gli account RunAs:**
 
-* Crea un'applicazione Azure AD da esportare con un certificato autofirmato, crea un account dell'entità servizio per l'applicazione in Azure AD e assegna il ruolo Collaboratore per l'account nella sottoscrizione corrente. È possibile cambiare l'impostazione in Proprietario o in qualsiasi altro ruolo. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Automazione di Azure](automation-role-based-access-control.md).
-* Crea un asset di certificato di Automazione denominato *AzureRunAsCertificate* nell'account di Automazione specificato. L'asset di certificato contiene la chiave privata del certificato usata dall'applicazione Azure AD.
-* Crea un asset di connessione di Automazione denominato *AzureRunAsConnection* nell'account di Automazione specificato. L'asset di connessione contiene l'ID applicazione, l'ID tenant, l'ID sottoscrizione e l'identificazione personale del certificato.
+* Crea un'applicazione Azure AD con un certificato autofirmato, crea un account dell'entità servizio per un'applicazione hello in Azure AD e assegna il ruolo di collaboratore hello per conto di hello nella sottoscrizione corrente. È possibile modificare questa impostazione tooOwner o qualsiasi altro ruolo. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Automazione di Azure](automation-role-based-access-control.md).
+* Crea un asset del certificato di automazione denominato *AzureRunAsCertificate* in hello specificato l'account di automazione. asset del certificato di Hello contiene hello chiave privata del certificato utilizzato da un'applicazione hello Azure AD.
+* Crea un asset connessione di automazione denominato *AzureRunAsConnection* in hello specificato l'account di automazione. asset della connessione di Hello contiene hello applicationId, tenantId, ID sottoscrizione e identificazione personale del certificato.
 
 **Per gli account RunAs classici:**
 
-* Crea un asset di certificato di Automazione denominato *AzureClassicRunAsCertificate* nell'account di Automazione specificato. L'asset di certificato contiene la chiave privata del certificato usata dal certificato di gestione.
-* Crea un asset di connessione di Automazione denominato *AzureClassicRunAsConnection* nell'account di Automazione specificato. L'asset di connessione contiene il nome della sottoscrizione, l'ID sottoscrizione e il nome dell'asset di certificato.
+* Crea un asset del certificato di automazione denominato *AzureClassicRunAsCertificate* in hello specificato l'account di automazione. asset del certificato di Hello contiene hello chiave privata del certificato utilizzato dal certificato di gestione di hello.
+* Crea un asset connessione di automazione denominato *AzureClassicRunAsConnection* in hello specificato l'account di automazione. asset della connessione di Hello contiene hello sottoscrizione nome, ID sottoscrizione e nome dell'asset certificato.
 
-1. Accedere al Portale di Azure con un account membro del ruolo Amministratori della sottoscrizione e coamministratore della sottoscrizione.
-2. Nel pannello Account di automazione, selezionare **Account RunAs** nella sezione **Impostazioni account**.  
-3. A seconda del tipo di account necessario, selezionare **Account RunAs di Azure** o **Account RunAs classico di Azure**.  Dopo aver selezionato **Account RunAs di Azure** o **Account RunAs classico di Azure**, viene visualizzato il pannello corrispondente. Rivedere le informazioni generali e fare clic su **Crea** per procedere con la creazione dell'account RunAs.  
-4. Mentre Azure crea l'account RunAs, è possibile tenere traccia dello stato di avanzamento scegliendo **Notifiche** dal menu. Verrà visualizzato un banner per indicare che l'account è in fase di creazione.  Il processo potrebbe richiedere alcuni minuti.  
+1. Accedi toohello portale di Azure con un account che sia un membro del ruolo di amministratori della sottoscrizione hello e al coamministratore della sottoscrizione hello.
+2. Dal Pannello di account di automazione hello, selezionare **account RunAs** nella sezione hello **impostazioni Account**.  
+3. A seconda del tipo di account necessario, selezionare **Account RunAs di Azure** o **Account RunAs classico di Azure**.  Dopo aver selezionato uno hello **aggiungere Azure runas** o **aggiungere Azure classico Account runas** pannello viene visualizzato e dopo aver esaminato le informazioni generali di hello, fare clic su **crea** tooproceed con la creazione di account RunAs.  
+4. Mentre Azure crea account RunAs hello, è possibile monitorare lo stato di avanzamento hello in **notifiche** da hello menu e un messaggio viene visualizzato indicante account hello viene creato.  Questo processo può richiedere alcuni minuti toocomplete.  
 
 ## <a name="create-run-as-account-using-powershell-script"></a>Creare un account RunAs usando lo script di PowerShell
-Questo script di PowerShell include il supporto per le configurazioni seguenti:
+Questo script di PowerShell include il supporto per hello seguenti configurazioni:
 
 * Creare un account RunAs usando un certificato autofirmato.
 * Creare un account RunAs e un account RunAs classico usando un certificato autofirmato.
 * Creare un account RunAs e un account RunAs classico usando un certificato enterprise.
-* Creare un account RunAs e un account RunAs classico usando un certificato autofirmato nel cloud di Azure per enti pubblici.
+* Creare un account RunAs e un classico account RunAs utilizzando un certificato autofirmato in hello cloud di Azure per enti pubblici.
 
-A seconda dell'opzione di configurazione selezionata, lo script crea gli elementi riportati di seguito.
+A seconda opzione di configurazione hello selezionata, lo script di hello crea hello seguenti elementi.
 
 **Per gli account RunAs:**
 
-* Crea un'applicazione Azure AD da esportare con la chiave pubblica del certificato autofirmato o enterprise. Crea un account dell'entità servizio per l'applicazione in Azure AD e assegna il ruolo Collaboratore per l'account nella sottoscrizione corrente. È possibile cambiare l'impostazione in Proprietario o in qualsiasi altro ruolo. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Automazione di Azure](automation-role-based-access-control.md).
-* Crea un asset di certificato di Automazione denominato *AzureRunAsCertificate* nell'account di Automazione specificato. L'asset di certificato contiene la chiave privata del certificato usata dall'applicazione Azure AD.
-* Crea un asset di connessione di Automazione denominato *AzureRunAsConnection* nell'account di Automazione specificato. L'asset di connessione contiene l'ID applicazione, l'ID tenant, l'ID sottoscrizione e l'identificazione personale del certificato.
+* Crea un Azure AD applicazione toobe esportato con entrambi hello autofirmato o chiave pubblica del certificato dell'organizzazione, crea un account dell'entità servizio per un'applicazione hello in Azure AD e assegna hello ruolo Collaboratore per conto di hello in corrente sottoscrizione. È possibile modificare questa impostazione tooOwner o qualsiasi altro ruolo. Per altre informazioni, vedere [Controllo degli accessi in base al ruolo in Automazione di Azure](automation-role-based-access-control.md).
+* Crea un asset del certificato di automazione denominato *AzureRunAsCertificate* in hello specificato l'account di automazione. asset del certificato di Hello contiene hello chiave privata del certificato utilizzato da un'applicazione hello Azure AD.
+* Crea un asset connessione di automazione denominato *AzureRunAsConnection* in hello specificato l'account di automazione. asset della connessione di Hello contiene hello applicationId, tenantId, ID sottoscrizione e identificazione personale del certificato.
 
 **Per gli account RunAs classici:**
 
-* Crea un asset di certificato di Automazione denominato *AzureClassicRunAsCertificate* nell'account di Automazione specificato. L'asset di certificato contiene la chiave privata del certificato usata dal certificato di gestione.
-* Crea un asset di connessione di Automazione denominato *AzureClassicRunAsConnection* nell'account di Automazione specificato. L'asset di connessione contiene il nome della sottoscrizione, l'ID sottoscrizione e il nome dell'asset di certificato.
+* Crea un asset del certificato di automazione denominato *AzureClassicRunAsCertificate* in hello specificato l'account di automazione. asset del certificato di Hello contiene hello chiave privata del certificato utilizzato dal certificato di gestione di hello.
+* Crea un asset connessione di automazione denominato *AzureClassicRunAsConnection* in hello specificato l'account di automazione. asset della connessione di Hello contiene hello sottoscrizione nome, ID sottoscrizione e nome dell'asset certificato.
 
 >[!NOTE]
-> Se si seleziona una delle due opzioni per creare l'account RunAs classico, dopo l'esecuzione dello script è necessario caricare il certificato pubblico, con estensione cer, nell'archivio di gestione della sottoscrizione in cui è stato creato l'account di Automazione.
+> Se si seleziona l'opzione desiderata per la creazione di un classico account RunAs, dopo l'esecuzione di script hello, caricamento hello pubblica Gestione toohello (estensione del nome file con estensione cer) dell'archivio certificati per la sottoscrizione di hello che hello account di automazione è stato creato.
 > 
 
-1. Salvare lo script seguente nel computer. Per questo esempio, salvare il file con il nome *New-RunAsAccount.ps1*.
+1. Salvare lo script seguente nel computer in uso hello. In questo esempio, salvarlo con il nome file hello *New RunAsAccount.ps1*.
 
         #Requires -RunAsAdministrator
         Param (
@@ -164,7 +164,7 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
         $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId
         $GetServicePrincipal = Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id
 
-        # Sleep here for a few seconds to allow the service principal application to become active (ordinarily takes a few seconds)
+        # Sleep here for a few seconds tooallow hello service principal application toobecome active (ordinarily takes a few seconds)
         Sleep -s 15
         $NewRole = New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
         $Retries = 0;
@@ -195,7 +195,7 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
         $AzureRMProfileVersion= (Get-Module AzureRM.Profile).Version
         if (!(($AzureRMProfileVersion.Major -ge 3 -and $AzureRMProfileVersion.Minor -ge 0) -or ($AzureRMProfileVersion.Major -gt 3)))
         {
-            Write-Error -Message "Please install the latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
+            Write-Error -Message "Please install hello latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
             return
         }
 
@@ -222,16 +222,16 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
         $PfxCert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList @($PfxCertPathForRunAsAccount, $PfxCertPlainPasswordForRunAsAccount)
         $ApplicationId=CreateServicePrincipal $PfxCert $ApplicationDisplayName
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $CertifcateAssetName $PfxCertPathForRunAsAccount $PfxCertPlainPasswordForRunAsAccount $true
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionInfo = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
         $TenantID = $SubscriptionInfo | Select TenantId -First 1
         $Thumbprint = $PfxCert.Thumbprint
         $ConnectionFieldValues = @{"ApplicationId" = $ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Thumbprint; "SubscriptionId" = $SubscriptionId}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ConnectionAssetName $ConnectionTypeName $ConnectionFieldValues
 
         if ($CreateClassicRunAsAccount) {
@@ -239,9 +239,9 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
              $ClassicRunAsAccountCertifcateAssetName = "AzureClassicRunAsCertificate"
              $ClassicRunAsAccountConnectionAssetName = "AzureClassicRunAsConnection"
              $ClassicRunAsAccountConnectionTypeName = "AzureClassicCertificate "
-             $UploadMessage = "Please upload the .cer format of #CERT# to the Management store by following the steps below." + [Environment]::NewLine +
-                     "Log in to the Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
-                     "Then click Upload and upload the .cer format of #CERT#"
+             $UploadMessage = "Please upload hello .cer format of #CERT# toohello Management store by following hello steps below." + [Environment]::NewLine +
+                     "Log in toohello Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
+                     "Then click Upload and upload hello .cer format of #CERT#"
 
               if ($EnterpriseCertPathForClassicRunAsAccount -and $EnterpriseCertPlainPasswordForClassicRunAsAccount ) {
               $PfxCertPathForClassicRunAsAccount = $EnterpriseCertPathForClassicRunAsAccount
@@ -256,22 +256,22 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
               CreateSelfSignedCertificate $KeyVaultName $ClassicRunAsAccountCertificateName $PfxCertPlainPasswordForClassicRunAsAccount $PfxCertPathForClassicRunAsAccount $CerCertPathForClassicRunAsAccount $SelfSignedCertNoOfMonthsUntilExpired
         }
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountCertifcateAssetName $PfxCertPathForClassicRunAsAccount $PfxCertPlainPasswordForClassicRunAsAccount $false
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionName = $subscription.Subscription.Name
         $ClassicRunAsAccountConnectionFieldValues = @{"SubscriptionName" = $SubscriptionName; "SubscriptionId" = $SubscriptionId; "CertificateAssetName" = $ClassicRunAsAccountCertifcateAssetName}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountConnectionAssetName $ClassicRunAsAccountConnectionTypeName $ClassicRunAsAccountConnectionFieldValues
 
         Write-Host -ForegroundColor red $UploadMessage
         }
 
-2. Avviare **Windows PowerShell** con diritti utente elevati nel computer dalla schermata **Start**.
-3. Nella shell della riga di comando con privilegi elevati passare alla cartella contenente lo script creato nel passaggio 1.  
-4. Eseguire lo script usando i valori dei parametri per la configurazione richiesta.
+2. Nel computer, avviare **Windows PowerShell** da hello **avviare** schermata con diritti utente elevati.
+3. Da hello elevati shell della riga di comando, passare toohello cartella che contiene lo script hello creato nel passaggio 1.  
+4. Eseguire script hello utilizzando i valori dei parametri hello per la configurazione di hello desiderate.
 
     **Creare un account RunAs usando un certificato autofirmato**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $false`
@@ -282,19 +282,19 @@ A seconda dell'opzione di configurazione selezionata, lo script crea gli element
     **Creare un account RunAs e un account RunAs classico usando un certificato enterprise**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication>  -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true -EnterpriseCertPathForRunAsAccount <EnterpriseCertPfxPathForRunAsAccount> -EnterpriseCertPlainPasswordForRunAsAccount <StrongPassword> -EnterpriseCertPathForClassicRunAsAccount <EnterpriseCertPfxPathForClassicRunAsAccount> -EnterpriseCertPlainPasswordForClassicRunAsAccount <StrongPassword>`
 
-    **Creare un account RunAs e un account RunAs classico usando un certificato autofirmato nel cloud di Azure per enti pubblici**  
+    **Creare un account RunAs e un classico account RunAs utilizzando un certificato autofirmato in hello cloud di Azure per enti pubblici**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true  -EnvironmentName AzureUSGovernment`
 
     > [!NOTE]
-    > Dopo l'esecuzione dello script, viene richiesto di autenticarsi con Azure. Accedere con un account membro del ruolo Amministratori della sottoscrizione e coamministratore della sottoscrizione.
+    > Dopo l'esecuzione di script hello è, sarà richiesta tooauthenticate con Azure. Accedere con un account che sia un membro del ruolo amministratori di sottoscrizione hello e al coamministratore della sottoscrizione hello.
     >
     >
 
-Al termine dell'esecuzione dello script, tenere presente quanto segue:
-* Se è stato creato un account RunAs classico con un certificato pubblico autofirmato, con estensione cer, lo script lo crea e lo salva nella cartella dei file temporanei del computer con il profilo utente *%USERPROFILE%\AppData\Local\Temp*, usato per eseguire la sessione di PowerShell.
-* Se è stato creato un account RunAs classico con un certificato pubblico enterprise, con estensione cer, usare questo certificato. Seguire le istruzioni per [caricare un certificato dell'API di gestione nel portale di Azure classico](../azure-api-management-certs.md) e quindi usare il [codice di esempio per l'autenticazione con le risorse della distribuzione classica di Azure](automation-verify-runas-authentication.md#classic-run-as-authentication) per convalidare la configurazione delle credenziali con tali risorse. 
-* Se *non* è stato creato un account RunAs classico, eseguire l'autenticazione con le risorse di Resource Manager e convalidare la configurazione delle credenziali usando il [codice di esempio per l'autenticazione con le risorse di Service Management](automation-verify-runas-authentication.md#automation-run-as-authentication).
+Dopo l'esecuzione dello script hello completata, si noti seguenti hello:
+* Se è stato creato un classico account RunAs con un certificato pubblico autofirmato (file con estensione cer), script hello crea e Salva toohello cartella dei file temporanei nel computer in uso nel profilo utente hello *%USERPROFILE%\AppData\Local\Temp*, sessione di PowerShell hello tooexecute utilizzati.
+* Se è stato creato un account RunAs classico con un certificato pubblico enterprise, con estensione cer, usare questo certificato. Seguire le istruzioni di hello per [caricando un toohello certificato API di Gestione portale di Azure classico](../azure-api-management-certs.md)e convalidare una configurazione delle credenziali con risorse di distribuzione classica hello utilizzando hello [codice di esempio tooauthenticate con risorse sulla distribuzione di Azure classico](automation-verify-runas-authentication.md#classic-run-as-authentication). 
+* Se è stato eseguito *non* creare un classico account RunAs, l'autenticazione con le risorse di gestione delle risorse e convalidare la configurazione di credenziali di hello utilizzando hello [codice per l'autenticazione con gestione del servizio di esempio risorse](automation-verify-runas-authentication.md#automation-run-as-authentication).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sulle entità servizio, vedere [Oggetti applicazione e oggetti entità servizio](../active-directory/active-directory-application-objects.md).
-* Per altre informazioni sui certificati e i servizi di Azure, vedere [Panoramica sui certificati per i servizi cloud di Azure](../cloud-services/cloud-services-certs-create.md).
+* Per ulteriori informazioni sulle entità servizio, vedere troppo[oggetti applicazione e oggetti entità servizio](../active-directory/active-directory-application-objects.md).
+* Per ulteriori informazioni sui certificati e i servizi di Azure, vedere troppo[panoramica dei certificati per servizi Cloud di Azure](../cloud-services/cloud-services-certs-create.md).

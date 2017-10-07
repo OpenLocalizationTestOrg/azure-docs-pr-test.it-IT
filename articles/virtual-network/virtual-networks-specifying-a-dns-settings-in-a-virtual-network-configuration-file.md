@@ -1,6 +1,6 @@
 ---
-title: Indicazione delle impostazioni DNS in un file di configurazione di rete virtuale | Documentazione Microsoft
-description: Come modificare le impostazioni del server DNS in una rete virtuale usando un file di configurazione di rete virtuale nel modello di distribuzione classica
+title: aaaSpecifying impostazioni DNS in un file di configurazione di rete virtuale | Documenti Microsoft
+description: Come file di impostazioni del server DNS toochange in una rete virtuale usando una configurazione di rete virtuale nel modello di distribuzione classica hello
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: ec33268915a1888509834ce6a5b2bc782a12ce4a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d53a658773e1c930b5a28a701db0be9edd26565e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="specifying-dns-settings-in-a-virtual-network-configuration-file"></a>Indicazione delle impostazioni DNS in un file di configurazione di rete virtuale
-Un file di configurazione di rete dispone di due elementi che è possibile usare per specificare le impostazioni Domain Name System (DNS): **DnsServers** e **DnsServerRef**. È possibile aggiungere un elenco dei server DNS specificando gli indirizzi IP e nomi di riferimento all’elemento **DnsServers** . È quindi possibile utilizzare un elemento **DnsServerRef** per specificare le voci del server DNS che vengono utilizzate per siti di rete diversi all'interno della rete virtuale.
+Un file di configurazione di rete dispone di due elementi che è possibile utilizzare le impostazioni di sistema DNS (Domain Name) toospecify: **DnsServers** e **DnsServerRef**. È possibile aggiungere un elenco dei server DNS specificando i relativi indirizzi IP e fare riferimento a nomi toohello **DnsServers** elemento. È quindi possibile utilizzare un **DnsServerRef** toospecify elemento quali voci dei server DNS dall'elemento DnsServers hello vengono utilizzate per vari siti di rete all'interno della rete virtuale.
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-In questo articolo viene illustrato il modello di distribuzione classica.
+Questo articolo descrive il modello di distribuzione classica hello.
 
-Il file di configurazione di rete può contenere i seguenti elementi. Il titolo di ogni elemento è collegato a una pagina che fornisce informazioni aggiuntive sulle impostazioni del valore dell'elemento.
+file di configurazione di rete Hello può contenere hello seguenti elementi. titolo Hello di ogni elemento è collegato tooa pagina che fornisce informazioni aggiuntive sull'elemento hello impostazioni dei valori.
 
 > [!IMPORTANT]
-> Per altre informazioni sull'utilizzo del file di configurazione di rete, vedere [Configurare una rete virtuale usando un file di configurazione di rete](virtual-networks-using-network-configuration-file.md). Per informazioni sulle impostazioni specifiche contenute in un file di configurazione di rete, vedere [Schema di configurazione di rete virtuale Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+> Per informazioni su come tooconfigure hello file di configurazione di rete, vedere [configurare una rete virtuale usando un File di configurazione di rete](virtual-networks-using-network-configuration-file.md). Per informazioni su ogni elemento contenuto nel file di configurazione di rete hello, vedere [Schema di configurazione di rete virtuale Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
 > 
 > 
 
@@ -46,7 +46,7 @@ Il file di configurazione di rete può contenere i seguenti elementi. Il titolo 
     </Dns>
 
 > [!WARNING]
-> L'attributo **nome** dell'elemento **DnsServer** viene usato solo come riferimento per l'elemento **DnsServerRef**. Non rappresenta il nome host per il server DNS. Ogni valore dell’attributo **DnsServer** deve essere univoco nell'intera sottoscrizione Microsoft Azure
+> Hello **nome** attributo hello **DnsServer** elemento viene usato solo come riferimento per hello **DnsServerRef** elemento. Che rappresenta il nome host hello per il server DNS hello. Ogni **DnsServer** intera sottoscrizione di Microsoft Azure hello valore dell'attributo deve essere univoco
 > 
 > 
 
@@ -59,12 +59,12 @@ Il file di configurazione di rete può contenere i seguenti elementi. Il titolo 
     </DnsServersRef>
 
 > [!NOTE]
-> Per specificare questa impostazione per l'elemento siti di rete virtuale, esso deve essere definito in precedenza nell'elemento DNS. Il *nome*del DnsServerRef dell'elemento siti di rete virtuale deve fare riferimento a un valore nome specificato nell'elemento DNS per *nome* DnsServer.
+> In ordine toospecify questa impostazione per l'elemento relativo ai siti di rete virtuale hello, deve essere definito in precedenza nell'elemento DNS hello. Hello DnsServerRef *nome* in siti di rete virtuale hello l'elemento deve fare riferimento tooa nome valore specificato nell'elemento DNS hello per DnsServer *nome*.
 > 
 > 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Informazioni sullo [Schema di configurazione delle reti virtuali di Azure](http://go.microsoft.com/fwlink/?LinkId=248093).
-* Informazioni sullo [Schema di configurazione dei servizi di Azure](https://msdn.microsoft.com/library/windowsazure/ee758710).
+* Comprendere hello [Schema di configurazione di rete virtuale Azure](http://go.microsoft.com/fwlink/?LinkId=248093).
+* Comprendere hello [dello Schema di configurazione del servizio di Azure](https://msdn.microsoft.com/library/windowsazure/ee758710).
 * [Configurare una rete virtuale usando un file di configurazione di rete](virtual-networks-using-network-configuration-file.md).
 

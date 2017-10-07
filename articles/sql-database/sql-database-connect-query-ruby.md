@@ -1,6 +1,6 @@
 ---
-title: Usare Ruby per eseguire query sul database SQL di Azure | Microsoft Docs
-description: Questo argomento illustra come usare Ruby per creare un programma che si connette a un database SQL di Azure ed esegue query usando istruzioni Transact-SQL.
+title: aaaUse tooquery Ruby Database SQL di Azure | Documenti Microsoft
+description: In questo argomento illustra come toouse toocreate Ruby un programma che si connette tooan Database SQL di Azure e query tramite istruzioni Transact-SQL.
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,51 +15,51 @@ ms.devlang: ruby
 ms.topic: hero-article
 ms.date: 07/14/2017
 ms.author: carlrab
-ms.openlocfilehash: 25ff9a9cfaa5494dbb006c84e235099fe51e6545
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0d4b16b8aacb5e376ab80cbe37569130f2fd52b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-ruby-to-query-an-azure-sql-database"></a>Usare Ruby per eseguire query su un database SQL di Azure
+# <a name="use-ruby-tooquery-an-azure-sql-database"></a>Utilizzare tooquery Ruby un database SQL di Azure
 
-Questa esercitazione introduttiva illustra come usare [Ruby](https://www.ruby-lang.org) per creare un programma per connettersi a un database SQL di Azure e usare istruzioni Transact-SQL per eseguire query sui dati.
+Questa esercitazione introduttiva illustra come toouse [Ruby](https://www.ruby-lang.org) toocreate un tooan tooconnect programma Azure SQL database e utilizzare dati tooquery di istruzioni Transact-SQL.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per completare questa esercitazione introduttiva, accertarsi di avere i prerequisiti seguenti:
+Questo rapido toocomplete esercitazione per l'avvio, assicurarsi di avere hello seguenti prerequisiti:
 
-- un database SQL di Azure. Questa guida introduttiva usa le risorse create in una delle guide introduttive seguenti: 
+- un database SQL di Azure. Questa Guida introduttiva utilizza risorse di hello create in una di queste guide introduttive: 
 
    - [Creare un database: portale](sql-database-get-started-portal.md)
    - [Creare un database: interfaccia della riga di comando](sql-database-get-started-cli.md)
    - [Creare un database: PowerShell](sql-database-get-started-powershell.md)
 
-- Una [regola del firewall a livello di server](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) per l'indirizzo IP pubblico del computer usato per questa esercitazione introduttiva.
+- Oggetto [regola del firewall a livello di server](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) per l'indirizzo IP pubblico hello del computer hello è utilizzare per questa esercitazione introduttiva.
 - Avere installato Ruby e il software correlato per il sistema operativo.
     - **MacOS**: installare Homebrew, installare rbenv e ruby-build, installare Ruby e quindi installare FreeTDS. Vedere i [passaggi 1.2, 1.3, 1.4 e 1.5](https://www.microsoft.com/sql-server/developer-get-started/ruby/mac/).
     - **Ubuntu**: installare i prerequisiti per Ruby, installare rbenv e ruby-build, installare Ruby e quindi installare FreeTDS. Vedere i [passaggi 1.2, 1.3, 1.4 e 1.5](https://www.microsoft.com/sql-server/developer-get-started/ruby/ubuntu/).
 
 ## <a name="sql-server-connection-information"></a>Informazioni di connessione SQL Server
 
-Ottenere le informazioni di connessione necessarie per connettersi al database SQL di Azure. Nelle procedure successive saranno necessari il nome completo del server, il nome del database e le informazioni di accesso.
+Ottenere il database di SQL Azure toohello hello connessione le informazioni necessarie tooconnect. Sarà necessario hello nome completo del server, nome del database e le informazioni di accesso nelle procedure successive hello.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com/).
-2. Scegliere **Database SQL** dal menu a sinistra, quindi fare clic sul database nella pagina **Database SQL**. 
-3. Nella pagina **Panoramica** del database esaminare il nome completo del server. È possibile passare il puntatore sul nome del server per visualizzare l'opzione **Fare clic per copiare**, come illustrato nell'immagine seguente:
+1. Accedi toohello [portale di Azure](https://portal.azure.com/).
+2. Selezionare **database SQL** dal menu a sinistra di hello, scegliere il database in hello **database SQL** pagina. 
+3. In hello **Panoramica** pagina per il database, esaminare hello nome completo del server. È possibile passare il mouse su toobring nome di server hello backup hello **fare clic su toocopy** opzione, come illustrato nella seguente immagine hello:
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. Se si sono dimenticate le informazioni di accesso per il server del database SQL di Azure, passare alla pagina del server del database SQL per visualizzare il nome dell'amministratore del server e, se necessario, reimpostare la password.
+4. Se si hanno dimenticato di informazioni di accesso hello del server di Database SQL di Azure, passare toohello Database di SQL server pagina tooview hello admin nome del server e, se necessario, reimpostare la password di hello.
 
 > [!IMPORTANT]
-> È necessario avere una regola del firewall impostata per l'indirizzo IP pubblico del computer su cui si esegue questa esercitazione. Se si usa un computer o un indirizzo IP pubblico diverso, creare una [regola del firewall a livello di server con il portale di Azure](sql-database-get-started-portal.md#create-a-server-level-firewall-rule). 
+> Sul posto per l'indirizzo IP pubblico hello del computer hello in cui si esegue questa esercitazione, è necessario disporre una regola del firewall. Se in un computer diverso o di un diverso indirizzo IP pubblico, creare un [regola firewall di livello server utilizzando il portale di Azure di hello](sql-database-get-started-portal.md#create-a-server-level-firewall-rule). 
 
-## <a name="insert-code-to-query-sql-database"></a>Inserire il codice per eseguire query sul database SQL
+## <a name="insert-code-tooquery-sql-database"></a>Inserire codice tooquery SQL database
 
 1. Nell'editor di testo preferito creare un nuovo file, **sqltest.rb**.
 
-2. Sostituire il contenuto con il codice seguente e aggiungere i valori appropriati per il server, il database, l'utente e la password.
+2. Sostituire il contenuto di hello con hello seguente di codice e aggiungere hello valori appropriati per il server, database, l'utente e password.
 
 ```ruby
 require 'tiny_tds'
@@ -81,15 +81,15 @@ result.each do |row|
 end
 ```
 
-## <a name="run-the-code"></a>Eseguire il codice
+## <a name="run-hello-code"></a>Eseguire il codice hello
 
-1. Al prompt dei comandi eseguire questi comandi:
+1. Al prompt dei comandi di hello, eseguire hello seguenti comandi:
 
    ```bash
    ruby sqltest.rb
    ```
 
-2. Verificare che vengano restituite le prime 20 righe e quindi chiudere la finestra dell'applicazione.
+2. Verificare che i 20 righe hello superiore vengono restituite e chiudere la finestra dell'applicazione hello.
 
 
 ## <a name="next-steps"></a>Passaggi successivi

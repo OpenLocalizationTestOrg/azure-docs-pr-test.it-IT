@@ -1,6 +1,6 @@
 ---
-title: API per clienti Enterprise per la fatturazione di Azure - Saldi e riepilogo | Microsoft Docs
-description: Informazioni sull'utilizzo dell'API di fatturazione e dell'API RestCard di Azure, utilizzate per offrire informazioni sul consumo di risorse e sulle tendenze di Azure.
+title: aaaAzure fatturazione API Enterprise - bilanciamento e riepilogo | Documenti Microsoft
+description: Informazioni sull'utilizzo di fatturazione di Azure e APIs RateCard, che sono utilizzati tooprovide approfondite consumo delle risorse di Azure e le tendenze.
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: f6b149f0e656d2263705048aa5b644f5bb4a5712
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b031de2c347e5abeacd11743cc96024434518918
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---balance-and-summary"></a>API di creazione report per clienti Enterprise - Saldi e riepilogo
 
-L'API per saldi e riepilogo offre un riepilogo mensile delle informazioni su saldi, nuovi acquisti, addebiti per il servizio Azure Marketplace e spese per modifiche e da pagare in eccedenza.
+Hello bilanciamento e API riepilogo offre un riepilogo di informazioni sulle saldi nuovi acquisti, Azure Marketplace spese, regolazioni e spese eccedenza mensile.
 
 
 ##<a name="request"></a>Richiesta 
-Le proprietà di intestazione comuni che devono essere aggiunte vengono specificate [qui](billing-enterprise-api.md). Se non viene specificato alcun periodo di fatturazione, vengono restituiti i dati per il periodo di fatturazione corrente.
+Sono specificate proprietà di intestazione comuni che richiedono toobe aggiunto [qui](billing-enterprise-api.md). Se non viene specificato un periodo di fatturazione, dati di fatturazione corrente hello periodo viene quindi restituiti.
 
 |Metodo | URI della richiesta|
 |-|-|
@@ -35,7 +35,7 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingPeriods/{billingPeriod}/balancesummary|
 
 > [!Note]
-> Per usare la versione di anteprima dell'API, sostituire v2 con v1 nell'URL precedente.
+> versione di anteprima hello toouse dell'API, sostituire v2 con v1 in hello sopra URL.
 >
 
 ## <a name="response"></a>Response
@@ -77,11 +77,11 @@ Le proprietà di intestazione comuni che devono essere aggiunte vengono specific
 
 |Nome proprietà| Tipo| Descrizione
 |-|-|-|
-|id|string|ID univoco per un periodo di fatturazione e per una registrazione specifici|
-|billingPeriodId|string |ID periodo di fatturazione|
-|currencyCode|string |Codice della valuta|
-|beginningBalance|decimal| Saldo iniziale per il periodo di fatturazione|
-|endingBalance|decimal| Saldo finale per il periodo di fatturazione (viene aggiornato quotidianamente per i periodi aperti)|
+|id|string|Hello Id univoco per un determinato periodo di fatturazione e la registrazione|
+|billingPeriodId|string |ID del periodo di fatturazione Hello|
+|currencyCode|string |codice di valuta Hello|
+|beginningBalance|decimal| Saldo iniziale Hello per periodo di fatturazione hello|
+|endingBalance|decimal| Hello saldo finale per periodo di fatturazione hello (per periodi di aprire che questo verrà aggiornato quotidianamente)|
 |newPurchases|decimal| Totale nuovo importo di acquisto|
 |adjustments|decimal| Quantità totale rettificata|
 |utilized|decimal| Uso totale dell'impegno|

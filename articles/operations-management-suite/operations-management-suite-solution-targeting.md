@@ -1,6 +1,6 @@
 ---
-title: Targeting della solution in OMS | Documentazione Microsoft
-description: "Il targeting della soluzione è una funzione di Operations Management Suite (OMS) che consente di limitare le soluzioni di gestione a un set specifico di agenti.  Questo articolo descrive come creare una configurazione di ambito e applicarla a una soluzione."
+title: aaaSolution come destinazione di OMS | Documenti Microsoft
+description: "Destinazioni di soluzione sono una funzionalità di Operations Management Suite (OMS) che consente di toolimit Gestione soluzioni tooa set specifico di agenti.  Questo articolo viene descritto come toocreate una configurazione di ambito e applicarlo tooa soluzione."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: bwren
-ms.openlocfilehash: cb73a2d7ae57a5a11869259dbe913ae83ffb2b01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f8c8109e0d9e282e18724bf8b673b10de8e498a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-solution-targeting-in-operations-management-suite-oms-to-scope-management-solutions-to-specific-agents-preview"></a>Usare il targeting della soluzione in Operations Management Suite (OMS) per definire l'ambito delle soluzioni di gestione e assegnarlo a determinati agenti (anteprima)
-Quando si aggiunge una soluzione a OMS, viene automaticamente distribuita per impostazione predefinita a tutti gli agenti di Windows e Linux connessi all'area di lavoro di Log Analytics.  Si consiglia di gestire i costi e limitare la quantità di dati raccolti per una soluzione limitandola a un determinato set di agenti.  Questo articolo descrive come usare il **targeting della soluzione**, una funzionalità OMS che consente di applicare un ambito alle soluzioni.
+# <a name="use-solution-targeting-in-operations-management-suite-oms-tooscope-management-solutions-toospecific-agents-preview"></a>Utilizzare Esplora targeting in Operations Management Suite (OMS) gli agenti toospecific soluzioni di gestione di tooscope (anteprima)
+Quando si aggiunge un tooOMS soluzione, viene distribuito automaticamente da tooall Windows e Linux gli agenti connessi tooyour Log Analitica area di lavoro predefinita.  È opportuno toomanage i costi e limite hello della quantità di dati raccolti per una soluzione limitandolo tooa particolare set di agenti.  Questo articolo viene descritto come toouse **soluzione destinazione** che è una funzionalità OMS che consente a un ambito tooapply tooyour soluzioni.
 
-## <a name="how-to-target-a-solution"></a>Come definire un ambito per una soluzione
-Definire l'ambito di una soluzione è una procedura di tre passaggi, come descritto nelle sezioni seguenti.  Per completare questi passaggi è necessario sia il portale OMS che il portale di Azure.
+## <a name="how-tootarget-a-solution"></a>Come tootarget una soluzione
+Esistono tre passaggi tootargeting una soluzione come descritto in hello le sezioni seguenti.  Si noti che è necessario il portale di OMS hello sia hello portale di Azure per i diversi passaggi.
 
 
 ### <a name="1-create-a-computer-group"></a>1. Creare un gruppo di computer
-Specificare i computer che si desidera includere in un ambito creando un [gruppo di computer](../log-analytics/log-analytics-computer-groups.md) in Log Analytics.  Il gruppo di computer può essere basato su una ricerca log o importato da altre origini, ad esempio gruppi di Active Directory o WSUS. Come [descritto di seguito](#solutions-and-agents-that-cant-be-targeted), solo i computer direttamente collegati a Log Analytics verranno inclusi nell'ambito.
+Specificare i computer hello che si vuole tooinclude in un ambito, la creazione di un [gruppo di computer](../log-analytics/log-analytics-computer-groups.md) nel Log Analitica.  gruppo di computer Hello in base a una ricerca di log o importato da origini diverse, ad esempio Active Directory o gruppi WSUS. Come [descritto di seguito](#solutions-and-agents-that-cant-be-targeted), solo i computer che sono direttamente connessi tooLog Analitica verrà inclusi nell'ambito di hello.
 
-Dopo avere creato il gruppo di computer nell'area di lavoro è necessario includerlo in una configurazione di ambito che può essere applicata a una o più soluzioni.
+Dopo aver creato il gruppo di computer hello creato nell'area di lavoro, è possibile includerlo in una configurazione di ambito che può essere applicati tooone o altre soluzioni.
  
  
  ### <a name="2-create-a-scope-configuration"></a>2. Creare una configurazione ambito
- Una **configurazione ambito** include uno o più gruppi di computer e può essere applicata a una o più soluzioni. 
+ Oggetto **configurazione dell'ambito** include uno o più gruppi di computer e possono essere applicati tooone o altre soluzioni. 
  
- Creare una configurazione ambito con la seguente procedura.  
+ Creare una configurazione di ambito utilizzando hello processo.  
 
- 1. Nel portale di Azure passare a **Log Analytics** e selezionare la propria area di lavoro.
- 2. Nelle proprietà dell'area di lavoro in **Origini dati dell'area di lavoro** selezionare **Configurazioni ambito**.
- 3. Fare clic su **Aggiungi** per creare una nuova configurazione ambito.
- 4. Digitare un **Nome** per la configurazione ambito.
+ 1. Nel portale di Azure hello, passare troppo**Analitica Log** e selezionare l'area di lavoro.
+ 2. Nelle proprietà dell'area di lavoro hello in hello **origini di dati dell'area di lavoro** selezionare **configurazioni ambito**.
+ 3. Fare clic su **Aggiungi** toocreate una nuova configurazione di ambito.
+ 4. Digitare un **nome** per la configurazione dell'ambito hello.
  5. Fare clic su **Selezionare i gruppi di computer**.
- 6. Selezionare il gruppo di computer che è stato creato e, facoltativamente, tutti gli altri gruppi da aggiungere alla configurazione.  Fare clic su **Seleziona**.  
- 6. Fare clic su **OK** per creare la configurazione ambito. 
+ 6. Selezionare il gruppo di computer hello creato e, facoltativamente, qualsiasi altra tooadd toohello configurazione di gruppi.  Fare clic su **Seleziona**.  
+ 6. Fare clic su **OK** configurazione dell'ambito toocreate hello. 
 
 
- ### <a name="3-apply-the-scope-configuration-to-a-solution"></a>3. Applicare la configurazione ambito a una soluzione.
-Dopo aver creato una configurazione ambito, è possibile applicarla a una o più soluzioni.  Si noti che è possibile usare una sola configurazione ambito con più soluzioni e che ogni soluzione può usare solo una configurazione ambito.
+ ### <a name="3-apply-hello-scope-configuration-tooa-solution"></a>3. Applicare hello ambito configurazione tooa soluzione.
+Dopo aver creato una configurazione di ambito, quindi è possibile applicarlo tooone o altre soluzioni.  Si noti che è possibile usare una sola configurazione ambito con più soluzioni e che ogni soluzione può usare solo una configurazione ambito.
 
-Applicare una configurazione ambito con la seguente procedura.  
+Applicare una configurazione di ambito mediante hello processo.  
 
- 1. Nel portale di Azure passare a **Log Analytics** e selezionare la propria area di lavoro.
- 2. Nelle proprietà dell'area di lavoro selezionare **Soluzioni**.
- 3. Fare clic sulla soluzione a cui applicare l'ambito.
- 4. Nelle proprietà della soluzione in **Origini dati dell'area di lavoro** selezionare **Targeting della soluzione**.  Se l'opzione non è disponibile significa che [non è possibile eseguire il targeting di questa soluzione](#solutions-and-agents-that-cant-be-targeted).
- 5. Fare clic su **Aggiungi configurazione dell'ambito**.  Se a questa soluzione è già applicata una configurazione, l'opzione non sarà disponibile.  È necessario rimuovere la configurazione esistente prima di aggiungerne un'altra.
- 6. Fare clic sulla configurazione ambito creata.
- 7. Osservare lo **Stato** della configurazione per assicurarsi che sia **Operazione riuscita**.  Se lo stato indica un errore, fare clic sui tre puntini a destra della configurazione e selezionare **Modifica configurazione dell'ambito** per apportare modifiche.
+ 1. Nel portale di Azure hello, passare troppo**Analitica Log** e selezionare l'area di lavoro.
+ 2. Selezionare la proprietà hello per area di lavoro hello **soluzioni**.
+ 3. Fare clic sulla soluzione hello desiderato tooscope.
+ 4. Nelle proprietà hello per soluzione hello in **origini di dati dell'area di lavoro** selezionare **soluzione destinazione**.  Se non è disponibile l'opzione hello quindi [questa soluzione non può essere destinata](#solutions-and-agents-that-cant-be-targeted).
+ 5. Fare clic su **Aggiungi configurazione dell'ambito**.  Se si dispone già di una soluzione di toothis configurazione applicata questa opzione non sarà disponibile.  È necessario rimuovere una configurazione esistente di hello prima di aggiungere un altro.
+ 6. Fare clic su configurazione di ambito hello è stato creato.
+ 7. Hello Watch **stato** di tooensure configurazione hello che mostra **Succeeded**.  Se lo stato di hello indica un errore, quindi fare clic su hello ellisse toohello destra della configurazione hello e selezionare **configurazione dell'ambito di modifica** toomake modifiche.
 
 ## <a name="solutions-and-agents-that-cant-be-targeted"></a>Soluzioni e agenti di cui non è possibile eseguire il targeting
-Di seguito sono riportati i criteri che determinano gli agenti e le soluzioni non utilizzabili con il targeting della soluzione.
+Di seguito sono criteri hello per gli agenti e non possono essere utilizzate con la destinazione di Esplora soluzioni.
 
-- Il targeting della soluzione si applica alle soluzioni distribuite agli agenti.
-- Il targeting della soluzione si applica alle soluzioni fornite da Microsoft.  Non è applicabile alle soluzioni [create dall'utente o da partner](operations-management-suite-solutions-creating.md).
-- È possibile filtrare solo gli agenti che si connettono direttamente a Log Analytics.  Le soluzioni saranno distribuite automaticamente a tutti gli agenti che fanno parte di un gruppo di gestione Operations Manager connesso, che siano o meno inclusi in una configurazione di ambito.
+- Soluzione è destinata solo toosolutions che distribuiscono tooagents.
+- Soluzione è destinata solo toosolutions fornito da Microsoft.  Non è applicabile toosolutions [creati autonomamente o partner](operations-management-suite-solutions-creating.md).
+- È possibile filtrare solo gli agenti che si connettono direttamente tooLog Analitica.  Soluzioni distribuirà automaticamente tooany agenti che fanno parte di un gruppo di gestione di Operations Manager connesso o meno vengono inclusi in una configurazione di ambito.
 
 ### <a name="exceptions"></a>Eccezioni
-Il targeting della soluzione non può essere usato con le soluzioni seguenti anche se soddisfano i criteri stabiliti.
+Soluzione di destinazione non può essere utilizzato con hello seguenti soluzioni anche se si adatta hello indicato criteri.
 
 - Valutazione dell'integrità dell'agente
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Altre informazioni sulle soluzioni di gestione, tra cui le soluzioni disponibili per l'installazione nell'ambiente, sono riportate in [Aggiungere soluzioni di gestione di Log Analytics di Azure all'area di lavoro](../log-analytics/log-analytics-add-solutions.md).
+- Altre informazioni sulle soluzioni di gestione, ad esempio hello soluzioni che sono disponibili tooinstall nell'ambiente in uso in [dell'area di lavoro di aggiungere Azure Log Analitica Gestione soluzioni tooyour](../log-analytics/log-analytics-add-solutions.md).
 - Altre informazioni sulla creazione di gruppi di computer sono riportate in [Gruppi di computer nelle ricerche log in Log Analytics](../log-analytics/log-analytics-computer-groups.md).

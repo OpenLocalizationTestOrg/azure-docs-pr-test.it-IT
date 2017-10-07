@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio e gestione degli avvisi di sicurezza nella soluzione Sicurezza e controllo di Operations Management Suite | Documentazione Microsoft
-description: "Questo documento illustra come usare la funzionalità di intelligence per le minacce disponibile nel dashboard Security and Audit (Sicurezza e controllo) di OMS per monitorare e gestire gli avvisi di sicurezza."
+title: aaaMonitoring e risposta tooSecurity avvisi in Operations Management Suite di protezione e controllo soluzione | Documenti Microsoft
+description: Questo documento consente si toouse hello threat intelligence opzione disponibile in OMS sicurezza e controllo toomonitor e risposta toosecurity avvisi.
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: yurid
-ms.openlocfilehash: 0cf9b83d7023641ec445a59a5e61d3da038695fa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d92b6809b7bd934c889afc119e5e34ff2b85f1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitoring-and-responding-to-security-alerts-in-operations-management-suite-security-and-audit-solution"></a>Monitoraggio e gestione degli avvisi di sicurezza nella soluzione Sicurezza e controllo di Operations Management Suite
-Questo documento illustra come usare la funzionalità di intelligence per le minacce disponibile nel dashboard Security and Audit (Sicurezza e controllo) di OMS per monitorare e gestire gli avvisi di sicurezza.
+# <a name="monitoring-and-responding-toosecurity-alerts-in-operations-management-suite-security-and-audit-solution"></a>Monitorare e rispondere toosecurity avvisi nella soluzione di controllo e protezione di Operations Management Suite
+Questo documento consente di utilizzare hello threat intelligence opzione disponibile in OMS sicurezza e controllo toomonitor e rispondere toosecurity avvisi.
 
 ## <a name="what-is-oms"></a>Cos'è OMS?
-Microsoft Operations Management Suite (OMS) è la soluzione Microsoft per la gestione IT basata sul cloud che consente di gestire e proteggere l'infrastruttura locale e cloud. Per altre informazioni su OMS, leggere l'articolo [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx).
+Microsoft Operations Management Suite (OMS) è la soluzione Microsoft per la gestione IT basata sul cloud che consente di gestire e proteggere l'infrastruttura locale e cloud. Per ulteriori informazioni su OMS, leggere l'articolo hello [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx).
 
 ## <a name="threat-intelligence"></a>Intelligence per le minacce
-In un ambiente aziendale in cui gli utenti hanno ampio accesso alla rete e usano una vasta gamma di dispositivi per connettersi ai dati aziendali, è fondamentale avere la possibilità di monitorare attivamente le risorse e rispondere in modo rapido agli eventi di sicurezza imprevisti. Ciò è particolarmente importante dal punto di vista della sicurezza perché le minacce alla sicurezza informatica non sempre generano avvisi o segnalazioni di attività sospette identificabili dai tradizionali controlli tecnici della sicurezza. 
+In un ambiente aziendale in cui gli utenti accesso ampio toohello rete e utilizzano una varietà di dispositivi tooconnect toocorporate dati, è fondamentale che è possibile monitorare attivamente le risorse e rispondere rapidamente gli eventi imprevisti toosecurity. Questo è particolarmente importante dalla prospettiva del ciclo di vita di sicurezza hello perché alcuni riguardanti la sicurezza minacce potrebbero non generare avvisi o le attività sospette che possono essere identificate tramite controlli tecnici di sicurezza tradizionali. 
 
-Tramite la funzionalità **Threat Intelligence** (Intelligence per le minacce) disponibile nel dashboard Security and Audit (Sicurezza e controllo) di OMS, gli amministratori IT possono identificare le minacce alla sicurezza dell'ambiente, ad esempio determinare se un computer fa parte di una [botnet](https://www.microsoft.com/security/sir/story/default.aspx#!botnetsection). I computer possono diventare nodi di una botnet quando utenti malintenzionati installano illecitamente malware che connette il computer al comando e al controllo all'insaputa dell'utente. Questa funzionalità è anche in grado di identificare potenziali minacce provenienti da canali di comunicazione sotterranei, ad esempio una [darknet](https://www.microsoft.com/security/sir/story/default.aspx#!botnetsection_honeypots_darkents). 
+Utilizzando hello **minacce** opzione disponibili in OMS Security and Audit, gli amministratori IT può identificare i rischi di sicurezza ambiente hello, ad esempio, identificare se un determinato computer fa parte di un [ botnet](https://www.microsoft.com/security/sir/story/default.aspx#!botnetsection). I computer possono diventare i nodi in una botnet quando gli utenti malintenzionati illecitamente installa il software dannoso che si connette segretamente questo comando toohello computer e il controllo. Questa funzionalità è anche in grado di identificare potenziali minacce provenienti da canali di comunicazione sotterranei, ad esempio una [darknet](https://www.microsoft.com/security/sir/story/default.aspx#!botnetsection_honeypots_darkents). 
 
-Per creare questa intelligence per le minacce, Security and Audit (Sicurezza e controllo) di OMS si basa su dati provenienti da più origini nell'ambito di Microsoft e sfrutta i dati rilevati per identificare le potenziali minacce all'ambiente.
+In ordine toobuild sulle minacce, OMS Security and Audit utilizzare dati provenienti da più origini all'interno di Microsoft. OMS Security and Audit sfruttano questa tooidentify potenziali minacce per i dati contro l'ambiente.
 
-Il riquadro Threat Intelligence (Intelligence per le minacce) è composto da tre aree principali:
+riquadro di informazioni sulle minacce Hello è composto da tre principali opzioni:
 
 * Server con traffico dannoso in uscita
 * Tipi di minacce rilevate
@@ -45,59 +45,59 @@ Il riquadro Threat Intelligence (Intelligence per le minacce) è composto da tre
 > 
 > 
 
-### <a name="responding-to-security-alerts"></a>Rispondere agli avvisi di sicurezza
-Uno dei passaggi della procedura di [risposta agli eventi di sicurezza imprevisti](https://technet.microsoft.com/library/cc512623.aspx) consiste nell'identificare la gravità della compromissione dei sistemi. In questa fase è necessario svolgere le attività seguenti:
+### <a name="responding-toosecurity-alerts"></a>Risponde toosecurity avvisi
+Uno dei passaggi di hello di un [risposta agli eventi imprevisti di protezione](https://technet.microsoft.com/library/cc512623.aspx) processo è il livello di gravità di tooidentify hello del sistema di compromissione hello. In questa fase è necessario eseguire hello seguenti attività:
 
-* Determinare la natura dell'attacco.
-* Determinare il punto di origine dell'attacco.
-* Determinare l'intento dell'attacco. Si tratta di un attacco casuale o di un attacco appositamente mirato ad acquisire informazioni specifiche dell'organizzazione?
-* Identificare i sistemi che sono stati compromessi.
-* Identificare i file a cui è stato eseguito l'accesso e determinarne il grado di riservatezza.
+* Determinare la natura hello di attacco hello
+* Determinare il punto di attacco hello di origine.
+* Determinare l'intento di hello di attacco hello. È stato casuale o è stato espressamente le informazioni specifiche di organizzazione tooacquire attacco di hello?
+* Identificare i sistemi di hello che sono stato compromesso
+* Identificare i file hello che sono stati eseguiti e determinano la sensibilità hello di tali file
 
-Per svolgere più facilmente queste attività è possibile sfruttare le informazioni di **Threat Intelligence** (Intelligence per le minacce) nella soluzione OMS per la sicurezza e il controllo. Per accedere alle opzioni di **Threat Intelligence** (Intelligence per le minacce) seguire questa procedura:
+È possibile sfruttare **minacce** informazioni in OMS Security and Audit toohelp soluzione con queste attività. Seguire i passaggi di hello sotto tooaccess **minacce** opzioni:
 
-1. Nel dashboard principale **Microsoft Operations Management Suite** fare clic sul riquadro **Security and Audit** (Sicurezza e controllo).
+1. In hello **Microsoft Operations Management Suite** fare clic su dashboard principale **Security and Audit** riquadro.
    
     ![Security and Audit](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig1.png)
-2. Nel dashboard **Security and Audit** (Sicurezza e controllo) verranno visualizzate le opzioni di **Threat Intelligence** (Intelligence per le minacce), come illustrato di seguito:
+2. In hello **Security and Audit** dashboard, si noterà hello **minacce** opzioni nella finestra di destra hello, come illustrato di seguito:
    
     ![Intelligence per le minacce](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig2-ga.png)
 
-Questi tre riquadri presentano una panoramica delle minacce correnti. In **Server with outbound malicious traffic** (Server con traffico dannoso in uscita) è possibile identificare se un computer sottoposto a monitoraggio (all'interno o all'esterno della rete) sta inviando traffico dannoso alla rete Internet. 
+Questi tre riquadri offrono una panoramica delle minacce corrente hello. In hello **Server con traffico dannoso in uscita** sarà in grado di tooidentify se esiste qualsiasi computer che si sta monitorando (all'interno o all'esterno della rete) vale a dire toohello traffico dannoso invio Internet. 
 
-Il riquadro **Detected threat types** (Tipi di minacce rilevate) mostra un riepilogo delle minacce attualmente "in circolazione". Se si fa clic su questo riquadro, vengono visualizzati altri dettagli sulle minacce, come mostrato di seguito:
+Hello **rilevati tipi di minacce** riquadro viene visualizzato un riepilogo delle minacce hello correnti "in hello wild", se si fa clic su questo riquadro verranno visualizzati ulteriori dettagli su queste minacce come illustrato di seguito:
 
 ![Tipi di minacce rilevate](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig3.png)
 
-È possibile ottenere altre informazioni facendo clic su ogni minaccia. L'esempio seguente mostra altri dettagli su Botnet:
+È possibile ottenere altre informazioni facendo clic su ogni minaccia. esempio Hello riportato di seguito mostra ulteriori dettagli su Botnet:
 
 ![altri dettagli su una minaccia](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig4.png)
 
-Come descritto all'inizio della sezione, queste informazioni possono essere molto utili per rispondere a un evento imprevisto. Possono essere importanti anche nell'ambito di un'indagine giudiziaria, in cui è necessario individuare l'origine dell'attacco, i sistemi compromessi e la sequenza temporale. In questo report è possibile identificare con facilità alcuni dettagli fondamentali sull'attacco, ad esempio l'origine, l'indirizzo IP locale compromesso e lo stato della sessione corrente della connessione. 
+Come descritto in questa sezione di inizio hello, queste informazioni possono essere molto utile durante un caso di risposta agli eventi imprevisti. Può anche essere importante durante un'analisi forense, in cui è necessario origine hello toofind attacco hello, il sistema è stato compromesso e hello sequenza temporale. In questo report è possibile identificare facilmente alcuni dettagli chiave sull'attacco hello, ad esempio: hello origine dell'attacco hello, hello IP locale che è stata compromessa e lo stato della sessione corrente della connessione hello hello. 
 
-La **mappa di intelligence per le minacce** consente di individuare facilmente le località del mondo in cui è presente traffico dannoso. Le frecce di colore arancione (in entrata) e quelle di colore rosso (in uscita) sulla mappa identificano la direzione del traffico. Se si fa clic su una delle frecce, vengono visualizzati il tipo di minaccia e la direzione del traffico, come illustrato di seguito:
+Hello **mappa intelligence minaccia** consentirà di tooidentify hello corrente le località in tutto il mondo hello con traffico dannoso. Sono disponibili arancione (in entrata) e (in uscita) frecce rosse in questa mappa che identificano direzione del traffico di hello, se fa clic su una di queste frecce, verrà visualizzato il tipo di hello della direzione del traffico di minacce e hello come illustrato di seguito:
 
 ![mappa di intelligence per le minacce](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig5.png)
 
 > [!NOTE]
-> È possibile visualizzare una dimostrazione su come usare questa funzionalità durante un processo di risposta a un evento imprevisto; a questo scopo guardare la presentazione [Mitigate datacenter security threats with guided investigation using Operations Management Suite](https://myignite.microsoft.com/videos/5000) (Mitigazione delle minacce per la sicurezza dei data center con l'analisi guidata tramite Operations Management Suite), tenuta presso Microsoft Ignite.
+> È possibile visualizzare una dimostrazione sul toouse questa funzionalità durante un intervento sul processo, è possibile guardare la presentazione hello [ridurre i rischi di protezione di datacenter con ricerca interattiva tramite Operations Management Suite](https://myignite.microsoft.com/videos/5000) recapitare in Microsoft Ignite.
 > 
 
-### <a name="responding-to-distinct-malicious-ip-accessed"></a>Risposta ai diversi indirizzi IP dannosi a cui si è avuto accesso
+### <a name="responding-toodistinct-malicious-ip-accessed"></a>Risponde toodistinct IP dannosi accedere
 In alcuni scenari è possibile notare un potenziale IP dannoso a cui è stato eseguito l'accesso da un computer monitorato:
 
 ![mappa di intelligence per le minacce](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig6.png)
 
-Questo avviso e altri all'interno della stessa categoria sono generati tramite Sicurezza di OMS usando l'[intelligence per le minacce di Microsoft](https://youtu.be/O4WtxgUrDc8). I dati di intelligence sulle minacce vengono raccolti da Microsoft, nonché acquistati da provider di intelligence per le minacce leader del settore. Questi dati vengono aggiornati frequentemente e adattati alle minacce in continua evoluzione. A causa della loro natura, devono essere combinati con altre fonti di informazioni di sicurezza quando si [analizza](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) un avviso di sicurezza. 
+Questo avviso e altri utenti all'interno di hello stessa categoria, vengono generati tramite la sicurezza di OMS sfruttando [Microsoft Threat Intelligence](https://youtu.be/O4WtxgUrDc8). dati sulle minacce Hello è raccolti da Microsoft, nonché acquistata da provider leader nei threat intelligence. Questi dati vengono modificati di frequente e adattare lo spostamento toofast minacce. A causa di natura tooits, deve essere combinato con altre fonti di informazioni di sicurezza durante [analizzando](https://blogs.technet.microsoft.com/msoms/2016/12/08/investigating-suspicious-activity-in-a-hybrid-cloud-with-oms-security/) un avviso di sicurezza. 
 
 ## <a name="customize-alerts-received-via-e-mail"></a>Personalizzare gli avvisi ricevuti tramite posta elettronica
 
-È possibile personalizzare gli utenti nell'organizzazione che riceveranno una notifica quando vengono attivati gli avvisi di sicurezza dalla sicurezza di OMS. Questa opzione è disponibile in Panoramica/Impostazioni nel dashboard OMS:
+È possibile personalizzare gli utenti nell'organizzazione che riceveranno una notifica quando vengono attivati gli avvisi di sicurezza dalla sicurezza di OMS. Questa opzione è disponibile in panoramica / dashboard OMS di hello impostazioni:
 
 ![Email](./media/oms-security-responding-alerts/oms-security-responding-alerts-fig7.png)
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento è stato descritto come rispondere agli avvisi di sicurezza mediante la funzionalità **Threat Intelligence** (Intelligence per le minacce) disponibile nella soluzione OMS per la sicurezza e il controllo. Per altre informazioni sulle funzionalità di OMS per la sicurezza, vedere gli articoli seguenti:
+In questo documento, si è appreso hello toouse **minacce** opzione negli avvisi di toosecurity toorespond soluzioni OMS Security and Audit. toolearn più sulla sicurezza di OMS, vedere hello seguenti articoli:
 
 * [Panoramica di Operations Management Suite (OMS)](operations-management-suite-overview.md)
 * [Introduzione alla soluzione Sicurezza e controllo di Operations Management Suite](oms-security-getting-started.md)

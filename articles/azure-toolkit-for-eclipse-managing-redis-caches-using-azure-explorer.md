@@ -1,6 +1,6 @@
 ---
-title: Gestione delle Cache Redis con Azure Explorer per Eclipse | Microsoft Docs
-description: Informazioni su come gestire le Cache Redis di Azure con Azure Explorer per Eclipse.
+title: utilizzando la cache Redis aaaManaging hello Azure Explorer per Eclipse | Documenti Microsoft
+description: Informazioni su come toomanage il redis di Azure vengono memorizzati nella cache tramite hello Azure Explorer per Eclipse.
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: robmcm
-ms.openlocfilehash: dc1ed15cb83e6ddc8cf84f5c52a0482231f75e40
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: aa0c38862bda7919a3fc6c53c2fdaf555dd64bff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="managing-redis-caches-using-the-azure-explorer-for-eclipse"></a>Gestione delle Cache Redis con Azure Explorer per Eclipse
+# <a name="managing-redis-caches-using-hello-azure-explorer-for-eclipse"></a>Gestione delle cache Redis tramite hello Azure Explorer per Eclipse
 
-Azure Explorer, che fa parte del Toolkit di Azure per Eclipse, offre agli sviluppatori Java una soluzione di facile uso per la gestione delle Cache Redis con il proprio account Azure nell'ambiente IDE di Eclipse.
+Esplora Azure, che fa parte di hello Azure Toolkit per Eclipse, fornisce agli sviluppatori Java con una soluzione da usare per la gestione di redis cache nel loro account Azure all'interno di hello Eclipse IDE Hello.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
@@ -30,60 +30,60 @@ Azure Explorer, che fa parte del Toolkit di Azure per Eclipse, offre agli svilup
 
 ## <a name="create-a-redis-cache-by-using-eclipse"></a>Creare una Cache Redis tramite Eclipse
 
-I passaggi seguenti illustrano come creare una Cache Redis con Azure Explorer.
+Hello seguendo i passaggi illustrati hello passaggi toocreate una cache redis tramite hello Azure Explorer.
 
-1. Accedere al proprio account Azure tramite la procedura descritta nell'articolo [Istruzioni di accesso ad Azure per il Toolkit di Azure per Eclipse].
+1. Accedi tooyour account Azure utilizzando i passaggi di hello hello [Sign In istruzioni per hello Azure Toolkit per Eclipse] articolo.
 
-1. Nella finestra degli strumenti **Azure Explorer** espandere il nodo **Azure**, fare clic con il pulsante destro del mouse su **Cache Redis** e quindi fare clic su **Crea Cache Redis**.
+1. In hello **Esplora Azure** finestra degli strumenti, espandere hello **Azure** nodo, fare doppio clic su **cache Redis**, quindi fare clic su **Create Cache Redis**.
 
    ![Creare un menu di Cache Redis][CR01]
 
-1. Quando viene visualizzata la finestra di dialogo **Nuova Cache Redis**, specificare le opzioni seguenti:
+1. Quando hello **nuova Cache Redis** viene visualizzata la finestra di dialogo, specificare hello le opzioni seguenti:
 
    ![Finestra di dialogo Crea nuova Cache Redis][CR02]
 
-   a. **Nome DNS**: specifica il sottodominio DNS per la nuova Cache Redis che verrà anteposto a ".redis.cache.windows.net"; ad esempio: *wingtiptoys.redis.cache.windows.net*.
+   a. **Nome DNS**: Specifica il sottodominio DNS hello per cache redis nuovo hello, che viene anteposto troppo ". redis.cache.windows .net", ad esempio: *wingtiptoys.redis.cache.windows.net*.
 
-   b. **Sottoscrizione**: specifica la sottoscrizione di Azure da usare per la nuova Cache Redis.
+   b. **Sottoscrizione**: specifica sottoscrizione di Azure da toouse per cache redis nuovo hello hello.
 
-   c. **Gruppo di risorse**: specifica il gruppo di risorse per la Cache Redis. Scegliere una delle opzioni indicate di seguito:
-      * **Crea nuovo**: specifica che si intende creare un nuovo gruppo di risorse.
+   c. **Gruppo di risorse**: Specifica il gruppo di risorse hello per la cache redis, occorre toochoose di hello le opzioni seguenti:
+      * **Crea nuovo**: Specifica che si desidera toocreate un nuovo gruppo di risorse.
       * **Usa esistente**: specifica che sarà possibile scegliere in un elenco i gruppi di risorse associati all'account di Azure.
 
-   d. **Posizione**: specifica la località in cui verrà creata la Cache Redis, ad esempio *Stati Uniti occidentali*.
+   d. **Percorso**: Specifica il percorso di hello in cui viene creata la cache redis; ad esempio, *Stati Uniti occidentali*.
 
-   e. **Piano tariffario**: specifica il piano tariffario usato dalla Cache Redis. Questa impostazione determina il numero di connessioni client (Per altre informazioni, vedere [Prezzi di Cache Redis].)
+   e. **Livello di prezzo**: Specifica il livello di prezzo utilizza la cache redis; questa impostazione determina il numero di hello di connessioni client. (Per altre informazioni, vedere [Prezzi di Cache Redis].)
 
    f. **Porta non SSL**: specifica se la Cache Redis consente le connessioni non SSL. Per impostazione predefinita, sono consentite solo le connessioni SSL.
 
 1. Dopo aver specificato tutte le impostazioni della Cache Redis, fare clic su **OK**.
 
-Dopo aver creato la Cache Redis, quest'ultima verrà visualizzata in Azure Explorer.
+Dopo aver creata la cache redis, verrà visualizzato in Esplora Azure hello.
 
    ![Cache Redis in Azure Explorer][CR03]
 
 > [!NOTE]
 >
-> Per altre informazioni sulla configurazione delle impostazioni di Cache Redis di Azure, vedere [Come configurare Cache Redis di Azure].
+> Per ulteriori informazioni sulla configurazione di Azure redis le impostazioni della cache, vedere [come tooconfigure Cache Redis di Azure].
 >
 
-## <a name="display-the-properties-for-your-redis-cache-in-eclipse"></a>Visualizzare le proprietà della Cache Redis in Eclipse
+## <a name="display-hello-properties-for-your-redis-cache-in-eclipse"></a>Visualizzare le proprietà di hello per la Cache Redis in Eclipse
 
-1. In Azure Explorer, fare clic con il pulsante destro sulla Cache Redis e quindi su **Mostra proprietà**.
+1. Esplora Azure hello destro la cache redis e fare clic su **visualizzare le proprietà**.
 
-   ![Menu di scelta rapida Azure Explorer per mostrare le proprietà della Cache Redis][SP01]
+   ![Azure Esplora menu toodisplay proprietà di contesto per una cache redis][SP01]
 
-1. Azure Explorer consente di visualizzare le proprietà della Cache Redis.
+1. Hello Azure Explorer consente di visualizzare proprietà di hello per la cache redis.
 
    ![Proprietà della Cache Redis][SP02]
 
 ## <a name="delete-your-redis-cache-by-using-eclipse"></a>Eliminare la Cache Redis tramite Eclipse
 
-1. In Azure Explorer, fare clic con il pulsante destro sulla Cache Redis e quindi su **Elimina**.
+1. Esplora Azure hello destro la cache redis e fare clic su **eliminare**.
 
-   ![Menu di scelta rapida Azure Explorer per eliminare una Cache Redis][DE01]
+   ![Esplora contesto menu toodelete una cache redis di Azure][DE01]
 
-1. Quando viene richiesto di eliminare la Cache Redis, fare clic su **OK**.
+1. Fare clic su **OK** quando richiesto toodelete la cache redis.
 
    ![Eliminare il prompt della Cache Redis][DE02]
 
@@ -91,20 +91,20 @@ Dopo aver creato la Cache Redis, quest'ultima verrà visualizzata in Azure Explo
 
 [!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
-Per altre informazioni sulle Cache Redis di Azure, le impostazioni di configurazione e i prezzi, vedere i collegamenti seguenti:
+Per ulteriori informazioni sulle cache redis di Azure, le impostazioni di configurazione e sui prezzi, vedere hello seguenti collegamenti:
 
 * [Cache Redis di Azure]
 * [Documentazione di Cache Redis]
 * [Prezzi di Cache Redis]
-* [Come configurare Cache Redis di Azure]
+* [come tooconfigure Cache Redis di Azure]
 
 <!-- URL List -->
 
 [Prezzi di Cache Redis]: https://azure.microsoft.com/pricing/details/cache/
 [Cache Redis di Azure]: https://azure.microsoft.com/services/cache/
 [Documentazione di Cache Redis]: ./redis-cache/index.md
-[Come configurare Cache Redis di Azure]: ./redis-cache/cache-configure.md
-[Istruzioni di accesso ad Azure per il Toolkit di Azure per Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[come tooconfigure Cache Redis di Azure]: ./redis-cache/cache-configure.md
+[Sign In istruzioni per hello Azure Toolkit per Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
 
 <!-- IMG List -->
 

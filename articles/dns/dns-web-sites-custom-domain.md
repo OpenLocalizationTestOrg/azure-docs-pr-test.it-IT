@@ -1,6 +1,6 @@
 ---
-title: Creare record DNS personalizzati per un'app Web | Documentazione Microsoft
-description: Come creare record DNS di un dominio personalizzato per un'app Web usando DNS di Azure.
+title: aaaCreate i record DNS personalizzati per un'app web | Documenti Microsoft
+description: Come toocreate DNS del dominio personalizzato registrato per l'app web con DNS di Azure.
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,39 +13,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
-ms.openlocfilehash: b054a41ecd69ee1c802d8403fe4b25128f016e3c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 070c808a55bab922eb624d99ae5c275d8eaa5aaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-dns-records-for-a-web-app-in-a-custom-domain"></a>Creare record DNS per un'app Web in un dominio personalizzato
 
-È possibile usare DNS di Azure per ospitare un dominio personalizzato per le app Web. Se, ad esempio, si crea un'app Web di Azure e si vuole che gli utenti vi accedano usando contoso.com o www.contoso.com come FQDN.
+È possibile utilizzare toohost DNS di Azure un dominio personalizzato per le app web. Ad esempio, si sta creando un'app web di Azure e si desidera il tooaccess gli utenti da uno tramite contoso.com o www.contoso.com come un nome di dominio completo.
 
-A tale scopo, è necessario creare due record:
+toodo, si dispone di due record toocreate:
 
-* Un record radice "A" che fa riferimento a contoso.com
-* Un record "CNAME" per il nome www che punta al record A
+* Un toocontoso.com puntamento record radice "A"
+* Un "" record CNAME per nome www hello che punta toohello un record
 
-Tenere presente che, se si crea un record A per un'app Web in Azure, il record A deve essere aggiornato manualmente se l'indirizzo IP sottostante per l'app Web cambia.
+Tenere presente che se si crea un record A per un'app web in Azure, un record deve essere aggiornato manualmente se hello hello sottostante indirizzo IP per le modifiche di hello web app.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Prima di iniziare, è necessario innanzitutto creare una zona DNS in DNS di Azure e delegare la zona nel registrar a DNS di Azure.
+Prima di iniziare, è innanzitutto necessario creare una zona DNS di DNS di Azure e delegare zona hello il tooAzure registrazione DNS.
 
-1. Per creare una zona DNS, seguire i passaggi in [Creare una zona DNS](dns-getstarted-create-dnszone.md).
-2. Per delegare il DNS a DNS di Azure, seguire i passaggi nell'articolo relativo alla [delega del dominio DNS](dns-domain-delegation.md).
+1. toocreate una zona DNS, seguire i passaggi hello [creare una zona DNS](dns-getstarted-create-dnszone.md).
+2. toodelegate il tooAzure DNS DNS, seguire i passaggi hello [delega di dominio DNS](dns-domain-delegation.md).
 
-Dopo la creazione di una zona e la relativa delega a DNS di Azure, è quindi possibile creare record per il dominio personalizzato.
+Dopo la creazione di una zona e delegarla tooAzure DNS, è quindi possibile creare record per il dominio personalizzato.
 
 ## <a name="1-create-an-a-record-for-your-custom-domain"></a>1. Creare un record A per il dominio personalizzato
 
-Un record A viene usato per eseguire il mapping di un nome al relativo indirizzo IP. Nell'esempio seguente si assegnerà @ come record A a un indirizzo IPv4:
+Un record è toomap usato un indirizzo IP tooits di nome. Nell'esempio seguente hello nella si assegnerà come un tooan di record di un indirizzo IPv4:
 
 ### <a name="step-1"></a>Passaggio 1
 
-Creare un record A e assegnarlo a una variabile $rs
+Creare un record A e assegnare tooa $rs variabile
 
 ```powershell
 $rs= New-AzureRMDnsRecordSet -Name "@" -RecordType "A" -ZoneName "contoso.com" -ResourceGroupName "MyAzureResourceGroup" -Ttl 600
@@ -53,9 +53,9 @@ $rs= New-AzureRMDnsRecordSet -Name "@" -RecordType "A" -ZoneName "contoso.com" -
 
 ### <a name="step-2"></a>Passaggio 2
 
-Aggiungere al set di record "@" creato in precedenza il valore IPv4 usando la variabile $rs assegnata. Il valore di IPv4 assegnato sarà l'indirizzo IP per l'app Web.
+Aggiungere i set di record di hello IPv4 valore toohello creato in precedenza "@" utilizzando hello $rs variabile assegnato. Hello valore IPv4 assegnato sarà l'indirizzo IP hello per le app web.
 
-Per trovare l'indirizzo IP per un'app Web, seguire i passaggi in [Configurare un nome di dominio personalizzato nel servizio app di Azure](../app-service-web/app-service-web-tutorial-custom-domain.md).
+indirizzo IP di hello toofind per un'app web, seguire i passaggi hello [configurare un nome di dominio personalizzato in Azure App Service](../app-service-web/app-service-web-tutorial-custom-domain.md).
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Ipv4Address "<your web app IP address>"
@@ -63,7 +63,7 @@ Add-AzureRMDnsRecordConfig -RecordSet $rs -Ipv4Address "<your web app IP address
 
 ### <a name="step-3"></a>Passaggio 3
 
-Eseguire il commit delle modifiche al set di record. Usare `Set-AzureRMDnsRecordSet` per caricare le modifiche al set di record in DNS di Azure.
+Eseguire il commit del set di record toohello modifiche hello. Utilizzare `Set-AzureRMDnsRecordSet` hello tooupload cambia toohello tooAzure di set di record DNS:
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
@@ -71,17 +71,17 @@ Set-AzureRMDnsRecordSet -RecordSet $rs
 
 ## <a name="2-create-a-cname-record-for-your-custom-domain"></a>2. Creare un record CNAME per il dominio personalizzato
 
-Se il dominio è già gestito da DNS di Azure (vedere la [delega del dominio DNS](dns-domain-delegation.md)), è possibile usare l'esempio seguente per creare un record CNAME per contoso.azurewebsites.net.
+Se il dominio è già gestito dal servizio DNS di Azure (vedere [delega di dominio DNS](dns-domain-delegation.md), è possibile utilizzare i seguenti toocreate esempio hello un record CNAME per contoso.azurewebsites.net hello.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Aprire PowerShell, creare un nuovo set di record CNAME e assegnarlo a una variabile $rs. In questo esempio viene creato un tipo di set di record CNAME con una "durata (TTL)" di 600 secondi nella zona DNS denominata "contoso.com".
+Aprire PowerShell e creare un nuovo set di record CNAME e assegnare tooa $rs variabile. Questo esempio viene creato un tipo di set di record CNAME con"toolive" 600 secondi nella zona DNS denominato "contoso.com".
 
 ```powershell
 $rs = New-AzureRMDnsRecordSet -ZoneName contoso.com -ResourceGroupName myresourcegroup -Name "www" -RecordType "CNAME" -Ttl 600
 ```
 
-L'esempio seguente corrisponde alla risposta.
+Hello di esempio seguente è riportata la risposta hello.
 
 ```
 Name              : www
@@ -96,15 +96,15 @@ Tags              : {}
 
 ### <a name="step-2"></a>Passaggio 2
 
-Una volta creato il set di record CNAME, è necessario creare un valore alias che farà riferimento all'app Web
+Una volta creato hello set di record CNAME, è necessario toocreate un valore alias a cui punterà toohello web app.
 
-Usando la variabile "$rs" assegnata in precedenza, è possibile usare il seguente comando di PowerShell per creare l'alias per l'app Web contoso.azurewebsites.net.
+Utilizzando hello assegnate in precedenza la variabile "$rs" è possibile utilizzare il comando di PowerShell hello sotto alias hello toocreate per hello web app contoso.azurewebsites.net.
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "contoso.azurewebsites.net"
 ```
 
-L'esempio seguente corrisponde alla risposta.
+Hello di esempio seguente è riportata la risposta hello.
 
 ```
     Name              : www
@@ -119,13 +119,13 @@ L'esempio seguente corrisponde alla risposta.
 
 ### <a name="step-3"></a>Passaggio 3
 
-Confermare le modifiche usando il cmdlet `Set-AzureRMDnsRecordSet` :
+Eseguire il commit delle modifiche di hello mediante hello `Set-AzureRMDnsRecordSet` cmdlet:
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
 ```
 
-È possibile verificare che il record sia stato creato correttamente eseguendo una query di "www.contoso.com" con nslookup, come mostrato di seguito:
+È possibile convalidare il record di hello è stato creato correttamente eseguendo una query hello "www.contoso.com" con nslookup, come illustrato di seguito:
 
 ```
 PS C:\> nslookup
@@ -146,17 +146,17 @@ contoso.azurewebsites.net
 
 ## <a name="create-an-awverify-record-for-web-apps"></a>Creare un record "awverify" per le app Web
 
-Se si decide di usare un record A per l'app Web, è necessario eseguire un processo di verifica per assicurarsi che il dominio personalizzato sia di proprietà dell'utente. Questo passaggio di verifica viene eseguito creando uno speciale record CNAME denominato "awverify". Questa sezione si applica solo ai record A.
+Se si decide di toouse un record A per l'app web, è necessario passare attraverso un tooensure di processo di verifica è dominio personalizzato hello personalizzati. Questo passaggio di verifica viene eseguito creando uno speciale record CNAME denominato "awverify". Questa sezione si applica solo i record tooA.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Creare il record "awverify". In questo esempio verrà creato il record "awverify" per consentire a contoso.com di verificare la proprietà del dominio personalizzato.
+Creare record "awverify" hello. Nell'esempio hello seguente verrà creata record "aweverify" hello per la proprietà tooverify contoso.com per il dominio personalizzato hello.
 
 ```powershell
 $rs = New-AzureRMDnsRecordSet -ZoneName "contoso.com" -ResourceGroupName "myresourcegroup" -Name "awverify" -RecordType "CNAME" -Ttl 600
 ```
 
-L'esempio seguente corrisponde alla risposta.
+Hello di esempio seguente è riportata la risposta hello.
 
 ```
 Name              : awverify
@@ -171,13 +171,13 @@ Tags              : {}
 
 ### <a name="step-2"></a>Passaggio 2
 
-Dopo aver creato il set di record "awverify", assegnare l'alias del set di record CNAME. Nell'esempio seguente, si assegnerà l'alias del set di record CNAME a awverify.contoso.azurewebsites.net.
+Una volta creato il set di record hello "awverify", assegnare record CNAME hello impostare alias. Nell'esempio hello seguente, si assegnerà tooawverify.contoso.azurewebsites.net alias del set di record CNAMe di hello.
 
 ```powershell
 Add-AzureRMDnsRecordConfig -RecordSet $rs -Cname "awverify.contoso.azurewebsites.net"
 ```
 
-L'esempio seguente corrisponde alla risposta.
+Hello di esempio seguente è riportata la risposta hello.
 
 ```
     Name              : awverify
@@ -192,7 +192,7 @@ L'esempio seguente corrisponde alla risposta.
 
 ### <a name="step-3"></a>Passaggio 3
 
-Eseguire il commit delle modifiche usando `Set-AzureRMDnsRecordSet cmdlet`, come mostrato nel comando seguente.
+Eseguire il commit delle modifiche di hello mediante hello `Set-AzureRMDnsRecordSet cmdlet`, come illustrato nel comando hello riportato di seguito.
 
 ```powershell
 Set-AzureRMDnsRecordSet -RecordSet $rs
@@ -200,4 +200,4 @@ Set-AzureRMDnsRecordSet -RecordSet $rs
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per configurare l'app Web per l'uso di un dominio personalizzato, seguire i passaggi in [Configurazione di un nome di dominio personalizzato nel servizio app](../app-service-web/web-sites-custom-domain-name.md) .
+Seguire i passaggi di hello in [configurazione di un nome di dominio personalizzato per il servizio App](../app-service-web/web-sites-custom-domain-name.md) tooconfigure il toouse app web un dominio personalizzato.

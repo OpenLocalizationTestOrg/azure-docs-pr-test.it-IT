@@ -1,5 +1,5 @@
 ---
-title: Abilitare Transparent Data Encryption per Estensione database - Azure | Documentazione Microsoft
+title: Transparent Data Encryption per estensione Database - Azure aaaEnable | Documenti Microsoft
 description: Abilitare Transparent Data Encryption (TDE) per Estensione database di SQL Server su Azure
 services: sql-server-stretch-database
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2016
 ms.author: douglasl
-ms.openlocfilehash: ceb355d2ba872ed5d3886c6dc82ca75b1854db0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d6bff455030ac8851b2184c1e8097afd61361d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-tde-for-stretch-database-on-azure"></a>Abilitare Transparent Data Encryption (TDE) per Estensione database su Azure
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-La funzionalità Transparent Data Encryption (TDE) consente di proteggersi da attività dannose eseguendo in tempo reale la crittografia e la decrittografia dei database, dei backup associati e dei file di log delle transazioni inattivi, senza dover apportare modifiche all'applicazione.
+Transparent Data Encryption (TDE) contribuisce alla protezione dalle minacce di hello di attività dannose eseguendo la crittografia in tempo reale e la decrittografia del database hello, i backup associati e i file di log delle transazioni a riposo senza richiedere modifiche toohello applicazione.
 
-TDE esegue la crittografia dell'archiviazione di un intero database usando una chiave simmetrica detta "chiave di crittografia del database". La chiave di crittografia del database è protetta da un certificato server incorporato. Il certificato server incorporato è univoco per ogni server Azure. Microsoft ruota automaticamente questi certificati almeno ogni 90 giorni. Per una descrizione generale della funzionalità TDE, vedere [Transparent Data Encryption (TDE)].
+Transparent Data Encryption crittografa l'archivio di hello di un intero database utilizzando una chiave di crittografia simmetrica hello chiamata chiave database. chiave di crittografia del database Hello è protetto da un certificato server predefinito. certificato server predefinito Hello è univoco per ogni server di Azure. Microsoft ruota automaticamente questi certificati almeno ogni 90 giorni. Per una descrizione generale della funzionalità TDE, vedere [Transparent Data Encryption (TDE)].
 
 ## <a name="enabling-encryption"></a>Abilitazione della crittografia
-Per abilitare la funzionalità TDE per un database di Azure che archivia i dati migrati da un database SQL Server con Estensione abilitata, eseguire le operazioni seguenti:
+tooenable TDE per un database di Azure a cui è archiviati i dati migrati da un database di SQL Server abilitata per l'estensione, hello hello seguenti operazioni:
 
-1. Aprire il database nel [portale di Azure](https://portal.azure.com)
-2. Nel pannello del database fare clic sul pulsante **Impostazioni**
-3. Selezionare l'opzione **Transparent data encryption**![][1]
-4. Selezionare **Attiva** e quindi selezionare **Salva**
+1. Database aperto hello in hello [portale di Azure](https://portal.azure.com)
+2. Nel pannello database hello, fare clic su hello **impostazioni** pulsante
+3. Seleziona hello **crittografia dati trasparente** opzione![][1]
+4. Seleziona hello **su** impostazione e quindi selezionare **salvare**
    ![][2]
 
 ## <a name="disabling-encryption"></a>Disabilitazione della crittografia
-Per disabilitare TDE per un database di Azure che archivia i dati migrati da un database SQL Server con Estensione abilitata, eseguire le operazioni seguenti:
+toodisable TDE per un database di Azure a cui è archiviati i dati migrati da un database di SQL Server abilitata per l'estensione, hello hello seguenti operazioni:
 
-1. Aprire il database nel [portale di Azure](https://portal.azure.com)
-2. Nel pannello del database fare clic sul pulsante **Impostazioni**
-3. Selezionare l'opzione **Transparent data encryption**
-4. Selezionare **Disattiva** e quindi selezionare **Salva**
+1. Database aperto hello in hello [portale di Azure](https://portal.azure.com)
+2. Nel pannello database hello, fare clic su hello **impostazioni** pulsante
+3. Seleziona hello **crittografia dati trasparente** opzione
+4. Seleziona hello **Off** impostazione e quindi selezionare **salvare**
 
 <!--Anchors-->
 [Transparent Data Encryption (TDE)]: https://msdn.microsoft.com/library/bb934049.aspx

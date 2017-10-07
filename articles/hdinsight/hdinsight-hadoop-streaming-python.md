@@ -1,6 +1,6 @@
 ---
-title: Sviluppare processi MapReduce per la creazione di flussi Python con HDInsight - Azure | Documentazione Microsoft
-description: Informazioni su come usare Python nel flusso di processi MapReduce. Hadoop fornisce un'API di flusso per MapReduce per la scrittura in linguaggi diversi da Java.
+title: i processi di streaming MapReduce Python aaaDevelop con HDInsight - Azure | Documenti Microsoft
+description: Informazioni su come toouse Python in streaming i processi di MapReduce. Hadoop fornisce un'API di flusso per MapReduce per la scrittura in linguaggi diversi da Java.
 services: hdinsight
 keyword: mapreduce python,python map reduce,python mapreduce
 documentationcenter: 
@@ -17,56 +17,56 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: b86605c49291a99f49c4b2841d46324cfd0db56d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a6ae3ba650b665ecc5839a4ddf5282f8ccfb6bd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-python-streaming-mapreduce-programs-for-hdinsight"></a>Sviluppare programmi MapReduce per la creazione di flussi Python per HDInsight
 
-Informazioni su come usare Python nel flusso di operazioni MapReduce. In Hadoop è disponibile un'API di flusso per MapReduce che consente di scrivere funzioni di mapping e riduzione in linguaggi diversi da Java. La procedura descritta in questo documento implementa i componenti di mapping e riduzione in Python.
+Informazioni su come toouse Python in MapReduce operazioni di flusso. Hadoop fornisce un'API di flusso per MapReduce che consente di toowrite mappa e ridurre le funzioni in linguaggi diversi da Java. Hello passaggi descritti in questo documento implementano hello mappa e ridurre i componenti di Python.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 * Un cluster Hadoop basato su Linux in HDInsight
 
   > [!IMPORTANT]
-  > I passaggi descritti in questo documento richiedono un cluster HDInsight che usa Linux. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > passaggi di Hello in questo documento richiedono un cluster HDInsight che utilizza Linux. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Un editor di testo
 
   > [!IMPORTANT]
-  > L'editor di testo deve usare LF come terminazione di riga. L'uso di una terminazione di riga di CRLF causerà errori in seguito all'esecuzione del processo MapReduce su cluster HDInsight basati su Linux.
+  > editor di testo Hello devono utilizzare LF come terminazione di riga hello. Utilizzando una terminazione di riga di CRLF causa errori quando si esegue il processo MapReduce hello nei cluster HDInsight basati su Linux.
 
-* I comandi `ssh` e `scp` oppure [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-3.8.0)
+* Hello `ssh` e `scp` comandi, o [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azurermps-3.8.0)
 
 ## <a name="word-count"></a>Conteggio di parole
 
-In questo esempio viene implementato un conteggio di parole di base in Python usando un mapper e un reducer. Il mapper scompone le frasi in singole parole e il reducer aggrega le parole e i conteggi per produrre l'output.
+In questo esempio viene implementato un conteggio di parole di base in Python usando un mapper e un reducer. mapper Hello suddivide frasi in singole parole e riduttore hello aggrega parole hello e conta output di hello tooproduce.
 
-Il diagramma di flusso illustra ciò che accade durante le fasi di mapping e riduzione.
+Hello diagramma di flusso seguente viene illustrato ciò che accade durante la mappa hello e ridurre le fasi.
 
-![illustrazione del processo MapReduce](./media/hdinsight-hadoop-streaming-python/HDI.WordCountDiagram.png)
+![illustrazione del processo mapreduce hello](./media/hdinsight-hadoop-streaming-python/HDI.WordCountDiagram.png)
 
 ## <a name="streaming-mapreduce"></a>Flusso di MapReduce
 
-Hadoop consente di specificare un file che contiene la logica di mapping e riduzione usata da un processo. I requisiti specifici per la logica di mapping e riduzione sono:
+Hadoop consente toospecify un file che contiene la mappa hello e riducono la logica utilizzata da un processo. requisiti specifici di Hello per hello mapping e riduzione logica sono:
 
-* **Input**: i componenti di mapping e riduzione devono leggere i dati di input da STDIN.
-* **Output**: i componenti di mapping e riduzione devono scrivere i dati di output in STDOUT.
-* **Formato dati**: i dati usati e prodotti devono essere una coppia chiave/valore, separati da un carattere di tabulazione.
+* **Input**: hello mappa e ridurre i componenti devono leggere i dati di input da STDIN.
+* **Output**: hello mappa e ridurre i componenti è necessario scrivere tooSTDOUT dati di output.
+* **Formato dati**: hello i dati utilizzati e prodotto devono essere una coppia chiave/valore, separata da un carattere di tabulazione.
 
-Python è in grado di gestire facilmente questi requisiti usando il modulo `sys` per leggere da STDIN e il modulo `print` per stampare in STDOUT. Il resto dell'attività consiste semplicemente nella formattazione dei dati con un carattere di tabulazione (`\t`) tra la chiave e il valore.
+Python possibile facilmente gestire questi requisiti utilizzando hello `sys` tooread modulo da STDIN e l'utilizzo `print` tooprint tooSTDOUT. Hello attività rimanenti è semplicemente formattazione hello dei dati con una scheda (`\t`) carattere tra hello chiave e il valore.
 
-## <a name="create-the-mapper-and-reducer"></a>Creare il mapper e il reducer
+## <a name="create-hello-mapper-and-reducer"></a>Creare riduttore e mapper hello
 
-1. Creare un file denominato `mapper.py` e usare il codice seguente come contenuto:
+1. Creare un file denominato `mapper.py` e utilizzare hello seguendo il codice come contenuto hello:
 
    ```python
    #!/usr/bin/env python
 
-   # Use the sys module
+   # Use hello sys module
    import sys
 
    # 'file' in this case is STDIN
@@ -76,20 +76,20 @@ Python è in grado di gestire facilmente questi requisiti usando il modulo `sys`
            yield line.split()
 
    def main(separator='\t'):
-       # Read the data using read_input
+       # Read hello data using read_input
        data = read_input(sys.stdin)
        # Process each word returned from read_input
        for words in data:
            # Process each word
            for word in words:
-               # Write to STDOUT
+               # Write tooSTDOUT
                print '%s%s%d' % (word, separator, 1)
 
    if __name__ == "__main__":
        main()
    ```
 
-2. Creare un file denominato **reducer.py** e usare il codice seguente come contenuto:
+2. Creare un file denominato **reducer.py** e utilizzare hello seguendo il codice come contenuto hello:
 
    ```python
    #!/usr/bin/env python
@@ -103,22 +103,22 @@ Python è in grado di gestire facilmente questi requisiti usando il modulo `sys`
    def read_mapper_output(file, separator='\t'):
        # Go through each line
        for line in file:
-           # Strip out the separator character
+           # Strip out hello separator character
            yield line.rstrip().split(separator, 1)
 
    def main(separator='\t'):
-       # Read the data using read_mapper_output
+       # Read hello data using read_mapper_output
        data = read_mapper_output(sys.stdin, separator=separator)
        # Group words and counts into 'group'
        #   Since MapReduce is a distributed process, each word
        #   may have multiple counts. 'group' will have all counts
-       #   which can be retrieved using the word as the key.
+       #   which can be retrieved using hello word as hello key.
        for current_word, group in groupby(data, itemgetter(0)):
            try:
-               # For each word, pull the count(s) for the word
+               # For each word, pull hello count(s) for hello word
                #   from 'group' and create a total count
                total_count = sum(int(count) for current_word, count in group)
-               # Write to stdout
+               # Write toostdout
                print "%s%s%d" % (current_word, separator, total_count)
            except ValueError:
                # Count was not a number, so do nothing
@@ -130,30 +130,30 @@ Python è in grado di gestire facilmente questi requisiti usando il modulo `sys`
 
 ## <a name="run-using-powershell"></a>Esecuzione con PowerShell
 
-Per garantire che i file abbiano le terminazioni di riga corrette, usare lo script di PowerShell seguente:
+tooensure che i file hanno terminazioni riga destra hello hello utilizzare lo script di PowerShell seguente:
 
 [!code-powershell[main](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=138-140)]
 
-Usare lo script di PowerShell seguente per caricare i file, eseguire il processo e visualizzare l'output:
+Utilizzare i seguenti file hello tooupload script di PowerShell hello, eseguire il processo di hello e visualizzare l'output di hello:
 
 [!code-powershell[main](../../powershell_scripts/hdinsight/streaming-python/streaming-python.ps1?range=5-134)]
 
 ## <a name="run-from-an-ssh-session"></a>Eseguire da una sessione SSH
 
-1. Nell'ambiente di sviluppo, usare il comando seguente dalla stessa directory dei file `mapper.py` e `reducer.py`:
+1. Nell'ambiente di sviluppo, hello nella stessa directory come `mapper.py` e `reducer.py` file, utilizzare hello comando seguente:
 
     ```bash
     scp mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:
     ```
 
-    Sostituire `username` con il nome utente SSH del cluster e `clustername` con il nome del cluster.
+    Sostituire `username` con nome utente di hello SSH per il cluster, e `clustername` con nome hello del cluster.
 
-    Questo comando copia i file dal sistema locale nel nodo head.
+    Questo comando Copia file hello dal nodo head toohello di hello sistema locale.
 
     > [!NOTE]
-    > Se è stata usata una password per proteggere l'account SSH, viene richiesto di specificarla. Se è stata usata una chiave SSH, potrebbe essere necessario usare il parametro `-i` e il percorso della chiave privata. Ad esempio, `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`.
+    > Se si utilizza un toosecure password account SSH, richiesto per la password di hello. Se è stata utilizzata una chiave SSH, potrebbe essere hello toouse `-i` parametro e hello percorso toohello la chiave privata. ad esempio `scp -i /path/to/private/key mapper.py reducer.py username@clustername-ssh.azurehdinsight.net:`.
 
-2. Connettersi al cluster usando SSH:
+2. Connessione toohello cluster utilizzando SSH:
 
     ```bash
     ssh username@clustername-ssh.azurehdinsight.net`
@@ -161,49 +161,49 @@ Usare lo script di PowerShell seguente per caricare i file, eseguire il processo
 
     Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-3. Per garantire che mapper.py e reducer.py abbiano le terminazioni di riga corrette, usare i comandi seguenti:
+3. REDUCER.py e tooensure hello mapper.py hanno hello correggere terminazioni riga, utilizzare hello seguenti comandi:
 
     ```bash
     perl -pi -e 's/\r\n/\n/g' mapper.py
     perl -pi -e 's/\r\n/\n/g' reducer.py
     ```
 
-4. Usare il seguente comando per avviare il processo MapReduce.
+4. Utilizzare hello processo MapReduce hello toostart il comando seguente.
 
     ```bash
     yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar -files mapper.py,reducer.py -mapper mapper.py -reducer reducer.py -input /example/data/gutenberg/davinci.txt -output /example/wordcountout
     ```
 
-    Questo comando include le seguenti parti:
+    Questo comando è hello seguenti parti:
 
-   * **hadoop-streaming.jar**: usato durante l'esecuzione di operazioni di flusso MapReduce. Consente ad Hadoop di interagire con il codice MapReduce esterno fornito dall'utente.
+   * **hadoop-streaming.jar**: usato durante l'esecuzione di operazioni di flusso MapReduce. Hadoop si interfaccia con codice MapReduce esterno hello che è fornire.
 
-   * **-file**: aggiunge i file specificati al processo MapReduce.
+   * **-file**: aggiunge hello specificato processo MapReduce toohello di file.
 
-   * **-mapper**: indica ad Hadoop quale file usare come mapper.
+   * **-mapper**: Hadoop indica quale file toouse hello mapper.
 
-   * **-reducer**: indica ad Hadoop quale file usare come reducer.
+   * **-riduttore**: Hadoop indica quale file toouse hello del reducer.
 
-   * **-input**: il file di input di cui devono essere contate le parole.
+   * **-input**: file di input hello che è necessario contare le parole da.
 
-   * **-output**: la directory in cui viene scritto l'output.
+   * **-output**: directory hello hello output viene scritto.
 
-    Mentre il processo MapReduce è in esecuzione, il processo viene visualizzato sotto forma di valori percentuali.
+    Come funziona il processo MapReduce hello, processo hello è visualizzato come percentuali.
 
         15/02/05 19:01:04 INFO mapreduce.Job:  map 0% reduce 0%    15/02/05 19:01:16 INFO mapreduce.Job:  map 100% reduce 0%    15/02/05 19:01:27 INFO mapreduce.Job:  map 100% reduce 100%
 
 
-5. Per visualizzare l'output, usare il seguente comando:
+5. l'output di hello tooview, utilizzare hello comando seguente:
 
     ```bash
     hdfs dfs -text /example/wordcountout/part-00000
     ```
 
-    Viene visualizzato un elenco di parole con l'indicazione del numero di occorrenze di ogni parola.
+    Questo comando Visualizza un elenco di parole e quante volte la parola hello si è verificato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Dopo aver appreso come usare i processi di flusso MapReduce con HDInsight, vedere i seguenti collegamenti per esplorare altri modi di uso di Azure HDInsight.
+Ora che si è appreso come processi di streaming MapRedcue toouse con HDInsight, utilizzare hello seguendo i collegamenti tooexplore toowork altri modi con Azure HDInsight.
 
 * [Usare Hive con HDInsight](hdinsight-use-hive.md)
 * [Usare Pig con HDInsight](hdinsight-use-pig.md)

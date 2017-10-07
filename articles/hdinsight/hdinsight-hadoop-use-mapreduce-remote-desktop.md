@@ -1,6 +1,6 @@
 ---
-title: MapReduce e Remote Desktop con Hadoop in HDInsight - Azure | Microsoft Docs
-description: Informazioni su come usare Desktop remoto per connettersi a Hadoop in HDInsight ed eseguire processi MapReduce.
+title: aaaMapReduce e Desktop remoto con Hadoop in HDInsight - Azure | Documenti Microsoft
+description: Informazioni su come toouse Desktop remoto tooconnect tooHadoop HDInsight e l'esecuzione dei processi di MapReduce.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,71 +16,71 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: b56674857b013f9bb3d4dd4b6e97b34e0a97b1b2
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bdbbcf59ca86dd1b170471aa9e12334a04c23667
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-mapreduce-in-hadoop-on-hdinsight-with-remote-desktop"></a>Uso di MapReduce con Hadoop in HDInsight con Desktop remoto
 [!INCLUDE [mapreduce-selector](../../includes/hdinsight-selector-use-mapreduce.md)]
 
-In questo articolo si apprenderà come connettersi a un cluster Hadoop in HDInsight usando Desktop remoto e quindi eseguire processi MapReduce usando il comando Hadoop.
+In questo articolo verrà informazioni su come tooconnect tooa Hadoop in HDInsight cluster tramite Desktop remoto e quindi eseguire i processi MapReduce utilizzando i comandi di Hadoop hello.
 
 > [!IMPORTANT]
-> Desktop re,moto è disponibile solo nei cluster HDInsight basati su Windows. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Desktop re,moto è disponibile solo nei cluster HDInsight basati su Windows. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> Per HDInsight 3.4 o versione successiva, vedere [Usare MapReduce con SSH](hdinsight-hadoop-use-mapreduce-ssh.md) per informazioni sulla connessione al cluster HDInsight e l'esecuzione di processi MapReduce.
+> Per HDInsight 3.4 o successiva, vedere [utilizzare MapReduce con SSH](hdinsight-hadoop-use-mapreduce-ssh.md) per informazioni sulla connessione cluster HDInsight toohello e in esecuzione processi di MapReduce.
 
 ## <a id="prereq"></a>Prerequisiti
-Per seguire la procedura descritta in questo articolo, è necessario quanto segue:
+passaggi di hello toocomplete in questo articolo, è necessario seguente hello:
 
 * Un cluster HDInsight (Hadoop in HDInsight) basato su Windows
 * Un computer client che esegue Windows 10, Windows 8 o Windows 7
 
 ## <a id="connect"></a>Connettersi con Desktop remoto
-Abilitare Desktop remoto per il cluster HDInsight e quindi connettersi seguendo le istruzioni disponibili in [Connettersi a cluster HDInsight tramite RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+Abilitare Desktop remoto per il cluster HDInsight hello e quindi connettersi tooit seguendo le istruzioni di hello in [connettersi tooHDInsight cluster tramite RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-## <a id="hadoop"></a>Usare il comando Hadoop
-Una volta connessi al desktop per il cluster HDInsight, seguire questa procedura per eseguire un processo MapReduce usando il comando Hadoop:
+## <a id="hadoop"></a>Utilizzare il comando di Hadoop hello
+Quando si è connessi toohello desktop per il cluster HDInsight hello, utilizzare hello seguendo i passaggi toorun un processo MapReduce tramite il comando di Hadoop hello:
 
-1. Dal desktop di HDInsight avviare la **riga di comando di Hadoop**. Viene aperta una finestra del prompt dei comandi nella directory **c:\apps\dist\hadoop-&lt;numero versione>**.
+1. Dal desktop di HDInsight hello, avviare hello **della riga di comando Hadoop**. Si apre un nuovo prompt in hello **c:\apps\dist\hadoop-&lt;numero di versione >** directory.
 
    > [!NOTE]
-   > Quando Hadoop viene aggiornato, il numero di versione viene modificato. La variabile di ambiente **HADOOP_HOME** può essere usata per trovare il percorso. Ad esempio, `cd %HADOOP_HOME%` modifica le directory nella directory di Hadoop, senza richiedere il nome della versione.
+   > numero di versione di Hello cambia in caso di aggiornamento Hadoop. Hello **HADOOP_HOME** variabile di ambiente può essere il percorso di hello toofind utilizzato. Ad esempio, `cd %HADOOP_HOME%` modifiche directory toohello directory Hadoop, senza la necessità di un numero di versione di hello tooknow.
    >
    >
-2. Per usare il comando **Hadoop** per l'esecuzione di un processo MapReduce di esempio, usare il comando seguente:
+2. hello toouse **Hadoop** toorun un processo MapReduce di esempio di comando, utilizzare hello comando seguente:
 
         hadoop jar hadoop-mapreduce-examples.jar wordcount wasb:///example/data/gutenberg/davinci.txt wasb:///example/data/WordCountOutput
 
-    Viene avviata la classe **wordcount**, contenuta nel file **hadoop-mapreduce-examples.jar** nella directory corrente. Come input viene usato il documento **wasb://example/data/gutenberg/davinci.txt** e l'output viene archiviato in: **wasb:///example/data/WordCountOutput**.
+    Verrà avviata hello **wordcount** (classe), contenute in hello **hadoop-mapreduce-examples.jar** file nella directory corrente hello. Usa come input, hello **wasb://example/data/gutenberg/davinci.txt** documento e l'output è memorizzato nel: **wasb: / / / esempio/data/WordCountOutput**.
 
    > [!NOTE]
-   > Per altre informazioni su questo processo MapReduce e per dati di esempio, vedere <a href="hdinsight-use-mapreduce.md">Usare MapReduce in Hadoop in HDInsight</a>.
+   > Per ulteriori informazioni su questi dati di esempio MapReduce hello e di processo, vedere <a href="hdinsight-use-mapreduce.md">utilizzare MapReduce di HDInsight Hadoop</a>.
    >
    >
-3. Il processo genera dettagli durante l'elaborazione e al completamento restituisce informazioni simili alle seguenti:
+3. processo Hello genera dettagli come l'elaborazione e restituisce toohello informazioni simili che seguono. una volta completato il processo di hello:
 
         File Input Format Counters
         Bytes Read=1395666
         File Output Format Counters
         Bytes Written=337623
-4. Al termine del processo, usare il comando seguente per elencare i file di output archiviati in **wasb://example/data/WordCountOutput**:
+4. Una volta completato il processo di hello, utilizzare hello i seguenti file di comando toolist hello output è archiviati in **wasb://example/data/WordCountOutput**:
 
         hadoop fs -ls wasb:///example/data/WordCountOutput
 
-    In questo modo, vengono visualizzati due file: **_SUCCESS** e **part-r-00000**. Il file **part-r-00000** contiene l'output del processo.
+    In questo modo, vengono visualizzati due file: **_SUCCESS** e **part-r-00000**. Hello **parte-r-00000** file contiene l'output di hello per questo processo.
 
    > [!NOTE]
-   > Alcuni processi MapReduce possono dividere i risultati in più file **part-r-#####** . In questo caso, usare il suffisso ##### per indicare l'ordine dei file.
+   > Alcuni processi MapReduce possono dividere risultati hello in più **parte-r-# # #** file. In questo caso, utilizzare hello # # # suffisso ordine hello tooindicate dei file hello.
    >
    >
-5. Per visualizzare l'output, usare il seguente comando:
+5. l'output di hello tooview, utilizzare hello comando seguente:
 
         hadoop fs -cat wasb:///example/data/WordCountOutput/part-r-00000
 
-    Viene visualizzato un elenco di parole contenute nel file **wasb://example/data/gutenberg/davinci.txt** con il numero di occorrenze di ogni parola. Di seguito è riportato un esempio di dati contenuti nel file:
+    Consente di visualizzare un elenco di parole hello contenuti in hello **wasb://example/data/gutenberg/davinci.txt** file, con numero di hello di volte in cui ogni parola si è verificato. Hello Ecco un esempio di dati hello che saranno contenuti nel file hello:
 
         wreathed        3
         wreathing       1
@@ -91,7 +91,7 @@ Una volta connessi al desktop per il cluster HDInsight, seguire questa procedura
         wriggling       1
 
 ## <a id="summary"></a>Riepilogo
-Come è possibile notare, il comando Hadoop fornisce un modo semplice per eseguire processi MapReduce in un cluster HDInsight e visualizzare l'output del processo.
+Come si può notare, hello Hadoop comando fornisce toorun un modo semplice i processi MapReduce in un cluster HDInsight e visualizzazione output di hello processo.
 
 ## <a id="nextsteps"></a>Passaggi successivi
 Per informazioni generali sui processi MapReduce in HDInsight:

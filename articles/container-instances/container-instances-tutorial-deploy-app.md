@@ -1,5 +1,5 @@
 ---
-title: Esercitazione di Istanze di contenitore di Azure - Distribuire un'app | Microsoft Docs
+title: esercitazione per istanze di contenitori aaaAzure - distribuire app | Documenti Microsoft
 description: Esercitazione di Istanze di contenitore di Azure - Distribuire un'app
 services: container-instances
 documentationcenter: 
@@ -17,24 +17,24 @@ ms.workload: na
 ms.date: 08/04/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 54151a5c1850ab7120fe666a46dc5dc99c0f5157
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b9fb098d9491e1073f0be4b14a0b9b1a18f16095
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-container-to-azure-container-instances"></a>Distribuire un contenitore in Istanze di contenitore di Azure
+# <a name="deploy-a-container-tooazure-container-instances"></a>Distribuire un tooAzure contenitore istanze di contenitori
 
-Questa è l'ultima di un'esercitazione in tre parti. Nelle sezioni precedenti, [un'immagine del contenitore è stata creata](container-instances-tutorial-prepare-app.md) e [inserita in un'istanza di Registro contenitori di Azure](container-instances-tutorial-prepare-acr.md). Questa sezione completa l'esercitazione distribuendo il contenitore in Istanze di contenitore di Azure. I passaggi completati comprendono:
+Si tratta di hello ultimo di un'esercitazione in tre parti. Nelle sezioni precedenti, [è stata creata un'immagine contenitore](container-instances-tutorial-prepare-app.md) e [inserito tooan del Registro di sistema di Azure contenitore](container-instances-tutorial-prepare-acr.md). In questa sezione viene completata l'esercitazione hello distribuendo hello contenitore tooAzure istanze di contenitori. I passaggi completati comprendono:
 
 > [!div class="checklist"]
 > * Definizione di un gruppo di contenitori usando un modello di Azure Resource Manager
-> * Distribuzione del gruppo di contenitori tramite l'interfaccia della riga di comando di Azure
+> * Distribuzione di gruppo contenitore hello utilizzando hello CLI di Azure
 > * Visualizzare i log dei contenitori
 
-## <a name="deploy-the-container-using-the-azure-cli"></a>Distribuire il contenitore tramite l'interfaccia della riga di comando di Azure
+## <a name="deploy-hello-container-using-hello-azure-cli"></a>Distribuire il contenitore di hello utilizzando hello CLI di Azure
 
-L'interfaccia della riga di comando di Azure consente di distribuire un contenitore in Istanze di contenitore di Azure con un unico comando. L'immagine del contenitore è ospitata nell'istanza privata di Registro contenitori di Azure, quindi è necessario includere le credenziali necessarie per l'accesso. Se necessario, è possibile trovarle con una query come illustrato di seguito.
+Hello CLI di Azure consente la distribuzione di un contenitore tooAzure istanze di contenitori, in un unico comando. Poiché l'immagine contenitore hello è ospitato in hello privato del Registro di sistema contenitore di Azure, è necessario includere tooaccess necessarie le credenziali di hello è. Se necessario, è possibile trovarle con una query come illustrato di seguito.
 
 Server di accesso del registro contenitori (sostituire con il nome del registro):
 
@@ -48,23 +48,23 @@ Password del registro contenitori:
 az acr credential show --name <acrName> --query "passwords[0].value"
 ```
 
-Per distribuire l'immagine del contenitore dal registro contenitori con una richiesta di risorse di 1 core CPU e 1 GB di memoria, eseguire questo comando:
+toodeploy immagine contenitore dal Registro di sistema di hello contenitore con una risorsa richiesta di 1 core CPU e 1GB di memoria, eseguire hello comando seguente:
 
 ```azurecli-interactive
 az container create --name aci-tutorial-app --image <acrLoginServer>/aci-tutorial-app:v1 --cpu 1 --memory 1 --registry-password <acrPassword> --ip-address public -g myResourceGroup
 ```
 
-Entro pochi secondi si riceverà una risposta iniziale da Azure Resource Manager. Per visualizzare lo stato della distribuzione, usare:
+Entro pochi secondi si riceverà una risposta iniziale da Azure Resource Manager. stato di hello tooview hello della distribuzione di, utilizzare:
 
 ```azurecli-interactive
 az container show --name aci-tutorial-app --resource-group myResourceGroup --query state
 ```
 
-È possibile continuare a eseguire questo comando finché lo stato non passa da *pending* a *running*. Sarà quindi possibile procedere.
+È possibile continuare a eseguire questo comando fino a quando non hello stato cambia da *in sospeso* troppo*esecuzione*. Sarà quindi possibile procedere.
 
-## <a name="view-the-application-and-container-logs"></a>Visualizzare l'applicazione e i log dei contenitori
+## <a name="view-hello-application-and-container-logs"></a>Visualizzare i log dell'applicazione e il contenitore di hello
 
-Dopo avere completato la distribuzione, aprire il browser all'indirizzo IP indicato nell'output del comando seguente:
+Al termine della distribuzione di hello, aprire l'indirizzo IP di toohello browser illustrato nell'output di hello di hello comando seguente:
 
 ```bash
 az container show --name aci-tutorial-app --resource-group myResourceGroup --query ipAddress.ip
@@ -74,9 +74,9 @@ az container show --name aci-tutorial-app --resource-group myResourceGroup --que
 "13.88.176.27"
 ```
 
-![App Hello World nel browser][aci-app-browser]
+![Hello world app nel browser hello][aci-app-browser]
 
-È anche possibile visualizzare l'output del log del contenitore:
+È inoltre possibile visualizzare l'output del log del contenitore hello hello:
 
 ```azurecli-interactive
 az container logs --name aci-tutorial-app -g myResourceGroup
@@ -92,12 +92,12 @@ listening on port 80
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono stati distribuiti contenitori in Istanze di contenitore di Azure. Sono stati completati i passaggi seguenti:
+In questa esercitazione, il processo di hello distribuire le istanze di contenitori di tooAzure contenitori è completato. sono stata completata Hello alla procedura seguente:
 
 > [!div class="checklist"]
-> * Distribuzione del contenitore da Registro contenitori di Azure tramite l'interfaccia della riga di comando di Azure
-> * Visualizzazione dell'applicazione nel browser
-> * Visualizzare i log dei contenitori
+> * Distribuzione di contenitore hello dall'utilizzo del Registro di sistema di Azure contenitore hello hello CLI di Azure
+> * Visualizzazione di un'applicazione hello in browser hello
+> * Visualizzazione dei log di contenitore hello
 
 <!-- LINKS -->
 [prepare-app]: ./container-instances-tutorial-prepare-app.md

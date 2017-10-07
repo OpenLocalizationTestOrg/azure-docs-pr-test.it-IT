@@ -64,7 +64,7 @@
 # Risorse correlate
 ## [Batch Shipyard](https://github.com/Azure/batch-shipyard)
 ## [Elaborazione dati con Batch e Data Factory](../data-factory/data-factory-data-processing-using-batch.md?toc=%2fazure%2fbatch%2ftoc.json)
-## [Soluzioni Batch e HPC nel cloud di Azure](batch-hpc-solutions.md)
+## [Soluzioni di batch e HPC in hello cloud di Azure](batch-hpc-solutions.md)
 
 # Risorse
 ## [Roadmap per Azure](https://azure.microsoft.com/roadmap/)

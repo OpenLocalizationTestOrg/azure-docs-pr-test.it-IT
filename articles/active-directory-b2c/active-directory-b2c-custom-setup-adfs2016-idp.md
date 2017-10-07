@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C: Aggiungere AD FS come provider di identità SAML tramite criteri personalizzati"
-description: Articolo sulle procedure per configurare AD FS 2016 tramite il protocollo SAML e criteri personalizzati
+description: Un tooarticle procedura su come configurare ADFS 2016 utilizzando il protocollo SAML e i criteri personalizzati
 services: active-directory-b2c
 documentationcenter: 
 author: yoelhor
@@ -14,103 +14,103 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: yoelh
-ms.openlocfilehash: ef0495460b5652dd6052a49ab9c722381e93458b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 30fb7700e7834e3d91fab1fc1b169b761584b204
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-add-adfs-as-a-saml-identity-provider-using-custom-policies"></a>Azure Active Directory B2C: Aggiungere AD FS come provider di identità SAML tramite criteri personalizzati
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Questo articolo illustra come consentire agli utenti di accedere da un account AD FS tramite l'utilizzo di [criteri personalizzati](active-directory-b2c-overview-custom.md).
+Questo articolo illustra come tooenable Accedi per gli utenti dall'account ADFS tramite l'utilizzo di hello di [criteri personalizzati](active-directory-b2c-overview-custom.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Completare la procedura descritta nell'articolo [Introduzione ai criteri personalizzati](active-directory-b2c-get-started-custom.md).
+Hello completato i passaggi in hello [Guida introduttiva a criteri personalizzati](active-directory-b2c-get-started-custom.md) articolo.
 
 La procedura include i passaggi seguenti:
 
 1.  Creazione di un trust della relying party di AD FS.
-2.  Aggiunta del certificato di trust della relying party di AD FS in Azure AD B2C.
-3.  Aggiunta di un provider di attestazioni nei criteri.
-4.  Registrazione del provider di attestazioni dell'account AD FS in un percorso utente.
-5.  Caricamento dei criteri in un tenant di Azure AD B2C e test dei criteri.
+2.  Aggiunta di hello ADFS Trust della Relying Party certificato tooAzure Active Directory B2C.
+3.  Aggiunta di criteri tooa di provider di attestazioni.
+4.  Account di ad FS hello registrazione viaggio utente tooa di provider di attestazioni.
+5.  Caricamento tooan criteri hello Azure Active Directory B2C tenant ed eseguirne il test.
 
-## <a name="to-create-a-claims-aware-relying-party-trust"></a>Per creare un trust della relying party in grado di riconoscere attestazioni
+## <a name="toocreate-a-claims-aware-relying-party-trust"></a>toocreate un Trust della Relying Party grado di riconoscere attestazioni
 
-Per usare AD FS come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario creare un trust della relying party di AD FS e inserire i parametri corretti.
+toouse ADFS come provider di identità in Azure Active Directory (Azure AD) B2C, è necessario toocreate un ADFS Trust della Relying Party e fornirlo con i parametri corretti hello.
 
-Per aggiungere un nuovo trust della relying party usando lo snap-in di gestione di AD FS e configurare manualmente le impostazioni, eseguire la procedura seguente in un server federativo.
+tooadd nuovo relying party trust tramite lo snap-in Gestione ADFS hello Active Directory e configurare manualmente le impostazioni di hello, eseguire hello seguente procedura in un server federativo.
 
-L'appartenenza al gruppo **Amministratori** o a un gruppo equivalente nel computer locale è il requisito minimo necessario per completare questa procedura. Informazioni dettagliate sull'utilizzo delle appartenenze ai gruppi e degli account appropriati sono disponibili in [Local and Domain Default Groups](http://go.microsoft.com/fwlink/?LinkId=83477) (Gruppi predefiniti locali e di dominio).
+L'appartenenza a **amministratori**, o equivalente nel computer locale hello toocomplete necessari minimo hello questa procedura. Altre informazioni sull'uso degli account appropriati hello e appartenenze a [dominio gruppi predefiniti locali e](http://go.microsoft.com/fwlink/?LinkId=83477)
 
 1.  In Server Manager selezionare **Strumenti** e quindi **Gestione AD FS**.
 
 2.  Fare clic su **Aggiungi attendibilità componente**.
     ![Aggiungi attendibilità componente](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-1.png)
 
-3.  Nella pagina **iniziale** scegliere **In grado di riconoscere attestazioni** e fare clic su **Avvia**.
-    ![Nella pagina iniziale scegliere In grado di riconoscere attestazioni](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-2.png)
-4.  Nella pagina **Seleziona origine dati** fare clic su **Immetti dati sul componente manualmente** e quindi su **Avanti**.
-    ![Immetti dati sul componente manualmente](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-3.png)
+3.  In hello **iniziale** pagina, scegliere **grado di riconoscere attestazioni** e fare clic su **avviare**.
+    ![Nella pagina di benvenuto hello, scegliere il grado di riconoscere attestazioni](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-2.png)
+4.  In hello **Seleziona origine dati** pagina, fare clic su **immettere manualmente i dati sulla relying party di hello**, quindi fare clic su **Avanti**.
+    ![Immettere i dati sulla relying party di hello](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-3.png)
 
-5.  Nella pagina **Specifica nome visualizzato** digitare un nome in **Nome visualizzato**, in **Note** digitare una descrizione del trust della relying party e quindi fare clic su **Avanti**.
+5.  In hello **Specifica nome visualizzato** , digitare un nome in **nome visualizzato**in **note** digitare una descrizione per questo trust della relying party e quindi fare clic su **successivo** .
     ![Specificare il nome visualizzato e le note](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-4.png)
-6.  Facoltativo. Se si ha un certificato di crittografia di token facoltativo, nella pagina **Configura certificato** fare clic su **Sfoglia** per trovare il file del certificato e quindi fare clic su **Avanti**.
+6.  Facoltativo. Se sono presenti un certificato di crittografia token facoltativa, quindi hello **Configura certificato** pagina, fare clic su **Sfoglia** toolocate il file di certificato e quindi fare clic su **Avanti** .
     ![Configura certificato](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-5.png)
-7.  Nella pagina **Configura URL** selezionare la casella di controllo **Abilita supporto del protocollo SAML 2.0 WebSSO**. In **Componente URL del servizio SAML 2.0 SSO** digitare l'URL dell'endpoint di servizio SALM (Security Assertion Markup Language) per questo trust della relying party e quindi fare clic su **Avanti**.  In **Componente URL del servizio SAML 2.0 SSO** incollare `https://login.microsoftonline.com/te/{tenant}.onmicrosoft.com/{policy}`. Sostituire {tenant} con il nome del tenant (ad esempio, contosob2c.onmicrosoft.com) e sostituire i {criteri} con il nome dei criteri di estensione (ad esempio, B2C_1A_TrustFrameworkExtensions).
+7.  In hello **Configura URL** pagina, seleziona hello **abilitare il supporto per il protocollo SAML 2.0 WebSSO hello** casella di controllo. In **Relying party SAML 2.0 SSO service URL**, digitare l'URL dell'endpoint del servizio hello Security Assertion Markup Language (SAML) per questo trust della relying party e quindi fare clic su **Avanti**.  Per hello **Relying party SAML 2.0 SSO service URL**, incollare hello `https://login.microsoftonline.com/te/{tenant}.onmicrosoft.com/{policy}`. Sostituire {tenant} con il nome del tenant (ad esempio, contosob2c.onmicrosoft.com) e sostituire hello {criteri} con il nome del criterio estensioni (ad esempio, B2C_1A_TrustFrameworkExtensions).
     > [!IMPORTANT]
-    >Il nome dei criteri è quello da cui ereditano i criteri signup_or_signin, in questo caso: `B2C_1A_TrustFrameworkExtensions`.
-    >L'URL, ad esempio, può essere: https://login.microsoftonline.com/te/**contosob2c**.onmicrosoft.com/**B2C_1A_TrustFrameworkBase**.
+    >nome del criterio Hello è hello uno da cui eredita criteri signup_or_signin, in questo caso è: `B2C_1A_TrustFrameworkExtensions`.
+    >Ad esempio in cui potrebbe essere URL hello: https://login.microsoftonline.com/te/**contosob2c**.onmicrosoft.com/**B2C_1A_TrustFrameworkBase**.
 
     ![Componente URL del servizio SAML 2.0 SSO](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-6.png)
-8. Nella pagina **Configura identificatori** specificare lo stesso URL del passaggio precedente, fare clic su **Aggiungi** per aggiungerlo all'elenco e quindi fare clic su **Avanti**.
+8. In hello **Configura identificatori** specificare hello stesso URL come passaggio precedente hello, fare clic su **Aggiungi** tooadd li toohello elenco e quindi fare clic su **Avanti**.
     ![Identificatori dell'attendibilità componente](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-7.png)
-9.  Nella pagina **Scegli criteri di controllo di accesso** scegliere i criteri desiderati e fare clic su **Avanti**.
+9.  In hello **scegliere Criteri di controllo di accesso** selezionare un criterio e fare clic su **Avanti**.
     ![Scegli criteri di controllo di accesso](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-8.png)
-10.  Nella pagina **Aggiunta attendibilità** rivedere le impostazioni e quindi fare clic su **Avanti** per salvare le informazioni sul trust della relying party.
+10.  In hello **pronto tooAdd Trust** pagina, rivedere le impostazioni di hello e quindi fare clic su **Avanti** toosave la relying party trust informazioni.
     ![Salvare le informazioni sul trust della relying party](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-9.png)
-11.  Nella pagina **Fine** fare clic su **Chiudi**. Viene automaticamente visualizzata la finestra di dialogo **Modifica regole attestazione**.
+11.  In hello **fine** pagina, fare clic su **Chiudi**, questa azione consente di visualizzare automaticamente hello **Modifica regole attestazione** la finestra di dialogo.
     Selezionare ![Modifica regole attestazione](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-rp-10.png)
 12. Fare clic su **Aggiungi regola**.  
       ![Aggiungi nuova regola](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-1.png)
 13.  In **Modello di regola attestazione** selezionare **Inviare attributi LDAP come attestazioni**.
     ![Selezionare la regola modello Inviare attributi LDAP come attestazioni](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-2.png)
-14.  Specificare **Nome regola attestazione**. Per **Archivio attributi** selezionare **Select Active Directory** (Seleziona Active Directory), aggiungere le attestazioni seguenti e quindi fare clic su **Fine** e su **OK**.
+14.  Specificare **Nome regola attestazione**. Per hello **archivio attributi** selezionare **selezionare Active Directory** aggiungere hello seguendo le attestazioni, quindi fare clic su **fine** e **OK**.
     ![Impostare le proprietà di regola](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-claims-3.png)
-15.  In Server Manager selezionare **Attendibilità componente**, selezionare il trust della relying party creato e quindi fare clic su **Proprietà**.
+15.  In Server Manager, selezionare **Relying Party Trusts** selezionare hello trust della relying party è stato creato, quindi fare clic su **proprietà**.
     ![Proprietà di modifica della relying party](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-1.png)
-16.  Nella finestra delle proprietà del trust della relying party (B2C Demo) fare clic sulla scheda **Firma** e quindi su **Aggiungi**.  
+16.  Uno hello relying party trust (B2C Demo) finestra Proprietà selezionare **firma** scheda e fare clic su **Aggiungi**.  
     ![Imposta firma](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-2.png)
 17.  Aggiungere il certificato di firma (file con estensione CERT, senza chiave privata).  
     ![Aggiungere il certificato di firma](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-3.png)
-18.  Nella finestra delle proprietà del trust della relying party (B2C Demo) fare clic sulla scheda **Avanzate** e impostare **Algoritmo hash sicuro** su **SHA-1**. Fare clic su **OK**.  
-    ![Impostare l'algoritmo hash sicuro su SHA-1](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-4.png)
+18.  Nella finestra dei comandi di hello relying party trust (B2C Demo) fare clic su **avanzate** scheda e modificare hello **algoritmo hash protetto** troppo**SHA-1**, fare clic su **Ok**.  
+    ![Impostare l'algoritmo di hash protetto tooSHA-1](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-sig-4.png)
 
-## <a name="add-the-adfs-account-application-key-to-azure-ad-b2c"></a>Aggiungere la chiave dell'applicazione di account AD FS in Azure AD B2C
-La federazione con account AD FS richiede un segreto client per consentire all'account AD FS di considerare attendibile Azure AD B2C per conto dell'applicazione. È necessario quindi archiviare il certificato AD FS nel tenant di Azure AD B2C. 
+## <a name="add-hello-adfs-account-application-key-tooazure-ad-b2c"></a>Aggiungere hello ADFS account applicazione chiave tooAzure AD B2C
+Federazione con l'account ADFS richiede un segreto client per ad FS tootrust di account Azure Active Directory B2C per conto di un'applicazione hello. È necessario un certificato ADFS toostore nel tenant di Azure Active Directory B2C. 
 
-1.  Passare al tenant di Azure AD B2C e selezionare **B2C Settings** (Impostazioni B2C) > **Framework dell'esperienza di gestione delle identità**
-2.  Selezionare **Chiavi dei criteri** per visualizzare le chiavi disponibili nel tenant.
+1.  Tenant di Azure Active Directory B2C tooyour scegliere **impostazioni B2C** > **Framework esperienza di identità**
+2.  Selezionare **chiavi dei criteri** chiavi hello tooview disponibili nel tenant.
 3.  Fare clic su **+Aggiungi**.
 4.  Per **Opzioni** usare **Carica**.
 5.  Per **Nome** usare `ADFSSamlCert`.  
-    È possibile che il prefisso `B2C_1A_` venga aggiunto automaticamente.
-6.  In Caricamento file selezionare il file del certificato con estensione PFX, con la chiave privata. Nota: questo certificato (con la chiave privata) deve essere lo stesso rilasciato e usato per la relying party di AD FS.
+    prefisso Hello `B2C_1A_` potrebbero essere aggiunti automaticamente.
+6.  Nel caricamento del File hello, * * selezionare il file pfx del certificato con chiave privata. Nota: questo certificato (con la chiave privata hello) deve essere identico a quello che emesso e utilizzato per relying party ADFS hello hello.
 ![Carica chiave criteri](media/active-directory-b2c-custom-setup-adfs2016-idp/aadb2c-ief-setup-adfs2016-idp-cert.png)
 7.  Fare clic su **Crea**
-8.  Confermare di avere creato la chiave `B2C_1A_ADFSSamlCert`.
+8.  Verificare di aver creato la chiave hello `B2C_1A_ADFSSamlCert`.
 
 ## <a name="add-a-claims-provider-in-your-extension-policy"></a>Aggiungere un provider di attestazioni nei criteri di estensione
-Per consentire agli utenti di accedere con un account AD FS, è necessario definire l'account AD FS come provider di attestazioni. In altre parole, è necessario specificare un endpoint con cui comunichi Azure AD B2C. L'endpoint offre un set di attestazioni che vengono usate da Azure AD B2C per verificare se un utente specifico è stato autenticato.
+Se si desidera toosign gli utenti utilizzando l'account ADFS, è necessario account ADFS toodefine come provider di attestazioni. In altre parole, è necessario toospecify un endpoint di Azure Active Directory B2C con cui comunica. endpoint Hello fornisce un set di attestazioni che vengono utilizzati da Azure AD B2C tooverify che ha autenticato un utente specifico.
 
 Definire AD FS come provider di attestazioni aggiungendo il nodo `<ClaimsProvider>` nel file dei criteri di estensione:
 
-1. Aprire il file dei criteri di estensione (TrustFrameworkExtensions.xml) dalla directory di lavoro. Se occorre un editor XML, provare [Visual Studio Code](https://code.visualstudio.com/download), un editor multipiattaforma leggero.
-2. Trovare la sezione `<ClaimsProviders>`
-3. Aggiungere il seguente frammento XML nell'elemento `ClaimsProviders` e sostituire `identityProvider` con il DNS (valore arbitrario che indica il dominio personale) e quindi salvare il file. 
+1. Aprire i file dei criteri estensione hello (TrustFrameworkExtensions.xml) dalla directory di lavoro. Se occorre un editor XML, provare [Visual Studio Code](https://code.visualstudio.com/download), un editor multipiattaforma leggero.
+2. Trovare hello `<ClaimsProviders>` sezione
+3. Aggiungere hello seguente frammento di codice XML in hello `ClaimsProviders` elemento e sostituire `identityProvider` con il server DNS (valore arbitrario che indica il dominio), quindi salvare il file hello. 
 
 ```xml
 <ClaimsProvider>
@@ -151,30 +151,30 @@ Definire AD FS come provider di attestazioni aggiungendo il nodo `<ClaimsProvide
 </ClaimsProvider>
 ```
 
-## <a name="register-the-adfs-account-claims-provider-to-sign-up-or-sign-in-user-journey"></a>Registrare il provider di attestazioni dell'account AD FS in un percorso utente di registrazione o di accesso
-A questo punto, il provider di identità è stato configurato,  ma non è disponibile in nessuna delle schermate di registrazione o di accesso. È necessario ora aggiungere il provider di identità dell'account AD FS al percorso utente `SignUpOrSignIn` dell'utente. Per renderlo disponibile, si crea un duplicato di un modello di processo utente esistente  e lo si modifica in modo che contenga il provider di identità AD FS:
+## <a name="register-hello-adfs-account-claims-provider-toosign-up-or-sign-in-user-journey"></a>Registrare hello ADFS account attestazioni provider tooSign backup o accedere al proprio processo utente
+A questo punto, il provider di identità hello è stato impostato.  Non è tuttavia disponibile in una qualsiasi delle schermate di sign-configurazione/Accedi hello. È possibile procedere tooadd hello ADFS account identity provider tooyour utente `SignUpOrSignIn` viaggio utente. toomake disponibili, si crea un duplicato di un proprio processo utente di modello esistente.  Quindi, abbiamo modificarlo in modo da includere il provider di identità ADFS hello:
     >[!NOTE]
-    >If you previously copied the `<UserJourneys>` element from base file of your policy to the extension file (TrustFrameworkExtensions.xml) you can skip this section.
-1.  Aprire il file di base dei criteri, ad esempio TrustFrameworkBase.xml.
-2.  Trovare l'elemento `<UserJourneys>` e copiare l'intero contenuto del nodo `<UserJourneys>`.
-3.  Aprire il file di estensione, ad esempio TrustFrameworkExtensions.xml, e trovare l'elemento `<UserJourneys>`. Se l'elemento non esiste, aggiungerne uno.
-4.  Incollare l'intero contenuto del nodo `<UserJournesy>` copiato come figlio dell'elemento `<UserJourneys>`.
+    >If you previously copied hello `<UserJourneys>` element from base file of your policy toohello extension file (TrustFrameworkExtensions.xml) you can skip this section.
+1.  Aprire il file di base hello dei criteri (ad esempio, TrustFrameworkBase.xml).
+2.  Trovare hello `<UserJourneys>` elemento e copia hello intero contenuto di `<UserJourneys>` nodo.
+3.  Aprire il file di estensione hello (ad esempio, TrustFrameworkExtensions.xml) e individuare hello `<UserJourneys>` elemento. Se non esiste l'elemento hello, aggiungerne uno.
+4.  Incollare l'intero contenuto di hello di `<UserJournesy>` nodo copiato come figlio di hello `<UserJourneys>` elemento.
 
-### <a name="display-the-button"></a>Visualizzare il pulsante
-L'elemento `<ClaimsProviderSelections>` definisce l'elenco delle opzioni di selezione del provider di attestazioni e il relativo ordine.  L'elemento `<ClaimsProviderSelection>` è analogo a un pulsante del provider di identità in una pagina di registrazione/accesso. Se si aggiunge un elemento `<ClaimsProviderSelection>` per l'account AD FS, viene visualizzato un nuovo pulsante quando un utente apre la pagina. Per aggiungere questo elemento:
+### <a name="display-hello-button"></a>Pulsante di visualizzazione hello
+Hello `<ClaimsProviderSelections>` elemento definisce l'elenco di hello di opzioni di selezione del provider di attestazioni e il relativo ordine.  `<ClaimsProviderSelection>`elemento è di tipo pulsante di provider di identità di tooan analoghi in una pagina sign-configurazione/Accedi. Se si aggiunge un `<ClaimsProviderSelection>` elemento per conto ADFS, un nuovo pulsante viene visualizzato quando un utente inserita nella pagina hello. tooadd questo elemento:
 
-1.  Trovare il nodo `<UserJourney>` che include `Id="SignUpOrSignIn"` nel percorso utente appena copiato.
-2.  Passare al nodo `<OrchestrationStep>` che include `Order="1"`
+1.  Trovare hello `<UserJourney>` nodo che include `Id="SignUpOrSignIn"` in viaggio utente hello copiato.
+2.  Individuare hello `<OrchestrationStep>` nodo che include`Order="1"`
 3.  Aggiungere il frammento XML seguente nel nodo `<ClaimsProviderSelections>`:
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
 ```
-### <a name="link-the-button-to-an-action"></a>Collegare il pulsante a un'azione
+### <a name="link-hello-button-tooan-action"></a>Azione di collegamento hello pulsante tooan
 
-Ora che il pulsante è stato posizionato, è necessario collegarlo a un'azione. L'azione, in questo caso, consiste nel far comunicare Azure AD B2C con l'account AD FS per ricevere un token. È possibile farlo collegando il profilo tecnico per il provider di attestazioni dell'account AD FS:
+Ora che si dispone di un pulsante, è necessario toolink è tooan azione. azione di Hello, in questo caso, è per Azure Active Directory B2C toocommunicate con ADFS account tooreceive un token. Collegamento azione pulsante di hello tooan collegando profilo tecniche hello per il provider di attestazioni ADFS account:
 
-1.  Trovare l'oggetto `<OrchestrationStep>` che include `Order="2"` nel nodo `<UserJourney>`.
+1.  Trovare hello `<OrchestrationStep>` che include `Order="2"` in hello `<UserJourney>` nodo.
 2.  Aggiungere il frammento XML seguente nel nodo `<ClaimsExchanges>`:
 
 ```xml
@@ -182,47 +182,47 @@ Ora che il pulsante è stato posizionato, è necessario collegarlo a un'azione. 
 ```
 
 > [!NOTE]
-> * Verificare che `Id` sia impostato sullo stesso valore di `TargetClaimsExchangeId` riportato nella sezione precedente.
-> * Verificare che `TechnicalProfileReferenceId` sia impostato sul profilo tecnico creato in precedenza (Contoso-SAML2).
+> * Assicurarsi di hello `Id` ha lo stesso valore di hello `TargetClaimsExchangeId` nella precedente sezione hello.
+> * Verificare `TechnicalProfileReferenceId` è impostare il profilo di tecniche toohello precedenti (Contoso-SAML2) è stato creato.
 
-## <a name="upload-the-policy-to-your-tenant"></a>Caricare i criteri nel tenant
-1.  Nel [portale di Azure](https://portal.azure.com) passare al [contesto del tenant di Azure AD B2C](active-directory-b2c-navigate-to-b2c-context.md) e aprire il pannello **Azure AD B2C**.
+## <a name="upload-hello-policy-tooyour-tenant"></a>Caricare tenant tooyour di hello criteri
+1.  In hello [portale di Azure](https://portal.azure.com), passare in hello [contesto del tenant di Azure Active Directory B2C](active-directory-b2c-navigate-to-b2c-context.md), aprire hello e **Azure Active Directory B2C** blade.
 2.  Fare clic su **Framework dell'esperienza di gestione delle identità**.
-3.  Aprire il pannello **Tutti i criteri**.
+3.  Aprire hello **tutti i criteri** blade.
 4.  Selezionare **Carica criteri**.
-5.  Selezionare la casella **Sovrascrivi il criterio se esistente**.
-6.  **Caricare** TrustFrameworkExtensions.xml e assicurarsi che non presenti errori di convalida
+5.  Controllare **sovrascrivere i criteri di hello eventuale** casella.
+6.  **Caricare** TrustFrameworkExtensions.xml e assicurarsi che non riuscire convalida hello
 
-## <a name="test-the-custom-policy-by-using-run-now"></a>Testare i criteri personalizzati tramite Esegui adesso
-1.  Aprire **Impostazioni di Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità**.
-2.  Aprire **B2C_1A_signup_signin**, i criteri personalizzati dalla relying party caricati in precedenza. Selezionare **Esegui adesso**.
-3.  Dovrebbe essere possibile accedere usando un account AD FS.
+## <a name="test-hello-custom-policy-by-using-run-now"></a>Test dei criteri personalizzati di hello tramite Esegui
+1.  Aprire **le impostazioni di Azure Active Directory B2C** e andare troppo**identità esperienza Framework**.
+2.  Aprire **B2C_1A_signup_signin**, hello criteri personalizzati di relying party (RP) che è stata caricata. Selezionare **Esegui adesso**.
+3.  È necessario essere in grado di toosign con account ADFS.
 
-## <a name="optional-register-the-adfs-account-claims-provider-to-profile-edit-user-journey"></a>[Facoltativo] Registrare il provider di attestazioni dell'account AD FS nel percorso utente Profile-Edit
-È possibile aggiungere il provider di identità dell'account AD FS anche al percorso utente `ProfileEdit` dell'utente. Per renderlo disponibile, ripetere gli ultimi due passaggi:
+## <a name="optional-register-hello-adfs-account-claims-provider-tooprofile-edit-user-journey"></a>[Facoltativo] Registrare viaggio di hello ADFS account attestazioni provider tooProfile modifica utente
+È consigliabile provider di identità account ADFS hello tooadd anche tooyour utente `ProfileEdit` viaggio utente. toomake è disponibile, si ripete hello ultimi due passaggi:
 
-### <a name="display-the-button"></a>Visualizzare il pulsante
-1.  Aprire il file di estensione dei criteri, ad esempio TrustFrameworkExtensions.xml.
-2.  Trovare il nodo `<UserJourney>` che include `Id="ProfileEdit"` nel percorso utente appena copiato.
-3.  Passare al nodo `<OrchestrationStep>` che include `Order="1"`
+### <a name="display-hello-button"></a>Pulsante di visualizzazione hello
+1.  Aprire il file di estensione hello dei criteri (ad esempio, TrustFrameworkExtensions.xml).
+2.  Trovare hello `<UserJourney>` nodo che include `Id="ProfileEdit"` in viaggio utente hello copiato.
+3.  Individuare hello `<OrchestrationStep>` nodo che include`Order="1"`
 4.  Aggiungere il frammento XML seguente nel nodo `<ClaimsProviderSelections>`:
 
 ```xml
 <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
 ```
 
-### <a name="link-the-button-to-an-action"></a>Collegare il pulsante a un'azione
-1.  Trovare l'oggetto `<OrchestrationStep>` che include `Order="2"` nel nodo `<UserJourney>`.
+### <a name="link-hello-button-tooan-action"></a>Azione di collegamento hello pulsante tooan
+1.  Trovare hello `<OrchestrationStep>` che include `Order="2"` in hello `<UserJourney>` nodo.
 2.  Aggiungere il frammento XML seguente nel nodo `<ClaimsExchanges>`:
 
 ```xml
 <ClaimsExchange Id="ContosoExchange" TechnicalProfileReferenceId="Contoso-SAML2" />
 ```
 
-### <a name="test-the-custom-profile-edit-policy-by-using-run-now"></a>Testare i criteri Profile-Edit personalizzati tramite Esegui adesso
-1.  Aprire **Impostazioni di Azure AD B2C** e passare a **Framework dell'esperienza di gestione delle identità**.
-2.  Aprire **B2C_1A_ProfileEdit**, i criteri personalizzati dalla relying party caricati in precedenza. Selezionare **Esegui adesso**.
-3.  Dovrebbe essere possibile accedere usando un account AD FS.
+### <a name="test-hello-custom-profile-edit-policy-by-using-run-now"></a>Testare il criterio Modifica profilo personalizzato di hello utilizzando Esegui
+1.  Aprire **le impostazioni di Azure Active Directory B2C** e andare troppo**identità esperienza Framework**.
+2.  Aprire **B2C_1A_ProfileEdit**, hello criteri personalizzati di relying party (RP) che è stata caricata. Selezionare **Esegui adesso**.
+3.  È necessario essere in grado di toosign con account ADFS.
 
-## <a name="download-the-complete-policy-files"></a>Scaricare i file dei criteri completi
-Facoltativo: per creare lo scenario è consigliabile usare file di criteri personalizzati dopo aver completato la procedura Introduzione ai criteri personalizzati. [File dei criteri di esempio solo per riferimento](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-adfs2016-app)
+## <a name="download-hello-complete-policy-files"></a>Scaricare i file di criteri completa hello
+Facoltativo: È consigliabile che compilare lo scenario utilizzando i file di criteri personalizzata dopo aver completato l'introduzione a criteri personalizzati analizzerà hello. [File dei criteri di esempio solo per riferimento](https://github.com/Azure-Samples/active-directory-b2c-custom-policy-starterpack/tree/master/scenarios/aadb2c-ief-setup-adfs2016-app)

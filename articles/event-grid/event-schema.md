@@ -1,6 +1,6 @@
 ---
-title: Schema di eventi di Griglia di eventi di Azure
-description: "Vengono descritte le proprietà disponibili per gli eventi con Griglia di eventi di Azure."
+title: schema di eventi eventi griglia aaaAzure
+description: "Vengono descritte le proprietà di hello forniti per gli eventi con griglia di eventi di Azure."
 services: event-grid
 author: banisadr
 manager: timlt
@@ -8,34 +8,34 @@ ms.service: event-grid
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: babanisa
-ms.openlocfilehash: 9e3c7b31ef23b29827d7184dc033227685ed92f8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 37178a5650b93fd9072d9cff3333aae14b2a2ba7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-grid-event-schema"></a>Schema di eventi di Griglia di eventi
 
-Questo articolo illustra le proprietà e lo schema per gli eventi. Gli eventi sono costituiti da un set di cinque proprietà di tipo stringa obbligatorie e un oggetto **data** obbligatorio. Le proprietà sono comuni a tutti gli eventi di tutti gli autori. L'oggetto **data** contiene le proprietà specifiche per ogni autore. Per gli argomenti di sistema, le proprietà sono specifiche del provider di risorse, ad esempio Archiviazione o Hub eventi.
+Questo articolo fornisce le proprietà di hello e lo schema per gli eventi. Gli eventi sono costituiti da un set di cinque proprietà di tipo stringa obbligatorie e un oggetto **data** obbligatorio. proprietà Hello sono comuni tooall eventi da qualsiasi server di pubblicazione. Hello **dati** oggetto contiene proprietà che sono server di pubblicazione tooeach specifico. Gli argomenti di sistema, queste proprietà sono i provider di risorse toohello specifico, ad esempio archiviazione o hub eventi.
 
-Gli eventi vengono inviati a Griglia di eventi di Azure in una matrice, che può contenere più oggetti evento. Se c'è un unico evento, la matrice ha una lunghezza pari a 1. 
+Gli eventi vengono inviati tooAzure griglia eventi in una matrice, che può contenere più oggetti evento. Se è presente solo un singolo evento, la matrice hello ha una lunghezza pari a 1. 
  
 ## <a name="event-properties"></a>Proprietà degli eventi
 
-Tutti gli eventi contengono gli stessi dati di livello principale indicati di seguito.
+Tutti gli eventi conterranno hello stesso seguenti dati di livello superiore.
 
 | Proprietà | Tipo | Descrizione |
 | -------- | ---- | ----------- |
-| argomento | string | Percorso risorsa completo dell'origine evento. Questo campo non è scrivibile. |
-| subject | string | Percorso dell'oggetto dell'evento definito dall'autore. |
-| eventType | string | Uno dei tipi di evento registrati per l'origine evento. |
-| eventTime | string | Ora di generazione dell'evento in base all'ora UTC del provider. |
-| id | string | Identificatore univoco dell'evento. |
-| data | object | Dati dell'evento specifici del provider di risorse. |
+| argomento | string | Origine di eventi toohello percorso completo della risorsa. Questo campo non è scrivibile. |
+| subject | string | Oggetto evento toohello del percorso definito server di pubblicazione. |
+| eventType | string | Uno dei hello registrato i tipi di evento per l'origine evento. |
+| eventTime | string | eventi di hello Hello viene generato in base all'ora UTC del provider di hello. |
+| id | string | Identificatore univoco per l'evento hello. |
+| data | object | Provider di risorse toohello specifico di dati di evento. |
 
 ## <a name="available-event-sources"></a>Origini evento disponibili
 
-Le origini evento seguenti pubblicano gli eventi per l'utilizzo tramite Griglia di eventi:
+le seguenti origini evento Hello pubblica eventi per l'utilizzo tramite la griglia di eventi:
 
 * Gruppi di risorse (operazioni di gestione)
 * Sottoscrizioni di Azure (operazioni di gestione)
@@ -126,7 +126,7 @@ I gruppi di risorse possono ora generare eventi di gestione da Azure Resource Ma
 
 ## <a name="event-hubs"></a>Hub eventi
 
-Gli eventi di Hub eventi vengono attualmente generati solo quando un file viene automaticamente inviato al servizio di archiviazione usando la funzionalità di acquisizione.
+Eventi di hub di eventi appartengono generato solo quando un file viene inviato automaticamente toostorage utilizzando la funzionalità di acquisizione hello.
 
 ### <a name="available-event-types"></a>Tipi di evento disponibili
 
@@ -134,7 +134,7 @@ Gli eventi di Hub eventi vengono attualmente generati solo quando un file viene 
 
 ### <a name="example-event"></a>Evento di esempio
 
-Questo evento di esempio mostra lo schema di un evento di Hub eventi generato quando la funzionalità di acquisizione archivia un file. 
+Questo evento di esempio mostra schema hello di un evento di hub di eventi generato quando viene archiviato un file di acquisizione. 
 
 ```json
 [
@@ -173,7 +173,7 @@ Archiviazione BLOB di Azure in anteprima privata con registrazione per l'integra
 
 ### <a name="example-event"></a>Evento di esempio
 
-Questo evento di esempio mostra lo schema di un evento di archiviazione generato quando viene creato un BLOB. 
+Questo evento di esempio mostra schema hello di un evento di archiviazione generato quando viene creato un blob. 
 
 ```json
 [
@@ -206,11 +206,11 @@ Questo evento di esempio mostra lo schema di un evento di archiviazione generato
 
 ## <a name="custom-topics"></a>Argomenti personalizzati
 
-Il payload di dati degli eventi personalizzati è definito dall'utente e può essere qualsiasi elemento JSON ben formattato. I dati di livello principale devono contenere gli stessi campi degli eventi standard definiti dalle risorse. Quando si pubblicano eventi in argomenti personalizzati, prendere in considerazione la modellazione dell'oggetto degli eventi in modo da supportare le operazioni di instradamento e filtro.
+payload dei dati degli eventi personalizzati Hello è definito dall'utente e può essere qualsiasi JSON corretto. dati di livello principale Hello devono contenere hello stessi campi come eventi standard risorsa definita. Quando si pubblicano gli argomenti di eventi toocustom è necessario considerare il soggetto hello del tooaid eventi routing e il filtro di modellazione.
 
 ### <a name="example-event"></a>Evento di esempio
 
-L'esempio seguente mostra un evento per un argomento personalizzato:
+Hello di esempio seguente viene illustrato un evento per un argomento personalizzato:
 ````json
 [
   {
@@ -230,5 +230,5 @@ L'esempio seguente mostra un evento per un argomento personalizzato:
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per un'introduzione a Griglia di eventi, vedere [Informazioni su Griglia di eventi](overview.md)
-* Per informazioni sulla creazione di una sottoscrizione di Griglia di eventi, vedere [Schema di sottoscrizione per Griglia di eventi](subscription-creation-schema.md).
+* Per un'introduzione tooEvent griglia, vedere [che cos'è una griglia di eventi?](overview.md)
+* toolearn sulla creazione di una sottoscrizione di griglia di eventi, vedere [schema sottoscrizione evento griglia](subscription-creation-schema.md).

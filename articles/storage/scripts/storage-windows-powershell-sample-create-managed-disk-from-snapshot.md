@@ -1,5 +1,5 @@
 ---
-title: Esempio di script di Azure PowerShell - Creare un disco gestito da uno snapshot | Microsoft Docs
+title: aaaAzure Script di PowerShell di esempio - creare un disco gestito da uno snapshot | Documenti Microsoft
 description: Esempio di script di Azure PowerShell - Creare un disco gestito da uno snapshot
 services: virtual-machines-windows
 documentationcenter: storage
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 06/05/2017
 ms.author: ramankum
-ms.openlocfilehash: 9105d9dc06eea33b3a4e1eeea7fd793919166c9b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 4fa34a8d6c67171083fba9a9ad73ecca5e0f0229
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-managed-disk-from-a-snapshot-with-powershell"></a>Creare un disco gestito da uno snapshot con PowerShell
 
-Questo script crea un disco gestito da uno snapshot. Può essere usato per ripristinare una macchina virtuale da snapshot dei dischi del sistema operativo e di dati. Creare dischi dati e del sistema operativo gestiti dai rispettivi snapshot e quindi creare una nuova macchina virtuale collegando i dischi gestiti. Collegando i dischi dati creati da snapshot, è anche possibile ripristinare i dischi di dati di una macchina virtuale esistente.
+Questo script crea un disco gestito da uno snapshot. Usarlo toorestore una macchina virtuale da snapshot di dischi del sistema operativo e dati. Creare dischi dati e del sistema operativo gestiti dai rispettivi snapshot e quindi creare una nuova macchina virtuale collegando i dischi gestiti. Collegando i dischi dati creati da snapshot, è anche possibile ripristinare i dischi di dati di una macchina virtuale esistente.
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install.md)]
 
@@ -31,17 +31,17 @@ Questo script crea un disco gestito da uno snapshot. Può essere usato per ripri
 
 ## <a name="sample-script"></a>Script di esempio
 
-[!code-powershell[principale](../../../powershell_scripts/storage/create-managed-disk-from-snapshot/create-managed-disk-from-snapshot.ps1 "Creare un disco gestito da snapshot")]
+[!code-powershell[main](../../../powershell_scripts/storage/create-managed-disk-from-snapshot/create-managed-disk-from-snapshot.ps1 "Create managed disk from snapshot")]
 
 
 ## <a name="script-explanation"></a>Spiegazione dello script
 
-Questo script usa i comandi seguenti per creare un disco gestito da snapshot. Ogni comando della tabella include collegamenti alla documentazione specifica del comando.
+Questo script utilizza seguenti comandi toocreate un disco gestito da uno snapshot. Ogni comando in documentazione specifica toocommand hello tabella collegamenti.
 
 | Comando | Note |
 |---|---|
 | [Get-AzureRmSnapshot](/powershell/module/azurerm.compute/Get-AzureRmSnapshot) | Ottiene le proprietà dello snapshot.  |
-| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | Crea la configurazione usata per la creazione del disco. Include l'ID risorsa dello snapshot padre, il percorso, che è identico a quello dello snapshot padre, e il tipo di archiviazione.  |
+| [New-AzureRmDiskConfig](/powershell/module/azurerm.compute/New-AzureRmDiskConfig) | Crea la configurazione del disco usata per la creazione del disco. Include l'Id dello snapshot padre hello, percorso che corrisponde al percorso di hello del tipo di archiviazione di snapshot e hello padre della risorsa hello.  |
 | [New-AzureRmDisk](/powershell/module/azurerm.compute/New-AzureRmDisk) | Crea un disco accettando come parametri la configurazione del disco, il nome del disco e il nome del gruppo di risorse. |
 
 
@@ -49,6 +49,6 @@ Questo script usa i comandi seguenti per creare un disco gestito da snapshot. Og
 
 [Creare una macchina virtuale da un disco gestito](./../../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-Per altre informazioni sul modulo Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).
+Per ulteriori informazioni sul modulo di Azure PowerShell hello, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).
 
-Altri esempi di script PowerShell della macchina virtuale sono reperibili nella [documentazione della VM Windows di Azure](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Esempi di script di PowerShell di macchina virtuale aggiuntiva sono reperibile in hello [documentazione macchina virtuale Windows Azure](../../virtual-machines/windows/powershell-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

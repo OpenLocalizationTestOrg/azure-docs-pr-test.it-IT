@@ -1,5 +1,5 @@
 ---
-title: Distribuzione di tabelle in SQL Data Warehouse | Documentazione Microsoft
+title: aaaDistributing nelle tabelle SQL Data Warehouse | Documenti Microsoft
 description: Introduzione alla distribuzione di tabelle in SQL Data Warehouse di Azure.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: d0e12bf821a81826a20b8db84e76c48fa60ad9b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 65093eeaeb00fef85aaa6070da2c976fed3f4bbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="distributing-tables-in-sql-data-warehouse"></a>Distribuzione di tabelle in SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -33,36 +33,36 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-SQL Data Warehouse è un sistema di database distribuito a elaborazione parallela massiva.  Suddividendo i dati e le funzionalità di elaborazione tra più nodi, SQL Data Warehouse offre grande scalabilità, ben oltre qualsiasi sistema singolo.  La distribuzione dei dati all'interno di SQL Data Warehouse è tra i fattori principali che permettono di ottenere prestazioni ottimali.   Per ottenere prestazioni ottimali è importante ridurre al minimo lo spostamento dei dati e, per fare ciò, è importante scegliere la giusta strategia di distribuzione.
+SQL Data Warehouse è un sistema di database distribuito a elaborazione parallela massiva.  Suddividendo i dati e le funzionalità di elaborazione tra più nodi, SQL Data Warehouse offre grande scalabilità, ben oltre qualsiasi sistema singolo.  Decidere come toodistribute i dati all'interno del Data Warehouse di SQL sono uno dei più importante hello fattori tooachieving ottenere prestazioni ottimali.   prestazioni di chiave toooptimal Hello sono ridurre al minimo lo spostamento dei dati e a sua volta lo spostamento dei dati di chiave toominimizing hello seleziona la strategia di distribuzione corretto hello.
 
 ## <a name="understanding-data-movement"></a>Comprendere lo spostamento dei dati
-In un sistema MPP i dati di ogni tabella sono suddivisi in più database sottostanti.  Le query maggiormente ottimizzate in un sistema MPP possono semplicemente essere passate per l'esecuzione sui singoli database distribuiti, senza alcuna interazione con gli altri database.  Ad esempio, si supponga di avere un database con dati di vendita che contiene due tabelle, per vendite e clienti.  Se si ha una query che deve creare un join tra la tabella delle vendite con quella dei clienti e si dividono entrambe le tabelle per numero di cliente, inserendo ogni cliente in un database distinto, tutte le query che uniscono vendite e clienti possono essere risolte all'interno di ogni database senza scambio di informazioni con gli altri database.  Al contrario, se si dividono i dati di vendita per numero d'ordine e i dati dei clienti per numero di cliente, qualsiasi database specificato non avrà i dati corrispondenti per ogni cliente e quindi se vogliono unire i dati di vendita con quelli dei clienti, sarà necessario ottenere i dati per ogni cliente dagli altri database.  Nel secondo esempio lo spostamento dei dati si renderà necessario per spostare i dati dei cliente nei dati di vendita, in modo da consentire l'unione delle due tabelle.  
+In un sistema MPP, dati hello da ogni tabella sono suddiviso tra diversi database sottostanti.  query Hello più ottimizzata su un sistema MPP possono semplicemente essere trasmessi tramite tooexecute hello singoli database distribuiti senza l'intervento dell'hello tra gli altri database.  Ad esempio, si supponga di avere un database con dati di vendita che contiene due tabelle, per vendite e clienti.  Se si dispone di una query che deve toojoin la tabella di clienti tooyour tabella sales e si divide sia le tabelle e sulle vendite clienti backup per il numero di clienti, l'inserimento di ogni cliente in un database separato, tutte le query che uniscono vendite e clienti possano essere risolti all'interno di ogni database con alcuna conoscenza di hello altri database.  Al contrario, se i dati di vendita diviso per il numero di ordine e i dati cliente numero cliente, quindi uno specifico database senza dati corrispondenti hello per ogni cliente e pertanto se si desidera toojoin i dati sui clienti tooyour i dati di vendita, è necessario tooget hello dati per ogni cliente dalla hello altri database.  Nel secondo esempio, lo spostamento di dati necessario toooccur toomove hello cliente dati toohello dati di vendita, in modo che hello due tabelle possono essere unite in join.  
 
-Lo spostamento dei dati non è sempre una procedura negativa, talvolta è necessaria per risolvere una query.  Quando tuttavia è possibile evitare questo passaggio supplementare, la query verrà naturalmente eseguita più velocemente.  In genere lo spostamento dei dati si verifica quando le tabelle vengono unite in join o vengono eseguite aggregazioni.  Spesso è necessario eseguire entrambe le operazioni, quindi anche se si può procedere all'ottimizzazione per uno scenario, ad esempio un join, lo spostamento dei dati è comunque necessario per facilitare la risoluzione per l'altro scenario, ad esempio un'aggregazione.  Il trucco è scoprire quale delle due soluzioni è meno impegnativa.  Nella maggior parte dei casi, la distribuzione di tabelle dei fatti di grandi dimensioni in una colonna di join comune è il metodo più efficace per ridurre al minimo lo spostamento dei dati.  La distribuzione dei dati nelle colonne di join è un metodo molto più comune per ridurre lo spostamento dei dati rispetto alla distribuzione di dati nelle colonne coinvolte in un'aggregazione.
+Lo spostamento dei dati non è sempre un aspetto negativo, in alcuni casi è necessario toosolve una query.  Quando tuttavia è possibile evitare questo passaggio supplementare, la query verrà naturalmente eseguita più velocemente.  In genere lo spostamento dei dati si verifica quando le tabelle vengono unite in join o vengono eseguite aggregazioni.  Spesso è necessario toodo entrambi, in modo mentre è in grado di toooptimize per uno scenario, ad esempio un join, è comunque necessario toohelp lo spostamento dei dati per risolvere per hello altro scenario, ad esempio un'aggregazione.  stratagemma Hello è scoprire che è minore di lavoro.  Nella maggior parte dei casi, la distribuzione delle tabelle dei fatti di grandi dimensioni in una colonna normalmente unite in join è hello metodo più efficace per ridurre hello la maggior parte dello spostamento dei dati.  Distribuzione dei dati nelle colonne join è un molto più comune di metodo tooreduce lo spostamento dei dati rispetto alla distribuzione di dati nelle colonne coinvolte in un'aggregazione.
 
 ## <a name="select-distribution-method"></a>Selezionare il metodo di distribuzione
-Operando in background, SQL Data Warehouse divide i dati in 60 database.  Un singolo database è detto **distribuzione**.  Quando i dati vengono caricati nelle singole tabelle, SQL Data Warehouse deve sapere come dividerli nelle 60 distribuzioni.  
+Dietro le quinte hello SQL Data Warehouse divide i dati in 60 database.  Ogni singolo database è tooas di cui si fa riferimento un **distribuzione**.  Quando i dati vengono caricati in ogni tabella, SQL Data Warehouse ha tooknow come toodivide i dati in queste 60 distribuzioni.  
 
-Il metodo di distribuzione viene definito a livello di tabella e attualmente sono disponibili due opzioni:
+metodo di distribuzione Hello è definito a livello di tabella hello e attualmente sono disponibili due opzioni:
 
 1. **Round robin** , che distribuisce i dati in modo uniforme ma casuale.
 2. **Distribuzione hash** , che distribuisce i dati in base ai valori hash di una singola colonna.
 
-Per impostazione predefinita, quando non si definisce un metodo di distribuzione dei dati, per la tabella viene usato il metodo di distribuzione **round robin** .  Tuttavia, man mano che l'implementazione si fa più sofisticata, è consigliabile usare tabelle con **distribuzione hash** per ridurre al minimo lo spostamento dei dati, ottimizzando così le prestazioni delle query.
+Per impostazione predefinita, quando si definisce un metodo di distribuzione di dati, la tabella verrà distribuita tramite hello **round robin** metodo di distribuzione.  Tuttavia, dopo aver acquisito più sofisticati nell'implementazione, è tooconsider utilizzando **hash distribuita** tabelle toominimize lo spostamento dei dati che a sua volta consente di ottimizzare le prestazioni delle query.
 
 ### <a name="round-robin-tables"></a>Tabelle round robin
-Il metodo round robin per la distribuzione dei dati è molto semplice da usare.  Man mano che i dati vengono caricati, ogni riga viene semplicemente inviata alla distribuzione successiva.  Questo metodo distribuisce sempre i dati in modo casuale e molto uniforme in tutte le distribuzioni.  In altre parole, durante il processo round robin che inserisce i dati non viene eseguita alcuna operazione di ordinamento.  Per questo motivo, una distribuzione round robin viene a volte definita hash causale.  In una tabella con distribuzione round robin non è necessario comprendere i dati.  Per questo motivo le tabelle round robin sono spesso un'ottima scelta come destinazioni di caricamento.
+Utilizzo di hello metodo Round Robin di distribuzione dei dati è molto come sembra.  I dati vengono caricati, ogni riga viene semplicemente inviato toohello successiva distribuzione.  Questo metodo di distribuzione dei dati hello distribuirà sempre in modo casuale dati hello molto in modo uniforme in tutte le distribuzioni di hello.  Non vi è alcun ordinamento eseguite durante hello round robin processo che inserisce i dati.  Per questo motivo, una distribuzione round robin viene a volte definita hash causale.  Con una tabella di round robin distribuita non contiene dati di hello toounderstand di necessità.  Per questo motivo le tabelle round robin sono spesso un'ottima scelta come destinazioni di caricamento.
 
-Per impostazione predefinita, se non viene scelto un metodo di distribuzione, viene usato il metodo di distribuzione round robin.  Tuttavia, se è vero che le tabelle round robin sono facili da usare, perché i dati vengono distribuiti in modo casuale nel sistema, è anche vero che il sistema non può garantire la posizione di ogni riga nella distribuzione.  Di conseguenza, a volte il sistema deve richiamare un'operazione di spostamento dei dati per organizzare meglio i dati e poter risolvere una query.  Questo passaggio aggiuntivo può rallentare le query.
+Per impostazione predefinita, se nessun metodo di distribuzione scelto, hello metodo distribuzione round robin verrà utilizzato.  Tuttavia, mentre il round robin tabelle sono toouse facile, perché in modo casuale i dati vengono distribuiti attraverso il sistema hello che significa che il sistema di hello non può garantire quali distribuzione ogni riga è in.  Come un risultato di un sistema hello talvolta tooinvoke un toobetter di operazione di spostamento dati è necessario organizzare i dati prima che possa risolvere una query.  Questo passaggio aggiuntivo può rallentare le query.
 
-Si consideri l'uso della distribuzione round robin della tabella negli scenari seguenti:
+Utilizzare la distribuzione Round Robin per la tabella in hello seguenti scenari:
 
 * Quando si inizia come punto di partenza semplice.
 * Se non è presente una chiave di join ovvia.
-* Se non è presente una colonna candidata ottimale per la distribuzione hash della tabella.
-* Se la tabella non condivide una chiave di join comune con altre tabelle.
-* Se il join è meno significativo di altri join nella query.
-* Quando si tratta di una tabella di staging temporaneo.
+* Se non è presente la colonna buon candidato per la distribuzione di tabella hello hash
+* Se hello tabella non condivide una chiave di join comune con altre tabelle
+* Se il join hello è meno significativo di altri join nella query hello
+* Quando la tabella hello è una tabella temporanea di gestione temporanea
 
 Entrambi gli esempi seguenti creano una tabella round robin:
 
@@ -99,12 +99,12 @@ WITH
 ```
 
 > [!NOTE]
-> Anche se la tabella round robin è il tipo predefinito, la procedura consigliata è essere espliciti nella DDL in modo che le intenzioni del layout di tabella siano chiare.
+> Mentre il round robin è di tipo di tabella predefinito hello è esplicito nell'istruzione DDL è considerata buona norma in modo da deselezionare tooothers intenzioni hello del layout tabella.
 >
 >
 
 ### <a name="hash-distributed-tables"></a>Tabelle con distribuzione hash
-L'uso di un algoritmo di **distribuzione hash** per distribuire le tabelle permette di migliorare le prestazioni in molti scenari riducendo lo spostamento dei dati in fase di query.  Le tabelle con distribuzione hash vengono suddivise tra i database distribuiti usando un algoritmo di hash in una singola colonna selezionata dall'utente.  La colonna di distribuzione determina il modo in cui i dati vengono divisi tra i database distribuiti.  La funzione hash usa la colonna di distribuzione per assegnare righe alle distribuzioni.  L'algoritmo di hash e la distribuzione risultante sono deterministici.  Vale a dire che per lo stesso valore con lo stesso tipo di dati viene sempre eseguito l'hash alla stessa distribuzione.    
+Utilizzando un **Hash distribuita** toodistribute algoritmo delle tabelle è possono migliorare le prestazioni per molti scenari riducendo lo spostamento dei dati in fase di query.  Hash distribuite sono tabelle che sono divise tra hello distribuiti database utilizzando un algoritmo di hash su una singola colonna che può essere selezionato.  colonna di distribuzione Hello è determina la modalità di suddivisione dati hello tra i database distribuiti.  funzione hash Hello utilizza hello distribuzione colonna tooassign righe toodistributions.  algoritmo di hash Hello e distribuzione risulta è deterministica.  Vale a dire hello stesso valore con tipo di dati verrà sempre hello è toohello stessa distribuzione.    
 
 Questo esempio permette di creare una tabella distribuita:
 
@@ -127,7 +127,7 @@ WITH
 ```
 
 ## <a name="select-distribution-column"></a>Selezionare la colonna di distribuzione
-Per eseguire la **distribuzione hash** di una tabella, è necessario selezionare una singola colonna di distribuzione.  Quando si seleziona una colonna di distribuzione occorre prendere in considerazione tre fattori importanti.  
+Quando si sceglie troppo**hash distribuire** una tabella, sarà necessario tooselect una colonna singola distribuzione.  Quando si seleziona una colonna di distribuzione, sono disponibili tre tooconsider alcuni dei fattori principali.  
 
 Selezionare una singola colonna:
 
@@ -136,52 +136,52 @@ Selezionare una singola colonna:
 3. per ridurre al minimo lo spostamento dei dati.
 
 ### <a name="select-distribution-column-which-will-not-be-updated"></a>Selezionare una colonna di distribuzione da non aggiornare
-Le colonne di distribuzione non sono aggiornabili. Occorre quindi selezionare una colonna con valori statici.  Se una colonna deve essere aggiornata, in generale non è un buon candidato per la distribuzione.  Nel caso in cui sia necessario aggiornare una colonna di distribuzione, è possibile procedere prima di tutto eliminando la riga e poi inserendone una nuova.
+Le colonne di distribuzione non sono aggiornabili. Occorre quindi selezionare una colonna con valori statici.  Se una colonna sarà necessario toobe aggiornato, non è in genere un candidato di distribuzione valide.  Se un caso in cui è necessario aggiornare una colonna di distribuzione, si possono eseguire innanzitutto l'eliminazione di riga hello e quindi inserendo una nuova riga.
 
 ### <a name="select-distribution-column-which-will-distribute-data-evenly"></a>Selezionare una colonna di distribuzione per distribuire i dati in modo uniforme
-Dal momento che le prestazioni di un sistema distribuito equivalgono a quelle della distribuzione più lenta, è importante dividere il carico di lavoro in modo uniforme tra le distribuzioni per ottenere un'esecuzione bilanciata in tutto il sistema.  Il modo in cui il carico lavoro viene diviso in un sistema distribuito dipende da dove si trovano i dati per ogni distribuzione.  Per questo motivo è molto importante selezionare la colonna di distribuzione appropriata per distribuire i dati, in modo che ogni distribuzione abbia lo stesso carico di lavoro e impieghi lo stesso tempo a completarlo.  Quando lavoro è diviso equamente nel sistema, i dati vengono bilanciati tra le distribuzioni.  Quando i dati non sono bilanciati in modo uniforme, si parla di **differenze di dati**.  
+Dal momento che un sistema distribuito esegue solo il più rapidamente la distribuzione più lenta, è importante toodivide hello lavoro in modo uniforme tra distribuzioni hello in ordine tooachieve bilanciato esecuzione attraverso il sistema hello.  modo Hello lavoro hello è suddivisa in un sistema distribuito è basato su dove si trovano dati hello per ogni distribuzione.  Questo rende una colonna di destra distribuzione hello tooselect molto importante per la distribuzione dei dati di hello in modo che ogni distribuzione ha lavoro uguale e verrà take hello toocomplete tempo stesso la propria parte del lavoro hello.  Quando lavoro viene diviso e sistema hello, dati hello viene bilanciati tra le distribuzioni di hello.  Quando i dati non sono bilanciati in modo uniforme, si parla di **differenze di dati**.  
 
-Per dividere i dati in modo uniforme ed evitare asimmetrie dei dati, selezionare la colonna di distribuzione tenendo presente quanto segue:
+toodivide dati in modo uniforme ed evitare dati inclinazione, considerare i seguenti hello quando si seleziona la colonna di distribuzione:
 
 1. Selezionare una colonna che contiene un numero significativo di valori distinct.
 2. Evitare di distribuire dati in colonne con pochi valori distinti.
 3. Evitare di distribuire dati in colonne con una frequenza elevata di valori Null.
 4. Evitare di distribuire i dati in colonne data.
 
-Dato che per ogni valore viene eseguito l'hash in 1 delle 60 distribuzioni, per ottenere una distribuzione uniforme è consigliabile selezionare una colonna altamente univoca che contenga più di 60 valori univoci.  Per illustrare questo concetto, si consideri il caso di una colonna contenente solo 40 valori univoci.  Se la colonna è stata selezionata come chiave di distribuzione, i dati per la tabella potrebbero essere ricevuti su 40 distribuzioni al massimo, lasciando 20 distribuzioni senza dati o elaborazioni da eseguire.  Al contrario, le altre 40 distribuzioni avrebbero un carico di lavoro maggiore rispetto a una distribuzione uniforme su 60 distribuzioni.  Questo scenario è un esempio di differenza di dati.
+Poiché ogni valore con hash too1 delle distribuzioni di 60, la distribuzione uniforme tooachieve è tooselect una colonna che è altamente univoco e contiene più di 60 valori univoci.  tooillustrate, si consideri il caso in cui una colonna dispone solo valori univoci 40.  Se questa colonna è stata selezionata come chiave di distribuzione hello, dati hello per la tabella verrebbero reindirizzato 40 distribuzioni al massimo, lasciando 20 distribuzioni con alcun dato e non toodo l'elaborazione.  Al contrario, hello altre 40 distribuzioni sarebbe necessario più lavoro toodo, che se hello dati è stata distribuiti uniformemente le distribuzioni di più di 60.  Questo scenario è un esempio di differenza di dati.
 
-Nel sistema MPP, ogni passaggio della query che tutte le distribuzioni completino la loro parte di lavoro.  Se una distribuzione svolge più lavoro rispetto alle altre, allora le risorse delle altre distribuzioni vengono essenzialmente sprecate nell'attesa della distribuzione occupata.  Quando si lavoro non viene distribuito uniformemente tra tutte le distribuzioni, si parla di **differenza di elaborazioni**.  La differenza di elaborazioni causa un rallentamento delle query rispetto a quando un carico di lavoro può essere distribuito uniformemente in tutte le distribuzioni.  La differenza di dati porta alla differenza di elaborazioni.
+Nel sistema MPP, ogni passaggio della query è in attesa per tutte le distribuzioni toocomplete della quota di lavoro hello.  Se una distribuzione è più operazioni rispetto ad altri utenti hello, hello risorse di hello altre distribuzioni sono essenzialmente sprecati in attesa solo su distribuzione occupato hello.  Quando si lavoro non viene distribuito uniformemente tra tutte le distribuzioni, si parla di **differenza di elaborazioni**.  Elaborazione inclinazione causerà toorun query inferiore se il carico di lavoro hello può essere distribuito uniformemente in distribuzioni hello.  Lo sfasamento dei segnali dati comporti tooprocessing inclinazione.
 
-Evitare di distribuire su una colonna con un elevato numero di valori Null, poiché questi verranno ricevuti nella stessa distribuzione. Anche la distribuzione in una colonna di data può causare una differenza di elaborazioni, perché tutti i dati per una determinata data verranno ricevuti nella stessa distribuzione. Se più utenti eseguono query che applicano tutte un filtro alla stessa data, solo 1 delle 60 distribuzioni svolgerà tutto il lavoro, dal momento che una determinata data sarà solo in una distribuzione. In questo scenario le query verranno probabilmente eseguite 60 volte più lentamente rispetto a quando i dati vengono distribuiti uniformemente in tutte le distribuzioni.
+Evitare di distribuire nella colonna elevata ammette valori null come valori null hello verranno tutte inserite in hello stessa distribuzione. La distribuzione di una colonna della data può essere causato anche l'elaborazione di inclinazione perché tutti i dati per una data specificata verranno inserite in hello stessa distribuzione. Se più utenti eseguono query filtraggio tutti in hello stessa data, quindi solo 1 delle distribuzioni di 60 hello prevede di effettuare tutto il lavoro hello dopo una data specificata verranno solo su una distribuzione. In questo scenario, le query hello probabilmente eseguirà 60 volte inferiore se i dati di hello ugualmente sono stati distribuiti su tutte le distribuzioni di hello.
 
-Quando non sono disponibili colonne candidate, è consigliabile usare il metodo di distribuzione round robin.
+Quando non esiste alcuna colonna candidato ideale, quindi utilizzare round robin come metodo di distribuzione hello.
 
 ### <a name="select-distribution-column-which-will-minimize-data-movement"></a>Selezionare una colonna di distribuzione per ridurre al minimo lo spostamento dei dati
-Ridurre al minimo lo spostamento dei dati selezionando la colonna di distribuzione appropriata è una delle strategie principali per l'ottimizzazione delle prestazioni di SQL Data Warehouse.  In genere lo spostamento dei dati si verifica quando le tabelle vengono unite in join o vengono eseguite aggregazioni.  Le colonne usate nelle clausole `JOIN`, `GROUP BY`, `DISTINCT`, `OVER` e `HAVING` sono **ottimi** candidati per la distribuzione hash.
+Ridurre al minimo lo spostamento di dati selezionando una colonna di destra distribuzione hello è una delle strategie più importanti di hello per ottimizzare le prestazioni del proprio SQL Data Warehouse.  In genere lo spostamento dei dati si verifica quando le tabelle vengono unite in join o vengono eseguite aggregazioni.  Le colonne usate nelle clausole `JOIN`, `GROUP BY`, `DISTINCT`, `OVER` e `HAVING` sono **ottimi** candidati per la distribuzione hash.
 
-D'altro canto, le colonne nella clausola `WHERE`**non** sono candidate ottimali come colonne hash, perché limitano le distribuzioni che fanno parte della query, causando una differenza di elaborazioni.  Un buon esempio di una colonna che su si potrebbe essere tentati di distribuire, ma che spesso può causare una differenza di elaborazioni è una colonna di data.
+Hello d'altro canto, le colonne in hello `WHERE` eseguire clausola **non** effettuare per i candidati colonna hash valida perché limitano le distribuzioni partecipano a query hello, che causa l'elaborazione inclinazione.  Un buon esempio di una colonna che potrebbe essere tentati toodistribute, ma spesso può causare l'inclinazione di elaborazione è una colonna di date.
 
-In generale, se sono disponibili due tabelle dei fatti di grandi dimensioni, spesso coinvolte in un join, le prestazioni migliori si otterranno con la distribuzione di entrambe le tabelle in una delle colonne di join.  Se è presente una tabella che non è mai stata unita a un'altra tabella dei fatti di grandi dimensioni, esaminare le colonne che sono spesso nella clausola `GROUP BY` .
+In generale, se si dispone di due tabelle dei fatti di grandi dimensioni interessate di frequente in un join, sarà possibile ottenere hello la maggior parte delle prestazioni tramite la distribuzione di entrambe le tabelle in una delle colonne di join hello.  Se si dispone di una tabella che non viene mai tooanother unita in join nella tabella dei fatti di grandi dimensioni, quindi cercare toocolumns che si trovano spesso in hello `GROUP BY` clausola.
 
-Esistono alcuni criteri fondamentali che devono essere soddisfatti per evitare lo spostamento dei dati durante un join:
+Esistono alcuni criteri di chiave che devono essere soddisfatto tooavoid lo spostamento di dati durante un join:
 
-1. È necessario eseguire la distribuzione hash delle tabelle coinvolte nel join in **una** delle colonne che fanno parte del join.
-2. I tipi di dati delle colonne di join nelle due tabelle devono corrispondere.
-3. Le colonne devono essere unite con un operatore Uguale.
-4. Il tipo di join può non essere `CROSS JOIN`.
+1. Hello tabelle unite in join hello devono essere distribuito su hash **uno** di colonne hello che fanno parte di join hello.
+2. i tipi di dati delle colonne di join hello Hello di entrambe le tabelle devono essere uguali.
+3. colonne di Hello devono essere aggiunti con un operatore di uguaglianza.
+4. Hello join tipo non può essere un `CROSS JOIN`.
 
 ## <a name="troubleshooting-data-skew"></a>Risoluzione dei problemi relativi alle asimmetrie dei dati
-Quando i dati di una tabella sono distribuiti mediante il metodo di distribuzione hash, alcune distribuzioni presenteranno molti più dati di altre. Un'asimmetria dei dati eccessiva può compromettere le prestazioni delle query, perché per il risultato finale di una query distribuita è necessario aspettare che termini la distribuzione con il tempo di esecuzione più lungo. A seconda del grado di differenza dati potrebbe essere necessario risolvere il problema.
+Quando i dati della tabella vengono distribuiti con metodo di distribuzione hash hello è possibile che alcune distribuzioni saranno sfasato toohave eccessivamente più dati rispetto ad altri. Eccessivi dati sfasamento del possono influire sulle prestazioni delle query, perché il risultato finale di hello di una query distribuita deve attendere toofinish distribuzione in esecuzione più lunga di hello. In base al grado hello di dati hello inclinazione che potrebbe essere necessario tooaddress.
 
 ### <a name="identifying-skew"></a>Identificazione dell'asimmetria dei dati
-Un modo semplice per identificare una differenza nelle tabelle consiste nell'uso di `DBCC PDW_SHOWSPACEUSED`.  Questo è un metodo molto semplice e rapido per vedere il numero di righe della tabella archiviate in ognuna delle 60 distribuzioni del database.  Tenere presente che per ottenere prestazioni più bilanciate, le righe nella tabella distribuita vanno suddivise in modo uniforme in tutte le distribuzioni.
+Tooidentify un modo semplice una tabella come asimmetrica è toouse `DBCC PDW_SHOWSPACEUSED`.  Si tratta di un modo molto rapido e semplice di toosee hello numero di righe della tabella che vengono archiviati in ognuna delle distribuzioni di hello 60 del database.  Tenere presente che per ottenere prestazioni più bilanciato hello, righe hello nella tabella distribuita devono essere suddivise in modo uniforme tra tutte le distribuzioni di hello.
 
 ```sql
 -- Find data skew for a distributed table
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
 ```
 
-Se tuttavia si esegue una query sulle viste a gestione dinamica di Azure SQL Data Warehouse (DMV) è possibile ottenere un'analisi più dettagliata.  Per iniziare, creare la vista [dbo.vTableSizes][dbo.vTableSizes] usando il codice SQL fornito nell'articolo [Panoramica delle tabelle][Overview].  Dopo aver creato la vista, eseguire questa query per identificare le tabelle con un'asimmetria dei dati superiore al 10%.
+Tuttavia, se si esegue una query viste a gestione dinamica hello Azure SQL Data Warehouse (DMV) è possibile eseguire un'analisi più dettagliata.  toostart, creare la vista hello [dbo.vTableSizes] [ dbo.vTableSizes] visualizzare utilizzando hello SQL da [Cenni preliminari su tabella] [ Overview] articolo.  Una volta hello vista viene creata, eseguire questa query tooidentify quali tabelle presentano più di 10% dati inclinazione.
 
 ```sql
 select *
@@ -199,14 +199,14 @@ order by two_part_name, row_count
 ```
 
 ### <a name="resolving-data-skew"></a>Risoluzione delle asimmetrie di distribuzione
-Non tutte le asimmetrie sono sufficienti a giustificare una correzione.  In alcuni casi, le prestazioni di una tabella in alcune query possono compensare il danno causato dalla distribuzione asimmetrica.  Per decidere se sia necessario risolvere la differenza dati di una tabella, è necessario conoscere nel modo più completo possibile i volumi di dati e le query del carico di lavoro.   Per esaminare l'impatto della differenza sulle prestazioni delle query e in particolare sul tempo di completamento delle query nelle singole distribuzioni, è possibile seguire la procedura riportata nell'articolo [Monitoraggio delle query][Query Monitoring].
+Non tutti inclinazione è sufficiente toowarrant una correzione.  In alcuni casi, le prestazioni di hello di una tabella in alcune query possono annullare danni hello dei dati di inclinazione.  toodecide se è necessario risolvere i dati dello sfasamento dei segnali in una tabella, è necessario comprendere quanto possibile sui volumi di dati hello e query nel carico di lavoro.   Un modo toolook impatto hello di inclinazione è passaggi hello toouse hello [Query monitoraggio] [ Query Monitoring] articolo impatto hello toomonitor di inclinazione sulle prestazioni delle query e in particolare hello query lunghe toohow di impatto richiedere toocomplete in distribuzioni di singoli hello.
 
-La distribuzione è essenzialmente l'individuazione del giusto equilibrio fra la minimizzazione della differenza dati e la minimizzazione dello spostamento dei dati. Questi obiettivi possono essere contrastanti e talvolta può essere necessario tollerare una determinata differenza dati per poter ridurre lo spostamento dei dati. Ad esempio, quando la colonna di distribuzione corrisponde con un'elevata frequenza alla colonna condivisa di join e aggregazioni, si ridurrà al minimo lo spostamento dei dati. Il vantaggio di uno spostamento dei dati minimo potrebbe essere quello di compensare l'impatto negativo della differenza dati.
+Distribuzione dei dati è una questione di ricerca hello giusto equilibrio riducendo al minimo lo sfasamento dei segnali dati e ridurre al minimo lo spostamento dei dati. Questi possono essere opposte obiettivi e talvolta potrebbe essere necessario tookeep dati inclinazione nello spostamento dei dati tooreduce di ordine. Ad esempio, quando la colonna di distribuzione hello è spesso hello condiviso colonna join e aggregazioni, si verrà essere riducendo al minimo lo spostamento dei dati. Hello c'è lo spostamento dei dati minimi hello superiore a quello previsto impatto hello di avere dati dello sfasamento dei segnali.
 
-Il modo più comune per risolvere la differenza dati è ricreare la tabella con una colonna di distribuzione diversa. Dato che non è possibile modificare la colonna di distribuzione in una tabella esistente, per modificare la distribuzione di una tabella occorre crearla nuovamente con [CTAS][].  Di seguito sono riportati due esempi di risoluzione di distribuzioni asimmetriche dei dati:
+un tipico di Hello tooresolve dati inclinazione è toore-creare hello tabella con una colonna di distribuzione diverso. Poiché non esiste alcun modo toochange hello distribuzione colonna esistente, hello modo toochange hello distribuzione tabelle di una tabella è toorecreate con un [] [un'istruzione CTAS].  Di seguito sono riportati due esempi di risoluzione di distribuzioni asimmetriche dei dati:
 
-### <a name="example-1-re-create-the-table-with-a-new-distribution-column"></a>Esempio 1: Ricreare la tabella con una nuova colonna di distribuzione
-Questo esempio usa [CTAS][] per ricreare una tabella con una colonna di distribuzione hash diversa.
+### <a name="example-1-re-create-hello-table-with-a-new-distribution-column"></a>Esempio 1: Creare nuovamente la tabella hello con una nuova colonna di distribuzione
+Questo esempio viene utilizzata [un'istruzione CTAS] [] toore-creare una tabella con una colonna di distribuzione hash diverso.
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_CustomerKey]
@@ -239,13 +239,13 @@ CREATE STATISTICS [OrderQuantity] ON [FactInternetSales_CustomerKey] ([OrderQuan
 CREATE STATISTICS [UnitPrice] ON [FactInternetSales_CustomerKey] ([UnitPrice]);
 CREATE STATISTICS [SalesAmount] ON [FactInternetSales_CustomerKey] ([SalesAmount]);
 
---Rename the tables
-RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_ProductKey];
-RENAME OBJECT [dbo].[FactInternetSales_CustomerKey] TO [FactInternetSales];
+--Rename hello tables
+RENAME OBJECT [dbo].[FactInternetSales] too[FactInternetSales_ProductKey];
+RENAME OBJECT [dbo].[FactInternetSales_CustomerKey] too[FactInternetSales];
 ```
 
-### <a name="example-2-re-create-the-table-using-round-robin-distribution"></a>Esempio 2: Ricreare la tabella usando la distribuzione round robin
-Questo esempio usa [CTAS][] per ricreare una tabella con una distribuzione round robin anziché una distribuzione hash. Questa modifica produce una distribuzione uniforme dei dati ma aumenta lo spostamento dei dati.
+### <a name="example-2-re-create-hello-table-using-round-robin-distribution"></a>Esempio 2: Creare nuovamente tabella hello utilizzando la distribuzione round robin
+Questo esempio viene utilizzata [un'istruzione CTAS] [] toore-creare una tabella con round robin anziché una distribuzione di hash. Questa modifica provocherà la distribuzione di dati anche a costo di hello spostamento dei dati maggiore.
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_ROUND_ROBIN]
@@ -278,13 +278,13 @@ CREATE STATISTICS [OrderQuantity] ON [FactInternetSales_ROUND_ROBIN] ([OrderQuan
 CREATE STATISTICS [UnitPrice] ON [FactInternetSales_ROUND_ROBIN] ([UnitPrice]);
 CREATE STATISTICS [SalesAmount] ON [FactInternetSales_ROUND_ROBIN] ([SalesAmount]);
 
---Rename the tables
-RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_HASH];
-RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
+--Rename hello tables
+RENAME OBJECT [dbo].[FactInternetSales] too[FactInternetSales_HASH];
+RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] too[FactInternetSales];
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni sulla progettazione di tabelle, vedere gli articoli relativi a [distribuzione][Distribute], [indici][Index], [partizioni][Partition], [tipi di dati][Data Types], [statistiche][Statistics] e [tabelle temporanee][Temporary].
+toolearn ulteriori informazioni su progettazione della tabella, vedere hello [Distribuisci][Distribute], [indice][Index], [partizione] [ Partition], [Tipi di dati][Data Types], [statistiche] [ Statistics] e [tabelle temporanee] [ Temporary] articoli.
 
 Per una panoramica delle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].
 

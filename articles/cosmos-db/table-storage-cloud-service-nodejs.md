@@ -1,6 +1,6 @@
 ---
-title: App Web con il servizio di archiviazione tabelle (Node.js) | Microsoft Docs
-description: Esercitazione basata sull'esercitazione per la creazione di un'app Web con Express e in cui vengono aggiunti i servizi di archiviazione di Azure e il modulo di Azure.
+title: app aaaWeb con archiviazione tabella (Node.js) | Documenti Microsoft
+description: Esercitazione si basa su hello App Web con l'esercitazione di Express e aggiunta di servizi di archiviazione di Azure e hello modulo Azure.
 services: cosmos-db
 documentationcenter: nodejs
 author: mimig1
@@ -14,77 +14,77 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: mimig
-ms.openlocfilehash: b802f880c1131abb7eb9ba00dd8f2e65017bc802
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7eefc09baab61cf44c98183135abe572b11812e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="nodejs-web-application-using-storage"></a>Creazione di un'applicazione Web Node.js con Archiviazione
 ## <a name="overview"></a>Panoramica
-In questa esercitazione, l'applicazione creata nell'esercitazione [Creazione di un'applicazione Web Node.js usando Express in un servizio cloud di Azure] viene estesa usando le librerie client di Microsoft Azure per Node.js in modo da poter lavorare con i servizi di gestione dati. L'applicazione viene estesa creando un'applicazione elenco di attività basata sul Web che è possibile distribuire in Azure. L'elenco di attività consente a un utente di recuperare le attività, aggiungerne di nuove e contrassegnarle come completate.
+In questa esercitazione, hello applicazione creata nel [applicazione Web Node.js mediante Express] esercitazione esteso mediante le librerie Client di hello Microsoft Azure per Node.js toowork con servizi di gestione dati. Estendere l'applicazione mediante la creazione di un'applicazione elenco attività basate sul web che è possibile distribuire tooAzure. elenco di attività Hello consente di recuperare le attività, aggiungere nuove attività e contrassegnare l'attività come completata.
 
-Gli elementi attività vengono archiviati in Archiviazione di Azure. Archiviazione di Azure consente l'archiviazione di dati non strutturati, a tolleranza di errore e a disponibilità elevata. Archiviazione di Azure include varie strutture di dati in cui è possibile archiviare i dati e da cui è possibile accedere ad essi. A questo scopo, è possibile usare i servizi di archiviazione delle API incluse in Azure SDK per Node.js o le API REST. Per ulteriori informazioni, vedere [Archiviazione e accesso ai dati in Azure].
+gli elementi di attività Hello vengono archiviati in archiviazione di Azure. Archiviazione di Azure consente l'archiviazione di dati non strutturati, a tolleranza di errore e a disponibilità elevata. Archiviazione di Azure include varie strutture di dati in cui è possibile archiviare i dati e da cui è possibile accedere ad essi. È possibile utilizzare servizi di archiviazione hello da hello API incluse in hello Azure SDK per Node.js o tramite le API REST. Per ulteriori informazioni, vedere [Archiviazione e accesso ai dati in Azure].
 
-In questa esercitazione si presume che siano state completate le esercitazioni [Creazione e distribuzione di un'applicazione Node.js a un Servizio cloud di Azure] e [Creazione di un'applicazione Web Node.js usando Express in un servizio cloud di Azure][Creazione di un'applicazione Web Node.js usando Express in un servizio cloud di Azure].
+In questa esercitazione si presuppone che siano state completate hello [applicazione Web Node.js] e [Node.js con Express][applicazione Web Node.js mediante Express] esercitazioni.
 
-Contiene le informazioni seguenti:
+Contiene hello le seguenti informazioni:
 
-* Usare il motore dei modelli Jade
-* Usare i servizi di gestione dati di Azure
+* Come toowork con hello motore del modello Jade
+* Come toowork con i servizi di gestione dati di Azure
 
-In questo screenshot viene visualizzata l'applicazione completata:
+Hello seguente schermata mostra un'applicazione hello completata:
 
-![Pagina Web completata in Internet Explorer](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
+![Hello completata la pagina web in internet explorer](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
 
 ## <a name="setting-storage-credentials-in-webconfig"></a>Impostazione delle credenziali di archiviazione in Web.Config
-Per accedere ad Archiviazione di Azure, è necessario passare le credenziali di archiviazione. Per eseguire questa operazione, è possibile usare le impostazioni dell'applicazione web.config,
-che vengono passate a Node come variabili di ambiente e che verranno lette da Azure SDK.
+È necessario passare le credenziali di archiviazione tooaccess di archiviazione di Azure. Questa operazione viene eseguita utilizzando le impostazioni dell'applicazione Web. config hello.
+le impostazioni di Web. config Hello vengono passate come tooNode variabili di ambiente, che vengono quindi letti da hello Azure SDK.
 
 > [!NOTE]
-> Le credenziali di archiviazione vengono utilizzate solo quando l'applicazione viene distribuita in Azure. Quando viene eseguita nell'emulatore, l'applicazione usa l'emulatore di archiviazione.
+> Le credenziali di archiviazione vengono utilizzate solo quando un'applicazione hello è tooAzure distribuito. Quando in esecuzione nell'emulatore di hello, un'applicazione hello Usa emulatore di archiviazione hello.
 >
 >
 
-Eseguire i passaggi seguenti per recuperare le credenziali dell'account di archiviazione e aggiungerle alle impostazioni di web.config:
+Eseguire hello seguente credenziali dell'account di archiviazione di passaggi tooretrieve hello e aggiungerli toohello le impostazioni di Web. config:
 
-1. Se non è già aperto, avviare Azure PowerShell dal menu **Start** espandendo **Tutti i programmi, Azure**, fare clic con il pulsante destro del mouse su **Azure PowerShell** e quindi scegliere **Esegui come amministratore**.
-2. Sostituire le directory con la cartella contenente l'applicazione. Ad esempio, C:\\node\\tasklist\\WebRole1.
-3. Nella finestra di Azure Powershell immettere il cmdlet seguente per recuperare le informazioni sull'account di archiviazione:
+1. Se non è già aperto, avviare hello Azure PowerShell da hello **avviare** menu espandendo **tutti i programmi, Azure**, fare doppio clic su **Azure PowerShell**, quindi selezionare  **Esegui come amministratore**.
+2. Cambia cartella toohello directory contenente l'applicazione. Ad esempio, C:\\node\\tasklist\\WebRole1.
+3. Dalla finestra di Powershell Azure hello, immettere hello seguenti informazioni sull'account di archiviazione di cmdlet tooretrieve hello:
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Get-AzureStorageAccounts
     ```
 
-   Con questo cmdlet viene recuperato l'elenco di account di archiviazione e di chiavi dell'account associati al servizio ospitato.
+   Hello cmdlet precedente recupera hello elenco di account di archiviazione e le chiavi dell'account associate al servizio ospitato.
 
    > [!NOTE]
-   > Dal momento che Azure SDK crea un account di archiviazione quando si distribuisce un servizio, esisterà già un account di archiviazione dalla distribuzione dell'applicazione nelle guide precedenti.
+   > Poiché hello Azure SDK consente di creare un account di archiviazione quando si distribuisce un servizio, un account di archiviazione deve essere già esistente dalla distribuzione dell'applicazione nelle guide precedenti hello.
    >
    >
-4. Aprire il file **ServiceDefinition.csdef** contenente le impostazioni dell'ambiente usate quando l'applicazione viene distribuita in Azure:
+4. Aprire hello **Servicedefinition** file contenenti le impostazioni di ambiente hello che vengono utilizzate quando un'applicazione hello tooAzure distribuito:
 
     ```powershell
     PS C:\node\tasklist> notepad ServiceDefinition.csdef
     ```
 
-5. Inserire il blocco seguente sotto l'elemento **Environment**, sostituendo {STORAGE ACCOUNT} e {STORAGE ACCESS KEY} con il nome account e con la chiave primaria per l'account di archiviazione che si intende usare per la distribuzione:
+5. Seguente hello Inserisci bloccare in **ambiente** elemento, sostituendo con i propri {ACCOUNT di archiviazione di} e {chiave di accesso di archiviazione} con il nome di account hello e chiave primaria di hello per account di archiviazione hello da toouse per la distribuzione:
 
   <Variable name="AZURE_STORAGE_ACCOUNT" value="{STORAGE ACCOUNT}" />
   <Variable name="AZURE_STORAGE_ACCESS_KEY" value="{STORAGE ACCESS KEY}" />
 
-   ![Contenuto file web.cloud.config](./media/table-storage-cloud-service-nodejs/node37.png)
+   ![contenuto del file Hello web.cloud.config](./media/table-storage-cloud-service-nodejs/node37.png)
 
-6. Salvare il file e chiudere Blocco note.
+6. Salvare il file hello e chiudere il blocco note.
 
 ### <a name="install-additional-modules"></a>Installare moduli aggiuntivi
-1. Usare quindi il comando seguente per installare i moduli [azure], [node-uuid], [nconf] e [async] in locale e per salvare una voce per tali moduli nel file **package.json**:
+1. Hello utilizzo successivo comando tooinstall hello [azure], [nodo-uuid], [nconf] e [asincrona] moduli in locale, nonché a toosave una voce relativa toohello **package. JSON** file:
 
   ```powershell
   PS C:\node\tasklist\WebRole1> npm install azure-storage node-uuid async nconf --save
   ```
 
-  L'output di questo comando dovrebbe apparire simile al seguente:
+  output di Hello di questo comando risulterà simile toohello seguenti:
 
   ```
   node-uuid@1.4.1 node_modules\node-uuid
@@ -105,13 +105,13 @@ Eseguire i passaggi seguenti per recuperare le credenziali dell'account di archi
   └── request@2.27.0 (json-stringify-safe@5.0.0, tunnel-agent@0.3.0, aws-sign@0.3.0, forever-agent@0.5.2, qs@0.6.6, oauth-sign@0.3.0, cookie-jar@0.3.0, hawk@1.0.0, form-data@0.1.3, http-signature@0.10.0)
   ```
 
-## <a name="using-the-table-service-in-a-node-application"></a>Utilizzo del servizio tabelle in un'applicazione Node
-In questa sezione, l'applicazione di base creata con il comando **express** viene estesa aggiungendo un file **task.js** contenente il modello per le attività. Modificare il file **app.js** esistente e creare un nuovo file **tasklist.js** che usi il modello.
+## <a name="using-hello-table-service-in-a-node-application"></a>Utilizzo del servizio tabelle hello in un'applicazione di nodo
+In questa sezione, hello base dell'applicazione creato da hello **express** comando verrà esteso mediante l'aggiunta di un **task.js** file contenente il modello di hello per le attività. Modificare hello esistente **app.js** file e creare un nuovo **tasklist.js** file che utilizza il modello di hello.
 
-### <a name="create-the-model"></a>Creare il modello
-1. Nella directory **WebRole1** creare una nuova directory denominata **models**.
-2. Nella directory **models** creare un nuovo file denominato **task.js**. Questo file contiene il modello per le attività create dall'applicazione.
-3. All'inizio del file **task.js** , aggiungere il codice seguente per fare riferimento alle librerie necessarie:
+### <a name="create-hello-model"></a>Creare il modello di hello
+1. In hello **WebRole1** directory, creare una nuova directory denominata **modelli**.
+2. In hello **modelli** directory, creare un nuovo file denominato **task.js**. Questo file contiene il modello di hello per le operazioni di hello create dall'applicazione.
+3. All'inizio di hello di hello **task.js** file, aggiungere hello tooreference richiesto dalle librerie di codice seguente:
 
     ```nodejs
     var azure = require('azure-storage');
@@ -119,7 +119,7 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     var entityGen = azure.TableUtilities.entityGenerator;
     ```
 
-4. Aggiungere quindi il codice per definire ed esportare l'oggetto Task, responsabile della connessione alla tabella.
+4. Successivamente, aggiungere codice toodefine ed esportare l'oggetto attività hello. oggetto attività Hello è responsabile per la connessione toohello tabella.
 
     ```nodejs
     module.exports = Task;
@@ -136,7 +136,7 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     };
     ```
 
-5. Aggiungere quindi il codice seguente per definire metodi aggiuntivi nell'oggetto Task che consentano l'interazione con i dati archiviati nella tabella:
+5. Successivamente, aggiungere hello seguito metodi aggiuntivi di codice toodefine nell'oggetto attività hello, che consentono le interazioni con i dati archiviati nella tabella hello:
 
     ```nodejs
     Task.prototype = {
@@ -153,7 +153,7 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
 
       addItem: function(item, callback) {
         self = this;
-        // use entityGenerator to set types
+        // use entityGenerator tooset types
         // NOTE: RowKey must be a string type, even though
         // it contains a GUID in this example.
         var itemDescriptor = {
@@ -190,11 +190,11 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     }
     ```
 
-6. Salvare e chiudere il file **task.js** .
+6. Salvare e chiudere hello **task.js** file.
 
-### <a name="create-the-controller"></a>Creare il controller
-1. Nella directory **WebRole1/routes** creare un nuovo file denominato **tasklist.js** e aprirlo in un editor di testo.
-2. Aggiungere il seguente codice al file **tasklist.js**. Con questo codice vengono caricati i moduli di Azure e i moduli asincroni usati da **tasklist.js** e viene definita la funzione **TaskList**, che viene passata come istanza dell'oggetto **Task** definito in precedenza:
+### <a name="create-hello-controller"></a>Creare controller hello
+1. In hello **WebRole1/route** directory, creare un nuovo file denominato **tasklist.js** e aprirlo in un editor di testo.
+2. Aggiungere hello seguente codice troppo**tasklist.js**. Questo codice carica hello azure e moduli asincrono, che vengono utilizzati da **tasklist.js** e definisce hello **TaskList** funzione, che viene passata un'istanza di hello **attività** è l'oggetto definito in precedenza:
 
     ```nodejs
     var azure = require('azure-storage');
@@ -207,7 +207,7 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     }
     ```
 
-3. Continuare ad aggiungere codice al file **tasklist.js** aggiungendo i metodi **showTasks**, **addTask** e **completeTasks**:
+3. Continuare ad aggiungere toohello **tasklist.js** file mediante l'aggiunta di metodi hello troppo**showTasks**, **addTask**, e **completeTasks**:
 
     ```nodejs
     TaskList.prototype = {
@@ -253,11 +253,11 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     }
     ```
 
-4. Salvare il file **tasklist.js**.
+4. Salvare hello **tasklist.js** file.
 
 ### <a name="modify-appjs"></a>Modificare il file app.js
-1. Nella directory **WebRole1** aprire il file **app.js** in un editor di testo.
-2. Aggiungere quanto riportato di seguito all'inizio del file per caricare il modulo azure e impostare il nome della tabella e la chiave della partizione:
+1. In hello **WebRole1** hello directory, aprire **app.js** file in un editor di testo.
+2. Inizio hello del file hello, aggiungere hello seguente modulo hello azure tooload e impostare la chiave di nome e una partizione di tabella hello:
 
     ```nodejs
     var azure = require('azure-storage');
@@ -265,14 +265,14 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     var partitionKey = 'hometasks';
     ```
 
-3. Nel file app.js scorrere verso il basso fino a individuare la riga seguente:
+3. Nel file app.js hello, scorrere verso il basso toowhere vedrai hello la seguente riga:
 
     ```nodejs
     app.use('/', routes);
     app.use('/users', users);
     ```
 
-    Sostituire le righe sopra riportate con il codice seguente. Viene inizializzata un'istanza di <strong>Task</strong> con una connessione all'account di archiviazione. L'oggetto <strong>Task</strong> viene quindi passato a <strong>TaskList</strong>, che lo usa per comunicare con il servizio tabelle:
+    Sostituire hello precedenti righe con hello seguente codice. Questo codice Inizializza un'istanza di <strong>attività</strong> con un account di archiviazione tooyour di connessione. Hello <strong>attività</strong> viene passato toohello <strong>TaskList</strong>, che utilizza toocommunicate con servizio tabella hello:
 
     ```nodejs
     var TaskList = require('./routes/tasklist');
@@ -285,11 +285,11 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
     app.post('/completetask', taskList.completeTask.bind(taskList));
     ```
 
-4. Salvare il file **app.js** .
+4. Salvare hello **app.js** file.
 
-### <a name="modify-the-index-view"></a>Modificare la visualizzazione dell'indice
-1. Passare alla directory **views** e aprire il file **index.jade** in un editor di testo.
-2. Sostituire il contenuto del file **index.jade** con il codice seguente. Viene definita la visualizzazione delle attività esistenti, oltre a un formato per aggiungere nuove attività e contrassegnare quelle esistenti come completate.
+### <a name="modify-hello-index-view"></a>Modifica visualizzazione dell'indice hello
+1. Modificare le directory toohello **viste** hello directory e aprire **index.jade** file in un editor di testo.
+2. Sostituire il contenuto di hello di hello **index.jade** file con hello seguente codice. Questo codice definisce la visualizzazione hello per le attività esistenti e un modulo per l'aggiunta di nuove attività e contrassegnare esistenti come completata.
 
     ```
     extends layout
@@ -332,48 +332,48 @@ In questa sezione, l'applicazione di base creata con il comando **express** vien
 
 3. Salvare e chiudere il file **index.jade** .
 
-### <a name="modify-the-global-layout"></a>Modificare il layout globale
-Il file **layout.jade** della directory **views** viene usato come modello globale per altri file **.jade**. In questo passaggio si modifica il file **layout.jade** in modo da usare [Twitter Bootstrap](https://github.com/twbs/bootstrap), un toolkit che semplifica la progettazione di un sito Web di aspetto gradevole.
+### <a name="modify-hello-global-layout"></a>Modifica layout globale hello
+Hello **layout.jade** file hello **viste** directory viene utilizzata come modello generale per altri **.jade** file. In questo passaggio, modificare hello **layout.jade** file toouse [Twitter Bootstrap](https://github.com/twbs/bootstrap), che è un toolkit che rende facile toodesign un sito Web professionale nice.
 
-1. Scaricare ed estrarre i file per [Twitter Bootstrap](http://getbootstrap.com/). Copiare il file **bootstrap.min.css** dalla cartella **bootstrap\\dist\\css** alla directory **public\\stylesheets** dell'applicazione tasklist.
-2. Dalla cartella **views** aprire il file **layout.jade** nell'editor di testo e sostituire il contenuto con quello seguente:
+1. Scaricare ed estrarre file hello per [Twitter Bootstrap](http://getbootstrap.com/). Hello copia **bootstrap.min.css** file hello **bootstrap\\dist\\css** cartella toohello **pubblica\\fogli di stile** directory dell'applicazione elenco attività.
+2. Da hello **viste** cartella, aprire hello **layout.jade** file nell'editor di testo e sostituire il contenuto di hello con hello seguente:
 
     doctype html  html    head      title= title      link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')      link(rel='stylesheet', href='/stylesheets/style.css')    body.app      nav.navbar.navbar-default        div.navbar-header          a.navbar-brand(href='/') My Tasks      block content
 
-3. Salvare il file **layout.jade**.
+3. Salvare hello **layout.jade** file.
 
-### <a name="running-the-application-in-the-emulator"></a>Esecuzione dell'applicazione nell'emulatore
-Usare il comando seguente per avviare l'applicazione nell'emulatore.
+### <a name="running-hello-application-in-hello-emulator"></a>Esecuzione dell'applicazione hello in hello emulatore
+Utilizzare hello seguito comando toostart hello applicazione nell'emulatore hello.
 
 ```powershell
 PS C:\node\tasklist\WebRole1> start-azureemulator -launch
 ```
 
-Nel browser viene visualizzata la pagina seguente:
+browser Hello verrà visualizzato hello pagina seguente:
 
-![Pagina Web intitolata My Task List con una tabella contenente le attività e i campi per aggiungere una nuova attività.](./media/table-storage-cloud-service-nodejs/node44.png)
+![Un sito web di paging denominato elenco di attività personali con una tabella contenente le attività e i campi tooadd una nuova attività.](./media/table-storage-cloud-service-nodejs/node44.png)
 
-Usare il modulo per aggiungere elementi o rimuovere elementi esistenti contrassegnandoli come completati.
+Utilizzare elementi del modulo di hello tooadd o rimuovere elementi esistenti, contrassegnandoli come completata.
 
-## <a name="publishing-the-application-to-azure"></a>Pubblicazione dell'applicazione in Azure
-Nella finestra di Windows PowerShell chiamare il cmdlet seguente per ridistribuire il servizio ospitato in Azure.
+## <a name="publishing-hello-application-tooazure"></a>Pubblicazione hello applicazione tooAzure
+Nella finestra di Windows PowerShell hello, chiamare hello seguente cmdlet tooredeploy tooAzure il servizio ospitato.
 
 ```powershell
 PS C:\node\tasklist\WebRole1> Publish-AzureServiceProject -name myuniquename -location datacentername -launch
 ```
 
-Sostituire **myuniquename** con un nome univoco per questa applicazione. Sostituire **datacentername** con il nome di un data center di Azure, ad esempio **Stati Uniti occidentali**.
+Sostituire **myuniquename** con un nome univoco per questa applicazione. Sostituire **datacentername** con nome hello del data center di Azure, ad esempio **Stati Uniti occidentali**.
 
-Al termine della distribuzione, verrà visualizzata una risposta analoga alla seguente:
+Una volta completata la distribuzione di hello, vedrai un seguente toohello simile risposta:
 
 ```
   PS C:\node\tasklist> publish-azureserviceproject -servicename tasklist -location "West US"
-  WARNING: Publishing tasklist to Microsoft Azure. This may take several minutes...
+  WARNING: Publishing tasklist tooMicrosoft Azure. This may take several minutes...
   WARNING: 2:18:42 PM - Preparing runtime deployment for service 'tasklist'
   WARNING: 2:18:42 PM - Verifying storage account 'tasklist'...
   WARNING: 2:18:43 PM - Preparing deployment for tasklist with Subscription ID: 65a1016d-0f67-45d2-b838-b8f373d6d52e...
   WARNING: 2:19:01 PM - Connecting...
-  WARNING: 2:19:02 PM - Uploading Package to storage service larrystore...
+  WARNING: 2:19:02 PM - Uploading Package toostorage service larrystore...
   WARNING: 2:19:40 PM - Upgrading...
   WARNING: 2:22:48 PM - Created Deployment ID: b7134ab29b1249ff84ada2bd157f296a.
   WARNING: 2:22:48 PM - Initializing...
@@ -381,38 +381,38 @@ Al termine della distribuzione, verrà visualizzata una risposta analoga alla se
   WARNING: 2:22:50 PM - Created Website URL: http://tasklist.cloudapp.net/.
 ```
 
-Avendo specificato l'opzione **-launch** nel cdmlet precedente, il browser si apre e visualizza l'applicazione in esecuzione in Azure al termine della pubblicazione.
+Specificando hello **-avviare** opzione hello cmdlet precedente, il browser hello aprirà e visualizzerà l'applicazione in esecuzione in Azure quando viene completata la pubblicazione.
 
-![Finestra del browser in cui è visualizzata la pagina My Task List. L'URL indica che la pagina è ora ospitata su Azure.](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
+![Visualizzazione della pagina di elenco di attività personali hello una finestra del browser. URL di Hello indica pagina hello ora sia ospitata in Azure.](./media/table-storage-cloud-service-nodejs/getting-started-1.png)
 
 ## <a name="stopping-and-deleting-your-application"></a>Arresto ed eliminazione dell'applicazione
-Dopo aver distribuito l'applicazione, se necessario è possibile disabilitarla per evitare costi o creare e distribuire altre applicazioni entro il termine del periodo di valutazione gratuita.
+Dopo aver distribuito l'applicazione, è opportuno toodisable in modo da evitare i costi o compilare e distribuire applicazioni all'interno di hello gratuitamente periodo di tempo di valutazione.
 
 Azure addebita le istanze del ruolo Web al consumo, in base all'utilizzo di tempo del server su base oraria.
-Un'applicazione distribuita utilizza tempo del server anche se le istanze non sono in esecuzione e sono in stato arrestato.
+Ora del server viene utilizzata una volta distribuita l'applicazione, anche se le istanze non sono in esecuzione e si trovano nello stato arrestato hello.
 
-Nella procedura seguente viene illustrato come arrestare ed eliminare l'applicazione.
+Hello passaggi seguenti viene illustrato come toostop ed eliminare l'applicazione.
 
-1. Nella finestra di Windows PowerShell arrestare la distribuzione del servizio creato nella sezione precedente con il cmdlet seguente:
+1. Nella finestra di Windows PowerShell hello, arrestare la distribuzione del servizio hello creata nella sezione precedente di hello con hello seguente cmdlet:
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Stop-AzureService
     ```
 
-   L'arresto del servizio può richiedere diversi minuti. Dopo l'arresto del servizio, viene visualizzato un messaggio di conferma dell'arresto.
+   L'arresto del servizio hello potrebbe richiedere alcuni minuti. Quando il servizio hello viene arrestato, viene visualizzato un messaggio che indica che è stato arrestato.
 
-2. Per eliminare il servizio, chiamare il cmdlet seguente:
+2. servizio di hello toodelete, hello chiamata seguente cmdlet:
 
     ```powershell
     PS C:\node\tasklist\WebRole1> Remove-AzureService contosotasklist
     ```
 
-   Quando richiesto, immettere **Y** per eliminare il servizio.
+   Quando richiesto, immettere **Y** servizio hello toodelete.
 
-   L'eliminazione del servizio può richiedere diversi minuti. Al termine della procedura di eliminazione del servizio, verrà visualizzato un messaggio di conferma dell'eliminazione.
+   Eliminazione del servizio hello potrebbe richiedere alcuni minuti. Una volta eliminato il servizio di hello, si riceverà un messaggio che indica che il servizio di hello è stato eliminato.
 
-[Creazione di un'applicazione Web Node.js usando Express in un servizio cloud di Azure]: http://azure.microsoft.com/develop/nodejs/tutorials/web-app-with-express/
+[applicazione Web Node.js mediante Express]: http://azure.microsoft.com/develop/nodejs/tutorials/web-app-with-express/
 [Archiviazione e accesso ai dati in Azure]: http://msdn.microsoft.com/library/azure/gg433040.aspx
-[Creazione e distribuzione di un'applicazione Node.js a un Servizio cloud di Azure]: http://azure.microsoft.com/develop/nodejs/tutorials/getting-started/
+[applicazione Web Node.js]: http://azure.microsoft.com/develop/nodejs/tutorials/getting-started/
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Configurare la modalità di distribuzione del bilanciamento del carico |Documentazione Microsoft"
-description: "Come configurare la modalità di distribuzione del bilanciamento del carico di Azure per supportare l'affinità IP di origine"
+title: "modalità di distribuzione del bilanciamento del carico aaaConfigure | Documenti Microsoft"
+description: "Le modalità di caricamento di affinità dell'indirizzo IP di origine toosupport di bilanciamento del carico distribuzione modalità tooconfigure Azure"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 4cb000c8ee1bb2e267dc0813dab23a77a46080ce
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e745240b733ffc07928d8ed0ae097785ad4f412e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-the-distribution-mode-for-load-balancer"></a>Configurare la modalità di distribuzione del servizio di bilanciamento del carico
+# <a name="configure-hello-distribution-mode-for-load-balancer"></a>Configurare la modalità di distribuzione hello di bilanciamento del carico
 
 ## <a name="hash-based-distribution-mode"></a>Modalità di distribuzione basata su hash
 
-L'algoritmo di distribuzione predefinito è un hash a 5 tuple (IP di origine, porta di origine, IP di destinazione, porta di destinazione, tipo di protocollo) per eseguire il mapping del traffico ai server disponibili. La persistenza viene mantenuta solo all'interno di una sessione di trasporto. I pacchetti nella stessa sessione verranno indirizzati alla stessa istanza di IP di data center (DIP) nell'endpoint con carico bilanciato. Quando il client avvia una nuova sessione dallo stesso IP di origine, la porta di origine cambia e il traffico quindi viene indirizzato a un endpoint DIP diverso.
+algoritmo di distribuzione predefinito di Hello è una tupla con 5 (origine IP, porta di origine, IP di destinazione, la porta di destinazione, tipo di protocollo) Server tooavailable di traffico toomap hash. La persistenza viene mantenuta solo all'interno di una sessione di trasporto. I pacchetti hello stessa sessione saranno indirizzate toohello istanza stesso Data Center IP (DIP) dietro l'endpoint con carico bilanciato hello. Quando hello client avvia una nuova sessione da hello stesso indirizzo IP di origine, la porta di origine hello viene modificata e provoca hello traffico toogo tooa DIP endpoint diversi.
 
 ![bilanciamento del carico basato su hash](./media/load-balancer-distribution-mode/load-balancer-distribution.png)
 
@@ -31,37 +31,37 @@ Figura 1. Distribuzione a 5 tuple
 
 ## <a name="source-ip-affinity-mode"></a>Modalità di affinità IP di origine
 
-Esiste un'altra modalità di distribuzione definita affinità IP di origine (anche nota come affinità di sessione o affinità del client IP). Il bilanciamento del carico di Azure può essere configurato in modo che usi 2 tuple (IP di origine, IP di destinazione) o 3 tuple (IP di origine, IP di destinazione, protocollo) per eseguire il mapping del traffico ai server disponibili. Usando l'affinità IP di origine, le connessioni avviate dallo stesso computer client passano allo stesso endpoint DIP.
+Esiste un'altra modalità di distribuzione definita affinità IP di origine (anche nota come affinità di sessione o affinità del client IP). Bilanciamento del carico di Azure può essere configurato toouse una tupla con 2 (indirizzo IP di origine, IP di destinazione) o server disponibili toohello il traffico toomap tupla con 3 elementi (indirizzo IP di origine, IP di destinazione, Protocol). Utilizzando l'affinità IP di origine, le connessioni avviate da hello stessi computer client passa toohello stesso endpoint DIP.
 
-Il diagramma seguente illustra una configurazione a 2 tuple. Si noti come la configurazione a 2 tuple viene eseguita tramite il bilanciamento del carico nella macchina virtuale 1 (VM1) e quindi sottoposta a backup nelle VM2 e VM3.
+Hello seguente diagramma viene illustrata una tupla con 2 elementi configurazione. Si noti la modalità di esecuzione tramite hello carico bilanciamento toovirtual macchina 1 (VM1) che viene quindi eseguito il backup VM2 e VM3 hello tupla con 2 elementi.
 
 ![affinità di sessione](./media/load-balancer-distribution-mode/load-balancer-session-affinity.png)
 
 Figura 2. Distribuzione a 2 tuple
 
-L'affinità IP di origine risolve un'incompatibilità tra il Gateway Desktop remoto e Azure Load Balancer. Ora è possibile creare una farm di gateway Desktop remoto in un singolo servizio cloud.
+Affinità dell'indirizzo IP di origine è stato risolto un problema di incompatibilità tra hello bilanciamento del carico di Azure e Gateway Desktop remoto (desktop remoto). Ora è possibile creare una farm di gateway Desktop remoto in un singolo servizio cloud.
 
-Un altro scenario d'uso è il caricamento di contenuti multimediali dove il caricamento dei dati avviene tramite UDP, ma il piano di controllo viene raggiunto tramite TCP:
+Un altro scenario di caso di utilizzo è il caricamento di supporti in cui il caricamento di dati hello avviene tramite UDP, ma il piano di controllo hello viene ottenuto tramite TCP:
 
-* Prima un client avvia una sessione TCP all'indirizzo pubblico con carico bilanciato e viene diretto a un DIP specifico. Questo canale viene lasciato attivo per monitorare lo stato della connessione
-* Viene avviata una nuova sessione UDP dallo stesso computer client allo stesso endpoint pubblico con carico bilanciato. Qui ci si aspetta che anche questa connessione venga indirizzata allo stesso endpoint DIP della precedente connessione TCP in modo che il caricamento di contenuti multimediali possa essere eseguito a una velocità effettiva elevata, mantenendo allo stesso tempo un canale di controllo tramite TCP.
+* Un client avvia una sessione TCP indirizzo pubblico con bilanciamento del carico toohello prima di tutto, ottiene tooa diretto DIP specifico, questo canale è stato della connessione hello toomonitor attivo a sinistra
+* Una nuova sessione UDP da hello stessi computer client viene avviato toohello endpoint pubblico con bilanciamento del carico stesso, previsione hello qui è che la connessione è anche toohello diretto stesso endpoint DIP connessione TCP precedente hello in modo che supporti caricare può essere viene eseguito a velocità effettiva elevata pur mantenendo un canale di controllo tramite TCP.
 
 > [!NOTE]
-> Quando il set con carico bilanciato viene modificato (rimozione o aggiunta di una macchina virtuale), la distribuzione delle richieste client viene ricalcolata. Non è possibile dipendere da nuove connessioni da client esistenti che terminano nello stesso server. Inoltre, l'uso della modalità di distribuzione dell'affinità IP di origine può comportare una distribuzione diversa del traffico. I client in esecuzione dietro i proxy possono essere visto come una applicazione client univoca.
+> Quando un set con carico bilanciato viene modificato (rimozione o aggiunta di una macchina virtuale), viene ricalcolata distribuzione hello di richieste client. Non è possibile basarsi su nuove connessioni da client esistenti terminando hello stesso server. Inoltre, l'uso della modalità di distribuzione dell'affinità IP di origine può comportare una distribuzione diversa del traffico. I client in esecuzione dietro i proxy possono essere visto come una applicazione client univoca.
 
 ## <a name="configuring-source-ip-affinity-settings-for-load-balancer"></a>Configurazione delle impostazioni di affinità IP di origine per il bilanciamento del carico
 
-Per le macchine virtuali, è possibile usare PowerShell per modificare le impostazioni di timeout:
+Per le macchine virtuali, è possibile utilizzare le impostazioni di timeout toochange PowerShell:
 
-Aggiungere un endpoint di Azure a una macchina virtuale e impostare la modalità di distribuzione del servizio di bilanciamento del carico
+Aggiungere una macchina virtuale di tooa l'endpoint di Azure e impostare modalità di distribuzione del servizio di bilanciamento del carico
 
 ```powershell
 Get-AzureVM -ServiceName mySvc -Name MyVM1 | Add-AzureEndpoint -Name HttpIn -Protocol TCP -PublicPort 80 -LocalPort 8080 –LoadBalancerDistribution sourceIP | Update-AzureVM
 ```
 
-LoadBalancerDistribution può essere impostato su sourceIP per il bilanciamento del carico a 2 tuple (IP di origine, IP di destinazione), su sourceIPProtocol per il bilanciamento del carico a 3 tuple (IP di origine, IP di destinazione, protocollo) o su Nessuno per il comportamento predefinito con bilanciamento del carico a 5 tuple.
+È possibile impostare LoadBalancerDistribution toosourceIP per 2 tuple (IP di origine, IP di destinazione) bilanciamento del carico, sourceIPProtocol per il bilanciamento del carico di tupla con 3 elementi (protocollo IP di origine, IP di destinazione,) o nessuno se si desidera il comportamento predefinito di hello del bilanciamento del carico di 5 tuple.
 
-Usare il codice seguente per recuperare una configurazione con modalità di distribuzione del bilanciamento del carico con endpoint:
+Utilizzare hello tooretrieve una configurazione di modalità endpoint distribuzione di bilanciamento del carico seguenti:
 
     PS C:\> Get-AzureVM –ServiceName MyService –Name MyVM | Get-AzureEndpoint
 
@@ -83,19 +83,19 @@ Usare il codice seguente per recuperare una configurazione con modalità di dist
     IdleTimeoutInMinutes : 15
     LoadBalancerDistribution : sourceIP
 
-Se l'elemento LoadBalancerDistribution non viene specificato, il bilanciamento del carico di Azure utilizza l'algoritmo di 5 tuple predefinito
+Se l'elemento LoadBalancerDistribution hello non è presente hello Azure bilanciamento del carico utilizza l'algoritmo predefinito 5 tuple hello.
 
-### <a name="set-the-distribution-mode-on-a-load-balanced-endpoint-set"></a>Impostare la modalità di distribuzione su un set di endpoint con carico bilanciato
+### <a name="set-hello-distribution-mode-on-a-load-balanced-endpoint-set"></a>Impostare la modalità di distribuzione hello in un set di endpoint con carico bilanciato
 
-Se gli endpoint fanno parte di un set di endpoint con carico bilanciato, è necessario impostare la modalità di distribuzione sul set di endpoint con carico bilanciato:
+Se gli endpoint sono parte di un set di endpoint con carico bilanciato, è necessario impostare la modalità di distribuzione hello nel set di endpoint con carico bilanciato hello:
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName MyService -LBSetName LBSet1 -Protocol TCP -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 –LoadBalancerDistribution sourceIP
 ```
 
-### <a name="cloud-service-configuration-to-change-distribution-mode"></a>Configurazione del servizio cloud per modificare la modalità di distribuzione
+### <a name="cloud-service-configuration-toochange-distribution-mode"></a>Modalità di distribuzione toochange configurazione del servizio cloud
 
-È possibile usare Azure SDK per .NET 2.5 (in arrivo a novembre) per aggiornare il servizio cloud. Le impostazioni degli endpoint per i servizi cloud vengono effettuate nel file con estensione csdef. Per aggiornare la modalità di distribuzione del servizio di bilanciamento del carico per una distribuzione di servizi cloud, è necessario un aggiornamento della distribuzione.
+È possibile sfruttare hello Azure SDK per .NET 2.5 (toobe rilasciato nel mese di novembre) tooupdate il servizio Cloud. Le impostazioni di endpoint per servizi Cloud vengono eseguite in hello. csdef. In ordine tooupdate hello carico bilanciamento modalità di distribuzione per una distribuzione di servizi Cloud, è necessario un aggiornamento di distribuzione.
 Di seguito è riportato un esempio di modifiche del file con estensione csdef alle impostazioni degli endpoint:
 
 ```xml
@@ -118,9 +118,9 @@ Di seguito è riportato un esempio di modifiche del file con estensione csdef al
 
 ## <a name="api-example"></a>Esempio di API
 
-È possibile configurare la distribuzione del servizio di bilanciamento del carico tramite l'API di gestione dei servizi. Assicurarsi di aggiungere l'intestazione `x-ms-version` impostata sulla versione `2014-09-01` o successiva.
+È possibile configurare una distribuzione del servizio di bilanciamento del carico hello utilizzando l'API di Gestione servizio hello. Verificare che hello tooadd `x-ms-version` intestazione è impostata tooversion `2014-09-01` o versione successiva.
 
-### <a name="update-the-configuration-of-the-specified-load-balanced-set-in-a-deployment"></a>Aggiornare la configurazione del set con carico bilanciato specificato in una distribuzione
+### <a name="update-hello-configuration-of-hello-specified-load-balanced-set-in-a-deployment"></a>Aggiorna il set di configurazione di hello specificato con bilanciata del carico hello in una distribuzione
 
 #### <a name="request-example"></a>Esempio di richiesta
 
@@ -145,7 +145,7 @@ Di seguito è riportato un esempio di modifiche del file con estensione csdef al
       </InputEndpoint>
     </LoadBalancedEndpointList>
 
-Il valore di LoadBalancerDistribution può essere sourceIP per l'affinità a 2 tuple, sourceIPProtocol per l'affinità a 3 tuple o Nessuno (per nessuna affinità, ad esempio 5 tuple).
+il valore di Hello di LoadBalancerDistribution può essere sourceIP affinità tupla con 2 elementi, sourceIPProtocol affinità tupla con 3 elementi o Nessuno (per alcuna affinità. ad esempio 5 tuple).
 
 #### <a name="response"></a>Response
 

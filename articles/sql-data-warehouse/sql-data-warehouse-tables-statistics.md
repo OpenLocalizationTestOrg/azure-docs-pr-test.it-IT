@@ -1,5 +1,5 @@
 ---
-title: Gestione delle statistiche nelle tabelle in SQL Data Warehouse | Documentazione Microsoft
+title: aaaManaging sulle statistiche delle tabelle in SQL Data Warehouse | Documenti Microsoft
 description: Introduzione alle statistiche nelle tabelle di SQL Data Warehouse di Azure.
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: 1d5ded69e394643ddfc3de0c6d30dbd30c8e848f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9521dc47891f68d124e77a53e2e15d03275caaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-statistics-on-tables-in-sql-data-warehouse"></a>Gestione delle statistiche nelle tabelle in SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -33,37 +33,37 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Più informazioni sui dati sono a disposizione di SQL Data Warehouse, più rapidamente può eseguire query.  L'utente può comunicare i suoi dati a SQL Data Warehouse raccogliendone le statistiche.  Le statistiche sui dati sono fra gli aspetti più importanti per ottimizzare le query.  Le statistiche consentono a SQL Data Warehouse di creare il piano ottimale per le query.  Questo è dovuto al fatto che Query Optimizer di SQL Data Warehouse si basa sul costo.  Ciò significa che esegue un confronto fra i costi di vari piani di query e poi sceglie quello che costa meno, che dovrebbe anche essere il piano eseguito più velocemente.
+Hello ulteriori SQL Data Warehouse viene a conoscenza dei dati, hello più velocemente può eseguire query sui dati.  metodo Hello informare SQL Data Warehouse di dati, è la raccolta di statistiche sui dati.  Con le statistiche sui dati è una delle operazioni più importanti hello è possibile eseguire toooptimize le query.  Statistiche consentono a SQL Data Warehouse di creare il piano ottimale di hello per le query.  Questo avviene perché query optimizer basati su query di SQL Data Warehouse di hello query optimizer è un costo.  Vale a dire confronta il costo di hello dei diversi piani di query e quindi sceglie piano hello con costo più basso hello, che deve essere anche piano hello che eseguirà hello più veloce.
 
-È possibile creare statistiche su una singola colonna, su più colonne o sull'indice di una tabella.  Le statistiche vengono archiviate in un istogramma che acquisisce l'intervallo e la selettività dei valori.  Questo aspetto riveste particolare interesse quando Query Optimizer deve valutare clausole JOIN, GROUP BY, HAVING e WHERE in una query.  Ad esempio, se Query Optimizer stima che la data da filtrare nella query restituirà 1 riga, potrebbe scegliere un piano molto diverso rispetto a quando stima che la data selezionata restituirà 1 milione di righe.  Mentre è estremamente importante creare statistiche, è altrettanto importante che le statistiche riflettano *con precisione* lo stato corrente della tabella.  La presenza di statistiche aggiornate garantisce che Query Optimizer selezioni un buon piano.  La qualità dei piani creati dall'utilità di ottimizzazione dipende dalla qualità delle statistiche sui dati.
+È possibile creare statistiche su una singola colonna, su più colonne o sull'indice di una tabella.  Le statistiche vengono archiviate in un istogramma che acquisisce intervallo hello e selettività dei valori.  Si tratta di particolare interesse quando query optimizer hello deve tooevaluate join, GROUP BY, HAVING che clausole WHERE in una query.  Ad esempio, se ottimizzatore di hello che data hello si filtrano nella query restituirà 1 riga, è possibile scegliere molto diversa rispetto a se in piano stime data è sono selezionata verrà restituito 1 milione di righe.  Durante la creazione di statistiche è estremamente importante, è ugualmente importante che le statistiche delle *accuratamente* rifletta hello lo stato corrente della tabella hello.  Presenza di statistiche aggiornate assicura che un piano adeguato è selezionato da query optimizer hello.  i piani di Hello creati da query optimizer hello sono solo efficace delle statistiche di hello sui dati.
 
-Il processo di creazione e aggiornamento delle statistiche è attualmente manuale, ma è molto semplice.  È diverso rispetto a SQL Server, che crea e aggiorna automaticamente le statistiche su singoli indici e colonne.  Utilizzando le informazioni seguenti, è possibile automatizzare notevolmente la gestione delle statistiche sui dati. 
+il processo di Hello di creazione e aggiornamento delle statistiche è attualmente un processo manuale, ma è molto semplice toodo.  È diverso rispetto a SQL Server, che crea e aggiorna automaticamente le statistiche su singoli indici e colonne.  Utilizzando le informazioni di hello riportate di seguito, è possibile automatizzare notevolmente gestione hello delle statistiche di hello sui dati. 
 
 ## <a name="getting-started-with-statistics"></a>Introduzione alle statistiche
- La creazione di statistiche campionate su ogni colonna è un modo semplice per iniziare a usare le statistiche.  Poiché è altrettanto importante tenere aggiornate le statistiche, un approccio conservativo potrebbe consistere nell'aggiornare le statistiche ogni giorno o dopo ogni caricamento. Sono sempre necessari compromessi tra le prestazioni e il costo di creazione e aggiornamento delle statistiche.  Se si ritiene che la gestione di tutte le statistiche richieda troppo tempo, è consigliabile provare a scegliere in modo più selettivo le colonne con le statistiche o quelle che richiedono aggiornamenti frequenti.  Potrebbe ad esempio essere consigliabile aggiornare le colonne di data ogni giorno piuttosto che dopo ogni caricamento, perché potrebbero essere aggiunti nuovi valori. Anche in questo caso, il massimo vantaggio è offerto dalle statistiche su colonne usate nelle clausole JOIN, GROUP BY, HAVING e WHERE.  Se si dispone di una tabella con molte colonne che vengono usate solo nella clausola SELECT, le statistiche su queste colonne potrebbero non essere utili e dedicare un po' più di impegno a identificare solo le colonne in cui le statistiche saranno utili può ridurre il tempo per gestire le statistiche.
+ Creare le statistiche campionate ogni colonna viene avviato tooget un modo semplice con le statistiche.  Poiché è ugualmente importante tookeep statistiche aggiornate, un approccio conservativo potrebbe essere tooupdate le statistiche di ogni giorno o dopo ogni carico. Sono sempre presenti compromessi tra prestazioni e hello costo toocreate e aggiornare le statistiche.  Se si ritiene che sta richiedendo troppo tempo toomaintain tutte le statistiche, è necessario frequenti toobe tootry più selettivo sulle statistiche dispongano quali colonne o le colonne di aggiornamento.  Ad esempio, potrebbe desiderato colonne data tooupdate ogni giorno, come è possibile aggiungere nuovi valori anziché dopo ogni carico. Nuovamente, sarà possibile ottenere hello migliori con le statistiche su colonne coinvolte nel join, GROUP BY, HAVING che clausole WHERE.  Se si dispone di una tabella con molte clausola SELECT le colonne che vengono utilizzate solo in hello, statistiche su queste colonne potrebbero non aiutare e un po' più tooidentify di impegno di spesa solo le colonne hello consentono in cui le statistiche, può ridurre hello ora toomaintain le statistiche .
 
 ## <a name="multi-column-statistics"></a>Statistiche a più colonne
-Oltre a creare le statistiche su singole colonne, ci si potrebbe rendere conto che le query possono trarre vantaggio da statistiche a più colonne.  Le statistiche a più colonne sono statistiche create su un elenco di colonne.  Includono statistiche a colonna singola nella prima colonna dell'elenco, oltre ad alcune informazioni di correlazione tra colonne definite densità.  Ad esempio, se si dispone di una tabella unita a un'altra in due colonne, ci si potrebbe rendere conto che SQL Data Warehouse può ottimizzare il piano nel caso in cui comprenda la relazione tra due colonne.   Le statistiche a più colonne possono migliorare le prestazioni delle query per alcune operazioni, ad esempio nelle clausole JOIN composite e GROUP BY.
+Inoltre toocreating le statistiche per colonne singole, è possibile che le query trarranno vantaggio dalle statistiche su più colonne.  Le statistiche a più colonne sono statistiche create su un elenco di colonne.  Sono incluse le statistiche di colonna singola nella prima colonna hello nelle elenco hello e alcune informazioni di correlazione tra colonne chiamato densità.  Ad esempio, se si dispone di una tabella che unisce in join tooanother su due colonne, è possibile che SQL Data Warehouse ottimizzare piano hello se riconosce relazione hello tra due colonne.   Le statistiche a più colonne possono migliorare le prestazioni delle query per alcune operazioni, ad esempio nelle clausole JOIN composite e GROUP BY.
 
 ## <a name="updating-statistics"></a>Aggiornamento delle statistiche
-L'aggiornamento delle statistiche è una parte importante della routine gestione del database.  Quando la distribuzione dei dati nel database subisce modifiche, è necessario aggiornare le statistiche.  La presenza di statistiche non aggiornate comporterà prestazioni di query non ottimali.
+L'aggiornamento delle statistiche è una parte importante della routine gestione del database.  Quando viene modificato distribuzione hello dei dati nel database di hello, le statistiche devono toobe aggiornato.  Le statistiche non aggiornate determinerà le prestazioni delle query toosub ottimale.
 
-Una procedura consigliata consiste nell'aggiornare le statistiche sulle colonne data ogni giorno quando vengono aggiunte nuove date.  Ogni volta che vengono caricate nuove righe nel data warehouse, vengono aggiunte nuove date di caricamento o date di transazione. Queste righe modificano la distribuzione dei dati e rendono non aggiornate le statistiche. Al contrario, le statistiche su una colonna di paese in una tabella dei clienti possono non dover essere mai aggiornate, poiché la distribuzione dei valori in genere non cambia. Supponendo che la distribuzione sia costante tra i clienti, l'aggiunta di nuove righe alla variazione di tabella non modificherà la distribuzione dei dati. Tuttavia, se il data warehouse contiene solo un paese e si importano dati da un nuovo paese, facendo sì che vengano archiviati dati da più paesi, in quel caso si devono sicuramente aggiornare le statistiche sulla colonna del paese.
+Una procedura consigliata è tooupdate statistiche su colonne di data e ogni giorno vengono aggiunte nuove date.  Le righe di nuovo ogni volta vengono caricati nel data warehouse di hello, vengono aggiunte nuove date di carico di transazione. Questi modificano hello distribuzione dei dati e apportare le statistiche di hello non aggiornato. Al contrario, le statistiche su una colonna per il paese in una tabella clienti potrebbero non essere necessario toobe aggiornato, come la distribuzione di hello di valori in genere non viene modificato. Supponendo che la distribuzione di hello è costante tra i clienti, aggiunta di nuovi variazione della tabella toohello righe non sarà toochange distribuzione dei dati hello. Tuttavia, se il data warehouse contiene solo un paese e importare dati da un nuovo paese, risultante in dati di più paesi è stati archiviati, è assolutamente necessario statistiche tooupdate sulla colonna country hello.
 
-Quando si risolvono i problemi di una query è essenziale verificare prima di tutto se le statistiche sono aggiornate.
+Uno dei hello prima domande tooask quando la risoluzione dei problemi di una query è "sono statistiche hello aggiornati?"
 
-Questa verifica non può essere basata sulla data di creazione dei dati. Un oggetto statistiche aggiornato può essere molto vecchio se non sono state apportate modifiche sostanziali ai dati sottostanti. È necessario aggiornare le statistiche *quando* vengono apportate modifiche sostanziali al numero di righe o modifiche materiali alla distribuzione dei valori per una colonna specifica.  
+La domanda non è che è possibile rispondere in base all'età hello dei dati di hello. Un oggetto di statistiche aggiornato toodate potrebbe essere molto vecchio se non è stata eseguita alcuna toohello modifica sostanziale dati sottostanti. Quando hello numero di righe è stato modificato sostanzialmente o viene apportata una modifica della distribuzione di valori per una determinata colonna hello materiale *quindi* è tooupdate delle statistiche.  
 
 Come riferimento, **SQL Server** (non SQL Data Warehouse) aggiorna automaticamente le statistiche nelle situazioni seguenti:
 
-* Se non si dispone di alcuna riga nella tabella, quando si aggiungono righe si ottiene un aggiornamento automatico delle statistiche
-* Quando si aggiungono più di 500 righe in una tabella che inizialmente ha meno di 500 righe (ad esempio, all'inizio ne ha 499 e poi si aggiungono 500 righe per un totale di 999 righe), si ottiene un aggiornamento automatico 
-* Una volta superate le 500 righe è necessario aggiungere altre 500 righe + il 20% delle dimensioni della tabella prima di ottenere un aggiornamento automatico delle statistiche
+* Se si dispone di zero righe nella tabella di hello, quando si aggiungono righe, si otterrà un aggiornamento automatico delle statistiche
+* Quando si aggiunta più di 500 tabella tooa di righe a partire da meno di 500 righe (ad esempio all'inizio aver 499 e aggiungere quindi 500 righe tooa totale 999 righe), si otterrà un aggiornamento automatico 
+* Dopo aver oltre 500 righe è tooadd 500 righe aggiuntive + 20% delle dimensioni di hello della tabella hello prima sulla statistiche hello verrà visualizzato un aggiornamento automatico
 
-Poiché non esiste alcuna vista a gestione dinamica (DMV) per determinare se i dati all'interno della tabella sono cambiati dall'ultimo aggiornamento delle statistiche, sapere a quando risalgono le statistiche può fornire un quadro della situazione.  È possibile usare la query seguente per determinare l'ultimo aggiornamento delle statistiche di ogni tabella.  
+Poiché non esiste alcun toodetermine DMV dati all'interno di tabella hello sono stato modificato dopo l'aggiornamento delle statistiche ora ultimo hello, conoscere l'età di hello delle statistiche può fornire una parte di immagine hello.  È possibile utilizzare hello seguente toodetermine hello ultima le statistiche di query in cui l'aggiornamento in ogni tabella.  
 
 > [!NOTE]
-> Si tenga presente che se vi è una modifica sostanziale nella distribuzione dei valori per una determinata colonna, è necessario aggiornare le statistiche a prescindere da quando sono state aggiornate l'ultima volta.  
+> Tenere presente che se è presente una modifica sostanziale nella distribuzione hello di valori per una determinata colonna, è necessario aggiornare le statistiche indipendentemente dal hello ultima volta che sono state aggiornate.  
 > 
 > 
 
@@ -94,111 +94,111 @@ WHERE
     st.[user_created] = 1;
 ```
 
-Le colonne data in un data warehouse, ad esempio, necessitano solitamente di aggiornamenti frequenti delle statistiche. Ogni volta che vengono caricate nuove righe nel data warehouse, vengono aggiunte nuove date di caricamento o date di transazione. Queste righe modificano la distribuzione dei dati e rendono non aggiornate le statistiche.  Al contrario, è possibile che non sia mai necessario aggiornare le statistiche relative alla colonna del sesso in una tabella clienti. Supponendo che la distribuzione sia costante tra i clienti, l'aggiunta di nuove righe alla variazione di tabella non modificherà la distribuzione dei dati. Se tuttavia il data warehouse contiene solo un sesso e uno nuovo requisito ha come risultato più sessi, sarà decisamente necessario aggiornare le statistiche relative alla colonna del sesso.
+Le colonne data in un data warehouse, ad esempio, necessitano solitamente di aggiornamenti frequenti delle statistiche. Le righe di nuovo ogni volta vengono caricati nel data warehouse di hello, vengono aggiunte nuove date di carico di transazione. Questi modificano hello distribuzione dei dati e apportare le statistiche di hello non aggiornato.  Al contrario, le statistiche su una colonna relativa al sesso in una tabella clienti potrebbero non essere necessario toobe aggiornato. Supponendo che la distribuzione di hello è costante tra i clienti, aggiunta di nuovi variazione della tabella toohello righe non sarà toochange distribuzione dei dati hello. Tuttavia, se il data warehouse contiene solo un sesso e risultati di un nuovo requisito generano più i sessi è assolutamente necessario statistiche tooupdate nella colonna relativa al sesso hello.
 
 Per altre informazioni, vedere [Statistiche][Statistics] in MSDN.
 
 ## <a name="implementing-statistics-management"></a>Implementazione della gestione delle statistiche
-È spesso consigliabile estendere il processo di caricamento dei dati per assicurare che le statistiche vengano aggiornate al termine del caricamento. Il caricamento dei dati è la fase in cui si verifica con maggiore frequenza una modifica delle dimensioni e/o della distribuzione dei valori delle tabelle. Questa è quindi una posizione logica per implementare alcuni processi di gestione.
+È spesso tooextend una buona idea dei dati durante il caricamento tooensure processo che le statistiche vengono aggiornate in hello fine del caricamento hello. caricamento dei dati Hello è quando le tabelle cambiano più frequentemente alle dimensioni e/o la distribuzione di valori. Pertanto, si tratta di un punto logico di tooimplement alcuni processi di gestione.
 
-Di seguito sono disponibili alcuni principi guida per l'aggiornamento delle statistiche durante il processo di caricamento:
+Alcuni principi sono riportate di seguito per aggiornare le statistiche durante il processo di caricamento hello:
 
-* Assicurarsi che ogni tabella caricata includa almeno un oggetto statistiche aggiornato. Ciò permette di aggiornare le informazioni sulle dimensioni delle tabelle (conteggio delle righe e conteggio delle pagine) come parte dell'aggiornamento delle statistiche.
+* Assicurarsi che ogni tabella caricata includa almeno un oggetto statistiche aggiornato. Questo hello aggiornamenti tabelle informazioni sulle dimensioni (numero di riga e conteggio delle pagine) come parte dell'aggiornamento di statistiche hello.
 * Concentrarsi sulle colonne incluse nelle clausole JOIN, GROUP BY, ORDER BY e DISTINCT.
-* Prendere in considerazione una maggiore frequenza per l'aggiornamento delle colonne di tipo "parola chiave Ascending", ad esempio le date delle transazioni, poiché questi valori non verranno inclusi nell'istogramma delle statistiche.
+* È consigliabile aggiornare le colonne "chiave ascending", ad esempio transazioni più frequentemente di questi valori non verranno inclusi nell'istogramma delle statistiche hello date,
 * Prendere in considerazione una minore frequenza per l'aggiornamento delle colonne relative alla distribuzione statica.
 * Occorre ricordare che ogni oggetto statistiche viene aggiornato in serie. La semplice implementazione di `UPDATE STATISTICS <TABLE_NAME>` potrebbe non essere ottimale, in particolare per tabelle di grandi dimensioni con molti oggetti statistici.
 
 > [!NOTE]
-> Per altre informazioni sulla [parola chiave Ascending], vedere il white paper sul modello di stima della cardinalità di SQL Server 2014.
+> Per ulteriori informazioni su [crescente chiave] consultare il white paper del modello di stima della cardinalità toohello SQL Server 2014.
 > 
 > 
 
 Per altre informazioni, vedere [Stima della cardinalità][Cardinality Estimation] in MSDN.
 
 ## <a name="examples-create-statistics"></a>Esempi: Creare le statistiche
-Questi esempi illustrano come usare diverse opzioni per la creazione delle statistiche. Le opzioni usate per ogni colonna dipendono dalle caratteristiche dei dati e dal modo in cui la colonna verrà usata nelle query.
+Questi esempi mostrano come toouse varie opzioni per la creazione di statistiche. Opzioni Hello utilizzate per ogni colonna dipendono dalle caratteristiche hello dei dati e come colonna di hello verrà utilizzata nelle query.
 
-### <a name="a-create-single-column-statistics-with-default-options"></a>A. Creare statistiche a colonna singola con opzioni predefinite
-Per creare statistiche su una colonna, è sufficiente fornire un nome per l'oggetto statistiche e il nome della colonna.
+### <a name="a-create-single-column-statistics-with-default-options"></a>R. Creare statistiche a colonna singola con opzioni predefinite
+toocreate statistiche su una colonna, è sufficiente fornire un nome di oggetto statistiche hello e hello della colonna hello.
 
-Questa sintassi usa tutte le opzioni predefinite. Per impostazione predefinita, SQL Data Warehouse esegue il campionamento del 20% della tabella quando crea le statistiche.
+Questa sintassi utilizza tutte le opzioni predefinite di hello. Per impostazione predefinita, SQL Data Warehouse esempi il 20% della tabella hello durante la creazione di statistiche.
 
 ```sql
 CREATE STATISTICS [statistics_name] ON [schema_name].[table_name]([column_name]);
 ```
 
-Ad esempio:
+ad esempio:
 
 ```sql
 CREATE STATISTICS col1_stats ON dbo.table1 (col1);
 ```
 
 ### <a name="b-create-single-column-statistics-by-examining-every-row"></a>B. Creare statistiche a colonna singola esaminando ogni riga
-La frequenza di campionamento del 20% è sufficiente per la maggior parte delle situazioni. È tuttavia possibile modificare la frequenza di campionamento.
+frequenza di campionamento predefinita Hello del 20% è sufficiente per la maggior parte delle situazioni. Tuttavia, è possibile regolare la frequenza di campionamento hello.
 
-Per eseguire il campionamento dell'intera tabella, usare la sintassi seguente:
+hello toosample completo di tabella, utilizzare la seguente sintassi:
 
 ```sql
 CREATE STATISTICS [statistics_name] ON [schema_name].[table_name]([column_name]) WITH FULLSCAN;
 ```
 
-Ad esempio:
+ad esempio:
 
 ```sql
 CREATE STATISTICS col1_stats ON dbo.table1 (col1) WITH FULLSCAN;
 ```
 
-### <a name="c-create-single-column-statistics-by-specifying-the-sample-size"></a>C. Creare statistiche a colonna singola specificando le dimensioni del campione
-In alternativa, è possibile specificare le dimensioni del campione sotto forma di percentuale:
+### <a name="c-create-single-column-statistics-by-specifying-hello-sample-size"></a>C. Creare statistiche di colonna singola, specificando la dimensione del campione hello
+In alternativa, è possibile specificare la dimensione del campione hello sotto forma di percentuale:
 
 ```sql
 CREATE STATISTICS col1_stats ON dbo.table1 (col1) WITH SAMPLE = 50 PERCENT;
 ```
 
-### <a name="d-create-single-column-statistics-on-only-some-of-the-rows"></a>D. Creare statistiche a colonna singola solo su alcune righe
-È anche possibile creare statistiche su una parte delle righe della tabella. Questa opzione è definita statistica filtrata.
+### <a name="d-create-single-column-statistics-on-only-some-of-hello-rows"></a>D. Creare statistiche di colonna singola su tutte le righe di hello
+Un'altra opzione, è possibile creare statistiche in una parte di hello righe nella tabella. Questa opzione è definita statistica filtrata.
 
-Ad esempio, è possibile usare le statistiche filtrate quando si prevede di eseguire una query in una partizione specifica di una tabella partizionata di grandi dimensioni. Se si creano statistiche solo sui valori della partizione, la precisione delle statistiche migliorerà e miglioreranno quindi le prestazioni delle query.
+Ad esempio, è possibile utilizzare le statistiche filtrate quando si pianifica una partizione specifica di una tabella partizionata grande tooquery. Creando le statistiche su hello solo i valori della partizione, accuratezza hello di statistiche di hello migliorare e pertanto migliorare le prestazioni delle query.
 
-Questo esempio crea statistiche su un intervallo di valori. È possibile definire con facilità i valori in modo che corrispondano all'intervallo di valori in una partizione.
+Questo esempio crea statistiche su un intervallo di valori. Hello valori potrebbero facilmente essere definita dall'intervallo di hello toomatch di valori in una partizione.
 
 ```sql
 CREATE STATISTICS stats_col1 ON table1(col1) WHERE col1 > '2000101' AND col1 < '20001231';
 ```
 
 > [!NOTE]
-> Per fare in modo che Query Optimizer prenda in considerazione l'uso delle statistiche filtrate quando sceglie il piano di query distribuite, è necessario che la query rientri nella definizione dell'oggetto statistiche. Usando l'esempio precedente, la clausola where della query deve specificare valori col1 compresi tra 2000101 e 20001231.
+> Per hello query optimizer tooconsider le statistiche filtrate quando viene scelto il piano di query distribuite di hello, query hello deve adattarsi all'interno di hello definizione di oggetto statistiche hello. Utilizzando l'esempio precedente di hello, hello della query in cui clausola deve toospecify col1 valori tra 2000101 e 20001231.
 > 
 > 
 
-### <a name="e-create-single-column-statistics-with-all-the-options"></a>E. Creare statistiche a colonna singola con tutte le opzioni
-È ovviamente possibile combinare tutte le opzioni. L'esempio seguente crea un oggetto statistiche filtrato con una dimensione di campionamento personalizzata:
+### <a name="e-create-single-column-statistics-with-all-hello-options"></a>E. Creare statistiche di colonna singola con tutte le opzioni di hello
+Naturalmente, è possibile, combinare insieme le opzioni di hello. esempio Hello seguente crea un oggetto statistiche filtrate con una dimensione di esempio personalizzati:
 
 ```sql
 CREATE STATISTICS stats_col1 ON table1 (col1) WHERE col1 > '2000101' AND col1 < '20001231' WITH SAMPLE = 50 PERCENT;
 ```
 
-Per i riferimenti completi, vedere [CREATE STATISTICS][CREATE STATISTICS] in MSDN.
+Per informazioni di riferimento complete hello, vedere [CREATE STATISTICS] [ CREATE STATISTICS] su MSDN.
 
 ### <a name="f-create-multi-column-statistics"></a>F. Creare statistiche a più colonne
-Per creare statistiche a più colonne, è sufficiente usare gli esempi precedenti ma specificare più colonne.
+semplicemente toocreate statistiche su più colonne, utilizzare hello precedenti esempi, ma specificare più colonne.
 
 > [!NOTE]
-> L'istogramma, che viene usato per stimare il numero di righe nei risultati delle query, sarà disponibile solo per la prima colonna elencata nella definizione dell'oggetto statistiche.
+> Istogramma Hello, che viene utilizzato tooestimate numero di righe nel risultato della query hello, è disponibile solo per hello prima colonna nella definizione di oggetto statistiche hello.
 > 
 > 
 
-In questo esempio l'istogramma è disponibile su *product\_category*. Le statistiche tra le colonne vengono calcolate su *product\_category* e *product\_sub_c\ategory*:
+In questo esempio, istogramma hello è *prodotto\_categoria*. Le statistiche tra le colonne vengono calcolate su *product\_category* e *product\_sub_c\ategory*:
 
 ```sql
 CREATE STATISTICS stats_2cols ON table1 (product_category, product_sub_category) WHERE product_category > '2000101' AND product_category < '20001231' WITH SAMPLE = 50 PERCENT;
 ```
 
-Poiché è presente una correlazione tra *product\_category* e *product\_sub\_category*, una statistica a più colonne può essere utile se si accede contemporaneamente a queste colonne.
+Poiché non esiste una correlazione tra *prodotto\_categoria* e *prodotto\_sub\_categoria*, un stat a più colonne possono essere utili se queste colonne sono accessibili in hello contemporaneamente.
 
-### <a name="g-create-statistics-on-all-the-columns-in-a-table"></a>G. Creare statistiche su tutte le colonne in una tabella
-Un modo per creare le statistiche consiste nell'emettere comandi CREATE STATISTICS dopo la creazione della tabella.
+### <a name="g-create-statistics-on-all-hello-columns-in-a-table"></a>G. Creare statistiche per tutte le colonne di hello in una tabella
+Statistiche toocreate unidirezionale sono tooissues i comandi CREATE STATISTICS dopo la creazione tabella hello.
 
 ```sql
 CREATE TABLE dbo.table1
@@ -218,10 +218,10 @@ CREATE STATISTICS stats_col2 on dbo.table2 (col2);
 CREATE STATISTICS stats_col3 on dbo.table3 (col3);
 ```
 
-### <a name="h-use-a-stored-procedure-to-create-statistics-on-all-columns-in-a-database"></a>H. Usare una stored procedure per creare statistiche su tutte le colonne in un database
-SQL Data Warehouse non include una stored procedure di sistema equivalente a [sp_create_stats][] in SQL Server. Questa stored procedure crea un oggetto statistiche a colonna singola su ogni colonna del database che non include già statistiche.
+### <a name="h-use-a-stored-procedure-toocreate-statistics-on-all-columns-in-a-database"></a>H. Utilizzare le statistiche toocreate una stored procedure per tutte le colonne in un database
+SQL Data Warehouse non dispone di un equivalente di stored procedure di sistema troppo [sp_create_stats] [] in SQL Server. Questa stored procedure crea un oggetto statistiche di colonna singola per ogni colonna del database hello che non dispone già di statistiche.
 
-Ciò permetterà di iniziare a progettare il database. È possibile adattare l'operazione alle proprie esigenze.
+Ciò permetterà di iniziare a progettare il database. È gratuito tooadapt è tooyour deve.
 
 ```sql
 CREATE PROCEDURE    [dbo].[prc_sqldw_create_stats]
@@ -304,59 +304,59 @@ END
 DROP TABLE #stats_ddl;
 ```
 
-Per creare statistiche su tutte le colonne della tabella con questa procedura, è sufficiente chiamarla.
+statistiche toocreate su tutte le colonne nella tabella hello con questa procedura, è sufficiente chiamare routine hello.
 
 ```sql
 prc_sqldw_create_stats;
 ```
 
 ## <a name="examples-update-statistics"></a>Esempi: Aggiornare le statistiche
-Per aggiornare le statistiche, è possibile eseguire le operazioni seguenti:
+le statistiche tooupdate, è possibile:
 
-1. Aggiornare un oggetto statistiche. Specificare il nome dell'oggetto statistiche da aggiornare.
-2. Aggiornare tutti gli oggetti statistiche in una tabella. Specificare il nome della tabella invece di un oggetto statistiche specifico.
+1. Aggiornare un oggetto statistiche. Specificare il nome di hello dell'oggetto statistiche desiderato tooupdate hello.
+2. Aggiornare tutti gli oggetti statistiche in una tabella. Specificare il nome di hello della tabella di hello anziché un oggetto statistiche specifico.
 
-### <a name="a-update-one-specific-statistics-object"></a>A. Aggiornare un oggetto statistiche specifico
-Usare la sintassi seguente per aggiornare un oggetto statistiche specifico:
+### <a name="a-update-one-specific-statistics-object"></a>R. Aggiornare un oggetto statistiche specifico
+Utilizzare hello segue sintassi tooupdate un oggetto statistiche specifico:
 
 ```sql
 UPDATE STATISTICS [schema_name].[table_name]([stat_name]);
 ```
 
-Ad esempio:
+ad esempio:
 
 ```sql
 UPDATE STATISTICS [dbo].[table1] ([stats_col1]);
 ```
 
-L'aggiornamento di oggetti statistiche specifici permette di ridurre al minimo il tempo e le risorse necessari per gestire le statistiche. È tuttavia necessario scegliere con attenzione gli oggetti statistiche migliori da aggiornare.
+Dall'aggiornamento di statistiche specifici oggetti, è possibile ridurre le statistiche di toomanage necessari tempo e risorse hello. Questa operazione richiede che alcuni considerato, tuttavia, toochoose hello migliore tooupdate oggetti statistiche.
 
 ### <a name="b-update-all-statistics-on-a-table"></a>B. Aggiornare tutte le statistiche in una tabella
-Illustra un semplice metodo di aggiornamento di tutti gli oggetti statistiche in una tabella.
+Mostra un metodo semplice per l'aggiornamento di tutti gli oggetti statistiche hello in una tabella.
 
 ```sql
 UPDATE STATISTICS [schema_name].[table_name];
 ```
 
-Ad esempio:
+ad esempio:
 
 ```sql
 UPDATE STATISTICS dbo.table1;
 ```
 
-Questa istruzione è facile da usare. Occorre ricordare che aggiorna tutte le statistiche nella tabella e che quindi potrebbe eseguire più lavoro del necessario. Se le prestazioni non sono un problema, questo è decisamente il modo più semplice e più completo per assicurare che le statistiche siano aggiornate.
+Questa istruzione è facile toouse. Ricorda però questo Aggiorna tutte le statistiche di tabella hello e pertanto potrebbe operare più del necessario. Se le prestazioni di hello non è un problema, questo è decisamente modo più semplice e completo hello tooguarantee statistiche siano aggiornate.
 
 > [!NOTE]
-> Quando si aggiornano tutte le statistiche in una tabella, SQL Data Warehouse esegue un'analisi per campionare la tabella per ogni statistica. Se la tabella è grande, include molte colonne e molte statistiche, potrebbe risultare più efficiente aggiornare le singole statistiche in base alla necessità.
+> Quando si aggiorna tutte le statistiche di una tabella, SQL Data Warehouse esegue una tabella di hello toosample analisi per ogni tipo di statistiche. Se la tabella hello è grande, dispone di un numero di colonne e molte statistiche, potrebbe essere più efficiente tooupdate singoli le statistiche in base alle esigenze.
 > 
 > 
 
-Per l'implementazione di una procedura `UPDATE STATISTICS`, vedere l'articolo [Tabelle temporanee][Temporary]. Il metodo di implementazione è leggermente diverso rispetto alla procedura `CREATE STATISTICS` precedente, ma il risultato finale è uguale.
+Per un'implementazione di un `UPDATE STATISTICS` procedura vedere hello [tabelle temporanee] [ Temporary] articolo. il metodo di implementazione di Hello è leggermente diverso toohello `CREATE STATISTICS` procedura sopra indicata ma risultato finale hello è hello stesso.
 
-Per la sintassi completa, vedere [UPDATE STATISTICS][Update Statistics] in MSDN.
+La sintassi completa di hello, vedere [Update Statistics] [ Update Statistics] su MSDN.
 
 ## <a name="statistics-metadata"></a>Metadati delle statistiche
-Sono disponibili alcune visualizzazioni di sistema e funzioni che permettono di trovare informazioni sulle statistiche. Ad esempio, è possibile verificare se un oggetto statistiche non è aggiornato usando la funzione stats-date per vedere la data di creazione o dell'ultimo aggiornamento delle statistiche.
+Esistono diverse vista di sistema e le funzioni che è possibile utilizzare toofind informazioni sulle statistiche. Ad esempio, è possibile visualizzare se un oggetto statistiche potrebbe essere obsolete utilizzando hello statistiche data funzione toosee quando le statistiche ultima create o aggiornate.
 
 ### <a name="catalog-views-for-statistics"></a>Viste del catalogo per le statistiche
 Queste visualizzazioni di sistema forniscono informazioni sulle statistiche:
@@ -364,10 +364,10 @@ Queste visualizzazioni di sistema forniscono informazioni sulle statistiche:
 | Vista del catalogo | Descrizione |
 |:--- |:--- |
 | [sys.columns][sys.columns] |Una riga per ogni colonna. |
-| [sys.objects][sys.objects] |Una riga per ogni oggetto del database. |
-| [sys.schemas][sys.schemas] |Una riga per ogni schema del database. |
+| [sys.objects][sys.objects] |Una riga per ogni oggetto nel database di hello. |
+| [sys.schemas][sys.schemas] |Una riga per ogni schema nel database di hello. |
 | [sys.stats][sys.stats] |Una riga per ogni oggetto statistiche. |
-| [sys.stats_columns][sys.stats_columns] |Una riga per ogni colonna nell'oggetto statistiche. Si collega a sys.columns. |
+| [sys.stats_columns][sys.stats_columns] |Una riga per ogni colonna nell'oggetto statistiche hello. Consente di tornare toosys.columns. |
 | [sys.tables][sys.tables] |Una riga per ogni tabella (include le tabelle esterne). |
 | [sys.table_types][sys.table_types] |Una riga per ogni tipo di dati. |
 
@@ -376,11 +376,11 @@ Queste funzioni di sistema sono utili per usare le statistiche:
 
 | Funzioni di sistema | Descrizione |
 |:--- |:--- |
-| [STATS_DATE][STATS_DATE] |Data dell'ultimo aggiornamento dell'oggetto statistiche. |
-| [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] |Fornisce informazioni a livello di riepilogo e dettagliate sulla distribuzione di valori riconosciute dall'oggetto statistiche. |
+| [STATS_DATE][STATS_DATE] |Oggetto statistiche di hello data dell'ultimo aggiornamento. |
+| [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] |Fornisce informazioni di riepilogo livello e dettagliate sulla distribuzione dei valori di hello riconosciuto dall'oggetto statistiche hello. |
 
 ### <a name="combine-statistics-columns-and-functions-into-one-view"></a>Combinare le colonne delle statistiche e le funzioni in un'unica visualizzazione
-Questa visualizzazione riunisce le colonne relative alle statistiche e i risultati della funzione [STATS_DATE()][].
+Questa vista visualizza le colonne correlate tra loro toostatistics e risultati dalla funzione di hello [STATS_DATE()] [].
 
 ```sql
 CREATE VIEW dbo.vstats_columns
@@ -419,13 +419,13 @@ AND     st.[user_created] = 1
 ```
 
 ## <a name="dbcc-showstatistics-examples"></a>Esempi di DBCC SHOW_STATISTICS()
-DBCC SHOW_STATISTICS() mostra i dati inclusi in un oggetto statistiche. Questi dati sono costituiti da tre parti.
+DBCC SHOW_STATISTICS() Mostra i dati di hello contenuti all'interno di un oggetto statistiche. Questi dati sono costituiti da tre parti.
 
 1. Intestazione
 2. Vettore di densità
 3. Istogramma
 
-Metadati di intestazione sulle statistiche. L'istogramma mostra la distribuzione dei valori nella prima colonna chiave dell'oggetto statistiche. Il vettore di densità misura la correlazione tra le colonne. SQL Data Warehouse calcola le stime di cardinalità con tutti i dati nell'oggetto statistiche.
+metadati di intestazione Hello sulle statistiche di hello. Istogramma Hello Visualizza distribuzione hello dei valori nella prima colonna chiave di hello dell'oggetto statistiche hello. vettore di densità Hello consente di misurare la correlazione tra colonne. SQLDW calcola le stime della cardinalità con i dati di hello nell'oggetto statistiche hello.
 
 ### <a name="show-header-density-and-histogram"></a>Mostrare l'intestazione, la densità e l'istogramma
 Questo semplice esempio mostra tutte e tre le parti di un oggetto statistiche.
@@ -441,7 +441,7 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1);
 ```
 
 ### <a name="show-one-or-more-parts-of-dbcc-showstatistics"></a>Mostrare una o più parti di DBCC SHOW_STATISTICS();
-Se si è interessati a visualizzare solo parti specifiche, usare la clausola `WITH` e specificare le parti da visualizzare:
+Se si è solo interessati a visualizzare parti specifiche, utilizzare hello `WITH` clausola e specificare quali parti è desidera toosee:
 
 ```sql
 DBCC SHOW_STATISTICS([<schema_name>.<table_name>],<stats_name>) WITH stat_header, histogram, density_vector
@@ -454,18 +454,18 @@ DBCC SHOW_STATISTICS (dbo.table1, stats_col1) WITH histogram, density_vector
 ```
 
 ## <a name="dbcc-showstatistics-differences"></a>Differenze di DBCC SHOW_STATISTICS()
-DBCC SHOW_STATISTICS() viene implementato in modo più rigoroso in SQL Data Warehouse rispetto a SQL Server.
+DBCC SHOW_STATISTICS() in modo più rigoroso viene implementato in SQL Data Warehouse confrontati tooSQL Server.
 
 1. Le funzionalità non documentate non sono supportate
 2. Non è possibile usare Stats_stream
 3. Non è possibile unire i risultati per sottoinsiemi specifici di dati statistici, ad esempio (STAT_HEADER JOIN DENSITY_VECTOR)
 4. NO_INFOMSGS non può essere impostato per l'eliminazione del messaggio
 5. Non è possibile usare le parentesi quadre per i nomi delle statistiche
-6. Non è possibile usare i nomi di colonna per identificare gli oggetti statistiche
+6. Impossibile utilizzare oggetti statistiche tooidentify i nomi di colonna
 7. L'errore personalizzato 2767 non è supportato
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altri dettagli, vedere [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] in MSDN.  Per altre informazioni, vedere gli articoli su [panoramica delle tabelle][Overview], [tipi di dati delle tabelle][Data Types], [distribuzione di una tabella][Distribute], [indicizzazione di una tabella][Index], [partizionamento di una tabella][Partition] e [tabelle temporanee][Temporary].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].  
+Per altri dettagli, vedere [DBCC SHOW_STATISTICS][DBCC SHOW_STATISTICS] in MSDN.  toolearn, vedere gli articoli di hello in [Cenni preliminari su tabella][Overview], [tipi di dati tabella][Data Types], [la distribuzione di una tabella] [ Distribute], [L'indicizzazione di una tabella][Index], [il partizionamento di una tabella] [ Partition] e [ Tabelle temporanee][Temporary].  Per altre informazioni sulle procedure consigliate, vedere [Procedure consigliate per SQL Data Warehouse][SQL Data Warehouse Best Practices].  
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: Copiare o spostare dati in Archiviazione di Microsoft Azure con AzCopy in Linux | Microsoft Docs
-description: "Usare l'utilità AzCopy in Linux per spostare o copiare dati da o verso BLOB e contenuto del file. Copiare i dati in archiviazione di Azure da file locali o copiare i dati all'interno o tra account di archiviazione. Migrare facilmente i dati in archiviazione di Azure."
+title: aaaCopy o lo spostamento dati tooAzure archiviazione con AzCopy in Linux | Documenti Microsoft
+description: "Usare AzCopy hello in Linux utilità toomove o copia dati tooor dal contenuto di blob e file. Copiare i dati tooAzure archiviazione da file locali, o copiare dati in o tra gli account di archiviazione. Migrare facilmente l'archiviazione di tooAzure di dati."
 services: storage
 documentationcenter: 
 author: seguler
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: seguler
-ms.openlocfilehash: d17f63dcee590529756d48d699f78b3fb30f973c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dccb03c9e8cc3ea661494e7834f307b0e3e30cb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transfer-data-with-azcopy-on-linux"></a>Trasferire dati con AzCopy in Linux
-AzCopy in Linux è un'utilità della riga di comando progettata la copia dei dati da e verso l'archiviazione BLOB e file di Microsoft Azure usando semplici comandi con prestazioni ottimali. È possibile copiare dati da un oggetto a un altro all'interno dell'account di archiviazione o tra account di archiviazione.
+AzCopy in Linux è un'utilità della riga di comando progettata per la copia di dati tooand dall'archiviazione Blob di Microsoft Azure e i File utilizzando i comandi semplici con prestazioni ottimali. È possibile copiare dati da un oggetto tooanother all'interno dell'account di archiviazione o tra gli account di archiviazione.
 
 Esistono due versioni di AzCopy che è possibile scaricare. AzCopy in Linux viene compilato con .NET Core Framework per le piattaforme Linux e offre opzioni della riga di comando in stile POSIX. [AzCopy in Windows](storage-use-azcopy.md) viene compilato con .NET Framework e offre opzioni della riga di comando in stile Windows. Questo articolo descrive AzCopy in Linux.
 
 ## <a name="download-and-install-azcopy"></a>Scaricare e installare AzCopy
 ### <a name="installation-on-linux"></a>Installazione in Linux
 
-AzCopy in Linux richiede .NET Core Framework sulla piattaforma. Vedere le istruzioni per l'installazione nella pagina di [.NET Core](https://www.microsoft.com/net/core#linuxubuntu).
+AzCopy in Linux richiede il framework .NET Core su piattaforma hello. Vedere le istruzioni di installazione di hello sulla hello [.NET Core](https://www.microsoft.com/net/core#linuxubuntu) pagina.
 
-Ecco un esempio di installazione di .NET Core in Ubuntu 16.10. Per le istruzioni di installazione più recenti, vedere la pagina di installazione di [.NET Core in Linux](https://www.microsoft.com/net/core#linuxubuntu).
+Ecco un esempio di installazione di .NET Core in Ubuntu 16.10. Hello più recente della Guida all'installazione, visitare [.NET Core su Linux](https://www.microsoft.com/net/core#linuxubuntu) pagina di installazione.
 
 
 ```bash
@@ -48,7 +48,7 @@ tar -xf azcopy.tar.gz
 sudo ./install.sh
 ```
 
-Dopo aver installato AzCopy in Linux, è possibile rimuovere i file estratti. In alternativa, se non si hanno autorizzazioni come superuser, è possibile eseguire AzCopy usando lo script della shell 'azcopy' nella cartella estratta. 
+Dopo aver installato AzCopy in Linux, è possibile rimuovere file hello estratto. In alternativa se non si dispone di privilegi avanzati, è possibile anche eseguire tramite script della shell hello AzCopy 'azcopy' nella cartella di estrazione hello. 
 
 ### <a name="alternative-installation-on-ubuntu"></a>Installazione alternativa in Ubuntu
 
@@ -122,13 +122,13 @@ sudo apt-get install azcopy
 ```
 
 ## <a name="writing-your-first-azcopy-command"></a>Scrittura del primo comando AzCopy 
-La sintassi di base per i comandi di AzCopy è la seguente:
+sintassi di base per i comandi AzCopy Hello è:
 
 ```azcopy
 azcopy --source <source> --destination <destination> [Options]
 ```
 
-Gli esempi seguenti illustrano vari scenari per la copia dei dati da e in BLOB e file di Microsoft Azure. Per una spiegazione dettagliata dei parametri usati in ogni esempio, fare riferimento al menu `azcopy --help`.
+Hello seguenti esempi illustrano vari scenari per la copia dei dati tooand da file e i BLOB di Microsoft Azure. Fare riferimento toohello `azcopy --help` menu per una spiegazione dettagliata dei parametri di hello utilizzata in ogni esempio.
 
 ## <a name="blob-download"></a>BLOB: scaricare
 ### <a name="download-single-blob"></a>Scaricare un singolo BLOB
@@ -141,7 +141,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Se la cartella `/mnt/myfiles` non esiste ancora, AzCopy la crea e scarica `abc.txt ` nella nuova cartella.
+Se la cartella hello `/mnt/myfiles` non esiste, AzCopy crea e ne scarica `abc.txt ` nella nuova cartella hello.
 
 ### <a name="download-single-blob-from-secondary-region"></a>Scaricare un singolo BLOB da un'area secondaria
 
@@ -165,7 +165,7 @@ azcopy \
     --recursive
 ```
 
-Si supponga che i BLOB seguenti risiedano nel contenitore specificato:  
+Si supponga che segue hello BLOB si trovano nel contenitore specificato hello:  
 
 ```
 abc.txt
@@ -175,7 +175,7 @@ vd1/a.txt
 vd1/abcd.txt
 ```
 
-Dopo l'operazione di download, la directory `/mnt/myfiles` include i file seguenti:
+Dopo un'operazione di download hello hello directory `/mnt/myfiles` include hello i seguenti file:
 
 ```
 /mnt/myfiles/abc.txt
@@ -198,7 +198,7 @@ azcopy \
     --recursive
 ```
 
-Si supponga che i BLOB seguenti risiedano nel contenitore specificato. Vengono scaricati tutti i BLOB che iniziano con il prefisso `a`.
+Si supponga che segue hello BLOB si trovano nel contenitore specificato hello. Tutti i blob che iniziano con il prefisso hello `a` vengono scaricati.
 
 ```
 abc.txt
@@ -209,7 +209,7 @@ vd1\a.txt
 vd1\abcd.txt
 ```
 
-Dopo l'operazione di download, la cartella `/mnt/myfiles` include i file seguenti:
+Dopo un'operazione di download hello hello cartella `/mnt/myfiles` include hello i seguenti file:
 
 ```
 /mnt/myfiles/abc.txt
@@ -217,9 +217,9 @@ Dopo l'operazione di download, la cartella `/mnt/myfiles` include i file seguent
 /mnt/myfiles/abc2.txt
 ```
 
-Il prefisso si applica alla directory virtuale che forma la prima parte del nome del BLOB. Nell'esempio precedente, la directory virtuale non corrisponde al prefisso specificato, quindi non viene scaricato alcun BLOB. Se inoltre l'opzione `--recursive` non è specificata, AzCopy non scarica alcun BLOB.
+prefisso Hello applica toohello directory virtuale, che costituisce hello prima parte del nome blob hello. Nell'esempio hello illustrato in precedenza, la directory virtuale hello non corrisponde prefisso specificato hello, non viene scaricato alcun blob. Inoltre, se hello opzione `--recursive` non viene specificato, AzCopy non scarica tutti i BLOB.
 
-### <a name="set-the-last-modified-time-of-exported-files-to-be-same-as-the-source-blobs"></a>Impostare l'ora dell'ultima modifica dei file esportati sulla stessa ora dei BLOB di origine
+### <a name="set-hello-last-modified-time-of-exported-files-toobe-same-as-hello-source-blobs"></a>Impostare l'ora dell'ultima modifica hello dei file esportati toobe stesso hello BLOB di origine
 
 ```azcopy
 azcopy \
@@ -229,7 +229,7 @@ azcopy \
     --preserve-last-modified-time
 ```
 
-È anche possibile escludere BLOB dall'operazione di download in base all'ora dell'ultima modifica. Se ad esempio si vogliono escludere i BLOB in cui l'ora dell'ultima modifica è uguale o successiva a quella del file di destinazione, aggiungere l'opzione `--exclude-newer` .
+È anche possibile escludere i BLOB da un'operazione di download hello in base all'ora ultima modifica. Ad esempio, se si desidera tooexclude BLOB la cui ultima modifica è hello uguale o più file di destinazione hello recente, aggiungere hello `--exclude-newer` opzione:
 
 ```azcopy
 azcopy \
@@ -240,7 +240,7 @@ azcopy \
     --exclude-newer
 ```
 
-In alternativa, se si vogliono escludere i BLOB in cui l'ora dell'ultima modifica è uguale o precedente a quella del file di destinazione, aggiungere l'opzione `--exclude-older` .
+O se si desidera tooexclude BLOB la cui ultima modifica è hello stesso o meno i file di destinazione hello, aggiungere hello `--exclude-older` opzione:
 
 ```azcopy
 azcopy \
@@ -262,9 +262,9 @@ azcopy \
     --include "abc.txt"
 ```
 
-Se il contenitore di destinazione specificato non esiste, AzCopy ne crea uno e vi carica il file.
+Se il contenitore di destinazione specificato hello non esiste, AzCopy crea e ne caricamenti hello file al suo interno.
 
-### <a name="upload-single-file-to-virtual-directory"></a>Caricare un singolo file nella directory virtuale
+### <a name="upload-single-file-toovirtual-directory"></a>Caricare file singoli toovirtual directory
 
 ```azcopy
 azcopy \
@@ -274,7 +274,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Se la directory virtuale specificata non esiste, AzCopy carica il file in modo da includere la directory virtuale nel nome del BLOB, *ovvero* `vd/abc.txt` nell'esempio precedente.
+Se hello specificato una directory virtuale non esiste, AzCopy carica hello file tooinclude hello directory virtuale nel nome di blob hello (*ad esempio*, `vd/abc.txt` nell'esempio hello sopra).
 
 ### <a name="upload-all-files"></a>Caricare tutti i file
 
@@ -286,7 +286,7 @@ azcopy \
     --recursive
 ```
 
-Se si specifica l'opzione `--recursive`, il contenuto della directory specificata viene caricato nell'archiviazione BLOB in modo ricorsivo, ovvero vengono caricati anche tutte le sottocartelle e i relativi file. Si supponga ad esempio che i file seguenti risiedano nella cartella `/mnt/myfiles`:
+Specifica l'opzione `--recursive` contenuto hello caricamenti di hello specificato directory tooBlob archiviazione in modo ricorsivo, vale a dire che tutte le sottocartelle e i file vengono caricati anche. Ad esempio, si supponga che segue hello file si trovano nella cartella `/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -296,7 +296,7 @@ Se si specifica l'opzione `--recursive`, il contenuto della directory specificat
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-Dopo l'operazione di caricamento, il contenitore include i file seguenti:
+Dopo un'operazione di caricamento hello contenitore hello include hello i seguenti file:
 
 ```
 abc.txt
@@ -306,7 +306,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-Quando l'opzione `--recursive` non viene specificata, vengono caricati solo i tre file seguenti:
+Hello quando l'opzione `--recursive` non viene specificato, solo hello tre vengono caricati file seguenti:
 
 ```
 abc.txt
@@ -325,7 +325,7 @@ azcopy \
     --recursive
 ```
 
-Si supponga che i file seguenti risiedano nella cartella `/mnt/myfiles`:
+Si supponga che segue hello file si trovano nella cartella `/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -336,7 +336,7 @@ Si supponga che i file seguenti risiedano nella cartella `/mnt/myfiles`:
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-Dopo l'operazione di caricamento, il contenitore include i file seguenti:
+Dopo un'operazione di caricamento hello contenitore hello include hello i seguenti file:
 
 ```
 abc.txt
@@ -346,7 +346,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-Quando l'opzione `--recursive` non viene specificata, AzCopy ignora file presenti nelle sottodirectory:
+Hello quando l'opzione `--recursive` non viene specificato, AzCopy Ignora file presenti nella sottodirectory:
 
 ```
 abc.txt
@@ -354,8 +354,8 @@ abc1.txt
 abc2.txt
 ```
 
-### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>Specificare il tipo di contenuto MIME di un BLOB di destinazione
-Per impostazione predefinita, AzCopy imposta il tipo di contenuto di un BLOB di destinazione su `application/octet-stream`. È tuttavia possibile specificare il tipo di contenuto in modo esplicito tramite l'opzione `--set-content-type [content-type]`. Questa sintassi imposta il tipo di contenuto per tutti i BLOB in un'operazione di caricamento.
+### <a name="specify-hello-mime-content-type-of-a-destination-blob"></a>Specificare hello tipo di contenuto MIME di un blob di destinazione
+Per impostazione predefinita, AzCopy Imposta tipo di contenuto di un blob di destinazione hello troppo`application/octet-stream`. Tuttavia, è possibile specificare in modo esplicito tipo di contenuto tramite l'opzione hello hello `--set-content-type [content-type]`. Questa sintassi Imposta tipo di contenuto hello per tutti i BLOB in un'operazione di caricamento.
 
 ```azcopy
 azcopy \
@@ -366,7 +366,7 @@ azcopy \
     --set-content-type "video/mp4"
 ```
 
-Se si specifica l'opzione `--set-content-type` senza fornire un valore, AzCopy imposta il tipo di contenuto di ogni BLOB o file in base all'estensione di ciascuno di questi elementi.
+Se hello opzione `--set-content-type` viene specificata senza un valore, quindi AzCopy imposta ogni blob o il file del tipo di contenuto in base tooits estensione di file.
 
 ```azcopy
 azcopy \
@@ -404,7 +404,7 @@ azcopy \
 
 Quando si copia un BLOB senza l'opzione --sync-copy, viene eseguita un'operazione di [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx).
 
-### <a name="copy-single-blob-from-secondary-region-to-primary-region"></a>Copiare in BLOB singolo da un'area secondaria all'area primaria
+### <a name="copy-single-blob-from-secondary-region-tooprimary-region"></a>Copiare blob singolo dall'area tooprimary area secondaria
 
 ```azcopy
 azcopy \
@@ -429,7 +429,7 @@ azcopy \
     --include-snapshot
 ```
 
-Dopo l'operazione di copia, il contenitore di destinazione include il BLOB e i relativi snapshot. Il contenitore include i BLOB seguenti e i relativi snapshot:
+Dopo un'operazione di copia hello contenitore di destinazione hello include blob hello e i relativi snapshot. contenitore Hello include hello segue blob e i relativi snapshot:
 
 ```
 abc.txt
@@ -438,9 +438,9 @@ abc (2014-02-21 150331).txt
 ```
 
 ### <a name="synchronously-copy-blobs-across-storage-accounts"></a>Copiare in modo sincrono i BLOB tra account di archiviazione
-Per impostazione predefinita, AzCopy copia i dati tra due endpoint di archiviazione in modo asincrono. L'operazione di copia viene pertanto eseguita in background sfruttando la capacità di larghezza di banda disponibile non limitata da alcun contratto di servizio relativo alla velocità di copia di un BLOB. 
+Per impostazione predefinita, AzCopy copia i dati tra due endpoint di archiviazione in modo asincrono. Pertanto, hello copia operazione viene eseguita in background hello usando la capacità della larghezza di banda di riserva che non dispone di alcun contratto di servizio in termini di velocità con cui un blob viene copiato. 
 
-L'opzione `--sync-copy` garantisce che l'operazione di copia avvenga a velocità costante. AzCopy esegue la copia sincrona scaricando i BLOB da copiare dall'origine specificata nella memoria locale, per poi caricarli nella destinazione dell'archiviazione BLOB.
+Hello `--sync-copy` opzione assicura che l'operazione di copia hello Ottiene velocità coerente. AzCopy esegue copia sincrono hello scaricando BLOB hello toocopy da hello specificato memoria toolocal di origine e quindi caricarli toohello destinazione di archiviazione Blob.
 
 ```azcopy
 azcopy \
@@ -452,7 +452,7 @@ azcopy \
     --sync-copy
 ```
 
-`--sync-copy`, tuttavia, può generare costi aggiuntivi in uscita rispetto alla copia asincrona. Per evitare costi in uscita, si consiglia quindi di usare questa opzione in una macchina virtuale di Azure che si trova nella stessa area dell'account di archiviazione di origine.
+`--sync-copy`potrebbe generare uscita ulteriori costi rispetto tooasynchronous copia. Hello approccio consigliato è toouse questa opzione in una macchina virtuale di Azure, che è in hello stessa area del costo di uscita origine tooavoid account di archiviazione.
 
 ## <a name="file-download"></a>File: scaricare
 ### <a name="download-single-file"></a>Scaricare un singolo file
@@ -465,7 +465,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-Se l'origine specificata è una condivisione file di Azure, è necessario specificare il nome file esatto, *ad esempio* `abc.txt`, per copiare un solo file oppure specificare l'opzione `--recursive` per copiare tutti i file nella condivisione in modo ricorsivo. Se si specificano sia il criterio del file che l'opzione `--recursive` contemporaneamente, verrà generato un errore.
+Se è specificato l'origine è una condivisione di file di Azure, quindi è necessario specificare il nome di file esatto hello, hello (*ad esempio* `abc.txt`) toodownload un singolo file, oppure specificare l'opzione `--recursive` toodownload tutti i file nella condivisione di hello in modo ricorsivo. Il tentativo di toospecify un modello di file e l'opzione `--recursive` contemporaneamente provoca un errore.
 
 ### <a name="download-all-files"></a>Scaricare tutti i file
 
@@ -526,7 +526,7 @@ azcopy \
 ```
 Quando si copia un file tra condivisioni file, viene eseguita un'operazione di [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx).
 
-### <a name="copy-from-file-share-to-blob"></a>Copiare dalla condivisione file al BLOB
+### <a name="copy-from-file-share-tooblob"></a>Copiare da tooblob condivisione file
 
 ```azcopy
 azcopy \ 
@@ -536,9 +536,9 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-Quando si copia un file dalla condivisione file al BLOB, viene eseguita un'operazione di [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx).
+Quando si copia un file da tooblob di condivisione file, un [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) viene eseguita l'operazione.
 
-### <a name="copy-from-blob-to-file-share"></a>Copy dal BLOB alla condivisione file
+### <a name="copy-from-blob-toofile-share"></a>Copiare da blob toofile condivisione
 
 ```azcopy
 azcopy \
@@ -548,10 +548,10 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-Quando si copia un file dal BLOB alla condivisione file, viene eseguita un'operazione di [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx).
+Quando si copia un file dalla condivisione toofile blob, un [copia sul lato server](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) viene eseguita l'operazione.
 
 ### <a name="synchronously-copy-files"></a>Copiare file in modo sincrono
-È possibile specificare l'opzione `--sync-copy` per copiare i dati da archiviazione file ad archiviazione file, da archiviazione file ad archiviazione BLOB e da archiviazione BLOB ad archiviazione file in modo sincrono. AzCopy esegue questa operazione scaricando i dati di origine nella memoria locale e caricandoli di nuovo nella destinazione. In questo caso, vengono applicati i costi in uscita standard.
+È possibile specificare hello `--sync-copy` opzione toocopy dati da archiviazione di File tooFile archiviazione da archiviazione di File tooBlob, archiviazione e, dall'archiviazione Blob tooFile archiviazione in modo sincrono. AzCopy viene eseguita questa operazione per il download di memoria di toolocal hello origine dati e quindi caricarli toodestination. In questo caso, vengono applicati i costi in uscita standard.
 
 ```azcopy
 azcopy \
@@ -563,13 +563,13 @@ azcopy \
     --sync-copy
 ```
 
-Durante la copia da Archiviazione file ad Archiviazione BLOB, il tipo di BLOB predefinito è il BLOB in blocchi. Per modificare il tipo di BLOB di destinazione, è possibile specificare l'opzione `/BlobType:page`.
+Durante la copia da archiviazione di File tooBlob archiviazione, è di tipo di blob predefinito hello blob in blocchi, l'utente può specificare l'opzione `/BlobType:page` toochange hello tipo di blob di destinazione.
 
-`--sync-copy` può generare costi aggiuntivi in uscita rispetto alla copia asincrona. Per evitare costi in uscita, si consiglia quindi di usare questa opzione in una macchina virtuale di Azure che si trova nella stessa area dell'account di archiviazione di origine.
+Si noti che `--sync-copy` potrebbe generare uscita ulteriore costi Copia tooasynchronous il confronto. Hello approccio consigliato è toouse questa opzione in una macchina virtuale di Azure, che è in hello stessa area del costo di uscita origine tooavoid account di archiviazione.
 
 ## <a name="other-azcopy-features"></a>Altre funzionalità di AzCopy
-### <a name="only-copy-data-that-doesnt-exist-in-the-destination"></a>Copiare solo i dati che non esistono nella destinazione
-I parametri `--exclude-older` e `--exclude-newer` consentono di escludere dalla copia, rispettivamente, le risorse di origine precedenti o più recenti. Per copiare solo e risorse di origine che non esistono nella destinazione, è possibile specificare entrambi i parametri nel comando AzCopy:
+### <a name="only-copy-data-that-doesnt-exist-in-hello-destination"></a>Copia solo i dati che non esistono nella destinazione hello
+Hello `--exclude-older` e `--exclude-newer` parametri consentono tooexclude le risorse dell'origine o meno recente viene copiato, rispettivamente. Se si desidera solo le risorse dell'origine toocopy che non sono presenti nella destinazione hello, è possibile specificare entrambi i parametri nel comando AzCopy hello:
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --exclude-older --exclude-newer
 
@@ -577,15 +577,15 @@ I parametri `--exclude-older` e `--exclude-newer` consentono di escludere dalla 
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination http://myaccount.blob.core.windows.net/mycontainer1 --source-key <sourcekey> --dest-key <destkey> --recursive --exclude-older --exclude-newer
 
-### <a name="use-a-configuration-file-to-specify-command-line-parameters"></a>Usare un file di configurazione per specificare i parametri della riga di comando
+### <a name="use-a-configuration-file-toospecify-command-line-parameters"></a>Utilizzare i parametri della riga di comando toospecify file configurazione
 
 ```azcopy
 azcopy --config-file "azcopy-config.ini"
 ```
 
-È possibile includere i parametri della riga di comando di AzCopy in un file di configurazione. AzCopy elabora i parametri nel file come se fossero stati specificati nella riga di comando, eseguendo una sostituzione diretta con i contenuti del file.
+È possibile includere i parametri della riga di comando di AzCopy in un file di configurazione. I processi di AzCopy hello parametri nel file hello come se fossero stati specificati nella riga di comando hello, eseguire una sostituzione diretta con contenuto hello del file hello.
 
-Si supponga che sia presente un file di configurazione denominato `copyoperation`, che contiene le righe seguenti. Ogni parametro di AzCopy può essere specificato su una singola riga
+Si supponga che un file di configurazione denominato `copyoperation`, che contiene hello seguenti righe. Ogni parametro di AzCopy può essere specificato su una singola riga
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --quiet
 
@@ -597,7 +597,7 @@ o su righe separate:
     --recursive
     --quiet
 
-Se il parametro viene suddiviso su due righe, l'operazione di AzCopy ha esito negativo, come mostrato di seguito per il parametro `--source-key`:
+AzCopy ha esito negativo se il parametro hello si divide in due righe, come illustrato di seguito per hello `--source-key` parametro:
 
     http://myaccount.blob.core.windows.net/mycontainer
     /mnt/myfiles
@@ -617,7 +617,7 @@ azcopy \
     --include abc.txt
 ```
 
-È anche possibile specificare una firma di accesso condiviso per il contenitore URI:
+È inoltre possibile specificare una firma di accesso condiviso nel contenitore hello URI:
 
 ```azcopy
 azcopy \
@@ -626,14 +626,14 @@ azcopy \
     --recursive
 ```
 
-AzCopy attualmente supporta solo la [firma di accesso condiviso dell'account](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1).
+Si noti che AzCopy supporta attualmente solo hello [SAS Account](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1).
 
 ### <a name="journal-file-folder"></a>Cartella del file journal
-Ogni volta che si invia un comando ad AzCopy, l'utilità verifica se il file journal è presente nella cartella predefinita o in una cartella specificata dall'utente tramite questa opzione. Se il file journal non viene trovato in tali percorsi, AzCopy considera l'operazione come nuova e quindi crea un nuovo file journal.
+Ogni volta che si esegue un comando tooAzCopy, controlla se è presente un file journal nella cartella predefinita hello o se esiste in una cartella specificata tramite questa opzione. Se non esiste alcun file journal hello in entrambe le posizioni, AzCopy considera nuova operazione hello e genera un nuovo file journal.
 
-Se il file journal esiste, AzCopy verifica se la riga di comando di input corrisponde alla riga di comando nel file journal. Se le righe di comando corrispondono, AzCopy avvia la ripresa dell'operazione incompleta. Se non corrispondono, viene richiesto se si vuole sovrascrivere il file journal per avviare una nuova operazione o annullare l'operazione corrente.
+Se esistono file journal hello, AzCopy controlla se hello riga di comando che l'input corrisponde hello riga di comando nel file journal hello. Se due righe di comando hello corrispondono, AzCopy riprende hello incompleti. Se non corrispondono, AzCopy richiede all'utente tooeither sovrascrittura hello journal file toostart una nuova operazione o l'operazione corrente di toocancel hello.
 
-Se si vuole usare il percorso predefinito per il file journal:
+Se si desidera toouse hello percorso predefinito file journal hello:
 
 ```azcopy
 azcopy \
@@ -643,9 +643,9 @@ azcopy \
     --resume
 ```
 
-Se si omette l'opzione`--resume` o si specifica l'opzione `--resume` senza il percorso della cartella, come illustrato sopra, AzCopy creerà il file journal nel percorso predefinito, ovvero `~\Microsoft\Azure\AzCopy`. Se il file journal esiste già, AzCopy riprenderà l'operazione in base al file journal.
+Se si omette l'opzione `--resume`, oppure specificare l'opzione `--resume` senza percorso della cartella hello, come illustrato in precedenza, AzCopy crea file journal hello nel percorso predefinito di hello, ovvero `~\Microsoft\Azure\AzCopy`. Se il file journal di hello esiste già, quindi AzCopy riprende l'operazione di hello basato su file journal hello.
 
-Se si vuole specificare un percorso personalizzato per il file journal:
+Se si desidera toospecify un percorso personalizzato per il file journal hello:
 
 ```azcopy
 azcopy \
@@ -655,12 +655,12 @@ azcopy \
     --resume "/mnt/myjournal"
 ```
 
-In questo esempio viene creato il file journal, nel caso in cui non esista già: Se esiste, AzCopy riprenderà l'operazione in base al file journal.
+Questo esempio crea file journal hello se non esiste già. Se esiste, quindi AzCopy riprende l'operazione di hello basato su file journal hello.
 
-Se si vuole riprendere un'operazione di AzCopy, ripetere lo stesso comando. AzCopy in Linux richiederà la conferma:
+Se si desidera tooresume un'operazione AzCopy, ripetere hello stesso comando. AzCopy in Linux richiederà la conferma:
 
 ```azcopy
-Incomplete operation with same command line detected at the journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want to resume the operation? Choose Yes to resume, choose No to overwrite the journal to start a new operation. (Yes/No)
+Incomplete operation with same command line detected at hello journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want tooresume hello operation? Choose Yes tooresume, choose No toooverwrite hello journal toostart a new operation. (Yes/No)
 ```
 
 ### <a name="output-verbose-logs"></a>Output di log dettagliati
@@ -673,31 +673,31 @@ azcopy \
     --verbose
 ```
 
-### <a name="specify-the-number-of-concurrent-operations-to-start"></a>Specificare il numero di operazioni simultanee da avviare
-L'opzione `--parallel-level` specifica il numero di operazioni di copia simultanee. Per impostazione predefinita, AzCopy avvia un determinato numero di operazioni simultanee per aumentare la velocità effettiva di trasferimento dei dati. Il numero di operazioni simultanee è uguale a 8 volte il numero di processori disponibili. Se AzCopy è in esecuzione in una rete con larghezza di banda ridotta, è possibile specificare un numero inferiore per --parallel-level in modo da evitare errori generati dalla competizione tra le risorse.
+### <a name="specify-hello-number-of-concurrent-operations-toostart"></a>Specificare il numero di hello di operazioni simultanee toostart
+Opzione `--parallel-level` specifica hello numero di operazioni di copia simultanea. Per impostazione predefinita, AzCopy inizia un certo numero di velocità effettiva di trasferimento dei dati di operazioni simultanee tooincrease hello. numero di Hello di operazioni simultanee è uguale otto volte hello numero di processori disponibili. Se si esegue AzCopy attraverso una rete con larghezza di banda ridotta, è possibile specificare un numero inferiore per - parallelo livello tooavoid errore di concorrenza di risorse.
 
 [!TIP]
->Per visualizzare l'elenco completo dei parametri di AzCopy, vedere il menu 'azcopy - help'.
+>elenco completo di hello tooview dei parametri di AzCopy, estrarre "azcopy - help" dal menu.
 
 ## <a name="known-issues-and-best-practices"></a>Problemi noti e procedure consigliate
-### <a name="error-net-core-is-not-found-in-the-system"></a>Errore: impossibile trovare .NET Core nel sistema.
-Se viene visualizzato un errore che indica che .NET Core non è installato nel sistema, è possibile che manchi il percorso per il file binario di .NET Core `dotnet`.
+### <a name="error-net-core-is-not-found-in-hello-system"></a>Errore: .NET Core non è stato trovato nel sistema hello.
+Se si verifica un errore che informa che .NET Core non è installato nel sistema hello, hello binario di .NET Core toohello percorso `dotnet` potrebbe essere mancante.
 
-Per risolvere il problema, trovare il file binario di .NET Core nel sistema:
+In ordine tooaddress questo problema, trovare il file binario di .NET Core hello nel sistema hello:
 ```bash
 sudo find / -name dotnet
 ```
 
-Viene restituito il percorso del file binario dotnet. 
+Vengono restituite hello percorso toohello dotnet binario. 
 
     /opt/rh/rh-dotnetcore11/root/usr/bin/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/shared/Microsoft.NETCore.App/1.1.2/dotnet
 
-Aggiungere questo percorso alla variabile PATH. Per sudo, modificare secure_path in modo da includere il percorso del file binario dotnet:
+Aggiungere quindi questa variabile di percorso toohello percorso. Per sudo, modifica secure_path toocontain hello percorso toohello dotnet binario:
 ```bash 
 sudo visudo
-### Append the path found in the preceding example to 'secure_path' variable
+### Append hello path found in hello preceding example too'secure_path' variable
 ```
 
 In questo esempio, la variabile secure_path è:
@@ -706,10 +706,10 @@ In questo esempio, la variabile secure_path è:
 secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/opt/rh/rh-dotnetcore11/root/usr/bin/
 ```
 
-Per l'utente corrente, modificare .bash_profile/.profile in modo da includere il percorso del file binario dotnet nella variabile PATH 
+Per l'utente corrente di hello, modificare.bash_profile/.profile tooinclude hello percorso toohello dotnet binario nella variabile PATH 
 ```bash
 vi ~/.bash_profile
-### Append the path found in the preceding example to 'PATH' variable
+### Append hello path found in hello preceding example too'PATH' variable
 ```
 
 Verificare che .NET Core sia ora presente in PATH:
@@ -719,7 +719,7 @@ sudo which dotnet
 ```
 
 ### <a name="error-installing-azcopy"></a>Errore durante l'installazione di AzCopy
-Se si verificano problemi con l'installazione di AzCopy, si può provare a eseguire AzCopy usando lo script bash nella cartella `azcopy` estratta.
+Se si verificano problemi con l'installazione di AzCopy, è possibile provare toorun AzCopy utilizzando script bash hello in hello estratti `azcopy` cartella.
 
 ```bash
 cd azcopy
@@ -727,25 +727,25 @@ cd azcopy
 ```
 
 ### <a name="limit-concurrent-writes-while-copying-data"></a>Limitare le scritture simultanee durante la copia dei dati
-Durante la copia di BLOB o file con AzCopy, tenere presente che altre applicazioni potrebbero modificare i dati mentre è in corso la copia. Se possibile, assicurarsi che i dati copiati non vengano modificati durante l'operazione di copia. Ad esempio, se si copia un file VHD associato a una macchina virtuale di Azure, verificare che altre applicazioni non stiano scrivendo nel file VHD durante la copia. Un buon metodo per eseguire questa operazione è tramite leasing della risorsa da copiare. In alternativa, è prima possibile creare uno snapshot del file VHD e quindi copiare lo snapshot.
+Quando si copiano BLOB o i file con AzCopy, tenere presente che un'altra applicazione può modificare dati hello mentre si copiano. Se possibile, verificare che i dati di hello che si copia non viene modificati durante l'operazione di copia hello. Ad esempio, quando si copia un disco rigido virtuale associato a una macchina virtuale di Azure, assicurarsi che altre applicazioni non sono attualmente scrivendo toohello disco rigido virtuale. Toodo un modo efficace questa caratteristica è leasing hello risorsa toobe copiati. In alternativa, è possibile creare uno snapshot del disco rigido virtuale hello prima e quindi copiare hello snapshot.
 
-Se non è possibile evitare che altre applicazioni scrivano nei BLOB o nei file durante l'operazione di copia, tenere presente che al termine del processo la parità delle risorse copiate con le risorse di origine potrebbe non essere completa.
+Se non è possibile impedire o la scrittura tooblobs file mentre vengono copiate, quindi tenere presente che, dal processo di hello hello tempo al termine di altre applicazioni, hello copiate risorse possono non avere completa parità con le risorse dell'origine hello.
 
 ### <a name="run-one-azcopy-instance-on-one-machine"></a>Eseguire un'istanza di AzCopy su un computer.
-AzCopy è progettato per massimizzare l'utilizzo della risorsa del computer per accelerare il trasferimento dei dati, è consigliabile eseguire solo un'istanza di AzCopy in un computer e specificare l'opzione `--parallel-level` se sono necessarie più operazioni simultanee. Per ulteriori dettagli, digitare `AzCopy --help parallel-level` nella riga di comando.
+AzCopy è progettato toomaximize hello utilizzo del computer risorse tooaccelerate hello di trasferimento dei dati, è consigliabile eseguire solo un'istanza di AzCopy in un computer e specificare l'opzione hello `--parallel-level` se è necessario simultanea di più operazioni. Per ulteriori informazioni, digitare `AzCopy --help parallel-level` nella riga di comando hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni su Archiviazione di Azure e AzCopy, vedere le risorse seguenti:
+Per ulteriori informazioni sull'archiviazione di Azure e AzCopy, vedere hello seguenti risorse:
 
 ### <a name="azure-storage-documentation"></a>Documentazione di Archiviazione di Azure
-* [Introduzione ad Archiviazione di Azure](storage-introduction.md)
+* [Introduzione tooAzure archiviazione](storage-introduction.md)
 * [Creare un account di archiviazione](storage-create-storage-account.md)
 * [Gestire BLOB con Storage Explorer](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs)
-* [Uso dell'interfaccia della riga di comando di Azure 2.0 con Archiviazione di Azure](storage-azure-cli.md)
-* [Come usare l'archiviazione BLOB da C++](storage-c-plus-plus-how-to-use-blobs.md)
-* [Come usare l'archiviazione BLOB da Java](storage-java-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione BLOB da Node.js](storage-nodejs-how-to-use-blob-storage.md)
-* [Come usare l'archiviazione BLOB da Python](storage-python-how-to-use-blob-storage.md)
+* [Utilizzo di hello Azure CLI 2.0 con archiviazione di Azure](storage-azure-cli.md)
+* [Come toouse archiviazione Blob da C++](storage-c-plus-plus-how-to-use-blobs.md)
+* [Come toouse archiviazione Blob da Java](storage-java-how-to-use-blob-storage.md)
+* [Come toouse archiviazione Blob da Node.js](storage-nodejs-how-to-use-blob-storage.md)
+* [Come toouse archiviazione Blob da Python](storage-python-how-to-use-blob-storage.md)
 
 ### <a name="azure-storage-blog-posts"></a>Post del blog di Archiviazione di Azure:
 * [Annuncio della versione di anteprima di AzCopy in Linux](https://azure.microsoft.com/en-in/blog/announcing-azcopy-on-linux-preview/)

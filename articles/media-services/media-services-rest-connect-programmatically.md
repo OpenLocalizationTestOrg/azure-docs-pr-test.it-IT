@@ -1,6 +1,6 @@
 ---
-title: Connessione a un account di Servizi multimediali mediante l'API REST | Microsoft Docs
-description: Questo argomento illustra come connettersi a Servizi multimediali mediante l'API REST.
+title: aaaConnecting tooMedia Account di servizi tramite l'API REST | Documenti Microsoft
+description: In questo argomento viene illustrato come tooconnect tooMedia servizi abbonamento REST API.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,52 +14,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: 4feb0eb81823835e8e0b701463d85b27f5598019
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d5064a3612dc96f5c5ad910d183d84fb70a3b6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-to-media-services-account-using-media-services-rest-api"></a>Connessione a un account di Servizi multimediali mediante l'API REST di Servizi multimediali
+# <a name="connecting-toomedia-services-account-using-media-services-rest-api"></a>Connessione tooMedia Account di servizi tramite l'API REST di servizi multimediali
 > [!div class="op_single_selector"]
 > * [.NET](media-services-dotnet-connect-programmatically.md)
 > * [REST](media-services-rest-connect-programmatically.md)
 > 
 > 
 
-Questo argomento descrive come ottenere una connessione a Servizi multimediali di Microsoft Azure a livello di codice quando si programma con l'API REST di Servizi multimediali.
+In questo argomento viene descritto come tooobtain tooMicrosoft una connessione a livello di codice servizi multimediali di Azure quando si programma con hello API REST di servizi multimediali.
 
-Quando si accede a Servizi multimediali di Microsoft Azure sono necessari due elementi: un token di accesso fornito da Servizi di controllo di accesso di Azure e l'URI di Servizi multimediali. Per creare queste richieste è possibile procedere come si preferisce, ma è necessario specificare i valori di intestazione corretti e passare correttamente il token di accesso quando si esegue una chiamata in Servizi multimediali.
+Quando si accede a servizi multimediali di Microsoft Azure, sono necessari due elementi: un token di accesso fornito da Azure Access Control Services (ACS) e hello URI di servizi multimediali di se stesso. È possibile utilizzare qualsiasi modo desiderato per la creazione di queste richieste, purché specificano valori di intestazione corretti hello e passare il token di accesso di hello correttamente quando si chiama in servizi multimediali.
 
-I seguenti passaggi descrivono i flussi di lavoro comuni relativi all'uso dell'API REST per connettersi a Servizi multimediali:
+Hello alla procedura seguente viene descritto del flusso di lavoro più comune di hello quando utilizzando hello API REST di servizi multimediali tooconnect tooMedia Services:
 
 1. Recupero di un token di accesso 
-2. Connessione all'URI di Servizi multimediali 
+2. Connessione toohello URI di servizi multimediali 
    
    > [!NOTE]
-   > Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
-   > È anche possibile ricevere una risposta HTTP/1.1 200 contenente la descrizione dei metadati dell'API ODATA.
+   > Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
+   > Viene visualizzato anche una risposta HTTP/1.1 200 contenente hello descrizione dei metadati API ODATA.
    > 
    > 
-3. Inviare le successive chiamate API al nuovo URL. 
+3. Registra le successive chiamate API toohello nuovo URL. 
    
-    Se, ad esempio, dopo aver tentato la connessione si ottiene la seguente risposta:
+    Ad esempio, se dopo aver tentato tooconnect, ottenuto dall'esempio hello:
    
         HTTP/1.1 301 Moved Permanently
         Location: https://wamsbayclus001rest-hs.cloudapp.net/api/
    
-    Si consiglia di inviare le successive chiamate API a https://wamsbayclus001rest-hs.cloudapp.net/api/.
+    Si consiglia di pubblicare le successive toohttps://wamsbayclus001rest-hs.cloudapp.net/api/ chiamate API.
 
     >[!NOTE]
-    >È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). Usare lo stesso ID criterio se si usano sempre gli stessi giorni/autorizzazioni di accesso, come nel cado di criteri per i localizzatori che devono rimanere attivi per molto tempo (criteri di non caricamento). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
+    >È previsto un limite di 1.000.000 di criteri per i diversi criteri AMS (ad esempio per i criteri Locator o ContentKeyAuthorizationPolicy). È consigliabile utilizzare hello stesso ID di criteri, se si utilizza sempre hello stesso giorni accesso le autorizzazioni, ad esempio, i criteri per i localizzatori che sono previsti tooremain sul posto per un lungo periodo (non-caricamento criteri). Per altre informazioni, vedere [questo](media-services-dotnet-manage-entities.md#limit-access-policies) argomento.
 
 ## <a name="access-control-address"></a>Indirizzo del controllo di accesso
 L'indirizzo del controllo di accesso di Servizi multimediali è https://wamsprodglobal001acs.accesscontrol.windows.net, eccetto per la Cina settentrionale, dove è https://wamsprodglobal001acs.accesscontrol.chinacloudapi.cn.
 
 ## <a name="getting-an-access-token"></a>Recupero di un token di accesso
-Per accedere a Servizi multimediali direttamente dall'API REST, recuperare un token di accesso da Servizi di controllo di accesso e usarlo per ogni richiesta HTTP effettuata nel servizio. Questo token è simile ad altri token forniti da Servizi di controllo di accesso in base alle attestazioni di accesso riportate nell'intestazione di una richiesta HTTP che usano il protocollo OAuth versione 2. Non sono previsti altri prerequisiti per connettersi direttamente a Servizi multimediali.
+Servizi multimediali tooaccess direttamente tramite hello API REST, recuperare un token di accesso da ACS e usarlo per ogni richiesta HTTP effettuata nel servizio hello. Questo token è simile tooother i token forniti dal servizio ACS in base alle attestazioni di accesso fornite nell'intestazione di hello di una richiesta HTTP utilizzando il protocollo OAuth v2 hello. Altri prerequisiti non è necessario prima di connettersi direttamente tooMedia servizi.
 
-Il seguente esempio illustra l'intestazione e il corpo della richiesta HTTP usati per recuperare un token.
+Hello riportato di seguito intestazione della richiesta HTTP hello e tooretrieve corpo utilizzato un token.
 
 **Intestazione**:
 
@@ -74,19 +74,19 @@ Il seguente esempio illustra l'intestazione e il corpo della richiesta HTTP usat
 
 **Corpo**:
 
-È necessario verificare i valori client_id e client_secret nel corpo di questa richiesta. client_id e client_secret corrispondono rispettivamente ai valori AccountName e AccountKey. Questi valori vengono forniti da Servizi multimediali quando si configura l'account. 
+Sono necessari valori tooprove hello client_id e client_secret nel corpo di hello della richiesta; client_id e client_secret corrispondono toohello AccountName e AccountKey valori, rispettivamente. Questi valori vengono forniti tooyou da servizi multimediali quando si configura l'account. 
 
-Si noti che il valore AccountKey per l'account di Servizi multimediali deve essere codificato nell'URL. Vedere [Percent-Encoding](http://tools.ietf.org/html/rfc3986#section-2.1) quando viene usato come valore client_secret nella richiesta del token di accesso.
+Si noti che hello AccountKey per l'account di servizi multimediali deve essere codificato in URL (vedere [codifica percentuale](http://tools.ietf.org/html/rfc3986#section-2.1) viene utilizzato come valore client_secret hello nella richiesta di token di accesso.
 
     grant_type=client_credentials&client_id=ams_account_name&client_secret=URL_encoded_ams_account_key&scope=urn%3aWindowsAzureMediaServices
 
 
-Ad esempio: 
+ad esempio: 
 
     grant_type=client_credentials&client_id=amstestaccount001&client_secret=wUNbKhNj07oqjqU3Ah9R9f4kqTJ9avPpfe6Pk3YZ7ng%3d&scope=urn%3aWindowsAzureMediaServices
 
 
-Il seguente esempio illustra la risposta HTTP contenente il token di accesso nel corpo della risposta.
+Hello riportato di seguito risposta HTTP hello contenente accesso hello token nel corpo della risposta hello.
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache, no-store
@@ -108,18 +108,18 @@ Il seguente esempio illustra la risposta HTTP contenente il token di accesso nel
 
 
 > [!NOTE]
-> È consigliabile memorizzare nella cache i valori "access_token" e "expires_in" usando una risorsa di archiviazione esterna. I dati del token potranno quindi essere recuperati da tale risorsa e riusati nelle chiamate all'API REST di Servizi multimediali. Ciò è particolarmente utile in scenari in cui il token può essere condiviso in modo sicuro tra più processi o computer.
+> È consigliabile toocache hello "access_token" e "expires_in" valori tooan archiviazione esterna. dati del token Hello in seguito recuperati dall'archivio hello e usati nuovamente nelle chiamate API REST di servizi multimediali. Ciò è particolarmente utile per scenari in cui il token hello può essere condiviso in modo sicuro tra più processi o computer.
 > 
 > 
 
-Assicurarsi di monitorare il valore "expires_in" del token di accesso e di aggiornare le chiamate all'API REST con i nuovi token a seconda delle esigenze.
+Verificare token di accesso hello che un valore "expires_in" hello toomonitor e aggiornare le chiamate API REST con i nuovi token in base alle esigenze.
 
-### <a name="connecting-to-the-media-services-uri"></a>Connessione all'URI di Servizi multimediali
-L'URI radice per Servizi multimediali è https://media.windows.net/. Connettersi inizialmente a questo URI. Se si ottiene un reindirizzamento 301 come risposta, effettuare le chiamate successive al nuovo URI. Inoltre, evitare di usare la logica di reindirizzamento automatico/collegamento nelle richieste. I corpi delle richieste e i verbi HTTP non verranno inoltrati al nuovo URI.
+### <a name="connecting-toohello-media-services-uri"></a>Connessione toohello URI di servizi multimediali
+Hello URI radice per servizi multimediali è https://media.windows.net/. È necessario connettersi inizialmente toothis URI e se viene visualizzato un reindirizzamento 301 in risposta, è necessario effettuare le chiamate successive toohello nuovo URI. Inoltre, evitare di usare la logica di reindirizzamento automatico/collegamento nelle richieste. Verbi HTTP e i testi delle richieste non verranno inoltrati toohello nuovo URI.
 
-Si noti che l'URI radice per il caricamento e il download di file di Asset è https://yourstorageaccount.blob.core.windows.net/, dove il nome dell'account di archiviazione corrisponde a quello usato durante la configurazione dell'account di Servizi multimediali.
+Si noti che radice hello URI per il caricamento e download di file di Asset è https://yourstorageaccount.blob.core.windows.net/, dove nome account di archiviazione hello è identico a quello usato durante la configurazione dell'account servizi multimediali hello.
 
-L'esempio seguente illustra la richiesta HTTP all'URI radice di Servizi multimediali (https://media.windows.net/). La richiesta ottiene un reindirizzamento 301 come risposta. La richiesta successiva usa il nuovo URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).     
+Hello di esempio seguente viene illustrato l'URI (https://media.windows.net/) radice servizi multimediali toohello di richiesta HTTP. richiesta di Hello Ottiene un reindirizzamento 301 restituite nella risposta. Hello richiesta successiva utilizza hello nuovo URI (https://wamsbayclus001rest-hs.cloudapp.net/api/).     
 
 **Richiesta HTTP**:
 
@@ -143,11 +143,11 @@ L'esempio seguente illustra la richiesta HTTP all'URI radice di Servizi multimed
     Content-Length: 164
 
     <html><head><title>Object moved</title></head><body>
-    <h2>Object moved to <a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
+    <h2>Object moved too<a href="https://wamsbayclus001rest-hs.cloudapp.net/api/">here</a>.</h2>
     </body></html>
 
 
-**Richiesta HTTP** (con il nuovo URI):
+**Richiesta HTTP** (utilizzando hello nuovo URI):
 
     GET https://wamsbayclus001rest-hs.cloudapp.net/api/ HTTP/1.1
     Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstestaccount001&urn%3aSubscriptionId=z7f19258-2233-4ca2-b1ae-193798e2c9d8&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1421500579&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=ElVWXOnMVggFQl%2ft9vhdcv1qH1n%2fE8l3hRef4zPmrzg%3d
@@ -176,11 +176,11 @@ L'esempio seguente illustra la richiesta HTTP all'URI radice di Servizi multimed
 
 
 > [!NOTE]
-> Il nuovo URI ottenuto è quello da usare per comunicare con Servizi multimediali. 
+> Dopo aver hello nuovo URI, che è hello URI che deve essere toocommunicate usato con servizi multimediali. 
 > 
 > 
 
-## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Media Services
+## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 ## <a name="provide-feedback"></a>Fornire commenti e suggerimenti

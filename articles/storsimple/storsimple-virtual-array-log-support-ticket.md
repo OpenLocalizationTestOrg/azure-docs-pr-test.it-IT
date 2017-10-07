@@ -1,6 +1,6 @@
 ---
-title: Registrare un ticket di supporto per Gestione dispositivi StorSimple | Documentazione Microsoft
-description: "Descrive la capacità diagnostica di Gestione dispositivi StorSimple e illustra come usarla per la risoluzione dei problemi relativi all'array virtuale StorSimple."
+title: il ticket di supporto tramite Gestione dispositivi StorSimple aaaLog | Documenti Microsoft
+description: "Descrive hello dispositivo StorSimple Manager diagnosticare funzionalità e viene spiegato come toouse, tootroubleshoot l'Array virtuale StorSimple."
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: 658afbc178814389fefd7941e2ca030741bd08e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ae5eafff726d8ee310af26a13150e40ff861be0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-log-a-support-request-for-the-storsimple-virtual-array"></a>Usare il servizio Gestione dispositivi StorSimple per registrare una richiesta di supporto per l'array virtuale StorSimple
+# <a name="use-hello-storsimple-device-manager-service-toolog-a-support-request-for-hello-storsimple-virtual-array"></a>Utilizzare toolog servizio di gestione di dispositivi StorSimple hello una richiesta di supporto per hello Array virtuale StorSimple
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>Panoramica
 
-Gestione dispositivi StorSimple offre la possibilità di **registrare una nuova richiesta di supporto** all'interno del pannello di riepilogo servizio. Questo articolo illustra come è possibile registrare una nuova richiesta di supporto e gestire il ciclo di vita all'interno del portale.
+Gestione di dispositivi StorSimple Hello fornisce funzionalità di hello troppo**registrare una nuova richiesta di supporto** nel Pannello di riepilogo servizio hello. In questo articolo viene illustrato come è possibile registrare una nuova richiesta di supporto e gestire il ciclo di vita nel portale di hello.
 
 ## <a name="new-support-request"></a>Nuova richiesta di supporto
 
-In base al [piano di supporto](https://azure.microsoft.com/support/plans/) è possibile creare ticket di supporto per un problema sull'array virtuale StorSimple direttamente dal pannello di riepilogo servizio di Gestione dispositivi StorSimple.
+A seconda del [piano di supporto](https://azure.microsoft.com/support/plans/), è possibile creare ticket di supporto per un problema per l'array StorSimple virtuale direttamente dal pannello riepilogo servizio di gestione di dispositivi StorSimple hello.
 
-#### <a name="to-log-a-new-request"></a>Per registrare una nuova richiesta
+#### <a name="toolog-a-new-request"></a>una nuova richiesta toolog
 
-1. Passare al servizio Gestione dispositivi StorSimple. Nelle impostazioni del pannello di riepilogo servizio passare alla sezione **SUPPORTO E RISOLUZIONE DEI PROBLEMI** e quindi fare clic su **Nuova richiesta di supporto**.
+1. Passare il servizio di gestione di dispositivi StorSimple tooyour. Nelle impostazioni del pannello riepilogo servizio hello, andare troppo**supporto + TROUBLESHOOTING** sezione e quindi fare clic su **nuova richiesta di assistenza**.
    
     ![Nuova richiesta di supporto](./media/storsimple-virtual-array-log-support-ticket/log-support-ticket1.png)
 
-2. Nel pannello **Informazioni di base** eseguire le operazioni seguenti:
+2. In hello **nozioni di base** pannello hello seguenti:
 
-    1. Nell'elenco a discesa **Tipo di problema** selezionare **Tecnico**. 
+    1. Da hello **rilascio tipo** elenco a discesa, seleziona **tecniche**. 
     
-    2. Vengono scelti automaticamente i valori correnti di **sottoscrizione**, tipo di **servizio** e **risorsa** (servizio Gestione dispositivi StorSimple). 
+    2. Hello corrente **sottoscrizione**, **servizio** tipo e hello **risorse** (servizio di gestione di dispositivi StorSimple) vengono automaticamente scelti. 
 
-    3. Specificare uno o più dispositivi registrati per il servizio per cui si sono verificati problemi.
+    3. Specificare uno o più dispositivi registrati tooyour servizio che hanno problemi a.
 
-    4. Scegliere un **piano di supporto** appropriato, se più piani sono associati alla sottoscrizione. È necessario un piano di supporto a pagamento per poter abilitare il supporto tecnico.
+    4. Scegliere un **piano di supporto** appropriato, se più piani sono associati alla sottoscrizione. È necessario un tooenable piano di supporto a pagamento il supporto tecnico.
 
-3. Nel **Passaggio 2** scegliere la **gravità** e specificare se il problema è correlato all'array o al servizio Gestione dispositivi StorSimple. Scegliere anche una **categoria** per il problema e fornire maggiori **dettagli**.
+3. In **passaggio 2**, scegliere hello **gravità** e specificare se il problema di hello è matrice toohello correlati o hello del servizio di gestione di dispositivi StorSimple. Inoltre, scegliere un **categoria** per questo problema e fornire più **dettagli** problema hello.
    
     ![Nuova richiesta di supporto](./media/storsimple-virtual-array-log-support-ticket/log-support-ticket2.png)
 
-4. In **Passaggio 3** fornire le informazioni di contatto. Il supporto Microsoft userà queste informazioni per contattare l'utente per altre informazioni, la diagnostica e la risoluzione.
+4. In **Passaggio 3** fornire le informazioni di contatto. Supporto Microsoft utilizzerà questo tooreach informazioni out tooyou per ulteriori informazioni, diagnosi e risoluzione.
    
     ![Nuova richiesta di supporto](./media/storsimple-virtual-array-log-support-ticket/log-support-ticket3.png)
 
 ## <a name="manage-a-support-request"></a>Gestire una richiesta di supporto
 
-Dopo la creazione del ticket di supporto, sarà possibile gestire il ciclo di vita del ticket dal portale.
+Dopo aver creato un ticket di supporto, è possibile gestire hello del ciclo di vita del ticket hello nel portale di hello.
 
-#### <a name="to-manage-your-support-requests"></a>Per gestire le richieste di supporto
+#### <a name="toomanage-your-support-requests"></a>richiede il supporto toomanage
 
-Per visualizzare la pagina Guida e supporto, passare a **Sfoglia -> Guida e supporto**.
+tooget toohello della Guida e supporto pagina, spostarsi troppo**Sfoglia > Guida e supporto**.
 
 ![Gestire le richieste di supporto](./media/storsimple-virtual-array-log-support-ticket/manage-support-tickets.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Informazioni su come [diagnosticare e risolvere i problemi relativi all'array virtuale StorSimple](storsimple-virtual-array-diagnose-problems.md)
+Informazioni su come troppo[diagnosticare e risolvere una matrice di problemi correlati tooyour virtuale StorSimple](storsimple-virtual-array-diagnose-problems.md)
 

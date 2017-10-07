@@ -12,17 +12,17 @@ ms.topic: article
 ms.devlang: na
 ms.date: 05/02/2017
 ms.author: sama
-ms.openlocfilehash: 8f5703d15766f221517cd89352d41685652d32d6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b65271a22c77ea41eeec2126e4a3ad24364edd17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-b2c-manage-sso-and-token-customization-with-custom-policies"></a>Azure Active Directory B2C: gestire la personalizzazione dei token e SSO con i criteri personalizzati
-L'uso dei criteri personalizzati offre lo stesso controllo sulle configurazioni di token, sessioni e Single Sign-On (SSO) dei criteri predefiniti.  Per informazioni sulle singole impostazioni, vedere la documentazione [qui](#active-directory-b2c-token-session-sso).
+Utilizzo di criteri personalizzati fornisce che si hello stesso controllo su token, sessione e single sign-on (SSO) le configurazioni di esempio tramite criteri predefiniti.  toolearn quali di ciascuna impostazione, vedere la documentazione di hello [qui](#active-directory-b2c-token-session-sso).
 
 ## <a name="token-lifetimes-and-claims-configuration"></a>Configurazione delle attestazioni e delle durate dei token
-Per modificare le impostazioni delle durate dei token, è necessario aggiungere un elemento `<ClaimsProviders>` nel file di relying party del criterio su cui si vuole intervenire.  `<ClaimsProviders>` è un elemento figlio di `<TrustFrameworkPolicy>`.  Sarà necessario inserirvi le informazioni che interessano le durate dei token.  Il codice XML è simile al seguente:
+toochange impostazioni hello la durata dei token, è necessario tooadd un `<ClaimsProviders>` elemento hello relying party file criteri hello desiderate tooimpact.  Hello `<ClaimsProviders>` è un elemento figlio di hello `<TrustFrameworkPolicy>`.  All'interno, è necessario informazioni hello tooput che interessa la durata dei token.  Hello XML è simile al seguente:
 
 ```XML
 <ClaimsProviders>
@@ -44,28 +44,28 @@ Per modificare le impostazioni delle durate dei token, è necessario aggiungere 
 </ClaimsProviders>
 ```
 
-**Durate dei token di accesso** La durata dei token di accesso può essere cambiata modificando il valore nell'elemento `<Item>` con Key="token_lifetime_secs" espresso in secondi.  Il valore predefinito è pari a 3600 secondi (60 minuti).
+**Durata dei token di accesso** hello accesso durata del token può essere cambiata modificando valore hello all'interno di hello `<Item>` con hello Key = "token_lifetime_secs" in secondi.  valore predefinito di Hello predefinito è 3600 secondi (60 minuti).
 
-**Durata dei token di ID** La durata dei token di ID può essere cambiata modificando il valore nell'elemento `<Item>` con Key="id_token_lifetime_secs" espresso in secondi.  Il valore predefinito è pari a 3600 secondi (60 minuti).
+**Durata del token ID** durata del token ID hello può essere cambiata modificando valore hello all'interno di hello `<Item>` con hello Key = "id_token_lifetime_secs" in secondi.  valore predefinito di Hello predefinito è 3600 secondi (60 minuti).
 
-**Durata del token di aggiornamento** La durata del token di aggiornamento può essere cambiata modificando il valore nell'elemento `<Item>` con Key="refresh_token_lifetime_secs" espresso in secondi.  Il valore predefinito è pari a 1209600 secondi (14 giorni).
+**Durata del token di aggiornamento** durata del token hello aggiornamento può essere modificata modificando il valore di hello all'interno di hello `<Item>` con hello Key = "refresh_token_lifetime_secs" in secondi.  valore predefinito di Hello incorporato è 1209600 secondi (14 giorni).
 
-**Durata della finestra temporale scorrevole del token di aggiornamento** Per impostare una durata della finestra temporale scorrevole per il token di aggiornamento, modificare il valore nell'elemento `<Item>` con Key="rolling_refresh_token_lifetime_secs" espresso in secondi.  Il valore predefinito è pari a 7776000 secondi (90 giorni).  Se non si vuole applicare una durata della finestra temporale scorrevole, sostituire questa riga con:
+**Aggiorna durata token di una finestra temporale scorrevole** se si desidera tooset un token di aggiornamento tooyour di durata finestra temporale scorrevole, modificare il valore di hello all'interno di `<Item>` con hello Key = "rolling_refresh_token_lifetime_secs" in secondi.  valore predefinito di Hello incorporato è 7776000 (90 giorni).  Se non si desidera tooenfore una variabile di durata di una finestra, sostituire questa riga con:
 ```XML
 <Item Key="allow_infinite_rolling_refresh_token">True</Item>
 ```
 
-**Attestazione autorità di certificazione (iss)** Per cambiare l'attestazione autorità di certificazione (iss), modificare il valore nell'elemento `<Item>` con Key="IssuanceClaimPattern".  I valori applicabili sono `AuthorityAndTenantGuid` e `AuthorityWithTfp`.
+**Attestazione autorità di certificazione (iss)** se si desidera toochange hello dell'autorità di certificazione (iss di) attestazione, modificare il valore di hello all'interno di hello `<Item>` con hello Key = "IssuanceClaimPattern".  i valori applicabili Hello sono `AuthorityAndTenantGuid` e `AuthorityWithTfp`.
 
-**Impostazione dell'attestazione che rappresenta l'ID criteri** Le opzioni per impostare questo valore sono TFP (Trust Framework Policy) e ACR (Authentication Context Reference).  
-È consigliabile impostarlo su TFP. A questo scopo, assicurarsi che l'elemento `<Item>` con Key="AuthenticationContextReferenceClaimPattern" esista e il valore sia `None`.
+**Impostazione di attestazioni che rappresentano ID criterio** le opzioni di hello per l'impostazione di questo valore sono TFP (criteri di attendibilità framework) e ACR (riferimenti di contesto di autenticazione).  
+È consigliabile impostare il valore questo tooTFP, toodo, assicurarsi di hello `<Item>` con hello Key = "AuthenticationContextReferenceClaimPattern" esiste e il valore di hello è `None`.
 Nell'elemento `<OutputClaims>`, aggiungere questo elemento:
 ```XML
 <OutputClaim ClaimTypeReferenceId="trustFrameworkPolicy" Required="true" DefaultValue="{policy}" />
 ```
-Per ACR, rimuovere l'elemento `<Item>` con Key="AuthenticationContextReferenceClaimPattern".
+Per record, rimuovere hello `<Item>` con hello Key = "AuthenticationContextReferenceClaimPattern".
 
-**Attestazione soggetto (sub)** L'impostazione predefinita di questa opzione è ObjectID. Per impostarla su `Not Supported`, seguire questa procedura:
+**Attestazione soggetto (sub)** questa opzione è per impostazione predefinita tooObjectID, se si desidera tooswitch questo troppo`Not Supported`, hello seguenti:
 
 Sostituire questa riga 
 ```XML
@@ -77,7 +77,7 @@ con la riga seguente:
 ```
 
 ## <a name="session-behavior-and-sso"></a>Comportamento della sessione e SSO
-Per modificare il comportamento della sessione e le configurazioni SSO, è necessario aggiungere un elemento `<UserJourneyBehaviors>` nell'elemento `<RelyingParty>`.  L'elemento `<UserJourneyBehaviors>` deve seguire immediatamente `<DefaultUserJourney>`.  Il contenuto dell'elemento `<UserJourneyBehavors>` sarà il seguente:
+toochange il comportamento di sessione e le configurazioni di SSO, è necessario tooadd un `<UserJourneyBehaviors>` elemento all'interno di hello `<RelyingParty>` elemento.  Hello `<UserJourneyBehaviors>` elemento deve seguire immediatamente hello `<DefaultUserJourney>`.  Hello all'interno del `<UserJourneyBehavors>` elemento dovrebbe essere simile al seguente:
 
 ```XML
 <UserJourneyBehaviors>
@@ -86,8 +86,8 @@ Per modificare il comportamento della sessione e le configurazioni SSO, è neces
    <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
 </UserJourneyBehaviors>
 ```
-**Configurazione dell'accesso Single Sign-On** Per cambiare la configurazione dell'accesso Single Sign-On, è necessario modificare il valore di `<SingleSignOn>`.  I valori applicabili sono `Tenant`, `Application` `Policy` e `Disabled`. 
+**Configurazione Single sign-on (SSO)** toochange hello configurazione single sign-on, è necessario toomodify hello valore `<SingleSignOn>`.  i valori applicabili Hello sono `Tenant`, `Application`, `Policy` e `Disabled`. 
 
-**Durata della sessione dell'app Web (minuti)** Per cambiare la durata della sessione dell'app Web, è necessario modificare il valore dell'elemento `<SessionExpiryInSeconds>`.  Il valore predefinito nei criteri predefiniti è pari a 86400 secondi (1440 minuti).
+**App Web durata della sessione (minuti)** toochange hello hello web app durata della sessione, è necessario toomodify valore hello `<SessionExpiryInSeconds>` elemento.  il valore predefinito Hello nei criteri predefiniti è 86.400 secondi (1440 minuti).
 
-**Timeout della sessione dell'app Web** Per cambiare il timeout della sessione dell'app Web, è necessario modificare il valore di `<SessionExpiryType>`.  I valori applicabili sono `Absolute` e `Rolling`.
+**Timeout della sessione Web app** toochange timeout di sessione di hello web app, è necessario toomodify hello valore `<SessionExpiryType>`.  i valori applicabili Hello sono `Absolute` e `Rolling`.

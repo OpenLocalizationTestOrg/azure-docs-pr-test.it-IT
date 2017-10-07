@@ -1,6 +1,6 @@
 ---
-title: Esaminare i prerequisiti per la replica Hyper-V in un sito VMM secondario con Azure Site Recovery | Microsoft Docs
-description: Descrive i prerequisiti per la replica di macchine virtuali Hyper-V in un sito VMM secondario con Azure Site Recovery.
+title: prerequisiti di hello aaaReview per Hyper-V replica tooa sito VMM secondario con Azure Site Recovery | Documenti Microsoft
+description: Vengono descritti i prerequisiti hello per la replica delle macchine virtuali Hyper-V tooa VMM del sito secondario con Azure Site Recovery.
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/30/2017
 ms.author: raynew
-ms.openlocfilehash: 7897a30bf1774609ca8e6037dabcd5fbf4151271
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1bd945fdda36c3cce5d159209abbd3c98a7e3682
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-2-review-the-prerequisites-and-limitations-for-hyper-v-vm-replication-to-a-secondary-vmm-site"></a>Passaggio 2: Esaminare i prerequisiti e le limitazioni per la replica di una macchina virtuale Hyper-V in un sito VMM secondario
+# <a name="step-2-review-hello-prerequisites-and-limitations-for-hyper-v-vm-replication-tooa-secondary-vmm-site"></a>Passaggio 2: Esaminare hello prerequisiti e limitazioni per la macchina virtuale Hyper-V replica tooa VMM del sito secondario
 
 
-Dopo aver analizzato l'[architettura dello scenario](vmm-to-vmm-walkthrough-architecture.md), leggere questo articolo per comprendere con esattezza i prerequisiti di distribuzione necessari quando si replicano in un sito secondario macchine virtuali Hyper-V locali gestite in cloud di System Center Virtual Machine Manager usando [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
+Dopo aver esaminato hello [architettura dello scenario](vmm-to-vmm-walkthrough-architecture.md), leggere questo articolo di toomake è importante comprendere i prerequisiti di distribuzione hello, quando la replica delle macchine virtuali di Hyper-V locale (VM) gestiti in System Center Virtual Cloud Machine Manager (VMM), tooa secondario del sito utilizzando [Azure Site Recovery](site-recovery-overview.md) in hello portale di Azure.
 
-È possibile inviare commenti nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Dopo aver letto questo articolo, inviare eventuali commenti nella parte inferiore di hello o in hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="prerequisites-and-limitations"></a>Prerequisiti e limitazioni
 
 **Requisito** | **Dettagli**
 --- | ---
-**Azzurro** | Una sottoscrizione di [Microsoft Azure](http://azure.microsoft.com/).<br/><br/> È possibile iniziare con una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).<br/><br/> [Altre informazioni](https://azure.microsoft.com/pricing/details/site-recovery/) sui prezzi di Site Recovery.<br/><br/> Consultare le informazioni sulla disponibilità a livello geografico e sulle aree supportate nella pagina relativa ai [dettagli sui prezzi per Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
-**Server VMM** | È consigliabile eseguire la distribuzione con due server VMM, uno nel sito primario e uno nel sito secondario.<br/><br/> È possibile eseguire la replica tra cloud in un unico server VMM.<br/><br/> I server VMM devono eseguire almeno System Center 2012 SP1 con gli aggiornamenti più recenti.<br/><br/> I server VMM richiedono l'accesso a Internet.
-**Cloud VMM** | In ogni server VMM devono essere configurati uno o più cloud e in tutti i cloud deve essere impostato il profilo di capacità Hyper-V. <br/><br/>I cloud devono contenere uno o più gruppi host VMM.<br/><br/> Se si dispone solo di un server VMM, sono necessari almeno due cloud, che fungano uno da primario e uno da secondario.
-**Hyper-V** | I server Hyper-V devono eseguire almeno Windows Server 2012 con ruolo Hyper-V e con gli ultimi aggiornamenti installati.<br/><br/> Il server Hyper-V deve contenere una o più macchine virtuali.<br/><br/>  I server host Hyper-V devono trovarsi nei gruppi host disponibili nei cloud VMM primario e secondario.<br/><br/> Se si esegue Hyper-V in un cluster in Windows Server 2012 R2 installare l'[aggiornamento 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> Se si esegue Hyper-V in un cluster basato su indirizzi IP statici in Windows Server 2012, il broker del cluster non viene creato automaticamente. Configurare manualmente il broker del cluster. [Altre informazioni](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx).<br/><br/> I server Hyper-V richiedono l'accesso a Internet.
+**Azzurro** | Una sottoscrizione di [Microsoft Azure](http://azure.microsoft.com/).<br/><br/> È possibile iniziare con una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).<br/><br/> [Altre informazioni](https://azure.microsoft.com/pricing/details/site-recovery/) sui prezzi di Site Recovery.<br/><br/> Verificare le aree di hello è supportato per il ripristino del sito, in aree geografiche disponibili in [dettagli prezzi di Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
+**Server VMM** | È consigliabile che disporre di due server VMM, uno nel sito primario di hello e uno in hello secondario.<br/><br/> È possibile eseguire la replica tra cloud in un unico server VMM.<br/><br/> Server VMM devono essere in esecuzione almeno System Center 2012 SP1 con gli aggiornamenti più recenti di hello.<br/><br/> I server VMM richiedono l'accesso a Internet.
+**Cloud VMM** | Ogni server VMM deve essere in uno o più cloud e in tutte le aree è necessario impostare il profilo di capacità Hyper-V hello. <br/><br/>I cloud devono contenere uno o più gruppi host VMM.<br/><br/> Se si dispone solo di un server VMM, è necessario almeno due cloud, tooact come primario e secondario.
+**Hyper-V** | Server Hyper-V deve essere in esecuzione almeno Windows Server 2012 con il ruolo Hyper-V hello, e hanno hello installati aggiornamenti più recenti.<br/><br/> Il server Hyper-V deve contenere una o più macchine virtuali.<br/><br/>  Server host Hyper-V devono essere distribuiti nei gruppi host nei cloud VMM primario e secondario di hello.<br/><br/> Se si esegue Hyper-V in un cluster in Windows Server 2012 R2 installare l'[aggiornamento 2961977](https://support.microsoft.com/kb/2961977)<br/><br/> Se si esegue Hyper-V in un cluster basato su indirizzi IP statici in Windows Server 2012, il broker del cluster non viene creato automaticamente. Configurare un gestore cluster hello manualmente. [Altre informazioni](http://social.technet.microsoft.com/wiki/contents/articles/18792.configure-replica-broker-role-cluster-to-cluster-replication.aspx).<br/><br/> I server Hyper-V richiedono l'accesso a Internet.
 
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare a [Passaggio 3: Pianificare la rete](vmm-to-vmm-walkthrough-network.md).
+Andare troppo[passaggio 3: pianificare la rete](vmm-to-vmm-walkthrough-network.md).

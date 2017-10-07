@@ -1,6 +1,6 @@
 ---
-title: Sicurezza del contenitore di Azure Service Fabric | Microsoft Docs
-description: Informazioni su come proteggere i servizi del contenitore.
+title: sicurezza di Service Fabric contenitore aaaAzure | Documenti Microsoft
+description: Informazioni su toosecure ora i servizi di contenitore.
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: 75faca1e827a0eca6b97adcb2e1c6ca72b3364d6
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 88faf4e8f949c2f7743756b6272ca672d9710630
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="container-security"></a>Sicurezza del contenitore
 
-Service Fabric fornisce un meccanismo per i servizi all'interno di un contenitore per accedere a un certificato che viene installato nei nodi in un cluster di Windows o Linux (versione 5.7 o versioni successive). Service Fabric supporta anche gMSA (account del servizio gestito del gruppo) per i contenitori di Windows. 
+Service Fabric fornisce un meccanismo per i servizi all'interno di un contenitore di tooaccess un certificato installato nei nodi hello in un cluster di Windows o Linux (versione 5.7 o versioni successive). Service Fabric supporta anche gMSA (account del servizio gestito del gruppo) per i contenitori di Windows. 
 
 ## <a name="certificate-management-for-containers"></a>Gestione dei certificati per i contenitori
 
-È possibile proteggere i servizi del contenitore specificando un certificato. Questo certificato deve essere installato sui nodi del cluster. Le informazioni del certificato vengono fornite nel manifesto dell'applicazione sotto il tag `ContainerHostPolicies` come illustrato nel frammento di codice seguente:
+È possibile proteggere i servizi del contenitore specificando un certificato. Hello certificato deve essere installato sui nodi del cluster hello hello. Hello informazioni del certificato viene fornite nel manifesto dell'applicazione hello in hello `ContainerHostPolicies` tag come hello seguente mostra:
 
 ```xml
   <ContainerHostPolicies CodePackageRef="NodeContainerService.Code">
@@ -34,12 +34,12 @@ Service Fabric fornisce un meccanismo per i servizi all'interno di un contenitor
     <CertificateRef Name="MyCert2" X509FindValue="[Thumbprint2]"/>
  ```
 
-All'avvio dell'applicazione, il runtime legge i certificati e genera un file PFX e una password per ogni certificato. Il file PFX e la password sono accessibili all'interno del contenitore usando le variabili di ambiente seguenti: 
+Quando si avvia un'applicazione hello, hello runtime legge certificati hello e genera un file PFX e una password per ogni certificato. Il file PFX e la password sono accessibili nel contenitore hello utilizzando hello seguenti variabili di ambiente: 
 
 * **Certificate_[CodePackageName]_[CertName]_PFX**
 * **Certificate_[CodePackageName]_[CertName]_Password**
 
-Il servizio del contenitore o del processo è responsabile dell'importazione del file PFX nel contenitore. Per importare il certificato, è possibile usare gli script `setupentrypoint.sh` o il codice personalizzato in esecuzione all'interno del processo del contenitore. Codice di esempio in C# per l'importazione del file PFX seguente:
+il servizio di contenitore Hello o un processo è responsabile per l'importazione di file PFX hello in contenitore hello. certificato di hello tooimport, è possibile utilizzare `setupentrypoint.sh` script o codice personalizzato all'interno di processo del contenitore hello eseguita. Codice di esempio in c# per l'importazione di file PFX hello segue:
 
 ```c#
     string certificateFilePath = Environment.GetEnvironmentVariable("Certificate_NodeContainerService.Code_MyCert1_PFX");
@@ -52,12 +52,12 @@ Il servizio del contenitore o del processo è responsabile dell'importazione del
     store.Add(cert);
     store.Close();
 ```
-Questo certificato PFX può essere usato per autenticare l'applicazione o il servizio o per proteggere la comunicazione con altri servizi.
+Questo certificato PFX può essere utilizzato per autenticare un'applicazione hello o servizio oppure commmunication sicuro con altri servizi.
 
 
 ## <a name="set-up-gmsa-for-windows-containers"></a>Configurare gMSA per i contenitori di Windows
 
-Per configurare gMSA (account del servizio gestito del gruppo), un file di specifica delle credenziali (`credspec`) viene posizionato in tutti i nodi del cluster. Il file può essere copiato in tutti i nodi tramite un'estensione della macchina virtuale.  Il file `credspec` deve contenere le informazioni dell'account gMSA. Per altre informazioni sul file `credspec`, vedere [Service Accounts](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/windows-server-container-tools/ServiceAccounts) (Account del servizio). La specifica della credenziale e il tag `Hostname` vengono specificati nel manifesto dell'applicazione. Il tag `Hostname` deve corrispondere al nome dell'account gMSA in cui viene eseguito il contenitore.  Il tag `Hostname` consente al contenitore di autenticarsi presso altri servizi nel dominio tramite l'autenticazione Kerberos.  Un esempio per specificare `Hostname` e `credspec` nel manifesto dell'applicazione è illustrato nel frammento seguente:
+tooset backup gMSA (group Managed Service Accounts), un file di specifica delle credenziali (`credspec`) viene inserito in tutti i nodi del cluster di hello. file Hello può essere copiati in tutti i nodi utilizzando un'estensione della macchina virtuale.  Hello `credspec` file deve contenere le informazioni di account gMSA hello. Per ulteriori informazioni su hello `credspec` file, vedere [gli account del servizio](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/live/windows-server-container-tools/ServiceAccounts). Specifica credenziali Hello e hello `Hostname` tag specificati nel manifesto dell'applicazione hello. Hello `Hostname` tag deve corrispondere a nome di account gMSA hello che hello contenitore viene eseguito in.  Hello `Hostname` tag consente hello contenitore tooauthenticate stesso tooother servizi nel dominio hello mediante l'autenticazione Kerberos.  Un esempio per la specifica di hello `Hostname` hello e `credspec` in hello manifesto dell'applicazione è illustrato nel seguente frammento di codice hello:
 
 ```xml
 <Policies>
@@ -68,5 +68,5 @@ Per configurare gMSA (account del servizio gestito del gruppo), un file di speci
 ```
 ## <a name="next-steps"></a>Passaggi successivi
 
-* [Distribuire un contenitore Windows in Service Fabric su Windows Server 2016](service-fabric-get-started-containers.md)
-* [Distribuire un contenitore Docker in Service Fabric su Linux](service-fabric-get-started-containers-linux.md)
+* [Distribuire un tooService di contenitore di Windows Fabric in Windows Server 2016](service-fabric-get-started-containers.md)
+* [Distribuire un tooService contenitore Docker dell'infrastruttura in Linux](service-fabric-get-started-containers-linux.md)

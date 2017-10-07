@@ -1,6 +1,6 @@
 ---
-title: "Come visualizzare l'integrità aggregata delle entità di Azure Service Fabric | Microsoft Docs"
-description: "Descrive come eseguire una query dell'integrità aggregata delle entità di Azure Service Fabric, come visualizzarla e come valutarla con query di integrità e query generali."
+title: "aaaHow tooview Azure Service Fabric entità aggregato di integrità | Documenti Microsoft"
+description: "Viene descritto come tooquery, visualizzare e valutare l'integrità di entità Azure Service Fabric aggregato, tramite query sull'integrità e le query generali."
 services: service-fabric
 documentationcenter: .net
 author: oanapl
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2017
 ms.author: oanapl
-ms.openlocfilehash: b97972b1bdc28a17fb9c3a0e997738f5bd0b5d15
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: add810551cac26d2b4ff81b57d94ddd780c2cc2f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-service-fabric-health-reports"></a>Come visualizzare i report sull'integrità di Service Fabric
-Azure Service Fabric introduce un [modello di integrità](service-fabric-health-introduction.md) con entità di integrità per le quali i componenti di sistema e i watchdog possono creare report sulle condizioni locali sottoposte a monitoraggio. L' [archivio integrità](service-fabric-health-introduction.md#health-store) aggrega tutti i dati di integrità per determinare se le entità sono integre.
+Azure Service Fabric introduce un [modello di integrità](service-fabric-health-introduction.md) con entità di integrità per le quali i componenti di sistema e i watchdog possono creare report sulle condizioni locali sottoposte a monitoraggio. Hello [archivio integrità](service-fabric-health-introduction.md#health-store) aggrega tutti toodetermine di dati di integrità se le entità siano integri.
 
-Il cluster viene popolato automaticamente con report sull'integrità inviati dai componenti di sistema. Per altre informazioni, vedere [Usare i report sull'integrità del sistema per la risoluzione dei problemi](service-fabric-understand-and-troubleshoot-with-system-health-reports.md).
+cluster Hello viene popolato automaticamente con i rapporti di stati inviati dai componenti di sistema hello. Leggere informazioni, vedere [tootroubleshoot report l'integrità di sistema utilizzare](service-fabric-understand-and-troubleshoot-with-system-health-reports.md).
 
-Service Fabric offre diversi modi per ottenere l'integrità aggregata delle entità:
+Infrastruttura del servizio sono disponibili più modi tooget hello aggregato integrità di entità hello:
 
 * [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) o altri strumenti di visualizzazione
 * Query di integrità (tramite PowerShell, API o REST)
-* Query generali che restituiscono un elenco di entità per le quali l'integrità costituisce una proprietà (tramite PowerShell, API o REST)
+* Generale query che restituiscono un elenco di entità che dispongono di integrità come una delle proprietà di hello (tramite PowerShell, API o REST)
 
-Per illustrare queste opzioni, si userà un cluster locale con cinque nodi e l'[applicazione fabric:/WordCount](http://aka.ms/servicefabric-wordcountapp). L'applicazione **fabric:/WordCount** contiene due servizi predefiniti, un servizio con stato di tipo `WordCountServiceType` e un servizio senza stato di tipo `WordCountWebServiceType`. L'oggetto `ApplicationManifest.xml` è stato modificato per richiedere sette repliche di destinazione per il servizio con stato e una partizione. Poiché ci sono solo cinque nodi nel cluster, i componenti di sistema segnalano un avviso nella partizione del servizio perché è al di sotto del numero previsto.
+toodemonstrate queste opzioni, consente l'utilizzo di un cluster locale con cinque nodi e hello [fabric: / applicazione WordCount](http://aka.ms/servicefabric-wordcountapp). Hello **fabric: / WordCount** applicazione contiene due servizi predefiniti, un servizio con stato di tipo `WordCountServiceType`e un servizio senza stato di tipo `WordCountWebServiceType`. In seguito alla modifica hello `ApplicationManifest.xml` toorequire sette repliche di destinazione per i servizi con stato hello e una partizione. Poiché sono presenti solo cinque nodi nel cluster hello, i componenti di sistema hello report un avviso sulla partizione di servizio hello perché è inferiore al conteggio di destinazione hello.
 
 ```xml
 <Service Name="WordCountService">
@@ -48,17 +48,17 @@ Per illustrare queste opzioni, si userà un cluster locale con cinque nodi e l'[
 ```
 
 ## <a name="health-in-service-fabric-explorer"></a>Integrità in Esplora Infrastruttura di servizi
-Esplora Infrastruttura di servizi fornisce una panoramica visiva del cluster. Nell'immagine seguente è possibile osservare quanto segue:
+Service Fabric Explorer fornisce una visualizzazione di cluster hello. Nell'immagine hello riportata di seguito, è possibile vedere che:
 
-* L'applicazione **fabric:/WordCount** è di colore rosso (condizione di errore), perché per questa applicazione è stato segnalato un evento di errore da **MyWatchdog** per la proprietà **Availability**.
-* Uno dei servizi di questa applicazione, **fabric:/WordCount/WordCountService** è di colore giallo (condizione di avviso). Il servizio è configurato con sette repliche e il cluster ha cinque nodi, quindi due repliche non possono essere posizionate. Anche se qui non è illustrata, la partizione del servizio è di colore giallo a causa di un report di sistema di `System.FM` che indica `Partition is below target replica or instance count`. La partizione gialla avvia il servizio giallo.
-* Il cluster è di colore rosso perché è rossa anche l'applicazione.
+* applicazione Hello **fabric: / WordCount** è rosso (errore) perché dispone di un evento di errore segnalato da **MyWatchdog** per la proprietà hello **disponibilità**.
+* Uno dei servizi di questa applicazione, **fabric:/WordCount/WordCountService** è di colore giallo (condizione di avviso). servizio Hello è configurato con le sette repliche e cluster hello include cinque nodi, in modo non è possibile inserire due repicas. Sebbene non illustrato di seguito, partizione del servizio hello è giallo a causa di un report di sistema da `System.FM` che informa che `Partition is below target replica or instance count`. i trigger di partizione giallo Hello hello servizio giallo.
+* cluster Hello è rosso a causa di un'applicazione hello rosso.
 
-La valutazione usa criteri predefiniti del manifesto del cluster dal manifesto dell'applicazione. Questi sono criteri rigorosi e non tollerano errori.
+valutazione Hello utilizza criteri predefiniti dal manifesto del cluster hello e manifesto dell'applicazione. Questi sono criteri rigorosi e non tollerano errori.
 
-Visualizzazione del cluster con Service Fabric Explorer:
+Visualizzazione del cluster di hello di Service Fabric Explorer:
 
-![Visualizzazione del cluster con Service Fabric Explorer.][1]
+![Visualizzazione del cluster di hello di Service Fabric Explorer.][1]
 
 [1]: ./media/service-fabric-view-entities-aggregated-health/servicefabric-explorer-cluster-health.png
 
@@ -69,47 +69,47 @@ Visualizzazione del cluster con Service Fabric Explorer:
 >
 
 ## <a name="health-queries"></a>Query relative all’integrità
-Infrastruttura di servizi espone le query relative all’integrità per ognuno dei [tipi di entità](service-fabric-health-introduction.md#health-entities-and-hierarchy)supportati. È possibile accedervi tramite l'API, usando i metodi in [FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet), i cmdlet di PowerShell e REST. Queste query restituiscono informazioni complete sull'integrità per l'entità, come lo stato aggregato dell'integrità, gli eventi di integrità dell'entità, gli stati di integrità degli elementi figlio, se applicabili, le valutazioni di non integrità (quando l'entità non è integra) e le statistiche sull'integrità degli elementi figlio, quando applicabili.
+Service Fabric espone una query sull'integrità per ogni hello supportato [tipi di entità](service-fabric-health-introduction.md#health-entities-and-hierarchy). Sono accessibili mediante API, utilizzando i metodi di hello [FabricClient.HealthManager](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthmanager?view=azure-dotnet), i cmdlet di PowerShell e REST. Queste query restituiscono informazioni di stato completo sull'entità hello: hello aggregati lo stato di integrità, gli eventi di integrità di entità, gli stati di integrità figlio (se applicabile), non integro valutazioni (quando l'entità hello non integro) e le statistiche di integrità di elementi figlio (quando applicabile).
 
 > [!NOTE]
-> Un'entità integra viene restituita quando è popolata completamente nell'archivio integrità. L'entità deve essere attiva (non eliminata) e avere un report di sistema. Anche le entità padre nella catena della gerarchia devono avere report di sistema. Se una di queste condizioni non viene soddisfatta, le query relative all'integrità restituiscono un oggetto [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception) con [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound` che illustra il motivo per cui l'entità non viene restituita.
+> Un'entità di integrità viene restituita quando viene compilata completamente nell'archivio integrità hello. entità Hello deve essere attivo (non eliminata) e dispone di un report di sistema. Le entità padre nella catena della gerarchia hello devono inoltre disporre di report del sistema. Se una di queste condizioni non vengono soddisfatti, integrità hello query restituiscono un [FabricException](https://docs.microsoft.com/dotnet/api/system.fabric.fabricexception) con [FabricErrorCode](https://docs.microsoft.com/dotnet/api/system.fabric.fabricerrorcode) `FabricHealthEntityNotFound` che mostra perché non vengono restituite entità hello.
 >
 >
 
-Le query di integrità richiedono il passaggio nell'identificatore dell'entità, che dipende dal tipo di entità. Le query accettano parametri dei criteri di integrità facoltativi. Se non sono specificati, per la valutazione vengono usati i [criteri di integrità](service-fabric-health-introduction.md#health-policies) dal manifesto del cluster o dell'applicazione. Se i manifesti non contengono una definizione per i criteri di integrità, per la valutazione vengono usati i criteri di integrità predefiniti. I criteri di integrità predefiniti non tollerano errori. Le query accettano anche filtri per restituire solo elementi figlio o eventi parziali, quelli che rispettano i filtri specificati. Un altro filtro consente di escludere le statistiche relative agli elementi figlio.
+Identificatore dell'entità hello, che dipende dal tipo di entità hello deve passare query sull'integrità Hello. le query Hello accettano parametri dei criteri di integrità facoltativi. Se non è stato specificato alcun criterio di integrità, hello [criteri di integrità](service-fabric-health-introduction.md#health-policies) dal manifesto del cluster o l'applicazione hello vengono utilizzati per la valutazione. Se i manifesti hello non contengono una definizione di criteri di integrità, criteri di integrità hello predefiniti vengono utilizzati per la valutazione. criteri di integrità Hello predefinito non essere in grado di tollerare eventuali errori. le query Hello accettano anche i filtri per la restituzione solo elementi figlio parziali o eventi: hello quelli che rispettano hello i filtri specificati. Un altro filtro consente di escludere le statistiche di hello elementi figlio.
 
 > [!NOTE]
-> Sul lato server vengono applicati i filtri di output, in modo che la dimensione della risposta al messaggio venga ridotta. È consigliabile usare i filtri di output per limitare i dati restituiti, invece di applicare filtri sul lato client.
+> i filtri di output di Hello vengono applicati sul lato server hello, pertanto le dimensioni di risposta messaggio hello sono ridotto. Si consiglia di utilizzare i filtri di output di hello toolimit hello dati restituito, anziché applicano filtri sul lato client hello.
 >
 >
 
 L'integrità di un'entità contiene quanto segue:
 
-* Lo stato di integrità aggregato dell'entità. Viene calcolato dall'archivio integrità in base ai report sull'integrità dell'entità, gli stati di integrità degli elementi figlio, se applicabili, e i criteri di integrità. Per altre informazioni, vedere [valutazione dell'integrità dell'entità](service-fabric-health-introduction.md#health-evaluation).  
-* Gli eventi di integrità dell'entità.
-* La raccolta degli stati di integrità di tutti gli elementi figlio per le entità che possono avere elementi figlio. Gli stati di integrità contengono l'identificatore dell'entità e lo stato di integrità aggregato. Per ottenere l'integrità completa per un elemento figlio, chiamare l'integrità di query per il tipo di entità figlio e passare l'identificatore dell'elemento figlio.
-* Le valutazioni non integre che puntano al report che ha attivato lo stato dell'entità, se l'entità non è integra. Le valutazioni sono ricorsive e contengono le valutazioni di integrità degli elementi figlio che hanno attivato lo stato di integrità corrente. Un watchdog ha segnalato ad esempio un errore in una replica. L'integrità dell'applicazione presenta una valutazione di non integrità a causa di un servizio non integro. Il servizio non è integro a causa di un errore di una partizione. La partizione non è integra a causa di un errore di una replica. La replica non è integra a causa del report di integrità di errore del watchdog.
-* Le statistiche di integrità per tutti i tipi figlio delle entità che hanno elementi figlio. L'integrità del cluster mostra ad esempio il numero totale di applicazioni, servizi, partizioni, repliche ed entità distribuite nel cluster. L'integrità del servizio mostra il numero totale di partizioni e repliche nel servizio specificato.
+* Hello lo stato di integrità aggregato dell'entità hello. Calcolato dall'archivio integrità hello basato su rapporti di integrità di entità, gli stati di integrità figlio (se applicabile) e criteri di integrità. Per altre informazioni, vedere [valutazione dell'integrità dell'entità](service-fabric-health-introduction.md#health-evaluation).  
+* eventi di integrità Hello nell'entità hello.
+* raccolta di Hello degli stati di integrità di tutti gli elementi figlio per le entità hello possono avere elementi figlio. gli stati di integrità Hello contengono gli identificatori di entità e hello stato di integrità aggregato. tooget stato completo per un elemento figlio, chiamare integrità query hello per tipo di entità figlio hello e passare identificatore figlio hello.
+* le valutazioni di tipo non integro Hello toohello tale punto del report che attivata stato hello dell'entità di hello, se l'entità hello non è integro. valutazioni Hello sono ricorsivi, contenente valutazioni dell'integrità hello figli che ha attivato lo stato di integrità. Un watchdog ha segnalato ad esempio un errore in una replica. integrità applicazione Hello viene illustrata una versione di valutazione non integro scadenza tooan servizio di tipo non integro. servizio di Hello è danneggiato a causa di partizione tooa in errore. partizione di Hello è danneggiato a causa di replica tooa in errore. non è integro scadenza rapporto di stato di errore watchdog toohello replica Hello.
+* statistiche di integrità Hello per tutti i tipi di elementi figlio di entità hello che hanno elementi figlio. Ad esempio, l'integrità del cluster Mostra hello il numero totale di applicazioni, servizi, partizioni, le repliche e distribuiti entità cluster hello. Stato servizio Mostra numero totale di hello di partizioni e repliche in hello servizio specificato.
 
 ## <a name="get-cluster-health"></a>Get cluster health
-Restituisce l'integrità dell'entità cluster e contiene gli stati di integrità di applicazioni e nodi, elementi figlio del cluster. Input:
+Restituisce l'integrità di entità cluster hello hello e contiene hello gli stati di integrità delle applicazioni e i nodi (elementi figlio del cluster hello). Input:
 
-* [Facoltativo] Criteri di integrità del cluster usati per valutare i nodi e gli eventi del cluster.
-* [Facoltativo] Mappa dei criteri di integrità dell'applicazione con criteri di integrità usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per eventi, nodi e applicazioni che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi, i nodi e le applicazioni, indipendentemente dal filtro.
-* [Facoltativo] Filtrare per escludere le statistiche di integrità.
-* [Facoltativo] Filtrare per includere le statistiche di integrità di fabric:/System. Applicabile solo quando le statistiche di integrità non sono escluse. Per impostazione predefinita, le statistiche di integrità includono solo le statistiche per le applicazioni utente e non per l'applicazione System.
+* Criteri di integrità del cluster [facoltativo] hello utilizzato nodi hello tooevaluate e gli eventi cluster hello.
+* Mappa criteri di integrità dell'applicazione di hello [facoltativo], con i criteri di integrità hello utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per eventi, i nodi e le applicazioni che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi, i nodi e le applicazioni sono lo stato dell'entità aggregati hello tooevaluate utilizzato, indipendentemente dal filtro hello.
+* [Facoltativo] Filtrare le statistiche di integrità tooexclude.
+* [Facoltativo] Filtrare tooinclude fabric: / statistiche di integrità del sistema in hello delle statistiche di integrità. Questo campo è applicabile solo quando non sono escluse le statistiche di integrità hello. Per impostazione predefinita, le statistiche di integrità hello includono solo le statistiche per le applicazioni utente e non un'applicazione hello del sistema.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità del cluster, creare un oggetto `FabricClient` e chiamare il metodo [GetClusterHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) sul relativo **HealthManager**.
+tooget integrità del cluster, creare un `FabricClient` chiamata hello e [GetClusterHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthasync) metodo relativo **HealthManager**.
 
-La chiamata seguente permette di ottenere l'integrità del cluster:
+Hello chiamata seguente ottiene l'integrità del cluster hello:
 
 ```csharp
 ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthAsync();
 ```
 
-Il codice seguente permette di ottenere l'integrità del cluster usando criteri di integrità del cluster personalizzati e filtri per nodi e applicazioni. Specifica che le statistiche di integrità includono le statistiche di fabric:/System. Crea un oggetto [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription), che contiene le informazioni di input.
+Hello codice seguente ottiene l'integrità del cluster hello utilizzando un criterio di integrità del cluster personalizzato e i filtri per i nodi e applicazioni. Specifica che le statistiche di integrità hello includono infrastruttura hello: / statistiche di sistema. Crea [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthquerydescription), che contiene informazioni di input hello.
 
 ```csharp
 var policy = new ClusterHealthPolicy()
@@ -141,11 +141,11 @@ ClusterHealth clusterHealth = await fabricClient.HealthManager.GetClusterHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità del cluster è [Get-ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+integrità del cluster hello tooget cmdlet Hello è [Get ServiceFabricClusterHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Lo stato del cluster è costituito da cinque nodi, dall'applicazione di sistema e da fabric:/WordCount, configurati come descritto.
+Hello stato del cluster hello è cinque nodi, l'applicazione di sistema hello e fabric: / WordCount configurato come descritto.
 
-I cmdlet seguenti ottengono l'integrità del cluster con criteri di integrità predefiniti. Lo stato di integrità aggregato è di tipo avviso, perché per l'applicazione fabric:/WordCount è stato generato un avviso. Notare come le valutazioni non integre forniscano dettagli sulle condizioni che hanno attivato lo stato di integrità aggregato.
+Hello cmdlet seguente ottiene l'integrità del cluster tramite criteri di integrità predefinito. Hello stato di integrità aggregato è avviso, in quanto hello fabric: / applicazione WordCount è in avviso. Si noti come valutazioni integro hello forniscono dettagli sulle condizioni di hello che ha attivato integrità hello aggregato.
 
 ```xml
 PS D:\ServiceFabric> Get-ServiceFabricClusterHealth
@@ -202,7 +202,7 @@ HealthStatistics        :
                           Application           : 0 Ok, 1 Warning, 0 Error
 ```
 
-Il cmdlet PowerShell seguente ottiene lo stato di integrità del cluster con i criteri dell'applicazione personalizzati. Filtra i risultati per ottenere solo le applicazioni e i nodi con stato di errore o avviso. Di conseguenza, non vengono restituiti nodi, perché sono tutti integri. Solo l'applicazione fabric:/WordCount rispetta il filtro delle applicazioni. Poiché i criteri personalizzati specificano di considerare gli avvisi come errori per l'applicazione fabric:/WordCount, questa viene valutata in stato di errore e lo stesso accade per il cluster.
+Hello cmdlet di PowerShell seguente ottiene hello integrità del cluster hello utilizzando un criterio di applicazione personalizzata. Filtra i risultati tooget solo le applicazioni e i nodi in errore o avviso. Di conseguenza, non vengono restituiti nodi, perché sono tutti integri. Solo hello fabric: / applicazione WordCount rispetta filtro applicazioni hello. Poiché i criteri personalizzati di hello specificano tooconsider avvisi come errori per l'infrastruttura di hello: / applicazione WordCount, un'applicazione hello viene valutata come in errore e pertanto è hello cluster.
 
 ```powershell
 PS D:\ServiceFabric> $appHealthPolicy = New-Object -TypeName System.Fabric.Health.ApplicationHealthPolicy
@@ -239,25 +239,25 @@ HealthEvents            : None
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un cluster è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità del cluster con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-node-health"></a>Get node health
-Restituisce l'integrità di un'entità nodo e contiene gli eventi di integrità segnalati sul nodo. Input:
+Restituisce hello integrità di un'entità del nodo e contiene gli eventi di integrità hello segnalati nel nodo hello. Input:
 
-* [Obbligatorio] Nome del nodo che identifica il nodo.
-* [Facoltativo] Impostazioni dei criteri di integrità usate per valutare l'integrità.
-* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi, indipendentemente dal filtro.
+* Nome del nodo hello [obbligatorio] che identifica il nodo hello.
+* Impostazioni dei criteri di integrità del cluster [facoltativo] hello utilizzato tooevaluate integrità.
+* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi sono di integrità aggregato dell'entità di hello tooevaluate utilizzato, indipendentemente dal filtro hello.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità del nodo tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) sul relativo HealthManager.
+integrità del nodo tooget tramite hello API, creare un `FabricClient` chiamata hello e [GetNodeHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getnodehealthasync) metodo relativo HealthManager.
 
-Il codice seguente permette di ottenere l'integrità del nodo per il nome del nodo specificato:
+Hello codice seguente ottiene integrità del nodo per il nome di nodo specificato hello hello:
 
 ```csharp
 NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(nodeName);
 ```
 
-Il codice seguente permette di ottenere l'integrità del nodo per il nome del nodo specificato e passa un filtro eventi e criteri personalizzati tramite [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription):
+Hello codice seguente ottiene integrità del nodo hello per hello specificato nome di nodo e passa nel filtro di eventi e criteri personalizzati tramite [NodeHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.nodehealthquerydescription):
 
 ```csharp
 var queryDescription = new NodeHealthQueryDescription(nodeName)
@@ -270,8 +270,8 @@ NodeHealth nodeHealth = await fabricClient.HealthManager.GetNodeHealthAsync(quer
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità del nodo è [Get-ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
-I cmdlet seguenti ottengono l'integrità del nodo con criteri di integrità predefiniti:
+integrità del nodo hello tooget cmdlet Hello è [Get ServiceFabricNodeHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnodehealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
+Hello seguente cmdlet Ottiene l'integrità del nodo hello tramite criteri di integrità predefinito:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNodeHealth _Node_1
@@ -293,7 +293,7 @@ HealthEvents          :
                         Transitions           : Error->Ok = 7/13/2017 4:40:47 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
-Il cmdlet seguente ottiene lo stato di tutti i nodi del cluster:
+Hello cmdlet seguente ottiene hello integrità di tutti i nodi nel cluster hello:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricNode | Get-ServiceFabricNodeHealth | select NodeName, AggregatedHealthState | ft -AutoSize
@@ -308,26 +308,26 @@ _Node_0                     Ok
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un nodo è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità del nodo con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-node-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-application-health"></a>Ottieni lo stato dell'integrità dell'applicazione
-Restituisce lo stato di un'entità applicazione. Contiene gli stati di integrità dell'applicazione distribuita e gli elementi figlio del servizio. Input:
+Restituisce hello integrità di un'entità di applicazione. Contiene gli stati di integrità hello di un'applicazione hello distribuito e gli elementi figlio del servizio. Input:
 
-* [Obbligatorio] Nome dell'applicazione (URI) che identifica l'applicazione.
-* [Facoltativo] Criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per eventi, servizi e applicazioni distribuite che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi, i servizi e le applicazioni distribuite, indipendentemente dal filtro.
-* [Facoltativo] Filtrare per escludere le statistiche di integrità. Se non specificato, le statistiche di integrità includono il numero di stati ok, di avviso e di errore per tutti gli elementi figlio dell'applicazione: servizi, partizioni, repliche, applicazioni distribuite e pacchetti del servizio distribuiti.
+* Hello [obbligatorio] nome dell'applicazione (URI) che identifica un'applicazione hello.
+* Criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi, servizi e applicazioni distribuite che specificano le voci che sono di interesse e devono essere restituiti nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi, servizi e applicazioni distribuite sono lo stato dell'entità aggregati hello tooevaluate utilizzato, indipendentemente dal filtro hello.
+* [Facoltativo] Filtrare le statistiche di integrità hello tooexclude. Se non specificato, le statistiche di integrità hello includono hello ok, avviso e il numero di errore per tutti gli elementi figlio dell'applicazione: servizi, partizioni e repliche, le applicazioni distribuite e distribuiti i pacchetti del servizio.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità dell'applicazione, creare un oggetto `FabricClient` e chiamare il metodo [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) sul relativo HealthManager.
+integrità applicazione tooget, creare un `FabricClient` chiamata hello e [GetApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getapplicationhealthasync) metodo relativo HealthManager.
 
-Il codice seguente permette di ottenere l'integrità dell'applicazione per il nome dell'applicazione (URI) specificato:
+Hello codice seguente ottiene lo stato di applicazioni hello per nome dell'applicazione specificato hello (URI):
 
 ```csharp
 ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplicationHealthAsync(applicationName);
 ```
 
-Il codice seguente permette di ottenere l'integrità dell'applicazione per il nome dell'applicazione (URI) specificato, con filtri e criteri personalizzati specificati tramite [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription).
+Hello codice seguente ottiene integrità applicazione hello per nome dell'applicazione specificato hello (URI), con i filtri e i criteri personalizzati specificati tramite [ApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.applicationhealthquerydescription).
 
 ```csharp
 HealthStateFilter warningAndErrors = HealthStateFilter.Error | HealthStateFilter.Warning;
@@ -356,9 +356,9 @@ ApplicationHealth applicationHealth = await fabricClient.HealthManager.GetApplic
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità dell'applicazione è [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+l'integrità dell'applicazione Hello cmdlet tooget hello è [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Il cmdlet seguente restituisce l'integrità dell'applicazione **fabric:/WordCount** :
+il cmdlet seguente Hello restituisce integrità hello di hello **fabric: / WordCount** applicazione:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount
@@ -426,7 +426,7 @@ HealthStatistics                :
                                   DeployedApplication   : 5 Ok, 0 Warning, 0 Error
 ```
 
-Il cmdlet PowerShell seguente passa i criteri personalizzati. Filtra anche gli elementi figlio e gli eventi.
+Hello seguendo i passaggi di cmdlet di PowerShell nei criteri personalizzati. Filtra anche gli elementi figlio e gli eventi.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth -ApplicationName fabric:/WordCount -ConsiderWarningAsError $true -ServicesFilter Error -EventsFilter Error -DeployedApplicationsFilter Error -ExcludeHealthStatistics
@@ -454,26 +454,26 @@ HealthEvents                    : None
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un'applicazione è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità dell'applicazione con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-an-application-by-using-an-application-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-service-health"></a>Get service health
-Restituisce lo stato di un'entità di servizio. Contiene gli stati di integrità della partizione. Input:
+Restituisce hello integrità di un'entità servizio. Contiene gli stati di integrità di hello partizione. Input:
 
-* [Obbligatorio] Nome del servizio (URI) che identifica il servizio.
-* [Facoltativo] Criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per eventi e partizioni che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi e tutte le partizioni, indipendentemente dal filtro.
-* [Facoltativo] Filtrare per escludere le statistiche di integrità. Se non specificato, le statistiche di integrità mostrano il numero di stati ok, di avviso e di errore per tutte le partizioni e le repliche del servizio.
+* Hello [obbligatorio] nome del servizio (URI) che identifica il servizio di hello.
+* Criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi e le partizioni che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi e le partizioni sono lo stato dell'entità aggregati hello tooevaluate utilizzato, indipendentemente dal filtro hello.
+* [Facoltativo] Filtrare le statistiche di integrità tooexclude. Se non specificato, hello hello Mostra le statistiche di integrità ok, avviso e errore numero per tutte le partizioni e repliche del servizio hello.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità del servizio tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) sul relativo HealthManager.
+integrità del servizio tooget attraverso hello API, creare un `FabricClient` chiamata hello e [GetServiceHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getservicehealthasync) metodo relativo HealthManager.
 
-L'esempio seguente ottiene l'integrità di un servizio con il nome di servizio (URI) specificato:
+Hello seguente esempio ottiene hello integrità di un servizio con il nome di servizio specifico (URI):
 
 ```charp
 ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthAsync(serviceName);
 ```
 
-Il codice seguente permette di ottenere l'integrità del servizio per il nome del servizio (URI) specificato, con filtri e criteri personalizzati specificati tramite [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription):
+il codice seguente Hello Ottiene hello dell'integrità del servizio per nome del servizio specificato hello (URI), specificando i filtri e i criteri personalizzati tramite [ServiceHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicehealthquerydescription):
 
 ```csharp
 var queryDescription = new ServiceHealthQueryDescription(serviceName)
@@ -486,9 +486,9 @@ ServiceHealth serviceHealth = await fabricClient.HealthManager.GetServiceHealthA
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità del servizio è [Get-ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+Hello cmdlet tooget hello servizio integrità è [Get ServiceFabricServiceHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicehealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Il cmdlet seguente ottiene l'integrità del servizio usando i criteri di integrità predefiniti:
+Hello seguente cmdlet Ottiene integrità servizio hello tramite criteri di integrità predefiniti:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricServiceHealth -ServiceName fabric:/WordCount/WordCountService
@@ -526,27 +526,27 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un servizio è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità del servizio con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-partition-health"></a>Get partition health
-Restituisce lo stato di un'entità partizione. Contiene gli stati di integrità della replica. Input:
+Restituisce hello integrità di un'entità di partizione. Contiene gli stati di integrità replica hello. Input:
 
-* [Obbligatorio] ID partizione (GUID) che identifica la partizione.
-* [Facoltativo] Criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per eventi e repliche che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi e tutte le repliche, indipendentemente dal filtro.
-* [Facoltativo] Filtrare per escludere le statistiche di integrità. Se non specificato, le statistiche di integrità mostrano il numero di repliche con stati ok, di avviso e di errore.
+* Partizione hello [obbligatorio] ID (GUID) che identifica la partizione hello.
+* Criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi e le repliche che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi e le repliche sono lo stato dell'entità aggregati hello tooevaluate utilizzato, indipendentemente dal filtro hello.
+* [Facoltativo] Filtrare le statistiche di integrità tooexclude. Se non specificato, le statistiche di integrità hello mostrano il numero di repliche ok, avviso ed errore stati.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità della partizione tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) sul relativo HealthManager. Per specificare parametri facoltativi, creare [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription).
+integrità della partizione tooget tramite hello API, creare un `FabricClient` chiamata hello e [GetPartitionHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getpartitionhealthasync) metodo relativo HealthManager. parametri facoltativi toospecify, creare [PartitionHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.partitionhealthquerydescription).
 
 ```csharp
 PartitionHealth partitionHealth = await fabricClient.HealthManager.GetPartitionHealthAsync(partitionId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità della partizione è [Get-ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+integrità della partizione hello tooget cmdlet Hello è [Get ServiceFabricPartitionHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricpartitionhealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Il cmdlet seguente ottiene l'integrità di tutte le partizioni del servizio **fabric:/WordCount/WordCountService** ed esclude tramite filtro gli stati di integrità delle repliche:
+Hello seguente ottiene integrità hello per tutte le partizioni di hello **fabric: / WordCount/WordCountService** servizio ed esclude quelli gli stati di integrità di replica:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricPartitionHealth -ReplicasFilter None
@@ -585,8 +585,8 @@ HealthEvents          :
                         SentAt                : 7/13/2017 6:35:17 PM
                         ReceivedAt            : 7/13/2017 6:35:18 PM
                         TTL                   : 00:01:05
-                        Description           : The Load Balancer was unable to find a placement for one or more of the Service's Replicas:
-                        Secondary replica could not be placed due to the following constraints and properties:  
+                        Description           : hello Load Balancer was unable toofind a placement for one or more of hello Service's Replicas:
+                        Secondary replica could not be placed due toohello following constraints and properties:  
                         TargetReplicaSetSize: 7
                         Placement Constraint: N/A
                         Parent Service: N/A
@@ -618,26 +618,26 @@ HealthStatistics      :
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di una partizione è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità della partizione con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-partition-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-replica-health"></a>Get replica health
-Restituisce l'integrità di una replica di un servizio con stato o di un'istanza di un servizio senza stato. Input:
+Restituisce l'integrità di hello di una replica del servizio con stato o un'istanza del servizio senza stato. Input:
 
-* [Obbligatorio] ID partizione (GUID) e ID replica che identifica la replica.
-* [Facoltativo] Parametri dei criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi, indipendentemente dal filtro.
+* Hello [obbligatorio] ID (GUID) e replica ID partizione che identifica hello replica.
+* Parametri dei criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi sono di integrità aggregato dell'entità di hello tooevaluate utilizzato, indipendentemente dal filtro hello.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità della replica tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) sul relativo HealthManager. Per specificare parametri avanzati, usare [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription).
+integrità della replica hello tooget tramite hello API, creare un `FabricClient` chiamata hello e [GetReplicaHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getreplicahealthasync) metodo relativo HealthManager. Utilizzare parametri avanzati toospecify [ReplicaHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.replicahealthquerydescription).
 
 ```csharp
 ReplicaHealth replicaHealth = await fabricClient.HealthManager.GetReplicaHealthAsync(partitionId, replicaId);
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità della replica è [Get-ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+integrità della replica hello tooget cmdlet Hello è [Get ServiceFabricReplicaHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricreplicahealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Il cmdlet seguente ottiene l'integrità della replica primaria per tutte le partizioni del servizio.
+Hello cmdlet seguente ottiene hello integrità della replica primaria di hello per tutte le partizioni del servizio hello:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricPartition fabric:/WordCount/WordCountService | Get-ServiceFabricReplica | where {$_.ReplicaRole -eq "Primary"} | Get-ServiceFabricReplicaHealth
@@ -661,18 +661,18 @@ HealthEvents          :
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di una replica è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità della replica con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-replica-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-deployed-application-health"></a>Ottieni lo stato dell'integrità delle applicazioni distribuite.
-Restituisce l’integrità di un’applicazione distribuita in un’entità nodo. Contiene gli stati di integrità del pacchetto di servizi distribuito. Input:
+Restituisce hello integrità di un'applicazione distribuita in un'entità del nodo. Contiene gli stati di integrità pacchetto servizio hello distribuito. Input:
 
-* [Obbligatorio] Nome dell'applicazione (URI) e nome del nodo (stringa) che identificano l'applicazione distribuita
-* [Facoltativo] Criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per eventi e pacchetti di servizi distribuiti che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi e i pacchetti di servizi distribuiti, indipendentemente dal filtro.
-* [Facoltativo] Filtrare per escludere le statistiche di integrità. Se non specificato, le statistiche di integrità mostrano il numero di pacchetti del servizio distribuiti con stati di integrità ok, di avviso e di errore.
+* Nome dell'applicazione hello [obbligatorio] (URI) e il nome di nodo (stringa) che identificano hello applicazione distribuita.
+* Criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi e i pacchetti del servizio distribuiti che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi e i pacchetti del servizio distribuito sono lo stato dell'entità aggregati hello tooevaluate utilizzato, indipendentemente dal filtro hello.
+* [Facoltativo] Filtrare le statistiche di integrità tooexclude. Se non specificato, le statistiche di integrità hello mostrano il numero di hello di pacchetti del servizio distribuiti negli Stati di integrità ok, avviso e di errore.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità di un'applicazione distribuita in un nodo tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) sul relativo HealthManager. Per specificare parametri facoltativi, usare [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription).
+integrità hello tooget di un'applicazione distribuita in un nodo tramite hello API, creare un `FabricClient` chiamata hello e [GetDeployedApplicationHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedapplicationhealthasync) metodo relativo HealthManager. Utilizzare parametri facoltativi toospecify, [DeployedApplicationHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedapplicationhealthquerydescription).
 
 ```csharp
 DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedApplicationHealthAsync(
@@ -680,9 +680,9 @@ DeployedApplicationHealth health = await fabricClient.HealthManager.GetDeployedA
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità dell'applicazione distribuita è [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) . Per sapere dove viene distribuita un'applicazione, eseguire [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) e osservare gli elementi figlio dell'applicazione distribuita.
+è Hello integrità dell'applicazione hello distribuito cmdlet tooget [Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet. toofind out in cui viene distribuita un'applicazione, eseguire [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) ed esaminerà hello distribuiti gli elementi figlio dell'applicazione.
 
-Il cmdlet seguente ottiene l'integrità dell'applicazione **fabric:/WordCount** distribuita nel nodo **_Node_2**.
+il cmdlet seguente Hello Ottiene integrità hello di hello **fabric: / WordCount** applicazione distribuita in **_Node_2**.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplicationHealth -ApplicationName fabric:/WordCount -NodeName _Node_0
@@ -710,7 +710,7 @@ HealthEvents                       :
                                      SentAt                : 7/13/2017 5:57:06 PM
                                      ReceivedAt            : 7/13/2017 5:57:17 PM
                                      TTL                   : Infinite
-                                     Description           : The application was activated successfully.
+                                     Description           : hello application was activated successfully.
                                      RemoveWhenExpired     : False
                                      IsExpired             : False
                                      Transitions           : Error->Ok = 7/13/2017 5:57:17 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -720,17 +720,17 @@ HealthStatistics                   :
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un'applicazione distribuita è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità dell'applicazione distribuita con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-deployed-application-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="get-deployed-service-package-health"></a>Get deployed service package health
-Restituisce lo stato di un'entità di pacchetto di servizi distribuito. Input:
+Restituisce hello integrità di un'entità di pacchetto del servizio distribuito. Input:
 
-* [Obbligatorio] Nome dell'applicazione (URI), nome del nodo (stringa) e nome del manifesto del servizio (stringa) che identificano il pacchetto di servizi distribuito.
-* [Facoltativo] Criteri di integrità dell'applicazione usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse che devono essere restituite nel risultato (ad esempio, solo gli errori o avvisi ed errori). Per valutare l'integrità aggregata dell'entità, vengono usati tutti gli eventi, indipendentemente dal filtro.
+* Nome dell'applicazione hello [obbligatorio] (URI), il nome di nodo (stringa) e nome del manifesto del servizio (string) che identificano hello distribuiti pacchetto del servizio.
+* Criteri di integrità dell'applicazione hello [facoltativo] utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per gli eventi che specificano le voci di interesse e devono essere restituite nel risultato hello (ad esempio, solo gli errori o avvisi e gli errori). Tutti gli eventi sono di integrità aggregato dell'entità di hello tooevaluate utilizzato, indipendentemente dal filtro hello.
 
 ### <a name="api"></a>API
-Per ottenere l'integrità di un pacchetto del servizio distribuito tramite l'API, creare un oggetto `FabricClient` e chiamare il metodo [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) sul relativo HealthManager. Per specificare parametri facoltativi, usare [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription).
+integrità hello tooget di un pacchetto del servizio distribuito tramite hello API, creare un `FabricClient` chiamata hello e [GetDeployedServicePackageHealthAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getdeployedservicepackagehealthasync) metodo relativo HealthManager. Utilizzare parametri facoltativi toospecify, [DeployedServicePackageHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.deployedservicepackagehealthquerydescription).
 
 ```csharp
 DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeployedServicePackageHealthAsync(
@@ -738,9 +738,9 @@ DeployedServicePackageHealth health = await fabricClient.HealthManager.GetDeploy
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità del pacchetto del servizio distribuito è [Get-ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) . Per verificare dove viene distribuita un'applicazione, eseguire [Get-ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) e osservare le applicazioni distribuite. Per verificare quali pacchetti di servizi sono contenuti in un'applicazione, esaminare gli elementi figlio del pacchetto del servizio distribuito nell'output di [Get-ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps) .
+è Hello integrità del pacchetto del servizio distribuito hello tooget cmdlet [Get ServiceFabricDeployedServicePackageHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackagehealth). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet. toosee in cui viene distribuita un'applicazione, eseguire [Get ServiceFabricApplicationHealth](/powershell/module/servicefabric/get-servicefabricapplicationhealth?view=azureservicefabricps) ed esaminare le applicazioni distribuita hello. toosee i pacchetti del servizio in un'applicazione, cercare nella hello distribuito gli elementi figlio del pacchetto di servizio in hello [Get ServiceFabricDeployedApplicationHealth](/powershell/module/servicefabric/get-servicefabricdeployedapplicationhealth?view=azureservicefabricps) output.
 
-Il cmdlet seguente permette di ottenere l'integrità del pacchetto del servizio **WordCountServicePkg** dell'applicazione **fabric:/WordCount** distribuita in **Node2**. L'entità include report **System.Hosting** per l'attivazione corretta del pacchetto del servizio e del punto di ingresso, nonché per la registrazione corretta del tipo di servizio.
+il cmdlet seguente Hello Ottiene integrità hello di hello **WordCountServicePkg** pacchetto del servizio di hello **fabric: / WordCount** applicazione distribuita in **_Node_2**. entità Hello è **System.Hosting** report per l'attivazione del pacchetto di servizio e del punto di ingresso e tipo di servizio di registrazione corretta.
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricDeployedApplication -ApplicationName fabric:/WordCount -NodeName _Node_2 | Get-ServiceFabricDeployedServicePackageHealth -ServiceManifestName WordCountServicePkg
@@ -759,7 +759,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServicePackage was activated successfully.
+                             Description           : hello ServicePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -771,7 +771,7 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:06 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The CodePackage was activated successfully.
+                             Description           : hello CodePackage was activated successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
@@ -783,51 +783,51 @@ HealthEvents               :
                              SentAt                : 7/13/2017 5:57:07 PM
                              ReceivedAt            : 7/13/2017 5:57:18 PM
                              TTL                   : Infinite
-                             Description           : The ServiceType was registered successfully.
+                             Description           : hello ServiceType was registered successfully.
                              RemoveWhenExpired     : False
                              IsExpired             : False
                              Transitions           : Error->Ok = 7/13/2017 5:57:18 PM, LastWarning = 1/1/0001 12:00:00 AM
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere l'integrità di un pacchetto del servizio distribuito è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere l'integrità del pacchetto del servizio distribuito con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-service-package-by-using-a-health-policy) che include criteri di integrità descritti nel corpo di hello.
 
 ## <a name="health-chunk-queries"></a>Query sul blocco di integrità
-Le query sul blocco di integrità possono restituire gli elementi figlio di un cluster a più livelli (in modo ricorsivo) per ogni filtro di input. Supporta i filtri avanzati che consentono una notevole flessibilità nella scelta degli elementi figlio da restituire. I filtri consentono di specificare gli elementi figlio in base a un identificatore univoco o ad altri identificatori di gruppo e/o stati di integrità. Per impostazione predefinita, non sono inclusi elementi figlio, a differenza dei comandi relativi all'integrità che includono sempre gli elementi figlio di primo livello.
+query di blocchi sull'integrità Hello può restituire gli elementi figlio di un cluster a più livelli (ricorsivo), per i filtri di input. Supporta i filtri avanzati che consentono una notevole flessibilità nella scelta di elementi figlio di hello toobe restituito. i filtri di Hello possono specificare gli elementi figlio da un identificatore univoco hello o altri identificatori di gruppo e/o gli stati di integrità. Per impostazione predefinita, non è incluso, come i comandi toohealth anziché sempre includono gli elementi figlio di primo livello elementi figlio.
 
-Le [query sull'integrità](service-fabric-view-entities-aggregated-health.md#health-queries) restituiscono solo gli elementi figlio di primo livello dell'entità specificata per ogni filtro necessario. Per ottenere gli elementi figlio di un elemento figlio, è necessario chiamare API di integrità aggiuntive per ogni entità di interesse. Analogamente, per ottenere l'integrità di entità specifiche, è necessario chiamare un'API di integrità per ogni entità di interesse. I filtri avanzati per le query sui blocchi consentono di richiedere più elementi di interesse in una sola query, riducendo al minimo le dimensioni del messaggio e il numero di messaggi.
+Hello [query sull'integrità](service-fabric-view-entities-aggregated-health.md#health-queries) restituiti elementi figlio di primo livello solo di hello specificato entità per i filtri necessari. tooget hello figli dei figli di hello, è necessario chiamare integrità altre API per ogni entità di interesse. Analogamente, dello stato di hello tooget di entità specifico, è necessario chiamare uno stato API per ogni entità desiderata. Hello blocco query filtro avanzato consente toorequest più elementi di interesse in un'unica query, riducendo al minimo la dimensione dei messaggi hello e numero di hello di messaggi.
 
-Il vantaggio delle query sui blocchi sta nella possibilità di ottenere lo stato dell'integrità per più entità cluster, potenzialmente tutte le entità cluster a partire dalla radice richiesta, in una sola chiamata. È possibile esprimere query sull'integrità complesse, ad esempio:
+il valore di Hello di query di blocco hello è che è possibile ottenere lo stato di integrità per più cluster le entità (potenzialmente tutti i cluster entità a partire dalla radice obbligatorio) in un'unica chiamata. È possibile esprimere query sull'integrità complesse, ad esempio:
 
 * Restituzione solo delle applicazioni con errore e inclusione di tutti i servizi con avviso o errore per queste applicazioni. Per i servizi restituiti, inclusione di tutte le partizioni.
-* Restituzione solo dell'integrità di quattro applicazioni, specificate in base ai rispettivi nomi.
-* Restituzione solo dell'integrità delle applicazioni con un tipo di applicazione desiderato.
-* Restituzione di tutte le entità distribuite su un nodo. Restituisce tutte le applicazioni, tutte le applicazioni distribuite nel nodo specificato e tutti i pacchetti di servizio distribuiti nel nodo.
+* Restituire solo hello dello stato di quattro applicazioni, specificato con i relativi nomi.
+* Restituire solo hello dello stato di applicazioni di un tipo di applicazione desiderata.
+* Restituzione di tutte le entità distribuite su un nodo. Restituisce tutte le applicazioni, tutte le applicazioni distribuite nel nodo specificato hello e tutti i pacchetti hello distribuito servizio su tale nodo.
 * Restituzione di tutte le repliche con errore. Vengono restituiti tutti i servizi, le applicazioni e le partizioni e le sole repliche con errore.
 * Restituzione di tutte le applicazioni. Per un servizio specificato, inclusione di tutte le partizioni.
 
-La query sul blocco di integrità è attualmente esposta solo per l'entità del cluster. Restituisce un blocco di integrità del cluster che contiene:
+Attualmente, query di blocco integrità hello viene esposta solo per entità di cluster hello. Restituisce un blocco di integrità del cluster che contiene:
 
-* Lo stato di integrità aggregato del cluster.
-* L'elenco del blocco dello stato di integrità dei nodi che rispettano i filtri di input.
-* L'elenco del blocco dello stato di integrità delle applicazioni che rispettano i filtri di input. Ogni blocco dello stato di integrità dell'applicazione contiene un elenco di blocchi con tutti i servizi che rispettano i filtri di input e un elenco di blocchi con tutte le applicazioni distribuite che rispettano i filtri. Lo stesso vale per gli elementi figlio dei servizi e delle applicazioni distribuite. In questo modo, tutte le entità nel cluster possono essere potenzialmente restituite se richiesto, in modo gerarchico.
+* stato di integrità aggregato cluster Hello.
+* Hello integrità stato blocco elenco di nodi che rispettano i filtri di input.
+* Hello integrità stato blocco elenco di applicazioni che rispettano i filtri di input. Ogni blocco di stato di integrità dell'applicazione contiene un elenco di blocco con tutti i servizi che rispettano i filtri di input e un elenco di blocco con tutte le applicazioni distribuite che rispettano i filtri di hello. Uguale per gli elementi figlio hello dei servizi e applicazioni distribuite. In questo modo, tutte le entità nel cluster hello possono essere potenzialmente restituite se richiesto, in modo gerarchico.
 
 ### <a name="cluster-health-chunk-query"></a>Query sul blocco di integrità del cluster
-Restituisce l'integrità dell'entità cluster e contiene blocchi di stato dell'integrità gerarchici degli elementi figlio necessari. Input:
+Restituisce l'integrità di entità cluster hello hello e contiene blocchi di stato di integrità gerarchica hello di figli obbligatori. Input:
 
-* [Facoltativo] Criteri di integrità del cluster usati per valutare i nodi e gli eventi del cluster.
-* [Facoltativo] Mappa dei criteri di integrità dell'applicazione con criteri di integrità usati per sostituire i criteri del manifesto dell'applicazione.
-* [Facoltativo] Filtri per i nodi e per le applicazioni che specificano le voci di interesse e da restituire nel risultato. I filtri sono specifici per un'entità/un gruppo di entità o sono applicabili a tutte le entità a tale livello. L'elenco di filtri può contenere un filtro generale e/o filtri per identificatori specifici per entità dettagliate restituite dalla query. Se l'elenco è vuoto, gli elementi figlio non vengono restituiti per impostazione predefinita.
-  Per altre informazioni sui filtri, vedere [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) e [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter). I filtri dell'applicazione possono specificare in modo ricorsivo filtri avanzati per gli elementi figlio.
+* Criteri di integrità del cluster [facoltativo] hello utilizzato nodi hello tooevaluate e gli eventi cluster hello.
+* Mappa criteri di integrità dell'applicazione di hello [facoltativo], con i criteri di integrità hello utilizzato Criteri di manifesto dell'applicazione hello toooverride.
+* [Facoltativo] Filtri per i nodi e le applicazioni che specificano le voci di interesse e devono essere restituite nel risultato hello. i filtri di Hello sono entità tooan specifico/gruppo di entità o entità tooall applicabile a tale livello. elenco di Hello dei filtri può contenere un filtro generale e/o i filtri per le entità con granularità fine toofine identificatori specifici restituiti dalla query hello. Se vuoto, gli elementi figlio hello non vengono restituiti per impostazione predefinita.
+  Ulteriori informazioni sui filtri hello [NodeHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.nodehealthstatefilter) e [ApplicationHealthStateFilter](https://docs.microsoft.com/dotnet/api/system.fabric.health.applicationhealthstatefilter). in modo ricorsivo di Hello applicazione filtri possono specificare i filtri avanzati per gli elementi figlio.
 
-I risultati del blocco includono gli elementi figlio che rispettano i filtri.
+il risultato di blocco Hello include elementi figlio di hello che rispettano i filtri di hello.
 
-Analogamente, la query sul blocco non restituisce valutazioni non integre o eventi dell'entità. Tali informazioni aggiuntive possono essere ottenute usando la query sull'integrità del cluster esistente.
+Attualmente, hello blocco restituiti valutazioni non integro o eventi di entità. Informazioni aggiuntive possono essere ottenuti utilizzando query di integrità del cluster esistente hello.
 
 ### <a name="api"></a>API
-Per ottenere il blocco di integrità del cluster, creare un oggetto `FabricClient` e chiamare il metodo [GetClusterHealthChunkAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) sul relativo **HealthManager**. È possibile passare [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) per descrivere i criteri di integrità e i filtri avanzati.
+integrità del cluster tooget blocco, creare un `FabricClient` chiamata hello e [GetClusterHealthChunkAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.healthclient.getclusterhealthchunkasync) metodo relativo **HealthManager**. È possibile passare [ClusterHealthQueryDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.clusterhealthchunkquerydescription) toodescribe criteri di integrità e filtri avanzati.
 
-Il codice seguente permette di ottenere il blocco di integrità del cluster con filtri avanzati.
+Hello codice seguente ottiene il blocco di integrità del cluster con i filtri avanzati.
 
 ```csharp
 var queryDescription = new ClusterHealthChunkQueryDescription();
@@ -857,7 +857,7 @@ var wordCountServiceFilter = new ServiceHealthStateFilter()
 };
 wordCountServiceFilter.PartitionFilters.Add(wordCountServicePartitionFilter);
 
-// Application filter: for specific application, return no services except the ones of interest
+// Application filter: for specific application, return no services except hello ones of interest
 var wordCountApplicationFilter = new ApplicationHealthStateFilter()
     {
         // Always return fabric:/WordCount application
@@ -871,9 +871,9 @@ var result = await fabricClient.HealthManager.GetClusterHealthChunkAsync(queryDe
 ```
 
 ### <a name="powershell"></a>PowerShell
-Il cmdlet per ottenere l'integrità del cluster è [Get-ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk). Connettersi prima di tutto al cluster con il cmdlet [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) .
+integrità del cluster hello tooget cmdlet Hello è [Get ServiceFabricClusterChunkHealth](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterhealthchunk). In primo luogo, connettere il cluster di toohello utilizzando hello [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) cmdlet.
 
-Il codice seguente permette di ottenere solo i nodi in stato di errore, eccetto un nodo specifico che deve essere restituito sempre.
+Hello codice seguente ottiene i nodi solo se sono in errore, ad eccezione di un nodo specifico, deve sempre essere restituito.
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -881,7 +881,7 @@ $allFilter = [System.Fabric.Health.HealthStateFilter]::All;
 
 $nodeFilter1 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{HealthStateFilter=$errorFilter}
 $nodeFilter2 = New-Object System.Fabric.Health.NodeHealthStateFilter -Property @{NodeNameFilter="_Node_1";HealthStateFilter=$allFilter}
-# Create node filter list that will be passed in the cmdlet
+# Create node filter list that will be passed in hello cmdlet
 $nodeFilters = New-Object System.Collections.Generic.List[System.Fabric.Health.NodeHealthStateFilter]
 $nodeFilters.Add($nodeFilter1)
 $nodeFilters.Add($nodeFilter2)
@@ -899,7 +899,7 @@ NodeHealthStateChunks        :
 ApplicationHealthStateChunks : None
 ```
 
-Il cmdlet seguente permette di ottenere il blocco di cluster con filtri dell'applicazione.
+Hello seguente cmdlet Ottiene il blocco di cluster con i filtri di applicazione.
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -965,7 +965,7 @@ ApplicationHealthStateChunks :
                                         HealthState           : Error
 ```
 
-Il cmdlet seguente restituisce tutte le entità distribuite su un nodo.
+Hello cmdlet seguente restituisce entità tutti distribuite in un nodo.
 
 ```xml
 PS D:\ServiceFabric> $errorFilter = [System.Fabric.Health.HealthStateFilter]::Error;
@@ -1021,56 +1021,56 @@ ApplicationHealthStateChunks :
 ```
 
 ### <a name="rest"></a>REST
-Per ottenere il blocco di integrità di un cluster è possibile usare una [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks) o una [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster) che nel corpo include la descrizione di criteri di integrità.
+È possibile ottenere il blocco di integrità del cluster con un [richiesta GET](https://docs.microsoft.com/rest/api/servicefabric/get-the-health-of-a-cluster-using-health-chunks) o [richiesta POST](https://docs.microsoft.com/rest/api/servicefabric/health-of-cluster) che include criteri di integrità e i filtri avanzati descritti nel corpo di hello.
 
 ## <a name="general-queries"></a>Query generali
-Le query generali restituiscono l'elenco delle entità di Service Fabric di un tipo specificato. Le query vengono esposte tramite l'API con i metodi in **FabricClient.QueryManager**, tramite i cmdlet di PowerShell e REST. Queste query aggregano sottoquery da più componenti. Uno di questi è l' [archivio integrità](service-fabric-health-introduction.md#health-store), che popola lo stato di integrità aggregato per ogni risultato della query.  
+Le query generali restituiscono l'elenco delle entità di Service Fabric di un tipo specificato. Gli oggetti vengono esposti tramite API hello (tramite metodi hello sulla **FabricClient.QueryManager**), i cmdlet di PowerShell e REST. Queste query aggregano sottoquery da più componenti. Uno di essi è hello [archivio integrità](service-fabric-health-introduction.md#health-store), che popola hello aggregato dello stato di integrità per ogni risultato della query.  
 
 > [!NOTE]
-> Le query generali restituiscono lo stato di integrità aggregato dell'entità e non contengono i dati di integrità complessi. Se un'entità non è integra, è possibile procedere con query di integrità per ottenere tutte le informazioni di integrità, come gli eventi, gli stati di integrità degli elementi figlio e le valutazioni non integre.
+> Le query generale restituiscono hello aggregato di stato di integrità di entità hello e non contengono dati di integrità avanzati. Se un'entità non è integra, è possibile giungere a integrità query tooget tutte le informazioni di integrità, inclusi gli eventi, gli stati di integrità figlio e valutazioni non integro.
 >
 >
 
-Se le query generali restituiscono uno stato di integrità sconosciuto per un'entità, è possibile che l'archivio integrità non abbia dati completi sull'entità. È anche possibile che una sottoquery nell'archivio integrità non sia riuscita, ad esempio, si è verificato un errore di comunicazione o l'archivio integrità è stato limitato. Procedere con una query di integrità per l'entità. Se la sottoquery ha rilevato errori temporanei, ad esempio problemi di rete, questa query di completamento può riuscire. Può anche fornire altri dettagli dall'archivio integrità sui motivi che impediscono l'esposizione dell'entità.
+Se le query generale restituiscono uno stato sconosciuto per un'entità, è possibile che tale archivio integrità hello non dispone di dati completo sull'entità hello. È inoltre possibile che un archivio di integrità toohello sottoquery non è riuscito (ad esempio, si è verificato un errore di comunicazione o dell'archivio integrità hello è stata limitata). Follow-up con una query di integrità per entità hello. Se la sottoquery hello ha rilevato errori temporanei, ad esempio problemi di rete, questa query follow-up può essere completata. Può anche fornire ulteriori dettagli dall'archivio integrità hello sui motivi per cui non è esposta entità hello.
 
-Di seguito sono elencate le query che contengono **HealthState** per le entità:
+le query che contengono Hello **HealthState** per le entità sono:
 
-* Elenco dei nodi: restituisce i nodi elencati nel cluster (di paging).
+* Elenco di nodi: restituisce i nodi di elenco hello in cluster hello (paginato).
   * API: [FabricClient.QueryClient.GetNodeListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getnodelistasync)
   * PowerShell: Get-ServiceFabricNode
-* Elenco delle applicazioni: restituisce l'elenco di applicazioni nel cluster (di paging).
+* Elenco di applicazioni: elenco di hello restituisce delle applicazioni in cluster hello (paginata).
   * API: [FabricClient.QueryClient.GetApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getapplicationlistasync)
   * PowerShell: Get-ServiceFabricApplication
-* Elenco dei servizi: restituisce l'elenco dei servizi in un'applicazione (di paging).
+* Elenco di servizio: elenco di hello restituisce dei servizi in un'applicazione (paginata).
   * API: [FabricClient.QueryClient.GetServiceListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getservicelistasync)
   * PowerShell: Get-ServiceFabricService
-* Elenco delle partizioni: restituisce l'elenco delle partizioni in un servizio (di paging).
+* Elenco partizioni: elenco di hello restituisce delle partizioni in un servizio (paginata).
   * API: [FabricClient.QueryClient.GetPartitionListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getpartitionlistasync)
   * PowerShell: Get-ServiceFabricPartition
-* Elenco delle repliche: restituisce l'elenco delle repliche in una partizione (di paging).
+* Elenco di replica: elenco di hello restituisce delle repliche in una partizione (paginata).
   * API: [FabricClient.QueryClient.GetReplicaListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getreplicalistasync)
   * PowerShell: Get-ServiceFabricReplica
-* Elenco delle applicazioni distribuite: restituisce l'elenco delle applicazioni distribuite in un nodo.
+* Elenco di applicazioni distribuite: elenco di hello restituisce delle applicazioni distribuite in un nodo.
   * API: [FabricClient.QueryClient.GetDeployedApplicationListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedapplicationlistasync)
   * PowerShell: Get-ServiceFabricDeployedApplication
-* Elenco dei pacchetti di servizi distribuiti: restituisce l'elenco dei pacchetti di servizi in un'applicazione distribuita.
+* Elenco dei pacchetti del servizio distribuito: elenco di hello restituisce dei pacchetti del servizio in un'applicazione distribuita.
   * API: [FabricClient.QueryClient.GetDeployedServicePackageListAsync](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync)
   * PowerShell: Get-ServiceFabricDeployedApplication
 
 > [!NOTE]
-> Alcune query restituiscono risultati di paging. Queste query restituiscono un elenco derivato da [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1). Se questi risultati non corrispondono a un messaggio, viene restituita solo una pagina e un ContinuationToken che tiene traccia del punto in cui l'enumerazione è stata arrestata. Continuare a chiamare la stessa query e passare il token di continuazione dalla query precedente per ottenere i risultati successivi.
+> Alcune delle query hello restituiscono risultati di paging. Hello delle query viene restituito un elenco derivato da [PagedList<T>](https://docs.microsoft.com/dotnet/api/system.fabric.query.pagedlist-1). Se i risultati di hello un messaggio non corrispondono, viene restituita solo una pagina e un ContinuationToken che tiene traccia di punto di interruzione di enumerazione. Continuare toocall hello stessa query e passare il token di continuazione hello dal hello precedente query tooget successivo dei risultati.
 >
 >
 
-### <a name="examples"></a>Esempi
-Il codice seguente permette di ottenere le applicazioni non integre nel cluster:
+### <a name="examples"></a>esempi
+Hello codice seguente ottiene applicazioni non integre hello cluster hello:
 
 ```csharp
 var applications = fabricClient.QueryManager.GetApplicationListAsync().Result.Where(
   app => app.HealthState == HealthState.Error);
 ```
 
-Il cmdlet seguente ottiene i dettagli dell'applicazione per l'applicazione fabric:/WordCount. Lo stato di integrità è di tipo avviso.
+il cmdlet seguente Hello Ottiene i dettagli dell'applicazione hello per l'infrastruttura di hello: / applicazione WordCount. Lo stato di integrità è di tipo avviso.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplication -ApplicationName fabric:/WordCount
@@ -1090,7 +1090,7 @@ ApplicationParameters  : { "WordCountWebService_InstanceCount" = "1";
                          [ProcessId] -tid [ThreadId]","EnvironmentBlock":"_NO_DEBUG_HEAP=1\u0000"}]" }
 ```
 
-Il cmdlet seguente ottiene i servizi con stato di integrità di errore:
+Hello seguente ottiene servizi hello con uno stato di errore:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplication | Get-ServiceFabricService | where {$_.HealthState -eq "Error"}
@@ -1107,13 +1107,13 @@ HealthState            : Error
 ```
 
 ## <a name="cluster-and-application-upgrades"></a>Aggiornamenti del cluster e dell'applicazione
-Durante un aggiornamento monitorato del cluster e dell'applicazione, Service Fabric controlla l'integrità per garantire che lo stato sia integro e che rimanga tale. Se un'entità non è integra ed è stata valutata con i criteri di integrità configurati, l'aggiornamento applica criteri specifici dell'aggiornamento per determinare l'azione successiva. L'aggiornamento può essere sospeso per consentire l'interazione dell'utente, ad esempio per correggere le condizioni di errore o modificare i criteri, oppure può eseguire automaticamente il ripristino dello stato precedente di una versione funzionante.
+Durante un aggiornamento monitorato del cluster hello e dell'applicazione, Service Fabric Controlla integrità tooensure che tutto ciò che resta integro. Se un'entità non è integra valutato usando i criteri di integrità configurato, l'aggiornamento di hello Applica azione successiva hello toodetermine di criteri specifici per l'aggiornamento. aggiornamento Hello sia interazione dell'utente tooallow sospesa (come correggere le condizioni di errore o la modifica dei criteri) oppure potrebbe automaticamente il rollback toohello precedente versione funzionante.
 
-Durante un aggiornamento del *cluster* è possibile ottenerne lo stato di aggiornamento. Quest'ultimo include valutazioni di non integrità, che puntano agli elementi non integri nel cluster. Se viene eseguito il rollback dell'aggiornamento a causa di problemi di integrità, lo stato di aggiornamento memorizza le cause di non integrità più recenti. Queste informazioni consentono agli amministratori di analizzare la causa dell'errore dopo il rollback o l'arresto dell'aggiornamento.
+Durante un *cluster* esegue l'aggiornamento, è possibile ottenere lo stato di aggiornamento cluster hello. stato di aggiornamento Hello include le valutazioni non integro, non è integro cluster hello toowhat quale punto. Se l'aggiornamento di hello viene eseguito il rollback a causa di problemi di toohealth, lo stato dell'aggiornamento hello memorizza motivi non integro ultimo hello. Queste informazioni consente agli amministratori di analizzare la causa dell'errore dopo l'aggiornamento di hello rollback o l'arresto.
 
-Analogamente, durante l'aggiornamento di un' *applicazione* , lo stato di aggiornamento dell'applicazione stessa include le eventuali valutazioni di non integrità.
+Analogamente, durante un *applicazione* esegue l'aggiornamento, tutte le valutazioni integro sono contenute in stato di aggiornamento dell'applicazione hello.
 
-Di seguito viene illustrato lo stato di aggiornamento dell’applicazione per un’applicazione fabric:/WordCount modificata. Un watchdog ha segnalato un errore in una delle repliche. Viene eseguito il rollback dell’aggiornamento poiché le verifiche dell’integrità non sono rispettate.
+Hello seguito è riportato lo stato di aggiornamento dell'applicazione hello per un'infrastruttura modificata: / applicazione WordCount. Un watchdog ha segnalato un errore in una delle repliche. è in corso l'aggiornamento di Hello in quanto i controlli di integrità hello non viene rispettati.
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationUpgrade fabric:/WordCount
@@ -1167,12 +1167,12 @@ ForceRestart                  : False
 UpgradeReplicaSetCheckTimeout : 00:15:00
 ```
 
-Per altre informazioni, vedere [Aggiornamento di un'applicazione di Service Fabric](service-fabric-application-upgrade.md).
+Altre informazioni su hello [aggiornamento dell'applicazione di Service Fabric](service-fabric-application-upgrade.md).
 
-## <a name="use-health-evaluations-to-troubleshoot"></a>Usare le valutazioni dell'integrità per risolvere i problemi
-Ogni volta che si verifica un problema in cluster o in un'applicazione, osservare l'integrità del cluster o dell'applicazione per individuare il problema riscontrato. Le valutazioni di non integrità includono dettagli sulle cause che hanno attivato lo stato di non integrità corrente. È possibile eseguire il drill-down delle entità figlio non integre per identificare la causa radice.
+## <a name="use-health-evaluations-tootroubleshoot"></a>Utilizzare tootroubleshoot valutazioni di integrità
+Ogni volta che si verifica un problema con il cluster hello o un'applicazione, esaminare toopinpoint di integrità del cluster o l'applicazione hello qual è il problema. valutazioni integro Hello forniscono dettagli sulle quali stato non integro corrente hello attivate. Se necessario, è possibile scorrere verso il basso causa radice di elementi figlio non integri entità tooidentify hello.
 
-Si consideri, ad esempio, un'applicazione non integra a causa di un errore segnalato in una delle relative repliche. Il cmdlet di Powershell seguente mostra le valutazioni di non integrità:
+Si consideri, ad esempio, un'applicazione non integra a causa di un errore segnalato in una delle relative repliche. Hello cmdlet di Powershell seguente mostra le valutazioni di tipo non integro hello:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricApplicationHealth fabric:/WordCount -EventsFilter None -ServicesFilter None -DeployedApplicationsFilter None -ExcludeHealthStatistics
@@ -1200,7 +1200,7 @@ DeployedApplicationHealthStates : None
 HealthEvents                    : None
 ```
 
-È possibile esaminare la replica per ottenere altre informazioni:
+È possibile esaminare hello replica tooget ulteriori informazioni:
 
 ```powershell
 PS D:\ServiceFabric> Get-ServiceFabricReplicaHealth -ReplicaOrInstanceId 131444422260002646 -PartitionId af2e3e44-a8f8-45ac-9f31-4093eb897600
@@ -1239,16 +1239,16 @@ HealthEvents          :
 ```
 
 > [!NOTE]
-> Le valutazioni non integre mostrano il primo motivo per cui l'entità restituisce lo stato di integrità corrente. Lo stato potrebbe essere attivato da vari altri eventi, che però non devono riflettersi nelle valutazioni. Per ottenere altre informazioni, è necessario eseguire il drill-down nelle entità di integrità per trovare tutti i report non integri nel cluster.
+> Hello valutazioni problematico mostra hello autorità entità hello è valutata toocurrent lo stato di integrità. Potrebbero essere presenti più altri eventi che attivano questo stato, ma non risulteranno in valutazioni hello. tooget ulteriori informazioni, drill-down hello integrità entità toofigure out tutti i report non integro hello cluster hello.
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
-[Usare i report sull'integrità del sistema per la risoluzione dei problemi](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+[Utilizzare tootroubleshoot rapporti di integrità sistema](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
 
 [Aggiungere report sull'integrità di Service Fabric personalizzati](service-fabric-report-health.md)
 
-[Creare report e verificare l'integrità dei servizi](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+[Come tooreport e controllo del servizio integrità](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 
 [Monitorare e diagnosticare servizi in locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 

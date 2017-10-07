@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'uso di R Server in HDInsight - Azure | Microsoft Docs
-description: Informazioni sulla creazione di un cluster Apache Spark in HDInsight che include R Server e sull'invio di uno script R nel cluster.
+title: aaaGet avviato con il Server di R in HDInsight - Azure | Documenti Microsoft
+description: Informazioni su come toocreate un Apache nascita nel cluster HDInsight che include i Server di R e inviare uno script R in cluster hello.
 services: HDInsight
 documentationcenter: 
 author: bradsev
@@ -15,255 +15,255 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 08/14/2017
 ms.author: bradsev
-ms.openlocfilehash: 14e2a14c74e00709e18a80325fbdd3cbcd71da37
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f7e418bbac48eee080a4b4cfbb33e246324ea5c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-using-r-server-on-hdinsight"></a>Introduzione all'uso di R Server su HDInsight
 
-HDInsight include un'opzione R Server da integrare nel cluster HDInsight. Con questa opzione, gli script R possono usare Spark e MapReduce per eseguire i calcoli distribuiti. In questo documento si apprenderà come creare un R Server in un cluster HDInsight e come eseguire uno script R che illustra l'uso di Spark per i calcoli R distribuiti.
+HDInsight include un toobe opzione R Server integrato nel cluster HDInsight. Questa opzione consente agli script R toouse Spark e MapReduce toorun distribuiti i calcoli. In questo documento, viene illustrato come un Server di R in cluster HDInsight e quindi Esegui una R script che illustra l'uso di Spark per toocreate distribuiti calcoli R.
 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-* **Una sottoscrizione di Azure**: prima di iniziare questa esercitazione è necessario avere una sottoscrizione di Azure. Per altre informazioni, vedere il video su come [ottenere una versione di valutazione gratuita di Microsoft Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-* **Un client Secure Shell (SSH)**: il client SSH viene usato per connettersi da remoto al cluster HDInsight ed eseguire i comandi direttamente nel cluster. Per altre informazioni, vedere l'articolo su come [usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
-* **Chiavi SSH (facoltative)**: è possibile proteggere l'account SSH usato per connettersi al cluster mediante una password o una chiave pubblica. Usare una password è più semplice ed è possibile iniziare senza necessità di creare una coppia di chiavi pubblica/privata. Tuttavia, usare una chiave è più sicuro.
+* **Una sottoscrizione di Azure**: prima di iniziare questa esercitazione è necessario avere una sottoscrizione di Azure. Articolo passare toohello [versione di valutazione gratuita di Microsoft Azure ottenere](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/) per ulteriori informazioni.
+* **Un client Secure Shell (SSH)**: viene usato un SSH client tooremotely cluster HDInsight toohello connettersi ed eseguire comandi direttamente nel cluster hello. Per altre informazioni, vedere l'articolo su come [usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+* **Le chiavi SSH (facoltative)**: È possibile proteggere hello SSH account utilizzato tooconnect toohello cluster tramite una password o una chiave pubblica. Utilizzando una password è più semplice e consente di tooget avviato senza toocreate una coppia di chiavi pubblica/privata. Tuttavia, usare una chiave è più sicuro.
 
 > [!NOTE]
-> I passaggi in questo documento presuppongono che si stia usando una password.
+> passaggi di Hello in questo documento si presuppongono che si sta utilizzando una password.
 
 
 ## <a name="automated-cluster-creation"></a>Creazione automatizzata di cluster
 
-È possibile automatizzare la creazione di cluster HDInsight R Server usando modelli di Azure Resource Manager, SDK e PowerShell.
+È possibile automatizzare la creazione di hello di HDInsight R Servers tramite Gestione risorse di Azure modelli, hello SDK e anche PowerShell.
 
-* Per creare un cluster R Server con un modello di Azure Resource Manager, vedere [Deploy an R-server HDInsight cluster](https://azure.microsoft.com/resources/templates/101-hdinsight-rserver/) (Distribuire un cluster HDInsight R Server).
-* Per creare un cluster R Server con .NET SDK, vedere [Creare cluster basati su Linux in HDInsight tramite .NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md).
-* Per distribuire R Server con PowerShell, vedere l'articolo sulla [creazione di un cluster R Server in HDInsight con PowerShell](hdinsight-hadoop-create-linux-clusters-azure-powershell.md).
+* toocreate un Server di R usando un modello di gestione delle risorse di Azure, vedere [distribuire un cluster di HDInsight R server](https://azure.microsoft.com/resources/templates/101-hdinsight-rserver/).
+* toocreate un Server di R usando hello .NET SDK, vedere [creare cluster basati su Linux in HDInsight mediante hello .NET SDK.](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md)
+* R Server toodeploy tramite powershell, vedere l'articolo hello in [creazione di un Server di R in HDInsight con PowerShell](hdinsight-hadoop-create-linux-clusters-azure-powershell.md).
 
 
 <a name="create-hdi-custer-with-aure-portal"></a>
-## <a name="create-the-cluster-using-the-azure-portal"></a>Creare il cluster con il portale di Azure
+## <a name="create-hello-cluster-using-hello-azure-portal"></a>Creare il cluster di hello utilizzando hello portale di Azure
 
-1. Accedere al [portale di Azure](https://portal.azure.com).
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
 
 2. Selezionare **Nuovo** -> **Intelligence e analisi** -> **HDInsight**.
 
     ![Immagine della creazione di un nuovo cluster](./media/hdinsight-hadoop-r-server-get-started/newcluster.png)
 
-3. Nell'esperienza **Creazione rapida** inserire il nome del cluster nel campo **Nome cluster**. Se sono disponibili più sottoscrizioni di Azure, usare la voce **Sottoscrizione** per selezionare quella da usare.
+3. In hello **creazione rapida** esperienza, immettere un nome per il cluster hello in hello **nome Cluster** campo. Se si dispone di più sottoscrizioni di Azure, utilizzare hello **sottoscrizione** voce tooselect hello uno desiderato toouse.
 
     ![Selezione del nome del cluster e della sottoscrizione](./media/hdinsight-hadoop-r-server-get-started/clustername.png)
 
-4. Selezionare **Tipo di cluster** per aprire il pannello **Configurazione cluster**. Nel pannello **Configurazione cluster** selezionare le opzioni seguenti:
+4. Selezionare **Cluster tipo** tooopen hello **configurazione Cluster** blade. In hello **configurazione Cluster** pannello hello seleziona le opzioni seguenti:
 
     * **Tipo di cluster**: R Server
-    * **Versione**: selezionare la versione di R Server da installare nel cluster. La versione attualmente disponibile è ***R Server 9.1 (HDI 3.6)***. Le note sulla versione per le versioni disponibili di R Server sono disponibili [qui](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes).
-    * **R Studio community edition for R Server**: questo IDE basato su browser viene installato per impostazione predefinita sul nodo perimetrale. Se si preferisce non installarlo, deselezionare la casella di controllo. Se si sceglie di installarlo, l'URL per l'accesso a RStudio Server è disponibile in un pannello delle applicazioni del portale per il cluster, dopo la creazione.
-    * Lasciare le altre opzioni impostate sui valori predefiniti e usare il pulsante **Seleziona** per salvare il tipo di cluster.
+    * **Versione**: versione di hello selezionare tooinstall R Server nel cluster hello. versione di Hello attualmente disponibile è ***R Server 9.1 (HDI 3.6)***. Sono disponibili note sulla versione per le versioni disponibili di hello del Server di R [qui](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes).
+    * **Edizione community R Studio per R Server**: questo IDE basate su browser viene installato per impostazione predefinita nel nodo edge hello. Se si preferisce toonot è installato, quindi deselezionare la casella di controllo hello. Se si sceglie toohave è installato, hello URL per l'accesso a hello accesso RStudio Server si trova in un pannello dell'applicazione del portale per il cluster dopo averla creata.
+    * Lasciare le altre opzioni hello i valori predefiniti di hello e utilizzare hello **selezionare** toosave hello cluster tipo di pulsante.
 
         ![Schermata del pannello del tipo di cluster](./media/hdinsight-hadoop-r-server-get-started/clustertypeconfig.png)
 
 5. Immettere il **nome utente dell'account di accesso del cluster** e la **password dell'account di accesso del cluster**.
 
-    Specificare un **nome utente SSH**. SSH è usato per connettersi al cluster da remoto tramite un client **Secure Shell (SSH)**. È possibile specificare l'utente SSH in questa finestra di dialogo o dopo aver creato il cluster (nella scheda Configurazione per il cluster). R Server è configurato in modo da prevedere il **nome utente SSH** "remoteuser".  **Se si usa un nome utente diverso, è necessario eseguire un passaggio aggiuntivo dopo la creazione del cluster.**
+    Specificare un **nome utente SSH**. SSH è usato tooremotely connettersi toohello cluster utilizzando un **Secure Shell (SSH)** client. È possibile specificare utente SSH hello in questa finestra di dialogo oppure dopo la creazione del cluster hello (nella scheda Configurazione di hello per cluster hello). R Server è configurato tooexpect un **nome utente SSH** di "remoteuser".  **Se si utilizza un nome utente diverso, è necessario eseguire un passaggio aggiuntivo dopo la creazione di cluster hello.**
 
-    Lasciare selezionata la casella **Usa la stessa password dell'account di accesso del cluster** per usare la **PASSWORD** come tipo di autenticazione a meno che non si preferisca usare una chiave pubblica.  Se si vuole accedere a R Server nel cluster tramite un client remoto, ad esempio RTVS, RStudio o un altro ambiente desktop IDE, è necessario usare una coppia di chiavi pubblica/privata. Se si installa RStudio Server Community Edition, è necessario scegliere una password SSH.     
+    La casella di hello lasciare per **usare stessa password account di accesso cluster** toouse **PASSWORD** come hello l'autenticazione di tipo a meno che non si preferisce l'utilizzo di una chiave pubblica.  È necessario tooaccess una coppia di chiavi pubblica/privata R Server nel cluster hello tramite un client come, ad esempio, RTVS, RStudio o altri IDE desktop remoto. Se si installa hello edizione community RStudio Server, è necessario toochoose una password SSH.     
 
-    Per creare e usare una coppia di chiavi pubblica/privata, deselezionare **Usa la stessa password dell'account di accesso del cluster** e quindi selezionare **CHIAVE PUBBLICA** e procedere come segue. Queste istruzioni presuppongono che Cygwin con ssh-keygen o equivalente sia già installato.
+    toocreate e utilizzare una coppia di chiavi pubblica/privata, deselezionare **usare stessa password account di accesso cluster** e quindi selezionare **chiave pubblica** e procedere come segue. Queste istruzioni presuppongono che Cygwin con ssh-keygen o equivalente sia già installato.
 
-    * Dal prompt dei comandi sul computer portatile, generare una coppia di chiavi pubblica/privata:
+    * Generare una coppia di chiavi pubblica/privata dal prompt dei comandi di hello in un computer portatile:
 
         ssh-keygen -t rsa -b 2048
 
-    * Attenersi alla richiesta di un nome di un file di chiave e quindi immettere una passphrase per una maggiore sicurezza. La schermata dovrebbe essere simile all'immagine seguente:
+    * Seguire hello prompt tooname un file di chiave, quindi immettere una passphrase per una maggiore sicurezza. La schermata dovrebbe essere simile al seguente hello seguente immagine:
 
         ![Riga di comando SSH in Windows](./media/hdinsight-hadoop-r-server-get-started/sshcmdline.png)
 
-    * Questo comando crea un file di chiave privata e un file di chiave pubblica con il nome <nomefile-chiave-privata>.pub, ad esempio furiosa e furiosa.pub.
+    * Questo comando crea un file di chiave privata e un file di chiave pubblica in hello < privato-key-filename > nome pub, ad esempio furiosa e furiosa.pub.
 
         ![Dir SSH](./media/hdinsight-hadoop-r-server-get-started/dir.png)
 
-    * Specificare quindi il file di chiave pubblica (&#42;.pub) quando si assegnano le credenziali del cluster HDI e infine confermare il gruppo di risorse e l'area e selezionare **Avanti**.
+    * Specificare quindi il file di chiave pubblica hello (&#42;. pub) quando l'assegnazione HDI le credenziali del cluster e infine verificare il gruppo di risorse, area e selezionare **Avanti**.
 
         ![Pannello Credenziali](./media/hdinsight-hadoop-r-server-get-started/publickeyfile.png)  
 
-   * Modificare le autorizzazioni per il file di chiave privata nel computer portatile:
+   * Modificare le autorizzazioni per file di chiave privata hello in un computer portatile:
 
         chmod 600 <private-key-filename>
 
-   * Usare il file di chiave privata con SSH per l'accesso remoto:
+   * Utilizzare il file di chiave privata di hello con SSH per l'accesso remoto:
 
         ssh –i <private-key-filename> remoteuser@<hostname public ip>
 
-      o come parte della definizione del contesto di calcolo di Hadoop Spark per R Server nel client. Vedere la sottosezione **Using Microsoft R Server as a Hadoop Client** (Uso di Microsoft R Server come client Hadoop) in [Create a Compute Context for Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark) (Creare un contesto di calcolo per Spark).
+      In alternativa, come definizione di hello parte di Spark il Hadoop contesto di calcolo per il Server di R nel client hello. Vedere hello **utilizzando Microsoft R Server come Hadoop Client** sottosezione [creare un contesto di calcolo per Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started#creating-a-compute-context-for-spark).
 
-6. La creazione rapida esegue la transizione al pannello **Archiviazione** per selezionare le impostazioni dell'account di archiviazione da usare per il percorso principale del file system HDFS usato dal cluster. Selezionare un account di archiviazione di Azure nuovo o esistente oppure un account di archiviazione di Data Lake esistente.
+6. Creazione rapida di Hello si esegue la transizione toohello **archiviazione** account archiviazione hello tooselect pannello impostazioni toobe hello al percorso principale di hello HDFS file system utilizzato dal cluster hello. Selezionare un account di archiviazione di Azure nuovo o esistente oppure un account di archiviazione di Data Lake esistente.
 
-    - Se si sceglie un account di archiviazione di Azure, è possibile selezionare un account di archiviazione esistente scegliendo **Selezionare un account di archiviazione** e quindi selezionando l'account desiderato. Creare un nuovo account usando il collegamento **Nuovo** nella sezione **Selezionare un account di archiviazione**.
+    - Se si seleziona un account di archiviazione di Azure, è selezionato un account di archiviazione esistente scegliendo **selezionare un account di archiviazione** e quindi selezionando conto hello. Creare un nuovo account tramite hello **Crea nuovo** collegamento hello **selezionare un account di archiviazione** sezione.
 
       > [!NOTE]
-      > Se si seleziona **Nuovo** è necessario immettere un nome per il nuovo account di archiviazione. Se il nome viene accettato, verrà visualizzato un segno di spunta verde.
+      > Se si seleziona **New** è necessario immettere un nome per il nuovo account di archiviazione hello. Se il nome di hello è accettato, viene visualizzato un segno di spunta verde.
 
-      Il **contenitore predefinito** viene impostato sul nome predefinito del cluster. Lasciare questa impostazione predefinita come valore.
+      Hello **contenitore predefinito** nome toohello impostazioni predefinite del cluster di hello. Lasciare l'impostazione predefinita come valore di hello.
 
-      Se è stata selezionata l'opzione per un nuovo account di archiviazione, viene visualizzato un prompt che consente di selezionare il **Percorso** per scegliere l'area in cui creare l'account di archiviazione.  
+      Se una nuova opzione di account di archiviazione è stata selezionata un prompt dei comandi tooselect **percorso** è specificato tooselect toocreate quale area hello account di archiviazione.  
 
          ![Pannello di origine dati](./media/hdinsight-getting-started-with-r/datastore.png)  
 
       > [!IMPORTANT]
-      > La selezione del percorso per l'origine dati predefinita imposta anche il percorso del cluster HDInsight. L'origine dati del cluster e l'origine dati predefinita devono trovarsi nella stessa area.
+      > Selezionando il percorso di hello per l'origine dei dati predefinita hello imposta anche percorso hello del cluster HDInsight hello. Hello predefinito e cluster di origine dati deve essere in hello stessa area.
 
-    - Se si vuole usare un Data Lake Store esistente, selezionare l'account di archiviazione ADLS da usare e aggiungere al cluster l'identità *ADD* del cluster per consentire l'accesso all'archivio. Per altre informazioni su questo processo, vedere [Creare cluster HDInsight con Data Lake Store tramite il portale di Azure](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal).
+    - Se si desidera toouse un archivio Data Lake esistente, quindi selezionare hello toouse account di archiviazione ADLS e aggiungere il cluster hello *Aggiungi* archivio identità di tooyour cluster tooallow accesso toohello. Per altre informazioni su questo processo, vedere [Creare cluster HDInsight con Data Lake Store tramite il portale di Azure](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-hdinsight-hadoop-use-portal).
 
-    Usare il pulsante **Seleziona** per salvare la configurazione dell'origine dati.
+    Hello utilizzare **selezionare** configurazione dell'origine dati hello toosave pulsante.
 
 
-7. Viene quindi visualizzato il pannello **Riepilogo** per convalidare tutte le impostazioni. Qui è possibile modificare le **dimensioni dei Cluster** per cambiare il numero di server del cluster e specificare qualsiasi **azione di script** da eseguire. A meno che non si sia consapevoli di aver bisogno di un cluster di maggiori dimensioni, lasciare il numero di nodi di lavoro sul valore predefinito di `4`. All'interno del pannello viene visualizzato il costo stimato del cluster.
+7. Hello **riepilogo** pannello visualizza quindi toovalidate tutte le impostazioni. Qui è possibile modificare il **dimensioni del Cluster** toomodify hello numero di server nel cluster e specificare le **Script azioni** desiderato toorun. A meno che non si conosce la necessità di un cluster di dimensioni maggiore, lasciare il numero di hello di nodi di lavoro predefinito hello `4`. Hello stimato costo del cluster hello viene visualizzato all'interno di blade hello.
 
     ![riepilogo cluster](./media/hdinsight-hadoop-r-server-get-started/clustersummary.png)
 
    > [!NOTE]
-   > Se necessario, è possibile ridimensionare il cluster in un secondo momento tramite il portale (**Cluster** -> **Impostazioni** -> **Ridimensiona cluster**) per aumentare o ridurre il numero di nodi di lavoro.  Questo ridimensionamento può essere utile per disattivare il cluster quando non è in uso o per aggiungere capacità allo scopo di soddisfare le esigenze di attività più estese.
+   > Se necessario, è possibile ridimensionare il cluster in un secondo momento tramite hello portale (**Cluster** -> **impostazioni** -> **scala Cluster**) tooincrease o ridurre il numero di hello di nodi di lavoro.  Il ridimensionamento può essere utile per minimo verso il basso cluster hello quando non è in uso o per l'aggiunta di dimensionamento hello toomeet attività più grandi.
    >
    >
 
-   Ecco alcuni fattori da tenere presente quando si modificano le dimensioni del cluster, dei nodi di dati e del nodo perimetrale:  
+   Tookeep alcuni fattori presente quando il cluster, nodi dati hello e nodo di hello del bordo di ridimensionamento sono:  
 
-   * Quando la quantità di dati è ingente, le prestazioni delle analisi R Server distribuite in Spark sono proporzionali al numero di nodi di lavoro.  
+   * prestazioni Hello di analisi di R Server distribuite in Spark sono proporzionale toohello numero di nodi di lavoro se dati hello sono grandi.  
 
-   * Le prestazioni delle analisi Server R sono proporzionali alle dimensioni dei dati analizzati. ad esempio:  
+   * prestazioni Hello di analisi di R Server sono lineare nella dimensione di hello dei dati da analizzare. ad esempio:  
 
-     * Per quantità di dati di piccole e medie dimensioni, le prestazioni sono migliori se l'analisi avviene in un contesto di calcolo locale sul nodo perimetrale.  Per altre informazioni sugli scenari in cui i contesti di calcolo Spark e locale funzionano meglio, vedere Opzioni del contesto di calcolo per R Server su HDInsight.<br>
-     * Se si accede al nodo perimetrale e si esegue lo script R, tutte le funzioni, ad eccezione delle funzioni ScaleR rx, vengono eseguite <strong>localmente</strong> sul nodo perimetrale, in modo tale che la memoria e il numero di core del nodo perimetrale vengano ridimensionati secondo le esigenze. Lo stesso vale se si utilizza R Server su HDI come contesto di calcolo remoto dal computer portatile.
+     * Per i dati di piccole toomodest, delle prestazioni sono consigliabile quando analizzato in un contesto di calcolo locale nel nodo edge hello.  Per altre informazioni sugli scenari di hello in cui hello locale e Spark contesti di calcolo funzionano meglio, vedere le opzioni di contesto di calcolo per il Server di R in HDInsight.<br>
+     * Se si accedere nodo edge toohello ed esegue lo script R, quindi vengono eseguiti tutti ma hello rx-funzioni ScaleR <strong>localmente</strong> nel nodo edge hello. Pertanto hello memoria e numero di core del nodo perimetrale hello deve essere ridimensionata di conseguenza. Hello che ciò vale anche se si utilizza Server R come contesto di calcolo remoto HDI dal portatile.
 
      ![Pannello livelli dei prezzi di nodo](./media/hdinsight-hadoop-r-server-get-started/pricingtier.png)
 
-     Usare il pulsante **Seleziona** per salvare la configurazione dei piani tariffari del nodo.
+     Hello utilizzare **selezionare** nodo hello del pulsante toosave dei prezzi di configurazione.
 
-   È presente anche un collegamento **Scarica modello e parametri**. Fare clic su questo collegamento per visualizzare gli script utilizzabili per automatizzare la creazione di un cluster con la configurazione selezionata. Questi script sono anche disponibili dalla voce del portale di Azure per il cluster dopo che è stato creato.
+   È presente anche un collegamento **Scarica modello e parametri**. Fare clic su questo script toodisplay collegamento che possono essere utilizzati tooautomate hello creazione di un cluster con configurazione selezionata hello. Questi script sono disponibili da hello voce portale Azure per il cluster anche dopo che è stato creato.
 
    > [!NOTE]
-   > La creazione del cluster richiede tempo, in genere circa 20 minuti. Usare il riquadro nella Schermata iniziale o la voce **Notifiche** nella parte sinistra della pagina per controllare il processo di creazione.
+   > Comporta un tempo per hello cluster toobe creato, in genere circa 20 minuti. Utilizzare il riquadro hello su hello schermata iniziale oppure hello **notifiche** voce hello a sinistra della hello pagina toocheck nel processo di creazione hello.
    >
    >
 
 <a name="connect-to-rstudio-server"></a>
-## <a name="connect-to-rstudio-server"></a>Connettersi a RStudio Server
+## <a name="connect-toorstudio-server"></a>Connettersi tooRStudio Server
 
-Se si è scelto di includere RStudio Server Community Edition nell'installazione è possibile accedere a RStudio in due modi diversi.
+Se si è scelto tooinclude edizione community RStudio Server dell'installazione, è possibile accedere accesso RStudio hello tramite due metodi diversi.
 
-1. Passare all'URL seguente (dove **CLUSTERNAME** è il nome del cluster creato):
+1. Passare toohello URL seguente (dove **CLUSTERNAME** hello nome del cluster di hello creato):
 
     https://**CLUSTERNAME**.azurehdinsight.net/rstudio/
 
-2. Aprire la voce relativa al cluster nel portale di Azure e selezionare il collegamento rapido **Dashboard di R Server** e quindi **Dashboard di R Studio**:
+2. Aprire la voce hello per il cluster in hello portale di Azure seleziona hello **R Server dashboard** collegamento rapido e quindi selezionando hello **R Studio Dashboard**:
 
-     ![Accedere al dashboard di R Studio](./media/hdinsight-getting-started-with-r/rstudiodashboard1.png)
+     ![Dashboard di accesso hello R studio](./media/hdinsight-getting-started-with-r/rstudiodashboard1.png)
 
-     ![Accedere al dashboard di R Studio](./media/hdinsight-getting-started-with-r/rstudiodashboard2.png)
+     ![Dashboard di accesso hello R studio](./media/hdinsight-getting-started-with-r/rstudiodashboard2.png)
 
    > [!IMPORTANT]
-   > Indipendentemente dal metodo usato, al primo accesso è necessario eseguire l'autenticazione due volte.  Alla prima autenticazione, specificare l'*ID utente* e la *password amministratore del cluster*. Alla seconda richiesta, specificare l'*ID utente* e la *password SSH*. Per gli accessi successivi sono necessari solo l'*ID utente* e la *password SSH*.
+   > Indipendentemente dal metodo hello utilizzato, hello primo tentativo di accesso è necessario tooauthenticate due volte.  Fornire l'autenticazione prima di hello, hello *ID utente di amministrazione del cluster* e *password*. Al prompt dei comandi secondo hello fornire hello *SSH userid* e *password*. Log successivi aggiuntivi richiedono solo hello *password SSH* e *userid*.
 
 <a name="connect-to-edge-node"></a>
-## <a name="connect-to-the-r-server-edge-node"></a>Connettersi al nodo perimetrale di R Server
+## <a name="connect-toohello-r-server-edge-node"></a>Connettere toohello R Server edge nodo
 
-Connettersi al nodo perimetrale R Server del cluster HDInsight usando SSH con il comando:
+Connettersi tooR nodo del lato Server del cluster HDInsight hello tramite SSH con il comando hello:
 
    `ssh USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net`
 
 > [!NOTE]
-> È possibile trovare l'indirizzo `USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net` nel portale di Azure selezionando il cluster e quindi **Tutte le impostazioni** -> **App** -> **RServer**. Questa operazione consente di visualizzare le informazioni sull'endpoint SSH per il nodo perimetrale.
+> È possibile trovare hello `USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net` indirizzo nel portale di Azure selezionando il cluster, quindi hello **tutte le impostazioni** -> **app** -> **RServer**. Consente di visualizzare informazioni sull'Endpoint SSH per il nodo di edge hello hello.
 >
-> ![Immagine dell'endpoint SSH per il nodo perimetrale](./media/hdinsight-hadoop-r-server-get-started/sshendpoint.png)
+> ![Immagine di hello SSH Endpoint per il nodo di edge hello](./media/hdinsight-hadoop-r-server-get-started/sshendpoint.png)
 >
 >
 
-Se è stata usata una password per proteggere l'account utente SSH, viene richiesto di specificarla. Se è stata usata una chiave pubblica, può essere necessario usare il parametro `-i` per specificare la chiave privata corrispondente. ad esempio:
+Se si utilizza un toosecure password account utente SSH, si è tooenter richiesto è. Se si utilizza una chiave pubblica, è possibile hello toouse `-i` toospecify parametro hello chiave privata corrispondente. ad esempio:
 
     ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
 
-Per altre informazioni, vedere [Connettersi a HDInsight (Hadoop) con SSH](hdinsight-hadoop-linux-use-ssh-unix.md).
+Per ulteriori informazioni, vedere [connettersi tooHDInsight (Hadoop) tramite SSH](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Una volta effettuata la connessione, viene visualizzato un prompt come quello che segue:
+Una volta connessi, verrà visualizzato un prompt dei comandi seguenti toohello simile:
 
     sername@ed00-myrser:~$
 
 <a name="enable-concurrent-users"></a>
 ## <a name="enable-multiple-concurrent-users"></a>Abilitare più utenti simultanei
 
-È possibile abilitare più utenti simultanei aggiungendo altri utenti per il nodo perimetrale in cui viene eseguita la versione Community di RStudio.
+L'aggiunta di più utenti per il nodo di edge hello in cui hello community RStudio viene eseguita la versione, è possibile abilitare più utenti simultanei.
 
 Quando si crea un cluster HDInsight, è necessario specificare due utenti: un utente HTTP e un utente SSH.
 
 ![Utenti simultanei 1](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-1.png)
 
-- **Nome utente dell'account di accesso del cluster**: utente HTTP per l'autenticazione tramite il gateway HDInsight usato per proteggere i cluster HDInsight creati. Questo utente HTTP viene usato per accedere all'interfaccia utente di Ambari, all'interfaccia utente di YARN e ad altri componenti di interfaccia utente.
-- **Nome utente Secure Shell (SSH)**: utente SSH per accedere al cluster tramite Secure Shell. È un utente del sistema Linux per tutti i nodi head, di lavoro e perimetrali. È così possibile usare Secure Shell per accedere a qualsiasi nodo di un cluster remoto.
+- **Nome utente account di accesso del cluster**: un utente HTTP per l'autenticazione tramite gateway HDInsight hello che viene utilizzato tooprotect hello HDInsight cluster creato. Questo utente HTTP è utilizzato tooaccess hello Ambari UI, interfaccia utente di YARN, nonché altri componenti dell'interfaccia utente.
+- **Nome utente della Shell (SSH) protetta**: un cluster di hello tooaccess utente SSH tramite shell protetta. Questo utente è un utente nel sistema Linux per tutti i nodi head hello, nodi di lavoro e i nodi periferici hello. È possibile utilizzare shell protetta tooaccess uno qualsiasi dei nodi hello in un cluster remoto.
 
-La versione RStudio Server Community usata nel cluster di tipo Microsoft R Server in HDInsight accetta solo un nome utente e una password Linux come meccanismo di accesso. Non supporta il passaggio di token. Se si vuole usare RStudio per accedere a un nuovo cluster che si è creato, è necessario eseguire l'accesso due volte.
+versione di R Studio Server Community Hello utilizzata in hello Microsoft R Server nel cluster di HDInsight tipo accetta solo nome utente di Linux e la password come un meccanismo di accesso. Non supporta il passaggio di token. Pertanto, se è stato creato un nuovo cluster e si desidera toouse R Studio tooaccess, è necessario toolog in due volte.
 
-- Accedere prima con le credenziali utente HTTP tramite il gateway HDInsight: 
+- Primo accesso con le credenziali utente hello HTTP tramite hello HDInsight Gateway: 
 
     ![Utenti simultanei 2a](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-2a.png)
 
-- Usare quindi le credenziali utente SSH per accedere a RStudio:
+- Utilizzare quindi hello SSH utente credenziali toolog in tooRStudio:
   
     ![Utenti simultanei 2b](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-2b.png)
 
-Attualmente, durante il provisioning di un cluster HDInsight è possibile creare un solo account utente SSH. Per consentire a più utenti di accedere a cluster Microsoft R Server in HDInsight, è quindi necessario creare utenti aggiuntivi nel sistema Linux.
+Attualmente, durante il provisioning di un cluster HDInsight è possibile creare un solo account utente SSH. In modo tooenable cluster più utenti tooaccess Microsoft R Server in HDInsight, è necessario toocreate altri utenti nel sistema Linux hello.
 
-Dato che RStudio Server Community è in esecuzione nel nodo perimetrale del cluster, si devono completare diversi passaggi:
+Poiché RStudio Server Community è in esecuzione sul nodo del bordo del cluster di hello, vi sono alcuni passaggi di seguito:
 
-1. Usare l'utente SSH creato per accedere al nodo perimetrale
+1. Utilizzare hello creato SSH utente toolog nel nodo di edge toohello
 2. Aggiungere altri utenti Linux nel nodo perimetrale
-3. Usare la versione Community di RStudio con l'utente creato
+3. Utilizzare la versione RStudio Community con utente hello creato
 
-### <a name="step-1-use-the-created-ssh-user-to-log-in-to-the-edge-node"></a>Passaggio 1: Usare l'utente SSH creato per accedere al nodo perimetrale
+### <a name="step-1-use-hello-created-ssh-user-toolog-in-toohello-edge-node"></a>Passaggio 1: Utilizzare hello creato SSH utente toolog nel nodo di edge toohello
 
-Scaricare qualsiasi strumento SSH (ad esempio, Putty) e usare l'utente SSH esistente per eseguire l'accesso. Seguire quindi le istruzioni riportate in [Connettersi a HDInsight (Hadoop) con SSH](hdinsight-hadoop-linux-use-ssh-unix.md) per accedere al nodo perimetrale. L'indirizzo del nodo perimetrale per R Server nel cluster HDInsight è: *clustername-ed-ssh.azurehdinsight.net*
+Scaricare uno strumento SSH (ad esempio Putty) e utilizzare hello esistente SSH utente toolog in. Segui hello istruzioni fornite in [connettersi tooHDInsight (Hadoop) tramite SSH](hdinsight-hadoop-linux-use-ssh-unix.md) tooaccess hello nodo del bordo. indirizzo del nodo perimetrale Hello per R Server nel cluster HDInsight è: *clustername-ed-ssh.azurehdinsight.net*
 
 
 ### <a name="step-2-add-more-linux-users-in-edge-node"></a>Passaggio 2: Aggiungere altri utenti Linux nel nodo perimetrale
 
-Per aggiungere un utente al nodo perimetrale, eseguire questi comandi:
+tooadd un nodo di edge toohello utente, eseguire i comandi di hello:
 
     sudo useradd yournewusername -m
     sudo passwd yourusername
 
-Dovrebbero essere restituite le voci seguenti: 
+È necessario visualizzare hello elementi restituiti: 
 
 ![Utenti simultanei 3](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-3.png)
 
-Quando viene richiesto di immettere la password Kerberos corrente, è sufficiente premere **INVIO** per ignorare la richiesta. L'opzione `-m` nel comando `useradd` indica che il sistema creerà una home directory per l'utente, obbligatoria per la versione Community di RStudio.
+Quando viene richiesto di "password Kerberos corrente:", è sufficiente premere **invio** tooignore è. Hello `-m` opzione `useradd` comando indica che il sistema hello creerà una home directory utente hello, che è obbligatorio per la versione RStudio Community.
 
 
-### <a name="step-3-use-rstudio-community-version-with-the-user-created"></a>Passaggio 3: Usare la versione Community di RStudio con l'utente creato
+### <a name="step-3-use-rstudio-community-version-with-hello-user-created"></a>Passaggio 3: Versione usare RStudio Community con utente hello creato
 
-Usare l'utente creato per accedere a RStudio:
+Utilizzare hello creati dall'utente toolog tooRStudio:
 
 ![Utenti simultanei 4](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-4.png)
 
-Si noti che RStudio indica che si sta usando il nuovo utente (in questo caso, ad esempio, *sshuser6*) per l'accesso al cluster: 
+Si noti che RStudio indica che si sta utilizzando un nuovo utente hello (qui, ad esempio, *sshuser6*) toolog cluster hello: 
 
 ![Utenti simultanei 5](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-5.png)
 
-Si può anche accedere simultaneamente da un'altra finestra del browser con le credenziali originali (per impostazione predefinita, *sshuser*).
+È anche possibile accedere con credenziali originale hello (per impostazione predefinita è *sshuser*) contemporaneamente da un'altra finestra del browser.
 
-È possibile inviare un processo usando funzioni ScaleR. Di seguito è riportato un esempio dei comandi usati per eseguire un processo:
+È possibile inviare un processo usando funzioni ScaleR. Ecco un esempio di hello comandi utilizzati toorun un processo:
 
-    # Set the HDFS (WASB) location of example data.
+    # Set hello HDFS (WASB) location of example data.
     bigDataDirRoot <- "/example/data"
 
     # Create a local folder for storaging data temporarily.
     source <- "/tmp/AirOnTimeCSV2012"
     dir.create(source)
 
-    # Download data to the tmp folder.
+    # Download data toohello tmp folder.
     remoteDir <- "http://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012"
     download.file(file.path(remoteDir, "airOT201201.csv"), file.path(source, "airOT201201.csv"))
     download.file(file.path(remoteDir, "airOT201202.csv"), file.path(source, "airOT201202.csv"))
@@ -278,19 +278,19 @@ Si può anche accedere simultaneamente da un'altra finestra del browser con le c
     download.file(file.path(remoteDir, "airOT201211.csv"), file.path(source, "airOT201211.csv"))
     download.file(file.path(remoteDir, "airOT201212.csv"), file.path(source, "airOT201212.csv"))
 
-    # Set directory in bigDataDirRoot to load the data.
+    # Set directory in bigDataDirRoot tooload hello data.
     inputDir <- file.path(bigDataDirRoot,"AirOnTimeCSV2012")
 
-    # Create the directory.
+    # Create hello directory.
     rxHadoopMakeDir(inputDir)
 
-    # Copy the data from source to input.
+    # Copy hello data from source tooinput.
     rxHadoopCopyFromLocal(source, bigDataDirRoot)
 
-    # Define the HDFS (WASB) file system.
+    # Define hello HDFS (WASB) file system.
     hdfsFS <- RxHdfsFileSystem()
 
-    # Create info list for the airline data.
+    # Create info list for hello airline data.
     airlineColInfo <- list(
     DAY_OF_WEEK = list(type = "factor"),
     ORIGIN = list(type = "factor"),
@@ -298,22 +298,22 @@ Si può anche accedere simultaneamente da un'altra finestra del browser con le c
     DEP_TIME = list(type = "integer"),
     ARR_DEL15 = list(type = "logical"))
 
-    # Get all the column names.
+    # Get all hello column names.
     varNames <- names(airlineColInfo)
 
-    # Define the text data source in HDFS.
+    # Define hello text data source in HDFS.
     airOnTimeData <- RxTextData(inputDir, colInfo = airlineColInfo, varsToKeep = varNames, fileSystem = hdfsFS)
 
-    # Define the text data source in local system.
+    # Define hello text data source in local system.
     airOnTimeDataLocal <- RxTextData(source, colInfo = airlineColInfo, varsToKeep = varNames)
 
-    # Specify the formula to use.
+    # Specify hello formula toouse.
     formula = "ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME + DEST"
 
-    # Define the Spark compute context.
+    # Define hello Spark compute context.
     mySparkCluster <- RxSpark()
 
-    # Set the compute context.
+    # Set hello compute context.
     rxSetComputeContext(mySparkCluster)
 
     # Run a logistic regression.
@@ -325,53 +325,53 @@ Si può anche accedere simultaneamente da un'altra finestra del browser con le c
     summary(modelSpark)
 
 
-Si noti che i processi inviati sono associati a nomi utente diversi nell'interfaccia utente di YARN:
+Si noti che i processi di hello inviati in diversi nomi utente nell'interfaccia utente di YARN:
 
 ![Utenti simultanei 6](./media/hdinsight-hadoop-r-server-get-started/concurrent-users-6.png)
 
-Si noti anche gli utenti appena aggiunti non hanno privilegi a livello radice nel sistema Linux, ma hanno lo stesso accesso a tutti i file nella risorsa di archiviazione HDFS e WASB remota.
+Si noti inoltre che hello appena aggiunti utenti non dispongono di privilegi radice nel sistema di Linux, ma hanno hello stesso di accedere ai file di hello tooall hello HDFS e WASB archiviazione.
 
 
 <a name="use-r-console"></a>
-## <a name="use-the-r-console"></a>Usare la console di R
+## <a name="use-hello-r-console"></a>Usare la console di hello R
 
-1. Nella sessione SSH usare il comando seguente per avviare la console R:  
+1. Dalla sessione SSH hello, utilizzare hello console hello R toostart dei comandi seguenti:  
 
         R
 
-2. L'output dovrebbe essere simile al seguente:
+2. Verrà visualizzato il seguente toohello simili di output:
     
-    R version 3.2.2 (2015-08-14) -- "Fire Safety"  Copyright (C) 2015 The R Foundation for Statistical Computing  Platform: x86_64-pc-linux-gnu (64-bit)
+    R versione 3.2.2 (2015-08-14): "Incendio" Copyright (C) 2015 hello R Foundation per la piattaforma di elaborazione statistica: x86_64-pc-linux-gnu (64 bit)
 
     R is free software and comes with ABSOLUTELY NO WARRANTY.
-    You are welcome to redistribute it under certain conditions.
+    Si è tooredistribute iniziale in determinate condizioni.
     Type "license()" or "licence()" for distribution details.
 
     Natural language support but running in an English locale
 
     R is a collaborative project with many contributors.
-    Type "contributors()" for more information and "citation()" on how to cite R or R packages in publications.
+    Digitare 'contributors()' per ulteriori informazioni e 'citation()' in modalità toocite R o R pacchetti nelle pubblicazioni.
 
-    Type "demo()" for some demos, "help()" for on-line help, or "help.start()" for an HTML browser interface to help.
-    Type "q()" to quit R.
+    Digitare 'demo ()' per alcuni demo, 'help()' per la Guida in linea o 'help.start()' per un toohelp di interfaccia browser HTML.
+    Digitare 'OcxQmail' tooquit R.
 
     Microsoft R Server version 8.0: an enhanced distribution of R  Microsoft packages Copyright (C) 2016 Microsoft Corporation
 
     Type "readme()" for release notes.
     >
 
-3. Dal prompt `>` è possibile immettere codice R. R Server include pacchetti che consentono di interagire facilmente con Hadoop ed eseguire calcoli distribuiti. Ad esempio, usare il comando seguente per visualizzare la radice del file system predefinito per il cluster HDInsight:
+3. Da hello `>` prompt dei comandi, è possibile immettere il codice R. Server R include i pacchetti che consentono di tooeasily interagire con Hadoop ed eseguire calcoli distribuiti. Ad esempio, utilizzare hello comando tooview hello radice hello predefiniti del file system per il cluster HDInsight hello seguenti:
 
     rxHadoopListFiles("/")
 
-4. È anche possibile usare l'indirizzamento in stile WASB.
+4. È inoltre possibile utilizzare hello WASB stile addressing.
 
     rxHadoopListFiles("wasb:///")
 
 
 ## <a name="using-r-server-on-hdi-from-a-remote-instance-of-microsoft-r-server-or-microsoft-r-client"></a>Utilizzare R Server in HDI da un'istanza remota di Microsoft R Server o Microsoft R Client
 
-È possibile configurare l'accesso al contesto di calcolo Hadoop Spark HDI da un'istanza remota di Microsoft R Server o Microsoft R Client in esecuzione in un computer desktop o portatile. Vedere la sottosezione **Using Microsoft R Server as a Hadoop Client** (Uso di Microsoft R Server come client Hadoop) in [Create a Compute Context for Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started.md) (Creare un contesto di calcolo per Spark). A tale scopo, è necessario specificare le opzioni seguenti quando si definisce il contesto di calcolo RxSpark nel computer portatile: hdfsShareDir, shareDir, sshUsername, sshHostname, sshSwitches e sshProfileScript. ad esempio:
+È possibile tooset il contesto di calcolo Hadoop Spark HDI toohello accesso da un'istanza remota di Microsoft R Server o Microsoft R Client in esecuzione in un computer desktop o portatile. Vedere **utilizzando Microsoft R Server come Hadoop Client** sottosezione hello [creazione di un contesto di calcolo per Spark](https://msdn.microsoft.com/microsoft-r/scaler-spark-getting-started.md). toodo in tal caso, è necessario hello toospecify le opzioni seguenti quando si definisce il contesto di calcolo di hello RxSpark in un computer portatile: hdfsShareDir, shareDir, sshUsername, sshHostname, sshSwitches e sshProfileScript. ad esempio:
 
 
     myNameNode <- "default"
@@ -399,18 +399,18 @@ Si noti anche gli utenti appena aggiunti non hanno privilegi a livello radice ne
 
 ## <a name="use-a-compute-context"></a>Usare un contesto di calcolo
 
-Un contesto di calcolo consente di controllare se il calcolo viene eseguito localmente sul nodo perimetrale o distribuito sui nodi del cluster HDInsight.
+Un contesto di calcolo consente toocontrol se calcolo viene eseguito localmente sul nodo del bordo hello o distribuito tra i nodi nel cluster HDInsight hello hello.
 
-1. Da RStudio Server o dalla console R (in una sessione SSH), usare il codice seguente per caricare dati di esempio nella risorsa di archiviazione predefinita per HDInsight:
+1. Dalla console di hello R (in una sessione SSH) o il RStudio Server, utilizzare hello segue i dati di esempio di codice tooload nell'account di archiviazione predefinito hello per HDInsight:
 
-        # Set the HDFS (WASB) location of example data
+        # Set hello HDFS (WASB) location of example data
         bigDataDirRoot <- "/example/data"
 
         # create a local folder for storaging data temporarily
         source <- "/tmp/AirOnTimeCSV2012"
         dir.create(source)
 
-        # Download data to the tmp folder
+        # Download data toohello tmp folder
         remoteDir <- "http://packages.revolutionanalytics.com/datasets/AirOnTimeCSV2012"
         download.file(file.path(remoteDir, "airOT201201.csv"), file.path(source, "airOT201201.csv"))
         download.file(file.path(remoteDir, "airOT201202.csv"), file.path(source, "airOT201202.csv"))
@@ -425,21 +425,21 @@ Un contesto di calcolo consente di controllare se il calcolo viene eseguito loca
         download.file(file.path(remoteDir, "airOT201211.csv"), file.path(source, "airOT201211.csv"))
         download.file(file.path(remoteDir, "airOT201212.csv"), file.path(source, "airOT201212.csv"))
 
-        # Set directory in bigDataDirRoot to load the data into
+        # Set directory in bigDataDirRoot tooload hello data into
         inputDir <- file.path(bigDataDirRoot,"AirOnTimeCSV2012")
 
-        # Make the directory
+        # Make hello directory
         rxHadoopMakeDir(inputDir)
 
-        # Copy the data from source to input
+        # Copy hello data from source tooinput
         rxHadoopCopyFromLocal(source, bigDataDirRoot)
 
-2. Successivamente, si creano alcune informazioni sui dati e si definiscono due origini dati in modo da poter lavorare con i dati.
+2. Successivamente, si creare alcune informazioni di dati e definire due origini dati in modo che è possibile utilizzare i dati di hello.
 
-        # Define the HDFS (WASB) file system
+        # Define hello HDFS (WASB) file system
         hdfsFS <- RxHdfsFileSystem()
 
-        # Create info list for the airline data
+        # Create info list for hello airline data
         airlineColInfo <- list(
              DAY_OF_WEEK = list(type = "factor"),
              ORIGIN = list(type = "factor"),
@@ -447,19 +447,19 @@ Un contesto di calcolo consente di controllare se il calcolo viene eseguito loca
              DEP_TIME = list(type = "integer"),
              ARR_DEL15 = list(type = "logical"))
 
-        # get all the column names
+        # get all hello column names
         varNames <- names(airlineColInfo)
 
-        # Define the text data source in hdfs
+        # Define hello text data source in hdfs
         airOnTimeData <- RxTextData(inputDir, colInfo = airlineColInfo, varsToKeep = varNames, fileSystem = hdfsFS)
 
-        # Define the text data source in local system
+        # Define hello text data source in local system
         airOnTimeDataLocal <- RxTextData(source, colInfo = airlineColInfo, varsToKeep = varNames)
 
-        # formula to use
+        # formula toouse
         formula = "ARR_DEL15 ~ ORIGIN + DAY_OF_WEEK + DEP_TIME + DEST"
 
-3. Si prova poi a eseguire una regressione logistica sui dati usando il contesto di calcolo locale.
+3. Eseguire una regressione logistica sui dati hello utilizzando il contesto di calcolo locale hello.
 
         # Set a local compute context
         rxSetComputeContext("local")
@@ -472,7 +472,7 @@ Un contesto di calcolo consente di controllare se il calcolo viene eseguito loca
         # Display a summary
         summary(modelLocal)
 
-    L'output dovrebbe terminare con righe simili alle seguenti:
+    È necessario visualizzare l'output che termina con toohello simile di righe seguenti:
 
         Data: airOnTimeDataLocal (RxTextData Data Source)
         File name: /tmp/AirOnTimeCSV2012
@@ -500,12 +500,12 @@ Un contesto di calcolo consente di controllare se il calcolo viene eseguito loca
          Condition number of final variance-covariance matrix: 11904202
          Number of iterations: 7
 
-4. Quindi, si prova a eseguire la stessa regressione logistica usando il contesto di Spark. Il contesto di Spark distribuisce l'elaborazione su tutti i nodi del ruolo di lavoro del cluster HDInsight.
+4. Successivamente, eseguire la regressione logistica stesso utilizzando il contesto di Spark hello hello. contesto di Spark Hello distribuisce l'elaborazione di tutti i nodi di lavoro di hello in cluster di HDInsight hello hello.
 
-        # Define the Spark compute context
+        # Define hello Spark compute context
         mySparkCluster <- RxSpark()
 
-        # Set the compute context
+        # Set hello compute context
         rxSetComputeContext(mySparkCluster)
 
         # Run a logistic regression
@@ -518,16 +518,16 @@ Un contesto di calcolo consente di controllare se il calcolo viene eseguito loca
 
 
    > [!NOTE]
-   > È anche possibile usare MapReduce per distribuire il calcolo sui nodi del cluster. Per altre informazioni sul contesto di calcolo, vedere [Opzioni del contesto di calcolo per R Server su HDInsight](hdinsight-hadoop-r-server-compute-contexts.md).
+   > È anche possibile utilizzare MapReduce toodistribute calcolo tra nodi del cluster. Per altre informazioni sul contesto di calcolo, vedere [Opzioni del contesto di calcolo per R Server su HDInsight](hdinsight-hadoop-r-server-compute-contexts.md).
 
 
-## <a name="distribute-r-code-to-multiple-nodes"></a>Distribuire il codice R su più nodi
+## <a name="distribute-r-code-toomultiple-nodes"></a>Distribuire i nodi toomultiple codice R
 
-Con R Server, è possibile prelevare facilmente il codice R esistente ed eseguirlo su più nodi del cluster tramite `rxExec`. Questa funzione è utile in caso di sweep di parametri o simulazioni. Il codice seguente è un esempio di come usare `rxExec`:
+Con R Server, è possibile eseguire codice R esistente facilmente ed eseguito in più nodi nel cluster hello utilizzando `rxExec`. Questa funzione è utile in caso di sweep di parametri o simulazioni. il codice seguente Hello è riportato un esempio di come toouse `rxExec`:
 
     rxExec( function() {Sys.info()["nodename"]}, timesToRun = 4 )
 
-Se si sta ancora usando il contesto Spark o MapReduce, questo comando restituisce il valore nodename per i nodi di lavoro in cui viene eseguito il codice `(Sys.info()["nodename"])`. In un cluster a quattro nodi, ad esempio, si può prevedere di ricevere un output simile al seguente:
+Se si utilizza ancora hello Spark o contesto MapReduce, questo comando restituisce il valore di nodename hello per nodi di lavoro hello tale codice hello `(Sys.info()["nodename"])` viene eseguito in. Ad esempio, in un cluster a quattro nodi, si prevede di tooreceive output simili toohello seguenti:
 
     $rxElem1
         nodename
@@ -548,9 +548,9 @@ Se si sta ancora usando il contesto Spark o MapReduce, questo comando restituisc
 
 ## <a name="accessing-data-in-hive-and-parquet"></a>Accesso ai dati in Hive e Parquet
 
-Una funzionalità disponibile in R Server 9.1 consente l'accesso diretto ai dati in Hive e Parquet per l'uso da parte delle funzioni di ScaleR nel contesto di calcolo di Spark. Queste funzionalità sono disponibili tramite nuove funzioni di origine dati ScaleR denominate RxHiveData e RxParquetData, che usano Spark SQL per caricare i dati direttamente in un frame di dati di Spark per l'analisi da parte di ScaleR.  
+Una funzionalità disponibile in R Server 9.1 consente l'accesso diretto toodata Hive e Parquet per l'utilizzo per le funzioni ScaleR nel contesto di calcolo di hello Spark. Queste funzionalità sono disponibili tramite i nuovi dati origine le funzioni ScaleR chiamate RxHiveData e RxParquetData che funzionano tramite l'utilizzo di dati di Spark SQL tooload direttamente in un frame di dati di Spark per l'analisi da ScaleR.  
 
-Il codice seguente offre un esempio dell'uso delle nuove funzioni:
+Hello di codice seguente fornisce un codice di esempio sull'utilizzo di nuove funzioni hello:
 
     #Create a Spark compute context:
     myHadoopCluster <- rxSparkConnect(reset = TRUE)
@@ -575,7 +575,7 @@ Il codice seguente offre un esempio dell'uso delle nuove funzioni:
 
     rxNaiveBayes(type ~ age + cost, data = pqData)
 
-    #Check on Spark data objects, cleanup, and close the Spark session:
+    #Check on Spark data objects, cleanup, and close hello Spark session:
     lsObj <- rxSparkListData() # two data objs are cached
     lsObj
     rxSparkRemoveData(lsObj)
@@ -583,29 +583,29 @@ Il codice seguente offre un esempio dell'uso delle nuove funzioni:
     rxSparkDisconnect(myHadoopCluster)
 
 
-Per altre informazioni sull'uso di queste nuove funzioni, vedere la guida in linea di R Server tramite i comandi `?RxHivedata` e `?RxParquetData`.  
+Per altre informazioni sull'utilizzo di queste nuove funzioni, vedere la Guida online hello in R Server tramite l'utilizzo di hello `?RxHivedata` e `?RxParquetData` comandi.  
 
 
-## <a name="install-additional-r-packages-on-the-edge-node"></a>Installare pacchetti R aggiuntivi nel nodo perimetrale
+## <a name="install-additional-r-packages-on-hello-edge-node"></a>Installare pacchetti R aggiuntivi nel nodo del bordo hello
 
-Per installare pacchetti R aggiuntivi nel nodo perimetrale, è possibile usare `install.packages()` direttamente dall'interno della console R quando si è connessi al nodo perimetrale tramite SSH. Tuttavia, se si desidera installare pacchetti R sui nodi di lavoro del cluster, è necessario usare un'azione di script.
+Se si desidera tooinstall pacchetti R aggiuntivi nel nodo di hello edge, è possibile utilizzare `install.packages()` direttamente dall'interno hello console R quando connesso toohello bordo nodo tramite SSH. Tuttavia, se è necessario pacchetti R tooinstall in nodi di lavoro di hello di hello cluster, è necessario utilizzare un'azione di Script.
 
-Le azioni di script sono script Bash usati per apportare modifiche di configurazione al cluster HDInsight o per installare software aggiuntivo, ad esempio altri pacchetti R. Per installare altri pacchetti tramite un'azione di script, seguire questa procedura:
+Le azioni script sono gli script Bash toomake utilizzato configurazione modifiche toohello HDInsight cluster o tooinstall software aggiuntivo, ad esempio pacchetti R aggiuntivi. tooinstall pacchetti aggiuntivi con un'azione di Script, utilizzare hello alla procedura seguente:
 
 > [!IMPORTANT]
-> Le azioni di script per installare altri pacchetti R sono possono essere usate solo dopo aver creato il cluster. Non usare questa procedura durante la creazione del cluster poiché lo script si basa su R Server completamente installato e configurato.
+> Utilizzo di pacchetti R aggiuntivi di azioni Script tooinstall sono utilizzabili solo dopo aver creato il cluster hello. Non utilizzare questa procedura durante la creazione del cluster come script hello si basa su R Server viene completamente installato e configurato.
 >
 >
 
-1. Nel [Portale di Azure](https://portal.azure.com)selezionare il proprio R Server sul cluster HDInsight.
+1. Da hello [portale di Azure](https://portal.azure.com), selezionare il Server di R nel cluster HDInsight.
 
-2. Nel pannello **Impostazioni** selezionare **Azioni script** e quindi **Invia nuova** per inviare una nuova azione di script.
+2. Da hello **impostazioni** pannello seleziona **azioni Script** e quindi **inviare nuovi** toosubmit una nuova azione di Script.
 
    ![Immagine del pannello Azioni script](./media/hdinsight-hadoop-r-server-get-started/scriptaction.png)
 
-3. Immettere le informazioni seguenti nel pannello **Invia azione script**:
+3. Da hello **inviare l'azione script** pannello fornire hello le seguenti informazioni:
 
-   * **Nome**: nome descrittivo per identificare lo script
+   * **Nome**: un semplice nome tooidentify questo script
 
    * **URI script Bash**: `http://mrsactionscripts.blob.core.windows.net/rpackages-v01/InstallRPackages.sh`
 
@@ -617,31 +617,31 @@ Le azioni di script sono script Bash usati per apportare modifiche di configuraz
 
    * **Zookeeper**: questa voce deve essere **deselezionata**
 
-   * **Parametri**: i pacchetti R da installare. Ad esempio, `bitops stringr arules`
+   * **I parametri**: hello R pacchetti toobe installato. Ad esempio, `bitops stringr arules`
 
    * **Salvare questa azione script in modo permanente...**: questa voce deve essere **selezionata**  
 
    > [!NOTE]
-   > 1. Per impostazione predefinita, tutti i pacchetti R vengono installati da uno snapshot dell'archivio MRAN di Microsoft coerente con la versione di R Server che è stato installato. L'installazione di versioni più recenti dei pacchetti espone al rischio di incompatibilità. Questo tipo di installazione è tuttavia possibile specificando `useCRAN` come primo elemento dell'elenco dei pacchetti, ad esempio `useCRAN bitops, stringr, arules`.  
-   > 2. Alcuni pacchetti R richiedono librerie di sistema di Linux aggiuntive. Per praticità sono state preinstallate le dipendenze necessarie per i 100 pacchetti R più diffusi. Tuttavia, se i pacchetti R installati richiedono altre librerie, è necessario scaricare lo script di base usato qui e continuare la procedura per installare le librerie di sistema. È quindi necessario caricare lo script modificato in un contenitore BLOB pubblico su Archiviazione di Azure e usare lo script modificato per installare i pacchetti.
+   > 1. Per impostazione predefinita, tutti i pacchetti R installati da uno snapshot del repository MRAN Microsoft hello coerente con la versione di hello del Server di R che è stato installato. Se si desidera tooinstall le versioni più recenti dei pacchetti, vi è rischio di incompatibilità. Tuttavia questo tipo di installazione è possibile specificando `useCRAN` come hello elencare primo elemento del pacchetto di hello, ad esempio `useCRAN bitops, stringr, arules`.  
+   > 2. Alcuni pacchetti R richiedono librerie di sistema di Linux aggiuntive. Per praticità, è stato preinstallato dipendenze hello necessarie hello primi 100 pacchetti R più diffusi. Tuttavia, se si installa i pacchetti R di hello richiedono librerie oltre a questi quindi è necessario scaricare script di base hello utilizzato in questo argomento e aggiungere passaggi tooinstall hello sistema librerie. È necessario quindi pubblica tooa script hello modificato di caricamento blob contenitore nell'archiviazione di Azure e utilizzare i pacchetti hello modificato script tooinstall hello.
    >    Per altre informazioni sullo sviluppo di azioni script, vedere l'articolo [Sviluppo di azioni script con HDInsight](hdinsight-hadoop-script-actions-linux.md).  
    >
    >
 
    ![Aggiunta di un'azione script](./media/hdinsight-getting-started-with-r/submitscriptaction.png)
 
-4. Selezionare **Crea** per eseguire lo script. Una volta completato lo script, i pacchetti R sono disponibili su tutti i nodi del ruolo di lavoro.
+4. Selezionare **crea** script hello toorun. Al termine dell'esecuzione dello script hello, i pacchetti hello R sono disponibili in tutti i nodi di lavoro.
 
 
 ## <a name="using-microsoft-r-server-operationalization"></a>Uso della messa in funzione di Microsoft R Server
 
-Dopo aver completato la modellazione dei dati, è possibile mettere in funzione il modello per generare previsioni. Per configurare la messa in funzione di Microsoft R Server, seguire questa procedura:
+Una volta completata la modellazione dei dati, è possibile rendere operative le stime di toomake modello hello. tooconfigure per rendere operativo Microsoft R Server, eseguire hello alla procedura seguente:
 
-Innanzitutto, accedere tramite SSH al nodo perimetrale. Ad esempio, 
+Prima di tutto, ssh nel nodo di hello del bordo. Ad esempio, 
 
     ssh -L USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
 
-dopo aver usato SSH passare alla directory della versione corrispondente ed eseguire sudo sulla DLL di dotnet: 
+Dopo l'utilizzo di ssh, cambiare directory per la versione appropriata di hello e sudo hello dotnet dll: 
 
 - Per Microsoft R Server 9.1:
 
@@ -651,11 +651,11 @@ dopo aver usato SSH passare alla directory della versione corrispondente ed eseg
 
     cd /usr/lib64/microsoft-deployr/9.0.1   sudo dotnet Microsoft.DeployR.Utils.AdminUtil/Microsoft.DeployR.Utils.AdminUtil.dll
 
-Per configurare la messa in funzione di Microsoft R Server con una configurazione di una casella, procedere come segue:
+rendere operativo Microsoft R Server tooconfigure con una configurazione di una casella hello seguenti:
 
 1. Selezionare "Configure R Server for Operationalization" (Configurare R Server per la messa in funzione)
 2. Selezionare "A. One-box (web + compute nodes)” (Una casella (Web + nodi di calcolo)"
-3. Immettere una password per l'utente **admin**
+3. Immettere una password per hello **admin** utente
 
 ![Opzione per una casella](./media/hdinsight-hadoop-r-server-get-started/admin-util-one-box-.png)
 
@@ -665,7 +665,7 @@ Come passaggio facoltativo, è possibile eseguire controlli diagnostici eseguend
 2. Selezionare "A. Test configuration" (Configurazione test)
 3. Immettere nome utente = "admin" e la password del passaggio di configurazione precedente
 4. Conferma dell'integrità complessiva = pass
-5. Uscire dall'utilità di amministrazione
+5. Utilità di amministrazione di hello uscita
 6. Uscire da SSH
 
 ![Diagnostica per la messa in funzione](./media/hdinsight-hadoop-r-server-get-started/admin-util-diagnostics.png)
@@ -674,7 +674,7 @@ Come passaggio facoltativo, è possibile eseguire controlli diagnostici eseguend
 >[!NOTE]
 >**Ritardi considerevoli quando si utilizza il servizio Web in Spark**
 >
->Se si riscontrano ritardi considerevoli quando si prova a utilizzare un servizio Web creato con le funzioni mrsdeploy in un contesto di calcolo di Spark, potrebbe essere necessario aggiungere alcune cartelle mancanti. L'applicazione Spark appartiene a un utente chiamato "*rserve2*" quando viene richiamata da un servizio Web usando le funzioni mrsdeploy. Per risolvere questo problema:
+>Se si verificano ritardi quando si tenta di tooconsume un servizio web creato con mrsdeploy funzioni in un contesto di calcolo Spark, potrebbe essere necessario tooadd alcune cartelle mancanti. applicazione di Spark Hello appartiene tooa utente denominato '*rserve2*' ogni volta che viene chiamato da un servizio web utilizzando le funzioni mrsdeploy. toowork questo problema:
 
     # Create these required folders for user 'rserve2' in local and hdfs:
 
@@ -690,11 +690,11 @@ Come passaggio facoltativo, è possibile eseguire controlli diagnostici eseguend
     rxSparkConnect(reset = TRUE)
 
 
-A questo punto la configurazione per la messa in funzione è completata. È ora possibile usare il pacchetto "mrsdeploy" in RClient per connettersi alla messa in funzione sul nodo perimetrale e iniziare a usarne le funzionalità, ad esempio l'[esecuzione remota](https://msdn.microsoft.com/microsoft-r/operationalize/remote-execution) e i [servizi Web](https://msdn.microsoft.com/microsoft-r/mrsdeploy/mrsdeploy-websrv-vignette). A seconda che il cluster sia configurato o meno su una rete virtuale, potrebbe essere necessario impostare il tunneling di inoltro alla porta tramite l'accesso SSH. Le sezioni seguenti illustrano come configurare questo tunnel.
+In questa fase, configurazione hello per rendere operativo è stata completata. È ora possibile usare hello 'mrsdeploy' pacchetto sul toohello di tooconnect RClient rendere operativo il nel nodo del bordo e iniziare a usare le funzionalità come [esecuzione remota](https://msdn.microsoft.com/microsoft-r/operationalize/remote-execution) e [servizi web](https://msdn.microsoft.com/microsoft-r/mrsdeploy/mrsdeploy-websrv-vignette). A seconda se il cluster è installato in una rete virtuale o non, potrebbe essere necessario tooset backup Porta avanti tunneling tramite account di accesso SSH. Hello sezioni seguenti illustrano come tooset backup questo tunnel.
 
 ### <a name="rserver-cluster-on-virtual-network"></a>Cluster RServer su rete virtuale
 
-Verificare che sia consentito il traffico attraverso la porta 12800 verso il nodo perimetrale. In questo modo è possibile usare tale nodo per la connessione alla funzionalità di messa in funzione.
+Assicurarsi che consentire il traffico attraverso il nodo 12800 toohello bordo porta. In questo modo, è possibile utilizzare funzionalità di hello edge nodi tooconnect toohello rendere operativo.
 
 
     library(mrsdeploy)
@@ -706,7 +706,7 @@ Verificare che sia consentito il traffico attraverso la porta 12800 verso il nod
     )
 
 
-Se `remoteLogin()` non può connettersi al nodo perimetrale ma è possibile accedere a tale nodo tramite SSH, è necessario verificare se la regola che consente il traffico sulla porta 12800 è stata impostata correttamente. Se il problema persiste, può essere risolto configurando il tunneling di port forwarding tramite SSH. Per istruzioni, vedere la sezione seguente.
+Se hello `remoteLogin()` non è possibile connettere toohello bordo nodo, ma è possibile nodo del bordo di toohello SSH, quindi è necessario tooverify se traffico sulla porta 12800 tooallow regole di hello è stato impostato correttamente o meno. Se si continua, il problema di hello tooface, è possibile aggirare il mediante l'impostazione di porta Avanti tunneling tramite SSH. Per istruzioni, vedere hello seguente sezione.
 
 ### <a name="rserver-cluster-not-set-up-on-virtual-network"></a>Cluster RServer non impostato su rete virtuale
 
@@ -718,7 +718,7 @@ La configurazione è possibile anche in Putty.
 
 ![Connessione SSH con Putty](./media/hdinsight-hadoop-r-server-get-started/putty.png)
 
-Quando la sessione SSH è attiva, il traffico proveniente dalla porta 12800 del computer viene inoltrato alla porta 12800 del nodo perimetrale tramite la sessione SSH. Assicurarsi di usare `127.0.0.1:12800` nel metodo `remoteLogin()`. Viene così eseguito l'accesso alla messa in funzione del nodo perimetrale tramite port forwarding.
+Una volta la sessione SSH è attiva, il traffico di hello dalla porta del computer 12800 verrà inoltrato porta del nodo perimetrale toohello 12800 tramite una sessione SSH. Assicurarsi di usare `127.0.0.1:12800` nel metodo `remoteLogin()`. Questo accesso rendere operativo il del nodo perimetrale toohello tramite inoltro alla porta.
 
 
     library(mrsdeploy)
@@ -730,16 +730,16 @@ Quando la sessione SSH è attiva, il traffico proveniente dalla porta 12800 del 
     )
 
 
-## <a name="how-to-scale-microsoft-r-server-operationalization-compute-nodes-on-hdinsight-worker-nodes"></a>Procedura per ridimensionare i nodi di calcolo della messa in funzione di Microsoft R Server nei nodi del ruolo di lavoro di HDInsight
+## <a name="how-tooscale-microsoft-r-server-operationalization-compute-nodes-on-hdinsight-worker-nodes"></a>Come nodi in HDInsight i nodi di lavoro di calcolo tooscale rendere operativo il Microsoft R Server
 
-### <a name="decommission-the-worker-nodes"></a>Rimuovere le autorizzazioni dei nodi del ruolo di lavoro
+### <a name="decommission-hello-worker-nodes"></a>Rimuovere le autorizzazioni ai nodi di lavoro hello
 
-Attualmente Microsoft R Server non è gestito tramite Yarn. Se è necessario rimuovere le autorizzazioni dei nodi del ruolo di lavoro, Yarn Resource Manager non funzionerà come previsto in quanto non sarà in grado di riconoscere le risorse impiegate dal server. Per evitare questa situazione, è consigliabile rimuovere le autorizzazioni dei nodi del ruolo di lavoro prima di ridimensionare i nodi di calcolo.
+Attualmente Microsoft R Server non è gestito tramite Yarn. Se i nodi di lavoro hello non vengono rimossi, hello Gestione risorse di Yarn non funzionerà come previsto perché non sarà compatibile con risorse hello utilizzata dal server hello. In ordine tooavoid questa situazione, si consiglia di rimozione di nodi di lavoro hello prima la scalabilità orizzontale nodi di calcolo hello.
 
-Passaggi per la rimozione delle autorizzazioni dei nodi del ruolo di lavoro:
+Nodi di lavoro toodecommissioning passaggi:
 
-* Accedere alla console Ambari del cluster HDI e fare clic sulla scheda "Host"
-* Selezionare i nodi del ruolo di lavoro di cui rimuovere le autorizzazioni e fare clic su "Actions" (Azioni) > "Selected Hosts" (Host selezionati) > "Host" > e infine su "Turn ON Maintenance Mode" (Attiva modalità di manutenzione). Ad esempio nell'immagine seguente i nodi selezionati per la rimozione delle autorizzazioni sono wn3 e wn4.  
+* Accedere alla console Ambari tooHDI del cluster e fare clic sulla scheda "host"
+* Selezionare i nodi di lavoro (toobe messo fuori servizio), fare clic sul menu "azioni" > "Selezionato gli host" > "Hosts" > fare clic su "Attivare la modalità di manutenzione ON". Ad esempio, nella seguente immagine hello è stato selezionato toodecommission wn3 e wn4.  
 
    ![Rimozione delle autorizzazioni dei nodi del ruolo di lavoro](./media/hdinsight-hadoop-r-server-get-started/get-started-operationalization.png)  
 
@@ -748,24 +748,24 @@ Passaggi per la rimozione delle autorizzazioni dei nodi del ruolo di lavoro:
 * Selezionare **Actions** > **Selected Hosts** > **DataNodes** > fare clic su **Stop** (Arresta).
 * Selezionare **Actions** > **Selected Hosts** > **NodeManagers** > fare clic su **Stop** (Arresta).
 * Selezionare **Actions** > **Selected Hosts** > **Hosts** > fare clic su **Stop All Components** (Arresta tutti i componenti).
-* Deselezionare i nodi del ruolo di lavoro e selezionare i nodi head.
+* Deselezionare i nodi di lavoro hello e selezionare i nodi head hello
 * Selezionare **Actions** > **Selected Hosts** > "**Hosts** > **Restart All Components** (Riavvia tutti i componenti).
 
 ### <a name="configure-compute-nodes-on-each-decommissioned-worker-nodes"></a>Configurare i nodi di calcolo su ogni nodo del ruolo di lavoro per il quale è stata rimossa l'autorizzazione
 
 1. Accedere tramite SSH a ogni nodo del ruolo di lavoro per il quale è stata rimossa l'autorizzazione.
 2. Eseguire l'utilità di amministrazione con `dotnet /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Utils.AdminUtil/Microsoft.DeployR.Utils.AdminUtil.dll`.
-3. Immettere "1" per selezionare l'opzione "Configure R Server for Operationalization" (Configurare R Server per la messa in funzione).
-4. Immettere "c" per selezionare l'opzione "C. Compute node" (Nodo di calcolo). Il nodo di calcolo viene configurato sul nodo del ruolo di lavoro.
-5. Uscire dall'utilità di amministrazione.
+3. Immettere "1" l'opzione tooselect "Configurare R Server per rendere operativo il".
+4. Immettere l'opzione tooselect "c" "c. Compute node" (Nodo di calcolo). Consente di configurare il nodo di calcolo hello nel nodo lavoro hello.
+5. Hello uscita utilità di amministrazione.
 
 ### <a name="add-compute-nodes-details-on-web-node"></a>Aggiungere i dettagli dei nodi di calcolo nel nodo Web
 
-Dopo che tutti i nodi di lavoro per i quali è stata rimossa l'autorizzazione sono stati configurati per l'esecuzione del nodo di calcolo, tornare al nodo perimetrale e aggiungere gli indirizzi IP di tali nodi di lavoro nella configurazione del nodo Web Microsoft R Server:
+Dopo aver configurati tutti i nodi di lavoro rimossi toorun nodo di calcolo, tornare nel nodo edge hello e aggiungere gli indirizzi IP dei nodi di lavoro rimossi in configurazione del nodo di hello Microsoft R Server web:
 
-* Accedere tramite SSH al nodo perimetrale.
+* SSH nel nodo di hello del bordo.
 * Eseguire `vi /usr/lib64/microsoft-deployr/9.0.1/Microsoft.DeployR.Server.WebAPI/appsettings.json`.
-* Individuare la sezione dell'URI e aggiungere i dettagli relativi alla porta e all'IP del nodo del ruolo di lavoro.
+* Cercare la sezione "URI" hello e aggiungere l'indirizzo IP del nodo di lavoro e dettagli della porta.
 
     ![Rimozione delle autorizzazioni dei nodi del ruolo di lavoro con la riga di comando](./media/hdinsight-hadoop-r-server-get-started/get-started-op-cmd.png)
 
@@ -777,8 +777,8 @@ Se si verificano problemi di creazione dei cluster HDInsight, vedere i [requisit
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-A questo punto dovrebbe essere chiaro come creare un nuovo cluster HDInsight che includa R Server, comprese le nozioni di base sull'uso della console di R da una sessione SSH. Gli argomenti seguenti illustrano altre modalità di gestione e uso di R Server in HDInsight:
+A questo punto è necessario comprendere come un nuovo cluster HDInsight che include hello R Server hello concetti di base e dell'utilizzo toocreate hello console R da una sessione SSH. Hello seguenti argomenti vengono illustrati altri modi di gestione e utilizzo del Server di R in HDInsight:
 
-* [Aggiungere RStudio Server a HDInsight (se non installato durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
+* [Aggiungere RStudio Server tooHDInsight (se non è installato durante la creazione del cluster)](hdinsight-hadoop-r-server-install-r-studio.md)
 * [Opzioni del contesto di calcolo per R Server su HDInsight (anteprima)](hdinsight-hadoop-r-server-compute-contexts.md)
 * [Opzioni di Archiviazione di Azure per R Server su HDInsight](hdinsight-hadoop-r-server-storage.md)

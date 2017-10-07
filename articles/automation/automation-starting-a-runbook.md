@@ -1,6 +1,6 @@
 ---
-title: Avvio di un runbook in Automazione di Azure | Microsoft Docs
-description: "Riepiloga le diverse modalità che è possibile usare per avviare un Runbook in Automazione di Azure e fornisce dettagli sull'uso del portale di Azure e di Windows PowerShell."
+title: aaaStarting un runbook in automazione di Azure | Documenti Microsoft
+description: Riepiloga hello diversi metodi che possono essere utilizzati toostart un runbook in automazione di Azure e fornisce informazioni dettagliate sull'utilizzo di entrambi hello portale di Azure e Windows PowerShell.
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/07/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 844831b63d5263987ed05370125fbe9f01913ab9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e44bce5b56b8e803f9247fbb4f3d4db7ab35c913
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="starting-a-runbook-in-azure-automation"></a>Avvio di un Runbook in Automazione di Azure
-La tabella seguente consente di determinare la modalità di avvio di un Runbook in Automazione di Azure più appropriata per il proprio scenario. Questo articolo include informazioni dettagliate sull'avvio di un Runbook con il portale di Azure e con Windows PowerShell. Le informazioni sulle altre modalità sono contenute in altri documenti accessibili dai collegamenti seguenti.
+Hello nella tabella seguente consentono di determinare hello metodo toostart un runbook in automazione di Azure che è più adatto tooyour particolare scenario. In questo articolo include informazioni dettagliate su come avviare un runbook con hello portale di Azure e con Windows PowerShell. Dettagli su hello altri metodi vengono forniti in altra documentazione di cui è possibile accedere dai collegamenti hello riportato di seguito.
 
 | **METODO** | **CARATTERISTICHE** |
 | --- | --- |
-| [Portale di Azure](#starting-a-runbook-with-the-azure-portal) |<li>Metodo più semplice con interfaccia utente interattiva.<br> <li>Modulo per specificare valori di parametri semplici.<br> <li>Facilità di controllo dello stato dei processi.<br> <li>Accesso autenticato con l'accesso di Azure. |
-| [Windows PowerShell](https://msdn.microsoft.com/library/dn690259.aspx) |<li>Chiamata mediante cmdlet di Windows PowerShell nella riga di comandi.<br> <li>Possibilità di inclusione in una soluzione automatizzata con più passaggi.<br> <li>Autenticazione della richiesta con un certificato oppure con un'entità utente/entità servizio OAuth.<br> <li>Possibilità di specificare valori di parametri semplici e complessi.<br> <li>Possibilità di controllare lo stato dei processi.<br> <li>Obbligo per il client di supporto dei cmdlet di PowerShell. |
+| [Portale di Azure](#starting-a-runbook-with-the-azure-portal) |<li>Metodo più semplice con interfaccia utente interattiva.<br> <li>I valori dei parametri semplice tooprovide del modulo.<br> <li>Facilità di controllo dello stato dei processi.<br> <li>Accesso autenticato con l'accesso di Azure. |
+| [Windows PowerShell](https://msdn.microsoft.com/library/dn690259.aspx) |<li>Chiamata mediante cmdlet di Windows PowerShell nella riga di comandi.<br> <li>Possibilità di inclusione in una soluzione automatizzata con più passaggi.<br> <li>Autenticazione della richiesta con un certificato oppure con un'entità utente/entità servizio OAuth.<br> <li>Possibilità di specificare valori di parametri semplici e complessi.<br> <li>Possibilità di controllare lo stato dei processi.<br> <li>I cmdlet di PowerShell toosupport necessario client. |
 | [API di Automazione di Azure](https://msdn.microsoft.com/library/azure/mt662285.aspx) |<li>Modalità più flessibile, ma anche più complessa.<br> <li>Possibilità di chiamata da qualsiasi codice personalizzato in grado di creare richieste HTTP.<br> <li>Autenticazione della richiesta con un certificato oppure con un'entità utente/entità servizio OAuth.<br> <li>Possibilità di specificare valori di parametri semplici e complessi.<br> <li>Possibilità di controllare lo stato dei processi. |
-| [Webhook](automation-webhooks.md) |<li>Avvio di Runbook da una singola richiesta HTTP.<br> <li>Autenticazione con token di sicurezza nell'URL.<br> <li>Impossibilità per il client di eseguire l'override dei valori di parametri specificati al momento della creazione del webhook. Possibilità per il Runbook di definire un singolo parametro popolato con i dettagli della richiesta HTTP.<br> <li>Impossibilità di tenere traccia dello stato dei processi tramite URL webhook. |
-| [Risposta all'avviso di Azure](../log-analytics/log-analytics-alerts.md) |<li>Avviare un runbook in risposta all'avviso di Azure.<br> <li>Configurare webhook per runbook e collegare all'avviso.<br> <li>Autenticazione con token di sicurezza nell'URL. |
-| [Pianificare](automation-schedules.md) |<li>Avvio automatico dei runbook in base a una pianificazione oraria, giornaliera, settimanale o mensile.<br> <li>Modifica della pianificazione tramite il portale di Azure, i cmdlet di PowerShell o l'API di Azure.<br> <li>Possibilità di specificare i valori di parametri da usare con la pianificazione. |
-| [Da un altro Runbook](automation-child-runbooks.md) |<li>Uso di un Runbook come attività in un altro Runbook.<br> <li>Utile per funzionalità usate da più Runbook.<br> <li>Possibilità di specificare valori di parametri per Runbook figlio e usare l'output in Runbook padre. |
+| [Webhook](automation-webhooks.md) |<li>Avvio di Runbook da una singola richiesta HTTP.<br> <li>Autenticazione con token di sicurezza nell'URL.<br> <li>Impossibilità per il client di eseguire l'override dei valori di parametri specificati al momento della creazione del webhook. Runbook può definire singolo parametro che viene popolata con i dettagli della richiesta HTTP hello.<br> <li>Stato del processo non tootrack possibilità tramite l'URL del webhook. |
+| [Rispondere tooAzure avviso](../log-analytics/log-analytics-alerts.md) |<li>Avviare un runbook nell'avviso tooAzure di risposta.<br> <li>Configurare webhook per runbook e il collegamento tooalert.<br> <li>Autenticazione con token di sicurezza nell'URL. |
+| [Pianificare](automation-schedules.md) |<li>Avvio automatico dei runbook in base a una pianificazione oraria, giornaliera, settimanale o mensile.<br> <li>Modifica della pianificazione tramite il portale di Azure, i cmdlet di PowerShell o l'API di Azure.<br> <li>Fornire toobe di valori di parametro utilizzato con una pianificazione. |
+| [Da un altro Runbook](automation-child-runbooks.md) |<li>Uso di un Runbook come attività in un altro Runbook.<br> <li>Utile per funzionalità usate da più Runbook.<br> <li>Fornire runbook toochild valori di parametro e utilizzare l'output in runbook padre. |
 
-L'immagine seguente illustra in dettaglio il processo nel ciclo di vita di un runbook. Include vari metodi di avvio di un runbook in Automazione di Azure, i componenti necessari per il ruolo di lavoro ibrido per runbook per eseguire i runbook di Automazione di Azure e le interazioni tra i vari componenti. Per altre informazioni sull'esecuzione di runbook di automazione nel proprio data center, vedere [Ruoli di lavoro ibridi per runbook](automation-hybrid-runbook-worker.md)
+Hello immagine seguente illustra procedura dettagliata hello ciclo di vita di un runbook. Offre diversi modi che viene avviato un runbook in automazione di Azure, i componenti necessari per i runbook di automazione di Azure di Runbook Worker ibrido tooexecute e le interazioni tra i diversi componenti. toolearn sull'esecuzione di runbook di automazione nel Data Center, fare riferimento troppo[ibridi per runbook](automation-hybrid-runbook-worker.md)
 
 ![Architettura dei runbook](media/automation-starting-runbook/runbooks-architecture.png)
 
-## <a name="starting-a-runbook-with-the-azure-portal"></a>Avvio di un Runbook con il portale di Azure
-1. Nel portale di Azure selezionare **Automazione** e quindi fare clic sul nome di un account di automazione.
-2. Nel menu Hub selezionare **Runbook**.
-3. Nel pannello **Runbook** selezionare un runbook e quindi fare clic su **Avvia**.
-4. Se il Runbook dispone di parametri, verrà richiesto di specificare i valori con una casella di testo per ogni parametro. Per altri dettagli sui parametri, vedere [Parametri di Runbook](#Runbook-parameters) più avanti.
-5. Nel pannello **Processo** è possibile visualizzare lo stato del processo del runbook.
+## <a name="starting-a-runbook-with-hello-azure-portal"></a>Avvio di un runbook con hello portale di Azure
+1. Nel portale di Azure hello, selezionare **automazione** e quindi scegliere il nome di hello di un account di automazione.
+2. Nel menu Hub hello, selezionare **runbook**.
+3. In hello **runbook** pannello selezionare un runbook e quindi fare clic su **avviare**.
+4. Hello runbook include parametri, sarà richiesta tooprovide valori con una casella di testo per ogni parametro. Per altri dettagli sui parametri, vedere [Parametri di Runbook](#Runbook-parameters) più avanti.
+5. In hello **processo** pannello, è possibile visualizzare lo stato di hello di processo del runbook hello.
 
 ## <a name="starting-a-runbook-with-windows-powershell"></a>Avvio di un Runbook con Windows PowerShell
-È possibile usare [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) per avviare un runbook con Windows PowerShell. Il codice di esempio seguente avvia un Runbook denominato Test-Runbook.
+È possibile utilizzare hello [inizio AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart un runbook con Windows PowerShell. Hello codice di esempio seguente avvia un runbook denominato Test-Runbook.
 
 ```
 Start-AzureRmAutomationRunbook -AutomationAccountName "MyAutomationAccount" -Name "Test-Runbook" -ResourceGroupName "ResourceGroup01"
 ```
 
-Start-AzureRmAutomationRunbook restituisce un oggetto processo che è possibile usare per tenere traccia dello stato dopo l'avvio del runbook. È quindi possibile usare questo oggetto processo con [Get-AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx) per determinare lo stato del processo e con [Get-AzureRmAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) per ottenere il relativo output. L'esempio di codice seguente avvia un Runbook denominato Test-Runbook, attende che venga completato e quindi visualizza l'output corrispondente.
+Inizio AzureRmAutomationRunbook restituisce un processo dell'oggetto che è possibile utilizzare tootrack lo stato dopo l'avvio del runbook hello. È quindi possibile utilizzare questo oggetto processo con [Get AzureRmAutomationJob](https://msdn.microsoft.com/library/mt619440.aspx) stato hello toodetermine del processo di hello e [Get AzureRmAutomationJobOutput](https://msdn.microsoft.com/library/mt603476.aspx) tooget l'output. Hello codice di esempio seguente avvia un runbook denominato Test-Runbook, ne attende il completamento e quindi Visualizza il relativo output.
 
 ```
 $runbookName = "Test-Runbook"
@@ -70,7 +70,7 @@ While ($doLoop) {
 Get-AzureRmAutomationJobOutput –AutomationAccountName $AutomationAcct -Id $job.JobId -ResourceGroupName $ResourceGroup –Stream Output
 ```
 
-Se il Runbook richiede parametri, è necessario fornirli come [tabella hash](http://technet.microsoft.com/library/hh847780.aspx) , dove la chiave della tabella hash corrisponde al nome del parametro e il valore al valore del parametro. L'esempio seguente illustra come avviare un Runbook con due parametri di stringa denominati FirstName e LastName, un parametro di tipo intero denominato RepeatCount e un parametro booleano denominato Show. Per altre informazioni sui parametri, vedere [Parametri di Runbook](#Runbook-parameters) più avanti.
+Se hello runbook richiede parametri, quindi sarà necessario fornirli come un [hashtable](http://technet.microsoft.com/library/hh847780.aspx) in chiave hello di hello hashtable corrisponde a nome di parametro hello e il valore di hello è il valore di parametro hello. Hello esempio seguente viene illustrato come toostart un runbook con due parametri stringa denominati FirstName e LastName, un numero intero denominato RepeatCount e un parametro booleano denominato Show. Per altre informazioni sui parametri, vedere [Parametri di Runbook](#Runbook-parameters) più avanti.
 
 ```
 $params = @{"FirstName"="Joe";"LastName"="Smith";"RepeatCount"=2;"Show"=$true}
@@ -78,14 +78,14 @@ Start-AzureRmAutomationRunbook –AutomationAccountName "MyAutomationAccount" �
 ```
 
 ## <a name="runbook-parameters"></a>Parametri di Runbook
-Quando si avvia un runbook dal portale di Azure o da Windows PowerShell, l'istruzione viene inviata attraverso il servizio Web Automazione di Azure. Questo servizio non supporta i parametri con tipi di dati complessi. Se è necessario specificare un valore per un parametro complesso, eseguire la chiamata inline da un altro Runbook come descritto in [Runbook figlio in Automazione di Azure](automation-child-runbooks.md).
+Quando si avvia un runbook da hello portale di Azure o Windows PowerShell, istruzione hello viene inviato tramite hello servizio web di automazione di Azure. Questo servizio non supporta i parametri con tipi di dati complessi. Se è necessario tooprovide un valore per un parametro complesso, è necessario chiamarlo inline da un altro runbook come descritto in [figlio runbook in automazione di Azure](automation-child-runbooks.md).
 
-Il servizio Web Automazione di Azure offrirà funzionalità speciali per i parametri che usano determinati tipi di dati, come descritto nelle sezioni seguenti.
+servizio web di automazione di Azure Hello fornirà funzionalità speciali per i parametri che usano determinati tipi di dati come descritto in hello le sezioni seguenti.
 
 ### <a name="named-values"></a>Valori denominati
-Se il parametro è un tipo di dati [object], è possibile usare il formato JSON seguente per inviargli un elenco di valori denominati: *{Name1:'Value1', Name2:'Value2', Name3:'Value3'}*. Questi valori devono essere tipi semplici. Il Runbook riceverà il parametro come [PSCustomObject](https://msdn.microsoft.com/library/system.management.automation.pscustomobject%28v=vs.85%29.aspx) con proprietà che corrispondono a ogni valore denominato.
+Se il parametro hello è il tipo di dati [object], quindi è possibile utilizzare hello seguente toosend formato JSON è un elenco di valori denominati: *{nome1: 'Valore1', Nome2: 'Valore2', Nome3: 'Value3'}*. Questi valori devono essere tipi semplici. Hello runbook riceverà il parametro hello come un [PSCustomObject](https://msdn.microsoft.com/library/system.management.automation.pscustomobject%28v=vs.85%29.aspx) con proprietà corrispondenti tooeach denominato value.
 
-Si consideri il Runbook di test seguente che accetta un parametro denominato user.
+Prendere in considerazione hello seguente runbook di test che accetta un parametro denominato utente.
 
 ```
 Workflow Test-Parameters
@@ -103,13 +103,13 @@ Workflow Test-Parameters
 }
 ```
 
-È possibile usare il testo seguente per il parametro user.
+Hello testo seguente può essere utilizzato per il parametro utente hello.
 
 ```
 {FirstName:'Joe',LastName:'Smith',RepeatCount:'2',Show:'True'}
 ```
 
-Si ottiene l'output seguente.
+Il risultato successivo output di hello.
 
 ```
 Joe
@@ -119,9 +119,9 @@ Smith
 ```
 
 ### <a name="arrays"></a>Matrici
-Se il parametro è una matrice, ad esempio [array] o [string[]], è possibile usare il formato JSON seguente per inviargli un elenco di valori: *[Value1,Value2,Value3]*. Questi valori devono essere tipi semplici.
+Se il parametro hello è una matrice, ad esempio [array] o [string []], è possibile utilizzare hello seguenti toosend formato JSON è un elenco di valori: *[valore1, valore2, valore3]*. Questi valori devono essere tipi semplici.
 
-Si consideri il Runbook di test seguente che accetta un parametro denominato *user*.
+Prendere in considerazione hello seguente runbook di test che accetta un parametro denominato *utente*.
 
 ```
 Workflow Test-Parameters
@@ -138,13 +138,13 @@ Workflow Test-Parameters
 }
 ```
 
-È possibile usare il testo seguente per il parametro user.
+Hello testo seguente può essere utilizzato per il parametro utente hello.
 
 ```
 ["Joe","Smith",2,true]
 ```
 
-Si ottiene l'output seguente.
+Il risultato successivo output di hello.
 
 ```
 Joe
@@ -154,9 +154,9 @@ Smith
 ```
 
 ### <a name="credentials"></a>Credenziali
-Se il parametro è un tipo di dati **PSCredential**, è possibile specificare il nome di un [asset credenziali](automation-credentials.md)di Automazione di Azure. Il Runbook recupererà le credenziali con il nome specificato.
+Se il parametro hello è di tipo di dati **PSCredential**, sarà possibile specificare il nome di hello di un'automazione di Azure [asset delle credenziali](automation-credentials.md). Hello runbook recupererà credenziale hello con nome hello specificato.
 
-Si consideri il Runbook di test seguente che accetta un parametro denominato credential.
+Prendere in considerazione hello seguente runbook di test che accetta un parametro denominato di credenziali.
 
 ```
 Workflow Test-Parameters
@@ -168,19 +168,19 @@ Workflow Test-Parameters
 }
 ```
 
-È possibile usare il testo seguente per il parametro user presumendo l'esistenza di un asset credenziali denominato *My Credential*.
+Hello seguente è possibile usare testo per il parametro utente hello supponendo che sia disponibile un asset credenziali denominato *My Credential*.
 
 ```
 My Credential
 ```
 
-Presupponendo che il nome utente nelle credenziali sia *jsmith*, si ottiene l'output seguente.
+Supponendo che sia nome utente hello nella credenziale hello *jsmith*, di conseguenza, dopo l'output di hello.
 
 ```
 jsmith
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-* L'architettura runbook nell'articolo corrente offre una panoramica generale delle risorse di gestione di runbook in Azure e in locale con il ruolo di lavoro ibrido per runbook.  Per altre informazioni sull'esecuzione di runbook di automazione nel proprio data center, vedere [Ruoli di lavoro ibridi per runbook](automation-hybrid-runbook-worker.md).
-* Per altre informazioni sulla creazione di runbook modulari che possono essere usati da altri runbook per funzioni comuni o specifiche, fare riferimento a [Runbook figlio](automation-child-runbooks.md).
+* architettura di runbook Hello corrente dell'articolo fornisce una panoramica generale del runbook la gestione delle risorse in Azure e locali con hello Runbook Worker ibrido.  toolearn sull'esecuzione di runbook di automazione nel Data Center, fare riferimento troppo[Runbook worker ibridi](automation-hybrid-runbook-worker.md).
+* toolearn ulteriori informazioni sulla creazione di runbook modulari toobe usata da altri runbook per le funzioni specifiche o comuni, hello vedere troppo[runbook figlio](automation-child-runbooks.md).
 

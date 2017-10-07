@@ -1,6 +1,6 @@
 ---
-title: "Creare attività per preparare e completare i processi nei nodi di calcolo - Azure Batch | Documentazione Microsoft"
-description: "Usare le attività di preparazione a livello di processo per ridurre al minimo il trasferimento dei dati ai nodi di calcolo di Azure Batch e le attività di rilascio per la pulizia del nodo al completamento del processo."
+title: "aaaCreate attività tooprepare processi e completa sui nodi di calcolo - Azure Batch | Documenti Microsoft"
+description: "Dati di utilizzo a livello di processo di preparazione attività toominimize trasferire tooAzure nodi di calcolo di Batch e rilasciare l'attività per la pulizia del nodo al completamento del processo."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,99 +15,99 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 6a2525c02ce7bd3969469d2e28a5fccc948f89b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fd5fb47ae6700281e63048c49a1241f4e935baba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-job-preparation-and-job-release-tasks-on-batch-compute-nodes"></a>Eseguire attività di preparazione e rilascio del processo in nodi di calcolo di Batch
 
- Un processo di Azure Batch richiede spesso alcune operazioni di configurazione prima dell'esecuzione delle attività e di manutenzione post-processo dopo il completamento delle attività. Potrebbe essere necessario scaricare i dati di input delle attività comuni nei nodi di calcolo o caricare i dati di output delle attività in Archiviazione di Azure al termine del processo. Per eseguire queste operazioni, è possibile usare le attività di **preparazione del processo** e di **rilascio del processo**.
+ Un processo di Azure Batch richiede spesso alcune operazioni di configurazione prima dell'esecuzione delle attività e di manutenzione post-processo dopo il completamento delle attività. È possibile necessario toodownload comuni attività dati di input tooyour calcolo nodi o caricare attività output dati tooAzure archiviazione dopo completamento del processo di hello. È possibile utilizzare **processo preparazione** e **processo versione** attività tooperform queste operazioni.
 
 ## <a name="what-are-job-preparation-and-release-tasks"></a>Quali sono le attività di preparazione e rilascio dei processi
-Prima dell'esecuzione delle attività di un processo, viene eseguita l'attività di preparazione del processo su tutti i nodi di calcolo pianificati per l'esecuzione di almeno un'attività. Dopo aver completato il processo, viene eseguita l'attività di rilascio del processo in ogni nodo del pool che ha eseguito almeno un'attività. Come con le normali attività di Batch, è possibile specificare una riga di comando da richiamare quando viene eseguita un'attività di preparazione o rilascio del processo.
+Prima di eseguire attività di un processo, l'attività di preparazione processo hello viene eseguito su tutti toorun di pianificata di nodi di calcolo almeno un'attività. Una volta completato il processo di hello, attività di rilascio di hello processo viene eseguito su ogni nodo nel pool di hello eseguita almeno un'attività. Come con le normale attività di Batch, è possibile specificare toobe una riga di comando viene richiamato ogni volta una preparazione del processo o attività di rilascio viene eseguito.
 
 Le attività di preparazione e rilascio del processo offrono funzionalità familiari per le attività di Batch, quali download di file ([file di risorse][net_job_prep_resourcefiles]), esecuzione con privilegi elevati, variabili di ambiente personalizzate, durata massima di esecuzione, numero di tentativi e periodo di conservazione dei file.
 
-Nelle sezioni seguenti viene descritto come usare le classi [JobPreparationTask][net_job_prep] e [JobReleaseTask][net_job_release] disponibili nella libreria [Batch .NET][api_net].
+Nella seguenti sezioni di hello, si apprenderà come hello toouse [JobPreparationTask] [ net_job_prep] e [JobReleaseTask] [ net_job_release] classi contenute nello hello [.NET per batch] [ api_net] libreria.
 
 > [!TIP]
 > Le attività di preparazione e rilascio del processo sono particolarmente utili in ambienti con "pool condivisi", in cui un pool di nodi di calcolo viene mantenuto durante l'esecuzione di un processo e viene usato da più processi.
 > 
 > 
 
-## <a name="when-to-use-job-preparation-and-release-tasks"></a>Quando usare le attività di preparazione e rilascio dei processi
-Le attività di preparazione del processo e di rilascio del processo sono ideali per le situazioni seguenti:
+## <a name="when-toouse-job-preparation-and-release-tasks"></a>Quando toouse preparazione del processo e rilasciare l'attività
+Preparazione del processo e le attività di rilascio di processo sono ideali per hello seguenti situazioni:
 
 **Download dei dati delle attività comuni**
 
-I processi di Batch spesso richiedono un set comune di dati come input per le attività del processo. Ad esempio, nei calcoli di analisi dei rischi giornalieri, i dati di mercato sono specifici del processo, ma comuni a tutte le attività del processo. Tali dati di mercato, spesso di grandi dimensioni, devono essere scaricati una sola volta da ogni nodo di calcolo in modo che qualsiasi attività eseguita sul nodo possa usarli. Usare un' **attività di preparazione del processo** per scaricare questi dati in ogni nodo prima dell'esecuzione di altre attività del processo.
+I processi batch richiedono spesso un set comune di dati come input per l'attività del processo di hello. Ad esempio, nei calcoli di analisi dei rischi giornaliera, dati di mercato sono specifici ancora comuni attività tooall hello processo. Questi dati di mercato, dimensioni, spesso diversi gigabyte devono essere solo una volta scaricato tooeach del nodo di calcolo in modo che qualsiasi attività che viene eseguita nel nodo hello possibile utilizzarlo. Utilizzare un **attività di preparazione del processo** toodownload questo nodo tooeach dati prima che esecuzione hello del processo di hello altre attività.
 
 **Eliminazione dell'output di processi e attività**
 
-In un ambiente con "pool condivisi", in cui i nodi di calcolo di un pool non sono autorizzati tra i processi, potrebbe essere necessario eliminare i dati dei processi tra un'esecuzione e l'altra. Potrebbe essere necessario conservare lo spazio su disco nei nodi o rispettare i criteri di sicurezza dell'organizzazione. Usare un' **attività di rilascio del processo** per eliminare i dati scaricati da un'attività di preparazione del processo o generati durante l'esecuzione dell'attività.
+In un ambiente "shared pool", in cui i nodi di calcolo di un pool non sono rimossi tra processi, potrebbe essere dati del processo toodelete tra le esecuzioni. Potrebbe essere necessario tooconserve spazio sui nodi hello, o che soddisfano i criteri di sicurezza dell'organizzazione. Utilizzare un **versione mansione** toodelete dati che è stati scaricati da un'attività di preparazione del processo o generati durante l'esecuzione dell'attività.
 
 **Conservazione dei log**
 
-È possibile conservare una copia dei file di log generati dalle attività o dei file dump di arresto anomalo generati da errori nelle applicazioni. In questi casi, usare un'**attività di rilascio del processo** per comprimere e caricare dati in un account di [Archiviazione di Azure][azure_storage].
+È possibile tookeep una copia del file di log che generano le attività, o forse i file di dump di arresto anomalo del sistema possono essere generati da errori nelle applicazioni. Utilizzare un **versione mansione** in tali casi di toocompress e caricare questo tooan dati [di archiviazione di Azure] [ azure_storage] account.
 
 > [!TIP]
-> Per rendere persistenti i log e gli altri dati di output del processo e delle attività, è anche possibile usare la libreria [Azure Batch File Conventions](batch-task-output.md) .
+> Un altro modo toopersist log, l'attività e altri processi di output dei dati sono hello toouse [convenzioni File Batch di Azure](batch-task-output.md) libreria.
 > 
 > 
 
 ## <a name="job-preparation-task"></a>attività di preparazione del processo
-Prima dell'esecuzione delle attività di un processo, Batch esegue l'attività di preparazione del processo su ogni nodo di calcolo pianificato per l'esecuzione di un'attività. Per impostazione predefinita, il servizio Batch attende il completamento dell'attività di preparazione del processo prima di eseguire le attività pianificate per l'esecuzione nel nodo, ma è possibile configurare il servizio affinché venga annullata la fase di attesa. Se il nodo viene riavviato, l'attività di preparazione del processo viene eseguita nuovamente, ma è anche possibile disabilitare questo comportamento.
+Prima dell'esecuzione di attività di un processo, Batch esegue l'attività di preparazione processo hello in ogni nodo di calcolo è toorun pianificata un'attività. Per impostazione predefinita, il servizio Batch hello attende hello processo preparazione attività toobe completato prima di eseguire hello attività pianificate tooexecute nel nodo hello. Tuttavia, è possibile configurare il servizio di hello non toowait. Se si riavvia il nodo di hello, viene eseguito di nuovo l'attività di preparazione processo hello, ma è anche possibile disabilitare questo comportamento.
 
-L'attività di preparazione del processo viene eseguita solo su nodi pianificati per l'esecuzione di un'attività. Ciò impedisce l'esecuzione di un'attività di preparazione non necessaria nel caso in cui a un nodo non venga assegnata un'attività. Questa situazione può verificarsi quando il numero di attività per un processo è inferiore al numero di nodi in un pool o quando è abilitata l'[esecuzione di attività simultanee](batch-parallel-node-tasks.md). In quest'ultimo caso, alcuni nodi rimangono inattivi se il numero delle attività è inferiore a quello totale delle attività simultanee possibili. Se non si esegue l'attività di preparazione dei processi sui inattivi nodi, è possibile risparmiare sui costi di trasferimento dati.
+l'attività di preparazione processo Hello viene eseguita solo per i nodi che vengono pianificati toorun un'attività. Ciò impedisce l'esecuzione non necessari di hello di un'attività di preparazione nel caso in cui un nodo non viene assegnata un'attività. Ciò può verificarsi quando il numero di hello di attività per un processo è minore di numero hello di nodi in un pool. Si applica anche quando [esecuzione di attività simultanee](batch-parallel-node-tasks.md) è abilitato, che lascia alcuni nodi inattiva se il numero di attività hello è inferiore a hello totale possibili le attività simultanee. Da non in esecuzione l'attività di preparazione processo hello nei nodi di inattività, è possibile spesa sugli addebiti di trasferimento dati.
 
 > [!NOTE]
-> [JobPreparationTask][net_job_prep_cloudjob] differisce dalla proprietà [CloudPool.StartTask][pool_starttask] perché JobPreparationTask viene eseguita all'avvio di ogni processo, mentre StartTask viene eseguita solo quando un nodo di calcolo viene aggiunto per la prima volta a un pool o viene riavviato.
+> [JobPreparationTask] [ net_job_prep_cloudjob] è diverso da [CloudPool.StartTask] [ pool_starttask] in JobPreparationTask viene eseguita all'avvio di hello di ogni processo, mentre StartTask viene eseguita solo quando un nodo di calcolo prima viene aggiunto a un pool o riavvio.
 > 
 > 
 
 ## <a name="job-release-task"></a>attività di rilascio del processo
-Dopo aver contrassegnato un processo come completato , viene eseguita l'attività di rilascio del processo in ogni nodo del pool che ha eseguito almeno un'attività. Un processo viene contrassegnato come completato generando una richiesta di interruzione. Il servizio Batch imposta quindi lo stato del processo su *Arresto in corso*, termina le attività attive o in esecuzione associate al processo ed esegue l'attività di rilascio del processo. Il processo passa quindi allo stato *completato* .
+Quando un processo è stato contrassegnato come completato, attività di rilascio di hello processo viene eseguito su ogni nodo nel pool di hello eseguita almeno un'attività. Un processo viene contrassegnato come completato generando una richiesta di interruzione. Hello servizio Batch, quindi imposta hello lo stato del processo troppo*terminazione*, interrompe tutte le attività attive o in esecuzione associate al processo hello ed esegue attività di rilascio processo hello. il processo di Hello passa quindi toohello *completato* stato.
 
 > [!NOTE]
-> Anche l'eliminazione del processo esegue l'attività di rilascio del processo. Tuttavia, se un processo è già stato terminato, l'attività di rilascio non viene eseguita una seconda volta se il processo viene eliminato in seguito.
+> L'eliminazione di processo anche l'esecuzione di attività di rilascio processo hello. Tuttavia, se un processo è già stato terminato, attività di rilascio hello non viene eseguito una seconda volta se il processo di hello viene eliminato in un secondo momento.
 > 
 > 
 
 ## <a name="job-prep-and-release-tasks-with-batch-net"></a>Attività di preparazione e di rilascio del processo con Batch .NET
-Per usare un'attività di preparazione del processo, assegnare un oggetto [JobPreparationTask][net_job_prep] alla proprietà [CloudJob.JobPreparationTask][net_job_prep_cloudjob] del processo. In modo analogo, inizializzare una classe [JobReleaseTask][net_job_release] e assegnarla alla proprietà [CloudJob.JobReleaseTask][net_job_prep_cloudjob] del processo per impostare l'attività di rilascio del processo.
+toouse un'attività di preparazione del processo, assegnare un [JobPreparationTask] [ net_job_prep] processo tooyour oggetti [CloudJob.JobPreparationTask] [ net_job_prep_cloudjob] proprietà . Analogamente, inizializzare un [JobReleaseTask] [ net_job_release] e assegnarlo del processo tooyour [CloudJob.JobReleaseTask] [ net_job_prep_cloudjob] hello tooset proprietà attività di rilascio del processo.
 
-In questo frammento di codice `myBatchClient` è un'istanza di [BatchClient][net_batch_client] e `myPool` è un pool esistente nell'account Batch.
+In questo frammento di codice, `myBatchClient` è un'istanza di [BatchClient][net_batch_client], e `myPool` è un pool esistente all'interno di hello account Batch.
 
 ```csharp
-// Create the CloudJob for CloudPool "myPool"
+// Create hello CloudJob for CloudPool "myPool"
 CloudJob myJob =
     myBatchClient.JobOperations.CreateJob(
         "JobPrepReleaseSampleJob",
         new PoolInformation() { PoolId = "myPool" });
 
-// Specify the command lines for the job preparation and release tasks
+// Specify hello command lines for hello job preparation and release tasks
 string jobPrepCmdLine =
     "cmd /c echo %AZ_BATCH_NODE_ID% > %AZ_BATCH_NODE_SHARED_DIR%\\shared_file.txt";
 string jobReleaseCmdLine =
     "cmd /c del %AZ_BATCH_NODE_SHARED_DIR%\\shared_file.txt";
 
-// Assign the job preparation task to the job
+// Assign hello job preparation task toohello job
 myJob.JobPreparationTask =
     new JobPreparationTask { CommandLine = jobPrepCmdLine };
 
-// Assign the job release task to the job
+// Assign hello job release task toohello job
 myJob.JobReleaseTask =
     new JobPreparationTask { CommandLine = jobReleaseCmdLine };
 
 await myJob.CommitAsync();
 ```
 
-Come indicato prima, l'attività di rilascio viene eseguita quando un processo viene concluso o eliminato. Terminare un processo con [JobOperations.TerminateJobAsync][net_job_terminate]. Eliminare un processo con [JobOperations.DeleteJobAsync][net_job_delete]. In genere si termina o si elimina un processo quando le attività vengono completate o quando si raggiunge un timeout definito dall'utente.
+Come accennato in precedenza, attività di rilascio hello viene eseguito quando un processo viene terminato o eliminato. Terminare un processo con [JobOperations.TerminateJobAsync][net_job_terminate]. Eliminare un processo con [JobOperations.DeleteJobAsync][net_job_delete]. In genere si termina o si elimina un processo quando le attività vengono completate o quando si raggiunge un timeout definito dall'utente.
 
 ```csharp
-// Terminate the job to mark it as Completed; this will initiate the
+// Terminate hello job toomark it as Completed; this will initiate the
 // Job Release Task on any node that executed job tasks. Note that the
 // Job Release Task is also executed when a job is deleted, thus you
 // need not call Terminate if you typically delete jobs after task completion.
@@ -115,21 +115,21 @@ await myBatchClient.JobOperations.TerminateJobAsy("JobPrepReleaseSampleJob");
 ```
 
 ## <a name="code-sample-on-github"></a>Esempio di codice in GitHub
-Per vedere il funzionamento delle attività di preparazione e rilascio dei processi, esaminare il progetto di esempio [JobPrepRelease][job_prep_release_sample] in GitHub. Questa applicazione console esegue le operazioni seguenti:
+attività toosee processo di preparazione e rilascio in azione, estrarre hello [JobPrepRelease] [ job_prep_release_sample] progetto di esempio su GitHub. Questa applicazione console hello seguenti:
 
 1. Crea un pool con due nodi "small".
 2. Crea un processo con attività di preparazione e rilascio di processi e attività standard.
-3. Esegue un'attività di preparazione del processo che scrive innanzitutto l'ID del nodo in un file di testo in una directory "condivisa" del nodo.
-4. Esegue un'attività in ogni nodo che scrive il relativo ID attività nello stesso file di testo.
-5. Dopo aver completato tutte le attività (o aver raggiunto il timeout), stampa i contenuti del file di testo di ogni nodo nella console.
-6. Dopo aver completato il processo, esegue l'attività di rilascio del processo per eliminare il file dal nodo.
-7. Stampa i codici di uscita delle attività di preparazione e rilascio dei processi per ogni nodo in cui vengono eseguiti.
-8. Sospende l'esecuzione per consentire la conferma dell'eliminazione dei processi e/o del pool.
+3. Esecuzioni hello attività di preparazione processo, che scrive i file di testo tooa ID nodo hello innanzitutto nella directory "condiviso" un nodo.
+4. Esegue un'attività in ogni nodo che scrive il toohello ID attività file di testo stesso.
+5. Una volta che vengono completate tutte le attività (o viene raggiunto il timeout di hello), stampa il contenuto di hello della console toohello file testo di ciascun nodo.
+6. Al termine dell'esecuzione processo hello, per eseguire hello processo versione attività toodelete hello file dal nodo hello.
+7. Hello stampe codici di preparazione del processo hello di uscita e rilasciare le attività per ogni nodo in cui è stato eseguito.
+8. Mette in pausa esecuzione tooallow conferma dell'eliminazione di processo e/o pool.
 
-L'output dell'applicazione di esempio è simile al seguente:
+Output di applicazione di esempio hello è simile toohello seguenti:
 
 ```
-Attempting to create pool: JobPrepReleaseSamplePool
+Attempting toocreate pool: JobPrepReleaseSamplePool
 Created pool JobPrepReleaseSamplePool with 2 small nodes
 Checking for existing job JobPrepReleaseSampleJob...
 Job JobPrepReleaseSampleJob not found, creating...
@@ -152,7 +152,7 @@ tvm-2434664350_2-20160623t173951z tasks:
   task003
   task007
 
-Waiting for job JobPrepReleaseSampleJob to reach state Completed
+Waiting for job JobPrepReleaseSampleJob tooreach state Completed
 ...
 
 tvm-2434664350_1-20160623t173951z:
@@ -168,31 +168,31 @@ yes
 Delete pool? [yes] no
 yes
 
-Sample complete, hit ENTER to exit...
+Sample complete, hit ENTER tooexit...
 ```
 
 > [!NOTE]
-> A causa degli orari variabili di creazione e di inizio per i nodi in un nuovo pool, poiché alcuni nodi sono pronti per le attività prima di altri, è possibile che l'output visualizzato sia diverso. Poiché le attività vengono completate rapidamente, in particolare, è possibile che uno dei nodi del pool esegua tutte le attività del processo. In questo caso, si potrà notare che le attività di preparazione e di rilascio dei processi non esistono per il nodo che non ha eseguito alcuna attività.
+> A causa di toohello variabile creazione e ora di inizio nodi in un nuovo pool (alcuni nodi sono pronti per l'attività prima degli altri), verrà visualizzato un output diverso. In particolare, in quanto attività hello completato rapidamente, uno dei nodi del pool di hello può eseguire tutte le attività del processo di hello. In questo caso, si noterà che hello preparazione del processo e rilasciare l'attività non esistono per il nodo hello non eseguita alcuna attività.
 > 
 > 
 
-### <a name="inspect-job-preparation-and-release-tasks-in-the-azure-portal"></a>Controllare le attività di preparazione e rilascio del processo nel portale di Azure
-Quando si esegue l'applicazione di esempio, è possibile usare il [portale di Azure][portal] per visualizzare le proprietà del processo e le rispettive attività oppure per scaricare il file di testo condiviso modificato dalle attività del processo.
+### <a name="inspect-job-preparation-and-release-tasks-in-hello-azure-portal"></a>Controllare l'attività di rilascio nel portale di Azure hello e preparazione del processo
+Quando si esegue l'applicazione di esempio hello, è possibile utilizzare hello [portale di Azure] [ portal] tooview hello proprietà del processo di hello e le relative attività, o anche scaricare i file di testo condivisa hello modificata dall'attività del processo di hello.
 
-Lo screenshot seguente mostra il pannello **Attività di preparazione** nel portale di Azure dopo un'esecuzione dell'applicazione di esempio. Passare alle proprietà *JobPrepReleaseSampleJob* dopo il completamento delle attività, ma prima dell'eliminazione del processo e del pool, quindi fare clic su **Attività di preparazione** o **Attività di rilascio** per visualizzare le rispettive proprietà.
+schermata di Hello riportata di seguito viene illustrato hello **Pannello attività di preparazione** nel portale di Azure dopo l'esecuzione dell'applicazione di esempio hello hello. Passare toohello *JobPrepReleaseSampleJob* proprietà dopo aver completato le attività, ma prima di eliminare il processo e il pool, fare clic su **attività di preparazione** o **leattivitàdirilascio** tooview le relative proprietà.
 
 ![Proprietà di preparazione del processo nel portale di Azure][1]
 
 ## <a name="next-steps"></a>Passaggi successivi
 ### <a name="application-packages"></a>Pacchetti dell'applicazione
-Oltre all'attività di preparazione del processo, è possibile usare anche la funzionalità [Pacchetti dell'applicazione](batch-application-packages.md) di Batch per preparare i nodi di calcolo per l'esecuzione dell'attività. Questa funzionalità è particolarmente utile per la distribuzione di applicazioni che non richiedono l'esecuzione di un programma di installazione, applicazioni che contengono molti file (100+) o applicazioni che richiedono un controllo delle versioni rigoroso.
+Nell'attività di preparazione processo toohello aggiunta, è inoltre possibile utilizzare hello [pacchetti di applicazioni](batch-application-packages.md) funzionalità di Batch tooprepare nodi per l'esecuzione dell'attività di calcolo. Questa funzionalità è particolarmente utile per la distribuzione di applicazioni che non richiedono l'esecuzione di un programma di installazione, applicazioni che contengono molti file (100+) o applicazioni che richiedono un controllo delle versioni rigoroso.
 
 ### <a name="installing-applications-and-staging-data"></a>Installazione delle applicazioni e staging dei dati
 Questo post del forum MSDN offre una panoramica di diversi metodi di preparazione dei nodi per l'esecuzione di attività:
 
 [Installing applications and staging data on Batch compute nodes][forum_post] (Installazione delle applicazioni e staging dei dati nei nodi di calcolo di Batch)
 
-L'autore, uno dei membri del team di Azure Batch, illustra diverse tecniche che è possibile usare per distribuire applicazioni e dati nei nodi di calcolo.
+Scritti da uno dei membri del team di Azure Batch hello, vengono illustrate diverse tecniche che è possibile utilizzare i nodi di toocompute toodeploy applicazioni e dati.
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx

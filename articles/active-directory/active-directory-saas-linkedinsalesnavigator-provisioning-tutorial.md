@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Configurazione di LinkedIn Sales Navigator per il provisioning utenti automatico con Azure Active Directory | Microsoft Docs'
-description: Informazioni su come configurare Azure Active Directory per effettuare automaticamente il provisioning e il deprovisioning degli account utente in LinkedIn Sales Navigator.
+description: Informazioni su come tooconfigure Azure Active Directory tooautomatically il provisioning e il de-provisioning account utente di tooLinkedIn Navigator Sales.
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,110 +14,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/15/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 86357949c8e6927f78ca5bb8b7e20a6b88c37ef3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 322c5271535994c13a9fafadbf74f356cdfe865d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-linkedin-sales-navigator-for-automatic-user-provisioning"></a>Esercitazione: Configurazione di LinkedIn Sales Navigator per il provisioning utenti automatico
 
 
-Questa esercitazione descrive le procedure da eseguire in LinkedIn Sales Navigator e Azure AD per effettuare automaticamente il provisioning e il deprovisioning degli account utente da Azure AD a LinkedIn Sales Navigator. 
+obiettivo di Hello di questa esercitazione è tooshow hello passaggi che è necessario tooperform in Navigator Sales LinkedIn e Azure AD tooautomatically il provisioning e il de-provisioning degli account utente da Azure AD tooLinkedIn Navigator Sales. 
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per lo scenario descritto in questa esercitazione si presuppone che l'utente disponga di quanto segue:
+scenario Hello descritto in questa esercitazione si presuppone che si disponga già di hello seguenti elementi:
 
 *   Tenant di Azure Active Directory
 *   Tenant di LinkedIn Sales Navigator 
-*   Account amministratore in LinkedIn Sales Navigator con accesso al centro account di LinkedIn
+*   Un account di amministratore nel Pannello di navigazione Sales LinkedIn con accesso toohello centro Account LinkedIn
 
 > [!NOTE]
-> Azure Active Directory si integra con LinkedIn Sales Navigator usando il protocollo [SCIM](http://www.simplecloud.info/).
+> Azure Active Directory si integra con LinkedIn Sales Navigator utilizzando hello [SCIM](http://www.simplecloud.info/) protocollo.
 
-## <a name="assigning-users-to-linkedin-sales-navigator"></a>Assegnazione di utenti a LinkedIn Sales Navigator
+## <a name="assigning-users-toolinkedin-sales-navigator"></a>L'assegnazione di utenti tooLinkedIn Navigator vendite
 
-Per determinare gli utenti che dovranno ricevere l'accesso alle app selezionate, Azure Active Directory usa il concetto delle "assegnazioni". Nel contesto del provisioning automatico degli account utente, verranno sincronizzati solo gli utenti e i gruppi che sono stati "assegnati" a un'applicazione in Azure AD. 
+Azure Active Directory Usa il concetto di "assegnazioni" toodetermine gli utenti che devono ricevere le app tooselected di accesso. Nel contesto di hello di provisioning dell'account utente automatica, verranno sincronizzati solo gli utenti di hello e i gruppi "assegnati" tooan applicazione in Azure AD. 
 
-Prima di configurare e abilitare il servizio di provisioning, è necessario stabilire quali utenti e/o gruppi in Azure AD rappresentano gli utenti che devono accedere a LinkedIn Sales Navigator. Dopo aver stabilito questo, è possibile assegnare tali utenti a LinkedIn Sales Navigator seguendo le istruzioni riportate nell'articolo seguente:
+Prima di configurare e abilitare hello provisioning del servizio, sarà necessario toodecide quali utenti e/o i gruppi in Azure AD rappresentano utenti hello bisogno di accesso tooLinkedIn Navigator Sales. Una volta deciso, è possibile assegnare questi tooLinkedIn gli utenti Sales Navigator seguendo le istruzioni di hello qui:
 
-[Assegnare un utente o gruppo a un'app aziendale](active-directory-coreapps-assign-user-azure-portal.md)
+[Assegnare un'applicazione aziendale tooan utente o gruppo](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-linkedin-sales-navigator"></a>Suggerimenti importanti per l'assegnazione di utenti a LinkedIn Sales Navigator
+### <a name="important-tips-for-assigning-users-toolinkedin-sales-navigator"></a>Suggerimenti importanti per l'assegnazione di utenti tooLinkedIn Navigator vendite
 
-*   È consigliabile assegnare un singolo utente di Azure AD a LinkedIn Sales Navigator per testare la configurazione del provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
+*   È consigliabile che un singolo utente di Azure AD assegnare hello tootest di vendite Navigator tooLinkedIn configurazione provisioning. È possibile assegnare utenti e/o gruppi aggiuntivi in un secondo momento.
 
-*   Quando si assegna un utente a LinkedIn Sales Navigator, è necessario selezionare il ruolo **Utente** nella finestra di dialogo di assegnazione. Il ruolo "Default Access" (Accesso predefinito) non è applicabile per il provisioning.
+*   Quando si assegna un tooLinkedIn utente Navigator Sales, è necessario selezionare hello **utente** ruolo nella finestra di dialogo assegnazione hello. ruolo di "accesso predefinita" Hello non funziona per il provisioning.
 
 
-## <a name="configuring-user-provisioning-to-linkedin-sales-navigator"></a>Configurazione del provisioning utenti in LinkedIn Sales Navigator
+## <a name="configuring-user-provisioning-toolinkedin-sales-navigator"></a>Configurazione tooLinkedIn Navigator vendite di provisioning dell'utente
 
-Questa sezione illustra la connessione di Azure AD all'API per il provisioning degli account utente SCIM di LinkedIn Sales Navigator e la configurazione del servizio di provisioning per la creazione, l'aggiornamento e la disabilitazione degli account utente assegnati in LinkedIn Sales Navigator in base all'assegnazione di utenti e gruppi in Azure AD.
+In questa sezione viene illustrata la connessione API di provisioning dell'account utente SCIM il Azure AD tooLinkedIn vendite dello strumento di spostamento e hello provisioning toocreate servizio di configurazione, aggiornare e disabilitare gli account utente assegnato nello strumento di navigazione di vendite LinkedIn basate sull'utente e l'assegnazione del gruppo in Azure AD.
 
 > [!TIP]
-> Si può anche scegliere di abilitare l'accesso Single Sign-On basato su SAML per LinkedIn Sales Navigator, seguendo le istruzioni disponibili nel [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
+> È inoltre possibile scegliere tooenabled basato su SAML Single Sign-On per LinkedIn Sales Navigator, attenendosi alle istruzioni hello fornite [portale di Azure](https://portal.azure.com). L'accesso Single Sign-On può essere configurato indipendentemente dal provisioning automatico, nonostante queste due funzionalità siano complementari.
 
 
-### <a name="to-configure-automatic-user-account-provisioning-to-linkedin-sales-navigator-in-azure-ad"></a>Per configurare il provisioning automatico degli account utente in LinkedIn Sales Navigator con Azure AD:
+### <a name="tooconfigure-automatic-user-account-provisioning-toolinkedin-sales-navigator-in-azure-ad"></a>account utente automatico tooconfigure provisioning tooLinkedIn Navigator Sales in Azure AD:
 
 
-Il primo passaggio consiste nel recuperare il token di accesso di LinkedIn. Un amministratore dell'organizzazione può eseguire il provisioning automatico di un token di accesso. Nel centro account, passare a **Settings (Impostazioni) &gt; Global Settings** (Impostazioni globali) e aprire il pannello **SCIM Setup** (Installazione SCIM).
+primo passaggio Hello è tooretrieve il token di accesso di LinkedIn. Un amministratore dell'organizzazione può eseguire il provisioning automatico di un token di accesso. Nel centro account, Vai troppo**impostazioni &gt; impostazioni globali** e aprire hello **SCIM installazione** pannello.
 
 > [!NOTE]
-> Per accedere al centro account direttamente anziché tramite un collegamento seguire questa procedura.
+> Se si accede centro account hello direttamente anziché tramite un collegamento, è possibile raggiungerli tramite hello alla procedura seguente.
 
-1)  Accedere al centro account.
+1)  Accedi tooAccount Center.
 
 2)  Selezionare **Admin (Amministratore) &gt; Admin Settings** (Opzioni amministratore).
 
-3)  Fare clic su **Advanced Integrations** (Integrazioni avanzate) nella barra laterale di sinistra. Si verrà reindirizzati al centro account.
+3)  Fare clic su **avanzate integrazioni** intestazione laterale sinistra hello. Si è centro account toohello diretto.
 
-4)  Fare clic su **+ Add new SCIM configuration** (+ Aggiungi nuova configurazione SCIM) e seguire la procedura compilando ogni campo.
+4)  Fare clic su **+ Aggiungi nuova configurazione di SCIM** e seguire la procedura hello compilando ogni campo.
 
 > Se l'opzione di assegnazione automatica delle licenze non è abilitata, vengono sincronizzati solo i dati degli utenti.
 
 ![Provisioning in LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_1.PNG)
 
-> Quando l'opzione di assegnazione automatica delle licenze è abilitata, è necessario prendere nota dell'istanza dell'applicazione e del tipo di licenza. Le licenze vengono assegnate in ordine di arrivo degli utenti fino a esaurimento di tutte le licenze.
+> Quando l'assegnazione autolicense è abilitato, è necessario toonote l'istanza dell'applicazione e tipo di licenza. Assegnazione delle licenze in un primo arrivato, prima di servire base fino a quando non vengono eseguite tutte le licenze hello.
 
 ![Provisioning in LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_2.PNG)
 
-5)  Fare clic su **Generate token** (Genera token). Il token di accesso dovrebbe essere visualizzato sotto il campo **Access token** (Token di accesso).
+5)  Fare clic su **Generate token** (Genera token). Verrà visualizzata la visualizzazione del token di accesso in hello **token di accesso** campo.
 
-6)  Salvare il token di accesso negli Appunti o nel computer prima di uscire dalla pagina.
+6)  Salva negli Appunti tooyour token di accesso o nel computer prima di uscire dalla pagina hello.
 
-7) Accedere quindi al [portale di Azure](https://portal.azure.com) e passare alla sezione **Azure Active Directory > App aziendali > Tutte le applicazioni**.
+7) Successivamente, accedi toohello [portale di Azure](https://portal.azure.com)e passare toohello **Azure Active Directory > App aziendali > tutte le applicazioni** sezione.
 
-8) Se si è già configurato LinkedIn Sales Navigator per l'accesso Single Sign-On, cercare l'istanza di LinkedIn Sales Navigator usando il campo di ricerca. In caso contrario, selezionare **Aggiungi** e cercare **LinkedIn Sales Navigator** nella raccolta di applicazioni. Selezionare LinkedIn Sales Navigator nei risultati della ricerca e aggiungerlo all'elenco delle applicazioni.
+8) Se lo strumento di navigazione di LinkedIn Sales già stato configurato per single sign-on, eseguire la ricerca per l'istanza di LinkedIn Sales Navigator usando il campo di ricerca hello. In caso contrario, selezionare **Aggiungi** e cercare **LinkedIn Sales Navigator** nella raccolta di applicazione hello. Selezionare LinkedIn Sales Navigator dai risultati della ricerca hello e aggiungerlo tooyour elenco delle applicazioni.
 
-9)  Selezionare l'istanza di LinkedIn Sales Navigator e quindi la scheda **Provisioning**.
+9)  Selezionare l'istanza di LinkedIn Sales Navigatore, quindi selezionare hello **Provisioning** scheda.
 
-10) Impostare **Modalità di provisioning** su **Automatico**.
+10) Set hello **modalità di Provisioning** troppo**automatica**.
 
 ![Provisioning in LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_3.PNG)
 
-11)  Compilare i campi seguenti in **Credenziali amministratore**:
+11)  Compilare hello seguenti campi in **credenziali di amministratore** :
 
-* Nel campo **URL tenant** immettere https://api.linkedin.com.
+* In hello **URL Tenant** immettere https://api.linkedin.com.
 
-* Nel campo **Token segreto** immettere il token di accesso generato nel passaggio 1 e fare clic su **Connessione di test**.
+* In hello **segreto Token** campo, immettere il token di accesso hello generato nel passaggio 1 e fare clic su **Test connessione** .
 
-* Nel lato superiore destro del portale viene visualizzata una notifica di esito positivo.
+* Vedrai una notifica di esito positivo sul lato upperright hello del portale.
 
-12) Immettere l'indirizzo di posta elettronica di una persona o un gruppo che riceverà le notifiche di errore relative al provisioning nel campo **Messaggio di posta elettronica di notifica** e selezionare la casella di controllo seguente.
+12) Immettere l'indirizzo di posta elettronica hello di una persona o il gruppo che deve ricevere le notifiche degli errori di provisioning in hello **notifica tramite posta elettronica** campo e casella di controllo hello riportato di seguito.
 
 13) Fare clic su **Salva**. 
 
-14) Nella sezione **Mapping degli attributi** esaminare gli attributi utente e gruppo che verranno sincronizzati da Azure AD a LinkedIn Sales Navigator. Si noti che gli attributi selezionati come proprietà **corrispondenti** verranno usati per trovare le corrispondenze con gli account utente e i gruppi in LinkedIn Sales Navigator per le operazioni di aggiornamento. Selezionare il pulsante Salva per eseguire il commit delle modifiche.
+14) In hello **mapping degli attributi** sezione, esaminare gli attributi utente e gruppo hello che verranno sincronizzati da Azure AD tooLinkedIn Navigator Sales. Si noti che gli attributi selezionati come hello **corrispondenza** proprietà saranno utilizzati toomatch hello account e gruppi utente nel Pannello di navigazione di LinkedIn vendite per le operazioni di aggiornamento. Selezionare hello Salva pulsante toocommit tutte le modifiche.
 
 ![Provisioning in LinkedIn Sales Navigator](./media/active-directory-saas-linkedinsalesnavigator-provisioning-tutorial/linkedin_4.PNG)
 
-15) Per abilitare il servizio di provisioning di Azure AD per LinkedIn Sales Navigator, impostare **Stato del provisioning** su **Sì** nella sezione **Impostazioni**.
+15) tooenable hello servizio provisioning di Azure AD per LinkedIn Sales Navigator, hello modifica **lo stato di Provisioning** troppo**su** in hello **impostazioni** sezione
 
 16) Fare clic su **Salva**. 
 
-Verrà avviata la sincronizzazione iniziale di tutti gli utenti e/o i gruppi assegnati a LinkedIn Sales Navigator nella sezione Utenti e gruppi. Si noti che la sincronizzazione iniziale richiederà più tempo delle sincronizzazioni successive, che saranno eseguite circa ogni 20 minuti per tutto il tempo che il servizio è in esecuzione. È possibile usare la sezione **Dettagli sincronizzazione** per monitorare lo stato di avanzamento e selezionare i collegamenti ai report delle attività di provisioning, che descrivono tutte le azioni eseguite dal servizio di provisioning sull'app LinkedIn Sales Navigator.
+Verrà avviata la sincronizzazione iniziale di eventuali utenti o gruppi assegnati tooLinkedIn Navigator Sales nella sezione utenti e gruppi di hello hello. Si noti che la sincronizzazione iniziale hello tooperform più lungo di sincronizzazioni successive, che si verificano ogni 20 minuti circa, purché hello servizio è in esecuzione. È possibile utilizzare hello **i dettagli della sincronizzazione** sezione toomonitor lo stato di avanzamento e seguire i collegamenti tooprovisioning attività i report, che descrivono tutte le azioni eseguite dal provisioning del servizio nella tua app LinkedIn Sales Navigator hello.
 
 
 ## <a name="additional-resources"></a>Risorse aggiuntive

@@ -1,6 +1,6 @@
 ---
-title: Modelli di rete per Azure Service Fabric | Microsoft Docs
-description: "Questo articolo descrive i modelli di rete comuni per Service Fabric e illustra come creare un cluster con le funzionalità di rete di Azure."
+title: modelli aaaNetworking per Azure Service Fabric | Documenti Microsoft
+description: "Descrive i modelli di rete comuni per l'infrastruttura di servizio e come toocreate un cluster con funzionalità di rete di Azure."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/16/2017
 ms.author: ryanwi
-ms.openlocfilehash: 126637002b24391058fb702227a570aa0b58c1d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5973e3f9917076c6a36e71443ec256e0f414ff87
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-networking-patterns"></a>Modelli di rete di Service Fabric
-È possibile integrare il cluster di Azure Service Fabric con altre funzionalità di rete di Azure. Questo articolo illustra come creare cluster che fanno uso delle funzionalità seguenti:
+È possibile integrare il cluster di Azure Service Fabric con altre funzionalità di rete di Azure. In questo articolo viene illustrata la modalità toocreate cluster hello tale uso seguenti caratteristiche:
 
 - [Rete virtuale o subnet esistente](#existingvnet)
 - [Indirizzo IP pubblico statico](#staticpublicip)
 - [Bilanciamento del carico esclusivamente interno](#internallb)
 - [Bilanciamento del carico interno ed esterno](#internalexternallb)
 
-Service Fabric viene eseguito in un set di scalabilità di macchine virtuali standard. In un cluster di Service Fabric si possono usare tutte le funzionalità che è possibile usare in un set di scalabilità di macchine virtuali. Le sezioni di rete dei modelli di Azure Resource Manager per i set di scalabilità di macchine virtuali e quelle per Service Fabric sono identiche. Dopo aver eseguito la distribuzione in una rete virtuale esistente, è facile incorporare altre funzionalità di rete, come Azure ExpressRoute, il gateway VPN di Azure, un gruppo di sicurezza di rete e il peering di rete virtuale.
+Service Fabric viene eseguito in un set di scalabilità di macchine virtuali standard. In un cluster di Service Fabric si possono usare tutte le funzionalità che è possibile usare in un set di scalabilità di macchine virtuali. Nelle sezioni di rete Hello dei modelli di Azure Resource Manager hello per set di scalabilità di macchine virtuali e Service Fabric sono identiche. Dopo aver distribuito tooan rete virtuale esistente, è facile tooincorporate altre funzionalità, come Azure ExpressRoute, Gateway VPN di Azure, un gruppo di sicurezza di rete e peering di rete virtuale di rete.
 
-Service Fabric si distingue dalle altre funzionalità di rete per un solo aspetto. Il [portale di Azure](https://portal.azure.com) usa internamente il provider di risorse di Service Fabric per chiamare un cluster e ottenere informazioni sui nodi e le applicazioni. Il provider di risorse di Service Fabric richiede l'accesso in ingresso accessibile pubblicamente alla porta del gateway HTTP nell'endpoint di gestione. Per impostazione predefinita si tratta della porta 19080. [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) usa l'endpoint di gestione per gestire il cluster. Anche il provider di risorse di Service Fabric usa questa porta per richiedere informazioni sul cluster, che vengono visualizzate nel portale di Azure. 
+Service Fabric si distingue dalle altre funzionalità di rete per un solo aspetto. Hello [portale di Azure](https://portal.azure.com) internamente utilizza hello Service Fabric risorsa toocall tooa cluster tooget informazioni sul provider sui nodi e le applicazioni. provider di risorse di Service Fabric Hello richiede l'accesso in ingresso accessibile pubblicamente toohello HTTP gateway (porta 19080, per impostazione predefinita) nell'endpoint di gestione di hello. [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) utilizza hello toomanage endpoint di gestione del cluster. provider di risorse di Service Fabric Hello utilizza anche queste informazioni di tooquery porta sul cluster, toodisplay in hello portale di Azure. 
 
-Se la porta 19080 non è accessibile dal provider di risorse di Service Fabric, nel portale viene visualizzato un messaggio che indica che *non sono stati trovati nodi* e l'elenco dei nodi e delle applicazioni risulta vuoto. Per visualizzare il cluster nel portale di Azure, il servizio di bilanciamento del carico deve esporre un indirizzo IP pubblico e il gruppo di sicurezza di rete deve consentire il traffico in ingresso dalla porta 19080. Se la configurazione non soddisfa questi requisiti, lo stato del cluster non viene visualizzato nel portale di Azure.
+Se la porta 19080 non è accessibile dal provider di risorse di Service Fabric hello, ad esempio un messaggio *non trovati nodi* viene visualizzato nel portale di hello e l'elenco di nodo e un'applicazione viene visualizzata vuota. Se si desidera toosee il cluster in hello portale di Azure, servizio di bilanciamento del carico deve esporre un indirizzo IP pubblico e il gruppo di sicurezza di rete deve consentire il traffico in ingresso porta 19080. Se il programma di installazione non soddisfa questi requisiti, hello portale di Azure non vengono visualizzati lo stato di hello del cluster.
 
 ## <a name="templates"></a>Modelli
 
-Tutti i modelli di Service Fabric si trovano in [un unico file scaricabile](https://msdnshared.blob.core.windows.net/media/2016/10/SF_Networking_Templates.zip). Dovrebbe essere possibile distribuire i modelli così come sono usando i comandi di PowerShell riportati di seguito. Se si distribuisce il modello di rete virtuale di Azure esistente o il modello IP pubblico statico, leggere prima la sezione [Configurazione iniziale](#initialsetup) di questo articolo.
+Tutti i modelli di Service Fabric si trovano in [un unico file scaricabile](https://msdnshared.blob.core.windows.net/media/2016/10/SF_Networking_Templates.zip). Dovrebbe essere in grado di toodeploy modelli hello come-utilizzando i seguenti comandi PowerShell hello. Se si sta distribuendo hello modello di rete virtuale di Azure esistente o hello statico pubblico IP template, leggere prima hello [Initial setup](#initialsetup) sezione di questo articolo.
 
 <a id="initialsetup"></a>
 ## <a name="initial-setup"></a>Configurazione iniziale
 
 ### <a name="existing-virtual-network"></a>Rete virtuale esistente
 
-L'esempio seguente parte da una rete virtuale esistente denominata ExistingRG-vnet, nel gruppo di risorse **ExistingRG**. Il nome della subnet è quello predefinito. Queste risorse predefinite vengono create quando si usa il portale di Azure per creare una macchina virtuale (VM) standard. È possibile creare la rete virtuale e la subnet senza creare la macchina virtuale, ma l'obiettivo principale dell'aggiunta di un cluster a una rete virtuale esistente è fornire la connettività di rete ad altre macchine virtuali. La creazione della macchina virtuale costituisce un buon esempio dell'uso tipico di una rete virtuale esistente. Se il cluster di Service Fabric usa soltanto un servizio di bilanciamento del carico interno, senza un indirizzo IP pubblico, è possibile usare la macchina virtuale e il relativo indirizzo IP pubblico come un *jumpbox* protetto.
+Nell'esempio seguente di hello, iniziare con una rete virtuale esistente denominata ExistingRG-vnet, in hello **ExistingRG** gruppo di risorse. subnet Hello è denominato default. Queste risorse predefiniti vengono create quando si utilizza hello toocreate portale Azure una standard macchina virtuale (VM). È possibile creare la rete virtuale hello e subnet senza hello VM di creazione, ma l'obiettivo principale di aggiunta di una rete virtuale esistente cluster tooan hello è tooother di connettività di rete tooprovide macchine virtuali. Creazione hello VM fornisce un buon esempio di come una rete virtuale esistente in genere viene utilizzata. Se il cluster di Service Fabric utilizza solo un bilanciamento del carico interno, senza un indirizzo IP pubblico, è possibile utilizzare hello macchina virtuale e il relativo indirizzo IP pubblico come sicuro *passare casella*.
 
 ### <a name="static-public-ip-address"></a>Indirizzo IP pubblico statico
 
-In genere, un indirizzo IP pubblico è una risorsa dedicata che viene gestita separatamente rispetto alla macchina virtuale o alle macchine virtuali a cui è assegnato. Il provisioning viene effettuato in un gruppo di risorse di rete dedicato e non nel gruppo di risorse stesso del cluster di Service Fabric. Creare un indirizzo IP pubblico statico denominato staticIP1 nello stesso gruppo di risorse ExistingRG, nel portale di Azure oppure tramite PowerShell:
+In genere, un indirizzo IP pubblico statico è una risorsa dedicata che è gestita separatamente dal hello per le VM di cui è assegnato. Si è effettuato il provisioning in un gruppo di risorse di rete dedicata (come tooin anziché hello Service Fabric gruppo di risorse cluster stesso). Creare un indirizzo IP pubblico statico denominato staticIP1 in hello stesso gruppo di risorse ExistingRG, hello portale di Azure o tramite PowerShell:
 
 ```powershell
 PS C:\Users\user> New-AzureRmPublicIpAddress -Name staticIP1 -ResourceGroupName ExistingRG -Location westus -AllocationMethod Static -DomainNameLabel sfnetworking
@@ -73,12 +73,12 @@ DnsSettings              : {
 
 ### <a name="service-fabric-template"></a>Modello di Service Fabric
 
-Negli esempi riportati in questo articolo viene usato il file template.json di Service Fabric. Per scaricare il modello dal portale prima di creare un cluster, è possibile usare la procedura guidata standard del portale. È anche possibile usare uno dei modelli della [raccolta modelli](https://azure.microsoft.com/en-us/documentation/templates/?term=service+fabric), come il [cluster a cinque nodi di Service Fabric](https://azure.microsoft.com/en-us/documentation/templates/service-fabric-unsecure-cluster-5-node-1-nodetype/).
+Negli esempi di hello in questo articolo, utilizziamo template.json Service Fabric hello. È possibile utilizzare hello standard portale toodownload hello il modello procedura guidata dal portale hello prima di creare un cluster. È inoltre possibile utilizzare uno dei modelli di hello in hello [raccolta di modelli](https://azure.microsoft.com/en-us/documentation/templates/?term=service+fabric), ad esempio hello [cluster di Service Fabric cinque](https://azure.microsoft.com/en-us/documentation/templates/service-fabric-unsecure-cluster-5-node-1-nodetype/).
 
 <a id="existingvnet"></a>
 ## <a name="existing-virtual-network-or-subnet"></a>Rete virtuale o subnet esistente
 
-1. Impostare il parametro subnet sul nome della subnet esistente e quindi aggiungere due nuovi parametri per fare riferimento alla rete virtuale esistente:
+1. Modificare nome toohello del parametro hello subnet di una subnet esistente hello e quindi aggiungere due nuovi parametri tooreference hello rete virtuale esistente:
 
     ```
         "subnet0Name": {
@@ -106,7 +106,7 @@ Negli esempi riportati in questo articolo viene usato il file template.json di S
     ```
 
 
-2. Modificare la variabile `vnetID` in modo che punti alla rete virtuale esistente:
+2. Hello modifica `vnetID` rete virtuale di variabile toopoint toohello esistente:
 
     ```
             /*old "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",*/
@@ -143,7 +143,7 @@ Negli esempi riportati in questo articolo viene usato il file template.json di S
     },*/
     ```
 
-4. Impostare come commento la rete virtuale dell'attributo `dependsOn` di `Microsoft.Compute/virtualMachineScaleSets` in modo da non dipendere dalla creazione di una nuova rete virtuale:
+4. Commento di rete virtuale di hello dall'hello `dependsOn` attributo di `Microsoft.Compute/virtualMachineScaleSets`, pertanto non dipendono dalla creazione di una nuova rete virtuale:
 
     ```
     "apiVersion": "[variables('vmssApiVersion')]",
@@ -157,27 +157,27 @@ Negli esempi riportati in questo articolo viene usato il file template.json di S
 
     ```
 
-5. Distribuire il modello:
+5. Distribuire il modello di hello:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkingexistingvnet -Location westus
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkingexistingvnet -TemplateFile C:\SFSamples\Final\template\_existingvnet.json
     ```
 
-    Dopo la distribuzione, la rete virtuale dovrebbe includere le nuove macchine virtuali del set di scalabilità. Il tipo di nodo del set di scalabilità di macchine virtuali dovrebbe mostrare la rete virtuale esistente e la subnet. È anche possibile usare il protocollo RDP (Remote Desktop Protocol) per accedere alla macchina virtuale già esistente nella rete virtuale e per effettuare il ping delle nuove macchine virtuali del set di scalabilità:
+    Dopo la distribuzione, è necessario includere la rete virtuale le macchine virtuali del set di scalabilità di nuovo hello. tipo di nodo set di scalabilità di Hello macchina virtuale deve visualizzare subnet e la rete virtuale esistente di hello. È anche possibile usare Remote Desktop Protocol (RDP) tooaccess hello macchina virtuale che era già in una rete virtuale hello e impostare la scala di nuovo hello tooping su macchine virtuali:
 
     ```
     C:>\Users\users>ping 10.0.0.5 -n 1
     C:>\Users\users>ping NOde1000000 -n 1
     ```
 
-Per altre informazioni, vedere un [esempio non specifico di Service Fabric](https://github.com/gbowerman/azure-myriad/tree/master/existing-vnet).
+Per un altro esempio, vedere [uno che non sia tooService specifico dell'infrastruttura](https://github.com/gbowerman/azure-myriad/tree/master/existing-vnet).
 
 
 <a id="staticpublicip"></a>
 ## <a name="static-public-ip-address"></a>Indirizzo IP pubblico statico
 
-1. Aggiungere i parametri per il gruppo di risorse dell'indirizzo IP statico esistente, il nome e il nome di dominio completo (FQDN):
+1. Aggiungere parametri per nome hello di hello esistente al gruppo di risorse IP statico, nome e il nome di dominio completo (FQDN):
 
     ```
     "existingStaticIPResourceGroup": {
@@ -191,7 +191,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
     }
     ```
 
-2. Rimuovere il parametro `dnsName`. L'indirizzo IP statico ne ha già uno.
+2. Rimuovere hello `dnsName` parametro. l'indirizzo IP statico hello già dispone di uno.
 
     ```
     /*
@@ -201,7 +201,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
     */
     ```
 
-3. Aggiungere una variabile per fare riferimento all'indirizzo IP statico esistente:
+3. Aggiungere un variabile tooreference hello indirizzo IP statico esistente:
 
     ```
     "existingStaticIP": "[concat('/subscriptions/', subscription().subscriptionId, '/resourceGroups/', parameters('existingStaticIPResourceGroup'), '/providers/Microsoft.Network/publicIPAddresses/', parameters('existingStaticIPName'))]",
@@ -229,7 +229,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
     }, */
     ```
 
-5. Impostare come commento l'indirizzo IP dell'attributo `dependsOn` di `Microsoft.Network/loadBalancers` in modo da non dipendere dalla creazione di un nuovo indirizzo IP:
+5. Commento di indirizzo IP hello hello `dependsOn` attributo di `Microsoft.Network/loadBalancers`, pertanto non dipendono dalla creazione di un nuovo indirizzo IP:
 
     ```
     "apiVersion": "[variables('lbIPApiVersion')]",
@@ -243,7 +243,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
     "properties": {
     ```
 
-6. Nella risorsa `Microsoft.Network/loadBalancers` modificare l'elemento `publicIPAddress` di `frontendIPConfigurations` in modo che faccia riferimento l'indirizzo IP statico esistente anziché a uno appena creato:
+6. In hello `Microsoft.Network/loadBalancers` risorsa, hello modifica `publicIPAddress` elemento `frontendIPConfigurations` tooreference hello indirizzo IP statico esistente anziché uno appena creato:
 
     ```
                 "frontendIPConfigurations": [
@@ -259,7 +259,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
                     ],
     ```
 
-7. Nella risorsa `Microsoft.ServiceFabric/clusters` impostare `managementEndpoint` sul nome di dominio completo del DNS dell'indirizzo IP statico. Se si usa un cluster protetto, assicurarsi di modificare *http://* in *https://*. Si noti che questo passaggio si applica solo ai cluster di Service Fabric. Se si usa un set di scalabilità di macchine virtuali, ignorare il passaggio.
+7. In hello `Microsoft.ServiceFabric/clusters` risorse, modifica `managementEndpoint` toohello FQDN DNS dell'indirizzo IP statico hello. Se si utilizza un cluster protetto, assicurarsi di modificare *http://* troppo*https://*. (Si noti che questo passaggio si applica solo i cluster di infrastruttura tooService. Se si usa un set di scalabilità di macchine virtuali, ignorare il passaggio.
 
     ```
                     "fabricSettings": [],
@@ -267,7 +267,7 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
                     "managementEndpoint": "[concat('http://',parameters('existingStaticIPDnsFQDN'),':',parameters('nt0fabricHttpGatewayPort'))]",
     ```
 
-8. Distribuire il modello:
+8. Distribuire il modello di hello:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkingstaticip -Location westus
@@ -279,14 +279,14 @@ Per altre informazioni, vedere un [esempio non specifico di Service Fabric](http
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkingstaticip -TemplateFile C:\SFSamples\Final\template\_staticip.json -existingStaticIPResourceGroup $staticip.ResourceGroupName -existingStaticIPName $staticip.Name -existingStaticIPDnsFQDN $staticip.DnsSettings.Fqdn
     ```
 
-Dopo la distribuzione, il servizio di bilanciamento del carico è associato all'indirizzo IP statico pubblico dell'altro gruppo di risorse. L'endpoint della connessione client di Service Fabric e l'endpoint di [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) puntano al nome di dominio completo del DNS dell'indirizzo IP statico.
+Dopo la distribuzione, è possibile notare che il servizio di bilanciamento del carico associato toohello pubblica indirizzo IP statico da hello altro gruppo di risorse. endpoint di connessione client di Service Fabric Hello e [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) toohello punto endpoint FQDN DNS dell'indirizzo IP statico hello.
 
 <a id="internallb"></a>
 ## <a name="internal-only-load-balancer"></a>Bilanciamento del carico esclusivamente interno
 
-Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel modello di Service Fabric predefinito con un bilanciamento del carico esclusivamente interno. Per informazioni sulle implicazioni per il portale di Azure e per il provider di risorse di Service Fabric, vedere la sezione precedente.
+Questo scenario sostituisce bilanciamento del carico esterno hello nel modello di Service Fabric hello predefinito con un bilanciamento del carico interno. Per influisce hello portale di Azure e per provider di risorse di Service Fabric hello, vedere la precedente sezione hello.
 
-1. Rimuovere il parametro `dnsName`. Non è necessario.
+1. Rimuovere hello `dnsName` parametro. Non è necessario.
 
     ```
     /*
@@ -296,7 +296,7 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
     */
     ```
 
-2. Facoltativamente, se si usa un metodo di allocazione statica è possibile aggiungere un parametro per l'indirizzo IP statico. Se si usa un metodo di allocazione dinamica, non è necessario eseguire questo passaggio.
+2. Facoltativamente, se si usa un metodo di allocazione statica è possibile aggiungere un parametro per l'indirizzo IP statico. Se si utilizza un metodo di allocazione dinamica, non è necessario toodo questo passaggio.
 
     ```
             "internalLBAddress": {
@@ -327,7 +327,7 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
     }, */
     ```
 
-4. Rimuovere l'indirizzo IP dell'attributo `dependsOn` di `Microsoft.Network/loadBalancers` in modo da non dipendere dalla creazione di un nuovo indirizzo IP. Dal momento che ora il servizio di bilanciamento del carico dipende dalla subnet della rete virtuale, aggiungere l'attributo `dependsOn` della rete virtuale:
+4. Rimuovere l'indirizzo IP hello `dependsOn` attributo di `Microsoft.Network/loadBalancers`, pertanto non dipendono dalla creazione di un nuovo indirizzo IP. Aggiungere la rete virtuale hello `dependsOn` attributo perché il servizio di bilanciamento del carico hello ora dipende dalla subnet hello dalla rete virtuale hello:
 
     ```
                 "apiVersion": "[variables('lbApiVersion')]",
@@ -340,7 +340,7 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
                 ],
     ```
 
-5. Modificare l'impostazione `frontendIPConfigurations` del servizio di bilanciamento del carico passando dall'uso di `publicIPAddress` all'uso di una subnet e di `privateIPAddress`. `privateIPAddress` usa un indirizzo IP interno statico predefinito. Per usare un indirizzo IP dinamico, rimuovere l'elemento `privateIPAddress` e modificare `privateIPAllocationMethod` in **dinamico**.
+5. Modifica del bilanciamento carico di hello `frontendIPConfigurations` impostazione dall'utilizzo di un `publicIPAddress`, toousing una subnet e `privateIPAddress`. `privateIPAddress` usa un indirizzo IP interno statico predefinito. toouse un indirizzo IP dinamico, rimuovere hello `privateIPAddress` elemento e quindi modificare `privateIPAllocationMethod` troppo**dinamica**.
 
     ```
                 "frontendIPConfigurations": [
@@ -361,7 +361,7 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
                     ],
     ```
 
-6. Nella risorsa `Microsoft.ServiceFabric/clusters` modificare `managementEndpoint` in modo che punti all'indirizzo del servizio di bilanciamento del carico interno. Se si usa un cluster protetto, assicurarsi di modificare *http://* in *https://*. Si noti che questo passaggio si applica solo ai cluster di Service Fabric. Se si usa un set di scalabilità di macchine virtuali, ignorare il passaggio.
+6. In hello `Microsoft.ServiceFabric/clusters` risorse, modifica `managementEndpoint` indirizzo di bilanciamento del carico interno toohello toopoint. Se si utilizza un cluster protetto, assicurarsi di modificare *http://* troppo*https://*. (Si noti che questo passaggio si applica solo i cluster di infrastruttura tooService. Se si usa un set di scalabilità di macchine virtuali, ignorare il passaggio.
 
     ```
                     "fabricSettings": [],
@@ -369,7 +369,7 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
                     "managementEndpoint": "[concat('http://',reference(variables('lbID0')).frontEndIPConfigurations[0].properties.privateIPAddress,':',parameters('nt0fabricHttpGatewayPort'))]",
     ```
 
-7. Distribuire il modello:
+7. Distribuire il modello di hello:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkinginternallb -Location westus
@@ -377,16 +377,16 @@ Questo scenario sostituisce il servizio di bilanciamento del carico esterno nel 
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkinginternallb -TemplateFile C:\SFSamples\Final\template\_internalonlyLB.json
     ```
 
-Dopo la distribuzione, il servizio di bilanciamento del carico usa l'indirizzo IP privato statico 10.0.0.250. Se nella stessa rete virtuale è disponibile un altro computer, è possibile passare all'endpoint interno di [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md). Si noti che questo si connette a uno dei nodi del servizio di bilanciamento del carico.
+Dopo la distribuzione, il servizio di bilanciamento del carico Usa indirizzo IP hello 10.0.0.250 statico privato. Se si dispone di un altro computer nella stessa rete virtuale, è possibile passare toohello interno [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) endpoint. Si noti che si connette tooone dei nodi di hello bilanciamento del carico hello.
 
 <a id="internalexternallb"></a>
 ## <a name="internal-and-external-load-balancer"></a>Bilanciamento del carico interno ed esterno
 
-In questo scenario si inizia con il servizio di bilanciamento del carico esterno a nodo singolo esistente e si aggiunge un servizio di bilanciamento del carico interno per lo stesso tipo di nodo. È possibile assegnare una porta back-end collegata a un pool di indirizzi back-end a un solo servizio di bilanciamento del carico. Scegliere a quale servizio di bilanciamento del carico assegnare le porte dell'applicazione e a quale assegnare gli endpoint di gestione (porte 19000 e 19080). Se si sceglie di inserire gli endpoint di gestione nel servizio di bilanciamento del carico interno, tenere presenti le limitazioni del provider di risorse di Service Fabric illustrate in precedenza in questo articolo. Nell'esempio usato gli endpoint di gestione rimangono nel servizio di bilanciamento del carico esterno. Aggiungere una porta 80 dell'applicazione e posizionarla nel servizio di bilanciamento del carico interno.
+In questo scenario, iniziare con bilanciamento del carico esterno a nodo singolo tipo esistente hello e aggiungere un servizio di bilanciamento del carico interno per hello stesso tipo di nodo. Un pool di indirizzi back-end tooa porta back-end collegata può essere assegnato solo tooa singolo bilanciamento del carico. Scegliere a quale servizio di bilanciamento del carico assegnare le porte dell'applicazione e a quale assegnare gli endpoint di gestione (porte 19000 e 19080). Se si inserisce l'endpoint di gestione di hello su servizio di bilanciamento del carico interno hello, tenere hello presente risorsa Service Fabric restrizioni provider in precedenza in hello articolo. Nell'esempio hello che utilizziamo, gli endpoint di gestione di hello rimangono sul servizio di bilanciamento del carico esterno hello. Inoltre aggiungere una porta di porta 80 dell'applicazione e posizionalo nel servizio di bilanciamento del carico interno hello.
 
-In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilanciamento del carico esterno. L'altro tipo di nodo si trova nel servizio di bilanciamento del carico interno. Per usare un cluster a due tipi di nodo, nel modello a due tipi di nodo creato nel portale, che include due servizi di bilanciamento del carico, impostare il secondo come servizio di bilanciamento del carico interno. Per altre informazioni, vedere la sezione [Bilanciamento del carico esclusivamente interno](#internallb).
+In un cluster di tipo di nodo due, un tipo di nodo è nel servizio di bilanciamento del carico esterno hello. Hello altro tipo di nodo è nel servizio di bilanciamento del carico interno hello. toouse un cluster di tipo di nodo due, in hello creare portale del tipo di nodo due modello (incluso in due servizi di bilanciamento del carico), passare hello secondo carico bilanciamento tooan bilanciamento del carico interno. Per ulteriori informazioni, vedere hello [bilanciamento del carico solo per uso interno](#internallb) sezione.
 
-1. Aggiungere il parametro per l'indirizzo IP statico del servizio di bilanciamento del carico interno. Per le note relative all'uso di un indirizzo IP dinamico, vedere le sezioni precedenti di questo articolo.
+1. Aggiungi parametro di indirizzo IP del servizio di bilanciamento carico di interno statico hello. (Per le note correlate toousing un indirizzo IP dinamico, vedere le sezioni precedenti di questo articolo).
 
     ```
             "internalLBAddress": {
@@ -397,7 +397,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
 
 2. Aggiungere un parametro della porta 80 dell'applicazione.
 
-3. Per aggiungere versioni interne delle variabili di rete esistenti, copiarle e incollarle e aggiungere "-Int" al nome:
+3. tooadd versioni interne di hello esistente rete variabili, copiare e incollare i controlli e aggiungere "-Int" nome toohello:
 
     ```
     /* Add internal load balancer networking variables */
@@ -410,7 +410,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
             /* Internal load balancer networking variables end */
     ```
 
-4. Se si parte dal modello generato nel portale, che usa la porta 80 dell'applicazione, il modello predefinito del portale aggiunge AppPort1 (porta 80) al servizio di bilanciamento del carico esterno. In tal caso, rimuovere AppPort1 dall'oggetto `loadBalancingRules` e dai probe del servizio di bilanciamento del carico esterno, in modo che sia possibile aggiungerlo al servizio di bilanciamento del carico interno:
+4. Se si avvia con modello generato portale hello che utilizza la porta 80 dell'applicazione, modello di portale predefinito hello aggiunge AppPort1 (porta 80) nel servizio di bilanciamento del carico esterno hello. In questo caso, rimuovere AppPort1 dal servizio di bilanciamento del carico esterno hello `loadBalancingRules` probe e, pertanto è possibile aggiungere il servizio di bilanciamento del carico interno toohello:
 
     ```
     "loadBalancingRules": [
@@ -432,7 +432,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
                 },
                 "protocol": "tcp"
             }
-        } /* Remove AppPort1 from the external load balancer.
+        } /* Remove AppPort1 from hello external load balancer.
         {
             "name": "AppPortLBRule1",
             "properties": {
@@ -472,7 +472,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
                 "port": "[parameters('nt0fabricHttpGatewayPort')]",
                 "protocol": "tcp"
             }
-        } /* Remove AppPort1 from the external load balancer.
+        } /* Remove AppPort1 from hello external load balancer.
         {
             "name": "AppPortProbe1",
             "properties": {
@@ -487,14 +487,14 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
     "inboundNatPools": [
     ```
 
-5. Aggiungere una seconda risorsa `Microsoft.Network/loadBalancers`. Ha un aspetto simile al servizio di bilanciamento del carico interno creato nella sezione [Bilanciamento del carico esclusivamente interno](#internallb), ma fa uso delle variabili "-Int" del servizio di bilanciamento del carico e implementa solo la porta 80 dell'applicazione. Rimuove anche `inboundNatPools`, per mantenere gli endpoint RDP nel servizio di bilanciamento del carico pubblico. Per usare il protocollo RDP nel servizio di bilanciamento del carico interno, spostare `inboundNatPools` dal servizio di bilanciamento del carico esterno a quello interno:
+5. Aggiungere una seconda risorsa `Microsoft.Network/loadBalancers`. Ottenere un risultato simile bilanciamento del carico interno toohello creato in hello [bilanciamento del carico solo per uso interno](#internallb) sezione, ma Usa hello "-Int" caricare le variabili di sistema di bilanciamento e implementa solo hello applicazione la porta 80. Verranno rimossi anche `inboundNatPools`, gli endpoint RDP tookeep nel servizio di bilanciamento del carico pubblico hello. Se si desidera RDP nel servizio di bilanciamento del carico interno hello, spostare `inboundNatPools` da hello toothis bilanciamento di carico esterno interno il bilanciamento del carico:
 
     ```
-            /* Add a second load balancer, configured with a static privateIPAddress and the "-Int" load balancer variables. */
+            /* Add a second load balancer, configured with a static privateIPAddress and hello "-Int" load balancer variables. */
             {
                 "apiVersion": "[variables('lbApiVersion')]",
                 "type": "Microsoft.Network/loadBalancers",
-                /* Add "-Internal" to the name. */
+                /* Add "-Internal" toohello name. */
                 "name": "[concat('LB','-', parameters('clusterName'),'-',parameters('vmNodeType0Name'), '-Internal')]",
                 "location": "[parameters('computeLocation')]",
                 "dependsOn": [
@@ -508,7 +508,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
                         {
                             "name": "LoadBalancerIPConfig",
                             "properties": {
-                                /* Switch from Public to Private IP address
+                                /* Switch from Public tooPrivate IP address
                                 */
                                 "publicIPAddress": {
                                     "id": "[resourceId('Microsoft.Network/publicIPAddresses',concat(parameters('lbIPName'),'-','0'))]"
@@ -529,7 +529,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
                         }
                     ],
                     "loadBalancingRules": [
-                        /* Add the AppPort rule. Be sure to reference the "-Int" versions of backendAddressPool, frontendIPConfiguration, and the probe variables. */
+                        /* Add hello AppPort rule. Be sure tooreference hello "-Int" versions of backendAddressPool, frontendIPConfiguration, and hello probe variables. */
                         {
                             "name": "AppPortLBRule1",
                             "properties": {
@@ -551,7 +551,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
                         }
                     ],
                     "probes": [
-                    /* Add the probe for the app port. */
+                    /* Add hello probe for hello app port. */
                     {
                             "name": "AppPortProbe1",
                             "properties": {
@@ -572,7 +572,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
             },
     ```
 
-6. In `networkProfile` per la risorsa `Microsoft.Compute/virtualMachineScaleSets` aggiungere il pool di indirizzi back-end interno:
+6. In `networkProfile` per hello `Microsoft.Compute/virtualMachineScaleSets` risorse, aggiungere il pool di indirizzi back-end interno hello:
 
     ```
     "loadBalancerBackendAddressPools": [
@@ -586,7 +586,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
     ],
     ```
 
-7. Distribuire il modello:
+7. Distribuire il modello di hello:
 
     ```powershell
     New-AzureRmResourceGroup -Name sfnetworkinginternalexternallb -Location westus
@@ -594,7 +594,7 @@ In un cluster a due tipi di nodo, un tipo di nodo si trova nel servizio di bilan
     New-AzureRmResourceGroupDeployment -Name deployment -ResourceGroupName sfnetworkinginternalexternallb -TemplateFile C:\SFSamples\Final\template\_internalexternalLB.json
     ```
 
-Dopo la distribuzione, nel gruppo di risorse vengono visualizzati due servizi di bilanciamento del carico. Esplorando tali servizi è possibile visualizzare l'indirizzo IP pubblico e gli endpoint di gestione (porte 19000 e 19080) assegnati all'indirizzo IP pubblico. È anche possibile visualizzare l'indirizzo IP interno statico e l'endpoint dell'applicazione (porta 80) assegnati al servizio di bilanciamento del carico interno. Entrambi i servizi di bilanciamento del carico usano lo stesso pool back-end del set di scalabilità di macchine virtuali.
+Dopo la distribuzione, è possibile visualizzare due servizi di bilanciamento del carico nel gruppo di risorse hello. Se si seleziona servizi di bilanciamento del carico hello, è possibile visualizzare l'indirizzo IP pubblico hello e indirizzo IP pubblico di gestione endpoint (porte 19000 e 19080) assegnato toohello. È inoltre possibile visualizzare hello statico interno IP applicazione e l'indirizzo endpoint (porta 80) assegnato toohello interno il bilanciamento del carico. Entrambi di caricamento Usa bilanciamento del carico scalabilità della macchina virtuale stessa hello impostare pool back-end.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Creare un cluster](service-fabric-cluster-creation-via-arm.md)

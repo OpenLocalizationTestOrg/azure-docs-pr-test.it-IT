@@ -1,6 +1,6 @@
 ---
-title: Connettere un dispositivo tramite C in Linux | Documentazione Microsoft
-description: "Descrive come connettere un dispositivo alla soluzione di monitoraggio remoto preconfigurata Azure IoT Suite con un’applicazione scritta in C in esecuzione in Linux."
+title: aaaConnect un dispositivo utilizzando C in Linux | Documenti Microsoft
+description: Viene descritto come tooconnect toohello un dispositivo Azure IoT Suite preconfigurato soluzione di monitoraggio remoto utilizzando un'applicazione scritta in C in esecuzione in Linux.
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 9adbc9cc13f0b4cafa3a3a7703c46f8085b15232
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57393817d40d3555177956a01fa71058bc256988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-linux"></a>Connettere il dispositivo alla soluzione preconfigurata per il monitoraggio remoto (Linux)
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-linux"></a>Connettersi toohello il dispositivo remoto monitoraggio soluzione preconfigurata (Linux)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="build-and-run-a-sample-c-client-linux"></a>Compilare ed eseguire un client C Linux di esempio
-La procedura seguente illustra come creare un'applicazione client che comunica con la soluzione di monitoraggio remoto preconfigurata. Questa applicazione è scritta in C e compilata ed eseguita in Ubuntu Linux.
+Hello alla procedura seguente viene illustrato come un'applicazione client che comunica con il monitoraggio remoto hello toocreate preconfigurato soluzione. Questa applicazione è scritta in C e compilata ed eseguita in Ubuntu Linux.
 
-Per completare questa procedura, è necessario un dispositivo che esegue Ubuntu versione 15.04 o 15.10. Prima di continuare, installare i pacchetti dei prerequisiti nel dispositivo Ubuntu usando il comando seguente:
+toocomplete questi passaggi, è necessario un dispositivo che esegue Ubuntu 15.04 o 15.10 versione. Prima di continuare, installare i pacchetti dei prerequisiti hello nel dispositivo Ubuntu utilizzando hello comando seguente:
 
 ```
 sudo apt-get install cmake gcc g++
 ```
 
-## <a name="install-the-client-libraries-on-your-device"></a>Installare le librerie client sul dispositivo
-Le librerie client dell'hub IoT di Azure sono disponibili in forma di pacchetto da installare sul dispositivo Ubuntu tramite il comando **apt-get** . Completare la procedura seguente per installare il pacchetto che contiene la libreria del client dell'hub IoT e i file d'intestazione nel computer Ubuntu:
+## <a name="install-hello-client-libraries-on-your-device"></a>Installare le librerie client hello sul dispositivo
+Hello Azure IoT Hub librerie client sono disponibili come un pacchetto è possibile installare nel dispositivo Ubuntu utilizzando hello **apt get** comando. Completare i seguenti passaggi tooinstall hello pacchetto hello libreria client IoT Hub e il file di intestazione nel computer in uso Ubuntu hello:
 
-1. In una shell, aggiungere il repository AzureIoT al computer:
+1. In una shell, aggiungere hello AzureIoT repository tooyour computer:
    
     ```
     sudo add-apt-repository ppa:aziotsdklinux/ppa-azureiot
     sudo apt-get update
     ```
-2. Installare il pacchetto azure-iot-sdk-c-dev
+2. Installare il pacchetto di azure-iot-sdk-c-dev hello
    
     ```
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
-## <a name="install-the-parson-json-parser"></a>Installare il parser JSON Parson
-Le librerie client di hub IoT usano il parser JSON per analizzare il payload dei messaggi. In una cartella appropriata nel computer, clonare il repository Parson GitHub usando il comando seguente:
+## <a name="install-hello-parson-json-parser"></a>Installare hello parser Parson JSON
+utilizzano le librerie client di IoT Hub Hello hello payload dei messaggi Parson JSON parser tooparse. In una cartella appropriata nel computer in uso, clonare il repository di GitHub Parson hello utilizzando hello comando seguente:
 
 ```
 git clone https://github.com/kgabis/parson.git
 ```
 
 ## <a name="prepare-your-project"></a>Preparare il progetto
-Nel computer Ubuntu creare una cartella denominata **remote\_monitoring**. Nella cartella **remote\_monitoring**:
+Nel computer Ubuntu creare una cartella denominata **remote\_monitoring**. In hello **remoto\_monitoraggio** cartella:
 
-- Creare i quattro file **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h** e **CMakeLists.txt**.
+- Creare quattro file di hello **Main. c**, **remoto\_monitoring.c**, **remoto\_monitoring.h**, e **CMakeLists.txt**.
 - Creare una cartella denominata **parson**.
 
-Copiare i file **parson.c** e **parson.h** dalla copia locale del repository Parson nella cartella **remote\_monitoring/parson**.
+Copiare i file hello **parson.c** e **parson.h** dalla copia locale del repository Parson hello in hello **remoto\_/parson monitoraggio** cartella.
 
-In un editor di testo aprire il file **remote\_monitoring.c**. Aggiungere le istruzioni `#include` seguenti:
+In un editor di testo aprire hello **remoto\_monitoring.c** file. Aggiungere il seguente hello `#include` istruzioni:
    
 ```
 #include "iothubtransportmqtt.h"
@@ -78,14 +78,14 @@ In un editor di testo aprire il file **remote\_monitoring.c**. Aggiungere le ist
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="call-the-remotemonitoringrun-function"></a>Chiamare la funzione remote\_monitoring\_run
-In un editor di testo aprire il file **remote_monitoring.h**. Aggiungere il codice seguente:
+## <a name="call-hello-remotemonitoringrun-function"></a>Chiamare hello remoto\_monitoraggio\_eseguire (funzione)
+In un editor di testo aprire hello **remote_monitoring.h** file. Aggiungere hello seguente codice:
 
 ```
 void remote_monitoring_run(void);
 ```
 
-In un editor di testo aprire il file **main. c** . Aggiungere il codice seguente:
+In un editor di testo aprire hello **Main. c** file. Aggiungere hello seguente codice:
 
 ```
 #include "remote_monitoring.h"
@@ -98,12 +98,12 @@ int main(void)
 }
 ```
 
-## <a name="build-and-run-the-application"></a>Compilare ed eseguire l'applicazione
-La procedura seguente descrive i metodi d'uso di *CMake* per compilare l'applicazione client.
+## <a name="build-and-run-hello-application"></a>Compilare ed eseguire un'applicazione hello
+Hello passaggi seguenti viene descritto come toouse *CMake* toobuild l'applicazione client.
 
-1. In un editor di testo aprire il file **CMakeLists.txt** nella cartella **remote_monitoring**.
+1. In un editor di testo aprire hello **CMakeLists.txt** file hello **remote_monitoring** cartella.
 
-1. Aggiungere le istruzioni seguenti per definire la modalità di compilazione dell'applicazione client:
+1. Aggiungere hello seguendo le istruzioni toodefine come toobuild l'applicazione client:
    
     ```
     macro(compileAsC99)
@@ -151,7 +151,7 @@ La procedura seguente descrive i metodi d'uso di *CMake* per compilare l'applica
         m
     )
     ```
-1. Nella cartella **remote_monitoring** creare una cartella per archiviare i file *make* generati da CMake e quindi eseguire i comandi **cmake** e **make** come segue:
+1. In hello **remote_monitoring** cartella, creare un hello toostore cartella *rendere* file tale CMake genera l'errore e quindi eseguire hello **cmake** e **rendere** comandi nel modo seguente:
    
     ```
     mkdir cmake
@@ -160,7 +160,7 @@ La procedura seguente descrive i metodi d'uso di *CMake* per compilare l'applica
     make
     ```
 
-1. Eseguire l'applicazione client e inviare dati di telemetria all'hub IoT:
+1. Eseguire un'applicazione client hello e inviare dati di telemetria tooIoT Hub:
    
     ```
     ./sample_app

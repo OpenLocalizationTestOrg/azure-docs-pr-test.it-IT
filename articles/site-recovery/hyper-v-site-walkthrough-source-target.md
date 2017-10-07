@@ -1,6 +1,6 @@
 ---
-title: Configurare l'origine e la destinazione per la replica Hyper-V in Azure (senza System Center VMM) con Azure Site Recovery| Microsoft Docs
-description: Vengono riepilogati i passaggi per configurare le impostazioni di origine e di destinazione per la replica di VM Hyper-V in Archiviazione di Azure con Azure Site Recovery
+title: aaaSet backup hello origine e di destinazione per tooAzure di replica Hyper-V (senza System Center VMM) con Azure Site Recovery | Documenti Microsoft
+description: Riepiloga hello passaggi tooset le impostazioni di origine e di destinazione per la replica di archiviazione di macchine virtuali Hyper-V tooAzure con Azure Site Recovery
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,75 +14,75 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: b38eb3a011d46f2239891ea1d1bcac2a4059a866
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 105b90e6ac053d5b842c54a36c460a26d0f5c2ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-8-set-up-the-source-and-target-for-hyper-v-replication-to-azure"></a>Passaggio 8: Configurare l'origine e la destinazione per la replica Hyper-V in Azure
+# <a name="step-8-set-up-hello-source-and-target-for-hyper-v-replication-tooazure"></a>Passaggio 8: Impostare hello origine e di destinazione per Hyper-V replica tooAzure
 
-Questo articolo illustra come configurare le impostazioni di origine e di destinazione per la replica di macchine virtuali Hyper-V locali (senza System Center VMM) in Azure usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
+In questo articolo viene descritto come le impostazioni di tooconfigure origine e di destinazione durante la replica locale tooAzure macchine virtuali (senza System Center VMM) di Hyper-V, utilizzando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-the-source-environment"></a>Configurare l'ambiente di origine
+## <a name="set-up-hello-source-environment"></a>Configurare un ambiente di origine hello
 
-Configurare il sito Hyper-V, installare il provider di Azure Site Recovery e l'agente di Servizi di ripristino di Azure negli host Hyper-V e registrare il sito nell'insieme di credenziali.
+Impostare il sito di hello Hyper-V, installare hello Provider di Azure Site Recovery e l'agente di servizi di ripristino di Azure di hello negli host Hyper-V e registrare sito hello nell'insieme di credenziali hello.
 
-1. In **Preparare l'infrastruttura** fare clic su **Origine**. Per aggiungere un nuovo sito Hyper-V come contenitore per i cluster o gli host Hyper-V, fare clic su **+ Sito Hyper-V**.
+1. In **Preparare l'infrastruttura** fare clic su **Origine**. Fare clic su un nuovo sito Hyper-V come contenitore per l'host Hyper-V o cluster, tooadd **+ sito Hyper-V**.
 
     ![Impostare l'origine](./media/hyper-v-site-walkthrough-source-target/set-source1.png)
-2. In **Crea il sito Hyper-V** specificare un nome per il sito. Fare quindi clic su **OK**. A questo punto, selezionare il sito creato e fare clic su **+Server Hyper-V** per aggiungere un server al sito.
+2. In **sito Hyper-V creare**, specificare un nome per il sito hello. Fare quindi clic su **OK**. Ora, selezionare il sito di hello creata, quindi fare clic su **+ Server Hyper-V** tooadd un sito di toohello server.
 
     ![Impostare l'origine](./media/hyper-v-site-walkthrough-source-target/set-source2.png)
 
 3. In **Aggiungi server** > **Tipo di server** verificare che sia visualizzato **Server Hyper-V**.
 
-    - Verificare che il server Hyper-V che si desidera aggiungere sia conforme ai [prerequisiti](#on-premises-prerequisites) e sia in grado di accedere agli URL specificati.
-    - Scaricare il file di installazione del provider di Azure Site Recovery. Eseguire questo file per installare il provider e l'agente di Servizi di ripristino in ogni host Hyper-V.
+    - Verificare che tale server hello Hyper-V da tooadd è conforme con hello [prerequisiti](#on-premises-prerequisites), ed è in grado di tooaccess hello URL specificati.
+    - Scaricare i file di installazione di Provider di Azure Site Recovery hello. Eseguire questo hello tooinstall file Provider e hello agente servizi di ripristino in ogni host Hyper-V.
 
     ![Impostare l'origine](./media/hyper-v-site-walkthrough-source-target/set-source3.png)
 
 
-## <a name="install-the-provider-and-agent"></a>Installare provider e agente
+## <a name="install-hello-provider-and-agent"></a>Installare hello Provider e agente
 
-1. Eseguire il file di installazione del provider in ogni host aggiunto al sito Hyper-V. Se l'installazione viene eseguita in un cluster Hyper-V, eseguire il file di installazione in ogni nodo del cluster. L'installazione e la registrazione di ogni nodo del cluster Hyper-V garantisce che le macchine virtuali siano protette anche se ne viene eseguita la migrazione tra i nodi.
+1. Eseguire i file di installazione di Provider di hello in ogni host aggiunti al sito toohello Hyper-V. Se l'installazione viene eseguita in un cluster Hyper-V, eseguire il file di installazione in ogni nodo del cluster. L'installazione e la registrazione di ogni nodo del cluster Hyper-V garantisce che le macchine virtuali siano protette anche se ne viene eseguita la migrazione tra i nodi.
 2. In **Microsoft Update** è possibile acconsentire esplicitamente agli aggiornamenti in modo che gli aggiornamenti del provider vengano installati in base ai criteri di Microsoft Update.
-3. In **Installazione** accettare o modificare il percorso predefinito di installazione del provider e quindi fare clic su **Installa**.
-4. In **Impostazioni dell'insieme di credenziali** fare clic su **Esplora** per selezionare il file di chiave dell'insieme di credenziali scaricato. Specificare la sottoscrizione di Azure Site Recovery, il nome dell'insieme di credenziali e il sito Hyper-V a cui appartiene il server Hyper-V.
+3. In **installazione**, accettare o modificare percorso di installazione di Provider predefinito hello e fare clic su **installare**.
+4. In **impostazioni insieme di credenziali**, fare clic su **Sfoglia** tooselect hello insieme di credenziali chiave file scaricato. Specificare una sottoscrizione di Azure Site Recovery hello, nome di archivio, hello e hello Hyper-V del sito toowhich hello Hyper-V server appartiene.
 
     ![Server registration](./media/hyper-v-site-walkthrough-source-target/provider3.png)
 
-5. In **Impostazioni proxy** specificare in che modo il provider in esecuzione negli host Hyper-V si connette ad Azure Site Recovery tramite Internet.
+5. In **le impostazioni del Proxy**, specificare la modalità Provider in esecuzione in host Hyper-V si connette tooAzure Site Recovery tramite hello hello internet.
 
-    * Per fare in modo che il provider si connetta direttamente, selezionare **Connetti direttamente ad Azure Site Recovery senza server proxy**.
-    * Se per il proxy esistente è necessaria l'autenticazione o si desidera usare un proxy personalizzato per la connessione al provider, selezionare **Connetti ad Azure Site Recovery usando un server proxy**.
+    * Se si desidera selezionare direttamente hello Provider tooconnect **connettersi direttamente tooAzure il ripristino del sito senza un proxy**.
+    * Se il proxy esistente richiede l'autenticazione, o si desidera toouse un proxy personalizzato per la connessione al Provider di hello, selezionare **connettersi tooAzure ripristino del sito utilizzando un server proxy**.
     * Se si usa un proxy:
-        - Specificare l'indirizzo, la porta e le credenziali.
-        - Assicurarsi che sia possibile accedere tramite il proxy agli URL indicati nei [prerequisiti](#prerequisites) .
+        - Specificare le credenziali, porta e indirizzo hello
+        - Rendono che URL hello descritto in hello [prerequisiti](#prerequisites) siano consentiti attraverso il proxy di hello.
 
     ![Internet](./media/hyper-v-site-walkthrough-source-target/provider7.png)
 
-6. Al termine dell'installazione fare clic su **Registra** per registrare il server nell'insieme di credenziali.
+6. Al termine dell'installazione, fare clic su **registrare** server hello tooregister nell'insieme di credenziali hello.
 
     ![Percorso di installazione](./media/hyper-v-site-walkthrough-source-target/provider2.png)
 
-7. Al termine della registrazione, i metadati del server Hyper-V vengono recuperati da Azure Site Recovery e il server viene visualizzato in **Site Recovery Infrastructure** >  (Infrastruttura di Site Recovery)**Hyper-V Hosts** (Host Hyper-V).
+7. Al termine della registrazione, i metadati dal server hello Hyper-V vengono recuperati da Azure Site Recovery e hello server viene visualizzato nel **infrastruttura di Site Recovery** > **host Hyper-V**.
 
 
-## <a name="set-up-the-target-environment"></a>Configurare l'ambiente di destinazione
+## <a name="set-up-hello-target-environment"></a>Configurare un ambiente di destinazione hello
 
-Specificare l'account di archiviazione di Azure per la replica e la rete di Azure a cui le macchine virtuali di Azure dovranno connettersi dopo il failover.
+Specificare l'account di archiviazione di Azure hello per la replica e si connetterà hello Azure rete toowhich macchine virtuali di Azure dopo il failover.
 
 1. Fare clic su **Preparare l'infrastruttura** > **Destinazione**.
-2. Selezionare la sottoscrizione e il gruppo di risorse in cui si desidera creare le macchine virtuali di Azure dopo il failover. Scegliere il modello di distribuzione (classica o Resource Manager) da usare in Azure per le macchine virtuali.
+2. Selezionare la sottoscrizione hello e gruppo di risorse hello in cui si desidera toocreate hello macchine virtuali di Azure dopo il failover. Scegliere hello distribuzione modello che si vuole toouse in Azure (classica o risorsa di gestione) per le macchine virtuali hello.
 
 3. Site Recovery verifica la disponibilità di uno o più account di archiviazione di Azure e reti compatibili.
 
-    - Se non si dispone di un account di archiviazione, fare clic su **+ Archiviazione** per creare un account basato su Resource Manager inline. 
-    - Se non si dispone di una rete Azure, fare clic su **+Rete** per creare una rete basata su Resource Manager inline.
+    - Se non si dispone di un account di archiviazione, fare clic su **+ archiviazione** toocreate inline un account basato su Gestione risorse. 
+    - Se non si dispone di una rete di Azure, fare clic su **+ rete** toocreate un inline basate su Gestione risorse di rete.
 
 
 
@@ -91,4 +91,4 @@ Specificare l'account di archiviazione di Azure per la replica e la rete di Azur
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare al [Passaggio 9: Configurare i criteri di replica](hyper-v-site-walkthrough-replication.md)
+Andare troppo[passaggio 9: configurare un criterio di replica](hyper-v-site-walkthrough-replication.md)

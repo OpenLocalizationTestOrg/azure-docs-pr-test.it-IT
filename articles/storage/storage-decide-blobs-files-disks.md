@@ -1,6 +1,6 @@
 ---
-title: Quando usare BLOB di Azure, File di Azure o Dischi dati di Azure
-description: Informazioni sui diversi modi di archiviare e accedere ai dati in Azure per aiutare a decidere quale tecnologia usare.
+title: aaaDeciding quando toouse BLOB di Azure, i file di Azure o i dischi dati di Azure
+description: Informazioni su hello modi toostore e accedere ai dati in Azure toohelp che si decide quale toouse tecnologia.
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: robinsh
-ms.openlocfilehash: e282a8a7bec1cb6e48110e7c9859a3a19ab8a11e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6109affe41e98ed459616a4f91064ded0c74428d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deciding-when-to-use-azure-blobs-azure-files-or-azure-data-disks"></a>Quando usare BLOB di Azure, File di Azure o Dischi dati di Azure
+# <a name="deciding-when-toouse-azure-blobs-azure-files-or-azure-data-disks"></a>Decidere quando toouse BLOB di Azure, file di Azure o i dischi dati di Azure
 
-Microsoft Azure offre molte funzionalità in Archiviazione di Azure per archiviare e accedere ai dati nel cloud. Questo articolo illustra le funzionalità File di Azure, BLOB di Azure e Dischi dati di Azure e aiuta a scegliere quella più adatta alle proprie esigenze.
+Microsoft Azure offre diverse funzionalità in archiviazione di Azure per l'archiviazione e accesso ai dati nel cloud hello. In questo articolo riguarda file di Azure, BLOB e i dischi dati e viene progettato toohelp si sceglie tra queste funzionalità.
 
 ## <a name="scenarios"></a>Scenari
 
-La tabella seguente confronta File, BLOB e Dischi dati e illustra scenari di esempio appropriati per ognuna delle funzionalità.
+Hello nella tabella seguente Confronta file, BLOB e i dischi dati e visualizza gli scenari di esempio appropriata per ognuno.
 
-| Funzionalità | Descrizione | Quando usare le autorizzazioni |
+| Funzionalità | Descrizione | Quando toouse |
 |--------------|-------------|-------------|
-| **File di Azure** | Include un'interfaccia SMB, librerie client e un'[interfaccia REST](/rest/api/storageservices/file-service-rest-api) che consente l'accesso ai file archiviati ovunque ci si trovi. | Si intende aggiornare e spostare un'applicazione nel cloud che usa già le API del file system native per condividere i dati con altre applicazioni in esecuzione in Azure.<br/><br/>Si intende archiviare gli strumenti di sviluppo e di debug a cui deve essere possibile accedere da molte macchine virtuali. |
-| **BLOB di Azure** | Include librerie client e un'[interfaccia REST](/rest/api/storageservices/blob-service-rest-api) che consente di archiviare i dati non strutturati e di accedervi su larga scala in BLOB in blocchi. | Si desidera che la propria applicazione supporti scenari di accesso casuale e tramite flusso.<br/><br/>Si desidera poter accedere ai dati dell'applicazione ovunque ci si trovi. |
-| **Dischi dati di Azure** | Include librerie client e un'[interfaccia REST](/rest/api/compute/virtualmachines/virtualmachines-create-or-update) che consente di archiviare in modo permanente i dati e di accedervi da un disco rigido virtuale collegato. | Si intende aggiornare e spostare le applicazioni che usano le API del file system native per leggere e scrivere dati su dischi permanenti.<br/><br/>Si intende archiviare i dati a cui non è necessario accedere dall'esterno della macchina virtuale a cui è collegato il disco. |
+| **File di Azure** | Fornisce un'interfaccia SMB, le librerie client e un [interfaccia REST](/rest/api/storageservices/file-service-rest-api) toostored file che consente l'accesso da qualsiasi posizione. | Si desidera troppo "sollevare e spostare" un cloud toohello applicazione che usa già dati tooshare API hello file nativo del sistema tra altre applicazioni in esecuzione in Azure.<br/><br/>Si desidera toostore sviluppo e strumenti di debug che è necessario toobe accedere da molte macchine virtuali. |
+| **BLOB di Azure** | Fornisce le librerie client e un [interfaccia REST](/rest/api/storageservices/blob-service-rest-api) che consente di dati non strutturati troppo archiviato e utilizzato su larga scala in BLOB in blocchi. | Si desidera lo streaming di applicazioni toosupport e scenari di accesso casuale.<br/><br/>Si desidera toobe tooaccess in grado di dati dell'applicazione da qualsiasi posizione. |
+| **Dischi dati di Azure** | Fornisce le librerie client e un [interfaccia REST](/rest/api/compute/virtualmachines/virtualmachines-create-or-update) che consente di toobe dati archiviati in modo permanente e accessibile da un disco rigido virtuale collegato. | Si desidera toolift e spostare le applicazioni che utilizzano tooread le API di file nativi del sistema e scrivere i dischi dati toopersistent.<br/><br/>Si desidera toostore i dati non necessari toobe accessibili dal disco hello toowhich della macchina virtuale all'esterno di hello sono collegati. |
 
 ## <a name="comparison-files-and-blobs"></a>Confronto: File e BLOB
 
-La tabella seguente confronta File di Azure e BLOB di Azure.  
+Hello nella tabella seguente Confronta file di Azure e BLOB di Azure.  
   
 ||||  
 |-|-|-|  
@@ -47,35 +47,35 @@ La tabella seguente confronta File di Azure e BLOB di Azure.
 |Endpoint|`http://myaccount.blob.core.windows.net/mycontainer/myblob`|`\\myaccount.file.core.windows.net\myshare\myfile.txt`<br /><br /> `http://myaccount.file.core.windows.net/myshare/myfile.txt`|  
 |Directory|Spazio dei nomi flat|Oggetti directory veri|  
 |Distinzione tra maiuscole e minuscole nei nomi|Fa distinzione tra maiuscole e minuscole.|Non fa distinzione tra maiuscole e minuscole, ma le mantiene così come sono|  
-|Capacità|Contenitori fino a 500 TB|Condivisioni file da 5 TB|  
-|Velocità effettiva|Fino a 60 MB/s per BLOB in blocchi|Fino a 60 MB/s per condivisione|  
-|Dimensioni oggetto|Fino a 200 GB/BLOB in blocchi|Fino a 1 TB/file|  
+|Capacity|I contenitori di too500 TB|Condivisioni file da 5 TB|  
+|Velocità effettiva|Backup too60 MB/s per blob in blocchi|Backup too60 MB/s per condivisione|  
+|Dimensioni oggetto|Backup too200 GB/blob in blocchi|Backup o il file too1TB|  
 |Capacità fatturata|In base ai byte scritti|In base alle dimensioni di file|  
 |Librerie client|Supporto di più lingue|Supporto di più lingue|  
   
 ## <a name="comparison-files-and-data-disks"></a>Confronto: File e Dischi dati
 
-File di Azure è un complemento di Dischi dati di Azure. Un disco dati può essere collegato a una sola macchina virtuale di Azure alla volta. I dischi dati sono dischi rigidi virtuali in formato fisso archiviati come BLOB di pagine in Archiviazione di Azure e vengono usati dalla macchina virtuale per archiviare dati durevoli. È possibile accedere alle condivisioni file in File di Azure nello stesso modo in cui si accede al disco locale (usando le API del file system native). Le condivisioni file possono essere condivise tra molte macchine virtuali.  
+File di Azure è un complemento di Dischi dati di Azure. Un disco dati può essere solo tooone collegato macchina virtuale di Azure contemporaneamente. I dischi dati sono dischi rigidi virtuali in formato fisso archiviati come BLOB di pagine in archiviazione di Azure e vengono utilizzati da dati durevoli toostore di hello macchina virtuale. Condivisioni file in file di Azure è possibile accedere in hello stessa come disco locale hello è accessibile (usando le API del sistema di file nativi) e possono essere condivise tra molte macchine virtuali.  
  
-La tabella seguente confronta File di Azure e Dischi dati di Azure.  
+Hello nella tabella seguente Confronta file di Azure con dischi dati di Azure.  
  
 ||||  
 |-|-|-|  
 |**Attributo**|**Dischi dati di Azure**|**File di Azure**|  
-|Scope|Esclusivo per una singola macchina virtuale|Accesso condiviso tra più macchine virtuali|  
+|Scope|Esclusivo tooa singola macchina virtuale|Accesso condiviso tra più macchine virtuali|  
 |Snapshot e Copia|Sì|No|  
-|Configurazione|Connesso all'avvio della macchina virtuale|Connesso dopo l'avvio della macchina virtuale|  
+|Configurazione|Connessione all'avvio della macchina virtuale hello|Connesso dopo l'avvio di macchina virtuale hello|  
 |Autenticazione|Predefinito|Impostato con comando net use|  
 |Pulizia|Automatico|Manuale|  
-|Accesso tramite REST|Non è possibile accedere ai file all'interno del disco rigido virtuale|È possibile accedere ai file archiviati in una condivisione|  
+|Accesso tramite REST|Non è possibile accedere ai file all'interno di hello disco rigido virtuale|È possibile accedere ai file archiviati in una condivisione|  
 |Dimensioni massime|Disco di 1 TB|Condivisione file da 5 TB e file da 1 TB nella condivisione|  
 |IOPS di 8 KB massimo|500 IOPS|1000 IOps|  
-|Velocità effettiva|Fino a 60 MB/s per disco|Fino a 60 MB/s per condivisione file|  
+|Velocità effettiva|Backup too60 MB/s per disco|Backup too60 MB/s per condivisione File|  
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Quando si decide la modalità di archiviazione e di accesso ai dati, è consigliabile valutare anche i costi coinvolti. Per altre informazioni, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
+Nel prendere decisioni sulla modalità di archiviazione e di accedere ai dati, è inoltre consigliabile costi hello coinvolti. Per altre informazioni, vedere [Prezzi di Archiviazione di Azure](https://azure.microsoft.com/pricing/details/storage/).
   
-Alcune funzionalità SMB non sono applicabili al cloud. Per altre informazioni, vedere [Features not supported by the Azure File service](/rest/api/storageservices/features-not-supported-by-the-azure-file-service) (Funzionalità non supportate da Servizio file di Azure).
+Alcune funzionalità SMB non sono applicabili toohello cloud. Per ulteriori informazioni, vedere [funzionalità non supportate dal servizio File di Azure hello](/rest/api/storageservices/features-not-supported-by-the-azure-file-service).
   
-Per altre informazioni sui dischi dati, vedere [Managing disks and images](storage-about-disks-and-vhds-linux.md) (Gestione di dischi e immagini) e [Collegare un disco dati da una macchina virtuale di Windows ](../virtual-machines/windows/classic/attach-disk.md).
+Per ulteriori informazioni sui dischi dati, vedere [gestione dei dischi e immagini](storage-about-disks-and-vhds-linux.md) e [come tooAttach tooa un disco dati macchina virtuale Windows](../virtual-machines/windows/classic/attach-disk.md).

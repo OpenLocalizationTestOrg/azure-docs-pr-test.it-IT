@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'archiviazione code di Azure | Microsoft Docs
-description: Introduzione all'archiviazione code di Azure
+title: aaaIntroduction tooAzure l'archiviazione delle code | Documenti Microsoft
+description: Introduzione tooAzure l'archiviazione delle code
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robinsh
-ms.openlocfilehash: 4db7552a1b76c89151405c55c8682abbb5326bb6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 669effedff7beedde8a119c350a2a70edafedcf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-queues"></a>Introduzione alle code
+# <a name="introduction-tooqueues"></a>Introduzione tooQueues
 
-Il servizio di archiviazione di accodamento di Azure consente di archiviare grandi quantità di messaggi ai quali è possibile accedere da qualsiasi parte del mondo mediante chiamate autenticate tramite HTTP o HTTPS. La dimensione massima di un singolo messaggio della coda è di 64 KB e una coda può contenere milioni di messaggi, nei limiti della capacità complessiva di un account di archiviazione.
+Archiviazione delle code di Azure è un servizio per l'archiviazione di un numero elevato di messaggi che è possibile accedere da qualsiasi in HelloWorld tramite chiamate autenticate tramite HTTP o HTTPS. Può essere un messaggio nella coda singola too64 KB di dimensioni e una coda può contenere milioni di messaggi, il limite di capacità totale toohello di un account di archiviazione.
 
 ## <a name="common-uses"></a>Utilizzi comuni
 
 Di seguito sono riportati gli utilizzi più comuni per il servizio di archiviazione di accodamento.
 
-* Creazione di un backlog di lavoro da elaborare in modo asincrono
-* Passaggio di messaggi da un ruolo Web di Azure a un ruolo di lavoro di Azure
+* Creazione di un backlog di lavoro tooprocess in modo asincrono
+* Passaggio di messaggi da un ruolo di lavoro di Azure tooan ruolo web di Azure
 
 ## <a name="queue-service-concepts"></a>Concetti del servizio di accodamento
 
-Il servizio di accodamento contiene i componenti seguenti:
+servizio di Accodamento Hello contiene hello seguenti componenti:
 
 ![Concetti delle code](./media/storage-queues-introduction/queue1.png)
 
-* **Formato dell'URL**: è possibile fare riferimento alle code usando il formato di URL seguente:   
+* **Formato URL:** le code sono indirizzabili mediante hello seguendo il formato di URL:   
     http://`<storage account>`.queue.core.windows.net/`<queue>` 
   
-    L'URL seguente fa riferimento a una delle code nel diagramma:   
+    una coda nel diagramma hello è concepito Hello URL seguente:  
   
     `http://myaccount.queue.core.windows.net/images-to-download`
 
-* **Account di archiviazione:** tutti gli accessi ad Archiviazione di Azure vengono eseguiti tramite un account di archiviazione. Per informazioni sulla capacità dell'account di archiviazione, vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) .
+* **Account di archiviazione:** tutti gli accessi tooAzure archiviazione viene eseguita tramite un account di archiviazione. Per informazioni sulla capacità dell'account di archiviazione, vedere [Obiettivi di scalabilità e prestazioni per Archiviazione di Azure](../common/storage-scalability-targets.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) .
 
-* **Coda:** una coda contiene un set di messaggi. Tutti i messaggi devono essere inclusi in una coda. Si noti che il nome della coda deve essere in lettere minuscole. Per altre informazioni, vedere [Denominazione di code e metadati](https://msdn.microsoft.com/library/azure/dd179349.aspx).
+* **Coda:** una coda contiene un set di messaggi. Tutti i messaggi devono essere inclusi in una coda. Il che nome della coda hello debba essere tutti in lettere minuscole. Per altre informazioni, vedere [Denominazione di code e metadati](https://msdn.microsoft.com/library/azure/dd179349.aspx).
 
-* **Messaggio:** un messaggio, in qualsiasi formato, con dimensioni massime di 64 KB. Il tempo massimo che un messaggio può rimanere nella coda è di sette giorni.
+* **Messaggio:** un messaggio, in qualsiasi formato, di too64 KB. tempo massimo di Hello che un messaggio può rimanere nella coda di hello è sette giorni.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

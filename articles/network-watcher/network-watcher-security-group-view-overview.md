@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla visualizzazione dei gruppi di sicurezza in Azure Network Watcher | Microsoft Docs
-description: "Questa pagina fornisce una panoramica della funzionalità di visualizzazione della sicurezza di Network Watcher"
+title: visualizzazione del gruppo toosecurity aaaIntroduction in Watcher di rete di Azure | Documenti Microsoft
+description: "Questa pagina viene fornita una panoramica di hello funzionalità di visualizzazione sicurezza Watcher di rete"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 2c581a2d152a6d3f16de8f249e27a426aa9f844f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2f6dbbffd0aedbb9db4b69d1758f2e66dd7abb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-network-security-group-view-in-azure-network-watcher"></a>Introduzione alla visualizzazione dei gruppi di sicurezza di rete in Azure Network Watcher
+# <a name="introduction-toonetwork-security-group-view-in-azure-network-watcher"></a>Visualizzazione del gruppo protezione toonetwork introduzione in Watcher di rete di Azure
 
-I gruppi di sicurezza di rete sono associati a un livello di subnet o a un livello di scheda di interfaccia di rete. Se associato a livello di subnet, si applica a tutte le istanze delle VM della subnet. La visualizzazione dei gruppi di sicurezza di rete restituisce tutti i gruppi di sicurezza di rete configurati e le regole associate a livello di scheda di interfaccia di rete e di subnet per una macchina virtuale, offrendo così informazioni approfondite sulla configurazione. Vengono anche restituite le regole di sicurezza effettive per ogni scheda di interfaccia di rete in una VM. Usando la visualizzazione dei gruppi di sicurezza di rete, è possibile valutare le vulnerabilità di rete di una VM, ad esempio le porte aperte. È anche possibile verificare se il gruppo di sicurezza di rete funziona come previsto [confrontando le regole di sicurezza configurate e quelle effettive](network-watcher-nsg-auditing-powershell.md).
+I gruppi di sicurezza di rete sono associati a un livello di subnet o a un livello di scheda di interfaccia di rete. Quando associato a un livello di subnet, si applica le istanze VM hello tooall nella subnet hello. Visualizzazione del gruppo di sicurezza di rete restituisce tutti i NSGs hello configurata e le regole che sono associate a un livello di interfaccia di rete e subnet per una macchina virtuale per fornire informazioni sulle configurazione hello. Inoltre, le regole di sicurezza efficace hello vengono restituite per ognuna delle schede NIC hello in una macchina virtuale. Usando la visualizzazione dei gruppi di sicurezza di rete, è possibile valutare le vulnerabilità di rete di una VM, ad esempio le porte aperte. È anche possibile verificare se il gruppo di sicurezza di rete funzioni come previsto in base a un [confronto tra hello configurato e regole di sicurezza efficace hello](network-watcher-nsg-auditing-powershell.md).
 
-Un caso d'uso più esteso include la conformità alla sicurezza e il controllo della sicurezza. È possibile definire un set prescrittivo di regole di sicurezza come modello per la governance della sicurezza nell'organizzazione. Un controllo della conformità periodico può essere implementato in modo programmatico confrontando le regole prescrittive con le regole effettive per ogni VM della rete.
+Un caso d'uso più esteso include la conformità alla sicurezza e il controllo della sicurezza. È possibile definire un set prescrittivo di regole di sicurezza come modello per la governance della sicurezza nell'organizzazione. Un controllo di conformità periodico può essere implementato in un modo programmatico confrontando le regole di normative hello con regole efficaci hello per ognuna delle macchine virtuali di hello nella rete.
 
-Nel portale le regolo sono divise in Valide, Subnet, Interfaccia di rete e Predefinite. Si ottiene così una semplice visualizzazione delle regole applicate a una macchina virtuale. È disponibile un pulsante per il download per scaricare facilmente tutte le regole di sicurezza indipendentemente dalla scheda in un file CSV.
+In hello regole portale siano divisi da effettivo, Subnet, l'interfaccia di rete e predefiniti. Ciò fornisce una visualizzazione semplice in macchina virtuale di hello regole applicate tooa. Un pulsante di download viene fornito tooeasily scaricare tutte le regole di sicurezza hello indipendentemente dalla scheda hello in un file CSV.
 
 ![Visualizzazione di un gruppo di sicurezza][1]
 
-Le regole possono essere selezionate e si apre un nuovo pannello che visualizza il gruppo di sicurezza di rete e i prefissi di origine e di destinazione. Da questo pannello è possibile passare direttamente alla risorsa del gruppo di sicurezza di rete.
+È possibile selezionare le regole e i prefissi di gruppo di sicurezza di rete e di origine e di destinazione hello tooshow apre un nuovo pannello. Questo pannello è possibile passare direttamente toohello risorsa del gruppo di sicurezza di rete.
 
 ![Drill-down][2]
 
 ### <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come controllare le impostazioni del gruppo di sicurezza di rete, vedere [Audit Network Security Group settings with PowerShell](network-watcher-nsg-auditing-powershell.md) (Controllare le impostazioni di un gruppo di sicurezza di rete con PowerShell)
+Informazioni su come tooaudit la sicurezza della rete gruppo impostazioni visitando [delle impostazioni di controllo gruppo di sicurezza di rete con PowerShell](network-watcher-nsg-auditing-powershell.md)
 
 [1]: ./media/network-watcher-security-group-view-overview/securitygroupview.png
 [2]: ./media/network-watcher-security-group-view-overview/figure1.png

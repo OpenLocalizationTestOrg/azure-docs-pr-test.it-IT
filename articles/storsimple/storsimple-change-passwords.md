@@ -1,6 +1,6 @@
 ---
-title: Modificare le password tramite Gestione dispositivi StorSimple | Documentazione Microsoft
-description: Descrive come utilizzare il servizio StorSimple Manager per modificare le password di StorSimple Snapshot Manager e di amministratore del dispositivo.
+title: le password aaaChange tramite Gestione dispositivi StorSimple | Documenti Microsoft
+description: Viene descritto come toouse hello toochange servizio StorSimple Manager le password di amministratore di StorSimple Snapshot Manager e dispositivo.
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: d890b59595628ca3eeff1df258847c2bb54d29ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2836eb4d3a05e1d2a5eeeeefe66c75f63ba38ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-manager-service-to-change-your-storsimple-passwords"></a>Utilizzare il servizio StorSimple Manager per modificare la password di StorSimple
+# <a name="use-hello-storsimple-manager-service-toochange-your-storsimple-passwords"></a>Utilizzare toochange servizio StorSimple Manager di hello le password di StorSimple
 ## <a name="overview"></a>Panoramica
-La pagina **Configura** del portale di Azure classico contiene tutti i parametri del dispositivo che è possibile riconfigurare in un dispositivo StorSimple gestito da un servizio StorSimple Manager. In questa esercitazione viene illustrato come utilizzare la pagina **Configura** per modificare la password dell’amministratore del dispositivo o la password di StorSimple Snapshot Manager.
+portale di Azure classico Hello **configura** pagina contiene tutti i parametri di dispositivo hello che è possibile riconfigurare in un dispositivo StorSimple è gestito da un servizio StorSimple Manager. In questa esercitazione viene illustrato come utilizzare hello **configura** pagina toochange all'amministratore del dispositivo o la password di gestione Snapshot StorSimple.
 
-## <a name="change-the-device-administrator-password"></a>Configurare la password dell’amministratore del dispositivo
-Quando si utilizza l'interfaccia di Windows PowerShell per accedere al dispositivo StorSimple, è necessario immettere una password amministratore del dispositivo. Quando il primo dispositivo StorSimple è registrato con un servizio, la password predefinita per questa interfaccia è *Password1*. Per la protezione dei dati, è necessario modificare la password al termine del processo di registrazione. Non è possibile uscire dal processo di registrazione senza modificare la password. Per altre informazioni, vedere [Passaggio 3: Configurare e registrare il dispositivo tramite Windows PowerShell per StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+## <a name="change-hello-device-administrator-password"></a>Password amministratore del dispositivo hello modifica
+Quando si usa il dispositivo StorSimple hello di Windows PowerShell interfaccia tooaccess, verrà richiesto tooenter una password amministratore del dispositivo. Quando il dispositivo StorSimple prima di hello viene registrato con un servizio, la password di hello predefinito per questa interfaccia è *Password1*. Per sicurezza hello dei dati, si è obbligatorio toochange la password al fine di hello hello del processo di registrazione. È possibile uscire dal processo di registrazione hello senza cambiare la password. Per ulteriori informazioni, vedere [passaggio 3: configurare e registrare il dispositivo hello tramite Windows PowerShell per StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-La password impostata la prima volta durante la registrazione attraverso l'interfaccia di Windows PowerShell può quindi essere modificata tramite il portale di Azure classico. Eseguire i passaggi seguenti per modificare la password di amministratore del dispositivo.
+password Hello prima impostato tramite l'interfaccia di Windows PowerShell hello durante la registrazione può quindi essere modificata tramite hello portale di Azure classico. Eseguire hello password amministratore del dispositivo hello toochange i passaggi seguenti.
 
-#### <a name="to-change-the-device-administrator-password"></a>Per configurare la password dell’amministratore del dispositivo
-1. Nel portale classico, fare clic su **Dispositivi** > **Configura** per il dispositivo.
-2. Scorrere verso il basso fino alla sezione **Password amministratore del dispositivo**. Specificare una password amministratore contenente dagli 8 ai 15 caratteri. La password deve contenere una combinazione di 3 o più lettere maiuscole, minuscole, numeri e caratteri speciali.
-3. Confermare la password.
-4. Fare clic su **Save** nella parte inferiore della pagina.
+#### <a name="toochange-hello-device-administrator-password"></a>password amministratore del dispositivo hello toochange
+1. Nel portale classico hello, fare clic su **dispositivi** > **configura** per il dispositivo.
+2. Scorrere verso il basso toohello **Password amministratore del dispositivo** sezione. Specificare una password amministratore contenente dagli 8 too15 caratteri. password di Hello deve essere una combinazione di 3 o più dei caratteri maiuscoli, minuscoli, numerici e speciali.
+3. Conferma password hello.
+4. Fare clic su **salvare** nella parte inferiore di hello della pagina hello.
 
-A questo punto, la password amministratore del dispositivo dovrebbe essere aggiornata. È possibile utilizzare la password modificata per accedere all'interfaccia di Windows PowerShell.
+password amministratore del dispositivo Hello dovrebbe ora essere aggiornata. È possibile utilizzare questa interfaccia di Windows PowerShell hello tooaccess password modificata.
 
-## <a name="change-the-storsimple-snapshot-manager-password"></a>Configurare la password di StorSimple Snapshot Manager
-Il software di Gestione snapshot StorSimple si trova nell'host di Windows e consente agli amministratori di gestire i backup del dispositivo StorSimple sotto forma di snapshot locali e cloud.
+## <a name="change-hello-storsimple-snapshot-manager-password"></a>Modificare la password di StorSimple Snapshot Manager hello
+Software di gestione Snapshot StorSimple risiede nell'host di Windows e consente agli amministratori di backup toomanage del dispositivo StorSimple in forma di hello di locale e gli snapshot cloud.
 
-Quando si configura un dispositivo in StorSimple Snapshot Manager, verrà richiesto di specificare l'indirizzo IP del dispositivo e la password per autenticare il dispositivo di archiviazione. Questa password viene configurata dapprima utilizzando l'interfaccia di Windows PowerShell. Per altre informazioni, vedere [Passaggio 3: Configurare e registrare il dispositivo tramite Windows PowerShell per StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+Quando si configura un dispositivo StorSimple Snapshot Manager, verrà richiesto tooprovide hello tooauthenticate di password e l'indirizzo IP dispositivo del dispositivo di archiviazione. Questa password viene prima configurata tramite l'interfaccia di Windows PowerShell hello. Per ulteriori informazioni, vedere [passaggio 3: configurare e registrare il dispositivo hello tramite Windows PowerShell per StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-La password impostata la prima volta durante la registrazione attraverso l'interfaccia di Windows PowerShell può quindi essere modificata tramite il portale classico. Eseguire i passaggi seguenti per modificare la password di StorSimple Snapshot Manager.
+Hello prima impostato tramite l'interfaccia di Windows PowerShell hello durante la registrazione può quindi essere cambiata tramite il portale classico di hello. Eseguire hello password gestione Snapshot StorSimple hello toochange di passaggi seguenti.
 
-#### <a name="to-change-the-storsimple-snapshot-manager-password"></a>Per configurare la password di StorSimple Snapshot Manager
-1. Nel portale classico, fare clic su **Dispositivi** > **Configura** per il dispositivo.
-2. Scorrere verso il basso fino alla sezione **StorSimple Snapshot Manager** . Immettere una password composta da 14 o 15 caratteri. Assicurarsi che la password contenga una combinazione di 3 o più lettere maiuscole, minuscole, numeri e caratteri speciali.
-3. Confermare la password.
-4. Fare clic su **Save** nella parte inferiore della pagina.
+#### <a name="toochange-hello-storsimple-snapshot-manager-password"></a>password di StorSimple Snapshot Manager hello toochange
+1. Nel portale classico hello, fare clic su **dispositivi** > **configura** per il dispositivo.
+2. Scorrere verso il basso toohello **gestione Snapshot StorSimple** sezione. Immettere una password composta da 14 o 15 caratteri. Assicurarsi che la password hello contiene una combinazione di 3 o più dei caratteri maiuscoli, minuscoli, numerici e speciali.
+3. Conferma password hello.
+4. Fare clic su **salvare** nella parte inferiore di hello della pagina hello.
 
-La password di StorSimple Snapshot Manager ora deve essere aggiornata.
+password gestione Snapshot StorSimple Hello dovrebbe ora essere aggiornata.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Ulteriori informazioni sulla [sicurezza di StorSimple](storsimple-security.md).
 * [Ulteriori informazioni su come modificare la configurazione del dispositivo](storsimple-modify-device-config.md).
-* Ulteriori informazioni sull’ [utilizzo del servizio StorSimple Manager per amministrare il dispositivo StorSimple](storsimple-manager-service-administration.md).
+* Altre informazioni, vedere [utilizzando hello tooadminister servizio StorSimple Manager dispositivo StorSimple](storsimple-manager-service-administration.md).
 

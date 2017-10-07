@@ -1,6 +1,6 @@
 ---
-title: Associazioni della tabella di archiviazione di Funzioni di Azure | Documentazione Microsoft
-description: Informazioni su come usare le associazioni di Archiviazione di Azure in Funzioni di Azure.
+title: associazioni di tabella di archiviazione funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come le associazioni di archiviazione di Azure toouse nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,32 +16,32 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/28/2016
 ms.author: chrande
-ms.openlocfilehash: bb01be3ee044f60376e0c9c2de7b3dd34f3b7aca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 90c2a73329139d4ab3504bc0e2c90370133158bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-storage-table-bindings"></a>Associazioni della tabella di archiviazione di Funzioni di Azure
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Questo articolo illustra come configurare e scrivere il codice delle associazioni delle tabelle di Archiviazione di Azure in Funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per le tabelle di Archiviazione di Azure.
+Questo articolo spiega come codice di archiviazione di Azure e tooconfigure tabella associazioni nelle funzioni di Azure. Funzioni di Azure supporta le associazioni di input e output per le tabelle di Archiviazione di Azure.
 
-L'associazione delle tabelle di archiviazione supporta gli scenari seguenti:
+associazione di Hello archiviazione tabella supporta hello seguenti scenari:
 
-* **Leggere una singola riga in una funzione C# o Node.js**: impostare `partitionKey` e `rowKey`. Le proprietà `filter` e `take` non vengono usate in questo scenario.
-* **Leggere più righe in una funzione C#**: il runtime di Funzioni specifica un oggetto `IQueryable<T>` associato alla tabella. Il tipo `T` deve derivare da `TableEntity` o implementare `ITableEntity`. Le proprietà `partitionKey`, `rowKey`, `filter` e `take` non vengono usate in questo scenario. È possibile usare l'oggetto `IQueryable` per qualsiasi operazione di filtro necessaria. 
-* **Leggere più righe in una funzione Node**: impostare le proprietà `filter` e `take`. Non impostare `partitionKey` o `rowKey`.
-* **Scrivere una o più righe in una funzione C#**: il runtime di Funzioni specifica un oggetto `ICollector<T>` o `IAsyncCollector<T>` associato alla tabella, dove `T` indica lo schema delle entità da aggiungere. In genere, ma non necessariamente, il tipo `T` deriva da `TableEntity` o implementa `ITableEntity`. Le proprietà `partitionKey`, `rowKey`, `filter` e `take` non vengono usate in questo scenario.
+* **Leggere una singola riga in una funzione C# o Node.js**: impostare `partitionKey` e `rowKey`. Hello `filter` e `take` proprietà non vengono utilizzate in questo scenario.
+* **Lettura di più righe in una funzione c#** -hello funzioni runtime fornisce un `IQueryable<T>` oggetto associato toohello tabella. Il tipo `T` deve derivare da `TableEntity` o implementare `ITableEntity`. Hello `partitionKey`, `rowKey`, `filter`, e `take` proprietà non vengono utilizzate in questo scenario, è possibile utilizzare hello `IQueryable` oggetto toodo eventuali filtri necessari. 
+* **Lettura di più righe in una funzione di nodo** - hello impostare `filter` e `take` proprietà. Non impostare `partitionKey` o `rowKey`.
+* **Scrivere una o più righe in una funzione c#** -hello funzioni runtime fornisce un `ICollector<T>` o `IAsyncCollector<T>` tabella toohello associato, in cui `T` specifica dello schema hello di entità hello desiderato tooadd. In genere, ma non necessariamente, il tipo `T` deriva da `TableEntity` o implementa `ITableEntity`. Hello `partitionKey`, `rowKey`, `filter`, e `take` proprietà non vengono utilizzate in questo scenario.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="storage-table-input-binding"></a>Associazione di input della tabella di archiviazione
-L'associazione di input nella tabella di archiviazione di Azure consente di usare una tabella di archiviazione nella funzione. 
+Hello associazione di input nella tabella di archiviazione di Azure consente toouse nella funzione di una tabella di archiviazione. 
 
-L'input della tabella di archiviazione in una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+funzione di archiviazione tabella tooa input Hello utilizza hello seguendo gli oggetti JSON in hello `bindings` matrice function.json:
 
 ```json
 {
@@ -49,28 +49,28 @@ L'input della tabella di archiviazione in una funzione usa gli oggetti JSON segu
     "type": "table",
     "direction": "in",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to read - see below>",
-    "rowKey": "<RowKey of table entity to read - see below>",
-    "take": "<Maximum number of entities to read in Node.js - optional>",
+    "partitionKey": "<PartitionKey of table entity tooread - see below>",
+    "rowKey": "<RowKey of table entity tooread - see below>",
+    "take": "<Maximum number of entities tooread in Node.js - optional>",
     "filter": "<OData filter expression for table input in Node.js - optional>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Tenere presente quanto segue: 
+Si noti hello segue: 
 
-* Usare `partitionKey` e `rowKey` insieme per leggere una singola entità. Queste proprietà sono facoltative. 
-* `connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione di archiviazione. Nel portale di Azure l'editor standard disponibile nella scheda **Integra** configura automaticamente questa impostazione app quando si crea un account di archiviazione o si seleziona un account già esistente. È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).  
+* Utilizzare `partitionKey` e `rowKey` tooread insieme una singola entità. Queste proprietà sono facoltative. 
+* `connection`deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione. Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per utente quando si crea uno spazio di archiviazione dell'account o si seleziona uno esistente. È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings).  
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Uso dell'input
-Nelle funzioni C# l'associazione all'entità, o alle entità, della tabella di input viene eseguita usando un parametro denominato nella firma funzione, ad esempio `<T> <name>`.
-`T` è il tipo di dati in cui si vogliono deserializzare i dati e `paramName` è il nome specificato nell'[associazione di input](#input). Nelle funzioni Node.js si accede all'entità (o alle entità) della tabella di input usando `context.bindings.<name>`.
+In c# le funzioni, associare toohello input tabella (o più entità) tramite un parametro denominato nella firma di funzione, come `<T> <name>`.
+Dove `T` è che si desidera toodeserialize hello dati del tipo di dati hello e `paramName` è il nome di hello è specificato in hello [associazione di input](#input). Nelle funzioni di Node.js, accedere hello input tabella entità o entità mediante `context.bindings.<name>`.
 
-I dati di input possono essere deserializzati in funzioni Node.js o C#. Gli oggetti deserializzati hanno le proprietà `RowKey` e `PartitionKey`.
+dati di input Hello possono essere deserializzati in funzioni di Node.js o c#. oggetti Hello deserializzato `RowKey` e `PartitionKey` proprietà.
 
-Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei seguenti tipi e il runtime di Funzioni tenterà di deserializzare i dati della tabella usando quel tipo:
+In c# le funzioni, è anche possibile associare tooany dei seguenti tipi di hello e di funzioni hello runtime tenterà deserializzare troppo mediante quel tipo di dati della tabella hello:
 
 * Qualsiasi tipo che implementa `ITableEntity`
 * `IQueryable<T>`
@@ -78,8 +78,8 @@ Nelle funzioni C# è anche possibile eseguire l'associazione a uno dei seguenti 
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>Esempio di input
-Si supponga di avere il seguente function.json che usa un trigger della coda per leggere una singola riga della tabella. Il JSON specifica `PartitionKey` 
-`RowKey`. `"rowKey": "{queueTrigger}"` indica che la chiave di riga proviene dalla stringa di messaggio della coda.
+Si supponga di che aver hello function.json, che utilizza un tooread trigger coda una riga nella tabella seguente. Specifica Hello JSON `PartitionKey`  
+ `RowKey`. `"rowKey": "{queueTrigger}"`indica che la chiave di riga hello proviene dalla stringa di messaggio hello coda.
 
 ```json
 {
@@ -105,7 +105,7 @@ Si supponga di avere il seguente function.json che usa un trigger della coda per
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che legge una singola entità di tabella.
+Vedere l'esempio specifico del linguaggio hello che legge una tabella singola entità.
 
 * [C#](#inputcsharp)
 * [F#](#inputfsharp)
@@ -159,9 +159,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="storage-table-output-binding"></a>Associazione di output della tabella di archiviazione
-L'associazione di output della tabella di Archiviazione di Azure consente di scrivere entità in una tabella di archiviazione della funzione. 
+associazione consente di tabella di archiviazione tooa entità toowrite nella funzione di output Hello tabella di archiviazione di Azure. 
 
-L'output della tabella di archiviazione per una funzione usa gli oggetti JSON seguenti nella matrice `bindings` di function.json:
+Hello output di tabella di archiviazione per una funzione utilizza i seguenti oggetti JSON in hello hello `bindings` matrice function.json:
 
 ```json
 {
@@ -169,33 +169,33 @@ L'output della tabella di archiviazione per una funzione usa gli oggetti JSON se
     "type": "table",
     "direction": "out",
     "tableName": "<Name of Storage table>",
-    "partitionKey": "<PartitionKey of table entity to write - see below>",
-    "rowKey": "<RowKey of table entity to write - see below>",
+    "partitionKey": "<PartitionKey of table entity toowrite - see below>",
+    "rowKey": "<RowKey of table entity toowrite - see below>",
     "connection": "<Name of app setting - see below>",
 }
 ```
 
-Tenere presente quanto segue: 
+Si noti hello segue: 
 
-* Usare `partitionKey` e `rowKey` insieme per scrivere una singola entità. Queste proprietà sono facoltative. È possibile specificare `PartitionKey` e `RowKey` anche quando si creano gli oggetti entità nel codice della funzione.
-* `connection` deve contenere il nome di un'impostazione app che contiene una stringa di connessione di archiviazione. Nel portale di Azure l'editor standard disponibile nella scheda **Integra** configura automaticamente questa impostazione app quando si crea un account di archiviazione o si seleziona un account già esistente. È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings). 
+* Utilizzare `partitionKey` e `rowKey` toowrite insieme una singola entità. Queste proprietà sono facoltative. È inoltre possibile specificare `PartitionKey` e `RowKey` quando si crea hello oggetti entità nel codice di funzione.
+* `connection`deve contenere il nome di hello di un'impostazione di app che contiene una stringa di connessione di archiviazione. Nel portale di Azure hello, hello editor standard di hello **integrazione** scheda configura questa impostazione di app per utente quando si crea uno spazio di archiviazione dell'account o si seleziona uno esistente. È anche possibile [configurare questa impostazione dell'app manualmente](functions-how-to-use-azure-function-app-settings.md#settings). 
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Uso dell'output
-Nelle funzioni C# è possibile eseguire l'associazione all'output della tabella usando il parametro denominato `out` nella firma funzione, ad esempio `out <T> <name>`, dove `T` è il tipo di dati in cui si vuole serializzare i dati e `paramName` è il nome specificato nell'[associazione di output](#output). Nelle funzioni Node.js si accede all'output della tabella usando `context.bindings.<name>`.
+In c# le funzioni, associare output tabella toohello utilizzando hello denominato `out` parametro nella firma di funzione, ad esempio `out <T> <name>`, dove `T` è che si desidera tooserialize hello dati del tipo di dati hello e `paramName` è hello nome specificato in hello [associazione di output](#output). Nelle funzioni di Node.js, si accede tabella di hello output utilizzando `context.bindings.<name>`.
 
-È possibile serializzare gli oggetti nelle funzioni Node.js o C#. Nelle funzioni C# è anche possibile definire associazioni con i seguenti tipi:
+È possibile serializzare gli oggetti nelle funzioni Node.js o C#. In c# le funzioni, è anche possibile associare toohello seguenti tipi:
 
 * Qualsiasi tipo che implementa `ITableEntity`
-* `ICollector<T>` (per restituire più entità, vedere l'[esempio](#outcsharp)).
+* `ICollector<T>`(toooutput più entità. vedere l'[esempio](#outcsharp)).
 * `IAsyncCollector<T>` (versione asincrona di `ICollector<T>`)
-* `CloudTable` (uso di Azure Storage SDK. vedere l'[esempio](#readmulti)).
+* `CloudTable`(tramite hello Azure Storage SDK. vedere l'[esempio](#readmulti)).
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Esempio di output
-L'esempio di *function.json* e *run.csx* seguente illustra come scrivere più entità di tabella.
+esempio Hello *function.json* e *run.csx* esempio viene illustrato come toowrite più entità di tabella.
 
 ```json
 {
@@ -217,7 +217,7 @@ L'esempio di *function.json* e *run.csx* seguente illustra come scrivere più en
 }
 ```
 
-Vedere l'esempio specifico del linguaggio che crea più entità di tabella.
+Vedere l'esempio specifico del linguaggio hello che crea più entità di tabella.
 
 * [C#](#outcsharp)
 * [F#](#outfsharp)
@@ -262,7 +262,7 @@ type Person = {
 }
 
 let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
-    for i = 1 to 10 do
+    for i = 1 too10 do
         log.Info(sprintf "Adding Person entity %d" i)
         tableBinding.Add(
             { PartitionKey = "Test"
@@ -293,7 +293,7 @@ module.exports = function (context) {
 <a name="readmulti"></a>
 
 ## <a name="sample-read-multiple-table-entities-in-c"></a>Esempio: Leggere più entità di tabella in C#  #
-Il codice di esempio di *function.json* e di C# seguente legge le entità per una chiave di partizione specificata nel messaggio della coda.
+esempio Hello *function.json* ed esempio di codice c# legge le entità per una chiave di partizione specificato nel messaggio della coda hello.
 
 ```json
 {
@@ -317,7 +317,7 @@ Il codice di esempio di *function.json* e di C# seguente legge le entità per un
 }
 ```
 
-Il codice C# aggiunge un riferimento ad Azure Storage SDK in modo che il tipo di entità possa derivare da `TableEntity`.
+codice c# di Hello aggiunge toohello un riferimento Azure Storage SDK in modo che il tipo di entità hello può derivare da `TableEntity`.
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"

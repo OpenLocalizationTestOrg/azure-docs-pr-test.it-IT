@@ -1,6 +1,6 @@
 ---
-title: Come usare l'API di Engagement in Android
-description: "Android SDK più recente - Come usare l'API di Engagement in Android"
+title: aaaHow tooUse hello Engagement API in Android
+description: "Android SDK più recente - come tooUse hello Engagement API in Android"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: d353cd2fe47c54a0282cc5bb1b22b4a56e0cd82c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0b2d484616c0c7874e77c5283d94c3063949ed2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-engagement-api-on-android"></a>Come usare l'API di Engagement in Android
-Questo documento è un'aggiunta al documento [Opzioni di segnalazione avanzata per Android Mobile Engagement SDK](mobile-engagement-android-advanced-reporting.md). Fornisce informazioni approfondite su come usare l'API di Engagement per segnalare le statistiche dell'applicazione.
+# <a name="how-toouse-hello-engagement-api-on-android"></a>Come tooUse hello Engagement API in Android
+Questo documento è un componente aggiuntivo toohello [opzioni avanzate di segnalazione per Android Mobile Engagement SDK](mobile-engagement-android-advanced-reporting.md). Fornisce informazioni approfondite su come toouse hello API Engagement tooreport le statistiche dell'applicazione.
 
-Tenere presente che, se si vuole impostare Engagement in modo che segnali solo le sessioni, le attività, gli arresti anomali e i dati tecnici dell'applicazione, la soluzione più semplice consiste nel fare in modo che tutte le sottoclassi `Activity` ereditino dalla classe `EngagementActivity` corrispondente.
+Tenere presente che se si vuole solo Engagement tooreport sessioni dell'applicazione, le attività, arresti anomali del sistema e informazioni tecniche, quindi hello semplice toomake tutti i `Activity` sottoclassi ereditano hello corrispondente `EngagementActivity` classe.
 
-Se invece si hanno esigenze più complesse, ad esempio se è necessario segnalare eventi, errori e processi specifici dell'applicazione o presentare le attività dell'applicazione in modo diverso rispetto a quello implementato nelle classi `EngagementActivity` , è necessario usare l'API di Engagement.
+Se si desidera toodo altre, ad esempio se è necessario tooreport eventi specifici di applicazione, gli errori e i processi o se hai tooreport attività dell'applicazione in modo diverso rispetto a uno implementato in hello hello `EngagementActivity` classi, è necessario toouse hello Engagement API.
 
-L'API di Engagement viene fornita dalla classe `EngagementAgent` . Un'istanza di questa classe può essere recuperata chiamando il metodo statico `EngagementAgent.getInstance(Context)` (tenere presente che l'oggetto `EngagementAgent` restituito è un singleton).
+Hello Engagement API viene fornita da hello `EngagementAgent` classe. Un'istanza di questa classe può essere recuperata dal chiamante hello `EngagementAgent.getInstance(Context)` metodo statico (si noti che hello `EngagementAgent` oggetto restituito è un singleton).
 
 ## <a name="engagement-concepts"></a>Concetti relativi a Mobile Engagement
-Le parti seguenti approfondiscono le informazioni contenute nell'articolo [Concetti relativi ad Azure Mobile Engagement](mobile-engagement-concepts.md)per la piattaforma Android.
+parti seguenti Hello perfezionare hello comune [concetti Engagement Mobile](mobile-engagement-concepts.md), per la piattaforma Android hello.
 
 ### <a name="session-and-activity"></a>`Session` e `Activity`
-Se l'utente resta inattivo per più di due secondi tra due *attività*, la sequenza di *attività* viene divisa in due *sessioni* distinte. Questi pochi secondi vengono chiamati "timeout della sessione".
+Se più di pochi secondi di inattività tra due hello rimane *attività*, quindi la sequenza di *attività* è divisa in due distinti *sessioni*. Questi alcuni secondi vengono chiamati hello "timeout della sessione".
 
-Un'*attività* è in genere associata a una schermata dell'applicazione, ovvero l'*attività* inizia quando la schermata viene visualizzata e si arresta quando la schermata viene chiusa. Questo avviene quando Engagement SDK è integrato mediante le classi `EngagementActivity`.
+Un *attività* è generalmente associato a una schermata dell'applicazione hello, che è hello toosay *attività* inizia quando la schermata Ciao viene visualizzato e si arresta alla chiusura della schermata hello: si tratta di hello caso in cui Hello Engagement SDK è integrato con hello `EngagementActivity` classi.
 
-Le *attività* possono tuttavia essere controllate anche manualmente usando l'API di Engagement. In questo modo, è possibile dividere una schermata specifica in diverse parti secondarie per ottenere maggiori dettagli sull'utilizzo della schermata, ad esempio per definire la frequenza e la durata in base alle quali le finestre di dialogo vengono usate all'interno della schermata.
+Ma *attività* può essere controllato anche manualmente utilizzando l'API di Engagement hello. In questo modo una schermata determinata toosplit in diversi tooget di parti di sub hello di ulteriori dettagli sull'utilizzo di questa schermata (ad esempio la frequenza con cui tooknown e per quanto tempo, all'interno di questa schermata, vengono utilizzate le finestre di dialogo).
 
 ## <a name="reporting-activities"></a>Segnalazione di attività
 > [!IMPORTANT]
-> Non è necessario segnalare le attività nel modo indicato in questa sezione se si usa la classe `EngagementActivity` e le sue varianti in base alle istruzioni disponibili nell'articolo relativo all'integrazione di Engagement in Android.
+> Non è necessario tooreport le attività, come descritto in questa sezione se si utilizza hello `EngagementActivity` classe e le sue varianti, come illustrato in hello tooIntegrate Engagement documento Android.
 > 
 > 
 
 ### <a name="user-starts-a-new-activity"></a>L'utente inizia una nuova attività
             EngagementAgent.getInstance(this).startActivity(this, "MyUserActivity", null);
-            // Passing the current activity is required for Reach to display in-app notifications, passing null will postpone such announcements and polls.
+            // Passing hello current activity is required for Reach toodisplay in-app notifications, passing null will postpone such announcements and polls.
 
-È necessario chiamare `startActivity()` ogni volta che l'attività dell'utente cambia. La prima chiamata a questa funzione avvia una nuova sessione utente.
+È necessario toocall `startActivity()` ogni attività utente hello in fase di modifica. Hello prima chiamata toothis funzione avvia una nuova sessione utente.
 
-Il punto migliore in cui chiamare questa funzione corrisponde a ogni callback `onResume` dell'attività.
+Hello migliore toocall sul posto questa funzione è in ogni attività `onResume` callback.
 
 ### <a name="user-ends-his-current-activity"></a>L'utente termina l'attività corrente
             EngagementAgent.getInstance(this).endActivity();
 
-È necessario chiamare `endActivity()` almeno una volta quando l'utente termina la sua ultima attività. In questo modo, si indica all'SDK di Engagement che l'utente è attualmente inattivo e che la sessione utente deve essere chiusa allo scadere del timeout. Se si chiama `startActivity()` prima dello scadere del timeout, la sessione viene semplicemente ripresa.
+È necessario toocall `endActivity()` almeno una volta al termine della sua attività ultimo utente hello. Informa hello scadrà Engagement SDK che utente hello è attualmente inattivo e che la sessione di utente hello necessario toobe chiuso una volta hello timeout della sessione (se si chiama `startActivity()` prima della scadenza del timeout della sessione hello, sessione hello viene semplicemente ripreso).
 
-Il punto migliore in cui chiamare questa funzione corrisponde a ogni callback `onPause` dell'attività.
+Hello migliore toocall sul posto questa funzione è in ogni attività `onPause` callback.
 
 ## <a name="reporting-events"></a>Segnalazione di eventi
 ### <a name="session-events"></a>Eventi di sessione
-Gli eventi di sessione vengono in genere usati per segnalare le azioni eseguite da un utente durante la sua sessione.
+Gli eventi di sessione sono azioni hello tooreport utilizzati in genere eseguite da un utente durante la sessione.
 
 **Esempio senza dati aggiuntivi:**
 
@@ -89,11 +89,11 @@ Gli eventi di sessione vengono in genere usati per segnalare le azioni eseguite 
             }
 
 ### <a name="standalone-events"></a>Eventi autonomi
-Diversamente dagli eventi di sessione, gli eventi autonomi possono verificarsi all'esterno del contesto di una sessione.
+Di fuori di contesto hello di una sessione possono verificarsi eventi di toosession contrarie, gli eventi autonomo.
 
 **Esempio:**
 
-Si supponga di voler segnalare eventi verificatisi all'attivazione di un ricevitore di trasmissione:
+Si supponga di che voler tooreport eventi che si verificano quando viene attivato un ricevitore di trasmissione:
 
             /** Triggered by Intent.ACTION_BATTERY_LOW */
             public BatteryLowReceiver extends BroadcastReceiver {
@@ -107,16 +107,16 @@ Si supponga di voler segnalare eventi verificatisi all'attivazione di un ricevit
 
 ## <a name="reporting-errors"></a>Segnalazione di errori
 ### <a name="session-errors"></a>Errori di sessione
-Gli errori di sessione vengono in genere usati per segnalare gli errori che hanno impatto sull'utente durante la sua sessione.
+Sessione gli errori in genere utilizzato tooreport hello conseguenze utente hello durante la sessione.
 
 **Esempio:**
 
-            /** The user has entered invalid data in a form */
+            /** hello user has entered invalid data in a form */
             public MyActivity extends EngagementActivity {
               [...]
               public void onMyFormSubmitted(MyForm form) {
                 [...]
-                /* The user has entered an invalid email address */
+                /* hello user has entered an invalid email address */
                 getEngagementAgent().sendSessionError("sign_up_email", null);
                 [...]
               }
@@ -124,11 +124,11 @@ Gli errori di sessione vengono in genere usati per segnalare gli errori che hann
             }
 
 ### <a name="standalone-errors"></a>Errori autonomi
-Diversamente dagli errori di sessione, gli errori autonomi possono verificarsi all'esterno del contesto di una sessione.
+Di fuori di contesto hello di una sessione possono verificarsi errori di toosession contrarie, errori autonomo.
 
 **Esempio:**
 
-L'esempio seguente mostra come segnalare un errore ogni volta che la memoria nel telefono è insufficiente durante l'esecuzione del processo dell'applicazione.
+Hello esempio seguente viene illustrato come tooreport errore ogni volta che la memoria hello diventa insufficiente phone hello durante il processo di applicazione è in fase di esecuzione.
 
             public MyApplication extends EngagementApplication {
 
@@ -140,12 +140,12 @@ L'esempio seguente mostra come segnalare un errore ogni volta che la memoria nel
 
 ## <a name="reporting-jobs"></a>Segnalazione di processi
 ### <a name="example"></a>Esempio
-Si supponga di voler segnalare la durata del processo di accesso:
+Si supponga che si desidera tooreport hello durata del processo di accesso:
 
             [...]
             public void signIn(Context context, ...) {
 
-              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has started */
@@ -159,28 +159,28 @@ Si supponga di voler segnalare la durata del processo di accesso:
             [...]
 
 ### <a name="report-errors-during-a-job"></a>Segnalazione di errori durante un processo
-Gli errori possono essere correlati a un processo in esecuzione invece che alla sessione utente corrente.
+Gli errori possono essere correlato tooa esecuzione processo anziché essere correlate toohello sessione utente.
 
 **Esempio:**
 
-Si supponga di voler segnalare un errore durante il processo di accesso:
+Si supponga che si desidera tooreport un errore durante la si accesso processo:
 
 [...] public void signIn(Context context, ...) {
 
-              /* We need an Android context to call the Engagement API, if you are extending Activity, Service, you can pass "this" */
+              /* We need an Android context toocall hello Engagement API, if you are extending Activity, Service, you can pass "this" */
               EngagementAgent engagementAgent = EngagementAgent.getInstance(context);
 
               /* Report sign in job has been started */
               engagementAgent.startJob("sign_in", null);
 
-              /* Try to sign in */
+              /* Try toosign in */
               while(true)
                 try {
                   trySignin();
                   break;
                 }
                 catch(Exception e) {
-                  /* Report the error to Engagement */
+                  /* Report hello error tooEngagement */
                   engagementAgent.sendJobError("sign_in_error", "sign_in", null);
 
                   /* Retry after a moment */
@@ -193,13 +193,13 @@ Si supponga di voler segnalare un errore durante il processo di accesso:
             [...]
 
 ### <a name="reporting-events-during-a-job"></a>Segnalazione di eventi durante un processo
-Gli eventi possono essere correlati a un processo in esecuzione invece che alla sessione utente corrente.
+Gli eventi possono essere correlato tooa esecuzione processo anziché essere correlate toohello sessione utente.
 
 **Esempio:**
 
-Si supponga di disporre di un social network e di usare un processo per segnalare il tempo totale durante il quale l'utente è connesso al server. Poiché l'utente può restare connesso in background anche quando usa un'altra applicazione o quando il telefono è inattivo, potrebbe non esservi alcuna sessione.
+Si supponga che abbiamo un social network ed è possibile usare un processo tooreport hello totale tempo durante cui hello utente è connesso toohello server. utente Hello può rimanere connessi in background anche quando si utilizza un'altra applicazione o quando è inattivo phone hello, pertanto non c'è alcuna sessione.
 
-Se l'utente riceve messaggi dagli amici, si tratta di un evento di processo.
+utente Hello può ricevere messaggi dai suoi amici, si tratta di un evento di processo.
 
             [...]
             public void signin(Context context, ...) {
@@ -219,12 +219,12 @@ Se l'utente riceve messaggi dagli amici, si tratta di un evento di processo.
             [...]
 
 ## <a name="extra-parameters"></a>Parametri aggiuntivi
-È possibile collegare dati arbitrari a eventi, errori, attività e processi.
+Dati arbitrari possono essere collegati tooevents, errori, le attività e processi.
 
 Questi dati possono essere strutturati, usando la classe Bundle di Android (in realtà, funziona come i parametri aggiuntivi negli intenti di Android). Notare che una classe Bundle può contenere matrici o altre istanze Bundle.
 
 > [!IMPORTANT]
-> Se si inseriscono parametri parcellizzabili o serializzabili, assicurarsi che venga implementato il rispettivo metodo `toString()` per restituire una stringa leggibile. Le classi serializzabili che contengono campi non temporanei non serializzabili provocano l'arresto anomalo di Android quando si chiama `bundle.putSerializable("key",value);`
+> Se si inserisce in parametri parcelable o serializable, assicurarsi che i relativi `toString()` metodo è implementato tooreturn una stringa leggibile. Le classi serializzabili che contengono campi non temporanei non serializzabili provocano l'arresto anomalo di Android quando si chiama `bundle.putSerializable("key",value);`
 > 
 > [!WARNING]
 > Le matrici di tipo sparse non sono supportate nei parametri aggiuntivi, ovvero non vengono serializzate come matrice. Prima di usarle nei parametri aggiuntivi, è consigliabile convertirle in matrici standard.
@@ -239,28 +239,28 @@ Questi dati possono essere strutturati, usando la classe Bundle di Android (in r
 
 ### <a name="limits"></a>Limiti
 #### <a name="keys"></a>Chiavi
-Ogni chiave in `Bundle` deve corrispondere all'espressione regolare seguente:
+Ogni chiave hello `Bundle` deve corrispondere hello espressione regolare seguente:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Questo significa che le chiavi devono iniziare con almeno una lettera, seguita da lettere, cifre o caratteri di sottolineatura (\_).
 
 #### <a name="size"></a>Dimensione
-I dati aggiuntivi sono limitati a **1024** caratteri per chiamata, una volta codificati in JSON dal servizio Engagement.
+Funzionalità aggiuntive sono troppo limitate**1024** caratteri per ogni chiamata (una volta codificato in JSON dal servizio di Engagement hello).
 
-Nell'esempio precedente il codice JSON inviato al server è lungo 58 caratteri:
+In hello esempio precedente, hello JSON inviato server toohello è 58 caratteri:
 
             {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>Segnalazione di informazioni sull'applicazione
-È possibile segnalare manualmente le informazioni di traccia o qualsiasi altra informazione specifica dell'applicazione mediante la funzione `sendAppInfo()` .
+È possibile segnalare manualmente traccia informazioni o qualsiasi altra informazione di specifici dell'applicazione mediante hello `sendAppInfo()` (funzione).
 
-Queste informazioni possono essere inviate in modo incrementale: viene mantenuto solo l'ultimo valore per una determinata chiave per ogni dispositivo specifico.
+Si noti che queste informazioni possono essere inviate in modo incrementale: solo hello valore più recente per una determinata chiave verrà conservati per un determinato dispositivo.
 
-Come per i dati aggiuntivi degli eventi, la classe Bundle viene usata per astrarre le informazioni sull'applicazione. Tenere presente che le matrici o i bundle secondari vengono trattati come stringhe flat (usando la serializzazione JSON).
+Come funzionalità aggiuntive di evento, hello classe Bundle è usato tooabstract informazioni dell'applicazione, si noti che le matrici o Sub Raggruppa verranno considerati come stringhe flat (con la serializzazione JSON).
 
 ### <a name="example"></a>Esempio
-Ecco un esempio di codice per inviare il sesso e la data di nascita dell'utente:
+Ecco un sesso utente toosend esempio di codice e la data di nascita:
 
             Bundle appInfo = new Bundle();
             appInfo.putString("status", "premium");
@@ -269,15 +269,15 @@ Ecco un esempio di codice per inviare il sesso e la data di nascita dell'utente:
 
 ### <a name="limits"></a>Limiti
 #### <a name="keys"></a>Chiavi
-Ogni chiave in `Bundle` deve corrispondere all'espressione regolare seguente:
+Ogni chiave hello `Bundle` deve corrispondere hello espressione regolare seguente:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Questo significa che le chiavi devono iniziare con almeno una lettera, seguita da lettere, cifre o caratteri di sottolineatura (\_).
 
 #### <a name="size"></a>Dimensione
-Le informazioni sull'applicazione sono limitate a **1024** caratteri per chiamata, una volta codificate in JSON dal servizio Engagement.
+Informazioni sull'applicazione sono troppo limitati**1024** caratteri per ogni chiamata (una volta codificato in JSON dal servizio di Engagement hello).
 
-Nell'esempio precedente il codice JSON inviato al server è lungo 44 caratteri:
+In hello esempio precedente, hello JSON inviato server toohello è 44 caratteri:
 
             {"expiration":"2016-12-07","status":"premium"}

@@ -1,6 +1,6 @@
 ---
-title: Creare la prima macchina virtuale in Azure DevTest Labs | Microsoft Docs
-description: Informazioni su come creare una macchina virtuale in un lab in Azure DevTest Labs
+title: aaaCreate la prima macchina virtuale in un ambiente lab in Azure DevTest Labs | Documenti Microsoft
+description: Informazioni su come toocreate prima macchina virtuale in un ambiente lab in Azure DevTest Labs
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/24/2017
 ms.author: tarcher
-ms.openlocfilehash: aa6b60b799e1e98815cf288d5612f98cd77cc00e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c3257efca9be6fdd190eaac1db731464e07fcfd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-vm-in-a-lab-in-azure-devtest-labs"></a>Creare la prima macchina virtuale in Azure DevTest Labs
 
-Quando si accede inizialmente a DevTest Labs e si intende creare la prima macchina virtuale, questa operazione avverrà tramite un'[immagine del marketplace base](devtest-lab-configure-marketplace-images.md) precaricata. In un secondo momento durante la creazione di altre macchine virtuali sarà possibile scegliere da un [immagine personalizzata e una formula](devtest-lab-add-vm.md). 
+Quando si inizialmente accedere DevTest Labs e toocreate la prima macchina virtuale, probabilmente a tale scopo, utilizzando una pre-caricato [un'immagine del marketplace base](devtest-lab-configure-marketplace-images.md). Successivamente, sarà anche in grado di toochoose da un [immagine personalizzata e una formula](devtest-lab-add-vm.md) durante la creazione di più macchine virtuali. 
 
-Questa esercitazione illustra l'uso del portale di Azure per aggiungere la prima macchina virtuale in un lab in DevTest Labs.
+In questa esercitazione illustra utilizzando hello tooadd portale Azure nel lab di tooa prima macchina virtuale di DevTest Labs.
 
-## <a name="steps-to-add-your-first-vm-to-a-lab-in-azure-devtest-labs"></a>Passaggi per aggiungere la prima macchina virtuale a un lab in Azure DevTest Labs
-1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
-1. Nell'elenco di lab selezionare il lab in cui si vuole creare la nuova VM.  
-1. Nel pannello **Panoramica** del lab selezionare **+ Aggiungi**.  
+## <a name="steps-tooadd-your-first-vm-tooa-lab-in-azure-devtest-labs"></a>I passaggi tooadd il lab di tooa prima di VM in Azure DevTest Labs
+1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Elenco dei laboratori hello selezionare lab hello in cui si desidera toocreate hello VM.  
+1. Nel lab di hello **Panoramica** pannello seleziona **+ Aggiungi**.  
 
     ![Pulsante Aggiungi VM](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. Nel pannello **Scegli una base** selezionare un'immagine del marketplace per la macchina virtuale.
-1. Nel pannello **Macchina virtuale** immettere un nome per la nuova macchina virtuale nella casella di testo **Nome macchina virtuale**.
+1. In hello **scegliere una base** pannello Seleziona immagine un marketplace per hello macchina virtuale.
+1. In hello **macchina virtuale** pannello, immettere un nome per la macchina virtuale nuova hello in hello **nome della macchina virtuale** casella di testo.
 
     ![Pannello Lab VM (VM lab)](./media/devtest-lab-add-vm/devtestlab-lab-add-first-vm.png)
 
-1. Immettere un **Nome utente** a cui vengono concessi privilegi di amministratore nella macchina virtuale.  
-1. Immettere una password nel campo di testo **Digita un valore**.
-1. Il **tipo di disco della macchina virtuale** determina il tipo di disco di archiviazione consentito per le macchine virtuali nel lab.
-1. Selezionare **Dimensioni macchina virtuale** e uno degli elementi predefiniti che specificano le memorie centrali del processore, la dimensione della RAM e le dimensioni dell'unità disco rigido della VM da creare.
-1. Selezionare **Elementi** e dall'elenco di elementi selezionare e configurare gli elementi da aggiungere all'immagine di base.
-    **Nota:** se non si ha familiarità con DevTest Labs o con la configurazione di elementi, vedere la sezione [Aggiungere un elemento esistente in una macchina virtuale](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) e tornare qui al termine dell'operazione.
-1. Selezionare **Crea** per aggiungere la macchina virtuale specificata al lab.
+1. Immettere un **nome utente** che vengono concessi privilegi di amministratore nella macchina virtuale hello.  
+1. Immettere una password nel campo di testo hello etichettata **digitare un valore**.
+1. Hello **il tipo di disco di macchina virtuale** determina il tipo di disco di archiviazione è consentito per le macchine virtuali hello in lab hello.
+1. Selezionare **dimensioni della macchina virtuale** e selezionare una delle hello predefiniti elementi che specificano le dimensioni del disco rigido hello di hello VM toocreate core del processore hello e dimensioni della RAM.
+1. Selezionare **elementi** e - hello elenco di elementi - selezionare e configurare hello elementi che si desidera tooadd toohello immagine di base.
+    **Nota:** Labs tooDevTest nuovo o di configurazione degli elementi, fare riferimento toohello [aggiungere un tooa artefatto esistente VM](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) sezione e quindi tornare qui al termine.
+1. Selezionare **crea** tooadd hello specificato lab toohello macchina virtuale.
 
-   Il pannello lab consente di visualizzare lo stato di creazione della VM prima come **Creazione**, poi come **Esecuzione** dopo aver avviato la VM.
+   Pannello lab Hello Visualizza lo stato di hello della creazione della macchina virtuale di hello - innanzitutto come **creazione**, quindi come **esecuzione** dopo hello macchina virtuale è stata avviata.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Dopo avere creato la VM, è possibile connettersi ad essa selezionando **Connetti** nel pannello della VM.
-* Vedere [Aggiungere una macchina virtuale a un lab](devtest-lab-add-vm.md) per informazioni più complete sull'aggiunta di successive macchine virtuali nel lab.
-* Esplorare la [raccolta dei modelli di avvio rapido di Azure Resource Manager di DevTest Labs](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates).
+* Una volta hello VM è stato creato, è possibile connettersi toohello VM selezionando **Connetti** nel pannello hello della macchina virtuale.
+* Estrarre [aggiungere un ambiente lab tooa VM](devtest-lab-add-vm.md) per informazioni più complete sull'aggiunta di macchine virtuali successive nell'ambiente lab.
+* Esplorare hello [raccolta di modelli di DevTest Labs Azure Resource Manager QuickStart](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates).

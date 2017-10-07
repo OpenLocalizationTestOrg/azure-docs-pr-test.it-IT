@@ -1,6 +1,6 @@
 ---
-title: Nomi di dispositivo della macchina virtuale Linux modificati in Azure | Microsoft Docs
-description: Viene spiegato il motivo per cui i nomi dei dispositivi sono cambiati e si offre una soluzione a questo problema.
+title: vengono modificati i nomi dei dispositivi di aaaLinux macchina virtuale in Azure | Documenti Microsoft
+description: "Illustra hello perché vengono modificati i nomi dei dispositivi e fornire soluzioni per questo problema."
 services: virtual-machines-linux
 documentationcenter: 
 author: genlin
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.date: 07/12/2017
 ms.author: genli
-ms.openlocfilehash: 789f4580901a22dc3aaae9599c7205c76f268403
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 4d3a5853d61edd2c8e8b85ab69e5ed3b3bc00bb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-linux-vm-device-names-are-changed"></a>Risoluzione dei problemi: nomi dei dispositivi della macchina virtuale Linux modificati
 
-L'articolo spiega i motivi per cui i nomi dei dispositivi sono diversi dopo il riavvio di una macchina virtuale Linux (VM) o dopo aver ricollegato i dischi. offre la soluzione a questo problema.
+articolo Hello spiega perché i nomi dei dispositivi vengano modificati dopo il riavvio di una macchina virtuale Linux (VM) o ricollegare dischi hello. Fornisce inoltre una soluzione di hello per questo problema.
 
 ## <a name="symptom"></a>Sintomo
 
-È possibile che l'utente debba affrontare i problemi seguenti durante l'esecuzione di macchine virtuali Linux in Microsoft Azure.
+Potrebbero verificarsi hello seguenti problemi durante l'esecuzione di macchine virtuali Linux in Microsoft Azure.
 
-- La macchina virtuale non si avvia dopo il riavvio.
+- Hello macchina virtuale non riesce tooboot dopo un riavvio.
 
-- Se i dischi di dati vengono scollegati e poi ricollegati, i nomi dei dispositivi per i dischi cambiano.
+- Se i dischi dati sono scollegare e ricollegare, vengono modificati i nomi di dispositivi hello per i dischi.
 
-- Impossibile eseguire un'applicazione o uno script che fa riferimento a un disco con il nome del dispositivo. Ci si accorge che il nome del dispositivo del disco è cambiato.
+- Impossibile eseguire un'applicazione o uno script che fa riferimento a un disco con il nome del dispositivo. Trovare tale hello Nome dispositivo del disco hello viene modificato.
 
 ## <a name="cause"></a>Causa
 
-La coerenza dei percorsi del dispositivo in Linux non è garantita tra i vari riavvi. I nomi del dispositivo sono costituiti da numeri principali, ovvero lettere, e numeri secondari.  Quando il driver del dispositivo di archiviazione di Linux rileva un nuovo dispositivo, assegna un numero di dispositivo principale e secondario dall'intervallo disponibile. Quando un dispositivo viene rimosso, il numero di dispositivi può essere riusato in un secondo momento.
+I percorsi di dispositivo in Linux non sono garantiti toobe coerente tra i vari riavvi. I nomi del dispositivo sono costituiti da numeri principali, ovvero lettere, e numeri secondari.  Quando i driver di dispositivo di archiviazione Linux hello rileva un nuovo dispositivo, assegna tooit numeri dispositivo principale e secondaria dall'intervallo di hello disponibili. Quando un dispositivo viene rimosso, i numeri di periferica hello sono toobe liberato riutilizzato in seguito.
 
-Il problema si verifica perché l'analisi del dispositivo in Linux pianificata dal sottosistema SCSI avviene in modo asincrono. La denominazione del percorso del dispositivo finale può variare tra un riavvio e l'altro. 
+Hello problema si verifica perché hello dispositivo l'analisi in Linux pianificata dal sottosistema SCSI hello avviene in modo asincrono. denominazione di Hello dispositivo finale percorso può variare tra i vari riavvi. 
 
 ## <a name="solution"></a>Soluzione
 
-Per risolvere questo problema, usare la denominazione permanente. Esistono quattro metodi per la denominazione permanente: per etichetta file system, per UUID, per ID e per percorso. Per le macchine virtuali Linux di Azure, è consigliabile usare i metodi per etichetta file system e per UUID. 
+tooresolve questo problema, utilizzare nomi permanente. Esistono quattro metodi toopersistent denominazione - tramite etichetta filesystem, uuid, dall'id e dal percorso. È consigliabile etichetta filesystem hello e metodi UUID per le macchine virtuali Linux di Azure. 
 
-La maggior parte delle distribuzioni specifica anche le opzioni fstab **nofail** o **nobootwait**. Queste opzioni consentono l'avvio di un sistema anche se il montaggio del disco non riesce in fase di avvio. Per altre informazioni su questi parametri, consultare la documentazione della distribuzione. Per altre informazioni su come configurare una macchina virtuale Linux per l'uso di un UUID quando si aggiunge un disco dati, vedere [Connettersi alla VM Linux per montare il nuovo disco](add-disk.md#connect-to-the-linux-vm-to-mount-the-new-disk). 
+La maggior parte delle distribuzioni anche forniscono entrambi hello **nofail** o **nobootwait** fstab opzioni. Queste opzioni consentono un tooboot sistema anche se l'errore del disco contenente hello toomount all'avvio. Consultare la documentazione della distribuzione hello per ulteriori informazioni su questi parametri. Per ulteriori informazioni su come tooconfigure toouse una VM Linux un UUID quando si aggiunge un disco dati, vedere [connettersi toohello nuovo disco VM Linux toomount hello](add-disk.md#connect-to-the-linux-vm-to-mount-the-new-disk). 
 
-Quando l'agente Linux di Azure viene installato in una macchina virtuale, questo usa le regole Udev per costruire un set di collegamenti simbolici in **/dev/disk/azure**. Queste regole Udev possono essere usate dalle applicazioni e dagli script per identificare i dischi collegati alla macchina virtuale, il tipo e il LUN.
+Quando l'agente Linux di Azure hello viene installato in una macchina virtuale, viene utilizzato Udev regole tooconstruct un set di collegamenti simbolici in **/dev/disk/azure**. Queste regole Udev possono essere usate dalle applicazioni e i dischi tooidentify gli script sono collegato toohello macchina virtuale, al tipo e hello LUN.
 
 ## <a name="more-information"></a>Altre informazioni
 
 ### <a name="identify-disk-luns"></a>Identificare i LUN del disco
 
-Un'applicazione può usare i LUN per trovare tutti i dischi collegati e creare i collegamenti simbolici. L'agente Linux di Azure include ora le regole udev che configurano i collegamenti simbolici da un LUN ai dispositivi, come indicato di seguito:
+Un'applicazione può utilizzare LUN toofind tutti i dischi collegato hello e si creano i collegamenti simbolici. l'agente Linux di Azure Hello ora include regole udev configurare i collegamenti simbolici dai dispositivi toohello LUN, come indicato di seguito:
 
     $ tree /dev/disk/azure
 
@@ -70,7 +70,7 @@ Un'applicazione può usare i LUN per trovare tutti i dischi collegati e creare i
         └── lun1-part3 -> ../../../sdd3                                    
                                  
 
-È possibile recuperare le informazioni sui LUN dal guest Linux con lsscsi o uno strumento simile, come indicato di seguito.
+Possono inoltre recuperare informazioni di LUN Guest Linux hello utilizzando lsscsi o uno strumento simile nel modo seguente.
 
        $ sudo lsscsi
 
@@ -84,7 +84,7 @@ Un'applicazione può usare i LUN per trovare tutti i dischi collegati e creare i
 
       [5:0:0:1] disk Msft Virtual Disk 1.0 /dev/sdd
 
-Le informazioni LUN guest possono essere usate con i metadati della sottoscrizione di Azure per identificare la posizione del disco virtuale rigido nell'archivio di Azure che archivia i dati della partizione. Ad esempio, usare az cli:
+Le informazioni LUN guest è utilizzabile con sottoscrizione di Azure metadati tooidentify hello percorso nell'archiviazione di Azure del VHD che archivia i dati di partizione hello hello. Ad esempio, utilizzare hello az cli:
 
     $ az vm show --resource-group testVM --name testVM | jq -r .storageProfile.dataDisks                                        
     [                                                                                                                                                                  
@@ -116,7 +116,7 @@ Le informazioni LUN guest possono essere usate con i metadati della sottoscrizio
 
 ### <a name="discover-filesystem-uuids-by-using-blkid"></a>Individuare l'UUID del file system usando blkid
 
-Uno script o un'applicazione possono leggere l'output di blkid oppure fonti di informazioni simili e creare collegamenti simbolici in **/dev**. L'output mostra gli UUID di tutti i dischi collegati alla macchina virtuale e il file del dispositivo a cui sono associati:
+Uno script o l'applicazione può leggere l'output di hello di ID blocco o simile fonti di informazioni e creare collegamenti simbolici in **/dev** per l'utilizzo. Mostra output di Hello hello UUID di tutti i dischi collegati toohello macchina virtuale e hello dispositivo file toowhich sono associate:
 
     $ sudo blkid -s UUID
 
@@ -125,7 +125,7 @@ Uno script o un'applicazione possono leggere l'output di blkid oppure fonti di i
     /dev/sdb1: UUID="176250df-9c7c-436f-94e4-d13f9bdea744"
     /dev/sdc1: UUID="b0048738-4ecc-4837-9793-49ce296d2692"
 
-La regola udev waagent crea un set di collegamenti simbolici in **/dev/disk/azure**:
+le regole di Hello waagent udev costruire un set di collegamenti simbolici in **/dev/disk/azure**:
 
 
     $ ls -l /dev/disk/azure
@@ -137,24 +137,24 @@ La regola udev waagent crea un set di collegamenti simbolici in **/dev/disk/azur
     lrwxrwxrwx 1 root root 10 Jun  2 23:17 root-part1 -> ../../sda1
 
 
-L'applicazione può usare queste informazioni identificano il dispositivo del disco di avvio e il disco della risorsa, temporaneo. In Azure le applicazioni devono fare riferimento a **/dev/disk/azure/root-part1** o **/dev/disk/azure-resource-part1** per individuare le partizioni.
+un'applicazione Hello è possibile utilizzare queste informazioni identificano dispositivo disco di avvio hello e il disco di risorsa (temporaneo) hello. In Azure, devono fare riferimento troppo applicazioni**/dev/disk/azure/root-part1** o **/dev/disk/azure-resource-part1** toodiscover tali partizioni.
 
-Se sono presenti partizioni aggiuntive nell'elenco blkid, si trovano in un disco dati. Le applicazioni possono mantenere l'UUID per tali partizioni e usare un percorso come il seguente per individuare il nome del dispositivo in fase di esecuzione:
+Se sono presenti altre partizioni dall'elenco di ID blocco hello, si trovano in un disco dati. Applicazioni di gestire hello UUID per tali partizioni e utilizzare un percorso come hello sotto il nome di dispositivo toodiscover hello in fase di esecuzione:
 
     $ ls -l /dev/disk/by-uuid/b0048738-4ecc-4837-9793-49ce296d2692
 
     lrwxrwxrwx 1 root root 10 Jun 19 15:57 /dev/disk/by-uuid/b0048738-4ecc-4837-9793-49ce296d2692 -> ../../sdc1
 
     
-### <a name="get-the-latest-azure-storage-rules"></a>Ottenere le regole di archiviazione di Azure più recenti
+### <a name="get-hello-latest-azure-storage-rules"></a>Ottenere le regole di archiviazione di Azure più recenti hello
 
-Per ottenere le regole di archiviazione di Azure più recenti, eseguire i comandi seguenti:
+toohello regole di archiviazione di Azure più recenti, eseguire il seguente comandi:
 
     # sudo curl -o /etc/udev/rules.d/66-azure-storage.rules https://raw.githubusercontent.com/Azure/WALinuxAgent/master/config/66-azure-storage.rules
     # sudo udevadm trigger --subsystem-match=block
 
 
-Per altre informazioni, vedere gli articoli seguenti:
+Per ulteriori informazioni, vedere hello seguenti articoli:
 
 - [Ubuntu: uso di UUID](https://help.ubuntu.com/community/UsingUUID)
 
@@ -162,5 +162,5 @@ Per altre informazioni, vedere gli articoli seguenti:
 
 - [Linux: operazioni eseguibili con le UUID](https://www.linux.com/news/what-uuids-can-do-you)
 
-- [Udev: Introduction to Device Management In Modern Linux System](https://www.linux.com/news/udev-introduction-device-management-modern-linux-system) (Udev: introduzione alla gestione dei dispositivi nel sistema Linux moderno)
+- [Udev: Introduzione tooDevice Management nel sistema Linux moderna](https://www.linux.com/news/udev-introduction-device-management-modern-linux-system)
 

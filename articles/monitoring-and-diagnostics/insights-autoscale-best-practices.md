@@ -1,5 +1,5 @@
 ---
-title: "Procedure consigliate per la scalabilità automatica | Microsoft Docs"
+title: "aaaBest procedure consigliate per la scalabilità automatica | Documenti Microsoft"
 description: "Modelli di scalabilità automatica in Azure per App Web, set di scalabilità di macchine virtuali e Servizi cloud"
 author: anirudhcavale
 manager: orenr
@@ -14,144 +14,144 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: ancav
-ms.openlocfilehash: 54dad831287376db7fb2dc46e4591be1499dc072
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: eb731c15e440af93a2675210583878814d0d8818
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-for-autoscale"></a>Procedure consigliate per la scalabilità automatica
-Questo articolo illustra le procedure consigliate per applicare la scalabilità automatica in Azure. Il ridimensionamento automatico di Monitoraggio di Azure si applica solo a [set di scalabilità di macchine virtuali](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Servizi cloud](https://azure.microsoft.com/services/cloud-services/) e [app Web del servizio app](https://azure.microsoft.com/services/app-service/web/). Altri servizi Azure usano metodi di ridimensionamento diversi.
+In questo articolo illustra procedure consigliate tooautoscale in Azure. Azure scalabilità automatica di monitoraggio si applica solo troppo[set di scalabilità di macchine virtuali](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [servizi Cloud](https://azure.microsoft.com/services/cloud-services/), e [servizio App: app Web](https://azure.microsoft.com/services/app-service/web/). Altri servizi Azure usano metodi di ridimensionamento diversi.
 
 ## <a name="autoscale-concepts"></a>Concetti di scalabilità automatica
 * Una risorsa può avere *una* sola impostazione di scalabilità automatica.
 * Un'impostazione di scalabilità automatica può avere uno o più profili e ogni profilo può avere una o più regole di scalabilità automatica.
-* Un'impostazione di scalabilità automatica scala le istanze orizzontalmente, ovvero *aumenta* e *riduce* il numero delle istanze.
+* Un'impostazione di scalabilità automatica ridimensiona le istanze in senso orizzontale, ovvero *out* aumentando le istanze di hello e *in* riducendo il numero di hello di istanze.
   Un'impostazione di scalabilità automatica ha un valore massimo, uno minimo e uno predefinito di istanze.
-* Un processo di scalabilità automatica legge sempre la metrica associata alla scala controllando se ha superato la soglia configurata per l'aumento o la riduzione del numero di istanze. Per un elenco delle metriche in base alle quali può essere applicata la scalabilità automatica, vedere [Metriche comuni per la scalabilità automatica di Monitoraggio di Azure](insights-autoscale-common-metrics.md).
-* Tutte le soglie vengono calcolate a livello di istanza. Ad esempio, "aumentare il numero di istanze di 1 quando la media CPU > 80% quando il conteggio delle istanze è 2", significa aumentare il numero di istanze quando la media CPU in tutte le istanze è superiore all'80%.
-* Le notifiche di errore vengono sempre ricevute tramite posta elettronica. In particolare, è il proprietario, il collaboratore e i lettori della risorsa di destinazione a ricevere il messaggio di posta elettronica. Si riceverà sempre un messaggio di posta elettronica di *ripristino* anche quando la scalabilità automatica viene ripristinata dopo un errore e inizia a funzionare normalmente.
-* È possibile acconsentire esplicitamente a ricevere una notifica relativa a un'azione di scalabilità riuscita tramite posta elettronica e webhook.
+* Un processo di scalabilità automatica legge sempre hello associata tooscale metrica controllando, se è superato hello soglia configurata per la scalabilità orizzontale o in scala. Per un elenco delle metriche in base alle quali può essere applicata la scalabilità automatica, vedere [Metriche comuni per la scalabilità automatica di Monitoraggio di Azure](insights-autoscale-common-metrics.md).
+* Tutte le soglie vengono calcolate a livello di istanza. Ad esempio, "scala può essere estratto da 1 istanza quando medio della CPU > 80% quando il numero di istanze è 2", significa che la scalabilità orizzontale hello utilizzo medio della CPU tra tutte le istanze è superiore all'80%.
+* Le notifiche di errore vengono sempre ricevute tramite posta elettronica. In particolare, hello proprietario, collaboratore e lettori di risorsa di destinazione hello riceveranno posta elettronica. Si riceverà sempre un messaggio di posta elettronica di *ripristino* anche quando la scalabilità automatica viene ripristinata dopo un errore e inizia a funzionare normalmente.
+* È possibile acconsentire esplicitamente tooreceive una notifica di azione scala ha esito positivo tramite posta elettronica e ai webhook.
 
 ## <a name="autoscale-best-practices"></a>Procedure consigliate per la scalabilità automatica
-Usare le procedure consigliate seguenti quando si usa la scalabilità automatica.
+Utilizzare hello seguono le procedure consigliate durante l'utilizzo di scalabilità automatica.
 
-### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>Assicurarsi che i valori massimo e minimo siano diversi e che tra di essi ci sia un margine adeguato
-Se il valore minimo di un'impostazione è 2 e il valore massimo è 2 e il conteggio di istanze correnti è 2, non può verificarsi alcuna azione di scalabilità. Mantenere un margine adeguato tra i conteggi massimo e minimo delle istanze, che sono valori inclusivi. La scalabilità automatica viene sempre applicata entro questi limiti.
+### <a name="ensure-hello-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>Verificare i valori minimo e massimo hello sono diversi e dispongono di un margine sufficiente tra di essi
+Se si dispone di un'impostazione con minimo = 2, massimo = 2 e il numero di istanze correnti di hello è 2, non può verificarsi Nessuna azione di scalabilità. Mantenere un margine sufficiente tra numero totale di istanze minimo e massimo hello, che sono inclusivi. La scalabilità automatica viene sempre applicata entro questi limiti.
 
 ### <a name="manual-scaling-is-reset-by-autoscale-min-and-max"></a>La scalabilità manuale viene reimpostata dai valori minimo e massimo della scalabilità automatica
-Se si aggiorna manualmente il conteggio delle istanze impostandolo su un valore al di sopra o al di sotto di quello massimo, il motore di scalabilità automatica utilizza automaticamente il valore minimo (se al di sotto) o il valore massimo (se al di sopra). Ad esempio, se l'utente imposta l'intervallo tra i valori e 3 e 6, in presenza di un'istanza in esecuzione, il motore di scalabilità automatica esegue il ridimensionamento a 3 istanze alla successiva esecuzione. Analogamente, eseguirà il ridimensionamento di 8 istanze a 6 alla successiva esecuzione.  La scalabilità manuale è molto temporanea, a meno che non si reimpostino anche le regole di scalabilità automatica.
+Se si manualmente Aggiorna hello istanza tooa valore del conteggio sopra o sotto massimo hello hello automaticamente il motore di scalabilità automatica scala back toohello minimo (se di sotto) o hello massimo (se in precedenza). Ad esempio, impostare l'intervallo hello compreso tra 3 e 6. Se si dispone di un'istanza in esecuzione, il motore di scalabilità automatica hello scala too3 istanze la successiva esecuzione. Allo stesso modo, sarebbe scala aggiuntivo 8 istanze di eseguire il backup too6 la successiva esecuzione.  Ridimensionamento manuale è molto temporaneo a meno che non si reimposta anche le regole di scalabilità automatica hello.
 
 ### <a name="always-use-a-scale-out-and-scale-in-rule-combination-that-performs-an-increase-and-decrease"></a>Usare sempre una combinazione di regole di aumento e di riduzione del numero di istanze
-Se si usa solo una parte della combinazione, la scalabilità automatica viene applicata solo per aumentare o ridurre il numero di istanze fino a raggiungere il valore massimo o minimo.
+Se si utilizza solo una parte di una combinazione di hello, scalabilità automatica scala aggiuntivo singolo, o, fino a quando hello massimo o minimo, è stato raggiunto.
 
-### <a name="do-not-switch-between-the-azure-portal-and-the-azure-classic-portal-when-managing-autoscale"></a>Non passare dal portale di Azure al portale di Azure classico e viceversa quando si gestisce la scalabilità automatica
-Per i servizi cloud e i servizi app (App Web), usare il portale di Azure (portal.azure.com) per creare e gestire le impostazioni di scalabilità automatica. Per i set di scalabilità di macchine virtuali, usare PowerShell, l'interfaccia della riga di comando o l'API REST per creare e gestire l'impostazione di scalabilità automatica. Non passare dal portale di Azure classico (manage.windowsazure.com) al portale di Azure (portal.azure.com) e viceversa quando si gestiscono le configurazioni di scalabilità automatica. Il portale di Azure classico e il back-end sottostante presentano delle limitazioni. Passare al portale di Azure per gestire la scalabilità automatica con un'interfaccia utente grafica. Le opzioni prevedono l'uso di PowerShell, dell'interfaccia della riga di comando o dell'API REST (tramite Esplora risorse di Azure) per la scalabilità automatica.
+### <a name="do-not-switch-between-hello-azure-portal-and-hello-azure-classic-portal-when-managing-autoscale"></a>Non passare hello portale di Azure e hello portale di Azure classico per la gestione di scalabilità automatica
+Per servizi Cloud e servizi di App (app Web), utilizzare hello del portale di Azure (portal.azure.com) toocreate e gestire le impostazioni di scalabilità automatica. Per il set di scalabilità di macchine virtuali utilizzare toocreate PowerShell, CLI o l'API REST e gestire le impostazioni di scalabilità automatica. Non passare hello portale di Azure classico (manage.windowsazure.com) hello del portale di Azure (portal.azure.com) quando la gestione delle configurazioni di scalabilità automatica. portale di Azure classico Hello e il relativo back-end sottostante presenta limitazioni. Spostare la scalabilità automatica toomanage portale Azure toohello utilizzando un'interfaccia utente grafica. opzioni di Hello sono toouse hello autoscale PowerShell, CLI o l'API REST (tramite Esplora risorse di Azure).
 
-### <a name="choose-the-appropriate-statistic-for-your-diagnostics-metric"></a>Scegliere la statistica appropriata per la metrica di diagnostica
-Per le metriche di diagnostica, è possibile scegliere tra *Medio*, *Minimo*, *Massimo* e *Totale* come metrica per il ridimensionamento. La statistica più comune è *Medio*.
+### <a name="choose-hello-appropriate-statistic-for-your-diagnostics-metric"></a>Scegliere statistica appropriato di hello per la metrica di diagnostica
+Per la metrica di diagnostica, è possibile scegliere tra *Media*, *minimo*, *massimo* e *totale* come una metrica tooscale da. statistica più comune di Hello è *Media*.
 
-### <a name="choose-the-thresholds-carefully-for-all-metric-types"></a>Scegliere attentamente le soglie per tutti i tipi di metriche
+### <a name="choose-hello-thresholds-carefully-for-all-metric-types"></a>Scegliere le soglie di hello attentamente per tutti i tipi di metrica
 È consigliabile scegliere con attenzione soglie diverse per aumentare e ridurre il numero di istanze a seconda delle situazioni concrete.
 
-*Non sono consigliate* impostazioni di scalabilità automatica come quelle degli esempi seguenti con valori di soglia uguali o molto simili per le condizioni di aumento o di riduzione del numero di istanze:
+Abbiamo *non è consigliabile* hello di impostazioni di scalabilità automatica, come negli esempi di hello seguenti con i valori di soglia identiche o molto simili per disconnettersi e condizioni:
 
 * Aumentare le istanze di 1 quando il conteggio dei thread è <= 600
 * Ridurre le istanze di 1 quando il conteggio dei thread è >= 600
 
-Verrà ora esaminato un esempio di come si può arrivare a un comportamento che può sembrare poco chiaro. Considerare la sequenza indicata di seguito.
+Esaminiamo un esempio di ciò che può causare il comportamento tooa che potrebbe sembrare poco chiaro. Prendere in considerazione hello seguente sequenza.
 
-1. Si supponga di iniziare con 2 istanze e che poi il numero medio di thread per ogni istanza cresca fino a 625.
+1. Si supponga che esistono 2 istanze toobegin con e quindi aumentare too625 del numero medio di hello di thread per ogni istanza.
 2. Il numero di istanze viene aumentato automaticamente aggiungendo una terza istanza.
-3. Si supponga ora che il conteggio medio dei thread nell'istanza scenda a 575.
-4. Prima di ridurre le prestazioni, la scalabilità automatica cerca di stimare quale sarà lo stato finale in caso di riduzione del numero di istanze. Ad esempio, 575 x 3 (conteggio corrente delle istanze) = 1.725 / 2 (numero finale di istanze dopo la riduzione delle prestazioni) = 862,5 thread. La scalabilità automatica dovrà quindi immediatamente aumentare di nuovo il numero di istanze anche dopo averlo ridotto, se il conteggio medio dei thread rimane invariato o scende anche solo di poco. Se, tuttavia, aumentasse di nuovo le prestazioni, l'intero processo si ripeterebbe, generando un loop infinito.
-5. Per evitare questa situazione (definita "instabile"), la scalabilità automatica non riduce affatto le prestazioni, ma ignora la condizione e la valuta nuovamente la volta successiva che il processo del servizio viene eseguito. Questo potrebbe generare confusione perché sembra che la scalabilità automatica non funzioni quando il conteggio medio dei thread è 575.
+3. Successivamente, si supponga che il conteggio thread medio hello tra l'istanza rientra too575.
+4. Prima di riduzione, scalabilità automatica tenta tooestimate lo stato finale che hello sarà se ridimensionata. Ad esempio, 575 x 3 (conteggio corrente delle istanze) = 1.725 / 2 (numero finale di istanze dopo la riduzione delle prestazioni) = 862,5 thread. Ciò significa scalabilità automatica sarebbero tooimmediately scalabilità orizzontale nuovamente anche dopo che ridimensionata, hello thread medio conteggio rimane hello stesso o persino rientra solo una piccola quantità. Tuttavia, se ridimensionato verso l'alto, sarebbe necessario ripetere l'intero processo hello, iniziali tooan di ciclo infinito.
+5. tooavoid questa situazione (indicata come "Ali"), ridimensionamento automatico non scalare verso il basso affatto. Invece, vengono ignorati e Rivaluta hello condizione nuovamente il processo di hello successiva ora hello del servizio viene eseguito. Questa operazione potrebbe confondere molte persone scalabilità automatica non saranno toowork numero medio di thread di hello stato 575.
 
-La stima durante la riduzione è necessaria per evitare situazioni di instabilità, in cui vengono eseguite continuamente azioni di riduzione e aumento del numero di istanze. Tenere presente questo comportamento quando si scelgono le stesse soglie per l'aumento e la riduzione del numero di istanze.
+Stima durante una scala è previsto tooavoid "instabile" situazioni in cui le azioni di scalabilità e di scalabilità orizzontale continuamente andare avanti e indietro. Quando si sceglie di hello stessa soglia di scalabilità orizzontale in, tenere presente questo comportamento.
 
-È consigliabile scegliere un margine adeguato tra le soglie di aumento e di riduzione del numero di istanze. Ad esempio, considerare la combinazione di regole seguente, che è migliore.
+Si consiglia di scegliere un margine sufficiente tra hello scalabilità orizzontale e le soglie. Ad esempio, prendere in considerazione hello seguente combinazione di regola migliore.
 
 * Aumentare le istanze di 1 quando la percentuale di CPU è >= 80
 * Ridurre le istanze di 1 quando la percentuale di CPU è <= 60
 
 In questo caso  
 
-1. Si supponga di iniziare con 2 istanze.
-2. Se la % di CPU media nelle istanze arriva a 80, la scalabilità automatica aumenta il numero di istanze aggiungendone una terza.
-3. Si supponga che nel corso del tempo la percentuale di CPU scenda a 60.
-4. La regola di riduzione del numero di istanze della scalabilità automatica valuta lo stato finale se venisse applicata la riduzione del numero di istanze. Ad esempio, 60 x 3 (conteggio corrente delle istanze) = 180 / 2 (numero finale di istanze dopo la riduzione delle prestazioni) = 90. La scalabilità automatica quindi non riduce il numero di istanze perché dovrebbe aumentarlo di nuovo immediatamente. Al contrario, evita di ridurre le prestazioni.
-5. Al successivo controllo, la percentuale di CPU continua a scendere fino a 50. Viene quindi eseguita una nuova stima: 50 x 3 istanze = 150 / 2 istanze = 75, che è al di sotto della soglia di aumento del numero di istanze pari a 80, quindi il numero di istanze viene correttamente ridotto a 2.
+1. Si supponga 2 istanze toostart con.
+2. Se too80, Percentuale CPU Media hello tra più istanze di scalabilità automatica consente una scalabilità orizzontale aggiungendo una terza istanza.
+3. Si supponga che nel tempo CPU di hello % rientra too60.
+4. Regola di scalabilità della scalabilità automatica stima stato finale hello se fosse tooscale-in. Ad esempio, 60 x 3 (conteggio corrente delle istanze) = 180 / 2 (numero finale di istanze dopo la riduzione delle prestazioni) = 90. Pertanto, scalabilità automatica non scala-in perché ha nuovamente immediatamente tooscale-out. Al contrario, evita di ridurre le prestazioni.
+5. scalabilità automatica di tempo successiva Hello controlla hello della CPU continua toofall too50. Stima nuovamente - istanza 50 x 3 = 150 / 2 istanze = 75, che è inferiore a soglia di scalabilità orizzontale hello pari a 80, pertanto si adatta in istanze di too2 correttamente.
 
 ### <a name="considerations-for-scaling-threshold-values-for-special-metrics"></a>Considerazioni sul ridimensionamento dei valori di soglia per le metriche speciali
- Per le metriche speciali, ad esempio la metrica di archiviazione o la metrica di lunghezza della coda del bus di servizio, la soglia è il numero medio di messaggi disponibile per il numero corrente di istanze. Scegliere con attenzione il valore di soglia per questa metrica.
+ Per la metrica speciale, ad esempio metrica lunghezza coda del Bus di servizio o di archiviazione, soglia hello è numero medio di hello di messaggi disponibili per il numero corrente di istanze. Scegliere con attenzione hello scegliere hello valore di soglia per questa metrica.
 
-Per far comprendere meglio il comportamento, verrà illustrato con esempio.
+Di seguito viene illustrato con tooensure un esempio è comprendere meglio il comportamento di hello.
 
 * Aumentare le istanze di 1 quando il conteggio dei messaggi della coda di archiviazione è >= 50
 * Ridurre le istanze di 1 quando il conteggio dei messaggi della coda di archiviazione è <= 10
 
-Considerare la sequenza seguente:
+Prendere in considerazione hello seguente sequenza:
 
 1. Esistono 2 istanze di coda di archiviazione.
-2. Continuano ad arrivare messaggi e, quando si controlla la coda di archiviazione, il conteggio totale è pari a 50. Si potrebbe pensare che la scalabilità automatica debba avviare un'azione di aumento del numero di istanze. Si noti tuttavia che si tratta comunque di 50/2 = 25 messaggi per ogni istanza. L'aumento del numero di istanze non viene quindi eseguito. Perché venga eseguito il primo aumento del numero di istanze, il conteggio totale dei messaggi nella coda di archiviazione deve essere pari a 100.
-3. Si supponga ora che il conteggio totale dei messaggi raggiunga i 100.
-4. Viene aggiunta una terza istanza di coda di archiviazione in seguito a un'azione di aumento del numero di istanze.  L'azione successiva di aumento del numero di istanze verrà eseguita solo dopo che il conteggio totale dei messaggi nella coda avrà raggiunto il numero di 150, poiché 150/3 = 50.
-5. Ora il numero di messaggi nella coda si riduce. Con 3 istanze, la prima azione di riduzione del numero di istanze viene eseguita quando i messaggi totali in tutte le code raggiungono il numero di 30, ovvero 30/3 = 10 messaggi per istanza, che corrisponde alla soglia di riduzione del numero di istanze.
+2. Ancora messaggi e quando si verifica la coda di archiviazione hello, totale hello legge 50. Si potrebbe pensare che la scalabilità automatica debba avviare un'azione di aumento del numero di istanze. Si noti tuttavia che si tratta comunque di 50/2 = 25 messaggi per ogni istanza. L'aumento del numero di istanze non viene quindi eseguito. Per hello prima toohappen di scalabilità orizzontale, il numero totale di messaggi hello nella coda di archiviazione hello deve essere 100.
+3. Si supponga ora che numero totale di messaggi hello raggiunge i 100.
+4. Un'istanza di coda di archiviazione 3 viene aggiunto a causa di tooa azione di scalabilità orizzontale.  Hello successiva azione di scalabilità orizzontale non avverrà finché hello totale conteggio dei messaggi nella coda di hello raggiunge 150 perché 150/3 = 50.
+5. Numero di hello di messaggi nella coda di hello Ottiene ora più piccolo. Con 3 istanze, hello prima scala azione si verifica quando hello totale messaggi in tutte le code di sommare too30 perché 30/3 = 10 messaggi per ogni istanza, ovvero una soglia di scala hello.
 
 ### <a name="considerations-for-scaling-when-multiple-profiles-are-configured-in-an-autoscale-setting"></a>Considerazioni sul ridimensionamento quando vengono configurati più profili in un'impostazione di scalabilità automatica
 In un'impostazione di scalabilità automatica è possibile scegliere un profilo predefinito, che viene sempre applicato indipendentemente da qualsiasi pianificazione o orario, oppure è possibile scegliere un profilo ricorrente o un profilo per un periodo fisso con un intervallo di data e ora.
 
-Quando il servizio di scalabilità automatica elabora questi profili, li controlla sempre nell'ordine seguente:
+Quando li elabora di servizio di scalabilità automatica, verificare sempre in hello seguente ordine:
 
 1. Profilo con data fissa
 2. Profilo ricorrente
 3. Profilo predefinito ("sempre")
 
-Se la condizione di un profilo viene soddisfatta, la scalabilità automatica non controlla la condizione del profilo successivo. La scalabilità automatica elabora solo un profilo alla volta. Quindi, per includere anche una condizione di elaborazione da un profilo di livello inferiore, è necessario includere anche tali regole nel profilo corrente.
+Se viene soddisfatta una condizione di profilo, scalabilità automatica non verifica la condizione profilo successiva hello sotto di essa. La scalabilità automatica elabora solo un profilo alla volta. Questo significa che se si desidera tooalso includono una condizione di elaborazione da un profilo di livello inferiore, è necessario includere anche le regole nel profilo corrente hello.
 
 Per spiegarlo, verrà usato un esempio:
 
-L'immagine seguente illustra un'impostazione di scalabilità automatica con un profilo predefinito con un numero minimo di istanze = 2 e un numero massimo = 10. In questo esempio, le regole vengono configurate per aumentare il numero di istanze quando il conteggio dei messaggi nella coda è maggiore di 10 e per ridurlo quando il conteggio dei messaggi nella coda è minore di 3. Ora la risorsa può quindi essere ridimensionata tra le 2 e le 10 istanze.
+immagine di Hello seguente mostra un'impostazione di scalabilità automatica con un profilo predefinito di istanze minime = 2 e massime di istanze = 10. In questo esempio, le regole sono configurato tooscale-out quando il numero di messaggi hello nella coda di hello è maggiore di 10 e scala-in quando il numero di messaggi hello nella coda di hello è inferiore a 3. Risorsa hello ora possibile applicare la scalabilità tra 2 e 10 istanze.
 
-È anche stato impostato un profilo ricorrente per il lunedì. È stato impostato per un numero minimo di istanze = 2 e un numero massimo di istanze = 12. Quindi il lunedì, la prima volta che la scalabilità automatica controlla questa condizione, se il conteggio delle istanze è 2, lo ridimensiona al nuovo valore minimo pari a 3. Finché la scalabilità automatica continua a trovare una corrispondenza per la condizione di questo profilo (lunedì), elabora sole le regole di aumento/riduzione del numero di istanze basate sulla CPU configurate per questo profilo. Al momento non controlla la lunghezza della coda. Se, tuttavia, si vuole controllare anche la condizione della lunghezza della coda, è necessario includere anche le regole del profilo predefinito nel profilo del lunedì.
+È anche stato impostato un profilo ricorrente per il lunedì. È stato impostato per un numero minimo di istanze = 2 e un numero massimo di istanze = 12. Ciò significa che il lunedì hello scalabilità automatica di tempo prima controlla questa condizione, se il numero di istanze di hello è 2, che viene ampliato toohello nuovo minimo di 3. Finché la scalabilità automatica continua toofind questa condizione profilo corrispondente (lunedì), elabora solo hello CPU regole basate su scale-out/in configurato per questo profilo. In questo momento, non controlla per lunghezza coda hello. Tuttavia, se si desidera toobe condizione lunghezza coda di hello selezionata, è necessario includere le regole da profilo predefinito hello anche nel profilo di lunedì.
 
-Allo stesso modo, quando la scalabilità automatica torna al profilo predefinito, per prima cosa controlla se sono soddisfatte le condizioni minima e massima. Se al momento il numero di istanze è 12, ne riduce il numero a 10, il massimo consentito per il profilo predefinito.
+Analogamente, quando scalabilità automatica è attiva profilo predefinito toohello indietro, verifica innanzitutto se vengono soddisfatte le condizioni di hello minimo e massimo. Se il numero di hello delle istanze in esecuzione hello è 12, ridimensiona nel too10, hello massimo consentito per profilo predefinito hello.
 
 ![Impostazioni di scalabilità automatica](./media/insights-autoscale-best-practices/insights-autoscale-best-practices-2.png)
 
 ### <a name="considerations-for-scaling-when-multiple-rules-are-configured-in-a-profile"></a>Considerazioni sul ridimensionamento quando vengono configurate più regole in un profilo
-In alcuni casi potrebbe essere necessario impostare più regole in un profilo. Il set di regole di scalabilità automatica seguente viene usato dai servizi quando vengono impostate più regole.
+Vi sono casi in cui è possibile tooset più regole in un profilo. Quando sono impostate più regole, Hello seguente set di regole di scalabilità automatica è usato dai servizi.
 
 In caso di *aumento del numero di istanze*, la scalabilità automatica viene eseguita se risulta soddisfatta una regola qualsiasi.
-In caso di *riduzione del numero di istanze*, la scalabilità automatica richiede che tutte le regole siano soddisfatte.
+In *scala aggiuntivo*, scalabilità automatica richiede tutte le regole toobe soddisfatti.
 
-Per illustrare questo concetto, si supponga di avere le 4 regole di scalabilità automatica seguenti:
+tooillustrate, si supponga di disporre delle seguenti regole di scalabilità automatica 4 hello:
 
 * Se la CPU è < 30%, ridurre il numero di istanze di 1
 * Se la memoria è < 50%, ridurre il numero di istanze di 1
 * Se la CPU è > 75%, aumentare il numero di istanze di 1
 * Se la memoria è > 75%, aumentare il numero di istanze di 1
 
-Si verifica quindi quanto segue:
+Viene quindi eseguito hello seguenti:
 
 * Se la CPU è pari al 76% e la memoria è pari al 50%, il numero di istanze viene aumentato.
 * Se la CPU è pari al 50% e la memoria è pari al 76%, il numero di istanze viene aumentato.
 
-Ma, se la CPU è pari al 25% e la memoria è pari al 51%, la scalabilità automatica **non** riduce il numero di istanze. Per ridurre il numero di istanze, la CPU deve essere al 29% e la memoria al 49%.
+Hello d'altra parte, se la CPU è 25% e della memoria è la scalabilità automatica 51% **non** scala-in. Tooscale-in, della CPU deve essere % 29 e memoria 49%.
 
 ### <a name="always-select-a-safe-default-instance-count"></a>Selezionare sempre un conteggio di istanze predefinito sicuro
-Il conteggio predefinito delle istanze è importante perché è in base a tale conteggio che la scalabilità automatica ridimensiona il servizio quando le metriche non sono disponibili. Selezionare quindi un conteggio di istanze predefinito sicuro per i carichi di lavoro.
+numero di istanza predefinito Hello è importante scalabilità automatica ridimensiona il conteggio toothat servizio quando la metrica non è disponibile. Selezionare quindi un conteggio di istanze predefinito sicuro per i carichi di lavoro.
 
 ### <a name="configure-autoscale-notifications"></a>Configurare le notifiche relative alla scalabilità automatica
-La scalabilità automatica invia una notifica tramite posta elettronica agli amministratori e ai collaboratori della risorsa se si verifica una delle condizioni seguenti:
+Scalabilità automatica invia una notifica agli amministratori di hello e dai collaboratori della risorsa hello tramite posta elettronica se si verifica una delle seguenti condizioni hello:
 
-* Il servizio di scalabilità automatica non riesce a eseguire un'azione.
-* Non sono disponibili metriche che consentono al servizio di scalabilità automatica di prendere una decisione sulla scalabilità.
-* Sono di nuovo disponibili metriche (ripristino) che consentono di prendere una decisione sulla scalabilità.
-  Oltre alle condizioni precedenti, è possibile configurare notifiche di posta elettronica o webhook per ricevere notifiche relative alle azioni di scalabilità riuscite.
+* servizio di scalabilità automatica ha esito negativo tootake un'azione.
+* Le metriche non sono disponibili per la scalabilità automatica servizio toomake una decisione di scala.
+* Sono disponibile (ripristino) nuovamente toomake una decisione di scala.
+  Inoltre toohello condizioni riportate sopra, è possibile configurare posta elettronica o webhook tooget notifiche ricevere una notifica per le azioni di scalabilità ha esito positivo.
   
-Per monitorare l'integrità del motore di scalabilità automatica si può anche usare un avviso di log attività. Di seguito sono riportati esempi di come [creare un avviso di log attività per monitorare tutte le operazioni del motore di scalabilità automatica per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert) e per [creare un avviso di log attività per monitorare tutte le operazioni di scalabilità automatica in riduzione e in aumento non riuscite per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).
+È inoltre possibile utilizzare uno stato di integrità hello toomonitor avviso Log attività del motore di scalabilità automatica hello. Ecco alcuni esempi troppo[creare tutte le operazioni del motore di scalabilità automatica per la sottoscrizione di un avviso di Log attività toomonitor](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert) o troppo[creare un avviso di Log attività toomonitor tutti non riuscito di scala di scalabilità automatica in / operazioni di scala la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).
 
 ## <a name="next-steps"></a>Passaggi successivi
-- [Creare un avviso di log attività per monitorare tutte le operazioni del motore di scalabilità automatica della sottoscrizione.](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
-- [Creare un avviso di log attività per monitorare tutte le operazioni di scalabilità automatica in riduzione e in aumento non riuscite per la sottoscrizione.](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
+- [Creare un avviso di Log attività toomonitor tutte le operazioni del motore di scalabilità automatica per la sottoscrizione.](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [Creare un avviso di Log attività toomonitor tutti non riuscito di scala di scalabilità automatica in / scalabilità operazioni per la sottoscrizione](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)

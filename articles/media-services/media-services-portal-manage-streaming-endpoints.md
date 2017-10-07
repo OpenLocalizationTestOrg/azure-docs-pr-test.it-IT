@@ -1,6 +1,6 @@
 ---
-title: Gestire gli endpoint di streaming con il portale di Azure | Microsoft Docs
-description: Questo argomento illustra come gestire gli endpoint di streaming mediante il portale di Azure.
+title: gli endpoint con hello portale di Azure di streaming aaaManage | Documenti Microsoft
+description: Questo argomento viene illustrato come endpoint di streaming toomanage con hello portale di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 797dced6c3e2525730afa29987259cb9b435ba66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dfa9352894d37edb317a6334d7f109419deb362b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-streaming-endpoints-with-the-azure-portal"></a>Gestire gli endpoint di streaming con il portale di Azure
+# <a name="manage-streaming-endpoints-with-hello-azure-portal"></a>Gestire gli endpoint di streaming con hello portale di Azure
 
-L'argomento illustra come usare il Portale di Azure per gestire gli endpoint di streaming. 
+Questo argomento viene illustrato come toouse hello gli endpoint di streaming toomanage portale Azure. 
 
 >[!NOTE]
->Assicurarsi di rivedere l'argomento sulla [panoramica](media-services-streaming-endpoints-overview.md). 
+>Verificare che hello tooreview [Panoramica](media-services-streaming-endpoints-overview.md) argomento. 
 
-Per informazioni su come ridimensionare l'endpoint di streaming, vedere [questo](media-services-portal-scale-streaming-endpoints.md) argomento.
+Per informazioni su come tooscale hello endpoint di streaming, vedere [questo](media-services-portal-scale-streaming-endpoints.md) argomento.
 
 ## <a name="start-managing-streaming-endpoints"></a>Iniziare a gestire gli endpoint di streaming 
 
-Per iniziare a gestire gli endpoint di streaming per l'account, procedere come segue.
+Gestione endpoint di streaming per il tuo account, toostart hello seguente.
 
-1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali di Azure.
-2. Nel pannello **Impostazioni** selezionare **Endpoint di streaming**.
+1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali di Azure.
+2. In hello **impostazioni** pannello seleziona **gli endpoint di Streaming**.
    
     ![endpoint di streaming](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints1.png)
 
@@ -45,22 +45,22 @@ Per iniziare a gestire gli endpoint di streaming per l'account, procedere come s
 ## <a name="adddelete-a-streaming-endpoint"></a>Aggiungere o eliminare un endpoint di streaming
 
 >[!NOTE]
->Gli endpoint di streaming predefiniti non possono essere eliminati.
+>Impossibile eliminare l'endpoint di streaming predefinito di Hello.
 
-Per aggiungere o eliminare gli endpoint di streaming tramite il portale di Azure, procedere come segue:
+tooadd/eliminazione tramite endpoint di streaming hello portale di Azure, hello seguenti:
 
-1. Per aggiungere un endpoint di streaming, fare clic su **+ Endpoint** nella parte superiore della pagina. 
+1. tooadd un endpoint di streaming, fare clic su hello **+ Endpoint** nella parte superiore di hello della pagina hello. 
 
-    Se si prevedono più reti CDN o una rete CDN e l'accesso diretto, potrebbero essere necessari più endpoint di streaming.
+    Più endpoint di Streaming è necessario se si prevede di toohave CDN diversa o una rete CDN e l'accesso diretto.
 
-2. Per eliminare un endpoint di streaming, fare clic sul pulsante **Elimina** .      
-3. Fare clic sul pulsante **Avvia** per avviare l'endpoint di streaming.
+2. Premere un endpoint di streaming, toodelete **eliminare** pulsante.      
+3. Fare clic su hello **avviare** hello toostart pulsante endpoint di streaming.
    
     ![endpoint di streaming](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints2.png)
 
 
-## <a id="configure_streaming_endpoints"></a>Configurare l'endpoint di streaming
-L'endpoint di streaming consente di configurare le seguenti proprietà:
+## <a id="configure_streaming_endpoints"></a>Configurazione di Endpoint di Streaming hello
+Endpoint di streaming consente hello tooconfigure le proprietà seguenti:
 
 * Controllo di accesso
 * Controllo cache
@@ -68,18 +68,18 @@ L'endpoint di streaming consente di configurare le seguenti proprietà:
 
 Per informazioni dettagliate su queste proprietà, vedere [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
 
-È possibile configurare un endpoint di streaming eseguendo le operazioni seguenti:
+È possibile configurare l'endpoint di streaming eseguendo hello seguenti:
 
-1. Selezionare l'endpoint di streaming che si desidera configurare.
+1. Selezionare hello desiderato tooconfigure endpoint di streaming.
 2. Fare clic su **Impostazioni**.
 
-Seguirà una breve descrizione dei campi.
+Di seguito una breve descrizione dei campi hello.
 
 ![endpoint di streaming](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints4.png)
 
-1. Criteri della cache massima: consente di configurare la durata della cache per gli asset serviti tramite questo endpoint di streaming. Se non si imposta alcun valore, viene usato il valore predefinito. I valori predefiniti possono anche essere definiti direttamente in Archiviazione di Azure. Se la rete CDN di Azure è abilitata per l'endpoint di streaming, non impostare il valore dei criteri della cache a meno di 600 secondi.  
-2. Indirizzi IP consentiti: consente di specificare gli indirizzi IP che possono connettersi all'endpoint di streaming pubblicato. Se non viene specificato alcun indirizzo IP, la connessione è consentita a qualsiasi indirizzo IP. È possibile specificare gli indirizzi IP come un singolo indirizzo IP (ad esempio "10.0.0.1"), un intervallo IP con un indirizzo IP e una subnet mask CIDR (ad esempio "10.0.0.1/22") o un intervallo IP con un indirizzo IP e una subnet mask decimale puntata (ad esempio "10.0.0.1(255.255.255.0)").
-3. Configurazione per l'autenticazione dell'intestazione firma Akamai: consente di specificare la configurazione della richiesta di autenticazione intestazione firma proveniente dai server Akamai. La scadenza è in formato UTC.
+1. Criteri massima della cache: durata cache tooconfigure utilizzati per gli asset serviti tramite questo endpoint di streaming. Se è impostato alcun valore, viene usato predefinito di hello. i valori predefiniti di Hello possono anche essere definiti direttamente nell'archiviazione di Azure. Se la rete CDN Azure è abilitata per hello endpoint di streaming, non è necessario impostare tooless di valore dei criteri della cache hello di 600 secondi.  
+2. Indirizzi IP consentiti: gli indirizzi IP toospecify che sia possibile usare tooconnect toohello pubblicati endpoint di streaming. Se nessun indirizzo IP specificato, qualsiasi indirizzo IP sarebbe in grado di tooconnect. È possibile specificare gli indirizzi IP come un singolo indirizzo IP (ad esempio "10.0.0.1"), un intervallo IP con un indirizzo IP e una subnet mask CIDR (ad esempio "10.0.0.1/22") o un intervallo IP con un indirizzo IP e una subnet mask decimale puntata (ad esempio "10.0.0.1(255.255.255.0)").
+3. Configurazione per l'autenticazione dell'intestazione firma Akamai: utilizzato toospecify configurazione richiesta di autenticazione intestazione firma dai server Akamai. La scadenza è in formato UTC.
 
 ## <a name="scale-your-premium-streaming-endpoint"></a>Scalabilità dell'endpoint di streaming Premium
 
@@ -89,25 +89,25 @@ Per altre informazioni, vedere [questo](media-services-portal-scale-streaming-en
 
 Quando si crea un nuovo account, l'integrazione della rete CDN di Azure dell'endpoint di streaming predefinita viene abilitata per impostazione predefinita.
 
-Se in seguito si desidera disabilitare o abilitare la rete CDN, l'endpoint di streaming deve essere nello stato **interrotto**. L'abilitazione dell'integrazione della rete CDN di Azure e l'attivazione delle modifiche in tutti i POP della rete CDN potrebbero richiedere fino a due ore. Tuttavia, è possibile avviare l'endpoint di streaming e il flusso senza interruzioni dall'endpoint di streaming e dopo aver completato l'integrazione, il flusso verrà distribuito dalla rete CDN. Durante il periodo di provisioning l'endpoint di streaming è nello stato **avvio** ed è possibile osservarne le prestazioni ridotte.
+Se in seguito si abilita toodisable/hello CDN, l'endpoint di streaming deve essere in hello **arrestato** stato. Potrebbero richiedere alcune ore too2 per hello rete CDN di Azure integration tooget abilitata e per hello modifiche toobe active tra tutti hello POP della rete CDN. Tuttavia, è possibile avviare l'endpoint di streaming e flusso senza interruzioni da endpoint di streaming hello e una volta completato l'integrazione di hello, flusso hello verrà fornito da hello CDN. Durante il periodo di provisioning hello sarà l'endpoint di streaming in **avvio** e non è possibile osservare degredad prestazioni.
 
-L'integrazione della rete CDN è abilitata in tutti i centri dati di Azure ad eccezione della Cina e delle aree con governi federali.
+Integrazione della rete CDN è abilitata in tutte le aree Goverment Federal ed execpt di centri dati di Azure hello Cina.
 
-Dopo essere stata attivata, la configurazione di **Controllo di accesso**, **Nome host personalizzato** e **Autenticazione firma Akamai** viene disabilitata.
+Una volta attivato, hello **controllo di accesso**, **nome host personalizzato** e **autenticazione della firma Akamai** configurazione Ottiene disabilitata.
  
 > [!IMPORTANT]
-> L'integrazione di Servizi multimediali di Azure con la rete CDN di Azure è implementata nella **rete CDN di Azure da Verizon** per gli endpoint di streaming standard. Gli endpoint di streaming Premium possono essere configurati usando tutti **i provider e i livelli di prezzo della rete CDN di Azure**. Per altre informazioni sulle funzionalità della rete CDN di Azure, vedere la [Panoramica della rete per la distribuzione di contenuti (rete CDN) di Azure](../cdn/cdn-overview.md).
+> L'integrazione di Servizi multimediali di Azure con la rete CDN di Azure è implementata nella **rete CDN di Azure da Verizon** per gli endpoint di streaming standard. Gli endpoint di streaming Premium possono essere configurati usando tutti **i provider e i livelli di prezzo della rete CDN di Azure**. Per ulteriori informazioni sulle funzionalità di rete CDN di Azure, vedere hello [Panoramica della rete CDN](../cdn/cdn-overview.md).
  
 ### <a name="additional-considerations"></a>Considerazioni aggiuntive
 
-* Quando la rete CDN è abilitata per un endpoint di streaming, i client non possono richiedere il contenuto direttamente dall'origine. Se è necessario testare il contenuto con o senza la rete CDN, è possibile creare un altro endpoint di streaming per la rete CDN.
-* Il nome host dell'endpoint di streaming rimane invariato dopo l'abilitazione della rete CDN. Non è necessario apportare modifiche al flusso di lavoro di Servizi multimediali dopo l'abilitazione della rete CDN. Ad esempio, se il nome host dell'endpoint di streaming è strasbourg.streaming.mediaservices.windows.net, dopo avere abilitato la rete CDN, viene usato lo stesso identico nome host.
-* Per i nuovi endpoint di streaming, è possibile abilitare la rete CDN semplicemente creando un nuovo endpoint. Per gli endpoint di streaming esistenti, è necessario arrestare prima l'endpoint e quindi abilitare/disabilitare la rete CDN.
+* Quando rete CDN è abilitata per un endpoint di streaming, i client non è possibile richiedere contenuto direttamente dall'origine di hello. Se è necessario hello possibilità tootest i contenuti con o senza rete CDN, è possibile creare un altro endpoint di streaming che non è abilitata CDN.
+* I flusso rimane hostname endpoint hello uguale dopo l'abilitazione della rete CDN. Non è necessario toomake qualsiasi flusso di lavoro servizi di supporto tooyour di modifiche dopo aver abilitata la rete CDN. Ad esempio, se il nome host dell'endpoint di streaming è strasbourg.streaming.mediaservices.windows.net, dopo l'abilitazione della rete CDN, hello esatta stesso nome host viene utilizzato.
+* Per i nuovi endpoint di streaming, è possibile abilitare CDN semplicemente creando un nuovo endpoint; per gli endpoint di streaming esistenti, è necessario endpoint hello di arresto toofirst e quindi abilitare o disabilitare hello CDN.
 * L'endpoint di streaming standard può essere configurato solo tramite **il provider della rete CDN Standard di Verizon** nel portale di gestione di Azure. Tuttavia, è possibile abilitare altri provider della rete CDN di Azure usando le API REST.
 
 ## <a name="configure-cdn-profile"></a>Configurazione del profilo della rete CDN
 
-È possibile configurare il profilo della rete CDN selezionando il pulsante **Gestisci rete CDN** nella parte superiore.
+È possibile configurare il profilo CDN hello selezionando hello **gestire CDN** pulsante dall'alto hello.
 
 ![endpoint di streaming](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints6.png)
 

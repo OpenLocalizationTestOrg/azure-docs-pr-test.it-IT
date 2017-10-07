@@ -1,6 +1,6 @@
 ---
-title: Azure Application Insights per Windows Server e ruoli di lavoro | Microsoft Docs
-description: "Aggiungere manualmente Application Insights SDK all'applicazione ASP.NET per analizzare utilizzo, disponibilità e prestazioni."
+title: ruoli di server e di lavoro di Application Insights per Windows aaaAzure | Documenti Microsoft
+description: "Aggiungere manualmente le prestazioni, disponibilità e utilizzo di Application Insights SDK tooyour ASP.NET dell'applicazione tooanalyze hello."
 services: application-insights
 documentationcenter: .net
 author: CFreemanwa
@@ -13,131 +13,131 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/15/2017
 ms.author: bwren
-ms.openlocfilehash: 4b9f8c618a69c4c157dafeb7f726aae24efad428
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 64643ef637195d10f87fc6020a77169bca66c1f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manually-configure-application-insights-for-net-applications"></a>Configurare manualmente Application Insights per applicazioni .NET
 
-È possibile configurare [Application Insights](app-insights-overview.md) per monitorare un'ampia gamma di applicazioni o componenti, microservizi o ruoli applicazione. Per i servizi e le app Web, Visual Studio offre una [configurazione in un solo passaggio](app-insights-asp-net.md). Per altri tipi di applicazione .NET, come ruoli server back-end o applicazioni desktop, è possibile configurare Application Insights manualmente.
+È possibile configurare [Application Insights](app-insights-overview.md) toomonitor un'ampia gamma di applicazioni o i ruoli applicazione, componenti o microservizi. Per i servizi e le app Web, Visual Studio offre una [configurazione in un solo passaggio](app-insights-asp-net.md). Per altri tipi di applicazione .NET, come ruoli server back-end o applicazioni desktop, è possibile configurare Application Insights manualmente.
 
 ![Grafici di monitoraggio delle prestazioni di esempio](./media/app-insights-windows-services/10-perf.png)
 
 #### <a name="before-you-start"></a>Prima di iniziare
 
-È necessario:
+Sono necessari:
 
-* Una sottoscrizione a [Microsoft Azure](http://azure.com). Se il team o l'organizzazione ha una sottoscrizione di Azure, il proprietario potrà aggiungere l'utente alla sottoscrizione usando il rispettivo [account Microsoft](http://live.com).
+* Una sottoscrizione troppo[Microsoft Azure](http://azure.com). Se il team o l'organizzazione dispone di una sottoscrizione di Azure, il proprietario di hello può aggiungere l'utente tooit, utilizzando il [account Microsoft](http://live.com).
 * Visual Studio 2013 o versione successiva.
 
 ## <a name="add"></a>1. Scegliere una risorsa di Application Insights
 
-La "risorsa" è la posizione in cui verranno raccolti e visualizzati i dati nel portale di Azure. È necessario decidere se crearne una nuova oppure condividerne una esistente.
+risorsa' Hello' è in cui i dati vengono raccolti e visualizzati nel portale di Azure hello. È necessario se toodecide toocreate uno nuovo, o una condivisione esistente.
 
 ### <a name="part-of-a-larger-app-use-existing-resource"></a>Parte di un'app più grande: usare una risorsa esistente
 
-Se l'applicazione Web include diversi componenti, ad esempio un'app Web front-end e uno o più servizi back-end, è consigliabile inviare i dati di telemetria di tutti i componenti alla stessa risorsa. In questo modo potranno essere visualizzati in una singola mappa delle applicazioni e sarà possibile tracciare una richiesta da un componente a un altro.
+Se l'applicazione web dispone di diversi componenti, ad esempio, un'applicazione web front-end e uno o più servizi back-end - quindi inviare i dati di telemetria da tutti i toohello componenti hello stessa risorsa. Verrà abilitarli toobe visualizzato in un singolo mapping di applicazioni e rendere possibili tootrace una richiesta da un componente tooanother.
 
-Se vengono già monitorati altri componenti dell'app, usare quindi la stessa risorsa.
+In tal caso, se si sta già monitorando altri componenti di questa app, quindi utilizza solo hello stessa risorsa.
 
-Aprire la risorsa nel [portale di Azure](https://portal.azure.com/). 
+Aprire la risorsa hello in hello [portale di Azure](https://portal.azure.com/). 
 
 ### <a name="self-contained-app-create-a-new-resource"></a>App completa: creare una nuova risorsa
 
-Se la nuova app non è correlata ad altre applicazioni, dovrà avere una propria risorsa.
+Se le applicazioni non correlate tooother hello nuova app, deve essere la propria risorsa.
 
-Accedere al [portale di Azure](https://portal.azure.com/)e creare una nuova risorsa di Application Insights. Scegliere ASP.NET come tipo di applicazione.
+Accedi toohello [portale di Azure](https://portal.azure.com/)e creare una nuova risorsa di Application Insights. Scegliere ASP.NET come tipo di applicazione hello.
 
 ![Fare clic su Nuovo, Application Insights](./media/app-insights-windows-services/01-new-asp.png)
 
-La scelta del tipo di applicazione determina l'impostazione del contenuto predefinito dei pannelli della risorsa.
+tipo di applicazione scelto Hello imposta contenuto predefinito hello dei pannelli risorse hello.
 
-## <a name="2-copy-the-instrumentation-key"></a>2. Eseguire una copia della chiave di strumentazione
-La chiave identifica la risorsa e verrà installata nell'SDK per indirizzare i dati alla risorsa.
+## <a name="2-copy-hello-instrumentation-key"></a>2. Copiare hello chiave di strumentazione
+chiave di Hello identifica risorse hello. Verrà installato appena in hello SDK, nella risorsa toohello dati toodirect di ordine.
 
-![Fare clic su Proprietà, selezionare il tasto e premere CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
+![Fare clic su proprietà, selezionare la chiave hello e premere ctrl + C](./media/app-insights-windows-services/02-props-asp.png)
 
-## <a name="sdk"></a>3. Installare il pacchetto Application Insights nell'applicazione
-L'installazione e la configurazione del pacchetto Application Insights variano a seconda della piattaforma in cui si lavora. 
+## <a name="sdk"></a>3. Installare il pacchetto Application Insights hello nell'applicazione
+Installazione e configurazione di hello Application Insights pacchetto varia a seconda della piattaforma hello che stai lavorando. 
 
 1. In Visual Studio fare clic con il pulsante destro del mouse sul progetto e scegliere **Gestisci pacchetti NuGet**.
    
-    ![Fare clic con il pulsante destro del mouse sul progetto e selezionare Gestisci pacchetti NuGet](./media/app-insights-windows-services/03-nuget.png)
-2. Installare il pacchetto Application Insights per le app di Windows Server, "Microsoft.ApplicationInsights.WindowsServer".
+    ![Fare clic sul progetto hello e scegliere Gestisci pacchetti Nuget](./media/app-insights-windows-services/03-nuget.png)
+2. Installare il pacchetto Application Insights hello per le app di Windows server, "Microsoft.ApplicationInsights.WindowsServer".
    
     ![Cercare "Application Insights"](./media/app-insights-windows-services/04-ai-nuget.png)
    
     *Quale versione?*
 
-    Per provare le funzionalità più recenti, selezionare **Includi versione preliminare**. I documenti o i blog pertinenti indicano se è necessaria una versione preliminare.
+    Controllare **Includi versione preliminare** se si desidera tootry funzionalità più recenti. documenti rilevanti Hello o blog Nota Se è necessaria una versione non definitiva.
     
     *È possibile usare altri pacchetti?*
    
-    Sì. Se si vuole solo usare l'API per inviare i propri dati di telemetria, scegliere "Microsoft.ApplicationInsights". Il pacchetto per Windows Server include l'API e diversi altri pacchetti, ad esempio la raccolta dei contatori delle prestazioni e il monitoraggio delle dipendenze. 
+    Sì. Se si desidera toouse hello API toosend propri dati di telemetria, scegliere "Microsoft. applicationinsights". pacchetto di Windows Server Hello include hello API più una serie di altri pacchetti, ad esempio la raccolta dei contatori delle prestazioni e il monitoraggio della dipendenza. 
 
-### <a name="to-upgrade-to-future-package-versions"></a>Per eseguire l'aggiornamento a future versioni del pacchetto
-Si rilascerà una nuova versione del SDK di tanto in tanto.
+### <a name="tooupgrade-toofuture-package-versions"></a>versioni del pacchetto toofuture tooupgrade
+Microsoft rilasciare una nuova versione di hello SDK da tootime ora.
 
-Per eseguire l'aggiornamento a una [nuova versione del pacchetto](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/), riaprire Gestione pacchetti NuGet e filtrare i pacchetti installati. Selezionare **Microsoft.ApplicationInsights.WindowsServer** e scegliere **Aggiorna**.
+tooupgrade tooa [nuova versione del pacchetto di hello](https://github.com/Microsoft/ApplicationInsights-dotnet-server/releases/), riaprire Gestione pacchetti NuGet e filtrare i pacchetti installati. Selezionare **Microsoft.ApplicationInsights.WindowsServer** e scegliere **Aggiorna**.
 
-Se sono state eseguite tutte le personalizzazioni apportate al file ApplicationInsights.config, salvarne una copia prima di eseguire l'aggiornamento e, successivamente, unire le modifiche nella nuova versione.
+Se sono state tooApplicationInsights.config eventuali personalizzazioni, salvare una copia prima di eseguire l'aggiornamento, nella nuova versione di hello in seguito il merge delle modifiche.
 
 ## <a name="4-send-telemetry"></a>4. Inviare dati di telemetria
-**Se è stato installato solo il pacchetto dell'API:**
+**Se è installato solo il pacchetto hello API:**
 
-* Impostare la chiave di strumentazione nel codice, ad esempio in `main()`: 
+* Impostare la chiave di strumentazione hello nel codice, ad esempio `main()`: 
   
-    `TelemetryConfiguration.Active.InstrumentationKey = "` *nome della chiave* `";` 
-* [Scrivere dati di telemetria usando l'API](app-insights-api-custom-events-metrics.md#ikey).
+    `TelemetryConfiguration.Active.InstrumentationKey = "`*nome della chiave*`";` 
+* [Scrivere i propri dati di telemetria usando API hello](app-insights-api-custom-events-metrics.md#ikey).
 
-**Se sono installati altri pacchetti di Application Insights** è possibile, se si preferisce, usare il file config per impostare la chiave di strumentazione:
+**Se sono installati altri pacchetti di Application Insights,** è possibile utilizzare in se si preferisce, chiave di strumentazione hello tooset file config hello:
 
-* Modificare ApplicationInsights.config (che è stato aggiunto dall'installazione di NuGet). Inserire questo comando immediatamente prima del tag di chiusura:
+* Modificare Applicationinsights (che è stato aggiunto per installare NuGet hello). Inserire questa istruzione prima hello tag di chiusura:
   
-    `<InstrumentationKey>` *chiave di strumentazione copiata* `</InstrumentationKey>`
-* Verificare che le proprietà di ApplicationInsights.config in Esplora soluzioni siano impostate su **= Contenuto, Copia nella directory di output = Copia**.
+    `<InstrumentationKey>`*chiave di strumentazione hello copiato*`</InstrumentationKey>`
+* Verificare che la proprietà hello di Applicationinsights in Esplora soluzioni è impostata troppo**Build Action = il contenuto, copia tooOutput Directory = copia**.
 
-È utile impostare la chiave di strumentazione nel codice se si vuole [cambiare la chiave per configurazioni della build diverse](app-insights-separate-resources.md). Se si imposta la chiave nel codice, non è necessario impostarla nel file `.config`.
+È utile tooset hello strumentazione chiave nel codice se si desidera troppo[chiave hello commutatore per diverse configurazioni della build](app-insights-separate-resources.md). Se si imposta la chiave hello nel codice, non è necessario tooset in hello `.config` file.
 
 ## <a name="run"></a> Eseguire il progetto
-Eseguire l'applicazione premendo **F5** e provarla aprendo pagine diverse per generare alcuni dati di telemetria.
+Hello utilizzare **F5** toorun l'applicazione e per provarlo: Apri diverse pagine toogenerate alcuni dati di telemetria.
 
-In Visual Studio verrà visualizzato il conteggio degli eventi che sono stati inviati.
+In Visual Studio, verrà visualizzato un conteggio di eventi di hello che sono stati inviati.
 
 ![Conteggio degli eventi in Visual Studio](./media/app-insights-windows-services/appinsights-09eventcount.png)
 
 ## <a name="monitor"></a> Visualizzare i dati di telemetria
-Tornare al [portale di Azure](https://portal.azure.com/) e passare alla risorsa Application Insights.
+Restituire toohello [portale di Azure](https://portal.azure.com/) e individuare la risorsa di Application Insights tooyour.
 
-Cercare i dati nei grafici Panoramica. All'inizio si vedranno solo uno o due punti. Ad esempio:
+Cercare i dati nei grafici Panoramica hello. All'inizio si vedranno solo uno o due punti. ad esempio:
 
-![Fare clic per visualizzare altri dati.](./media/app-insights-windows-services/12-first-perf.png)
+![Fare clic sui dati toomore](./media/app-insights-windows-services/12-first-perf.png)
 
-Fare clic su qualsiasi grafico per visualizzare metriche più dettagliate. [Altre informazioni sulle metriche.](app-insights-web-monitor-performance.md)
+Fare clic su tramite qualsiasi toosee grafico le metriche dettagliate. [Altre informazioni sulle metriche.](app-insights-web-monitor-performance.md)
 
 ### <a name="no-data"></a>Dati non visualizzati
-* Usare l'applicazione, aprendo pagine diverse in modo da generare alcuni dati di telemetria.
-* Aprire il riquadro [Ricerca](app-insights-diagnostic-search.md) per visualizzare i singoli eventi. Talvolta agli eventi ci vuole un po' più di tempo per passare attraverso la pipeline delle metriche.
-* Attendere alcuni secondi e fare clic su **Aggiorna**. I grafici si aggiornano periodicamente, ma è possibile aggiornare manualmente se si è in attesa di alcuni dati da visualizzare.
+* Utilizzare l'applicazione hello, apertura di pagine diverse in modo che generi alcuni dati di telemetria.
+* Aprire hello [ricerca](app-insights-diagnostic-search.md) riquadro, toosee singoli eventi. In alcuni casi accetta eventi poco mentre più tooget tramite pipeline metriche hello.
+* Attendere alcuni secondi e fare clic su **Aggiorna**. Grafici Aggiorna periodicamente se stessi, ma è possibile aggiornare manualmente, se in attesa per tooshow alcuni dati.
 * Vedere [Domande su Application Insights per ASP.NET](app-insights-troubleshoot-faq.md).
 
 ## <a name="publish-your-app"></a>Pubblicare l'app
-Distribuire ora l'applicazione nel server o in Azure e osservare l'accumulo dei dati.
+Ora di distribuire il server di applicazioni tooyour o accumulano dati hello tooAzure ed espressioni di controllo.
 
-![Utilizzare Visual Studio per pubblicare l'app](./media/app-insights-windows-services/15-publish.png)
+![Uso di Visual Studio toopublish dell'app](./media/app-insights-windows-services/15-publish.png)
 
-Quando si esegue la modalità debug, la telemetria viene velocizzata nella pipeline, quindi i dati vengono visualizzati in pochi secondi. Quando si distribuisce l'applicazione nella configurazione Release, i dati si accumulano più lentamente.
+Quando si esegue in modalità di debug, dati di telemetria viene avviata tramite pipeline hello, in modo che verranno visualizzati i dati visualizzati in pochi secondi. Quando si distribuisce l'applicazione nella configurazione Release, i dati si accumulano più lentamente.
 
-### <a name="no-data-after-you-publish-to-your-server"></a>Nessun dato dopo la pubblicazione nel server?
-Aprire le porte per il traffico in uscita nel firewall del server. Per l'elenco degli indirizzi necessari, vedere [questa pagina](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses). 
+### <a name="no-data-after-you-publish-tooyour-server"></a>Nessun dato dopo la pubblicazione tooyour server?
+Aprire le porte per il traffico in uscita nel firewall del server. Vedere [questa pagina](https://docs.microsoft.com/azure/application-insights/app-insights-ip-addresses) per elenco hello di indirizzi richiesti 
 
 ### <a name="trouble-on-your-build-server"></a>Problemi del server di compilazione
 Vedere [questa sezione sulla risoluzione dei problemi](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild).
 
 > [!NOTE]
-> Se l’app genera molti dati di telemetria, il modulo di campionamento adattivo riduce automaticamente il volume che viene inviato al portale inviando solo una frazione rappresentativa di eventi. Tuttavia, gli eventi che fanno parte della stessa richiesta verranno selezionati o deselezionati come gruppo, per rendere possibile lo spostamento tra eventi correlati. 
+> Se l'applicazione genera un grande quantità di dati di telemetria, modulo di campionamento adattivo hello ridurrà automaticamente volume hello inviato toohello portale inviando solo una frazione rappresentativa di eventi. Tuttavia, gli eventi che sono correlato toohello stessa richiesta verrà selezionata o deselezionata come gruppo, in modo che è possibile spostarsi tra gli eventi correlati. 
 > [Informazioni sul campionamento](app-insights-sampling.md).
 > 
 > 
@@ -147,5 +147,5 @@ Vedere [questa sezione sulla risoluzione dei problemi](app-insights-asp-net-trou
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/100/player]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Aggiungere altri dati di telemetria](app-insights-asp-net-more.md) per un quadro completo a 360 gradi dell'applicazione.
+* [Aggiungere ulteriori dati di telemetria](app-insights-asp-net-more.md) tooget hello 360 gradi di visualizzazione dell'applicazione.
 

@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'applicazione Node.js che usa MongoDB | Documentazione Microsoft
-description: "Procedura dettagliata sulla creazione di pacchetti di più eseguibili guest da distribuire in un cluster di Azure Service Fabric"
+title: un'applicazione Node.js che usa MongoDB aaaDeploy | Documenti Microsoft
+description: "Procedura dettagliata sulla toopackage cluster più guest eseguibili toodeploy tooan Azure Service Fabric"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/02/2017
 ms.author: msfussell;mikhegn
-ms.openlocfilehash: b71723034e5f663986c49481072bfd6779d3d57b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2775080f0d9d42d6ba15cca911e23067106be26d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-multiple-guest-executables"></a>Distribuire più eseguibili guest
-Questo articolo descrive come creare pacchetti di più eseguibili guest e in che modo distribuirli in Azure Service Fabric. Per la creazione e la distribuzione di un pacchetto di Service Fabric, consultare l'articolo [Distribuire un eseguibile guest in Service Fabric](service-fabric-deploy-existing-app.md).
+Questo articolo viene illustrato come toopackage e distribuire più guest eseguibili tooAzure Service Fabric. Compilazione e distribuzione di un singolo pacchetto di Service Fabric leggere come troppo[distribuire un tooService eseguibile guest infrastruttura](service-fabric-deploy-existing-app.md).
 
-Questa procedura dettagliata illustra come distribuire un'applicazione con un front-end di Node.js che usa MongoDB come archivio dati, ma può essere adottata per qualsiasi applicazione che presenta dipendenze da un'altra applicazione.   
+Durante questa procedura dettagliata illustra come un'applicazione con un front-end Node.js che usa MongoDB come archivio dati hello toodeploy, è possibile applicare hello passaggi tooany le applicazioni con dipendenze da un'altra applicazione.   
 
-È possibile usare Visual Studio per generare il pacchetto dell'applicazione che contiene più eseguibili guest. Vedere [Uso di Visual Studio per creare il pacchetto di un'applicazione esistente](service-fabric-deploy-existing-app.md). Dopo aver aggiunto il primo eseguibile guest, fare clic con il tasto destro sul progetto dell'applicazione e selezionare **Aggiungi -> Nuovo servizio Service Fabric** per aggiungere il secondo progetto eseguibile guest alla soluzione. Nota: se si sceglie il collegamento all'origine nel progetto di Visual Studio, la compilazione della soluzione di Visual Studio assicura che il pacchetto dell'applicazione venga aggiornato in base alle modifiche nell'origine. 
+È possibile utilizzare Visual Studio tooproduce hello pacchetto di applicazione contiene più file eseguibili di guest. Vedere [toopackage tramite Visual Studio un'applicazione esistente](service-fabric-deploy-existing-app.md). Dopo aver aggiunto eseguibile guest prima hello, fare clic sul progetto di applicazione hello e seleziona hello **Aggiungi -> servizio nuova Service Fabric** tooadd hello secondo guest eseguibile toohello soluzione del progetto. Nota: Se si sceglie l'origine di hello toolink nel progetto di Visual Studio, hello soluzione Visual Studio, hello garantisce che il pacchetto dell'applicazione è toodate con le modifiche nell'origine hello. 
 
 ## <a name="samples"></a>Esempi
 * [Esempio per la creazione di un pacchetto e distribuzione di un file guest eseguibile](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
-* [Esempio di due eseguibili guest (C# e nodejs) che comunicano tramite il servizio Naming usando REST](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+* [Esempio di guest due file eseguibili (c# e nodejs) comunicano tramite il servizio di denominazione hello tramite REST](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
-## <a name="manually-package-the-multiple-guest-executable-application"></a>Creare manualmente i pacchetti dell'applicazione eseguibile guest multipla
-In alternativa, è possibile distribuire manualmente l'eseguibile guest. Per quanto riguarda la creazione di pacchetti manuale, l'articolo descrive l'uso dello strumento di packaging di Service Fabric, disponibile all'indirizzo [http://aka.ms/servicefabricpacktool](http://aka.ms/servicefabricpacktool).
+## <a name="manually-package-hello-multiple-guest-executable-application"></a>Manualmente i pacchetti hello applicazione eseguibile guest multiple
+In alternativa è possibile creare manualmente un pacchetto guest hello eseguibile. Per la creazione del pacchetto manuale hello, in questo articolo Usa strumento di creazione di pacchetti di hello Service Fabric, è disponibile all'indirizzo [http://aka.ms/servicefabricpacktool](http://aka.ms/servicefabricpacktool).
 
-### <a name="packaging-the-nodejs-application"></a>Creazione di un pacchetto dell'applicazione Node.js
-Questo articolo presuppone che Node.js non sia installato nei nodi del cluster di Service Fabric. Sarà quindi necessario aggiungere Node.exe alla directory radice dell'applicazione nodo prima della creazione del pacchetto. La struttura di directory dell'applicazione Node.js (che usa il framework Web Express e il motore per la creazione di modelli Jade) dovrebbe essere simile alla seguente:
+### <a name="packaging-hello-nodejs-application"></a>Hello pacchetti applicazione Node.js
+Questo articolo si presuppone che non è installato Node.js sui nodi nel cluster di Service Fabric hello hello. Di conseguenza, è necessario tooadd Node.exe toohello radice dell'applicazione nodo prima della creazione del pacchetto. struttura di directory Hello di un'applicazione hello Node.js (tramite un framework web Express e motore del modello Jade) dovrebbe essere simile toohello uno di seguito:
 
 ```
 |-- NodeApplication
@@ -60,22 +60,22 @@ Questo articolo presuppone che Node.js non sia installato nei nodi del cluster d
     |-- node.exe
 ```
 
-Il passaggio successivo consiste nella creazione di un pacchetto per l'applicazione Node.js. Il codice seguente crea un pacchetto dell'applicazione dell'infrastruttura di servizi contenente l'applicazione Node.js.
+Come passaggio successivo, si crea un pacchetto di applicazione per hello applicazione Node.js. codice Hello seguente crea un pacchetto di applicazione di Service Fabric che contiene un'applicazione hello Node.js.
 
 ```
 .\ServiceFabricAppPackageUtil.exe /source:'[yourdirectory]\MyNodeApplication' /target:'[yourtargetdirectory] /appname:NodeService /exe:'node.exe' /ma:'bin/www' /AppType:NodeAppType
 ```
 
-Di seguito è riportata una descrizione dei parametri in uso:
+Di seguito è riportata una descrizione dei parametri di hello in uso:
 
-* **/source** : punta alla directory dell'applicazione da includere nel pacchetto.
-* **/target** : definisce la directory in cui creare il pacchetto. Questa directory deve essere diversa dalla directory di origine.
-* **/appname** : definisce il nome dell'applicazione esistente. È importante comprendere che questo nome equivale al nome del servizio nel manifesto e non al nome dell'applicazione di Service Fabric.
-* **/exe**: definisce il file eseguibile che dovrebbe essere avviato da Service Fabric, in questo caso `node.exe`.
-* **/ma** : definisce l'argomento usato per avviare il file eseguibile. Poiché Node.js non è installato, è necessario che Service Fabric avvii il server Web Node.js eseguendo `node.exe bin/www`.  `/ma:'bin/www'` indica allo strumento di creazione pacchetti di usare `bin/ma` come argomento per node.exe.
-* **/AppType** : definisce il nome del tipo di applicazione di Service Fabric.
+* **/Source** punti toohello directory dell'applicazione hello che deve essere incluso nel pacchetto.
+* **/target** definisce hello directory nella quale hello pacchetto deve essere creato. La directory ha toobe diversa dalla directory di origine hello.
+* **/appname** definisce il nome dell'applicazione hello di un'applicazione hello esistente. È importante toounderstand che questo si traduce il nome del servizio toohello nel manifesto hello e non nome dell'applicazione Service Fabric toohello.
+* **/exe** definisce hello eseguibile che Service Fabric dovrebbe toolaunch, in questo caso `node.exe`.
+* **/ma** definisce hello argomento che viene utilizzato toolaunch hello eseguibile. Node.js non è installato, Service Fabric deve server web Node.js di hello toolaunch eseguendo `node.exe bin/www`.  `/ma:'bin/www'`indica toouse strumento di creazione di pacchetti hello `bin/ma` come argomento di hello per node.exe.
+* **/ AppType** definisce nome tipo dell'applicazione di Service Fabric hello.
 
-Se si passa alla directory specificata nel parametro /target, si noterà che lo strumento ha creato un pacchetto di Service Fabric pienamente funzionante, come illustrato di seguito:
+Se si seleziona una directory specificata nel parametro /target hello toohello, è possibile visualizzare che tale strumento hello è creato un pacchetto di Service Fabric completamente funziona, come illustrato di seguito:
 
 ```
 |--[yourtargetdirectory]
@@ -95,7 +95,7 @@ Se si passa alla directory specificata nel parametro /target, si noterà che lo 
         |-- ServiceManifest.xml
     |-- ApplicationManifest.xml
 ```
-Il file ServiceManifest.xml generato include ora una sezione che descrive come avviare il server Web Node.js, come illustrato nel frammento di codice seguente:
+Hello ServiceManifest.xml generato include ora una sezione che descrive come server web Node.js di hello devono essere avviati, come illustrato nel frammento di codice hello seguente:
 
 ```xml
 <CodePackage Name="C" Version="1.0">
@@ -108,7 +108,7 @@ Il file ServiceManifest.xml generato include ora una sezione che descrive come a
     </EntryPoint>
 </CodePackage>
 ```
-In questo esempio il server Web Node.js resta in ascolto sulla porta 3000 ed è quindi necessario aggiornare le informazioni sull'endpoint nel file ServiceManifest.xml, come illustrato di seguito.   
+In questo esempio, server web Node.js di hello è in ascolto tooport 3000, pertanto è necessario tooupdate hello informazioni sull'endpoint hello ServiceManifest.xml come illustrato di seguito.   
 
 ```xml
 <Resources>
@@ -117,10 +117,10 @@ In questo esempio il server Web Node.js resta in ascolto sulla porta 3000 ed è 
       </Endpoints>
 </Resources>
 ```
-### <a name="packaging-the-mongodb-application"></a>Creazione di un pacchetto dell'applicazione MongoDB
-Dopo aver creato il pacchetto dell'applicazione Node.js, è possibile proseguire e creare il pacchetto di MongoDB. Come accennato in precedenza, i passaggi da eseguire a questo punto non sono specifici di Node.js e MongoDB, ma si applicano a tutte le applicazioni di cui deve essere creato un pacchetto come singola applicazione di Service Fabric.  
+### <a name="packaging-hello-mongodb-application"></a>Hello pacchetti applicazione di MongoDB
+Ora che è stata compressa un'applicazione hello Node.js, è possibile procedere e pacchetti di MongoDB. Come già accennato, hello passaggi che attraversano ora non sono specifiche tooNode.js e MongoDB. Infatti, si applicano tooall applicazioni che sono destinate toobe riuniti insieme come una sola applicazione di Service Fabric.  
 
-Per creare un pacchetto di MongoDB, è opportuno assicurarsi di aver creato un pacchetto di Mongod.exe e Mongo.exe. Entrambi i file binari si trovano nella directory `bin` della directory di installazione di MongoDB. La struttura di directory è simile alla seguente.
+toopackage MongoDB, si desidera che crei Mongod.exe e Mongo.exe toomake. Entrambi i file binari si trovano in hello `bin` directory della directory di installazione di MongoDB. struttura di directory Hello è simile toohello uno sotto.
 
 ```
 |-- MongoDB
@@ -129,25 +129,25 @@ Per creare un pacchetto di MongoDB, è opportuno assicurarsi di aver creato un p
         |-- mongo.exe
         |-- anybinary.exe
 ```
-Service Fabric deve avviare MongoDB con un comando simile al seguente ed è quindi necessario usare il parametro `/ma` quando si crea il pacchetto di MongoDB.
+Service Fabric deve toostart MongoDB con un toohello simile comando uno riportato di seguito, pertanto è necessario hello toouse `/ma` parametro durante l'assemblaggio di MongoDB.
 
 ```
-mongod.exe --dbpath [path to data]
+mongod.exe --dbpath [path toodata]
 ```
 > [!NOTE]
-> Se la directory dei dati di MongoDB viene inserita nella directory locale del nodo e si verifica un errore nel nodo, i dati non vengono mantenuti. È quindi consigliabile usare un'archiviazione durevole o implementare un set di repliche di MongoDB per evitare la perdita di dati.  
+> dati Hello non viene mantenuti nel caso di hello di un errore del nodo se directory dei dati MongoDB hello è stato inserito nella directory locale di hello del nodo hello. Utilizzare l'archiviazione durevole o implementare una replica di MongoDB Imposta ordine tooprevent perdita di dati.  
 >
 >
 
-In PowerShell o nella shell dei comandi verrà eseguito lo strumento di creazione di pacchetti con i parametri seguenti:
+Nella shell dei comandi di PowerShell o hello, Esegui lo strumento di creazione di pacchetti hello con hello seguenti parametri:
 
 ```
-.\ServiceFabricAppPackageUtil.exe /source: [yourdirectory]\MongoDB' /target:'[yourtargetdirectory]' /appname:MongoDB /exe:'bin\mongod.exe' /ma:'--dbpath [path to data]' /AppType:NodeAppType
+.\ServiceFabricAppPackageUtil.exe /source: [yourdirectory]\MongoDB' /target:'[yourtargetdirectory]' /appname:MongoDB /exe:'bin\mongod.exe' /ma:'--dbpath [path toodata]' /AppType:NodeAppType
 ```
 
-Per aggiungere MongoDB al pacchetto dell'applicazione di Service Fabric, è necessario assicurarsi che il parametro /target punti alla stessa directory che contiene già il manifesto dell'applicazione insieme all'applicazione Node.js e che il nome usato sia lo stesso dell'elemento ApplicationType.
+In ordine tooadd MongoDB tooyour Service Fabric pacchetto di applicazione, è necessario che tale parametro /target hello punta toohello toomake stessa directory che contiene già manifesto dell'applicazione hello insieme a un'applicazione hello Node.js. È inoltre necessario assicurarsi che si sta utilizzando toomake hello ApplicationType omonima.
 
-Passare alla directory ed esaminare gli elementi creati dallo strumento.
+Consente di sfogliare la directory toohello ed esaminare lo strumento hello è stato creato.
 
 ```
 |--[yourtargetdirectory]
@@ -163,7 +163,7 @@ Passare alla directory ed esaminare gli elementi creati dallo strumento.
         |-- ServiceManifest.xml
     |-- ApplicationManifest.xml
 ```
-Come si può vedere, lo strumento ha aggiunto una nuova cartella MongoDB alla directory contenente i file binari di MongoDB. Se si apre il file `ApplicationManifest.xml` , si può notare che il pacchetto contiene ora l'applicazione Node.js e MongoDB. Il codice seguente illustra il contenuto del manifesto dell'applicazione.
+Come si può notare, lo strumento hello aggiunta una nuova directory toohello cartella, MongoDB, che contiene i file binari di hello MongoDB. Se si apre hello `ApplicationManifest.xml` file, è possibile notare che il pacchetto hello ora contiene sia un'applicazione Node.js hello e MongoDB. codice Hello riportato di seguito visualizza hello il contenuto del manifesto dell'applicazione hello.
 
 ```xml
 <ApplicationManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ApplicationTypeName="MyNodeApp" ApplicationTypeVersion="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -188,8 +188,8 @@ Come si può vedere, lo strumento ha aggiunto una nuova cartella MongoDB alla di
 </ApplicationManifest>  
 ```
 
-### <a name="publishing-the-application"></a>Pubblicare l'applicazione
-L'ultimo passaggio consiste nella pubblicazione dell'applicazione nel cluster locale di Service Fabric usando gli script di PowerShell seguenti:
+### <a name="publishing-hello-application"></a>Pubblicazione dell'applicazione hello
+ultimo passaggio Hello è toopublish hello applicazione toohello dell'infrastruttura del servizio cluster locale usando gli script di PowerShell hello riportato di seguito:
 
 ```
 Connect-ServiceFabricCluster localhost:19000
@@ -203,18 +203,18 @@ Register-ServiceFabricApplicationType -ApplicationPathInImageStore 'NodeAppType'
 New-ServiceFabricApplication -ApplicationName 'fabric:/NodeApp' -ApplicationTypeName 'NodeAppType' -ApplicationTypeVersion 1.0  
 ```
 
-Dopo aver pubblicato l'applicazione nel cluster locale, è possibile accedere all'applicazione Node.js nella porta specificata nel manifesto del servizio dell'applicazione Node.js, ad esempio http://localhost:3000.
+Al termine dell'applicazione hello cluster locale toohello pubblicati correttamente, è possibile accedere a un'applicazione hello Node.js sulla porta hello che è stato immesso nel manifesto del servizio di un'applicazione hello Node.js, ad esempio http://localhost:3000 hello.
 
-In questa esercitazione si è appreso come distribuire facilmente due applicazioni esistenti come una singola applicazione di Service Fabric e come distribuirle in Service Fabric in modo da sfruttare i vantaggi di alcune delle funzionalità di Service Fabric, come la disponibilità elevata e l'integrazione con il sistema di integrità.
+In questa esercitazione è stato illustrato come tooeasily pacchetto due applicazioni esistente come un'applicazione di Service Fabric. Inoltre, si è appreso come toodeploy è tooService dell'infrastruttura in modo che può trarre vantaggio dall'hello alcune funzionalità di Service Fabric, ad esempio l'integrazione di sistema di integrità e disponibilità elevata.
 
 
-## <a name="adding-more-guest-executables-to-an-existing-application-using-yeoman-on-linux"></a>Aggiunta di più eseguibili guest a un'applicazione esistente usando Yeoman in Linux
+## <a name="adding-more-guest-executables-tooan-existing-application-using-yeoman-on-linux"></a>Aggiunta di ulteriori guest eseguibili tooan applicazione esistente tramite Yeoman in Linux
 
-Per aggiungere un altro servizio a un'applicazione già creata mediante `yo`, seguire questa procedura: 
-1. Modificare la directory impostandola sulla radice dell'applicazione esistente.  Ad esempio, `cd ~/YeomanSamples/MyApplication`, se `MyApplication` è l'applicazione creata da Yeoman.
-2. Eseguire `yo azuresfguest:AddService` e specificare i dettagli necessari.
+tooadd già un'altra applicazione tooan di servizio creato utilizzando `yo`, eseguire hello alla procedura seguente: 
+1. Cambiare directory toohello principale di un'applicazione hello esistente.  Ad esempio, `cd ~/YeomanSamples/MyApplication`, se `MyApplication` è un'applicazione hello creata da Yeoman.
+2. Eseguire `yo azuresfguest:AddService` e fornire i dettagli necessari hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Per avere informazioni sulla distribuzione di contenitori, consultare [Panoramica di Service Fabric e contenitori](service-fabric-containers-overview.md)
 * [Esempio per la creazione di un pacchetto e distribuzione di un file guest eseguibile](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
-* [Esempio di due eseguibili guest (C# e nodejs) che comunicano tramite il servizio Naming usando REST](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+* [Esempio di guest due file eseguibili (c# e nodejs) comunicano tramite il servizio di denominazione hello tramite REST](https://github.com/Azure-Samples/service-fabric-dotnet-containers)

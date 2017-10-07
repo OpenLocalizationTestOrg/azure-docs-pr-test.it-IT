@@ -1,5 +1,5 @@
 ---
-title: Personalizzare i cluster Hadoop per l'analisi scientifica dei dati per i team | Documentazione Microsoft
+title: aaaCustomize Hadoop cluster per processo di analisi scientifica dei dati di Team hello | Documenti Microsoft
 description: "Moduli di Python più diffusi resi disponibili nei cluster personalizzati Hadoop di Azure HDInsight."
 services: machine-learning
 documentationcenter: 
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: 53ff04ee66b08ae36f3550536c659a547c658fd9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e192542dd39f71bccbb5163382b4050d0f12ad95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-azure-hdinsight-hadoop-clusters-for-the-team-data-science-process"></a>Personalizzare i cluster Hadoop di Azure HDInsight per l'analisi scientifica dei dati per i team
-Questo articolo descrive come personalizzare un cluster Hadoop di HDInsight mediante l'installazione di Anaconda a 64 bit (Python 2.7) in ogni nodo quando viene eseguito il provisioning del cluster come servizio HDInsight. L'articolo illustra inoltre come accedere al nodo head per inviare i processi personalizzati al cluster. Questa personalizzazione rende molti moduli Python comuni, che sono inclusi in Anaconda, facilmente disponibili per l'uso nelle funzioni definite dall'utente (UDF) progettate per elaborare i record di Hive nel cluster. Per le istruzioni sulle procedure impiegate in questo scenario, vedere [Come inviare query Hive](machine-learning-data-science-move-hive-tables.md#submit).
+# <a name="customize-azure-hdinsight-hadoop-clusters-for-hello-team-data-science-process"></a>Personalizzare i cluster di Azure HDInsight Hadoop per hello processo di analisi scientifica dei dati di Team
+In questo articolo viene descritto come toocustomize un HDInsight Hadoop cluster tramite l'installazione a 64 bit Anaconda (Python 2.7) in ogni nodo quando viene eseguito il provisioning di cluster hello come un servizio HDInsight. Viene inoltre illustrato come tooaccess hello cluster toohello di nodo head toosubmit processi personalizzati. Questa personalizzazione rende molti moduli Python più diffusi, inclusi in Anaconda, funzioni definite (UDF) che sono facilmente disponibili per l'utilizzo in utente progettato tooprocess record Hive nel cluster hello. Per istruzioni sulle procedure hello utilizzate in questo scenario, vedere [come query Hive toosubmit](machine-learning-data-science-move-hive-tables.md#submit).
 
-Il menu seguente include collegamenti ad argomenti che descrivono come configurare i diversi ambienti di analisi scientifica dei dati usati dal [processo di analisi scientifica dei dati per i team](data-science-process-overview.md).
+i menu seguenti Hello collega tootopics che descrivono come tooset backup hello diversi ambienti di analisi scientifica dei dati utilizzata dal hello [Team Data Science processo (TDSP)](data-science-process-overview.md).
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
 ## <a name="customize"></a>Personalizzare i cluster Hadoop di Azure HDInsight
-Per creare un cluster Hadoop di HDInsight personalizzato, accedere innanzitutto al [**portale di Azure classico**](https://manage.windowsazure.com/), fare clic su **Nuovo** nell'angolo inferiore sinistro e quindi selezionare SERVIZI DATI -> HDINSIGHT -> **CREAZIONE PERSONALIZZATA** per visualizzare la finestra **Dettagli cluster**. 
+avviare toocreate un cluster HDInsight Hadoop personalizzato, effettuando l'accesso troppo[**portale di Azure classico**](https://manage.windowsazure.com/), fare clic su **New** nell'angolo inferiore, hello a sinistra e quindi selezionare i servizi dati -> HDINSIGHT -> **creazione personalizzata** toobring backup hello **i dettagli del Cluster** finestra. 
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img1.png)
 
-Immettere il nome del cluster da creare nella pagina 1 della configurazione e accettare i valori predefiniti per gli altri campi. Fare clic sulla freccia per passare alla pagina di configurazione successiva. 
+Immettere il nome di hello di hello cluster toobe creato nella pagina configurazione 1 e accettare i valori predefiniti per hello altri campi. Fare clic su hello freccia toogo toohello pagina Configurazione successiva. 
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img1.png)
 
-Nella pagina 2 della configurazione, immettere il numero di **NODI DEI DATI**, selezionare **RETE LOCALE/VIRTUALE**, quindi selezionare le dimensioni del **NODO HEAD** e del **NODO DATI**. Fare clic sulla freccia per passare alla pagina di configurazione successiva.
+Nella pagina configurazione 2, immettere il numero di hello di **nodi dati**selezionare hello **area/rete virtuale**e selezionare le dimensioni di hello di hello **nodo HEAD** e hello **Nodo dati**. Fare clic su hello freccia toogo toohello pagina Configurazione successiva.
 
 > [!NOTE]
-> La **RETE LOCALE/VIRTUALE** deve corrispondere all'area dell'account di archiviazione che verrà usato per il cluster Hadoop di HDInsight. In caso contrario, nella quarta pagina della configurazione, l'account di archiviazione non verrà visualizzato nell'elenco a discesa **NOME ACCOUNT**.
+> Hello **area/rete virtuale** ha toobe hello stesso come area hello hello dell'account di archiviazione che verrà utilizzato per il cluster HDInsight Hadoop hello toobe. In caso contrario, nella pagina di configurazione quarto hello, account di archiviazione hello non apparirà nell'elenco a discesa hello di **nome ACCOUNT**.
 > 
 > 
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img3.png)
 
-Nella pagina di configurazione 3, fornire un nome utente e una password per il cluster Hadoop di HDInsight. **Non** selezionare *Immettere metastore Hive/Oozie*. Quindi, fare clic sulla freccia per passare alla pagina di configurazione successiva. 
+Nella pagina Configurazione 3, fornire un nome utente e una password per hello cluster HDInsight Hadoop. **Non** hello seleziona *hello immettere Metastore Hive/Oozie*. Quindi, fare clic su hello freccia toogo toohello pagina Configurazione successiva. 
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img4.png)
 
-Nella pagina di configurazione 4, specificare il nome dell'account di archiviazione, il contenitore predefinito del cluster Hadoop di HDInsight. Se si seleziona *Crea contenitore predefinito* dall'elenco a discesa **CONTENITORE PREDEFINITO**, verrà creato un contenitore con lo stesso nome del cluster. Fare clic sulla freccia per passare all'ultima pagina di configurazione.
+Nella pagina configurazione 4, specificare il nome di account di archiviazione hello, il contenitore predefinito hello di hello cluster HDInsight Hadoop. Se si seleziona *crea contenitore predefinito* in hello **contenitore predefinito** elenco a discesa, un contenitore con hello stesso nome, verrà creato il cluster hello. Fare clic su hello freccia toogo toohello ultima pagina di configurazione.
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/customize-cluster-img5.png)
 
-Nell'ultima pagina di configurazione **Azioni script**, fare clic sul pulsante **aggiungi script azione** e compilare i campi di testo con i valori seguenti.
+In hello finale **azioni Script** pagina di configurazione, fare clic su **aggiungere script azione** pulsante e compilare i campi di testo hello con i seguenti valori hello.
 
-* **NOME**: qualsiasi stringa con il nome dell'azione script
+* **NOME** -qualsiasi stringa come nome hello di questa azione di script
 * **TIPO DI NODO**: selezionare **Tutti i nodi**
 * **URI SCRIPT** - *http://getgoing.blob.core.windows.net/publicscripts/Azure_HDI_Setup_Windows.ps1* 
-  * *publicscripts* è un contenitore pubblico nell'account di archiviazione 
-  * *getgoing* viene usato per condividere file di script di PowerShell per facilitare agli utenti l'uso di Azure
+  * *publicscripts* è un contenitore pubblico nell'account di archiviazione hello 
+  * *getgoing* utilizziamo tooshare PowerShell script file toofacilitate il lavoro degli utenti in Azure
 * **PARAMETRI**: lasciare vuoto
 
-Infine, selezionare il segno di spunta per avviare la creazione del cluster Hadoop di HDInsight personalizzato. 
+Infine, fare clic su hello segno di spunta toostart hello la creazione di cluster HDInsight Hadoop hello personalizzato. 
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/script-actions.png)
 
-## <a name="headnode"></a> Accedere al nodo head del cluster Hadoop
-È necessario abilitare l'accesso remoto al cluster Hadoop in Azure prima di poter accedere al nodo head del cluster Hadoop tramite RDP. 
+## <a name="headnode"></a>Accedere hello nodo Head del Hadoop Cluster
+Prima di poter accedere nodo head di hello del cluster Hadoop hello tramite RDP, è necessario abilitare cluster Hadoop toohello di accesso remoto in Azure. 
 
-1. Accedere al [**portale di Azure classico**](https://manage.windowsazure.com/), selezionare **HDInsight** a sinistra, selezionare il cluster Hadoop nell'elenco dei cluster, fare clic sulla scheda **CONFIGURAZIONE** e quindi fare clic sull'icona **ABILITA MODALITÀ REMOTA** nella parte inferiore della pagina.
+1. Accedi toohello [ **portale di Azure classico**](https://manage.windowsazure.com/)selezionare **HDInsight** hello sinistra, selezionare il cluster Hadoop hello elenco di cluster, fare clic su hello  **CONFIGURAZIONE** scheda e quindi fare clic su hello **ABILITA modalità remota** icona hello parte inferiore della pagina hello.
    
     ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-1.png)
-2. Nella finestra **Configura desktop remoto** compilare i campi NOME UTENTE e PASSWORD e quindi selezionare la data di scadenza dell'accesso remoto. Quindi fare clic sul segno di spunta per abilitare l'accesso remoto al nodo head del cluster Hadoop.
+2. In hello **configurare Desktop remoto** finestra immettere hello nome utente e i campi PASSWORD e selezionare la data di scadenza hello per l'accesso remoto. Quindi fare clic su hello segno di spunta tooenable hello accesso remoto toohello nodo head del cluster Hadoop hello.
    
     ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-2.png)
 
 > [!NOTE]
-> Il nome utente e la password per l'accesso remoto non sono il nome utente e la password usati per la creazione del cluster Hadoop. Si tratta di un set separato di credenziali. Inoltre, la data di scadenza dell'accesso remoto non deve superare i 7 giorni dalla data corrente.
+> nome utente Hello e una password per l'accesso remoto hello non sono il nome di utente hello e la password utilizzati durante la creazione di un cluster Hadoop hello. Si tratta di un set separato di credenziali. Data di scadenza hello di accesso remoto hello è inoltre toobe entro 7 giorni da hello data corrente.
 > 
 > 
 
-Dopo aver abilitato l'accesso remoto, fare clic su **CONNETTI** nella parte inferiore della pagina per accedere in remoto al nodo head. Si accede al nodo head del cluster Hadoop immettendo le credenziali per l'utente di accesso remoto specificato in precedenza.
+Dopo aver abilitato l'accesso remoto, fare clic su **CONNETTI** nella parte inferiore di hello di hello pagina tooremote nel nodo head hello. Toohello nodo head del cluster Hadoop hello si accede tramite l'immissione di credenziali hello per utente di accesso remoto hello specificato in precedenza.
 
 ![Creare un'area di lavoro](./media/machine-learning-data-science-customize-hadoop-cluster/enable-remote-access-3.png)
 
-I passaggi successivi del processo di analisi avanzata dei dati sono illustrati in [Processo di analisi scientifica dei dati per i team](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) e possono includere lo spostamento dei dati in HDInsight e le successive procedure di elaborazione e campionamento in preparazione dell'apprendimento dei dati con Azure Machine Learning.
+Hello passaggi successivi hello avanzate processo analitica vengono eseguito il mapping in hello [Team Data Science processo (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) e possono includere passaggi spostare i dati in HDInsight, quindi l'elaborazione e di esempio, in preparazione per l'apprendimento dai dati hello con Azure Machine Learning.
 
-Vedere [Come inviare query Hive](machine-learning-data-science-move-hive-tables.md#submit) per istruzioni sull'accesso ai moduli di Python inclusi in Anaconda dal nodo head del cluster nelle funzioni definite dall'utente che consentono di elaborare i record di Hive archiviati nel cluster.
+Vedere [come query Hive toosubmit](machine-learning-data-science-move-hive-tables.md#submit) per istruzioni su come tooaccess hello moduli Python inclusi in Anaconda dal nodo head di hello del cluster di hello nelle funzioni definite dall'utente (UDF) che vengono utilizzati tooprocess Hive record archiviati cluster hello.
 

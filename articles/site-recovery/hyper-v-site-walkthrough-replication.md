@@ -1,6 +1,6 @@
 ---
-title: Configurare i criteri di replica per la replica di VM Hyper-V (senza System Center VMM) in Azure con Azure Site Recovery | Microsoft Docs
-description: Vengono riepilogati i passaggi necessari per configurare criteri di replica per la replica di VM Hyper-V in Archiviazione di Azure
+title: aaaSet un criterio di replica per macchina virtuale Hyper-V replica (senza System Center VMM) tooAzure con Azure Site Recovery | Documenti Microsoft
+description: "Vengono riepilogati i passaggi di hello è necessario tooset un criterio di replica per la replica di archiviazione di macchine virtuali Hyper-V tooAzure"
 documentationcenter: 
 author: rayne-wiselman
 manager: carmonm
@@ -13,46 +13,46 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: ca5bec5cf1152e6259b9fe7a869edd2d62b88e1a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4bd7161f4a0f015da0ecf595fbc6861ede5d68b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-to-azure"></a>Passaggio 9: Configurare criteri di replica per la replica di VM Hyper-V in Azure
+# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-tooazure"></a>Passaggio 9: Configurare un criterio di replica per macchina virtuale Hyper-V replica tooAzure
 
-Questo articolo illustra come configurare criteri di replica quando si esegue la replica di VM Hyper-V in Azure (senza System Center VMM) usando il servizio [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure.
+Questo articolo viene descritto come tooset un criterio di replica quando si esegue la replica tooAzure macchine virtuali Hyper-V (senza System Center VMM) usando hello [Azure Site Recovery](site-recovery-overview.md) di hello portale di Azure.
 
 
-Inserire commenti e domande nella parte inferiore di questo articolo oppure nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Inviare commenti e domande nella parte inferiore di hello di questo articolo, o di hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="about-snapshots"></a>Informazioni sugli snapshot
 
-Hyper-V utilizza due tipi di snapshot, uno snapshot standard che fornisce uno snapshot incrementale dell'intera macchina virtuale e uno snapshot coerente con l'applicazione che accetta uno snapshot temporizzato dei dati dell'applicazione all'interno della macchina virtuale.
-    - Negli snapshot coerenti dell'applicazione viene usato il servizio Copia Shadow del volume (VSS) per garantire che le applicazioni siano coerenti durante la creazione dello snapshot.
-    - L'abilitazione di snapshot coerenti con l'applicazione influirà sulle prestazioni delle applicazioni in esecuzione nelle macchine virtuali di origine. Assicurarsi che il valore impostato sia inferiore al numero di punti di ripristino aggiuntivi configurati.
+Hyper-V usa due tipi di snapshot, uno snapshot standard che fornisce uno snapshot incrementale dell'intera macchina virtuale di hello e uno snapshot coerente dell'applicazione che accetta uno snapshot del punto nel tempo dei dati dell'applicazione hello macchina virtuale hello.
+    - Snapshot coerenti dell'applicazione usare tooensure del servizio Copia Shadow del Volume (VSS) che le applicazioni sono in uno stato coerente durante hello snapshot.
+    - Se si abilita snapshot coerenti dell'applicazione, influisce negativamente sulle prestazioni di hello delle applicazioni in esecuzione in macchine virtuali di origine. Verificare che il valore di hello impostato è minore hello numero di punti di ripristino aggiuntivi configurati.
 
 ## <a name="set-up-a-replication-policy"></a>Configurare criteri di replica
 
-1. Per creare nuovi criteri di replica, fare clic su **Preparare l'infrastruttura** > **Impostazioni della replica** > **+Crea e associa**.
+1. toocreate nuovi criteri di replica, fare clic su **Prepare infrastruttura** > **le impostazioni di replica** > **+ crea e associa**.
 
     ![Rete](./media/hyper-v-site-walkthrough-replication/gs-replication.png)
 2. In **Criteri di creazione e associazione**specificare il nome dei criteri.
-3. In **Frequenza di copia**specificare la frequenza con cui replicare i dati differenziali dopo la replica iniziale, ogni 30 secondi oppure ogni 5 o 15 minuti.
+3. In **frequenza di copia**, specificare la frequenza con cui si desidera dati delta tooreplicate dopo la replica iniziale hello (ogni 30 secondi, 5 o 15 minuti).
 
     > [!NOTE]
-    > Quando si esegue la replica in archiviazione Premium la frequenza di 30 secondi non è supportata. Il limite è determinato dal numero di snapshot per BLOB (100) supportato dal servizio di archiviazione Premium. [Altre informazioni](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob).
+    > Quando la replica di archiviazione toopremium, non è supportata una frequenza secondo 30. limitazione di Hello è determinato dal numero di hello di snapshot per ogni blob (100) supportato da archiviazione premium. [Altre informazioni](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)
 
-4. In **Conservazione del punto di recupero** specificare la durata in ore dell'intervallo di conservazione per ogni punto di recupero. Le macchine virtuali possono essere ripristinate in qualsiasi punto all'interno di un intervallo.
+4. In **conservazione del punto di ripristino**, specificare in ore il tempo è un intervallo di conservazione hello per ogni punto di ripristino. Macchine virtuali possono essere ripristinati tooany punto all'interno di una finestra.
 5. In **Frequenza snapshot coerenti con l'app** specificare la frequenza, da 1 a 12 ore, per la creazione di punti di ripristino contenenti snapshot coerenti con l'applicazione.
-6. In **Ora di inizio della replica iniziale** specificare quando deve essere avviata la replica iniziale. La replica avviene sulla larghezza di banda Internet. È quindi consigliabile pianificarla al di fuori dell'orario di lavoro. Fare quindi clic su **OK**.
+6. In **ora inizio replica iniziale**, specificare quando toostart hello la replica iniziale. la replica di Hello viene eseguita tramite la larghezza di banda internet pertanto è opportuno tooschedule è di fuori dell'orario di disponibilità. Fare quindi clic su **OK**.
 
     ![Criteri di replica](./media/hyper-v-site-walkthrough-replication/gs-replication2.png)
 
-Quando si creano nuovi criteri, questi vengono associati automaticamente al sito Hyper-V. È possibile associare un sito Hyper-V e le VM che contiene a più criteri di replica in **Replica** > nome-criteri > **Associate Hyper-V Site** (Associa sito Hyper-V).
+Quando si crea un nuovo criterio, è associata automaticamente a sito Hyper-V hello. È possibile associare un sito Hyper-V (e hello macchine virtuali in esso) a più criteri di replica in **replica** > criteri-name > **associare sito Hyper-V**.
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Andare a [Passaggio 10: Abilitare la replica](hyper-v-site-walkthrough-enable-replication.md)
+Andare troppo[passaggio 10: abilitare la replica](hyper-v-site-walkthrough-enable-replication.md)

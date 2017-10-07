@@ -1,6 +1,6 @@
 ---
-title: Usare Hive di Hadoop e Desktop remoto in HDInsight - Azure | Microsoft Docs
-description: Informazioni su come connettersi a un cluster Hadoop in HDInsight tramite Desktop remoto e quindi eseguire query Hive usando l'interfaccia della riga di comando di Hive.
+title: aaaUse Hadoop Hive e Desktop remoto in HDInsight - Azure | Documenti Microsoft
+description: Informazioni su come cluster di tooconnect tooHadoop in HDInsight mediante Desktop remoto e quindi eseguire le query Hive usando hello Hive interfaccia della riga di comando.
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,41 +16,41 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 187c7cb413b3707e58eea387857375053d267189
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f86ffc1be33a8b0b2346d1a1388e5dfa6d0f8777
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-hive-with-hadoop-on-hdinsight-with-remote-desktop"></a>Uso di Hive con Hadoop in HDInsight con Desktop remoto
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-In questo articolo si apprenderà come connettersi a un cluster HDInsight tramite Desktop remoto e quindi eseguire query Hive usando l'interfaccia della riga di comando di Hive.
+In questo articolo si apprenderà come tooconnect tooan HDInsight cluster tramite Desktop remoto e quindi eseguire Hive esegue una query utilizzando hello Hive interfaccia della riga di comando (CLI).
 
 > [!IMPORTANT]
-> Desktop remoto è disponibile solo nei cluster HDInsight che usano Windows come sistema operativo. Linux è l'unico sistema operativo usato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Desktop remoto è disponibile solo nei cluster HDInsight che usa Windows come sistema operativo hello. Linux è hello solo sistema operativo utilizzato in HDInsight versione 3.4 o successiva. Per altre informazioni, vedere la sezione relativa al [ritiro di HDInsight in Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> Per HDInsight 3.4 o versione successiva, vedere [Usare Hive con HDInsight e Beeline](hdinsight-hadoop-use-hive-beeline.md) per informazioni sull'esecuzione di query Hive direttamente sul cluster dalla riga di comando.
+> Per HDInsight 3.4 o successiva, vedere [utilizzare Hive con HDInsight e Beeline](hdinsight-hadoop-use-hive-beeline.md) per informazioni sull'esecuzione di query Hive direttamente nel cluster hello dalla riga di comando.
 
 ## <a id="prereq"></a>Prerequisiti
-Per seguire la procedura descritta in questo articolo, è necessario quanto segue:
+passaggi di hello toocomplete in questo articolo, è necessario seguente hello:
 
 * Un cluster HDInsight (Hadoop in HDInsight) basato su Windows
 * Un computer client che esegue Windows 10, Windows 8 o Windows 7
 
 ## <a id="connect"></a>Connettersi con Desktop remoto
-Abilitare Desktop remoto per il cluster HDInsight e quindi connettersi seguendo le istruzioni disponibili in [Connettersi a cluster HDInsight tramite RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+Abilitare Desktop remoto per il cluster HDInsight hello e quindi connettersi tooit seguendo le istruzioni di hello in [connettersi tooHDInsight cluster tramite RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-## <a id="hive"></a>Usare il comando Hive
-Una volta connessi al desktop per il cluster HDInsight, seguire questa procedura per l'uso con Hive:
+## <a id="hive"></a>Utilizzare il comando di Hive hello
+Quando si è connessi toohello desktop per il cluster HDInsight hello, usare hello seguendo i passaggi toowork con Hive:
 
-1. Dal desktop di HDInsight avviare la **riga di comando di Hadoop**.
-2. Immettere il seguente comando per avviare l'interfaccia della riga di comando di Hive:
+1. Dal desktop di HDInsight hello, avviare hello **della riga di comando Hadoop**.
+2. Immettere hello hello toostart comando CLI Hive seguenti:
 
         %hive_home%\bin\hive
 
-    Dopo l'avvio dell'interfaccia della riga di comando, verrà visualizzato il prompt dell'interfaccia della riga di comando di Hive: `hive>`.
-3. Usando l'interfaccia della riga di comando, immettere le seguenti istruzioni per creare una nuova tabella denominata **log4jLogs** con i dati di esempio:
+    Quando è stata avviata hello CLI, verrà visualizzato il prompt di Hive CLI hello: `hive>`.
+3. Tramite hello CLI, immettere hello seguendo le istruzioni toocreate una nuova tabella denominata **log4jLogs** utilizzando dati di esempio:
 
         set hive.execution.engine=tez;
         DROP TABLE log4jLogs;
@@ -59,45 +59,45 @@ Una volta connessi al desktop per il cluster HDInsight, seguire questa procedura
         STORED AS TEXTFILE LOCATION 'wasb:///example/data/';
         SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-    Di seguito sono elencate le istruzioni che eseguono queste azioni:
+    Queste istruzioni consentono di eseguire hello seguenti azioni:
 
-   * **DROP TABLE**: elimina la tabella e il file di dati, se la tabella esiste già.
-   * **CREATE EXTERNAL TABLE**: crea una nuova tabella "external" in Hive. Le tabelle esterne archiviano solo la definizione della tabella in Hive. I dati vengono lasciati nella posizione originale.
+   * **DROP TABLE**: Elimina tabella hello e file di dati hello hello tabella esiste già.
+   * **CREATE EXTERNAL TABLE**: crea una nuova tabella "external" in Hive. Le tabelle esterne archiviano solo definizione della tabella hello nell'Hive (Buongiorno dati viene lasciati nella posizione originale hello).
 
      > [!NOTE]
-     > È consigliabile usare le tabelle esterne quando si prevede che i dati sottostanti vengano aggiornati da un'origine esterna, ad esempio un processo automatico di caricamento dei dati, oppure da un'altra operazione MapReduce, ma si vuole che le query Hive usino sempre i dati più recenti.
+     > Tabelle esterne devono essere utilizzate quando si prevede di hello toobe dati aggiornati da un'origine esterna (ad esempio, un processo di caricamento automatico dei dati) o da un'altra operazione MapReduce sottostante, ma è sempre che dati più recenti di hello toouse una query Hive.
      >
-     > L'eliminazione di una tabella esterna **non** comporta anche l'eliminazione dei dati. Viene eliminata solo la definizione della tabella.
+     > Eliminazione di una tabella esterna **non** eliminare dati hello e definizione della tabella solo hello.
      >
      >
-   * **ROW FORMAT**: indica a Hive il modo in cui sono formattati i dati. In questo caso, i campi in ogni log sono separati da uno spazio.
-   * **STORED AS TEXTFILE LOCATION**: indica a Hive dove sono archiviati i dati (la directory example/data) e che sono archiviati come testo.
-   * **SELECT**: seleziona un numero di tutte le righe in cui la colonna **t4** include il valore **[ERROR]**. Dovrebbe restituire un valore pari a **3** , poiché sono presenti tre righe contenenti questo valore.
-   * **INPUT__FILE__NAME come '%.log'** - indica a Hive che si dovrebbero restituire solo i dati da file che terminano con .log. Questo limita la ricerca al file sample. log che contiene i dati, ed evita la restituzione di dati da altri file di dati di esempio che non corrispondono allo schema che è stato definito.
-4. Usare le seguenti istruzioni per creare una nuova tabella "internal" denominata **errorLogs**:
+   * **FORMATO di riga**: indica Hive formattazione dati hello. In questo caso, i campi di hello in ogni log sono separati da uno spazio.
+   * **ARCHIVIATO come file di testo percorso**: indica Hive in cui si hello dati archiviati (directory dati di esempio/hello) e a cui è archiviato come testo.
+   * **Selezionare**: seleziona un conteggio di tutte le righe in cui colonna **t4** contiene il valore di hello **[errore]**. Dovrebbe restituire un valore pari a **3** , poiché sono presenti tre righe contenenti questo valore.
+   * **INPUT__FILE__NAME come '%.log'** - indica a Hive che si dovrebbero restituire solo i dati da file che terminano con .log. Questo limita hello ricerca toohello sample.log file contenente dati hello e si impedisce la restituzione di dati da altri esempio i file di dati che non corrispondono allo schema di hello che è definiti.
+4. Hello utilizzare seguendo le istruzioni toocreate 'internal' nuova tabella denominata **degli errori**:
 
         CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
         INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
 
-    Di seguito sono elencate le istruzioni che eseguono queste azioni:
+    Queste istruzioni consentono di eseguire hello seguenti azioni:
 
-   * **CREATE TABLE IF NOT EXISTS**: crea una tabella, se non esiste già. Poiché non viene usata la parola chiave **EXTERNAL** , questa è una tabella interna che viene archiviata nel data warehouse di Hive e gestita completamente da Hive.
+   * **CREATE TABLE IF NOT EXISTS**: crea una tabella, se non esiste già. Poiché hello **esterno** parola chiave non viene usato, si tratta di una tabella interna, che viene archiviata nel data warehouse di hello Hive e completamente gestita da Hive.
 
      > [!NOTE]
-     > A differenza delle tabelle **EXTERNAL** , se si elimina una tabella interna, vengono eliminati anche i dati sottostanti.
+     > A differenza di **esterno** tabelle, anche l'eliminazione di una tabella interna Elimina hello dati sottostanti.
      >
      >
-   * **STORED AS ORC**: archivia i dati nel formato ORC (Optimized Row Columnar). Questo è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
-   * **INSERT OVERWRITE ... SELECT**: seleziona dalla tabella **log4jLogs** le righe contenenti **[ERROR]**, quindi inserisce i dati nella tabella **errorLogs**.
+   * **ARCHIVIATI AS ORC**: archivia i dati di hello in formato a colonne (ORC) con ottimizzazione per la riga. Questo è un formato altamente ottimizzato ed efficiente per l'archiviazione di dati Hive.
+   * **INSERT OVERWRITE ... Selezionare**: Seleziona le righe da hello **log4jLogs** tabella contenenti **[errore]**, quindi inserisce dati di hello in hello **degli errori** tabella.
 
-     Per verificare che solo le righe contenenti **[ERROR]** nella colonna t4 siano state archiviate nella tabella **errorLogs**, usare l'istruzione seguente per restituire tutte le righe da **errorLogs**:
+     tooverify che solo le righe che contengono **[errore]** nella colonna t4 sono stata archiviata toohello **degli errori** tabella, utilizzare hello seguente istruzione tooreturn tutte le righe di hello **degli errori**:
 
        SELECT * from errorLogs;
 
      Dovrebbero essere restituite tre righe di dati, tutte contenenti **[ERROR]** nella colonna t4.
 
 ## <a id="summary"></a>Riepilogo
-Come è possibile osservare, il comando Hive fornisce un modo semplice per eseguire query Hive in un cluster HDInsight, monitorare lo stato del processo e recuperare l'output in modo interattivo.
+Come si può notare, hello hello comando Hive fornisce toointeractively un modo più semplice eseguire query Hive in un cluster HDInsight, hello di monitoraggio dello stato del processo e recuperare l'output di hello.
 
 ## <a id="nextsteps"></a>Passaggi successivi
 Per informazioni generali su Hive in HDInsight:
@@ -109,10 +109,10 @@ Per informazioni su altre modalità d'uso di Hadoop in HDInsight:
 * [Usare Pig con Hadoop in HDInsight](hdinsight-use-pig.md)
 * [Usare MapReduce con Hadoop in HDInsight](hdinsight-use-mapreduce.md)
 
-Se si usa Tez con Hive, vedere i documenti seguenti per le informazioni di debug:
+Se si utilizza Tez con Hive, vedere hello documenti per le informazioni di debug seguenti:
 
-* [Usare l'interfaccia utente di Tez in HDInsight basato su Windows](hdinsight-debug-tez-ui.md)
-* [Usare la vista Ambari Tez in HDInsight basato su Linux](hdinsight-debug-ambari-tez-view.md)
+* [Utilizzare hello Tez UI in HDInsight basati su Windows](hdinsight-debug-tez-ui.md)
+* [Utilizzare hello vista Ambari Tez in HDInsight basati su Linux](hdinsight-debug-ambari-tez-view.md)
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 

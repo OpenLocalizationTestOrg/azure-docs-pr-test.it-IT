@@ -1,6 +1,6 @@
 ---
-title: Gestione della concorrenza nell'archiviazione di Microsoft Azure
-description: Come gestire la concorrenza per i servizi BLOB, di accodamento, di tabelle e file
+title: aaaManaging concorrenza in archiviazione di Microsoft Azure
+description: "Modalità concorrenza toomanage per hello servizi Blob, coda, tabella e File"
 services: storage
 documentationcenter: 
 author: jasontang501
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: jasontang501
-ms.openlocfilehash: 8b894af2f15cd22f04701c545d8250e20b99a094
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 277fbbb880906da6be67b2267ed5c8e457455bd1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-concurrency-in-microsoft-azure-storage"></a>Gestione della concorrenza nell'archiviazione di Microsoft Azure
 ## <a name="overview"></a>Panoramica
-Le moderne applicazioni basate su Internet sono in genere caratterizzate dalla presenza simultanea di più utenti che visualizzano e aggiornano dati. Ciò richiede agli sviluppatori di applicazioni un'attenta riflessione su come offrire un'esperienza prevedibile ai propri utenti finali, in particolare per gli scenari in cui più utenti possono aggiornare gli stessi dati. Gli sviluppatori in genere prendono in considerazione tre strategie principali di concorrenza dei dati:  
+Le moderne applicazioni basate su Internet sono in genere caratterizzate dalla presenza simultanea di più utenti che visualizzano e aggiornano dati. Ciò richiede toothink agli sviluppatori dell'applicazione con attenzione sulla modalità tooprovide a stimabile esperienza tootheir utenti finali, in particolare per scenari in cui è possono aggiornare più utenti hello stessi dati. Gli sviluppatori in genere prendono in considerazione tre strategie principali di concorrenza dei dati:  
 
-1. Concorrenza ottimistica: un'applicazione che esegue un aggiornamento verificherà, nell'ambito di tale attività, se i dati siano cambiati rispetto all'ultima lettura. Ad esempio, se due utenti che visualizzano una pagina wiki effettuano un aggiornamento alla stessa pagina, la piattaforma wiki deve garantire che il secondo aggiornamento non sovrascriva il primo e che entrambi gli utenti sappiano se il proprio aggiornamento è stato effettuato correttamente o meno. Questa strategia viene usata con maggiore frequenza nelle applicazioni Web.
-2. Concorrenza pessimistica: un'applicazione che cerca di eseguire un aggiornamento applicherà un blocco a un oggetto, impedendo ad altri utenti di aggiornare i dati fino a quando il blocco non viene rimosso. Ad esempio, in uno scenario di replica dei dati master/slave in cui solo il master eseguirà gli aggiornamenti, il master in genere deterrà un blocco esclusivo per un lungo periodo di tempo sui dati in modo che nessuno possa aggiornarli.
-3. Prevalenza dell'ultima scrittura: un approccio che consente di eseguire qualsiasi operazione di aggiornamento senza prima verificare se altre applicazioni abbiano aggiornato i dati rispetto alla prima lettura dei dati da parte dell'applicazione. Questa strategia (che in realtà denota la mancanza di una strategia ufficiale) è in genere usata quando i dati vengono partizionati in modo tale da escludere qualsiasi possibilità che gli utenti possano accedere agli stessi dati. Può inoltre essere utile per l'elaborazione di flussi dei dati di breve durata.  
+1. Concorrenza ottimistica: un'applicazione eseguendo che un aggiornamento come parte del relativo aggiornamento verificherà se i dati hello sono stato modificato dall'applicazione hello ultima di leggere i dati. Ad esempio, se due utenti che visualizzano una pagina wiki toohello un aggiornamento stessa pagina piattaforma wiki hello è necessario assicurarsi che gli aggiornamenti di secondo hello non implica la sovrascrittura primo aggiornamento hello: e che entrambi gli utenti di comprendere se l'aggiornamento è riuscita o meno. Questa strategia viene usata con maggiore frequenza nelle applicazioni Web.
+2. Concorrenza pessimistica: un'applicazione di ricerca tooperform un aggiornamento richiederà un blocco su un oggetto impedisce l'aggiornamento dati hello fino a quando viene rilasciato il blocco di hello di altri utenti. Ad esempio, in uno scenario di replica dati master/slave, in cui solo master hello eseguirà aggiornamenti master hello in genere conterrà un blocco esclusivo per un lungo periodo di tempo in tooensure dati hello non possa possibile aggiornarla.
+3. Ultimo writer wins: un approccio che consenta di qualsiasi tooproceed di operazioni di aggiornamento senza verificare se un'altra applicazione ha hello dati aggiornati dall'applicazione hello prima lettura dati hello. Questa strategia (o mancanza di una strategia formale) viene in genere usata in cui i dati vengono partizionati in modo che non vi è alcun rischio che più utenti accederanno hello stessi dati. Può inoltre essere utile per l'elaborazione di flussi dei dati di breve durata.  
 
-In questo articolo viene fornita una panoramica del modo in cui la piattaforma di archiviazione di Azure semplifica lo sviluppo fornendo un supporto eccellente per tutte e tre le strategie di concorrenza descritte.  
+In questo articolo viene fornita una panoramica di come piattaforma di archiviazione di Azure hello semplifica lo sviluppo fornendo supporto eccellente per tutte e tre queste strategie di concorrenza.  
 
 ## <a name="azure-storage--simplifies-cloud-development"></a>Archiviazione di Azure – Semplifica lo sviluppo cloud
-Il servizio di archiviazione di Azure supporta tutte e tre le strategie, sebbene si caratterizzi per la sua capacità di fornire un supporto completo per la concorrenza ottimistica e la concorrenza pessimistica. Tale servizio è stato infatti progettato per accogliere un solido modello di coerenza in grado di garantire che quando il servizio di archiviazione esegue il commit di un'operazione di inserimento o aggiornamento dei dati, tutti gli accessi successivi a tali dati visualizzeranno l'aggiornamento più recente. Le piattaforme di archiviazione che usano un modello di coerenza finale prevedono un intervallo tra il momento in cui un utente esegue una scrittura e il momento in cui i dati aggiornati possono essere visti da altri utenti, rendendo in tal modo difficile lo sviluppo di applicazioni client allo scopo di impedire che le incoerenze influiscano sugli utenti finali.  
+Hello Servizio archiviazione di Azure supporta tutte e tre le strategie, sebbene sia distintivo in possibilità tooprovide supporto completo per la concorrenza ottimistica e pessimistica perché era tooembrace progettato un modello di coerenza assoluta garantisce che quando Hello commit servizio di archiviazione dati inserire o aggiornare tutti gli accessi toothat ulteriori dati verranno visualizzato hello aggiornamento più recente di operazione. Piattaforme di archiviazione che utilizzano un modello di coerenza finale hanno un ritardo tra quando un'operazione di scrittura viene eseguita da un utente e quando hello aggiornato i dati possono essere visualizzati da altri utenti della complessità pertanto lo sviluppo di applicazioni client incoerenze tooprevent ordine da che interessano gli utenti finali.  
 
-Oltre a scegliere una strategia di concorrenza appropriata, gli sviluppatori devono inoltre conoscere il modo in cui una piattaforma di archiviazione isola le modifiche, in particolare quelle apportate allo stesso oggetto in più transazioni. Il servizio di archiviazione di Azure usa l'isolamento degli snapshot per consentire l'esecuzione simultanea di operazioni di lettura e operazioni di scrittura nell'ambito di una singola partizione. A differenza di altri livelli di isolamento, l'isolamento degli snapshot garantisce che tutte le letture vedano uno snapshot coerente dei dati persino durante l'esecuzione di aggiornamenti, essenzialmente restituendo gli ultimi valori di cui è stato eseguito il commit durante l'elaborazione di una transazione di aggiornamento.  
+Inoltre tooselecting gli sviluppatori di strategia di concorrenza appropriata devono anche tenere come una piattaforma di archiviazione isola cambia, in particolare i toohello modifiche stesso oggetti tra le transazioni. Hello Servizio archiviazione di Azure Usa tooallow di isolamento snapshot leggere toohappen operazioni contemporaneamente a operazioni di scrittura all'interno di una singola partizione. A differenza di altri livelli di isolamento, l'isolamento dello snapshot garantisce che tutte le letture visualizzare uno snapshot coerenza dei dati hello anche durante gli aggiornamenti si verificano – essenzialmente restituendo valori commit ultimo hello durante l'elaborazione di una transazione di aggiornamento.  
 
 ## <a name="managing-concurrency-in-blob-storage"></a>Gestione della concorrenza nell'archiviazione BLOB
-È possibile scegliere di usare modelli di concorrenza ottimistica o pessimistica per gestire l'accesso a BLOB e contenitori nel servizio BLOB. Se non specifica esplicitamente una strategia, per impostazione predefinita prevale l'ultima scrittura.  
+È possibile scegliere toouse sia modelli di concorrenza ottimistica o pessimistica toomanage accesso tooblobs e contenitori in hello servizio blob. Se non si specifica esplicitamente una strategia di ultima scritture wins predefinito hello.  
 
 ### <a name="optimistic-concurrency-for-blobs-and-containers"></a>Concorrenza ottimistica per BLOB e contenitori
-Il servizio di archiviazione assegna un identificatore a ogni oggetto archiviato, che viene aggiornato ogni volta che un'operazione di aggiornamento viene eseguita su un oggetto. L'identificatore viene restituito al client nell'ambito di una risposta HTTP GET mediante l'intestazione (tag di entità) ETag definita all'interno del protocollo HTTP. Un utente che esegue un aggiornamento su tale oggetto può inviare l'ETag con un'intestazione condizionale per garantire che un aggiornamento si verificherà solo se una determinata condizione viene soddisfatta. In questo caso la condizione è che un'intestazione "If-Match" che richiede il servizio di archiviazione per garantire il valore ETag specificato nella richiesta di aggiornamento sia uguale a quella archiviata nel servizio di archiviazione.  
+Hello servizio di archiviazione assegna un oggetto tooevery identificatore archiviato. che viene aggiornato ogni volta che un'operazione di aggiornamento viene eseguita su un oggetto. Identificatore Hello è restituito toohello client come parte di una risposta HTTP GET con intestazione ETag (tag di entità) hello è definito nel protocollo hello HTTP. Un utente che esegue un aggiornamento in un oggetto di questo tipo può inviare in hello ETag originale insieme a un tooensure intestazione condizionale che verrà eseguito l'aggiornamento solo se è stata soddisfatta una determinata condizione: in questo caso la condizione hello è un'intestazione "If-Match" che richiede l'archiviazione hello Servizio tooensure hello valore ETag specificato nella richiesta di aggiornamento hello è hello identici a quelli archiviati nel servizio di archiviazione hello hello.  
 
-Il processo è il seguente:  
+struttura Hello di questo processo è indicato di seguito:  
 
-1. Recuperare un BLOB da un servizio di archiviazione; la risposta include un valore di intestazione HTTP ETag che identifica la versione corrente dell'oggetto nel servizio di archiviazione.
-2. Quando si aggiorna il BLOB, includere il valore ETag ricevuto al passaggio 1 nell'intestazione condizionale **If-Match** della richiesta inviata al servizio.
-3. Il servizio confronta il valore ETag nella richiesta con il valore ETag corrente del BLOB.
-4. Se il valore ETag corrente del BLOB è una versione diversa dall'ETag nell'intestazione condizionale **If-Match** , il servizio restituisce un errore 412 al client. Ciò indica al client che un altro processo ha aggiornato il BLOB rispetto a quando il client lo ha recuperato.
-5. Se il valore ETag corrente del BLOB è la stessa versione dell'Etag nell'intestazione condizionale **If-Match** nella richiesta, il servizio esegue l'operazione richiesta e aggiorna il valore Etag corrente del BLOB per indicare la creazione di una nuova versione.  
+1. Recuperare un blob dal servizio di archiviazione hello, risposta hello include un valore di intestazione ETag HTTP che identifica la versione corrente di hello dell'oggetto hello nel servizio di archiviazione hello.
+2. Quando si aggiorna il blob hello, includere il valore di ETag hello ottenuto nel passaggio 1 in hello **If-Match** condizionale intestazione della richiesta di hello inviati toohello servizio.
+3. servizio Hello Confronta valore ETag di hello nella richiesta di hello con valore ETag corrente hello del blob hello.
+4. Se il valore ETag corrente hello del blob hello è una versione diversa di hello ETag in hello **If-Match** intestazione condizionale nella richiesta di hello, servizio hello restituisce un client di 412 errore toohello. Indica che un altro processo ha aggiornato blob hello poiché è stato recuperato client hello client di toohello.
+5. Se hello corrente ETag del blob hello è hello stessa versione di hello ETag in hello **If-Match** intestazione condizionale nella richiesta di hello, servizio hello esegue hello ha richiesto l'operazione e gli aggiornamenti hello valore ETag corrente del blob hello tooshow che ha creato una nuova versione.  
 
-Il frammento C# seguente (che usa Client Storage Library 4.2.0) mostra un esempio semplice di come costruire una **If-Match AccessCondition** in base al valore ETag al quale viene effettuato l'accesso dalle proprietà di un BLOB precedentemente recuperato o inserito. Usa quindi l'oggetto **AccessCondition** quando aggiorna il BLOB: l'oggetto **AccessCondition** aggiunge l'intestazione **If-Match** alla richiesta. Se un altro processo ha aggiornato il BLOB, il servizio BLOB restituisce un messaggio di stato HTTP 412 (Condizione preliminare non riuscita). È possibile scaricare l'intero esempio dalla pagina relativa alla [gestione della concorrenza con Archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).  
+Hello seguente frammento di codice c# (mediante la libreria Client di archiviazione 4.2.0 hello) viene illustrato un semplice esempio di tooconstruct un **AccessCondition If-Match** hello valore ETag che è accessibile dalla proprietà hello di un blob che è stato in base precedentemente recuperati o inserito. Viene quindi utilizzato hello **AccessCondition** oggetto quando è l'aggiornamento di blob hello: hello **AccessCondition** oggetto aggiunge hello **If-Match** richiesta toohello intestazione. Se un altro processo ha aggiornato il blob hello, servizio blob hello restituisce un messaggio di stato HTTP 412 (Precondition Failed). È possibile scaricare qui completo esempio hello: [gestione della concorrenza utilizzando l'archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).  
 
 ```csharp
-// Retrieve the ETag from the newly created blob
+// Retrieve hello ETag from hello newly created blob
 // Etag is already populated as UploadText should cause a PUT Blob call
-// to storage blob service which returns the etag in response.
+// toostorage blob service which returns hello etag in response.
 string orignalETag = blockBlob.Properties.ETag;
 
 // This code simulates an update by a third party.
@@ -65,10 +65,10 @@ blockBlob.UploadText(helloText);
 Console.WriteLine("Blob updated. Updated ETag = {0}",
 blockBlob.Properties.ETag);
 
-// Now try to update the blob using the orignal ETag provided when the blob was created
+// Now try tooupdate hello blob using hello orignal ETag provided when hello blob was created
 try
 {
-    Console.WriteLine("Trying to update blob using orignal etag to generate if-match access condition");
+    Console.WriteLine("Trying tooupdate blob using orignal etag toogenerate if-match access condition");
     blockBlob.UploadText(helloText,accessCondition:
     AccessCondition.GenerateIfMatchCondition(orignalETag));
 }
@@ -77,16 +77,16 @@ catch (StorageException ex)
     if (ex.RequestInformation.HttpStatusCode == (int)HttpStatusCode.PreconditionFailed)
     {
         Console.WriteLine("Precondition failure as expected. Blob's orignal etag no longer matches");
-        // TODO: client can decide on how it wants to handle the 3rd party updated content.
+        // TODO: client can decide on how it wants toohandle hello 3rd party updated content.
     }
     else
         throw;
 }  
 ```
 
-Il servizio di archiviazione include anche il supporto di altre intestazioni condizionale quali **If-Modified-Since**, **If-Unmodified-Since** e **If-None-Match** nonché le relative combinazioni. Per altre informazioni, vedere [Specifica di intestazioni condizionali per le operazioni del servizio Blob](http://msdn.microsoft.com/library/azure/dd179371.aspx) su MSDN.  
+Servizio di archiviazione Hello include anche il supporto per le intestazioni condizionali aggiuntive, ad esempio **If-Modified-Since**, **If-Unmodified-Since** e **If-None-Match** nonché loro combinazioni. Per altre informazioni, vedere [Specifica di intestazioni condizionali per le operazioni del servizio Blob](http://msdn.microsoft.com/library/azure/dd179371.aspx) su MSDN.  
 
-Nella tabella seguente sono riepilogate le operazioni contenitore che accettano intestazioni condizionali come **If-Match** nella richiesta e che restituiscono un valore ETag nella risposta.  
+Hello nella tabella seguente sono riepilogate le operazioni di contenitore hello che accettano come ad esempio le intestazioni condizionali **If-Match** richiesta hello e che restituiscono un valore ETag nella risposta hello.  
 
 | Operazione | Restituisce il valore ETag del contenitore | Accetta intestazioni condizionali |
 |:--- |:--- |:--- |
@@ -100,9 +100,9 @@ Nella tabella seguente sono riepilogate le operazioni contenitore che accettano 
 | Lease Container |Sì |Sì |
 | List Blobs |No |No |
 
-(*) Le autorizzazioni definite da SetContainerACL sono memorizzate nella cache e la propagazione degli aggiornamenti a queste autorizzazioni richiede 30 secondi durante i quali la coerenza degli aggiornamenti non è garantita.  
+(*) hello le autorizzazioni definite da SetContainerACL vengono memorizzati nella cache e le autorizzazioni toothese aggiornamenti richiedere 30 secondi toopropagate durante il periodo in cui gli aggiornamenti non sono garantiti toobe coerente.  
 
-Nella tabella seguente sono riepilogate le operazioni BLOB che accettano intestazioni condizionali come **If-Match** nella richiesta e che restituiscono un valore ETag nella risposta.
+Hello nella tabella seguente sono riepilogate le operazioni di blob hello che accettano come ad esempio le intestazioni condizionali **If-Match** richiesta hello e che restituiscono un valore ETag nella risposta hello.
 
 | Operazione | Restituisce il valore ETag | Accetta intestazioni condizionali |
 |:--- |:--- |:--- |
@@ -123,14 +123,14 @@ Nella tabella seguente sono riepilogate le operazioni BLOB che accettano intesta
 | Put Page |Sì |Sì |
 | Get Page Ranges |Sì |Sì |
 
-(*) Lease Blob non modifica l'ETag in un BLOB.  
+(*) Blob del lease non modifica hello ETag su un blob.  
 
 ### <a name="pessimistic-concurrency-for-blobs"></a>Concorrenza pessimistica per i BLOB
-Per bloccare un BLOB al fine di usarlo in modo esclusivo, è possibile acquisire un [lease](http://msdn.microsoft.com/library/azure/ee691972.aspx) su di esso. Quando si acquisisce un lease, specificarne la durata, che può essere inclusa tra 15 e 60 secondi o essere infinita, il che equivale a un blocco esclusivo. È possibile rinnovare un lease finito per estenderlo e rilasciare qualsiasi lease al termine dell'uso. Il servizio BLOB rilascia automaticamente i lease finiti alla scadenza.  
+toolock un blob per l'uso esclusivo, è possibile acquisire un [lease](http://msdn.microsoft.com/library/azure/ee691972.aspx) su di esso. Quando si acquisisce un lease, è necessario specificare per quanto tempo è necessario hello lease: può trattarsi per compreso tra 15 secondi too60 infinite o il blocco esclusivo tooan di quantità. È possibile rinnovare un lease finito di tooextend ed è possibile rilasciare un lease dopo aver terminato con. servizio blob Hello rilascia automaticamente i lease finiti alla scadenza.  
 
-I lease abilitano il supporto di strategie di sincronizzazione diverse, tra cui la scrittura esclusiva/la lettura condivisa, la scrittura esclusiva/la lettura esclusiva e la scrittura condivisa/la lettura esclusiva. In presenza di un lease il servizio di archiviazione applica scritture esclusive (operazioni Put, Set e Delete); tuttavia, garantire l'esclusività per le operazioni di lettura richiede allo sviluppatore di verificare che tutte le applicazioni client usino un ID lease e che un solo client alla volta disponga di un ID lease valido. Le operazioni di lettura che non includono un ID lease determinano letture condivise.  
+Lease Abilita sincronizzazione diverse strategie toobe supportati, inclusi esclusivo in scrittura / scrittura esclusivo, lettura condivisa / esclusivo di lettura e scrittura condivisa / lettura esclusivo. Se esiste un lease del servizio di archiviazione hello applica esclusivo operazioni di scrittura (put e impostazione delle operazioni di eliminazione) garantendo tuttavia esclusiva per operazioni di lettura richiede hello developer tooensure che tutte le applicazioni client deve utilizzare un ID lease e che solo un client in un momento ha un ID lease valido. Le operazioni di lettura che non includono un ID lease determinano letture condivise.  
 
-Il frammento C# seguente mostra un esempio relativo all'acquisizione di un lease esclusivo per 30 secondi su un BLOB, all'aggiornamento del contenuto del BLOB e al successivo rilascio del lease. Se è già presente un lease valido sul BLOB quando si prova ad acquisire un nuovo lease, il servizio BLOB restituisce un risultato di stato "HTTP 409 - Conflitto". Il frammento seguente usa un oggetto **AccessCondition** per incapsulare le informazioni relative al lease quando effettua una richiesta per aggiornare il BLOB nel servizio di archiviazione.  È possibile scaricare l'intero esempio dalla pagina relativa alla [gestione della concorrenza con Archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).
+Hello c# frammento di codice seguente viene illustrato un esempio di acquisire un lease esclusivo per 30 secondi in un blob, l'aggiornamento del contenuto di hello del blob hello e quindi rilasciare il lease hello. Se è già presente un lease valido nel blob hello quando si tenta un nuovo lease tooacquire, servizio blob hello restituisce un risultato di stato di "HTTP (409) conflitto". frammento di codice Hello seguente viene utilizzato un **AccessCondition** oggetto informazioni sul lease di hello tooencapsulate quando si rende un blob di hello tooupdate richiesta nel servizio di archiviazione hello.  È possibile scaricare qui completo esempio hello: [gestione della concorrenza utilizzando l'archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).
 
 ```csharp
 // Acquire lease for 15 seconds
@@ -143,11 +143,11 @@ var accessCondition = AccessCondition.GenerateLeaseCondition(lease);
 blockBlob.UploadText(helloText, accessCondition: accessCondition);
 Console.WriteLine("Blob updated using an exclusive lease");
 
-//Simulate third party update to blob without lease
+//Simulate third party update tooblob without lease
 try
 {
     // Below operation will fail as no valid lease provided
-    Console.WriteLine("Trying to update blob without valid lease");
+    Console.WriteLine("Trying tooupdate blob without valid lease");
     blockBlob.UploadText("Update without lease, will fail");
 }
 catch (StorageException ex)
@@ -159,9 +159,9 @@ catch (StorageException ex)
 }  
 ```
 
-Se si prova a effettuare un'operazione di scrittura su un BLOB con lease senza passare l'ID lease, la richiesta ha esito negativo con un errore 412. Si noti che la richiesta ha esito negativo con un errore **412** anche se il lease scade prima di chiamare il metodo **UploadText** ma si passa comunque l'ID. Per altre informazioni sulla gestione degli ID lease e dei tempi di scadenza del lease, vedere la documentazione REST [Lease Blob](http://msdn.microsoft.com/library/azure/ee691972.aspx) .  
+Se si tenta un'operazione di scrittura su un blob con lease senza passare l'ID lease hello, viene generato un errore 412 richiesta hello. Si noti che se hello lease scade prima di chiamare hello **UploadText** metodo ma si continua a superare ID lease hello, richiesta hello ha esito negativo anche con un **412** errore. Per ulteriori informazioni sulla gestione di ore di scadenza del lease e l'ID lease, vedere hello [Lease Blob](http://msdn.microsoft.com/library/azure/ee691972.aspx) documentazione REST.  
 
-Le operazioni BLOB seguenti possono usare i lease per gestire la concorrenza pessimistica:  
+Hello operazioni blob seguenti è possono utilizzare la concorrenza pessimistica toomanage lease:  
 
 * Put Blob
 * Get Blob
@@ -176,14 +176,14 @@ Le operazioni BLOB seguenti possono usare i lease per gestire la concorrenza pes
 * Put Page
 * Get Page Ranges
 * Snapshot Blob: ID lease facoltativo se esiste un lease
-* Copy Blob: ID lease obbligatorio se esiste un lease nel BLOB di destinazione
-* Abort Copy Blob: ID lease obbligatorio se esiste un lease infinito nel BLOB di destinazione
+* Copia di Blob: lease ID obbligatorio se è presente un lease nel blob di destinazione hello
+* Abort Copy Blob: lease ID obbligatorio se esiste un lease infinito sul blob di destinazione hello
 * Lease Blob  
 
 ### <a name="pessimistic-concurrency-for-containers"></a>Concorrenza pessimistica per i contenitori
-I lease sui contenitori abilitano il supporto delle stesse strategie di sincronizzazione dei BLOB (scrittura esclusiva/lettura condivisa, scrittura esclusiva/lettura esclusiva e scrittura condivisa/lettura esclusiva); tuttavia, a differenza dei BLOB il servizio di archiviazione applica l'esclusività solo alle operazioni Delete. Per eliminare un contenitore con un lease attivo, un client deve includere l'ID lease attivo con la richiesta di eliminazione. Tutte le altre operazioni contenitore hanno esito positivo su un contenitore con lease senza includere l'ID lease, nel qual caso sono operazioni condivise. Se è richiesta l'esclusività di un'operazione di aggiornamento (Put o Set) o di lettura, gli sviluppatori devono garantire che tutti i client usino un ID lease e che un solo client alla volta abbia un ID lease valido.  
+Lease sui contenitori abilitare hello stesso toobe strategie di sincronizzazione supportate come sui BLOB (esclusivo di scrittura / scrittura esclusivo, lettura condivisa / esclusivo di lettura e scrittura condivisa / lettura esclusiva) tuttavia a differenza dei blob del servizio di archiviazione hello impone solo esclusiva in operazioni di eliminazione. toodelete un contenitore con un lease attivo, un client deve includere l'ID lease attivo hello hello richiesta di eliminazione. Tutte le altre operazioni hanno esito positivo su un contenitore con lease senza includere l'ID lease hello in questo caso sono condivisi operazioni. Se è richiesta l'esclusività di un'operazione di aggiornamento (Put o Set) o di lettura, gli sviluppatori devono garantire che tutti i client usino un ID lease e che un solo client alla volta abbia un ID lease valido.  
 
-Le operazioni contenitore seguenti possono usare i lease per gestire la concorrenza pessimistica:  
+Hello operazioni contenitore è possono utilizzare la concorrenza pessimistica toomanage lease:  
 
 * Delete Container
 * Get Container Properties
@@ -199,20 +199,20 @@ Per altre informazioni, vedere:
 * [Lease Container](http://msdn.microsoft.com/library/azure/jj159103.aspx)
 * [Lease Blob ](http://msdn.microsoft.com/library/azure/ee691972.aspx)
 
-## <a name="managing-concurrency-in-the-table-service"></a>Gestione della concorrenza nel servizio tabelle
-Il servizio tabelle usa i controlli della concorrenza ottimistica come comportamento predefinito quando si usano entità, a differenza del servizio BLOB in cui è necessario scegliere esplicitamente di eseguire controlli di concorrenza ottimistica. L'altra differenza tra il servizio tabelle e il servizio BLOB risiede nel fatto che con il primo è possibile gestire solo il comportamento di concorrenza delle entità, mentre con il servizio BLOB è possibile gestire la concorrenza sia dei contenitori sia dei BLOB.  
+## <a name="managing-concurrency-in-hello-table-service"></a>Gestione della concorrenza in hello del servizio tabelle
+servizio tabelle Hello Usa controlli di concorrenza ottimistica come comportamento predefinito di hello quando si lavora con entità, a differenza dei servizi blob hello in cui è necessario scegliere in modo esplicito i controlli di concorrenza ottimistica tooperform. Hello altra differenza tra i servizi blob e tabella di hello è che è possibile gestire solo il comportamento della concorrenza hello delle entità mentre con il servizio blob hello è possibile gestire la concorrenza hello di contenitori e BLOB.  
 
-Per usare la concorrenza ottimistica e controllare se un altro processo ha modificato un'entità da quando questa è stata recuperata dal servizio di archiviazione tabelle, è possibile usare il valore ETag ricevuto quando il servizio tabelle restituisce un'entità. Il processo è il seguente:  
+concorrenza ottimistica toouse e toocheck se un altro processo modificato un'entità perché è stato recuperato dal servizio di archiviazione tabelle hello, è possibile utilizzare il valore di ETag hello che viene visualizzato quando il servizio tabelle hello restituisce un'entità. struttura Hello di questo processo è indicato di seguito:  
 
-1. Recuperare un'entità da un servizio di archiviazione tabelle; la risposta include un valore ETag che identifica l'identificatore corrente associato all'entità nel servizio di archiviazione.
-2. Quando si aggiorna l'entità, includere il valore ETag ricevuto al passaggio 1 nell'intestazione **If-Match** obbligatoria della richiesta inviata al servizio.
-3. Il servizio confronta il valore ETag nella richiesta con il valore ETag corrente dell'entità.
-4. Se il valore ETag corrente del BLOB è diverso dall'ETag nell'intestazione **If-Match** obbligatoria nella richiesta, il servizio restituisce un errore 412 al client. Ciò indica al cliente che un altro processo ha aggiornato l'entità da quando questa è stata recuperata dal client.
-5. Se il valore ETag corrente dell'entità è uguale all'ETag nell'intestazione **If-Match** obbligatoria della richiesta o se l'intestazione **If-Match** contiene il carattere jolly (*), il servizio esegue l'operazione richiesta e aggiorna il valore ETag corrente dell'entità per indicare che è stato aggiornato.  
+1. Recuperare un'entità dal servizio di archiviazione tabella hello, risposta hello include un valore ETag che identifica l'identificatore attuale di hello associati all'entità nel servizio di archiviazione hello.
+2. Quando si aggiorna entità hello, includere il valore di ETag hello ottenuto nel passaggio 1 in hello obbligatorio **If-Match** intestazione della richiesta di hello inviati toohello servizio.
+3. servizio Hello Confronta valore ETag di hello nella richiesta di hello con valore ETag corrente hello dell'entità hello.
+4. Se è diverso da quello Ciao ETag hello obbligatorio valore ETag corrente hello dell'entità hello **If-Match** intestazione nella richiesta di hello, servizio hello restituisce un client di 412 errore toohello. Indica che un altro processo ha aggiornato entità hello poiché è stato recuperato client hello client di toohello.
+5. Se il valore ETag corrente hello dell'entità hello è hello stesso hello ETag in hello obbligatorio **If-Match** intestazione nella richiesta di hello o hello **If-Match** intestazione contiene caratteri jolly hello (*), servizio hello esegue hello ha richiesto l'operazione e gli aggiornamenti hello valore ETag corrente di hello tooshow di entità che è stato aggiornato.  
 
-Si noti che, a differenza del servizio BLOB, il servizio tabelle richiede che il client includa un'intestazione **If-Match** nelle richieste di aggiornamento. Tuttavia, è possibile forzare un aggiornamento condizionale (strategia della prevalenza dell'ultima scrittura) e ignorare i controlli della concorrenza se il client imposta l'intestazione **If-Match** sul carattere jolly (*) nella richiesta.  
+Si noti che, a differenza dei servizi blob hello, del servizio tabelle hello richiede hello client tooinclude un **If-Match** intestazione in richieste di aggiornamento. Tuttavia, è possibile tooforce un non condizionale (ultimo writer wins strategia) di aggiornamento e ignorare i controlli di concorrenza se i client di hello imposta hello **If-Match** carattere jolly toohello di intestazione (*) nella richiesta di hello.  
 
-Il seguente frammento C# mostra un'entità del cliente precedentemente creata o recuperata con l'aggiornamento dell'indirizzo di posta elettronica. L'operazione iniziale di inserimento o recupero archivia il valore ETag nell'oggetto del cliente e, poiché l'esempio usa la stessa istanza di oggetto quando esegue l'operazione di sostituzione, invia automaticamente il valore ETag alla tabella, consentendo al servizio di verificare l'eventuale presenza di violazioni della concorrenza. Se un altro processo ha aggiornato l'entità nella tabella di archiviazione, il servizio restituisce un messaggio di stato HTTP 412 (Condizione preliminare non riuscita).  È possibile scaricare l'intero esempio dalla pagina relativa alla [gestione della concorrenza con Archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).
+Hello frammento di codice c# seguente viene illustrata un'entità customer che in precedenza è stata creata o recuperata con indirizzo di posta elettronica aggiornato. Inserisce Hello iniziale o recuperare il valore ETag di operazione archivi hello oggetto customer hello e poiché viene utilizzato l'esempio hello hello stessa istanza dell'oggetto durante l'esecuzione di hello operazione di sostituzione, invia automaticamente il servizio tabelle toohello indietro di valore ETag di hello, abilitazione toocheck servizio hello per le violazioni di concorrenza. Se un altro processo ha aggiornato l'entità hello nell'archiviazione tabelle, il servizio di hello restituisce un messaggio di stato HTTP 412 (Precondition Failed).  È possibile scaricare qui completo esempio hello: [gestione della concorrenza utilizzando l'archiviazione di Azure](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114).
 
 ```csharp
 try
@@ -231,13 +231,13 @@ catch (StorageException ex)
 }  
 ```
 
-Per disabilitare esplicitamente il controllo della concorrenza, è necessario impostare la proprietà **ETag** dell'oggetto **employee** su "*" prima di eseguire l'operazione di sostituzione.  
+disabilitare il controllo della concorrenza hello tooexplicitly, è consigliabile impostare hello **ETag** proprietà di hello **dipendente** oggetto troppo "*" prima di eseguire l'operazione di sostituzione hello.  
 
 ```csharp
 customer.ETag = "*";  
 ```
 
-Nella tabella seguente sono riepilogate le modalità in cui le operazioni delle entità di tabella usano i valori ETag:
+Hello nella tabella seguente sono riepilogati come operazioni di entità tabella hello usare valori ETag:
 
 | Operazione | Restituisce il valore ETag | Richiede l'intestazione della richiesta If-Match |
 |:--- |:--- |:--- |
@@ -249,44 +249,44 @@ Nella tabella seguente sono riepilogate le modalità in cui le operazioni delle 
 | Insert or Replace Entity |Sì |No |
 | Insert or Merge Entity |Sì |No |
 
-SI noti che le operazioni **Insert or Replace Entity** e **Insert or Merge Entity** *non* eseguono alcun controllo di concorrenza perché non inviano un valore ETag al servizio tabelle.  
+Si noti che hello **Insert o sostituire entità** e **Insert o Merge entità** operazioni *non* esegue alcun controllo della concorrenza, poiché non inviano un toohello valore ETag servizio tabelle.  
 
-In generale gli sviluppatori che usano tabelle devono fare affidamento sulla concorrenza ottimistica quando sviluppano applicazioni scalabili. Se è necessario un blocco pessimistico, un possibile approccio che gli sviluppatori possono adottare quando effettuano l'accesso alle tabelle è di assegnare un BLOB designato per ciascuna tabella e provare ad acquisire un lease sul BLOB prima di eseguire operazioni sulla tabella. Adottando questo approccio è necessario che l'applicazione verifichi che tutti i percorsi di accesso ai dati ottengano il lease prima di eseguire operazioni sulla tabella. Occorre inoltre notare che il tempo di lease minimo è di 15 secondi, pertanto è necessario prestare una particolare attenzione alla scalabilità.  
+In generale gli sviluppatori che usano tabelle devono fare affidamento sulla concorrenza ottimistica quando sviluppano applicazioni scalabili. Se il blocco pessimistico è necessaria, gli sviluppatori di un approccio possono intraprendere quando l'accesso alle tabelle viene tooassign un blob designato per ogni tabella e provare un lease nel blob hello tootake prima di operare sulla tabella hello. Questo approccio richiede tooensure applicazione hello accesso ai dati di tutti i percorsi ottenere hello lease toooperating precedente tabella hello. Si noti che una durata del lease minimo hello è 15 secondi che richiede un'attenta valutazione per la scalabilità.  
 
 Per altre informazioni, vedere:  
 
 * [Operazioni sulle entità](http://msdn.microsoft.com/library/azure/dd179375.aspx)  
 
-## <a name="managing-concurrency-in-the-queue-service"></a>Gestione della concorrenza nel servizio di accodamento
-Uno scenario in cui la concorrenza rappresenta un problema nel servizio di accodamento è quello in cui più client recuperano i messaggi da una coda. Quando un messaggio viene recuperato dalla coda, la risposta include il messaggio e un valore di ricezione POP, necessario per eliminare il messaggio. Il messaggio non viene eliminato automaticamente dalla coda, ma dopo essere stato recuperato non è visibile agli altri client per l'intervallo di tempo specificato dal parametro visibilitytimeout. Il client che recupera il messaggio lo elimina dopo che è stato elaborato e prima dell'ora specificata dall'elemento TimeNextVisible della risposta, calcolata in base al valore del parametro visibilitytimeout. Il valore di visibilitytimeout viene aggiunto all'ora in cui viene recuperato il messaggio per determinare il valore di TimeNextVisible.  
+## <a name="managing-concurrency-in-hello-queue-service"></a>Gestione della concorrenza in hello servizio di Accodamento
+Uno scenario che in cui la concorrenza è un problema nel servizio di Accodamento messaggi hello è in cui più client recuperano messaggi da una coda. Quando un messaggio viene recuperato dalla coda di hello, risposta hello include messaggio hello e un valore di ricezione pop, ovvero messaggio hello toodelete obbligatorio. messaggio non viene eliminato automaticamente dalla coda di hello, ma dopo che sono stati recuperati, non è visibile tooother client per l'intervallo di tempo hello specificato dal parametro visibilitytimeout hello. client Hello che recupera il messaggio hello è messaggio hello toodelete previsto dopo che è stata elaborata e prima di hello ora specificata da hello elemento TimeNextVisible di hello risposta, che viene calcolato in base al valore hello hello visibilitytimeout parametro. il valore di Hello del visibilitytimeout viene aggiunto toohello ora in cui hello messaggio recuperato TimeNextVisible valore hello toodetermine.  
 
-Il servizio di accodamento non offre il supporto della concorrenza ottimistica o pessimistica e per questo motivo i client che elaborano messaggi recuperati da una coda devono garantire che vengano recuperati in un modo idempotente. Una strategia in cui prevale l'ultima scrittura viene usata per aggiornare operazioni quali SetQueueServiceProperties, SetQueueMetaData, SetQueueACL e UpdateMessage.  
+il servizio di Accodamento di Hello non dispone del supporto per la concorrenza ottimistica o pessimistica e per questo client motivo l'elaborazione dei messaggi recuperati da una coda devono verificare i messaggi vengono elaborati in modo idempotente. Una strategia in cui prevale l'ultima scrittura viene usata per aggiornare operazioni quali SetQueueServiceProperties, SetQueueMetaData, SetQueueACL e UpdateMessage.  
 
 Per altre informazioni, vedere:  
 
 * [API REST del servizio di accodamento](http://msdn.microsoft.com/library/azure/dd179363.aspx)
 * [Get Messages](http://msdn.microsoft.com/library/azure/dd179474.aspx)  
 
-## <a name="managing-concurrency-in-the-file-service"></a>Gestione della concorrenza nel servizio file
-È possibile accedere al servizio file usando due diversi endpoint di protocollo: SMB e REST. Il servizio REST non presenta il supporto per il blocco ottimistico o pessimistico e tutti gli aggiornamenti seguiranno una strategia basata sulla prevalenza dell'ultima scrittura. I client SMB che montano condivisioni file possono usare meccanismi di blocco del file system per gestire l'accesso ai file condivisi, inclusa la possibilità di eseguire il blocco pessimistico. Quando un client SMB apre un file, specifica sia l'accesso al file sia la modalità di condivisione. L'impostazione di un'opzione di accesso al file "in scrittura" o "in lettura/scrittura" insieme a una modalità di condivisione file impostata su "nessuna" determinerà il blocco del file da parte di un client SMB fino alla chiusura del file. Se si prova a eseguire l'operazione REST su un file in cui un client SMB ha applicato un blocco, il servizio REST restituirà il codice di stato 409 (Conflitto) con il codice errore SharingViolation.  
+## <a name="managing-concurrency-in-hello-file-service"></a>Gestione della concorrenza in hello servizio File
+servizio file Hello è possibile accedere tramite due endpoint di protocollo diversi: SMB e REST. Hello servizio REST non dispone di supporto per il blocco ottimistico o pessimistico blocco e tutti gli aggiornamenti seguiranno una strategia di wins ultimo writer. I client SMB che montate condivisioni file possono utilizzare file blocco meccanismi toomanage accesso tooshared del file system-tra cui hello possibilità tooperform il blocco pessimistico. Quando un client SMB apre un file, specifica l'accesso al file hello sia condivisione modalità. Se un'opzione di accesso ai File di "Scrittura" o "Lettura/scrittura" insieme a una modalità di condivisione File "None", verrà restituita nel file hello è bloccato da un client SMB fino alla chiusura di file hello. Se l'operazione di resto viene tentata in un file in cui un client SMB ha bloccato file hello hello servizio REST restituirà il codice di stato 409 (conflitto) con codice errore SharingViolation.  
 
-Quando un client SMB apre un file per eliminarlo, lo contrassegna come in attesa dell'eliminazione fino a quando tutti gli altri handle aperti del client SMB su tale file vengono chiusi. Quando un file viene contrassegnato come in attesa di eliminazione, qualsiasi operazione REST su tale file restituirà il codice di stato 409 (Conflitto) con codice errore SMBDeletePending. Il codice di stato 404 (Non trovato) non viene restituito perché è il client SMB può rimuovere il flag di eliminazione in sospeso prima di chiudere il file. In altre parole, il codice di stato 404 (Non trovato) è previsto solo dopo la rimozione del file. Si noti che se un file si trova in uno stato di attesa dell'eliminazione da parte del client SMB non sarà incluso nei risultati degli elenchi di file. Inoltre, le operazioni di eliminazione dei file e di eliminazione della directory REST vengono sottoposte a commit in modo atomico e non determinano lo stato di eliminazione in sospeso.  
+Quando un client SMB apre un file per l'eliminazione, contrassegna il file hello come in attesa di eliminazione fino a quando tutti gli altri client SMB vengono chiusi gli handle aperti sul file selezionato. Quando un file viene contrassegnato come in attesa di eliminazione, qualsiasi operazione REST su tale file restituirà il codice di stato 409 (Conflitto) con codice errore SMBDeletePending. Poiché è possibile per hello di hello SMB client tooremove file hello tooclosing precedente flag di eliminazione in sospeso, non viene restituito il codice di stato 404 (non trovato). In altre parole, codice di stato 404 (non trovato) è previsto solo quando è stato rimosso il file hello. Si noti che mentre il file è in un pacchetto SMB stato eliminazione in sospeso, non essere incluso in hello che elencati i file di risultati. Si noti che le operazioni REST Elimina tutti i File e Directory eliminare REST hello vengono eseguito il commit in modo atomico e non generano in sospeso eliminare anche lo stato.  
 
 Per altre informazioni, vedere:  
 
 * [Managing File Locks](http://msdn.microsoft.com/library/azure/dn194265.aspx)  
 
 ## <a name="summary-and-next-steps"></a>Riepilogo e passaggi successivi
-Il servizio di archiviazione di Microsoft Azure è stato progettato per soddisfare le esigenze delle applicazioni online più complesse senza obbligare gli sviluppatori a scendere a compromessi o a ridefinire presupposti di progettazione chiave dati per scontate, come la concorrenza e la coerenza dei dati.  
+Hello archiviazione di Microsoft Azure, servizio è stato progettato esigenze hello toomeet delle applicazioni in linea più complesse hello senza imporre agli sviluppatori toocompromise o riflettere sulla chiave presupposti di progettazione, ad esempio concorrenza e consistenza dei dati che provengono tootake Per concedere.  
 
-Per l'applicazione di esempio completa alla quale si fa riferimento in questo blog, vedere:  
+Per hello completare l'applicazione di esempio a cui fa riferimento in questo blog:  
 
 * [Gestione della concorrenza con l'archiviazione di Azure - Applicazione di esempio](http://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)  
 
 Per altre informazioni sull'archiviazione di Azure, vedere:  
 
 * [Home page di Archiviazione di Microsoft Azure](https://azure.microsoft.com/services/storage/)
-* [Introduzione ad Archiviazione di Azure](storage-introduction.md)
+* [Introduzione tooAzure archiviazione](storage-introduction.md)
 * Introduzione all'archiviazione per [BLOB](storage-dotnet-how-to-use-blobs.md), [tabelle](storage-dotnet-how-to-use-tables.md), [code](storage-dotnet-how-to-use-queues.md) e [file](storage-dotnet-how-to-use-files.md)
 * Architettura di archiviazione - [Archiviazione di Azure: un servizio di archiviazione cloud a elevata disponibilità con coerenza assoluta](http://blogs.msdn.com/b/windowsazurestorage/archive/2011/11/20/windows-azure-storage-a-highly-available-cloud-storage-service-with-strong-consistency.aspx)
 

@@ -1,6 +1,6 @@
 ---
-title: Come usare Hub di notifica con Java
-description: Informazioni su come usare Hub di notifica di Azure da un back-end Java.
+title: aaaHow toouse gli hub di notifica con Java
+description: Informazioni su come toouse gli hub di notifica di Azure da un linguaggio back-end.
 services: notification-hubs
 documentationcenter: 
 author: ysxu
@@ -14,20 +14,20 @@ ms.devlang: java
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 41f978750ddef9f7e878c65b0017e909720154aa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afcf305b1acd9ee28ee4889040ece59d9399d29d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-notification-hubs-from-java"></a>Come usare Hub di notifica da Java
+# <a name="how-toouse-notification-hubs-from-java"></a>Come toouse gli hub di notifica da Java
 [!INCLUDE [notification-hubs-backend-how-to-selector](../../includes/notification-hubs-backend-how-to-selector.md)]
 
-Questo argomento descrive le funzionalità principali del nuovo ufficiale SDK per Java di Hub di notifica di Azure, completamente supportato. Si tratta di un progetto open source ed è possibile visualizzare il codice SDK completo nell'articolo relativo all' [SDK per Java]. 
+In questo argomento descrive le funzionalità principali di hello di ufficiale hello nuovo completamente supportata SDK per Java Hub di notifica di Azure. Si tratta di un progetto open source ed è possibile visualizzare l'intero codice SDK hello in [SDK per Java]. 
 
-In generale, è possibile accedere a tutte le funzionalità di Hub di notifica da un back-end Java/PHP/Python/Ruby tramite l'interfaccia REST di Hub di notifica, come descritto nell'argomento [API REST degli hub di notifica](http://msdn.microsoft.com/library/dn223264.aspx)di MSDN. L'SDK per Java fornisce un semplice wrapper per le interfacce REST in Java. 
+In generale, è possibile accedere tutte le funzionalità di hub di notifica da un server back-end utilizzabile come Java, PHP, Python o Ruby utilizzando l'interfaccia REST di Hub di notifica di hello come descritto nell'argomento MSDN hello [API REST degli hub di notifica](http://msdn.microsoft.com/library/dn223264.aspx). L'SDK per Java fornisce un semplice wrapper per le interfacce REST in Java. 
 
-L'SDK attualmente supporta:
+Hello SDK supporta attualmente:
 
 * CRUD in Hub di notifica 
 * CRUD in Registrazioni
@@ -42,7 +42,7 @@ L'SDK attualmente supporta:
 ### <a name="compile-and-build"></a>Compilazione e creazione
 Usare [Maven]
 
-Per creare:
+toobuild:
 
     mvn package
 
@@ -104,7 +104,7 @@ Analogamente, è possibile creare registrazioni per Android (GCM), Windows Phone
 
 **Creare registrazioni usando il modello create registrationid + upsert**
 
-Rimuove i duplicati causati dalle risposte perse se gli ID di registrazione sono stati archiviati nel dispositivo:
+Rimuove i duplicati a causa delle risposte tooany perdita se l'archiviazione degli ID di registrazione nel dispositivo hello:
 
     String id = hub.createRegistrationId();
     WindowsRegistration reg = new WindowsRegistration(id, new URI(CHANNELURI));
@@ -136,21 +136,21 @@ Rimuove i duplicati causati dalle risposte perse se gli ID di registrazione sono
 Tutte le query di raccolta supportano i token $top e di continuazione.
 
 ### <a name="installation-api-usage"></a>Uso dell'API di installazione
-L'API di installazione rappresenta un meccanismo alternativo per la gestione delle registrazioni. Il mantenimento di più registrazioni non è semplice e può facilmente essere eseguito in maniera errata o inefficace, pertanto ora è possibile usare un SINGOLO oggetto di installazione. L'installazione contiene tutti gli elementi necessari: il canale push (token del dispositivo), tag, modelli, riquadri secondari (per WNS e APN). Non è più necessario chiamare il servizio per ottenere l'Id. È sufficiente generare un GUID o qualsiasi altro identificatore, mantenerlo nel dispositivo e inviarlo al back-end con il canale push (token del dispositivo). Nel back-end, effettuare una singola chiamata: CreateOrUpdateInstallation, del tutto idempotente, per cui se necessario è possibile ritentare.
+L'API di installazione rappresenta un meccanismo alternativo per la gestione delle registrazioni. Anziché gestire più registrazioni che non è semplice e può essere eseguita facilmente in modo errato o uso inefficiente, è ora possibile toouse oggetto una singola installazione. L'installazione contiene tutti gli elementi necessari: il canale push (token del dispositivo), tag, modelli, riquadri secondari (per WNS e APN). Non più necessario toocall hello servizio tooget Id - semplicemente generare GUID o qualsiasi altro identificatore, mantenerli nel dispositivo e inviano back-end tooyour insieme canale push (token del dispositivo). Nel back-end hello deve eseguire solo una singola chiamata:, quindi CreateOrUpdateInstallation, è completamente idempotente, è disponibile tooretry se necessario.
 
 Un esempio per Amazon Kindle Fire è simile al seguente:
 
     Installation installation = new Installation("installation-id", NotificationPlatform.Adm, "adm-push-channel");
     hub.createOrUpdateInstallation(installation);
 
-Per aggiornarlo: 
+Se si desidera tooupdate è: 
 
     installation.addTag("foo");
     installation.addTemplate("template1", new InstallationTemplate("{\"data\":{\"key1\":\"$(value1)\"}}","tag-for-template1"));
     installation.addTemplate("template2", new InstallationTemplate("{\"data\":{\"key2\":\"$(value2)\"}}","tag-for-template2"));
     hub.createOrUpdateInstallation(installation);
 
-Per scenari avanzati è possibile usare la funzionalità di aggiornamento parziale, che consente di modificare solo determinate proprietà dell'oggetto di installazione. L'aggiornamento parziale è essenzialmente un subset di operazioni Patch JSON che è possibile eseguire in un oggetto di installazione.
+Per scenari avanzati si dispone di funzionalità di aggiornamento parziale che consente di toomodify solo determinate proprietà degli oggetti installazione hello. L'aggiornamento parziale è essenzialmente un subset di operazioni Patch JSON che è possibile eseguire in un oggetto di installazione.
 
     PartialUpdateOperation addChannel = new PartialUpdateOperation(UpdateOperationType.Add, "/pushChannel", "adm-push-channel2");
     PartialUpdateOperation addTag = new PartialUpdateOperation(UpdateOperationType.Add, "/tags", "bar");
@@ -161,9 +161,9 @@ Eliminare l'installazione:
 
     hub.deleteInstallation(installation.getInstallationId());
 
-Le operazioni CreateOrUpdate, Patch e Delete saranno coerenti con l'operazione Get. L'operazione richiesta passa alla coda di sistema durante la chiamata e verrà eseguita in background. Si noti che l'operazione Get non è progettata per lo scenario di runtime principale, ma solo per il debug e la risoluzione dei problemi ed è strettamente limitata dal servizio.
+Le operazioni CreateOrUpdate, Patch e Delete saranno coerenti con l'operazione Get. L'operazione richiesta appena diventa toohello coda di sistema durante la chiamata di hello e verrà eseguito in background. Si noti che Get non è progettato per uno scenario di runtime principale, ma solo per il debug e risoluzione dei problemi è strettamente limitato dal servizio hello.
 
-Il flusso di invio per le installazioni è identico a quello delle registrazioni. È stata introdotta un'opzione per indirizzare la notifica all'installazione specifica: per farlo, usare il tag "InstallationId: {desired-id}". Nel caso riportato sopra l'aspetto dovrebbe essere simile al seguente:
+Flusso di trasmissione per le installazioni è hello come per le registrazioni. È stato introdotto solo toohello di notifica tootarget un'opzione particolare installazione - utilizza solo tag "InstallationId: {desired-id}". Nel caso riportato sopra l'aspetto dovrebbe essere simile al seguente:
 
     Notification n = Notification.createWindowsNotification("WNS body");
     hub.sendNotification(n, "InstallationId:{installation-id}");
@@ -176,7 +176,7 @@ Per uno dei diversi modelli:
     hub.sendNotification(n, "InstallationId:{installation-id} && tag-for-template1");
 
 ### <a name="schedule-notifications-available-for-standard-tier"></a>Pianificare le notifiche (disponibile per il livello STANDARD)
-Si tratta di un invio normale ma con un parametro aggiuntivo, scheduledTime, che indica quando deve essere recapitata la notifica. Il servizio accetta qualsiasi data e ora da 5 minuti a sette giorni a partire dalla data e ora correnti.
+Hello stesso trasmissione regolare ma con un parametro aggiuntivo - scheduledTime che indica quando deve essere recapitata la notifica. Il servizio accetta qualsiasi data e ora da 5 minuti a sette giorni a partire dalla data e ora correnti.
 
 **Pianificare una notifica nativa di Windows:**
 
@@ -186,7 +186,7 @@ Si tratta di un invio normale ma con un parametro aggiuntivo, scheduledTime, che
     hub.scheduleNotification(n, c.getTime());
 
 ### <a name="importexport-available-for-standard-tier"></a>Importazione/esportazione (disponibile per il livello STANDARD)
-Talvolta è necessario eseguire un'operazione di massa nelle registrazioni. In genere si tratta dell'integrazione con un altro sistema o di una correzione di grandi dimensioni, ad esempio per l'aggiornamento di tag. Se si ha a che fare con migliaia di registrazioni, non è consigliabile usare il flusso Get/Update. La soluzione appropriata per tale scenario è la funzionalità di importazione/esportazione. Essenzialmente è necessario fornire un accesso a un contenitore BLOB dell'account di archiviazione come origine dei dati in ingresso e come percorso per l'output.
+Talvolta è necessario tooperform massa contro le registrazioni. È in genere per l'integrazione con un altro sistema o solo una correzione massive toosay aggiornamento hello tag. Non è fortemente consigliabile toouse flusso Get o l'aggiornamento se stiamo parlando migliaia di registrazioni. Funzionalità di importazione/esportazione è uno scenario di hello toocover progettato. Forniscono sostanzialmente un contenitore di blob toosome di accesso con l'account di archiviazione come origine di dati in arrivo e il percorso per l'output.
 
 **Inviare il processo di esportazione:**
 
@@ -217,10 +217,10 @@ Talvolta è necessario eseguire un'operazione di massa nelle registrazioni. In g
 
     List<NotificationHubJob> jobs = hub.getAllNotificationHubJobs();
 
-**URI con firma SAS** : l'URL di un file BLOB o di un contenitore BLOB con un insieme di parametri come le autorizzazioni e l'ora di scadenza e con la firma di tutti questi elementi effettuata usando la chiave della firma di accesso condiviso dell'account. L'SDK per Java di Archiviazione di Azure dispone di funzionalità avanzate, compresa la creazione di tale tipo di URI. In alternativa è possibile esaminare la classe di test ImportExportE2E (dal percorso Github) che include un'implementazione molto semplice e compatta dell'algoritmo di firma.
+**URI con firma:** è hello URL di alcuni file blob o contenitore blob più set di parametri, quali le autorizzazioni e l'ora di scadenza e firma di tutte queste operazioni eseguite tramite la chiave di firma di accesso condiviso dell'account. L'SDK per Java di Archiviazione di Azure dispone di funzionalità avanzate, compresa la creazione di tale tipo di URI. Come alternativa semplice è possibile dare un'occhiata ImportExportE2E classe di test (dal percorso di github hello) che è molto di base e compact implementazione dell'algoritmo di firma.
 
 ### <a name="send-notifications"></a>Inviare notifiche
-L'oggetto notifica è semplicemente un corpo con intestazioni ed esistono alcuni metodi di utilità che consentono la creazione di notifiche modello e notifiche native.
+oggetto notifica Hello è semplicemente un corpo con intestazioni, alcuni metodi di utilità della Guida nella creazione di oggetti di notifiche hello nativo e modello.
 
 * **Windows Store e Windows Phone 8.1 (non Silverlight)**
   
@@ -252,13 +252,13 @@ L'oggetto notifica è semplicemente un corpo con intestazioni ed esistono alcuni
         String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
         Notification n = Notification.createAdmNotification(message);
         hub.sendNotification(n);
-* **Inviare a tag**
+* **Inviare tooTags**
   
         Set<String> tags = new HashSet<String>();
         tags.add("boo");
         tags.add("foo");
         hub.sendNotification(n, tags);
-* **Inviare a espressione tag**       
+* **Inviare tootag espressione**       
   
         hub.sendNotification(n, "foo && ! bar");
 * **Inviare una notifica modello**
@@ -272,22 +272,22 @@ L'oggetto notifica è semplicemente un corpo con intestazioni ed esistono alcuni
 Quando si esegue il codice Java, dovrebbe essere visualizzata una notifica sul dispositivo di destinazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questo argomento è stato illustrato come creare un semplice client REST Java per Hub di notifica. A questo punto è possibile:
+In questo argomento illustrato come toocreate un linguaggio semplice REST client per gli hub di notifica. A questo punto è possibile:
 
-* Scaricare la versione completa di [SDK per Java]contenente l'intero codice SDK. 
-* Consultare gli esempi:
+* Scaricare hello completo [SDK per Java], che contiene tutto il codice SDK hello. 
+* Provare a usare hello esempi:
   * [Introduzione ad Hub di notifica]
   * [Inviare le ultime notizie]
   * [Inviare le ultime notizie localizzate]
-  * [Inviare notifiche agli utenti autenticati]
-  * [Inviare notifiche multipiattaforma agli utenti autenticati]
+  * [Inviare notifiche agli utenti di tooauthenticated]
+  * [Inviare notifiche di multipiattaforma tooauthenticated utenti]
 
 [SDK per Java]: https://github.com/Azure/azure-notificationhubs-java-backend
 [Get started tutorial]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
 [Introduzione ad Hub di notifica]: http://www.windowsazure.com/manage/services/notification-hubs/getting-started-windows-dotnet/
 [Inviare le ultime notizie]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-dotnet/
 [Inviare le ultime notizie localizzate]: http://www.windowsazure.com/manage/services/notification-hubs/breaking-news-localized-dotnet/
-[Inviare notifiche agli utenti autenticati]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users/
-[Inviare notifiche multipiattaforma agli utenti autenticati]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users-xplat-mobile-services/
+[Inviare notifiche agli utenti di tooauthenticated]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users/
+[Inviare notifiche di multipiattaforma tooauthenticated utenti]: http://www.windowsazure.com/manage/services/notification-hubs/notify-users-xplat-mobile-services/
 [Maven]: http://maven.apache.org/
 

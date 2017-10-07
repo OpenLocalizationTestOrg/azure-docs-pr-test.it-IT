@@ -1,6 +1,6 @@
 ---
-title: Agente ed estensioni di macchine virtuali Windows in Azure | Documentazione Microsoft
-description: "Fornisce una panoramica dell'agente e delle estensioni, nonché informazioni su come installare l'agente usando il modello di distribuzione classica su macchine virtuali Windows."
+title: aaaWindow VM agente ed estensioni in Azure | Documenti Microsoft
+description: Fornisce una panoramica dell'agente hello e alle estensioni e come tooinstall hello agente, tramite il modello di distribuzione classica hello in macchine virtuali di Windows.
 services: virtual-machines-windows
 documentationcenter: 
 author: squillace
@@ -16,15 +16,15 @@ ms.workload: infrastructure-services
 ms.date: 02/27/2017
 ms.author: rasquill
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c94332314668dc7e58ed84b20945a548c0443f84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e5eade7d289267c0932fc98b410b511bd5d7bb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="about-the-virtual-machine-agent-and-extensions-for-windows-vms"></a>Informazioni sull'agente e sulle estensioni di macchine virtuali per macchine virtuali Windows
+# <a name="about-hello-virtual-machine-agent-and-extensions-for-windows-vms"></a>Sull'agente della macchina virtuale hello ed estensioni per le macchine virtuali Windows
 
 > [!IMPORTANT]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica. Microsoft consiglia di usare il modello di Gestione risorse per le distribuzioni più recenti. Per informazioni su agenti ed estensioni VM tramite Gestione risorse, vedere [qui](../extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello. Si consiglia di utilizzano il modello di gestione risorse hello più nuove distribuzioni. Per informazioni su agenti ed estensioni VM tramite Gestione risorse, vedere [qui](../extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-classic-agents-and-extensions](../../../../includes/virtual-machines-common-classic-agents-and-extensions.md)]

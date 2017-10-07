@@ -1,5 +1,5 @@
 ---
-title: Integrazione di Azure Mobile Engagement SDK per iOS | Documentazione Microsoft
+title: aaaAzure iOS Mobile Engagement SDK integrazione | Documenti Microsoft
 description: Ultimi aggiornamenti e procedure relativi a iOS SDK per Azure Mobile Engagement
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,13 +14,13 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: piyushjo
-ms.openlocfilehash: 01fdbb43c21ac6932e8462f4a6507fc63e50542d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 66ce34efabede7d882caa8a91431a8df71e4fb59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-integrate-engagement-on-ios"></a>Come integrare Engagement in iOS
+# <a name="how-toointegrate-engagement-on-ios"></a>Come tooIntegrate Engagement in iOS
 > [!div class="op_single_selector"]
 > * [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Questa procedura descrive il modo più semplice per attivare le funzioni di analisi e monitoraggio di Engagement in un'applicazione per iOS.
+Questa procedura descrive Engagement tooactivate di modo più semplice di hello Analitica e funzioni nell'applicazione iOS di monitoraggio.
 
-L'Engagement SDK richiede iOS7 o versione successiva e XCode 8: la destinazione della distribuzione dell'applicazione deve essere almeno iOS 7.
+Hello Engagement SDK richiede + IOS 7 e 8 + Xcode: destinazione di distribuzione hello dell'applicazione deve essere almeno iOS 7.
 
 > [!NOTE]
-> Se si dipende davvero da XCode 7, è possibile usare [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). Esiste un bug noto nel modulo di copertura di questa precedente versione che si verifica durante l'esecuzione sui dispositivi iOS 10. Per altri dettagli, vedere [l'integrazione del modulo di copertura](mobile-engagement-ios-integrate-engagement-reach.md). Se si sceglie di utilizzare l'SDK v3.2.4, ignorare l'importazione di `UserNotifications.framework` nel passaggio successivo.
+> Se effettivamente dipendono XCode 7, è possibile utilizzare hello [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh). È presente un bug noto nel modulo Reach hello di questa versione di precedente durante l'esecuzione su dispositivi iOS, 10, vedere [hello integrazione modulo reach](mobile-engagement-ios-integrate-engagement-reach.md) per altri dettagli. Se si sceglie toouse hello SDK v3.2.4, ignorare hello `UserNotifications.framework` importare nel passaggio successivo hello.
 >
 >
 
-I passaggi seguenti sono sufficienti per attivare la segnalazione dei log necessari per calcolare tutte le statistiche relative a utenti, sessioni, attività, arresti anomali del sistema e dati tecnici. La segnalazione dei log necessari per calcolare altre statistiche quali eventi, errori e processi deve essere eseguita manualmente mediante l'API di Engagement. Vedere [Come usare l'API di Engagement in iOS](mobile-engagement-ios-use-engagement-api.md) poiché queste statistiche dipendono dall'applicazione.
+Hello seguendo i passaggi è che sufficienti tooactivate hello dei log è necessario un report toocompute tutte le statistiche relative agli utenti, sessioni, attività, arresti anomali del sistema e Technicals. Hello dei log è necessario un report toocompute altre statistiche quali processi, errori ed eventi devono essere eseguiti manualmente tramite API di Engagement hello (vedere [come toouse hello avanzate Mobile Engagement tag API nell'app iOS](mobile-engagement-ios-use-engagement-api.md) poiché queste statistiche dipendono dall'applicazione.
 
-## <a name="embed-the-engagement-sdk-into-your-ios-project"></a>Incorporare l'SDK di Engagement nel progetto iOS
-* Scaricare l’SDK per iOS da [qui](http://aka.ms/qk2rnj).
-* Aggiungere Engagement SDK nel progetto iOS: in Xcode fare clic con il pulsante destro del mouse sul progetto, quindi scegliere **"Add files to ..."** (Aggiungi file a) e infine selezionare la cartella `EngagementSDK`.
-* Per il funzionamento di Engagement sono necessari framework aggiuntivi: nell'area di esplorazione dei progetti aprire il riquadro del progetto, quindi selezionare la destinazione corretta. Aprire la scheda **Build Phases** (Crea fasi) e nel menu **Link Binary With Libraries** (Collega binario con librerie) aggiungere i framework come illustrato di seguito:
+## <a name="embed-hello-engagement-sdk-into-your-ios-project"></a>Incorporare hello Engagement SDK nel progetto iOS
+* Scaricare hello iOS SDK da [qui](http://aka.ms/qk2rnj).
+* Progetto di componente hello Engagement SDK tooyour iOS: in Xcode, fare clic sul progetto e selezionare **"aggiungere file troppo..."** scegliere hello `EngagementSDK` cartella.
+* Engagement richiede ulteriori Framework toowork: in project explorer di hello, aprire il riquadro di progetto e selezionare hello destinazione corretta. Aprire quindi hello **"Fasi di compilazione"** scheda in hello **"Binario con librerie di collegamento"** menu, aggiungere questi Framework:
 
-  * `UserNotifications.framework`: impostare il collegamento come `Optional`
-  * `AdSupport.framework`: impostare il collegamento come `Optional`
+  * `UserNotifications.framework`-Imposta hello collegamento come`Optional`
+  * `AdSupport.framework`-Imposta hello collegamento come`Optional`
   * `SystemConfiguration.framework`
   * `CoreTelephony.framework`
   * `CFNetwork.framework`
@@ -54,18 +54,18 @@ I passaggi seguenti sono sufficienti per attivare la segnalazione dei log necess
   * `libxml2.dylib`
 
 > [!NOTE]
-> È possibile rimuovere il framework AdSupport. Engagement necessita di questo framework per raccogliere l'identificatore IDFA (Identifier for Advertising). È tuttavia possibile disabilitare la raccolta di identificatori IDFA \<ios-sdk-engagement-idfa\> per conformarsi ai nuovi criteri Apple relativi a questo ID.
+> framework AdSupport Hello può essere rimosso. Engagement deve hello di toocollect IDFA questo framework. Tuttavia, può essere disabilitata la raccolta IDFA \<ios-sdk-engagement-idfa\> toocomply con hello nuovo Apple politica di questo ID.
 >
 >
 
-## <a name="initialize-the-engagement-sdk"></a>Inizializzare Engagement SDK
-È necessario modificare il delegato dell'applicazione:
+## <a name="initialize-hello-engagement-sdk"></a>Inizializzare hello Engagement SDK
+È necessario toomodify al delegato dell'applicazione:
 
-* Nella parte superiore del file di implementazione importare l'agente di Engagement:
+* Nella parte superiore di hello del file di implementazione, importare agente Engagement hello:
 
       [...]
       #import "EngagementAgent.h"
-* Inizializzare Engagement all'interno del metodo '**applicationDidFinishLaunching:**' o '**application:didFinishLaunchingWithOptions:**':
+* Inizializzare Engagement all'interno di metodo hello '**applicationDidFinishLaunching:**'o'**application: didFinishLaunchingWithOptions:**':
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
       {
@@ -76,7 +76,7 @@ I passaggi seguenti sono sufficienti per attivare la segnalazione dei log necess
 
 ## <a name="basic-reporting"></a>Segnalazione di base
 ### <a name="recommended-method-overload-your-uiviewcontroller-classes"></a>Metodo consigliato: eseguire l'overload delle classi `UIViewController`
-Per attivare la segnalazione di tutti i log richiesti da Engagement per il calcolo delle statistiche relative a utenti, sessioni, attività, arresti anomali del sistema e dati tecnici, è sufficiente fare in modo che tutte le sottoclassi `UIViewController` ereditino dalle classi `EngagementViewController` (stessa regola per `UITableViewController` -\> `EngagementTableViewController`).
+Report hello tooactivate order di tutti i log di hello richiesto da Engagement toocompute utenti, sessioni, attività, arresti anomali del sistema e le statistiche tecniche, puoi semplicemente far tutti i `UIViewController` sottoclassi ereditano hello `EngagementViewController` classi (stessa regola per `UITableViewController`  - \> `EngagementTableViewController`).
 
 **Senza Engagement:**
 
@@ -104,24 +104,24 @@ Per attivare la segnalazione di tutti i log richiesti da Engagement per il calco
     @property (nonatomic, retain) IBOutlet UITextField* myTextField2;
 
 ### <a name="alternate-method-call-startactivity-manually"></a>Metodo alternativo: chiamare `startActivity()` manualmente
-Se non si può o non si vuole eseguire l'overload delle classi `UIViewController`, è possibile avviare le attività chiamando direttamente i metodi di `EngagementAgent`.
+Se non è possibile o non si desidera toooverload il `UIViewController` classi, invece, è possibile avviare le attività chiamando `EngagementAgent`del diretta dei metodi.
 
 > [!IMPORTANT]
-> iOS SDK chiama automaticamente il metodo `endActivity()` quando viene chiusa l'applicazione. Di conseguenza, è *CONSIGLIABILE* chiamare il metodo `startActivity` ogni volta che l'attività dell'utente cambia e non chiamare *MAI* il metodo `endActivity` poiché questo metodo forza la chiusura della sessione corrente.
+> Hello iOS SDK chiama automaticamente hello `endActivity()` metodo quando un'applicazione hello viene chiuso. È pertanto *elevata* consigliato hello toocall `startActivity` metodo ogni volta che cambia attività hello dell'utente di hello e troppo*mai* chiamata hello `endActivity` (metodo), dopo la chiamata di questo metodo impone Hello toobe corrente della sessione è terminata.
 >
 >
 
 ## <a name="location-reporting"></a>Segnalazione della posizione
-Le condizioni del servizio Apple non permettono alle applicazioni di usare la verifica della posizione per scopi puramente statistici. È quindi consigliabile abilitare la segnalazione della posizione solo se l'applicazione usa la verifica della posizione anche per altri scopi.
+Condizioni Apple del servizio non consentono alle applicazioni toouse rilevamento solo a scopo di statistiche del percorso. Di conseguenza, è consigliabile tooenable percorso report solo se l'applicazione utilizza anche per altri motivi di rilevamento del percorso hello.
 
-A partire da iOS 8, è necessario fornire una descrizione dell'uso dei servizi di posizione da parte dell'app, impostando una stringa per la chiave [NSLocationWhenInUseUsageDescription] o [NSLocationAlwaysUsageDescription] nel file Info.plist dell'app. Se si vuole segnalare la posizione in background con Engagement, aggiungere la chiave NSLocationAlwaysUsageDescription. In tutti gli altri casi, aggiungere la chiave NSLocationWhenInUseUsageDescription. Si noti che sono necessari sia NSLocationAlwaysAndWhenInUseUsageDescription sia NSLocationWhenInUseUsageDescription per indicare il percorso in background in iOS 11.
+A partire da iOS 8, è necessario fornire una descrizione per la modalità l'app Usa i servizi di posizione impostando una stringa per la chiave hello [NSLocationWhenInUseUsageDescription] o [NSLocationAlwaysUsageDescription]nel file Info. plist dell'app. Se si desidera che il percorso di tooreport in background hello Engagement, aggiungere la chiave di hello NSLocationAlwaysUsageDescription. In tutti gli altri casi, aggiungere la chiave hello NSLocationWhenInUseUsageDescription. Si noti che è necessario NSLocationAlwaysAndWhenInUseUsageDescription sia NSLocationWhenInUseUsageDescription tooreport background percorso iOS 11.
 
 ### <a name="lazy-area-location-reporting"></a>Segnalazione differita della posizione
-La segnalazione differita della posizione consente di segnalare il paese, l'area geografica e la località associati ai dispositivi. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. L'area del dispositivo viene segnalata al massimo una volta per sessione. Il GPS non viene mai usato, per cui l'impatto di questo tipo di segnalazione della posizione sulla batteria è minimo, se non addirittura nullo.
+Segnalazione differita della posizione consente paese hello tooreport, area e località associata toodevices. Questo tipo di segnalazione della posizione usa solo le posizioni di rete, sulla base dell'ID di cella o della connessione Wi-Fi. area Hello del dispositivo viene segnalato al massimo una volta per ogni sessione. Hello GPS non viene mai utilizzato e, pertanto questo tipo di report di percorso include solo poche (non toosay alcun) impatto sulla batteria hello.
 
-Le aree segnalate vengono usate per calcolare statistiche geografiche relative a utenti, sessioni, eventi ed errori. Possono essere usate anche come criteri nelle campagne Reach. L'ultima area conosciuta segnalata per un dispositivo può essere recuperata grazie all' [API del dispositivo].
+Le aree segnalate sono utilizzati toocompute statistiche geografica sugli utenti, sessioni, eventi e gli errori. Possono essere usate anche come criteri nelle campagne Reach. Hello noto ultima area segnalato per un dispositivo può essere recuperato grazie toohello [API dispositivo].
 
-Per abilitare la segnalazione differita della posizione, aggiungere la riga seguente dopo l'inizializzazione dell'agente di Engagement:
+percorso di area lazy tooenable reporting, aggiungere hello successiva riga dopo l'inizializzazione hello Engagement agente:
 
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     {
@@ -131,60 +131,60 @@ Per abilitare la segnalazione differita della posizione, aggiungere la riga segu
     }
 
 ### <a name="real-time-location-reporting"></a>Segnalazione della posizione in tempo reale
-La segnalazione della posizione in tempo reale consente di segnalare la latitudine e la longitudine associate ai dispositivi. Per impostazione predefinita, la segnalazione differita della posizione usa solo posizioni di rete (in base all'ID di cella o alla connessione Wi-Fi) ed è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione.
+La segnalazione della posizione in tempo reale consente tooreport hello latitudine e la longitudine associata toodevices. Per impostazione predefinita, questo tipo di segnalazione della posizione Usa solo i percorsi di rete (basati su ID di cella o Wi-Fi) e reporting hello è attivo solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio durante una sessione).
 
-Le posizioni in tempo reale *NON* sono usate per calcolare dati statistici. L'unico scopo è consentire l'uso del criterio di definizione del recinto virtuale in tempo reale \<Reach-Audience-geofencing\> nelle campagne di copertura.
+I percorsi in tempo reale sono *non* utilizzato toocompute statistiche. Il loro scopo solo è utilizzare hello tooallow di geo-fencing in tempo reale \<Reach-pubblico-geofencing\> criterio di campagne di copertura.
 
-Per abilitare la segnalazione della posizione in tempo reale, aggiungere la riga seguente dopo l'inizializzazione dell'agente di Engagement:
+posizione in tempo reale tooenable reporting, aggiungere hello successiva riga dopo l'inizializzazione hello Engagement agente:
 
     [[EngagementAgent shared] setRealtimeLocationReport:YES];
 
 #### <a name="gps-based-reporting"></a>Segnalazione basata su GPS
-Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. Per abilitare l'uso di posizioni basate su GPS (che sono molto più precise), aggiungere:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale usa solo posizioni di rete. utilizzo di hello tooenable di GPS basato su percorsi, che sono molto più precise, aggiungere:
 
     [[EngagementAgent shared] setFineRealtimeLocationReport:YES];
 
 #### <a name="background-reporting"></a>Segnalazione in background
-Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo quando l'applicazione viene eseguita in primo piano, ad esempio durante una sessione. Per abilitare la segnalazione anche in background, aggiungere:
+Per impostazione predefinita, la segnalazione della posizione in tempo reale è attiva solo durante l'esecuzione di un'applicazione hello in primo piano (ad esempio durante una sessione). hello tooenable reporting anche in background, aggiungere:
 
     [[EngagementAgent shared] setBackgroundRealtimeLocationReport:YES withLaunchOptions:launchOptions];
 
 > [!NOTE]
-> Quando l'applicazione viene eseguita in background, vengono segnalate solo le posizioni basate sulla rete, anche se è abilitato il GPS.
+> Quando un'applicazione hello viene eseguito in background, vengono segnalati solo i percorsi di rete di base, anche se è abilitata hello GPS.
 >
 >
 
-Se si implementa questa funzione, viene chiamato [startMonitoringSignificantLocationChanges] quando l'applicazione passa in background. Si noti che l'applicazione verrà riavviata automaticamente in background in caso di arrivo di un nuovo evento relativo alla posizione.
+Implementazione di questa funzione chiamerà [startMonitoringSignificantLocationChanges] quando l'applicazione passa in background hello. Tenere presente che verrà automaticamente riavvia l'applicazione in background hello se arriva un nuovo evento.
 
 ## <a name="advanced-reporting"></a>Segnalazione avanzata
-Facoltativamente, per segnalare eventi, errori e processi specifici dell'applicazione, è necessario usare l'API di Engagement mediante i metodi della classe `EngagementAgent` . Un oggetto di questa classe può essere recuperato chiamando il metodo statico `[EngagementAgent shared]` .
+Facoltativamente, se si desidera tooreport eventi specifici di applicazione, gli errori e i processi, è necessario toouse hello API Engagement tramite i metodi di hello di hello `EngagementAgent` classe. Un oggetto di questa classe può essere recuperato da chiamata hello `[EngagementAgent shared]` metodo statico.
 
-L'API di Engagement consente di usare tutte le funzionalità avanzate di Engagement ed è descritta in dettaglio nell'argomento dedicato all'uso dell'API in iOS, oltre che nella documentazione tecnica relativa alla classe `EngagementAgent` .
+Consente tutte le funzionalità avanzate di Engagement toouse Hello Engagement API e dettagliato in hello come tooUse l'API di Engagement in iOS (nonché in documentazione tecnica di hello di hello `EngagementAgent` classe).
 
 ## <a name="disable-idfa-collection"></a>Disabilitare la raccolta IDFA
-Per impostazione predefinita, Engagement usa l'identificatore [IDFA] per identificare un utente in modo univoco. Se però si usano annunci pubblicitari altrove nell'app, è possibile che l'app venga respinta dal processo di verifica di App Store. La raccolta IDFA può essere disabilitata mediante l'aggiunta della macro del preprocessore `ENGAGEMENT_DISABLE_IDFA` nel file con estensione pch (o nella sezione `Build Settings` dell'applicazione). In questo modo è possibile assicurarsi che la build dell'applicazione non includa riferimenti a `ASIdentifierManager`, `advertisingIdentifier` o `isAdvertisingTrackingEnabled`.
+Per impostazione predefinita, Engagement utilizzerà hello [IDFA] toouniquely identificare un utente. Tuttavia, se non si usa la pubblicità altrove nell'applicazione hello, potrebbe essere rifiutato da hello il processo di revisione di App Store. Può essere disabilitata la raccolta IDFA aggiungendo macro del preprocessore hello `ENGAGEMENT_DISABLE_IDFA` nel file pch (o in hello `Build Settings` dell'applicazione). In questo modo che non sia presente alcun riferimento troppo`ASIdentifierManager`, `advertisingIdentifier` o `isAdvertisingTrackingEnabled` nella compilazione dell'applicazione hello.
 
-Integrazione nel file **prefix.pch** :
+Integrazione di hello **prefix.pch** file:
 
     #define ENGAGEMENT_DISABLE_IDFA
     ...
 
-È possibile verificare la corretta disabilitazione della raccolta IDFA nell'applicazione controllando i log di test di Engagement. Per altre informazioni, vedere la documentazione sul test di integrazione \<ios-sdk-engagement-test-idfa\>.
+È possibile verificare che la raccolta IDFA hello correttamente è disabilitata nell'applicazione controllando i log dei test di Engagement hello. Vedere hello Test di integrazione\<ios-sdk-engagement-test-idfa\> documentazione per ulteriori informazioni.
 
 ## <a name="disable-log-reporting"></a>Disabilitare la segnalazione di log
 ### <a name="using-a-method-call"></a>Uso di una chiamata del metodo
-Se si vuole che Engagement non invii più log, è possibile chiamare:
+Se si desidera toostop Engagement l'invio di log, è possibile chiamare:
 
     [[EngagementAgent shared] setEnabled:NO];
 
-Questa chiamata è persistente: usa `NSUserDefaults` per archiviare le informazioni.
+Questa chiamata è permanente: Usa `NSUserDefaults` informazioni hello toostore.
 
-È possibile abilitare di nuovo la segnalazione di log chiamando la stessa funzione con `YES`.
+È possibile abilitare nuovamente reporting chiamando hello stessa funzione con log `YES`.
 
 ### <a name="integration-in-your-settings-bundle"></a>Integrazione nel bundle di impostazioni
-Anziché chiamare questa funzione, è possibile integrare questa impostazione direttamente nel file `Settings.bundle` esistente. La stringa `engagement_agent_enabled` deve essere usata come identificatore di preferenze e deve essere associata a un'opzione di attivazione/disattivazione (`PSToggleSwitchSpecifier`).
+Anziché chiamare questa funzione, è possibile integrare questa impostazione direttamente nel file `Settings.bundle` esistente. stringa Hello `engagement_agent_enabled` deve essere utilizzata come un identificatore di preferenza hello e deve essere associato tooa interruttore (`PSToggleSwitchSpecifier`).
 
-L'esempio seguente di `Settings.bundle` mostra come implementarla:
+Hello in seguito ad esempio `Settings.bundle` viene illustrato come tooimplement è:
 
     <dict>
         <key>PreferenceSpecifiers</key>
@@ -205,7 +205,7 @@ L'esempio seguente di `Settings.bundle` mostra come implementarla:
     </dict>
 
 <!-- URLs. -->
-[API del dispositivo]: http://go.microsoft.com/?linkid=9876094
+[API dispositivo]: http://go.microsoft.com/?linkid=9876094
 [NSLocationWhenInUseUsageDescription]:https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26
 [NSLocationAlwaysUsageDescription]:https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18
 [startMonitoringSignificantLocationChanges]:http://developer.apple.com/library/IOs/#documentation/CoreLocation/Reference/CLLocationManager_Class/CLLocationManager/CLLocationManager.html#//apple_ref/occ/instm/CLLocationManager/startMonitoringSignificantLocationChanges

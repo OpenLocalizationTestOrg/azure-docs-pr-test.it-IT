@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi del cluster Apache Spark in Azure HDInsight | Microsoft Docs
-description: Informazioni sui problemi relativi ai cluster Apache Spark in HDInsight di Azure e come risolverli.
+title: cluster aaaTroubleshoot problemi con Apache Spark in HDInsight di Azure | Documenti Microsoft
+description: Informazioni sui problemi correlati tooApache i cluster Spark in Azure HDInsight e come toowork intorno quelli.
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,31 +16,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 3a493a2c35a6cdd31bb1e4ff66113a8f8d97d4f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7373b90524ae5dbb10ab8ded593aa38d12c14b55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="known-issues-for-apache-spark-cluster-on-hdinsight"></a>Problemi noti del cluster Apache Spark in HDInsight
 
-Questo documento elenca tutti i problemi noti relativi all'anteprima pubblica di HDInsight Spark.  
+Questo documento tiene traccia di hello tutti i problemi per l'anteprima pubblica di HDInsight Spark hello noti.  
 
 ## <a name="livy-leaks-interactive-session"></a>Livy perde la sessione interattiva
-Quando Livy viene riavviato (da Ambari oppure a causa del riavvio della macchina virtuale con nodo head 0) con una sessione interattiva ancora attiva, una sessione di processo interattiva andrà persa. Per questo motivo, i nuovi processi possono rimanere bloccati in stato Accettato e non possono essere avviati.
+Quando inserire il riavvio (Ambari o a causa il riavvio del computer virtuale tooheadnode 0) con una sessione interattiva ancora attiva, è possibile che una sessione interattiva andrà perso. Per questo motivo, può essere di nuovo i processi bloccato nello stato accettato hello e non può essere avviato.
 
 **Soluzione:**
 
-Seguire questa procedura per risolvere il problema:
+Utilizzare hello problema hello tooworkaround di stored procedure seguente:
 
 1. Eseguire SSH nel nodo head. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Eseguire il comando seguente per trovare gli ID applicazione dei processi interattivi avviati tramite Livy. 
+2. Esecuzione hello seguente un'applicazione hello toofind comando ID dei processi interattivi hello avviato tramite inserire il. 
    
         yarn application –list
    
-    I nomi di processo predefiniti corrispondono a Livy se i processi sono stati avviati con una sessione interattiva Livy senza specificare nomi espliciti. Per la sessione Livy avviata dal notebook di Jupyter, il nome del processo verrà avviato con remotesparkmagics_*. 
-3. Eseguire il comando seguente per terminare questi processi. 
+    Hello nomi di processo predefiniti saranno inserire il se hello processi sono stati avviati con una sessione interattiva di inserire il senza nomi esplicita specificata, per hello sessione avviata dal server Jupyter notebook inserire il nome del processo hello inizierà con remotesparkmagics_ *. 
+3. Comando che segue hello esecuzione tookill tali processi. 
    
         yarn application –kill <Application ID>
 
@@ -51,63 +51,63 @@ Il server cronologia Spark non viene avviato automaticamente dopo la creazione d
 
 **Soluzione:** 
 
-Avviare manualmente il server cronologia da Ambari.
+Avviare manualmente il server di cronologia hello da Ambari.
 
 ## <a name="permission-issue-in-spark-log-directory"></a>Problema di autorizzazioni nella directory log Spark
-Quando hdiuser invia un processo con spark-submit, si verifica un errore java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (autorizzazione negata) e il log del driver non viene scritto. 
+Quando hdiuser invia un processo con spark-submit, si verifica un errore java.io.FileNotFoundException: /var/log/spark/sparkdriver_hdiuser.log (autorizzazione negata) e hello log driver non è stato scritto. 
 
 **Soluzione:**
 
-1. Aggiungere hdiuser al gruppo Hadoop. 
+1. Aggiungere il gruppo hdiuser toohello Hadoop. 
 2. Indicare 777 autorizzazioni in /var/log/spark dopo la creazione del cluster. 
-3. Aggiornare il percorso del log Spark tramite Ambari in modo che corrisponda a una directory con 777 autorizzazioni.  
+3. Percorso di log spark hello utilizzando Ambari toobe una directory con 777 autorizzazioni di aggiornamento.  
 4. Eseguire spark-submit come sudo.  
 
 ## <a name="spark-phoenix-connector-is-not-supported"></a>Il connettore Spark-Phoenix non è supportato
 
-Attualmente, il connettore Spark-Phoenix non è supportato in un cluster HDInsight Spark.
+Attualmente, il connettore di Spark Phoenix hello non è supportato con un cluster HDInsight Spark.
 
 **Soluzione:**
 
-Usare il connettore Spark-HBase. Per istruzioni, vedere [Come usare un connettore Spark-HBase](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/).
+È invece necessario utilizzare connettore Spark HBase hello. Per istruzioni, vedere [come connettore Spark HBase toouse](https://blogs.msdn.microsoft.com/azuredatalake/2016/07/25/hdinsight-how-to-use-spark-hbase-connector/).
 
-## <a name="issues-related-to-jupyter-notebooks"></a>Problemi relativi ai notebook Jupyter
-Seguito alcuni problemi noti relativi ai notebook Jupyter.
+## <a name="issues-related-toojupyter-notebooks"></a>I problemi relativi a notebook tooJupyter
+Di seguito sono i blocchi appunti tooJupyter correlati alcuni problemi noti.
 
 ### <a name="notebooks-with-non-ascii-characters-in-filenames"></a>Notebook con nomi di file contenenti caratteri non ASCII
-I notebook Jupyter utilizzabili nei cluster HDInsight Spark non devono contenere nei nomi di file caratteri non ASCII. Se si tenta di caricare tramite l'interfaccia utente Jupyter un file con un nome di file non ASCII, l'operazione si interromperà senza avvisi. Questo significa che Jupyter non consentirà di caricare il file, ma non genererà un errore visibile. 
+I notebook Jupyter utilizzabili nei cluster HDInsight Spark non devono contenere nei nomi di file caratteri non ASCII. Se si tenta di tooupload un file tramite hello UI Jupyter che ha un nome di file non ASCII, ne verrà eseguito automaticamente (vale a dire Jupyter non consente di caricare file hello, ma non genererà un errore visibile sia). 
 
 ### <a name="error-while-loading-notebooks-of-larger-sizes"></a>Errore durante il caricamento di notebook di maggiori dimensioni
 Quando si caricano notebook di maggiori dimensioni, potrebbe comparire l'errore **`Error loading notebook`** .  
 
 **Soluzione:**
 
-Se viene visualizzato questo errore, non significa che i dati sono danneggiati o persi.  I notebook sono ancora disponibili su disco in `/var/lib/jupyter`ed è possibile usare SSH nel cluster per accedervi. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
+Se viene visualizzato questo errore, non significa che i dati sono danneggiati o persi.  I blocchi appunti sono ancora nell'unità disco in `/var/lib/jupyter`, ed è possibile SSH in hello cluster tooaccess li. Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Dopo aver effettuato la connessione al cluster usando SSH, è possibile copiare i notebook dal cluster nel computer locale (tramite SCP o WinSCP) come backup per evitare la perdita di dati importanti del notebook. È quindi possibile usare SSH per il tunneling al nodo head sulla porta 8001 e accedere a Jupyter senza passare attraverso il gateway.  Qui è possibile cancellare l'output del notebook e salvarlo di nuovo per ridurne le dimensioni.
+Dopo avere connesso il cluster toohello tramite SSH, è possibile copiare i blocchi appunti dal cluster tooyour computer locale (tramite SCP o WinSCP) come una perdita di hello tooprevent backup dei dati importanti nel blocco note hello. È quindi possibile tunnel SSH nel nodo head in porte 8001 tooaccess Jupyter senza passare attraverso il gateway hello.  Da qui, è possibile cancellare l'output di hello del blocco note e salvarlo nuovamente la dimensione del blocco per Appunti toominimize hello.
 
-Per evitare questo errore in futuro, è necessario seguire alcune procedure consigliate:
+tooprevent l'errore accada in futuro, è necessario seguire alcune procedure consigliate hello:
 
-* È importante mantenere ridotte le dimensioni del notebook. L'output dei processi Spark inviato a Jupyter viene salvato in modo permanente nel notebook.  Con Jupyter in genere è consigliabile evitare di eseguire `.collect()` su RDD o frame di dati di grandi dimensioni. Se si vuole visualizzare il contenuto di un RDD, considerare invece la possibilità di eseguire `.take()` o `.sample()` per evitare la crescita eccessiva dell'output.
-* Quando si salva un notebook, cancellare anche tutte le celle di output per ridurre le dimensioni.
+* È importante tookeep dimensioni di blocco per Appunti hello piccole. Da processi di Spark l'output viene inviato nuovamente tooJupyter è persistente nel blocco note hello.  È buona norma con Jupyter in tooavoid generale in esecuzione `.collect()` su grandi RDD o frame di dati; in alternativa, se si desidera toopeek contenuto del RDD, si consideri l'esecuzione `.take()` o `.sample()` in modo che l'output non ottiene troppo grande.
+* Inoltre, quando si salva un notebook, deselezionare tutto l'output dimensioni hello tooreduce di celle.
 
 ### <a name="notebook-initial-startup-takes-longer-than-expected"></a>L'avvio iniziale del notebook richiede più tempo del previsto
 La prima istruzione del codice nel notebook di Jupyter tramite il magic Spark potrebbe richiedere più di un minuto.  
 
 **Spiegazione:**
 
-Ciò accade quando viene eseguita la prima cella di codice. In background viene avviata la configurazione della sessione e vengono impostati i contesti Spark, SQL e Hive. La prima istruzione viene eseguita dopo l'impostazione di questi contesti, dando l'impressione che l'esecuzione dell'istruzione impieghi molto tempo.
+Ciò accade perché quando si esegue prima cella di codice hello. In background hello verrà avviata la configurazione di sessione e Spark, SQL e contesti di Hive sono impostati. Dopo aver impostati questi contesti, viene eseguita prima istruzione hello e in questo modo l'impressione di hello che istruzione hello ha richiesto un toocomplete molto tempo.
 
-### <a name="jupyter-notebook-timeout-in-creating-the-session"></a>Timeout del notebook di Jupyter durante la creazione della sessione
-Quando il cluster Spark esaurisce le risorse, si verificherà il timeout dei kernel Spark e Pyspark nel notebook di Jupyter quando si cerca di creare la sessione. 
+### <a name="jupyter-notebook-timeout-in-creating-hello-session"></a>Server Jupyter notebook timeout per la creazione della sessione hello
+Quando il cluster Spark è esaurito le risorse, hello Spark e Pyspark kernel in notebook Jupyter hello verrà timeout sessione hello toocreate durante il tentativo. 
 
 **Soluzioni:** 
 
 1. Liberare alcune risorse nel cluster Spark nei modi seguenti:
    
-   * Arrestando altri notebook Spark selezionando il menu Close and Halt o facendo clic su Shutdown nel notebook.
+   * L'arresto di altri blocchi appunti Spark passare toohello chiudere e menu di arresto o facendo clic su arresto in Esplora notebook hello.
    * Arrestando altre applicazioni Spark da YARN.
-2. Riavviare il notebook che si stava cercando di avviare. Ora dovrebbero essere disponibili risorse sufficienti per creare una sessione.
+2. Riavviare notebook hello che si stava cercando toostart backup. Numero sufficiente di risorse devono essere disponibili per toocreate è ora una sessione.
 
 ## <a name="see-also"></a>Vedere anche
 * [Panoramica: Apache Spark su Azure HDInsight](hdinsight-apache-spark-overview.md)
@@ -115,7 +115,7 @@ Quando il cluster Spark esaurisce le risorse, si verificherà il timeout dei ker
 ### <a name="scenarios"></a>Scenari
 * [Spark con Business Intelligence: eseguire l'analisi interattiva dei dati con strumenti di Business Intelligence mediante Spark in HDInsight](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark con Machine Learning: utilizzare Spark in HDInsight per l'analisi della temperatura di compilazione utilizzando dati HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark con Machine Learning: usare Spark in HDInsight per prevedere i risultati del controllo degli alimenti](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark con Machine Learning: usare Spark in HDInsight risultati dell'ispezione alimentare toopredict](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Streaming Spark: usare Spark in HDInsight per la creazione di applicazioni di streaming in tempo reale](hdinsight-apache-spark-eventhub-streaming.md)
 * [Analisi dei log del sito Web mediante Spark in HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -124,14 +124,14 @@ Quando il cluster Spark esaurisce le risorse, si verificherà il timeout dei ker
 * [Eseguire processi in modalità remota in un cluster Spark usando Livy](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Strumenti ed estensioni
-* [Usare il plug-in degli strumenti HDInsight per IntelliJ IDEA per creare e inviare applicazioni Spark in Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely (Usare il plug-in Strumenti HDInsight per IntelliJ IDEA per eseguire il debug di applicazioni Spark in remoto)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utilizzare i plug-in strumenti di HDInsight per toocreate IntelliJ IDEA e inviare applicazioni Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utilizzare i plug-in strumenti di HDInsight per le applicazioni di Spark toodebug IntelliJ IDEA in modalità remota](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Usare i notebook di Zeppelin con un cluster Spark in HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Kernel disponibili per notebook di Jupyter nel cluster Spark per HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Usare pacchetti esterni con i notebook Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Installare Jupyter Notebook nel computer e connetterlo a un cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Installare Jupyter nel computer e connettere il cluster HDInsight Spark tooan](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Gestire risorse
-* [Gestire le risorse del cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+* [Gestire le risorse di cluster di hello Apache Spark in HDInsight di Azure](hdinsight-apache-spark-resource-manager.md)
 * [Tenere traccia ed eseguire il debug di processi in esecuzione nel cluster Apache Spark in Azure HDInsight](hdinsight-apache-spark-job-debugging.md)
 

@@ -1,6 +1,6 @@
 ---
-title: Aggiungere una VM in un lab in Azure DevTest Labs | Microsoft Docs
-description: Informazioni su come aggiungere una macchina virtuale in un lab in Azure DevTest Labs
+title: un laboratorio di tooa VM Azure DevTest Labs aaaAdd | Documenti Microsoft
+description: Informazioni su come tooadd un lab tooa macchina virtuale in Azure DevTest Labs
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,104 +14,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: tarcher
-ms.openlocfilehash: 449bffb040dafc8edd0b8b0afd80dbea35cd28ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82838e4349550db56de311264c188140b9556b24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-vm-to-a-lab-in-azure-devtest-labs"></a>Aggiungere una VM in un lab in Azure DevTest Labs
-Se è già stata [creata la prima VM](devtest-lab-create-first-vm.md), l'operazione è stata eseguita con un'[immagine di marketplace](devtest-lab-configure-marketplace-images.md) precaricata. Se ora si vuole aggiungere le macchine virtuali successive al lab, è anche possibile scegliere una *base* che sia un'[immagine personalizzata](devtest-lab-create-template.md) o una [formula](devtest-lab-manage-formulas.md). Questa esercitazione illustra l'uso del portale di Azure per aggiungere una VM in un lab in DevTest Labs.
+# <a name="add-a-vm-tooa-lab-in-azure-devtest-labs"></a>Aggiungere un ambiente lab tooa VM in Azure DevTest Labs
+Se è già stata [creata la prima VM](devtest-lab-create-first-vm.md), l'operazione è stata eseguita con un'[immagine di marketplace](devtest-lab-configure-marketplace-images.md) precaricata. A questo punto, se si desidera tooadd successive le macchine virtuali tooyour lab, è anche possibile scegliere un *base* in un [immagine personalizzata](devtest-lab-create-template.md) o [formula](devtest-lab-manage-formulas.md). In questa esercitazione illustra l'utilizzo hello tooadd portale Azure un ambiente lab tooa VM in DevTest Labs.
 
-Questo articolo descrive anche come gestire gli elementi per una VM nel lab.
+In questo articolo mostra anche come toomanage hello elementi per una macchina virtuale nell'ambiente lab.
 
-## <a name="steps-to-add-a-vm-to-a-lab-in-azure-devtest-labs"></a>Passaggi per aggiungere una VM a un lab in Azure DevTest Labs
-1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
-1. Nell'elenco di lab selezionare il lab in cui si vuole creare la nuova VM.  
-1. Nel pannello **Panoramica** del lab selezionare **+ Aggiungi**.  
+## <a name="steps-tooadd-a-vm-tooa-lab-in-azure-devtest-labs"></a>Passaggi tooadd un laboratorio di tooa VM Azure DevTest Labs
+1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Elenco dei laboratori hello selezionare lab hello in cui si desidera toocreate hello VM.  
+1. Nel lab di hello **Panoramica** pannello seleziona **+ Aggiungi**.  
 
     ![Pulsante Aggiungi VM](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. Nel pannello **Scegli una base** selezionare una base per la macchina virtuale.
-1. Nel pannello **Macchina virtuale** immettere un nome per la nuova macchina virtuale nella casella di testo **Nome macchina virtuale**.
+1. In hello **scegliere una base** pannello, selezionare un valore di base per hello macchina virtuale.
+1. In hello **macchina virtuale** pannello, immettere un nome per la macchina virtuale nuova hello in hello **nome della macchina virtuale** casella di testo.
 
     ![Pannello Lab VM (VM lab)](./media/devtest-lab-add-vm/devtestlab-lab-vm-blade.png)
 
-1. Immettere un **Nome utente** a cui vengono concessi privilegi di amministratore nella macchina virtuale.  
-1. Se si vuole usare una password archiviata nell'[archivio segreto](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), selezionare **Use a saved secret** (Usa un segreto salvato) e specificare un valore chiave corrispondente al segreto (password). In alternativa, immettere una password nel campo di testo **Digita un valore**.
-1. Il **tipo di disco della macchina virtuale** determina il tipo di disco di archiviazione consentito per le macchine virtuali nel lab.
-1. Selezionare **Dimensioni macchina virtuale** e uno degli elementi predefiniti che specificano le memorie centrali del processore, la dimensione della RAM e le dimensioni dell'unità disco rigido della VM da creare.
-1. Selezionare **Elementi** e dall'elenco di elementi selezionare e configurare gli elementi da aggiungere all'immagine di base.
-    **Nota:** se non si ha familiarità con DevTest Labs o con la configurazione di elementi, vedere la sezione [Aggiungere un elemento esistente in una macchina virtuale](#add-an-existing-artifact-to-a-vm) e tornare qui al termine dell'operazione.
-1. Selezionare **Impostazioni avanzate** per configurare le opzioni di rete e le opzioni relative alla scadenza della VM. 
+1. Immettere un **nome utente** che vengono concessi privilegi di amministratore nella macchina virtuale hello.  
+1. Se si desidera toouse una password archiviati nel [archivio segreto](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store)selezionare **utilizzano un segreto salvato**e specificare un valore di chiave corrispondente tooyour segreto (password). In caso contrario, immettere una password nel campo di testo hello etichettata **digitare un valore**.
+1. Hello **il tipo di disco di macchina virtuale** determina il tipo di disco di archiviazione è consentito per le macchine virtuali hello in lab hello.
+1. Selezionare **dimensioni della macchina virtuale** e selezionare una delle hello predefiniti elementi che specificano le dimensioni del disco rigido hello di hello VM toocreate core del processore hello e dimensioni della RAM.
+1. Selezionare **elementi** e - hello elenco di elementi - selezionare e configurare hello elementi che si desidera tooadd toohello immagine di base.
+    **Nota:** Labs tooDevTest nuovo o di configurazione degli elementi, fare riferimento toohello [aggiungere un tooa artefatto esistente VM](#add-an-existing-artifact-to-a-vm) sezione e quindi tornare qui al termine.
+1. Selezionare **impostazioni avanzate** opzioni di scadenza e le opzioni di rete della macchina virtuale di tooconfigure hello. 
 
-   Per impostare un'opzione di scadenza, scegliere l'icona del calendario per specificare una data in cui la macchina virtuale verrà eliminata automaticamente.  Per impostazione predefinita, la macchina virtuale non scadrà. 
-1. Se si vuole visualizzare o copiare il modello di Azure Resource Manager, vedere la sezione [Salvare il modello di Azure Resource Manager](#save-azure-resource-manager-template) e tornare qui al termine dell'operazione.
-1. Selezionare **Crea** per aggiungere la macchina virtuale specificata al lab.
-1. Il pannello lab consente di visualizzare lo stato di creazione della VM prima come **Creazione**, poi come **Esecuzione** dopo aver avviato la VM.
+   tooset un'opzione di scadenza, scegliere toospecify icona di calendario hello una data in cui hello VM verrà eliminata automaticamente.  Per impostazione predefinita, hello VM non ha scadenza. 
+1. Se si desidera tooview o copiare il modello di gestione risorse di Azure hello, fare riferimento toohello [modello salvare Azure Resource Manager](#save-azure-resource-manager-template) sezione e tornare qui al termine.
+1. Selezionare **crea** tooadd hello specificato lab toohello macchina virtuale.
+1. Pannello lab Hello Visualizza lo stato di hello della creazione della macchina virtuale di hello - innanzitutto come **creazione**, quindi come **esecuzione** dopo hello macchina virtuale è stata avviata.
 
 > [!NOTE]
-> L'argomento [Add a claimable VM](devtest-lab-add-claimable-vm.md) (Aggiungere una macchina virtuale a disposizione degli utenti) illustra come rendere disponibile una macchina virtuale per l'uso da parte di qualsiasi utente nel laboratorio.
+> [Aggiungere una macchina virtuale di claimable](devtest-lab-add-claimable-vm.md) viene illustrato come toomake hello claimable macchina virtuale in modo che sia disponibile per l'utilizzo da qualsiasi utente nell'ambiente lab hello.
 >
 >
 
-## <a name="add-an-existing-artifact-to-a-vm"></a>Aggiungere un elemento esistente in una macchina virtuale
-Durante la creazione di una macchina virtuale, è possibile aggiungere elementi esistenti. Ogni lab include elementi del repository pubblico degli elementi di DevTest Labs ed elementi creati e aggiunti al repository degli elementi personale.
+## <a name="add-an-existing-artifact-tooa-vm"></a>Aggiungere un tooa artefatto esistente VM
+Durante la creazione di una macchina virtuale, è possibile aggiungere elementi esistenti. Ogni esercitazione include gli elementi dal Repository di artefatti pubblica DevTest Labs hello e gli elementi che è stato creato e aggiunto tooyour proprietari Repository di artefatti.
 
-* Gli *elementi* di Azure DevTest Labs consentono di specificare le *azioni* eseguite quando viene eseguito il provisioning della macchina virtuale, ad esempio, l'esecuzione di script Windows PowerShell, comandi Bash e installazione del software.
-* Gli elementi *parametri* consentono di personalizzare l'elemento per un determinato scenario
+* Azure DevTest Labs *elementi* consentono di specificare *azioni* che vengono eseguite quando viene eseguito il provisioning hello macchina virtuale, ad esempio l'esecuzione di script di Windows PowerShell, l'esecuzione di comandi Bash e installazione del software.
+* Elemento *parametri* consentono di personalizzare l'elemento hello per un determinato scenario
 
-Per istruzioni sulla creazione di elementi, vedere l'articolo contenente informazioni su [Creare elementi personalizzati per le macchine virtuali di DevTest Labs](devtest-lab-artifact-author.md).
+toodiscover toocreate elementi, vedere hello articolo [Scopri tooauthor i propri elementi per utilizzano con DevTest Labs](devtest-lab-artifact-author.md).
 
-1. Accedere al [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Selezionare **Altri servizi** e quindi **DevTest Labs** dall'elenco.
-1. Nell'elenco di lab selezionare il lab contenente la VM che si vuole usare.  
+1. Accedi toohello [portale di Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Selezionare **più servizi**, quindi selezionare **DevTest Labs** dall'elenco di hello.
+1. Selezionare lab hello contenente VM hello con cui si desidera toowork hello elenco di esercitazioni.  
 1. Selezionare **Macchine virtuali**.
-1. Selezionare la VM desiderata.
+1. Seleziona hello desiderato macchina virtuale.
 1. Selezionare **Elementi**. 
 1. Selezionare **Apply artifacts** (Applica elementi).
-1. In **Apply artifacts** (Applica elementi) selezionare l'elemento da aggiungere alla VM.
-1. Nel pannello **Aggiungi elemento** immettere i valori dei parametri obbligatori e i parametri facoltativi necessari.  
-1. Selezionare **Aggiungi** per aggiungere l'elemento e tornare al pannello **Apply artifacts** (Applica elementi).
+1. In hello **applicare elementi** blade, elemento selezionare hello desiderato tooadd toohello macchina virtuale.
+1. In hello **Aggiungi elemento** pannello, immettere i valori dei parametri hello richiesto ed eventuali parametri facoltativi che è necessario.  
+1. Selezionare **Aggiungi** tooadd hello artefatto e restituire toohello **applicare elementi** blade.
 1. Continuare ad aggiungere gli elementi necessari per la macchina virtuale.
-1. Dopo aver aggiunto gli elementi, è possibile [modificare l'ordine in cui vengono eseguiti](#change-the-order-in-which-artifacts-are-run). È anche possibile tornare indietro per [visualizzare o modificare un elemento](#view-or-modify-an-artifact).
+1. Dopo aver aggiunto gli elementi, è possibile [modificare hello ordine in cui hello vengono eseguiti gli elementi](#change-the-order-in-which-artifacts-are-run). È possibile inoltre tornare troppo[consente di visualizzare o modificare un elemento](#view-or-modify-an-artifact).
 1. Una volta aggiunti tutti gli elementi, selezionare **Applica**
 
-## <a name="change-the-order-in-which-artifacts-are-run"></a>Modificare l'ordine di esecuzione degli elementi
-Per impostazione predefinita, le azioni degli elementi vengono eseguite nell'ordine in cui vengono aggiunte alla macchina virtuale. La procedura seguente descrive come modificare l'ordine in cui vengono eseguiti gli elementi.
+## <a name="change-hello-order-in-which-artifacts-are-run"></a>Modificare l'ordine di hello in cui vengono eseguiti gli elementi
+Per impostazione predefinita, le azioni di artefatti hello hello vengono eseguite in ordine hello in cui vengono aggiunti toohello VM. Hello passaggi seguenti viene illustrato come toochange hello ordine in cui hello vengono eseguiti gli elementi.
 
-1. Nella parte superiore del pannello **Apply artifacts** (Applica elementi) selezionare il collegamento che indica il numero di elementi aggiunti alla VM.
+1. Nella parte superiore di hello di hello **applicare elementi** blade, collegamento selezionare hello che indica il numero di hello di elementi che sono stati aggiunti toohello macchina virtuale.
    
-    ![Numero di elementi aggiunti alla macchina virtuale](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
-1. Nel pannello **Selected artifacts** (Elementi selezionati) trascinare e rilasciare gli elementi nell'ordine desiderato. **Nota:** se si verificano problemi di trascinamento dell'elemento, assicurarsi di trascinare dal lato sinistro dell'elemento. 
+    ![Numero di elementi inseriti tooVM](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+1. In hello **selezionati elementi** pannello, trascinamento della selezione elementi hello in hello desiderato dell'ordine. **Nota:** nel caso di problemi con il trascinamento di elementi di hello, assicurarsi che si trascina dal lato sinistro di artefatto hello hello. 
 1. Selezionare **OK** al termine dell'operazione.  
 
 ## <a name="view-or-modify-an-artifact"></a>visualizzare o modificare un elemento
-I passaggi seguenti illustrano come visualizzare o modificare i parametri di un elemento:
+Hello passaggi seguenti viene illustrato come tooview o modificare i parametri di hello di un elemento:
 
-1. Nella parte superiore del pannello **Apply artifacts** (Applica elementi) selezionare il collegamento che indica il numero di elementi aggiunti alla VM.
+1. Nella parte superiore di hello di hello **applicare elementi** blade, collegamento selezionare hello che indica il numero di hello di elementi che sono stati aggiunti toohello macchina virtuale.
    
-    ![Numero di elementi aggiunti alla macchina virtuale](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
-1. Nel pannello **Selected Artifacts** (Elementi selezionati) selezionare l'elemento che si vuole visualizzare o modificare.  
-1. Nel pannello **Aggiungi elemento** apportare le modifiche necessarie e selezionare **OK** per chiudere il pannello **Aggiungi elemento**.
-1. Selezionare **OK** per chiudere il pannello **Selected Artifacts** (Elementi selezionati).
+    ![Numero di elementi inseriti tooVM](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+1. In hello **selezionati elementi** blade, elemento selezionare hello che desidera tooview o modificare.  
+1. In hello **Aggiungi elemento** pannello, apportare le eventuali modifiche necessarie e selezionare **OK** tooclose hello **Aggiungi elemento** blade.
+1. Selezionare **OK** tooclose hello **selezionati elementi** blade.
 
 ## <a name="save-azure-resource-manager-template"></a>Save Azure Resource Manager template
-Un modello di Azure Resource Manager permette di definire una distribuzione ripetibile in modo dichiarativo. I passaggi seguenti illustrano come salvare il modello di Azure Resource Manager per la VM da creare.
-Dopo il salvataggio è possibile usare il modello di Azure Resource Manager per [distribuire nuove macchine virtuali con Azure PowerShell](../azure-resource-manager/resource-group-overview.md#template-deployment).
+Un modello di gestione risorse di Azure fornisce toodefine una modalità dichiarativa per una distribuzione ripetibile. Hello alla procedura seguente viene illustrato come toosave hello modello di gestione risorse di Azure per hello macchina virtuale da creare.
+Dopo il salvataggio, è possibile utilizzare il modello di gestione risorse di Azure hello troppo[distribuire nuove macchine virtuali con Azure PowerShell](../azure-resource-manager/resource-group-overview.md#template-deployment).
 
-1. Nel pannello **Macchina virtuale** selezionare **View ARM Template** (Visualizza modello ARM).
-2. Nel pannello **Visualizza modello Azure Resource Manager** selezionare il testo del modello.
-3. Copiare il testo selezionato negli Appunti.
-4. Selezionare **OK** per chiudere il pannello **View Azure Resource Manager Template** (Visualizza modello di Azure Resource Manager).
+1. In hello **macchina virtuale** pannello seleziona **modello ARM vista**.
+2. In hello **modello di visualizzazione Azure Resource Manager** blade, testo modello selezionare hello.
+3. Copiare negli Appunti toohello di hello testo selezionato.
+4. Selezionare **OK** tooclose hello **pannello visualizzazione modello di gestione risorse di Azure**.
 5. Aprire un editor di testo.
-6. Incollare il testo del modello dagli Appunti.
-7. Salvare il file per usarlo in seguito.
+6. Incolla il testo modello hello dagli Appunti hello.
+7. Salvare il file hello per un uso successivo.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ### <a name="next-steps"></a>Passaggi successivi
-* Dopo avere creato la VM, è possibile connettersi ad essa selezionando **Connetti** nel pannello della VM.
-* Informazioni su come [creare elementi personalizzati per la VM di DevTest Labs](devtest-lab-artifact-author.md).
-* Esplorare la [raccolta dei modelli di avvio rapido di Azure Resource Manager di DevTest Labs](https://github.com/Azure/azure-devtestlab/tree/master/Samples).
+* Una volta hello VM è stato creato, è possibile connettersi toohello VM selezionando **Connetti** nel pannello hello della macchina virtuale.
+* Informazioni su come troppo[creare elementi personalizzati per le VM di DevTest Labs](devtest-lab-artifact-author.md).
+* Esplorare hello [raccolta di modelli di DevTest Labs Azure Resource Manager QuickStart](https://github.com/Azure/azure-devtestlab/tree/master/Samples).

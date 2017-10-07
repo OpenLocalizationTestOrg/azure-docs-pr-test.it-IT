@@ -1,6 +1,6 @@
 ---
-title: Usare macchine virtuali a elevato uso di calcolo con Batch | Microsoft Docs
-description: Come sfruttare GPU con supporto per RDMA o dimensioni di VM abilitate per GPU in pool di Azure Batch
+title: aaaUse complesse macchine virtuali di Azure batch | Documenti Microsoft
+description: Come vantaggio tootake della macchina virtuale che supportano RDMA o abilitata GPU dimensioni nei pool di Azure Batch
 services: batch
 documentationcenter: 
 author: dlepow
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: danlep
-ms.openlocfilehash: c52a054e4fc8f61f871acd9f35b9a3e6247e48ef
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 6a462a5f2a44ddcec8bf4e5c200d444cac8fafe6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-rdma-capable-or-gpu-enabled-instances-in-batch-pools"></a>Usare istanze con supporto per RDMA o abilitate per GPU in pool di Batch
 
-Per eseguire determinati processi Batch, è consigliabile sfruttare le dimensioni delle macchine virtuali di Azure progettate per il calcolo su larga scala. Per eseguire ad esempio [carichi di lavoro MPI](batch-mpi.md) a istanze multiple è possibile scegliere le dimensioni A8, A9 o H che offrono un'interfaccia di rete per RDMA (Remote Direct Memory Access, accesso diretto a memoria remota). Le VM di queste dimensioni si connettono a una rete InfiniBand per la comunicazione tra i nodi, che consente di velocizzare le applicazioni MPI. Per le applicazioni CUDA è possibile scegliere le dimensioni della serie N, che includono schede GPU (Graphics Processing Unit, unità di elaborazione grafica) NVIDIA Tesla.
+toorun determinati processi Batch, è possibile usare tootake dimensioni delle macchine Virtuali di Azure progettata per il calcolo su larga scala. Ad esempio, toorun multi-istanza [carichi di lavoro MPI](batch-mpi.md), è possibile scegliere A8, A9, o le dimensioni della serie H che dispone di una rete di interfaccia per RDMA Remote Direct Memory Access (). Queste dimensioni connettono di rete InfiniBand tooan per la comunicazione tra i nodi, che consente di velocizzare le applicazioni MPI. Per le applicazioni CUDA è possibile scegliere le dimensioni della serie N, che includono schede GPU (Graphics Processing Unit, unità di elaborazione grafica) NVIDIA Tesla.
 
-Questo articolo fornisce istruzioni ed esempi per usare alcune delle dimensioni specializzate di Azure nei pool di Batch. Per le specifiche e le informazioni di base, vedere:
+Questo articolo fornisce informazioni aggiuntive e toouse esempi le dimensioni di specializzata di Azure nei pool di Batch. Per le specifiche e le informazioni di base, vedere:
 
 * Dimensioni delle VM High Performance Computing ([Linux](../virtual-machines/linux/sizes-hpc.md), [Windows](../virtual-machines/windows/sizes-hpc.md)) 
 
@@ -33,20 +33,20 @@ Questo articolo fornisce istruzioni ed esempi per usare alcune delle dimensioni 
 
 ## <a name="subscription-and-account-limits"></a>Limiti della sottoscrizione e dell'account
 
-* **Quote**: una o più quote di Azure possono limitare il numero o il tipo di nodi che possono essere aggiunti a un pool di Batch. È più probabile che vengano applicati limiti quando si scelgono dimensioni di VM con supporto per RDMA, abilitate per GPU o multicore. A seconda del tipo di account Batch creato, le quote possono essere applicabili all'account stesso o alla sottoscrizione.
+* **Le quote** -uno o più quote di Azure possono limitare il numero di hello o un tipo di nodi è possibile aggiungere il pool di Batch tooa. Si è più probabile toobe limitato quando si sceglie il supporto per RDMA, basate su GPU o altre dimensioni delle macchine Virtuali multicore. In base al tipo di hello dell'account Batch che è stato creato, è possibile applicare quote hello account toohello stesso o tooyour sottoscrizione.
 
-    * Se l'account Batch è stato creato nella configurazione **Servizio Batch**, il limite deriva dalla [quota di core dedicati per ogni account Batch](batch-quota-limit.md#resource-quotas). Per impostazione predefinita, la quota è pari a 20 core. Si applica una quota separata alle [macchine virtuali a bassa priorità](batch-low-pri-vms.md), se usate. 
+    * Se è stato creato l'account Batch in hello **Batch servizio** configurazione, è limitata dalle hello [quota core dedicati per l'account Batch](batch-quota-limit.md#resource-quotas). Per impostazione predefinita, la quota è pari a 20 core. Una quota separata viene applicata troppo[macchine virtuali con priorità bassa](batch-low-pri-vms.md), se vengono usati. 
 
-    * Se l'account è stato creato nella configurazione **Sottoscrizione utente**, la sottoscrizione limita il numero di core VM per ogni area. Vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md). La sottoscrizione applica anche una quota a livello di area ad alcune dimensioni delle macchine virtuali, incluse le istanze HPC e GPU. Nella configurazione Sottoscrizione utente non vengono applicate quote aggiuntive all'account Batch. 
+    * Se è stato creato account hello in hello **sottoscrizione utente** configurazione, la sottoscrizione consente di limitare il numero di hello di core VM per ogni area. Vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md). La sottoscrizione si applica anche una dimensioni di macchina virtuale toocertain internazionali quota, incluse le istanze HPC e GPU. Nella configurazione di sottoscrizione utente hello, nessun quote aggiuntive si applicano account Batch toohello. 
 
-  Potrebbe essere necessario aumentare una o più quote quando si usa una dimensione di macchina virtuale specializzata in Batch. Per richiedere un aumento della quota, è possibile aprire una [richiesta di assistenza clienti online](../azure-supportability/how-to-create-azure-support-request.md) senza alcun addebito.
+  Potrebbe essere necessario tooincrease uno o più quote quando si utilizza una dimensione di macchina virtuale specializzata in Batch. toorequest un aumento della quota, aprire un [richiesta di supporto clienti online](../azure-supportability/how-to-create-azure-support-request.md) senza alcun costo.
 
-* **Disponibilità a livello di area**: le VM a elevato utilizzo di calcolo potrebbero non essere disponibili nelle aree in cui si crea l'account Batch. Per verificare la disponibilità di una dimensione, vedere [Prodotti disponibili in base all'area](https://azure.microsoft.com/regions/services/).
+* **Disponibilità area** con utilizzo intensivo di calcolo - macchine virtuali potrebbero non essere disponibili in aree hello in cui si crea l'account Batch. toocheck che una dimensione è disponibile, vedere [i prodotti disponibili per area](https://azure.microsoft.com/regions/services/).
 
 
 ## <a name="dependencies"></a>Dipendenze
 
-Le funzionalità RDMA e GPU delle dimensioni a elevato utilizzo di calcolo sono supportate solo in alcuni sistemi operativi. A seconda del sistema operativo, potrebbe essere necessario installare o configurare altri driver o altro software. Le tabelle seguenti riepilogano queste dipendenze. Vedere gli articoli correlati per informazioni dettagliate. Per le opzioni per la configurazione di pool di Batch, vedere più avanti in questo articolo.
+funzionalità GPU di dimensioni elevate e Hello RDMA sono supportate solo in determinati sistemi operativi. A seconda del sistema operativo, si potrebbe essere necessario tooinstall o configura aggiuntive per i driver o altro software. Hello le tabelle seguenti riepiloga queste dipendenze. Vedere gli articoli correlati per informazioni dettagliate. Per i pool di Batch tooconfigure opzioni, vedere più avanti in questo articolo.
 
 
 ### <a name="linux-pools---virtual-machine-configuration"></a>Pool Linux - Configurazione della macchina virtuale
@@ -74,7 +74,7 @@ Le funzionalità RDMA e GPU delle dimensioni a elevato utilizzo di calcolo sono 
 ### <a name="windows-pools---cloud-services-configuration"></a>Pool Windows - Configurazione servizi cloud
 
 > [!NOTE]
-> Le dimensioni serie N non sono supportate nei pool di Batch con la configurazione Servizi cloud.
+> Le dimensioni della serie di N non sono supportate nel pool di Batch con la configurazione di servizi cloud hello.
 >
 
 | Dimensione | Funzionalità | Sistemi operativi | Requisiti software | Impostazioni pool |
@@ -87,17 +87,17 @@ Le funzionalità RDMA e GPU delle dimensioni a elevato utilizzo di calcolo sono 
 
 ## <a name="pool-configuration-options"></a>Opzioni di configurazione pool
 
-Per configurare una dimensione di macchina virtuale specializzata per il pool di Batch, le API e gli strumenti di Batch offrono diverse opzioni per installare il software o i driver, tra cui:
+tooconfigure una dimensione di macchina virtuale specializzata per pool Batch, hello Batch API e strumenti di fornire più software tooinstall necessarie opzioni o i driver, inclusi:
 
-* [Attività di avvio](batch-api-basics.md#start-task): caricare un pacchetto di installazione come file di risorse in un account di archiviazione di Azure nella stessa area dell'account Batch. Creare una riga di comando di attività di avvio per installare automaticamente il file di risorse all'avvio del pool. Per altre informazioni, vedere la [documentazione dell'API Rest](/rest/api/batchservice/add-a-pool-to-an-account#bk_starttask).
+* [Attività di avvio](batch-api-basics.md#start-task) -caricare un pacchetto di installazione come un tooan di file di risorse account di archiviazione di Azure in hello stessa area hello account Batch. Creare automaticamente un file di risorse inizio attività riga di comando tooinstall hello pool hello all'avvio. Per ulteriori informazioni, vedere hello [documentazione dell'API REST](/rest/api/batchservice/add-a-pool-to-an-account#bk_starttask).
 
   > [!NOTE] 
-  > L'attività di avvio deve essere eseguita con autorizzazioni con privilegi elevati (amministratore) ed è necessario attendere l'esito positivo.
+  > attività di avvio Hello deve essere eseguito con autorizzazioni con privilegi elevati (amministratore) e perché deve attendere l'esito positivo.
   >
 
-* [Pacchetto dell'applicazione](batch-application-packages.md): aggiungere un pacchetto di installazione compresso all'account Batch e configurare un riferimento al pacchetto nel pool. Questa impostazione consente di caricare e decomprime il pacchetto in tutti i nodi del pool. Se il pacchetto è un programma di installazione, creare una riga di comando di attività di avvio per installare automaticamente l'app in tutti i nodi del pool. È anche possibile installare il pacchetto quando un'attività è pianificata per l'esecuzione in un nodo.
+* [Pacchetto di applicazione](batch-application-packages.md) : aggiungere un tooyour pacchetto di installazione compresso account Batch e configurare un riferimento al pacchetto nel pool di hello. Questa impostazione consente di caricare e decomprime i pacchetti hello in tutti i nodi nel pool di hello. Se il pacchetto di hello è un programma di installazione, creare un'app installazione hello toosilently riga di comando di inizio attività in tutti i nodi del pool. Facoltativamente, installare il pacchetto di hello quando un'attività è pianificata toorun in un nodo.
 
-* [Immagine pool personalizzata](batch-api-basics.md#pool): creare un'immagine personalizzata di VM Windows o Linux contenente driver, software o altre impostazioni necessarie per le dimensioni della VM. Se l'account Batch è stato creato nella configurazione Sottoscrizione utente, specificare l'immagine personalizzata per il pool di Batch. Le immagini personalizzate non sono supportate negli account nella configurazione Servizio Batch. Le immagini personalizzate possono essere usate solo nella configurazione della macchina virtuale.
+* [Immagine personalizzata pool](batch-api-basics.md#pool) : creare Windows personalizzata o l'immagine VM Linux che contiene i driver, software o altre impostazioni necessarie per hello dimensioni della macchina virtuale. Se è stato creato l'account Batch nella configurazione di sottoscrizione utente hello, specificare l'immagine personalizzata di hello per il pool di Batch. (Le immagini personalizzate non sono supportate negli account di configurazione del servizio Batch hello.) Immagini personalizzate sono utilizzabili solo con i pool di configurazione della macchina virtuale hello.
 
   > [!IMPORTANT]
   > Nei pool di Batch non è attualmente possibile usare un'immagine personalizzata creata con dischi gestiti o con l'archiviazione Premium.
@@ -105,17 +105,17 @@ Per configurare una dimensione di macchina virtuale specializzata per il pool di
 
 
 
-* [Batch Shipyard](https://github.com/Azure/batch-shipyard) configura automaticamente GPU e RDMA per usare in modo trasparente carichi di lavoro in contenitori in Azure Batch. Batch Shipyard si basa interamente su file di configurazione. Sono disponibili molte configurazioni di recipe di esempio che consentono carichi di lavoro GPU e RDMA, ad esempio il [recipe CNTK GPU](https://github.com/Azure/batch-shipyard/tree/master/recipes/CNTK-GPU-OpenMPI) che preconfigura i driver GPU nelle macchine virtuali serie N e carica il software Microsoft Cognitive Toolkit come immagine Docker.
+* [Batch ambientali](https://github.com/Azure/batch-shipyard) configura automaticamente in modo trasparente hello GPU e RDMA toowork con carichi di lavoro nei contenitori nel Batch di Azure. Batch Shipyard si basa interamente su file di configurazione. Esistono molti recipe configurazioni di esempio disponibili che consentono di carichi di lavoro GPU e RDMA, ad esempio hello [CNTK GPU Recipe](https://github.com/Azure/batch-shipyard/tree/master/recipes/CNTK-GPU-OpenMPI) che configuri i driver GPU in macchine virtuali serie N e si carica software Microsoft cognitivi Toolkit come un'immagine Docker.
 
 
 ## <a name="example-microsoft-mpi-on-an-a8-vm-pool"></a>Esempio: Microsoft MPI in un pool di VM A8
 
-Per eseguire applicazioni Windows MPI in un pool di nodi A8 di Azure è necessario installare un'implementazione MPI supportata. Di seguito è riportata la procedura per installare [Microsoft MPI](https://msdn.microsoft.com/library/bb524831(v=vs.85).aspx) in un pool di Windows con un pacchetto di applicazione Batch.
+applicazioni di Windows MPI toorun in un pool di nodi di Azure A8, è necessario tooinstall un'implementazione MPI supportata. Ecco l'esempio passaggi tooinstall [Microsoft MPI](https://msdn.microsoft.com/library/bb524831(v=vs.85).aspx) in un Windows pool utilizzando un pacchetto di applicazione di Batch.
 
-1. Scaricare il [pacchetto di installazione](http://go.microsoft.com/FWLink/p/?LinkID=389556) (MSMpiSetup.exe) per la versione più recente di Microsoft MPI.
-2. Creare un file zip del pacchetto.
-3. Caricare il pacchetto nell'account Batch. Per istruzioni, vedere il materiale sussidiario sui [pacchetti di applicazioni](batch-application-packages.md). Specificare un ID applicazione, ad esempio *MSMPI*, e una versione come *8.1*. 
-4. Usando l'API Batch o il portale di Azure, creare un pool nella configurazione dei servizi cloud con il numero di nodi e la scalabilità desiderati. La tabella seguente illustra le impostazioni di esempio per installare MPI in modalità automatica con un'attività di avvio:
+1. Scaricare hello [pacchetto di installazione](http://go.microsoft.com/FWLink/p/?LinkID=389556) (MSMpiSetup.exe) per la versione più recente di hello di Microsoft MPI.
+2. Creare un file zip del pacchetto di hello.
+3. Caricare l'account di Batch di hello pacchetto tooyour. Per istruzioni, vedere hello [pacchetti di applicazioni](batch-application-packages.md) informazioni aggiuntive. Specificare un ID applicazione, ad esempio *MSMPI*, e una versione come *8.1*. 
+4. Utilizza hello API Batch o il portale di Azure, creare un pool nella configurazione di servizi cloud hello con numero di hello desiderato di nodi e la scala. Hello nella tabella seguente mostra tooset le impostazioni di esempio di MPI in modalità automatica utilizzando un'attività di avvio:
 
 | Impostazione | Valore |
 | ---- | ----- | 
@@ -129,21 +129,21 @@ Per eseguire applicazioni Windows MPI in un pool di nodi A8 di Azure è necessar
 
 ## <a name="example-nvidia-tesla-drivers-on-nc-vm-pool"></a>Esempio: Driver NVIDIA Tesla in pool di VM NC
 
-Per eseguire applicazioni CUDA in un pool di nodi NC di Linux è necessario installare CUDA Toolkit 8.0 nei nodi. Il Toolkit installa i driver GPU NVIDIA Tesla necessari. Ecco i passaggi di esempio per distribuire un'immagine personalizzata Ubuntu 16.04 LTS con i driver GPU:
+applicazioni di CUDA toorun in un pool di nodi di Linux NC, è necessario tooinstall CUDA Toolkit 8.0 nei nodi hello. Hello Toolkit consente di installare i driver GPU Tesla NVIDIA hello necessari. Ecco i passaggi di esempio toodeploy un'immagine personalizzata Ubuntu 16.04 LTS con i driver GPU hello:
 
-1. Distribuire una macchina virtuale NC6 di Azure che esegue Ubuntu 16.04 LTS. È ad esempio possibile creare la macchina virtuale nell'area Stati Uniti centro-meridionali. Assicurarsi di creare la macchina virtuale con archiviazione Standard e *senza* dischi gestiti.
-2. Seguire questa procedura per connettersi alla macchina virtuale e [installare i driver CUDA](../virtual-machines/linux/n-series-driver-setup.md#install-cuda-drivers-for-nc-vms).
-3. Effettuare il deprovisioning dell'agente Linux e quindi acquisire l'immagine della VM Linux usando i comandi dell'interfaccia della riga di comando di Azure 1.0. Per la procedura, vedere [Acquisire una VM Linux in esecuzione su Azure](../virtual-machines/linux/capture-image-nodejs.md). Prendere nota dell'URI dell'immagine.
+1. Distribuire una macchina virtuale NC6 di Azure che esegue Ubuntu 16.04 LTS. Ad esempio, è possibile creare VM hello in hello ci meridionale area centrale. Assicurarsi di creare hello macchina virtuale con archiviazione standard, e *senza* dischi gestiti.
+2. Seguire hello passaggi tooconnect toohello VM e [installare i driver CUDA](../virtual-machines/linux/n-series-driver-setup.md#install-cuda-drivers-for-nc-vms).
+3. Eseguire il deprovisioning agente Linux di hello e quindi acquisire l'immagine VM Linux utilizzando i comandi CLI di Azure 1.0 hello. Per la procedura, vedere [Acquisire una VM Linux in esecuzione su Azure](../virtual-machines/linux/capture-image-nodejs.md). Prendere nota dell'immagine di hello URI.
   > [!IMPORTANT]
-  > Non usare i comandi dell'interfaccia della riga di comando di Azure 2.0 per acquisire l'immagine per Azure Batch. I comandi dell'interfaccia della riga di comando di Azure 2.0 acquisiscono attualmente solo le VM create con dischi gestiti.
+  > Non usare immagini di hello toocapture comandi CLI di Azure 2.0 per Azure Batch. Attualmente, i comandi CLI 2.0 hello acquisire solo macchine virtuali create utilizzando dischi gestiti.
   >
-4. Creare un account Batch con la configurazione Sottoscrizione utente in un'area che supporta le VM NC.
-5. Usando l'API Batch o il portale di Azure, creare un pool usando l'immagine personalizzata e con il numero di nodi e la scalabilità desiderati. La tabella seguente illustra le impostazioni di esempio del pool per l'immagine:
+4. Creare un account di Batch, con la configurazione di sottoscrizione utente hello, in un'area che supporta le macchine virtuali dal controller.
+5. Utilizzando le API Batch hello o il portale di Azure, creare un pool utilizzando l'immagine personalizzata hello e con hello numero desiderato di nodi e la scala. Hello nella tabella seguente mostra le impostazioni del pool di esempio per l'immagine di hello:
 
 | Impostazione | Valore |
 | ---- | ---- |
 | **Tipo di immagine** | Immagine personalizzata |
-| **Immagine personalizzata** | URI dell'immagine nel formato `https://yourstorageaccountdisks.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd` |
+| **Immagine personalizzata** | URI del modulo hello dell'immagine`https://yourstorageaccountdisks.blob.core.windows.net/system/Microsoft.Compute/Images/vhds/MyVHDNamePrefix-osDisk.xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.vhd` |
 | **SKU agente nodo** | batch.node.ubuntu 16.04 |
 | **Dimensioni nodo** | NC6 Standard |
 
@@ -151,6 +151,6 @@ Per eseguire applicazioni CUDA in un pool di nodi NC di Linux è necessario inst
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-* Per eseguire processi MPI in un pool di Azure Batch, vedere gli esempi per [Windows](batch-mpi.md) o [Linux](https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/).
+* i processi MPI toorun in un pool di Batch di Azure, vedere hello [Windows](batch-mpi.md) o [Linux](https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/) esempi.
 
-* Per esempi di carichi di lavoro GPU in Batch, vedere i recipe [Batch Shipyard](https://github.com/Azure/batch-shipyard/).
+* Per esempi di carichi di lavoro GPU in Batch, vedere hello [ambientali Batch](https://github.com/Azure/batch-shipyard/) ricette.

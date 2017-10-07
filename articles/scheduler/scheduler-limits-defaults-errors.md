@@ -1,5 +1,5 @@
 ---
-title: "Limiti e impostazioni predefinite dell'Utilità di pianificazione"
+title: aaaScheduler limiti e i valori predefiniti
 description: "Limiti e impostazioni predefinite dell'Utilità di pianificazione"
 services: scheduler
 documentationcenter: .NET
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-limits-and-defaults"></a>Limiti e impostazioni predefinite dell'Utilità di pianificazione
 ## <a name="scheduler-quotas-limits-defaults-and-throttles"></a>Quote, limiti, impostazioni predefinite e limiti dell'utilità di pianificazione
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="the-x-ms-request-id-header"></a>L'intestazione x-ms-request-id
-Ogni richiesta effettuata per il servizio dell’Utilità di pianificazione restituisce un'intestazione di risposta denominata**x-ms-request-id**. Questa intestazione contiene un valore opaco che identifica in modo univoco la richiesta.
+## <a name="hello-x-ms-request-id-header"></a>Hello x-ms-request-id intestazione
+Ogni richiesta effettuata hello servizio Utilità di pianificazione restituisce un'intestazione di risposta denominata**x-ms-request-id**. Questa intestazione contiene un valore opaco che identifica in modo univoco la richiesta hello.
 
-Se una richiesta fallisce sistematicamente e si è verificato che la richiesta è formulata in modo appropriato, si può usare questo valore per riportare l'errore a Microsoft. Nel report includere il valore di x-ms-request-id, l'ora approssimativa in cui è stata eseguita la richiesta, l'identificativo della sottoscrizione, la raccolta processi e/o il processo e il tipo di operazione tentata con la richiesta.
+Se una richiesta è costantemente esito negativo e si sono verificate che hello corretta formulazione è, è possibile utilizzare questo errore tooMicrosoft di valore tooreport hello. Nel report, includere il valore di hello di x-ms-request-id, hello ora approssimativa in cui è stata effettuata la richiesta di hello, hello identificatore di sottoscrizione hello, raccolta di processi e/o processo e tipo di operazione hello richiesta ha tentato di hello.
 
 ## <a name="see-also"></a>Vedere anche
  [Che cos'è l'Utilità di pianificazione?](scheduler-intro.md)
 
  [Concetti, terminologia e gerarchia di entità dell'Utilità di pianificazione di Azure](scheduler-concepts-terms.md)
 
- [Introduzione all'uso dell'Utilità di pianificazione di Azure nel portale di Azure](scheduler-get-started-portal.md)
+ [Introduzione all'uso dell'utilità di pianificazione nel portale di Azure hello](scheduler-get-started-portal.md)
 
  [Piani e fatturazione nell'utilità di pianificazione di Azure](scheduler-plans-billing.md)
 

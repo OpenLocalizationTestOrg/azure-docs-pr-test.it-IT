@@ -1,6 +1,6 @@
 ---
-title: 'Backup di Azure: backup offline o seeding iniziale con il servizio Importazione/Esportazione di Azure | Microsoft Docs'
-description: Informazioni sull'uso di Backup di Azure per l'invio di dati offline tramite il servizio Importazione/Esportazione di Azure. Questo articolo illustra il seeding offline dei dati del backup iniziale tramite il servizio Importazione/Esportazione di Azure.
+title: Backup - backup non in linea o iniziale usando seeding aaaAzure hello servizio importazione/esportazione di Azure | Documenti Microsoft
+description: Informazioni su come il Backup di Azure consente dati toosend rete hello mediante il servizio di importazione/esportazione di Azure hello. Questo articolo spiega offline seeding hello hello iniziale dei dati di backup utilizzando il servizio di importazione/esportazione di Azure hello.
 services: backup
 documentationcenter: 
 author: saurabhsensharma
@@ -14,198 +14,198 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 4/20/2017
 ms.author: saurse;nkolli;trinadhk
-ms.openlocfilehash: 074d21269206b243f8b0e8747811544132805229
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f1696957c3e9684b800c8d030131255905459f7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="offline-backup-workflow-in-azure-backup"></a>Flusso di lavoro del backup offline in Backup di Azure
-In Backup di Azure sono incorporate diverse funzionalità che consentono di ridurre in modo efficiente i costi di archiviazione e di rete durante i backup completi iniziali dei dati in Azure. I backup completi iniziali comportano in genere il trasferimento di grandi quantità di dati e richiedono una larghezza di banda di rete superiore rispetto ai backup successivi con cui vengono trasferiti solo backup differenziali/incrementali. Backup di Azure comprime i backup iniziali. Con il processo di seeding offline, Backup di Azure può usare i dischi per caricare in Azure i dati compressi dei backup iniziali.  
+Backup di Azure offre diversi miglioramenti di efficienza incorporati che ridurre i costi di rete e di archiviazione durante hello iniziale backup completi dei dati tooAzure. Backup completo iniziale, in genere trasferiscono grandi quantità di dati e richiedono maggiore larghezza di banda di rete quando vengono confrontati i backup toosubsequent che trasferiscono solo hello delta/incrementali. Backup di Azure consente di comprimere i backup iniziale hello. Attraverso il processo di seeding offline hello Azure Backup può utilizzare tooAzure dati di backup iniziali di hello compresso tooupload dischi non in linea.  
 
-Il processo di seeding offline di Backup di Azure è strettamente integrato con il [servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md) che consente di trasferire dati in Azure usando dischi. Se si hanno terabyte (TB) di dati del backup iniziale da trasferire su una rete con latenza elevata e larghezza di banda ridotta, è possibile usare il flusso di lavoro del seeding offline per spedire la copia di backup iniziale su uno o più dischi rigidi a un data center di Azure. Questo articolo offre una panoramica dei passaggi necessari per completare il flusso di lavoro.
+Hello offline seeding processo di Backup di Azure è strettamente integrato con hello [servizio di importazione/esportazione di Azure](../storage/common/storage-import-export-service.md) che consente di tootransfer dati tooAzure, utilizzando i dischi. Se si dispone di terabyte (TB) di dati di backup iniziali deve toobe trasferiti su una rete ad alta latenza e larghezza di banda ridotta, è possibile utilizzare hello offline seeding del flusso di lavoro tooship hello copia di backup iniziale in uno o più unità disco rigido tooan Data Center di Azure. In questo articolo viene fornita una panoramica dei passaggi hello completare il flusso di lavoro.
 
-## <a name="overview"></a>Overview
-Con la funzionalità di seeding offline di Backup di Azure e Importazione/Esportazione di Azure, caricare i dati offline in Azure tramite dischi è molto semplice. Anziché trasferire la copia iniziale tramite rete, i dati di backup vengono scritti in un *percorso di gestione temporanea*. Al termine della copia nel percorso di gestione temporanea con lo strumento di importazione/esportazione di Azure, i dati vengono scritti in una o più unità SATA, a seconda della quantità di dati. Queste unità vengono infine spedite al data center di Azure più vicino.
+## <a name="overview"></a>Panoramica
+Con funzionalità offline seeding hello di Backup di Azure e di importazione/esportazione di Azure, è semplice tooupload hello dati offline tooAzure utilizzando i dischi. Anziché trasferire la copia completa di hello iniziale tramite rete hello, dati di backup hello viene scritto tooa *percorso di gestione temporanea*. Percorso di gestione temporanea di hello copia toohello al termine utilizzando lo strumento di importazione/esportazione di Azure hello, questi dati vengono scritti tooone o SATA più unità, a seconda della quantità di hello di dati. Queste unità sono infine spedito toohello più vicino al Data Center di Azure.
 
-L' [aggiornamento di agosto 2016 di Backup di Azure e le versioni successive](http://go.microsoft.com/fwlink/?LinkID=229525) includono uno *strumento di preparazione dischi di Azure*denominato AzureOfflineBackupDiskPrep che:
+Hello [aggiornamento di agosto 2016, di Backup di Azure (e versioni successive)](http://go.microsoft.com/fwlink/?LinkID=229525) include hello *lo strumento di preparazione del disco di Azure*, denominato AzureOfflineBackupDiskPrep, che:
 
-* Consente di preparare le unità per l'importazione in Azure con lo strumento di importazione/esportazione di Azure.
-* Crea automaticamente un processo di importazione di Azure per il servizio Importazione/Esportazione di Azure nel [portale di Azure classico](https://manage.windowsazure.com) in sostituzione della creazione manuale necessaria con le versioni precedenti di Backup di Azure.
+* Consente di preparare le unità per l'importazione di Azure utilizzando lo strumento di importazione/esportazione di Azure hello.
+* Verrà automaticamente creato un processo di importazione di Azure per il servizio di importazione/esportazione di Azure hello su hello [portale di Azure classico](https://manage.windowsazure.com) come toocreating anziché hello stesso manualmente con le versioni precedenti di Azure Backup.
 
-Al termine del caricamento dei dati di backup in Azure, i dati di backup vengono copiati da Backup di Azure nell'insieme di credenziali per il backup e vengono pianificati i backup incrementali.
+Al termine di caricamento hello di hello tooAzure di dati di backup, Backup di Azure copia l'insieme di credenziali di backup toohello hello dati di backup e hello incrementali vengono pianificati.
 
 > [!NOTE]
-> Per usare lo strumento di preparazione dischi di Azure, assicurarsi di aver installato l'aggiornamento di agosto 2016 di Backup di Azure o versioni successive ed eseguire tutti i passaggi del flusso di lavoro con tale versione. Se si usa una versione precedente di Backup di Azure, è possibile preparare l'unità SATA con lo strumento di importazione/esportazione di Azure come descritto nelle sezioni successive di questo articolo.
+> toouse hello Azure disco Preparation tool, assicurarsi di aver installato l'aggiornamento di agosto 2016 hello di Backup di Azure (o versione successiva) e vengono eseguiti tutti i passaggi di hello del flusso di lavoro hello con esso. Se si utilizza una versione precedente di Backup di Azure, è possibile preparare l'unità SATA hello utilizzando lo strumento di importazione/esportazione di Azure hello come descritto in dettaglio nelle sezioni successive di questo articolo.
 >
 >
 
 ## <a name="prerequisites"></a>Prerequisiti
-* [Acquisire familiarità con il flusso di lavoro di Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md).
-* Prima di avviare il flusso di lavoro, verificare quanto segue:
+* [Acquisire familiarità con il flusso di importazione/esportazione di Azure hello](../storage/common/storage-import-export-service.md).
+* Prima dell'avvio del flusso di lavoro di hello, verificare i seguenti hello:
   * È stato creato un insieme di credenziali di Backup di Azure.
   * Le credenziali dell'insieme di credenziali sono state scaricate.
-  * L'agente di Backup di Azure è stato installato in Windows Server, nel client Windows o nel server di System Center Data Protection Manager e il computer è registrato con l'insieme di credenziali di Backup di Azure.
-* [Scaricare il file di impostazioni di pubblicazione di Azure](https://manage.windowsazure.com/publishsettings) nel computer da cui si prevede di eseguire il backup dei dati.
-* Preparare un percorso di gestione temporanea che può essere una condivisione di rete o un'unità aggiuntiva nel computer. Il percorso di gestione temporanea è una risorsa di archiviazione temporanea usata durante questo flusso di lavoro. Verificare che nel percorso di gestione temporanea sia disponibile spazio su disco sufficiente per contenere la copia iniziale. Se ad esempio si prevede di eseguire il backup di un file server da 500 GB, verificare che la dimensione dell'area di staging sia di almeno 500 GB. Verrà tuttavia usata una quantità inferiore in virtù della compressione.
-* Verificare che sia in uso un'unità supportata. Con il servizio Importazione/Esportazione sono supportati solo le unità SSD da 2,5 pollici o i dischi rigidi interni SATA II/III da 2,5 o 3,5 pollici. È possibile usare dischi rigidi fino a 10 TB. Per informazioni sul set più recente di unità supportato dal servizio, vedere la [documentazione del servizio Importazione/Esportazione di Azure](../storage/common/storage-import-export-service.md#hard-disk-drives).
-* Abilitare BitLocker nel computer a cui è connessa l'unità di scrittura SATA.
-* [Scaricare lo strumento di importazione/esportazione di Azure](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409) nel computer a cui è connessa l'unità di scrittura SATA. Questo passaggio non è necessario se si è scaricato e installato l'aggiornamento di agosto 2016 di Backup di Azure o una versione successiva.
+  * Hello Azure Backup agent è stato installato in Windows Server e Windows client o server di System Center Data Protection Manager e computer di hello è registrato con l'insieme di credenziali di hello Azure Backup.
+* [Il download delle impostazioni di file di pubblicazione Azure hello](https://manage.windowsazure.com/publishsettings) computer hello da cui si prevede tooback backup dei dati.
+* Preparare un percorso di gestione temporanea, potrebbe essere una condivisione di rete o unità aggiuntive nel computer di hello. Hello percorso di gestione temporanea è di archiviazione temporaneo e viene utilizzato durante il flusso di lavoro. Verificare che hello percorso di gestione temporanea è sufficiente toohold di spazio su disco la copia iniziale. Ad esempio, se si sta tentando di tooback di un server di file di 500 GB, assicurarsi di che tale area di gestione temporanea hello è di almeno 500 GB. (Una quantità inferiore viene utilizzata scadenza toocompression.)
+* Verificare che sia in uso un'unità supportata. Per l'utilizzo con servizio di importazione/esportazione hello sono supportati solo da 2,5 pollici unità SSD o 2.5 o 3,5 SATA II/III dischi rigidi interni. È possibile usare dischi rigidi backup too10 TB. Controllare hello [documentazione del servizio importazione/esportazione di Azure](../storage/common/storage-import-export-service.md#hard-disk-drives) per hello set più recente di unità che supporta servizio hello.
+* Attivare BitLocker hello computer toowhich writer di unità SATA hello è connesso.
+* [Scaricare lo strumento di importazione/esportazione di Azure hello](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409) del writer di unità SATA toohello computer toowhich hello è connesso. Questo passaggio non è obbligatorio se si hanno scaricato e installato l'aggiornamento di agosto 2016 hello di Backup di Azure (o versione successiva).
 
 ## <a name="workflow"></a>Flusso di lavoro
-Le informazioni presenti in questa sezione consentono di completare il flusso di lavoro di backup offline in modo che i dati possano essere inviati a un data center di Azure e caricati nell'archiviazione di Azure. Per domande sul servizio di importazione o su qualsiasi aspetto del processo, vedere la documentazione sulla [panoramica del servizio di importazione](../storage/common/storage-import-export-service.md) citata in precedenza.
+informazioni di Hello in questa sezione consentono di completamento del flusso di lavoro di hello backup offline in modo che i dati possono essere recapitati tooan Data Center di Azure e caricati tooAzure archiviazione. Se hai domande sul servizio di importazione hello o l'aspetto del processo di hello, vedere hello [Cenni preliminari sul servizio di importazione](../storage/common/storage-import-export-service.md) documentazione a cui fa riferimento in precedenza.
 
 ### <a name="initiate-offline-backup"></a>Avviare il backup offline
-1. Durante la pianificazione di un backup verrà visualizzata la schermata seguente in Windows Server, nel client Windows o in System Center Data Protection Manager.
+1. Quando si pianifica un backup, viene visualizzato hello seguente schermata (in Windows Server, client di Windows o System Center Data Protection Manager).
 
     ![Schermata di importazione](./media/backup-azure-backup-import-export/offlineBackupscreenInputs.png)
 
-    Di seguito è riportata la schermata corrispondente in System Center Data Protection Manager:  <br/>
+    Ecco schermata corrispondente hello in System Center Data Protection Manager: <br/>
     ![Schermata di importazione di DPM](./media/backup-azure-backup-import-export/dpmoffline.png)
 
-    Di seguito è riportata la descrizione degli input.
+    Descrizione Hello di input hello è come segue:
 
-    * **Percorso di gestione temporanea**: posizione di archiviazione temporanea in cui verrà scritta la copia del backup iniziale. Può essere una condivisione di rete o un computer locale. Se il computer di copia e il computer di origine sono diversi, è consigliabile specificare il percorso di rete completo per la gestione temporanea.
-    * **Nome processo di importazione di Azure**: nome univoco con cui il servizio di importazione di Azure e Backup di Azure tengono traccia del trasferimento dei dati inviati in Azure usando dischi.
-    * **Impostazioni di pubblicazione di Azure**: file XML contenente informazioni sul profilo di sottoscrizione. Contiene anche le credenziali sicure associate alla sottoscrizione. È possibile [scaricare il file](https://manage.windowsazure.com/publishsettings). Specificare il percorso locale del file di impostazioni di pubblicazione.
-    * **ID sottoscrizione di Azure**: ID della sottoscrizione di Azure in cui si intende avviare il processo di importazione di Azure. Se si hanno più sottoscrizioni di Azure, usare l'ID della sottoscrizione a cui si vuole associare il processo di importazione.
-    * **Account di archiviazione di Azure**: account di archiviazione di tipo classico nella sottoscrizione di Azure specificata che verrà associato al processo di importazione di Azure.
-    * **Contenitore di archiviazione di Azure**: nome del BLOB di archiviazione di destinazione nell'account di archiviazione di Azure in cui verranno importati i dati del processo.
+    * **Percorso gestione temporanea**: hello archiviazione temporanea percorso toowhich hello copia di backup iniziale viene scritto. Può essere una condivisione di rete o un computer locale. Se il computer di copia hello e computer di origine sono diverse, è consigliabile specificare il percorso di rete completo hello di hello percorso di gestione temporanea.
+    * **Nome di processo di importazione Azure**: nome univoco di hello quali importazione di Azure Backup di Azure e servizio di tenere traccia del trasferimento hello dei dati inviati su dischi tooAzure.
+    * **Impostazioni di pubblicazione di Azure**: file XML contenente informazioni sul profilo di sottoscrizione. Contiene anche le credenziali sicure associate alla sottoscrizione. È possibile [scaricare file hello](https://manage.windowsazure.com/publishsettings). Fornire hello percorso locale toohello pubblicare file di impostazioni.
+    * **ID sottoscrizione Azure**: hello ID sottoscrizione di Azure per sottoscrizione hello in cui si prevede di processo di importazione di Azure tooinitiate hello. Se si dispone di più sottoscrizioni di Azure, utilizzare l'ID di hello della sottoscrizione di hello che si desidera tooassociate con il processo di importazione hello.
+    * **Account di archiviazione Azure**: account di archiviazione di tipo classico hello in hello fornito sottoscrizione di Azure che verrà associato il processo di importazione di Azure hello.
+    * **Contenitore di archiviazione Azure**: nome hello del blob di archiviazione di destinazione di hello in hello account di archiviazione di Azure in cui viene importati i dati di questo processo.
 
     > [!NOTE]
-    > Se il server è stato registrato in un insieme di credenziali di Servizi di ripristino di Azure dal [portale di Azure](https://portal.azure.com) per i backup e non in una sottoscrizione di Cloud Solution Provider (CSP), è comunque possibile creare un account di archiviazione di tipo classico dal portale di Azure e usarlo per il flusso di lavoro del backup offline.
+    > Se è stato registrato il tooan server Servizi di ripristino di Azure dell'insieme di credenziali da hello [portale di Azure](https://portal.azure.com) per il backup e non si trovano in una sottoscrizione di Provider di soluzioni Cloud (CSP), è possibile comunque creare un account di archiviazione di tipo classico da hello Portale di Azure e usarlo per flusso di lavoro di hello backup non in linea.
     >
     >
 
-     Salvare tutte queste informazioni perché è necessario immetterle nuovamente nella procedura seguente. Se si preparano i dischi con lo strumento di preparazione dischi di Azure, è necessario solo il *percorso di gestione temporanea* .    
-2. Completare il flusso di lavoro e quindi selezionare **Esegui backup** nella console di gestione di Backup di Azure per avviare la copia di backup offline. Durante questo passaggio il backup iniziale viene scritto nell'area di gestione temporanea.
+     Salvare tutte queste informazioni perché è necessario tooenter nuovamente nella procedura seguente. Solo hello *percorso di gestione temporanea* è necessario se si usa dischi hello tooprepare di hello Azure disco preparazione dello strumento.    
+2. Completamento del flusso di lavoro hello e quindi selezionare **Effettua backup** nella copia di Backup di Azure management console tooinitiate hello-backup offline hello. backup iniziale Hello viene scritto l'area di gestione temporanea toohello come parte di questo passaggio.
 
     ![Esegui backup ora](./media/backup-azure-backup-import-export/backupnow.png)
 
-    Per completare il flusso di lavoro corrispondente in System Center Data Protection Manager, fare clic con il pulsante destro del mouse su **Gruppo protezione dati** e scegliere l'opzione **Crea punto di ripristino**. Scegliere quindi l'opzione **Protezione dati online** .
+    toocomplete hello corrispondente flusso di lavoro in System Center Data Protection Manager, fare doppio clic su hello **gruppo protezione dati**, quindi scegliere hello **Crea punto di ripristino** opzione. Scegliere quindi hello **Online Protection** opzione.
 
     ![Esegui backup di DPM ora](./media/backup-azure-backup-import-export/dpmbackupnow.png)
 
-    Al termine dell'operazione, il percorso di gestione temporanea è pronto per essere usato per la preparazione dei dischi.
+    Al termine dell'operazione di hello, hello percorso di gestione temporanea è pronto toobe utilizzato per la preparazione del disco.
 
     ![Stato del backup](./media/backup-azure-backup-import-export/opbackupnow.png)
 
-### <a name="prepare-a-sata-drive-and-create-an-azure-import-job-by-using-the-azure-disk-preparation-tool"></a>Preparare l'unità SATA e creare un processo di importazione di Azure con lo strumento di preparazione dischi di Azure
-Lo strumento di preparazione dischi di Azure è disponibile nella directory di installazione dell'agente di Servizi di ripristino (aggiornamento di agosto 2016 e versioni successive) nel percorso seguente.
+### <a name="prepare-a-sata-drive-and-create-an-azure-import-job-by-using-hello-azure-disk-preparation-tool"></a>Preparare un'unità SATA e creare un processo di importazione di Azure utilizzando lo strumento di preparazione del disco di Azure hello
+lo strumento di preparazione del disco di Azure Hello è disponibile nella directory di installazione dell'agente di servizi di ripristino hello (aggiornamento di agosto 2016 e versioni successive) nel seguente percorso hello.
 
    *\Microsoft* *Azure* *Recovery* *Services* *Agent\Utils\*
 
-1. Passare alla directory e copiare la directory **AzureOfflineBackupDiskPrep** in un computer di copia in cui sono montate le unità da preparare. Assicurarsi che il computer di copia soddisfi i requisiti seguenti:
+1. Passare la directory toohello e hello copia **AzureOfflineBackupDiskPrep** computer copia tooa di directory in cui hello sono montati toobe unità preparata. Verificare segue hello al computer di copia toohello considerare:
 
-    * Il percorso di gestione temporanea specificato per il flusso di lavoro del seeding offline è accessibile dal computer di copia usando lo stesso percorso di rete specificato durante il flusso di lavoro di **avvio del backup offline** .
-    * Nel computer è abilitato BitLocker.
-    * Il computer può accedere al portale di Azure.
+    * Hello copia computer possa accedere hello percorso flusso di lavoro non in linea seeding hello di gestione temporanea usando la stessa rete percorso fornito in hello hello **avviare il backup non in linea** flusso di lavoro.
+    * BitLocker è abilitato nel computer di hello.
+    * Hello hello portale di Azure può accedere.
 
-    Se necessario, il computer di copia può coincidere con il computer di origine.
-2. Aprire un prompt dei comandi con privilegi elevati nel computer di copia con la directory dello strumento di preparazione dischi di Azure come directory corrente ed eseguire il comando seguente:
+    Se necessario, il computer di copia hello possibile hello stesso hello computer di origine.
+2. Aprire un prompt dei comandi con privilegi elevati nel computer di copia hello con directory dello strumento di preparazione del disco di Azure hello come directory corrente hello ed eseguire hello comando seguente:
 
-    `*.\AzureOfflineBackupDiskPrep.exe*   s:<*Staging Location Path*>   [p:<*Path to PublishSettingsFile*>]`
+    `*.\AzureOfflineBackupDiskPrep.exe*   s:<*Staging Location Path*>   [p:<*Path tooPublishSettingsFile*>]`
 
-    | Parametro | Descrizione |
+    | . | Descrizione |
     | --- | --- |
-    | s:&lt;*Percorso posizione staging*&gt; |Input obbligatorio usato per specificare il percorso di gestione temporanea immesso durante il flusso di lavoro di **avvio del backup offline** . |
-    | p:&lt;*Percorso FileImpostazioniPubblicazione*&gt; |Input facoltativo usato per specificare il percorso del file delle **impostazioni di pubblicazione di Azure** immesso durante il flusso di lavoro di **avvio del backup offline**. |
+    | s:&lt;*Percorso posizione staging*&gt; |Input obbligatori tooprovide hello percorso toohello percorso immesso in hello di gestione temporanea utilizzato **avviare il backup non in linea** flusso di lavoro. |
+    | p:&lt;*tooPublishSettingsFile percorso*&gt; |Input facoltativi che è usato tooprovide hello percorso toohello **impostazioni di pubblicazione Azure** file immesso nella hello **avviare il backup non in linea** flusso di lavoro. |
 
     > [!NOTE]
-    > Il valore &lt;Percorso FileImpostazioniPubblicazione&gt; è obbligatorio quando il computer di copia e il computer di origine differiscono.
+    > Hello &lt;percorso tooPublishSettingFile&gt; valore è obbligatorio quando il computer di copia hello e computer di origine sono diverse.
     >
     >
 
-    Quando si esegue il comando, lo strumento richiede di selezionare il processo di importazione di Azure corrispondente alle unità da preparare. Se al percorso di gestione temporanea specificato è associato un unico processo di importazione, viene visualizzata una schermata come la seguente.
+    Quando si esegue il comando hello, strumento hello richiede la selezione hello del processo di importazione di Azure hello corrispondente unità toohello necessarie toobe preparato. Se solo hello fornito percorso gestione temporanea è associato un processo di importazione singola, viene visualizzata una schermata simile hello uno che segue.
 
     ![Input dello strumento di preparazione dischi di Azure](./media/backup-azure-backup-import-export/azureDiskPreparationToolDriveInput.png) <br/>
-3. Immettere la lettera di unità del disco montato che si vuole preparare per il trasferimento in Azure, senza i due punti finali. Quando richiesto, confermare la formattazione dell'unità.
+3. Immettere la lettera di unità hello senza hello finali di due punti per hello disco montato che si vuole tooprepare per tooAzure di trasferimento. Fornire la conferma per hello la formattazione dell'unità di hello quando richiesto.
 
-    Lo strumento inizia quindi a preparare il disco con i dati di backup. Potrebbe essere necessario collegare dischi aggiuntivi quando richiesto dallo strumento, nel caso in cui lo spazio sul disco specificato non sia sufficiente a contenere i dati di backup. <br/>
+    strumento di Hello inizia quindi a disco hello tooprepare con dati di backup hello. Potrebbe essere necessario tooattach dischi aggiuntivi quando viene richiesto dallo strumento hello nel caso in cui hello fornito disco non dispone di spazio sufficiente per i dati di backup hello. <br/>
 
-    Al termine della corretta esecuzione dello strumento, uno o più dischi specificati vengono preparati per la spedizione ad Azure. Nel portale di Azure classico viene anche creato un processo di importazione con il nome specificato durante il flusso di lavoro di **backup offline** . Lo strumento visualizza infine l'indirizzo del data center di Azure a cui i dischi devono essere spediti nonché il collegamento per individuare il processo di importazione nel portale di Azure classico.
+    Alla fine di hello della corretta esecuzione dello strumento hello, uno o più dischi fornito dall'utente sono stati preparati per tooAzure di spedizione. Inoltre, un processo di importazione con nome hello fornita durante hello **avviare il backup non in linea** flusso di lavoro viene creato nel portale di Azure classico hello. Infine, hello strumento visualizza hello toohello indirizzo shipping Data Center di Azure in cui i dischi di hello devono toobe forniti e hello processo di importazione hello toolocate collegamento nel portale di Azure classico hello.
 
     ![Preparazione dischi di Azure completata](./media/backup-azure-backup-import-export/azureDiskPreparationToolSuccess.png)<br/>
 
-4. Spedire i dischi all'indirizzo indicato nello strumento e conservare il numero di tracciabilità come riferimento futuro.<br/>
+4. Spedizione hello dischi toohello indirizzo tale strumento hello fornito e mantenere hello rilevamento numero per riferimento futuro.<br/>
 
-5. Visitando il collegamento visualizzato nello strumento si accede all'account di archiviazione di Azure specificato durante il flusso di lavoro di **del backup offline** . Nella scheda **IMPORTA/ESPORTA** dell'account di archiviazione verrà visualizzato il processo di importazione appena creato.
+5. Quando si passa toohello collegare tale strumento hello visualizzato, hello di account di archiviazione di Azure specificato nel hello **avviare il backup non in linea** flusso di lavoro. Qui è possibile visualizzare il processo di importazione hello appena creato in hello **importazione/esportazione** scheda hello dell'account di archiviazione.
 
     ![Processo di importazione creato](./media/backup-azure-backup-import-export/ImportJobCreated.png)<br/>
 
-6. Fare clic su **INFORMAZIONI SULLA SPEDIZIONE** nella parte inferiore della pagina per aggiornare i dettagli di contatto come illustrato nella schermata seguente. Queste informazioni vengono usate da Microsoft per restituire i dischi all'utente al termine del processo di importazione.
+6. Fare clic su **informazioni sulla spedizione** nella parte inferiore di hello di hello pagina tooupdate i dettagli del contatto come illustrato nella seguente schermata hello. Microsoft utilizza questo tooship info del tooyou indietro dischi dopo il processo di importazione hello è terminata.
 
     ![Informazioni di contatto](./media/backup-azure-backup-import-export/contactInfoAddition.PNG)<br/>
 
-7. Immettere i dettagli di spedizione nella schermata successiva. Specificare i dati per **Vettore recapito** e **Numero tracciabilità** corrispondenti ai dischi spediti al data center di Azure.
+7. Immettere i dettagli di spedizione nella schermata successiva hello hello. Fornire hello **vettore di recapito** e **rilevamento numero** dettagli corrispondenti toohello dischi che sono stati inviati toohello Data Center di Azure.
 
     ![INFORMAZIONI SULLA SPEDIZIONE](./media/backup-azure-backup-import-export/shippingInfoAddition.PNG)<br/>
 
-### <a name="complete-the-workflow"></a>Completare il flusso di lavoro
-Al termine del processo di importazione, i dati del backup iniziale saranno disponibili nell'account di archiviazione. L'agente di Servizi di ripristino copierà quindi il contenuto dei dati dall'account all'insieme di credenziali di Backup o di Servizi di ripristino, a seconda di quale sia applicabile. Al successivo backup pianificato, l'agente di Backup di Azure eseguirà il backup incrementale rispetto alla copia di backup iniziale.
+### <a name="complete-hello-workflow"></a>Flusso di lavoro completo hello
+Al termine del processo di importazione hello, dati di backup iniziali sono disponibili nell'account di archiviazione. Hello agente servizi di ripristino, quindi copia il contenuto di hello dati hello da questo insieme di credenziali di account toohello Backup o i servizi di ripristino di credenziali, a seconda del valore è applicabile. In fase di backup pianificato come successivo hello hello Azure Backup agent esegue backup incrementale hello sulla copia di backup iniziale hello.
 
 > [!NOTE]
-> Le sezioni successive si applicano agli utenti di versioni precedenti di Backup di Azure che non hanno accesso allo strumento di preparazione dischi di Azure.
+> Hello nelle sezioni seguenti si applicano toousers delle versioni precedenti di Azure Backup che non dispongono di strumento di preparazione del disco di Azure toohello di accesso.
 >
 >
 
 ### <a name="prepare-a-sata-drive"></a>Preparare un'unità SATA
-1. Scaricare lo [strumento di importazione/esportazione di Microsoft Azure](http://go.microsoft.com/fwlink/?linkid=301900&clcid=0x409) nel computer di copia. Verificare che il percorso di gestione temporanea sia accessibile dal computer in cui si prevede di eseguire il set successivo di comandi. Se necessario, il computer di copia può coincidere con il computer di origine.
+1. Scaricare hello [dello strumento di importazione/esportazione di Microsoft Azure](http://go.microsoft.com/fwlink/?linkid=301900&clcid=0x409) toohello computer di copia. Verificare che hello percorso di gestione temporanea sia accessibile dal computer di hello in cui si prevede di set successivo di hello toorun dei comandi. Se necessario, il computer di copia hello possibile hello stesso hello computer di origine.
 
-2. Decomprimere il file WAImportExport.zip. Eseguire lo strumento WAImportExport che consente di formattare l'unità SATA, scrivere i dati di backup nell'unità SATA e crittografarli. Prima di eseguire il comando seguente, verificare che BitLocker sia abilitato nel computer. <br/>
+2. Decomprimere il file di WAImportExport.zip hello. Eseguire lo strumento WAImportExport hello che formatta unità SATA hello, scrive unità SATA toohello dati di backup di hello e viene crittografata. Prima di eseguire il comando seguente hello, assicurarsi che BitLocker è abilitato nel computer di hello. <br/>
 
     `*.\WAImportExport.exe PrepImport /j:<*JournalFile*>.jrn /id: <*SessionId*> /sk:<*StorageAccountKey*> /BlobType:**PageBlob** /t:<*TargetDriveLetter*> /format /encrypt /srcdir:<*staging location*> /dstdir: <*DestinationBlobVirtualDirectory*>/*`
 
     > [!NOTE]
-    > Se si è installato l'aggiornamento di agosto 2016 di Backup di Azure o una versione successiva, assicurarsi che il percorso di gestione temporanea immesso sia lo stesso visualizzato nella schermata **Esegui backup** e che contenga i file AIB e del BLOB di base.
+    > Se è stato installato l'aggiornamento di agosto 2016 hello di Backup di Azure (o versione successiva), verificare che hello percorso immesso di gestione temporanea è hello stesso hello uno su hello **Effettua backup** schermata e contiene i file AIB e Blob di Base.
     >
     >
 
-| Parametro | Description |
+| . | Description |
 | --- | --- |
-| /j:<*FileJournal*> |Percorso del file journal. Ogni unità deve contenere esattamente un file journal. Il file journal non deve trovarsi nell'unità di destinazione. Il file journal ha estensione jrn e viene creato durante l'esecuzione del comando. |
-| /id:<*IDSessione*> |L'ID di sessione identifica una sessione di copia. Viene usato per garantire il recupero accurato di una sessione di copia interrotta. I file copiati in una sessione di copia vengono archiviati in una directory denominata in base all'ID di sessione nell'unità di destinazione. |
-| /sk:<*ChiaveAccountArchiviazione*> |Chiave dell'account di archiviazione in cui verranno importati i dati. Deve essere lo stessa chiave immessa durante la creazione del gruppo di criteri di backup/protezione. |
-| /BlobType |Il tipo di BLOB. Il flusso di lavoro verrà completato correttamente solo se viene specificato **PageBlob** . Questa non è l'opzione predefinita e deve essere indicata nel comando. |
-| /t: <*LetteraUnitàDestinazione*> |Lettera di unità del disco rigido di destinazione per la sessione di copia corrente, senza i due punti finali. |
-| /format |Opzione per la formattazione dell'unità. Specificare questo parametro se è necessario formattare l'unità. In caso contrario, ometterlo. Prima di formattare l'unità, lo strumento chiede una conferma dalla console. Per evitare questa richiesta di conferma, specificare il parametro /silentmode. |
-| /encrypt |Opzione per la crittografia dell'unità. Specificare questo parametro se l'unità non è ancora stata crittografata con BitLocker e deve essere crittografata tramite lo strumento. Se l'unità è già stata crittografata con BitLocker omettere questo parametro, specificare il parametro /bk e indicare la chiave BitLocker esistente. Se si specifica il parametro /format, sarà necessario specificare anche il parametro /encrypt. |
-| /srcdir: <*DirectoryOrigine*> |Directory di origine contenente i file da copiare nell'unità di destinazione. Verificare che il nome della directory specificato sia il percorso completo, non un percorso relativo. |
-| /dstdir: <*DirectoryVirtualeBLOBDestinazione*> |Percorso della directory virtuale di destinazione nell'account di archiviazione di Azure. Assicurarsi di usare nomi di contenitore validi quando si specificano BLOB o directory virtuali di destinazione. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole.  Questo nome di contenitore deve essere lo stesso specificato durante la creazione del gruppo di criteri di backup/protezione. |
+| /j:<*FileJournal*> |file journal di Hello percorso toohello. Ogni unità deve contenere esattamente un file journal. file journal Hello non deve essere nell'unità di destinazione hello. estensione del file journal Hello è .jrn e viene creato come parte dell'esecuzione di questo comando. |
+| /id:<*IDSessione*> |ID di sessione Hello identifica una sessione di copia. È utilizzato tooensure accurata del recupero di una sessione di copia interrotta. I file vengono copiati in una sessione di copia vengono archiviati in una directory denominata hello ID di sessione nell'unità di destinazione hello dopo. |
+| /sk:<*ChiaveAccountArchiviazione*> |chiave dell'account per i dati hello hello storage account toowhich Hello viene importato. prova prova toobe esigenze chiave corrisponde a quello immesso durante la creazione del gruppo di criteri di backup/protezione dati. |
+| /BlobType |tipo di Hello del blob. Il flusso di lavoro verrà completato correttamente solo se viene specificato **PageBlob** . Questo non è predefinita hello e dovrebbe essere citato in questo comando. |
+| /t: <*LetteraUnitàDestinazione*> |lettera di unità Hello senza hello finali di due punti del disco rigido di destinazione hello per sessione di copia corrente di hello. |
+| /format |unità di hello tooformat opzione Hello. Specificare questo parametro quando l'unità hello deve toobe formattata; in caso contrario, ometterlo. Prima di formattare unità hello hello, chiesta una conferma dalla console hello. toosuppress hello conferma, specificare il parametro /silentmode. hello. |
+| /encrypt |unità di hello tooencrypt opzione Hello. Specificare questo parametro quando l'unità di hello non è ancora stata crittografata con BitLocker ed esigenze toobe crittografati dallo strumento hello. Se l'unità di hello è già stato crittografato con BitLocker, omettere questo parametro, specificare il parametro /bk hello e fornire chiave BitLocker esistente hello. Se si specifica il parametro /format hello, è necessario specificare hello / crittografare il parametro. |
+| /srcdir: <*DirectoryOrigine*> |directory di origine Hello che contiene i file toobe copiati toohello unità di destinazione. Verificare che il nome di directory specificato hello è un percorso completo, invece che relativo. |
+| /dstdir: <*DirectoryVirtualeBLOBDestinazione*> |Hello percorso toohello directory virtuale di destinazione nell'account di archiviazione di Azure. Essere toouse che i nomi di contenitore valido quando si specificano BLOB o directory virtuale di destinazione hello. Tenere presente che i nomi di contenitore devono essere costituiti da lettere minuscole.  Il nome di contenitore deve essere hello uno immessi durante la creazione del gruppo di criteri di backup/protezione dati. |
 
 > [!NOTE]
-> Nella cartella WAImportExport viene creato un file journal che acquisisce tutte le informazioni relative al flusso di lavoro. Questo file è necessario durante la creazione di un processo di importazione nel portale di Azure.
+> Nella cartella WAImportExport hello che acquisisce le informazioni sull'intero hello del flusso di lavoro hello viene creato un file di registrazione. Questo file è necessario quando si crea un processo di importazione nel portale di Azure hello.
 >
 >
 
   ![Output di PowerShell](./media/backup-azure-backup-import-export/psoutput.png)
 
-### <a name="create-an-import-job-in-the-azure-portal"></a>Creazione di un processo di importazione nel portale di Azure
-1. Passare all'account di archiviazione nel [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **Importa/Esporta** e quindi su **Crea processo di importazione** nel riquadro attività.
+### <a name="create-an-import-job-in-hello-azure-portal"></a>Creare un processo di importazione nel portale di Azure hello
+1. Passare l'account di archiviazione tooyour in hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **importazione/esportazione**e quindi **Crea processo di importazione** nel riquadro attività hello.
 
-    ![Scheda Importazione/Esportazione nel portale di Azure](./media/backup-azure-backup-import-export/azureportal.png)
+    ![Scheda importazione/esportazione hello portale di Azure](./media/backup-azure-backup-import-export/azureportal.png)
 
-2. Nel passaggio 1 della procedura guidata indicare di aver preparato l'unità e che il file journal dell'unità è disponibile.
+2. Nel passaggio 1 della procedura guidata hello, indicano che è stato preparato l'unità e di disporre hello file journal di unità disponibile.
 
-3. Nel passaggio 2 della procedura guidata specificare le informazioni di contatto per la persona responsabile di questo processo di importazione.
+3. Nel passaggio 2 della procedura guidata hello, fornire le informazioni di contatto per persona hello è responsabile di questo processo di importazione.
 
-4. Nel passaggio 3 caricare i file journal dell'unità ottenuti nella sezione precedente.
+4. Nel passaggio 3, caricare il file journal di unità hello ottenuto nella sezione precedente hello.
 
-5. Nel passaggio 4 immettere un nome descrittivo per il processo di importazione come quello immesso durante la creazione del gruppo di criteri di backup/protezione. Il nome immesso può contenere solo lettere minuscole, numeri, segni meno e caratteri di sottolineatura, deve iniziare con una lettera e non può contenere spazi. Il nome scelto verrà usato per tenere traccia dei processi mentre sono in corso e dopo che sono stati completati.
+5. Nel passaggio 4, immettere un nome descrittivo per il processo di importazione hello immessi durante la creazione del gruppo di criteri di backup/protezione dati. nome Hello immesso può contenere solo lettere minuscole, numeri, trattini e caratteri di sottolineatura, deve iniziare con una lettera e non può contenere spazi. nome Hello scelto è tootrack utilizzati i processi mentre sono in corso e una volta completati.
 
-6. Selezionare quindi l'area geografica del data center dall'elenco. L'area geografica del data center indica il data center e l'indirizzo per la spedizione del pacchetto.
+6. Successivamente, selezionare l'area Data Center dall'elenco di hello. area Data Center Hello indica toowhich hello Data Center e l'indirizzo, è necessario spedire il pacchetto.
 
     ![Selezionare l'area geografica del data center](./media/backup-azure-backup-import-export/dc.png)
 
-7. Nel passaggio 5 selezionare il vettore di ritorno dall'elenco, quindi immettere il numero di account del vettore. Questo account viene usato da Microsoft per restituire le unità all'utente al termine del processo di importazione.
+7. Nel passaggio 5, hello riepilogo selezionare il vettore di ritorno e immettere il numero di account del vettore. Questo account viene utilizzato Microsoft tooship unità di backup tooyou dopo il completamento del processo di importazione.
 
-8. Spedire il disco e immettere il numero di tracciabilità per tenere traccia dello stato della spedizione. Dopo l'arrivo nel data center, il disco viene copiato nell'account di archiviazione e lo stato viene aggiornato.
+8. Inviare il disco hello e immettere hello numero tootrack hello lo stato della spedizione hello di rilevamento. Dopo che il disco hello arriva nel Data Center di hello, viene copiato toohello account di archiviazione e lo stato di hello viene aggiornato.
 
     ![Stato di completamento](./media/backup-azure-backup-import-export/complete.png)
 
-### <a name="complete-the-workflow"></a>Completare il flusso di lavoro
-Quando i dati del backup iniziale sono disponibili nell'account di archiviazione, l'agente di Servizi di ripristino di Microsoft Azure copia il contenuto dei dati dall'account all'insieme di credenziali di Backup o di Servizi di ripristino, a seconda di quale sia applicabile. Al successivo backup pianificato, l'agente Backup di Azure esegue il backup incrementale sulla copia di backup iniziale.
+### <a name="complete-hello-workflow"></a>Flusso di lavoro completo hello
+Dopo che i dati di backup iniziale hello sono disponibili nell'account di archiviazione, hello agente servizi di ripristino di Microsoft Azure copia il contenuto di hello di dati hello da questo insieme di credenziali di account toohello Backup o di un insieme di credenziali di servizi di ripristino, a seconda del valore è applicabile. Nella pianificazione successiva hello ora del backup, hello Azure Backup agent esegue backup incrementale hello sulla copia di backup iniziale hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sul flusso di lavoro di Importazione/Esportazione di Azure, vedere [Usare il servizio Importazione/Esportazione di Microsoft Azure per trasferire i dati nell'archiviazione BLOB](../storage/common/storage-import-export-service.md).
-* Per domande sul flusso di lavoro, vedere la sezione relativa al backup offline delle [domande frequenti](backup-azure-backup-faq.md) di Backup di Azure.
+* Per eventuali domande sul flusso di lavoro di hello importazione/esportazione di Azure, vedere troppo[utilizzare hello importazione/esportazione di Microsoft Azure service tootransfer tooBlob](../storage/common/storage-import-export-service.md).
+* Vedere sezione backup non in linea toohello hello Azure Backup [domande frequenti su](backup-azure-backup-faq.md) per eventuali domande sul flusso di lavoro hello.

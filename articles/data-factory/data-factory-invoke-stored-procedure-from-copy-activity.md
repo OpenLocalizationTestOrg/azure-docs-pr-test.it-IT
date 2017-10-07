@@ -1,6 +1,6 @@
 ---
-title: "Chiamare una stored procedure da un'attività di copia di Azure Data Factory | Documentazione Microsoft"
-description: "Informazioni su come chiamare una stored procedure nel Database SQL di Azure o in SQL Server da un'attività di copia di Azure Data Factory."
+title: "stored procedure da attività di copia di Azure Data Factory di aaaInvoke | Documenti Microsoft"
+description: "Informazioni su come attività di copia tooinvoke una stored procedure nel Database SQL di Azure o SQL Server da una Data Factory di Azure."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: af6e4a57e726598c266ee766656aa2cc22e374e3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 986377118afb8c08607c2325fcc3ab00b3de9268
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-stored-procedure-from-copy-activity-in-azure-data-factory"></a>Chiamare una stored procedure da un'attività di copia in Azure Data Factory
-Quando si copiano dati in [SQL Server](data-factory-sqlserver-connector.md) o nel [Database SQL di Azure](data-factory-azure-sql-connector.md), è possibile configurare **SqlSink** nell'attività di copia per chiamare una stored procedure. Si consiglia di usare la stored procedure per eseguire eventuali elaborazioni aggiuntive (unione di colonne, ricerca di valori, inserimento in più tabelle e così via) è necessario prima inserire i dati nella tabella di destinazione. Questa funzionalità sfrutta [Table-Valued Parameters](https://msdn.microsoft.com/library/bb675163.aspx). 
+Quando si copiano dati in [SQL Server](data-factory-sqlserver-connector.md) o [Database SQL di Azure](data-factory-azure-sql-connector.md), è possibile configurare hello **SqlSink** in attività di copia tooinvoke una stored procedure. È opportuno toouse hello stored procedure tooperform eventuali elaborazioni aggiuntive (l'unione di colonne, la ricerca di valori, l'inserimento in più tabelle, e così via) sono necessario prima di inserire dati nella tabella di destinazione toohello. Questa funzionalità sfrutta [Table-Valued Parameters](https://msdn.microsoft.com/library/bb675163.aspx). 
 
-L'esempio seguente illustra come chiamare una stored procedure in un database di SQL Server da una pipeline di data factory (attività di copia):  
+Hello seguente esempio mostra come tooinvoke una stored procedure in SQL Server di database da una pipeline di Data Factory (attività di copia):  
 
 ## <a name="output-dataset-json"></a>Set di dati di output JSON
-Nel set di dati di output JSON impostare **type** su **SqlServerTable**. Impostarlo su **AzureSqlTable** per usarlo con un database SQL di Azure. Il valore per la proprietà **tableName** deve corrispondere al nome del primo parametro della stored procedure.  
+Nel set di dati output hello JSON, impostare hello **tipo** a: **SqlServerTable**. Impostarlo troppo**AzureSqlTable** toouse con un database SQL di Azure. valore per Hello **tableName** proprietà deve corrispondere il nome di hello del primo parametro di procedura hello archiviato.  
 
 ```json
 {
@@ -45,7 +45,7 @@ Nel set di dati di output JSON impostare **type** su **SqlServerTable**. Imposta
 ```
 
 ## <a name="sqlsink-section-in-copy-activity-json"></a>Sezione SqlSink nel file JSON dell'attività di copia
-Definire la sezione **SqlSink** nel file JSON dell'attività di copia come indicato di seguito. Per chiamare una stored procedure durante l'inserimento di dati nel sink o nel database di destinazione, specificare i valori per entrambe le proprietà **SqlWriterStoredProcedureName** e **SqlWriterTableType**. Per le descrizioni di queste proprietà, vedere [la sezione SqlSink dell'articolo sul connettore di SQL Server](data-factory-sqlserver-connector.md#sqlsink).
+Definire hello **SqlSink** sezione nell'attività di copia hello JSON, come indicato di seguito. tooinvoke una stored procedure durante l'inserimento di dati in database sink/destinazione hello, specificare i valori per entrambe **SqlWriterStoredProcedureName** e **SqlWriterTableType** proprietà. Per una descrizione di queste proprietà, vedere [SqlSink sezione nell'articolo di connettore SQL Server hello](data-factory-sqlserver-connector.md#sqlsink).
 
 ```json
 "sink":
@@ -64,7 +64,7 @@ Definire la sezione **SqlSink** nel file JSON dell'attività di copia come indic
 ```
 
 ## <a name="stored-procedure-definition"></a>Definizione della stored procedure 
-Nel database definire la stored procedure con lo stesso nome di **SqlWriterStoredProcedureName**. La stored procedure gestisce i dati di input dall'archivio dati di origine e inserisce i dati in una tabella nel database di destinazione. Il nome del primo parametro della stored procedure deve corrispondere al tableName definito nel set di dati JSON (Marketing).
+Nel database, definire procedure hello archiviato con stesso nome come hello **SqlWriterStoredProcedureName**. Hello stored procedure gestisce i dati di input dall'archivio dati di origine hello e inserisce i dati in una tabella nel database di destinazione hello. nome di Hello del primo parametro della stored procedure di hello deve corrispondere tableName hello definiti nel set di dati hello JSON (Marketing).
 
 ```sql
 CREATE PROCEDURE spOverwriteMarketing @Marketing [dbo].[MarketingType] READONLY, @stringData varchar(256)
@@ -77,7 +77,7 @@ END
 ```
 
 ## <a name="table-type-definition"></a>Definizione del tipo di tabella
-Nel database definire il tipo di tabella con lo stesso nome di **SqlWriterTableType**. Lo schema del tipo di tabella deve corrispondere allo schema del set di dati di input.
+Nel database, definire il tipo di tabella hello con stesso nome come hello **SqlWriterTableType**. schema di Hello hello del tipo di tabella deve corrispondere schema hello del set di dati input hello.
 
 ```sql
 CREATE TYPE [dbo].[MarketingType] AS TABLE(
@@ -87,7 +87,7 @@ CREATE TYPE [dbo].[MarketingType] AS TABLE(
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-Rivedere gli articoli seguenti sul connettore per gli esempi JSON completi: 
+Esaminare i seguenti articoli connettore che, per completare gli esempi JSON hello: 
 
 - [Database SQL di Azure](data-factory-azure-sql-connector.md)
 - [SQL Server](data-factory-sqlserver-connector.md)

@@ -1,6 +1,6 @@
 ---
-title: Eseguire il provisioning di nuovi tenant in un'app multi-tenant che usa il database SQL di Azure | Microsoft Docs
-description: Informazioni su come eseguire il provisioning di nuovi tenant e catalogarli nell'app SaaS Wingtip
+title: aaaProvision nuovi tenant in un'applicazione multi-tenant che utilizza Database SQL di Azure | Documenti Microsoft
+description: Informazioni su come tooprovision e nuovo catalogo i tenant nell'hello app SaaS Wingtip
 keywords: esercitazione database SQL
 services: sql-database
 documentationcenter: 
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: sstein
-ms.openlocfilehash: 8fa4c4f95386a92c8c818eef1a5b4de5a086fe07
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: eb26f523305650c2124e36707d187dfcdad06fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="provision-new-tenants-and-register-them-in-the-catalog"></a>Effettuare il provisioning di nuovi tenant e registrarli nel catalogo
+# <a name="provision-new-tenants-and-register-them-in-hello-catalog"></a>Eseguire il provisioning di nuovi tenant e registrarli nel catalogo di hello
 
-Questa esercitazione consente di acquisire informazioni sui modelli SaaS di provisioning e catalogo e sulle modalità di implementazione di questi nell'applicazione SaaS Wingtip. Verranno creati e inizializzati nuovi database tenant, che verranno registrati nel catalogo dei tenant dell'applicazione. Il catalogo è un database che gestisce il mapping tra i molti tenant dell'applicazione SaaS e i relativi dati. Il catalogo gioca un ruolo importante indirizzando le richieste dell'applicazione al database corretto.  
+In questa esercitazione, conoscere il provisioning di hello e modelli SaaS catalogo e come vengono implementati in applicazione SaaS Wingtip hello. Creare e inizializzare nuovi database tenant e registrarli nel catalogo di tenant dell'applicazione hello. catalogo Hello è un database che gestisce il mapping di hello tra molti tenant dell'applicazione SaaS hello e i relativi dati. catalogo Hello svolge un ruolo importante indirizzare il database corretto toohello le richieste dell'applicazione.  
 
 In questa esercitazione si apprenderà come:
 
@@ -34,115 +34,115 @@ In questa esercitazione si apprenderà come:
 > * Effettuare il provisioning di un batch di altri tenant
 
 
-Per completare questa esercitazione, verificare che siano soddisfatti i prerequisiti seguenti:
+toocomplete completamento di questa esercitazione, assicurarsi che i hello seguenti prerequisiti:
 
-* L'app SaaS Wingtip viene distribuita. Per distribuire in meno di cinque minuti, vedere [Distribuire ed esplorare l'applicazione SaaS Wingtip](sql-database-saas-tutorial.md)
+* app SaaS Wingtip Hello viene distribuita. toodeploy in meno di cinque minuti, vedere [Distribuisci ed esplorare l'applicazione SaaS Wingtip hello](sql-database-saas-tutorial.md)
 * Azure PowerShell è installato. Per informazioni dettagliate, vedere [Introduzione ad Azure PowerShell](https://docs.microsoft.com/powershell/azure/get-started-azureps)
 
-## <a name="introduction-to-the-saas-catalog-pattern"></a>Introduzione al modello di catalogazione SaaS
+## <a name="introduction-toohello-saas-catalog-pattern"></a>Introduzione toohello modello SaaS catalogo
 
-In un'applicazione SaaS multi-tenant supportata da database è importante sapere dove sono archiviate le informazioni per ogni tenant. Nel modello di catalogo SaaS il mapping tra ogni tenant e la posizione in cui sono archiviati i relativi dati viene inserita all'interno di un database del catalogo. L'app SaaS Wingtip usa un'architettura di database a tenant singolo, ma viene applicato il modello di base che prevede l'archiviazione del mapping tenant-database in un catalogo, indipendentemente dal fatto che venga usato un database multi-tenant o a tenant singolo.
+In un'applicazione SaaS multi-tenant di backup del database, è importante tooknow memorizzazione informazioni per ogni tenant. Nel modello di catalogo hello SaaS, un database del catalogo è hello toohold usato il mapping tra ogni tenant e in cui sono archiviati i dati. app SaaS Wingtip Hello Usa un single-tenant per ogni architettura del database, ma si applica modello di base hello di archiviare i mapping di tenant al database in un catalogo se viene utilizzato un database multi-tenant o single-tenant.
 
-A ogni tenant viene assegnata una chiave che lo identifica all'interno del catalogo. Ogni chiave è mappata alla posizione del database appropriato. Nell'app SaaS Wingtip la chiave viene creata partendo da un hash del nome del tenant. Ciò consente di comporre la chiave usando la parte dell'URL dell'applicazione relativa al nome del tenant. Per la chiave del tenant è possibile usare anche altri schemi.  
+Ogni tenant viene assegnato a una chiave che identifica le nel catalogo di hello e che viene eseguito il mapping di percorso toohello del database appropriato hello. Nell'applicazione SaaS Wingtip hello chiave hello è formata da un hash del nome del tenant hello. Questo consente di parte del nome tenant hello di hello applicazione URL toobe usati chiave hello tooconstruct. Per la chiave del tenant è possibile usare anche altri schemi.  
 
-Il catalogo consente di modificare il nome o la posizione del database con un impatto minimo sull'applicazione.  In un modello di database multi-tenant, ciò consente anche di "spostare" un tenant da un database a un altro.  Il catalogo può essere usato anche per indicare se un tenant o un database è offline per manutenzione o altre azioni. Questo aspetto viene esaminato nell'[esercitazione relativa al ripristino di un tenant singolo](sql-database-saas-tutorial-restore-single-tenant.md).
+catalogo Hello consente nome hello o un percorso di hello database toobe modificato con un impatto minimo sull'applicazione hello.  In un modello di database multi-tenant, ciò consente anche di "spostare" un tenant da un database a un altro.  catalogo Hello può essere utilizzato tooindicate anche se un tenant o il database è offline per manutenzione o altre azioni. Ciò viene esaminata in hello [ripristinare esercitazione single-tenant](sql-database-saas-tutorial-restore-single-tenant.md).
 
-Il catalogo, che in effetti è un database di gestione per un'applicazione SaaS, può anche archiviare metadati aggiuntivi di un tenant o di un database, ad esempio il livello o l'edizione del database, la versione dello schema, il piano di servizio o i contratti di servizio offerti ai tenant, oltre ad altre informazioni che consentono la gestione delle applicazioni, l'assistenza clienti o i processi DevOps.  
+Inoltre, catalogo hello, che è in effetti un database di gestione per un'applicazione SaaS, è possibile archiviare metadati aggiuntivi tenant o un database, ad esempio hello livello o edizione di un database, la versione dello schema, il piano di servizio o i contratti di servizio offerti tootenants e altre informazioni che consente la gestione delle applicazioni, il supporto tecnico o processi devops.  
 
-Oltre all'applicazione SaaS, il catalogo può abilitare strumenti di database.  Nell'esempio SaaS Wingtip il catalogo viene usato per abilitare le query tra tenant, prese in esame nell'[esercitazione relativa all'analisi ad-hoc](sql-database-saas-tutorial-adhoc-analytics.md). La gestione dei processi tra database viene esaminata nelle esercitazioni relative alla [gestione dello schema](sql-database-saas-tutorial-schema-management.md) e all'[analisi del tenant](sql-database-saas-tutorial-tenant-analytics.md). 
+Oltre a hello applicazione SaaS, catalogo hello possibile abilitare gli strumenti di database.  Nell'esempio Wingtip SaaS hello catalogo hello è query tra tenant tooenable usato, esplorata in hello [esercitazione analitica ad hoc](sql-database-saas-tutorial-adhoc-analytics.md). Gestione dei processi tra database viene esaminato in hello [la gestione dello schema](sql-database-saas-tutorial-schema-management.md) e [tenant analitica](sql-database-saas-tutorial-tenant-analytics.md) esercitazioni. 
 
-Nell'app SaaS Wingtip il catalogo viene implementato tramite le funzionalità di gestione delle partizioni della [libreria EDCL (Elastic Database Client Library, libreria client dei database elastici)](sql-database-elastic-database-client-library.md). La libreria EDCL consente a un'applicazione di creare, gestire e usare una mappa partizioni supportata da database. Una mappa partizioni contiene un elenco di partizioni (database) e il mapping tra le chiavi (tenant) e i database.  È possibile usare le funzioni della libreria EDCL da applicazioni o script di PowerShell durante il provisioning di tenant per creare le voci della mappa partizioni e da applicazioni per connettersi al database corretto in modo efficiente. La libreria EDCL memorizza nella cache le informazioni di connessione per ridurre al minimo il traffico verso il database del catalogo e per velocizzare l'applicazione.  
+Nell'applicazione SaaS Wingtip hello catalogo hello viene implementata utilizzando le funzionalità di gestione di partizioni hello di hello [elastico Database Client libreria (EDCL)](sql-database-elastic-database-client-library.md). Consente di Hello EDCL toocreate un'applicazione, gestire e utilizzare una mappa partizioni di database di backup. Una mappa partizioni contiene un elenco di partizioni (database) e il mapping di hello tra database e le chiavi (tenant).  EDCL funzioni possono essere usate da applicazioni o script di PowerShell durante le voci di hello toocreate nella mappa partizioni hello di provisioning del tenant e da applicazioni tooefficiently connettersi toohello database corretto. EDCL memorizza nella cache database del catalogo connessione informazioni toominimize hello traffico toohello e velocizzare l'applicazione hello.  
 
 > [!IMPORTANT]
-> I dati di mapping sono accessibili nel database del catalogo, ma *non modificarli*. Modificare i dati di mapping solo tramite le API della libreria client dei database elastici. La modifica diretta dei dati di mapping comporta il rischio di danneggiare il catalogo e non è supportata.
+> i dati di mapping Hello sono accessibili nel database di catalogo hello, ma *non modificarlo*! Modificare i dati di mapping solo tramite le API della libreria client dei database elastici. La modifica diretta dei dati di mapping hello rischi di danneggiamento hello del catalogo e non sono supportati.
 
 
-## <a name="introduction-to-the-saas-provisioning-pattern"></a>Introduzione al modello di provisioning SaaS
+## <a name="introduction-toohello-saas-provisioning-pattern"></a>Modello di Provisioning SaaS toohello introduzione
 
-Al momento del caricamento di un nuovo tenant in un'applicazione SaaS che usa un modello di database a tenant singolo, è necessario eseguire il provisioning di un nuovo database tenant.  Questo deve essere creato nella posizione e nel livello di servizio appropriati, inizializzato con lo schema e i dati di riferimento corretti e quindi registrato nel catalogo sotto la chiave tenant appropriata.  
+Al momento del caricamento di un nuovo tenant in un'applicazione SaaS che usa un modello di database a tenant singolo, è necessario eseguire il provisioning di un nuovo database tenant.  Deve essere creato nella posizione appropriata hello e il livello di servizio, inizializzato con appropriati dello schema e dati di riferimento e quindi registrati nel catalogo di hello nella chiave del tenant appropriato hello.  
 
-Per il provisioning del database è possibile applicare approcci diversi, ad esempio l'esecuzione di script SQL, la distribuzione di un file BACPAC o la copia della versione finale di un database modello.  
+Diversi approcci possono essere utilizzato toodatabase provisioning, che potrebbe includere l'esecuzione di script SQL, la distribuzione di un file bacpac o copia di un database modello 'finale'.  
 
-L'approccio usato per il provisioning deve essere compreso nella strategia generale di gestione dello schema, che deve garantire che il provisioning di nuovi database venga effettuato con lo schema più recente.  Questo aspetto viene esaminato nell'[esercitazione relativa alla gestione dello schema](sql-database-saas-tutorial-schema-management.md).  
+la strategia di gestione generale dello schema, che devono garantire che vengono effettuato il provisioning di nuovi database con schema più recente di hello è necessario comprendere Hello provisioning approccio adottato.  Ciò viene esaminata in hello [esercitazione Gestione schema](sql-database-saas-tutorial-schema-management.md).  
 
-L'app SaaS Wingtip effettua il provisioning di nuovi tenant copiando la versione finale del database basetenantdb, distribuito nel server del catalogo.  Il provisioning può essere integrato nell'applicazione nell'ambito dell'esperienza di iscrizione e/o può essere supportato offline tramite script. Questa esercitazione illustra il provisioning tramite PowerShell. Gli script di provisioning copiano il database basetenantdb per creare un nuovo database tenant in un pool elastico, quindi lo inizializzano con informazioni specifiche del tenant e lo registrano nella mappa partizioni del catalogo.  Nell'app di esempio, ai database vengono assegnati nomi in base al nome del tenant, ma questo non è un aspetto essenziale del modello. L'uso del catalogo, infatti, consente di assegnare qualsiasi nome al database.+ 
+Hello Wingtip SaaS app disposizioni nuovi tenant copiando un database finale denominato basetenantdb, distribuito nel server di catalogo hello.  Provisioning può essere integrato in un'applicazione hello come parte di un'esperienza di iscrizione e/o supportato in modalità offline mediante script. Questa esercitazione illustra il provisioning tramite PowerShell. gli script di provisioning Hello copiare hello basetenantdb toocreate un nuovo database tenant in un pool elastico, quindi inizializzano con informazioni specifici del tenant e registrarlo nella mappa partizioni di hello catalogo.  Nell'applicazione di esempio hello, i database vengono assegnati nomi in base al nome di tenant hello, ma non si tratta di una parte essenziale del modello di hello: hello catalogo hello consente qualsiasi database di nome toobe assegnato toohello. + 
 
 
-## <a name="get-the-wingtip-application-scripts"></a>Ottenere gli script dell'applicazione Wingtip
+## <a name="get-hello-wingtip-application-scripts"></a>Ottenere script per l'applicazione hello Wingtip
 
-Gli script dell'app SaaS Wingtip e il codice sorgente dell'applicazione sono disponibili nel repository GitHub [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS). [Procedura per scaricare gli script dell'app SaaS Wingtip](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
+Hello Wingtip SaaS script e codice sorgente dell'applicazione sono disponibili in hello [WingtipSaaS](https://github.com/Microsoft/WingtipSaaS) repository github. [I passaggi di script di SaaS Wingtip hello toodownload](sql-database-wtp-overview.md#download-and-unblock-the-wingtip-saas-scripts).
 
 
 ## <a name="provision-and-catalog-detailed-walkthrough"></a>Procedura dettagliata per il provisioning e la catalogazione
 
-Per comprendere in che modo l'applicazione Wingtip implementa il nuovo provisioning di tenant, eseguire il provisioning di un tenant procedendo passo per passo attraverso il flusso di lavoro dopo aver aggiunto un punto di interruzione:
+toounderstand come hello Wingtip applicazione implementa nuovo provisioning del tenant, aggiungere un punto di interruzione e passaggio tramite flusso di lavoro hello durante il provisioning di un tenant:
 
-1. Aprire ...\\Learning Modules\\ProvisionAndCatalog\\_Demo-ProvisionAndCatalog.ps1_ e impostare i parametri seguenti:
-   * **$TenantName** = nome della nuova sede di eventi, ad esempio *Bushwillow Blues*.
-   * **$VenueType** = uno dei tipi di sede predefiniti: *blues*, classicalmusic, dance, jazz, judo, motorracing, multipurpose, opera, rockmusic, soccer.
-   * **$DemoScenario** = **1**, impostare su **1** per *effettuare il provisioning di un singolo tenant*.
+1. Apri... \\Moduli learning\\ProvisionAndCatalog\\_Demo ProvisionAndCatalog.ps1_ e hello set seguenti parametri:
+   * **$TenantName** = nome hello del nuovo aspetto hello (ad esempio, *Bushwillow blu*).
+   * **$VenueType** = uno dei tipi di eventi predefiniti hello: *blu*, classicalmusic, danza, jazz, judo, motorracing, con più finalità, opera, rockmusic, calcio.
+   * **$DemoScenario** = **1**, impostare troppo**1** troppo*il provisioning di un singolo tenant*.
 
-1. Aggiungere un punto di interruzione posizionando il cursore in un punto qualsiasi nella riga 48 contenente il testo: *New-Tenant `* e premere **F9**.
+1. Aggiungere un punto di interruzione posizionando il cursore in qualsiasi punto in 48, hello una riga che afferma: *nuovo Tenant '*e premere **F9**.
 
    ![punto di interruzione](media/sql-database-saas-tutorial-provision-and-catalog/breakpoint.png)
 
-1. Premere **F5** per eseguire lo script.
+1. Premere di script hello toorun **F5**.
 
-1. Quando l'esecuzione dello script si arresta in corrispondenza del punto di interruzione, premere **F11** per eseguire l'istruzione del codice.
+1. Dopo l'esecuzione dello script hello si interrompe al punto di interruzione hello, premere **F11** toostep codice hello.
 
    ![punto di interruzione](media/sql-database-saas-tutorial-provision-and-catalog/debug.png)
 
 
 
-Tenere traccia dell'esecuzione dello script usando le opzioni del menu **Debug** **F10** e **F11** per eseguire le istruzioni delle funzioni chiamate. Per altre informazioni sul debug degli script di PowerShell, vedere [Suggerimenti per l'utilizzo e il debug degli script di PowerShell](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise).
+Tracciare l'esecuzione dello script hello utilizzando hello **Debug** opzioni di menu - **F10** e **F11** toostep su o in funzioni chiamate hello. Per altre informazioni sul debug degli script di PowerShell, vedere [Suggerimenti per l'utilizzo e il debug degli script di PowerShell](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise).
 
 
-I seguenti non sono passaggi da usare esplicitamente, ma solo una spiegazione del flusso di lavoro seguito durante il debug dello script:
+di seguito Hello non sono tooexplicitly attenersi alla procedura, ma una spiegazione del flusso di lavoro hello che scorrere durante il debug di script hello:
 
-1. **Importazione del modulo SubscriptionManagement.psm1** che contiene funzioni per l'accesso ad Azure e la selezione della sottoscrizione di Azure da usare.
-1. **Importazione del modulo CatalogAndDatabaseManagement.psm1** che fornisce un catalogo e l'astrazione a livello di tenant per le funzioni di [gestione delle partizioni](sql-database-elastic-scale-shard-map-management.md). Questo è un modulo importante che incapsula gran parte del modello di catalogazione e vale la pena esplorare.
-1. **Recupero dei dettagli di configurazione**. Eseguire l'istruzione Get-Configuration (con F11) e vedere come viene specificata la configurazione dell'app. In questa posizione sono definiti i nomi delle risorse e altri valori specifici dell'app, ma non modificare questi valori fino a quando non si ha familiarità con gli script.
-1. **Recupero dell'oggetto catalogo**. Eseguire l'istruzione Get-Catalog, che compone e restituisce l'oggetto catalogo usato nello script di livello superiore.  Questa funzione usa funzioni di gestione di partizioni importate da **AzureShardManagement.psm1**. L'oggetto catalogo è composto da quanto segue:
-   * $catalogServerFullyQualifiedName viene costruito usando l'origine standard e il nome utente: _catalog-\<utente\>.database.windows.net_.
-   * Il valore $catalogDatabaseName viene recuperato dalla configurazione: *tenantcatalog*.
-   * L'oggetto $shardMapManager viene inizializzato dal database del catalogo.
-   * L'oggetto $shardMap viene inizializzato dalla mappa partizioni *tenantcatalog* nel database del catalogo.
-   Viene composto e restituito un oggetto catalogo, usato nello script di livello superiore.
-1. **Calcolo della chiave per il nuovo tenant**. Viene usata una funzione hash per creare la chiave del tenant dal nome del tenant.
-1. **Controllo dell'esistenza della chiave del tenant**. Il catalogo viene controllato per verificare che la chiave sia disponibile.
-1. **Provisioning del database tenant con New-TenantDatabase.** Usare **F11** per eseguire le singole istruzioni e vedere come viene effettuato il provisioning del database con un [modello di Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).
+1. **Hello importazione SubscriptionManagement.psm1** modulo che contiene funzioni per la firma in tooAzure e selezionando hello sottoscrizione di Azure in uso.
+1. **Hello importazione CatalogAndDatabaseManagement.psm1** modulo che fornisce un catalogo e un tenant a livello di astrazione su hello [gestione di partizioni](sql-database-elastic-scale-shard-map-management.md) funzioni. Si tratta di un modulo importante incapsula gran parte del modello di catalogo hello, che vale la pena considerare.
+1. **Recupero dei dettagli di configurazione**. Eseguire Get-configurazione (F11) e la configurazione dell'applicazione hello è specificato. I nomi delle risorse e altri valori specifici dell'app vengono definite qui, ma non modificare questi valori fino a quando non si ha familiarità con gli script hello.
+1. **Ottenere l'oggetto catalogo hello**. Eseguire Get-catalogo che compone e restituisce l'oggetto catalogo utilizzato nello script di livello superiore di hello.  Questa funzione usa funzioni di gestione di partizioni importate da **AzureShardManagement.psm1**. oggetto catalogo Hello è costituito dai seguenti hello:
+   * $catalogServerFullyQualifiedName viene costruita utilizzando stem standard hello e il nome utente: _catalogo -\<utente\>. database.windows.net_.
+   * $catalogDatabaseName viene recuperato dalla configurazione hello: *tenantcatalog*.
+   * oggetto $shardMapManager viene inizializzato dai database del catalogo hello.
+   * oggetto $shardMap viene inizializzato da hello *tenantcatalog* mappa partizioni nel database di catalogo hello.
+   Un oggetto del catalogo è composta da restituito e usato nello script di livello superiore di hello.
+1. **Calcolare la nuova chiave tenant di hello**. Una funzione hash è una chiave del tenant hello toocreate utilizzato dal nome di tenant hello.
+1. **Verifica se esiste già una chiave del tenant hello**. catalogo Hello viene verificata tooensure hello chiave è disponibile.
+1. **viene eseguito il provisioning di database tenant Hello con New-TenantDatabase.** Utilizzare **F11** toostep in e vedere come database hello viene eseguito il provisioning con un [modello di Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Il nome del database viene costruito dal nome del tenant, in modo che sia chiaro quale partizione appartiene a quale tenant. È possibile usare tranquillamente altre strategie per la denominazione dei database.+Viene usato un modello di Resource Manager per creare un database tenant copiando un database di riferimento (basetenantdb) nel server del catalogo. Un approccio alternativo è costituito dalla creazione di un database vuoto, con la successiva inizializzazione tramite importazione di un file BACPAC, o dall'esecuzione di uno script di inizializzazione da una posizione nota.  
+nome del database Hello viene costruito da hello tenant nome toomake sia cancellare quale partizione appartiene toowhich tenant. (Altre strategie per la denominazione dei database può essere facilmente utilizzati.) + Un modello di gestione risorse è toocreate utilizzato un database tenant copiando un database finale (baseTenantDB) nel server di catalogo hello. Un approccio alternativo potrebbe essere toocreate un database vuoto e quindi inizializzarlo importando un file bacpac o tooexecute uno script di inizializzazione da un percorso noto.  
 
-Il modello di Resource Manager è disponibile nella cartella …\Learning Modules\Common: *tenantdatabasecopytemplate.json*
+il modello di gestione risorse di Hello si trova nella cartella di Modules\Common\ ...\Learning hello: *tenantdatabasecopytemplate.json*
 
-Dopo la creazione, il database tenant viene **inizializzato con il nome e il tipo della sede di eventi (tenant)**. In questa posizione è possibile eseguire anche altre inizializzazioni.
+Dopo aver creato il database di tenant hello, è quindi ulteriore **inizializzato con il nome di evento (tenant) hello e il tipo di evento hello**. In questa posizione è possibile eseguire anche altre inizializzazioni.
 
-Il **database tenant viene registrato nel catalogo** con *Add-TenantDatabaseToCatalog* usando la chiave del tenant. Usare **F11** per esaminare i dettagli:
+Hello **database tenant è registrato nel catalogo di hello** con *Aggiungi TenantDatabaseToCatalog* con chiave del tenant hello. Utilizzare **F11** toostep i dettagli di hello:
 
-* Il database del catalogo viene aggiunto alla mappa partizioni (elenco dei database noti).
-* Viene creato il mapping che collega il valore della chiave alla partizione.
-* Altri metadati per il tenant (nome della sede) vengono aggiunti alla tabella Tenants nel catalogo.  La tabella Tenants non fa parte dello schema ShardManagement e non viene installata dalla libreria EDCL.  Questa tabella illustra in che modo è possibile estendere il database del catalogo perché sia in grado di supportare dati aggiuntivi specifici dell'applicazione.   
+* database del catalogo Hello viene aggiunta una mappa partizioni toohello (hello elenco database noti).
+* viene creato il mapping di tale partizionamento toohello valore della chiave di collegamenti hello Hello.
+* Metadati aggiuntivi (nome della struttura hello) sul tenant hello viene aggiunto tabella tenant toohello nel catalogo di hello.  tabella tenant Hello non fa parte dello schema ShardManagement hello e non è installata per hello EDCL.  Questa tabella viene illustrato come database di catalogo hello può essere esteso toosupport di ulteriori dati specifici dell'applicazione.   
 
 
-Dopo aver completato il provisioning, l'esecuzione torna allo script originale *Demo-ProvisionAndCatalog*, che apre nel browser la pagina degli **eventi** per il nuovo tenant:
+Una volta al termine del provisioning, esecuzione restituisce toohello originale *Demo ProvisionAndCatalog* script, che consente di aprire hello **eventi** pagina per il tenant di nuovo hello nel browser hello:
 
    ![eventi](media/sql-database-saas-tutorial-provision-and-catalog/new-tenant.png)
 
 
 ## <a name="provision-a-batch-of-tenants"></a>Eseguire il provisioning di un batch di tenant
 
-Questo esercizio descrive come effettuare il provisioning di un batch di 17 tenant. È consigliabile eseguire il provisioning di questo batch di tenant prima di iniziare le altre esercitazioni su SaaS Wingtip, in modo da avere più database da usare.
+Questo esercizio descrive come effettuare il provisioning di un batch di 17 tenant. Si consiglia che effettuare il provisioning di questo batch di tenant prima di avviare altre esercitazioni Wingtip SaaS, pertanto non esiste più di pochi toowork database con.
 
-1. Aprire ...\\Learning Modules\\ProvisionAndCatalog\\*Demo-ProvisionAndCatalog.ps1* in *PowerShell ISE* e impostare il parametro *$DemoScenario* su 3:
-   * **$DemoScenario** = **3**, impostare su **3** per *effettuare il provisioning di un batch di tenant*.
-1. Premere **F5** ed eseguire lo script.
+1. Apri... \\Moduli learning\\ProvisionAndCatalog\\*Demo ProvisionAndCatalog.ps1* in hello *PowerShell ISE* e modificare hello *$ DemoScenario* too3 parametro:
+   * **$DemoScenario** = **3**, modificare anche**3** troppo*il provisioning di un batch di tenant*.
+1. Premere **F5** ed eseguire script hello.
 
-Lo script distribuisce un batch di altri tenant e usa [modello di Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md) che controlla il batch, quindi delega il provisioning di ogni database a un modello collegato. L'uso dei modelli in questo modo consente ad Azure Resource Manager di gestire il processo di provisioning per lo script. I modelli effettuano il provisioning dei database in parallelo, quando possibile, e gestiscono la ripetizione dei tentativi se necessario, ottimizzando il processo nel suo complesso. Lo script è idempotent, pertanto, se non riesce o si interrompe per qualsiasi motivo, eseguirlo nuovamente.
+script Hello distribuisce un batch di altri tenant. Usa un [modello di Azure Resource Manager](../azure-resource-manager/resource-manager-template-walkthrough.md) che controlla il batch hello e delega quindi il provisioning di ogni modello di database tooa collegato. L'utilizzo di modelli in questo modo consente Azure Resource Manager toobroker hello processo per lo script di provisioning. Modelli di eseguire il provisioning di database in parallelo in cui è possibile e gestisce i tentativi, se necessario, hello processo generale di ottimizzazione. script Hello è idempotente pertanto, se non riesce o si interrompe per qualsiasi motivo, eseguirlo nuovamente.
 
-### <a name="verify-the-batch-of-tenants-successfully-deployed"></a>Verificare la corretta distribuzione del batch di tenant
+### <a name="verify-hello-batch-of-tenants-successfully-deployed"></a>Verificare i batch di hello di tenant distribuito correttamente
 
-* Aprire il server *tenants1* passando all'elenco dei server nel [portale di Azure](https://portal.azure.com), fare clic su **database SQL** e verificare che il batch di 17 database aggiuntivi sia ora nell'elenco:
+* Aprire hello *tenants1* server selezionando tooyour elenco dei server hello [portale di Azure](https://portal.azure.com), fare clic su **database SQL**e verificare batch hello di 17 database aggiuntivi sono ora Nell'elenco di hello:
 
    ![elenco di database](media/sql-database-saas-tutorial-provision-and-catalog/database-list.png)
 
@@ -152,9 +152,9 @@ Lo script distribuisce un batch di altri tenant e usa [modello di Azure Resource
 
 Gli altri modelli di provisioning non inclusi in questa esercitazione includono:
 
-**Pre-provisioning di database.** Il modello di pre-provisioning sfrutta il fatto che i database in un pool elastico non hanno costi aggiuntivi. La fatturazione si basa sul pool elastico, non sui database e i database inattivi non consumano risorse. Effettuando il pre-provisioning dei database in un pool e allocandoli poi all'occorrenza, il tempo di caricamento dei tenant può essere ridotto significativamente. Il numero di database di cui viene effettuato il pre-provisioning può essere modificato in base alle esigenze, per ottenere un buffer adatto alla frequenza di provisioning prevista.
+**Pre-provisioning di database.** Hello pre-provisioning modello sfrutta il fatto hello che non si aggiungono i database in un pool elastico di costi aggiuntivi. Fatturazione per il pool elastico hello, hello non database, così i database inattivi senza risorse. Effettuando il pre-provisioning dei database in un pool e allocandoli poi all'occorrenza, il tempo di caricamento dei tenant può essere ridotto significativamente. numero di Hello di pre-provisioning di database potrebbe modificato come tookeep necessari un buffer adatto per hello anticipato velocità di provisioning.
 
-**Provisioning automatico.** In questo modello viene usato un servizio di provisioning dedicato per eseguire il provisioning di server, pool e database automaticamente in base alle esigenze, incluso il pre-provisioning di database in pool elastici se lo si desidera. In caso di ritiro ed eliminazione di database, inoltre, i vuoti nei pool elastici possono essere riempiti dal servizio di provisioning in base alle esigenze. Un servizio di questo tipo può essere semplice o complesso, come nel caso della gestione del provisioning in più aree geografiche, e può includere la configurazione automatica della replica geografica se si usa tale strategia per il ripristino di emergenza. Con il modello di provisioning automatico, un'applicazione client o uno script invia una richiesta di provisioning a una coda per l'elaborazione da parte del servizio di provisioning e quindi effettuerà il polling del servizio per stabilire quando viene completata l'operazione. Se si usa il pre-provisioning, le richieste vengono gestite rapidamente ed è il servizio a gestire il provisioning di un database sostitutivo in background.
+**Provisioning automatico.** Nel modello di provisioning automatico hello, un servizio di provisioning dedicato è server tooprovision utilizzati e i pool database automaticamente in base alle esigenze, inclusi i database di pre-provisioning nel pool elastico, se lo si desidera. E se i database vengono incaricati di deprovisioning ed eliminati, i gap nel pool elastico può essere compilato da hello provisioning del servizio in base alle esigenze. Un servizio di questo tipo può essere semplice o complesso, come nel caso della gestione del provisioning in più aree geografiche, e può includere la configurazione automatica della replica geografica se si usa tale strategia per il ripristino di emergenza. Con modello di provisioning automatico hello, un'applicazione client o script deve inviare un provisioning toobe coda tooa richiesta elaborata hello provisioning del servizio e potrebbe quindi eseguire il polling completamento toodetermine del servizio hello. Se viene utilizzato pre-provisioning, le richieste verrebbero gestite rapidamente con servizio di hello gestiscono il provisioning di un database di sostituzione in esecuzione in background hello.
 
 
 
@@ -166,12 +166,12 @@ In questa esercitazione si è appreso come:
 
 > * Effettuare il provisioning di un nuovo tenant singolo
 > * Effettuare il provisioning di un batch di altri tenant
-> * Eseguire in dettaglio le procedure per il provisioning dei tenant e la relativa registrazione nel catalogo
+> * Esegui istruzione dettagli hello del tenant di provisioning e registrarli nel catalogo di hello
 
-Provare l'[Esercitazione sul monitoraggio delle prestazioni](sql-database-saas-tutorial-performance-monitoring.md).
+Provare a hello [esercitazione di monitoraggio delle prestazioni](sql-database-saas-tutorial-performance-monitoring.md).
 
 ## <a name="additional-resources"></a>Risorse aggiuntive
 
-* Altre [esercitazioni basate sull'applicazione SaaS Wingtip](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
+* Ulteriori [esercitazioni in cui si basano su hello applicazione SaaS Wingtip](sql-database-wtp-overview.md#sql-database-wingtip-saas-tutorials)
 * [Libreria client dei database elastici](https://docs.microsoft.com/azure/sql-database/sql-database-elastic-database-client-library)
-* [Modalità di esecuzione del debug degli script in Windows PowerShell ISE](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)
+* [Come tooDebug gli script in Windows PowerShell ISE](https://msdn.microsoft.com/powershell/scripting/core-powershell/ise/how-to-debug-scripts-in-windows-powershell-ise)

@@ -1,6 +1,6 @@
 ---
-title: Creare e connettersi a un database MySQL in Azure
-description: Informazioni su come usare il portale di Azure per creare un database MySQL e connettersi al database da un'app Web PHP in Azure.
+title: aaaCreate e la connessione di database MySQL tooa in Azure
+description: Informazioni su come toouse hello toocreate portale Azure un database MySQL e quindi connettersi tooit da un'app web PHP in Azure.
 documentationcenter: php
 services: app-service\web
 author: cephalin
@@ -15,14 +15,14 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm;cephalin
-ms.openlocfilehash: 66f4b7a5f8eb3f6f125c9420b40caffca3d43dd6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3abc02f8887432625666afd847e9dc0c0a4db2e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-connect-to-a-mysql-database-in-azure"></a>Creare e connettersi a un database MySQL in Azure
-Questa esercitazione spiega come creare un database MySQL nel [portale di Azure](https://portal.azure.com) (provider [ClearDB](http://www.cleardb.com/)) e come connettersi al database da un'app Web PHP in esecuzione sul [Servizio app di Azure](app-service/app-service-value-prop-what-is.md).
+# <a name="create-and-connect-tooa-mysql-database-in-azure"></a>Creazione e la connessione di database MySQL tooa in Azure
+Questa esercitazione viene illustrato come database MySQL toocreate hello [portale di Azure](https://portal.azure.com) (provider [ClearDB](http://www.cleardb.com/)) e come tooit tooconnect da PHP web app in esecuzione in [Azure App Service](app-service/app-service-value-prop-what-is.md).
 
 > [!NOTE]
 > È anche possibile creare un database MySQL come parte di un [modello di applicazione Marketplace](app-service-web/app-service-web-create-web-app-from-marketplace.md).
@@ -30,24 +30,24 @@ Questa esercitazione spiega come creare un database MySQL nel [portale di Azure]
 >
 
 ## <a name="create-a-mysql-database-in-azure-portal"></a>Creare un database MySQL nel portale di Azure
-Per creare un database MySQL nel portale di Azure, seguire questa procedura:
+un database MySQL nel portale di Azure hello toocreate hello seguenti:
 
-1. Accedere al [Portale di Azure](https://portal.azure.com).
-2. Nel menu a sinistra fare clic su **Nuovo** > **Dati e archiviazione** > **Database MySQL**.
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
+2. Scegliere dal menu a sinistra hello **New** > **dati e archiviazione** > **MySQL Database**.
 
     ![Creare un database MySQL in Azure: avvio](./media/store-php-create-mysql-database/create-db-1-start.png)
-3. Nel [pannello](azure-portal-overview.md)Nuovo database MySQL, configurare il nuovo database MySQL come indicato di seguito (*pannello*: una pagina del portale che si apre orizzontalmente):
+3. Nel nuovo MySQL Database hello [pannello](azure-portal-overview.md), configurare il nuovo database MySQL nel modo seguente (*pannello*: una pagina del portale che consente di aprire orizzontalmente):
 
    * **Nome database**: digitare un nome identificabile in modo univoco.
-   * **Sottoscrizione**: scegliere la sottoscrizione da usare.
-   * **Tipo database**: selezionare **Condiviso** per i livelli gratuiti o a basso costo oppure **Dedicato** per ottenere risorse dedicate.
-   * **Gruppo di risorse**: aggiungere il database MySQL a un [gruppo di risorse](azure-resource-manager/resource-group-overview.md) esistente o inserirlo in un nuovo gruppo. Le risorse all'interno dello stesso gruppo possono essere facilmente gestite insieme.
-   * **Località**: scegliere una località vicina. Quando si aggiunge il database a un gruppo di risorse esistente, l'utente è vincolato alla località del gruppo di risorse.
+   * **Sottoscrizione**: scegliere hello sottoscrizione toouse
+   * **Tipo di database**: selezionare **Shared** per i livelli basso costo o disponibili, o **dedicato** tooget risorse dedicate.
+   * **Gruppo di risorse**: Aggiungi tooan di hello database MySQL esistente [gruppo di risorse](azure-resource-manager/resource-group-overview.md) o inserirlo in una nuova. Risorse hello nello stesso gruppo può essere facilmente gestito insieme.
+   * **Percorso**: selezionare un tooyou Chiudi percorso. Quando si aggiungono tooan gruppo di risorse esistente, si è il percorso del gruppo di risorse toohello bloccato.
    * **Piano tariffario**: fare clic su **Piano tariffario**, quindi selezionare un'opzione di prezzo (il livello **Mercurio** è gratuito) e fare clic su **Seleziona**.
-   * **Note legali**: fare clic su **Note legali**, esaminare i dettagli dell'acquisto e fare clic su **Acquista**.
-   * **Aggiungi al dashboard**: selezionare se si desidera accedere al database direttamente dal dashboard. Questa opzione è particolarmente utile se ancora non si ha familiarità con la navigazione nel portale.
+   * **Note legali**: fare clic su **legali**, esaminare i dettagli di acquisto hello e fare clic su **acquistare**.
+   * **PIN toodashboard**: selezionare se si desidera tooaccess direttamente dal dashboard hello. Questa opzione è particolarmente utile se ancora non si ha familiarità con la navigazione nel portale.
 
-     La schermata seguente rappresenta solo un esempio delle modalità in cui è possibile configurare il database MySQL.  
+     Hello seguente schermata è solo un esempio di come è possibile configurare il database MySQL.  
      ![Creare un database MySQL in Azure: configurazione](./media/store-php-create-mysql-database/create-db-2-configure.png)
 4. Al termine della configurazione, scegliere **Crea**.
 
@@ -57,26 +57,26 @@ Per creare un database MySQL nel portale di Azure, seguire questa procedura:
 
     ![Creare un database MySQL in Azure: in corso](./media/store-php-create-mysql-database/create-db-4-started-status.png)
 
-    Al termine della distribuzione verrà visualizzata un'altra finestra popup. Il portale apre il pannello del database MySQL in automatico.
+    Al termine della distribuzione verrà visualizzata un'altra finestra popup. portale Hello verrà aperto automaticamente pannello del database MySQL.
 
 <a name="connect"></a>
 
-## <a name="connect-to-your-mysql-database"></a>Connettersi al database MySQL
-Per visualizzare le informazioni di connessione del nuovo database MySQL, fare clic su **Proprietà** nel pannello dell'app Web.
+## <a name="connect-tooyour-mysql-database"></a>La connessione di database MySQL tooyour
+informazioni di connessione hello toosee per il nuovo database MySQL, fare semplicemente clic **proprietà** nel pannello dell'app web.
 
 ![Creare un database MySQL in Azure: pannello Database MySQL](./media/store-php-create-mysql-database/create-db-5-finished-db-blade.png)
 
-È ora possibile usare le informazioni di connessione in qualsiasi app Web. [Qui](https://github.com/WindowsAzure/azure-sdk-for-php-samples/tree/master/tasklist-mysql)è disponibile un esempio che illustra come usare le informazioni di connessione da una semplice app PHP.
+È ora possibile usare le informazioni di connessione in qualsiasi app Web. Un esempio che illustra come informazioni di connessione hello toouse da una semplice app PHP sono disponibile [qui](https://github.com/WindowsAzure/azure-sdk-for-php-samples/tree/master/tasklist-mysql).
 
-## <a name="connect-a-laravel-web-app-from-the-php-get-started-tutorial"></a>Connettere un'app web Laravel (dall'esercitazione introduttiva di PHP)
-Si supponga che sia stata completata l'esercitazione [Creare, configurare e distribuire un'app Web PHP in Azure](app-service-web/app-service-web-php-get-started.md) e che un'app Web [Laravel](https://www.laravel.com/) sia in esecuzione su Azure. È possibile aggiungere funzionalità di database all'app Laravel in modo semplice. Seguire questa procedura:
+## <a name="connect-a-laravel-web-app-from-hello-php-get-started-tutorial"></a>Connettersi a un'app web Laravel (da get PHP hello esercitazione introduttiva)
+Si supponga di esercitazione hello appena terminato [creare, configurare e distribuire un tooAzure di app web PHP](app-service-web/app-service-web-php-get-started.md) e avere un [Laravel](https://www.laravel.com/) app web in esecuzione in Azure. È possibile aggiungere facilmente app Laravel tooyour funzionalità di database. Segui i passaggi di hello riportati di seguito:
 
 > [!NOTE]
-> Per questa procedura si presuppone che sia stata completata l'esercitazione [Creare, configurare e distribuire un'app Web PHP in Azure](app-service-web/app-service-web-php-get-started.md).
+> Hello passaggi seguenti presuppongono che sono state esercitazione hello [creare, configurare e distribuire un tooAzure di app web PHP](app-service-web/app-service-web-php-get-started.md).
 >
 >
 
-1. Configurare l'app Laravel nell'ambiente di sviluppo locale in modo che punti al database MySQL. A tale scopo, aprire `.env` dalla directory radice dell'app Laravel e configurare le opzioni del database MySQL.
+1. Configurare app Laravel hello del database MySQL di toohello toopoint di ambiente di sviluppo locale. toodo, aprire `.env` dall'app Laravel directory radice e configurare le opzioni di database MySQL hello.
 
         DB_CONNECTION=mysql
         DB_HOST=<HOSTNAME_from_properties_blade>
@@ -86,31 +86,31 @@ Si supponga che sia stata completata l'esercitazione [Creare, configurare e dist
         DB_PASSWORD=<PASSWORD_from_properties_blade>
 
    > [!NOTE]
-   > Nel pannello **Proprietà** il nome del database MySQL potrebbe non essere l'unico visualizzato nel campo **Nome database**. È consigliabile controllare il parametro Database nel campo **Stringa di connessione** .    
+   > In hello **proprietà** pannello nome hello del database MySQL può o potrebbe non essere visualizzato hello uno in hello **nome del DATABASE** campo. È preferibile toocheck hello Database parametro in hello **stringa di connessione** campo.    
    >
    > ![Creare un database MySQL in Azure: in corso](./media/store-php-create-mysql-database/connect-db-1-database-name.png)
    >
    >
-2. A questo punto, il modo più rapido per verificare di avere accesso a MySQL è usare lo [scaffolding di autenticazione predefinito di Laravel](https://laravel.com/docs/5.2/authentication#authentication-quickstart).
-   Nel terminale della riga di comando eseguire i comandi seguenti dalla directory radice dell'app Laravel:
+2. più rapido tooverify modo di avere accesso MySQL ora Hello è toouse [lo scaffolding di autenticazione predefinito di Laravel](https://laravel.com/docs/5.2/authentication#authentication-quickstart).
+   Nel terminale della riga di comando hello, eseguire hello seguendo i comandi dalla directory radice dell'applicazione Laravel:
 
          php artisan migrate
          php artisan make:auth
 
-    Il primo comando crea le tabelle in Azure in base alle migrazioni predefinite nella directory `database/migrations`, mentre il secondo comando esegue lo scaffolding delle viste e delle route di base per la registrazione e l'autenticazione dell'utente.
-3. A questo punto, eseguire il server di sviluppo:
+    Hello primo comando crea tabelle hello in Azure in base alle migrazioni predefinite in hello `database/migrations` directory e secondo comando hello strutture hello viste di base e le route per l'autenticazione e registrazione dell'utente.
+3. Eseguire subito il server di sviluppo hello:
 
         php artisan serve
-4. Nel browser accedere ad http://localhost:8000 e registrare un nuovo utente come illustrato:
+4. Nel browser hello, passare toohttp://localhost:8000 e registrare un nuovo utente, come illustrato:
 
-    ![Connettersi al database MySQL in Azure: registrazione utente](./media/store-php-create-mysql-database/connect-db-2-development-server.png)
+    ![Connessione database tooMySQL in Azure - registrazione utente](./media/store-php-create-mysql-database/connect-db-2-development-server.png)
 
-    Seguire i prompt dell'interfaccia utente per completare la registrazione. Dopo aver completato la registrazione, l'utente accede in automatico.
+    Eseguire la registrazione di hello completa dei messaggi di richiesta dell'interfaccia utente di hello. Dopo aver completato la registrazione, l'utente accede in automatico.
 
-    ![Connettersi al database MySQL in Azure: registrazione utente](./media/store-php-create-mysql-database/connect-db-3-registered-user.png)
+    ![Connessione database tooMySQL in Azure - registrazione utente](./media/store-php-create-mysql-database/connect-db-3-registered-user.png)
 
-    Si sta sviluppando l'app con il database MySQL in Azure.
-5. A questo punto, è sufficiente replicare le impostazioni `.env` nell'app Web di Azure. Eseguire i comandi seguenti dell'interfaccia della riga di comando di Azure:
+    Ora si sviluppa l'app nei database di MySQL hello in Azure.
+5. A questo punto, è sufficiente tooreplicate il `.env` impostazioni tooyour Azure web app. Eseguire hello seguendo i comandi CLI di Azure:
 
         azure site appsetting add DB_CONNECTION=mysql
         azure site appsetting add DB_HOST=<HOSTNAME_from_properties_blade>
@@ -119,23 +119,23 @@ Si supponga che sia stata completata l'esercitazione [Creare, configurare e dist
         azure site appsetting add DB_USERNAME=<USERNAME_from_properties_blade>
         azure site appsetting add DB_PASSWORD=<PASSWORD_from_properties_blade>
 
-6. Successivamente, eseguire il commit e il push in Azure delle modifiche locali apportate in precedenza durante l'esecuzione di `php artisan make:auth`.
+6. Successivamente, eseguire il commit e push tooAzure hello le modifiche locali apportate in precedenza durante l'esecuzione `php artisan make:auth`.
 
         git add .
         git commit -m "scaffold auth views and routes"
         git push azure master
-7. Passare all'app Web di Azure.
+7. Sfoglia toohello Azure web app.
 
         azure site browse
-8. Accedere usando le credenziali utente create in precedenza.
+8. Accedere con le credenziali utente hello creato in precedenza.
 
-    ![Connettersi al database MySQL in Azure: passare all'app Web di Azure](./media/store-php-create-mysql-database/connect-db-4-browse-azure-webapp.png)
+    ![Connessione database tooMySQL in Azure - Sfoglia tooAzure web app](./media/store-php-create-mysql-database/connect-db-4-browse-azure-webapp.png)
 
-    Dopo l'accesso, verrà visualizzata una schermata descrittiva.
+    Dopo l'accesso, verrà visualizzata hello descrittivo schermata di post-login.
 
-    ![Connettersi al database MySQL in Azure: accesso eseguito](./media/store-php-create-mysql-database/connect-db-5-logged-in.png)
+    ![La connessione a database tooMySQL in Azure - connesso](./media/store-php-create-mysql-database/connect-db-5-logged-in.png)
 
     Complimenti, l'app Web PHP di Azure dispone ora di accesso ai dati del database MySQL.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per ulteriori informazioni, vedere il [Centro per sviluppatori di PHP](/develop/php/).
+Per ulteriori informazioni, vedere hello [Centro sviluppatori PHP](/develop/php/).

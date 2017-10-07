@@ -1,6 +1,6 @@
 ---
-title: Informazioni sugli endpoint per macchine virtuali Linux in Azure | Documentazione Microsoft
-description: Informazioni sul modo in cui gli endpoint del modello di distribuzione classica vengono ora implementati in Azure Resource Manager usando i gruppi di sicurezza di rete e le regole dell'elenco di controllo di accesso.
+title: gli endpoint aaaUnderstand per le macchine virtuali Linux in Azure | Documenti Microsoft
+description: Informazioni su come endpoint dal modello di distribuzione classica hello vengono implementate in Gestione risorse utilizzando le regole ACL e i gruppi di sicurezza di rete
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 7eb5903a5b010c7a6c2f1e427c596b931c6ec1a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4574bde18c1fc78ea8417d86af39f7eea6dd20a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="classic-endpoints-for-linux-vms-with-azure-resource-manager"></a>Endpoint del modello di distribuzione classica per le VM Linux con Azure Resource Manager
 [!INCLUDE [virtual-machines-common-endpoints-in-resource-manager](../../../includes/virtual-machines-common-endpoints-in-resource-manager.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni dettagliate sulle tecnologie illustrate qui, oltre a guide introduttive sull'uso dei gruppi di sicurezza di rete, vedere gli argomenti seguenti:
+È possibile leggere che informazioni più dettagliate sulle tecnologie di hello descritte di seguito, insieme a guide per l'utilizzo di gruppi di sicurezza di rete, in hello seguenti articoli:
 
-* [Quick-start - Create a Network Security Group and ACL rules using the Azure CLI](nsg-quickstart.md)  
+* [Avvio rapido - creare una regola gruppo di sicurezza di rete e ACL utilizzando hello CLI di Azure](nsg-quickstart.md)  
 * [Panoramica di Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)  
 * [Che cos'è un gruppo di sicurezza di rete](../../virtual-network/virtual-networks-nsg.md)  
 * [Panoramica di Azure Resource Manager per i servizi di bilanciamento del carico](../../load-balancer/load-balancer-arm.md) 

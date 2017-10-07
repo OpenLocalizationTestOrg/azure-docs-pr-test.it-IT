@@ -1,6 +1,6 @@
 ---
-title: App Web Django in una macchina virtuale Windows Server in Azure | Microsoft Docs
-description: Informazioni su come ospitare un sito Web basato su Django in Azure usando una macchina virtuale Windows Server 2012 R2 Datacenter con il modello di distribuzione classica.
+title: app web aaaDjango in una macchina virtuale Azure di Windows Server | Documenti Microsoft
+description: Informazioni su come toohost un sito Web basato su Django in Azure utilizzando una VM di Windows Server 2012 R2 Datacenter con il modello di distribuzione classica hello.
 services: virtual-machines-windows
 documentationcenter: python
 author: huguesv
@@ -15,99 +15,99 @@ ms.devlang: python
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: huvalo
-ms.openlocfilehash: 283a296fb39863c2801be1093cc4f56904786abd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 55847e3c6d6769965be29077e8d4eeebad914637
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="django-hello-world-web-app-on-a-windows-server-vm"></a>App Web Hello World Django in una macchina virtuale Windows Server
 
 > [!IMPORTANT] 
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Azure Resource Manager e il modello di distribuzione classica](../../../resource-manager-deployment-model.md). Questo articolo illustra il modello di distribuzione classica. Per le distribuzioni più recenti si consiglia di usare il modello di Resource Manager.
+> Azure offre due diversi modelli di distribuzione per la creazione e utilizzo delle risorse: [Gestione risorse di Azure e hello modello di distribuzione classica](../../../resource-manager-deployment-model.md). In questo articolo viene descritto il modello di distribuzione classica hello. È consigliabile che più nuove distribuzioni di usare il modello di gestione risorse hello.
 
-In questa esercitazione viene illustrato come ospitare un sito Web basato su Django in Windows Server nelle macchine virtuali di Azure. Nell'esercitazione si presuppone che l'utente non abbia mai usato Azure. Al termine dell'esercitazione, si disporrà di un'applicazione basata su Django in esecuzione nel cloud.
+In questa esercitazione illustra come toohost un sito Web basato su Django in Windows Server in macchine virtuali di Azure. Nell'esercitazione di hello, non si presuppone alcuna esperienza precedente con Azure. Dopo aver esercitazione hello, è possibile avere un'applicazione basata su Django backup e in esecuzione nel cloud hello.
 
 È possibile passare agli argomenti seguenti:
 
-* Configurare una macchina virtuale di Azure per l'hosting di Django. Sebbene nell'esercitazione la procedura venga illustrata in **Windows Server**, è possibile eseguirla anche con una macchina virtuale Linux ospitata in Azure.
+* Consente di impostare un Django di toohost macchina virtuale di Azure. Sebbene in questa esercitazione viene illustrato come toodo per **Windows Server**, è possibile eseguire hello uguali per una VM Linux ospitati in Azure.
 * Creare una nuova applicazione Django in Windows.
 
-Nell'esercitazione viene illustrato come compilare una semplice applicazione Web Hello World, ospitata in una macchina virtuale di Azure.
+Hello esercitazione vengono illustrate le modalità di applicazione web toobuild una base di Hello World. un'applicazione Hello è ospitata in una macchina virtuale di Azure.
 
-In questo screenshot viene visualizzata l'applicazione completata:
+Hello seguente schermata mostra un'applicazione hello completata:
 
-![Finestra del browser con la pagina hello world visualizzata in Azure][1]
+![Una finestra del browser visualizza una pagina di hello hello world in Azure][1]
 
 [!INCLUDE [create-account-and-vms-note](../../../../includes/create-account-and-vms-note.md)]
 
-## <a name="create-and-set-up-an-azure-virtual-machine-to-host-django"></a>Creare e configurare una macchina virtuale di Azure per l'hosting di Django
+## <a name="create-and-set-up-an-azure-virtual-machine-toohost-django"></a>Creare e configurare un toohost macchina virtuale di Azure Django
 
-1. Per creare una macchina virtuale di Azure con la distribuzione di Windows Server 2012 R2 Datacenter, vedere [Creare una macchina virtuale con Windows nel portale di Azure](tutorial.md).
-2. Impostare Azure in modo da dirigere il traffico della porta 80 proveniente dal Web alla porta 80 della macchina virtuale:
+1. vedere toocreate macchina virtuale di Azure con la distribuzione di Windows Server 2012 R2 Datacenter, hello [creare una macchina virtuale Windows in esecuzione in Azure portal hello](tutorial.md).
+2. Impostare traffico sulla porta 80 toodirect Azure hello web tooport 80 nella macchina virtuale hello:
    
-   1. Nel portale di Azure passare al dashboard e selezionare la macchina virtuale appena creata.
+   1. In hello portale di Azure, passare toohello dashboard e selezionare la macchina virtuale appena creata.
    2. Far clic su **Endpoint** e selezionare **Aggiungi**.
 
      ![Aggiungere un endpoint](./media/python-django-web-app/django-helloworld-add-endpoint-new-portal.png)
 
-   3. Nella pagina **Aggiungi endpoint** immettere **HTTP** nel campo **Nome**. Impostare le porte TCP pubblica e privata su **80**.
+   3. In hello **aggiungere endpoint** pagina per **nome**, immettere **HTTP**. Impostare le porte TCP pubbliche e private hello troppo**80**.
 
      ![Immettere il nome e impostare le porte pubblica e privata](./media/python-django-web-app/django-helloworld-add-endpoint-set-ports-new-portal.png)
 
    4. Fare clic su **OK**.
      
-3. Nel dashboard selezionare la VM. Per usare Remote Desktop Protocol (RDP) per accedere in modalità remota alla macchina virtuale di Azure appena creata, fare clic su **Connetti**.  
+3. Nel dashboard di hello, selezionare la macchina virtuale. toouse Remote Desktop Protocol (RDP) tooremotely Accedi toohello creata la macchina virtuale di Azure, fare clic su **Connetti**.  
 
 > [!IMPORTANT] 
-> Per le istruzioni seguenti, si suppone che l'accesso alla macchina virtuale sia stato eseguito correttamente e che i comandi vengano inviati dalla macchina virtuale e non dal computer locale.
+> Hello attenendosi alle istruzioni si presuppone che l'utente eseguito nella macchina virtuale toohello correttamente. Si presuppone inoltre che si emette comandi nella macchina virtuale hello e non presenti nel computer locale.
 
-## <a id="setup"> </a>Installare Python, Django e WFastCGI
+## <a id="setup"></a>Installare Python, Django e WFastCGI
 > [!NOTE]
-> Per il download tramite Internet Explorer potrebbe essere necessario configurarne le impostazioni di **Sicurezza avanzata**. A tale scopo, fare clic su **Start** > **Strumenti di amministrazione** > **Server Manager** > **Server locale**. Fare clic su **Configurazione sicurezza avanzata IE** e quindi **disattivare** l'opzione.
+> toodownload utilizzando Internet Explorer, potrebbe essere tooconfigure Internet Explorer **configurazione sicurezza avanzata** impostazioni. toodo, fare clic su **avviare** > **strumenti di amministrazione** > **Server Manager** > **diServerlocale**. Fare clic su **Configurazione sicurezza avanzata IE** e quindi **disattivare** l'opzione.
 
-1. Installare le versioni più recenti di Python 2.7 o Python 3.4 da [python.org][python.org].
-2. Installare i pacchetti wfastcgi e django usando pip.
+1. Installare versioni più recenti di hello di Python 2.7 o 3.4 Python da [python.org][python.org].
+2. Installare i pacchetti hello wfastcgi e django, uso di pip.
    
-    Per Python 2.7, usare il comando seguente:
+    Per Python 2.7, utilizzare hello comando seguente:
    
         c:\python27\scripts\pip install wfastcgi
         c:\python27\scripts\pip install django
    
-    Per Python 3.4, usare il comando seguente:
+    Per Python 3.4, utilizzare hello comando seguente:
    
         c:\python34\scripts\pip install wfastcgi
         c:\python34\scripts\pip install django
 
 ## <a name="install-iis-with-fastcgi"></a>Installare IIS con FastCGI
-* Installare Internet Information Services (IIS) con il supporto FastCGI. L'esecuzione può richiedere alcuni minuti.
+* Installare Internet Information Services (IIS) con il supporto FastCGI. L'operazione potrebbe richiedere diversi minuti tooexecute.
    
         start /wait %windir%\System32\PkgMgr.exe /iu:IIS-WebServerRole;IIS-WebServer;IIS-CommonHttpFeatures;IIS-StaticContent;IIS-DefaultDocument;IIS-DirectoryBrowsing;IIS-HttpErrors;IIS-HealthAndDiagnostics;IIS-HttpLogging;IIS-LoggingLibraries;IIS-RequestMonitor;IIS-Security;IIS-RequestFiltering;IIS-HttpCompressionStatic;IIS-WebServerManagementTools;IIS-ManagementConsole;WAS-WindowsActivationService;WAS-ProcessModel;WAS-NetFxEnvironment;WAS-ConfigurationAPI;IIS-CGI
 
 ## <a name="create-a-new-django-application"></a>Creare una nuova applicazione Django
-1. Per creare un nuovo progetto Django, immettere in C:\inetpub\wwwroot il comando seguente:
+1. In C:\inetpub\wwwroot, un nuovo progetto, Django toocreate immettere hello comando seguente:
    
-   Per Python 2.7, usare il comando seguente:
+   Per Python 2.7, utilizzare hello comando seguente:
    
        C:\Python27\Scripts\django-admin.exe startproject helloworld
    
-   Per Python 3.4, usare il comando seguente:
+   Per Python 3.4, utilizzare hello comando seguente:
    
        C:\Python34\Scripts\django-admin.exe startproject helloworld
    
-   ![Risultato del comando New-AzureService](./media/python-django-web-app/django-helloworld-cmd-new-azure-service.png)
-2. Il comando `django-admin` genera una struttura di base per i siti Web basati su Django:
+   ![risultato di Hello del comando New-AzureService hello](./media/python-django-web-app/django-helloworld-cmd-new-azure-service.png)
+2. Hello `django-admin` comando consente di generare una struttura di base per i siti Web basati su Django:
    
    * `helloworld\manage.py` consente di avviare e arrestare l'hosting del sito Web basato su Django.
    * `helloworld\helloworld\settings.py` contiene le impostazioni di Django per l'applicazione.
-   * `helloworld\helloworld\urls.py` contiene il codice di mapping tra ogni URL e la relativa visualizzazione.
-3. Creare un nuovo file denominato views.py nella directory C:\inetpub\wwwroot\helloworld\helloworld. Questo file conterrà la visualizzazione del rendering della pagina "hello world". Nell'editor del codice immettere i comandi seguenti:
+   * `helloworld\helloworld\urls.py`dispone di codice di mapping hello tra ogni URL e la relativa visualizzazione.
+3. Nella directory C:\inetpub\wwwroot\helloworld\helloworld hello, creare un nuovo file denominato views.py. Questo file contiene una visualizzazione hello che esegue il rendering hello "hello world" pagina. Nell'editor di codice, immettere hello seguenti comandi:
    
        from django.http import HttpResponse
        def home(request):
            html = "<html><body>Hello World!</body></html>"
            return HttpResponse(html)
-4. Sostituire il contenuto del file urls.py con i comandi seguenti:
+4. Sostituire il contenuto di hello del file urls.py hello con hello seguenti comandi:
    
        from django.conf.urls import patterns, url
        urlpatterns = patterns('',
@@ -115,10 +115,10 @@ In questo screenshot viene visualizzata l'applicazione completata:
        )
 
 ## <a name="set-up-iis"></a>Configurare IIS
-1. Nel file applicationhost.config globale sbloccare la sezione dei gestori.  In questo modo si consentirà al file web.config di usare il gestore Python. Aggiungere questo comando:
+1. Nel file ApplicationHost. config globale hello, sbloccare la sezione dei gestori hello.  In questo modo il gestore di Web. config file toouse hello Python. Aggiungere questo comando:
    
         %windir%\system32\inetsrv\appcmd unlock config -section:system.webServer/handlers
-2. Attivare WFastCGI. In questo modo si aggiungerà un'applicazione al file applicationhost.config globale che fa riferimento all'eseguibile dell'interprete Python e allo script wfastcgi.py.
+2. Attivare WFastCGI. Consente di aggiungere un file dell'applicazione toohello globale applicationHost. config, che fa riferimento tooyour interprete eseguibile e hello wfastcgi.py script Python.
    
     In Python 2.7:
    
@@ -127,7 +127,7 @@ In questo screenshot viene visualizzata l'applicazione completata:
     In Python 3.4:
    
         C:\python34\scripts\wfastcgi-enable
-3. Creare un file web.config in C:\inetpub\wwwroot\helloworld. Il valore dell'attributo `scriptProcessor` deve corrispondere all'output del passaggio precedente. Per altre informazioni sull'impostazione di wfastcgi, vedere [pypi wfastcgi][wfastcgi].
+3. Creare un file web.config in C:\inetpub\wwwroot\helloworld. valore di hello Hello `scriptProcessor` attributo deve corrispondere l'output di hello dalla hello passaggio precedente. Per ulteriori informazioni sull'impostazione di wfastcgi hello, vedere [pypi wfastcgi][wfastcgi].
    
    In Python 2.7:
    
@@ -158,15 +158,15 @@ In questo screenshot viene visualizzata l'applicazione completata:
             </handlers>
           </system.webServer>
         </configuration>
-4. Aggiornare la posizione del sito Web predefinito IIS in modo che punti alla cartella del progetto Django:
+4. Aggiornare il percorso di hello di hello IIS sito Web toopoint toohello Django cartella progetto predefinita:
    
         %windir%\system32\inetsrv\appcmd set vdir "Default Web Site/" -physicalPath:"C:\inetpub\wwwroot\helloworld"
-5. Caricare la pagina Web nel browser.
+5. Caricare la pagina Web hello nel browser.
 
-![Finestra del browser con la pagina hello world visualizzata in Azure][1]
+![Una finestra del browser visualizza una pagina di hello hello world in Azure][1]
 
 ## <a name="shut-down-your-azure-virtual-machine"></a>Arrestare la macchina virtuale di Azure
-Al termine dell'esercitazione è consigliabile arrestare o rimuovere la macchina virtuale di Azure creata per l'esercitazione. Ciò consente di liberare risorse per altre esercitazioni ed evitare di incorrere in costi di utilizzo di Azure.
+Una volta terminato con questa esercitazione, si consiglia di spegnere o rimuovere una macchina virtuale di Azure creata per l'esercitazione hello hello. Ciò consente di liberare risorse per altre esercitazioni ed evitare di incorrere in costi di utilizzo di Azure.
 
 [1]: ./media/python-django-web-app/django-helloworld-browser-azure.png
 

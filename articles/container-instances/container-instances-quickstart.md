@@ -1,5 +1,5 @@
 ---
-title: Creare il primo contenitore di Istanze di contenitore di Azure | Azure Docs
+title: aaaCreate il primo contenitore di istanze di contenitori di Azure | Documenti di Azure
 description: Distribuire e iniziare a usare Istanze di contenitore di Azure
 services: container-instances
 documentationcenter: 
@@ -17,15 +17,15 @@ ms.workload: na
 ms.date: 07/26/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 905f69e5e1e237a31d9bb1e326969ec83292c244
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b57c52714933bd3b28c44d33f9af7cd1f23fb951
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-container-in-azure-container-instances"></a>Creare il primo contenitore in Istanze di contenitore di Azure
 
-Istanze di contenitore di Azure semplifica la creazione e la gestione dei contenitori in Azure. In questa guida introduttiva si creerà un contenitore in Azure e lo si esporrà a Internet con un indirizzo IP pubblico. Per completare questa operazione, è sufficiente un solo comando. In pochi secondi, nel browser verrà visualizzato quanto segue:
+Istanze di contenitori Azure rende facile toocreate e gestire i contenitori in Azure. In questa Guida introduttiva, verrà creato un contenitore in Azure ed esporlo toohello internet con un indirizzo IP pubblico. Per completare questa operazione, è sufficiente un solo comando. In pochi secondi, nel browser verrà visualizzato quanto segue:
 
 ![App distribuita usando Istanze di contenitore di Azure visualizzata nel browser][aci-app-browser]
 
@@ -33,15 +33,15 @@ Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://a
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-Se si sceglie di installare e usare l'interfaccia della riga di comando in locale, per questa guida introduttiva è necessario eseguire l'interfaccia della riga di comando di Azure versione 2.0.12 o successiva. Eseguire `az --version` per trovare la versione. Se è necessario eseguire l'installazione o l'aggiornamento, vedere [Installare l'interfaccia della riga di comando di Azure 2.0]( /cli/azure/install-azure-cli). 
+Se si sceglie tooinstall e utilizza hello CLI in locale, questa Guida rapida richiede che sia in esecuzione hello Azure CLI versione 2.0.12 o versione successiva. Eseguire `az --version` versione hello toofind. Se è necessario tooinstall o l'aggiornamento, vedere [installare Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="create-a-resource-group"></a>Creare un gruppo di risorse
 
 Le istanze di contenitore di Azure sono risorse di Azure e devono essere inserite in un gruppo di risorse di Azure, una raccolta logica in cui le risorse di Azure vengono distribuite e gestite.
 
-Creare un gruppo di risorse con il comando [az group create](/cli/azure/group#create). 
+Creare un gruppo di risorse con hello [gruppo az creare](/cli/azure/group#create) comando. 
 
-L'esempio seguente crea un gruppo di risorse denominato *myResourceGroup* nella località *stati uniti orientali*.
+esempio Hello crea un gruppo di risorse denominato *myResourceGroup* in hello *eastus* percorso.
 
 ```azurecli-interactive 
 az group create --name myResourceGroup --location eastus
@@ -49,19 +49,19 @@ az group create --name myResourceGroup --location eastus
 
 ## <a name="create-a-container"></a>Creare un contenitore
 
-Per creare un contenitore, specificare un nome, un'immagine Docker e un gruppo di risorse di Azure. È facoltativamente possibile esporre il contenitore a Internet con un indirizzo IP pubblico. In questo caso, verrà usato un contenitore che ospita un'app Web molto semplice scritta in [Node.js](http://nodejs.org).
+Per creare un contenitore, specificare un nome, un'immagine Docker e un gruppo di risorse di Azure. Facoltativamente è possibile esporre hello contenitore toohello internet con un indirizzo IP pubblico. In questo caso, verrà usato un contenitore che ospita un'app Web molto semplice scritta in [Node.js](http://nodejs.org).
 
 ```azurecli-interactive
 az container create --name mycontainer --image microsoft/aci-helloworld --resource-group myResourceGroup --ip-address public 
 ```
 
-In pochi secondi, verrà visualizzata una risposta alla richiesta. Il contenitore inizialmente presenterà lo stato **Creating**, ma verrà avviato entro alcuni secondi. È possibile controllare lo stato usando il comando `show`:
+Entro pochi secondi, è necessario ottenere una richiesta di tooyour di risposta. Inizialmente, il contenitore di hello verrà incluso un **creazione** stato, ma deve iniziare in pochi secondi. È possibile controllare lo stato di hello utilizzando hello `show` comando:
 
 ```azurecli-interactive
 az container show --name mycontainer --resource-group myResourceGroup
 ```
 
-Nella parte inferiore dell'output verranno visualizzati lo stato del provisioning e l'indirizzo IP del contenitore:
+Nella parte inferiore di hello dell'output di hello, verrà visualizzato lo stato del provisioning del contenitore hello e l'indirizzo IP:
 
 ```json
 ...
@@ -79,13 +79,13 @@ Nella parte inferiore dell'output verranno visualizzati lo stato del provisionin
 ...
 ```
 
-Dopo che lo stato del contenitore è diventato **Succeeded**, è possibile raggiungerlo nel browser usando l'indirizzo IP fornito. 
+Una volta contenitore hello Sposta toohello **Succeeded** stato, è possibile raggiungerli nel browser hello utilizzando l'indirizzo IP hello fornito. 
 
 ![App distribuita usando Istanze di contenitore di Azure visualizzata nel browser][aci-app-browser]
 
-## <a name="pull-the-container-logs"></a>Effettuare il pull dei log del contenitore
+## <a name="pull-hello-container-logs"></a>Pull hello contenitore log
 
-È possibile effettuare il pull dei log per il contenitore creato usando il comando `logs`:
+È possibile effettuare il pull nei registri hello contenitore hello è stato creato mediante hello `logs` comando:
 
 ```azurecli-interactive
 az container logs --name mycontainer --resource-group myResourceGroup
@@ -99,9 +99,9 @@ listening on port 80
 ::ffff:10.240.255.105 - - [21/Jul/2017:00:01:46 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://104.210.39.122/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
 ```
 
-## <a name="delete-the-container"></a>Eliminare il contenitore
+## <a name="delete-hello-container"></a>Eliminare il contenitore di hello
 
-Quando il contenitore non è più necessario, è possibile rimuoverlo usando il comando `delete`:
+Al termine con contenitore hello, è possibile rimuoverla utilizzando hello `delete` comando:
 
 ```azurecli-interactive
 az container delete --name mycontainer --resource-group myResourceGroup
@@ -109,7 +109,7 @@ az container delete --name mycontainer --resource-group myResourceGroup
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Tutto il codice per il contenitore usato in questa guida introduttiva è disponibile [su GitHub][app-github-repo], con il documento Dockerfile. Per provare a compilarlo personalmente e a distribuirlo in Istanze di contenitore di Azure usando il Registro contenitori di Azure, passare all'esercitazione su Istanze di contenitore di Azure.
+Tutti di hello del codice per il contenitore di hello utilizzato in questa Guida introduttiva è disponibile [su GitHub][app-github-repo], insieme ai relativi Dockerfile. Se si desidera tootry compilazione manualmente e la distribuzione di istanze di contenitori tooAzure utilizzando hello del Registro di sistema contenitore di Azure, è possibile continuare toohello esercitazione di istanze di contenitori di Azure.
 
 > [!div class="nextstepaction"]
 > [Esercitazioni su Istanze di contenitore di Azure](./container-instances-tutorial-prepare-app.md)

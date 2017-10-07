@@ -1,6 +1,6 @@
 ---
-title: 'Azure Cosmos DB: procedura per l''esecuzione di query con l''API DocumentDB | Microsoft Docs'
-description: Informazioni su come eseguire query con l'API DocumentDB per Azure Cosmos DB
+title: "Azure Cosmos DB: Modalità tooquery utilizzando hello API DocumentDB? | Microsoft Docs"
+description: Informazioni su tooquery con hello API DocumentDB per Azure Cosmos DB
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: feffc553a9aa931d96cec71c101674fce08a466b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e3e5a49f7510942bcfb15330e5f86c5dd8b1e5d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-with-api-for-mongodb"></a>Azure Cosmos DB: procedura per l'esecuzione di query con l'API MongoDB
+# <a name="azure-cosmos-db-how-tooquery-with-api-for-mongodb"></a>Azure Cosmos DB: Modalità tooquery con API per MongoDB?
 
-L'[API per MongoDB](mongodb-introduction.md) supporta l'esecuzione di [query nella shell di MongoDB](https://docs.mongodb.com/manual/tutorial/query-documents/). 
+Hello Azure Cosmos DB [API per MongoDB](mongodb-introduction.md) supporta [query shell MongoDB](https://docs.mongodb.com/manual/tutorial/query-documents/). 
 
-Questo articolo illustra le attività seguenti: 
+Questo articolo descrive hello seguenti attività: 
 
 > [!div class="checklist"]
 > * Esecuzione di query sui dati con MongoDB
 
 ## <a name="sample-document"></a>Documento di esempio
 
-Le query di questo articolo usano il documento di esempio seguente.
+query di Hello in questo articolo utilizzano hello successivo documento di esempio.
 
 ```json
 {
@@ -64,7 +64,7 @@ Le query di questo articolo usano il documento di esempio seguente.
 ```
 ## <a id="examplequery1"></a>Query di esempio 1 
 
-Nel precedente documento della famiglia, la query seguente restituisce i documenti in cui il campo ID corrisponde a `WakefieldFamily`.
+Dato hello famiglia documento di esempio precedente, restituisce i documenti hello in cui corrisponde il campo di id hello di query seguente hello `WakefieldFamily`.
 
 **Query**
     
@@ -114,7 +114,7 @@ Nel precedente documento della famiglia, la query seguente restituisce i documen
 
 ## <a id="examplequery2"></a>Query di esempio 2 
 
-La query seguente restituisce tutti i figli della famiglia. 
+la query successiva Hello restituisce tutti gli elementi figlio hello nella famiglia di hello. 
 
 **Query**
     
@@ -147,7 +147,7 @@ La query seguente restituisce tutti i figli della famiglia.
 
 ## <a id="examplequery3"></a>Query di esempio 3 
 
-La query seguente restituisce tutte le famiglie registrate. 
+la query successiva Hello restituisce tutte le famiglie di hello che sono registrate. 
 
 **Query**
     
@@ -156,7 +156,7 @@ La query seguente restituisce tutte le famiglie registrate.
 
 ## <a id="examplequery4"></a>Query di esempio 4
 
-La query seguente restituisce tutte le famiglie non registrate. 
+la query successiva Hello restituisce tutte le famiglie di hello che non sono registrate. 
 
 **Query**
     
@@ -200,7 +200,7 @@ La query seguente restituisce tutte le famiglie non registrate.
 
 ## <a id="examplequery5"></a>Query di esempio 5
 
-La query seguente restituisce tutte le famiglie non registrate e il cui stato di residenza è NY. 
+la query successiva Hello restituisce tutte le famiglie di hello che non sono registrate e lo stato è NY. 
 
 **Query**
     
@@ -246,7 +246,7 @@ La query seguente restituisce tutte le famiglie non registrate e il cui stato di
 
 ## <a id="examplequery6"></a>Query di esempio 6
 
-La query seguente restituisce tutte le famiglie in cui il grado della classe frequentata dai figli corrisponde a 8.
+la query successiva Hello restituisce tutte le famiglie di hello in cui i livelli di elementi figlio sono 8.
 
 **Query**
   
@@ -291,7 +291,7 @@ La query seguente restituisce tutte le famiglie in cui il grado della classe fre
 
 ## <a id="examplequery7"></a>Query di esempio 7
 
-La query seguente restituisce tutte le famiglie in cui la dimensione della matrice dei figli corrisponde a 3.
+la query successiva Hello restituisce tutte le famiglie di hello in cui le dimensioni della matrice di elementi figlio sono 3.
 
 **Query**
   
@@ -299,16 +299,16 @@ La query seguente restituisce tutte le famiglie in cui la dimensione della matri
 
 **Risultati**
 
-Poiché in nessuna famiglia sono presenti più di 2 figli, non viene restituito alcun risultato. La query avrà esito positivo e restituirà l'intero documento solo quando il parametro è 2.
+Poiché in nessuna famiglia sono presenti più di 2 figli, non viene restituito alcun risultato. Solo quando il parametro è 2 questa query verrà completata e hello completo documento restituito.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono state eseguite le operazioni seguenti:
+In questa esercitazione, effettuata seguente hello:
 
 > [!div class="checklist"]
-> * È stato appreso come eseguire una query usando MongoDB 
+> * Appreso tooquery utilizzando MongoDB 
 
-È ora possibile passare all'esercitazione successiva per imparare a distribuire i dati a livello globale.
+È ora possibile procedere come toolearn esercitazione successiva toohello toodistribute i dati a livello globale.
 
 > [!div class="nextstepaction"]
 > [Distribuire i dati a livello globale](tutorial-global-distribution-documentdb.md)

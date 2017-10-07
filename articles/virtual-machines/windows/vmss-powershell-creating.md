@@ -1,5 +1,5 @@
 ---
-title: "Creazione di set di scalabilità di macchine virtuali con i cmdlet di PowerShell | Documentazione Microsoft"
+title: "scalabilità della macchina virtuale aaaCreating imposta utilizzando i cmdlet di PowerShell | Documenti Microsoft"
 description: "Introduzione alla creazione e alla gestione dei set di scalabilità delle macchine virtuali di Azure tramite i cmdlet di Azure PowerShell"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/21/2017
 ms.author: danielsollondon
-ms.openlocfilehash: a3a36028a75d6cb7eb36277f3e2b5ab833c96a96
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7979be367d04c904b60d78849c1b751a52cc8caf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="creating-virtual-machine-scale-sets-using-powershell-cmdlets"></a>Creazione di set di scalabilità di macchine virtuali con i cmdlet di PowerShell
-Questo articolo illustra un esempio di come creare un set di scalabilità di macchine virtuali (VMSS). Crea un set di scalabilità di tre nodi, con la rete e la risorsa di archiviazione associate.
+Questo articolo viene illustrato un esempio di come toocreate un scalabilità della macchina virtuale impostare (VMSS). Crea un set di scalabilità di tre nodi, con la rete e la risorsa di archiviazione associate.
 
 ## <a name="first-steps"></a>Primi passaggi
-Assicurarsi di avere installato il modulo Azure PowerShell più recente o di avere i cmdlet di PowerShell necessari per la gestione e la creazione dei set di scalabilità di macchine virtuali.
-Passare agli strumenti della riga di comando [qui](http://aka.ms/webpi-azps) per i moduli Azure più recenti.
+Verificare che si dispone di hello più recente di Azure PowerShell modulo necessari toomaintain toomake di avere i cmdlet di PowerShell hello e creare set di scalabilità.
+Passare a strumenti da riga di comando toohello [qui](http://aka.ms/webpi-azps) per hello moduli di Azure più recenti disponibili.
 
-Per trovare i cmdlet relativi ai set di scalabilità di macchine virtuali, usare la stringa di ricerca \*VMSS\*. Ad esempio _gcm *vmss*_
+toofind VMSS correlati cmdlet, usare la stringa di ricerca hello \*VMSS\*. Ad esempio _gcm *vmss*_
 
 ## <a name="creating-a-vmss"></a>Creazione di un set di scalabilità di macchina virtuale (VMSS)
 #### <a name="create-resource-group"></a>Crea gruppo di risorse
@@ -50,12 +50,12 @@ $subnetName = 'websubnet'
 $vnet = New-AzureRmVirtualNetwork -Force -Name ('vnet' + $rgname) -ResourceGroupName $rgname -Location $loc -AddressPrefix "10.0.0.0/16" -Subnet $subnet;
 $vnet = Get-AzureRmVirtualNetwork -Name ('vnet' + $rgname) -ResourceGroupName $rgname;
 
-# In this case assume the new subnet is the only one
+# In this case assume hello new subnet is hello only one
 $subnetId = $vnet.Subnets[0].Id;
 ```
 
-#### <a name="create-public-ip-resource-to-allow-external-access"></a>Creare la risorsa indirizzo IP pubblico per consentire l'accesso esterno
-Questo verrà associato al bilanciamento del carico.
+#### <a name="create-public-ip-resource-tooallow-external-access"></a>Creare una risorsa IP pubblica tooAllow accesso esterno
+Questo sarà associato toohello bilanciamento del carico.
 
 ```
 $pubip = New-AzureRmPublicIpAddress -Force -Name ('pubip' + $rgname) -ResourceGroupName $rgname -Location $loc -AllocationMethod Dynamic -DomainNameLabel ('pubip' + $rgname);
@@ -71,24 +71,24 @@ $inboundNatPoolName = 'innatpool' + $rgname
 $lbruleName = 'lbrule' + $rgname
 $lbName = 'vmsslb' + $rgname
 
-# Bind Public IP to Load Balancer
+# Bind Public IP tooLoad Balancer
 $frontend = New-AzureRmLoadBalancerFrontendIpConfig -Name $frontendName -PublicIpAddress $pubip
 ```
 
 #### <a name="configure-load-balancer"></a>Configurare il bilanciamento del carico
-Creare la configurazione del pool di indirizzi di back-end che verrà condivisa dalle schede di interfaccia di rete delle VM nel set di scalabilità.
+Creare la configurazione del Pool di indirizzi back-end, questo verrà condiviso da hello schede di rete di macchine virtuali hello in set di scalabilità hello.
 
 ```
 $backendAddressPool = New-AzureRmLoadBalancerBackendAddressPoolConfig -Name $backendAddressPoolName
 ```
 
-Impostare la porta probe con bilanciamento del carico, modificare le impostazioni in base all'applicazione.
+Impostare la porta Probe con bilanciamento di carico, modificare le impostazioni di hello come appropriato per l'applicazione.
 
 ```
 $probe = New-AzureRmLoadBalancerProbeConfig -Name $probeName -RequestPath healthcheck.aspx -Protocol http -Port 80 -IntervalInSeconds 15 -ProbeCount 2
 ```
 
-Creare un pool NAT in ingresso per la connettività diretta indirizzata (non con carico bilanciato) verso le VM del set di scalabilità tramite il bilanciamento del carico. Questo serve a dimostrare l'utilizzo di RDP e potrebbe non essere necessario nell'applicazione.
+Creare un pool NAT in ingresso per la connettività indirizzato diretto (non con carico bilanciato) toohello macchine virtuali nella scala hello impostate tramite hello bilanciamento del carico. Si tratta toodemonstrate tramite RDP e potrebbe non essere necessario nell'applicazione.
 
 ```
 $frontendpoolrangestart = 3360
@@ -98,7 +98,7 @@ $inboundNatPool = New-AzureRmLoadBalancerInboundNatPoolConfig -Name $inboundNatP
 $frontend.Id -Protocol Tcp -FrontendPortRangeStart $frontendpoolrangestart -FrontendPortRangeEnd $frontendpoolrangeend -BackendPort $backendvmport;
 ```
 
-Creare la regola con carico bilanciato. Questo esempio mostra il bilanciamento del carico delle richieste della porta 80 con le impostazioni dei passaggi precedenti.
+Creare hello regola di con bilanciamento del carico, in questo esempio viene illustrato il carico delle 80 richieste porta bilanciamento del carico, utilizzando le impostazioni di hello nei passaggi precedenti.
 
 ```
 $protocol = 'Tcp'
@@ -119,14 +119,14 @@ $actualLb = New-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname -Lo
 -Probe $probe -LoadBalancingRule $lbrule -InboundNatPool $inboundNatPool -Verbose;
 ```
 
-Controllare le impostazioni di bilanciamento del carico e verificare le configurazioni della porta con carico bilanciato. Si noti che non vengono visualizzate le regole NAT in ingresso fino a quando non vengono create le VM del set di scalabilità.
+Controllare le impostazioni di LB, controllare carico bilanciato porta configurazioni, si noti che non si vedranno vengono create le regole NAT in ingresso finché hello macchine virtuali nel set di scalabilità hello.
 
 ```
 $expectedLb = Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname
 ```
 
-##### <a name="configure-and-create-the-scale-set"></a>Configurare e creare il set di scalabilità
-Questo esempio di infrastruttura illustra come configurare, distribuire e scalare il traffico Web nel set di scalabilità, ma nelle immagini di VM specificate di seguito non sono presenti servizi Web installati.
+##### <a name="configure-and-create-hello-scale-set"></a>Configurazione e set di scalabilità di hello crea
+Si noti che questo esempio di infrastruttura viene illustrato come distribuire tooset backup e il traffico web scala tra set di scalabilità hello ma hello immagini di macchine virtuali specificate qui non dispone dei servizi web installati.
 
 ```
 # specify scale set Name
@@ -149,7 +149,7 @@ $exttype = 'BGInfo';
 $extver = '2.1';
 ```
 
-Associare NIC a bilanciamento del carico e subnet
+Associare tooLoad NIC bilanciamento e Subnet
 
 ```
 $ipCfg = New-AzureRmVmssIPConfig -Name 'nic' `
@@ -179,7 +179,7 @@ Definire la configurazione del set di scalabilità
 New-AzureRmVmss -ResourceGroupName $rgname -Name $vmssName -VirtualMachineScaleSet $vmss -Verbose;
 ```
 
-Il set di scalabilità è stato creato. In questo esempio è possibile testare la connessione alla singola macchina virtuale tramite RDP:
+Ora è stato creato il set di scalabilità di hello. È possibile testare la connessione toohello singole macchine Virtuali tramite RDP in questo esempio:
 
 ```
 VM0 : pubipmynewrgwu.westus.cloudapp.azure.com:3360

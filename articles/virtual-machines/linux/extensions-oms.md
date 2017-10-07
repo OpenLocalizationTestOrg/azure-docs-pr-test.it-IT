@@ -1,6 +1,6 @@
 ---
-title: Estensione macchina virtuale di Azure OMS per Linux | Documentazione Microsoft
-description: Distribuire l'agente OMS in una macchina virtuale Linux usando un'estensione macchina virtuale.
+title: estensione di macchina virtuale di Azure per Linux aaaOMS | Documenti Microsoft
+description: Distribuire l'agente OMS hello nella macchina virtuale di Linux mediante un'estensione di macchina virtuale.
 services: virtual-machines-linux
 documentationcenter: 
 author: neilpeterson
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: 138fc8c98ea6f409b28407b20851c96ecc618b09
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0fc8003d1fae6c043eef18ae78d12f9304b70832
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="oms-virtual-machine-extension-for-linux"></a>Estensione macchina virtuale OMS per Linux
 
 ## <a name="overview"></a>Panoramica
 
-In Operations Management Suite (OMS) sono disponibili funzionalità di monitoraggio, avviso e correzione tramite avvisi in risorse cloud e locali. L'estensione macchina virtuale Agente OMS per Linux è pubblicata e supportata da Microsoft. L'estensione installa l'agente OMS in macchine virtuali di Azure e registra le macchine virtuali in un'area di lavoro OMS esistente. Questo documento descrive in dettaglio le piattaforme, le configurazioni e le opzioni di distribuzione supportate per l'estensione macchina virtuale OMS per Linux.
+In Operations Management Suite (OMS) sono disponibili funzionalità di monitoraggio, avviso e correzione tramite avvisi in risorse cloud e locali. Hello estensione della macchina virtuale agente OMS per Linux è pubblicato e supportato da Microsoft. estensione Hello installa l'agente OMS hello in macchine virtuali di Azure e registra le macchine virtuali in un'area di lavoro OMS. Opzioni di distribuzione, le configurazioni e piattaforme hello di dettagli in questo documento supportato per hello estensione della macchina virtuale OMS per Linux.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 ### <a name="operating-system"></a>Sistema operativo
 
-L'estensione agente OMS può essere eseguita in queste distribuzioni di Linux.
+Hello estensione OMS Agent possa essere eseguita su queste distribuzioni di Linux.
 
 | Distribuzione | Versione |
 |---|---|
@@ -44,11 +44,11 @@ L'estensione agente OMS può essere eseguita in queste distribuzioni di Linux.
 
 ### <a name="internet-connectivity"></a>Connettività Internet
 
-Per distribuire l'estensione agente OMS per Linux, è necessario che la macchina virtuale di destinazione sia connessa a Internet. 
+Hello estensione agente OMS per Linux richiede tale macchina virtuale di destinazione hello è connesso toohello internet. 
 
 ## <a name="extension-schema"></a>Schema dell'estensione
 
-Il codice JSON riportato di seguito mostra lo schema dell'estensione OMS Agent. L'estensione richiede che siano indicati l'ID e la chiave dell'area di lavoro presenti nell'area di lavoro OMS di destinazione. Questi valori sono disponibili nel portale OMS. Poiché la chiave dell'area di lavoro deve essere tratta come i dati sensibili, deve essere memorizzata in una configurazione protetta. I dati della configurazione protetta dell'estensione macchina virtuale di Azure vengono crittografati, per essere poi decrittografati solo nella macchina virtuale di destinazione. Tenere presente che **workspaceId** e **workspaceKey** distinguono tra maiuscole e minuscole.
+Hello JSON seguente viene illustrato lo schema di hello per hello estensione OMS Agent. estensione Hello richiede hello dell'area di lavoro area di lavoro e l'ID chiave dall'area di lavoro di hello destinazione OMS; Questi valori sono disponibili nel portale OMS hello. Poiché chiave dell'area di lavoro hello deve essere considerate come dati sensibili, devono essere archiviato in una configurazione di impostazione protetto. Dati impostazione protette dell'estensione di macchina virtuale di Azure sono crittografati e decrittografati solo nella macchina virtuale di destinazione hello. Tenere presente che **workspaceId** e **workspaceKey** distinguono tra maiuscole e minuscole.
 
 ```json
 {
@@ -87,11 +87,11 @@ Il codice JSON riportato di seguito mostra lo schema dell'estensione OMS Agent. 
 
 ## <a name="template-deployment"></a>Distribuzione del modello
 
-Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. I modelli rappresentano la scelta migliore quando si distribuiscono una o più macchine virtuali per cui è necessaria una configurazione post-distribuzione, ad esempio il caricamento in OMS. Un esempio di modello di Resource Manager che include l'estensione macchina virtuale Agente OMS è disponibile nella [raccolta di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm). 
+Le estensioni macchina virtuale di Azure possono essere distribuite con i modelli di Azure Resource Manager. Modelli sono ideali per la distribuzione di uno o più macchine virtuali che richiedono la configurazione di distribuzione post, ad esempio tooOMS onboarding. Un modello di gestione risorse di esempio che include l'estensione della macchina virtuale di agente OMS hello è reperibile in hello [raccolta avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-oms-extension-ubuntu-vm). 
 
-La configurazione JSON per un'estensione macchina virtuale può essere annidata nella risorsa della macchina virtuale o posizionata nel livello radice o nel livello superiore di un modello JSON di Gestione risorse. Il posizionamento della configurazione JSON influisce sul valore del nome e del tipo di risorsa. Per altre informazioni, vedere [Set name and type for child resources](../../azure-resource-manager/resource-manager-template-child-resource.md) (Impostare il nome e il tipo per le risorse figlio). 
+configurazione JSON Hello per un'estensione della macchina virtuale può essere annidata all'interno di risorsa di macchina virtuale hello o posizionati nella radice di hello o un livello superiore di un modello di gestione risorse di JSON. posizionamento di Hello di configurazione JSON hello influisce sul valore di hello del nome della risorsa hello e tipo. Per altre informazioni, vedere [Set name and type for child resources](../../azure-resource-manager/resource-manager-template-child-resource.md) (Impostare il nome e il tipo per le risorse figlio). 
 
-L'esempio seguente presuppone che l'estensione OMS sia annidata all'interno della risorsa della macchina virtuale. Quando la risorsa di estensione viene nidificata, JSON viene inserito nell'oggetto `"resources": []` della macchina virtuale.
+Hello seguente si presuppone hello OMS estensione annidata all'interno di hello risorsa di macchina virtuale. Quando la nidificazione di risorse di estensione hello, hello JSON viene inserito nel hello `"resources": []` oggetto della macchina virtuale hello.
 
 ```json
 {
@@ -116,7 +116,7 @@ L'esempio seguente presuppone che l'estensione OMS sia annidata all'interno dell
 }
 ```
 
-Quando si posiziona l'estensione JSON nella radice del modello, il nome della risorsa include un riferimento alla macchina virtuale padre e il tipo riflette la configurazione annidata.  
+Quando si inseriscono estensione hello JSON nella radice di hello del modello di hello, il nome di risorsa hello include una macchina virtuale di riferimento toohello padre e il tipo hello riflette configurazione annidati hello.  
 
 ```json
 {
@@ -143,7 +143,7 @@ Quando si posiziona l'estensione JSON nella radice del modello, il nome della ri
 
 ## <a name="azure-cli-deployment"></a>Distribuzione dell'interfaccia della riga di comando di Azure
 
-L'interfaccia della riga di comando di Azure può essere usata per distribuire l'estensione macchina virtuale Agente OMS in una macchina virtuale esistente. Sostituire la chiave OMS e l'ID OMS con i dati presenti nello spazio di lavoro OMS. 
+Hello CLI di Azure può essere utilizzato toodeploy hello OMS agente VM estensione tooan macchina virtuale esistente. Sostituire chiave OMS hello e l'ID di OMS con quelle dell'area di lavoro OMS. 
 
 ```azurecli
 az vm extension set \
@@ -159,13 +159,13 @@ az vm extension set \
 
 ### <a name="troubleshoot"></a>Risoluzione dei problemi
 
-I dati sullo stato delle distribuzioni dell'estensione possono essere recuperati nel portale di Azure e tramite l'interfaccia della riga di comando di Azure. Per visualizzare lo stato di distribuzione delle estensioni per una determinata VM, eseguire il comando seguente nell'interfaccia della riga di comando di Azure.
+Dati sullo stato di hello delle distribuzioni di estensione possono essere recuperati dal portale di Azure hello e, utilizzando hello CLI di Azure. lo stato di distribuzione hello toosee delle estensioni per una macchina virtuale specificata, eseguire hello seguente comando utilizzando hello CLI di Azure.
 
 ```azurecli
 az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 ```
 
-L'output dell'esecuzione dell'estensione viene registrato nel file seguente:
+Esecuzione di estensione di output è connesso toohello seguenti file:
 
 ```
 /opt/microsoft/omsagent/bin/stdout
@@ -175,15 +175,15 @@ L'output dell'esecuzione dell'estensione viene registrato nel file seguente:
 
 | Codice di errore | Significato | Azione possibile |
 | :---: | --- | --- |
-| 10 | La macchina virtuale è già connessa a un'area di lavoro OMS | Per connettere la macchina virtuale all'area di lavoro specificata nello schema dell'estensione, impostare stopOnMultipleConnections su false nelle impostazioni pubbliche o rimuovere questa proprietà. Questa macchina virtuale viene fatturata una volta per ogni area di lavoro a cui è connessa. |
-| 11 | Configurazione non valida generata per l'estensione | Seguire l'esempio precedente per impostare tutti i valori della proprietà necessari alla distribuzione. |
-| 12 | La gestione di pacchetti dpkg è bloccata | Assicurarsi che tutte le operazioni di aggiornamento dpkg sul computer siano state completate e riprovare. |
-| 20 | Chiamata Enable anomala | [Aggiornare l'agente Linux di Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) all'ultima versione disponibile. |
-| 51 | Questa estensione non è supportata sul sistema operativo della macchina virtuale | |
-| 55 | Non è possibile connettersi al servizio Microsoft Operations Management Suite | Verificare che il sistema disponga dell'accesso a Internet o che sia stato fornito un proxy HTTP valido. Verificare anche la correttezza dell'ID dell'area di lavoro. |
+| 10 | Macchina virtuale è già connesso tooan area di lavoro OMS | tooconnect hello VM toohello dell'area di lavoro specificata nello schema di estensione hello, impostare stopOnMultipleConnections toofalse nelle impostazioni pubbliche o rimuovere la proprietà. Questa macchina virtuale viene fatturata una volta per ogni area di lavoro a cui è connessa. |
+| 11 | Configurazione non valido fornito toohello estensione | Seguire hello precedenti esempi tooset tutti i valori delle proprietà necessari per la distribuzione. |
+| 12 | gestione di pacchetti Hello dpkg è bloccato | Assicurarsi che tutte le operazioni di aggiornamento dpkg computer hello è stata completata e riprovare. |
+| 20 | Chiamata Enable anomala | [Hello aggiornamento agente Linux di Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) toohello versione più recente disponibile. |
+| 51 | Questa estensione non è supportata nel sistema operativo della macchina virtuale di hello | |
+| 55 | Non è possibile connettere il servizio di Microsoft Operations Management Suite toohello | Verificare che il sistema hello disponga dell'accesso a Internet o che è stato fornito un proxy HTTP valido. Inoltre, controllare correttezza hello dell'ID dell'area di lavoro di hello. |
 
-Altre informazioni sulla risoluzione dei problemi possono essere consultate nella [Guida alla risoluzione dei problemi per l'agente OMS per Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md#).
+Ulteriori informazioni sulla risoluzione dei problemi possono trovarsi in hello [agente OMS per Linux Troubleshooting Guide](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md#).
 
 ### <a name="support"></a>Supporto
 
-Per ricevere assistenza in relazione a qualsiasi punto di questo articolo, contattare gli esperti di Azure nei [forum MSDN e Stack Overflow relativi ad Azure](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Accedere al [sito del supporto di Azure](https://azure.microsoft.com/en-us/support/options/) e selezionare l'opzione desiderata per ottenere supporto. Per informazioni sull'uso del supporto di Azure, leggere le [Domande frequenti sul supporto di Azure](https://azure.microsoft.com/en-us/support/faq/).
+Se è necessario ulteriore assistenza in qualsiasi punto in questo articolo, è possibile contattare hello Azure esperti hello [forum MSDN di Azure e di Overflow dello Stack](https://azure.microsoft.com/en-us/support/forums/). In alternativa, è possibile archiviare un evento imprevisto di supporto tecnico di Azure. Passare toohello [sito del supporto tecnico di Azure](https://azure.microsoft.com/en-us/support/options/) e scegliere supporto tecnico. Per informazioni sull'utilizzo di supporto di Azure, leggere hello [supporto tecnico di Microsoft Azure domande frequenti su](https://azure.microsoft.com/en-us/support/faq/).

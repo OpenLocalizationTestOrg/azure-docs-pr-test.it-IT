@@ -1,6 +1,6 @@
 ---
-title: Come usare l'archiviazione tabelle da PHP | Microsoft Docs
-description: Informazioni su come usare il Servizio tabelle da PHP per creare ed eliminare una tabella e per inserire, eliminare ed eseguire query su tabelle.
+title: archiviazione tabelle di toouse aaaHow da PHP | Documenti Microsoft
+description: Scopri toouse hello del servizio tabelle da PHP toocreate ed eliminare una tabella e insert, delete e tabella hello di query.
 services: storage
 documentationcenter: php
 author: mmacy
@@ -14,41 +14,41 @@ ms.devlang: php
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 15d3216ef5bb1d7ff312bd886837a3a7b0335afd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1e1036118e208280b4c205da7d7eea61e79359c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-table-storage-from-php"></a>Come usare l'archiviazione tabelle da PHP
+# <a name="how-toouse-table-storage-from-php"></a>Tabella di archiviazione da PHP toouse
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
-## <a name="overview"></a>Overview
-Questa guida illustra come eseguire scenari comuni con il servizio tabelle di Azure. Gli esempi sono scritti in PHP e usano [Azure SDK per PHP][download]. Gli scenari presentati includono **creazione ed eliminazione di una tabella, inserimento ed eliminazione di entità ed esecuzione di query sulle entità in una tabella**. Per altre informazioni sul servizio tabelle di Azure, vedere la sezione [Passaggi successivi](#next-steps) .
+## <a name="overview"></a>Panoramica
+Questa guida viene illustrato come gli scenari comuni di tooperform utilizzando hello del servizio tabelle di Azure. esempi di Hello sono scritti in PHP e utilizzare hello [Azure SDK per PHP][download]. Hello scenari trattati includono **la creazione e l'eliminazione di una tabella e inserendo, eliminando e una query sulle entità in una tabella**. Per ulteriori informazioni su hello del servizio tabelle di Azure, vedere hello [passaggi successivi](#next-steps) sezione.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>Creare un'applicazione PHP
-Per creare un'applicazione PHP che accede al Servizio tabelle di Azure, è sufficiente fare riferimento alle classi in Azure SDK per PHP dall'interno del codice. Per creare l'applicazione, è possibile usare qualsiasi strumento di sviluppo, incluso il Blocco note.
+Hello solo requisito per la creazione di un'applicazione PHP che accede al servizio tabelle di Azure hello è hello che fanno riferimento a delle classi in hello Azure SDK per PHP all'interno del codice. È possibile utilizzare qualsiasi toocreate di strumenti di sviluppo dell'applicazione, inclusi il blocco note.
 
 In questa guida vengono usate le funzionalità del servizio tabelle che possono essere chiamate da un'applicazione PHP in locale o nel codice in esecuzione in un ruolo Web, in un ruolo di lavoro o in un sito Web di Azure.
 
-## <a name="get-the-azure-client-libraries"></a>Acquisire le librerie client di Azure
+## <a name="get-hello-azure-client-libraries"></a>Recuperare le librerie Client di hello Azure
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-access-the-table-service"></a>Configurare l'applicazione per accedere al Servizio tabelle
-Per utilizzare le API del Servizio tabelle di Azure, è necessario:
+## <a name="configure-your-application-tooaccess-hello-table-service"></a>Configurare il servizio di applicazione tooaccess hello tabella
+toouse hello Azure API del servizio tabelle, è necessario:
 
-1. Fare riferimento al file autoloader mediante l'istruzione [require_once][require_once]
+1. File di riferimento autoloader hello utilizzando hello [require_once] [ require_once] istruzione, e
 2. Fare riferimento a tutte le eventuali classi utilizzabili.
 
-Nell'esempio seguente viene indicato come includere il file autoloader e fare riferimento alla classe **ServicesBuilder** .
+Hello esempio seguente viene illustrato come tooinclude hello hello di file e riferimento autoloader **ServicesBuilder** classe.
 
 > [!NOTE]
-> Gli esempi in questo articolo presuppongono che siano state installate le librerie client PHP per Azure tramite Composer. Se le librerie sono state installate manualmente, sarà necessario fare riferimento al file autoloader <code>WindowsAzure.php</code> .
+> esempi di Hello in questo articolo presuppongono installate le librerie Client di PHP per Azure tramite Composer hello. Se le librerie di hello è stato installato manualmente, è necessario tooreference hello <code>WindowsAzure.php</code> autoloader file.
 >
 >
 
@@ -57,10 +57,10 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-Negli esempi seguenti viene mostrata sempre l'istruzione `require_once` , ma si fa riferimento solo alle classi necessarie per l'esecuzione dell'esempio.
+Negli esempi di hello riportato di seguito, hello `require_once` istruzione viene sempre visualizzata, ma solo hello classi necessarie per tooexecute esempio hello viene fatto riferimento.
 
 ## <a name="set-up-an-azure-storage-connection"></a>Configurare una connessione di archiviazione di Azure
-Per creare un'istanza di un client del servizio tabelle di Azure, è necessario avere prima una stringa di connessione valida. Il formato della stringa di connessione del servizio tabelle è:
+tooinstantiate un client del servizio tabelle di Azure, è innanzitutto necessario una stringa di connessione valido. stringa di connessione del servizio tabella hello Hello formato è:
 
 Per accedere a un servizio attivo:
 
@@ -68,20 +68,20 @@ Per accedere a un servizio attivo:
 DefaultEndpointsProtocol=[http|https];AccountName=[yourAccount];AccountKey=[yourKey]
 ```
 
-Per accedere alla memoria dell'emulatore:
+Per l'accesso all'archiviazione di emulatore hello:
 
 ```php
 UseDevelopmentStorage=true
 ```
 
-Per creare un client di servizio di Azure, è necessario usare la classe **ServicesBuilder** . È possibile:
+toocreate qualsiasi client del servizio di Azure, è necessario hello toouse **ServicesBuilder** classe. È possibile:
 
-* passare la stringa di connessione direttamente a essa o
-* utilizzare **CloudConfigurationManager (CCM)** per cercare la stringa di connessione in più origini esterne:
+* Passare la connessione hello stringa direttamente tooit o
+* Hello utilizzare **CloudConfigurationManager (CCM)** toocheck origini dati esterne di più origini per la stringa di connessione hello:
   * per impostazione predefinita, viene fornito con il supporto per un'origine esterna, ovvero le variabili ambientali
-  * è possibile aggiungere nuove origini estendendo la classe **ConnectionStringSource**
+  * è possibile aggiungere nuove origini estendendo hello **ConnectionStringSource** classe
 
-Per gli esempi illustrati in questo articolo, la stringa di connessione verrà passata direttamente.
+Per esempi di hello descritti di seguito, la stringa di connessione hello verrà passata direttamente.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -92,7 +92,7 @@ $tableRestProxy = ServicesBuilder::getInstance()->createTableService($connection
 ```
 
 ## <a name="create-a-table"></a>Creare una tabella
-Un oggetto **TableRestProxy** consente di creare una tabella usando il metodo **createTable**. Durante la creazione di una tabella, è possibile impostare il timeout del servizio tabelle. Per altre informazioni sul timeout del servizio tabelle, vedere [Setting Timeouts for Table Service Operations][table-service-timeouts] (Impostazione di timeout per le operazioni del servizio tabelle).
+Oggetto **TableRestProxy** oggetto consente di creare una tabella con hello **createTable** metodo. Quando si crea una tabella, è possibile impostare timeout del servizio di tabella hello. (Per ulteriori informazioni sui timeout servizio tabella di hello, vedere [impostazione dei timeout per le operazioni del servizio tabelle][table-service-timeouts].)
 
 ```php
 require_once 'vendor\autoload.php';
@@ -116,10 +116,10 @@ catch(ServiceException $e){
 }
 ```
 
-Per informazioni sulle restrizioni ai nomi delle tabelle, vedere [Understanding the Table Service Data Model][table-data-model] (Informazioni sul modello di dati del servizio tabelle).
+Per informazioni sulle restrizioni per i nomi di tabella, vedere [hello comprensione modello di dati del servizio tabelle][table-data-model].
 
-## <a name="add-an-entity-to-a-table"></a>Aggiungere un'entità a una tabella
-Per aggiungere un'entità a una tabella, creare un nuovo oggetto **Entity** e passarlo a **TableRestProxy->insertEntity**. Si noti che durante la creazione di un'entità, è necessario specificare le chiavi `PartitionKey` e `RowKey`. Si tratta di identificatori univoci dell'entità e sono valori che possono essere interrogati molto più velocemente rispetto ad altre proprietà dell'entità. Il sistema usa `PartitionKey` per distribuire automaticamente le entità della tabella su molti nodi di archiviazione. Le entità con lo stesso `PartitionKey` vengono archiviate nello stesso nodo. Operazioni su più entità archiviate nello stesso nodo vengono eseguite più efficacemente che non su entità archiviate in nodi diversi. `RowKey` è l'ID univoco di un'entità all'interno di una partizione.
+## <a name="add-an-entity-tooa-table"></a>Aggiungere una tabella tooa entità
+creare una nuova tabella tooa un'entità, tooadd **entità** e passarlo troppo**TableRestProxy -> insertEntity**. Si noti che durante la creazione di un'entità, è necessario specificare le chiavi `PartitionKey` e `RowKey`. Si tratta hello identificatori univoci per un'entità e sono valori che è possono eseguire una query più velocemente rispetto alle altre proprietà dell'entità. Utilizza sistema Hello `PartitionKey` tooautomatically distribuire entità della tabella hello su molti nodi di archiviazione. Le entità con hello stesso `PartitionKey` vengono archiviati in hello stesso nodo. (Operazioni in più entità archiviata nel hello stesso nodo eseguire migliori rispetto alle entità archiviate in nodi diversi.) Hello `RowKey` hello ID univoco di un'entità all'interno di una partizione.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -135,7 +135,7 @@ $tableRestProxy = ServicesBuilder::getInstance()->createTableService($connection
 $entity = new Entity();
 $entity->setPartitionKey("tasksSeattle");
 $entity->setRowKey("1");
-$entity->addProperty("Description", null, "Take out the trash.");
+$entity->addProperty("Description", null, "Take out hello trash.");
 $entity->addProperty("DueDate",
                         EdmType::DATETIME,
                         new DateTime("2012-11-05T08:15:00-08:00"));
@@ -153,9 +153,9 @@ catch(ServiceException $e){
 }
 ```
 
-Per informazioni sulle proprietà e i tipi di tabelle, vedere [Understanding the Table Service Data Model][table-data-model] (Informazioni sul modello di dati del servizio tabelle).
+Per informazioni sulle proprietà di tabella e tipi, vedere [hello comprensione modello di dati del servizio tabelle][table-data-model].
 
-La classe **TableRestProxy** offre due metodi alternativi per l'inserimento di entità: **insertOrMergeEntity** e **insertOrReplaceEntity**. Per utilizzare questi metodi, creare una nuova **Entity** e passarla come parametro a uno dei due metodi. Ogni metodo inserirà l'entità se non esiste già. Se l'entità esiste già, **insertOrMergeEntity** aggiornerà i valori delle proprietà esistenti e aggiungerà nuove proprietà se non esistono, mentre **insertOrReplaceEntity** sostituirà completamente un'entità esistente. Nell'esempio seguente viene illustrato come utilizzare **insertOrMergeEntity**. Se l'entità con `PartitionKey` "tasksSeattle" e `RowKey` "1" non esiste già, verrà inserita. Se è stata inserita in precedenza (come illustrato nell'esempio precedente), la proprietà `DueDate` verrà aggiornata e verrà aggiunta la proprietà `Status`. Verranno aggiornate anche le proprietà `Description` e `Location`, ma con valori che non apporteranno alcuna modifica. Se queste due ultime proprietà non sono state aggiunte come illustrato nell'esempio, ma erano disponibili nell'entità di destinazione, i loro valori esistenti non subiranno alcuna modifica.
+Hello **TableRestProxy** classe offre due metodi alternativi per l'inserimento di entità: **insertOrMergeEntity** e **insertOrReplaceEntity**. toouse questi metodi, creare un nuovo **entità** e passarlo come un metodo tooeither di parametro. Ogni metodo inserirà entità hello se non esiste. Se l'entità di hello esiste già, **insertOrMergeEntity** Aggiorna i valori delle proprietà, se esiste già una proprietà hello e aggiunge nuove proprietà se non sono presenti, mentre **insertOrReplaceEntity** completamente sostituisce un'entità esistente. Hello seguente esempio viene illustrato come toouse **insertOrMergeEntity**. Se l'entità con hello `PartitionKey` "tasksSeattle" e `RowKey` "1" non esiste già, verrà inserito. Tuttavia, se è stato inserito in precedenza (come illustrato nell'esempio hello precedente), hello `DueDate` proprietà verrà aggiornata e hello `Status` proprietà verrà aggiunta. Hello `Description` e `Location` vengono aggiornate anche le proprietà, ma con i valori che in modo efficace lasciarli invariati. Se queste ultime due proprietà sono stati aggiunti come illustrato nell'esempio hello ma non presenti nell'entità di destinazione hello, i relativi valori esistente resterà invariati.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -177,14 +177,14 @@ $entity->setRowKey("1");
 
 // If entity exists, existing properties are updated with new values and
 // new properties are added. Missing properties are unchanged.
-$entity->addProperty("Description", null, "Take out the trash.");
-$entity->addProperty("DueDate", EdmType::DATETIME, new DateTime()); // Modified the DueDate field.
+$entity->addProperty("Description", null, "Take out hello trash.");
+$entity->addProperty("DueDate", EdmType::DATETIME, new DateTime()); // Modified hello DueDate field.
 $entity->addProperty("Location", EdmType::STRING, "Home");
 $entity->addProperty("Status", EdmType::STRING, "Complete"); // Added Status field.
 
 try    {
     // Calling insertOrReplaceEntity, instead of insertOrMergeEntity as shown,
-    // would simply replace the entity with PartitionKey "tasksSeattle" and RowKey "1".
+    // would simply replace hello entity with PartitionKey "tasksSeattle" and RowKey "1".
     $tableRestProxy->insertOrMergeEntity("mytable", $entity);
 }
 catch(ServiceException $e){
@@ -198,7 +198,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="retrieve-a-single-entity"></a>Recuperare una singola entità
-Il metodo **TableRestProxy->getEntity** consente di recuperare una singola entità eseguendo una query su `PartitionKey` e `RowKey`. Nell'esempio seguente la chiave di partizione `tasksSeattle` e la chiave di riga `1` vengono passate al metodo **getEntity**.
+Hello **TableRestProxy -> getEntity** metodo consente di tooretrieve una singola entità eseguendo una query per il relativo `PartitionKey` e `RowKey`. Nell'esempio hello seguente la chiave di partizione di hello `tasksSeattle` e chiave di riga `1` vengono passati toohello **getEntity** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -227,7 +227,7 @@ echo $entity->getPartitionKey().":".$entity->getRowKey();
 ```
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>Recuperare tutte le entità di una partizione
-Le query di entità vengono create usando i filtri. Per altre informazioni, vedere [Querying Tables and Entities][filters] (Query di tabelle ed entità). Per recuperare tutte le entità in una partizione usare il filtro "PartitionKey eq *partition_name*". Nell'esempio seguente viene illustrato come recuperare tutte le entità nella partizione `tasksSeattle` passando un filtro al metodo **queryEntities** .
+Le query di entità vengono create usando i filtri. Per altre informazioni, vedere [Querying Tables and Entities][filters] (Query di tabelle ed entità). tooretrieve tutte le entità nella partizione, utilizzare il filtro di hello "eq PartitionKey *nome_partizione*". Hello seguente esempio viene illustrato come tooretrieve tutte le entità in hello `tasksSeattle` partizione passando un filtro toohello **queryEntities** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -260,7 +260,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="retrieve-a-subset-of-entities-in-a-partition"></a>Recuperare un subset di entità in una partizione
-Lo stesso modello applicato nell'esempio precedente può essere usato per recuperare un subset di entità in una partizione. Il subset di entità recuperato viene determinato dal filtro usato. Per altre informazioni, vedere [Querying Tables and Entities][filters] (Query di tabelle ed entità). L'esempio seguente illustra come usare un filtro per recuperare tutte le entità con un valore `Location` specifico e un valore `DueDate` precedente a una data specificata.
+Hello stesso modello utilizzato nell'esempio precedente hello può essere utilizzato tooretrieve qualsiasi sottoinsieme di entità in una partizione. subset di Hello di entità è recuperare sono determinati dal filtro hello è utilizzare (per ulteriori informazioni, vedere [query su tabelle ed entità][filters]) .hello seguente esempio viene illustrato come toouse tooretrieve un filtro tutte le entità con uno specifico `Location` e `DueDate` inferiore a una data specificata.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -293,7 +293,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="retrieve-a-subset-of-entity-properties"></a>Recuperare un subset di proprietà di entità
-È possibile recuperare un subset di proprietà di entità eseguendo una query. Questa tecnica, denominata *proiezione*, consente di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. Per specificare la proprietà da recuperare, passare il nome della proprietà al metodo **Query->addSelectField**. Per aggiungere altre proprietà, è possibile chiamare questo metodo più volte. Dopo l'esecuzione di **TableRestProxy->queryEntities**, per le entità restituite saranno presenti solo le proprietà selezionate. Se si desidera restituire un subset di entità di tabella, utilizzare un filtro come illustrato nelle query precedenti.
+È possibile recuperare un subset di proprietà di entità eseguendo una query. Questa tecnica, denominata *proiezione*, consente di ridurre la larghezza di banda e di migliorare le prestazioni della query, in particolare per entità di grandi dimensioni. recuperata una proprietà toobe toospecify, passare il nome di hello di hello proprietà toohello **Query -> addSelectField** metodo. È possibile chiamare questo metodo più volte tooadd più proprietà. Dopo l'esecuzione di **TableRestProxy -> queryEntities**, hello restituite entità disporrà solo proprietà hello selezionato. (Tooreturn un subset di entità della tabella, utilizzare un filtro come illustrato nella query hello precedenti.)
 
 ```php
 require_once 'vendor/autoload.php';
@@ -320,9 +320,9 @@ catch(ServiceException $e){
     echo $code.": ".$error_message."<br />";
 }
 
-// All entities in the table are returned, regardless of whether
-// they have the Description field.
-// To limit the results returned, use a filter.
+// All entities in hello table are returned, regardless of whether
+// they have hello Description field.
+// toolimit hello results returned, use a filter.
 $entities = $result->getEntities();
 
 foreach($entities as $entity){
@@ -332,7 +332,7 @@ foreach($entities as $entity){
 ```
 
 ## <a name="update-an-entity"></a>Aggiornare un'entità
-È possibile aggiornare un'entità esistente usando i metodi **Entity->setProperty** e **Entity->addProperty** sull'entità e quindi chiamando **TableRestProxy->updateEntity**. Nell'esempio seguente viene recuperata un'entità, modificata una proprietà, rimossa un'altra proprietà e aggiunta una nuova proprietà. Si noti che per rimuovere una proprietà, è necessario impostarne il valore su **Null**.
+Un'entità esistente può essere aggiornata tramite hello **entità -> setProperty** e **entità -> addProperty** metodi su entità hello e quindi chiamando **TableRestProxy -> updateEntity **. Hello esempio seguente recupera un'entità, viene modificata una proprietà, rimuove un'altra proprietà e aggiunge una nuova proprietà. Si noti che è possibile rimuovere una proprietà impostando il relativo valore troppo**null**.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -369,7 +369,7 @@ catch(ServiceException $e){
 ```
 
 ## <a name="delete-an-entity"></a>Eliminare un'entità
-Per eliminare un'entità passare il nome della tabella e le chiavi `PartitionKey` e `RowKey` dell'entità al metodo **TableRestProxy->deleteEntity**.
+toodelete un'entità, passare il nome di tabella hello e dell'entità hello `PartitionKey` e `RowKey` toohello **TableRestProxy -> deleteEntity** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -394,10 +394,10 @@ catch(ServiceException $e){
 }
 ```
 
-Si noti che per effettuare controlli di concorrenza è possibile impostare il valore Etag per un'entità da eliminare usando il metodo **DeleteEntityOptions->setEtag** e passando l'oggetto **DeleteEntityOptions** a **deleteEntity** come quarto parametro.
+Si noti che per i controlli di concorrenza, è possibile impostare hello Etag per un toobe entità eliminata tramite hello **DeleteEntityOptions -> setEtag** hello metodo e passando **DeleteEntityOptions** oggetto troppo**deleteEntity** come quarto parametro.
 
 ## <a name="batch-table-operations"></a>Operazioni batch su tabella
-Il metodo **TableRestProxy->batch** consente di eseguire più operazioni in una sola richiesta. In questo caso è necessario aggiungere le operazioni all'oggetto **BatchRequest** e quindi passare l'oggetto **BatchRequest** al metodo **TableRestProxy->batch**. Per aggiungere un'operazione all'oggetto **BatchRequest** , è possibile chiamare più volte uno dei metodi seguenti:
+Hello **TableRestProxy -> batch** metodo consente di tooexecute più operazioni in una singola richiesta. Hello analogie prevede l'aggiunta di operazioni troppo**batchrequest seguito** oggetto e quindi passare hello **batchrequest seguito** oggetto toohello **TableRestProxy -> batch** metodo. un'operazione di tooa tooadd **batchrequest seguito** dell'oggetto, è possibile chiamare uno dei seguenti metodi più volte hello:
 
 * **addInsertEntity** (per aggiungere un'operazione insertEntity)
 * **addUpdateEntity** (per aggiungere un'operazione updateEntity)
@@ -406,7 +406,7 @@ Il metodo **TableRestProxy->batch** consente di eseguire più operazioni in una 
 * **addInsertOrMergeEntity** (per aggiungere un'operazione insertOrMergeEntity)
 * **addDeleteEntity** (per aggiungere un'operazione deleteEntity)
 
-L'esempio seguente illustra come eseguire le operazioni **insertEntity** e **deleteEntity** in una sola richiesta:
+Hello seguente esempio viene illustrato come tooexecute **insertEntity** e **deleteEntity** operazioni in una singola richiesta:
 
 ```php
 require_once 'vendor/autoload.php';
@@ -432,10 +432,10 @@ $entity1->addProperty("DueDate",
                         new DateTime("2012-11-05T08:15:00-08:00"));
 $entity1->addProperty("Location", EdmType::STRING, "Home");
 
-// Add operation to list of batch operations.
+// Add operation toolist of batch operations.
 $operations->addInsertEntity("mytable", $entity1);
 
-// Add operation to list of batch operations.
+// Add operation toolist of batch operations.
 $operations->addDeleteEntity("mytable", "tasksSeattle", "1");
 
 try    {
@@ -454,7 +454,7 @@ catch(ServiceException $e){
 Per altre informazioni su operazioni batch su tabelle, vedere [Performing Entity Group Transactions][entity-group-transactions] (Esecuzione di transazioni di gruppi di entità).
 
 ## <a name="delete-a-table"></a>Eliminare una tabella
-Infine, per eliminare una tabella, passare il nome della tabella al metodo **TableRestProxy->deleteTable**.
+Infine, toodelete una tabella, passare hello tabella nome toohello **TableRestProxy -> deleteTable** metodo.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -480,9 +480,9 @@ catch(ServiceException $e){
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, dopo avere appreso le nozioni di base del servizio tabelle di Azure, usare i collegamenti seguenti per altre informazioni su attività di archiviazione più complesse.
+Ora che si è appreso i concetti di base di hello di hello del servizio tabelle di Azure, seguire questi toolearn collegamenti sulle attività di archiviazione più complesse.
 
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma gratuita di Microsoft che consente di rappresentare facilmente dati di Archiviazione di Azure in Windows, macOS e Linux.
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) è un'app autonoma, disponibile da Microsoft che consente di toowork visivamente i dati di archiviazione di Azure in Windows, macOS e Linux.
 
 * [Centro sviluppatori PHP](/develop/php/).
 

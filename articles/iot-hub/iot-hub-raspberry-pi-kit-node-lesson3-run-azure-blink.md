@@ -1,6 +1,6 @@
 ---
-title: 'Connettere Raspberry Pi (Node) ad Azure IoT: lezione 3: Eseguire l''esempio | Documentazione Microsoft'
-description: Distribuire ed eseguire un'applicazione di esempio nel dispositivo Raspberry Pi 3 che invia messaggi all'hub IoT e fa lampeggiare il LED.
+title: 'Connettersi Raspberry Pi (nodo) tooAzure IoT - lezione 3: eseguire l''esempio | Documenti Microsoft'
+description: Distribuire ed eseguire un tooRaspberry di applicazione di esempio 3 Pi che invia l'hub IoT tooyour messaggi e lampeggia hello LED.
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,57 +17,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 1c03283ee276a954f822d6eca5f0a3d5f93ec64b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 991c64e0b1b6f965b029560cdc6403e557841e30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-a-sample-application-to-send-device-to-cloud-messages"></a>Eseguire un'applicazione di esempio per inviare messaggi da dispositivo a cloud
+# <a name="run-a-sample-application-toosend-device-to-cloud-messages"></a>Eseguire un toosend di applicazione di esempio i messaggi da dispositivo a cloud
 ## <a name="what-you-will-do"></a>Contenuto dell'esercitazione
-Questo articolo illustra come distribuire ed eseguire nel dispositivo Raspberry Pi 3 un'applicazione di esempio che invia messaggi all'hub IoT. In caso di problemi, cercare le soluzioni nella pagina sulla [risoluzione dei problemi](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
+In questo articolo verrà illustrato come toodeploy ed eseguire un'applicazione di esempio 3 Pi Raspberry che invia messaggi tooyour IoT hub. Se si verificano problemi, cercare soluzioni in hello [risoluzione dei problemi di pagina](iot-hub-raspberry-pi-kit-node-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenuto dell'esercitazione
-Si apprenderà come usare lo strumento gulp per distribuire ed eseguire l'applicazione Node.js di esempio nel dispositivo Pi.
+Si apprenderà come hello toouse gulp toodeploy strumento e di eseguire un'applicazione hello esempio Node.js in Pi.
 
 ## <a name="what-you-need"></a>Elementi necessari
-* Prima di iniziare questa attività è necessario aver completato [Creare un'app per le funzioni di Azure e un account di archiviazione di Azure per elaborare e archiviare i messaggi dell'hub IoT](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md).
+* Prima di iniziare questa attività, è necessario che sia completata [creare un'app di Azure (funzione) e un hub IoT tooprocess e l'archivio del account di archiviazione messaggi](iot-hub-raspberry-pi-kit-node-lesson3-deploy-resource-manager-template.md).
 
 ## <a name="get-your-iot-hub-and-device-connection-strings"></a>Ottenere le stringhe di connessione dell'hub IoT e del dispositivo
-La stringa di connessione del dispositivo viene usata dal dispositivo Pi per connettersi all'hub IoT. La stringa di connessione dell'hub IoT viene usata per connettersi al registro delle identità nell'hub IoT per gestire i dispositivi che possono connettersi all'hub IoT. 
+stringa di connessione del dispositivo Hello viene utilizzato per l'hub IoT di pi greco tooconnect tooyour. stringa di connessione hub IoT Hello è usato tooconnect toohello identità nel Registro di sistema i dispositivi IoT hub toomanage hello consentiti tooconnect tooyour IoT hub. 
 
-* Elencare tutti gli hub IoT nel gruppo di risorse eseguendo questo comando dell'interfaccia della riga di comando di Azure:
+* Elencare tutti gli hub IoT nel gruppo di risorse eseguendo il comando CLI di Azure seguente hello:
 
 ```bash
 az iot hub list -g iot-sample --query [].name
 ```
 
-Usare `iot-sample` come valore di `{resource group name}` se non si è modificato il valore.
+Utilizzare `iot-sample` come valore hello `{resource group name}` se non si sono modificati valore hello.
 
-* Ottenere la stringa di connessione dell'hub IoT eseguendo il comando seguente dell'interfaccia della riga di comando di Azure:
+* Ottenere una stringa di connessione hub IoT hello eseguendo hello comando CLI di Azure seguente:
 
 ```bash
 az iot hub show-connection-string --name {my hub name} -g iot-sample
 ```
 
-`{my hub name}` è il nome specificato quando è stato creato l'hub IoT ed è stato registrato il dispositivo Pi.
+`{my hub name}`è il nome hello specificato quando si della creazione dell'hub IoT e registrato Pi.
 
-* Ottenere la stringa di connessione del dispositivo usando il comando seguente:
+* Ottenere una stringa di connessione del dispositivo hello eseguendo hello comando seguente:
 
 ```bash
 az iot device show-connection-string --hub-name {my hub name} --device-id myraspberrypi -g iot-sample
 ```
 
-Usare `myraspberrypi` come valore di `{device id}` se non si è modificato il valore.
+Utilizzare `myraspberrypi` come valore hello `{device id}` se non si sono modificati valore hello.
 
-## <a name="configure-the-device-connection"></a>Configurare la connessione del dispositivo
-1. Inizializzare il file di configurazione usando i comandi seguenti:
+## <a name="configure-hello-device-connection"></a>Configurare una connessione al dispositivo hello
+1. Inizializzare i file di configurazione hello eseguendo hello seguenti comandi:
    
    ```bash
    npm install
    gulp init
    ```
-2. Aprire il file di configurazione del dispositivo `config-raspberrypi.json` in Visual Studio Code usando il comando seguente:
+2. File di configurazione dispositivo aprire hello `config-raspberrypi.json` nel codice di Visual Studio eseguendo hello comando seguente:
    
    ```bash
    # For Windows command prompt
@@ -78,28 +78,28 @@ Usare `myraspberrypi` come valore di `{device id}` se non si è modificato il va
    ```
   
    ![config.json](media/iot-hub-raspberry-pi-lessons/lesson3/config.png)
-3. Sostituire i valori seguenti nel file `config-raspberrypi.json`:
+3. Rendere hello seguenti sostituzioni hello `config-raspberrypi.json` file:
    
-   * Sostituire **[device hostname or IP address]** con l'indirizzo IP o il nome host del dispositivo ottenuto da `device-discovery-cli` o con il valore ereditato quando è stato configurato il dispositivo.
-   * Sostituire **[IoT device connection string]** con il valore di `device connection string` ottenuto.
-   * Sostituire **[IoT hub connection string]** con il valore di `iot hub connection string` ottenuto.
+   * Sostituire **[nome host di dispositivo o indirizzo IP]** con hello dispositivo IP indirizzo o il nome host è stato creato da `device-discovery-cli` o con valore hello ereditata durante la configurazione del dispositivo.
+   * Sostituire **[stringa di connessione dispositivo IoT]** con hello `device connection string` ottenute.
+   * Sostituire **[stringa di connessione hub IoT]** con hello `iot hub connection string` ottenute.
 
-Aggiornare il file `config-raspberrypi.json` per poter distribuire l'applicazione di esempio dal computer.
+Hello aggiornamento `config-raspberrypi.json` file in modo che è possibile distribuire l'applicazione di esempio hello dal computer.
 
-## <a name="deploy-and-run-the-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio
-Distribuire ed eseguire l'applicazione di esempio nel dispositivo Pi eseguendo questo comando:
+## <a name="deploy-and-run-hello-sample-application"></a>Distribuire ed eseguire l'applicazione di esempio hello
+Distribuire ed eseguire l'applicazione di esempio hello Pi eseguendo hello comando seguente:
 
 ```bash
 gulp deploy && gulp run
 ```
 
-## <a name="verify-that-the-sample-application-works"></a>Verificare il funzionamento dell'applicazione di esempio
-Il LED connesso al dispositivo Pi dovrebbe lampeggiare ogni due secondi. Ogni volta che il LED lampeggia, l'applicazione di esempio invia un messaggio all'hub IoT e verifica se il messaggio è stato inviato all'hub IoT. Ogni messaggio ricevuto dall'hub IoT viene stampato nella finestra della console. L'applicazione di esempio termina automaticamente dopo l'invio di 20 messaggi.
+## <a name="verify-that-hello-sample-application-works"></a>Verificare il funzionamento dell'applicazione di esempio hello
+Dovrebbe essere hello LED che è connesso tooPi lampeggiante ogni due secondi. Ogni volta che hello LED è lampeggiante, applicazione di esempio hello invia un hub IoT tooyour di messaggio e verifica che il messaggio hello è stato inviato correttamente tooyour IoT hub. Inoltre, ogni messaggio ricevuto dall'hub IoT hello viene stampato nella finestra di console hello. applicazione di esempio Hello termina automaticamente dopo l'invio di 20 messaggi.
 
 ![Applicazione di esempio con messaggi inviati e ricevuti](media/iot-hub-raspberry-pi-lessons/lesson3/gulp_run.png)
 
 ## <a name="summary"></a>Riepilogo
-È stata distribuita ed eseguita la nuova applicazione di esempio per il lampeggiamento nel dispositivo Pi per l'invio di messaggi da dispositivo a cloud all'hub IoT. È ora possibile monitorare i messaggi mentre vengono scritti nell'account di archiviazione.
+È stato distribuito ed eseguito nuova applicazione di esempio blink hello in hub IoT tooyour di pi greco toosend messaggi da dispositivo a cloud. È ora possibile monitorare i messaggi quando vengono scritti toohello account di archiviazione.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Leggere i messaggi con salvataggio permanente in Archiviazione di Azure](iot-hub-raspberry-pi-kit-node-lesson3-read-table-storage.md)

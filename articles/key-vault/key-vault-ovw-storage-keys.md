@@ -1,7 +1,7 @@
 ---
 ms.assetid: 
-title: Chiavi dell'account di archiviazione Key Vault
-description: Le chiavi dell'account di archiviazione forniscono un'integrazione diretta tra Azure Key Vault e l'accesso basato sulla chiave dell'account di Archiviazione di Azure.
+title: aaaAzure chiave insieme di credenziali delle chiavi dell'Account di archiviazione
+description: Chiavi dell'account di archiviazione forniscono un'integrazione diretto tra l'insieme di credenziali chiave di Azure e tooAzure chiave di accesso basato su Account di archiviazione.
 ms.topic: article
 services: key-vault
 ms.service: key-vault
@@ -9,23 +9,23 @@ author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 07/25/2017
-ms.openlocfilehash: 3148088c88236c64e089fd25c98eb8ac7cdcbfea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: becdf97798a08164c48d3a7a14aea6ca54085c9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-storage-account-keys"></a>Chiavi dell'account di archiviazione Key Vault
 
-Prima delle chiavi dell'account di archiviazione Key Vault gli sviluppatori dovevano gestire le proprie chiavi dell'account di archiviazione di Azure (ASA) e ruotarle manualmente o mediante automazione esterna. Al momento, le chiavi dell'account di archiviazione di Key Vault sono implementate come [segreti di Key Vault](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates#BKMK_WorkingWithSecrets) per l'autenticazione con un account di archiviazione di Azure. 
+Prima delle chiavi di Account di archiviazione insieme di credenziali chiave di Azure, gli sviluppatori ha toomanage le rispettive chiavi di Account di archiviazione di Azure (ASA) e ruotando manualmente o mediante un'automazione esterna. Al momento, le chiavi dell'account di archiviazione di Key Vault sono implementate come [segreti di Key Vault](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates#BKMK_WorkingWithSecrets) per l'autenticazione con un account di archiviazione di Azure. 
 
-La funzionalità di chiave ASA gestisce la rotazione segreta per conto dell'utente e rimuove la necessità di un contatto diretto con una chiave SA, offrendo le firme di accesso condiviso (SAS) come metodo. 
+funzionalità chiave di Hello ASA gestisce rotazione segreta per l'utente e rimuove hello necessario per il contatto diretto con una chiave ASA offrendo accesso firme (condiviso) come metodo. 
 
 Per informazioni più generali sugli account di archiviazione di Azure, vedere [Informazioni sugli account di archiviazione di Azure](https://docs.microsoft.com/azure/storage/storage-create-storage-account).
 
 ## <a name="supporting-interfaces"></a>Interfacce di supporto
 
-La funzionalità chiavi dell'account di archiviazione di Azure è inizialmente disponibile attraverso le interfacce REST, .NET/C# e PowerShell. Per altre informazioni, vedere [Documentazione sull'insieme di credenziali delle chiavi](https://docs.microsoft.com/azure/key-vault/).
+Hello funzionalità delle chiavi di Account di archiviazione di Azure è inizialmente disponibile tramite hello REST, .NET / c# e PowerShell di interfacce. Per altre informazioni, vedere [Documentazione sull'insieme di credenziali delle chiavi](https://docs.microsoft.com/azure/key-vault/).
 
 
 ## <a name="storage-account-keys-behavior"></a>Ottenere il comportamento delle chiavi dell'account di archiviazione
@@ -36,11 +36,11 @@ Key Vault esegue diverse funzioni di gestione interne per conto dell'utente quan
 
 1. Azure Key Vault gestisce le chiavi di un account di archiviazione di Azure. 
     - Internamente Key Vault consente di elencare (sincronizzazione) le chiavi con un account di archiviazione di Azure.  
-    - Key Vault rigenera (ruota) le chiavi periodicamente. 
-    - I valori di chiave non vengono mai restituiti in risposta al chiamante. 
+    - Rigenera insieme di credenziali chiave di Azure (Ruota) hello chiavi periodicamente. 
+    - I valori di chiave non vengono mai restituiti nella risposta toocaller. 
     - Key Vault gestisce le chiavi sia degli account di archiviazione che degli account di archiviazione classici. 
-2. Key Vault consente al proprietario dell'insieme di credenziali/oggetto di creare definizioni SAS (SAS di account o di servizio). 
-    - Il valore SAS, creato utilizzando la definizione SAS, viene restituito come una chiave privata tramite il percorso dell'URI REST. Per altre informazioni, vedere [Azure Key Vault storage account operations](https://docs.microsoft.com/rest/api/keyvault/storage-account-key-operations) (Operazioni dell'account di archiviazione di Azure Key Vault).
+2. Insieme di credenziali chiave di Azure consente, proprietario dell'insieme di credenziali/oggetto hello, definizioni di toocreate SAS (account o servizio di firma di accesso condiviso). 
+    - Hello valore SAS, creato usando la definizione di firma di accesso condiviso, viene restituito come una chiave privata tramite percorso URI REST hello. Per altre informazioni, vedere [Azure Key Vault storage account operations](https://docs.microsoft.com/rest/api/keyvault/storage-account-key-operations) (Operazioni dell'account di archiviazione di Azure Key Vault).
 
 ### <a name="naming-guidance"></a>Linee guida sulla denominazione
 
@@ -52,11 +52,11 @@ Un nome di una definizione SAS deve avere da 1 a 102 caratteri e contenere solo 
 
 ### <a name="before-azure-key-vault-storage-keys"></a>Prima delle chiavi di archiviazione Key Vault 
 
-Gli sviluppatori in precedenza dovevano eseguire le seguenti procedure con una chiave di account di archiviazione per ottenere l'accesso all'archiviazione di Azure. 
+Gli sviluppatori utilizzavano tooneed toodo hello ottimali con un archivio account tooget chiave accesso tooAzure di archiviazione. 
  
  ```
 //create storage account using connection string containing account name 
-// and the storage key 
+// and hello storage key 
 
 var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
 var blobClient = storageAccount.CreateCloudBlobClient();
@@ -65,10 +65,10 @@ var blobClient = storageAccount.CreateCloudBlobClient();
 ### <a name="after-azure-key-vault-storage-keys"></a>Dopo le chiavi di archiviazione Key Vault 
 
 ```
-//Please make sure to set storage permissions appropriately on your key vault
+//Please make sure tooset storage permissions appropriately on your key vault
 Set-AzureRmKeyVaultAccessPolicy -VaultName 'yourVault' -ObjectId yourObjectId -PermissionsToStorage all
 
-//Use PowerShell command to get Secret URI 
+//Use PowerShell command tooget Secret URI 
 
 Set-AzureKeyVaultManagedStorageSasDefinition -Service Blob -ResourceType Container,Service -VaultName yourKV  
 -AccountName msak01 -Name blobsas1 -Protocol HttpsOnly -ValidityPeriod ([System.Timespan]::FromDays(1)) -Permission Read,List
@@ -77,17 +77,17 @@ Set-AzureKeyVaultManagedStorageSasDefinition -Service Blob -ResourceType Contain
 
 var secret = await kv.GetSecretAsync("SecretUri");
 
-// Create new storage credentials using the SAS token. 
+// Create new storage credentials using hello SAS token. 
 
 var accountSasCredential = new StorageCredentials(secret.Value); 
 
-// Use credentials and the Blob storage endpoint to create a new Blob service client. 
+// Use credentials and hello Blob storage endpoint toocreate a new Blob service client. 
 
 var accountWithSas = new CloudStorageAccount(accountSasCredential, new Uri ("https://myaccount.blob.core.windows.net/"), null, null, null); 
 
 var blobClientWithSas = accountWithSas.CreateCloudBlobClient(); 
  
-// If SAS token is about to expire then Get sasToken again from Key Vault and update it.
+// If SAS token is about tooexpire then Get sasToken again from Key Vault and update it.
 
 accountSasCredential.UpdateSASToken(sasToken);
 
@@ -95,47 +95,47 @@ accountSasCredential.UpdateSASToken(sasToken);
  
  ### <a name="developer-best-practices"></a>Procedure consigliate per lo sviluppatore 
 
-- Consentire solo a Key Vault di gestire le chiavi ASA. Non tentare di gestirle manualmente onde evitare di interferire con i processi di Key Vault. 
-- Non consentire alle chiavi ASA di essere gestite da più di un oggetto di Key Vault. 
-- Se è necessario rigenerare manualmente le chiavi ASA, è consigliabile rigenerarle tramite Key Vault. 
+- Consentire solo toomanage chiave dell'insieme di credenziali delle chiavi ASA. Non tentare toomanage li manualmente, interferisce con i processi dell'insieme di credenziali di chiave. 
+- Non consentire ASA chiavi toobe gestito da più di un oggetto insieme di credenziali chiave. 
+- Se è necessario toomanually rigenerare le chiavi ASA, è consigliabile rigenerarli tramite l'insieme di credenziali chiave. 
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 
 ### <a name="setup-for-role-based-access-control-rbac-permissions"></a>Configurazione per le autorizzazioni di controllo degli accessi in base al ruolo (RBAC)
 
-Key Vault necessita di autorizzazioni per *elencare* e *rigenerare* le chiavi per un account di archiviazione. Impostare queste autorizzazioni usando la procedura seguente:
+Insieme di credenziali chiave deve disporre delle autorizzazioni troppo*elenco* e *rigenerare* chiavi per un account di archiviazione. Impostare queste autorizzazioni usando hello alla procedura seguente:
 
 - Ottenere ObjectId di Key Vault: 
 
     `Get-AzureRmADServicePrincipal -SearchString "AzureKeyVault"`
 
-- Assegnare il ruolo "Operatore chiave di archiviazione" all'identità di Azure Key Vault: 
+- Assegnare tooAzure ruolo operatore Key archiviazione chiave insieme di credenziali delle identità: 
 
     `New-AzureRmRoleAssignment -ObjectId <objectId of AzureKeyVault from previous command> -RoleDefinitionName 'Storage Account Key Operator Service Role' -Scope '<azure resource id of storage account>'`
 
     >[!NOTE]
-    > Per un tipo di account classico, impostare il parametro del ruolo su *"Ruolo del servizio dell'operatore della chiave dell'account di archiviazione classico"*.
+    > Per un tipo di account classico, impostare il parametro role hello troppo*"Classico archiviazione chiave operatore servizio ruolo di Account"*.
 
 ### <a name="storage-account-onboarding"></a>Onboarding dell'account di archiviazione 
 
-Esempio: il proprietario di un oggetto Key Vault aggiunge un oggetto account di archiviazione in Azure Key Vault per eseguire l'onboarding di un account di archiviazione.
+Esempio: Come si aggiunge una risorsa di archiviazione un proprietario dell'oggetto insieme di credenziali chiave account oggetto tooyour insieme credenziali chiavi Azure tooonboard un account di archiviazione.
 
-Durante il caricamento, Key Vault deve verificare che l'identità dell'account onboarding abbia le autorizzazioni per accedere agli *elenchi* e *rigenerare* le chiavi di archiviazione. Per verificare queste autorizzazioni, Key Vault ottiene un token OBO (per conto di) dal servizio di autenticazione, pubblico impostato su Gestione Risorse di Azure e crea una chiamata chiave dell'*elenco* al servizio di archiviazione di Azure. Se la chiamata di *elenco* ha esito negativo, la creazione dell'oggetto Key Vault ha esito negativo con il codice di stato HTTP *Forbidden*. Le chiavi elencate in questo modo vengono memorizzate nella cache con l'archiviazione di entità key vault. 
+Durante il caricamento, l'insieme di credenziali chiave deve tooverify che hello identità dell'account di onboarding hello dispone delle autorizzazioni troppo*elenco* e troppo*rigenerare* chiavi per l'archiviazione. Ordinare tooverify queste autorizzazioni, insieme di credenziali chiave Ottiene un OBO (On per conto di) token dal servizio di autenticazione hello, impostare tooAzure Gestione risorse di destinatari e lo rende un *elenco* chiave chiamata toohello servizio di archiviazione Azure. Se hello *elenco* chiamata ha esito negativo, la creazione dell'oggetto ha esito negativo con codice di stato HTTP dell'insieme di credenziali chiave di hello *non consentito*. chiavi Hello elencate in questo modo vengono memorizzati nella cache con l'archiviazione di entità dell'insieme di credenziali chiave. 
 
-Key Vault deve verificare che l'identità disponga delle autorizzazioni *rigenera* prima di acquisire la proprietà della rigenerazione delle chiavi. Per verificare che l'identità, tramite il token OBO, nonché l'identità Key Vault propria possieda queste autorizzazioni:
+Insieme di credenziali chiave è necessario verificare che disponga di identità hello *rigenerare* autorizzazioni prima di acquisire la proprietà di rigenerazione delle chiavi. tooverify hello identità, tramite il token OBO, nonché hello prima identità di terze parti insieme di credenziali chiave con queste autorizzazioni:
 
-- Key Vault elenca le autorizzazioni RBAC per la risorsa dell'account di archiviazione.
-- Key Vault convalida la risposta tramite la corrispondenza mediante espressioni regolari di azioni e non-azioni. 
+- Insieme di credenziali chiave vengono elencate le autorizzazioni RBAC nella risorsa di account di archiviazione hello.
+- Insieme di credenziali chiave di convalida risposta hello tramite espressioni regolari di ricerca di azioni e non quelle. 
 
 Trovare alcuni esempi di supporto in [Key Vault - Managed Storage Account Keys Samples](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/KeyVault/dataPlane/Microsoft.Azure.KeyVault.Samples/samples/HelloKeyVault/Program.cs#L167) (Key Vault - Esempi di chiavi dell'account di archiviazione gestito).
 
-Se l'identità non dispone dell'autorizzazione *rigenera* o l'identità Key Vault propria non dispone dell'autorizzazione *elenca* o *rigenera*, la richiesta di onboarding ha esito negativo restituendo un messaggio e codice di errore appropriati. 
+Se non dispone di identità hello *rigenerare* autorizzazioni o se non dispone di identità di terze parti prima dell'insieme di credenziali di chiave *elenco* o *rigenerare* autorizzazioni, quindi hello onboarding richiesta ha esito negativo restituendo un messaggio e il codice di errore appropriato. 
 
-Il token OBO funziona solo quando si usano applicazioni client native e proprie di PowerShell o dell'interfaccia della riga di comando.
+token OBO Hello funziona solo quando si utilizza cookie, alle applicazioni client native di PowerShell o CLI.
 
 ## <a name="other-applications"></a>Altre applicazioni
 
-- I token SAS, costruiti usando le chiavi dell'account di archiviazione Key Vault, forniscono un accesso ancora più controllato a un account di archiviazione di Azure. Per altre informazioni, vedere [Uso delle firme di accesso condiviso](https://docs.microsoft.com/azure/storage/storage-dotnet-shared-access-signature-part-1).
+- Token di firma di accesso condiviso, costruito utilizzando chiavi dell'account di archiviazione dell'insieme di credenziali chiave, forniscono tooan accesso controllato anche più account di archiviazione di Azure. Per altre informazioni, vedere [Uso delle firme di accesso condiviso](https://docs.microsoft.com/azure/storage/storage-dotnet-shared-access-signature-part-1).
 
 ## <a name="see-also"></a>Vedere anche
 

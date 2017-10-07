@@ -1,6 +1,6 @@
 ---
-title: Esplorare i dati in una macchina virtuale di SQL Server in Azure| Microsoft Docs
-description: Come esplorare i dati archiviati in una macchina virtuale SQL Server in Azure.
+title: dati aaaExplore nella macchina virtuale SQL Server in Azure | Documenti Microsoft
+description: Come tooexplore i dati archiviati in una macchina virtuale di SQL Server in Azure.
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: a2be21ef15b9209db1e97150e0297558fa69a7be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fcc449fc0d0e49be9b673cfb2de347cf44804017
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-sql-server-virtual-machine-on-azure"></a>Esplorazione dei dati nella macchina virtuale di SQL Server in Azure
-In questo documento viene illustrato come esplorare i dati archiviati in una macchina virtuale SQL Server in Azure. Questa operazione può essere eseguita gestendo i dati tramite SQL o utilizzando un linguaggio di programmazione come Python.
+Questo documento descrive come tooexplore i dati archiviati in una macchina virtuale di SQL Server in Azure. Questa operazione può essere eseguita gestendo i dati tramite SQL o utilizzando un linguaggio di programmazione come Python.
 
-Il **menu** seguente collega ad argomenti che descrivono come usare gli strumenti per esplorare i dati da vari ambienti di archiviazione. Questa attività è un passaggio nel Cortana Analytics Process (CAP).
+esempio Hello **menu** collegamenti tootopics che descrivono come toouse strumenti tooexplore dati da diversi ambienti di archiviazione. Questa attività è un passaggio di hello Cortana Analitica processo (CAP).
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 > [!NOTE]
-> Le istruzioni SQL di esempio fornite nel documento presuppongono che i dati si trovino in SQL Server. In caso contrario, fare riferimento al processo di analisi scientifica dei dati cloud per visualizzare informazioni su come spostare i dati in SQL Server.
+> le istruzioni SQL Hello in questo documento si presuppongono che i dati siano in SQL Server. In caso contrario, fare riferimento toohello cloud data science processo mappa toolearn come toomove il tooSQL dati Server.
 > 
 > 
 
 ## <a name="sql-dataexploration"></a>Esplorare i dati SQL mediante gli script SQL
-Di seguito, sono riportati alcuni script SQL di esempio da utilizzare per esplorare gli archivi dati in SQL Server.
+Ecco alcuni script SQL di esempio che possono essere utilizzati tooexplore archivi di dati in SQL Server.
 
-1. Visualizzare il numero di osservazioni per giorno
+1. Ottenere il conteggio di hello di osservazioni al giorno
    
     `SELECT CONVERT(date, <date_columnname>) as date, count(*) as c from <tablename> group by CONVERT(date, <date_columnname>)` 
-2. Visualizzare i livelli in una colonna di categoria
+2. Ottenere livelli hello in una colonna categorica
    
     `select  distinct <column_name> from <databasename>`
-3. Visualizzare il numero di livelli in una combinazione di due colonne di categoria 
+3. Ottenere il numero di hello dei livelli nella combinazione di due colonne categoriche 
    
     `select <column_a>, <column_b>,count(*) from <tablename> group by <column_a>, <column_b>`
-4. Visualizzare la distribuzione per colonne numeriche 
+4. Ottenere la distribuzione hello per le colonne numeriche
    
     `select <column_name>, count(*) from <tablename> group by <column_name>`
 
 > [!NOTE]
-> Per un esempio pratico, è possibile usare il [set di dati dei taxi di NYC](http://www.andresmh.com/nyctaxitrips/) e vedere l'IPNB intitolato [NYC Data wrangling using IPython Notebook and SQL Server](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb) (Gestione dei dati di NYC tramite IPython Notebook e SQL Server) per una procedura dettagliata end-to-end.
+> Per un esempio pratico, è possibile utilizzare hello [NYC Taxi dataset](http://www.andresmh.com/nyctaxitrips/) e fare riferimento toohello IPNB intitolato [dati NYC wrangling utilizzando SQL Server e IPython Notebook](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb) per una procedura dettagliata end-to-end.
 > 
 > 
 
 ## <a name="python"></a>Esplorare i dati SQL mediante Python
-L'uso di Python per esplorare i dati e creare funzionalità, se i dati si trovano in SQL Server, funziona in modo analogo all'elaborazione dei dati BLOB di Azure tramite Python, come illustrato in [Process Azure Blob data in your data science environment](machine-learning-data-science-process-data-blob.md) (Elaborare i dati BLOB di Azure in un ambiente di analisi scientifica dei dati). I dati devono essere caricati dal database nei frame di dati Panda. A questo punto, è possibile elaborarli ulteriormente. In questa sezione, è stato descritto il processo di connessione al database per caricare dati all'interno di un frame di dati.
+Utilizzando i dati di tooexplore Python e generare funzionalità quando hello dati sono disponibile in SQL Server simile tooprocessing dati in blob di Azure usando Python, come documentato [dati Blob di Azure processo nell'ambiente di analisi scientifica dei dati](machine-learning-data-science-process-data-blob.md). dati Hello deve toobe caricati dal database hello un pandas frame di dati e quindi possono essere elaborati ulteriormente. Abbiamo documento processo hello di connessione database toohello e caricarvi i dati di hello hello frame di dati in questa sezione.
 
-Il seguente formato della stringa di connessione può essere usato per connettersi a un database di SQL Server da Pyhton usando pyodbc (sostituire il nome del server, quello del database, il nome utente e la password con i valori personalizzati):
+Hello seguente formato di stringa di connessione può essere utilizzato tooconnect tooa database di SQL Server da Python mediante pyodbc (sostituire servername, dbname, username e password con i valori specifici):
 
-    #Set up the SQL Azure connection
+    #Set up hello SQL Azure connection
     import pyodbc    
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
 
-La [libreria Pandas](http://pandas.pydata.org/) in Python fornisce una vasta gamma di strutture di dati e strumenti di analisi dei dati per la manipolazione dei dati nella programmazione in Python. Il codice seguente consente di leggere i risultati restituiti da un database di SQL Server all'interno di un frame di dati di Pandas:
+Hello [libreria Pandas](http://pandas.pydata.org/) in Python fornisce un ampio set di strutture di dati e gli strumenti di analisi di dati per la manipolazione dei dati per la programmazione Python. Hello codice seguente vengono letti hello restituiti da un database di SQL Server in un frame di dati Pandas:
 
-    # Query database and load the returned results in pandas data frame
+    # Query database and load hello returned results in pandas data frame
     data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
 
-A questo punto, è possibile usare il frame di dati di Pandas, come descritto nell'argomento [Elaborazione dei dati BLOB di Azure nell'ambiente di analisi scientifica dei dati](machine-learning-data-science-process-data-blob.md).
+È ora possibile lavorare con hello Pandas frame di dati come illustrato nell'argomento hello [dati Blob di Azure processo nell'ambiente di analisi scientifica dei dati](machine-learning-data-science-process-data-blob.md).
 
 ## <a name="cortana-analytics-process-in-action-example"></a>Il Cortana Analytics Process nell’esempio di azione
-Per un esempio della procedura dettagliata end-to-end del Cortana Analytics Process tramite un set di dati pubblico, vedere [Processo di analisi scientifica dei dati per i team in azione: uso di SQL Sever](machine-learning-data-science-process-sql-walkthrough.md).
+Per un esempio di questa procedura dettagliata end-to-end di hello Cortana Analitica processo usando un set di dati pubblici, vedere [hello Team processo di analisi scientifica dei dati in azione: utilizzo di SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Creare, avviare o eliminare un gateway applicazione | Documentazione Microsoft
-description: Questa pagina fornisce istruzioni per la creazione, la configurazione, l'avvio e l'eliminazione di un gateway applicazione di Azure
+title: aaaCreate, avviare o eliminare un gateway applicazione | Documenti Microsoft
+description: Questa pagina vengono fornite istruzioni toocreate, configurare, avviare ed eliminare un gateway applicazione Azure
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -15,11 +15,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: gwallace
-ms.openlocfilehash: c4932096229b1941e0966e7f3e97de39c6931392
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3efef5b49880c9efdafad8b88d4bce5b749b82af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-start-or-delete-an-application-gateway-with-powershell"></a>Creare, avviare o eliminare un gateway applicazione con PowerShell 
 
@@ -30,47 +30,47 @@ ms.lasthandoff: 08/03/2017
 > * [Modello di Azure Resource Manager](application-gateway-create-gateway-arm-template.md)
 > * [Interfaccia della riga di comando di Azure](application-gateway-create-gateway-cli.md)
 
-Il gateway applicazione di Azure è un dispositivo di bilanciamento del carico di livello 7. Fornisce richieste HTTP con routing delle prestazioni e failover tra server diversi, sia nel cloud che in locale. Il gateway applicazione offre numerose funzionalità di controller per la distribuzione di applicazioni (ADC, Application Delivery Controller), tra cui bilanciamento del carico HTTP, affinità di sessione basata su cookie, offload SSL (Secure Sockets Layer), probe di integrità personalizzati, supporto per più siti e molte altre. Per un elenco completo delle funzionalità supportate, vedere [Panoramica del gateway applicazione](application-gateway-introduction.md)
+Il gateway applicazione di Azure è un dispositivo di bilanciamento del carico di livello 7. Fornisce il failover, le prestazioni di routing di richieste HTTP tra server diversi, che si trovino in locale o cloud hello. Il gateway applicazione offre numerose funzionalità di controller per la distribuzione di applicazioni (ADC, Application Delivery Controller), tra cui bilanciamento del carico HTTP, affinità di sessione basata su cookie, offload SSL (Secure Sockets Layer), probe di integrità personalizzati, supporto per più siti e molte altre. toofind un elenco completo delle funzionalità supportate, visitare [Panoramica di Gateway applicazione](application-gateway-introduction.md)
 
-Questo articolo illustra in dettaglio i passaggi necessari per creare e configurare, avviare ed eliminare un gateway applicazione.
+Questo articolo vengono illustrati toocreate passaggi hello, configurare, avviare ed eliminare un gateway applicazione.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-1. Installare la versione più recente dei cmdlet di Azure PowerShell usando l'Installazione guidata piattaforma Web. È possibile scaricare e installare la versione più recente dalla sezione **Windows PowerShell** della [pagina Download](https://azure.microsoft.com/downloads/).
-2. Se si ha una rete virtuale esistente, selezionare una subnet vuota esistente oppure creare una nuova subnet nella rete virtuale esclusivamente per l'uso da parte del gateway applicazione. Non è possibile distribuire il gateway applicazione in una rete virtuale diversa da quella delle risorse da distribuire dietro il gateway applicazione a meno che non venga usato il peering reti virtuali. Per altre informazioni, vedere [Peering reti virtuali](../virtual-network/virtual-network-peering-overview.md)
-3. Assicurarsi di avere una rete virtuale funzionante con una subnet valida. Assicurarsi che nessuna macchina virtuale o distribuzione cloud stia usando la subnet. Il gateway applicazione deve essere da solo in una subnet di rete virtuale.
-4. È necessario che i server configurati per l'uso del gateway applicazione esistano oppure che i relativi endpoint siano stati creati nella rete virtuale o con un indirizzo IP/VIP pubblico assegnato.
+1. Installare più recente dei cmdlet di Azure PowerShell hello hello utilizzando hello installazione guidata piattaforma Web. È possibile scaricare e installare la versione più recente di hello da hello **Windows PowerShell** sezione di hello [pagina di download](https://azure.microsoft.com/downloads/).
+2. Se si dispone di una rete virtuale esistente, selezionare una subnet vuota esistente o creare una nuova subnet nella rete virtuale esistente esclusivamente per l'utilizzo dal gateway applicazione hello. Non è possibile distribuire hello applicazione gateway tooa rete virtuale diverso rispetto alle risorse di hello intendi toodeploy dietro gateway applicazione hello a meno che non peering reti virtuali viene utilizzato. visitare più toolearn [Peering reti virtuali](../virtual-network/virtual-network-peering-overview.md)
+3. Assicurarsi di avere una rete virtuale funzionante con una subnet valida. Assicurarsi che nessun macchine virtuali o le distribuzioni di cloud utilizza subnet hello. gateway applicazione Hello deve essere da solo in una subnet di rete virtuale.
+4. deve esistere server Hello configurare gateway di applicazione hello toouse o disporre i relativi endpoint creato nella rete virtuale hello o con un indirizzo IP/VIP pubblico.
 
-## <a name="what-is-required-to-create-an-application-gateway"></a>Elementi necessari per creare un gateway applicazione
+## <a name="what-is-required-toocreate-an-application-gateway"></a>Che cos'è toocreate necessario un gateway applicazione?
 
-Quando si usa il comando `New-AzureApplicationGateway` per creare il gateway applicazione, non è ancora stata impostata alcuna configurazione e la risorsa appena creata viene configurata usando XML o un oggetto di configurazione.
+Quando si utilizza hello `New-AzureApplicationGateway` gateway di applicazione hello toocreate comando, non è impostata una configurazione a questo punto e risorse hello appena creato sono configurati utilizzando XML o un oggetto di configurazione.
 
-I valori possibili sono:
+i valori Hello sono:
 
-* **Pool di server back-end:** elenco di indirizzi IP dei server back-end. Gli indirizzi IP elencati devono appartenere alla subnet della rete virtuale o devono essere indirizzi IP/VIP pubblici.
-* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni come porta, protocollo e affinità basata sui cookie. Queste impostazioni sono associate a un pool e vengono applicate a tutti i server nel pool.
-* **Porta front-end:** porta pubblica aperta sul gateway applicazione. Il traffico raggiunge questa porta e quindi viene reindirizzato a uno dei server back-end.
-* **Listener** : ha una porta front-end, un protocollo (Http o Https, con distinzione tra maiuscole e minuscole) e il nome del certificato SSL (se si configura l'offload SSL).
-* **Regola** : associa il listener e il pool di server back-end e definisce il pool di server back-end a cui deve essere indirizzato il traffico quando raggiunge un listener specifico.
+* **Pool di server back-end:** elenco hello di indirizzi IP dei server back-end hello. gli indirizzi IP Hello elencati devono appartenere toohello subnet della rete virtuale o devono essere un indirizzo IP/VIP pubblico.
+* **Impostazioni del pool di server back-end:** ogni pool ha impostazioni quali porta, protocollo e affinità basata sui cookie. Queste impostazioni sono legato tooa pool e vengono applicati tooall server hello pool.
+* **Porta front-end:** questa porta è una porta pubblica hello aperta sul gateway applicazione hello. Traffico riscontri questa porta, e quindi ottiene reindirizzato tooone dei server back-end hello.
+* **Listener:** listener hello dispone di una porta front-end, un protocollo (Http o Https, questi valori sono distinzione maiuscole/minuscole) e il nome certificato SSL hello (se la configurazione di SSL di offload).
+* **Regola:** regola hello associa listener hello e pool di server back-end hello e definisce il traffico di hello pool di server back-end deve essere diretto toowhen raggiunge un determinato listener.
 
 ## <a name="create-an-application-gateway"></a>Creare un gateway applicazione
 
-Per creare un gateway applicazione:
+toocreate un gateway applicazione:
 
 1. Creare una risorsa del gateway applicazione.
 2. Creare un file XML di configurazione o un oggetto di configurazione.
-3. Eseguire il commit della configurazione nella risorsa del gateway applicazione appena creata.
+3. Eseguire il commit toohello configurazione hello appena creati risorsa per il gateway applicazione.
 
 > [!NOTE]
-> Se è necessario configurare un probe personalizzato per il gateway applicazione, vedere [Creare un probe personalizzato per il gateway applicazione di Azure con PowerShell per Azure Resource Manager](application-gateway-create-probe-classic-ps.md). Per altre informazioni, vedere l'articolo relativo a [probe personalizzati e monitoraggio dell'integrità](application-gateway-probe-overview.md) .
+> Se è necessario tooconfigure un probe personalizzato per il gateway applicazione, vedere [creare un gateway applicazione con probe personalizzati usando PowerShell](application-gateway-create-probe-classic-ps.md). Per altre informazioni, vedere l'articolo relativo a [probe personalizzati e monitoraggio dell'integrità](application-gateway-probe-overview.md) .
 
 ![Esempio dello scenario][scenario]
 
 ### <a name="create-an-application-gateway-resource"></a>Creare una risorsa del gateway applicazione
 
-Per creare il gateway, usare il cmdlet `New-AzureApplicationGateway`, sostituendo i valori esistenti con quelli personalizzati. La fatturazione per il gateway non viene applicata a partire da questo punto. La fatturazione viene applicata a partire da un passaggio successivo, dopo l'avvio corretto del gateway.
+gateway hello toocreate, utilizzare hello `New-AzureApplicationGateway` cmdlet, sostituendo i valori hello con valori personalizzati. La fatturazione per il gateway hello non inizia a questo punto. La fatturazione inizia in un passaggio successivo, quando il gateway hello sia stato avviato correttamente.
 
-L'esempio seguente mostra come creare un gateway applicazione usando una rete virtuale denominata "testvnet1" e una subnet denominata "subnet-1":
+Hello esempio seguente viene creato un gateway applicazione tramite una rete virtuale denominata "testvnet1" e una subnet denominata "subnet-1":
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -78,7 +78,7 @@ New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subn
 
 *Description*, *InstanceCount* e *GatewaySize* sono parametri facoltativi.
 
-Per convalidare la creazione del gateway, è possibile usare il cmdlet `Get-AzureApplicationGateway`.
+toovalidate che hello gateway è stato creato, è possibile usare hello `Get-AzureApplicationGateway` cmdlet.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -97,21 +97,21 @@ DnsName       :
 ```
 
 > [!NOTE]
-> Il valore predefinito per *InstanceCount* è 2, con un valore massimo di 10. Il valore predefinito per *GatewaySize* è Medium. È possibile scegliere tra Small, Medium e Large.
+> il valore predefinito per Hello *InstanceCount* è 2, con un valore massimo di 10. il valore predefinito per Hello *GatewaySize* è Medium. È possibile scegliere tra Small, Medium e Large.
 
-*VirtualIPs* e *DnsName* vengono visualizzati vuoti perché il gateway non è stato ancora avviato. Questi valori vengono creati quando il gateway è in esecuzione.
+*Gli IP virtuali* e *DnsName* vengono visualizzati come vuoto perché non è ancora iniziata gateway hello. Vengono creati una volta hello gateway si trova in stato di esecuzione hello.
 
-## <a name="configure-the-application-gateway"></a>Configurare il gateway applicazione
+## <a name="configure-hello-application-gateway"></a>Configurare gateway applicazione hello
 
-È possibile configurare il gateway applicazione usando XML o un oggetto di configurazione.
+È possibile configurare gateway applicazione hello utilizzando XML o un oggetto di configurazione.
 
-### <a name="configure-the-application-gateway-by-using-xml"></a>Configurare il gateway applicazione usando XML
+### <a name="configure-hello-application-gateway-by-using-xml"></a>Configurazione di gateway applicazione hello tramite XML
 
-Nell'esempio seguente viene usato un file XML per configurare tutte le impostazioni del gateway applicazione ed eseguirne il commit nella risorsa del gateway applicazione.  
+Nell'esempio seguente di hello, un tooconfigure file XML tutte le impostazioni di gateway applicazione e di eseguirne il commit toohello risorsa per il gateway applicazione.  
 
 #### <a name="step-1"></a>Passaggio 1
 
-Copiare il testo seguente in Blocco note.
+Copiare hello tooNotepad testo seguente.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -158,12 +158,12 @@ Copiare il testo seguente in Blocco note.
 </ApplicationGatewayConfiguration>
 ```
 
-Modificare i valori tra parentesi per gli elementi di configurazione. Salvare il file con estensione XML.
+Modificare i valori hello tra parentesi hello hello degli elementi di configurazione. Salvare hello file con estensione XML.
 
 > [!IMPORTANT]
-> L'elemento del protocollo HTTP o HTTPS deve rispettare la distinzione tra maiuscole e minuscole.
+> Hello protocollo Http o Https è tra maiuscole e minuscole.
 
-L'esempio seguente mostra come usare un file di configurazione per configurare il gateway applicazione. L'esempio bilancia il carico del traffico HTTP sulla porta pubblica 80 e invia il traffico di rete alla porta back-end 80 tra i due indirizzi IP.
+Hello di esempio seguente viene illustrato come una configurazione toouse file tooset di gateway applicazione hello. il caricamento di esempio Hello bilancia il traffico HTTP sulla porta pubblica 80 e invia il traffico di rete porta tooback fine 80 tra due indirizzi IP.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -212,24 +212,24 @@ L'esempio seguente mostra come usare un file di configurazione per configurare i
 
 #### <a name="step-2"></a>Passaggio 2
 
-Configurare ora il gateway applicazione. Usare il cmdlet `Set-AzureApplicationGatewayConfig` con un file XML di configurazione.
+Quindi, impostare gateway applicazione hello. Hello utilizzare `Set-AzureApplicationGatewayConfig` cmdlet con un file XML di configurazione.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
-### <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>Configurare il gateway applicazione usando un oggetto di configurazione
+### <a name="configure-hello-application-gateway-by-using-a-configuration-object"></a>Configurazione di gateway applicazione hello utilizzando un oggetto di configurazione
 
-L'esempio seguente mostra come configurare il gateway applicazione usando oggetti di configurazione. Tutti gli elementi di configurazione devono essere configurati singolarmente e quindi aggiunti a un oggetto di configurazione del gateway applicazione. Dopo avere creato l'oggetto di configurazione, usare il comando `Set-AzureApplicationGateway` per eseguire il commit della configurazione nella risorsa per il gateway applicazione creata in precedenza.
+Hello di esempio seguente viene illustrato come tooconfigure hello gateway applicazione tramite gli oggetti di configurazione. Tutti gli elementi di configurazione devono essere configurati singolarmente e quindi aggiunta oggetto di configurazione di gateway applicazione tooan. Dopo aver creato l'oggetto di configurazione di hello, utilizzare hello `Set-AzureApplicationGateway` comando toocommit hello configurazione toohello creato in precedenza di risorsa per il gateway applicazione.
 
 > [!NOTE]
-> Prima di assegnare un valore a ogni oggetto di configurazione, è necessario dichiarare quale tipologia di oggetto verrà usato da PowerShell per l'archiviazione. La prima riga per creare i singoli elementi definisce cosa `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` viene usato.
+> Prima di assegnare un oggetto di configurazione tooeach valore, è necessario toodeclare il tipo di oggetto PowerShell utilizza per l'archiviazione. Hello prima toocreate hello singole voci definisce le azioni `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` vengono utilizzati.
 
 #### <a name="step-1"></a>Passaggio 1
 
 Creare tutti i singoli elementi di configurazione.
 
-Creare l'IP front-end, come illustrato nell'esempio seguente.
+Creare l'indirizzo IP front-end hello come illustrato nell'esempio seguente hello.
 
 ```powershell
 $fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
@@ -238,7 +238,7 @@ $fip.Type = "Private"
 $fip.StaticIPAddress = "10.0.0.5"
 ```
 
-Creare la porta front-end, come illustrato nell'esempio seguente.
+Creare la porta front-end di hello come illustrato nell'esempio seguente hello.
 
 ```powershell
 $fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
@@ -246,9 +246,9 @@ $fep.Name = "fep1"
 $fep.Port = 80
 ```
 
-Creare il pool di server back-end.
+Creare il pool di server back-end hello.
 
-Definire gli indirizzi IP che vengono aggiunti al pool di server back-end, come illustrato nell'esempio seguente.
+Definire gli indirizzi IP hello aggiunti toohello pool di server back-end come mostrato nell'esempio riportato di seguito hello.
 
 ```powershell
 $servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
@@ -256,7 +256,7 @@ $servers.Add("10.0.0.1")
 $servers.Add("10.0.0.2")
 ```
 
-Usare l'oggetto $server per aggiungere i valori all'oggetto pool back-end ($pool).
+Utilizzare hello $server tooadd hello valori toohello pool back-end dell'oggetto ($pool).
 
 ```powershell
 $pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
@@ -264,7 +264,7 @@ $pool.BackendServers = $servers
 $pool.Name = "pool1"
 ```
 
-Creare l'impostazione del pool di server back-end.
+Creare l'impostazione del pool di server back-end hello.
 
 ```powershell
 $setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
@@ -274,7 +274,7 @@ $setting.Port = 80
 $setting.Protocol = "http"
 ```
 
-Creare il listener.
+Creare listener hello.
 
 ```powershell
 $listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
@@ -285,7 +285,7 @@ $listener.Protocol = "http"
 $listener.SslCert = ""
 ```
 
-Creare la regola.
+Creare una regola di hello.
 
 ```powershell
 $rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
@@ -298,9 +298,9 @@ $rule.BackendAddressPool = "pool1"
 
 #### <a name="step-2"></a>Passaggio 2
 
-Assegnare tutti i singoli elementi di configurazione a un oggetto di configurazione del gateway applicazione ($appgwconfig).
+Assegnare tutti i singoli elementi tooan applicazione gateway configurazione oggetto di configurazione ($appgwconfig).
 
-Aggiungere l'IP front-end alla configurazione.
+Aggiungere la configurazione front-end IP toohello hello.
 
 ```powershell
 $appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
@@ -308,34 +308,34 @@ $appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.L
 $appgwconfig.FrontendIPConfigurations.Add($fip)
 ```
 
-Aggiungere la porta front-end alla configurazione.
+Aggiunta una configurazione toohello hello porta front-end.
 
 ```powershell
 $appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
 $appgwconfig.FrontendPorts.Add($fep)
 ```
-Aggiungere il pool di server back-end alla configurazione.
+Aggiungi configurazione toohello del pool di server back-end hello.
 
 ```powershell
 $appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
 $appgwconfig.BackendAddressPools.Add($pool)
 ```
 
-Aggiungere l'impostazione del pool back-end alla configurazione.
+Aggiungere toohello di configurazione di hello pool back-end.
 
 ```powershell
 $appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
 $appgwconfig.BackendHttpSettingsList.Add($setting)
 ```
 
-Aggiungere il listener alla configurazione.
+Aggiungere una configurazione di toohello hello del listener.
 
 ```powershell
 $appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
 $appgwconfig.HttpListeners.Add($listener)
 ```
 
-Aggiungere la regola alla configurazione.
+Aggiungere hello regola toohello configurazione.
 
 ```powershell
 $appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
@@ -343,28 +343,28 @@ $appgwconfig.HttpLoadBalancingRules.Add($rule)
 ```
 
 ### <a name="step-3"></a>Passaggio 3
-Eseguire il commit dell'oggetto di configurazione nella risorsa per il gateway applicazione usando `Set-AzureApplicationGatewayConfig`.
+Eseguire il commit utilizzando risorse di gateway applicazione hello configurazione oggetto toohello `Set-AzureApplicationGatewayConfig`.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 ```
 
-## <a name="start-the-gateway"></a>Avviare il gateway
+## <a name="start-hello-gateway"></a>Avviare il gateway hello
 
-Dopo la configurazione del gateway, usare il cmdlet `Start-AzureApplicationGateway` per avviarlo. La fatturazione per un gateway applicazione verrà applicata a partire dall'avvio corretto del gateway.
+Una volta configurato il gateway di hello, utilizzare hello `Start-AzureApplicationGateway` gateway hello toostart di cmdlet. La fatturazione per un gateway applicazione inizia dopo il gateway hello è stata avviata.
 
 > [!NOTE]
-> Il completamento del cmdlet `Start-AzureApplicationGateway` potrebbe richiedere fino a 15-20 minuti.
+> Hello `Start-AzureApplicationGateway` cmdlet può richiedere toofinish too15-20 minuti.
 
 ```powershell
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-the-gateway-status"></a>Verificare lo stato del gateway
+## <a name="verify-hello-gateway-status"></a>Verificare lo stato del gateway hello
 
-Usare il cmdlet `Get-AzureApplicationGateway` per verificare lo stato del gateway. Se nel passaggio precedente l'operazione `Start-AzureApplicationGateway` è riuscita, assumerà lo *stato* In esecuzione e i valori in *Vip* e *DnsName* saranno validi.
+Hello utilizzare `Get-AzureApplicationGateway` cmdlet toocheck hello stato gateway hello. Se `Start-AzureApplicationGateway` ha avuto esito positivo nel passaggio precedente hello *stato* deve essere in esecuzione, e *Vip* e *DnsName* dovrebbero avere voci valide.
 
-L'esempio seguente illustra un gateway applicazione attivo, in esecuzione e pronto per accettare il traffico destinato a `http://<generated-dns-name>.cloudapp.net`.
+Hello esempio seguente viene illustrato un gateway di applicazione che è in esecuzione e pronto tootake il traffico destinato `http://<generated-dns-name>.cloudapp.net`.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -384,15 +384,15 @@ Vip           : 138.91.170.26
 DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
-## <a name="delete-the-application-gateway"></a>Eliminare il gateway applicazione
+## <a name="delete-hello-application-gateway"></a>Eliminare il gateway applicazione hello
 
-Per eliminare il gateway applicazione:
+gateway applicazione hello di toodelete:
 
-1. Usare il cmdlet `Stop-AzureApplicationGateway` per arrestare il gateway.
-2. Usare il cmdlet `Remove-AzureApplicationGateway` per rimuovere il gateway.
-3. Assicurarsi che il gateway sia stato rimosso usando il cmdlet `Get-AzureApplicationGateway`.
+1. Hello utilizzare `Stop-AzureApplicationGateway` gateway hello toostop di cmdlet.
+2. Hello utilizzare `Remove-AzureApplicationGateway` gateway hello tooremove di cmdlet.
+3. Verificare che gateway hello è stato rimosso utilizzando hello `Get-AzureApplicationGateway` cmdlet.
 
-L'esempio seguente mostra il cmdlet `Stop-AzureApplicationGateway` sulla prima riga seguito dall'output.
+Hello riportato di seguito hello `Stop-AzureApplicationGateway` cmdlet hello della prima riga, seguito dall'output di hello.
 
 ```powershell
 Stop-AzureApplicationGateway AppGwTest
@@ -406,7 +406,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-Quando il gateway applicazione si trova in stato di interruzione, usare il cmdlet `Remove-AzureApplicationGateway` per rimuovere il servizio.
+Una volta gateway applicazione hello in stato di interruzione, utilizzare hello `Remove-AzureApplicationGateway` servizio hello tooremove di cmdlet.
 
 ```powershell
 Remove-AzureApplicationGateway AppGwTest
@@ -420,7 +420,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
-Per verificare che il servizio sia stato rimosso, è possibile usare il cmdlet `Get-AzureApplicationGateway`. Questo passaggio non è obbligatorio.
+tooverify che hello servizio è stato rimosso, è possibile usare hello `Get-AzureApplicationGateway` cmdlet. Questo passaggio non è obbligatorio.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -429,15 +429,15 @@ Get-AzureApplicationGateway AppGwTest
 ```
 VERBOSE: 10:52:46 PM - Begin Operation: Get-AzureApplicationGateway
 
-Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
+Get-AzureApplicationGateway : ResourceNotFound: hello gateway does not exist.
 .....
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per configurare l'offload SSL, vedere [Configurare un gateway applicazione per l'offload SSL](application-gateway-ssl.md).
+Se si desidera tooconfigure offload SSL, vedere [configurare un gateway applicazione per l'offload SSL](application-gateway-ssl.md).
 
-Per configurare un gateway applicazione da usare con un servizio di bilanciamento del carico interno, vedere [Creare un gateway applicazione con un servizio di bilanciamento del carico interno (ILB)](application-gateway-ilb.md).
+Se si desidera tooconfigure un toouse di gateway applicazione con un servizio di bilanciamento del carico interno, vedere [creare un gateway applicazione con un servizio di bilanciamento del carico interno (ILB)](application-gateway-ilb.md).
 
 Per altre informazioni generali sulle opzioni di bilanciamento del carico, vedere:
 

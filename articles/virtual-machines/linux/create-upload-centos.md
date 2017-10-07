@@ -1,6 +1,6 @@
 ---
-title: Creare e caricare un VHD Linux basato su CentOS in Azure
-description: Come creare e caricare un disco rigido virtuale Azure (VHD) che contiene un sistema operativo Linux basato su CentOS.
+title: aaaCreate e caricare un basato su CentOS Linux VHD in Azure
+description: Informazioni su toocreate e caricare un Azure disco rigido virtuale (VHD) che contiene un sistema operativo basato su CentOS Linux.
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 010f4b05b35fa1f31c14f34a5fae9298fcd831e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78f36be1d36e3d44cb836c912d143f2c9a72aab5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="prepare-a-centos-based-virtual-machine-for-azure"></a>Preparare una macchina virtuale basata su CentOS per Azure
 * [Preparare una macchina virtuale CentOS 6.x per Azure](#centos-6x)
@@ -28,34 +28,34 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="prerequisites"></a>Prerequisiti
-In questo articolo si presuppone che l'utente abbia già installato un sistema operativo Linux CentOS (o un sistema derivato simile) in un disco rigido virtuale. Sono disponibili vari strumenti per creare file con estensione vhd, ad esempio una soluzione di virtualizzazione come Hyper-V. Per istruzioni, vedere [Installare il ruolo Hyper-V e configurare una macchina virtuale](http://technet.microsoft.com/library/hh846766.aspx).
+Questo articolo si presuppone di aver già installato un CentOS (o simile derivato) il disco rigido virtuale di Linux del sistema operativo tooa. Più strumenti esistono toocreate file con estensione vhd, ad esempio una soluzione di virtualizzazione come Hyper-V. Per istruzioni, vedere [hello ruolo Hyper-V di installare e configurare una macchina virtuale](http://technet.microsoft.com/library/hh846766.aspx).
 
 **Note sull'installazione di CentOS**
 
 * Vedere anche [Note generali sull'installazione di Linux](create-upload-generic.md#general-linux-installation-notes) per altri suggerimenti sulla preparazione di Linux per Azure.
-* Il formato VHDX non è supportato in Azure, solo nei **VHD fissi**.  È possibile convertire il disco in formato VHD tramite la console di gestione di Hyper-V o il cmdlet convert-vhd. Se si usa VirtualBox, ciò significa che è stato selezionato **Dimensioni fisse** anziché il valore predefinito allocato in modo dinamico durante la creazione del disco.
-* Durante l'installazione del sistema Linux è *consigliabile* usare partizioni standard anziché LVM, spesso la scelta predefinita per numerose installazioni. In questo modo sarà possibile evitare conflitti di nome LVM con le macchine virtuali clonate, in particolare se fosse necessario collegare un disco del sistema operativo a un'altra macchina virtuale identica per la risoluzione dei problemi. È possibile usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) su dischi di dati.
-* Per l'installazione di file system UDF è necessario il supporto di kernel. Al primo avvio in Azure la configurazione del provisioning viene passata alla macchina virtuale Linux tramite supporti di memorizzazione formattati con UDF, collegati al guest. È necessario che l'agente Linux di Azure possa montare il file system UDF per leggere la relativa configurazione ed eseguire il provisioning della macchina virtuale.
-* Le versioni di kernel Linux inferiori a 2.6.37 non supportano NUMA su Hyper-V con macchine virtuali di dimensioni maggiori. Questo problema incide principalmente sulle distribuzioni precedenti che usavano il kernel upstream Red Hat 2.6.32. Il problema è stato risolto in RHEL 6.6 (kernel-2.6.32-504). I sistemi che eseguono kernel personalizzati con versione precedente alla versione 2.6.37 o kernel basati su RHEL con versione precedente alla versione 2.6.32-504 devono impostare il parametro di avvio `numa=off` nella riga di comando del kernel in rub.conf. Per altre informazioni, vedere l'articolo Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
-* Non configurare una partizione swap nel disco del sistema operativo. L'agente Linux può essere configurato in modo da creare un file swap sul disco temporaneo delle risorse.  Altre informazioni su questo argomento sono disponibili nei passaggi seguenti.
-* Tutti i dischi rigidi virtuali devono avere dimensioni multiple di 1 MB.
+* formato VHDX Hello non è supportato solo in Azure, **disco rigido virtuale fisso**.  È possibile convertire il formato hello disco tooVHD con gestione Hyper-V o hello cmdlet convert-vhd. Se si utilizza VirtualBox ciò significa che la selezione di **dimensioni fisse** come anziché predefinito toohello allocata in modo dinamico durante la creazione del disco hello.
+* Quando si installa il sistema di Linux hello è *consigliato* utilizzare partizioni standard anziché LVM (spesso predefinito hello per numerose installazioni). Questo modo si evita i conflitti di nome LVM con macchine virtuali clonate, in particolare se un disco del sistema operativo necessaria tooanother toobe collegato identici macchina virtuale per la risoluzione dei problemi. È possibile usare [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) o [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) su dischi di dati.
+* Per l'installazione di file system UDF è necessario il supporto di kernel. Al primo avvio del hello Azure configurazione provisioning viene passato toohello VM Linux tramite supporti formattati funzione definita dall'utente che sono collegato toohello guest. l'agente Linux di Azure Hello deve essere in grado di toomount hello UDF file system tooread la configurazione e provisioning hello macchina virtuale.
+* Le versioni di kernel Linux inferiori a 2.6.37 non supportano NUMA su Hyper-V con macchine virtuali di dimensioni maggiori. Questo problema principalmente impatti distribuzioni precedenti utilizzando hello monte kernel Red Hat 2.6.32 ed è stato corretto in RHEL 6.6 (kernel-2.6.32-504). I sistemi che eseguono personalizzato kernel meno recente 2.6.37 o basato su RHEL kernel precedenti rispetto a 2.6.32-504 è necessario impostare il parametro di avvio di hello `numa=off` sul kernel hello in grub.conf della riga di comando. Per altre informazioni, vedere l'articolo Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
+* Non si configura una partizione di scambio su disco del sistema operativo hello. agente Linux di Hello può essere configurato toocreate un file di swapping sul disco di risorse temporaneo hello.  Ulteriori informazioni su questo sono reperibile in passaggi hello riportati di seguito.
+* Tutti i dischi rigidi virtuali hello devono avere dimensioni che sono multipli di 1 MB.
 
 ## <a name="centos-6x"></a>CentOS 6.x
 
-1. Nella console di gestione di Hyper-V selezionare la macchina virtuale.
+1. Nella console di gestione Hyper-V selezionare macchina virtuale hello.
 
-2. Fare clic su **Connetti** per aprire una finestra della console per la macchina virtuale.
+2. Fare clic su **Connetti** tooopen una finestra della console per la macchina virtuale hello.
 
-3. In CentOS 6, NetworkManager può interferire con l'agente Linux di Azure. Disinstallare il pacchetto eseguendo questo comando:
+3. CentOS 6, NetworkManager può interferire con l'agente Linux di Azure hello. Disinstallazione di questo pacchetto eseguendo hello comando seguente:
    
         # sudo rpm -e --nodeps NetworkManager
 
-4. Creare o modificare il file `/etc/sysconfig/network` e aggiungere il testo seguente:
+4. Creare o modificare file hello `/etc/sysconfig/network` e aggiungere hello seguente testo:
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-5. Creare o modificare il file `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere il testo seguente:
+5. Creare o modificare file hello `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere hello seguente testo:
    
         DEVICE=eth0
         ONBOOT=yes
@@ -65,16 +65,16 @@ In questo articolo si presuppone che l'utente abbia già installato un sistema o
         PEERDNS=yes
         IPV6INIT=no
 
-6. Modificare le regole udev per evitare la generazione di regole statiche per l'interfaccia Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
+6. Modificare udev regole tooavoid la generazione di regole statiche per hello interfacce Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-7. Assicurarsi che il servizio di rete venga eseguito all'avvio eseguendo il comando seguente:
+7. Verificare che il servizio di rete hello inizierà in fase di avvio eseguendo hello comando seguente:
    
         # sudo chkconfig network on
 
-8. Se si vogliono usare i mirror OpenLogic ospitati nei data center di Azure, sostituire il file `/etc/yum.repos.d/CentOS-Base.repo` con i repository seguenti.  Verrà così aggiunto anche il repository **[openlogic]** che include pacchetti aggiuntivi come l'agente Linux di Azure:
+8. Se si desidera mirror di OpenLogic hello toouse ospitati all'interno di hello Data Center di Azure, quindi sostituire hello `/etc/yum.repos.d/CentOS-Base.repo` file con hello seguenti repository.  Verrà anche aggiunta hello **[openlogic]** repository che include i pacchetti aggiuntivi, ad esempio l'agente Linux di Azure hello:
 
         [openlogic]
         name=CentOS-$releasever - openlogic packages for $basearch
@@ -124,98 +124,98 @@ In questo articolo si presuppone che l'utente abbia già installato un sistema o
         gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
     >[!Note]
-    La parte restante di questa guida presuppone che l'utente usi almeno il repository `[openlogic]`, con cui verrà installato l'agente Linux di Azure illustrato di seguito.
+    Hello resto di questa Guida verrà si presuppone l'uso almeno hello `[openlogic]` repository, che sarà utilizzato tooinstall agente Linux di Azure di hello indicato di seguito.
 
 
-9. Aggiungere la seguente riga a /etc/yum.conf:
+9. Aggiungere hello too/etc/yum.conf riga seguente:
     
         http_caching=packages
 
-10. Eseguire questo comando per cancellare i metadati yum correnti e aggiornare il sistema con i pacchetti più recenti:
+10. Eseguire hello successivo comando tooclear hello yum metadati e aggiornamento hello sistema corrente con i pacchetti hello più recenti:
     
         # yum clean all
 
-    A meno che non si crei un'immagine per una versione precedente di CentOS, è consigliabile aggiornare tutti i pacchetti all'ultima versione:
+    A meno che non si sta creando un'immagine per una versione precedente di CentOS, è consigliabile tooupdate che tutti hello pacchetti toohello più recente:
 
         # sudo yum -y update
 
     Dopo l'esecuzione di questo comando potrebbe essere necessario un riavvio.
 
-11. (Facoltativo) Installare i driver per Linux Integration Services (LIS).
+11. (Facoltativo) Installare i driver di hello per hello Linux Integration Services (LIS).
    
     >[!IMPORTANT]
-    Questo passaggio è **obbligatorio** per CentOS 6.3 e le versioni precedenti e facoltativo per le versioni successive.
+    passaggio di Hello è **obbligatorio** per CentOS 6.3 e facoltativo per le versioni successive e precedenti.
 
         # sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
         # sudo yum install microsoft-hyper-v
 
-    In alternativa, seguire le istruzioni per l'installazione manuale disponibili nella [pagina di download di LIS](https://go.microsoft.com/fwlink/?linkid=403033) per installare RPM nella VM.
+    In alternativa, è possibile seguire le istruzioni di installazione manuale di hello in hello [pagina di download LIS](https://go.microsoft.com/fwlink/?linkid=403033) tooinstall hello RPM nella macchina virtuale.
  
-12. Installare l'agente Linux di Azure e le dipendenze:
+12. Installare hello agente Linux di Azure e le dipendenze:
     
         # sudo yum install python-pyasn1 WALinuxAgent
     
-    Il pacchetto WALinuxAgent rimuoverà i pacchetti NetworkManager e NetworkManager-gnome, se non sono già stati rimossi come descritto nel passaggio 3.
+    pacchetto WALinuxAgent Hello rimuoverà hello NetworkManager e pacchetti NetworkManager gnome se non sono stati già rimossi come descritto nel passaggio 3.
 
 
-13. Modificare la riga di avvio del kernel nella configurazione GRUB per includere ulteriori parametri del kernel per Azure. A questo scopo, aprire `/boot/grub/menu.lst` in un editor di testo e verificare che il kernel predefinito includa i parametri seguenti:
+13. Modificare i parametri di kernel aggiuntive tooinclude grub hello kernel avvio riga per Azure. toodo, aprire `/boot/grub/menu.lst` in un editor di testo e assicurarsi che kernel predefinito hello includa hello seguenti parametri:
     
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
     
-    In questo modo si garantisce inoltre che tutti i messaggi della console vengano inviati alla prima porta seriale, agevolando così il supporto di Azure nella risoluzione dei problemi di debug.
+    In questo modo anche tutti i messaggi della console vengono inviati toohello prima porta seriale, che consentono di Azure supporto con il debug dei problemi.
     
-    Inoltre, è consigliabile *rimuovere* i parametri seguenti:
+    Inoltre toohello precedente, è consigliabile troppo*rimuovere* hello seguenti parametri:
     
         rhgb quiet crashkernel=auto
     
-    L'avvio grafico e l'avvio silenzioso non sono utili in un ambiente cloud se tutti i log devono essere inviati alla porta seriale.  L'opzione `crashkernel` può essere configurata, ma si tenga presente che questo parametro ridurrà la quantità di memoria disponibile nella macchina virtuale di almeno 128 MB, il che potrebbe causare problemi con le macchine virtuali di dimensioni inferiori.
+    Avvio con interfaccia grafica e non interattiva non sono utili in un ambiente cloud in cui si desidera tutti toobe di registri hello inviati toohello della porta seriale.  Hello `crashkernel` opzione può essere configurato se si desidera sinistra, ma si noti che questo parametro consente di ridurre hello quantità di memoria disponibile in hello VM da 128 MB o più, che può essere problematico sulle dimensioni delle macchine Virtuali più piccoli hello.
 
     >[!Important]
-    Per CentOS 6.5 e le versioni precedenti deve essere impostato anche il parametro del kernel `numa=off`. Vedere l'articolo [KB 436883](https://access.redhat.com/solutions/436883) di Red Hat.
+    CentOS versione 6.5 e versioni precedenti è necessario impostare anche il parametro kernel hello `numa=off`. Vedere l'articolo [KB 436883](https://access.redhat.com/solutions/436883) di Red Hat.
 
-14. Verificare che il server SSH sia installato e configurato per l'esecuzione all'avvio.  Questo è in genere il valore predefinito.
+14. Verificare che server SSH hello sia installato e configurato toostart in fase di avvio.  Si tratta in genere predefinito hello.
 
-15. Non creare l'area di swap sul disco del sistema operativo.
+15. Non creare lo spazio di swapping sul disco del sistema operativo hello.
     
-    L'agente Linux di Azure può configurare automaticamente l'area di swap utilizzando il disco risorse locale collegato alla VM dopo il provisioning in Azure. Si noti che il disco risorse locale è un disco *temporaneo* e potrebbe essere svuotato in seguito al deprovisioning della macchina virtuale. Dopo aver installato l'agente Linux di Azure come illustrato nel passaggio precedente, modificare i seguenti parametri di `/etc/waagent.conf` in modo appropriato:
+    Hello agente Linux di Azure può configurare automaticamente lo spazio di swapping utilizzando il disco di risorsa locale hello è collegato toohello VM dopo il provisioning in Azure. Si noti il disco di risorsa locale hello è un *temporaneo* del disco e può essere svuotata quando hello VM è deprovisioning. Dopo l'installazione di hello agente Linux di Azure (vedere il passaggio precedente), modificare i seguenti parametri in hello `/etc/waagent.conf` in modo appropriato:
     
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
 
-16. Eseguire i comandi seguenti per effettuare il deprovisioning della macchina virtuale e prepararla per il provisioning in Azure:
+16. Eseguire hello seguente macchina virtuale di comandi toodeprovision hello e prepararlo per il provisioning in Azure:
     
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
 
-17. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il file VHD Linux è ora pronto per il caricamento in Azure.
+17. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il VHD Linux è ora pronto toobe caricato tooAzure.
 
 
 - - -
 ## <a name="centos-70"></a>CentOS 7.0+
 **Modifiche in CentOS 7 (e sistemi derivati simili)**
 
-La preparazione di una macchina virtuale CentOS 7 per Azure è molto simile a CentOS 6, tuttavia vi sono alcune importanti differenze da notare:
+Preparazione di una macchina virtuale CentOS 7 per Azure è molto simile tooCentOS 6, esistono tuttavia alcune differenze importanti non degni di nota:
 
-* Il pacchetto NetworkManager e l'agente Linux di Azure non sono più in conflitto. Questo pacchetto viene installato per impostazione predefinita ed è consigliabile non rimuoverlo.
-* GRUB2 viene ora usato come bootloader predefinito, quindi la procedura per la modifica dei parametri kernel è cambiata (vedere di seguito).
-* XFS è ora il file system predefinito. Se si vuole, è ancora possibile usare il file system ext4.
+* Hello NetworkManager del pacchetto non è in conflitto con l'agente Linux di Azure hello. Questo pacchetto viene installato per impostazione predefinita ed è consigliabile non rimuoverlo.
+* GRUB2 viene utilizzato come hello del caricatore di avvio predefinito, in modo procedure hello per la modifica di parametri del kernel è stato modificato (vedere sotto).
+* XFS è file system predefinito hello. Hello ext4 file sistema può comunque essere utilizzato se lo si desidera.
 
 **Procedura di configurazione**
 
-1. Nella console di gestione di Hyper-V selezionare la macchina virtuale.
+1. Nella console di gestione Hyper-V selezionare macchina virtuale hello.
 
-2. Fare clic su **Connetti** per aprire una finestra della console per la macchina virtuale.
+2. Fare clic su **Connetti** tooopen una finestra della console per la macchina virtuale hello.
 
-3. Creare o modificare il file `/etc/sysconfig/network` e aggiungere il testo seguente:
+3. Creare o modificare file hello `/etc/sysconfig/network` e aggiungere hello seguente testo:
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-4. Creare o modificare il file `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere il testo seguente:
+4. Creare o modificare file hello `/etc/sysconfig/network-scripts/ifcfg-eth0` e aggiungere hello seguente testo:
    
         DEVICE=eth0
         ONBOOT=yes
@@ -226,11 +226,11 @@ La preparazione di una macchina virtuale CentOS 7 per Azure è molto simile a Ce
         IPV6INIT=no
         NM_CONTROLLED=no
 
-5. Modificare le regole udev per evitare la generazione di regole statiche per l'interfaccia Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
+5. Modificare udev regole tooavoid la generazione di regole statiche per hello interfacce Ethernet. Le regole seguenti possono provocare problemi quando si clona una macchina virtuale in Microsoft Azure o Hyper-V:
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
 
-6. Se si vogliono usare i mirror OpenLogic ospitati nei data center di Azure, sostituire il file `/etc/yum.repos.d/CentOS-Base.repo` con i repository seguenti.  Verrà aggiunto anche il repository **[openlogic]** che include i pacchetti per l'agente Linux di Azure:
+6. Se si desidera mirror di OpenLogic hello toouse ospitati all'interno di hello Data Center di Azure, quindi sostituire hello `/etc/yum.repos.d/CentOS-Base.repo` file con hello seguenti repository.  Verrà anche aggiunta hello **[openlogic]** repository che include i pacchetti per l'agente Linux di Azure hello:
    
         [openlogic]
         name=CentOS-$releasever - openlogic packages for $basearch
@@ -271,65 +271,65 @@ La preparazione di una macchina virtuale CentOS 7 per Azure è molto simile a Ce
         gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 
     >[!Note]
-    La parte restante di questa guida presuppone che l'utente usi almeno il repository `[openlogic]`, con cui verrà installato l'agente Linux di Azure illustrato di seguito.
+    Hello resto di questa Guida verrà si presuppone l'uso almeno hello `[openlogic]` repository, che sarà utilizzato tooinstall agente Linux di Azure di hello indicato di seguito.
 
-7. Eseguire il comando seguente per cancellare i metadati yum correnti e installare eventuali aggiornamenti:
+7. Eseguire hello successivo comando tooclear hello corrente yum metadati e installare eventuali aggiornamenti:
    
         # sudo yum clean all
 
-    A meno che non si crei un'immagine per una versione precedente di CentOS, è consigliabile aggiornare tutti i pacchetti all'ultima versione:
+    A meno che non si sta creando un'immagine per una versione precedente di CentOS, è consigliabile tooupdate che tutti hello pacchetti toohello più recente:
 
         # sudo yum -y update
 
     Dopo l'esecuzione di questo comando potrebbe essere necessario un riavvio.
 
-8. Modificare la riga di avvio del kernel nella configurazione GRUB per includere ulteriori parametri del kernel per Azure. A tale scopo, aprire `/etc/default/grub` in un editor di testo e modificare il parametro `GRUB_CMDLINE_LINUX`, ad esempio:
+8. Modificare i parametri di kernel aggiuntive tooinclude grub hello kernel avvio riga per Azure. toodo, aprire `/etc/default/grub` in hello di editor e modificare un testo `GRUB_CMDLINE_LINUX` parametro, ad esempio:
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   In questo modo si garantisce inoltre che tutti i messaggi della console vengano inviati alla prima porta seriale, agevolando così il supporto di Azure nella risoluzione dei problemi di debug. Disattiva anche nuove convenzioni di denominazione CentOS 7 per NIC. Inoltre, è consigliabile *rimuovere* i parametri seguenti:
+   In questo modo anche tutti i messaggi della console vengono inviati toohello prima porta seriale, che consentono di Azure supporto con il debug dei problemi. Disattiva anche hello nuove CentOS 7 convenzioni di denominazione per le schede NIC. Inoltre toohello precedente, è consigliabile troppo*rimuovere* hello seguenti parametri:
    
         rhgb quiet crashkernel=auto
    
-    L'avvio grafico e l'avvio silenzioso non sono utili in un ambiente cloud se tutti i log devono essere inviati alla porta seriale. L'opzione `crashkernel` può essere configurata, ma si tenga presente che questo parametro ridurrà la quantità di memoria disponibile nella macchina virtuale di almeno 128 MB, il che potrebbe causare problemi con le macchine virtuali di dimensioni inferiori.
+    Avvio con interfaccia grafica e non interattiva non sono utili in un ambiente cloud in cui si desidera tutti toobe di registri hello inviati toohello della porta seriale. Hello `crashkernel` opzione può essere configurato se si desidera sinistra, ma si noti che questo parametro consente di ridurre hello quantità di memoria disponibile in hello VM da 128 MB o più, che può essere problematico sulle dimensioni delle macchine Virtuali più piccoli hello.
 
-9. Dopo aver terminato di modificare `/etc/default/grub` come sopra illustrato, eseguire il comando seguente per ricompilare la configurazione GRUB:
+9. Dopo aver eseguito modifica `/etc/default/grub` al precedente, eseguire hello seguente comando toorebuild hello grub configurazione:
    
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-10. Se si compila l'immagine da **VMWare, VirtualBox o KVM**, verificare che i driver Hyper-V siano inclusi in initramfs:
+10. Se la creazione di immagine hello da **VMWare, VirtualBox o KVM:** driver di hello Hyper-V verificare sono inclusi in initramfs hello:
    
    Modificare `/etc/dracut.conf`e aggiungere il contenuto:
    
         add_drivers+=”hv_vmbus hv_netvsc hv_storvsc”
    
-   Ricompilare l’initramfs:
+   Ricompilare initramfs hello:
    
         # sudo dracut –f -v
 
-11. Installare l'agente Linux di Azure e le dipendenze:
+11. Installare hello agente Linux di Azure e le dipendenze:
 
         # sudo yum install python-pyasn1 WALinuxAgent
         # sudo systemctl enable waagent
 
-12. Non creare l'area di swap sul disco del sistema operativo.
+12. Non creare lo spazio di swapping sul disco del sistema operativo hello.
    
-   L'agente Linux di Azure può configurare automaticamente l'area di swap utilizzando il disco risorse locale collegato alla VM dopo il provisioning in Azure. Si noti che il disco risorse locale è un disco *temporaneo* e potrebbe essere svuotato in seguito al deprovisioning della macchina virtuale. Dopo aver installato l'agente Linux di Azure come illustrato nel passaggio precedente, modificare i seguenti parametri di `/etc/waagent.conf` in modo appropriato:
+   Hello agente Linux di Azure può configurare automaticamente lo spazio di swapping utilizzando il disco di risorsa locale hello è collegato toohello VM dopo il provisioning in Azure. Si noti il disco di risorsa locale hello è un *temporaneo* del disco e può essere svuotata quando hello VM è deprovisioning. Dopo l'installazione di hello agente Linux di Azure (vedere il passaggio precedente), modificare i seguenti parametri in hello `/etc/waagent.conf` in modo appropriato:
    
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
 
-13. Eseguire i comandi seguenti per effettuare il deprovisioning della macchina virtuale e prepararla per il provisioning in Azure:
+13. Eseguire hello seguente macchina virtuale di comandi toodeprovision hello e prepararlo per il provisioning in Azure:
    
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
 
-14. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il file VHD Linux è ora pronto per il caricamento in Azure.
+14. Fare clic su **Azione -> Arresta** nella console di gestione di Hyper-V. Il VHD Linux è ora pronto toobe caricato tooAzure.
 
 ## <a name="next-steps"></a>Passaggi successivi
-È ora possibile usare il disco rigido virtuale CentOS Linux per creare nuove macchine virtuali in Azure. Se è la prima volta che si carica il file VHD in Azure, vedere i passaggi 2 e 3 nell'articolo [Creazione e caricamento di un disco rigido virtuale che contiene il sistema operativo Linux](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+Si è ora pronto toouse Linux CentOS disco rigido virtuale toocreate nuove macchine virtuali in Azure. Se si tratta hello prima volta che si sta caricando tooAzure file con estensione vhd di hello, vedere i passaggi 2 e 3 in [creazione e caricamento di un disco rigido virtuale contenente il sistema operativo Linux di hello](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 

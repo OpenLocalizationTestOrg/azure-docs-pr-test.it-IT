@@ -1,6 +1,6 @@
 ---
-title: Gestione delle credenziali nella libreria client dei database elastici | Documentazione Microsoft
-description: Come impostare il livello corretto di credenziali, da amministratore a sola lettura, per le app dei database elastici.
+title: credenziali aaaManaging nella libreria client di database elastico hello | Documenti Microsoft
+description: Come tooset hello corretto livello di credenziali di amministratore tooread solo per le applicazioni di database elastico
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: 46908be2846062a0520d21e06db3091a4d711b0b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 218783ca2a07e3c0a4b089aa92634f32c41386e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="credentials-used-to-access-the-elastic-database-client-library"></a>Credenziali usate per accedere alla libreria client dei database elastici
-La [libreria client dei database elastici](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) usa tre diversi tipi di credenziali per accedere al [gestore delle mappe partizioni](sql-database-elastic-scale-shard-map-management.md). A seconda delle esigenze, usare le credenziali con il minimo livello possibile di accesso.
+# <a name="credentials-used-tooaccess-hello-elastic-database-client-library"></a>Libreria client di Database elastico hello tooaccess utilizzate le credenziali
+Hello [libreria client di Database elastico](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) utilizza tre tipi diversi di hello tooaccess credenziali [gestore mappe partizioni](sql-database-elastic-scale-shard-map-management.md). A seconda delle necessità di hello, utilizzare credenziali hello con livello più basso di hello di possibili di accesso.
 
-* **Credenziali di gestione**: per la creazione o la modifica di un gestore di mappa di partizionamento. (Vedere il [glossario](sql-database-elastic-scale-glossary.md).) 
-* **Credenziali di accesso**: per accedere a un gestore di mappa di partizione esistente per ottenere informazioni sulle partizioni.
-* **Credenziali di connessione**: per connettersi alle partizioni. 
+* **Credenziali di gestione**: per la creazione o la modifica di un gestore di mappa di partizionamento. (Vedere hello [glossario](sql-database-elastic-scale-glossary.md).) 
+* **Le credenziali di accesso**: tooaccess una partizione esistente, eseguire il mapping manager tooobtain informazioni sulle partizioni.
+* **Le credenziali di connessione**: tooconnect tooshards. 
 
 Vedere anche [Gestione di database e account di accesso in database SQL di Azure](sql-database-manage-logins.md). 
 
 ## <a name="about-management-credentials"></a>Informazioni sulle credenziali di gestione
-Le credenziali di gestione vengono usate per creare un oggetto [**ShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) per applicazioni che modificano le mappe partizioni. Ad esempio, vedere [Aggiunta di una partizione utilizzando gli strumenti di database elastici](sql-database-elastic-scale-add-a-shard.md) e [Routing dipendente dei dati](sql-database-elastic-scale-data-dependent-routing.md). L'utente della libreria client dei database elastici crea gli utenti e gli account di accesso SQL e garantisce che ad ognuno vengano concesse autorizzazioni di lettura/scrittura per il database della mappa globale partizioni, nonché per tutti i database delle partizioni. Queste credenziali vengono usate per la gestione della mappa globale partizioni e delle mappe locali partizioni quando si apportano modifiche alla mappa partizioni. Ad esempio, usare le credenziali di gestione per creare l'oggetto di gestione delle mappe partizioni usando [**GetSqlShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx): 
+Le credenziali di gestione vengono utilizzati toocreate un [ **ShardMapManager** ](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) oggetto per le applicazioni che consentono di modificare mappe partizioni. (Ad esempio, vedere [aggiunta di una partizione utilizzando gli strumenti di Database elastico](sql-database-elastic-scale-add-a-shard.md) e [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md)) utente hello della libreria client di scalabilità elastica hello crea utenti SQL hello e account di accesso SQL e assicura ogni concesso le autorizzazioni di lettura/scrittura hello in partizioni globale hello eseguire il mapping del database e anche tutti i database di partizione. Queste credenziali sono mappa partizioni globale di hello toomaintain utilizzato e mappe di partizioni locale hello quando vengono eseguite mappa partizioni toohello di modifiche. Ad esempio, utilizzare hello Gestione credenziali toocreate hello partizioni manager oggetto map (utilizzando [ **GetSqlShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx): 
 
     // Obtain a shard map manager. 
     ShardMapManager shardMapManager = ShardMapManagerFactory.GetSqlShardMapManager( 
@@ -39,14 +39,14 @@ Le credenziali di gestione vengono usate per creare un oggetto [**ShardMapManage
             ShardMapManagerLoadPolicy.Lazy 
     ); 
 
-La variabile **smmAdminConnectionString** è una stringa di connessione che contiene le credenziali di gestione. L'ID utente e la password forniscono accesso in lettura/scrittura sia al database della mappa partizioni che alle singole partizioni. La stringa di connessione alla gestione include anche il nome del server e il nome del database per identificare il database della mappa globale partizioni. La seguente è una stringa di connessione tipica usata a tale scopo:
+variabile Hello **smmAdminConnectionString** è una stringa di connessione che contiene le credenziali di gestione di hello. ID utente Hello e una password fornisce database di lettura/scrittura access tooboth partizioni della mappa e singole partizioni. stringa di connessione gestione Hello inoltre include hello nome e il database nome tooidentify hello partizioni globale mappa database del server. La seguente è una stringa di connessione tipica usata a tale scopo:
 
      "Server=<yourserver>.database.windows.net;Database=<yourdatabase>;User ID=<yourmgmtusername>;Password=<yourmgmtpassword>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;” 
 
-Non utilizzare valori sotto forma di "username@server", utilizzare invece il valore di "username".  Infatti, le credenziali devono funzionare sia per il database del gestore mappe partizioni sia per le singole partizioni, che possono essere in server diversi.
+Non utilizzare valori sotto forma di hello di "username@server", usare semplicemente il valore di "username" hello.  Questo avviene perché le credenziali devono funzionare con database di gestione della mappa partizioni hello sia singole partizioni, che possono essere su server diversi.
 
 ## <a name="access-credentials"></a>Credenziali di accesso
-Quando si crea un gestore mappe partizioni in un'applicazione che non amministra mappe partizioni, usare credenziali a cui sono assegnate autorizzazioni di sola lettura per la mappa globale partizioni. Le informazioni recuperate dalla mappa globale partizioni con queste credenziali vengono utilizzate per il [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e per popolare la cache della mappa di partizionamento orizzontale nel client. Le credenziali vengono fornite in base allo stesso modello di chiamata a **GetSqlShardMapManager** come illustrato in precedenza: 
+Quando si crea una partizione gestore mappe in un'applicazione che non amministrare mappe partizioni, utilizzare le credenziali che dispongono delle autorizzazioni di sola lettura nella mappa partizioni globale hello. salve le informazioni recuperate da una mappa di partizioni globale hello in queste credenziali vengono utilizzati per [routing dipendente dai dati](sql-database-elastic-scale-data-dependent-routing.md) e partizioni hello toopopulate eseguire il mapping della cache sul client hello. salve le credenziali vengono specificate tramite hello troppo stesso call (modello)**GetSqlShardMapManager** come illustrato in precedenza: 
 
     // Obtain shard map manager. 
     ShardMapManager shardMapManager = ShardMapManagerFactory.GetSqlShardMapManager( 
@@ -54,19 +54,19 @@ Quando si crea un gestore mappe partizioni in un'applicazione che non amministra
             ShardMapManagerLoadPolicy.Lazy
     );  
 
-Si noti l'uso di **smmReadOnlyConnectionString** per rispecchiare le diverse credenziali per questo accesso usate da utenti **non amministratori**. Queste credenziali non devono infatti fornire autorizzazioni di scrittura per la mappa globale partizioni. 
+Si noti utilizzo hello di hello **smmReadOnlyConnectionString** tooreflect hello ricorso credenziali diverse per l'accesso per conto di **senza privilegi di amministratore** gli utenti: queste credenziali non devono fornire scrittura autorizzazioni in una mappa di partizioni globale hello. 
 
 ## <a name="connection-credentials"></a>Credenziali di connessione
-Sono inoltre necessarie credenziali aggiuntive quando si usa il metodo [**OpenConnectionForKey**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) per accedere a una partizione associata a una chiave di partizionamento orizzontale. Queste credenziali devono fornire autorizzazioni per l'accesso di sola lettura alle tabelle della mappa locale partizioni che risiedono nella partizione. Tale comportamento è necessario per eseguire la convalida della connessione per il routing dipendente dai dati nella partizione. Questo frammento di codice consente l'accesso ai dati nel contesto di routing dipendente dai dati: 
+Sono necessarie credenziali aggiuntive quando si utilizza hello [ **OpenConnectionForKey** ](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) tooaccess metodo una partizione associata a una chiave di partizionamento orizzontale. Le credenziali necessarie le autorizzazioni di tooprovide per tabelle di mapping delle partizioni locale di accesso in sola lettura toohello che risiedono in partizioni hello. Si tratta di convalida della connessione tooperform necessari per il routing dipendente dai dati nella partizione hello. Questo frammento di codice consente l'accesso ai dati nel contesto di hello del routing dipendente dai dati: 
 
     using (SqlConnection conn = rangeMap.OpenConnectionForKey<int>( 
     targetWarehouse, smmUserConnectionString, ConnectionOptions.Validate)) 
 
-In questo esempio **smmUserConnectionString** contiene la stringa di connessione per le credenziali utente. Questa è invece una stringa di connessione tipica per le credenziali utente per il database SQL di Azure: 
+In questo esempio, **smmUserConnectionString** contiene la stringa di connessione hello per hello le credenziali dell'utente. Questa è invece una stringa di connessione tipica per le credenziali utente per il database SQL di Azure: 
 
     "User ID=<yourusername>; Password=<youruserpassword>; Trusted_Connection=False; Encrypt=True; Connection Timeout=30;”  
 
-Come con le credenziali di amministratore, non i valori sotto forma di "username@server". Usare invece solo "username".  Si noti inoltre che la stringa di connessione non contiene un nome di server e un nome di database, in quando la chiamata a **OpenConnectionForKey** reindirizzerà automaticamente la connessione alla partizione corretta in base alla chiave. Di conseguenza, non vengono forniti il nome del database e il nome del server. 
+Come con le credenziali di amministratore hello non valori sotto forma di hello di "username@server". Usare invece solo "username".  Si noti inoltre che la stringa di connessione hello non contenga un nome del server e il nome del database. Ciò accade perché hello **OpenConnectionForKey** chiamata indirizzerà automaticamente hello connessione toohello corretto di partizioni in base a hello chiave. Di conseguenza, il nome di database hello e server non disponibili. 
 
 ## <a name="see-also"></a>Vedere anche
 [Gestione di database e account di accesso in database SQL di Azure](sql-database-manage-logins.md)

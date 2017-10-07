@@ -1,6 +1,6 @@
 ---
-title: Accesso alle risorse di dati locali per le App per la logica di Azure | Microsoft Docs
-description: Configurare il gateway dati locale in moda da poter accedere alle origini dati in locale dalle app per la logica
+title: origini dei dati in locale per le app di Azure logica aaaAccess | Documenti Microsoft
+description: Configurare gateway dati locale di hello per accedere a origini dati in locale da App per la logica
 keywords: accesso ai dati, locale, trasferimento dei dati, crittografia, origini dei dati
 services: logic-apps
 author: jeffhollan
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/13/2017
 ms.author: LADocs; dimazaid; estfan
-ms.openlocfilehash: 24793b83ca284fe9510fe21bc2d13b0589209d36
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1d3deaac5a095316ce78e224dab0c08559bc2ff2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="access-data-sources-on-premises-from-logic-apps-with-the-on-premises-data-gateway"></a>Accedere alle origini dati in locale dalle app per la logica con il gateway dati locale
+# <a name="access-data-sources-on-premises-from-logic-apps-with-hello-on-premises-data-gateway"></a>Accedere alle origini dati in locale da app logica con gateway dati locale di hello
 
-Per accedere alle origini dati in locale dalle app per la logica, configurare un gateway dati locale che le app per la logica possono usare con i connettori supportati. Il gateway funge da ponte che fornisce il trasferimento rapido dei dati e la crittografia tra le origini di dati in locale e le app per la logica. Il gateway inoltra i dati da origini locali sui canali crittografati tramite il bus di servizio di Azure. Tutto il traffico ha origine come traffico sicuro in uscita dall'agente di gateway. Altre informazioni sul [funzionamento del gateway dati](logic-apps-gateway-install.md#gateway-cloud-service). 
+origini dati tooaccess in locale da App per la logica, impostare da un gateway dati locale che App per la logica è possibile utilizzare con i connettori supportati. gateway Hello funge da ponte che fornisce il trasferimento dei dati rapido e la crittografia tra origini dati in locale e App per la logica. gateway Hello inoltra i dati da origini locali sui canali crittografati tramite hello Azure Service Bus. Tutto il traffico viene generato come proteggere il traffico in uscita dall'agente gateway hello. Altre informazioni, vedere [funzionamento gateway dati hello](logic-apps-gateway-install.md#gateway-cloud-service). 
 
-Il gateway supporta le connessioni alle origine dati locali seguenti:
+gateway Hello supporta le connessioni delle origini dati toothese in locale:
 
 *   BizTalk Server 2016
 *   DB2  
@@ -41,9 +41,9 @@ Il gateway supporta le connessioni alle origine dati locali seguenti:
 *   SQL Server
 *   Teradata
 
-Questa procedura mostra come configurare il gateway dati locale per lavorare con le app per la logica. Per altre informazioni sui connettori supportati, vedere [Connettori per le app per la logica di Azure](../connectors/apis-list.md). 
+Questi passaggi mostrano come tooset backup hello locale toowork gateway dati con le applicazioni di logica. Per altre informazioni sui connettori supportati, vedere [Connettori per le app per la logica di Azure](../connectors/apis-list.md). 
 
-Per informazioni su come usare il gateway con altri servizi, vedere i seguenti articoli:
+Per informazioni su come toouse hello gateway con altri servizi, vedere i seguenti articoli:
 
 *   [Gateway dati locale di Microsoft Power BI](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem/)
 *   [Gateway dati locale di Azure Analysis Services](../analysis-services/analysis-services-gateway.md)
@@ -52,111 +52,111 @@ Per informazioni su come usare il gateway con altri servizi, vedere i seguenti a
 
 ## <a name="requirements"></a>Requisiti
 
-* È necessario già disporre del [gateway dati locale installato in un computer locale](logic-apps-gateway-install.md).
+* È necessario disporre già [installato gateway dati hello in un computer locale](logic-apps-gateway-install.md).
 
-* Quando si accede al portale di Azure, è necessario usare lo stesso account aziendale o dell'istituto di istruzione usato per [installare il gateway dati locale](logic-apps-gateway-install.md#requirements). L'account di accesso deve avere anche una sottoscrizione di Azure da usare quando si crea una risorsa di gateway nel portale di Azure per l'installazione del gateway.
+* Quando si accede toohello portale di Azure, si dispone di toouse hello stesso lavoro o scuola account che è stata usata troppo[installare il gateway dati locale di hello](logic-apps-gateway-install.md#requirements). L'account di accesso deve inoltre avere toouse una sottoscrizione di Azure quando si crea una risorsa per il gateway in hello portale di Azure per l'installazione del gateway.
 
-* L'installazione del gateway non può essere già richiesta da una risorsa del gateway di Azure. È possibile associare l'installazione del gateway a una sola risorsa del gateway di Azure. L'attestazione avviene quando si crea la risorsa per il gateway in modo che l'installazione non sia disponibile per le altre risorse.
+* L'installazione del gateway non può essere già richiesta da una risorsa del gateway di Azure. È possibile associare la risorsa di Azure gateway un gateway installazione tooonly. Attestazione si verifica quando si crea risorsa gateway hello in modo che l'installazione di hello non è disponibile per le altre risorse.
 
-## <a name="set-up-the-data-gateway-connection"></a>Configurare la connessione al gateway dati
+## <a name="set-up-hello-data-gateway-connection"></a>Impostare la connessione del gateway dati hello
 
-### <a name="1-install-the-on-premises-data-gateway"></a>1. Installare il gateway dati locale
+### <a name="1-install-hello-on-premises-data-gateway"></a>1. Installare il gateway dati locale di hello
 
-Se l'utente non lo hai già fatto, seguire la [procedura per installare il gateway dati locale](logic-apps-gateway-install.md). Prima di continuare con gli altri passaggi, assicurarsi di aver installato il gateway dati in un computer locale.
+Se hai già fatto, seguire hello [il gateway dati locale di passaggi tooinstall hello](logic-apps-gateway-install.md). Prima di continuare con hello altri passaggi, assicurarsi che il gateway dati di hello è stato installato in un computer locale.
 
 <a name="create-gateway-resource"></a>
-### <a name="2-create-an-azure-resource-for-the-on-premises-data-gateway"></a>2. Creare una risorsa di Azure per il gateway dati locale
+### <a name="2-create-an-azure-resource-for-hello-on-premises-data-gateway"></a>2. Creare una risorsa di Azure per il gateway dati locale di hello
 
-Dopo aver installato il gateway in un computer locale, è necessario creare il gateway dati come una risorsa in Azure. Questo passaggio associa anche la risorsa di gateway con la sottoscrizione di Azure.
+Dopo aver installato il gateway hello in un computer locale, è necessario creare il gateway dati come risorsa in Azure. Questo passaggio associa anche la risorsa di gateway con la sottoscrizione di Azure.
 
-1. Accedere al [Portale di Azure](https://portal.azure.com "Portale di Azure"). Assicurarsi di usare lo stesso indirizzo di posta elettronica aziendale o dell'istituto di istruzione usato per installare il gateway.
+1. Accedi toohello [portale di Azure](https://portal.azure.com "portale di Azure"). Assicurarsi che toouse hello stesso lavoro di Azure o l'indirizzo e-mail dell'istituto di istruzione usato gateway hello tooinstall.
 
-2. Nel menu a sinistra in Azure, scegliere **Nuovo** > **Integrazione aziendale** > **Gateway dati locale** come illustrato di seguito:
+2. Nel menu a sinistra di hello in Azure, scegliere **New** > **Enterprise Integration** > **gateway dati locale** come illustrato di seguito:
 
    ![Trovare "Gateway dati locale"](./media/logic-apps-gateway-connection/find-on-premises-data-gateway.png)
 
-3. Nel pannello **Crea gateway di connessione** fornire questi dettagli per creare la risorsa di gateway dati:
+3. In hello **crea gateway di connessione** pannello fornire toocreate questi dettagli della risorsa del gateway dati:
 
     * **Nome**: inserire un nome per la risorsa del gateway. 
 
-    * **Sottoscrizione**: selezionare la sottoscrizione di Azure da associare alla risorsa del gateway. 
-    La presente sottoscrizione deve essere la stessa sottoscrizione dell'app per la logica.
+    * **Sottoscrizione**: selezionare hello tooassociate sottoscrizione di Azure alla risorsa del gateway. 
+    La sottoscrizione deve essere hello app logica stessa sottoscrizione.
    
-      La sottoscrizione predefinita si basa sull'account di Azure usato per accedere.
+      sottoscrizione predefinita Hello è basata su account di Azure utilizzato toosign in hello.
 
     * **Gruppo di risorse**: creare un gruppo di risorse o selezionarne uno esistente per distribuire la risorsa del gateway. 
     I gruppi di risorse consentono di gestire gli asset di Azure correlati come una raccolta.
 
-    * **Percorso**: Azure limita questo percorso alla stessa area selezionata per il servizio cloud di gateway durante [l'installazione del gateway](logic-apps-gateway-install.md). 
+    * **Percorso**: Azure limita questo toohello percorso stessa area che è stato selezionato per il servizio cloud gateway di hello durante [dell'installazione del gateway](logic-apps-gateway-install.md). 
 
       > [!NOTE]
-      > Assicurarsi che il percorso della risorsa di gateway corrisponda al percorso del servizio cloud di gateway. In caso contrario, l'installazione del gateway potrebbe non essere visualizzata nell'elenco dei gateway installati da selezionare nel passaggio successivo.
+      > Verificare che il percorso di risorsa gateway hello corrisponda posizione del servizio cloud gateway hello. In caso contrario, l'installazione del gateway potrebbe non essere nell'elenco a gateway installato hello è tooselect nel passaggio successivo hello.
       > 
       > È possibile usare aree diverse per la risorsa del gateway e per le app per la logica.
 
-    * **Nome installazione**: se l'installazione del gateway non è già selezionata, selezionare il gateway installato in precedenza. 
+    * **Nome di installazione**: se l'installazione del gateway non è già selezionata, selezionare il gateway hello installata in precedenza. 
 
-    Per aggiungere la risorsa del gateway al dashboard di Azure, scegliere **Aggiungi al dashboard**. 
+    tooadd hello gateway risorsa tooyour dashboard di Azure, scegliere **toodashboard Pin**. 
     Al termine dell'operazione, scegliere **Crea**.
 
     ad esempio:
 
-    ![Fornire i dettagli per creare il gateway dati locale](./media/logic-apps-gateway-connection/createblade.png)
+    ![Fornire dettagli toocreate gateway dati locale](./media/logic-apps-gateway-connection/createblade.png)
 
-    Per trovare o visualizzare il gateway di dati in qualsiasi momento, dal menu principale di Azure a sinistra, passare ad **Altri servizi**>**Integrazione aziendale** > **Gateway dati locale**.
+    toofind o vista il gateway dati in qualsiasi momento, hello Azure sinistro menu principale, andare troppo **più servizi** > **Enterprise Integration** > **dati locali Gateway**.
 
-    ![Passare ad "Altri servizi", "Integrazione aziendale", "Gateway dati locale"](./media/logic-apps-gateway-connection/find-on-premises-data-gateway-enterprise-integration.png)
+    ![Andare troppo "Più servizi", "Integrazione di Enterprise", "Gateway dati locale"](./media/logic-apps-gateway-connection/find-on-premises-data-gateway-enterprise-integration.png)
 
 <a name="connect-logic-app-gateway"></a>
-### <a name="3-connect-your-logic-app-to-the-on-premises-data-gateway"></a>3. Connettere l'app per la logica al gateway dati locale
+### <a name="3-connect-your-logic-app-toohello-on-premises-data-gateway"></a>3. Connettere il gateway dati locale di logica app toohello
 
-Ora che è stata creata la risorsa per il gateway dati ed è stata associata la sottoscrizione di Azure alla risorsa, creare una connessione tra l'app per la logica e il gateway dati.
+Dopo aver creato la risorsa del gateway dati e associati alla sottoscrizione di Azure alla risorsa, creare una connessione tra il gateway dati logica app e hello.
 
 > [!NOTE]
-> Il percorso di connessione del gateway deve essere presente nella stessa area dell'app per la logica, ma è possibile usare un gateway dati esistente in un'area diversa.
+> Il percorso di connessione del gateway deve essere presente in hello stessa area dell'app logica, ma è possibile utilizzare un gateway dati esistente in un'area diversa.
 
-1. Nel portale di Azure, creare o aprire l'app per la logica nella finestra di progettazione dell'App per la logica.
+1. In hello portale di Azure, creare o aprire l'app logica nella finestra di progettazione logica App.
 
 2. Aggiungere un connettore che supporta la connettività locale, ad esempio SQL Server.
 
-3. Seguendo l'ordine indicato, selezionare **Connect via on-premises data gateway** (Esegui connessione tramite il gateway dati locale), fornire un nome di connessione univoco e le informazioni necessarie, quindi selezionare la risorsa del gateway dati da usare. Al termine dell'operazione, scegliere **Crea**.
+3. Selezionare lo stesso ordine hello illustrato, **Connetti tramite il gateway dati locale**, fornire un nome univoco della connessione hello le informazioni necessarie e selezionare una risorsa per il gateway dati hello che si desidera toouse. Al termine dell'operazione, scegliere **Crea**.
 
    > [!TIP]
-   > Un nome di connessione univoco consente di identificare facilmente la connessione in un secondo momento, soprattutto quando si creano più connessioni. Se applicabile, è necessario includere anche il dominio completo per il proprio nome utente. 
+   > Un nome di connessione univoco consente di identificare facilmente la connessione in un secondo momento, soprattutto quando si creano più connessioni. Se applicabile, è necessario includere anche dominio hello per il proprio nome utente. 
 
    ![Creare una connessione tra l'app per la logica e il gateway dati](./media/logic-apps-gateway-connection/blankconnection.png)
 
-A questo punto, la connessione del gateway è pronta per l'app per la logica da usare.
+Complimenti, la connessione del gateway è pronta per il toouse app logica.
 
 ## <a name="edit-your-gateway-connection-settings"></a>Modificare le impostazioni di connessione del gateway
 
-Dopo aver creato una connessione al gateway per l'app per la logica, è possibile voler procedere all'aggiornamento delle impostazioni in un secondo momento per quella connessione specifica.
+Dopo aver creato una connessione gateway per l'app logica, è le impostazioni di hello aggiornamento toolater per tale connessione specifico.
 
-1. Per trovare la connessione del gateway:
+1. connessione al gateway toofind hello:
 
-   * Nel pannello dell'app per la logica, sotto **Strumenti di sviluppo**, selezionare **Connessioni API**. 
+   * Nel pannello app logica hello in **gli strumenti di sviluppo**selezionare **connessioni API**. 
    
-     Il pannello **Connessioni API** mostra tutte le connessioni API associate alla propria app per la logica, incluse le connessioni del gateway.
+     Hello **connessioni API** riquadro vengono visualizzate tutte le connessioni delle API associate all'app di logica, incluse le connessioni di gateway.
 
-     ![Passare all'app per la logica, selezionare "Connessioni API"](./media/logic-apps-gateway-connection/logic-app-find-api-connections.png)
+     ![Passare tooyour logica app, selezionare "Connessioni API"](./media/logic-apps-gateway-connection/logic-app-find-api-connections.png)
 
-   * In alternativa, dal menu principale di Azure a sinistra, passare ad **Altri servizi** > **Web e servizi mobili** > **Connessioni API** per tutte le connessioni API, comprese le connessioni del gateway, che sono associate alla sottoscrizione di Azure. 
+   * O, hello Azure sinistro menu principale, andare troppo **più servizi** > **Web e servizi mobili** > **connessioni API** per tutte le connessioni di API, tra cui le connessioni gateway, che sono associate alla sottoscrizione di Azure. 
 
-   * In alternativa, dal menu principale di Azure a sinistra, passare a **Tutte le risorse** per tutte le connessioni API, comprese le connessioni del gateway, che sono associate alla sottoscrizione di Azure.
+   * In alternativa, hello Azure sinistro menu principale, accedere troppo**tutte le risorse** per tutte le connessioni di API, comprese le connessioni di gateway, che sono associate alla sottoscrizione di Azure.
 
-2. Selezionare la connessione del gateway che si desidera visualizzare o modificare e scegliere **Modifica connessione API**.
+2. Selezionare una connessione al gateway hello che desidera tooview o modificare e scegliere **connessione modificare API**.
 
    > [!TIP]
-   > Se gli aggiornamenti non hanno effetto, provare ad [arrestare e riavviare il servizio Windows del gateway](./logic-apps-gateway-install.md#restart-gateway).
+   > Se gli aggiornamenti non avrà effetto, provare a [arrestare e riavviare il servizio di Windows gateway hello](./logic-apps-gateway-install.md#restart-gateway).
 
 <a name="change-delete-gateway-resource"></a>
 ## <a name="switch-or-delete-your-on-premises-data-gateway-resource"></a>Cambiare o eliminare una risorsa gateway dati locale
 
-Per creare una risorsa del gateway diversa, associare il gateway a una risorsa diversa o rimuovere la risorsa per il gateway, è possibile eliminare la risorsa del gateway senza modificare l'installazione del gateway. 
+associare il gateway a una risorsa diversa toocreate una risorsa, gateway diverso o rimuovere risorse gateway hello, è possibile eliminare una risorsa per il gateway hello senza influire sull'installazione del gateway hello. 
 
-1. Dal menu principale di Azure a sinistra, passare a **Tutte le risorse**. 
+1. Hello Azure sinistro menu principale, andare troppo**tutte le risorse**. 
 2. Individuare e selezionare la risorsa del gateway dati.
-3. Scegliere **Gateway dati locale** e, sulla barra degli strumenti della risorse, scegliere **Elimina**.
+3. Scegliere **Gateway dati locale**, sulla barra degli strumenti risorse hello, scegliere **eliminare**.
 
 <a name="faq"></a>
 ## <a name="frequently-asked-questions"></a>Domande frequenti

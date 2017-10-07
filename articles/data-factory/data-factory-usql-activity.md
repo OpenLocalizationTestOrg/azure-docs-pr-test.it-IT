@@ -1,6 +1,6 @@
 ---
-title: Trasformare dati usando lo script U-SQL - Azure | Documentazione Microsoft
-description: Informazioni su come elaborare o trasformare i dati eseguendo gli script U-SQL nel servizio di calcolo di Azure Data Lake Analytics.
+title: dati aaaTransform utilizzando lo script U-SQL - Azure | Documenti Microsoft
+description: Informazioni su come servizio di calcolo tooprocess o la trasformazione dei dati eseguendo gli script U-SQL in Azure Data Lake Analitica.
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 49a809af92ed1bc6664fbdd3bf1aabf36afb8180
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 51fdb40334d0c131720f65c3a96b4c5045a98b24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-by-running-u-sql-scripts-on-azure-data-lake-analytics"></a>Trasformare i dati eseguendo script U-SQL in Azure Data Lake Analytics 
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,46 +33,46 @@ ms.lasthandoff: 08/18/2017
 > * [Attività U-SQL di Data Lake Analytics](data-factory-usql-activity.md)
 > * [Attività personalizzata di .NET](data-factory-use-custom-activities.md)
 
-Una pipeline in un'istanza di Data factory di Azure elabora i dati nei servizi di archiviazione collegati usando i servizi di calcolo collegati. Contiene una sequenza di attività in cui ogni attività esegue una specifica operazione di elaborazione. Questo articolo descrive l'**attività U-SQL di Data Lake Analytics** che esegue uno script **U-SQL** in un servizio di calcolo collegato di **Azure Data Lake Analytics**. 
+Una pipeline in un'istanza di Data factory di Azure elabora i dati nei servizi di archiviazione collegati usando i servizi di calcolo collegati. Contiene una sequenza di attività in cui ogni attività esegue una specifica operazione di elaborazione. Questo articolo descrive hello **Data Lake Analitica U-SQL attività** che esegue un **U-SQL** script un **Azure Data Lake Analitica** servizio collegato di calcolo. 
 
 > [!NOTE]
-> Creare un account di Azure Data Lake Analytics prima di creare una pipeline con un'attività U-SQL di Data Lake Analytics. Per altre informazioni su Azure Data Lake Analytics, vedere [Introduzione ad Azure Data Lake con l'SDK .NET](../data-lake-analytics/data-lake-analytics-get-started-portal.md).
+> Creare un account di Azure Data Lake Analytics prima di creare una pipeline con un'attività U-SQL di Data Lake Analytics. toolearn su Azure Data Lake Analitica, vedere [Guida introduttiva di Azure Data Lake Analitica](../data-lake-analytics/data-lake-analytics-get-started-portal.md).
 > 
-> Per la procedura dettagliata per la creazione di una data factory, dei servizi collegati, dei set di dati e di una pipeline, vedere l' [Esercitazione: Creare la prima pipeline](data-factory-build-your-first-pipeline.md) . Usare i frammenti JSON con l'editor di Data Factory, Visual Studio o Azure PowerShell per creare le entità di Data Factory.
+> Hello revisione [compilare la prima esercitazione di pipeline](data-factory-build-your-first-pipeline.md) per i passaggi dettagliati toocreate una data factory, collegato a una pipeline, i set di dati e servizi. Usare i frammenti di codice JSON con l'Editor delle Data Factory o le entità di Visual Studio o PowerShell di Azure Data Factory di toocreate.
 
 ## <a name="supported-authentication-types"></a>Tipi di autenticazione supportati
 L'attività U-SQL supporta i tipi di autenticazione in Data Lake Analytics indicati di seguito:
 * Autenticazione di un'entità servizio
 * Autenticazione basata su credenziali dell'utente (OAuth) 
 
-È consigliabile usare l'autenticazione basata sull'entità servizio, in particolare per un'esecuzione U-SQL pianificata. Con l'autenticazione basata sulle credenziali dell'utente può verificarsi la scadenza del token. Per i dettagli di configurazione, vedere la sezione [Proprietà del servizio collegato](#azure-data-lake-analytics-linked-service).
+È consigliabile usare l'autenticazione basata sull'entità servizio, in particolare per un'esecuzione U-SQL pianificata. Con l'autenticazione basata sulle credenziali dell'utente può verificarsi la scadenza del token. Per informazioni sulla configurazione, vedere hello [servizio proprietà collegate](#azure-data-lake-analytics-linked-service) sezione.
 
 ## <a name="azure-data-lake-analytics-linked-service"></a>Servizio collegato di Azure Data Lake Analytics
-Creare un servizio collegato di **Azure Data Lake Analytics** per collegare un servizio di calcolo di Azure Data Lake Analytics a una Data Factory di Azure. L'attività U-SQL di Data Lake Analytics nella pipeline fa riferimento a questo servizio collegato. 
+Si crea un **Azure Data Lake Analitica** collegato servizio toolink una factory di dati di Azure tooan del servizio di calcolo di Azure Data Lake Analitica. attività Data Lake Analitica U-SQL nella pipeline hello Hello fa riferimento a servizio toothis collegato. 
 
-La tabella seguente fornisce le descrizioni delle proprietà generiche usate nella definizione JSON. È possibile scegliere anche tra l'autenticazione basata sull'entità servizio e l'autenticazione basata sulle credenziali utente.
+Hello nella tabella seguente vengono fornite descrizioni per hello generica proprietà utilizzate nella definizione JSON hello. È possibile scegliere anche tra l'autenticazione basata sull'entità servizio e l'autenticazione basata sulle credenziali utente.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| **type** |La proprietà type deve essere impostata su **AzureDataLakeAnalytics**. |Sì |
+| **type** |proprietà di tipo Hello deve essere impostata su: **AzureDataLakeAnalytics**. |Sì |
 | **accountName** |Nome dell'account di Azure Data Lake Analytics. |Sì |
 | **dataLakeAnalyticsUri** |URI di Azure Data Lake Analytics. |No |
-| **subscriptionId** |ID sottoscrizione di Azure |No (se non specificata, viene usata la sottoscrizione della Data factory). |
-| **resourceGroupName** |Nome del gruppo di risorse di Azure |No (se non specificata, viene usato il gruppo di risorse di Data Factory). |
+| **subscriptionId** |ID sottoscrizione di Azure |No (se non specificato, sottoscrizione di hello viene utilizzata una data factory). |
+| **resourceGroupName** |Nome del gruppo di risorse di Azure |No (se non specificato, il gruppo di risorse di hello viene utilizzata una data factory). |
 
 ### <a name="service-principal-authentication-recommended"></a>Autenticazione basata su entità servizio (opzione consigliata)
-Per usare l'autenticazione basata su entità servizio, registrare un'entità applicazione in Azure Active Directory (Azure AD) e concedere a tale entità l'accesso a Data Lake Store. Per la procedura dettaglia, vedere [Autenticazione da servizio a servizio](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Prendere nota dei valori seguenti che si usano per definire il servizio collegato:
+toouse l'autenticazione dell'entità servizio, registrare un'entità di applicazione in Azure Active Directory (Azure AD) e concedere hello accedere all'archivio Lake tooData. Per la procedura dettaglia, vedere [Autenticazione da servizio a servizio](../data-lake-store/data-lake-store-authenticate-using-active-directory.md). Prendere nota dei seguenti valori, che permette di hello hello toodefine servizio collegato:
 * ID applicazione
 * Chiave applicazione 
 * ID tenant
 
-Usare l'autenticazione basata su entità servizio specificando le proprietà seguenti:
+Utilizzare l'autenticazione dell'entità servizio specificando hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| **servicePrincipalId** | Specificare l'ID client dell'applicazione. | Sì |
-| **servicePrincipalKey** | Specificare la chiave dell'applicazione. | Sì |
-| **tenant** | Specificare le informazioni sul tenant (nome di dominio o ID tenant) in cui si trova l'applicazione. È possibile recuperarlo passando il cursore del mouse sull'angolo superiore destro del portale di Azure. | Sì |
+| **servicePrincipalId** | Specificare un ID client. dell'applicazione hello | Sì |
+| **servicePrincipalKey** | Specificare la chiave dell'applicazione hello. | Sì |
+| **tenant** | Specificare le informazioni di hello tenant (dominio tenant o nome ID) in cui risiede l'applicazione. È possibile recuperarlo dal passaggio del mouse hello nell'angolo superiore destro di hello di hello portale di Azure. | Sì |
 
 **Esempio: autenticazione basata su entità servizio**
 ```json
@@ -94,12 +94,12 @@ Usare l'autenticazione basata su entità servizio specificando le proprietà seg
 ```
 
 ### <a name="user-credential-authentication"></a>Autenticazione basata su credenziali utente
-In alternativa, è possibile usare l'autenticazione delle credenziali dell'utente per Data Lake Analytics specificando le proprietà seguenti:
+In alternativa, è possibile utilizzare l'autenticazione delle credenziali utente per Data Lake Analitica specificando hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| **authorization** | Fare clic sul pulsante **Autorizza** nell'editor di Data Factory e immettere le credenziali per assegnare l'URL di autorizzazione generato automaticamente a questa proprietà. | Sì |
-| **sessionId** | ID sessione OAuth dalla sessione di autorizzazione oauth. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si usa l'editor di Data Factory. | Sì |
+| **authorization** | Fare clic su hello **Authorize** pulsante hello Editor delle Data Factory e immettere le credenziali dell'utente che assegna la proprietà toothis hello generato automaticamente autorizzazione URL. | Sì |
+| **sessionId** | ID di sessione OAuth della sessione di autorizzazione OAuth hello. Ogni ID di sessione è univoco e può essere usato solo una volta. Questa impostazione viene generata automaticamente quando si utilizza hello Editor delle Data Factory. | Sì |
 
 **Esempio: autenticazione basata su credenziali utente**
 ```json
@@ -120,14 +120,14 @@ In alternativa, è possibile usare l'autenticazione delle credenziali dell'utent
 ```
 
 #### <a name="token-expiration"></a>Scadenza del token
-Il codice di autorizzazione generato con il pulsante **Autorizza** ha una scadenza. Per le scadenze dei diversi tipi di account utente, vedere la tabella seguente. Alla **scadenza del token** di autenticazione potrebbe essere visualizzato un messaggio di errore simile al seguente: Errore dell'operazione relativa alle credenziali: invalid_grant - AADSTS70002: Errore di convalida delle credenziali. AADSTS70008: La concessione dell'accesso specificata è scaduta o è stata revocata. ID traccia: d18629e8-af88-43c5-88e3-d8419eb1fca1 ID correlazione: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 Timestamp: 2015-12-15 21:09:31Z.
+codice di autorizzazione è stato generato utilizzando hello Hello **Authorize** pulsante scade dopo qualche minuto. Vedere hello nella tabella seguente per date di scadenza hello per diversi tipi di account utente. Si può vedere hello seguente messaggio di errore hello quando l'autenticazione **scadenza del token**: errore nell'operazione di credenziali: invalid_grant - AADSTS70002: errore di convalida delle credenziali. AADSTS70008: hello fornito concessione di accesso è scaduto o revocato. ID traccia: d18629e8-af88-43c5-88e3-d8419eb1fca1 ID correlazione: fac30a0c-6be6-4e02-8d69-a776d2ffefd7 Timestamp: 2015-12-15 21:09:31Z.
 
 | Tipo di utente | Scade dopo |
 |:--- |:--- |
 | Account utente NON gestiti da Azure Active Directory (@hotmail.com, @live.com e così via). |12 ore |
-| Account utente gestiti da Azure Active Directory (AAD) |14 giorni dopo l'esecuzione dell'ultima sezione. <br/><br/>90 giorni, se viene eseguita una sezione basata sul servizio collegato OAuth almeno una volta ogni 14 giorni. |
+| Account utente gestiti da Azure Active Directory (AAD) |eseguire 14 giorni dopo l'ultima sezione di hello. <br/><br/>90 giorni, se viene eseguita una sezione basata sul servizio collegato OAuth almeno una volta ogni 14 giorni. |
 
-Per evitare/risolvere questo problema, alla **scadenza del token** ripetere l'autorizzazione usando il pulsante **Autorizza** e ridistribuire il servizio collegato. È anche possibile generare valori per le proprietà **sessionId** e **authorization** a livello di codice usando il codice seguente:
+tooavoid e risolvere questo errore, riautorizzare utilizzando hello **Authorize** pulsante quando hello **scadenza del token** e ridistribuire il servizio collegato hello. È anche possibile generare valori per le proprietà **sessionId** e **authorization** a livello di codice usando il codice seguente:
 
 ```csharp
 if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService ||
@@ -154,16 +154,16 @@ if (linkedService.Properties.TypeProperties is AzureDataLakeStoreLinkedService |
 }
 ```
 
-Per informazioni dettagliate sulle classi di Data Factory usate nel codice, vedere gli argomenti [AzureDataLakeStoreLinkedService Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx) e [AuthorizationSessionGetResponse Class](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx). Aggiungere un riferimento a: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll per la classe WindowsFormsWebAuthenticationDialog. 
+Vedere [AzureDataLakeStoreLinkedService classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakestorelinkedservice.aspx), [AzureDataLakeAnalyticsLinkedService classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.azuredatalakeanalyticslinkedservice.aspx), e [AuthorizationSessionGetResponse classe](https://msdn.microsoft.com/library/microsoft.azure.management.datafactories.models.authorizationsessiongetresponse.aspx) argomenti per informazioni dettagliate informazioni sulle classi di Data Factory hello usate nel codice hello. Aggiungere un riferimento a: Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll per hello WindowsFormsWebAuthenticationDialog classe. 
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Attività U-SQL di Data Lake Analytics
-Il frammento JSON seguente definisce una pipeline con un'attività U-SQL di Data Lake Analytics. La definizione dell'attività contiene un riferimento al servizio collegato di Azure Data Lake Analytics creato in precedenza.   
+Hello frammento di codice JSON seguente definisce una pipeline con attività Data Lake Analitica U-SQL. definizione di attività Hello è toohello un riferimento del servizio Azure Data Lake Analitica collegato, creato in precedenza.   
 
 ```json
 {
     "name": "ComputeEventsByRegionPipeline",
     "properties": {
-        "description": "This is a pipeline to compute events for en-gb locale and date less than 2012/02/19.",
+        "description": "This is a pipeline toocompute events for en-gb locale and date less than 2012/02/19.",
         "activities": 
         [
             {
@@ -210,25 +210,25 @@ Il frammento JSON seguente definisce una pipeline con un'attività U-SQL di Data
 }
 ```
 
-Nella tabella seguente vengono descritti i nomi e le descrizioni delle proprietà specifiche per questa attività. 
+Hello nella tabella seguente descrive i nomi e le descrizioni delle proprietà che sono attività toothis specifico. 
 
 | Proprietà | Descrizione | Obbligatorio |
 |:--- |:--- |:--- |
-| Tipo |La proprietà type deve essere impostata su **DataLakeAnalyticsU-SQL**. |Sì |
-| scriptPath |Percorso della cartella contenente lo script U-SQL. Il nome del file distingue tra maiuscole e minuscole. |No (se si usa uno script) |
-| scriptLinkedService |Servizi collegati che collegano la risorsa di archiviazione contenente lo script alla Data factory |No (se si usa uno script) |
+| type |proprietà di tipo Hello deve essere impostata troppo**DataLakeAnalyticsU SQL**. |Sì |
+| scriptPath |Toofolder percorso che contiene lo script hello U-SQL. Nome del file hello è tra maiuscole e minuscole. |No (se si usa uno script) |
+| scriptLinkedService |Servizio collegato che si collega archiviazione hello che contiene una data factory di hello script toohello |No (se si usa uno script) |
 | script |Specificare lo script inline anziché scriptPath e scriptLinkedService. Ad esempio: `"script": "CREATE DATABASE test"`. |No (se si usano le proprietà scriptPath e scriptLinkedService) |
-| degreeOfParallelism |Il numero massimo di nodi usati contemporaneamente per eseguire il processo. |No |
-| priority |Determina quali processi rispetto a tutti gli altri disponibili nella coda devono essere selezionati per essere eseguiti per primi. Più è basso il numero, maggiore sarà la priorità. |No |
-| parameters |Parametri per lo script U-SQL |No |
-| runtimeVersion | Versione di runtime del motore di U-SQL da usare | No | 
-| compilationMode | <p>Modalità di compilazione di U-SQL. Deve essere uno dei valori seguenti:</p> <ul><li>**Semantic:** esegue solo controlli semantici e i controlli di integrità necessari.</li><li>**Full:** esegue la compilazione completa, inclusi il controllo della sintassi, l'ottimizzazione, la generazione di codice e così via.</li><li>**SingleBox:** esegue la compilazione completa, con TargetType impostato su SingleBox.</li></ul><p>Se per questa proprietà non si specifica alcun valore, il server determina la modalità di compilazione ottimale. </p>| No | 
+| degreeOfParallelism |numero massimo di Hello di nodi utilizzati contemporaneamente processo hello toorun. |No |
+| priority |Determina innanzitutto quali processi, tra tutti quelli accodati devono essere toorun selezionato. Hello hello numero inferiore, priorità più alta hello hello. |No |
+| parameters |Parametri per hello U-SQL script |No |
+| runtimeVersion | Versione di runtime di toouse motore hello U-SQL | No | 
+| compilationMode | <p>Modalità di compilazione di U-SQL. Deve essere uno dei valori seguenti:</p> <ul><li>**Semantic:** esegue solo controlli semantici e i controlli di integrità necessari.</li><li>**Full:** eseguire una compilazione completa hello, quali controllo della sintassi, l'ottimizzazione, la generazione di codice, e così via.</li><li>**SingleBox:** eseguire una compilazione completa hello, con tooSingleBox di impostazione di TargetType.</li></ul><p>Se non si specifica un valore per questa proprietà, il server di hello determina la modalità di compilazione ottimale hello. </p>| No | 
 
-Per la definizione dello script, vedere la sezione [Definizione dello script SearchLogProcessing.txt](#sample-u-sql-script) . 
+Vedere [SearchLogProcessing.txt crea Script per definizione](#sample-u-sql-script) per la definizione di script hello. 
 
 ## <a name="sample-input-and-output-datasets"></a>Set di dati di input e output di esempio
 ### <a name="input-dataset"></a>Set di dati di input
-In questo esempio i dati di input si trovano in un archivio di Azure Data Lake (file SearchLog.tsv nella cartella datalake/input). 
+In questo esempio, i dati di input hello si trovano in un archivio Azure Data Lake (SearchLog.tsv file nella cartella Lake/input hello). 
 
 ```json
 {
@@ -254,7 +254,7 @@ In questo esempio i dati di input si trovano in un archivio di Azure Data Lake (
 ```
 
 ### <a name="output-dataset"></a>Set di dati di output
-In questo esempio i dati di output generati dallo script U-SQL sono memorizzati in un archivio di Azure Data Lake (cartella datalake/output). 
+In questo esempio, i dati di output di hello prodotti da hello script U-SQL vengono archiviati in un archivio Azure Data Lake (cartella Lake/output). 
 
 ```json
 {
@@ -274,7 +274,7 @@ In questo esempio i dati di output generati dallo script U-SQL sono memorizzati 
 ```
 
 ### <a name="sample-data-lake-store-linked-service"></a>Servizio collegato di Data Lake Store di esempio
-Ecco la definizione del servizio collegato di Azure Data Lake Store di esempio usato dai set di dati di input/output. 
+Di seguito è la definizione hello dell'esempio hello che archivio Azure Data Lake collegato servizio utilizzato dal set di dati di input/output di hello. 
 
 ```json
 {
@@ -291,7 +291,7 @@ Ecco la definizione del servizio collegato di Azure Data Lake Store di esempio u
 }
 ```
 
-Per la descrizione delle proprietà JSON, vedere l'articolo [Move data to and from Azure Data Lake Store](data-factory-azure-datalake-connector.md) (Spostare dati da e in Azure Data Lake Store). 
+Vedere [spostare tooand dati dall'archivio Azure Data Lake](data-factory-azure-datalake-connector.md) articolo per una descrizione delle proprietà JSON. 
 
 ## <a name="sample-u-sql-script"></a>Script U-SQL di esempio
 
@@ -318,16 +318,16 @@ WHERE Region == "en-gb";
     WHERE Start <= DateTime.Parse("2012/02/19");
 
 OUTPUT @rs1   
-    TO @out
+    too@out
       USING Outputters.Tsv(quoting:false, dateTimeFormat:null);
 ```
 
-I valori dei parametri **@in** e **@out** nello script U-SQL vengono passati in modo dinamico da ADF usando la sezione "parameters". Vedere la sezione "parameters" nella definizione della pipeline.
+i valori per Hello  **@in**  e  **@out**  parametri nello script hello U-SQL vengono passati in modo dinamico dal file ADF mediante sezione 'parameters' hello. Vedere la sezione 'parameters' hello definizione pipeline hello.
 
-È possibile specificare anche altre proprietà come degreeOfParallelism e priorità nella definizione della pipeline per i processi in esecuzione sul servizio Azure Data Lake Analytics.
+È possibile specificare anche altre proprietà, ad esempio la priorità e degreeOfParallelism nella definizione di pipeline per i processi di hello eseguiti sul servizio Azure Data Lake Analitica hello.
 
 ## <a name="dynamic-parameters"></a>Parametri dinamici
-Nell'esempio di definizione di pipeline i parametri in e out vengono assegnati con valori hardcoded. 
+Nella definizione di pipeline di esempio hello, i parametri vengono assegnati con i valori hardcoded. 
 
 ```json
 "parameters": {
@@ -336,7 +336,7 @@ Nell'esempio di definizione di pipeline i parametri in e out vengono assegnati c
 }
 ```
 
-È anche possibile usare parametri dinamici. ad esempio: 
+È invece possibile toouse dei parametri dinamici. ad esempio: 
 
 ```json
 "parameters": {
@@ -345,5 +345,5 @@ Nell'esempio di definizione di pipeline i parametri in e out vengono assegnati c
 }
 ```
 
-In questo caso, i file di input vengono prelevati dalla cartella /datalake/input e i file di output vengono generati nella cartella /datalake/output. I nomi dei file sono dinamici e si basano sull'ora di inizio della sezione.  
+In questo caso, i file di input sono ancora prelevati dalla cartella /datalake/input hello e vengono generati file di output nella cartella /datalake/output hello. i nomi di file Hello sono dinamici in base a ora di inizio sezione hello.  
 

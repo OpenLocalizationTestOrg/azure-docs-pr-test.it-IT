@@ -1,6 +1,6 @@
 ---
-title: Proteggere un cluster di Azure Service Fabric in Windows usando i certificati | Microsoft Docs
-description: "Questo articolo descrive come proteggere le comunicazioni all'interno del cluster autonomo o privato, nonché tra i client e il cluster."
+title: aaaSecure un'infrastruttura di Azure del servizio cluster in Windows tramite i certificati | Documenti Microsoft
+description: "In questo articolo viene descritto come toosecure comunicazione all'interno di hello autonomo o privato cluster nonché tra client e i cluster hello."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dekapur
-ms.openlocfilehash: 71ece1e43cc3c4ac3350cd59633065de06672420
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f0d411963615349a84edfc8125dec4ee5908f146
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-standalone-cluster-on-windows-using-x509-certificates"></a>Proteggere un cluster autonomo in Windows con certificati X.509
-Questo articolo descrive come proteggere la comunicazione tra i diversi nodi del cluster Windows autonomo e come autenticare i client che si connettono a questo cluster usando certificati X.509. In questo modo, solo gli utenti autorizzati possano accedere al cluster e alle applicazioni distribuite ed eseguire attività di gestione.  La sicurezza basata su certificati deve essere abilitata nel cluster durante la creazione del cluster.  
+In questo articolo viene descritto come toosecure hello comunicazione hello vari nodi del cluster di Windows autonoma, nonché il modo tooauthenticate client che si connettono toothis cluster, utilizzando i certificati x. 509. Ciò garantisce che solo gli utenti autorizzati possono accedere cluster hello, hello applicazioni distribuite e attività di gestione.  Sicurezza di certificato deve essere abilitata nel cluster hello quando viene creato il cluster hello.  
 
 Per altre informazioni sulla sicurezza del cluster da nodo a nodo e da client a nodo e sul controllo degli accessi in base al ruolo, vedere [Scenari di sicurezza di un cluster di Service Fabric](service-fabric-cluster-security.md).
 
 ## <a name="which-certificates-will-you-need"></a>Certificati necessari
-Per iniziare, [scaricare il pacchetto del cluster autonomo](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) in uno dei nodi del cluster. Nel pacchetto scaricato è incluso il file **ClusterConfig.X509.MultiMachine.json** . Aprire il file ed esaminare la sezione **security** nella sezione **properties**:
+toostart, [download del pacchetto del cluster autonomo hello](service-fabric-cluster-creation-for-windows-server.md#downloadpackage) tooone dei nodi di hello del cluster. In hello scaricato pacchetto, si noterà un **ClusterConfig.X509.MultiMachine.json** file. Aprire il file hello e sezione hello **sicurezza** in hello **proprietà** sezione:
 
 ```JSON
 "security": {
-    "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
+    "metadata": "hello Credential type X509 indicates this is cluster is secured using X509 Certificates. hello thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
     "ClusterCredentialType": "X509",
     "ServerCredentialType": "X509",
     "CertificateInformation": {
@@ -94,28 +94,28 @@ Per iniziare, [scaricare il pacchetto del cluster autonomo](service-fabric-clust
 },
 ```
 
-Questa sezione descrive i certificati necessari per proteggere il cluster Windows autonomo. Se si specifica un certificato del cluster, impostare il valore di **ClusterCredentialType** su _**X509**_. Se si specifica un certificato del server per le connessioni esterne, impostare il valore di **ServerCredentialType** su _**X509**_. Benché non sia obbligatorio, è consigliabile disporre di entrambi questi certificati per un cluster adeguatamente protetto. Se si impostano questi valori su *X509*, sarà inoltre necessario specificare i certificati corrispondenti o Service Fabric genererà un'eccezione. In alcuni scenari può essere preferibile specificare solo _ClientCertificateThumbprints_ o _ReverseProxyCertificate_. In questi scenari non è necessario impostare _ClusterCredentialType_ o _ServerCredentialType_ su _X509_.
+In questa sezione illustra i certificati di hello che è necessario per proteggere il cluster di Windows autonoma. Se si specifica un certificato del cluster, impostare il valore di hello di **ClusterCredentialType** too_**X509**_. Se si specifica il certificato server per le connessioni esterne, impostare hello **ServerCredentialType** troppo_**X509**_. Sebbene non obbligatorio, è consigliabile toohave entrambi questi certificati per un cluster protetto correttamente. Se si imposta questi valori troppo*X509* è necessario specificare anche hello certificati corrispondenti o Service Fabric genererà un'eccezione. In alcuni scenari, può essere solo hello toospecify _ClientCertificateThumbprints_ o _ReverseProxyCertificate_. In tali scenari, non è necessario impostare _ClusterCredentialType_ o _ServerCredentialType_ too_X509_.
 
 
 > [!NOTE]
-> Un' [identificazione personale](https://en.wikipedia.org/wiki/Public_key_fingerprint) è l'identità primaria di un certificato. Per trovare l'identificazione personale dei certificati creati dall'utente, vedere [Procedura: Recuperare l'identificazione personale di un certificato](https://msdn.microsoft.com/library/ms734695.aspx) .
+> Oggetto [identificazione personale](https://en.wikipedia.org/wiki/Public_key_fingerprint) hello identità primaria di un certificato. Lettura [come tooretrieve identificazione personale di un certificato](https://msdn.microsoft.com/library/ms734695.aspx) toofind all'identificazione personale hello di hello che i certificati creati.
 > 
 > 
 
-La tabella seguente include un elenco dei certificati necessari per la configurazione del cluster:
+Hello nella tabella seguente elenca i certificati di hello che sarà necessario nel programma di installazione del cluster:
 
 | **CertificateInformation Setting** | **Descrizione** |
 | --- | --- |
-| ClusterCertificate |Consigliato per l'ambiente di test. Questo certificato è necessario per proteggere la comunicazione tra i nodi di un cluster. È possibile usare due diversi certificati, uno primario e uno secondario per l'aggiornamento. Impostare l'identificazione personale del certificato primario nella sezione **Thumbprint** e quella del certificato secondario nelle variabili **ThumbprintSecondary**. |
-| ClusterCertificateCommonNames |Consigliato per l'ambiente di produzione. Questo certificato è necessario per proteggere la comunicazione tra i nodi di un cluster. È possibile usare uno o due nomi comuni del certificato del cluster. |
-| ServerCertificate |Consigliato per l'ambiente di test. Questo certificato viene presentato al client quando tenta di connettersi al cluster. Per praticità, è possibile scegliere di usare lo stesso certificato per *ClusterCertificate* e *ServerCertificate*. È possibile usare due diversi certificati del server, uno primario e uno secondario per l'aggiornamento. Impostare l'identificazione personale del certificato primario nella sezione **Thumbprint** e quella del certificato secondario nelle variabili **ThumbprintSecondary**. |
-| ServerCertificateCommonNames |Consigliato per l'ambiente di produzione. Questo certificato viene presentato al client quando tenta di connettersi al cluster. Per praticità, è possibile scegliere di usare lo stesso certificato per *ClusterCertificateCommonNames* e *ServerCertificateCommonNames*. È possibile usare uno o due nomi comuni del certificato del server. |
-| ClientCertificateThumbprints |Si tratta di un set di certificati che da installare nei client autenticati. È possibile avere diversi certificati client installati nei computer a cui si vuole consentire l'accesso al cluster. Impostare l'identificazione personale di ogni certificato nella variabile **CertificateThumbprint** . Se si imposta **IsAdmin** su *true*, il client in cui è installato questo certificato può eseguire attività di gestione degli amministratori per il cluster. Se **IsAdmin** è *false*, il client con questo certificato può eseguire solo le azioni consentite con diritti di accesso utente, in genere di sola lettura. Per altre informazioni sui ruoli, vedere [Controllo degli accessi in base al ruolo (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac) |
-| ClientCertificateCommonNames |Impostare il nome comune del primo certificato client per **CertificateCommonName**. **CertificateIssuerThumbprint** è l'identificazione personale dell'autorità emittente del certificato. Per altre informazioni sui nomi comuni e sull'autorità emittente, vedere [Utilizzo dei certificati](https://msdn.microsoft.com/library/ms731899.aspx) . |
-| ReverseProxyCertificate |Consigliato per l'ambiente di test. Si tratta di un certificato facoltativo che è possibile specificare se si vuole proteggere il [proxy inverso](service-fabric-reverseproxy.md). Se si usa questo certificato, assicurarsi che reverseProxyEndpointPort sia impostato in nodeTypes. |
-| ReverseProxyCertificateCommonNames |Consigliato per l'ambiente di produzione. Si tratta di un certificato facoltativo che è possibile specificare se si vuole proteggere il [proxy inverso](service-fabric-reverseproxy.md). Se si usa questo certificato, assicurarsi che reverseProxyEndpointPort sia impostato in nodeTypes. |
+| ClusterCertificate |Consigliato per l'ambiente di test. Questo certificato è obbligatorio toosecure hello comunicazione tra i nodi di hello in un cluster. È possibile usare due diversi certificati, uno primario e uno secondario per l'aggiornamento. Impostare l'identificazione personale hello del certificato primario hello in hello **identificazione personale** sezione e quello di hello secondario nel hello **ThumbprintSecondary** variabili. |
+| ClusterCertificateCommonNames |Consigliato per l'ambiente di produzione. Questo certificato è obbligatorio toosecure hello comunicazione tra i nodi di hello in un cluster. È possibile usare uno o due nomi comuni del certificato del cluster. |
+| ServerCertificate |Consigliato per l'ambiente di test. Questo certificato viene presentato toohello client durante il tentativo di tooconnect toothis cluster. Per praticità, è possibile scegliere toouse hello stesso certificato per *ClusterCertificate* e *ServerCertificate*. È possibile usare due diversi certificati del server, uno primario e uno secondario per l'aggiornamento. Impostare l'identificazione personale hello del certificato primario hello in hello **identificazione personale** sezione e quello di hello secondario nel hello **ThumbprintSecondary** variabili. |
+| ServerCertificateCommonNames |Consigliato per l'ambiente di produzione. Questo certificato viene presentato toohello client durante il tentativo di tooconnect toothis cluster. Per praticità, è possibile scegliere toouse hello stesso certificato per *ClusterCertificateCommonNames* e *ServerCertificateCommonNames*. È possibile usare uno o due nomi comuni del certificato del server. |
+| ClientCertificateThumbprints |Si tratta di un set di certificati che si desidera tooinstall nei client hello autenticato. Si può avere un numero diverso di certificati di client installati in computer hello che si desidera che tooallow accesso toohello cluster. Impostare l'identificazione personale hello di ogni certificato in hello **CertificateThumbprint** variabile. Se si imposta hello **IsAdmin** troppo*true*, quindi client hello con il certificato installato può eseguire amministratore attività di gestione in cluster hello. Se hello **IsAdmin** è *false*, client hello con questo certificato può eseguire solo azioni hello consentite per i diritti di accesso utente, in genere di sola lettura. Per altre informazioni sui ruoli, vedere [Controllo degli accessi in base al ruolo (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac) |
+| ClientCertificateCommonNames |Set hello nome comune del certificato client prima di hello hello **CertificateCommonName**. Hello **CertificateIssuerThumbprint** è l'identificazione personale hello per emittente hello del certificato. Lettura [utilizzo dei certificati](https://msdn.microsoft.com/library/ms731899.aspx) tooknow informazioni sui nomi comuni e dell'autorità emittente hello. |
+| ReverseProxyCertificate |Consigliato per l'ambiente di test. Si tratta di un certificato facoltativo che può essere specificato se si desidera toosecure il [Proxy inverso](service-fabric-reverseproxy.md). Se si usa questo certificato, assicurarsi che reverseProxyEndpointPort sia impostato in nodeTypes. |
+| ReverseProxyCertificateCommonNames |Consigliato per l'ambiente di produzione. Si tratta di un certificato facoltativo che può essere specificato se si desidera toosecure il [Proxy inverso](service-fabric-reverseproxy.md). Se si usa questo certificato, assicurarsi che reverseProxyEndpointPort sia impostato in nodeTypes. |
 
-Ecco un esempio di una configurazione cluster in cui sono stati specificati certificati cluster, server e client. Si noti che per i certificati del cluster/server/proxy inverso, non è consentito configurare insieme l'identificazione personale e il nome comune per lo stesso tipo di certificato.
+Di seguito è esempio di configurazione di cluster in cui sono stati forniti i certificati Client, Server e Cluster hello. Si noti che per cluster / server / reverseProxy certificati, l'identificazione personale e nome comune non sono consentiti toobe configurati insieme per hello stesso tipo di certificato.
 
  ```JSON
  {
@@ -124,14 +124,14 @@ Ecco un esempio di una configurazione cluster in cui sono stati specificati cert
     "apiVersion": "2016-09-26",
     "nodes": [{
         "nodeName": "vm0",
-        "metadata": "Replace the localhost below with valid IP address or FQDN",
+        "metadata": "Replace hello localhost below with valid IP address or FQDN",
         "iPAddress": "10.7.0.5",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r0",
         "upgradeDomain": "UD0"
     }, {
         "nodeName": "vm1",
-        "metadata": "Replace the localhost with valid IP address or FQDN",
+        "metadata": "Replace hello localhost with valid IP address or FQDN",
         "iPAddress": "10.7.0.4",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r1",
@@ -139,21 +139,21 @@ Ecco un esempio di una configurazione cluster in cui sono stati specificati cert
     }, {
         "nodeName": "vm2",
         "iPAddress": "10.7.0.6",
-        "metadata": "Replace the localhost with valid IP address or FQDN",
+        "metadata": "Replace hello localhost with valid IP address or FQDN",
         "nodeTypeRef": "NodeType0",
         "faultDomain": "fd:/dc1/r2",
         "upgradeDomain": "UD2"
     }],
     "properties": {
         "diagnosticsStore": {
-        "metadata":  "Please replace the diagnostics store with an actual file share accessible from all cluster machines.",
+        "metadata":  "Please replace hello diagnostics store with an actual file share accessible from all cluster machines.",
         "dataDeletionAgeInDays": "7",
         "storeType": "FileShare",
         "IsEncrypted": "false",
         "connectionstring": "c:\\ProgramData\\SF\\DiagnosticsStore"
         }
         "security": {
-            "metadata": "The Credential type X509 indicates this is cluster is secured using X509 Certificates. The thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
+            "metadata": "hello Credential type X509 indicates this is cluster is secured using X509 Certificates. hello thumbprint format is - d5 ec 42 3b 79 cb e5 07 fd 83 59 3c 56 b9 d5 31 24 25 42 64.",
             "ClusterCredentialType": "X509",
             "ServerCredentialType": "X509",
             "CertificateInformation": {
@@ -217,46 +217,46 @@ Ecco un esempio di una configurazione cluster in cui sono stati specificati cert
 
 ## <a name="certificate-roll-over"></a>Rollover del certificato
 Quando si usa il nome comune del certificato al posto dell'identificazione personale, il rollover del certificato non richiede l'aggiornamento della configurazione del cluster.
-Se il rollover del certificato implica il rollover dell'autorità di certificazione, mantenere il certificato dell'autorità di certificazione precedente nell'archivio del certificato per almeno 2 ore dopo aver installato il nuovo certificato dell'autorità di certificazione.
+Se prevede di rollover certificato dell'autorità di certificazione continuata, tenere il certificato dell'autorità di certificazione precedente di hello nell'archivio cert hello almeno 2 ore dopo l'installazione del certificato dell'autorità di certificazione nuovo hello.
 
-## <a name="acquire-the-x509-certificates"></a>Acquisire i certificati X.509
-Per proteggere la comunicazione nel cluster, è prima necessario ottenere i certificati X.509 per i nodi del cluster. Per limitare inoltre la connessione al cluster a computer o utenti autorizzati, è necessario ottenere e installare i certificati per i computer client.
+## <a name="acquire-hello-x509-certificates"></a>Acquisire i certificati x. 509 hello
+comunicazione toosecure all'interno di cluster hello, è necessario innanzitutto i certificati x. 509 tooobtain per i nodi del cluster. Inoltre, toolimit connessione toothis cluster tooauthorized macchine/gli utenti, sarà anche necessario tooobtain e installare i certificati per i computer client hello.
 
-Per proteggere i cluster che eseguono carichi di lavoro di produzione, è consigliabile usare un certificato X.509 firmato da un' [autorità di certificazione (CA)](https://en.wikipedia.org/wiki/Certificate_authority) . Per informazioni dettagliate su come ottenere questi certificati, vedere [Procedura: ottenere un certificato (WCF)](http://msdn.microsoft.com/library/aa702761.aspx).
+Per i cluster che eseguono carichi di lavoro di produzione, è necessario utilizzare un [autorità di certificazione (CA)](https://en.wikipedia.org/wiki/Certificate_authority) firmato cluster hello toosecure di certificato x. 509. Per informazioni dettagliate su come ottenere questi certificati, vedere troppo[procedura: ottenere un certificato](http://msdn.microsoft.com/library/aa702761.aspx).
 
-Per i cluster usati solo a scopo di test, si può scegliere di usare un certificato autofirmato.
+Per i cluster che si usa per scopi di test, è possibile scegliere un certificato autofirmato toouse.
 
 ## <a name="optional-create-a-self-signed-certificate"></a>Facoltativo: creare un certificato autofirmato
-Un modo per creare un certificato autofirmato che possa essere protetto correttamente consiste nell'usare lo script *CertSetup.ps1* della cartella Service Fabric SDK nella directory *C:\Programmi\Microsoft SDKs\Service Fabric\ClusterSetup\Secure*. Modificare questo file per cambiare il nome predefinito del certificato (cercare il valore *CN = ServiceFabricDevClusterCert*). Eseguire questo script come `.\CertSetup.ps1 -Install`.
+Un modo toocreate un certificato autofirmato che può essere protetta correttamente è hello toouse *CertSetup.ps1* script nella cartella di Service Fabric SDK hello nella directory di hello *C:\Program Files\Microsoft SDKs\Service Fabric\ ClusterSetup\Secure*. Modificare questo nome di file toochange hello predefinito del certificato hello (cercare il valore di hello *CN = ServiceFabricDevClusterCert*). Eseguire questo script come `.\CertSetup.ps1 -Install`.
 
-Esportare ora il certificato in un file PFX con una password protetta. Ottenere per prima cosa l'identificazione personale del certificato. Dal menu *Start* eseguire *Gestisci i certificati computer*. Passare alla cartella **Computer locale\Personale** e cercare il certificato appena creato. Fare doppio clic sul certificato per aprirlo, selezionare la scheda *Dettagli* e quindi scorrere verso il basso fino al campo *Identificazione personale*. Copiare il valore dell'identificazione personale nel comando PowerShell di seguito, dopo aver rimosso gli spazi.  Modificare il valore `String` in una password sicura idonea di protezione ed eseguire quanto segue in PowerShell:
+Ora, esportare file di hello certificato tooa PFX con una password protetta. Ottenere innanzitutto l'identificazione personale hello del certificato di hello. Da hello *avviare* menu, eseguire hello *gestire i certificati del computer*. Passare toohello **locale\Personale.** cartella e individuare hello certificato appena creato. Fare doppio clic su tooopen certificato hello è hello seleziona *dettagli* scheda e scorrere verso il basso toohello *identificazione personale* campo. Copiare il valore di identificazione personale hello nel comando di PowerShell hello seguito, dopo aver rimosso gli spazi hello.  Hello modifica `String` valore tooa password sicura adatto tooprotect e hello esecuzione seguente in PowerShell:
 
 ```powershell   
 $pswd = ConvertTo-SecureString -String "1234" -Force –AsPlainText
 Get-ChildItem -Path cert:\localMachine\my\<Thumbprint> | Export-PfxCertificate -FilePath C:\mypfx.pfx -Password $pswd
 ```
 
-Per visualizzare i dettagli di un certificato installato nel computer, è possibile eseguire il comando di PowerShell seguente:
+toosee hello dettagli di un certificato installato hello del computer è possibile eseguire il comando PowerShell seguente hello:
 
 ```powershell
 $cert = Get-Item Cert:\LocalMachine\My\<Thumbprint>
 Write-Host $cert.ToString($true)
 ```
 
-In alternativa, se si dispone di una sottoscrizione di Azure, vedere la sezione [Aggiungere i certificati all'insieme di credenziali delle chiavi](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault).
+In alternativa, se si dispone di una sottoscrizione di Azure, attenersi alla sezione hello [aggiungere certificati tooKey insieme di credenziali](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault).
 
-## <a name="install-the-certificates"></a>Installare i certificati
-Dopo aver ottenuto i certificati, è possibile installarli nei nodi del cluster. È necessario che nei nodi sia già installata la versione più recente di Windows PowerShell 3.x. È necessario ripetere questi passaggi in ogni nodo, sia per i certificati cluster e server che per gli eventuali certificati secondari.
+## <a name="install-hello-certificates"></a>Installare i certificati di hello
+Dopo aver creato uno o più certificati, è possibile installare nei nodi del cluster hello. I nodi devono toohave hello più recente di Windows PowerShell 3. x installati su di essi. Sarà necessario toorepeat questi passaggi in ogni nodo, per i certificati di Cluster sia del Server e i certificati secondari.
 
-1. Copiare i file PFX nel nodo.
-2. Aprire una finestra di PowerShell come amministratore e immettere i comandi seguenti. Sostituire *$pswd* con la password usata per creare il certificato. Sostituire *$PfxFilePath* con il percorso completo del file PFX copiato nel nodo.
+1. Nodo di toohello file con estensione pfx hello copia.
+2. Aprire una finestra di PowerShell come amministratore e immettere i seguenti comandi hello. Sostituire hello *$pswd* con password hello utilizzato toocreate questo certificato. Sostituire hello *$PfxFilePath* con percorso completo di hello del nodo di hello PFX toothis copiato.
    
     ```powershell
     $pswd = "1234"
     $PfxFilePath ="C:\mypfx.pfx"
     Import-PfxCertificate -Exportable -CertStoreLocation Cert:\LocalMachine\My -FilePath $PfxFilePath -Password (ConvertTo-SecureString -String $pswd -AsPlainText -Force)
     ```
-3. Impostare ora il controllo di accesso per questo certificato in modo che possa essere usato dal processo di Service Fabric, eseguito con l'account Servizio di rete, con lo script seguente. Specificare l'identificazione personale del certificato e "NETWORK SERVICE" come account del servizio. È possibile controllare che gli ACL per il certificato siano corretti aprendo il certificato in *Start* > *Gestisci i certificati computer* ed esaminando *Tutte le attività* > *Gestisci chiavi private*.
+3. Impostare ora il controllo di accesso hello presente sul certificato in modo che il processo Service Fabric hello, che viene eseguito con l'account del servizio di rete hello, usarlo eseguendo lo script seguente hello. Specificare hello identificazione personale del certificato di hello e "Servizio di rete" per l'account del servizio hello. È possibile verificare che gli ACL hello certificato hello siano corrette, aprire il certificato di hello in *avviare* > *gestire i certificati del computer* ed esaminando *tutteleattività*  >  *Gestisci chiavi Private*.
    
     ```powershell
     param
@@ -272,54 +272,54 @@ Dopo aver ottenuto i certificati, è possibile installarli nei nodi del cluster.
    
     $cert = Get-ChildItem -Path cert:\LocalMachine\My | Where-Object -FilterScript { $PSItem.ThumbPrint -eq $pfxThumbPrint; }
    
-    # Specify the user, the permissions and the permission type
+    # Specify hello user, hello permissions and hello permission type
     $permission = "$($serviceAccount)","FullControl","Allow"
     $accessRule = New-Object -TypeName System.Security.AccessControl.FileSystemAccessRule -ArgumentList $permission
    
-    # Location of the machine related keys
+    # Location of hello machine related keys
     $keyPath = Join-Path -Path $env:ProgramData -ChildPath "\Microsoft\Crypto\RSA\MachineKeys"
     $keyName = $cert.PrivateKey.CspKeyContainerInfo.UniqueKeyContainerName
     $keyFullPath = Join-Path -Path $keyPath -ChildPath $keyName
    
-    # Get the current acl of the private key
+    # Get hello current acl of hello private key
     $acl = (Get-Item $keyFullPath).GetAccessControl('Access')
    
-    # Add the new ace to the acl of the private key
+    # Add hello new ace toohello acl of hello private key
     $acl.SetAccessRule($accessRule)
    
-    # Write back the new acl
+    # Write back hello new acl
     Set-Acl -Path $keyFullPath -AclObject $acl -ErrorAction Stop
    
-    # Observe the access rights currently assigned to this certificate.
+    # Observe hello access rights currently assigned toothis certificate.
     get-acl $keyFullPath| fl
     ```
-4. Ripetere i passaggi precedenti per ogni certificato del server. Questa procedura può essere usata anche per installare i certificati client nei computer a cui si vuole consentire l'accesso al cluster.
+4. Ripetere i passaggi di hello sopra per ogni certificato del server. È inoltre possibile utilizzare questi passaggi tooinstall hello certificati client sul computer hello che si desidera che tooallow accesso toohello cluster.
 
-## <a name="create-the-secure-cluster"></a>Creare il cluster sicuro
-Dopo aver configurato la sezione **sicurezza** del file **ClusterConfig.X509.MultiMachine.json**, passare alla sezione [Create your cluster](service-fabric-cluster-creation-for-windows-server.md#createcluster) (Crea il cluster) per configurare i nodi e creare il cluster autonomo. Ricordarsi di usare il file **ClusterConfig.X509.MultiMachine.json** mentre si crea il cluster. Ad esempio, il comando può essere simile al seguente:
+## <a name="create-hello-secure-cluster"></a>Creare cluster sicuro hello
+Dopo aver configurato hello **sicurezza** sezione di hello **ClusterConfig.X509.MultiMachine.json** file, è possibile procedere troppo[creare il cluster](service-fabric-cluster-creation-for-windows-server.md#createcluster) tooconfigure sezione Hello nodi e creare cluster autonomi di hello. Ricordare hello toouse **ClusterConfig.X509.MultiMachine.json** file durante la creazione di cluster hello. Il comando, ad esempio, potrebbe essere hello seguente:
 
 ```powershell
 .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
-Quando il cluster Windows autonomo sicuro è in esecuzione e sono stati configurati i client autenticati per la connessione al cluster, vedere la sezione [Connect to a secure cluster using PowerShell (Connettersi a un cluster sicuro mediante PowerShell)](service-fabric-connect-to-secure-cluster.md#connectsecurecluster) per stabilire la connessione. Ad esempio:
+Dopo aver protetto hello autonomo Windows cluster correttamente in esecuzione e il programma di installazione hello client autenticati tooconnect tooit, attenersi alla sezione hello [Connetti tooa cluster protetto tramite PowerShell](service-fabric-connect-to-secure-cluster.md#connectsecurecluster) tooconnect tooit. ad esempio:
 
 ```powershell
 $ConnectArgs = @{  ConnectionEndpoint = '10.7.0.5:19000';  X509Credential = $True;  StoreLocation = 'LocalMachine';  StoreName = "MY";  ServerCertThumbprint = "057b9544a6f2733e0c8d3a60013a58948213f551";  FindType = 'FindByThumbprint';  FindValue = "057b9544a6f2733e0c8d3a60013a58948213f551"   }
 Connect-ServiceFabricCluster $ConnectArgs
 ```
 
-È quindi possibile eseguire altri comandi di PowerShell per usare questo cluster. È possibile, ad esempio, usare il comando [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode.md?view=azureservicefabricps) per visualizzare un elenco di nodi nel cluster protetto.
+È quindi possibile eseguire altri toowork i comandi di PowerShell con questo cluster. Ad esempio, [Get ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode.md?view=azureservicefabricps) tooshow un elenco di nodi nel cluster protetto.
 
 
-Per rimuovere il cluster, connettersi al nodo del cluster in cui è stato scaricato il pacchetto di Service Fabric, aprire una riga di comando e passare alla cartella del pacchetto. Eseguire ora il comando seguente:
+cluster hello tooremove, connettere toohello nodo nel cluster hello in cui è stato scaricato il pacchetto di Service Fabric hello, aprire una riga di comando e passare toohello cartella del pacchetto. A questo punto eseguire hello comando seguente:
 
 ```powershell
 .\RemoveServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.MultiMachine.json
 ```
 
 > [!NOTE]
-> La configurazione non corretta del certificato può impedire la visualizzazione del cluster durante la distribuzione. Per diagnosticare automaticamente problemi di sicurezza, consultare il gruppo di Visualizzatore eventi *Registri applicazioni e servizi* > *Microsoft Service Fabric*.
+> Configurazione di un certificato non corretto può impedire a cluster hello presentarsi durante la distribuzione. tooself-diagnosticare i problemi di sicurezza, consultare il gruppo di Visualizzatore eventi *registri applicazioni e servizi* > *Microsoft Service Fabric*.
 > 
 > 
 

@@ -1,6 +1,6 @@
 ---
-title: "Configurare un metodo di routing del traffico Priorità con Gestione traffico di Azure | Microsoft Docs"
-description: "In questo articolo viene descritto come configurare il metodo di routing del traffico Priorità tramite Gestione traffico di Azure"
+title: "metodo di routing tramite Azure Traffic Manager il traffico priorità aaaConfigure | Documenti Microsoft"
+description: "Questo articolo viene illustrato come metodo di routing in Traffic Manager il traffico priorità hello tooconfigure"
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/20/2017
 ms.author: kumud
-ms.openlocfilehash: 0db83cde6facc89b8b8aa72e6419129ec868235c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dd3e3bb2a727e5ea087cee35962c8e6f7c357282
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-priority-traffic-routing-method-in-traffic-manager"></a>Configurare il metodo di routing del traffico Priorità di Gestione traffico
 
-Indipendentemente dalla modalità del sito Web, i siti Web di Azure forniscono funzionalità di failover per i siti Web che si trovano in un data center (noto anche come area). Gestione traffico fornisce failover per i siti Web in diversi data center.
+Indipendentemente dalla modalità sito Web di hello, siti Web di Azure forniscono già funzionalità di failover per siti Web all'interno di un Data Center (noto anche come area). Gestione traffico fornisce failover per i siti Web in diversi data center.
 
-Un modello comune per il failover del servizio consiste nell'invio di traffico a un servizio primario e nel fornire un set di servizi di backup identici per il failover. I passaggi seguenti illustrano come configurare il failover con priorità con siti Web e servizi cloud di Azure:
+Un modello comune per il failover del servizio è servizio primario di toosend traffico tooa e forniscono un set identico di servizi di backup per il failover. Hello passaggi seguenti illustrano come tooconfigure questa priorità failover con servizi cloud di Azure e siti Web:
 
-## <a name="to-configure-the-priority-traffic-routing-method"></a>Per configurare il metodo di routing del traffico Priorità
+## <a name="tooconfigure-hello-priority-traffic-routing-method"></a>metodo routing del traffico tooconfigure hello priorità
 
-1. Da un browser accedere al [Portale di Azure](http://portal.azure.com). Se non si ha già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free/). 
-2. Nella barra di ricerca del portale cercare i **profili di Gestione traffico** e quindi fare clic sul nome di profilo per cui si vuole configurare il metodo.
-3. Nel pannello **Profilo di Gestione traffico** verificare che siano presenti sia i servizi cloud che i siti Web che si intende includere nella configurazione.
-4. Nella sezione **Impostazioni** fare clic su **Configurazione** e nel pannello **Configurazione** procedere come riportato di seguito:
-    1. Nelle **impostazioni del metodo di routing del traffico** verificare che il metodo di routing del traffico sia **Priorità**. In caso contrario, fare clic su **Priorità** nell'elenco a discesa.
-    2. Definire le stesse **impostazioni di monitoraggio degli endpoint** per tutti gli endpoint in questo profilo come indicato di seguito:
-        1. Selezionare il **protocollo** appropriato e specificare il numero di **porta**. 
-        2. In **Percorso** immettere una barra */*. Per monitorare gli endpoint, è necessario specificare un percorso e un nome file. Una barra ("/") è una voce valida per il percorso relativo e implica che il file si trovi nella directory radice (impostazione predefinita).
-        3. Nella parte superiore della pagina fare clic su **Salva**.
-5. Nella sezione **Impostazioni** fare clic su **Endpoint**.
-6. Nel pannello **Endpoint** esaminare l'ordine di priorità per gli endpoint. Quando si seleziona il metodo di routing del traffico **Priorità**, l'ordine degli endpoint selezionati è rilevante. Verificare l'ordine di priorità degli endpoint.  L'endpoint primario si trova nella parte superiore. Verificare l'ordine di visualizzazione. Tutte le richieste vengono instradate al primo endpoint e, se Gestione traffico rileva che tale endpoint non è integro, viene eseguito automaticamente il failover del traffico sull'endpoint successivo. 
-7. Per modificare l'ordine di priorità dell'endpoint, fare clic sull'endpoint e nel pannello **Endpoint** visualizzato fare clic su **Modifica** e cambiare il valore di **Priorità** in base alle esigenze. 
-8. Fare clic su **Salva** per salvare e modificare le impostazioni dell'endpoint.
-9. Dopo aver completato le modifiche di configurazione, fare clic su **Salva** nella parte inferiore della pagina.
-10. Verificare le modifiche apportate alla configurazione come riportato di seguito:
-    1.  Nella barra di ricerca del portale cercare il nome del profilo di Gestione traffico e fare clic su tale profilo nei risultati visualizzati.
-    2.  Nel pannello **Profilo di Gestione traffico** fare clic su **Informazioni generali**.
-    3.  Nel pannello **Profilo di Gestione traffico** viene visualizzato il nome DNS del profilo di Gestione traffico creato. Questo nome può essere usato da qualsiasi client (ad esempio raggiungendolo tramite un Web browser) per essere indirizzato all'endpoint corretto in base al tipo di routing. In questo caso, tutte le richieste vengono instradate al primo endpoint e, se Gestione traffico rileva che tale endpoint non è integro, viene eseguito automaticamente il failover del traffico sull'endpoint successivo.
-11. Dopo aver verificato il funzionamento del profilo di Gestione traffico, modificare il record DNS sul server DNS autorevole per fare in modo che il nome del dominio aziendale punti al nome di dominio di Gestione traffico.
+1. Da un browser, accedi toohello [portale di Azure](http://portal.azure.com). Se non si ha già di un account, è possibile iscriversi per ottenere una [versione di valutazione gratuita della durata di un mese](https://azure.microsoft.com/free/). 
+2. Nella barra di ricerca del portale hello, cercare hello **profili di gestione traffico** e quindi fare clic su nome del profilo hello desiderati come metodo di routing hello tooconfigure per.
+3. In hello **profilo di gestione traffico** pannello, verificare che sia hello servizi cloud e siti Web che si desidera tooinclude nella configurazione sono presenti.
+4. In hello **impostazioni** fare clic su **configurazione**e in hello **configurazione** pannello completo come segue:
+    1. Per **impostazioni del metodo di routing del traffico**, verificare che sia di metodo di routing del traffico hello **priorità**. In caso contrario, fare clic su **priorità** dall'elenco a discesa hello.
+    2. Set hello **le impostazioni di monitoraggio Endpoint** identici per tutti i ogni endpoint in questo profilo come indicato di seguito:
+        1. Seleziona hello appropriato **protocollo**e specificare hello **porta** numero. 
+        2. In **Percorso** immettere una barra */*. toomonitor endpoint, è necessario specificare un percorso e nome file. Barra "/" è una voce valida per il percorso relativo hello e implica che il file hello trovi nella directory radice di hello (impostazione predefinita).
+        3. Nella parte superiore di hello della pagina hello, fare clic su **salvare**.
+5. In hello **impostazioni** fare clic su **endpoint**.
+6. In hello **endpoint** pannello revisione hello di ordine di priorità per gli endpoint. Quando si seleziona hello **priorità** metodo di routing del traffico, hello ordine degli endpoint hello selezionato è rilevante. Verificare l'ordine di priorità hello degli endpoint.  endpoint primario Hello è in primo piano. Fare doppio clic sull'ordine di hello che viene visualizzato. tutte le richieste verranno indirizzati toohello primo endpoint e se Gestione traffico rileva in non integro, il traffico hello automaticamente eseguito il failover toohello successivo endpoint. 
+7. toochange hello ordine di priorità dell'endpoint, fare clic sull'endpoint, hello e hello **Endpoint** pannello in cui è visualizzato, fare clic su **modifica** e modificare hello **priorità** valore in base alle esigenze . 
+8. Fare clic su **salvare** toosave modificare le impostazioni di endpoint hello.
+9. Dopo aver completato le modifiche di configurazione, fare clic su **salvare** nella parte inferiore di hello della pagina hello.
+10. Testare le modifiche di hello nella configurazione, come indicato di seguito:
+    1.  Nella barra di ricerca del portale hello, cercare il nome del profilo di Traffic Manager hello e scegliere il profilo di gestione traffico hello nei risultati di hello che hello visualizzato.
+    2.  In hello **Traffic Manager** profilo pannello, fare clic su **Panoramica**.
+    3.  Hello **profilo di gestione traffico** pannello viene visualizzato il nome DNS hello del profilo di Traffic Manager appena creato. È utilizzabile da qualsiasi endpoint destra di toohello tooget instradati ai client (ad esempio, passando tooit tramite un browser web) come determinato dal tipo di routing hello. In questo caso tutte le richieste vengono indirizzato toohello primo endpoint e se Gestione traffico rileva in non integro, il traffico hello automaticamente eseguito il failover toohello successivo endpoint.
+11. Dopo avere utilizza profilo di Traffic Manager, modificare il record DNS hello nel toopoint di server DNS autorevole il nome di dominio della società dominio nome toohello Traffic Manager.
 
 ![Configurare il metodo di routing del traffico Priorità in Gestione traffico][1]
 
@@ -56,7 +56,7 @@ Un modello comune per il failover del servizio consiste nell'invio di traffico a
 - Informazioni sul [metodo di routing del traffico Ponderato](traffic-manager-configure-weighted-routing-method.md).
 - Informazioni sul [metodo di routing Prestazioni](traffic-manager-configure-performance-routing-method.md).
 - Informazioni sul [metodo di routing Geografico](traffic-manager-configure-geographic-routing-method.md).
-- Informazioni su come [testare le impostazioni di Gestione traffico](traffic-manager-testing-settings.md).
+- Informazioni su come troppo[verificare le impostazioni di gestione traffico](traffic-manager-testing-settings.md).
 
 <!--Image references-->
 [1]: ./media/traffic-manager-priority-routing-method/traffic-manager-priority-routing-method.png

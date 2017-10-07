@@ -1,5 +1,5 @@
 ---
-title: Applicazioni Big Data compatibili con Data Lake Store | Documentazione Microsoft
+title: applicazioni dati aaaBig compatibile con l'archivio Data Lake | Documenti Microsoft
 description: Elenco di applicazioni open source di origine che funzionano con Archivio Data Lake di Azure
 services: data-lake-store
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 0570e86c16ff3bc647040c202ab46df535bb2ba1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ad4afd6437412c596c77d6b001478b82ddccf276
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="open-source-big-data-applications-that-work-with-azure-data-lake-store"></a>Aprire le applicazioni Big Data di origine che funzionano con Archivio Data Lake di Azure
-Questo articolo elenca le applicazioni Big Data di origine che funzionano con Archivio Data Lake di Azure Per le applicazioni nella tabella seguente, sono supportate solo le versioni disponibili con la distribuzione elencata. Per sapere quali versioni di queste applicazioni sono disponibili con HDInsight, vedere [Controllo delle versioni del componente HDInsight](../hdinsight/hdinsight-component-versioning.md).
+Questo articolo elenca applicazioni di big data hello open source che funzionano con l'archivio Azure Data Lake. Per le applicazioni di hello nella tabella hello sotto, hello solo le versioni disponibili con la distribuzione di hello elencato sono supportate. Per sapere quali versioni di queste applicazioni sono disponibili con HDInsight, vedere [Controllo delle versioni del componente HDInsight](../hdinsight/hdinsight-component-versioning.md).
 
 | Software Open Source | Distribuzione |
 | --- | --- |

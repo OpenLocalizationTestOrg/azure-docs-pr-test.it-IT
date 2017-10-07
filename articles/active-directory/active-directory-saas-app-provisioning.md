@@ -1,6 +1,6 @@
 ---
-title: Provisioning di utenti automatizzato per app SaaS in Azure AD | Microsoft Docs
-description: "Introduzione all'uso di Azure AD per eseguire automaticamente il provisioning, il deprovisioning e l'aggiornamento continuo degli account utente in più applicazioni SaaS di terze parti."
+title: aaaAutomated SaaS app provisioning degli utenti in Azure AD | Documenti Microsoft
+description: "Toohow un'introduzione è possibile usare il provisioning di tooautomatically di Azure AD, deprovisioning e aggiornare continuamente gli account utente in più applicazioni SaaS di terze parti."
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -14,90 +14,90 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/13/2017
 ms.author: curtand
-ms.openlocfilehash: 7cb780117d64d67449146b9757f8162e23e65d1e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a1f3ecdd513e2b603f8ad9901e9f551b3b982b2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="automate-user-provisioning-and-deprovisioning-to-saas-applications-with-azure-active-directory"></a>Automatizzare il provisioning e il deprovisioning utenti in applicazioni SaaS con Azure Active Directory
+# <a name="automate-user-provisioning-and-deprovisioning-toosaas-applications-with-azure-active-directory"></a>Automatizzare il provisioning e deprovisioning tooSaaS applicazioni con Azure Active Directory
 ## <a name="what-is-automated-user-provisioning-for-saas-apps"></a>Informazioni sul provisioning utenti automatizzato per app SaaS
-Azure Active Directory (Azure AD) consente di automatizzare la creazione, la manutenzione e la rimozione delle identità utente in applicazioni cloud ([SaaS](https://azure.microsoft.com/overview/what-is-saas/)), ad esempio Dropbox, Salesforce, ServiceNow e così via.
+Azure Active Directory (Azure AD) consente la creazione di hello tooautomate, la manutenzione e la rimozione delle identità utente nel cloud ([SaaS](https://azure.microsoft.com/overview/what-is-saas/)) le applicazioni, ad esempio Dropbox, Salesforce, ServiceNow e altro ancora.
 
-**Di seguito sono riportati alcuni esempi di operazioni che questa funzionalità consente di eseguire:**
+**Di seguito sono riportati alcuni esempi di ciò che questa funzionalità permette toodo:**
 
-* Creare automaticamente nuovi account nell'app SaaS appropriata per nuovi membri del team.
-* Disattivare automaticamente degli account dalle app SaaS quando i membri lasciano il team.
-* Assicurarsi che le identità nelle app SaaS siano sempre aggiornate in base alle modifiche nella directory.
-* Eseguire il provisioning di oggetti non utente, ad esempio di gruppi, in app SaaS che li supportano.
+* Crea automaticamente nuovi account in hello App SaaS corrette per i nuovi utenti quando accedono al team.
+* Quando gli utenti lasciano inevitabilmente team di hello verrà disattivato automaticamente gli account da app SaaS.
+* Verificare che le identità hello nelle App SaaS siano mantenute backup toodate in base alle modifiche nella directory hello.
+* Eseguire il provisioning di oggetti non utente, ad esempio gruppi, le app tooSaaS che li supportano.
 
-**Il provisioning utenti automatico include anche le funzionalità seguenti:**
+**Il provisioning utenti automatizzato include anche hello seguenti funzionalità:**
 
-* La possibilità di ottenere una corrispondenza tra identità esistenti in Azure AD e in app SaaS.
-* Opzioni di personalizzazione per adattare Azure AD alle configurazioni correnti delle app SaaS attualmente in uso nell'organizzazione.
+* Hello le identità esistenti possibilità toomatch tra Azure AD e le app SaaS.
+* Opzioni di personalizzazione toohelp AD Azure adatta configurazioni correnti di hello di App SaaS hello che l'organizzazione è attualmente in uso.
 * Avvisi di posta elettronica facoltativi per errori di provisioning.
-* Log di report e attività per facilitare il monitoraggio e la risoluzione dei problemi.
+* Creazione di report e attività toohelp registri con monitoraggio e risoluzione dei problemi.
 
 ## <a name="why-use-automated-provisioning"></a>Perché usare il provisioning automatico?
 Di seguito sono riportate alcune motivazioni comuni per l'uso di questa funzionalità:
 
-* Per evitare i costi, le inefficienze e gli errori umani associati ai processi di provisioning manuale.
-* Per proteggere l'organizzazione, rimuovendo immediatamente dalle app SaaS principali le identità degli utenti che lasciano l'organizzazione.
-* Per importare facilmente un blocco di utenti in una determinata applicazione SaaS.
-* Per sfruttare la praticità dell'uso da parte della soluzione di provisioning degli stessi criteri di accesso alle app definiti per Single Sign-On di Azure AD.
+* i costi di hello tooavoid inefficienze ed errori umani associato ai processi di provisioning manuale.
+* l'organizzazione rimuovendo immediatamente le identità degli utenti da toosecure chiave App SaaS quando escono dalla organizzazione hello.
+* tooeasily importare un numero di massa di utenti in una particolare applicazione SaaS.
+* praticità hello tooenjoy che la soluzione di provisioning eseguito da hello stessi criteri di accesso app definite per Azure AD Single Sign-On.
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
-**Con quale frequenza Azure AD scrive modifiche della directory nell'app SaaS?**
+**Frequenza con cui Azure AD scrivere app SaaS toohello modifiche di directory?**
 
-Azure AD verifica la presenza di modifiche ogni cinque o dieci minuti. Se l'app SaaS restituisce diversi errori (ad esempio in caso di credenziali di amministratore non valide), Azure AD rallenterà gradualmente la frequenza fino a un massimo di una volta al giorno, finché non vengono corretti gli errori.
+Azure AD Verifica presenza di modifiche ogni cinque minuti tooten. Se l'applicazione SaaS hello restituisce diversi errori (ad esempio in caso di hello di credenziali di amministratore non valida), gradualmente Azure AD rallenterà relativo tooonce tooup frequenza per ogni giorno fino a quando non saranno corretti hello.
 
-**Quanto tempo sarà necessario eseguire il provisioning degli utenti?**
+**Quanto tempo sarà necessario tooprovision gli utenti?**
 
-Le modifiche incrementali si verificano quasi immediatamente, ma se si sta tentando di eseguire il provisioning di gran parte delle directory, il tempo necessario dipende dal numero di utenti e gruppi presenti. Per le directory di piccole dimensioni sono necessari solo pochi minuti, per le directory di medie dimensioni alcuni minuti e per le directory di grandi dimensioni potrebbero essere necessarie diverse ore.
+Le modifiche incrementali verificarsi quasi istantaneamente ma se si tenta di tooprovision la maggior parte delle directory, quindi dipende dal numero di hello di utenti e gruppi di cui si dispone. Per le directory di piccole dimensioni sono necessari solo pochi minuti, per le directory di medie dimensioni alcuni minuti e per le directory di grandi dimensioni potrebbero essere necessarie diverse ore.
 
-**Come è possibile monitorare lo stato del processo di provisioning corrente?**
+**Come posso tenere traccia corso hello del processo di provisioning corrente hello?**
 
-È possibile esaminare il rapporto di provisioning dell'account nella sezione Report della directory. Un'altra opzione consiste nel visitare la scheda Dashboard per l'applicazione SaaS in cui si sta eseguendo il provisioning e cercare nella sezione "Stato integrazione" nella parte inferiore della pagina.
+È possibile esaminare hello Report Provisioning degli Account nella sezione report hello della directory. Un'altra opzione è toovisit hello applicazione SaaS che si esegue il provisioning della scheda Dashboard hello e guarda sotto la sezione "Integrazione con stato" nella parte inferiore di hello della pagina hello hello.
 
-**Come si può stabilire se il provisioning utenti non è stato eseguito correttamente?**
+**Come è possibile determinare se gli utenti non tooget il provisioning in modo corretto?**
 
-Al termine della configurazione guidata del provisioning viene visualizzata un'opzione per effettuare la sottoscrizione alle notifiche di posta elettronica per gli errori di provisioning. È inoltre possibile controllare il report degli errori di provisioning per verificare per quali utenti il provisioning non è riuscito e il motivo dell'errore.
+Alla fine hello hello provisioning guidato di configurazione vi è una notifica di tooemail toosubscribe opzione per il provisioning di errori. È inoltre possibile controllare gli utenti che non è stato possibile toobe il provisioning di hello Report degli errori di Provisioning toosee e sul motivo.
 
-**AD Azure può riscrivere le modifiche dell'app SaaS nella directory?**
+**Azure AD scrivere le modifiche dalla directory di backup toohello app SaaS hello?**
 
-Per la maggior parte delle app SaaS il provisioning è solo in uscita, pertanto gli utenti vengono scritti dalla directory nell'applicazione e le modifiche apportate nell'applicazione non possono essere riscritte nella directory. Per [Workday](https://msdn.microsoft.com/library/azure/dn762434.aspx), tuttavia, il provisioning è solo in ingresso, pertanto gli utenti vengono importati nella directory da Workday e le modifiche nella directory non vengono riscritte in Workday.
+Per la maggior parte delle applicazioni SaaS, il provisioning è solo in uscita, il che significa che gli utenti vengono scritte da un'applicazione hello directory toohello e le modifiche apportate da un'applicazione hello non possono essere scritta toohello directory. Per [Workday](https://msdn.microsoft.com/library/azure/dn762434.aspx), tuttavia, il provisioning è solo in ingresso, il che significa che gli utenti siano importati nella directory hello da Workday e allo stesso modo, le modifiche nella directory di hello non ottenere scritta in Workday.
 
-**È possibile inviare commenti e suggerimenti al team di progettazione?**
+**Come è possibile inviare i team di progettazione toohello di commenti e suggerimenti?**
 
-Contattare Microsoft tramite il [forum dei commenti di Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
+Contattare Microsoft tramite hello [forum sul feedback su Azure Active Directory](https://feedback.azure.com/forums/169401-azure-active-directory/).
 
 ## <a name="how-does-automated-provisioning-work"></a>Come funziona il provisioning automatizzato?
-Azure AD esegue il provisioning degli utenti nelle app SaaS connettendosi agli endpoint di provisioning forniti dal produttore dell'applicazione. Questi endpoint consentono ad Azure AD di creare, aggiornare e rimuovere gli utenti a livello di programmazione. Di seguito è riportata una breve panoramica dei vari passaggi eseguiti da Azure AD per automatizzare il provisioning.
+Azure AD esegue il provisioning utenti tooSaaS App connettendo endpoint tooprovisioning fornite da ogni fornitore dell'applicazione. Questi endpoint consentono di Azure AD tooprogrammatically creare, aggiornare e rimuovere utenti. Di seguito è fornita una breve panoramica di hello diversi passaggi che Azure AD accetta tooautomate provisioning.
 
-1. Quando si abilita per la prima volta il provisioning per un'applicazione, vengono eseguite le operazioni seguenti:
-   * Azure AD tenterà di ottenere una corrispondenza tra gli utenti esistenti nell'app SaaS e le identità corrispondenti nella directory. Quando c’è una corrispondenza per un utente è una corrispondenza, *non* è automaticamente abilitato per il servizio di single sign-on. Affinché un utente possa accedere all'applicazione, deve essere esplicitamente assegnato all'applicazione in Azure AD, direttamente o tramite l'appartenenza al gruppo.
-   * Se si è già specificato quali utenti devono essere assegnati all'applicazione e Azure AD non riesce a trovare account esistenti per tali utenti, Azure AD eseguirà il provisioning di nuovi account nell'applicazione.
-2. Dopo aver completato la sincronizzazione iniziale come descritto in precedenza, Azure AD verificherà ogni 10 minuti la presenza delle modifiche seguenti:
-   * Se sono stati assegnati nuovi utenti all'applicazione, direttamente o tramite l'appartenenza al gruppo, ne verrà eseguito il provisioning in un nuovo account nell'app SaaS.
-   * Se l'accesso di un utente è stato rimosso, il relativo account nell'app SaaS verrà contrassegnato come disabilitato. Gli utenti infatti non vengono mai completamente rimossi, per evitare la perdita dei dati in caso di configurazione errata.
-   * Se un utente è stato recentemente assegnato all'applicazione e dispone già di un account nell'app SaaS, tale account verrà contrassegnato come abilitato e alcune proprietà utente possono essere aggiornate se obsolete rispetto alla directory.
-   * Se sono state modificate nella directory le informazioni relative a un utente, ad esempio il numero di telefono, l'indirizzo dell'ufficio e così via, queste informazioni verranno aggiornate anche nell'applicazione SaaS.
+1. Quando si abilita il provisioning di un'applicazione hello per la prima volta, viene eseguita hello seguenti azioni:
+   * Azure Active Directory tenterà toomatch agli utenti esistenti con le identità corrispondenti nella directory hello app SaaS hello. Quando c’è una corrispondenza per un utente è una corrispondenza, *non* è automaticamente abilitato per il servizio di single sign-on. Affinché un'applicazione di toohello utente toohave accesso, si deve essere assegnati esplicitamente toohello app in Azure AD, direttamente o tramite l'appartenenza al gruppo.
+   * Se sono già stati specificati gli utenti che devono essere assegnati toohello applicazione e Azure AD ha esito negativo toofind account esistenti per gli utenti, Azure AD verrà effettuare il provisioning di nuovi account per tali in un'applicazione hello.
+2. Dopo aver completata la sincronizzazione iniziale di hello come descritto in precedenza, Azure AD verificherà ogni 10 minuti per hello seguenti modifiche:
+   * Se i nuovi utenti sono stati assegnati applicazione toohello (direttamente o tramite l'appartenenza al gruppo), quindi sarà eseguito il provisioning di un nuovo account di app SaaS hello.
+   * Se l'accesso dell'utente è stato rimosso, il relativo account in app SaaS hello verrà contrassegnato come disabilitato (gli utenti sono mai completamente rimossi, che impedisce la perdita di dati nell'evento hello di un errore di configurazione).
+   * Se si dispone già di un account di hello applicazione SaaS che l'account verrà contrassegnato come abilitato e alcune proprietà utente possono essere aggiornate se sono scadute toohello confrontati directory applicazione toohello recentemente è stato assegnato un utente.
+   * Se le informazioni dell'utente (ad esempio il numero di telefono ufficio, e così via) sono state modificate nella directory di hello, tali informazioni anche essere aggiornate in hello applicazione SaaS.
 
-Per altre informazioni sul mapping degli attributi tra Azure AD e l'app SaaS, vedere l'articolo [Personalizzazione dei mapping degli attributi](active-directory-saas-customizing-attribute-mappings.md).
+Per ulteriori informazioni sulla modalità di mapping tra Azure AD attributi e app SaaS, vedere l'articolo hello in [personalizzazione dei mapping di attributi](active-directory-saas-customizing-attribute-mappings.md).
 
 ## <a name="list-of-apps-that-support-automated-user-provisioning"></a>Elenco di applicazioni che supportano il provisioning utenti automatizzato
-Tutte le app "In primo piano" nella raccolta di applicazioni di Azure AD supportano il provisioning utenti automatizzato. L'elenco delle app in primo piano è disponibile [qui](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps?page=1&subcategories=featured).
+Tutte le app "In primo piano" hello nella raccolta di applicazioni Azure AD hello supporta il provisioning utenti automatizzato. [elenco di Hello di App in primo piano può essere visualizzato qui.](https://azuremarketplace.microsoft.com/marketplace/apps/category/azure-active-directory-apps?page=1&subcategories=featured)
 
-Affinché un'applicazione supporti il provisioning utenti automatizzato, deve innanzitutto fornire gli endpoint necessari che consentono ai programmi esterni di automatizzare la creazione, la manutenzione e la rimozione degli utenti. Pertanto, non tutte le app SaaS sono compatibili con questa funzionalità. Per le app che supportano questa funzionalità, il team di progettazione di Azure AD potrà creare un connettore di provisioning e l'ordine di priorità di questa operazione è stabilito in base alle esigenze dei clienti attuali e potenziali.
+Affinché un'applicazione toosupport automatizzati di provisioning dell'utente, innanzitutto necessario fornire hello gli endpoint necessari per la creazione di programmi esterni tooautomate hello, manutenzione e la rimozione degli utenti. Pertanto, non tutte le app SaaS sono compatibili con questa funzionalità. Per le applicazioni che supportano questa operazione, team di progettazione di hello Azure AD verrà quindi essere in grado di toobuild un provisioning toothose connettore App e il lavoro è ordinati in base alle esigenze di hello e potenziali clienti.
 
-Per contattare il team di progettazione di Azure AD per richiedere supporto sul provisioning di applicazioni aggiuntive, inviare un messaggio tramite il [forum dei commenti di Azure Active Directory](https://feedback.azure.com/forums/374982-azure-active-directory-application-requests/category/172035-user-provisioning).
+ingegneria hello Azure AD toocontact team toorequest provisioning il supporto per applicazioni aggiuntive, inviare un messaggio tramite hello [forum sul feedback su Azure Active Directory](https://feedback.azure.com/forums/374982-azure-active-directory-application-requests/category/172035-user-provisioning).
 
 ## <a name="related-articles"></a>Articoli correlati
 * [Indice di articoli per la gestione di applicazioni in Azure Active Directory](active-directory-apps-index.md)
 * [Personalizzazione dei mapping degli attributi per il Provisioning dell’utente](active-directory-saas-customizing-attribute-mappings.md)
 * [Scrittura di espressioni per i mapping degli attributi](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [Ambito dei filtri per il Provisioning utente](active-directory-saas-scoping-filters.md)
-* [Uso di SCIM per abilitare il provisioning automatico di utenti e gruppi da Azure Active Directory alle applicazioni](active-directory-scim-provisioning.md)
+* [Utilizzando SCIM tooenable il provisioning automatico degli utenti e gruppi da Azure Active Directory tooapplications](active-directory-scim-provisioning.md)
 * [Notifiche relative al provisioning dell'account](active-directory-saas-account-provisioning-notifications.md)
-* [Elenco di esercitazioni pratiche sulla procedura di integrazione delle applicazioni SaaS](active-directory-saas-tutorial-list.md)
+* [Elenco di esercitazioni sulla tooIntegrate App SaaS](active-directory-saas-tutorial-list.md)
 

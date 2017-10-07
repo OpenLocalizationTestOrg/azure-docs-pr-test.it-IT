@@ -1,6 +1,6 @@
 ---
-title: Gestione dell'accesso Single Sign-On per le app aziendali con Azure Active Directory | Microsoft Docs
-description: Informazioni su come gestire l'accesso Single Sign-On per app aziendali usando Azure Active Directory
+title: aaaSingle sign-on gestione per applicazioni aziendali in Azure Active Directory hello | Documenti Microsoft
+description: Informazioni su come toomanage single sign-on per le app aziendali usando hello Azure Active Directory
 services: active-directory
 documentationcenter: 
 author: asmalser
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/26/2017
 ms.author: asmalser
-ms.openlocfilehash: c975428550690254ba989935fe5110c5903e7102
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b0a8e622ab10517b7b69f786406b6e9b9f2e7eaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-single-sign-on-for-enterprise-apps"></a>Gestione dell'accesso Single Sign-On per le app aziendali
 > [!div class="op_single_selector"]
@@ -26,72 +26,72 @@ ms.lasthandoff: 08/03/2017
 > * [portale di Azure classico](active-directory-sso-integrate-saas-apps.md)
 > 
 
-Questo articolo descrive come usare il [portale di Azure](https://portal.azure.com) per gestire impostazioni del Single Sign-On per le applicazioni aziendali. Le app aziendali sono app distribuite e usate all'interno dell'organizzazione. Questo articolo si applica in particolare alle app aggiunte dalla [raccolta di applicazioni di Azure Active Directory](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery). 
+Questo articolo viene descritto come hello toouse [portale di Azure](https://portal.azure.com) toomanage impostazioni single sign-on per le applicazioni aziendali. Le app aziendali sono app distribuite e usate all'interno dell'organizzazione. In questo articolo si applica in particolare tooapps che sono stati aggiunti da hello [raccolta di applicazioni per Azure Active Directory](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery). 
 
-## <a name="finding-your-apps-in-the-portal"></a>Individuazione delle app nel portale
-Tutte le app aziendali impostate per il Single Sign-On possono essere visualizzate e gestite nel portale di Azure. Le applicazioni sono disponibili nella sezione **More Services** (Altri servizi) &gt; **Applicazioni aziendali** del portale. 
+## <a name="finding-your-apps-in-hello-portal"></a>Ricerca di App nel portale di hello
+Tutte le app aziendali che vengono impostate per single sign-on possono essere visualizzate e gestite nel portale di Azure hello. applicazioni Hello sono reperibile in hello **più servizi** &gt; **applicazioni aziendali** sezione del portale hello. 
 
 ![Pannello Applicazioni aziendali][1]
 
-Selezionare **Tutte le applicazioni** per visualizzare un elenco di tutte le app che sono state configurate. Se si seleziona un'app, viene caricato il pannello delle risorse per tale app, in cui è possibile visualizzare i report per l'app e gestire diverse impostazioni.
+Selezionare **tutte le applicazioni** tooview un elenco di tutte le app che sono stati configurati. Selezione di un'app carica pannello della risorsa hello per l'app, in cui per l'app, è possibile visualizzare i report e una serie di impostazioni può essere gestita.
 
-Per gestire le impostazioni dell'accesso Single Sign-On, selezionare **Single Sign-On**.
+toomanage impostazioni single sign-on, selezionare **Single sign-on**.
 
 ![Pannello Risorsa applicazione][2]
 
 ## <a name="single-sign-on-modes"></a>Modalità dell'accesso Single Sign-On
-Il pannello **Single Sign-On** inizia con un menu **Modalità** che consente di configurare la modalità Single Sign-On. Le opzioni disponibili includono:
+Hello **Single sign-on** pannello inizia con un **modalità** menu, che consente di hello modalità single sign-on toobe configurato. Hello le opzioni disponibili includono:
 
-* **SAML-based sign on** (Accesso basato su SAML): questa opzione è disponibile se l'applicazione supporta l'accesso Single Sign-On completamente federato con Azure Active Directory mediante il protocollo SAML 2.0.
+* **Accesso basato su SAML** -questa opzione è disponibile se l'applicazione hello supporta completo single sign-on federato con Azure Active Directory tramite il protocollo hello SAML 2.0.
 * **Password-based sign on** (Accesso basato su password): questa opzione è disponibile se Azure AD supporta la compilazione di moduli con password per questa applicazione.
-* **Linked sign on** (Accesso collegato): nota in precedenza come "Accesso Single Sign-On esistente", questa opzione consente agli amministratori di inserire un collegamento all'applicazione nel riquadro di accesso di Azure AD degli utenti o nella schermata di avvio delle applicazioni di Office 365.
+* **Collegato sign in** -precedentemente noto come "Esistente single sign-on", questa opzione consente agli amministratori tooplace un'applicazione toothis collegamento avvio delle applicazioni dal Pannello di accesso AD Azure o Office 365 dell'utente.
 
 Per altre informazioni su queste modalità, vedere [Come funziona Single Sign-On con Azure Active Directory (PHP)?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ## <a name="saml-based-sign-on"></a>Accesso basato su SAML
-L'opzione **SAML-based sign on** (Accesso basato su SAML) consente di visualizzare un pannello suddiviso in quattro sezioni:
+Hello **accesso basato su SAML** opzione consente di visualizzare un pannello che è suddivisa nelle quattro sezioni:
 
 ### <a name="domains-and-urls"></a>Domains and URLs (Domini e URL)
-In questa sezione vengono aggiunti alla directory di Azure AD tutti i dettagli sul dominio e sugli URL dell'applicazione. Tutti gli input necessari per il funzionamento dell'accesso Single Sign-On nell'app vengono visualizzati direttamente sullo schermo, mentre tutti gli input facoltativi possono essere visualizzati selezionando la casella di controllo **Mostra impostazioni URL avanzate** . L'elenco completo di input supportati include gli elementi seguenti:
+Si tratta in tutti i dettagli sul dominio dell'applicazione hello e gli URL vengono aggiunti tooyour directory di Azure AD. Tutti gli input richiesto app single sign-on lavoro toomake vengono visualizzati direttamente nella schermata di hello, mentre tutti gli input facoltativi possono essere visualizzati selezionando hello **Mostra URL impostazioni avanzate** casella di controllo. elenco completo di Hello di input supportati sono inclusi:
 
-* **URL di accesso** da cui l'utente accede all'applicazione. Se l'applicazione è configurata per eseguire l'accesso Single Sign-On avviato dal provider di servizi, quando un utente passa a questo URL, il provider di servizi esegue il reindirizzamento necessario ad Azure AD per l'autenticazione e l'accesso dell'utente. Se questo campo è popolato, Azure AD userà questo URL per avviare l'applicazione da Office 365 e il pannello di accesso di AD Azure. Se questo campo è omesso, Azure AD esegue l'accesso Single Sign-On avviato dal provider di identità quando l'app viene avviata da Office 365, dal pannello di accesso di Azure AD o dall'URL di accesso Single Sign-On di Azure AD.
-* **Identificatore** : questo URI deve identificare in modo univoco l'applicazione per cui viene configurato l'accesso Single Sign-On. Si tratta del valore che Azure AD invia all'applicazione come parametro Audience del token SAML e l'applicazione deve convalidarlo. Questo valore viene inoltre visualizzato come ID entità in tutti i metadati SAML forniti dall'applicazione.
-* **URL di risposta** : è l'indirizzo a cui l'applicazione prevede di ricevere il token SAML. Viene anche definito URL del servizio consumer di asserzione (ACS). Dopo averli immessi, fare clic su Avanti per passare alla schermata successiva. Questa schermata fornisce informazioni su ciò che è necessario configurare sul lato applicazione in modo che questa accetti un token SAML da Azure AD.
-* **Relay State** (Stato di inoltro): lo stato di inoltro è un parametro facoltativo che può indicare all'applicazione dove reindirizzare l'utente dopo il completamento dell'autenticazione. Questo valore è in genere un URL valido nell'applicazione, ma alcune applicazioni usano questo campo in modo diverso. Per informazioni dettagliate, vedere la documentazione sull'accesso Single Sign-On dell'app. La possibilità di configurare lo stato di inoltro è una nuova funzionalità esclusiva del nuovo portale di Azure.
+* **URL di accesso** : in cui l'utente di hello non toothis toosign-nell'applicazione. Se un'applicazione hello è servizio configurato tooperform singolo avviato dal provider di accesso, quando l'utente passa toothis URL, il provider di servizi di hello hello necessarie segno e il reindirizzamento AD tooAzure tooauthenticate hello utente. Se questo campo viene popolato, Azure AD utilizzerà l'applicazione hello toolaunch di URL da Office 365 e hello Pannello di accesso AD Azure. Se questo campo viene omesso, Azure AD esegue invece il provider di identità-avvio sign-on quando hello app viene avviata da Office 365, hello Pannello di accesso AD Azure o da hello Azure AD single sign-on URL.
+* **Identificatore** -questo URI deve identificare in modo univoco un'applicazione hello per il singolo accesso è stata configurata. Si tratta valore hello che Azure AD invia tooapplication indietro come parametro di destinatari del token SAML hello hello e un'applicazione hello toovalidate previsto è. Questo valore viene inoltre visualizzato come hello ID entità in qualsiasi metadati SAML forniti da un'applicazione hello.
+* **URL di risposta** -URL di risposta di hello è in un'applicazione hello prevede token SAML di hello tooreceive. È anche URL servizio Consumer di asserzione (ACS) di cui viene fatto riferimento tooas hello. Dopo avere immesso queste, fare clic su Avanti tooproceed toohello nella schermata successiva. Questa schermata fornisce informazioni su quali toobe esigenze configurato su hello applicazione lato tooenable tooaccept un token SAML da Azure AD.
+* **Stato di inoltro** -stato di inoltro hello è un parametro facoltativo che consente di indicare un'applicazione hello in tooredirect hello utente dopo aver completata l'autenticazione. In genere il valore di hello è un URL valido in un'applicazione hello, tuttavia, alcune applicazioni di utilizzare questo campo in modo diverso (sulla documentazione per informazioni dettagliate, vedere l'accesso single sign hello dell'app). stato di inoltro di Hello possibilità tooset hello è una nuova funzionalità che è univoco toohello nuovo portale di Azure.
 
 ### <a name="user-attributes"></a>Attributi utente
-In questa sezione gli amministratori possono visualizzare e modificare gli attributi inviati nel token SAML che Azure AD rilascia all'applicazione a ogni accesso dell'utente.
+Si tratta in cui gli amministratori possono visualizzare e modificare gli attributi di hello inviati nel token SAML hello che Azure AD rilascia toohello applicazione ogni volta che gli utenti l'accesso.
 
-L'unico attributo modificabile supportato è l'attributo **Identificatore utente**. Il valore di questo attributo corrisponde al campo in Azure AD che identifica in modo univoco ogni utente nell'applicazione. Se, ad esempio, l'app è stata distribuita usando "Indirizzo di posta elettronica" come nome utente e identificatore univoco, il valore sarà impostato sul campo "user.mail" in Azure AD.
+Hello solo attributo modificabile supportato è hello **identificatore utente** attributo. il valore di Hello di questo attributo è il campo hello in Azure AD che identifica in modo univoco ogni utente all'interno di un'applicazione hello. Ad esempio, se è stata distribuita l'applicazione di hello utilizzando hello "indirizzo di posta elettronica" come nome utente hello e l'identificatore univoco, quindi il valore di hello viene impostato toohello "user.mail" campo nella Azure AD.
 
 ### <a name="saml-signing-certificate"></a>Certificato di firma SAML
-Questa sezione mostra i dettagli del certificato usato da Azure AD per firmare i token SAML rilasciati all'applicazione a ogni autenticazione dell'utente. Consente il controllo delle proprietà del certificato corrente, inclusa la data di scadenza.
+In questa sezione mostra i dettagli di hello del certificato hello che Azure AD Usa i token SAML di hello toosign emessi toohello applicazione che ogni utente hello ora esegue l'autenticazione. In questo modo le proprietà di hello di hello corrente certificato toobe controllato, tra cui data di scadenza hello.
 
 ### <a name="application-configuration"></a>Configurazione dell'applicazione
-La sezione finale fornisce la documentazione e/o i controlli necessari per configurare l'applicazione stessa per l'uso di Azure Active Directory come provider di identità.
+la sezione finale Hello fornisce documentazione hello e/o i controlli necessari tooconfigure hello applicazione stessa toouse Azure Active Directory come provider di identità.
 
-Il menu a comparsa **Configura applicazione** fornisce nuove istruzioni concise e incorporate per la configurazione dell'applicazione. Anche questa è una funzionalità esclusiva del nuovo portale di Azure.
+Hello **Configura applicazione** menu a comparsa fornisce nuove istruzioni concise e incorporate per la configurazione di un'applicazione hello. Si tratta di un'altra nuova funzionalità toohello univoco nuovo portale di Azure.
 
 > [!NOTE]
-> Per un esempio completo di documentazione incorporata, vedere l'applicazione Salesforce.com. La documentazione per app aggiuntive viene aggiunta continuamente.
+> Per un esempio completo della documentazione incorporato, vedere un'applicazione hello Salesforce.com. La documentazione per app aggiuntive viene aggiunta continuamente.
 > 
 > 
 
 ![Documenti incorporati][3]
 
 ## <a name="password-based-sign-on"></a>Password-based sign on
-Se supportato dall'applicazione, selezionando la modalità di accesso Single Sign-On basato su password e quindi **Salva** sarà possibile eseguire la configurazione immediata dell'app per l'accesso Single Sign-On basato su password. Per altre informazioni sulla distribuzione dell'accesso Single Sign-On basato su password, vedere [Come funziona Single Sign-On con Azure Active Directory (PHP)?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
+Se è supportato per un'applicazione hello, selezionando hello basato su password modalità SSO e selezionando **salvare** Configura immediatamente toodo SSO basato su password. Per altre informazioni sulla distribuzione dell'accesso Single Sign-On basato su password, vedere [Come funziona Single Sign-On con Azure Active Directory (PHP)?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ![Password-based sign on][4]
 
 ## <a name="linked-sign-on"></a>Linked sign on
-Se supportato dall'applicazione, la selezione della modalità di accesso Single Sign-On collegato consente di immettere l'URL a cui si vuole che il riquadro di accesso di Azure AD oppure Office 365 eseguano il reindirizzamento quando gli utenti selezionano l'app. Per altre informazioni sull'accesso Single Sign-On collegato, noto in precedenza come "Accesso Single Sign-On esistente", vedere [Come funziona Single Sign-On con Azure Active Directory (PHP)?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
+Se è supportato per un'applicazione hello, hello collegato in modalità SSO consente tooenter hello URL che si desidera hello Pannello di accesso AD Azure o Office 365 tooredirect toowhen utenti fare clic su questa app. Per altre informazioni sull'accesso Single Sign-On collegato, noto in precedenza come "Accesso Single Sign-On esistente", vedere [Come funziona Single Sign-On con Azure Active Directory (PHP)?](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ![Linked sign-on (Accesso collegato)][5]
 
 ##<a name="feedback"></a>Commenti e suggerimenti
 
-Speriamo che gli utenti usino il nuovo Azure AD e inviino commenti e suggerimenti. È possibile inviare commenti e idee per apportare miglioramenti nella sezione **Portale di amministrazione** del [forum dei commenti](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Microsoft accoglie i suggerimenti degli utenti per definire nuove funzionalità ogni giorno.
+Ci auguriamo che è simile all'utilizzo di hello migliorata l'esperienza di Azure AD. Tenere feedback hello in arrivo. Inviare commenti e suggerimenti e idee per analisi utilizzo software hello **portale di amministrazione** sezione del nostro [forum sul feedback su](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Si sta entusiasti compilazione curiosi di nuovo ogni giorno e tooshape le linee guida e definire cosa creiamo successivamente.
 
 [1]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade.PNG
 [2]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-sso-blade.PNG

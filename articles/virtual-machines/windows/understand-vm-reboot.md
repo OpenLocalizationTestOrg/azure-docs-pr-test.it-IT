@@ -1,6 +1,6 @@
 ---
-title: Informazioni sul riavvio del sistema della macchina virtuale Windows di Azure | Microsoft Docs
-description: Elenca le azioni e gli eventi che possono generare il riavvio della macchina virtuale Windows
+title: un riavvio del sistema per la macchina virtuale Windows Azure aaaUnderstand | Documenti Microsoft
+description: Elenca gli eventi di hello che possono causare tooreboot macchina virtuale di Windows hello
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: genli
-ms.openlocfilehash: da8c1bf3d283e7514e1ab13fd31d7d581771ea4f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b37b110e242570adda775da90bb106a1a924191e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-a-system-reboot-for-azure-vm"></a>Informazioni sul riavvio del sistema della macchina virtuale di Azure
 

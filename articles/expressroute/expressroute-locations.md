@@ -1,6 +1,6 @@
 ---
 title: "Località e provider di connettività: Azure ExpressRoute | Documentazione Microsoft"
-description: "Questo articolo fornisce una panoramica dettagliata delle località in cui vengono offerti i servizi e informazioni su come connettersi alle aree di Azure. Ordinamento per provider di connettività."
+description: "In questo articolo fornisce una panoramica dettagliata dei percorsi in cui vengono offerti i servizi e come tooconnect tooAzure aree. Ordinamento per provider di connettività."
 services: expressroute
 documentationcenter: na
 author: cherylmc
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/17/2017
 ms.author: kaanan
-ms.openlocfilehash: c9f44dbc943e854915c4e34b4dffa2c294f7866d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: df906ae6ff4e149c9cab4aa46ab78c8dd6aa4366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>Partner e località di peering per ExpressRoute
 
@@ -27,17 +27,17 @@ ms.lasthandoff: 08/29/2017
 > * [Provider per località](expressroute-locations-providers.md)
 
 
-Le tabelle in questo articolo includono informazioni su provider di connettività ExpressRoute, copertura geografica di ExpressRoute, servizi cloud Microsoft supportati tramite ExpressRoute e integratori di sistemi ExpressRoute.
+Hello nelle tabelle di questo articolo è fornire informazioni sui provider di connettività di ExpressRoute, ExpressRoute geografico, servizi cloud Microsoft supportati tramite ExpressRoute e integratori di ExpressRoute (SIs).
 
 ## <a name="partners"></a>Provider di connettività ExpressRoute
-ExpressRoute è supportato in tutte le aree e le località di Azure. La mappa seguente fornisce un elenco di aree di Azure e località per ExpressRoute. Per località ExpressRoute si intendono le aree in cui è attivo il peering di Microsoft con alcuni provider di servizi.
+ExpressRoute è supportato in tutte le aree e le località di Azure. Hello mappa seguente fornisce un elenco di aree di Azure e i percorsi di ExpressRoute. Percorsi di ExpressRoute, vedere toothose in cui Microsoft peer con diversi provider di servizi.
 
 ![Mappa delle località][0]
 
-Si otterrà l'accesso al servizio di Azure in tutte le aree di un'area geopolitica se è stata effettuata la connessione ad almeno una località per ExpressRoute entro l'area geopolitica.
+Se si è connessi tooat almeno una posizione di ExpressRoute nell'area di natura geopolitica hello, sarà necessario servizi di accesso tooAzure di tutte le aree all'interno di un'area di natura geopolitica.
 
-### <a name="azure-regions-to-expressroute-locations-within-a-geopolitical-region"></a>Aree di Azure e località ExpressRoute in un'area geopolitica
-La tabella seguente fornisce una mappa di aree di Azure e di località ExpressRoute in un'area geopolitica.
+### <a name="azure-regions-tooexpressroute-locations-within-a-geopolitical-region"></a>Percorsi di tooExpressRoute aree di Azure all'interno di un'area di natura geopolitica.
+Hello nella tabella seguente fornisce una mappa delle aree di Azure tooExpressRoute posizioni all'interno di un'area di natura geopolitica.
 
 | **Area geopolitica** | **Aree di Azure** | **Località per ExpressRoute** |
 | --- | --- | --- |
@@ -51,7 +51,7 @@ La tabella seguente fornisce una mappa di aree di Azure e di località ExpressRo
 | **Corea del Sud** |Corea centrale, Corea meridionale |Busan, Seoul |
 
 ### <a name="regions-and-geopolitical-boundaries-for-national-clouds"></a>Aree e confini geopolitici per cloud nazionali
-Nella tabella seguente vengono fornite informazioni su aree e confini geopolitici per cloud nazionali.
+tabella Hello seguente fornisce informazioni sulle aree e i limiti di natura geopolitici per cloud nazionale.
 
 | **Area geopolitica** | **Aree di Azure** | **Località per ExpressRoute** |
 | --- | --- | --- |
@@ -59,11 +59,11 @@ Nella tabella seguente vengono fornite informazioni su aree e confini geopolitic
 | **Cina** |Cina meridionale, Cina orientale |Pechino, Shanghai |
 | **Germania** |Germania centrale, Germania orientale |Berlino, Francoforte |
 
-La connettività tra diverse aree geopolitiche non è supportata nello standard SKU EspressRoute. È necessario attivare il componente aggiuntivo premium ExpressRoute per supportare la connettività globale. La connettività per ambienti cloud nazionale non è supportata. È possibile utilizzare il provider di connettività in caso di necessità.
+Non è supportata la connettività tra le aree di natura geopolitiche sullo standard hello SKU ExpressRoute. Sarà necessario tooenable hello ExpressRoute premium componente aggiuntivo toosupport globale la connettività. Ambienti di cloud toonational connettività non è supportata. È possibile utilizzare il provider di connettività in caso di necessità.
 
 ## <a name="locations"></a>Località dei provider di connettività
 
-La tabella seguente mostra le località per provider di servizi. Per visualizzare i provider disponibili in base alla località, vedere la tabella dei [provider di servizi per località](expressroute-locations-providers.md#locations).
+Hello nella tabella seguente mostra i percorsi da provider di servizi. Se si desidera tooview provider disponibili dalla località, vedere [provider dall'indirizzo](expressroute-locations-providers.md#locations).
 
 
 ### <a name="production-azure"></a>Produzione Azure
@@ -128,7 +128,7 @@ La tabella seguente mostra le località per provider di servizi. Per visualizzar
 ### <a name="us-government-cloud"></a>Cloud del governo degli Stati Uniti
 | **Provider di servizi** | **Microsoft Azure** | **Office 365** | **Località** |
 | --- | --- | --- | --- |
-| **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |Supportato |Supportato |Chicago, Washington DC |
+| **[AT&amp;T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |Supportato |Supportato |Chicago, Washington DC |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |Supportato |Supportato |Chicago, Dallas, New York, Seattle, Silicon Valley, Washington DC |
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |Supportato |Supportato |Chicago, New York+, Silicon Valley, Washington DC |
 | **[Megaport](https://www.megaport.com/services/microsoft-expressroute/)** |Supportato | Supportato | Chicago, Dallas |
@@ -139,7 +139,7 @@ La tabella seguente mostra le località per provider di servizi. Per visualizzar
 | --- | --- | --- | --- |
 | **China Telecom** |Supportato |Non supportato |Pechino, Shanghai |
 
-Per altre informazioni, vedere [ExpressRoute in Cina](http://www.windowsazure.cn/home/features/expressroute/).
+vedere, più toolearn [ExpressRoute in Cina](http://www.windowsazure.cn/home/features/expressroute/).
 
 ### <a name="germany"></a>Germania
 | **Provider di servizi** | **Microsoft Azure** | **Office 365** | **Località** |
@@ -155,7 +155,7 @@ Per altre informazioni, vedere [ExpressRoute in Cina](http://www.windowsazure.cn
 
 Se il provider di connettività non è incluso nelle sezioni precedenti, sarà comunque possibile creare una connessione.
 
-* Contattare il provider di connettività per verificare se è connesso a uno qualsiasi degli scambi nella tabella precedente. Per altre informazioni sui servizi offerti dai provider di Exchange, è possibile esaminare i seguenti collegamenti. Alcuni provider di connettività sono già connessi agli scambi Ethernet.
+* Se sono connessi tooany di scambi di hello nella precedente tabella hello, verificare con il toosee di provider di connettività. È possibile verificare l'esempio hello collega toogather ulteriori informazioni sui servizi offerti dai provider di exchange. Diversi provider di connettività sono già connessi tooEthernet scambi.
   * [Cologix](http://www.cologix.com/)
   * [Console](https://www.consoleconnect.com/partners/cloudsaas/)
   * [CoreSite](http://www.coresite.com/)
@@ -164,10 +164,10 @@ Se il provider di connettività non è incluso nelle sezioni precedenti, sarà c
   * [Megaport](https://www.megaport.com/services/microsoft-expressroute/)
   * [NEXTDC](http://www.nextdc.com/)
   * [TeleCity CloudIX](http://www.telecitygroup.com/colocation-services/cloud-ix.htm)
-* Richiedere al provider di connettività di estendere la rete alla località di peering scelta.
+* Dispone il provider di servizi di estendere il percorso di peering toohello rete di scelta.
   * Assicurarsi che il provider di connettività estenda la connettività con disponibilità elevata, in modo che non siano presenti singoli punti di errore.
-* Ordinare a un circuito ExpressRoute con scambio come provider di connettività di connettersi a Microsoft.
-  * Per configurare la connettività, eseguire la procedura illustrata in [Creare un circuito ExpressRoute](expressroute-howto-circuit-classic.md) .
+* Ordinare un circuito ExpressRoute con exchange hello come provider di connettività tooconnect tooMicrosoft.
+  * Seguire i passaggi in [creare un circuito ExpressRoute](expressroute-howto-circuit-classic.md) tooset della connettività.
 
 ## <a name="connectivity-through-additional-service-providers"></a>Connettività con provider di servizi aggiuntivi
 
@@ -232,10 +232,10 @@ Se il provider di connettività non è incluso nelle sezioni precedenti, sarà c
 | **SINET**|
 | **Surfnet, tramite GÉANT**|
 
-* Se il provider di connettività non è elencato qui, verificare se è connesso a uno dei partner di scambio di ExpressRoute indicati sopra.
+* Se il provider di connettività non è elencato, verificare toosee se sono connessi tooany di hello che expressroute Exchange partner elencati in precedenza.
 
 ## <a name="expressroute-system-integrators"></a>Integratori di sistemi ExpressRoute
-L'abilitazione della connettività privata per soddisfare le proprie esigenze può risultare complessa, in base alle dimensioni della rete. Per ottenere supporto per l'onboarding in ExpressRoute, è possibile collaborare con uno degli Integratori di sistemi elencati nella seguente tabella.
+Abilitazione toofit connettività privata che possono essere difficile le proprie esigenze, in base alla scala di hello della rete. Si può funzionare con qualsiasi di hello integratori di sistema elencati nella seguente tabella tooassist hello è con tooExpressRoute onboarding.
 
 | **Integratore di sistemi** | **Continente** |
 | --- | --- |
@@ -246,7 +246,7 @@ L'abilitazione della connettività privata per soddisfare le proprie esigenze pu
 | **[Equinix Professional Services](http://www.equinix.com/services/consulting/)** | America del Nord |
 | **[FlexManage](http://www.flexmanage.com/cloud)** | America del Nord |
 | **[Inframon](http://www.inframon.com/partner/microsoft/)** | Europa |
-| **[The IT Consultancy Group](http://itconsult.com.au/microsoft-expressroute)** | Australia |
+| **[Hello gruppo consulenza IT](http://itconsult.com.au/microsoft-expressroute)** | Australia |
 | **[MOQdigital](http://www.moqdigital.com.au/insights/technical/network-connectivity-options-for-azure)** | Australia |
 | **[MSG Services](https://www.msg-services.de/it-services/managed-services/cloud-outsourcing/)** | Europa (Germania) |
 | **[Nelite](http://nelite.com/)** | Europa |
@@ -260,7 +260,7 @@ L'abilitazione della connettività privata per soddisfare le proprie esigenze pu
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni su ExpressRoute, vedere le [Domande frequenti su ExpressRoute](expressroute-faqs.md).
+* Per ulteriori informazioni su ExpressRoute, vedere hello [domande frequenti su ExpressRoute](expressroute-faqs.md).
 * Verificare che vengano soddisfatti tutti i prerequisiti. Vedere [Prerequisiti per ExpressRoute](expressroute-prerequisites.md).
 
 <!--Image References-->

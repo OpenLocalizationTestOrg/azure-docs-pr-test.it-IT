@@ -1,5 +1,5 @@
 ---
-title: Rendere persistenti i file in Azure Cloud Shell (Anteprima) | Microsoft Docs
+title: file aaaPersist nella Shell di Cloud di Azure (anteprima) | Documenti Microsoft
 description: Procedura dettagliata su come Azure Cloud Shell rende persistenti i file.
 services: 
 documentationcenter: 
@@ -14,103 +14,103 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: juluk
-ms.openlocfilehash: 61a8bfcf3704f361432400771d8fcc8b81927b53
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b230453d5551c545553d63559741950206e4f1b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="persist-files-in-azure-cloud-shell"></a>Rendere persistenti i file in Azure Cloud Shell
-Cloud Shell si avvale dell'archiviazione file di Azure per rendere persistenti i file in più sessioni.
+Shell cloud consente di sfruttare i file toopersist di archiviazione di File di Azure tra le sessioni.
 
 ## <a name="set-up-a-clouddrive-file-share"></a>Configurare una condivisione file `clouddrive`
-Al primo avvio Cloud Shell richiede di associare una condivisione file nuova o esistente per mantenere i file in più sessioni.
+All'avvio iniziale, Shell Cloud richiede tooassociate condivisione file nuovo o esistente di file toopersist tra sessioni.
 
 ### <a name="create-new-storage"></a>Creare una nuova risorsa di archiviazione
 
-Quando si usano le impostazioni di base e si seleziona una sola sottoscrizione, Cloud Shell crea tre risorse per conto dell'utente nell'area di Azure supportata più vicina all'utente:
+Quando si utilizzano le impostazioni di base e selezionare solo una sottoscrizione, Shell di Cloud crea tre risorse per conto dell'utente nell'area di hello supportato più vicino al tooyou:
 * Gruppo di risorse: `cloud-shell-storage-<region>`
 * Account di archiviazione: `cs<uniqueGuid>`
 * Condivisione file: `cs-<user>-<domain>-com-<uniqueGuid>`
 
-![Impostazione della sottoscrizione](media/basic-storage.png)
+![impostazioni di sottoscrizione Hello](media/basic-storage.png)
 
-La condivisione viene montata come `clouddrive` nella directory `$Home`. La condivisione file viene usata anche per archiviare un'immagine da 5 GB creata automaticamente, che si aggiorna automaticamente e rende persistente la directory `$Home`. Questa azione viene eseguita una sola volta e la condivisione file viene ripetuta automaticamente nelle sessioni successive.
+condivisione di file Hello collega come `clouddrive` nel `$Home` directory. Hello condivisione file è anche usato toostore un'immagine di 5 GB che viene creata automaticamente per l'utente e che gli aggiornamenti e viene mantenuta la `$Home` directory. Si tratta di un'azione singola e condivisione di file hello Monta automaticamente nelle sessioni successive.
 
 ### <a name="use-existing-resources"></a>Usare le risorse esistenti
 
-Con l'opzione Avanzate è possibile associare risorse esistenti. Al prompt di impostazione dell'archiviazione, selezionare **Mostra impostazioni avanzate** per visualizzare le opzioni aggiuntive. Le condivisioni file esistenti ricevono un'immagine utente di 5 GB per mantenere persistente la directory `$Home`. I menu a discesa vengono filtrati in base all'area Cloud Shell e agli account di archiviazione con ridondanza locale e geografica.
+Tramite l'opzione avanzata hello, è possibile associare le risorse esistenti. Quando viene visualizzata hello archiviazione installazione richiesta, selezionare **Mostra impostazioni avanzate** tooview ulteriori opzioni. Condivisioni di file esistenti ricevono un toopersist immagine utente 5 GB il `$Home` directory. menu a discesa Hello vengono filtrati per paese Shell Cloud e per gli account di archiviazione con ridondanza geografica e con ridondanza locale.
 
-![Impostazione del gruppo di risorse](media/advanced-storage.png)
+![impostazione di gruppo di risorse Hello](media/advanced-storage.png)
 
 ### <a name="restrict-resource-creation-with-an-azure-resource-policy"></a>Limitare la creazione di risorse con i criteri delle risorse di Azure
-Gli account di archiviazione che si creano in Cloud Shell sono contrassegnati con `ms-resource-usage:azure-cloud-shell`. Se si desidera impedire agli utenti di creare account di archiviazione con Cloud Shell, creare [criteri di risorse di Azure per tag](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-policy-tags) che vengono attivati dal tag specificato.
+Gli account di archiviazione che si creano in Cloud Shell sono contrassegnati con `ms-resource-usage:azure-cloud-shell`. Se si desidera che gli utenti toodisallow dalla creazione di account di archiviazione in Cloud Shell, creare un [criteri delle risorse di Azure per i tag](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-policy-tags) che vengono attivate da questo tag specifico.
 
 ## <a name="how-cloud-shell-works"></a>Funzionamento di Cloud Shell
-Cloud Shell rende persistenti i file tramite entrambe le modalità seguenti:
-* Creazione di un'immagine del disco della directory `$Home` per rendere persistenti tutti i contenuti della directory. L'immagine del disco viene salvata nella condivisione file specificata come `acc_<User>.img` in `fileshare.storage.windows.net/fileshare/.cloudconsole/acc_<User>.img` e le modifiche vengono automaticamente sincronizzate.
+Shell cloud persiste file tramite entrambi hello dei seguenti metodi:
+* Creazione di un'immagine di disco del `$Home` toopersist directory tutti contenuto all'interno di directory hello. immagine del disco Hello viene salvato nella condivisione di file specificato come `acc_<User>.img` in `fileshare.storage.windows.net/fileshare/.cloudconsole/acc_<User>.img`, e venga eseguita automaticamente la sincronizzazione delle modifiche.
 
-* Montaggio della condivisione file specificata come `clouddrive` nella directory `$Home` per l'interazione diretta con la condivisione file. Viene eseguito il mapping di `/Home/<User>/clouddrive` a `fileshare.storage.windows.net/fileshare`.
+* Montaggio della condivisione file specificata come `clouddrive` nella directory `$Home` per l'interazione diretta con la condivisione file. `/Home/<User>/clouddrive`viene eseguito il mapping troppo`fileshare.storage.windows.net/fileshare`.
  
 > [!NOTE]
 > Tutti i file della directory `$Home`, come le chiavi SSH, vengono mantenuti nell'immagine del disco utente archiviata nella condivisione file montata. Applicare le procedure consigliate quando si rendono persistenti le informazioni nella directory `$Home` e nella condivisione file montata.
 
-## <a name="use-the-clouddrive-command"></a>Usare il comando `clouddrive`
-Con Cloud Shell è possibile eseguire un comando denominato `clouddrive`, che consente di aggiornare manualmente la condivisione file montata in Cloud Shell.
-![Esecuzione del comando "clouddrive"](media/clouddrive-h.png)
+## <a name="use-hello-clouddrive-command"></a>Hello utilizzare `clouddrive` comando
+Con la Shell di Cloud, è possibile eseguire un comando denominato `clouddrive`, che consente di toomanually aggiornamento hello condivisione file che tooCloud montato Shell.
+![Comando di "clouddrive" hello in esecuzione](media/clouddrive-h.png)
 
 ## <a name="mount-a-new-clouddrive"></a>Montare un nuovo elemento `clouddrive`
 
 ### <a name="prerequisites-for-manual-mounting"></a>Prerequisiti per il montaggio manuale
-È possibile aggiornare la condivisione file associata a Cloud Shell usando il comando `clouddrive mount`.
+È possibile aggiornare una condivisione di file hello associata Cloud Shell utilizzando hello `clouddrive mount` comando.
 
-Se si monta una condivisione file esistente, gli account di archiviazione devono avere le caratteristiche seguenti:
-* Essere account di archiviazione con ridondanza locale o geografica per supportare le condivisioni file.
-* Trovarsi nell'area assegnata. Durante l'onboarding, l'area a cui si è assegnati viene elencata nel nome del gruppo di risorse `cloud-shell-storage-<region>`.
+Se si monta una condivisione di file esistente, deve essere l'account di archiviazione hello:
+* Archiviazione con ridondanza locale o condivisioni di file di archiviazione con ridondanza geografica toosupport.
+* Trovarsi nell'area assegnata. Quando si è onboarding, area hello vengono assegnati toois elencati nella casella Nome gruppo di risorse hello `cloud-shell-storage-<region>`.
 
 ### <a name="supported-storage-regions"></a>Aree di archiviazione supportate
-I file di Azure devono risiedere nella stessa area del computer Cloud Shell in cui vengono montati. I cluster Cloud Shell esistono attualmente nelle aree seguenti:
+Hello Azure file devono risiedere in hello stessa area hello Cloud Shell macchina che si sta montaggio per. I cluster Shell cloud attualmente esistono nel hello seguenti aree:
 |Area|Region|
 |---|---|
 |Americhe|Stati Uniti orientali, Stati Uniti centro-meridionali, Stati Uniti occidentali|
 |Europa|Europa settentrionale, Europa occidentale|
 |Asia/Pacifico|India centrale, Asia sud-orientale|
 
-### <a name="the-clouddrive-mount-command"></a>Comando `clouddrive mount`
+### <a name="hello-clouddrive-mount-command"></a>Hello `clouddrive mount` comando
 
 > [!NOTE]
-> Se si monta una nuova condivisione file, viene creata una nuova immagine utente per la directory `$Home` perché l'immagine di `$Home` precedente viene mantenuta nella condivisione file precedente.
+> Se si sta il montaggio di una nuova condivisione file, una nuova immagine utente viene creata per il `$Home` directory, in quanto precedente `$Home` immagine viene mantenuta nella condivisione di file precedente hello.
 
-Eseguire il comando `clouddrive mount` con i parametri seguenti:
+Eseguire hello `clouddrive mount` con hello seguenti parametri:
 
 ```
 clouddrive mount -s mySubscription -g myRG -n storageAccountName -f fileShareName
 ```
 
-Per visualizzare altri dettagli, eseguire `clouddrive mount -h`, come illustrato di seguito:
+eseguire ulteriori dettagli, tooview `clouddrive mount -h`, come illustrato di seguito:
 
-![Esecuzione del comando `clouddrive mount`](media/mount-h.png)
+![Hello in esecuzione ' clouddrive mount'command](media/mount-h.png)
 
 ## <a name="unmount-clouddrive"></a>Smontare `clouddrive`
-È possibile smontare in qualsiasi momento una condivisione file montata in Cloud Shell. Dopo la disinstallazione della condivisione file verrà richiesto di installare una nuova condivisione file prima della sessione successiva.
+È possibile effettuare lo smontaggio di una condivisione di file della Shell che tooCloud montati in qualsiasi momento. Dopo aver disinstallata la condivisione di file, sarà richiesta toomount un nuovo tooyour preliminare di condivisione file sessione successiva.
 
-Per rimuovere una condivisione file da Cloud Shell:
+un file tooremove condividere dalla Shell di Cloud:
 1. Eseguire `clouddrive unmount`.
-2. Accettare e confermare i prompt.
+2. Conoscenza e hello prompt di conferma.
 
-La condivisione file continuerà a esistere a meno che non venga eliminata manualmente. Cloud Shell non eseguirà più la ricerca di questa condivisione file nelle sessioni successive.
+Condivisione di file continuerà tooexist a meno che non si elimina manualmente. Cloud Shell non eseguirà più la ricerca di questa condivisione file nelle sessioni successive.
 
-Per visualizzare altri dettagli, eseguire `clouddrive unmount -h`, come illustrato di seguito:
+eseguire ulteriori dettagli, tooview `clouddrive unmount -h`, come illustrato di seguito:
 
-![Esecuzione del comando "clouddrive unmount"](media/unmount-h.png)
+![Hello in esecuzione ' clouddrive unmount'command](media/unmount-h.png)
 
 > [!WARNING]
-> L'esecuzione di questo comando non elimina alcuna risorsa. L'eliminazione manuale del gruppo di risorse, dell'account di archiviazione o della condivisione file di cui è stato eseguito il mapping a Cloud Shell cancellerà l'immagine del disco della directory `$Home` ed eventuali altri file presenti nella condivisione file. Questa azione non può essere annullata.
+> L'esecuzione di questo comando non elimina alcuna risorsa. Eliminazione manuale di un gruppo di risorse, account di archiviazione o condivisione file che è stato eseguito il mapping tooCloud Shell eliminerà definitivamente la `$Home` immagine di directory e qualsiasi altro file nella condivisione di file. Questa azione non può essere annullata.
 
 ## <a name="list-clouddrive-file-shares"></a>Elencare le condivisioni file `clouddrive`
-Per sapere quale condivisione file è montata come `clouddrive`, eseguire il comando `df` seguente. 
+quali condivisione file è montato come toodiscover `clouddrive`, eseguire il seguente hello `df` comando. 
 
-Il percorso file a clouddrive indica il nome dell'account di archiviazione e la condivisione file nell'URL. Ad esempio, `//storageaccountname.file.core.windows.net/filesharename`
+tooclouddrive percorso di file Hello mostra che il nome account di archiviazione e della condivisione file nell'URL hello. Ad esempio, `//storageaccountname.file.core.windows.net/filesharename`
 
 ```
 justin@Azure:~$ df
@@ -124,25 +124,25 @@ shm                                                          65536        0     
 /dev/loop0                                                 5160576   601652   4296780  13% /home/justin
 ```
 
-## <a name="transfer-local-files-to-cloud-shell"></a>Trasferire file locali in Cloud Shell
-La directory `clouddrive` viene sincronizzata con il pannello di archiviazione del portale di Azure. Usare questo pannello per trasferire file locali da e verso la condivisione file. L'aggiornamento dei file dall'interno di Cloud Shell si riflette nell'interfaccia utente grafica di archiviazione file quando il pannello viene aggiornato.
+## <a name="transfer-local-files-toocloud-shell"></a>Trasferimento file locali tooCloud Shell
+Hello `clouddrive` esegue la sincronizzazione directory con il pannello di archiviazione del portale di Azure hello. Utilizzare questo tooor di file locali pannello tootransfer dalla condivisione di file. Aggiornare i file nella Shell di Cloud viene riflessa nell'archiviazione di file hello GUI quando si aggiorna il pannello hello.
 
 ### <a name="download-files"></a>Download dei file
 
 ![Elenco di file locali](media/download.png)
-1. Nel portale di Azure passare alla condivisione file montata.
-2. Selezionare il file di destinazione.
-3. Fare clic sul pulsante **Download**.
+1. Nel portale di Azure hello, andare toohello condivisione di file montati.
+2. Selezionare il file di destinazione hello.
+3. Seleziona hello **scaricare** pulsante.
 
 ### <a name="upload-files"></a>Caricare file
 
-![File locali da caricare](media/upload.png)
-1. Passare alla condivisione file montata.
-2. Selezionare il pulsante **Carica**.
-3. Selezionare uno o più file che si desidera caricare.
-4. Confermare il caricamento.
+![File locali toobe caricato](media/upload.png)
+1. Passare tooyour montati condivisione file.
+2. Seleziona hello **caricare** pulsante.
+3. Selezionare hello o i file che si desidera tooupload.
+4. Verificare il caricamento di hello.
 
-Si dovrebbe a questo punto vedere che è possibile accedere ai file nella directory `clouddrive` in Cloud Shell.
+Dovrebbe essere file hello che sono accessibili nel `clouddrive` directory nella Shell di Cloud.
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Avvio rapido di Cloud Shell](quickstart.md) <br>

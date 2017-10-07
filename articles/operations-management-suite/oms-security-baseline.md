@@ -1,6 +1,6 @@
 ---
-title: Baseline della soluzione Sicurezza e controllo di Operations Management Suite | Documentazione Microsoft
-description: "Questo documento illustra come usare la soluzione Sicurezza e controllo di OMS per eseguire una valutazione baseline di tutti i computer monitorati per finalità di conformità e sicurezza."
+title: aaaOperations protezione del gruppo di gestione e di base di soluzioni di controllo | Documenti Microsoft
+description: "Questo documento viene illustrato come toouse OMS Security and Audit soluzione tooperform una valutazione della linea di base di tutti i computer monitorati a scopo di conformità e sicurezza."
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: yurid
-ms.openlocfilehash: d538eee4dccdbf158baab8908ebfff56713bde95
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ea52408cb9d2598728fe3826a946067e1c99318f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="baseline-assessment-in-operations-management-suite-security-and-audit-solution"></a>Valutazione baseline nella soluzione Sicurezza e controllo di Operations Management Suite
-Questo documento illustra come usare le funzionalità della valutazione baseline nella [Soluzione Sicurezza e controllo di Operations Management Suite (OMS)](operations-management-suite-overview.md) per accedere allo stato di protezione delle risorse monitorate.
+Questo documento consente di toouse [soluzione di controllo e protezione di Operations Management Suite (OMS)](operations-management-suite-overview.md) valutazione della linea di base tooaccess funzionalità hello stato sicuro le risorse monitorati.
 
 ## <a name="what-is-baseline-assessment"></a>Informazioni sulla valutazione baseline
 Microsoft, insieme ad altre organizzazioni del settore e governative in tutto il mondo, definisce una configurazione di Windows che rappresenta distribuzioni server a sicurezza elevata. Questa configurazione è un set di chiavi del Registro di sistema, impostazioni dei criteri di controllo e impostazioni di criteri di sicurezza, oltre ai valori consigliati di Microsoft per queste impostazioni. Questo set di regole è noto come baseline sicurezza. La funzionalità per la valutazione baseline della soluzione Sicurezza e controllo di OMS consente di analizzare con facilità tutti i computer per verificarne la conformità. 
@@ -31,57 +31,57 @@ Esistono tre tipi di regole:
 
 * **Regole del Registro di sistema**: verificare che le chiavi del Registro di sistema siano impostate in modo corretto.
 * **Regole dei criteri di controllo**: regole relative ai criteri di controllo.
-* **Regole dei criteri di sicurezza**: regole relative alle autorizzazioni dell'utente nel computer.
+* **Le regole dei criteri di sicurezza**: le regole relative alle hello le autorizzazioni utente nel computer di hello.
 
 > [!NOTE]
-> Per una breve panoramica di questa funzionalità, vedere [Use OMS Security to assess the Security Configuration Baseline](https://blogs.technet.microsoft.com/msoms/2016/08/12/use-oms-security-to-assess-the-security-configuration-baseline/) (Usare la sicurezza di OMS per valutare la baseline di configurazione della sicurezza).
+> Lettura [tooassess Usa OMS protezione hello base di configurazione della sicurezza](https://blogs.technet.microsoft.com/msoms/2016/08/12/use-oms-security-to-assess-the-security-configuration-baseline/) per una breve panoramica di questa funzionalità.
 > 
 > 
 
 ## <a name="security-baseline-assessment"></a>Valutazione baseline sicurezza
-È possibile verificare la valutazione baseline sicurezza corrente per tutti i computer monitorati da Sicurezza e controllo di OMS usando il dashboard.  Seguire questa procedura per accedere al dashboard della valutazione baseline sicurezza:
+È possibile esaminare la valutazione della linea di base di sicurezza corrente per tutti i computer monitorati da OMS sicurezza e controllo tramite il dashboard di hello.  Eseguire hello del dashboard di valutazione della linea di base passaggi tooaccess hello sicurezza seguenti:
 
-1. Nel dashboard principale di **Microsoft Operations Management Suite** fare clic sul riquadro **Sicurezza e controllo**.
-2. Nel dashboard **Sicurezza e controllo** fare clic su **Valutazione baseline** in **Domini di sicurezza**. Il dashboard **Valutazione baseline sicurezza** viene visualizzato come mostrato nell'immagine seguente:
+1. In hello **Microsoft Operations Management Suite** dashboard principale, fare clic su **Security and Audit** riquadro.
+2. In hello **Security and Audit** dashboard, fare clic su **valutazione della linea di base** in **domini di sicurezza**. Hello **valutazione della linea di base della sicurezza** dashboard viene visualizzato come illustrato nella seguente immagine hello:
    
     ![Valutazione baseline di Sicurezza e controllo di OMS](./media/oms-security-baseline/oms-security-baseline-fig1.png)
 
 Questo dashboard è suddiviso in tre aree principali:
 
-* **Computer rispetto alla baseline**: questa sezione offre un riepilogo del numero di computer a cui è stato eseguito l'accesso e la percentuale di computer che hanno superato la valutazione. Vengono indicati anche i primi 10 computer e il risultato, sotto forma di percentuale, per la valutazione.
-* **Stato regole necessario**: questa sezione indica le regole non riuscite in base a gravità e in base a tipo. Esaminando il primo grafico, è possibile identificare rapidamente se la maggior parte delle regole non riuscite è critica o meno. È disponibile anche un elenco delle prime 10 regole non riuscite e della rispettiva gravità. Il secondo grafico mostra il tipo di regole non riuscite durante la valutazione. 
-* **Computer senza valutazione baseline**: questa sezione elenca i computer a cui non è stato eseguito l'accesso a causa di incompatibilità o errori del sistema operativo. 
+* **Computer rispetto toobaseline**: in questa sezione fornisce un riepilogo del numero di hello di computer che erano accessibili e percentuale di computer passato valutazione hello hello. Offre inoltre 10 computer hello superiore e il risultato di hello percentuale per la valutazione di hello.
+* **Stato regole richiesto**: in questa sezione è hello toobring intento di hello non è stato possibile regole in base alla gravità e le regole in base al tipo di non riuscita. Esaminando toohello primo grafico che è possibile identificare rapidamente se non è riuscita hello la maggior parte delle regole sono fondamentali, o non. Offre inoltre un elenco di regole con esito negativo 10 superiore hello e alla gravità. grafico secondo Hello Mostra il tipo di hello di regola non riuscita durante la valutazione di hello. 
+* **Computer privi di valutazione della linea di base**: in questa sezione elenco computer hello che non erano accessibili a causa di incompatibilità di sistema toooperating o errori. 
 
-### <a name="accessing-computers-compared-to-baseline"></a>Accesso a computer rispetto alla baseline
-Tutti i computer sono idealmente conformi alla valutazione baseline sicurezza. È tuttavia previsto che in alcune circostanze non tutti i computer siano conformi. Come parte del processo di gestione della sicurezza, è importante includere la verifica dei computer che non hanno superato tutti i test di valutazione della sicurezza. Un modo rapido per visualizzare queste informazioni consiste nel selezionare l'opzione **Computer a cui è stato eseguito l'accesso** nella sezione **Computer rispetto alla baseline**. Vengono visualizzati i risultati della ricerca nel log, con un elenco dei computer, come illustrato nella schermata seguente:
+### <a name="accessing-computers-compared-toobaseline"></a>L'accesso a computer confrontati toobaseline
+In teoria, tutti i computer siano essere conforme alla valutazione della linea di base della sicurezza hello. È tuttavia previsto che in alcune circostanze non tutti i computer siano conformi. Come parte del processo di gestione di hello sicurezza, è importante tooinclude revisione computer hello che non è stato possibile toopass tutti i test di valutazione di sicurezza. Toovisualize un modo rapido per l'opzione hello **computer ai quali accede** si trova in hello **computer confrontati toobaseline** sezione. Verrà visualizzato come illustrato nella seguente schermata hello hello Registro ricerca risultati visualizzazione hello dell'elenco dei computer:
 
 ![Risultati per computer a cui è stato eseguito l'accesso](./media/oms-security-baseline/oms-security-baseline-fig2.png)
 
-I risultati della ricerca vengono visualizzati in un formato di tabella, in cui la prima colonna contiene il nome del computer e la seconda colonna include il numero di regole non riuscite. Per recuperare le informazioni relative al tipo di regole non riuscite, fare clic sul numero di regole non riuscite accanto al nome del computer. Viene visualizzato un risultato analogo a quello illustrato nell'immagine seguente:
+il risultato di ricerca Hello viene visualizzato in un formato di tabella, in cui hello prima colonna ha il nome di computer hello e secondo colore hello con numero di hello di regole che non è riuscita. Fare clic su informazioni di hello tooretrieve sul tipo di hello di regola non riuscita, numero hello di regole non riuscite oltre a nome computer hello. Verrà visualizzato un toohello simile di risultati illustrato nella seguente immagine hello:
 
 ![Dettagli dei risultati per computer a cui è stato eseguito l'accesso](./media/oms-security-baseline/oms-security-baseline-fig3.png)
 
-In questi risultati della ricerca è disponibile il totale delle regole a cui è stato eseguito l'accesso, il numero delle regole critiche non riuscite, le regole di avviso e le informazioni sulle regole non riuscite.
+In questo risultato ricerca hello totale di regole a cui si accede, hello numero di regole critiche che non è riuscita, hello regole per gli avvisi e hello regole informazioni non riuscita.
 
 ### <a name="accessing-required-rules-status"></a>Accesso allo stato delle regole necessarie
-Dopo avere ottenuto le informazioni relative alla percentuale del numero di computer che ha superato la valutazione, è possibile che si vogliano ottenere altre informazioni sulle regole non riuscite in base alla criticità. Questa visualizzazione consente di assegnare priorità ai computer da gestire per primi, in modo da assicurare che risulteranno conformi alla valutazione successiva. Passare il mouse sulla parte Critica del grafico disponibile nel riquadro **Regole non riuscite per gravità** in **Stato regole necessario** e farvi clic. Viene visualizzato un risultato analogo alla schermata seguente:
+Dopo aver ottenuto informazioni hello riguardanti hello di numero percentuale di computer che passato valutazione hello, è opportuno tooobtain ulteriori informazioni sulle regole di cui hanno esito negativo in base toohello criticità. In questo modo, visualizzazione tooprioritize i computer nei quali devono essere risolti prima tooensure siano conformi nella valutazione successiva hello. Passare il mouse su una parte essenziale di hello del grafico hello nella hello **non riuscito di regole in base alla gravità** in riquadro **stato regole richiesto** e farvi clic sopra. Verrà visualizzato un toohello simile di risultati seguente schermata:
 
 ![Dettagli delle regole non riuscite per gravità](./media/oms-security-baseline/oms-security-baseline-fig4.png) 
 
-Nei risultati di questo log viene visualizzato il tipo di regola baseline non riuscita, la descrizione della regola e l'ID CCE (Common Configuration Enumeration) di questa regola di sicurezza. Questi attributi devono essere sufficienti per eseguire un'azione correttiva per risolvere il problema nel computer di destinazione.
+In questo risultato log viene visualizzato il tipo di hello di regola di base che non è riuscita, descrizione hello di questa regola e ID di enumerazione di configurazione comuni (CCE) hello di questa regola di sicurezza. Questi attributi deve essere sufficiente tooperform toofix un'azione correttiva il problema nel computer di destinazione hello.
 
 > [!NOTE]
-> Per altre informazioni su CCE, accedere al [National Vulnerability Database](https://nvd.nist.gov/cce/index.cfm).
+> Per ulteriori informazioni sul CCE, accesso hello [National Vulnerability Database](https://nvd.nist.gov/cce/index.cfm).
 > 
 > 
 
 ### <a name="accessing-computers-missing-baseline-assessment"></a>Accesso ai computer senza valutazione baseline
-OMS supporta il profilo baseline dei membri di dominio e del controller di dominio in Windows Server 2008 R2 fino a Windows Server 2012 R2. La baseline di Windows Server 2016 non è ancora definitiva e verrà aggiunta non appena pubblicata. Tutti i sistemi operativi analizzati tramite la valutazione baseline della Sicurezza e controllo di OMS vengono visualizzati nella sezione **Computer senza valutazione baseline**.
+OMS supporta membro del dominio hello e profilo di base di Controller di dominio in Windows Server 2008 R2 fino tooWindows Server 2012 R2. La baseline di Windows Server 2016 non è ancora definitiva e verrà aggiunta non appena pubblicata. Tutti gli altri sistemi operativi analizzati tramite OMS Security and Audit valutazione della linea di base viene visualizzata sotto hello **computer privi di valutazione della linea di base** sezione.
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento sono disponibili informazioni sulla valutazione baseline della Sicurezza e controllo di OMS. Per altre informazioni sulle funzionalità di sicurezza di OMS, vedere gli articoli seguenti:
+In questo documento sono disponibili informazioni sulla valutazione baseline della Sicurezza e controllo di OMS. toolearn più sulla sicurezza di OMS, vedere hello seguenti articoli:
 
 * [Panoramica di Operations Management Suite (OMS)](operations-management-suite-overview.md)
-* [Monitoraggio e gestione degli avvisi di sicurezza nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-responding-alerts.md)
+* [Monitoraggio e risposta tooSecurity avvisi nella soluzione di controllo e protezione di Operations Management Suite](oms-security-responding-alerts.md)
 * [Monitoraggio delle risorse nella soluzione Operations Management Suite per la sicurezza e il controllo](oms-security-monitoring-resources.md)
 

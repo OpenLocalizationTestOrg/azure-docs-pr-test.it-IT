@@ -1,5 +1,5 @@
 ---
-title: Aggregazione di eventi di Azure Service Fabric con Diagnostica di Azure per Linux | Microsoft Docs
+title: Aggregazione di eventi di Service Fabric con diagnostica Azure per Linux aaaAzure | Documenti Microsoft
 description: Informazioni sull'aggregazione e la raccolta di eventi con LAD per il monitoraggio e la diagnostica dei cluster di Azure Service Fabric.
 services: service-fabric
 documentationcenter: .net
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/17/2017
 ms.author: dekapur
-ms.openlocfilehash: bcc3a229369a065cfcfbd32eadbf3f6ae6fe0036
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: aefa869219a0dd219e01e6574816fe3ce47fe472
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-aggregation-and-collection-using-linux-azure-diagnostics"></a>Aggregazione e raccolta di eventi con Diagnostica di Azure per Linux
 > [!div class="op_single_selector"]
@@ -27,33 +27,33 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Quando si esegue un cluster Azure Service Fabric, è consigliabile raccogliere i log da tutti i nodi in una posizione centrale. Il salvataggio dei log in una posizione centrale semplifica l'analisi e la risoluzione di eventuali problemi nel cluster o nelle applicazioni e nei servizi in esecuzione nel cluster.
+Quando si esegue un cluster di Azure Service Fabric, è un log di hello buona toocollect da tutti i nodi di hello in una posizione centrale. La presenza di log hello in una posizione centrale consente di analizzare e risolvere i problemi del cluster, o problemi in applicazioni hello e servizi in esecuzione in tale cluster.
 
-Un modo per caricare e raccogliere i registri consiste nell'usare l'estensione Diagnostica di Azure per Linux, ovvero LAD, che consente di caricare i registri nell'Archiviazione di Azure e di inviarli ad Azure Application Insights o Hub eventi. È anche possibile usare un processo esterno per leggere gli eventi dalla risorsa di archiviazione e inserirli in una piattaforma di analisi come [Log Analytics di OMS](../log-analytics/log-analytics-service-fabric.md) o un'altra soluzione di analisi di registrazione.
+Tooupload un modo e raccogliere i log è toouse estensione di diagnostica Azure Linux (LAD) hello, che carica i log tooAzure archiviazione e dispone inoltre di hello opzione toosend registri tooAzure Application Insights o hub eventi. È inoltre possibile utilizzare gli eventi di hello tooread un processo esterno dall'archivio e inserirle in un prodotto di piattaforma di analisi, ad esempio [OMS Log Analitica](../log-analytics/log-analytics-service-fabric.md) o un'altra soluzione di analisi di log.
 
 ## <a name="log-and-event-sources"></a>Origini di log ed eventi
 
 ### <a name="service-fabric-platform-events"></a>Eventi della piattaforma Service Fabric
-Service Fabric emette alcuni registri pronti all'uso tramite [LTTng](http://lttng.org), inclusi gli eventi operativi o gli eventi di runtime. Questi log vengono archiviati nel percorso specificato dal cluster del modello di Resource Manager. Per ottenere e impostare i dettagli dell'account di archiviazione, cercare il tag **AzureTableWinFabETWQueryable** e quindi **StoreConnectionString**.
+Service Fabric emette alcuni registri pronti all'uso tramite [LTTng](http://lttng.org), inclusi gli eventi operativi o gli eventi di runtime. Questi log vengono archiviati nella posizione hello hello gestione delle risorse del cluster modello specifica. tooget o impostare i dettagli di account di archiviazione hello, cercare il tag di hello **AzureTableWinFabETWQueryable** e cercare **StoreConnectionString**.
 
 ### <a name="application-events"></a>Eventi dell'applicazione
- Eventi generati dal codice delle applicazioni e dei servizi come specificato dall'utente durante la strumentazione del software. È possibile usare qualsiasi soluzione di registrazione che scriva file di log basati su testo, ad esempio LTTng. Per altre informazioni, vedere la documentazione di LTTng relativa alla traccia dell'applicazione.
+ Eventi generati dal codice delle applicazioni e dei servizi come specificato dall'utente durante la strumentazione del software. È possibile usare qualsiasi soluzione di registrazione che scriva file di log basati su testo, ad esempio LTTng. Per ulteriori informazioni, vedere documentazione di LTTng hello nella traccia dell'applicazione.
 
 [Monitorare e diagnosticare servizi in una configurazione di sviluppo con computer locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
 
-## <a name="deploy-the-diagnostics-extension"></a>Distribuire l'estensione Diagnostica
-Il primo passaggio per la raccolta dei log consiste nel distribuire l'estensione Diagnostica in ogni VM del cluster Service Fabric. Questa estensione raccoglie i log in ogni VM e li carica nell'account di archiviazione specificato. La procedura varia a seconda che si usi il portale di Azure oppure Azure Resource Manager.
+## <a name="deploy-hello-diagnostics-extension"></a>Distribuire l'estensione diagnostica hello
+Hello primo passaggio per la raccolta di log è l'estensione di diagnostica toodeploy hello in ognuna delle macchine virtuali di hello in cluster di Service Fabric hello. Hello estensione di diagnostica raccoglie i log in ogni macchina virtuale e li carica toohello account di archiviazione specificato. passaggi di Hello variano in base che si utilizzi hello portale di Azure o Gestione risorse di Azure.
 
-Per distribuire l'estensione di diagnostica nelle VM del cluster come parte della creazione del cluster, impostare **Diagnostica** su **Attiva**. Dopo aver creato il cluster, è possibile modificare questa impostazione tramite il portale.
+toodeploy hello diagnostica estensione toohello macchine virtuali in cluster hello come parte della creazione del cluster, impostare **diagnostica** troppo**su**. Dopo aver creato il cluster hello, è possibile modificare questa impostazione tramite il portale di hello.
 
-Configurare quindi l'estensione Diagnostica di Azure per Linux per raccogliere i file e inserirli nel proprio account di archiviazione. Questo processo viene illustrato nello scenario 3 ("Caricamento dei propri file di log") descritto nell'articolo relativo all' [uso dell'estensione Diagnostica di Azure per Linux per il monitoraggio e la diagnosi di VM Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json). Questo processo consente di ottenere l'accesso alle tracce. È possibile anche caricare le tracce in un visualizzatore a scelta.
+Quindi, configurare diagnostica Azure Linux (LAD) toocollect hello file e inserirli in account di archiviazione. Questo processo viene illustrato come lo scenario 3 ("Carica i file di log") dell'articolo hello [toomonitor utilizzando LAD e diagnosticare le macchine virtuali Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json). Seguente ottiene questo processo è accedere toohello tracce. È possibile caricare Visualizzatore tooa tracce di hello di propria scelta.
 
-È anche possibile distribuire l'estensione di Diagnostica con Azure Resource Manager. Il processo è simile per Windows e per Linux ed è documentato per i cluster Windows nell'articolo [Come raccogliere log con Diagnostica di Azure](service-fabric-diagnostics-how-to-setup-wad.md).
+È inoltre possibile distribuire l'estensione diagnostica hello usando Gestione risorse di Azure. Hello processo è analogo per Windows e Linux ed è documentato per cluster di Windows in [modalità di registrazione con diagnostica Azure toocollect](service-fabric-diagnostics-how-to-setup-wad.md).
 
 È anche possibile usare Operations Management Suite, come descritto in [Operations Management Suite Log Analytics with Linux](https://blogs.technet.microsoft.com/hybridcloud/2016/01/28/operations-management-suite-log-analytics-with-linux/) (Analisi dei log di Operations Management Suite con Linux).
 
-Dopo aver terminato la configurazione, l'agente di Diagnostica di Azure per Linux monitora i file di log specificati. Ogni volta che viene aggiunta una nuova riga al file, l'agente crea una voce syslog che viene inviata alla risorsa di archiviazione specificata dall'utente.
+Dopo aver completato questa configurazione, hello LAD agente monitoraggi hello i file di log specificato. Ogni volta che una nuova riga aggiunta toohello file, viene creata una voce syslog che è inviato toohello spazio di archiviazione specificato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per comprendere più nel dettaglio gli eventi da esaminare durante la risoluzione dei problemi, vedere la [documentazione di LTTng](http://lttng.org/docs) e l'articolo relativo all'[uso dell'estensione Diagnostica di Azure per Linux](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+toounderstand in dettaglio gli eventi che è necessario esaminare durante la risoluzione dei problemi, vedere [LTTng documentazione](http://lttng.org/docs) e [LAD utilizzando](../virtual-machines/linux/classic/diagnostic-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).

@@ -1,6 +1,6 @@
 ---
-title: Applicare i tag alle risorse di Azure nei modelli di Azure | Microsoft Docs
-description: Viene illustrato come applicare i tag alle risorse in un modello di Azure Resource Manager
+title: aaaTag Azure le risorse nel modello | Documenti Microsoft
+description: Viene illustrato come tooapply tag tooresources in un modello di gestione risorse di Azure
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/20/2017
 ms.author: tomfitz
-ms.openlocfilehash: adc10ade79af3087a8b24ea5b6709182cb1edb92
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e07837a4ca3ceffc9da3443e9390c95562eda99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tag-resources-in-azure-resource-manager-templates"></a>Applicare i tag alle risorse nei modelli di Azure Resource Manager
 [!INCLUDE [resource-manager-tag-introduction](../../includes/resource-manager-tag-introduction.md)]
 
-## <a name="add-tags-to-your-template"></a>Aggiungere i tag al modello
+## <a name="add-tags-tooyour-template"></a>Aggiungere tag tooyour modello
 
 [!INCLUDE [resource-manager-tags-in-templates](../../includes/resource-manager-tags-in-templates.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sui tag, vedere [Use tags to organize your Azure resources](resource-group-using-tags.md) (Uso dei tag per organizzare le risorse di Azure).
-* Per indicazioni su come le aziende possono usare Resource Manager per gestire efficacemente le sottoscrizioni, vedere [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md) (Scaffolding aziendale Azure - Governance prescrittiva per le sottoscrizioni).
+* Per informazioni sulla gestione dei tag, vedere [utilizzare tag tooorganize le risorse di Azure](resource-group-using-tags.md).
+* Per istruzioni su come le aziende possono usare tooeffectively Gestione risorse di gestione di sottoscrizioni, vedere [lo scaffolding di Azure enterprise - governance sottoscrizione rigorosa](resource-manager-subscription-governance.md).
 

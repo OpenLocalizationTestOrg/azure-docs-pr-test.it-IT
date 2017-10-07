@@ -1,6 +1,6 @@
 ---
-title: "Disponibilità e aree di Azure per macchine virtuali Windows | Documentazione Microsoft"
-description: "Scopri le aree e le caratteristiche di disponibilità per l'esecuzione di macchine virtuali Windows in Azure"
+title: "aaaAzure aree e disponibilità per le macchine virtuali di Windows | Documenti Microsoft"
+description: "Informazioni sulle aree hello e funzionalità di disponibilità per l'esecuzione di macchine virtuali di Windows in Azure"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 07/10/2017
 ms.author: iainfou
-ms.openlocfilehash: 8f1c733f5af85668ba306992c4b3857f6b5cebed
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5d71d38150df271d72e4db4132989644138917e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [virtual-machines-common-regions-and-availability](../../../includes/virtual-machines-common-regions-and-availability.md)]
 

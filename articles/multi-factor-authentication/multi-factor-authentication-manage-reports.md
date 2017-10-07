@@ -1,6 +1,6 @@
 ---
-title: Rapporto di accesso e uso per Azure MFA | Microsoft Docs
-description: "Viene descritto come usare la funzionalità dei report di Azure Multi-Factor Authentication."
+title: report di utilizzo e aaaAccess per Azure MFA | Documenti Microsoft
+description: "Descrive come toouse hello funzionalità di Azure multi-Factor Authentication - report."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: kgremban
-ms.openlocfilehash: f76e726c6a67de4b0472c0e97f9e72c31c14c4f2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ae7ccceca4968d7ec7cf0cb1cf9e041d9997c840
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reports-in-azure-multi-factor-authentication"></a>Report in Azure Multi-Factor Authentication
-Azure Multi-Factor Authentication offre diversi report che possono essere utilizzati dall'utente e dall'organizzazione. Questi rapporti sono accessibili tramite il portale di gestione Multi-Factor Authentication. Di seguito è riportato un elenco dei rapporti disponibili:
+Azure Multi-Factor Authentication offre diversi report che possono essere utilizzati dall'utente e dall'organizzazione. Questi report sono accessibili tramite il portale di gestione di multi-Factor Authentication hello. Hello seguito è riportato un elenco di report disponibili hello:
 
 | Report | Descrizione |
 |:--- |:--- |
-| Utilizzo |I rapporti di utilizzo consentono di visualizzare informazioni sull'uso generale, un riepilogo e dettagli sull'utente. |
-| Stato server |Questo report consente di visualizzare lo stato dei server di Multi-Factor Authentication associati all'account. |
-| Cronologia utenti bloccati |Questi report mostrano la cronologia delle richieste per bloccare o sbloccare gli utenti. |
-| Cronologia utenti bypass |Consente di visualizzare la cronologia delle richieste per disabilitare Multi-Factor Authentication per il numero di telefono dell'utente. |
-| Avviso di illecito |Consente di visualizzare una cronologia di avvisi di illecito inviati durante l'intervallo di date specificato dall'utente. |
-| Queued |Consente di elencare i report accodati da elaborare e i relativi stati. Quando il report è completo, viene fornito un collegamento per scaricare o visualizzare il report. |
+| Utilizzo |utilizzo di Hello report visualizza informazioni sull'utilizzo complessivo, riepilogo utenti e i dettagli dell'utente. |
+| Stato server |Questo report visualizza lo stato di hello dei server di multi-Factor Authentication associati all'account. |
+| Cronologia utenti bloccati |Questi report mostrano la cronologia di hello di richieste tooblock o sblocco degli utenti. |
+| Cronologia utenti bypass |Mostra la cronologia hello di richieste toobypass multi-Factor Authentication per il numero di telefono dell'utente. |
+| Avviso di illecito |Mostra una cronologia degli avvisi di illecito inviati durante l'intervallo di date hello specificato. |
+| Queued |Consente di elencare i report accodati da elaborare e i relativi stati. Un report di hello toodownload o della vista di collegamento è disponibile quando viene completata hello del report. |
 
 ## <a name="view-reports"></a>Visualizzazione dei report
-1. Accedere al [portale di Azure classico](https://manage.windowsazure.com).
-2. A sinistra selezionare Active Directory.
+1. Accedi toohello [portale di Azure classico](https://manage.windowsazure.com).
+2. Hello sinistra, selezionare Active Directory.
 3. Attenersi a una di queste due opzioni, a seconda che vengano usati provider di autenticazione:
-   * **Option 1**: fare clic sulla scheda dei provider Multi-Factor Authentication. Selezionare il provider di MFA e fare clic sul pulsante **Gestisci** nella parte inferiore.
-   * **Opzione 2**: selezionare la directory e passare alla scheda **Configura**. Nella sezione Multi-Factor Authentication selezionare **Gestisci impostazioni del servizio**. Nella parte inferiore della pagina delle impostazioni del servizio MFA, fare clic sul collegamento Vai al portale.
-4. Nel portale di gestione Azure Multi-Factor Authentication, selezionare il tipo di rapporto desiderato dalla sezione **Visualizza un report** nel riquadro di navigazione a sinistra.
+   * **Opzione 1**: fare clic sulla scheda provider multi-Factor Authentication hello. Selezionare il provider di autenticazione a più fattori e fare clic su hello **Gestisci** pulsante nella parte inferiore di hello.
+   * **Opzione 2**: selezionare il toohello directory e andare **configura** scheda. Hello multi-factor authentication, selezionare nella sezione **Gestisci impostazioni servizio**. Nella parte inferiore di hello della pagina di impostazioni di servizio di autenticazione a più fattori hello, fare clic su hello Go toohello collegamento del portale.
+4. Nel portale di gestione di Azure multi-Factor Authentication hello, selezionare il tipo di hello di report che si desidera hello **visualizzare un Report** sezione hello riquadro di spostamento sinistro.
 
 <center>![Cloud](./media/multi-factor-authentication-manage-reports/report.png)</center>
 

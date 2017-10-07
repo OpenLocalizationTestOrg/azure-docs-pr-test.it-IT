@@ -1,6 +1,6 @@
 ---
-title: Monitorare, diagnosticare e risolvere i problemi correlati ad Archiviazione di Microsoft Azure | Documentazione Microsoft
-description: "Usare funzionalità quali l'analisi dell'archiviazione, la registrazione lato client e altri strumenti di terze parti per identificare, diagnosticare e risolvere i problemi correlati ad Archiviazione di Azure."
+title: aaaMonitor, diagnosticare e risolvere i problemi di archiviazione di Azure | Documenti Microsoft
+description: "Usare le funzionalità come analitica di archiviazione, la registrazione, sul lato client e tooidentify altri strumenti di terze parti, diagnosticare e risolvere i problemi correlati ad archiviazione di Azure."
 services: storage
 documentationcenter: 
 author: fhryo-msft
@@ -14,190 +14,190 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: fhryo-msft
-ms.openlocfilehash: c6bf7cd3bd16d8af30fed09f7878a0e68748a971
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a33b3af7527223169be7cf3fed76c4765ff80e28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-diagnose-and-troubleshoot-microsoft-azure-storage"></a>Monitorare, diagnosticare e risolvere i problemi dell'Archiviazione di Microsoft Azure
 [!INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
 ## <a name="overview"></a>Overview
-La diagnosi e la risoluzione dei problemi in un'applicazione distribuita ospitata in un ambiente cloud possono essere più complesse rispetto agli ambienti tradizionali. Le applicazioni possono essere distribuite in un'infrastruttura PaaS o IaaS, in locale, su un dispositivo mobile o in una combinazione di questi tipi di distribuzione. In genere, il traffico in rete dell'applicazione può passare su reti pubbliche e private e l'applicazione può usare più tecnologie di archiviazione, ad esempio tabelle, BLOB, code o file di Microsoft Azure oltre ad altri archivi di dati come i database relazionali e di documenti.
+La diagnosi e la risoluzione dei problemi in un'applicazione distribuita ospitata in un ambiente cloud possono essere più complesse rispetto agli ambienti tradizionali. Le applicazioni possono essere distribuite in un'infrastruttura PaaS o IaaS, in locale, su un dispositivo mobile o in una combinazione di questi tipi di distribuzione. In genere, il traffico di rete dell'applicazione può attraversare reti pubbliche e private e l'applicazione potrà usare più tecnologie di archiviazione, ad esempio tabelle di archiviazione di Microsoft Azure, BLOB, code o vengono archiviati i file di dati tooother aggiunta, ad esempio relazionale e database di documenti.
 
-Per gestire in modo efficace queste applicazioni, è necessario monitorarle attivamente e capire in che modo diagnosticare e risolvere i problemi correlati a tutti gli aspetti delle applicazioni e delle tecnologie dipendenti. L'utente dei servizi di archiviazione di Azure deve monitorare continuamente i servizi di archiviazione usati dall'applicazione per riscontrare eventuali cambiamenti inattesi nel comportamento, ad esempio tempi di risposta insolitamente lenti, e deve usare la registrazione per raccogliere dati più dettagliati e analizzare i problemi più in profondità. Le informazioni di diagnostica ottenute dal monitoraggio e dalla registrazione consentiranno di determinare la causa principale del problema riscontrato dall'applicazione. Sarà quindi possibile identificare il problema e determinare le misure appropriate per risolverlo. L'Archiviazione di Azure è uno dei principali servizi di Azure ed è un componente importante della maggior parte delle soluzioni distribuite dai client nell'infrastruttura Azure. Include funzionalità che consentono di semplificare le attività di monitoraggio, diagnostica e risoluzione dei problemi di archiviazione nelle applicazioni basate su cloud.
+toomanage tali applicazioni correttamente è necessario monitorarli in modo proattivo e comprendere come toodiagnose e risolvere i problemi relativi a tutti gli aspetti e le tecnologie dipendenti. Come utente di servizi di archiviazione di Azure, si deve continuamente monitorare i servizi di archiviazione hello l'applicazione utilizza per impreviste modifiche del comportamento (ad esempio, più lento rispetto a tempi di risposta normale) e utilizzare toocollect registrazione più dettagliati dati e tooanalyze un problema di profondità. informazioni di diagnostica Hello ottenute da monitoraggio e registrazione consentirà si toodetermine hello causa radice di hello di eseguire l'applicazione ha rilevato. È possibile risolvere il problema di hello e determinare i passaggi appropriati di hello è possibile eseguire tooremediate è. Archiviazione di Azure è un componenti di base del servizio di Azure e costituisce una parte importante della maggior parte di hello delle soluzioni che i clienti distribuire toohello dell'infrastruttura di Azure. Archiviazione di Azure include funzionalità toosimplify monitoraggio, diagnosi e risoluzione dei problemi di archiviazione nelle applicazioni basate su cloud.
 
 > [!NOTE]
-> Archiviazione file di Azure attualmente non supporta la registrazione.
+> Hello archiviazione di File di Azure non supporta la registrazione in questo momento.
 > 
 
-Per una guida interattiva alla risoluzione dei problemi end-to-end in applicazioni di Archiviazione di Azure, vedere la pagina relativa alla [risoluzione dei problemi end-to-end usando Metriche e Registrazione di Archiviazione di Azure, AzCopy e Analizzatore messaggi](storage-e2e-troubleshooting.md).
+Per un Guida pratica tooend-to-end risoluzione dei problemi in applicazioni di servizio di archiviazione Azure, vedere [risoluzione dei problemi con le metriche di archiviazione di Azure e la registrazione, AzCopy e Message Analyzer End-to-End](storage-e2e-troubleshooting.md).
 
 * [Introduzione]
   * [Organizzazione di questa guida]
-* [Monitoraggio del servizio di archiviazione]
+* [monitoraggio del servizio di archiviazione]
   * [Monitoraggio dello stato del servizio]
   * [Monitoraggio della capacità]
   * [Monitoraggio della disponibilità]
   * [Monitoraggio delle prestazioni]
-* [Diagnosi dei problemi di archiviazione]
+* [la diagnosi dei problemi di archiviazione]
   * [Problemi di stato del servizio]
   * [Problemi di prestazioni]
   * [Diagnostica degli errori]
   * [Problemi dell'emulatore di archiviazione]
   * [Strumenti di registrazione dell'archiviazione]
   * [Uso degli strumenti di registrazione in rete]
-* [Traccia end-to-end]
+* [traccia End-to-end]
   * [Correlazione dei dati di log]
   * [ID richiesta client]
-  * [ID richiesta server]
+  * [ID richiesta Server]
   * [Timestamp]
-* [Guida alla risoluzione dei problemi]
-  * [Le metriche indicano un valore AverageE2ELatency alto e un valore AverageServerLatency basso]
-  * [Le metriche indicano un valore AverageE2ELatency basso e un valore AverageServerLatency basso, ma il client riscontra una latenza elevata]
+* [le indicazioni di Troubleshooting]
+  * [metrica Mostra AverageE2ELatency alta e bassa AverageServerLatency]
+  * [Metrica Mostra AverageE2ELatency bassa e bassa AverageServerLatency ma hello client si è verificato ad alta latenza]
   * [Le metriche indicano un valore AverageServerLatency alto]
   * [Si stanno verificando ritardi imprevisti nel recapito dei messaggi di una coda]
-  * [Le metriche indicano un aumento di PercentThrottlingError]
-  * [Le metriche indicano un aumento di PercentTimeoutError]
+  * [metriche mostrano un aumento PercentThrottlingError]
+  * [metriche mostrano un aumento PercentTimeoutError]
   * [Le metriche indicano un aumento di PercentNetworkError]
-  * [Il client sta ricevendo messaggi HTTP 403 (Accesso negato)]
-  * [Il client sta ricevendo messaggi HTTP 404 (Non trovato)]
-  * [Il client sta ricevendo messaggi HTTP 409 (Conflitto)]
-  * [Le metriche indicano un valore PercentSuccess basso o le voci del log di analisi contengono operazioni con stato della transazione ClientOtherErrors]
+  * [client hello è la ricezione di messaggi HTTP 403 (accesso negato)]
+  * [client hello è la ricezione di messaggi HTTP 404 (non trovato)]
+  * [client hello è la ricezione di messaggi HTTP 409 (conflitto)]
+  * [metrica Mostra PercentSuccess bassa o voci di log analitica sono operazioni con stato delle transazioni di ClientOtherErrors]
   * [Le metriche della capacità indicano un aumento imprevisto dell'uso della capacità di archiviazione]
   * [Si stanno verificando riavvii imprevisti delle macchine virtuali con un numero elevato di VHD allegati]
-  * [Il problema è dovuto all'uso dell'emulatore di archiviazione per attività di sviluppo o test]
-  * [Si stanno verificando problemi di installazione di Azure SDK per .NET]
+  * [Il problema si verifica di utilizzare l'emulatore di archiviazione hello per lo sviluppo o test]
+  * [Si sono verificati problemi di installazione hello Azure SDK per .NET]
   * [Si è verificato un problema diverso con un servizio di archiviazione]
   * [Risoluzione dei problemi di Archiviazione file di Azure in Windows e Linux](storage-troubleshoot-file-connection-problems.md)
-* [Appendici]
-  * [Appendice 1: Uso di Fiddler per l'acquisizione del traffico HTTP e HTTPS]
-  * [Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete]
-  * [Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete]
-  * [Appendice 4: Uso di Excel per la visualizzazione di metriche e dati di log]
+* [appendici]
+  * [appendice 1: utilizzando il traffico HTTP e HTTPS toocapture Fiddler]
+  * [appendice 2: utilizzando il traffico di rete toocapture Wireshark]
+  * [appendice 3: utilizzo del traffico di rete di Microsoft Message Analyzer toocapture]
+  * [Appendice 4: Utilizzando i dati di metrica e di log tooview di Excel]
   * [Appendice 5: Monitoraggio con Application Insights per Visual Studio Team Services]
 
 ## <a name="introduction"></a>Introduzione
-Questa guida spiega come usare funzionalità quali l'analisi dell'archiviazione di Azure, la registrazione lato client nella libreria client di archiviazione di Azure e altri strumenti di terze parti per identificare, diagnosticare e risolvere i problemi correlati al servizio di archiviazione di Azure.
+Problemi relativi al Mostra questa guida si come toouse funzionalità quali Analitica di archiviazione di Azure, la registrazione lato client in Azure Storage Client Library hello e tooidentify altri strumenti di terze parti, diagnosticare e risolvere i problemi di archiviazione di Azure.
 
 ![][1]
 
-La guida è destinata in particolare agli sviluppatori dei servizi online che usano i servizi di archiviazione di Azure e ai professionisti IT responsabili della gestione di tali servizi online. Gli obiettivi della guida sono:
+Questa guida è previsto toobe leggere principalmente dagli sviluppatori di servizi online che usano servizi di archiviazione di Azure e i professionisti IT responsabili della gestione di tali servizi in linea. Hello obiettivi di questa guida sono:
 
-* Consentire all'utente di mantenere l'integrità e le prestazioni degli account di archiviazione di Azure.
-* Fornire all'utente le procedure e gli strumenti necessari per decidere se un problema riscontrato in un'applicazione è correlato all'Archiviazione di Azure.
-* Fornire all'utente indicazioni pratiche per la risoluzione dei problemi correlati all'Archiviazione di Azure.
+* toohelp conservare hello integrità e le prestazioni degli account di archiviazione di Azure.
+* tooprovide processi necessarie hello e si decide se un problema in un'applicazione si riferisce tooAzure archiviazione toohelp di strumenti.
+* tooprovide con informazioni aggiuntive utilizzabili per risolvere i problemi correlati tooAzure archiviazione.
 
 ### <a name="how-this-guide-is-organized"></a>Organizzazione di questa guida
-La sezione "[Monitoraggio del servizio di archiviazione]" descrive le modalità di controllo dell'integrità e delle prestazioni dei servizi di archiviazione Azure tramite le metriche di Analisi archiviazione di Azure (metriche di archiviazione).
+sezione Hello "[monitoraggio del servizio di archiviazione]" viene descritto come toomonitor hello integrità e le prestazioni dei servizi di archiviazione di Azure utilizzando Azure Storage Analitica metriche (metriche di archiviazione).
 
-La sezione "[Diagnosi dei problemi di archiviazione]" descrive in che modo vengono diagnosticati i problemi utilizzando la funzione di registrazione di Analisi archiviazione di Azure (registrazione dell'archiviazione). Descrive anche in che modo si abilita la registrazione lato client usando gli strumenti di una libreria client come la libreria client di archiviazione per .NET o Azure SDK per Java.
+sezione Hello "[la diagnosi dei problemi di archiviazione]" viene descritto come toodiagnose problemi utilizzando Azure registrazione Analitica archiviazione (registrazione archiviazione). Viene inoltre descritto come tooenable registrazione lato client utilizzando hello funzioni in una delle librerie client hello, ad esempio hello libreria Client di archiviazione per .NET o hello Azure SDK per Java.
 
-La sezione "[Traccia end-to-end]" descrive come si possono correlare le informazioni contenute in vari file di log e dati delle metriche.
+sezione Hello "[traccia End-to-end]" viene descritto come è possibile correlare informazioni hello contenute nei diversi file di log e dati di metrica.
 
-La sezione "[Guida alla risoluzione dei problemi]" fornisce indicazioni utili per identificare alcuni dei problemi relativi all'archiviazione che si riscontrano più di frequente.
+sezione Hello "[le indicazioni di Troubleshooting]" vengono fornite indicazioni sulla risoluzione dei problemi per alcune delle hello correlati ad archiviazione di problemi comuni che potrebbero verificarsi.
 
-La sezione "[Appendici]" include informazioni sull'utilizzo di altri strumenti quali Wireshark e Netmon per l'analisi dei dati dei pacchetti di rete, Fiddler per l'analisi dei messaggi HTTP/HTTPS e Microsoft Message Analyzer per la correlazione dei dati di log.
+Hello "[appendici]" includono informazioni sull'utilizzo di altri strumenti, ad esempio Wireshark e Netmon per analisi dei dati del pacchetto, Fiddler per l'analisi dei messaggi HTTP/HTTPS, di rete Microsoft Message Analyzer per correlare i dati e di registro.
 
 ## <a name="monitoring-your-storage-service"></a>Monitoraggio del servizio di archiviazione
-Per chi ha familiarità con il monitoraggio delle prestazioni di Windows, le metriche di archiviazione di Azure corrispondono ai contatori di Windows Performance Monitor. Metriche di archiviazione comprende un set completo di metriche (contatori nella terminologia di Performance Monitor di Windows), tra cui la disponibilità del servizio, il numero totale di richieste al servizio e la percentuale di richieste eseguite correttamente. Per l'elenco completo delle metriche disponibili, vedere [Schema di tabella della metrica di Analisi di archiviazione](http://msdn.microsoft.com/library/azure/hh343264.aspx). È possibile specificare se si vuole che il servizio di archiviazione raccolga e aggreghi le metriche ogni ora o ogni minuto. Per altre informazioni sulle modalità di abilitazione delle metriche e sul monitoraggio degli account di archiviazione, vedere [Abilitazione di Metriche di archiviazione e visualizzazione dei dati di metrica](http://go.microsoft.com/fwlink/?LinkId=510865).
+Per chi ha familiarità con il monitoraggio delle prestazioni di Windows, le metriche di archiviazione di Azure corrispondono ai contatori di Windows Performance Monitor. Metriche di archiviazione sono disponibili un set completo di metriche (contatori nella terminologia di Performance Monitor di Windows), ad esempio la disponibilità del servizio, numero totale di richieste tooservice o percentuale di richieste riuscite tooservice. Per un elenco completo di metriche di hello disponibili, vedere [Schema di tabella delle metriche di archiviazione Analitica](http://msdn.microsoft.com/library/azure/hh343264.aspx). È possibile specificare se si desidera toocollect servizio di archiviazione hello e metrica di aggregazione, ogni ora o ogni minuto. Per ulteriori informazioni sulle metriche tooenable e monitorare gli account di archiviazione, vedere [l'abilitazione di metriche di archiviazione e visualizzazione dei dati di metrica](http://go.microsoft.com/fwlink/?LinkId=510865).
 
-È possibile scegliere quali metriche orarie visualizzare nel [portale di Azure](https://portal.azure.com) e configurare le regole che inviano una notifica agli amministratori ogni volta che una metrica oraria supera una soglia particolare. Per altre informazioni, vedere [Ricevere notifiche di avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). 
+È possibile scegliere le metriche orarie si desidera toodisplay in hello [portale di Azure](https://portal.azure.com) e configurare le regole di notifica agli amministratori tramite posta elettronica ogni volta che una metrica oraria supera una determinata soglia. Per altre informazioni, vedere [Ricevere notifiche di avviso](../monitoring-and-diagnostics/insights-receive-alert-notifications.md). 
 
-Il servizio di archiviazione raccoglie le metriche usando la procedura migliore, ma potrebbe non registrare tutte le operazioni di archiviazione.
+il servizio di archiviazione Hello raccoglie le metriche di utilizzo migliore, ma non è stato possibile registrare ogni operazione di archiviazione.
 
-Nel portale di Azure sono visualizzate metriche come la disponibilità, le richieste totali e i numeri di latenza media per un account di archiviazione. È stata configurata anche una regola di notifica per avvisare un amministratore se la disponibilità scende al di sotto di un determinato livello. Dalla visualizzazione di questi dati, un'area di analisi possibile è la percentuale di successo dei servizi della tabella che risulta inferiore al 100% (per ulteriori informazioni, vedere la sezione "[Le metriche indicano un valore PercentSuccess basso o le voci del log di analisi contengono operazioni con stato della transazione ClientOtherErrors]").
+Nel portale di Azure hello, è possibile visualizzare metriche, ad esempio disponibilità, richieste totali e i numeri di latenza media per un account di archiviazione. Una regola di notifica inoltre configurata la tooalert amministratore se disponibilità scende di sotto di un determinato livello. Dalla visualizzazione di questo tipo di dati, un'area possibili per l'analisi è percentuale di completamento del hello tabella servizio essere inferiore al 100% (per ulteriori informazioni, vedere la sezione hello "[metrica Mostra PercentSuccess bassa o voci di log analitica sono operazioni con stato delle transazioni di ClientOtherErrors]").
 
-È necessario monitorare continuamente le applicazioni Azure per assicurarsi che siano integre e funzionino come previsto, eseguendo queste operazioni.
+È necessario monitorare continuamente tooensure le applicazioni Azure sono integri e verrà eseguito come previsto:
 
-* Stabilire alcune metriche di base per le applicazioni che consentano di confrontare i dati correnti e identificare eventuali modifiche significative del comportamento dell'Archiviazione di Azure e dell'applicazione. I valori delle metriche di base in molti casi saranno specifici per ogni singola applicazione e dovranno essere definiti quando si testano le prestazioni dell'applicazione.
-* Registrare metriche al minuto e usarle per monitorare attivamente eventuali anomalie ed errori imprevisti, ad esempio picchi dei conteggi degli errori o della frequenza delle richieste.
-* Registrare metriche orarie e usarle per monitorare valori medi, come la media dei conteggi degli errori e della frequenza delle richieste.
-* Esaminare i potenziali problemi utilizzando gli strumenti di diagnostica descritti più avanti nella sezione "[Diagnosi dei problemi di archiviazione]."
+* Creazione di alcune metriche di base per l'applicazione che consentono di dati corrente toocompare e rilevare eventuali modifiche significative di comportamento hello di archiviazione di Azure e l'applicazione. i valori Hello metriche della linea di base saranno, in molti casi, un'applicazione specifica e si deve stabilire quando si è l'applicazione di test delle prestazioni.
+* La registrazione di metrica al minuto e il relativo utilizzo toomonitor attivamente per errori imprevisti e anomalie, ad esempio picchi di conteggi di errori o frequenza richieste.
+* Registrazione delle metriche orarie e il relativo utilizzo toomonitor i valori medi, ad esempio Media conteggi di errori e richiedere tariffe.
+* Analisi dei problemi potenziali usando gli strumenti di diagnostica, come illustrato più avanti nella sezione hello "[la diagnosi dei problemi di archiviazione]."
 
-I grafici della figura seguente illustrano in che modo il calcolo della media delle metriche orarie può nascondere picchi di attività. Le metriche orarie sembrano indicare una frequenza costante delle richieste, mentre le metriche al minuto rivelano le fluttuazioni che si verificano effettivamente.
+grafici di Hello in hello immagine seguente viene illustrato come hello Media che si verifica per la metrica oraria possa nascondere picchi di attività. metrica oraria Hello visualizzato tooshow una velocità costante delle richieste, durante il minuto hello metriche rivelano fluttuazioni hello che vengono effettivamente eseguiti.
 
 ![][3]
 
-La parte rimanente di questa sezione descrive le metriche che è necessario monitorare e perché.
+Hello resto di questa sezione vengono descritte le metriche da monitorare e sul motivo.
 
 ### <a name="monitoring-service-health"></a>Monitoraggio dello stato del servizio
-Usare il [portale di Azure](https://portal.azure.com) per visualizzare lo stato del servizio di archiviazione (e altri servizi di Azure) in tutte le aree Azure del mondo. Ciò consente di vedere immediatamente se un problema al di fuori del proprio controllo incide sul servizio di archiviazione nell'area in uso per l'applicazione.
+È possibile utilizzare hello [portale di Azure](https://portal.azure.com) hello di integrità hello tooview del servizio di archiviazione hello (e altri servizi di Azure) in tutte le aree di Azure in tutto il mondo hello. In questo modo si toosee immediatamente se il servizio di archiviazione nell'area di hello che è utilizzare per l'applicazione hello interessa un problema all'esterno del controllo.
 
-Il [portale di Azure](https://portal.azure.com) può anche fornire notifiche sugli incidenti che influiscono sui vari servizi di Azure.
-Nota: queste informazioni in precedenza erano disponibili, insieme ai dati cronologici, sul [dashboard dei servizi di Azure](http://status.azure.com).
+Hello [portale di Azure](https://portal.azure.com) può anche fornire notifiche degli eventi imprevisti che interessano hello diversi servizi di Azure.
+Nota: Queste informazioni è stata precedentemente disponibili, insieme ai dati cronologici, in hello [Dashboard dei servizi Azure](http://status.azure.com).
 
-Benché il [portale di Azure](https://portal.azure.com) raccolga le informazioni sullo stato dall'interno dei data center di Azure (monitoraggio da interno a esterno), si può anche considerare l'adozione di un approccio da esterno a interno per generare transazioni sintetiche che accedano periodicamente all'applicazione Web in hosting su Azure da più posizioni. I servizi offerti da [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) e Application Insights per Visual Studio Team Services sono esempi di tale approccio da esterno a interno. Per altre informazioni su Application Insights per Visual Studio Team Services, vedere la sezione "[Appendice 5: monitoraggio con Application Insights per Visual Studio Team Services](#appendix-5)".
+Durante la hello [portale di Azure](https://portal.azure.com) raccoglie le informazioni di integrità all'interno di hello Data Center di Azure (monitoraggio interno-out), è inoltre possibile che periodicamente l'adozione di transazioni sintetiche di toogenerate un approccio esterno in ingresso accedere all'applicazione web ospitate in Azure da più posizioni. Hello servizi offerti da [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) e Application Insights per Visual Studio Team Services sono esempi di questo approccio di esterno. Per ulteriori informazioni su Application Insights per Visual Studio Team Services, vedere l'appendice hello "[appendice 5: monitoraggio con Application Insights per Visual Studio Team Services](#appendix-5)."
 
 ### <a name="monitoring-capacity"></a>Monitoraggio della capacità
-Lo strumento Metriche di archiviazione memorizza solo le metriche di capacità per il servizio BLOB poiché gli oggetti BLOB normalmente raccolgono la proporzione maggiore di dati archiviati. Attualmente non è possibile usare Metriche di archiviazione per monitorare la capacità di tabelle e code. È possibile trovare questi dati nella tabella **$MetricsCapacityBlob** se è stato attivato il monitoraggio per il servizio BLOB. Le metriche di archiviazione registrano i dati una volta al giorno ed è possibile usare il valore di **RowKey** per determinare se la riga contiene un'entità che fa riferimento ai dati utente (valore **data**) o dati analitici (valore **analytics**). Ogni entità archiviata contiene informazioni sulla quantità di spazio di archiviazione usato (valore **Capacity** in byte) e il numero attuale di contenitori (**ContainerCount**) e oggetti BLOB (**ObjectCount**) usati nell'account di archiviazione. Per ulteriori informazioni sulle metriche di capacità archiviate nella tabella **$MetricsCapacityBlob**, vedere [Schema di tabella della metrica di Analisi di archiviazione](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+Metriche di archiviazione sono archiviate solo le metriche di capacità per il servizio blob hello perché BLOB è in genere conto quota più grande di hello dei dati archiviati (in fase di hello di scrittura, non è possibile toouse capacità hello toomonitor di metriche di archiviazione tabelle e code) . È possibile trovare questi dati in hello **$MetricsCapacityBlob** tabella se è stato attivato il monitoraggio per hello servizio Blob. Metriche di archiviazione registra i dati una volta al giorno e che è possibile utilizzare il valore di hello di hello **RowKey** toodetermine se la riga hello contiene un'entità che si riferisce a dati toouser (valore **dati**) o (dati analitica valore **analitica**). Ogni entità stored contiene informazioni sulla quantità di hello di memoria utilizzata (**capacità** espresso in byte) e il numero corrente dei contenitori di hello (**ContainerCount**) e i BLOB ( **ObjectCount**) in uso nell'account di archiviazione hello. Per ulteriori informazioni sulle metriche di capacità hello archiviate in hello **$MetricsCapacityBlob** tabella, vedere [Schema di tabella delle metriche di archiviazione Analitica](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
 > [!NOTE]
-> È necessario monitorare questi valori per essere avvisati tempestivamente quando si stanno raggiungendo i limiti di capacità dell'account di archiviazione. Nel portale di Azure è possibile aggiungere regole di avviso per ricevere una notifica nel caso in cui l'archiviazione degli aggregati superi o sia inferiore alle soglie specificate.
+> È necessario monitorare questi valori per un avviso anticipato che si siano per raggiungere i limiti di capacità hello dell'account di archiviazione. Nel portale di Azure hello, è possibile aggiungere toonotify le regole di avviso se l'utilizzo dell'archiviazione aggregazione supera o scende al di sotto delle soglie che si specifica.
 > 
 > 
 
-Per sapere come stimare le dimensioni dei vari oggetti di archiviazione, ad esempio gli oggetti BLOB, vedere il post del blog [Informazioni sulla fatturazione di Archiviazione di Azure - Larghezza di banda, transazioni e capacità](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx).
+Per informazioni sulla stima delle dimensioni di hello dei vari oggetti di archiviazione, ad esempio BLOB, vedere hello post di blog [comprensione archiviazione fatturazione di Azure: larghezza di banda, transazioni e capacità](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx).
 
 ### <a name="monitoring-availability"></a>Monitoraggio della disponibilità
-Per verificare la disponibilità dei servizi di archiviazione nell'account di archiviazione, è necessario monitorare il valore della colonna della **disponibilità** nelle tabelle delle metriche orarie o al minuto: **$MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$MetricsCapacityBlob**. La colonna della **disponibilità** contiene un valore percentuale che indica la disponibilità del servizio o dell'operazione API rappresentata dalla riga (il valore **RowKey** indica se la riga contiene metriche per il servizio completo o per un'operazione API specifica).
+Monitorare la disponibilità di hello dei servizi di archiviazione hello nell'account di archiviazione monitorando valore hello hello **disponibilità** colonna hello tabelle metrica oraria o di minuti, **$ MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$ MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$ MetricsCapacityBlob**. Hello **disponibilità** colonna contiene un valore percentuale che indica la disponibilità di hello del servizio di hello o operazione API hello rappresentata dalla riga hello (hello **RowKey** indica se la riga hello contiene metriche per il servizio di hello nel suo complesso o per un'operazione API specifica).
 
-Eventuali valori inferiori al 100% indicano che alcune richieste di archiviazione hanno esito negativo. È possibile vedere per quale motivo le richieste hanno esito negativo esaminando le altre colonne di dati della metrica che indicano il numero di richieste con tipi diversi di errore, ad esempio **ServerTimeoutError**. La **disponibilità** può scendere momentaneamente al di sotto del 100% per diversi motivi, ad esempio per timeout temporanei del server mentre il servizio sposta le partizioni per bilanciare meglio il carico della richiesta. La logica ripetizione dell'applicazione client dovrebbe gestire tali condizioni intermittenti. Nell'articolo [Operazioni registrate di Analisi di archiviazione e messaggi di stato](http://msdn.microsoft.com/library/azure/hh343260.aspx) sono elencati i tipi di transazione inclusi dalle metriche di archiviazione nel calcolo della **disponibilità**.
+Eventuali valori inferiori al 100% indicano che alcune richieste di archiviazione hanno esito negativo. È possibile visualizzare i motivi per cui essi hanno esito negativo esaminando hello altre colonne in dati di metrica hello che mostrano, ad esempio un numero di richieste con vari tipi di errore hello **ServerTimeoutError**. È necessario prevedere toosee **disponibilità** autunno temporaneamente inferiore al 100% per motivi, ad esempio il timeout del server temporaneo mentre il servizio di hello Sposta partizioni toobetter il bilanciamento del carico richiesta; hello la logica dell'applicazione client di riesecuzione deve gestire tali condizioni intermittenti. articolo Hello [archiviazione Analitica registrazione minima delle operazioni e messaggi di stato](http://msdn.microsoft.com/library/azure/hh343260.aspx) elenchi hello tipi di transazione che include metriche di archiviazione nel relativo **disponibilità** calcolo.
 
-Nel [portale di Azure](https://portal.azure.com) è possibile aggiungere regole di avviso per ricevere una notifica nel caso in cui la **disponibilità** di un servizio cada al di sotto di una soglia specificata.
+In hello [portale di Azure](https://portal.azure.com), è possibile aggiungere regole di avviso toonotify è se **disponibilità** per un servizio scende sotto una soglia specificata.
 
-La sezione "[Guida alla risoluzione dei problemi]" di questa guida descrive alcuni dei problemi di disponibilità che si riscontrano più di frequente nel servizio di archiviazione.
+Hello "[le indicazioni di Troubleshooting]" sezione di questa guida vengono descritte alcune comuni tooavailability correlati di archiviazione servizio problemi.
 
 ### <a name="monitoring-performance"></a>Monitoraggio delle prestazioni
-Per monitorare le prestazioni dei servizi di archiviazione è possibile usare le seguenti metriche estratte dalle tabelle delle metriche orarie e al minuto.
+prestazioni di hello toomonitor hello servizi di archiviazione, è possibile utilizzare hello seguenti metriche dagli hello ogni ora e minuto tabelle di metrica.
 
-* I valori nelle colonne **AverageE2ELatency** e **AverageServerLatency** indicano il tempo medio impiegato dal servizio di archiviazione o dal tipo di operazione API per elaborare le richieste. **AverageE2ELatency** è una misura della latenza end-to-end che include il tempo impiegato per leggere la richiesta e inviare la risposta sommato al tempo impiegato per elaborare la richiesta (di conseguenza include la latenza di rete quando la richiesta raggiunge il servizio di archiviazione); **AverageServerLatency** è una misura del tempo di elaborazione ed esclude quindi qualsiasi latenza di rete relativa alla comunicazione con il client. Vedere la sezione "[Le metriche indicano un valore AverageE2ELatency alto e un valore AverageServerLatency basso]" più avanti in questa guida per sapere perché esiste una differenza significativa tra i due valori.
-* I valori nelle colonne **TotalIngress** e **TotalEgress** indicano il volume totale dei dati, in byte, in entrata e in uscita dal servizio di archiviazione o attraverso un tipo specifico di operazione API.
-* I valori presenti nella colonna **TotalRequests** indicano il numero totale di richieste ricevute dal servizio di archiviazione o dall'operazione API. **TotalRequests** è il numero totale di richieste ricevute dal servizio di archiviazione.
+* Hello valori hello **AverageE2ELatency** e **AverageServerLatency** colonne mostrano il servizio di archiviazione hello tempo medio di hello o il tipo di operazione API richiede tooprocess richieste. **AverageE2ELatency** è una misura della latenza end-to-end che include una richiesta di hello tooread tempo hello e inviare una risposta hello nella richiesta di aggiunta toohello tempo tooprocess hello (pertanto include la latenza di rete dopo la richiesta hello il servizio di archiviazione hello raggiunge); **AverageServerLatency** misura solo il tempo di elaborazione hello e pertanto esclude qualsiasi latenza di rete correlato toocommunicating con client hello. Vedere la sezione hello "[metrica Mostra AverageE2ELatency alta e bassa AverageServerLatency]" più avanti in questa guida per una descrizione del motivo per cui potrebbe esserci una differenza significativa tra questi due valori.
+* Hello valori hello **TotalIngress** e **TotalEgress** colonne mostrano quantità totale di hello di dati, in byte, entrano tooand passare fuori il servizio di archiviazione o tramite un tipo di operazione API specificato.
+* Hello valori hello **TotalRequests** riceve colonna Mostra hello totale delle richieste che il servizio di archiviazione di operazione API hello. **TotalRequests** hello il numero totale di richieste ricevute dal servizio di archiviazione hello.
 
 In genere, questi valori vengono monitorati per verificare la presenza di eventuali cambiamenti imprevisti che possono indicare l'esistenza di problemi da sottoporre ad analisi.
 
-Nel [portale di Azure](https://portal.azure.com) è possibile aggiungere regole di avviso per ricevere una notifica nel caso in cui una delle metriche di prestazione del servizio sia inferiore o superiore a una soglia specificata.
+In hello [portale di Azure](https://portal.azure.com), è possibile aggiungere regole di avviso toonotify se una delle metriche di prestazioni hello per questo servizio scende di sotto o superi la soglia specificata.
 
-La sezione "[Guida alla risoluzione dei problemi]" di questa guida descrive alcuni dei problemi che si riscontrano più di frequente nel servizio di archiviazione in relazione alle prestazioni.
+Hello "[le indicazioni di Troubleshooting]" sezione di questa guida vengono descritte alcune comuni tooperformance correlati di archiviazione servizio problemi.
 
 ## <a name="diagnosing-storage-issues"></a>Diagnosi dei problemi di archiviazione
 Esistono alcuni sintomi che indicano la presenza di un problema dell'applicazione, tra cui:
 
-* Un errore grave che causa l'arresto anomalo o interrompe l'esecuzione dell'applicazione.
-* cambiamenti significativi dei valori di base delle metriche monitorate come descritto nella sezione precedente, "[Monitoraggio del servizio di archiviazione]"
+* Errore grave che causa l'utilizzo di toocrash o toostop applicazione hello.
+* Modifiche significative da valori di base di metriche di hello monitorata come descritto nella sezione precedente hello "[monitoraggio del servizio di archiviazione]."
 * Segnalazione da parte degli utenti dell'applicazione in merito al fatto che una determinata operazione non viene completata come previsto o che non è possibile usare una funzionalità.
 * Errori generati all'interno dell'applicazione che appaiono nei file di log o vengono segnalati con altri metodi.
 
-Normalmente i problemi correlati ai servizio di archiviazione di Azure rientrano in una delle seguenti quattro grandi categorie:
+In genere, servizi di archiviazione di problemi correlati tooAzure rientrano in una delle quattro categorie generali:
 
-* L'applicazione presenta un problema di prestazioni, segnalato dagli utenti o rivelato da modifiche nelle metriche delle prestazioni.
-* Si è verificato un problema con l'infrastruttura dell'Archiviazione di Azure in una o più aree.
-* L'applicazione ha riscontrato un errore, segnalato dagli utenti o rivelato dall'aumento delle metriche di conteggio degli errori monitorate.
-* Durante lo sviluppo e i test può essere usato l'emulatore di archiviazione locale. È possibile che si verifichino alcuni problemi connessi specificamente all'uso dell'emulatore.
+* L'applicazione dispone di un problema di prestazioni segnalati dagli utenti o rivelati dalle modifiche apportate ai dati statistici sulle prestazioni di hello.
+* Si verifica un problema con l'infrastruttura di archiviazione di Azure hello in uno o più aree.
+* L'applicazione viene rilevato un errore, segnalati dagli utenti o ottenuti da un aumento in una delle metriche di numero di errore hello monitorate.
+* Durante lo sviluppo e test, che si stia utilizzando emulatore di archiviazione locale hello; è possibile riscontrare alcuni problemi che si riferiscono in particolare toousage dell'emulatore di archiviazione hello.
 
-Le sezioni seguenti illustrano le procedure da adottare per la diagnosi e la risoluzione dei problemi in ciascuna delle quattro categorie. La sezione "[Guida alla risoluzione dei problemi]" più avanti in questa guida fornisce maggiori dettagli su alcuni dei problemi che si possono verificare più di frequente.
+Hello sezioni seguenti descrivono i passaggi di hello è consigliabile seguire toodiagnose e risolvere i problemi in ognuna delle quattro categorie. sezione Hello "[le indicazioni di Troubleshooting]" più avanti in questa guida fornisce informazioni dettagliate per alcuni problemi comuni che possono verificarsi.
 
 ### <a name="service-health-issues"></a>Problemi di stato del servizio
-I problemi di stato del servizio di solito sono al di fuori del controllo dell'utente. Il [portale di Azure](https://portal.azure.com) fornisce informazioni sui problemi che si possono verificare usando i servizi Azure, inclusi i servizi di archiviazione. Se si è scelta un'archiviazione con accesso in lettura e ridondanza geografica durante la creazione dell'account, nel caso in cui i dati non siano disponibili nella posizione primaria, l'applicazione può passare temporaneamente alla copia di sola lettura nella posizione secondaria. Per fare ciò, l'applicazione deve essere in grado di passare dalla posizione primaria a quella secondaria e viceversa nonché di gestire i dati di sola lettura in una modalità con funzionalità ridotta. Le librerie client del servizio di archiviazione Azure consentono di definire criteri di ripetizione per leggere i dati da un'archiviazione secondaria nel caso in cui quella primaria non funzioni. L'applicazione deve inoltre essere in grado di stabilire se i dati nella posizione secondaria risultano coerenti. Per altre informazioni, vedere il post del blog [Opzioni di ridondanza di Archiviazione di Azure e Archiviazione con ridondanza geografica e accesso in lettura](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
+I problemi di stato del servizio di solito sono al di fuori del controllo dell'utente. Hello [portale di Azure](https://portal.azure.com) fornisce informazioni su eventuali problemi in corso con servizi Azure, inclusi i servizi di archiviazione. Se si è scelto per l'archiviazione con ridondanza geografica e accesso in lettura al momento della creazione dell'account di archiviazione, quindi nell'evento hello dei dati non è disponibile nel percorso primario hello, l'applicazione potrebbe passare temporaneamente toohello copia di sola lettura nel percorso secondario hello. toodo, l'applicazione deve essere in grado di tooswitch tra l'utilizzo di percorsi di archiviazione primario e secondario di hello, e toowork in grado di essere in modalità con funzionalità ridotte con dati di sola lettura. le librerie Client di archiviazione di Azure Hello consentono toodefine un criterio di ripetizione in grado di leggere dall'archivio secondario in caso di una lettura dall'archiviazione primaria. L'applicazione deve inoltre toobe tenere presente che i dati di hello nella posizione secondaria hello sono alla fine coerenti. Per ulteriori informazioni, vedere hello post di blog [opzioni di ridondanza di archiviazione di Azure e archiviazione con ridondanza geografica di accesso in lettura](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
 
 ### <a name="performance-issues"></a>Problemi di prestazioni
-Le prestazioni di un'applicazione possono essere soggettive, soprattutto dal punto di vista dell'utente. È quindi importante avere a disposizione metriche di base che consentano di localizzare e identificare i problemi di prestazioni. Sono molti i fattori che possono influire sulle prestazioni di un servizio di archiviazione Azure dal punto di vista dell'applicazione client. Tali fattori possono agire nel servizio di archiviazione, nel client o nell'infrastruttura di rete, quindi è importante disporre di una strategia in grado di identificare l'origine del problema di prestazioni.
+prestazioni Hello di un'applicazione possono essere soggettiva, soprattutto dalla prospettiva dell'utente. È pertanto importante toohave baseline metriche toohelp disponibili è identificare dove potrebbe esserci un problema di prestazioni. Molti fattori potrebbero prestazioni hello di un servizio di archiviazione di Azure dalla prospettiva dell'applicazione hello client. Questi fattori potrebbero funzionare nel servizio di archiviazione hello, nel client hello o nell'infrastruttura di rete hello; è pertanto importante toohave una strategia per identificare l'origine di hello del problema di prestazioni hello.
 
-Dopo aver identificato l'origine probabile della causa del problema in base alle metriche, è possibile utilizzare i file di log per trovare informazioni dettagliate che consentano di diagnosticare e risolvere meglio il problema.
+Dopo aver identificato hello probabile posizione causa hello del problema di prestazioni hello dalle metriche di hello, è possibile quindi utilizzare hello log file toofind toodiagnose informazioni dettagliate e risoluzione dei problemi di hello ulteriormente.
 
-La sezione "[Guida alla risoluzione dei problemi]" più avanti in questa guida fornisce ulteriori informazioni su alcuni dei problemi che si possono verificare più di frequente in relazione alle prestazioni.
+Hello sezione "[le indicazioni di Troubleshooting]" più avanti in questa guida fornisce informazioni relative alle prestazioni comuni problemi riscontrati.
 
 ### <a name="diagnosing-errors"></a>Diagnostica degli errori
-Gli utenti dell'applicazione possono notificare gli errori segnalati dall'applicazione client. Le metriche di archiviazione registrano anche i conteggi dei diversi tipi di errore riscontrati dai servizi di archiviazione, quali **NetworkError**, **ClientTimeoutError** o **AuthorizationError**. Benché Metriche di archiviazione registrino solo i conteggi dei diversi tipi di errore, è possibile ottenere più dettagli sulle singole richieste esaminando i file di log di lato server, lato client e rete. In genere, il codice di stato HTTP restituito dal servizio di archiviazione fornisce un'indicazione del motivo dell'esito negativo della richiesta.
+Gli utenti dell'applicazione possono notificare errori segnalati da un'applicazione hello client. Le metriche di archiviazione registrano anche i conteggi dei diversi tipi di errore riscontrati dai servizi di archiviazione, quali **NetworkError**, **ClientTimeoutError** o **AuthorizationError**. Benché Metriche di archiviazione registrino solo i conteggi dei diversi tipi di errore, è possibile ottenere più dettagli sulle singole richieste esaminando i file di log di lato server, lato client e rete. In genere, codice di stato HTTP hello restituito dal servizio di archiviazione hello fornirà un'indicazione dei motivi per cui non è riuscita richiesta hello.
 
 > [!NOTE]
-> Tenere presente che si possono verificare alcuni errori intermittenti: ad esempio, errori dovuti a condizioni temporanee della rete o a errori dell'applicazione.
+> Tenere presente che si dovrebbero toosee alcuni errori intermittenti: ad esempio, gli errori a causa di condizioni della rete tootransient o errori dell'applicazione.
 > 
 > 
 
-Le seguenti risorse sono utili per l'interpretazione dei codici di errore e di stato correlati all'archiviazione:
+Hello risorse seguenti sono utili per comprendere i codici di stato e di errore correlati ad archiviazione:
 
 * [Codici di errore comuni dell'API REST](http://msdn.microsoft.com/library/azure/dd179357.aspx)
 * [Codici di errore del servizio BLOB](http://msdn.microsoft.com/library/azure/dd179439.aspx)
@@ -206,71 +206,71 @@ Le seguenti risorse sono utili per l'interpretazione dei codici di errore e di s
 * [Codici di errore del servizio file](https://msdn.microsoft.com/library/azure/dn690119.aspx)
 
 ### <a name="storage-emulator-issues"></a>Problemi dell'emulatore di archiviazione
-L'SDK di Azure include un emulatore di archiviazione che può essere eseguito su una workstation di sviluppo. L'emulatore simula la maggior parte delle attività dei servizi di archiviazione Azure ed è utile in fase di sviluppo e test, poiché consente di eseguire le applicazioni che usano i servizi di archiviazione Azure senza che siano necessari una sottoscrizione di Azure e un account di archiviazione di Azure.
+Hello Azure SDK include un emulatore di archiviazione che è possibile eseguire in una workstation di sviluppo. L'emulatore simula la maggior parte del comportamento di hello dei servizi di archiviazione Azure hello e risulta utile durante lo sviluppo e test, consentendo toorun applicazioni che utilizzano servizi di archiviazione di Azure senza hello necessario per una sottoscrizione di Azure e un account di archiviazione di Azure.
 
-La sezione "[Guida alla risoluzione dei problemi]" di questa guida descrive alcuni dei problemi che si riscontrano più di frequente utilizzando l'emulatore di archiviazione.
+Hello "[le indicazioni di Troubleshooting]" sezione di questa guida vengono descritti alcuni problemi comuni riscontrati usando l'emulatore di archiviazione hello.
 
 ### <a name="storage-logging-tools"></a>Strumenti di registrazione dell'archiviazione
-La registrazione dell'archiviazione consente di registrare sul lato server le richieste di archiviazione presenti nell'account di archiviazione di Azure. Per altre informazioni sulle modalità di abilitazione della registrazione lato server e dell'accesso ai dati registrati, vedere [Abilitazione di Registrazione archiviazione e accesso ai dati di log](http://go.microsoft.com/fwlink/?LinkId=510867).
+La registrazione dell'archiviazione consente di registrare sul lato server le richieste di archiviazione presenti nell'account di archiviazione di Azure. Per ulteriori informazioni sulla modalità di registrazione sul lato server tooenable e hello di accesso ai dati di log, vedere [abilitazione della registrazione di archiviazione e accesso ai dati di Log](http://go.microsoft.com/fwlink/?LinkId=510867).
 
-Storage Client Library per .NET consente di raccogliere i dati della registrazione lato client correlati alle operazioni di archiviazione eseguite dall'applicazione. Per altre informazioni, vedere [Registrazione lato client con la libreria client di archiviazione .NET](http://go.microsoft.com/fwlink/?LinkId=510868).
+Libreria Client di archiviazione per .NET Hello consente toocollect dati del log sul lato client che si riferisce toostorage le operazioni eseguite dall'applicazione. Per ulteriori informazioni, vedere [registrazione con hello libreria Client di archiviazione .NET sul lato Client](http://go.microsoft.com/fwlink/?LinkId=510868).
 
 > [!NOTE]
-> In alcune circostanze, ad esempio in caso di mancata autorizzazione della firma di accesso condiviso, un utente può segnalare un errore per il quale non sono reperibili i dati della richiesta nei file di log dell'archiviazione lato server. È possibile utilizzare le funzionalità di registrazione di Storage Client Library per verificare se la causa del problema è sul client o utilizzare gli strumenti di monitoraggio della rete per esaminare la rete.
+> In alcuni casi (ad esempio gli errori di autorizzazione di firma di accesso condiviso), un utente può segnalare un errore per il quale è non possibile trovare alcun dato di richiesta in hello i log di archiviazione sul lato server. È possibile utilizzare le funzionalità di registrazione hello di hello libreria Client di archiviazione tooinvestigate se causa hello del problema hello client hello o usare rete hello tooinvestigate di strumenti di monitoraggio della rete.
 > 
 > 
 
 ### <a name="using-network-logging-tools"></a>Uso degli strumenti di registrazione in rete
-È possibile acquisire il traffico tra client e server per fornire informazioni dettagliate sui dati scambiati da client e server e sulle condizione della rete sottostante. Sono disponibili alcuni strumenti utili per la registrazione in rete:
+È possibile acquisire il traffico di hello tra hello client e server tooprovide dettagliate informazioni hello dati hello client e server sono lo scambio e hello le condizioni della rete sottostante. Sono disponibili alcuni strumenti utili per la registrazione in rete:
 
-* [Fiddler](http://www.telerik.com/fiddler) è un proxy di debug Web gratuito che consente di esaminare le intestazioni e i dati di payload dei messaggi HTTP e HTTPS di richiesta e risposta. Per ulteriori informazioni, vedere [Appendice 1: Uso di Fiddler per l'acquisizione del traffico HTTP e HTTPS](#appendix-1).
-* [Microsoft Network Monitor (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) e [Wireshark](http://www.wireshark.org/) sono strumenti gratuiti per l'analisi dei protocolli di rete che consentono di visualizzare informazioni dettagliate sui pacchetti per un'ampia gamma di protocolli di rete. Per ulteriori informazioni su Wireshark, vedere "[Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete](#appendix-2)".
-* Microsoft Message Analyzer è uno strumento di Microsoft che sostituisce Netmon e che, oltre ad acquisire i dati dei pacchetti di rete, consente di visualizzare e analizzare i dati di log acquisiti da altri strumenti. Per ulteriori informazioni, vedere "[Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete](#appendix-3)".
-* Per eseguire un test di base delle connessioni per verificare che il computer client sia in grado di connettersi al servizio di archiviazione Azure in rete, non è possibile utilizzare il normale strumento **ping** sul client. [Tuttavia, è possibile usare lo strumento **tcping**](http://www.elifulkerson.com/projects/tcping.php) per verificare la connettività.
+* [Fiddler](http://www.telerik.com/fiddler) è un proxy che consente le intestazioni di hello tooexamine e dati del payload dei messaggi di richiesta e risposta HTTP e HTTPS per debug gratuitamente dal web. Per ulteriori informazioni, vedere [appendice 1: il traffico HTTP e HTTPS toocapture tramite Fiddler](#appendix-1).
+* [Microsoft Network Monitor (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) e [Wireshark](http://www.wireshark.org/) è gratuita rete gli analizzatori di protocollo che consentono di tooview pacchetto informazioni dettagliate per un'ampia gamma di protocolli di rete. Per ulteriori informazioni su Wireshark, vedere "[appendice 2: il traffico di rete utilizzando Wireshark toocapture](#appendix-2)".
+* Microsoft Message Analyzer è uno strumento di Microsoft che sostituisce Netmon e che inoltre toocapturing rete dati del pacchetto, consente di tooview e analizzare i dati di log hello acquisiti da altri strumenti. Per ulteriori informazioni, vedere "[appendice 3: il traffico di rete utilizzando Microsoft Message Analyzer toocapture](#appendix-3)".
+* Se si desidera tooperform un toocheck di test di connettività di base che nel computer client può connettersi toohello servizio di archiviazione di Azure tramite rete hello, non è possibile farlo tramite hello standard **ping** strumento client hello. Tuttavia, è possibile utilizzare hello [ **tcping** strumento](http://www.elifulkerson.com/projects/tcping.php) toocheck connettività.
 
-In molti casi, i dati di log provenienti dalla registrazione dell'archiviazione e da Storage Client Library saranno sufficienti per diagnosticare un problema, ma in alcune situazione può essere necessario disporre di informazioni più dettagliate rispetto a quelle fornite da questi strumenti. Ad esempio, l'utilizzo di Fiddler per visualizzare i messaggi HTTP e HTTPS consente di visualizzare i dati di intestazione e di payload inviati e ricevuti dai servizi di archiviazione e quindi di esaminare il modo in cui un'applicazione client ritenti le operazioni di archiviazione. Gli strumenti di analisi dei protocolli, come Wireshark, funzionano a livello di pacchetto e consentono di visualizzare i dati TCP, quindi di risolvere i problemi dovuti alla perdita di pacchetti e a errori di connessione. Message Analyzer è in grado di funzionare sia sul livello HTTP che sul livello TCP.
+In molti casi, i dati di log hello dalla registrazione archiviazione e hello libreria Client di archiviazione sarà sufficiente toodiagnose un problema, ma in alcuni scenari, potrebbe essere necessario hello che informazioni che questi strumenti di registrazione di rete possono fornire più dettagliate. Ad esempio, consente di messaggi HTTP e HTTPS tooview intestazione e il payload dati inviati tooand da hello servizi di archiviazione, che consentono tooexamine come un'applicazione client tramite Fiddler tooview tentativi di operazioni di archiviazione. Gli analizzatori di protocollo, ad esempio Wireshark operano a livello di pacchetto hello permette di dati, TCP tooview consentirebbero tootroubleshoot perdita di pacchetti e problemi di connettività. Message Analyzer è in grado di funzionare sia sul livello HTTP che sul livello TCP.
 
 ## <a name="end-to-end-tracing"></a>Traccia end-to-end
-La funzionalità di traccia end-to-end basata sull'utilizzo di una varietà di file di log è una tecnica utile per l'analisi dei potenziali problemi. È possibile usare le informazioni su data e ora estratte dai dati delle metriche come indicazione del punto da cui deve partire la ricerca nei file di log dei dettagli necessari per la risoluzione del problema.
+La funzionalità di traccia end-to-end basata sull'utilizzo di una varietà di file di log è una tecnica utile per l'analisi dei potenziali problemi. È possibile utilizzare le informazioni di data/ora hello dai dati di metrica come indicazione della dove toostart ricerca nei file di log hello per hello informazioni che consentono di risolvere il problema di hello.
 
 ### <a name="correlating-log-data"></a>Correlazione dei dati di log
-Quando si visualizzano i file di log delle applicazioni client, le tracce di rete e la registrazione dell'archiviazione lato server, è essenziale poter creare una correlazione delle richieste in tutti i file di log. I file di log includono diversi campi che possono essere utili come identificatori di correlazioni. Il campo dell'ID richiesta client è il più utile ai fini della correlazione delle voci nei diversi file di log. Tuttavia, in alcuni casi può essere utile utilizzare l'ID richiesta server o i timestamp. Le sezioni che seguono forniscono ulteriori dettagli su queste opzioni.
+Quando si visualizzano i log dalle applicazioni client, tracce di rete e archiviazione sul lato server, registrazione è critico toobe toocorrelate in grado di richieste tra hello diversi file di log. file di log di Hello includono un numero di campi diversi che sono utili come identificatori di correlazione. id di richiesta client hello è hello utili toouse toocorrelate voci del campo nei diversi log hello. Tuttavia in alcuni casi può essere utile toouse id richiesta server di hello o timestamp. Hello nelle sezioni seguenti vengono forniscono ulteriori dettagli su queste opzioni.
 
 ### <a name="client-request-id"></a>ID richiesta client
-Storage Client Library genera automaticamente un ID richiesta client univoco per ogni richiesta.
+Libreria Client di archiviazione Hello genera automaticamente un id richiesta client univoci per ogni richiesta.
 
-* Nel file di log lato client creato da Storage Client Library, tale ID appare nel campo dell' **ID richiesta client** di ogni voce del file log correlato alla richiesta.
-* In una traccia di rete, ad esempio quella acquisita con Fiddler, l'ID richiesta client è visibile nei messaggi di richiesta come valore dell'intestazione HTTP **x-ms-client-request-id** .
-* Nel log di registrazione dell'archiviazione lato server, l'ID richiesta client appare nella colonna relativa a tale ID.
+* In hello crea log lato client che hello libreria Client di archiviazione, id di richiesta client hello viene visualizzato in hello **ID richiesta Client** campo di ogni voce del registro relative toohello richiesta.
+* In una traccia di rete, ad esempio uno acquisiti da Fiddler, id di richiesta client hello è visibile in messaggi di richiesta come hello **x-ms-client-request-id** valore dell'intestazione HTTP.
+* Nel log di registrazione archiviazione sul lato server hello, id di richiesta client hello viene visualizzato nella colonna di ID richiesta Client hello.
 
 > [!NOTE]
-> È possibile che più richieste condividano lo stesso ID richiesta client poiché il client può assegnare questo valore (benché Storage Client Library assegni automaticamente un nuovo valore). Nel caso di nuovi tentativi del client, tutti i tentativi condividono lo stesso id di richiesta del client. Nel caso di un batch inviato dal client, il batch ha un singolo id di richiesta del client.
+> È possibile che più richieste tooshare hello lo stesso id di richiesta client perché il client hello può assegnare questo valore (sebbene hello libreria Client di archiviazione assegna automaticamente un nuovo valore). In caso di hello di tentativi da client hello, tutti i tentativi di condividono hello lo stesso id di richiesta client. Nel caso di hello di un batch inviato dal client hello, batch hello ha un id richiesta client singolo.
 > 
 > 
 
 ### <a name="server-request-id"></a>ID richiesta server
-Il servizio di archiviazione genera automaticamente gli ID richiesta server.
+il servizio di archiviazione Hello genera automaticamente l'ID richiesta server.
 
-* Nel log di registrazione dell'archiviazione lato server, l'ID richiesta server appare nella colonna dell' **intestazione dell'ID richiesta** .
-* In una traccia di rete, ad esempio quella acquisita con Fiddler, l'ID richiesta server appare nei messaggi di risposta come valore dell'intestazione HTTP **x-ms-request-id** .
-* Nel log lato client creato da Storage Client Library, l'ID richiesta server appare nella colonna del **testo dell'operazione** per la voce del log che mostra i dettagli della risposta del server.
+* Nel log di registrazione archiviazione sul lato server hello, id richiesta server di hello visualizzato hello **intestazione ID richiesta** colonna.
+* In una traccia di rete, ad esempio uno acquisiti da Fiddler, id richiesta server di hello viene visualizzato nei messaggi di risposta come hello **x-ms-request-id** valore dell'intestazione HTTP.
+* In hello crea log lato client che hello libreria Client di archiviazione, id richiesta server di hello viene visualizzato in hello **testo operazione** colonna per la voce di log hello con dettagli hello della risposta del server.
 
 > [!NOTE]
-> Il servizio di archiviazione assegna sempre un ID richiesta server univoco a ogni richiesta che riceve, quindi ogni tentativo ripetuto dal client e ogni operazione inclusa in un batch hanno un ID richiesta server univoco.
+> il servizio di archiviazione Hello assegna sempre univoche di un server id tooevery richiesta che riceve, pertanto ogni nuovo tentativo da client hello e ogni operazione incluso in un batch ha un id richiesta server univoci.
 > 
 > 
 
-Se la libreria client di archiviazione genera un'eccezione **StorageException** nel client, la proprietà **RequestInformation** contiene un oggetto **RequestResult** che include una proprietà **ServiceRequestID**. È anche possibile accedere a un oggetto **RequestResult** da un'istanza **OperationContext**.
+Se hello libreria Client di archiviazione genera un **StorageException** nel client hello hello **RequestInformation** proprietà contiene un **oggetto RequestResult** oggetto che include un **ServiceRequestID** proprietà. È anche possibile accedere a un oggetto **RequestResult** da un'istanza **OperationContext**.
 
-L'esempio di codice seguente illustra come impostare un valore **ClientRequestId** personalizzato allegando un oggetto **OperationContext** alla richiesta del servizio di archiviazione. Mostra inoltre come recuperare il valore **ServerRequestId** dal messaggio di risposta.
+Nell'esempio di codice Hello riportato di seguito viene illustrato come tooset personalizzato **ClientRequestId** valore collegando un **OperationContext** oggetto servizio di archiviazione toohello hello richiesta. Viene inoltre illustrato come hello tooretrieve **ServerRequestId** valore dal messaggio di risposta hello.
 
 ```csharp
-//Parse the connection string for the storage account.
+//Parse hello connection string for hello storage account.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Create an Operation Context that includes custom ClientRequestId string based on constants defined within the application along with a Guid.
+// Create an Operation Context that includes custom ClientRequestId string based on constants defined within hello application along with a Guid.
 OperationContext oc = new OperationContext();
 oc.ClientRequestID = String.Format("{0} {1} {2} {3}", HOSTNAME, APPNAME, USERID, Guid.NewGuid().ToString());
 
@@ -282,13 +282,13 @@ try
     using (var fs = File.OpenWrite(downloadToPath))
     {
         blob.DownloadToStream(fs, null, null, oc);
-        Console.WriteLine("\t Blob downloaded to file: {0}", downloadToPath);
+        Console.WriteLine("\t Blob downloaded toofile: {0}", downloadToPath);
     }
 }
 catch (StorageException storageException)
 {
     Console.WriteLine("Storage exception {0} occurred", storageException.Message);
-    // Multiple results may exist due to client side retry logic - each retried operation will have a unique ServiceRequestId
+    // Multiple results may exist due tooclient side retry logic - each retried operation will have a unique ServiceRequestId
     foreach (var result in oc.RequestResults)
     {
             Console.WriteLine("HttpStatus: {0}, ServiceRequestId {1}", result.HttpStatusCode, result.ServiceRequestID);
@@ -297,37 +297,37 @@ catch (StorageException storageException)
 ```
 
 ### <a name="timestamps"></a>Timestamp
-È possibile utilizzare i timestamp per individuare le voci di log correlate, ma è importante fare attenzione a eventuali sfasamenti di orario tra il client e il server. Eseguire la ricerca delle voci corrispondenti sul lato server con 15 minuti in più o in meno in base al timestamp sul client. Ricordare che i metadati BLOB per gli oggetti BLOB contenenti metriche indicano l'intervallo di tempo per le metriche memorizzate nell'oggetto BLOB e questo è utile se si usano molti oggetti BLOB di metriche per lo stesso minuto o la stessa ora.
+È inoltre possibile utilizzare i timestamp toolocate relative voci di log, ma è necessario assicurarsi di qualsiasi dello sfasamento di orario tra hello client e server che potrebbero esistere. È consigliabile cercare più o meno di 15 minuti per la corrispondenza di voci sul lato server in base al timestamp hello client hello. Tenere presente che i metadati blob hello per i BLOB hello contenente le metriche indicano l'intervallo di tempo hello per le metriche di hello archiviate in blob hello; Ciò è utile se si dispone di molti BLOB metriche per hello stesso minuti o ore.
 
 ## <a name="troubleshooting-guidance"></a>Guida alla risoluzione dei problemi
-Questa sezione fornisce un supporto per la diagnosi e la risoluzione di alcuni dei problemi più comuni che si possono verificare nell'applicazione usando i servizi di archiviazione Azure. Usare l'elenco che segue per individuare le informazioni pertinenti a un problema specifico.
+In questa sezione consentono di diagnosi hello e risoluzione dei problemi relativi ad alcuni problemi comuni di hello dell'applicazione possono verificarsi quando si utilizza servizi di archiviazione Azure hello. Utilizzare l'elenco di hello sotto toolocate hello informazioni pertinenti tooyour specifico problema.
 
 **Albero delle decisioni per la risoluzione dei problemi**
 
 ---
-Il problema riguarda le prestazioni di uno dei servizi di archiviazione?
+È il problema correlato toohello delle prestazioni di uno dei servizi di archiviazione hello?
 
-* [Le metriche indicano un valore AverageE2ELatency alto e un valore AverageServerLatency basso]
-* [Le metriche indicano un valore AverageE2ELatency basso e un valore AverageServerLatency basso, ma il client riscontra una latenza elevata]
+* [metrica Mostra AverageE2ELatency alta e bassa AverageServerLatency]
+* [Metrica Mostra AverageE2ELatency bassa e bassa AverageServerLatency ma hello client si è verificato ad alta latenza]
 * [Le metriche indicano un valore AverageServerLatency alto]
 * [Si stanno verificando ritardi imprevisti nel recapito dei messaggi di una coda]
 
 ---
-Il problema riguarda la disponibilità di uno dei servizi di archiviazione?
+È il problema correlato toohello disponibilità di uno dei servizi di archiviazione hello?
 
-* [Le metriche indicano un aumento di PercentThrottlingError]
-* [Le metriche indicano un aumento di PercentTimeoutError]
+* [metriche mostrano un aumento PercentThrottlingError]
+* [metriche mostrano un aumento PercentTimeoutError]
 * [Le metriche indicano un aumento di PercentNetworkError]
 
 ---
  L'applicazione client riceve una risposta HTTP 4XX (ad esempio 404) da un servizio di archiviazione?
 
-* [Il client sta ricevendo messaggi HTTP 403 (Accesso negato)]
-* [Il client sta ricevendo messaggi HTTP 404 (Non trovato)]
-* [Il client sta ricevendo messaggi HTTP 409 (Conflitto)]
+* [client hello è la ricezione di messaggi HTTP 403 (accesso negato)]
+* [client hello è la ricezione di messaggi HTTP 404 (non trovato)]
+* [client hello è la ricezione di messaggi HTTP 409 (conflitto)]
 
 ---
-[Le metriche indicano un valore PercentSuccess basso o le voci del log di analisi contengono operazioni con stato della transazione ClientOtherErrors]
+[metrica Mostra PercentSuccess bassa o voci di log analitica sono operazioni con stato delle transazioni di ClientOtherErrors]
 
 ---
 [Le metriche della capacità indicano un aumento imprevisto dell'uso della capacità di archiviazione]
@@ -336,31 +336,31 @@ Il problema riguarda la disponibilità di uno dei servizi di archiviazione?
 [Si stanno verificando riavvii imprevisti delle macchine virtuali con un numero elevato di VHD allegati]
 
 ---
-[Il problema è dovuto all'uso dell'emulatore di archiviazione per attività di sviluppo o test]
+[Il problema si verifica di utilizzare l'emulatore di archiviazione hello per lo sviluppo o test]
 
 ---
-[Si stanno verificando problemi di installazione di Azure SDK per .NET]
+[Si sono verificati problemi di installazione hello Azure SDK per .NET]
 
 ---
 [Si è verificato un problema diverso con un servizio di archiviazione]
 
 ---
 ### <a name="metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency"></a>Le metriche indicano un valore AverageE2ELatency alto e un valore AverageServerLatency basso
-L'illustrazione dello strumento di monitoraggio del [portale di Azure](https://portal.azure.com) mostra un esempio in cui il valore **AverageE2ELatency** è notevolmente superiore al valore **AverageServerLatency**.
+Nella figura riportata di seguito da hello Hello [portale di Azure](https://portal.azure.com) strumento di monitoraggio viene illustrato un esempio in cui hello **AverageE2ELatency** è notevolmente superiore hello **AverageServerLatency**.
 
 ![][4]
 
-Si noti che il servizio di archiviazione calcola solo la metrica **AverageE2ELatency** per le richieste eseguite correttamente e, a differenza di **AverageServerLatency**, include il tempo impiegato dal client per inviare i dati e ricevere una conferma dal servizio di archiviazione. Di conseguenza, una differenza tra **AverageE2ELatency** e **AverageServerLatency** potrebbe essere dovuta al fatto che l'applicazione è lenta a rispondere oppure alle condizioni della rete.
+Si noti che il servizio di archiviazione hello solo Calcola metrica hello **AverageE2ELatency** per le richieste riuscite e, a differenza di **AverageServerLatency**, incluso il tempo di hello client hello accetta toosend hello dati e ricevere acknowledgement dal servizio di archiviazione hello. Pertanto, una differenza tra **AverageE2ELatency** e **AverageServerLatency** potrebbe essere una scadenza toohello client applicazione da rallentare toorespond o tooconditions scadenza nella rete hello.
 
 > [!NOTE]
-> È anche possibile visualizzare i valori **E2ELatency** e **ServerLatency** per le singole operazioni di archiviazione nei dati del log della registrazione dell'archiviazione.
+> È inoltre possibile visualizzare **E2ELatency** e **ServerLatency** per singole operazioni di archiviazione nella registrazione archiviazione hello registrare i dati.
 > 
 > 
 
 #### <a name="investigating-client-performance-issues"></a>Analisi dei problemi di prestazioni del client
-I motivi possibili per cui il client risponde lentamente includono la quantità limitata di connessioni o thread disponibili oppure la limitata disponibilità di risorse quali CPU, memoria o larghezza di banda della rete. Il problema può essere risolto modificando il codice del client in modo che sia più efficiente (ad esempio usando chiamate asincrone al servizio di archiviazione) o usando una macchina virtuale più grande (con più core e più memoria).
+Possibili cause per client hello risponde lentamente includere disporre di un numero limitato di connessioni disponibili o i thread o di carenza di risorse, ad esempio la larghezza di banda della CPU, memoria o rete di. Potrebbe essere in grado di tooresolve problema di hello modificando hello client codice toobe più efficiente (ad esempio tramite il servizio di archiviazione toohello chiamate asincrone) o tramite una macchina virtuale di dimensioni maggiori (con più core e memoria).
 
-Per i servizi di tabelle e accodamento, l'algoritmo Nagle può inoltre causare la presenza di un valore **AverageE2ELatency** elevato rispetto al valore **AverageServerLatency**: per altre informazioni, vedere il post [Nagle's Algorithm is Not Friendly towards Small Requests](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx) (Comportamento dell'algoritmo Nagle con richieste di piccole dimensioni). È possibile disabilitare l'algoritmo Nagle nel codice tramite la classe **ServicePointManager** nello spazio dei nomi **System.Net**. Eseguire questa operazione prima di effettuare chiamate ai servizi di tabelle o accodamento nell'applicazione poiché non ha effetto sulle connessioni già aperte. L'esempio seguente proviene dal metodo **Application_Start** in un ruolo di lavoro.
+Per i servizi tabelle e code di hello, algoritmo Nagle hello può essere causato anche elevata **AverageE2ELatency** rispetto troppo**AverageServerLatency**: per ulteriori informazioni vedere hello post [Nagle L'algoritmo non è descrittivo verso le richieste di piccole dimensioni](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx). È possibile disabilitare l'algoritmo Nagle hello nel codice utilizzando hello **ServicePointManager** classe hello **System.Net** dello spazio dei nomi. È consigliabile farlo prima apportare qualsiasi tabella toohello chiamate o aprire Servizi coda dell'applicazione, poiché questa operazione non influenza le connessioni che sono già. Hello seguente esempio è tratto da hello **Application_Start** metodo in un ruolo di lavoro.
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse(connStr);
@@ -370,38 +370,38 @@ ServicePoint queueServicePoint = ServicePointManager.FindServicePoint(storageAcc
 queueServicePoint.UseNagleAlgorithm = false;
 ```
 
-Controllare i file di log lato client per vedere quante richieste vengono inviate dall'applicazione client e verificare se sono presenti colli di bottiglia delle prestazioni generali di .NET, tra cui CPU, garbage collection, uso della rete o memoria. Come punto di partenza per la risoluzione dei problemi nelle applicazioni client .NET, vedere [Debug, traccia e profilatura](http://msdn.microsoft.com/library/7fe0dd2y).
+È consigliabile controllare hello log lato client toosee quanti l'applicazione client invia richieste e controllare .NET generali correlati eventuali colli di bottiglia nel client, ad esempio CPU, operazioni di garbage collection .NET, utilizzo della rete o memoria. Come punto di partenza per la risoluzione dei problemi nelle applicazioni client .NET, vedere [Debug, traccia e profilatura](http://msdn.microsoft.com/library/7fe0dd2y).
 
 #### <a name="investigating-network-latency-issues"></a>Analisi dei problemi di latenza di rete
-In genere la latenza end-to-end elevata causata dalla rete è dovuta a condizioni temporanee. Per l'analisi dei problemi transitori e persistenti della rete, ad esempio le interruzioni della trasmissione dei pacchetti, sono disponibili strumenti come Wireshark o Microsoft Message Analyzer.
+In genere, ad alta latenza end-to-end causata dalla rete hello è a causa di condizioni tootransient. Per l'analisi dei problemi transitori e persistenti della rete, ad esempio le interruzioni della trasmissione dei pacchetti, sono disponibili strumenti come Wireshark o Microsoft Message Analyzer.
 
-Per ulteriori informazioni sull'utilizzo di Wireshark per risolvere i problemi di rete, vedere "[Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo Wireshark tootroubleshoot problemi di rete, vedere "[appendice 2: utilizzando il traffico di rete toocapture Wireshark]."
 
-Per ulteriori informazioni sull'utilizzo di Microsoft Message Analyzer per risolvere i problemi di rete, vedere "[Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo di problemi di rete tootroubleshoot Microsoft Message Analyzer, vedere "[appendice 3: utilizzo del traffico di rete di Microsoft Message Analyzer toocapture]."
 
-### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>Le metriche indicano un valore AverageE2ELatency basso e un valore AverageServerLatency basso, ma il client riscontra una latenza elevata
-In questo scenario, la causa più probabile è un ritardo nelle richieste di archiviazione che arrivano al servizio di archiviazione. È necessario verificare perché le richieste del client non riescono a passare attraverso il servizio BLOB.
+### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>Metrica Mostra AverageE2ELatency bassa e bassa AverageServerLatency ma hello client si è verificato ad alta latenza
+In questo scenario, la causa più probabile di hello è un ritardo nelle richieste di archiviazione hello raggiungere il servizio di archiviazione hello. È necessario individuare perché le richieste da client hello non rendono tramite il servizio blob toohello.
 
-Un motivo possibile per cui il client ritarda l'invio delle richieste riguarda il numero limitato di connessioni o thread disponibili.
+Per i client hello ritardare l'invio delle richieste è possibile che non esistono un numero limitato di connessioni disponibili o thread.
 
-È inoltre necessario verificare se il client sta effettuando più tentativi e in tal caso esaminarne il motivo. Per determinare se il client sta effettuando più tentativi, è possibile:
+Controllare inoltre se hello client è più tentativi di esecuzione e analizzare il motivo di hello in caso di hello. toodetermine se client hello esegue più tentativi, è possibile:
 
-* Esaminare i log dell'analisi dell'archiviazione. Se si stanno verificando più tentativi, verranno visualizzate più operazioni con lo stesso ID richiesta client, ma con ID richiesta server diversi.
-* Esaminare i log del client. I log dettagliati indicheranno che si è verificato un nuovo tentativo.
-* Eseguire il debug del codice e controllare le proprietà dell'oggetto **OperationContext** associato alla richiesta. Se si ritenta l'operazione, la proprietà **RequestResults** includerà più ID richiesta server univoci. È inoltre possibile controllare l'ora di inizio e fine di ogni richiesta. Per altre informazioni, vedere l'esempio di codice nella sezione [ID richiesta server].
+* Esaminare i registri di archiviazione Analitica hello. Se si verificano più tentativi, si noterà più operazioni con hello stesso ID di richiesta client, ma con diversi server richiesta.
+* Esaminare i registri hello del client. I log dettagliati indicheranno che si è verificato un nuovo tentativo.
+* Il debug del codice e controllare le proprietà di hello di hello **OperationContext** oggetto associato hello richiesta. Se l'operazione di hello è ripetuta, hello **RequestResults** proprietà includerà più richiesta server univoco ID. È anche possibile selezionare inizia hello e di fine per ogni richiesta. Per ulteriori informazioni, vedere l'esempio di codice hello nella sezione hello [ID richiesta Server].
 
-Se non si riscontrano problemi nel client, occorre verificare la presenza di potenziali problemi della rete, ad esempio la perdita di pacchetti. Per esaminare i possibili problemi della rete, sono disponibili strumenti come Wireshark o Microsoft Message Analyzer.
+Se nel client hello non siano presenti problemi, è necessario esaminare i potenziali problemi di rete, ad esempio la perdita di pacchetti. È possibile utilizzare strumenti quali problemi di rete tooinvestigate Wireshark o Microsoft Message Analyzer.
 
-Per ulteriori informazioni sull'utilizzo di Wireshark per risolvere i problemi di rete, vedere "[Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo Wireshark tootroubleshoot problemi di rete, vedere "[appendice 2: utilizzando il traffico di rete toocapture Wireshark]."
 
-Per ulteriori informazioni sull'utilizzo di Microsoft Message Analyzer per risolvere i problemi di rete, vedere "[Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo di problemi di rete tootroubleshoot Microsoft Message Analyzer, vedere "[appendice 3: utilizzo del traffico di rete di Microsoft Message Analyzer toocapture]."
 
 ### <a name="metrics-show-high-AverageServerLatency"></a>Le metriche indicano un valore AverageServerLatency alto
-Nel caso in cui il valore **AverageServerLatency** sia elevato per le richieste di download di BLOB, è necessario utilizzare il file di log della registrazione dell'archiviazione per verificare se esistono richieste ripetute per lo stesso oggetto BLOB (o insieme di oggetti BLOB). Per le richieste di caricamento di BLOB, è necessario verificare le dimensioni dei blocchi usate dal client (ad esempio, i blocchi inferiori a 64 Kb possono causare sovraccarichi a mano che anche le letture non vengano eseguite su blocchi inferiori a 64 Kb) e se più client stanno caricando blocchi nello stesso BLOB parallelo. Verificare anche le metriche al minuto per i picchi del numero di richieste che determinano il superamento degli obiettivi di scalabilità al secondo: vedere anche "[Le metriche indicano un aumento di PercentTimeoutError]".
+Nel caso di hello di elevata **AverageServerLatency** per le richieste di download di blob, è consigliabile utilizzare hello registrazione archiviazione registra toosee se sono presenti le ripetute richieste di hello stessi blob (o set di BLOB). Le richieste di caricamento blob, è necessario esaminare quali blocco dimensioni hello client utilizza (ad esempio blocchi minore di 64 KB di dimensioni può comportare costi generali, a meno che la legge hello sono presenti anche in meno di 64K blocchi), e se più client sta caricando Blocca toohello stesso BLOB in parallelo. È inoltre consigliabile controllare le metriche al minuto hello per eventuali picchi nel numero hello di richieste che comportano il superamento di hello al secondo obiettivi di scalabilità: Vedere anche "[metriche mostrano un aumento PercentTimeoutError]."
 
-Se si riscontra un valore **AverageServerLatency** elevato per le richieste di download di BLOB quando sono presenti ripetute richieste allo stesso BLOB o insieme di BLOB, è necessario considerare la possibilità di memorizzare nella cache gli oggetti BLOB utilizzando il servizio cache di Azure o la rete per la distribuzione di contenuti di Azure. Per le richieste di caricamento, è possibile ottimizzare la velocità utilizzando blocchi di dimensioni maggiori. Per le query sulle tabelle, è anche possibile implementare la memorizzazione nella cache lato client sui client che eseguono le stesse operazioni di query e i cui dati non cambiano di frequente.
+Se si verifica alto **AverageServerLatency** per le richieste di download di blob quando vi sono ripetuti richieste hello stesso blob o set di BLOB, quindi è consigliabile prendere in considerazione la memorizzazione nella cache tali BLOB utilizzando la Cache di Azure o hello contenuti di Azure Rete (CDN). Per le richieste di caricamento, è possibile migliorare la velocità effettiva di hello con dimensioni maggiori del blocco. Per query tootables, è anche possibile tooimplement la cache lato client nei client che eseguono hello stessi per operazioni di query e hello in dati non cambiano frequentemente.
 
-I valori elevati di **AverageServerLatency** possono essere anche sintomo della presenza di tabelle o query progettate in modo non corretto, che causano operazioni di scansione o seguono l'antipattern append/prepend. Per ulteriori informazioni, vedere "[Le metriche indicano un aumento di PercentThrottlingError]".
+Elevata **AverageServerLatency** valori possono anche essere un sintomo di tabelle progettate in modo inadeguato o anti-pattern accodare o anteporre le query che i risultati in operazioni di analisi o che seguono hello. Per ulteriori informazioni, vedere "[metriche mostrano un aumento PercentThrottlingError]".
 
 > [!NOTE]
 > Un elenco di controllo completo delle prestazioni è disponibile qui: [Elenco di controllo di prestazioni e scalabilità per Archiviazione di Microsoft Azure](storage-performance-checklist.md).
@@ -409,38 +409,38 @@ I valori elevati di **AverageServerLatency** possono essere anche sintomo della 
 > 
 
 ### <a name="you-are-experiencing-unexpected-delays-in-message-delivery"></a>Si stanno verificando ritardi imprevisti nel recapito dei messaggi di una coda
-Se si riscontra un ritardo tra l'orario in cui un'applicazione aggiunge un messaggio a una coda e l'orario in cui il messaggio diventa disponibile per la lettura dalla coda, è necessario prendere in considerazione la procedura che segue per diagnosticare il problema.
+Se si verificano un ritardo tra il momento di hello un'applicazione aggiunge un messaggio tooa coda e hello tempo che diventa tooread disponibile dalla coda di hello, quindi è necessario intraprendere hello problema hello toodiagnose di passaggi seguente:
 
-* Verificare che l'applicazione aggiunga correttamente il messaggio alla coda. Verificare che l'applicazione non ripeta il metodo **AddMessage** più volte prima di ottenere l'esito positivo. I file di log di Storage Client Library mostrano tutti i tentativi ripetuti delle operazioni di archiviazione.
-* Verificare che non siano sfasamenti di orario tra il ruolo di lavoro che aggiunge il messaggio alla coda e il ruolo di lavoro che legge il messaggio dalla coda e che determina un apparente ritardo dell'elaborazione.
-* Verificare se il ruolo di lavoro che legge i messaggi dalla coda presenta degli errori. Se un client di accodamento chiama il metodo **GetMessage** ma non risponde con una conferma, il messaggio resterà invisibile nella coda fino alla scadenza del periodo **invisibilityTimeout**. A questo punto, il messaggio diventa di nuovo disponibile per l'elaborazione.
-* Verificare se la lunghezza della coda aumenta con il tempo. Ciò si può verificare se non sono disponibili ruoli di lavoro sufficienti per elaborare tutti i messaggi che altri ruoli di lavoro inseriscono nella coda. È inoltre necessario controllare le metriche, per verificare se le richieste di eliminazione hanno esito negativo, e il conteggio dei messaggi da rimuovere dalla coda, che potrebbe indicare l'esistenza di ripetuti tentativi non riusciti di eliminare il messaggio.
-* Esaminare i file di log della registrazione dell'archiviazione per verificare se esistono operazioni di accodamento con valori **E2ELatency** e **ServerLatency** su un periodo di tempo più lungo del normale.
+* Verificare l'applicazione hello correttamente viene aggiunta la coda toohello messaggi hello. Verificare che un'applicazione hello non tentativo in corso di hello **AddMessage** metodo più volte prima successiva. i registri di libreria Client di archiviazione Hello mostrerà qualsiasi ripetuti tentativi di operazioni di archiviazione.
+* Non verificare sia presente alcun clock sfasamento di orario tra i ruoli di lavoro hello che aggiunge la coda toohello hello e ruolo di lavoro hello che legge un messaggio dalla coda hello che rende vengono visualizzati come se si verifica un ritardo nell'elaborazione.
+* Controllare se i ruoli di lavoro hello che legge i messaggi hello dalla coda hello non sono riuscito. Se un client di coda chiama hello **GetMessage** metodo ma ha esito negativo toorespond con un acknowledgement, hello messaggio rimarrà invisibile in coda hello finché hello **invisibilityTimeout** scadenza del periodo. A questo punto, il messaggio hello diventa disponibile per l'elaborazione di nuovo.
+* Controllare se è in aumento lunghezza coda hello nel tempo. Ciò può verificarsi se non si dispone tooprocess disponibili sufficienti lavoratori hello tutti i messaggi che altri thread di lavoro sono l'inserimento in coda hello. Controllare inoltre hello metriche toosee se hello ed Elimina le richieste non sono stati superati rimozione dalla coda di count per i messaggi, che potrebbe indicare ripetuti tentativi non riusciti toodelete hello messaggio.
+* Analizzare i log di registrazione archiviazione hello per le operazioni di coda che hanno maggiore del previsto **E2ELatency** e **ServerLatency** valori in un periodo più lungo di tempo superiore al normale.
 
 ### <a name="metrics-show-an-increase-in-PercentThrottlingError"></a>Le metriche indicano un aumento di PercentThrottlingError
-Gli errori di limitazione si verificano quando si superano gli obiettivi di scalabilità di un servizio di archiviazione. In questo modo il servizio di archiviazione assicura che nessun client o tenant possa utilizzare il servizio a spese di altri. Vedere [Obiettivi di scalabilità e prestazioni di Azure](storage-scalability-targets.md) per maggiori dettagli sugli obiettivi di scalabilità per gli account di archiviazione e gli obiettivi di prestazioni per le partizioni all'interno degli account di archiviazione.
+Quando si superano le destinazioni di scalabilità hello di un servizio di archiviazione, si verificano errori di limitazione delle richieste. il servizio di archiviazione Hello effettua questo tooensure che nessun client o tenant può usare servizio hello spese hello di altri utenti. Vedere [Obiettivi di scalabilità e prestazioni di Azure](storage-scalability-targets.md) per maggiori dettagli sugli obiettivi di scalabilità per gli account di archiviazione e gli obiettivi di prestazioni per le partizioni all'interno degli account di archiviazione.
 
-Se la metrica **PercentThrottlingError** indica un aumento della percentuale di richieste non riuscite con errore di limitazione, è necessario esaminare una di queste condizioni:
+Se hello **PercentThrottlingError** metrica mostrare un aumento percentuale hello di richieste che si è verificato un errore di limitazione, è necessario tooinvestigate uno dei seguenti scenari:
 
 * [Aumento temporaneo di PercentThrottlingError]
 * [Aumento permanente di PercentThrottlingError]
 
-Un aumento di **PercentThrottlingError** spesso si verifica contemporaneamente a un aumento del numero di richieste di archiviazione o quando si esegue un test di carico iniziale dell'applicazione. L'aumento si può manifestare anche nel client come messaggio di stato HTTP "503 Server Busy" o "500 Operation Timeout" delle operazioni di archiviazione.
+Un aumento **PercentThrottlingError** spesso avviene in hello stesso ora sotto forma di un aumento hello numero di richieste di archiviazione, o quando sono inizialmente il test di carico dell'applicazione. Questo può manifestarsi anche nel client hello come "503 Server occupato" o messaggi di stato HTTP "500 Timeout dell'operazione" da operazioni di archiviazione.
 
 #### <a name="transient-increase-in-PercentThrottlingError"></a>Aumento temporaneo di PercentThrottlingError
-Se si notano picchi del valore di **PercentThrottlingError** che coincidono con periodi di intensa attività dell'applicazione, è necessario implementare una strategia di interruzione esponenziale (non lineare) per le ripetizioni dei tentativi nel client:questa operazione ridurrà il carico immediato sulla partizione e consentirà all'applicazione di contenere i picchi di traffico. Per altre informazioni sulle modalità di implementazione dei criteri di ripetizione con la libreria del client di archiviazione, vedere la sezione relativa allo [spazio dei nomi Microsoft.WindowsAzure.Storage.RetryPolicies](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
+Se vengono visualizzati eventuali picchi nel valore hello **PercentThrottlingError** che coincidono con periodi di intensa attività per un'applicazione hello, è necessario implementare un (non lineare) di backoff esponenziale strategia per i tentativi nel client: questo verrà ridurre il carico di immediato hello sulla partizione hello e Guida toosmooth l'applicazione out picchi di traffico. Per ulteriori informazioni su come i criteri di ripetizione tooimplement mediante hello libreria Client di archiviazione, vedere [Microsoft.WindowsAzure.Storage.RetryPolicies Namespace](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
 
 > [!NOTE]
-> Si possono verificare anche picchi del valore di **PercentThrottlingError** che non coincidono con periodi di attività intensa dell'applicazione: la causa più probabile è che il servizio di archiviazione sposti le partizioni in modo da migliorare il bilanciamento del carico.
+> È inoltre possibile visualizzare eventuali picchi nel valore hello **PercentThrottlingError** non coincidono con periodi di intensa attività per un'applicazione hello: hello qui causa più probabile è il servizio di archiviazione hello lo spostamento di partizioni tooimprove carico bilanciamento del carico.
 > 
 > 
 
 #### <a name="permanent-increase-in-PercentThrottlingError"></a>Aumento permanente di PercentThrottlingError
-Se si nota un valore costantemente elevato di **PercentThrottlingError** seguito da un aumento permanente dei volumi delle transazioni oppure se si eseguono i test iniziali del carico per l'applicazione, è necessario valutare in che modo l'applicazione usa le partizioni di archiviazione e se sta raggiungendo gli obiettivi di scalabilità per un account di archiviazione. Ad esempio, se si riscontrano errori di limitazione su una coda (che viene considerata come singola partizione), è opportuno prendere in considerazione l'utilizzo di code aggiuntive per suddividere le transazioni in più partizioni. Se gli errori di limitazione si verificano su una tabella, può essere utile usare uno schema di partizionamento diverso per suddividere le transazioni in più partizioni, usando una gamma più ampia di valori delle chiavi di partizione. Una causa comune di questo problema è l'antipattern prepend/append in cui la data viene selezionata come chiave di partizione e quindi tutti i dati relativi a un determinato giorno vengono scritti su una sola partizione: Può essere opportuno prendere in considerazione una progettazione diversa della partizione o valutare se l'utilizzo dell'archiviazione BLOB non sia una soluzione migliore. È inoltre necessario verificare se la limitazione avviene come risultato di picchi del traffico e in che modo adeguare il modello di richiesta in uso.
+Se viene visualizzato un valore costantemente elevato per **PercentThrottlingError** seguendo un aumento permanente dei volumi di transazioni o quando si esegue il caricamento iniziale test sull'applicazione, quindi è necessario tooevaluate modalità con cui l'applicazione utilizza le partizioni di archiviazione e se sta per raggiungere obiettivi di scalabilità hello per un account di archiviazione. Ad esempio, se si verifica la limitazione delle richieste di errori in una coda (che viene considerato come una singola partizione), considerare l'utilizzo di transazioni di hello toospread di code aggiuntive tra più partizioni. Se si verifica la limitazione delle richieste di errori in una tabella, è necessario tooconsider utilizzando un diverso toospread di schema di partizionamento delle transazioni tra più partizioni con una vasta gamma di valori di chiave di partizione. Una causa comune di questo problema è hello accodare o anteporre anti-pattern in cui si seleziona data hello come chiave di partizione hello e quindi tutti i dati in un determinato giorno viene scritto partizione tooone: sotto carico, questo può comportare un collo di bottiglia di scrittura. Può essere opportuno prendere in considerazione una progettazione diversa della partizione o valutare se l'utilizzo dell'archiviazione BLOB non sia una soluzione migliore. È inoltre necessario verificare se la limitazione delle richieste di hello si verifica in seguito a picchi di traffico e provare a utilizzare modalità di anti-aliasing del modello delle richieste di.
 
-Se si distribuiscono le transazioni in più partizioni, tenere presenti i limiti di scalabilità impostati per l'account di archiviazione. Ad esempio, se sono state utilizzate dieci code che elaborano ciascuna un massimo di 2.000 messaggi da 1 KB al secondo, si raggiungerà il limite complessivo di 20.000 messaggi al secondo per l'account di archiviazione. Se è necessario elaborare più di 20.000 entità al secondo, è consigliabile usare più account di archiviazione. Tenere presente inoltre che le dimensioni delle richieste e delle entità influiscono sul momento in cui il servizio di archiviazione limita i client: più grandi sono le richieste e le entità, prima avviene la limitazione.
+Se si distribuiscono le transazioni tra più partizioni, è necessario comunque tenere hello limiti di scalabilità per account di archiviazione hello. Ad esempio, se si utilizza dieci code ogni elaborazione hello massimo 2.000 1KB messaggi al secondo, sarà in hello limite generale di 20.000 messaggi al secondo per l'account di archiviazione hello. Se è necessario tooprocess più di 20.000 entità al secondo, è consigliabile usare più account di archiviazione. È inoltre tenere presente che le dimensioni hello delle richieste di e l'entità ha un impatto sui quando il servizio di archiviazione hello limita i client: se si dispone di maggiore di richieste e le entità, possono essere limitate prima.
 
-Anche una progettazione insufficiente delle query può causare il raggiungimento dei limiti di scalabillità per le partizioni delle tabelle. Ad esempio, una query con un filtro che seleziona solo l'uno per cento delle entità di una partizione ma esegue la scansione di tutte le entità della partizione dovrà accedere a ogni entità. Ogni lettura di entità viene aggiunta al calcolo del numero totale delle transazioni di quella partizione, quindi si possono raggiungere facilmente gli obiettivi di scalabilità.
+Progettazione query non efficiente può essere causato anche si limiti di scalabilità toohit hello per le partizioni della tabella. Ad esempio, una query con un filtro che seleziona solo uno percento delle entità hello in una partizione, ma esegue l'analisi di tutte le entità hello in una partizione che sarà necessario tooaccess ogni entità. Ogni entità di lettura verrà considerato come uno numero totale di hello di transazioni in quella partizione; Pertanto, si possono facilmente raggiungere obiettivi di scalabilità hello.
 
 > [!NOTE]
 > I test delle prestazioni dovrebbero rivelare eventuali progettazioni inefficaci delle query nell'applicazione.
@@ -448,120 +448,120 @@ Anche una progettazione insufficiente delle query può causare il raggiungimento
 > 
 
 ### <a name="metrics-show-an-increase-in-PercentTimeoutError"></a>Le metriche indicano un aumento di PercentTimeoutError
-Le metriche indicano un aumento di **PercentTimeoutError** per uno dei servizi di archiviazione. Allo stesso tempo, il client riceve una grande quantità di messaggi di stato HTTP "500 Operation Timeout" dalle operazioni di archiviazione.
+Le metriche indicano un aumento di **PercentTimeoutError** per uno dei servizi di archiviazione. In hello stesso tempo hello client riceve un numero elevato di messaggi di stato HTTP "500 Timeout dell'operazione" da operazioni di archiviazione.
 
 > [!NOTE]
-> È possibile che vengano temporaneamente visualizzati errori di timeout perché il servizio di archiviazione bilancia il carico delle richieste spostando una partizione su un nuovo server.
+> È possibile riscontrare errori di timeout temporaneamente come servizio di archiviazione hello del carico delle richieste di saldi spostando un nuovo server tooa di partizione.
 > 
 > 
 
-La metrica **PercentTimeoutError** è una combinazione delle metriche seguenti: **ClientTimeoutError**, **AnonymousClientTimeoutError**, **SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError** e **SASServerTimeoutError**.
+Hello **PercentTimeoutError** metrica è un'aggregazione di hello seguenti metriche: **ClientTimeoutError**, **AnonymousClientTimeoutError**,  **SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError**, e **SASServerTimeoutError**.
 
-I timeout del server sono causati da un errore del server. I timeout del client si verificano perché un'operazione eseguita sul server ha superato il timeout specificato dal client. Ad esempio, un client che usa la libreria client di archiviazione può impostare un timeout per un'operazione tramite la proprietà **ServerTimeout** della classe **QueueRequestOptions**.
+timeout del server di Hello sono causati da un errore nel server di hello. timeout dei client Hello dovuto al fatto che un'operazione nel server di hello ha superato il timeout di hello specificato dal client hello. ad esempio, un client usando hello libreria Client di archiviazione può impostare un timeout per un'operazione utilizzando hello **ServerTimeout** proprietà di hello **QueueRequestOptions** classe.
 
-I timeout del server indicano un problema con il servizio di archiviazione che deve essere esaminato. È possibile utilizzare le metriche per verificare se si raggiungono i limiti di scalabilità del servizio e identificare eventuali picchi di traffico che possono causare il problema. Se il problema è intermittente, può essere dovuto all'attività di bilanciamento del carico nel servizio. Se il problema è persistente e non è causato dal fatto che l'applicazione raggiunge i limiti di scalabilità del servizio, sarà necessario rivolgersi all'assistenza. Per i timeout del client, è necessario decidere se il timeout è impostato su un valore appropriato nel client e modificare il valore del timeout impostato nel client o valutare in che modo è possibile migliorare le prestazioni delle operazioni nel servizio di archiviazione, ad esempio ottimizzando le query sulle tabelle o riducendo le dimensioni dei messaggi.
+Timeout del server indicare un problema con il servizio di archiviazione hello che richiede un'ulteriore analisi. Se si raggiunge i limiti di scalabilità hello per servizio hello e tooidentify eventuali picchi di traffico che potrebbero causare questo problema, è possibile utilizzare toosee metriche. Se il problema di hello è intermittente, potrebbe essere dovuto bilanciamento del carico tooload attività nel servizio hello. Se il problema di hello è permanente e non è causato dall'applicazione raggiunge i limiti di scalabilità hello del servizio di hello, è necessario generare un problema di supporto. Per i timeout dei client, è necessario decidere se hello timeout è impostato un valore appropriato tooan nel client hello e il valore di timeout hello modifica impostato nel client hello o analizzare come è possibile migliorare le prestazioni di hello di operazioni di hello nel servizio di archiviazione hello, per esempio ottimizzando le query di tabella o la riduzione delle dimensioni hello dei messaggi.
 
 ### <a name="metrics-show-an-increase-in-PercentNetworkError"></a>Le metriche indicano un aumento di PercentNetworkError
-Le metriche indicano un aumento di **PercentNetworkError** per uno dei servizi di archiviazione. La metrica **PercentNetworkError** è una combinazione delle metriche seguenti: **NetworkError**, **AnonymousNetworkError** e **SASNetworkError**. L'errore si verifica se il servizio di archiviazione rileva un errore della rete quando il client esegue una richiesta di archiviazione.
+Le metriche indicano un aumento di **PercentNetworkError** per uno dei servizi di archiviazione. Hello **PercentNetworkError** metrica è un'aggregazione di hello seguenti metriche: **NetworkError**, **AnonymousNetworkError**, e  **SASNetworkError**. Si verifica quando il servizio di archiviazione hello rileva un errore di rete quando hello client effettua una richiesta di archiviazione.
 
-La causa più comune dell'errore è la disconnessione del client prima della scadenza del timeout nel servizio di archiviazione. È necessario esaminare il codice nel client per capire perché e quando il client si disconnette dal servizio di archiviazione. Per esaminare i problemi di connessione dal client, è possibile utilizzare anche Wireshark, Microsoft Message Analyzer o Tcping. Questi strumenti sono descritti nelle [Appendici].
+la causa più comune di questo errore Hello è un client disconnessione prima della scadenza del timeout del servizio di archiviazione hello. È necessario esaminare il codice hello in toounderstand il client perché e quando il client di hello si disconnette dal servizio di archiviazione hello. È inoltre possibile utilizzare Wireshark, Microsoft Message Analyzer o problemi di connettività di rete Tcping tooinvestigate da client hello. Questi strumenti sono descritti in hello [appendici].
 
-### <a name="the-client-is-receiving-403-messages"></a>Il client sta ricevendo messaggi HTTP 403 (Accesso negato)
-Se l'applicazione client genera errori HTTP 403 (Accesso negato), probabilmente il client sta utilizzando una firma di accesso condiviso (SAS, Shared Access Signature) scaduta per inviare una richiesta di archiviazione (benché esistano altre cause possibili, come sfasamento di orario, chiavi non valide e intestazioni vuote). Se la causa è una chiave SAS scaduta, non si vedrà alcuna voce nei dati di log della registrazione dell'archiviazione lato server. La tabella che segue mostra un esempio del file di log lato client generato da Storage Client Library in cui è illustrato il problema in corso:
+### <a name="the-client-is-receiving-403-messages"></a>client hello è la ricezione di messaggi HTTP 403 (accesso negato)
+Se l'applicazione client che genera errori HTTP 403 (accesso negato), una causa probabile è che client hello utilizza un scaduti condiviso (firma di accesso) quando viene inviata una richiesta di archiviazione (anche se altre cause possibili includono le chiavi di orologio inclinazione, non è valido e vuoto intestazioni). Se una chiave di firma di accesso condiviso scaduta è causa di hello, si noterà non tutte le voci nei dati di log registrazione archiviazione sul lato server hello. Hello nella tabella seguente viene illustrato un esempio dal log di hello sul lato client generati da hello libreria Client di archiviazione che illustra questo problema si verifica:
 
 | Sorgente | Livello di dettaglio | Livello di dettaglio | ID richiesta client | testo dell'operazione |
 | --- | --- | --- | --- | --- |
 | Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Avvio operazione con posizione primaria in base alla modalità di posizionamento PrimaryOnly. |
-| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Avvio richiesta sincrona a https://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr=c&amp;si=mypolicy&amp;sig=OFnd4Rd7z01fIvh%2BmcR6zbudIH2F5Ikm%2FyhNYZEmJNQ%3D&amp;api-version=2014-02-14. |
+| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Avvio sincrono richiesta toohttps://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr = c&amp;si = mypolicy&amp;sig = OFnd4Rd7z01fIvh % 2BmcR6zbudIH2F5Ikm % 2FyhNYZEmJNQ % 3D&amp;api-version = 2014-02-14. |
 | Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |In attesa di risposta. |
-| Microsoft.WindowsAzure.Storage |Avviso |2 |85d077ab-… |Eccezione generata in attesa di risposta: il server remoto ha restituito un errore: (403) Accesso negato. |
+| Microsoft.WindowsAzure.Storage |Avviso |2 |85d077ab-… |Eccezione generata durante l'attesa della risposta: server remoto hello ha restituito un errore: (403) accesso negato... |
 | Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Risposta ricevuta. Codice stato = 403, ID richiesta = 9d67c64a-64ed-4b0d-9515-3b14bbcdc63d, Content-MD5 = , ETag = . |
-| Microsoft.WindowsAzure.Storage |Avviso |2 |85d077ab-… |Eccezione generata durante l'operazione: il server remoto ha restituito un errore: (403) Accesso negato. |
-| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Verifica se l'operazione deve essere ritentata. Conteggio tentativi = 0, codice di stato HTTP = 403, Eccezione = il server remoto ha restituito un errore: (403) Accesso negato. |
-| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |La posizione successiva è stata impostata come primaria, in base alla modalità di posizionamento. |
-| Microsoft.WindowsAzure.Storage |Tipi di errore |1 |85d077ab-… |Il criterio di ripetizione non ha consentito un nuovo tentativo. Errore con server remoto che ha restituito un errore: (403) Accesso negato. |
+| Microsoft.WindowsAzure.Storage |Avviso |2 |85d077ab-… |Eccezione generata durante l'operazione di hello: server remoto hello ha restituito un errore: (403) accesso negato... |
+| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |Verifica se ripetere l'operazione di hello. Numero di tentativi = 0, codice di stato HTTP 403, eccezione = = hello server remoto ha restituito un errore: (403) accesso negato... |
+| Microsoft.WindowsAzure.Storage |Informazioni |3 |85d077ab-… |posizione successiva Hello è stato impostato tooPrimary, in base alla modalità percorso hello. |
+| Microsoft.WindowsAzure.Storage |Tipi di errore |1 |85d077ab-… |Il criterio di ripetizione non ha consentito un nuovo tentativo. Esito negativo con server remoto hello ha restituito un errore: (403) accesso negato. |
 
-In questo scenario, è necessario verificare perché il token SAS scade prima che il client invii il token al server:
+In questo scenario, è necessario analizzare i motivi per cui il token di firma di accesso condiviso hello sta per scadere prima hello client invia al server di token toohello di hello:
 
-* Di solito non è consigliabile impostare un orario di inizio quando si crea una SAS che un client deve utilizzare immediatamente. Se esistono piccoli sfasamenti di orario tra l'host che genera la SAS utilizzando l'ora attuale e il servizio di archiviazione, è possibile che il servizio di archiviazione riceva una SAS non ancora valida.
-* Non impostare tempi troppo brevi per la scadenza di una SAS. Come già detto, eventuali piccole differenze di orario tra l'host che genera la SAS e il servizio di archiviazione possono causa un'apparente scadenza della SAS prima del tempo.
-* Il parametro della versione nella chiave di firma di accesso condiviso (ad esempio **sv=2015-04-05**) deve corrispondere alla versione di Storage Client Library in uso? Si consiglia di usare sempre la versione più recente di [Storage Client Library](https://www.nuget.org/packages/WindowsAzure.Storage/).
-* Se si rigenerano le chiavi di accesso di archiviazione, questa operazione può invalidare tutti i token della firma di accesso condiviso esistenti. Questo può essere un problema se si generano token SAS con tempo di scadenza lungo per le applicazioni client da memorizzare nella cache.
+* In genere, non è necessario impostare un'ora di inizio quando si crea una firma di accesso condiviso per un client di toouse immediatamente. Se vi sono piccole differenze di clock tra host hello generazione hello SAS utilizzando hello ora corrente e il servizio di archiviazione hello, è possibile per tooreceive servizio di archiviazione hello una firma di accesso condiviso che non è ancora valido.
+* Non impostare tempi troppo brevi per la scadenza di una SAS. Nuovamente, differenze piccolo orologio tra host hello generazione hello SAS e il servizio di archiviazione hello può causare tooa SAS apparentemente scade prima del previsto.
+* Hello parametro di versione nella chiave di firma di accesso condiviso hello (ad esempio **sv = 2015-04-05**) hello uguale alla versione di hello libreria Client di archiviazione in uso? È consigliabile utilizzare sempre l'ultima versione di hello di hello [libreria Client di archiviazione](https://www.nuget.org/packages/WindowsAzure.Storage/).
+* Se si rigenerano le chiavi di accesso di archiviazione, questa operazione può invalidare tutti i token della firma di accesso condiviso esistenti. Può trattarsi di un problema se si genera il token di firma di accesso condiviso con un'ora di scadenza lunga toocache applicazioni client.
 
-Se si utilizza Storage Client Library per generare i token SAS, sarà semplice creare un token valido. Se invece si usa l'API REST di archiviazione e si creano i token della firma di accesso condiviso manualmente, è consigliabile leggere con attenzione l'argomento [Delega dell'accesso con una firma di accesso condiviso](http://msdn.microsoft.com/library/azure/ee395415.aspx).
+Se si utilizza i token di firma di accesso condiviso toogenerate di hello libreria Client di archiviazione, è facile toobuild un token valido. Tuttavia, se si utilizza hello API REST di archiviazione e la creazione di token SAS hello manualmente è necessario leggere attentamente argomento hello [la delega dell'accesso con una firma di accesso condiviso](http://msdn.microsoft.com/library/azure/ee395415.aspx).
 
-### <a name="the-client-is-receiving-404-messages"></a>Il client sta ricevendo messaggi HTTP 404 (Non trovato)
-Se l'applicazione client riceve un messaggio HTTP 404 (Non trovato) dal server, significa che l'oggetto che il client sta tentando di usare (ad esempio un oggetto entità, tabella, BLOB, contenitore o coda) non esiste nel servizio di archiviazione. I motivi possono essere diversi, ad esempio:
+### <a name="the-client-is-receiving-404-messages"></a>client hello è la ricezione di messaggi HTTP 404 (non trovato)
+Se un'applicazione hello client riceve un messaggio HTTP 404 (non trovato) dal server di hello, ciò implica che il client hello oggetto hello stava tentando toouse (ad esempio, un'entità, tabella, blob, contenitore o coda) non esiste nel servizio di archiviazione hello. I motivi possono essere diversi, ad esempio:
 
-* [Il client o un altro processo ha eliminato in precedenza l'oggetto]
+* [eliminato in precedenza oggetto hello client Hello o un altro processo]
 * [Si è verificato un problema di autenticazione della firma di accesso condiviso]
-* [Il codice JavaScript lato client non è autorizzato ad accedere all'oggetto]
+* [Il codice JavaScript sul lato client non dispone dell'autorizzazione tooaccess hello oggetto]
 * [Errore della rete]
 
-#### <a name="client-previously-deleted-the-object"></a>Il client o un altro processo ha eliminato in precedenza l'oggetto
-Negli scenari in cui il client tenta di leggere, aggiornare o eliminare i dati in un servizio di archiviazione, normalmente è facile identificare nei file di log lato server un'operazione precedente che ha eliminato l'oggetto in questione dal servizio di archiviazione. Molto spesso i dati del log indicano che un altro utente o processo ha eliminato l'oggetto. Nel file di log della registrazione dell'archiviazione sul lato server, le colonne del tipo di operazione e della chiave dell'oggetto richiesto indicano quando un client ha eliminato un oggetto.
+#### <a name="client-previously-deleted-the-object"></a>eliminato in precedenza oggetto hello client Hello o un altro processo
+In scenari in cui hello client sta tentando tooread, aggiornamento o eliminazione di dati in un servizio di archiviazione che è in genere tooidentify semplice sul lato server hello registra un'operazione precedente eliminati oggetto hello in questione dal servizio di archiviazione hello. Molto spesso, i dati di log hello mostrano un altro utente o processo eliminato hello oggetto. Nel log di registrazione archiviazione sul lato server hello, hello-tipo di operazione e le colonne chiave di un oggetto richiesto mostrano quando un client ha eliminato un oggetto.
 
-Nello scenario in cui un client tenta di inserire un oggetto può non essere subito evidente il motivo per cui si riceve una risposta HTTP 404 (Non trovato) se il client sta creando un nuovo oggetto. Tuttavia, se il client sta creando un oggetto BLOB deve essere in grado di trovare il relativo contenitore, se sta creando un messaggio deve essere in grado di trovare una coda e se sta aggiungendo una riga deve essere in grado di trovare la tabella.
+Nello scenario di hello in cui un client tenta tooinsert un oggetto, potrebbe non essere immediatamente evidente il motivo per cui il risultato in una risposta HTTP 404 (non trovato), dato che hello client crea un nuovo oggetto. Tuttavia, se il client di hello è la creazione di un blob che deve essere in grado di toofind hello contenitore blob, la se client hello è la creazione di un messaggio che deve essere in grado di toofind una coda, e se client hello viene aggiunta una riga deve essere tabella hello toofind in grado di.
 
-Utilizzare il log lato client generato da Storage Client Library per avere maggiori dettagli sul momento in cui il client invia richieste specifiche al servizio di archiviazione.
+È possibile utilizzare i log lato client hello da hello libreria Client di archiviazione toogain che più dettagliata comprensione delle specifiche richieste di invio hello del client toohello il servizio di archiviazione.
 
-Il seguente file di log lato client generato da Storage Client Library illustra il problema che si verifica quando il client non è in grado di trovare il contenitore per il BLOB che sta creando. Il file di log include dettagli relativi alle seguenti operazioni di archiviazione:
+Hello seguenti log lato client generati dalla libreria Client di archiviazione hello illustra hello problema quando il client hello Impossibile trovare il contenitore di hello per blob hello che la creazione. Questo log include i dettagli di hello dopo operazioni di archiviazione:
 
 | ID richiesta | Operazione |
 | --- | --- |
-| 07b26a5d-... |**DeleteIfExists** per eliminare il contenitore BLOB. Notare che questa operazione include una richiesta **HEAD** per verificare l'esistenza del contenitore. |
-| e2d06d78… |**CreateIfNotExists** per creare il contenitore BLOB. Si noti che questa operazione include una richiesta **HEAD** che verifica l'esistenza del contenitore. **HEAD** restituisce un messaggio 404, ma continua l'esecuzione. |
-| de8b1c3c-... |**UploadFromStream** per creare l'oggetto BLOB. La richiesta **PUT** ha esito negativo con messaggio 404. |
+| 07b26a5d-... |**DeleteIfExists** contenitore blob hello toodelete di metodo. Si noti che questa operazione include un **HEAD** richiesta toocheck esistenza hello del contenitore di hello. |
+| e2d06d78… |**CreateIfNotExists** contenitore blob hello toocreate di metodo. Si noti che questa operazione include un **HEAD** richiesta che controlla l'esistenza di hello del contenitore di hello. Hello **HEAD** restituisce un messaggio 404 ma continua. |
+| de8b1c3c-... |**UploadFromStream** blob hello toocreate di metodo. Hello **inserire** richiesta ha esito negativo con un messaggio 404 |
 
 Voci del log:
 
 | ID richiesta | testo dell'operazione |
 | --- | --- |
-| 07b26a5d-... |Avvio richiesta sincrona a https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| 07b26a5d-... |Avvio toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer richiesta sincrona. |
 | 07b26a5d-... |StringToSign = HEAD............x-ms-client-request-id:07b26a5d-....x-ms-date:Tue, 03 Jun 2014 10:33:11 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |In attesa di risposta. |
 | 07b26a5d-... |Risposta ricevuta. Codice stato = 200, ID richiesta = eeead849-...Content-MD5 = , ETag =    &quot;0x8D14D2DC63D059B&quot;. |
-| 07b26a5d-... |Intestazioni della risposta elaborate correttamente, si procede con il resto dell'operazione. |
+| 07b26a5d-... |Le intestazioni di risposta sono state elaborate correttamente, procedere con il resto di hello dell'operazione di hello. |
 | 07b26a5d-... |Download del corpo della risposta. |
 | 07b26a5d-... |Operazione completata correttamente. |
-| 07b26a5d-... |Avvio richiesta sincrona a https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| 07b26a5d-... |Avvio toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer richiesta sincrona. |
 | 07b26a5d-... |StringToSign = DELETE............x-ms-client-request-id:07b26a5d-....x-ms-date:Tue, 03 Jun 2014 10:33:12    GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |In attesa di risposta. |
 | 07b26a5d-... |Risposta ricevuta. Codice stato = 202, ID richiesta = 6ab2a4cf-..., Content-MD5 = , ETag =. |
-| 07b26a5d-... |Intestazioni della risposta elaborate correttamente, si procede con il resto dell'operazione. |
+| 07b26a5d-... |Le intestazioni di risposta sono state elaborate correttamente, procedere con il resto di hello dell'operazione di hello. |
 | 07b26a5d-... |Download del corpo della risposta. |
 | 07b26a5d-... |Operazione completata correttamente. |
-| e2d06d78-... |Avvio richiesta asincrona a https://domemaildist.blob.core.windows.net/azuremmblobcontainer.</td> |
+| e2d06d78-... |Avvio toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer richiesta asincrona.</td> |
 | e2d06d78-... |StringToSign = HEAD............x-ms-client-request-id:e2d06d78-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |In attesa di risposta. |
-| de8b1c3c-... |Avvio richiesta sincrona a https://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt. |
+| de8b1c3c-... |Avvio toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt richiesta sincrona. |
 | de8b1c3c-... |StringToSign = PUT...64.qCmF+TQLPhq/YYK50mP9ZQ==........x-ms-blob-type:BlockBlob.x-ms-client-request-id:de8b1c3c-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer/blobCreated.txt. |
-| de8b1c3c-... |Preparazione della scrittura dei dati della richiesta. |
-| e2d06d78-... |Eccezione generata in attesa di risposta: il server remoto ha restituito un errore: (404) Non trovato. |
+| de8b1c3c-... |Preparazione dei dati richiesta toowrite. |
+| e2d06d78-... |Eccezione generata durante l'attesa della risposta: server remoto hello ha restituito un errore: (404) non trovato... |
 | e2d06d78-... |Risposta ricevuta. Codice stato = 404, ID richiesta = 353ae3bc-..., Content-MD5 = , ETag =. |
-| e2d06d78-... |Intestazioni della risposta elaborate correttamente, si procede con il resto dell'operazione. |
+| e2d06d78-... |Le intestazioni di risposta sono state elaborate correttamente, procedere con il resto di hello dell'operazione di hello. |
 | e2d06d78-... |Download del corpo della risposta. |
 | e2d06d78-... |Operazione completata correttamente. |
-| e2d06d78-... |Avvio richiesta asincrona a https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| e2d06d78-... |Avvio toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer richiesta asincrona. |
 | e2d06d78-... |StringToSign = PUT...0.........x-ms-client-request-id:e2d06d78-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |In attesa di risposta. |
 | de8b1c3c-... |Scrittura dei dati della richiesta. |
 | de8b1c3c-... |In attesa di risposta. |
-| e2d06d78-... |Eccezione generata in attesa di risposta: il server remoto ha restituito un errore: (409) Conflitto. |
+| e2d06d78-... |Eccezione generata durante l'attesa della risposta: server remoto hello ha restituito un errore: (409) conflitto... |
 | e2d06d78-... |Risposta ricevuta. Codice stato = 409, ID richiesta = c27da20e-..., Content-MD5 = , ETag =. |
 | e2d06d78-... |Download del corpo della risposta con errore. |
-| de8b1c3c-... |Eccezione generata in attesa di risposta: il server remoto ha restituito un errore: (404) Non trovato. |
+| de8b1c3c-... |Eccezione generata durante l'attesa della risposta: server remoto hello ha restituito un errore: (404) non trovato... |
 | de8b1c3c-... |Risposta ricevuta. Codice stato = 404, ID richiesta = 0eaeab3e-..., Content-MD5 = , ETag =. |
-| de8b1c3c-... |Eccezione generata durante l'operazione: il server remoto ha restituito un errore: (404) Non trovato. |
-| de8b1c3c-... |Il criterio di ripetizione non ha consentito un nuovo tentativo. Errore con server remoto che ha restituito un errore: (404) Non trovato. |
-| e2d06d78-... |Il criterio di ripetizione non ha consentito un nuovo tentativo. Errore con server remoto che ha restituito un errore: (409) Conflitto. |
+| de8b1c3c-... |Eccezione generata durante l'operazione di hello: server remoto hello ha restituito un errore: (404) non trovato... |
+| de8b1c3c-... |Il criterio di ripetizione non ha consentito un nuovo tentativo. Esito negativo con server remoto hello ha restituito un errore: (404) non trovato... |
+| e2d06d78-... |Il criterio di ripetizione non ha consentito un nuovo tentativo. Esito negativo con server remoto hello ha restituito un errore: (409) conflitto... |
 
-In questo esempio, il log indica che il client sta eseguendo un'interfoliazione delle richieste del metodo **CreateIfNotExists** (ID richiesta e2d06d78…) con le richieste del metodo **UploadFromStream** (de8b1c3c-...); ciò si verifica perché l'applicazione client sta chiamando questi metodi in modo asincrono. È necessario modificare il codice asincrono nel client per assicurarsi che crei il contenitore prima di tentare di caricare dati in un BLOB in tale contenitore. La soluzione migliore sarebbe creare prima tutti i contenitori.
+In questo esempio Mostra client hello è interfoliazione richieste da hello log hello **CreateIfNotExists** metodo (... e2d06d78 id richiesta) con le richieste hello hello **UploadFromStream** ((metodo) de8b1c3c-...). Questo avviene perché l'applicazione client hello chiama questi metodi in modo asincrono. È consigliabile modificare il codice asincrono di hello in hello client tooensure che crea contenitore hello prima di tentare di tooupload qualsiasi blob tooa dati in tale contenitore. La soluzione migliore sarebbe creare prima tutti i contenitori.
 
 #### <a name="SAS-authorization-issue"></a>Si è verificato un problema di autenticazione della firma di accesso condiviso
-Se l'applicazione client tenta di usare una chiave SAS che non include le autorizzazioni necessarie per l'operazione, il servizio di archiviazione restituisce un messaggio HTTP 404 (Non trovato) al client. Allo stesso tempo, verrà visualizzato in valore diverso da zero per **SASAuthorizationError** nelle metriche.
+Se un'applicazione client hello tenta una chiave di firma di accesso condiviso che non dispone delle autorizzazioni necessarie hello per operazione hello toouse, il servizio di archiviazione hello restituisce un client di toohello messaggio HTTP 404 (non trovato). In hello stesso tempo, verrà visualizzato anche un valore diverso da zero per **SASAuthorizationError** nelle metriche hello.
 
-La tabella che segue mostra un esempio di messaggio del log lato server generato dal file di log della registrazione dell'archiviazione:
+Hello nella tabella seguente viene mostrato un messaggio di log del server di esempio dal file di log di registrazione archiviazione hello:
 
 | Nome | Valore |
 | --- | --- |
@@ -577,10 +577,10 @@ La tabella che segue mostra un esempio di messaggio del log lato server generato
 | ID richiesta client  | 2d064953-8436-4ee0-aa0c-65cb874f7929 |
 
 
-È necessario verificare perché l'applicazione client sta tentando di eseguire un'operazione per la quale non dispone di autorizzazioni.
+È necessario individuare perché tenta tooperform un'operazione non dispone delle autorizzazioni per l'applicazione client.
 
-#### <a name="JavaScript-code-does-not-have-permission"></a>Il codice JavaScript lato client non è autorizzato ad accedere all'oggetto
-Se si usa un client JavaScript e il servizio di archiviazione restituisce messaggi HTTP 404, verificare la presenza dei seguenti errori JavaScript nel browser:
+#### <a name="JavaScript-code-does-not-have-permission"></a>Il codice JavaScript sul lato client non dispone dell'autorizzazione tooaccess hello oggetto
+Se si utilizza un client JavaScript e il servizio di archiviazione hello è restituzione di messaggi HTTP 404, per verificare gli errori JavaScript nel browser hello seguenti hello:
 
 ```
 SEC7120: Origin http://localhost:56309 not found in Access-Control-Allow-Origin header.
@@ -588,19 +588,19 @@ SCRIPT7002: XMLHttpRequest: Network Error 0x80070005, Access is denied.
 ```
 
 > [!NOTE]
-> È possibile usare gli strumenti di sviluppo F-12 in Internet Explorer per tracciare i messaggi scambiati dal browser e dal servizio di archiviazione quando si individuano e risolvono i problemi di JavaScript sul lato client.
+> È possibile utilizzare gli strumenti di sviluppo F12 hello in Internet Explorer tootrace hello messaggi scambiati tra il browser hello e il servizio di archiviazione hello durante la risoluzione di problemi di JavaScript sul lato client.
 > 
 > 
 
-Tali errori si verificano poiché il Web browser implementa come restrizione di sicurezza il [criterio della stessa origine](http://www.w3.org/Security/wiki/Same_Origin_Policy) che impedisce che una pagina Web esegua una chiamata a un'API in un dominio diverso da quello da cui proviene la pagina.
+Questi errori si verificano perché browser web hello implementa hello [stesso criterio di origine](http://www.w3.org/Security/wiki/Same_Origin_Policy) restrizione di sicurezza che impedisce che una pagina web chiama un'API in un dominio diverso dalla pagina di hello dominio hello proviene da.
 
-Per evitare il problema di JavaScript, è possibile configurare il servizio CORS (Cross Origin Resource Sharing) per il servizio di archiviazione a cui accede il client. Per altre informazioni, vedere [Supporto della condivisione delle risorse tra le origini (CORS) per i servizi di archiviazione Azure](http://msdn.microsoft.com/library/azure/dn535601.aspx).
+toowork intorno hello problema JavaScript, è possibile configurare Cross condivisione risorse origini (CORS) per l'accesso client hello del servizio di archiviazione hello. Per altre informazioni, vedere [Supporto della condivisione delle risorse tra le origini (CORS) per i servizi di archiviazione Azure](http://msdn.microsoft.com/library/azure/dn535601.aspx).
 
-L'esempio di codice che segue indica come configurare il servizio BLOB per consentire l'esecuzione di JavaScript nel dominio Contoso in modo da poter accedere a un BLOB nel servizio di archiviazione BLOB:
+Hello nell'esempio di codice seguente viene illustrato come tooconfigure il blob del servizio tooallow JavaScript in esecuzione in hello tooaccess dominio Contoso un blob nel servizio di archiviazione di blob:
 
 ```csharp
 CloudBlobClient client = new CloudBlobClient(blobEndpoint, new StorageCredentials(accountName, accountKey));
-// Set the service properties.
+// Set hello service properties.
 ServiceProperties sp = client.GetServiceProperties();
 sp.DefaultServiceVersion = "2013-08-15";
 CorsRule cr = new CorsRule();
@@ -615,18 +615,18 @@ client.SetServiceProperties(sp);
 ```
 
 #### <a name="network-failure"></a>Errore della rete
-In alcune circostanze, la perdita di pacchetti di rete può causare la restituzione da parte del servizio di archiviazione di messaggi HTTP 404 per il client. Ad esempio, quando l'applicazione client elimina un'entità dal servizio tabelle, il client genera un'eccezione di archiviazione segnalando un messaggio di stato "HTTP 404 (Non trovato)" ricevuto dal servizio tabelle. Quando si esamina la tabella nel servizio di archiviazione tabelle, si può notare che il servizio ha eliminato l'entità come richiesto.
+In alcuni casi, i pacchetti di rete persa possono provocare il servizio di archiviazione toohello restituzione client toohello di messaggi HTTP 404. Ad esempio, quando l'applicazione client è l'eliminazione di un'entità dal servizio tabelle hello vedere hello client generano un'eccezione di archiviazione reporting un "HTTP 404 (non trovato)" messaggio di stato dal servizio tabelle hello. Quando si esamina la tabella hello nel servizio di archiviazione tabella hello, vedrai che il servizio hello eliminare entità hello come richiesto.
 
-I dettagli dell'eccezione nel client includono l'ID richiesta (7e84f12d…) assegnato dal servizio tabelle per la richiesta. È possibile usare queste informazioni per individuare i dettagli della richiesta nei log di archiviazione sul lato server, eseguendo una ricerca nella colonna **request-id-header** del file di log. È inoltre possibile usare le metriche per identificare il momento in cui si verificano errori come questo e quindi eseguire una ricerca nei file di log in base all'orario in cui le metriche hanno registrato l'errore. Questa voce del file di log indica che l'eliminazione non è riuscita con messaggio di stato HTTP 404 (altro errore del client). La stessa voce del log include anche l'ID richiesta generato dal client nella colonna **client-request-id** (813ea74f…).
+dettagli dell'eccezione Hello client hello includono id richiesta di hello (7e84f12d) assegnato dal servizio tabelle hello per richiesta hello: è possibile utilizzare questo toolocate hello richiesta informazioni nei registri di archiviazione sul lato server hello eseguendo una ricerca in hello  **intestazione di id richiesta** colonna nel file di log hello. È anche possibile usare hello metriche tooidentify quando gli errori, ad esempio questo si verificano e quindi cercare il file di log hello in base alle metriche di hello hello ora registrato l'errore. Questo Mostra voce di log che hello di eliminazione non riuscita con un messaggio di stato "HTTP (404) Client altro errore". Hello stessa voce di log include anche id richiesta hello generato dal client hello in hello **client-request-id** colonna (813ea74f).
 
-Il log sul lato server contiene anche un'altra voce con lo stesso valore **client-request-id** (813ea74f…) in modo che venga eseguita correttamente l'eliminazione della stessa entità e dallo stesso client. L'operazione di eliminazione corretta viene eseguita poco prima della richiesta di eliminazione non riuscita.
+log lato server Hello include anche un'altra voce con hello stesso **client-request-id** valore (813ea74f) per una corretta eliminazione per hello stessa entità, e da hello stesso client. Questa operazione di eliminazione ha avuto luogo poco prima della richiesta di eliminazione non hello.
 
-La causa più probabile di tale situazione è il fatto che il client ha inviato correttamente al servizio tabelle una richiesta di eliminazione per l'entità, ma non ha ricevuto alcuna conferma da parte del server (forse per un problema temporaneo della rete). Il client ha quindi ritentato l'operazione (utilizzando lo stesso valore **client-request-id**) e il nuovo tentativo non è riuscito perché l'entità è già stata eliminata.
+Hello più probabile di questo scenario è che il client hello ha inviato una richiesta di eliminazione per hello entità toohello servizio tabelle, che ha avuto esito positivo, ma non ha ricevuto un acknowledgement dal server hello (probabilmente a causa il problema di rete temporanei tooa). client Hello quindi ripetute automaticamente nel operazione hello (utilizzando hello stesso **client-request-id**), questo nuovo tentativo non è riuscita perché l'entità hello era già stata eliminata.
 
-Se questo problema si verifica di frequente, è necessario capire perché il client non riesce a ricevere le risposte di conferma dal servizio tabelle. Se il problema è intermittente, occorre bloccare l'errore "HTTP (404) Non trovato" e registrarlo nel log del client, ma consentire al client di continuare.
+Se il problema si verifica frequentemente, è necessario esaminare client hello motivi riconoscimenti tooreceive dal servizio tabelle hello. Se il problema di hello è intermittente, si deve trap di errore "HTTP (404) non trovato" hello e registrarla nel client hello, ma consentire hello client toocontinue.
 
-### <a name="the-client-is-receiving-409-messages"></a>Il client sta ricevendo messaggi HTTP 409 (Conflitto)
-La tabella seguente illustra un estratto del log sul lato server per due operazioni client: **DeleteIfExists** seguita immediatamente da **CreateIfNotExists** usando lo stesso nome di contenitore BLOB. Si noti che ogni operazione del client determina l'invio di due richieste al server, prima una richiesta **GetContainerProperties** per verificare se il contenitore esiste e successivamente una richiesta **DeleteContainer** o **CreateContainer**.
+### <a name="the-client-is-receiving-409-messages"></a>client hello è la ricezione di messaggi HTTP 409 (conflitto)
+Hello nella tabella seguente viene illustrato un estratto del log sul lato server hello per le due operazioni di client: **DeleteIfExists** seguita immediatamente da **CreateIfNotExists** utilizzando hello stesso nome del contenitore blob. Si noti che ogni client operazione comporta due richieste inviate toohello server, prima di tutto un **GetContainerProperties** toocheck richiesta se il contenitore di hello esiste, seguito da hello **DeleteContainer** o  **CreateContainer** richiesta.
 
 | Timestamp | Operazione | Risultato | Nome contenitore | ID richiesta client |
 | --- | --- | --- | --- | --- |
@@ -635,61 +635,61 @@ La tabella seguente illustra un estratto del log sul lato server per due operazi
 | 05:10:13.8987407 |GetContainerProperties |404 |mmcont |bc881924-… |
 | 05:10:14.2147723 |CreateContainer |409 |mmcont |bc881924-… |
 
-Il codice nell'applicazione client elimina e ricrea immediatamente un contenitore BLOB usando lo stesso nome. Il metodo **CreateIfNotExists** (ID richiesta client bc881924-…) potrebbe avere esito negativo con errore HTTP 409 (Conflitto). Quando un client elimina contenitori BLOB, tabelle o code, trascorre un breve periodo di tempo prima che il nome sia di nuovo disponibile.
+Elimina Hello codice hello client applicazione e quindi ricrea immediatamente un contenitore blob tramite hello stesso nome: hello **CreateIfNotExists** metodo (richiesta Client ID bc881924-...) alla fine ha esito negativo con hello HTTP 409 (conflitto) errore. Quando un client elimina i contenitori di blob, tabelle o code che si verifica un breve periodo prima nome hello diventa nuovamente disponibile.
 
-L'applicazione client deve utilizzare nomi univoci per i contenitori ogni volta che crea nuovi contenitori se il pattern delete/recreate è comune.
+un'applicazione Hello client deve utilizzare nomi di contenitore univoco a ogni volta che vengono create nuovi contenitori se il criterio di eliminazione e creazione di hello è comune.
 
 ### <a name="metrics-show-low-percent-success"></a>Le metriche indicano un valore PercentSuccess basso o le voci del log di analisi contengono operazioni con stato della transazione ClientOtherErrors
-La metrica **PercentSuccess** acquisisce la percentuale di operazioni eseguite correttamente in base al relativo codice di stato HTTP. Le operazioni con codici di stato 2XX hanno avuto esito positivo, mentre le operazioni con codici 3XX, 4XX e 5XX hanno avuto esito negativo e riducono il valore della metrica **PercentSucess** . Nei file di log dell'archiviazione sul lato server, queste operazioni vengono registrate con stato della transazione **ClientOtherErrors**.
+Hello **PercentSuccess** metrica acquisisce % hello delle operazioni che hanno avuto esito positivo in base relativi al codice di stato HTTP. Operazioni con i codici di stato di 2XX conteggio completata correttamente, mentre le operazioni con i codici di stato 3XX e 4XX o 5XX intervalli vengono conteggiate come esito negativo e minore hello **PercentSucess** valore della metrica. Nei file di log di archiviazione sul lato server hello, queste operazioni vengono registrate con lo stato delle transazioni **ClientOtherErrors**.
 
-È importante notare che queste operazioni sono state completate correttamente e quindi non influiscono sulle altre metriche, ad esempio la disponibilità. Alcuni esempi di operazioni eseguite correttamente ma che possono restituire codici di stato HTTP negativi sono:
+È importante toonote che queste operazioni sono state completate e pertanto non influire sulle altre metriche quali disponibilità. Alcuni esempi di operazioni eseguite correttamente ma che possono restituire codici di stato HTTP negativi sono:
 
-* **ResourceNotFound** (Non trovato 404), ad esempio da una richiesta GET a un oggetto BLOB che non esiste.
-* **ResouceAlreadyExists** (Conflitto 409), ad esempio da un'operazione **CreateIfNotExist** quando la risorsa esiste già.
-* **ConditionNotMet** (304 non modificato), ad esempio da un'operazione condizionale quando un client invia un valore **ETag** e un'intestazione HTTP **If-None-Match** per richiedere un'immagine solo se è stata aggiornata dall'ultima operazione.
+* **ResourceNotFound** (non trovato 404), ad esempio da un'operazione GET richiesta tooa blob che non esiste.
+* **ResouceAlreadyExists** (409 conflitto), ad esempio da un **CreateIfNotExist** operazione in cui la risorsa hello esiste già.
+* **ConditionNotMet** (non modificato 304), ad esempio da un'operazione condizionale, ad esempio quando un client invia un **ETag** valore e un HTTP **If-None-Match** toorequest intestazione un'immagine solo se è stato aggiornato dall'ultima operazione hello.
 
-Per l'elenco dei codici di errore API REST che i servizi di archiviazione restituiscono più di frequente, vedere la pagina [Codici di errore comuni dell'API REST](http://msdn.microsoft.com/library/azure/dd179357.aspx).
+È possibile trovare un elenco di codici di errore comuni API REST che restituiscono i servizi di archiviazione hello nella pagina hello [comuni codici di errore API REST](http://msdn.microsoft.com/library/azure/dd179357.aspx).
 
 ### <a name="capacity-metrics-show-an-unexpected-increase"></a>Le metriche della capacità indicano un aumento imprevisto dell'uso della capacità di archiviazione
-Se si riscontrano cambiamenti improvvisi e imprevisti dell'utilizzo della capacità nel proprio account di archiviazione, per scoprire quali sono le cause per prima cosa analizzare le metriche di disponibilità. Ad esempio, un aumento del numero di richieste di eliminazione non riuscite può determinare un aumento dell'archiviazione BLOB in uso perché le operazioni di pulizia specifiche dell'applicazione, che avrebbero dovuto liberare spazio, non funzionano come previsto (ad esempio perché i token SAS utilizzare per liberare spazio sono scaduti).
+Se viene visualizzato improvvisi, modifiche impreviste nell'utilizzo della capacità nell'account di archiviazione, è possibile esaminare i motivi hello analizzando le metriche di disponibilità; ad esempio, un aumento nel numero di hello di richieste di eliminazione potrebbe causare tooan aumento in una quantità di spazio di archiviazione blob che si utilizza come operazioni di pulizia specifico dell'applicazione che si aspetterebbe toobe liberare lo spazio potrebbe non funzionare come previsto (hello l'esempio, perché è scaduti il token di firma di accesso condiviso hello utilizzati per liberare lo spazio).
 
 ### <a name="you-are-experiencing-unexpected-reboots"></a>Si stanno verificando riavvii imprevisti delle macchine virtuali di Azure con un numero elevato di VHD allegati
-Se una macchina virtuale di Azure contiene numerosi dischi rigidi virtuali (VHD, Virtual Hard Disk) allegati nello stesso account di archiviazione, è possibile che vengano superati gli obiettivi di scalabilità dell'account di archiviazione determinando un errore della macchina virtuale. È consigliabile controllare le metriche al minuto per l'account di archiviazione (**TotalRequests**/**TotalIngress**/**TotalEgress**) per verificare se esistono picchi che superano gli obiettivi di scalabilità per un account di archiviazione. Vedere la sezione "[Le metriche indicano un aumento di PercentThrottlingError]" per sapere come si stabilisce se si è verificata una limitazione nell'account di archiviazione.
+Se una macchina virtuale di Azure (VM) è un numero elevato di dischi rigidi virtuali collegati in hello stesso account di archiviazione, si può superare obiettivi di scalabilità hello per un singolo account di archiviazione causando toofail VM hello. È consigliabile controllare metrica al minuto per l'account di archiviazione hello hello (**TotalRequests**/**TotalIngress**/**TotalEgress**) per i picchi obiettivi di scalabilità hello per un account di archiviazione superiore. Vedere la sezione hello "[metriche mostrano un aumento PercentThrottlingError]" per determinare se la limitazione delle richieste è stata eseguita su account di archiviazione.
 
-In generale, ogni singola operazione di input o output eseguita su un disco rigido virtuale di una macchina virtuale viene trasformata in operazione **Get Page** o **Put Page** nel BLOB di pagine sottostante. Di conseguenza, è possibile utilizzare le IOPS previste per l'ambiente per stabilire quanti VHD si possono avere in un singolo account di archiviazione in base al comportamento specifico dell'applicazione. Non è consigliabile usare più di 40 dischi virtuali in un unico account di archiviazione. Vedere [Obiettivi di scalabilità e prestazioni di Azure](storage-scalability-targets.md) per i dettagli relativi agli attuali obiettivi di scalabilità per gli account di archiviazione, in particolare la velocità totale delle richieste e la larghezza di banda totale per il tipo di account di archiviazione in uso.
-Se si superano gli obiettivi di scalabilità per il proprio account di archiviazione, sarà necessario inserire i VHD in più account diversi per ridurre l'attività in ogni singolo account.
+In generale, ogni singolo input o output operazione in un disco rigido virtuale da una macchina virtuale viene convertita troppo**ottenere pagina** o **Put Page** operazioni su hello sottostante blob di pagine. Pertanto, è possibile utilizzare hello stimato IOPS per l'ambiente tootune quanti dischi rigidi virtuali è possibile disporre in un singolo account di archiviazione in base alle comportamento specifico di hello dell'applicazione. Non è consigliabile usare più di 40 dischi virtuali in un unico account di archiviazione. Vedere [Azure obiettivi di scalabilità e prestazioni](storage-scalability-targets.md) per informazioni dettagliate di obiettivi di scalabilità per account di archiviazione corrente hello, in particolare hello richiesta totale frequenza e totale della larghezza di banda per il tipo di hello dell'account di archiviazione in uso .
+Se è stato superato obiettivi di scalabilità hello dell'account di archiviazione, è consigliabile inserire i dischi rigidi virtuali in più spazio di archiviazione diverso account tooreduce hello attività per ogni singolo account.
 
-### <a name="your-issue-arises-from-using-the-storage-emulator"></a>Il problema è dovuto all'uso dell'emulatore di archiviazione per attività di sviluppo o test
-L'emulatore di archiviazione normalmente si utilizza durante lo sviluppo e i test per evitare i requisiti di un account di archiviazione Azure. I problemi che si riscontrano più di frequente usando l'emulatore di archiviazione sono:
+### <a name="your-issue-arises-from-using-the-storage-emulator"></a>Il problema si verifica di utilizzare l'emulatore di archiviazione hello per lo sviluppo o test
+In genere usare l'emulatore di archiviazione hello durante lo sviluppo e test tooavoid hello requisito per un account di archiviazione di Azure. Hello i problemi comuni che possono verificarsi quando si utilizza l'emulatore di archiviazione hello sono:
 
-* [La funzionalità "X" non funziona nell'emulatore di archiviazione]
-* [Un messaggio indica che il valore di una delle intestazioni HTTP non è nel formato corretto quando si usa l'emulatore di archiviazione]
-* [L'esecuzione dell'emulatore di archiviazione richiede privilegi amministrativi]
+* [Funzionalità "X" non funziona nell'emulatore di archiviazione hello]
+* [Errore "valore hello per una delle intestazioni HTTP hello non è nel formato corretto hello" quando utilizzando hello emulatore di archiviazione]
+* [Emulatore di archiviazione in esecuzione hello richiede privilegi amministrativi]
 
-#### <a name="feature-X-is-not-working"></a>La funzionalità "X" non funziona nell'emulatore di archiviazione
-L'emulatore di archiviazione non supporta tutte le funzioni dei servizi di archiviazione Azure, ad esempio il servizio file. Per altre informazioni, vedere [Usare l'emulatore di archiviazione di Azure per sviluppo e test](storage-use-emulator.md).
+#### <a name="feature-X-is-not-working"></a>Funzionalità "X" non funziona nell'emulatore di archiviazione hello
+emulatore di archiviazione Hello non supporta tutte le funzioni hello di servizi di archiviazione di Azure hello come servizio file hello. Per ulteriori informazioni, vedere [hello Usa emulatore di archiviazione di Azure per sviluppo e test](storage-use-emulator.md).
 
-Per le funzioni non supportate dall'emulatore di archiviazione, usare il servizio di archiviazione Azure nel cloud.
+Per le funzionalità hello archiviazione emulatore non supporta, utilizzare il servizio di archiviazione di Azure hello nel cloud hello.
 
-#### <a name="error-HTTP-header-not-correct-format"></a>Un messaggio indica che il valore di una delle intestazioni HTTP non è nel formato corretto quando si usa l'emulatore di archiviazione
-Si sta testando l'applicazione che utilizza Storage Client Library con l'emulatore di archiviazione locale e chiamate del metodo come **CreateIfNotExists** hanno esito negativo restituendo un errore dovuto al formato errato di una delle intestazioni HTTP. Ciò indica che la versione dell'emulatore di archiviazione non supporta la versione di Storage Client Library in uso. Storage Client Library aggiunge l'intestazione **x-ms-version** a tutte le richieste che effettua. Se l'emulatore di archiviazione non riconosce il valore nell'intestazione **x-ms-version** , rifiuta la richiesta.
+#### <a name="error-HTTP-header-not-correct-format"></a>Errore "valore hello per una delle intestazioni HTTP hello non è nel formato corretto hello" quando utilizzando hello emulatore di archiviazione
+Si sta testando l'applicazione che utilizzano ad esempio hello libreria Client di archiviazione su hello archiviazione locale emulatore e chiamate al metodo **CreateIfNotExists** non riesce con errore hello il messaggio "hello valore per una delle intestazioni HTTP hello non è in Hello formato corretto." Ciò indica che hello versione dell'emulatore di archiviazione hello in uso non supporta la versione di hello della libreria client di archiviazione hello in uso. Libreria Client di archiviazione Hello aggiunge intestazione hello **x-ms-version** tooall hello richiede rende. Se emulatore di archiviazione hello non riconosce il valore di hello in hello **x-ms-version** intestazione, rifiuta la richiesta di hello.
 
-Utilizzare i log di Storage Library Client per visualizzare il valore di **x-ms-version header** inviato. È inoltre possibile visualizzare il valore di **x-ms-version header** se si utilizza Fiddler per la traccia delle richieste provenienti dall'applicazione client.
+È possibile utilizzare il valore hello del Client di archiviazione libreria registri toosee hello di hello **intestazione x-ms-version** di invio. È inoltre possibile visualizzare il valore di hello di hello **intestazione x-ms-version** se si utilizzano le richieste di hello tootrace Fiddler dall'applicazione client.
 
-Questa situazione di solito si verifica quando si installa e si usa la versione più recente di Storage Client Library senza aggiornare l'emulatore di archiviazione. È necessario installare la versione più recente dell'emulatore di archiviazione o usare l'archiviazione cloud anziché l'emulatore per lo sviluppo e i test.
+Questo scenario si verifica in genere quando si installa e usare hello l'ultima versione di hello libreria Client di archiviazione senza aggiornare l'emulatore di archiviazione hello. Si deve installare una versione più recente di hello dell'emulatore di archiviazione hello oppure utilizzare l'archiviazione cloud anziché emulatore hello per lo sviluppo e test.
 
-#### <a name="storage-emulator-requires-administrative-privileges"></a>L'esecuzione dell'emulatore di archiviazione richiede privilegi amministrativi
-Vengono richieste le credenziali di amministratore quando si esegue l'emulatore di archiviazione. Questo si verifica solo quando si inizializza l'emulatore di archiviazione per la prima volta. Una volta inizializzato l'emulatore di archiviazione, non saranno necessari privilegi amministrativi per eseguirlo di nuovo.
+#### <a name="storage-emulator-requires-administrative-privileges"></a>Emulatore di archiviazione in esecuzione hello richiede privilegi amministrativi
+Quando si esegue l'emulatore di archiviazione hello verrà chiesto di credenziali di amministratore. Ciò si verifica solo quando si inizializza emulatore di archiviazione hello hello per la prima volta. Dopo aver inizializzato l'emulatore di archiviazione hello, non è necessario privilegi amministrativi toorun nuovamente.
 
-Per altre informazioni, vedere [Usare l'emulatore di archiviazione di Azure per sviluppo e test](storage-use-emulator.md). Tenere presente che è anche possibile inizializzare l'emulatore di archiviazione in Visual Studio, che richiede anche privilegi amministrativi.
+Per ulteriori informazioni, vedere [hello Usa emulatore di archiviazione di Azure per sviluppo e test](storage-use-emulator.md). Si noti che è possibile inizializzare anche emulatore di archiviazione hello in Visual Studio, che verrà inoltre richiede privilegi amministrativi.
 
-### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>Si stanno verificando problemi di installazione di Azure SDK per .NET
-Quando si installa l'SDK, si verifica un errore se si tenta di installare l'emulatore di archiviazione sul computer locale. Il log di installazione contiene uno dei seguenti messaggi:
+### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>Si sono verificati problemi di installazione hello Azure SDK per .NET
+Quando si tenta di hello tooinstall SDK, l'esito negativo durante il tentativo dell'emulatore di archiviazione hello tooinstall sul computer locale. log dell'installazione Hello contiene uno dei seguenti messaggi hello:
 
-* CAQuietExec:  Error: Unable to access SQL instance
-* CAQuietExec: Error: Unable to create database
+* CAQuietExec: Errore: istanza di SQL Server non è possibile tooaccess
+* CAQuietExec: Errore: Impossibile toocreate database
 
-La causa è un problema nell'installazione LocalDB già esistente. Per impostazione predefinita, l'emulatore di archiviazione utilizza LocalDB per mantenere persistenti i dati quando simula i servizio di archiviazione Azure. Per reimpostare l'istanza LocalDB, eseguire i comandi indicati di seguito in una finestra del prompt dei comandi prima di provare a installare l'SDK.
+causa Hello è un problema con l'installazione del database locale esistente. Per impostazione predefinita, emulatore di archiviazione hello Usa dati toopersist LocalDB simula hello servizi di archiviazione Azure. È possibile reimpostare l'istanza di LocalDB eseguendo i seguenti comandi in una finestra del prompt dei comandi prima di tentare di hello tooinstall SDK hello.
 
 ```
 sqllocaldb stop v11.0
@@ -698,121 +698,121 @@ delete %USERPROFILE%\WAStorageEmulatorDb3*.*
 sqllocaldb create v11.0
 ```
 
-Il comando **delete** rimuove tutti i vecchi file di database dalle installazioni precedenti dell'emulatore di archiviazione.
+Hello **eliminare** comando rimuove qualsiasi file di database precedenti da installazioni precedenti dell'emulatore di archiviazione hello.
 
 ### <a name="you-have-a-different-issue-with-a-storage-service"></a>Si è verificato un problema diverso con un servizio di archiviazione
-Se le sezioni precedenti non includono il problema riscontrato con un servizio di archiviazione, attenersi alla seguente procedura per diagnosticare e risolvere il problema.
+Se le sezioni di risoluzione dei problemi precedente hello non includono problema hello con un servizio di archiviazione, è necessario adottare hello dopo l'approccio toodiagnosing e la risoluzione dei problemi relativi al problema.
 
-* Controllare le metriche per verificare se sono presenti variazioni del normale comportamento di base. Dalle metriche è possibile determinare se il problema è transitorio o permanente e quali operazioni di archiviazione sono interessate dal problema.
-* Utilizzare le informazioni delle metriche per cercare nei dati dei log lato server informazioni più dettagliate su eventuali errori riscontrati. Queste informazioni possono essere utili per diagnosticare e risolvere il problema.
-* Se le informazioni dei log lato server non sono sufficienti per risolvere efficacemente il problema, utilizzare i log lato client di Storage Client Library per esaminare il comportamento dell'applicazione client e strumenti come Fiddler, Wireshark e Microsoft Message Analyzer per esaminare la rete.
+* Controllare la metrica toosee se vengono apportate modifiche dal comportamento previsto di linea di base. Dalle metriche di hello, potrebbe essere in grado di toodetermine se il problema hello è temporaneo o permanente e le operazioni di archiviazione hello problema interessa.
+* È possibile utilizzare le informazioni di metrica hello toohelp cercare i dati dei log sul lato server per informazioni più dettagliate sugli errori che si sono verificati. Queste informazioni consentono di risolvere il problema di hello.
+* Se hello informazioni nei registri di hello sul lato server non sono sufficienti problema di hello tootroubleshoot correttamente, è possibile utilizzare il comportamento hello libreria Client di archiviazione sul lato client registri tooinvestigate hello dell'applicazione client e gli strumenti, ad esempio, Fiddler, Wireshark, Microsoft Message Analyzer tooinvestigate e della rete.
 
-Per ulteriori informazioni sull'utilizzo Fiddler, vedere "[Appendice 1: Uso di Fiddler per l'acquisizione del traffico HTTP e HTTPS]."
+Per ulteriori informazioni sull'uso di Fiddler, vedere "[appendice 1: utilizzando il traffico HTTP e HTTPS toocapture Fiddler]."
 
-Per ulteriori informazioni sull'utilizzo di Wireshark, vedere "[Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo Wireshark, vedere "[appendice 2: utilizzando il traffico di rete toocapture Wireshark]."
 
-Per ulteriori informazioni sull'utilizzo di Microsoft Message Analyzer, vedere "[Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete]."
+Per ulteriori informazioni sull'utilizzo di Microsoft Message Analyzer, vedere "[appendice 3: utilizzo del traffico di rete di Microsoft Message Analyzer toocapture]."
 
 ## <a name="appendices"></a>Appendici
-Le appendici descrivono alcuni strumenti che possono risultare utili per la diagnosi e la risoluzione dei problemi del servizio di archiviazione Azure (e di altri servizi). Tali strumenti non fanno parte del servizio di archiviazione Azure e alcuni sono prodotti di terze parti. Quindi, gli strumenti descritti nelle appendici non sono coperti da eventuali contratti di assistenza stipulati per Microsoft Azure o il servizio di archiviazione Azure ed è necessario che l'utente, come parte del proprio processo di valutazione, esamini le opzioni di licenza e di assistenza disponibili presso i fornitori degli strumenti.
+appendici Hello vengono descritti i diversi strumenti che possono risultare utili durante la diagnosi e la risoluzione dei problemi di archiviazione di Azure (e altri servizi). Tali strumenti non fanno parte del servizio di archiviazione Azure e alcuni sono prodotti di terze parti. Di conseguenza, gli strumenti di hello descritti in queste appendici non sono coperto da un contratto di supporto che potrebbe avere con Microsoft Azure o di archiviazione di Azure, e pertanto come parte del processo di valutazione è necessario esaminare hello licenze e supporto per le opzioni disponibili da provider di Hello di questi strumenti.
 
-### <a name="appendix-1"></a>Appendice 1: Uso di Fiddler per l'acquisizione del traffico HTTP e HTTPS
-[Fiddler](http://www.telerik.com/fiddler) è uno strumento utile per l'analisi del traffico HTTP e HTTPS tra l'applicazione cliente e il servizio di archiviazione di Azure in uso.
+### <a name="appendix-1"></a>Appendice 1: Utilizzo di Fiddler toocapture HTTP e il traffico HTTPS
+[Fiddler](http://www.telerik.com/fiddler) è uno strumento utile per analizzare il traffico HTTP e HTTPS hello tra l'applicazione client e hello servizio di archiviazione di Azure in uso.
 
 > [!NOTE]
-> Fiddler è in grado di decodificare il traffico HTTPS. È consigliabile leggere attentamente la documentazione di Fiddler per capire in che modo esegue questa operazione e quali sono le implicazioni in termini di sicurezza.
+> Fiddler è grado di decodificare il traffico HTTPS; leggere attentamente la documentazione di Fiddler hello toounderstand suo funzionamento e le implicazioni di sicurezza hello toounderstand.
 > 
 > 
 
-Questa appendice descrive brevemente la procedura di configurazione di Fiddler per l'acquisizione del traffico tra il computer locale in cui è installato Fiddler e i servizi di archiviazione Azure.
+Questa appendice vengono fornite una breve procedura dettagliata di come il traffico tooconfigure Fiddler toocapture tra hello locale in cui sia stato installato Fiddler hello servizi di archiviazione Azure.
 
-Dopo l'avvio, Fiddler inizia ad acquisire il traffico HTTP e HTTPS sul computer locale. Di seguito sono riportati alcuni comandi utili per il controllo di Fiddler:
+Dopo l'avvio, Fiddler inizia ad acquisire il traffico HTTP e HTTPS sul computer locale. di seguito Hello sono alcuni comandi utili per il controllo Fiddler:
 
-* Interruzione e avvio dell'acquisizione del traffico. Nel menu principale aprire **File** e fare clic su **Capture Traffic** per attivare e disattivare l'acquisizione.
-* Salvare i dati del traffico acquisiti. Nel menu principale aprire **File**, fare clic su **Save** e scegliere **All Sessions**. Ciò consente di salvare il traffico in un file di archivio sessione. Tale file potrà essere ricaricato successivamente per l'analisi o inviato al Supporto Microsoft, se richiesto.
+* Interruzione e avvio dell'acquisizione del traffico. Menu principale, hello andare troppo**File** e quindi fare clic su **acquisire il traffico** tootoggle acquisizione e disattivare.
+* Salvare i dati del traffico acquisiti. Menu principale, hello andare troppo**File**, fare clic su **salvare**, quindi fare clic su **tutte le sessioni**: in questo modo il traffico di hello toosave in un file di archivio di sessione. È possibile inviarla se ha richiesto il supporto di tooMicrosoft o ricaricare un archivio di sessione in un secondo momento per l'analisi.
 
-Per limitare il volume del traffico acquisito da Fiddler, utilizzare i filtri configurabili nella scheda **Filters** . La schermata che segue mostra un esempio di filtro che acquisisce solo il traffico inviato all'endpoint di archiviazione **contosoemaildist.table.core.windows.net** :
+quantità di hello toolimit di Fiddler consente di acquisire il traffico, è possibile utilizzare i filtri che si configura in hello **filtri** hello scheda seguente schermata mostra un filtro che acquisisce solo il traffico inviato toohello  **contosoemaildist.Table.Core.Windows.NET** endpoint di archiviazione:
 
 ![][5]
 
-### <a name="appendix-2"></a>Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete
-[Wireshark](http://www.wireshark.org/) è uno strumento di analisi dei protocolli di rete che consente di visualizzare informazioni dettagliate sui pacchetti per un'ampia gamma di protocolli di rete.
+### <a name="appendix-2"></a>Appendice 2: Utilizzo del traffico di rete toocapture Wireshark
+[Wireshark](http://www.wireshark.org/) è un analizzatore di protocollo di rete che consente di tooview pacchetto informazioni dettagliate per un'ampia gamma di protocolli di rete.
 
-La procedura che segue indica come acquisire informazioni dettagliate sui pacchetti per il traffico dal computer locale su cui è installato Wireshark al servizio tabelle nell'account di archiviazione Azure.
+Hello procedura riportata di seguito viene illustrato come toocapture pacchetto informazioni dettagliate per il traffico dal computer locale hello in cui è installato servizio di Wireshark toohello tabelle nell'account di archiviazione di Azure.
 
 1. Avviare Wireshark sul computer locale.
-2. Nella sezione **Start** , selezionare l'interfaccia (o le interfacce) di rete locale connessa a Internet.
+2. In hello **avviare** sezione, un'interfaccia di rete locale selezionare hello o interfacce che sono connesso toohello internet.
 3. Fare clic su **Capture Options**.
-4. Aggiungere un filtro nella casella di testo **Capture Filter** . Ad esempio, **host contosoemaildist.table.core.windows.net** configura Wireshark per acquisire solo i pacchetti inviati o ricevuti dall'endpoint del servizio tabelle nell'account di archiviazione **contosoemaildist**. Vedere l' [elenco completo dei filtri di acquisizione](http://wiki.wireshark.org/CaptureFilters).
+4. Aggiungere un filtro toohello **Filtro acquisizione** casella di testo. Ad esempio, **host contosoemaildist.table.core.windows.net** configurerà Wireshark toocapture solo i pacchetti inviati tooor dall'endpoint del servizio tabelle hello in hello **contosoemaildist** archiviazione account. Estrarre hello [elenco completo dei filtri acquisire](http://wiki.wireshark.org/CaptureFilters).
    
    ![][6]
-5. Fare clic su **Avvia**. Wireshark acquisirà tutti i pacchetti inviati a o dall'endpoint del servizio tabelle non appena l'applicazione client viene utilizzata sul computer locale.
-6. Al termine, fare clic su **Capture** nel menu principale e su **Stop**.
-7. Per salvare i dati acquisiti in un file di acquisizione di Wireshark, fare clic su **File** nel menu principale e scegliere **Save**.
+5. Fare clic su **Avvia**. Wireshark ora consente di acquisire tutti tooor di trasmissione di pacchetti di hello dall'endpoint del servizio tabelle hello quando si utilizza l'applicazione client nel computer locale.
+6. Al termine, fare clic su menu principale di hello **acquisire** e quindi **arrestare**.
+7. hello toosave acquisiti i dati in un File di acquisizione Wireshark, hello dal menu principale scegliere **File** e quindi **salvare**.
 
-WireShark evidenzia tutti gli errori presenti nella finestra **packetlist** . È possibile anche usare la finestra **Expert Info** (fare clic su **Analyze** e su **Expert Info**) per visualizzare un riepilogo di errori e avvisi.
+WireShark verranno evidenziati eventuali errori presenti in hello **packetlist** finestra. È inoltre possibile utilizzare hello **Info esperto** finestra (fare clic su **Analizza**, quindi **Info esperto**) tooview un riepilogo degli errori e avvisi.
 
 ![][7]
 
-È anche possibile scegliere di visualizzare i dati TCP appena il livello dell'applicazione li vede, facendo clic con il pulsante destro del mouse sui dati TCP e selezionando **Follow TCP Stream**. Ciò è particolarmente utile se si acquisisce il dump senza un filtro di acquisizione. Per altre informazioni, vedere [Seguire i flussi TCP](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html).
+È inoltre possibile scegliere i dati TCP hello tooview come livello di applicazione hello vengono visualizzati facendo clic sul hello dati TCP e selezionando **seguire il flusso TCP**. Ciò è particolarmente utile se si acquisisce il dump senza un filtro di acquisizione. Per altre informazioni, vedere [Seguire i flussi TCP](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html).
 
 ![][8]
 
 > [!NOTE]
-> Per ulteriori informazioni sull'uso di Wireshark, vedere la [guida dell'utente di Wireshark](http://www.wireshark.org/docs/wsug_html_chunked).
+> Per ulteriori informazioni sull'utilizzo Wireshark, vedere hello [manuale dell'utente Wireshark](http://www.wireshark.org/docs/wsug_html_chunked).
 > 
 > 
 
-### <a name="appendix-3"></a>Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete
-Microsoft Message Analyzer può essere usato per l'acquisizione del traffico HTTP e HTTPS in modo analogo a Fiddler e per l'acquisizione del traffico di rete in modo analogo a Wireshark.
+### <a name="appendix-3"></a>Appendice 3: Utilizzo del traffico di rete di Microsoft Message Analyzer toocapture
+È possibile utilizzare Microsoft Message Analyzer toocapture HTTP e il traffico HTTPS in una tooFiddler modo simile e acquisire il traffico di rete in un tooWireshark modo simile.
 
 #### <a name="configure-a-web-tracing-session-using-microsoft-message-analyzer"></a>Configurazione di una sessione di traccia Web tramite Microsoft Message Analyzer
-Per configurare una sessione di traccia Web per il traffico HTTP e HTTPS tramite Microsoft Message Analyzer, eseguire l'applicazione Microsoft Message Analyzer e nel menu **File** fare clic su **Capture/Trace**. Nell'elenco degli scenari di traccia disponibili, selezionare **Web Proxy**. Quindi, nel riquadro **Trace Scenario Configuration**, nella casella di testo **HostnameFilter** aggiungere i nomi degli endpoint di archiviazione individuati nel [portale di Azure](https://portal.azure.com). Ad esempio, se il nome dell'account di archiviazione Azure è **contosodata**, aggiungere quanto segue alla casella di testo **HostnameFilter**:
+tooconfigure una sessione di analisi web per il traffico HTTP e HTTPS utilizzando Microsoft Message Analyzer, eseguire l'applicazione di Microsoft Message Analyzer hello e quindi hello **File** menu, fare clic su **/traccia**. Nell'elenco di scenari di traccia disponibili hello selezionare **Proxy Web**. Quindi in hello **configurazione dello Scenario di traccia** pannello, hello **HostnameFilter** casella di testo, aggiungere nomi hello degli endpoint di archiviazione (è possibile cercare questi nomi di hello [portalediAzure](https://portal.azure.com)). Ad esempio, se hello nome dell'account di archiviazione di Azure è **contosodata**, è consigliabile aggiungere hello seguente toohello **HostnameFilter** casella di testo:
 
 ```
 contosodata.blob.core.windows.net contosodata.table.core.windows.net contosodata.queue.core.windows.net
 ```
 
 > [!NOTE]
-> I nomi host sono separati da uno spazio.
+> Un carattere di spazio separa i nomi host hello.
 > 
 > 
 
-Quando si è pronti a iniziare a raccogliere i dati di traccia, fare clic sul pulsante **Start With** .
+Quando si è pronti toostart la raccolta dei dati di traccia, fare clic su hello **Start With** pulsante.
 
-Per altre informazioni sulla traccia di **Web Proxy** di Microsoft Message Analyzer, vedere [Microsoft-PEF-WebProxy Provider](http://technet.microsoft.com/library/jj674814.aspx).
+Per ulteriori informazioni su Microsoft Message Analyzer hello **Proxy Web** di traccia, vedere [Provider Microsoft-PEF-WebProxy](http://technet.microsoft.com/library/jj674814.aspx).
 
-La traccia **Web Proxy** integrata in Microsoft Message Analyzer è basata su Fiddler; è in grado di acquisire il traffico HTTPS lato client e di visualizzare i messaggi HTTPS non crittografati. **Web Proxy** funziona mediante la configurazione di un proxy locale per tutto il traffico HTTP e HTTPS che fornisce l'accesso ai messaggi non crittografati.
+Hello incorporato **Proxy Web** traccia in Microsoft Message Analyzer è basata sul Fiddler; può acquisire il traffico HTTPS sul lato client e visualizzare messaggi HTTPS non crittografati. Hello **Proxy Web** funziona tramite la configurazione di un proxy locale per tutto il traffico HTTP e HTTPS che fornisce accesso toounencrypted messaggi di traccia.
 
 #### <a name="diagnosing-network-issues-using-microsoft-message-analyzer"></a>Diagnosi dei problemi di rete con Microsoft Message Analyzer
-Oltre a usare la traccia **Web Proxy** di Microsoft Message Analyzer per acquisire i dettagli del traffico HTTP/HTTP tra l'applicazione client e il servizio di archiviazione, è anche possibile usare la traccia **Local Link Layer** integrata per acquisire le informazioni sui pacchetti di rete. Ciò consente di acquisire dati simili a quelli acquisiti con Wireshark e di diagnosticare eventuali problemi della rete, ad esempio i pacchetti interrotti.
+Inoltre toousing hello Microsoft Message Analyzer **Proxy Web** dettagli toocapture traccia di hello traffico HTTP/HTTPs tra un'applicazione hello client e servizio di archiviazione hello, è possibile inoltre utilizzare hello predefinito  **Livello di collegamento locale** toocapture informazioni sul pacchetto di rete di traccia. In questo modo si toocapture dati simili toothat che è possibile acquisire con Wireshark e diagnosticare problemi di rete, ad esempio pacchetti ignorati.
 
-La schermata seguente illustra un esempio della traccia **Local Link Layer** con alcuni messaggi **informativi** nella colonna **DiagnosisTypes**. Facendo clic su un'icona nella colonna **DiagnosisTypes** verranno visualizzati i dettagli del messaggio. In questo esempio, il server ha ritrasmesso il messaggio #305 perché non riceveva una conferma dal client:
+Hello schermata riportata di seguito viene illustrato un esempio **il livello di collegamento locale** traccia con alcuni **informativo** messaggi hello **DiagnosisTypes** colonna. Fare clic su un'icona hello **DiagnosisTypes** colonna Mostra i dettagli di hello del messaggio hello. In questo esempio, il server di hello ritrasmesso messaggio &#305; perché non ha ricevuto un acknowledgement da client hello:
 
 ![][9]
 
-Quando si crea la sessione di traccia in Microsoft Message Analyzer, è possibile specificare dei filtri per ridurre la quantità di disturbi nella traccia. Nella pagina **Capture / Trace** in cui si definisce la traccia, fare clic sul collegamento **Configure** accanto a **Microsoft-Windows-NDIS-PacketCapture**. La schermata che segue mostra una configurazione in cui il traffico TCP viene filtrato per gli indirizzi IP di tre servizi di archiviazione:
+Quando si crea la sessione di traccia hello in Microsoft Message Analyzer, è possibile specificare filtri tooreduce hello livello rumore nella traccia hello. In hello **acquisire / traccia** pagina in cui viene definita la traccia hello, fare clic su hello **configura** collegamento troppo Avanti**PacketCapture-Microsoft-Windows-NDIS**. Hello seguente schermata mostra una configurazione che consente di filtrare il traffico TCP per gli indirizzi IP hello dei tre servizi di archiviazione:
 
 ![][10]
 
-Per altre informazioni sulla traccia di Local Link Layer di Microsoft Message Analyzer, vedere [Microsoft-PEF-NDIS-PacketCapture Provider](http://technet.microsoft.com/library/jj659264.aspx).
+Per ulteriori informazioni su hello traccia Microsoft messaggio Analyzer locale livello di collegamento, vedere [Provider Microsoft-PEF-NDIS-PacketCapture](http://technet.microsoft.com/library/jj659264.aspx).
 
-### <a name="appendix-4"></a>Appendice 4: Uso di Excel per la visualizzazione di metriche e dati di log
-Molti strumenti consentono di scaricare i dati di Metriche di archiviazione dalle tabelle di archiviazione di Azure in un formato delimitato che semplifica il caricamento dei dati in Excel per la visualizzazione e l'analisi. I dati della registrazione dell'archiviazione provenienti dai BLOB di Azure sono già in un formato delimitato che può essere caricato in Excel. Tuttavia, sarà necessario aggiungere le intestazioni di colonna appropriate in base alle informazioni disponibili in [Formato del log di Analisi archiviazione](http://msdn.microsoft.com/library/azure/hh343259.aspx) e [Schema di tabella della metrica di Analisi archiviazione](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+### <a name="appendix-4"></a>Appendice 4: Utilizzando i dati di metrica e di log tooview di Excel
+Molti strumenti consentono di dati di metrica di archiviazione di hello toodownload dall'archiviazione tabelle di Azure in un formato delimitato da virgole che rende i dati di hello tooload semplice in Excel per la visualizzazione e analisi. I dati della registrazione dell'archiviazione provenienti dai BLOB di Azure sono già in un formato delimitato che può essere caricato in Excel. Tuttavia, sarà necessario intestazioni di colonna appropriata tooadd basato sede informazioni hello in [formato di archiviazione Analitica Log](http://msdn.microsoft.com/library/azure/hh343259.aspx) e [Schema di tabella delle metriche di archiviazione Analitica](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
-Per importare i dati della registrazione dell'archiviazione in Excel dopo il download dall'archiviazione BLOB:
+tooimport i dati di registrazione archiviazione in Excel dopo aver scaricano dall'archiviazione blob:
 
-* Nel menu **Dati** fare clic su **Da testo**.
-* Sfogliare fino al file di log da visualizzare e scegliere **Importa**.
-* Nel passaggio 1 dell'**Importazione guidata testo**, selezionare **Delimitato**.
+* In hello **dati** menu, fare clic su **dal testo**.
+* Sfoglia file di log toohello tooview desiderato e fare clic su **importazione**.
+* Nel passaggio 1 di hello **importazione guidata testo**selezionare **delimitato**.
 
-Nel passaggio 1 dell'**Importazione guidata testo**, selezionare **Punto e virgola** come delimitatore unico e scegliere le virgolette doppie come **Qualificatore di testo**. Fare clic su **Fine** e scegliere il punto in cui inserire i dati nella cartella di lavoro.
+Nel passaggio 1 di hello **importazione guidata testo**selezionare **punto e virgola** come hello solo delimitatore e scegliere di virgolette doppie come hello **qualificatore di testo**. Quindi fare clic su **fine** scegliere dove tooplace hello dati nella cartella di lavoro.
 
 ### <a name="appendix-5"></a>Appendice 5: Monitoraggio con Application Insights per Visual Studio Team Services
-È possibile usare la funzionalità Application Insights per Visual Studio Team Services come parte del monitoraggio delle prestazioni e della disponibilità. Questo strumento consente di:
+È possibile utilizzare anche funzionalità di hello Application Insights per Visual Studio Team Services durante il monitoraggio delle prestazioni e disponibilità. Questo strumento consente di:
 
-* Assicurarsi che il servizio Web sia disponibile e reattivo. Indipendentemente dal fatto che l'applicazione sia un sito Web o un'app per dispositivo che usa un servizio Web, può testare l'URL a intervalli di pochi minuti da località di tutto il mondo e indicare se è presente un problema.
-* Diagnosticare rapidamente eventuali problemi di prestazioni o eccezioni del servizio Web. Sapere se la CPU o altre risorse vengono estese, ricavare analisi dello stack dalle eccezioni ed eseguire facilmente la ricerca delle tracce nei log. Se le prestazioni dell'app scendono al di sotto di limiti accettabili, verrà inviato un messaggio di posta elettronica. L'utente può monitorare i servizi Web sia .NET che Java.
+* Assicurarsi che il servizio Web sia disponibile e reattivo. Se l'app è un sito web o un'app di dispositivo che usa un servizio web, può verificare l'URL ogni pochi minuti da posizioni di tutto il mondo hello e consentono di sapere se si verifica un problema.
+* Diagnosticare rapidamente eventuali problemi di prestazioni o eccezioni del servizio Web. Sapere se la CPU o altre risorse vengono estese, ricavare analisi dello stack dalle eccezioni ed eseguire facilmente la ricerca delle tracce nei log. Se hello scende di prestazioni dell'app sotto limiti accettabili, è possibile inviare un messaggio di posta elettronica. L'utente può monitorare i servizi Web sia .NET che Java.
 
 Ulteriori informazioni sono disponibili in [Informazioni su Azure Application Insights](../application-insights/app-insights-overview.md).
 
@@ -820,13 +820,13 @@ Ulteriori informazioni sono disponibili in [Informazioni su Azure Application In
 [Introduzione]: #introduction
 [Organizzazione di questa guida]: #how-this-guide-is-organized
 
-[Monitoraggio del servizio di archiviazione]: #monitoring-your-storage-service
+[monitoraggio del servizio di archiviazione]: #monitoring-your-storage-service
 [Monitoraggio dello stato del servizio]: #monitoring-service-health
 [Monitoraggio della capacità]: #monitoring-capacity
 [Monitoraggio della disponibilità]: #monitoring-availability
 [Monitoraggio delle prestazioni]: #monitoring-performance
 
-[Diagnosi dei problemi di archiviazione]: #diagnosing-storage-issues
+[la diagnosi dei problemi di archiviazione]: #diagnosing-storage-issues
 [Problemi di stato del servizio]: #service-health-issues
 [Problemi di prestazioni]: #performance-issues
 [Diagnostica degli errori]: #diagnosing-errors
@@ -834,47 +834,47 @@ Ulteriori informazioni sono disponibili in [Informazioni su Azure Application In
 [Strumenti di registrazione dell'archiviazione]: #storage-logging-tools
 [Uso degli strumenti di registrazione in rete]: #using-network-logging-tools
 
-[Traccia end-to-end]: #end-to-end-tracing
+[traccia End-to-end]: #end-to-end-tracing
 [Correlazione dei dati di log]: #correlating-log-data
 [ID richiesta client]: #client-request-id
-[ID richiesta server]: #server-request-id
+[ID richiesta Server]: #server-request-id
 [Timestamp]: #timestamps
 
-[Guida alla risoluzione dei problemi]: #troubleshooting-guidance
-[Le metriche indicano un valore AverageE2ELatency alto e un valore AverageServerLatency basso]: #metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency
-[Le metriche indicano un valore AverageE2ELatency basso e un valore AverageServerLatency basso, ma il client riscontra una latenza elevata]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
+[le indicazioni di Troubleshooting]: #troubleshooting-guidance
+[metrica Mostra AverageE2ELatency alta e bassa AverageServerLatency]: #metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency
+[Metrica Mostra AverageE2ELatency bassa e bassa AverageServerLatency ma hello client si è verificato ad alta latenza]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
 [Le metriche indicano un valore AverageServerLatency alto]: #metrics-show-high-AverageServerLatency
 [Si stanno verificando ritardi imprevisti nel recapito dei messaggi di una coda]: #you-are-experiencing-unexpected-delays-in-message-delivery
 
-[Le metriche indicano un aumento di PercentThrottlingError]: #metrics-show-an-increase-in-PercentThrottlingError
+[metriche mostrano un aumento PercentThrottlingError]: #metrics-show-an-increase-in-PercentThrottlingError
 [Aumento temporaneo di PercentThrottlingError]: #transient-increase-in-PercentThrottlingError
 [Aumento permanente di PercentThrottlingError]: #permanent-increase-in-PercentThrottlingError
-[Le metriche indicano un aumento di PercentTimeoutError]: #metrics-show-an-increase-in-PercentTimeoutError
+[metriche mostrano un aumento PercentTimeoutError]: #metrics-show-an-increase-in-PercentTimeoutError
 [Le metriche indicano un aumento di PercentNetworkError]: #metrics-show-an-increase-in-PercentNetworkError
 
-[Il client sta ricevendo messaggi HTTP 403 (Accesso negato)]: #the-client-is-receiving-403-messages
-[Il client sta ricevendo messaggi HTTP 404 (Non trovato)]: #the-client-is-receiving-404-messages
-[Il client o un altro processo ha eliminato in precedenza l'oggetto]: #client-previously-deleted-the-object
+[client hello è la ricezione di messaggi HTTP 403 (accesso negato)]: #the-client-is-receiving-403-messages
+[client hello è la ricezione di messaggi HTTP 404 (non trovato)]: #the-client-is-receiving-404-messages
+[eliminato in precedenza oggetto hello client Hello o un altro processo]: #client-previously-deleted-the-object
 [Si è verificato un problema di autenticazione della firma di accesso condiviso]: #SAS-authorization-issue
-[Il codice JavaScript lato client non è autorizzato ad accedere all'oggetto]: #JavaScript-code-does-not-have-permission
+[Il codice JavaScript sul lato client non dispone dell'autorizzazione tooaccess hello oggetto]: #JavaScript-code-does-not-have-permission
 [Errore della rete]: #network-failure
-[Il client sta ricevendo messaggi HTTP 409 (Conflitto)]: #the-client-is-receiving-409-messages
+[client hello è la ricezione di messaggi HTTP 409 (conflitto)]: #the-client-is-receiving-409-messages
 
-[Le metriche indicano un valore PercentSuccess basso o le voci del log di analisi contengono operazioni con stato della transazione ClientOtherErrors]: #metrics-show-low-percent-success
+[metrica Mostra PercentSuccess bassa o voci di log analitica sono operazioni con stato delle transazioni di ClientOtherErrors]: #metrics-show-low-percent-success
 [Le metriche della capacità indicano un aumento imprevisto dell'uso della capacità di archiviazione]: #capacity-metrics-show-an-unexpected-increase
 [Si stanno verificando riavvii imprevisti delle macchine virtuali con un numero elevato di VHD allegati]: #you-are-experiencing-unexpected-reboots
-[Il problema è dovuto all'uso dell'emulatore di archiviazione per attività di sviluppo o test]: #your-issue-arises-from-using-the-storage-emulator
-[La funzionalità "X" non funziona nell'emulatore di archiviazione]: #feature-X-is-not-working
-[Un messaggio indica che il valore di una delle intestazioni HTTP non è nel formato corretto quando si usa l'emulatore di archiviazione]: #error-HTTP-header-not-correct-format
-[L'esecuzione dell'emulatore di archiviazione richiede privilegi amministrativi]: #storage-emulator-requires-administrative-privileges
-[Si stanno verificando problemi di installazione di Azure SDK per .NET]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
+[Il problema si verifica di utilizzare l'emulatore di archiviazione hello per lo sviluppo o test]: #your-issue-arises-from-using-the-storage-emulator
+[Funzionalità "X" non funziona nell'emulatore di archiviazione hello]: #feature-X-is-not-working
+[Errore "valore hello per una delle intestazioni HTTP hello non è nel formato corretto hello" quando utilizzando hello emulatore di archiviazione]: #error-HTTP-header-not-correct-format
+[Emulatore di archiviazione in esecuzione hello richiede privilegi amministrativi]: #storage-emulator-requires-administrative-privileges
+[Si sono verificati problemi di installazione hello Azure SDK per .NET]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
 [Si è verificato un problema diverso con un servizio di archiviazione]: #you-have-a-different-issue-with-a-storage-service
 
-[Appendici]: #appendices
-[Appendice 1: Uso di Fiddler per l'acquisizione del traffico HTTP e HTTPS]: #appendix-1
-[Appendice 2: Uso di Wireshark per l'acquisizione del traffico di rete]: #appendix-2
-[Appendice 3: Uso di Microsoft Message Analyzer per l'acquisizione del traffico di rete]: #appendix-3
-[Appendice 4: Uso di Excel per la visualizzazione di metriche e dati di log]: #appendix-4
+[appendici]: #appendices
+[appendice 1: utilizzando il traffico HTTP e HTTPS toocapture Fiddler]: #appendix-1
+[appendice 2: utilizzando il traffico di rete toocapture Wireshark]: #appendix-2
+[appendice 3: utilizzo del traffico di rete di Microsoft Message Analyzer toocapture]: #appendix-3
+[Appendice 4: Utilizzando i dati di metrica e di log tooview di Excel]: #appendix-4
 [Appendice 5: Monitoraggio con Application Insights per Visual Studio Team Services]: #appendix-5
 
 <!--Image references-->

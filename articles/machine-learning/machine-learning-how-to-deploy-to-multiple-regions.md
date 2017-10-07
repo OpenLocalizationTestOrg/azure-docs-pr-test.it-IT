@@ -1,6 +1,6 @@
 ---
-title: "Procedura: Come distribuire un servizio Web in più aree | Documentazione Microsoft"
-description: Procedura per distribuire (copiare) un nuovo servizio Web in altre aree.
+title: aaaHow toodeploy un servizio Web aree toomultiple | Documenti Microsoft
+description: Passaggi toodeploy (copia) le aree tooother un nuovo servizio Web.
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: 3895537bbca72e687838ff5013c291dfee3be707
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 21fcdb96f118c60ed98b60b1b2df833766c7c8bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-a-web-service-to-multiple-regions"></a>Procedura: Come distribuire un servizio Web in più aree
-I nuovi servizi Web di Azure consentono di distribuire facilmente un servizio Web in più aree, senza la necessità di più sottoscrizioni o aree di lavoro. 
+# <a name="how-toodeploy-a-web-service-toomultiple-regions"></a>Come un servizio Web toodeploy toomultiple aree
+Hello nuovi servizi Web di Azure consentono di tooeasily distribuire un toomultiple le aree del servizio web senza la necessità di più sottoscrizioni o aree di lavoro. 
 
-I prezzi sono specifici per ogni area. È quindi necessario definire un piano di fatturazione per ogni area in cui verrà distribuito il servizio Web.
+I prezzi sono specifico, che pertanto è necessario definire un piano di fatturazione per ogni area in cui verranno distribuiti servizio web hello dell'area.
 
-## <a name="to-create-a-plan-in-another-region"></a>Per creare un piano in un'altra area
+## <a name="toocreate-a-plan-in-another-region"></a>un piano in un'altra area toocreate
 1. Accedere a [Microsoft Azure Machine Learning Web Services](https://services.azureml.net/)(Servizi Web Microsoft Azure Machine Learning).
-2. Fare clic sull'opzione del menu **Plans** (Piani).
-3. Nella pagina della panoramica Plans (Piani), fare clic su **New**(Nuovo).
-4. Nell'elenco a discesa **Subscription** (Sottoscrizione) selezionare la sottoscrizione in cui risiederà il nuovo piano.
-5. Nell'elenco a discesa **Regione** (Area) selezionare un'area per il nuovo piano. Le opzioni del piano per l'area selezionata verranno visualizzate nella sezione **Plan Options** (Opzioni del piano) della pagina.
-6. Nell'elenco a discesa **Resource Group** (Gruppo di risorse) selezionare un gruppo di risorse per il piano. Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
-7. In **Plan Name** (Nome piano) digitare il nome del piano.
-8. In **Plan Options**(Opzioni piano) selezionare il livello di fatturazione per il nuovo piano.
-9. Fare clic su **Create**.
+2. Fare clic su hello **piani** opzione di menu.
+3. Nei piani di hello sulla pagina di visualizzazione, fare clic su **New**.
+4. Da hello **sottoscrizione** sottoscrizione selezionare hello in cui hello risiederà nuovo piano di elenco a discesa.
+5. Da hello **area** elenco a discesa, selezionare un'area per il nuovo piano di hello. opzioni relative al piano di Hello per area selezionata hello visualizzerà in hello **opzioni relative al piano** sezione della pagina hello.
+6. Da hello **gruppo di risorse** elenco a discesa Seleziona una risorsa di gruppo per il piano di hello. Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+7. In **nome piano** nome hello del tipo di piano hello.
+8. In **opzioni del piano**, fare clic su hello livello fatturazione per il nuovo piano di hello.
+9. Fare clic su **Crea**.
 
-## <a name="deploying-the-web-service-to-another-region"></a>Distribuzione di un servizio Web in un'altra area
-1. Fare clic sull'opzione del menu **Web Services** (Servizi Web).
-2. Selezionare il servizio Web da distribuire in una nuova area.
+## <a name="deploying-hello-web-service-tooanother-region"></a>Distribuzione di hello web servizio tooanother area
+1. Fare clic su hello **servizi Web** opzione di menu.
+2. Selezionare servizio Web si sta distribuendo tooa nuova area hello.
 3. Fare clic su **Copy**.
-4. In **Web Service Name**(Nome servizio Web) digitare un nuovo nome per il servizio Web.
-5. In **Web service description**(Descrizione servizio Web) immettere una descrizione per il servizio Web.
-6. Nell'elenco a discesa **Subscription** (Sottoscrizione) selezionare la sottoscrizione in cui risiederà il nuovo servizio Web.
-7. Nell'elenco a discesa **Resource Group** (Gruppo di risorse) selezionare un gruppo di risorse per il servizio Web. Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
-8. Nell'elenco a discesa **Region** (Area) selezionare l'area in cui si desidera distribuire il servizio Web.
-9. Nell'elenco a discesa **Storage account** (Account di archiviazione) selezionare un account di archiviazione in cui archiviare il servizio Web.
-10. Nell'elenco a discesa **Price Plan** (Piano tariffario) selezionare un piano nell'area scelta nel passaggio 8.
+4. In **nome del servizio Web**, digitare un nuovo nome per il servizio web hello.
+5. In **descrizione servizio Web**, digitare una descrizione per il servizio web hello.
+6. Da hello **sottoscrizione** sottoscrizione selezionare hello in cui hello risiederà nuovo servizio web dal menu a discesa.
+7. Da hello **gruppo di risorse** elenco a discesa Seleziona una risorsa di gruppo per il servizio web hello. Per altre informazioni sui gruppi di risorse, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+8. Da hello **area** area hello selezionare nel servizio web hello toodeploy elenco a discesa.
+9. Da hello **account di archiviazione** elenco a discesa, seleziona un account di archiviazione in cui hello toostore servizio web.
+10. Da hello **prezzo piano** elenco a discesa, selezionare un piano nell'area di hello selezionato nel passaggio 8.
 11. Fare clic su **Copy**.
 

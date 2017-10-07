@@ -1,6 +1,6 @@
 ---
-title: Configurare i parametri del servizio in Database di Azure per PostgreSQL | Microsoft Docs
-description: Questo articolo descrive come configurare i parametri del servizio in Database di Azure per PostgreSQL usando l'interfaccia della riga di comando di Azure.
+title: parametri del servizio hello aaaConfigure nel Database di Azure per PostgreSQL | Documenti Microsoft
+description: In questo articolo viene descritto come parametri del servizio hello tooconfigure nel Database di Azure per l'utilizzo di PostgreSQL hello della riga di comando CLI di Azure.
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -10,46 +10,46 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: c8a3b5a0225c2cede180d8d57681f2e1a6c6cc3a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 84a11de24ba87fc0eb6744aaa4b53f65a183903d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-server-configuration-parameters-using-azure-cli"></a>Personalizzare i parametri di configurazione server usando l'interfaccia della riga di comando di Azure
-È possibile elencare, visualizzare e aggiornare i parametri di configurazione per un server PostgreSQL di Azure usando l'interfaccia della riga di comando di Azure, ma solo un subset delle configurazioni del motore viene esposto a livello di server e può essere modificato. 
+È possibile elencare, visualizzare e aggiornare i parametri di configurazione per un server di Azure PostgreSQL utilizzando hello interfaccia della riga di comando (CLI di Azure). ma solo un subset delle configurazioni del motore viene esposto a livello di server e può essere modificato. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per proseguire con questa guida, si richiedono:
+toostep tramite questa procedura-tooguide, è necessario:
 - Un server e un database [Creare un database di Azure per PostgreSQL](quickstart-create-server-database-azure-cli.md)
-- Installare l'utilità della riga di comando dell'[interfaccia della riga di comando di Azure 2.0](/cli/azure/install-azure-cli) o usare Azure Cloud Shell nel browser.
+- Installare [CLI di Azure 2.0](/cli/azure/install-azure-cli) riga di comando utilità oppure utilizzare hello Azure Cloud Shell nel browser hello.
 
 ## <a name="list-server-configuration-parameters-for-azure-database-for-postgresql-server"></a>Elencare i parametri di configurazione del server per Database di Azure per il server PostgreSQL
-Per elencare tutti i parametri modificabili in un server e i relativi valori, eseguire il comando [az postgres server configuration list](/cli/azure/postgres/server/configuration#list).
+eseguire tutti i parametri modificabili in un server e i relativi valori, toolist hello [elenco configurazione dei server az postgres](/cli/azure/postgres/server/configuration#list) comando.
 
-È possibile elencare i parametri di configurazione del server per il server **mypgserver-20170401.postgres.database.azure.com** nel gruppo di risorse **myresourcegroup**.
+È possibile elencare i parametri di configurazione server hello per server hello **mypgserver 20170401.postgres.database.azure.com** nel gruppo di risorse **myresourcegroup**.
 ```azurecli-interactive
 az postgres server configuration list --resource-group myresourcegroup --server mypgserver-20170401
 ```
 ## <a name="show-server-configuration-parameter-details"></a>Visualizzare i dettagli dei parametri di configurazione server
-Per visualizzare i dettagli di un determinato parametro di configurazione per un server, eseguire il comando [az postgres server configuration show](/cli/azure/postgres/server/configuration#show).
+Dettagli tooshow su un parametro di configurazione specifico per un server, eseguire hello [la dimostrazione di configurazione del server di az postgres](/cli/azure/postgres/server/configuration#show) comando.
 
-Questo esempio mostra i dettagli del parametro di configurazione del server **log\_min\_messages** per il server **mypgserver-20170401.postgres.database.azure.com** nel gruppo di risorse **myresourcegroup.**
+In questo esempio mostra i dettagli di hello **log\_min\_messaggi** parametro di configurazione server per server **mypgserver 20170401.postgres.database.azure.com** in gruppo di risorse **myresourcegroup.**
 ```azurecli-interactive
 az postgres server configuration show --name log_min_messages --resource-group myresourcegroup --server mypgserver-20170401
 ```
 ## <a name="modify-server-configuration-parameter-value"></a>Modificare il valore di un parametro di configurazione server
-È anche possibile modificare il valore di un determinato parametro di configurazione del server e in questo modo viene aggiornato il valore di configurazione sottostante del motore del server PostgreSQL. Per aggiornare la configurazione, usare il comando [az postgres server configuration set](/cli/azure/postgres/server/configuration#set). 
+È inoltre possibile modificare il valore di hello di un determinato parametro di configurazione di server e Aggiorna valore di configurazione per il motore di hello PostgreSQL server sottostante hello. hello utilizzare configurazione di tooupdate hello [az postgres server configuration set](/cli/azure/postgres/server/configuration#set) comando. 
 
-Per aggiornare il parametro di configurazione del server **log\_min\_messages** per il server **mypgserver-20170401.postgres.database.azure.com** nel gruppo di risorse **myresourcegroup**:
+hello tooupdate **log\_min\_messaggi** parametro di configurazione del server server **mypgserver 20170401.postgres.database.azure.com** nel gruppo di risorse **myresourcegroup.**
 ```azurecli-interactive
 az postgres server configuration set --name log_min_messages --resource-group myresourcegroup --server mypgserver-20170401 --value INFO
 ```
-Per reimpostare il valore di un parametro di configurazione, è sufficiente non inserire il parametro facoltativo `--value`. In questo caso, il servizio applicherà il valore predefinito. Nell'esempio precedente sarà simile a quanto segue:
+Se si desidera tooreset hello valore di un parametro di configurazione, sufficiente scegliere tooleave out hello facoltativo `--value` parametro e il servizio hello applicherà il valore di predefinito hello. Nell'esempio precedente sarà simile a quanto segue:
 ```azurecli-interactive
 az postgres server configuration set --name log_min_messages --resource-group myresourcegroup --server mypgserver-20170401
 ```
-In questo modo il parametro di configurazione **log\_min\_messages** viene reimpostato sul valore predefinito **WARNING**. Per altre informazioni sulla configurazione server e sui valori consentiti, vedere la documentazione di PostgreSQL in [Server Configuration](https://www.postgresql.org/docs/9.6/static/runtime-config.html) (Configurazione server).
+Questa operazione reimposta hello **log\_min\_messaggi** configurazione valore predefinito di toohello **avviso**. Per altre informazioni sulla configurazione server e sui valori consentiti, vedere la documentazione di PostgreSQL in [Server Configuration](https://www.postgresql.org/docs/9.6/static/runtime-config.html) (Configurazione server).
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Per configurare e accedere ai log del server, vedere [Server Logs in Azure Database for PostgreSQL](concepts-server-logs.md) (Log del server in Database di Azure per PostgreSQL)
+- tooconfigure e accesso ai log di server, vedere [log del Server nel Database di Azure per PostgreSQL](concepts-server-logs.md)

@@ -1,6 +1,6 @@
 ---
-title: Creare gruppi di sicurezza di rete - Modello di Azure Resource Manager | Documentazione Microsoft
-description: Informazioni su come creare e distribuire i gruppi di sicurezza di rete mediante il modello di Azure Resource Manager.
+title: -i gruppi di sicurezza di rete aaaCreate il modello di gestione risorse di Azure | Documenti Microsoft
+description: Informazioni su come toocreate e distribuire i gruppi di sicurezza di rete utilizzando un modello di gestione risorse di Azure.
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 88f7e5b2144daee7bf1c8e7312ba98e6fa967899
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3750168284fea7b41c8c0f908b0d31a9da5e38ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-network-security-groups-using-an-azure-resource-manager-template"></a>Creare gruppi di sicurezza di rete mediante il modello di Azure Resource Manager
 
@@ -30,14 +30,14 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Questo articolo illustra il modello di distribuzione Gestione risorse. È anche possibile creare gruppi di sicurezza di rete con il [modello di distribuzione classica](virtual-networks-create-nsg-classic-ps.md).
+Questo articolo descrive il modello di distribuzione di gestione risorse di hello. È anche possibile [creare NSGs nel modello di distribuzione classica hello](virtual-networks-create-nsg-classic-ps.md).
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
 ## <a name="nsg-resources-in-a-template-file"></a>Risorse NSG in un file di modello
-È possibile visualizzare e scaricare il [modello di esempio](https://raw.githubusercontent.com/telmosampaio/azure-templates/master/201-IaaS-WebFrontEnd-SQLBackEnd/NSGs.json).
+È possibile visualizzare e scaricare hello [modello di esempio](https://raw.githubusercontent.com/telmosampaio/azure-templates/master/201-IaaS-WebFrontEnd-SQLBackEnd/NSGs.json).
 
-La sezione seguente illustra la definizione di gruppo di sicurezza di rete front-end in base allo scenario precedente.
+Hello nella sezione seguente viene illustrata hello definizione di hello NSG front-end, a seconda dello scenario di hello.
 
 ```json
 "apiVersion": "2015-06-15",
@@ -80,7 +80,7 @@ La sezione seguente illustra la definizione di gruppo di sicurezza di rete front
   ]
 }
 ```
-Per associare il gruppo di sicurezza di rete alla subnet front-end, è necessario modificare la definizione della subnet nel modello e usare l'id di riferimento per il gruppo di sicurezza di rete.
+tooassociate hello NSG toohello front-end subnet, è la definizione di subnet hello toochange nel modello hello e utilizzare hello di id di riferimento per hello gruppo.
 
 ```json
 "subnets": [
@@ -95,16 +95,16 @@ Per associare il gruppo di sicurezza di rete alla subnet front-end, è necessari
   }, 
 ```
 
-Si noti che va effettuata la stessa operazione per il gruppo di sicurezza di rete back-end e la subnet back-end nel modello.
+Si noti hello stesso fatta per hello back-end NSG e hello subnet back-end nel modello di hello.
 
-## <a name="deploy-the-arm-template-by-using-click-to-deploy"></a>Distribuire il modello ARM tramite clic per la distribuzione
-Il modello di esempio disponibile nel repository pubblico usa un file di parametro che contiene i valori predefiniti usati per generare lo scenario descritto in precedenza. Distribuire [questo modello](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd-NSG)tramite clic per la distribuzione, fare clic su **Distribuisci in Azure**, sostituire i valori del parametro predefinito se necessario e seguire le istruzioni nel portale.
+## <a name="deploy-hello-arm-template-by-using-click-toodeploy"></a>Distribuire il modello ARM hello utilizzando fare clic su toodeploy
+modello di Hello esempio disponibile nel repository pubblico hello utilizza un file di parametro contenente hello predefiniti i valori utilizzati toogenerate hello lo scenario descritto sopra. toodeploy questo modello utilizzando fare clic su toodeploy, seguire [questo collegamento](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd-NSG), fare clic su **distribuire tooAzure**, sostituire i valori di parametro predefiniti hello se necessario e seguire le istruzioni di hello nel portale di hello.
 
-## <a name="deploy-the-arm-template-by-using-powershell"></a>Distribuire il modello ARM tramite PowerShell
-Per distribuire il modello ARM scaricato tramite PowerShell, attenersi alla procedura seguente.
+## <a name="deploy-hello-arm-template-by-using-powershell"></a>Distribuire il modello ARM hello tramite PowerShell
+modello ARM hello toodeploy scaricato tramite PowerShell, seguire i passaggi di hello seguenti.
 
-1. Se si usa Azure PowerShell per la prima volta, vedere [How to Install and Configure Azure PowerShell](/powershell/azure/overview) (Come installare e configurare Azure PowerShell) per l'installazione e la configurazione.
-2. Eseguire il cmdlet **`New-AzureRmResourceGroup`** per creare un gruppo di risorse usando il modello.
+1. Se non si è mai usato Azure PowerShell, attenersi alle istruzioni hello hello [come tooInstall e configurare Azure PowerShell](/powershell/azure/overview) tooinstall e configurarlo.
+2. Eseguire hello  **`New-AzureRmResourceGroup`**  toocreate cmdlet un gruppo di risorse utilizzando hello modello.
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location uswest `
@@ -148,21 +148,21 @@ Per distribuire il modello ARM scaricato tramite PowerShell, attenersi alla proc
    
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-arm-template-by-using-the-azure-cli"></a>Distribuire il modello ARM tramite l'interfaccia della riga di comando di Azure
-Per distribuire il modello ARM tramite l'interfaccia della riga di comando di Azure, seguire la procedura di seguito.
+## <a name="deploy-hello-arm-template-by-using-hello-azure-cli"></a>Distribuire il modello di ARM hello utilizzando hello CLI di Azure
+modello ARM hello toodeploy utilizzando hello CLI di Azure, seguire i passaggi di hello seguenti.
 
-1. Se l'interfaccia della riga di comando di Azure non è mai stata usata, vedere [Installare e configurare l'interfaccia della riga di comando di Azure](../cli-install-nodejs.md) e seguire le istruzioni fino al punto in cui si selezionano l'account e la sottoscrizione di Azure.
-2. Eseguire il comando **`azure config mode`** per passare alla modalità Gestione risorse, come illustrato di seguito.
+1. Se non si è mai usato CLI di Azure, vedere [installare e configurare hello Azure CLI](../cli-install-nodejs.md) e seguire le istruzioni di hello toohello un punto in cui si seleziona l'account di Azure e la sottoscrizione.
+2. Eseguire hello  **`azure config mode`**  tooswitch tooResource Manager modalità comando, come illustrato di seguito.
 
     ```azurecli
     azure config mode arm
     ```
 
-    Di seguito è riportato l'output previsto per il comando:
+    di seguito Hello è output di hello previsto per il comando hello:
 
         info:    New mode is arm
 
-3. Eseguire il cmdlet **`azure group deployment create`** per distribuire la nuova rete virtuale usando il modello e i file dei parametri scaricati e modificati in precedenza. Nell'elenco riportato dopo l'output sono indicati i parametri usati.
+3. Eseguire hello  **`azure group deployment create`**  cmdlet toodeploy hello nuova rete virtuale utilizzando il modello di hello e parametro file scaricato e modificato in precedenza. elenco di Hello visualizzato dopo l'output di hello illustrati parametri di hello utilizzati.
 
     ```azurecli
     azure group create -n TestRG -l westus -f 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/201-IaaS-WebFrontEnd-SQLBackEnd/azuredeploy.json' -e 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/201-IaaS-WebFrontEnd-SQLBackEnd/azuredeploy.parameters.json'
@@ -185,8 +185,8 @@ Per distribuire il modello ARM tramite l'interfaccia della riga di comando di Az
         data:    
         info:    group create command OK
    
-   * **-n (o --nome)**. Nome del gruppo di risorse da creare.
-   * **-l (o --location)**. L'area di Azure in cui verrà creato il gruppo di risorse.
-   * **-f (o --template-file)**. Percorso del file di modello ARM.
-   * **-e (o --parameters-file)**. Percorso del file di parametri ARM.
+   * **-n (o --nome)**. Nome di hello toobe di gruppo di risorse creato.
+   * **-l (o --location)**. Area di Azure in cui verrà creato il gruppo di risorse hello.
+   * **-f (o --template-file)**. Percorso file di modello ARM tooyour.
+   * **-e (o --parameters-file)**. File dei parametri di percorso tooyour ARM.
 

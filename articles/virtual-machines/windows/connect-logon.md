@@ -1,6 +1,6 @@
 ---
-title: Connettersi a una VM Windows Server | Microsoft Docs
-description: Informazioni su come connettersi e accedere a una VM Windows mediante il portale di Azure e il modello di distribuzione Resource Manager.
+title: aaaConnect tooa macchina virtuale Windows Server | Documenti Microsoft
+description: Informazioni su come tooconnect e accedere utilizzando la macchina virtuale Windows tooa hello Azure portal e hello Gestione risorse modello di distribuzione.
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/01/2017
 ms.author: cynthn
-ms.openlocfilehash: 88431377a36d5bc36220c630f0c8d4a46ab4a434
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc397f435ef165ae5af09f1d037ad3d520bb7ac3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-connect-and-log-on-to-an-azure-virtual-machine-running-windows"></a>Come connettersi e accedere a una macchina virtuale di Azure che esegue Windows
-Per avviare una sessione di Desktop remoto (RDP) da un desktop di Windows, sarà necessario usare il pulsante **Connetti** nel portale di Azure. Effettuare la connessione alla macchina virtuale, quindi accedere al sistema.
+# <a name="how-tooconnect-and-log-on-tooan-azure-virtual-machine-running-windows"></a>Come tooconnect e tooan virtuali di Azure di accesso del computer che eseguono Windows
+Si userà hello **Connetti** pulsante hello Azure toostart portale una sessione di Desktop remoto (RDP) da un desktop di Windows. Prima connettersi macchina virtuale toohello, quindi si accede.
 
-Se si sta tentando di effettuare la connessione a una macchina virtuale Windows da un Mac, è necessario installare un client RDP per Mac come [Desktop remoto Microsoft](https://itunes.apple.com/app/microsoft-remote-desktop/id715768417).
+Se si sta tentando di tooconnect tooa macchina virtuale Windows da un Mac, è necessario un client RDP per Mac come tooinstall [Desktop remoto Microsoft](https://itunes.apple.com/app/microsoft-remote-desktop/id715768417).
 
-## <a name="connect-to-the-virtual-machine"></a>Connettersi alla macchina virtuale
-1. Accedere al [portale di Azure](https://portal.azure.com/), se questa operazione non è già stata eseguita.
-2. Scegliere **Macchine virtuali**dal menu Hub.
-3. Selezionare la macchina virtuale dall'elenco.
-4. Nel pannello della macchina virtuale fare clic su **Connetti**.
+## <a name="connect-toohello-virtual-machine"></a>Connettere la macchina virtuale di toohello
+1. Se non già stato fatto, accedere toohello [portale di Azure](https://portal.azure.com/).
+2. Nel menu Hub hello, fare clic su **macchine virtuali**.
+3. Selezionare macchina virtuale hello hello elenco.
+4. Nel Pannello di hello per la macchina virtuale hello, fare clic su **Connetti**.
    
-    ![Screenshot del portale di Azure che illustra come connettersi alla VM.](./media/connect-logon/connect.png)
+    ![Schermata di hello che Mostra portale Azure come tooconnect tooyour macchina virtuale.](./media/connect-logon/connect.png)
    
    > [!TIP]
-   > Se il pulsante **Connetti** nel portale è disattivato e non si è connessi ad Azure tramite una connessione [Express Route](../../expressroute/expressroute-introduction.md) o [VPN da sito a sito](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md), per poter usare il protocollo RDP è necessario creare un indirizzo IP pubblico e assegnarlo alla VM. Altre informazioni sono disponibili in [Indirizzi IP pubblici in Azure](../../virtual-network/virtual-network-ip-addresses-overview-arm.md).
+   > Se hello **Connetti** pulsante nel portale di hello è disattivata e non si è connessi tooAzure tramite un [Express Route](../../expressroute/expressroute-introduction.md) o [VPN Site-to-Site](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) connessione, è necessario toocreate e assegnare la macchina virtuale un indirizzo IP pubblico per poter utilizzare il protocollo RDP. Altre informazioni sono disponibili in [Indirizzi IP pubblici in Azure](../../virtual-network/virtual-network-ip-addresses-overview-arm.md).
    > 
    > 
 
-## <a name="log-on-to-the-virtual-machine"></a>Accesso alla macchina virtuale
+## <a name="log-on-toohello-virtual-machine"></a>Accedere alla macchina virtuale toohello
 [!INCLUDE [virtual-machines-log-on-win-server](../../../includes/virtual-machines-log-on-win-server.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In caso di problemi quando si cerca di eseguire la connessione, vedere [Risolvere i problemi di connessioni Desktop remoto](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). In questo articolo viene illustrato come diagnosticare e risolvere i problemi più comuni.
+Se si verificano problemi quando si tenta di tooconnect, vedere [le connessioni Desktop remoto di risolvere i problemi](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). In questo articolo viene illustrato come diagnosticare e risolvere i problemi più comuni.
 

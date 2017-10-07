@@ -1,6 +1,6 @@
 ---
-title: Case study Azure del database SQL di Microsoft Azure - Snelstart | Microsoft Docs
-description: Informazioni su come SnelStart usa il database SQL per espandere rapidamente i servizi aziendali con una frequenza di 1.000 nuovi database SQL di Azure al mese
+title: aaaAzure SQL Database Azure Case Study - Snelstart | Documenti Microsoft
+description: "Informazioni sulle modalità di espansione delle SnelStart utilizza Database SQL toorapidly i servizi di business con una frequenza di 1.000 nuovi database di SQL Azure al mese"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,96 +15,96 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: 3861814974b95f0c65879158cb02ec727a25c99f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 69572393f41a9baf44f41b4f5f4ebbef347de851
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="with-azure-snelstart-has-rapidly-expanded-its-business-services-at-a-rate-of-1000-new-azure-sql-databases-per-month"></a>Grazie ad Azure, SnelStart ha rapidamente ampliato i servizi aziendali con una frequenza di 1.000 nuovi database SQL di Azure al mese
 ![SnelStartLogo](./media/sql-database-implementation-snelstart/snelstartlogo.png)
 
-SnelStart produce rinomati software di gestione aziendale e finanziaria per le piccole e medie imprese nei Paesi Bassi. I 55.000 clienti sono serviti da un organico composto da 110 dipendenti, tra cui 35 esperti del reparto IT. Grazie al passaggio dal software desktop a un'offerta Software come servizio (SaaS) compilata in Azure, SnelStart ha sfruttato al massimo i servizi incorporati, l'automazione della gestione tramite l'ambiente familiare in C# e l'ottimizzazione delle prestazioni e della scalabilità con provisioning eccessivo o insufficiente delle aziende, usando pool elastici. L'uso di Azure garantisce a SnelStart fluidità nello spostamento dei clienti tra ambiente locale e cloud.
+Paesi Bassi hello SnelStart rende diffusi finanziari e business-software di gestione per le piccole e medie imprese (SMB). I 55.000 clienti sono serviti da un organico composto da 110 dipendenti, tra cui 35 esperti del reparto IT. Spostando dall'offerta di software-as-a-service (SaaS) tooa software desktop basato su Azure, effettuata hello più SnelStart di servizi integrati, automatizzare la gestione tramite l'ambiente familiare in c# e l'ottimizzazione delle prestazioni e scalabilità da nessuna delle due over - o l'underprovisioning le aziende che utilizzano il pool elastico. L'uso di Azure offre fluidità hello SnelStart dello spostamento clienti tra sedi locali e hello cloud.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-SQL-Database-Case-Study-SnelStart/player]
 > 
 > 
 
-## <a name="why-snelstart-extended-services-from-the-desktop-to-the-cloud"></a>Perché SnelStart ha esteso i servizi dal desktop al cloud
-> "Usare Azure comporta la possibilità di offrire software più rapidamente, reagire velocemente alle richieste dei clienti e scalare le soluzioni quando le richieste aumentano".
+## <a name="why-snelstart-extended-services-from-hello-desktop-toohello-cloud"></a>Motivo per cui SnelStart estesi servizi dal cloud toohello desktop hello
+> "Utilizzo di Azure significa che è possibile fornire più rapidamente il software, rapidamente rispondono toocustomer richieste e scalare le soluzioni in aumento di richieste."
 > 
 > - Henry Been, progettista software
 > 
 > 
 
-SnelStart ha gestito per anni un'azienda di successo nella produzione di software tramite un modello di sviluppo tradizionale: codice, pacchetto, spedizione e ripetizione. Nel corso del tempo, la velocità del cambiamento è aumentata sempre di più. Le normative cambiano di frequente e i clienti necessitano di metodi semplici per elaborare i record finanziari e collaborare con i contabili e con il governo per stare al passo con tali modifiche.
+SnelStart ha gestito per anni un'azienda di successo nella produzione di software tramite un modello di sviluppo tradizionale: codice, pacchetto, spedizione e ripetizione. Nel corso del tempo, hello in base alla velocità di modifica aumento delle dimensioni più veloce e più velocemente. Normative modificati di frequente e clienti necessari più dati finanziari di modi tooprocess e collaborano con i relativi contabili e government tookeep backup con tali modifiche.
 
-"La spedizione dei software ai clienti era costosa e limitante", spiega Henry Been, progettista software. "I costi di produzione, imballo e spedizione limitavano la frequenza di rilascio di nuovi software. Dovevamo imballare gli aggiornamenti per spedizioni periodiche, ma ciò ostacolava la soddisfazione delle esigenze dei clienti. Non riuscivamo mai ad avere la certezza che i clienti eseguissero l'aggiornamento alla versione più recente del prodotto. Pertanto, era necessario supportare più versioni, con un conseguente processo di supporto che si rendeva altrettanto difficoltoso".
+"Shipping toocustomers software è costoso e limitazione," in base tooHenry stato, architetti software. "I costi di produzione, imballo e spedizione limitavano la frequenza di rilascio di nuovi software. Abbiamo toopackage aggiornamenti per le spedizioni periodiche, ma che apportate toomeet reali dei clienti la modifica è necessario. È stato possibile mai certezza che i clienti aggiornato toohello la versione più recente del prodotto hello. Pertanto, abbiamo toosupport più versioni, rendendo hello supportano anche processo molto difficile toodo."
 
-Been aggiunge: "Cercavamo un modo per programmare e rilasciare aggiornamenti a velocità sostenuta per aumentare il ritmo dell'innovazione e creare nuovi servizi per i clienti. Cercavamo anche un modo per automatizzare un numero maggiore di processi al fine di semplificare le esigenze di amministrazione aziendale dei clienti".
+Stato aggiunge, "Desideravamo modo tooprogram e rilascio aggiornamenti un'accelerazione alla velocità, in modo che è stato possibile innovazione più velocemente e creare nuovi servizi per i clienti. Desideravamo anche tooautomate un modo più processi in ordine toosimplify esigenze di amministrazione di business dei clienti."
 
-Per SnelStart, la soluzione era l'estensione dei servizi e l'acquisizione del titolo di provider SaaS basato su cloud. La piattaforma del database SQL di Azure ha aiutato SnelStart a raggiungere questi obiettivi senza incorrere negli importanti sovraccarichi del reparto IT che una soluzione Infrastruttura come servizio (IaaS) avrebbe comportato.
+Per SnelStart, hello soluzione è stata tooextend relativi servizi ad acquisire un provider di SaaS basato su cloud. piattaforma di Database SQL di Azure Hello consentito SnelStart sfruttarla senza l'overhead dovuto all'hello principali IT che richiede una soluzione infrastructure-as-a-service (IaaS).
 
-Il modello cloud consente anche a SnelStart di correggere i bug e fornire rapidamente nuove funzionalità, senza necessità di scaricare e a aggiornare il software da parte dei clienti. Secondo Been, "grazie ai servizi cloud di Azure, possiamo agire rapidamente sulle richieste di modifica da terze parti. Invece di dover spedire una nuova versione a migliaia di clienti, possiamo adattare le informazioni inviate dall'applicazione desktop a nuovi formati richiesti da terze parti".
+modello di cloud Hello inoltre consente SnelStart toofix bug e offre nuove funzionalità rapidamente, senza i clienti che necessitano di toodownload e aggiornamento software. Secondo tooBeen, "servizi cloud di Azure tramite consente act tooquickly in seguito alla modifica di requisiti di terze parti. Anziché tooship un toothousands versione nuova di clienti, è possibile adattare le informazioni inviate dai formati di applicazione desktop toonew richiesto da terze parti."
 
 ## <a name="a-modern-company-with-traditional-roots"></a>Un'azienda moderna con radici tradizionali
-SnelStart è un'azienda high-tech moderna e agile, con origini umili risalenti al 1964, anno in cui i fondatori hanno dato vita a un'azienda di produzione di ricambi per strumenti musicali. L'azienda di software SnelStart prese avvio negli anni '80, durante la proliferazione dei personal computer. L'azienda aveva bisogno di un'alternativa migliore per il software di contabilità disponibile al momento, quindi si occupò personalmente della questione. Nel 1982, l'azienda creò le fondamenta di quello che sarebbe effettivamente diventato il software di contabilità di SnelStart. Fin dall'inizio, il software fu ammirato per la sua semplicità e velocità, a tal punto che l'azienda cambiò il proprio business core, reinventandosi come azienda di software.
+SnelStart è un moderno, agile e ad alta tecnologia business con radici modesto risalenti too1964, quando fondatori hello avviata società hello come un costruttore di parti strumento musicale. cuore Hello di hello business software SnelStart avviato molto elevati in hello 1980s, durante la proliferazione di hello di hello personal computer. società Hello è necessario un software di contabilità toohello alternativa migliore disponibile in fase di hello, pertanto impiegato questioni nelle proprie mani. In 1982, società hello creato foundation hello del software per la contabilità SnelStart infine che costituiranno. Dall'inizio di hello, software hello è stata ammirato per la semplicità e la velocità, tanto in modo che società hello infine modificato lo stato attivo e se stesso riprogettato in una società di software.
 
-Nel 1995, SnelStart rilascia la prima applicazione di contabilità per Windows. L'applicazione, basata su database Microsoft Visual Basic 1.0 e Microsoft Access, ha consentito di registrare un aumento della base di clienti, con 5.000 utenti in più.
+Nel 1995, SnelStart rilascia la prima applicazione di contabilità per Windows. un'applicazione Hello, compilata nel database di Microsoft Visual Basic 1.0 e Microsoft Access, consente di aumentare hello toomore base di clienti di 5.000 utenti.
 
-Oggi, SnelStart è un importante fornitore di applicazioni line-of-business (LOB) e di amministrazione aziendale per le piccole e medie imprese e per gli imprenditori autonomi dei Paesi Bassi. Come Carlo Kuip, progettista IT, afferma, "il nostro obiettivo è consentire l'automazione completa dei servizi di amministrazione aziendale per i clienti".
+Oggi, SnelStart è un importante fornitore di applicazioni line-of-business (LOB) e di amministrazione aziendale per le piccole e medie imprese e per gli imprenditori autonomi dei Paesi Bassi. Come Carlo Kuip, architetti IT, viene visualizzato, "il nostro obiettivo è tooprovide al 100% automazione dei servizi di amministrazione di business per i clienti".
 
 ## <a name="optimizing-performance-and-cost-with-elastic-pools"></a>Ottimizzazione delle prestazioni e dei costi con i pool elastici
-SnelStart è stata un pioniere globale nell'adozione di pool elastici. I pool elastici consentono all'azienda di limitare i costi e gestire i requisiti sulle prestazioni in modo più efficiente. Secondo Been, "Usando i pool elastici, è possibile ottimizzare le prestazioni in base alle esigenze dei clienti, senza un provisioning eccessivo. Eseguire il provisioning in base al carico di picco risulterebbe notevolmente costoso. Al contrario, l'opzione per condividere risorse tra più database a scarso uso consente di creare una soluzione economica e con buone prestazioni".
+SnelStart è stata un pioniere globale nell'adozione di pool elastici. Il pool elastico dei costi di limite società hello e gestione i requisiti di prestazioni in modo più efficiente. In base tooBeen, "tramite i pool elastici, che è possibile ottimizzare le prestazioni in base alle esigenze di hello dei clienti, senza eseguire un provisioning eccessivo. Se si è verificato in base al carico di picco tooprovision, sarebbe molto costoso. In alternativa, hello risorse tooshare opzione tra più database di scarso utilizzo consente una soluzione che offre prestazioni soddisfacenti ed è conveniente toocreate. "
 
 ## <a name="azure-sql-databases-help-containerize-data-for-isolation-and-security"></a>I database SQL di Azure aiutano a containerizzare i dati a scopo di isolamento e sicurezza
-Il database SQL di Azure consente a SnelStart di spostare su Azure, in modo semplice e trasparente, i dati amministrativi aziendali dei clienti che si trovano in locale. Il database SQL di Azure è un comodo contenitore che offre isolamento, limiti per l'autenticazione, autorizzazione e funzionalità semplici per il backup e il ripristino. I database offrono un modello concettuale ideale per l'amministrazione aziendale. Secondo Carlo Kuip, progettista IT, "gli elementi all'interno dei confini del contenitore conservano dati riservati, fondamentali per l'azienda e l'archiviazione di tali elementi in un database isolato ne garantisce la protezione. Siam in grado di gestire le autorizzazioni a livello di database e di automatizzare perfino la gestione e la scalabilità orizzontale di questi database, senza l'intervento degli amministratori di database (DBA) nello staff".
+Database SQL di Azure consente SnelStart tooeasily e spostare in modo trasparente tooAzure di dati di business-amministrazione locali dei clienti. Hello Database SQL di Azure è un contenitore semplice che fornisce l'isolamento, un limite per l'autenticazione, autorizzazione e funzionalità di backup e ripristino semplice. I database offrono un modello concettuale ideale per l'amministrazione aziendale. Secondo tooCarlo Kuip, architetti IT, "elementi all'interno di questo limite contenitore contengono dati riservati che sono fondamentale tooa business e l'archiviazione di tali elementi in mantiene un database isolato li ben protetti. È possibile gestire l'autorizzazione a livello di database hello e automatizzare anche la gestione di hello e scalabilità orizzontale di questi database senza richiedere agli amministratori di database (DBA) sul personale".
 
-SQL Data Warehouse di Azure svolge anche un ruolo nella gestione e nella sicurezza di SnelStart, grazie alla capacità di raccogliere i dati di telemetria dell'azienda, ad esempio dati relativi al rilevamento delle intrusioni, alla registrazione delle attività degli utenti e alla connettività.
+Inoltre, Azure SQL Data Warehouse svolge un ruolo nella storia di sicurezza e la gestione di SnelStart hello grazie alla possibilità di società hello raccogliere dati di telemetria, ad esempio il rilevamento delle intrusioni, la registrazione dell'attività utente e la connettività.
 
 ## <a name="azure-removes-overhead-so-that-developers-can-spend-more-time-delivering-value"></a>Azure elimina i sovraccarichi in modo che gli sviluppatori possano dedicare più tempo alla creazione di iniziative di valore
-Il modello della piattaforma Azure ha eliminato il sovraccarico dell'infrastruttura e consentito a SnelStart di automatizzare le distribuzioni tramite le librerie di gestione di C#. Come dichiarato da Kuip, "migliorando le operazioni correnti con uno staff molto ridotto, abbiamo potuto contemporaneamente concentrarci sull'offerta di nuove opzioni di scalabilità, velocità e ripristino di emergenza per i nostri clienti. Il cambiamento verso lo sviluppo di servizi ha liberato risorse che si sono concentrate su nuovi servizi e funzionalità, invece di dedicare tempo al semplice aggiornamento del codice esistente per tenere il passo con le nuove normative o codici tributari". Aggiunge: "Grazie all'automazione della gestione e all'uso dell'offerta SaaS, siamo in grado di offrire più valore ai nostri clienti senza grandi investimenti in termini di personale operativo". Ad esempio, usando i pool elastici di Azure, SnelStart ha potuto aggiungere una vasta gamma di nuove funzionalità, tra cui una più solida integrazione dei dati dei clienti con le banche, nuovi servizi di fatturazione, controlli in background per le piccole aziende e servizi di posta elettronica.
+modello di piattaforma Azure Hello rimosso un sovraccarico di infrastruttura e abilitato le distribuzioni di tooautomate SnelStart usando le raccolte di gestione di c#. Kuip, come indicato "è stato in grado di toogrow le nostre operazioni corrente con una piccola personale durante il ripristino di emergenza, velocità e scalabilità contemporaneamente a incremento opzioni per i client. sviluppo di Hello MAIUSC tooservices liberato risorse toofocus nuovi servizi e funzionalità, anziché semplicemente aggiornando backup tookeep codice esistente con nuovi codici normative o fiscali." Aggiunge, "L'automazione della gestione e utilizzando offerta SaaS hello, siamo in grado di toodeliver più il valore per i nostri clienti senza investimenti di grandi dimensioni toomake nello staff operativo". Ad esempio, tramite il pool elastico e di Azure, SnelStart è stato in grado di tooadd un'ampia gamma di nuove funzionalità, inclusa l'integrazione di dati dei clienti più affidabile con banche, fatturazione nuovi servizi, i controlli di sfondo per piccole aziende e servizi di posta elettronica.
 
-> "Solo nei primi mesi del 2016, abbiamo aumentato le distribuzioni del database SQL di Azure da circa 5.500 a oltre 12.000 e attualmente stiamo aggiungendo circa 1.000 database al mese".
+> "Hello solo primi mesi del 2016, è espanso il nostro le distribuzioni di Database SQL di Azure da circa 5.500 toomore rispetto a 12.000 e aggiungiamo attualmente circa 1.000 database al mese".
 > 
 > - Henry Been, progettista software
 > 
 > 
 
-La gestione dei database viene ulteriormente automatizzata tramite la funzionalità dei processi elastici. Secondo quanto dichiarato da Kuio, "troviamo enormemente utile l'individuazione automatica dei database in un'istanza [server] del database SQL". In questo modo, SnelStart è in grado di eseguire operazioni di gestione nella base clienti in continua crescita dinamica, senza sovraccarichi aggiuntivi.
+Gestione di database è ulteriormente automatizzato tramite funzionalità di processi elastico hello. Kuip, come indicato "elevata grazie per l'individuazione automatica dei database in un'istanza del database di SQL Server [server] hello." In questo modo SnelStart tooexecute operazioni di gestione tra il cliente in modo dinamico crescente base senza alcun costo aggiuntivo.
 
-SnelStart sta anche sviluppando un'API che funge da broker tra i dati dei clienti e le applicazioni compilate da produttori di software di terze parti. Kuip spiega: "Questa API consentirà di aggiungere funzionalità al software, ad esempio eliminando la necessità di immettere dati per le fatture e altri documenti". I clienti non dovranno più digitare manualmente le fatture nel software di contabilità per piccole aziende in uso. Il software di SnelStart inserirà direttamente le informazioni necessarie. Questo consente ai clienti di aggiungere attività di amministrazione aziendale con l'ecosistema di informazioni che emergono dalla trasformazione digitale in atto nel settore.  
+SnelStart sta anche sviluppando un'API che funge da broker tra i dati dei clienti e le applicazioni compilate da produttori di software di terze parti. Come stati Kuip, "questa API consentirà altri software di tooour funzionalità tooadd fornitori, ad esempio eliminando i dati immessi per le fatture e altri documenti." I clienti non disporrà più fatture di tipo toomanually nel software di contabilità per piccole aziende; Hello SnelStart software si scambieranno direttamente le informazioni necessarie hello. Questo consente ai clienti toojoin loro amministrazione aziendale attività con l'ecosistema di hello di informazioni che la trasformazione digitale nel settore hello.  
 
 ## <a name="how-azure-services-enable-saas-for-snelstart"></a>Come i servizi Azure abilitano SaaS per SnelStart
-Grazie ad Azure, SnelStart può essere usato da clienti e contabili sul cloud, in modo più efficiente. Ad esempio, sia i clienti che i contabili possono condividere informazioni accedendo direttamente all'API client di SnelStart, ospitata in Azure. Kuip afferma: "questi servizi riutilizzabili sono disponibili per applicazioni Web a uso dei clienti e forniscono infrastruttura e funzioni comuni al fine di consentire l'accesso all'amministrazione aziendale ai clienti e al software di terze parti usato dai clienti. Tra queste, funzionalità di configurazione del prodotto, gestione delle regole del firewall e gestione dei processi a esecuzione prolungata come i backup".
+Tramite Azure, SnelStart può essere utilizzato dai propri clienti e i relativi contabili più facilmente nel cloud di hello. Ad esempio, sia i clienti che i contabili possono condividere informazioni accedendo direttamente all'API client di SnelStart, ospitata in Azure. Gli stati Kuip, "questi servizi riutilizzabili sono disponibili tooour orientati ai clienti web App e forniscono comuni dell'infrastruttura e funzioni di amministrazione di toobusiness tooallow accesso per i clienti e il software di terze parti toothird utilizzati dai clienti. Tra queste, funzionalità di configurazione del prodotto, gestione delle regole del firewall e gestione dei processi a esecuzione prolungata come i backup".
 
-> Il nostro obiettivo è consentire l'automazione completa dei servizi di amministrazione aziendale ai nostri clienti". 
+> L'obiettivo è tooprovide al 100% automazione dei servizi di amministrazione di business per i clienti". 
 > 
 > - Carlo Kuip, progettista IT
 > 
 > 
 
-I servizi Web SnelStart consentono anche ai clienti e ai contabili di accedere facilmente ai dati nel pool di database SQL elastici di Azure. Questo modello SaaS, insieme all'elasticità del database e a Azure Resource Manager, fornisce a SnelStart funzionalità di scalabilità che completano ogni distribuzione di Azure. L'implementazione è completamente automatizzata tramite le librerie di gestione in C#.
+Inoltre, i servizi web SnelStart consentono ai clienti e accedere ai dati di contabilità tooeasily nel pool elastico di Database SQL di Azure. Questo modello SaaS, insieme all'elasticità del database e a Azure Resource Manager, fornisce a SnelStart funzionalità di scalabilità che completano ogni distribuzione di Azure. implementazione di Hello è completamente automatizzata utilizzando le raccolte di gestione di c#.
 
 ![Architettura di SnelStart](./media/sql-database-implementation-snelstart/figure1.png)
 
 Figura 1. A partire da giugno 2016, SnelStart dispone di oltre 11.000 database e di oltre 50 pool elastici
 
-## <a name="simplicity-from-the-cloud"></a>Semplicità dal cloud
-Dal passaggio a una soluzione Azure basata su cloud, SnelStart è stato in grado di supportare la crescita rapida dei clienti, offrendo servizi e funzionalità innovativi. Secondo Been, "con Azure, siamo in grado di offrire ai clienti aggiornamenti quasi continui, senza ampliare il personale tecnico. E possiamo avere tutte le altre eccezionali funzionalità di Azure, come la scalabilità e il ripristino di emergenza, con un'unica soluzione".
+## <a name="simplicity-from-hello-cloud"></a>Semplicità dal cloud hello
+Dopo lo spostamento di tooan soluzione Azure basato su cloud, SnelStart è stata la crescita rapida cliente toosupport in grado di offrendo servizi e funzionalità innovative. In base tooBeen, "con Azure, possiamo offrire aggiornamenti quasi continua per i clienti, senza il personale addetto alle operazioni di espansione. Si otterrà hello tutte le altre importanti funzionalità di Azure, come la scalabilità e ripristino di emergenza, ovvero aggregati in. "
 
-> "Quando abbiamo dismesso definitivamente Redmond, ho ricevuto una chiamata da uno sviluppatore dei Paesi Bassi, il quale mi contattava in merito a un problema specifico. Siamo riusciti a ottenere da Microsoft una modifica nell'ambiente di produzione entro 48 ore per risolvere il problema".
+> "Quando è stato effettivamente su Redmond... Si riceve una chiamata da uno sviluppatore in paesi bassi hello, collegarsi a me su uno specifico problema. Ci sono stati in grado di tooget Microsoft toodeliver una modifica nel proprio ambiente di produzione all'interno di 48 ore toosolve il problema. "
 > 
 > - Henry Been, progettista software
 > 
 > 
 
-SnelStart apprezza notevolmente la solida partnership sviluppata con il team responsabile del database SQL di Microsoft Azure. Come afferma Kuip, "ci confrontiamo sulle funzionalità e su come usare la tecnologia, abitudine apprezzata da entrambe le parti".
-L'obiettivo immediato per SnelStart è supportare l'aumento della soddisfazione dei clienti. Come dichiarato da Been, "eliminando le limitazioni tecniche e di risorse che avevamo in qualità di fornitori di software indipendente, non esiste alcun limite al potenziale di crescita dell'azienda".
+SnelStart anche ringrazia gli utenti di stretta collaborazione hello sviluppate con il team di database SQL di Microsoft Azure hello. Come stati Kuip, "Abbiamo discussioni sulle funzionalità e la tecnologia toouse, ovvero un elemento apprezzato su entrambi i lati."
+obiettivo immediato Hello SnelStart è tookeep aumento delle dimensioni di base relativi clienti soddisfatti. Come è stato indicato, "Senza hello tecnico e i limiti delle risorse che si è verificato in qualità di ISV, non si è toohow alcun limite molto accompagnare".
 
 ## <a name="more-information"></a>Altre informazioni
-* Per altre informazioni sui pool elastici, vedere [pool elastici](sql-database-elastic-pool.md).
-* Per altre informazioni sui ruoli Web e i ruoli di lavoro, vedere l'argomento relativo ai [ruoli di lavoro](../fundamentals-introduction-to-azure.md#compute).    
-* Per altre informazioni su Azure SQL Data Warehouse, vedere [SQL Data Warehouse](https://azure.microsoft.com/documentation/services/sql-data-warehouse/)
-* Per altre informazioni su SnelStart, vedere [SnelStart](http://www.snelstart.nl).
+* toolearn ulteriori informazioni sui pool elastici Azure, vedere [pool elastici](sql-database-elastic-pool.md).
+* toolearn ulteriori informazioni sui ruoli Web e ruoli di lavoro, vedere [i ruoli di lavoro](../fundamentals-introduction-to-azure.md#compute).    
+* toolearn ulteriori informazioni su Azure SQL Data Warehouse, vedere [SQL Data Warehouse](https://azure.microsoft.com/documentation/services/sql-data-warehouse/)
+* vedere toolearn ulteriori informazioni su SnelStart, [SnelStart](http://www.snelstart.nl).
 

@@ -1,6 +1,6 @@
 ---
-title: Creare un'applicazione .NET per Service Fabric | Microsoft Docs
-description: Informazioni su come creare un'applicazione con un front-end ASP.NET Core e un servizio Reliable con stato back-end e distribuire l'applicazione in un cluster.
+title: aaaCreate un'applicazione .NET per Service Fabric | Documenti Microsoft
+description: Scopri back-end basato sullo stato del servizio e distribuire hello applicazione tooa cluster toocreate un'applicazione con un front-end ASP.NET Core e affidabili.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: ryanwi, mikhegn
-ms.openlocfilehash: ef50adf3af19bce494c3256308b443c8eaccdcea
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bab331b9f8616c50a2794b6c048aace15579c8b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-deploy-an-application-with-an-aspnet-core-web-api-front-end-service-and-a-stateful-back-end-service"></a>Creare e distribuire un'applicazione con un servizio front-end API Web ASP.NET Core e un servizio back-end con stato
-Questa è la prima di una serie di esercitazioni.  Illustra come creare un'applicazione di Azure Service Fabric con un front-end API Web ASP.NET Core e un servizio back-end con stato per archiviare i dati. Al termine, sarà disponibile un'applicazione di voto con un front-end Web ASP.NET Core che salva i risultati delle votazioni in un servizio back-end con stato nel cluster. Se non si vuole creare manualmente l'applicazione di voto, è possibile [scaricare il codice sorgente](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/) per l'applicazione completata e passare direttamente alla [Descrizione dettagliata dell'applicazione di voto di esempio](#walkthrough_anchor).
+Questa è la prima di una serie di esercitazioni.  Si apprenderà come toocreate un'applicazione Azure Service Fabric con inizio un'API Web di ASP.NET Core terminare e toostore un servizio back-end basato sullo stato dei dati. Al termine, si dispone di un'applicazione voto con un front-end che salva i risultati di voto in un servizio back-end con stato cluster hello web di ASP.NET Core. Se non si desidera toomanually creare hello voto applicazione, è possibile [scaricare il codice sorgente hello](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/) per hello completa l'applicazione e andare troppo[analizzerà hello voto applicazione di esempio](#walkthrough_anchor).
 
 ![Diagramma dell'applicazione](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-Nella prima parte della serie si apprenderà come:
+Nel parte di una serie di hello, si apprenderà come:
 
 > [!div class="checklist"]
 > * Creare un servizio API Web ASP.NET Core come servizio Reliable con stato
 > * Creare un servizio applicazione Web ASP.NET Core come servizio Web senza stato
-> * Usare il proxy inverso per comunicare con il servizio con stato
+> * Utilizzare hello proxy inverso toocommunicate con il servizio con stato hello
 
 In questa serie di esercitazioni si apprenderà come:
 > [!div class="checklist"]
 > * Creare un'applicazione di Service Fabric .NET
-> * [Distribuire l'applicazione in un cluster remoto](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> * [Distribuire hello applicazione tooa remota del cluster](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 > * [Configurare l'integrazione continua e la distribuzione continua usando Visual Studio Team Services](service-fabric-tutorial-deploy-app-with-cicd-vsts.md)
 
 ## <a name="prerequisites"></a>Prerequisiti
 Prima di iniziare questa esercitazione:
 - Se non si ha una sottoscrizione di Azure, creare un [account gratuito](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
-- [Installare Visual Studio 2017](https://www.visualstudio.com/) e installare i carichi di lavoro **Sviluppo di Azure** e **Sviluppo ASP.NET e Web**.
-- [Installare Service Fabric SDK](service-fabric-get-started.md)
+- [Installare Visual Studio 2017](https://www.visualstudio.com/) e installare hello **lo sviluppo di Azure** e **sviluppo web ASP.NET e** i carichi di lavoro.
+- [Installare hello Service Fabric SDK](service-fabric-get-started.md)
 
 ## <a name="create-an-aspnet-web-api-service-as-a-reliable-service"></a>Creare un servizio API Web ASP.NET come servizio Reliable
-Per prima cosa, creare il front-end Web dell'applicazione di voto usando ASP.NET Core. ASP.NET Core è un framework di sviluppo Web multipiattaforma leggero, che consente di creare un'interfaccia utente Web e API Web moderne. Per comprendere a fondo la modalità di integrazione di ASP.NET Core con Service Fabric, si consiglia di leggere l'articolo [ASP.NET Core in Reliable Services di Service Fabric](service-fabric-reliable-services-communication-aspnetcore.md). Per il momento, è possibile seguire questa esercitazione per essere subito operativi. Per altre informazioni su ASP.NET Core, vedere la [documentazione di ASP.NET Core](https://docs.microsoft.com/aspnet/core/).
+Innanzitutto, creare web hello front-end dell'applicazione mediante ASP.NET Core di voto hello. ASP.NET Core è un framework di sviluppo web lightweight e multipiattaforma che è possibile utilizzare l'interfaccia utente web moderna toocreate e le API web. tooget una conoscenza approfondita della modalità di integrazione ASP.NET Core con Service Fabric, è consigliabile leggere hello [ASP.NET Core in servizi di Service Fabric affidabile](service-fabric-reliable-services-communication-aspnetcore.md) articolo. Per il momento, è possibile seguire questa esercitazione tooget in tempi brevi. toolearn ulteriori informazioni su ASP.NET Core, vedere hello [documentazione principale di ASP.NET](https://docs.microsoft.com/aspnet/core/).
 
 > [!NOTE]
-> L'esercitazione si basa sugli strumenti di [ASP.NET Core per Visual Studio 2017](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc). Gli strumenti di .NET Core per Visual Studio 2015 non saranno più oggetto di aggiornamenti.
+> In questa esercitazione si basa sull'hello [di strumenti di ASP.NET Core per Visual Studio 2017](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc). strumenti di .NET Core Hello per Visual Studio 2015 non è più corso l'aggiornamento.
 
 1. Avviare Visual Studio come **amministratore**.
 
 2. Creare un progetto da **File**->**Nuovo**->**Progetto**
 
-3. Nella finestra di dialogo **Nuovo progetto** scegliere **Cloud > Applicazione di Service Fabric**.
+3. In hello **nuovo progetto** finestra di dialogo, scegliere **Cloud > applicazione di Service Fabric**.
 
-4. Assegnare all'applicazione il nome **Voting** e fare clic su **OK**.
+4. Nome di un'applicazione hello **voto** e premere **OK**.
 
    ![Finestra di dialogo Nuovo progetto in Visual Studio](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog.png)
 
-5. Nella pagina **Nuovo servizio Service Fabric** scegliere **ASP.NET Core senza stato** e assegnare al servizio il nome **VotingWeb**.
+5. In hello **nuovo servizio Service Fabric** pagina, scegliere **senza stato ASP.NET Core**e il nome del servizio **VotingWeb**.
    
-   ![Scelta di un servizio Web ASP.NET nella finestra di dialogo del nuovo servizio](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
+   ![Scelta di servizi web ASP.NET nella finestra di dialogo di hello nuovo servizio](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
 
-6. Nella pagina successiva è disponibile un set di modelli di progetto ASP.NET Core. Per questa esercitazione scegliere **Applicazione Web**. 
+6. la pagina successiva di Hello fornisce un set di ASP.NET Core modelli di progetto. Per questa esercitazione scegliere **Applicazione Web**. 
    
    ![Scegliere un tipo di progetto ASP.NET](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog.png)
 
@@ -72,8 +72,8 @@ Per prima cosa, creare il front-end Web dell'applicazione di voto usando ASP.NET
 
    ![Esplora soluzioni dopo la creazione dell'applicazione con il servizio API Web ASP.NET Core]( ./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-angularjs-to-the-votingweb-service"></a>Aggiungere AngularJS al servizio VotingWeb
-Aggiungere [AngularJS](http://angularjs.org/) al servizio usando il [supporto per Bower](/aspnet/core/client-side/bower) predefinito. Aprire *bower.json* e aggiungere le voci appropriate per Angular e Angular-Bootstrap e quindi salvare le modifiche.
+### <a name="add-angularjs-toohello-votingweb-service"></a>Aggiungere AngularJS toohello VotingWeb servizio
+Aggiungere [AngularJS](http://angularjs.org/) servizio tooyour utilizzando hello incorporata [Bower supporto](/aspnet/core/client-side/bower). Aprire *bower.json* e aggiungere le voci appropriate per Angular e Angular-Bootstrap e quindi salvare le modifiche.
 
 ```json
 {
@@ -89,10 +89,10 @@ Aggiungere [AngularJS](http://angularjs.org/) al servizio usando il [supporto pe
   }
 }
 ```
-Durante il salvataggio del file *bower.json*, Angular viene installato nella cartella *wwwroot/lib* del progetto. Viene anche elencato nella cartella *Dependencies/Bower*.
+Quando si salvano hello *bower. JSON* angolare file viene installato del progetto *wwwroot/lib* cartella. Inoltre, viene elencato all'interno di hello *dipendenze/Bower* cartella.
 
-### <a name="update-the-sitejs-file"></a>Aggiornare il file site.js
-Aprire il file *wwwroot/js/site.js*.  Sostituirne il contenuto con il codice JavaScript usato dalle visualizzazioni Home:
+### <a name="update-hello-sitejs-file"></a>File di aggiornamento hello site.js
+Aprire hello *wwwroot/js/site.js* file.  Sostituire il contenuto con hello JavaScript utilizzati dalle viste Home hello:
 
 ```javascript
 var app = angular.module('VotingApp', ['ui.bootstrap']);
@@ -131,8 +131,8 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
 }]);
 ```
 
-### <a name="update-the-indexcshtml-file"></a>Aggiornare il file Index.cshtml
-Aprire il file *Views/Home/Index.cshtml*, ovvero la visualizzazione specifica del controller Home.  Sostituirne il contenuto con il codice seguente e quindi salvare le modifiche.
+### <a name="update-hello-indexcshtml-file"></a>Aggiornare file cshtml hello
+Aprire hello *Views/Home/Index.cshtml* file, il controller Home toohello specifico di hello vista.  Sostituire il contenuto con hello seguente, quindi salvare le modifiche.
 
 ```html
 @{
@@ -167,7 +167,7 @@ Aprire il file *Views/Home/Index.cshtml*, ovvero la visualizzazione specifica de
             <div class="col-xs-8 col-xs-offset-2">
                 <div class="row">
                     <div class="col-xs-4">
-                        Click to vote
+                        Click toovote
                     </div>
                 </div>
                 <div class="row top-buffer" ng-repeat="vote in votes.data">
@@ -194,8 +194,8 @@ Aprire il file *Views/Home/Index.cshtml*, ovvero la visualizzazione specifica de
 </div>
 ```
 
-### <a name="update-the-layoutcshtml-file"></a>Aggiornare il file _Layout.cshtml
-Aprire il file *Views/Shared/_Layout.cshtml*, ovvero il layout predefinito per l'app ASP.NET.  Sostituirne il contenuto con il codice seguente e quindi salvare le modifiche.
+### <a name="update-hello-layoutcshtml-file"></a>Aggiornare il file layout. cshtml hello
+Aprire hello *Views/Shared/_Layout.cshtml* file, il layout predefinito hello per app ASP.NET hello.  Sostituire il contenuto con hello seguente, quindi salvare le modifiche.
 
 ```html
 <!DOCTYPE html>
@@ -225,8 +225,8 @@ Aprire il file *Views/Shared/_Layout.cshtml*, ovvero il layout predefinito per l
 </html>
 ```
 
-### <a name="update-the-votingwebcs-file"></a>Aggiornare il file VotingWeb.cs
-Aprire il file *VotingWeb.cs*, che crea il WebHost ASP.NET Core all'interno del servizio senza stato tramite il server Web WebListener.  Aggiungere la direttiva `using System.Net.Http;` all'inizio del file.  Sostituire la funzione `CreateServiceInstanceListeners()` con il codice seguente e quindi salvare le modifiche.
+### <a name="update-hello-votingwebcs-file"></a>File di aggiornamento hello VotingWeb.cs
+Aprire hello *VotingWeb.cs* file, che crea hello ASP.NET Core WebHost all'interno di hello servizio senza stato Usa server web di WebListener hello.  Aggiungere hello `using System.Net.Http;` toohello direttiva parte superiore del file hello.  Sostituire hello `CreateServiceInstanceListeners()` funzionare con i seguenti hello, quindi salvare le modifiche.
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -254,8 +254,8 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-### <a name="add-the-votescontrollercs-file"></a>Aggiungere il file VotesController.cs
-Aggiungere un controller che definisce le azioni di voto. Fare clic con il pulsante destro del mouse sulla cartella **Controller** e quindi selezionare **Aggiungi->Nuovo elemento->Classe**.  Assegnare al file il nome "VotesController.cs" e fare clic su **Aggiungi**.  Sostituire il contenuto del file con il codice seguente e quindi salvare le modifiche.  Nella sezione [Aggiornare il file VotesController.cs](#updatevotecontroller_anchor) disponibile più avanti, questo file verrà modificato per poter leggere e scrivere i dati di voto dal servizio back-end.  Per il momento, il controller restituisce nella visualizzazione i dati di una stringa statica.
+### <a name="add-hello-votescontrollercs-file"></a>Aggiungere file VotesController.cs hello
+Aggiungere un controller che definisce le azioni di voto. Fare clic su hello **controller** cartella, quindi selezionare **Aggiungi -> Nuovo elemento -> classe**.  Nome file hello "VotesController.cs" e fare clic su **Aggiungi**.  Sostituire il contenuto del file hello con hello seguente, quindi salvare le modifiche.  Più avanti in [file di aggiornamento hello VotesController.cs](#updatevotecontroller_anchor), questo file verrà modificato tooread e scrivere dati voti dal servizio back-end hello.  Per il momento controller hello restituisce vista toohello di dati stringa statica.
 
 ```csharp
 using System;
@@ -296,36 +296,36 @@ namespace VotingWeb.Controllers
 
 
 
-### <a name="deploy-and-run-the-application-locally"></a>Distribuire ed eseguire l'applicazione in locale
-È ora possibile andare avanti con l'esercitazione ed eseguire l'applicazione. In Visual Studio premere `F5` per distribuire l'applicazione per il debug. `F5` ha esito negativo se in precedenza Visual Studio non è stato aperto come **amministratore**.
+### <a name="deploy-and-run-hello-application-locally"></a>Distribuire ed eseguire un'applicazione hello in locale
+È ora possibile procedere ed eseguire un'applicazione hello. In Visual Studio, premere `F5` toodeploy per il debug di un'applicazione hello. `F5` ha esito negativo se in precedenza Visual Studio non è stato aperto come **amministratore**.
 
 > [!NOTE]
-> La prima volta che si esegue e si distribuisce l'applicazione in locale, Visual Studio crea un cluster locale per il debug.  La creazione del cluster può richiedere del tempo. Lo stato della creazione del cluster verrà visualizzato nella finestra di output di Visual Studio.
+> Hello prima eseguire e distribuire un'applicazione hello in locale, Visual Studio crea un cluster locale per il debug.  La creazione del cluster può richiedere del tempo. lo stato di creazione di cluster Hello viene visualizzato nella finestra di output di hello Visual Studio.
 
 L'app Web, a questo punto, dovrebbe aver l'aspetto seguente:
 
 ![Front-end ASP.NET Core](./media/service-fabric-tutorial-create-dotnet-app/debug-front-end.png)
 
-Per arrestare il debug dell'applicazione, tornare a Visual Studio e premere **MAIUSC+F5**.
+toostop il debug di un'applicazione hello, tornare indietro tooVisual Studio e premere **MAIUSC + F5**.
 
-## <a name="add-a-stateful-back-end-service-to-your-application"></a>Aggiungere un servizio back-end con stato a un'applicazione
-Ora che c'è un servizio API Web ASP.NET in esecuzione nell'applicazione, è possibile procedere e aggiungere un servizio Reliable con stato per archiviare alcuni dati nell'applicazione.
+## <a name="add-a-stateful-back-end-service-tooyour-application"></a>Aggiungere un'applicazione di servizio back-end con stato tooyour
+Ora che è disponibile un servizio API Web ASP.NET in esecuzione nell'applicazione, proseguire e aggiungere toostore un servizio reliable con stato di alcuni dati nell'applicazione.
 
-Service Fabric consente di archiviare in modo coerente e affidabile i dati all'interno del servizio usando raccolte Reliable Collections. Le Reliable Collection sono un set di classi di raccolte con elevati livelli di disponibilità e affidabilità che risultano familiari a chiunque abbia usato raccolte C#.
+Service Fabric è tooconsistently e archiviare in modo affidabile i dati direttamente all'interno del servizio tramite raccolte affidabile. Le raccolte affidabili sono un set di classi di raccolta a elevata disponibilità e affidabile che sono familiari tooanyone che ha utilizzato c# raccolte.
 
 In questa esercitazione si creerà un servizio che archivia un valore del contatore in una Reliable Collection.
 
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse su **Servizi** nel progetto dell'applicazione e scegliere **Aggiungi > Nuovo servizio Service Fabric**.
+1. In Esplora soluzioni fare doppio clic su **servizi** interno hello progetto di applicazione e scegliere **Aggiungi > nuovo servizio Service Fabric**.
    
-    ![Aggiunta di un nuovo servizio a un'applicazione esistente](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
+    ![Aggiunta di una nuova applicazione esistente tooan di servizio](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
 
-2. Nella finestra di dialogo **Nuovo servizio Service Fabric** scegliere **ASP.NET Core con stato**, assegnare al servizio il nome **VotingData** e fare clic su **OK**.
+2. In hello **nuovo servizio Service Fabric** finestra di dialogo, scegliere **Stateful ASP.NET Core**e il nome hello servizio **VotingData** e premere **OK**.
 
     ![Finestra di dialogo Nuovo servizio in Visual Studio](./media/service-fabric-tutorial-create-dotnet-app/add-stateful-service.png)
 
-    Una volta creato il progetto di servizio, l'applicazione includerà due servizi. Man mano che si compila l'applicazione, è possibile aggiungere altri servizi nello stesso modo. Per ogni servizio, sarà possibile eseguire in modo indipendente il controllo della versione e l'aggiornamento.
+    Una volta creato il progetto di servizio, l'applicazione includerà due servizi. Mentre si continua a toobuild l'applicazione, è possibile aggiungere più servizi in hello allo stesso modo. Per ogni servizio, sarà possibile eseguire in modo indipendente il controllo della versione e l'aggiornamento.
 
-3. Nella pagina successiva è disponibile un set di modelli di progetto ASP.NET Core. Per questa esercitazione si sceglierà **API Web**,
+3. la pagina successiva di Hello fornisce un set di ASP.NET Core modelli di progetto. Per questa esercitazione si sceglierà **API Web**,
 
     ![Scegliere un tipo di progetto ASP.NET](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog2.png)
 
@@ -333,9 +333,9 @@ In questa esercitazione si creerà un servizio che archivia un valore del contat
 
     ![Esplora soluzioni](./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-the-votedatacontrollercs-file"></a>Aggiungere il file VoteDataController.cs
+### <a name="add-hello-votedatacontrollercs-file"></a>Aggiungere file VoteDataController.cs hello
 
-Nel progetto **VotingData** fare clic con il pulsante destro del mouse sulla cartella **Controller** e quindi selezionare **Aggiungi->Nuovo elemento->Classe**. Assegnare al file il nome "VoteDataController.cs" e fare clic su **Aggiungi**. Sostituire il contenuto del file con il codice seguente e quindi salvare le modifiche.
+In hello **VotingData** progetto pulsante destro del mouse su hello **controller** cartella, quindi selezionare **Aggiungi -> Nuovo elemento -> classe**. Nome file hello "VoteDataController.cs" e fare clic su **Aggiungi**. Sostituire il contenuto del file hello con hello seguente, quindi salvare le modifiche.
 
 ```csharp
 using System;
@@ -424,17 +424,17 @@ namespace VotingData.Controllers
 ```
 
 
-## <a name="connect-the-services"></a>Connettere i servizi
-Nel passaggio successivo i due servizi verranno connessi e l'applicazione Web front-end otterrà e imposterà informazioni di voto dal servizio back-end.
+## <a name="connect-hello-services"></a>Connessione dei servizi di hello
+In questo passaggio successivo verrà hello due servizi di connessione e rendere hello Web front-end dell'applicazione get e set di informazioni dal servizio back-end hello di voto.
 
-L'infrastruttura di servizi offre la massima flessibilità nella comunicazione con Reliable Services. All'interno di una singola applicazione possono esserci servizi accessibili tramite TCP. Altri servizi potrebbero essere accessibili tramite un'API REST HTTP e altri ancora tramite Web Socket. Per informazioni sulle opzioni disponibili e sui compromessi necessari, vedere [Comunicazione con i servizi](service-fabric-connect-and-communicate-with-services.md).
+L'infrastruttura di servizi offre la massima flessibilità nella comunicazione con Reliable Services. All'interno di una singola applicazione possono esserci servizi accessibili tramite TCP. Altri servizi potrebbero essere accessibili tramite un'API REST HTTP e altri ancora tramite Web Socket. Per informazioni sulle opzioni di hello disponibili e gli svantaggi di hello relativi, vedere [comunicazione con i servizi](service-fabric-connect-and-communicate-with-services.md).
 
 In questa esercitazione si userà l'[API Web ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md).
 
 <a id="updatevotecontroller" name="updatevotecontroller_anchor"></a>
 
-### <a name="update-the-votescontrollercs-file"></a>Aggiornare il file VotesController.cs
-Nel progetto **VotingWeb** aprire il file *Controllers/VotesController.cs*.  Sostituire il contenuto della definizione di classe `VotesController` con il codice seguente e quindi salvare le modifiche.
+### <a name="update-hello-votescontrollercs-file"></a>File di aggiornamento hello VotesController.cs
+In hello **VotingWeb** progetto, aprire hello *Controllers/VotesController.cs* file.  Sostituire hello `VotesController` classe contenuto definizione con seguenti hello, quindi salvare le modifiche.
 
 ```csharp
     public class VotesController : Controller
@@ -504,59 +504,59 @@ Nel progetto **VotingWeb** aprire il file *Controllers/VotesController.cs*.  Sos
 ```
 <a id="walkthrough" name="walkthrough_anchor"></a>
 
-## <a name="walk-through-the-voting-sample-application"></a>Descrizione dettagliata dell'applicazione di voto di esempio
-L'applicazione di voto è costituita da due servizi:
-- Il servizio front-end Web (VotingWeb) - Un servizio front-end Web ASP.NET Core che gestisce la pagina Web e che espone le API Web per la comunicazione con il servizio back-end.
-- Il servizio back-end (VotingData) - Un servizio Web ASP.NET Core che espone un'API per l'archiviazione dei risultati delle votazioni in un oggetto Reliable Dictionary reso persistente su disco.
+## <a name="walk-through-hello-voting-sample-application"></a>Procedura dettagliata hello voto applicazione di esempio
+Hello voto applicazione è costituita da due servizi:
+- Il servizio front-end (VotingWeb) Web - An ASP.NET Core web front-end del servizio, che serve a pagina web hello ed espone web toocommunicate API con il servizio back-end hello.
+- Il servizio back-end (VotingData)-servizio web di ASP.NET Core, che espone un voto di hello toostore API comporta un dizionario affidabile persistente su disco.
 
 ![Diagramma dell'applicazione](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-Quando l'utente vota nell'applicazione, si verificano gli eventi seguenti:
-1. JavaScript invia la richiesta di voto all'API Web nel servizio front-end Web come una richiesta HTTP PUT.
+Quando voto hello applicazione hello seguenti si verificano eventi:
+1. JavaScript invia API web toohello richiesta di voto hello in servizio front-end web di hello come una richiesta HTTP PUT.
 
-2. Il servizio front-end Web usa un proxy per individuare e inoltrare una richiesta PUT HTTP al servizio back-end.
+2. servizio front-end web di Hello Usa un proxy toolocate e inoltrare un servizio back-end toohello di richiesta HTTP PUT.
 
-3. Il servizio back-end accetta la richiesta in ingresso e archivia il risultato aggiornato in un oggetto Reliable Dictionary, che viene replicato in più nodi all'interno del cluster e reso persistente su disco. Tutti i dati dell'applicazione sono archiviati nel cluster, quindi non è necessario alcun database.
+3. servizio back-end Hello accetta la richiesta in ingresso hello e archivi hello aggiornamento risultato in un dizionario affidabile, che ottiene i nodi toomultiple replicati all'interno di cluster hello e persistente su disco. Dati dell'applicazione hello tutti archiviati in cluster hello, pertanto non è necessario alcun database.
 
 ## <a name="debug-in-visual-studio"></a>Eseguire il debug in Visual Studio
-Durante il debug dell'applicazione in Visual Studio, viene usato un cluster di sviluppo locale di Service Fabric. È possibile modificare l'esperienza di debug in base allo specifico scenario. In questa applicazione, i dati vengono archiviati nel servizio back-end tramite un oggetto Reliable Dictionary. Visual Studio rimuove l'applicazione per impostazione predefinita quando si arresta il debugger. La rimozione dell'applicazione determina la rimozione anche dei dati nel servizio back-end. Per rendere persistenti i dati tra le sessioni di debug, è possibile modificare la proprietà **Modalità di debug applicazione** del progetto **Voting** in Visual Studio.
+Durante il debug dell'applicazione in Visual Studio, viene usato un cluster di sviluppo locale di Service Fabric. È necessario hello opzione tooadjust lo scenario di tooyour esperienza di debug. In questa applicazione, i dati vengono archiviati nel servizio back-end tramite un oggetto Reliable Dictionary. Visual Studio rimuove un'applicazione hello per impostazione predefinita, quando si arresta il debugger hello. Rimozione di un'applicazione hello comporta hello dati back-end hello tooalso servizio da rimuovere. dati di hello toopersist tra le sessioni di debug, è possibile modificare hello **modalità di Debug dell'applicazione** come proprietà nel hello **voto** progetto in Visual Studio.
 
-Per osservare che cosa avviene nel codice, completare la procedura seguente:
-1. Aprire il file **VotesController.cs** e impostare un punto di interruzione nel metodo **Put** dell'API Web (riga 47). È possibile eseguire una ricerca nel file usando Esplora soluzioni in Visual Studio.
+toolook cosa accade nel codice hello, hello completo alla procedura seguente:
+1. Aprire hello **VotesController.cs** file e impostare un punto di interruzione dell'API web hello **inserire** (metodo) (riga 47), è possibile cercare file hello in hello Esplora soluzioni in Visual Studio.
 
-2. Aprire il file **VoteDataController.cs** e impostare un punto di interruzione nel metodo **Put** dell'API Web (riga 50).
+2. Aprire hello **VoteDataController.cs** file e impostare un punto di interruzione in questa web API **inserire** (metodo) (riga 50).
 
-3. Tornare al browser e fare clic su un'opzione di voto oppure aggiungere una nuova opzione di voto. È stato raggiunto il primo punto di interruzione nel controller API del front-end Web.
+3. Tornare indietro del browser toohello e fare clic su un'opzione di voto oppure aggiungere una nuova opzione di voto. È stato raggiunto punto di interruzione prima hello nel controller api hello web front-end.
     
-    1. In questa posizione, il codice JavaScript nel browser invia una richiesta al controller API Web nel servizio front-end.
+    1. Si tratta di dove hello JavaScript nel browser hello invia un controller di API web toohello richiesta nel servizio front-end hello.
     
     ![Aggiungere il servizio front-end di voto](./media/service-fabric-tutorial-create-dotnet-app/addvote-frontend.png)
 
-    2. Prima di tutto, costruire l'URL del proxy inverso per il servizio back-end **(1)**.
-    3. Inviare quindi la richiesta PUT HTTP al proxy inverso **(2)**.
-    4. Infine, restituire la risposta dal servizio back-end al client **(3)**.
+    2. Prima di tutto è costruire hello URL toohello ReverseProxy per il servizio back-end **(1)**.
+    3. Quindi inviare hello HTTP PUT richiesta toohello ReverseProxy **(2)**.
+    4. Infine hello restituiamo risposta hello client toohello servizio back-end di hello **(3)**.
 
-4. Premere **F5** per continuare.
-    1. Ora ci troviamo al punto di interruzione nel servizio back-end.
+4. Premere **F5** toocontinue
+    1. Sono ora al punto di interruzione hello in servizio back-end hello.
     
     ![Aggiungere il servizio back-end di voto](./media/service-fabric-tutorial-create-dotnet-app/addvote-backend.png)
 
-    2. Nella prima riga del metodo **(1)** usiamo `StateManager` per ottenere o aggiungere un oggetto Reliable Dictionary denominato `counts`.
+    2. Nella prima riga di hello nel metodo hello **(1)** usiamo hello `StateManager` tooget o aggiungere un dizionario affidabile denominato `counts`.
     3. Tutte le interazioni con i valori in un oggetto Reliable Dictionary richiedono una transazione, che viene creata dall'istruzione using **(2)**.
-    4. Nella transazione, aggiorniamo quindi il valore della chiave pertinente per l'opzione di voto e viene eseguito il commit dell'operazione **(3)**. Dopo la restituzione del metodo Commit, i dati vengono aggiornati nel dizionario e replicati negli altri nodi del cluster. A questo punto, i dati sono archiviati in modo sicuro nel cluster e il servizio back-end può eseguire il failover in altri nodi, rendendo comunque disponibili i dati.
-5. Premere **F5** per continuare.
+    4. Transazione hello, è stato quindi aggiornare il valore di hello della chiave pertinenti di hello per hello voto opzione e commit hello operazione **(3)**. Dopo il commit di hello metodo viene restituito, hello dati viene aggiornati nel dizionario hello e replicati tooother nodi nel cluster hello. dati Hello sono ora archiviati in modo sicuro in cluster hello e servizio back-end hello failover dei nodi tooother, persistono dati hello disponibili.
+5. Premere **F5** toocontinue
 
-Per interrompere la sessione di debug, premere **MAIUSC+F5**.
+hello toostop debug sessione, premere **MAIUSC + F5**.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa parte dell'esercitazione si è appreso come:
+In questa parte dell'esercitazione di hello, si è appreso come:
 
 > [!div class="checklist"]
 > * Creare un servizio API Web ASP.NET Core come servizio Reliable con stato
 > * Creare un servizio applicazione Web ASP.NET Core come servizio Web senza stato
-> * Usare il proxy inverso per comunicare con il servizio con stato
+> * Utilizzare hello proxy inverso toocommunicate con il servizio con stato hello
 
-Passare all'esercitazione successiva:
+Esercitazione successiva toohello avanzate:
 > [!div class="nextstepaction"]
-> [Distribuire l'applicazione in Azure](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> [Distribuire tooAzure applicazione hello](service-fabric-tutorial-deploy-app-to-party-cluster.md)

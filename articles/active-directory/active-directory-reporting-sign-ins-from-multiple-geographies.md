@@ -1,6 +1,6 @@
 ---
-title: "Accessi da più aree geografiche"
-description: "Report che segnala agli utenti situazioni in cui due accessi sembrano provenire da diverse aree, ma dato il tempo intercorso tra gli accessi non è possibile che l'utente si sia spostato da un'area all'altra."
+title: "aaaSign relativo ad accessi da più aree geografiche"
+description: Un report che indica gli utenti in cui due accessi sembrava toooriginate aree geografiche diverse e hello tempo intercorso tra hello che accessi rende impossibile per toohave utente hello intercorso.
 services: active-directory
 documentationcenter: 
 author: SSalahAhmed
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 1de57f64692ade442f9ef8d1e3b587ffee35d7cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7c2e9589558476f36f6ae319f807f151b6144e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sign-ins-from-multiple-geographies"></a><span data-ttu-id="d7cce-103">Accessi da più aree geografiche</span><span class="sxs-lookup"><span data-stu-id="d7cce-103">Sign-ins from multiple geographies</span></span>
-<span data-ttu-id="d7cce-104">Questo report mostra gli accessi effettuati da un utente e due di questi sembrano provenire da aree diverse. Dato il tempo intercorso tra gli accessi non è possibile che l'utente si sia spostato da un'area all'altra.</span><span class="sxs-lookup"><span data-stu-id="d7cce-104">This report includes successful sign-ins from a user where two sign-ins appeared to originate from different regions and the time between the sign-ins makes it impossible for the user to have traveled between those regions.</span></span> <span data-ttu-id="d7cce-105">Le possibili cause includono:</span><span class="sxs-lookup"><span data-stu-id="d7cce-105">Possible causes include:</span></span>
+# <a name="sign-ins-from-multiple-geographies"></a><span data-ttu-id="5f752-103">Accessi da più aree geografiche</span><span class="sxs-lookup"><span data-stu-id="5f752-103">Sign-ins from multiple geographies</span></span>
+<span data-ttu-id="5f752-104">Questo report include accessi ha esito positivo da un utente in cui due accessi sembrava toooriginate da aree geografiche diverse e il tempo di hello tra hello accessi rende impossibile toohave utente hello percorsa tra le aree geografiche.</span><span class="sxs-lookup"><span data-stu-id="5f752-104">This report includes successful sign-ins from a user where two sign-ins appeared toooriginate from different regions and hello time between hello sign-ins makes it impossible for hello user toohave traveled between those regions.</span></span> <span data-ttu-id="5f752-105">Le possibili cause includono:</span><span class="sxs-lookup"><span data-stu-id="5f752-105">Possible causes include:</span></span>
 
-* <span data-ttu-id="d7cce-106">L'utente sta condividendo la password</span><span class="sxs-lookup"><span data-stu-id="d7cce-106">User is sharing their password with other users</span></span>
-* <span data-ttu-id="d7cce-107">L'utente usa un desktop remoto per avviare un Web browser per l'accesso</span><span class="sxs-lookup"><span data-stu-id="d7cce-107">User is using a remote desktop to launch a web browser for sign-in</span></span>
-* <span data-ttu-id="d7cce-108">Un pirata informatico ha effettuato l'accesso all'account di un utente da un altro paese</span><span class="sxs-lookup"><span data-stu-id="d7cce-108">A hacker has signed in to the account of a user from a different country</span></span>
-* <span data-ttu-id="d7cce-109">L’utente sta usando una VPN o un proxy</span><span class="sxs-lookup"><span data-stu-id="d7cce-109">User is using a VPN or proxy</span></span>
-* <span data-ttu-id="d7cce-110">L'utente ha eseguito l'accesso da più dispositivi contemporaneamente, ad esempio da un computer desktop e da un cellulare, e l'indirizzo IP del cellulare è insolito.</span><span class="sxs-lookup"><span data-stu-id="d7cce-110">User is signed in from multiple devices at the same time, such as a desktop and a mobile phone, and the IP address of the mobile phone is unusual.</span></span>
+* <span data-ttu-id="5f752-106">L'utente sta condividendo la password</span><span class="sxs-lookup"><span data-stu-id="5f752-106">User is sharing their password with other users</span></span>
+* <span data-ttu-id="5f752-107">Utente utilizza un toolaunch desktop remoto un web browser per l'accesso</span><span class="sxs-lookup"><span data-stu-id="5f752-107">User is using a remote desktop toolaunch a web browser for sign-in</span></span>
+* <span data-ttu-id="5f752-108">Un pirata informatico abbia eseguito l'accesso toohello account di un utente da un paese diverso</span><span class="sxs-lookup"><span data-stu-id="5f752-108">A hacker has signed in toohello account of a user from a different country</span></span>
+* <span data-ttu-id="5f752-109">L’utente sta usando una VPN o un proxy</span><span class="sxs-lookup"><span data-stu-id="5f752-109">User is using a VPN or proxy</span></span>
+* <span data-ttu-id="5f752-110">Utente è connesso da più dispositivi in hello stesso tempo, ad esempio un desktop e di un telefono cellulare e hello IP indirizzo del telefono cellulare hello è insolito.</span><span class="sxs-lookup"><span data-stu-id="5f752-110">User is signed in from multiple devices at hello same time, such as a desktop and a mobile phone, and hello IP address of hello mobile phone is unusual.</span></span>
 
-<span data-ttu-id="d7cce-111">Nei risultati del report verranno mostrati gli eventi di accesso riuscito, nonché il tempo tra gli accessi, le aree da cui gli accessi sembrano provenire e il tempo di spostamento stimato tra queste aree.</span><span class="sxs-lookup"><span data-stu-id="d7cce-111">Results from this report will show you the successful sign-in events, together with the time between the sign-ins, the regions where the sign-ins appeared to originate from, and the estimated travel time between those regions.</span></span> <span data-ttu-id="d7cce-112">Il tempo di spostamento mostrato è solo una stima e può essere diverso da quello effettivamente necessario per spostarsi da una posizione all’altra.</span><span class="sxs-lookup"><span data-stu-id="d7cce-112">The travel time shown is only an estimate and may be different from the actual travel time between the locations.</span></span>
+<span data-ttu-id="5f752-111">Nei risultati del report verranno mostrati hello eventi di accesso ha esito positivo, insieme a tempo hello tra hello accessi, hello aree in cui è stato visualizzato hello accessi toooriginate da e hello stimato tra le aree geografiche.</span><span class="sxs-lookup"><span data-stu-id="5f752-111">Results from this report will show you hello successful sign-in events, together with hello time between hello sign-ins, hello regions where hello sign-ins appeared toooriginate from, and hello estimated travel time between those regions.</span></span> <span data-ttu-id="5f752-112">tempo impiegato Hello mostrato è solo una stima e può essere diverso da tempo effettivo hello tra i percorsi di hello.</span><span class="sxs-lookup"><span data-stu-id="5f752-112">hello travel time shown is only an estimate and may be different from hello actual travel time between hello locations.</span></span>
 
 ![Accessi da più aree geografiche](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
 

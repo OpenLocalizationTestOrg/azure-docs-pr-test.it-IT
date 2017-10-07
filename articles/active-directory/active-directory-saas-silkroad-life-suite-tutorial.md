@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con SilkRoad Life Suite | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e SilkRoad Life Suite.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e SilkRoad vita Suite.
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,260 +14,260 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/10/2017
 ms.author: jeedes
-ms.openlocfilehash: ecf4e31ecea00d003fc47ea4cebb781ca58957f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 07367282ab42b7332f166d64743b4b447aec4935
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-silkroad-life-suite"></a><span data-ttu-id="f6653-103">Esercitazione: Integrazione di Azure Active Directory con SilkRoad Life Suite</span><span class="sxs-lookup"><span data-stu-id="f6653-103">Tutorial: Azure Active Directory integration with SilkRoad Life Suite</span></span>
-<span data-ttu-id="f6653-104">Questa esercitazione descrive l'integrazione di SilkRoad Life Suite con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="f6653-104">The objective of this tutorial is to show you how to integrate SilkRoad Life Suite with Azure Active Directory (Azure AD).</span></span> 
+# <a name="tutorial-azure-active-directory-integration-with-silkroad-life-suite"></a><span data-ttu-id="3a7cf-103">Esercitazione: Integrazione di Azure Active Directory con SilkRoad Life Suite</span><span class="sxs-lookup"><span data-stu-id="3a7cf-103">Tutorial: Azure Active Directory integration with SilkRoad Life Suite</span></span>
+<span data-ttu-id="3a7cf-104">obiettivo di Hello di questa esercitazione è tooshow è come toointegrate SilkRoad vita Suite con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-104">hello objective of this tutorial is tooshow you how toointegrate SilkRoad Life Suite with Azure Active Directory (Azure AD).</span></span> 
 
-<span data-ttu-id="f6653-105">L'integrazione di SilkRoad Life Suite con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="f6653-105">Integrating SilkRoad Life Suite with Azure AD provides you with the following benefits:</span></span> 
+<span data-ttu-id="3a7cf-105">Integrazione SilkRoad vita Suite con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-105">Integrating SilkRoad Life Suite with Azure AD provides you with hello following benefits:</span></span> 
 
-* <span data-ttu-id="f6653-106">È possibile controllare in Azure AD chi può accedere a SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-106">You can control in Azure AD who has access to SilkRoad Life Suite</span></span> 
-* <span data-ttu-id="f6653-107">È possibile abilitare gli utenti per l'accesso automatico a SilkRoad Life Suite Single Sign-On (SSO) con i propri account Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-107">You can enable your users to automatically get signed-on to SilkRoad Life Suite single sign-on (SSO) with their Azure AD accounts</span></span>
+* <span data-ttu-id="3a7cf-106">È possibile controllare in Azure AD che ha accesso tooSilkRoad vita Suite</span><span class="sxs-lookup"><span data-stu-id="3a7cf-106">You can control in Azure AD who has access tooSilkRoad Life Suite</span></span> 
+* <span data-ttu-id="3a7cf-107">È possibile abilitare l'utenti tooautomatically get connesso tooSilkRoad vita Suite single sign-on (SSO) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-107">You can enable your users tooautomatically get signed-on tooSilkRoad Life Suite single sign-on (SSO) with their Azure AD accounts</span></span>
 
-<span data-ttu-id="f6653-108">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="f6653-108">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="3a7cf-108">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-108">If you want tooknow more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="f6653-109">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="f6653-109">Prerequisites</span></span>
-<span data-ttu-id="f6653-110">Per configurare l'integrazione di Azure AD con SilkRoad Life Suite, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="f6653-110">To configure Azure AD integration with SilkRoad Life Suite, you need the following items:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="3a7cf-109">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="3a7cf-109">Prerequisites</span></span>
+<span data-ttu-id="3a7cf-110">integrazione di Azure AD con SilkRoad vita Suite tooconfigure, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-110">tooconfigure Azure AD integration with SilkRoad Life Suite, you need hello following items:</span></span>
 
-* <span data-ttu-id="f6653-111">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-111">An Azure AD subscription</span></span>
-* <span data-ttu-id="f6653-112">Sottoscrizione di SilkRoad Life Suite abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="f6653-112">A SilkRoad Life Suite SSO enabled subscription</span></span>
+* <span data-ttu-id="3a7cf-111">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-111">An Azure AD subscription</span></span>
+* <span data-ttu-id="3a7cf-112">Sottoscrizione di SilkRoad Life Suite abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="3a7cf-112">A SilkRoad Life Suite SSO enabled subscription</span></span>
 
 >[!NOTE]
-><span data-ttu-id="f6653-113">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="f6653-113">To test the steps in this tutorial, we do not recommend using a production environment.</span></span> 
+><span data-ttu-id="3a7cf-113">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-113">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span> 
 > 
 
-<span data-ttu-id="f6653-114">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="f6653-114">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="3a7cf-114">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-114">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-* <span data-ttu-id="f6653-115">Non usare l'ambiente di produzione, a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="f6653-115">You should not use your production environment, unless this is necessary.</span></span>
-* <span data-ttu-id="f6653-116">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="f6653-116">If you don't have an Azure AD trial environment, you can get a [one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+* <span data-ttu-id="3a7cf-115">Non usare l'ambiente di produzione, a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-115">You should not use your production environment, unless this is necessary.</span></span>
+* <span data-ttu-id="3a7cf-116">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-116">If you don't have an Azure AD trial environment, you can get a [one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
 
-## <a name="scenario-description"></a><span data-ttu-id="f6653-117">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="f6653-117">Scenario Description</span></span>
-<span data-ttu-id="f6653-118">L'obiettivo di questa esercitazione è quello di testare l'accesso Single Sign-On (SSO) di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="f6653-118">The objective of this tutorial is to enable you to test Azure AD SSO in a test environment.</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="3a7cf-117">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="3a7cf-117">Scenario Description</span></span>
+<span data-ttu-id="3a7cf-118">obiettivo di Hello di questa esercitazione è tooenable si tootest SSO AD Azure in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-118">hello objective of this tutorial is tooenable you tootest Azure AD SSO in a test environment.</span></span>
 
-<span data-ttu-id="f6653-119">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="f6653-119">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+<span data-ttu-id="3a7cf-119">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-119">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="f6653-120">Aggiunta di SilkRoad Life Suite dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="f6653-120">Adding SilkRoad Life Suite from the gallery</span></span> 
-2. <span data-ttu-id="f6653-121">Configurazione e test dell'accesso Single Sign-On (SSO) di Microsoft Azure AD</span><span class="sxs-lookup"><span data-stu-id="f6653-121">Configuring and testing Azure AD SSO</span></span>
+1. <span data-ttu-id="3a7cf-120">Aggiunta gruppo vita SilkRoad dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="3a7cf-120">Adding SilkRoad Life Suite from hello gallery</span></span> 
+2. <span data-ttu-id="3a7cf-121">Configurazione e test dell'accesso Single Sign-On (SSO) di Microsoft Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-121">Configuring and testing Azure AD SSO</span></span>
 
-## <a name="add-silkroad-life-suite-from-the-gallery"></a><span data-ttu-id="f6653-122">Aggiungere SilkRoad Life Suite dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="f6653-122">Add SilkRoad Life Suite from the gallery</span></span>
-<span data-ttu-id="f6653-123">Per configurare l'integrazione di SilkRoad Life Suite in Azure AD, è necessario aggiungere SilkRoad Life Suite dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="f6653-123">To configure the integration of SilkRoad Life Suite into Azure AD, you need to add SilkRoad Life Suite from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="add-silkroad-life-suite-from-hello-gallery"></a><span data-ttu-id="3a7cf-122">Aggiungere il gruppo di vita SilkRoad dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="3a7cf-122">Add SilkRoad Life Suite from hello gallery</span></span>
+<span data-ttu-id="3a7cf-123">integrazione hello tooconfigure di SilkRoad vita Suite in Azure AD, è necessario tooadd SilkRoad vita gruppo dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-123">tooconfigure hello integration of SilkRoad Life Suite into Azure AD, you need tooadd SilkRoad Life Suite from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="f6653-124">**Per aggiungere SilkRoad Life Suite dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="f6653-124">**To add SilkRoad Life Suite from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="3a7cf-124">**tooadd SilkRoad vita Suite dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3a7cf-124">**tooadd SilkRoad Life Suite from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f6653-125">Nel **portale di Azure classico**fare clic su **Active Directory**nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="f6653-125">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span> 
+1. <span data-ttu-id="3a7cf-125">In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-125">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span> 
    
     ![Active Directory][1]
 
-2. <span data-ttu-id="f6653-127">Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.</span><span class="sxs-lookup"><span data-stu-id="f6653-127">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="3a7cf-127">Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-127">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="f6653-128">Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.</span><span class="sxs-lookup"><span data-stu-id="f6653-128">To open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+3. <span data-ttu-id="3a7cf-128">visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-128">tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
    
-    ![Applications][2]
+    ![Applicazioni][2]
 
-4. <span data-ttu-id="f6653-130">Fare clic su **Add** nella parte inferiore della pagina.</span><span class="sxs-lookup"><span data-stu-id="f6653-130">Click **Add** at the bottom of the page.</span></span>
+4. <span data-ttu-id="3a7cf-130">Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-130">Click **Add** at hello bottom of hello page.</span></span>
    
     ![Applicazioni][3]
 
-5. <span data-ttu-id="f6653-132">Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.</span><span class="sxs-lookup"><span data-stu-id="f6653-132">On the **What do you want to do** dialog, click **Add an application from the gallery**.</span></span>
+5. <span data-ttu-id="3a7cf-132">In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-132">On hello **What do you want toodo** dialog, click **Add an application from hello gallery**.</span></span>
    
     ![Applicazioni][4]
 
-6. <span data-ttu-id="f6653-134">Nella casella di ricerca digitare **SilkRoad Life Suite**.</span><span class="sxs-lookup"><span data-stu-id="f6653-134">In the search box, type **SilkRoad Life Suite**.</span></span>
+6. <span data-ttu-id="3a7cf-134">Nella casella di ricerca hello, digitare **SilkRoad vita Suite**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-134">In hello search box, type **SilkRoad Life Suite**.</span></span>
    
     ![Applicazioni][5]
 
-7. <span data-ttu-id="f6653-136">Nel riquadro dei risultati selezionare **SilkRoad Life Suite** e quindi fare clic su **Completa** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="f6653-136">In the results pane, select **SilkRoad Life Suite**, and then click **Complete** to add the application.</span></span>
+7. <span data-ttu-id="3a7cf-136">Nel riquadro risultati hello selezionare **SilkRoad vita Suite**, quindi fare clic su **completa** tooadd un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-136">In hello results pane, select **SilkRoad Life Suite**, and then click **Complete** tooadd hello application.</span></span>
    
     ![Applicazioni][50]
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="f6653-138">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f6653-138">Configure and test Azure AD single sign-on</span></span>
-<span data-ttu-id="f6653-139">Questa sezione descrive come configurare e testare l'accesso SSO di Azure AD con SilkRoad Life Suite in base a un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="f6653-139">The objective of this section is to show you how to configure and test Azure AD SSO with SilkRoad Life Suite based on a test user called "Britta Simon".</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="3a7cf-138">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-138">Configure and test Azure AD single sign-on</span></span>
+<span data-ttu-id="3a7cf-139">obiettivo di Hello di questa sezione è tooshow come tooconfigure e SSO AD Azure con SilkRoad vita Suite di test basato su un utente di test denominato "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="3a7cf-139">hello objective of this section is tooshow you how tooconfigure and test Azure AD SSO with SilkRoad Life Suite based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="f6653-140">Per il funzionamento dell'accesso SSO, Azure AD deve conoscere qual è l'utente di SilkRoad Life Suite che corrisponde a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-140">For SSO to work, Azure AD needs to know what the counterpart user in SilkRoad Life Suite to an user in Azure AD is.</span></span> <span data-ttu-id="f6653-141">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-141">In other words, a link relationship between an Azure AD user and the related user in SilkRoad Life Suite needs to be established.</span></span>
+<span data-ttu-id="3a7cf-140">Per toowork SSO, Azure AD deve tooknow è quale utente controparte hello utente tooan SilkRoad vita Suite in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-140">For SSO toowork, Azure AD needs tooknow what hello counterpart user in SilkRoad Life Suite tooan user in Azure AD is.</span></span> <span data-ttu-id="3a7cf-141">In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello SilkRoad vita Suite deve toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-141">In other words, a link relationship between an Azure AD user and hello related user in SilkRoad Life Suite needs toobe established.</span></span>
 
-<span data-ttu-id="f6653-142">La relazione di collegamento viene stabilita assegnando il valore di **nome utente** in Azure AD come valore di **Username** (Nome utente) in SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-142">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in SilkRoad Life Suite.</span></span>
+<span data-ttu-id="3a7cf-142">Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** SilkRoad vita Suite.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-142">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in SilkRoad Life Suite.</span></span>
 
-<span data-ttu-id="f6653-143">Per configurare e testare l'accesso Single Sign-On di Azure AD con SilkRoad Life Suite, è necessario completare i blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="f6653-143">To configure and test Azure AD single sign-on with SilkRoad Life Suite, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="3a7cf-143">tooconfigure e prova AD Azure single sign-on con SilkRoad vita Suite, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-143">tooconfigure and test Azure AD single sign-on with SilkRoad Life Suite, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="f6653-144">**[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-single-sign-on)**: per abilitare gli utenti all'uso di questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="f6653-144">**[Configuring Azure AD single sign-on](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="f6653-145">**[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="f6653-145">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="f6653-146">**[Creazione di un utente di test di SilkRoad Life Suite](#creating-a-silkroad-life-suite-test-user)** : per avere una controparte di Britta Simon in SilkRoad Life Suite collegata alla relativa rappresentazione in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-146">**[Creating a SilkRoad Life Suite test user](#creating-a-silkroad-life-suite-test-user)** - to have a counterpart of Britta Simon in SilkRoad Life Suite that is linked to the Azure AD representation of her.</span></span>
-4. <span data-ttu-id="f6653-147">**[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-147">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="f6653-148">**[Test dell'accesso Single Sign-On](#testing-single-sign-on)**: per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="f6653-148">**[Testing single sign-on](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="3a7cf-144">**[Configurazione di Azure single sign-on AD](#configuring-azure-ad-single-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-144">**[Configuring Azure AD single sign-on](#configuring-azure-ad-single-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="3a7cf-145">**[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-145">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="3a7cf-146">**[Creazione di un utente test SilkRoad vita Suite](#creating-a-silkroad-life-suite-test-user)**  -toohave un equivalente di Britta Simon SilkRoad vita Suite rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-146">**[Creating a SilkRoad Life Suite test user](#creating-a-silkroad-life-suite-test-user)** - toohave a counterpart of Britta Simon in SilkRoad Life Suite that is linked toohello Azure AD representation of her.</span></span>
+4. <span data-ttu-id="3a7cf-147">**[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-147">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="3a7cf-148">**[Test di accesso single sign-on](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-148">**[Testing single sign-on](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="f6653-149">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f6653-149">Configure Azure AD single sign-on</span></span>
-<span data-ttu-id="f6653-150">Questa sezione descrive come abilitare l'accesso SSO di Azure AD nel portale di Azure classico e configurare l'accesso SSO nell'applicazione SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-150">The objective of this section is to enable Azure AD SSO in the Azure classic portal and to configure SSO in your SilkRoad Life Suite application.</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="3a7cf-149">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-149">Configure Azure AD single sign-on</span></span>
+<span data-ttu-id="3a7cf-150">obiettivo di Hello di questa sezione è tooenable SSO AD Azure nel portale di Azure classico hello e tooconfigure SSO nell'applicazione SilkRoad vita Suite.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-150">hello objective of this section is tooenable Azure AD SSO in hello Azure classic portal and tooconfigure SSO in your SilkRoad Life Suite application.</span></span>
 
-<span data-ttu-id="f6653-151">**Per configurare Single Sign-On di Azure AD con SilkRoad Life Suite, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="f6653-151">**To configure Azure AD single sign-on with SilkRoad Life Suite, perform the following steps:**</span></span>
+<span data-ttu-id="3a7cf-151">**tooconfigure AD Azure single sign-on con SilkRoad vita Suite eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3a7cf-151">**tooconfigure Azure AD single sign-on with SilkRoad Life Suite, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f6653-152">Accedere al sito aziendale di SilkRoad come amministratore.</span><span class="sxs-lookup"><span data-stu-id="f6653-152">Sign-on to your SilkRoad company site as administrator.</span></span> 
+1. <span data-ttu-id="3a7cf-152">Sito dell'azienda SilkRoad tooyour accesso come amministratore.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-152">Sign-on tooyour SilkRoad company site as administrator.</span></span> 
 
   >[!NOTE] 
-  > <span data-ttu-id="f6653-153">Per ottenere l'accesso all'applicazione SilkRoad Life Suite Authentication per configurare la federazione con Microsoft Azure AD, contattare il supporto SilkRoad o il rappresentante dei servizi SilkRoad.</span><span class="sxs-lookup"><span data-stu-id="f6653-153">To obtain access to the SilkRoad Life Suite Authentication application for configuring federation with Microsoft Azure AD, please contact SilkRoad Support or your SilkRoad Services representative.</span></span>
+  > <span data-ttu-id="3a7cf-153">tooobtain accesso toohello applicazione SilkRoad vita Suite autenticazione per configurare la federazione con Microsoft Azure AD, contattare il supporto SilkRoad o il rappresentante SilkRoad servizi.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-153">tooobtain access toohello SilkRoad Life Suite Authentication application for configuring federation with Microsoft Azure AD, please contact SilkRoad Support or your SilkRoad Services representative.</span></span>
   > 
 
-2. <span data-ttu-id="f6653-154">Passare a **Service Provider** (Provider di servizi) e quindi fare clic su **Federation Details** (Dettagli federazione).</span><span class="sxs-lookup"><span data-stu-id="f6653-154">Go to **Service Provider**, and then click **Federation Details**.</span></span> 
+2. <span data-ttu-id="3a7cf-154">Andare troppo**Provider di servizi**, quindi fare clic su **federazione dettagli**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-154">Go too**Service Provider**, and then click **Federation Details**.</span></span> 
    
     ![Single Sign-On di Microsoft Azure AD][10] 
 
-3. <span data-ttu-id="f6653-156">Fare clic su **Download Federation Metadata**(Scarica metadati federazione) e quindi salvare il file di metadati nel computer.</span><span class="sxs-lookup"><span data-stu-id="f6653-156">Click **Download Federation Metadata**, and then save the metadata file on your computer.</span></span>
+3. <span data-ttu-id="3a7cf-156">Fare clic su **scaricare i metadati della federazione**e quindi salvare il file di metadati hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-156">Click **Download Federation Metadata**, and then save hello metadata file on your computer.</span></span>
    
     ![Single Sign-On di Microsoft Azure AD][11] 
 
-4. <span data-ttu-id="f6653-158">Nella pagina di integrazione dell'applicazione **SilkRoad Life Suite** del portale di Azure classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="f6653-158">In the Azure classic portal, on the **SilkRoad Life Suite** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.</span></span>
+4. <span data-ttu-id="3a7cf-158">Nel portale di Azure classico, in hello hello **SilkRoad vita Suite** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On**  finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-158">In hello Azure classic portal, on hello **SilkRoad Life Suite** application integration page, click **Configure single sign-on** tooopen hello **Configure Single Sign-On**  dialog.</span></span>
    
     ![Configura accesso Single Sign-On][6] 
 
-5. <span data-ttu-id="f6653-160">Nella pagina **Stabilire come si desidera che gli utenti accedano a SilkRoad Life Suite** selezionare **Single Sign-On di Microsoft Azure AD** e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-160">On the **How would you like users to sign on to SilkRoad Life Suite** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
+5. <span data-ttu-id="3a7cf-160">In hello **come si sarebbe ad esempio utenti toosign su tooSilkRoad vita Suite** selezionare **Azure Single Sign-On AD**e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-160">On hello **How would you like users toosign on tooSilkRoad Life Suite** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
    
     ![Single Sign-On di Microsoft Azure AD][7] 
 
-6. <span data-ttu-id="f6653-162">Nella pagina **Configurare le impostazioni dell'app** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-162">On the **Configure App Settings** dialog page, perform the following steps:</span></span>
+6. <span data-ttu-id="3a7cf-162">In hello **Configura impostazioni App** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-162">On hello **Configure App Settings** dialog page, perform hello following steps:</span></span>
    
     ![Single Sign-On di Microsoft Azure AD][8]   
- 1. <span data-ttu-id="f6653-164">Nella casella di testo **URL di accesso** digitare l'URL usato dagli utenti per accedere al sito SilkRoad Life Suite, ad esempio *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*.</span><span class="sxs-lookup"><span data-stu-id="f6653-164">In the **Sign On URL** textbox, type the URL used by your users to sign-on to your SilkRoad Life Suite site (e.g.: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).</span></span>  
- 2. <span data-ttu-id="f6653-165">Aprire il file dei metadati **Silkroad** scaricato.</span><span class="sxs-lookup"><span data-stu-id="f6653-165">Open the downloaded **Silkroad** metadata file.</span></span> 
- 3. <span data-ttu-id="f6653-166">Trovare il tag **AssertionConsumerService** e quindi copiare l'attributo **Location**.</span><span class="sxs-lookup"><span data-stu-id="f6653-166">Locate the **AssertionConsumerService** tag, and then copy the **Location** attribute.</span></span>         
+ 1. <span data-ttu-id="3a7cf-164">In hello **URL di accesso** casella di testo, digitare l'URL hello utilizzato dal sito SilkRoad vita Suite tooyour toosign-on agli utenti (ad esempio: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-164">In hello **Sign On URL** textbox, type hello URL used by your users toosign-on tooyour SilkRoad Life Suite site (e.g.: *https://defcompanytest-test-redcarpet.silkroad-eng.com/Authentication/*).</span></span>  
+ 2. <span data-ttu-id="3a7cf-165">Aprire hello scaricato **Silkroad** file di metadati.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-165">Open hello downloaded **Silkroad** metadata file.</span></span> 
+ 3. <span data-ttu-id="3a7cf-166">Individuare hello **AssertionConsumerService** tag e quindi hello copia **percorso** attributo.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-166">Locate hello **AssertionConsumerService** tag, and then copy hello **Location** attribute.</span></span>         
    
     ![Single Sign-On di Microsoft Azure AD][21] 
- 4. <span data-ttu-id="f6653-168">Incollare il valore nella casella di testo **URL di risposta** .</span><span class="sxs-lookup"><span data-stu-id="f6653-168">Paste the value into the **Reply URL** textbox.</span></span>  
- 5. <span data-ttu-id="f6653-169">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-169">Click **Next**.</span></span>
+ 4. <span data-ttu-id="3a7cf-168">Incollare il valore di hello hello **URL di risposta** casella di testo.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-168">Paste hello value into hello **Reply URL** textbox.</span></span>  
+ 5. <span data-ttu-id="3a7cf-169">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-169">Click **Next**.</span></span>
 
-6. <span data-ttu-id="f6653-170">Nella pagina **Configura accesso Single Sign-On in SilkRoad Life Suite** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-170">On the **Configure single sign-on at SilkRoad Life Suite** page, perform the following steps:</span></span>
+6. <span data-ttu-id="3a7cf-170">In hello **Configura accesso single sign-on SilkRoad vita Suite** eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-170">On hello **Configure single sign-on at SilkRoad Life Suite** page, perform hello following steps:</span></span>
    
     ![Single Sign-On di Microsoft Azure AD][9]  
- 1. <span data-ttu-id="f6653-172">Fare clic su Download certificato e quindi salvare il file nel computer.</span><span class="sxs-lookup"><span data-stu-id="f6653-172">Click Download certificate, and then save the file on your computer.</span></span>  
- 2. <span data-ttu-id="f6653-173">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-173">Click **Next**.</span></span>
+ 1. <span data-ttu-id="3a7cf-172">Fare clic su Download certificate e quindi salvare il file hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-172">Click Download certificate, and then save hello file on your computer.</span></span>  
+ 2. <span data-ttu-id="3a7cf-173">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-173">Click **Next**.</span></span>
 
-7. <span data-ttu-id="f6653-174">Nell'applicazione **SilkRoad**, fare clic su **Authentication Sources** (Origini autenticazione).</span><span class="sxs-lookup"><span data-stu-id="f6653-174">In your **SilkRoad** application, click **Authentication Sources**.</span></span>
+7. <span data-ttu-id="3a7cf-174">Nell'applicazione **SilkRoad**, fare clic su **Authentication Sources** (Origini autenticazione).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-174">In your **SilkRoad** application, click **Authentication Sources**.</span></span>
    
     ![Single Sign-On di Microsoft Azure AD][12] 
 
-8. <span data-ttu-id="f6653-176">Fare clic su **Add Authentication Source**(Aggiungi origine autenticazione).</span><span class="sxs-lookup"><span data-stu-id="f6653-176">Click **Add Authentication Source**.</span></span> 
+8. <span data-ttu-id="3a7cf-176">Fare clic su **Add Authentication Source**(Aggiungi origine autenticazione).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-176">Click **Add Authentication Source**.</span></span> 
    
-    ![Accesso Single Sign-On di Azure AD][13] 
+    ![Single Sign-On di Microsoft Azure AD][13] 
 
-9. <span data-ttu-id="f6653-178">Nella sezione **Add Authentication Source** (Aggiungi origine autenticazione) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-178">In the **Add Authentication Source** section, perform the following steps:</span></span> 
+9. <span data-ttu-id="3a7cf-178">In hello **Aggiungi origine autenticazione** seguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-178">In hello **Add Authentication Source** section, perform hello following steps:</span></span> 
    
     ![Single Sign-On di Microsoft Azure AD][14]  
- 1. <span data-ttu-id="f6653-180">In **Option 2 - Metadata File** (Opzione 2 - File di metadati) fare clic su **Browse** (Sfoglia) per caricare il file di metadati scaricato.</span><span class="sxs-lookup"><span data-stu-id="f6653-180">Under **Option 2 - Metadata File**, click **Browse** to upload the downloaded metadata file.</span></span>  
- 2. <span data-ttu-id="f6653-181">Fare clic su **Create Identity Provider using File Data**.</span><span class="sxs-lookup"><span data-stu-id="f6653-181">Click **Create Identity Provider using File Data**.</span></span>
+ 1. <span data-ttu-id="3a7cf-180">In **opzione 2 - File di metadati**, fare clic su **Sfoglia** hello tooupload scaricato i file di metadati.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-180">Under **Option 2 - Metadata File**, click **Browse** tooupload hello downloaded metadata file.</span></span>  
+ 2. <span data-ttu-id="3a7cf-181">Fare clic su **Create Identity Provider using File Data**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-181">Click **Create Identity Provider using File Data**.</span></span>
 
-10. <span data-ttu-id="f6653-182">Nella sezione **Authentication Sources** (Origini autenticazione) fare clic su **Edit** (Modifica).</span><span class="sxs-lookup"><span data-stu-id="f6653-182">In the **Authentication Sources** section, click **Edit**.</span></span> 
+10. <span data-ttu-id="3a7cf-182">In hello **origini di autenticazione** fare clic su **modifica**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-182">In hello **Authentication Sources** section, click **Edit**.</span></span> 
     
      ![Single Sign-On di Microsoft Azure AD][15] 
 
-11. <span data-ttu-id="f6653-184">Nella finestra di dialogo **Edit Authentication Source** (Modifica origine autenticazione) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-184">On the **Edit Authentication Source** dialog, perform the following steps:</span></span> 
+11. <span data-ttu-id="3a7cf-184">In hello **Modifica autenticazione origine** finestra di dialogo, eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-184">On hello **Edit Authentication Source** dialog, perform hello following steps:</span></span> 
     
      ![Single Sign-On di Microsoft Azure AD][16] 
- 1. <span data-ttu-id="f6653-186">In **Enabled** (Attivo) selezionare **Yes** (Sì).</span><span class="sxs-lookup"><span data-stu-id="f6653-186">As **Enabled**, select **Yes**.</span></span>   
- 2. <span data-ttu-id="f6653-187">Nella casella di testo **IdP Description** digitare una descrizione per la configurazione, ad esempio *Azure AD SSO*.</span><span class="sxs-lookup"><span data-stu-id="f6653-187">In the **IdP Description** textbox, type a description for your configuration (e.g.: *Azure AD SSO*).</span></span>  
- 3. <span data-ttu-id="f6653-188">Nella casella di testo **IdP Name** digitare un nome specifico per la configurazione, ad esempio *Azure SP*.</span><span class="sxs-lookup"><span data-stu-id="f6653-188">In the **IdP Name** textbox, type a name that is specific to your configuration (e.g.: *Azure SP*).</span></span>  
- 4. <span data-ttu-id="f6653-189">Fare clic su **Save**.</span><span class="sxs-lookup"><span data-stu-id="f6653-189">Click **Save**.</span></span>
+ 1. <span data-ttu-id="3a7cf-186">In **Enabled** (Attivo) selezionare **Yes** (Sì).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-186">As **Enabled**, select **Yes**.</span></span>   
+ 2. <span data-ttu-id="3a7cf-187">In hello **descrizione IdP** casella di testo, digitare una descrizione per la configurazione (ad esempio: *SSO AD Azure*).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-187">In hello **IdP Description** textbox, type a description for your configuration (e.g.: *Azure AD SSO*).</span></span>  
+ 3. <span data-ttu-id="3a7cf-188">In hello **nome IdP** casella di testo, digitare un nome di configurazione tooyour specifico (ad esempio: *Azure SP*).</span><span class="sxs-lookup"><span data-stu-id="3a7cf-188">In hello **IdP Name** textbox, type a name that is specific tooyour configuration (e.g.: *Azure SP*).</span></span>  
+ 4. <span data-ttu-id="3a7cf-189">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-189">Click **Save**.</span></span>
 
-12. <span data-ttu-id="f6653-190">Disabilitare tutte le altre origini di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="f6653-190">Disable all other authentication sources.</span></span> 
+12. <span data-ttu-id="3a7cf-190">Disabilitare tutte le altre origini di autenticazione.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-190">Disable all other authentication sources.</span></span> 
     
      ![Single Sign-On di Microsoft Azure AD][17]
 
-13. <span data-ttu-id="f6653-192">Nella pagina **Conferma Single Sign-On** del portale di Azure classico fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-192">In the Azure classic portal, on the **Single sign-on confirmation** page, click **Next**.</span></span>  
+13. <span data-ttu-id="3a7cf-192">Nel portale di Azure classico, in hello hello **Single sign-on conferma** pagina, fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-192">In hello Azure classic portal, on hello **Single sign-on confirmation** page, click **Next**.</span></span>  
     
      ![Single Sign-On di Microsoft Azure AD][18]
 
-14. <span data-ttu-id="f6653-194">Nella pagina **Conferma Single Sign-on** fare clic su **Completa**.</span><span class="sxs-lookup"><span data-stu-id="f6653-194">On the **Single sign-on confirmation** page, click **Complete**.</span></span>
+14. <span data-ttu-id="3a7cf-194">In hello **Single sign-on conferma** pagina, fare clic su **completa**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-194">On hello **Single sign-on confirmation** page, click **Complete**.</span></span>
     
      ![Single Sign-On di Microsoft Azure AD][19]
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="f6653-196">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f6653-196">Create an Azure AD test user</span></span>
-<span data-ttu-id="f6653-197">Questa sezione descrive come creare un utente test chiamato Britta Simon nel portale di Azure classico.</span><span class="sxs-lookup"><span data-stu-id="f6653-197">The objective of this section is to create a test user in the Azure classic portal called Britta Simon.</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="3a7cf-196">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-196">Create an Azure AD test user</span></span>
+<span data-ttu-id="3a7cf-197">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure classico chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-197">hello objective of this section is toocreate a test user in hello Azure classic portal called Britta Simon.</span></span>
 
 ![Creare un utente di Azure AD][20]
 
-<span data-ttu-id="f6653-199">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="f6653-199">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="3a7cf-199">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3a7cf-199">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f6653-200">Nel **portale di Azure classico** fare clic su **Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="f6653-200">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="3a7cf-200">In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-200">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span>
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_09.png)  
 
-2. <span data-ttu-id="f6653-202">Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.</span><span class="sxs-lookup"><span data-stu-id="f6653-202">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="3a7cf-202">Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-202">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="f6653-203">Per visualizzare l'elenco di utenti, fare clic su **Utenti**nel menu in alto.</span><span class="sxs-lookup"><span data-stu-id="f6653-203">To display the list of users, in the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="3a7cf-203">Fare clic su elenco hello toodisplay di utenti, nel menu hello nella parte superiore di hello, **utenti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-203">toodisplay hello list of users, in hello menu on hello top, click **Users**.</span></span>
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="f6653-205">Per aprire la finestra di dialogo **Aggiungi utente**, fare clic su **Aggiungi utente** nella barra degli strumenti in basso.</span><span class="sxs-lookup"><span data-stu-id="f6653-205">To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.</span></span> 
+4. <span data-ttu-id="3a7cf-205">hello tooopen **Aggiungi utente** finestra di dialogo, nella barra degli strumenti hello nella parte inferiore di hello, fare clic su **Aggiungi utente**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-205">tooopen hello **Add User** dialog, in hello toolbar on hello bottom, click **Add User**.</span></span> 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_04.png) 
 
-5. <span data-ttu-id="f6653-207">Nella pagina **Informazioni sull'utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-207">On the **Tell us about this user** dialog page, perform the following steps:</span></span> 
+5. <span data-ttu-id="3a7cf-207">In hello **informazioni sull'utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-207">On hello **Tell us about this user** dialog page, perform hello following steps:</span></span> 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_05.png)  
- 1. <span data-ttu-id="f6653-209">In Tipo di utente selezionare Nuovo utente nell'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="f6653-209">As Type Of User, select New user in your organization.</span></span>  
- 2. <span data-ttu-id="f6653-210">Nella casella di testo **Nome utente** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="f6653-210">In the User Name **textbox**, type **BrittaSimon**.</span></span> 
- 3. <span data-ttu-id="f6653-211">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-211">Click **Next**.</span></span>
+ 1. <span data-ttu-id="3a7cf-209">In Tipo di utente selezionare Nuovo utente nell'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-209">As Type Of User, select New user in your organization.</span></span>  
+ 2. <span data-ttu-id="3a7cf-210">In nome utente hello **textbox**, tipo **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-210">In hello User Name **textbox**, type **BrittaSimon**.</span></span> 
+ 3. <span data-ttu-id="3a7cf-211">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-211">Click **Next**.</span></span>
 
-6. <span data-ttu-id="f6653-212">Nella pagina **Profilo utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-212">On the **User Profile** dialog page, perform the following steps:</span></span> 
+6. <span data-ttu-id="3a7cf-212">In hello **profilo utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-212">On hello **User Profile** dialog page, perform hello following steps:</span></span> 
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_06.png)  
- 1. <span data-ttu-id="f6653-214">Nella casella di testo **Nome** digitare **Britta**.</span><span class="sxs-lookup"><span data-stu-id="f6653-214">In the **First Name** textbox, type **Britta**.</span></span>    
- 2. <span data-ttu-id="f6653-215">Nella casella di testo **Cognome** digitare **Simon**.</span><span class="sxs-lookup"><span data-stu-id="f6653-215">In the **Last Name** textbox, type, **Simon**.</span></span> 
- 3. <span data-ttu-id="f6653-216">Nella casella di testo **Nome visualizzato** digitare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="f6653-216">In the **Display Name** textbox, type **Britta Simon**.</span></span> 
- 4. <span data-ttu-id="f6653-217">Nell'elenco **Ruolo** selezionare **Utente**.</span><span class="sxs-lookup"><span data-stu-id="f6653-217">In the **Role** list, select **User**.</span></span>
- 5. <span data-ttu-id="f6653-218">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="f6653-218">Click **Next**.</span></span>
+ 1. <span data-ttu-id="3a7cf-214">In hello **nome** casella tipo **Laura**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-214">In hello **First Name** textbox, type **Britta**.</span></span>    
+ 2. <span data-ttu-id="3a7cf-215">In hello **cognome** casella di testo, tipo, **Simon**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-215">In hello **Last Name** textbox, type, **Simon**.</span></span> 
+ 3. <span data-ttu-id="3a7cf-216">In hello **nome visualizzato** casella tipo **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-216">In hello **Display Name** textbox, type **Britta Simon**.</span></span> 
+ 4. <span data-ttu-id="3a7cf-217">In hello **ruolo** elenco, selezionare **utente**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-217">In hello **Role** list, select **User**.</span></span>
+ 5. <span data-ttu-id="3a7cf-218">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-218">Click **Next**.</span></span>
 
-7. <span data-ttu-id="f6653-219">Nella pagina **Ottieni password temporanea** fare clic su **crea**.</span><span class="sxs-lookup"><span data-stu-id="f6653-219">On the **Get temporary password** dialog page, click **create**.</span></span>
+7. <span data-ttu-id="3a7cf-219">In hello **Ottieni password temporanea** nella pagina, fare clic su **creare**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-219">On hello **Get temporary password** dialog page, click **create**.</span></span>
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_07.png) 
 
-8. <span data-ttu-id="f6653-221">Nella pagina **Ottieni password temporanea** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="f6653-221">On the **Get temporary password** dialog page, perform the following steps:</span></span>
+8. <span data-ttu-id="3a7cf-221">In hello **Ottieni password temporanea** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="3a7cf-221">On hello **Get temporary password** dialog page, perform hello following steps:</span></span>
    
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-silkroad-life-suite-tutorial/create_aaduser_08.png)  
- 1. <span data-ttu-id="f6653-223">Prendere nota del valore visualizzato in **Nuova password**.</span><span class="sxs-lookup"><span data-stu-id="f6653-223">Write down the value of the **New Password**.</span></span> 
- 2. <span data-ttu-id="f6653-224">Fare clic su **Completa**.</span><span class="sxs-lookup"><span data-stu-id="f6653-224">Click **Complete**.</span></span>   
+ 1. <span data-ttu-id="3a7cf-223">Annotare il valore di hello di hello **nuova Password**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-223">Write down hello value of hello **New Password**.</span></span> 
+ 2. <span data-ttu-id="3a7cf-224">Fare clic su **Complete**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-224">Click **Complete**.</span></span>   
 
-### <a name="create-a-silkroad-life-suite-test-user"></a><span data-ttu-id="f6653-225">Creare un utente test di SilkRoad Life Suite</span><span class="sxs-lookup"><span data-stu-id="f6653-225">Create a SilkRoad Life Suite test user</span></span>
-<span data-ttu-id="f6653-226">Questa sezione descrive come creare un utente chiamato Britta Simon in SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-226">The objective of this section is to create a user called Britta Simon in SilkRoad Life Suite.</span></span> <span data-ttu-id="f6653-227">Britta deve avere un ID SSO, a volte definito *AuthParam*, che corrisponde al valore **emailaddress** in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-227">Britta's must have an SSO ID (sometimes referred to as an *AuthParam*) that matches Britta's **emailaddress** in Azure AD.</span></span>
+### <a name="create-a-silkroad-life-suite-test-user"></a><span data-ttu-id="3a7cf-225">Creare un utente test di SilkRoad Life Suite</span><span class="sxs-lookup"><span data-stu-id="3a7cf-225">Create a SilkRoad Life Suite test user</span></span>
+<span data-ttu-id="3a7cf-226">obiettivo di Hello di questa sezione è un utente denominato Britta Simon SilkRoad vita Suite toocreate.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-226">hello objective of this section is toocreate a user called Britta Simon in SilkRoad Life Suite.</span></span> <span data-ttu-id="3a7cf-227">Laura deve avere un ID di SSO (talvolta tooas un *AuthParam*) corrispondente di Laura **emailaddress** in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-227">Britta's must have an SSO ID (sometimes referred tooas an *AuthParam*) that matches Britta's **emailaddress** in Azure AD.</span></span>
 
-<span data-ttu-id="f6653-228">**Per creare un utente test denominato Britta Simon in SilkRoad Life Suite, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="f6653-228">**To create a user called Britta Simon in SilkRoad Life Suite, perform the following steps:**</span></span>
+<span data-ttu-id="3a7cf-228">**un utente denominato Britta Simon SilkRoad vita Suite, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3a7cf-228">**toocreate a user called Britta Simon in SilkRoad Life Suite, perform hello following steps:**</span></span>
 
-- <span data-ttu-id="f6653-229">Chiedere al team di supporto di SilkRoad Life Suite di creare un utente con un valore per l'attributo **SSO ID** equivalente all'**indirizzo di posta elettronica**di Britta Simon in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f6653-229">Ask your SilkRoad Life Suite support team to create a user that has as **SSO ID** attribute the same value as the **emailaddress** of Britta Simon in Azure AD.</span></span>
+- <span data-ttu-id="3a7cf-229">Chiedere a un utente che ha il toocreate team di supporto SilkRoad vita Suite **ID SSO** hello attributo lo stesso valore hello **emailaddress** di Britta Simon in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-229">Ask your SilkRoad Life Suite support team toocreate a user that has as **SSO ID** attribute hello same value as hello **emailaddress** of Britta Simon in Azure AD.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="f6653-230">Assegnare l'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f6653-230">Assign the Azure AD test user</span></span>
-<span data-ttu-id="f6653-231">Questa sezione descrive come abilitare Britta Simon all'uso dell'accesso SSO di Azure concedendole l'accesso a SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-231">The objective of this section is to enable Britta Simon to use Azure SSO by granting her access to SilkRoad Life Suite.</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="3a7cf-230">Assegnare l'utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="3a7cf-230">Assign hello Azure AD test user</span></span>
+<span data-ttu-id="3a7cf-231">obiettivo Hello di questa sezione è tooenable Britta Simon toouse SSO Azure concedendo proprio tooSilkRoad accesso vita Suite.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-231">hello objective of this section is tooenable Britta Simon toouse Azure SSO by granting her access tooSilkRoad Life Suite.</span></span>
 
 ![Assegna utente][200] 
 
-<span data-ttu-id="f6653-233">**Per assegnare Britta Simon a SilkRoad Life Suite, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="f6653-233">**To assign Britta Simon to SilkRoad Life Suite, perform the following steps:**</span></span>
+<span data-ttu-id="3a7cf-233">**tooassign Britta Simon tooSilkRoad vita Suite, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="3a7cf-233">**tooassign Britta Simon tooSilkRoad Life Suite, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="f6653-234">Per aprire la visualizzazione applicazioni nel portale di Azure classico, nella visualizzazione directory fare clic su **Applicazioni** nel menu in alto.</span><span class="sxs-lookup"><span data-stu-id="f6653-234">On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+1. <span data-ttu-id="3a7cf-234">In hello Azure portale classico, visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-234">On hello Azure classic portal, tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
    
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="f6653-236">Nell'elenco delle applicazioni selezionare **SilkRoad Life Suite**.</span><span class="sxs-lookup"><span data-stu-id="f6653-236">In the applications list, select **SilkRoad Life Suite**.</span></span>
+2. <span data-ttu-id="3a7cf-236">Nell'elenco di applicazioni hello, selezionare **SilkRoad vita Suite**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-236">In hello applications list, select **SilkRoad Life Suite**.</span></span>
    
     ![Assegna utente][202] 
 
-3. <span data-ttu-id="f6653-238">Scegliere **Utenti**dal menu in alto.</span><span class="sxs-lookup"><span data-stu-id="f6653-238">In the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="3a7cf-238">Scegliere dal menu hello in primo piano hello **utenti**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-238">In hello menu on hello top, click **Users**.</span></span>
    
     ![Assegna utente][203] 
 
-4. <span data-ttu-id="f6653-240">Nell'elenco di utenti selezionare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="f6653-240">In the Users list, select **Britta Simon**.</span></span>
+4. <span data-ttu-id="3a7cf-240">Nell'elenco di utenti hello, selezionare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-240">In hello Users list, select **Britta Simon**.</span></span>
 
-5. <span data-ttu-id="f6653-241">Fare clic su **Assegna**sulla barra degli strumenti in basso.</span><span class="sxs-lookup"><span data-stu-id="f6653-241">In the toolbar on the bottom, click **Assign**.</span></span>
+5. <span data-ttu-id="3a7cf-241">Nella barra degli strumenti di hello nella parte inferiore di hello, fare clic su **assegnare**.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-241">In hello toolbar on hello bottom, click **Assign**.</span></span>
    
     ![Assegna utente][205]
 
-### <a name="test-single-sign-on"></a><span data-ttu-id="f6653-243">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="f6653-243">Test single sign-on</span></span>
-<span data-ttu-id="f6653-244">Questa sezione descrive come testare la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="f6653-244">The objective of this section is to test your Azure AD SSO configuration using the Access Panel.</span></span>  
+### <a name="test-single-sign-on"></a><span data-ttu-id="3a7cf-243">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="3a7cf-243">Test single sign-on</span></span>
+<span data-ttu-id="3a7cf-244">obiettivo di Hello di questa sezione è tootest la configurazione di SSO AD Azure utilizzando hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-244">hello objective of this section is tootest your Azure AD SSO configuration using hello Access Panel.</span></span>  
 
-<span data-ttu-id="f6653-245">Quando si fa clic sul riquadro SilkRoad Life Suite nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione SilkRoad Life Suite.</span><span class="sxs-lookup"><span data-stu-id="f6653-245">When you click the SilkRoad Life Suite tile in the Access Panel, you should get automatically signed-on to your SilkRoad Life Suite application.</span></span>
+<span data-ttu-id="3a7cf-245">Quando si fa clic su riquadro SilkRoad vita Suite hello in hello Pannello di accesso, è necessario ottenere un'applicazione SilkRoad vita Suite tooyour firmato in automaticamente.</span><span class="sxs-lookup"><span data-stu-id="3a7cf-245">When you click hello SilkRoad Life Suite tile in hello Access Panel, you should get automatically signed-on tooyour SilkRoad Life Suite application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="f6653-246">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="f6653-246">Additional Resources</span></span>
-* [<span data-ttu-id="f6653-247">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f6653-247">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="f6653-248">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f6653-248">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+## <a name="additional-resources"></a><span data-ttu-id="3a7cf-246">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="3a7cf-246">Additional Resources</span></span>
+* [<span data-ttu-id="3a7cf-247">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="3a7cf-247">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="3a7cf-248">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="3a7cf-248">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

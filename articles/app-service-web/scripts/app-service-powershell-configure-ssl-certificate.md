@@ -1,6 +1,6 @@
 ---
-title: Esempio di script di Azure PowerShell - Associare un certificato SSL personalizzato a un'app Web | Microsoft Docs
-description: Esempio di script di Azure PowerShell - Associare un certificato SSL personalizzato a un'app Web
+title: Esempio di Script di PowerShell - aaaAzure associare un'app web tooa di certificato SSL personalizzata | Documenti Microsoft
+description: Esempio di Script di PowerShell Azure - Bind un'app web tooa di certificati SSL personalizzata
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -15,49 +15,49 @@ ms.topic: sample
 ms.date: 03/20/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: de8deccadcd9571be75447a117888bf2b3f571a0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 6e249ceedb9e2b8872dd0bc8b0aea0d718b28dab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="bind-a-custom-ssl-certificate-to-a-web-app"></a><span data-ttu-id="599a8-103">Associare un certificato SSL personalizzato a un'app Web</span><span class="sxs-lookup"><span data-stu-id="599a8-103">Bind a custom SSL certificate to a web app</span></span>
+# <a name="bind-a-custom-ssl-certificate-tooa-web-app"></a><span data-ttu-id="dadd5-103">Associare un'app web tooa di certificati SSL personalizzata</span><span class="sxs-lookup"><span data-stu-id="dadd5-103">Bind a custom SSL certificate tooa web app</span></span>
 
-<span data-ttu-id="599a8-104">Questo script di esempio crea un'app Web nel servizio app con le relative risorse correlate, quindi associa ad essa il certificato SSL di un nome di dominio personalizzato.</span><span class="sxs-lookup"><span data-stu-id="599a8-104">This sample script creates a web app in App Service with its related resources, then binds the SSL certificate of a custom domain name to it.</span></span> 
+<span data-ttu-id="dadd5-104">Questo script di esempio crea un'app web nel servizio App con le relative risorse correlate, quindi associa il certificato SSL hello di un tooit nome di dominio personalizzato.</span><span class="sxs-lookup"><span data-stu-id="dadd5-104">This sample script creates a web app in App Service with its related resources, then binds hello SSL certificate of a custom domain name tooit.</span></span> 
 
-<span data-ttu-id="599a8-105">Se necessario, installare Azure PowerShell usando l'istruzione presente nella [Guida di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="599a8-105">If needed, install the Azure PowerShell using the instruction found in the [Azure PowerShell guide](/powershell/azure/overview).</span></span> <span data-ttu-id="599a8-106">Verificare inoltre se:</span><span class="sxs-lookup"><span data-stu-id="599a8-106">Also, ensure that:</span></span>
+<span data-ttu-id="dadd5-105">Se necessario, installare Azure PowerShell utilizzando l'istruzione hello trovato in hello hello [Guida di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="dadd5-105">If needed, install hello Azure PowerShell using hello instruction found in hello [Azure PowerShell guide](/powershell/azure/overview).</span></span> <span data-ttu-id="dadd5-106">Verificare inoltre se:</span><span class="sxs-lookup"><span data-stu-id="dadd5-106">Also, ensure that:</span></span>
 
-- <span data-ttu-id="599a8-107">È stata creata una connessione con Azure usando il comando `az login`.</span><span class="sxs-lookup"><span data-stu-id="599a8-107">A connection with Azure has been created using the `az login` command.</span></span>
-- <span data-ttu-id="599a8-108">Si disponga dell'accesso alla pagina di configurazione DNS del registrar.</span><span class="sxs-lookup"><span data-stu-id="599a8-108">You have access to your domain registrar's DNS configuration page.</span></span>
-- <span data-ttu-id="599a8-109">Si disponga di un file con estensione PFX valido e della relativa password per il certificato SSL da caricare e per cui si desidera eseguire l'associazione.</span><span class="sxs-lookup"><span data-stu-id="599a8-109">You have a valid .PFX file and its password for the SSL certificate you want to upload and bind.</span></span>
+- <span data-ttu-id="dadd5-107">Una connessione con Azure è stata creata utilizzando hello `az login` comando.</span><span class="sxs-lookup"><span data-stu-id="dadd5-107">A connection with Azure has been created using hello `az login` command.</span></span>
+- <span data-ttu-id="dadd5-108">È una pagina di configurazione del Registro di accesso tooyour dominio DNS.</span><span class="sxs-lookup"><span data-stu-id="dadd5-108">You have access tooyour domain registrar's DNS configuration page.</span></span>
+- <span data-ttu-id="dadd5-109">È valido. Il file PFX e la relativa password per hello SSL certificato desidera tooupload e il binding.</span><span class="sxs-lookup"><span data-stu-id="dadd5-109">You have a valid .PFX file and its password for hello SSL certificate you want tooupload and bind.</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="599a8-110">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="599a8-110">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="dadd5-110">Script di esempio</span><span class="sxs-lookup"><span data-stu-id="dadd5-110">Sample script</span></span>
 
-<span data-ttu-id="599a8-111">[!code-powershell[principale](../../../powershell_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.ps1?highlight=1-3 "Associare un certificato SSL personalizzato a un'app Web")]</span><span class="sxs-lookup"><span data-stu-id="599a8-111">[!code-powershell[main](../../../powershell_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.ps1?highlight=1-3 "Bind a custom SSL certificate to a web app")]</span></span>
+[!code-powershell[main](../../../powershell_scripts/app-service/configure-ssl-certificate/configure-ssl-certificate.ps1?highlight=1-3 "Bind a custom SSL certificate tooa web app")]
 
-## <a name="clean-up-deployment"></a><span data-ttu-id="599a8-112">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="599a8-112">Clean up deployment</span></span> 
+## <a name="clean-up-deployment"></a><span data-ttu-id="dadd5-111">Pulire la distribuzione</span><span class="sxs-lookup"><span data-stu-id="dadd5-111">Clean up deployment</span></span> 
 
-<span data-ttu-id="599a8-113">Dopo aver eseguito lo script di esempio, usare il comando seguente per rimuovere il gruppo di risorse, l'App Web e tutte le risorse correlate.</span><span class="sxs-lookup"><span data-stu-id="599a8-113">After the script sample has been run, the following command can be used to remove the resource group, web app, and all related resources.</span></span>
+<span data-ttu-id="dadd5-112">Dopo l'esecuzione di script di esempio hello, hello comando seguente può essere utilizzato tooremove gruppo di risorse hello, app web e tutte le relative risorse.</span><span class="sxs-lookup"><span data-stu-id="dadd5-112">After hello script sample has been run, hello following command can be used tooremove hello resource group, web app, and all related resources.</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup -Name myResourceGroup -Force
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="599a8-114">Spiegazione dello script</span><span class="sxs-lookup"><span data-stu-id="599a8-114">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="dadd5-113">Spiegazione dello script</span><span class="sxs-lookup"><span data-stu-id="dadd5-113">Script explanation</span></span>
 
-<span data-ttu-id="599a8-115">Questo script usa i comandi seguenti.</span><span class="sxs-lookup"><span data-stu-id="599a8-115">This script uses the following commands.</span></span> <span data-ttu-id="599a8-116">Ogni comando della tabella include collegamenti alla documentazione specifica del comando.</span><span class="sxs-lookup"><span data-stu-id="599a8-116">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="dadd5-114">Questo script utilizza hello i comandi seguenti.</span><span class="sxs-lookup"><span data-stu-id="dadd5-114">This script uses hello following commands.</span></span> <span data-ttu-id="dadd5-115">Ogni comando in documentazione specifica toocommand hello tabella collegamenti.</span><span class="sxs-lookup"><span data-stu-id="dadd5-115">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="599a8-117">Comando</span><span class="sxs-lookup"><span data-stu-id="599a8-117">Command</span></span> | <span data-ttu-id="599a8-118">Note</span><span class="sxs-lookup"><span data-stu-id="599a8-118">Notes</span></span> |
+| <span data-ttu-id="dadd5-116">Comando</span><span class="sxs-lookup"><span data-stu-id="dadd5-116">Command</span></span> | <span data-ttu-id="dadd5-117">Note</span><span class="sxs-lookup"><span data-stu-id="dadd5-117">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="599a8-119">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="599a8-119">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="599a8-120">Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse.</span><span class="sxs-lookup"><span data-stu-id="599a8-120">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="599a8-121">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="599a8-121">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="599a8-122">Consente di creare un piano di servizio app.</span><span class="sxs-lookup"><span data-stu-id="599a8-122">Creates an App Service plan.</span></span> |
-| [<span data-ttu-id="599a8-123">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="599a8-123">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="599a8-124">Crea un'App Web.</span><span class="sxs-lookup"><span data-stu-id="599a8-124">Creates a web app.</span></span> |
-| [<span data-ttu-id="599a8-125">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="599a8-125">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="599a8-126">Modifica un piano di servizio app per cambiarne il piano tariffario.</span><span class="sxs-lookup"><span data-stu-id="599a8-126">Modifies an App Service plan to change its pricing tier.</span></span> |
-| [<span data-ttu-id="599a8-127">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="599a8-127">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="599a8-128">Modifica la configurazione di un'app Web.</span><span class="sxs-lookup"><span data-stu-id="599a8-128">Modifies a web app's configuration.</span></span> |
-| [<span data-ttu-id="599a8-129">New-AzureRmWebAppSSLBinding</span><span class="sxs-lookup"><span data-stu-id="599a8-129">New-AzureRmWebAppSSLBinding</span></span>](/powershell/module/azurerm.websites/new-azurermwebappsslbinding) | <span data-ttu-id="599a8-130">Crea un'associazione al certificato SSL per un'app Web.</span><span class="sxs-lookup"><span data-stu-id="599a8-130">Creates an SSL certificate binding for a web app.</span></span> |
+| [<span data-ttu-id="dadd5-118">New-AzureRmResourceGroup</span><span class="sxs-lookup"><span data-stu-id="dadd5-118">New-AzureRmResourceGroup</span></span>](/powershell/module/azurerm.resources/new-azurermresourcegroup) | <span data-ttu-id="dadd5-119">Consente di creare un gruppo di risorse in cui sono archiviate tutte le risorse.</span><span class="sxs-lookup"><span data-stu-id="dadd5-119">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="dadd5-120">New-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="dadd5-120">New-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/new-azurermappserviceplan) | <span data-ttu-id="dadd5-121">Consente di creare un piano di servizio app.</span><span class="sxs-lookup"><span data-stu-id="dadd5-121">Creates an App Service plan.</span></span> |
+| [<span data-ttu-id="dadd5-122">New-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="dadd5-122">New-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/new-azurermwebapp) | <span data-ttu-id="dadd5-123">Crea un'App Web.</span><span class="sxs-lookup"><span data-stu-id="dadd5-123">Creates a web app.</span></span> |
+| [<span data-ttu-id="dadd5-124">Set-AzureRmAppServicePlan</span><span class="sxs-lookup"><span data-stu-id="dadd5-124">Set-AzureRmAppServicePlan</span></span>](/powershell/module/azurerm.websites/set-azurermappserviceplan) | <span data-ttu-id="dadd5-125">Modifica il livello di prezzo di un toochange piano di servizio App.</span><span class="sxs-lookup"><span data-stu-id="dadd5-125">Modifies an App Service plan toochange its pricing tier.</span></span> |
+| [<span data-ttu-id="dadd5-126">Set-AzureRmWebApp</span><span class="sxs-lookup"><span data-stu-id="dadd5-126">Set-AzureRmWebApp</span></span>](/powershell/module/azurerm.websites/set-azurermwebapp) | <span data-ttu-id="dadd5-127">Modifica la configurazione di un'app Web.</span><span class="sxs-lookup"><span data-stu-id="dadd5-127">Modifies a web app's configuration.</span></span> |
+| [<span data-ttu-id="dadd5-128">New-AzureRmWebAppSSLBinding</span><span class="sxs-lookup"><span data-stu-id="dadd5-128">New-AzureRmWebAppSSLBinding</span></span>](/powershell/module/azurerm.websites/new-azurermwebappsslbinding) | <span data-ttu-id="dadd5-129">Crea un'associazione al certificato SSL per un'app Web.</span><span class="sxs-lookup"><span data-stu-id="dadd5-129">Creates an SSL certificate binding for a web app.</span></span> |
 
-## <a name="next-steps"></a><span data-ttu-id="599a8-131">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="599a8-131">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="dadd5-130">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="dadd5-130">Next steps</span></span>
 
-<span data-ttu-id="599a8-132">Per altre informazioni sul modulo Azure PowerShell, vedere la [documentazione di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="599a8-132">For more information on the Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
+<span data-ttu-id="dadd5-131">Per ulteriori informazioni sul modulo di Azure PowerShell hello, vedere [documentazione di Azure PowerShell](/powershell/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="dadd5-131">For more information on hello Azure PowerShell module, see [Azure PowerShell documentation](/powershell/azure/overview).</span></span>
 
-<span data-ttu-id="599a8-133">Altri esempi di Azure PowerShell per app Web del servizio app di Azure sono disponibili in [Azure PowerShell samples](../app-service-powershell-samples.md) (Esempi di Azure PowerShell).</span><span class="sxs-lookup"><span data-stu-id="599a8-133">Additional Azure Powershell samples for Azure App Service Web Apps can be found in the [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>
+<span data-ttu-id="dadd5-132">Esempi aggiuntivi di Azure Powershell per App Web di servizio App di Azure sono reperibile in hello [esempi di Azure PowerShell](../app-service-powershell-samples.md).</span><span class="sxs-lookup"><span data-stu-id="dadd5-132">Additional Azure Powershell samples for Azure App Service Web Apps can be found in hello [Azure PowerShell samples](../app-service-powershell-samples.md).</span></span>

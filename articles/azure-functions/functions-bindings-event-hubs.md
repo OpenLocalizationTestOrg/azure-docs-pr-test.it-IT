@@ -1,6 +1,6 @@
 ---
-title: Associazioni di Hub eventi in Funzioni di Azure | Microsoft Docs
-description: Informazioni su come usare le associazioni di Hub eventi di Azure in Funzioni di Azure.
+title: associazioni di hub di eventi di funzioni aaaAzure | Documenti Microsoft
+description: Comprendere come le associazioni di hub eventi di Azure toouse nelle funzioni di Azure.
 services: functions
 documentationcenter: na
 author: wesmc7777
@@ -16,55 +16,55 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/20/2017
 ms.author: wesmc
-ms.openlocfilehash: 19021bef8b7156b3049f43b0275c0ed0c6b22514
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e864f032ad5ac58d318c9843c3844b5642733a70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-event-hubs-bindings"></a><span data-ttu-id="d08ea-104">Associazioni di Hub eventi in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="d08ea-104">Azure Functions Event Hubs bindings</span></span>
+# <a name="azure-functions-event-hubs-bindings"></a><span data-ttu-id="40575-104">Associazioni di Hub eventi in Funzioni di Azure</span><span class="sxs-lookup"><span data-stu-id="40575-104">Azure Functions Event Hubs bindings</span></span>
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-<span data-ttu-id="d08ea-105">Questo articolo illustra come configurare e usare le associazioni di [Hub eventi di Azure](../event-hubs/event-hubs-what-is-event-hubs.md) in Funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="d08ea-105">This article explains how to configure and use [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) bindings for Azure Functions.</span></span>
-<span data-ttu-id="d08ea-106">Funzioni di Azure supporta il trigger e le associazioni di output per Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-106">Azure Functions supports trigger and output bindings for Event Hubs.</span></span>
+<span data-ttu-id="40575-105">Questo articolo viene illustrato come tooconfigure e utilizzare [hub eventi di Azure](../event-hubs/event-hubs-what-is-event-hubs.md) associazioni per le funzioni di Azure.</span><span class="sxs-lookup"><span data-stu-id="40575-105">This article explains how tooconfigure and use [Azure Event Hubs](../event-hubs/event-hubs-what-is-event-hubs.md) bindings for Azure Functions.</span></span>
+<span data-ttu-id="40575-106">Funzioni di Azure supporta il trigger e le associazioni di output per Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="40575-106">Azure Functions supports trigger and output bindings for Event Hubs.</span></span>
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
-<span data-ttu-id="d08ea-107">Se non si ha familiarità con Hub eventi di Azure, vedere la [panoramica di Hub eventi](../event-hubs/event-hubs-what-is-event-hubs.md).</span><span class="sxs-lookup"><span data-stu-id="d08ea-107">If you are new to Azure Event Hubs, see the [Event Hubs overview](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
+<span data-ttu-id="40575-107">Nel caso di nuovo hub di eventi tooAzure, vedere hello [Panoramica di hub eventi](../event-hubs/event-hubs-what-is-event-hubs.md).</span><span class="sxs-lookup"><span data-stu-id="40575-107">If you are new tooAzure Event Hubs, see hello [Event Hubs overview](../event-hubs/event-hubs-what-is-event-hubs.md).</span></span>
 
 <a name="trigger"></a>
 
-## <a name="event-hub-trigger"></a><span data-ttu-id="d08ea-108">Trigger di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="d08ea-108">Event hub trigger</span></span>
-<span data-ttu-id="d08ea-109">È possibile usare il trigger di Hub eventi per rispondere a un evento inviato a un flusso di eventi di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-109">Use the Event Hubs trigger to respond to an event sent to an event hub event stream.</span></span> <span data-ttu-id="d08ea-110">Per configurare il trigger è necessario avere accesso in lettura ad Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-110">You must have read access to the event hub to set up the trigger.</span></span>
+## <a name="event-hub-trigger"></a><span data-ttu-id="40575-108">Trigger di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="40575-108">Event hub trigger</span></span>
+<span data-ttu-id="40575-109">Utilizzare gli hub di eventi hello attivare toorespond tooan evento flusso di eventi di hub eventi tooan inviato.</span><span class="sxs-lookup"><span data-stu-id="40575-109">Use hello Event Hubs trigger toorespond tooan event sent tooan event hub event stream.</span></span> <span data-ttu-id="40575-110">È necessario disporre dell'accesso in lettura toohello evento hub tooset dei trigger hello.</span><span class="sxs-lookup"><span data-stu-id="40575-110">You must have read access toohello event hub tooset up hello trigger.</span></span>
 
-<span data-ttu-id="d08ea-111">Il trigger di funzione di Hub eventi usa l'oggetto JSON seguente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="d08ea-111">The Event Hubs function trigger uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="40575-111">trigger di funzione Hello hub eventi Usa hello seguente oggetto JSON nella hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="40575-111">hello Event Hubs function trigger uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
     "type": "eventHubTrigger",
     "name": "<Name of trigger parameter in function signature>",
     "direction": "in",
-    "path": "<Name of the event hub>",
-    "consumerGroup": "Consumer group to use - see below",
+    "path": "<Name of hello event hub>",
+    "consumerGroup": "Consumer group toouse - see below",
     "connection": "<Name of app setting with connection string - see below>"
 }
 ```
 
-<span data-ttu-id="d08ea-112">`consumerGroup`: proprietà facoltativa usata per impostare il [gruppo di consumer](../event-hubs/event-hubs-features.md#event-consumers) usato per effettuare la sottoscrizione agli eventi nell'hub.</span><span class="sxs-lookup"><span data-stu-id="d08ea-112">`consumerGroup` is an optional property used to set the [consumer group](../event-hubs/event-hubs-features.md#event-consumers) used to subscribe to events in the hub.</span></span> <span data-ttu-id="d08ea-113">Se omessa, al suo posto viene usato il gruppo di consumer `$Default`.</span><span class="sxs-lookup"><span data-stu-id="d08ea-113">If omitted, the `$Default` consumer group is used.</span></span>  
-<span data-ttu-id="d08ea-114">`connection` deve essere il nome di un'impostazione dell'app che contiene la stringa di connessione per lo spazio dei nomi di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-114">`connection` must be the name of an app setting that contains the connection string to the event hub's namespace.</span></span>
-<span data-ttu-id="d08ea-115">Copiare questa stringa di connessione facendo clic sul pulsante **Informazioni di connessione** per lo *spazio dei nomi*, non per lo stesso Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-115">Copy this connection string by clicking the **Connection Information** button for the *namespace*, not the event hub itself.</span></span> <span data-ttu-id="d08ea-116">Per attivare il trigger, questa stringa di connessione deve disporre almeno delle autorizzazioni Read.</span><span class="sxs-lookup"><span data-stu-id="d08ea-116">This connection string must have at least read permissions to activate the trigger.</span></span>
+<span data-ttu-id="40575-112">`consumerGroup`è un hello tooset proprietà facoltativa utilizzata [gruppo di consumer](../event-hubs/event-hubs-features.md#event-consumers) utilizzato toosubscribe tooevents nell'hub hello.</span><span class="sxs-lookup"><span data-stu-id="40575-112">`consumerGroup` is an optional property used tooset hello [consumer group](../event-hubs/event-hubs-features.md#event-consumers) used toosubscribe tooevents in hello hub.</span></span> <span data-ttu-id="40575-113">Se omesso, hello `$Default` viene utilizzato il gruppo di consumer.</span><span class="sxs-lookup"><span data-stu-id="40575-113">If omitted, hello `$Default` consumer group is used.</span></span>  
+<span data-ttu-id="40575-114">`connection`deve essere hello nome di un'impostazione di app che contiene lo spazio dei nomi hello connessione stringa toohello dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="40575-114">`connection` must be hello name of an app setting that contains hello connection string toohello event hub's namespace.</span></span>
+<span data-ttu-id="40575-115">Copiare la stringa di connessione, fare clic su hello **informazioni di connessione** pulsante per hello *dello spazio dei nomi*, non hello hub di eventi stesso.</span><span class="sxs-lookup"><span data-stu-id="40575-115">Copy this connection string by clicking hello **Connection Information** button for hello *namespace*, not hello event hub itself.</span></span> <span data-ttu-id="40575-116">La stringa di connessione deve disporre almeno di lettura trigger hello tooactivate di autorizzazioni.</span><span class="sxs-lookup"><span data-stu-id="40575-116">This connection string must have at least read permissions tooactivate hello trigger.</span></span>
 
-<span data-ttu-id="d08ea-117">È possibile specificare [Impostazioni aggiuntive](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) in un file host.json per ottimizzare i trigger di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-117">[Additional settings](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) can be provided in a host.json file to further fine tune Event Hubs triggers.</span></span>  
+<span data-ttu-id="40575-117">[Impostazioni aggiuntive](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) può essere fornito in un host.json toofurther file fine ottimizzare gli hub di eventi trigger.</span><span class="sxs-lookup"><span data-stu-id="40575-117">[Additional settings](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json) can be provided in a host.json file toofurther fine tune Event Hubs triggers.</span></span>  
 
 <a name="triggerusage"></a>
 
-## <a name="trigger-usage"></a><span data-ttu-id="d08ea-118">Utilizzo dei trigger</span><span class="sxs-lookup"><span data-stu-id="d08ea-118">Trigger usage</span></span>
-<span data-ttu-id="d08ea-119">Quando viene attivata una funzione trigger di Hub eventi, il messaggio che la attiva viene passato alla funzione sotto forma di stringa.</span><span class="sxs-lookup"><span data-stu-id="d08ea-119">When an Event Hubs trigger function is triggered, the message that triggers it is passed into the function as a string.</span></span>
+## <a name="trigger-usage"></a><span data-ttu-id="40575-118">Uso dei trigger</span><span class="sxs-lookup"><span data-stu-id="40575-118">Trigger usage</span></span>
+<span data-ttu-id="40575-119">Quando una funzione di hub di eventi trigger viene attivata, il messaggio hello che lo attiva viene passato alla funzione hello sotto forma di stringa.</span><span class="sxs-lookup"><span data-stu-id="40575-119">When an Event Hubs trigger function is triggered, hello message that triggers it is passed into hello function as a string.</span></span>
 
 <a name="triggersample"></a>
 
-## <a name="trigger-sample"></a><span data-ttu-id="d08ea-120">Esempio di trigger</span><span class="sxs-lookup"><span data-stu-id="d08ea-120">Trigger sample</span></span>
-<span data-ttu-id="d08ea-121">Si supponga che il trigger di Hub eventi seguente sia presente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="d08ea-121">Suppose you have the following Event Hubs trigger in the `bindings` array of function.json:</span></span>
+## <a name="trigger-sample"></a><span data-ttu-id="40575-120">Esempio di trigger</span><span class="sxs-lookup"><span data-stu-id="40575-120">Trigger sample</span></span>
+<span data-ttu-id="40575-121">Si supponga di avere hello seguenti hub di eventi trigger hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="40575-121">Suppose you have hello following Event Hubs trigger in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -76,15 +76,15 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="d08ea-122">Vedere l'esempio specifico del linguaggio che registra il corpo del messaggio del trigger di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-122">See the language-specific sample that logs the message body of the event hub trigger.</span></span>
+<span data-ttu-id="40575-122">Vedere l'esempio specifico del linguaggio hello che registra corpo del messaggio hello del trigger di hub eventi hello.</span><span class="sxs-lookup"><span data-stu-id="40575-122">See hello language-specific sample that logs hello message body of hello event hub trigger.</span></span>
 
-* [<span data-ttu-id="d08ea-123">C#</span><span class="sxs-lookup"><span data-stu-id="d08ea-123">C#</span></span>](#triggercsharp)
-* [<span data-ttu-id="d08ea-124">F#</span><span class="sxs-lookup"><span data-stu-id="d08ea-124">F#</span></span>](#triggerfsharp)
-* [<span data-ttu-id="d08ea-125">Node.JS</span><span class="sxs-lookup"><span data-stu-id="d08ea-125">Node.js</span></span>](#triggernodejs)
+* [<span data-ttu-id="40575-123">C#</span><span class="sxs-lookup"><span data-stu-id="40575-123">C#</span></span>](#triggercsharp)
+* [<span data-ttu-id="40575-124">F#</span><span class="sxs-lookup"><span data-stu-id="40575-124">F#</span></span>](#triggerfsharp)
+* [<span data-ttu-id="40575-125">Node.JS</span><span class="sxs-lookup"><span data-stu-id="40575-125">Node.js</span></span>](#triggernodejs)
 
 <a name="triggercsharp"></a>
 
-### <a name="trigger-sample-in-c"></a><span data-ttu-id="d08ea-126">Esempio di trigger in C#</span><span class="sxs-lookup"><span data-stu-id="d08ea-126">Trigger sample in C#</span></span> #
+### <a name="trigger-sample-in-c"></a><span data-ttu-id="40575-126">Esempio di trigger in C#</span><span class="sxs-lookup"><span data-stu-id="40575-126">Trigger sample in C#</span></span> #
 
 ```cs
 using System;
@@ -95,7 +95,7 @@ public static void Run(string myEventHubMessage, TraceWriter log)
 }
 ```
 
-<span data-ttu-id="d08ea-127">È anche possibile ricevere l'evento come un oggetto [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata), che consente di accedere ai metadati dell'evento.</span><span class="sxs-lookup"><span data-stu-id="d08ea-127">You can also receive the event as an [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) object, which gives you access to the event metadata.</span></span>
+<span data-ttu-id="40575-127">È inoltre possibile ricevere eventi hello come un [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) oggetto, che consente di accedere ai metadati di evento toohello.</span><span class="sxs-lookup"><span data-stu-id="40575-127">You can also receive hello event as an [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) object, which gives you access toohello event metadata.</span></span>
 
 ```cs
 #r "Microsoft.ServiceBus"
@@ -108,7 +108,7 @@ public static void Run(EventData myEventHubMessage, TraceWriter log)
 }
 ```
 
-<span data-ttu-id="d08ea-128">Per ricevere gli eventi in un batch, impostare la firma del metodo su `string[]` o `EventData[]`.</span><span class="sxs-lookup"><span data-stu-id="d08ea-128">To receive events in a batch, change the method signature to `string[]` or `EventData[]`.</span></span>
+<span data-ttu-id="40575-128">tooreceive eventi in un batch, modificare la firma del metodo hello troppo`string[]` o `EventData[]`.</span><span class="sxs-lookup"><span data-stu-id="40575-128">tooreceive events in a batch, change hello method signature too`string[]` or `EventData[]`.</span></span>
 
 ```cs
 public static void Run(string[] eventHubMessages, TraceWriter log)
@@ -122,7 +122,7 @@ public static void Run(string[] eventHubMessages, TraceWriter log)
 
 <a name="triggerfsharp"></a>
 
-### <a name="trigger-sample-in-f"></a><span data-ttu-id="d08ea-129">Esempio di trigger in F#</span><span class="sxs-lookup"><span data-stu-id="d08ea-129">Trigger sample in F#</span></span> #
+### <a name="trigger-sample-in-f"></a><span data-ttu-id="40575-129">Esempio di trigger in F#</span><span class="sxs-lookup"><span data-stu-id="40575-129">Trigger sample in F#</span></span> #
 
 ```fsharp
 let Run(myEventHubMessage: string, log: TraceWriter) =
@@ -131,7 +131,7 @@ let Run(myEventHubMessage: string, log: TraceWriter) =
 
 <a name="triggernodejs"></a>
 
-### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="d08ea-130">Esempio di trigger in Node.js</span><span class="sxs-lookup"><span data-stu-id="d08ea-130">Trigger sample in Node.js</span></span>
+### <a name="trigger-sample-in-nodejs"></a><span data-ttu-id="40575-130">Esempio di trigger in Node.js</span><span class="sxs-lookup"><span data-stu-id="40575-130">Trigger sample in Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myEventHubMessage) {
@@ -142,10 +142,10 @@ module.exports = function (context, myEventHubMessage) {
 
 <a name="output"></a>
 
-## <a name="event-hubs-output-binding"></a><span data-ttu-id="d08ea-131">Associazione di output di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="d08ea-131">Event Hubs output binding</span></span>
-<span data-ttu-id="d08ea-132">È possibile usare l'associazione di output di Hub eventi per scrivere eventi in un flusso di eventi di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-132">Use the Event Hubs output binding to write events to an event hub event stream.</span></span> <span data-ttu-id="d08ea-133">Per scrivervi eventi, è necessario disporre dell'autorizzazione Send verso un Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-133">You must have send permission to an event hub to write events to it.</span></span>
+## <a name="event-hubs-output-binding"></a><span data-ttu-id="40575-131">Associazione di output di Hub eventi</span><span class="sxs-lookup"><span data-stu-id="40575-131">Event Hubs output binding</span></span>
+<span data-ttu-id="40575-132">Associazione toowrite eventi tooan evento hub eventi flusso di output di hello utilizzare gli hub di eventi.</span><span class="sxs-lookup"><span data-stu-id="40575-132">Use hello Event Hubs output binding toowrite events tooan event hub event stream.</span></span> <span data-ttu-id="40575-133">È necessario disporre di trasmissione autorizzazione tooan evento hub toowrite eventi tooit.</span><span class="sxs-lookup"><span data-stu-id="40575-133">You must have send permission tooan event hub toowrite events tooit.</span></span>
 
-<span data-ttu-id="d08ea-134">L'associazione di output usa l'oggetto JSON seguente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="d08ea-134">The output binding uses the following JSON object in the `bindings` array of function.json:</span></span>
+<span data-ttu-id="40575-134">associazione di output Hello utilizza hello seguente oggetto JSON nella hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="40575-134">hello output binding uses hello following JSON object in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -157,22 +157,22 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-<span data-ttu-id="d08ea-135">`connection` deve essere il nome di un'impostazione dell'app che contiene la stringa di connessione per lo spazio dei nomi di Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-135">`connection` must be the name of an app setting that contains the connection string to the event hub's namespace.</span></span>
-<span data-ttu-id="d08ea-136">Copiare questa stringa di connessione facendo clic sul pulsante **Informazioni di connessione** per lo *spazio dei nomi*, non per lo stesso Hub eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-136">Copy this connection string by clicking the **Connection Information** button for the *namespace*, not the event hub itself.</span></span> <span data-ttu-id="d08ea-137">Per inviare il messaggio al flusso di eventi, questa stringa di connessione deve disporre di autorizzazioni Send.</span><span class="sxs-lookup"><span data-stu-id="d08ea-137">This connection string must have send permissions to send the message to the event stream.</span></span>
+<span data-ttu-id="40575-135">`connection`deve essere hello nome di un'impostazione di app che contiene lo spazio dei nomi hello connessione stringa toohello dell'hub eventi.</span><span class="sxs-lookup"><span data-stu-id="40575-135">`connection` must be hello name of an app setting that contains hello connection string toohello event hub's namespace.</span></span>
+<span data-ttu-id="40575-136">Copiare la stringa di connessione, fare clic su hello **informazioni di connessione** pulsante per hello *dello spazio dei nomi*, non hello hub di eventi stesso.</span><span class="sxs-lookup"><span data-stu-id="40575-136">Copy this connection string by clicking hello **Connection Information** button for hello *namespace*, not hello event hub itself.</span></span> <span data-ttu-id="40575-137">Questa stringa di connessione deve avere flusso di eventi di trasmissione autorizzazioni toosend hello messaggio toohello.</span><span class="sxs-lookup"><span data-stu-id="40575-137">This connection string must have send permissions toosend hello message toohello event stream.</span></span>
 
-## <a name="output-usage"></a><span data-ttu-id="d08ea-138">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="d08ea-138">Output usage</span></span>
-<span data-ttu-id="d08ea-139">Questa sezione illustra come usare l'associazione di output di Hub eventi nel codice della funzione.</span><span class="sxs-lookup"><span data-stu-id="d08ea-139">This section shows you how to use your Event Hubs output binding in your function code.</span></span>
+## <a name="output-usage"></a><span data-ttu-id="40575-138">Uso dell'output</span><span class="sxs-lookup"><span data-stu-id="40575-138">Output usage</span></span>
+<span data-ttu-id="40575-139">In questa sezione viene illustrato come toouse gli hub di eventi di output di associazione nel codice di funzione.</span><span class="sxs-lookup"><span data-stu-id="40575-139">This section shows you how toouse your Event Hubs output binding in your function code.</span></span>
 
-<span data-ttu-id="d08ea-140">È possibile inviare i messaggi all'hub eventi configurato con i tipi di parametro seguenti:</span><span class="sxs-lookup"><span data-stu-id="d08ea-140">You can output messages to the configured event hub with the following parameter types:</span></span>
+<span data-ttu-id="40575-140">È possibile creare hub di eventi di messaggi toohello configurato con i seguenti tipi di parametro hello:</span><span class="sxs-lookup"><span data-stu-id="40575-140">You can output messages toohello configured event hub with hello following parameter types:</span></span>
 
 * `out string`
-* <span data-ttu-id="d08ea-141">`ICollector<string>` (per restituire più messaggi)</span><span class="sxs-lookup"><span data-stu-id="d08ea-141">`ICollector<string>` (to output multiple messages)</span></span>
-* <span data-ttu-id="d08ea-142">`IAsyncCollector<string>` (versione asincrona di `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="d08ea-142">`IAsyncCollector<string>` (async version of `ICollector<T>`)</span></span>
+* <span data-ttu-id="40575-141">`ICollector<string>`(toooutput più messaggi)</span><span class="sxs-lookup"><span data-stu-id="40575-141">`ICollector<string>` (toooutput multiple messages)</span></span>
+* <span data-ttu-id="40575-142">`IAsyncCollector<string>` (versione asincrona di `ICollector<T>`)</span><span class="sxs-lookup"><span data-stu-id="40575-142">`IAsyncCollector<string>` (async version of `ICollector<T>`)</span></span>
 
 <a name="outputsample"></a>
 
-## <a name="output-sample"></a><span data-ttu-id="d08ea-143">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="d08ea-143">Output sample</span></span>
-<span data-ttu-id="d08ea-144">Si supponga che l'associazione di output di Hub eventi seguente sia presente nella matrice `bindings` di function.json:</span><span class="sxs-lookup"><span data-stu-id="d08ea-144">Suppose you have the following Event Hubs output binding in the `bindings` array of function.json:</span></span>
+## <a name="output-sample"></a><span data-ttu-id="40575-143">Esempio di output</span><span class="sxs-lookup"><span data-stu-id="40575-143">Output sample</span></span>
+<span data-ttu-id="40575-144">Si supponga di avere seguito hello hub eventi di output dell'associazione in hello `bindings` matrice function.json:</span><span class="sxs-lookup"><span data-stu-id="40575-144">Suppose you have hello following Event Hubs output binding in hello `bindings` array of function.json:</span></span>
 
 ```json
 {
@@ -184,15 +184,15 @@ module.exports = function (context, myEventHubMessage) {
 }
 ```
 
-<span data-ttu-id="d08ea-145">Vedere l'esempio specifico del linguaggio che scrive un evento nel flusso di eventi.</span><span class="sxs-lookup"><span data-stu-id="d08ea-145">See the language-specific sample that writes an event to the even stream.</span></span>
+<span data-ttu-id="40575-145">Vedere l'esempio specifico del linguaggio hello che scrive un flusso di eventi toohello anche.</span><span class="sxs-lookup"><span data-stu-id="40575-145">See hello language-specific sample that writes an event toohello even stream.</span></span>
 
-* [<span data-ttu-id="d08ea-146">C#</span><span class="sxs-lookup"><span data-stu-id="d08ea-146">C#</span></span>](#outcsharp)
-* [<span data-ttu-id="d08ea-147">F#</span><span class="sxs-lookup"><span data-stu-id="d08ea-147">F#</span></span>](#outfsharp)
-* [<span data-ttu-id="d08ea-148">Node.JS</span><span class="sxs-lookup"><span data-stu-id="d08ea-148">Node.js</span></span>](#outnodejs)
+* [<span data-ttu-id="40575-146">C#</span><span class="sxs-lookup"><span data-stu-id="40575-146">C#</span></span>](#outcsharp)
+* [<span data-ttu-id="40575-147">F#</span><span class="sxs-lookup"><span data-stu-id="40575-147">F#</span></span>](#outfsharp)
+* [<span data-ttu-id="40575-148">Node.JS</span><span class="sxs-lookup"><span data-stu-id="40575-148">Node.js</span></span>](#outnodejs)
 
 <a name="outcsharp"></a>
 
-### <a name="output-sample-in-c"></a><span data-ttu-id="d08ea-149">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="d08ea-149">Output sample in C#</span></span> #
+### <a name="output-sample-in-c"></a><span data-ttu-id="40575-149">Esempio di output in C#</span><span class="sxs-lookup"><span data-stu-id="40575-149">Output sample in C#</span></span> #
 
 ```cs
 using System;
@@ -205,7 +205,7 @@ public static void Run(TimerInfo myTimer, out string outputEventHubMessage, Trac
 }
 ```
 
-<span data-ttu-id="d08ea-150">Oppure per creare più messaggi:</span><span class="sxs-lookup"><span data-stu-id="d08ea-150">Or, to create multiple messages:</span></span>
+<span data-ttu-id="40575-150">In alternativa, toocreate più messaggi:</span><span class="sxs-lookup"><span data-stu-id="40575-150">Or, toocreate multiple messages:</span></span>
 
 ```cs
 public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessage, TraceWriter log)
@@ -219,7 +219,7 @@ public static void Run(TimerInfo myTimer, ICollector<string> outputEventHubMessa
 
 <a name="outfsharp"></a>
 
-### <a name="output-sample-in-f"></a><span data-ttu-id="d08ea-151">Esempio di output in F#</span><span class="sxs-lookup"><span data-stu-id="d08ea-151">Output sample in F#</span></span> #
+### <a name="output-sample-in-f"></a><span data-ttu-id="40575-151">Esempio di output in F#</span><span class="sxs-lookup"><span data-stu-id="40575-151">Output sample in F#</span></span> #
 
 ```fsharp
 let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
@@ -230,7 +230,7 @@ let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWrit
 
 <a name="outnodejs"></a>
 
-### <a name="output-sample-for-nodejs"></a><span data-ttu-id="d08ea-152">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="d08ea-152">Output sample for Node.js</span></span>
+### <a name="output-sample-for-nodejs"></a><span data-ttu-id="40575-152">Esempio di output in Node.js</span><span class="sxs-lookup"><span data-stu-id="40575-152">Output sample for Node.js</span></span>
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -241,7 +241,7 @@ module.exports = function (context, myTimer) {
 };
 ```
 
-<span data-ttu-id="d08ea-153">Oppure, per inviare più messaggi,</span><span class="sxs-lookup"><span data-stu-id="d08ea-153">Or, to send multiple messages,</span></span>
+<span data-ttu-id="40575-153">In alternativa, toosend più messaggi,</span><span class="sxs-lookup"><span data-stu-id="40575-153">Or, toosend multiple messages,</span></span>
 
 ```javascript
 module.exports = function(context) {
@@ -256,5 +256,5 @@ module.exports = function(context) {
 };
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="d08ea-154">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="d08ea-154">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="40575-154">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="40575-154">Next steps</span></span>
 [!INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]

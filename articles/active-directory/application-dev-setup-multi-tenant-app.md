@@ -1,6 +1,6 @@
 ---
-title: Come configurare una nuova applicazione multi-tenant | Microsoft Docs
-description: Informazioni su come configurare un'applicazione multi-tenant e sul funzionamento di tali applicazioni
+title: aaaHow tooconfigure una nuova applicazione multi-tenant | Documenti Microsoft
+description: Informazioni su tooconfigure un'applicazione come applicazioni multi-tenant e multi-tenant funzionamento
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 24e7e0d586dab3f77e643197594c3c4462ff997e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: db62ea7a7cc5488961258e07e042bc160dbf92c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-a-new-multi-tenant-application"></a><span data-ttu-id="81301-103">Come configurare una nuova applicazione multi-tenant</span><span class="sxs-lookup"><span data-stu-id="81301-103">How to configure a new multi-tenant application</span></span>
+# <a name="how-tooconfigure-a-new-multi-tenant-application"></a><span data-ttu-id="3cb59-103">Come tooconfigure una nuova applicazione multi-tenant</span><span class="sxs-lookup"><span data-stu-id="3cb59-103">How tooconfigure a new multi-tenant application</span></span>
 
-<span data-ttu-id="81301-104">Di seguito è riportato un elenco di argomenti consigliati per altre informazioni sulle applicazioni multi-tenant:</span><span class="sxs-lookup"><span data-stu-id="81301-104">Here is a list of recommended topics to learn more about multi-tenant applications:</span></span>
+<span data-ttu-id="3cb59-104">Di seguito è riportato un elenco di argomenti consigliati toolearn ulteriori informazioni sulle applicazioni multi-tenant:</span><span class="sxs-lookup"><span data-stu-id="3cb59-104">Here is a list of recommended topics toolearn more about multi-tenant applications:</span></span>
 
-- <span data-ttu-id="81301-105">Informazioni generali sulla [definizione di applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)</span><span class="sxs-lookup"><span data-stu-id="81301-105">Get a general understanding of [what it means to be a multi-tenant application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)</span></span>
-- <span data-ttu-id="81301-106">Informazioni generali su [come configurare un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)</span><span class="sxs-lookup"><span data-stu-id="81301-106">Get a general understanding of [how to configure an application to be multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)</span></span>
-- <span data-ttu-id="81301-107">Panoramica dettagliata sull'[uso del framework di consenso di Azure AD per implementare il consenso](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), necessario per le applicazioni multi-tenant</span><span class="sxs-lookup"><span data-stu-id="81301-107">Get a step-by-step overview of [how the Azure AD consent framework is used to implement consent](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), which is required for multi-tenant applications</span></span>
-- <span data-ttu-id="81301-108">Per altri dettagli, vedere le informazioni sulla [configurazione e sulla codifica end-to-end di un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), incluse le informazioni su come eseguire la registrazione, usare l'endpoint "comune", implementare il consenso di "utente" e "amministratore" e implementare scenari più avanzati multilivello</span><span class="sxs-lookup"><span data-stu-id="81301-108">For more depth, learn [how a multi-tenant application is configured and coded end-to-end](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), including how to register, use the "common" endpoint, implement "user" and "admin" consent, how to implement more advanced multi-tier scenarios</span></span>
+- <span data-ttu-id="3cb59-105">Ottenere una conoscenza generale di [significato toobe un'applicazione multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)</span><span class="sxs-lookup"><span data-stu-id="3cb59-105">Get a general understanding of [what it means toobe a multi-tenant application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)</span></span>
+- <span data-ttu-id="3cb59-106">Ottenere una conoscenza generale di [come tooconfigure un multi-tenant toobe di applicazione](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)</span><span class="sxs-lookup"><span data-stu-id="3cb59-106">Get a general understanding of [how tooconfigure an application toobe multi-tenant](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)</span></span>
+- <span data-ttu-id="3cb59-107">Ottenere una panoramica dettagliata di [utilizzo framework di consenso di Azure AD hello consenso tooimplement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), che è necessario per le applicazioni multi-tenant</span><span class="sxs-lookup"><span data-stu-id="3cb59-107">Get a step-by-step overview of [how hello Azure AD consent framework is used tooimplement consent](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), which is required for multi-tenant applications</span></span>
+- <span data-ttu-id="3cb59-108">Per maggiore profondità, informazioni su [come un'applicazione multi-tenant è configurata e codificati end-to-end](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), incluso come tooregister, usare endpoint "common" hello, implementare "user" e "admin" consenso, tooimplement come multilivello più avanzate scenari</span><span class="sxs-lookup"><span data-stu-id="3cb59-108">For more depth, learn [how a multi-tenant application is configured and coded end-to-end](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), including how tooregister, use hello "common" endpoint, implement "user" and "admin" consent, how tooimplement more advanced multi-tier scenarios</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="81301-109">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="81301-109">Next steps</span></span>
-[<span data-ttu-id="81301-110">Azure AD in Stack Overflow</span><span class="sxs-lookup"><span data-stu-id="81301-110">AzureAD StackOverflow</span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+## <a name="next-steps"></a><span data-ttu-id="3cb59-109">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3cb59-109">Next steps</span></span>
+[<span data-ttu-id="3cb59-110">Azure AD in Stack Overflow</span><span class="sxs-lookup"><span data-stu-id="3cb59-110">AzureAD StackOverflow</span></span>](http://stackoverflow.com/questions/tagged/azure-active-directory)

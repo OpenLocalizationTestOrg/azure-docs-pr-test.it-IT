@@ -1,6 +1,6 @@
 ---
-title: Elemento CredentialsCombo dell'interfaccia utente dell'applicazione gestita di Azure | Microsoft Docs
-description: Illustra l'elemento Microsoft.Compute.CredentialsCombo dell'interfaccia utente per le applicazioni gestite di Azure
+title: elemento gestita dell'interfaccia utente dell'applicazione CredentialsCombo aaaAzure | Documenti Microsoft
+description: Descrive l'elemento dell'interfaccia utente Microsoft.Compute.CredentialsCombo hello per le applicazioni gestite di Azure
 services: azure-resource-manager
 documentationcenter: na
 author: tabrezm
@@ -13,20 +13,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
 ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 254f383ee6f7cb9f7051fa135d85319a22c3c369
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d44a3929ebb7a5ff78b72f9eaeb6e52b098e266f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="microsoftcomputecredentialscombo-ui-element"></a><span data-ttu-id="593ae-103">Elemento Microsoft.Compute.CredentialsCombo dell'interfaccia utente</span><span class="sxs-lookup"><span data-stu-id="593ae-103">Microsoft.Compute.CredentialsCombo UI element</span></span>
-<span data-ttu-id="593ae-104">Si tratta di un gruppo di controlli con convalida predefinita per le chiavi pubbliche SSH e le password di Windows e Linux.</span><span class="sxs-lookup"><span data-stu-id="593ae-104">A group of controls with built-in validation for Windows and Linux passwords and SSH public keys.</span></span> <span data-ttu-id="593ae-105">Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).</span><span class="sxs-lookup"><span data-stu-id="593ae-105">You use this element when [creating an Azure Managed Application](managed-application-publishing.md).</span></span>
+# <a name="microsoftcomputecredentialscombo-ui-element"></a><span data-ttu-id="92d1e-103">Elemento Microsoft.Compute.CredentialsCombo dell'interfaccia utente</span><span class="sxs-lookup"><span data-stu-id="92d1e-103">Microsoft.Compute.CredentialsCombo UI element</span></span>
+<span data-ttu-id="92d1e-104">Si tratta di un gruppo di controlli con convalida predefinita per le chiavi pubbliche SSH e le password di Windows e Linux.</span><span class="sxs-lookup"><span data-stu-id="92d1e-104">A group of controls with built-in validation for Windows and Linux passwords and SSH public keys.</span></span> <span data-ttu-id="92d1e-105">Usare questo elemento quando si [crea un'applicazione Azure gestita](managed-application-publishing.md).</span><span class="sxs-lookup"><span data-stu-id="92d1e-105">You use this element when [creating an Azure Managed Application](managed-application-publishing.md).</span></span>
 
-## <a name="ui-sample"></a><span data-ttu-id="593ae-106">Esempio di interfaccia utente</span><span class="sxs-lookup"><span data-stu-id="593ae-106">UI sample</span></span>
+## <a name="ui-sample"></a><span data-ttu-id="92d1e-106">Esempio di interfaccia utente</span><span class="sxs-lookup"><span data-stu-id="92d1e-106">UI sample</span></span>
 ![Microsoft.Compute.CredentialsCombo](./media/managed-application-elements/microsoft.compute.credentialscombo.png)
 
-## <a name="schema"></a><span data-ttu-id="593ae-108">Schema</span><span class="sxs-lookup"><span data-stu-id="593ae-108">Schema</span></span>
-<span data-ttu-id="593ae-109">Se `osPlatform` è **Windows**, viene usato lo schema seguente:</span><span class="sxs-lookup"><span data-stu-id="593ae-109">If `osPlatform` is **Windows**, then the following schema is used:</span></span>
+## <a name="schema"></a><span data-ttu-id="92d1e-108">Schema</span><span class="sxs-lookup"><span data-stu-id="92d1e-108">Schema</span></span>
+<span data-ttu-id="92d1e-109">Se `osPlatform` è **Windows**, hello nello schema seguente viene utilizzata:</span><span class="sxs-lookup"><span data-stu-id="92d1e-109">If `osPlatform` is **Windows**, then hello following schema is used:</span></span>
 ```json
 {
   "name": "element1",
@@ -41,7 +41,7 @@ ms.lasthandoff: 07/11/2017
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false
@@ -51,7 +51,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="593ae-110">Se `osPlatform` è **Linux**, viene usato lo schema seguente:</span><span class="sxs-lookup"><span data-stu-id="593ae-110">If `osPlatform` is **Linux**, then the following schema is used:</span></span>
+<span data-ttu-id="92d1e-110">Se `osPlatform` è **Linux**, hello nello schema seguente viene utilizzata:</span><span class="sxs-lookup"><span data-stu-id="92d1e-110">If `osPlatform` is **Linux**, then hello following schema is used:</span></span>
 ```json
 {
   "name": "element1",
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/11/2017
   "constraints": {
     "required": true,
     "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",
-    "customValidationMessage": "The password must contain at least 8 characters, with at least 1 letter and 1 number."
+    "customValidationMessage": "hello password must contain at least 8 characters, with at least 1 letter and 1 number."
   },
   "options": {
     "hideConfirmation": false,
@@ -81,15 +81,15 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="remarks"></a><span data-ttu-id="593ae-111">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="593ae-111">Remarks</span></span>
-- <span data-ttu-id="593ae-112">È necessario specificare `osPlatform`, che può essere **Windows** o **Linux**.</span><span class="sxs-lookup"><span data-stu-id="593ae-112">`osPlatform` must be specified, and can be either **Windows** or **Linux**.</span></span>
-- <span data-ttu-id="593ae-113">Se `constraints.required` è impostato su **true**, perché la convalida abbia esito positivo le caselle di testo della password o della chiave pubblica SSH devono contenere valori.</span><span class="sxs-lookup"><span data-stu-id="593ae-113">If `constraints.required` is set to **true**, then the password or SSH public key text boxes must contain values to validate successfully.</span></span> <span data-ttu-id="593ae-114">Il valore predefinito è **true**.</span><span class="sxs-lookup"><span data-stu-id="593ae-114">The default value is **true**.</span></span>
-- <span data-ttu-id="593ae-115">Se la proprietà `options.hideConfirmation` è impostata su **true**, la seconda casella di testo per la conferma della password dell'utente è nascosta.</span><span class="sxs-lookup"><span data-stu-id="593ae-115">If `options.hideConfirmation` is set to **true**, then the second text box for confirming the user's password is hidden.</span></span> <span data-ttu-id="593ae-116">Il valore predefinito è **false**.</span><span class="sxs-lookup"><span data-stu-id="593ae-116">The default value is **false**.</span></span>
-- <span data-ttu-id="593ae-117">Se `options.hidePassword` è impostato su **true**, l'opzione per l'uso dell'autenticazione della password è nascosta.</span><span class="sxs-lookup"><span data-stu-id="593ae-117">If `options.hidePassword` is set to **true**, then the option to use password authentication is hidden.</span></span> <span data-ttu-id="593ae-118">È possibile usarla solo quando `osPlatform` è **Linux**.</span><span class="sxs-lookup"><span data-stu-id="593ae-118">It can be used only when `osPlatform` is **Linux**.</span></span> <span data-ttu-id="593ae-119">Il valore predefinito è **false**.</span><span class="sxs-lookup"><span data-stu-id="593ae-119">The default value is **false**.</span></span>
-- <span data-ttu-id="593ae-120">La proprietà `customPasswordRegex` permette di implementare vincoli aggiuntivi sulle password consentite.</span><span class="sxs-lookup"><span data-stu-id="593ae-120">Additional constraints on the allowed passwords can be implemented by using the `customPasswordRegex` property.</span></span> <span data-ttu-id="593ae-121">La stringa in `customValidationMessage` viene visualizzata quando una password non supera la convalida personalizzata.</span><span class="sxs-lookup"><span data-stu-id="593ae-121">The string in `customValidationMessage` is displayed when a password fails custom validation.</span></span> <span data-ttu-id="593ae-122">Il valore predefinito per entrambe le proprietà è **null**.</span><span class="sxs-lookup"><span data-stu-id="593ae-122">The default value for both properties is **null**.</span></span>
+## <a name="remarks"></a><span data-ttu-id="92d1e-111">Osservazioni</span><span class="sxs-lookup"><span data-stu-id="92d1e-111">Remarks</span></span>
+- <span data-ttu-id="92d1e-112">È necessario specificare `osPlatform`, che può essere **Windows** o **Linux**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-112">`osPlatform` must be specified, and can be either **Windows** or **Linux**.</span></span>
+- <span data-ttu-id="92d1e-113">Se `constraints.required` è troppo**true**, quindi hello password o le caselle di testo di chiave pubblica SSH devono contenere valori toovalidate correttamente.</span><span class="sxs-lookup"><span data-stu-id="92d1e-113">If `constraints.required` is set too**true**, then hello password or SSH public key text boxes must contain values toovalidate successfully.</span></span> <span data-ttu-id="92d1e-114">valore predefinito di Hello è **true**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-114">hello default value is **true**.</span></span>
+- <span data-ttu-id="92d1e-115">Se `options.hideConfirmation` è troppo**true**, quindi hello seconda casella di testo per la conferma della password dell'utente hello è nascosto.</span><span class="sxs-lookup"><span data-stu-id="92d1e-115">If `options.hideConfirmation` is set too**true**, then hello second text box for confirming hello user's password is hidden.</span></span> <span data-ttu-id="92d1e-116">valore predefinito di Hello è **false**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-116">hello default value is **false**.</span></span>
+- <span data-ttu-id="92d1e-117">Se `options.hidePassword` è troppo**true**, quindi l'autenticazione di password toouse opzione hello è nascosto.</span><span class="sxs-lookup"><span data-stu-id="92d1e-117">If `options.hidePassword` is set too**true**, then hello option toouse password authentication is hidden.</span></span> <span data-ttu-id="92d1e-118">È possibile usarla solo quando `osPlatform` è **Linux**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-118">It can be used only when `osPlatform` is **Linux**.</span></span> <span data-ttu-id="92d1e-119">Il valore predefinito è **false**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-119">The default value is **false**.</span></span>
+- <span data-ttu-id="92d1e-120">Vincoli aggiuntivi sugli hello consentiti password può essere implementata usando hello `customPasswordRegex` proprietà.</span><span class="sxs-lookup"><span data-stu-id="92d1e-120">Additional constraints on hello allowed passwords can be implemented by using hello `customPasswordRegex` property.</span></span> <span data-ttu-id="92d1e-121">stringa in Hello `customValidationMessage` viene visualizzato quando una password si verifica un errore di convalida personalizzata.</span><span class="sxs-lookup"><span data-stu-id="92d1e-121">hello string in `customValidationMessage` is displayed when a password fails custom validation.</span></span> <span data-ttu-id="92d1e-122">Hello valore predefinito per entrambe le proprietà è **null**.</span><span class="sxs-lookup"><span data-stu-id="92d1e-122">hello default value for both properties is **null**.</span></span>
 
-## <a name="sample-output"></a><span data-ttu-id="593ae-123">Output di esempio</span><span class="sxs-lookup"><span data-stu-id="593ae-123">Sample output</span></span>
-<span data-ttu-id="593ae-124">Se `osPlatform` è **Windows** oppure l'utente ha specificato una password anziché una chiave pubblica SSH, è previsto l'output seguente:</span><span class="sxs-lookup"><span data-stu-id="593ae-124">If `osPlatform` is **Windows**, or the user provided a password instead of an SSH public key, then the following output is expected:</span></span>
+## <a name="sample-output"></a><span data-ttu-id="92d1e-123">Output di esempio</span><span class="sxs-lookup"><span data-stu-id="92d1e-123">Sample output</span></span>
+<span data-ttu-id="92d1e-124">Se `osPlatform` è **Windows**, o utente hello fornita una password anziché con una chiave pubblica SSH, quindi hello viene visualizzato output seguente:</span><span class="sxs-lookup"><span data-stu-id="92d1e-124">If `osPlatform` is **Windows**, or hello user provided a password instead of an SSH public key, then hello following output is expected:</span></span>
 
 ```json
 {
@@ -98,7 +98,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="593ae-125">Se l'utente ha specificato una chiave pubblica SSH, è previsto l'output seguente:</span><span class="sxs-lookup"><span data-stu-id="593ae-125">If the user provided an SSH public key, then the following output is expected:</span></span>
+<span data-ttu-id="92d1e-125">Se una chiave pubblica SSH è fornito dall'utente di hello, quindi hello viene visualizzato output seguente:</span><span class="sxs-lookup"><span data-stu-id="92d1e-125">If hello user provided an SSH public key, then hello following output is expected:</span></span>
 ```json
 {
   "authenticationType": "sshPublicKey",
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="593ae-126">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="593ae-126">Next steps</span></span>
-* <span data-ttu-id="593ae-127">Per un'introduzione alle applicazioni gestite, vedere [Panoramica di Applicazione gestita di Azure](managed-application-overview.md).</span><span class="sxs-lookup"><span data-stu-id="593ae-127">For an introduction to managed applications, see [Azure Managed Application overview](managed-application-overview.md).</span></span>
-* <span data-ttu-id="593ae-128">Per un'introduzione alla creazione delle definizioni dell'interfaccia utente, vedere [Introduzione a CreateUiDefinition](managed-application-createuidefinition-overview.md).</span><span class="sxs-lookup"><span data-stu-id="593ae-128">For an introduction to creating UI definitions, see [Getting started with CreateUiDefinition](managed-application-createuidefinition-overview.md).</span></span>
-* <span data-ttu-id="593ae-129">Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).</span><span class="sxs-lookup"><span data-stu-id="593ae-129">For a description of common properties in UI elements, see [CreateUiDefinition elements](managed-application-createuidefinition-elements.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="92d1e-126">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="92d1e-126">Next steps</span></span>
+* <span data-ttu-id="92d1e-127">Per le applicazioni toomanaged un'introduzione, vedere [Panoramica applicazione gestita di Azure](managed-application-overview.md).</span><span class="sxs-lookup"><span data-stu-id="92d1e-127">For an introduction toomanaged applications, see [Azure Managed Application overview](managed-application-overview.md).</span></span>
+* <span data-ttu-id="92d1e-128">Le definizioni di interfaccia utente toocreating un'introduzione, vedere [introduzione CreateUiDefinition](managed-application-createuidefinition-overview.md).</span><span class="sxs-lookup"><span data-stu-id="92d1e-128">For an introduction toocreating UI definitions, see [Getting started with CreateUiDefinition](managed-application-createuidefinition-overview.md).</span></span>
+* <span data-ttu-id="92d1e-129">Per una descrizione delle proprietà comuni negli elementi dell'interfaccia utente, vedere [Elementi di CreateUiDefinition](managed-application-createuidefinition-elements.md).</span><span class="sxs-lookup"><span data-stu-id="92d1e-129">For a description of common properties in UI elements, see [CreateUiDefinition elements](managed-application-createuidefinition-elements.md).</span></span>

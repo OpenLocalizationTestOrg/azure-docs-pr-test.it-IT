@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Splunk Enterprise e Splunk Cloud | Microsoft Docs'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Splunk Enterprise e Splunk Cloud.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory ed Splunk Enterprise e Splunk Cloud.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,226 +13,226 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/09/2017
 ms.author: jeedes
-ms.openlocfilehash: b78e9b7161207a74880e912241d5e965b353d1c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9bb6817cb31dce684cd9cc1c567fa3efc8906ad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-splunk-enterprise-and-splunk-cloud"></a><span data-ttu-id="05bbb-103">Esercitazione: Integrazione di Azure Active Directory con Splunk Enterprise e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="05bbb-103">Tutorial: Azure Active Directory integration with Splunk Enterprise and Splunk Cloud</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-splunk-enterprise-and-splunk-cloud"></a><span data-ttu-id="47ac1-103">Esercitazione: Integrazione di Azure Active Directory con Splunk Enterprise e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="47ac1-103">Tutorial: Azure Active Directory integration with Splunk Enterprise and Splunk Cloud</span></span>
 
-<span data-ttu-id="05bbb-104">Questa esercitazione descrive come integrare Splunk Enterprise e Splunk Cloud con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="05bbb-104">In this tutorial, you learn how to integrate Splunk Enterprise and Splunk Cloud with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="47ac1-104">In questa esercitazione, è illustrato come toointegrate Splunk Enterprise e Splunk Cloud con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="47ac1-104">In this tutorial, you learn how toointegrate Splunk Enterprise and Splunk Cloud with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="05bbb-105">L'integrazione di Splunk Enterprise e Splunk Cloud con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-105">Integrating Splunk Enterprise and Splunk Cloud with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="47ac1-105">Integrazione di Splunk Enterprise e Splunk Cloud con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="47ac1-105">Integrating Splunk Enterprise and Splunk Cloud with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="05bbb-106">È possibile controllare in Azure AD chi può accedere a Splunk Enterprise e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="05bbb-106">You can control in Azure AD who has access to Splunk Enterprise and Splunk Cloud</span></span>
-- <span data-ttu-id="05bbb-107">È possibile abilitare gli utenti per l'accesso automatico a Splunk Enterprise e Splunk Cloud Single Sign-On (SSO) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-107">You can enable your users to automatically get signed-on to Splunk Enterprise and Splunk Cloud single sign-on (SSO) with their Azure AD accounts</span></span>
-- <span data-ttu-id="05bbb-108">È possibile gestire gli account da una posizione centrale: il portale di Azure classico</span><span class="sxs-lookup"><span data-stu-id="05bbb-108">You can manage your accounts in one central location - the Azure classic portal</span></span>
+- <span data-ttu-id="47ac1-106">È possibile controllare in Azure AD che ha accesso Enterprise tooSplunk e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="47ac1-106">You can control in Azure AD who has access tooSplunk Enterprise and Splunk Cloud</span></span>
+- <span data-ttu-id="47ac1-107">È possibile abilitare l'utenti tooautomatically get connesso tooSplunk Splunk Cloud e Enterprise single sign-on (SSO) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-107">You can enable your users tooautomatically get signed-on tooSplunk Enterprise and Splunk Cloud single sign-on (SSO) with their Azure AD accounts</span></span>
+- <span data-ttu-id="47ac1-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure classico</span><span class="sxs-lookup"><span data-stu-id="47ac1-108">You can manage your accounts in one central location - hello Azure classic portal</span></span>
 
-<span data-ttu-id="05bbb-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="05bbb-109">If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="47ac1-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="47ac1-109">If you want tooknow more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="05bbb-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="05bbb-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="47ac1-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="47ac1-110">Prerequisites</span></span>
 
-<span data-ttu-id="05bbb-111">Per configurare l'integrazione di Azure AD con Splunk Enterprise e Splunk Cloud, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-111">To configure Azure AD integration with Splunk Enterprise and Splunk Cloud, you need the following items:</span></span>
+<span data-ttu-id="47ac1-111">integrazione di Azure AD con Splunk Enterprise e Splunk Cloud tooconfigure, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="47ac1-111">tooconfigure Azure AD integration with Splunk Enterprise and Splunk Cloud, you need hello following items:</span></span>
 
-- <span data-ttu-id="05bbb-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="05bbb-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="05bbb-113">Sottoscrizione di Splunk Enterprise o Splunk Cloud abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="05bbb-113">A Splunk Enterprise or Splunk Cloud SSO enabled subscription</span></span>
+- <span data-ttu-id="47ac1-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="47ac1-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="47ac1-113">Sottoscrizione di Splunk Enterprise o Splunk Cloud abilitata per l'accesso SSO</span><span class="sxs-lookup"><span data-stu-id="47ac1-113">A Splunk Enterprise or Splunk Cloud SSO enabled subscription</span></span>
 
 
 >[!NOTE]
-><span data-ttu-id="05bbb-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="05bbb-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+><span data-ttu-id="47ac1-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="47ac1-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 >
 
-<span data-ttu-id="05bbb-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="47ac1-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="47ac1-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="05bbb-116">Non usare l'ambiente di produzione, a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="05bbb-116">You should not use your production environment, unless this is necessary.</span></span>
-- <span data-ttu-id="05bbb-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="05bbb-117">If you don't have an Azure AD trial environment, you can get a [one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
-
-
-## <a name="scenario-description"></a><span data-ttu-id="05bbb-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="05bbb-118">Scenario description</span></span>
-<span data-ttu-id="05bbb-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="05bbb-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span>
-
-<span data-ttu-id="05bbb-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
-
-1. <span data-ttu-id="05bbb-121">Aggiunta di Splunk Enterprise e Splunk Cloud dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="05bbb-121">Adding Splunk Enterprise and Splunk Cloud from the gallery</span></span>
-2. <span data-ttu-id="05bbb-122">Configurazione e test dell'accesso Single Sign-On (SSO) di Microsoft Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-122">Configuring and testing Azure AD SSO</span></span>
+- <span data-ttu-id="47ac1-116">Non usare l'ambiente di produzione, a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="47ac1-116">You should not use your production environment, unless this is necessary.</span></span>
+- <span data-ttu-id="47ac1-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="47ac1-117">If you don't have an Azure AD trial environment, you can get a [one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
 
-## <a name="add-splunk-enterprise-and-splunk-cloud-from-the-gallery"></a><span data-ttu-id="05bbb-123">Aggiungere Splunk Enterprise e Splunk Cloud dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="05bbb-123">Add Splunk Enterprise and Splunk Cloud from the gallery</span></span>
-<span data-ttu-id="05bbb-124">Per configurare l'integrazione di Splunk Enterprise e Splunk Cloud in Azure AD, è necessario aggiungere Splunk Enterprise e Splunk Cloud dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="05bbb-124">To configure the integration of Splunk Enterprise and Splunk Cloud into Azure AD, you need to add Splunk Enterprise and Splunk Cloud from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="47ac1-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="47ac1-118">Scenario description</span></span>
+<span data-ttu-id="47ac1-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="47ac1-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span>
 
-<span data-ttu-id="05bbb-125">**Per aggiungere Splunk Enterprise e Splunk Cloud, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="05bbb-125">**To add Splunk Enterprise and Splunk Cloud from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="47ac1-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="47ac1-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="05bbb-126">Nel **portale di Azure classico**fare clic su **Active Directory**nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="05bbb-126">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="47ac1-121">Aggiunta di Splunk Enterprise e Splunk Cloud dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="47ac1-121">Adding Splunk Enterprise and Splunk Cloud from hello gallery</span></span>
+2. <span data-ttu-id="47ac1-122">Configurazione e test dell'accesso Single Sign-On (SSO) di Microsoft Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-122">Configuring and testing Azure AD SSO</span></span>
+
+
+## <a name="add-splunk-enterprise-and-splunk-cloud-from-hello-gallery"></a><span data-ttu-id="47ac1-123">Aggiungere Splunk Enterprise e Splunk Cloud dalla raccolta di hello</span><span class="sxs-lookup"><span data-stu-id="47ac1-123">Add Splunk Enterprise and Splunk Cloud from hello gallery</span></span>
+<span data-ttu-id="47ac1-124">integrazione hello tooconfigure di Splunk Enterprise e Splunk Cloud in Azure AD, è necessario tooadd Splunk Enterprise Splunk Cloud dall'elenco di tooyour hello raccolta di App e gestite SaaS.</span><span class="sxs-lookup"><span data-stu-id="47ac1-124">tooconfigure hello integration of Splunk Enterprise and Splunk Cloud into Azure AD, you need tooadd Splunk Enterprise and Splunk Cloud from hello gallery tooyour list of managed SaaS apps.</span></span>
+
+<span data-ttu-id="47ac1-125">**tooadd Splunk Enterprise e Splunk Cloud dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="47ac1-125">**tooadd Splunk Enterprise and Splunk Cloud from hello gallery, perform hello following steps:**</span></span>
+
+1. <span data-ttu-id="47ac1-126">In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-126">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span>
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="05bbb-128">Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.</span><span class="sxs-lookup"><span data-stu-id="05bbb-128">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="47ac1-128">Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.</span><span class="sxs-lookup"><span data-stu-id="47ac1-128">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="05bbb-129">Per aprire la visualizzazione applicazioni, nella visualizzazione directory fare clic su **Applications** nel menu superiore.</span><span class="sxs-lookup"><span data-stu-id="05bbb-129">To open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+3. <span data-ttu-id="47ac1-129">visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello, fare clic su **applicazioni** nel menu superiore hello.</span><span class="sxs-lookup"><span data-stu-id="47ac1-129">tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
 
-    ![Applications][2]
+    ![Applicazioni][2]
 
-4. <span data-ttu-id="05bbb-131">Fare clic su **Add** nella parte inferiore della pagina.</span><span class="sxs-lookup"><span data-stu-id="05bbb-131">Click **Add** at the bottom of the page.</span></span>
+4. <span data-ttu-id="47ac1-131">Fare clic su **Aggiungi** nella parte inferiore di hello della pagina hello.</span><span class="sxs-lookup"><span data-stu-id="47ac1-131">Click **Add** at hello bottom of hello page.</span></span>
 
     ![Applicazioni][3]
 
-5. <span data-ttu-id="05bbb-133">Nella finestra di dialogo **Come procedere** fare clic su **Aggiungere un'applicazione dalla raccolta**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-133">On the **What do you want to do** dialog, click **Add an application from the gallery**.</span></span>
+5. <span data-ttu-id="47ac1-133">In hello **cosa si desidera toodo** finestra di dialogo, fare clic su **aggiungere un'applicazione dalla raccolta di hello**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-133">On hello **What do you want toodo** dialog, click **Add an application from hello gallery**.</span></span>
 
     ![Applicazioni][4]
 
-6. <span data-ttu-id="05bbb-135">Nella casella di ricerca digitare **Splunk Enterprise o Splunk Cloud**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-135">In the search box, type **Splunk Enterprise or Splunk Cloud**.</span></span>
+6. <span data-ttu-id="47ac1-135">Nella casella di ricerca hello, digitare **Splunk Enterprise o Splunk Cloud**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-135">In hello search box, type **Splunk Enterprise or Splunk Cloud**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_01.png)
 
-7. <span data-ttu-id="05bbb-137">Nel pannello dei risultati selezionare **Splunk Enterprise e Splunk Cloud** e quindi fare clic su **Completa** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="05bbb-137">In the results pane, select **Splunk Enterprise and Splunk Cloud**, and then click **Complete** to add the application.</span></span>
+7. <span data-ttu-id="47ac1-137">Nel riquadro dei risultati di hello, selezionare **Splunk Enterprise e Splunk Cloud**, quindi fare clic su **completa** tooadd un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="47ac1-137">In hello results pane, select **Splunk Enterprise and Splunk Cloud**, and then click **Complete** tooadd hello application.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_02.png)
 
-##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="05bbb-139">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-139">Configure and test Azure AD single sign-on</span></span>
-<span data-ttu-id="05bbb-140">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Splunk Enterprise e Splunk Cloud con un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="05bbb-140">In this section, you configure and test Azure AD single sign-on with Splunk Enterprise and Splunk Cloud based on a test user called "Britta Simon".</span></span>
+##  <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="47ac1-139">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-139">Configure and test Azure AD single sign-on</span></span>
+<span data-ttu-id="47ac1-140">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Splunk Enterprise e Splunk Cloud con un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="47ac1-140">In this section, you configure and test Azure AD single sign-on with Splunk Enterprise and Splunk Cloud based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="05bbb-141">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere qual è l'utente di Splunk Enterprise e Splunk Cloud che corrisponde a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="05bbb-141">For single sign-on to work, Azure AD needs to know what the counterpart user in Splunk Enterprise and Splunk Cloud is to a user in Azure AD.</span></span> <span data-ttu-id="05bbb-142">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-142">In other words, a link relationship between an Azure AD user and the related user in Splunk Enterprise and Splunk Cloud needs to be established.</span></span>
+<span data-ttu-id="47ac1-141">Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Splunk Enterprise e Splunk Cloud è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="47ac1-141">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Splunk Enterprise and Splunk Cloud is tooa user in Azure AD.</span></span> <span data-ttu-id="47ac1-142">In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in Splunk Enterprise e Splunk Cloud deve toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="47ac1-142">In other words, a link relationship between an Azure AD user and hello related user in Splunk Enterprise and Splunk Cloud needs toobe established.</span></span>
 
-<span data-ttu-id="05bbb-143">La relazione di collegamento viene stabilita assegnando il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente) in Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-143">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Splunk Enterprise and Splunk Cloud.</span></span>
+<span data-ttu-id="47ac1-143">Questa relazione di collegamento viene stabilita tramite l'assegnazione valore hello di hello **nome utente** in Azure AD come valore hello hello **Username** Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="47ac1-143">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in Splunk Enterprise and Splunk Cloud.</span></span>
 
-<span data-ttu-id="05bbb-144">Per configurare e testare l'accesso Single Sign-On di Azure AD con Splunk Enterprise e Splunk Cloud, è necessario completare i blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-144">To configure and test Azure AD single sign-on with Splunk Enterprise and Splunk Cloud, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="47ac1-144">tooconfigure e prova AD Azure single sign-on con Splunk Enterprise e Splunk Cloud, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="47ac1-144">tooconfigure and test Azure AD single sign-on with Splunk Enterprise and Splunk Cloud, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="05bbb-145">**[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)**: per abilitare gli utenti all'uso di questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="05bbb-145">**[Configuring Azure AD single sign-on](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="05bbb-146">**[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="05bbb-146">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="05bbb-147">**[Creazione di un utente test di Splunk Enterprise e Splunk Cloud](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)**: per avere una controparte di Britta Simon in Splunk Enterprise e Splunk Cloud collegata alla relativa rappresentazione in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="05bbb-147">**[Creating a Splunk Enterprise and Splunk Cloud test user](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)** - to have a counterpart of Britta Simon in Splunk Enterprise and Splunk Cloud that is linked to the Azure AD representation of her.</span></span>
-4. <span data-ttu-id="05bbb-148">**[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="05bbb-148">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="05bbb-149">**[Test dell'accesso Single Sign-On](#testing-single-sign-on)**: per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="05bbb-149">**[Testing single sign-on](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="47ac1-145">**[Configurazione di Azure single sign-on AD](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="47ac1-145">**[Configuring Azure AD single sign-on](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="47ac1-146">**[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="47ac1-146">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="47ac1-147">**[Creazione di un utente test Splunk Enterprise e Splunk Cloud](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)**  -toohave un equivalente di Britta Simon Splunk azienda e Splunk Cloud toohello collegato AD Azure rappresentazione dell'utente.</span><span class="sxs-lookup"><span data-stu-id="47ac1-147">**[Creating a Splunk Enterprise and Splunk Cloud test user](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)** - toohave a counterpart of Britta Simon in Splunk Enterprise and Splunk Cloud that is linked toohello Azure AD representation of her.</span></span>
+4. <span data-ttu-id="47ac1-148">**[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="47ac1-148">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="47ac1-149">**[Test di accesso single sign-on](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="47ac1-149">**[Testing single sign-on](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="05bbb-150">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-150">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="47ac1-150">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-150">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="05bbb-151">In questa sezione viene abilitato l'accesso SSO di Azure AD nel portale di Azure classico e viene configurato l'accesso SSO nell'applicazione Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-151">In this section, you enable Azure AD SSO in the classic portal and configure SSO in your Splunk Enterprise and Splunk Cloud application.</span></span>
+<span data-ttu-id="47ac1-151">In questa sezione abilitare SSO AD Azure nel portale classico hello e configurare SSO nell'applicazione Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="47ac1-151">In this section, you enable Azure AD SSO in hello classic portal and configure SSO in your Splunk Enterprise and Splunk Cloud application.</span></span>
 
 
-<span data-ttu-id="05bbb-152">**Per configurare Single Sign-On di Azure AD con Splunk Enterprise e Splunk Cloud, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="05bbb-152">**To configure Azure AD single sign-on with Splunk Enterprise and Splunk Cloud, perform the following steps:**</span></span>
+<span data-ttu-id="47ac1-152">**tooconfigure AD Azure single sign-on con Splunk Enterprise e Splunk Cloud, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="47ac1-152">**tooconfigure Azure AD single sign-on with Splunk Enterprise and Splunk Cloud, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="05bbb-153">Nella pagina di integrazione dell'applicazione **Splunk Enterprise e Splunk Cloud** del portale classico fare clic su **Configura accesso Single Sign-On** per aprire la finestra di dialogo **Configura accesso Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-153">In the classic portal, on the **Splunk Enterprise and Splunk Cloud** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.</span></span>
+1. <span data-ttu-id="47ac1-153">Nel portale classico hello in hello **Splunk Enterprise e Splunk Cloud** pagina di integrazione dell'applicazione, fare clic su **configurare single sign-on** tooopen hello **configurare Single Sign-On** finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="47ac1-153">In hello classic portal, on hello **Splunk Enterprise and Splunk Cloud** application integration page, click **Configure single sign-on** tooopen hello **Configure Single Sign-On**  dialog.</span></span>
      
     ![Configura accesso Single Sign-On][6] 
 
-2. <span data-ttu-id="05bbb-155">Nella pagina **Stabilire come si desidera che gli utenti accedano a Splunk Enterprise e Splunk Cloud** selezionare **Accesso Single Sign-On di Azure AD** e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-155">On the **How would you like users to sign on to Splunk Enterprise and Splunk Cloud** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
+2. <span data-ttu-id="47ac1-155">In hello **come si desidera che gli utenti toosign su tooSplunk Enterprise e Splunk Cloud** selezionare **Azure Single Sign-On AD**e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-155">On hello **How would you like users toosign on tooSplunk Enterprise and Splunk Cloud** page, select **Azure AD Single Sign-On**, and then click **Next**.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_03.png) 
 
-3. <span data-ttu-id="05bbb-157">Nella pagina **Configurare le impostazioni dell'app** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="05bbb-157">On the **Configure App Settings** dialog page, perform the following steps:</span></span>
+3. <span data-ttu-id="47ac1-157">In hello **Configura impostazioni App** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="47ac1-157">On hello **Configure App Settings** dialog page, perform hello following steps:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_04.png) 
-  1. <span data-ttu-id="05bbb-159">Nella casella di testo **URL di accesso** digitare l'URL usato dagli utenti per accedere all'applicazione Splunk Enterprise e Splunk Cloud adottando il modello seguente: `https://<splunkserverUrl>/en-US/app/launcher/home`</span><span class="sxs-lookup"><span data-stu-id="05bbb-159">In the **Sign On URL** textbox, type the URL used by your users to sign-on to your Splunk Enterprise and Splunk Cloud application using the following pattern: `https://<splunkserverUrl>/en-US/app/launcher/home`</span></span>
-  2. <span data-ttu-id="05bbb-160">Nella casella di testo **Identificatore** digitare l'URL del server Splunk.</span><span class="sxs-lookup"><span data-stu-id="05bbb-160">In the **Identifier** textbox, type the URL of your Splunk Server.</span></span>
-  3. <span data-ttu-id="05bbb-161">Nella casella di testo **URL di risposta** digitare l'URL nel formato seguente: `https://<splunkserver>/saml/acs`</span><span class="sxs-lookup"><span data-stu-id="05bbb-161">In the **Reply URL** textbox, type the URL with the following pattern: `https://<splunkserver>/saml/acs`</span></span>
-  4. <span data-ttu-id="05bbb-162">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-162">Click **Next**.</span></span>
+  1. <span data-ttu-id="47ac1-159">In hello **URL di accesso** casella di testo, digitare l'URL hello usato dall'applicazione Splunk Cloud hello modello di utilizzo e gli utenti toosign-on tooyour Splunk Enterprise:`https://<splunkserverUrl>/en-US/app/launcher/home`</span><span class="sxs-lookup"><span data-stu-id="47ac1-159">In hello **Sign On URL** textbox, type hello URL used by your users toosign-on tooyour Splunk Enterprise and Splunk Cloud application using hello following pattern: `https://<splunkserverUrl>/en-US/app/launcher/home`</span></span>
+  2. <span data-ttu-id="47ac1-160">In hello **identificatore** casella di testo, digitare l'URL del Splunk Server hello.</span><span class="sxs-lookup"><span data-stu-id="47ac1-160">In hello **Identifier** textbox, type hello URL of your Splunk Server.</span></span>
+  3. <span data-ttu-id="47ac1-161">In hello **URL di risposta** casella di testo, digitare l'URL hello con hello seguente motivo:`https://<splunkserver>/saml/acs`</span><span class="sxs-lookup"><span data-stu-id="47ac1-161">In hello **Reply URL** textbox, type hello URL with hello following pattern: `https://<splunkserver>/saml/acs`</span></span>
+  4. <span data-ttu-id="47ac1-162">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-162">Click **Next**.</span></span>
  
-4. <span data-ttu-id="05bbb-163">Nella pagina **Configura accesso Single Sign-On in Splunk Enterprise e Splunk Cloud** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="05bbb-163">On the **Configure single sign-on at Splunk Enterprise and Splunk Cloud** page, perform the following steps:</span></span>
+4. <span data-ttu-id="47ac1-163">In hello **configurare single sign-on in Splunk Enterprise e Splunk Cloud** eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="47ac1-163">On hello **Configure single sign-on at Splunk Enterprise and Splunk Cloud** page, perform hello following steps:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_05.png)
-  1. <span data-ttu-id="05bbb-165">Fare clic su **Scarica metadati**e quindi salvare il file nel computer.</span><span class="sxs-lookup"><span data-stu-id="05bbb-165">Click **Download metadata**, and then save the file on your computer.</span></span>
-  2. <span data-ttu-id="05bbb-166">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-166">Click **Next**.</span></span>
+  1. <span data-ttu-id="47ac1-165">Fare clic su **Scarica metadati**e quindi salvare il file hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="47ac1-165">Click **Download metadata**, and then save hello file on your computer.</span></span>
+  2. <span data-ttu-id="47ac1-166">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-166">Click **Next**.</span></span>
 
-5. <span data-ttu-id="05bbb-167">Per ottenere la configurazione dell'accesso Single Sign-On per l'applicazione, contattare il team di supporto di Splunk Enterprise e Splunk Cloud e fornire gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="05bbb-167">To get SSO configured for your application, contact Splunk Enterprise and Splunk Cloud support team and provide them with the following:</span></span>
+5. <span data-ttu-id="47ac1-167">tooget SSO configurato per l'applicazione, contattare Splunk Enterprise e il team di supporto Splunk Cloud e fornire loro seguente hello:</span><span class="sxs-lookup"><span data-stu-id="47ac1-167">tooget SSO configured for your application, contact Splunk Enterprise and Splunk Cloud support team and provide them with hello following:</span></span>
 
-    * <span data-ttu-id="05bbb-168">I **metadati della federazione** scaricati.</span><span class="sxs-lookup"><span data-stu-id="05bbb-168">The downloaded **federaton metadata**</span></span>
-6. <span data-ttu-id="05bbb-169">Nel portale classico selezionare la conferma della configurazione dell'accesso Single Sign-On e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-169">In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.</span></span>
+    * <span data-ttu-id="47ac1-168">Hello scaricato **federaton metadati**</span><span class="sxs-lookup"><span data-stu-id="47ac1-168">hello downloaded **federaton metadata**</span></span>
+6. <span data-ttu-id="47ac1-169">Nel portale classico hello, selezionare hello conferma della configurazione di single sign-on e quindi fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-169">In hello classic portal, select hello single sign-on configuration confirmation, and then click **Next**.</span></span>
     
     ![Single Sign-On di Microsoft Azure AD][10]
 
-7. <span data-ttu-id="05bbb-171">Nella pagina **Conferma Single Sign-on** fare clic su **Completa**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-171">On the **Single sign-on confirmation** page, click **Complete**.</span></span>  
+7. <span data-ttu-id="47ac1-171">In hello **Single sign-on conferma** pagina, fare clic su **completa**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-171">On hello **Single sign-on confirmation** page, click **Complete**.</span></span>  
  
     ![Single Sign-On di Microsoft Azure AD][11]
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="05bbb-173">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-173">Create an Azure AD test user</span></span>
-<span data-ttu-id="05bbb-174">In questa sezione viene creato un utente test chiamato Britta Simon nel portale classico.</span><span class="sxs-lookup"><span data-stu-id="05bbb-174">In this section, you create a test user in the classic portal called Britta Simon.</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="47ac1-173">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-173">Create an Azure AD test user</span></span>
+<span data-ttu-id="47ac1-174">In questa sezione creare un utente test nel portale classico di hello chiamato Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="47ac1-174">In this section, you create a test user in hello classic portal called Britta Simon.</span></span>
 
 ![Creare un utente di Azure AD][20]
 
-<span data-ttu-id="05bbb-176">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="05bbb-176">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="47ac1-176">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="47ac1-176">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="05bbb-177">Nel **portale di Azure classico** fare clic su **Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="05bbb-177">In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.</span></span>
+1. <span data-ttu-id="47ac1-177">In hello **portale di Azure classico**via hello riquadro di spostamento a sinistra, fare clic su **Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-177">In hello **Azure classic portal**, on hello left navigation pane, click **Active Directory**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_09.png) 
 
-2. <span data-ttu-id="05bbb-179">Nell'elenco **Directory** selezionare la directory per la quale si desidera abilitare l'integrazione delle directory.</span><span class="sxs-lookup"><span data-stu-id="05bbb-179">From the **Directory** list, select the directory for which you want to enable directory integration.</span></span>
+2. <span data-ttu-id="47ac1-179">Da hello **Directory** elenco, directory hello selezionare per il quale si desidera l'integrazione di directory tooenable.</span><span class="sxs-lookup"><span data-stu-id="47ac1-179">From hello **Directory** list, select hello directory for which you want tooenable directory integration.</span></span>
 
-3. <span data-ttu-id="05bbb-180">Per visualizzare l'elenco di utenti, fare clic su **Utenti**nel menu in alto.</span><span class="sxs-lookup"><span data-stu-id="05bbb-180">To display the list of users, in the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="47ac1-180">Fare clic su elenco hello toodisplay di utenti, nel menu hello nella parte superiore di hello, **utenti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-180">toodisplay hello list of users, in hello menu on hello top, click **Users**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="05bbb-182">Per aprire la finestra di dialogo **Aggiungi utente**, fare clic su **Aggiungi utente** nella barra degli strumenti in basso.</span><span class="sxs-lookup"><span data-stu-id="05bbb-182">To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.</span></span>
+4. <span data-ttu-id="47ac1-182">hello tooopen **Aggiungi utente** finestra di dialogo, nella barra degli strumenti hello nella parte inferiore di hello, fare clic su **Aggiungi utente**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-182">tooopen hello **Add User** dialog, in hello toolbar on hello bottom, click **Add User**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_04.png) 
 
-5. <span data-ttu-id="05bbb-184">Nella pagina **Informazioni sull'utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="05bbb-184">On the **Tell us about this user** dialog page, perform the following steps:</span></span>
+5. <span data-ttu-id="47ac1-184">In hello **informazioni sull'utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="47ac1-184">On hello **Tell us about this user** dialog page, perform hello following steps:</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_05.png) 
-  1. <span data-ttu-id="05bbb-186">In Tipo di utente selezionare Nuovo utente nell'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="05bbb-186">As Type Of User, select New user in your organization.</span></span>
-  2. <span data-ttu-id="05bbb-187">Nella casella di testo **Nome utente** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-187">In the User Name **textbox**, type **BrittaSimon**.</span></span>
-  3. <span data-ttu-id="05bbb-188">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-188">Click **Next**.</span></span>
+  1. <span data-ttu-id="47ac1-186">In Tipo di utente selezionare Nuovo utente nell'organizzazione.</span><span class="sxs-lookup"><span data-stu-id="47ac1-186">As Type Of User, select New user in your organization.</span></span>
+  2. <span data-ttu-id="47ac1-187">In nome utente hello **textbox**, tipo **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-187">In hello User Name **textbox**, type **BrittaSimon**.</span></span>
+  3. <span data-ttu-id="47ac1-188">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-188">Click **Next**.</span></span>
 
-6.  <span data-ttu-id="05bbb-189">Nella pagina **Profilo utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="05bbb-189">On the **User Profile** dialog page, perform the following steps:</span></span>
+6.  <span data-ttu-id="47ac1-189">In hello **profilo utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="47ac1-189">On hello **User Profile** dialog page, perform hello following steps:</span></span>
   
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_06.png) 
-  1. <span data-ttu-id="05bbb-191">Nella casella di testo **Nome** digitare **Britta**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-191">In the **First Name** textbox, type **Britta**.</span></span>  
-  2. <span data-ttu-id="05bbb-192">Nella casella di testo **Cognome** digitare **Simon**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-192">In the **Last Name** textbox, type, **Simon**.</span></span>
-  3. <span data-ttu-id="05bbb-193">Nella casella di testo **Nome visualizzato** digitare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-193">In the **Display Name** textbox, type **Britta Simon**.</span></span>
-  4. <span data-ttu-id="05bbb-194">Nell'elenco **Ruolo** selezionare **Utente**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-194">In the **Role** list, select **User**.</span></span>
-  5. <span data-ttu-id="05bbb-195">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-195">Click **Next**.</span></span>
+  1. <span data-ttu-id="47ac1-191">In hello **nome** casella tipo **Laura**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-191">In hello **First Name** textbox, type **Britta**.</span></span>  
+  2. <span data-ttu-id="47ac1-192">In hello **cognome** casella di testo, tipo, **Simon**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-192">In hello **Last Name** textbox, type, **Simon**.</span></span>
+  3. <span data-ttu-id="47ac1-193">In hello **nome visualizzato** casella tipo **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-193">In hello **Display Name** textbox, type **Britta Simon**.</span></span>
+  4. <span data-ttu-id="47ac1-194">In hello **ruolo** elenco, selezionare **utente**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-194">In hello **Role** list, select **User**.</span></span>
+  5. <span data-ttu-id="47ac1-195">Fare clic su **Avanti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-195">Click **Next**.</span></span>
 
-7. <span data-ttu-id="05bbb-196">Nella pagina **Ottieni password temporanea** fare clic su **crea**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-196">On the **Get temporary password** dialog page, click **create**.</span></span>
+7. <span data-ttu-id="47ac1-196">In hello **Ottieni password temporanea** nella pagina, fare clic su **creare**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-196">On hello **Get temporary password** dialog page, click **create**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_07.png) 
 
-8. <span data-ttu-id="05bbb-198">Nella pagina **Ottieni password temporanea** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="05bbb-198">On the **Get temporary password** dialog page, perform the following steps:</span></span>
+8. <span data-ttu-id="47ac1-198">In hello **Ottieni password temporanea** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="47ac1-198">On hello **Get temporary password** dialog page, perform hello following steps:</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_08.png) 
-  1. <span data-ttu-id="05bbb-200">Prendere nota del valore visualizzato in **Nuova password**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-200">Write down the value of the **New Password**.</span></span>
-  2. <span data-ttu-id="05bbb-201">Fare clic su **Completa**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-201">Click **Complete**.</span></span>   
+  1. <span data-ttu-id="47ac1-200">Annotare il valore di hello di hello **nuova Password**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-200">Write down hello value of hello **New Password**.</span></span>
+  2. <span data-ttu-id="47ac1-201">Fare clic su **Complete**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-201">Click **Complete**.</span></span>   
 
-### <a name="create-a-splunk-enterprise-and-splunk-cloud-test-user"></a><span data-ttu-id="05bbb-202">Creare un utente test di Splunk Enterprise e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="05bbb-202">Create a Splunk Enterprise and Splunk Cloud test user</span></span>
+### <a name="create-a-splunk-enterprise-and-splunk-cloud-test-user"></a><span data-ttu-id="47ac1-202">Creare un utente test di Splunk Enterprise e Splunk Cloud</span><span class="sxs-lookup"><span data-stu-id="47ac1-202">Create a Splunk Enterprise and Splunk Cloud test user</span></span>
 
-<span data-ttu-id="05bbb-203">In questa sezione viene creato un utente chiamato Britta Simon in Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-203">In this section, you create a user called Britta Simon in Splunk Enterprise and Splunk Cloud.</span></span> <span data-ttu-id="05bbb-204">Rivolgersi al team di supporto di Splunk Enterprise e Splunk Cloud per aggiungere gli utenti nella piattaforma Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-204">Please work with Splunk Enterprise and Splunk Cloud support team to add the users in the Splunk Enterprise and Splunk Cloud platform.</span></span>
+<span data-ttu-id="47ac1-203">In questa sezione viene creato un utente chiamato Britta Simon in Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="47ac1-203">In this section, you create a user called Britta Simon in Splunk Enterprise and Splunk Cloud.</span></span> <span data-ttu-id="47ac1-204">Rivolgersi Splunk Enterprise e Splunk Cloud supporto team tooadd hello utenti hello Splunk Enterprise e Splunk Cloud platform.</span><span class="sxs-lookup"><span data-stu-id="47ac1-204">Please work with Splunk Enterprise and Splunk Cloud support team tooadd hello users in hello Splunk Enterprise and Splunk Cloud platform.</span></span>
 
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="05bbb-205">Assegnare l'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="05bbb-205">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="47ac1-205">Assegnare l'utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="47ac1-205">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="05bbb-206">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso SSO di Azure concedendole l'accesso a Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-206">In this section, you enable Britta Simon to use Azure SSOy granting her access to Splunk Enterprise and Splunk Cloud.</span></span>
+<span data-ttu-id="47ac1-206">In questa sezione è abilitare Britta Simon toouse SSOy Azure conceda proprio accesso tooSplunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="47ac1-206">In this section, you enable Britta Simon toouse Azure SSOy granting her access tooSplunk Enterprise and Splunk Cloud.</span></span>
 
 ![Assegna utente][200] 
 
-<span data-ttu-id="05bbb-208">**Per assegnare Britta Simon a Splunk Enterprise e Splunk Cloud, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="05bbb-208">**To assign Britta Simon to Splunk Enterprise and Splunk Cloud, perform the following steps:**</span></span>
+<span data-ttu-id="47ac1-208">**tooassign Britta Simon tooSplunk Enterprise e Splunk Cloud, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="47ac1-208">**tooassign Britta Simon tooSplunk Enterprise and Splunk Cloud, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="05bbb-209">Per aprire la visualizzazione delle applicazioni nel portale classico, nella visualizzazione directory fare clic su **Applicazioni** nel menu in alto.</span><span class="sxs-lookup"><span data-stu-id="05bbb-209">On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.</span></span>
+1. <span data-ttu-id="47ac1-209">Nel portale classico hello, fare clic su visualizzazione di applicazioni hello tooopen, nella visualizzazione directory hello **applicazioni** nel menu superiore hello.</span><span class="sxs-lookup"><span data-stu-id="47ac1-209">On hello classic portal, tooopen hello applications view, in hello directory view, click **Applications** in hello top menu.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="05bbb-211">Nell'elenco delle applicazioni selezionare **Splunk Enterprise e Splunk Cloud**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-211">In the applications list, select **Splunk Enterprise and Splunk Cloud**.</span></span>
+2. <span data-ttu-id="47ac1-211">Nell'elenco di applicazioni hello, selezionare **Splunk Enterprise e Splunk Cloud**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-211">In hello applications list, select **Splunk Enterprise and Splunk Cloud**.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_50.png) 
 
-3. <span data-ttu-id="05bbb-213">Scegliere **Utenti**dal menu in alto.</span><span class="sxs-lookup"><span data-stu-id="05bbb-213">In the menu on the top, click **Users**.</span></span>
+3. <span data-ttu-id="47ac1-213">Scegliere dal menu hello in primo piano hello **utenti**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-213">In hello menu on hello top, click **Users**.</span></span>
 
     ![Assegna utente][203]
 
-4. <span data-ttu-id="05bbb-215">Nell'elenco di utenti selezionare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="05bbb-215">In the Users list, select **Britta Simon**.</span></span>
+4. <span data-ttu-id="47ac1-215">Nell'elenco di utenti hello, selezionare **Britta Simon**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-215">In hello Users list, select **Britta Simon**.</span></span>
 
-5. <span data-ttu-id="05bbb-216">Fare clic su **Assegna**sulla barra degli strumenti in basso.</span><span class="sxs-lookup"><span data-stu-id="05bbb-216">In the toolbar on the bottom, click **Assign**.</span></span>
+5. <span data-ttu-id="47ac1-216">Nella barra degli strumenti di hello nella parte inferiore di hello, fare clic su **assegnare**.</span><span class="sxs-lookup"><span data-stu-id="47ac1-216">In hello toolbar on hello bottom, click **Assign**.</span></span>
 
     ![Assegna utente][205]
 
-### <a name="test-single-sign-on"></a><span data-ttu-id="05bbb-218">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="05bbb-218">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="47ac1-218">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="47ac1-218">Test single sign-on</span></span>
 
-<span data-ttu-id="05bbb-219">In questa sezione viene testata la configurazione dell'accesso SSO di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="05bbb-219">In this section, you test your Azure AD SSOonfiguration using the Access Panel.</span></span>
+<span data-ttu-id="47ac1-219">In questa sezione è verificare il AD SSOonfiguration Azure tramite hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="47ac1-219">In this section, you test your Azure AD SSOonfiguration using hello Access Panel.</span></span>
 
-<span data-ttu-id="05bbb-220">Quando si fa clic sul riquadro Splunk Enterprise e Splunk Cloud nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="05bbb-220">When you click the Splunk Enterprise and Splunk Cloud tile in the Access Panel, you should get automatically signed-on to your Splunk Enterprise and Splunk Cloud application.</span></span>
+<span data-ttu-id="47ac1-220">Quando si fa clic hello Splunk Enterprise e riquadro Splunk Cloud in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour applicazione Splunk Enterprise e Splunk Cloud.</span><span class="sxs-lookup"><span data-stu-id="47ac1-220">When you click hello Splunk Enterprise and Splunk Cloud tile in hello Access Panel, you should get automatically signed-on tooyour Splunk Enterprise and Splunk Cloud application.</span></span>
 
 
-## <a name="additional-resources"></a><span data-ttu-id="05bbb-221">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="05bbb-221">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="47ac1-221">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="47ac1-221">Additional resources</span></span>
 
-* [<span data-ttu-id="05bbb-222">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="05bbb-222">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="05bbb-223">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="05bbb-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="47ac1-222">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="47ac1-222">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="47ac1-223">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="47ac1-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->

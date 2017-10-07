@@ -1,6 +1,6 @@
 ---
-title: Informazioni di riferimento sul protocollo SAML in Azure AD | Microsoft Docs
-description: Questo articolo offre una panoramica dei profili SAML Single Sign-On e Single Sign-Out in Azure Active Directory.
+title: Riferimento al protocollo SAML AD aaaAzure | Documenti Microsoft
+description: In questo articolo viene fornita una panoramica dei profili di Single Sign-On e Single Sign-Out SAML hello in Azure Active Directory.
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -16,25 +16,25 @@ ms.date: 07/21/2017
 ms.author: priyamo
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: d5ffba5d0c409fe9de7a9e82c6faa4ca2702ab95
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d712289b16dc40a6b43a96fadef729c55cdaac47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# Uso del protocollo SAML in Azure Active Directory
-Azure Active Directory (Azure AD) usa il protocollo SAML 2.0 per consentire alle applicazioni di offrire agli utenti un'esperienza di accesso Single Sign-On. I profili SAML [Single Sign-On](active-directory-single-sign-on-protocol-reference.md) e [Single Sign-Out](active-directory-single-sign-out-protocol-reference.md) di Azure AD specificano come vengono usati i protocolli, le associazioni e le asserzioni SAML nel servizio del provider di identità.
+# Utilizzo di protocollo SAML hello Azure Active Directory
+Azure Active Directory (Azure AD) utilizza hello SAML 2.0 protocollo tooenable tooprovide single sign-on esperienza tootheir utenti applicazioni. Hello [Single Sign-On](active-directory-single-sign-on-protocol-reference.md) e [Single Sign-Out](active-directory-single-sign-out-protocol-reference.md) profili SAML di Azure AD viene illustrato l'utilizzo di asserzioni SAML, protocolli e le associazioni nel servizio del provider di identità hello.
 
-Il protocollo SAML richiede che il provider di identità (Azure AD) e il provider del servizio (l'applicazione) si scambino informazioni su se stessi.
+Protocollo SAML richiede che il provider di identità hello (Azure AD) e informazioni di tooexchange hello service provider (un'applicazione hello) su se stesse.
 
-Quando un'applicazione viene registrata in Azure AD, lo sviluppatore dell'app registra le informazioni relative alla federazione con Azure AD. Tali informazioni includono l'**URI di reindirizzamento** e l'**URI dei metadati** dell'applicazione.
+Quando un'applicazione viene registrata con Azure AD, sviluppatore di app hello registra le informazioni correlate alla federazione con Azure AD. Ciò include hello **URI di reindirizzamento** e **Metadata URI** dell'applicazione hello.
 
-Azure AD usa l' **URI dei metadati** del servizio cloud per recuperare la chiave di firma e l'URI di disconnessione del servizio cloud. Se l'applicazione non supporta un URI dei metadati, lo sviluppatore deve contattare il supporto tecnico Microsoft per fornire l'URI di disconnessione e la chiave di firma.
+Azure AD Usa hello **Metadata URI** di hello tooretrieve servizio cloud di hello URI del servizio cloud hello di disconnessione hello e di chiave di firma. Se un'applicazione hello non supporta un URI dei metadati, hello sviluppatore deve contattare il Microsoft supporto tooprovide hello logout URI e chiave di firma.
 
-Azure Active Directory espone endpoint di Single Sign-On e Single Sign-Out specifici del tenant e comuni (indipendenti dal tenant). Questi URL non sono semplici identificatori, ma rappresentano posizioni indirizzabili. È quindi possibile accedere all'endpoint per leggere i metadati.
+Azure Active Directory espone endpoint di Single Sign-On e Single Sign-Out specifici del tenant e comuni (indipendenti dal tenant). Questi URL rappresentano percorsi indirizzabili, non sono solo identificatori, è quindi possibile passare toohello endpoint tooread hello metadati.
 
-* L'endpoint specifico del tenant si trova all'indirizzo `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  Il segnaposto <TenantDomainName> rappresenta un nome di dominio registrato o un GUID TenantID di un tenant di Azure AD. Ad esempio, i metadati di federazione del tenant contoso.com si trovano all'indirizzo: https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+* endpoint Hello specifico del Tenant si trova in `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  Hello <TenantDomainName> segnaposto rappresenta un nome di dominio registrato o il GUID TenantID di un tenant di Azure AD. Ad esempio, si trova hello metadati della federazione di tenant contoso.com hello: https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-* L'endpoint indipendente dal tenant si trova all'indirizzo `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. Questo indirizzo dell'endpoint contiene **common** anziché l'ID o il nome di un domino tenant.
+* endpoint indipendente dal Tenant Hello si trova in `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. In questo indirizzo dell'endpoint, **comuni** viene visualizzata, anziché un nome di dominio tenant o ID.
 
-Per informazioni sui documenti di metadati della federazione pubblicati da Azure AD, vedere [Metadati della federazione](active-directory-federation-metadata.md).
+Per informazioni sui documenti di metadati di federazione hello in Azure AD pubblica, vedere [i metadati della federazione](active-directory-federation-metadata.md).

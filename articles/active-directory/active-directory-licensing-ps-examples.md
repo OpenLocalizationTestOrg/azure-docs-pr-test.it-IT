@@ -1,5 +1,5 @@
 ---
-title: Esempi di PowerShell per le licenze basate sui gruppi in Azure AD | Microsoft Docs
+title: esempi di aaaPowerShell per licenze basate su gruppo in Azure AD | Documenti Microsoft
 description: Scenari di PowerShell per le licenze basate sui gruppi di Azure Active Directory
 services: active-directory
 keywords: Licenze di Azure AD
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/05/2017
 ms.author: curtand
-ms.openlocfilehash: b561dd29faff63d4898f351b2c9a39d359b89539
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 31eeab0a34c35e80849a4cd11f5447a30b7c04be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="powershell-examples-for-group-based-licensing-in-azure-ad"></a><span data-ttu-id="f663d-104">Esempi di PowerShell per le licenze basate sui gruppi in Azure AD</span><span class="sxs-lookup"><span data-stu-id="f663d-104">PowerShell examples for group-based licensing in Azure AD</span></span>
+# <a name="powershell-examples-for-group-based-licensing-in-azure-ad"></a><span data-ttu-id="b0ec4-104">Esempi di PowerShell per le licenze basate sui gruppi in Azure AD</span><span class="sxs-lookup"><span data-stu-id="b0ec4-104">PowerShell examples for group-based licensing in Azure AD</span></span>
 
-<span data-ttu-id="f663d-105">La funzionalità completa per la gestione delle licenze basate sui gruppi è disponibile attraverso il [portale di Azure](https://portal.azure.com) e attualmente il supporto di PowerShell è limitato.</span><span class="sxs-lookup"><span data-stu-id="f663d-105">Full functionality for group-based licensing is available through the [Azure portal](https://portal.azure.com), and currently PowerShell support is limited.</span></span> <span data-ttu-id="f663d-106">Alcune attività utili possono tuttavia essere effettuate usando i [cmdlet PowerShell di MSOnline](https://docs.microsoft.com/powershell/msonline/v1/azureactivedirectory) già esistenti.</span><span class="sxs-lookup"><span data-stu-id="f663d-106">However, there are some useful tasks that can be performed using the existing [MSOnline PowerShell cmdlets](https://docs.microsoft.com/powershell/msonline/v1/azureactivedirectory).</span></span> <span data-ttu-id="f663d-107">In questo documento sono riportati esempi di operazioni che si possono eseguire.</span><span class="sxs-lookup"><span data-stu-id="f663d-107">This document provides examples of what is possible.</span></span>
+<span data-ttu-id="b0ec4-105">La funzionalità completa di licenze basate su gruppo è disponibile tramite hello [portale di Azure](https://portal.azure.com), e attualmente il supporto di PowerShell è limitato.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-105">Full functionality for group-based licensing is available through hello [Azure portal](https://portal.azure.com), and currently PowerShell support is limited.</span></span> <span data-ttu-id="b0ec4-106">Tuttavia, esistono alcune attività utili che possono essere eseguite utilizzando hello esistente [i cmdlet di MSOnline PowerShell](https://docs.microsoft.com/powershell/msonline/v1/azureactivedirectory).</span><span class="sxs-lookup"><span data-stu-id="b0ec4-106">However, there are some useful tasks that can be performed using hello existing [MSOnline PowerShell cmdlets](https://docs.microsoft.com/powershell/msonline/v1/azureactivedirectory).</span></span> <span data-ttu-id="b0ec4-107">In questo documento sono riportati esempi di operazioni che si possono eseguire.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-107">This document provides examples of what is possible.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f663d-108">Prima di iniziare l'esecuzione dei cmdlet, verificare di avere eseguito la connessione al tenant eseguendo il cmdlet `Connect-MsolService`.</span><span class="sxs-lookup"><span data-stu-id="f663d-108">Before you begin running cmdlets, make sure you connect to your tenant first, by running the `Connect-MsolService` cmdlet.</span></span>
+> <span data-ttu-id="b0ec4-108">Prima di iniziare a eseguire i cmdlet, assicurarsi di connessione tooyour tenant prima, eseguendo hello `Connect-MsolService` cmdlet.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-108">Before you begin running cmdlets, make sure you connect tooyour tenant first, by running hello `Connect-MsolService` cmdlet.</span></span>
 
-## <a name="view-product-licenses-assigned-to-a-group"></a><span data-ttu-id="f663d-109">Visualizza le licenze dei prodotti assegnate a un gruppo</span><span class="sxs-lookup"><span data-stu-id="f663d-109">View product licenses assigned to a group</span></span>
-<span data-ttu-id="f663d-110">Il cmdlet [Get-MsolGroup](/powershell/module/msonline/get-msolgroup?view=azureadps-1.0) può essere usato per recuperare l'oggetto gruppo e verificare la proprietà *Licenses*: indica tutte le licenze attualmente assegnate al gruppo.</span><span class="sxs-lookup"><span data-stu-id="f663d-110">The [Get-MsolGroup](/powershell/module/msonline/get-msolgroup?view=azureadps-1.0) cmdlet can be used to retrieve the group object and check the *Licenses* property: it lists all product licenses currently assigned to the group.</span></span>
+## <a name="view-product-licenses-assigned-tooa-group"></a><span data-ttu-id="b0ec4-109">Visualizza le licenze assegnate tooa gruppo</span><span class="sxs-lookup"><span data-stu-id="b0ec4-109">View product licenses assigned tooa group</span></span>
+<span data-ttu-id="b0ec4-110">Il [Get-MsolGroup](/powershell/module/msonline/get-msolgroup?view=azureadps-1.0) cmdlet può essere oggetto di gruppo utilizzati tooretrieve hello e controllare hello *licenze* proprietà: Elenca tutte le licenze attualmente assegnate toohello gruppo prodotto.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-110">The [Get-MsolGroup](/powershell/module/msonline/get-msolgroup?view=azureadps-1.0) cmdlet can be used tooretrieve hello group object and check hello *Licenses* property: it lists all product licenses currently assigned toohello group.</span></span>
 ```
 (Get-MsolGroup -ObjectId 99c4216a-56de-42c4-a4ac-e411cd8c7c41).Licenses
 | Select SkuPartNumber
 ```
-<span data-ttu-id="f663d-111">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-111">Output:</span></span>
+<span data-ttu-id="b0ec4-111">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-111">Output:</span></span>
 ```
 SkuPartNumber
 -------------
@@ -43,15 +43,15 @@ EMSPREMIUM
 ```
 
 > [!NOTE]
-> <span data-ttu-id="f663d-112">I dati sono limitati alle informazioni sul prodotto (SKU).</span><span class="sxs-lookup"><span data-stu-id="f663d-112">The data is limited to product (SKU) information.</span></span> <span data-ttu-id="f663d-113">Non è possibile indicare i piani di servizio disabilitati nella licenza.</span><span class="sxs-lookup"><span data-stu-id="f663d-113">It is not possible to list the service plans disabled in the license.</span></span>
+> <span data-ttu-id="b0ec4-112">dati Hello sono informazioni tooproduct limitato (SKU).</span><span class="sxs-lookup"><span data-stu-id="b0ec4-112">hello data is limited tooproduct (SKU) information.</span></span> <span data-ttu-id="b0ec4-113">Non è disabilitati nella licenza hello i piani di servizio hello toolist possibili.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-113">It is not possible toolist hello service plans disabled in hello license.</span></span>
 
-## <a name="get-all-groups-with-licenses"></a><span data-ttu-id="f663d-114">Ottenere tutti i gruppi con licenze</span><span class="sxs-lookup"><span data-stu-id="f663d-114">Get all groups with licenses</span></span>
+## <a name="get-all-groups-with-licenses"></a><span data-ttu-id="b0ec4-114">Ottenere tutti i gruppi con licenze</span><span class="sxs-lookup"><span data-stu-id="b0ec4-114">Get all groups with licenses</span></span>
 
-<span data-ttu-id="f663d-115">È possibile trovare tutti i gruppi a cui sono assegnate licenze eseguendo questo comando:</span><span class="sxs-lookup"><span data-stu-id="f663d-115">You can find all groups with any license assigned by running the following command:</span></span>
+<span data-ttu-id="b0ec4-115">È possibile trovare tutti i gruppi con qualsiasi licenza eseguendo hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-115">You can find all groups with any license assigned by running hello following command:</span></span>
 ```
 Get-MsolGroup | Where {$_.Licenses}
 ```
-<span data-ttu-id="f663d-116">Si possono visualizzare altri dettagli sui prodotti assegnati:</span><span class="sxs-lookup"><span data-stu-id="f663d-116">More details can be displayed about what products are assigned:</span></span>
+<span data-ttu-id="b0ec4-116">Si possono visualizzare altri dettagli sui prodotti assegnati:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-116">More details can be displayed about what products are assigned:</span></span>
 ```
 Get-MsolGroup | Where {$_.Licenses} | Select `
     ObjectId, `
@@ -59,7 +59,7 @@ Get-MsolGroup | Where {$_.Licenses} | Select `
     @{Name="Licenses";Expression={$_.Licenses | Select -ExpandProperty SkuPartNumber}}
 ```
 
-<span data-ttu-id="f663d-117">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-117">Output:</span></span>
+<span data-ttu-id="b0ec4-117">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-117">Output:</span></span>
 ```
 ObjectId                             DisplayName              Licenses
 --------                             -----------              --------
@@ -69,8 +69,8 @@ cf41f428-3b45-490b-b69f-a349c8a4c38e PowerBi - Licensed users POWER\_BI\_STANDAR
 c2652d63-9161-439b-b74e-fcd8228a7074 EMSandOffice             {ENTERPRISEPREMIUM,EMSPREMIUM}
 ```
 
-## <a name="get-statistics-for-groups-with-licenses"></a><span data-ttu-id="f663d-118">Ottenere le statistiche per i gruppi con licenze</span><span class="sxs-lookup"><span data-stu-id="f663d-118">Get statistics for groups with licenses</span></span>
-<span data-ttu-id="f663d-119">È possibile creare un report con le statistiche di base per i gruppi con licenze.</span><span class="sxs-lookup"><span data-stu-id="f663d-119">You can report basic statistics for groups with licenses.</span></span> <span data-ttu-id="f663d-120">Nell'esempio riportato di seguito sono indicati il numero totale di utenti, il numero di utenti con licenze già assegnate dal gruppo e il numero di utenti per i quali il gruppo non ha potuto assegnare le licenze.</span><span class="sxs-lookup"><span data-stu-id="f663d-120">In the example below we list the total user count, the count of users with licenses already assigned by the group, and the count of users for whom licenses could not be assigned by the group.</span></span>
+## <a name="get-statistics-for-groups-with-licenses"></a><span data-ttu-id="b0ec4-118">Ottenere le statistiche per i gruppi con licenze</span><span class="sxs-lookup"><span data-stu-id="b0ec4-118">Get statistics for groups with licenses</span></span>
+<span data-ttu-id="b0ec4-119">È possibile creare un report con le statistiche di base per i gruppi con licenze.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-119">You can report basic statistics for groups with licenses.</span></span> <span data-ttu-id="b0ec4-120">Nell'esempio hello seguente sono elencati numero totale di utenti di hello, hello conteggio degli utenti con licenze già assegnate dal gruppo hello e hello conteggio degli utenti per il quale le licenze non è possibile assegnare il gruppo di hello.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-120">In hello example below we list hello total user count, hello count of users with licenses already assigned by hello group, and hello count of users for whom licenses could not be assigned by hello group.</span></span>
 
 ```
 #get all groups with licenses
@@ -83,7 +83,7 @@ Get-MsolGroup -All | Where {$_.Licenses}  | Foreach {
     $licenseErrorCount = 0;
 
     Get-MsolGroupMember -All -GroupObjectId $groupId |
-    #get full info about each user in the group
+    #get full info about each user in hello group
     Get-MsolUser -ObjectId {$_.ObjectId} |
     Foreach {
         $user = $_;
@@ -94,7 +94,7 @@ Get-MsolGroup -All | Where {$_.Licenses}  | Foreach {
         {
             $licenseAssignedCount++
         }
-        #check if user has any licenses that failed to be assigned from this group
+        #check if user has any licenses that failed toobe assigned from this group
         if ($user.IndirectLicenseErrors | ? {$_.ReferencedObjectId -ieq $groupId })
         {
             $licenseErrorCount++
@@ -114,7 +114,7 @@ Get-MsolGroup -All | Where {$_.Licenses}  | Foreach {
 ```
 
 
-<span data-ttu-id="f663d-121">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-121">Output:</span></span>
+<span data-ttu-id="b0ec4-121">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-121">Output:</span></span>
 ```
 GroupName         GroupId                              GroupLicenses       TotalUserCount LicensedUserCount LicenseErrorCount
 ---------         -------                              -------------       -------------- ----------------- -----------------
@@ -125,29 +125,29 @@ EMS E5 - all s... 7023a314-6148-4d7b-b33f-6c775572879a EMSPREMIUM               
 PowerBi - Lice... cf41f428-3b45-490b-b69f-a349c8a4c38e POWER_BI_STANDARD                2                 2                 0
 O365 E3 - all ... 962f7189-59d9-4a29-983f-556ae56f19a5 ENTERPRISEPACK                   2                 2                 0
 O365 E5 - EXO     102fb8f4-bbe7-462b-83ff-2145e7cdd6ed ENTERPRISEPREMIUM                1                 1                 0
-Access to Offi... 11151866-5419-4d93-9141-0603bbf78b42 STANDARDPACK                     4                 3                 1
+Access tooOffi... 11151866-5419-4d93-9141-0603bbf78b42 STANDARDPACK                     4                 3                 1
 ```
 
-## <a name="get-all-groups-with-license-errors"></a><span data-ttu-id="f663d-122">Ottenere tutti i gruppi con errori di licenza</span><span class="sxs-lookup"><span data-stu-id="f663d-122">Get all groups with license errors</span></span>
-<span data-ttu-id="f663d-123">Per trovare i gruppi che contengono alcuni utenti per i quali non è possibile assegnare le licenze:</span><span class="sxs-lookup"><span data-stu-id="f663d-123">To find groups that contain some users for whom licenses could not be assigned:</span></span>
+## <a name="get-all-groups-with-license-errors"></a><span data-ttu-id="b0ec4-122">Ottenere tutti i gruppi con errori di licenza</span><span class="sxs-lookup"><span data-stu-id="b0ec4-122">Get all groups with license errors</span></span>
+<span data-ttu-id="b0ec4-123">toofind i gruppi che contengono alcuni utenti per i quali non è possibile assegnare licenze:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-123">toofind groups that contain some users for whom licenses could not be assigned:</span></span>
 ```
 Get-MsolGroup -HasLicenseErrorsOnly $true
 ```
-<span data-ttu-id="f663d-124">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-124">Output:</span></span>
+<span data-ttu-id="b0ec4-124">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-124">Output:</span></span>
 ```
 ObjectId                             DisplayName             GroupType Description
 --------                             -----------             --------- -----------
-11151866-5419-4d93-9141-0603bbf78b42 Access to Office 365 E1 Security  Users who should have E1 licenses
+11151866-5419-4d93-9141-0603bbf78b42 Access tooOffice 365 E1 Security  Users who should have E1 licenses
 ```
-## <a name="get-all-users-with-license-errors-in-a-group"></a><span data-ttu-id="f663d-125">Ottenere tutti gli utenti con errori di licenza in un gruppo</span><span class="sxs-lookup"><span data-stu-id="f663d-125">Get all users with license errors in a group</span></span>
+## <a name="get-all-users-with-license-errors-in-a-group"></a><span data-ttu-id="b0ec4-125">Ottenere tutti gli utenti con errori di licenza in un gruppo</span><span class="sxs-lookup"><span data-stu-id="b0ec4-125">Get all users with license errors in a group</span></span>
 
-<span data-ttu-id="f663d-126">Se un gruppo contiene alcuni errori correlati alle licenze, è ora possibile indicare tutti gli utenti interessati da tali errori.</span><span class="sxs-lookup"><span data-stu-id="f663d-126">Given a group that contains some license related errors, you can now list all users affected by those errors.</span></span> <span data-ttu-id="f663d-127">Un utente può anche avere errori di altri gruppi.</span><span class="sxs-lookup"><span data-stu-id="f663d-127">A jser can have errors from other groups, too.</span></span> <span data-ttu-id="f663d-128">Tuttavia, in questo esempio i risultati vengono limitati solo agli errori relativi al gruppo in questione verificando la proprietà **ReferencedObjectId** di ogni voce **IndirectLicenseError** per l'utente.</span><span class="sxs-lookup"><span data-stu-id="f663d-128">However, in this example we limit results only to errors relevant to the group in question by checking the **ReferencedObjectId** property of each **IndirectLicenseError** entry on the user.</span></span>
+<span data-ttu-id="b0ec4-126">Se un gruppo contiene alcuni errori correlati alle licenze, è ora possibile indicare tutti gli utenti interessati da tali errori.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-126">Given a group that contains some license related errors, you can now list all users affected by those errors.</span></span> <span data-ttu-id="b0ec4-127">Un utente può anche avere errori di altri gruppi.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-127">A jser can have errors from other groups, too.</span></span> <span data-ttu-id="b0ec4-128">Tuttavia, in questo esempio è limitare i risultati solo tooerrors toohello pertinenti gruppo in questione controllando il **ReferencedObjectId** proprietà di ogni **IndirectLicenseError** voce utente hello.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-128">However, in this example we limit results only tooerrors relevant toohello group in question by checking the **ReferencedObjectId** property of each **IndirectLicenseError** entry on hello user.</span></span>
 
 ```
 #a sample group with errors
 $groupId = '11151866-5419-4d93-9141-0603bbf78b42'
 
-#get all user members of the group
+#get all user members of hello group
 Get-MsolGroupMember -All -GroupObjectId $groupId |
     #get full information about user objects
     Get-MsolUser -ObjectId {$_.ObjectId} |
@@ -159,18 +159,18 @@ Get-MsolGroupMember -All -GroupObjectId $groupId |
            @{Name="LicenseError";Expression={$_.IndirectLicenseErrors | Where {$_.ReferencedObjectId -eq $groupId} | Select -ExpandProperty Error}}
 ```
 
-<span data-ttu-id="f663d-129">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-129">Output:</span></span>
+<span data-ttu-id="b0ec4-129">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-129">Output:</span></span>
 ```
 ObjectId                             DisplayName      License Error
 --------                             -----------      ------------
 6d325baf-22b7-46fa-a2fc-a2500613ca15 Catherine Gibson MutuallyExclusiveViolation
 ```
-## <a name="get-all-users-with-license-errors-in-the-entire-tenant"></a><span data-ttu-id="f663d-130">Ottenere tutti gli utenti con errori di licenza nell'intero tenant</span><span class="sxs-lookup"><span data-stu-id="f663d-130">Get all users with license errors in the entire tenant</span></span>
+## <a name="get-all-users-with-license-errors-in-hello-entire-tenant"></a><span data-ttu-id="b0ec4-130">Ottenere tutti gli utenti con errori di licenze nel tenant intera hello</span><span class="sxs-lookup"><span data-stu-id="b0ec4-130">Get all users with license errors in hello entire tenant</span></span>
 
-<span data-ttu-id="f663d-131">Per indicare tutti gli utenti con errori di licenza di uno o più gruppi, è possibile usare lo script seguente,</span><span class="sxs-lookup"><span data-stu-id="f663d-131">To list all users who have license errors from one or more groups, the following script can be used.</span></span> <span data-ttu-id="f663d-132">che genera una riga per ogni utente in base all'errore di licenza e consente di identificare chiaramente l'origine di ogni errore.</span><span class="sxs-lookup"><span data-stu-id="f663d-132">This script will list one row per user, per license error which allows you to clearly identify the source of each error.</span></span>
+<span data-ttu-id="b0ec4-131">toolist tutti gli utenti che dispongono di errori di licenze da uno o più gruppi, hello lo script seguente possono essere utilizzati.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-131">toolist all users who have license errors from one or more groups, hello following script can be used.</span></span> <span data-ttu-id="b0ec4-132">Questo script verranno elencati a una riga per ogni utente, per ogni errore di licenza che consentono di tooclearly identificare origine hello di ciascun errore.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-132">This script will list one row per user, per license error which allows you tooclearly identify hello source of each error.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f663d-133">Lo script indicherà tutti gli utenti del tenant e questo può non essere ottimale per i tenant di grandi dimensioni.</span><span class="sxs-lookup"><span data-stu-id="f663d-133">This script will enumerate all users in the tenant, which might not be optimal for large tenants.</span></span>
+> <span data-ttu-id="b0ec4-133">Questo script permette di enumerare tutti gli utenti nel tenant di hello, che potrebbe non essere ottimali per i tenant di grandi dimensioni.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-133">This script will enumerate all users in hello tenant, which might not be optimal for large tenants.</span></span>
 
 ```
 Get-MsolUser -All | Where {$_.IndirectLicenseErrors } | % {   
@@ -185,7 +185,7 @@ Get-MsolUser -All | Where {$_.IndirectLicenseErrors } | % {
     }  
 ```
 
-<span data-ttu-id="f663d-134">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-134">Output:</span></span>
+<span data-ttu-id="b0ec4-134">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-134">Output:</span></span>
 
 ```
 UserName         UserId                               GroupId                              LicenseError
@@ -196,7 +196,7 @@ Catherine Gibson 6d325baf-22b7-46fa-a2fc-a2500613ca15 11151866-5419-4d93-9141-06
 Drew Fogarty     f2af28fc-db0b-4909-873d-ddd2ab1fd58c 1ebd5028-6092-41d0-9668-129a3c471332 MutuallyExclusiveViolation
 ```
 
-<span data-ttu-id="f663d-135">Questa è un'altra versione dello script che esegue la ricerca solo tra i gruppi che contengono errori di licenza.</span><span class="sxs-lookup"><span data-stu-id="f663d-135">Here is another version of the script that searches only through groups that contain license errors.</span></span> <span data-ttu-id="f663d-136">Può essere ulteriormente ottimizzato per gli scenari in cui si prevede di avere pochi gruppi con problemi.</span><span class="sxs-lookup"><span data-stu-id="f663d-136">It may be more optimized for scenarios where you expect to have few groups with problems.</span></span>
+<span data-ttu-id="b0ec4-135">Di seguito è riportata un'altra versione dello script hello che cerca solo tramite i gruppi che contengono errori di licenze.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-135">Here is another version of hello script that searches only through groups that contain license errors.</span></span> <span data-ttu-id="b0ec4-136">Potrebbe essere che più ottimizzato per scenari in cui si prevede toohave alcuni gruppi di problemi.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-136">It may be more optimized for scenarios where you expect toohave few groups with problems.</span></span>
 
 ```
 Get-MsolUser -All | Where {$_.IndirectLicenseErrors } | % {   
@@ -211,32 +211,32 @@ Get-MsolUser -All | Where {$_.IndirectLicenseErrors } | % {
     }
 ```
 
-## <a name="check-if-user-license-is-assigned-directly-or-inherited-from-a-group"></a><span data-ttu-id="f663d-137">Verificare se la licenza utente viene assegnata direttamente o ereditata da un gruppo</span><span class="sxs-lookup"><span data-stu-id="f663d-137">Check if user license is assigned directly or inherited from a group</span></span>
+## <a name="check-if-user-license-is-assigned-directly-or-inherited-from-a-group"></a><span data-ttu-id="b0ec4-137">Verificare se la licenza utente viene assegnata direttamente o ereditata da un gruppo</span><span class="sxs-lookup"><span data-stu-id="b0ec4-137">Check if user license is assigned directly or inherited from a group</span></span>
 
-<span data-ttu-id="f663d-138">Per un oggetto utente è possibile verificare se la licenza di un determinato prodotto viene assegnata da un gruppo o direttamente.</span><span class="sxs-lookup"><span data-stu-id="f663d-138">For a user object it is possible to check if a particular product license is assigned from a group or if it is assigned directly.</span></span>
+<span data-ttu-id="b0ec4-138">Per un oggetto utente è possibile toocheck se viene assegnata una licenza di prodotto specifico da un gruppo o se è stato assegnato direttamente.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-138">For a user object it is possible toocheck if a particular product license is assigned from a group or if it is assigned directly.</span></span>
 
-<span data-ttu-id="f663d-139">Le due funzioni di esempio riportate di seguito possono essere usate per analizzare il tipo di assegnazione per un singolo utente:</span><span class="sxs-lookup"><span data-stu-id="f663d-139">The two sample functions below can be used to analyze the type of assignment on an individual user:</span></span>
+<span data-ttu-id="b0ec4-139">Hello due funzioni di esempio riportato di seguito possono essere utilizzati tipo hello tooanalyze di assegnazione in un singolo utente:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-139">hello two sample functions below can be used tooanalyze hello type of assignment on an individual user:</span></span>
 ```
-#Returns TRUE if the user has the license assigned directly
+#Returns TRUE if hello user has hello license assigned directly
 function UserHasLicenseAssignedDirectly
 {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
 
     foreach($license in $user.Licenses)
     {
-        #we look for the specific license SKU in all licenses assigned to the user
+        #we look for hello specific license SKU in all licenses assigned toohello user
         if ($license.AccountSkuId -ieq $skuId)
         {
-            #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-            #This could be a group object or a user object (contrary to what the name suggests)
-            #If the collection is empty, this means the license is assigned directly - this is the case for users who have never been licensed via groups in the past
+            #GroupsAssigningLicense contains a collection of IDs of objects assigning hello license
+            #This could be a group object or a user object (contrary toowhat hello name suggests)
+            #If hello collection is empty, this means hello license is assigned directly - this is hello case for users who have never been licensed via groups in hello past
             if ($license.GroupsAssigningLicense.Count -eq 0)
             {
                 return $true
             }
 
-            #If the collection contains the ID of the user object, this means the license is assigned directly
-            #Note: the license may also be assigned through one or more groups in addition to being assigned directly
+            #If hello collection contains hello ID of hello user object, this means hello license is assigned directly
+            #Note: hello license may also be assigned through one or more groups in addition toobeing assigned directly
             foreach ($assignmentSource in $license.GroupsAssigningLicense)
             {
                 if ($assignmentSource -ieq $user.ObjectId)
@@ -249,22 +249,22 @@ function UserHasLicenseAssignedDirectly
     }
     return $false
 }
-#Returns TRUE if the user is inheriting the license from a group
+#Returns TRUE if hello user is inheriting hello license from a group
 function UserHasLicenseAssignedFromGroup
 {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
 
     foreach($license in $user.Licenses)
     {
-        #we look for the specific license SKU in all licenses assigned to the user
+        #we look for hello specific license SKU in all licenses assigned toohello user
         if ($license.AccountSkuId -ieq $skuId)
         {
-            #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-            #This could be a group object or a user object (contrary to what the name suggests)
+            #GroupsAssigningLicense contains a collection of IDs of objects assigning hello license
+            #This could be a group object or a user object (contrary toowhat hello name suggests)
             foreach ($assignmentSource in $license.GroupsAssigningLicense)
             {
-                #If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
-                #Note: the license may also be assigned directly in addition to being inherited
+                #If hello collection contains at least one ID not matching hello user ID this means that hello license is inherited from a group.
+                #Note: hello license may also be assigned directly in addition toobeing inherited
                 if ($assignmentSource -ine $user.ObjectId)
                 {
                     return $true
@@ -277,12 +277,12 @@ function UserHasLicenseAssignedFromGroup
 }
 ```
 
-<span data-ttu-id="f663d-140">Questo script esegue le funzioni su ogni utente nel tenant, usando l'ID SKU come input: in questo esempio si richiede la licenza per *Enterprise Mobility + Security*, che in questo tenant è rappresentato con l'ID *contoso:EMS*:</span><span class="sxs-lookup"><span data-stu-id="f663d-140">This script executes those functions on each user in the tenant, using the SKU ID as input - in this example we are interested in the license for *Enterprise Mobility + Security*, which in our tenant is represented with ID *contoso:EMS*:</span></span>
+<span data-ttu-id="b0ec4-140">Questo script esegue le funzioni su ogni utente nel tenant di hello, utilizzando l'ID SKU hello come input: in questo esempio si intende licenza hello per *Enterprise Mobility + Security*, che in questo tenant è rappresentato con ID *contoso:EMS*:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-140">This script executes those functions on each user in hello tenant, using hello SKU ID as input - in this example we are interested in hello license for *Enterprise Mobility + Security*, which in our tenant is represented with ID *contoso:EMS*:</span></span>
 ```
-#the license SKU we are interested in. use Msol-GetAccountSku to see a list of all identifiers in your tenant
+#hello license SKU we are interested in. use Msol-GetAccountSku toosee a list of all identifiers in your tenant
 $skuId = "contoso:EMS"
 
-#find all users that have the SKU license assigned
+#find all users that have hello SKU license assigned
 Get-MsolUser -All | where {$_.isLicensed -eq $true -and $_.Licenses.AccountSKUID -eq $skuId} | select `
     ObjectId, `
     @{Name="SkuId";Expression={$skuId}}, `
@@ -290,7 +290,7 @@ Get-MsolUser -All | where {$_.isLicensed -eq $true -and $_.Licenses.AccountSKUID
     @{Name="AssignedFromGroup";Expression={(UserHasLicenseAssignedFromGroup $_ $skuId)}}
 ```
 
-<span data-ttu-id="f663d-141">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-141">Output:</span></span>
+<span data-ttu-id="b0ec4-141">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-141">Output:</span></span>
 ```
 ObjectId                             SkuId       AssignedDirectly AssignedFromGroup
 --------                             -----       ---------------- -----------------
@@ -299,15 +299,15 @@ ObjectId                             SkuId       AssignedDirectly AssignedFromGr
 240622ac-b9b8-4d50-94e2-dad19a3bf4b5 contoso:EMS             True              True
 ```
 
-## <a name="remove-direct-licenses-for-users-with-group-licenses"></a><span data-ttu-id="f663d-142">Rimuovere licenze dirette per gli utenti con licenze di gruppo</span><span class="sxs-lookup"><span data-stu-id="f663d-142">Remove direct licenses for users with group licenses</span></span>
-<span data-ttu-id="f663d-143">Lo scopo di questo script è rimuovere le licenze dirette non necessarie dagli utenti che ereditano già le stesse licenze dai gruppi, ad esempio in caso di [transizione alle licenze basate sui gruppi](https://docs.microsoft.com/azure/active-directory/active-directory-licensing-group-migration-azure-portal).</span><span class="sxs-lookup"><span data-stu-id="f663d-143">The purpose of this script is to remove unnecessary direct licenses from users who already inherit the same license from a group; for example, as part of a [transitioning to group-based licensing](https://docs.microsoft.com/azure/active-directory/active-directory-licensing-group-migration-azure-portal).</span></span>
+## <a name="remove-direct-licenses-for-users-with-group-licenses"></a><span data-ttu-id="b0ec4-142">Rimuovere licenze dirette per gli utenti con licenze di gruppo</span><span class="sxs-lookup"><span data-stu-id="b0ec4-142">Remove direct licenses for users with group licenses</span></span>
+<span data-ttu-id="b0ec4-143">scopo di Hello di questo script è tooremove licenze diretto non necessari agli utenti che ereditano già hello stesso licenza da un gruppo. ad esempio, come parte di un [transizione licenze basate su toogroup](https://docs.microsoft.com/azure/active-directory/active-directory-licensing-group-migration-azure-portal).</span><span class="sxs-lookup"><span data-stu-id="b0ec4-143">hello purpose of this script is tooremove unnecessary direct licenses from users who already inherit hello same license from a group; for example, as part of a [transitioning toogroup-based licensing](https://docs.microsoft.com/azure/active-directory/active-directory-licensing-group-migration-azure-portal).</span></span>
 > [!NOTE]
-> <span data-ttu-id="f663d-144">Per prima cosa è importante verificare che le licenze dirette da rimuovere non abilitino altre funzionalità di servizio rispetto alle licenze ereditate.</span><span class="sxs-lookup"><span data-stu-id="f663d-144">It is important to first validate that the direct licenses to be removed do not enable more service functionality than the inherited licenses.</span></span> <span data-ttu-id="f663d-145">In caso contrario, rimuovere le licenze dirette può disabilitare l'accesso a servizi e dati per gli utenti.</span><span class="sxs-lookup"><span data-stu-id="f663d-145">Otherwise, removing the direct license may disable access to services and data for users.</span></span> <span data-ttu-id="f663d-146">Attualmente non è possibile verificare con PowerShell quali servizi vengono abilitati usando le licenze ereditate e quali usando le licenze dirette.</span><span class="sxs-lookup"><span data-stu-id="f663d-146">Currently it is not possible to check via PowerShell which services are enabled via inherited licenses vs direct.</span></span> <span data-ttu-id="f663d-147">Nello script verrà specificato il livello minimo dei servizi che vengono sicuramente ereditati dai gruppi e si userà quel valore come riferimento.</span><span class="sxs-lookup"><span data-stu-id="f663d-147">In the script we will specify the minimum level of services we know are being inherited from groups and we will check against that.</span></span>
+> <span data-ttu-id="b0ec4-144">È importante toofirst convalidare tale hello toobe diretto licenze rimosse non abilitare altre funzionalità del servizio di hello ereditata licenze.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-144">It is important toofirst validate that hello direct licenses toobe removed do not enable more service functionality than hello inherited licenses.</span></span> <span data-ttu-id="b0ec4-145">Potrebbe essere disabilitata in caso contrario, la rimozione delle licenze diretto hello tooservices di accesso e i dati per gli utenti.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-145">Otherwise, removing hello direct license may disable access tooservices and data for users.</span></span> <span data-ttu-id="b0ec4-146">Non è attualmente possibile toocheck tramite PowerShell, i servizi vengono abilitati tramite vs licenze ereditato diretto.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-146">Currently it is not possible toocheck via PowerShell which services are enabled via inherited licenses vs direct.</span></span> <span data-ttu-id="b0ec4-147">Nello script hello verrà specificata vengono ereditati dai gruppi di livello minimo di hello dei servizi è noto e si verificherà a quello.</span><span class="sxs-lookup"><span data-stu-id="b0ec4-147">In hello script we will specify hello minimum level of services we know are being inherited from groups and we will check against that.</span></span>
 
 ```
-#BEGIN: Helper functions used by the script
+#BEGIN: Helper functions used by hello script
 
-#Returns TRUE if the user has the license assigned directly
+#Returns TRUE if hello user has hello license assigned directly
 function UserHasLicenseAssignedDirectly
 {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId)
@@ -316,16 +316,16 @@ function UserHasLicenseAssignedDirectly
 
     if ($license -ne $null)
     {
-        #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-        #This could be a group object or a user object (contrary to what the name suggests)
-        #If the collection is empty, this means the license is assigned directly - this is the case for users who have never been licensed via groups in the past
+        #GroupsAssigningLicense contains a collection of IDs of objects assigning hello license
+        #This could be a group object or a user object (contrary toowhat hello name suggests)
+        #If hello collection is empty, this means hello license is assigned directly - this is hello case for users who have never been licensed via groups in hello past
         if ($license.GroupsAssigningLicense.Count -eq 0)
         {
             return $true
         }
 
-        #If the collection contains the ID of the user object, this means the license is assigned directly
-        #Note: the license may also be assigned through one or more groups in addition to being assigned directly
+        #If hello collection contains hello ID of hello user object, this means hello license is assigned directly
+        #Note: hello license may also be assigned through one or more groups in addition toobeing assigned directly
         foreach ($assignmentSource in $license.GroupsAssigningLicense)
         {
             if ($assignmentSource -ieq $user.ObjectId)
@@ -337,7 +337,7 @@ function UserHasLicenseAssignedDirectly
     }
     return $false
 }
-#Returns TRUE if the user is inheriting the license from a specific group
+#Returns TRUE if hello user is inheriting hello license from a specific group
 function UserHasLicenseAssignedFromThisGroup
 {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId, [Guid]$groupId)
@@ -346,12 +346,12 @@ function UserHasLicenseAssignedFromThisGroup
 
     if ($license -ne $null)
     {
-        #GroupsAssigningLicense contains a collection of IDs of objects assigning the license
-        #This could be a group object or a user object (contrary to what the name suggests)
+        #GroupsAssigningLicense contains a collection of IDs of objects assigning hello license
+        #This could be a group object or a user object (contrary toowhat hello name suggests)
         foreach ($assignmentSource in $license.GroupsAssigningLicense)
         {
-            #If the collection contains at least one ID not matching the user ID this means that the license is inherited from a group.
-            #Note: the license may also be assigned directly in addition to being inherited
+            #If hello collection contains at least one ID not matching hello user ID this means that hello license is inherited from a group.
+            #Note: hello license may also be assigned directly in addition toobeing inherited
             if ($assignmentSource -ieq $groupId)
             {
                 return $true
@@ -362,11 +362,11 @@ function UserHasLicenseAssignedFromThisGroup
     return $false
 }
 
-#Returns the license object corresponding to the skuId. Returns NULL if not found
+#Returns hello license object corresponding toohello skuId. Returns NULL if not found
 function GetUserLicense
 {
     Param([Microsoft.Online.Administration.User]$user, [string]$skuId, [Guid]$groupId)
-    #we look for the specific license SKU in all licenses assigned to the user
+    #we look for hello specific license SKU in all licenses assigned toohello user
     foreach($license in $user.Licenses)
     {
         if ($license.AccountSkuId -ieq $skuId)
@@ -377,7 +377,7 @@ function GetUserLicense
     return $null
 }
 
-#produces a list of disabled service plan names for a set of plans we want to leave enabled
+#produces a list of disabled service plan names for a set of plans we want tooleave enabled
 function GetDisabledPlansForSKU
 {
     Param([string]$skuId, [string[]]$enabledPlans)
@@ -406,34 +406,34 @@ function GetUnexpectedEnabledPlansForUser
 }
 #END: helper functions
 
-#BEGIN: executing the script
-#the group to be processed
+#BEGIN: executing hello script
+#hello group toobe processed
 $groupId = "48ca647b-7e4d-41e5-aa66-40cab1e19101"
 
-#license to be removed - Office 365 E3
+#license toobe removed - Office 365 E3
 $skuId = "contoso:ENTERPRISEPACK"
 
-#minimum set of service plans we know are inherited from groups - we want to make sure that there aren't any users who have more services enabled
+#minimum set of service plans we know are inherited from groups - we want toomake sure that there aren't any users who have more services enabled
 #which could mean that they may lose access after we remove direct licenses
 $servicePlansFromGroups = ("EXCHANGE_S_ENTERPRISE", "SHAREPOINTENTERPRISE", "OFFICESUBSCRIPTION")
 
 $expectedDisabledPlans = GetDisabledPlansForSKU $skuId $servicePlansFromGroups
 
-#process all members in the group
+#process all members in hello group
 Get-MsolGroupMember -All -GroupObjectId $groupId |
-    #get full info about each user in the group
+    #get full info about each user in hello group
     Get-MsolUser -ObjectId {$_.ObjectId} |
     Foreach {
         $user = $_;
         $operationResult = "";
 
-        #check if Direct license exists on the user
+        #check if Direct license exists on hello user
         if (UserHasLicenseAssignedDirectly $user $skuId)
         {
-            #check if the license is assigned from this group, as expected
+            #check if hello license is assigned from this group, as expected
             if (UserHasLicenseAssignedFromThisGroup $user $skuId $groupId)
             {
-                #check if there are any extra plans we didn't expect - we are being extra careful not to remove unexpected services
+                #check if there are any extra plans we didn't expect - we are being extra careful not tooremove unexpected services
                 $extraPlans = GetUnexpectedEnabledPlansForUser $user $skuId $expectedDisabledPlans
                 if ($extraPlans.Count -gt 0)
                 {
@@ -441,7 +441,7 @@ Get-MsolGroupMember -All -GroupObjectId $groupId |
                 }
                 else
                 {
-                    #remove the direct license from user
+                    #remove hello direct license from user
                     Set-MsolUserLicense -ObjectId $user.ObjectId -RemoveLicenses $skuId
                     $operationResult = "Removed direct license from user."   
                 }
@@ -454,7 +454,7 @@ Get-MsolGroupMember -All -GroupObjectId $groupId |
         }
         else
         {
-            $operationResult = "User has no direct license to remove. Skipping."
+            $operationResult = "User has no direct license tooremove. Skipping."
         }
 
         #format output
@@ -462,24 +462,24 @@ Get-MsolGroupMember -All -GroupObjectId $groupId |
                     Add-Member -NotePropertyName UserId -NotePropertyValue $user.ObjectId -PassThru |
                     Add-Member -NotePropertyName OperationResult -NotePropertyValue $operationResult -PassThru
     } | Format-Table
-#END: executing the script
+#END: executing hello script
 ```
 
-<span data-ttu-id="f663d-148">Output:</span><span class="sxs-lookup"><span data-stu-id="f663d-148">Output:</span></span>
+<span data-ttu-id="b0ec4-148">Output:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-148">Output:</span></span>
 ```
 UserId                               OperationResult                                                                                
 ------                               ---------------                                                                                
 7c7f860f-700a-462a-826c-f50633931362 Removed direct license from user.                                                              
 0ddacdd5-0364-477d-9e4b-07eb6cdbc8ea User has extra plans that may be lost - license removal was skipped. Extra plans: SHAREPOINTWAC
-aadbe4da-c4b5-4d84-800a-9400f31d7371 User has no direct license to remove. Skipping.                                                
+aadbe4da-c4b5-4d84-800a-9400f31d7371 User has no direct license tooremove. Skipping.                                                
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="f663d-149">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f663d-149">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="b0ec4-149">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b0ec4-149">Next steps</span></span>
 
-<span data-ttu-id="f663d-150">Per altre informazioni sulle funzionalità disponibili per la gestione delle licenze tramite i gruppi, vedere:</span><span class="sxs-lookup"><span data-stu-id="f663d-150">To learn more about the feature set for license management through groups, see the following:</span></span>
+<span data-ttu-id="b0ec4-150">toolearn ulteriori informazioni su funzionalità hello impostato per la gestione delle licenze tramite i gruppi, vedere l'esempio hello:</span><span class="sxs-lookup"><span data-stu-id="b0ec4-150">toolearn more about hello feature set for license management through groups, see hello following:</span></span>
 
-* [<span data-ttu-id="f663d-151">Che cosa sono le licenze basate sui gruppi in Azure Active Directory?</span><span class="sxs-lookup"><span data-stu-id="f663d-151">What is group-based licensing in Azure Active Directory?</span></span>](active-directory-licensing-whatis-azure-portal.md)
-* [<span data-ttu-id="f663d-152">Assegnazione di licenze a un gruppo in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f663d-152">Assigning licenses to a group in Azure Active Directory</span></span>](active-directory-licensing-group-assignment-azure-portal.md)
-* [<span data-ttu-id="f663d-153">Identificazione e risoluzione dei problemi relativi alle licenze per un gruppo in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f663d-153">Identifying and resolving license problems for a group in Azure Active Directory</span></span>](active-directory-licensing-group-problem-resolution-azure-portal.md)
-* [<span data-ttu-id="f663d-154">Come eseguire la migrazione di singoli utenti con licenza alle licenze basate sui gruppi in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f663d-154">How to migrate individual licensed users to group-based licensing in Azure Active Directory</span></span>](active-directory-licensing-group-migration-azure-portal.md)
-* [<span data-ttu-id="f663d-155">Scenari aggiuntivi relativi alle licenze basate sui gruppi in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f663d-155">Azure Active Directory group-based licensing additional scenarios</span></span>](active-directory-licensing-group-advanced.md)
+* [<span data-ttu-id="b0ec4-151">Che cosa sono le licenze basate sui gruppi in Azure Active Directory?</span><span class="sxs-lookup"><span data-stu-id="b0ec4-151">What is group-based licensing in Azure Active Directory?</span></span>](active-directory-licensing-whatis-azure-portal.md)
+* [<span data-ttu-id="b0ec4-152">L'assegnazione gruppo di licenze tooa in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b0ec4-152">Assigning licenses tooa group in Azure Active Directory</span></span>](active-directory-licensing-group-assignment-azure-portal.md)
+* [<span data-ttu-id="b0ec4-153">Identificazione e risoluzione dei problemi relativi alle licenze per un gruppo in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b0ec4-153">Identifying and resolving license problems for a group in Azure Active Directory</span></span>](active-directory-licensing-group-problem-resolution-azure-portal.md)
+* [<span data-ttu-id="b0ec4-154">Come singoli toomigrate concesso in licenza agli utenti in base toogroup licenze in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b0ec4-154">How toomigrate individual licensed users toogroup-based licensing in Azure Active Directory</span></span>](active-directory-licensing-group-migration-azure-portal.md)
+* [<span data-ttu-id="b0ec4-155">Scenari aggiuntivi relativi alle licenze basate sui gruppi in Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b0ec4-155">Azure Active Directory group-based licensing additional scenarios</span></span>](active-directory-licensing-group-advanced.md)

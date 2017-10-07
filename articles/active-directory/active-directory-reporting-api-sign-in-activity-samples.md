@@ -1,6 +1,6 @@
 ---
-title: "Esempi dell'API del report sull'attività di accesso di Azure Active Directory | Documentazione Microsoft"
-description: Come iniziare a usare l'API di creazione report di Azure Active Directory
+title: "esempi di report API attività aaaAzure sign-in Active Directory | Documenti Microsoft"
+description: "La modalità di avvio tooget con hello API Azure Active Directory Reporting"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,28 +15,28 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 7fc2b59fe37ed2ffe85925c457300ef8fd83c3c7
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4fbbea95fe0b52828673b997681ae37481e21bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-sign-in-activity-report-api-samples"></a><span data-ttu-id="220c0-103">Esempi dell'API del report sull'attività di accesso di Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="220c0-103">Azure Active Directory sign-in activity report API samples</span></span>
-<span data-ttu-id="220c0-104">Questo argomento fa parte di una raccolta di argomenti sull'API di creazione report di Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="220c0-104">This topic is part of a collection of topics about the Azure Active Directory reporting API.</span></span>  
-<span data-ttu-id="220c0-105">La creazione di report di Azure Active Directory fornisce un'API che consente di accedere ai dati sull'attività di accesso tramite codice o strumenti correlati.</span><span class="sxs-lookup"><span data-stu-id="220c0-105">Azure AD reporting provides you with an API that enables you to access sign-in activity data using code or related tools.</span></span>  
-<span data-ttu-id="220c0-106">L'obiettivo di questo argomento è fornire il codice di esempio per l' **API sull'attività di accesso**.</span><span class="sxs-lookup"><span data-stu-id="220c0-106">The scope of this topic is to provide you with sample code for the **sign-in activity API**.</span></span>
+# <a name="azure-active-directory-sign-in-activity-report-api-samples"></a><span data-ttu-id="8042a-103">Esempi dell'API del report sull'attività di accesso di Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8042a-103">Azure Active Directory sign-in activity report API samples</span></span>
+<span data-ttu-id="8042a-104">Questo argomento fa parte di una raccolta di argomenti sull'hello Azure Active Directory reporting API.</span><span class="sxs-lookup"><span data-stu-id="8042a-104">This topic is part of a collection of topics about hello Azure Active Directory reporting API.</span></span>  
+<span data-ttu-id="8042a-105">Azure Active Directory reporting fornisce un'API che consente di dati di attività di accesso tooaccess tramite codice o gli strumenti correlati.</span><span class="sxs-lookup"><span data-stu-id="8042a-105">Azure AD reporting provides you with an API that enables you tooaccess sign-in activity data using code or related tools.</span></span>  
+<span data-ttu-id="8042a-106">ambito di questo argomento Hello è tooprovide all'esempio di codice per hello **Accedi attività API**.</span><span class="sxs-lookup"><span data-stu-id="8042a-106">hello scope of this topic is tooprovide you with sample code for hello **sign-in activity API**.</span></span>
 
-<span data-ttu-id="220c0-107">Vedere:</span><span class="sxs-lookup"><span data-stu-id="220c0-107">See:</span></span>
+<span data-ttu-id="8042a-107">Vedere:</span><span class="sxs-lookup"><span data-stu-id="8042a-107">See:</span></span>
 
-* <span data-ttu-id="220c0-108">[Log di controllo](active-directory-reporting-azure-portal.md#activity-reports) per informazioni più concettuali</span><span class="sxs-lookup"><span data-stu-id="220c0-108">[Audit logs](active-directory-reporting-azure-portal.md#activity-reports)  for more conceptual information</span></span>
-* <span data-ttu-id="220c0-109">[Introduzione all'API di creazione report di Azure Active Directory](active-directory-reporting-api-getting-started.md) .</span><span class="sxs-lookup"><span data-stu-id="220c0-109">[Getting started with the Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md) for more information about the reporting API.</span></span>
+* <span data-ttu-id="8042a-108">[Log di controllo](active-directory-reporting-azure-portal.md#activity-reports) per informazioni più concettuali</span><span class="sxs-lookup"><span data-stu-id="8042a-108">[Audit logs](active-directory-reporting-azure-portal.md#activity-reports)  for more conceptual information</span></span>
+* <span data-ttu-id="8042a-109">[Introduzione a hello API Azure Active Directory Reporting](active-directory-reporting-api-getting-started.md) per ulteriori informazioni sulle API di segnalazione hello.</span><span class="sxs-lookup"><span data-stu-id="8042a-109">[Getting started with hello Azure Active Directory Reporting API](active-directory-reporting-api-getting-started.md) for more information about hello reporting API.</span></span>
 
 
-## <a name="prerequisites"></a><span data-ttu-id="220c0-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="220c0-110">Prerequisites</span></span>
-<span data-ttu-id="220c0-111">Prima di poter usare gli esempi contenuti in questo argomento, è necessario completare i [prerequisiti di accesso all'API di creazione report di Azure AD](active-directory-reporting-api-prerequisites.md).</span><span class="sxs-lookup"><span data-stu-id="220c0-111">Before you can use the samples in this topic, you need to complete the [prerequisites to access the Azure AD reporting API](active-directory-reporting-api-prerequisites.md).</span></span>  
+## <a name="prerequisites"></a><span data-ttu-id="8042a-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="8042a-110">Prerequisites</span></span>
+<span data-ttu-id="8042a-111">Prima di poter utilizzare gli esempi di hello in questo argomento, è necessario hello toocomplete [prerequisiti tooaccess hello Azure AD reporting API](active-directory-reporting-api-prerequisites.md).</span><span class="sxs-lookup"><span data-stu-id="8042a-111">Before you can use hello samples in this topic, you need toocomplete hello [prerequisites tooaccess hello Azure AD reporting API](active-directory-reporting-api-prerequisites.md).</span></span>  
 
-## <a name="powershell-script"></a><span data-ttu-id="220c0-112">Script di PowerShell</span><span class="sxs-lookup"><span data-stu-id="220c0-112">PowerShell script</span></span>
-    # This script will require the Web Application and permissions setup in Azure Active Directory
+## <a name="powershell-script"></a><span data-ttu-id="8042a-112">Script di PowerShell</span><span class="sxs-lookup"><span data-stu-id="8042a-112">PowerShell script</span></span>
+    # This script will require hello Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
     $loginURL       = "https://login.microsoftonline.com/"
@@ -63,7 +63,7 @@ ms.lasthandoff: 08/03/2017
     Do{
         Write-Output "Fetching data using Uri: $url"
         $myReport = (Invoke-WebRequest -UseBasicParsing -Headers $headerParams -Uri $url)
-        Write-Output "Save the output to a file SigninActivities$i.json"
+        Write-Output "Save hello output tooa file SigninActivities$i.json"
         Write-Output "---------------------------------------------"
         $myReport.Content | Out-File -FilePath SigninActivities$i.json -Force
         $url = ($myReport.Content | ConvertFrom-Json).'@odata.nextLink'
@@ -78,13 +78,13 @@ ms.lasthandoff: 08/03/2017
 
 
 
-## <a name="executing-the-script"></a><span data-ttu-id="220c0-113">Esecuzione dello script</span><span class="sxs-lookup"><span data-stu-id="220c0-113">Executing the script</span></span>
-<span data-ttu-id="220c0-114">Una volta modificato lo script, eseguirlo e verificare che vengano restituiti i dati corretti dal report Log di controllo.</span><span class="sxs-lookup"><span data-stu-id="220c0-114">Once you finish editing the script, run it and verify that the expected data from the Audit logs report is returned.</span></span>
+## <a name="executing-hello-script"></a><span data-ttu-id="8042a-113">L'esecuzione dello script hello</span><span class="sxs-lookup"><span data-stu-id="8042a-113">Executing hello script</span></span>
+<span data-ttu-id="8042a-114">Una volta terminare la modifica di script hello, eseguirlo e verificare che hello previsto vengono restituiti i dati da hello report di log di controllo.</span><span class="sxs-lookup"><span data-stu-id="8042a-114">Once you finish editing hello script, run it and verify that hello expected data from hello Audit logs report is returned.</span></span>
 
-<span data-ttu-id="220c0-115">Lo script restituisce l'output del report sugli accessi in formato JSON.</span><span class="sxs-lookup"><span data-stu-id="220c0-115">The script returns output from the sign-in report in JSON format.</span></span> <span data-ttu-id="220c0-116">Crea anche un file `SigninActivities.json` con lo stesso output.</span><span class="sxs-lookup"><span data-stu-id="220c0-116">It also creates an `SigninActivities.json` file with the same output.</span></span> <span data-ttu-id="220c0-117">È possibile provare a modificare lo script per restituire i dati di altri report e rimuovere i commenti per i formati di output non necessari.</span><span class="sxs-lookup"><span data-stu-id="220c0-117">You can experiment by modifying the script to return data from other reports, and comment out the output formats that you do not need.</span></span>
+<span data-ttu-id="8042a-115">script Hello restituisce l'output di hello Accedi report in formato JSON.</span><span class="sxs-lookup"><span data-stu-id="8042a-115">hello script returns output from hello sign-in report in JSON format.</span></span> <span data-ttu-id="8042a-116">Crea inoltre un `SigninActivities.json` file con hello stesso output.</span><span class="sxs-lookup"><span data-stu-id="8042a-116">It also creates an `SigninActivities.json` file with hello same output.</span></span> <span data-ttu-id="8042a-117">È possibile provare la modifica dei dati di tooreturn hello script da altri report e i formati di output di hello non è necessario impostare come commento.</span><span class="sxs-lookup"><span data-stu-id="8042a-117">You can experiment by modifying hello script tooreturn data from other reports, and comment out hello output formats that you do not need.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="220c0-118">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="220c0-118">Next Steps</span></span>
-* <span data-ttu-id="220c0-119">Si desidera personalizzare gli esempi contenuti in questo argomento?</span><span class="sxs-lookup"><span data-stu-id="220c0-119">Would you like to customize the samples in this topic?</span></span> <span data-ttu-id="220c0-120">Consultare la pagina [Riferimento API del report sull'attività di accesso di Azure Active Directory](active-directory-reporting-api-sign-in-activity-reference.md).</span><span class="sxs-lookup"><span data-stu-id="220c0-120">Check out the [Azure Active Directory sign-in activity API reference](active-directory-reporting-api-sign-in-activity-reference.md).</span></span> 
-* <span data-ttu-id="220c0-121">Se si desidera visualizzare una panoramica completa sull'uso dell'API di creazione report di Azure Active Directory, vedere [Introduzione all'API di creazione report di Azure Active Directory](active-directory-reporting-api-getting-started.md).</span><span class="sxs-lookup"><span data-stu-id="220c0-121">If you want to see a complete overview of using the Azure Active Directory reporting API, see [Getting started with the Azure Active Directory reporting API](active-directory-reporting-api-getting-started.md).</span></span>
-* <span data-ttu-id="220c0-122">Per altre informazioni sulla creazione di report di Azure Active Directory, vedere [Guida alla creazione di report in Azure Active Directory](active-directory-reporting-guide.md).</span><span class="sxs-lookup"><span data-stu-id="220c0-122">If you would like to find out more about Azure Active Directory reporting, see the [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
+## <a name="next-steps"></a><span data-ttu-id="8042a-118">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="8042a-118">Next Steps</span></span>
+* <span data-ttu-id="8042a-119">Si desidera che gli esempi di hello toocustomize in questo argomento.</span><span class="sxs-lookup"><span data-stu-id="8042a-119">Would you like toocustomize hello samples in this topic?</span></span> <span data-ttu-id="8042a-120">Estrarre hello [Azure Active Directory attività di accesso di riferimento all'API](active-directory-reporting-api-sign-in-activity-reference.md).</span><span class="sxs-lookup"><span data-stu-id="8042a-120">Check out hello [Azure Active Directory sign-in activity API reference](active-directory-reporting-api-sign-in-activity-reference.md).</span></span> 
+* <span data-ttu-id="8042a-121">Se si desidera una panoramica completa dell'uso toosee hello reporting API Azure Active Directory, vedere [introduzione hello Azure Active Directory reporting API](active-directory-reporting-api-getting-started.md).</span><span class="sxs-lookup"><span data-stu-id="8042a-121">If you want toosee a complete overview of using hello Azure Active Directory reporting API, see [Getting started with hello Azure Active Directory reporting API](active-directory-reporting-api-getting-started.md).</span></span>
+* <span data-ttu-id="8042a-122">Se si desidera toofind ulteriori informazioni sui report di Azure Active Directory, vedere hello [Azure Active Directory Reporting Guida](active-directory-reporting-guide.md).</span><span class="sxs-lookup"><span data-stu-id="8042a-122">If you would like toofind out more about Azure Active Directory reporting, see hello [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).</span></span>  
 

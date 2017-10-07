@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con Clever | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Clever.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e Clever.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,270 +14,270 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 84082ff567e37d7fff80be9e089c67cfab911861
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 24430e1e6c750efa5787561aa151201b1fe7d428
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-clever"></a><span data-ttu-id="ef4d0-103">Esercitazione: Integrazione di Azure Active Directory con Clever</span><span class="sxs-lookup"><span data-stu-id="ef4d0-103">Tutorial: Azure Active Directory integration with Clever</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-clever"></a><span data-ttu-id="8ba06-103">Esercitazione: Integrazione di Azure Active Directory con Clever</span><span class="sxs-lookup"><span data-stu-id="8ba06-103">Tutorial: Azure Active Directory integration with Clever</span></span>
 
-<span data-ttu-id="ef4d0-104">Questa esercitazione descrive come integrare Clever con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-104">In this tutorial, you learn how to integrate Clever with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="8ba06-104">In questa esercitazione, è illustrato come toointegrate Clever con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="8ba06-104">In this tutorial, you learn how toointegrate Clever with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="ef4d0-105">L'integrazione di Clever con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-105">Integrating Clever with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="8ba06-105">Integrazione Clever con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="8ba06-105">Integrating Clever with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="ef4d0-106">È possibile controllare in Azure AD chi può accedere a Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-106">You can control in Azure AD who has access to Clever.</span></span>
-- <span data-ttu-id="ef4d0-107">È possibile abilitare gli utenti per l'accesso automatico a Clever (Single Sign-On) con gli account Azure AD personali.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-107">You can enable your users to automatically get signed-on to Clever (Single Sign-On) with their Azure AD accounts.</span></span>
-- <span data-ttu-id="ef4d0-108">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-108">You can manage your accounts in one central location - the Azure portal.</span></span>
+- <span data-ttu-id="8ba06-106">È possibile controllare in Azure AD che ha accesso tooClever.</span><span class="sxs-lookup"><span data-stu-id="8ba06-106">You can control in Azure AD who has access tooClever.</span></span>
+- <span data-ttu-id="8ba06-107">È possibile abilitare l'utenti tooautomatically get connesso tooClever (Single Sign-On) con i propri account Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8ba06-107">You can enable your users tooautomatically get signed-on tooClever (Single Sign-On) with their Azure AD accounts.</span></span>
+- <span data-ttu-id="8ba06-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8ba06-108">You can manage your accounts in one central location - hello Azure portal.</span></span>
 
-<span data-ttu-id="ef4d0-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="8ba06-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="8ba06-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="ef4d0-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="ef4d0-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8ba06-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="8ba06-110">Prerequisites</span></span>
 
-<span data-ttu-id="ef4d0-111">Per configurare l'integrazione di Azure AD con Clever, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-111">To configure Azure AD integration with Clever, you need the following items:</span></span>
+<span data-ttu-id="8ba06-111">integrazione di Azure AD con Clever tooconfigure, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="8ba06-111">tooconfigure Azure AD integration with Clever, you need hello following items:</span></span>
 
-- <span data-ttu-id="ef4d0-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="ef4d0-113">Sottoscrizione di Clever abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="ef4d0-113">A Clever single sign-on enabled subscription</span></span>
+- <span data-ttu-id="8ba06-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8ba06-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="8ba06-113">Sottoscrizione di Clever abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="8ba06-113">A Clever single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ef4d0-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="8ba06-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="8ba06-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="ef4d0-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="8ba06-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="8ba06-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="ef4d0-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="ef4d0-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="8ba06-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="8ba06-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="8ba06-117">Se non è disponibile un ambiente di valutazione di Azure AD, è possibile [ottenere una versione di valutazione di un mese](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="8ba06-117">If you don't have an Azure AD trial environment, you can [get a one-month trial](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="ef4d0-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="ef4d0-118">Scenario description</span></span>
-<span data-ttu-id="ef4d0-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="ef4d0-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="8ba06-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="8ba06-118">Scenario description</span></span>
+<span data-ttu-id="8ba06-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="8ba06-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="8ba06-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="8ba06-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="ef4d0-121">Aggiunta di Clever dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ef4d0-121">Adding Clever from the gallery</span></span>
-2. <span data-ttu-id="ef4d0-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ef4d0-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="8ba06-121">Aggiunta di Clever dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="8ba06-121">Adding Clever from hello gallery</span></span>
+2. <span data-ttu-id="8ba06-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8ba06-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-clever-from-the-gallery"></a><span data-ttu-id="ef4d0-123">Aggiunta di Clever dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ef4d0-123">Adding Clever from the gallery</span></span>
-<span data-ttu-id="ef4d0-124">Per configurare l'integrazione di Clever in Azure AD, è necessario aggiungere Clever dalla raccolta all'elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-124">To configure the integration of Clever into Azure AD, you need to add Clever from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-clever-from-hello-gallery"></a><span data-ttu-id="8ba06-123">Aggiunta di Clever dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="8ba06-123">Adding Clever from hello gallery</span></span>
+<span data-ttu-id="8ba06-124">integrazione hello tooconfigure di Clever in Azure AD, è necessario tooadd Clever dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="8ba06-124">tooconfigure hello integration of Clever into Azure AD, you need tooadd Clever from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="ef4d0-125">**Per aggiungere Clever dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ef4d0-125">**To add Clever from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="8ba06-125">**tooadd Clever dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="8ba06-125">**tooadd Clever from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ef4d0-126">Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="8ba06-126">In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="8ba06-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
-    ![Pulsante Azure Active Directory][1]
+    ![pulsante di Hello Azure Active Directory][1]
 
-2. <span data-ttu-id="ef4d0-128">Passare ad **Applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="ef4d0-129">Andare quindi a **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="8ba06-128">Passare troppo**applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="8ba06-129">Quindi andare troppo**tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-129">Then go too**All applications**.</span></span>
 
-    ![Pannello Applicazioni aziendali][2]
+    ![Pannello di applicazioni Enterprise Hello][2]
     
-3. <span data-ttu-id="ef4d0-131">Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="8ba06-131">tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="8ba06-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
-    ![Pulsante Nuova applicazione][3]
+    ![Nuovo pulsante dell'applicazione Hello][3]
 
-4. <span data-ttu-id="ef4d0-133">Nella casella di ricerca digitare **Clever**, selezionare **Clever** nel pannello dei risultati e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-133">In the search box, type **Clever**, select **Clever** from result panel then click **Add** button to add the application.</span></span>
+4. <span data-ttu-id="8ba06-133">Nella casella di ricerca hello, digitare **Clever**selezionare **Clever** dal pannello risultati quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="8ba06-133">In hello search box, type **Clever**, select **Clever** from result panel then click **Add** button tooadd hello application.</span></span>
 
-    ![Clever nell'elenco risultati](./media/active-directory-saas-clever-tutorial/tutorial_clever_addfromgallery.png)
+    ![Nell'elenco risultati hello intelligente](./media/active-directory-saas-clever-tutorial/tutorial_clever_addfromgallery.png)
 
-## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="ef4d0-135">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ef4d0-135">Configure and test Azure AD single sign-on</span></span>
+## <a name="configure-and-test-azure-ad-single-sign-on"></a><span data-ttu-id="8ba06-135">Configurare e testare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8ba06-135">Configure and test Azure AD single sign-on</span></span>
 
-<span data-ttu-id="ef4d0-136">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Clever usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="ef4d0-136">In this section, you configure and test Azure AD single sign-on with Clever based on a test user called "Britta Simon".</span></span>
+<span data-ttu-id="8ba06-136">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Clever usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="8ba06-136">In this section, you configure and test Azure AD single sign-on with Clever based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="ef4d0-137">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di Clever corrispondente a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-137">For single sign-on to work, Azure AD needs to know what the counterpart user in Clever is to a user in Azure AD.</span></span> <span data-ttu-id="ef4d0-138">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-138">In other words, a link relationship between an Azure AD user and the related user in Clever needs to be established.</span></span>
+<span data-ttu-id="8ba06-137">Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in Clever è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8ba06-137">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Clever is tooa user in Azure AD.</span></span> <span data-ttu-id="8ba06-138">In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in Clever deve toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="8ba06-138">In other words, a link relationship between an Azure AD user and hello related user in Clever needs toobe established.</span></span>
 
-<span data-ttu-id="ef4d0-139">Per stabilire la relazione di collegamento, in Clever assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-139">In Clever, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="8ba06-139">In Clever, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.</span><span class="sxs-lookup"><span data-stu-id="8ba06-139">In Clever, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="ef4d0-140">Per configurare e testare l'accesso Single Sign-On di Azure AD con Clever, è necessario completare le procedure di base seguenti:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-140">To configure and test Azure AD single sign-on with Clever, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="8ba06-140">tooconfigure e prova AD Azure single sign-on con Clever, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="8ba06-140">tooconfigure and test Azure AD single sign-on with Clever, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="ef4d0-141">**[Configurare l'accesso Single Sign-On di Azure AD](#configure-azure-ad-single-sign-on)**: per consentire agli utenti di usare questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="ef4d0-142">**[Creare un utente di test di Azure AD](#create-an-azure-ad-test-user)**: per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="ef4d0-143">**[Creare un utente di test di Clever](#create-a-clever-test-user)**: per avere una controparte di Britta Simon in Clever collegata alla rappresentazione dell'utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-143">**[Create a Clever test user](#create-a-clever-test-user)** - to have a counterpart of Britta Simon in Clever that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="ef4d0-144">**[Assegnare l'utente test di Azure AD](#assign-the-azure-ad-test-user)**: per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-144">**[Assign the Azure AD test user](#assign-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="ef4d0-145">**[Testare l'accesso Single Sign-On](#test-single-sign-on)** per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-145">**[Test single sign-on](#test-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="8ba06-141">**[Configurare Azure Active Directory Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="8ba06-141">**[Configure Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="8ba06-142">**[Creare un utente prova AD Azure](#create-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8ba06-142">**[Create an Azure AD test user](#create-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="8ba06-143">**[Creare un utente test intelligente](#create-a-clever-test-user)**  -toohave un equivalente di Britta Simon in Clever che è la rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="8ba06-143">**[Create a Clever test user](#create-a-clever-test-user)** - toohave a counterpart of Britta Simon in Clever that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="8ba06-144">**[Assegnare l'utente test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="8ba06-144">**[Assign hello Azure AD test user](#assign-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="8ba06-145">**[Testare single sign-on](#test-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="8ba06-145">**[Test single sign-on](#test-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="ef4d0-146">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ef4d0-146">Configure Azure AD single sign-on</span></span>
+### <a name="configure-azure-ad-single-sign-on"></a><span data-ttu-id="8ba06-146">Configurare l'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8ba06-146">Configure Azure AD single sign-on</span></span>
 
-<span data-ttu-id="ef4d0-147">In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-147">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Clever application.</span></span>
+<span data-ttu-id="8ba06-147">In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione appositamente.</span><span class="sxs-lookup"><span data-stu-id="8ba06-147">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Clever application.</span></span>
 
-<span data-ttu-id="ef4d0-148">**Per configurare l'accesso Single Sign-On di Azure AD con Clever, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ef4d0-148">**To configure Azure AD single sign-on with Clever, perform the following steps:**</span></span>
+<span data-ttu-id="8ba06-148">**Azure AD tooconfigure single sign-on con Clever, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="8ba06-148">**tooconfigure Azure AD single sign-on with Clever, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ef4d0-149">Nella pagina di integrazione dell'applicazione **Clever** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-149">In the Azure portal, on the **Clever** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="8ba06-149">Nel portale di Azure su hello hello **Clever** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-149">In hello Azure portal, on hello **Clever** application integration page, click **Single sign-on**.</span></span>
 
-    ![Collegamento Configura accesso Single Sign-On][4]
+    ![Collegamento per la configurazione dell'accesso Single Sign-On][4]
 
-2. <span data-ttu-id="ef4d0-151">Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-151">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="8ba06-151">In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.</span><span class="sxs-lookup"><span data-stu-id="8ba06-151">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Finestra di dialogo Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_samlbase.png)
 
-3. <span data-ttu-id="ef4d0-153">Nella sezione **URL e dominio Clever** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-153">On the **Clever Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="8ba06-153">In hello **appositamente dominio e gli URL** seguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="8ba06-153">On hello **Clever Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Informazioni su URL e dominio per l'accesso Single Sign-On di Clever](./media/active-directory-saas-clever-tutorial/tutorial_clever_url.png)
 
-    <span data-ttu-id="ef4d0-155">a.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-155">a.</span></span> <span data-ttu-id="ef4d0-156">Nella casella di testo **URL di accesso** digitare l'URL usando il modello seguente: `https://clever.com/in/<companyname>`.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-156">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://clever.com/in/<companyname>`</span></span>
+    <span data-ttu-id="8ba06-155">a.</span><span class="sxs-lookup"><span data-stu-id="8ba06-155">a.</span></span> <span data-ttu-id="8ba06-156">In hello **Sign-on URL** casella di testo, digitare un URL utilizzando hello seguente modello:`https://clever.com/in/<companyname>`</span><span class="sxs-lookup"><span data-stu-id="8ba06-156">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://clever.com/in/<companyname>`</span></span>
 
-    <span data-ttu-id="ef4d0-157">b.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-157">b.</span></span> <span data-ttu-id="ef4d0-158">Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente: `https://clever.com/<companyname>`</span><span class="sxs-lookup"><span data-stu-id="ef4d0-158">In the **Identifier** textbox, type a URL using the following pattern: `https://clever.com/<companyname>`</span></span>
+    <span data-ttu-id="8ba06-157">b.</span><span class="sxs-lookup"><span data-stu-id="8ba06-157">b.</span></span> <span data-ttu-id="8ba06-158">In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:`https://clever.com/<companyname>`</span><span class="sxs-lookup"><span data-stu-id="8ba06-158">In hello **Identifier** textbox, type a URL using hello following pattern: `https://clever.com/<companyname>`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="ef4d0-159">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="ef4d0-159">These values are not real.</span></span> <span data-ttu-id="ef4d0-160">Aggiornare questi valori con l'identificatore e l'URL di accesso effettivi.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-160">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="ef4d0-161">Per ottenere questi valori, contattare il [team di supporto clienti di Clever](https://clever.com/about/contact/).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-161">Contact [Clever Client support team](https://clever.com/about/contact/) to get these values.</span></span>
+    > <span data-ttu-id="8ba06-159">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="8ba06-159">These values are not real.</span></span> <span data-ttu-id="8ba06-160">Aggiornare questi valori con hello effettivo URL di accesso e l'identificatore.</span><span class="sxs-lookup"><span data-stu-id="8ba06-160">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="8ba06-161">Contatto [team di supporto Client intelligenti](https://clever.com/about/contact/) tooget questi valori.</span><span class="sxs-lookup"><span data-stu-id="8ba06-161">Contact [Clever Client support team](https://clever.com/about/contact/) tooget these values.</span></span>
 
-4. <span data-ttu-id="ef4d0-162">Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-162">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="8ba06-162">In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="8ba06-162">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
-    ![Collegamento di download del certificato](./media/active-directory-saas-clever-tutorial/tutorial_clever_certificate.png)
+    ![collegamento al download del certificato Hello](./media/active-directory-saas-clever-tutorial/tutorial_clever_certificate.png)
 
-5. <span data-ttu-id="ef4d0-164">L'applicazione Clever prevede un formato specifico per le asserzioni SAML. È quindi necessario aggiungere mapping di attributi personalizzati alla configurazione di **Attributi token SAML**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-164">The Clever application expects the SAML assertions in a specific format, which requires you to add custom attribute mappings to your **SAML Token Attributes** configuration.</span></span>
+5. <span data-ttu-id="8ba06-164">Hello appositamente applicazione prevede di asserzioni SAML hello in un formato specifico, che richiede il tooyour mapping di attributi personalizzati tooadd **attributi Token SAML** configurazione.</span><span class="sxs-lookup"><span data-stu-id="8ba06-164">hello Clever application expects hello SAML assertions in a specific format, which requires you tooadd custom attribute mappings tooyour **SAML Token Attributes** configuration.</span></span>
 
-    <span data-ttu-id="ef4d0-165">La schermata seguente illustra un esempio relativo a questa operazione.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-165">The following screenshot shows an example for this.</span></span>
+    <span data-ttu-id="8ba06-165">Hello seguente schermata mostra un esempio per questo oggetto.</span><span class="sxs-lookup"><span data-stu-id="8ba06-165">hello following screenshot shows an example for this.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_07.png) 
 
-6. <span data-ttu-id="ef4d0-167">Nella sezione **Attributi utente** della finestra di dialogo **Single Sign-On** configurare l'attributo del token SAML come indicato nell'immagine precedente e seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-167">In the **User Attributes** section on the **Single sign-on** dialog, configure SAML token attribute as shown in the image above and perform the following steps:</span></span>
+6. <span data-ttu-id="8ba06-167">In hello **gli attributi utente** sezione hello **Single sign-on** finestra di dialogo, configurare attributi token SAML, come illustrato nell'immagine di hello precedente ed eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="8ba06-167">In hello **User Attributes** section on hello **Single sign-on** dialog, configure SAML token attribute as shown in hello image above and perform hello following steps:</span></span>
     
-    | <span data-ttu-id="ef4d0-168">Nome attributo</span><span class="sxs-lookup"><span data-stu-id="ef4d0-168">Attribute Name</span></span>  | <span data-ttu-id="ef4d0-169">Valore attributo</span><span class="sxs-lookup"><span data-stu-id="ef4d0-169">Attribute Value</span></span> |
+    | <span data-ttu-id="8ba06-168">Nome attributo</span><span class="sxs-lookup"><span data-stu-id="8ba06-168">Attribute Name</span></span>  | <span data-ttu-id="8ba06-169">Valore attributo</span><span class="sxs-lookup"><span data-stu-id="8ba06-169">Attribute Value</span></span> |
     | --------------- | -------------------- |    
-    | <span data-ttu-id="ef4d0-170">clever.student.credentials.district\_username</span><span class="sxs-lookup"><span data-stu-id="ef4d0-170">clever.student.credentials.district\_username</span></span>  | <span data-ttu-id="ef4d0-171">user.userprincipalname</span><span class="sxs-lookup"><span data-stu-id="ef4d0-171">user.userprincipalname</span></span> |
-    | <span data-ttu-id="ef4d0-172">Firstname</span><span class="sxs-lookup"><span data-stu-id="ef4d0-172">Firstname</span></span>  | <span data-ttu-id="ef4d0-173">user.givenname</span><span class="sxs-lookup"><span data-stu-id="ef4d0-173">user.givenname</span></span> |
-    | <span data-ttu-id="ef4d0-174">Lastname</span><span class="sxs-lookup"><span data-stu-id="ef4d0-174">Lastname</span></span>  | <span data-ttu-id="ef4d0-175">user.surname</span><span class="sxs-lookup"><span data-stu-id="ef4d0-175">user.surname</span></span> |    
+    | <span data-ttu-id="8ba06-170">clever.student.credentials.district\_username</span><span class="sxs-lookup"><span data-stu-id="8ba06-170">clever.student.credentials.district\_username</span></span>  | <span data-ttu-id="8ba06-171">user.userprincipalname</span><span class="sxs-lookup"><span data-stu-id="8ba06-171">user.userprincipalname</span></span> |
+    | <span data-ttu-id="8ba06-172">Firstname</span><span class="sxs-lookup"><span data-stu-id="8ba06-172">Firstname</span></span>  | <span data-ttu-id="8ba06-173">user.givenname</span><span class="sxs-lookup"><span data-stu-id="8ba06-173">user.givenname</span></span> |
+    | <span data-ttu-id="8ba06-174">Lastname</span><span class="sxs-lookup"><span data-stu-id="8ba06-174">Lastname</span></span>  | <span data-ttu-id="8ba06-175">user.surname</span><span class="sxs-lookup"><span data-stu-id="8ba06-175">user.surname</span></span> |    
 
-    <span data-ttu-id="ef4d0-176">a.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-176">a.</span></span> <span data-ttu-id="ef4d0-177">Fare clic su **Aggiungi attributo** per aprire la finestra di dialogo **Aggiungi attributo**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-177">Click **Add attribute** to open the **Add Attribute** dialog.</span></span>
+    <span data-ttu-id="8ba06-176">a.</span><span class="sxs-lookup"><span data-stu-id="8ba06-176">a.</span></span> <span data-ttu-id="8ba06-177">Fare clic su **Aggiungi attributo** tooopen hello **Aggiungi attributo** finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="8ba06-177">Click **Add attribute** tooopen hello **Add Attribute** dialog.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_attribute_04.png)
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_attribute_05.png)
     
-    <span data-ttu-id="ef4d0-180">b.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-180">b.</span></span> <span data-ttu-id="ef4d0-181">Nella casella di testo **Nome** digitare il nome dell'attributo indicato per la riga.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-181">In the **Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="8ba06-180">b.</span><span class="sxs-lookup"><span data-stu-id="8ba06-180">b.</span></span> <span data-ttu-id="8ba06-181">In hello **nome** casella di testo, nome dell'attributo di tipo hello mostrato per la riga.</span><span class="sxs-lookup"><span data-stu-id="8ba06-181">In hello **Name** textbox, type hello attribute name shown for that row.</span></span>
 
-    <span data-ttu-id="ef4d0-182">c.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-182">c.</span></span> <span data-ttu-id="ef4d0-183">Nell'elenco **Valore** digitare il valore dell'attributo indicato per la riga.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-183">From the **Value** list, type the attribute value shown for that row.</span></span>
+    <span data-ttu-id="8ba06-182">c.</span><span class="sxs-lookup"><span data-stu-id="8ba06-182">c.</span></span> <span data-ttu-id="8ba06-183">Da hello **valore** elencare, valore dell'attributo di tipo hello mostrato per la riga.</span><span class="sxs-lookup"><span data-stu-id="8ba06-183">From hello **Value** list, type hello attribute value shown for that row.</span></span>
 
-    <span data-ttu-id="ef4d0-184">d.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-184">d.</span></span> <span data-ttu-id="ef4d0-185">Lasciare vuota la casella di testo **Spazio dei nomi**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-185">Leave the **Namespace** textbox blank.</span></span>
+    <span data-ttu-id="8ba06-184">d.</span><span class="sxs-lookup"><span data-stu-id="8ba06-184">d.</span></span> <span data-ttu-id="8ba06-185">Lasciare hello **Namespace** casella di testo vuoto.</span><span class="sxs-lookup"><span data-stu-id="8ba06-185">Leave hello **Namespace** textbox blank.</span></span>
     
-    <span data-ttu-id="ef4d0-186">d.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-186">d.</span></span> <span data-ttu-id="ef4d0-187">Fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-187">Click **Ok**.</span></span>     
+    <span data-ttu-id="8ba06-186">d.</span><span class="sxs-lookup"><span data-stu-id="8ba06-186">d.</span></span> <span data-ttu-id="8ba06-187">Fare clic su **OK**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-187">Click **Ok**.</span></span>     
 
-5. <span data-ttu-id="ef4d0-188">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="ef4d0-188">Click **Save** button.</span></span>
+5. <span data-ttu-id="8ba06-188">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="8ba06-188">Click **Save** button.</span></span>
 
-    ![Pulsante Salva per la configurazione dell'accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_general_400.png)
+    ![Pulsante Salva di Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_general_400.png)
 
-8. <span data-ttu-id="ef4d0-190">Per generare l'URL dei **metadati**, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-190">To generate the **Metadata** url, perform the following steps:</span></span>
+8. <span data-ttu-id="8ba06-190">hello toogenerate **metadati** url, eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="8ba06-190">toogenerate hello **Metadata** url, perform hello following steps:</span></span>
 
-    <span data-ttu-id="ef4d0-191">a.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-191">a.</span></span> <span data-ttu-id="ef4d0-192">Fare clic su **Registrazioni per l'app**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-192">Click **App registrations**.</span></span>
+    <span data-ttu-id="8ba06-191">a.</span><span class="sxs-lookup"><span data-stu-id="8ba06-191">a.</span></span> <span data-ttu-id="8ba06-192">Fare clic su **Registrazioni per l'app**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-192">Click **App registrations**.</span></span>
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_appregistrations.png)
    
-    <span data-ttu-id="ef4d0-194">b.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-194">b.</span></span> <span data-ttu-id="ef4d0-195">Fare clic su **Endpoint** per aprire la finestra di dialogo **Endpoint**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-195">Click **Endpoints** to open **Endpoints** dialog box.</span></span>  
+    <span data-ttu-id="8ba06-194">b.</span><span class="sxs-lookup"><span data-stu-id="8ba06-194">b.</span></span> <span data-ttu-id="8ba06-195">Fare clic su **endpoint** tooopen **endpoint** la finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="8ba06-195">Click **Endpoints** tooopen **Endpoints** dialog box.</span></span>  
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_endpointicon.png)
 
-    <span data-ttu-id="ef4d0-197">c.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-197">c.</span></span> <span data-ttu-id="ef4d0-198">Fare clic sul pulsante Copia per copiare l'URL del **DOCUMENTO METADATI FEDERAZIONE** e incollarlo nel Blocco note.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-198">Click the copy button to copy **FEDERATION METADATA DOCUMENT** url and paste it into notepad.</span></span>
+    <span data-ttu-id="8ba06-197">c.</span><span class="sxs-lookup"><span data-stu-id="8ba06-197">c.</span></span> <span data-ttu-id="8ba06-198">Fare clic su hello copia pulsante toocopy **documento metadati federazione** url e incollarlo nel blocco note.</span><span class="sxs-lookup"><span data-stu-id="8ba06-198">Click hello copy button toocopy **FEDERATION METADATA DOCUMENT** url and paste it into notepad.</span></span>
     
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_endpoint.png)
      
-    <span data-ttu-id="ef4d0-200">d.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-200">d.</span></span> <span data-ttu-id="ef4d0-201">Passare ora alla pagina delle proprietà di **Clever**, copiare l'**ID applicazione** usando il pulsante **Copia** e incollarlo nel Blocco note.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-201">Now go to the property page of **Clever** and copy the **Application Id** using **Copy** button and paste it into notepad.</span></span>
+    <span data-ttu-id="8ba06-200">d.</span><span class="sxs-lookup"><span data-stu-id="8ba06-200">d.</span></span> <span data-ttu-id="8ba06-201">Ora passare pagina delle proprietà toohello **Clever** e hello copia **Id applicazione** utilizzando **copia** pulsante e incollarlo nel blocco note.</span><span class="sxs-lookup"><span data-stu-id="8ba06-201">Now go toohello property page of **Clever** and copy hello **Application Id** using **Copy** button and paste it into notepad.</span></span>
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-clever-tutorial/tutorial_clever_appid.png)
 
-    <span data-ttu-id="ef4d0-203">e.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-203">e.</span></span> <span data-ttu-id="ef4d0-204">Generare l'**URL dei metadati** usando il modello seguente: `<FEDERATION METADATA DOCUMENT url>?appid=<application id>`</span><span class="sxs-lookup"><span data-stu-id="ef4d0-204">Generate the **Metadata URL** using the following pattern: `<FEDERATION METADATA DOCUMENT url>?appid=<application id>`</span></span>   
+    <span data-ttu-id="8ba06-203">e.</span><span class="sxs-lookup"><span data-stu-id="8ba06-203">e.</span></span> <span data-ttu-id="8ba06-204">Generare hello **URL dei metadati** utilizzando hello seguente motivo:`<FEDERATION METADATA DOCUMENT url>?appid=<application id>`</span><span class="sxs-lookup"><span data-stu-id="8ba06-204">Generate hello **Metadata URL** using hello following pattern: `<FEDERATION METADATA DOCUMENT url>?appid=<application id>`</span></span>   
 
-9. <span data-ttu-id="ef4d0-205">In un'altra finestra del Web browser accedere al sito aziendale di Clever come amministratore.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-205">In a different web browser window, log in to your Clever company site as an administrator.</span></span>
+9. <span data-ttu-id="8ba06-205">In una finestra del web browser, accedere come amministratore nel sito della società appositamente tooyour.</span><span class="sxs-lookup"><span data-stu-id="8ba06-205">In a different web browser window, log in tooyour Clever company site as an administrator.</span></span>
 
-10. <span data-ttu-id="ef4d0-206">Nella barra degli strumenti fare clic su **Instant Login**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-206">In the toolbar, click **Instant Login**.</span></span>
+10. <span data-ttu-id="8ba06-206">Nella barra degli strumenti hello, fare clic su **accesso istantaneo**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-206">In hello toolbar, click **Instant Login**.</span></span>
 
-    <span data-ttu-id="ef4d0-207">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798984.png "Instant Login")</span><span class="sxs-lookup"><span data-stu-id="ef4d0-207">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798984.png "Instant Login")</span></span>
+    <span data-ttu-id="8ba06-207">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798984.png "Instant Login")</span><span class="sxs-lookup"><span data-stu-id="8ba06-207">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798984.png "Instant Login")</span></span>
 
-11. <span data-ttu-id="ef4d0-208">Nella pagina **Instant Login** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-208">On the **Instant Login** page, perform the following steps:</span></span>
+11. <span data-ttu-id="8ba06-208">In hello **accesso istantaneo** eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="8ba06-208">On hello **Instant Login** page, perform hello following steps:</span></span>
       
-      <span data-ttu-id="ef4d0-209">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798985.png "Instant Login")</span><span class="sxs-lookup"><span data-stu-id="ef4d0-209">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798985.png "Instant Login")</span></span>
+      <span data-ttu-id="8ba06-209">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798985.png "Instant Login")</span><span class="sxs-lookup"><span data-stu-id="8ba06-209">![Instant Login](./media/active-directory-saas-clever-tutorial/ic798985.png "Instant Login")</span></span>
       
-      <span data-ttu-id="ef4d0-210">a.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-210">a.</span></span> <span data-ttu-id="ef4d0-211">Digitare un valore in **URL di accesso**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-211">Type the **Login URL**.</span></span>
+      <span data-ttu-id="8ba06-210">a.</span><span class="sxs-lookup"><span data-stu-id="8ba06-210">a.</span></span> <span data-ttu-id="8ba06-211">Hello tipo **URL di accesso**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-211">Type hello **Login URL**.</span></span>
       
       >[!NOTE]
-      ><span data-ttu-id="ef4d0-212">Per **Login URL** usare un valore personalizzato.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-212">The **Login URL** is a custom value.</span></span> <span data-ttu-id="ef4d0-213">Per ottenere questo valore, contattare il [team di supporto clienti di Clever](https://clever.com/about/contact/).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-213">Contact [Clever Client support team](https://clever.com/about/contact/) to get this value.</span></span>
+      ><span data-ttu-id="8ba06-212">Hello **URL di accesso** è un valore personalizzato.</span><span class="sxs-lookup"><span data-stu-id="8ba06-212">hello **Login URL** is a custom value.</span></span> <span data-ttu-id="8ba06-213">Contatto [team di supporto Client intelligenti](https://clever.com/about/contact/) tooget questo valore.</span><span class="sxs-lookup"><span data-stu-id="8ba06-213">Contact [Clever Client support team](https://clever.com/about/contact/) tooget this value.</span></span>
       
-      <span data-ttu-id="ef4d0-214">b.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-214">b.</span></span> <span data-ttu-id="ef4d0-215">Per **Identity System** (Sistema di identità) scegliere **ADFS**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-215">As **Identity System**, select **ADFS**.</span></span>
+      <span data-ttu-id="8ba06-214">b.</span><span class="sxs-lookup"><span data-stu-id="8ba06-214">b.</span></span> <span data-ttu-id="8ba06-215">Per **Identity System** (Sistema di identità) scegliere **ADFS**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-215">As **Identity System**, select **ADFS**.</span></span>
 
-      <span data-ttu-id="ef4d0-216">c.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-216">c.</span></span> <span data-ttu-id="ef4d0-217">Digitare l'**URL dei metadati** nella relativa **casella** di testo.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-217">Type the **Metadata URL** in the **Metadata URL** textbox.</span></span>
+      <span data-ttu-id="8ba06-216">c.</span><span class="sxs-lookup"><span data-stu-id="8ba06-216">c.</span></span> <span data-ttu-id="8ba06-217">Hello tipo **URL dei metadati** in hello **URL dei metadati** casella di testo.</span><span class="sxs-lookup"><span data-stu-id="8ba06-217">Type hello **Metadata URL** in hello **Metadata URL** textbox.</span></span>
       
-      <span data-ttu-id="ef4d0-218">d.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-218">d.</span></span> <span data-ttu-id="ef4d0-219">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-219">Click **Save**.</span></span>
+      <span data-ttu-id="8ba06-218">d.</span><span class="sxs-lookup"><span data-stu-id="8ba06-218">d.</span></span> <span data-ttu-id="8ba06-219">Fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-219">Click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="ef4d0-220">Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-220">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="ef4d0-221">Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-221">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="ef4d0-222">Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-222">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="8ba06-220">È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!</span><span class="sxs-lookup"><span data-stu-id="8ba06-220">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="8ba06-221">Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello.</span><span class="sxs-lookup"><span data-stu-id="8ba06-221">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="8ba06-222">È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="8ba06-222">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="ef4d0-223">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ef4d0-223">Create an Azure AD test user</span></span>
+### <a name="create-an-azure-ad-test-user"></a><span data-ttu-id="8ba06-223">Creare un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="8ba06-223">Create an Azure AD test user</span></span>
 
-<span data-ttu-id="ef4d0-224">Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-224">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+<span data-ttu-id="8ba06-224">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="8ba06-224">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
    ![Creare un utente test di Azure AD][100]
 
-<span data-ttu-id="ef4d0-226">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="ef4d0-226">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="8ba06-226">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="8ba06-226">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ef4d0-227">Nel portale di Azure fare clic sul pulsante **Azure Active Directory** nel riquadro sinistro.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-227">In the Azure portal, in the left pane, click the **Azure Active Directory** button.</span></span>
+1. <span data-ttu-id="8ba06-227">Nel portale di Azure, nel riquadro di sinistra hello, hello fare clic su hello **Azure Active Directory** pulsante.</span><span class="sxs-lookup"><span data-stu-id="8ba06-227">In hello Azure portal, in hello left pane, click hello **Azure Active Directory** button.</span></span>
 
-    ![Pulsante Azure Active Directory](./media/active-directory-saas-clever-tutorial/create_aaduser_01.png)
+    ![pulsante di Hello Azure Active Directory](./media/active-directory-saas-clever-tutorial/create_aaduser_01.png)
 
-2. <span data-ttu-id="ef4d0-229">Per visualizzare l'elenco di utenti, passare a **Utenti e gruppi** e quindi fare clic su **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-229">To display the list of users, go to **Users and groups**, and then click **All users**.</span></span>
+2. <span data-ttu-id="8ba06-229">elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi**, quindi fare clic su **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-229">toodisplay hello list of users, go too**Users and groups**, and then click **All users**.</span></span>
 
-    ![Collegamenti "Utenti e gruppi" e "Tutti gli utenti"](./media/active-directory-saas-clever-tutorial/create_aaduser_02.png)
+    ![Hello "Utenti e gruppi" e i collegamenti di "Tutti gli utenti"](./media/active-directory-saas-clever-tutorial/create_aaduser_02.png)
 
-3. <span data-ttu-id="ef4d0-231">Per aprire la finestra di dialogo **Utente** fare clic su **Aggiungi** nella parte superiore della finestra di dialogo **Tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-231">To open the **User** dialog box, click **Add** at the top of the **All Users** dialog box.</span></span>
+3. <span data-ttu-id="8ba06-231">hello tooopen **utente** la finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello di hello **tutti gli utenti** la finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="8ba06-231">tooopen hello **User** dialog box, click **Add** at hello top of hello **All Users** dialog box.</span></span>
 
-    ![Pulsante Aggiungi](./media/active-directory-saas-clever-tutorial/create_aaduser_03.png)
+    ![pulsante Aggiungi Hello](./media/active-directory-saas-clever-tutorial/create_aaduser_03.png)
 
-4. <span data-ttu-id="ef4d0-233">Nella finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ef4d0-233">In the **User** dialog box, perform the following steps:</span></span>
+4. <span data-ttu-id="8ba06-233">In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="8ba06-233">In hello **User** dialog box, perform hello following steps:</span></span>
 
-    ![Finestra di dialogo Utente](./media/active-directory-saas-clever-tutorial/create_aaduser_04.png)
+    ![finestra di dialogo utente Hello](./media/active-directory-saas-clever-tutorial/create_aaduser_04.png)
 
-    <span data-ttu-id="ef4d0-235">a.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-235">a.</span></span> <span data-ttu-id="ef4d0-236">Nella casella **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-236">In the **Name** box, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="8ba06-235">a.</span><span class="sxs-lookup"><span data-stu-id="8ba06-235">a.</span></span> <span data-ttu-id="8ba06-236">In hello **nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-236">In hello **Name** box, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="ef4d0-237">b.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-237">b.</span></span> <span data-ttu-id="ef4d0-238">Nella casella **Nome utente** digitare l'indirizzo di posta elettronica dell'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-238">In the **User name** box, type the email address of user Britta Simon.</span></span>
+    <span data-ttu-id="8ba06-237">b.</span><span class="sxs-lookup"><span data-stu-id="8ba06-237">b.</span></span> <span data-ttu-id="8ba06-238">In hello **nome utente** casella Tipo hello di indirizzo di posta elettronica dell'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="8ba06-238">In hello **User name** box, type hello email address of user Britta Simon.</span></span>
 
-    <span data-ttu-id="ef4d0-239">c.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-239">c.</span></span> <span data-ttu-id="ef4d0-240">Selezionare la casella di controllo **Mostra password** e quindi prendere nota del valore visualizzato nella casella **Password**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-240">Select the **Show Password** check box, and then write down the value that's displayed in the **Password** box.</span></span>
+    <span data-ttu-id="8ba06-239">c.</span><span class="sxs-lookup"><span data-stu-id="8ba06-239">c.</span></span> <span data-ttu-id="8ba06-240">Seleziona hello **Show Password** casella di controllo e quindi annotare i valori hello visualizzati in hello **Password** casella.</span><span class="sxs-lookup"><span data-stu-id="8ba06-240">Select hello **Show Password** check box, and then write down hello value that's displayed in hello **Password** box.</span></span>
 
-    <span data-ttu-id="ef4d0-241">d.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-241">d.</span></span> <span data-ttu-id="ef4d0-242">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-242">Click **Create**.</span></span>
+    <span data-ttu-id="8ba06-241">d.</span><span class="sxs-lookup"><span data-stu-id="8ba06-241">d.</span></span> <span data-ttu-id="8ba06-242">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-242">Click **Create**.</span></span>
  
-### <a name="create-a-clever-test-user"></a><span data-ttu-id="ef4d0-243">Creare un utente di test di Clever</span><span class="sxs-lookup"><span data-stu-id="ef4d0-243">Create a Clever test user</span></span>
+### <a name="create-a-clever-test-user"></a><span data-ttu-id="8ba06-243">Creare un utente di test di Clever</span><span class="sxs-lookup"><span data-stu-id="8ba06-243">Create a Clever test user</span></span>
 
-<span data-ttu-id="ef4d0-244">Per consentire agli utenti di Azure AD di accedere a Clever, è necessario effettuarne il provisioning in Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-244">To enable Azure AD users to log in to Clever, they must be provisioned into Clever.</span></span>
+<span data-ttu-id="8ba06-244">toolog agli utenti di Azure AD tooenable in tooClever, è necessario eseguirne il provisioning in Clever.</span><span class="sxs-lookup"><span data-stu-id="8ba06-244">tooenable Azure AD users toolog in tooClever, they must be provisioned into Clever.</span></span>
 
-<span data-ttu-id="ef4d0-245">Nel caso di Clever, collaborare con il [team di supporto clienti di Clever](https://clever.com/about/contact/) per aggiungere gli utenti nella piattaforma Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-245">In case of Clever, Work with [Clever Client support team](https://clever.com/about/contact/) to add the users in the Clever platform.</span></span> <span data-ttu-id="ef4d0-246">Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-246">Users must be created and activated before you use single sign-on.</span></span> 
+<span data-ttu-id="8ba06-245">In caso di Clever, lavorare con [team di supporto Client intelligenti](https://clever.com/about/contact/) per aggiungere gli utenti di hello nella piattaforma appositamente hello.</span><span class="sxs-lookup"><span data-stu-id="8ba06-245">In case of Clever, Work with [Clever Client support team](https://clever.com/about/contact/) to add hello users in hello Clever platform.</span></span> <span data-ttu-id="8ba06-246">Gli utenti devono essere creati e attivati prima di usare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="8ba06-246">Users must be created and activated before you use single sign-on.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="ef4d0-247">È possibile usare qualsiasi altro strumento o API di creazione di account utente di Clever per effettuare il provisioning degli account utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-247">You can use any other Clever user account creation tools or APIs provided by Clever to provision Azure AD user accounts.</span></span>
+><span data-ttu-id="8ba06-247">È possibile usare qualsiasi altro strumento di creazione utente appositamente account o le API fornite da tooprovision intelligente degli account utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="8ba06-247">You can use any other Clever user account creation tools or APIs provided by Clever tooprovision Azure AD user accounts.</span></span>
 
-### <a name="assign-the-azure-ad-test-user"></a><span data-ttu-id="ef4d0-248">Assegnare l'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ef4d0-248">Assign the Azure AD test user</span></span>
+### <a name="assign-hello-azure-ad-test-user"></a><span data-ttu-id="8ba06-248">Assegnare l'utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="8ba06-248">Assign hello Azure AD test user</span></span>
 
-<span data-ttu-id="ef4d0-249">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-249">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Clever.</span></span>
+<span data-ttu-id="8ba06-249">In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooClever.</span><span class="sxs-lookup"><span data-stu-id="8ba06-249">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooClever.</span></span>
 
-![Assegnare il ruolo utente][200] 
+![Assegnazione del ruolo utente hello][200] 
 
-<span data-ttu-id="ef4d0-251">**Per assegnare Britta Simon a Clever, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ef4d0-251">**To assign Britta Simon to Clever, perform the following steps:**</span></span>
+<span data-ttu-id="8ba06-251">**tooassign Britta Simon tooClever, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="8ba06-251">**tooassign Britta Simon tooClever, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ef4d0-252">Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-252">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="8ba06-252">Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-252">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="ef4d0-254">Nell'elenco delle applicazioni selezionare **Clever**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-254">In the applications list, select **Clever**.</span></span>
+2. <span data-ttu-id="8ba06-254">Nell'elenco di applicazioni hello, selezionare **Clever**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-254">In hello applications list, select **Clever**.</span></span>
 
-    ![Collegamento di Clever nell'elenco delle applicazioni](./media/active-directory-saas-clever-tutorial/tutorial_clever_app.png)  
+    ![Hello Clever collegamento nell'elenco delle applicazioni hello](./media/active-directory-saas-clever-tutorial/tutorial_clever_app.png)  
 
-3. <span data-ttu-id="ef4d0-256">Scegliere **Utenti e gruppi** dal menu a sinistra.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-256">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="8ba06-256">Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-256">In hello menu on hello left, click **Users and groups**.</span></span>
 
-    ![Collegamento "Utenti e gruppi"][202]
+    ![collegamento di "Utenti e gruppi" Hello][202]
 
-4. <span data-ttu-id="ef4d0-258">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-258">Click **Add** button.</span></span> <span data-ttu-id="ef4d0-259">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-259">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="8ba06-258">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-258">Click **Add** button.</span></span> <span data-ttu-id="8ba06-259">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-259">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
-    ![Riquadro Aggiungi assegnazione][203]
+    ![riquadro assegnazione aggiungere Hello][203]
 
-5. <span data-ttu-id="ef4d0-261">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-261">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="8ba06-261">In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.</span><span class="sxs-lookup"><span data-stu-id="8ba06-261">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="ef4d0-262">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-262">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="8ba06-262">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-262">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="ef4d0-263">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-263">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="8ba06-263">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="8ba06-263">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="test-single-sign-on"></a><span data-ttu-id="ef4d0-264">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="ef4d0-264">Test single sign-on</span></span>
+### <a name="test-single-sign-on"></a><span data-ttu-id="8ba06-264">Testare l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="8ba06-264">Test single sign-on</span></span>
 
-<span data-ttu-id="ef4d0-265">In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-265">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="8ba06-265">In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="8ba06-265">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="ef4d0-266">Quando si fa clic sul riquadro Clever nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Clever.</span><span class="sxs-lookup"><span data-stu-id="ef4d0-266">When you click the Clever tile in the Access Panel, you should get automatically signed-on to your Clever application.</span></span>
-<span data-ttu-id="ef4d0-267">Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="ef4d0-267">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="8ba06-266">Quando si fa clic sul riquadro appositamente hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour appositamente applicazione.</span><span class="sxs-lookup"><span data-stu-id="8ba06-266">When you click hello Clever tile in hello Access Panel, you should get automatically signed-on tooyour Clever application.</span></span>
+<span data-ttu-id="8ba06-267">Per ulteriori informazioni sul pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="8ba06-267">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="ef4d0-268">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="ef4d0-268">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="8ba06-268">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="8ba06-268">Additional resources</span></span>
 
-* [<span data-ttu-id="ef4d0-269">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ef4d0-269">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="ef4d0-270">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ef4d0-270">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="8ba06-269">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8ba06-269">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="8ba06-270">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="8ba06-270">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
 title: 'Esercitazione: Integrazione di Azure Active Directory con BGS Online | Documentazione Microsoft'
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e BGS Online.
+description: Informazioni su come tooconfigure single sign-on tra Azure Active Directory e BC Online.
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,212 +13,212 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jeedes
-ms.openlocfilehash: d1abd3f8e2980e03fc092613183a261880fbce38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b728606ded7687d424a8175d0602b6b00f398497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bgs-online"></a><span data-ttu-id="74fef-103">Esercitazione: Integrazione di Azure Active Directory con BGS Online</span><span class="sxs-lookup"><span data-stu-id="74fef-103">Tutorial: Azure Active Directory integration with BGS Online</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-bgs-online"></a><span data-ttu-id="f1e7b-103">Esercitazione: Integrazione di Azure Active Directory con BGS Online</span><span class="sxs-lookup"><span data-stu-id="f1e7b-103">Tutorial: Azure Active Directory integration with BGS Online</span></span>
 
-<span data-ttu-id="74fef-104">Questa esercitazione descrive come integrare BGS Online con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="74fef-104">In this tutorial, you learn how to integrate BGS Online with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="f1e7b-104">In questa esercitazione, è illustrato come toointegrate BC Online con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="f1e7b-104">In this tutorial, you learn how toointegrate BGS Online with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="74fef-105">L'integrazione di BGS Online con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="74fef-105">Integrating BGS Online with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="f1e7b-105">Integrazione di BC Online con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-105">Integrating BGS Online with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="74fef-106">È possibile controllare in Azure AD chi può accedere a BGS Online</span><span class="sxs-lookup"><span data-stu-id="74fef-106">You can control in Azure AD who has access to BGS Online</span></span>
-- <span data-ttu-id="74fef-107">È possibile abilitare gli utenti per l'accesso automatico a BGS Online (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-107">You can enable your users to automatically get signed-on to BGS Online (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="74fef-108">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="74fef-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="f1e7b-106">È possibile controllare in Azure AD che ha accesso tooBGS Online</span><span class="sxs-lookup"><span data-stu-id="f1e7b-106">You can control in Azure AD who has access tooBGS Online</span></span>
+- <span data-ttu-id="f1e7b-107">È possibile abilitare l'utenti tooautomatically get connesso tooBGS Online (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-107">You can enable your users tooautomatically get signed-on tooBGS Online (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="f1e7b-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="f1e7b-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="74fef-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="74fef-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="f1e7b-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="f1e7b-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="74fef-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="74fef-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f1e7b-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="f1e7b-110">Prerequisites</span></span>
 
-<span data-ttu-id="74fef-111">Per configurare l'integrazione di Azure AD con BGS Online, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="74fef-111">To configure Azure AD integration with BGS Online, you need the following items:</span></span>
+<span data-ttu-id="f1e7b-111">tooconfigure integrazione di Azure AD con BC Online, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-111">tooconfigure Azure AD integration with BGS Online, you need hello following items:</span></span>
 
-- <span data-ttu-id="74fef-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="74fef-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="74fef-113">Sottoscrizione di BGS Online abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="74fef-113">A BGS Online single-sign on enabled subscription</span></span>
+- <span data-ttu-id="f1e7b-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="f1e7b-113">Sottoscrizione di BGS Online abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="f1e7b-113">A BGS Online single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="74fef-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="74fef-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="f1e7b-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="74fef-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="74fef-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="f1e7b-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="74fef-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="74fef-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="74fef-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="74fef-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="f1e7b-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="f1e7b-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="f1e7b-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="74fef-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="74fef-118">Scenario description</span></span>
-<span data-ttu-id="74fef-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="74fef-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="74fef-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="74fef-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="f1e7b-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="f1e7b-118">Scenario description</span></span>
+<span data-ttu-id="f1e7b-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="f1e7b-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="74fef-121">Aggiunta di BGS Online dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="74fef-121">Adding BGS Online from the gallery</span></span>
-2. <span data-ttu-id="74fef-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="f1e7b-121">Aggiunta di BC Online dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="f1e7b-121">Adding BGS Online from hello gallery</span></span>
+2. <span data-ttu-id="f1e7b-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-bgs-online-from-the-gallery"></a><span data-ttu-id="74fef-123">Aggiunta di BGS Online dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="74fef-123">Adding BGS Online from the gallery</span></span>
-<span data-ttu-id="74fef-124">Per configurare l'integrazione di BGS Online in Azure AD, è necessario aggiungere BGS Online dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="74fef-124">To configure the integration of BGS Online into Azure AD, you need to add BGS Online from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-bgs-online-from-hello-gallery"></a><span data-ttu-id="f1e7b-123">Aggiunta di BC Online dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="f1e7b-123">Adding BGS Online from hello gallery</span></span>
+<span data-ttu-id="f1e7b-124">integrazione hello tooconfigure di BC Online in Azure AD, è necessario tooadd BC Online dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-124">tooconfigure hello integration of BGS Online into Azure AD, you need tooadd BGS Online from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="74fef-125">**Per aggiungere BGS Online dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="74fef-125">**To add BGS Online from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="f1e7b-125">**tooadd BC Online dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="f1e7b-125">**tooadd BGS Online from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="74fef-126">Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="74fef-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="f1e7b-126">In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="74fef-128">Passare ad **Applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="74fef-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="74fef-129">Andare quindi a **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="74fef-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="f1e7b-128">Passare troppo**applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="f1e7b-129">Quindi andare troppo**tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-129">Then go too**All applications**.</span></span>
 
     ![Applicazioni][2]
     
-3. <span data-ttu-id="74fef-131">Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.</span><span class="sxs-lookup"><span data-stu-id="74fef-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="f1e7b-131">tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applicazioni][3]
 
-4. <span data-ttu-id="74fef-133">Nella casella di ricerca digitare **BGS Online**.</span><span class="sxs-lookup"><span data-stu-id="74fef-133">In the search box, type **BGS Online**.</span></span>
+4. <span data-ttu-id="f1e7b-133">Nella casella di ricerca hello, digitare **BC Online**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-133">In hello search box, type **BGS Online**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_search.png)
 
-5. <span data-ttu-id="74fef-135">Nel pannello dei risultati selezionare **BGS Online** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="74fef-135">In the results panel, select **BGS Online**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="f1e7b-135">Nel riquadro dei risultati hello, selezionare **BC Online**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-135">In hello results panel, select **BGS Online**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="74fef-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="74fef-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con BGS Online usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="74fef-138">In this section, you configure and test Azure AD single sign-on with BGS Online based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="f1e7b-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="f1e7b-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con BGS Online usando un utente di test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="f1e7b-138">In this section, you configure and test Azure AD single sign-on with BGS Online based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="74fef-139">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve conoscere l'utente controparte di BGS Online che corrisponde a un utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="74fef-139">For single sign-on to work, Azure AD needs to know what the counterpart user in BGS Online is to a user in Azure AD.</span></span> <span data-ttu-id="74fef-140">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-140">In other words, a link relationship between an Azure AD user and the related user in BGS Online needs to be established.</span></span>
+<span data-ttu-id="f1e7b-139">Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in BC Online è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in BGS Online is tooa user in Azure AD.</span></span> <span data-ttu-id="f1e7b-140">In altre parole, una relazione di collegamento tra un utente di Azure AD e l'utente correlato di hello in BC Online richiede toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-140">In other words, a link relationship between an Azure AD user and hello related user in BGS Online needs toobe established.</span></span>
 
-<span data-ttu-id="74fef-141">Per stabilire la relazione di collegamento, in BGS Online assegnare il valore del **nome utente** in Azure AD come valore di **Username** (Nome utente).</span><span class="sxs-lookup"><span data-stu-id="74fef-141">In BGS Online, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="f1e7b-141">In BC Online, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-141">In BGS Online, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="74fef-142">Per configurare e testare l'accesso Single Sign-On di Azure AD con BGS Online, è necessario completare i passaggi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="74fef-142">To configure and test Azure AD single sign-on with BGS Online, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="f1e7b-142">tooconfigure e prova AD Azure single sign-on con BC Online, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-142">tooconfigure and test Azure AD single sign-on with BGS Online, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="74fef-143">**[Configurazione dell'accesso Single Sign-On di Azure AD](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="74fef-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="74fef-144">**[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="74fef-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="74fef-145">**[Creazione di un utente di test di BGS Online](#creating-a-bgs-online-test-user)**: per avere una controparte di Britta Simon in BGS Online collegata alla rappresentazione dell'utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="74fef-145">**[Creating a BGS Online test user](#creating-a-bgs-online-test-user)** - to have a counterpart of Britta Simon in BGS Online that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="74fef-146">**[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="74fef-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="74fef-147">**[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="74fef-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="f1e7b-143">**[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="f1e7b-144">**[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="f1e7b-145">**[Creazione di un utente test BC Online](#creating-a-bgs-online-test-user)**  -toohave un equivalente di Britta Simon in BC Online è la rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-145">**[Creating a BGS Online test user](#creating-a-bgs-online-test-user)** - toohave a counterpart of Britta Simon in BGS Online that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="f1e7b-146">**[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="f1e7b-147">**[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="74fef-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="f1e7b-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="74fef-149">In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your BGS Online application.</span></span>
+<span data-ttu-id="f1e7b-149">In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione BC Online.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your BGS Online application.</span></span>
 
-<span data-ttu-id="74fef-150">**Per configurare Single Sign-On di Azure AD con BGS Online, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="74fef-150">**To configure Azure AD single sign-on with BGS Online, perform the following steps:**</span></span>
+<span data-ttu-id="f1e7b-150">**Azure AD tooconfigure single sign-on con BC Online, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="f1e7b-150">**tooconfigure Azure AD single sign-on with BGS Online, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="74fef-151">Nella pagina di integrazione dell'applicazione **BGS Online** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="74fef-151">In the Azure portal, on the **BGS Online** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="f1e7b-151">Nel portale di Azure su hello hello **BC Online** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-151">In hello Azure portal, on hello **BGS Online** application integration page, click **Single sign-on**.</span></span>
 
     ![Configura accesso Single Sign-On][4]
 
-2. <span data-ttu-id="74fef-153">Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="74fef-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="f1e7b-153">In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_samlbase.png)
 
-3. <span data-ttu-id="74fef-155">Nella sezione **URL e dominio BGS Online** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="74fef-155">On the **BGS Online Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="f1e7b-155">In hello **BC Online dominio e gli URL** seguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-155">On hello **BGS Online Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_url.png)
 
-    <span data-ttu-id="74fef-157">a.</span><span class="sxs-lookup"><span data-stu-id="74fef-157">a.</span></span> <span data-ttu-id="74fef-158">Nella casella di testo **Identificatore** digitare l'URL adottando il modello seguente:</span><span class="sxs-lookup"><span data-stu-id="74fef-158">In the **Identifier** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="f1e7b-157">a.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-157">a.</span></span> <span data-ttu-id="f1e7b-158">In hello **identificatore** casella di testo, digitare un URL utilizzando hello seguente modello:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-158">In hello **Identifier** textbox, type a URL using hello following pattern:</span></span>
 
-    <span data-ttu-id="74fef-159">Per un ambiente di produzione, usare questo modello `https://<company name>.millwardbrown.report`</span><span class="sxs-lookup"><span data-stu-id="74fef-159">For production environment, use this pattern `https://<company name>.millwardbrown.report`</span></span> 
+    <span data-ttu-id="f1e7b-159">Per un ambiente di produzione, usare questo modello `https://<company name>.millwardbrown.report`</span><span class="sxs-lookup"><span data-stu-id="f1e7b-159">For production environment, use this pattern `https://<company name>.millwardbrown.report`</span></span> 
 
-    <span data-ttu-id="74fef-160">Per un ambiente di test, usare questo modello `https://millwardbrown.marketingtracker.nl/mt5/`</span><span class="sxs-lookup"><span data-stu-id="74fef-160">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/`</span></span>
+    <span data-ttu-id="f1e7b-160">Per un ambiente di test, usare questo modello `https://millwardbrown.marketingtracker.nl/mt5/`</span><span class="sxs-lookup"><span data-stu-id="f1e7b-160">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/`</span></span>
 
-    <span data-ttu-id="74fef-161">b.</span><span class="sxs-lookup"><span data-stu-id="74fef-161">b.</span></span> <span data-ttu-id="74fef-162">Nella casella di testo **URL di risposta** digitare l'URL usando il modello seguente:</span><span class="sxs-lookup"><span data-stu-id="74fef-162">In the **Reply URL** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="f1e7b-161">b.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-161">b.</span></span> <span data-ttu-id="f1e7b-162">In hello **URL di risposta** casella di testo, digitare un URL utilizzando hello seguente modello:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-162">In hello **Reply URL** textbox, type a URL using hello following pattern:</span></span>
     
-    <span data-ttu-id="74fef-163">Per un ambiente di produzione, usare questo modello `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="74fef-163">For production environment, use this pattern `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span></span> 
+    <span data-ttu-id="f1e7b-163">Per un ambiente di produzione, usare questo modello `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="f1e7b-163">For production environment, use this pattern `https://<company name>.millwardbrown.report/sso/saml/AssertionConsumerService.aspx`</span></span> 
       
-    <span data-ttu-id="74fef-164">Per un ambiente di test, usare questo modello `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="74fef-164">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span></span>
+    <span data-ttu-id="f1e7b-164">Per un ambiente di test, usare questo modello `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span><span class="sxs-lookup"><span data-stu-id="f1e7b-164">For test environment, use this pattern `https://millwardbrown.marketingtracker.nl/mt5/sso/saml/AssertionConsumerService.aspx`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="74fef-165">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="74fef-165">These values are not real.</span></span> <span data-ttu-id="74fef-166">è necessario aggiornarli con l'identificatore e l'URL di risposta effettivi.</span><span class="sxs-lookup"><span data-stu-id="74fef-166">Update these values with the actual Identifier and Reply URL.</span></span> <span data-ttu-id="74fef-167">Per ottenere questi valori contattare il [team di supporto di BGS Online](mailTo:bgsdashboardteam@millwardbrown.com).</span><span class="sxs-lookup"><span data-stu-id="74fef-167">Contact [BGS Online support team](mailTo:bgsdashboardteam@millwardbrown.com) to get these values.</span></span>
+    > <span data-ttu-id="f1e7b-165">Poiché questi non sono i valori reali,</span><span class="sxs-lookup"><span data-stu-id="f1e7b-165">These values are not real.</span></span> <span data-ttu-id="f1e7b-166">Aggiornare questi valori con URL di risposta e identificatore effettivo hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-166">Update these values with hello actual Identifier and Reply URL.</span></span> <span data-ttu-id="f1e7b-167">Contatto [team di supporto Online BC](mailTo:bgsdashboardteam@millwardbrown.com) tooget questi valori.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-167">Contact [BGS Online support team](mailTo:bgsdashboardteam@millwardbrown.com) tooget these values.</span></span>
  
 
-4. <span data-ttu-id="74fef-168">Nella sezione **Certificato di firma SAML** fare clic su **XML di metadati** e quindi salvare il file dei metadati nel computer.</span><span class="sxs-lookup"><span data-stu-id="74fef-168">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="f1e7b-168">In hello **certificato di firma SAML** fare clic su **Metadata XML** e quindi salvare il file di metadati hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-168">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_certificate.png) 
 
-5. <span data-ttu-id="74fef-170">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="74fef-170">Click **Save** button.</span></span>
+5. <span data-ttu-id="f1e7b-170">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="f1e7b-170">Click **Save** button.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="74fef-172">Nella sezione **Configurazione di BGS Online** fare clic su **Configura BGS Online** per aprire la finestra **Configura accesso**.</span><span class="sxs-lookup"><span data-stu-id="74fef-172">On the **BGS Online Configuration** section, click **Configure BGS Online** to open **Configure sign-on** window.</span></span> <span data-ttu-id="74fef-173">Copiare l'**URL servizio Single Sign-On SAML** dalla **sezione Riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="74fef-173">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="f1e7b-172">In hello **configurazione Online BC** fare clic su **configurare BC Online** tooopen **Configura sign-on** finestra.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-172">On hello **BGS Online Configuration** section, click **Configure BGS Online** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="f1e7b-173">Hello copia **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="f1e7b-173">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_configure.png) 
 
-7. <span data-ttu-id="74fef-175">Per configurare l'accesso Single Sign-On sul lato **BGS Online**, è necessario inviare il file **XML metadati** scaricato e il valore dell'**URL del servizio Single Sign-On SAML** al [team di supporto di BGS Online](mailto:bgsdashboardteam@millwardbrown.com).</span><span class="sxs-lookup"><span data-stu-id="74fef-175">To configure single sign-on on **BGS Online** side, you need to send the downloaded **Metadata XML** and **SAML Single Sign-On Service URL** to [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com).</span></span> 
+7. <span data-ttu-id="f1e7b-175">tooconfigure single sign-on sul **BC Online** lato, è necessario hello toosend scaricato **Metadata XML** e **SAML Single Sign-On Service URL** troppo[BC Il team di supporto online](mailto:bgsdashboardteam@millwardbrown.com).</span><span class="sxs-lookup"><span data-stu-id="f1e7b-175">tooconfigure single sign-on on **BGS Online** side, you need toosend hello downloaded **Metadata XML** and **SAML Single Sign-On Service URL** too[BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com).</span></span> 
 
 
 > [!TIP]
-> <span data-ttu-id="74fef-176">Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="74fef-176">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="74fef-177">Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore.</span><span class="sxs-lookup"><span data-stu-id="74fef-177">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="74fef-178">Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).</span><span class="sxs-lookup"><span data-stu-id="74fef-178">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="f1e7b-176">È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!</span><span class="sxs-lookup"><span data-stu-id="f1e7b-176">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="f1e7b-177">Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-177">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="f1e7b-178">È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="f1e7b-178">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="74fef-179">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-179">Creating an Azure AD test user</span></span>
-<span data-ttu-id="74fef-180">Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="74fef-180">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="f1e7b-179">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-179">Creating an Azure AD test user</span></span>
+<span data-ttu-id="f1e7b-180">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-180">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Creare un utente di Azure AD][100]
 
-<span data-ttu-id="74fef-182">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="74fef-182">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="f1e7b-182">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="f1e7b-182">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="74fef-183">Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="74fef-183">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="f1e7b-183">In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-183">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="74fef-185">Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.</span><span class="sxs-lookup"><span data-stu-id="74fef-185">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="f1e7b-185">elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-185">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="74fef-187">Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.</span><span class="sxs-lookup"><span data-stu-id="74fef-187">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="f1e7b-187">hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-187">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="74fef-189">Nella pagina della finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="74fef-189">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="f1e7b-189">In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="f1e7b-189">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-bgsonline-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="74fef-191">a.</span><span class="sxs-lookup"><span data-stu-id="74fef-191">a.</span></span> <span data-ttu-id="74fef-192">Nella casella di testo **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="74fef-192">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="f1e7b-191">a.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-191">a.</span></span> <span data-ttu-id="f1e7b-192">In hello **nome** casella tipo **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-192">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="74fef-193">b.</span><span class="sxs-lookup"><span data-stu-id="74fef-193">b.</span></span> <span data-ttu-id="74fef-194">Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="74fef-194">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="f1e7b-193">b.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-193">b.</span></span> <span data-ttu-id="f1e7b-194">In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-194">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="74fef-195">c.</span><span class="sxs-lookup"><span data-stu-id="74fef-195">c.</span></span> <span data-ttu-id="74fef-196">Selezionare **Mostra password** e prendere nota del valore della **Password**.</span><span class="sxs-lookup"><span data-stu-id="74fef-196">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="f1e7b-195">c.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-195">c.</span></span> <span data-ttu-id="f1e7b-196">Selezionare **Show Password** e annotare il valore di hello di hello **Password**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-196">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="74fef-197">d.</span><span class="sxs-lookup"><span data-stu-id="74fef-197">d.</span></span> <span data-ttu-id="74fef-198">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="74fef-198">Click **Create**.</span></span>
+    <span data-ttu-id="f1e7b-197">d.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-197">d.</span></span> <span data-ttu-id="f1e7b-198">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-198">Click **Create**.</span></span>
  
-### <a name="creating-a-bgs-online-test-user"></a><span data-ttu-id="74fef-199">Creazione di un utente di test di BGS Online</span><span class="sxs-lookup"><span data-stu-id="74fef-199">Creating a BGS Online test user</span></span>
+### <a name="creating-a-bgs-online-test-user"></a><span data-ttu-id="f1e7b-199">Creazione di un utente di test di BGS Online</span><span class="sxs-lookup"><span data-stu-id="f1e7b-199">Creating a BGS Online test user</span></span>
 
-<span data-ttu-id="74fef-200">In questa sezione viene creato un utente di nome Britta Simon in BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-200">In this section, you create a user called Britta Simon in BGS Online.</span></span> <span data-ttu-id="74fef-201">Collaborare con il [team di supporto di BGS Online](mailto:bgsdashboardteam@millwardbrown.com) per aggiungere gli utenti alla piattaforma BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-201">Work with [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com) to add the users in the BGS Online platform.</span></span>
+<span data-ttu-id="f1e7b-200">In questa sezione viene creato un utente di nome Britta Simon in BGS Online.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-200">In this section, you create a user called Britta Simon in BGS Online.</span></span> <span data-ttu-id="f1e7b-201">Lavorare con [team di supporto Online BC](mailto:bgsdashboardteam@millwardbrown.com) utenti hello tooadd nella piattaforma BC Online hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-201">Work with [BGS Online support team](mailto:bgsdashboardteam@millwardbrown.com) tooadd hello users in hello BGS Online platform.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="74fef-202">Assegnazione dell'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="74fef-202">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="f1e7b-202">Assegnazione utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="f1e7b-202">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="74fef-203">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-203">In this section, you enable Britta Simon to use Azure single sign-on by granting access to BGS Online.</span></span>
+<span data-ttu-id="f1e7b-203">In questa sezione per abilitare Britta Simon toouse single sign-on Azure concessione dell'accesso tooBGS Online.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-203">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooBGS Online.</span></span>
 
 ![Assegna utente][200] 
 
-<span data-ttu-id="74fef-205">**Per assegnare Britta Simon a BGS Online, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="74fef-205">**To assign Britta Simon to BGS Online, perform the following steps:**</span></span>
+<span data-ttu-id="f1e7b-205">**tooassign Britta Simon tooBGS Online, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="f1e7b-205">**tooassign Britta Simon tooBGS Online, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="74fef-206">Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="74fef-206">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="f1e7b-206">Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-206">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="74fef-208">Nell'elenco delle applicazioni selezionare **BGS Online**.</span><span class="sxs-lookup"><span data-stu-id="74fef-208">In the applications list, select **BGS Online**.</span></span>
+2. <span data-ttu-id="f1e7b-208">Nell'elenco di applicazioni hello, selezionare **BC Online**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-208">In hello applications list, select **BGS Online**.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-bgsonline-tutorial/tutorial_bgsonline_app.png) 
 
-3. <span data-ttu-id="74fef-210">Scegliere **Utenti e gruppi** dal menu a sinistra.</span><span class="sxs-lookup"><span data-stu-id="74fef-210">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="f1e7b-210">Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-210">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Assegna utente][202] 
 
-4. <span data-ttu-id="74fef-212">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="74fef-212">Click **Add** button.</span></span> <span data-ttu-id="74fef-213">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="74fef-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="f1e7b-212">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-212">Click **Add** button.</span></span> <span data-ttu-id="f1e7b-213">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-213">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Assegna utente][203]
 
-5. <span data-ttu-id="74fef-215">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.</span><span class="sxs-lookup"><span data-stu-id="74fef-215">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="f1e7b-215">In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-215">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="74fef-216">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="74fef-216">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="f1e7b-216">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-216">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="74fef-217">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="74fef-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="f1e7b-217">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-217">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="74fef-218">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="74fef-218">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="f1e7b-218">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="f1e7b-218">Testing single sign-on</span></span>
 
-<span data-ttu-id="74fef-219">In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="74fef-219">In this section, you test your Azure AD SSO configuration using the Access Panel.</span></span>
+<span data-ttu-id="f1e7b-219">In questa sezione è verificare la configurazione di SSO AD Azure utilizzando hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-219">In this section, you test your Azure AD SSO configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="74fef-220">Quando si fa clic sul riquadro BGS Online nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione BGS Online.</span><span class="sxs-lookup"><span data-stu-id="74fef-220">When you click the BGS Online tile in the Access Panel, you should get automatically signed-on to your BGS Online application.</span></span>
+<span data-ttu-id="f1e7b-220">Quando si fa clic su riquadro BC Online di hello in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour BC Online delle applicazioni.</span><span class="sxs-lookup"><span data-stu-id="f1e7b-220">When you click hello BGS Online tile in hello Access Panel, you should get automatically signed-on tooyour BGS Online application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="74fef-221">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="74fef-221">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="f1e7b-221">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="f1e7b-221">Additional resources</span></span>
 
-* [<span data-ttu-id="74fef-222">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="74fef-222">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="74fef-223">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="74fef-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="f1e7b-222">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f1e7b-222">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="f1e7b-223">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="f1e7b-223">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

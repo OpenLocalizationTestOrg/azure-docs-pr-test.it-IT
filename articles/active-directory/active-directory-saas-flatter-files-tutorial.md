@@ -1,6 +1,6 @@
 ---
 title: Esercitazione Integrazione di Azure Active Directory con Flatter Files | Documentazione Microsoft
-description: Informazioni su come configurare l'accesso Single Sign-On tra Azure Active Directory e Flatter Files.
+description: "Informazioni su come tooconfigure single sign-on tra Azure Active Directory e i file più semplice."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,247 +13,247 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: jeedes
-ms.openlocfilehash: e02150cb27768d7b403bdca191bc1f189821def4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 73ca2613b7bbaf9992ecf624ff5defabaa44f7a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-flatter-files"></a><span data-ttu-id="ba332-103">Esercitazione: Integrazione di Azure Active Directory con Flatter Files</span><span class="sxs-lookup"><span data-stu-id="ba332-103">Tutorial: Azure Active Directory integration with Flatter Files</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-flatter-files"></a><span data-ttu-id="b5171-103">Esercitazione: Integrazione di Azure Active Directory con Flatter Files</span><span class="sxs-lookup"><span data-stu-id="b5171-103">Tutorial: Azure Active Directory integration with Flatter Files</span></span>
 
-<span data-ttu-id="ba332-104">Questa esercitazione descrive come integrare Flatter Files con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ba332-104">In this tutorial, you learn how to integrate Flatter Files with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="b5171-104">In questa esercitazione, è illustrato come toointegrate file più semplice con Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="b5171-104">In this tutorial, you learn how toointegrate Flatter Files with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="ba332-105">L'integrazione di Flatter Files con Azure AD offre i vantaggi seguenti:</span><span class="sxs-lookup"><span data-stu-id="ba332-105">Integrating Flatter Files with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="b5171-105">I file più semplice l'integrazione con Azure AD fornisce hello seguenti vantaggi:</span><span class="sxs-lookup"><span data-stu-id="b5171-105">Integrating Flatter Files with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="ba332-106">È possibile controllare in Azure AD chi può accedere a Flatter Files</span><span class="sxs-lookup"><span data-stu-id="ba332-106">You can control in Azure AD who has access to Flatter Files</span></span>
-- <span data-ttu-id="ba332-107">È possibile abilitare gli utenti per l'accesso automatico a Flatter Files (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-107">You can enable your users to automatically get signed-on to Flatter Files (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="ba332-108">È possibile gestire gli account in un'unica posizione centrale: il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ba332-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="b5171-106">È possibile controllare in Azure AD che ha accesso file tooFlatter</span><span class="sxs-lookup"><span data-stu-id="b5171-106">You can control in Azure AD who has access tooFlatter Files</span></span>
+- <span data-ttu-id="b5171-107">È possibile abilitare il tooautomatically utenti ottenere i file firmati in tooFlatter (Single Sign-On) con i propri account Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-107">You can enable your users tooautomatically get signed-on tooFlatter Files (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="b5171-108">È possibile gestire gli account in un'unica posizione centrale - hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="b5171-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="ba332-109">Per altre informazioni sull'integrazione di app SaaS con Azure AD, vedere [Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="ba332-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="b5171-109">Se si desiderano tooknow ulteriori informazioni sull'integrazione dell'applicazione SaaS con Azure AD, vedere [novità di accesso alle applicazioni e single sign-on con Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="b5171-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="ba332-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="ba332-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="b5171-110">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="b5171-110">Prerequisites</span></span>
 
-<span data-ttu-id="ba332-111">Per configurare l'integrazione di Azure AD con Flatter Files, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="ba332-111">To configure Azure AD integration with Flatter Files, you need the following items:</span></span>
+<span data-ttu-id="b5171-111">tooconfigure integrazione di Azure AD con i file più semplice, è necessario hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="b5171-111">tooconfigure Azure AD integration with Flatter Files, you need hello following items:</span></span>
 
-- <span data-ttu-id="ba332-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ba332-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="ba332-113">Sottoscrizione di Flatter Files abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="ba332-113">A Flatter Files single sign-on enabled subscription</span></span>
+- <span data-ttu-id="b5171-112">Sottoscrizione di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="b5171-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="b5171-113">Sottoscrizione di Flatter Files abilitata per l'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="b5171-113">A Flatter Files single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ba332-114">Non è consigliabile usare un ambiente di produzione per testare i passaggi di questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="ba332-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="b5171-114">hello tootest i passaggi in questa esercitazione, è consigliabile utilizzare un ambiente di produzione.</span><span class="sxs-lookup"><span data-stu-id="b5171-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="ba332-115">A questo scopo, è consigliabile seguire le indicazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="ba332-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="b5171-115">passaggi di hello tootest in questa esercitazione, è necessario seguire questi suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="b5171-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="ba332-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="ba332-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="ba332-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="ba332-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="b5171-116">Non usare l'ambiente di produzione a meno che non sia necessario.</span><span class="sxs-lookup"><span data-stu-id="b5171-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="b5171-117">Se non si dispone di un ambiente di prova di Azure AD, è possibile ottenere una versione di valutazione di un mese [qui](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="b5171-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="ba332-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="ba332-118">Scenario description</span></span>
-<span data-ttu-id="ba332-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="ba332-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="ba332-120">Lo scenario descritto in questa esercitazione prevede i due blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="ba332-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="b5171-118">Descrizione dello scenario</span><span class="sxs-lookup"><span data-stu-id="b5171-118">Scenario description</span></span>
+<span data-ttu-id="b5171-119">In questa esercitazione viene eseguito il test dell'accesso Single Sign-On di Azure AD in un ambiente di test.</span><span class="sxs-lookup"><span data-stu-id="b5171-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="b5171-120">scenario di Hello descritto in questa esercitazione è composto da due componenti principali:</span><span class="sxs-lookup"><span data-stu-id="b5171-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="ba332-121">Aggiunta di Flatter Files dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ba332-121">Adding Flatter Files from the gallery</span></span>
-2. <span data-ttu-id="ba332-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="b5171-121">Aggiunta di file più semplice dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="b5171-121">Adding Flatter Files from hello gallery</span></span>
+2. <span data-ttu-id="b5171-122">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-flatter-files-from-the-gallery"></a><span data-ttu-id="ba332-123">Aggiunta di Flatter Files dalla raccolta</span><span class="sxs-lookup"><span data-stu-id="ba332-123">Adding Flatter Files from the gallery</span></span>
-<span data-ttu-id="ba332-124">Per configurare l'integrazione di Flatter Files in Azure AD, è necessario aggiungere Flatter Files dalla raccolta al proprio elenco di app SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="ba332-124">To configure the integration of Flatter Files into Azure AD, you need to add Flatter Files from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-flatter-files-from-hello-gallery"></a><span data-ttu-id="b5171-123">Aggiunta di file più semplice dalla raccolta hello</span><span class="sxs-lookup"><span data-stu-id="b5171-123">Adding Flatter Files from hello gallery</span></span>
+<span data-ttu-id="b5171-124">integrazione hello tooconfigure di file più semplice in Azure AD, è necessario tooadd più semplice di file dall'elenco di tooyour hello raccolta di App SaaS gestite.</span><span class="sxs-lookup"><span data-stu-id="b5171-124">tooconfigure hello integration of Flatter Files into Azure AD, you need tooadd Flatter Files from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="ba332-125">**Per aggiungere Flatter Files dalla raccolta, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ba332-125">**To add Flatter Files from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="b5171-125">**tooadd più semplice di file dalla raccolta di hello, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="b5171-125">**tooadd Flatter Files from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ba332-126">Nel **[portale di Azure](https://portal.azure.com)** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="ba332-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="b5171-126">In hello  **[portale di Azure](https://portal.azure.com)**via hello del Pannello di navigazione a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="b5171-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="ba332-128">Passare ad **Applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="ba332-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="ba332-129">Andare quindi a **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ba332-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="b5171-128">Passare troppo**applicazioni aziendali**.</span><span class="sxs-lookup"><span data-stu-id="b5171-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="b5171-129">Quindi andare troppo**tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="b5171-129">Then go too**All applications**.</span></span>
 
     ![Applicazioni][2]
     
-3. <span data-ttu-id="ba332-131">Fare clic sul pulsante **Nuova applicazione** nella parte superiore della finestra di dialogo per aggiungere una nuova applicazione.</span><span class="sxs-lookup"><span data-stu-id="ba332-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="b5171-131">tooadd nuova applicazione, fare clic su **nuova applicazione** pulsante nella parte superiore di hello della finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="b5171-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applicazioni][3]
 
-4. <span data-ttu-id="ba332-133">Nella casella di ricerca digitare **Flatter Files**.</span><span class="sxs-lookup"><span data-stu-id="ba332-133">In the search box, type **Flatter Files**.</span></span>
+4. <span data-ttu-id="b5171-133">Nella casella di ricerca hello, digitare **più piana file**.</span><span class="sxs-lookup"><span data-stu-id="b5171-133">In hello search box, type **Flatter Files**.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_search.png)
 
-5. <span data-ttu-id="ba332-135">Nel pannello dei risultati selezionare **Flatter Files** e quindi fare clic sul pulsante **Aggiungi** per aggiungere l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="ba332-135">In the results panel, select **Flatter Files**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="b5171-135">Nel riquadro dei risultati hello, selezionare **file più piana**, quindi fare clic su **Aggiungi** pulsante applicazione hello tooadd.</span><span class="sxs-lookup"><span data-stu-id="b5171-135">In hello results panel, select **Flatter Files**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="ba332-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="ba332-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Flatter Files mediante un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="ba332-138">In this section, you configure and test Azure AD single sign-on with Flatter Files based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="b5171-137">Configurazione e test dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="b5171-138">In questa sezione viene configurato e testato l'accesso Single Sign-On di Azure AD con Flatter Files mediante un utente test di nome "Britta Simon".</span><span class="sxs-lookup"><span data-stu-id="b5171-138">In this section, you configure and test Azure AD single sign-on with Flatter Files based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="ba332-139">Per il funzionamento dell'accesso Single Sign-On, Azure AD deve sapere quale utente di Flatter Files corrisponde a un determinato utente di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ba332-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Flatter Files is to a user in Azure AD.</span></span> <span data-ttu-id="ba332-140">In altre parole, deve essere stabilita una relazione di collegamento tra un utente di Azure AD e l'utente correlato in Flatter Files.</span><span class="sxs-lookup"><span data-stu-id="ba332-140">In other words, a link relationship between an Azure AD user and the related user in Flatter Files needs to be established.</span></span>
+<span data-ttu-id="b5171-139">Per toowork di accesso singolo, Azure AD deve tooknow quale utente controparte hello in file più semplice è tooa utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="b5171-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Flatter Files is tooa user in Azure AD.</span></span> <span data-ttu-id="b5171-140">In altre parole, una relazione di collegamento tra un utente di Azure Active Directory e l'utente correlato di hello in file più semplice richiede toobe stabilita.</span><span class="sxs-lookup"><span data-stu-id="b5171-140">In other words, a link relationship between an Azure AD user and hello related user in Flatter Files needs toobe established.</span></span>
 
-<span data-ttu-id="ba332-141">Per stabilire la relazione di collegamento, in Flatter Files assegnare il valore di **nome utente** di Azure AD come valore dell'attributo **Username** (Nome utente).</span><span class="sxs-lookup"><span data-stu-id="ba332-141">In Flatter Files, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="b5171-141">Nei file più semplice, assegnare il valore di hello di hello **nome utente** in Azure AD come valore hello hello **Username** tooestablish relazione di collegamento hello.</span><span class="sxs-lookup"><span data-stu-id="b5171-141">In Flatter Files, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="ba332-142">Per configurare e testare l'accesso Single Sign-On di Azure AD con Flatter Files, è necessario completare i blocchi predefiniti seguenti:</span><span class="sxs-lookup"><span data-stu-id="ba332-142">To configure and test Azure AD single sign-on with Flatter Files, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="b5171-142">tooconfigure e prova AD Azure single sign-on con i file più semplice, è necessario hello toocomplete seguenti blocchi predefiniti:</span><span class="sxs-lookup"><span data-stu-id="b5171-142">tooconfigure and test Azure AD single sign-on with Flatter Files, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="ba332-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** : per abilitare gli utenti all'uso di questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="ba332-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="ba332-144">**[Creazione di un utente test di Azure AD](#creating-an-azure-ad-test-user)** : per testare l'accesso Single Sign-On di Azure AD con l'utente Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="ba332-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="ba332-145">**[Creazione di un utente test per Flatter Files](#creating-a-flatter-files-test-user)**: per avere una controparte di Britta Simon in Flatter Files collegata alla rappresentazione dell'utente in Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ba332-145">**[Creating a Flatter Files test user](#creating-a-flatter-files-test-user)** - to have a counterpart of Britta Simon in Flatter Files that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="ba332-146">**[Assegnazione dell'utente test di Azure AD](#assigning-the-azure-ad-test-user)** : per abilitare Britta Simon all'uso dell'accesso Single Sign-On di Azure AD.</span><span class="sxs-lookup"><span data-stu-id="ba332-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="ba332-147">**[Testing Single Sign-On](#testing-single-sign-on)** : per verificare se la configurazione funziona.</span><span class="sxs-lookup"><span data-stu-id="ba332-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="b5171-143">**[Configurazione di Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable il toouse utenti questa funzionalità.</span><span class="sxs-lookup"><span data-stu-id="b5171-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="b5171-144">**[Creazione di un utente prova AD Azure](#creating-an-azure-ad-test-user)**  -tootest AD Azure single sign-on con Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="b5171-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="b5171-145">**[Creazione di un utente di test di file più piana](#creating-a-flatter-files-test-user)**  -toohave un equivalente di Britta Simon in file più semplice che è la rappresentazione toohello collegato Azure AD dell'utente.</span><span class="sxs-lookup"><span data-stu-id="b5171-145">**[Creating a Flatter Files test user](#creating-a-flatter-files-test-user)** - toohave a counterpart of Britta Simon in Flatter Files that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="b5171-146">**[Assegnazione utente di prova hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD accesso single sign-on.</span><span class="sxs-lookup"><span data-stu-id="b5171-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="b5171-147">**[Test di Single Sign-On](#testing-single-sign-on)**  -tooverify hello se funzionamento della configurazione.</span><span class="sxs-lookup"><span data-stu-id="b5171-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="ba332-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="b5171-148">Configurazione dell'accesso Single Sign-On di Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="ba332-149">In questa sezione viene abilitato l'accesso Single Sign-On di Azure AD nel portale di Azure e viene configurato l'accesso Single Sign-On nell'applicazione Flatter Files.</span><span class="sxs-lookup"><span data-stu-id="ba332-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Flatter Files application.</span></span>
+<span data-ttu-id="b5171-149">In questa sezione, si abilita Azure AD single sign-on in hello portale di Azure e configurare l'accesso single sign-on nell'applicazione i file più semplice.</span><span class="sxs-lookup"><span data-stu-id="b5171-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Flatter Files application.</span></span>
 
-<span data-ttu-id="ba332-150">**Per configurare l'accesso Single Sign-On di Azure AD con Flatter Files, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ba332-150">**To configure Azure AD single sign-on with Flatter Files, perform the following steps:**</span></span>
+<span data-ttu-id="b5171-150">**tooconfigure AD Azure single sign-on con i file più semplice, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="b5171-150">**tooconfigure Azure AD single sign-on with Flatter Files, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ba332-151">Nella pagina di integrazione dell'applicazione **Flatter Files** del portale di Azure fare clic su **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="ba332-151">In the Azure portal, on the **Flatter Files** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="b5171-151">Nel portale di Azure su hello hello **file più piana** pagina di integrazione dell'applicazione, fare clic su **Single sign-on**.</span><span class="sxs-lookup"><span data-stu-id="b5171-151">In hello Azure portal, on hello **Flatter Files** application integration page, click **Single sign-on**.</span></span>
 
     ![Configura accesso Single Sign-On][4]
 
-2. <span data-ttu-id="ba332-153">Nella finestra di dialogo **Single Sign-On** selezionare **Accesso basato su SAML** per **Modalità** per abilitare l'accesso Single Sign-On.</span><span class="sxs-lookup"><span data-stu-id="ba332-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="b5171-153">In hello **Single sign-on** finestra di dialogo Seleziona **modalità** come **basato su SAML Sign-on** tooenable single sign-on.</span><span class="sxs-lookup"><span data-stu-id="b5171-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_samlbase.png)
 
-3. <span data-ttu-id="ba332-155">Nella sezione **URL e dominio Flatter Files** l'utente non deve eseguire alcuna operazione perché l'applicazione è già preintegrata in Azure.</span><span class="sxs-lookup"><span data-stu-id="ba332-155">On the **Flatter Files Domain and URLs** section, the user does not have to perform any steps as the app is already pre-integrated with Azure.</span></span>
+3. <span data-ttu-id="b5171-155">In hello **più semplice file di dominio e gli URL** sezione, hello utente non dispone di tooperform tutte le operazioni come l'applicazione hello è già pre-integrata con Azure.</span><span class="sxs-lookup"><span data-stu-id="b5171-155">On hello **Flatter Files Domain and URLs** section, hello user does not have tooperform any steps as hello app is already pre-integrated with Azure.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_url.png)
  
-4. <span data-ttu-id="ba332-157">Nella sezione **Certificato di firma SAML** fare clic su **Certificato (Base64)** e quindi salvare il file del certificato nel computer.</span><span class="sxs-lookup"><span data-stu-id="ba332-157">On the **SAML Signing Certificate** section, click **Certificate(Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="b5171-157">In hello **certificato di firma SAML** fare clic su **Certificate(Base64)** e quindi salvare il file di certificato hello nel computer in uso.</span><span class="sxs-lookup"><span data-stu-id="b5171-157">On hello **SAML Signing Certificate** section, click **Certificate(Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_certificate.png) 
 
-5. <span data-ttu-id="ba332-159">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="ba332-159">Click **Save** button.</span></span>
+5. <span data-ttu-id="b5171-159">Fare clic sul pulsante **Salva** .</span><span class="sxs-lookup"><span data-stu-id="b5171-159">Click **Save** button.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="ba332-161">Nella sezione **Configurazione di Flatter Files** fare clic su **Configura Flatter Files** per aprire la finestra **Configura accesso**.</span><span class="sxs-lookup"><span data-stu-id="ba332-161">On the **Flatter Files Configuration** section, click **Configure Flatter Files** to open **Configure sign-on** window.</span></span> <span data-ttu-id="ba332-162">Copiare l'**URL servizio Single Sign-On SAML** dalla **sezione Riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="ba332-162">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="b5171-161">In hello **più semplice file di configurazione** fare clic su **configurazione più semplice file** tooopen **Configura sign-on** finestra.</span><span class="sxs-lookup"><span data-stu-id="b5171-161">On hello **Flatter Files Configuration** section, click **Configure Flatter Files** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="b5171-162">Hello copia **SAML Single Sign-On Service URL** da hello **sezione di riferimento rapido.**</span><span class="sxs-lookup"><span data-stu-id="b5171-162">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_configure.png) 
 
-7. <span data-ttu-id="ba332-164">Accedere all'applicazione Flatter Files come amministratore.</span><span class="sxs-lookup"><span data-stu-id="ba332-164">Sign-on to your Flatter Files application as an administrator.</span></span>
+7. <span data-ttu-id="b5171-164">Sign-on tooyour applicazione più semplice file come amministratore.</span><span class="sxs-lookup"><span data-stu-id="b5171-164">Sign-on tooyour Flatter Files application as an administrator.</span></span>
 
-8. <span data-ttu-id="ba332-165">Fare clic su **DASHBOARD**.</span><span class="sxs-lookup"><span data-stu-id="ba332-165">Click **DASHBOARD**.</span></span> 
+8. <span data-ttu-id="b5171-165">Fare clic su **DASHBOARD**.</span><span class="sxs-lookup"><span data-stu-id="b5171-165">Click **DASHBOARD**.</span></span> 
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_05.png)  
 
-9. <span data-ttu-id="ba332-167">Fare clic su **Settings** (Impostazioni) e quindi nella scheda **Company** (Azienda) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ba332-167">Click **Settings**, and then perform the following steps on the **Company** tab:</span></span> 
+9. <span data-ttu-id="b5171-167">Fare clic su **impostazioni**e quindi eseguire hello seguendo i passaggi hello **aziendale** scheda:</span><span class="sxs-lookup"><span data-stu-id="b5171-167">Click **Settings**, and then perform hello following steps on hello **Company** tab:</span></span> 
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_06.png)  
     
-    <span data-ttu-id="ba332-169">a.</span><span class="sxs-lookup"><span data-stu-id="ba332-169">a.</span></span> <span data-ttu-id="ba332-170">Selezionare **Use SAML 2.0 for Authentication**.</span><span class="sxs-lookup"><span data-stu-id="ba332-170">Select **Use SAML 2.0 for Authentication**.</span></span>
+    <span data-ttu-id="b5171-169">a.</span><span class="sxs-lookup"><span data-stu-id="b5171-169">a.</span></span> <span data-ttu-id="b5171-170">Selezionare **Use SAML 2.0 for Authentication**.</span><span class="sxs-lookup"><span data-stu-id="b5171-170">Select **Use SAML 2.0 for Authentication**.</span></span>
     
-    <span data-ttu-id="ba332-171">b.</span><span class="sxs-lookup"><span data-stu-id="ba332-171">b.</span></span> <span data-ttu-id="ba332-172">Fare clic su **Configure SAML**.</span><span class="sxs-lookup"><span data-stu-id="ba332-172">Click **Configure SAML**.</span></span>
+    <span data-ttu-id="b5171-171">b.</span><span class="sxs-lookup"><span data-stu-id="b5171-171">b.</span></span> <span data-ttu-id="b5171-172">Fare clic su **Configure SAML**.</span><span class="sxs-lookup"><span data-stu-id="b5171-172">Click **Configure SAML**.</span></span>
 
-8. <span data-ttu-id="ba332-173">Nella finestra di dialogo **SAML Configuration** (Configurazione SAML) seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ba332-173">On the **SAML Configuration** dialog, perform the following steps:</span></span> 
+8. <span data-ttu-id="b5171-173">In hello **configurazione SAML** finestra di dialogo, eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="b5171-173">On hello **SAML Configuration** dialog, perform hello following steps:</span></span> 
    
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_08.png)  
    
-    <span data-ttu-id="ba332-175">a.</span><span class="sxs-lookup"><span data-stu-id="ba332-175">a.</span></span> <span data-ttu-id="ba332-176">Nella casella di testo **Domain** (Dominio) digitare il dominio registrato.</span><span class="sxs-lookup"><span data-stu-id="ba332-176">In the **Domain** textbox, type your registered domain.</span></span>
+    <span data-ttu-id="b5171-175">a.</span><span class="sxs-lookup"><span data-stu-id="b5171-175">a.</span></span> <span data-ttu-id="b5171-176">In hello **dominio** casella di testo, digitare il dominio registrato.</span><span class="sxs-lookup"><span data-stu-id="b5171-176">In hello **Domain** textbox, type your registered domain.</span></span>
    
     >[!NOTE]
-    ><span data-ttu-id="ba332-177">Se ancora non si ha un dominio registrato, contattare il team di supporto di Flatter Files all'indirizzo [support@flatterfiles.com](mailto:support@flatterfiles.com).</span><span class="sxs-lookup"><span data-stu-id="ba332-177">If you don't have a registered domain yet, contact your Flatter Files support team via [support@flatterfiles.com](mailto:support@flatterfiles.com).</span></span> 
+    ><span data-ttu-id="b5171-177">Se ancora non si ha un dominio registrato, contattare il team di supporto di Flatter Files all'indirizzo [support@flatterfiles.com](mailto:support@flatterfiles.com).</span><span class="sxs-lookup"><span data-stu-id="b5171-177">If you don't have a registered domain yet, contact your Flatter Files support team via [support@flatterfiles.com](mailto:support@flatterfiles.com).</span></span> 
     
-    <span data-ttu-id="ba332-178">b.</span><span class="sxs-lookup"><span data-stu-id="ba332-178">b.</span></span> <span data-ttu-id="ba332-179">Nella casella di testo **Identity Provider URL** (URL provider di identità) incollare il valore **SAML Single Sign-On Service URL** (URL servizio Single Sign-On SAML) copiato dal portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ba332-179">In **Identity Provider URL** textbox, paste the value of **SAML Single Sign-On Service URL** which you have copied form Azure portal.</span></span>
+    <span data-ttu-id="b5171-178">b.</span><span class="sxs-lookup"><span data-stu-id="b5171-178">b.</span></span> <span data-ttu-id="b5171-179">In **Identity Provider URL** casella di testo, hello Incolla valore **SAML Single Sign-On Service URL** che è stato copiato modulo portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="b5171-179">In **Identity Provider URL** textbox, paste hello value of **SAML Single Sign-On Service URL** which you have copied form Azure portal.</span></span>
    
-    <span data-ttu-id="ba332-180">c.</span><span class="sxs-lookup"><span data-stu-id="ba332-180">c.</span></span>  <span data-ttu-id="ba332-181">Aprire il certificato con codifica Base 64 nel Blocco note, copiarne il contenuto negli Appunti e quindi incollarlo nella casella di testo **Certificato provider di identità**.</span><span class="sxs-lookup"><span data-stu-id="ba332-181">Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **Identity Provider Certificate** textbox.</span></span>
+    <span data-ttu-id="b5171-180">c.</span><span class="sxs-lookup"><span data-stu-id="b5171-180">c.</span></span>  <span data-ttu-id="b5171-181">Aprire il certificato con codifica base 64 nel blocco note, hello copia del contenuto di esso negli Appunti e quindi incollarlo toohello **Identity Provider Certificate** casella di testo.</span><span class="sxs-lookup"><span data-stu-id="b5171-181">Open your base-64 encoded certificate in notepad, copy hello content of it into your clipboard, and then paste it toohello **Identity Provider Certificate** textbox.</span></span>
 
-    <span data-ttu-id="ba332-182">d.</span><span class="sxs-lookup"><span data-stu-id="ba332-182">d.</span></span> <span data-ttu-id="ba332-183">Fare clic su **Update**.</span><span class="sxs-lookup"><span data-stu-id="ba332-183">Click **Update**.</span></span>
+    <span data-ttu-id="b5171-182">d.</span><span class="sxs-lookup"><span data-stu-id="b5171-182">d.</span></span> <span data-ttu-id="b5171-183">Fare clic su **Update**.</span><span class="sxs-lookup"><span data-stu-id="b5171-183">Click **Update**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="ba332-184">Un riepilogo delle istruzioni è disponibile all'interno del [portale di Azure](https://portal.azure.com) durante la configurazione dell'app.</span><span class="sxs-lookup"><span data-stu-id="ba332-184">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="ba332-185">Dopo aver aggiunto l'app dalla sezione **Active Directory > Applicazioni aziendali** è sufficiente fare clic sulla scheda **Single Sign-On** e accedere alla documentazione incorporata tramite la sezione **Configurazione** nella parte inferiore.</span><span class="sxs-lookup"><span data-stu-id="ba332-185">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="ba332-186">Altre informazioni sulla funzione di documentazione incorporata sono disponibili in [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985) (Documentazione incorporata di Azure AD).</span><span class="sxs-lookup"><span data-stu-id="ba332-186">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="b5171-184">È ora possibile leggere una versione di queste istruzioni all'interno di hello concisa [portale di Azure](https://portal.azure.com), mentre si stanno impostando app hello!</span><span class="sxs-lookup"><span data-stu-id="b5171-184">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="b5171-185">Dopo l'aggiunta di questa app da hello **Active Directory > applicazioni aziendali** fare semplicemente clic su hello **Single Sign-On** scheda e l'accesso hello incorporato documentazione tramite hello  **Configurazione** sezione nella parte inferiore di hello.</span><span class="sxs-lookup"><span data-stu-id="b5171-185">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="b5171-186">È possibile leggere altre informazioni sulla funzionalità di documentazione embedded hello qui: [AD Azure incorporato documentazione]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="b5171-186">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="ba332-187">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-187">Creating an Azure AD test user</span></span>
-<span data-ttu-id="ba332-188">Questa sezione descrive come creare un utente test denominato Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ba332-188">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="b5171-187">Creazione di un utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-187">Creating an Azure AD test user</span></span>
+<span data-ttu-id="b5171-188">obiettivo di Hello di questa sezione è un utente di test nel portale di Azure chiamato Britta Simon hello toocreate.</span><span class="sxs-lookup"><span data-stu-id="b5171-188">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Creare un utente di Azure AD][100]
 
-<span data-ttu-id="ba332-190">**Per creare un utente test in Azure AD, eseguire la procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="ba332-190">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="b5171-190">**un utente di prova in Azure AD, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="b5171-190">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ba332-191">Nel **portale di Azure** fare clic sull'icona di **Azure Active Directory** nel riquadro di spostamento sinistro.</span><span class="sxs-lookup"><span data-stu-id="ba332-191">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="b5171-191">In hello **portale di Azure**via hello riquadro di spostamento a sinistra, fare clic su **Azure Active Directory** icona.</span><span class="sxs-lookup"><span data-stu-id="b5171-191">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="ba332-193">Passare a **Utenti e gruppi** e fare clic su **Tutti gli utenti** per visualizzare l'elenco di utenti.</span><span class="sxs-lookup"><span data-stu-id="ba332-193">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="b5171-193">elenco di hello toodisplay di utenti, andare troppo**utenti e gruppi** e fare clic su **tutti gli utenti**.</span><span class="sxs-lookup"><span data-stu-id="b5171-193">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="ba332-195">Nella parte superiore della finestra di dialogo fare clic su **Aggiungi** per aprire la finestra di dialogo **Utente**.</span><span class="sxs-lookup"><span data-stu-id="ba332-195">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="b5171-195">hello tooopen **utente** finestra di dialogo, fare clic su **Aggiungi** nella parte superiore di hello della finestra di dialogo hello.</span><span class="sxs-lookup"><span data-stu-id="b5171-195">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="ba332-197">Nella pagina della finestra di dialogo **Utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ba332-197">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="b5171-197">In hello **utente** finestra di dialogo eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="b5171-197">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Creazione di un utente test di Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="ba332-199">a.</span><span class="sxs-lookup"><span data-stu-id="ba332-199">a.</span></span> <span data-ttu-id="ba332-200">Nella casella di testo **Nome** digitare **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="ba332-200">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="b5171-199">a.</span><span class="sxs-lookup"><span data-stu-id="b5171-199">a.</span></span> <span data-ttu-id="b5171-200">In hello **nome** casella tipo **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="b5171-200">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="ba332-201">b.</span><span class="sxs-lookup"><span data-stu-id="ba332-201">b.</span></span> <span data-ttu-id="ba332-202">Nella casella di testo **Nome utente** digitare l'**indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="ba332-202">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="b5171-201">b.</span><span class="sxs-lookup"><span data-stu-id="b5171-201">b.</span></span> <span data-ttu-id="b5171-202">In hello **nome utente** casella di testo, hello tipo **indirizzo di posta elettronica** di BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="b5171-202">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="ba332-203">c.</span><span class="sxs-lookup"><span data-stu-id="ba332-203">c.</span></span> <span data-ttu-id="ba332-204">Selezionare **Mostra password** e prendere nota del valore della **Password**.</span><span class="sxs-lookup"><span data-stu-id="ba332-204">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="b5171-203">c.</span><span class="sxs-lookup"><span data-stu-id="b5171-203">c.</span></span> <span data-ttu-id="b5171-204">Selezionare **Show Password** e annotare il valore di hello di hello **Password**.</span><span class="sxs-lookup"><span data-stu-id="b5171-204">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="ba332-205">d.</span><span class="sxs-lookup"><span data-stu-id="ba332-205">d.</span></span> <span data-ttu-id="ba332-206">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="ba332-206">Click **Create**.</span></span>
+    <span data-ttu-id="b5171-205">d.</span><span class="sxs-lookup"><span data-stu-id="b5171-205">d.</span></span> <span data-ttu-id="b5171-206">Fare clic su **Crea**.</span><span class="sxs-lookup"><span data-stu-id="b5171-206">Click **Create**.</span></span>
  
-### <a name="creating-a-flatter-files-test-user"></a><span data-ttu-id="ba332-207">Creazione di un utente test per Flatter Files</span><span class="sxs-lookup"><span data-stu-id="ba332-207">Creating a Flatter Files test user</span></span>
+### <a name="creating-a-flatter-files-test-user"></a><span data-ttu-id="b5171-207">Creazione di un utente test per Flatter Files</span><span class="sxs-lookup"><span data-stu-id="b5171-207">Creating a Flatter Files test user</span></span>
 
-<span data-ttu-id="ba332-208">Questa sezione descrive come creare un utente chiamato Britta Simon in Flatter Files.</span><span class="sxs-lookup"><span data-stu-id="ba332-208">The objective of this section is to create a user called Britta Simon in Flatter Files.</span></span>
+<span data-ttu-id="b5171-208">obiettivo di Hello di questa sezione è toocreate un utente denominato Britta Simon nei file più semplice.</span><span class="sxs-lookup"><span data-stu-id="b5171-208">hello objective of this section is toocreate a user called Britta Simon in Flatter Files.</span></span>
 
-<span data-ttu-id="ba332-209">**Per creare un utente denominato Britta Simon in Flatter Files, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ba332-209">**To create a user called Britta Simon in Flatter Files, perform the following steps:**</span></span>
+<span data-ttu-id="b5171-209">**un utente denominato Britta Simon in file più semplice, toocreate eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="b5171-209">**toocreate a user called Britta Simon in Flatter Files, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ba332-210">Accedere al sito aziendale di **Flatter Files** come amministratore.</span><span class="sxs-lookup"><span data-stu-id="ba332-210">Sign on to your **Flatter Files** company site as administrator.</span></span>
+1. <span data-ttu-id="b5171-210">Accesso tooyour **file più piana** sito aziendale come amministratore.</span><span class="sxs-lookup"><span data-stu-id="b5171-210">Sign on tooyour **Flatter Files** company site as administrator.</span></span>
 
-2. <span data-ttu-id="ba332-211">Nel riquadro di spostamento a sinistra fare clic su **Settings** (Impostazioni) e quindi fare clic sulla scheda **Users** (Utenti).</span><span class="sxs-lookup"><span data-stu-id="ba332-211">In the navigation pane on the left, click **Settings**, and then click the **Users** tab.</span></span>
+2. <span data-ttu-id="b5171-211">Nel riquadro di spostamento hello hello sinistra, fare clic su **impostazioni**, quindi fare clic su hello **utenti** scheda.</span><span class="sxs-lookup"><span data-stu-id="b5171-211">In hello navigation pane on hello left, click **Settings**, and then click hello **Users** tab.</span></span>
    
     ![Creare un utente in Flatter Files](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_09.png)
 
-3. <span data-ttu-id="ba332-213">Fare clic su **Aggiungi utente**.</span><span class="sxs-lookup"><span data-stu-id="ba332-213">Click **Add User**.</span></span> 
+3. <span data-ttu-id="b5171-213">Fare clic su **Aggiungi utente**.</span><span class="sxs-lookup"><span data-stu-id="b5171-213">Click **Add User**.</span></span> 
 
-4. <span data-ttu-id="ba332-214">Nella finestra di dialogo **Aggiungi utente** seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="ba332-214">On the **Add User** dialog, perform the following steps:</span></span>
+4. <span data-ttu-id="b5171-214">In hello **Aggiungi utente** finestra di dialogo, eseguire hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="b5171-214">On hello **Add User** dialog, perform hello following steps:</span></span>
    
     ![Creare un utente in Flatter Files](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_10.png)
 
-    <span data-ttu-id="ba332-216">a.</span><span class="sxs-lookup"><span data-stu-id="ba332-216">a.</span></span> <span data-ttu-id="ba332-217">Nella casella di testo **Nome** digitare **Britta**.</span><span class="sxs-lookup"><span data-stu-id="ba332-217">In the **First Name** textbox, type **Britta**.</span></span>
+    <span data-ttu-id="b5171-216">a.</span><span class="sxs-lookup"><span data-stu-id="b5171-216">a.</span></span> <span data-ttu-id="b5171-217">In hello **nome** casella tipo **Laura**.</span><span class="sxs-lookup"><span data-stu-id="b5171-217">In hello **First Name** textbox, type **Britta**.</span></span>
    
-    <span data-ttu-id="ba332-218">b.</span><span class="sxs-lookup"><span data-stu-id="ba332-218">b.</span></span> <span data-ttu-id="ba332-219">Nella casella di testo **Cognome** digitare **Simon**.</span><span class="sxs-lookup"><span data-stu-id="ba332-219">In the **Last Name** textbox, type **Simon**.</span></span> 
+    <span data-ttu-id="b5171-218">b.</span><span class="sxs-lookup"><span data-stu-id="b5171-218">b.</span></span> <span data-ttu-id="b5171-219">In hello **cognome** casella tipo **Simon**.</span><span class="sxs-lookup"><span data-stu-id="b5171-219">In hello **Last Name** textbox, type **Simon**.</span></span> 
    
-    <span data-ttu-id="ba332-220">c.</span><span class="sxs-lookup"><span data-stu-id="ba332-220">c.</span></span> <span data-ttu-id="ba332-221">Nella casella di testo **Email Address** (Indirizzo di posta elettronica) digitare l'indirizzo di posta elettronica di Britta Simon nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="ba332-221">In the **Email Address** textbox, type Britta's email address in the Azure portal.</span></span>
+    <span data-ttu-id="b5171-220">c.</span><span class="sxs-lookup"><span data-stu-id="b5171-220">c.</span></span> <span data-ttu-id="b5171-221">In hello **indirizzo di posta elettronica** casella di testo, digitare l'indirizzo di posta elettronica di Sandro in hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="b5171-221">In hello **Email Address** textbox, type Britta's email address in hello Azure portal.</span></span>
    
-    <span data-ttu-id="ba332-222">d.</span><span class="sxs-lookup"><span data-stu-id="ba332-222">d.</span></span> <span data-ttu-id="ba332-223">Fare clic su **Submit**.</span><span class="sxs-lookup"><span data-stu-id="ba332-223">Click **Submit**.</span></span>   
+    <span data-ttu-id="b5171-222">d.</span><span class="sxs-lookup"><span data-stu-id="b5171-222">d.</span></span> <span data-ttu-id="b5171-223">Fare clic su **Submit**.</span><span class="sxs-lookup"><span data-stu-id="b5171-223">Click **Submit**.</span></span>   
 
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="ba332-224">Assegnazione dell'utente test di Azure AD</span><span class="sxs-lookup"><span data-stu-id="ba332-224">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="b5171-224">Assegnazione utente test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="b5171-224">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="ba332-225">In questa sezione Britta Simon viene abilitata per l'uso dell'accesso Single Sign-On di Azure concedendole l'accesso a Flatter Files.</span><span class="sxs-lookup"><span data-stu-id="ba332-225">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Flatter Files.</span></span>
+<span data-ttu-id="b5171-225">In questa sezione, si abilita Britta Simon toouse single sign-on Azure tramite la concessione di accedere ai file tooFlatter.</span><span class="sxs-lookup"><span data-stu-id="b5171-225">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooFlatter Files.</span></span>
 
 ![Assegna utente][200] 
 
-<span data-ttu-id="ba332-227">**Per assegnare Britta Simon a Flatter Files, seguire questa procedura:**</span><span class="sxs-lookup"><span data-stu-id="ba332-227">**To assign Britta Simon to Flatter Files, perform the following steps:**</span></span>
+<span data-ttu-id="b5171-227">**tooassign Britta Simon tooFlatter file, eseguire hello alla procedura seguente:**</span><span class="sxs-lookup"><span data-stu-id="b5171-227">**tooassign Britta Simon tooFlatter Files, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="ba332-228">Nel portale di Azure aprire la visualizzazione delle applicazioni e quindi la visualizzazione delle directory e passare ad **Applicazioni aziendali**, quindi fare clic su **Tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="ba332-228">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="b5171-228">Nel portale di Azure hello, aprire la visualizzazione di applicazioni hello, quindi selezionare Visualizza directory toohello e andare troppo**applicazioni aziendali** quindi fare clic su **tutte le applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="b5171-228">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Assegna utente][201] 
 
-2. <span data-ttu-id="ba332-230">Nell'elenco di applicazioni selezionare **Flatter Files**.</span><span class="sxs-lookup"><span data-stu-id="ba332-230">In the applications list, select **Flatter Files**.</span></span>
+2. <span data-ttu-id="b5171-230">Nell'elenco di applicazioni hello, selezionare **più piana file**.</span><span class="sxs-lookup"><span data-stu-id="b5171-230">In hello applications list, select **Flatter Files**.</span></span>
 
     ![Configura accesso Single Sign-On](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_app.png) 
 
-3. <span data-ttu-id="ba332-232">Scegliere **Utenti e gruppi** dal menu a sinistra.</span><span class="sxs-lookup"><span data-stu-id="ba332-232">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="b5171-232">Dal menu hello hello sinistra, fare clic su **utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="b5171-232">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Assegna utente][202] 
 
-4. <span data-ttu-id="ba332-234">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="ba332-234">Click **Add** button.</span></span> <span data-ttu-id="ba332-235">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="ba332-235">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="b5171-234">Fare clic sul pulsante **Aggiungi**.</span><span class="sxs-lookup"><span data-stu-id="b5171-234">Click **Add** button.</span></span> <span data-ttu-id="b5171-235">Selezionare quindi **Utenti e gruppi** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="b5171-235">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Assegna utente][203]
 
-5. <span data-ttu-id="ba332-237">Nella finestra di dialogo **Utenti e gruppi** selezionare **Britta Simon** nell'elenco Utenti.</span><span class="sxs-lookup"><span data-stu-id="ba332-237">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="b5171-237">In **utenti e gruppi** finestra di dialogo Seleziona **Britta Simon** nell'elenco di utenti hello.</span><span class="sxs-lookup"><span data-stu-id="b5171-237">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="ba332-238">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="ba332-238">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="b5171-238">Fare clic sul pulsante **Seleziona** nella finestra di dialogo **Utenti e gruppi**.</span><span class="sxs-lookup"><span data-stu-id="b5171-238">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="ba332-239">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="ba332-239">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="b5171-239">Fare clic sul pulsante **Assegna** nella finestra di dialogo **Aggiungi assegnazione**.</span><span class="sxs-lookup"><span data-stu-id="b5171-239">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="ba332-240">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="ba332-240">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="b5171-240">Test dell'accesso Single Sign-On</span><span class="sxs-lookup"><span data-stu-id="b5171-240">Testing single sign-on</span></span>
 
-<span data-ttu-id="ba332-241">In questa sezione viene testata la configurazione dell'accesso Single Sign-On di Azure AD usando il pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="ba332-241">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="b5171-241">In questa sezione si test configurazione di Azure AD single sign-on utilizzando hello Pannello di accesso.</span><span class="sxs-lookup"><span data-stu-id="b5171-241">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="ba332-242">Quando si fa clic sul riquadro Flatter Files nel pannello di accesso, si dovrebbe accedere automaticamente all'applicazione Flatter Files.</span><span class="sxs-lookup"><span data-stu-id="ba332-242">When you click the Flatter Files tile in the Access Panel, you should get automatically signed-on to your Flatter Files application.</span></span>
-<span data-ttu-id="ba332-243">Per altre informazioni sul pannello di accesso, vedere [Introduzione al Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="ba332-243">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
+<span data-ttu-id="b5171-242">Quando si fa clic hello file più semplice riquadro in hello Pannello di accesso, è necessario ottenere automaticamente firmato in tooyour applicazione i file più semplice.</span><span class="sxs-lookup"><span data-stu-id="b5171-242">When you click hello Flatter Files tile in hello Access Panel, you should get automatically signed-on tooyour Flatter Files application.</span></span>
+<span data-ttu-id="b5171-243">Per ulteriori informazioni su hello Pannello di accesso, vedere [introduzione toohello Pannello di accesso](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="b5171-243">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="ba332-244">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="ba332-244">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="b5171-244">Risorse aggiuntive</span><span class="sxs-lookup"><span data-stu-id="b5171-244">Additional resources</span></span>
 
-* [<span data-ttu-id="ba332-245">Elenco di esercitazioni sulla procedura di integrazione delle app SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ba332-245">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="ba332-246">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="ba332-246">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="b5171-245">Elenco di esercitazioni sulla tooIntegrate App SaaS con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b5171-245">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="b5171-246">Informazioni sull'accesso alle applicazioni e Single Sign-On con Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="b5171-246">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: Pubblicare un'app in Azure RemoteApp | Microsoft Docs
-description: Informazioni su come pubblicare app e risorse in Azure RemoteApp.
+title: un'app in Azure RemoteApp aaaPublish | Documenti Microsoft
+description: Informazioni su come toopublish applicazioni e risorse in Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4565fa498dbadd0601004c73bfee5171efe1fad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7d92187e9ed999ac79554c9bb61f56a8eceeb31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-publish-an-app-in-remoteapp"></a><span data-ttu-id="85fe1-103">Come pubblicare un'app in RemoteApp</span><span class="sxs-lookup"><span data-stu-id="85fe1-103">How to publish an app in RemoteApp</span></span>
+# <a name="how-toopublish-an-app-in-remoteapp"></a><span data-ttu-id="1325e-103">Come toopublish un'app in RemoteApp</span><span class="sxs-lookup"><span data-stu-id="1325e-103">How toopublish an app in RemoteApp</span></span>
 > [!IMPORTANT]
-> <span data-ttu-id="85fe1-104">Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017.</span><span class="sxs-lookup"><span data-stu-id="85fe1-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="85fe1-105">Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .</span><span class="sxs-lookup"><span data-stu-id="85fe1-105">Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
+> <span data-ttu-id="1325e-104">Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017.</span><span class="sxs-lookup"><span data-stu-id="1325e-104">Azure RemoteApp is being discontinued on August 31, 2017.</span></span> <span data-ttu-id="1325e-105">Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.</span><span class="sxs-lookup"><span data-stu-id="1325e-105">Read hello [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.</span></span>
 > 
 > 
 
-<span data-ttu-id="85fe1-106">Dopo aver creato la raccolta RemoteApp, è necessario pubblicare le app o le risorse che si desidera rendere disponibili agli utenti.</span><span class="sxs-lookup"><span data-stu-id="85fe1-106">After you create your RemoteApp collection, you need to publish the apps or resources that you want to make available for your users.</span></span> <span data-ttu-id="85fe1-107">Nelle immagini modello fornite con la sottoscrizione sono pubblicate solo alcune app per impostazione predefinita. Per condividere le altre app, è necessario pubblicarle.</span><span class="sxs-lookup"><span data-stu-id="85fe1-107">The template images provided with your subscription only have a few apps published by default - to share the other apps, you need to publish them.</span></span>
-
-> [!NOTE]
-> <span data-ttu-id="85fe1-108">È necessario aggiornare un'app?</span><span class="sxs-lookup"><span data-stu-id="85fe1-108">Do you need to update an app?</span></span> <span data-ttu-id="85fe1-109">È prima necessario [aggiornare l'immagine](remoteapp-update.md) .</span><span class="sxs-lookup"><span data-stu-id="85fe1-109">You'll need to [update the image](remoteapp-update.md) first.</span></span>
-> 
-> 
-
-<span data-ttu-id="85fe1-110">Nella scheda **Publishing** (Pubblicazione) del portale fare clic su **Publish** (Pubblica).</span><span class="sxs-lookup"><span data-stu-id="85fe1-110">On the **Publishing** tab in the portal, click **Publish**.</span></span> <span data-ttu-id="85fe1-111">È possibile aggiungere un'app dal menu **Start** dell'immagine modello oppure specificare il percorso in cui è installata l'app nell'immagine modello.</span><span class="sxs-lookup"><span data-stu-id="85fe1-111">You can either add an app from your template image's **Start** menu or provide the path to where the app is installed on the template image.</span></span> <span data-ttu-id="85fe1-112">Se si decide di aggiungere l'app dal menu **Start** , scegliere l'app da pubblicare dall'elenco.</span><span class="sxs-lookup"><span data-stu-id="85fe1-112">If you choose to add from the **Start** menu, choose the app to publish from the list.</span></span> <span data-ttu-id="85fe1-113">Se si decide di fornire il percorso dell'app, specificare il nome e il percorso dell'app.</span><span class="sxs-lookup"><span data-stu-id="85fe1-113">If you choose to provide the path to the app, enter a name for the app and the path to the app.</span></span> <span data-ttu-id="85fe1-114">Usare le variabili nel percorso, ad esempio "%systemdrive%" anziché "c:\".</span><span class="sxs-lookup"><span data-stu-id="85fe1-114">Use variables in the path - for example, "%systemdrive%" instead of "c:\".</span></span>
+<span data-ttu-id="1325e-106">Dopo aver creato la raccolta RemoteApp, è necessario toopublish hello applicazioni o risorse che si desidera toomake disponibili per gli utenti.</span><span class="sxs-lookup"><span data-stu-id="1325e-106">After you create your RemoteApp collection, you need toopublish hello apps or resources that you want toomake available for your users.</span></span> <span data-ttu-id="1325e-107">Hello immagini modello fornite con la sottoscrizione solo con pochi App pubblicato per impostazione predefinita - tooshare hello altre App, è necessario toopublish li.</span><span class="sxs-lookup"><span data-stu-id="1325e-107">hello template images provided with your subscription only have a few apps published by default - tooshare hello other apps, you need toopublish them.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="85fe1-115">Per aggiungere l'app dal menu **Start**, è necessario aver *aggiunto l'app al menu **Start** nell'immagine modello*.</span><span class="sxs-lookup"><span data-stu-id="85fe1-115">If you want to add your app from the **Start** menu, you need to have *added that app to the **Start** menu on your template image.*</span></span> <span data-ttu-id="85fe1-116">In caso contrario, RemoteApp visualizzerà solo gli elementi *presenti* nel menu **Start**, creando confusione.</span><span class="sxs-lookup"><span data-stu-id="85fe1-116">Otherwise, RemoteApp will only see what *is* on the **Start** menu, and you will be confused.</span></span> 
+> <span data-ttu-id="1325e-108">È necessario tooupdate un'app?</span><span class="sxs-lookup"><span data-stu-id="1325e-108">Do you need tooupdate an app?</span></span> <span data-ttu-id="1325e-109">È necessario troppo[aggiornamento hello immagine](remoteapp-update.md) prima.</span><span class="sxs-lookup"><span data-stu-id="1325e-109">You'll need too[update hello image](remoteapp-update.md) first.</span></span>
 > 
-> <span data-ttu-id="85fe1-117">Per assicurarsi che l'applicazione venga visualizzata nel menu **Start**, inserire un file di collegamento **.Ink** nella cartella %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programmi.</span><span class="sxs-lookup"><span data-stu-id="85fe1-117">To make sure your app is in the **Start** menu, place a shortcut file - **.lnk** - inside the %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
 > 
-> <span data-ttu-id="85fe1-118">Se si dimentica di aggiungere l'app al menu **Start** al momento della creazione del modello, aggiungere il percorso all'app</span><span class="sxs-lookup"><span data-stu-id="85fe1-118">If you forgot to add the app to the **Start** menu when you created the template, choose to add the path to the app.</span></span> <span data-ttu-id="85fe1-119">(in alternativa, ricreare l'immagine modello, tuttavia questa procedura è piuttosto complicata).</span><span class="sxs-lookup"><span data-stu-id="85fe1-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
+
+<span data-ttu-id="1325e-110">In hello **pubblicazione** , fare clic nel portale di hello **pubblica**.</span><span class="sxs-lookup"><span data-stu-id="1325e-110">On hello **Publishing** tab in hello portal, click **Publish**.</span></span> <span data-ttu-id="1325e-111">È possibile aggiungere un'app dall'immagine modello **avviare** menu o fornire hello percorso toowhere hello app viene installata in immagine modello hello.</span><span class="sxs-lookup"><span data-stu-id="1325e-111">You can either add an app from your template image's **Start** menu or provide hello path toowhere hello app is installed on hello template image.</span></span> <span data-ttu-id="1325e-112">Se si sceglie tooadd da hello **avviare** menu, scegliere hello app toopublish dall'elenco di hello.</span><span class="sxs-lookup"><span data-stu-id="1325e-112">If you choose tooadd from hello **Start** menu, choose hello app toopublish from hello list.</span></span> <span data-ttu-id="1325e-113">Se si sceglie tooprovide hello percorso toohello app, immettere un nome per l'applicazione hello e hello percorso toohello app.</span><span class="sxs-lookup"><span data-stu-id="1325e-113">If you choose tooprovide hello path toohello app, enter a name for hello app and hello path toohello app.</span></span> <span data-ttu-id="1325e-114">Utilizzare le variabili di percorso hello - ad esempio, "% systemdrive %" invece di "c:\".</span><span class="sxs-lookup"><span data-stu-id="1325e-114">Use variables in hello path - for example, "%systemdrive%" instead of "c:\".</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="1325e-115">Se si vuole che l'app da hello tooadd **avviare** menu, è necessario toohave *aggiunto tale toohello app **avviare** menu l'immagine modello.*</span><span class="sxs-lookup"><span data-stu-id="1325e-115">If you want tooadd your app from hello **Start** menu, you need toohave *added that app toohello **Start** menu on your template image.*</span></span> <span data-ttu-id="1325e-116">In caso contrario, RemoteApp verranno visualizzati solo ciò che *è* su hello **avviare** menu e si verrà confondere.</span><span class="sxs-lookup"><span data-stu-id="1325e-116">Otherwise, RemoteApp will only see what *is* on hello **Start** menu, and you will be confused.</span></span> 
+> 
+> <span data-ttu-id="1325e-117">toomake che l'app è in hello **avviare** menu, inserire un file di collegamento - **lnk** : hello %systemdrive%\ProgramData\Microsoft\Windows\Start Avvio\Programmi cartella.</span><span class="sxs-lookup"><span data-stu-id="1325e-117">toomake sure your app is in hello **Start** menu, place a shortcut file - **.lnk** - inside hello %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs folder.</span></span>
+> 
+> <span data-ttu-id="1325e-118">Se si è dimenticato tooadd hello app toohello **avviare** menu quando è stato creato il modello di hello, scegliere tooadd hello percorso toohello app.</span><span class="sxs-lookup"><span data-stu-id="1325e-118">If you forgot tooadd hello app toohello **Start** menu when you created hello template, choose tooadd hello path toohello app.</span></span> <span data-ttu-id="1325e-119">(in alternativa, ricreare l'immagine modello, tuttavia questa procedura è piuttosto complicata).</span><span class="sxs-lookup"><span data-stu-id="1325e-119">(Or recreate your template image, but that's quite a bit more work.)</span></span>
 > 
 > 
 

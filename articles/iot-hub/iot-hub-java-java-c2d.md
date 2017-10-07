@@ -1,6 +1,6 @@
 ---
-title: Messaggi da cloud a dispositivo con l'hub IoT di Azure (Java) | Microsoft Docs
-description: Come inviare messaggi da cloud a dispositivo a un dispositivo da un hub IoT di Azure usando Azure IoT SDK per Java. Modificare un'app per dispositivo simulato per ricevere messaggi da cloud a dispositivo e modificare un'app back-end per inviare i messaggi da cloud a dispositivo.
+title: i messaggi aaaCloud al dispositivo con Azure IoT Hub (linguaggio) | Documenti Microsoft
+description: "La modalità toosend cloud a dispositivo dei messaggi tooa dispositivo da un hub IoT di Azure utilizzando hello Azure IoT SDK per Java. Per modificare i messaggi di cloud a dispositivo un dispositivo simulato app tooreceive e modificare un messaggio di cloud a dispositivo hello toosend app back-end."
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: dobett
-ms.openlocfilehash: f5e3ac46f4d144b12e2ab7fcfb456665ff6cc68f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8721f18428c849ed9a04aa2e45c65605c3e38101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-cloud-to-device-messages-with-iot-hub-java"></a><span data-ttu-id="50813-104">Inviare messaggi da cloud a dispositivo con l'hub IoT (Java)</span><span class="sxs-lookup"><span data-stu-id="50813-104">Send cloud-to-device messages with IoT Hub (Java)</span></span>
+# <a name="send-cloud-to-device-messages-with-iot-hub-java"></a><span data-ttu-id="28f95-104">Inviare messaggi da cloud a dispositivo con l'hub IoT (Java)</span><span class="sxs-lookup"><span data-stu-id="28f95-104">Send cloud-to-device messages with IoT Hub (Java)</span></span>
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
-<span data-ttu-id="50813-105">L'hub IoT di Azure è un servizio completamente gestito che consente di abilitare comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione.</span><span class="sxs-lookup"><span data-stu-id="50813-105">Azure IoT Hub is a fully managed service that helps enable reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="50813-106">L'esercitazione [Introduzione all'hub IoT di Azure] illustra come creare un hub IoT, effettuare il provisioning dell'identità di un dispositivo al suo interno e creare il codice di un'app per dispositivo simulato che invia messaggi da dispositivo a cloud.</span><span class="sxs-lookup"><span data-stu-id="50813-106">The [Get started with IoT Hub] tutorial shows how to create an IoT hub, provision a device identity in it, and code a simulated device app that sends device-to-cloud messages.</span></span>
+<span data-ttu-id="28f95-105">L'hub IoT di Azure è un servizio completamente gestito che consente di abilitare comunicazioni bidirezionali affidabili e sicure tra milioni di dispositivi e un back-end della soluzione.</span><span class="sxs-lookup"><span data-stu-id="28f95-105">Azure IoT Hub is a fully managed service that helps enable reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="28f95-106">Hello [iniziare con l'IoT Hub] esercitazione viene illustrato come eseguire il provisioning di un'identità del dispositivo in essa contenuti, toocreate un hub IoT e codice di un'app dispositivo simulato che invia messaggi da dispositivo a cloud.</span><span class="sxs-lookup"><span data-stu-id="28f95-106">hello [Get started with IoT Hub] tutorial shows how toocreate an IoT hub, provision a device identity in it, and code a simulated device app that sends device-to-cloud messages.</span></span>
 
-<span data-ttu-id="50813-107">Questa esercitazione si basa su [Introduzione all'hub IoT di Azure].</span><span class="sxs-lookup"><span data-stu-id="50813-107">This tutorial builds on [Get started with IoT Hub].</span></span> <span data-ttu-id="50813-108">Illustra le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="50813-108">It shows you how to:</span></span>
+<span data-ttu-id="28f95-107">Questa esercitazione si basa su [iniziare con l'IoT Hub].</span><span class="sxs-lookup"><span data-stu-id="28f95-107">This tutorial builds on [Get started with IoT Hub].</span></span> <span data-ttu-id="28f95-108">Illustra le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="28f95-108">It shows you how to:</span></span>
 
-* <span data-ttu-id="50813-109">Dal back-end della soluzione inviare messaggi da cloud a dispositivo a un singolo dispositivo tramite l'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="50813-109">From your solution back end, send cloud-to-device messages to a single device through IoT Hub.</span></span>
-* <span data-ttu-id="50813-110">Ricevere messaggi da cloud a dispositivo in un dispositivo.</span><span class="sxs-lookup"><span data-stu-id="50813-110">Receive cloud-to-device messages on a device.</span></span>
-* <span data-ttu-id="50813-111">Dal back-end della soluzione richiedere l'acknowledgement di recapito (*feedback*) per i messaggi inviati a un dispositivo dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="50813-111">From your solution back end, request delivery acknowledgement (*feedback*) for messages sent to a device from IoT Hub.</span></span>
+* <span data-ttu-id="28f95-109">Dal back-end soluzione, inviare singolo dispositivo tooa messaggi da cloud a dispositivo tramite l'IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="28f95-109">From your solution back end, send cloud-to-device messages tooa single device through IoT Hub.</span></span>
+* <span data-ttu-id="28f95-110">Ricevere messaggi da cloud a dispositivo in un dispositivo.</span><span class="sxs-lookup"><span data-stu-id="28f95-110">Receive cloud-to-device messages on a device.</span></span>
+* <span data-ttu-id="28f95-111">Dal back-end soluzione, richiedere la conferma di recapito (*feedback*) per i messaggi inviati tooa dispositivo dall'IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="28f95-111">From your solution back end, request delivery acknowledgement (*feedback*) for messages sent tooa device from IoT Hub.</span></span>
 
-<span data-ttu-id="50813-112">Per altre informazioni sui messaggi da cloud a dispositivo, vedere la[Guida per sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].</span><span class="sxs-lookup"><span data-stu-id="50813-112">You can find more information on cloud-to-device messages in the [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
+<span data-ttu-id="28f95-112">Sono disponibili ulteriori informazioni sui cloud a dispositivo messaggi hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].</span><span class="sxs-lookup"><span data-stu-id="28f95-112">You can find more information on cloud-to-device messages in hello [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
 
-<span data-ttu-id="50813-113">Al termine di questa esercitazione, vengono eseguite due app console Java:</span><span class="sxs-lookup"><span data-stu-id="50813-113">At the end of this tutorial, you run two Java console apps:</span></span>
+<span data-ttu-id="28f95-113">Alla fine di hello di questa esercitazione, si esegue due applicazioni di console Java:</span><span class="sxs-lookup"><span data-stu-id="28f95-113">At hello end of this tutorial, you run two Java console apps:</span></span>
 
-* <span data-ttu-id="50813-114">**simulated-device**, una versione modificata dell'app creata in [Introduzione all'hub IoT di Azure], che si connette all'hub IoT e riceve messaggi da cloud a dispositivo.</span><span class="sxs-lookup"><span data-stu-id="50813-114">**simulated-device**, a modified version of the app created in [Get started with IoT Hub], which connects to your IoT hub and receives cloud-to-device messages.</span></span>
-* <span data-ttu-id="50813-115">**send-c2d-messages**, che invia un messaggio da cloud a dispositivo all'app per dispositivo simulato tramite l'hub IoT e riceve quindi l'acknowledgement del recapito.</span><span class="sxs-lookup"><span data-stu-id="50813-115">**send-c2d-messages**, which sends a cloud-to-device message to the simulated device app through IoT Hub, and then receives its delivery acknowledgement.</span></span>
+* <span data-ttu-id="28f95-114">**dispositivo simulato**, una versione modificata dell'applicazione hello creato in [iniziare con l'IoT Hub], che si connette l'hub IoT tooyour e riceve messaggi da cloud a dispositivo.</span><span class="sxs-lookup"><span data-stu-id="28f95-114">**simulated-device**, a modified version of hello app created in [Get started with IoT Hub], which connects tooyour IoT hub and receives cloud-to-device messages.</span></span>
+* <span data-ttu-id="28f95-115">**inviare messaggi di c2d**, che invia un'app di dispositivo simulato toohello messaggio cloud a dispositivo tramite l'IoT Hub e quindi riceve la conferma di recapito.</span><span class="sxs-lookup"><span data-stu-id="28f95-115">**send-c2d-messages**, which sends a cloud-to-device message toohello simulated device app through IoT Hub, and then receives its delivery acknowledgement.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="50813-116">L’hub IoT dispone del supporto SDK per molte piattaforme e linguaggi (inclusi C, Java e Javascript) tramite gli SDK del dispositivo IoT Azure.</span><span class="sxs-lookup"><span data-stu-id="50813-116">IoT Hub has SDK support for many device platforms and languages (including C, Java, and Javascript) through Azure IoT device SDKs.</span></span> <span data-ttu-id="50813-117">Per istruzioni dettagliate su come connettere il dispositivo al codice dell'esercitazione e in generale all'hub IoT di Azure, vedere il [Centro per sviluppatori Azure IoT].</span><span class="sxs-lookup"><span data-stu-id="50813-117">For step-by-step instructions on how to connect your device to this tutorial's code, and generally to Azure IoT Hub, see the [Azure IoT Developer Center].</span></span>
+> <span data-ttu-id="28f95-116">L’hub IoT dispone del supporto SDK per molte piattaforme e linguaggi (inclusi C, Java e Javascript) tramite gli SDK del dispositivo IoT Azure.</span><span class="sxs-lookup"><span data-stu-id="28f95-116">IoT Hub has SDK support for many device platforms and languages (including C, Java, and Javascript) through Azure IoT device SDKs.</span></span> <span data-ttu-id="28f95-117">Per istruzioni dettagliate su come tooconnect l'esercitazione toothis dispositivo codice e in genere tooAzure IoT Hub, vedere hello [Centro per sviluppatori di Azure IoT].</span><span class="sxs-lookup"><span data-stu-id="28f95-117">For step-by-step instructions on how tooconnect your device toothis tutorial's code, and generally tooAzure IoT Hub, see hello [Azure IoT Developer Center].</span></span>
 
-<span data-ttu-id="50813-118">Per completare l'esercitazione, sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="50813-118">To complete this tutorial, you need the following:</span></span>
+<span data-ttu-id="28f95-118">toocomplete questa esercitazione, è necessario hello seguenti:</span><span class="sxs-lookup"><span data-stu-id="28f95-118">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="50813-119">Una versione di lavoro completa dell'esercitazione [Introduzione all'hub IoT](iot-hub-java-java-getstarted.md) o [Elaborare messaggi da dispositivo a cloud dell'hub IoT](iot-hub-java-java-process-d2c.md).</span><span class="sxs-lookup"><span data-stu-id="50813-119">A complete working version of the [Get started with IoT Hub](iot-hub-java-java-getstarted.md) or [Process IoT Hub device-to-cloud messages](iot-hub-java-java-process-d2c.md) tutorial.</span></span>
-* <span data-ttu-id="50813-120">[Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) più recente</span><span class="sxs-lookup"><span data-stu-id="50813-120">The latest [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span></span>
-* [<span data-ttu-id="50813-121">Maven 3</span><span class="sxs-lookup"><span data-stu-id="50813-121">Maven 3</span></span>](https://maven.apache.org/install.html)
-* <span data-ttu-id="50813-122">Un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="50813-122">An active Azure account.</span></span> <span data-ttu-id="50813-123">Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="50813-123">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
+* <span data-ttu-id="28f95-119">Una versione completa di utilizzo di hello [iniziare con l'IoT Hub](iot-hub-java-java-getstarted.md) o [messaggi da dispositivo a cloud IoT Hub processo](iot-hub-java-java-process-d2c.md) esercitazione.</span><span class="sxs-lookup"><span data-stu-id="28f95-119">A complete working version of hello [Get started with IoT Hub](iot-hub-java-java-getstarted.md) or [Process IoT Hub device-to-cloud messages](iot-hub-java-java-process-d2c.md) tutorial.</span></span>
+* <span data-ttu-id="28f95-120">versione più recente Hello [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span><span class="sxs-lookup"><span data-stu-id="28f95-120">hello latest [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)</span></span>
+* [<span data-ttu-id="28f95-121">Maven 3</span><span class="sxs-lookup"><span data-stu-id="28f95-121">Maven 3</span></span>](https://maven.apache.org/install.html)
+* <span data-ttu-id="28f95-122">Un account Azure attivo.</span><span class="sxs-lookup"><span data-stu-id="28f95-122">An active Azure account.</span></span> <span data-ttu-id="28f95-123">Se non si ha un account, è possibile creare un [account gratuito][lnk-free-trial] in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="28f95-123">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
 
-## <a name="receive-messages-in-the-simulated-device-app"></a><span data-ttu-id="50813-124">Ricevere messaggi nell'app per dispositivo simulato</span><span class="sxs-lookup"><span data-stu-id="50813-124">Receive messages in the simulated device app</span></span>
+## <a name="receive-messages-in-hello-simulated-device-app"></a><span data-ttu-id="28f95-124">Ricezione di messaggi hello dispositivo simulato App</span><span class="sxs-lookup"><span data-stu-id="28f95-124">Receive messages in hello simulated device app</span></span>
 
-<span data-ttu-id="50813-125">In questa sezione si modificherà l'app per il dispositivo simulato creata in [Introduzione all'hub IoT di Azure] per ricevere i messaggi da cloud a dispositivo dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="50813-125">In this section, you modify the simulated device app you created in [Get started with IoT Hub] to receive cloud-to-device messages from the IoT hub.</span></span>
+<span data-ttu-id="28f95-125">In questa sezione, si modifica hello dispositivo simulato app è stato creato in [iniziare con l'IoT Hub] tooreceive di messaggi da cloud a dispositivo dall'hub IoT hello.</span><span class="sxs-lookup"><span data-stu-id="28f95-125">In this section, you modify hello simulated device app you created in [Get started with IoT Hub] tooreceive cloud-to-device messages from hello IoT hub.</span></span>
 
-1. <span data-ttu-id="50813-126">Usando un editor di testo, aprire il file simulated-device\src\main\java\com\mycompany\app\App.java.</span><span class="sxs-lookup"><span data-stu-id="50813-126">Using a text editor, open the simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
+1. <span data-ttu-id="28f95-126">Per aprire il file di simulated-device\src\main\java\com\mycompany\app\App.java hello, utilizzando un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="28f95-126">Using a text editor, open hello simulated-device\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-2. <span data-ttu-id="50813-127">Aggiungere la seguente classe **MessageCallback** come classe annidata all'interno della classe **App**.</span><span class="sxs-lookup"><span data-stu-id="50813-127">Add the following **MessageCallback** class as a nested class inside the **App** class.</span></span> <span data-ttu-id="50813-128">Il metodo **execute** viene richiamato quando il dispositivo riceve un messaggio dall'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="50813-128">The **execute** method is invoked when the device receives a message from IoT Hub.</span></span> <span data-ttu-id="50813-129">In questo esempio, il dispositivo notifica sempre all'hub IoT di aver completato il messaggio:</span><span class="sxs-lookup"><span data-stu-id="50813-129">In this example, the device always notifies the IoT hub that it has completed the message:</span></span>
+2. <span data-ttu-id="28f95-127">Aggiungere il seguente hello **MessageCallback** classe come una classe annidata all'interno di hello **App** classe.</span><span class="sxs-lookup"><span data-stu-id="28f95-127">Add hello following **MessageCallback** class as a nested class inside hello **App** class.</span></span> <span data-ttu-id="28f95-128">Hello **eseguire** metodo viene richiamato quando il dispositivo hello riceve un messaggio dall'IoT Hub.</span><span class="sxs-lookup"><span data-stu-id="28f95-128">hello **execute** method is invoked when hello device receives a message from IoT Hub.</span></span> <span data-ttu-id="28f95-129">In questo esempio, il dispositivo hello sempre notifica hub IoT hello completamento messaggio hello:</span><span class="sxs-lookup"><span data-stu-id="28f95-129">In this example, hello device always notifies hello IoT hub that it has completed hello message:</span></span>
 
     ```java
     private static class AppMessageCallback implements MessageCallback {
@@ -66,7 +66,7 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-3. <span data-ttu-id="50813-130">Modificare il metodo **main** per creare un'istanza di **AppMessageCallback** e chiamare il metodo **setMessageCallback** prima dell'apertura del client, come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="50813-130">Modify the **main** method to create an **AppMessageCallback** instance and call the **setMessageCallback** method before it opens the client as follows:</span></span>
+3. <span data-ttu-id="28f95-130">Modificare hello **principale** metodo toocreate un **AppMessageCallback** hello istanza e chiamare **setMessageCallback** metodo prima dell'apertura client hello come indicato di seguito:</span><span class="sxs-lookup"><span data-stu-id="28f95-130">Modify hello **main** method toocreate an **AppMessageCallback** instance and call hello **setMessageCallback** method before it opens hello client as follows:</span></span>
 
     ```java
     client = new DeviceClient(connString, protocol);
@@ -77,27 +77,27 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="50813-131">Se si usa HTTP/25 invece di MQTT o AMQP per il trasporto, l'istanza di **DeviceClient** controlla raramente i messaggi provenienti dall'hub IoT (meno di 25 minuti).</span><span class="sxs-lookup"><span data-stu-id="50813-131">If you use HTTP instead of MQTT or AMQP as the transport, the **DeviceClient** instance checks for messages from IoT Hub infrequently (less than every 25 minutes).</span></span> <span data-ttu-id="50813-132">Per altre informazioni sulle differenze tra il supporto di MQTT, AMQP e HTTP e sulla limitazione delle richieste dell'hub IoT, vedere [Guida per gli sviluppatori dell'hub IoT][IoT Hub developer guide - C2D].</span><span class="sxs-lookup"><span data-stu-id="50813-132">For more information about the differences between MQTT, AMQP and HTTP support, and IoT Hub throttling, see the [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
+    > <span data-ttu-id="28f95-131">Se si Usa HTTP invece di MQTT o AMQP come trasporto hello, hello **DeviceClient** istanza verifica la presenza di messaggi dall'IoT Hub raramente (meno di 25 minuti).</span><span class="sxs-lookup"><span data-stu-id="28f95-131">If you use HTTP instead of MQTT or AMQP as hello transport, hello **DeviceClient** instance checks for messages from IoT Hub infrequently (less than every 25 minutes).</span></span> <span data-ttu-id="28f95-132">Per ulteriori informazioni sulle differenze hello supporto MQTT, AMQP e HTTP e la limitazione delle richieste di Hub IoT, vedere hello [Guida per sviluppatori di IoT Hub][IoT Hub developer guide - C2D].</span><span class="sxs-lookup"><span data-stu-id="28f95-132">For more information about hello differences between MQTT, AMQP and HTTP support, and IoT Hub throttling, see hello [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
 
-4. <span data-ttu-id="50813-133">Per compilare l'app **simulated-device** con Maven, eseguire questo comando al prompt dei comandi nella cartella simulated-device:</span><span class="sxs-lookup"><span data-stu-id="50813-133">To build the **simulated-device** app using Maven, execute the following command at the command prompt in the simulated-device folder:</span></span>
+4. <span data-ttu-id="28f95-133">hello toobuild **dispositivo simulato** app usando Maven, eseguire hello comando al prompt dei comandi di hello nella cartella dispositivo simulato hello seguente:</span><span class="sxs-lookup"><span data-stu-id="28f95-133">toobuild hello **simulated-device** app using Maven, execute hello following command at hello command prompt in hello simulated-device folder:</span></span>
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="send-a-cloud-to-device-message"></a><span data-ttu-id="50813-134">Inviare un messaggio da cloud a dispositivo</span><span class="sxs-lookup"><span data-stu-id="50813-134">Send a cloud-to-device message</span></span>
+## <a name="send-a-cloud-to-device-message"></a><span data-ttu-id="28f95-134">Inviare un messaggio da cloud a dispositivo</span><span class="sxs-lookup"><span data-stu-id="28f95-134">Send a cloud-to-device message</span></span>
 
-<span data-ttu-id="50813-135">In questa sezione si crea un'app console Java che invia messaggi da cloud a dispositivo all'app del dispositivo simulato.</span><span class="sxs-lookup"><span data-stu-id="50813-135">In this section, you create a Java console app that sends cloud-to-device messages to the simulated device app.</span></span> <span data-ttu-id="50813-136">È necessario l'ID del dispositivo aggiunto nell'esercitazione [Introduzione all'hub IoT di Azure] .</span><span class="sxs-lookup"><span data-stu-id="50813-136">You need the device ID of the device you added in the [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="50813-137">È necessaria anche la stringa di connessione per l'hub IoT, disponibile nel [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="50813-137">You also need the IoT Hub connection string for your hub that you can find in the [Azure portal].</span></span>
+<span data-ttu-id="28f95-135">In questa sezione si crea un'applicazione console Java che invia messaggi da cloud a dispositivo toohello dispositivo simulato app.</span><span class="sxs-lookup"><span data-stu-id="28f95-135">In this section, you create a Java console app that sends cloud-to-device messages toohello simulated device app.</span></span> <span data-ttu-id="28f95-136">È necessario hello ID dispositivo del dispositivo hello aggiunto nel hello [iniziare con l'IoT Hub] esercitazione.</span><span class="sxs-lookup"><span data-stu-id="28f95-136">You need hello device ID of hello device you added in hello [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="28f95-137">È inoltre necessario hello stringa di connessione IoT Hub per l'hub che è possibile trovare nel hello [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="28f95-137">You also need hello IoT Hub connection string for your hub that you can find in hello [Azure portal].</span></span>
 
-1. <span data-ttu-id="50813-138">Creare un progetto Maven denominato **send-c2d-messages** eseguendo questo comando al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="50813-138">Create a Maven project called **send-c2d-messages** using the following command at your command prompt.</span></span> <span data-ttu-id="50813-139">Si noti che si tratta di un lungo comando singolo:</span><span class="sxs-lookup"><span data-stu-id="50813-139">Note this command is a single, long command:</span></span>
+1. <span data-ttu-id="28f95-138">Creare un progetto di Maven denominato **inviare messaggi di c2d** utilizzando hello seguente comando al prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="28f95-138">Create a Maven project called **send-c2d-messages** using hello following command at your command prompt.</span></span> <span data-ttu-id="28f95-139">Si noti che si tratta di un lungo comando singolo:</span><span class="sxs-lookup"><span data-stu-id="28f95-139">Note this command is a single, long command:</span></span>
 
     ```cmd/sh
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=send-c2d-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
 
-2. <span data-ttu-id="50813-140">Al prompt dei comandi passare alla nuova cartella send-c2d-messages.</span><span class="sxs-lookup"><span data-stu-id="50813-140">At your command prompt, navigate to the new send-c2d-messages folder.</span></span>
+2. <span data-ttu-id="28f95-140">Al prompt dei comandi, passare toohello nuova cartella di trasmissione-c2d-messaggi.</span><span class="sxs-lookup"><span data-stu-id="28f95-140">At your command prompt, navigate toohello new send-c2d-messages folder.</span></span>
 
-3. <span data-ttu-id="50813-141">In un editor di testo aprire il file pom.xml nella cartella send-c2d-messages e aggiungere la dipendenza seguente al nodo **dependencies** .</span><span class="sxs-lookup"><span data-stu-id="50813-141">Using a text editor, open the pom.xml file in the send-c2d-messages folder and add the following dependency to the **dependencies** node.</span></span> <span data-ttu-id="50813-142">L'aggiunta della dipendenza consente di usare il pacchetto **iothub-java-service-client** nell'applicazione per comunicare con il servizio hub IoT:</span><span class="sxs-lookup"><span data-stu-id="50813-142">Adding the dependency enables you to use the **iothub-java-service-client** package in your application to communicate with your IoT hub service:</span></span>
+3. <span data-ttu-id="28f95-141">Utilizzando un editor di testo, di aprire file pom.xml hello nella cartella di trasmissione-c2d-messaggi hello e aggiungere hello seguente dipendenza toohello **dipendenze** nodo.</span><span class="sxs-lookup"><span data-stu-id="28f95-141">Using a text editor, open hello pom.xml file in hello send-c2d-messages folder and add hello following dependency toohello **dependencies** node.</span></span> <span data-ttu-id="28f95-142">Aggiunta della dipendenza hello consente hello toouse **client del servizio di linguaggio hub IOT** pacchetto in toocommunicate l'applicazione con il servizio di hub IoT:</span><span class="sxs-lookup"><span data-stu-id="28f95-142">Adding hello dependency enables you toouse hello **iothub-java-service-client** package in your application toocommunicate with your IoT hub service:</span></span>
 
     ```xml
     <dependency>
@@ -108,13 +108,13 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="50813-143">È possibile cercare la versione più recente di **iot-service-client** usando la [ricerca di Maven][lnk-maven-service-search].</span><span class="sxs-lookup"><span data-stu-id="50813-143">You can check for the latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
+    > <span data-ttu-id="28f95-143">È possibile verificare la versione più recente di hello di **client di servizi iot** utilizzando [ricerca Maven][lnk-maven-service-search].</span><span class="sxs-lookup"><span data-stu-id="28f95-143">You can check for hello latest version of **iot-service-client** using [Maven search][lnk-maven-service-search].</span></span>
 
-4. <span data-ttu-id="50813-144">Salvare e chiudere il file pom.xml.</span><span class="sxs-lookup"><span data-stu-id="50813-144">Save and close the pom.xml file.</span></span>
+4. <span data-ttu-id="28f95-144">Salvare e chiudere il file di pom.xml hello.</span><span class="sxs-lookup"><span data-stu-id="28f95-144">Save and close hello pom.xml file.</span></span>
 
-5. <span data-ttu-id="50813-145">In un editor di testo aprire il file send-c2d-messages\src\main\java\com\mycompany\app\App.java.</span><span class="sxs-lookup"><span data-stu-id="50813-145">Using a text editor, open the send-c2d-messages\src\main\java\com\mycompany\app\App.java file.</span></span>
+5. <span data-ttu-id="28f95-145">Per aprire il file di send-c2d-messages\src\main\java\com\mycompany\app\App.java hello, utilizzando un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="28f95-145">Using a text editor, open hello send-c2d-messages\src\main\java\com\mycompany\app\App.java file.</span></span>
 
-6. <span data-ttu-id="50813-146">Aggiungere al file le istruzioni **import** seguenti:</span><span class="sxs-lookup"><span data-stu-id="50813-146">Add the following **import** statements to the file:</span></span>
+6. <span data-ttu-id="28f95-146">Aggiungere il seguente hello **importare** file toohello istruzioni:</span><span class="sxs-lookup"><span data-stu-id="28f95-146">Add hello following **import** statements toohello file:</span></span>
 
     ```java
     import com.microsoft.azure.sdk.iot.service.*;
@@ -122,7 +122,7 @@ ms.lasthandoff: 08/18/2017
     import java.net.URISyntaxException;
     ```
 
-7. <span data-ttu-id="50813-147">Aggiungere le variabili a livello di classe seguenti alla classe **App**, sostituendo **{yourhubconnectionstring}** e **{yourdeviceid}** con i valori annotati prima:</span><span class="sxs-lookup"><span data-stu-id="50813-147">Add the following class-level variables to the **App** class, replacing **{yourhubconnectionstring}** and **{yourdeviceid}** with the values your noted earlier:</span></span>
+7. <span data-ttu-id="28f95-147">Aggiungere hello seguenti variabili a livello di classe toohello **App** classe, sostituendo **{yourhubconnectionstring}** e **{yourdeviceid}** con hello i valori del tipo indicato in precedenza:</span><span class="sxs-lookup"><span data-stu-id="28f95-147">Add hello following class-level variables toohello **App** class, replacing **{yourhubconnectionstring}** and **{yourdeviceid}** with hello values your noted earlier:</span></span>
 
     ```java
     private static final String connectionString = "{yourhubconnectionstring}";
@@ -130,7 +130,7 @@ ms.lasthandoff: 08/18/2017
     private static final IotHubServiceClientProtocol protocol = IotHubServiceClientProtocol.AMQPS;
     ```
 
-8. <span data-ttu-id="50813-148">Sostituire il metodo **main** con il codice seguente.</span><span class="sxs-lookup"><span data-stu-id="50813-148">Replace the **main** method with the following code.</span></span> <span data-ttu-id="50813-149">Il codice seguente si connette all'hub IoT, invia un messaggio al dispositivo e quindi attende un riconoscimento che il dispositivo ha ricevuto ed elaborato il messaggio:</span><span class="sxs-lookup"><span data-stu-id="50813-149">This code connects to your IoT hub, sends a message to your device, and then waits for an acknowledgment that the device received and processed the message:</span></span>
+8. <span data-ttu-id="28f95-148">Sostituire hello **principale** metodo con hello seguente codice.</span><span class="sxs-lookup"><span data-stu-id="28f95-148">Replace hello **main** method with hello following code.</span></span> <span data-ttu-id="28f95-149">Questo codice si connette l'hub IoT tooyour, invia un dispositivo tooyour messaggio e quindi attende un acknowledgement messaggio hello dispositivo hello ricevuti ed elaborati:</span><span class="sxs-lookup"><span data-stu-id="28f95-149">This code connects tooyour IoT hub, sends a message tooyour device, and then waits for an acknowledgment that hello device received and processed hello message:</span></span>
    
     ```java
     public static void main(String[] args) throws IOException,
@@ -144,11 +144,11 @@ ms.lasthandoff: 08/18/2017
           .getFeedbackReceiver();
         if (feedbackReceiver != null) feedbackReceiver.open();
    
-        Message messageToSend = new Message("Cloud to device message.");
+        Message messageToSend = new Message("Cloud toodevice message.");
         messageToSend.setDeliveryAcknowledgement(DeliveryAcknowledgement.Full);
    
         serviceClient.send(deviceId, messageToSend);
-        System.out.println("Message sent to device");
+        System.out.println("Message sent toodevice");
    
         FeedbackBatch feedbackBatch = feedbackReceiver.receive(10000);
         if (feedbackBatch != null) {
@@ -163,55 +163,55 @@ ms.lasthandoff: 08/18/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="50813-150">Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi.</span><span class="sxs-lookup"><span data-stu-id="50813-150">For simplicity's sake, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="50813-151">Nel codice di produzione è consigliabile implementare criteri di ripetizione dei tentativi, ad esempio un backoff esponenziale, come indicato nell'articolo di MSDN [Transient Fault Handling](Gestione degli errori temporanei).</span><span class="sxs-lookup"><span data-stu-id="50813-151">In production code, you should implement retry policies (such as exponential backoff), as suggested in the MSDN article [Transient Fault Handling].</span></span>
+    > <span data-ttu-id="28f95-150">Per semplicità, in questa esercitazione non si implementa alcun criterio di nuovi tentativi.</span><span class="sxs-lookup"><span data-stu-id="28f95-150">For simplicity's sake, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="28f95-151">Nel codice di produzione, è necessario implementare criteri di ripetizione (ad esempio backoff esponenziale), come indicato nell'articolo MSDN hello [gestione degli errori temporanei].</span><span class="sxs-lookup"><span data-stu-id="28f95-151">In production code, you should implement retry policies (such as exponential backoff), as suggested in hello MSDN article [Transient Fault Handling].</span></span>
 
 
-9. <span data-ttu-id="50813-152">Per compilare l'app **simulated-device** con Maven, eseguire questo comando al prompt dei comandi nella cartella simulated-device:</span><span class="sxs-lookup"><span data-stu-id="50813-152">To build the **simulated-device** app using Maven, execute the following command at the command prompt in the simulated-device folder:</span></span>
+9. <span data-ttu-id="28f95-152">hello toobuild **dispositivo simulato** app usando Maven, eseguire hello comando al prompt dei comandi di hello nella cartella dispositivo simulato hello seguente:</span><span class="sxs-lookup"><span data-stu-id="28f95-152">toobuild hello **simulated-device** app using Maven, execute hello following command at hello command prompt in hello simulated-device folder:</span></span>
 
     ```cmd/sh
     mvn clean package -DskipTests
     ```
 
-## <a name="run-the-applications"></a><span data-ttu-id="50813-153">Eseguire le applicazioni</span><span class="sxs-lookup"><span data-stu-id="50813-153">Run the applications</span></span>
+## <a name="run-hello-applications"></a><span data-ttu-id="28f95-153">Eseguire applicazioni hello</span><span class="sxs-lookup"><span data-stu-id="28f95-153">Run hello applications</span></span>
 
-<span data-ttu-id="50813-154">A questo punto è possibile eseguire le applicazioni.</span><span class="sxs-lookup"><span data-stu-id="50813-154">You are now ready to run the applications.</span></span>
+<span data-ttu-id="28f95-154">Si è ora applicazioni hello toorun pronto.</span><span class="sxs-lookup"><span data-stu-id="28f95-154">You are now ready toorun hello applications.</span></span>
 
-1. <span data-ttu-id="50813-155">Al prompt dei comandi nella cartella simulated-device eseguire questo comando per iniziare a inviare i dati di telemetria all'hub IoT e rimanere in ascolto dei messaggi da cloud a dispositivo inviati dall'hub:</span><span class="sxs-lookup"><span data-stu-id="50813-155">At a command prompt in the simulated-device folder, run the following command to begin sending telemetry to your IoT hub and to listen for cloud-to-device messages sent from your hub:</span></span>
+1. <span data-ttu-id="28f95-155">Al prompt dei comandi nella cartella dispositivo simulato hello eseguire hello dopo l'invio di hub IoT di telemetria tooyour e toolisten per i messaggi da cloud a dispositivo inviati dall'hub di toobegin di comando:</span><span class="sxs-lookup"><span data-stu-id="28f95-155">At a command prompt in hello simulated-device folder, run hello following command toobegin sending telemetry tooyour IoT hub and toolisten for cloud-to-device messages sent from your hub:</span></span>
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App" 
     ```
 
-    ![Eseguire un'app di dispositivo simulato][img-simulated-device]
+    ![Eseguire app dispositivo simulato hello][img-simulated-device]
 
-2. <span data-ttu-id="50813-157">A un prompt dei comandi nella cartella send-c2d-messages eseguire questo comando per inviare un messaggio da cloud a dispositivo e attendere un acknowledgment di feedback:</span><span class="sxs-lookup"><span data-stu-id="50813-157">At a command prompt in the send-c2d-messages folder, run the following command to send a cloud-to-device message and wait for a feedback acknowledgment:</span></span>
+2. <span data-ttu-id="28f95-157">Al prompt dei comandi nella cartella di trasmissione-c2d-messaggi hello eseguire hello successivo comando toosend un messaggio di cloud a dispositivo e l'attesa per un riconoscimento di commenti e suggerimenti:</span><span class="sxs-lookup"><span data-stu-id="28f95-157">At a command prompt in hello send-c2d-messages folder, run hello following command toosend a cloud-to-device message and wait for a feedback acknowledgment:</span></span>
 
     ```cmd/sh
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
 
-    ![Eseguire il comando per inviare il messaggio dal cloud al dispositivo][img-send-command]
+    ![Eseguire il messaggio da cloud a dispositivo hello di hello comando toosend][img-send-command]
 
-## <a name="next-steps"></a><span data-ttu-id="50813-159">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="50813-159">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="28f95-159">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="28f95-159">Next steps</span></span>
 
-<span data-ttu-id="50813-160">In questa esercitazione è stato descritto come inviare e ricevere messaggi da cloud a dispositivo.</span><span class="sxs-lookup"><span data-stu-id="50813-160">In this tutorial, you learned how to send and receive cloud-to-device messages.</span></span> 
+<span data-ttu-id="28f95-160">In questa esercitazione, si è appreso come toosend e ricevere messaggi da cloud a dispositivo.</span><span class="sxs-lookup"><span data-stu-id="28f95-160">In this tutorial, you learned how toosend and receive cloud-to-device messages.</span></span> 
 
-<span data-ttu-id="50813-161">Per avere degli esempi di soluzioni complete che utilizzano l'hub IoT, vedere la [Azure IoT Suite].</span><span class="sxs-lookup"><span data-stu-id="50813-161">To see examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite].</span></span>
+<span data-ttu-id="28f95-161">esempi di toosee di soluzioni end-to-end completate che usa IoT Hub, vedere [Azure IoT Suite].</span><span class="sxs-lookup"><span data-stu-id="28f95-161">toosee examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite].</span></span>
 
-<span data-ttu-id="50813-162">Per altre informazioni sullo sviluppo delle soluzioni con l'hub IoT, vedere la [Guida per sviluppatori dell'hub IoT].</span><span class="sxs-lookup"><span data-stu-id="50813-162">To learn more about developing solutions with IoT Hub, see the [IoT Hub developer guide].</span></span>
+<span data-ttu-id="28f95-162">toolearn più sullo sviluppo di soluzioni con l'IoT Hub, vedere hello [Guida per sviluppatori di IoT Hub].</span><span class="sxs-lookup"><span data-stu-id="28f95-162">toolearn more about developing solutions with IoT Hub, see hello [IoT Hub developer guide].</span></span>
 
 <!-- Images -->
 [img-simulated-device]: media/iot-hub-java-java-c2d/receivec2d.png
 [img-send-command]:  media/iot-hub-java-java-c2d/sendc2d.png
 <!-- Links -->
 
-<span data-ttu-id="50813-163">[Introduzione all'hub IoT di Azure]: iot-hub-java-java-getstarted.md</span><span class="sxs-lookup"><span data-stu-id="50813-163">[Get started with IoT Hub]: iot-hub-java-java-getstarted.md</span></span>
+[iniziare con l'IoT Hub]: iot-hub-java-java-getstarted.md
 [IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
-<span data-ttu-id="50813-164">[Guida per sviluppatori dell'hub IoT]: iot-hub-devguide.md</span><span class="sxs-lookup"><span data-stu-id="50813-164">[IoT Hub developer guide]: iot-hub-devguide.md</span></span>
-<span data-ttu-id="50813-165">[Centro per sviluppatori Azure IoT]: http://www.azure.com/develop/iot</span><span class="sxs-lookup"><span data-stu-id="50813-165">[Azure IoT Developer Center]: http://www.azure.com/develop/iot</span></span>
+[Guida per sviluppatori di IoT Hub]: iot-hub-devguide.md
+[Centro per sviluppatori di Azure IoT]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-java
-<span data-ttu-id="50813-166">[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span><span class="sxs-lookup"><span data-stu-id="50813-166">[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span></span>
-<span data-ttu-id="50813-167">[portale di Azure]: https://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="50813-167">[Azure portal]: https://portal.azure.com</span></span>
-<span data-ttu-id="50813-168">[Azure IoT Suite]: https://azure.microsoft.com/documentation/suites/iot-suite/</span><span class="sxs-lookup"><span data-stu-id="50813-168">[Azure IoT Suite]: https://azure.microsoft.com/documentation/suites/iot-suite/</span></span>
+[gestione degli errori temporanei]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[portale di Azure]: https://portal.azure.com
+[Azure IoT Suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
 [lnk-maven-service-search]: http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22iot-service-client%22%20g%3A%22com.microsoft.azure.sdk.iot%22

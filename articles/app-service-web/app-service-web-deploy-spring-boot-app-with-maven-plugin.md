@@ -1,6 +1,6 @@
 ---
-title: Come usare il plug-in Maven per App Web di Azure per distribuire un'app Spring Boot in Azure
-description: Informazioni su come usare il plug-in Maven per App Web di Azure per distribuire un'app Spring Boot in Azure.
+title: aaaHow toouse hello plug-in Maven per le app Web di Azure toodeploy un tooAzure app Spring avvio
+description: Informazioni su come toouse hello plug-in Maven per le app Web di Azure toodeploy un tooAzure app Spring avvio.
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,94 +14,94 @@ ms.devlang: java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robmcm;kevinzha
-ms.openlocfilehash: dceb7edf788bd87b1de04aa435a12cd5853755b9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 376fe90fe20621e15d7c9856214937c78b66026a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-maven-plugin-for-azure-web-apps-to-deploy-a-spring-boot-app-to-azure"></a><span data-ttu-id="b37a4-103">Come usare il plug-in Maven per App Web di Azure per distribuire un'app Spring Boot in Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-103">How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app to Azure</span></span>
+# <a name="how-toouse-hello-maven-plugin-for-azure-web-apps-toodeploy-a-spring-boot-app-tooazure"></a><span data-ttu-id="f6bdf-103">Come toouse hello plug-in Maven per le app Web di Azure toodeploy un tooAzure app Spring avvio</span><span class="sxs-lookup"><span data-stu-id="f6bdf-103">How toouse hello Maven Plugin for Azure Web Apps toodeploy a Spring Boot app tooAzure</span></span>
 
-<span data-ttu-id="b37a4-104">Il [plug-in Maven per App Web di Azure](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) disponibile per [Apache Maven](http://maven.apache.org/) consente una facile integrazione del servizio app di Azure nei progetti Maven e semplifica il processo con cui gli sviluppatori distribuiscono app Web nel servizio app di Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-104">The [Maven Plugin for Azure Web Apps](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) for [Apache Maven](http://maven.apache.org/) provides seamless integration of Azure App Service into Maven projects, and streamlines the process for developers to deploy web apps to Azure App Service.</span></span>
+<span data-ttu-id="f6bdf-104">Hello [plug-in Maven per le app Web di Azure](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) per [Apache Maven](http://maven.apache.org/) fornisce un'integrazione perfetta di servizio App di Azure in progetti Maven e semplifica il processo di hello per le app web di sviluppatori toodeploy tooAzure servizio App.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-104">hello [Maven Plugin for Azure Web Apps](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) for [Apache Maven](http://maven.apache.org/) provides seamless integration of Azure App Service into Maven projects, and streamlines hello process for developers toodeploy web apps tooAzure App Service.</span></span>
 
-<span data-ttu-id="b37a4-105">Questo articolo illustra l'uso del plug-in Maven per App Web di Azure per distribuire un'applicazione Spring Boot di esempio in Servizi app di Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-105">This article demonstrates using the Maven Plugin for Azure Web Apps to deploy a sample Spring Boot application to Azure App Services.</span></span>
+<span data-ttu-id="f6bdf-105">In questo articolo viene illustrato l'utilizzo hello plug-in Maven per le app Web di Azure toodeploy un tooAzure di applicazione di esempio Spring avvio servizi App.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-105">This article demonstrates using hello Maven Plugin for Azure Web Apps toodeploy a sample Spring Boot application tooAzure App Services.</span></span>
 
 > [!NOTE]
 >
-> <span data-ttu-id="b37a4-106">Il plug-in Maven per App Web di Azure è attualmente disponibile in anteprima.</span><span class="sxs-lookup"><span data-stu-id="b37a4-106">The Maven Plugin for Azure Web Apps is currently available as a preview.</span></span> <span data-ttu-id="b37a4-107">Per il momento è supportata solo la pubblicazione FTP, ma sono previste in futuro funzionalità aggiuntive.</span><span class="sxs-lookup"><span data-stu-id="b37a4-107">For now, only FTP publishing is supported, although additional features are planned for the future.</span></span>
+> <span data-ttu-id="f6bdf-106">Hello plug-in Maven per le app Web di Azure è attualmente disponibile come anteprima.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-106">hello Maven Plugin for Azure Web Apps is currently available as a preview.</span></span> <span data-ttu-id="f6bdf-107">Per il momento, è supportata solo la pubblicazione FTP, anche se le funzionalità aggiuntive sono pianificate per hello future.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-107">For now, only FTP publishing is supported, although additional features are planned for hello future.</span></span>
 >
 
-## <a name="prerequisites"></a><span data-ttu-id="b37a4-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="b37a4-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f6bdf-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="f6bdf-108">Prerequisites</span></span>
 
-<span data-ttu-id="b37a4-109">Per completare la procedura di questa esercitazione, sono necessari i prerequisiti seguenti:</span><span class="sxs-lookup"><span data-stu-id="b37a4-109">In order to complete the steps in this tutorial, you need to have the following prerequisites:</span></span>
+<span data-ttu-id="f6bdf-109">In ordine toocomplete hello passaggi di questa esercitazione, è necessario hello toohave seguenti prerequisiti:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-109">In order toocomplete hello steps in this tutorial, you need toohave hello following prerequisites:</span></span>
 
-* <span data-ttu-id="b37a4-110">Sottoscrizione di Azure; se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN] oppure iscriversi per ottenere un [account Azure gratuito].</span><span class="sxs-lookup"><span data-stu-id="b37a4-110">An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].</span></span>
-* <span data-ttu-id="b37a4-111">[Interfaccia della riga di comando di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-111">The [Azure Command-Line Interface (CLI)].</span></span>
-* <span data-ttu-id="b37a4-112">Java Development Kit (JDK) aggiornato, versione 1.7 o successiva.</span><span class="sxs-lookup"><span data-stu-id="b37a4-112">An up-to-date [Java Development Kit (JDK)], version 1.7 or later.</span></span>
-* <span data-ttu-id="b37a4-113">Lo strumento di compilazione [Maven] di Apache (versione 3).</span><span class="sxs-lookup"><span data-stu-id="b37a4-113">Apache's [Maven] build tool (Version 3).</span></span>
-* <span data-ttu-id="b37a4-114">Un client [Git].</span><span class="sxs-lookup"><span data-stu-id="b37a4-114">A [Git] client.</span></span>
+* <span data-ttu-id="f6bdf-110">Sottoscrizione di Azure; se non si ha una sottoscrizione di Azure, è possibile attivare i [vantaggi per i sottoscrittori di MSDN] oppure iscriversi per ottenere un [account Azure gratuito].</span><span class="sxs-lookup"><span data-stu-id="f6bdf-110">An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].</span></span>
+* <span data-ttu-id="f6bdf-111">Hello [Azure interfaccia della riga di comando (CLI)].</span><span class="sxs-lookup"><span data-stu-id="f6bdf-111">hello [Azure Command-Line Interface (CLI)].</span></span>
+* <span data-ttu-id="f6bdf-112">Java Development Kit (JDK) aggiornato, versione 1.7 o successiva.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-112">An up-to-date [Java Development Kit (JDK)], version 1.7 or later.</span></span>
+* <span data-ttu-id="f6bdf-113">Lo strumento di compilazione [Maven] di Apache (versione 3).</span><span class="sxs-lookup"><span data-stu-id="f6bdf-113">Apache's [Maven] build tool (Version 3).</span></span>
+* <span data-ttu-id="f6bdf-114">Un client [Git].</span><span class="sxs-lookup"><span data-stu-id="f6bdf-114">A [Git] client.</span></span>
 
-## <a name="clone-the-sample-spring-boot-web-app"></a><span data-ttu-id="b37a4-115">Clonare l'app Web Spring Boot di esempio</span><span class="sxs-lookup"><span data-stu-id="b37a4-115">Clone the sample Spring Boot web app</span></span>
+## <a name="clone-hello-sample-spring-boot-web-app"></a><span data-ttu-id="f6bdf-115">Clone hello esempio Spring avvio web app</span><span class="sxs-lookup"><span data-stu-id="f6bdf-115">Clone hello sample Spring Boot web app</span></span>
 
-<span data-ttu-id="b37a4-116">In questa sezione si clona e si testa in locale un'applicazione Spring Boot completata.</span><span class="sxs-lookup"><span data-stu-id="b37a4-116">In this section, you clone a completed Spring Boot application and test it locally.</span></span>
+<span data-ttu-id="f6bdf-116">In questa sezione si clona e si testa in locale un'applicazione Spring Boot completata.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-116">In this section, you clone a completed Spring Boot application and test it locally.</span></span>
 
-1. <span data-ttu-id="b37a4-117">Aprire un prompt dei comandi o una finestra del terminale e creare una directory locale in cui salvare l'applicazione Spring Boot, quindi passare a tale directory. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-117">Open a command prompt or terminal window and create a local directory to hold your Spring Boot application, and change to that directory; for example:</span></span>
+1. <span data-ttu-id="f6bdf-117">Aprire un prompt dei comandi o una finestra terminale e creare toohold una directory locale dell'applicazione di avvio molla e spostarsi nella directory toothat; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-117">Open a command prompt or terminal window and create a local directory toohold your Spring Boot application, and change toothat directory; for example:</span></span>
    ```shell
    md C:\SpringBoot
    cd C:\SpringBoot
    ```
-   <span data-ttu-id="b37a4-118">- o-</span><span class="sxs-lookup"><span data-stu-id="b37a4-118">-- or --</span></span>
+   <span data-ttu-id="f6bdf-118">- o-</span><span class="sxs-lookup"><span data-stu-id="f6bdf-118">-- or --</span></span>
    ```shell
    md /users/robert/SpringBoot
    cd /users/robert/SpringBoot
    ```
 
-1. <span data-ttu-id="b37a4-119">Clonare il progetto di esempio di [introduzione a Spring Boot] nella directory creata, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-119">Clone the [Spring Boot Getting Started] sample project into the directory you created; for example:</span></span>
+1. <span data-ttu-id="f6bdf-119">Hello clone [Spring avvio Introduzione] progetto di esempio nella directory hello è stato creato; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-119">Clone hello [Spring Boot Getting Started] sample project into hello directory you created; for example:</span></span>
    ```shell
    git clone https://github.com/microsoft/gs-spring-boot
    ```
 
-1. <span data-ttu-id="b37a4-120">Passare alla directory del progetto completato. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-120">Change directory to the completed project; for example:</span></span>
+1. <span data-ttu-id="f6bdf-120">Cambiare il progetto completato toohello directory; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-120">Change directory toohello completed project; for example:</span></span>
    ```shell
    cd gs-spring-boot/complete
    ```
 
-1. <span data-ttu-id="b37a4-121">Compilare il file JAR usando Maven. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-121">Build the JAR file using Maven; for example:</span></span>
+1. <span data-ttu-id="f6bdf-121">Compilare i file JAR hello utilizzando Maven; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-121">Build hello JAR file using Maven; for example:</span></span>
    ```shell
    mvn clean package
    ```
 
-1. <span data-ttu-id="b37a4-122">Dopo che è stata creata, avviare l'app Web con Maven, ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-122">When the web app has been created, start the web app using Maven; for example:</span></span>
+1. <span data-ttu-id="f6bdf-122">Quando hello web app è stato creato, avviare l'app web hello utilizzando Maven; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-122">When hello web app has been created, start hello web app using Maven; for example:</span></span>
    ```shell
    mvn spring-boot:run
    ```
 
-1. <span data-ttu-id="b37a4-123">Testare l'app Web esplorandola localmente tramite un Web browser.</span><span class="sxs-lookup"><span data-stu-id="b37a4-123">Test the web app by browsing to it locally using a web browser.</span></span> <span data-ttu-id="b37a4-124">Se è disponibile curl, ad esempio, è possibile usare il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="b37a4-124">For example, you could use the following command if you have curl available:</span></span>
+1. <span data-ttu-id="f6bdf-123">Testare l'app web hello esplorando tooit localmente tramite un web browser.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-123">Test hello web app by browsing tooit locally using a web browser.</span></span> <span data-ttu-id="f6bdf-124">Ad esempio, è possibile utilizzare il comando seguente, se si dispone di curl disponibili hello:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-124">For example, you could use hello following command if you have curl available:</span></span>
    ```shell
    curl http://localhost:8080
    ```
 
-1. <span data-ttu-id="b37a4-125">Si dovrebbe visualizzare il messaggio seguente: **Greetings from Spring Boot!** (Benvenuti in Spring Boot!)</span><span class="sxs-lookup"><span data-stu-id="b37a4-125">You should see the following message displayed: **Greetings from Spring Boot!**</span></span>
+1. <span data-ttu-id="f6bdf-125">Dovrebbe essere hello segue messaggio visualizzato: **Greetings da avvio Spring!**</span><span class="sxs-lookup"><span data-stu-id="f6bdf-125">You should see hello following message displayed: **Greetings from Spring Boot!**</span></span>
 
-## <a name="create-an-azure-service-principal"></a><span data-ttu-id="b37a4-126">Creare un'entità servizio di Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-126">Create an Azure service principal</span></span>
+## <a name="create-an-azure-service-principal"></a><span data-ttu-id="f6bdf-126">Creare un'entità servizio di Azure</span><span class="sxs-lookup"><span data-stu-id="f6bdf-126">Create an Azure service principal</span></span>
 
-<span data-ttu-id="b37a4-127">In questa sezione si crea un'entità servizio di Azure che verrà usata dal plug-in Maven durante la distribuzione dell'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-127">In this section, you create an Azure service principal that the Maven plugin uses when deploying your web app to Azure.</span></span>
+<span data-ttu-id="f6bdf-127">In questa sezione si crea un Azure entità di servizio che hello utilizza plug-in di Maven quando si distribuisce il tooAzure app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-127">In this section, you create an Azure service principal that hello Maven plugin uses when deploying your web app tooAzure.</span></span>
 
-1. <span data-ttu-id="b37a4-128">Aprire un prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="b37a4-128">Open a command prompt.</span></span>
+1. <span data-ttu-id="f6bdf-128">Aprire un prompt dei comandi.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-128">Open a command prompt.</span></span>
 
-1. <span data-ttu-id="b37a4-129">Accedere all'account Azure con l'interfaccia della riga di comando di Azure:</span><span class="sxs-lookup"><span data-stu-id="b37a4-129">Sign into your Azure account by using the Azure CLI:</span></span>
+1. <span data-ttu-id="f6bdf-129">Accesso all'account Azure tramite hello CLI di Azure:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-129">Sign into your Azure account by using hello Azure CLI:</span></span>
    ```shell
    az login
    ```
-   <span data-ttu-id="b37a4-130">Seguire le istruzioni per completare il processo di accesso.</span><span class="sxs-lookup"><span data-stu-id="b37a4-130">Follow the instructions to complete the sign-in process.</span></span>
+   <span data-ttu-id="f6bdf-130">Seguire hello istruzioni toocomplete hello processo di accesso.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-130">Follow hello instructions toocomplete hello sign-in process.</span></span>
 
-1. <span data-ttu-id="b37a4-131">Creare un'entità servizio di Azure:</span><span class="sxs-lookup"><span data-stu-id="b37a4-131">Create an Azure service principal:</span></span>
+1. <span data-ttu-id="f6bdf-131">Creare un'entità servizio di Azure:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-131">Create an Azure service principal:</span></span>
    ```shell
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   <span data-ttu-id="b37a4-132">`uuuuuuuu` è il nome utente e `pppppppp` è la password dell'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="b37a4-132">Where `uuuuuuuu` is the user name and `pppppppp` is the password for the service principal.</span></span>
+   <span data-ttu-id="f6bdf-132">Dove `uuuuuuuu` è il nome utente hello e `pppppppp` hello password per l'entità servizio hello.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-132">Where `uuuuuuuu` is hello user name and `pppppppp` is hello password for hello service principal.</span></span>
 
-1. <span data-ttu-id="b37a4-133">Azure restituisce una risposta JSON simile all'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="b37a4-133">Azure responds with JSON that resembles the following example:</span></span>
+1. <span data-ttu-id="f6bdf-133">Azure risponde con il formato JSON che è simile a hello di esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-133">Azure responds with JSON that resembles hello following example:</span></span>
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -114,20 +114,20 @@ ms.lasthandoff: 08/18/2017
 
    > [!NOTE]
    >
-   > <span data-ttu-id="b37a4-134">I valori di questa risposta JSON verranno usati durante la configurazione del plug-in Maven per la distribuzione dell'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-134">You will use the values from this JSON response when you configure the Maven plugin to deploy your web app to Azure.</span></span> <span data-ttu-id="b37a4-135">`aaaaaaaa`, `uuuuuuuu`, `pppppppp` e `tttttttt` sono segnaposto che vengono usati in questo esempio per facilitare il mapping di questi valori ai rispettivi elementi durante la configurazione del file `settings.xml` di Maven nella sezione successiva.</span><span class="sxs-lookup"><span data-stu-id="b37a4-135">The `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, and `tttttttt` are placeholder values, which are used in this example to make it easier to map these values to their respective elements when you configure your Maven `settings.xml` file in the next section.</span></span>
+   > <span data-ttu-id="f6bdf-134">Quando si configura toodeploy plug-in di Maven hello il tooAzure app web, si utilizzerà i valori hello questa risposta JSON.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-134">You will use hello values from this JSON response when you configure hello Maven plugin toodeploy your web app tooAzure.</span></span> <span data-ttu-id="f6bdf-135">Hello `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, e `tttttttt` sono valori segnaposto, ovvero utilizzata in questo esempio toomake toomap più facilmente questi valori tootheir rispettivi elementi quando si configura il Maven `settings.xml` file hello accanto sezione.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-135">hello `aaaaaaaa`, `uuuuuuuu`, `pppppppp`, and `tttttttt` are placeholder values, which are used in this example toomake it easier toomap these values tootheir respective elements when you configure your Maven `settings.xml` file in hello next section.</span></span>
    >
    >
 
-## <a name="configure-maven-to-use-your-azure-service-principal"></a><span data-ttu-id="b37a4-136">Configurare Maven per l'uso dell'entità servizio di Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-136">Configure Maven to use your Azure service principal</span></span>
+## <a name="configure-maven-toouse-your-azure-service-principal"></a><span data-ttu-id="f6bdf-136">Configurare Maven toouse l'entità servizio di Azure</span><span class="sxs-lookup"><span data-stu-id="f6bdf-136">Configure Maven toouse your Azure service principal</span></span>
 
-<span data-ttu-id="b37a4-137">In questa sezione si usano i valori dell'entità servizio di Azure per configurare l'autenticazione che verrà usata da Maven durante la distribuzione dell'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-137">In this section, you use the values from your Azure service principal to configure the authentication that Maven uses when deploying your web app to Azure.</span></span>
+<span data-ttu-id="f6bdf-137">In questa sezione, utilizzare i valori hello dall'autenticazione hello tooconfigure dell'entità servizio di Azure Maven usato quando si distribuisce il tooAzure app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-137">In this section, you use hello values from your Azure service principal tooconfigure hello authentication that Maven uses when deploying your web app tooAzure.</span></span>
 
-1. <span data-ttu-id="b37a4-138">Aprire il file `settings.xml` di Maven in un editor di testo. Il file potrebbe trovarsi in un percorso come quelli riportati negli esempi seguenti:</span><span class="sxs-lookup"><span data-stu-id="b37a4-138">Open your Maven `settings.xml` file in a text editor; this file might be in a path like the following examples:</span></span>
+1. <span data-ttu-id="f6bdf-138">Aprire il Maven `settings.xml` file in un editor di testo; questo file potrebbe essere in un percorso come hello seguono esempi:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-138">Open your Maven `settings.xml` file in a text editor; this file might be in a path like hello following examples:</span></span>
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. <span data-ttu-id="b37a4-139">Aggiungere le impostazioni dell'entità servizio di Azure della sezione precedente di questa esercitazione alla raccolta `<servers>` nel file *settings.xml*. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-139">Add your Azure service principal settings from the previous section of this tutorial to the `<servers>` collection in the *settings.xml* file; for example:</span></span>
+1. <span data-ttu-id="f6bdf-139">Aggiungere le impostazioni dell'entità servizio di Azure dalla sezione precedente di hello di questa esercitazione toohello `<servers>` insieme in hello *Settings* file; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-139">Add your Azure service principal settings from hello previous section of this tutorial toohello `<servers>` collection in hello *settings.xml* file; for example:</span></span>
 
    ```xml
    <servers>
@@ -142,20 +142,20 @@ ms.lasthandoff: 08/18/2017
       </server>
    </servers>
    ```
-   <span data-ttu-id="b37a4-140">Dove:</span><span class="sxs-lookup"><span data-stu-id="b37a4-140">Where:</span></span>
-   <span data-ttu-id="b37a4-141">Elemento</span><span class="sxs-lookup"><span data-stu-id="b37a4-141">Element</span></span> | <span data-ttu-id="b37a4-142">Descrizione</span><span class="sxs-lookup"><span data-stu-id="b37a4-142">Description</span></span>
+   <span data-ttu-id="f6bdf-140">Dove:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-140">Where:</span></span>
+   <span data-ttu-id="f6bdf-141">Elemento</span><span class="sxs-lookup"><span data-stu-id="f6bdf-141">Element</span></span> | <span data-ttu-id="f6bdf-142">Descrizione</span><span class="sxs-lookup"><span data-stu-id="f6bdf-142">Description</span></span>
    ---|---|---
-   `<id>` | <span data-ttu-id="b37a4-143">Specifica un nome univoco che viene usato da Maven per cercare le impostazioni di sicurezza quando si distribuisce l'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-143">Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure.</span></span>
-   `<client>` | <span data-ttu-id="b37a4-144">Contiene il valore `appId` dell'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="b37a4-144">Contains the `appId` value from your service principal.</span></span>
-   `<tenant>` | <span data-ttu-id="b37a4-145">Contiene il valore `tenant` dell'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="b37a4-145">Contains the `tenant` value from your service principal.</span></span>
-   `<key>` | <span data-ttu-id="b37a4-146">Contiene il valore `password` dell'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="b37a4-146">Contains the `password` value from your service principal.</span></span>
-   `<environment>` | <span data-ttu-id="b37a4-147">Definisce l'ambiente cloud di Azure di destinazione, che in questo esempio è `AZURE`.</span><span class="sxs-lookup"><span data-stu-id="b37a4-147">Defines the target Azure cloud environment, which is `AZURE` in this example.</span></span> <span data-ttu-id="b37a4-148">Un elenco completo degli ambienti è disponibile nella documentazione del [plug-in Maven per App Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-148">(A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation)</span></span>
+   `<id>` | <span data-ttu-id="f6bdf-143">Specifica un nome univoco utilizzato Maven toolook backup delle impostazioni di sicurezza quando si distribuisce il tooAzure app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-143">Specifies a unique name which Maven uses toolook up your security settings when you deploy your web app tooAzure.</span></span>
+   `<client>` | <span data-ttu-id="f6bdf-144">Contiene hello `appId` compreso l'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-144">Contains hello `appId` value from your service principal.</span></span>
+   `<tenant>` | <span data-ttu-id="f6bdf-145">Contiene hello `tenant` compreso l'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-145">Contains hello `tenant` value from your service principal.</span></span>
+   `<key>` | <span data-ttu-id="f6bdf-146">Contiene hello `password` compreso l'entità servizio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-146">Contains hello `password` value from your service principal.</span></span>
+   `<environment>` | <span data-ttu-id="f6bdf-147">Definisce l'ambiente cloud di Azure di destinazione di hello ovvero `AZURE` in questo esempio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-147">Defines hello target Azure cloud environment, which is `AZURE` in this example.</span></span> <span data-ttu-id="f6bdf-148">(Un elenco completo degli ambienti è disponibile in hello [plug-in Maven per le app Web di Azure] documentazione)</span><span class="sxs-lookup"><span data-stu-id="f6bdf-148">(A full list of environments is available in hello [Maven Plugin for Azure Web Apps] documentation)</span></span>
 
-1. <span data-ttu-id="b37a4-149">Salvare e chiudere il file *settings.xml*.</span><span class="sxs-lookup"><span data-stu-id="b37a4-149">Save and close the *settings.xml* file.</span></span>
+1. <span data-ttu-id="f6bdf-149">Salvare e chiudere hello *Settings* file.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-149">Save and close hello *settings.xml* file.</span></span>
 
-## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-to-azure"></a><span data-ttu-id="b37a4-150">FACOLTATIVO: personalizzare pom.xml prima della distribuzione dell'app Web in Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-150">OPTIONAL: Customize your pom.xml before deploying your web app to Azure</span></span>
+## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-tooazure"></a><span data-ttu-id="f6bdf-150">Facoltativo: Personalizzare il pom.xml prima di distribuire il tooAzure app web</span><span class="sxs-lookup"><span data-stu-id="f6bdf-150">OPTIONAL: Customize your pom.xml before deploying your web app tooAzure</span></span>
 
-<span data-ttu-id="b37a4-151">Aprire il file `pom.xml` per l'applicazione Spring Boot in un editor di testo e quindi individuare l'elemento `<plugin>` per `azure-webapp-maven-plugin`.</span><span class="sxs-lookup"><span data-stu-id="b37a4-151">Open the `pom.xml` file for your Spring Boot application in a text editor, and then locate the `<plugin>` element for `azure-webapp-maven-plugin`.</span></span> <span data-ttu-id="b37a4-152">L'elemento dovrebbe essere simile all'esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="b37a4-152">This element should resemble the following example:</span></span>
+<span data-ttu-id="f6bdf-151">Aprire hello `pom.xml` file per l'applicazione di avvio Spring in un editor di testo e quindi individuare hello `<plugin>` elemento per `azure-webapp-maven-plugin`.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-151">Open hello `pom.xml` file for your Spring Boot application in a text editor, and then locate hello `<plugin>` element for `azure-webapp-maven-plugin`.</span></span> <span data-ttu-id="f6bdf-152">Questo elemento dovrebbe essere simile a hello di esempio seguente:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-152">This element should resemble hello following example:</span></span>
 
    ```xml
    <plugin>
@@ -191,95 +191,95 @@ ms.lasthandoff: 08/18/2017
    </plugin>
    ```
 
-<span data-ttu-id="b37a4-153">È possibile modificare diversi valori per il plug-in Maven. Una descrizione dettagliata di ognuno di questi elementi è disponibile nella documentazione del [plug-in Maven per App Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-153">There are several values that you can modify for the Maven plugin, and a detailed description for each of these elements is available in the [Maven Plugin for Azure Web Apps] documentation.</span></span> <span data-ttu-id="b37a4-154">Dopo questa premessa, in questo articolo è opportuno evidenziare diversi valori:</span><span class="sxs-lookup"><span data-stu-id="b37a4-154">That being said, there are several values that are worth highlighting in this article:</span></span>
+<span data-ttu-id="f6bdf-153">Esistono diversi valori che è possibile modificare per plug-in di Maven hello e una descrizione dettagliata per ognuno di questi elementi è disponibile in hello [plug-in Maven per le app Web di Azure] documentazione.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-153">There are several values that you can modify for hello Maven plugin, and a detailed description for each of these elements is available in hello [Maven Plugin for Azure Web Apps] documentation.</span></span> <span data-ttu-id="f6bdf-154">Dopo questa premessa, in questo articolo è opportuno evidenziare diversi valori:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-154">That being said, there are several values that are worth highlighting in this article:</span></span>
 
-<span data-ttu-id="b37a4-155">Elemento</span><span class="sxs-lookup"><span data-stu-id="b37a4-155">Element</span></span> | <span data-ttu-id="b37a4-156">Descrizione</span><span class="sxs-lookup"><span data-stu-id="b37a4-156">Description</span></span>
+<span data-ttu-id="f6bdf-155">Elemento</span><span class="sxs-lookup"><span data-stu-id="f6bdf-155">Element</span></span> | <span data-ttu-id="f6bdf-156">Descrizione</span><span class="sxs-lookup"><span data-stu-id="f6bdf-156">Description</span></span>
 ---|---|---
-`<version>` | <span data-ttu-id="b37a4-157">Specifica la versione del [plug-in Maven per App Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-157">Specifies the version of the [Maven Plugin for Azure Web Apps].</span></span> <span data-ttu-id="b37a4-158">È consigliabile controllare la versione riportata nel [repository centrale Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) per assicurarsi di usare l'ultima versione.</span><span class="sxs-lookup"><span data-stu-id="b37a4-158">You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version.</span></span>
-`<authentication>` | <span data-ttu-id="b37a4-159">Specifica le informazioni di autenticazione per Azure, che in questo esempio includono un elemento `<serverId>` contenente `azure-auth`. Maven usa questo valore per cercare i valori dell'entità servizio di Azure nel file *settings.xml* di Maven, in base a quanto definito in una sezione precedente di questo articolo.</span><span class="sxs-lookup"><span data-stu-id="b37a4-159">Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article.</span></span>
-`<resourceGroup>` | <span data-ttu-id="b37a4-160">Specifica il gruppo di risorse di destinazione, che in questo esempio è `maven-plugin`.</span><span class="sxs-lookup"><span data-stu-id="b37a4-160">Specifies the target resource group, which is `maven-plugin` in this example.</span></span> <span data-ttu-id="b37a4-161">Se non esiste già, questo gruppo di risorse viene creato durante la distribuzione.</span><span class="sxs-lookup"><span data-stu-id="b37a4-161">The resource group is created during deployment if it does not already exist.</span></span>
-`<appName>` | <span data-ttu-id="b37a4-162">Specifica il nome di destinazione dell'app Web.</span><span class="sxs-lookup"><span data-stu-id="b37a4-162">Specifies the target name for your web app.</span></span> <span data-ttu-id="b37a4-163">In questo esempio, il nome di destinazione è `maven-web-app-${maven.build.timestamp}` e il suffisso `${maven.build.timestamp}` viene accodato per evitare conflitti.</span><span class="sxs-lookup"><span data-stu-id="b37a4-163">In this example, the target name is `maven-web-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict.</span></span> <span data-ttu-id="b37a4-164">Il timestamp è facoltativo. Come nome dell'app è possibile specificare qualsiasi stringa univoca.</span><span class="sxs-lookup"><span data-stu-id="b37a4-164">(The timestamp is optional; you can specify any unique string for the app name.)</span></span>
-`<region>` | <span data-ttu-id="b37a4-165">Specifica l'area di destinazione, che in questo esempio è `westus`.</span><span class="sxs-lookup"><span data-stu-id="b37a4-165">Specifies the target region, which in this example is `westus`.</span></span> <span data-ttu-id="b37a4-166">Un elenco completo è disponibile nella documentazione del [plug-in Maven per App Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-166">(A full list is in the [Maven Plugin for Azure Web Apps] documentation.)</span></span>
-`<javaVersion>` | <span data-ttu-id="b37a4-167">Specifica la versione del runtime Java per l'app Web.</span><span class="sxs-lookup"><span data-stu-id="b37a4-167">Specifies the Java runtime version for your web app.</span></span> <span data-ttu-id="b37a4-168">Un elenco completo è disponibile nella documentazione del [plug-in Maven per App Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-168">(A full list is in the [Maven Plugin for Azure Web Apps] documentation.)</span></span>
-`<deploymentType>` | <span data-ttu-id="b37a4-169">Specifica il tipo di distribuzione per l'app Web.</span><span class="sxs-lookup"><span data-stu-id="b37a4-169">Specifies deployment type for your web app.</span></span> <span data-ttu-id="b37a4-170">Per il momento è supportato solo `ftp`, ma è in fase di sviluppo il supporto di altri tipi di distribuzione.</span><span class="sxs-lookup"><span data-stu-id="b37a4-170">For now, only `ftp` is supported, although support for other deployment types is in development.</span></span>
-`<resources>` | <span data-ttu-id="b37a4-171">Specifica le risorse e le destinazioni che verranno usate da Maven durante la distribuzione dell'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-171">Specifies resources and target destinations which Maven uses when deploying your web app to Azure.</span></span> <span data-ttu-id="b37a4-172">In questo esempio, due elementi `<resource>` specificano che Maven distribuirà il file JAR per l'app Web e il file *web.config* del progetto Spring Boot.</span><span class="sxs-lookup"><span data-stu-id="b37a4-172">In this example, two `<resource>` elements specify that Maven will deploy the JAR file for your web app and the *web.config* file from the Spring Boot project.</span></span>
+`<version>` | <span data-ttu-id="f6bdf-157">Specifica la versione di hello di hello [plug-in Maven per le app Web di Azure].</span><span class="sxs-lookup"><span data-stu-id="f6bdf-157">Specifies hello version of hello [Maven Plugin for Azure Web Apps].</span></span> <span data-ttu-id="f6bdf-158">Controllare versione hello elencata in hello [repository centrale Maven](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) tooensure che si sta utilizzando hello versione più recente.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-158">You should check hello version listed in hello [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) tooensure that you are using hello latest version.</span></span>
+`<authentication>` | <span data-ttu-id="f6bdf-159">Specifica le informazioni di autenticazione hello per Azure, che in questo esempio contiene un `<serverId>` elemento contenente `azure-auth`; Maven utilizza tale toolook valore i valori dell'entità servizio di Azure di hello nel Maven *Settings* file, che è definito in una sezione precedente di questo articolo.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-159">Specifies hello authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value toolook up hello Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article.</span></span>
+`<resourceGroup>` | <span data-ttu-id="f6bdf-160">Specifica il gruppo risorse destinazione hello, ovvero `maven-plugin` in questo esempio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-160">Specifies hello target resource group, which is `maven-plugin` in this example.</span></span> <span data-ttu-id="f6bdf-161">gruppo di risorse Hello viene creato durante la distribuzione se non esiste già.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-161">hello resource group is created during deployment if it does not already exist.</span></span>
+`<appName>` | <span data-ttu-id="f6bdf-162">Specifica il nome di destinazione hello per le app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-162">Specifies hello target name for your web app.</span></span> <span data-ttu-id="f6bdf-163">In questo esempio, è il nome di destinazione hello `maven-web-app-${maven.build.timestamp}`, dove hello `${maven.build.timestamp}` suffisso viene aggiunto in questo conflitto tooavoid di esempio.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-163">In this example, hello target name is `maven-web-app-${maven.build.timestamp}`, where hello `${maven.build.timestamp}` suffix is appended in this example tooavoid conflict.</span></span> <span data-ttu-id="f6bdf-164">(timestamp hello è facoltativo, è possibile specificare qualsiasi stringa univoca per il nome dell'app hello).</span><span class="sxs-lookup"><span data-stu-id="f6bdf-164">(hello timestamp is optional; you can specify any unique string for hello app name.)</span></span>
+`<region>` | <span data-ttu-id="f6bdf-165">Specifica l'area di destinazione hello, che in questo esempio è `westus`.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-165">Specifies hello target region, which in this example is `westus`.</span></span> <span data-ttu-id="f6bdf-166">(Un elenco completo è in hello [plug-in Maven per le app Web di Azure] documentazione.)</span><span class="sxs-lookup"><span data-stu-id="f6bdf-166">(A full list is in hello [Maven Plugin for Azure Web Apps] documentation.)</span></span>
+`<javaVersion>` | <span data-ttu-id="f6bdf-167">Specifica di versione di runtime Java hello per le app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-167">Specifies hello Java runtime version for your web app.</span></span> <span data-ttu-id="f6bdf-168">(Un elenco completo è in hello [plug-in Maven per le app Web di Azure] documentazione.)</span><span class="sxs-lookup"><span data-stu-id="f6bdf-168">(A full list is in hello [Maven Plugin for Azure Web Apps] documentation.)</span></span>
+`<deploymentType>` | <span data-ttu-id="f6bdf-169">Specifica il tipo di distribuzione per l'app Web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-169">Specifies deployment type for your web app.</span></span> <span data-ttu-id="f6bdf-170">Per il momento è supportato solo `ftp`, ma è in fase di sviluppo il supporto di altri tipi di distribuzione.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-170">For now, only `ftp` is supported, although support for other deployment types is in development.</span></span>
+`<resources>` | <span data-ttu-id="f6bdf-171">Specifica le risorse e destinazioni Maven utilizzata quando si distribuisce il tooAzure app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-171">Specifies resources and target destinations which Maven uses when deploying your web app tooAzure.</span></span> <span data-ttu-id="f6bdf-172">In questo esempio, due `<resource>` elementi specificano che Maven verrà distribuito il file JAR hello per l'applicazione web e hello *Web. config* file dal progetto di avvio Spring hello.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-172">In this example, two `<resource>` elements specify that Maven will deploy hello JAR file for your web app and hello *web.config* file from hello Spring Boot project.</span></span>
 
-## <a name="build-and-deploy-your-web-app-to-azure"></a><span data-ttu-id="b37a4-173">Compilare e distribuire l'app Web in Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-173">Build and deploy your web app to Azure</span></span>
+## <a name="build-and-deploy-your-web-app-tooazure"></a><span data-ttu-id="f6bdf-173">Compilare e distribuire il tooAzure app web</span><span class="sxs-lookup"><span data-stu-id="f6bdf-173">Build and deploy your web app tooAzure</span></span>
 
-<span data-ttu-id="b37a4-174">Dopo aver configurato tutte le impostazioni nelle sezioni precedenti di questo articolo, è possibile distribuire l'app Web in Azure.</span><span class="sxs-lookup"><span data-stu-id="b37a4-174">Once you have configured all of the settings in the preceding sections of this article, you are ready to deploy your web app to Azure.</span></span> <span data-ttu-id="b37a4-175">A tale scopo, seguire questa procedura:</span><span class="sxs-lookup"><span data-stu-id="b37a4-175">To do so, use the following steps:</span></span>
+<span data-ttu-id="f6bdf-174">Dopo aver configurato le impostazioni di hello in hello precedenti sezioni di questo articolo, si è pronti toodeploy il tooAzure app web.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-174">Once you have configured all of hello settings in hello preceding sections of this article, you are ready toodeploy your web app tooAzure.</span></span> <span data-ttu-id="f6bdf-175">toodo in tal caso, utilizzare hello alla procedura seguente:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-175">toodo so, use hello following steps:</span></span>
 
-1. <span data-ttu-id="b37a4-176">Se sono state apportate modifiche al file *pom.xml*, dalla finestra del terminale o al prompt dei comandi usato in precedenza ricompilare il file JAR usando Maven. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-176">From the command prompt or terminal window that you were using earlier, rebuild the JAR file using Maven if you made any changes to the *pom.xml* file; for example:</span></span>
+1. <span data-ttu-id="f6bdf-176">Dal prompt dei comandi di hello o finestra terminale che si utilizzava in precedenza, ricompilare il file JAR hello utilizzando Maven se toohello eventuali modifiche apportate *pom.xml* file; ad esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-176">From hello command prompt or terminal window that you were using earlier, rebuild hello JAR file using Maven if you made any changes toohello *pom.xml* file; for example:</span></span>
    ```shell
    mvn clean package
    ```
 
-1. <span data-ttu-id="b37a4-177">Distribuire l'app Web in Azure usando Maven. Ad esempio:</span><span class="sxs-lookup"><span data-stu-id="b37a4-177">Deploy your web app to Azure by using Maven; for example:</span></span>
+1. <span data-ttu-id="f6bdf-177">Distribuire il tooAzure app web utilizzando Maven; Per esempio:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-177">Deploy your web app tooAzure by using Maven; for example:</span></span>
    ```shell
    mvn azure-webapp:deploy
    ```
 
-<span data-ttu-id="b37a4-178">Maven distribuirà l'app Web in Azure. Se l'app Web non esiste già, verrà creata.</span><span class="sxs-lookup"><span data-stu-id="b37a4-178">Maven will deploy your web app to Azure; if the web app does not already exist, it will be created.</span></span>
+<span data-ttu-id="f6bdf-178">Maven distribuirà tooAzure l'app web; Se l'applicazione web hello non esiste già, verrà creato.</span><span class="sxs-lookup"><span data-stu-id="f6bdf-178">Maven will deploy your web app tooAzure; if hello web app does not already exist, it will be created.</span></span>
 
-<span data-ttu-id="b37a4-179">Dopo che è stata distribuita, l'app Web potrà essere gestita usando il [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="b37a4-179">When your web has been deployed, you will be able to manage it by using the [Azure portal].</span></span>
+<span data-ttu-id="f6bdf-179">Quando è stato distribuito il web, sarà in grado di toomanage usando hello [portale di Azure].</span><span class="sxs-lookup"><span data-stu-id="f6bdf-179">When your web has been deployed, you will be able toomanage it by using hello [Azure portal].</span></span>
 
-* <span data-ttu-id="b37a4-180">L'app Web sarà elencata in **Servizi app**:</span><span class="sxs-lookup"><span data-stu-id="b37a4-180">Your web app will be listed in **App Services**:</span></span>
+* <span data-ttu-id="f6bdf-180">L'app Web sarà elencata in **Servizi app**:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-180">Your web app will be listed in **App Services**:</span></span>
 
    ![App Web elencata in Servizi app nel portale di Azure][AP01]
 
-* <span data-ttu-id="b37a4-182">L'URL dell'app Web sarà riportato nella **panoramica** dell'app Web:</span><span class="sxs-lookup"><span data-stu-id="b37a4-182">And the URL for your web app will be listed in the **Overview** for your web app:</span></span>
+* <span data-ttu-id="f6bdf-182">E hello URL per l'app web sarà elencato nel hello **Panoramica** per l'app web:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-182">And hello URL for your web app will be listed in hello **Overview** for your web app:</span></span>
 
-   ![Individuazione dell'URL dell'app Web][AP02]
+   ![Determinare l'URL di hello per le app web][AP02]
 
 <!--
-##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
+##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
 
-The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
+hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
 
-1. Go to the *resources* directory (or create the directory if it does not exist); for example:
+1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify the **server** setting so that the server runs on port 80; for example:
+1. Modify hello **server** setting so that hello server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close the *application.yml* file.
+1. Save and close hello *application.yml* file.
 -->
 
-## <a name="next-steps"></a><span data-ttu-id="b37a4-184">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="b37a4-184">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f6bdf-184">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="f6bdf-184">Next steps</span></span>
 
-<span data-ttu-id="b37a4-185">Per altre informazioni sulle varie tecnologie illustrate in questo articolo, vedere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="b37a4-185">For more information about the various technologies discussed in this article, see the following articles:</span></span>
+<span data-ttu-id="f6bdf-185">Per ulteriori informazioni su hello diverse tecnologie descritte in questo articolo, vedere hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="f6bdf-185">For more information about hello various technologies discussed in this article, see hello following articles:</span></span>
 
-* <span data-ttu-id="b37a4-186">[plug-in Maven per App Web di Azure]</span><span class="sxs-lookup"><span data-stu-id="b37a4-186">[Maven Plugin for Azure Web Apps]</span></span>
+* <span data-ttu-id="f6bdf-186">[plug-in Maven per le app Web di Azure]</span><span class="sxs-lookup"><span data-stu-id="f6bdf-186">[Maven Plugin for Azure Web Apps]</span></span>
 
-* [<span data-ttu-id="b37a4-187">Accedere ad Azure dall'interfaccia della riga di comando di Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-187">Log in to Azure from the Azure CLI</span></span>](/azure/xplat-cli-connect)
+* [<span data-ttu-id="f6bdf-187">Accedi tooAzure da hello CLI di Azure</span><span class="sxs-lookup"><span data-stu-id="f6bdf-187">Log in tooAzure from hello Azure CLI</span></span>](/azure/xplat-cli-connect)
 
-* [<span data-ttu-id="b37a4-188">Come usare il plug-in Maven per App Web di Azure per distribuire un'app Spring Boot in contenitore in Azure</span><span class="sxs-lookup"><span data-stu-id="b37a4-188">How to use the Maven Plugin for Azure Web Apps to deploy a containerized Spring Boot app to Azure</span></span>](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
+* [<span data-ttu-id="f6bdf-188">Come toouse hello plug-in Maven per le app Web di Azure toodeploy nei contenitori tooAzure app Spring avvio</span><span class="sxs-lookup"><span data-stu-id="f6bdf-188">How toouse hello Maven Plugin for Azure Web Apps toodeploy a containerized Spring Boot app tooAzure</span></span>](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
 
-* [<span data-ttu-id="b37a4-189">Creare un'entità servizio di Azure con l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="b37a4-189">Create an Azure service principal with Azure CLI 2.0</span></span>](/cli/azure/create-an-azure-service-principal-azure-cli)
+* [<span data-ttu-id="f6bdf-189">Creare un'entità servizio di Azure con l'interfaccia della riga di comando di Azure 2.0</span><span class="sxs-lookup"><span data-stu-id="f6bdf-189">Create an Azure service principal with Azure CLI 2.0</span></span>](/cli/azure/create-an-azure-service-principal-azure-cli)
 
-* [<span data-ttu-id="b37a4-190">Informazioni di riferimento sulle impostazioni di Maven</span><span class="sxs-lookup"><span data-stu-id="b37a4-190">Maven Settings Reference</span></span>](https://maven.apache.org/settings.html)
+* [<span data-ttu-id="f6bdf-190">Informazioni di riferimento sulle impostazioni di Maven</span><span class="sxs-lookup"><span data-stu-id="f6bdf-190">Maven Settings Reference</span></span>](https://maven.apache.org/settings.html)
 
 <!-- URL List -->
 
-<span data-ttu-id="b37a4-191">[Interfaccia della riga di comando di Azure]: /cli/azure/overview</span><span class="sxs-lookup"><span data-stu-id="b37a4-191">[Azure Command-Line Interface (CLI)]: /cli/azure/overview</span></span>
+[Azure interfaccia della riga di comando (CLI)]: /cli/azure/overview
 [Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
-<span data-ttu-id="b37a4-192">[portale di Azure]: https://portal.azure.com/</span><span class="sxs-lookup"><span data-stu-id="b37a4-192">[Azure portal]: https://portal.azure.com/</span></span>
-<span data-ttu-id="b37a4-193">[account Azure gratuito]: https://azure.microsoft.com/pricing/free-trial/</span><span class="sxs-lookup"><span data-stu-id="b37a4-193">[free Azure account]: https://azure.microsoft.com/pricing/free-trial/</span></span>
-<span data-ttu-id="b37a4-194">[Git]: https://github.com/</span><span class="sxs-lookup"><span data-stu-id="b37a4-194">[Git]: https://github.com/</span></span>
+[portale di Azure]: https://portal.azure.com/
+[account Azure gratuito]: https://azure.microsoft.com/pricing/free-trial/
+[Git]: https://github.com/
 [Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
-<span data-ttu-id="b37a4-195">[Maven]: http://maven.apache.org/</span><span class="sxs-lookup"><span data-stu-id="b37a4-195">[Maven]: http://maven.apache.org/</span></span>
-<span data-ttu-id="b37a4-196">[vantaggi per i sottoscrittori di MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/</span><span class="sxs-lookup"><span data-stu-id="b37a4-196">[MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/</span></span>
+[Maven]: http://maven.apache.org/
+[vantaggi per i sottoscrittori di MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
-<span data-ttu-id="b37a4-197">[introduzione a Spring Boot]: https://github.com/microsoft/gs-spring-boot</span><span class="sxs-lookup"><span data-stu-id="b37a4-197">[Spring Boot Getting Started]: https://github.com/microsoft/gs-spring-boot</span></span>
+[Spring avvio Introduzione]: https://github.com/microsoft/gs-spring-boot
 [Spring Framework]: https://spring.io/
-<span data-ttu-id="b37a4-198">[plug-in Maven per App Web di Azure]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin</span><span class="sxs-lookup"><span data-stu-id="b37a4-198">[Maven Plugin for Azure Web Apps]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin</span></span>
+[plug-in Maven per le app Web di Azure]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
 
 <!-- IMG List -->
 

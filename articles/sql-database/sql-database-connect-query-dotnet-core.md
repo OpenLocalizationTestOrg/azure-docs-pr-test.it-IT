@@ -1,6 +1,6 @@
 ---
-title: Usare .NET Core per eseguire query sul database SQL di Azure | Microsoft Docs
-description: Questo argomento illustra come usare .NET Core per creare un programma che si connette a un database SQL di Azure ed esegue query usando istruzioni Transact-SQL.
+title: aaaUse .NET Core tooquery Database SQL di Azure | Documenti Microsoft
+description: Questo argomento viene illustrato come toouse .NET Core toocreate un programma che si connette tooan Database SQL di Azure ed eseguire una query utilizzando istruzioni Transact-SQL.
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,60 +15,60 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 07/05/2017
 ms.author: carlrab
-ms.openlocfilehash: 046322624d3b89bb983acee863534256fee94b60
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2d10c407f44f43b6baa3bf337cdd1173d9c9c35f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-net-core-c-to-query-an-azure-sql-database"></a><span data-ttu-id="74215-103">Usare .NET Core (C#) per eseguire query su un database SQL di Azure</span><span class="sxs-lookup"><span data-stu-id="74215-103">Use .NET Core (C#) to query an Azure SQL database</span></span>
+# <a name="use-net-core-c-tooquery-an-azure-sql-database"></a><span data-ttu-id="89ae0-103">Utilizzare .NET Core (c#) tooquery un database SQL di Azure</span><span class="sxs-lookup"><span data-stu-id="89ae0-103">Use .NET Core (C#) tooquery an Azure SQL database</span></span>
 
-<span data-ttu-id="74215-104">Questa esercitazione introduttiva illustra come usare [.NET Core](https://www.microsoft.com/net/) in Windows/Linux/macOS per creare un programma C# per connettersi a un database SQL di Azure e usare istruzioni Transact-SQL per eseguire query sui dati.</span><span class="sxs-lookup"><span data-stu-id="74215-104">This quick start tutorial demonstrates how to use [.NET Core](https://www.microsoft.com/net/) on Windows/Linux/macOS to create a C# program to connect to an Azure SQL database and use Transact-SQL statements to query data.</span></span>
+<span data-ttu-id="89ae0-104">Questa esercitazione introduttiva illustra come toouse [.NET Core](https://www.microsoft.com/net/) in Linux/Windows/macOS toocreate c# programma tooconnect tooan Azure SQL database e utilizzare dati tooquery di istruzioni Transact-SQL.</span><span class="sxs-lookup"><span data-stu-id="89ae0-104">This quick start tutorial demonstrates how toouse [.NET Core](https://www.microsoft.com/net/) on Windows/Linux/macOS toocreate a C# program tooconnect tooan Azure SQL database and use Transact-SQL statements tooquery data.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="74215-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="74215-105">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="89ae0-105">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="89ae0-105">Prerequisites</span></span>
 
-<span data-ttu-id="74215-106">Per completare questa esercitazione introduttiva, accertarsi di avere:</span><span class="sxs-lookup"><span data-stu-id="74215-106">To complete this quick start tutorial, make sure you have the following:</span></span>
+<span data-ttu-id="89ae0-106">Questo rapido toocomplete esercitazione per l'avvio, assicurarsi di avere seguito hello:</span><span class="sxs-lookup"><span data-stu-id="89ae0-106">toocomplete this quick start tutorial, make sure you have hello following:</span></span>
 
-- <span data-ttu-id="74215-107">un database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="74215-107">An Azure SQL database.</span></span> <span data-ttu-id="74215-108">Questa guida introduttiva usa le risorse create in una delle guide introduttive seguenti:</span><span class="sxs-lookup"><span data-stu-id="74215-108">This quick start uses the resources created in one of these quick starts:</span></span> 
+- <span data-ttu-id="89ae0-107">un database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="89ae0-107">An Azure SQL database.</span></span> <span data-ttu-id="89ae0-108">Questa Guida introduttiva utilizza risorse di hello create in una di queste guide introduttive:</span><span class="sxs-lookup"><span data-stu-id="89ae0-108">This quick start uses hello resources created in one of these quick starts:</span></span> 
 
-   - [<span data-ttu-id="74215-109">Creare un database: portale</span><span class="sxs-lookup"><span data-stu-id="74215-109">Create DB - Portal</span></span>](sql-database-get-started-portal.md)
-   - [<span data-ttu-id="74215-110">Creare un database: interfaccia della riga di comando</span><span class="sxs-lookup"><span data-stu-id="74215-110">Create DB - CLI</span></span>](sql-database-get-started-cli.md)
-   - [<span data-ttu-id="74215-111">Creare un database: PowerShell</span><span class="sxs-lookup"><span data-stu-id="74215-111">Create DB - PowerShell</span></span>](sql-database-get-started-powershell.md)
+   - [<span data-ttu-id="89ae0-109">Creare un database: portale</span><span class="sxs-lookup"><span data-stu-id="89ae0-109">Create DB - Portal</span></span>](sql-database-get-started-portal.md)
+   - [<span data-ttu-id="89ae0-110">Creare un database: interfaccia della riga di comando</span><span class="sxs-lookup"><span data-stu-id="89ae0-110">Create DB - CLI</span></span>](sql-database-get-started-cli.md)
+   - [<span data-ttu-id="89ae0-111">Creare un database: PowerShell</span><span class="sxs-lookup"><span data-stu-id="89ae0-111">Create DB - PowerShell</span></span>](sql-database-get-started-powershell.md)
 
-- <span data-ttu-id="74215-112">Una [regola del firewall a livello di server](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) per l'indirizzo IP pubblico del computer usato per questa esercitazione introduttiva.</span><span class="sxs-lookup"><span data-stu-id="74215-112">A [server-level firewall rule](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) for the public IP address of the computer you use for this quick start tutorial.</span></span>
-- <span data-ttu-id="74215-113">Avere installato [.NET Core per il sistema operativo](https://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="74215-113">You have installed [.NET Core for your operating system](https://www.microsoft.com/net/core).</span></span> 
+- <span data-ttu-id="89ae0-112">Oggetto [regola del firewall a livello di server](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) per l'indirizzo IP pubblico hello del computer hello è utilizzare per questa esercitazione introduttiva.</span><span class="sxs-lookup"><span data-stu-id="89ae0-112">A [server-level firewall rule](sql-database-get-started-portal.md#create-a-server-level-firewall-rule) for hello public IP address of hello computer you use for this quick start tutorial.</span></span>
+- <span data-ttu-id="89ae0-113">Avere installato [.NET Core per il sistema operativo](https://www.microsoft.com/net/core).</span><span class="sxs-lookup"><span data-stu-id="89ae0-113">You have installed [.NET Core for your operating system](https://www.microsoft.com/net/core).</span></span> 
 
-## <a name="sql-server-connection-information"></a><span data-ttu-id="74215-114">Informazioni di connessione SQL Server</span><span class="sxs-lookup"><span data-stu-id="74215-114">SQL server connection information</span></span>
+## <a name="sql-server-connection-information"></a><span data-ttu-id="89ae0-114">Informazioni di connessione SQL Server</span><span class="sxs-lookup"><span data-stu-id="89ae0-114">SQL server connection information</span></span>
 
-<span data-ttu-id="74215-115">Ottenere le informazioni di connessione necessarie per connettersi al database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="74215-115">Get the connection information needed to connect to the Azure SQL database.</span></span> <span data-ttu-id="74215-116">Nelle procedure successive saranno necessari il nome completo del server, il nome del database e le informazioni di accesso.</span><span class="sxs-lookup"><span data-stu-id="74215-116">You will need the fully qualified server name, database name, and login information in the next procedures.</span></span>
+<span data-ttu-id="89ae0-115">Ottenere il database di SQL Azure toohello hello connessione le informazioni necessarie tooconnect.</span><span class="sxs-lookup"><span data-stu-id="89ae0-115">Get hello connection information needed tooconnect toohello Azure SQL database.</span></span> <span data-ttu-id="89ae0-116">Sarà necessario hello nome completo del server, nome del database e le informazioni di accesso nelle procedure successive hello.</span><span class="sxs-lookup"><span data-stu-id="89ae0-116">You will need hello fully qualified server name, database name, and login information in hello next procedures.</span></span>
 
-1. <span data-ttu-id="74215-117">Accedere al [Portale di Azure](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="74215-117">Log in to the [Azure portal](https://portal.azure.com/).</span></span>
-2. <span data-ttu-id="74215-118">Scegliere **Database SQL** dal menu a sinistra, quindi fare clic sul database nella pagina **Database SQL**.</span><span class="sxs-lookup"><span data-stu-id="74215-118">Select **SQL Databases** from the left-hand menu, and click your database on the **SQL databases** page.</span></span> 
-3. <span data-ttu-id="74215-119">Nella pagina **Panoramica** per il database, verificare il nome completo del server, come mostrato nell'immagine seguente.</span><span class="sxs-lookup"><span data-stu-id="74215-119">On the **Overview** page for your database, review the fully qualified server name as shown in the following image.</span></span> <span data-ttu-id="74215-120">È possibile passare il puntatore sul nome del server per visualizzare l'opzione **Fare clic per copiare**.</span><span class="sxs-lookup"><span data-stu-id="74215-120">You can hover over the server name to bring up the **Click to copy** option.</span></span> 
+1. <span data-ttu-id="89ae0-117">Accedi toohello [portale di Azure](https://portal.azure.com/).</span><span class="sxs-lookup"><span data-stu-id="89ae0-117">Log in toohello [Azure portal](https://portal.azure.com/).</span></span>
+2. <span data-ttu-id="89ae0-118">Selezionare **database SQL** dal menu a sinistra di hello, scegliere il database in hello **database SQL** pagina.</span><span class="sxs-lookup"><span data-stu-id="89ae0-118">Select **SQL Databases** from hello left-hand menu, and click your database on hello **SQL databases** page.</span></span> 
+3. <span data-ttu-id="89ae0-119">In hello **Panoramica** pagina per il database, revisione hello nome completo del server come illustrato nella seguente immagine hello.</span><span class="sxs-lookup"><span data-stu-id="89ae0-119">On hello **Overview** page for your database, review hello fully qualified server name as shown in hello following image.</span></span> <span data-ttu-id="89ae0-120">È possibile passare il mouse su toobring nome di server hello backup hello **fare clic su toocopy** opzione.</span><span class="sxs-lookup"><span data-stu-id="89ae0-120">You can hover over hello server name toobring up hello **Click toocopy** option.</span></span> 
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. <span data-ttu-id="74215-122">Se si dimenticano le informazioni di accesso per il server di database SQL di Azure, passare alla pagina del server di database SQL per visualizzare il nome dell'amministratore del server.</span><span class="sxs-lookup"><span data-stu-id="74215-122">If you forget your Azure SQL Database server login information, navigate to the SQL Database server page to view the server admin name.</span></span> <span data-ttu-id="74215-123">È possibile reimpostare la password, se necessario.</span><span class="sxs-lookup"><span data-stu-id="74215-123">You can reset the password if necessary.</span></span>
+4. <span data-ttu-id="89ae0-122">Se si dimenticano le informazioni di accesso del server Database SQL di Azure, passare toohello Database di SQL server pagina tooview hello admin nome del server.</span><span class="sxs-lookup"><span data-stu-id="89ae0-122">If you forget your Azure SQL Database server login information, navigate toohello SQL Database server page tooview hello server admin name.</span></span> <span data-ttu-id="89ae0-123">Se necessario, è possibile reimpostare la password di hello.</span><span class="sxs-lookup"><span data-stu-id="89ae0-123">You can reset hello password if necessary.</span></span>
 
-5. <span data-ttu-id="74215-124">Fare clic su **Mostra stringhe di connessione del database**.</span><span class="sxs-lookup"><span data-stu-id="74215-124">Click **Show database connection strings**.</span></span>
+5. <span data-ttu-id="89ae0-124">Fare clic su **Mostra stringhe di connessione del database**.</span><span class="sxs-lookup"><span data-stu-id="89ae0-124">Click **Show database connection strings**.</span></span>
 
-6. <span data-ttu-id="74215-125">Esaminare la stringa di connessione completa **ADO.NET**.</span><span class="sxs-lookup"><span data-stu-id="74215-125">Review the complete **ADO.NET** connection string.</span></span>
+6. <span data-ttu-id="89ae0-125">Hello revisione completa **ADO.NET** stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="89ae0-125">Review hello complete **ADO.NET** connection string.</span></span>
 
     ![Stringa di connessione ADO.NET](./media/sql-database-connect-query-dotnet/adonet-connection-string.png)
 
 > [!IMPORTANT]
-> <span data-ttu-id="74215-127">È necessario avere una regola del firewall impostata per l'indirizzo IP pubblico del computer su cui si esegue questa esercitazione.</span><span class="sxs-lookup"><span data-stu-id="74215-127">You must have a firewall rule in place for the public IP address of the computer on which you perform this tutorial.</span></span> <span data-ttu-id="74215-128">Se si usa un computer o un indirizzo IP pubblico diverso, creare una [regola del firewall a livello di server con il portale di Azure](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).</span><span class="sxs-lookup"><span data-stu-id="74215-128">If you are on a different computer or have a different public IP address, create a [server-level firewall rule using the Azure portal](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).</span></span> 
+> <span data-ttu-id="89ae0-127">Sul posto per l'indirizzo IP pubblico hello del computer hello in cui si esegue questa esercitazione, è necessario disporre una regola del firewall.</span><span class="sxs-lookup"><span data-stu-id="89ae0-127">You must have a firewall rule in place for hello public IP address of hello computer on which you perform this tutorial.</span></span> <span data-ttu-id="89ae0-128">Se in un computer diverso o di un diverso indirizzo IP pubblico, creare un [regola firewall di livello server utilizzando il portale di Azure di hello](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).</span><span class="sxs-lookup"><span data-stu-id="89ae0-128">If you are on a different computer or have a different public IP address, create a [server-level firewall rule using hello Azure portal](sql-database-get-started-portal.md#create-a-server-level-firewall-rule).</span></span> 
 >
   
-## <a name="create-a-new-net-project"></a><span data-ttu-id="74215-129">Creare un nuovo progetto .NET</span><span class="sxs-lookup"><span data-stu-id="74215-129">Create a new .NET project</span></span>
+## <a name="create-a-new-net-project"></a><span data-ttu-id="89ae0-129">Creare un nuovo progetto .NET</span><span class="sxs-lookup"><span data-stu-id="89ae0-129">Create a new .NET project</span></span>
 
-1. <span data-ttu-id="74215-130">Aprire un prompt dei comandi e creare una cartella denominata *sqltest*.</span><span class="sxs-lookup"><span data-stu-id="74215-130">Open a command prompt and create a folder named *sqltest*.</span></span> <span data-ttu-id="74215-131">Passare alla cartella creata ed eseguire questo comando:</span><span class="sxs-lookup"><span data-stu-id="74215-131">Navigate to the folder you created and run the following command:</span></span>
+1. <span data-ttu-id="89ae0-130">Aprire un prompt dei comandi e creare una cartella denominata *sqltest*.</span><span class="sxs-lookup"><span data-stu-id="89ae0-130">Open a command prompt and create a folder named *sqltest*.</span></span> <span data-ttu-id="89ae0-131">Esplorazione delle cartelle toohello è creare ed eseguire hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="89ae0-131">Navigate toohello folder you created and run hello following command:</span></span>
 
     ```
     dotnet new console
     ```
 
-2. <span data-ttu-id="74215-132">Aprire ***sqltest.csproj*** con l'editor di testo preferito e aggiungere System.Data.SqlClient come dipendenza usando il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="74215-132">Open ***sqltest.csproj*** with your favorite text editor and add System.Data.SqlClient as a dependency using the following code:</span></span>
+2. <span data-ttu-id="89ae0-132">Aprire ***sqltest.csproj*** con un editor di testo e aggiungere SqlClient come dipendenza utilizzando hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="89ae0-132">Open ***sqltest.csproj*** with your favorite text editor and add System.Data.SqlClient as a dependency using hello following code:</span></span>
 
     ```xml
     <ItemGroup>
@@ -76,11 +76,11 @@ ms.lasthandoff: 08/03/2017
     </ItemGroup>
     ```
 
-## <a name="insert-code-to-query-sql-database"></a><span data-ttu-id="74215-133">Inserire il codice per eseguire query sul database SQL</span><span class="sxs-lookup"><span data-stu-id="74215-133">Insert code to query SQL database</span></span>
+## <a name="insert-code-tooquery-sql-database"></a><span data-ttu-id="89ae0-133">Inserire codice tooquery SQL database</span><span class="sxs-lookup"><span data-stu-id="89ae0-133">Insert code tooquery SQL database</span></span>
 
-1. <span data-ttu-id="74215-134">Nell'ambiente di sviluppo o nell'editor di testo preferito aprire **Program.cs**.</span><span class="sxs-lookup"><span data-stu-id="74215-134">In your development environment or favorite text editor open **Program.cs**</span></span>
+1. <span data-ttu-id="89ae0-134">Nell'ambiente di sviluppo o nell'editor di testo preferito aprire **Program.cs**.</span><span class="sxs-lookup"><span data-stu-id="89ae0-134">In your development environment or favorite text editor open **Program.cs**</span></span>
 
-2. <span data-ttu-id="74215-135">Sostituire il contenuto con il codice seguente e aggiungere i valori appropriati per il server, il database, l'utente e la password.</span><span class="sxs-lookup"><span data-stu-id="74215-135">Replace the contents with the following code and add the appropriate values for your server, database, user, and password.</span></span>
+2. <span data-ttu-id="89ae0-135">Sostituire il contenuto di hello con hello seguente di codice e aggiungere hello valori appropriati per il server, database, l'utente e password.</span><span class="sxs-lookup"><span data-stu-id="89ae0-135">Replace hello contents with hello following code and add hello appropriate values for your server, database, user, and password.</span></span>
 
 ```csharp
 using System;
@@ -136,21 +136,21 @@ namespace sqltest
 }
 ```
 
-## <a name="run-the-code"></a><span data-ttu-id="74215-136">Eseguire il codice</span><span class="sxs-lookup"><span data-stu-id="74215-136">Run the code</span></span>
+## <a name="run-hello-code"></a><span data-ttu-id="89ae0-136">Eseguire il codice hello</span><span class="sxs-lookup"><span data-stu-id="89ae0-136">Run hello code</span></span>
 
-1. <span data-ttu-id="74215-137">Al prompt dei comandi eseguire questi comandi:</span><span class="sxs-lookup"><span data-stu-id="74215-137">At the command prompt, run the following commands:</span></span>
+1. <span data-ttu-id="89ae0-137">Al prompt dei comandi di hello, eseguire hello seguenti comandi:</span><span class="sxs-lookup"><span data-stu-id="89ae0-137">At hello command prompt, run hello following commands:</span></span>
 
    ```csharp
    dotnet restore
    dotnet run
    ```
 
-2. <span data-ttu-id="74215-138">Verificare che vengano restituite le prime 20 righe e quindi chiudere la finestra dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="74215-138">Verify that the top 20 rows are returned and then close the application window.</span></span>
+2. <span data-ttu-id="89ae0-138">Verificare che i 20 righe hello superiore vengono restituite e chiudere la finestra dell'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="89ae0-138">Verify that hello top 20 rows are returned and then close hello application window.</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="74215-139">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="74215-139">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="89ae0-139">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="89ae0-139">Next steps</span></span>
 
-- <span data-ttu-id="74215-140">[Introduzione all'uso di .NET Core su Windows/Linux/macOS dalla riga di comando](/dotnet/core/tutorials/using-with-xplat-cli).</span><span class="sxs-lookup"><span data-stu-id="74215-140">[Getting started with .NET Core on Windows/Linux/macOS using the command line](/dotnet/core/tutorials/using-with-xplat-cli).</span></span>
-- <span data-ttu-id="74215-141">Informazioni su come [connettersi ed eseguire query su un database SQL di Azure usando .NET Framework e Visual Studio](sql-database-connect-query-dotnet-visual-studio.md).</span><span class="sxs-lookup"><span data-stu-id="74215-141">Learn how to [connect and query an Azure SQL database using the .NET framework and Visual Studio](sql-database-connect-query-dotnet-visual-studio.md).</span></span>  
-- <span data-ttu-id="74215-142">Informazioni su come [progettare il primo database SQL di Azure con SSMS](sql-database-design-first-database.md) o su come [progettare il primo database SQL di Azure con .NET](sql-database-design-first-database-csharp.md).</span><span class="sxs-lookup"><span data-stu-id="74215-142">Learn how to [Design your first Azure SQL database using SSMS](sql-database-design-first-database.md) or [Design your first Azure SQL database using .NET](sql-database-design-first-database-csharp.md).</span></span>
-- <span data-ttu-id="74215-143">Per altre informazioni su .NET, vedere la [documentazione di .NET](https://docs.microsoft.com/dotnet/).</span><span class="sxs-lookup"><span data-stu-id="74215-143">For more information about .NET, see [.NET documentation](https://docs.microsoft.com/dotnet/).</span></span>
+- <span data-ttu-id="89ae0-140">[Introduzione a .NET Core in Windows o Linux/macOS tramite riga di comando hello](/dotnet/core/tutorials/using-with-xplat-cli).</span><span class="sxs-lookup"><span data-stu-id="89ae0-140">[Getting started with .NET Core on Windows/Linux/macOS using hello command line](/dotnet/core/tutorials/using-with-xplat-cli).</span></span>
+- <span data-ttu-id="89ae0-141">Informazioni su come troppo[connettersi ed eseguire query su un database SQL di Azure mediante hello .NET framework e Visual Studio](sql-database-connect-query-dotnet-visual-studio.md).</span><span class="sxs-lookup"><span data-stu-id="89ae0-141">Learn how too[connect and query an Azure SQL database using hello .NET framework and Visual Studio](sql-database-connect-query-dotnet-visual-studio.md).</span></span>  
+- <span data-ttu-id="89ae0-142">Informazioni su come troppo[progettazione di un database SQL di Azure utilizzando SSMS](sql-database-design-first-database.md) o [progettazione di un database SQL di Azure usando .NET](sql-database-design-first-database-csharp.md).</span><span class="sxs-lookup"><span data-stu-id="89ae0-142">Learn how too[Design your first Azure SQL database using SSMS](sql-database-design-first-database.md) or [Design your first Azure SQL database using .NET](sql-database-design-first-database-csharp.md).</span></span>
+- <span data-ttu-id="89ae0-143">Per altre informazioni su .NET, vedere la [documentazione di .NET](https://docs.microsoft.com/dotnet/).</span><span class="sxs-lookup"><span data-stu-id="89ae0-143">For more information about .NET, see [.NET documentation](https://docs.microsoft.com/dotnet/).</span></span>

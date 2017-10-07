@@ -1,6 +1,6 @@
 ---
-title: Mapping delle colonne del set di dati in Azure Data Factory | Documentazione Microsoft
-description: Informazioni su come eseguire il mapping delle colonne di origine alle colonne di destinazione.
+title: colonne di set di dati aaaMapping nella Data Factory di Azure | Documenti Microsoft
+description: Informazioni su come toomap colonne toodestination di colonne di origine.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: a50661b377cfbbff3f1f762342cb275d5da82cea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f78d4af675bec0a70e5f6e83ec1ffb511408b5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-source-dataset-columns-to-destination-dataset-columns"></a><span data-ttu-id="ebdfe-103">Eseguire il mapping delle colonne del set di dati di origine alle colonne del set di dati di destinazione</span><span class="sxs-lookup"><span data-stu-id="ebdfe-103">Map source dataset columns to destination dataset columns</span></span>
-<span data-ttu-id="ebdfe-104">Mapping di colonne utilizzabile per specificare come le colonne specificate nella "struttura" di mapping della tabella di origine alle colonne specificate nella "struttura" della tabella di sink.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-104">Column mapping can be used to specify how columns specified in the “structure” of source table map to columns specified in the “structure” of sink table.</span></span> <span data-ttu-id="ebdfe-105">La proprietà **columnMapping** è disponibile nella sezione **typeProperties** dell'attività di copia.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-105">The **columnMapping** property is available in the **typeProperties** section of the Copy activity.</span></span>
+# <a name="map-source-dataset-columns-toodestination-dataset-columns"></a><span data-ttu-id="11203-103">Eseguire il mapping di colonne di set di dati di origine del dataset colonne toodestination</span><span class="sxs-lookup"><span data-stu-id="11203-103">Map source dataset columns toodestination dataset columns</span></span>
+<span data-ttu-id="11203-104">Mapping della colonna può essere utilizzato toospecify come colonne specificate nella hello "struttura" di toocolumns mappa tabella di origine specificate in hello "struttura" della tabella del sink.</span><span class="sxs-lookup"><span data-stu-id="11203-104">Column mapping can be used toospecify how columns specified in hello “structure” of source table map toocolumns specified in hello “structure” of sink table.</span></span> <span data-ttu-id="11203-105">Hello **columnMapping** proprietà è disponibile in hello **typeProperties** sezione di hello attività di copia.</span><span class="sxs-lookup"><span data-stu-id="11203-105">hello **columnMapping** property is available in hello **typeProperties** section of hello Copy activity.</span></span>
 
-<span data-ttu-id="ebdfe-106">Il mapping di colonne supporta gli scenari seguenti:</span><span class="sxs-lookup"><span data-stu-id="ebdfe-106">Column mapping supports the following scenarios:</span></span>
+<span data-ttu-id="11203-106">Mapping di colonne supporta hello seguenti scenari:</span><span class="sxs-lookup"><span data-stu-id="11203-106">Column mapping supports hello following scenarios:</span></span>
 
-* <span data-ttu-id="ebdfe-107">Tutte le colonne della struttura del set di dati di origine vengono mappate a tutte le colonne della struttura del set di dati del sink.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-107">All columns in the source dataset structure are mapped to all columns in the sink dataset structure.</span></span>
-* <span data-ttu-id="ebdfe-108">Un sottoinsieme delle colonne nella struttura del set di dati di origine viene mappato a tutte le colonne della struttura del set di dati del sink.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-108">A subset of the columns in the source dataset structure is mapped to all columns in the sink dataset structure.</span></span>
+* <span data-ttu-id="11203-107">Tutte le colonne nella struttura di set di dati di origine hello sono mappate tooall nella struttura di hello sink set di dati.</span><span class="sxs-lookup"><span data-stu-id="11203-107">All columns in hello source dataset structure are mapped tooall columns in hello sink dataset structure.</span></span>
+* <span data-ttu-id="11203-108">Un subset di colonne hello nella struttura di set di dati di origine hello è mappato tooall colonne struttura di set di dati di hello sink.</span><span class="sxs-lookup"><span data-stu-id="11203-108">A subset of hello columns in hello source dataset structure is mapped tooall columns in hello sink dataset structure.</span></span>
 
-<span data-ttu-id="ebdfe-109">Le seguenti sono condizioni di errore che generano un'eccezione:</span><span class="sxs-lookup"><span data-stu-id="ebdfe-109">The following are error conditions that result in an exception:</span></span>
+<span data-ttu-id="11203-109">di seguito Hello sono condizioni di errore che comporta un'eccezione:</span><span class="sxs-lookup"><span data-stu-id="11203-109">hello following are error conditions that result in an exception:</span></span>
 
-* <span data-ttu-id="ebdfe-110">Un numero inferiore o superiore di colonne nella "struttura" della tabella di sink di quanto specificato nel mapping.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-110">Either fewer columns or more columns in the “structure” of sink table than specified in the mapping.</span></span>
-* <span data-ttu-id="ebdfe-111">Mapping duplicato.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-111">Duplicate mapping.</span></span>
-* <span data-ttu-id="ebdfe-112">Il risultato della query SQL non ha un nome colonna specificato nel mapping.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-112">SQL query result does not have a column name that is specified in the mapping.</span></span>
+* <span data-ttu-id="11203-110">Un numero di colonne o altre colonne in hello "struttura" della tabella del sink specificato nel mapping hello.</span><span class="sxs-lookup"><span data-stu-id="11203-110">Either fewer columns or more columns in hello “structure” of sink table than specified in hello mapping.</span></span>
+* <span data-ttu-id="11203-111">Mapping duplicato.</span><span class="sxs-lookup"><span data-stu-id="11203-111">Duplicate mapping.</span></span>
+* <span data-ttu-id="11203-112">Risultato della query SQL non dispone di un nome di colonna specificato nel mapping hello.</span><span class="sxs-lookup"><span data-stu-id="11203-112">SQL query result does not have a column name that is specified in hello mapping.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ebdfe-113">Gli esempi che seguono sono per SQL Azure e Azure Blob, ma sono applicabili per qualsiasi archivio dati che supporti set di dati rettangolari.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-113">The following samples are for Azure SQL and Azure Blob but are applicable to any data store that supports rectangular datasets.</span></span> <span data-ttu-id="ebdfe-114">Modificare i set di dati e le definizioni dei servizi collegati negli esempi per puntare a dati nell'origine dati pertinente.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-114">Adjust dataset and linked service definitions in examples to point to data in the relevant data source.</span></span>
+> <span data-ttu-id="11203-113">Hello negli esempi seguenti sono per SQL Azure e Blob di Azure ma sono applicabili tooany archivio di dati che supporta i set di dati rettangolare.</span><span class="sxs-lookup"><span data-stu-id="11203-113">hello following samples are for Azure SQL and Azure Blob but are applicable tooany data store that supports rectangular datasets.</span></span> <span data-ttu-id="11203-114">Modificare i set di dati e le definizioni di servizio collegato in toodata toopoint esempi nell'origine dati rilevanti hello.</span><span class="sxs-lookup"><span data-stu-id="11203-114">Adjust dataset and linked service definitions in examples toopoint toodata in hello relevant data source.</span></span>
 
-## <a name="sample-1--column-mapping-from-azure-sql-to-azure-blob"></a><span data-ttu-id="ebdfe-115">Esempio 1: mapping di colonne da Azure SQL al BLOB di Azure</span><span class="sxs-lookup"><span data-stu-id="ebdfe-115">Sample 1 – column mapping from Azure SQL to Azure blob</span></span>
-<span data-ttu-id="ebdfe-116">In questo esempio, la tabella di input ha una struttura che punta a una tabella SQL in un database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-116">In this sample, the input table has a structure and it points to a SQL table in an Azure SQL database.</span></span>
+## <a name="sample-1--column-mapping-from-azure-sql-tooazure-blob"></a><span data-ttu-id="11203-115">Esempio 1: mapping dal blob di Azure SQL tooAzure colonne</span><span class="sxs-lookup"><span data-stu-id="11203-115">Sample 1 – column mapping from Azure SQL tooAzure blob</span></span>
+<span data-ttu-id="11203-116">In questo esempio, tabella di input hello ha una struttura e tabella SQL tooa punti in un database SQL di Azure.</span><span class="sxs-lookup"><span data-stu-id="11203-116">In this sample, hello input table has a structure and it points tooa SQL table in an Azure SQL database.</span></span>
 
 ```json
 {
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="ebdfe-117">In questo esempio, la tabella di output ha una struttura che punta a un BLOB in un'archiviazione BLOB di Azure.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-117">In this sample, the output table has a structure and it points to a blob in an Azure blob storage.</span></span>
+<span data-ttu-id="11203-117">In questo esempio, tabella di output di hello ha una struttura e punti tooa blob in un archivio blob di Azure.</span><span class="sxs-lookup"><span data-stu-id="11203-117">In this sample, hello output table has a structure and it points tooa blob in an Azure blob storage.</span></span>
 
 ```json
 {
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-<span data-ttu-id="ebdfe-118">Il codice JSON seguente definisce un'attività di copia in una pipeline.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-118">The following JSON defines a copy activity in a pipeline.</span></span> <span data-ttu-id="ebdfe-119">Le colonne dell'origine vengono mappate alle colonne del sink (**columnMappings**) usando la proprietà **Translator**.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-119">The columns from source mapped to columns in sink (**columnMappings**) by using the **Translator** property.</span></span>
+<span data-ttu-id="11203-118">Hello JSON seguente definisce un'attività di copia in una pipeline.</span><span class="sxs-lookup"><span data-stu-id="11203-118">hello following JSON defines a copy activity in a pipeline.</span></span> <span data-ttu-id="11203-119">mapping delle colonne di Hello dall'origine toocolumns nel sink (**columnMappings**) utilizzando hello **traduttore** proprietà.</span><span class="sxs-lookup"><span data-stu-id="11203-119">hello columns from source mapped toocolumns in sink (**columnMappings**) by using hello **Translator** property.</span></span>
 
 ```json
 {
@@ -133,12 +133,12 @@ ms.lasthandoff: 07/11/2017
         }
 }
 ```
-<span data-ttu-id="ebdfe-120">**Flusso del mapping di colonne:**</span><span class="sxs-lookup"><span data-stu-id="ebdfe-120">**Column mapping flow:**</span></span>
+<span data-ttu-id="11203-120">**Flusso del mapping di colonne:**</span><span class="sxs-lookup"><span data-stu-id="11203-120">**Column mapping flow:**</span></span>
 
 ![Flusso del mapping di colonne](./media/data-factory-map-columns/column-mapping-flow.png)
 
-## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-to-azure-blob"></a><span data-ttu-id="ebdfe-122">Esempio 2: mapping di colonne con query SQL da Azure SQL al BLOB di Azure</span><span class="sxs-lookup"><span data-stu-id="ebdfe-122">Sample 2 – column mapping with SQL query from Azure SQL to Azure blob</span></span>
-<span data-ttu-id="ebdfe-123">In questo esempio, una query SQL viene utilizzata per estrarre dati da Azure SQL invece di specificare semplicemente il nome della tabella e i nomi delle colonne nella sezione "struttura".</span><span class="sxs-lookup"><span data-stu-id="ebdfe-123">In this sample, a SQL query is used to extract data from Azure SQL instead of simply specifying the table name and the column names in “structure” section.</span></span> 
+## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-tooazure-blob"></a><span data-ttu-id="11203-122">Esempio 2: mapping con query SQL da blob di Azure SQL tooAzure colonne</span><span class="sxs-lookup"><span data-stu-id="11203-122">Sample 2 – column mapping with SQL query from Azure SQL tooAzure blob</span></span>
+<span data-ttu-id="11203-123">In questo esempio, una query SQL è usato tooextract dati da SQL Azure anziché specificare semplicemente il nome di tabella hello e nomi di colonna hello nella sezione "struttura".</span><span class="sxs-lookup"><span data-stu-id="11203-123">In this sample, a SQL query is used tooextract data from Azure SQL instead of simply specifying hello table name and hello column names in “structure” section.</span></span> 
 
 ```json
 {
@@ -170,13 +170,13 @@ ms.lasthandoff: 07/11/2017
         }
 }
 ```
-<span data-ttu-id="ebdfe-124">In questo caso, i risultati della query vengono prima mappati alle colonne specificate in "struttura" di origine.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-124">In this case, the query results are first mapped to columns specified in “structure” of source.</span></span> <span data-ttu-id="ebdfe-125">Successivamente, le colonne di origine "struttura" vengono mappate alle colonne nel sink "struttura" con le regole specificate nel columnMappings.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-125">Next, the columns from source “structure” are mapped to columns in sink “structure” with rules specified in columnMappings.</span></span>  <span data-ttu-id="ebdfe-126">Si supponga che la query restituisca 5 colonne, due in più di quelle specificate nella "struttura" dell'origine.</span><span class="sxs-lookup"><span data-stu-id="ebdfe-126">Suppose the query returns 5 columns, two more columns than those specified in the “structure” of source.</span></span>
+<span data-ttu-id="11203-124">In questo caso, i risultati della query hello sono prima toocolumns mappato specificato in "struttura" dell'origine.</span><span class="sxs-lookup"><span data-stu-id="11203-124">In this case, hello query results are first mapped toocolumns specified in “structure” of source.</span></span> <span data-ttu-id="11203-125">Successivamente, le colonne di hello dall'origine "struttura" sono mappate toocolumns nel sink "struttura" con le regole specificate in elementi columnMappings.</span><span class="sxs-lookup"><span data-stu-id="11203-125">Next, hello columns from source “structure” are mapped toocolumns in sink “structure” with rules specified in columnMappings.</span></span>  <span data-ttu-id="11203-126">Si supponga che la query hello restituisce 5 colonne, altre due colonne rispetto a quelle specificate in hello "struttura" dell'origine.</span><span class="sxs-lookup"><span data-stu-id="11203-126">Suppose hello query returns 5 columns, two more columns than those specified in hello “structure” of source.</span></span>
 
-<span data-ttu-id="ebdfe-127">**Flusso del mapping di colonne**</span><span class="sxs-lookup"><span data-stu-id="ebdfe-127">**Column mapping flow**</span></span>
+<span data-ttu-id="11203-127">**Flusso del mapping di colonne**</span><span class="sxs-lookup"><span data-stu-id="11203-127">**Column mapping flow**</span></span>
 
 ![Flusso del mapping di colonne-2](./media/data-factory-map-columns/column-mapping-flow-2.png)
 
-## <a name="next-steps"></a><span data-ttu-id="ebdfe-129">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="ebdfe-129">Next steps</span></span>
-<span data-ttu-id="ebdfe-130">Vedere l'articolo per un'esercitazione sull'uso dell'attività di copia:</span><span class="sxs-lookup"><span data-stu-id="ebdfe-130">See the article for a tutorial on using Copy Activity:</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="11203-129">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="11203-129">Next steps</span></span>
+<span data-ttu-id="11203-130">Per un'esercitazione sull'uso di attività di copia, vedere l'articolo di hello:</span><span class="sxs-lookup"><span data-stu-id="11203-130">See hello article for a tutorial on using Copy Activity:</span></span> 
 
-- [<span data-ttu-id="ebdfe-131">Copiare dati da un archivio BLOB a un database SQL</span><span class="sxs-lookup"><span data-stu-id="ebdfe-131">Copy data from Blob Storage to SQL Database</span></span>](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [<span data-ttu-id="11203-131">Copiare i dati da archiviazione Blob tooSQL Database</span><span class="sxs-lookup"><span data-stu-id="11203-131">Copy data from Blob Storage tooSQL Database</span></span>](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)

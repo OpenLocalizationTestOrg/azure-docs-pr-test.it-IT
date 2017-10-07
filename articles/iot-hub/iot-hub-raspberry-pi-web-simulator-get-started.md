@@ -1,12 +1,12 @@
 ---
-title: Raspberry Pi simulato al cloud (Node.js) - Connettere il simulatore Web Raspberry Pi all'hub IoT di Azure | Microsoft Docs
-description: Connettere il simulatore Web Raspberry Pi all'hub IoT di Azure per permettere a Raspberry Pi di inviare dati al cloud di Azure.
+title: aaaSimulated Raspberry Pi toocloud (Node.js) - connessione Raspberry l'installazione guidata piattaforma web simulatore tooAzure IoT Hub | Documenti Microsoft
+description: Connettersi Raspberry Pi web simulatore tooAzure IoT Hub per Pi Raspberry toosend dati toohello cloud di Azure.
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: simulatore raspberry pi, azure iot raspberry pi, raspberry pi hub iot, raspberry pi invia dati al cloud, raspberry pi al cloud
+keywords: pi al lampone simulatore, azure al lampone pi greco, al lampone pi iot hub iot, pi al lampone invia dati toocloud, al lampone pi toocloud
 ms.service: iot-hub
 ms.devlang: node
 ms.topic: article
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/28/2017
 ms.author: xshi
-ms.openlocfilehash: 3b80bf35d6af91d5bdb196d97668dc0f837b92cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83736caf6ce723a49001058495a780f7f51946a9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-raspberry-pi-online-simulator-to-azure-iot-hub-nodejs"></a><span data-ttu-id="e41aa-104">Connettore il simulatore online Raspberry Pi all'hub IoT di Azure (Node.js)</span><span class="sxs-lookup"><span data-stu-id="e41aa-104">Connect Raspberry Pi online simulator to Azure IoT Hub (Node.js)</span></span>
+# <a name="connect-raspberry-pi-online-simulator-tooazure-iot-hub-nodejs"></a><span data-ttu-id="dc237-104">Connettersi Pi Raspberry simulatore online tooAzure IoT Hub (Node.js)</span><span class="sxs-lookup"><span data-stu-id="dc237-104">Connect Raspberry Pi online simulator tooAzure IoT Hub (Node.js)</span></span>
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-<span data-ttu-id="e41aa-105">Questa esercitazione illustra le nozioni di base relative all'uso del simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-105">In this tutorial, you begin by learning the basics of working with Raspberry Pi online simulator.</span></span> <span data-ttu-id="e41aa-106">In seguito illustra come connettere in modo trasparente il simulatore al cloud usando l'[hub IoT di Azure](iot-hub-what-is-iot-hub.md).</span><span class="sxs-lookup"><span data-stu-id="e41aa-106">You then learn how to seamlessly connect the Pi simulator to the cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span> 
+<span data-ttu-id="dc237-105">In questa esercitazione, è necessario innanzitutto apprendimento hello nozioni fondamentali sulle operazioni con simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="dc237-105">In this tutorial, you begin by learning hello basics of working with Raspberry Pi online simulator.</span></span> <span data-ttu-id="dc237-106">Si apprenderà quindi la modalità di connessione cloud toohello di hello Pi simulatore utilizzando tooseamlessly [IoT Hub Azure](iot-hub-what-is-iot-hub.md).</span><span class="sxs-lookup"><span data-stu-id="dc237-106">You then learn how tooseamlessly connect hello Pi simulator toohello cloud by using [Azure IoT Hub](iot-hub-what-is-iot-hub.md).</span></span> 
 
-<span data-ttu-id="e41aa-107">Se si dispone di dispositivi fisici, per iniziare visitare [Connettere Raspberry Pi all'hub IoT di Azure](iot-hub-raspberry-pi-kit-node-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="e41aa-107">If you have physical devices, visit [Connect Raspberry Pi to Azure IoT Hub](iot-hub-raspberry-pi-kit-node-get-started.md) to get started.</span></span> 
+<span data-ttu-id="dc237-107">Se si dispone di dispositivi fisici, visitare [tooAzure connettersi Pi Raspberry IoT Hub](iot-hub-raspberry-pi-kit-node-get-started.md) tooget avviato.</span><span class="sxs-lookup"><span data-stu-id="dc237-107">If you have physical devices, visit [Connect Raspberry Pi tooAzure IoT Hub](iot-hub-raspberry-pi-kit-node-get-started.md) tooget started.</span></span> 
 
 <p>
 <div id="diag" style="width:100%; text-align:center">
 <a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#getstarted" target="_blank">
-<img src="media/iot-hub-raspberry-pi-web-simulator/3_banner.png" alt="Connect Raspberry Pi web simulator to Azure IoT Hub" width="400">
+<img src="media/iot-hub-raspberry-pi-web-simulator/3_banner.png" alt="Connect Raspberry Pi web simulator tooAzure IoT Hub" width="400">
 </div>
 <p>
 <div id="button" style="width:100%; text-align:center">
@@ -39,57 +39,57 @@ ms.lasthandoff: 08/03/2017
 <img src="media/iot-hub-raspberry-pi-web-simulator/6_button_default.png" alt="Start Raspberry Pi simulator" width="400" onmouseover="this.src='media/iot-hub-raspberry-pi-web-simulator/5_button_click.png';" onmouseout="this.src='media/iot-hub-raspberry-pi-web-simulator/6_button_default.png';">
 </div>
 
-## <a name="what-you-do"></a><span data-ttu-id="e41aa-108">Operazioni da fare</span><span class="sxs-lookup"><span data-stu-id="e41aa-108">What you do</span></span>
+## <a name="what-you-do"></a><span data-ttu-id="dc237-108">Operazioni da fare</span><span class="sxs-lookup"><span data-stu-id="dc237-108">What you do</span></span>
 
-* <span data-ttu-id="e41aa-109">Apprendere le nozioni base del simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-109">Learn the basics of Raspberry Pi online simulator.</span></span>
-* <span data-ttu-id="e41aa-110">Creare un hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-110">Create an IoT hub.</span></span>
-* <span data-ttu-id="e41aa-111">Registrare un dispositivo per Pi nel proprio hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-111">Register a device for Pi in your IoT hub.</span></span>
-* <span data-ttu-id="e41aa-112">Eseguire un'applicazione di esempio in Pi per inviare i dati del sensore simulato all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-112">Run a sample application on Pi to send simulated sensor data to your IoT hub.</span></span>
+* <span data-ttu-id="dc237-109">Nozioni di base hello del simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="dc237-109">Learn hello basics of Raspberry Pi online simulator.</span></span>
+* <span data-ttu-id="dc237-110">Creare un hub IoT.</span><span class="sxs-lookup"><span data-stu-id="dc237-110">Create an IoT hub.</span></span>
+* <span data-ttu-id="dc237-111">Registrare un dispositivo per Pi nel proprio hub IoT.</span><span class="sxs-lookup"><span data-stu-id="dc237-111">Register a device for Pi in your IoT hub.</span></span>
+* <span data-ttu-id="dc237-112">Eseguire un'applicazione di esempio Pi toosend simulato sensore dati tooyour IoT hub.</span><span class="sxs-lookup"><span data-stu-id="dc237-112">Run a sample application on Pi toosend simulated sensor data tooyour IoT hub.</span></span>
 
-<span data-ttu-id="e41aa-113">Connettere il connettore Raspberry Pi simulato a un hub IoT creato.</span><span class="sxs-lookup"><span data-stu-id="e41aa-113">Connect simulated Raspberry Pi to an IoT hub that you create.</span></span> <span data-ttu-id="e41aa-114">Eseguire un'applicazione di esempio con il simulatore per generare i dati del sensore.</span><span class="sxs-lookup"><span data-stu-id="e41aa-114">Then you run a sample application with the simulator to generate sensor data.</span></span> <span data-ttu-id="e41aa-115">Infine inviare i dati del sensore all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-115">Finally, you send the sensor data to your IoT hub.</span></span>
+<span data-ttu-id="dc237-113">Connettere hub IoT tooan simulato Pi Raspberry creati.</span><span class="sxs-lookup"><span data-stu-id="dc237-113">Connect simulated Raspberry Pi tooan IoT hub that you create.</span></span> <span data-ttu-id="dc237-114">Quindi si esegue un'applicazione di esempio con i dati del sensore toogenerate hello simulatore.</span><span class="sxs-lookup"><span data-stu-id="dc237-114">Then you run a sample application with hello simulator toogenerate sensor data.</span></span> <span data-ttu-id="dc237-115">Infine, si invia l'hub IoT hello sensore dati tooyour.</span><span class="sxs-lookup"><span data-stu-id="dc237-115">Finally, you send hello sensor data tooyour IoT hub.</span></span>
 
-## <a name="what-you-learn"></a><span data-ttu-id="e41aa-116">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="e41aa-116">What you learn</span></span>
+## <a name="what-you-learn"></a><span data-ttu-id="dc237-116">Contenuto dell'esercitazione</span><span class="sxs-lookup"><span data-stu-id="dc237-116">What you learn</span></span>
 
-* <span data-ttu-id="e41aa-117">Come creare un hub IoT di Azure e ottenere la stringa di connessione del nuovo dispositivo.</span><span class="sxs-lookup"><span data-stu-id="e41aa-117">How to create an Azure IoT hub and get your new device connection string.</span></span> <span data-ttu-id="e41aa-118">Se non si ha un account Azure, [creare un account Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="e41aa-118">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
-* <span data-ttu-id="e41aa-119">Come utilizzare il simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-119">How to work with Raspberry Pi online simulator.</span></span>
-* <span data-ttu-id="e41aa-120">Come inviare i dati del sensore all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-120">How to send sensor data to your IoT hub.</span></span>
+* <span data-ttu-id="dc237-117">Come toocreate un hub IoT di Azure e ottenere la stringa di connessione nuovo dispositivo.</span><span class="sxs-lookup"><span data-stu-id="dc237-117">How toocreate an Azure IoT hub and get your new device connection string.</span></span> <span data-ttu-id="dc237-118">Se non si ha un account Azure, [creare un account Azure gratuito](https://azure.microsoft.com/free/) in pochi minuti.</span><span class="sxs-lookup"><span data-stu-id="dc237-118">If you don't have an Azure account, [create a free Azure trial account](https://azure.microsoft.com/free/) in just a few minutes.</span></span>
+* <span data-ttu-id="dc237-119">Come toowork con simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="dc237-119">How toowork with Raspberry Pi online simulator.</span></span>
+* <span data-ttu-id="dc237-120">Come l'hub IoT toosend sensore dati tooyour.</span><span class="sxs-lookup"><span data-stu-id="dc237-120">How toosend sensor data tooyour IoT hub.</span></span>
 
-## <a name="overview-of-raspberry-pi-web-simulator"></a><span data-ttu-id="e41aa-121">Panoramica del simulatore Web Raspberry Pi</span><span class="sxs-lookup"><span data-stu-id="e41aa-121">Overview of Raspberry Pi web simulator</span></span>
+## <a name="overview-of-raspberry-pi-web-simulator"></a><span data-ttu-id="dc237-121">Panoramica del simulatore Web Raspberry Pi</span><span class="sxs-lookup"><span data-stu-id="dc237-121">Overview of Raspberry Pi web simulator</span></span>
 
-<span data-ttu-id="e41aa-122">Fare clic sul pulsante per avviare il simulatore online Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-122">Click the button to launch Raspberry Pi online simulator.</span></span>
+<span data-ttu-id="dc237-122">Fare clic su simulatore online Pi Raspberry hello pulsante toolaunch.</span><span class="sxs-lookup"><span data-stu-id="dc237-122">Click hello button toolaunch Raspberry Pi online simulator.</span></span>
 
 > [!div class="button"]
-<span data-ttu-id="e41aa-123"><a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted" target="_blank">Avviare il simulatore Raspberry Pi</a></span><span class="sxs-lookup"><span data-stu-id="e41aa-123"><a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted" target="_blank">Start Raspberry Pi Simulator</a></span></span>
+<span data-ttu-id="dc237-123"><a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted" target="_blank">Avviare il simulatore Raspberry Pi</a></span><span class="sxs-lookup"><span data-stu-id="dc237-123"><a href="https://azure-samples.github.io/raspberry-pi-web-simulator/#GetStarted" target="_blank">Start Raspberry Pi Simulator</a></span></span>
 
-<span data-ttu-id="e41aa-124">Esistono tre aree nel simulatore Web.</span><span class="sxs-lookup"><span data-stu-id="e41aa-124">There are three areas in the web simulator.</span></span>
-1. <span data-ttu-id="e41aa-125">Area dell'assembly: nel circuito predefinito un Pi si connette a un sensore BME280 e a un LED.</span><span class="sxs-lookup"><span data-stu-id="e41aa-125">Assembly area - The default circuit is that a Pi connects with a BME280 sensor and an LED.</span></span> <span data-ttu-id="e41aa-126">L'area è bloccata nella versione di anteprima, pertanto non è attualmente possibile eseguire la personalizzazione.</span><span class="sxs-lookup"><span data-stu-id="e41aa-126">The area is locked in preview version so currently you cannot do customization.</span></span>
-2. <span data-ttu-id="e41aa-127">Area della codifica: un editor di codice online da usare con Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-127">Coding area - An online code editor for you to code with Raspberry Pi.</span></span> <span data-ttu-id="e41aa-128">L'applicazione di esempio predefinita consente di raccogliere i dati del sensore BME280 e di inviarli all'hub IoT di Azure.</span><span class="sxs-lookup"><span data-stu-id="e41aa-128">The default sample application helps to collect sensor data from BME280 sensor and sends to your Azure IoT Hub.</span></span> <span data-ttu-id="e41aa-129">L'applicazione è completamente compatibile con dispositivi Pi effettivi.</span><span class="sxs-lookup"><span data-stu-id="e41aa-129">The application is fully compatible with real Pi devices.</span></span> 
-3. <span data-ttu-id="e41aa-130">Finestra della console integrata: mostra l'output del codice.</span><span class="sxs-lookup"><span data-stu-id="e41aa-130">Integrated console window - It shows the output of your code.</span></span> <span data-ttu-id="e41aa-131">Nella parte superiore di questa finestra sono disponibili tre pulsanti.</span><span class="sxs-lookup"><span data-stu-id="e41aa-131">At the top of this window, there are three buttons.</span></span>
-   * <span data-ttu-id="e41aa-132">**Esegui**: eseguire l'applicazione nell'area di codifica.</span><span class="sxs-lookup"><span data-stu-id="e41aa-132">**Run** - Run the application in the coding area.</span></span>
-   * <span data-ttu-id="e41aa-133">**Reimposta**: reimposta l'area di codifica sull'applicazione di esempio predefinita.</span><span class="sxs-lookup"><span data-stu-id="e41aa-133">**Reset** - Reset the coding area to the default sample application.</span></span>
-   * <span data-ttu-id="e41aa-134">**Comprimi/Espandi**: sul lato destro è disponibile un pulsante per comprimere/espandere la finestra della console.</span><span class="sxs-lookup"><span data-stu-id="e41aa-134">**Fold/Expand** - On the right side there is a button for you to fold/expand the console window.</span></span>
+<span data-ttu-id="dc237-124">Esistono tre aree nel simulatore di hello web.</span><span class="sxs-lookup"><span data-stu-id="dc237-124">There are three areas in hello web simulator.</span></span>
+1. <span data-ttu-id="dc237-125">Area di assembly: circuito predefinito hello è che un Pi si connette con un sensore BME280 e un LED.</span><span class="sxs-lookup"><span data-stu-id="dc237-125">Assembly area - hello default circuit is that a Pi connects with a BME280 sensor and an LED.</span></span> <span data-ttu-id="dc237-126">area Hello è bloccata nella versione di anteprima così attualmente non è possibile eseguire la personalizzazione.</span><span class="sxs-lookup"><span data-stu-id="dc237-126">hello area is locked in preview version so currently you cannot do customization.</span></span>
+2. <span data-ttu-id="dc237-127">Per la codifica - un editor di codice in linea per toocode con Raspberry Pi.</span><span class="sxs-lookup"><span data-stu-id="dc237-127">Coding area - An online code editor for you toocode with Raspberry Pi.</span></span> <span data-ttu-id="dc237-128">applicazione di esempio Hello predefinita consente di dati del sensore toocollect dal sensore BME280 e invia tooyour IoT Hub di Azure.</span><span class="sxs-lookup"><span data-stu-id="dc237-128">hello default sample application helps toocollect sensor data from BME280 sensor and sends tooyour Azure IoT Hub.</span></span> <span data-ttu-id="dc237-129">un'applicazione Hello è completamente compatibile con dispositivi Pi.</span><span class="sxs-lookup"><span data-stu-id="dc237-129">hello application is fully compatible with real Pi devices.</span></span> 
+3. <span data-ttu-id="dc237-130">Finestra di console integrata - Mostra output di hello del codice.</span><span class="sxs-lookup"><span data-stu-id="dc237-130">Integrated console window - It shows hello output of your code.</span></span> <span data-ttu-id="dc237-131">Nella parte superiore di hello di questa finestra, sono disponibili tre pulsanti.</span><span class="sxs-lookup"><span data-stu-id="dc237-131">At hello top of this window, there are three buttons.</span></span>
+   * <span data-ttu-id="dc237-132">**Eseguire** -esecuzione di un'applicazione hello in hello per la codifica.</span><span class="sxs-lookup"><span data-stu-id="dc237-132">**Run** - Run hello application in hello coding area.</span></span>
+   * <span data-ttu-id="dc237-133">**Reimpostare** -hello la reimpostazione della codifica di applicazione di esempio di area toohello predefinito.</span><span class="sxs-lookup"><span data-stu-id="dc237-133">**Reset** - Reset hello coding area toohello default sample application.</span></span>
+   * <span data-ttu-id="dc237-134">**Riduzione o espansione** - in hello destra lato vi è un pulsante per si toofold/espandere hello finestra della console.</span><span class="sxs-lookup"><span data-stu-id="dc237-134">**Fold/Expand** - On hello right side there is a button for you toofold/expand hello console window.</span></span>
 
 > [!NOTE] 
-<span data-ttu-id="e41aa-135">Il simulatore Web Raspberry Pi è ora disponibile nella versione di anteprima.</span><span class="sxs-lookup"><span data-stu-id="e41aa-135">The Raspberry Pi web simulator is now available in preview version.</span></span> <span data-ttu-id="e41aa-136">Vorremmo sentire la tua voce nella [chat Gitter](https://gitter.im/Microsoft/raspberry-pi-web-simulator).</span><span class="sxs-lookup"><span data-stu-id="e41aa-136">We'd like to hear your voice in the [Gitter Chatroom](https://gitter.im/Microsoft/raspberry-pi-web-simulator).</span></span> <span data-ttu-id="e41aa-137">Il codice sorgente è pubblico in [GitHub](https://github.com/Azure-Samples/raspberry-pi-web-simulator).</span><span class="sxs-lookup"><span data-stu-id="e41aa-137">The source code is public on [Github](https://github.com/Azure-Samples/raspberry-pi-web-simulator).</span></span>
+<span data-ttu-id="dc237-135">simulatore di web Pi Raspberry Hello è ora disponibile nella versione di anteprima.</span><span class="sxs-lookup"><span data-stu-id="dc237-135">hello Raspberry Pi web simulator is now available in preview version.</span></span> <span data-ttu-id="dc237-136">Desideriamo toohear il tono di voce hello [Gitter chat](https://gitter.im/Microsoft/raspberry-pi-web-simulator).</span><span class="sxs-lookup"><span data-stu-id="dc237-136">We'd like toohear your voice in hello [Gitter Chatroom](https://gitter.im/Microsoft/raspberry-pi-web-simulator).</span></span> <span data-ttu-id="dc237-137">codice sorgente Hello è public su [Github](https://github.com/Azure-Samples/raspberry-pi-web-simulator).</span><span class="sxs-lookup"><span data-stu-id="dc237-137">hello source code is public on [Github](https://github.com/Azure-Samples/raspberry-pi-web-simulator).</span></span>
 
 ![Panoramica del simulatore online Pi](media/iot-hub-raspberry-pi-web-simulator/0_overview.png)
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
 
-## <a name="run-a-sample-application-on-pi-web-simulator"></a><span data-ttu-id="e41aa-139">Eseguire un'applicazione di esempio nel simulatore Web Pi</span><span class="sxs-lookup"><span data-stu-id="e41aa-139">Run a sample application on Pi web simulator</span></span>
+## <a name="run-a-sample-application-on-pi-web-simulator"></a><span data-ttu-id="dc237-139">Eseguire un'applicazione di esempio nel simulatore Web Pi</span><span class="sxs-lookup"><span data-stu-id="dc237-139">Run a sample application on Pi web simulator</span></span>
 
-1. <span data-ttu-id="e41aa-140">Nell'area di codifica assicurarsi di lavorare nell'applicazione di esempio predefinita.</span><span class="sxs-lookup"><span data-stu-id="e41aa-140">In coding area, make sure you are working on the default sample application.</span></span> <span data-ttu-id="e41aa-141">Sostituire il segnaposto nella riga 15 con la stringa di connessione del dispositivo hub IoT di Azure.</span><span class="sxs-lookup"><span data-stu-id="e41aa-141">Replace the placeholder in Line 15 with the Azure IoT hub device connection string.</span></span>
-   <span data-ttu-id="e41aa-142">![Sostituire la stringa di connessione del dispositivo](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)</span><span class="sxs-lookup"><span data-stu-id="e41aa-142">![Replace the device connection string](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)</span></span>
+1. <span data-ttu-id="dc237-140">Nell'area di codifica, assicurarsi che si lavora sull'applicazione di esempio hello predefinito.</span><span class="sxs-lookup"><span data-stu-id="dc237-140">In coding area, make sure you are working on hello default sample application.</span></span> <span data-ttu-id="dc237-141">Sostituire i segnaposto hello nella riga 15 con hello stringa di connessione di Azure IoT hub dispositivo.</span><span class="sxs-lookup"><span data-stu-id="dc237-141">Replace hello placeholder in Line 15 with hello Azure IoT hub device connection string.</span></span>
+   <span data-ttu-id="dc237-142">![Sostituire una stringa di connessione del dispositivo hello](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)</span><span class="sxs-lookup"><span data-stu-id="dc237-142">![Replace hello device connection string](media/iot-hub-raspberry-pi-web-simulator/1_connectionstring.png)</span></span>
 
-2. <span data-ttu-id="e41aa-143">Fare clic su **Esegui** o digita `npm start` per eseguire l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="e41aa-143">Click **Run** or type `npm start` to run the application.</span></span>
-
-
-<span data-ttu-id="e41aa-144">Dovrebbe venire visualizzato l'output seguente che mostra i dati del sensore e i messaggi inviati all'hub IoT ![Output: dati del sensore inviati da Raspberry Pi all'hub IoT](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)</span><span class="sxs-lookup"><span data-stu-id="e41aa-144">You should see the following output that shows the sensor data and the messages that are sent to your IoT hub ![Output - sensor data sent from Raspberry Pi to your IoT hub](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)</span></span>
+2. <span data-ttu-id="dc237-143">Fare clic su **eseguire** o tipo `npm start` toorun un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="dc237-143">Click **Run** or type `npm start` toorun hello application.</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="e41aa-145">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="e41aa-145">Next steps</span></span>
+<span data-ttu-id="dc237-144">Verrà visualizzato l'output di hello seguente che mostra i dati del sensore hello e i messaggi hello inviati hub IoT tooyour ![Output - i dati del sensore inviati dall'hub IoT di pi greco Raspberry tooyour](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)</span><span class="sxs-lookup"><span data-stu-id="dc237-144">You should see hello following output that shows hello sensor data and hello messages that are sent tooyour IoT hub ![Output - sensor data sent from Raspberry Pi tooyour IoT hub](media/iot-hub-raspberry-pi-web-simulator/2_run_application.png)</span></span>
 
-<span data-ttu-id="e41aa-146">È stata eseguita un'applicazione di esempio per raccogliere i dati del sensore da inviare all'hub IoT.</span><span class="sxs-lookup"><span data-stu-id="e41aa-146">You’ve run a sample application to collect sensor data and send it to your IoT hub.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="dc237-145">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="dc237-145">Next steps</span></span>
+
+<span data-ttu-id="dc237-146">È stato eseguito dati sensore toocollect di applicazione di esempio e inviarlo tooyour IoT hub.</span><span class="sxs-lookup"><span data-stu-id="dc237-146">You’ve run a sample application toocollect sensor data and send it tooyour IoT hub.</span></span>
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

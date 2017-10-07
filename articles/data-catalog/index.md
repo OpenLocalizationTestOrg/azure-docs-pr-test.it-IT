@@ -1,6 +1,6 @@
 ---
-title: Documentazione di Azure Data Catalog - Esercitazioni e informazioni di riferimento sulle API | Documentazione Microsoft
-description: "Informazioni su come configurare un catalogo dati in cui l'organizzazione può trovare, comprendere e usare le origini dati. Esercitazioni, informazioni di riferimento sulle API e altri documenti."
+title: aaaAzure dati catalogo documentazione, esercitazioni, riferimenti alle API | Documenti Microsoft
+description: "Informazioni su come interpretare tooset backup di un catalogo di dati in cui è possibile trovare l'organizzazione, e utilizzare le origini dati. Esercitazioni, informazioni di riferimento sulle API e altri documenti."
 services: data-catalog
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/25/2017
 ms.author: carolz
-ms.openlocfilehash: 0e7431332d46ba3891dff0cf70685be0277d4ddd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb2decd9e73531890b18497b5f39af77d6411a43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="data-catalog-documentation"></a>Documentazione di Data Catalog
 
-Informazioni su come usare Catalogo dati per aiutare l'organizzazione e il team a trovare, comprendere e usare le origini dati. Esercitazioni, informazioni di riferimento sulle API REST e altri documenti mostrano come pianificare e configurare un repository di dati in cui gli utenti possono trovare le origini dati disponibili e acquisire conoscenze a cui hanno contribuito gli esperti di dominio.
+Informazioni su come interpretare toouse catalogo dati toohelp l'organizzazione e il team individua, e utilizzare le origini dati. Esercitazioni, riferimento all'API REST e altra documentazione mostrano è come tooplan e configurare l'archivio dati in cui è possono individuare le origini dati disponibili e acquisire una conoscenza consumer di dati da esperti del settore.
 
 <ul class="panelContent cardsFTitle">
     <li>

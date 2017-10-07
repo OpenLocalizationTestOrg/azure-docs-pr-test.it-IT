@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Azure Mobile Engagement SDK per Web | Documentazione Microsoft
-description: Ultimi aggiornamenti e procedure relativi all'SDK per Web per Azure Mobile Engagement
+title: Panoramica di Mobile Engagement Web SDK aaaAzure | Documenti Microsoft
+description: "Hello procedure per hello Web SDK e gli aggiornamenti più recenti per Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: 770a83131a3e661771db50b22ce7de25b2d541cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e60a232b5eb2c41c405041a88e09d7137563513
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-mobile-engagement-web-sdk"></a><span data-ttu-id="c60a0-103">Azure Mobile Engagement Web SDK</span><span class="sxs-lookup"><span data-stu-id="c60a0-103">Azure Mobile Engagement Web SDK</span></span>
-<span data-ttu-id="c60a0-104">Da qui è possibile visualizzare tutti i dettagli su come integrare Azure Mobile Engagement in un'app Web.</span><span class="sxs-lookup"><span data-stu-id="c60a0-104">Start here for all the details about how to integrate Azure Mobile Engagement in a web app.</span></span> <span data-ttu-id="c60a0-105">Per fare una prova prima di iniziare con la propria app Web, vedere l' [esercitazione di 15 minuti](mobile-engagement-web-app-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="c60a0-105">If you'd like to give it a try before getting started with your own web app, see our [15-minute tutorial](mobile-engagement-web-app-get-started.md).</span></span>
+# <a name="azure-mobile-engagement-web-sdk"></a><span data-ttu-id="75ece-103">Azure Mobile Engagement Web SDK</span><span class="sxs-lookup"><span data-stu-id="75ece-103">Azure Mobile Engagement Web SDK</span></span>
+<span data-ttu-id="75ece-104">Iniziare da qui per tutti hello informazioni dettagliate su come toointegrate Azure Mobile Engagement in un'app web.</span><span class="sxs-lookup"><span data-stu-id="75ece-104">Start here for all hello details about how toointegrate Azure Mobile Engagement in a web app.</span></span> <span data-ttu-id="75ece-105">Se si desidera toogive è un blocco try prima di iniziare con la propria app web, vedere il nostro [esercitazione di 15 minuti](mobile-engagement-web-app-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="75ece-105">If you'd like toogive it a try before getting started with your own web app, see our [15-minute tutorial](mobile-engagement-web-app-get-started.md).</span></span>
 
-## <a name="integration-procedures"></a><span data-ttu-id="c60a0-106">Procedure di integrazione</span><span class="sxs-lookup"><span data-stu-id="c60a0-106">Integration procedures</span></span>
-1. <span data-ttu-id="c60a0-107">Informazioni su [come integrare Mobile Engagement in un'app Web](mobile-engagement-web-integrate-engagement.md).</span><span class="sxs-lookup"><span data-stu-id="c60a0-107">Learn [how to integrate Mobile Engagement in your web app](mobile-engagement-web-integrate-engagement.md).</span></span>
-2. <span data-ttu-id="c60a0-108">Per l'implementazione del piano di tag, vedere [come usare l'API avanzata di assegnazione tag di Mobile Engagement nella propria app Web](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="c60a0-108">For tag plan implementation, learn [how to use the advanced Mobile Engagement tagging API in your web app](mobile-engagement-web-use-engagement-api.md).</span></span>
+## <a name="integration-procedures"></a><span data-ttu-id="75ece-106">Procedure di integrazione</span><span class="sxs-lookup"><span data-stu-id="75ece-106">Integration procedures</span></span>
+1. <span data-ttu-id="75ece-107">Informazioni su [come toointegrate Mobile Engagement in app web](mobile-engagement-web-integrate-engagement.md).</span><span class="sxs-lookup"><span data-stu-id="75ece-107">Learn [how toointegrate Mobile Engagement in your web app](mobile-engagement-web-integrate-engagement.md).</span></span>
+2. <span data-ttu-id="75ece-108">Per l'implementazione del piano di tag, informazioni su [come toouse hello avanzate tag API nelle applicazioni web di Mobile Engagement](mobile-engagement-web-use-engagement-api.md).</span><span class="sxs-lookup"><span data-stu-id="75ece-108">For tag plan implementation, learn [how toouse hello advanced Mobile Engagement tagging API in your web app](mobile-engagement-web-use-engagement-api.md).</span></span>
 
-## <a name="release-notes"></a><span data-ttu-id="c60a0-109">Note sulla versione</span><span class="sxs-lookup"><span data-stu-id="c60a0-109">Release notes</span></span>
-### <a name="202-10182016"></a><span data-ttu-id="c60a0-110">2.0.2 (18/10/2016)</span><span class="sxs-lookup"><span data-stu-id="c60a0-110">2.0.2 (10/18/2016)</span></span>
-* <span data-ttu-id="c60a0-111">Correzione di un problema di arresto anomalo nell'esplorazione privata (Safari).</span><span class="sxs-lookup"><span data-stu-id="c60a0-111">Fixed crash on private browsing (Safari).</span></span>
-* <span data-ttu-id="c60a0-112">Correzione di un problema di arresto anomalo nei browser con cookie disabilitati.</span><span class="sxs-lookup"><span data-stu-id="c60a0-112">Fixed crash on browsers with cookies disabled.</span></span>
+## <a name="release-notes"></a><span data-ttu-id="75ece-109">Note sulla versione</span><span class="sxs-lookup"><span data-stu-id="75ece-109">Release notes</span></span>
+### <a name="202-10182016"></a><span data-ttu-id="75ece-110">2.0.2 (18/10/2016)</span><span class="sxs-lookup"><span data-stu-id="75ece-110">2.0.2 (10/18/2016)</span></span>
+* <span data-ttu-id="75ece-111">Correzione di un problema di arresto anomalo nell'esplorazione privata (Safari).</span><span class="sxs-lookup"><span data-stu-id="75ece-111">Fixed crash on private browsing (Safari).</span></span>
+* <span data-ttu-id="75ece-112">Correzione di un problema di arresto anomalo nei browser con cookie disabilitati.</span><span class="sxs-lookup"><span data-stu-id="75ece-112">Fixed crash on browsers with cookies disabled.</span></span>
 
-<span data-ttu-id="c60a0-113">Per tutte le versioni, vedere le [note sulla versione complete](mobile-engagement-web-release-notes.md).</span><span class="sxs-lookup"><span data-stu-id="c60a0-113">For all versions, please see the [complete release notes](mobile-engagement-web-release-notes.md).</span></span>
+<span data-ttu-id="75ece-113">Per tutte le versioni, vedere hello [completare note sulla versione](mobile-engagement-web-release-notes.md).</span><span class="sxs-lookup"><span data-stu-id="75ece-113">For all versions, please see hello [complete release notes](mobile-engagement-web-release-notes.md).</span></span>
 
-## <a name="upgrade-procedures"></a><span data-ttu-id="c60a0-114">Procedure di aggiornamento</span><span class="sxs-lookup"><span data-stu-id="c60a0-114">Upgrade procedures</span></span>
-### <a name="upgrade-from-121-to-200"></a><span data-ttu-id="c60a0-115">Aggiornamento da 1.2.1 a 2.0.0</span><span class="sxs-lookup"><span data-stu-id="c60a0-115">Upgrade from 1.2.1 to 2.0.0</span></span>
-<span data-ttu-id="c60a0-116">Le sezioni seguenti illustrano come eseguire la migrazione di un'integrazione di Mobile Engagement Web SDK dal servizio Capptain offerto da Capptain SAS a un'app di Azure Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="c60a0-116">The following sections describe how to migrate a Mobile Engagement Web SDK integration from the Capptain service, offered by Capptain SAS, to an Azure Mobile Engagement app.</span></span> <span data-ttu-id="c60a0-117">Se si esegue la migrazione da una versione precedente alla 1.2.1, visitare il sito Web di Capptain per eseguire prima la migrazione alla versione 1.2.1 e quindi applicare le procedure seguenti.</span><span class="sxs-lookup"><span data-stu-id="c60a0-117">If you are migrating from a version earlier than 1.2.1, please consult the Capptain website to migrate to 1.2.1 first, and then apply the following procedures.</span></span>
+## <a name="upgrade-procedures"></a><span data-ttu-id="75ece-114">Procedure di aggiornamento</span><span class="sxs-lookup"><span data-stu-id="75ece-114">Upgrade procedures</span></span>
+### <a name="upgrade-from-121-too200"></a><span data-ttu-id="75ece-115">Eseguire l'aggiornamento da 1.2.1 too2.0.0</span><span class="sxs-lookup"><span data-stu-id="75ece-115">Upgrade from 1.2.1 too2.0.0</span></span>
+<span data-ttu-id="75ece-116">Hello nelle sezioni seguenti descrivono come toomigrate un'integrazione di Mobile Engagement Web SDK dal servizio Capptain hello, offerto Capptain SAS, app di Azure Mobile Engagement tooan.</span><span class="sxs-lookup"><span data-stu-id="75ece-116">hello following sections describe how toomigrate a Mobile Engagement Web SDK integration from hello Capptain service, offered by Capptain SAS, tooan Azure Mobile Engagement app.</span></span> <span data-ttu-id="75ece-117">Se si esegue la migrazione da una versione precedente di 1.2.1, consultare hello Capptain sito Web toomigrate too1.2.1 prima e quindi applicare hello seguire le procedure seguenti.</span><span class="sxs-lookup"><span data-stu-id="75ece-117">If you are migrating from a version earlier than 1.2.1, please consult hello Capptain website toomigrate too1.2.1 first, and then apply hello following procedures.</span></span>
 
-<span data-ttu-id="c60a0-118">Questa versione di Mobile Engagement SDK per Web non supporta Samsung Smart TV, OperaTV, webOS o la funzionalità Reach.</span><span class="sxs-lookup"><span data-stu-id="c60a0-118">This version of the Mobile Engagement Web SDK doesn't support Samsung Smart TV, Opera TV, webOS, or the Reach feature.</span></span>
+<span data-ttu-id="75ece-118">Questa versione di hello Mobile Engagement Web SDK non supporta TV Smart Samsung, Opera TV, webOS o funzionalità Reach hello.</span><span class="sxs-lookup"><span data-stu-id="75ece-118">This version of hello Mobile Engagement Web SDK doesn't support Samsung Smart TV, Opera TV, webOS, or hello Reach feature.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="c60a0-119">Capptain e Azure Mobile Engagement sono servizi diversi e le procedure seguente illustrano solo come eseguire la migrazione dell'app client.</span><span class="sxs-lookup"><span data-stu-id="c60a0-119">Capptain and Azure Mobile Engagement are not the same service, and the following procedures highlight only how to migrate the client app.</span></span> <span data-ttu-id="c60a0-120">La migrazione di Mobile Engagement SDK per Web nell'app non comporta la migrazione dei dati dai server di Capptain a un server di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="c60a0-120">Migrating the Mobile Engagement Web SDK in the app will not migrate your data from a Capptain server to a Mobile Engagement server.</span></span>
+> <span data-ttu-id="75ece-119">Capptain e Azure Mobile Engagement non sono hello stesso servizio e seguire le procedure seguenti hello evidenzia solo come toomigrate hello app client.</span><span class="sxs-lookup"><span data-stu-id="75ece-119">Capptain and Azure Mobile Engagement are not hello same service, and hello following procedures highlight only how toomigrate hello client app.</span></span> <span data-ttu-id="75ece-120">Migrazione hello Mobile Engagement Web SDK nell'applicazione hello non eseguirà la migrazione dei dati da un server di Mobile Engagement Capptain tooa server.</span><span class="sxs-lookup"><span data-stu-id="75ece-120">Migrating hello Mobile Engagement Web SDK in hello app will not migrate your data from a Capptain server tooa Mobile Engagement server.</span></span>
 > 
 > 
 
-#### <a name="javascript-files"></a><span data-ttu-id="c60a0-121">File JavaScript</span><span class="sxs-lookup"><span data-stu-id="c60a0-121">JavaScript files</span></span>
-<span data-ttu-id="c60a0-122">Sostituire il file capptain-sdk.js con il file azure-engagement.js e aggiornare di conseguenza le importazioni degli script.</span><span class="sxs-lookup"><span data-stu-id="c60a0-122">Replace the file capptain-sdk.js with the file azure-engagement.js, and then update your script imports accordingly.</span></span>
+#### <a name="javascript-files"></a><span data-ttu-id="75ece-121">File JavaScript</span><span class="sxs-lookup"><span data-stu-id="75ece-121">JavaScript files</span></span>
+<span data-ttu-id="75ece-122">Sostituisci hello file capptain-sdk.js con hello azure engagement.js di file e aggiornare di conseguenza le importazioni di script.</span><span class="sxs-lookup"><span data-stu-id="75ece-122">Replace hello file capptain-sdk.js with hello file azure-engagement.js, and then update your script imports accordingly.</span></span>
 
-#### <a name="remove-capptain-reach"></a><span data-ttu-id="c60a0-123">Rimuovere Capptain Reach</span><span class="sxs-lookup"><span data-stu-id="c60a0-123">Remove Capptain Reach</span></span>
-<span data-ttu-id="c60a0-124">Questa versione di Mobile Engagement SDK per Web non supporta la funzionalità Reach.</span><span class="sxs-lookup"><span data-stu-id="c60a0-124">This version of the Mobile Engagement Web SDK doesn't support the Reach feature.</span></span> <span data-ttu-id="c60a0-125">Se nell'applicazione è integrata la funzione Capptain Reach, rimuoverla.</span><span class="sxs-lookup"><span data-stu-id="c60a0-125">If you have integrated Capptain Reach into your application, you need to remove it.</span></span>
+#### <a name="remove-capptain-reach"></a><span data-ttu-id="75ece-123">Rimuovere Capptain Reach</span><span class="sxs-lookup"><span data-stu-id="75ece-123">Remove Capptain Reach</span></span>
+<span data-ttu-id="75ece-124">Questa versione di hello Mobile Engagement Web SDK non supporta funzionalità di copertura hello.</span><span class="sxs-lookup"><span data-stu-id="75ece-124">This version of hello Mobile Engagement Web SDK doesn't support hello Reach feature.</span></span> <span data-ttu-id="75ece-125">Se è stata integrata Capptain Reach nell'applicazione, è necessario tooremove è.</span><span class="sxs-lookup"><span data-stu-id="75ece-125">If you have integrated Capptain Reach into your application, you need tooremove it.</span></span>
 
-<span data-ttu-id="c60a0-126">Rimuovere l'importazione di CSS Reach dalla pagina ed eliminare il relativo file con estensione css (per impostazione predefinita, capptain-reach.css).</span><span class="sxs-lookup"><span data-stu-id="c60a0-126">Remove the Reach CSS import from your page and delete the related .css file (capptain-reach.css, by default).</span></span>
+<span data-ttu-id="75ece-126">Rimuovere hello raggiungere CSS importazione dalla pagina ed eliminare file con estensione CSS correlati hello (capptain-reach.css, per impostazione predefinita).</span><span class="sxs-lookup"><span data-stu-id="75ece-126">Remove hello Reach CSS import from your page and delete hello related .css file (capptain-reach.css, by default).</span></span>
 
-<span data-ttu-id="c60a0-127">Eliminare le risorse di Reach seguenti: l'immagine di chiusura (per impostazione predefinita, capptain-close.png) e l'icona del marchio (per impostazione predefinita, capptain-notification-icon).</span><span class="sxs-lookup"><span data-stu-id="c60a0-127">Delete the following Reach resources: the close image (capptain-close.png, by default) and the brand icon (capptain-notification-icon, by default).</span></span>
+<span data-ttu-id="75ece-127">Eliminare hello seguente di portata risorse: hello Chiudi immagine (capptain-close.png, per impostazione predefinita) e l'icona del marchio di hello (capptain--icona di notifica, per impostazione predefinita).</span><span class="sxs-lookup"><span data-stu-id="75ece-127">Delete hello following Reach resources: hello close image (capptain-close.png, by default) and hello brand icon (capptain-notification-icon, by default).</span></span>
 
-<span data-ttu-id="c60a0-128">Rimuovere l'interfaccia utente di Reach per le notifiche in-app.</span><span class="sxs-lookup"><span data-stu-id="c60a0-128">Remove the Reach UI for in-app notifications.</span></span> <span data-ttu-id="c60a0-129">Il layout predefinito è simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="c60a0-129">The default layout looks like this:</span></span>
+<span data-ttu-id="75ece-128">Rimuovere hello raggiungere dell'interfaccia utente per le notifiche nell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="75ece-128">Remove hello Reach UI for in-app notifications.</span></span> <span data-ttu-id="75ece-129">layout predefinito Hello è simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="75ece-129">hello default layout looks like this:</span></span>
 
     <!-- capptain notification -->
     <div id="capptain_notification_area" class="capptain_category_default">
@@ -72,7 +72,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-<span data-ttu-id="c60a0-130">Rimuovere l'interfaccia utente di Reach per gli annunci Web, per gli annunci di testo e per i sondaggi.</span><span class="sxs-lookup"><span data-stu-id="c60a0-130">Remove the Reach UI for text and web announcements and polls.</span></span> <span data-ttu-id="c60a0-131">Il layout predefinito è simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="c60a0-131">The default layout looks like this:</span></span>
+<span data-ttu-id="75ece-130">Rimuovere hello raggiungere dell'interfaccia utente per i sondaggi e gli annunci di testo e web.</span><span class="sxs-lookup"><span data-stu-id="75ece-130">Remove hello Reach UI for text and web announcements and polls.</span></span> <span data-ttu-id="75ece-131">layout predefinito Hello è simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="75ece-131">hello default layout looks like this:</span></span>
 
     <div id="capptain_overlay" class="capptain_category_default">
       <button id="capptain_overlay_close">x</button>
@@ -85,7 +85,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-<span data-ttu-id="c60a0-132">Rimuovere l'oggetto `reach` dalla configurazione, se esiste.</span><span class="sxs-lookup"><span data-stu-id="c60a0-132">Remove the `reach` object from your configuration, if it exists.</span></span> <span data-ttu-id="c60a0-133">L'aspetto sarà simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="c60a0-133">It looks like this:</span></span>
+<span data-ttu-id="75ece-132">Rimuovere hello `reach` oggetto dalla configurazione, se presente.</span><span class="sxs-lookup"><span data-stu-id="75ece-132">Remove hello `reach` object from your configuration, if it exists.</span></span> <span data-ttu-id="75ece-133">L'aspetto sarà simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="75ece-133">It looks like this:</span></span>
 
     window.capptain = {
       [...]
@@ -94,40 +94,40 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-<span data-ttu-id="c60a0-134">Rimuovere eventuali altre personalizzazioni di Reach, ad esempio le categorie.</span><span class="sxs-lookup"><span data-stu-id="c60a0-134">Remove any other Reach customization, such as categories.</span></span>
+<span data-ttu-id="75ece-134">Rimuovere eventuali altre personalizzazioni di Reach, ad esempio le categorie.</span><span class="sxs-lookup"><span data-stu-id="75ece-134">Remove any other Reach customization, such as categories.</span></span>
 
-#### <a name="remove-deprecated-apis"></a><span data-ttu-id="c60a0-135">Rimuovere API deprecate</span><span class="sxs-lookup"><span data-stu-id="c60a0-135">Remove deprecated APIs</span></span>
-<span data-ttu-id="c60a0-136">Alcune delle API da Capptain sono deprecate in Mobile Engagement SDK per Web.</span><span class="sxs-lookup"><span data-stu-id="c60a0-136">Some APIs from Capptain are deprecated in the Mobile Engagement Web SDK.</span></span>
+#### <a name="remove-deprecated-apis"></a><span data-ttu-id="75ece-135">Rimuovere API deprecate</span><span class="sxs-lookup"><span data-stu-id="75ece-135">Remove deprecated APIs</span></span>
+<span data-ttu-id="75ece-136">Alcune API da Capptain sono deprecati in hello Web di Mobile Engagement SDK.</span><span class="sxs-lookup"><span data-stu-id="75ece-136">Some APIs from Capptain are deprecated in hello Mobile Engagement Web SDK.</span></span>
 
-<span data-ttu-id="c60a0-137">Rimuovere eventuali chiamate alle API seguenti: `agent.connect`, `agent.disconnect`, `agent.pause` e `agent.sendMessageToDevice`.</span><span class="sxs-lookup"><span data-stu-id="c60a0-137">Remove any calls to the following APIs: `agent.connect`, `agent.disconnect`, `agent.pause`, and `agent.sendMessageToDevice`.</span></span>
+<span data-ttu-id="75ece-137">Rimuovere qualsiasi toohello chiamate API seguenti: `agent.connect`, `agent.disconnect`, `agent.pause`, e `agent.sendMessageToDevice`.</span><span class="sxs-lookup"><span data-stu-id="75ece-137">Remove any calls toohello following APIs: `agent.connect`, `agent.disconnect`, `agent.pause`, and `agent.sendMessageToDevice`.</span></span>
 
-<span data-ttu-id="c60a0-138">Rimuovere i callback seguenti dalla configurazione di Capptain: `onConnected`, `onDisconnected`, `onDeviceMessageReceived` e `onPushMessageReceived`.</span><span class="sxs-lookup"><span data-stu-id="c60a0-138">Remove any of the following callbacks from your Capptain configuration: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, and `onPushMessageReceived`.</span></span>
+<span data-ttu-id="75ece-138">Rimuovere uno dei seguenti callback dalla configurazione Capptain hello: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, e `onPushMessageReceived`.</span><span class="sxs-lookup"><span data-stu-id="75ece-138">Remove any of hello following callbacks from your Capptain configuration: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, and `onPushMessageReceived`.</span></span>
 
-#### <a name="configuration"></a><span data-ttu-id="c60a0-139">Configurazione</span><span class="sxs-lookup"><span data-stu-id="c60a0-139">Configuration</span></span>
-<span data-ttu-id="c60a0-140">Mobile Engagement usa ora una stringa di connessione per configurare gli identificatori dell'SDK, ad esempio l'identificatore dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="c60a0-140">Mobile Engagement uses a connection string to configure SDK identifiers, for example, the application identifier.</span></span>
+#### <a name="configuration"></a><span data-ttu-id="75ece-139">Configurazione</span><span class="sxs-lookup"><span data-stu-id="75ece-139">Configuration</span></span>
+<span data-ttu-id="75ece-140">Engagement mobile Usa una connessione stringa tooconfigure SDK identificatori, ad esempio, identificatore dell'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="75ece-140">Mobile Engagement uses a connection string tooconfigure SDK identifiers, for example, hello application identifier.</span></span>
 
-<span data-ttu-id="c60a0-141">Sostituire l'ID dell'applicazione con la stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="c60a0-141">Replace the application ID with your connection string.</span></span> <span data-ttu-id="c60a0-142">Tenere presente che l'oggetto globale per le modifiche alla configurazione dell'SDK cambia da `capptain` a `azureEngagement`.</span><span class="sxs-lookup"><span data-stu-id="c60a0-142">Note that the global object for the SDK configuration changes from `capptain` to `azureEngagement`.</span></span>
+<span data-ttu-id="75ece-141">Sostituire l'ID dell'applicazione hello con la stringa di connessione.</span><span class="sxs-lookup"><span data-stu-id="75ece-141">Replace hello application ID with your connection string.</span></span> <span data-ttu-id="75ece-142">Si noti l'oggetto globale hello di hello configurazione SDK cambierà da `capptain` troppo`azureEngagement`.</span><span class="sxs-lookup"><span data-stu-id="75ece-142">Note that hello global object for hello SDK configuration changes from `capptain` too`azureEngagement`.</span></span>
 
-<span data-ttu-id="c60a0-143">Prima della migrazione:</span><span class="sxs-lookup"><span data-stu-id="c60a0-143">Before migration:</span></span>
+<span data-ttu-id="75ece-143">Prima della migrazione:</span><span class="sxs-lookup"><span data-stu-id="75ece-143">Before migration:</span></span>
 
     window.capptain = {
       appId: ...,
       [...]
     };
 
-<span data-ttu-id="c60a0-144">Dopo la migrazione:</span><span class="sxs-lookup"><span data-stu-id="c60a0-144">After migration:</span></span>
+<span data-ttu-id="75ece-144">Dopo la migrazione:</span><span class="sxs-lookup"><span data-stu-id="75ece-144">After migration:</span></span>
 
     window.azureEngagement = {
       connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
       [...]
     };
 
-<span data-ttu-id="c60a0-145">La stringa di connessione per l'applicazione viene visualizzata nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="c60a0-145">The connection string for your application is displayed in the Azure portal.</span></span>
+<span data-ttu-id="75ece-145">stringa di connessione Hello per l'applicazione viene visualizzato nel portale di Azure hello.</span><span class="sxs-lookup"><span data-stu-id="75ece-145">hello connection string for your application is displayed in hello Azure portal.</span></span>
 
-#### <a name="javascript-apis"></a><span data-ttu-id="c60a0-146">API JavaScript</span><span class="sxs-lookup"><span data-stu-id="c60a0-146">JavaScript APIs</span></span>
-<span data-ttu-id="c60a0-147">L'oggetto JavaScript globale `window.capptain` è stato rinominato `window.azureEngagement`, ma è possibile usare l'alias `window.engagement` per le chiamate API.</span><span class="sxs-lookup"><span data-stu-id="c60a0-147">The global JavaScript object `window.capptain` has been renamed `window.azureEngagement`, but you can use the `window.engagement` alias for API calls.</span></span> <span data-ttu-id="c60a0-148">Non è possibile usare l'alias per definire la configurazione dell'SDK.</span><span class="sxs-lookup"><span data-stu-id="c60a0-148">You can't use this alias to define the SDK configuration.</span></span>
+#### <a name="javascript-apis"></a><span data-ttu-id="75ece-146">API JavaScript</span><span class="sxs-lookup"><span data-stu-id="75ece-146">JavaScript APIs</span></span>
+<span data-ttu-id="75ece-147">oggetto JavaScript globale Hello `window.capptain` è stato rinominato `window.azureEngagement`, ma è possibile utilizzare hello `window.engagement` alias per le chiamate API.</span><span class="sxs-lookup"><span data-stu-id="75ece-147">hello global JavaScript object `window.capptain` has been renamed `window.azureEngagement`, but you can use hello `window.engagement` alias for API calls.</span></span> <span data-ttu-id="75ece-148">Non è possibile utilizzare questa configurazione di alias toodefine hello SDK.</span><span class="sxs-lookup"><span data-stu-id="75ece-148">You can't use this alias toodefine hello SDK configuration.</span></span>
 
-<span data-ttu-id="c60a0-149">Ad esempio, `capptain.deviceId` diventa `engagement.deviceId`, `capptain.agent.startActivity` diventa `engagement.agent.startActivity` e così via.</span><span class="sxs-lookup"><span data-stu-id="c60a0-149">For instance, `capptain.deviceId` becomes `engagement.deviceId`, `capptain.agent.startActivity` becomes `engagement.agent.startActivity`, and so on.</span></span>
+<span data-ttu-id="75ece-149">Ad esempio, `capptain.deviceId` diventa `engagement.deviceId`, `capptain.agent.startActivity` diventa `engagement.agent.startActivity` e così via.</span><span class="sxs-lookup"><span data-stu-id="75ece-149">For instance, `capptain.deviceId` becomes `engagement.deviceId`, `capptain.agent.startActivity` becomes `engagement.agent.startActivity`, and so on.</span></span>
 
-<span data-ttu-id="c60a0-150">Se nell'applicazione Web è già stata integrata una versione precedente di Azure Mobile Engagement Web SDK, vedere le [procedure di aggiornamento](mobile-engagement-web-upgrade-procedure.md).</span><span class="sxs-lookup"><span data-stu-id="c60a0-150">If you have already integrated an earlier version of the Azure Mobile Engagement Web SDK into your application, please read about [upgrade procedures](mobile-engagement-web-upgrade-procedure.md).</span></span>
+<span data-ttu-id="75ece-150">Se è già stata integrata una versione precedente di hello Azure Mobile Engagement Web SDK nell'applicazione, consultare l'articolo sulla [procedure aggiornamento](mobile-engagement-web-upgrade-procedure.md).</span><span class="sxs-lookup"><span data-stu-id="75ece-150">If you have already integrated an earlier version of hello Azure Mobile Engagement Web SDK into your application, please read about [upgrade procedures](mobile-engagement-web-upgrade-procedure.md).</span></span>
 

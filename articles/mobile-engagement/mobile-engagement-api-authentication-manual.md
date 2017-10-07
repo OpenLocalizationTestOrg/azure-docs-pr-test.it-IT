@@ -1,6 +1,6 @@
 ---
-title: Eseguire l'autenticazione con le API REST di Mobile Engagement - installazione manuale
-description: Descrive come configurare manualmente l'autenticazione per le API REST di Mobile Engagement
+title: aaaAuthenticate con l'API REST di Engagement Mobile - installazione manuale
+description: Viene descritto come toomanually impostare l'autenticazione per le API REST di Engagement Mobile
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,100 +14,100 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9d6132e1a01be489b8e8e28a0219cf8a0b50b318
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3884f94afcd6b9a62bfcf498fb6ee84bb6e837b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="authenticate-with-mobile-engagement-rest-apis---manual-setup"></a><span data-ttu-id="8b5b6-103">Eseguire l'autenticazione con le API REST di Mobile Engagement - installazione manuale</span><span class="sxs-lookup"><span data-stu-id="8b5b6-103">Authenticate with Mobile Engagement REST APIs - manual setup</span></span>
-<span data-ttu-id="8b5b6-104">Questo è un documento in appendice per [eseguire l'autenticazione con le API REST di Mobile Engagement](mobile-engagement-api-authentication.md).</span><span class="sxs-lookup"><span data-stu-id="8b5b6-104">This is an appendix documentation to [Authenticate with Mobile Engagement REST APIs](mobile-engagement-api-authentication.md).</span></span> <span data-ttu-id="8b5b6-105">Leggerlo prima per capire il contesto.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-105">Make sure you read it first to get the context.</span></span> <span data-ttu-id="8b5b6-106">Il documento descrive un modo alternativo per eseguire l'installazione singola al fine di configurare l'autenticazione per le API REST di Mobile Engagement tramite il portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-106">This describes an alternate way to do the One-time setup for setting up your authentication for the Mobile Engagement REST APIs using the Azure Portal.</span></span> 
+# <a name="authenticate-with-mobile-engagement-rest-apis---manual-setup"></a><span data-ttu-id="7548d-103">Eseguire l'autenticazione con le API REST di Mobile Engagement - installazione manuale</span><span class="sxs-lookup"><span data-stu-id="7548d-103">Authenticate with Mobile Engagement REST APIs - manual setup</span></span>
+<span data-ttu-id="7548d-104">Questa è troppo documentazione un'appendice[eseguire l'autenticazione con le API REST di Engagement Mobile](mobile-engagement-api-authentication.md).</span><span class="sxs-lookup"><span data-stu-id="7548d-104">This is an appendix documentation too[Authenticate with Mobile Engagement REST APIs](mobile-engagement-api-authentication.md).</span></span> <span data-ttu-id="7548d-105">Assicurarsi di che leggere il primo contesto di hello tooget.</span><span class="sxs-lookup"><span data-stu-id="7548d-105">Make sure you read it first tooget hello context.</span></span> <span data-ttu-id="7548d-106">Descrive un modo alternativo toodo hello iniziali di configurazione per configurare l'autenticazione per utilizzando le API REST di Engagement Mobile hello hello portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="7548d-106">This describes an alternate way toodo hello One-time setup for setting up your authentication for hello Mobile Engagement REST APIs using hello Azure Portal.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="8b5b6-107">Le istruzioni che seguono si basano sulla [guida di Active Directory](../azure-resource-manager/resource-group-create-service-principal-portal.md) e sono state adattate ai requisiti per l'autenticazione per le API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-107">The instructions below are based on this [Active Directory guide](../azure-resource-manager/resource-group-create-service-principal-portal.md) and customized for what is required for authentication for Mobile Engagement APIs.</span></span> <span data-ttu-id="8b5b6-108">Consultare la guida per comprendere bene la seguente procedura.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-108">So refer to it if you want to understand the steps below in detail.</span></span> 
+> <span data-ttu-id="7548d-107">istruzioni di Hello seguenti si basano su questo [Guida di Active Directory](../azure-resource-manager/resource-group-create-service-principal-portal.md) e personalizzato per ciò che è richiesto per l'autenticazione per le API di Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="7548d-107">hello instructions below are based on this [Active Directory guide](../azure-resource-manager/resource-group-create-service-principal-portal.md) and customized for what is required for authentication for Mobile Engagement APIs.</span></span> <span data-ttu-id="7548d-108">Se si desidera toounderstand hello procedura in modo dettagliato, fare riferimento tooit.</span><span class="sxs-lookup"><span data-stu-id="7548d-108">So refer tooit if you want toounderstand hello steps below in detail.</span></span> 
 > 
 > 
 
-1. <span data-ttu-id="8b5b6-109">Accedere all'account di Azure tramite il [portale classico](https://manage.windowsazure.com/).</span><span class="sxs-lookup"><span data-stu-id="8b5b6-109">Login to your Azure Account through the [classic portal](https://manage.windowsazure.com/).</span></span>
-2. <span data-ttu-id="8b5b6-110">Selezionare **Active Directory** dal riquadro di sinistra.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-110">Select **Active Directory** from the left pane.</span></span>
+1. <span data-ttu-id="7548d-109">Account di accesso tooyour Account Azure tramite hello [portale classico](https://manage.windowsazure.com/).</span><span class="sxs-lookup"><span data-stu-id="7548d-109">Login tooyour Azure Account through hello [classic portal](https://manage.windowsazure.com/).</span></span>
+2. <span data-ttu-id="7548d-110">Selezionare **Active Directory** hello nel riquadro di sinistra.</span><span class="sxs-lookup"><span data-stu-id="7548d-110">Select **Active Directory** from hello left pane.</span></span>
    
      ![selezionare Active Directory][1]
-3. <span data-ttu-id="8b5b6-112">Scegliere la **directory predefinita di Active Directory** nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-112">Choose the **Default Active Directory** in your Azure portal.</span></span> 
+3. <span data-ttu-id="7548d-112">Scegliere hello **predefinita Active Directory** nel portale di Azure.</span><span class="sxs-lookup"><span data-stu-id="7548d-112">Choose hello **Default Active Directory** in your Azure portal.</span></span> 
    
      ![scegliere la directory][2]
    
    > [!IMPORTANT]
-   > <span data-ttu-id="8b5b6-114">Questo approccio funziona solo se si utilizza la directory predefinita di Active Directory del proprio account e non funzionerà se si esegue il processo da una directory di Active Directory creata nell'account.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-114">This approach works only when you are working in the default Active Directory of your account and will not work if you are doing this in an Active Directory that you have created in your account.</span></span> 
+   > <span data-ttu-id="7548d-114">Questo approccio funziona solo quando si utilizza predefinito hello Active Directory del proprio account e non funzionerà se si esegue questo in Active Directory creati nell'account.</span><span class="sxs-lookup"><span data-stu-id="7548d-114">This approach works only when you are working in hello default Active Directory of your account and will not work if you are doing this in an Active Directory that you have created in your account.</span></span> 
    > 
    > 
-4. <span data-ttu-id="8b5b6-115">Per visualizzare le applicazioni nella directory, fare clic su **Applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-115">To view the applications in your directory, click on **Applications**.</span></span>
+4. <span data-ttu-id="7548d-115">applicazioni di hello tooview nella directory, fare clic su **applicazioni**.</span><span class="sxs-lookup"><span data-stu-id="7548d-115">tooview hello applications in your directory, click on **Applications**.</span></span>
    
      ![visualizzare le applicazioni][3]
-5. <span data-ttu-id="8b5b6-117">Fare clic su **AGGIUNGI**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-117">Click on **ADD**.</span></span> 
+5. <span data-ttu-id="7548d-117">Fare clic su **AGGIUNGI**.</span><span class="sxs-lookup"><span data-stu-id="7548d-117">Click on **ADD**.</span></span> 
    
      ![aggiungere un'applicazione][4]
-6. <span data-ttu-id="8b5b6-119">Fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**</span><span class="sxs-lookup"><span data-stu-id="8b5b6-119">Click on **Add an application my organization is developing**</span></span>
+6. <span data-ttu-id="7548d-119">Fare clic su **Aggiungi un'applicazione che l'organizzazione sta sviluppando**</span><span class="sxs-lookup"><span data-stu-id="7548d-119">Click on **Add an application my organization is developing**</span></span>
    
      ![nuova applicazione][5]
-7. <span data-ttu-id="8b5b6-121">Inserire il nome dell'applicazione e selezionare il tipo di applicazione come **APPLICAZIONE WEB E/O API WEB** , quindi fare clic su Avanti.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-121">Fill in name of the application and select the type of application as **WEB APPLICATION AND/OR WEB API** and click the next button.</span></span>
+7. <span data-ttu-id="7548d-121">Nome dell'applicazione hello e tipo hello selezionare applicazione come **applicazione WEB, e/o API WEB** e fare clic sul pulsante Avanti hello.</span><span class="sxs-lookup"><span data-stu-id="7548d-121">Fill in name of hello application and select hello type of application as **WEB APPLICATION AND/OR WEB API** and click hello next button.</span></span>
    
      ![assegnare un nome all'applicazione][6]
-8. <span data-ttu-id="8b5b6-123">È possibile fornire un URL fittizio come **URL ACCESSO** e **URI ID APP**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-123">You can provide any dummy URLs for **SIGN-ON URL** and **APP ID URI**.</span></span> <span data-ttu-id="8b5b6-124">Questi valori non vengono usati per questo scenario e gli URL non vengono convalidati.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-124">They are not used for our scenario and the URLs themselves are not validated.</span></span>  
+8. <span data-ttu-id="7548d-123">È possibile fornire un URL fittizio come **URL ACCESSO** e **URI ID APP**.</span><span class="sxs-lookup"><span data-stu-id="7548d-123">You can provide any dummy URLs for **SIGN-ON URL** and **APP ID URI**.</span></span> <span data-ttu-id="7548d-124">Non vengono usati per questo scenario e gli URL di hello stessi non vengono convalidati.</span><span class="sxs-lookup"><span data-stu-id="7548d-124">They are not used for our scenario and hello URLs themselves are not validated.</span></span>  
    
      ![proprietà dell'applicazione][7]
-9. <span data-ttu-id="8b5b6-126">Alla fine della procedura si otterrà un'app AAD con il nome specificato in precedenza simile al seguente.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-126">At the end of this, you will have an AAD app with the name you provided previously like the following.</span></span> <span data-ttu-id="8b5b6-127">Questo è il nome **AD\_APP\_NAME** ed è necessario prenderne nota.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-127">This is your **AD\_APP\_NAME** and make a note of it.</span></span>  
+9. <span data-ttu-id="7548d-126">Alla fine di hello di questo, si avrà un'app di Azure ad con nome hello che seguente hello fornite in precedenza.</span><span class="sxs-lookup"><span data-stu-id="7548d-126">At hello end of this, you will have an AAD app with hello name you provided previously like hello following.</span></span> <span data-ttu-id="7548d-127">Questo è il nome **AD\_APP\_NAME** ed è necessario prenderne nota.</span><span class="sxs-lookup"><span data-stu-id="7548d-127">This is your **AD\_APP\_NAME** and make a note of it.</span></span>  
    
      ![Nome dell'applicazione][8]
-10. <span data-ttu-id="8b5b6-129">Fare clic sul nome dell'applicazione, poi fare clic su **Configura**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-129">Click on the app name and click on **Configure**.</span></span>
+10. <span data-ttu-id="7548d-129">Fare clic sul nome dell'applicazione hello e fare clic su **configura**.</span><span class="sxs-lookup"><span data-stu-id="7548d-129">Click on hello app name and click on **Configure**.</span></span>
     
       ![configurare l'applicazione][9]
-11. <span data-ttu-id="8b5b6-131">Prendere nota dell'ID CLIENT che verrà usato come **CLIENT\_ID** per le chiamate API.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-131">Make a note of the CLIENT ID that will be used as **CLIENT\_ID** for your API calls.</span></span> 
+11. <span data-ttu-id="7548d-131">Prendere nota dell'ID CLIENT che verrà utilizzato come hello **CLIENT\_ID** per l'API chiamate.</span><span class="sxs-lookup"><span data-stu-id="7548d-131">Make a note of hello CLIENT ID that will be used as **CLIENT\_ID** for your API calls.</span></span> 
     
      ![configurare l'applicazione][10]
-12. <span data-ttu-id="8b5b6-133">Scorrere fino alla sezione **Chiavi** e aggiungere una chiave preferibilmente con 2 anni di durata (scadenza), quindi fare clic su **Salva**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-133">Scroll down to the **Keys** section and add a key with preferably 2 years (expiry) duration and click **Save**.</span></span> 
+12. <span data-ttu-id="7548d-133">Scorrere verso il basso toohello **chiavi** sezione e aggiungere una chiave con preferibilmente la durata di 2 anni (scadenza) e fare clic su **salvare**.</span><span class="sxs-lookup"><span data-stu-id="7548d-133">Scroll down toohello **Keys** section and add a key with preferably 2 years (expiry) duration and click **Save**.</span></span> 
     
      ![configurare l'applicazione][11]
-13. <span data-ttu-id="8b5b6-135">Copiare immediatamente il valore visualizzato per la chiave perché viene visualizzato soltanto ora e non verrà archiviato, quindi non verrà mai più visualizzato.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-135">Immediately copy the value which is shown for the key as it is only shown now and is not stored so will not be displayed ever again.</span></span> <span data-ttu-id="8b5b6-136">In caso di smarrimento sarà necessario generare una nuova chiave.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-136">If you lose it then you will have to generate a new key.</span></span> <span data-ttu-id="8b5b6-137">Questo sarà il **CLIENT_SECRET** per le chiamate API.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-137">This will be the **CLIENT_SECRET** for your API calls.</span></span> 
+13. <span data-ttu-id="7548d-135">Copiare immediatamente valore hello mostrato per la chiave di hello poiché viene visualizzata solo ora e non verrà archiviato in modo non verranno mai più visualizzati.</span><span class="sxs-lookup"><span data-stu-id="7548d-135">Immediately copy hello value which is shown for hello key as it is only shown now and is not stored so will not be displayed ever again.</span></span> <span data-ttu-id="7548d-136">In caso di smarrimento sarà necessario toogenerate una nuova chiave.</span><span class="sxs-lookup"><span data-stu-id="7548d-136">If you lose it then you will have toogenerate a new key.</span></span> <span data-ttu-id="7548d-137">Si tratterà hello **CLIENT_SECRET** per l'API chiamate.</span><span class="sxs-lookup"><span data-stu-id="7548d-137">This will be hello **CLIENT_SECRET** for your API calls.</span></span> 
     
      ![configurare l'applicazione][12]
     
     > [!IMPORTANT]
-    > <span data-ttu-id="8b5b6-139">Questa chiave scadrà alla fine della durata specificata. Ricordarsi di rinnovarla al momento opportuno, altrimenti l'autenticazione API non funzionerà più.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-139">This key will expire at the end of the duration that you specified so make sure to renew it when the time comes otherwise your API authentication will not work anymore.</span></span> <span data-ttu-id="8b5b6-140">È possibile anche eliminare e ricreare la chiave se si ritiene che sia stata compromessa.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-140">You can also delete and recreate this key if you think that it has been compromised.</span></span>
+    > <span data-ttu-id="7548d-139">Questa chiave scadrà alla fine di hello della durata di hello specificato toorenew Assicurarsi pertanto di verificare al momento di hello in caso contrario l'autenticazione di API non funzionerà più.</span><span class="sxs-lookup"><span data-stu-id="7548d-139">This key will expire at hello end of hello duration that you specified so make sure toorenew it when hello time comes otherwise your API authentication will not work anymore.</span></span> <span data-ttu-id="7548d-140">È possibile anche eliminare e ricreare la chiave se si ritiene che sia stata compromessa.</span><span class="sxs-lookup"><span data-stu-id="7548d-140">You can also delete and recreate this key if you think that it has been compromised.</span></span>
     > 
     > 
-14. <span data-ttu-id="8b5b6-141">Fare ora clic sul pulsante **VISUALIZZA ENDPOINT** per aprire la finestra di dialogo **Endpoint dell'app**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-141">Click on **VIEW ENDPOINTS** button now which will open up the **App Endpoints** dialog box.</span></span> 
+14. <span data-ttu-id="7548d-141">Fare clic su **Visualizza endpoint** pulsante che viene ora visualizzato hello **endpoint dell'App** la finestra di dialogo.</span><span class="sxs-lookup"><span data-stu-id="7548d-141">Click on **VIEW ENDPOINTS** button now which will open up hello **App Endpoints** dialog box.</span></span> 
     
     ![][13]
-15. <span data-ttu-id="8b5b6-142">Nella finestra di dialogo Endpoint dell'app, copiare l' **ENDPOINT TOKEN OAUTH 2.0**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-142">From the App Endpoints dialog box, copy the **OAUTH 2.0 TOKEN ENDPOINT**.</span></span> 
+15. <span data-ttu-id="7548d-142">Nella finestra di dialogo endpoint dell'App hello copiare hello **ENDPOINT TOKEN OAUTH 2.0**.</span><span class="sxs-lookup"><span data-stu-id="7548d-142">From hello App Endpoints dialog box, copy hello **OAUTH 2.0 TOKEN ENDPOINT**.</span></span> 
     
     ![][14]
-16. <span data-ttu-id="8b5b6-143">L'endpoint avrà il formato seguente, in cui il GUID nell'URL è il **TENANT_ID** e si deve prenderne nota:</span><span class="sxs-lookup"><span data-stu-id="8b5b6-143">This endpoint will be in the following form where the GUID in the URL is your **TENANT_ID** so make a note of it:</span></span> 
+16. <span data-ttu-id="7548d-143">Questo endpoint sarà nel seguente formato in cui hello GUID nell'URL hello è hello il **TENANT_ID** quindi prendere nota di esso:</span><span class="sxs-lookup"><span data-stu-id="7548d-143">This endpoint will be in hello following form where hello GUID in hello URL is your **TENANT_ID** so make a note of it:</span></span> 
     
         https://login.microsoftonline.com/<GUID>/oauth2/token
-17. <span data-ttu-id="8b5b6-144">A questo punto si potranno configurare le autorizzazioni dell'applicazione.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-144">Now we will proceed to configure the permissions on this app.</span></span> <span data-ttu-id="8b5b6-145">A tal fine, aprire il [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="8b5b6-145">For this you will have to open up the [Azure portal](https://portal.azure.com).</span></span> 
-18. <span data-ttu-id="8b5b6-146">Fare clic su **Gruppi di risorse** e individuare il gruppo di risorse **Mobile Engagement**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-146">Click on **Resource Groups** and find the **Mobile Engagement** resource group.</span></span>  
+17. <span data-ttu-id="7548d-144">Si procederà ora le autorizzazioni di hello tooconfigure per questa app.</span><span class="sxs-lookup"><span data-stu-id="7548d-144">Now we will proceed tooconfigure hello permissions on this app.</span></span> <span data-ttu-id="7548d-145">Per questo oggetto è tooopen backup hello [portale di Azure](https://portal.azure.com).</span><span class="sxs-lookup"><span data-stu-id="7548d-145">For this you will have tooopen up hello [Azure portal](https://portal.azure.com).</span></span> 
+18. <span data-ttu-id="7548d-146">Fare clic su **gruppi di risorse** e trovare hello **Mobile Engagement** gruppo di risorse.</span><span class="sxs-lookup"><span data-stu-id="7548d-146">Click on **Resource Groups** and find hello **Mobile Engagement** resource group.</span></span>  
     
     ![][15]
-19. <span data-ttu-id="8b5b6-147">Fare clic sul gruppo di risorse **Mobile Engagement** e passare al pannello **Impostazioni**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-147">Click the **Mobile Engagement** resource group and navigate to the **Settings** blade here.</span></span> 
+19. <span data-ttu-id="7548d-147">Fare clic su hello **Mobile Engagement** risorse di gruppo e passare toohello **impostazioni** pannello qui.</span><span class="sxs-lookup"><span data-stu-id="7548d-147">Click hello **Mobile Engagement** resource group and navigate toohello **Settings** blade here.</span></span> 
     
     ![][16]
-20. <span data-ttu-id="8b5b6-148">Fare clic su **Utenti** nel pannello Impostazioni e fare clic su **Aggiungi** per aggiungere un utente.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-148">Click on **Users** in the Settings blade and then click on **Add** to add a user.</span></span> 
+20. <span data-ttu-id="7548d-148">Fare clic su **utenti** in hello pannello impostazioni e quindi fare clic su **Aggiungi** tooadd un utente.</span><span class="sxs-lookup"><span data-stu-id="7548d-148">Click on **Users** in hello Settings blade and then click on **Add** tooadd a user.</span></span> 
     
     ![][17]
-21. <span data-ttu-id="8b5b6-149">Fare clic su **Selezionare un ruolo**</span><span class="sxs-lookup"><span data-stu-id="8b5b6-149">Click on **Select a role**</span></span>
+21. <span data-ttu-id="7548d-149">Fare clic su **Selezionare un ruolo**</span><span class="sxs-lookup"><span data-stu-id="7548d-149">Click on **Select a role**</span></span>
     
     ![][18]
-22. <span data-ttu-id="8b5b6-150">Fare clic su **Proprietario**</span><span class="sxs-lookup"><span data-stu-id="8b5b6-150">Click on **Owner**</span></span>
+22. <span data-ttu-id="7548d-150">Fare clic su **Proprietario**</span><span class="sxs-lookup"><span data-stu-id="7548d-150">Click on **Owner**</span></span>
     
     ![][19]
-23. <span data-ttu-id="8b5b6-151">Cercare il nome dell'applicazione **AD\_APP\_NAME** nella casella di ricerca.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-151">Search for the name of your application **AD\_APP\_NAME** in the Search box.</span></span> <span data-ttu-id="8b5b6-152">Qui non verrà visualizzato per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-152">You will not see this by default here.</span></span> <span data-ttu-id="8b5b6-153">Dopo aver trovato il nome, selezionarlo e fare clic su **Seleziona** nella parte inferiore del pannello.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-153">Once you find it, select it and click on **Select** at the bottom of the blade.</span></span> 
+23. <span data-ttu-id="7548d-151">Ricerca per nome dell'applicazione hello **AD\_APP\_nome** nella casella di ricerca hello.</span><span class="sxs-lookup"><span data-stu-id="7548d-151">Search for hello name of your application **AD\_APP\_NAME** in hello Search box.</span></span> <span data-ttu-id="7548d-152">Qui non verrà visualizzato per impostazione predefinita.</span><span class="sxs-lookup"><span data-stu-id="7548d-152">You will not see this by default here.</span></span> <span data-ttu-id="7548d-153">Se si trova il, selezionarla e fare clic su **selezionare** nella parte inferiore di hello del pannello hello.</span><span class="sxs-lookup"><span data-stu-id="7548d-153">Once you find it, select it and click on **Select** at hello bottom of hello blade.</span></span> 
     
     ![][20]
-24. <span data-ttu-id="8b5b6-154">Nel pannello **Aggiungi accesso** viene visualizzato come **1 utente, 0 gruppi**.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-154">On the **Add Access** blade, it will show up as **1 user, 0 groups**.</span></span> <span data-ttu-id="8b5b6-155">Fare clic su **OK** nel pannello per confermare la modifica.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-155">Click **OK** on this blade to confirm the change.</span></span> 
+24. <span data-ttu-id="7548d-154">In hello **aggiungere accesso** pannello viene visualizzato come **1 utente, 0 gruppi**.</span><span class="sxs-lookup"><span data-stu-id="7548d-154">On hello **Add Access** blade, it will show up as **1 user, 0 groups**.</span></span> <span data-ttu-id="7548d-155">Fare clic su **OK** su questa modifica hello tooconfirm di blade.</span><span class="sxs-lookup"><span data-stu-id="7548d-155">Click **OK** on this blade tooconfirm hello change.</span></span> 
     
     ![][21]
 
-<span data-ttu-id="8b5b6-156">Ora la configurazione di AAD necessaria è terminata e tutto è pronto per le chiamate API.</span><span class="sxs-lookup"><span data-stu-id="8b5b6-156">You have now completed the required AAD configuration and you are all set to call the APIs.</span></span> 
+<span data-ttu-id="7548d-156">Configurazione di AAD hello necessario sono stati completati ed è hello toocall di tutti i set di API.</span><span class="sxs-lookup"><span data-stu-id="7548d-156">You have now completed hello required AAD configuration and you are all set toocall hello APIs.</span></span> 
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-api-authentication-manual/active-directory.png

@@ -1,6 +1,6 @@
 ---
-title: Esercitazione sulla distribuzione globale in Azure Cosmos DB per l'API MongoDB | Documentazione Microsoft
-description: Informazioni su come configurare la distribuzione globale in Azure Cosmos DB usando l'API MongoDB.
+title: esercitazione di distribuzione globale aaaAzure DB Cosmos per MongoDB API | Documenti Microsoft
+description: Informazioni su come distribuzione globale di Azure Cosmos DB toosetup utilizzando hello API MongoDB.
 services: cosmos-db
 keywords: distribuzione globale, MongoDB
 documentationcenter: 
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2747102f4d8cac412b67abc3fd07cfa3661bcee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0fc2d670bb4e21ac5f813f9586b407ba06ccf354
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-mongodb-api"></a><span data-ttu-id="534a0-104">Procedura di configurazione della distribuzione globale in Azure Cosmos DB usando l'API MongoDB</span><span class="sxs-lookup"><span data-stu-id="534a0-104">How to setup Azure Cosmos DB global distribution using the MongoDB API</span></span>
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-mongodb-api"></a><span data-ttu-id="c40e3-104">La distribuzione globale di Azure Cosmos DB toosetup utilizzando hello MongoDB API</span><span class="sxs-lookup"><span data-stu-id="c40e3-104">How toosetup Azure Cosmos DB global distribution using hello MongoDB API</span></span>
 
-<span data-ttu-id="534a0-105">Questo articolo illustra come usare il portale di Azure per configurare la distribuzione globale in Azure Cosmos DB e quindi connettersi tramite l'API MongoDB.</span><span class="sxs-lookup"><span data-stu-id="534a0-105">In this article, we show how to use the Azure portal to setup Azure Cosmos DB global distribution and then connect using the MongoDB API.</span></span>
+<span data-ttu-id="c40e3-105">In questo articolo viene illustrata come toouse hello toosetup portale Azure distribuzione globale di Azure Cosmos DB e quindi connettersi usando l'API di MongoDB hello.</span><span class="sxs-lookup"><span data-stu-id="c40e3-105">In this article, we show how toouse hello Azure portal toosetup Azure Cosmos DB global distribution and then connect using hello MongoDB API.</span></span>
 
-<span data-ttu-id="534a0-106">Questo articolo illustra le attività seguenti:</span><span class="sxs-lookup"><span data-stu-id="534a0-106">This article covers the following tasks:</span></span> 
+<span data-ttu-id="c40e3-106">Questo articolo descrive hello seguenti attività:</span><span class="sxs-lookup"><span data-stu-id="c40e3-106">This article covers hello following tasks:</span></span> 
 
 > [!div class="checklist"]
-> * <span data-ttu-id="534a0-107">Configurare la distribuzione globale tramite il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="534a0-107">Configure global distribution using the Azure portal</span></span>
-> * <span data-ttu-id="534a0-108">Configurare la distribuzione globale tramite l'[API MongoDB](mongodb-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="534a0-108">Configure global distribution using the [MongoDB API](mongodb-introduction.md)</span></span>
+> * <span data-ttu-id="c40e3-107">Configurare la distribuzione globale mediante hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="c40e3-107">Configure global distribution using hello Azure portal</span></span>
+> * <span data-ttu-id="c40e3-108">Configurare la distribuzione globale mediante hello [API MongoDB](mongodb-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="c40e3-108">Configure global distribution using hello [MongoDB API](mongodb-introduction.md)</span></span>
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
-## <a name="verifying-your-regional-setup-using-the-mongodb-api"></a><span data-ttu-id="534a0-109">Verifica della configurazione a livello di area usando l'API MongoDB</span><span class="sxs-lookup"><span data-stu-id="534a0-109">Verifying your regional setup using the MongoDB API</span></span>
-<span data-ttu-id="534a0-110">Il modo più semplice per verificare in modo approfondito la configurazione globale nell'API per MongoDB consiste nell'eseguire il comando *isMaster()* da Mongo Shell.</span><span class="sxs-lookup"><span data-stu-id="534a0-110">The simplest way of double checking your global configuration within API for MongoDB is to run the *isMaster()* command from the Mongo Shell.</span></span>
+## <a name="verifying-your-regional-setup-using-hello-mongodb-api"></a><span data-ttu-id="c40e3-109">Verifica della configurazione internazionale utilizzando hello MongoDB API</span><span class="sxs-lookup"><span data-stu-id="c40e3-109">Verifying your regional setup using hello MongoDB API</span></span>
+<span data-ttu-id="c40e3-110">più semplice di controllo della configurazione globale all'interno di API per MongoDB è hello toorun double Hello *isMaster()* comando Shell di Mongo hello.</span><span class="sxs-lookup"><span data-stu-id="c40e3-110">hello simplest way of double checking your global configuration within API for MongoDB is toorun hello *isMaster()* command from hello Mongo Shell.</span></span>
 
-<span data-ttu-id="534a0-111">Da Mongo Shell:</span><span class="sxs-lookup"><span data-stu-id="534a0-111">From your Mongo Shell:</span></span>
+<span data-ttu-id="c40e3-111">Da Mongo Shell:</span><span class="sxs-lookup"><span data-stu-id="c40e3-111">From your Mongo Shell:</span></span>
 
    ```
       db.isMaster()
    ```
    
-<span data-ttu-id="534a0-112">Risultati dell'esempio:</span><span class="sxs-lookup"><span data-stu-id="534a0-112">Example results:</span></span>
+<span data-ttu-id="c40e3-112">Risultati dell'esempio:</span><span class="sxs-lookup"><span data-stu-id="c40e3-112">Example results:</span></span>
 
    ```JSON
       {
@@ -68,23 +68,23 @@ ms.lasthandoff: 08/03/2017
       }
    ```
 
-## <a name="connecting-to-a-preferred-region-using-the-mongodb-api"></a><span data-ttu-id="534a0-113">Connessione a un'area preferita tramite l'API MongoDB</span><span class="sxs-lookup"><span data-stu-id="534a0-113">Connecting to a preferred region using the MongoDB API</span></span>
+## <a name="connecting-tooa-preferred-region-using-hello-mongodb-api"></a><span data-ttu-id="c40e3-113">Connessione area geografica preferita tooa utilizzando hello MongoDB API</span><span class="sxs-lookup"><span data-stu-id="c40e3-113">Connecting tooa preferred region using hello MongoDB API</span></span>
 
-<span data-ttu-id="534a0-114">L'API MongoDB consente di specificare le preferenze di lettura della raccolta per un database distribuito globalmente.</span><span class="sxs-lookup"><span data-stu-id="534a0-114">The MongoDB API enables you to specify your collection's read preference for a globally distributed database.</span></span> <span data-ttu-id="534a0-115">Per ottenere letture a bassa latenza e disponibilità elevata globale, è consigliabile impostare le preferenze di lettura della raccolta su *nearest*.</span><span class="sxs-lookup"><span data-stu-id="534a0-115">For both low latency reads and global high availability, we recommend setting your collection's read preference to *nearest*.</span></span> <span data-ttu-id="534a0-116">Una preferenza di lettura di tipo *nearest* viene configurata per la lettura dall'area più vicina.</span><span class="sxs-lookup"><span data-stu-id="534a0-116">A read preference of *nearest* is configured to read from the closest region.</span></span>
+<span data-ttu-id="c40e3-114">Hello MongoDB API consente si toospecify delle preferenze di lettura della raccolta per un database distribuito a livello globale.</span><span class="sxs-lookup"><span data-stu-id="c40e3-114">hello MongoDB API enables you toospecify your collection's read preference for a globally distributed database.</span></span> <span data-ttu-id="c40e3-115">Per entrambi bassa latenza letture e disponibilità elevata, si consiglia di impostare preferenze di lettura della raccolta troppo*più vicino*.</span><span class="sxs-lookup"><span data-stu-id="c40e3-115">For both low latency reads and global high availability, we recommend setting your collection's read preference too*nearest*.</span></span> <span data-ttu-id="c40e3-116">Una lettura preferenza *più vicino* è tooread configurato dall'area più vicina hello.</span><span class="sxs-lookup"><span data-stu-id="c40e3-116">A read preference of *nearest* is configured tooread from hello closest region.</span></span>
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Nearest));
 ```
 
-<span data-ttu-id="534a0-117">Per applicazioni con un'area di lettura/scrittura primaria e un'area secondaria per scenari di ripristino di emergenza, è consigliabile impostare le preferenze di lettura della raccolta su *secondary preferred*.</span><span class="sxs-lookup"><span data-stu-id="534a0-117">For applications with a primary read/write region and a secondary region for disaster recovery (DR) scenarios, we recommend setting your collection's read preference to *secondary preferred*.</span></span> <span data-ttu-id="534a0-118">Una preferenza di lettura di tipo *secondary preferred* viene configurata per la lettura dall'area secondaria quando l'area primaria non è disponibile.</span><span class="sxs-lookup"><span data-stu-id="534a0-118">A read preference of *secondary preferred* is configured to read from the secondary region when the primary region is unavailable.</span></span>
+<span data-ttu-id="c40e3-117">Per le applicazioni con una replica primaria di lettura/scrittura area e un'area secondaria per il ripristino di emergenza (ripristino di emergenza) scenari si consiglia di impostare preferenze di lettura della raccolta troppo*secondario preferito*.</span><span class="sxs-lookup"><span data-stu-id="c40e3-117">For applications with a primary read/write region and a secondary region for disaster recovery (DR) scenarios, we recommend setting your collection's read preference too*secondary preferred*.</span></span> <span data-ttu-id="c40e3-118">Una lettura preferenza *secondario preferito* è tooread configurato dall'area secondaria hello quando l'area primaria hello è disponibile.</span><span class="sxs-lookup"><span data-stu-id="c40e3-118">A read preference of *secondary preferred* is configured tooread from hello secondary region when hello primary region is unavailable.</span></span>
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.SecondaryPreferred));
 ```
 
-<span data-ttu-id="534a0-119">Se infine si vogliono specificare manualmente le aree di lettura,</span><span class="sxs-lookup"><span data-stu-id="534a0-119">Lastly, if you would like to manually specify your read regions.</span></span> <span data-ttu-id="534a0-120">è possibile impostare il valore Tag per l'area entro la preferenza di lettura.</span><span class="sxs-lookup"><span data-stu-id="534a0-120">You can set the region Tag within your read preference.</span></span>
+<span data-ttu-id="c40e3-119">Infine, se ad esempio toomanually specificare le aree di lettura.</span><span class="sxs-lookup"><span data-stu-id="c40e3-119">Lastly, if you would like toomanually specify your read regions.</span></span> <span data-ttu-id="c40e3-120">È possibile impostare l'area hello Tag all'interno delle preferenze di lettura.</span><span class="sxs-lookup"><span data-stu-id="c40e3-120">You can set hello region Tag within your read preference.</span></span>
 
 ```csharp
 var collection = database.GetCollection<BsonDocument>(collectionName);
@@ -92,17 +92,17 @@ var tag = new Tag("region", "Southeast Asia");
 collection = collection.WithReadPreference(new ReadPreference(ReadPreferenceMode.Secondary, new[] { new TagSet(new[] { tag }) }));
 ```
 
-<span data-ttu-id="534a0-121">L'esercitazione è terminata.</span><span class="sxs-lookup"><span data-stu-id="534a0-121">That's it, that completes this tutorial.</span></span> <span data-ttu-id="534a0-122">Per informazioni su come gestire la coerenza dell'account con replica globale, vedere [Livelli di coerenza in Azure Cosmos DB](consistency-levels.md).</span><span class="sxs-lookup"><span data-stu-id="534a0-122">You can learn how to manage the consistency of your globally replicated account by reading [Consistency levels in Azure Cosmos DB](consistency-levels.md).</span></span> <span data-ttu-id="534a0-123">Per informazioni sul funzionamento della replica di database globale in Azure Cosmos DB, vedere [Distribuire i dati a livello globale con Azure Cosmos DB](distribute-data-globally.md).</span><span class="sxs-lookup"><span data-stu-id="534a0-123">And for more information about how global database replication works in Azure Cosmos DB, see [Distribute data globally with Azure Cosmos DB](distribute-data-globally.md).</span></span>
+<span data-ttu-id="c40e3-121">L'esercitazione è terminata.</span><span class="sxs-lookup"><span data-stu-id="c40e3-121">That's it, that completes this tutorial.</span></span> <span data-ttu-id="c40e3-122">È possibile ottenere informazioni come toomanage hello la coerenza dell'account di replicato globalmente leggendo [livelli di coerenza nel database di Azure Cosmos](consistency-levels.md).</span><span class="sxs-lookup"><span data-stu-id="c40e3-122">You can learn how toomanage hello consistency of your globally replicated account by reading [Consistency levels in Azure Cosmos DB](consistency-levels.md).</span></span> <span data-ttu-id="c40e3-123">Per informazioni sul funzionamento della replica di database globale in Azure Cosmos DB, vedere [Distribuire i dati a livello globale con Azure Cosmos DB](distribute-data-globally.md).</span><span class="sxs-lookup"><span data-stu-id="c40e3-123">And for more information about how global database replication works in Azure Cosmos DB, see [Distribute data globally with Azure Cosmos DB](distribute-data-globally.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="534a0-124">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="534a0-124">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="c40e3-124">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="c40e3-124">Next steps</span></span>
 
-<span data-ttu-id="534a0-125">In questa esercitazione sono state eseguite le operazioni seguenti:</span><span class="sxs-lookup"><span data-stu-id="534a0-125">In this tutorial, you've done the following:</span></span>
+<span data-ttu-id="c40e3-125">In questa esercitazione, effettuata seguente hello:</span><span class="sxs-lookup"><span data-stu-id="c40e3-125">In this tutorial, you've done hello following:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="534a0-126">Configurare la distribuzione globale tramite il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="534a0-126">Configure global distribution using the Azure portal</span></span>
-> * <span data-ttu-id="534a0-127">Configurare la distribuzione globale tramite le API di DocumentDB</span><span class="sxs-lookup"><span data-stu-id="534a0-127">Configure global distribution using the DocumentDB APIs</span></span>
+> * <span data-ttu-id="c40e3-126">Configurare la distribuzione globale mediante hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="c40e3-126">Configure global distribution using hello Azure portal</span></span>
+> * <span data-ttu-id="c40e3-127">Configurare la distribuzione globale mediante hello APIs DocumentDB</span><span class="sxs-lookup"><span data-stu-id="c40e3-127">Configure global distribution using hello DocumentDB APIs</span></span>
 
-<span data-ttu-id="534a0-128">È ora possibile passare all'esercitazione successiva per imparare a sviluppare in locale usando l'emulatore locale di Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="534a0-128">You can now proceed to the next tutorial to learn how to develop locally using the Azure Cosmos DB local emulator.</span></span>
+<span data-ttu-id="c40e3-128">È ora possibile procedere toolearn esercitazione successiva toohello come toodevelop localmente tramite hello emulatore locale di Azure Cosmos DB.</span><span class="sxs-lookup"><span data-stu-id="c40e3-128">You can now proceed toohello next tutorial toolearn how toodevelop locally using hello Azure Cosmos DB local emulator.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="534a0-129">Sviluppare in locale con l'emulatore</span><span class="sxs-lookup"><span data-stu-id="534a0-129">Develop locally with the emulator</span></span>](local-emulator.md)
+> [<span data-ttu-id="c40e3-129">Sviluppare in locale con emulator hello</span><span class="sxs-lookup"><span data-stu-id="c40e3-129">Develop locally with hello emulator</span></span>](local-emulator.md)

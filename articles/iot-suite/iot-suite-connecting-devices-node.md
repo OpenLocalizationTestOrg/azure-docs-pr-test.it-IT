@@ -1,6 +1,6 @@
 ---
-title: Connettere un dispositivo con Node.js | Documentazione Microsoft
-description: "Descrive come connettere un dispositivo alla soluzione di monitoraggio remoto preconfigurata Azure IoT Suite con un’applicazione scritta in Node.js."
+title: aaaConnect un dispositivo utilizzando Node.js | Documenti Microsoft
+description: Viene descritto come tooconnect toohello un dispositivo Azure IoT Suite preconfigurato soluzione di monitoraggio remoto utilizzando un'applicazione scritta in Node.js.
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="3560e-103">Connettere il dispositivo alla soluzione preconfigurata per il monitoraggio remoto (Node.js)</span><span class="sxs-lookup"><span data-stu-id="3560e-103">Connect your device to the remote monitoring preconfigured solution (Node.js)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="aba1c-103">Connettersi toohello il dispositivo remoto monitoraggio soluzione preconfigurata (Node.js)</span><span class="sxs-lookup"><span data-stu-id="aba1c-103">Connect your device toohello remote monitoring preconfigured solution (Node.js)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="3560e-104">Creare una soluzione di esempio di Node.js</span><span class="sxs-lookup"><span data-stu-id="3560e-104">Create a node.js sample solution</span></span>
+## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="aba1c-104">Creare una soluzione di esempio di Node.js</span><span class="sxs-lookup"><span data-stu-id="aba1c-104">Create a node.js sample solution</span></span>
 
-<span data-ttu-id="3560e-105">Verificare che nel computer di sviluppo sia installato Node.js 0.11.5 o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="3560e-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="3560e-106">Per controllare la versione è possibile eseguire `node --version` nella riga di comando.</span><span class="sxs-lookup"><span data-stu-id="3560e-106">You can run `node --version` at the command line to check the version.</span></span>
+<span data-ttu-id="aba1c-105">Verificare che nel computer di sviluppo sia installato Node.js 0.11.5 o versione successiva.</span><span class="sxs-lookup"><span data-stu-id="aba1c-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="aba1c-106">È possibile eseguire `node --version` alla versione di hello toocheck di hello riga di comando.</span><span class="sxs-lookup"><span data-stu-id="aba1c-106">You can run `node --version` at hello command line toocheck hello version.</span></span>
 
-1. <span data-ttu-id="3560e-107">Nel computer di sviluppo creare una cartella denominata **RemoteMonitoring**.</span><span class="sxs-lookup"><span data-stu-id="3560e-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="3560e-108">Aprire la cartella nell'ambiente della riga di comando.</span><span class="sxs-lookup"><span data-stu-id="3560e-108">Navigate to this folder in your command-line environment.</span></span>
+1. <span data-ttu-id="aba1c-107">Nel computer di sviluppo creare una cartella denominata **RemoteMonitoring**.</span><span class="sxs-lookup"><span data-stu-id="aba1c-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="aba1c-108">Esplorazione delle cartelle toothis nell'ambiente della riga di comando.</span><span class="sxs-lookup"><span data-stu-id="aba1c-108">Navigate toothis folder in your command-line environment.</span></span>
 
-1. <span data-ttu-id="3560e-109">Eseguire i comandi seguenti per scaricare e installare i pacchetti necessari per completare l'applicazione di esempio:</span><span class="sxs-lookup"><span data-stu-id="3560e-109">Run the following commands to download and install the packages you need to complete the sample app:</span></span>
+1. <span data-ttu-id="aba1c-109">Esecuzione hello seguenti comandi toodownload e installare pacchetti hello necessari toocomplete hello app di esempio:</span><span class="sxs-lookup"><span data-stu-id="aba1c-109">Run hello following commands toodownload and install hello packages you need toocomplete hello sample app:</span></span>
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. <span data-ttu-id="3560e-110">Nella cartella **RemoteMonitoring**, creare un file denominato **remote_monitoring.js**.</span><span class="sxs-lookup"><span data-stu-id="3560e-110">In the **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="3560e-111">Aprire il file in un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="3560e-111">Open this file in a text editor.</span></span>
+1. <span data-ttu-id="aba1c-110">In hello **RemoteMonitoring** cartella, creare un file denominato **remote_monitoring.js**.</span><span class="sxs-lookup"><span data-stu-id="aba1c-110">In hello **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="aba1c-111">Aprire il file in un editor di testo.</span><span class="sxs-lookup"><span data-stu-id="aba1c-111">Open this file in a text editor.</span></span>
 
-1. <span data-ttu-id="3560e-112">Nel file **remote_monitoring.js**, aggiungere le istruzioni `require` seguenti:</span><span class="sxs-lookup"><span data-stu-id="3560e-112">In the **remote_monitoring.js** file, add the following `require` statements:</span></span>
+1. <span data-ttu-id="aba1c-112">In hello **remote_monitoring.js** file, aggiungere il seguente hello `require` istruzioni:</span><span class="sxs-lookup"><span data-stu-id="aba1c-112">In hello **remote_monitoring.js** file, add hello following `require` statements:</span></span>
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ ms.lasthandoff: 08/29/2017
     var Message = require('azure-iot-device').Message;
     ```
 
-1. <span data-ttu-id="3560e-113">Aggiungere le seguenti dichiarazioni di variabili dopo le istruzioni `require` .</span><span class="sxs-lookup"><span data-stu-id="3560e-113">Add the following variable declarations after the `require` statements.</span></span> <span data-ttu-id="3560e-114">Sostituire i valori segnaposto [ID dispositivo] e [Chiave dispositivo] con i valori annotati per il dispositivo nel dashboard della soluzione di monitoraggio remoto.</span><span class="sxs-lookup"><span data-stu-id="3560e-114">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="3560e-115">Usare il nome host hub IoT del dashboard della soluzione per sostituire [Nome IoTHub].</span><span class="sxs-lookup"><span data-stu-id="3560e-115">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="3560e-116">Ad esempio, se il nome host dell'hub IoT è **contoso.azure-devices.net**, sostituire [Nome IoTHub] con **contoso**:</span><span class="sxs-lookup"><span data-stu-id="3560e-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
+1. <span data-ttu-id="aba1c-113">Aggiungere hello dopo le dichiarazioni delle variabili dopo hello `require` istruzioni.</span><span class="sxs-lookup"><span data-stu-id="aba1c-113">Add hello following variable declarations after hello `require` statements.</span></span> <span data-ttu-id="aba1c-114">Sostituire i valori segnaposto hello [Id dispositivo] e [dispositivo Key] con i valori che si è preso nota per il dispositivo in hello remoto soluzione di monitoraggio.</span><span class="sxs-lookup"><span data-stu-id="aba1c-114">Replace hello placeholder values [Device Id] and [Device Key] with values you noted for your device in hello remote monitoring solution dashboard.</span></span> <span data-ttu-id="aba1c-115">Utilizzare hello Hostname Hub IoT da hello soluzione dashboard tooreplace [hub IOT Name].</span><span class="sxs-lookup"><span data-stu-id="aba1c-115">Use hello IoT Hub Hostname from hello solution dashboard tooreplace [IoTHub Name].</span></span> <span data-ttu-id="aba1c-116">Ad esempio, se il nome host dell'hub IoT è **contoso.azure-devices.net**, sostituire [Nome IoTHub] con **contoso**:</span><span class="sxs-lookup"><span data-stu-id="aba1c-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. <span data-ttu-id="3560e-117">Aggiungere le seguenti variabili per definire alcuni dati di telemetria di base:</span><span class="sxs-lookup"><span data-stu-id="3560e-117">Add the following variables to define some base telemetry data:</span></span>
+1. <span data-ttu-id="aba1c-117">Aggiungere alcuni dati di telemetria di base di hello toodefine variabili seguenti:</span><span class="sxs-lookup"><span data-stu-id="aba1c-117">Add hello following variables toodefine some base telemetry data:</span></span>
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     var externalTemperature = 55;
     ```
 
-1. <span data-ttu-id="3560e-118">Aggiungere la funzione helper seguente per stampare i risultati dell'operazione:</span><span class="sxs-lookup"><span data-stu-id="3560e-118">Add the following helper function to print operation results:</span></span>
+1. <span data-ttu-id="aba1c-118">Aggiungere hello risultati dell'operazione tooprint funzione helper seguenti:</span><span class="sxs-lookup"><span data-stu-id="aba1c-118">Add hello following helper function tooprint operation results:</span></span>
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="3560e-119">Aggiungere la funzione helper seguente per impostare in modo casuale i valori di telemetria:</span><span class="sxs-lookup"><span data-stu-id="3560e-119">Add the following helper function to use to randomize the telemetry values:</span></span>
+1. <span data-ttu-id="aba1c-119">Aggiungere hello i valori di dati di telemetria hello toorandomize toouse funzione helper seguenti:</span><span class="sxs-lookup"><span data-stu-id="aba1c-119">Add hello following helper function toouse toorandomize hello telemetry values:</span></span>
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="3560e-120">Aggiungere la definizione seguente per l'oggetto **DeviceInfo** inviato dal dispositivo all'avvio:</span><span class="sxs-lookup"><span data-stu-id="3560e-120">Add the following definition for the **DeviceInfo** object the device sends on startup:</span></span>
+1. <span data-ttu-id="aba1c-120">Aggiungere hello seguente definizione per hello **DeviceInfo** dispositivo hello oggetto invia all'avvio:</span><span class="sxs-lookup"><span data-stu-id="aba1c-120">Add hello following definition for hello **DeviceInfo** object hello device sends on startup:</span></span>
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/29/2017
     };
     ```
 
-1. <span data-ttu-id="3560e-121">Aggiungere la definizione seguente per i valori segnalati del dispositivo gemello.</span><span class="sxs-lookup"><span data-stu-id="3560e-121">Add the following definition for the device twin reported values.</span></span> <span data-ttu-id="3560e-122">La definizione include le descrizioni dei metodi diretti supportati dal dispositivo:</span><span class="sxs-lookup"><span data-stu-id="3560e-122">This definition includes descriptions of the direct methods the device supports:</span></span>
+1. <span data-ttu-id="aba1c-121">Aggiungere hello seguente definizione per un doppio dispositivo hello segnalati valori.</span><span class="sxs-lookup"><span data-stu-id="aba1c-121">Add hello following definition for hello device twin reported values.</span></span> <span data-ttu-id="aba1c-122">Questa definizione include le descrizioni dei metodi di hello diretti hello dispositivo supporta:</span><span class="sxs-lookup"><span data-stu-id="aba1c-122">This definition includes descriptions of hello direct methods hello device supports:</span></span>
 
     ```nodejs
     var reportedProperties = {
@@ -126,63 +126,63 @@ ms.lasthandoff: 08/29/2017
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot the device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
+            "Reboot": "Reboot hello device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
         },
     }
     ```
 
-1. <span data-ttu-id="3560e-123">Aggiungere la funzione seguente per gestire la chiamata al metodo diretto **Reboot**:</span><span class="sxs-lookup"><span data-stu-id="3560e-123">Add the following function to handle the **Reboot** direct method call:</span></span>
+1. <span data-ttu-id="aba1c-123">Aggiungere i seguenti hello toohandle funzione hello **riavviare** diretta chiamata al metodo:</span><span class="sxs-lookup"><span data-stu-id="aba1c-123">Add hello following function toohandle hello **Reboot** direct method call:</span></span>
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. <span data-ttu-id="3560e-124">Aggiungere la funzione seguente per gestire la chiamata al metodo diretto **InitiateFirmwareUpdate**.</span><span class="sxs-lookup"><span data-stu-id="3560e-124">Add the following function to handle the **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="3560e-125">Questo metodo diretto usa un parametro per specificare il percorso dell'immagine del firmware da scaricare, e avvia l'aggiornamento del firmware sul dispositivo in modo asincrono:</span><span class="sxs-lookup"><span data-stu-id="3560e-125">This direct method uses a parameter to specify the location of the firmware image to download, and initiates the firmware update on the device asynchronously:</span></span>
+1. <span data-ttu-id="aba1c-124">Aggiungere i seguenti hello toohandle funzione hello **InitiateFirmwareUpdate** diretta chiamata al metodo.</span><span class="sxs-lookup"><span data-stu-id="aba1c-124">Add hello following function toohandle hello **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="aba1c-125">Questo metodo diretto utilizza un percorso di hello parametro toospecify di toodownload immagine di firmware hello e avvia hello in modo asincrono di aggiornamento del firmware sul dispositivo hello:</span><span class="sxs-lookup"><span data-stu-id="aba1c-125">This direct method uses a parameter toospecify hello location of hello firmware image toodownload, and initiates hello firmware update on hello device asynchronously:</span></span>
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here to perform the firmware update asynchronously
+        // Add logic here tooperform hello firmware update asynchronously
     }
     ```
 
-1. <span data-ttu-id="3560e-126">Aggiungere il codice seguente per creare un'istanza del client:</span><span class="sxs-lookup"><span data-stu-id="3560e-126">Add the following code to create a client instance:</span></span>
+1. <span data-ttu-id="aba1c-126">Aggiungere hello toocreate codice un'istanza del client seguenti:</span><span class="sxs-lookup"><span data-stu-id="aba1c-126">Add hello following code toocreate a client instance:</span></span>
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. <span data-ttu-id="3560e-127">Aggiungere il codice seguente a:</span><span class="sxs-lookup"><span data-stu-id="3560e-127">Add the following code to:</span></span>
+1. <span data-ttu-id="aba1c-127">Aggiungere hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="aba1c-127">Add hello following code to:</span></span>
 
-    * <span data-ttu-id="3560e-128">Aprire la connessione.</span><span class="sxs-lookup"><span data-stu-id="3560e-128">Open the connection.</span></span>
-    * <span data-ttu-id="3560e-129">Inviare l'oggetto **DeviceInfo**.</span><span class="sxs-lookup"><span data-stu-id="3560e-129">Send the **DeviceInfo** object.</span></span>
-    * <span data-ttu-id="3560e-130">Impostare un gestore per le proprietà desiderate.</span><span class="sxs-lookup"><span data-stu-id="3560e-130">Set up a handler for desired properties.</span></span>
-    * <span data-ttu-id="3560e-131">Inviare le proprietà segnalate.</span><span class="sxs-lookup"><span data-stu-id="3560e-131">Send reported properties.</span></span>
-    * <span data-ttu-id="3560e-132">Registrare i gestori dei metodi diretti.</span><span class="sxs-lookup"><span data-stu-id="3560e-132">Register handlers for the direct methods.</span></span>
-    * <span data-ttu-id="3560e-133">Avviare l'invio dei dati di telemetria.</span><span class="sxs-lookup"><span data-stu-id="3560e-133">Start sending telemetry.</span></span>
+    * <span data-ttu-id="aba1c-128">Aprire la connessione di hello.</span><span class="sxs-lookup"><span data-stu-id="aba1c-128">Open hello connection.</span></span>
+    * <span data-ttu-id="aba1c-129">Inviare hello **DeviceInfo** oggetto.</span><span class="sxs-lookup"><span data-stu-id="aba1c-129">Send hello **DeviceInfo** object.</span></span>
+    * <span data-ttu-id="aba1c-130">Impostare un gestore per le proprietà desiderate.</span><span class="sxs-lookup"><span data-stu-id="aba1c-130">Set up a handler for desired properties.</span></span>
+    * <span data-ttu-id="aba1c-131">Inviare le proprietà segnalate.</span><span class="sxs-lookup"><span data-stu-id="aba1c-131">Send reported properties.</span></span>
+    * <span data-ttu-id="aba1c-132">Registra i gestori per i metodi di hello diretto.</span><span class="sxs-lookup"><span data-stu-id="aba1c-132">Register handlers for hello direct methods.</span></span>
+    * <span data-ttu-id="aba1c-133">Avviare l'invio dei dati di telemetria.</span><span class="sxs-lookup"><span data-stu-id="aba1c-133">Start sending telemetry.</span></span>
 
     ```nodejs
     client.open(function (err) {
@@ -242,9 +242,9 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-1. <span data-ttu-id="3560e-134">Salvare le modifiche apportate al file **remote_monitoring.js**.</span><span class="sxs-lookup"><span data-stu-id="3560e-134">Save the changes to the **remote_monitoring.js** file.</span></span>
+1. <span data-ttu-id="aba1c-134">Salvare hello modifiche toohello **remote_monitoring.js** file.</span><span class="sxs-lookup"><span data-stu-id="aba1c-134">Save hello changes toohello **remote_monitoring.js** file.</span></span>
 
-1. <span data-ttu-id="3560e-135">Eseguire il comando seguente al prompt dei comandi per avviare l'applicazione di esempio:</span><span class="sxs-lookup"><span data-stu-id="3560e-135">Run the following command at a command prompt to launch the sample application:</span></span>
+1. <span data-ttu-id="aba1c-135">Eseguire hello comando in un'applicazione di esempio hello toolaunch prompt dei comandi seguente:</span><span class="sxs-lookup"><span data-stu-id="aba1c-135">Run hello following command at a command prompt toolaunch hello sample application:</span></span>
    
     ```
     node remote_monitoring.js

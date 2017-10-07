@@ -1,6 +1,6 @@
 ---
-title: Eseguire query Hive con HDInsight .NET SDK - Azure | Microsoft Docs
-description: Informazioni su come inviare processi Hadoop ad Azure HDInsight Hadoop con HDInsight .NET SDK.
+title: le query Hive aaaRun tramite HDInsight .NET SDK - Azure | Documenti Microsoft
+description: Informazioni su come i processi di Hadoop toosubmit tooAzure HDInsight Hadoop tramite HDInsight .NET SDK.
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: 7b1a5f7ea3b2bda438727dc75a85557ea7930280
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11f07d90405d3e804774610e242813927df59a03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="3d562-103">Eseguire query Hive con HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="3d562-103">Run Hive queries using HDInsight .NET SDK</span></span>
+# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="14693-103">Eseguire query Hive con HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="14693-103">Run Hive queries using HDInsight .NET SDK</span></span>
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-<span data-ttu-id="3d562-104">Informazioni su come inviare query Hive tramite HDInsight .NET SDK.</span><span class="sxs-lookup"><span data-stu-id="3d562-104">Learn how to submit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="3d562-105">Si scrive un programma C# per inviare una query Hive per elencare le tabelle Hive e visualizzare i risultati.</span><span class="sxs-lookup"><span data-stu-id="3d562-105">You write a C# program to submit a Hive query for listing Hive tables, and display the results.</span></span>
+<span data-ttu-id="14693-104">Informazioni su come toosubmit Hive query che utilizzano HDInsight .NET SDK.</span><span class="sxs-lookup"><span data-stu-id="14693-104">Learn how toosubmit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="14693-105">Scrivere una query Hive per elencare le tabelle Hive di toosubmit un programma c# e visualizzare i risultati di hello.</span><span class="sxs-lookup"><span data-stu-id="14693-105">You write a C# program toosubmit a Hive query for listing Hive tables, and display hello results.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="3d562-106">I passaggi descritti in questo articolo devono essere eseguiti da un client Windows.</span><span class="sxs-lookup"><span data-stu-id="3d562-106">The steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="3d562-107">Per informazioni sull'uso di un client Linux, OS X o Unix con Hive, usare il selettore di schede visualizzato all'inizio dell'articolo.</span><span class="sxs-lookup"><span data-stu-id="3d562-107">For information on using a Linux, OS X, or Unix client to work with Hive, use the tab selector shown on the top of the article.</span></span>
+> <span data-ttu-id="14693-106">passaggi di Hello in questo articolo devono essere eseguiti da un client di Windows.</span><span class="sxs-lookup"><span data-stu-id="14693-106">hello steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="14693-107">Per informazioni sull'uso di un Linux, OS X o toowork client Unix con Hive, usare il selettore di scheda hello visualizzato nella parte superiore di hello di articolo hello.</span><span class="sxs-lookup"><span data-stu-id="14693-107">For information on using a Linux, OS X, or Unix client toowork with Hive, use hello tab selector shown on hello top of hello article.</span></span>
 > 
 > 
 
-## <a name="prerequisites"></a><span data-ttu-id="3d562-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="3d562-108">Prerequisites</span></span>
-<span data-ttu-id="3d562-109">Per eseguire le procedure descritte nell'articolo sono necessari gli elementi seguenti:</span><span class="sxs-lookup"><span data-stu-id="3d562-109">Before you begin this article, you must have the following items:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="14693-108">Prerequisiti</span><span class="sxs-lookup"><span data-stu-id="14693-108">Prerequisites</span></span>
+<span data-ttu-id="14693-109">Prima di iniziare questo articolo, è necessario disporre di hello seguenti elementi:</span><span class="sxs-lookup"><span data-stu-id="14693-109">Before you begin this article, you must have hello following items:</span></span>
 
-* <span data-ttu-id="3d562-110">**Un cluster Hadoop in HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="3d562-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="3d562-111">Vedere [Introduzione all'uso di Hadoop basato su Linux in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="3d562-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
-* <span data-ttu-id="3d562-112">**Visual Studio 2013/2015/2017**.</span><span class="sxs-lookup"><span data-stu-id="3d562-112">**Visual Studio 2013/2015/2017**.</span></span>
+* <span data-ttu-id="14693-110">**Un cluster Hadoop in HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="14693-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="14693-111">Vedere [Introduzione all'uso di Hadoop basato su Linux in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span><span class="sxs-lookup"><span data-stu-id="14693-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
+* <span data-ttu-id="14693-112">**Visual Studio 2013/2015/2017**.</span><span class="sxs-lookup"><span data-stu-id="14693-112">**Visual Studio 2013/2015/2017**.</span></span>
 
-## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="3d562-113">Inviare query Hive con HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="3d562-113">Submit Hive queries using HDInsight .NET SDK</span></span>
-<span data-ttu-id="3d562-114">HDInsight .NET SDK fornisce librerie client .NET che semplificano l'uso dei cluster HDInsight da .NET.</span><span class="sxs-lookup"><span data-stu-id="3d562-114">The HDInsight .NET SDK provides .NET client libraries, which makes it easier to work with HDInsight clusters from .NET.</span></span> 
+## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="14693-113">Inviare query Hive con HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="14693-113">Submit Hive queries using HDInsight .NET SDK</span></span>
+<span data-ttu-id="14693-114">Hello HDInsight .NET SDK fornisce librerie client .NET, che rende più semplice toowork con i cluster HDInsight da .NET.</span><span class="sxs-lookup"><span data-stu-id="14693-114">hello HDInsight .NET SDK provides .NET client libraries, which makes it easier toowork with HDInsight clusters from .NET.</span></span> 
 
-<span data-ttu-id="3d562-115">**Inviare i processi**</span><span class="sxs-lookup"><span data-stu-id="3d562-115">**To Submit jobs**</span></span>
+<span data-ttu-id="14693-115">**processi tooSubmit**</span><span class="sxs-lookup"><span data-stu-id="14693-115">**tooSubmit jobs**</span></span>
 
-1. <span data-ttu-id="3d562-116">Creare un'applicazione console C# in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="3d562-116">Create a C# console application in Visual Studio.</span></span>
-2. <span data-ttu-id="3d562-117">Dalla console di Gestione pacchetti NuGet eseguire il comando seguente:</span><span class="sxs-lookup"><span data-stu-id="3d562-117">From the Nuget Package Manager Console, run the following command:</span></span>
+1. <span data-ttu-id="14693-116">Creare un'applicazione console C# in Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="14693-116">Create a C# console application in Visual Studio.</span></span>
+2. <span data-ttu-id="14693-117">Nella Console di gestione pacchetti Nuget hello, eseguire hello comando seguente:</span><span class="sxs-lookup"><span data-stu-id="14693-117">From hello Nuget Package Manager Console, run hello following command:</span></span>
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-3. <span data-ttu-id="3d562-118">Usare il codice seguente:</span><span class="sxs-lookup"><span data-stu-id="3d562-118">Use the following code:</span></span>
+3. <span data-ttu-id="14693-118">Utilizzare hello seguente codice:</span><span class="sxs-lookup"><span data-stu-id="14693-118">Use hello following code:</span></span>
 
     ```csharp
         using System.Collections.Generic;
@@ -75,14 +75,14 @@ ms.lasthandoff: 08/18/2017
    
                 static void Main(string[] args)
                 {
-                    System.Console.WriteLine("The application is running ...");
+                    System.Console.WriteLine("hello application is running ...");
    
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
    
                     SubmitHiveJob();
    
-                    System.Console.WriteLine("Press ENTER to continue ...");
+                    System.Console.WriteLine("Press ENTER toocontinue ...");
                     System.Console.ReadLine();
                 }
    
@@ -97,13 +97,13 @@ ms.lasthandoff: 08/18/2017
                         Arguments = args
                     };
    
-                    System.Console.WriteLine("Submitting the Hive job to the cluster...");
+                    System.Console.WriteLine("Submitting hello Hive job toohello cluster...");
                     var jobResponse = _hdiJobManagementClient.JobManagement.SubmitHiveJob(parameters);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
    
-                    System.Console.WriteLine("Waiting for the job completion ...");
+                    System.Console.WriteLine("Waiting for hello job completion ...");
    
                     // Wait for job completion
                     var jobDetail = _hdiJobManagementClient.JobManagement.GetJob(jobId).JobDetail;
@@ -131,22 +131,22 @@ ms.lasthandoff: 08/18/2017
             }
         }
     ```
-4. <span data-ttu-id="3d562-119">Premere **F5** per eseguire l'applicazione.</span><span class="sxs-lookup"><span data-stu-id="3d562-119">Press **F5** to run the application.</span></span>
+4. <span data-ttu-id="14693-119">Premere **F5** toorun un'applicazione hello.</span><span class="sxs-lookup"><span data-stu-id="14693-119">Press **F5** toorun hello application.</span></span>
 
-<span data-ttu-id="3d562-120">L'output dell'applicazione sarà simile al seguente:</span><span class="sxs-lookup"><span data-stu-id="3d562-120">The output of the application shall be similar to:</span></span>
+<span data-ttu-id="14693-120">output di Hello di un'applicazione hello deve essere simile a:</span><span class="sxs-lookup"><span data-stu-id="14693-120">hello output of hello application shall be similar to:</span></span>
 
 ![Output processo Hive Hadoop di HDInsight](./media/hdinsight-hadoop-use-hive-dotnet-sdk/hdinsight-hadoop-use-hive-net-sdk-output.png)
 
-## <a name="next-steps"></a><span data-ttu-id="3d562-122">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="3d562-122">Next steps</span></span>
-<span data-ttu-id="3d562-123">Questo articolo ha spiegato vari modi per creare un cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="3d562-123">In this article, you have learned several ways to create an HDInsight cluster.</span></span> <span data-ttu-id="3d562-124">Per altre informazioni, vedere gli articoli seguenti:</span><span class="sxs-lookup"><span data-stu-id="3d562-124">To learn more, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="14693-122">Passaggi successivi</span><span class="sxs-lookup"><span data-stu-id="14693-122">Next steps</span></span>
+<span data-ttu-id="14693-123">In questo articolo sono state fornite diverse modi toocreate un cluster HDInsight.</span><span class="sxs-lookup"><span data-stu-id="14693-123">In this article, you have learned several ways toocreate an HDInsight cluster.</span></span> <span data-ttu-id="14693-124">toolearn informazioni, vedere hello seguenti articoli:</span><span class="sxs-lookup"><span data-stu-id="14693-124">toolearn more, see hello following articles:</span></span>
 
-* <span data-ttu-id="3d562-125">[Introduzione ad Azure HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="3d562-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
-* <span data-ttu-id="3d562-126">[Creare cluster Hadoop in HDInsight][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="3d562-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
-* [<span data-ttu-id="3d562-127">Gestire cluster Hadoop in HDInsight con il portale di Azure</span><span class="sxs-lookup"><span data-stu-id="3d562-127">Manage Hadoop clusters in HDInsight by using the Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
-* [<span data-ttu-id="3d562-128">Riferimento a HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="3d562-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
-* [<span data-ttu-id="3d562-129">Usare Pig con HDInsight</span><span class="sxs-lookup"><span data-stu-id="3d562-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="3d562-130">Usare Sqoop con Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="3d562-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
-* [<span data-ttu-id="3d562-131">Creare applicazioni .NET HDInsight di autenticazione non interattive</span><span class="sxs-lookup"><span data-stu-id="3d562-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
+* <span data-ttu-id="14693-125">[Introduzione ad Azure HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="14693-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
+* <span data-ttu-id="14693-126">[Creare cluster Hadoop in HDInsight][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="14693-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
+* [<span data-ttu-id="14693-127">Gestire i cluster Hadoop in HDInsight con hello portale di Azure</span><span class="sxs-lookup"><span data-stu-id="14693-127">Manage Hadoop clusters in HDInsight by using hello Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
+* [<span data-ttu-id="14693-128">Riferimento a HDInsight .NET SDK</span><span class="sxs-lookup"><span data-stu-id="14693-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
+* [<span data-ttu-id="14693-129">Usare Pig con HDInsight</span><span class="sxs-lookup"><span data-stu-id="14693-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="14693-130">Usare Sqoop con Hadoop in HDInsight</span><span class="sxs-lookup"><span data-stu-id="14693-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
+* [<span data-ttu-id="14693-131">Creare applicazioni .NET HDInsight di autenticazione non interattive</span><span class="sxs-lookup"><span data-stu-id="14693-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
 
 [hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md

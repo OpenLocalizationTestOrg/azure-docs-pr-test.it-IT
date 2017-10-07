@@ -1,13 +1,13 @@
 ---
-title: Risolvere errori comuni durante la distribuzione di risorse in Azure | Microsoft Docs
-description: Descrive come risolvere errori comuni durante la distribuzione di risorse in Azure con Azure Resource Manager.
+title: gli errori di distribuzione di Azure comuni aaaTroubleshoot | Documenti Microsoft
+description: Viene descritto come tooresolve errori comuni quando si distribuisce tooAzure risorse usando Gestione risorse di Azure.
 services: azure-resource-manager
 documentationcenter: 
 tags: top-support-issue
 author: tfitzmac
 manager: timlt
 editor: tysonn
-keywords: errore di distribuzione, distribuzione di azure, distribuire in azure
+keywords: Errore di distribuzione, distribuzione di azure, distribuire tooazure
 ms.assetid: c002a9be-4de5-4963-bd14-b54aa3d8fa59
 ms.service: azure-resource-manager
 ms.devlang: na
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2017
 ms.author: tomfitz
-ms.openlocfilehash: 30adc10d01290f14a3e116813b19916fa36ab0bc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8571e9941879eb5586e4258a785b6a09247da771
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-common-azure-deployment-errors-with-azure-resource-manager"></a>Risolvere errori comuni durante la distribuzione di risorse in Azure con Azure Resource Manager
 Questo argomento illustra come risolvere alcuni errori comuni che possono verificarsi durante la distribuzione di risorse in Azure.
 
-In questo argomento sono descritti i codici di errore seguenti:
+in questo argomento viene descritti i Hello codici di errore seguente:
 
 * [AccountNameInvalid](#accountnameinvalid)
 * [Authorization failed](#authorization-failed)
@@ -48,29 +48,29 @@ In questo argomento sono descritti i codici di errore seguenti:
 
 ## <a name="deploymentfailed"></a>DeploymentFailed
 
-Questo codice di errore indica un errore di distribuzione generale, ma non consente di avviare la risoluzione dei problemi. Il codice di errore effettivamente utile per risolvere il problema si trova in genere un livello sotto tale errore. L'immagine seguente illustra ad esempio il codice di errore **RequestDisallowedByPolicy** sotto l'errore di distribuzione.
+Questo codice di errore indica un errore di distribuzione generale, ma non è il codice di errore hello necessario toostart risoluzione dei problemi. codice di errore Hello effettivamente consente di risolvere il problema di hello è in genere un livello di sotto di questo errore. Ad esempio, hello seguente immagine Mostra hello **RequestDisallowedByPolicy** codice di errore che si trova sotto l'errore di distribuzione hello.
 
 ![mostra codice di errore](./media/resource-manager-common-deployment-errors/error-code.png)
 
 ## <a name="skunotavailable"></a>SkuNotAvailable
 
-Quando si distribuisce una risorsa, in genere una macchina virtuale, è possibile che venga visualizzato il codice di errore e il messaggio di errore seguenti:
+Quando si distribuisce una risorsa (in genere una macchina virtuale), potrebbe essere visualizzato hello messaggio di errore e codice di errore seguente:
 
 ```
 Code: SkuNotAvailable
-Message: The requested tier for resource '<resource>' is currently not available in location '<location>' 
-for subscription '<subscriptionID>'. Please try another tier or deploy to a different location.
+Message: hello requested tier for resource '<resource>' is currently not available in location '<location>' 
+for subscription '<subscriptionID>'. Please try another tier or deploy tooa different location.
 ```
 
-Questo errore viene visualizzato quando lo SKU della risorsa selezionato, ad esempio le dimensioni della macchina virtuale, non è disponibile per il percorso selezionato. Per risolvere questo problema, è necessario determinare gli SKU disponibili in un'area. Per trovare gli SKU disponibili è possibile usare PowerShell o un'operazione REST.
+Viene visualizzato questo errore quando hello risorsa SKU selezionato (ad esempio, dimensioni della macchina virtuale) non è disponibile per il percorso di hello selezionato. tooresolve questo problema, è necessario toodetermine SKU disponibili in un'area. È possibile utilizzare PowerShell, portale hello o un toofind operazione REST SKU disponibile.
 
-- Per PowerShell usare [Get AzureRmComputeResourceSku](/powershell/module/azurerm.compute/get-azurermcomputeresourcesku) e filtrare in base al percorso. Per questo comando, è necessaria la versione più recente di PowerShell.
+- Per PowerShell usare [Get AzureRmComputeResourceSku](/powershell/module/azurerm.compute/get-azurermcomputeresourcesku) e filtrare in base al percorso. È necessario disporre di hello più recente di PowerShell per questo comando.
 
   ```powershell
   Get-AzureRmComputeResourceSku | where {$_.Locations.Contains("southcentralus")}
   ```
 
-  I risultati includono un elenco di SKU per la località e le eventuali limitazioni per tale SKU.
+  risultati di Hello includono un elenco di SKU per la posizione di hello ed eventuali restrizioni per tale SKU.
 
   ```powershell
   ResourceType                Name      Locations Restriction                      Capability Value
@@ -82,18 +82,18 @@ Questo errore viene visualizzato quando lo SKU della risorsa selezionato, ad ese
   virtualMachines      Standard_A2 southcentralus
   ```
 
-- Per usare il portale, accedere al [portale](https://portal.azure.com) e aggiungere una risorsa tramite l'interfaccia. Quando si impostano i valori, vengono visualizzati gli SKU disponibili per tale risorsa. Non è necessario completare la distribuzione.
+- hello toouse [portal](https://portal.azure.com), accedi al portale toohello e aggiungere una risorsa tramite l'interfaccia di hello. Quando si impostano i valori hello, vedrai hello SKU disponibili per tale risorsa. Non è necessario distribuzione hello toocomplete.
 
     ![SKU disponibili](./media/resource-manager-common-deployment-errors/view-sku.png)
 
-- Per usare l'API REST per le macchine virtuali, inviare la richiesta seguente:
+- toouse hello API REST per le macchine virtuali, inviare hello seguito richiesta:
 
   ```HTTP 
   GET
   https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Compute/skus?api-version=2016-03-30
   ```
 
-  Le aree e gli SKU disponibili vengono restituiti nel formato seguente:
+  Restituisce le SKU e le aree disponibili in hello seguente formato:
 
   ```json
   {
@@ -123,37 +123,37 @@ Questo errore viene visualizzato quando lo SKU della risorsa selezionato, ad ese
   }    
   ```
 
-Se non si riesce a trovare uno SKU appropriato in tale area o un'area alternativa che soddisfi le esigenze aziendali, inviare una [richiesta di SKU](https://aka.ms/skurestriction) al supporto di Azure.
+Se si è grado toofind uno SKU adatto in tale area o un'area alternativa che soddisfa le esigenze aziendali, inviare un [richiesta SKU](https://aka.ms/skurestriction) tooAzure supporto.
 
 ## <a name="disallowedoperation"></a>DisallowedOperation
 
 ```
 Code: DisallowedOperation
-Message: The current subscription type is not permitted to perform operations on any provider 
+Message: hello current subscription type is not permitted tooperform operations on any provider 
 namespace. Please use a different subscription.
 ```
 
-Se viene visualizzato questo errore, si sta usando una sottoscrizione a cui non è consentito accedere a nessun altro servizio di Azure tranne Azure Active Directory. Questo tipo di sottoscrizione può essere in uso quando è necessario accedere al portale classico, ma non è consentito distribuire le risorse. Per risolvere questo problema, è necessario usare una sottoscrizione con l'autorizzazione a distribuire le risorse.  
+Se si riceve questo errore, si utilizza una sottoscrizione che non è consentito tooaccess tutti i servizi Azure diverso da Azure Active Directory. Questo tipo di sottoscrizione possono verificarsi quando è necessario portale classico di hello tooaccess ma non sono consentiti toodeploy risorse. tooresolve questo problema, è necessario utilizzare una sottoscrizione che dispone dell'autorizzazione toodeploy risorse.  
 
-Per visualizzare le sottoscrizioni disponibili con PowerShell, usare:
+tooview le sottoscrizioni disponibili con PowerShell, usare:
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-Per impostare la sottoscrizione corrente, usare:
+Inoltre, tooset hello abbonamento, utilizzare:
 
 ```powershell
 Set-AzureRmContext -SubscriptionName {subscription-name}
 ```
 
-Per visualizzare le sottoscrizioni disponibili con l'interfaccia della riga di comando di Azure 2.0, usare:
+tooview le sottoscrizioni disponibili con l'interfaccia CLI di Azure 2.0, usare:
 
 ```azurecli
 az account list
 ```
 
-Per impostare la sottoscrizione corrente, usare:
+Inoltre, tooset hello abbonamento, utilizzare:
 
 ```azurecli
 az account set --subscription {subscription-name}
@@ -164,34 +164,34 @@ Questo errore può essere causato da diversi tipi di errori.
 
 - Errore di sintassi
 
-   Se viene visualizzato un messaggio di errore che indica che la convalida del modello non è riuscita, potrebbe trattarsi di un problema di sintassi nel modello.
+   Se si riceve un messaggio di errore che indica di convalida del modello non è stato possibile hello, potrebbe essere un problema di sintassi nel modello.
 
   ```
   Code=InvalidTemplate
   Message=Deployment template validation failed
   ```
 
-   Non è insolito commettere questo errore, perché le espressioni del modello possono essere complesse. Ad esempio, l'assegnazione di nome seguente per un account di archiviazione contiene un set di parentesi, tre funzioni, tre set di parentesi, un set di virgolette singole e una proprietà:
+   Questo errore è facile toomake perché le espressioni del modello possono essere complesse. Ad esempio, hello seguente assegnazione del nome per un account di archiviazione contiene un set di parentesi, tre funzioni, tre set di parentesi, un set di virgolette singole e una proprietà:
 
   ```json
   "name": "[concat('storage', uniqueString(resourceGroup().id))]",
   ```
 
-   Se non si specifica la sintassi corrispondente, il modello produce un valore diverso dal previsto.
+   Se non si fornisce la sintassi corrispondente hello, modello hello produce un valore diverso da quello l'intenzione.
 
-   Quando viene visualizzato questo tipo di errore, esaminare attentamente la sintassi dell'espressione. È consigliabile usare un editor JSON come [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) o [Visual Studio Code](resource-manager-vs-code.md) che può segnalare gli errori di sintassi.
+   Quando si riceve questo tipo di errore, esaminare attentamente la sintassi dell'espressione hello. È consigliabile usare un editor JSON come [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) o [Visual Studio Code](resource-manager-vs-code.md) che può segnalare gli errori di sintassi.
 
 - Lunghezze di segmenti non valide
 
-   Un altro errore di modello non valido si verifica quando il nome della risorsa non è nel formato corretto.
+   Un altro errore di modello non valido si verifica quando il nome di risorsa hello non è nel formato corretto hello.
 
   ```
   Code=InvalidTemplate
-  Message=Deployment template validation failed: 'The template resource {resource-name}'
+  Message=Deployment template validation failed: 'hello template resource {resource-name}'
   for type {resource-type} has incorrect segment lengths.
   ```
 
-   Il nome di una risorsa a livello di radice deve contenere un segmento in meno rispetto al tipo di risorsa. Ogni segmento si differenzia mediante una barra. Nell'esempio seguente, il tipo ha due segmenti e il nome un segmento, quindi è un **nome valido**.
+   Una risorsa di livello radice deve avere un segmento di meno nel nome hello nel tipo di risorsa hello. Ogni segmento si differenzia mediante una barra. Nell'esempio seguente di hello, sono presenti due segmenti di tipo hello e nome hello include un segmento, pertanto è un **valido**.
 
   ```json
   {
@@ -201,7 +201,7 @@ Questo errore può essere causato da diversi tipi di errori.
   }
   ```
 
-   L'esempio successivo invece **non è un nome valido** , perché ha lo stesso numero di segmenti del tipo.
+   Ma l'esempio successivo hello è **nome non valido** perché contiene hello stesso numero di segmenti di tipo hello.
 
   ```json
   {
@@ -211,7 +211,7 @@ Questo errore può essere causato da diversi tipi di errori.
   }
   ```
 
-   Per le risorse figlio, il tipo e il nome devono avere lo stesso numero di segmenti. Questo è dovuto al fatto che il nome completo e il tipo dell'elemento figlio includono il nome e il tipo dell'elemento padre. Di conseguenza, il nome completo ha comunque un segmento in meno rispetto al tipo completo.
+   Per le risorse figlio, necessario hello tipo hello e il nome stesso numero di segmenti. Questo numero di segmenti è utile perché il nome completo di hello e il tipo per l'elemento figlio di hello include hello padre nome e il tipo. Pertanto, nome completo di hello dispone ancora di una minore segmento di tipo completo hello.
 
   ```json
   "resources": [
@@ -230,7 +230,7 @@ Questo errore può essere causato da diversi tipi di errori.
   ]
   ```
 
-   Ottenere il numero di segmenti corretto può essere difficile con i tipi di Resource Manager applicati ai provider di risorse. Per applicare un blocco di risorsa a un sito Web, ad esempio, è necessario un tipo con quattro segmenti. Il nome è quindi costituito da tre segmenti:
+   Segmenti di hello recupero corretti possono risultare difficile con tipi di gestione risorse che vengono applicati ai provider di risorse. Ad esempio, l'applicazione di un sito web di risorsa lock tooa richiede un tipo con quattro segmenti. Pertanto, il nome di hello è tre segmenti:
 
   ```json
   {
@@ -242,35 +242,35 @@ Questo errore può essere causato da diversi tipi di errori.
 
 - Indice di copia non previsto
 
-   Questo errore **InvalidTemplate** viene visualizzato quando è stato applicato l'elemento **copy** a una parte del modello che non supporta questo elemento. È possibile applicare l'elemento copy solo a un tipo di risorsa. Copia non è possibile applicare copy a una proprietà all'interno di un tipo di risorsa. Ad esempio, si applica copy a una macchina virtuale, ma non è possibile applicarlo ai dischi del sistema operativo per una macchina virtuale. In alcuni casi, è possibile convertire una risorsa figlio in una risorsa padre per creare un ciclo di copy. Per altre informazioni sull'uso di copy, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md).
+   Si verifica questo **InvalidTemplate** errore una volta applicata hello **copia** parte tooa elemento del modello di hello che non supporta questo elemento. È possibile applicare solo tipo di risorsa tooa hello Copia elemento. Non è possibile applicare proprietà tooa copia all'interno di un tipo di risorsa. Ad esempio, si applica una macchina virtuale tooa di copia, ma non è possibile applicare i dischi del sistema operativo toohello per una macchina virtuale. In alcuni casi, è possibile convertire un toocreate risorse figlio risorsa tooa padre un ciclo di copia. Per altre informazioni sull'uso di copy, vedere [Creare più istanze di risorse in Azure Resource Manager](resource-group-create-multiple.md).
 
 - Parametro non valido
 
-   Se il modello specifica i valori consentiti per un parametro e si fornisce un valore diverso da tali valori, verrà visualizzato un messaggio simile all'errore seguente:
+   Se il modello hello specifica valori consentiti per un parametro e specificare un valore che non fa parte di tali valori, viene visualizzato un toohello simile messaggio errore seguente:
 
   ```
   Code=InvalidTemplate;
-  Message=Deployment template validation failed: 'The provided value {parameter value}
-  for the template parameter {parameter name} is not valid. The parameter value is not
-  part of the allowed values
+  Message=Deployment template validation failed: 'hello provided value {parameter value}
+  for hello template parameter {parameter name} is not valid. hello parameter value is not
+  part of hello allowed values
   ``` 
 
-   Ricontrollare i valori consentiti nel modello e specificarne uno durante la distribuzione.
+   Hello verificare i valori consentiti nel modello hello e forniscono uno durante la distribuzione.
 
 - È stata rilevata una dipendenza circolare
 
-   Questo errore viene visualizzato quando le dipendenze tra le risorse impediscono l'avvio della distribuzione. A causa di una combinazione di interdipendenze, due o più risorse attendono altre risorse che sono a propria volta in attesa. Ad esempio, la risorsa 1 dipende dalla risorsa 3, la risorsa 2 dipende dalla risorsa 1 e la risorsa 3 dipende dalla risorsa 2. È in genere possibile risolvere questo problema rimuovendo le dipendenze non necessarie. 
+   Viene visualizzato questo errore quando risorse dipendono tra loro in modo che impedisce la distribuzione di hello avvio. A causa di una combinazione di interdipendenze, due o più risorse attendono altre risorse che sono a propria volta in attesa. Ad esempio, la risorsa 1 dipende dalla risorsa 3, la risorsa 2 dipende dalla risorsa 1 e la risorsa 3 dipende dalla risorsa 2. È in genere possibile risolvere questo problema rimuovendo le dipendenze non necessarie. 
 
 <a id="notfound" />
 ### <a name="notfound-and-resourcenotfound"></a>NotFound and ResourceNotFound
-Quando il modello include il nome di una risorsa che non può essere risolta, verrà visualizzato un errore simile al seguente:
+Quando il modello include il nome di hello di una risorsa che non può essere risolti, viene visualizzato un errore simile a:
 
 ```
 Code=NotFound;
 Message=Cannot find ServerFarm with name exampleplan.
 ```
 
-Se si sta provando a distribuire la risorsa mancante nel modello, verificare se sia necessario aggiungere una dipendenza. Azure Resource Manager consente di ottimizzare la distribuzione creando risorse in parallelo, quando ciò è possibile. Se una risorsa deve essere distribuita dopo un'altra, è necessario usare l'elemento **dependsOn** nel modello per creare una dipendenza dall'altra risorsa. Ad esempio, quando si distribuisce un'app Web deve esistere il piano di servizio app. Se non è stato specificato che l'app Web dipende dal piano di servizio app, Azure Resource Manager crea entrambe le risorse contemporaneamente. Verrà visualizzato un messaggio di errore che informa che la risorsa del piano di servizio app non è stata trovata, perché non esiste ancora al momento del tentativo di impostare una proprietà nell'app Web. È possibile prevenire questo errore impostando la dipendenza nell'app Web.
+Se si sta tentando di hello toodeploy risorsa nel modello hello mancante, verificare se è necessario tooadd una dipendenza. Azure Resource Manager consente di ottimizzare la distribuzione creando risorse in parallelo, quando ciò è possibile. Se una risorsa deve essere distribuita dopo un'altra risorsa, è necessario hello toouse **dependsOn** hello di elemento del modello di toocreate una dipendenza da un'altra risorsa. Ad esempio, quando si distribuisce un'app web, deve esistere hello piano di servizio App. Se non è stato specificato hello web app dipende dal piano di servizio App hello, Gestione risorse crea entrambe le risorse hello contemporaneamente. Viene visualizzato un errore che informa che hello risorse piano di servizio App non viene trovata, perché non esiste ancora durante il tentativo di una proprietà nell'applicazione web hello tooset. Evitare questo errore impostando dipendenza hello in hello web app.
 
 ```json
 {
@@ -285,7 +285,7 @@ Se si sta provando a distribuire la risorsa mancante nel modello, verificare se 
 
 Per suggerimenti sulla risoluzione degli errori relativi alle dipendenze, vedere [Controllare la sequenza di distribuzione](#check-deployment-sequence).
 
-Questo errore viene visualizzato anche quando la risorsa si trova in un gruppo di risorse diverso rispetto a quello in cui viene distribuita. In tal caso, usare la [funzione resourceId](resource-group-template-functions-resource.md#resourceid) per ottenere il nome completo della risorsa.
+È inoltre possibile visualizzare questo errore quando la risorsa hello esiste in un gruppo di risorse diverso da quello hello uno vengono distribuite negli. In tal caso, utilizzare hello [funzione resourceId](resource-group-template-functions-resource.md#resourceid) tooget hello il nome completo della risorsa hello.
 
 ```json
 "properties": {
@@ -294,26 +294,26 @@ Questo errore viene visualizzato anche quando la risorsa si trova in un gruppo d
 }
 ```
 
-Se si prova a usare la funzione [reference](resource-group-template-functions-resource.md#reference) o la funzione [listKeys](resource-group-template-functions-resource.md#listkeys) con una risorsa che non può essere risolta, verrà visualizzato l'errore seguente:
+Se si tenta di hello toouse [riferimento](resource-group-template-functions-resource.md#reference) o [elenco chiavi del](resource-group-template-functions-resource.md#listkeys) funzioni con una risorsa che non possono essere risolti, viene visualizzato il seguente errore hello:
 
 ```
 Code=ResourceNotFound;
-Message=The Resource 'Microsoft.Storage/storageAccounts/{storage name}' under resource
+Message=hello Resource 'Microsoft.Storage/storageAccounts/{storage name}' under resource
 group {resource group name} was not found.
 ```
 
-Cercare un'espressione contenente la funzione **reference**. Verificare che i valori dei parametri siano corretti.
+Cercare un'espressione che include hello **riferimento** (funzione). Verificare che i valori di parametro hello siano corretti.
 
 ## <a name="parentresourcenotfound"></a>ParentResourceNotFound
 
-Quando una risorsa è l'elemento padre di un'altra risorsa, deve già esistere prima di creare la risorsa figlio. Se non esiste ancora, viene visualizzato l'errore seguente:
+Quando una risorsa è una risorsa di tooanother padre, risorsa padre hello deve esistere prima di creare la risorsa figlio hello. Se non esiste ancora, viene visualizzato il seguente errore hello:
 
 ```
 Code=ParentResourceNotFound;
 Message=Can not perform requested operation on nested resource. Parent resource 'exampleserver' not found."
 ```
 
-Il nome della risorsa figlio include il nome della risorsa padre. Ad esempio, un database SQL può essere definito come segue:
+nome di Hello della risorsa figlio hello include il nome del padre hello. Ad esempio, un database SQL può essere definito come segue:
 
 ```json
 {
@@ -322,7 +322,7 @@ Il nome della risorsa figlio include il nome della risorsa padre. Ad esempio, un
   ...
 ```
 
-Tuttavia, se non si specifica una dipendenza dalla risorsa padre, la risorsa figlio può essere distribuita prima dell'elemento padre. Per risolvere questo errore, includere una dipendenza.
+Tuttavia, se non si specifica una dipendenza sulla risorsa padre hello, risorsa figlio hello può ottenere distribuita prima padre hello. tooresolve questo errore, includere una dipendenza.
 
 ```json
 "dependsOn": [
@@ -333,33 +333,33 @@ Tuttavia, se non si specifica una dipendenza dalla risorsa padre, la risorsa fig
 <a id="storagenamenotunique" />
 
 ## <a name="storageaccountalreadyexists-and-storageaccountalreadytaken"></a>StorageAccountAlreadyExists and StorageAccountAlreadyTaken
-Per gli account di archiviazione, il nome della risorsa specificato deve essere univoco in Azure. Se non si specifica un nome univoco, verrà visualizzato un errore come il seguente:
+Per gli account di archiviazione, è necessario fornire un nome per la risorsa hello che è univoco in Azure. Se non si specifica un nome univoco, verrà visualizzato un errore come il seguente:
 
 ```
 Code=StorageAccountAlreadyTaken
-Message=The storage account named mystorage is already taken.
+Message=hello storage account named mystorage is already taken.
 ```
 
-È possibile creare un nome univoco concatenando la convenzione di denominazione con il risultato della funzione [uniqueString](resource-group-template-functions-string.md#uniquestring) .
+È possibile creare un nome univoco concatenando la convenzione di denominazione con risultato hello hello [uniqueString](resource-group-template-functions-string.md#uniquestring) (funzione).
 
 ```json
 "name": "[concat('storage', uniqueString(resourceGroup().id))]",
 "type": "Microsoft.Storage/storageAccounts",
 ```
 
-Se si distribuisce un account di archiviazione con lo steso nome di un account di archiviazione esistente nella sottoscrizione specificando però una diversa località, verrà visualizzato un errore che indica che l'account di archiviazione esiste già in un'altra località. Eliminare l'account di archiviazione esistente oppure specificare la stessa località di tale account.
+Se si distribuisce un account di archiviazione con hello stesso nome di un account di archiviazione esistente nella sottoscrizione, ma fornire un percorso diverso, viene visualizzato un errore che indica che account di archiviazione hello già presente in un percorso diverso. Eliminare l'account di archiviazione esistente hello o fornire hello nello stesso percorso come hello account di archiviazione esistente.
 
 ## <a name="accountnameinvalid"></a>AccountNameInvalid
-L'errore **AccountNameInvalid** viene visualizzato quando si prova ad assegnare a un account di archiviazione un nome contenente caratteri non consentiti. I nomi degli account di archiviazione devono essere di lunghezza compresa tra 3 e 24 caratteri e utilizzare solo numeri e lettere minuscole. La funzione [uniqueString](resource-group-template-functions-string.md#uniquestring) restituisce 13 caratteri. Se si concatena un prefisso al risultato di **uniqueString**, specificare un prefisso composto al massimo da 11 caratteri.
+Vedrai hello **AccountNameInvalid** errore durante il tentativo di toogive uno spazio di archiviazione account un nome che include caratteri non consentiti. I nomi degli account di archiviazione devono essere di lunghezza compresa tra 3 e 24 caratteri e utilizzare solo numeri e lettere minuscole. Hello [uniqueString](resource-group-template-functions-string.md#uniquestring) funzione restituisce 13 caratteri. Se si concatena toohello un prefisso **uniqueString** provocare, fornire un prefisso di 11 caratteri o meno.
 
 ## <a name="badrequest"></a>RichiestaNonValida
 
-Quando per una proprietà si specifica un valore non valido, può comparire lo stato BadRequest. Ad esempio, se per un account di archiviazione si fornisce un valore SKU non corretto, la distribuzione ha esito negativo. Per determinare i valori validi per la proprietà, vedere l'articolo relativo all'[API REST](/rest/api) in relazione al tipo di risorsa distribuito.
+Quando per una proprietà si specifica un valore non valido, può comparire lo stato BadRequest. Ad esempio, se si fornisce un valore SKU non corretto per un account di archiviazione, hello distribuzione non riesce. Esaminare i valori validi per la proprietà, toodetermine hello [API REST](/rest/api) per il tipo di risorsa hello si sta distribuendo.
 
 <a id="noregisteredproviderfound" />
 
 ## <a name="noregisteredproviderfound-and-missingsubscriptionregistration"></a>NoRegisteredProviderFound e MissingSubscriptionRegistration
-Quando si distribuisce una risorsa, è possibile che venga visualizzato il codice di errore e il messaggio seguenti:
+Durante la distribuzione di risorse, è possibile ricevere hello seguente codice di errore e di messaggio:
 
 ```
 Code: NoRegisteredProviderFound
@@ -371,50 +371,50 @@ In alternativa, si potrebbe ricevere un messaggio analogo che indica:
 
 ```
 Code: MissingSubscriptionRegistration
-Message: The subscription is not registered to use namespace {resource-provider-namespace}
+Message: hello subscription is not registered toouse namespace {resource-provider-namespace}
 ```
 
 Questi errori vengono visualizzati per uno di questi tre motivi:
 
-1. Il provider di risorse non è stato registrato per la sottoscrizione
-2. La versione dell'API non è supportata per il tipo di risorsa
-3. Il percorso non è supportato per il tipo di risorsa
+1. provider di risorse Hello non è stato registrato per la sottoscrizione
+2. Versione dell'API non è supportata per il tipo di risorsa hello
+3. Percorso non è supportata per il tipo di risorsa hello
 
-Il messaggio di errore dovrebbe fornire suggerimenti per le versioni di API e i percorsi supportati. È possibile modificare il modello impostando uno dei valori suggeriti. La maggior parte dei provider, ma non tutti, vengono registrati automaticamente dal portale di Azure o dall'interfaccia della riga di comando che si sta usando. Se non è mai stato usato un provider di risorse specifico, potrebbe essere necessario registrarlo. È possibile ottenere altre informazioni sui provider di risorse tramite PowerShell o l'interfaccia della riga di comando di Azure.
+messaggio di errore Hello deve contenere suggerimenti per percorsi hello supportato e le versioni dell'API. È possibile modificare il modello tooone di hello valori consigliati. La maggior parte dei provider vengono registrati automaticamente da hello Azure interfaccia della riga di comando di portale o hello in uso, ma non tutte. Se non è stato utilizzato un provider di risorse specifico prima, si potrebbe essere necessario tooregister tale provider. È possibile ottenere altre informazioni sui provider di risorse tramite PowerShell o l'interfaccia della riga di comando di Azure.
 
 **Portale**
 
-È possibile visualizzare lo stato di registrazione e registrare uno spazio dei nomi del provider di risorse tramite il portale.
+È possibile vedere lo stato della registrazione hello e registrare uno spazio dei nomi del provider di risorse tramite il portale di hello.
 
 1. Selezionare **Provider di risorse** per la propria sottoscrizione.
 
    ![selezionare i provider di risorse](./media/resource-manager-common-deployment-errors/select-resource-provider.png)
 
-2. Esaminare l'elenco dei provider di risorse e, se necessario, selezionare il link **Registra** per registrare il provider di risorse del tipo che si intende distribuire.
+2. Esaminare hello elenco di provider di risorse e, se necessario, selezionare hello **registrare** provider di risorse hello tooregister collegamento di tipo hello che si sta tentando di toodeploy.
 
    ![Elenco di provider di risorse](./media/resource-manager-common-deployment-errors/list-resource-providers.png)
 
 **PowerShell**
 
-Per visualizzare lo stato della registrazione, usare **Get-AzureRmResourceProvider**.
+toosee lo stato di registrazione, utilizzare **Get AzureRmResourceProvider**.
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable
 ```
 
-Per registrare un provider, usare **Register-AzureRmResourceProvider** e specificare il nome del provider di risorse da registrare.
+tooregister un provider, utilizzare **registro AzureRmResourceProvider** e specificare il nome di hello del provider di risorse hello desiderato tooregister.
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Cdn
 ```
 
-Per ottenere i percorsi supportati per un tipo di risorsa particolare è possibile usare:
+percorsi di tooget hello è supportato per un particolare tipo di risorsa, utilizzare:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-Per ottenere le versioni di API supportate per un tipo di risorsa particolare è possibile usare:
+hello tooget supportate le versioni dell'API per un particolare tipo di risorsa, utilizzare:
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
@@ -422,19 +422,19 @@ Per ottenere le versioni di API supportate per un tipo di risorsa particolare è
 
 **Interfaccia della riga di comando di Azure**
 
-Per vedere se il provider è registrato, usare il comando `azure provider list` .
+toosee se il provider di hello è registrato, utilizzare hello `azure provider list` comando.
 
 ```azurecli
 az provider list
 ```
 
-Per registrare un provider di risorse, usare il comando `azure provider register` e specificare lo *spazio dei nomi* per la registrazione.
+tooregister un provider di risorse, utilizzare hello `azure provider register` comando e specificare hello *dello spazio dei nomi* tooregister.
 
 ```azurecli
 az provider register --namespace Microsoft.Cdn
 ```
 
-Per visualizzare le versioni di API e i percorsi supportati per un tipo di risorsa, usare:
+percorsi supportato hello toosee e le versioni dell'API per un tipo di risorsa, utilizzare:
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
@@ -443,10 +443,10 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 <a id="quotaexceeded" />
 
 ## <a name="quotaexceeded-and-operationnotallowed"></a>QuotaExceeded e OperationNotAllowed
-Alcuni problemi potrebbero verificarsi quando una distribuzione supera una quota specifica per un gruppo di risorse, le sottoscrizioni, gli account o per altri ambiti. Ad esempio, la sottoscrizione potrebbe essere configurata in modo da limitare il numero di core per un'area. Se si prova a distribuire una macchina virtuale con un numero di core superiore alla quantità consentita, verrà visualizzato un messaggio di errore che informa che la quota è stata superata.
+Alcuni problemi potrebbero verificarsi quando una distribuzione supera una quota specifica per un gruppo di risorse, le sottoscrizioni, gli account o per altri ambiti. Ad esempio, la sottoscrizione potrebbe essere configurato toolimit hello numero di core per un'area. Se si tenta di toodeploy una macchina virtuale con più core di hello consentito quantità, viene visualizzato un errore indicante hello è stato superato.
 Per informazioni complete sulle quote, vedere [Sottoscrizione di Azure e limiti, quote e vincoli dei servizi](../azure-subscription-service-limits.md).
 
-Per esaminare le quote per i core della sottoscrizione, è possibile usare il comando `azure vm list-usage` nell'interfaccia della riga di comando di Azure. L'esempio seguente mostra che la quota di core per un account della versione di valutazione gratuita è quattro:
+tooexamine le quote della sottoscrizione per core, è possibile utilizzare hello `azure vm list-usage` comando hello CLI di Azure. per un account di prova è 4, Hello di esempio seguente viene illustrato tale quota di core hello:
 
 ```azurecli
 az vm list-usage --location "South Central US"
@@ -468,7 +468,7 @@ Che restituisce:
 ]
 ```
 
-Se si distribuisce un modello che crea più di quattro core nell'area Stati Uniti occidentali, verrà visualizzato un errore di distribuzione come il seguente:
+Se si distribuisce un modello che crea più di quattro core nell'area Stati Uniti occidentali hello, viene visualizzato un errore simile a quello di distribuzione:
 
 ```
 Code=OperationNotAllowed
@@ -476,7 +476,7 @@ Message=Operation results in exceeding quota limits of Core.
 Maximum allowed: 4, Current in use: 4, Additional requested: 2.
 ```
 
-In alternativa, in PowerShell è possibile usare il cmdlet **Get-AzureRmVMUsage** .
+O in PowerShell, è possibile utilizzare hello **Get AzureRmVMUsage** cmdlet.
 
 ```powershell
 Get-AzureRmVMUsage
@@ -496,53 +496,53 @@ Unit         : null
 ...
 ```
 
-In questi casi, si deve accedere al portale e rivolgersi all'assistenza per richiedere l'aumento della quota per l'area di destinazione della distribuzione.
+In questi casi, si deve passare toohello portal e file un tooraise problema supporto la quota per area hello in cui si desidera toodeploy.
 
 > [!NOTE]
-> Tenere presente che per i gruppi di risorse, la quota è riferita alle singole aree e non all'intera sottoscrizione. Se è necessario distribuire 30 core nell'area Stati Uniti occidentali, è necessario richiedere 30 core di gestione delle risorse per Stati Uniti occidentali. Se è necessario distribuire 30 core in qualsiasi area a cui si ha accesso, è consigliabile richiedere 30 core di Resource Manager in tutte le aree.
+> Tenere presente che per gruppi di risorse, la quota hello per le singole aree, non per l'intera sottoscrizione hello. Se è necessario toodeploy 30 core negli Stati Uniti occidentali, è necessario tooask per 30 core di gestione delle risorse negli Stati Uniti occidentali. Se è necessario toodeploy 30 core delle toowhich aree hello è disponibile, è necessario richiedere 30 core di gestione risorse in tutte le aree.
 >
 >
 
 ## <a name="invalidcontentlink"></a>InvalidContentLink
-Quando viene visualizzato il messaggio di errore seguente:
+Quando si riceve il messaggio di errore hello:
 
 ```
 Code=InvalidContentLink
-Message=Unable to download deployment content from ...
+Message=Unable toodownload deployment content from ...
 ```
 
-È probabile che si sia tentato il collegamento a un modello annidato non disponibile. Ricontrollare l'URI specificato per il modello annidato. Se il modello si trova in un account di archiviazione, verificare che l'URI sia accessibile. Potrebbe essere necessario passare un token di firma di accesso condiviso. Per altre informazioni, vedere [Uso di modelli collegati con Gestione risorse di Azure](resource-group-linked-templates.md).
+Si è probabilmente tentato toolink tooa modello nidificato che non è disponibile. Verificare hello URI è fornito per il modello annidato hello. Se il modello di hello esiste in un account di archiviazione, assicurarsi che hello URI sia accessibile. Potrebbe essere necessario toopass un token di firma di accesso condiviso. Per altre informazioni, vedere [Uso di modelli collegati con Gestione risorse di Azure](resource-group-linked-templates.md).
 
 ## <a name="requestdisallowedbypolicy"></a>RequestDisallowedByPolicy
-Questo errore viene visualizzato quando la sottoscrizione include un criterio che impedisce di eseguire un'azione desiderata in fase distribuzione. Cercare l'identificatore del criterio nel messaggio di errore
+Viene visualizzato questo errore quando la sottoscrizione include un criterio che impedisce a un'azione che si sta tentando di tooperform durante la distribuzione di risorse. Nel messaggio di errore hello, cercare l'identificatore hello dei criteri.
 
 ```
 Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'
 ```
 
-e specificarlo in **PowerShell** come parametro **Id** per recuperare i dettagli relativi al criterio che ha bloccato la distribuzione.
+In **PowerShell**, fornire tale identificatore dei criteri come hello **Id** dettagli sui criteri hello bloccati distribuzione tooretrieve del parametro.
 
 ```powershell
 (Get-AzureRmPolicyDefinition -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition").Properties.policyRule | ConvertTo-Json
 ```
 
-Nell'**interfaccia della riga di comando di Azure** specificare il nome della definizione del criterio:
+In **CLI di Azure**, specificare il nome di hello della definizione di criteri hello:
 
 ```azurecli
 az policy definition show --name regionPolicyAssignment
 ```
 
-Per altre informazioni, vedere gli articoli seguenti:
+Per ulteriori informazioni, vedere hello seguenti articoli:
 
 - [Errore RequestDisallowedByPolicy](resource-manager-policy-requestdisallowedbypolicy-error.md)
-- [Usare i criteri per gestire le risorse e controllare l'accesso](resource-manager-policy.md).
+- [Usare criteri toomanage risorse e controllare l'accesso](resource-manager-policy.md).
 
 ## <a name="authorization-failed"></a>L'autorizzazione non è riuscita
-Si può ricevere un messaggio di errore durante la distribuzione perché l'account o l'entità servizio che prova a distribuire le risorse non ha l'accesso necessario per eseguire tali azioni. Azure Active Directory consente all'utente o all'amministratore di controllare con un'elevata precisione quali identità possono accedere e a quali risorse. Se l'account è assegnato al ruolo Lettore, ad esempio, non è possibile creare nuove risorse. In tal caso verrà visualizzato un messaggio di errore che indica che l'autorizzazione non è riuscita.
+Si potrebbe ricevere un errore durante la distribuzione perché hello account o il tentativo di risorse hello toodeploy entità servizio non dispone di accesso tooperform tali azioni. Azure Active Directory consente o l'amministratore toocontrol le identità che possono accedere le risorse con un elevato livello di precisione. Ad esempio, se l'account viene assegnato il ruolo di lettore toohello, non sono in grado di toocreate risorse. In tal caso verrà visualizzato un messaggio di errore che indica che l'autorizzazione non è riuscita.
 
 Per altre informazioni sul controllo degli accessi in base al ruolo, vedere [Controllo degli accessi in base al ruolo di Azure](../active-directory/role-based-access-control-configure.md).
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Per altre informazioni sulle azioni di controllo, vedere [Operazioni di controllo con Resource Manager](resource-group-audit.md).
-* Per altre informazioni sulle azioni che consentono di determinare gli errori di distribuzione, vedere [Visualizzare le operazioni di distribuzione con il portale di Azure](resource-manager-deployment-operations.md).
+* toolearn sul controllo delle azioni, vedere [controllare le operazioni con Gestione risorse di](resource-group-audit.md).
+* toolearn sugli errori di hello toodetermine azioni durante la distribuzione, vedere [per visualizzare le operazioni di distribuzione](resource-manager-deployment-operations.md).

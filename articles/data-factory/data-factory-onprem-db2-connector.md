@@ -1,6 +1,6 @@
 ---
-title: Spostare dati da DB2 mediante Azure Data Factory | Microsoft Docs
-description: "Informazioni su come spostare dati da un database DB2 locale mediante l'attività di copia di Azure Data Factory"
+title: aaaMove dati da DB2 utilizzando Data Factory di Azure | Documenti Microsoft
+description: "Informazioni su come toomove dati da un DB2 locale del database tramite l'attività di copia di Azure Data Factory"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jingwang
-ms.openlocfilehash: 6a89cc44724dbb5b46a9e89d6da24d9b35ddbbef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 696ac059be644cb3901c37d2fc746e0682c65a1f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-db2-by-using-azure-data-factory-copy-activity"></a>Spostare dati da DB2 mediante l'attività di copia di Azure Data Factory
-Questo articolo descrive come usare l'attività di copia in Azure Data Factory per copiare dati da un database DB2 locale a un altro archivio dati. È possibile copiare dati in qualsiasi archivio che sia elencato come un sink supportato nell'articolo sulle [attività di spostamento dati di Data Factory](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Questo argomento si basa sull'articolo relativo a Data Factory, che offre una panoramica dello spostamento dei dati mediante l'attività di copia ed elenca le combinazioni di archivi dati supportati. 
+In questo articolo viene descritto come usare attività di copia dei dati toocopy Data Factory di Azure da un archivio di dati locale tooa database DB2. È possibile copiare l'archivio dati tooany elencato come un sink supportato in hello [attività lo spostamento dei dati di Data Factory](data-factory-data-movement-activities.md#supported-data-stores-and-formats) articolo. Questo argomento si basa sull'articolo Data Factory di hello, che viene presentata una panoramica di spostamento dei dati tramite l'attività di copia e l'elenco delle combinazioni di archivio dati hello è supportato. 
 
-Data Factory consente attualmente solo lo spostamento dei dati da un database DB2 a un [archivio dati sink supportato](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Lo spostamento dei dati da altri archivi dati in un database DB2 non è consentito.
+Data Factory supporta attualmente solo lo spostamento dei dati da un tooa database DB2 [archivio dati sink supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Lo spostamento dei dati da altri dati archivia tooa DB2 database non è supportato.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Data Factory supporta la connessione a database DB2 locali mediante il [gateway di gestione dati](data-factory-data-management-gateway.md). Per istruzioni passo per passo su come configurare il gateway di una pipeline di dati per spostare i dati, vedere [Spostare dati tra origini locali e il cloud](data-factory-move-data-between-onprem-and-cloud.md).
+Data Factory supporta connessione database DB2 locale di tooan utilizzando hello [gateway di gestione dati](data-factory-data-management-gateway.md). Per istruzioni dettagliate tooset dei dati gateway hello pipeline toomove i dati, vedere hello [spostare i dati da on-premise toocloud](data-factory-move-data-between-onprem-and-cloud.md) articolo.
 
-Un gateway è necessario anche se il DB2 è ospitato in una VM IaaS di Azure. È possibile installare il gateway nella stessa VM IaaS dell'archivio dati. Se il gateway può connettersi al database, è possibile installare il gateway su una VM diversa.
+Anche se hello DB2 è ospitato in Azure IaaS con macchina virtuale, è necessario un gateway. È possibile installare il gateway hello in hello stessa VM IaaS come archivio dati hello. Se il gateway di hello possa connettersi toohello database, è possibile installare il gateway di hello in una macchina virtuale diversa.
 
-Il gateway di gestione dati offre un driver DB2 integrato, perciò non è necessario installare manualmente un driver per copiare dati da DB2.
+gateway di gestione dati Hello fornisce un driver DB2 predefinito, pertanto non è necessario toomanually installare un driver toocopy dati da DB2.
 
 > [!NOTE]
-> Per suggerimenti sulla risoluzione di problemi correlati alla connessione o al gateway, vedere l'articolo [Risoluzione dei problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues).
+> Per suggerimenti sulla risoluzione dei problemi del gateway e connessione, vedere hello [risolvere i problemi del gateway](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) articolo.
 
 
 ## <a name="supported-versions"></a>Versioni supportate
-Il connettore Data Factory DB2 supporta le piattaforme e le versioni di IBM DB2 seguenti con DRDA (Distributed Relational Database Architecture) SQL Access Manager versione 9, 10 e 11:
+connettore Hello Data Factory DB2 supporta hello seguenti piattaforme IBM DB2 e le versioni con le versioni di gestione di accesso SQL Distributed Relational Database Architecture (DRDA) 9, 10 e 11:
 
 * IBM DB2 per z/OS versione 11.1
 * IBM DB2 per z/OS versione 10.1
@@ -48,79 +48,79 @@ Il connettore Data Factory DB2 supporta le piattaforme e le versioni di IBM DB2 
 * IBM DB2 per LUW versione 10.1
 
 > [!TIP]
-> Se si riceve il messaggio d'errore "Non è stato trovato il pacchetto corrispondente a una richiesta di esecuzione dell'istruzione SQL. SQLSTATE=51002 SQLCODE=-805", il motivo è che non viene creato un pacchetto necessario per un utente normale nel sistema operativo. Per risolvere il problema seguire queste istruzioni per il tipo di server DB2 in uso:
-> - DB2 per i (AS400): consente all'utente esperto di creare una raccolta per l'utente normale prima di eseguire l'attività di copia. Per creare la raccolta usare il comando: `create collection <username>`
-> - DB2 per z/OS o LUW: usare un account con privilegi elevati, ovvero utente esperto o amministratore con autorità di pacchetto e autorizzazioni BIND, BINDADD, GRANT EXECUTE TO PUBLIC, per eseguire l'attività di copia una volta. Il pacchetto necessario viene creato automaticamente durante la copia. In seguito è possibile tornare a essere un utente normale per le successive esecuzioni delle operazioni di copia.
+> Se si riceve il messaggio di errore hello "hello pacchetto corrispondente tooan SQL istruzione richiesta di esecuzione non è stato trovato. SQLSTATE = 51002 SQLCODE = a 805, "hello, infatti, non è viene creato un pacchetto necessario per utente normale hello hello del sistema operativo. tooresolve questo problema, seguire queste istruzioni per il tipo di server DB2:
+> - DB2 per i (AS400): consentono a un utente di creare la raccolta di hello per utente normale hello prima di eseguire attività di copia. raccolta di hello toocreate, utilizzare hello comando:`create collection <username>`
+> - DB2 per z/OS o LUW: utilizzare un account con privilegi elevati, un power user o l'amministratore che dispone di autorità di pacchetto e binding, BINDADD, disporre delle autorizzazioni EXECUTE tooPUBLIC - copia di hello toorun una volta. pacchetto necessario Hello viene creato automaticamente durante la copia di hello. In seguito, è possibile passare utente normale toohello indietro per le esecuzioni successive di copia.
 
 ## <a name="getting-started"></a>introduttiva
-È possibile creare una pipeline con un'attività di copia per spostare i dati da un archivio dati DB2 usando diversi strumenti e API: 
+È possibile creare una pipeline con dati toomove di un attività di copia da un archivio di dati DB2 locale tramite diversi strumenti e API: 
 
-- Il modo più semplice per creare una pipeline è usare la Copia guidata di Azure Data Factory. Per una rapida procedura dettagliata di creazione di una pipeline mediante la copia guidata dei dati, vedere [Esercitazione: Creare una pipeline con l'attività di copia usando la Copia guidata di Data Factory](data-factory-copy-data-wizard-tutorial.md). 
-- Per creare una pipeline è possibile anche usare strumenti come il portale di Azure, Visual Studio, Azure PowerShell, un modello di Azure Resource Manager, l'API .NET e l'API REST. Per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia, vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
+- toocreate modo più semplice di Hello una pipeline è toouse hello Azure Data Factory Copia guidata. Per un'esercitazione rapida sulla creazione di una pipeline mediante Copia guidata hello, vedere hello [esercitazione: creare una pipeline mediante Copia guidata hello](data-factory-copy-data-wizard-tutorial.md). 
+- È inoltre possibile utilizzare strumenti toocreate una pipeline, tra cui hello portale di Azure, Visual Studio, Azure PowerShell, un modello Gestione risorse di Azure, hello API .NET e hello API REST. Per istruzioni dettagliate toocreate una pipeline con attività di copia, vedere hello [esercitazione attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md). 
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink:
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti:
 
-1. Creare i servizi collegati per collegare gli archivi dati di input e output alla data factory.
-2. Creare i set di dati per rappresentare i dati di input e di output per le operazioni di copia. 
+1. Creare servizi collegati toolink dati di input e output archivi tooyour data factory.
+2. Creare set di dati toorepresent input e output dei dati per l'operazione di copia hello. 
 3. Creare una pipeline con un'attività di copia che accetti un set di dati come input e un set di dati come output. 
 
-Quando si usa la Copia guidata, le definizioni JSON per i servizi collegati, i set di dati e le entità pipeline di data factory vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione dell'API .NET, usare il formato JSON per definire le entità di Data Factory. La sezione [Esempio JSON: Copiare dati da DB2 a BLOB di Azure](#json-example-copy-data-from-db2-to-azure-blob) mostra le definizioni JSON per le entità di Data Factory utilizzate per copiare dati da un archivio dati DB2 locale.
+Quando si utilizza Copia guidata, le definizioni di JSON per i servizi di Data Factory collegato hello, hello vengono creati automaticamente set di dati e le entità di pipeline per l'utente. Quando si utilizzano strumenti o le API (ad eccezione di hello API .NET), per definire entità Data Factory di hello, utilizzando il formato JSON hello. Hello [esempio JSON: copiare i dati da DB2 tooAzure nell'archiviazione Blob](#json-example-copy-data-from-db2-to-azure-blob) Mostra le definizioni di JSON hello per hello entità Data Factory che vengono utilizzati toocopy dati da un archivio di dati DB2 locale.
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di Data Factory specifiche di un archivio dati DB2.
+Hello le sezioni seguenti fornisce dettagli sulle hello proprietà JSON che sono utilizzati toodefine hello Data Factory entità che sono l'archivio dati specifico tooa DB2.
 
 ## <a name="db2-linked-service-properties"></a>Proprietà del servizio collegato DB2
-La tabella seguente elenca le proprietà JSON che sono specifiche di un servizio collegato DB2.
+Hello nella tabella seguente elenca le proprietà JSON hello sono tooa specifico del servizio collegato DB2.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| **type** |Questa proprietà deve essere impostata su **OnPremisesDB2**. |Sì |
-| **server** |Il nome del server DB2. |Sì |
-| **database** |Il nome del database DB2. |Sì |
-| **schema** |Il nome dello schema nel database DB2. Questa proprietà fa distinzione tra maiuscole e minuscole. |No |
-| **authenticationType** |Il tipo di autenticazione utilizzato per connettersi al database DB2. I valori possibili sono: anonima, di base e Windows. |Sì |
-| **username** |Il nome dell'account utente, se si usa l'autenticazione di base o di Windows. |No |
-| **password** |La password per l'account utente. |No |
-| **gatewayName** |Il nome del gateway che il servizio Data factory deve usare per connettersi al database DB2 locale. |Sì |
+| **type** |Questa proprietà deve essere impostata troppo**OnPremisesDB2**. |Sì |
+| **server** |nome di Hello del server DB2 hello. |Sì |
+| **database** |nome di Hello del database DB2 hello. |Sì |
+| **schema** |nome Hello dello schema di hello in database DB2 hello. Questa proprietà fa distinzione tra maiuscole e minuscole. |No |
+| **authenticationType** |tipo di Hello di autenticazione è il database di DB2 toohello tooconnect utilizzato. Hello i valori possibili sono: anonima, base e Windows. |Sì |
+| **username** |nome Hello per account utente di hello se si utilizza l'autenticazione di base o di Windows. |No |
+| **password** |password di Hello per account utente di hello. |No |
+| **gatewayName** |nome Hello del gateway hello hello servizio Data Factory deve usare database di DB2 tooconnect toohello locale. |Sì |
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Per un elenco delle sezioni e delle proprietà disponibili per la definizione dei set di dati, vedere l'articolo [Set di dati in Azure Data Factory](data-factory-create-datasets.md). Le sezioni come **struttura**, **disponibilità** e **policy** di un set di dati JSON sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, archiviazione BLOB di Azure, archiviazione tabelle di Azure e così via.
+Per un elenco di sezioni hello e proprietà che sono disponibili per la definizione di set di dati, vedere hello [creazione dei DataSet](data-factory-create-datasets.md) articolo. Le sezioni, ad esempio **struttura**, **disponibilità**, hello e **criteri** per un set di dati JSON, sono simili per tutti i tipi di set di dati (SQL Azure, archiviazione Blob di Azure, tabelle di Azure archiviazione e così via).
 
-La sezione **typeProperties** è diversa per ogni tipo di set di dati e contiene informazioni sulla posizione dei dati nell'archivio dati. La sezione **typeProperties** per il set di dati di tipo **RelationalTable**, che comprende il set di dati DB2, presenta la proprietà seguente:
+Hello **typeProperties** sezione è diverso per ogni tipo di set di dati e fornisce informazioni sulla posizione hello dei dati di hello nell'archivio dati hello. Hello **typeProperties** sezione per un set di dati di tipo **RelationalTable**, che include set di dati DB2 hello, ha hello seguenti proprietà:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| **tableName** |Il nome della tabella nell'istanza del database DB2 a cui il servizio collegato fa riferimento. Questa proprietà fa distinzione tra maiuscole e minuscole. |No (se è specificata la proprietà **query** di un'attività di copia di tipo **RelationalSource**) |
+| **tableName** |nome Hello della tabella di hello nell'istanza di database DB2 hello che hello servizio collegato fa riferimento a. Questa proprietà fa distinzione tra maiuscole e minuscole. |No (se hello **query** proprietà di un'attività di copia di tipo **RelationalSource** è specificato) |
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco delle sezioni e delle proprietà disponibili per la definizione delle attività di copia, vedere l'articolo relativo alla [creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili le proprietà dell'attività di copia, come **name**, **description**, tabella **inputs**, tabella **outputs** e **policy**. Le proprietà disponibili nella sezione **typeProperties** dell'attività per ciascun tipo di attività. Per l'attività di copia, le proprietà variano in base ai tipi di origini dati e sink.
+Per un elenco di sezioni di hello e le proprietà disponibili per la definizione delle attività di copia, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Per tutti i tipi di attività sono disponibili le proprietà dell'attività di copia, come **name**, **description**, tabella **inputs**, tabella **outputs** e **policy**. le proprietà disponibili in hello Hello **typeProperties** sezione dell'attività hello per ogni tipo di attività. Per attività di copia, la proprietà hello varia a seconda di hello tipi di origini dati e sink.
 
-Per le attività di copia con origine di tipo **RelationalSource** (che comprende DB2), sono disponibili le proprietà seguenti nella sezione **typeProperties**:
+Per attività di copia, l'origine hello è di tipo **RelationalSource** (che include DB2), hello le proprietà seguenti sono disponibile in hello **typeProperties** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| **query** |Usare la query personalizzata per leggere i dati. |Stringa di query SQL. Ad esempio: `"query": "select * from "MySchema"."MyTable""` |No (se è specificata la proprietà **tableName** di un set di dati) |
+| **query** |Utilizzare i dati di hello tooread query personalizzata hello. |Stringa di query SQL. Ad esempio: `"query": "select * from "MySchema"."MyTable""` |No (se hello **tableName** proprietà di un set di dati è specificato) |
 
 > [!NOTE]
-> I nomi di schemi e tabelle fanno distinzione tra maiuscole e minuscole. Nell'istruzione della query racchiudere i nomi di proprietà fra virgolette doppie (""). ad esempio:
+> I nomi di schemi e tabelle fanno distinzione tra maiuscole e minuscole. Nell'istruzione di query hello, racchiudere i nomi delle proprietà utilizzando "" (virgolette doppie). ad esempio:
 >
 > ```sql
 > "query": "select * from "DB2ADMIN"."Customers""
 > ```
 
-## <a name="json-example-copy-data-from-db2-to-azure-blob-storage"></a>Esempio JSON: Copiare dati da DB2 a BLOB di Azure
-Questo esempio fornisce le definizioni JSON di esempio da usare per creare una pipeline con il [Portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). L'esempio illustra come copiare dati da un database DB2 nell'archivio BLOB. Tuttavia, è possibile copiare i dati in [qualsiasi tipo di sink di archivio dati supportato](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia di Azure Data Factory.
+## <a name="json-example-copy-data-from-db2-tooazure-blob-storage"></a>Esempio JSON: copiare i dati da DB2 tooAzure nell'archiviazione Blob
+In questo esempio vengono fornite le definizioni di JSON di esempio che è possibile utilizzare una pipeline toocreate utilizzando hello [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). esempio Hello Mostra come toocopy dati da un DB2 tooBlob archiviazione del database. Tuttavia, i dati possono essere copiati troppo[tutti i dati supportati archiviano il tipo di sink](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tramite attività di copia di Azure Data Factory.
 
-L'esempio include le entità della data factory seguenti:
+esempio Hello è hello entità Data Factory di seguito:
 
 - Un servizio collegato DB2 di tipo [OnPremisesDb2](data-factory-onprem-db2-connector.md#linked-service-properties)
 - Un servizio collegato di archiviazione BLOB di Azure di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)
 - Un [set di dati](data-factory-create-datasets.md) di input di tipo [RelationalTable](data-factory-onprem-db2-connector.md#dataset-properties)
 - Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties)
-- Una [pipeline](data-factory-create-pipelines.md) con un'attività di copia che usa le proprietà [RelationalSource](data-factory-onprem-db2-connector.md#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)
+- Oggetto [pipeline](data-factory-create-pipelines.md) con un'attività di copia che utilizza hello [RelationalSource](data-factory-onprem-db2-connector.md#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) proprietà
 
-L'esempio copia i dati da un risultato della query in un database DB2 a un BLOB di Azure ogni ora. Le proprietà JSON utilizzate in questi esempi sono descritte nelle sezioni riportate dopo le definizioni di entità.
+esempio Hello copia dati da un risultato di query in un tooan database DB2 blob di Azure ogni ora. le proprietà JSON Hello utilizzati nell'esempio hello descritti nelle sezioni hello che seguono le definizioni di entità hello.
 
-Innanzitutto installare e configurare un gateway dati. Le istruzioni si trovano nell'articolo [Spostare dati tra percorsi locali e il cloud](data-factory-move-data-between-onprem-and-cloud.md).
+Innanzitutto installare e configurare un gateway dati. Le istruzioni sono in hello [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo.
 
 **Servizio collegato DB2**
 
@@ -158,9 +158,9 @@ Innanzitutto installare e configurare un gateway dati. Le istruzioni si trovano 
 
 **Set di dati di input DB2**
 
-L'esempio presuppone che sia stata creata una tabella in DB2 denominata "MyTable" contenente una colonna denominata "timestamp" per i dati di una serie temporale.
+esempio Hello presuppone che sia stato creato una tabella in DB2 denominata "MyTable" che dispone di una colonna con etichetta "timestamp" per i dati della serie temporale hello.
 
-La proprietà **external** è impostata su "true". Questa impostazione comunica al servizio Data Factory che il set di dati è esterno alla data factory e non è generato da un'attività al suo interno. Si noti che il valore della proprietà **type** è impostato su **RelationalTable**.
+Hello **esterno** proprietà è impostata su troppo "true". Questa impostazione indica a servizio Data Factory hello di questo set di dati è esterna toohello data factory non viene generato da un'attività nella data factory di hello. Si noti che hello **tipo** impostata troppo**RelationalTable**.
 
 
 ```json
@@ -188,7 +188,7 @@ La proprietà **external** è impostata su "true". Questa impostazione comunica 
 
 **Set di dati di output del BLOB di Azure**
 
-I dati vengono scritti in un nuovo BLOB ogni ora impostando la proprietà **frequency** su "Hour" e **interval** su 1. La proprietà **folderPath** per il BLOB viene valutata dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora per l'impostazione hello **frequenza** proprietà troppo "Ora" e hello **intervallo** too1 di proprietà. Hello **folderPath** proprietà per il blob hello viene valutato dinamicamente in base ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ora hello hello ora di inizio.
 
 ```json
 {
@@ -246,15 +246,15 @@ I dati vengono scritti in un nuovo BLOB ogni ora impostando la proprietà **freq
 }
 ```
 
-**Pipeline con l'attività di copia**
+**Pipeline per attività di copia hello**
 
-La pipeline contiene un'attività di copia configurata per usare set di dati di input e output specificati e programmata per essere eseguita ogni ora. Nella definizione JSON per la pipeline il tipo di **origine** è impostato su **RelationalSource** e il tipo di **sink** è impostato su **BlobSink**. La query SQL specificata per la proprietà **query** seleziona i dati dalla tabella "Orders".
+pipeline di Hello contiene un'attività di copia che è configurata toouse specificato set di dati di input e output e che è pianificato toorun ogni ora. Nella definizione JSON per la pipeline di hello hello, hello **origine** tipo è stato impostato troppo**RelationalSource** hello e **sink** tipo è stato impostato troppo**BlobSink**. query SQL Hello specificata per hello **query** proprietà consente di selezionare dati hello dalla tabella "Orders" hello.
 
 ```json
 {
     "name": "CopyDb2ToBlob",
     "properties": {
-        "description": "pipeline for the copy activity",
+        "description": "pipeline for hello copy activity",
         "activities": [
             {
                 "type": "Copy",
@@ -295,12 +295,12 @@ La pipeline contiene un'attività di copia configurata per usare set di dati di 
 ```
 
 ## <a name="type-mapping-for-db2"></a>Mapping dei tipi per DB2
-Come accennato nell'articolo sulle [attività di spostamento dei dati](data-factory-data-movement-activities.md), l'attività di copia esegue conversioni di tipo automatiche dai tipi di origine ai tipi di sink usando l'approccio in due passaggi seguente:
+Come accennato in hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, l'attività di copia esegue le conversioni dal tipo di origine tipo toosink automatica tramite hello approccio in due passaggi:
 
-1. Conversione dal tipo di origine nativo al tipo .NET
-2. Conversione dal tipo .NET al tipo di sink nativo
+1. Convertire un tipo di origine nativa tipo tooa .NET
+2. Convertire un tipo di sink native tooa tipo .NET
 
-Quando l'attività di copia converte i dati da un tipo DB2 in un tipo .NET, vengono utilizzati i mapping seguenti:
+i seguenti mapping Hello vengono utilizzati quando l'attività di copia converte dati hello da un tipo di DB2 tipo tooa .NET:
 
 | Tipo di database DB2 | Tipo di .NET Framework |
 | --- | --- |
@@ -345,11 +345,11 @@ Quando l'attività di copia converte i dati da un tipo DB2 in un tipo .NET, veng
 | xml |Byte[] |
 | Char |String |
 
-## <a name="map-source-to-sink-columns"></a>Eseguire il mapping delle colonne dell'origine alle colonne del sink
-Per informazioni su come eseguire il mapping delle colonne del set di dati di origine alle colonne del set di dati del sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Eseguire il mapping di colonne di origine toosink
+colonne toomap toocolumns set di dati di origine hello hello sink set di dati, vedere toolearn [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-reads-from-relational-sources"></a>Letture ripetibili da origini relazionali
-Quando si copiano dati da un archivio dati relazionale è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare la proprietà **policy** di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione e dal modo in cui la sezione viene rieseguita. Per altre informazioni, vedere [Letture ripetibili da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Quando si copiano dati da un archivio dati relazionale, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È inoltre possibile configurare i tentativi di hello **criteri** proprietà per toorerun un set di dati una sezione quando si verifica un errore. Assicurarsi che hello stessi dati non vengono letti questione come sezione hello molte volte sia eseguire di nuovo, indipendentemente dalla modalità con cui si esegue nuovamente sezione hello. Per altre informazioni, vedere [Letture ripetibili da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Prestazioni e ottimizzazione
-Per informazioni sui fattori chiave che influiscono sulle prestazioni dell'attività di copia e sui modi per ottimizzarle, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+Informazioni sui fattori che influiscono sulle prestazioni di hello delle attività di copia e le modalità prestazioni toooptimize in hello [ottimizzazione Guida e alle prestazioni di attività di copia](data-factory-copy-activity-performance.md).

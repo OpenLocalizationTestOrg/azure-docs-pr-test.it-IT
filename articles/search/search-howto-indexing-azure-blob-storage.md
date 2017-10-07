@@ -1,6 +1,6 @@
 ---
-title: Indicizzazione in Archiviazione BLOB di Azure con Ricerca di Azure
-description: Informazioni su come indicizzare Archiviazione BLOB di Azure ed estrarre il testo dai documenti con Ricerca di Azure
+title: aaaIndexing archiviazione Blob di Azure con ricerca di Azure
+description: Informazioni su come testo tooindex Blob di Azure archiviazione ed estrazione da un documento con ricerca di Azure
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,17 +14,17 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/22/2017
 ms.author: eugenesh
-ms.openlocfilehash: 023c343122f872943fb3ab3eed7b4caedfae9ac4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1bdd34e66a4a9192ed88cacbc7b8456d0dcdfeb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-documents-in-azure-blob-storage-with-azure-search"></a>Indicizzazione di documenti in Archiviazione BLOB di Azure con Ricerca di Azure
-Questo articolo illustra come usare Ricerca di Azure per indicizzare documenti (ad esempio PD, documenti di Microsoft Office e numerosi altri formati comuni) salvati nell'archivio BLOB di Azure. In primo luogo, vengono illustrate le nozioni di base per l'impostazione e la configurazione di un indicizzatore BLOB. Vengono inoltre descritti in modo più dettagliato i comportamenti e gli scenari che possono verificarsi.
+Questo articolo viene illustrato come documenti di tooindex toouse ricerca di Azure (ad esempio PDF, documenti di Microsoft Office e diversi altri formati comuni) archiviati in archiviazione Blob di Azure. In primo luogo, vengono descritte le nozioni di base di hello di installazione e configurazione di un indicizzatore di blob. Quindi, offre un'esplorazione più approfondita dei comportamenti e scenari si è probabilmente tooencounter.
 
 ## <a name="supported-document-formats"></a>Formati di documento supportati
-L'indicizzatore BLOB può estrarre il testo dai formati di documento seguenti:
+indicizzatore di blob Hello può estrarre il testo dalla hello seguenti formati di documento:
 
 * PDF
 * Formati di Microsoft Office: DOCX/DOC, XLSX/XLS, PPTX/PPT, MSG (messaggi di posta elettronica di Outlook)  
@@ -38,7 +38,7 @@ L'indicizzatore BLOB può estrarre il testo dai formati di documento seguenti:
 * CSV (vedere la funzionalità in anteprima [Indicizzazione di BLOB CSV](search-howto-index-csv-blobs.md))
 
 > [!IMPORTANT]
-> Il supporto per gli array in formato CSV e JSON è attualmente in anteprima. Tali formati sono disponibili solo usando la versione **2016-09-01-Preview** dell'API REST o la versione 2.x-preview dell'SDK .NET. Si ricordi che le API di anteprima servono per il test e la valutazione e non devono essere usate negli ambienti di produzione.
+> Il supporto per gli array in formato CSV e JSON è attualmente in anteprima. Questi formati sono disponibili solo con versione **2016-09-01-Preview** di hello 2. x-preview API REST o la versione di hello .NET SDK. Si ricordi che le API di anteprima servono per il test e la valutazione e non devono essere usate negli ambienti di produzione.
 >
 >
 
@@ -50,23 +50,23 @@ L'indicizzatore BLOB può estrarre il testo dai formati di documento seguenti:
 * [.NET SDK](https://aka.ms/search-sdk) Ricerca di Azure
 
 > [!NOTE]
-> Alcune funzionalità (ad esempio, i mapping dei campi) non sono ancora disponibili nel portale e devono essere usate in modo programmatico.
+> Alcune delle funzionalità (ad esempio, i mapping campi) non sono ancora disponibili nel portale di hello che toobe utilizzato a livello di codice.
 >
 >
 
-In questo caso viene illustrato il flusso tramite l'API REST.
+In questo caso, viene descritto come flusso hello utilizzando hello API REST.
 
 ### <a name="step-1-create-a-data-source"></a>Passaggio 1: Creare un'origine dati
-Un'origine dati specifica i dati da indicizzare, le credenziali necessarie per accedere ai dati e i criteri che consentono di identificare in modo efficace le modifiche apportate ai dati (righe nuove, modificate o eliminate). Un'origine dati può essere usata da più indicizzatori nello stesso servizio di ricerca.
+Un'origine dati specifica quali dati tooindex, i dati di hello tooaccess le credenziali necessarie e criteri tooefficiently identificare le modifiche nei dati hello (nuovo, modificate o eliminate righe). Un'origine dati può essere utilizzata da più indicizzatori in hello stesso servizio di ricerca.
 
-Per l'indicizzazione BLOB, l'origine dati deve avere le proprietà obbligatorie seguenti:
+Per l'indicizzazione blob, origine dati hello deve avere hello seguenti proprietà obbligatorie:
 
-* **name** è il nome univoco dell'origine dati all'interno del servizio di ricerca.
+* **nome** è hello nome univoco dell'origine dati hello all'interno del servizio di ricerca.
 * **type** deve essere `azureblob`.
-* **credentials** fornisce la stringa di connessione dell'account di archiviazione come parametro `credentials.connectionString`. Per informazioni dettagliate, vedere [Come specificare le credenziali](#Credentials) più avanti.
-* **container** specifica un contenitore nell'account di archiviazione. Per impostazione predefinita, tutti i BLOB all'interno del contenitore sono recuperabili. Per indicizzare soltanto i BLOB in una determinata directory virtuale, è possibile specificare la directory usando il parametro facoltativo **query**.
+* **credenziali** fornisce una stringa di connessione account di archiviazione di hello come hello `credentials.connectionString` parametro. Vedere [come credenziali toospecify](#Credentials) sotto per informazioni dettagliate.
+* **container** specifica un contenitore nell'account di archiviazione. Per impostazione predefinita, tutti i BLOB all'interno del contenitore hello sono recuperabili. Se si vuole solo BLOB tooindex in una directory virtuale specifica, è possibile specificare tale directory utilizzando hello facoltativo **query** parametro.
 
-Per creare un'origine dati:
+toocreate un'origine dati:
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -79,26 +79,26 @@ Per creare un'origine dati:
         "container" : { "name" : "my-container", "query" : "<optional-virtual-directory-name>" }
     }   
 
-Per altre informazioni sull'API di creazione dell'origine dati, vedere [Creare un'origine dati](https://docs.microsoft.com/rest/api/searchservice/create-data-source).
+Per ulteriori informazioni su hello Datasource creare API, vedere [Datasource creare](https://docs.microsoft.com/rest/api/searchservice/create-data-source).
 
 <a name="Credentials"></a>
-#### <a name="how-to-specify-credentials"></a>Come specificare le credenziali ####
+#### <a name="how-toospecify-credentials"></a>Come credenziali toospecify ####
 
-Per specificare le credenziali per il contenitore BLOB, sono disponibili questi modi:
+È possibile fornire credenziali di hello per il contenitore blob hello in uno dei modi seguenti:
 
-- **Stringa di connessione dell'account di archiviazione per accesso completo**: `DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`. Per ottenere la stringa di connessione dal portale di Azure, passare al pannello dell'account di archiviazione e quindi selezionare Impostazioni > Chiavi (per gli account di archiviazione della versione classica) oppure Impostazioni > Chiavi di accesso (per gli account di archiviazione di Azure Resource Manager).
-- **Stringa di connessione della firma di accesso condiviso (SAS) dell'account di archiviazione**: `BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl` la SAS deve avere le autorizzazioni per le operazioni di elenco e lettura per i contenitori e gli oggetti (oggetti binario di grandi dimensioni).
--  **Firma di accesso condiviso**: `ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl`la firma di accesso condiviso (SAS) deve avere le autorizzazioni per le operazioni di elenco e lettura sul contenitore.
+- **Stringa di connessione dell'account di archiviazione per accesso completo**: `DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`. È possibile ottenere la stringa di connessione hello dal portale di Azure hello passando a pannello di account di archiviazione toohello > Impostazioni > chiavi (per gli account di archiviazione classica) o impostazioni > chiavi (per gli account di archiviazione di Azure Resource Manager) di accesso.
+- **Firma di accesso condiviso di account di archiviazione** stringa di connessione (SAS): `BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<hello signature>&spr=https&se=<hello validity end time>&srt=co&ss=b&sp=rl` hello SAS necessario hello elenco e autorizzazioni di lettura per i contenitori e oggetti (BLOB in questo caso).
+-  **Firma di accesso condiviso del contenitore**: `ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<hello signature>&se=<hello validity end time>&sp=rl` hello SAS necessario hello elenco e autorizzazioni di lettura per il contenitore di hello.
 
 Per altre informazioni sulle firme di accesso condiviso per l'archiviazione, vedere [Uso delle firme di accesso condiviso](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
 > [!NOTE]
-> Se si usano le credenziali di firma di accesso condiviso, sarà necessario aggiornare periodicamente le credenziali dell'origine dati con firme rinnovate per impedire che scadano. Se le credenziali di firma di accesso condiviso scadono, l'indicizzatore avrà esito negativo e restituirà un messaggio di errore simile al seguente: `Credentials provided in the connection string are invalid or have expired.`.  
+> Se si utilizzano credenziali di firma di accesso condiviso, è necessario credenziali dell'origine dati hello tooupdate periodicamente con le firme rinnovato tooprevent scadenza. Se le credenziali di firma di accesso condiviso hanno una scadenza, un indicizzatore hello avrà esito negativo con un messaggio di errore simile troppo`Credentials provided in hello connection string are invalid or have expired.`.  
 
 ### <a name="step-2-create-an-index"></a>Passaggio 2: Creare un indice
-L'indice consente di specificare i campi in un documento, gli attributi e altri costrutti che danno forma all'esperienza della ricerca.
+indice Hello specifica campi hello in un documento, gli attributi, e altri costrutti di un'esperienza di ricerca hello tale forma.
 
-Di seguito viene illustrato come creare un indice con un campo `content` ricercabile per archiviare il testo estratto dagli oggetti BLOB:   
+Ecco come toocreate un indice con una ricerca `content` campo di testo hello toostore estratto dal BLOB:   
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -115,9 +115,9 @@ Di seguito viene illustrato come creare un indice con un campo `content` ricerca
 Per altre informazioni sulla creazione di indici, vedere [Creare un indice](https://docs.microsoft.com/rest/api/searchservice/create-index)
 
 ### <a name="step-3-create-an-indexer"></a>Passaggio 3: Creare un indicizzatore
-Un indicizzatore si connette a un'origine dati con un indice di ricerca di destinazione e consente di pianificare l'automatizzazione dell'aggiornamento dei dati.
+Un indicizzatore si connette a un'origine dati con un indice di ricerca di destinazione e fornisce un aggiornamento di dati di pianificazione tooautomate hello.
 
-Dopo aver creato l'indice e l'origine dati, è possibile creare l'indicizzatore:
+Dopo avere creato hello indice e l'origine dati, si è pronti toocreate indicizzatore di hello:
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -130,65 +130,65 @@ Dopo aver creato l'indice e l'origine dati, è possibile creare l'indicizzatore:
       "schedule" : { "interval" : "PT2H" }
     }
 
-Questo indicizzatore verrà eseguito ogni due ore (l'intervallo di pianificazione è impostato su "PT2H"). Per eseguire un indicizzatore ogni 30 minuti, impostare l'intervallo su "PT30M". L'intervallo minimo supportato è di 5 minuti. La pianificazione è facoltativa: se omessa, l'indicizzatore viene eseguito una sola volta al momento della creazione. Tuttavia, è possibile eseguire un indicizzatore su richiesta in qualsiasi momento.   
+Questo indicizzatore verrà eseguito ogni due ore (intervallo di pianificazione è impostata troppo "PT2H"). un indicizzatore toorun ogni 30 minuti, impostare l'intervallo di hello troppo "PT30M". intervallo supportato di Hello minimo è 5 minuti. Hello pianificazione è facoltativa: Se omesso, viene eseguito un indicizzatore solo una volta al momento della creazione. Tuttavia, è possibile eseguire un indicizzatore su richiesta in qualsiasi momento.   
 
-Per altre informazioni sull'API di creazione di un indicizzatore, vedere [Creare un indicizzatore](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
+Per ulteriori informazioni su hello creare API di indicizzatore, estrarre [indicizzatore creare](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
 
 ## <a name="how-azure-search-indexes-blobs"></a>Indicizzazione dei BLOB con Ricerca di Azure
 
-A seconda della relativa [configurazione](#PartsOfBlobToIndex), l'indicizzatore BLOB può indicizzare solo i metadati di archiviazione, opzione utile quando si è interessati solo ai metadati e non è necessario indicizzare il contenuto dei BLOB, indicizzare i metadati del contenuto e di archiviazione o indicizzare sia i metadati che il contenuto di testo. Per impostazione predefinita, l'indicizzatore estrae sia i metadati che il contenuto.
+A seconda di hello [configurazione indicizzatore](#PartsOfBlobToIndex), indicizzatore blob hello consente di indicizzare solo i metadati di archiviazione (utile quando l'attenzione solo sui metadati hello e non è necessario tooindex hello contenuto di BLOB), archiviazione e il contenuto dei metadati, o entrambi i metadati e contenuto testuale. Per impostazione predefinita, indicizzatore hello estrae i metadati e il contenuto.
 
 > [!NOTE]
-> Per impostazione predefinita, i BLOB con contenuto strutturato, come quelli in formato JSON o CSV, vengono indicizzati come un unico blocco di testo. Per indicizzare i BLOB JSON e CSV in modo strutturato, vedere le funzionalità in anteprima [Indicizzazione di BLOB JSON](search-howto-index-json-blobs.md) e [Indicizzazione di BLOB CSV](search-howto-index-csv-blobs.md).
+> Per impostazione predefinita, i BLOB con contenuto strutturato, come quelli in formato JSON o CSV, vengono indicizzati come un unico blocco di testo. Se si desidera tooindex JSON e CSV BLOB in una struttura, vedere [JSON l'indicizzazione BLOB](search-howto-index-json-blobs.md) e [CSV l'indicizzazione BLOB](search-howto-index-csv-blobs.md) funzionalità di anteprima.
 >
 > Anche un documento composito o incorporato (ad esempio, un archivio ZIP o un documento di Word con una e-mail di Outlook incorporata con allegati) viene indicizzato come documento singolo.
 
-* Il contenuto di testo del documento viene estratto in un campo di tipo stringa denominato `content`.
+* contenuto testuale di Hello del documento hello viene estratto in un campo stringa denominato `content`.
 
 > [!NOTE]
-> Ricerca di Azure limita il testo estratto in base al piano tariffario: 32.000 caratteri per il livello gratuito, 64.000 per il livello Basic e 4 milioni per i livelli Standard, Standard S2 e Standard S3. Un avviso è incluso nella risposta dello stato dell'indicizzatore per i documenti troncati.  
+> Ricerca di Azure limita la quantità di testo viene estratto in base al livello di prezzo hello: 32.000 caratteri gratuitamente livello, 64.000 per Basic e 4 milioni per i livelli Standard, Standard S2 e S3 Standard. Un avviso è incluso nella risposta di hello indicizzatore sullo stato per i documenti troncati.  
 
-* Le proprietà dei metadati specificate dall'utente eventualmente presenti nel BLOB vengono estratte letteralmente.
-* Le proprietà dei metadati BLOB standard vengono estratte nei campi seguenti:
+* Proprietà di metadati specificato dall'utente presenti nel blob hello, se presenti, vengono estratti testuale.
+* Proprietà dei metadati del blob standard vengono estratti in hello seguenti campi:
 
-  * **metadata\_storage\_name** (Edm.String): nome file del BLOB. Se, ad esempio, è presente un BLOB /my-container/my-folder/subfolder/resume.pdf, il valore di questo campo è `resume.pdf`.
-  * **metadata\_storage\_path** (Edm.String): URI completo del BLOB, incluso l'account di archiviazione. Ad esempio, `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
-  * **metadata\_storage\_content\_type** (Edm.String): tipo di contenuto specificato dal codice usato per caricare il BLOB. Ad esempio: `application/octet-stream`.
-  * **metadata\_storage\_last\_modified** (Edm.DateTimeOffset): ultimo timestamp modificato per il BLOB. Ricerca di Azure usa questo timestamp per identificare i BLOB modificati, in modo da evitare di reindicizzare tutto dopo l'indicizzazione iniziale.
+  * **metadati\_archiviazione\_nome** (EDM) - nome del blob hello file hello. Ad esempio, se si dispone di un blob di /my-container/my-folder/subfolder/resume.pdf, hello valore di questo campo è `resume.pdf`.
+  * **metadati\_archiviazione\_percorso** (EDM) - hello completo URI del blob hello, tra cui account di archiviazione hello. Ad esempio, `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
+  * **metadati\_archiviazione\_contenuto\_tipo** (EDM) - tipo di contenuto, come specificato dal codice hello è utilizzato blob hello tooupload. ad esempio `application/octet-stream`.
+  * **metadati\_archiviazione\_ultimo\_modificato** (DateTimeOffset) - ultima modifica del timestamp per blob hello. Ricerca di Azure Usa questo BLOB tooidentify modificato timestamp, tooavoid la reindicizzazione di tutti gli elementi al termine dell'indicizzazione iniziale hello.
   * **metadata\_storage\_size** (Edm.Int64): dimensioni del BLOB in byte.
-  * **metadata\_storage\_content\_md5** (Edm.String): hash MD5 dei contenuti del BLOB, se disponibile.
-* Le proprietà dei metadati specifiche di ogni formato di documento vengono estratte nei campi elencati [qui](#ContentSpecificMetadata).
+  * **metadati\_archiviazione\_contenuto\_md5** (EDM) - hash MD5 del contenuto di blob hello, se disponibile.
+* Formato del documento metadati proprietà tooeach specifico vengono estratti in campi hello elencati [qui](#ContentSpecificMetadata).
 
-Non è necessario definire i campi per tutte le proprietà precedenti nell'indice di ricerca, ma solo acquisire le proprietà necessarie per l'applicazione.
+Non è necessario toodefine campi per tutti i hello sopra le proprietà nell'indice di ricerca: acquisire solo le proprietà di hello che è necessario per l'applicazione.
 
 > [!NOTE]
-> I nomi dei campi nell'indice esistente saranno spesso diversi da quelli generati durante l'estrazione della documentazione. È possibile usare i **mapping dei campi** per eseguire il mapping dei nomi di proprietà forniti da Ricerca di Azure ai nomi di campo nell'indice di ricerca. Di seguito verrà visualizzato un esempio di mapping dei campi.
+> Spesso, i nomi dei campi hello in un indice esistente è diverse da nomi di campo hello generati durante l'estrazione del documento. È possibile utilizzare **campo mapping** toomap i nomi di proprietà hello forniti da nomi di campo di ricerca di Azure toohello nell'indice di ricerca. Di seguito verrà visualizzato un esempio di mapping dei campi.
 >
 >
 
 <a name="DocumentKeys"></a>
 ### <a name="defining-document-keys-and-field-mappings"></a>Definizione di chiavi di documento e dei mapping dei campi
-In Ricerca di Azure la chiave del documento identifica un documento in modo univoco. Ogni indice di ricerca deve avere esclusivamente un campo chiave di tipo Edm.String. Il campo chiave è necessario per ogni documento da aggiungere all'indice (è di fatto l'unico campo obbligatorio).  
+In ricerca di Azure, hello documento chiave identifica in modo univoco un documento. Ogni indice di ricerca deve avere esclusivamente un campo chiave di tipo Edm.String. campo chiave Hello è obbligatorio per ogni documento che viene aggiunto indice toohello (è effettivamente hello unico campo obbligatorio).  
 
-È necessario valutare attentamente di quale campo estratto eseguire il mapping al campo chiave per l'indice. I candidati sono:
+È necessario valutare attentamente il campo estratto deve eseguire il mapping toohello campo chiave per l'indice. candidati Hello sono:
 
-* **metadata\_storage\_name**: può essere un candidato valido, tuttavia è bene notare che 1) è possibile che i nomi non siano univoci, perché potrebbero esserci BLOB con lo stesso nome in cartelle diverse e 2) è possibile che il nome contenga caratteri non validi nelle chiavi dei documenti, ad esempio trattini. È possibile gestire i caratteri non validi usando la [funzione di mapping dei campi](search-indexer-field-mappings.md#base64EncodeFunction) `base64Encode`. In questo caso, è necessario ricordarsi di codificare le chiavi dei documenti quando si passano nelle chiamate API, ad esempio in una ricerca. In .NET, ad esempio, è possibile usare il metodo [UrlTokenEncode method](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx) a tale scopo.
-* **metadata\_storage\_path**: l'uso del percorso completo garantisce l'univocità, ma il percorso contiene sicuramente caratteri `/` che [non sono validi nella chiave di un documento](https://docs.microsoft.com/rest/api/searchservice/naming-rules).  Come prima, è possibile codificare le chiavi usando la [funzione](search-indexer-field-mappings.md#base64EncodeFunction) `base64Encode`.
-* Se nessuna delle opzioni elencate è appropriata, è possibile aggiungere una proprietà di metadati personalizzati ai BLOB. Questa opzione, tuttavia, richiede che il processo di caricamento del BLOB aggiunga la proprietà dei metadati a tutti i BLOB. Poiché la chiave è una proprietà obbligatoria, tutti i BLOB privi di tale proprietà non potranno essere indicizzati.
+* **metadati\_archiviazione\_nome** : ciò potrebbe essere un candidato ideale, ma si noti che i nomi di hello 1) potrebbero non essere univoci, come è possibile BLOB con stesso nome in cartelle diverse hello e 2) hello nome può contenere caratteri che non sono validi nelle chiavi di documento, ad esempio trattini. È possibile gestire con caratteri non validi usando hello `base64Encode` [funzione di mapping di campo](search-indexer-field-mappings.md#base64EncodeFunction) : in tal caso, considerare le chiavi dei documenti tooencode passarli nell'API chiama ad esempio di ricerca. (Ad esempio, in .NET è possibile utilizzare hello [UrlTokenEncode metodo](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx) a tale scopo).
+* **metadati\_archiviazione\_percorso** : con percorso completo di hello garantisce l'univocità, ma contiene sicuramente percorso hello `/` caratteri [non valido in una chiave di documento](https://docs.microsoft.com/rest/api/searchservice/naming-rules).  Come illustrato in precedenza, è possibile hello codifica chiavi hello utilizzando hello `base64Encode` [funzione](search-indexer-field-mappings.md#base64EncodeFunction).
+* Se nessuna delle opzioni di hello precedente risolvere il problema, è possibile aggiungere un BLOB toohello proprietà di metadati personalizzati. Questa opzione, tuttavia, richiedono il tooadd processo di caricamento blob tale BLOB tooall di proprietà dei metadati. Poiché la chiave hello è una proprietà obbligatoria, tutti i blob che non dispongono di tale proprietà non riuscirà toobe indicizzato.
 
 > [!IMPORTANT]
-> Se non esiste alcun mapping esplicito per il campo chiave nell'indice, Ricerca di Azure usa automaticamente `metadata_storage_path` come chiave e codifica i valori delle chiavi in base 64 (la seconda opzione illustrata sopra).
+> Se è presente alcun mapping esplicito per campo chiave hello indice hello, ricerca di Azure usa automaticamente `metadata_storage_path` come valori di chiave (hello seconda opzione precedente) di codifica hello chiave e base 64.
 >
 >
 
-Per questo esempio, si seleziona il campo `metadata_storage_name` come chiave del documento. Si supponga anche che l'indice includa un campo chiave denominato `key` e un campo `fileSize` in cui archiviare le dimensioni del documento. Per collegare gli elementi come si vuole, specificare i mapping di campo seguenti quando si crea o si aggiorna l'indicizzatore:
+Per questo esempio, si seleziona hello `metadata_storage_name` campo come chiave di documento hello. Si supponga inoltre l'indice è un campo chiave denominato `key` e un campo `fileSize` per l'archiviazione di dimensioni del documento hello. le operazioni toowire nel modo desiderato e specificare hello dopo il mapping dei campi durante la creazione o l'aggiornamento dell'indicizzatore:
 
     "fieldMappings" : [
       { "sourceFieldName" : "metadata_storage_name", "targetFieldName" : "key", "mappingFunction" : { "name" : "base64Encode" } },
       { "sourceFieldName" : "metadata_storage_size", "targetFieldName" : "fileSize" }
     ]
 
-Per unire il tutto, ecco come è possibile aggiungere i mapping di campo e abilitare la codifica in base 64 delle chiavi per un indicizzatore esistente:
+toobring questo tutti insieme, ecco come è possibile aggiungere i mapping dei campi e Abilita codifica base 64 di chiavi per un indicizzatore esistente:
 
     PUT https://[service name].search.windows.net/indexers/blob-indexer?api-version=2016-09-01
     Content-Type: application/json
@@ -205,7 +205,7 @@ Per unire il tutto, ecco come è possibile aggiungere i mapping di campo e abili
     }
 
 > [!NOTE]
-> Per altre informazioni sui mapping dei campi, leggere [questo articolo](search-indexer-field-mappings.md).
+> toolearn ulteriori informazioni sui mapping dei campi, vedere [questo articolo](search-indexer-field-mappings.md).
 >
 >
 
@@ -213,8 +213,8 @@ Per unire il tutto, ecco come è possibile aggiungere i mapping di campo e abili
 ## <a name="controlling-which-blobs-are-indexed"></a>Controllo dei BLOB da indicizzare
 È possibile controllare quali BLOB vengono indicizzati e quali vengono ignorati.
 
-### <a name="index-only-the-blobs-with-specific-file-extensions"></a>Indicizzare solo i BLOB con estensioni di file specifiche
-È possibile indicizzare solo i BLOB con le estensioni di file specificate tramite il parametro di configurazione dell'indicizzatore `indexedFileNameExtensions`. Il valore è una stringa contenente un elenco delimitato da virgole di estensioni di file (precedute da un punto). Ad esempio, per indicizzare solo i BLOB .PDF e .DOCX eseguire questa operazione:
+### <a name="index-only-hello-blobs-with-specific-file-extensions"></a>Solo i BLOB hello con determinate estensioni di file di indice
+È possibile indicizzare solo BLOB hello con hello estensioni specificate utilizzando hello `indexedFileNameExtensions` parametro di configurazione dell'indicizzatore. il valore di Hello è una stringa contenente un elenco delimitato da virgole delle estensioni di file (con un punto iniziale). Ad esempio, tooindex solo hello. PDF e. BLOB DOCX, eseguire questa operazione:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -226,7 +226,7 @@ Per unire il tutto, ecco come è possibile aggiungere i mapping di campo e abili
     }
 
 ### <a name="exclude-blobs-with-specific-file-extensions"></a>Escludere BLOB con estensioni di file specifiche
-È possibile escludere dall'indicizzazione i BLOB con estensioni di file specifiche usando il parametro di configurazione `excludedFileNameExtensions`. Il valore è una stringa contenente un elenco delimitato da virgole di estensioni di file (precedute da un punto). Ad esempio, per indicizzare tutti i BLOB ad eccezione di quelli con le estensioni .PNG e .JPEG eseguire questa operazione:
+È possibile escludere i BLOB con estensioni di file specifico dall'indicizzazione mediante hello `excludedFileNameExtensions` parametro di configurazione. il valore di Hello è una stringa contenente un elenco delimitato da virgole delle estensioni di file (con un punto iniziale). Ad esempio, tooindex tutti i BLOB ad eccezione di quelli con hello. PNG e. Estensioni JPEG, eseguire questa operazione:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -237,11 +237,11 @@ Per unire il tutto, ecco come è possibile aggiungere i mapping di campo e abili
       "parameters" : { "configuration" : { "excludedFileNameExtensions" : ".png,.jpeg" } }
     }
 
-Se sono presenti entrambi i parametri `indexedFileNameExtensions` e `excludedFileNameExtensions`, Ricerca di Azure esamina in primo luogo `indexedFileNameExtensions`, quindi `excludedFileNameExtensions`. Ciò significa che se la stessa estensione di file è presente in entrambi gli elenchi, verrà esclusa dall'indicizzazione.
+Se sono presenti entrambi i parametri `indexedFileNameExtensions` e `excludedFileNameExtensions`, Ricerca di Azure esamina in primo luogo `indexedFileNameExtensions`, quindi `excludedFileNameExtensions`. Ciò significa che se hello stessa estensione di file è presente in entrambi gli elenchi, esso verrà escluso dall'indicizzazione.
 
 ### <a name="dealing-with-unsupported-content-types"></a>Gestire tipi di contenuto non supportati
 
-Per impostazione predefinita, l'indicizzatore BLOB viene arrestato non appena viene rilevato un BLOB con un tipo di contenuto non supportato, ad esempio un'immagine. Naturalmente, è possibile usare il parametro `excludedFileNameExtensions` per ignorare determinati tipi di contenuto. Potrebbe tuttavia essere necessario indicizzare BLOB senza conoscere in anticipo tutti i tipi di contenuto possibili. Per continuare l'indicizzazione quando viene rilevato un tipo di contenuto non supportato, impostare il parametro di configurazione `failOnUnsupportedContentType` su `false`:
+Per impostazione predefinita, l'indicizzatore blob hello arresta non appena viene rilevato un blob con un tipo di contenuto non supportato (ad esempio, un'immagine). Naturalmente è possibile utilizzare hello `excludedFileNameExtensions` tooskip parametro determinati tipi di contenuto. Tuttavia, potrebbe essere necessario tooindex BLOB senza conoscere in anticipo tutti hello possibili tipi di contenuto. toocontinue indicizzazione quando viene rilevato un tipo di contenuto non supportato, impostare hello `failOnUnsupportedContentType` parametro di configurazione troppo`false`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -254,7 +254,7 @@ Per impostazione predefinita, l'indicizzatore BLOB viene arrestato non appena vi
 
 ### <a name="ignoring-parsing-errors"></a>Ignorare gli errori di analisi
 
-La logica di estrazione documenti di Ricerca di Azure non è perfetta e talvolta può non riuscire ad analizzare i documenti con un tipo di contenuto supportato, ad esempio DOCX o PDF. Per evitare che l'indicizzazione venga interrotta in tali casi, impostare i parametri di configurazione `maxFailedItems` e `maxFailedItemsPerBatch` su valori accettabili. Ad esempio:
+Logica di estrazione documento ricerca Azure non è perfetta e talvolta avrà esito negativo, ad esempio documenti tooparse di un tipo di contenuto supportato. DOCX o. PDF. Se si desidera hello toointerrupt l'indicizzazione in tali casi, impostare hello `maxFailedItems` e `maxFailedItemsPerBatch` valori ragionevole toosome parametri di configurazione. ad esempio:
 
     {
       ... other parts of indexer definition
@@ -262,15 +262,15 @@ La logica di estrazione documenti di Ricerca di Azure non è perfetta e talvolta
     }
 
 <a name="PartsOfBlobToIndex"></a>
-## <a name="controlling-which-parts-of-the-blob-are-indexed"></a>Controllo delle parti di BLOB da indicizzare
+## <a name="controlling-which-parts-of-hello-blob-are-indexed"></a>Controllare le parti del blob hello vengono indicizzate
 
-Il parametro di configurazione `dataToExtract` permette di controllare quali parti dei BLOB vengono indicizzate. I valori possibili sono i seguenti:
+È possibile controllare quali parti del BLOB hello vengono indicizzate utilizzando hello `dataToExtract` parametro di configurazione. Può accettare hello seguenti valori:
 
-* `storageMetadata`: specifica che vengono indicizzati solo [i metadati specificati dall'utente e le proprietà BLOB standard](../storage/blobs/storage-properties-metadata.md).
-* `allMetadata`: specifica che vengono indicizzati i metadati di archiviazione e i [metadati specifici del tipo di contenuto](#ContentSpecificMetadata) estratti dal contenuto BLOB.
-* `contentAndMetadata`: specifica che vengono indicizzati tutti i metadati e il contenuto di testo estratti dal BLOB. Si tratta del valore predefinito.
+* `storageMetadata`-Specifica che solo hello [specificato dall'utente metadati e proprietà blob standard](../storage/blobs/storage-properties-metadata.md) vengono indicizzati.
+* `allMetadata`-Specifica che i metadati di archiviazione e hello [metadati specifici del tipo di contenuto](#ContentSpecificMetadata) estratti dal blob hello contenuto vengono indicizzati.
+* `contentAndMetadata`-Specifica che tutti i metadati e contenuto testuale estratto dal blob hello siano indicizzate. Questo è il valore di predefinito hello.
 
-Ad esempio, per indicizzare solo i metadati di archiviazione, usare:
+Ad esempio, tooindex solo hello archiviazione i metadati, usare:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -281,28 +281,28 @@ Ad esempio, per indicizzare solo i metadati di archiviazione, usare:
       "parameters" : { "configuration" : { "dataToExtract" : "storageMetadata" } }
     }
 
-### <a name="using-blob-metadata-to-control-how-blobs-are-indexed"></a>Usare i metadati dei BLOB per controllare il modo in cui vengono indicizzati i BLOB
+### <a name="using-blob-metadata-toocontrol-how-blobs-are-indexed"></a>Utilizzando toocontrol metadati blob come vengono indicizzati i BLOB
 
-I parametri di configurazione descritti in precedenza si applicano a tutti i BLOB. In alcuni casi è consigliabile controllare il modo in cui vengono indicizzati i *singoli BLOB*. A tale scopo è possibile aggiungere i valori e le proprietà seguenti dei metadati del BLOB:
+BLOB tooall si applicano i parametri di configurazione di Hello descritti in precedenza. In alcuni casi, è opportuno toocontrol come *singoli BLOB* vengono indicizzati. È possibile farlo aggiungendo hello segue blob proprietà dei metadati e i valori:
 
 | Nome proprietà | Valore proprietà | Spiegazione |
 | --- | --- | --- |
-| AzureSearch_Skip |"true" |Indica all'indicizzatore BLOB di ignorare completamente il BLOB. Non verrà tentata l'estrazione dei metadati né del contenuto. È utile quando un determinato BLOB ha ripetutamente esito negativo e interrompe il processo di indicizzazione. |
-| AzureSearch_SkipContent |"true" |Equivale all'impostazione `"dataToExtract" : "allMetadata"` descritta [in precedenza](#PartsOfBlobToIndex) nell'ambito di un BLOB specifico. |
+| AzureSearch_Skip |"true" |Indica il blob hello skip toocompletely di hello blob dell'indicizzatore. Non verrà tentata l'estrazione dei metadati né del contenuto. Ciò è utile quando un blob ha ripetutamente esito negativo e interrompe processo di indicizzazione hello. |
+| AzureSearch_SkipContent |"true" |Questo è equivalente a `"dataToExtract" : "allMetadata"` descritta [sopra](#PartsOfBlobToIndex) tooa con ambito specifico blob. |
 
 ## <a name="incremental-indexing-and-deletion-detection"></a>Indicizzazione incrementale e rilevamento delle eliminazioni
-Quando si configura un indicizzatore BLOB per l'esecuzione in base a una pianificazione, vengono reindicizzati solo i BLOB modificati, come determinato dal timestamp `LastModified` del BLOB.
+Quando si configura un toorun indicizzatore blob in una pianificazione, viene nuovamente eseguita l'indicizzazione solo hello modificato BLOB, come determinato da blob di hello `LastModified` timestamp.
 
 > [!NOTE]
-> Non è necessario specificare un criterio di rilevamento delle modifiche perché l'indicizzazione incrementale viene abilitata automaticamente.
+> Non si dispone di un criterio di rilevamento modifiche toospecify: indicizzazione incrementale è abilitata automaticamente per l'utente.
 
-Per supportare l'eliminazione di documenti, usare un approccio di "eliminazione temporanea". Se si eliminano completamente i BLOB, i documenti corrispondenti non verranno rimossi dall'indice della ricerca. Seguire invece questa procedura:  
+toosupport l'eliminazione di documenti, usare un approccio di "eliminazione temporanea". Se si elimina il BLOB di hello definitiva, i documenti corrispondenti non verranno rimossa dall'indice di ricerca hello. Usare invece hello alla procedura seguente:  
 
-1. Aggiungere al BLOB una proprietà di metadati personalizzata per indicare a Ricerca di Azure che viene eliminato in modo logico
-2. Configurare un criterio di rilevamento eliminazione temporanea nell'origine dati
-3. Dopo che l'indicizzatore ha elaborato il BLOB (come indicato dall'API di stato dell'indicizzatore), è possibile eliminare fisicamente il BLOB
+1. Aggiungere un tooAzure tooindicate metadati personalizzati proprietà toohello blob ricerca che viene eliminato in modo logico
+2. Configurare un criterio di rilevamento di eliminazione temporanea nell'origine dati hello
+3. Una volta indicizzatore hello è elaborato blob hello (come illustrato dall'API di stato dell'indicizzatore hello), è possibile eliminare fisicamente blob hello
 
-Il criterio illustrato sotto, ad esempio, considera l'eliminazione di un BLOB se ha una proprietà di metadati `IsDeleted` con il valore `true`:
+Ad esempio, hello seguenti criteri considera un toobe blob eliminato se dispone di una proprietà di metadati `IsDeleted` con valore hello `true`:
 
     PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2016-09-01
     Content-Type: application/json
@@ -322,10 +322,10 @@ Il criterio illustrato sotto, ad esempio, considera l'eliminazione di un BLOB se
 
 ## <a name="indexing-large-datasets"></a>Indicizzazione di set di dati di grandi dimensioni
 
-L'indicizzazione di BLOB può richiedere molto tempo. Quando si hanno milioni di BLOB da indicizzare, è possibile velocizzare l'operazione partizionando i dati e usando più indicizzatori per elaborare i dati in parallelo. A tale scopo, è possibile procedere come segue:
+L'indicizzazione di BLOB può richiedere molto tempo. Nei casi in cui si dispongono di milioni di tooindex BLOB, è possibile velocizzare l'indicizzazione per il partizionamento dei dati e l'utilizzo di più indicizzatori tooprocess hello dati in parallelo. A tale scopo, è possibile procedere come segue:
 
 - Partizionare i dati in più contenitori BLOB o cartelle virtuali.
-- Impostare diverse origini dati di Ricerca di Azure, una per ogni contenitore o cartella. Per puntare a una cartella BLOB, usare il parametro `query`:
+- Impostare diverse origini dati di Ricerca di Azure, una per ogni contenitore o cartella. cartella di toopoint tooa blob, utilizzare hello `query` parametro:
 
     ```
     {
@@ -336,20 +336,20 @@ L'indicizzazione di BLOB può richiedere molto tempo. Quando si hanno milioni di
     }
     ```
 
-- Creare un indicizzatore corrispondente per ogni origine dati. Tutti gli indicizzatori possono puntare allo stesso indice di ricerca di destinazione.  
+- Creare un indicizzatore corrispondente per ogni origine dati. Tutti gli indicizzatori possono punto toohello di hello stesso indice di ricerca di destinazione.  
 
-- Un'unità di ricerca del servizio permette di eseguire un indicizzatore in qualsiasi momento. La creazione di più indicizzatori come descritto in precedenza è utile solo se effettivamente eseguiti in parallelo. Per eseguire più indicizzatori in parallelo, scalare orizzontalmente il servizio di ricerca mediante la creazione di un numero appropriato di partizioni e repliche. Ad esempio, se il servizio di ricerca dispone di 6 unità di ricerca (ad esempio 2 partizioni x 3 repliche), con 6 indicizzatori che possono quindi essere eseguiti contemporaneamente, viene determinato un aumento della velocità effettiva di indicizzazione pari a sei volte. Per ulteriori informazioni sulla scalabilità e la pianificazione della capacità, vedere [Ridimensionare i livelli di risorse per i carichi di lavoro di indicizzazione e query in Ricerca di Azure](search-capacity-planning.md).
+- Un'unità di ricerca del servizio permette di eseguire un indicizzatore in qualsiasi momento. La creazione di più indicizzatori come descritto in precedenza è utile solo se effettivamente eseguiti in parallelo. toorun più indicizzatori in parallelo, la scalabilità del servizio di ricerca mediante la creazione di un numero appropriato di partizioni e repliche. Ad esempio, se il servizio di ricerca dispone di 6 unità di ricerca (ad esempio, le repliche di 2 partizioni x 3), quindi 6 indicizzatori possono eseguire contemporaneamente, determinando un aumento della velocità effettiva di indicizzazione hello six-fold. toolearn più sulla scalabilità e la pianificazione della capacità, vedere [livelli di risorsa per query e indicizzazione carichi di lavoro in ricerca di Azure di scala](search-capacity-planning.md).
 
 ## <a name="indexing-documents-along-with-related-data"></a>Indicizzazione di documenti con dati correlati
 
-Si consiglia di "comporre" i documenti da più origini nell'indice. Ad esempio, è possibile unire testo dagli oggetti binari di grandi dimensioni con altri metadati archiviati in Cosmos DB. È anche possibile utilizzare l'API di indicizzazione push insieme a diversi indicizzatori per compilare i documenti di ricerca da più parti. 
+Potrebbe essere troppo "comporre" documenti da più origini nell'indice. Ad esempio, è consigliabile testo toomerge dai BLOB con altri metadati archiviati nel database Cosmos. È anche possibile usare hello API indicizzazione push insieme a diversi indicizzatori troppo compilare i documenti di ricerca da più parti. 
 
-Per funzionare, tutti gli indicizzatori e altri componenti devono concordare sulla chiave del documento. Per una descrizione dettagliata, vedere l'articolo esterno: [Combinare documenti con altri dati in Ricerca di Azure ](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html).
+Per questo toowork, tutti gli indicizzatori e altri componenti necessario tooagree nella chiave del documento hello. Per una descrizione dettagliata, vedere l'articolo esterno: [Combinare documenti con altri dati in Ricerca di Azure ](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html).
 
 <a name="IndexingPlainText"></a>
 ## <a name="indexing-plain-text"></a>Indicizzazione di testo normale 
 
-Se tutti gli oggetti binari di grandi dimensioni contengono testo normale nella stessa codifica, è possibile migliorare in modo significativo le prestazioni di indicizzazione utilizzando la **modalità di analisi del testo**. Per utilizzare la modalità di analisi del testo, impostare la `parsingMode` proprietà di configurazione su `text`:
+Se tutti i BLOB contengono testo normale nel hello stessa codifica, è possibile migliorare notevolmente le prestazioni di indicizzazione utilizzando **modalità di analisi del testo**. hello set, la modalità di analisi del testo toouse `parsingMode` proprietà di configurazione troppo`text`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -360,7 +360,7 @@ Se tutti gli oggetti binari di grandi dimensioni contengono testo normale nella 
       "parameters" : { "configuration" : { "parsingMode" : "text" } }
     }
 
-Per impostazione predefinita, verrà utilizzata la codifica `UTF-8`. Per specificare una codifica diversa, utilizzare la proprietà di configurazione `encoding`: 
+Per impostazione predefinita, hello `UTF-8` verrà utilizzata la codifica. toospecify una codifica diversa, utilizzare hello `encoding` proprietà di configurazione: 
 
     {
       ... other parts of indexer definition
@@ -370,7 +370,7 @@ Per impostazione predefinita, verrà utilizzata la codifica `UTF-8`. Per specifi
 
 <a name="ContentSpecificMetadata"></a>
 ## <a name="content-type-specific-metadata-properties"></a>Proprietà di metadati specifiche del tipo di contenuto
-La tabella seguente riepiloga l'elaborazione eseguita per ogni formato di documento e descrive le proprietà dei metadati estratte da Ricerca di Azure.
+Hello nella tabella seguente riepiloga l'elaborazione eseguita per ogni formato di documento e vengono descritte le proprietà dei metadati hello estratte da ricerca di Azure.
 
 | Formato documento/tipo di contenuto | Proprietà di metadati specifiche del tipo di contenuto | Dettagli elaborazione |
 | --- | --- | --- |
@@ -383,9 +383,9 @@ La tabella seguente riepiloga l'elaborazione eseguita per ogni formato di docume
 | PPTX (application/vnd.openxmlformats-officedocument.presentationml.presentation) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |Estrazione del testo, inclusi i documenti incorporati |
 | PPT (application/vnd.ms-powerpoint) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |Estrazione del testo, inclusi i documenti incorporati |
 | MSG (application/vnd.ms-outlook) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` |Estrazione del testo, inclusi gli allegati |
-| ZIP (application/zip) |`metadata_content_type` |Estrazione del testo da tutti i documenti nell'archivio |
+| ZIP (application/zip) |`metadata_content_type` |Estrarre il testo da tutti i documenti nell'archivio di hello |
 | XML (application/xml) |`metadata_content_type`</br>`metadata_content_encoding`</br> |Rimozione del markup XML ed estrazione del testo |
-| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |Estrazione del testo<br/>NOTA: per conoscere i dettagli su come estrarre più campi documento da un BLOB JSON, vedere [Indicizzazione di BLOB JSON](search-howto-index-json-blobs.md) |
+| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |Estrazione del testo<br/>Nota: Se è necessario tooextract documento più campi da un blob JSON, vedere [JSON l'indicizzazione BLOB](search-howto-index-json-blobs.md) per informazioni dettagliate |
 | EML (message/rfc822) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` |Estrazione del testo, inclusi gli allegati |
 | RTF (application/rtf) |`metadata_content_type`</br>`metadata_author`</br>`metadata_character_count`</br>`metadata_creation_date`</br>`metadata_page_count`</br>`metadata_word_count`</br> | Estrazione del testo|
 | Testo normale (text/plain) |`metadata_content_type`</br>`metadata_content_encoding`</br> | Estrazione del testo|

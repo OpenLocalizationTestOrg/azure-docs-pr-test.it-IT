@@ -1,6 +1,6 @@
 ---
-title: Esercitazione sull'invio di ultime notizie mediante Hub di notifica - iOS
-description: Informazioni su come usare Hub di notifica del bus di servizio di Azure per inviare notifiche relative alle ultime notizie a dispositivi iOS.
+title: aaaNotification hub ultime notizie esercitazione - iOS
+description: Informazioni su come toouse hub di notifica di Azure Service Bus toosend dispositivi tooiOS le notifiche di notizie di rilievo.
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,38 +14,38 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: dc47250db6fb3a2853dae24e02bda236154d93fb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 763b80b5ffed238b351d95bd3d6a96cb914f53cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-notification-hubs-to-send-breaking-news"></a>Uso di Hub di notifica per inviare le ultime notizie
+# <a name="use-notification-hubs-toosend-breaking-news"></a>Utilizzare gli hub di notifica toosend le ultime notizie
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
-## <a name="overview"></a>Overview
-In questo argomento viene illustrato come utilizzare Hub di notifica di Azure per trasmettere le notifiche relative alle ultime notizie a un'app per iOS. Al termine dell'esercitazione, si sarà appreso a effettuare la registrazione alle categorie di ultime notizie desiderate e ricevere le notifiche push solo da tali categorie. Questo scenario è un modello comune per molte app nelle quali le notifiche devono essere inviate a gruppi di utenti che hanno dichiarato un interesse, ad esempio lettori di feed RSS, app per fan di musica e così via.
+## <a name="overview"></a>Panoramica
+In questo argomento illustra come toouse gli hub di notifica di Azure toobroadcast ultime notizie notifiche tooan app iOS. Al termine, verrà essere in grado di tooregister per l'interruzione delle categorie di notizie, che si è interessati e ricevere notifiche di push solo per quelle categorie. Questo scenario è un modello comune per molte applicazioni in cui le notifiche hanno inviato toobe toogroups di utenti che hanno dichiarato in precedenza interesse in essi, ad esempio lettore RSS, le App per ventole musica e così via.
 
-È possibile abilitare gli scenari di trasmissione includendo uno o più *tag* durante la creazione di una registrazione nell'hub di notifica. Quando le notifiche vengono inviate a un tag, tutti i dispositivi che hanno effettuato la registrazione al tag riceveranno la notifica. Poiché i tag sono costituiti da stringhe, non è necessario eseguire il provisioning anticipatamente. Per ulteriori informazioni sui tag, vedere [Espressioni di routing e tag  per hub di notifica](notification-hubs-tags-segment-push-message.md).
+Scenari di trasmissione sono abilitati per includere uno o più *tag* durante la creazione di una registrazione nell'hub di notifica hello. Quando le notifiche vengono inviate tooa tag, tutti i dispositivi che sono registrati per il tag di hello riceverà la notifica hello. Poiché i tag sono semplicemente stringhe, essi non è toobe in precedenza. Per ulteriori informazioni sui tag, vedere troppo[Routing hub di notifica ed espressioni Tag](notification-hubs-tags-segment-push-message.md).
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questo argomento si basa sull'app creata nell'esercitazione [Introduzione ad Hub di notifica][get-started]. Prima di iniziare questa esercitazione, è necessario completare le procedure illustrate in [Introduzione ad Hub di notifica][get-started].
+In questo argomento è basato sull'app hello è stato creato in [iniziare con gli hub di notifica][get-started]. Prima di iniziare questa esercitazione, è necessario completare le procedure illustrate in [Introduzione ad Hub di notifica][get-started].
 
-## <a name="add-category-selection-to-the-app"></a>Aggiungere la selezione delle categorie all'app
-Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente allo storyboard esistente per consentire all'utente di selezionare le categorie per le quali registrarsi. Le categorie selezionate da un utente sono archiviate nel dispositivo. All'avvio dell'app, viene creata una registrazione del dispositivo nell'hub di notifica con le categorie selezionate come tag.
+## <a name="add-category-selection-toohello-app"></a>Aggiungi categoria selezione toohello app
+primo passaggio Hello è tooadd hello UI elementi tooyour storyboard esistente che consentono di hello utente tooselect categorie tooregister. categorie di Hello selezionate da un utente vengono archiviate nel dispositivo hello. Quando viene avviata l'applicazione hello, viene creata una registrazione del dispositivo nell'hub di notifica con categorie hello selezionata sotto forma di tag.
 
-1. Nel file MainStoryboard_iPhone.storyboard aggiungere i componenti seguenti dalla libreria di oggetti:
+1. Nel MainStoryboard_iPhone.storyboard aggiungere hello seguendo i componenti dalla libreria di oggetti hello:
    
    * Un'etichetta con il testo "Breaking News".
    * Etichette con il testo relativo alle categorie "World", "Politics", "Business", "Technology", "Science", "Sports".
-   * Sei opzioni, una per ogni categoria, impostare lo **stato** di ogni opzione su **Off** per impostazione predefinita.
+   * Sei switch, uno per ogni categoria, impostare ogni switch **stato** toobe **Off** per impostazione predefinita.
    * Un pulsante con l'etichetta "Subscribe".
      
      L'aspetto dello storyboard dovrebbe essere simile al seguente:
      
      ![][3]
-2. Nell'assistente dell'editor creare outlet per tutte le opzioni e denominarli "WorldSwitch", "PoliticsSwitch", "BusinessSwitch", "TechnologySwitch", "ScienceSwitch", "SportsSwitch".
-3. Creare un'azione per il pulsante denominata "subscribe". BreakingNewsViewController.h deve contenere quanto segue:
+2. Nell'editor di Assistente hello, creare prese per tutte le opzioni di hello e chiamarli "WorldSwitch", "PoliticsSwitch", "BusinessSwitch", "TechnologySwitch", "ScienceSwitch", "SportsSwitch"
+3. Creare un'azione per il pulsante denominata "subscribe". Il ViewController.h deve contenere i seguenti hello:
    
         @property (weak, nonatomic) IBOutlet UISwitch *WorldSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *PoliticsSwitch;
@@ -55,7 +55,7 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
         @property (weak, nonatomic) IBOutlet UISwitch *SportsSwitch;
    
         - (IBAction)subscribe:(id)sender;
-4. Creare una nuova **classe Cocoa Touch** chiamata `Notifications`. Copiare il seguente codice nella sezione dell'interfaccia del file Notifications.h:
+4. Creare una nuova **classe Cocoa Touch** chiamata `Notifications`. Copiare hello seguente codice nella sezione dell'interfaccia hello del file hello Notifications.h:
    
         @property NSData* deviceToken;
    
@@ -67,10 +67,10 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
         - (NSSet*)retrieveCategories;
    
         - (void)subscribeWithCategories:(NSSet*)categories completion:(void (^)(NSError *))completion;
-5. Aggiungere la seguente direttiva import a Notifications.m:
+5. Aggiungere hello tooNotifications.m direttiva import seguente:
    
         #import <WindowsAzureMessaging/WindowsAzureMessaging.h>
-6. Copiare il codice seguente nella sezione di implementazione del file Notifications.m:
+6. Copiare hello seguente codice nella sezione di implementazione hello del file hello Notifications.m.
    
         SBNotificationHub* hub;
    
@@ -111,34 +111,34 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
 
 
 
-    Questa classe usa l'archiviazione locale per archiviare le categorie di notizie che il dispositivo deve ricevere. Contiene inoltre un metodo per effettuare la registrazione per queste categorie tramite una registrazione [Modello](notification-hubs-templates-cross-platform-push-messages.md) .
+    Questa classe utilizza toostore di archiviazione locale e recuperare le categorie di hello delle news che riceverà questo dispositivo. Contiene inoltre un metodo tooregister per queste categorie utilizzando un [modello](notification-hubs-templates-cross-platform-push-messages.md) registrazione.
 
-1. Nel file Appdelegate.h, aggiungere un'istruzione import per Notifications.h e aggiungere una proprietà per un'istanza della classe delle notifiche:
+1. Nel file appdelegate. H hello, aggiungere un'istruzione di importazione per Notifications.h e aggiungere una proprietà di un'istanza della classe notifiche hello:
    
         #import "Notifications.h"
    
         @property (nonatomic) Notifications* notifications;
-2. Nel metodo **didFinishLaunchingWithOptions** in AppDelegate.m aggiungere il codice per inizializzare l'istanza di notifiche all'inizio del metodo.  
+2. In hello **didFinishLaunchingWithOptions** metodo appdelegate. M, aggiungere l'istanza di notifiche hello di tooinitialize di hello codice all'inizio di hello del metodo hello.  
    
-    `HUBNAME` e `HUBLISTENACCESS` (definiti in hubinfo.h) dovrebbero già avere i segnaposto `<hub name>` e `<connection string with listen access>` sostituiti con il nome dell'hub di notifica e la stringa di connessione per *DefaultListenSharedAccessSignature* ottenuta in precedenza.
+    `HUBNAME`e `HUBLISTENACCESS` (definito in hubinfo.h) dovrebbe già disporre hello `<hub name>` e `<connection string with listen access>` segnaposto sostituiti con la notifica hub hello nome e la stringa di connessione per *DefaultListenSharedAccessSignature*ottenuti in precedenza
    
         self.notifications = [[Notifications alloc] initWithConnectionString:HUBLISTENACCESS HubName:HUBNAME];
    
    > [!NOTE]
-   > Poiché le credenziali che sono distribuite con un'app client in genere non sono sicure, distribuire solo la chiave per l'accesso Listen con l'app client. L'accesso Listen consente all'app di registrarsi per le notifiche ma le registrazioni esistenti non possono essere modificate e le notifiche non possono essere inviate. La chiave di accesso completa viene usata in un servizio back-end sicuro per l'invio delle notifiche e la modifica delle registrazioni esistenti.
+   > Poiché le credenziali che vengono distribuite con un'applicazione client non sono in genere sicure, deve essere distribuito solo chiave hello per l'accesso in ascolto con l'applicazione client. Abilita accesso che tooregister l'app per le notifiche, ma le registrazioni esistenti non può essere modificato in attesa e non possono essere inviate le notifiche. chiave di accesso completo Hello viene utilizzata in un servizio back-end protetto per l'invio di notifiche e la modifica delle registrazioni esistenti.
    > 
    > 
-3. Nel metodo **didRegisterForRemoteNotificationsWithDeviceToken** in AppDelegate.m sostituire il codice nel metodo con il codice seguente per passare il token del dispositivo alla classe delle notifiche. La classe delle notifiche eseguirà la registrazione per le notifiche con le categorie. Se l'utente modifica le selezioni delle categorie, chiamare il metodo `subscribeWithCategories` in risposta al pulsante **sottoscrizione** per aggiornarle.
+3. In hello **didRegisterForRemoteNotificationsWithDeviceToken** metodo appdelegate. M, sostituire il codice di hello nel metodo hello con hello seguenti classi di codice toopass hello dispositivo toohello token notifiche. classe notifiche Hello eseguirà hello registrazione per le notifiche con categorie hello. Se l'utente di hello cambia le selezioni delle categorie, definiamo hello `subscribeWithCategories` metodo nella risposta toohello **sottoscrizione** tooupdate pulsante li.
    
    > [!NOTE]
-   > Poiché il token di dispositivo assegnato dal servizio di notifica Push di Apple può cambiare in qualsiasi momento, è necessario ripetere la registrazione per le notifiche di frequente per evitare errori di notifica. In questo esempio viene effettuata la registrazione per le notifiche a ogni avvio dell'app. Per le app che vengono eseguite con una frequenza maggiore di una volta al giorno, è possibile ignorare la registrazione per conservare la larghezza di banda qualora sia trascorso meno di un giorno dalla registrazione precedente.
+   > Perché il token di dispositivo hello assegnato da hello Apple Push Notification Service (APNS) è possibile modificare in qualsiasi momento, è consigliabile registrare per le notifiche di frequente errori di notifica tooavoid. Questo esempio viene registrato per notifica ogni volta che viene avviata l'applicazione hello. Per le app che vengono eseguite frequentemente, più di una volta al giorno, è possibile probabilmente ignorare la larghezza di banda di registrazione toopreserve se meno di un giorno è trascorso registrazione precedente hello.
    > 
    > 
    
         self.notifications.deviceToken = deviceToken;
    
-        // Retrieves the categories from local storage and requests a registration for these categories
-        // each time the app starts and performs a registration.
+        // Retrieves hello categories from local storage and requests a registration for these categories
+        // each time hello app starts and performs a registration.
    
         NSSet* categories = [self.notifications retrieveCategories];
         [self.notifications subscribeWithCategories:categories completion:^(NSError* error) {
@@ -147,9 +147,9 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
             }
         }];
 
-    Si noti che a questo punto nel metodo **didRegisterForRemoteNotificationsWithDeviceToken** non dovrebbe essere presente altro codice.
+    Si noti che a questo punto non dovrebbe esistere alcun altro codice in hello **didRegisterForRemoteNotificationsWithDeviceToken** metodo.
 
-1. I metodi seguenti devono essere già presenti in appdelegate. M dal completamento di [iniziare con gli hub di notifica] [ get-started] esercitazione.  In caso contrario, aggiungerli.
+1. Hello metodi seguenti devono essere già presenti in appdelegate. M completamento hello [iniziare con gli hub di notifica] [ get-started] esercitazione.  In caso contrario, aggiungerli.
    
     -(void) MessageBox:(NSString *) titolo messaggio:(NSString *) messageText {
    
@@ -160,8 +160,8 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
    
    * applicazione (void):(UIApplication *) applicazione didReceiveRemoteNotification: (NSDictionary *) userInfo {NSLog (@"% @", userInfo);   [self MessageBox:@"Notification" messaggio: [valueForKey:@"alert [userInfo objectForKey:@"aps"]"]]; }
    
-   This method handles notifications received when the app is running by displaying a simple **UIAlert**.
-2. In ViewController.m, aggiungere un'istruzione import per AppDelegate.h e copiare il codice seguente nel metodo **subscribe** generato da XCode. Questo codice aggiornerà la registrazione della notifica per utilizzare i nuovi tag di categoria selezionati dall'utente nell'interfaccia utente.
+   Questo metodo gestisce le notifiche ricevute durante l'esecuzione mediante la visualizzazione di una semplice applicazione hello **UIAlert**.
+2. In ViewController.m, aggiungere un'istruzione di importazione per appdelegate. H e copia hello seguente di codice in hello generato XCode **sottoscrizione** metodo. Questo codice aggiornerà hello notifica registrazione toouse hello nuova categoria tag hello utente ha scelto nell'interfaccia utente di hello.
    
        ```
        #import "Notifications.h"
@@ -186,10 +186,10 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
            }
        }];
    
-   Questo metodo crea un elenco **NSMutableArray** di categorie e usa la classe **Notifications** per archiviare l'elenco nell'archiviazione locale e registrare i tag corrispondenti nell'hub di notifica. Se le categorie vengono modificate, la registrazione viene ricreata con le nuove categorie.
-3. In ViewController.m, aggiungere il codice seguente nel metodo **viewDidLoad** per impostare l'interfaccia utente in base alle categorie salvate in precedenza.
+   Questo metodo crea un **NSMutableArray** di categorie e utilizza hello **notifiche** toostore hello elenco classe hello locale archiviazione registri hello corrispondente tag e con l'hub di notifica. Quando vengono modificate le categorie, registrazione hello viene ricreata con le nuove categorie hello.
+3. In ViewController.m, aggiungere hello seguente di codice hello **viewDidLoad** interfaccia utente di metodo tooset hello in base alle categorie di hello salvato in precedenza.
 
-        // This updates the UI on startup based on the status of previously saved categories.
+        // This updates hello UI on startup based on hello status of previously saved categories.
 
         Notifications* notifications = [(AppDelegate*)[[UIApplication sharedApplication]delegate] notifications];
 
@@ -204,17 +204,17 @@ Il primo passaggio prevede l'aggiunta degli elementi dell'interfaccia utente all
 
 
 
-Ora l'app può archiviare un insieme di categorie nella risorsa di archiviazione locale del dispositivo utilizzata per la registrazione con l'hub di notifica ogni volta che l'app viene avviata.  L'utente può modificare la selezione di categorie al runtime e scegliere il metodo **subscribe** per aggiornare la registrazione per il dispositivo. Successivamente, si aggiornerà l'app per inviare le notifiche relative alle ultime notizie direttamente nell'applicazione stessa.
+app Hello ora possibile archiviare un set di categorie in hello dispositivo archiviazione locale utilizzato tooregister con hub di notifica hello ogni volta che viene avviata l'applicazione hello.  utente di Hello può modificare hello selezione di categorie in fase di esecuzione e fare clic su hello **sottoscrizione** metodo tooupdate hello registrazione dispositivo hello. Aggiornare quindi hello toosend di app hello rilievo notifiche notizie direttamente in hello app stessa.
 
 ## <a name="optional-sending-tagged-notifications"></a>(facoltativo) Invio di notifiche con tag
-Se non si ha accesso a Visual Studio, è possibile passare alla sezione successiva e inviare notifiche dall’app stessa. È anche possibile inviare la notifica modello appropriata dal [portale di Azure classico] usando la scheda debug per l'hub di notifica. 
+Se non si dispone di accesso tooVisual Studio, è possibile ignorare la sezione successiva toohello e inviare notifiche da hello app stessa. È anche possibile inviare notifica di hello modello corretto da hello [portale di Azure classico] utilizzo scheda debug hello per l'hub di notifica. 
 
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="optional-send-notifications-from-the-device"></a>(facoltativo) Inviare notifiche dal dispositivo
-In genere le notifiche vengono inviate da un servizio di back-end ma per questa esercitazione è possibile inviare notifiche relative alle ultime notizie direttamente dall'applicazione. A tale scopo si aggiornerà il `SendNotificationRESTAPI` metodo che è stato definito nel [iniziare con gli hub di notifica] [ get-started] esercitazione.
+## <a name="optional-send-notifications-from-hello-device"></a>(facoltativo) Inviare notifiche dal dispositivo hello
+In genere le notifiche potrebbero essere inviate da un servizio back-end, tuttavia, è possibile inviare notifiche sulle ultime notizie direttamente dall'applicazione hello. toodo questo verrà aggiornato hello `SendNotificationRESTAPI` metodo che è stato definito in hello [iniziare con gli hub di notifica] [ get-started] esercitazione.
 
-1. In ViewController.m aggiornare il metodo `SendNotificationRESTAPI` come segue in modo che accetti un parametro per il tag di categoria e invii la notifica [modello](notification-hubs-templates-cross-platform-push-messages.md) appropriata.
+1. In hello aggiornamento ViewController.m `SendNotificationRESTAPI` metodo come segue in modo che accetta un parametro per il tag di categoria hello e le invia hello corretto [modello](notification-hubs-templates-cross-platform-push-messages.md) notifica.
    
         - (void)SendNotificationRESTAPI:(NSString*)categoryTag
         {
@@ -223,18 +223,18 @@ In genere le notifiche vengono inviate da un servizio di back-end ma per questa 
    
             NSString *json;
    
-            // Construct the messages REST endpoint
+            // Construct hello messages REST endpoint
             NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
                                                HUBNAME, API_VERSION]];
    
-            // Generated the token to be used in the authorization header.
+            // Generated hello token toobe used in hello authorization header.
             NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
    
-            //Create the request to add the template notification message to the hub
+            //Create hello request tooadd hello template notification message toohello hub
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setHTTPMethod:@"POST"];
    
-            // Add the category as a tag
+            // Add hello category as a tag
             [request setValue:categoryTag forHTTPHeaderField:@"ServiceBusNotification-Tags"];
    
             // Template notification
@@ -247,13 +247,13 @@ In genere le notifiche vengono inviate da un servizio di back-end ma per questa 
             // JSON Content-Type
             [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
    
-            //Authenticate the notification message POST request with the SaS token
+            //Authenticate hello notification message POST request with hello SaS token
             [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
    
-            //Add the notification message body
+            //Add hello notification message body
             [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
    
-            // Send the REST request
+            // Send hello REST request
             NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                {
@@ -272,7 +272,7 @@ In genere le notifiche vengono inviate da un servizio di back-end ma per questa 
    
             [dataTask resume];
         }
-2. In ViewController.m aggiornare l’azione **Send Notification** nel modo illustrato nel codice seguente. In tal modo si inviano notifiche a più piattaforme utilizzando singolarmente ogni tag.
+2. In hello aggiornamento ViewController.m **invia una notifica** azione, come illustrato nel codice hello che segue. In modo che verranno inviate notifiche hello con ogni tag singolarmente e inviare toomultiple piattaforme.
 
         - (IBAction)SendNotificationMessage:(id)sender
         {
@@ -281,7 +281,7 @@ In genere le notifiche vengono inviate da un servizio di back-end ma per questa 
             NSArray* categories = [NSArray arrayWithObjects: @"World", @"Politics", @"Business",
                                     @"Technology", @"Science", @"Sports", nil];
 
-            // Lets send the message as breaking news for each category to WNS, GCM, and APNS
+            // Lets send hello message as breaking news for each category tooWNS, GCM, and APNS
             // using a template.
             for(NSString* category in categories)
             {
@@ -293,23 +293,23 @@ In genere le notifiche vengono inviate da un servizio di back-end ma per questa 
 
 1. Ricompilare il progetto e assicurarsi che non siano presenti errori di compilazione.
 
-## <a name="run-the-app-and-generate-notifications"></a>Esecuzione dell'app e generazione di notifiche
-1. Premere il pulsante Esegui per compilare il progetto e avviare l'app. Selezionare alcune opzioni di notizie per cui eseguire la sottoscrizione e premere il pulsante **Subscribe** . Verrà visualizzata una finestra di dialogo che indica che è staa effettuata la sottoscrizione alle notifiche.
+## <a name="run-hello-app-and-generate-notifications"></a>Eseguire app hello e generare le notifiche
+1. Hello premere eseguire pulsante toobuild hello progetto e avviare l'applicazione hello. Selezionare alcune toosubscribe tooand di rilievo notizie opzioni e quindi premere hello **Sottoscrivi** pulsante. Verrà visualizzata una finestra di dialogo che indica le notifiche sono stati sottoscritti hello.
    
     ![][1]
    
-    Quando si fa clic su **Subscribe**, l'app converte le categorie selezionate in tag e richiede una nuova registrazione del dispositivo per i tag selezionati dall'hub di notifica.
-2. Immettere un messaggio da inviare come ultime notizie, quindi premere il pulsante **Send Notification** (Invia notifica). In alternativa, eseguire l'app console .NET per generare le notifiche.
+    Quando si sceglie **Sottoscrivi**, hello app converte hello selezionata categorie nei tag e richiede una nuova registrazione di dispositivi per i tag hello selezionato da hub di notifica hello.
+2. Immettere un toobe messaggio inviato come notizie premere hello **invia una notifica** pulsante. In alternativa, eseguire le notifiche tramite toogenerate app hello .NET console.
    
     ![][2]
-3. Ogni dispositivo iscritto alle notizie riceverà le notifiche relative alle ultime notizie appena inviate.
+3. Ogni notizie toobreaking dispositivo sottoscritto riceverà notifiche sulle ultime hello notizie che appena stata inviata.
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione si è appreso a trasmettere le ultime novità per categoria. Per informazioni su altri scenari avanzati di Hub di notifica, provare a completare le seguenti esercitazioni:
+In questa esercitazione è stato appreso come toobroadcast le ultime notizie per categoria. Provare a eseguire una delle seguenti esercitazioni che evidenziano altri scenari avanzati di hub di notifica hello:
 
-* **[Usare Hub di notifica per la trasmissione di notizie localizzate]**
+* **[Utilizzare gli hub di notifica toobroadcast localizzata ultime notizie]**
   
-    Informazioni su come espandere l'app relativa alle ultime novità per abilitare l'invio di notifiche localizzate.
+    Informazioni su come hello tooexpand interrompere l'invio di notizie app tooenable localizzata notifiche.
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-ios-send-breaking-news/notification-hub-breakingnews-subscribed.png
@@ -325,10 +325,10 @@ In questa esercitazione si è appreso a trasmettere le ultime novità per catego
 
 <!-- URLs. -->
 [How To: Service Bus Notification Hubs (iOS Apps)]: http://msdn.microsoft.com/library/jj927168.aspx
-[Usare Hub di notifica per la trasmissione di notizie localizzate]: notification-hubs-ios-xplat-localized-apns-push-notification.md
+[Utilizzare gli hub di notifica toobroadcast localizzata ultime notizie]: notification-hubs-ios-xplat-localized-apns-push-notification.md
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-ios-notify-users.md
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/dn530749.aspx
-[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx
 [get-started]: /manage/services/notification-hubs/get-started-notification-hubs-ios/
 [portale di Azure classico]: https://manage.windowsazure.com

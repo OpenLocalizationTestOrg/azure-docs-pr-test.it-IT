@@ -1,6 +1,6 @@
 ---
-title: Pubblicare un'app in Azure RemoteApp | Microsoft Docs
-description: Informazioni su come pubblicare app e risorse in Azure RemoteApp.
+title: un'app in Azure RemoteApp aaaPublish | Documenti Microsoft
+description: Informazioni su come toopublish applicazioni e risorse in Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,33 +13,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4565fa498dbadd0601004c73bfee5171efe1fad1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7d92187e9ed999ac79554c9bb61f56a8eceeb31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-publish-an-app-in-remoteapp"></a>Come pubblicare un'app in RemoteApp
+# <a name="how-toopublish-an-app-in-remoteapp"></a>Come toopublish un'app in RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Dopo aver creato la raccolta RemoteApp, è necessario pubblicare le app o le risorse che si desidera rendere disponibili agli utenti. Nelle immagini modello fornite con la sottoscrizione sono pubblicate solo alcune app per impostazione predefinita. Per condividere le altre app, è necessario pubblicarle.
-
-> [!NOTE]
-> È necessario aggiornare un'app? È prima necessario [aggiornare l'immagine](remoteapp-update.md) .
-> 
-> 
-
-Nella scheda **Publishing** (Pubblicazione) del portale fare clic su **Publish** (Pubblica). È possibile aggiungere un'app dal menu **Start** dell'immagine modello oppure specificare il percorso in cui è installata l'app nell'immagine modello. Se si decide di aggiungere l'app dal menu **Start** , scegliere l'app da pubblicare dall'elenco. Se si decide di fornire il percorso dell'app, specificare il nome e il percorso dell'app. Usare le variabili nel percorso, ad esempio "%systemdrive%" anziché "c:\".
+Dopo aver creato la raccolta RemoteApp, è necessario toopublish hello applicazioni o risorse che si desidera toomake disponibili per gli utenti. Hello immagini modello fornite con la sottoscrizione solo con pochi App pubblicato per impostazione predefinita - tooshare hello altre App, è necessario toopublish li.
 
 > [!NOTE]
-> Per aggiungere l'app dal menu **Start**, è necessario aver *aggiunto l'app al menu **Start** nell'immagine modello*. In caso contrario, RemoteApp visualizzerà solo gli elementi *presenti* nel menu **Start**, creando confusione. 
+> È necessario tooupdate un'app? È necessario troppo[aggiornamento hello immagine](remoteapp-update.md) prima.
 > 
-> Per assicurarsi che l'applicazione venga visualizzata nel menu **Start**, inserire un file di collegamento **.Ink** nella cartella %systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programmi.
 > 
-> Se si dimentica di aggiungere l'app al menu **Start** al momento della creazione del modello, aggiungere il percorso all'app (in alternativa, ricreare l'immagine modello, tuttavia questa procedura è piuttosto complicata).
+
+In hello **pubblicazione** , fare clic nel portale di hello **pubblica**. È possibile aggiungere un'app dall'immagine modello **avviare** menu o fornire hello percorso toowhere hello app viene installata in immagine modello hello. Se si sceglie tooadd da hello **avviare** menu, scegliere hello app toopublish dall'elenco di hello. Se si sceglie tooprovide hello percorso toohello app, immettere un nome per l'applicazione hello e hello percorso toohello app. Utilizzare le variabili di percorso hello - ad esempio, "% systemdrive %" invece di "c:\".
+
+> [!NOTE]
+> Se si vuole che l'app da hello tooadd **avviare** menu, è necessario toohave *aggiunto tale toohello app **avviare** menu l'immagine modello.* In caso contrario, RemoteApp verranno visualizzati solo ciò che *è* su hello **avviare** menu e si verrà confondere. 
+> 
+> toomake che l'app è in hello **avviare** menu, inserire un file di collegamento - **lnk** : hello %systemdrive%\ProgramData\Microsoft\Windows\Start Avvio\Programmi cartella.
+> 
+> Se si è dimenticato tooadd hello app toohello **avviare** menu quando è stato creato il modello di hello, scegliere tooadd hello percorso toohello app. (in alternativa, ricreare l'immagine modello, tuttavia questa procedura è piuttosto complicata).
 > 
 > 
 

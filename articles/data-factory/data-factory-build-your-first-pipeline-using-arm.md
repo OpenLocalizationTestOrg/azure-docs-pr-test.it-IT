@@ -1,5 +1,5 @@
 ---
-title: Creare la prima data factory (modello di Resource Manager) | Documentazione Microsoft
+title: aaaBuild la prima data factory (modello di gestione delle risorse) | Documenti Microsoft
 description: In questa esercitazione si crea una pipeline di esempio di Azure Data Factory usando il modello di Azure Resource Manager.
 services: data-factory
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: c67169f296f2f13b9ee87180f126fb1dcf10fbea
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa08cd1ac3a0e5c5bf4bd4c6bd9dfa6dba9f4319
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-build-your-first-azure-data-factory-using-azure-resource-manager-template"></a>Esercitazione: Creare la prima data factory di Azure usando il modello di Azure Resource Manager
 > [!div class="op_single_selector"]
@@ -31,35 +31,35 @@ ms.lasthandoff: 08/03/2017
 > 
 > 
 
-In questo articolo viene usato un modello di Azure Resource Manager per creare la prima data factory di Azure. Per eseguire l'esercitazione usando altri strumenti/SDK, selezionare una delle opzioni dall'elenco a discesa.
+In questo articolo, si utilizza un toocreate modello di gestione risorse di Azure prima data factory di Azure. esercitazione di hello toodo tramite altri strumenti/SDK, selezionare una delle opzioni di hello dall'elenco a discesa hello.
 
-La pipeline in questa esercitazione include un'attività, l'**attività Hive di HDInsight**, che esegue uno script Hive in un cluster Azure HDInsight per trasformare i dati di input e generare i dati di output. L'esecuzione della pipeline è pianificata una volta al mese tra le ore di inizio e di fine specificate. 
+pipeline Hello in questa esercitazione è un'attività: **attività Hive di HDInsight**. Questa attività esegue uno script hive in un cluster HDInsight di Azure che trasformazioni i dati di output tooproduce di dati di input. pipeline di Hello è toorun pianificato dopo un mese tra hello specificato di ore di inizio e fine. 
 
 > [!NOTE]
-> La pipeline di dati in questa esercitazione trasforma i dati di input per produrre dati di output. Per un'esercitazione su come copiare dati usando Azure Data Factory, vedere [Copiare dati da un archivio BLOB al database SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+> pipeline di dati Hello in questa esercitazione Trasforma i dati di output tooproduce di dati di input. Per un'esercitazione su come dati di toocopy tramite Data Factory di Azure, vedere [esercitazione: copiare i dati da archiviazione Blob tooSQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 > 
-> La pipeline in questa esercitazione include solo un'attività di tipo HDInsightHive. Una pipeline può includere più attività ed è possibile concatenarne due, ovvero eseguire un'attività dopo l'altra, impostando il set di dati di output di un'attività come set di dati di input dell'altra. Per altre informazioni, vedere [Pianificazione ed esecuzione in Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
+> pipeline di Hello in questa esercitazione contiene una sola attività di tipo: HDInsightHive. Una pipeline può includere più attività Inoltre, è possibile concatenare le due attività (eseguire un'attività dopo l'altro) mediante l'impostazione di set di dati di hello output di un'attività come hello input set di dati di hello altre attività. Per altre informazioni, vedere [Pianificazione ed esecuzione in Data Factory](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline). 
 
 ## <a name="prerequisites"></a>Prerequisiti
-* Vedere la [panoramica dell'esercitazione](data-factory-build-your-first-pipeline.md) ed eseguire i passaggi relativi ai **prerequisiti** .
-* Seguire le istruzioni disponibili nell'articolo [Come installare e configurare Azure PowerShell](/powershell/azure/overview) per installare la versione più recente di Azure PowerShell nel computer.
-* Per informazioni sulla creazione di modelli di Azure Resource Manager, vedere [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) . 
+* Leggere [esercitazione Panoramica](data-factory-build-your-first-pipeline.md) articolo e hello completo **prerequisito** passaggi.
+* Seguire le istruzioni [come tooinstall e configurare Azure PowerShell](/powershell/azure/overview) articolo tooinstall versione più recente di Azure PowerShell nel computer in uso.
+* Vedere [la creazione di modelli di gestione risorse di Azure](../azure-resource-manager/resource-group-authoring-templates.md) toolearn sui modelli di gestione risorse di Azure. 
 
 ## <a name="in-this-tutorial"></a>Contenuto dell'esercitazione:
 | Entità | Descrizione |
 | --- | --- |
-| Servizio collegato Archiviazione di Azure |Collega l'account di archiviazione di Azure alla data factory. In questo esempio l'account di archiviazione di Azure contiene i dati di input e di output per la pipeline. |
-| Servizio collegato su richiesta HDInsight |Collega un cluster HDInsight su richiesta alla data factory. Il cluster viene creato automaticamente per elaborare i dati e viene eliminato al termine dell'elaborazione. |
-| Set di dati di input del BLOB di Azure |Fa riferimento al servizio collegato di archiviazione di Azure. Il servizio collegato fa riferimento a un account di archiviazione di Azure e il set di dati del BLOB di Azure specifica il contenitore, la cartella e il nome del file nella risorsa di archiviazione che contiene i dati di input. |
-| Set di dati di output del BLOB di Azure |Fa riferimento al servizio collegato di archiviazione di Azure. Il servizio collegato fa riferimento a un account di archiviazione di Azure e il set di dati del BLOB di Azure specifica il contenitore, la cartella e il nome del file nella risorsa di archiviazione che contiene i dati di output. |
-| Data Pipeline |La pipeline ha un'attività di tipo HDInsightHive che utilizza il set di dati di input e produce il set di dati di output. |
+| Servizio collegato Archiviazione di Azure |Collega la data factory toohello account di archiviazione di Azure. contiene account di archiviazione di Azure Hello hello dati di input e outpui per la pipeline di hello in questo esempio. |
+| Servizio collegato su richiesta HDInsight |Collega una factory del dati toohello cluster HDInsight su richiesta. cluster Hello viene creato automaticamente tooprocess dati e viene eliminato al termine dell'elaborazione hello. |
+| Set di dati di input del BLOB di Azure |Fa riferimento il servizio di archiviazione di Azure collegati toohello. Hello servizio collegato fa riferimento tooan account di archiviazione Azure e set di dati Blob di Azure hello specifica hello contenitore, cartella e nome file nel servizio di archiviazione che contiene i dati di input hello hello. |
+| Set di dati di output del BLOB di Azure |Fa riferimento il servizio di archiviazione di Azure collegati toohello. Hello servizio collegato fa riferimento tooan account di archiviazione Azure e set di dati Blob di Azure hello specifica hello contenitore, cartella e nome file nel servizio di archiviazione che contiene i dati di output di hello hello. |
+| Data Pipeline |Hello pipeline dispone di un'attività di tipo HDInsightHive, che elabora hello di un set di dati dell'input e restituisce il set di dati di hello output. |
 
 Una data factory può comprendere una o più pipeline. Una pipeline può comprendere una o più attività. Esistono due tipi di attività: [attività di spostamento dei dati](data-factory-data-movement-activities.md) e [attività di trasformazione dei dati](data-factory-data-transformation-activities.md). In questa esercitazione si crea una pipeline con un'attività (attività Hive).
 
-La sezione seguente contiene il modello di Resource Manager completo per la definizione di entità di Data Factory. In questo modo sarà possibile eseguire rapidamente l'esercitazione e testare il modello. Per conoscere come viene definita ogni entità di Data Factory, vedere la sezione [Entità di Data Factory nel modello](#data-factory-entities-in-the-template).
+Hello nella sezione seguente fornisce hello completo Gestione risorse modello per la definizione di entità Data Factory, che è possibile eseguire rapidamente tramite modelli di hello hello esercitazione e test. toounderstand della definizione di ogni entità Data Factory, vedere [entità Data Factory nel modello hello](#data-factory-entities-in-the-template) sezione.
 
 ## <a name="data-factory-json-template"></a>Modello JSON di Data Factory
-Il modello di Resource Manager principale per la definizione di una data factory è il seguente: 
+Hello modello Gestione risorse di livello superiore per la definizione di una data factory è: 
 
 ```json
 {
@@ -85,21 +85,21 @@ Il modello di Resource Manager principale per la definizione di una data factory
     ]
 }
 ```
-Creare un file JSON denominato **ADFTutorialARM.json** nella cartella **C:\ADFGetStarted** con il contenuto seguente:
+Creare un file JSON denominato **ADFTutorialARM.json** in **C:\ADFGetStarted** cartella con hello seguente contenuto:
 
 ```json
 {
     "contentVersion": "1.0.0.0",
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "parameters": {
-        "storageAccountName": { "type": "string", "metadata": { "description": "Name of the Azure storage account that contains the input/output data." } },
-          "storageAccountKey": { "type": "securestring", "metadata": { "description": "Key for the Azure storage account." } },
-          "blobContainer": { "type": "string", "metadata": { "description": "Name of the blob container in the Azure Storage account." } },
-          "inputBlobFolder": { "type": "string", "metadata": { "description": "The folder in the blob container that has the input file." } },
-          "inputBlobName": { "type": "string", "metadata": { "description": "Name of the input file/blob." } },
-          "outputBlobFolder": { "type": "string", "metadata": { "description": "The folder in the blob container that will hold the transformed data." } },
-          "hiveScriptFolder": { "type": "string", "metadata": { "description": "The folder in the blob container that contains the Hive query file." } },
-          "hiveScriptFile": { "type": "string", "metadata": { "description": "Name of the hive query (HQL) file." } }
+        "storageAccountName": { "type": "string", "metadata": { "description": "Name of hello Azure storage account that contains hello input/output data." } },
+          "storageAccountKey": { "type": "securestring", "metadata": { "description": "Key for hello Azure storage account." } },
+          "blobContainer": { "type": "string", "metadata": { "description": "Name of hello blob container in hello Azure Storage account." } },
+          "inputBlobFolder": { "type": "string", "metadata": { "description": "hello folder in hello blob container that has hello input file." } },
+          "inputBlobName": { "type": "string", "metadata": { "description": "Name of hello input file/blob." } },
+          "outputBlobFolder": { "type": "string", "metadata": { "description": "hello folder in hello blob container that will hold hello transformed data." } },
+          "hiveScriptFolder": { "type": "string", "metadata": { "description": "hello folder in hello blob container that contains hello Hive query file." } },
+          "hiveScriptFile": { "type": "string", "metadata": { "description": "Name of hello hive query (HQL) file." } }
     },
     "variables": {
           "dataFactoryName": "[concat('HiveTransformDF', uniqueString(resourceGroup().id))]",
@@ -263,10 +263,10 @@ Creare un file JSON denominato **ADFTutorialARM.json** nella cartella **C:\ADFGe
 > 
 
 ## <a name="parameters-json"></a>Parametri JSON
-Creare un file JSON denominato **ADFTutorialARM-Parameters.json** contenente i parametri per il modello di Azure Resource Manager.  
+Creare un file JSON denominato **ADFTutorialARM Parameters.json** che contiene i parametri per il modello di gestione risorse di Azure hello.  
 
 > [!IMPORTANT]
-> Specificare il nome e la chiave dell'account di archiviazione di Azure per i parametri **storageAccountName** e **storageAccountKey** in questo file dei parametri. 
+> Specificare il nome di hello e una chiave dell'account di archiviazione di Azure per hello **storageAccountName** e **storageAccountKey** parametri in questo file di parametro. 
 > 
 > 
 
@@ -304,60 +304,60 @@ Creare un file JSON denominato **ADFTutorialARM-Parameters.json** contenente i p
 ```
 
 > [!IMPORTANT]
-> Si possono avere file JSON di parametri separati per gli ambienti di sviluppo, test e produzione che è possibile usare con lo stesso modello JSON di Data Factory. Usando uno script di Power Shell, è possibile automatizzare la distribuzione delle entità di Data Factory in questi ambienti. 
+> È possibile file JSON di parametro separato per lo sviluppo, test e ambienti di produzione che è possibile utilizzare con hello stesso modello di Data Factory JSON. Usando uno script di Power Shell, è possibile automatizzare la distribuzione delle entità di Data Factory in questi ambienti. 
 > 
 > 
 
 ## <a name="create-data-factory"></a>Creare un'istanza di Data Factory
-1. Avviare **Azure PowerShell** ed eseguire questo comando: 
-   * Eseguire il comando seguente e immettere il nome utente e la password usati per accedere al portale di Azure.
+1. Avviare **Azure PowerShell** e hello esecuzione comando seguente: 
+   * Eseguire hello comando seguente e immettere nome utente hello e la password usati toosign in toohello portale di Azure.
     ```PowerShell
     Login-AzureRmAccount
     ```  
-   * Eseguire il comando seguente per visualizzare tutte le sottoscrizioni per l'account.
+   * Eseguire hello successivo comando tooview tutte le sottoscrizioni di hello per questo account.
     ```PowerShell
     Get-AzureRmSubscription
     ``` 
-   * Eseguire il comando seguente per selezionare la sottoscrizione da usare. La sottoscrizione deve corrispondere a quella usata nel portale di Azure.
+   * Sottoscrizione hello tooselect da toowork con il comando seguente hello esecuzione. La sottoscrizione deve essere hello uguali a quelli hello usato nel portale di Azure hello.
     ```
     Get-AzureRmSubscription -SubscriptionName <SUBSCRIPTION NAME> | Set-AzureRmContext
     ```   
-2. Eseguire il comando seguente per distribuire entità di Data Factory usando il modello di Resource Manager creato nel Passaggio 1. 
+2. Eseguire hello successivo comando toodeploy Data Factory le entità utilizzando il modello di gestione risorse hello creato nel passaggio 1. 
 
     ```PowerShell
     New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile C:\ADFGetStarted\ADFTutorialARM.json -TemplateParameterFile C:\ADFGetStarted\ADFTutorialARM-Parameters.json
     ```
 
 ## <a name="monitor-pipeline"></a>Monitorare la pipeline
-1. Dopo l'accesso al [portale di Azure](https://portal.azure.com/) fare clic su **Esplora** e selezionare **Data factory**.
-     ![Esplorare->Data factory](./media/data-factory-build-your-first-pipeline-using-arm/BrowseDataFactories.png)
-2. Nel pannello **Data factory** fare clic sulla data factory **TutorialFactoryARM** creata.    
-3. Nel pannello **Data factory** relativo alla data factory scelta fare clic su **Diagramma**.
+1. Dopo l'accesso toohello [portale di Azure](https://portal.azure.com/), fare clic su **Sfoglia** e selezionare **Data factory**.
+     ![Esplorare-&gt;Data factory](./media/data-factory-build-your-first-pipeline-using-arm/BrowseDataFactories.png)
+2. In hello **Data factory** pannello, fare clic su data factory di hello (**TutorialFactoryARM**) creato.    
+3. In hello **Data Factory** pannello per il data factory, fare clic su **diagramma**.
 
      ![Riquadro Diagramma](./media/data-factory-build-your-first-pipeline-using-arm/DiagramTile.png)
-4. In **Vista diagramma**saranno visualizzati una panoramica delle pipeline e i set di dati usati in questa esercitazione.
+4. In hello **vista diagramma**, si visualizza una panoramica delle pipeline hello e set di dati utilizzati in questa esercitazione.
    
-   ![Vista diagramma](./media/data-factory-build-your-first-pipeline-using-arm/DiagramView.png) 
-5. In Vista diagramma fare doppio clic sul set di dati **AzureBlobOutput**. Viene visualizzata la sezione in fase di elaborazione.
+   ![Vista Diagramma](./media/data-factory-build-your-first-pipeline-using-arm/DiagramView.png) 
+5. In vista diagramma hello, fare doppio clic sul set di dati hello **AzureBlobOutput**. Vedrai tale sezione hello che è in corso di elaborazione.
    
     ![Set di dati](./media/data-factory-build-your-first-pipeline-using-arm/AzureBlobOutput.png)
-6. Al termine dell'elaborazione lo stato della sezione è **Pronta** . La creazione di un cluster HDInsight su richiesta di solito richiede tempo (circa 20 minuti). Di conseguenza, prevedere **circa 30 minuti** per l'elaborazione della sezione nella pipeline.
+6. Quando viene eseguita l'elaborazione, vedrai sezione hello **pronto** stato. La creazione di un cluster HDInsight su richiesta di solito richiede tempo (circa 20 minuti). Pertanto, prevedere hello pipeline tootake **circa 30 minuti** tooprocess hello sezione.
    
     ![Set di dati](./media/data-factory-build-your-first-pipeline-using-arm/SliceReady.png)    
-7. Quando lo stato della sezione è **Pronto**, cercare i dati di output nella cartella **partitioneddata** del contenitore **adfgetstarted** nell'archivio BLOB.  
+7. Quando si trova in sezione hello **pronto** stato, controllare hello **partitioneddata** cartella hello **adfgetstarted** contenitore nell'archiviazione blob per hello i dati di output.  
 
-Per istruzioni su come usare i pannelli del portale di Azure per monitorare la pipeline e i set di dati creati in questa esercitazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory](data-factory-monitor-manage-pipelines.md) .
+Vedere [monitorare set di dati e della pipeline](data-factory-monitor-manage-pipelines.md) per istruzioni su come pipeline di toouse hello pannelli portale Azure toomonitor hello e set di dati è stato creato in questa esercitazione.
 
-È anche possibile usare l'app di monitoraggio e gestione per monitorare le pipeline di dati. Per i dettagli sull'uso dell'applicazione, vedere [Monitorare e gestire le pipeline di Azure Data Factory con la nuova app di monitoraggio e gestione](data-factory-monitor-manage-app.md) . 
+È inoltre possibile utilizzare toomonitor monitorare e gestire App le pipeline di dati. Vedere [monitoraggio e la gestione delle pipeline di Data Factory di Azure utilizzando App monitoraggio](data-factory-monitor-manage-app.md) per informazioni dettagliate sull'utilizzo di un'applicazione hello. 
 
 > [!IMPORTANT]
-> Il file di input viene eliminato quando la sezione viene elaborata correttamente. Per eseguire di nuovo la sezione o ripetere l'esercitazione, caricare quindi il file di input (input.log) nella cartella inputdata del contenitore adfgetstarted.
+> file di input Hello eliminato quando la sezione hello viene elaborata correttamente. Pertanto, se si desidera toorerun hello sezione o hello esercitazione nuovamente, hello del file di input (input.log) toohello inputdata cartella del contenitore adfgetstarted hello di caricamento.
 > 
 > 
 
-## <a name="data-factory-entities-in-the-template"></a>Entità di Data Factory nel modello
+## <a name="data-factory-entities-in-hello-template"></a>Entità di modello hello Factory di dati
 ### <a name="define-data-factory"></a>Definire una data factory
-È possibile definire una data factory nel modello di Resource Manager come illustrato nell'esempio seguente:  
+È consigliabile definire una data factory nel modello di gestione risorse di hello come illustrato nel seguente esempio hello:  
 
 ```json
 "resources": [
@@ -368,15 +368,15 @@ Per istruzioni su come usare i pannelli del portale di Azure per monitorare la p
     "location": "West US"
 }
 ```
-Il valore dataFactoryName viene definito come segue: 
+dataFactoryName Hello è definito come: 
 
 ```json
 "dataFactoryName": "[concat('HiveTransformDF', uniqueString(resourceGroup().id))]",
 ```
-È una stringa univoca basata sull'ID del gruppo di risorse.  
+È una stringa univoca in base a hello ID gruppo di risorse.  
 
 ### <a name="defining-data-factory-entities"></a>Definizione di entità di Data factory
-Le entità di Data Factory seguenti vengono definite nel modello JSON: 
+Hello entità Data Factory seguenti vengono definite nel modello JSON hello: 
 
 * [Servizio collegato Archiviazione di Azure](#azure-storage-linked-service)
 * [Servizio collegato su richiesta HDInsight](#hdinsight-on-demand-linked-service)
@@ -385,7 +385,7 @@ Le entità di Data Factory seguenti vengono definite nel modello JSON:
 * [Pipeline di dati con un'attività di copia](#data-pipeline)
 
 #### <a name="azure-storage-linked-service"></a>Servizio collegato Archiviazione di Azure
-In questa sezione si specificano il nome e la chiave dell'account di archiviazione di Azure. Per informazioni dettagliate sulle proprietà JSON usate per definire un servizio collegato di Archiviazione di Azure, vedere [Servizio collegato Archiviazione di Azure](data-factory-azure-blob-connector.md#azure-storage-linked-service). 
+Specificare il nome di hello e chiave dell'account di archiviazione di Azure in questa sezione. Vedere [servizio collegato di archiviazione di Azure](data-factory-azure-blob-connector.md#azure-storage-linked-service) per informazioni dettagliate su JSON proprietà utilizzate toodefine servizio collegato di archiviazione di Azure. 
 
 ```json
 {
@@ -404,10 +404,10 @@ In questa sezione si specificano il nome e la chiave dell'account di archiviazio
     }
 }
 ```
-**connectionString** usa i parametri storageAccountName e storageAccountKey. I valori per questi parametri sono stati passati usando un file di configurazione. La definizione usa anche le variabili azureStroageLinkedService e dataFactoryName definite nel modello. 
+Hello **connectionString** utilizza hello parametri storageAccountName e storageAccountKey. valori Hello per questi parametri passati mediante un file di configurazione. definizione di Hello utilizza anche variabili: azureStroageLinkedService e dataFactoryName definiti nel modello di hello. 
 
 #### <a name="hdinsight-on-demand-linked-service"></a>Servizio collegato su richiesta HDInsight
-Per informazioni dettagliate sulle proprietà JSON usate per definire un servizio collegato su richiesta HDInsight, vedere [Servizi collegati di calcolo](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service).  
+Vedere [servizi collegati di calcolo](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) articolo per informazioni dettagliate su JSON proprietà utilizzate toodefine un servizio collegato di HDInsight su richiesta.  
 
 ```json
 {
@@ -429,18 +429,18 @@ Per informazioni dettagliate sulle proprietà JSON usate per definire un servizi
     }
 }
 ```
-Tenere presente quanto segue: 
+Si noti hello seguenti punti: 
 
-* Data Factory crea automaticamente un cluster HDInsight **basato su Linux** con il codice JSON precedente. Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) . 
+* Hello Data Factory viene creata una **basati su Linux** cluster HDInsight per l'utente con hello sopra JSON. Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) . 
 * È possibile usare il **proprio cluster HDInsight** anziché un cluster HDInsight su richiesta. Per i dettagli, vedere [Servizio collegato Azure HDInsight](data-factory-compute-linked-services.md#azure-hdinsight-linked-service) .
-* Il cluster HDInsight crea un **contenitore predefinito** nell'archivio BLOB specificato nel file JSON (**linkedServiceName**). HDInsight non elimina il contenitore quando viene eliminato il cluster. Questo comportamento dipende dalla progettazione. Con il servizio collegato HDInsight su richiesta, viene creato un cluster HDInsight ogni volta che è necessario elaborare una sezione, a meno che non esista un cluster attivo (**timeToLive**) che viene eliminato al termine dell'elaborazione.
+* Crea cluster HDInsight Hello un **contenitore predefinito** nell'archiviazione blob hello specificato in JSON hello (**linkedServiceName**). HDInsight non eliminare questo contenitore quando viene eliminato il cluster hello. Questo comportamento dipende dalla progettazione. Con il servizio collegato di HDInsight su richiesta, un cluster HDInsight viene creato ogni volta che una sezione deve toobe elaborati a meno che non vi è un cluster esistente in tempo reale (**timeToLive**) e viene eliminata quando viene eseguita un'elaborazione hello.
   
-    Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non sono necessari per risolvere i problemi relativi ai processi, è possibile eliminarli per ridurre i costi di archiviazione. I nomi dei contenitori seguono questo schema: "adf**yourdatafactoryname**-**linkedservicename**-datetimestamp". Per eliminare i contenitori nell'archivio BLOB di Azure, usare strumenti come [Microsoft Azure Storage Explorer](http://storageexplorer.com/) .
+    Man mano che vengono elaborate più sezioni, vengono visualizzati numerosi contenitori nell'archivio BLOB di Azure. Se non li necessario per la risoluzione dei problemi dei processi di hello, è opportuno toodelete li tooreduce hello il costo di archiviazione. i nomi di Hello di questi contenitori seguono un modello: "adf**yourdatafactoryname**-**linkedservicename**- datetimestamp". Utilizzare strumenti come [Esplora archivi Microsoft](http://storageexplorer.com/) toodelete contenitori di Azure nell'archiviazione blob.
 
 Per i dettagli, vedere [Servizio collegato Azure HDInsight su richiesta](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) .
 
 #### <a name="azure-blob-input-dataset"></a>Set di dati di input del BLOB di Azure
-Vengono specificati i nomi del contenitore BLOB, della cartella e del file contenente i dati di input. Per informazioni dettagliate sulle proprietà JSON usate per definire un set di dati del BLOB di Azure, vedere [Proprietà del set di dati del BLOB di Azure](data-factory-azure-blob-connector.md#dataset-properties). 
+Specificare nomi di hello del contenitore blob, cartelle e file che contiene i dati di input hello. Vedere [proprietà set di dati Blob di Azure](data-factory-azure-blob-connector.md#dataset-properties) per informazioni dettagliate su JSON proprietà utilizzate toodefine un set di dati Blob di Azure. 
 
 ```json
 {
@@ -470,10 +470,10 @@ Vengono specificati i nomi del contenitore BLOB, della cartella e del file conte
     }
 }
 ```
-Questa definizione usa i parametri seguenti definiti nel modello di parametro: blobContainer, inputBlobFolder e inputBlobName. 
+Questa definizione utilizza i seguenti parametri definiti nel modello di parametro hello: blobContainer, inputBlobFolder e inputBlobName. 
 
 #### <a name="azure-blob-output-dataset"></a>Set di dati di output del BLOB di Azure
-Vengono specificati i nomi del contenitore BLOB e della cartella che contiene i dati di output. Per informazioni dettagliate sulle proprietà JSON usate per definire un set di dati del BLOB di Azure, vedere [Proprietà del set di dati del BLOB di Azure](data-factory-azure-blob-connector.md#dataset-properties).  
+Specificare i nomi di hello del contenitore blob e di cartella che contiene i dati di output di hello. Vedere [proprietà set di dati Blob di Azure](data-factory-azure-blob-connector.md#dataset-properties) per informazioni dettagliate su JSON proprietà utilizzate toodefine un set di dati Blob di Azure.  
 
 ```json
 {
@@ -502,10 +502,10 @@ Vengono specificati i nomi del contenitore BLOB e della cartella che contiene i 
 }
 ```
 
-Questa definizione usa i parametri seguenti definiti nel modello di parametro: blobContainer e outputBlobFolder. 
+Questa definizione utilizza i seguenti parametri definiti nel modello di parametro hello hello: blobContainer e outputBlobFolder. 
 
 #### <a name="data-pipeline"></a>Data Pipeline
-Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un cluster HDInsight di Azure su richiesta. Per le descrizioni degli elementi JSON usati per definire una pipeline in questo esempio, vedere [Pipeline JSON](data-factory-create-pipelines.md#pipeline-json). 
+Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un cluster HDInsight di Azure su richiesta. Vedere [JSON di Pipeline](data-factory-create-pipelines.md#pipeline-json) per le descrizioni degli elementi usati di JSON toodefine una pipeline in questo esempio. 
 
 ```json
 {
@@ -561,8 +561,8 @@ Viene definita una pipeline che trasforma i dati eseguendo lo script Hive in un 
 }
 ```
 
-## <a name="reuse-the-template"></a>Riutilizzare il modello
-Nell'esercitazione sono stati creati un modello per definire le entità di Data Factory e un modello per passare i valori dei parametri. Per usare lo stesso modello per distribuire le entità di Data Factory in ambienti diversi, si crea un file dei parametri per ogni ambiente e lo si usa durante la distribuzione in tale ambiente.     
+## <a name="reuse-hello-template"></a>Riutilizzare hello modello
+Nell'esercitazione hello è creato un modello per la definizione di entità Data Factory e un modello per il passaggio di valori per i parametri. toouse hello stessi ambienti con toodifferent entità modello toodeploy Data Factory, creare un file di parametro per ogni ambiente e usarlo quando si distribuisce toothat ambiente.     
 
 Esempio:  
 
@@ -573,12 +573,12 @@ New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFT
 
 New-AzureRmResourceGroupDeployment -Name MyARMDeployment -ResourceGroupName ADFTutorialResourceGroup -TemplateFile ADFTutorialARM.json -TemplateParameterFile ADFTutorialARM-Parameters-Production.json
 ```
-Si noti che il primo comando usa il file dei parametri per l'ambiente di sviluppo, il secondo per l'ambiente di test e il terzo per l'ambiente di produzione.  
+Si noti che hello primo comando Usa il file di parametro per l'ambiente di sviluppo hello, secondo una per hello ambiente di test e una terza per ambiente di produzione hello hello.  
 
-È anche possibile riutilizzare il modello per eseguire attività ripetute. Ad esempio, è necessario creare più data factory con una o più pipeline che implementano la stessa logica, ma ogni data factory usa account di archiviazione di Azure e di database SQL di Azure diversi. In questo scenario si usa lo stesso modello nello stesso ambiente (sviluppo, test o produzione) con file dei parametri diversi per creare le data factory. 
+È inoltre possibile riutilizzare hello modello tooperform ripetuto di attività. Ad esempio, è necessario toocreate molti data factory con uno o più pipeline che implementano hello stessa logica, ma ogni data factory Usa archiviazione di Azure differente e gli account di Database SQL di Azure. In questo scenario, si usa hello stesso modello in hello stesso ambiente (sviluppo, test o produzione) con parametri diversi file toocreate data factory. 
 
 ## <a name="resource-manager-template-for-creating-a-gateway"></a>Modello di Resource Manager per la creazione di un gateway
-Di seguito è disponibile un modello di Resource Manager per la creazione di un gateway logico nel back-end. Installare un gateway nel computer locale o nella VM IaaS di Azure e registrare il gateway con il servizio Data Factory usando una chiave. Per altre informazioni vedere [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) .
+Di seguito è riportato un modello di gestione risorse di esempio per la creazione di un gateway logico in hello nuovamente. Installare un gateway nel computer locale o macchina virtuale IaaS di Azure e registrare il gateway di hello con il servizio Data Factory tramite una chiave. Per altre informazioni vedere [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) .
 
 ```json
 {
@@ -617,8 +617,8 @@ Questo modello crea una data factory denominata GatewayUsingArmDF con un gateway
 ## <a name="see-also"></a>Vedere anche
 | Argomento | Descrizione |
 |:--- |:--- |
-| [Pipeline](data-factory-create-pipelines.md) |Questo articolo fornisce informazioni sulle pipeline e sulle attività in Azure Data Factory e su come usarle per costruire flussi di lavoro end-to-end basati sui dati per lo scenario o l'azienda. |
+| [Pipeline](data-factory-create-pipelines.md) |In questo articolo consente di comprendere le pipeline e attività nella Data Factory di Azure e come toouse li tooconstruct end-to-end basato sui dati dei flussi di lavoro degli scenario o dell'azienda. |
 | [Set di dati](data-factory-create-datasets.md) |Questo articolo fornisce informazioni sui set di dati in Azure Data Factory. |
-| [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) |Questo articolo descrive gli aspetti di pianificazione ed esecuzione del modello applicativo di Data factory di Azure. |
-| [Monitorare e gestire le pipeline con l'app di monitoraggio](data-factory-monitor-manage-app.md) |Questo articolo descrive come monitorare, gestire ed eseguire il debug delle pipeline usando l'app di monitoraggio e gestione. |
+| [Pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) |Questo articolo illustra gli aspetti hello di pianificazione e l'esecuzione del modello di applicazione di Azure Data Factory. |
+| [Monitorare e gestire le pipeline con l'app di monitoraggio](data-factory-monitor-manage-app.md) |In questo articolo viene descritto come toomonitor, gestire ed eseguire il debug pipeline utilizzando hello monitoraggio e gestione delle App. |
 

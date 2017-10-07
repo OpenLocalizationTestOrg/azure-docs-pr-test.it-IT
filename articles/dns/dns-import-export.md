@@ -1,6 +1,6 @@
 ---
-title: Importare ed esportare un file di zona del dominio in DNS di Azure usando l'interfaccia della riga di comando di Azure 1.0 | Microsoft Docs
-description: Informazioni su come importare ed esportare un file di zona DNS in DNS di Azure usando l'interfaccia della riga di comando di Azure 1.0
+title: aaaImport e una zona del dominio di esportazione file tooAzure DNS mediante Azure CLI 1.0 | Documenti Microsoft
+description: Informazioni su come tooimport ed esportare un DNS zone file tooAzure DNS mediante Azure CLI 1.0
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,72 +13,72 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
-ms.openlocfilehash: d6d3fa7aa0e8b2462b3a6b4b66d3d87ab5535314
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4c3163395e151e9934c730349b828c612491016f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="import-and-export-a-dns-zone-file-using-the-azure-cli-10"></a>Importare ed esportare un file di zona DNS usando l'interfaccia della riga di comando di Azure 1.0 
+# <a name="import-and-export-a-dns-zone-file-using-hello-azure-cli-10"></a>Importare ed esportare un file di zona DNS mediante hello Azure CLI 1.0 
 
-Questo articolo spiega come importare ed esportare file di zona DNS per Azure DNS usando l'interfaccia della riga di comando di Azure 1.0.
+In questo articolo illustra come tooimport ed esportare file di zona DNS per l'utilizzo di DNS di Azure hello Azure CLI 1.0.
 
-## <a name="introduction-to-dns-zone-migration"></a>Introduzione alla migrazione di zone DNS
+## <a name="introduction-toodns-zone-migration"></a>Migrazione di zona tooDNS introduzione
 
-Un file di zona DNS è un file di testo che contiene i dettagli di tutti i record DNS (Domain Name System) nella zona. Segue un formato standard, ideale per il trasferimento dei record DNS tra sistemi DNS. L'uso di un file di zona è un modo rapido, affidabile e pratico per trasferire una zona DNS all'interno o all'esterno di DNS di Azure.
+Un file di zona DNS è un file di testo che contiene i dettagli di tutti i record nella zona hello sistema DNS (Domain Name). Segue un formato standard, ideale per il trasferimento dei record DNS tra sistemi DNS. Utilizzando un file di zona è un veloce, affidabile e un modo pratico tootransfer una zona DNS interno o all'esterno di DNS di Azure.
 
-DNS di Azure supporta l'importazione e l'esportazione di file di zona tramite l'interfaccia della riga di comando di Azure. L'importazione di file di zona **non** è attualmente supportata tramite Azure PowerShell o il portale di Azure.
+DNS di Azure supporta l'importazione ed esportazione di file di zona utilizzando hello Azure interfaccia della riga di comando (CLI). Importazione di file di zona è **non** attualmente supportate tramite Azure PowerShell o hello portale di Azure.
 
-L'interfaccia della riga di comando di Azure 1.0 è uno strumento a riga di comando multipiattaforma usato per la gestione di servizi di Azure. È disponibile per le piattaforme Windows, Mac e Linux nella [pagina di download di Azure](https://azure.microsoft.com/downloads/). Il supporto multipiattaforma è importante per importare ed esportare i file di zona, perché il software server più conosciuto, [BIND](https://www.isc.org/downloads/bind/), viene generalmente eseguito in Linux.
+Hello Azure CLI 1.0 è uno strumento da riga di comando multipiattaforma utilizzato per la gestione dei servizi di Azure. È disponibile per le piattaforme Windows, Mac e Linux hello da hello [pagina di download di Azure](https://azure.microsoft.com/downloads/). Supporto multipiattaforma è importante per importare ed esportare file di zona, in quanto hello Nome server del software più comuni, [ASSOCIARE](https://www.isc.org/downloads/bind/), in genere viene eseguito in Linux.
 
 > [!NOTE]
-> Esistono attualmente due versioni dell'interfaccia della riga di comando di Azure. CLI1.0 è basata su Node.js e ha comandi che iniziano con "azure".
-> CLI2.0 è basata su Python e ha comandi che iniziano con "az". Nonostante l'importazione dei file di zona sia supportata in entrambe le versioni, è consigliabile usare i comandi CLI1.0, come descritto in questa pagina.
+> Esistono attualmente due versioni di hello CLI di Azure. CLI1.0 è basata su Node.js e ha comandi che iniziano con "azure".
+> CLI2.0 è basata su Python e ha comandi che iniziano con "az". L'importazione di file di zona è supportata in entrambe le versioni, è consigliabile utilizzare i comandi CLI1.0 hello, come descritto in questa pagina.
 
 ## <a name="obtain-your-existing-dns-zone-file"></a>Recupero del file di zona DNS esistente
 
-Prima di importare un file di zona DNS in DNS di Azure, è necessario ottenere una copia del file di zona. L'origine di questo file dipende da dove è attualmente ospitata la zona DNS.
+Prima di importare un file di zona DNS in DNS di Azure, è necessario tooobtain una copia del file di zona hello. Hello origine di questo file dipende da dove zona DNS hello è attualmente ospitato.
 
-* Se la zona DNS è ospitata da un servizio partner, ad esempio un registrar, un provider di servizi di hosting DNS dedicato o un provider di servizi cloud alternativo, tale servizio deve fornire la possibilità di scaricare il file di zona DNS.
-* Se la zona DNS è ospitata nel DNS di Windows, la cartella predefinita per i file di zona è **%systemroot%\system32\dns**. Il percorso completo di ogni file di zona viene visualizzato anche nella scheda **Generale** della console DNS.
-* Se la zona DNS è ospitata con BIND, il percorso del file di zona per ogni zona è specificato nel file di configurazione di BIND **named.conf**.
+* Se la zona DNS è ospitata da un servizio (ad esempio un registrar, un provider di hosting DNS dedicato o provider di cloud alternativi), che il servizio deve fornire il file di zona DNS hello possibilità toodownload hello.
+* Se la zona DNS è ospitata il servizio DNS di Windows, cartella di hello predefinita per i file di zona hello è **%systemroot%\system32\dns**. file di zona tooeach Hello percorso Mostra anche su hello **generale** scheda della console DNS hello.
+* Se la zona DNS è ospitata usando l'associazione, percorso hello del file di zona hello per ogni zona è specificato nel file di configurazione di binding hello **named. conf**.
 
 > [!NOTE]
-> I file di zona scaricati da GoDaddy hanno un formato leggermente non standard. È necessario correggerlo prima di importare questi file di zona in DNS di Azure.
+> I file di zona scaricati da GoDaddy hanno un formato leggermente non standard. È necessario toocorrect questo prima di importare questi file di zona DNS di Azure.
 >
-> I nomi DNS in RDATA di ogni record DNS sono specificati come nomi completi, ma non hanno un "." alla fine. Ciò significa che vengono interpretati da altri sistemi DNS come nomi relativi. È necessario modificare il file di zona aggiungendo il '.' di terminazione ai relativi nomi prima di importarli in DNS di Azure.
+> I nomi DNS in hello RDATA di ogni record DNS vengono specificati come nomi completi, ma che non dispongono di una terminazione "." Ciò significa che vengono interpretati da altri sistemi DNS come nomi relativi. È necessario tooedit hello zona file tooappend hello terminazione "." tootheir nomi prima di importarli in DNS di Azure.
 >
-> Ad esempio, il record CNAME "www 3600 IN CNAME contoso.com" deve essere modificato in "www 3600 IN CNAME contoso.com."
+> Ad esempio, è necessario modificato troppo record CNAME "www 3600 IN contoso.com CNAME" hello "www 3600 CNAME IN contoso.com."
 > con un "." alla fine.
 
 ## <a name="import-a-dns-zone-file-into-azure-dns"></a>Importare un file di zona DNS in DNS di Azure
 
-L'importazione di un file di zona crea una nuova zona in DNS di Azure se non ne esiste già una. Se la zona esiste già, i set di record nel file di zona devono essere uniti a quelli esistenti.
+L'importazione di un file di zona crea una nuova zona in DNS di Azure se non ne esiste già una. Se esiste già una zona hello, hello set di record nel file di zona hello devono essere uniti con i set di record esistenti hello.
 
 ### <a name="merge-behavior"></a>Unione
 
 * Per impostazione predefinita, i set di record nuovi ed esistenti vengono uniti. I record identici all'interno di un set di record unito vengono deduplicati.
-* In alternativa, se si specifica l'opzione `--force`, il processo di importazione sostituisce i set di record esistenti con quelli nuovi. I set di record esistenti che non hanno un set di record corrispondente nel file di zona importato non devono essere rimossi.
-* Quando i set di record sono uniti, viene usato il valore di durata (TTL) dei set di record preesistenti. Se si usa `--force`, viene applicato il valore TTL del nuovo set di record.
-* I parametri di origine di autorità (SOA), tranne `host`, vengono sempre rilevati dal file di zona importato, indipendentemente dall'uso di `--force`. Analogamente, per il set di record del server di nomi al vertice della zona viene sempre applicato il valore TTL dal file di zona importato.
-* Un record CNAME importato non sostituisce un record CNAME esistente con lo stesso nome, a meno che non sia stato specificato il parametro `--force`.
-* Quando si verifica un conflitto tra un record CNAME e a un altro record con lo stesso nome, ma di tipo diverso, indipendentemente dal fatto che sia nuovo o esistente viene mantenuto il record esistente. È indipendente dall'uso di `--force`.
+* In alternativa, specificando hello `--force` opzione, hello sostituisce processo di importazione il set di record esistente con nuovi set di record. I set di record esistenti che non dispone di un record corrispondente impostato nel file di zona importati hello vengono rimossi.
+* Durante l'unione di set di record, hello toolive TTL (time) preesistenti di set di record è utilizzato. Quando `--force` è utilizzato, hello durata (TTL) del set di record nuovo hello viene utilizzato.
+* Avvio di parametri di autorità (SOA) (ad eccezione di `host`) vengono sempre ricavate dal file di zona importati hello, indipendentemente dal fatto che `--force` viene utilizzato. Analogamente, per impostare al vertice zona hello record hello del server, hello TTL viene sempre acquisito dal file di zona importati hello.
+* Un record CNAME importato non sostituisce un CNAME esistente registrare con stesso nome a meno che non hello hello `--force` parametro specificato.
+* Quando si verifica un conflitto tra un record CNAME e un altro record di hello stesso nome ma è diversa, digitare (indipendentemente dal fatto che è esistente o nuova), record esistente hello viene mantenuto. Si tratta indipendentemente dall'utilizzo di hello di `--force`.
 
 ### <a name="additional-information-about-importing"></a>Altre informazioni sull'importazione
 
-Le note seguenti forniscono altri dettagli tecnici sul processo di importazione di zone.
+Hello note seguenti forniscono altri dettagli tecnici sulla zona hello processo di importazione.
 
-* La direttiva `$TTL` è facoltativa e supportata. Se non si specifica una direttiva `$TTL`, i record senza una TTL esplicita vengono importati e impostati su una TLL predefinita di 3600 secondi. Quando per due record nello stesso set di record sono specificati TTL diversi, viene usato il valore più basso.
-* La direttiva `$ORIGIN` è facoltativa e supportata. Se `$ORIGIN` non è impostata, il valore predefinito usato è il nome della zona specificato nella riga di comando, con "." di terminazione.
-* Le direttive `$INCLUDE` e `$GENERATE` non sono supportate.
+* Hello `$TTL` direttiva è facoltativa ed è supportata. Se non si `$TTL` direttiva viene specificata, vengono importati i record senza una durata (TTL) esplicita impostare tooa TTL predefinito di 3600 secondi. Quando due record in stesso set di record hello specificano TTLs diversi, valore inferiore hello viene utilizzato.
+* Hello `$ORIGIN` direttiva è facoltativa ed è supportata. Se non si `$ORIGIN` è impostata, predefinito hello valore utilizzato è il nome zona hello come specificato nella riga di comando hello (più terminazione hello ".").
+* Hello `$INCLUDE` e `$GENERATE` direttive non sono supportate.
 * Sono supportati questi tipi di record: A, AAAA, CNAME, MX, NS, SOA, SRV e TXT.
-* Il record SOA viene creato automaticamente da DNS di Azure quando si crea una zona. Quando si importa un file di zona, tutti i parametri SOA vengono rilevati dal file di zona *tranne* il parametro `host`. Questo parametro usa il valore fornito da DNS di Azure. Questo parametro deve infatti fare riferimento al server dei nomi primario fornito da DNS di Azure.
-* Anche il set di record del server dei nomi al vertice della zona viene creato automaticamente da DNS di Azure quando si crea la zona. Viene importata solo la durata TTL di questo set di record. Questi record contengono i nomi dei server dei nomi forniti da DNS di Azure. I dati dei record non vengono sovrascritti dai valori contenuti nel file di zona importato.
-* Durante l'anteprima pubblica, DNS di Azure supporta solo i record TXT a stringa singola. I record TXT multistringa vengono concatenati e troncati a 255 caratteri.
+* Hello record SOA viene creato automaticamente da DNS di Azure quando viene creata una zona. Quando si importa un file di zona, tutti i parametri SOA vengono estratti dal file di zona hello *tranne* hello `host` parametro. Questo parametro utilizza il valore di hello fornito dal servizio DNS di Azure. Questo avviene perché questo parametro deve fare riferimento a server dei nomi primario toohello fornite da DNS di Azure.
+* record server dei nomi Hello impostato al vertice zona hello viene anche creato automaticamente da DNS di Azure quando si crea la zona hello. Solo hello durata (TTL) di questo set di record viene importato. Questi record contengono nomi di server di nome hello forniti da DNS di Azure. dati del record di Hello non viene sovrascritto da valori hello contenuti nel file di zona importati hello.
+* Durante l'anteprima pubblica, DNS di Azure supporta solo i record TXT a stringa singola. Multistringa record TXT sono essere troncati e concatenati too255 caratteri.
 
 ### <a name="cli-format-and-values"></a>Valori e formato dell'interfaccia della riga di comando
 
-Il formato del comando dell'interfaccia della riga di comando di Azure per importare una zona DNS è:
+formato Hello di hello Azure CLI comando tooimport una zona DNS è:
 
 ```azurecli
 azure network dns zone import [options] <resource group> <zone name> <zone file name>
@@ -86,70 +86,70 @@ azure network dns zone import [options] <resource group> <zone name> <zone file 
 
 Valori:
 
-* `<resource group>` è il nome del gruppo di risorse per la zona in DNS di Azure.
-* `<zone name>` è il nome della zona.
-* `<zone file name>` è il nome/percorso del file di zona da importare.
+* `<resource group>`è il nome di hello hello del gruppo di risorse per la zona hello in DNS di Azure.
+* `<zone name>`è il nome di hello della zona di hello.
+* `<zone file name>`è hello/nome del percorso toobe file di zona hello importati.
 
-Se una zona con questo nome non esiste nel gruppo di risorse, viene creata. Se la zona esiste già, i set di record importati vengono uniti con quelli esistenti. Per sovrascrivere i set di record esistenti, usare l'opzione `--force` .
+Se una zona con questo nome non esiste nel gruppo di risorse hello, viene creato automaticamente. Se hello zona esiste già, hello set di record importati vengono unite con i set di record esistenti. toooverwrite hello esistente set di record, utilizzare hello `--force` opzione.
 
-Per verificare il formato di un file di zona senza eseguirne effettivamente l'importazione, usare l'opzione `--parse-only` .
+formato di hello tooverify di un file di zona senza effettivamente l'importazione, utilizzare hello `--parse-only` opzione.
 
 ### <a name="step-1-import-a-zone-file"></a>Passaggio 1. Importare un file di zona
 
-Per importare un file di zona per la zona **contoso.com**:
+un file di zona per la zona hello tooimport **contoso.com**.
 
-1. Accedere alla sottoscrizione di Azure usando l'interfaccia della riga di comando di Azure 1.0.
+1. Accedi tooyour sottoscrizione di Azure mediante Azure CLI 1.0 hello.
 
     ```azurecli
     azure login
     ```
 
-2. Selezionare la sottoscrizione in cui si vuole creare la nuova zona DNS.
+2. Selezionare la sottoscrizione di hello in cui si desidera toocreate la nuova zona DNS.
 
     ```azurecli
     azure account set <subscription name>
     ```
 
-3. DNS di Azure è un servizio solo di Gestione risorse di Azure, quindi nell'interfaccia della riga di comando di Azure deve essere impostata la modalità Gestione risorse.
+3. DNS di Azure è un servizio di gestione risorse di sola Azure, pertanto hello CLI di Azure deve essere disattivati tooResource modalità di gestione.
 
     ```azurecli
     azure config mode arm
     ```
 
-4. Prima di usare il servizio DNS di Azure, è necessario registrare la sottoscrizione per l'uso del provider di risorse Microsoft.Network. Questa operazione viene eseguita una sola volta per ogni sottoscrizione.
+4. Prima di utilizzare il servizio di DNS di Azure hello, è necessario registrare il provider di risorse di sottoscrizione toouse hello Network. Questa operazione viene eseguita una sola volta per ogni sottoscrizione.
 
     ```azurecli
     azure provider register Microsoft.Network
     ```
 
-5. È anche necessario creare un gruppo di risorse di Resource Manager, se non ne è già disponibile uno.
+5. Se si non è ancora disponibile, è necessario anche toocreate un gruppo di risorse di gestione risorse.
 
     ```azurecli
     azure group create myresourcegroup westeurope
     ```
 
-6. Per importare la zona **contoso.com** dal file **contoso.com.txt** in una nuova zona DNS nel gruppo di risorse **myresourcegroup**, eseguire il comando `azure network dns zone import`.<BR>Questo comando carica il file di zona e lo analizza. Il comando esegue una serie di comandi nel servizio DNS di Azure per creare la zona e tutti i set di record nella zona. Il comando visualizza l'avanzamento nella finestra della console insieme agli errori o agli avvisi. Poiché i set di record vengono creati in serie, l'importazione di un file di zona di grandi dimensioni può richiedere alcuni minuti.
+6. zona hello tooimport **contoso.com** dal file hello **contoso.com.txt** in una nuova zona DNS in gruppo di risorse hello **myresourcegroup**, eseguire il comando hello `azure network dns zone import`.<BR>Questo comando consente di caricare il file di zona hello e analizzarlo. comando Hello esegue una serie di comandi nel hello Azure servizio toocreate hello zona e i set di tutti i record di hello nella zona hello. comando Hello segnala lo stato nella finestra di console hello, insieme a eventuali errori o avvisi. Poiché set di record vengono creati in serie, potrebbe richiedere alcuni minuti tooimport un file di zona di grandi dimensioni.
 
     ```azurecli
     azure network dns zone import myresourcegroup contoso.com contoso.com.txt
     ```
 
-### <a name="step-2-verify-the-zone"></a>Passaggio 2. Verificare la zona
+### <a name="step-2-verify-hello-zone"></a>Passaggio 2. Verificare la zona hello
 
-Per verificare la zona DNS dopo aver importato il file, è possibile usare uno dei metodi seguenti:
+tooverify hello zona DNS dopo aver importato il file hello, è possibile utilizzare uno qualsiasi dei seguenti metodi hello:
 
-* È possibile elencare i record usando il seguente comando dell'interfaccia della riga di comando di Azure:
+* È possibile elencare i record di hello hello comando CLI di Azure seguente:
 
     ```azurecli
     azure network dns record-set list myresourcegroup contoso.com
     ```
 
-* È possibile elencare i record usando il cmdlet PowerShell `Get-AzureRmDnsRecordSet`.
-* Per verificare la risoluzione dei nomi per i record, è possibile usare `nslookup` . Poiché la zona non è ancora stata delegata, è necessario specificare esplicitamente i server dei nomi DNS di Azure corretti. Il seguente esempio mostra come recuperare i nomi dei server dei nomi assegnati alla zona. Illustra anche come eseguire una query sul record "www" con `nslookup`.
+* È possibile elencare i record di hello tramite i cmdlet di PowerShell hello `Get-AzureRmDnsRecordSet`.
+* È possibile utilizzare `nslookup` tooverify risoluzione dei nomi per i record di hello. Poiché la zona hello non delegata ancora, è necessario toospecify hello corretto Azure server dei nomi DNS in modo esplicito. Hello esempio seguente viene illustrato come nomi di server di nome hello tooretrieve assegnati toohello zona. IT illustra anche come tooquery hello "www" registrare tramite `nslookup`.
 
         C:\>azure network dns record-set show myresourcegroup contoso.com @ NS
         info:Executing command network dns record-set show
-        + Looking up the DNS Record Set "@" of type "NS"
+        + Looking up hello DNS Record Set "@" of type "NS"
         data:Id: /subscriptions/.../resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/NS/@
         data:Name: @
         data:Type: Microsoft.Network/dnszones/NS
@@ -174,11 +174,11 @@ Per verificare la zona DNS dopo aver importato il file, è possibile usare uno d
 
 ### <a name="step-3-update-dns-delegation"></a>Passaggio 3. Aggiornare la delega DNS
 
-Dopo aver verificato che la zona è stata importata correttamente, è necessario aggiornare la delega DNS in modo che punti verso i server dei nomi DNS di Azure. Per altre informazioni, vedere l'articolo [Aggiornare la delega DNS](dns-domain-delegation.md).
+Dopo aver verificato che la zona hello è stata importata correttamente, è necessario tooupdate hello DNS delega toopoint toohello server dei nomi DNS di Azure. Per ulteriori informazioni, vedere l'articolo hello [Aggiorna delega DNS hello](dns-domain-delegation.md).
 
 ## <a name="export-a-dns-zone-file-from-azure-dns"></a>Esportare un file di zona DNS da DNS di Azure
 
-Il formato del comando dell'interfaccia della riga di comando di Azure per importare una zona DNS è:
+formato Hello di hello Azure CLI comando tooimport una zona DNS è:
 
 ```azurecli
 azure network dns zone export [options] <resource group> <zone name> <zone file name>
@@ -186,33 +186,33 @@ azure network dns zone export [options] <resource group> <zone name> <zone file 
 
 Valori:
 
-* `<resource group>` è il nome del gruppo di risorse per la zona in DNS di Azure.
-* `<zone name>` è il nome della zona.
-* `<zone file name>` è il nome/percorso del file di zona da esportare.
+* `<resource group>`è il nome di hello hello del gruppo di risorse per la zona hello in DNS di Azure.
+* `<zone name>`è il nome di hello della zona di hello.
+* `<zone file name>`è hello/nome del percorso toobe file di zona hello esportata.
 
-Come per l'importazione di una zona, è necessario prima di tutto accedere, scegliere la sottoscrizione e configurare l'interfaccia della riga di comando di Azure per l'uso della modalità Resource Manager.
+Come con l'importazione di zona hello, è innanzitutto necessario toosign in, scegliere la sottoscrizione e configurare la modalità di gestione risorse di hello Azure CLI toouse.
 
-### <a name="to-export-a-zone-file"></a>Per esportare un file di zona:
+### <a name="tooexport-a-zone-file"></a>tooexport un file di zona
 
-1. Accedere alla sottoscrizione di Azure con l'interfaccia della riga di comando di Azure.
+1. Accedi tooyour sottoscrizione di Azure tramite hello CLI di Azure.
 
     ```azurecli
     azure login
     ```
 
-2. Selezionare la sottoscrizione in cui creare la zona DNS.
+2. Selezionare la sottoscrizione di hello in cui si desidera toocreate la zona DNS.
 
     ```azurecli
     azure account set <subscription name>
     ```
 
-3. DNS di Azure è un servizio solo di Gestione risorse di Azure. L'interfaccia della riga di comando di Azure deve essere impostata sulla modalità Gestione risorse.
+3. DNS di Azure è un servizio solo di Gestione risorse di Azure. Hello CLI di Azure deve essere disattivati tooResource modalità di gestione.
 
     ```azurecli
     azure config mode arm
     ```
 
-4. Per esportare la zona **contoso.com** di DNS di Azure esistente nel gruppo di risorse **myresourcegroup** nel file **contoso.com.txt** nella cartella corrente, eseguire `azure network dns zone export`. Questo comando chiama il servizio DNS di Azure per enumerare i set di record nella zona ed esportare i risultati in un file di zona compatibile con BIND.
+4. zona DNS di Azure esistente di hello tooexport **contoso.com** nel gruppo di risorse **myresourcegroup** toohello file **contoso.com.txt** (in hello cartella corrente), eseguire `azure network dns zone export`. Questo comando chiama hello tooenumerate servizio DNS di Azure set di record nella zona hello ed esportare file di zona hello risultati tooa compatibile con associazione.
 
     ```azurecli
     azure network dns zone export myresourcegroup contoso.com contoso.com.txt

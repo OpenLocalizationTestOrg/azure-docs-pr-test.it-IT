@@ -1,6 +1,6 @@
 ---
-title: (deprecato) Domande frequenti sulla pubblicazione e sull'uso di app di Machine Learning in Azure Marketplace | Documentazione Microsoft
-description: (deprecato) Domande frequenti sulla pubblicazione di app di Machine Learning in Azure Marketplace
+title: domande frequenti - AAA(deprecated) pubblicare e usare le app di Machine Learning in Azure Marketplace | Documenti Microsoft
+description: (obsoleto) Domande frequenti sulla pubblicazione delle app di Machine Learning in hello Azure Marketplace
 services: machine-learning
 documentationcenter: 
 author: bharaths
@@ -16,66 +16,66 @@ ms.date: 01/06/2017
 ms.author: bharaths
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: a4631dfeb2f817b3a3c612a8f6af48398e4f2ab9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: b3ae45dfff211fe9baccaf54faaf360a8309c780
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deprecated-publishing-and-using-machine-learning-apps-in-the-azure-marketplace-faq"></a>(deprecato) Domande frequenti sulla pubblicazione e sull'uso di app di Machine Learning in Azure Marketplace
+# <a name="deprecated-publishing-and-using-machine-learning-apps-in-hello-azure-marketplace-faq"></a>(obsoleto) La pubblicazione e si usano app di Machine Learning in Azure Marketplace hello: domande frequenti
 
 > [!NOTE]
 > DataMarket e Servizi dati verranno ritirati e le sottoscrizioni esistenti verranno ritirate e annullate a partire dal 31/3/2017. Di conseguenza, questo articolo è deprecato. 
 > 
-> In alternativa, è possibile pubblicare gli esperimenti di Machine Learning in [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/) a vantaggio della community scientifica dei dati. Per altre informazioni, vedere [Condividere e scoprire risorse in Cortana Intelligence Gallery](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish).
+> In alternativa, è possibile pubblicare il toohello esperimenti di Machine Learning [Cortana Intelligence Gallery](https://gallery.cortanaintelligence.com/) benefit hello della community di analisi scientifica dei dati hello. Per ulteriori informazioni, vedere [condivisione e individuare le risorse in Cortana Intelligence Gallery hello](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-gallery-how-to-use-contribute-publish).
 
 
 ## <a name="questions-about-consuming-from-marketplace"></a>Domande sull'utilizzo da Marketplace
-**1. Perché viene generato il messaggio di errore seguente dopo l'immissione di dati di input per il servizio Web?**
+**1. Perché viene visualizzato hello seguente messaggio di errore dopo immettere per il servizio web hello:**
 
-**La richiesta ha avuto come risultato un timeout di back-end o un errore di back-end. Il team sta esaminando questo problema. Ci scusiamo per l'inconveniente. (500)**
+**richiesta di Hello ha restituito un timeout di back-end o back-end. il team di Hello sta analizzando problema hello. Siamo spiacenti per eventuali inconvenienti hello. (500)**
 
-È possibile che i parametri di input immessi non siano conformi al formato richiesto per il servizio Web specifico. Fare riferimento al collegamento seguente relativo alla documentazione per individuare il formato corretto per i parametri di input e per informazioni sulle limitazioni di questo servizio Web.
+I parametri di input potrebbero non essere conforme toohello formato richiesto per il servizio web specifico hello. Per i parametri di input e le limitazioni di hello di questo servizio web, vedere toohello corrispondente documentazione collegamento toofind hello formato corretto.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-**2. Se si copia il collegamento all'API per il servizio Web disponibile in "Esplorare il set di dati" e lo si incolla in un'altra finestra del browser, quali credenziali è necessario usare per accedere ai risultati e come vengono visualizzati?**
+**2. Se Copia collegamento hello API per il servizio web hello che viene visualizzato nella pagina "Esplora set di dati" hello e incollarlo in un'altra finestra del browser, le credenziali, è necessario è possibile utilizzare tooaccess hello risultati e come viene visualizzato?**
 
-È consigliabile usare l'account Marketplace come nome utente e la chiave dell'account principale come password. La chiave dell'account principale è disponibile nella pagina **Esplorare il set di dati**, sotto la descrizione del servizio Web (fare clic sul pulsante **Mostra**). È possibile che il risultato venga visualizzato nel browser o che sia disponibile per il download, a seconda del browser usato.
+È necessario utilizzare l'account di Marketplace come nome utente hello e una chiave account primaria hello come password hello. chiave account primaria Hello è reperibile in hello **esplorare il set di dati** pagina Descrizione hello del servizio web hello (fare clic su hello **Mostra** pulsante). risultato Hello potrebbe essere visualizzato in browser hello o potrebbe essere disponibile troppo download, a seconda del browser in uso.
 
-**3. Perché viene generato il messaggio di errore seguente dopo l'immissione di dati di input per il servizio Web nella pagina "Esplorare il set di dati"?** 
+**3. Perché viene visualizzato hello seguente messaggio di errore dopo avere immesso input hello per il servizio web hello nella pagina "Esplora set di dati" hello:** 
 
 **Si è verificato un errore imprevisto durante l'elaborazione della richiesta. Riprovare più tardi.**
 
-È possibile che uno o più parametri di input del servizio Web abbiano superato il limite di lunghezza durante l'utilizzo del servizio Web nella pagina **Esplorare il set di dati** del Marketplace. I servizi possono essere chiamati con una lunghezza di input maggiore usando i metodi HTTP POST. Per esempi, vedere l'argomento relativo alle [soluzioni di esempio sull'uso di R in Machine Learning e pubblicate in Marketplace](machine-learning-r-csharp-web-service-examples.md).
+Uno o più parametri di input del servizio web potrebbero essere superato il limite di lunghezza hello durante l'utilizzo del servizio web hello in marketplace hello **esplorare il set di dati** pagina. servizi Hello possono essere chiamati con una lunghezza di input più utilizzando i metodi HTTP POST. Per esempi, vedere [l'uso di R in Machine Learning e pubblicati tooMarketplace soluzioni di esempio](machine-learning-r-csharp-web-service-examples.md).
 
-**4. Perché non riesco a visualizzare i risultati nella scheda "ESPLORA API" nello Store del portale di Azure classico?** 
+**4. Perché non riesco a visualizzare tutti gli elementi hello "Esplora API" scheda int hello archivio nel portale di Azure classico hello?** 
 
-Si tratta di un problema noto con il Marketplace del portale di Azure classico. Il team è impegnato nella risoluzione del problema. 
+Si tratta di un problema noto con hello Azure Marketplace portale classico. il team di Hello sta tooresolve questo problema. 
 
 ## <a name="questions-about-publishing-from-azure-machine-learning-on-marketplace"></a>Domande sulla pubblicazione da Azure Machine Learning nel Marketplace
 **1. Perché i logo, le immagini e il numero di transazioni non vengono aggiornati per il servizio Web?** 
 
-I logo e le immagini vengono memorizzati nella cache del portale di pubblicazione e potrebbero essere necessari fino a 10 giorni per l'aggiornamento del nuovo logo o della nuova immagine nel portale.
+Logo e immagini vengono memorizzati nella cache nel portale di pubblicazione hello e potrebbe richiedere fino a too10 giorni per il nuovo logo hello o tooupdate immagine nel portale di hello.
 
-**2. Perché nella scheda "Dettagli" del servizio Web nel Marketplace viene visualizzato un errore?**
+**2. Perché è una scheda di "Dettagli" hello del servizio web in Marketplace che mostra un messaggio di errore?**
 
-Si tratta di un problema noto del Marketplace durante la connessione ad Azure Machine Learning per ottenere informazioni dettagliate sui servizi. Il team è impegnato nella risoluzione del problema.
+È presente un problema noto di Marketplace quando ci si connette tooAzure Machine Learning per i dettagli del servizio. il team di Hello sta tooresolve questo problema.
 
-**3. Perché il codice R di esempio nei servizi Web di Azure Machine Learning non funziona per l'uso dei servizi Web nel Marketplace?**
+**3. Perché il codice di esempio R nei servizi web di Azure Machine Learning hello hello non funziona per i servizi web di hello dispendiosa in termini di mercato?**
 
-I sistemi di autenticazione presentano differenze in caso di connessione diretta ai servizi Web di Azure Machine Learning rispetto alla connessione a questi servizi Web tramite il Marketplace. I servizi disponibili in Marketplace sono servizi OData e possono essere chiamati tramite metodi GET o POST. 
+sistemi di autenticazione Hello sono diversi, la connessione a servizi web di Machine Learning tooAzure diretta rispetto a servizi web di toothese tooconnecting tramite hello Marketplace. servizi di Hello in Marketplace sono servizi OData, e possono essere chiamati con i metodi GET o POST. 
 
-**4. Perché i collegamenti per il supporto delle offerte del servizio Web non vengono aggiornati correttamente per alcune offerte?**
+**4. Perché sono collegamenti per il supporto di hello del servizio web offre l'aggiornamento non correttamente per alcune delle mie proposte?**
 
-I collegamenti per il supporto sono globali per le singole entità di pubblicazione e non sono specifici per le singole offerte. 
+collegamenti per il supporto di Hello sono globali per ogni server di pubblicazione, non per l'offerta. 
 
 **5. Come si pubblica un servizio Web con modalità di input batch nel Marketplace?**
 
-La modalità di input batch non è attualmente supportata nei servizi Web del Marketplace.
+modalità di input di Hello batch non è attualmente supportata nei servizi web Marketplace.
 
-**6. A chi ci si deve rivolgere per ottenere supporto in caso di domande su come diventare un'entità di pubblicazione di dati o in caso di problemi durante la pubblicazione?**
+**6. Chi contattare Guida tooget domande su come diventare un editore di dati o se verificano problemi durante la pubblicazione?**
 
-Per altre informazioni, contattare il team di Azure Marketplace in <mailto:datamarketbd@microsoft.com>.
+Contattare il team di Azure Marketplace hello < mailto:datamarketbd@microsoft.com > per ulteriori informazioni.
 

@@ -1,6 +1,6 @@
 ---
-title: Come usare la sottoscrizione di Office 365 con Azure RemoteApp | Documentazione Microsoft
-description: Informazioni su come usare la sottoscrizione di Office 365 in Azure RemoteApp per condividere app di Office.
+title: aaaHow toouse l'abbonamento a Office 365 con Azure RemoteApp | Documenti Microsoft
+description: Informazioni su come usare la sottoscrizione a Office 365 in Azure RemoteApp tooshare Office app.
 services: remoteapp
 documentationcenter: 
 author: piotrci
@@ -13,71 +13,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: e58ee0444517074d6b756652d03fc79c2370e69e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2648868dd28cbcd93e38461ae6dce25eaa5d5e99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-your-office-365-subscription-with-azure-remoteapp"></a>Come usare la sottoscrizione di Office 365 con Azure RemoteApp
+# <a name="how-toouse-your-office-365-subscription-with-azure-remoteapp"></a>Come toouse l'abbonamento a Office 365 con Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Non tutti sanno che è possibile usare la sottoscrizione di Office 365 in Azure RemoteApp per condividere le app di Office dal cloud. Di seguito sono disponibili informazioni sulle opzioni per Office 365 con Azure RemoteApp, inclusi collegamenti ad articoli relativi a Office 365 che consentono di sfruttare al meglio la sottoscrizione.
+Non tutti sanno che è possibile utilizzare la sottoscrizione di Office 365 esistente in Azure RemoteApp tooshare Office App cloud hello. Continuare a leggere per informazioni sull'Office 365 + opzioni di Azure RemoteApp, inclusi collegamenti tooarticles su Office 365 che consentono di rendere più hello della sottoscrizione.
 
 ## <a name="how-do-i-use-office-365-accounts-for-azure-remoteapp"></a>Utilizzo di account di Office 365 per Azure RemoteApp
-Leggere il nuovo articolo di Peter per tutte le informazioni: [Come usare Azure RemoteApp con gli account utente di Office 365](remoteapp-o365user.md)
+Estrarre nuovo articolo di Peter per tutte le informazioni di hello: [come toouse Azure RemoteApp con gli account utente di Office 365](remoteapp-o365user.md)
 
-## <a name="can-i-use-my-office-365-subscription-to-run-office-applications-in-azure-remoteapp"></a>Posso usare la sottoscrizione di Office 365 per eseguire applicazioni di Office in Azure RemoteApp?
-È possibile usarlo. L'uso della sottoscrizione di Office 365, in effetti, è l'unico modo per eseguire le applicazioni di Office in Azure RemoteApp.
+## <a name="can-i-use-my-office-365-subscription-toorun-office-applications-in-azure-remoteapp"></a>È possibile utilizzare le applicazioni di Office toorun sottoscrizione Office 365 in Azure RemoteApp?
+È possibile usarlo. Infatti, tramite l'abbonamento a Office 365 è hello solo modo toobring il tooAzure di applicazioni di Office RemoteApp.
 
-Nota: se la distribuzione Azure RemoteApp viene eseguita da un partner di hosting, quest'ultimo potrebbe essere in grado di fornire licenze di Office in base a un programma [SPLA (Service Provider Licensing Agreement)](http://www.microsoft.com/en-us/Licensing/licensing-programs/spla-program.aspx)
+(Nota: se la distribuzione di Azure RemoteApp è fornita un partner di hosting, questi possono essere in grado di tooprovide con licenze di Office in base a un [contratto di licenza per Provider del servizio](http://www.microsoft.com/en-us/Licensing/licensing-programs/spla-program.aspx))
 
-Uno dei vantaggi della sottoscrizione di Office 365 consiste nel fatto che consente di usare la stessa licenza utente su molte piattaforme diverse e molti ambienti diversi, incluso il cloud di Azure. Quando si usano le applicazioni di Office in Azure RemoteApp, non è necessario acquistare licenze aggiuntive o configurare le licenze esistenti in modo particolare. È sufficiente disporre di una sottoscrizione di Office 365 che includa [Office 365 ProPlus](https://technet.microsoft.com/library/Gg702619.aspx).
+cosa più interessante l'abbonamento a Office 365 Hello è che consente di utilizzare hello stesso licenza utente per le diverse piattaforme e ambienti, tra cui hello cloud di Azure. Quando si usano applicazioni di Office in Azure RemoteApp non necessario toopurchase ulteriori licenze o configurare le licenze esistenti in alcun modo particolare. È sufficiente disporre di una sottoscrizione di Office 365 che includa [Office 365 ProPlus](https://technet.microsoft.com/library/Gg702619.aspx).
 
 Office 365 ProPlus consente l'[attivazione di computer condivisi](https://technet.microsoft.com/library/Dn782860.aspx). Questa funzionalità consente l'attivazione temporanea basata sugli utenti per Office in ambienti cloud e virtuali quali Azure RemoteApp e Servizi Desktop remoto.
 
-Piani di Office 365 che includono Office 365 ProPlus Verificare la tabella della [disponibilità dei servizi per ogni piano](https://technet.microsoft.com/library/office-365-plan-options.aspx). Si noti che non tutti i piani includono Office 365 ProPlus (ad esempio, il piano Office 365 Business). Se il piano non lo include, valutare l'aggiornamento a un piano che lo include, ad esempio Office 365 Education E3.
+Piani di Office 365 che includono Office 365 ProPlus Estrarre hello [disponibilità all'interno di ogni piano di servizio](https://technet.microsoft.com/library/office-365-plan-options.aspx) tabella. Si noti che non tutti i piani dispongono di Office 365 ProPlus (ad esempio, piano di Office 365 Business hello). Se il piano, non è consigliabile effettuare l'aggiornamento piano tooa che esegue (ad esempio, Office 365 Education E3).
 
 ## <a name="ok-so-how-are-my-office-365-proplus-licenses-used-with-azure-remoteapp"></a>Uso delle licenze di Office 365 ProPlus con Azure RemoteApp
-Ogni licenza utente per Office 365 ProPlus consente a un singolo utente di attivare le applicazioni di Office in un massimo di 5 computer, oltre a tablet e telefoni. Ogni attivazione viene registrata con l'utente fino alla disattivazione di Office nel dispositivo. Gli utenti possono gestire i propri dispositivi nel [portale di Office 365](https://portal.office365.com/).
+Ogni licenza utente per Office 365 ProPlus consente a un singolo utente di attivare applicazioni di Office nel computer too5 plus Tablet e telefoni. Ogni attivazione è registrato con utente hello fino a quando non si disattiva Office sul dispositivo hello. (Gli utenti possono gestire i dispositivi in hello [portale di Office 365](https://portal.office365.com/).)
 
-Con RemoteApp di Azure un singolo utente può accedere in diversi computer nello stesso giorno inavvertitamente. Ciò avviene perché il servizio gestisce automaticamente e scala le risorse nel cloud, mentre l'utente visualizza solo le applicazioni e i programmi che sono stati condivisi. Per questo scenario Office 365 ProPlus offre una modalità di attivazione del computer condiviso - questo significa che l'utente non deve eseguire qualsiasi gestione della licenza per accedere a tali risorse e che i singoli computer non vengono conteggiati rispetto al limite di attivazione di 5 computer.
+Con Azure RemoteApp un singolo utente può accedere a diversi computer hello stesso giorno inavvertitamente. Ciò avviene perché il servizio hello ridimensiona le risorse nel cloud hello, mentre l'utente di hello Visualizza solo le app di hello e programmi che è stato condiviso e gestisce automaticamente. Per questo scenario di Office 365 ProPlus offre una modalità di attivazione di un computer condiviso, questo significa che l'utente non deve necessariamente toodo qualsiasi tooaccess gestione licenze tali risorse e che i singoli computer hello non vengono conteggiate nel limite di attivazione di hello 5 computer.
 
-Se, in qualità di amministratore, si assegnano agli utenti licenze di Office 365 ProPlus, gli utenti potranno usare Office nei propri dispositivi personali, nonché tramite la raccolta di Azure RemoteApp.
+Come è (salve) assegnare licenze di Office 365 ProPlus tooyour gli utenti, può usano Office dai propri dispositivi personali, nonché tramite la raccolta di Azure RemoteApp.
 
 ## <a name="which-office-applications-can-i-use-with-office-365-and-azure-remoteapp"></a>Applicazioni di Office che possono essere usate con Office 365 e Azure RemoteApp
-È possibile usare la sottoscrizione a Office 365 per attivare e condividere Office 2013 nelle distribuzioni di Azure RemoteApp. L'uso di altre versioni di Office con Azure RemoteApp non è attualmente supportato. Le versioni non supportate sono quindi Office 2003, Office 2007, Office 2010 e Office 2016.
+È possibile utilizzare il tooactivate sottoscrizione Office 365 e condivisione di Office 2013 in distribuzioni di Azure RemoteApp. È attualmente non supportano hello utilizzo di altre versioni di Office con Azure RemoteApp. Le versioni non supportate sono quindi Office 2003, Office 2007, Office 2010 e Office 2016.
 
 ## <a name="what-about-visio-pro-or-project-pro"></a>Informazioni su Visio Pro o Project Pro
-L'immagine di Office 365 ProPlus inclusa nella sottoscrizione di RemoteApp offre sia Visio Pro che Project Pro. Non è tuttavia possibile usare la sottoscrizione di Office 365 ProPlus per attivare questi programmi. Per ogni programma è prevista una licenza specifica. È possibile attivare questi programmi nel [portale di Office 365](https://portal.office365.com/). 
+immagine di Office 365 ProPlus Hello inclusi nella sottoscrizione di RemoteApp include Visio Pro e progetto Pro. Ma è possibile usare il tooactivate sottoscrizione Office 365 ProPlus tali programmi, hanno la propria licenza. È possibile attivarli in hello [portale di Office 365](https://portal.office365.com/). 
 
-Se non si prevede di usarli, non è necessario ottenere la licenza per questi programmi. È sufficiente attivare i programmi da usare e ignorare gli altri. I programmi verranno visualizzati comunque nell'immagine, ma non potranno essere usati. 
+Non è toolicense questi programmi se non si desidera toouse li. Attivare solo i programmi di hello toouse - desiderato e ignorare hello altri. Verrà comunque visualizzato nell'immagine di hello, ma non possono essere utilizzati. 
 
 ## <a name="how-do-i-get-started-with-office-365-and-azure-remoteapp"></a>Informazioni introduttive su Office 365 e Azure RemoteApp
-Dopo avere ottenuto informazioni dettagliate sulle licenze per Office 365, è possibile iniziare a usarlo con facilità in Azure RemoteApp:
+Ora che si conoscono i dettagli di hello delle licenze di Office 365, è possibile iniziare a utilizzarlo in Azure RemoteApp - è molto semplice:
 
-Quando si crea la raccolta di Azure RemoteApp, usare l'immagine di **Office 365 ProPlus (sottoscrizione necessaria)** .
+Quando si crea la raccolta RemoteApp di Azure, utilizzare hello **Office 365 ProPlus (è necessaria la sottoscrizione)** immagine.
 
 ![Immagine di Azure RemoteApp con Office 365 Pro Plus](./media/remoteapp-officesubscription/remoteapp-officeimage.png)
 
-Questa immagine contiene la versione più recente di Windows Server e Office 365 ProPlus. Dopo la configurazione della raccolta (incluse le app di pubblicazione), gli utenti dovranno semplicemente accedere ad Azure RemoteApp usando il proprio client RemoteApp e specificare le proprie credenziali di Office 365 per le app di Office. Le licenze vengono recapitate automaticamente, senza necessità di configurazione o gestione.
+Questa immagine contiene più recente di Windows Server e Office 365 ProPlus hello. Dopo la configurazione della raccolta (incluse le app di pubblicazione), gli utenti dovranno semplicemente accedere ad Azure RemoteApp usando il proprio client RemoteApp e specificare le proprie credenziali di Office 365 per le app di Office. Le licenze vengono recapitate automaticamente, senza necessità di configurazione o gestione.
 
 ## <a name="can-i-create-a-custom-image-with-office-365-proplus"></a>Possibilità di creare un'immagine personalizzata con Office 365 ProPlus
-È possibile creare un'immagine personalizzata per la raccolta che contiene Office 365 ProPlus. Sono disponibili due opzioni, ovvero l'uso dell'immagine della raccolta di Azure fornita o la creazione di un'immagine predefinita e l'installazione di Office 365 ProPlus in tale immagine.
+È possibile creare un'immagine personalizzata per la raccolta che contiene Office 365 ProPlus. Sono disponibili 2 opzioni: utilizzare hello Azure galleria che forniamo oppure è possibile creare un'immagine personalizzata e installare Office 365 ProPlus non esiste.
 
-### <a name="use-the-azure-gallery-image"></a>Usare l'immagine della raccolta di Azure
-Il modo più semplice per distribuire Office 365 ProPlus in una raccolta consiste nell' [iniziare con una delle immagini della raccolta di Azure](remoteapp-image-on-azurevm.md) incluse nella sottoscrizione di Azure RemoteApp. Assicurarsi di scegliere l'immagine relativa all' **host della sessione di Desktop remoto in Windows Server con Office 365 ProPlus preinstallato** . È quindi sufficiente installare eventuali altre app da includere nell'immagine.
+### <a name="use-hello-azure-gallery-image"></a>Utilizzare l'immagine della raccolta di Azure hello
+toodeploy modo più semplice di Hello raccolta tooa Office 365 ProPlus è troppo[iniziare con una delle immagini della raccolta di Azure hello](remoteapp-image-on-azurevm.md) incluso nella sottoscrizione Azure RemoteApp. Assicurarsi di scegliere hello **Windows Server Host sessione Desktop remoto con Office 365 ProPlus pre-installato** immagine. Quindi, installare le app da tale immagine e l'ora è toogo.
 
 ### <a name="use-a-custom-image"></a>Usare un'immagine personalizzata
-È sempre possibile creare un'immagine personalizzata, ovvero creare una [macchina virtuale di Azure](remoteapp-image-on-azurevm.md) o [creare l'immagine localmente](remoteapp-create-custom-image.md) e caricarla in Azure. In entrambi i casi, assicurarsi di installare Office 365 ProPlus usando il nodo di attivazione dei computer condivisi. Usare lo [Strumento di distribuzione di Office](http://blogs.technet.com/b/odsupport/archive/2014/07/11/using-the-office-deployment-tool.aspx) e seguire le [istruzioni](https://technet.microsoft.com/library/Dn782858.aspx) per l'installazione.  
+È sempre possibile creare un'immagine personalizzata, è possibile creare un [macchina virtuale di Azure](remoteapp-image-on-azurevm.md) o [creare hello immagine localmente](remoteapp-create-custom-image.md) e caricarlo tooAzure. In entrambi i casi, assicurarsi di installare Office 365 ProPlus tramite hello computer condiviso attivazione del nodo. Hello utilizzare [strumento di distribuzione di Office](http://blogs.technet.com/b/odsupport/archive/2014/07/11/using-the-office-deployment-tool.aspx) e seguire hello [istruzioni](https://technet.microsoft.com/library/Dn782858.aspx) per l'installazione.  
 
 ### <a name="disable-automatic-updates-for-office-365-proplus-in-your-custom-image---important"></a>Disabilitare gli aggiornamenti automatici per Office 365 ProPlus nell'immagine personalizzata. IMPORTANTE
-L'immagine personalizzata viene usata da Azure RemoteApp come modello per l'aggiunta di altre risorse per soddisfare l'incremento della domanda da parte degli utenti. Per evitare ritardi e problemi di connessione, disabilitare gli aggiornamenti automatici per Office nell'immagine. In caso contrario, ogni risorsa creata con tale modello verrà aggiornata automaticamente all'avvio. Usare invece il processo standard di Azure RemoteApp per l'aggiornamento dell'immagine personalizzata. Le applicazioni di Office verranno quindi aggiornate una volta nell'immagine del modello e gli aggiornamenti successivi verranno forniti automaticamente agli utenti da Azure RemoteApp.
+L'immagine personalizzata viene utilizzato come modello per l'aggiunta di risorse aggiuntive come richiesta hello dall'aumento di utenti da Azure RemoteApp. tooprevent ritardi e i problemi di connessione, disabilitare gli aggiornamenti automatici per Office nell'immagine di hello. In caso contrario, ogni risorsa creata con tale modello verrà aggiornata automaticamente all'avvio. Utilizzare invece il processo di Azure RemoteApp standard hello per l'aggiornamento di un'immagine personalizzata. In questo modo si aggiorna le applicazioni di Office hello su immagine modello hello e quindi fare in modo che Azure RemoteApp ottenere gli aggiornamenti di hello tooyour utenti.
 
-Per disabilitare gli aggiornamenti automatici, aggiungere il file di configurazione seguente allo Strumento di distribuzione di Office:
+toodisable aggiornamenti automatici, aggiungere i seguenti file di configurazione dello strumento di distribuzione di Office toohello hello:
 
         <Updates Enabled="FALSE" />
 
@@ -88,33 +88,33 @@ Il file di configurazione dovrebbe ora includere le righe seguenti:
         <Updates Enabled="FALSE" />
 
 ## <a name="so-how-can-i-update-an-image-with-office-365-proplus"></a>Modalità di aggiornamento di un'immagine con Office 365 ProPlus
-L'aggiornamento dell'immagine nella raccolta è necessario per molti motivi, tra cui i seguenti:
+Sono disponibili immagini di molti motivi tooupdate hello nella raccolta. tra cui i seguenti:
 
-* Ottenere gli aggiornamenti Windows più recenti 
-* Ottenere gli aggiornamenti più recenti per le applicazioni di Office 365 ProPlus
+* Ottenere gli aggiornamenti Windows più recenti di hello 
+* Ottenere hello aggiornamenti più recenti dell'applicazione di Office 365 ProPlus
 * Aggiornare l'app personalizzata
-* Modificare altre impostazioni di configurazione per l'immagine stessa
+* Modificare altre impostazioni di configurazione per l'immagine di hello stessa
 
-Per le procedure end-to-end per l'aggiornamento della raccolta in modo che venga usata l'immagine aggiornata, vedere [questa pagina](remoteapp-update.md). Per informazioni su come aggiornare l'immagine e Office 365 ProPlus, vedere di seguito.
+Per passaggi di hello end-to-end per l'aggiornamento dell'immagine di hello toouse raccolta è stato aggiornato, visitare [qui](remoteapp-update.md). Ma per informazioni su come tooupdate hello immagine e Office 365 ProPlus, consultare le seguenti informazioni hello.
 
 È possibile aggiornare l'immagine in due modi, ovvero sostituendo l'immagine con un'immagine completamente nuova oppure aggiornando l'immagine esistente.
 
-### <a name="replace-your-image-with-the-latest-azure-gallery-image--add-customizations"></a>Sostituire l'immagine con l'immagine più recente della raccolta di Azure e aggiungere personalizzazioni
-Questa opzione consente a Microsoft di eseguire automaticamente gli aggiornamenti di Windows Server e Office 365 ProPlus. Invece di aggiornare l'immagine esistente, verrà creata un'immagine completamente nuova basata sull'immagine più recente della raccolta. Sarà quindi necessario ripetere tutti i passaggi eseguiti in precedenza per personalizzare l'immagine, ovvero installare app personalizzate, modificare la configurazione dell'immagine e così via.
+### <a name="replace-your-image-with-hello-latest-azure-gallery-image--add-customizations"></a>Sostituire l'immagine con l'immagine della raccolta di Azure più recenti hello + Aggiungi personalizzazioni
+Con questa opzione fare in modo che Microsoft degli aggiornamenti di Windows Server e Office 365 ProPlus hello. Anziché aggiornare l'immagine esistente, si creerà un'immagine completamente nuova basata su immagine della raccolta hello più recente. Ripetere i passi in precedenza un'immagine di hello toocustomize: installare App personalizzate, modificare Configurazione immagine hello e così via.
 
-Le immagini della raccolta vengono aggiornate regolarmente, quindi si ha sempre la certezza che le app di Windows Server e Office 365 ProPlus siano sempre aggiornate. Ovviamente, lo svantaggio consiste nel fatto che sarà necessario applicare le personalizzazioni ogni volta che si ottiene una nuova immagine. È possibile creare script per automatizzare l'applicazione delle personalizzazioni.
+le immagini della Galleria Hello vengano regolarmente aggiornate, pertanto è possibile posizionare facile e sapere che le app di Windows Server e Office 365 ProPlus sono backup toodate. Naturalmente, compromesso hello è che è necessario tooapply le personalizzazioni ogni volta che si ottiene una nuova immagine. È possibile creare script tooautomate impostando le personalizzazioni.
 
 ### <a name="manually-update-your-existing-image"></a>Aggiornare manualmente l'immagine esistente
-Questa opzione prevede l'uso degli strumenti standard di Windows per applicare aggiornamenti all'immagine. Per Office 365 ProPlus, usare lo Strumento di distribuzione di Office per scaricare e installare gli aggiornamenti o le versioni più recenti di Office 365 ProPlus.
+Con questa opzione, si utilizza immagine toohello standard Windows strumenti tooapply gli aggiornamenti. Per Office 365 ProPlus, utilizzare toodownload strumento di distribuzione di Office hello e installare gli aggiornamenti più recenti di hello o le versioni di Office 365 ProPlus.
 
 > [!IMPORTANT]
-> Occorre ricordare di disabilitare gli aggiornamenti automatici di Office 365 ProPlus.
+> Nota: disabilitare gli aggiornamenti automatici di Office 365 ProPlus hello.
 > 
 > 
 
-Altre informazioni sull'uso dello Strumento di distribuzione di Office per gli aggiornamenti
+Per ulteriori informazioni sull'utilizzo di hello strumento di distribuzione di Office per gli aggiornamenti,
 
-* [Distribuire prodotti Office 365 a portata di clic tramite lo Strumento di distribuzione di Office](https://technet.microsoft.com/library/JJ219423.aspx)
-* [Distribuzione e aggiornamento di Office 365 ProPlus mediante lo Strumento di distribuzione di Office](https://channel9.msdn.com/Events/Ignite/2015/BRK3168) (video)
+* [Distribuire a portata di clic per i prodotti Office 365 tramite hello strumento di distribuzione di Office](https://technet.microsoft.com/library/JJ219423.aspx)
+* [Distribuzione e l'aggiornamento di Office 365 ProPlus tramite lo strumento di distribuzione di Office di hello](https://channel9.msdn.com/Events/Ignite/2015/BRK3168) (video)
 * [Configurare le impostazioni di aggiornamento di Office 365 ProPlus](https://technet.microsoft.com/library/dn761708.aspx)
 

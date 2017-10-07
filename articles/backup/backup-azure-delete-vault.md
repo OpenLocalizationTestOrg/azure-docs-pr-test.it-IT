@@ -1,6 +1,6 @@
 ---
 title: " Eliminare un insieme di credenziali dei servizi di ripristino in Azure | Microsoft Docs "
-description: "Procedura per eliminare un insieme di credenziali di Backup di Azure e dei Servizi di ripristino. Un insieme di credenziali di backup può essere definito come un insieme di credenziali cloud o un insieme di credenziali di ripristino di Azure. Risoluzione dei problemi quando non è possibile eliminare un insieme di credenziali di backup nel portale classico o nel portale di Azure."
+description: "Come toodelete un Backup di Azure e servizi di ripristino dell'insieme di credenziali. Un insieme di credenziali di backup può essere definito come un insieme di credenziali cloud o un insieme di credenziali di ripristino di Azure. Risoluzione dei problemi quando non è possibile eliminare un insieme di credenziali di backup nel portale classico hello o il portale di Azure."
 services: service-name
 documentationcenter: dev-center-name
 author: markgalioto
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/11/2017
 ms.author: markgal;trinadhk
-ms.openlocfilehash: ae4a73d12898c62fe2c5cf3683bc7c1c8c845fdf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9047f50f4b2c991fbf2454ddcad08073ec7cd975
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delete-a-recovery-services-vault"></a>Eliminare un insieme di credenziali dei servizi di ripristino
-Il servizio Backup di Azure presenta insiemi di credenziali di due tipi: l'insieme di credenziali per il backup e l'insieme di credenziali dei servizi di ripristino. L'insieme di credenziali per il backup è stato creato per primo. L'insieme di credenziali dei servizi di ripristino è stato creato in seguito per supportare le distribuzioni Resource Manager espanse. A causa delle funzionalità espanse e delle dipendenze delle informazioni che devono essere archiviate nell'insieme di credenziali, l'eliminazione di un insieme di credenziali di Backup o dei Servizi di ripristino può sembrare complessa. In questo articolo viene illustrato come eliminare gli insiemi di credenziali nel portale classico e nel portale di Azure.  
+Hello servizio Backup di Azure è disponibili due tipi di insiemi di credenziali - hello credenziali Backup e l'insieme di credenziali di servizi di ripristino hello. insieme di credenziali Backup Hello ordine di priorità. Quindi hello insieme di credenziali di servizi di ripristino avvento di distribuzioni di gestione risorse di toosupport hello espanso. A causa di hello funzionalità estese e le dipendenze di hello informazioni che devono essere archiviate nell'insieme di credenziali hello, l'eliminazione di un insieme di credenziali di Backup o i servizi di ripristino possono generare confusione. Questo articolo spiega come hello toodelete insiemi di credenziali nel portale classico hello e hello portale di Azure.  
 
 | **Tipo di distribuzione** | **Portale** | **Nome dell'insieme di credenziali** |
 | --- | --- | --- |
@@ -29,200 +29,200 @@ Il servizio Backup di Azure presenta insiemi di credenziali di due tipi: l'insie
 | Gestione risorse |Azure |Insieme di credenziali dei servizi di ripristino |
 
 > [!NOTE]
-> Le credenziali per il backup non consentono di proteggere le soluzioni distribuite con Resource Manager. Per proteggere le VM e i server distribuiti in modo tradizionale, è tuttavia possibile usare un insieme di credenziali dei servizi di ripristino.  
+> Le credenziali per il backup non consentono di proteggere le soluzioni distribuite con Resource Manager. Tuttavia, è possibile utilizzare un insieme di credenziali di servizi di ripristino tooprotect tradizionalmente distribuito i server e le macchine virtuali.  
 >
 
 > [!IMPORTANT]
-> È ora possibile aggiornare gli insiemi di credenziali di Backup ad insiemi di credenziali dei servizi di ripristino. Per altre informazioni, vedere l'articolo [Aggiornare un insieme di credenziali di Backup a un insieme di credenziali di Servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft consiglia di aggiornare gli insiemi di credenziali di Backup a insiemi di credenziali dei servizi di ripristino.<br/> Dopo il **15 ottobre 2017** non sarà più possibile usare PowerShell per creare insiemi di credenziali di backup. <br/> **A partire dal 1° novembre 2017**:
->- Eventuali insiemi di credenziali di Backup rimanenti verranno automaticamente aggiornati a insiemi di credenziali di servizi di ripristino
->- e non sarà più possibile accedere ai dati di backup nel portale classico. Sarà possibile invece usare il portale di Azure per accedere ai dati di backup negli insiemi di credenziali di servizi di ripristino.
+> È ora possibile aggiornare i servizi archivi di Backup gli insiemi di credenziali tooRecovery. Per informazioni dettagliate, vedere l'articolo hello [aggiornare un tooa insieme di credenziali di Backup dell'insieme di credenziali di servizi di ripristino](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft incoraggia gli utenti tooupgrade insiemi di credenziali di servizi tooRecovery insiemi di credenziali di Backup.<br/> **15 ottobre 2017**, non potrà più insiemi di credenziali Backup a toocreate toouse in grado di PowerShell. <br/> **A partire dal 1° novembre 2017**:
+>- Gli insiemi di credenziali di Backup rimanenti verrà automaticamente aggiornato tooRecovery servizi insiemi di credenziali.
+>- Si sarà in grado di tooaccess ai dati di backup nel portale classico hello. Utilizzare invece hello Azure tooaccess portale i dati di backup in insiemi di servizi di ripristino.
 >
 
-In questo articolo il termine insieme di credenziali viene usato per fare riferimento alla forma generica dell'insieme di credenziali per il backup o dell'insieme di credenziali dei servizi di ripristino. Il nome formale, ovvero insieme di credenziali per il backup o insieme di credenziali dei servizi di ripristino, viene usato quando è necessario distinguere tra gli insiemi di credenziali.
+In questo articolo, utilizziamo termine hello, insieme di credenziali, toorefer toohello di modulo generico dell'insieme di credenziali Backup hello o insieme di credenziali di servizi di ripristino. Utilizziamo nome formale hello, insieme di credenziali di Backup o insieme di credenziali di servizi di ripristino, quando è necessario toodistinguish tra insiemi di credenziali hello.
 
 ## <a name="deleting-a-recovery-services-vault"></a>Eliminazione di un insieme di credenziali dei servizi di ripristino
-L'eliminazione di un insieme di credenziali dei servizi di ripristino è un processo costituito da un solo passaggio, *purché l'insieme di credenziali non contenga risorse*. Prima di potere eliminare un insieme di credenziali dei servizi di ripristino, è necessario rimuovere o eliminare tutte le risorse nell'insieme di credenziali. Se si cerca di eliminare un insieme di credenziali contenente risorse, viene visualizzato un errore analogo a quello riportato nell'immagine seguente:
+L'eliminazione di un insieme di credenziali di servizi di ripristino è un processo in un solo passaggio - *fornito insieme di credenziali hello non contiene risorse*. Prima di poter eliminare un insieme di credenziali di servizi di ripristino, è necessario rimuovere o eliminare tutte le risorse nell'insieme di credenziali hello. Se si tenta di toodelete un insieme di credenziali che contiene le risorse, viene visualizzato un errore di hello seguente immagine:
 
 ![Errore di eliminazione dell'insieme di credenziali](./media/backup-azure-delete-vault/vault-deletion-error.png) <br/>
 
-Fino a quando non si cancellano le risorse dall'insieme di credenziali, la selezione di **Riprova** produce lo stesso errore. Se si rimane bloccati su questo messaggio di errore, fare clic su **Annulla** e seguire la procedura seguente per eliminare le risorse nell'insieme di credenziali.
+Fino a quando non è stata deselezionata risorse hello dall'insieme di credenziali hello, fare clic su **ripetere** produce hello lo stesso errore. Se è bloccato su questo messaggio di errore, fare clic su **Annulla** e utilizzare hello seguenti passaggi viene risorse hello toodelete nell'insieme di credenziali hello.
 
-### <a name="removing-the-items-from-a-vault-protecting-a-vm"></a>Rimozione degli elementi da un insieme di credenziali che protegge una VM
-Se l'insieme di credenziali dei servizi di ripristino è già aperto, procedere al secondo passaggio.
+### <a name="removing-hello-items-from-a-vault-protecting-a-vm"></a>Rimozione di elementi hello da un insieme di credenziali di protezione di una macchina virtuale
+Se si dispone già di servizi di ripristino hello aprire insieme di credenziali, ignorare toohello secondo passaggio.
 
-1. Aprire il portale di Azure e dal dashboard aprire l'insieme di credenziali da eliminare.
+1. Aprire il portale di Azure hello e aprire insieme di credenziali hello desiderato toodelete hello Dashboard.
 
-   Se l'insieme di credenziali dei servizi di ripristino non è stato aggiunto al dashboard, scegliere **More Services** (Altri servizi) dal menu Hub e nell'elenco di risorse digitare **Servizi di ripristino**. Non appena si inizia a digitare, l'elenco viene filtrato in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino**.
+   Se non si dispone dell'insieme di credenziali di servizi di ripristino hello bloccato toohello Dashboard, nel menu Hub hello, fare clic su **più servizi** e nell'elenco di hello delle risorse, digitare **servizi di ripristino**. Si inizia a digitare, hello filtri di elenco in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino**.
 
    ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-azure-delete-vault/open-recovery-services-vault.png) <br/>
 
-   Viene visualizzato l'elenco degli insiemi di credenziali dei servizi di ripristino. Selezionare dall'elenco l'insieme di credenziali da eliminare.
+   viene visualizzato l'elenco di Hello degli insiemi di credenziali di servizi di ripristino. Dall'elenco di hello, selezionare l'insieme di credenziali di hello desiderato toodelete.
 
    ![scegliere un insieme di credenziali dall'elenco](./media/backup-azure-work-with-vaults/choose-vault-to-delete.png)
-2. Nella visualizzazione dell'insieme di credenziali esaminare il riquadro **Informazioni di base** . Per eliminare un insieme di credenziali, è necessario che non siano presenti elementi protetti. Se viene visualizzato un numero diverso da zero in **Elementi di backup** o **Server di gestione di backup**, è necessario rimuovere questi elementi prima di potere eliminare l'insieme di credenziali.
+2. In hello credenziali vista, cercare in hello **Essentials** riquadro. toodelete un insieme di credenziali non possono essere presenti tutti gli elementi protetti. Se viene visualizzato un numero diverso da zero, in presenza di **elementi Backup** o **server di gestione di Backup**, è necessario rimuovere gli elementi prima di poter eliminare l'insieme di credenziali hello.
 
     ![Cercare gli elementi protetti nel riquadro Informazioni di base](./media/backup-azure-delete-vault/contoso-bkpvault-settings.png)
 
-    Le macchine virtuali e i file o le cartelle sono considerati elementi di backup e sono elencati nell'area **Elementi di backup** del riquadro Informazioni di base. Un server DPM viene elencato nell'area **Server di gestione di backup** del riquadro Informazioni di base. **Elementi replicati** sono relativi al servizio Azure Site Recovery.
-3. Per iniziare a rimuovere gli elementi protetti dall'insieme di credenziali, trovare gli elementi nell'insieme di credenziali. Nel dashboard dell'insieme di credenziali fare clic su **Impostazioni**, quindi su **Elementi di backup** per aprire il pannello.
+    Macchine virtuali e i file e cartelle sono considerate elementi di Backup e sono elencate in hello **elementi Backup** area del riquadro Essentials hello. Un server DPM è elencato in hello **il Server di gestione di Backup** area del riquadro Essentials hello. **Gli elementi replicati** riguardano toohello servizio Azure Site Recovery.
+3. rimozione di hello toobegin gli elementi protetti dall'insieme di credenziali hello, trovare gli elementi di hello nell'insieme di credenziali hello. Nel dashboard dell'insieme di credenziali hello fare clic su **impostazioni**, quindi fare clic su **Backup elementi** tooopen tale pannello.
 
     ![scegliere un insieme di credenziali dall'elenco](./media/backup-azure-delete-vault/open-settings-and-backup-items.png)
 
-    Il pannello **Elementi di backup** include elenchi separati, in base al tipo di elemento, macchine virtuali di Azure o file/cartelle, come illustrato nell'immagine. L'elenco Tipo di elemento visualizzato per impostazione predefinita è Macchine virtuali di Azure. Per visualizzare l'elenco di elementi di tipo file/cartelle nell'insieme di credenziali, selezionare **File-cartelle** dal menu a discesa.
-4. Prima di potere eliminare un elemento dall'insieme di credenziali che protegge una VM, è necessario arrestare il processo di backup ed eliminare i dati del punto di ripristino. Seguire questa procedura per ogni elemento dell'insieme di credenziali:
+    Hello **elementi Backup** blade dispone di elenchi separati, in base a tipo di elemento di hello: macchine virtuali di Azure o cartelle di File (vedere l'immagine). elenco di tipo di elemento predefinito Hello mostrato è macchine virtuali di Azure. elenco di hello tooview degli elementi di cartelle di File nell'insieme di credenziali hello, selezionare **File-cartelle** dal menu a discesa hello.
+4. Prima di poter eliminare un elemento dall'insieme di credenziali hello protegge una macchina virtuale, è necessario arrestare il processo di backup dell'elemento hello ed eliminare dati punto di ripristino hello. Per ogni elemento nell'insieme di credenziali hello, seguire questi passaggi:
 
-    a. Nel pannello **Elementi di backup** fare clic con il pulsante destro del mouse sull'elemento, quindi scegliere **Arresta backup** dal menu contestuale.
+    a. In hello **gli elementi di Backup** pannello rapida hello elemento e il menu di scelta rapida hello selezionare **Interrompi backup**.
 
-    ![arrestare il processo di backup](./media/backup-azure-delete-vault/stop-the-backup-process.png)
+    ![arrestare il processo di backup hello](./media/backup-azure-delete-vault/stop-the-backup-process.png)
 
-    Verrà visualizzato il pannello Arresta backup.
+    verrà visualizzata la finestra di blade Interrompi Backup Hello.
 
-    b. Nel pannello **Arresta backup** dal menu **Scegliere un'opzione** selezionare **Elimina i dati di backup** > immettere il nome dell'elemento > quindi fare clic su **Arresta backup**.
+    b. In hello **Interrompi Backup** pannello da hello **scegliere un'opzione** dal menu **Elimina dati di Backup** > nome hello del tipo di elemento di hello > e fare clic su **arrestare backup**.
 
-    Digitare il nome dell'elemento per confermare che si desidera eliminarlo. Il pulsante **Interrompi backup** si attiva dopo aver verificato l'elemento. Se la finestra di dialogo per l'immissione del nome dell'elemento di backup non viene visualizzata, è stata selezionata l'opzione **Conserva i dati di backup**.
+    Nome hello del tipo di elemento di hello, si desidera toodelete tooverify è. Hello **Interrompi Backup** pulsante attiva dopo aver verificato elemento hello. Se non è possibile visualizzare hello casella tootype hello nome della finestra di backup dell'elemento hello, si è scelto di hello **mantenere i dati di Backup** opzione.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/stop-backup-blade-delete-backup-data.png)
 
-    È facoltativamente possibile specificare un motivo per l'eliminazione dei dati e aggiungere commenti. Dopo avere selezionato **Arresta backup**, è necessario consentire il completamento del processo di eliminazione prima di provare a eliminare l'insieme di credenziali. Per verificare il completamento del processo, controllare i messaggi di Azure ![delete backup data](./media/backup-azure-delete-vault/messages.png). <br/>
-    Al termine del processo, verrà visualizzato un messaggio che indica che il processo di backup è stato arrestato e che i dati di backup per l'elemento specifico sono stati eliminati.
+    Facoltativamente, è possibile fornire un motivo perché si desidera eliminare i dati di hello e aggiungere un commento. Dopo aver fatto clic **Interrompi Backup**, consentire hello eliminazione processo toocomplete prima di tentare l'insieme di credenziali toodelete hello. tooverify che hello processo è stata completata, controllare i messaggi hello Azure ![Elimina dati di backup](./media/backup-azure-delete-vault/messages.png). <br/>
+    Una volta completato il processo di hello, viene visualizzato un messaggio hello processo di backup è stato arrestato e dati di backup hello, per tale elemento, è stati eliminati.
 
-    c. Dopo l'eliminazione di un elemento dall'elenco, scegliere **Aggiorna** dal menu **Elementi di backup** per visualizzare gli elementi rimanenti nell'insieme di credenziali.
+    c. Dopo l'eliminazione di un elemento nell'elenco hello in hello **elementi Backup** menu, fare clic su **aggiornamento** hello toosee elementi nell'insieme di credenziali hello.
 
       ![Elimina dati di backup](./media/backup-azure-delete-vault/empty-items-list.png)
 
-      Quando nell'elenco non sono presenti elementi, passare al riquadro **Informazioni di base** nel pannello Insieme di credenziali di backup. Nell'elenco non dovrebbero essere presenti **Elementi di backup**, **Server di gestione di backup** o **Elementi replicati**. Se nell'insieme di credenziali sono ancora presenti elementi, tornare al passaggio tre e scegliere un elenco di tipi di elementi diverso.  
-5. Quando sulla barra degli strumenti dell'insieme di credenziali non sono più presenti elementi, fare clic su **Elimina**.
+      Quando non esistono elementi nell'elenco di hello, scorrere toohello **Essentials** riquadro nel pannello dell'insieme di credenziali di Backup hello. Nell'elenco non dovrebbero essere presenti **Elementi di backup**, **Server di gestione di backup** o **Elementi replicati**. Se gli elementi vengono ancora visualizzati nell'insieme di credenziali hello, restituire toostep tre e scegliere un elenco di tipo di elemento diverso.  
+5. Quando non sono disponibili altri elementi sulla barra degli strumenti di hello insieme di credenziali, fare clic su **eliminare**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/delete-vault.png)
-6. Per confermare l'eliminazione dell'insieme di credenziali, fare clic su **Sì**.
+6. Fare clic su tooverify che si desidera l'insieme di credenziali hello toodelete **Sì**.
 
-    L'insieme di credenziali viene eliminato e il portale torna al menu **Nuovo** del servizio.
+    insieme di credenziali Hello viene eliminato e portale hello restituisce toohello **New** menu del servizio.
 
-## <a name="what-if-i-stopped-the-backup-process-but-retained-the-data"></a>Conseguenze dell'arresto del processo di backup e della conservazione dei dati
-Se si arresta il processo di backup ma si *conservano* accidentalmente i dati, per potere eliminare l'insieme di credenziali è necessario eliminare prima di tutto i dati di backup. Per eliminare i dati di backup:
+## <a name="what-if-i-stopped-hello-backup-process-but-retained-hello-data"></a>Cosa accade se si ha interrotto il processo backup di hello ma mantenuti dati hello?
+Se è stato interrotto il processo backup di hello ma accidentalmente *mantenuti* dati hello, è necessario eliminare i dati di backup hello prima di poter eliminare l'insieme di credenziali hello. dati di backup hello toodelete:
 
-1. Nel pannello **Elementi di backup** fare clic con il pulsante destro del mouse sull'elemento, quindi scegliere **Elimina dati di backup** dal menu contestuale.
+1. In hello **gli elementi di Backup** pannello rapida hello elemento e nel menu di scelta rapida hello fare clic su **Elimina dati di backup**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/delete-backup-data-menu.png)
 
-    Verrà visualizzato il pannello **Elimina dati di backup** .
-2. Nel pannello **Elimina dati di backup** immettere il nome dell'elemento e fare clic su **Elimina**.
+    Hello **Elimina dati di Backup** apre blade.
+2. In hello **Elimina dati di Backup** blade, nome hello del tipo di elemento di hello e fare clic su **eliminare**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/delete-retained-vault.png)
 
-    Dopo avere eliminato i dati, tornare al passaggio 4c e continuare con il processo.
+    Dopo avere eliminato dati hello, restituire toostep 4c e continuare il processo di hello.
 
-## <a name="delete-a-vault-used-to-protect-a-dpm-server"></a>Eliminare un insieme di credenziali usato per proteggere un server DPM
-Per potere eliminare un insieme di credenziali usato per proteggere un server DPM, è necessario cancellare prima di tutto eventuali punti di ripristino creati e quindi annullare la registrazione del server dall'insieme di credenziali.
+## <a name="delete-a-vault-used-tooprotect-a-dpm-server"></a>Eliminare tooprotect un insieme di credenziali utilizzato un server DPM
+Prima di poter eliminare tooprotect un insieme di credenziali utilizzato un server DPM, è necessario cancellare i punti di ripristino che sono stati creati e quindi annullare la registrazione di server hello dall'insieme di credenziali hello.
 
-Per eliminare i dati associati al gruppo di protezione:
+dati hello toodelete associati a un gruppo protezione dati:
 
-1. Nella Console amministrazione DPM fare clic su **Protezione** > selezionare un gruppo protezione dati > scegliere il membro del gruppo protezione dati > quindi fare clic su **Rimuovi** sulla barra multifunzione.
+1. Nella Console amministrazione DPM hello, fare clic su **protezione** > selezionare un gruppo protezione dati > selezionare hello membro del gruppo protezione > nella barra multifunzione dello strumento di hello, fare clic su **rimuovere**.
 
-  Selezionare il membro del gruppo protezione dati per attivare il pulsante **Rimuovi** nella barra multifunzione. Nell'esempio il nome del membro è **dummyvm9**. Per selezionare più membri nel gruppo protezione dati, tenere premuto il tasto CTRL e fare clic sui membri.
+  Hello tooactivate di membro del gruppo protezione dati selezionare hello **rimuovere** pulsante nella barra multifunzione dello strumento hello. Nell'esempio hello è membro di hello **dummyvm9**. tooselect più membri nel gruppo protezione dati hello, tenendo premuto Ctrl hello facendo clic su membri hello.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/az-portal-delete-protection-group.png)
 
-    Viene visualizzata la finestra di dialogo **Arresta protezione** .
-2. Nella finestra di dialogo **Arresta protezione** selezionare **Elimina dati protetti** e quindi fare clic su **Arresta protezione**.
+    Hello **Arresta protezione dati** verrà visualizzata la finestra di dialogo.
+2. In hello **Arresta protezione dati** finestra di dialogo Seleziona **Elimina dati protetti**, fare clic su **Arresta protezione dati**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/delete-dpm-protection-group.png)
 
-    Per eliminare un insieme di credenziali, è necessario cancellare o eliminare, i dati protetti dell'insieme di credenziali. In base al numero di punti di ripristino e alla quantità di dati presenti nel gruppo protezione dati, l'eliminazione dei dati potrebbe richiedere da qualche secondo ad alcuni minuti. La finestra di dialogo **Arresta protezione** mostra lo stato al completamento del processo.
+    toodelete un insieme di credenziali, è necessario cancellare o eliminare, insieme di credenziali hello i dati protetti. In base al numero di hello di punti di ripristino e i dati nel gruppo protezione dati hello, potrebbero essere necessari dai dati di alcuni secondi tooseveral minuti toodelete hello. Hello **Arresta protezione dati** finestra di dialogo Mostra lo stato di hello quando hello è stato completato.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/success-deleting-protection-group.png)
 3. Continuare questo processo per tutti i membri di tutti i gruppi di protezione.
 
     Rimuovere tutti i dati protetti e tutti i gruppi di protezione dati.
-4. Dopo avere eliminato tutti i membri dal gruppo di protezione, passare al portale di Azure. Aprire il dashboard dell'insieme di credenziali e assicurarsi che non siano presenti **Elementi di backup**, **Server di gestione di backup** o **Elementi replicati**. Sulla barra degli strumenti dell'insieme di credenziali fare clic su **Elimina**.
+4. Dopo aver eliminato tutti i membri dal gruppo protezione dati hello, passare toohello portale di Azure. Aprire il dashboard dell'insieme di credenziali hello e assicurarsi che vi siano non **elementi Backup**, **server di gestione di Backup**, o **gli elementi replicati**. Sulla barra degli strumenti dell'insieme di credenziali hello, fare clic su **eliminare**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/delete-vault.png)
 
-    Se nell'insieme di credenziali sono registrati server di gestione di backup, non sarà possibile eliminare l'insieme di credenziali anche se nell'insieme di credenziali non sono presenti dati. Se è già stata eseguita l'eliminazione dei server di gestione di backup associati all'insieme di credenziali, ma nel riquadro **Informazioni di base** vengono ancora visualizzati server, vedere [Trovare i server di gestione di backup registrati nell'insieme di credenziali](backup-azure-delete-vault.md#find-the-backup-management-servers-registered-to-the-vault).
-5. Per confermare l'eliminazione dell'insieme di credenziali, fare clic su **Sì**.
+    Se sono presenti credenziali toohello di Backup gestione i server registrati, è possibile eliminare l'insieme di credenziali hello anche se non sono presenti dati nell'insieme di credenziali hello. Se i server di gestione Backup hello associati all'insieme di credenziali hello è stata eliminata, ma sono presenti i server elencati in hello **Essentials** riquadro, vedere [trova hello Backup Gestione server toohello registrato dell'insieme di credenziali](backup-azure-delete-vault.md#find-the-backup-management-servers-registered-to-the-vault) .
+5. Fare clic su tooverify che si desidera l'insieme di credenziali hello toodelete **Sì**.
 
-    L'insieme di credenziali viene eliminato e il portale torna al menu **Nuovo** del servizio.
+    insieme di credenziali Hello viene eliminato e portale hello restituisce toohello **New** menu del servizio.
 
-## <a name="delete-a-vault-used-to-protect-a-production-server"></a>Eliminare un insieme di credenziali usato per proteggere un server di produzione
-Per potere eliminare un insieme di credenziali usato per proteggere un server di produzione, è prima di tutto necessario eliminare o annullare la registrazione del server dall'insieme di credenziali.
+## <a name="delete-a-vault-used-tooprotect-a-production-server"></a>Eliminare tooprotect un insieme di credenziali utilizzato un server di produzione
+Prima di poter eliminare tooprotect un insieme di credenziali utilizzato un server di produzione, è necessario eliminare o annullare la registrazione hello server dall'insieme di credenziali hello.
 
-Per eliminare il server di produzione associato all'insieme di credenziali:
+server di produzione hello toodelete associato all'insieme di credenziali hello:
 
-1. Nel portale di Azure aprire il dashboard dell'insieme di credenziali e fare clic su **Impostazioni** > **Infrastruttura di backup** > **Server di produzione**.
+1. Nel portale di Azure hello, aprire il dashboard dell'insieme di credenziali hello e fare clic su **impostazioni** > **Backup infrastruttura** > **server di produzione**.
 
     ![aprire il pannello Server di produzione](./media/backup-azure-delete-vault/delete-production-server.png)
 
-    Viene visualizzato il pannello **Server di produzione** , in cui sono elencati tutti i server di produzione presenti nell'insieme di credenziali.
+    Hello **server di produzione** pannello apre ed elenca tutti i server di produzione nell'insieme di credenziali hello.
 
     ![elenco di server di produzione](./media/backup-azure-delete-vault/list-of-production-servers.png)
-2. Nel pannello **Server di produzione** fare clic con il pulsante destro del mouse sul server e quindi scegliere **Elimina**.
+2. In hello **server di produzione** pannello destro del mouse sul server hello e fare clic su **eliminare**.
 
     ![eliminare il server di produzione ](./media/backup-azure-delete-vault/delete-server-on-production-server-blade.png)
 
-    Viene visualizzato il pannello **Elimina** .
+    Hello **eliminare** apre blade.
 
     ![eliminare il server di produzione ](./media/backup-azure-delete-vault/delete-blade.png)
-3. Nel pannello **Elimina** confermare il nome del server e fare clic su **Elimina**. È necessario immettere correttamente il nome del server per attivare il pulsante **Elimina**.
+3. In hello **eliminare** pannello, confermare il nome di server hello e fare clic su **eliminare**. Correttamente è necessario assegnare un nome server hello, hello tooactivate **eliminare** pulsante.
 
-    Dopo l'eliminazione dell'insieme di credenziali, si riceverà un messaggio che indica che l'insieme di credenziali è stato eliminato. Dopo l'eliminazione di tutti i server nell'insieme di credenziali, tornare al pannello Informazioni di base nel dashboard dell'insieme di credenziali.
-4. Nel dashboard dell'insieme di credenziali assicurarsi che non siano presenti **Elementi di backup**, **Server di gestione di backup** o **Elementi replicati**. Sulla barra degli strumenti dell'insieme di credenziali fare clic su **Elimina**.
-5. Per confermare l'eliminazione dell'insieme di credenziali, fare clic su **Sì**.
+    Una volta che l'insieme di credenziali hello viene eliminato, viene visualizzato un messaggio che informa dell'insieme di credenziali di hello è stato eliminato. Dopo l'eliminazione di tutti i server nell'insieme di credenziali hello, scorrere il riquadro Essentials toohello indietro nel dashboard dell'insieme di credenziali hello.
+4. Nel dashboard dell'insieme di credenziali hello, assicurarsi che vi siano non **elementi Backup**, **server di gestione di Backup**, o **gli elementi replicati**. Sulla barra degli strumenti dell'insieme di credenziali hello, fare clic su **eliminare**.
+5. Fare clic su tooverify che si desidera l'insieme di credenziali hello toodelete **Sì**.
 
-    L'insieme di credenziali viene eliminato e il portale torna al menu **Nuovo** del servizio.
+    insieme di credenziali Hello viene eliminato e portale hello restituisce toohello **New** menu del servizio.
 
 ## <a name="delete-a-backup-vault-in-classic-portal"></a>Eliminare un insieme di credenziali di backup nel portale classico
-Le istruzioni seguenti illustrano come eliminare un insieme di credenziali per il backup nel portale classico. Prima di poter eliminare l'insieme di credenziali di Backup, è necessario eliminare i punti di ripristino o gli elementi su cui è stato eseguito il backup e rimuovere i server registrati. I server registrati sono Windows Server, le workstation o le macchine virtuali che sono stati registrati nell'insieme di credenziali.
+Hello istruzioni che seguono sono per l'eliminazione di un insieme di credenziali di Backup nel portale classico hello. Prima di poter eliminare l'insieme di credenziali Backup hello, è necessario eliminare i punti di ripristino hello, o eseguito il backup degli elementi e rimuovere server hello registrato. Hello Server registrati sono hello Windows Server, workstation o macchine virtuali che sono stati registrati toohello insieme di credenziali.
 
-1. Aprire il [portale classico](https://manage.windowsazure.com).
+1. Aprire hello [portale classico](https://manage.windowsazure.com).
 
-2. Selezionare l'insieme di credenziali da eliminare dall'elenco di insiemi di credenziali di backup.
+2. Elenco di hello di insiemi di credenziali di backup, selezionare l'insieme di credenziali di hello desiderato toodelete.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-delete-vault-open-vault.png)
 
-    Viene aperto il dashboard dell'insieme di credenziali. Verificare il numero di macchine virtuali di Azure e/o server Windows associati all'insieme di credenziali. Verificare anche lo spazio di archiviazione totale utilizzato in Azure. Arrestare tutti i processi di backup ed eliminare tutti i dati prima di eliminare l'insieme di credenziali.
+    Apre il dashboard dell'insieme di credenziali di Hello. Esaminare il numero di hello delle macchine virtuali Windows Server e/o Azure associato all'insieme di credenziali hello. Inoltre, esaminare hello spazio di archiviazione totale utilizzato in Azure. Arrestare tutti i processi di backup ed eliminare tutti i dati prima di eliminare l'insieme di credenziali hello.
 
-3. Fare clic sulla scheda **Elementi protetti** e quindi su **Arresta protezione**.
+3. Fare clic su hello **elementi protetti** scheda e quindi fare clic su **Arresta protezione dati**
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-delete-vault-stop-protect.png)
 
-    Viene visualizzata la finestra di dialogo **Arresta la protezione di 'insieme di credenziali'** .
-4. Nella finestra di dialogo **Arresta la protezione di 'insieme di credenziali'** selezionare l'opzione **Elimina i dati di backup associati** e fare clic sul ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png). <br/>
+    Hello **arrestare la protezione di 'l'insieme di credenziali'** viene visualizzata la finestra.
+4. In hello **arrestare la protezione di 'l'insieme di credenziali'** finestra di dialogo, controllo **Elimina dati di backup associati** e fare clic su ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png). <br/>
     È facoltativamente possibile scegliere un motivo per l'arresto della protezione e aggiungere un commento.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-delete-vault-verify-stop-protect.png)
 
-    Dopo l'eliminazione degli elementi dall'insieme di credenziali, l'insieme di credenziali sarà vuoto.
+    Dopo l'eliminazione di elementi di hello nell'insieme di credenziali hello, insieme di credenziali hello sarà vuoto.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-delete-vault-post-delete-data.png)
-5. Nell'elenco di schede fare clic su **Elementi registrati**. Il menu a discesa **Tipo** consente di scegliere il tipo di server registrato nell'insieme di credenziali. Il tipo può essere Windows Server o una macchina virtuale di Azure. Nell'esempio seguente, selezionare la macchina virtuale registrata nell'insieme di credenziali e fare clic su **Annulla registrazione**.
+5. Nell'elenco di hello delle schede, fare clic su **elementi registrati**. Hello **tipo** dal menu a discesa, consente di digitare toochoose hello dell'insieme di credenziali toohello server registrato. tipo di Hello può essere Windows Server o macchina virtuale di Azure. Nell'esempio seguente di hello, selezionare l'insieme di credenziali registrati toohello hello macchina virtuale e fare clic su **Unregister**.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-unregister.png)
 
-  Se si desidera eliminare la registrazione per Windows Server, nel menu a discesa **Tipo** selezionare **Windows Server**, fare clic sul ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png) per aggiornare la schermata e quindi fare clic su **Elimina**. <br/>
+  Se si desidera registrazione hello toodelete per Windows Server, da hello **tipo** menu a discesa, seleziona **Windows Server**, fare clic su ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png) schermata Ciao toorefresh, e quindi fare clic su **eliminare**. <br/>
 
   ![selezionare Windows Server](./media/backup-azure-delete-vault/select-windows-server.png)
 
-6. Nell'elenco di schede fare clic su **Dashboard** per aprire la scheda corrispondente. Assicurarsi che non siano presenti macchine virtuali di Azure o server registrati protetti nel cloud. Verificare anche che la risorsa di archiviazione non includa dati. Fare clic su **Elimina** per eliminare l'insieme di credenziali.
+6. Nell'elenco di hello delle schede, fare clic su **Dashboard** tooopen che scheda. Verificare che non sono presenti server registrati o macchine virtuali di Azure protette nel cloud hello. Verificare anche che la risorsa di archiviazione non includa dati. Fare clic su **eliminare** insieme di credenziali toodelete hello.
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-list-of-tabs-dashboard.png)
 
-    Viene visualizzata la schermata di conferma Elimina insieme di credenziali di backup. Selezionare un'opzione corrispondente al motivo dell'eliminazione dell'insieme di credenziali e quindi fare clic su  ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png). <br/>
+    verrà visualizzata la schermata di conferma di Hello Backup Elimina insieme di credenziali. Selezionare un'opzione perché si vuole eliminare l'insieme di credenziali hello e fare clic su ![segno di spunta](./media/backup-azure-delete-vault/checkmark.png). <br/>
 
     ![Elimina dati di backup](./media/backup-azure-delete-vault/classic-portal-delete-vault-confirmation-1.png)
 
-    L'insieme di credenziali viene eliminato e si torna al dashboard del portale classico.
+    insieme di credenziali Hello viene eliminato, e si restituisce toohello dashboard del portale classico.
 
-### <a name="find-the-backup-management-servers-registered-to-the-vault"></a>Trovare i server di gestione di backup registrati nell'insieme di credenziali
-Se in un insieme di credenziali sono registrati più server, potrebbe essere difficile ricordarli. Per visualizzare i server registrati nell'insieme di credenziali ed eliminarli:
+### <a name="find-hello-backup-management-servers-registered-toohello-vault"></a>Trovare l'insieme di credenziali di hello Gestione Backup server registrati toohello
+Se si dispone di più server registrati tooa archivio, può essere difficile tooremember li. Server hello toosee registrato insieme di credenziali toohello ed eliminarli:
 
-1. Aprire il dashboard dell'insieme di credenziali.
-2. Nel riquadro **Informazioni di base** fare clic su **Impostazioni** per aprire il pannello corrispondente.
+1. Dashboard dell'insieme di credenziali hello aperto.
+2. In hello **Essentials** riquadro, fare clic su **impostazioni** tooopen tale pannello.
 
     ![aprire il pannello Impostazioni](./media/backup-azure-delete-vault/backup-vault-click-settings.png)
-3. Nel pannello **Impostazioni** fare clic su **Infrastruttura di backup**.
-4. Nel pannello **Infrastruttura di backup** fare clic su **Server di gestione di backup**. Viene aperto il pannello Server di gestione di backup.
+3. In hello **pannello impostazioni**, fare clic su **infrastruttura Backup**.
+4. In hello **Backup infrastruttura** pannello, fare clic su **il server di gestione di Backup**. verrà visualizzata la finestra di blade di Hello Server di gestione di Backup.
 
     ![elenco di server di gestione di backup](./media/backup-azure-delete-vault/list-of-backup-management-servers.png)
-5. Per eliminare un server dall'elenco, fare clic con il pulsante destro del mouse sul nome del server e quindi scegliere **Elimina**.
-    Viene visualizzato il pannello **Elimina** .
-6. Nel pannello **Elimina** specificare il nome del server. Se il nome è lungo, è possibile copiarlo e incollarlo dall'elenco di Server di gestione di backup. Fare quindi clic su **Elimina**.  
+5. toodelete un server dall'elenco di hello, fare doppio clic su nome hello del server di hello e quindi fare clic su **eliminare**.
+    Hello **eliminare** apre blade.
+6. In hello **eliminare** pannello, specificare il nome di hello del server di hello. Se è un nome lungo, è possibile copiare e incollare, dall'elenco di hello del server di gestione di Backup. Fare quindi clic su **Elimina**.  

@@ -1,6 +1,6 @@
 ---
-title: Eseguire la migrazione di un Azure Data Warehouse esistente all'archiviazione Premium | Microsoft Docs
-description: Istruzioni per la migrazione di un data warehouse esistente all'archiviazione Premium
+title: aaaMigrate i dati di Azure esistenti warehouse archiviazione toopremium | Documenti Microsoft
+description: Istruzioni per la migrazione di un'archiviazione toopremium esistente del data warehouse
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,19 +15,19 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 11/29/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 860e50b532b4b0a21d3be54f087730070b0e56bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 145199c2da1f6f1fb8898626cd04886c42d82204
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrate-your-data-warehouse-to-premium-storage"></a>Eseguire la migrazione di un data warehouse proprio all'archiviazione Premium
-Azure SQL Data Warehouse ha recentemente introdotto l'[archiviazione Premium per una maggiore prevedibilità delle prestazioni][premium storage for greater performance predictability]. I data warehouse esistenti attualmente inclusi nell'archiviazione Standard possono essere migrati all'archiviazione Premium. È possibile sfruttare la migrazione automatica oppure, se si preferisce controllare quando eseguire la migrazione (che prevede tempi di inattività), è possibile eseguire la migrazione manualmente.
+# <a name="migrate-your-data-warehouse-toopremium-storage"></a>Eseguire la migrazione di archiviazione del data warehouse toopremium
+Azure SQL Data Warehouse ha recentemente introdotto l'[archiviazione Premium per una maggiore prevedibilità delle prestazioni][premium storage for greater performance predictability]. Dati esistenti magazzini attualmente nell'archivio standard è ora possibile eseguire la migrazione archiviazione toopremium. È possibile sfruttare la migrazione automatica, oppure se si preferisce toocontrol quando toomigrate (che implicano tempi di inattività), è possibile eseguire hello migrazione manualmente.
 
-Se si hanno più data warehouse, usare la [pianificazione della migrazione automatica][automatic migration schedule] per determinare quando verrà eseguita la relativa migrazione.
+Se si dispone di più di un data warehouse, utilizzare hello [pianificazione migrazione automatica] [ automatic migration schedule] toodetermine quando verranno inoltre migrato.
 
 ## <a name="determine-storage-type"></a>Determinare il tipo di archiviazione
-Se il data warehouse è stato creato prima delle date riportate di seguito, si sta usando l'archiviazione Standard.
+Se è stato creato un data warehouse prima hello seguenti date, archiviazione standard attualmente in uso.
 
 | **Area** | **Data warehouse creato prima di questa data** |
 |:--- |:--- |
@@ -41,31 +41,31 @@ Se il data warehouse è stato creato prima delle date riportate di seguito, si s
 | Stati Uniti centro-settentrionali |10 novembre 2016 |
 
 ## <a name="automatic-migration-details"></a>Dettagli sulla migrazione automatica
-Per impostazione predefinita, la migrazione automatica del database verrà eseguita tra le 18.00 e le 06.00 ora locale dell'area di appartenenza, in base alla [pianificazione della migrazione automatica][automatic migration schedule]. Durante la migrazione non sarà possibile usare il data warehouse esistente. La migrazione richiederà circa un'ora per TB di archiviazione per ogni data warehouse. Durante il processo di migrazione automatica non verranno addebitati costi.
+Per impostazione predefinita, si verrà eseguita la migrazione del database è compreso tra 6:00 e le 6.00 nell'ora locale dell'area durante hello [pianificazione migrazione automatica][automatic migration schedule]. Il data warehouse esistente non sarà utilizzabile durante la migrazione di hello. migrazione Hello richiederà circa un'ora per terabyte di archiviazione per ogni del data warehouse. Non ti durante qualsiasi parte della migrazione automatica hello.
 
 > [!NOTE]
-> Al termine della migrazione, il data warehouse sarà di nuovo online e potrà essere riutilizzato.
+> Una volta completata la migrazione di hello, il data warehouse sarà nuovamente online e utilizzabile.
 >
 >
 
-Per completare la migrazione, Microsoft si atterrà alla seguente procedura (non è richiesto alcun intervento da parte dell'utente). In questo esempio, immaginare che il data warehouse esistente in archiviazione Standard sia attualmente denominato "MyDW".
+Microsoft sta diventando hello passaggi toocomplete hello migrazione (questi non richiedono alcun intervento da parte dell'utente). In questo esempio, immaginare che il data warehouse esistente in archiviazione Standard sia attualmente denominato "MyDW".
 
-1. Microsoft rinomina "MyDW" in "MyDW_DO_NOT_USE_[Timestamp]".
+1. Microsoft Rinomina "MyDW" troppo "MyDW_DO_NOT_USE_ [Timestamp]".
 2. Microsoft sospende "MyDW" in "MyDW_DO_NOT_USE_[Timestamp]". Nel mentre, viene eseguito il backup. In caso di problemi, il processo potrebbe essere sospeso e riprendere più volte.
-3. Microsoft crea un nuovo data warehouse denominato "MyDW" in archiviazione Premium dal backup eseguito al passaggio 2. "MyDW" non viene visualizzato fino al termine del processo di ripristino.
-4. Dopo aver completato il ripristino, "MyDW" torna alle stesse unità data warehouse e allo stato (sospeso o attivo) in cui si trovava prima della migrazione.
-5. Al termine della migrazione, Microsoft elimina "MyDW_DO_NOT_USE_[Timestamp]".
+3. Microsoft consente di creare un nuovo data warehouse, denominato "MyDW" in archiviazione premium da backup hello prese nel passaggio 2. "MyDW" non verranno visualizzati fino a dopo il ripristino di hello.
+4. Dopo il ripristino di hello, "MyDW" restituisce toohello stessi dati del data warehouse di unità e sullo stato (sospesa o attiva) in cui si trovava prima della migrazione hello.
+5. Al termine della migrazione hello, Microsoft eliminerà "MyDW_DO_NOT_USE_ [Timestamp]".
 
 > [!NOTE]
-> Le impostazioni seguenti non vengono mantenute come parte della migrazione:
+> Hello seguenti impostazioni non vengono trasferiti durante la migrazione di hello:
 >
-> * Il controllo a livello di database deve essere abilitato nuovamente.
-> * Le regole del firewall a livello di database devono essere aggiunte nuovamente. Le regole del firewall a livello di server non sono interessate.
+> * Il controllo a livello di database hello deve toobe nuovamente abilitata.
+> * Regole del firewall a livello di database hello necessario toobe aggiunto di nuovo. Regole del firewall a livello di server hello non sono interessate.
 >
 >
 
 ### <a name="automatic-migration-schedule"></a>pianificazione della migrazione automatica
-I processi di migrazione automatica vengono eseguiti tra le 18.00 e le 06.00 (ora locale per ogni area) durante la seguente pianificazione di interruzione del servizio.
+Migrazioni automatiche durante hello base alla pianificazione di interruzione tra 6:00 e 6:00:00 (ora locale per ogni area).
 
 | **Area** | **Data di inizio prevista** | **Data di fine prevista** |
 |:--- |:--- |:--- |
@@ -78,49 +78,49 @@ I processi di migrazione automatica vengono eseguiti tra le 18.00 e le 06.00 (or
 | Giappone occidentale |Non ancora determinata |Non ancora determinata |
 | Stati Uniti centro-settentrionali |9 gennaio 2017 |13 gennaio 2017 |
 
-## <a name="self-migration-to-premium-storage"></a>Migrazione self-service ad archiviazione Premium
-Se si preferisce mantenere il controllo sui tempi di inattività, è possibile attenersi alla procedura seguente per eseguire la migrazione di un data warehouse esistente da archiviazione Standard ad archiviazione Premium. Se si sceglie questa opzione, è necessario completare la migrazione self-service prima che inizi la migrazione automatica in tale area. Ciò consente di evitare che la migrazione automatica causi conflitti (vedere la [pianificazione della migrazione automatica][automatic migration schedule]).
+## <a name="self-migration-toopremium-storage"></a>Archiviazione toopremium migrazione automatica
+Se si desidera toocontrol quando si verifica il tempo di inattività, è possibile utilizzare hello seguire passaggi toomigrate un data warehouse esistente di archiviazione toopremium archiviazione standard. Se si sceglie questa opzione, è necessario completare la migrazione automatica hello prima di inizia la migrazione automatica hello in tale area. In questo modo di evitare i rischi della migrazione automatica di hello causando un conflitto (vedere toohello [pianificazione migrazione automatica][automatic migration schedule]).
 
 ### <a name="self-migration-instructions"></a>Istruzioni per la migrazione self-service
-Per migrare da sé il data warehouse, utilizzare le funzionalità di backup e ripristino. La parte della migrazione relativa al ripristino dovrebbe richiedere circa un'ora per TB di archiviazione per ogni data warehouse. Per mantenere lo stesso nome dopo il completamento della migrazione, seguire la [procedura di ridenominazione durante la migrazione][steps to rename during migration].
+toomigrate i dati del warehouse manualmente, utilizzano hello backup e ripristino funzionalità. parte relativa al ripristino Hello della migrazione hello è previsto tootake circa un'ora per terabyte di archiviazione per data warehouse di. Se si vuole hello tookeep stesso nome, al termine della migrazione, seguire hello [toorename passaggi durante la migrazione][steps toorename during migration].
 
 1. [Sospendere][Pause] il data warehouse. Questa operazione richiede un backup automatico.
 2. [Eseguire il ripristino][Restore] dallo snapshot più recente.
-3. Eliminare il data warehouse esistente in archiviazione Standard. **Se non viene eseguito questo passaggio, si riceverà l'addebito per entrambi i data warehouse.**
+3. Eliminare il data warehouse esistente in archiviazione Standard. **Se non si toodo questo passaggio, verrà addebitato entrambi i data warehouse.**
 
 > [!NOTE]
-> Le impostazioni seguenti non vengono mantenute come parte della migrazione:
+> Hello seguenti impostazioni non vengono trasferiti durante la migrazione di hello:
 >
-> * Il controllo a livello di database deve essere abilitato nuovamente.
-> * Le regole del firewall a livello di database devono essere aggiunte nuovamente. Le regole del firewall a livello di server non sono interessate.
+> * Il controllo a livello di database hello deve toobe nuovamente abilitata.
+> * Regole del firewall a livello di database hello necessario toobe aggiunto di nuovo. Regole del firewall a livello di server hello non sono interessate.
 >
 >
 
 #### <a name="rename-data-warehouse-during-migration-optional"></a>Rinominare il data warehouse durante la migrazione (facoltativa)
-Due database nello stesso server logico non possono avere lo stesso nome. SQL Data Warehouse ora supporta la possibilità di rinominare un data warehouse.
+Due database nella hello devono avere lo stesso server logico hello stesso nome. SQL Data Warehouse supporta ora la possibilità di hello toorename un data warehouse.
 
 In questo esempio, immaginare che il data warehouse esistente in archiviazione Standard sia attualmente denominato "MyDW".
 
-1. Rinominare "MyDW" utilizzando il seguente comando ALTER DATABASE. (In questo esempio, è necessario rinominarlo "MyDW_BeforeMigration.")  Questo comando arresta tutte le transazioni esistenti e, per avere esito positivo, deve essere eseguito nel database master.
+1. Rinominare "MyDW" utilizzando il comando ALTER DATABASE seguente hello. (In questo esempio, è possibile rinominarlo "MyDW_BeforeMigration.")  Questo comando Arresta tutte le transazioni esistenti e deve essere effettuato in hello toosucceed di database master.
    ```
    ALTER DATABASE CurrentDatabasename MODIFY NAME = NewDatabaseName;
    ```
 2. [Sospendere][Pause] "MyDW_BeforeMigration." Questa operazione richiede un backup automatico.
-3. [Reimpostare][Restore] dallo snapshot più recente un nuovo database con il nome solito (es. "MyDW").
-4. Eliminare "MyDW_BeforeMigration". **Se non viene eseguito questo passaggio, si riceverà l'addebito per entrambi i data warehouse.**
+3. [Ripristinare] [ Restore] dallo snapshot più recente di un nuovo database con nome hello e utilizzato toobe (ad esempio, "MyDW").
+4. Eliminare "MyDW_BeforeMigration". **Se non si toodo questo passaggio, verrà addebitato entrambi i data warehouse.**
 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Con il passaggio ad archiviazione Premium, il numero di file BLOB del database nell'architettura sottostante del data warehouse è aumentato. Per ottenere il massimo dei vantaggi delle prestazioni per questa modifica, ricreare gli indici columnstore cluster usando il seguente script. Lo script funziona forzando alcuni dei dati esistenti per i BLOB aggiuntivi. Se non viene eseguita alcuna azione, i dati vengono ovviamente ridistribuiti nel tempo mentre si caricano più dati nelle tabelle.
+Con hello modificare toopremium archiviazione, è necessario anche un maggior numero di file di database blob nell'architettura sottostante di hello del data warehouse. vantaggi per le prestazioni di questa modifica, toomaximize hello ricompilare gli indici columnstore cluster utilizzando lo script seguente hello. script di Hello funziona forzando alcuni dei blob aggiuntive toohello di dati esistente. Se viene eseguita alcuna azione, dati hello naturalmente ridistribuire nel tempo quando si caricano più dati in tabelle.
 
 **Prerequisiti:**
 
-- È necessario eseguire il data warehouse con almeno 1.000 unità data warehouse (vedere [Ridimensionare la potenza di calcolo][scale compute power]).
-- L'utente che esegue lo script deve essere nel [ruolo mediumrc][mediumrc role] o superiore. Per aggiungere un utente a questo ruolo, eseguire questo codice: ````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
+- Hello del data warehouse deve essere eseguito con le unità di 1.000 data warehouse o versione successiva (vedere [potenza di calcolo di scala][scale compute power]).
+- Hello utente l'esecuzione dello script hello deve trovarsi nella hello [mediumrc ruolo] [ mediumrc role] o versione successiva. un ruolo utente toothis tooadd eseguire hello:````EXEC sp_addrolemember 'xlargerc', 'MyUser'````
 
 ````sql
 -------------------------------------------------------------------------------
--- Step 1: Create table to control index rebuild
+-- Step 1: Create table toocontrol index rebuild
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 create table sql_statements
@@ -138,7 +138,7 @@ where
 go
 
 --------------------------------------------------------------------------------
--- Step 2: Execute index rebuilds. If script fails, the below can be re-run to restart where last left off.
+-- Step 2: Execute index rebuilds. If script fails, hello below can be re-run toorestart where last left off.
 -- Run as user in mediumrc or higher
 --------------------------------------------------------------------------------
 
@@ -160,19 +160,19 @@ drop table sql_statements;
 go
 ````
 
-In caso di problemi con il data warehouse, [creare un ticket di supporto][create a support ticket] e specificare la migrazione ad archiviazione Premium come possibile causa.
+Se si verificano problemi con il data warehouse, [creare un ticket di supporto] [ create a support ticket] e fare riferimento a "migrazione toopremium risorsa di archiviazione" causa possibile hello.
 
 <!--Image references-->
 
 <!--Article references-->
 [automatic migration schedule]: #automatic-migration-schedule
-[self-migration to Premium Storage]: #self-migration-to-premium-storage
+[self-migration tooPremium Storage]: #self-migration-to-premium-storage
 [create a support ticket]: sql-data-warehouse-get-started-create-support-ticket.md
 [Azure paired region]: best-practices-availability-paired-regions.md
 [main documentation site]: services/sql-data-warehouse.md
 [Pause]: sql-data-warehouse-manage-compute-portal.md#pause-compute
 [Restore]: sql-data-warehouse-restore-database-portal.md
-[steps to rename during migration]: #optional-steps-to-rename-during-migration
+[steps toorename during migration]: #optional-steps-to-rename-during-migration
 [scale compute power]: sql-data-warehouse-manage-compute-portal.md#scale-compute-power
 [mediumrc role]: sql-data-warehouse-develop-concurrency.md
 

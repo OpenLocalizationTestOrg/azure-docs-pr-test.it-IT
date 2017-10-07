@@ -1,6 +1,6 @@
 ---
-title: Informazioni su come usare il connettore Salesforce nelle app per la logica | Microsoft Docs
-description: Creare app per la logica con Servizio app di Azure. Il connettore Salesforce offre un'API per lavorare con gli oggetti Salesforce.
+title: aaaLearn toouse hello connettore Salesforce nelle App logica | Documenti Microsoft
+description: Creare app per la logica con Servizio app di Azure. Hello connettore Salesforce fornisce un'API toowork con gli oggetti di Salesforce.
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/05/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c2e2efd356382df9404f5c4ed54f24758b2cd22b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b14b41fa8a4648b4f0090472dc0f9575bf13a2ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-salesforce-connector"></a>Introduzione al connettore Salesforce
-Il connettore Salesforce offre un'API per lavorare con gli oggetti Salesforce.
+# <a name="get-started-with-hello-salesforce-connector"></a>Iniziare con il connettore Salesforce hello
+Hello connettore Salesforce fornisce un'API toowork con gli oggetti di Salesforce.
 
-Per usare [qualsiasi connettore](apis-list.md), è necessario innanzitutto creare un'app per la logica. Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
+toouse [i connettori](apis-list.md), è necessario innanzitutto toocreate un'app di logica. Come prima operazione [creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-to-salesforce-connector"></a>Connettersi al connettore Salesforce
-Perché l'app per la logica possa accedere a qualsiasi servizio, è necessario creare una *connessione* al servizio. Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.  
+## <a name="connect-toosalesforce-connector"></a>Collegare tooSalesforce connettore
+Prima che la logica app possa accedere a qualsiasi servizio, è necessario innanzitutto toocreate un *connessione* toohello servizio. Una [connessione](connectors-overview.md) fornisce la connettività tra un'app per la logica e un altro servizio.  
 
-### <a name="create-a-connection-to-salesforce-connector"></a>Creare una connessione al connettore Salesforce
-> [!INCLUDE [Steps to create a connection to Salesforce Connector](../../includes/connectors-create-api-salesforce.md)]
+### <a name="create-a-connection-toosalesforce-connector"></a>Creare un connettore tooSalesforce connessione
+> [!INCLUDE [Steps toocreate a connection tooSalesforce Connector](../../includes/connectors-create-api-salesforce.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-trigger"></a>Usare un trigger del connettore Salesforce
-Un trigger è un evento che può essere usato per avviare il flusso di lavoro definito in un'app per la logica. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un trigger è un evento che può essere utilizzato toostart flusso di lavoro hello definito in un'app di logica. [Altre informazioni sui trigger](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-> [!INCLUDE [Steps to create a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
+> [!INCLUDE [Steps toocreate a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
 > 
 > 
 
 ## <a name="add-a-condition"></a>Add a condition
-> [!INCLUDE [Steps to create a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
+> [!INCLUDE [Steps toocreate a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-action"></a>Usare un'azione del connettore Salesforce
-Un'azione è un'operazione eseguita dal flusso di lavoro e definita in un'app per la logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un'azione è un'operazione effettuata dal flusso di lavoro hello definito in un'app di logica. [Altre informazioni sulle azioni](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-> [!INCLUDE [Steps to create a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
+> [!INCLUDE [Steps toocreate a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
 > 
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/salesforce/). 
+Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/salesforce/). 
 
 ## <a name="next-steps"></a>Passaggi successivi
 [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md)

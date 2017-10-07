@@ -1,6 +1,6 @@
 ---
-title: Eseguire query in database cloud con schemi diversi | Documentazione Microsoft
-description: Informazioni su come configurare le query tra database su partizioni verticali.
+title: i database con schema diverso aaaQuery tra cloud | Documenti Microsoft
+description: come tooset le query tra database in partizioni verticali
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2016
 ms.author: torsteng
-ms.openlocfilehash: e9036f92f6c76e8c4738ee981efa8a7b9791dcc7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1134e2e608128b7a9cac47ff35a22a11e6e5bc14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="query-across-cloud-databases-with-different-schemas-preview"></a>Eseguire query in database cloud con schemi diversi (anteprima)
 ![Eseguire una query tra tabelle in vari database][1]
 
-I database con partizionamento verticale usano set di tabelle diversi su database diversi. Lo schema risulta quindi diverso nei diversi database. Ad esempio, tutte le tabelle per l'inventario si trovano in un database, mentre le tabelle correlate alla contabilità si trovano in un altro database. 
+I database con partizionamento verticale usano set di tabelle diversi su database diversi. Ciò significa che lo schema hello è diverso in database diversi. Ad esempio, tutte le tabelle per l'inventario si trovano in un database, mentre le tabelle correlate alla contabilità si trovano in un altro database. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-* L'utente deve disporre dell'autorizzazione ALTER ANY origine dei dati esterni. Questa autorizzazione è inclusa nell'autorizzazione ALTER DATABASE.
-* Per il riferimento all'origine dati sottostante sono necessarie autorizzazioni ALTER ANY EXTERNAL DATA SOURCE.
+* utente Hello deve disporre dell'autorizzazione ALTER ANY EXTERNAL DATA SOURCE. Questa autorizzazione è inclusa con l'autorizzazione ALTER DATABASE hello.
+* Le autorizzazioni ALTER ANY EXTERNAL DATA SOURCE sono necessari toorefer toohello origine dati sottostante.
 
 ## <a name="overview"></a>Panoramica
 
 > [!NOTE]
-> A differenza del partizionamento orizzontale, queste istruzioni DDL non dipendono dalla definizione di un livello dati con una mappa partizioni tramite la libreria client del database elastico.
+> A differenza con partizionamento orizzontale, queste istruzioni DDL non basarsi sulla definizione di un livello dati con una mappa partizioni tramite libreria client di database elastico hello.
 >
 
 1. [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx)
@@ -41,7 +41,7 @@ I database con partizionamento verticale usano set di tabelle diversi su databas
 4. [CREATE EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) 
 
 ## <a name="create-database-scoped-master-key-and-credentials"></a>Creare la chiave master e le credenziali con ambito database
-Le credenziali vengono usate dalla query elastica per connettersi ai database remoti.  
+Hello credenziali vengono utilizzate dal database remoti tooyour tooconnect query elastico hello.  
 
     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'password';
     CREATE DATABASE SCOPED CREDENTIAL <credential_name>  WITH IDENTITY = '<username>',  
@@ -49,7 +49,7 @@ Le credenziali vengono usate dalla query elastica per connettersi ai database re
     [;]
 
 > [!NOTE]
-> Assicurarsi che `<username>` non includa alcun suffisso **"@servername"**. 
+> Verificare che hello `<username>` non include alcun **"@servername"** suffisso. 
 >
 
 ## <a name="create-external-data-sources"></a>Creare origini dati esterne
@@ -64,11 +64,11 @@ Sintassi:
                 ) [;] 
 
 > [!IMPORTANT]
-> Il parametro TYPE deve essere impostato su **RDBMS**. 
+> è necessario impostare il parametro di tipo Hello troppo**RDBMS**. 
 >
 
 ### <a name="example"></a>Esempio
-Nell'esempio seguente viene illustrato l'utilizzo dell'istruzione CREATE per origini dati esterne. 
+Hello seguente viene illustrato hello utilizzo dell'istruzione CREATE hello per le origini dati esterne. 
 
     CREATE EXTERNAL DATA SOURCE RemoteReferenceData 
     WITH 
@@ -79,7 +79,7 @@ Nell'esempio seguente viene illustrato l'utilizzo dell'istruzione CREATE per ori
         CREDENTIAL= SqlUser 
     ); 
 
-Per recuperare l'elenco di origini dati esterne correnti: 
+elenco di hello tooretrieve delle origini dati esterne corrente: 
 
     select * from sys.external_data_sources; 
 
@@ -111,33 +111,33 @@ Sintassi:
            DATA_SOURCE = RemoteReferenceData 
     ); 
 
-Nell'esempio seguente viene illustrato come recuperare l'elenco di tabelle esterni dal database corrente: 
+Hello di esempio seguente viene illustrato come tooretrieve hello elenco di tabelle esterne dal database corrente hello: 
 
     select * from sys.external_tables; 
 
 ### <a name="remarks"></a>Osservazioni
-La query elastica estende la sintassi esistente della tabella esterna per definire le tabelle esterne che usano origini dati esterne di tipo RDBMS. Una definizione di tabella esterna per il partizionamento verticale comprende gli aspetti seguenti: 
+Query elastico estende hello tabella esterna sintassi toodefine esterno tabelle esistenti che utilizzano origini dati esterne di tipo RDBMS. Una definizione di tabella esterna per il partizionamento verticale copre hello seguenti aspetti: 
 
-* **Schema**: il DDL della tabella esterna definisce uno schema che può essere usato dalle query. Lo schema fornito nella definizione della tabella esterna deve corrispondere allo schema delle tabelle nel database remoto in cui sono archiviati i dati effettivi. 
-* **Riferimento al database remoto**: il DDL della tabella esterna fa riferimento a un'origine dati esterna. L'origine dati esterna specifica il nome del server logico e il nome del database remoto in cui sono archiviati i dati effettivi della tabella. 
+* **Schema**: tabella esterna hello DDL definisce uno schema che è possono utilizzare le query. schema di Hello fornito nella definizione della tabella esterna deve schema hello toomatch delle tabelle di hello nel database remoto di hello dove vengono archiviati dati effettivi hello. 
+* **Riferimento al database remoto**: tabella esterna hello DDL fa riferimento l'origine dati esterna tooan. origine dati esterna Hello Specifica nome del server logico hello e nome del database remoto di hello dove vengono archiviati i dati di tabella effettiva hello. 
 
-Se si usa un'origine dati esterna, come illustrato nella sezione precedente, la sintassi per la creazione di tabelle esterne è la seguente: 
+Le tabelle esterne hello sintassi toocreate utilizzando un'origine dati esterna, come descritto nella sezione precedente di hello, è come segue: 
 
-La clausola DATA_SOURCE definisce l'origine dati esterna, ovvero il database remoto nel caso del partizionamento verticale, usata per la tabella esterna.  
+clausola DATA_SOURCE Hello definisce l'origine dati esterna hello (ad esempio hello database remoto in caso di partizionamento verticale) che viene utilizzato per la tabella esterna hello.  
 
-Le clausole SCHEMA_NAME e OBJECT_NAME consentono di mappare la definizione della tabella esterna a una tabella in uno schema diverso sul database remoto o a una tabella con un nome diverso, rispettivamente. Ciò risulta utile se si vuole definire una tabella esterna per una vista del catalogo o una DMV nel database remoto o in qualsiasi altra situazione in cui il nome della tabella remota è già usato a livello locale.  
+le clausole nome_schema e nome_oggetto Hello forniscono hello possibilità toomap hello tabella esterna tooa tabella per la definizione in un altro schema nel database remoto hello o tooa tabella con un nome diverso, rispettivamente. Ciò è utile se si desidera toodefine una vista del catalogo tooa tabella esterna o DMV del database remoto, o qualsiasi altra situazione in cui il nome di tabella remota hello è già in uso in locale.  
 
-L'istruzione DDL seguente elimina una definizione di tabella esterna esistente da un catalogo locale. Non ha alcun impatto sul database remoto. 
+Hello istruzione DDL seguente elimina una definizione di tabella esterna esistente dal catalogo locale hello. Non influisce sulla database remoto hello. 
 
     DROP EXTERNAL TABLE [ [ schema_name ] . | schema_name. ] table_name[;]  
 
-**Autorizzazioni per CREATE/DROP EXTERNAL TABLE**: le autorizzazioni di tipo ALTER ANY EXTERNAL DATA SOURCE sono necessarie per il DDL di tabelle esterne, che è richiesto anche per fare riferimento all'origine dati sottostante.  
+**Le autorizzazioni per CREATE/DROP TABLE esterno**: sono necessarie le autorizzazioni ALTER ANY EXTERNAL DATA SOURCE per la tabella esterna DDL che è anche necessario toorefer toohello origine dei dati sottostante.  
 
 ## <a name="security-considerations"></a>Considerazioni relative alla sicurezza
-Gli utenti con accesso alla tabella esterna ottengono automaticamente l'accesso alle tabelle remote sottostanti con le credenziali specificate nella definizione dell'origine dati esterna. È necessario gestire con attenzione l'accesso alla tabella esterna, in modo da evitare l'elevazione indesiderata dei privilegi tramite le credenziali dell'origine dati esterna. È possibile usare le normali autorizzazioni SQL per CONCEDERE o REVOCARE l'accesso a una tabella esterna, come se fosse una tabella normale.  
+Gli utenti con una tabella esterna toohello di accesso accedere automaticamente toohello tabelle remote sottostanti in credenziali hello specificata nella definizione dell'origine dati esterna hello. È consigliabile gestire attentamente tabella esterna di accesso toohello elevazione tooavoid indesiderati di ordine dei privilegi tramite credenziali hello dell'origine dati esterna hello. Regolare autorizzazioni SQL possono essere utilizzato tooGRANT o tabella esterna tooan di revocare l'accesso come se fosse una normale tabella.  
 
 ## <a name="example-querying-vertically-partitioned-databases"></a>Esempio: esecuzione di query su database partizionati verticalmente
-La query seguente esegue un join a tre vie tra le due tabelle locali per gli ordini e le righe di ordine e la tabella remota per i clienti. Ecco un esempio di caso di utilizzo dei dati di riferimento per la query elastica: 
+Hello nella query seguente esegue un join a tre vie tra due tabelle locali hello per le righe dell'ordine e ordini e la tabella remota hello per i clienti. Questo è un esempio di hello caso d'uso di dati di riferimento per query elastico: 
 
     SELECT      
      c_id as customer,
@@ -155,14 +155,14 @@ La query seguente esegue un join a tre vie tra le due tabelle locali per gli ord
 
 
 ## <a name="stored-procedure-for-remote-t-sql-execution-spexecuteremote"></a>Stored procedure per l'esecuzione remota di T-SQL: sp\_execute_remote
-La query elastica introduce anche una stored procedure che fornisce l'accesso diretto alle partizioni. La stored procedure è denominata [sp\_execute \_remote](https://msdn.microsoft.com/library/mt703714) e può essere usata per eseguire stored procedure remote o codice T-SQL sui database remoti. È necessario specificare i seguenti parametri: 
+Query elastico introduce inoltre una stored procedure che fornisce accesso diretto toohello partizioni. Hello stored procedure viene chiamata [sp\_eseguire \_remoto](https://msdn.microsoft.com/library/mt703714) e può essere utilizzato tooexecute stored procedure remote o il codice T-SQL nel database remoto hello. Avrà hello seguenti parametri: 
 
-* Nome dell'origine dati (nvarchar): il nome dell'origine dati esterna di tipo RDBMS. 
-* Query (nvarchar): la query T-SQL da eseguire in ogni partizione. 
-* Dichiarazione del parametro (nvarchar) - Facoltativo: stringa con definizioni del tipo di dati per i parametri usati nel parametro della query, ad esempio sp_executesql. 
+* Nome dell'origine dati (nvarchar): nome hello dell'origine dati esterna hello di tipo RDBMS. 
+* Query (nvarchar): toobe query hello T-SQL eseguito su ogni partizione. 
+* Dichiarazione di parametro (nvarchar) - facoltativa: stringa con definizioni dei tipi di dati per i parametri di hello utilizzati nel parametro di Query hello (ad esempio sp_executesql). 
 * Elenco di valori dei parametri (facoltativo): elenco delimitato da virgole di valori dei parametri, ad esempio sp_executesql.
 
-La stored procedure sp\_execute\_remote usa l'origine dati esterna specificata nei parametri di chiamata per eseguire l'istruzione T-SQL inclusa nei database remoti. Usa le credenziali dell'origine dati esterna per connettersi al database di gestione shardmap e ai database remoti.  
+sp Hello\_eseguire\_remoto utilizza hello origine dati esterna cui hello chiamata parametri tooexecute hello dato istruzione T-SQL nel database remoto hello. Usa credenziali hello del database di gestione di hello dati esterni origine tooconnect toohello shardmap e database remoti hello.  
 
 Esempio: 
 
@@ -173,11 +173,11 @@ Esempio:
 
 
 ## <a name="connectivity-for-tools"></a>Connettività per gli strumenti
-È possibile usare le normali stringhe di connessione di SQL Server per connettere gli strumenti di Business Intelligence e di integrazione dei dati ai database nel server del database SQL per cui sono abilitate le query elastiche e sono state definite tabelle esterne. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. Fare quindi riferimento al database elastico sottoposto a query e alle relative tabelle esterne come se fosse un qualsiasi altro database di SQL Server a cui ci si può connettere con lo strumento. 
+È possibile utilizzare l'integrazione strumenti toodatabases di BI e i dati regolari tooconnect di stringhe di connessione SQL Server nel server di database di SQL Server hello con query elastico abilitato e le tabelle esterne definite. Assicurarsi che SQL Server sia supportato come origine dati per lo strumento. Fare riferimento a database elastico query toohello e le relative tabelle esterne come qualsiasi altro database di SQL Server si connetterà toowith dallo strumento. 
 
 ## <a name="best-practices"></a>Procedure consigliate
-* Assicurarsi che il database di endpoint della query elastica disponga di accesso al database remoto mediante l'abilitazione dell'accesso per i servizi di Azure nella rispettiva configurazione del firewall del database SQL. Assicurarsi anche che le credenziali fornite nella definizione dell'origine dati esterna possano accedere correttamente al database remoto e abbiano le autorizzazioni necessarie per accedere alla tabella remota.  
-* La query elastica funziona in modo ottimale per le query in cui la maggior parte dei calcoli può essere eseguita sui database remoti. In genere si ottengono le prestazioni migliori per le query tramite i predicati di filtro selettivo, che possono essere valutati sui database remoti, o mediante join che possono essere eseguiti completamente nel database remoto. Altri modelli di query potrebbero richiedere il caricamento di quantità elevate di dati dal database remoto e potrebbero offrire prestazioni ridotte. 
+* Assicurarsi di che database elastico query endpoint hello ha database remoto di accesso toohello abilitando l'accesso per i servizi di Azure la configurazione di firewall di database di SQL Server. Assicurarsi inoltre che credenziali hello fornita in dati esterni hello definizione di origine può accedere senza problemi nel database remoto hello e ha una tabella remota hello tooaccess autorizzazioni hello.  
+* Query elastico è ideale per le query in cui la maggior parte del calcolo hello possono essere eseguita nel database remoto hello. In genere, si ottiene hello migliori prestazioni di query con predicati di filtro selettivo che possono essere valutati sul database remoto hello o join che possono essere eseguite completamente nel database remoto hello. Altri modelli di query potrebbe essere necessario grandi quantità di tooload dei dati dal database remoto hello e potrebbero essere scarse. 
 
 ## <a name="next-steps"></a>Passaggi successivi
 

@@ -1,6 +1,6 @@
 ---
-title: Panoramica di Azure Mobile Engagement SDK per Web | Documentazione Microsoft
-description: Ultimi aggiornamenti e procedure relativi all'SDK per Web per Azure Mobile Engagement
+title: Panoramica di Mobile Engagement Web SDK aaaAzure | Documenti Microsoft
+description: "Hello procedure per hello Web SDK e gli aggiornamenti più recenti per Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: 770a83131a3e661771db50b22ce7de25b2d541cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e60a232b5eb2c41c405041a88e09d7137563513
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk"></a>Azure Mobile Engagement Web SDK
-Da qui è possibile visualizzare tutti i dettagli su come integrare Azure Mobile Engagement in un'app Web. Per fare una prova prima di iniziare con la propria app Web, vedere l' [esercitazione di 15 minuti](mobile-engagement-web-app-get-started.md).
+Iniziare da qui per tutti hello informazioni dettagliate su come toointegrate Azure Mobile Engagement in un'app web. Se si desidera toogive è un blocco try prima di iniziare con la propria app web, vedere il nostro [esercitazione di 15 minuti](mobile-engagement-web-app-get-started.md).
 
 ## <a name="integration-procedures"></a>Procedure di integrazione
-1. Informazioni su [come integrare Mobile Engagement in un'app Web](mobile-engagement-web-integrate-engagement.md).
-2. Per l'implementazione del piano di tag, vedere [come usare l'API avanzata di assegnazione tag di Mobile Engagement nella propria app Web](mobile-engagement-web-use-engagement-api.md).
+1. Informazioni su [come toointegrate Mobile Engagement in app web](mobile-engagement-web-integrate-engagement.md).
+2. Per l'implementazione del piano di tag, informazioni su [come toouse hello avanzate tag API nelle applicazioni web di Mobile Engagement](mobile-engagement-web-use-engagement-api.md).
 
 ## <a name="release-notes"></a>Note sulla versione
 ### <a name="202-10182016"></a>2.0.2 (18/10/2016)
 * Correzione di un problema di arresto anomalo nell'esplorazione privata (Safari).
 * Correzione di un problema di arresto anomalo nei browser con cookie disabilitati.
 
-Per tutte le versioni, vedere le [note sulla versione complete](mobile-engagement-web-release-notes.md).
+Per tutte le versioni, vedere hello [completare note sulla versione](mobile-engagement-web-release-notes.md).
 
 ## <a name="upgrade-procedures"></a>Procedure di aggiornamento
-### <a name="upgrade-from-121-to-200"></a>Aggiornamento da 1.2.1 a 2.0.0
-Le sezioni seguenti illustrano come eseguire la migrazione di un'integrazione di Mobile Engagement Web SDK dal servizio Capptain offerto da Capptain SAS a un'app di Azure Mobile Engagement. Se si esegue la migrazione da una versione precedente alla 1.2.1, visitare il sito Web di Capptain per eseguire prima la migrazione alla versione 1.2.1 e quindi applicare le procedure seguenti.
+### <a name="upgrade-from-121-too200"></a>Eseguire l'aggiornamento da 1.2.1 too2.0.0
+Hello nelle sezioni seguenti descrivono come toomigrate un'integrazione di Mobile Engagement Web SDK dal servizio Capptain hello, offerto Capptain SAS, app di Azure Mobile Engagement tooan. Se si esegue la migrazione da una versione precedente di 1.2.1, consultare hello Capptain sito Web toomigrate too1.2.1 prima e quindi applicare hello seguire le procedure seguenti.
 
-Questa versione di Mobile Engagement SDK per Web non supporta Samsung Smart TV, OperaTV, webOS o la funzionalità Reach.
+Questa versione di hello Mobile Engagement Web SDK non supporta TV Smart Samsung, Opera TV, webOS o funzionalità Reach hello.
 
 > [!IMPORTANT]
-> Capptain e Azure Mobile Engagement sono servizi diversi e le procedure seguente illustrano solo come eseguire la migrazione dell'app client. La migrazione di Mobile Engagement SDK per Web nell'app non comporta la migrazione dei dati dai server di Capptain a un server di Mobile Engagement.
+> Capptain e Azure Mobile Engagement non sono hello stesso servizio e seguire le procedure seguenti hello evidenzia solo come toomigrate hello app client. Migrazione hello Mobile Engagement Web SDK nell'applicazione hello non eseguirà la migrazione dei dati da un server di Mobile Engagement Capptain tooa server.
 > 
 > 
 
 #### <a name="javascript-files"></a>File JavaScript
-Sostituire il file capptain-sdk.js con il file azure-engagement.js e aggiornare di conseguenza le importazioni degli script.
+Sostituisci hello file capptain-sdk.js con hello azure engagement.js di file e aggiornare di conseguenza le importazioni di script.
 
 #### <a name="remove-capptain-reach"></a>Rimuovere Capptain Reach
-Questa versione di Mobile Engagement SDK per Web non supporta la funzionalità Reach. Se nell'applicazione è integrata la funzione Capptain Reach, rimuoverla.
+Questa versione di hello Mobile Engagement Web SDK non supporta funzionalità di copertura hello. Se è stata integrata Capptain Reach nell'applicazione, è necessario tooremove è.
 
-Rimuovere l'importazione di CSS Reach dalla pagina ed eliminare il relativo file con estensione css (per impostazione predefinita, capptain-reach.css).
+Rimuovere hello raggiungere CSS importazione dalla pagina ed eliminare file con estensione CSS correlati hello (capptain-reach.css, per impostazione predefinita).
 
-Eliminare le risorse di Reach seguenti: l'immagine di chiusura (per impostazione predefinita, capptain-close.png) e l'icona del marchio (per impostazione predefinita, capptain-notification-icon).
+Eliminare hello seguente di portata risorse: hello Chiudi immagine (capptain-close.png, per impostazione predefinita) e l'icona del marchio di hello (capptain--icona di notifica, per impostazione predefinita).
 
-Rimuovere l'interfaccia utente di Reach per le notifiche in-app. Il layout predefinito è simile al seguente:
+Rimuovere hello raggiungere dell'interfaccia utente per le notifiche nell'applicazione. layout predefinito Hello è simile al seguente:
 
     <!-- capptain notification -->
     <div id="capptain_notification_area" class="capptain_category_default">
@@ -72,7 +72,7 @@ Rimuovere l'interfaccia utente di Reach per le notifiche in-app. Il layout prede
       </div>
     </div>
 
-Rimuovere l'interfaccia utente di Reach per gli annunci Web, per gli annunci di testo e per i sondaggi. Il layout predefinito è simile al seguente:
+Rimuovere hello raggiungere dell'interfaccia utente per i sondaggi e gli annunci di testo e web. layout predefinito Hello è simile al seguente:
 
     <div id="capptain_overlay" class="capptain_category_default">
       <button id="capptain_overlay_close">x</button>
@@ -85,7 +85,7 @@ Rimuovere l'interfaccia utente di Reach per gli annunci Web, per gli annunci di 
       </div>
     </div>
 
-Rimuovere l'oggetto `reach` dalla configurazione, se esiste. L'aspetto sarà simile al seguente:
+Rimuovere hello `reach` oggetto dalla configurazione, se presente. L'aspetto sarà simile al seguente:
 
     window.capptain = {
       [...]
@@ -97,16 +97,16 @@ Rimuovere l'oggetto `reach` dalla configurazione, se esiste. L'aspetto sarà sim
 Rimuovere eventuali altre personalizzazioni di Reach, ad esempio le categorie.
 
 #### <a name="remove-deprecated-apis"></a>Rimuovere API deprecate
-Alcune delle API da Capptain sono deprecate in Mobile Engagement SDK per Web.
+Alcune API da Capptain sono deprecati in hello Web di Mobile Engagement SDK.
 
-Rimuovere eventuali chiamate alle API seguenti: `agent.connect`, `agent.disconnect`, `agent.pause` e `agent.sendMessageToDevice`.
+Rimuovere qualsiasi toohello chiamate API seguenti: `agent.connect`, `agent.disconnect`, `agent.pause`, e `agent.sendMessageToDevice`.
 
-Rimuovere i callback seguenti dalla configurazione di Capptain: `onConnected`, `onDisconnected`, `onDeviceMessageReceived` e `onPushMessageReceived`.
+Rimuovere uno dei seguenti callback dalla configurazione Capptain hello: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, e `onPushMessageReceived`.
 
 #### <a name="configuration"></a>Configurazione
-Mobile Engagement usa ora una stringa di connessione per configurare gli identificatori dell'SDK, ad esempio l'identificatore dell'applicazione.
+Engagement mobile Usa una connessione stringa tooconfigure SDK identificatori, ad esempio, identificatore dell'applicazione hello.
 
-Sostituire l'ID dell'applicazione con la stringa di connessione. Tenere presente che l'oggetto globale per le modifiche alla configurazione dell'SDK cambia da `capptain` a `azureEngagement`.
+Sostituire l'ID dell'applicazione hello con la stringa di connessione. Si noti l'oggetto globale hello di hello configurazione SDK cambierà da `capptain` troppo`azureEngagement`.
 
 Prima della migrazione:
 
@@ -122,12 +122,12 @@ Dopo la migrazione:
       [...]
     };
 
-La stringa di connessione per l'applicazione viene visualizzata nel portale di Azure.
+stringa di connessione Hello per l'applicazione viene visualizzato nel portale di Azure hello.
 
 #### <a name="javascript-apis"></a>API JavaScript
-L'oggetto JavaScript globale `window.capptain` è stato rinominato `window.azureEngagement`, ma è possibile usare l'alias `window.engagement` per le chiamate API. Non è possibile usare l'alias per definire la configurazione dell'SDK.
+oggetto JavaScript globale Hello `window.capptain` è stato rinominato `window.azureEngagement`, ma è possibile utilizzare hello `window.engagement` alias per le chiamate API. Non è possibile utilizzare questa configurazione di alias toodefine hello SDK.
 
 Ad esempio, `capptain.deviceId` diventa `engagement.deviceId`, `capptain.agent.startActivity` diventa `engagement.agent.startActivity` e così via.
 
-Se nell'applicazione Web è già stata integrata una versione precedente di Azure Mobile Engagement Web SDK, vedere le [procedure di aggiornamento](mobile-engagement-web-upgrade-procedure.md).
+Se è già stata integrata una versione precedente di hello Azure Mobile Engagement Web SDK nell'applicazione, consultare l'articolo sulla [procedure aggiornamento](mobile-engagement-web-upgrade-procedure.md).
 

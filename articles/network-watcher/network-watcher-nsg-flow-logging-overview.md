@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla registrazione dei flussi per i gruppi di sicurezza di rete con Network Watcher | Microsoft Docs
-description: "Questa pagina illustra come usare i log dei flussi dei gruppi di sicurezza di rete, una funzionalità di Azure Network Watcher"
+title: registrazione di tooflow aaaIntroduction per gruppi di sicurezza di rete con il Watcher di rete di Azure | Documenti Microsoft
+description: "Questa pagina viene illustrato come flusso NSG toouse registra una funzionalità del controllo di rete di Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: b7a9162d6c6219b6b1c51a49cd34b9616e9d3e8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da85e946147b14717144cb47d1c742057c6dfa24
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-flow-logging-for-network-security-groups"></a>Introduzione alla registrazione dei flussi per i gruppi di sicurezza di rete
+# <a name="introduction-tooflow-logging-for-network-security-groups"></a>Registrazione tooflow introduzione per gruppi di sicurezza di rete
 
-I log di flusso del gruppo di sicurezza di rete sono una funzionalità di Network Watcher che consente di visualizzare le informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Sono scritti in formato JSON e mostrano i flussi in ingresso e in uscita in base a regole, scheda di rete a cui si applica il flusso, informazioni su 5 tuple relative al flusso (IP di origine/destinazione, porta di origine/destinazione, protocollo), e se il traffico è consentito o meno.
+I registri del flusso di gruppo di sicurezza di rete sono una funzionalità del controllo di rete che consente di tooview informazioni sul traffico IP in entrata e in uscita tramite un gruppo di sicurezza di rete. Questi registri di flusso sono scritti in formato json e mostrano in uscita e i flussi in ingresso per ogni regola, hello flusso hello NIC applicato, 5 tuple informazioni sul flusso hello (origine/destinazione IP, porta di origine/destinazione, Protocol) e se hello traffico è stato consentito o negato.
 
-![Panoramica dei log dei flussi][1]
+![Panoramica dei log di flusso][1]
 
-Anche se i log dei flussi specificano come destinazione gruppi di sicurezza di rete, non vengono visualizzati come gli altri log. I log dei flussi vengono archiviati solo in un account di archiviazione e hanno un percorso di registrazione come quello dell'esempio seguente:
+Mentre il flusso di log di gruppi di sicurezza di rete di destinazione, non vengono visualizzati hello stesso come hello altri log. I log di flusso vengono archiviati solo all'interno di un account di archiviazione e il percorso di registrazione hello seguente come illustrato nell'esempio seguente hello:
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-Ai log dei flussi si applicano gli stessi criteri di conservazione degli altri log. Il criterio di conservazione dei log può essere impostato su un valore compreso tra 1 giorno e 365 giorni. Se non viene impostato alcun criterio di conservazione, i log vengono conservati per sempre.
+Hello stesso log tooflow di applicare i criteri di conservazione in altri log. Registri di disporre di criteri di conservazione che possono essere impostato da giorni too365 1 giorno. Se non è impostato un criterio di conservazione, hello registri vengono mantenuti sempre.
 
 ## <a name="log-file"></a>File di log
 
-I log dei flussi hanno più proprietà. L'elenco seguente indica le proprietà restituite nel log del flusso del gruppo di sicurezza di rete:
+I log dei flussi hanno più proprietà. Hello elenco riportato di seguito è riportato un elenco di proprietà hello che vengono restituiti all'interno del Registro di flusso NSG hello:
 
-* **time**: ora in cui l'evento è stato registrato.
+* **tempo** - tempo quando è stato registrato l'evento hello
 * **systemId**: ID risorsa del gruppo di sicurezza di rete.
-* **category**: categoria dell'evento, che è sempre NetworkSecurityGroupFlowEvent.
-* **resourceid**: ID risorsa del gruppo di sicurezza di rete.
+* **categoria** -categoria di hello dell'evento hello, questo è sempre possibile NetworkSecurityGroupFlowEvent
+* **ResourceID** -hello Id risorsa di hello NSG
 * **operationName**: sempre NetworkSecurityGroupFlowEvents.
-* **properties**: raccolta di proprietà del flusso.
-    * **Version**: numero di versione dello schema di eventi del log dei flussi.
+* **proprietà** -una raccolta di proprietà del flusso di hello
+    * **Versione** -numero di versione dello schema di eventi di flusso di Log hello
     * **flows**: raccolta di flussi. Questa proprietà ha più voci per regole diverse.
-        * **rule**: regola per cui vengono elencati i flussi.
+        * **regola** -regola per cui hello sono elencati i flussi
             * **flows**: raccolta di flussi.
-                * **mac**: indirizzo MAC della scheda di interfaccia di rete per la VM in cui è stato raccolto il flusso.
-                * **flowTuples**: stringa che contiene più proprietà per la tupla del flusso nel formato con valori separati da virgole.
-                    * **Time Stamp**: questo valore è il timestamp di quando si è verificato il flusso in formato UNIX EPOCH.
-                    * **Source IP**: IP di origine.
-                    * **Destination IP**: IP di destinazione.
-                    * **Source Port**: porta di origine.
-                    * **Destination Port**: porta di destinazione.
-                    * **Protocol**: protocollo del flusso. I valori validi sono **T** per TCP e **U** per UDP.
-                    * **Traffic Flow**: direzione del flusso del traffico. I valori validi sono **I** per traffico in ingresso e **O** per il traffico in uscita.
+                * **Mac** -hello indirizzo MAC di hello NIC per la macchina virtuale in cui vengono raccolti flusso hello hello
+                * **flowTuples** -stringa che contiene più proprietà per hello flusso tupla in formato delimitato da virgole
+                    * **Data e ora** -questo valore è timestamp hello di quando si è verificato il flusso di hello in formato epoca UNIX
+                    * **IP di origine** : hello IP di origine
+                    * **Destinazione IP** -hello IP di destinazione
+                    * **Porta di origine** : hello porta di origine
+                    * **Porta di destinazione** -hello porta di destinazione
+                    * **Protocollo** -hello protocollo del flusso di hello. I valori validi sono **T** per TCP e **U** per UDP.
+                    * **Traffico** -hello direzione del flusso di traffico hello. I valori validi sono **I** per traffico in ingresso e **O** per il traffico in uscita.
                     * **Traffic**: indica se il traffico è stato consentito o negato. I valori validi sono **A** per il traffico consentito e **D** per il traffico negato.
 
 
-Di seguito è riportato un esempio di log dei flussi. Come si può osservare, più record seguono l'elenco di proprietà descritto nella sezione precedente. 
+Hello Ecco un esempio di un flusso di log. Come si può notare, sono presenti più record che seguono l'elenco di proprietà hello descritto nella precedente sezione hello. 
 
 > [!NOTE]
-> I valori della proprietà flowTuples sono un elenco delimitato da virgole.
+> I valori nella proprietà flowTuples hello sono un elenco delimitato da virgole.
  
 ```json
 {
@@ -102,7 +102,7 @@ Di seguito è riportato un esempio di log dei flussi. Come si può osservare, pi
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come abilitare i log dei flussi, vedere [Enabling Flow logging](network-watcher-nsg-flow-logging-portal.md) (Abilitazione della registrazione dei flussi).
+Informazioni su modalità di registrazione tooenable flusso visitando [registrazione abilitazione flusso](network-watcher-nsg-flow-logging-portal.md).
 
 Per informazioni sulla registrazione dei Gruppi di sicurezza di rete, vedere [Analisi dei log per i gruppi di sicurezza di rete](../virtual-network/virtual-network-nsg-manage-log.md).
 

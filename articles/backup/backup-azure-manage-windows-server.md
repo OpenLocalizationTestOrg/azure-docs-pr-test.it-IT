@@ -1,6 +1,6 @@
 ---
-title: Gestire server e insiemi di credenziali di Servizi di ripristino di Azure | Microsoft Docs
-description: Usare questa esercitazione per imparare a gestire server e insiemi di credenziali dei servizi di ripristino di Azure.
+title: gli insiemi di credenziali e i server di servizi aaaManage Azure recovery | Documenti Microsoft
+description: Utilizzare questa esercitazione toolearn come insiemi di credenziali di servizi di ripristino di Azure toomanage e server.
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: markgal
-ms.openlocfilehash: 5922e308f5c205a07bd329c28322ae82cea0e1fa
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b4c35c86faa0828b3c63a13b85c095c0cbaba50e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-manage-azure-recovery-services-vaults-and-servers-for-windows-machines"></a>Monitorare e gestire i server e gli insiemi di credenziali dei servizi di ripristino di Azure per i computer Windows
 > [!div class="op_single_selector"]
@@ -27,52 +27,52 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-In questo articolo è disponibile una panoramica delle attività di gestione e monitoraggio dei backup disponibili tramite il portale di Azure e l'agente di Backup di Microsoft Azure. Questo articolo presuppone che sia già disponibile una sottoscrizione di Azure e che sia stato creato almeno un insieme di credenziali di Servizi di ripristino.
+In questo articolo vengono fornite una panoramica di hello gestione e Monitoraggio attività di backup disponibili tramite hello Azure portal e hello Microsoft Azure Backup agent. Questo articolo presuppone che sia già disponibile una sottoscrizione di Azure e che sia stato creato almeno un insieme di credenziali di Servizi di ripristino.
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
 
 ## <a name="open-a-recovery-services-vault"></a>Aprire un insieme di credenziali di Servizi di ripristino
 
-Il dashboard dell'insieme di credenziali di Servizi di ripristino visualizza i dettagli o attributi di un insieme di credenziali di Servizi di ripristino.
+dashboard dell'insieme di credenziali di servizi di ripristino Hello è possibile visualizzare i dettagli di hello o attributi di un insieme di credenziali di servizi di ripristino.
 
-1. Accedere al [portale di Azure](https://portal.azure.com/) usando la sottoscrizione di Azure.
-2. Nel menu Hub fare clic su **Altri servizi**.
+1. Accedi toohello [portale Azure](https://portal.azure.com/) tramite la sottoscrizione di Azure.
+2. Nel menu Hub hello, fare clic su **più servizi**.
 
     ![Aprire l'elenco degli insiemi di credenziali di Servizi di ripristino](./media/backup-azure-manage-windows-server/open-rs-vault-list.png) <br/>
 
-3. Si vuole aprire un insieme di credenziali di Servizi di ripristino. Nella finestra di dialogo, iniziare a digitare **Servizi di ripristino**. Non appena si inizia a digitare, l'elenco viene filtrato in base all'input. Fare clic su **Insiemi di credenziali dei servizi di ripristino** per visualizzare l'elenco degli insiemi di credenziali di Servizi di ripristino presenti nella sottoscrizione.
+3. Si desidera tooopen un insieme di credenziali di servizi di ripristino. Nella finestra di dialogo hello inizia a digitare **servizi di ripristino**. Si inizia a digitare, elenco hello verrà filtrato in base all'input. Fare clic su **insiemi di credenziali di servizi di ripristino** elenco hello toodisplay di servizi di ripristino di insiemi di credenziali nella sottoscrizione.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-azure-manage-windows-server/browse-to-rs-vaults-2.png) <br/>
 
-    Verrà visualizzato l'elenco degli insiemi di credenziali di Servizi di ripristino.
+    verrà visualizzato l'elenco di Hello degli insiemi di credenziali di servizi di ripristino.
 
     ![Creare un insieme di credenziali dei servizi di ripristino - Passaggio 1](./media/backup-azure-manage-windows-server/list-of-rs-vaults.png) <br/>
 
-4. Nell'elenco degli insiemi di credenziali di Servizi di ripristino selezionare il nome dell'insieme da aprire. Si apre il pannello del dashboard dell'insieme di credenziali dei servizi di ripristino.
+4. Dall'elenco di hello degli insiemi di credenziali, selezionare il nome di hello dell'archivio di servizi di ripristino si desidera tooopen hello. verrà visualizzata la finestra di blade dashboard dell'insieme di credenziali di Hello servizi di ripristino.
 
     ![Dashboard dell'insieme di credenziali dei servizi di ripristino](./media/backup-azure-manage-windows-server/rs-vault-blade.png) <br/>
 
-    Dopo aver aperto l'insieme di credenziali di Servizi di ripristino, provare una delle attività di monitoraggio o gestione.
+    Ora che è stata aperta l'insieme di credenziali di servizi di ripristino hello, provare a eseguire una delle attività di monitoraggio o la gestione di hello.
 
 ## <a name="monitor-backup-jobs-and-alerts"></a>Monitorare i processi di backup e gli avvisi
 
-I processi e gli avvisi vengono monitorati dal dashboard dell'insieme di credenziali dei servizi di ripristino, dove vengono visualizzati:
+Monitorare i processi e avvisi da hello servizi di ripristino dell'insieme di credenziali dashboard, in cui vedere:
 
 * Dettagli degli avvisi di backup
-* File e cartelle, oltre alle macchine virtuali di Azure protette nel cloud
+* I file e cartelle, nonché macchine virtuali di Azure protette nel cloud hello
 * Spazio di archiviazione totale utilizzato in Azure
 * Stato dei processi di backup
 
 ![Eseguire un backup delle attività del dashboard](./media/backup-azure-manage-windows-server/dashboard-tiles.png)
 
-Fare clic sulle informazioni in ogni riquadro per aprire il pannello associato dove si gestiscono le attività correlate.
+Fare clic su informazioni hello in ognuno di questi riquadri aprirà blade di hello associata sarà possibile gestire le attività correlate.
 
-Nella parte superiore del dashboard:
+Dall'alto hello di hello Dashboard:
 
 * Impostazioni: fornisce l'accesso alle attività di backup disponibili.
-* Backup: consente di eseguire il backup di nuovi file e cartelle (o VM di Azure) nell'insieme di credenziali dei servizi di ripristino.
-* Elimina: se un insieme di credenziali dei servizi di ripristino non è più in uso, è possibile eliminarlo per liberare spazio di archiviazione. L'opzione Elimina viene abilitata solo dopo l'eliminazione di tutti i server protetti dall'insieme di credenziali.
+* Insieme di credenziali di backup - consente il backup di nuovi file e cartelle (o macchine virtuali di Azure) toohello servizi di ripristino.
+* Delete - se l'insieme di credenziali dei servizi di un ripristino non è più utilizzato, è possibile eliminarla toofree spazio di archiviazione. Eliminazione è abilitata solo dopo aver eliminati tutti i server protetti dall'insieme di credenziali hello.
 
 ![Eseguire un backup delle attività del dashboard](./media/backup-azure-manage-windows-server/dashboard-tasks.png)
 
@@ -80,24 +80,24 @@ Nella parte superiore del dashboard:
 | Livello avviso | Avvisi inviati |
 | --- | --- |
 | Critico |Errore di backup, errore di ripristino |
-| Avviso |Backup completato con avvisi (quando non viene eseguito il backup di meno di cento file a causa di problemi di danneggiamento e viene completato il backup di più di un milione di file) |
+| Avviso |Backup completato con avvisi (quando meno di 100 file non sottoposti a backup a causa di problemi di toocorruption e più di un milione correttamente backup) |
 | Informazioni |None |
 
 ## <a name="manage-backup-alerts"></a>Gestire gli avvisi di backup
-Fare clic sul riquadro **Avvisi di backup** per aprire il pannello **Avvisi di backup** e gestire gli avvisi.
+Fare clic su hello **gli avvisi di Backup** riquadro tooopen hello **gli avvisi di Backup** blade e gestire gli avvisi.
 
 ![Avvisi di backup](./media/backup-azure-manage-windows-server/manage-backup-alerts.png)
 
-Il riquadro Avvisi di backup mostra il numero di:
+gli avvisi di Backup Hello Mostra riquadro hello numero di:
 
 * avvisi critici non risolti nelle ultime 24 ore
 * avvertenze non risolte nelle ultime 24 ore
 
-Fare clic su ogni collegamento per passare al pannello **Avvisi di backup** con una visualizzazione filtrata di questi avvisi (critici o avvertenze).
+Facendo clic su ognuno di questi collegamenti accetta toohello **gli avvisi di Backup** pannello con una visualizzazione filtrata di questi avvisi (critici o avvisi).
 
-Nel pannello Avvisi di backup è possibile:
+Dal pannello hello gli avvisi di Backup è:
 
-* Scegliere le informazioni appropriate da includere con gli avvisi.
+* Scegliere hello informazioni appropriate tooinclude con gli avvisi.
 
     ![Scegliere le colonne](./media/backup-azure-manage-windows-server/choose-alerts-colunms.png)
 * Filtrare gli avvisi per gravità, stato e ora di inizio/fine.
@@ -107,90 +107,90 @@ Nel pannello Avvisi di backup è possibile:
 
     ![Filtrare gli avvisi](./media/backup-azure-manage-windows-server/configure-notifications.png)
 
-Se si seleziona **Per ogni avviso** come frequenza per **Notifica**, nei messaggi di posta elettronica non vengono eseguiti raggruppamenti o riduzioni. Ogni avviso restituisce 1 notifica. Questa è l'impostazione predefinita e viene anche inviato immediatamente il messaggio di posta elettronica relativo alla risoluzione.
+Se **per ogni avviso** sia selezionato come hello **notifica** frequenza viene eseguita alcuna raggruppamento o la riduzione di messaggi di posta elettronica. Ogni avviso restituisce 1 notifica. Questo è l'impostazione predefinita hello e posta elettronica risoluzione hello viene inoltre inviato immediatamente.
 
-Se si seleziona **Riepilogo orario** come frequenza per **Notifica**, viene inviato all'utente un messaggio di posta elettronica che informa che sono presenti nuovi avvisi non risolti generati nell'ultima ora. Allo scadere dell'ora viene inviato un messaggio di posta elettronica relativo alla risoluzione.
+Se **Digest oraria** sia selezionato come hello **notifica** frequenza un messaggio di posta elettronica viene inviato utente toohello informa che non vi siano risolti nuovi avvisi generati in hello ultima ora. Viene inviato un messaggio di posta elettronica risoluzione alla fine hello ora hello.
 
-Possono essere inviati avvisi per i livelli di gravità seguenti:
+Gli avvisi possono essere inviati per hello seguenti livelli di gravità:
 
 * Critico
 * Avviso
 * Informazioni
 
-Per disattivare l'avviso, usare il pulsante **Disattiva** nel pannello dei dettagli del processo. Quando si fa clic su Disattiva, è possibile inserire note sulla risoluzione.
+Disattivare l'avviso di hello con hello **disattiva** pulsante nel Pannello di dettagli processo hello. Quando si fa clic su Disattiva, è possibile inserire note sulla risoluzione.
 
-Per scegliere le colonne da visualizzare nell'avviso, usare il pulsante **Scegli colonne** .
+Si scelgono le colonne di hello desiderato tooappear nell'ambito dell'avviso hello con hello **scegliere le colonne** pulsante.
 
 > [!NOTE]
-> Nel pannello **Impostazioni** si gestiscono gli avvisi di backup selezionando **Monitoraggio e report > Avvisi ed eventi > Avvisi di backup** e quindi facendo clic su **Filtro** o su **Configura notifiche**.
+> Da hello **impostazioni** pannello, gestire gli avvisi di backup selezionando **monitoraggio e report > avvisi ed eventi > avvisi di Backup** e quindi fare clic su **filtro** o ** Configurare le notifiche**.
 >
 >
 
 ## <a name="manage-backup-items"></a>Gestire gli elementi di backup
-Nel portale di gestione ora è disponibile la gestione dei backup locali. Nella sezione Backup del dashboard il riquadro **Elementi di backup** indica il numero di elementi di backup protetti per l'insieme di credenziali.
+È ora disponibile nel portale di gestione di hello la gestione dei backup in locale. Nella sezione Backup hello del dashboard hello hello **gli elementi di Backup** riquadro mostra il numero di hello degli elementi di backup protetto toohello insieme di credenziali.
 
-Fare clic su **File-cartelle** nel riquadro Elementi di backup.
+Fare clic su **File-cartelle** in hello riquadro gli elementi di Backup.
 
 ![Riquadro Elementi di backup](./media/backup-azure-manage-windows-server/backup-items-tile.png)
 
-Il pannello Elementi di backup si apre con il filtro impostato su File-cartella, dove è possibile vedere elencato ogni elemento di backup specifico.
+gli elementi di Backup Hello blade viene aperto con hello filtrare set tooFile-cartella in cui si verifica ogni backup specifico elemento elencati.
 
 ![Elementi di backup](./media/backup-azure-manage-windows-server/backup-item-list.png)
 
-Se si seleziona un elemento di backup specifico nell'elenco, vengono visualizzati i dettagli più importanti dell'elemento.
+Se si seleziona un elemento di backup specifico dall'elenco di hello, vedrai informazioni essenziali di hello per quell'elemento.
 
 > [!NOTE]
-> Nel pannello **Impostazioni** si gestiscono file e cartelle selezionando **Elementi protetti > Elementi di backup** e quindi scegliendo **File-Cartelle** dal menu a discesa.
+> Da hello **impostazioni** pannello gestire file e cartelle selezionando **elementi protetti > Backup elementi** e quindi selezionando **File-cartelle** da hello menu a discesa.
 >
 >
 
 ![Elementi di backup da Impostazioni](./media/backup-azure-manage-windows-server/backup-files-and-folders.png)
 
 ## <a name="manage-backup-jobs"></a>Gestire i processi di backup
-I processi di backup per i backup sia locali (quando il server locale esegue il backup in Azure) che di Azure sono visibili nel dashboard.
+I processi di backup per i backup di Azure e locale (quando è il server locale hello backup tooAzure) sono visibili nel dashboard di hello.
 
-Nella sezione Backup del dashboard il riquadro Processo di backup indica il numero di processi:
+Nella sezione di Backup del dashboard hello hello, riquadro di processo di Backup hello Mostra il numero di hello di processi:
 
 * in corso
-* non riusciti nelle ultime 24 ore
+* non è riuscita in hello ultime 24 ore.
 
-Per gestire i processi di backup, fare clic sul riquadro **Processi di backup** per aprire il pannello Processi di backup.
+toomanage processi di backup, fare clic su hello **i processi di Backup** riquadro, che apre il pannello di hello i processi di Backup.
 
 ![Elementi di backup da Impostazioni](./media/backup-azure-manage-windows-server/backup-jobs.png)
 
-Per modificare le informazioni disponibili nel pannello Processi di backup, usare il pulsante **Scegli colonne** nella parte superiore della pagina.
+Modificare le informazioni di hello disponibili nel Pannello di processi di Backup hello con hello **scegliere le colonne** pulsante nella parte superiore di hello della pagina hello.
 
-Usare il pulsante **Filtro** per scegliere tra File e cartelle e Backup macchina virtuale di Azure.
+Hello utilizzare **filtro** tooselect pulsante tra file e cartelle e i backup di macchina virtuale di Azure.
 
-Se i file e le cartelle di cui è stato eseguito il backup non vengono visualizzati, fare clic sul pulsante **Filtro** nella parte superiore della pagina e scegliere **File e cartelle** dal menu Tipo di elemento.
+Se non viene visualizzato stato eseguito il backup dei file e cartelle, fare clic su **filtro** pulsante nella parte superiore di hello della pagina hello e selezionare **file e cartelle** dal menu di tipo di elemento hello.
 
 > [!NOTE]
-> Nel pannello **Impostazioni** si gestiscono i processi di Backup selezionando **Monitoraggio e report > Processi > Processi di backup** e quindi scegliendo **File-Cartelle** dal menu a discesa.
+> Da hello **impostazioni** pannello, gestire i processi di backup selezionando **monitoraggio e report > processi > processi di Backup** e quindi selezionando **File-cartelle** elenco hello menu.
 >
 >
 
 ## <a name="monitor-backup-usage"></a>Monitorare l'utilizzo del backup
-Nella sezione Backup del dashboard, il riquadro Utilizzo del backup indica lo spazio di archiviazione usato in Azure. L'utilizzo dello spazio di archiviazione viene fornito per:
+Nella sezione di Backup del dashboard hello hello, riquadro di utilizzo di Backup hello Mostra archiviazione hello utilizzato in Azure. L'utilizzo dello spazio di archiviazione viene fornito per:
 
-* Utilizzo dello spazio di archiviazione con ridondanza locale nel cloud associato all'insieme di credenziali
-* Utilizzo dello spazio di archiviazione con ridondanza geografica nel cloud associato all'insieme di credenziali
+* Utilizzo dell'archiviazione con ridondanza locale associato all'insieme di credenziali hello del cloud
+* Utilizzo di memoria di archiviazione con ridondanza geografica cloud associato all'insieme di credenziali hello
 
 ## <a name="manage-your-production-servers"></a>Gestire i server di produzione
-Per gestire i server di produzione, fare clic su **Impostazioni**.
+Fare clic su server di produzione, toomanage **impostazioni**.
 
 In Gestisci fare clic su **Infrastruttura di backup > Server di produzione**.
 
-Il pannello Server di produzione elenca tutti i server di produzione disponibili. Fare clic su un server nell'elenco per aprire i dettagli del server.
+elenchi di blade Hello Server di produzione di tutti i server di produzione disponibili. Fare clic su un server di dettagli del server hello tooopen elenco hello.
 
 ![Elementi protetti](./media/backup-azure-manage-windows-server/production-server-list.png)
 
 
-## <a name="open-the-azure-backup-agent"></a>Aprire l'agente di Backup di Azure
-Aprire l'**agente di Backup di Microsoft Azure**. Per trovarlo, cercare nel computer *Backup di Microsoft Azure*.
+## <a name="open-hello-azure-backup-agent"></a>Agente di Backup di Azure aprire hello
+Aprire hello **Microsoft Azure Backup agent** (disponibili tramite la ricerca di computer per *Backup di Microsoft Azure*).
 
 ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/snap-in-search.png)
 
-Dalle **Azioni** disponibili a destra della console dell'agente di backup è possibile eseguire le attività di gestione seguenti:
+Da hello **azioni** disponibile all'indirizzo hello destra della console di agente di backup hello è eseguire hello seguenti attività di gestione:
 
 * Registra server
 * Pianificazione di un backup
@@ -200,65 +200,65 @@ Dalle **Azioni** disponibili a destra della console dell'agente di backup è pos
 ![Azioni della console dell'agente Backup di Microsoft Azure](./media/backup-azure-manage-windows-server/console-actions.png)
 
 > [!NOTE]
-> Per **ripristinare i dati**, vedere [Ripristinare file da un computer che esegue Windows Server o un client Windows](backup-azure-restore-windows-server.md).
+> troppo**Ripristina dati**, vedere [ripristinare i file tooa Windows server o computer client Windows](backup-azure-restore-windows-server.md).
 >
 >
 
-## <a name="modify-the-backup-schedule"></a>Modificare la pianificazione dei backup
-1. Nell'agente di Backup di Microsoft Azure fare clic su **Pianifica backup**.
+## <a name="modify-hello-backup-schedule"></a>Modifica pianificazione backup hello
+1. Nell'agente di Backup di Microsoft Azure hello fare clic su **pianifica Backup**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/schedule-backup.png)
-2. Nella **Pianificazione guidata backup** lasciare selezionata l'opzione **Modifica elementi o tempistica del backup** e fare clic su **Avanti**.
+2. In hello **pianificazione guidata Backup** lasciare hello **apportare modifiche toobackup elementi o tempistica** opzione selezionata e fare clic su **Avanti**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
-3. Per aggiungere o modificare elementi, nella schermata **Seleziona elementi per backup** fare clic su **Aggiungi elementi**.
+3. Se si desidera tooadd o modificare gli elementi, di hello **selezionare elementi tooBackup** fare clic su schermo **Aggiungi elementi**.
 
-    In questa pagina della procedura guidata è anche possibile specificare le **Impostazioni di esclusione** . Per escludere file o tipi di file, leggere la procedura per l'aggiunta di [impostazioni di esclusione](#manage-exclusion-settings).
-4. Selezionare i file e le cartelle di cui si vuole eseguire il backup e fare clic su **OK**.
+    È inoltre possibile impostare **impostazioni di esclusione** da questa pagina nella creazione guidata hello. Se si desidera che il file tooexclude o procedura hello per l'aggiunta di leggere i tipi di file [impostazioni di esclusione](#manage-exclusion-settings).
+4. Selezionare il file hello e le cartelle desidera ripristinare tooback e fare clic su **OK**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/add-items-modify.png)
-5. Specificare la **pianificazione del backup** e fare clic su **Avanti**.
+5. Specificare hello **pianificazione del backup** e fare clic su **Avanti**.
 
     È possibile pianificare backup giornalieri (non più di 3 al giorno) o settimanali.
 
     ![Elementi per il backup di Windows Server](./media/backup-azure-manage-windows-server/specify-backup-schedule-modify-close.png)
 
    > [!NOTE]
-   > Per informazioni dettagliate su come specificare la pianificazione del backup, vedere questo [articolo](backup-azure-backup-cloud-as-tape.md).
+   > Specifica la pianificazione del backup hello è illustrata in dettaglio in questo [articolo](backup-azure-backup-cloud-as-tape.md).
    >
 
-6. Selezionare i **criteri di conservazione** per la copia di backup e fare clic su **Avanti**.
+6. Seleziona hello **criteri di conservazione** copia di backup hello e fare clic su **Avanti**.
 
     ![Elementi per il backup di Windows Server](./media/backup-azure-manage-windows-server/select-retention-policy-modify.png)
-7. Nella schermata **Conferma** riesaminare le informazioni e fare clic su **Fine**.
-8. Al termine della creazione della **pianificazione del backup** da parte della procedura guidata, fare clic su **Chiudi**.
+7. In hello **conferma** schermata hello rivedere le informazioni e fare clic su **fine**.
+8. Al termine della creazione di hello guidata hello **pianificazione del backup**, fare clic su **Chiudi**.
 
-    Dopo aver modificato la protezione, è possibile verificare che i backup vengano attivati correttamente passando alla scheda **Processi** e assicurandosi che le modifiche siano presenti nei processi di backup.
+    Dopo la modifica della protezione, è possibile verificare che i backup attivano correttamente da passare toohello **processi** scheda e conferma che le modifiche vengono riflesse nel hello i processi di backup.
 
 ## <a name="enable-network-throttling"></a>Abilitare la limitazione della larghezza di banda della rete
 
-L'agente Backup di Azure offre la scheda Limitazione larghezza di banda rete che consente di controllare la modalità d'uso della larghezza di banda della rete durante il trasferimento dei dati. Questo controllo può essere utile se è necessario eseguire il backup dei dati durante l'orario di lavoro, ma senza che il processo di backup interferisca con il resto del traffico Internet. La limitazione del trasferimento dati si applica alle attività di backup e ripristino.  
+l'agente Azure Backup Hello fornisce una scheda di limitazione delle richieste che consente di toocontrol modalità di utilizzo della larghezza di banda di rete durante il trasferimento dei dati. Questo controllo può essere utile se è necessario tooback dei dati durante le ore lavorative, ma non si desidera hello toointerfere di processo di backup con il traffico internet. La limitazione delle richieste di dati trasferimento applica tooback backup e ripristino.  
 
-Per abilitare la limitazione della larghezza di banda della rete:
+tooenable limitazione:
 
-1. Nell'**agente di Backup** fare clic su **Modifica proprietà**.
-2. Nella scheda **Limitazione larghezza di banda rete selezionare **Abilita la limitazione all'utilizzo della larghezza di banda Internet per le operazioni di backup**.
+1. In hello **agente di Backup**, fare clic su **Modifica proprietà**.
+2. In hello * * limitazione scheda, selezionare **abilitare la limitazione per le operazioni di backup all'utilizzo della larghezza di banda di internet**.
 
     ![Limitazione della larghezza di banda della rete](./media/backup-azure-manage-windows-server/throttling-dialog.png)
 
-    Dopo aver abilitato la limitazione, specificare la larghezza di banda consentita per il trasferimento dei dati di backup durante le **Ore lavorative** e le **Ore non lavorative**.
+    Dopo aver abilitato la limitazione delle richieste, specificare hello consentito della larghezza di banda per trasferire i dati di backup durante **ore lavorative** e **ore Non lavorative**.
 
-    I valori della larghezza di banda partono da 512 kilobyte al secondo (Kbps) e possono arrivare fino a 1023 megabyte al secondo (Mbps). È anche possibile definire l'inizio e la fine per **Ore lavorative**e i giorni della settimana da considerare come giorni lavorativi. Le ore al di fuori delle ore lavorative specificate sono considerate non lavorative.
+    i valori di larghezza di banda Hello iniziano da 512 kilobyte per secondo (Kbps) e possono aumentare fino a too1023 megabyte al secondo (Mbps). È anche possibile designare inizio hello e di fine per **ore lavorative**, e i giorni della settimana hello vengono considerati lavoro giorni. tempo di Hello di fuori di hello designato per le ore lavorative è ore non lavorative toobe considerate.
 3. Fare clic su **OK**.
 
 ## <a name="manage-exclusion-settings"></a>Gestire le impostazioni di esclusione
-1. Aprire l'**agente di Backup di Microsoft Azure**. Per trovarlo, cercare nel computer *Backup di Microsoft Azure*.
+1. Aprire hello **Microsoft Azure Backup agent** (sarà possibile trovarlo cercando il computer per *Backup di Microsoft Azure*).
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/snap-in-search.png)
-2. Nell'agente di Backup di Microsoft Azure fare clic su **Pianifica backup**.
+2. Nell'agente di Backup di Microsoft Azure hello fare clic su **pianifica Backup**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/schedule-backup.png)
-3. Nella Pianificazione guidata backup lasciare selezionata l'opzione **Modifica elementi o tempistica del backup** e fare clic su **Avanti**.
+3. In Pianificazione guidata Backup hello lasciare hello **apportare modifiche toobackup elementi o tempistica** opzione selezionata e fare clic su **Avanti**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
 4. Fare clic su **Impostazioni di esclusione**.
@@ -267,10 +267,10 @@ Per abilitare la limitazione della larghezza di banda della rete:
 5. Fare clic su **Aggiungi esclusione**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/add-exclusion.png)
-6. Selezionare il percorso e quindi fare clic su **OK**.
+6. Selezionare il percorso di hello e quindi fare clic su **OK**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/exclusion-location.png)
-7. Aggiungere l'estensione di file nel campo **Tipo file** .
+7. Aggiungere l'estensione del file hello in hello **tipo di File** campo.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/exclude-file-type.png)
 
@@ -278,44 +278,44 @@ Per abilitare la limitazione della larghezza di banda della rete:
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/exclude-mp3.png)
 
-    Per aggiungere un'altra estensione, fare clic su **Aggiungi esclusione** e immettere l'estensione di un altro tipo di file, aggiungendo un'estensione jpeg.
+    tooadd un'altra estensione, fare clic su **Aggiunta esclusione** e immettere un'altra estensione del tipo di file (aggiunta di un'estensione JPEG).
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/exclude-jpg.png)
-8. Dopo aver aggiunto tutte le estensioni, fare clic su **OK**.
-9. Continuare con la Pianificazione guidata backup facendo clic su **Avanti** fino alla **pagina Conferma**, quindi fare clic su **Fine**.
+8. Dopo aver aggiunto tutte le estensioni di hello, fare clic su **OK**.
+9. Continuare il processo hello pianificazione guidata Backup fare clic su **Avanti** finché hello **pagina di conferma**, quindi fare clic su **fine**.
 
     ![Pianificare un backup di Windows Server](./media/backup-azure-manage-windows-server/finish-exclusions.png)
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
-**D1. Lo stato del processo di backup risulta completato nell'agente di Backup di Azure. Perché non è visibile immediatamente nel portale?**
+**Q1. stato del processo di backup Hello indicato come completato nel hello agente Azure backup, perché non vengono riflesse immediatamente nel portale?**
 
-R1. C'è un ritardo massimo di 15 minuti tra lo stato del processo di backup visibile nell'agente di Backup di Azure e nel portale di Azure.
+R1. Si è in ritardo massimo di 15 minuti tra lo stato del processo di backup hello applicata hello agente Azure backup e hello portale di Azure.
 
-**D.2 Quando un processo di backup non riesce, quanto tempo passa prima che venga generato un avviso?**
+**Q.2 quando un processo di backup non riesce, quanto tempo occorre tooraise un avviso?**
 
-R.2 Un avviso viene generato entro 20 minuti dall'errore di backup di Azure.
+All'interno di 20 minuti di hello Azure backup non riusciti, viene generato un avviso. 2.
 
 **D3. Esiste un caso in cui non viene inviato un messaggio di posta elettronica se le notifiche sono configurate?**
 
-R3. Di seguito sono indicati i casi in cui la notifica non verrà inviata per ridurre la frequenza degli avvisi:
+R3. Di seguito sono casi hello quando non verrà inviate notifiche hello nella frequenza degli avvisi hello tooreduce ordine:
 
-* Se le notifiche sono configurate su base oraria e un avviso viene generato e risolto entro l'ora
+* Se le notifiche sono configurate ogni ora e un avviso viene generato e risolto entro ora hello
 * Il processo viene annullato.
 * Secondo processo di backup non riuscito perché è in corso il processo di backup originale.
 
 ## <a name="troubleshooting-monitoring-issues"></a>Risoluzione dei problemi di monitoraggio
-**Problema:** i processi e/o gli avvisi generati dall'agente di Backup di Azure non vengono visualizzati nel portale.
+**Problema:** processi e/o gli avvisi generati da agente Azure Backup hello non vengono visualizzati nel portale di hello.
 
-**Procedura per la risoluzione del problema:** il processo, ```OBRecoveryServicesManagementAgent```, viene usato per inviare i dati dei processi e degli avvisi al servizio Backup di Azure. A volte questo processo può risultare danneggiato o arrestato.
+**Risoluzione dei problemi:** hello processo ```OBRecoveryServicesManagementAgent```, invia hello processo e avviso dati toohello servizio Azure Backup. A volte questo processo può risultare danneggiato o arrestato.
 
-1. Per controllare se il processo si è arrestato, aprire **Gestione attività** e controllare se il processo ```OBRecoveryServicesManagementAgent``` è in esecuzione.
-2. Se il processo non è in esecuzione, aprire il **Pannello di controllo** e sfogliare l'elenco dei servizi. Avviare o riavviare **Agente di gestione di Servizi di ripristino di Microsoft Azure**.
+1. il processo di hello tooverify non è in esecuzione, aprire **Task Manager** e verificare se hello ```OBRecoveryServicesManagementAgent``` processo è in esecuzione.
+2. Supponendo che il processo di hello non è in esecuzione, aprire **Pannello di controllo** e visualizzare hello elenco dei servizi. Avviare o riavviare **Agente di gestione di Servizi di ripristino di Microsoft Azure**.
 
-    Per altre informazioni, sfogliare i log in:<br/>
+    Per ulteriori informazioni, visitare registri hello:<br/>
    `<AzureBackup_agent_install_folder>\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider*` Ad esempio:<br/>
    `C:\Program Files\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider0.errlog`
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Ripristino di Windows Server o Windows Client da Azure](backup-azure-restore-windows-server.md)
-* Per altre informazioni sul servizio Backup di Azure, vedere [Panoramica di Backup di Azure](backup-introduction-to-azure-backup.md)
-* Visitare il [Forum su Backup di Azure](http://go.microsoft.com/fwlink/p/?LinkId=290933)
+* toolearn ulteriori informazioni sui Backup di Azure, vedere [Cenni preliminari su Backup di Azure](backup-introduction-to-azure-backup.md)
+* Visitare hello [Forum di Azure Backup](http://go.microsoft.com/fwlink/p/?LinkId=290933)

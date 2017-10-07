@@ -1,6 +1,6 @@
 ---
-title: Replicare le macchine virtuali Hyper-V in Azure nel portale classico con PowerShell | Documentazione Microsoft
-description: Automatizzare la replica delle macchine virtuali Hyper-V nei cloud VMM usando Azure Site Recovery e PowerShell nel portale classico
+title: aaaReplicate tooAzure di macchine virtuali Hyper-V nel portale classico di hello con PowerShell | Documenti Microsoft
+description: Automatizzare la replica delle macchine virtuali Hyper-V nei cloud VMM tramite il ripristino del sito e PowerShell nel portale classico hello hello
 services: site-recovery
 documentationcenter: 
 author: bsiva
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: bsiva
-ms.openlocfilehash: 581daaaa5cc0cf8be782f834c6bdb3f27ee413fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d6847b46ac227209e6890de4ab603b23f827360f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-hyper-v-vms-to-azure-with-powershell-in-the-classic-portal"></a>Replicare le macchine virtuali Hyper-V in Azure con PowerShell nel portale classico
+# <a name="replicate-hyper-v-vms-tooazure-with-powershell-in-hello-classic-portal"></a>Replicare tooAzure macchine virtuali Hyper-V con PowerShell nel portale classico hello
 > [!div class="op_single_selector"]
 > * [Portale di Azure](site-recovery-vmm-to-azure.md)
 > * [PowerShell - Gestione risorse](site-recovery-vmm-to-azure-powershell-resource-manager.md)
@@ -29,17 +29,17 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-## <a name="overview"></a>Overview
-Azure Site Recovery favorisce la strategia di continuità aziendale e ripristino di emergenza (BCDR) gestendo la replica, il failover e il ripristino delle macchine virtuali in diversi scenari di distribuzione. Per un elenco completo degli scenari di distribuzione, vedere [Panoramica di Azure Site Recovery](site-recovery-overview.md).
+## <a name="overview"></a>Panoramica
+Azure Site Recovery favorisce strategia ripristino emergenza e continuità tooyour aziendale gestendo la replica, il failover e ripristino delle macchine virtuali in un numero di scenari di distribuzione. Per un elenco completo di distribuzione di scenari di vedere hello [Panoramica di Azure Site Recovery](site-recovery-overview.md).
 
-In questo articolo viene illustrato come utilizzare PowerShell per automatizzare attività comuni, che è necessario eseguire quando si configura Azure Site Recovery per replicare le macchine virtuali Hyper-V nei cloud VMM di System Center VMM nell'archiviazione di Azure.
+Questo articolo illustra come attività comuni di toouse PowerShell tooautomate occorre tooperform per la configurazione di macchine virtuali di Azure Site Recovery tooreplicate Hyper-V nel servizio di archiviazione tooAzure cloud System Center VMM.
 
-L’articolo include i prerequisiti per lo scenario e mostra come configurare un insieme di credenziali di Azure Site Recovery, installare il provider di Azure Site Recovery sul server VMM di origine, registrare il server nell'insieme di credenziali, aggiungere un account di archiviazione di Azure, installare l'agente di Servizi di ripristino di Azure nei server host Hyper-V, configurare le impostazioni di protezione per i cloud VMM che verranno applicate a tutte le macchine virtuali protette e quindi abilitare la protezione per tali macchine virtuali. Terminare con il test del failover, per accertarsi che tutti gli elementi funzionino come previsto.
+articolo Hello sono inclusi i prerequisiti per lo scenario di hello e Mostra è come tooset di un insieme di credenziali di Site Recovery, installa hello Provider di Azure Site Recovery nel server VMM di origine hello, registrare hello server nell'insieme di credenziali hello, aggiungere un account di archiviazione di Azure, installare hello Azure Agente di servizi di ripristino in server host Hyper-V, configurare le impostazioni di protezione per i cloud VMM che verranno applicati tooall protetto le macchine virtuali e quindi abilitare la protezione per le macchine virtuali. Completare test toomake failover hello che tutto funzioni come previsto.
 
-Nel caso di problemi di configurazione di questo scenario, inviare le proprie domande al [forum sui Servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Se si verificano problemi durante l'impostazione di questo scenario, è possibile pubblicare domande sul hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 > [!NOTE]
-> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). Questo articolo illustra l'uso del modello di distribuzione classica.
+> Azure offre due diversi modelli di distribuzione per creare e usare le risorse: [Gestione risorse e la distribuzione classica](../azure-resource-manager/resource-manager-deployment-model.md). In questo articolo viene illustrato l'utilizzo del modello di distribuzione classica hello.
 >
 >
 
@@ -48,39 +48,39 @@ Assicurarsi che siano rispettati i prerequisiti seguenti:
 
 ### <a name="azure-prerequisites"></a>Prerequisiti di Azure
 * È necessario un account [Microsoft Azure](https://azure.microsoft.com/) . È possibile iniziare con una [versione di valutazione gratuita](https://azure.microsoft.com/pricing/free-trial/).
-* Per archiviare i dati replicati, sarà necessario un account di archiviazione di Azure. Nell'account deve essere abilitata la replica geografica. Dovrà trovarsi nella stessa area dell'insieme di credenziali di Azure Site Recovery ed essere associato alla stessa sottoscrizione. [Altre informazioni sull'Archiviazione di Azure](../storage/common/storage-introduction.md).
-* È necessario assicurarsi che le macchine virtuali da proteggere soddisfino i [prerequisiti delle macchine virtuali di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+* È necessario un toostore replicati dati dell'account di archiviazione di Azure. account di Hello deve replica geografica abilitata. Dovrebbe essere nella stessa area dell'insieme di credenziali di Azure Site Recovery hello hello e associato hello stessa sottoscrizione. [Altre informazioni sull'Archiviazione di Azure](../storage/common/storage-introduction.md).
+* È necessario assicurarsi che le macchine virtuali da tooprotect rispettino toomake [macchina virtuale di Azure prerequisiti](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
 
 ### <a name="vmm-prerequisites"></a>Prerequisiti di VMM
 * È necessario un server VMM in esecuzione su System Center 2012 R2.
-* È necessario almeno un cloud nel server VMM da proteggere. Il cloud deve contenere:
+* È necessario almeno un cloud nel server VMM si desidera tooprotect hello. cloud Hello deve contenere:
   * Uno o più gruppi host VMM.
   * Uno o più cluster o server host Hyper-V in ogni gruppo host.
-  * Una o più macchine virtuali nel server Hyper-V di origine.
+  * Uno o più macchine virtuali nel server Hyper-V di origine hello.
 
 ### <a name="hyper-v-prerequisites"></a>Prerequisiti di Hyper-V
-* I server Hyper-V host devono eseguire almeno **Windows Server 2012** con ruolo Hyper-V oppure **Microsoft Hyper-V Server 2012** e disporre degli ultimi aggiornamenti installati.
-* Se si esegue Hyper-V in un cluster, si noti che il gestore del cluster non viene creato automaticamente se viene usato un cluster basato su indirizzi IP statici. Sarà necessario configurare manualmente il broker del cluster. A tale scopo, in Gestione server > Gestione cluster di failover, connettersi al cluster, fare clic su **Configura ruolo** e selezionare **Gestore di replica Hyper-V** nella schermata **Seleziona ruolo** della procedura guidata Disponibilità elevata.
-* Qualsiasi server o cluster Hyper-V per cui si vuole gestire la protezione deve essere incluso in un cloud VMM.
+* Hello Server host Hyper-V deve essere in esecuzione almeno **Windows Server 2012** con ruolo Hyper-V o **Microsoft Hyper-V Server 2012** e avere hello installati aggiornamenti più recenti.
+* Se si esegue Hyper-V in un cluster, si noti che il gestore del cluster non viene creato automaticamente se viene usato un cluster basato su indirizzi IP statici. È necessario un gestore cluster hello tooconfigure manualmente. toodo questa operazione, in Server Manager > Gestione Cluster di Failover, connettersi toohello cluster, fare clic su **Configura ruolo** e selezionare **gestore Replica Hyper-V** in hello **selezionare il ruolo**schermata della procedura guidata disponibilità elevata hello.
+* Qualsiasi server host Hyper-V o cluster di cui si desidera toomanage protezione deve essere incluso in un cloud VMM.
 
 ### <a name="network-mapping-prerequisites"></a>Prerequisiti di mapping di rete
-Quando si proteggono le macchine virtuali in Azure il mapping di rete mappa tra le reti VM nel server VMM di origine e le reti di Azure in un server VMM di destinazione per eseguire le operazioni seguenti:
+Quando si proteggono macchine virtuali nella rete di Azure viene eseguito il mapping tra le reti VM nel server VMM di origine hello e seguente hello tooenable di reti di Azure di destinazione:
 
-* Tutte le macchine virtuali di cui viene eseguito il failover nella stessa rete possono connettersi tra loro, indipendentemente dal piano di ripristino di appartenenza.
-* Se nella rete di Azure di destinazione è configurato un gateway di rete, le macchine virtuali possono connettersi ad altre macchine virtuali locali.
-* Se non si configura il mapping delle reti, solo le macchine virtuali di cui viene eseguito il failover nello stesso piano di ripristino possono connettersi tra loro dopo il failover in Azure.
+* Tutti i computer in cui eseguire il failover su hello stesso può connettersi tooeach altri, indipendentemente dal piano di ripristino si trovano in rete.
+* Se un gateway di rete è configurato nella rete Azure di destinazione hello, macchine virtuali possono connettersi le macchine virtuali tooother locale.
+* Se non si configura rete mapping solo le macchine virtuali che il failover hello stesso piano di ripristino saranno in grado di tooconnect tooeach altri dopo tooAzure di failover.
 
-Per distribuire il mapping di rete sarà necessario quanto segue:
+Se si desidera che il mapping di rete toodeploy, occorre seguente hello:
 
-* Le macchine virtuali che si vuole proteggere nel server VMM di origine devono essere connesse a una rete VM. È necessario che tale rete sia collegata a una rete logica associata al cloud.
-* Una rete di Azure a cui le macchine virtuali replicate possono connettersi dopo il failover. Questa rete viene selezionata al momento del failover. La rete deve trovarsi nella stessa area della sottoscrizione di Azure Site Recovery.
+* Hello le macchine virtuali da tooprotect nel server VMM di origine hello deve essere una rete VM tooa connesso. La rete deve essere collegato tooa la rete logica associata al cloud hello.
+* Le macchine virtuali toowhich replicata una rete di Azure possono connettersi dopo il failover. Selezionare la rete in fase di hello di failover. rete Hello devono trovarsi in hello stessa area la sottoscrizione di Azure Site Recovery.
 
 ### <a name="powershell-prerequisites"></a>Prerequisiti di PowerShell
-Assicurarsi che Azure PowerShell sia pronto all'uso. Se già si utilizza PowerShell, è necessario eseguire l'aggiornamento alla versione 0.8.10 o successiva. Per informazioni sulla configurazione di PowerShell, vedere [Come installare e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs). Dopo avere impostato e configurato PowerShell, è possibile vedere tutti i cmdlet disponibili per il servizio [qui](/powershell/azure/overview).
+Assicurarsi di disporre di Azure PowerShell pronto toogo. Se si sta già usando PowerShell, è necessario tooupgrade tooversion 0.8.10 o versione successiva. Per informazioni sull'impostazione di PowerShell, vedere [come tooinstall e configurare Azure PowerShell](/powershell/azureps-cmdlets-docs). Dopo aver impostato e configurato PowerShell, è possibile visualizzare tutti i cmdlet disponibili di hello per servizio hello [qui](/powershell/azure/overview).
 
-Per i suggerimenti che facilitano l’utilizzo dei cmdlet, ad esempio come i valori dei parametri, gli input e gli output vengono in genere gestiti in Azure PowerShell, vedere [Introduzione ai cmdlet di Azure](/powershell/azure/get-started-azureps).
+toolearn sui suggerimenti che consentono di utilizzare i cmdlet di hello, ad esempio come i valori dei parametri, input e output vengono in genere gestiti in Azure PowerShell, vedere [Introduzione ai cmdlet di Azure](/powershell/azure/get-started-azureps).
 
-## <a name="step-1-set-the-subscription"></a>Passaggio 1: impostare la sottoscrizione
+## <a name="step-1-set-hello-subscription"></a>Passaggio 1: Impostare una sottoscrizione di hello
 In PowerShell, eseguire questi cmdlet:
 
 ```
@@ -95,10 +95,10 @@ $AzureSubscription = Select-AzureSubscription -SubscriptionName $AzureSubscripti
 
 ```
 
-Sostituire gli elementi all'interno dei segni di minore/maggiore ("< >") con le informazioni specifiche.
+Sostituire gli elementi di hello all'interno di hello "< >" con le informazioni specifiche.
 
 ## <a name="step-2-create-a-site-recovery-vault"></a>Passaggio 2: creare un insieme di credenziali di Ripristino sito
-In PowerShell, sostituire gli elementi all'interno dei segni di minore/maggiore ("< >") con le informazioni specifiche ed eseguire questi comandi:
+In PowerShell, sostituire gli elementi di hello all'interno di hello "< >" con le informazioni specifiche ed eseguire questi comandi:
 
 ```
 
@@ -116,9 +116,9 @@ $vault = Get-AzureSiteRecoveryVault -Name $VaultName;
 ```
 
 ## <a name="step-3-generate-a-vault-registration-key"></a>Passaggio 3: generare una chiave di registrazione dell'insieme di credenziali
-Generare una chiave di registrazione nell'insieme di credenziali. Dopo aver scaricato il provider di Azure Site Recovery e averlo installato sul server VMM, si userà questa chiave per registrare il server VMM nell'insieme di credenziali.
+Generare una chiave di registrazione nell'insieme di credenziali hello. Dopo aver scaricato hello Provider di Azure Site Recovery e installarlo nel server VMM hello, si utilizzerà il server VMM di hello tooregister chiave nell'insieme di credenziali hello.
 
-1. Ottenere il file di impostazione dell'insieme di ottenere e impostare il contesto:
+1. Ottenere file di impostazioni dell'insieme di credenziali hello e impostare il contesto di hello:
 
    ```
 
@@ -129,7 +129,7 @@ Generare una chiave di registrazione nell'insieme di credenziali. Dopo aver scar
    $VaultSetingsFile = Get-AzureSiteRecoveryVaultSettingsFile -Location $VaultGeo -Name $VaultName -Path $OutputPathForSettingsFile;
 
    ```
-2. Impostare il contesto dell’insieme di credenziali eseguendo i comandi seguenti:
+2. Imposta il contesto di insieme di credenziali di hello eseguendo hello seguenti comandi:
 
    ```
 
@@ -138,22 +138,22 @@ Generare una chiave di registrazione nell'insieme di credenziali. Dopo aver scar
 
    ```
 
-## <a name="step-4-install-the-azure-site-recovery-provider"></a>Passaggio 4: installare il provider di Azure Site Recovery
-1. Nel computer VMM, creare una directory eseguendo il comando seguente:
+## <a name="step-4-install-hello-azure-site-recovery-provider"></a>Passaggio 4: Installare il Provider di Azure Site Recovery hello
+1. Nel computer VMM hello, creare una directory eseguendo hello comando seguente:
 
    ```
 
    pushd C:\ASR\
 
    ```
-2. Estrarre i file utilizzando il provider scaricato eseguendo il comando seguente:
+2. Estrarre il file hello utilizzando provider hello scaricato eseguendo hello comando seguente
 
    ```
 
    AzureSiteRecoveryProvider.exe /x:. /q
 
    ```
-3. Installare il provider utilizzando i comandi seguenti:
+3. Installare il provider di hello utilizzando hello seguenti comandi:
 
    ```
 
@@ -175,8 +175,8 @@ Generare una chiave di registrazione nell'insieme di credenziali. Dopo aver scar
 
    ```
 
-   Attendere la fine dell'installazione.
-4. Registrare il server nell'insieme di credenziali utilizzando il comando seguente:
+   Attendere toofinish installazione hello.
+4. Registrare server hello in hello insieme di credenziali hello comando seguente:
 
    ```
 
@@ -188,7 +188,7 @@ Generare una chiave di registrazione nell'insieme di credenziali. Dopo aver scar
    ```
 
 ## <a name="step-5-create-an-azure-storage-account"></a>Passaggio 5: creare un account di archiviazione di Azure
-Se non si dispone di un account di archiviazione di Azure, creare un account con la replica geografica abilitata eseguendo il comando seguente:
+Se non si dispone di un account di archiviazione di Azure, è possibile creare un account di replica geografica abilitata eseguendo hello comando seguente:
 
 ```
 
@@ -199,12 +199,12 @@ New-AzureStorageAccount -StorageAccountName $StorageAccountName -Label $StorageA
 
 ```
 
-Si noti che l'account di archiviazione deve trovarsi nella stessa area geografica in cui si trova il servizio Azure Site Recovery e deve essere associato alla stessa sottoscrizione.
+Si noti che l'account di archiviazione hello deve essere nella stessa area geografica del servizio Azure Site Recovery hello hello e associato hello stessa sottoscrizione.
 
-## <a name="step-6-install-the-azure-recovery-services-agent"></a>Passaggio 6: installare l'agente di Servizi di ripristino di Azure
-Dal portale di Azure, installare l'agente di Servizi di ripristino di Azure in ogni server host Hyper-V presente nei cloud VMM da proteggere.
+## <a name="step-6-install-hello-azure-recovery-services-agent"></a>Passaggio 6: Installare hello Azure Recovery Services Agent
+Da hello portale di Azure, installare l'agente servizi di ripristino di Azure hello in ogni server host Hyper-V presenti nei cloud VMM hello desiderate tooprotect.
 
-Eseguire il comando seguente in tutti gli host VMM:
+Eseguire hello comando seguente in tutti gli host VMM:
 
 ```
 
@@ -214,7 +214,7 @@ marsagentinstaller.exe /q /nu
 
 
 ## <a name="step-7-configure-cloud-protection-settings"></a>Passaggio 7: configurare le impostazioni di protezione del cloud
-1. Creare un profilo di protezione cloud in Azure eseguendo il comando seguente:
+1. Creare un tooAzure profilo di protezione cloud eseguendo hello comando seguente:
 
    ```
 
@@ -222,7 +222,7 @@ marsagentinstaller.exe /q /nu
    $ProfileResult = New-AzureSiteRecoveryProtectionProfileObject -ReplicationProvider HyperVReplica -RecoveryAzureSubscription $AzureSubscriptionName -RecoveryAzureStorageAccount $StorageAccountName -ReplicationFrequencyInSeconds     $ReplicationFrequencyInSeconds;
 
    ```
-2. Ottenere un contenitore di protezione eseguendo i comandi seguenti:
+2. Ottenere un contenitore di protezione eseguendo hello seguenti comandi:
 
    ```
 
@@ -230,14 +230,14 @@ marsagentinstaller.exe /q /nu
    $protectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $PrimaryCloud;
 
    ```
-3. Avviare l'associazione del contenitore di protezione al cloud:
+3. Avviare associazione hello del contenitore di protezione hello cloud hello:
 
    ```
 
    $associationJob = Start-AzureSiteRecoveryProtectionProfileAssociationJob -ProtectionProfile $profileResult -PrimaryProtectionContainer $protectionContainer;        
 
    ```
-4. Al termine del processo, eseguire il comando seguente:
+4. Al termine, il processo di hello eseguire hello comando seguente:
 
         $job = Get-AzureSiteRecoveryJob -Id $associationJob.JobId;
         if($job -eq $null -or $job.StateDescription -ne "Completed")
@@ -246,7 +246,7 @@ marsagentinstaller.exe /q /nu
         }
 
 
-1. Al termine del processo, eseguire il comando seguente:
+1. Dopo il processo di hello ha terminato l'elaborazione, eseguire hello comando seguente:
 
         Do
         {
@@ -265,73 +265,73 @@ marsagentinstaller.exe /q /nu
 
 
 
-Per verificare il completamento dell'operazione, attenersi alla procedura descritta in [Monitorare l'attività](#monitor).
+completamento hello toocheck dell'operazione di hello, seguire i passaggi hello [monitorare l'attività](#monitor).
 
 ## <a name="step-8-configure-network-mapping"></a>Passaggio 8: configurare il mapping di rete
-Prima di iniziare il mapping di rete, verificare che le macchine virtuali nel server VMM di origine siano connesse a una rete VM. Inoltre, creare una o più rete virtuali di Azure. Si noti che è possibile mappare più reti VM a una singola rete di Azure.
+Prima di iniziare il mapping di rete verificare che le macchine virtuali nel server VMM di origine hello rete VM tooa connesso. Inoltre, creare una o più rete virtuali di Azure. Si noti che più reti VM possono essere mappate tooa singola rete di Azure.
 
-Si noti che, se la rete di destinazione ha più subnet e una di esse ha lo stesso nome di una subnet in cui si trova la macchina virtuale di origine, la macchina virtuale di replica sarà connessa a tale subnet di destinazione dopo il failover. Se non è presente una subnet di destinazione con un nome corrispondente, la macchina virtuale sarà connessa alla prima subnet della rete.
+Si noti che se la rete di destinazione hello dispone di più subnet e una di queste subnet è hello stesso nome di subnet nella macchina virtuale di origine che hello si trova, quindi hello macchina virtuale di replica sarà connessa toothat subnet di destinazione dopo il failover. Se non è presente una subnet di destinazione con un nome corrispondente, macchina virtuale hello sarà toohello connessi prima subnet nella rete hello.
 
-Il primo comando ottiene i server per l’insieme di credenziali corrente di Azure Site Recovery. Il comando archivia i server di Microsoft Azure Site Recovery nella variabile di matrice $Servers.
+Hello primo comando Ottiene i server per insieme di credenziali di hello corrente Azure Site Recovery. comando Hello archivia i server di Microsoft Azure Site Recovery hello nella variabile di matrice hello $Servers.
 
     $Servers = Get-AzureSiteRecoveryServer
 
 
-Il secondo comando ottiene la rete di ripristino del sito per il primo server nella matrice $Servers. Il comando archivia le reti nella variabile $Networks.
+Hello secondo comando Recupera hello sito ripristino rete per il primo server di hello nella matrice hello $Servers. comando Hello archivia reti hello nella variabile di hello $Networks.
 
     $Networks = Get-AzureSiteRecoveryNetwork -Server $Servers[0]
 
-Il terzo comando ottiene le sottoscrizioni di Azure tramite il cmdlet Get-AzureSubscription e quindi archivia tale valore nella variabile $Subscriptions.
+Hello terzo comando recupera le sottoscrizioni di Azure tramite il cmdlet Get-AzureSubscription hello e il valore viene archiviato nella variabile hello $Subscriptions.
 
     $Subscriptions = Get-AzureSubscription
 
 
 
-Il quarto comando ottiene le reti virtuali di Azure tramite il cmdlet Get-AzureVNetSite e quindi archivia tale valore nella variabile $AzureVmNetworks.
+Hello quarto comando recupera le reti virtuali di Azure tramite il cmdlet Get-AzureVNetSite hello e tale valore nella variabile hello $AzureVmNetworks.
 
     $AzureVmNetworks = Get-AzureVNetSite
 
 
 
-Il cmdlet finale crea un mapping tra la rete primaria e la rete delle macchine virtuali di Azure. Il cmdlet specifica la rete primaria come primo elemento di $Networks. Il cmdlet specifica una rete di macchine virtuali come primo elemento di $AzureVmNetworks utilizzando il relativo ID. Il comando include l'ID sottoscrizione di Azure.
+Hello finale cmdlet crea un mapping tra la rete primaria hello e di rete di macchina virtuale di Azure hello. cmdlet di Hello specifica rete primaria hello come primo elemento di hello di $Networks. cmdlet di Hello specifica una rete di macchina virtuale al primo elemento hello di $AzureVmNetworks utilizzando il relativo ID. comando Hello include l'ID sottoscrizione Azure.
 
     New-AzureSiteRecoveryNetworkMapping -PrimaryNetwork $Networks[0] -AzureSubscriptionId $Subscriptions[0].SubscriptionId -AzureVMNetworkId $AzureVmNetworks[0].Id
 
 
 ## <a name="step-9-enable-protection-for-virtual-machines"></a>Passaggio 9: abilitare la protezione per le macchine virtuali
-Dopo la configurazione corretta di server, cloud e reti, sarà possibile abilitare la protezione per le macchine virtuali nel cloud. Tenere presente quanto segue:
+Dopo aver configurate correttamente i server, cloud e reti, è possibile abilitare la protezione per le macchine virtuali nel cloud hello. Si noti hello segue:
 
 Le macchine virtuali devono soddisfare [i prerequisiti delle macchine virtuali di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
 
-Per abilitare la protezione, è necessario che le proprietà del sistema operativo e del disco del sistema operativo siano impostate per la macchina virtuale. Quando si crea una macchina virtuale basata su un modello di macchina virtuale VMM è possibile impostare la proprietà. È possibile impostare queste proprietà anche per le macchine virtuali esistenti nelle schede **Generale** e **Configurazione hardware** delle proprietà delle macchine virtuali. Se queste proprietà non vengono impostate in VMM, sarà possibile configurarle nel portale di Azure Site Recovery.
+per la macchina virtuale hello, è necessario impostare del sistema operativo di tooenable protezione hello e proprietà del disco del sistema operativo. Quando si crea una macchina virtuale in VMM utilizzando un modello di macchina virtuale è possibile impostare proprietà hello. È inoltre possibile impostare queste proprietà per le macchine virtuali esistenti in hello **generale** e **configurazione Hardware** schede delle proprietà di hello macchina virtuale. Se le proprietà non impostate in VMM sarà in grado di tooconfigure nel portale di Azure Site Recovery hello.
 
-1. Per abilitare la protezione, eseguire il comando seguente per ottenere il contenitore di protezione:
+1. protezione tooenable, eseguire hello contenitore di protezione hello tooget comando seguente:
 
      $ProtectionContainer = Get-AzureSiteRecoveryProtectionContainer -Name $CloudName
-2. Ottenere l'entità di protezione (VM) eseguendo il comando seguente:
+2. Ottenere entità di protezione hello (VM) eseguendo hello comando seguente:
 
         $protectionEntity = Get-AzureSiteRecoveryProtectionEntity -Name $VMName -ProtectionContainer $protectionContainer
 
 
 
-1. Abilitare il ripristino di emergenza per la macchina virtuale eseguendo il comando seguente:
+1. Abilitare hello ripristino di emergenza per hello VM eseguendo hello comando seguente:
 
         $jobResult = Set-AzureSiteRecoveryProtectionEntity -ProtectionEntity $protectionEntity     -Protection Enable -Force
 
 
 
 ## <a name="test-your-deployment"></a>Testare la distribuzione
-Per testare la distribuzione è possibile eseguire un failover di test per una singola macchina virtuale oppure creare un piano di ripristino costituito da più macchine virtuali ed eseguire un failover di test per il piano. Il failover di test consente di simulare il meccanismo di failover e di ripristino in una rete isolata. Si noti che:
+pianificare la distribuzione, è possibile eseguire un failover di test per una singola macchina virtuale o creare un piano di ripristino costituita da più macchine virtuali ed eseguire un failover di test per hello tootest. Il failover di test consente di simulare il meccanismo di failover e di ripristino in una rete isolata. Si noti che:
 
-* Per eseguire la connessione alla macchina virtuale in Azure tramite Desktop remoto dopo il failover, abilitare Connessione Desktop remoto sulla macchina virtuale prima di eseguire il failover di test.
-* Dopo il failover si userà un indirizzo IP pubblico per connettersi alla macchina virtuale in Azure tramite Desktop remoto. Se si vuole procedere in questo senso, assicurarsi che non siano presenti criteri di dominio che impediscono la connessione a una macchina virtuale mediante un indirizzo pubblico.
+* Se si desidera tooconnect toohello macchina virtuale di Azure tramite Desktop remoto dopo il failover hello, abilitare connessione Desktop remoto sulla macchina virtuale hello prima di eseguire il failover di test hello.
+* Dopo il failover, si utilizzerà una macchina di virtuale toohello pubblica del tooconnect indirizzo IP in Azure tramite Desktop remoto. Se si desidera toodo, assicurarsi che tutti i criteri che impediscono la connessione tooa virtual machine tramite un indirizzo pubblico dominio non è.
 
-Per verificare il completamento dell'operazione, attenersi alla procedura descritta in [Monitorare l'attività](#monitor).
+completamento hello toocheck dell'operazione di hello, seguire i passaggi hello [monitorare l'attività](#monitor).
 
 ### <a name="create-a-recovery-plan"></a>Creare un piano di ripristino
-1. Creare un file XML come modello per il piano di ripristino utilizzando i dati seguenti e quindi salvarlo come "C:\RPTemplatePath.xml".
-2. Cambiare l'ID nodo RecoveryPlan, il nome, il PrimaryServerId e il SecondaryServerId.
-3. Modificare il PrimaryProtectionEntityId del nodo ProtectionEntity (vmid da VMM).
+1. Creare un file XML come modello per il piano di ripristino utilizzando i seguenti dati hello e quindi salvarlo come "C:\RPTemplatePath.xml".
+2. Modificare il nodo di RecoveryPlan hello Id, nome, PrimaryServerId e SecondaryServerId.
+3. Modificare il nodo di ProtectionEntity hello PrimaryProtectionEntityId (vmid da VMM).
 4. È possibile aggiungere ulteriori macchine virtuali mediante l'aggiunta di più nodi ProtectionEntity.
 
         <#
@@ -363,27 +363,27 @@ Per verificare il completamento dell'operazione, attenersi alla procedura descri
 
 
 
-1. Inserire i dati nel modello:
+1. Inserire dati hello nel modello hello:
 
         $TemplatePath = "C:\RPTemplatePath.xml";
 
 
 
-1. Creare il RecoveryPlan:
+1. Creare hello RecoveryPlan:
 
         $RPCreationJob = New-AzureSiteRecoveryRecoveryPlan -File $TemplatePath -WaitForCompletion;
 
 ### <a name="run-a-test-failover"></a>Eseguire un failover di test
-1. Ottenere l'oggetto RecoveryPlan eseguendo il comando seguente:
+1. Ottenere l'oggetto RecoveryPlan hello eseguendo hello comando seguente:
 
      $RPObject = Get-AzureSiteRecoveryRecoveryPlan -Name $RPName;
-2. Avviare il failover di test eseguendo il comando seguente:
+2. Avviare il failover di test hello eseguendo hello comando seguente:
 
         $jobIDResult = Start-AzureSiteRecoveryTestFailoverJob -RecoveryPlan $RPObject -Direction PrimaryToRecovery;
 
 
 ## <a name=monitor></a> Monitorare l'attività
-Utilizzare i comandi seguenti per monitorare l'attività. Si noti che è necessario attendere l'esecuzione dei processi per il completamento dell'elaborazione.
+Utilizzare hello attività hello toomonitor di comandi seguenti. Si noti la presenza di toowait tra i processi per hello toofinish di elaborazione.
 
     Do
     {

@@ -1,6 +1,6 @@
 ---
-title: Come visualizzare gli asset di dati correlati in Azure Data Catalog | Microsoft Docs
-description: In questo articolo viene illustrato come visualizzare gli asset di dati correlati di un asset di dati selezionato in Azure Data Catalog.
+title: aaaHow tooview correlati asset di dati in Azure Data Catalog | Documenti Microsoft
+description: Questo articolo spiega come tooview correlati asset di dati di un asset di dati selezionato in Azure Data Catalog.
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/17/2017
 ms.author: maroche
-ms.openlocfilehash: d45f2cabe712a7982f99a9d280fed4494fc4d377
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b69686737070ac563a0318f48e693215c605f90b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-view-related-data-assets-in-azure-data-catalog"></a>Come visualizzare gli asset di dati correlati in Azure Data Catalog
-Azure Data Catalog consente di visualizzare gli asset di dati correlati in un asset di dati selezionato e di visualizzare le relazioni esistenti tra di essi. 
+# <a name="how-tooview-related-data-assets-in-azure-data-catalog"></a>Correlazione asset di dati in Azure Data Catalog tooview?
+Azure Data Catalog consente tooview dati asset correlati tooa selezionato dati asset e visualizzare le relazioni tra loro. 
 
 ## <a name="supported-data-sources"></a>Origini dati supportate 
-Quando si registrano gli asset di dati dalle origini dati seguenti, Azure Data Catalog registra automaticamente i metadati relativi alle relazioni di join tra gli asset di dati selezionati. 
+Quando si registra l'asset di dati da hello seguenti origini dati, Azure Data Catalog registra automaticamente i metadati relativi a relazioni di join tra gli asset di dati hello selezionato. 
 
 - SQL Server
 - Database SQL di Azure
@@ -32,23 +32,23 @@ Quando si registrano gli asset di dati dalle origini dati seguenti, Azure Data C
 - Oracle
 
 ## <a name="view-related-data-assets"></a>Visualizzare gli asset di dati correlati
-Per visualizzare gli asset di dati che sono correlati a un set di dati selezionato, usare la scheda **Relazioni** come illustrato nella figura seguente: 
+tooview asset di dati che sono set di dati correlati tooa selezionato, utilizzare hello **relazioni** scheda come illustrato nella seguente immagine hello: 
 
 ![Azure Data Catalog - Visualizzare gli asset di dati correlati](media\data-catalog-how-to-view-related-data-assets\relationships-tab.png)
 
-In questo esempio sono presenti due relazioni per l'asset di dati **ProductSubcategory** selezionato: 
+In questo esempio sono presenti due relazioni per hello selezionato **ProductSubcategory** asset di dati: 
 
-- La colonna ProductSubcategoryID della tabella Prodotto dispone di una relazione di chiave esterna con la colonna ProductSubcategoryID della tabella ProductSubcategory selezionata. 
-- La colonna ProductCategoryID della tabella ProductSubCategory dispone di una relazione di chiave esterna con la colonna ProductCategoryID della tabella ProductCategory selezionata.
+- Colonna ProductSubcategoryID della tabella Product hello ha una relazione di chiave esterna con ProductSubcategoryID colonna della tabella ProductSubcategory hello selezionato. 
+- ProductCategoryID colonna della tabella ProductSubCategory hello ha una relazione di chiave esterna con ProductCategoryID colonna della tabella ProductCategory hello selezionato.
 
 > [!NOTE]
-> Si noti la direzione della freccia nella visualizzazione struttura ad albero delle relazioni.  
+> Si noti la direzione hello della freccia hello nella visualizzazione ad albero di relazioni hello.  
 
-Per visualizzare altri dettagli, ad esempio il nome completo della colonna, spostare il puntatore del mouse verso l'alto per mostrare un elemento popup simile a quello dell'immagine seguente: 
+toosee ulteriori dettagli, ad esempio nome completo di hello della colonna hello, spostare il mouse di hello su e viene visualizzato un toohello simile popup seguente immagine: 
 
 ![Azure Data Catalog - Elemento popup della relazione](media\data-catalog-how-to-view-related-data-assets\relationship-popup.png)
 
-Per includere le relazioni tra gli asset già registrati, è necessario registrare nuovamente gli asset.
+tooinclude relazioni tra gli asset che sono già stati registrati, registrare nuovamente tali risorse.
 
 ## <a name="next-steps"></a>Passaggi successivi
-- [Come gestire gli asset di dati](data-catalog-how-to-manage.md)
+- [Come asset di dati toomanage](data-catalog-how-to-manage.md)

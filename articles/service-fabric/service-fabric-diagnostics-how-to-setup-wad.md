@@ -1,6 +1,6 @@
 ---
-title: Raccogliere log con Diagnostica di Azure | Microsoft Docs
-description: Questo articolo illustra come configurare Diagnostica di Azure per raccogliere log da un cluster di Service Fabric in esecuzione in Azure.
+title: aaaCollect log tramite diagnostica Azure | Documenti Microsoft
+description: In questo articolo viene descritto come tooset di diagnostica Azure toocollect log da un cluster di Service Fabric in esecuzione in Azure.
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 190a8a393f2e7d74a792db4efa81f94a18b02221
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: afbcfbe972b1847ef33bf0539b4398794b1bd56b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>Raccogliere log con Diagnostica di Azure
 > [!div class="op_single_selector"]
@@ -27,74 +27,74 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Quando si esegue un cluster Azure Service Fabric, è consigliabile raccogliere i log da tutti i nodi in una posizione centrale. Il salvataggio dei log in una posizione centrale semplifica l'analisi e la risoluzione di eventuali problemi nel cluster o nelle applicazioni e nei servizi in esecuzione nel cluster.
+Quando si esegue un cluster di Azure Service Fabric, è un log di hello buona toocollect da tutti i nodi di hello in una posizione centrale. La presenza di log hello in una posizione centrale consente di analizzare e risolvere i problemi del cluster, o problemi in applicazioni hello e servizi in esecuzione in tale cluster.
 
-Un modo per caricare e raccogliere i log consiste nell'usare l'estensione Diagnostica di Azure, che consente di caricare i log di archiviazione di Azure, Azure Application Insights o Hub eventi di Azure. I log non sono utili direttamente nell'archiviazione o in Hub eventi, ma è possibile usare un processo esterno per leggere gli eventi dalla risorsa di archiviazione e inserirli in un prodotto come [Log Analytics](../log-analytics/log-analytics-service-fabric.md) o un'altra soluzione di analisi di log. In [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) è integrato un servizio completo di analisi e di ricerca dei log.
+Tooupload un modo e raccogliere i log è toouse hello l'estensione diagnostica Azure, quali caricamenti registra tooAzure archiviazione, Azure Application Insights o hub eventi di Azure. i registri di Hello non sono utili direttamente nell'archiviazione o negli hub eventi. Ma è possibile utilizzare gli eventi di hello tooread un processo esterno dall'archivio e inserirli in un prodotto, ad esempio [Log Analitica](../log-analytics/log-analytics-service-fabric.md) o un'altra soluzione di analisi di log. In [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) è integrato un servizio completo di analisi e di ricerca dei log.
 
 ## <a name="prerequisites"></a>Prerequisiti
-Questi strumenti vengono usati per eseguire alcune operazioni nel documento:
+Utilizzare questi strumenti tooperform alcune delle operazioni di hello in questo documento:
 
-* [Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) (correlata ai Servizi cloud di Azure, include alcune informazioni ed esempi utili)
+* [Diagnostica di Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) (correlata tooAzure servizi Cloud, ma con informazioni ed esempi)
 * [Gestione risorse di Azure](../azure-resource-manager/resource-group-overview.md)
 * [Azure PowerShell](/powershell/azure/overview)
 * [Client di Azure Resource Manager](https://github.com/projectkudu/ARMClient)
 * [Modello di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-## <a name="log-sources-that-you-might-want-to-collect"></a>Origini di log da raccogliere
-* **Log di Service Fabric:** generati dalla piattaforma in canali Event Tracing for Windows (ETW) ed EventSource standard. I log possono essere di diversi tipi:
-  * Eventi operativi: log relativi a operazioni eseguite dalla piattaforma Service Fabric. Gli esempi includono la creazione di applicazioni e servizi, le modifiche allo stato dei nodi e informazioni sull'aggiornamento.
+## <a name="log-sources-that-you-might-want-toocollect"></a>Origini di log che è possibile toocollect
+* **I log di Service Fabric**: generato dai hello piattaforma toostandard traccia eventi per Windows (ETW) ed EventSource canali. I log possono essere di diversi tipi:
+  * Gli eventi operativi: log per operazioni che hello Service Fabric piattaforma esegue. Gli esempi includono la creazione di applicazioni e servizi, le modifiche allo stato dei nodi e informazioni sull'aggiornamento.
   * [Eventi del modello di programmazione Reliable Actors](service-fabric-reliable-actors-diagnostics.md)
   * [Eventi relativi al modello di programmazione Reliable Services](service-fabric-reliable-services-diagnostics.md)
-* **Eventi dell'applicazione:** eventi generati dal codice del servizio e scritti mediante la classe helper EventSource disponibile nei modelli di Visual Studio. Per altre informazioni su come scrivere i log dall'applicazione, vedere [Monitorare e diagnosticare servizi in una configurazione di sviluppo con computer locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
+* **Gli eventi dell'applicazione**: gli eventi generati dal codice del servizio e scritte usando classe helper di EventSource hello fornito nei modelli di Visual Studio hello. Per ulteriori informazioni sulla modalità di registrazione toowrite dall'applicazione, vedere [Monitor e diagnosticare i servizi in una configurazione di sviluppo locale](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md).
 
-## <a name="deploy-the-diagnostics-extension"></a>Distribuire l'estensione Diagnostica
-Il primo passaggio per la raccolta dei log consiste nel distribuire l'estensione Diagnostica in ogni VM del cluster Service Fabric. Questa estensione raccoglie i log in ogni VM e li carica nell'account di archiviazione specificato. La procedura varia a seconda che si usi il portale di Azure oppure Azure Resource Manager. Anche i passaggi variano se la distribuzione fa parte della creazione del cluster o è relativa a un cluster già esistente. Ecco la procedura per ogni scenario.
+## <a name="deploy-hello-diagnostics-extension"></a>Distribuire l'estensione diagnostica hello
+Hello primo passaggio per la raccolta di log è l'estensione di diagnostica toodeploy hello in ognuna delle macchine virtuali di hello in cluster di Service Fabric hello. Hello estensione di diagnostica raccoglie i log in ogni macchina virtuale e li carica toohello account di archiviazione specificato. passaggi di Hello variano leggermente in base che si utilizzi hello portale di Azure o Gestione risorse di Azure. procedura di Hello anche varia a seconda che la distribuzione di hello fa parte della creazione del cluster o per un cluster che esiste già. Esaminiamo i passaggi di hello per ogni scenario.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-the-portal"></a>Distribuire l’estensione Diagnostica come parte della creazione di cluster tramite il portale
-Per distribuire l'estensione Diagnostica nelle VM del cluster come parte della creazione del cluster, si usa il pannello Impostazioni di diagnostica illustrato nella figura seguente. Per abilitare la raccolta di eventi Reliable Actors o Reliable Services, verificare che l'opzione Diagnostica sia impostata su **Sì**, che corrisponde all'impostazione predefinita. Dopo aver creato il cluster, non è possibile modificare questa impostazione tramite il portale.
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-through-hello-portal"></a>Distribuire l'estensione di diagnostica hello come parte della creazione del cluster tramite il portale di hello
+toodeploy hello diagnostica estensione toohello macchine virtuali in cluster hello come parte della creazione del cluster, utilizzare pannello impostazioni di diagnostica hello mostrato nella seguente immagine hello. tooenable Reliable Actors o servizi affidabili raccolta degli eventi, assicurarsi che la diagnostica sia impostata troppo**su** (hello l'impostazione predefinita). Dopo aver creato il cluster hello, è possibile modificare queste impostazioni mediante il portale di hello.
 
-![Impostazioni di diagnostica di Azure nel portale per la creazione del cluster](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
+![Impostazioni di diagnostica di Azure nel portale di hello per la creazione del cluster](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
-Il team di Supporto di Azure *necessita* dei log di supporto per gestire eventuali richieste di supporto create dall'utente. I log vengono raccolti in tempo reale e archiviati in uno degli account di archiviazione creati nel gruppo di risorse. Le impostazioni di diagnostica configurano gli eventi a livello di applicazione. Sono inclusi gli eventi [Reliable Actors](service-fabric-reliable-actors-diagnostics.md), [Reliable Services](service-fabric-reliable-services-diagnostics.md) e alcuni eventi di Service Fabric a livello di sistema da archiviare in Archiviazione di Azure.
+salve team di supporto tecnico di Azure *richiede* supporto registra toohelp risolvere tutte le richieste di supporto che si creano. Questi log vengono raccolti in tempo reale e vengono archiviati in uno degli account di archiviazione hello creato nel gruppo di risorse hello. le impostazioni di diagnostica Hello configurano gli eventi a livello di applicazione. Questi eventi includono [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) eventi, [servizi affidabili](service-fabric-reliable-services-diagnostics.md) eventi e alcuni toobe gli eventi di Service Fabric a livello di sistema archiviati in archiviazione di Azure.
 
-Gli eventi possono essere ottenuti dall'account di archiviazione da prodotti come [ElasticSearch](https://www.elastic.co/guide/index.html) o da un processo personalizzato. Attualmente non è possibile filtrare o eliminare gli eventi inviati alla tabella. Se non si implementa un processo per rimuovere gli eventi dalla tabella, le dimensioni della tabella continueranno ad aumentare.
+I prodotti, ad esempio [Elasticsearch](https://www.elastic.co/guide/index.html) o un processo personalizzato è possibile ottenere gli eventi di hello dall'account di archiviazione hello. Non è presente alcun modo toofilter o pulitura hello gli eventi inviati toohello tabella. Se si non implementa un tooremove di elaborare gli eventi dalla tabella hello, tabella hello continuerà toogrow.
 
-Quando si crea un cluster con il portale, è consigliabile scaricare il modello **prima di fare clic su OK** per creare il cluster. Per informazioni dettagliate, vedere [Configurare un cluster di Service Fabric usando un modello di Azure Resource Manager](service-fabric-cluster-creation-via-arm.md). Il modello è necessario per apportare modifiche in un secondo momento perché non è possibile apportare alcune modifiche tramite il portale.
+Quando si crea un cluster tramite il portale di hello, si consiglia di scaricare il modello di hello **prima di scegliere OK** cluster hello toocreate. Per informazioni dettagliate, vedere troppo[configurazione di un cluster di Service Fabric utilizzando un modello di gestione risorse di Azure](service-fabric-cluster-creation-via-arm.md). È necessario toomake modifiche al modello hello in un secondo momento, poiché non è possibile apportare alcune modifiche tramite il portale di hello.
 
-È possibile esportare i modelli dal portale attenendosi alla procedura seguente. Tuttavia, questi modelli possono risultare più difficili da usare poiché potrebbero contenere valori Null in cui mancano informazioni necessarie.
+È possibile esportare i modelli dal portale hello utilizzando hello alla procedura seguente. Tuttavia, questi modelli possono essere più difficile toouse perché potrebbe contengono valori null che mancano informazioni necessarie.
 
 1. Aprire il gruppo di risorse.
-2. Selezionare **Impostazioni** per visualizzare il pannello Impostazioni.
-3. Selezionare **Distribuzioni** per visualizzare il pannello Cronologia distribuzioni.
-4. Selezionare una distribuzione per visualizzare i relativi dettagli.
-5. Selezionare **Esporta modello** per visualizzare il pannello Modello.
-6. Selezionare **Salva su file** per esportare un file con estensione zip contenente i file del modello, dei parametri e di PowerShell.
+2. Selezionare **impostazioni** toodisplay hello impostazioni del pannello.
+3. Selezionare **distribuzioni** pannello della cronologia di distribuzione hello toodisplay.
+4. Selezionare i dettagli hello toodisplay distribuzione su distribuzione hello.
+5. Selezionare **Esporta modello** Pannello di toodisplay hello modello.
+6. Selezionare **salvare toofile** tooexport un file con estensione zip che contiene il modello di hello, parametro e i file di PowerShell.
 
-Dopo aver esportato i file, è necessario apportare una modifica. Modificare il file parameters.json e rimuovere l'elemento **adminPassword**. In questo modo viene richiesta la password quando viene eseguito lo script di distribuzione. Quando si esegue lo script di distribuzione, è necessario correggere i valori dei parametri Null.
+Dopo aver esportato il file hello, è necessario toomake una modifica. Modificare il file parameters.json hello e rimuovere hello **adminPassword** elemento. In questo modo la richiesta hello password durante l'esecuzione di script di distribuzione hello. Quando si esegue lo script di distribuzione hello, potrebbe essere toofix valori di parametro null.
 
-Per usare il modello scaricato per aggiornare una configurazione:
+hello toouse scaricati tooupdate modello una configurazione:
 
-1. Estrarre il contenuto in una cartella nel computer locale.
-2. Modificare il contenuto in modo da riflettere la nuova configurazione.
-3. Avviare PowerShell e passare alla cartella in cui è stato estratto il contenuto.
-4. Eseguire **deploy.ps1** e immettere ID sottoscrizione, nome del gruppo di risorse (usare lo stesso nome per aggiornare la configurazione) e un nome di distribuzione univoco.
+1. Estrarre la cartella di tooa hello contenuto nel computer locale.
+2. Modificare hello contenuto tooreflect hello nuova configurazione.
+3. Avviare PowerShell e modificare toohello cartella in cui è stato estratto il contenuto di hello.
+4. Eseguire **deploy.ps1** e compilare hello sottoscrizione ID, nome del gruppo di risorse hello (utilizzare hello stessa configurazione del nome tooupdate hello) e un nome univoco di distribuzione.
 
-### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>Distribuire l’estensione Diagnostica come parte della creazione di cluster tramite Gestione risorse di Azure
-Per creare un cluster tramite Resource Manager, è necessario aggiungere il file JSON di configurazione di Diagnostica al modello di Resource Manager di tipo cluster completo prima di creare il cluster. Gli esempi relativi ai modelli di Gestione risorse includono un modello di cluster con 5 VM con aggiunta della configurazione di Diagnostica, disponibile nella raccolta di esempi di Azure nella pagina relativa all'[esempio di modello di Resource Manager di cluster con cinque nodi con Diagnostica](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype).
+### <a name="deploy-hello-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>Distribuire l'estensione di diagnostica hello come parte della creazione del cluster usando Gestione risorse di Azure
+toocreate un cluster usando Gestione risorse, è necessario tooadd hello diagnostica JSON toohello completo del cluster di gestione delle risorse modello di configurazione prima di creare cluster hello. Offriamo un modello di gestione risorse di esempio 5-VM cluster con configurazione di diagnostica aggiunti tooit come parte di esempi di gestione delle risorse modello. È possibile visualizzarlo in questa posizione nella raccolta di esempi di Azure hello: [cluster cinque nodi con il modello di gestione risorse diagnostica esempio](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype).
 
-Per visualizzare l'impostazione di Diagnostica nel modello di Resource Manager, aprire il file azuredeploy.json e cercare **IaaSDiagnostics**. Per creare un cluster con questo modello, è sufficiente selezionare il pulsante di **distribuzione in Azure** disponibile nel collegamento precedente.
+impostazione di diagnostica hello toosee nel modello di gestione risorse di hello, file azuredeploy.json aprire hello e cercare **IaaSDiagnostics**. un cluster utilizzando questo modello, seleziona hello toocreate **distribuire tooAzure** pulsante disponibile all'indirizzo collegamento precedente hello.
 
-In alternativa, è possibile scaricare l'esempio di Resource Manager, modificarlo e creare un cluster con il modello modificato mediante il comando `New-AzureRmResourceGroupDeployment` in una finestra di Azure PowerShell. Per i parametri passati al comando, vedere il codice seguente. Per informazioni dettagliate sulla distribuzione di un gruppo di risorse con PowerShell, vedere l'articolo su come [distribuire un gruppo di risorse con un modello di Azure Resource Manager](../azure-resource-manager/resource-group-template-deploy.md).
+In alternativa, è possibile scaricare Gestione risorse: esempio hello, apportare le modifiche tooit e creare un cluster con modello modificato hello utilizzando hello `New-AzureRmResourceGroupDeployment` comando in una finestra di PowerShell di Azure. Vedere hello seguente codice per i parametri di hello che viene passato nel comando toohello. Per informazioni dettagliate sul modo in cui raggruppare toodeploy una risorsa tramite PowerShell, vedere l'articolo hello [distribuire un gruppo di risorse con il modello di gestione risorse di Azure hello](../azure-resource-manager/resource-group-template-deploy.md).
 
 ```powershell
 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName -TemplateFile $pathToARMConfigJsonFile -TemplateParameterFile $pathToParameterFile –Verbose
 ```
 
-### <a name="deploy-the-diagnostics-extension-to-an-existing-cluster"></a>Distribuire l'estensione Diagnostica in un cluster esistente
-Se in un cluster esistente non è stata distribuita l'estensione Diagnostica o se si vuole modificare una configurazione esistente, è possibile aggiungerla o aggiornarla. Modificare il modello di Resource Manager usato per creare il cluster esistente o scaricare il modello dal portale come descritto in precedenza. Modificare il file template.json eseguendo le attività seguenti.
+### <a name="deploy-hello-diagnostics-extension-tooan-existing-cluster"></a>Distribuire cluster esistente tooan estensione diagnostica hello
+Se si dispone di un cluster esistente che non dispone di diagnostica distribuita o se si desidera toomodify una configurazione esistente, è possibile aggiungere o aggiornare. Modificare modello di gestione risorse hello cluster esistente di hello toocreate usato o scaricare il modello di hello dal portale hello come descritto in precedenza. Modificare il file di template.json hello eseguendo hello seguenti attività.
 
-Aggiungere una nuova risorsa di archiviazione al modello nella sezione risorse.
+Aggiungere un nuovo modello toohello risorse di archiviazione aggiungendo toohello sezione delle risorse.
 
 ```json
 {
@@ -112,7 +112,7 @@ Aggiungere una nuova risorsa di archiviazione al modello nella sezione risorse.
 },
 ```
 
- Aggiungere quindi alla sezione parametri subito dopo le definizioni dell'account di archiviazione, tra `supportLogStorageAccountName` e `vmNodeType0Name`. Sostituire il testo segnaposto *storage account name goes here* con il nome dell'account di archiviazione.
+ Successivamente, aggiungere parametri toohello sezione subito dopo le definizioni account di archiviazione hello, tra `supportLogStorageAccountName` e `vmNodeType0Name`. Sostituire il testo segnaposto hello *nome account di archiviazione qui* con nome hello hello dell'account di archiviazione.
 
 ```json
     "applicationDiagnosticsStorageAccountType": {
@@ -123,18 +123,18 @@ Aggiungere una nuova risorsa di archiviazione al modello nella sezione risorse.
       ],
       "defaultValue": "Standard_LRS",
       "metadata": {
-        "description": "Replication option for the application diagnostics storage account"
+        "description": "Replication option for hello application diagnostics storage account"
       }
     },
     "applicationDiagnosticsStorageAccountName": {
       "type": "string",
       "defaultValue": "storage account name goes here",
       "metadata": {
-        "description": "Name for the storage account that contains application diagnostics data from the cluster"
+        "description": "Name for hello storage account that contains application diagnostics data from hello cluster"
       }
     },
 ```
-Aggiornare quindi la sezione `VirtualMachineProfile` del file template.json aggiungendo quanto segue all'interno della matrice delle estensioni. Assicurarsi di aggiungere una virgola all'inizio o alla fine, a seconda del punto di inserimento.
+Quindi, aggiornare hello `VirtualMachineProfile` sezione del file template.json hello aggiungendo hello seguente codice all'interno della matrice estensioni hello. Essere tooadd che una virgola all'inizio di hello o alla fine di hello, a seconda di dove viene inserito.
 
 ```json
 {
@@ -191,13 +191,13 @@ Aggiornare quindi la sezione `VirtualMachineProfile` del file template.json aggi
 }
 ```
 
-Dopo aver modificato il file template.json come descritto, pubblicare nuovamente il modello di Resource Manager. Se il modello è stato esportato, eseguire il file deploy.ps1 per pubblicarlo di nuovo. Dopo la distribuzione, assicurarsi che il valore di **ProvisioningState** sia **Succeeded**.
+Dopo aver modificato il file template.json hello come descritto, è possibile ripubblicare il modello di gestione risorse di hello. Se è stato esportato il modello di hello, l'esecuzione del file di deploy.ps1 hello Ripubblica modello hello. Dopo la distribuzione, assicurarsi che il valore di **ProvisioningState** sia **Succeeded**.
 
-## <a name="update-diagnostics-to-collect-health-and-load-events"></a>Aggiornare i dati di diagnostica per raccogliere eventi di integrità e di caricamento
+## <a name="update-diagnostics-toocollect-health-and-load-events"></a>Aggiornare gli eventi di integrità e carico toocollect diagnostica
 
-A partire dalla versione 5.4 di Service Fabric è possibile raccogliere gli eventi di metrica di integrità e caricamento. Questi riflettono gli eventi generati dal sistema o dal codice usando le API di creazione di report di integrità o caricamento, ad esempio [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) o [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx). Ciò consente l'aggregazione e la visualizzazione dell'integrità del sistema nel tempo, nonché la generazione di avvisi in base a eventi di integrità o di caricamento. Per visualizzare tali eventi nel visualizzatore eventi di diagnostica di Visual Studio, aggiungere "Microsoft-ServiceFabric:4:0x4000000000000008" all'elenco di provider ETW.
+A partire dalla versione di hello 5.4 di Service Fabric, gli eventi di metrica di integrità e carico sono disponibili per la raccolta. Questi eventi riflettono gli eventi generati dal sistema hello o il codice tramite integrità hello o caricare le API di creazione di report, ad esempio [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) o [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx). Ciò consente l'aggregazione e la visualizzazione dell'integrità del sistema nel tempo, nonché la generazione di avvisi in base a eventi di integrità o di caricamento. tooview questi eventi nel Visualizzatore eventi di diagnostica di Visual Studio aggiungere "Microsoft-ServiceFabric:4:0x4000000000000008" toohello elenco dei provider ETW.
 
-Per raccogliere gli eventi, modificare il modello di Resource Manager includendo quanto segue:
+eventi di hello toocollect, modificare hello resource manager modello tooinclude
 
 ```json
   "EtwManifestProviderConfiguration": [
@@ -212,12 +212,12 @@ Per raccogliere gli eventi, modificare il modello di Resource Manager includendo
     }
 ```
 
-## <a name="update-diagnostics-to-collect-and-upload-logs-from-new-eventsource-channels"></a>Aggiornare Diagnostica per raccogliere e caricare log da nuovi canali EventSource
-Per aggiornare Diagnostica in modo da raccogliere log da nuovi canali EventSource che rappresentano una nuova applicazione da distribuire, eseguire gli stessi passaggi illustrati nella [sezione precedente](#deploywadarm) per la configurazione di Diagnostica per un cluster esistente.
+## <a name="update-diagnostics-toocollect-and-upload-logs-from-new-eventsource-channels"></a>Aggiornare toocollect diagnostica e caricare i log dei nuovi canali EventSource
+log di toocollect tooupdate diagnostica da nuovi canali EventSource che rappresentano una nuova applicazione che è quasi toodeploy, eseguire hello stessi passaggi come hello [precedente sezione](#deploywadarm) per l'installazione di diagnostica per un oggetto esistente cluster.
 
-Aggiornare la sezione `EtwEventSourceProviderConfiguration` nel file template.json per aggiungere voci per i nuovi canali EventSource prima di applicare l'aggiornamento della configurazione tramite il comando `New-AzureRmResourceGroupDeployment` di PowerShell. Il nome dell'origine evento è definito come parte del codice del file ServiceEventSource.cs generato da Visual Studio.
+Aggiornare hello `EtwEventSourceProviderConfiguration` sezione nelle voci di hello template.json file tooadd per hello nuovi EventSource canali prima di applicare la configurazione hello aggiornare utilizzando hello `New-AzureRmResourceGroupDeployment` comando di PowerShell. nome di Hello dell'origine evento hello è definito come parte del codice nel file di Visual Studio generati ServiceEventSource.cs hello.
 
-Ad esempio, se l'origine evento è denominato My Eventsource, aggiungere il codice seguente per inserire gli eventi da My Eventsource in una tabella denominata MyDestinationTableName.
+Ad esempio, se l'origine eventi è denominato My Eventsource, aggiungere hello dopo gli eventi di codice tooplace hello da My Eventsource in una tabella denominata MyDestinationTableName.
 
 ```json
         {
@@ -229,12 +229,12 @@ Ad esempio, se l'origine evento è denominato My Eventsource, aggiungere il codi
         }
 ```
 
-Per raccogliere i contatori delle prestazioni o i log eventi, modificare il modello di Resource Manager tramite gli esempi forniti in [Creare una macchina virtuale Windows con monitoraggio e diagnostica mediante i modelli di Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Pubblicare di nuovo il modello di Resource Manager.
+i contatori delle prestazioni toocollect o nei registri eventi, è possibile modificare il modello di gestione risorse di hello usando hello esempi forniti in [creare una macchina virtuale Windows con monitoraggio e diagnostica utilizzando un modello di gestione risorse di Azure](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Quindi, pubblicare di nuovo il modello di gestione risorse di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni più dettagliate sugli eventi da esaminare durante la risoluzione dei problemi, vedere gli eventi di diagnostica emessi per [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) e [Reliable Services](service-fabric-reliable-services-diagnostics.md).
+toounderstand in dettaglio gli eventi che è necessario cercare la risoluzione dei problemi, vedere gli eventi di diagnostica hello generati per [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) e [servizi affidabili](service-fabric-reliable-services-diagnostics.md).
 
 ## <a name="related-articles"></a>Articoli correlati
-* [Informazioni su come raccogliere i contatori delle prestazioni o i log mediante l'estensione Diagnostica](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Informazioni su come i contatori delle prestazioni toocollect o i registri tramite hello estensione di diagnostica](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Soluzione Service Fabric in Log Analytics](../log-analytics/log-analytics-service-fabric.md)
 

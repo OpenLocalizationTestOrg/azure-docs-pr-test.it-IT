@@ -1,6 +1,6 @@
 ---
-title: Spostare dati da MongoDB con Data Factory | Documentazione Microsoft
-description: Informazioni su come spostare i dati dal database di MongoDB con Azure Data Factory.
+title: dati aaaMove MongoDB mediante Data Factory | Documenti Microsoft
+description: Informazioni su come dati toomove MongoDB database usando Azure Data Factory.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jingwang
-ms.openlocfilehash: ac4ff55c765a5b874b81714c3d0063a5b4765a05
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 154e85712f27b978976c7499c43dde9429f124c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-mongodb-using-azure-data-factory"></a>Spostare i dati da MongoDB con Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da un database MongoDB locale. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia.
+Questo articolo spiega come toouse hello attività di copia dei dati toomove Data Factory di Azure da un database di MongoDB locale. È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello.
 
-È possibile copiare dati da un archivio dati MongoDB locale a qualsiasi archivio dati di sink supportato. Per un elenco degli archivi dati supportati come sink dall'attività di copia, vedere la tabella relativa agli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data Factory supporta attualmente solo lo spostamento dei dati da un archivio dati MongoDB ad altri archivi dati, ma non da altri archivi dati a un archivio dati MongoDB. 
+È possibile copiare dati da un archivio di dati di on-premise MongoDB dati archivio tooany supportati sink. Per un elenco di dati supportati archivi come sink dall'attività di copia hello, vedere hello [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tabella. Data factory di attualmente supporta solo lo spostamento di dati da un MongoDB archiviano tooother archivi di dati, ma non per lo spostamento dei dati dall'archivio dati di MongoDB altri dati archivi tooan. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per consentire al servizio Azure Data Factory di connettersi al database MongoDB in locale, è necessario installare i componenti seguenti:
+Per hello Azure Data Factory servizio toobe tooconnect in grado di tooyour MongoDB database locale, è necessario installare hello seguenti componenti:
 
 - Le versioni MongoDB supportate sono 2.4, 2.6, 3.0 e 3.2.
-- Gateway di gestione dati nello stesso computer che ospita il database o in un computer separato per evitare che competa per le risorse con il database. Il Gateway di gestione dati è un software che connette le origini dati locali ai servizi cloud in modo sicuro e gestito. Leggere l'articolo [Gateway di gestione dati](data-factory-data-management-gateway.md) per i dettagli sul Gateway di gestione dati. Per istruzioni passo per passo su come configurare il gateway di una pipeline di dati per spostare i dati, vedere [Spostare dati tra origini locali e il cloud](data-factory-move-data-between-onprem-and-cloud.md).
+- Gateway di gestione di dati in hello nello stesso computer che ospita il database hello o tooavoid un computer separato competono per le risorse con i database di hello. Gateway di gestione dati è un software che si connette a servizi di toocloud origini dati locali in modo sicuro e gestito. Leggere l'articolo [Gateway di gestione dati](data-factory-data-management-gateway.md) per i dettagli sul Gateway di gestione dati. Vedere [spostare i dati da on-premise toocloud](data-factory-move-data-between-onprem-and-cloud.md) per istruzioni dettagliate sulla configurazione di gateway hello una pipeline di dati toomove dati.
 
-    Quando si installa il gateway, viene installato automaticamente un driver ODBC MongoDB Microsoft che viene usato per la connessione a MongoDB.
+    Quando si installa il gateway di hello, viene automaticamente installato un tooMongoDB tooconnect di MongoDB Microsoft ODBC driver utilizzato.
 
     > [!NOTE]
-    > È necessario usare il gateway per connettersi a MongoDB anche se è ospitato in VM IaaS di Azure. Se si sta provando a connettersi a un'istanza di MongoDB ospitata nel cloud è anche possibile installare l'istanza del gateway nella macchina virtuale IaaS.
+    > È necessario toouse hello gateway tooconnect tooMongoDB anche se è ospitato in macchine virtuali IaaS di Azure. Se si sta tentando di istanza tooan tooconnect MongoDB ospitato nel cloud, è possibile installare anche l'istanza del gateway hello in hello VM IaaS.
 
-## <a name="getting-started"></a>Introduzione
+## <a name="getting-started"></a>introduttiva
 È possibile creare una pipeline con l'attività di copia che sposta i dati da e verso un archivio dati MongoDB usando diversi strumenti/API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata**. Vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md) per la procedura dettagliata sulla creazione di una pipeline attenendosi alla procedura guidata per copiare i dati.
+toocreate modo più semplice di Hello una pipeline è hello toouse **Copia guidata**. Vedere [esercitazione: creare una pipeline mediante Copia guidata](data-factory-copy-data-wizard-tutorial.md) per un'esercitazione rapida sulla creazione di una pipeline mediante Creazione guidata di hello copia dati.
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia. 
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **Azure PowerShell**, **modello di gestione risorse di Azure** , **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia. 
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink: 
+Se si utilizza hello o le API, è eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti: 
 
-1. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory.
-2. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia. 
+1. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory.
+2. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello. 
 3. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output. 
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di data factory.  Per un esempio con definizioni JSON per entità di data factory utilizzate per copiare dati da un archivio dati MongoDB locale, vedere la sezione [Esempio JSON: Copiare dati da MongoDB al BLOB di Azure](#json-example-copy-data-from-mongodb-to-azure-blob) di questo articolo. 
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory.  Per un esempio con le definizioni di JSON per le entità Data Factory dati toocopy utilizzato da un archivio dati di MongoDB locale, vedere [esempio JSON: copiare i dati da tooAzure MongoDB Blob](#json-example-copy-data-from-mongodb-to-azure-blob) sezione di questo articolo. 
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di data factory specifiche dell'origine MongoDB:
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che sono utilizzati toodefine Data Factory entità specifiche tooMongoDB origine:
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-La tabella seguente fornisce la descrizione degli elementi JSON specifici del servizio collegato **OnPremisesMongoDB** .
+Hello seguente tabella fornisce una descrizione per gli elementi JSON specifici troppo**OnPremisesMongoDB** servizio collegato.
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| type |La proprietà type deve essere impostata su: **OnPremisesMongoDb** |Sì |
-| server |Indirizzo IP o nome host del server MongoDB. |Sì |
-| port |Porta TCP che il server MongoDB usa per ascoltare le connessioni client. |Facoltativo, valore predefinito: 27017 |
+| type |proprietà di tipo Hello deve essere impostata su: **OnPremisesMongoDb** |Sì |
+| server |IP il nome host o indirizzo del server di MongoDB hello. |Sì |
+| port |La porta TCP che hello MongoDB server utilizza toolisten per le connessioni client. |Facoltativo, valore predefinito: 27017 |
 | authenticationType |Di base o anonima. |Sì |
-| username |Account utente per accedere a MongoDB. |Sì (se si usa l'autenticazione di base). |
-| password |Password per l'utente. |Sì (se si usa l'autenticazione di base). |
-| authSource |Nome del database MongoDB che si vuole usare per controllare le credenziali di autenticazione. |Facoltativo (se si usa l'autenticazione di base). Predefinito: usa l'account di amministrazione e il database specificato usando la proprietà databaseName. |
-| databaseName |Nome del database MongoDB a cui si vuole accedere. |Sì |
-| gatewayName |Nome del gateway che accede all'archivio dati. |Sì |
+| username |Utente account tooaccess MongoDB. |Sì (se si usa l'autenticazione di base). |
+| password |Password utente hello. |Sì (se si usa l'autenticazione di base). |
+| authSource |Nome del database MongoDB hello che si desidera toouse toocheck le credenziali per l'autenticazione. |Facoltativo (se si usa l'autenticazione di base). impostazione predefinita: Usa l'account amministratore hello e database hello specificato utilizzando la proprietà databaseName. |
+| databaseName |Nome del database MongoDB hello che si desidera tooaccess. |Sì |
+| gatewayName |Nome del gateway hello che accede a hello archivio di dati. |Sì |
 | encryptedCredential |Credenziali crittografate in base al gateway. |Facoltativo |
 
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
+Per un elenco completo delle proprietà disponibili per la definizione di set di dati e sezioni, vedere hello [creazione dei DataSet](data-factory-create-datasets.md) articolo. Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati, ad esempio Azure SQL, BLOB di Azure, tabelle di Azure e così via.
 
-La sezione **typeProperties** è diversa per ogni tipo di set di dati e contiene informazioni sulla posizione dei dati nell'archivio dati. La sezione typeProperties per il set di dati di tipo **MongoDbCollection** presenta le proprietà seguenti:
+Hello **typeProperties** sezione è diverso per ogni tipo di set di dati e fornisce informazioni sulla posizione hello dei dati di hello nell'archivio dati hello. sezione Hello typeProperties per set di dati di tipo **MongoDbCollection** è hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| collectionName |Nome della raccolta nel database MongoDB. |Sì |
+| collectionName |Nome dell'insieme di hello nel database di MongoDB. |Sì |
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
-Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, fare riferimento all'articolo [Creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
+Per un elenco completo delle proprietà disponibili per la definizione delle attività e delle sezioni, vedere hello [la creazione di pipeline](data-factory-create-pipelines.md) articolo. Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
 
-D'altra parte, le proprietà disponibili nella sezione **typeProperties** dell'attività variano in base al tipo di attività. Per l'attività di copia variano in base ai tipi di origine e sink.
+Le proprietà disponibili nella hello **typeProperties** sezione di attività hello hello invece variano in base a ogni tipo di attività. Per attività di copia, variano a seconda dei tipi di hello di origini e sink.
 
-In caso di origine di tipo **MongoDbSource** , nella sezione typeProperties sono disponibili le proprietà seguenti:
+Quando origine hello è di tipo **MongoDbSource** hello le proprietà seguenti sono disponibile nella sezione typeProperties:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| query |Usare la query personalizzata per leggere i dati. |Stringa di query SQL-92. Ad esempio: selezionare * da MyTable. |No, se **collectionName** di **set di dati** è specificato |
+| query |Utilizzare i dati di tooread hello query personalizzata. |Stringa di query SQL-92. Ad esempio: selezionare * da MyTable. |No, se **collectionName** di **set di dati** è specificato |
 
 
 
-## <a name="json-example-copy-data-from-mongodb-to-azure-blob"></a>Esempio JSON: Copiare dati da MongoDB al BLOB di Azure
-Questo esempio fornisce le definizioni JSON di esempio da usare per creare una pipeline con il [Portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Illustra come copiare dati da un MongoDB locale a un'archiviazione BLOB di Azure. Tuttavia, i dati possono essere copiati in qualsiasi sink dichiarato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) usando l'attività di copia in Azure Data Factory.
+## <a name="json-example-copy-data-from-mongodb-tooazure-blob"></a>Esempio JSON: copiare i dati da tooAzure MongoDB Blob
+In questo esempio vengono fornite le definizioni di JSON di esempio che è possibile utilizzare una pipeline toocreate utilizzando [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) o [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Viene illustrato come toocopy dati da un tooan MongoDB locale archiviazione Blob di Azure. Tuttavia, i dati possono essere copiati tooany di sink hello indicato [qui](data-factory-data-movement-activities.md#supported-data-stores-and-formats) utilizzando hello attività di copia in Azure Data Factory.
 
-L'esempio include le entità di Data factory seguenti:
+esempio Hello è hello entità factory di dati seguenti:
 
 1. Un servizio collegato di tipo [OnPremisesMongoDb](#linked-service-properties).
 2. Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -102,9 +102,9 @@ L'esempio include le entità di Data factory seguenti:
 4. Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [MongoDbSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L'esempio copia i dati dai risultati della query nel database MongoDB in un BLOB ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati da un risultato di query nell'oggetto blob tooa database MongoDB ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
-Per prima cosa, impostare il Gateway di gestione dati in base alle istruzioni contenute nell'articolo [Gateway di gestione dati](data-factory-data-management-gateway.md) .
+Come primo passaggio, configurare il gateway di gestione dati hello in base alle istruzioni hello hello [Gateway di gestione dati](data-factory-data-management-gateway.md) articolo.
 
 **Servizio collegato MongoDB:**
 
@@ -117,11 +117,11 @@ Per prima cosa, impostare il Gateway di gestione dati in base alle istruzioni co
         "typeProperties":
         {
             "authenticationType": "<Basic or Anonymous>",
-            "server": "< The IP address or host name of the MongoDB server >",  
-            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "server": "< hello IP address or host name of hello MongoDB server >",  
+            "port": "<hello number of hello TCP port that hello MongoDB server uses toolisten for client connections.>",
             "username": "<username>",
             "password": "<password>",
-           "authSource": "< The database that you want to use to check your credentials for authentication. >",
+           "authSource": "< hello database that you want toouse toocheck your credentials for authentication. >",
             "databaseName": "<database name>",
             "gatewayName": "<mygateway>"
         }
@@ -143,7 +143,7 @@ Per prima cosa, impostare il Gateway di gestione dati in base alle istruzioni co
 }
 ```
 
-**Set di dati di input MongoDB:** impostando "external": "true" si comunica al servizio Data Factory che la tabella è esterna alla data factory e non è prodotta da un'attività al suo interno.
+**Set di dati input MongoDB:** impostazione "external": "true" informa il servizio di Data Factory hello tabella hello è data factory di toohello esterni e non viene generato da un'attività nella data factory di hello.
 
 ```json
 {
@@ -165,7 +165,7 @@ Per prima cosa, impostare il Gateway di gestione dati in base alle istruzioni co
 
 **Set di dati di output del BLOB di Azure:**
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore dell'ora di inizio hello.
 
 ```json
 {
@@ -225,7 +225,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 **Attività di copia in una pipeline con un'origine MongoDB e un sink BLOB:**
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output precedenti. È programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo **source** è impostato su **MongoDbSource** e il tipo **sink** è impostato su **BlobSink**. La query SQL specificata per la proprietà **query** consente di selezionare i dati da copiare nell'ultima ora.
+pipeline di Hello contiene un'attività di copia che è configurato toouse hello sopra i set di dati di input e output e viene pianificata toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**MongoDbSource** e **sink** tipo è stato impostato troppo**BlobSink**. query SQL Hello specificata per hello **query** proprietà consente di selezionare dati hello hello oltre toocopy ora.
 
 ```json
 {
@@ -275,15 +275,15 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 
 
 ## <a name="schema-by-data-factory"></a>Schema da Data Factory
-Il servizio Azure Data Factory deduce lo schema da una raccolta MongoDB usando gli ultimi 100 documenti nella raccolta. Se questi 100 documenti non contengono lo schema completo, alcune colonne possono essere ignorate durante l'operazione di copia.
+Servizio di Azure Data Factory deriva da una raccolta di MongoDB utilizzando documenti hello 100 più recente nella raccolta di hello. Se questi 100 documenti non contengono completo dello schema, è possibile ignorare alcune colonne durante l'operazione di copia hello.
 
 ## <a name="type-mapping-for-mongodb"></a>Mapping dei tipi per MongoDB
-Come accennato nell'articolo sulle [attività di spostamento dei dati](data-factory-data-movement-activities.md) , l'attività di copia esegue conversioni automatiche da tipi di origine a tipi di sink con l'approccio seguente in 2 passaggi:
+Come accennato in hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, attività di copia esegue le conversioni dai tipi di origine tipi toosink automatico con hello approccio passaggio 2:
 
-1. Conversione dai tipi di origine nativi al tipo .NET
-2. Conversione dal tipo .NET al tipo di sink nativo
+1. Conversione dal tipo di origine nativa tipi too.NET
+2. Eseguire la conversione da tipo di sink toonative tipo .NET
 
-Quando si spostano i dati in MongoDB vengono usati i mapping seguenti dai tipi MongoDB ai tipi .NET.
+Durante lo spostamento di hello tooMongoDB dati seguenti vengono utilizzati i mapping dai tipi di MongoDB tipi too.NET.
 
 | Tipo di MongoDB | Tipo di .NET Framework |
 | --- | --- |
@@ -299,19 +299,19 @@ Quando si spostano i dati in MongoDB vengono usati i mapping seguenti dai tipi M
 | Oggetto |Rinormalizzato in colonne rese flat con "_" come separatore annidato |
 
 > [!NOTE]
-> Per informazioni sul supporto di matrici che usano tabelle virtuali, vedere la sezione [Supporto per tipi complessi con tabelle virtuali](#support-for-complex-types-using-virtual-tables) qui di seguito.
+> toolearn sul supporto per le matrici con tabelle virtuali, vedere troppo[il supporto per i tipi complessi mediante tabelle virtuali](#support-for-complex-types-using-virtual-tables) sezione riportata di seguito.
 
-I tipi di dati MongoDB seguenti non sono attualmente supportati: DBPointer, JavaScript, chiave Max/Min, Espressione regolare, Simbolo, Timestamp, Undefined
+Attualmente, non è supportato hello seguenti tipi di dati di MongoDB: DBPointer, JavaScript, minimo e massimo della chiave, espressioni regolari, simboli, Timestamp, non definito
 
 ## <a name="support-for-complex-types-using-virtual-tables"></a>Supporto per tipi complessi con tabelle virtuali
-Azure Data Factory usa un driver ODBC integrato per connettersi ai dati di un database MongoDB e copiarli. Per i tipi complessi come le matrici o gli oggetti con tipi diversi tra i documenti, il driver rinormalizza i dati nelle tabelle virtuali corrispondenti. In particolare, se una tabella contiene tali colonne, il driver genera le tabelle virtuali seguenti:
+Data Factory di Azure Usa un ODBC driver tooconnect tooand copia dati predefinito del database MongoDB. Per i tipi complessi, ad esempio matrici o oggetti con tipi diversi in documenti hello, driver hello Normalizza nuovamente dati in tabelle virtuali corrispondenti. In particolare, se una tabella contiene colonne di tipo, il driver hello genera l'errore hello le tabelle virtuali seguenti:
 
-* Una **tabella di base**che contiene gli stessi dati della tabella reale eccetto le colonne di tipo complesso. La tabella di base ha lo stesso nome della tabella reale che rappresenta.
-* Una **tabella virtuale** per ogni colonna di tipo complesso che espande i dati annidati. Alle tabelle virtuali vengono assegnati nomi composti dal nome della tabella reale seguito dal separatore "_" e dal nome della matrice o dell'oggetto.
+* Oggetto **tabella di base**, che contiene hello stessi dati di tabella ad eccezione delle colonne di tipo complesso hello hello. tabella di base Hello utilizza hello stesso nome come tabella reale hello che rappresenta.
+* Oggetto **tabella virtuale** per ogni colonna di tipo complesso, che espande dati hello annidato. tabelle virtuali Hello vengono denominate usando il nome di hello della tabella reale hello, un separatore "_" e nome hello della matrice hello o un oggetto.
 
-Le tabelle virtuali fanno riferimento ai dati nella tabella reale, consentendo al driver di accedere ai dati denormalizzati. Per informazioni dettagliate, vedere la sezione riportata di seguito. È possibile accedere al contenuto delle matrici MongoDB eseguendo query e join sulle tabelle virtuali.
+Tabelle virtuali fare riferimento ai dati toohello nella tabella reale hello, abilitazione hello driver tooaccess hello dati denormalizzati. Per informazioni dettagliate, vedere la sezione riportata di seguito. È possibile accedere a contenuto hello di matrici di MongoDB eseguendo una query e join di tabelle virtuali hello.
 
-È possibile usare la [Copia guidata](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) per visualizzare intuitivamente l'elenco delle tabelle nel database MongoDB che includono tabelle virtuali e visualizzare in anteprima i dati all'interno. È inoltre possibile costruire una query nella Copia guidata ed eseguire la convalida per visualizzare il risultato.
+È possibile utilizzare hello [Copia guidata](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) toointuitively visualizzazione elenco di tabelle nel database di MongoDB inclusi tabelle virtuali hello hello e visualizzare l'anteprima dati hello all'interno. Inoltre, è possibile costruire una query nella copia guidata hello e convalidare i risultati di hello toosee.
 
 ### <a name="example"></a>Esempio
 Ad esempio, "ExampleTable" di seguito è una tabella MongoDB che contiene una colonna con una matrice di oggetti in ogni cella (Fatture) e una colonna con una matrice di tipi scalari (Classificazioni).
@@ -321,18 +321,18 @@ Ad esempio, "ExampleTable" di seguito è una tabella MongoDB che contiene una co
 | 1111 |ABC |[{invoice_id:"123", item:"toaster", price:"456", discount:"0.2"}, {invoice_id:"124", item:"oven", price: "1235", discount: "0.2"}] |Silver |[5,6] |
 | 2222 |XYZ |[{invoice_id:"135", item:"fridge", price: "12543", discount: "0.0"}] |Gold |[1,2] |
 
-Il driver genera più tabelle virtuali per rappresentare questa singola tabella. La prima tabella virtuale è la tabella di base denominata "ExampleTable", illustrata di seguito. La tabella di base contiene tutti i dati della tabella originale, ma i dati dalle matrici sono stati omessi e vengono espansi nelle tabelle virtuali.
+driver Hello genera più tabelle virtuali toorepresent di questa tabella. Hello prima virtuale è hello base tabella denominata "ExampleTable", illustrato di seguito. tabella di base Hello contiene tutti i dati della tabella originale hello hello, ma i dati di hello da matrici di hello sono stato omesso e viene espanso nella tabelle virtuali hello.
 
 | _id | Nome del cliente | Contratto |
 | --- | --- | --- |
 | 1111 |ABC |Silver |
 | 2222 |XYZ |Gold |
 
-Le tabelle seguenti illustrano le tabelle virtuali che rappresentano le matrici originali nell'esempio. In queste tabelle è possibile vedere:
+Hello tabelle seguenti illustrano hello tabelle virtuali che rappresentano matrici originale di hello nell'esempio hello. Queste tabelle contengono seguente hello:
 
-* Un riferimento alla colonna della chiave primaria originale corrispondente alla riga della matrice originale (con la colonna _id)
-* Un'indicazione della posizione dei dati all'interno della matrice originale
-* I dati espansi per ogni elemento all'interno della matrice
+* Un riferimento toohello colonna chiave primaria corrispondente toohello riga originale della matrice originale hello (tramite colonna ID hello)
+* Indicazione della posizione di hello dei dati di hello all'interno della matrice originale hello
+* Hello espanso dati per ogni elemento all'interno della matrice hello
 
 Tabella "ExampleTable_Invoices":
 
@@ -351,14 +351,14 @@ Tabella "ExampleTable_Ratings":
 | 2222 |0 |1 |
 | 2222 |1 |2 |
 
-## <a name="map-source-to-sink-columns"></a>Eseguire il mapping delle colonne dell'origine alle colonne del sink
-Per informazioni sul mapping delle colonne del set di dati di origine alle colonne del set di dati del sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Eseguire il mapping di colonne di origine toosink
+toolearn sui mapping delle colonne in toocolumns di set di dati di origine nel sink set di dati, vedere [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lettura ripetibile da origini relazionali
-Quando si copiano dati da archivi dati relazionali, è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando una sezione viene rieseguita in uno dei due modi, è necessario assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Quando si copiano dati da archivi dati relazionali, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando viene eseguito di nuovo una sezione in entrambi i casi, è necessario toomake assicurarsi che hello stessi dati non viene letto alcun altro aspetto come viene eseguita più volte una sezione. Vedere [Lettura ripetibile da origini relazionali](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Ottimizzazione delle prestazioni
-Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Azure Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md).
+Vedere [prestazioni attività di copia di & ottimizzazione Guida](data-factory-copy-activity-performance.md) toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento dei dati (attività di copia) in Azure Data Factory e i vari modi toooptimize è.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere l'articolo [Spostare dati tra origini locali e il cloud con Gateway di gestione dati](data-factory-move-data-between-onprem-and-cloud.md) per istruzioni dettagliate sulla creazione di una pipeline di dati che sposta i dati da un archivio dati locale a un archivio dati di Azure.
+Vedere [spostare i dati tra sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo per istruzioni dettagliate per la creazione di una pipeline di dati che consente di spostare dati da un locale tooan archiviano dati di Azure.

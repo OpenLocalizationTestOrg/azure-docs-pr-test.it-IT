@@ -1,6 +1,6 @@
 ---
-title: Risolvere i problemi del gateway di gestione dati | Documentazione Microsoft
-description: Questo articolo offre suggerimenti per risolvere i problemi correlati al gateway di gestione dati.
+title: problemi di Gateway di gestione dati aaaTroubleshoot | Documenti Microsoft
+description: Fornisce suggerimenti tootroubleshoot problemi correlati tooData Gateway di gestione.
 services: data-factory
 author: nabhishek
 manager: jhubbard
@@ -14,275 +14,275 @@ ms.topic: article
 ms.date: 07/27/2017
 ms.author: abnarain
 published: True
-ms.openlocfilehash: b8e50a4e3c0b9c535ccc2344ff22261a356d5acc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 85dacc8a1e8d574d6e7d5b556c995cebdc148fde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-issues-with-using-data-management-gateway"></a>Risolvere i problemi nell'uso del gateway di gestione dati
 Questo articolo offre informazioni sulla risoluzione dei problemi nell'uso del gateway di gestione dati.
 
 > [!NOTE]
-> Vedere l'articolo [Gateway di gestione dati](data-factory-data-management-gateway.md) per informazioni dettagliate sul gateway. Vedere l'articolo [Spostare dati tra origini locali e il cloud](data-factory-move-data-between-onprem-and-cloud.md) per una procedura dettagliata sull'uso del gateway per spostare i dati da un database di SQL Server locale all'Archiviazione BLOB di Azure.
+> Vedere hello [Gateway di gestione dati](data-factory-data-management-gateway.md) articolo per informazioni dettagliate sul gateway hello. Vedere hello [spostare i dati tra sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md) articolo per una procedura dettagliata di spostare i dati da un tooMicrosoft di database di SQL Server locale nell'archiviazione Blob di Azure tramite gateway hello.
 >
 >
 
-## <a name="failed-to-install-or-register-gateway"></a>Impossibile installare o registrare il gateway
+## <a name="failed-tooinstall-or-register-gateway"></a>Gateway tooinstall o registrare non riuscito
 ### <a name="1-problem"></a>1. Problema
-Questo messaggio di errore viene visualizzato durante l'installazione e la registrazione di un gateway, in particolare durante il download del file di installazione del gateway.
+Viene visualizzato questo messaggio di errore durante l'installazione e la registrazione di un gateway, in particolare, durante il download dei file di installazione di gateway hello.
 
-`Unable to connect to the remote server". Please check your local settings (Error Code: 10003).`
+`Unable tooconnect toohello remote server". Please check your local settings (Error Code: 10003).`
 
 #### <a name="cause"></a>Causa
-Il computer in cui si prova a installare il gateway non è riuscito a scaricare il file di installazione del gateway più recente dall'area download a causa di un problema di rete.
+macchina Hello in cui si sta tentando di gateway hello tooinstall non riuscita toodownload hello ultimo gateway file di installazione dall'area download hello a causa di problemi di rete tooa.
 
 #### <a name="resolution"></a>Risoluzione
-Verificare se nel firewall del server proxy sono presenti impostazioni che bloccano la connessione di rete dal computer all'[Area download](https://download.microsoft.com/) e aggiornare le impostazioni di conseguenza.
+Verificare toosee di impostazioni del firewall proxy server se la connessione di rete hello da hello computer toohello il bambino hello [area download](https://download.microsoft.com/)e aggiornare le impostazioni di hello di conseguenza.
 
-In alternativa, è possibile scaricare il file di installazione del gateway più recente dall'[Area download](https://www.microsoft.com/download/details.aspx?id=39717) su altri computer che possono accedere all'area download. Dopo averlo scaricato, copiare il file di installazione nel computer host del gateway ed eseguirlo manualmente per installare e aggiornare il gateway.
+In alternativa, è possibile scaricare i file di installazione hello gateway più recente di hello da hello [area download](https://www.microsoft.com/download/details.aspx?id=39717) in altri computer che possono accedere area download hello. È possibile quindi gateway di toohello file di programma di installazione di copia hello computer host e lo si esegue manualmente gateway hello tooinstall e update.
 
 ### <a name="2-problem"></a>2. Problema
-Questo errore viene visualizzato quando si prova a installare un gateway facendo clic su **Installa direttamente in questo computer** nel portale di Azure.
+Questo errore viene visualizzato quando si tenta un gateway tooinstall facendo **installare direttamente in questo computer** in hello portale di Azure.
 
 `Error:  Abort installing a new gateway on this computer because this computer has an existing installed gateway and a computer without any installed gateway is required for installing a new gateway.`  
 
 #### <a name="cause"></a>Causa
-È già installato un gateway nel computer.
+Un gateway è già installato nel computer di hello.
 
 #### <a name="resolution"></a>Risoluzione
-Disinstallare il gateway esistente nel computer e fare nuovamente clic sul collegamento **Installa direttamente in questo computer**.
+Disinstallare hello gateway esistente nel computer di hello e fare clic su hello **installare direttamente in questo computer** collegare di nuovo.
 
 ### <a name="3-problem"></a>3. Problema
 Questo errore può verificarsi quando si registra un nuovo gateway.
 
-`Error: The gateway has encountered an error during registration.`
+`Error: hello gateway has encountered an error during registration.`
 
 #### <a name="cause"></a>Causa
-Il messaggio può essere visualizzato per uno dei motivi seguenti:
+Verrà visualizzato questo messaggio per uno dei seguenti motivi hello:
 
-* Il formato della chiave del gateway non è valido.
-* La chiave del gateway è stata invalidata.
-* La chiave del gateway è stata rigenerata dal portale.  
+* formato Hello della chiave del gateway hello è valido.
+* chiave del gateway Hello è stata invalidata.
+* chiave del gateway Hello è stata rigenerata dal portale hello.  
 
 #### <a name="resolution"></a>Risoluzione
-Accertarsi che venga usata la chiave del gateway corretta del portale. Se necessario, rigenerare una chiave e usarla per registrare il gateway.
+Verificare se si utilizza una chiave di gateway corretto hello dal portale hello. Se è necessario rigenerare una chiave e utilizzare hello tooregister chiave hello gateway.
 
 ### <a name="4-problem"></a>4. Problema
-Durante la registrazione di un gateway può essere visualizzato il messaggio di errore seguente:
+È possibile visualizzare hello seguente messaggio di errore quando si sta registrando un gateway.
 
-`Error: The content or format of the gateway key "{gatewayKey}" is invalid, please go to azure portal to create one new gateway or regenerate the gateway key.`
+`Error: hello content or format of hello gateway key "{gatewayKey}" is invalid, please go tooazure portal toocreate one new gateway or regenerate hello gateway key.`
 
 
 
 ![Il contenuto o il formato della chiave non è valido](media/data-factory-troubleshoot-gateway-issues/invalid-format-gateway-key.png)
 
 #### <a name="cause"></a>Causa
-Il contenuto o il formato della chiave del gateway di input non è corretto. È possibile che sia stata copiata solo una parte della chiave dal portale oppure che la chiave usata non sia valida.
+Hello contenuto o il formato della chiave del gateway input hello non è corretto. Uno dei motivi hello è possibile che solo una parte della chiave hello copiato dal portale hello o si usa una chiave non valida.
 
 #### <a name="resolution"></a>Risoluzione
-Generare una chiave del gateway nel portale e usare il pulsante Copia per copiare la chiave intera. Quindi incollarla in questa finestra per registrare il gateway.
+Generare una chiave del gateway nel portale di hello e utilizzare hello copia pulsante toocopy hello intera chiave. Quindi incollarlo in questo gateway di hello tooregister finestra.
 
 ### <a name="5-problem"></a>5. Problema
-Durante la registrazione di un gateway può essere visualizzato il messaggio di errore seguente:
+È possibile visualizzare hello seguente messaggio di errore quando si sta registrando un gateway.
 
-`Error: The gateway key is invalid or empty. Specify a valid gateway key from the portal.`
+`Error: hello gateway key is invalid or empty. Specify a valid gateway key from hello portal.`
 
 ![La chiave del gateway non è valida oppure è vuota](media/data-factory-troubleshoot-gateway-issues/gateway-key-is-invalid-or-empty.png)
 
 #### <a name="cause"></a>Causa
-La chiave del gateway è stata rigenerata oppure il gateway è stato eliminato nel portale di Azure. Il problema può verificarsi anche quando la versione del programma di installazione del Gateway di gestione dati non è la più recente.
+è stata rigenerata la chiave del gateway Hello o gateway hello è stato eliminato nel portale di Azure hello. Può inoltre verificarsi se il programma di installazione di hello Gateway di gestione dati non è più recente.
 
 #### <a name="resolution"></a>Risoluzione
-Controllare che la versione del programma di installazione del Gateway di gestione dati sia la più recente (fare riferimento al [Download Center](https://go.microsoft.com/fwlink/p/?LinkId=271260) di Microsoft).
+Controllare se l'installazione di Gateway di gestione dati hello è la versione più recente di hello, è possibile trovare la versione più recente di hello in hello Microsoft [area download](https://go.microsoft.com/fwlink/p/?LinkId=271260).
 
-Se la versione del programma di installazione è quella attuale o la più recente e il gateway è ancora presente sul Portale, rigenerare la chiave del gateway nel Portale di Azure e usare il pulsante Copia per copiare l'intera chiave, quindi incollarla in questa finestra per registrare il gateway. In caso contrario ricreare il gateway e ricominciare.
+Se dell'installazione corrente / più recente e gateway esiste ancora nel portale, rigenerare la chiave di gateway hello in hello portale di Azure, utilizzare hello copia pulsante toocopy hello intera chiave e quindi incollarlo in questo gateway di hello tooregister finestra. In caso contrario, ricreare il gateway di hello e ricominciare.
 
 ### <a name="6-problem"></a>6. Problema
-Durante la registrazione di un gateway può essere visualizzato il messaggio di errore seguente:
+È possibile visualizzare hello seguente messaggio di errore quando si sta registrando un gateway.
 
-`Error: Gateway has been online for a while, then shows “Gateway is not registered” with the status “Gateway key is invalid”`
+`Error: Gateway has been online for a while, then shows “Gateway is not registered” with hello status “Gateway key is invalid”`
 
 ![La chiave del gateway non è valida oppure è vuota](media/data-factory-troubleshoot-gateway-issues/gateway-not-registered-key-invalid.png)
 
 #### <a name="cause"></a>Causa
-Questo errore può verificarsi perché il gateway è stato eliminato oppure la chiave associata è stata rigenerata.
+Questo errore potrebbe verificarsi perché hello gateway è stato eliminato o è stata rigenerata la chiave del gateway associato hello.
 
 #### <a name="resolution"></a>Risoluzione
-Se il gateway è stato eliminato, ricrearlo dal portale, fare clic su **Registra**, copiare la chiave dal portale, incollarla e provare a registrare il gateway.
+Se il gateway hello è stato eliminato, ricreare il gateway hello dal portale di hello, fare clic su **registrare**, copiare hello chiave dal portale di hello, incollare il codice e provare il gateway di hello tooregister.
 
-Se il gateway è ancora esistente, ma la chiave è stata rigenerata, usare la nuova chiave per registrare il gateway. Se la chiave non è disponibile, rigenerarla nuovamente dal portale.
+Se il gateway hello esiste ancora, ma è stata rigenerata la chiave, usare hello nuova chiave tooregister hello gateway. Se non si dispone di chiave hello, rigenerare la chiave hello nuovamente dal portale di hello.
 
 ### <a name="7-problem"></a>7. Problema
-Quando si registra un gateway, potrebbe essere necessario immettere il percorso e la password di un certificato.
+Quando si sta registrando un gateway, potrebbe essere necessario tooenter percorso e la password di un certificato.
 
 ![Specificare un certificato](media/data-factory-troubleshoot-gateway-issues/specify-certificate.png)
 
 #### <a name="cause"></a>Causa
-Il gateway è stato registrato in precedenza in altri computer. Durante la registrazione iniziale di un gateway è stato associato un certificato di crittografia al gateway stesso. Il certificato può essere generato automaticamente dal gateway oppure specificato dall'utente.  Questo certificato viene usato per crittografare le credenziali dell'archivio dati (servizio collegato).  
+Hello gateway è stato registrato in altri computer prima di. Durante la registrazione iniziale di hello del gateway, un certificato di crittografia è stato associato al gateway hello. certificato Hello può essere automatico generato dal gateway hello o specificato dall'utente hello.  Questo certificato è usato tooencrypt le credenziali dell'archivio dati hello (servizio collegato).  
 
 ![Esportare il certificato](media/data-factory-troubleshoot-gateway-issues/export-certificate.png)
 
-Quando si ripristina il gateway in un computer host diverso, la registrazione guidata richiede questo certificato per decrittografare le credenziali crittografate in precedenza con questo certificato.  Senza questo certificato, le credenziali non possono essere decrittografate dal nuovo gateway e le successive attività di copia associate al nuovo gateway avranno esito negativo.  
+Quando il ripristino di gateway hello in un computer host diverso, hello registrazione guidata per questo toodecrypt certificato credenziali precedentemente crittografati con questo certificato.  Senza questo certificato, credenziali hello non possono essere decrittografate dal nuovo gateway hello e associate a questo nuovo gateway esecuzioni di attività di copia successive avranno esito negativo.  
 
 #### <a name="resolution"></a>Risoluzione
-Se il certificato delle credenziali è stato esportato dal computer gateway originale con il pulsante **Esporta** disponibile nella scheda **Impostazioni** di Gestione configurazione di Gateway di gestione dati, usare il certificato in quel computer.
+Se è stata esportata certificato delle credenziali hello dal computer gateway originale hello utilizzando hello **esportare** pulsante hello **impostazioni** scheda in Data Management Gateway Configuration Manager, utilizzare hello certificato.
 
-Non è possibile ignorare questo passaggio quando si recupera un gateway. Se il certificato è mancante, è necessario eliminare il gateway dal portale e crearne uno nuovo.  Inoltre, tutti i servizi collegati relativi al gateway devono essere aggiornati immettendo di nuovo le credenziali.
+Non è possibile ignorare questo passaggio quando si recupera un gateway. Se il certificato di hello è presente, è necessario toodelete hello gateway dal portale hello e ricreare un nuovo gateway.  Inoltre, aggiornare tutti i servizi collegati che sono correlati toohello gateway da reinserimento le proprie credenziali.
 
 ### <a name="8-problem"></a>8. Problema
-È possibile visualizzare il messaggio di errore seguente:
+È possibile visualizzare hello seguente messaggio di errore.
 
-`Error: The remote server returned an error: (407) Proxy Authentication Required.`
+`Error: hello remote server returned an error: (407) Proxy Authentication Required.`
 
 #### <a name="cause"></a>Causa
-Questo errore si verifica quando il gateway si trova in un ambiente che richiede un proxy HTTP per accedere alle risorse Internet oppure quando la password di autenticazione del proxy viene modificata, ma non aggiornata di conseguenza nel gateway.
+Questo errore si verifica quando il gateway è in un ambiente che richiede un tooaccess proxy HTTP risorse Internet, o viene modificata la password di autenticazione del proxy, ma non viene aggiornata di conseguenza nel gateway.
 
 #### <a name="resolution"></a>Risoluzione
-Seguire le istruzioni indicate nella sezione [Considerazioni sui server proxy](#proxy-server-considerations) di questo documento e configurare le impostazioni del proxy con Gestione configurazione di Gateway di gestione dati.
+Seguire le istruzioni hello hello [considerazioni sui server Proxy](#proxy-server-considerations) sezione di questo articolo e configurare le impostazioni del proxy con dati Gestione Gateway di Gestione configurazione.
 
 ## <a name="gateway-is-online-with-limited-functionality"></a>Il gateway è online con funzionalità limitate
 ### <a name="1-problem"></a>1. Problema
-Lo stato visualizzato per il gateway è online con funzionalità limitata.
+Verranno visualizzati lo stato di hello del gateway hello online con funzionalità limitate.
 
 #### <a name="cause"></a>Causa
-Lo stato visualizzato per il gateway è online con funzionalità limitata per uno dei motivi seguenti:
+È visualizzato lo stato di hello del gateway hello online con funzionalità limitate per uno dei seguenti motivi hello:
 
-* Il gateway non può connettersi al servizio cloud tramite il bus di servizio di Azure.
-* Il servizio cloud non può connettersi al gateway tramite il bus di servizio.
+* Gateway non è possibile connettersi toocloud servizio tramite il Bus di servizio di Azure.
+* Servizio cloud non può connettersi toogateway tramite Bus di servizio.
 
-Quando il gateway è online con funzionalità limitate, potrebbe non essere possibile usare la copia guidata di Data Factory per creare pipeline di dati per copiare i dati da e verso archivi dati locali. Come soluzione alternativa, è possibile usare l'editor di Data Factory nel portale, oppure Visual Studio o Azure PowerShell.
+Quando il gateway di hello è online con funzionalità limitate, potrebbe non essere in grado di toouse pipeline di dati toocreate di Data Factory Copia guidata hello per la copia dei dati tooor dagli archivi dati locali. In alternativa, è possibile utilizzare l'Editor delle Data Factory nel portale di hello, Visual Studio o Azure PowerShell.
 
 #### <a name="resolution"></a>Risoluzione
-La risoluzione di questo problema (online con funzionalità limitata) dipende dall'eventualità che il gateway non possa connettersi al servizio cloud o viceversa. Le sezioni seguenti illustrano queste risoluzioni.
+Risoluzione di questo problema (online con funzionalità limitate) si basa sul se gateway hello non può connettersi toohello del servizio cloud o hello altro modo. Hello le sezioni seguenti fornisce queste risoluzioni.
 
 ### <a name="2-problem"></a>2. Problema
-Viene visualizzato l'errore seguente:
+Viene visualizzato il seguente errore hello.
 
-`Error: Gateway cannot connect to cloud service through service bus`
+`Error: Gateway cannot connect toocloud service through service bus`
 
-![Il gateway non riesce a connettersi al servizio cloud](media/data-factory-troubleshoot-gateway-issues/gateway-cannot-connect-to-cloud-service.png)
+![Gateway non è possibile connettersi toocloud servizio](media/data-factory-troubleshoot-gateway-issues/gateway-cannot-connect-to-cloud-service.png)
 
 #### <a name="cause"></a>Causa
-Il gateway non può connettersi al servizio cloud tramite il bus di servizio.
+Gateway non è possibile connettersi servizio cloud toohello tramite Bus di servizio.
 
 #### <a name="resolution"></a>Risoluzione
-Seguire questi passaggi per fare in modo che il gateway torni online:
+Seguire un gateway a questi hello tooget di passaggi in linea:
 
-1. Consentire le regole in uscita degli indirizzi IP nel computer gateway e nel firewall aziendale. È possibile trovare gli indirizzi IP nel registro eventi di Windows (ID == 401): si è verificato un tentativo di accesso a un socket in modalità non consentite dalle relative autorizzazioni di accesso XX.XX.XX.XX:9350.
-* Configurare le impostazioni proxy nel gateway. Per conoscere i dettagli, vedere la sezione [Considerazioni sui server proxy](#proxy-server-considerations).
-* Abilitare le porte in uscita 5671 e 9350-9354 sia su Windows Firewall nel computer gateway che nel firewall aziendale. Per conoscere i dettagli, vedere la sezione [Porte e firewall](#ports-and-firewall). Questo passaggio è facoltativo, ma consigliato per considerazioni relative alle prestazioni.
+1. Consenti indirizzi IP regole in uscita sul computer del gateway hello e firewall aziendale hello. È possibile trovare gli indirizzi IP dal registro eventi di Windows hello (ID = = 401): è stato eseguito un tentativo effettuato tooaccess un socket in modo non è consentito dalle relative autorizzazioni di accesso XX. XX. XX. XX:9350.
+* Configurare le impostazioni proxy nel gateway hello. Vedere hello [considerazioni sui server Proxy](#proxy-server-considerations) sezione per informazioni dettagliate.
+* Abilitare le porte in uscita 5671 e 9350-9354 su entrambi hello Windows Firewall nel computer del gateway hello e firewall aziendale hello. Vedere hello [porte e firewall](#ports-and-firewall) sezione per informazioni dettagliate. Questo passaggio è facoltativo, ma consigliato per considerazioni relative alle prestazioni.
 
 ### <a name="3-problem"></a>3. Problema
-Viene visualizzato l'errore seguente:
+Viene visualizzato il seguente errore hello.
 
-`Error: Cloud service cannot connect to gateway through service bus.`
+`Error: Cloud service cannot connect toogateway through service bus.`
 
 #### <a name="cause"></a>Causa
 Errore temporaneo nella connettività di rete.
 
 #### <a name="resolution"></a>Risoluzione
-Seguire questi passaggi per fare in modo che il gateway torni online:
+Seguire un gateway a questi hello tooget di passaggi in linea:
 
-1. Attendere un paio di minuti; la connettività verrà ripristinata automaticamente quando l'errore non sarà più visualizzato.
-* Se l'errore persiste, riavviare il servizio gateway.
+1. Attendere un paio di minuti, la connettività di hello verrà ripristinata automaticamente quando non viene più visualizzato errore hello.
+* Se hello errore persiste, riavviare il servizio gateway hello.
 
-## <a name="failed-to-author-linked-service"></a>Impossibile creare il servizio collegato
+## <a name="failed-tooauthor-linked-service"></a>Servizio non riuscite tooauthor collegato
 ### <a name="problem"></a>Problema
-Questo errore può verificarsi quando si prova a usare Gestione credenziali nel portale per inserire le credenziali per un nuovo servizio collegato o aggiornare le credenziali per un servizio collegato esistente.
+Si potrebbe essere visualizzato questo errore quando si tenta di toouse Gestione credenziali le credenziali di portale tooinput hello per un servizio collegato di nuovo o aggiornare le credenziali per un servizio collegato esistente.
 
-`Error: The data store '<Server>/<Database>' cannot be reached. Check connection settings for the data source.`
+`Error: hello data store '<Server>/<Database>' cannot be reached. Check connection settings for hello data source.`
 
-Quando viene visualizzato questo errore, la pagina Impostazioni di Gestione configurazione di Gateway di gestione dati potrebbe essere simile alla seguente.
+Quando viene visualizzato questo errore, pagina Impostazioni hello di Data Management Gateway Configuration Manager potrebbe essere simile hello seguente schermata.
 
 ![Impossibile raggiungere il database](media/data-factory-troubleshoot-gateway-issues/database-cannot-be-reached.png)
 
 #### <a name="cause"></a>Causa
-È possibile che il certificato SSL sia andato perso nel computer gateway. Il gateway non può caricare il certificato usato attualmente per la crittografia SSL. Nel registro può essere visualizzato un messaggio di errore analogo al seguente.
+certificato SSL Hello possibile abbia perso nel computer gateway hello. Impossibile caricare il computer gateway Hello hello certificato attualmente utilizzato per la crittografia SSL. È inoltre potrebbe essere visualizzato un messaggio di errore nel registro eventi di hello che è simile toohello seguente messaggio.
 
- `Unable to get the gateway settings from cloud service. Check the gateway key and the network connection. (Certificate with thumbprint cannot be loaded.)`
+ `Unable tooget hello gateway settings from cloud service. Check hello gateway key and hello network connection. (Certificate with thumbprint cannot be loaded.)`
 
 #### <a name="resolution"></a>Risoluzione
-Seguire questa procedura per risolvere il problema:
+Seguire questi problema hello toosolve di passaggi:
 
 1. Avviare Gestione configurazione di Gateway di gestione dati.
-2. Passare alla scheda **Impostazioni** .  
-3. Fare clic sul pulsante **Cambia** per cambiare il certificato SSL.
+2. Passare toohello **impostazioni** scheda.  
+3. Fare clic su hello **modifica** certificato SSL di hello toochange pulsante.
 
    ![Pulsate Cambia per cambiare il certificato](media/data-factory-troubleshoot-gateway-issues/change-button-ssl-certificate.png)
-4. Selezionare un nuovo certificato come certificato SSL. È possibile usare qualsiasi certificato SSL generato dall'utente o da qualsiasi organizzazione.
+4. Selezionare un nuovo certificato come certificato SSL hello. È possibile usare qualsiasi certificato SSL generato dall'utente o da qualsiasi organizzazione.
 
    ![Specificare un certificato](media/data-factory-troubleshoot-gateway-issues/specify-http-end-point.png)
 
 ## <a name="copy-activity-fails"></a>L'attività di copia ha esito negativo
 ### <a name="problem"></a>Problema
-Dopo aver impostato una pipeline nel portale di Azure viene visualizzato l'errore "UserErrorFailedToConnectToSqlserver".
+È possibile riscontrare hello seguito a un errore di "UserErrorFailedToConnectToSqlserver" dopo aver impostato una pipeline nel portale di hello.
 
-`Error: Copy activity encountered a user error: ErrorCode=UserErrorFailedToConnectToSqlServer,'Type=Microsoft.DataTransfer.Common.Shared.HybridDeliveryException,Message=Cannot connect to SQL Server`
+`Error: Copy activity encountered a user error: ErrorCode=UserErrorFailedToConnectToSqlServer,'Type=Microsoft.DataTransfer.Common.Shared.HybridDeliveryException,Message=Cannot connect tooSQL Server`
 
 #### <a name="cause"></a>Causa
 Questo problema può verificarsi per diversi motivi e la mitigazione varia di conseguenza.
 
 #### <a name="resolution"></a>Risoluzione
-Consentire le connessioni TCP in uscita sulla porta TCP/1433 o sul lato client del gateway di gestione dati prima di connettersi a un database SQL.
+Consentire le connessioni TCP in uscita sulla porta TCP/1433 sul lato client di Gateway di gestione dati hello prima della connessione di database SQL tooan.
 
-Se il database di destinazione è un database SQL di Azure, verificare anche le impostazioni del firewall del server SQL di Azure.
+Se il database di destinazione hello è un database SQL di Azure, verificare SQL Server impostazioni del firewall per Azure nonché.
 
-Vedere la sezione seguente per testare la connessione all'archivio dati locale.
+Vedere hello seguendo l'archivio di dati di sezione tootest hello connessione toohello locale.
 
 ## <a name="data-store-connection-or-driver-related-errors"></a>Errori correlati alla connessione all'archivio dati o al driver
-Se vengono visualizzati errori relativi alla connessione dell'archivio dati o al driver, attenersi alla procedura seguente:
+Se i dati visualizzati archiviare connessione o errori correlati al driver, completare hello alla procedura seguente:
 
-1. Avviare Gestione configurazione di Gateway di gestione dati sul computer del gateway.
-2. Passare alla scheda **Diagnostica** .
-3. In **Test di connessione**, aggiungere i valori del gruppo del gateway.
-4. Fare clic su **Test** per verificare se è possibile connettersi all'origine dati locale dal computer del gateway tramite le informazioni di connessione e le credenziali. Se il test della connessione non riesce dopo aver installato un driver, riavviare il gateway in modo che rilevi la modifica più recente.
+1. Avviare Gestione configurazione di Gateway di gestione di dati nel computer gateway hello.
+2. Passare toohello **diagnostica** scheda.
+3. In **Test connessione**, aggiungere i valori del gruppo gateway hello.
+4. Fare clic su **Test** toosee se è possibile connettersi toohello locale origine dati dal computer del gateway hello utilizzando le informazioni di connessione hello e le credenziali. Se la connessione di prova hello non riesce dopo aver installato un driver, riavvio hello gateway per tale toopick modifica più recente di hello.
 
 ![Test connessione nella scheda Diagnostica](media/data-factory-troubleshoot-gateway-issues/test-connection-in-diagnostics-tab.png)
 
 ## <a name="gateway-logs"></a>Log del gateway
-### <a name="send-gateway-logs-to-microsoft"></a>Inviare i log del gateway a Microsoft
-Quando si contatta il supporto Microsoft per ricevere assistenza nella risoluzione dei problemi con il gateway, all'utente potrebbe essere richiesto di condividere i log del gateway. La versione del gateway consente di condividere facilmente i log necessari con pochi clic in Gestione configurazione di Gateway di gestione dati.    
+### <a name="send-gateway-logs-toomicrosoft"></a>Inviare tooMicrosoft registri gateway
+Quando si contatta Guida tooget supporto alla risoluzione dei problemi del gateway, potrebbe essere necessario tooshare i registri del gateway. Con la versione di hello del gateway hello, è possibile condividere i log necessari gateway con due pulsanti in Data Management Gateway Configuration Manager.    
 
-1. In Gestione configurazione di Gateway di gestione dati aprire la scheda **Diagnostica**.
+1. Passare toohello **diagnostica** scheda in Data Management Gateway Configuration Manager.
 
     ![Gateway di gestione dati - Scheda Diagnostica](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-diagnostics-tab.png)
-2. Fare clic sul collegamento **Invia log** per aprire la finestra di dialogo seguente.
+2. Fare clic su **inviare i log** hello toosee seguendo la finestra di dialogo.
 
     ![Gateway di gestione dati - Invia log](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-dialog.png)
-3. (facoltativo) Fare clic su **Visualizza log** per esaminare i log nel visualizzatore eventi.
-4. (facoltativo) Fare clic su **Privacy** per esaminare l'informativa sulla privacy per i servizi Web di Microsoft.
-5. Quando tutto è pronto per il caricamento, fare clic su **Invia log** per inviare effettivamente i log degli ultimi sette giorni a Microsoft per la risoluzione dei problemi. Lo stato dell'operazione dovrebbe corrispondere a quello mostrato nell'immagine in basso:
+3. (Facoltativo) Fare clic su **visualizzare log** tooreview registra nel Visualizzatore eventi hello.
+4. (Facoltativo) Fare clic su **privacy** informativa sulla privacy dei servizi web di Microsoft tooreview.
+5. Quando si è soddisfatti cosa si sta tooupload, fare clic su **inviare i log** tooactually inviare i log di hello dal hello ultimi sette giorni tooMicrosoft per la risoluzione dei problemi. Stato di hello dell'operazione di invio log hello verrà visualizzato come illustrato nella seguente schermata hello.
 
     ![Gateway di gestione dati - Stato dell'operazione Invia log](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-status.png)
-6. Al termine dell'operazione viene visualizzata una finestra di dialogo simile alla seguente:
+6. Al termine operazione hello, come illustrato nella seguente schermata hello è visualizzata una finestra di dialogo.
 
     ![Gateway di gestione dati - Stato dell'operazione Invia log](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-result.png)
-7. Annotare l'**ID report** e condividerlo con il supporto Microsoft. L'ID report serve per individuare i log del gateway caricati per la risoluzione dei problemi.  Viene anche salvato nel visualizzatore eventi.  È possibile trovarlo cercando l'ID evento "25" e verificando la data e l'ora.
+7. Salvare hello **ID Report** e condividerlo con il supporto Microsoft. ID report Hello è toolocate utilizzati registri del gateway hello caricato per la risoluzione dei problemi.  ID report Hello viene salvato anche nel Visualizzatore eventi hello.  È possibile trovarlo esaminando l'ID evento hello "25" e verificare hello data e ora.
 
     ![Gateway di gestione dati - ID report dell'operazione Invia log](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-send-logs-report-id.png)    
 
 ### <a name="archive-gateway-logs-on-gateway-host-machine"></a>Archiviare i log del gateway nel computer host del gateway
 Esistono dei casi in cui si verificano problemi con il gateway e non è possibile condividere direttamente i log del gateway:
 
-* quando si installa e registra il gateway manualmente;
-* quando si tenta di registrare il gateway con una chiave rigenerata in Gestione configurazione di Gateway di gestione dati;
-* quando si tenta di inviare i log ma non è possibile connettersi al servizio che ospita il gateway.
+* Installare il gateway hello manualmente e registrare il gateway hello.
+* Si tenta di gateway hello tooregister con una chiave rigenerata in Data Management Gateway Configuration Manager.
+* Si tenta di registri toosend e non è possibile connettere il servizio host di hello gateway.
 
-In questi casi, è possibile salvare i log del gateway come file zip e condividerlo quando si contatta il supporto Microsoft. Ad esempio, se si verifica un errore durante la registrazione del gateway come illustrato nella schermata seguente.   
+In questi casi, è possibile salvare i log del gateway come file zip e condividerlo quando si contatta il supporto Microsoft. Ad esempio, se viene visualizzato un errore mentre si registra il gateway hello come illustrato nella seguente schermata hello.   
 
 ![Gateway di gestione dati - Errore di registrazione](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-registration-error.png)
 
-Fare clic sul collegamento **Archivia log del gateway** per archiviare e salvare i log, quindi condividere il file zip con il supporto Microsoft.
+Fare clic su hello **archiviare log gateway** collegamento tooarchive e salvare i registri e quindi di condividere file con estensione zip hello con il supporto tecnico Microsoft.
 
 ![Gateway di gestione dati - Archivia log](media/data-factory-troubleshoot-gateway-issues/data-management-gateway-archive-logs.png)
 
 ### <a name="locate-gateway-logs"></a>Trovare i log del gateway
-Per informazioni dettagliate sui log del gateway, vedere il registro eventi di Windows.
+Per informazioni dettagliate gateway log nei registri eventi di Windows hello.
 
 1. Avviare il **Visualizzatore eventi** di Windows.
-2. Individuare i log nella cartella **Registri applicazioni e servizi** > **Gateway di gestione dati**.
+2. Individuare i log in hello **registri applicazioni e servizi** > **Gateway di gestione dati** cartella.
 
- Per risolvere i problemi correlati al gateway, cercare gli eventi a livello di errore nel Visualizzatore eventi.
+ Quando si sta risolvendo problemi relativi al gateway, cercare gli eventi a livello di errore nel Visualizzatore eventi hello.
 
 ![Gateway di gestione dati - Log nel Visualizzatore eventi](media/data-factory-troubleshoot-gateway-issues/gateway-logs-event-viewer.png)

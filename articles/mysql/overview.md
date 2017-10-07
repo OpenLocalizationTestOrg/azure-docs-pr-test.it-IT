@@ -1,6 +1,6 @@
 ---
-title: Panoramica del servizio di database relazionale Database di Azure per MySQL | Microsoft Docs
-description: Panoramica del servizio di database relazionale Database di Azure per MySQL.
+title: aaaOverview del Database di Azure per il servizio di database relazionale di MySQL | Documenti Microsoft
+description: Panoramica di hello Azure Database per il servizio di database relazionale di MySQL.
 services: mysql
 author: v-chenyh
 ms.author: v-chenyh
@@ -10,25 +10,25 @@ ms.service: mysql-database
 ms.topic: article
 ms.date: 08/02/2017
 ms.custom: mvc
-ms.openlocfilehash: a1becaf8465f68ecac768c5c6b2dbc95e8ff7278
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: f02493e2c3c38ccab408a718f98861600481812d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-database-for-mysql-service-introduction"></a>Database di Azure per MySQL: introduzione al servizio
-Database di Azure per MySQL è un servizio di database relazionale in Microsoft Cloud basato sul motore di database [MySQL Community Edition](https://www.mysql.com/products/community/).  Database di Azure per MySQL offre:
+Il Database di Azure per MySQL è un servizio di database relazionale in hello cloud Microsoft in base a [MySQL Community Edition](https://www.mysql.com/products/community/) motore di database.  Database di Azure per MySQL offre:
 
 - Prestazioni prevedibili a più livelli di servizio
 - Scalabilità dinamica senza tempi di inattività dell'applicazione
 - Disponibilità elevata predefinita
 - Protezione dati
 
-Queste funzionalità richiedono pochissima amministrazione e sono disponibili senza costi aggiuntivi. Consentono di concentrarsi sullo sviluppo rapido di app e accelerare i tempi di mercato, piuttosto che allocare tempo e risorse preziose alla gestione delle macchine virtuali e dell'infrastruttura. È anche possibile continuare a sviluppare l'applicazione con la piattaforma e gli strumenti open source scelti e a renderla disponibile con la rapidità e l'efficienza richiesti dall'azienda senza bisogno di acquisire nuove competenze.
+Queste funzionalità richiedono pochissima amministrazione e sono disponibili senza costi aggiuntivi. Esse consentono toofocus sullo sviluppo rapido di app e accelerare il tempo toomarket, invece di allocare il tempo e risorse toomanaging le macchine virtuali e l'infrastruttura. Inoltre, è possibile continuare toodevelop aprire Strumenti di origine e la piattaforma di propria scelta, l'applicazione hello e recapitare con velocità di hello e l'efficienza di esigenze aziendali senza dover toolearn nuove competenze.
 
 ![Diagramma concettuale di Azure Database for MySQL](media/overview/1-azure-db-for-mysql-conceptual-diagram.png)
 
-Questo articolo è un'introduzione dei concetti fondamentali su Database di Azure per MySQL e delle funzionalità correlate a prestazioni, scalabilità e gestibilità, con collegamenti per esplorare i dettagli. Per iniziare, vedere queste guide introduttive:
+Questo articolo è tooAzure un'introduzione Database MySQL i concetti e funzionalità correlate tooperformance, scalabilità e gestibilità, con dettagli tooexplore collegamenti. Vedere che le guide introduttive tooget che è stato avviato:
 - [Create an Azure Database for MySQL server using Azure portal](quickstart-create-mysql-server-database-using-azure-portal.md) (Creare un database di Azure per il server MySQL usando il portale di Azure)
 - [Create an Azure Database for MySQL server using Azure CLI](quickstart-create-mysql-server-database-using-azure-cli.md) (Creare un database di Azure per il server MySQL usando l'interfaccia della riga di comando di Azure)
 
@@ -36,23 +36,23 @@ Per un set di esempi dell'interfaccia della riga di comando di Azure, vedere:
 - [Azure CLI samples for Azure Database for MySQL](sample-scripts-azure-cli.md) (Esempi di interfaccia della riga di comando di Azure per Database di Azure per MySQL)
 
 ## <a name="adjust-performance-and-scale-without-downtime"></a>Regolare le prestazioni e scalabilità senza tempi di inattività
-Il servizio Database di Azure per MySQL offre due livelli di servizio: Basic e Standard. Ogni livello offre diverse prestazioni e capacità per supportare i carichi di lavoro del database, da quelli leggeri a quelli pesanti. È possibile compilare la prima app in un database di piccole dimensioni con un costo mensile minimo, quindi modificare il livello di servizio per ridimensionarlo in base alle esigenze della soluzione senza tempi di inattività. La scalabilità dinamica consente al database di rispondere in modo trasparente ai requisiti delle risorse soggetti a rapidi cambiamenti. Si paga solo per le risorse necessarie, quando sono necessarie.
+Il servizio Database di Azure per MySQL offre due livelli di servizio: Basic e Standard. Ogni livello offre prestazioni differenti e i carichi di lavoro di funzionalità toosupport tooheavyweight lightweight database. È possibile compilare la prima app in un database di piccole dimensioni per alcuni dollari un mese, quindi modifica la tooscale del livello di servizio con necessita della soluzione senza tempi di inattività. La scalabilità dinamica consente la toorapidly di rispondere tootransparently database variazioni dei requisiti di risorse. Si paga solo per le risorse di hello che è necessario, quando necessario.
 
 ## <a name="monitoring-and-alerting"></a>Monitoraggio e avviso
-Come si conosce il giusto arresto quando si connette e si disconnette? Usare le funzionalità predefinite di monitoraggio delle prestazioni e avviso, combinate con le classificazioni delle prestazioni basate sull'unità di calcolo. Usando queste funzionalità, è possibile valutare rapidamente l'impatto dell'aumento o della riduzione delle prestazioni in base alle esigenze correnti o previste relative alle prestazioni. Per informazioni dettagliate, vedere [Concepts: Service tiers](concepts-service-tiers.md) (Concetti: livelli di servizio).
+Come è possibile sapere a destra fare clic su Arresta hello quando ci si connette su e giù? Utilizzare il monitoraggio delle prestazioni predefinite hello e caratteristiche, combinati con le valutazioni delle prestazioni hello in base a unità di calcolo di avviso. Utilizzo di queste funzionalità consentono di valutare rapidamente impatto hello di ridimensionamento verso l'alto o verso il basso in base a corrente o progetto esigenze di prestazioni. Per informazioni dettagliate, vedere [Concepts: Service tiers](concepts-service-tiers.md) (Concetti: livelli di servizio).
 
 ## <a name="keep-your-app-and-business-running"></a>Mantenere l'applicazione e l’esecuzione dell’azienda
-Il Contratto di servizio per la disponibilità del 99,99% leader del settore di Azure, fornito da una rete globale di datacenter gestiti da Microsoft, consente di mantenere l'applicazione in esecuzione 24 ore su 24, 7 giorni su 7. Con ogni database di Azure per il server MySQL, è possibile sfruttare i vantaggi delle funzionalità di sicurezza, tolleranza di errore e protezione dei dati predefinite che sarebbe altrimenti necessario acquistare o progettare, creare e gestire. Con Database di Azure per MySQL, è possibile usare un ripristino temporizzato per ripristinare uno stato precedente di un server, addirittura fino a 35 giorni prima.
+Il Contratto di servizio per la disponibilità del 99,99% leader del settore di Azure, fornito da una rete globale di datacenter gestiti da Microsoft, consente di mantenere l'applicazione in esecuzione 24 ore su 24, 7 giorni su 7. Con ogni Database di Azure per il server MySQL, ora usufruire della protezione incorporata, la tolleranza di errore e la protezione dei dati che altrimenti sarebbe toobuy o struttura, creare e gestire. Con il Database di Azure per MySQL, è possibile utilizzare in fase di punto di ripristino toorecover tooan un server di stato in precedenza, fino alla versione di 35 giorni.
 
 ## <a name="secure-your-data"></a>Protezione dei dati
-I servizi di database di Azure vantano una tradizione di sicurezza dei dati rispettata anche da Database di Azure per MySQL con funzionalità che limitano l'accesso, proteggono i dati inattivi e in transito e consentono di monitorare l'attività. Visitare il [Centro protezione di Azure](https://www.microsoft.com/en-us/TrustCenter/Security/default.aspx) per informazioni sulla sicurezza della piattaforma Azure.
+I servizi di database di Azure vantano una tradizione di sicurezza dei dati rispettata anche da Database di Azure per MySQL con funzionalità che limitano l'accesso, proteggono i dati inattivi e in transito e consentono di monitorare l'attività. Visitare hello [Azure Trust Center](https://www.microsoft.com/en-us/TrustCenter/Security/default.aspx) per informazioni sulla sicurezza della piattaforma di Azure.
 
-Il servizio Database di Azure per MySQL usa la crittografia di archiviazione per i dati at-rest. I dati che includono backup vengono crittografati su disco, a eccezione dei file temporanei creati dal motore durante l'esecuzione di query. Il servizio usa la crittografia AES a 256 bit inclusa nella crittografia di archiviazione di Azure e le chiavi vengono gestite dal sistema. La crittografia di archiviazione è sempre attiva e non può essere disabilitata.
+Hello Azure Database per il servizio MySQL utilizza la crittografia di archiviazione per dati in altre. Dati, incluso il backup, vengono crittografati su disco (con l'eccezione di hello di file temporanei creati dal motore hello durante l'esecuzione di query). servizio Hello Usa crittografia AES 256 bit in cui è incluso nella crittografia di archiviazione di Azure e le chiavi di hello sono gestito dal sistema. La crittografia di archiviazione è sempre attiva e non può essere disabilitata.
 
-Per impostazione predefinita, il servizio Database di Azure per MySQL è configurato per richiedere la [sicurezza della connessione SSL](./concepts-ssl-connection-security.md) per i dati che si spostano attraverso la rete. L'applicazione delle connessioni SSL tra il server di database e le applicazioni client aiuta a proteggersi dagli attacchi "man in the middle" crittografando il flusso di dati tra il server e l'applicazione.  Se l'applicazione client non supporta la connettività SSL, si è liberi di disabilitare l'opzione di richiesta SSL per la connessione al servizio di database.
+Per impostazione predefinita, hello Azure Database per il servizio MySQL è configurato toorequire [sicurezza della connessione SSL](./concepts-ssl-connection-security.md) per dati in movimento attraverso la rete hello. Le connessioni SSL tra il server di database e applicazioni client di imposizione consente di proteggere da attacchi "man in intermedio hello" crittografando il flusso di dati hello tra server hello e l'applicazione.  Facoltativamente, è possibile disabilitare richiedere SSL per la connessione del servizio di database tooyour se l'applicazione client non supporta la connettività SSL.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo avere letto l'introduzione a Database di Azure per MySQL e avere ottenuto informazioni su Database di Azure per MySQL, è possibile:
-- Vedere la pagina relativa ai prezzi per confrontare i costi e usare i calcolatori. [Prezzi](https://azure.microsoft.com/pricing/details/mysql/)
+Lettura di un Database di tooAzure introduzione per MySQL e ha risposto hello domanda "Qual è il Database di Azure per MySQL?", si è pronti per:
+- Vedere hello pagina per i confronti di costo e calcolatori dei prezzi. [Prezzi](https://azure.microsoft.com/pricing/details/mysql/)
 - Per iniziare, creare il primo server. [Create an Azure Database for MySQL server using Azure portal](quickstart-create-mysql-server-database-using-azure-portal.md) (Creare un database di Azure per il server MySQL usando il portale di Azure)
-- Compilare la prima app in Python, PHP, Ruby, C\#, Java, Node.js: [Librerie di connettività usate per connettersi a Database di Azure per MySQL](concepts-connection-libraries.md)
+- Creazione della prima applicazione Python, PHP, Ruby, C\#, Java, Node.js: [tooconnect tooAzure Database di utilizzare le librerie di connettività per MySQL](concepts-connection-libraries.md)

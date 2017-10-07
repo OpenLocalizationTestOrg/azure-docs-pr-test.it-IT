@@ -1,6 +1,6 @@
 ---
-title: Estendere l'esperimento con R | Microsoft Docs
-description: "Come estendere le funzionalità di Azure Machine Learning Studio tramite il linguaggio R usando il modulo Execute R Script."
+title: aaaExtend l'esperimento con R | Documenti Microsoft
+description: "Tooextend hello come funzionalità di Azure Machine Learning Studio mediante il linguaggio R hello tramite modulo Execute R Script hello."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye
-ms.openlocfilehash: fe207ef917980be8b554ad9c08176d108b19fb71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 396489f26f367a744922af65e04f056c7afa1399
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="extend-your-experiment-with-r"></a>Estendere l'esperimento con R
-È possibile estendere le funzionalità di Azure Machine Learning Studio tramite il linguaggio R usando il modulo [Execute R Script][execute-r-script].
+È possibile estendere le funzionalità di hello di Azure Machine Learning Studio attraverso il linguaggio R hello utilizzando hello [Execute R Script] [ execute-r-script] modulo.
 
-Questo modulo accetta più set di dati di input e produce un singolo set di dati come output. È possibile digitare uno script R nel parametro **R Script** del modulo [Execute R Script][execute-r-script] (Esegui script R).
+Questo modulo accetta più set di dati di input e produce un singolo set di dati come output. È possibile digitare uno script R in hello **Script R** parametro di hello [Execute R Script] [ execute-r-script] modulo.
 
-Per accedere a ogni porta di input del modulo, usare codice simile al seguente:
+Ogni porta di input del modulo hello è accedere usando codice simile toohello seguenti:
 
     dataset1 <- maml.mapInputPort(1)
 
 ## <a name="listing-all-currently-installed-packages"></a>Elenco di tutti i pacchetti installati attualmente
-L'elenco dei pacchetti installati può cambiare. Un elenco dei pacchetti attualmente installati è disponibile in [R Packages Supported by Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt741980.aspx) (Pacchetti R supportati da Azure Machine Learning).
+può modificare l'elenco di Hello dei pacchetti installati. Un elenco dei pacchetti attualmente installati è disponibile in [R Packages Supported by Azure Machine Learning](https://msdn.microsoft.com/library/azure/mt741980.aspx) (Pacchetti R supportati da Azure Machine Learning).
 
-Per ottenere l'elenco completo e aggiornato dei pacchetti installati, immettere il codice seguente nel modulo [Execute R Script][execute-r-script]:
+È anche possibile ottenere hello completo, corrente elenco dei pacchetti installati tramite l'immissione di hello seguente di codice in hello [Execute R Script] [ execute-r-script] modulo:
 
     out <- data.frame(installed.packages(,,,fields="Description"))
     maml.mapOutputPort("out")
 
-In questo modo l'elenco dei pacchetti viene inviato alla porta di output del modulo [Execute R Script][execute-r-script] (Esegui script R).
-Per visualizzare l'elenco di pacchetti, connettere un modulo di conversione, ad esempio [Convert to CSV][convert-to-csv] (Converti in CSV) all'output di sinistra del modulo [Execute R Script][execute-r-script] (Esegui script R), eseguire l'esperimento, quindi fare clic sull'output del modulo di conversione e selezionare **Download**. 
+Consente di inviare l'elenco di hello pacchetti toohello porta di output di hello [Execute R Script] [ execute-r-script] modulo.
+pacchetto di hello tooview elenco, collegare un modulo di conversione, ad esempio [convertire tooCSV] [ convert-to-csv] toohello a sinistra di output di hello [Execute R Script] [ execute-r-script]modulo, eseguire l'esperimento hello, quindi fare clic su output di hello del modulo di conversione hello e selezionare **scaricare**. 
 
-![Scaricare l'output del modulo "Convert to CSV" (Converti in CSV)](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
+![Scaricare l'output del modulo di "Convertire tooCSV"](./media/machine-learning-extend-your-experiment-with-r/download-package-list.png)
 
 
 <!--
-For convenience, here is the [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
+For convenience, here is hello [current full list with version numbers in Excel format](http://az754797.vo.msecnd.net/docs/RPackages.xlsx).
 -->
 
 ## <a name="importing-packages"></a>Importazione di pacchetti
-Per importare i pacchetti non ancora installati, è possibile usare i comandi seguenti nel modulo [Execute R Script][execute-r-script]:
+È possibile importare pacchetti che non sono già installati utilizzando i seguenti comandi di hello hello [Execute R Script] [ execute-r-script] modulo:
 
     install.packages("src/my_favorite_package.zip", lib = ".", repos = NULL, verbose = TRUE)
     success <- library("my_favorite_package", lib.loc = ".", logical.return = TRUE, verbose = TRUE)
 
-Il file `my_favorite_package.zip` contiene il pacchetto.
+in cui hello `my_favorite_package.zip` file contiene il pacchetto.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

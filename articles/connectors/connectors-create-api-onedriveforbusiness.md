@@ -1,6 +1,6 @@
 ---
-title: OneDrive for Business | Microsoft Docs
-description: "Creare app per la logica in Servizio app di Azure. Connettersi a OneDrive per gestire i file. È possibile eseguire varie azioni, ad esempio creare, aggiornare, ottenere ed eliminare file."
+title: aaaOneDrive per le aziende | Documenti Microsoft
+description: "Creare app per la logica in Servizio app di Azure. Connettersi tooOneDrive per Business toomanage i file. È possibile eseguire varie azioni, ad esempio creare, aggiornare, ottenere ed eliminare file."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 783d6a640d9626508bcabc5f991dc5b6fc22eaf4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d446157cb4ea21448fdcf0cb1e220354cf8a0e12
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-onedrive-for-business-connector"></a>Introduzione al connettore OneDrive for Business
-Connettersi a OneDrive per gestire i file. È possibile eseguire varie azioni, ad esempio creare, aggiornare, ottenere ed eliminare file.
+# <a name="get-started-with-hello-onedrive-for-business-connector"></a>Introduzione a hello OneDrive per Business connector
+Connettersi tooOneDrive per Business toomanage i file. È possibile eseguire varie azioni, ad esempio creare, aggiornare, ottenere ed eliminare file.
 
 Per iniziare subito a creare un'app per la logica, vedere [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-to-onedrive-for-business"></a>Creare una connessione a OneDrive for Business
-Per creare app per la logica con OneDrive for Business, è prima necessario creare una **connessione** e successivamente fornire i dettagli per le proprietà seguenti:
+## <a name="create-a-connection-tooonedrive-for-business"></a>Creare un tooOneDrive di connessione per le aziende
+app di logica toocreate con OneDrive for Business, è necessario creare innanzitutto un **connessione** quindi fornire i dettagli di hello per hello le proprietà seguenti:
 
 | Proprietà | Obbligatorio | Descrizione |
 | --- | --- | --- |
 | Token |Sì |Fornisce le credenziali per OneDrive for Business |
 
-Dopo aver creato la connessione, è possibile usarla per eseguire le azioni e restare in ascolto dei trigger descritti in questo articolo.
+Dopo aver creato una connessione di hello, è possibile utilizzare azioni hello tooexecute e restare in attesa per i trigger di hello descritti in questo articolo.
 
-> [!INCLUDE [Steps to create a connection to OneDrive for Business](../../includes/connectors-create-api-onedriveforbusiness.md)]
+> [!INCLUDE [Steps toocreate a connection tooOneDrive for Business](../../includes/connectors-create-api-onedriveforbusiness.md)]
 > 
 
 ## <a name="connector-specific-details"></a>Dettagli specifici del connettore
 
-Per visualizzare eventuali azioni e trigger definiti in Swagger ed eventuali limiti, vedere i [dettagli del connettore](/connectors/onedriveforbusinessconnector/).
+Visualizzare tutti i trigger e azioni definite in swagger hello e anche eventuali limiti di hello [dettagli connettore](/connectors/onedriveforbusinessconnector/).
 
 ## <a name="more-connectors"></a>Altri connettori
-Tornare all' [elenco di API](apis-list.md).
+Tornare indietro toohello [elenco API](apis-list.md).

@@ -1,6 +1,6 @@
 ---
-title: Come monitorare un servizio cloud | Documentazione Microsoft
-description: Informazioni su come monitorare i servizi cloud usando il portale di Azure classico.
+title: aaaHow toomonitor un servizio cloud | Documenti Microsoft
+description: Informazioni su come toomonitor servizi cloud tramite hello portale di Azure classico.
 services: cloud-services
 documentationcenter: 
 author: thraka
@@ -14,111 +14,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/07/2015
 ms.author: adegeo
-ms.openlocfilehash: c369b22cf068a473343b006eb1b06fdd350d31db
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee98c56e0b98b85d75a5c1d796800069c4f06d20
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-monitor-cloud-services"></a>Come monitorare i servizi cloud
+# <a name="how-toomonitor-cloud-services"></a>Come tooMonitor dei servizi Cloud
 [!INCLUDE [disclaimer](../../includes/disclaimer.md)]
 
-È possibile monitorare le metriche delle prestazioni `key` per i servizi cloud nel portale di Azure classico. È possibile impostare il livello di monitoraggio da minimo a dettagliato per ogni ruolo del servizio e personalizzare le schermate di monitoraggio. I dati di monitoraggio dettagliati vengono memorizzati in un account di archiviazione, a cui è possibile accedere fuori dal portale. 
+È possibile monitorare `key` metriche delle prestazioni per i servizi cloud nel portale di Azure classico hello. È possibile impostare hello dettagliati per ogni ruolo del servizio e livello di monitoraggio toominimal e personalizzabili hello monitoraggio consente di visualizzare. Dati di monitoraggio dettagliato viene archiviati in un account di archiviazione, è possibile accedere all'esterno di hello portale. 
 
-Le schermate di monitoraggio nel portale di Azure classico sono altamente configurabili. È possibile scegliere le metriche che si vuole monitorare dall'elenco delle metriche nella pagina **Monitoraggio** e le metriche da riportare nei relativi grafici nella pagina **Monitoraggio** e nel dashboard. 
+Visualizzazioni dei monitoraggi nel portale di Azure classico hello sono altamente configurabili. È possibile scegliere le metriche hello desiderato nell'elenco delle metriche hello hello toomonitor **monitoraggio** pagina ed è possibile scegliere quali tooplot metriche in grafici metriche hello **monitoraggio** hello e pagina dashboard. 
 
 ## <a name="concepts"></a>Concetti
-Per impostazione predefinita, per un nuovo servizio cloud è previsto un monitoraggio minimo, con contatori delle prestazioni raccolte dal sistema operativo per le istanze del ruolo (macchine virtuali). Le metriche minime si limitano a percentuale CPU, dati in entrata, dati in uscita, velocità effettiva di lettura dal disco e velocità effettiva di scrittura sul disco. Con la configurazione del monitoraggio dettagliato, è possibile ricevere altre metriche in base ai dati delle prestazioni all'interno delle macchine virtuali (istanze del ruolo). Le metriche dettagliate consentono un'analisi più accurata dei problemi che si verificano durante l'elaborazione dell'applicazione.
+Per impostazione predefinita, monitoraggio minimo viene fornito per un nuovo servizio cloud utilizzando i contatori delle prestazioni raccolti da hello per le istanze di ruoli di hello (macchine virtuali) del sistema operativo host. le metriche minime Hello sono limitate tooCPU percentuale, dati in entrata, dati in uscita, velocità effettiva di lettura disco e velocità effettiva di scrittura su disco. Tramite la configurazione di monitoraggio dettagliato, è possibile ricevere metriche aggiuntive basate sui dati delle prestazioni nelle macchine virtuali hello (istanze del ruolo). le metriche dettagliate Hello consentono un'analisi ravvicinata dei problemi che si verificano durante operazioni dell'applicazione.
 
-Per impostazione predefinita, i dati del contatore di prestazioni dalle istanze del ruolo sono campionati e trasferiti dall'istanza del ruolo a intervalli di 3 minuti. Quando viene abilitato il monitoraggio dettagliato, i dati non elaborati del contatore di prestazioni sono aggregati per ogni istanza del ruolo e per ogni ruolo tra istanze del ruolo a intervalli di 5 minuti, 1 ora e 12 ore. I dati aggregati vengono eliminati dopo 10 giorni.
+Per impostazione predefinita, dati del contatore delle prestazioni da istanze del ruolo sono campionati e trasferiti dall'istanza del ruolo hello a intervalli di 3 minuti. Quando si abilita il monitoraggio dettagliato, i dati dei contatori delle prestazioni raw hello sono aggregati per ogni istanza del ruolo e tra le istanze del ruolo per ogni ruolo a intervalli di 5 minuti, 1 ora e 12 ore. dati aggregati Hello viene eliminati dopo 10 giorni.
 
-Dopo aver abilitato il monitoraggio dettagliato, i dati aggregati di monitoraggio sono archiviati in tabelle nell'account di archiviazione. Per abilitare il monitoraggio dettagliato per un ruolo, è necessario configurare una stringa di connessione diagnostica collegata all'account di archiviazione. È possibile usare account di archiviazione diversi per i diversi ruoli.
+Dopo aver attivato il monitoraggio dettagliato, hello aggregata i dati di monitoraggio vengono archiviati nelle tabelle nell'account di archiviazione. tooenable dettagliato di monitoraggio per un ruolo, è necessario configurare una stringa di connessione di diagnostica che si collega toohello account di archiviazione. È possibile usare account di archiviazione diversi per i diversi ruoli.
 
-L'abilitazione del monitoraggio dettagliato comporta un aumento dei costi legati all'archiviazione e al trasferimento dei dati e alle transazioni di archiviazione. Il monitoraggio minimo non richiede un account di archiviazione. I dati per le metriche esposti al livello minimo di monitoraggio non sono archiviati nell'account di archiviazione, anche se si imposta il livello di monitoraggio dettagliato.
+Abilitazione aumenta di monitoraggio dettagliato i costi di archiviazione correlato toodata archiviazione, il trasferimento dei dati e le transazioni di archiviazione. Il monitoraggio minimo non richiede un account di archiviazione. dati Hello per le metriche di hello esposte a livello di monitoraggio minimo hello non vengono archiviati nell'account di archiviazione, anche se si imposta hello tooverbose livello di monitoraggio.
 
 ## <a name="how-to-configure-monitoring-for-cloud-services"></a>Procedura: Configurare il monitoraggio per i servizi cloud
-Attenersi alle procedure seguenti per configurare il monitoraggio dettagliato o minimo nel portale di Azure classico. 
+Utilizzare hello seguendo procedure tooconfigure dettagliato o minimo monitoraggio nel portale di Azure classico hello. 
 
 ### <a name="before-you-begin"></a>Prima di iniziare
-* Creare un account di archiviazione *classico* per archiviare i dati di monitoraggio. È possibile usare account di archiviazione diversi per i diversi ruoli. Per altre informazioni, vedere [Come creare un account di archiviazione](../storage/common/storage-create-storage-account.md#create-a-storage-account).
+* Creare un *classico* hello toostore account di archiviazione dati di monitoraggio. È possibile usare account di archiviazione diversi per i diversi ruoli. Per ulteriori informazioni, vedere [come un account di archiviazione toocreate](../storage/common/storage-create-storage-account.md#create-a-storage-account).
 * Abilitare Diagnostica Azure per i ruoli del servizio cloud. Vedere [Configurazione della diagnostica per i servizi cloud](cloud-services-dotnet-diagnostics.md).
 
-Assicurarsi che la stringa di connessione della diagnostica sia presente nella configurazione del ruolo. È possibile attivare il monitoraggio dettagliato fino ad abilitare la diagnostica di Azure e includere una stringa di connessione della diagnostica nella configurazione del ruolo.   
+Verificare che sia presente nella configurazione dei ruoli hello stringa di connessione di diagnostica hello. È possibile abilitare il monitoraggio dettagliato fino a quando non si abilita diagnostica di Azure e include una stringa di connessione di diagnostica nella configurazione del ruolo hello.   
 
 > [!NOTE]
-> I progetti destinati a Azure SDK 2.5 non includono automaticamente la stringa di connessione della diagnostica nel modello di progetto. Per questi progetti, è necessario aggiungere manualmente la stringa di connessione della diagnostica alla configurazione del ruolo.
+> Progetti destinati a Azure SDK 2.5 non include automaticamente stringa di connessione di diagnostica hello nel modello di progetto hello. Per questi progetti, è necessario toomanually aggiungere una configurazione del ruolo toohello connessione stringa hello diagnostica.
 > 
 > 
 
-**Per aggiungere manualmente la stringa di connessione della diagnostica alla configurazione del ruolo**
+**toomanually aggiungere configurazione tooRole stringa di connessione diagnostica**
 
-1. Aprire il progetto servizio cloud in Visual Studio.
-2. Fare doppio clic su **Ruolo** per aprire la progettazione Ruolo e selezionare la scheda **Impostazioni**.
+1. Progetto servizio Cloud hello aperto in Visual Studio
+2. Fare doppio clic su hello **ruolo** tooopen hello progettazione ruoli e selezionare hello **impostazioni** scheda
 3. Cercare un’impostazione denominata **Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString**. 
-4. Se questa impostazione non è presente, fare clic sul pulsante **Aggiungi impostazione** per aggiungere l'impostazione alla configurazione e modificare il tipo per la nuova impostazione su **ConnectionString**.
-5. Impostare il valore per la stringa di connessione facendo clic sul pulsante **...** . Si apre una finestra di dialogo che consente di selezionare un account di archiviazione.
+4. Se questa impostazione non è presente, fare clic su hello **Aggiungi impostazione** tooadd pulsante Modifica e configurazione di toohello hello tipo per hello nuova impostazione troppo**ConnectionString**
+5. Impostare il valore di hello per hello di stringa di connessione facendo clic su hello **...**  pulsante. Verrà aperta una finestra di dialogo consentono di tooselect un account di archiviazione.
    
     ![Impostazioni di Visual Studio](./media/cloud-services-how-to-monitor/CloudServices_Monitor_VisualStudioDiagnosticsConnectionString.png)
 
-### <a name="to-change-the-monitoring-level-to-verbose-or-minimal"></a>Per cambiare il livello di monitoraggio a dettagliato o minimo
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)aprire la pagina di **Configurazione** per la distribuzione del servizio cloud.
+### <a name="toochange-hello-monitoring-level-tooverbose-or-minimal"></a>hello toochange monitoraggio livello tooverbose o minima
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/)aprire hello **configura** pagina per la distribuzione del servizio cloud hello.
 2. In **Livello** fare clic su **Dettagliato** o **Minimo**. 
 3. Fare clic su **Salva**.
 
-Dopo avere abilitato il monitoraggio dettagliato, è consigliabile visualizzare i primi dati di monitoraggio nel portale di Azure classico entro un'ora.
+Dopo l'attivazione del monitoraggio dettagliato, è consigliabile iniziare a visualizzare i dati di monitoraggio di hello portale di Azure classico nell'ora hello hello.
 
-I dati non elaborati del contatore di prestazioni e i dati aggregati di monitoraggio sono archiviati nell'account di archiviazione in tabelle contraddistinte dall'ID di distribuzione per i ruoli. 
+dati del contatore delle prestazioni raw Hello e dati di monitoraggio aggregati vengono archiviati nell'account di archiviazione hello nelle tabelle qualificati da hello ID di distribuzione per i ruoli di hello. 
 
 ## <a name="how-to-receive-alerts-for-cloud-service-metrics"></a>Procedura: Ricevere avvisi per le metriche dei servizi cloud
-È possibile ricevere avvisi basati sulle metriche di monitoraggio del servizio cloud. Nella pagina **Servizi di gestione** del portale di Azure classico è possibile creare una regola per attivare un avviso quando la metrica scelta raggiunge il valore specificato. È inoltre possibile impostare l'invio di un messaggio di posta elettronica all'attivazione dell'avviso. Per altre informazioni, vedere [Procedura: Ricevere notifiche di avviso e gestire le relative regole in Azure](http://go.microsoft.com/fwlink/?LinkId=309356).
+È possibile ricevere avvisi basati sulle metriche di monitoraggio del servizio cloud. In hello **servizi di gestione** hello di pagina del portale di Azure classico, è possibile creare una regola tootrigger un avviso quando metrica hello scelta raggiunge un valore specificato. È anche possibile scegliere toohave messaggio di posta elettronica inviato quando viene attivato l'avviso hello. Per altre informazioni, vedere [Procedura: Ricevere notifiche di avviso e gestire le relative regole in Azure](http://go.microsoft.com/fwlink/?LinkId=309356).
 
-## <a name="how-to-add-metrics-to-the-metrics-table"></a>Procedura: Aggiungere metriche alla relativa tabella
-1. Nel [portale di Azure classico](http://manage.windowsazure.com/)aprire la pagina **Monitoraggio** per il servizio cloud.
+## <a name="how-to-add-metrics-toohello-metrics-table"></a>Procedura: aggiungere una tabella delle metriche di metriche toohello
+1. In hello [portale di Azure classico](http://manage.windowsazure.com/)aprire hello **monitoraggio** pagina per il servizio cloud hello.
    
-    Per impostazione predefinita, la tabella delle metriche riporta un subset delle metriche disponibili. Nell'illustrazione sono visualizzate le metriche dettagliate predefinite per un servizio cloud, limitate al contatore di prestazioni Memoria/MB disponibili, con dati aggregati a livello di ruolo. Utilizzare **Aggiungi Metriche** per selezionare altre metriche aggregate e a livello di ruolo da monitorare nel portale di Azure classico.
+    Per impostazione predefinita, tabella delle metriche hello consente di visualizzare un subset delle metriche disponibili hello. Figura Hello Mostra le metriche dettagliate hello predefinito per un servizio cloud, che è limitato toohello contatore delle prestazioni Memoria\Mbyte disponibili, con dati aggregati a livello di ruolo hello. Utilizzare **Aggiungi metriche** tooselect aggiuntive aggregazione e le metriche a livello di ruolo toomonitor in hello portale di Azure classico.
    
     ![Visualizzazione dettagliata](./media/cloud-services-how-to-monitor/CloudServices_DefaultVerboseDisplay.png)
-2. Per aggiungere metriche alla relativa tabella:
+2. tabella delle metriche di tooadd metriche toohello:
    
-   1. Fare clic su **Aggiungi metriche** per aprire **Scegli metriche**, come illustrato di seguito.
+   1. Fare clic su **Aggiungi metriche** tooopen **Scegli metriche**, come illustrato di seguito.
       
-       Viene espansa la prima metrica disponibile per visualizzare le opzioni disponibili. Per ogni metrica, la prima opzione consente di visualizzare dati aggregati di monitoraggio per tutti i ruoli. È inoltre possibile scegliere i singoli ruoli di cui visualizzare i dati.
+       metrica disponibile prima di Hello è espanso tooshow le opzioni disponibili. Per ogni metrica, opzione top hello Visualizza dati di monitoraggio aggregati per tutti i ruoli. Inoltre, è possibile scegliere i singoli ruoli dati toodisplay per.
       
        ![Aggiungi Metriche](./media/cloud-services-how-to-monitor/CloudServices_AddMetrics.png)
-   2. Per selezionare la metrica da visualizzare
+   2. tooselect metriche toodisplay
       
-      * Fare clic sulla freccia giù accanto alla metrica per espandere le opzioni di monitoraggio.
-      * Selezionare le caselle di controllo relative alle opzioni di monitoraggio da visualizzare.
+      * Fare clic su hello freccia giù per hello tooexpand metrica hello opzioni di monitoraggio.
+      * Casella di controllo selezionare hello per ogni monitoraggio opzione da toodisplay.
         
-        Nella tabella delle metriche è possibile visualizzare fino a 50 metriche.
+        È possibile visualizzare le metriche too50 nella tabella delle metriche hello.
         
         > [!TIP]
-        > Nel monitoraggio dettagliato l'elenco delle metriche può contenere decine di metriche. Per visualizzare una barra di scorrimento, passare il puntatore del mouse sul lato destro della finestra di dialogo. Per filtrare l'elenco, fare clic sull'icona di ricerca e immettere il testo nella casella di ricerca, come illustrato di seguito.
+        > Nel monitoraggio dettagliato, elenco metriche hello può contenere decine di metriche. toodisplay una barra di scorrimento, passa il mouse sul lato destro hello della finestra di dialogo hello. elenco di hello toofilter, fare clic sull'icona di ricerca hello e immettere il testo nella casella di ricerca hello, come illustrato di seguito.
         > 
         > 
         
         ![Ricerca Aggiungi metriche](./media/cloud-services-how-to-monitor/CloudServices_AddMetrics_Search.png)
 3. Dopo aver completato la selezione delle metriche, fare clic su OK (segno di spunta).
    
-    Le metriche selezionate vengono aggiunte alla tabella, come illustrato di seguito.
+    salve le metriche selezionate vengono aggiunte toohello tabella delle metriche, come illustrato di seguito.
    
     ![monitor metriche](./media/cloud-services-how-to-monitor/CloudServices_Monitor_UpdatedMetrics.png)
-4. Per eliminare una metrica dalla tabella, fare clic sulla metrica per selezionarla e quindi fare clic su **Delete Metric**. (Selezionando una metrica viene visualizzata solo l'opzione **Delete Metric** .)
+4. toodelete una metrica dalla tabella delle metriche hello, fare clic su tooselect metrica hello e quindi fare clic su **Elimina metrica**. (Selezionando una metrica viene visualizzata solo l'opzione **Delete Metric** .)
 
-### <a name="to-add-custom-metrics-to-the-metrics-table"></a>Per aggiungere metriche personalizzate alla relativa tabella
-Il livello di monitoraggio **Dettagliato** fornisce un elenco delle metriche predefinite che è possibile monitorare nel portale. Oltre a queste metriche, è possibile monitorare le metriche personalizzate o i contatori delle prestazioni definiti dall'applicazione tramite il portale.
+### <a name="tooadd-custom-metrics-toohello-metrics-table"></a>tabella delle metriche di tooadd metriche personalizzate toohello
+Hello **Verbose** monitoraggio livello fornisce un elenco di criteri predefiniti che è possibile monitorare nel portale di hello. Inoltre toothese è possibile monitorare le metriche personalizzate o i contatori delle prestazioni definiti dall'applicazione tramite il portale di hello.
 
-Nei passaggi seguenti si presuppone che sia stato attivato il livello di monitoraggio **Dettagliato** e che sia stata configurata l'applicazione per raccogliere e trasferire i contatori delle prestazioni personalizzati. 
+Hello passaggi seguenti presuppongono che è stata attivata **Verbose** livello di monitoraggio e aver configurato l'applicazione toocollect e il trasferimento di contatori delle prestazioni personalizzati. 
 
-Per visualizzare i contatori delle prestazioni personalizzati nel portale è necessario aggiornare la configurazione in wad-control-container:
+contatori delle prestazioni personalizzati toodisplay hello in hello portale necessaria la configurazione di hello tooupdate in wad-control-container:
 
-1. Aprire il BLOB wad-control-container nell'account di archiviazione della diagnostica. A tale scopo, è possibile usare Visual Studio o un altro Esplora archivi.
+1. Aprire blob wad-control-container hello nell'account di archiviazione di diagnostica. È possibile utilizzare Visual Studio o qualsiasi altro toodo archiviazione Esplora questo.
    
     ![Esplora server di Visual Studio.](./media/cloud-services-how-to-monitor/CloudServices_Monitor_VisualStudioBlobExplorer.png)
-2. Passare al percorso del BLOB usando il modello **DeploymentId/RoleName/RoleInstance** per trovare la configurazione per l'istanza del ruolo. 
+2. Passare il percorso di blob hello usando il modello di hello **RoleName/DeploymentId/RoleInstance** configurazione hello toofind per l'istanza del ruolo. 
    
     ![Esplora archivi di Visual Studio.](./media/cloud-services-how-to-monitor/CloudServices_Monitor_VisualStudioStorage.png)
-3. Scaricare il file di configurazione per l'istanza del ruolo e aggiornarlo in modo da includere eventuali contatori delle prestazioni personalizzati. Ad esempio, per monitorare *Byte scritti su disco/sec* per l'*unità C*, aggiungere il codice seguente nel nodo **PerformanceCounters\Subscriptions**.
+3. Scaricare il file di configurazione hello per l'istanza del ruolo e aggiornarlo tooinclude contatori di prestazioni personalizzati. Ad esempio toomonitor *byte scritti su disco/sec* per hello *unità C* aggiungere seguenti hello in **PerformanceCounters\Subscriptions** nodo
    
     ```xml
     <PerformanceCounterConfiguration>
@@ -126,37 +126,37 @@ Per visualizzare i contatori delle prestazioni personalizzati nel portale è nec
     <SampleRateInSeconds>180</SampleRateInSeconds>
     </PerformanceCounterConfiguration>
     ```
-4. Salvare le modifiche e caricare il file di configurazione nuovamente nello stesso percorso sovrascrivendo il file esistente nel BLOB.
-5. Passare alla modalità dettagliata nella configurazione del portale di Azure classico. Se si è già in modalità dettagliata è necessario attivare la modalità minima e tornare alla modalità dettagliata.
-6. Il contatore delle prestazioni personalizzato sarà ora disponibile nella finestra di dialogo **Aggiungi metriche** . 
+4. Salvare le modifiche di hello e caricamento hello configurazione file indietro toohello stesso percorso sovrascrivendo hello file esistente nel blob hello.
+5. Attiva/Disattiva modalità tooVerbose in hello configurazione del portale classico di Azure. Se fosse già in modalità dettagliata sarà necessario tooverbose di tootoggle toominimal e viceversa.
+6. contatore delle prestazioni personalizzato Hello saranno ora disponibili in hello **Aggiungi metriche** la finestra di dialogo. 
 
-## <a name="how-to-customize-the-metrics-chart"></a>Procedura: Personalizzare il grafico delle metriche
-1. Nella tabella delle metriche selezionare fino a 6 metriche da tracciare nel relativo grafico. Per selezionare una metrica, fare clic sulla casella di controllo a sinistra. Per rimuovere una metrica dal grafico, deselezionare la casella di controllo nella tabella delle metriche.
+## <a name="how-to-customize-hello-metrics-chart"></a>Procedura: personalizzare grafico delle metriche hello
+1. Nella tabella delle metriche hello, selezionare backup too6 metriche tooplot nel grafico delle metriche hello. tooselect una metrica, fare clic su casella di controllo hello sul lato sinistro. tooremove una metrica dal grafico delle metriche hello, deselezionare la casella di controllo nella tabella delle metriche hello.
    
-    Le metriche selezionate nella tabella vengono aggiunte al grafico. Su uno schermo stretto, un elenco a discesa **n more** riporta le intestazioni delle metriche che non si adattano allo schermo.
-2. Per passare dalla visualizzazione di valori relativi (solo il valore finale per ogni metrica) e valori assoluti (asse Y visualizzato), selezionare Relative o Absolute nella parte superiore del grafico.
+    Quando si seleziona la metrica nella tabella delle metriche hello, metriche hello vengono aggiunte grafico delle metriche toohello. In una visualizzazione "narrow", un **n ulteriori** elenco a discesa contiene le intestazioni di metriche che non si adattano visualizzazione hello.
+2. tooswitch tra la visualizzazione di valori relativi (valore finale solo per ogni metrica) e i valori assoluti (asse Y visualizzato), selezionare relativo o assoluto nella parte superiore di hello del grafico hello.
    
     ![Relative o Absolute](./media/cloud-services-how-to-monitor/CloudServices_Monitor_RelativeAbsolute.png)
-3. Per modificare l'intervallo di tempo visualizzato sul grafico delle metriche, selezionare 1 ora, 24 ore o 7 giorni nella parte superiore del grafico.
+3. grafico delle metriche di toochange hello ora intervallo hello Visualizza, selezionare 1 ora, 24 ore o giorni 7 nella parte superiore di hello del grafico hello.
    
     ![Visualizzazione del periodo monitorato](./media/cloud-services-how-to-monitor/CloudServices_Monitor_DisplayPeriod.png)
    
-    Nel grafico delle metriche del dashboard le metriche vengono tracciate in modo diverso. È disponibile un set di metriche standard che vengono aggiunte o rimosse selezionandone l'intestazione.
+    Nel grafico delle metriche di hello dashboard, il metodo hello per le metriche del tracciato è diverso. È disponibile un set di metriche standard e le metriche vengono aggiunti o rimossi selezionando intestazione metrica hello.
 
-### <a name="to-customize-the-metrics-chart-on-the-dashboard"></a>Per personalizzare il grafico delle metriche sul dashboard
-1. Aprire il dashboard per il servizio cloud.
-2. Aggiungere o rimuovere le metriche dal grafico:
+### <a name="toocustomize-hello-metrics-chart-on-hello-dashboard"></a>grafico delle metriche di hello toocustomize dashboard hello
+1. Aprire il dashboard di hello per il servizio cloud hello.
+2. Aggiungere o rimuovere metriche dal grafico hello:
    
-   * Per riportare una nuova metrica, selezionare la casella di controllo corrispondente nelle intestazioni del grafico. Su uno schermo stretto fare clic sulla freccia verso il basso accanto a ***n*??metrics** per tracciare sul grafico una metrica non visualizzata nell'area delle intestazioni del grafico.
-   * Per eliminare una metrica tracciata sul grafico, deselezionare la casella di controllo accanto all'intestazione.
+   * una casella di controllo hello metrica, selezionare la metrica hello nelle intestazioni grafico hello tooplot. In una visualizzazione "narrow", fare clic su hello freccia giù per  ***n* ?? metriche** tooplot non è possibile visualizzare un'area di intestazione hello metrica del grafico.
+   * toodelete una metrica che viene tracciata sul grafico hello, casella di controllo crittografato hello relativa intestazione.
    
 3. Passare dalla visualizzazione **relativa** a quella **assoluta**.
-4. Scegliere se visualizzare dati relativi a 1 ora, 24 ore o 7 giorni.
+4. Scegliere 1 ora, 24 ore o 7 giorni di dati toodisplay.
 
-## <a name="how-to-access-verbose-monitoring-data-outside-the-azure-classic-portal"></a>Procedura: accedere ai dati di monitoraggio dettagliati all'esterno del portale di Azure classico
-I dati di monitoraggio dettagliati sono archiviati in tabelle negli account di archiviazione specificati per ogni ruolo. Per ogni distribuzione del servizio cloud, vengono create sei tabelle per il ruolo. Vengono create due tabelle per ogni intervallo di tempo (5 minuti, 1 ora e 12 ore). Una di queste tabelle archivia aggregazioni a livello di ruolo, mentre l'altra archivia le aggregazioni per le istanze del ruolo. 
+## <a name="how-to-access-verbose-monitoring-data-outside-hello-azure-classic-portal"></a>Procedura: accedere ai dati di monitoraggio dettagliato di fuori di hello portale di Azure classico
+Dati di monitoraggio dettagliato viene archiviati nelle tabelle negli account di archiviazione hello specificato per ogni ruolo. Per ogni distribuzione del servizio cloud, sei tabelle vengono create per il ruolo di hello. Vengono create due tabelle per ogni intervallo di tempo (5 minuti, 1 ora e 12 ore). Una di queste tabelle vengono archiviate le aggregazioni a livello di ruolo; Hello altre aggregazioni di archivi di tabella per le istanze del ruolo. 
 
-I nomi delle tabelle presentano il formato seguente:
+i nomi delle tabelle di Hello hanno hello seguente formato:
 
 ```
 WAD*deploymentID*PT*aggregation_interval*[R|RI]Table
@@ -164,15 +164,15 @@ WAD*deploymentID*PT*aggregation_interval*[R|RI]Table
 
 dove:
 
-* *deploymentID* è il GUID assegnato alla distribuzione del servizio cloud
+* *deploymentID* è hello GUID assegnato toohello distribuzione del servizio cloud
 * *aggregation_interval* = 5M, 1H o 12H
 * aggregazioni a livello di ruolo = R
 * aggregazioni per le istanze del ruolo = RI
 
-Ad esempio, nelle seguenti tabelle sarebbero archiviati dati di monitoraggio dettagliato aggregati a intervalli di 1 ora:
+Ad esempio, hello nelle tabelle seguenti archivia dati di monitoraggio dettagliato aggregati a intervalli di 1 ora:
 
 ```
-WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRTable (hourly aggregations for the role)
+WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRTable (hourly aggregations for hello role)
 
 WAD8b7c4233802442b494d0cc9eb9d8dd9fPT1HRITable (hourly aggregations for role instances)
 ```

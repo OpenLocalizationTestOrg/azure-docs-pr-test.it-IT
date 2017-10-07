@@ -1,6 +1,6 @@
 ---
-title: Distribuire un'area di lavoro di Machine Learning con Azure Resource Manager | Documentazione Microsoft
-description: Come distribuire un'area di lavoro per Azure Machine Learning usando il modello di Azure Resource Manager
+title: un'area di lavoro di Machine Learning con Azure Resource Manager aaaDeploy | Documenti Microsoft
+description: Come toodeploy un'area di lavoro per Azure Machine Learning che usano il modello di gestione risorse di Azure
 services: machine-learning
 documentationcenter: 
 author: ahgyger
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/15/2017
 ms.author: ahgyger
-ms.openlocfilehash: 9e37780428b0867da63987ec4f7f843a8abeb907
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 308959825bcbd670f6ce9b6dc381be767f172357
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-machine-learning-workspace-using-azure-resource-manager"></a>Distribuire un'area di lavoro di Machine Learning con Azure Resource Manager
 ## <a name="introduction"></a>Introduzione
-L'uso di un modello di distribuzione Azure Resource Manager consente di risparmiare tempo perché è possibile distribuire in modo scalabile i componenti interconnessi con un meccanismo di convalida e di ripetizione dei tentativi. Per configurare le aree di lavoro di Azure Machine Learning, ad esempio, è necessario configurare prima un account di archiviazione di Azure e quindi distribuire l'area di lavoro. Si immagini di doverlo fare manualmente per centinaia di aree di lavoro. Un'alternativa più semplice prevede l'uso di un modello di Azure Resource Manager per distribuire un'area di lavoro di Azure Machine Learning e tutte le dipendenze. Questo articolo illustra il processo in dettaglio. Per una panoramica generale di Azure Resource Manager, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+Utilizzando un gestore delle risorse Azure modello di distribuzione consente di risparmiare tempo fornendo un modo scalabile di toodeploy interconnessi componenti con un meccanismo di convalida e riprovare. tooset le aree di lavoro di Azure Machine Learning, ad esempio, è necessario configurare un account di archiviazione di Azure e quindi distribuire l'area di lavoro di toofirst. Si immagini di doverlo fare manualmente per centinaia di aree di lavoro. Un'alternativa più semplice è toouse un toodeploy modello di gestione risorse di Azure un'area di lavoro di Azure Machine Learning e tutte le relative dipendenze. Questo articolo illustra il processo in dettaglio. Per una panoramica generale di Azure Resource Manager, vedere [Panoramica di Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
 
 ## <a name="step-by-step-create-a-machine-learning-workspace"></a>Procedura dettagliata: Creare un'area di lavoro di Machine Learning
-Verrà creato un gruppo di risorse di Azure, quindi verranno distribuiti un nuovo account di archiviazione di Azure e una nuova area di lavoro di Azure Machine Learning usando un modello di Resource Manager. Una volta completata la distribuzione, verranno visualizzate importanti informazioni sulle aree di lavoro create (la chiave primaria, l'ID area di lavoro e l'URL dell'area di lavoro).
+Verrà creato un gruppo di risorse di Azure, quindi verranno distribuiti un nuovo account di archiviazione di Azure e una nuova area di lavoro di Azure Machine Learning usando un modello di Resource Manager. Una volta completata la distribuzione di hello, si verrà stampato informazioni importanti sulle aree di lavoro hello creati (chiave primaria hello Idareadilavoro hello e dell'area di lavoro di hello URL toohello).
 
 ### <a name="create-an-azure-resource-manager-template"></a>Creare un modello di Azure Resource Manager
-Un'area di lavoro di Machine Learning richiede un account di archiviazione di Azure per archiviare il set di dati collegato.
-Il modello seguente usa il nome del gruppo di risorse per generare il nome dell'account di archiviazione e il nome dell'area di lavoro.  Usa anche il nome dell'account di archiviazione come proprietà durante la creazione dell'area di lavoro.
+Un'area di lavoro di Machine Learning richiede un set di dati collegato tooit di archiviazione di Azure account toostore hello.
+Hello modello seguente utilizza il nome di hello del hello Nome gruppo di risorse toogenerate hello storage account e il nome dell'area di lavoro hello.  Utilizza inoltre nome account di archiviazione hello come una proprietà durante la creazione dell'area di lavoro di hello.
 
 ```
 {
@@ -78,31 +78,31 @@ Il modello seguente usa il nome del gruppo di risorse per generare il nome dell'
 ```
 Salvare questo modello come file mlworkspace.json in c:\temp\.
 
-### <a name="deploy-the-resource-group-based-on-the-template"></a>Distribuire il gruppo di risorse in base al modello
+### <a name="deploy-hello-resource-group-based-on-hello-template"></a>Distribuire il gruppo di risorse hello, basato sul modello hello
 * Aprire PowerShell
 * Installare i moduli per Azure Resource Manager e Azure Service Management  
 
 ```
-# Install the Azure Resource Manager modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Resource Manager modules from hello PowerShell Gallery (press “A”)
 Install-Module AzureRM -Scope CurrentUser
 
-# Install the Azure Service Management modules from the PowerShell Gallery (press “A”)
+# Install hello Azure Service Management modules from hello PowerShell Gallery (press “A”)
 Install-Module Azure -Scope CurrentUser
 ```
 
-   Con questi passaggi vengono scaricati e installati i moduli necessari per completare i passaggi rimanenti. È necessario eseguirli una sola volta nell'ambiente in cui si eseguono i comandi di PowerShell.   
+   Questi passaggi scaricare e installare i passaggi rimanenti hello hello moduli toocomplete necessarie. Questa operazione deve solo toobe eseguito una volta nell'ambiente di hello in cui si siano eseguendo i comandi di PowerShell hello.   
 
-* Eseguire l'autenticazione ad Azure  
+* L'autenticazione tooAzure  
 
 ```
-# Authenticate (enter your credentials in the pop-up window)
+# Authenticate (enter your credentials in hello pop-up window)
 Add-AzureRmAccount
 ```
-Questo passaggio deve essere ripetuto per ogni sessione. Una volta eseguita l'autenticazione, verranno visualizzate le informazioni sulla sottoscrizione.
+Questo passaggio è necessario toobe ripetuto per ogni sessione. Una volta eseguita l'autenticazione, verranno visualizzate le informazioni sulla sottoscrizione.
 
 ![Account Azure][1]
 
-Ora che si ha accesso ad Azure, è possibile creare il gruppo di risorse.
+Ora che si dispone di accesso tooAzure, possiamo creare il gruppo di risorse hello.
 
 * Creare un gruppo di risorse
 
@@ -111,36 +111,36 @@ $rg = New-AzureRmResourceGroup -Name "uniquenamerequired523" -Location "South Ce
 $rg
 ```
 
-Verificare che il provisioning del gruppo di risorse venga effettuato correttamente. **ProvisioningState** deve essere "Succeeded".
-Il nome del gruppo di risorse viene usato dal modello per generare il nome dell'account di archiviazione. Il nome dell'account di archiviazione deve essere di lunghezza compresa tra 3 e 24 caratteri e usare solo numeri e lettere minuscole.
+Verificare che il gruppo di risorse hello viene correttamente eseguito il provisioning. **ProvisioningState** deve essere "Succeeded".
+nome del gruppo di risorse Hello viene utilizzato dal nome account di archiviazione di hello modello toogenerate hello. nome account di archiviazione Hello deve essere di lunghezza compresa tra 3 e 24 caratteri e utilizzare numeri e lettere minuscole solo.
 
 ![Gruppo di risorse][2]
 
-* Usando la distribuzione del gruppo di risorse, distribuire una nuova area di lavoro di Machine Learning.
+* Mediante la distribuzione di gruppo di risorse hello, distribuire una nuova area di Machine Learning.
 
 ```
-# Create a Resource Group, TemplateFile is the location of the JSON template.
+# Create a Resource Group, TemplateFile is hello location of hello JSON template.
 $rgd = New-AzureRmResourceGroupDeployment -Name "demo" -TemplateFile "C:\temp\mlworkspace.json" -ResourceGroupName $rg.ResourceGroupName
 ```
 
-Una volta completata la distribuzione, è semplice accedere alle proprietà dell'area di lavoro distribuita. Ad esempio, è possibile accedere al token di chiave primaria.
+Al termine della distribuzione di hello, risulta semplice tooaccess proprietà dell'area di lavoro hello che è stato distribuito. Ad esempio, è possibile accedere hello Token di chiave primaria.
 
 ```
 # Access Azure ML Workspace Token after its deployment.
 $rgd.Outputs.mlWorkspaceToken.Value
 ```
 
-Un altro modo per recuperare i token dell'area di lavoro esistente consiste nell'utilizzare il comando Invoke-AzureRmResourceAction. Ad esempio, è possibile elencare i token primari e secondari di tutte le aree di lavoro.
+Un altro token di tooretrieve modo dell'area di lavoro esistente è hello toouse comando Invoke-AzureRmResourceAction. Ad esempio, è possibile elencare i token primario e secondario hello di tutte le aree di lavoro.
 
 ```  
-# List the primary and secondary tokens of all workspaces
+# List hello primary and secondary tokens of all workspaces
 Get-AzureRmResource |? { $_.ResourceType -Like "*MachineLearning/workspaces*"} |% { Invoke-AzureRmResourceAction -ResourceId $_.ResourceId -Action listworkspacekeys -Force}  
 ```
-Dopo il provisioning dell'area di lavoro, è anche possibile automatizzare diverse attività di Azure Machine Learning Studio usando il [modulo PowerShell per Azure Machine Learning](http://aka.ms/amlps).
+Dopo il provisioning dell'area di lavoro di hello, è inoltre possibile automatizzare molte attività di Azure Machine Learning Studio usando hello [modulo PowerShell per Azure Machine Learning](http://aka.ms/amlps).
 
 ## <a name="next-steps"></a>Passaggi successivi
 * Altre informazioni sulla [Creazione di modelli di Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md). 
-* Vedere il [repository di modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates). 
+* Osservare hello [archivio modelli di avvio rapido di Azure](https://github.com/Azure/azure-quickstart-templates). 
 * Guardare questo video su [Azure Resource Manager](https://channel9.msdn.com/Events/Ignite/2015/C9-39). 
 
 <!--Image references-->

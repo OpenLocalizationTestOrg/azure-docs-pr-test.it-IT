@@ -1,5 +1,5 @@
 ---
-title: Come usare gli argomenti del bus di servizio di Azure con Java | Microsoft Docs
+title: gli argomenti del Bus di servizio di Azure toouse aaaHow con Java | Documenti Microsoft
 description: Usare gli argomenti e le sottoscrizioni del bus di servizio in Azure.
 services: service-bus-messaging
 documentationcenter: java
@@ -14,42 +14,42 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: b561d6fdcf4fb2839908ac8f53832fb0830dd576
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1aad16fdb5d68a5782b85c8dfda9d695babd57ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-topics-and-subscriptions-with-java"></a>Come usare gli argomenti e le sottoscrizioni del bus di servizio con Java
+# <a name="how-toouse-service-bus-topics-and-subscriptions-with-java"></a>Il Bus di servizio toouse argomenti e sottoscrizioni con Java
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-Questa guida descrive come usare gli argomenti e le sottoscrizioni del bus di servizio. Gli esempi sono scritti in Java e usano [Azure SDK per Java][Azure SDK for Java]. Gli scenari presentati includono **la creazione di argomenti e sottoscrizioni**, **la creazione di filtri per le sottoscrizioni**, **l’invio di messaggi a un argomento**, **la ricezione di messaggi da una sottoscrizione** e **l’eliminazione di argomenti e sottoscrizioni**.
+Questa guida viene descritto come toouse Bus di servizio di argomenti e sottoscrizioni. esempi di Hello sono scritti in Java e usano hello [Azure SDK per Java][Azure SDK for Java]. Hello scenari trattati includono **la creazione di argomenti e sottoscrizioni**, **creazione filtri di sottoscrizione**, **invio argomento tooa messaggi**, **ricezione i messaggi da una sottoscrizione**, e **l'eliminazione di argomenti e sottoscrizioni**.
 
 ## <a name="what-are-service-bus-topics-and-subscriptions"></a>Cosa sono gli argomenti e le sottoscrizioni del bus di servizio?
 Gli argomenti e le sottoscrizioni del bus di servizio supportano un modello di comunicazione con messaggistica di *pubblicazione-sottoscrizione* . Quando si usano gli argomenti e le sottoscrizioni, i componenti di un'applicazione distribuita non comunicano direttamente l'uno con l'altro, ma scambiano messaggi tramite un argomento, che agisce da intermediario.
 
 ![Concetti relativi agli argomenti](./media/service-bus-java-how-to-use-topics-subscriptions/sb-topics-01.png)
 
-Diversamente dalle code del bus di servizio, in cui ogni messaggio viene elaborato da un unico consumer, gli argomenti e le sottoscrizioni offrono una forma di comunicazione "uno a molti" tramite un modello di pubblicazione-sottoscrizione. È possibile registrare più sottoscrizioni a un argomento. Quando un messaggio viene inviato a un argomento, viene reso disponibile affinché ogni sottoscrizione possa gestirlo o elaborarlo in modo indipendente.
+Diversamente dalle code del bus di servizio, in cui ogni messaggio viene elaborato da un unico consumer, gli argomenti e le sottoscrizioni offrono una forma di comunicazione "uno a molti" tramite un modello di pubblicazione-sottoscrizione. È possibile registrare l'argomento di tooa più sottoscrizioni. Quando l'argomento tooa viene inviato un messaggio, viene quindi reso disponibile tooeach sottoscrizione toohandle o il processo in modo indipendente.
 
-La sottoscrizione a un argomento è simile a una coda virtuale che riceve copie dei messaggi che sono stati inviati all'argomento. È possibile registrare regole di filtro per un argomento in base alla sottoscrizione in modo da poter filtrare/limitare i messaggi a un argomento ricevuti dalle diverse sottoscrizioni degli argomenti.
+Un argomento tooa sottoscrizione simile a una coda virtuale che riceve copie dei messaggi hello inviati toohello argomento. Facoltativamente, è possibile registrare le regole di filtro per un argomento in una base per ogni sottoscrizione, che consente di toofilter o limitare l'argomento tooa i messaggi vengono ricevuti dal quale le sottoscrizioni dell'argomento.
 
-Gli argomenti e le sottoscrizioni del bus di servizio garantiscono scalabilità, consentendo di elaborare grandi quantità di messaggi tra un numero elevato di utenti e applicazioni.
+Le sottoscrizioni e gli argomenti del Bus di servizio consentono di tooscale tooprocess un numero molto elevato di messaggi in un numero molto elevato di utenti e applicazioni.
 
 ## <a name="create-a-service-namespace"></a>Creare uno spazio dei nomi del servizio
-Per iniziare a usare gli argomenti e le sottoscrizioni del bus di servizio in Azure, è innanzitutto necessario creare uno spazio dei nomi che fornisca un contenitore di ambito per fare riferimento alle risorse del bus di servizio all'interno dell'applicazione.
+toobegin utilizzando gli argomenti del Bus di servizio e le sottoscrizioni in Azure, è innanzitutto necessario creare uno spazio dei nomi, che fornisce un contenitore per l'indirizzamento delle risorse del Bus di servizio all'interno dell'applicazione.
 
-Per creare uno spazio dei nomi:
+toocreate uno spazio dei nomi:
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="configure-your-application-to-use-service-bus"></a>Configurare l'applicazione per l'uso del bus di servizio
-Assicurarsi di aver installato [Azure SDK per Java][Azure SDK for Java] prima di compilare questo esempio. Se si usa Eclipse, è possibile installare [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse] che include Azure SDK per Java. È quindi possibile aggiungere le **librerie di Microsoft Azure per Java** al progetto:
+## <a name="configure-your-application-toouse-service-bus"></a>Configurare il toouse applicazione Bus di servizio
+Verificare di avere installato hello [Azure SDK per Java] [ Azure SDK for Java] prima di compilare questo esempio. Se si usa Eclipse, è possibile installare hello [Azure Toolkit per Eclipse] [ Azure Toolkit for Eclipse] che include hello Azure SDK per Java. È quindi possibile aggiungere hello **Microsoft Azure Libraries for Java** tooyour progetto:
 
 ![](media/service-bus-java-how-to-use-topics-subscriptions/eclipselibs.png)
 
-Aggiungere le seguenti istruzioni `import` all'inizio del file Java:
+Aggiungere il seguente hello `import` file Java hello cima toohello istruzioni:
 
 ```java
 import com.microsoft.windowsazure.services.servicebus.*;
@@ -58,12 +58,12 @@ import com.microsoft.windowsazure.core.*;
 import javax.xml.datatype.*;
 ```
 
-Aggiungere le librerie di Azure per Java al percorso di compilazione e includerlo nell'assembly di distribuzione del progetto.
+Aggiungere hello Azure Libraries for Java tooyour percorso di compilazione e includerlo in assembly di distribuzione del progetto.
 
 ## <a name="create-a-topic"></a>Creare un argomento
-Per eseguire operazioni di gestione per gli argomenti del bus di servizio, è possibile usare la classe **ServiceBusContract**. Un oggetto **ServiceBusContract** è costruito con una configurazione appropriata che incapsula il token di firma di accesso condiviso con le autorizzazioni necessarie a gestirlo. La classe **ServiceBusContract** rappresenta l'unico punto di comunicazione con Azure.
+Per eseguire operazioni di gestione per gli argomenti del bus di servizio, è possibile usare la classe **ServiceBusContract**. Oggetto **ServiceBusContract** oggetto viene costruito con una configurazione appropriata che incapsula il token di firma di accesso condiviso con le autorizzazioni toomanage e hello **ServiceBusContract** classe è il punto unico di hello la comunicazione con Azure.
 
-La classe **ServiceBusService** definisce i metodi per creare, enumerare ed eliminare gli argomenti. L'esempio seguente illustra come usare un oggetto **ServiceBusService** per creare un argomento con il nome `TestTopic` e uno spazio dei nomi denominato `HowToSample`:
+Hello **ServiceBusService** classe fornisce metodi toocreate, enumerare ed eliminare gli argomenti. Hello seguente esempio viene illustrato come un **ServiceBusService** oggetto può essere utilizzato toocreate un argomento denominato `TestTopic`, con uno spazio dei nomi denominato `HowToSample`:
 
 ```java
 Configuration config =
@@ -87,7 +87,7 @@ catch (ServiceException e) {
 }
 ```
 
-In **TopicInfo** sono disponibili metodi che consentono di impostare le proprietà dell'argomento, ad esempio il valore TTL predefinito da applicare ai messaggi inviati all'argomento. L'esempio seguente illustra come creare un argomento denominato `TestTopic` con una dimensione massima pari a 5 GB:
+Sono disponibili metodi su **TopicInfo** che abilitano la proprietà di argomento hello da impostare (ad esempio: tooset hello predefinito time-to-live (TTL) valore toobe applicato toomessages inviati toohello argomento). Hello esempio seguente viene illustrato come toocreate un argomento denominato `TestTopic` con una dimensione massima di 5 GB:
 
 ```java
 long maxSizeInMegabytes = 5120;  
@@ -96,13 +96,13 @@ topicInfo.setMaxSizeInMegabytes(maxSizeInMegabytes);
 CreateTopicResult result = service.createTopic(topicInfo);
 ```
 
-Si noti che è possibile usare il metodo **listTopics** su oggetti **ServiceBusContract** per verificare se in uno spazio dei nomi servizio esiste già un argomento con il nome specificato.
+Si noti che è possibile utilizzare hello **listTopics** metodo **ServiceBusContract** oggetti toocheck se un argomento con un nome specificato esiste già all'interno di uno spazio dei nomi del servizio.
 
 ## <a name="create-subscriptions"></a>Creare sottoscrizioni
-È possibile creare le sottoscrizioni a un argomento anche tramite la classe **ServiceBusService**. Le sottoscrizioni sono denominate e possono includere un filtro facoltativo che limita l'insieme dei messaggi passati alla coda virtuale della sottoscrizione.
+Tootopics le sottoscrizioni vengono creati anche con hello **ServiceBusService** classe. Le sottoscrizioni sono denominate e possono avere un filtro facoltativo che limita il set di hello di messaggi passati coda virtuale toohello della sottoscrizione.
 
-### <a name="create-a-subscription-with-the-default-matchall-filter"></a>Creare una sottoscrizione con il filtro (MatchAll) predefinito
-Il filtro **MatchAll** è il filtro predefinito e viene usato se non vengono specificati altri filtri durante la creazione di una nuova sottoscrizione. Quando si usa il filtro **MatchAll**, tutti i messaggi pubblicati nell'argomento vengono inseriti nella coda virtuale della sottoscrizione. Nell'esempio seguente viene creata una sottoscrizione denominata "AllMessages" e viene usato il filtro **MatchAll** predefinito.
+### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>Creare una sottoscrizione con filtro predefinito (MatchAll) hello
+Hello **MatchAll** filtro è hello predefinito che viene utilizzato se viene specificato alcun filtro quando viene creata una nuova sottoscrizione. Quando hello **MatchAll** filtro viene utilizzato, l'argomento di toohello pubblicati tutti i messaggi vengono inseriti nella coda virtuale della sottoscrizione. esempio Hello crea una sottoscrizione denominata "AllMessages" e utilizza hello predefinito **MatchAll** filtro.
 
 ```java
 SubscriptionInfo subInfo = new SubscriptionInfo("AllMessages");
@@ -111,11 +111,11 @@ CreateSubscriptionResult result =
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>Creare sottoscrizioni con i filtri
-È anche possibile creare filtri che consentono di specificare i messaggi inviati a un argomento da visualizzare in una specifica sottoscrizione dell'argomento.
+È anche possibile creare filtri che consentono di tooscope cui i messaggi inviati tooa argomento visualizzati all'interno di una sottoscrizione di argomento specifico.
 
-Il tipo di filtro più flessibile tra quelli supportati dalle sottoscrizioni è [SqlFilter][SqlFilter], che implementa un subset di SQL92. I filtri SQL agiscono sulle proprietà dei messaggi pubblicati nell'argomento. Per altri dettagli sulle espressioni che è possibile usare con un filtro SQL, esaminare la sintassi di [SqlFilter.SqlExpression][SqlFilter.SqlExpression].
+Hello più flessibile il tipo di filtro supportato dalle sottoscrizioni è il [SqlFilter][SqlFilter], che implementa un subset di SQL92. I filtri SQL operano sulle proprietà hello dei messaggi hello argomento toohello pubblicato. Per ulteriori informazioni sulle espressioni hello che possono essere utilizzate con un filtro SQL, vedere hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression] sintassi.
 
-L'esempio seguente crea una sottoscrizione denominata `HighMessages` con un oggetto [SqlFilter][SqlFilter] che seleziona solo i messaggi che hanno una proprietà **MessageNumber** personalizzata maggiore di 3:
+esempio Hello crea una sottoscrizione denominata `HighMessages` con un [SqlFilter] [ SqlFilter] oggetto che seleziona solo i messaggi con un oggetto personalizzato **MessageNumber** proprietà maggiore di 3:
 
 ```java
 // Create a "HighMessages" filtered subscription  
@@ -124,11 +124,11 @@ CreateSubscriptionResult result = service.createSubscription("TestTopic", subInf
 RuleInfo ruleInfo = new RuleInfo("myRuleGT3");
 ruleInfo = ruleInfo.withSqlExpressionFilter("MessageNumber > 3");
 CreateRuleResult ruleResult = service.createRule("TestTopic", "HighMessages", ruleInfo);
-// Delete the default rule, otherwise the new rule won't be invoked.
+// Delete hello default rule, otherwise hello new rule won't be invoked.
 service.deleteRule("TestTopic", "HighMessages", "$Default");
 ```
 
-Analogamente, l'esempio seguente crea una sottoscrizione denominata `LowMessages` con un oggetto [SqlFilter][SqlFilter] che seleziona solo i messaggi in cui il valore della proprietà **MessageNumber** è minore o uguale a 3:
+Analogamente, hello esempio seguente viene creata una sottoscrizione denominata `LowMessages` con un [SqlFilter] [ SqlFilter] oggetto che seleziona solo i messaggi che hanno un **MessageNumber** proprietà minore o uguale too3:
 
 ```java
 // Create a "LowMessages" filtered subscription
@@ -137,46 +137,46 @@ CreateSubscriptionResult result = service.createSubscription("TestTopic", subInf
 RuleInfo ruleInfo = new RuleInfo("myRuleLE3");
 ruleInfo = ruleInfo.withSqlExpressionFilter("MessageNumber <= 3");
 CreateRuleResult ruleResult = service.createRule("TestTopic", "LowMessages", ruleInfo);
-// Delete the default rule, otherwise the new rule won't be invoked.
+// Delete hello default rule, otherwise hello new rule won't be invoked.
 service.deleteRule("TestTopic", "LowMessages", "$Default");
 ```
 
-Un messaggio inviato a `TestTopic` verrà sempre recapitato a destinatari con sottoscrizione a `AllMessages` e recapitato selettivamente a destinatari con sottoscrizioni a `HighMessages` e `LowMessages` (a seconda del contenuto del messaggio).
+Quando viene inviato un messaggio ora troppo`TestTopic`, verrà sempre recapitata tooreceivers sottoscritto toohello `AllMessages` sottoscrizione e recapitati in modo selettivo tooreceivers sottoscritto toohello `HighMessages` e `LowMessages` (sottoscrizioni seconda il contenuto del messaggio).
 
-## <a name="send-messages-to-a-topic"></a>Inviare messaggi a un argomento
-Per inviare un messaggio a un argomento del bus di servizio, l'applicazione ottiene un oggetto **ServiceBusContract**. Il codice seguente illustra come inviare un messaggio all'argomento `TestTopic` creato in precedenza nello spazio dei nomi `HowToSample`:
+## <a name="send-messages-tooa-topic"></a>Inviare l'argomento tooa messaggi
+un argomento del Bus di servizio tooa messaggio toosend, l'applicazione otterrà un **ServiceBusContract** oggetto. Hello codice seguente viene illustrato come un messaggio per hello toosend `TestTopic` argomento creato in precedenza all'interno di hello `HowToSample` dello spazio dei nomi:
 
 ```java
 BrokeredMessage message = new BrokeredMessage("MyMessage");
 service.sendTopicMessage("TestTopic", message);
 ```
 
-I messaggi inviati ad argomenti del bus di servizio sono istanze della classe [BrokeredMessage][BrokeredMessage]. Gli oggetti [BrokeredMessage][BrokeredMessage]* includono un set di metodi standard, ad esempio **setLabel** e **TimeToLive**, un dizionario usato per contenere le proprietà personalizzate specifiche dell'applicazione e un corpo di dati arbitrari dell'applicazione. Per impostare il corpo del messaggio, un'applicazione può passare qualsiasi oggetto serializzabile nel costruttore di [BrokeredMessage][BrokeredMessage]. In tal caso per serializzare l'oggetto, verrà usato l'oggetto **DataContractSerializer** appropriato. In alternativa, è possibile specificare un oggetto **java.io.InputStream**.
+I messaggi inviati gli argomenti del Bus tooService sono istanze di [BrokeredMessage] [ BrokeredMessage] classe. [BrokeredMessage][BrokeredMessage]* oggetti dispongono di un set di metodi standard (ad esempio **setLabel** e **TimeToLive**), un dizionario usato toohold personalizzato proprietà specifiche dell'applicazione e un corpo di dati applicazione arbitrari. Un'applicazione può impostare il corpo di hello del messaggio passando qualsiasi oggetto serializzabile al costruttore di hello del [BrokeredMessage][BrokeredMessage], hello appropriato e **DataContractSerializer ** potranno quindi essere oggetto di hello tooserialize utilizzato. In alternativa, è possibile specificare un oggetto **java.io.InputStream**.
 
-L'esempio seguente illustra come inviare cinque messaggi di prova all'oggetto `TestTopic` **MessageSender** ottenuto nel frammento di codice sopra riportato.
-Si noti come il valore della proprietà **MessageNumber** di ogni messaggio varia nell'iterazione del ciclo, determinando le sottoscrizioni che lo riceveranno:
+Hello esempio seguente viene illustrato come test toosend cinque messaggi toothe `TestTopic` **MessageSender** sono stati ottenuti nel frammento di codice hello precedente.
+Si noti come hello **MessageNumber** valore della proprietà di ogni messaggio varia iterazione hello del ciclo di hello (per stabilire le sottoscrizioni che ricevano):
 
 ```java
 for (int i=0; i<5; i++)  {
-// Create message, passing a string message for the body
+// Create message, passing a string message for hello body
 BrokeredMessage message = new BrokeredMessage("Test message " + i);
 // Set some additional custom app-specific property
 message.setProperty("MessageNumber", i);
-// Send message to the topic
+// Send message toohello topic
 service.sendTopicMessage("TestTopic", message);
 }
 ```
 
-Gli argomenti del bus di servizio supportano messaggi di dimensioni massime fino a 256 KB nel [livello Standard](service-bus-premium-messaging.md) e fino a 1 MB nel [livello Premium](service-bus-premium-messaging.md). Le dimensioni massime dell'intestazione, che include le proprietà standard e personalizzate dell'applicazione, non possono superare 64 KB. Non esiste alcun limite al numero di messaggi mantenuti in un argomento, mentre è previsto un limite alla dimensione totale dei messaggi di un argomento. Questa dimensione dell'argomento viene definita al momento della creazione, con un limite massimo di 5 GB.
+Argomenti del Bus di servizio supportano una dimensione massima di 256 KB in hello [livello Standard](service-bus-premium-messaging.md) hello a 1 MB e [livello Premium](service-bus-premium-messaging.md). intestazione Hello, che include standard hello e le proprietà personalizzate dell'applicazione, può avere una dimensione massima di 64 KB. Non è previsto alcun limite per il numero di hello di messaggi contenuti in un argomento, ma è previsto un limite alla dimensione totale di hello di messaggi hello utilizzate da un argomento. Questa dimensione dell'argomento viene definita al momento della creazione, con un limite massimo di 5 GB.
 
-## <a name="how-to-receive-messages-from-a-subscription"></a>Come ricevere messaggi da una sottoscrizione
-Per ricevere i messaggi da una sottoscrizione, usare un oggetto **ServiceBusContract**. I messaggi ricevuti possono essere usati in due modalità diverse: **ReceiveAndDelete** e **PeekLock**.
+## <a name="how-tooreceive-messages-from-a-subscription"></a>La modalità tooreceive dei messaggi da una sottoscrizione
+tooreceive messaggi da una sottoscrizione, utilizzare un **ServiceBusContract** oggetto. I messaggi ricevuti possono essere usati in due modalità diverse: **ReceiveAndDelete** e **PeekLock**.
 
-Quando si usa la modalità **ReceiveAndDelete**, l'operazione di ricezione viene eseguita in un'unica fase. Quando infatti il bus di servizio riceve la richiesta di lettura relativa a un messaggio, lo contrassegna come usato e lo restituisce all'applicazione. La modalità **ReceiveAndDelete** costituisce il modello più semplice ed è adatta per scenari in cui un'applicazione può tollerare la mancata elaborazione di un messaggio in caso di errore. Per comprendere meglio questo meccanismo, si consideri uno scenario in cui il consumer invia la richiesta di ricezione e viene arrestato in modo anomalo prima dell'elaborazione. Poiché il bus di servizio contrassegna il messaggio come utilizzato, quando l'applicazione viene riavviata e inizia a utilizzare nuovamente i messaggi, il messaggio utilizzato prima dell'arresto anomalo risulterà perso.
+Quando si utilizza hello **ReceiveAndDelete** , la modalità di ricezione è un'operazione singola cattura -, ovvero quando il Bus di servizio riceve una richiesta di lettura per un messaggio, contrassegna il messaggio hello come usato e lo restituisce toothe applicazione. **ReceiveAndDelete** modalità modello più semplice di hello ed è adatta per scenari in cui un'applicazione in grado di tollerare non elabora un messaggio di evento hello di un errore. toounderstand, si consideri uno scenario in cui problemi relativi ai consumer hello hello di ricezione richiesta e quindi si blocca prima dell'elaborazione. Poiché il Bus di servizio verrà contrassegnato il messaggio come usato, quindi quando un'applicazione hello viene riavviata e inizia a usare nuovamente i messaggi, risulterà perso messaggio hello che è stato consumato toohello precedente arresto anomalo del sistema.
 
-Nella modalità **PeekLock** l'operazione di ricezione viene suddivisa in due fasi, in modo da consentire il supporto di applicazioni che non possono tollerare messaggi mancanti. Quando il bus di servizio riceve una richiesta, individua il messaggio successivo da usare, lo blocca per impedirne la ricezione da parte di altri consumer e quindi lo restituisce all'applicazione. Dopo aver elaborato il messaggio o averlo archiviato in modo affidabile per successive elaborazioni, l'applicazione esegue la seconda fase del processo di ricezione chiamando **Delete** sul messaggio ricevuto. Quando il bus di servizio vede la chiamata **Delete**, contrassegna il messaggio come usato e lo rimuove dall'argomento.
+In **PeekLock** , la modalità di ricezione diventa un'operazione in due fasi, che rende possibile toosupport applicazioni che non sono in grado di tollerare messaggi mancanti. Quando il Bus di servizio riceve una richiesta, individua hello successivo messaggio toobe utilizzati Blocca tooprevent altri consumer di ricezione e lo restituisce quindi toohello applicazione. Dopo l'applicazione hello completa l'elaborazione messaggio hello o archiviarlo in modo affidabile per l'elaborazione futura, completa hello seconda fase di hello ricevere processo chiamando **eliminare** nel messaggio ricevuto. Quando il Bus di servizio rileva hello **eliminare** chiamata, verrà contrassegnare il messaggio hello come usato e rimuoverlo dall'argomento hello.
 
-Nell'esempio seguente viene illustrato come ricevere ed elaborare messaggi usando la modalità **PeekLock** non predefinita. L'esempio seguente esegue un ciclo, elabora i messaggi nella sottoscrizione "HighMessages" e infine esce quando non vi sono più messaggi (in alternativa, l'esempio può essere impostato per attendere l'arrivo di nuovi messaggi).
+Hello esempio riportato di seguito viene illustrato come è possibile ricevere messaggi e trasformati utilizzando **PeekLock** modalità (non hello predefinita). Hello esempio riportato di seguito esegue un ciclo ed elabora i messaggi di hello "HighMessages" sottoscrizione e quindi viene chiuso quando non sono presenti ulteriori messaggi (in alternativa, Impossibile impostare toowait per i nuovi messaggi).
 
 ```java
 try
@@ -191,7 +191,7 @@ try
         if (message != null && message.getMessageId() != null)
         {
             System.out.println("MessageID: " + message.getMessageId());
-            // Display the topic message.
+            // Display hello topic message.
             System.out.print("From topic: ");
             byte[] b = new byte[200];
             String s = null;
@@ -214,8 +214,8 @@ try
         {
             System.out.println("Finishing up - no more messages.");
             break;
-            // Added to handle no more messages.
-            // Could instead wait for more messages to be added.
+            // Added toohandle no more messages.
+            // Could instead wait for more messages toobe added.
         }
     }
 }
@@ -231,15 +231,15 @@ catch (Exception e) {
 }
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Come gestire arresti anomali e messaggi illeggibili dell'applicazione
-Il bus di servizio fornisce funzionalità per il ripristino gestito automaticamente in caso di errori nell'applicazione o di problemi di elaborazione di un messaggio. Se un'applicazione ricevitore non è in grado di elaborare il messaggio per un qualsiasi motivo, può chiamare il metodo **unlockMessage**, anziché **deleteMessage**, per il messaggio ricevuto. In questo modo, il bus di servizio sbloccherà il messaggio nell'argomento rendendolo nuovamente disponibile per la ricezione da parte della stessa o da un'altra applicazione consumer.
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Come si blocca toohandle applicazione e i messaggi illeggibili
+Bus di servizio offre funzionalità toohelp che normalmente possibile correggere gli errori nell'applicazione o problemi di elaborazione di un messaggio. Se un'applicazione ricevente è in grado di tooprocess hello messaggio per qualche motivo, quindi è possibile chiamare hello **unlockMessage** metodo sul messaggio ricevuto (anziché hello **deleteMessage** (metodo)). Ciò causerà messaggio hello toounlock di Bus di servizio all'interno di argomento hello e renderlo disponibile toobe nuovamente ricevuto, sia da hello stesso consumo dell'applicazione o da un'altra applicazione consumer.
 
-Al messaggio bloccato nell'argomento è associato anche un timeout. Se l'applicazione non riesce a elaborare il messaggio prima della scadenza del timeout, ad esempio a causa di un arresto anomalo, il bus di servizio sbloccherà automaticamente il messaggio rendendolo nuovamente disponibile per la ricezione.
+È inoltre disponibile un timeout associato a un messaggio bloccato all'interno dell'argomento, e se un'applicazione hello ha esito negativo messaggio hello tooprocess prima il timeout di blocco scade (ad esempio, se si blocca l'applicazione hello), quindi il Bus di servizio sbloccherà il messaggio hello e renderlo disponibile toobe nuovamente ricevuto.
 
-In caso di arresto anomalo dell'applicazione dopo l'elaborazione del messaggio ma prima dell'invio della richiesta **deleteMessage**, il messaggio verrà nuovamente recapitato all'applicazione al riavvio. Questo processo di elaborazione viene spesso definito di tipo **At-Least-Once**, per indicare che ogni messaggio verrà elaborato almeno una volta ma che in determinate situazioni potrà essere recapitato una seconda volta. Se lo scenario non tollera la doppia elaborazione, gli sviluppatori dovranno aggiungere logica aggiuntiva all'applicazione per gestire il secondo recapito del messaggio. A tale scopo viene spesso usato il metodo **getMessageId** del messaggio, che rimane costante in tutti i tentativi di recapito.
+In hello evento hello applicazione si blocca dopo l'elaborazione messaggio hello ma prima di hello **deleteMessage** richiesta inviata, quindi messaggio hello sarà applicazione toohello consegnati nuovamente quando viene riavviata. Spesso si tratta di **almeno una volta elaborazione**, vale a dire, ogni messaggio verrà elaborato almeno una volta ma in hello determinate situazioni potrebbe essere recapitato nuovamente stesso messaggio. Se hello scenario non tollera la doppia elaborazione, gli sviluppatori di applicazioni devono aggiungere logica aggiuntiva tootheir applicazione toohandle duplicato il recapito dei messaggi. Questa operazione viene spesso eseguita utilizzando hello **getMessageId** metodo di messaggio hello che rimangono costante tra i tentativi di recapito.
 
 ## <a name="delete-topics-and-subscriptions"></a>Eliminare argomenti e sottoscrizioni
-Per eliminare argomenti e sottoscrizioni si usa principalmente un oggetto **ServiceBusContract**. Se si elimina un argomento, verranno eliminate anche tutte le sottoscrizioni registrate con l'argomento. Le sottoscrizioni possono essere eliminate anche in modo indipendente.
+Hello argomenti toodelete modo primario e le sottoscrizioni è toouse un **ServiceBusContract** oggetto. L'eliminazione di un argomento eliminerà anche le sottoscrizioni che sono registrate con l'argomento hello. Le sottoscrizioni possono essere eliminate anche in modo indipendente.
 
 ```java
 // Delete subscriptions
@@ -252,7 +252,7 @@ service.deleteTopic("TestTopic");
 ```
 
 ## <a name="next-steps"></a>Passaggi successivi
-A questo punto, dopo aver appreso le nozioni di base delle code del bus di servizio, per altre informazioni vedere [Code, argomenti e sottoscrizioni del bus di servizio][Service Bus queues, topics, and subscriptions].
+Dopo aver appreso nozioni di base di hello di code del Bus di servizio, vedere [code del Bus di servizio, argomenti e sottoscrizioni] [ Service Bus queues, topics, and subscriptions] per ulteriori informazioni.
 
 [Azure SDK for Java]: http://azure.microsoft.com/develop/java/
 [Azure Toolkit for Eclipse]: ../azure-toolkit-for-eclipse.md

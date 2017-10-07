@@ -1,6 +1,6 @@
 ---
-title: 'Eseguire il mirroring degli argomenti di Apache Kafka: Azure HDInsight| Microsoft Docs'
-description: "Informazioni su come usare la funzionalità di mirroring di Apache Kafka per gestire una replica di un cluster Kafka in HDInsight eseguendo il mirroring degli argomenti in un cluster secondario."
+title: argomenti di Apache Kafka aaaMirror - HDInsight di Azure | Documenti Microsoft
+description: "Informazioni su come mirroring toouse Apache Kafka funzionalità toomaintain una replica di un Kafka nel cluster HDInsight dal mirroring del cluster secondario tooa di argomenti."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,176 +15,176 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/13/2017
 ms.author: larryfr
-ms.openlocfilehash: e418cb01e1a9168e3662e8d6242903e052b6047b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5ace0251d7402d4d7d9b28726e253ce7091a87ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-mirrormaker-to-replicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>Usare MirrorMaker per replicare gli argomenti di Apache Kafka con Kafka in HDInsight (anteprima)
+# <a name="use-mirrormaker-tooreplicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>Utilizzare gli argomenti di Apache Kafka tooreplicate MirrorMaker con Kafka in HDInsight (anteprima)
 
-Informazioni su come usare la funzionalità di mirroring di Apache Kafka per replicare gli argomenti in un cluster secondario. Il mirroring può essere eseguito come processo continuo o usato in modo intermittente come metodo di migrazione dei dati da un cluster all'altro.
+Informazioni su come toouse Kafka Apache del mirroring del cluster secondario tooa funzionalità tooreplicate argomenti. Il mirroring può essere eseguito come un processo continuo o utilizzato in modo intermittente come metodo di migrazione dei dati da un cluster tooanother.
 
-In questo esempio il mirroring viene usato per replicare argomenti tra due cluster HDInsight. Entrambi i cluster si trovano in una rete virtuale di Azure nella stessa area.
+In questo esempio, il mirroring è tooreplicate utilizzati argomenti tra due cluster HDInsight. Entrambi i cluster sono in una rete virtuale di Azure in hello stessa area.
 
 > [!WARNING]
-> Il mirroring non deve essere considerato un mezzo per ottenere la tolleranza di errore. Gli offset per gli elementi all'interno di un argomento sono diversi nei cluster di origine e di destinazione, quindi i client non possono usarli in modo intercambiabile.
+> Il mirroring non deve essere considerato come una tolleranza di errore indica tooachieve. Hello tooitems offset all'interno di un argomento sono le differenze tra i cluster di origine e destinazione hello, pertanto i client non è possibile utilizzare hello due in modo intercambiabile.
 >
-> Per preservare la tolleranza di errore è necessario impostare la replica per gli argomenti all'interno del cluster. Per altre informazioni, vedere [Introduzione a Kafka in HDInsight](hdinsight-apache-kafka-get-started.md).
+> Se si teme la tolleranza di errore, è necessario impostare la replica per argomenti hello all'interno del cluster. Per altre informazioni, vedere [Introduzione a Kafka in HDInsight](hdinsight-apache-kafka-get-started.md).
 
 ## <a name="how-kafka-mirroring-works"></a>Funzionamento del mirroring di Kafka
 
-Il mirroring usa lo strumento MirrorMaker (componente di Apache Kafka) per utilizzare i record degli argomenti nel cluster di origine e creare una copia locale nel cluster di destinazione. MirrorMaker usa uno o più *consumer* che leggono dal cluster di origine e un *producer* che scrive nel cluster locale (destinazione).
+Funzionamento del mirroring utilizzando hello MirrorMaker strumento (parte di Apache Kafka) tooconsume registra dagli argomenti su cluster di origine hello e quindi crea una copia locale nel cluster di destinazione hello. MirrorMaker utilizza (almeno) *consumer* che letti dal cluster di origine, hello e una *producer* che scrive cluster locale (destinazione) toohello.
 
-Il diagramma seguente illustra il processo di mirroring:
+Hello seguente diagramma illustra il processo di Mirroring hello:
 
-![Diagramma del processo di mirroring](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
+![Diagramma del processo di mirroring hello](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
 
-Apache Kafka in HDInsight non fornisce l'accesso al servizio Kafka tramite Internet pubblico. I producer o i consumer di Kafka devono trovarsi nella stessa rete virtuale di Azure in cui sono presenti i nodi del cluster Kafka. Per questo esempio, i cluster Kafka di origine e destinazione si trovano entrambi in una rete virtuale di Azure. Il diagramma seguente illustra il flusso delle comunicazioni tra i cluster:
+Apache Kafka in HDInsight non forniscono accesso toohello servizio Kafka hello rete internet pubblica. Produttori di Kafka o i consumer devono trovarsi nella hello stessa rete virtuale come nodi cluster Kafka hello hello. In questo esempio hello origine Kafka sia quelli di destinazione si trovano in una rete virtuale di Azure. Hello diagramma seguente illustra il flusso delle comunicazioni tra i cluster hello:
 
 ![Diagramma dei cluster Kafka di origine e destinazione in una rete virtuale di Azure](./media/hdinsight-apache-kafka-mirroring/spark-kafka-vnet.png)
 
-I cluster di origine e destinazione possono differire per numero di nodi e partizioni. Anche gli offset negli argomenti differiscono. Il mirroring mantiene il valore della chiave usato per il partizionamento, quindi l'ordine dei record viene conservato in base alla chiave.
+cluster di origine e destinazione Hello può essere diverso in numero hello dei nodi e delle partizioni e offset all'interno degli argomenti hello sono diversi. Il mirroring gestisce valore hello chiave utilizzato per il partizionamento, in modo viene mantenuto l'ordine di record in una base per ogni chiave.
 
 ### <a name="mirroring-across-network-boundaries"></a>Mirroring tra i limiti di rete
 
-Se è necessario eseguire il mirroring di cluster Kafka in reti diverse, si notino le seguenti considerazioni aggiuntive:
+Se è necessario toomirror tra cluster Kafka in reti diverse, esistono hello considerazioni aggiuntive seguenti:
 
-* **Gateway**: le reti devono poter comunicare a livello di TCP/IP.
+* **Gateway**: reti hello devono essere in grado di toocommunicate in hello livello TCPIP.
 
-* **Risoluzione dei nomi**: i cluster Kafka in ogni rete devono potersi connettere tra loro usando nomi host. Potrebbe essere necessario un server DNS (Domain Name System) in ogni rete configurato per l'inoltro delle richieste ad altre reti.
+* **Risoluzione dei nomi**: hello Kafka cluster in ogni rete deve essere in grado di tooconnect tooeach altri usando i nomi host. Tale operazione potrebbe richiedere un server di sistema DNS (Domain Name) in ogni rete che viene configurato tooforward richieste toohello altre reti.
 
-    Quando si crea una rete virtuale di Azure, invece di usare il DNS automatico fornito con la rete è necessario specificare un server DNS personalizzato con il relativo indirizzo IP. Dopo aver creato la rete virtuale è necessario creare una macchina virtuale di Azure che usi quell'indirizzo IP, quindi installare e configurare il software DNS sulla macchina stessa.
+    Quando si crea una rete virtuale di Azure, anziché utilizzare hello che automatica DNS fornito con la rete hello, è necessario specificare un personalizzato DNS server hello indirizzo IP e per server hello. Dopo aver hello che rete virtuale è stata creata, è necessario quindi creare una macchina virtuale di Azure che utilizza tale indirizzo IP, quindi installare e configurare software DNS su di esso.
 
     > [!WARNING]
-    > Creare e configurare il server DNS personalizzato prima di installare HDInsight nella rete virtuale. Non sono necessarie altre operazioni di configurazione per far sì che HDInsight usi il server DNS configurato per la rete virtuale.
+    > Creare e configurare un server DNS personalizzato hello prima di installare HDInsight in hello rete virtuale. Non sussiste alcuna configurazione aggiuntiva necessaria per il server DNS di HDInsight toouse hello configurato per la rete virtuale hello.
 
 Per altre informazioni sulla connessione di due reti virtuali di Azure, vedere [Configurare una connessione da rete virtuale a rete virtuale](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md).
 
 ## <a name="create-kafka-clusters"></a>Creare cluster Kafka
 
-Anche se è possibile creare manualmente cluster Kafka e una rete virtuale di Azure, è più semplice usare un modello di Azure Resource Manager. Seguire questa procedura per distribuire una rete virtuale di Azure e due cluster Kafka e nella sottoscrizione di Azure.
+È possibile creare una rete virtuale di Azure e Kafka cluster manualmente, ma è più facile toouse un modello di gestione risorse di Azure. Utilizzare hello seguendo i passaggi toodeploy una rete virtuale di Azure e due Kafka cluster tooyour sottoscrizione di Azure.
 
-1. Usare il pulsante seguente per accedere ad Azure e aprire il modello nel portale di Azure.
+1. Utilizzare hello seguente pulsante toosign in tooAzure e modello hello Apri nel portale di Azure hello.
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
-    Il modello di Azure Resource Manager è disponibile su **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**.
+    Hello Azure Resource Manager modello si trova in **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**.
 
     > [!WARNING]
-    > Per garantire la disponibilità di Kafka in HDInsight, il cluster deve contenere almeno tre nodi del ruolo di lavoro. Questo modello crea un cluster Kafka contenente tre nodi di lavoro.
+    > disponibilità tooguarantee Kafka in HDInsight, il cluster deve contenere almeno tre nodi di lavoro. Questo modello crea un cluster Kafka contenente tre nodi di lavoro.
 
-2. Usare le informazioni seguenti per popolare le voci nel pannello **Distribuzione personalizzata**:
+2. Hello utilizzare seguendo le voci di informazioni toopopulate hello hello **distribuzione personalizzata** pannello:
     
     ![Distribuzione personalizzata di HDInsight](./media/hdinsight-apache-kafka-mirroring/parameters.png)
     
-    * **Gruppo di risorse**: creare un gruppo o selezionarne uno esistente. Questo gruppo contiene il cluster HDInsight.
+    * **Gruppo di risorse**: creare un gruppo o selezionarne uno esistente. Questo gruppo contiene cluster HDInsight hello.
 
-    * **Località**: scegliere una località geograficamente vicina.
+    * **Percorso**: selezionare un tooyou geograficamente Chiudi percorso.
      
-    * **Base Cluster Name** (Nome di base del cluster): questo valore viene usato come nome di base per i cluster Kafka. Se ad esempio si immette **hdi** verranno creati cluster denominati **source-hdi** e **dest-hdi**.
+    * **Nome del Cluster di base**: questo valore viene utilizzato come nome base hello hello Kafka cluster. Se ad esempio si immette **hdi** verranno creati cluster denominati **source-hdi** e **dest-hdi**.
 
-    * **Cluster Login User Name** (Nome utente di accesso del cluster): nome utente amministratore per i cluster Kafka di origine e destinazione.
+    * **Nome utente di accesso del cluster**: nome utente amministratore di hello per hello origine e destinazione Kafka cluster.
 
-    * **Cluster Login Password** (Password di accesso del cluster): password dell'utente amministratore per i cluster Kafka di origine e destinazione.
+    * **Password di account di accesso cluster**: cluster Kafka password dell'utente admin hello per hello origine e di destinazione.
 
-    * **SSH User Name** (Nome utente SSH): utente SSH da creare per i cluster Kafka di origine e destinazione.
+    * **Nome utente SSH**: cluster Kafka hello SSH utente toocreate per hello origine e di destinazione.
 
-    * **SSH Password** (Password SSH): password dell'utente SSH per i cluster Kafka di origine e destinazione.
+    * **Password SSH**: cluster Kafka password hello per utente SSH hello hello origine e di destinazione.
 
-3. Leggere le **Condizioni** e quindi selezionare **Accetto le condizioni riportate sopra**.
+3. Hello lettura **termini e condizioni**, quindi selezionare **accetto le condizioni indicate in precedenza toohello**.
 
-4. Selezionare infine **Aggiungi al dashboard** e quindi **Acquista**. La creazione dei cluster richiede circa 20 minuti.
+4. Infine, controllare **Pin toodashboard** e quindi selezionare **acquisto**. Sono necessari circa 20 minuti toocreate cluster hello.
 
-Dopo aver creato le risorse, si viene reindirizzati a un pannello del gruppo di risorse che contiene i cluster e il dashboard Web.
+Dopo avere create le risorse di hello, verrà reindirizzato tooa pannello per gruppo di risorse hello che contiene i cluster hello e dashboard web.
 
-![Pannello Gruppo di risorse per la rete virtuale e i cluster](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
+![Pannello di gruppo di risorse per la rete virtuale hello e cluster](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
 
 > [!IMPORTANT]
-> Si noti che i nomi dei cluster HDInsight sono **source-BASENAME** e **dest-BASENAME**, dove BASENAME è il nome specificato per il modello. Questi nomi verranno usati nei passaggi successivi per la connessione ai cluster.
+> Si noti che sono nomi hello dei cluster HDInsight hello **origine BASENAME** e **dest BASENAME**, dove BASENAME è nome hello toohello modello specificato. Utilizzare questi nomi nei passaggi successivi per la connessione toohello cluster.
 
 ## <a name="create-topics"></a>Creare argomenti
 
-1. Connettersi al cluster di **origine** tramite SSH:
+1. Connettersi toohello **origine** cluster tramite SSH:
 
     ```bash
     ssh sshuser@source-BASENAME-ssh.azurehdinsight.net
     ```
 
-    Sostituire **sshuser** con il nome utente SSH usato durante la creazione del cluster. Sostituire **BASENAME** con il nome di base usato durante la creazione del cluster.
+    Sostituire **sshuser** con nome dell'utente SSH hello utilizzato durante la creazione di cluster hello. Sostituire **BASENAME** con il nome di base hello utilizzato durante la creazione di cluster hello.
 
     Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Usare i comandi seguenti per trovare gli host Zookeeper per il cluster di origine:
+2. Seguente hello utilizzare comandi toofind hello Zookeeper host del cluster di origine hello:
 
     ```bash
     # Install jq if it is not installed
     sudo apt -y install jq
-    # get the zookeeper hosts for the source cluster
+    # get hello zookeeper hosts for hello source cluster
     export SOURCE_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
     
-    Replace `$PASSWORD` with the password for the cluster.
+    Replace `$PASSWORD` with hello password for hello cluster.
 
-    Replace `$CLUSTERNAME` with the name of the source cluster.
+    Replace `$CLUSTERNAME` with hello name of hello source cluster.
 
-3. To create a topic named `testtopic`, use the following command:
+3. toocreate a topic named `testtopic`, use hello following command:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 2 --partitions 8 --topic testtopic --zookeeper $SOURCE_ZKHOSTS
     ```
 
-3. Usare il comando seguente per verificare che l'argomento sia stato creato:
+3. È stato creato hello utilizzare tooverify comando che hello argomento seguente:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper $SOURCE_ZKHOSTS
     ```
 
-    La risposta contiene `testtopic`.
+    risposta Hello contiene `testtopic`.
 
-4. Usare il comando seguente per visualizzare le informazioni degli host Zookeeper per questo cluster, ovvero il cluster di **origine**:
+4. Hello di utilizzare le seguenti informazioni di tooview hello Zookeeper host per questo (hello **origine**) cluster:
 
     ```bash
     echo $SOURCE_ZKHOSTS
     ```
 
-    Verranno restituite informazioni simili al testo seguente:
+    Restituisce toohello di informazioni simili seguente testo:
 
     `zk0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181`
 
-    Salvare queste informazioni. Verranno usate nella sezione successiva.
+    Salvare queste informazioni. Viene usato nella sezione successiva hello.
 
 ## <a name="configure-mirroring"></a>Configurare il mirroring
 
-1. Connettersi al cluster di **destinazione** con un'altra sessione SSH:
+1. Connettersi toohello **destinazione** utilizzando una sessione SSH diversa del cluster:
 
     ```bash
     ssh sshuser@dest-BASENAME-ssh.azurehdinsight.net
     ```
 
-    Sostituire **sshuser** con il nome utente SSH usato durante la creazione del cluster. Sostituire **BASENAME** con il nome di base usato durante la creazione del cluster.
+    Sostituire **sshuser** con nome dell'utente SSH hello utilizzato durante la creazione di cluster hello. Sostituire **BASENAME** con il nome di base hello utilizzato durante la creazione di cluster hello.
 
     Per altre informazioni, vedere [Usare SSH con HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. Usare il comando seguente per creare un file `consumer.properties` che descrive come comunicare con il cluster di **origine**:
+2. Comando che segue di hello utilizzare toocreate un `consumer.properties` file che descrive come toocommunicate con hello **origine** cluster:
 
     ```bash
     nano consumer.properties
     ```
 
-    Usare il testo seguente come contenuto del file `consumer.properties`:
+    Hello utilizzo successivo di testo come contenuto di hello di hello `consumer.properties` file:
 
     ```yaml
     zookeeper.connect=SOURCE_ZKHOSTS
     group.id=mirrorgroup
     ```
 
-    Sostituire **SOURCE_ZKHOSTS** con le informazioni degli host Zookeeper presenti nel cluster di **origine**.
+    Sostituire **SOURCE_ZKHOSTS** con hello Zookeeper ospita informazioni da hello **origine** cluster.
 
-    Questo file descrive le informazioni sui consumer da usare durante la lettura dal cluster Kafka di origine. Per altre informazioni sulla configurazione dei consumer, vedere [Consumer Configs](https://kafka.apache.org/documentation#consumerconfigs) (Configurazione di consumer) in kafka.apache.org.
+    Questo file descrive hello consumer informazioni toouse durante la lettura dall'origine hello cluster Kafka. Per altre informazioni sulla configurazione dei consumer, vedere [Consumer Configs](https://kafka.apache.org/documentation#consumerconfigs) (Configurazione di consumer) in kafka.apache.org.
 
-    Per salvare il file, usare **Ctrl + X**, **Y** e **INVIO**.
+    file hello toosave, usare **Ctrl + X**, **Y**e quindi **invio**.
 
-3. Prima di configurare il producer che comunica con il cluster di destinazione è necessario trovare gli host broker per il cluster di **destinazione** stesso. Usare i comandi seguenti per recuperare queste informazioni:
+3. Prima di configurare producer hello che comunica con i cluster di destinazione hello, deve trovare broker hello host per hello **destinazione** cluster. Utilizzare queste informazioni di hello tooretrieve i comandi seguenti:
 
     ```bash
     sudo apt -y install jq
@@ -192,50 +192,50 @@ Dopo aver creato le risorse, si viene reindirizzati a un pannello del gruppo di 
     echo $DEST_BROKERHOSTS
     ```
 
-    Sostituire `$PASSWORD` con la password dell'account di accesso (amministratore) del cluster.
+    Sostituire `$PASSWORD` con password di account (amministratore) hello account di accesso per il cluster hello.
 
-    Sostituire `$CLUSTERNAME` con il nome del cluster di destinazione.
+    Sostituire `$CLUSTERNAME` con nome hello del cluster di destinazione hello.
 
-    Questi comandi restituiscono informazioni simili alle seguenti:
+    Questi comandi restituiscono informazioni simili che seguono di toohello:
 
         wn0-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn1-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092
 
-4. Usare il comando seguente per creare un file `producer.properties` che descrive come comunicare con il cluster di **destinazione**:
+4. Hello utilizzare seguente toocreate un `producer.properties` file che descrive come toocommunicate con hello **destinazione** cluster:
 
     ```bash
     nano producer.properties
     ```
 
-    Usare il testo seguente come contenuto del file `producer.properties`:
+    Hello utilizzo successivo di testo come contenuto di hello di hello `producer.properties` file:
 
     ```yaml
     bootstrap.servers=DEST_BROKERS
     compression.type=none
     ```
 
-    Sostituire **DEST_BROKERS** con le informazioni del broker indicate nel passaggio precedente.
+    Sostituire **DEST_BROKERS** con informazioni di Service broker hello del passaggio precedente hello.
 
     Per altre informazioni sulla configurazione dei producer, vedere [Producer Configs](https://kafka.apache.org/documentation#producerconfigs) (Configurazione di producer) in kafka.apache.org.
 
 ## <a name="start-mirrormaker"></a>Avviare MirrorMaker
 
-1. Dalla connessione SSH al cluster di **destinazione** usare il comando seguente per avviare il processo MirrorMaker:
+1. Da hello SSH connessione toohello **destinazione** cluster, utilizzare hello comando toostart hello MirrorMaker processo:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config consumer.properties --producer.config producer.properties --whitelist testtopic --num.streams 4
     ```
 
-    I parametri usati in questo esempio sono i seguenti:
+    Hello parametri in questo esempio vengono utilizzati:
 
-    * **--consumer.config**: specifica il file che contiene le proprietà del consumer. Queste proprietà vengono usate per creare un consumer che legge dal cluster Kafka di *origine*.
+    * **-consumer.config**: Specifica il file hello che contiene le proprietà di consumer. Queste proprietà sono utilizzate toocreate un consumer che legge da hello *origine* cluster Kafka.
 
-    * **--producer.config**: specifica il file che contiene le proprietà del producer. Queste proprietà vengono usate per creare un producer che scrive nel cluster Kafka di *destinazione*.
+    * **-producer.config**: Specifica il file hello che contiene le proprietà di producer. Queste proprietà sono utilizzate toocreate un produttore che scrive toohello *destinazione* cluster Kafka.
 
-    * **--whitelist**: elenco di argomenti che vengono replicati da MirrorMaker dal cluster di origine alla destinazione.
+    * **-whitelist**: un elenco di argomenti che vengono replicate MirrorMaker hello origine cluster toohello destinazione.
 
-    * **--num.streams**: numero di thread consumer da creare.
+    * **-num.streams**: hello svariate toocreate thread consumer.
 
- All'avvio, MirrorMaker restituisce informazioni simili al testo seguente:
+ All'avvio, MirrorMaker restituisce toohello di informazioni simili seguente testo:
 
     ```json
     {metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-3, security.protocol=PLAINTEXT}{metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-0, security.protocol=PLAINTEXT}
@@ -243,20 +243,20 @@ Dopo aver creato le risorse, si viene reindirizzati a un pannello del gruppo di 
     metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-1, security.protocol=PLAINTEXT}
     ```
 
-2. Dalla connessione SSH al cluster di **origine**, usare il comando seguente per avviare un producer e inviare messaggi all'argomento:
+2. Da hello SSH connessione toohello **origine** cluster, utilizzare hello successivo comando toostart un produttore di inviare l'argomento toohello messaggi:
 
     ```bash
     SOURCE_BROKERHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")' | cut -d',' -f1,2`
     /usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list $SOURCE_BROKERHOSTS --topic testtopic
     ```
 
-    Sostituire `$PASSWORD` con la password dell'account di accesso (amministratore) del cluster di origine.
+    Sostituire `$PASSWORD` con password di accesso (amministrazione) hello per cluster di origine hello.
 
-    Sostituire `$CLUSTERNAME` con il nome del cluster di origine.
+    Sostituire `$CLUSTERNAME` con nome hello del cluster di origine di hello.
 
-     Quando si arriva a una riga vuota con un cursore, digitare alcuni messaggi di testo. Questi vengono inviati all'argomento nel cluster di **origine**. Al termine, usare **Ctrl + C** per chiudere il processo del producer.
+     Quando si arriva a una riga vuota con un cursore, digitare alcuni messaggi di testo. Questi vengono inviati toohello argomento sul hello **origine** cluster. Al termine, utilizzare **Ctrl + C** processo producer di hello tooend.
 
-3. Dalla connessione SSH al cluster di **destinazione**, usare **Ctrl + C** per chiudere il processo MirrorMaker. Usare quindi i comandi seguenti per verificare che l'argomento `testtopic` sia stato creato e che i dati nell'argomento siano stati replicati al mirror:
+3. Da hello SSH connessione toohello **destinazione** cluster, utilizzare **Ctrl + C** hello tooend MirrorMaker processo. Quindi seguito hello utilizzare i comandi che hello tooverify `testtopic` argomento è stato creato, e i dati di argomento hello è stata replicata toothis mirror:
 
     ```bash
     DEST_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
@@ -264,24 +264,24 @@ Dopo aver creato le risorse, si viene reindirizzati a un pannello del gruppo di 
     /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $DEST_ZKHOSTS --topic testtopic --from-beginning
     ```
 
-    Sostituire `$PASSWORD` con la password dell'account di accesso (amministratore) del cluster di destinazione.
+    Sostituire `$PASSWORD` con password di accesso (amministrazione) hello per cluster di destinazione hello.
 
-    Sostituire `$CLUSTERNAME` con il nome del cluster di destinazione.
+    Sostituire `$CLUSTERNAME` con nome hello del cluster di destinazione hello.
 
-    L'elenco degli argomenti include ora `testtopic`, che viene creato quando MirrorMaster esegue il mirroring dell'argomento dal cluster di origine a quello di destinazione. I messaggi recuperati dall'argomento sono gli stessi immessi nel cluster di origine.
+    Hello elenco di argomenti include ora `testtopic`, che viene creato quando MirrorMaster rispecchia argomento hello hello origine cluster toohello destinazione. messaggi Hello recuperati dall'argomento hello sono hello identico a quello immesso nel cluster di origine hello.
 
-## <a name="delete-the-cluster"></a>Eliminazione del cluster
+## <a name="delete-hello-cluster"></a>Eliminare il cluster hello
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-Le procedure illustrate in questo documento creano entrambi i cluster nello stesso gruppo di risorse di Azure. È quindi possibile eliminare il gruppo di risorse dal portale di Azure. In questo modo vengono rimosse tutte le risorse create seguendo le istruzioni di questo documento, la rete virtuale di Azure e l'account di archiviazione usato dai cluster.
+Poiché i passaggi di hello in questo documento crea entrambi i cluster in hello nello stesso gruppo di risorse di Azure, è possibile eliminare il gruppo di risorse hello in hello portale di Azure. Eliminazione gruppo di risorse hello rimuove tutte le risorse create eseguendo questo documento, hello rete virtuale di Azure e l'account di archiviazione utilizzato dal cluster hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questo documento è stato descritto come usare MirrorMaker per creare la replica di un cluster Kafka. Per trovare altri modi per lavorare con Kafka, vedere i collegamenti seguenti:
+In questo documento è stato descritto come toouse MirrorMaker toocreate una replica di un Kafka del cluster. Utilizzare hello seguendo i collegamenti toodiscover toowork altri modi con Kafka:
 
 * [Documentazione su Apache Kafka MirrorMaker](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330) in cwiki.apache.org.
 * [Introduzione ad Apache Kafka (anteprima) in HDInsight](hdinsight-apache-kafka-get-started.md)
 * [Use Apache Spark with Kafka on HDInsight](hdinsight-apache-spark-with-kafka.md) (Usare Apache Spark con Kafka in HDInsight)
 * [Usare Apache Storm (anteprima) con Kafka in HDInsight](hdinsight-apache-storm-with-kafka.md)
-* [Connect to Kafka through an Azure Virtual Network](hdinsight-apache-kafka-connect-vpn-gateway.md) (Connettersi a Kafka tramite una rete virtuale di Azure)
+* [Connettersi tooKafka tramite una rete virtuale di Azure](hdinsight-apache-kafka-connect-vpn-gateway.md)

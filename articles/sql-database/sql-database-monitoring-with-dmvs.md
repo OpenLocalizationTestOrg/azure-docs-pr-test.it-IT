@@ -1,6 +1,6 @@
 ---
-title: Monitoraggio del database SQL di Azure tramite le visualizzazioni di gestione dinamica | Documentazione Microsoft
-description: Informazioni su come rilevare e diagnosticare i problemi di prestazioni comuni utilizzando visualizzazioni a gestione dinamica per monitorare il Database SQL di Microsoft Azure.
+title: Azure SQL Database utilizzando viste a gestione dinamica aaaMonitoring | Documenti Microsoft
+description: Informazioni su come toodetect e diagnosticare i problemi comuni di prestazioni tramite DMV viste toomonitor Database SQL di Microsoft Azure.
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -16,14 +16,14 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: d9b007d29e06e672db71b4a8415673f258c3fd89
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43d5fe2dd9a38d031e9334f6ad49fce5866e3bec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitoring-azure-sql-database-using-dynamic-management-views"></a>Monitoraggio del database SQL di Azure tramite le visualizzazioni di gestione dinamica
-Il database SQL di Microsoft Azure consente a un sottoinsieme di visualizzazioni a gestione dinamica di diagnosticare i problemi delle prestazioni che potrebbero essere causati da query bloccate o con esecuzione prolungata, colli di bottiglia delle risorse, piani di query insufficienti e così via. Questo argomento fornisce informazioni su come rilevare problemi comuni relativi alle prestazioni tramite le DMV.
+Database SQL di Microsoft Azure consente un subset di gestione dinamica Visualizza toodiagnose problemi di prestazioni che potrebbero essere causati da query bloccate o con esecuzione prolungata, colli di bottiglia delle risorse, piani di query insufficienti e così via. In questo argomento vengono fornite informazioni su come toodetect problemi comuni di prestazioni utilizzando viste a gestione dinamica.
 
 Il database SQL supporta parzialmente tre categorie di visualizzazioni a gestione dinamica:
 
@@ -34,27 +34,27 @@ Il database SQL supporta parzialmente tre categorie di visualizzazioni a gestion
 Per informazioni dettagliate sulle visualizzazioni a gestione dinamica, vedere [Visualizzazioni a gestione dinamica e funzioni (Transact-SQL)](https://msdn.microsoft.com/library/ms188754.aspx) nella documentazione Online di SQL Server.
 
 ## <a name="permissions"></a>Autorizzazioni
-Nel Database SQL, l'esecuzione di query in una visualizzazione a gestione dinamica richiede autorizzazioni **VIEW DATABASE STATE** . Le autorizzazioni **VIEW DATABASE STATE** restituiscono informazioni su tutti gli oggetti all'interno del database corrente.
-Per concedere le autorizzazioni **VIEW DATABASE STATE** a un utente di database specifico, eseguire la query seguente:
+Nel Database SQL, l'esecuzione di query in una visualizzazione a gestione dinamica richiede autorizzazioni **VIEW DATABASE STATE** . Hello **VIEW DATABASE STATE** autorizzazione restituisce informazioni su tutti gli oggetti nel database corrente hello.
+hello toogrant **VIEW DATABASE STATE** autorizzazione tooa specifico utente del database, eseguire hello seguente query:
 
-```GRANT VIEW DATABASE STATE TO database_user; ```
+```GRANT VIEW DATABASE STATE toodatabase_user; ```
 
 In un'istanza di SQL Server locale, le viste a gestione dinamica restituiscono informazioni sullo stato del server. Nel database SQL, restituiscono informazioni relative esclusivamente al database logico corrente.
 
 ## <a name="calculating-database-size"></a>Calcolo della dimensione del database
-La seguente query restituisce la dimensione del database in megabyte:
+Hello query seguente restituisce hello delle dimensioni del database (in megabyte):
 
 ```
--- Calculates the size of the database.
+-- Calculates hello size of hello database.
 SELECT SUM(reserved_page_count)*8.0/1024
 FROM sys.dm_db_partition_stats;
 GO
 ```
 
-La query seguente restituisce le dimensioni dei singoli oggetti (in megabyte) nel database:
+Hello nella query seguente restituisce hello dimensioni dei singoli oggetti (in megabyte) nel database:
 
 ```
--- Calculates the size of individual database objects.
+-- Calculates hello size of individual database objects.
 SELECT sys.objects.name, SUM(reserved_page_count) * 8.0 / 1024
 FROM sys.dm_db_partition_stats, sys.objects
 WHERE sys.dm_db_partition_stats.object_id = sys.objects.object_id
@@ -63,8 +63,8 @@ GO
 ```
 
 ## <a name="monitoring-connections"></a>Monitoraggio delle connessioni
-È possibile usare la visualizzazione [sys.dm_exec_connections](https://msdn.microsoft.com/library/ms181509.aspx) per recuperare informazioni sulle connessioni stabilite con il server del database SQL specifico di Azure e i dettagli di ogni connessione. Inoltre, la visualizzazione [sys.dm_exec_sessions](https://msdn.microsoft.com/library/ms176013.aspx) è utile durante il recupero di informazioni su tutte le connessioni utente attive e le attività interne.
-La query seguente recupera le informazioni sulla connessione corrente.
+È possibile utilizzare hello [Sys.dm exec_connections](https://msdn.microsoft.com/library/ms181509.aspx) tooretrieve di informazioni sulle connessioni stabilite hello tooa specifici server Database SQL di Azure e i dettagli di hello di ogni connessione. Inoltre, hello [Sys.dm exec_sessions](https://msdn.microsoft.com/library/ms176013.aspx) Vista è utile durante il recupero di informazioni su tutte le connessioni utente attive e le attività interne.
+Hello nella query seguente recupera le informazioni sulla connessione corrente hello:
 
 ```
 SELECT
@@ -80,15 +80,15 @@ WHERE c.session_id = @@SPID;
 ```
 
 > [!NOTE]
-> Quando si eseguono **sys.dm_exec_requests** e **sys.dm_exec_sessions**, se si dispone di un'autorizzazione **VIEW DATABASE STATE** sul database, saranno visibili tutte le sessioni in esecuzione sul database; in caso contrario, sarà visibile solo la sessione corrente.
+> Durante l'esecuzione di hello **Sys.dm exec_requests** e **viste Sys.dm exec_sessions**, se sono presenti **VIEW DATABASE STATE** autorizzazioni sul database hello, vedere l'esecuzione di tutti sessioni nel database di hello; in caso contrario, vedrai hello solo la sessione corrente.
 > 
 > 
 
 ## <a name="monitoring-query-performance"></a>Monitoraggio delle prestazioni delle query
-L’esecuzione della query rallentata o prolungata può consumare delle risorse di sistema importanti. In questa sezione viene illustrato come utilizzare le visualizzazioni a gestione dinamica per rilevare alcuni problemi di prestazione delle query comuni. Un riferimento precedente ma comunque utile per la risoluzione dei problemi, è l’articolo [Risoluzione dei problemi di prestazioni in SQL Server 2008](http://download.microsoft.com/download/D/B/D/DBDE7972-1EB9-470A-BA18-58849DB3EB3B/TShootPerfProbs2008.docx) su Microsoft TechNet.
+L’esecuzione della query rallentata o prolungata può consumare delle risorse di sistema importanti. In questa sezione viene illustrato come toouse viste a gestione dinamica toodetect alcuni problemi comuni di prestazioni query. Un riferimento precedente ma comunque utile per risolvere il problema, è hello [risoluzione dei problemi di prestazioni in SQL Server 2008](http://download.microsoft.com/download/D/B/D/DBDE7972-1EB9-470A-BA18-58849DB3EB3B/TShootPerfProbs2008.docx) articolo su Microsoft TechNet.
 
 ### <a name="finding-top-n-queries"></a>Ricerca delle prime n query
-Nell'esempio seguente vengono restituite informazioni sulle prime cinque query classificate in base al tempo medio della CPU. Nell'esempio le query vengono aggregate in base al relativo valore hash, in modo da raggruppare le query logicamente equivalenti in base all'utilizzo di risorse cumulativo.
+Hello esempio seguente vengono restituite informazioni su hello prime cinque query classificate in base al tempo medio della CPU. Nell'esempio le query hello in base a tootheir hash di query, in modo che le query logicamente equivalenti sono raggruppate per il consumo di risorse cumulativo.
 
 ```
 SELECT TOP 5 query_stats.query_hash AS "Query Hash",
@@ -108,10 +108,10 @@ ORDER BY 2 DESC;
 ```
 
 ### <a name="monitoring-blocked-queries"></a>Monitoraggio delle query bloccate
-Le query lente o con esecuzione prolungata possono contribuire al consumo eccessivo delle risorse ed essere la conseguenza di query bloccate. Le cause del blocco possono essere una progettazione povera dell'applicazione, dei piani di query non validi, la mancanza di indici utili e così via. È possibile utilizzare la visualizzazione in sys.dm_tran_locks per ottenere informazioni sulle attività di blocco corrente nel Database di SQL Azure. Per un codice di esempio, vedere [sys.dm_tran_locks (Transact-SQL)](https://msdn.microsoft.com/library/ms190345.aspx) nella 	documentazione online di Microsoft SQL Server.
+Le query lente o con esecuzione prolungata possono contribuiscono tooexcessive consumo delle risorse ed essere conseguenza hello di query bloccate. causa Hello di hello blocco può essere progettazione dell'applicazione, cattivi hello mancanza di indici utili, i piani di query e così via. È possibile utilizzare hello Sys.dm tran_locks tooget informazioni sull'attività di blocco corrente hello in Database SQL di Azure. Per un codice di esempio, vedere [sys.dm_tran_locks (Transact-SQL)](https://msdn.microsoft.com/library/ms190345.aspx) nella 	documentazione online di Microsoft SQL Server.
 
 ### <a name="monitoring-query-plans"></a>Monitoraggio dei piani di query
-Un piano di query inefficiente può anche aumentare il consumo della CPU. Nell'esempio seguente viene usata la visualizzazione [sys.dm_exec_query_stats](https://msdn.microsoft.com/library/ms189741.aspx) per determinare la query che usa la CPU cumulativa maggiore.
+Un piano di query inefficiente può anche aumentare il consumo della CPU. esempio Hello utilizza hello [Sys.dm exec_query_stats](https://msdn.microsoft.com/library/ms189741.aspx) consente di visualizzare la query utilizza CPU cumulativa maggiore hello toodetermine.
 
 ```
 SELECT
@@ -134,5 +134,5 @@ ORDER BY highest_cpu_queries.total_worker_time DESC;
 ```
 
 ## <a name="see-also"></a>Vedere anche
-[Introduzione al Database SQL](sql-database-technical-overview.md)
+[Introduzione tooSQL Database](sql-database-technical-overview.md)
 

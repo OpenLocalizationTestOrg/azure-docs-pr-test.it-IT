@@ -1,6 +1,6 @@
 ---
-title: Come controllare lo stato dei processi mediante l'API REST | Microsoft Docs
-description: Informazioni su come tenere traccia dello stato dei processi.
+title: lo stato del processo toocheck aaaHow tramite l'API REST | Documenti Microsoft
+description: Informazioni su come tootrack lo stato di avanzamento del processo.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: fea4383e81f3ca21955252cf1d573f1b347b5a38
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 32f12c81422566d980a7200b1662a3cc3ebc39a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-to-check-job-progress"></a>Procedura: Controllare lo stato dei processi
 > [!div class="op_single_selector"]
@@ -28,14 +28,14 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Quando si esegue un processo, spesso è necessario monitorarne l'avanzamento. È possibile trovare lo stato dell'entità Job mediante la relativa proprietà State. Per altre informazioni sulla proprietà State, vedere [Proprietà dell'entità Job](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties).
+Quando si eseguono i processi, spesso richiedono un avanzamento del processo tootrack modo. È possibile trovare lo stato processo hello utilizzando proprietà di stato del processo di hello. Per ulteriori informazioni sulla proprietà State hello, vedere [proprietà dell'entità Job](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties).
 
-## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
+## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
 
-Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
+>Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
 
 ## <a name="check-job-progress"></a>Controllare lo stato dei processi
 
@@ -66,7 +66,7 @@ Risposta:
     DataServiceVersion: 3.0;
     Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into to H264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
+    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into tooH264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
 
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali

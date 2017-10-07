@@ -1,6 +1,6 @@
 ---
-title: Creare un'applicazione .NET Service Fabric in Azure | Microsoft Docs
-description: Creare un'applicazione .NET per Azure usando l'esempio disponibile nella guida introduttiva a Service Fabric.
+title: un'applicazione .NET Service Fabric in Azure aaaCreate | Documenti Microsoft
+description: Creare un'applicazione .NET per Azure utilizzando l'esempio di Guida introduttiva di Service Fabric hello.
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: mikhegn
-ms.openlocfilehash: d11b9af982112db8ba94b62110c18be843f1abb1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 20ef88dbf9fb0def31234ef05679a19009b9b529
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-net-service-fabric-application-in-azure"></a>Creare un'applicazione .NET Service Fabric in Azure
 Azure Service Fabric è una piattaforma di sistemi distribuiti per la distribuzione e la gestione di microservizi e contenitori scalabili e affidabili. 
 
-In questa guida introduttiva viene illustrato come distribuire la prima applicazione .NET in Service Fabric. Al termine, sarà disponibile un'applicazione di voto con un front-end Web ASP.NET Core che salva i risultati delle votazioni in un servizio back-end con stato nel cluster.
+Questa Guida introduttiva viene illustrato come toodeploy il primo tooService di applicazioni .NET dell'infrastruttura. Al termine, si dispone di un'applicazione voto con un front-end che salva i risultati di voto in un servizio back-end con stato cluster hello web di ASP.NET Core.
 
 ![Screenshot dell'applicazione](./media/service-fabric-quickstart-dotnet/application-screenshot.png)
 
@@ -33,160 +33,160 @@ Usando questa applicazione, si apprenderà come:
 > * Usare ASP.NET Core come front-end Web
 > * Archiviare i dati dell'applicazione in un servizio con stato
 > * Eseguire il debug dell'applicazione in locale
-> * Distribuire l'applicazione in un cluster in Azure
-> * Scalare orizzontalmente l'applicazione in più nodi
+> * Distribuire hello applicazione tooa cluster in Azure
+> * Applicazione hello di scalabilità orizzontale in più nodi
 > * Eseguire un aggiornamento in sequenza delle applicazioni
 
 ## <a name="prerequisites"></a>Prerequisiti
-Per completare questa guida introduttiva:
-1. [Installare Visual Studio 2017](https://www.visualstudio.com/) con i carichi di lavoro **Sviluppo di Azure** e **Sviluppo ASP.NET e Web**.
+toocomplete questa Guida rapida:
+1. [Installare Visual Studio 2017](https://www.visualstudio.com/) con hello **lo sviluppo di Azure** e **sviluppo web ASP.NET e** i carichi di lavoro.
 2. [Installare Git](https://git-scm.com/)
-3. [Installare Microsoft Azure Service Fabric SDK](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK)
-4. Eseguire il comando seguente per consentire a Visual Studio di eseguire la distribuzione nel cluster Service Fabric locale:
+3. [Installare Microsoft Azure Service Fabric SDK hello](http://www.microsoft.com/web/handlers/webpi.ashx?command=getinstallerredirect&appid=MicrosoftAzure-ServiceFabric-CoreSDK)
+4. Eseguire hello comando tooenable Visual Studio toodeploy toohello dell'infrastruttura del servizio cluster locale seguente:
     ```powershell
     Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
     ```
 
-## <a name="download-the-sample"></a>Scaricare l'esempio
-In una finestra di comando eseguire il comando seguente per clonare il repository dell'app di esempio nel computer locale.
+## <a name="download-hello-sample"></a>Scaricare l'esempio hello
+In una finestra di comando, eseguire hello successivo comando tooclone hello esempio app repository tooyour computer locale.
 ```
 git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 ```
 
-## <a name="run-the-application-locally"></a>Eseguire l'applicazione in locale
-Fare clic con il pulsante destro del mouse sull'icona di Visual Studio nel menu Start e scegliere **Esegui come amministratore**. Per connettere il debugger ai servizi, è necessario eseguire Visual Studio come amministratore.
+## <a name="run-hello-application-locally"></a>Eseguire un'applicazione hello in locale
+Fare doppio clic sull'icona di Visual Studio hello in hello Menu Start e scegliere **Esegui come amministratore**. In servizi di tooyour debugger hello tooattach ordine, è necessario toorun Visual Studio come amministratore.
 
-Aprire la soluzione di Visual Studio **Voting.sln** dal repository che è stato clonato.
+Aprire hello **Voting.sln** soluzione di Visual Studio dal repository hello è stato clonato.
 
-Per distribuire l'applicazione, premere **F5**.
+un'applicazione hello toodeploy, premere **F5**.
 
 > [!NOTE]
-> La prima volta che si esegue e si distribuisce l'applicazione, Visual Studio crea un cluster locale per il debug. Questa operazione può richiedere del tempo. Lo stato della creazione del cluster verrà visualizzato nella finestra di output di Visual Studio.
+> Hello prima eseguire e distribuire un'applicazione hello, Visual Studio crea un cluster locale per il debug. Questa operazione può richiedere del tempo. lo stato di creazione di cluster Hello viene visualizzato nella finestra di output di hello Visual Studio.
 
-Al termine della distribuzione, avviare un browser e aprire la pagina `http://localhost:8080`, ovvero il front-end Web dell'applicazione.
+Una volta completata la distribuzione di hello, avviare un browser e aprire questa pagina: `http://localhost:8080` -web hello front-end dell'applicazione hello.
 
 ![Front-end dell'applicazione](./media/service-fabric-quickstart-dotnet/application-screenshot-new.png)
 
-È ora possibile aggiungere un set di opzioni per le votazioni e iniziare a raccogliere i voti. L'applicazione viene eseguita e archivia tutti i dati nel cluster di Service Fabric, senza che sia necessario un database separato.
+È ora possibile aggiungere un set di opzioni per le votazioni e iniziare a raccogliere i voti. esecuzione dell'applicazione Hello e archivia tutti i dati del cluster di Service Fabric, senza necessità di hello di un database separato.
 
-## <a name="walk-through-the-voting-sample-application"></a>Descrizione dettagliata dell'applicazione di voto di esempio
-L'applicazione di voto è costituita da due servizi:
-- Il servizio front-end Web (VotingWeb) - Un servizio front-end Web ASP.NET Core che gestisce la pagina Web e che espone le API Web per la comunicazione con il servizio back-end.
-- Il servizio back-end (VotingData) - Un servizio Web ASP.NET Core che espone un'API per l'archiviazione dei risultati delle votazioni in un oggetto Reliable Dictionary reso persistente su disco.
+## <a name="walk-through-hello-voting-sample-application"></a>Procedura dettagliata hello voto applicazione di esempio
+Hello voto applicazione è costituita da due servizi:
+- Il servizio front-end (VotingWeb) Web - An ASP.NET Core web front-end del servizio, che serve a pagina web hello ed espone web toocommunicate API con il servizio back-end hello.
+- Il servizio back-end (VotingData)-servizio web di ASP.NET Core, che espone un voto di hello toostore API comporta un dizionario affidabile persistente su disco.
 
 ![Diagramma dell'applicazione](./media/service-fabric-quickstart-dotnet/application-diagram.png)
 
-Quando l'utente vota nell'applicazione, si verificano gli eventi seguenti:
-1. JavaScript invia la richiesta di voto all'API Web nel servizio front-end Web come una richiesta HTTP PUT.
+Quando voto hello applicazione hello seguenti si verificano eventi:
+1. JavaScript invia API web toohello richiesta di voto hello in servizio front-end web di hello come una richiesta HTTP PUT.
 
-2. Il servizio front-end Web usa un proxy per individuare e inoltrare una richiesta PUT HTTP al servizio back-end.
+2. servizio front-end web di Hello Usa un proxy toolocate e inoltrare un servizio back-end toohello di richiesta HTTP PUT.
 
-3. Il servizio back-end accetta la richiesta in ingresso e archivia il risultato aggiornato in un oggetto Reliable Dictionary, che viene replicato in più nodi all'interno del cluster e reso persistente su disco. Tutti i dati dell'applicazione sono archiviati nel cluster, quindi non è necessario alcun database.
+3. servizio back-end Hello accetta la richiesta in ingresso hello e archivi hello aggiornamento risultato in un dizionario affidabile, che ottiene i nodi toomultiple replicati all'interno di cluster hello e persistente su disco. Dati dell'applicazione hello tutti archiviati in cluster hello, pertanto non è necessario alcun database.
 
 ## <a name="debug-in-visual-studio"></a>Eseguire il debug in Visual Studio
-Durante il debug dell'applicazione in Visual Studio, viene usato un cluster di sviluppo locale di Service Fabric. È possibile modificare l'esperienza di debug in base allo specifico scenario. In questa applicazione, i dati vengono archiviati nel servizio back-end tramite un oggetto Reliable Dictionary. Visual Studio rimuove l'applicazione per impostazione predefinita quando si arresta il debugger. La rimozione dell'applicazione determina la rimozione anche dei dati nel servizio back-end. Per rendere persistenti i dati tra le sessioni di debug, è possibile modificare la proprietà **Modalità di debug applicazione** del progetto **Voting** in Visual Studio.
+Durante il debug dell'applicazione in Visual Studio, viene usato un cluster di sviluppo locale di Service Fabric. È necessario hello opzione tooadjust lo scenario di tooyour esperienza di debug. In questa applicazione, i dati vengono archiviati nel servizio back-end tramite un oggetto Reliable Dictionary. Visual Studio rimuove un'applicazione hello per impostazione predefinita, quando si arresta il debugger hello. Rimozione di un'applicazione hello comporta hello dati back-end hello tooalso servizio da rimuovere. dati di hello toopersist tra le sessioni di debug, è possibile modificare hello **modalità di Debug dell'applicazione** come proprietà nel hello **voto** progetto in Visual Studio.
 
-Per osservare che cosa avviene nel codice, completare la procedura seguente:
-1. Aprire il file **VotesController.cs** e impostare un punto di interruzione nel metodo **Put** dell'API Web (riga 47). È possibile eseguire una ricerca nel file usando Esplora soluzioni in Visual Studio.
+toolook cosa accade nel codice hello, hello completo alla procedura seguente:
+1. Aprire hello **VotesController.cs** file e impostare un punto di interruzione dell'API web hello **inserire** (metodo) (riga 47), è possibile cercare file hello in hello Esplora soluzioni in Visual Studio.
 
-2. Aprire il file **VoteDataController.cs** e impostare un punto di interruzione nel metodo **Put** dell'API Web (riga 50).
+2. Aprire hello **VoteDataController.cs** file e impostare un punto di interruzione in questa web API **inserire** (metodo) (riga 50).
 
-3. Tornare al browser e fare clic su un'opzione di voto oppure aggiungere una nuova opzione di voto. È stato raggiunto il primo punto di interruzione nel controller API del front-end Web.
-    - In questa posizione, il codice JavaScript nel browser invia una richiesta al controller API Web nel servizio front-end.
+3. Tornare indietro del browser toohello e fare clic su un'opzione di voto oppure aggiungere una nuova opzione di voto. È stato raggiunto punto di interruzione prima hello nel controller api hello web front-end.
+    - Si tratta di dove hello JavaScript nel browser hello invia un controller di API web toohello richiesta nel servizio front-end hello.
     
     ![Aggiungere il servizio front-end di voto](./media/service-fabric-quickstart-dotnet/addvote-frontend.png)
 
-    - Prima di tutto, costruire l'URL del proxy inverso per il servizio back-end **(1)**.
-    - Inviare quindi la richiesta PUT HTTP al proxy inverso **(2)**.
-    - Infine, restituire la risposta dal servizio back-end al client **(3)**.
+    - Prima di tutto è costruire hello URL toohello ReverseProxy per il servizio back-end **(1)**.
+    - Quindi inviare hello HTTP PUT richiesta toohello ReverseProxy **(2)**.
+    - Infine hello restituiamo risposta hello client toohello servizio back-end di hello **(3)**.
 
-4. Premere **F5** per continuare.
-    - Ora ci troviamo al punto di interruzione nel servizio back-end.
+4. Premere **F5** toocontinue
+    - Sono ora al punto di interruzione hello in servizio back-end hello.
     
     ![Aggiungere il servizio back-end di voto](./media/service-fabric-quickstart-dotnet/addvote-backend.png)
 
-    - Nella prima riga del metodo **(1)** usiamo `StateManager` per ottenere o aggiungere un oggetto Reliable Dictionary denominato `counts`.
+    - Nella prima riga di hello nel metodo hello **(1)** usiamo hello `StateManager` tooget o aggiungere un dizionario affidabile denominato `counts`.
     - Tutte le interazioni con i valori in un oggetto Reliable Dictionary richiedono una transazione, che viene creata dall'istruzione using **(2)**.
-    - Nella transazione, aggiorniamo quindi il valore della chiave pertinente per l'opzione di voto e viene eseguito il commit dell'operazione **(3)**. Dopo la restituzione del metodo Commit, i dati vengono aggiornati nel dizionario e replicati negli altri nodi del cluster. A questo punto, i dati sono archiviati in modo sicuro nel cluster e il servizio back-end può eseguire il failover in altri nodi, rendendo comunque disponibili i dati.
-5. Premere **F5** per continuare.
+    - Transazione hello, è stato quindi aggiornare il valore di hello della chiave pertinenti di hello per hello voto opzione e commit hello operazione **(3)**. Dopo il commit di hello metodo viene restituito, hello dati viene aggiornati nel dizionario hello e replicati tooother nodi nel cluster hello. dati Hello sono ora archiviati in modo sicuro in cluster hello e servizio back-end hello failover dei nodi tooother, persistono dati hello disponibili.
+5. Premere **F5** toocontinue
 
-Per interrompere la sessione di debug, premere **MAIUSC+F5**.
+hello toostop debug sessione, premere **MAIUSC + F5**.
 
-## <a name="deploy-the-application-to-azure"></a>Distribuzione dell'applicazione in Azure
-Per distribuire l'applicazione in un cluster in Azure, è possibile scegliere di creare un proprio cluster oppure usare un cluster di entità.
+## <a name="deploy-hello-application-tooazure"></a>Distribuire tooAzure applicazione hello
+toodeploy cluster tooa hello applicazione in Azure, è possibile scegliere toocreate la propria cluster, oppure utilizzare un Cluster di terze parti.
 
-I cluster di entità sono cluster Service Fabric gratuiti e disponibili per un periodo di tempo limitato ospitati in Azure e gestiti dal team di Service Fabric, in cui chiunque può distribuire applicazioni e ottenere informazioni sulla piattaforma. Per ottenere l'accesso a un cluster di entità, [seguire le istruzioni](http://aka.ms/tryservicefabric). 
+Cluster di terze parti sono i cluster di Service Fabric gratuito, periodo di tempo limitato ospitati in Azure e vengono eseguiti dal team di Service Fabric hello in tutti gli utenti possono distribuire le applicazioni e informazioni sulla piattaforma hello. tooget accesso tooa Cluster di terze parti, [istruzioni hello](http://aka.ms/tryservicefabric). 
 
 Per informazioni sulla creazione di un cluster, vedere [Creare il primo cluster di Service Fabric di Azure](service-fabric-get-started-azure-cluster.md).
 
 > [!Note]
-> Il servizio front-end Web è configurato per l'ascolto del traffico in ingresso sulla porta 8080. Assicurarsi che tale porta sia aperta nel cluster. Se si usa il cluster di entità, questa porta è aperta.
+> il servizio front-end web di Hello è toolisten configurato sulla porta 8080 per il traffico in ingresso. Assicurarsi che tale porta sia aperta nel cluster. Se si utilizza hello Cluster di terze parti, questa porta è aperta.
 >
 
-### <a name="deploy-the-application-using-visual-studio"></a>Distribuire l'applicazione tramite Visual Studio
-Ora che l'applicazione è pronta, è possibile distribuirla in un cluster direttamente da Visual Studio.
+### <a name="deploy-hello-application-using-visual-studio"></a>Distribuire l'applicazione hello utilizzando Visual Studio
+Ora che un'applicazione hello è pronta, è possibile distribuire cluster tooa direttamente da Visual Studio.
 
-1. Fare clic con il pulsante destro del mouse su **Voting** in Esplora soluzioni e scegliere **Pubblica**. Verrà visualizzata la finestra di dialogo Pubblica.
+1. Fare doppio clic su **voto** in hello Esplora soluzioni e scegliere **pubblica**. finestra di dialogo pubblicazione Hello viene visualizzato.
 
     ![Finestra di dialogo Pubblica](./media/service-fabric-quickstart-dotnet/publish-app.png)
 
-2. Digitare l'endpoint della connessione del cluster nel campo **Endpoint connessione** e fare clic su **Pubblica**. Durante la registrazione per il cluster di entità, l'endpoint della connessione viene fornito nel browser. Ad esempio, `winh1x87d1d.westus.cloudapp.azure.com:19000`.
+2. Tipo di Endpoint della connessione hello cluster hello in hello **Endpoint della connessione** campo e fare clic su **pubblica**. Se l'iscrizione per hello Cluster di terze parti, hello Endpoint della connessione viene fornito nel browser hello. Ad esempio, `winh1x87d1d.westus.cloudapp.azure.com:19000`.
 
-3. Aprire un browser e digitare l'indirizzo del cluster, ad esempio `http://winh1x87d1d.westus.cloudapp.azure.com`. A questo punto, sarà visualizzata l'applicazione in esecuzione nel cluster in Azure.
+3. Aprire un browser e digitare, ad esempio, nell'indirizzo cluster hello - `http://winh1x87d1d.westus.cloudapp.azure.com`. Dovrebbe essere un'applicazione hello in esecuzione in cluster hello in Azure.
 
 ![Front-end dell'applicazione](./media/service-fabric-quickstart-dotnet/application-screenshot-new-azure.png)
 
 ## <a name="scale-applications-and-services-in-a-cluster"></a>Ridimensionare applicazioni e servizi in un cluster
-I servizi di Service Fabric possono essere facilmente ridimensionati in un cluster per supportare le modifiche del carico sui servizi. È possibile ridimensionare un servizio modificando il numero di istanze in esecuzione nel cluster. Sono disponibili diversi sistemi per garantire la scalabilità dei servizi: è possibile usare gli script o i comandi di PowerShell oppure l'interfaccia della riga di comando di Service Fabric (sfctl). In questo esempio verrà usato Service Fabric Explorer.
+Servizi di Service Fabric possono essere scalati facilmente in un cluster di tooaccommodate per una modifica nel carico di hello nei servizi di hello. Scalabilità di un servizio modificando hello numero di istanze in esecuzione nel cluster hello. Sono disponibili diversi sistemi per garantire la scalabilità dei servizi: è possibile usare gli script o i comandi di PowerShell oppure l'interfaccia della riga di comando di Service Fabric (sfctl). In questo esempio verrà usato Service Fabric Explorer.
 
-Service Fabric Explorer è in esecuzione in tutti i cluster di Service Fabric ed è accessibile da un browser, passando alla porta di gestione HTTP (19080) del cluster, ad esempio `http://winh1x87d1d.westus.cloudapp.azure.com:19080`.
+Service Fabric Explorer viene eseguito in tutti i cluster di Service Fabric e sono accessibili da un browser, esplorando la porta di Gestione cluster HTTP toohello (19080), ad esempio, `http://winh1x87d1d.westus.cloudapp.azure.com:19080`.
 
-Per scalare il servizio front-end Web, seguire questa procedura:
+hello tooscale servizio front-end web, hello i passaggi seguenti:
 
 1. Aprire Service Fabric Explorer nel cluster, ad esempio `http://winh1x87d1d.westus.cloudapp.azure.com:19080`.
-2. Fare clic sui puntini di sospensione accanto al nodo **fabric:/Voting/VotingWeb** nella visualizzazione ad albero e scegliere **Scale Service** (Ridimensiona servizio).
+2. Fare clic su Avanti toohello di hello puntini di sospensione (tre punti) **fabric: / voto/VotingWeb** nodo in treeview hello e scegliere **servizio scala**.
 
     ![Service Fabric Explorer](./media/service-fabric-quickstart-dotnet/service-fabric-explorer-scale.png)
 
-    Ora è possibile scegliere di modificare il numero di istanze del servizio front-end Web.
+    È ora possibile scegliere numero hello tooscale istanze del servizio front-end web di hello.
 
-3. Impostare il numero su **2** e fare clic su **Scale Service** (Ridimensiona servizio).
-4. Fare clic sul nodo **fabric:/Voting/VotingWeb** nella visualizzazione ad albero ed espandere il nodo della partizione (rappresentato da un GUID).
+3. Modificare il numero di hello troppo**2** e fare clic su **servizio scala**.
+4. Fare clic su hello **fabric: / voto/VotingWeb** nodo nella visualizzazione struttura ad albero di hello ed espandere il nodo di partizione hello (rappresentato da un GUID).
 
     ![Ridimensionamento dei servizi in Service Fabric Explorer](./media/service-fabric-quickstart-dotnet/service-fabric-explorer-scaled-service.png)
 
-    È ora possibile vedere che il servizio dispone di due istanze. Nella visualizzazione ad albero viene indicato su quali nodi vengono eseguite le istanze.
+    Si noterà ora che hello servizio dispone di due istanze, e nella visualizzazione ad albero di hello vedere quali nodi eseguire istanze hello in.
 
-Con questa semplice attività di gestione abbiamo raddoppiato le risorse disponibili per il servizio front-end per l'elaborazione del carico utente. È importante comprendere che non sono necessarie più istanze di un servizio perché questo venga eseguito in modo affidabile. In caso di problemi di un servizio, Service Fabric assicura l'esecuzione di una nuova istanza del servizio nel cluster.
+Da questa attività, gestione semplice è raddoppiato risorse hello disponibili per il carico utente tooprocess di servizio front-end. È importante toounderstand che non è necessario più istanze di un servizio di toohave eseguirlo in modo affidabile. Se non è un servizio, Service Fabric assicura che una nuova istanza del servizio viene eseguito nel cluster hello.
 
 ## <a name="perform-a-rolling-application-upgrade"></a>Eseguire un aggiornamento in sequenza delle applicazioni
-Durante la distribuzione di nuovi aggiornamenti per l'applicazione, Service Fabric distribuisce gli aggiornamenti in modo sicuro. Gli aggiornamenti in sequenza non comportano tempi di inattività durante l'aggiornamento e consentono il rollback automatico in caso di errori.
+Quando si distribuisce una nuova applicazione di tooyour gli aggiornamenti, Service Fabric esegue il rollup di aggiornamento hello in modo sicuro. Gli aggiornamenti in sequenza non comportano tempi di inattività durante l'aggiornamento e consentono il rollback automatico in caso di errori.
 
-Per aggiornare l'applicazione, eseguire le operazioni seguenti:
+tooupgrade applicazione hello, hello seguenti:
 
-1. Aprire il file **Index.cshtml** in Visual Studio. È possibile cercare il file in Esplora soluzioni in Visual Studio.
-2. Modificare il titolo della pagina, ad esempio aggiungendo testo.
+1. Aprire hello **cshtml** file in Visual Studio, è possibile cercare file hello in hello Esplora soluzioni in Visual Studio.
+2. Tramite l'aggiunta di testo, ad esempio, modificare il titolo di hello nella pagina hello.
     ```html
         <div class="col-xs-8 col-xs-offset-2 text-center">
             <h2>Service Fabric Voting Sample v2</h2>
         </div>
     ```
-3. Salvare il file.
-4. Fare clic con il pulsante destro del mouse su **Voting** in Esplora soluzioni e scegliere **Pubblica**. Verrà visualizzata la finestra di dialogo Pubblica.
-5. Fare clic sul pulsante **Versione manifesto** per modificare la versione del servizio e dell'applicazione.
-6. Modificare la versione dell'elemento **Codice** in **VotingWebPkg**, ad esempio in "2.0.0", e fare clic su **Salva**.
+3. Salvare il file hello.
+4. Fare doppio clic su **voto** in hello Esplora soluzioni e scegliere **pubblica**. finestra di dialogo pubblicazione Hello viene visualizzato.
+5. Fare clic su hello **versione manifesto** pulsante toochange hello versione servizio hello e applicazione.
+6. Modifica di versione di hello di hello **codice** elemento sotto **VotingWebPkg** troppo "2.0.0", ad esempio e fare clic su **salvare**.
 
     ![Finestra di dialogo Modifica versione](./media/service-fabric-quickstart-dotnet/change-version.png)
-7. Nella finestra di dialogo **Pubblica applicazione di Service Fabric** selezionare la casella di controllo Aggiorna l'applicazione e fare clic su **Pubblica**.
+7. In hello **pubblicare l'applicazione di Service Fabric** finestra di dialogo, la casella di controllo di controllo hello hello aggiornamento dell'applicazione e fare clic su **pubblica**.
 
     ![Impostazione di aggiornamento nella finestra di dialogo Pubblica](./media/service-fabric-quickstart-dotnet/upgrade-app.png)
-8. Aprire il browser e passare all'indirizzo del cluster sulla porta 19080, ad esempio `http://winh1x87d1d.westus.cloudapp.azure.com:19080`.
-9. Fare clic sul nodo **Applicazioni** nella visualizzazione ad albero, quindi su **Upgrades in Progress** (Aggiornamenti in corso) nel riquadro destro. È possibile osservare che l'aggiornamento viene distribuito attraverso i domini di aggiornamento del cluster, verificando l'integrità di ogni dominio prima di procedere a quello successivo.
+8. Aprire il browser e passare ad esempio l'indirizzo del cluster toohello sulla porta 19080 - `http://winh1x87d1d.westus.cloudapp.azure.com:19080`.
+9. Fare clic su hello **applicazioni** nodo nella visualizzazione ad albero di hello e quindi **gli aggiornamenti in corso** nel riquadro di destra hello. Viene visualizzato come aggiornamento hello transita attraverso domini di aggiornamento hello del cluster, assicurarsi che ogni dominio sia integro prima di procedere toohello accanto.
     ![Visualizzazione dell'aggiornamento in Service Fabric Explorer](./media/service-fabric-quickstart-dotnet/upgrading.png)
 
-    Service Fabric garantisce la sicurezza degli aggiornamenti attendendo due minuti dopo l'aggiornamento del servizio in ogni nodo del cluster. L'intero aggiornamento richiederà circa 8 minuti.
+    Service Fabric rende aggiornamenti sicuro in attesa di due minuti dopo l'aggiornamento del servizio hello in ogni nodo cluster hello. Prevedere hello intero aggiornamento tootake circa 8 minuti.
 
-10. Durante l'esecuzione dell'aggiornamento, è comunque possibile usare l'applicazione. Poiché nel cluster sono in esecuzione due istanze del servizio, alcune delle richieste potrebbero ottenere la versione aggiornata dell'applicazione, mentre altre potrebbero ancora ottenere la versione precedente.
+10. Durante l'aggiornamento di hello è in esecuzione, è possibile utilizzare ancora un'applicazione hello. Poiché si dispone di due istanze del servizio di hello in esecuzione nel cluster hello, alcune delle richieste può ottenere una versione aggiornata dell'applicazione hello, mentre altri potrebbero comunque essere la versione precedente di hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 In questa guida introduttiva si è appreso come:
@@ -196,10 +196,10 @@ In questa guida introduttiva si è appreso come:
 > * Usare ASP.NET Core come front-end Web
 > * Archiviare i dati dell'applicazione in un servizio con stato
 > * Eseguire il debug dell'applicazione in locale
-> * Distribuire l'applicazione in un cluster in Azure
-> * Scalare orizzontalmente l'applicazione in più nodi
+> * Distribuire hello applicazione tooa cluster in Azure
+> * Applicazione hello di scalabilità orizzontale in più nodi
 > * Eseguire un aggiornamento in sequenza delle applicazioni
 
-Per altre informazioni su Service Fabric e .NET, fare riferimento a questa esercitazione:
+toolearn ulteriori informazioni su Service Fabric e .NET, esaminare in questa esercitazione:
 > [!div class="nextstepaction"]
 > [Applicazione .NET in Service Fabric](service-fabric-tutorial-create-dotnet-app.md)

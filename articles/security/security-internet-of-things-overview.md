@@ -1,6 +1,6 @@
 ---
-title: Proteggere le soluzioni IoT (Internet delle cose) in Azure | Documentazione Microsoft
-description: " I servizi di Azure IoT (Internet delle cose) offrono una vasta gamma di funzionalità. Questo articolo illustra come proteggere le soluzioni IoT in Azure. "
+title: aaaSecure il Internet delle cose (IoT) in Azure | Documenti Microsoft
+description: " I servizi di Azure IoT (Internet delle cose) offrono una vasta gamma di funzionalità. In questo articolo consente di comprendere come toosecure soluzioni IoT in Azure. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-ms.openlocfilehash: 3793f5453b74b6c06d9e58b426d89099298e1288
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b6cb2ea1c1facada854fb52c55066f34a8289e47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="internet-of-things-security-overview"></a>Informazioni generali sulla sicurezza di Internet delle cose
 I servizi di Azure IoT (Internet delle cose) offrono una vasta gamma di funzionalità. Questi servizi di livello aziendale consentono di:
@@ -29,39 +29,39 @@ I servizi di Azure IoT (Internet delle cose) offrono una vasta gamma di funziona
 * Visualizzare i dati in tempo reale e cronologici
 * Eseguire l'integrazione con i sistemi back-office
 
-Per offrire queste funzionalità, Azure IoT Suite include più servizi di Azure con estensioni personalizzate come soluzioni preconfigurate. Queste soluzioni preconfigurate sono implementazioni di base dei modelli di soluzione IoT comuni che contribuiscono a ridurre i tempi di distribuzione delle soluzioni IoT. I Software Development Kit IoT consentono di personalizzare ed estendere queste soluzioni per soddisfare le proprie esigenze. È anche possibile usare queste soluzioni come esempi o modelli durante lo sviluppo di nuove soluzioni IoT.
+Queste funzionalità, Azure IoT Suite pacchetti insieme toodeliver Azure più servizi con le estensioni personalizzate come soluzioni preconfigurate. Queste soluzioni preconfigurate sono implementazioni di base di modelli di soluzione IoT comuni che consentono di tooreduce hello tempo si toodeliver soluzioni IoT. Utilizza hello IoT software development kit, è possibile personalizzare ed estendere toomeet queste soluzioni i propri requisiti. È anche possibile usare queste soluzioni come esempi o modelli durante lo sviluppo di nuove soluzioni IoT.
 
-Azure IoT Suite è una potente soluzione per le esigenze di IoT. È tuttavia fondamentale che le soluzioni IoT siano progettate sin dall'inizio pensando alla sicurezza. A causa del numero elevato di dispositivi IoT, qualsiasi evento imprevisto riguardante la sicurezza può diventare rapidamente un evento esteso con conseguenze significative.
+gruppo di Azure IoT Hello è una potente soluzione alle esigenze IoT. Tuttavia, è della massima importanza che le soluzioni IoT sono progettate tenendo presente dall'inizio hello la sicurezza. A causa di hello determinato dal numero dei dispositivi IoT, eventuali problemi di sicurezza possono diventare rapidamente un evento esteso con conseguenze significative.
 
-Le informazioni seguenti sono utili per comprendere come proteggere le soluzioni IoT.
+toohelp è comprendere come toosecure soluzioni IoT, abbiamo hello le seguenti informazioni.
 
 ## <a name="security-architecture"></a>Architettura di sicurezza
-Quando si progetta un sistema, è importante comprendere le potenziali minacce e aggiungere le difese appropriate di conseguenza, perché il sistema è definito da una progettazione e un'architettura specifiche. È importante progettare il prodotto tenendo conto della sicurezza, perché comprendere in che modo un utente malintenzionato potrebbe compromettere un sistema aiuta ad implementare le misure appropriate fin dall'inizio.
+Quando si progetta un sistema, è importante toounderstand minacce potenziali di hello toothat sistema e add difese appropriate di conseguenza, sistema di hello è progettato e architettura. È importante poiché la comprensione di come un utente malintenzionato potrebbe essere in grado di toocompromise un sistema consente di verificare che le misure di attenuazione appropriate siano soddisfatti dall'inizio di hello, toodesign hello prodotto dall'inizio hello con particolare attenzione alla sicurezza.
 
 Informazioni sull'architettura di sicurezza IoT sono disponibili in [Architettura di sicurezza di Internet delle cose](../iot-suite/iot-security-architecture.md).
 
-Questo articolo tratta gli argomenti seguenti:
+Questo articolo illustra hello seguenti argomenti:
 
 * [La sicurezza inizia con un modello di rischio](../iot-suite/iot-security-architecture.md#security-starts-with-a-threat-model)
 * [Sicurezza in IoT](../iot-suite/iot-security-architecture.md#security-in-iot)
-* [Modellazione delle minacce nell'architettura di riferimento di Azure IoT](../iot-suite/iot-security-architecture.md#threat-modeling-the-azure-iot-reference-architecture)
+* [Modellazione hello Azure IoT architettura di riferimento di minaccia](../iot-suite/iot-security-architecture.md#threat-modeling-the-azure-iot-reference-architecture)
 
-## <a name="security-from-the-ground-up"></a>Sicurezza sin dall'inizio
-Internet delle cose pone numerose sfide in termini di sicurezza, privacy e conformità per le aziende di tutto il mondo. A differenza delle tecnologie informatiche tradizionali in cui questi problemi riguardano il software e la relativa implementazione, l'IoT riguarda le sfide poste dalla convergenza tra il mondo fisico e quello informatico. Per proteggere le soluzioni IoT, è necessario garantire il provisioning sicuro dei dispositivi, la connettività protetta tra questi dispositivi e il cloud e la protezione dei dati nel cloud durante l'elaborazione e l'archiviazione. A sfavore di queste funzionalità, tuttavia, giocano fattori quali dispositivi vincolati alle risorse, la distribuzione geografica delle implementazioni e l'inclusione di numerosi dispositivi in un'unica soluzione.
+## <a name="security-from-hello-ground-up"></a>Protezione da hello messa a terra
+Hello IoT pone univoco sicurezza, privacy e conformità sfide toobusinesses in tutto il mondo. A differenza di tecnologia informatica tradizionale in cui questi problemi riguardano software e la relativa implementazione, IoT riguarda cosa accade quando cyber hello e mondi fisico hello convergono. Per proteggere IoT soluzioni, è necessario garantire un provisioning sicuro dei dispositivi, la connettività protetta tra questi dispositivi e cloud hello e protezione dei dati nel cloud hello durante l'elaborazione e archiviazione. A sfavore di queste funzionalità, tuttavia, giocano fattori quali dispositivi vincolati alle risorse, la distribuzione geografica delle implementazioni e l'inclusione di numerosi dispositivi in un'unica soluzione.
 
-Informazioni su come gestire la sicurezza in queste aree sono disponibili in [Sicurezza di Internet delle cose sin dall'inizio](../iot-suite/securing-iot-ground-up.md).
+È possibile ottenere informazioni come protezione toohandle in queste aree leggendo [sicurezza di Internet delle cose da hello messa a terra](../iot-suite/securing-iot-ground-up.md).
 
-L'articolo tratta gli argomenti seguenti:
+Hello descritti hello seguenti argomenti:
 
-* [Proteggere l'infrastruttura fin dall'inizio](../iot-suite/securing-iot-ground-up.md#secure-infrastructure-from-the-ground-up)
+* [Infrastruttura sicura da hello messa a terra](../iot-suite/securing-iot-ground-up.md#secure-infrastructure-from-the-ground-up)
 * [Microsoft Azure: protezione dell'infrastruttura IoT aziendale](../iot-suite/securing-iot-ground-up.md#microsoft-azure---secure-iot-infrastructure-for-your-business)
 
 ## <a name="best-practices"></a>Procedure consigliate
-Proteggere un'infrastruttura IoT richiede una strategia di sicurezza rigorosa e approfondita. Dalla protezione dei dati nel cloud alla protezione dell'integrità dei dati in transito sulla rete Internet pubblica e al provisioning sicuro dei dispositivi, ogni strato aumenta il livello di sicurezza dell'intera infrastruttura.
+Proteggere un'infrastruttura IoT richiede una strategia di sicurezza rigorosa e approfondita. Dalla protezione dati nel cloud hello, proteggere l'integrità dei dati in transito su hello rete internet pubblica, i dispositivi provisioning toosecurely, ogni livello si basa maggiori garanzie di sicurezza di hello intera infrastruttura.
 
 Informazioni sulle procedure consigliate per la sicurezza di Internet delle cose sono disponibili in [Procedure consigliate per la sicurezza di Internet delle cose](../iot-suite/iot-security-best-practices.md).
 
-L'articolo tratta gli argomenti seguenti:
+Hello descritti hello seguenti argomenti:
 
 * [Produttore/integratore di hardware IoT](../iot-suite/iot-security-best-practices.md#iot-hardware-manufacturerintegrator)
 * [Sviluppatore di soluzioni IoT](../iot-suite/iot-security-best-practices.md#iot-solution-developer)

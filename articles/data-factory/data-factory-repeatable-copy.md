@@ -1,6 +1,6 @@
 ---
-title: Copia ripetibile in Azure Data Factory | Microsoft Docs
-description: "Informazioni su come evitare duplicati, anche se una sezione che copia i dati viene eseguita più volte."
+title: Copia aaaRepeatable nella Data Factory di Azure | Documenti Microsoft
+description: "Informazioni su come tooavoid duplicati anche se una sezione che copia i dati viene eseguita più volte."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 5b88a235915bf35fec701eee4a5f80beb4a67632
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79a3fde2b700bf0a0e167479d6a86c5bee1bf7ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repeatable-copy-in-azure-data-factory"></a>Copia ripetibile in Azure Data Factory
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lettura ripetibile da origini relazionali
-Quando si copiano dati da archivi dati relazionali, è necessario tenere presente la ripetibilità per evitare risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando una sezione viene rieseguita in uno dei due modi, è necessario assicurarsi che non vengano letti gli stessi dati, indipendentemente da quante volte viene eseguita la sezione.  
+Quando si copiano dati da archivi dati relazionali, tenere ripetibilità presente tooavoid risultati imprevisti. In Azure Data Factory è possibile rieseguire una sezione manualmente. È anche possibile configurare i criteri di ripetizione per un set di dati in modo da rieseguire una sezione in caso di errore. Quando viene eseguito di nuovo una sezione in entrambi i casi, è necessario toomake assicurarsi che hello stessi dati non viene letto alcun altro aspetto come viene eseguita più volte una sezione.  
  
 > [!NOTE]
-> Gli esempi seguenti sono per Azure SQL, ma sono applicabili a qualsiasi archivio dati che supporti set di dati rettangolari. Potrebbe essere necessario modificare il **tipo** di origine e la proprietà **query** (ad esempio, query invece di sqlReaderQuery) per l'archivio dati.   
+> Hello negli esempi seguenti sono per SQL Azure ma sono applicabili tooany archivio di dati che supporta i set di dati rettangolare. È possibile hello tooadjust **tipo** di origine e hello **query** proprietà (ad esempio: query anziché sqlReaderQuery) per i dati di hello archiviare.   
 
-In genere, durante la lettura da archivi relazionali, si preferisce leggere solo i dati corrispondenti a tale sezione. Un modo per eseguire questa operazione è usare le variabili di sistema WindowStart e WindowEnd disponibili in Azure Data Factory. Per altre informazioni su variabili e funzioni di Azure Data Factory consultare l'articolo [Azure Data Factory - Funzioni e variabili di sistema](data-factory-functions-variables.md) seguente. Esempio: 
+In genere, durante la lettura dagli archivi relazionali, dati tooread solo hello toothat sezione corrispondente. Toodo un modo sarebbe così utilizzando hello WindowStart e WindowEnd le variabili di sistema disponibili in Azure Data Factory. Ulteriori informazioni sulle variabili hello e funzioni in Azure Data Factory qui in hello [Data Factory di Azure - funzioni e variabili di sistema](data-factory-functions-variables.md) articolo. Esempio: 
 
 ```json
 "source": {
@@ -35,9 +35,9 @@ In genere, durante la lettura da archivi relazionali, si preferisce leggere solo
     "sqlReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= \\'{0:yyyy-MM-dd HH:mm\\' AND timestampcolumn < \\'{1:yyyy-MM-dd HH:mm\\'', WindowStart, WindowEnd)"
 },
 ```
-Questa query legge i dati che rientrano nell'intervallo di durata della sezione (WindowStart-> WindowEnd) della tabella MyTable. Inoltre la riesecuzione di questa sezione garantirà sempre la lettura degli stessi dati. 
+Questa query legge i dati che rientrano nell'intervallo di durata della sezione hello (WindowEnd WindowStart ->) dalla tabella hello MyTable. Eseguire di nuovo di questa sezione sempre anche assicurarsi che hello stessi dati vengono letti. 
 
-In altri casi, si consiglia di leggere l'intera tabella e definire sqlReaderQuery come segue:
+In altri casi, è preferibile l'intera tabella di tooread hello e può definire hello sqlReaderQuery come segue:
 
 ```json
 "source": 
@@ -47,10 +47,10 @@ In altri casi, si consiglia di leggere l'intera tabella e definire sqlReaderQuer
 },
 ```
 
-## <a name="repeatable-write-to-sqlsink"></a>Scrittura ripetibile in SqlSink
-Quando si copiano dati in un **database di SQL Server/SQL di Azure** da altri archivi dati, è necessario mantenere criteri di ripetibilità per evitare risultati imprevisti. 
+## <a name="repeatable-write-toosqlsink"></a>Scrittura REPEATABLE tooSqlSink
+Quando si copiano dati troppo**Azure SQL di SQL Server** da altri archivi dati, è necessario ripetibilità tookeep in considerazione tooavoid risultati imprevisti. 
 
-Quando si copiano dati in un database SQL Server/SQL di Azure, per impostazione predefinita l'attività di copia accoda i dati alla tabella di sink. Ad esempio, si copiano dati da un file con estensione CSV (valori delimitati da virgole) contenente due record per la tabella seguente in un Database SQL di Azure o SQL Server. Quando viene eseguita una sezione, i due record vengono copiati nella tabella di SQL. 
+Quando si copiano dati tooAzure Database SQL o SQL Server, attività di copia hello Accoda tabella di dati toohello sink per impostazione predefinita. Ad esempio, si copiano dati da un formato CSV (valori delimitati da virgole) file che contiene due record toohello in un Database di Azure SQL o SQL Server nella tabella seguente. Quando viene eseguita una sezione, hello due record sono toohello copiate nella tabella SQL. 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -59,7 +59,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    2            2015-05-01 00:00:00
 ```
 
-Si supponga di aver trovato degli errori nel file di origine e di aver aggiornato la quantità di Down Tube da 2 a 4. Se si esegue nuovamente la sezione di dati per quel periodo manualmente, saranno disponibili due nuovi record accodati al database di SQL Server/SQL di Azure. Questo esempio presuppone che in nessuna delle colonne della tabella sia presente il vincolo di chiave primaria.
+Si supponga trovati errori nel file di origine e la quantità di hello di Tube verso il basso da 2 too4 aggiornata. Se si esegue nuovamente la sezione dati hello durante tale periodo manualmente, sono disponibili due nuovi record accodato tooAzure Database SQL o SQL Server. In questo esempio si presuppone che nessuna delle colonne hello hello tabella il vincolo di chiave primaria di hello.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -70,10 +70,10 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Per evitare questo comportamento, è necessario specificare la semantica UPSERT usando uno dei due meccanismi seguenti:
+tooavoid questo comportamento, è necessario semantica UPSERT toospecify utilizzando uno dei seguenti due meccanismi hello:
 
 ### <a name="mechanism-1-using-sqlwritercleanupscript"></a>Meccanismo 1: uso di sqlWriterCleanupScript
-È possibile usare la proprietà **sqlWriterCleanupScript** per cancellare i dati dalla tabella sink prima di inserire i dati durante l'esecuzione di una sezione. 
+È possibile utilizzare hello **sqlWriterCleanupScript** tooclean proprietà backup dei dati dalla tabella sink hello prima di inserire dati hello durante l'esecuzione di una sezione. 
 
 ```json
 "sink":  
@@ -83,7 +83,7 @@ Per evitare questo comportamento, è necessario specificare la semantica UPSERT 
 }
 ```
 
-Quando viene eseguita una sezione, lo script di pulizia viene eseguito prima per eliminare i dati che corrispondono alla sezione della tabella SQL. Tramite l'attività di copia i dati vengono quindi inseriti nella tabella SQL. Se la sezione viene eseguita di nuovo, la quantità viene aggiornata in base alle esigenze.
+Quando viene eseguita una sezione, script di pulizia hello viene eseguito prima dati toodelete corrispondente sezione toohello dalla tabella SQL hello. attività di copia Hello quindi inserisce dati hello tabella SQL. Se viene eseguito di nuovo la sezione hello, quantità hello viene aggiornato come desiderato.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -92,7 +92,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Si supponga, ad esempio, che il record Flat Washer venga rimosso dal file con estensione csv originale. Se la sezione viene eseguita nuovamente, si ottiene il risultato seguente: 
+Si supponga che hello record rondellapiatta viene rimosso da file csv originale hello. Quindi rieseguire sezione hello produrrebbe hello seguente risultato: 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -100,17 +100,17 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-L'attività di copia ha eseguito lo script di pulizia per eliminare i dati corrispondenti alla sezione. Quindi, ha letto l'input dal file con estensione CSV (che conteneva solo un record) e lo ha inserito nella tabella. 
+esecuzione dell'attività di copia Hello hello pulizia dati dello script toodelete hello corrispondente per tale sezione. Quindi leggere l'input di hello da file csv hello (contenute quindi un solo record) e viene inserita nella tabella hello. 
 
 ### <a name="mechanism-2-using-sliceidentifiercolumnname"></a>Meccanismo 2: uso di sliceIdentifierColumnName
 > [!IMPORTANT]
 > Attualmente sliceIdentifierColumnName non è supportato per Azure SQL Data Warehouse. 
 
-Il secondo meccanismo per ottenere la ripetibilità prevede la disponibilità di una colonna dedicata (sliceIdentifierColumnName) nella tabella di destinazione. Questa colonna viene usata da Data factory di Azure per garantire che l'origine e la destinazione rimangano sincronizzate. Questo approccio può essere usato solo quando è disponibile una certa flessibilità nella modifica o nella definizione dello schema della tabella SQL di destinazione. 
+ripetibilità di tooachieve Hello secondo meccanismo consiste nel disporre di una colonna dedicata (sliceIdentifierColumnName) nella destinazione hello tabella. Questa colonna verrà usata dalla Data Factory di Azure tooensure hello origine e destinazione la sincronizzazione. Questo approccio funziona quando è disponibile una flessibilità nella modifica o la definizione di schema di tabella SQL di destinazione hello. 
 
-La colonna viene usata da Azure Data Factory per scopi di ripetibilità e nel corso del processo Azure Data Factory non apporterà alcuna modifica allo schema della tabella. Per applicare questo approccio, è possibile seguire questa procedura:
+Questa colonna viene utilizzata da Data Factory di Azure per scopi di ripetibilità e nel processo di hello Azure Data Factory non apporta qualsiasi schema cambia toohello tabella. Modo toouse questo approccio:
 
-1. Definire una colonna di tipo **binario (32)** nella tabella SQL di destinazione. in cui non sia presente alcun vincolo. Ai fini di questo esempio, la colonna viene denominata AdfSliceIdentifier.
+1. Definire una colonna di tipo **binary (32)** nella destinazione hello tabella SQL. in cui non sia presente alcun vincolo. Ai fini di questo esempio, la colonna viene denominata AdfSliceIdentifier.
 
 
     Tabella di origine:
@@ -132,7 +132,7 @@ La colonna viene usata da Azure Data Factory per scopi di ripetibilità e nel co
     )
     ```
 
-2. Usarla nell'attività di copia come segue:
+2. Utilizzarlo nell'attività di copia hello come segue:
    
     ```json
     "sink":  
@@ -143,12 +143,12 @@ La colonna viene usata da Azure Data Factory per scopi di ripetibilità e nel co
     }
     ```
 
-Azure Data Factory popolerà la colonna in base alle proprie esigenze affinché l'origine e la destinazione risultino sincronizzate. I valori della colonna non possono essere usati al di fuori di questo contesto. 
+Azure Data Factory popola questa colonna in base alle necessità tooensure hello origine e destinazione mantenere la sincronizzazione. non utilizzare i valori Hello della colonna all'esterno di questo contesto. 
 
-Analogamente al meccanismo 1, l'attività di copia cancella automaticamente i dati della sezione specificata dalla tabella SQL di destinazione. Vengono quindi inseriti i dati dall'origine nella tabella di destinazione. 
+Toomechanism simile 1, l'attività di copia puliscono automaticamente i dati di hello per hello dato slice dalla destinazione hello tabella SQL. Vengono quindi inseriti i dati dall'origine nella tabella di destinazione toohello. 
 
 ## <a name="next-steps"></a>Passaggi successivi
-Rivedere gli articoli seguenti sul connettore per gli esempi JSON completi: 
+Esaminare i seguenti articoli connettore che, per completare gli esempi JSON hello: 
 
 - [Database SQL di Azure](data-factory-azure-sql-connector.md)
 - [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md)

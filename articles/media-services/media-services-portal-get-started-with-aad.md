@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'autenticazione di Azure AD tramite il portale di Azure| Microsoft Docs
-description: Informazioni su come usare il portale di Azure per accedere all'autenticazione di Azure Active Directory (Azure AD) per usare l'API Servizi multimediali di Azure.
+title: aaaGet avviato con l'autenticazione di Azure AD con hello portale di Azure | Documenti Microsoft
+description: Informazioni su come toouse hello Azure tooaccess portale Azure Active Directory (Azure AD) autenticazione tooconsume hello API di servizi multimediali di Azure.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -13,40 +13,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: juliako
-ms.openlocfilehash: 829e0759f8aeb8758f6b8895b88b60b66ffb22ed
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 497ad1806b3fd1262802adefb6e12b65ee9f2d61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-ad-authentication-by-using-the-azure-portal"></a>Introduzione all'autenticazione di Azure AD tramite il portale di Azure
+# <a name="get-started-with-azure-ad-authentication-by-using-hello-azure-portal"></a>Introduzione all'autenticazione di Azure AD tramite hello portale di Azure
 
-Informazioni su come usare il portale di Azure per accedere all'autenticazione di Azure Active Directory (Azure AD) per accedere all'API Servizi multimediali di Azure.
+Informazioni su come toouse hello Azure tooaccess portale Azure Active Directory (Azure AD) autenticazione tooaccess hello API di servizi multimediali di Azure.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
 - Un account Azure. Se non si dispone di un account, iniziare con una [versione di valutazione gratuita di Azure](https://azure.microsoft.com/pricing/free-trial/). 
-- Account di Servizi multimediali. Per altre informazioni, vedere [Creare un account Servizi multimediali di Azure con il portale di Azure](media-services-portal-create-account.md).
-- Assicurarsi di rivedere l'argomento di [panoramica dell'accesso all'API Servizi multimediali di Azure con autenticazione Azure Active Directory](media-services-use-aad-auth-to-access-ams-api.md). 
+- Account di Servizi multimediali. Per ulteriori informazioni, vedere [creare un account di servizi multimediali di Azure tramite il portale di Azure hello](media-services-portal-create-account.md).
+- Verificare hello [accesso alle API di servizi multimediali Azure con panoramica dell'autenticazione AD Azure](media-services-use-aad-auth-to-access-ams-api.md). 
 
 Quando si usa l'autenticazione di Azure AD con Servizi multimediali di Azure, sono disponibili due opzioni di autenticazione:
 
-- **Autenticazione utente**. Consente di autenticare una persona che usa l'app per interagire con le risorse di Servizi multimediali. L'applicazione interattiva deve prima richiedere all'utente le credenziali. Un esempio è un'app della console di gestione usata dagli utenti autorizzati per monitorare i processi di codifica o lo streaming live. 
+- **Autenticazione utente**. Eseguire l'autenticazione di una persona che utilizza hello app toointeract con risorse di servizi multimediali. applicazione interattiva Hello deve prima richiedere le credenziali utente hello. Un esempio è un'applicazione console di gestione usata dai processi di codifica toomonitor gli utenti autorizzati o streaming live. 
 - **Autenticazione basata su entità servizio**. Consente di autenticare un servizio. Le applicazioni che solitamente usano questo metodo di autenticazione sono app che eseguono servizi daemon, servizi di livello intermedio o processi pianificati, ad esempio App Web, app per le funzioni, app per la logica, API o microservizi.
 
 > [!IMPORTANT]
-> Servizi multimediali supporta attualmente il modello di autenticazione del Servizio di controllo di accesso di Azure. L'autorizzazione di Controllo di accesso, tuttavia, verrà dichiarata deprecata il 1° giugno 2018. È consigliabile eseguire al più presto la migrazione al modello di autenticazione di Azure AD.
+> Attualmente servizi multimediali supporta modello di autenticazione hello Azure Access Control service. L'autorizzazione di Controllo di accesso, tuttavia, verrà dichiarata deprecata il 1° giugno 2018. Si consiglia di migrare il modello di autenticazione di Azure AD toohello appena possibile.
 
-## <a name="select-the-authentication-method"></a>Selezionare il metodo di autenticazione
+## <a name="select-hello-authentication-method"></a>Selezionare il metodo di autenticazione hello
 
-1. Nel [portale di Azure ](https://portal.azure.com/) selezionare l'account Servizi multimediali.
-2. Scegliere come connettersi all'API Servizi multimediali.
+1. In hello [portale di Azure](https://portal.azure.com/), selezionare l'account di servizi multimediali.
+2. Selezionare come tooconnect toohello API di servizi multimediali.
 
     ![Selezionare la pagina del metodo di connessione](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started01.png)
 
 ## <a name="user-authentication"></a>Autenticazione utente
 
-Per connettersi all'API Servizi multimediali usando l'opzione di autenticazione utente, l'app client deve richiedere un token di Azure AD che contenga i parametri seguenti:  
+tooconnect toohello API di servizi multimediali usando hello opzione di autenticazione utente, app client hello deve toorequest un token di Azure AD che ha hello seguenti parametri:  
 
 * Endpoint del tenant di Azure AD
 * URI di risorsa di Servizi multimediali
@@ -54,60 +54,60 @@ Per connettersi all'API Servizi multimediali usando l'opzione di autenticazione 
 * URI di reindirizzamento dell'applicazione Servizi multimediali (nativa) 
 * URI di risorsa per Servizi multimediali REST
 
-È possibile ottenere i valori per questi parametri nella pagina **API Servizi multimediali con l'autenticazione utente**. 
+È possibile ottenere i valori hello per questi parametri in hello **API dei servizi multimediali con l'autenticazione utente** pagina. 
 
 ![Connettersi con la pagina di autenticazione utente](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started02.png)
 
-Se ci si connette all'API Servizi multimediali con Media Services Microsoft .NET SDK, i valori richiesti sono disponibili nell'SDK. Per altre informazioni, vedere [Use Azure AD authentication to access the Azure Media Services API with .NET](media-services-dotnet-get-started-with-aad.md) (Usare l'autenticazione di Azure AD per accedere all'API Servizi multimediali di Azure con .NET).
+Se ci si connette toohello API di servizi multimediali con Media Services Microsoft .NET SDK hello, hello necessari valori tooyou disponibile come parte di hello SDK. Per ulteriori informazioni, vedere [usano Azure AD authentication tooaccess hello API di servizi multimediali di Azure con .NET](media-services-dotnet-get-started-with-aad.md).
 
-Se non si usa l'SDK del client .NET di Servizi multimediali, è necessario creare manualmente una richiesta di token di Azure AD tramite i parametri descritti in precedenza. Per altre informazioni, vedere [Come usare Azure AD Authentication Library per ottenere il token di Azure AD](../active-directory/develop/active-directory-authentication-libraries.md).
+Se non si utilizza client .NET di servizi multimediali hello SDK, è necessario creare manualmente una richiesta di token di Azure AD utilizzando i parametri di hello descritti in precedenza. Per ulteriori informazioni, vedere [come toouse hello Azure AD Authentication Library tooget hello token di Azure AD](../active-directory/develop/active-directory-authentication-libraries.md).
 
 ## <a name="service-principal-authentication"></a>Autenticazione di un'entità servizio
 
-Per connettersi all'API Servizi multimediali di Azure con l'opzione dell'entità servizio, l'app di livello intermedio (API o applicazione Web) deve richiedere un token di Azure AD che abbia i parametri seguenti:  
+tooconnect toohello API di servizi multimediali usando hello opzione dell'entità servizio, l'applicazione di livello intermedio (API web o applicazione web) deve toorequest un token di Azure AD che ha hello seguenti parametri:  
 
 * Endpoint del tenant di Azure AD
 * URI di risorsa di Servizi multimediali 
 * URI di risorsa per Servizi multimediali REST
-* Valori dell'applicazione Azure AD: **ID client** e **Segreto client**
+* I valori dell'applicazione Azure AD: hello **ID client** e **segreto client**
 
-È possibile ottenere i valori per questi parametri nella pagina **Connettersi all'API Servizi multimediali con l'entità servizio** . In questa pagina è possibile creare una nuova applicazione Azure AD o selezionarne una esistente. Dopo avere selezionato l'app Azure AD, è possibile ottenere l'ID client (ID applicazione) e generare i valori del segreto client (chiave). 
+È possibile ottenere i valori hello per questi parametri in hello **connettersi tooMedia API dei servizi con un'entità servizio** pagina. Utilizzare questo toocreate pagina Azure un nuova applicazione AD o tooselect uno esistente. Dopo aver selezionato hello Azure AD app, è possibile ottenere l'ID client hello (ID applicazione) e generare i valori di hello client secret (chiave). 
 
 ![Connettersi alla pagina entità servizio](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started04.png)
 
-Quando si apre il pannello **Entità servizio**, viene selezionata la prima applicazione Azure AD che soddisfa i criteri seguenti:
+Quando hello **dell'entità servizio** pannello viene aperto, è selezionata l'applicazione Azure AD prima hello che soddisfi i seguenti criteri hello:
 
 - Si tratta di un'applicazione Azure AD registrata.
-- Dispone di autorizzazioni di controllo degli accessi in base al ruolo di proprietario o collaboratore per l'account.
+- Disponga di autorizzazioni di collaboratore o il controllo di accesso Owner Role-Based account hello.
 
-Dopo avere creato o selezionato un'app Azure AD, è possibile creare e copiare un segreto client (chiave) e l'ID client (ID applicazione). L'ID client e il segreto client sono necessari per ottenere il token di accesso in questo scenario.
+Dopo aver creato o selezionare un'app di Azure AD, è possibile creare un segreto client (chiave) e copiare hello ID client (ID applicazione). ID client e il segreto client Hello sono token di accesso obbligatorio tooget hello in questo scenario.
 
-Se non si dispone delle autorizzazioni per creare app Azure AD nel dominio, i controlli del pannello dell'app Azure AD non vengono visualizzati e viene visualizzato un messaggio di avviso.
+Se non si dispone delle autorizzazioni app di Azure AD toocreate nel dominio, non vengono visualizzati i controlli app di Azure AD hello del pannello hello e viene visualizzato un messaggio di avviso.
 
-Se ci si connette all'API Servizi multimediali con Media Services .NET SDK, vedere [Use Azure AD authentication to access the Azure Media Services API with .NET](media-services-dotnet-get-started-with-aad.md) (Usare l'autenticazione di Azure AD per accedere all'API Servizi multimediali di Azure con .NET).
+Se ci si connette toohello API di servizi multimediali con Media Services .NET SDK hello, vedere [usano Azure AD authentication tooaccess hello API di servizi multimediali di Azure con .NET](media-services-dotnet-get-started-with-aad.md).
 
-Se non si usa l'SDK del client .NET di Servizi multimediali, è necessario creare una richiesta di token di Azure AD manualmente specificando i parametri descritti in precedenza. Per altre informazioni, vedere [Come usare Azure AD Authentication Library per ottenere il token di Azure AD](../active-directory/develop/active-directory-authentication-libraries.md).
+Se non si utilizza client .NET di servizi multimediali hello SDK, è necessario creare manualmente una richiesta di token di Azure AD utilizzando parametri hello descritti in precedenza. Per ulteriori informazioni, vedere [come toouse hello Azure AD Authentication Library tooget hello token di Azure AD](../active-directory/develop/active-directory-authentication-libraries.md).
 
-### <a name="get-the-client-id-and-client-secret"></a>Ottenere l'ID client e il segreto client
+### <a name="get-hello-client-id-and-client-secret"></a>Ottenere il client di hello ID e client secret
 
-Dopo avere selezionato un'app Azure AD esistente o avere selezionato l'opzione per crearne una nuova, vengono visualizzati i pulsanti seguenti:
+Dopo aver selezionato un'app di Azure AD esistente o hello selezionare opzione toocreate uno nuovo, verrà visualizzato hello seguenti pulsanti:
 
 ![Pulsante Gestisci autorizzazioni e pulsante Gestisci l'applicazione](./media/media-services-portal-get-started-with-aad/media-services-portal-manage.png)
 
-Per aprire il pannello dell'applicazione Azure AD, fare clic su **Gestisci l'applicazione**. Nel pannello **Gestisci l'applicazione** è possibile ottenere l'ID client (ID applicazione) dell'app. Per generare un segreto client (chiave), selezionare **Chiavi**.
+hello tooopen pannello applicazione Azure AD, fare clic su **Gestisci applicazione**. In hello **Gestisci applicazione** pannello, è possibile ottenere l'ID client dell'applicazione hello (ID applicazione). un segreto client (chiave), seleziona toogenerate **chiavi**.
 
 ![Opzione Chiavi del pannello Gestisci l'applicazione](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started06.png) 
 
-### <a name="manage-permissions-and-the-application"></a>Gestire le autorizzazioni e l'applicazione
+### <a name="manage-permissions-and-hello-application"></a>Gestire le autorizzazioni e l'applicazione hello
 
-Dopo avere selezionato l'applicazione Azure AD, è possibile gestire l'applicazione e le autorizzazioni. Per configurare l'applicazione Azure AD in modo che acceda ad altre applicazioni, fare clic su **Gestisci autorizzazioni**. Per le attività di gestione, ad esempio la modifica di chiavi e gli URL di risposta, o per modificare il manifesto dell'applicazione, fare clic su **Gestisci l'applicazione**.
+Dopo aver selezionato un'applicazione hello Azure AD, è possibile gestire le autorizzazioni e l'applicazione hello. tooset backup il tooaccess applicazione Azure AD altre applicazioni, fare clic su **gestire le autorizzazioni**. Per le attività di gestione, ad esempio la modifica di chiavi e gli URL di risposta o il manifesto dell'applicazione hello tooedit, fare clic su **Gestisci applicazione**.
 
-### <a name="edit-the-apps-settings-or-manifest"></a>Modificare le impostazioni o il manifesto dell'app
+### <a name="edit-hello-apps-settings-or-manifest"></a>Modificare le impostazioni dell'applicazione hello o manifesto
 
-Per modificare le impostazioni o il manifesto dell'app, fare clic su **Gestisci l'applicazione**.
+le impostazioni dell'applicazione hello tooedit o manifesto, fare clic su **Gestisci applicazione**.
 
 ![Pagina Gestisci l'applicazione](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started05.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Introduzione al [caricamento di file nell'account](media-services-portal-upload-files.md).
+Introduzione a [caricamento file account tooyour](media-services-portal-upload-files.md).

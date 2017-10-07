@@ -1,6 +1,6 @@
 ---
-title: Creare un gateway applicazione con le regole per il routing basato su URL - Interfaccia della riga di comando di Azure 2.0 | Microsoft Docs
-description: Questa pagina fornisce istruzioni per la creazione e la configurazione di un gateway applicazione di Azure con le regole per il routing basato su URL
+title: regole di un gateway applicazione utilizzando l'URL di routing - aaaCreate 2.0 CLI di Azure | Documenti Microsoft
+description: Questa pagina fornisce istruzioni toocreate, configurare un gateway applicazione Azure utilizzando le regole di routing di URL
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 958049830d6753ec26635f18f8f8b2fabdec0733
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 335b52be258945e1172eb0252b732e0e6ecb2ef0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-application-gateway-using-path-based-routing-with-azure-cli-20"></a>Creare un gateway applicazione con il routing basato sul percorso con l'interfaccia della riga di comando di Azure 2.0
 
@@ -26,48 +26,48 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell per Azure Resource Manager](application-gateway-create-url-route-arm-ps.md)
 > * [Interfaccia della riga di comando di Azure 2.0](application-gateway-create-url-route-cli.md)
 
-Il routing basato sul percorso dell'URL consente di associare le route in base al percorso dell'URL di una richiesta HTTP. Verifica se è disponibile una route per il pool back-end configurato per l'URL presentato nel gateway applicazione e invia il traffico di rete al pool back-end definito. In genere il routing basato su URL viene usato per le richieste di bilanciamento del carico per diversi tipi di contenuto tra vari pool di server back-end.
+Il routing basato sul percorso URL consente di tooassociate route in base al percorso URL hello di una richiesta Http. Controlla se è presente un pool di back-end tooa route configurati per l'URL di hello presentati in Gateway applicazione hello e invia toohello il traffico di rete hello è definito il pool back-end. Un utilizzo comune per il routing basato su URL è tooload bilanciamento delle richieste per i pool di server back-end toodifferent diversi tipi di contenuto.
 
-Il routing basato su URL introduce un nuovo tipo di regola per i gateway applicazione. Per il gateway applicazione sono disponibili due tipi di regole: basic e PathBasedRouting. Il tipo di regola basic fornisce un servizio di tipo round robin per i pool back-end, mentre la regola PathBasedRouting oltre alla distribuzione round robin tiene conto del modello di percorso dell'URL della richiesta per la scelta del pool back-end.
+Routing basato su URL introduce un nuovo gateway tooapplication tipo di regola. Per il gateway applicazione sono disponibili due tipi di regole: basic e PathBasedRouting. Tipo di regola di base fornisce servizio round robin per hello back-end pool inoltre PathBasedRouting durante la distribuzione round robin tooround, accetta inoltre il modello del percorso dell'URL di richiesta hello in considerazione durante la scelta di pool back-end hello.
 
 ## <a name="scenario"></a>Scenario
 
-Nell'esempio seguente il gateway applicazione gestisce il traffico per contoso.com con due pool di server back-end: un pool di server predefinito e un pool di server immagini.
+Nell'esempio seguente di hello, Gateway applicazione gestisce il traffico per contoso.com con due pool di server back-end: un pool di server predefinito e un pool di server di immagine.
 
-Le richieste per http://contoso.com/image* vengono indirizzate al pool di server immagini (imagesBackendPool). Se il modello del percorso non corrisponde, viene selezionato un pool di server predefinito (appGatewayBackendPool).
+Sono richieste per http://contoso.com/image * indirizzato il pool di server tooimage (imagesBackendPool), se hello il modello del percorso non corrisponde, viene selezionato un pool di server predefinito (appGatewayBackendPool).
 
 ![route dell'URL](./media/application-gateway-create-url-route-cli/scenario.png)
 
-## <a name="log-in-to-azure"></a>Accedere ad Azure
+## <a name="log-in-tooazure"></a>Accedi tooAzure
 
-Aprire il **prompt dei comandi di Microsoft Azure**ed effettuare l'accesso. 
+Aprire hello **prompt dei comandi di Microsoft Azure**ed effettuare l'accesso. 
 
 ```azurecli
 az login -u "username"
 ```
 
 > [!NOTE]
-> È anche possibile usare `az login` senza l'opzione per l'accesso del dispositivo che richiede l'immissione di un codice in aka.ms/devicelogin.
+> È inoltre possibile utilizzare `az login` senza l'opzione per l'accesso di dispositivo che richiede l'immissione di un codice di aka.ms/devicelogin hello.
 
-Dopo avere digitato l'esempio precedente, viene fornito un codice. Passare a https://aka.ms/devicelogin in un browser per continuare il processo di accesso.
+Una volta digitato hello sopra riportato, viene fornito un codice. Spostarsi in un processo di accesso browser hello toocontinue toohttps://aka.ms/devicelogin.
 
 ![Comando che illustra l'accesso al dispositivo][1]
 
-Nel browser immettere il codice ricevuto. Si verrà reindirizzati a una pagina di accesso.
+Nel browser hello immettere codice hello ricevuto. Si è reindirizzato tooa nella pagina di accesso.
 
-![Browser in cui immettere il codice][2]
+![codice tooenter browser][2]
 
-Dopo avere immesso il codice ed effettuato l'accesso, chiudere il browser per continuare con lo scenario.
+Dopo aver immesso il codice hello si è connessi, hello Chiudi browser toocontinue scenario hello.
 
 ![Accesso eseguito][3]
 
-## <a name="add-a-path-based-rule-to-an-existing-application-gateway"></a>Aggiungere una regola basata su percorso a un gateway applicazione esistente
+## <a name="add-a-path-based-rule-tooan-existing-application-gateway"></a>Aggiungere un gateway di applicazione esistente tooan regola basata sul percorso
 
 Creare un gateway applicazione con una regola di percorso personalizzata
 
 ### <a name="create-a-new-back-end-pool"></a>Creare un nuovo pool back-end
 
-Configurare l'impostazione **imagesBackendPool** del gateway applicazione per il traffico di rete con carico bilanciato nel pool back-end. In questo esempio vengono configurate diverse impostazioni per il nuovo pool back-end. Ogni pool back-end può avere un'impostazione del pool back-end dedicata.  Le impostazioni HTTP back-end vengono usate dalle regole per instradare il traffico verso i membri del pool di back-end corretti. Ciò determina il protocollo e la porta usati durante l'invio di traffico ai membri del pool back-end. Anche le sessioni basate sui cookie sono determinate dalle impostazioni HTTP di back-end.  Se abilitata, l'affinità di sessione basata su cookie invia traffico allo stesso back-end sotto forma di richieste precedenti per ogni pacchetto.
+Configurare impostazioni del gateway applicazione **imagesBackendPool** hello con bilanciamento del carico del traffico di rete nel pool back-end hello. In questo esempio, configurare le impostazioni del pool back-end diverso per il nuovo pool back-end di hello. Ogni pool back-end può avere un'impostazione del pool back-end dedicata.  Le impostazioni HTTP back-end vengono utilizzate per i membri del pool back-end corretto toohello traffico tooroute regole. Questo parametro determina il protocollo di hello e la porta utilizzata durante l'invio di traffico toohello i membri del pool back-end. Sessioni basate su cookie sono determinate anche dalle impostazioni HTTP back-end di hello.  Se abilitata, l'affinità di sessione basato su cookie invia traffico toohello stesso back-end come richieste precedenti per ogni pacchetto.
 
 ```azurecli-interactive
 az network application-gateway address-pool create \
@@ -79,7 +79,7 @@ az network application-gateway address-pool create \
 
 ### <a name="create-a-new-front-end-port"></a>Creare una nuova porta front-end
 
-Configurare la porta front-end per un gateway applicazione. L'oggetto di configurazione della porta front-end viene usato da un listener per definire la porta del gateway applicazione in ascolto del traffico nel listener.
+Configurare hello porta front-end per un gateway applicazione. oggetto di configurazione di Hello porta front-end viene utilizzato un toodefine listener cosa porta hello Gateway applicazione è in attesa del traffico listener hello.
 
 ```azurecli-interactive
 az network application-gateway frontend-port create --port 82 --gateway-name AdatumAppGateway --resource-group myresourcegroup --name port82
@@ -87,20 +87,20 @@ az network application-gateway frontend-port create --port 82 --gateway-name Ada
 
 ### <a name="create-a-new-listener"></a>Creare un nuovo listener
 
-Configurare il listener. Questo passaggio configura il listener per l'indirizzo IP pubblico e la porta usata per ricevere il traffico di rete in ingresso. L'esempio seguente prende in considerazione la configurazione IP front-end configurata in precedenza, la configurazione della porta front-end e un protocollo (HTTP o HTTPS) e configura il listener. In questo esempio, il listener è in ascolto per il traffico HTTP sulla porta 82 all'indirizzo IP pubblico che è stato creato in precedenza.
+Configurare il listener di hello. Questo passaggio consente di configurare il listener hello per l'indirizzo IP pubblico hello e la porta utilizzata tooreceive il traffico di rete in ingresso. Hello di esempio seguente accetta la configurazione IP front-end hello configurato in precedenza, la configurazione della porta front-end e un protocollo (http o https) e configura il listener hello. In questo esempio, il listener hello è in ascolto tooHTTP traffico sulla porta 82 hello indirizzo IP pubblico è stato creato in precedenza.
 
 ```azurecli-interactive
 az network application-gateway http-listener create --name imageListener --frontend-ip appGatewayFrontendIP  --frontend-port port82 --resource-group myresourcegroup --gateway-name AdatumAppGateway
 ```
 
-### <a name="create-the-url-path-map"></a>Creare il mapping dei percorsi URL
+### <a name="create-hello-url-path-map"></a>Creare una mappa del percorso Url hello
 
-Configurare i percorsi della regola per gli URL per i pool back-end. Questo passaggio configura il percorso relativo usato dal gateway applicazione per definire il mapping tra il percorso dell'URL e il pool back-end selezionato per gestire il traffico di rete in ingresso.
+Configurare i percorsi di regola di URL per il pool di back-end hello. Questo passaggio consente di configurare un percorso di hello utilizzato dal gateway toodefine hello mapping tra il percorso URL e il pool back-end viene assegnato il traffico in ingresso di toohandle hello.
 
 > [!IMPORTANT]
-> Ogni percorso deve iniziare con una barra / e l'unica posizione in cui è consentito il carattere "\*" è alla fine. Esempi validi sono /xyz, /xyz* or /xyz/*. La stringa inviata al selettore di percorsi non include alcun testo dopo il primo carattere "?" o "#" e questi caratteri non sono consentiti. 
+> Ogni percorso deve iniziare con / e hello solo un "\*" è consentita, al fine di hello. Alcuni esempi validi sono /xyz, /xyz* o /xyz/*. Hello stringa inserito toohello matcher di percorso non include alcun testo dopo hello innanzitutto "?" o "#" e tali caratteri non consentiti. 
 
-L'esempio seguente crea una regola per il percorso "/images/*" che instrada il traffico al back-end "imagesBackendPool." Questa regola assicura che il traffico per ogni set di URL venga indirizzato al back-end. Ad esempio, http://adatum.com/images/figure1.jpg passa a "imagesBackendPool." In caso di mancata corrispondenza con le regole di percorso predefinite, la configurazione del mapping dei percorsi della regola configura anche un pool di indirizzi back-end predefinito. Ad esempio, http://adatum.com/shoppingcart/test.html passa al pool1 definito come pool predefinito per il traffico senza corrispondenza.
+esempio Hello crea una regola per "/ immagini / *" percorso di routing del traffico tooback-end "imagesBackendPool". Questa regola assicura che il traffico per ciascun set di URL sia indirizzato toohello di back-end. Ad esempio, http://adatum.com/images/figure1.jpg diventa troppo "imagesBackendPool". Se il percorso di hello non corrisponde a una delle regole di percorso predefinito di hello, configurazione della mappa di hello regola percorso consente di configurare anche un pool di indirizzi back-end di predefinito. Ad esempio, http://adatum.com/shoppingcart/test.html passa toopool1 con cui è definito come il pool predefinito hello per il traffico non corrispondente.
 
 ```azurecli-interactive
 az network application-gateway url-path-map create \
@@ -117,7 +117,7 @@ az network application-gateway url-path-map create \
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni sull'offload SSL (Secure Sockets Layer), vedere [Configurare un gateway applicazione per l'offload SSL](application-gateway-ssl-cli.md).
+Se si desidera toolearn sull'offload Secure Sockets Layer (SSL), vedere [configurare un gateway applicazione per l'offload SSL](application-gateway-ssl-cli.md).
 
 
 [scenario]: ./media/application-gateway-create-url-route-cli/scenario.png

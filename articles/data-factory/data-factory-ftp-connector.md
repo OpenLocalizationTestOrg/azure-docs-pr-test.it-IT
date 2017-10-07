@@ -1,6 +1,6 @@
 ---
-title: Spostare dati da un server FTP usando Azure Data Factory | Microsoft Docs
-description: Informazioni su come spostare dati da un server FTP usando Azure Data Factory.
+title: aaaMove dati da un server FTP tramite Data Factory di Azure | Documenti Microsoft
+description: Per ulteriori informazioni vedere toomove dati da un server FTP con Data Factory di Azure.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: jingwang
-ms.openlocfilehash: f8f31f3a2ee02c964737dd32145499f3dcfd0624
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c707e29532b2a8a870603948cb6150ab857bd6ae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-an-ftp-server-by-using-azure-data-factory"></a>Spostare dati da un server FTP usando Azure Data Factory
-Questo articolo illustra come usare l'attività di copia in Azure Data Factory per spostare i dati da un server FTP. Si basa sull'articolo relativo alle [attività di spostamento dei dati](data-factory-data-movement-activities.md), che offre una panoramica generale dello spostamento dei dati con l'attività di copia.
+Questo articolo spiega come hello toouse attività di copia dei dati toomove Data Factory di Azure da un server FTP. È basato su hello [attività lo spostamento dei dati](data-factory-data-movement-activities.md) articolo, che presenta una panoramica generale di spostamento dei dati con attività di copia hello.
 
-È possibile copiare dati da un server FTP a qualsiasi archivio dati di sink supportato. Per un elenco degli archivi dati supportati come sink dall'attività di copia, vedere la tabella relativa agli [archivi dati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats). Data Factory supporta attualmente solo lo spostamento di dati da un server FTP ad altri archivi dati, non da altri archivi dati a un server FTP. Supporta i server FTP locali e cloud.
+È possibile copiare dati da un archivio dati di sink FTP server tooany è supportato. Per un elenco di dati supportati archivi come sink dall'attività di copia hello, vedere hello [supportati archivi dati](data-factory-data-movement-activities.md#supported-data-stores-and-formats) tabella. Data Factory supporta attualmente solo archivia dati mobili da tooother un server FTP, ma non lo spostamento dei dati da altri dati archivia server tooan FTP. Supporta i server FTP locali e cloud.
 
 > [!NOTE]
-> L'attività di copia non elimina il file di origine dopo che è stato correttamente copiato nella destinazione. Se è necessario eliminare il file di origine dopo una copia con esito positivo, creare un'attività personalizzata per eliminare il file e usare l'attività nella pipeline. 
+> attività di copia Hello non elimina i file di origine hello dopo che è la destinazione toohello copiati correttamente. Se è necessario toodelete file di origine hello dopo una copia ha esito positivo, creare un file hello toodelete di attività personalizzata e utilizzare attività hello nella pipeline hello. 
 
 ## <a name="enable-connectivity"></a>Abilitare la connettività
-Se si spostano dati da un server FTP **locale** in un archivio dati cloud, ad esempio in Archiviazione BLOB di Azure, installare e usare Gateway di gestione dati. Gateway di gestione dati è un agente client installato nel computer locale, che consente ai servizi cloud di connettersi alla risorsa locale. Per informazioni dettagliate, vedere [Gateway di gestione dati](data-factory-data-management-gateway.md). Per istruzioni dettagliate sulla configurazione e sull'uso del gateway, vedere [Spostare dati tra origini locali e il cloud](data-factory-move-data-between-onprem-and-cloud.md). Il gateway consente di connettersi a un server FTP anche se il server si trova in una macchina virtuale (VM) di infrastruttura distribuita come servizio (IaaS) di Azure.
+Se si stanno spostando i dati da un **locale** archivio dati di cloud tooa server FTP (ad esempio, tooAzure nell'archiviazione Blob), installare e usare Gateway di gestione dati. Hello Gateway di gestione dati è un agente client installato nel computer locale e consente una risorsa locale tooan tooconnect dei servizi cloud. Per informazioni dettagliate, vedere [Gateway di gestione dati](data-factory-data-management-gateway.md). Per istruzioni dettagliate sulla configurazione di gateway hello e l'uso, vedere [lo spostamento dei dati tra le sedi locali e cloud](data-factory-move-data-between-onprem-and-cloud.md). Si utilizza server di tooan FTP di hello gateway tooconnect, anche se il server di hello in un'infrastruttura di Azure come servizio (IaaS) macchina virtuale (VM).
 
-È possibile installare il gateway nello stesso computer locale o nella VM IaaS come server FTP. È tuttavia consigliabile installare il gateway in un computer separato o in una macchina virtuale IaaS distinta per evitare conflitti tra le risorse e ottenere prestazioni migliori. Quando si installa il gateway in un computer separato, questo deve poter accedere al server FTP.
+È possibile tooinstall hello gateway hello stesso in locale macchina o VM IaaS come hello server FTP. Tuttavia, si consiglia di installare gateway hello in un computer distinto o contesa delle risorse tooavoid VM IaaS e per ottenere prestazioni migliori. Quando si installa il gateway hello in un computer separato, macchina hello debba essere server FTP di hello tooaccess in grado di.
 
-## <a name="get-started"></a>Introduzione
+## <a name="get-started"></a>Attività iniziali
 È possibile creare una pipeline con l'attività di copia che sposta i dati da un'origine FTP usando diversi strumenti o API.
 
-Il modo più semplice per creare una pipeline è usare la **Copia guidata di Data Factory**. Per una procedura dettagliata, vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md).
+toocreate modo più semplice di Hello una pipeline è hello toouse **Data Factory Copia guidata**. Per una procedura dettagliata, vedere [Esercitazione: Creare una pipeline usando la Copia guidata](data-factory-copy-data-wizard-tutorial.md).
 
-È possibile anche usare gli strumenti seguenti per creare una pipeline: **portale di Azure**, **Visual Studio**, **PowerShell**, **modello di Azure Resource Manager**, **API .NET** e **API REST**. Vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia.
+È inoltre possibile utilizzare i seguenti strumenti toocreate una pipeline hello: **portale di Azure**, **Visual Studio**, **PowerShell**, **modellodigestionerisorsediAzure**, **API .NET**, e **API REST**. Vedere [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) per istruzioni dettagliate toocreate una pipeline con attività di copia.
 
-Se si usano gli strumenti o le API, eseguire la procedura seguente per creare una pipeline che sposta i dati da un archivio dati di origine a un archivio dati sink:
+Se si utilizza hello o le API, eseguire hello passaggi toocreate una pipeline che consente di spostare dati da un'origine tooa archiviano dati sink seguenti:
 
-1. Creare i **servizi collegati** per collegare gli archivi di dati di input e output alla data factory.
-2. Creare i **set di dati** per rappresentare i dati di input e di output per le operazioni di copia.
+1. Creare **servizi collegati** toolink dati di input e output archivi tooyour data factory.
+2. Creare **set di dati** toorepresent di input e output dell'operazione di copia di dati per hello.
 3. Creare una **pipeline** con un'attività di copia che accetti un set di dati come input e un set di dati come output.
 
-Quando si usa la procedura guidata, le definizioni JSON per queste entità di data factory (servizi, set di dati e pipeline collegati) vengono create automaticamente. Quando si usano gli strumenti o le API, ad eccezione delle API .NET, usare il formato JSON per definire le entità di Data Factory. Per un esempio con definizioni JSON per entità di Data Factory usate per copiare dati da un archivio dati FTP, vedere la sezione [Esempio JSON: copiare dati da un server FTP al BLOB di Azure](#json-example-copy-data-from-ftp-server-to-azure-blob) di questo articolo.
+Quando si utilizza la procedura guidata hello, le definizioni di JSON per queste entità Data Factory (servizi collegati, i set di dati e della pipeline hello) vengono create automaticamente per l'utente. Quando si utilizzano strumenti o le API (ad eccezione delle API .NET), utilizzando il formato JSON hello è definire queste entità Data Factory. Per un esempio con le definizioni di JSON per le entità Data Factory dati toocopy utilizzato da un archivio dati FTP, vedere hello [esempio JSON: copiare i dati da blob tooAzure di server FTP](#json-example-copy-data-from-ftp-server-to-azure-blob) sezione di questo articolo.
 
 > [!NOTE]
-> Per altre informazioni sui formati di compressione e i file e supportati da usare, vedere [Informazioni sui formati di compressione e sui file supportati da Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
+> Per informazioni dettagliate su toouse di formati di file e compressione supportati, vedere [formati di File e la compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-Le sezioni seguenti riportano informazioni dettagliate sulle proprietà JSON che vengono usate per definire entità di Data Factory specifiche di FTP.
+Hello le sezioni seguenti fornisce dettagli sulle proprietà JSON che vengono utilizzati toodefine Data Factory entità specifiche tooFTP.
 
 ## <a name="linked-service-properties"></a>Proprietà del servizio collegato
-La tabella seguente descrive gli elementi JSON specifici di un servizio collegato FTP.
+Hello nella tabella seguente descrive servizio FTP collegato tooan specifico di elementi JSON.
 
 | Proprietà | Descrizione | Obbligatorio | Predefinito |
 | --- | --- | --- | --- |
-| type |Impostare su FtpServer. |Sì |&nbsp; |
-| host |Specificare il nome o indirizzo IP del server FTP. |Sì |&nbsp; |
-| authenticationType |Specificare il tipo di autenticazione. |Sì |Di base, anonimo |
-| username |Specificare l'utente che ha accesso al server FTP. |No |&nbsp; |
-| password |Specificare la password per l'utente (nome utente). |No |&nbsp; |
-| encryptedCredential |Specificare le credenziali crittografate per accedere al server FTP. |No |&nbsp; |
-| gatewayName |Specificare il nome del gateway in Gateway di gestione dati per connettersi a un server FTP locale. |No |&nbsp; |
-| port |Specificare la porta su cui è in ascolto il server FTP. |No |21 |
-| enableSsl |Specificare se usare FTP su un canale SSL/TLS. |No |true |
-| enableServerCertificateValidation |Specificare se abilitare la convalida del certificato SSL del server quando si usa FTP sul canale SSL/TLS. |No |true |
+| type |Impostare questo tooFtpServer. |Sì |&nbsp; |
+| host |Specifica il nome di hello o indirizzo IP del server FTP hello. |Sì |&nbsp; |
+| authenticationType |Specificare il tipo di autenticazione hello. |Sì |Di base, anonimo |
+| username |Specificare gli utenti hello con server di accesso toohello FTP. |No |&nbsp; |
+| password |Specificare la password hello per l'utente di hello (nomeutente). |No |&nbsp; |
+| encryptedCredential |Specificare crittografato hello credenziali tooaccess hello FTP server. |No |&nbsp; |
+| gatewayName |Specificare il nome di hello del gateway hello nel server FTP di Gateway di gestione dati tooconnect tooan locale. |No |&nbsp; |
+| port |Specificare hello porta su cui hello FTP server è in ascolto. |No |21 |
+| enableSsl |Specificare se toouse FTP su un canale SSL/TLS. |No |true |
+| enableServerCertificateValidation |Specificare se il server tooenable SSL la convalida del certificato quando si utilizza FTP tramite il canale SSL/TLS. |No |true |
 
 ### <a name="use-anonymous-authentication"></a>Usare l'autenticazione anonima
 
@@ -141,25 +141,25 @@ La tabella seguente descrive gli elementi JSON specifici di un servizio collegat
 ## <a name="dataset-properties"></a>Proprietà dei set di dati
 Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione di set di dati, vedere l'articolo sulla [creazione di set di dati](data-factory-create-datasets.md). Le sezioni come struttura, disponibilità e criteri di un set di dati JSON sono simili per tutti i tipi di set di dati.
 
-La sezione **typeProperties** è diversa per ogni tipo di set di dati. Fornisce informazioni specifiche del tipo di set di dati. La sezione **typeProperties** per un set di dati di tipo **FileShare** presenta le proprietà seguenti:
+Hello **typeProperties** sezione è diverso per ogni tipo di set di dati. Fornisce informazioni che sono il tipo di set di dati toohello specifico. Hello **typeProperties** sezione per un set di dati di tipo **FileShare** ha hello le proprietà seguenti:
 
 | Proprietà | Descrizione | Obbligatorio |
 | --- | --- | --- |
-| folderPath |Sottopercorso alla cartella. Usare il carattere di escape "\" per i caratteri speciali nella stringa. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** per ottenere percorsi di cartelle basati su data e ora di inizio e fine delle sezioni. |Sì |
-| fileName |Specificare il nome del file in **folderPath** se si vuole che la tabella faccia riferimento a un file specifico nella cartella. Se non si specifica alcun valore per questa proprietà, la tabella punta a tutti i file nella cartella.<br/><br/>Quando **fileName** non viene specificato per un set di dati di output, il formato del nome del file generato è il seguente: <br/><br/>Data<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
-| fileFilter |Specificare un filtro da usare per selezionare un sottoinsieme di file in **folderPath** anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2014-1-?.txt"`<br/><br/> **fileFilter** è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con Hadoop Distributed File System (HDFS). |No |
-| partitionedBy |Usata per specificare una proprietà **folderPath** e **fileName** dinamica per i dati della serie temporale. È ad esempio possibile specificare un **folderPath** contenente i parametri per ogni ora di dati. |No |
-| format | Sono supportati i tipi di formato seguenti: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat** e **ParquetFormat**. Impostare la proprietà **type** nell'area format su uno di questi valori. Per altre informazioni, vedere le sezioni [Formato testo](data-factory-supported-file-and-compression-formats.md#text-format), [Formato JSON](data-factory-supported-file-and-compression-formats.md#json-format), [Formato AVRO](data-factory-supported-file-and-compression-formats.md#avro-format), [Formato OCR](data-factory-supported-file-and-compression-formats.md#orc-format) e [Formato Parquet](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Per copiare i file così come sono tra archivi basati su file (copia binaria), è possibile ignorare la sezione del formato nelle definizioni dei set di dati di input e di output. |No |
-| compressione | Specificare il tipo e il livello di compressione dei dati. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
-| useBinaryTransfer |Specificare se usare la modalità di trasferimento binario. I valori sono true per la modalità binaria (valore predefinito) e false per ASCII. Questa proprietà può essere usata solo quando il tipo di servizio collegato associato è di tipo: FtpServer. |No |
+| folderPath |Cartella toohello sottopercorso. Utilizzare il carattere di escape ' \ ' per i caratteri speciali nella stringa hello. Per ottenere alcuni esempi, vedere [Servizio collegato di esempio e definizioni del set di dati](#sample-linked-service-and-dataset-definitions) .<br/><br/>È possibile combinare questa proprietà con **partitionBy** toohave i percorsi delle cartelle in base alle sezioni di inizio e fine di data e ora. |Sì |
+| fileName |Specificare il nome di hello del file hello in hello **folderPath** se si desidera hello tabella toorefer tooa specifici file nella cartella hello. Se non si specifica alcun valore per questa proprietà, la tabella hello punta tooall file nella cartella hello.<br/><br/>Quando **fileName** non specificato per un set di dati di output, hello nome del file hello generato è hello seguente formato: <br/><br/>Data<Guid>.txt, ad esempio: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |No |
+| fileFilter |Specificare un tooselect toobe utilizzato filtro un subset di file in hello **folderPath**, anziché tutti i file.<br/><br/>I valori consentiti sono: `*` (più caratteri) e `?` (carattere singolo).<br/><br/>Esempio 1: `"fileFilter": "*.log"`<br/>Esempio 2: `"fileFilter": 2014-1-?.txt"`<br/><br/> **fileFilter** è applicabile per un set di dati di input FileShare. Questa proprietà non è supportata con Hadoop Distributed File System (HDFS). |No |
+| partitionedBy |Utilizzato toospecify dinamico **folderPath** e **fileName** per dati della serie temporale. È ad esempio possibile specificare un **folderPath** contenente i parametri per ogni ora di dati. |No |
+| format | è supportato i seguenti tipi di formato Hello: **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Set hello **tipo** proprietà in formato tooone di questi valori. Per ulteriori informazioni, vedere hello [formato testo](data-factory-supported-file-and-compression-formats.md#text-format), [formato Json](data-factory-supported-file-and-compression-formats.md#json-format), [formato Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [formato Orc](data-factory-supported-file-and-compression-formats.md#orc-format), e [Parquet formato ](data-factory-supported-file-and-compression-formats.md#parquet-format) sezioni. <br><br> Se si desidera che il file toocopy come se fossero tra archivi basati su file (copia binaria), ignorare sezione formato hello in entrambe le definizioni di set di dati di input e output. |No |
+| compressione | Specificare il tipo di hello e livello di compressione per dati hello. I tipi supportati sono **GZip**, **Deflate**, **BZip2** e **ZipDeflate**, mentre i livelli supportati sono **Ottimale** e **Più veloce**. Per altre informazioni, vedere [File e formati di compressione in Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |No |
+| useBinaryTransfer |Specificare se binario hello toouse modalità di trasferimento. Hello valori sono true per la modalità binaria (si tratta di valore predefinito di hello) e false per ASCII. Questa proprietà può essere utilizzata solo quando hello tipo di servizio collegato associata è di tipo: server FTP. |No |
 
 > [!NOTE]
 > **fileName** e **fileFilter** non possono essere usati contemporaneamente.
 
-### <a name="use-the-partionedby-property"></a>Usare la proprietà partionedBy
-Come indicato nella sezione precedente, è possibile specificare un valore **folderPath** e **fileName** dinamico per i dati delle serie temporali con la proprietà **partitionedBy**.
+### <a name="use-hello-partionedby-property"></a>Utilizzare proprietà partionedBy hello
+Come indicato nella sezione precedente di hello, è possibile specificare un dinamico **folderPath** e **fileName** per dati della serie temporale con hello **partitionedBy** proprietà.
 
-Per informazioni sui set di dati delle serie temporali, sulla pianificazione e sulle sezioni, vedere gli articoli relativi a [creazione di set di dati](data-factory-create-datasets.md), [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md) e [creazione di pipeline](data-factory-create-pipelines.md).
+toolearn sui set di dati serie ora, la pianificazione e le sezioni, vedere [creazione dei DataSet](data-factory-create-datasets.md), [pianificazione ed esecuzione](data-factory-scheduling-and-execution.md), e [creazione di pipeline](data-factory-create-pipelines.md).
 
 #### <a name="sample-1"></a>Esempio 1
 
@@ -170,7 +170,7 @@ Per informazioni sui set di dati delle serie temporali, sulla pianificazione e s
     { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
 ],
 ```
-In questo esempio {Slice} viene sostituito con il valore della variabile di sistema SliceStart di Data Factory nel formato specificato (AAAAMMGGHH). SliceStart fa riferimento all'ora di inizio della sezione. Il percorso cartella è diverso per ogni sezione. Ad esempio: wikidatagateway/wikisampledataout/2014100103 o wikidatagateway/wikisampledataout/2014100104.
+In questo esempio, {Slice} viene sostituito con il valore di hello della variabile di sistema di Data Factory SliceStart, in hello formato (YYYYMMDDHH) specificato. Hello SliceStart fa riferimento l'ora toostart sezione hello. percorso della cartella Hello è diversa per ogni sezione. Ad esempio: wikidatagateway/wikisampledataout/2014100103 o wikidatagateway/wikisampledataout/2014100104.
 
 #### <a name="sample-2"></a>Esempio 2
 
@@ -185,23 +185,23 @@ In questo esempio {Slice} viene sostituito con il valore della variabile di sist
     { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } }
 ],
 ```
-In questo esempio l'anno, il mese, il giorno e l'ora di SliceStart vengono estratti in variabili separate che vengono usate dalle proprietà **folderPath** e **fileName**.
+In questo esempio hello anno, mese, giorno e ora della proprietà SliceStart vengono estratti in variabili distinte che vengono utilizzate da hello **folderPath** e **fileName** proprietà.
 
 ## <a name="copy-activity-properties"></a>Proprietà dell'attività di copia
 Per un elenco completo delle sezioni e delle proprietà disponibili per la definizione delle attività, vedere l'articolo sulla [creazione di pipeline](data-factory-create-pipelines.md). Per tutti i tipi di attività sono disponibili proprietà come nome, descrizione, tabelle di input e output e criteri.
 
-D'altra parte, le proprietà disponibili nella sezione **typeProperties** dell'attività variano in base al tipo di attività. Per l'attività di copia, le proprietà del tipo variano in base ai tipi di origine e sink.
+Le proprietà disponibili nella hello **typeProperties** sezione di hello hello attività, invece, variano in base a ogni tipo di attività. Per attività di copia hello, le proprietà del tipo hello variano a seconda di hello tipi di origini e sink.
 
-Nell'attività di copia con origine di tipo **FileSystemSource**, nella sezione **typeProperties** sono disponibili le proprietà seguenti:
+Nell'attività di copia, l'origine hello è di tipo **FileSystemSource**, hello seguenti proprietà è disponibile in **typeProperties** sezione:
 
 | Proprietà | Descrizione | Valori consentiti | Obbligatorio |
 | --- | --- | --- | --- |
-| ricorsiva |Indica se i dati vengono letti in modo ricorsivo dalle cartelle secondarie o solo dalla cartella specificata. |True, False (valore predefinito) |No |
+| ricorsiva |Indica se hello i dati letti in modo ricorsivo dalle sottocartelle di hello o solo dalla cartella specificata hello. |True, False (valore predefinito) |No |
 
-## <a name="json-example-copy-data-from-ftp-server-to-azure-blob"></a>Esempio JSON: copiare i dati dal server FTP in BLOB di Azure
-Questo esempio illustra come copiare dati dal server FTP in Archiviazione BLOB di Azure. I dati possono tuttavia essere copiati direttamente in uno qualsiasi dei sink indicati nella sezione [Archivi dati e formati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats), usando l'attività di copia in Data Factory.  
+## <a name="json-example-copy-data-from-ftp-server-tooazure-blob"></a>Esempio JSON: copiare i dati da tooAzure server FTP Blob
+Questo esempio viene illustrato come toocopy dati da un tooAzure server FTP nell'archiviazione Blob. Tuttavia, i dati possono essere copiati direttamente tooany di hello sink hello dichiarato nella [archivi dati e formati supportati](data-factory-data-movement-activities.md#supported-data-stores-and-formats), utilizzando attività di copia hello in Data Factory.  
 
-Gli esempi seguenti specificano le definizioni JSON di esempio da usare per creare una pipeline con il [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) o [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md):
+Negli esempi seguenti Hello forniscono definizioni JSON di esempio che è possibile utilizzare una pipeline toocreate utilizzando [portale di Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), o [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md):
 
 * Un servizio collegato di tipo [FtpServer](#linked-service-properties)
 * Un servizio collegato di tipo [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)
@@ -209,17 +209,17 @@ Gli esempi seguenti specificano le definizioni JSON di esempio da usare per crea
 * Un [set di dati](data-factory-create-datasets.md) di output di tipo [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties)
 * Una [pipeline](data-factory-create-pipelines.md) con attività di copia che usa [FileSystemSource](#copy-activity-properties) e [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)
 
-Nell'esempio i dati vengono copiati da un server FTP a un BLOB di Azure ogni ora. Le proprietà JSON usate in questi esempi sono descritte nelle sezioni riportate dopo gli esempi.
+esempio Hello copia dati da un tooan server FTP blob di Azure ogni ora. proprietà JSON Hello usata in questi esempi sono descritti nelle sezioni riportate di seguito esempi di hello.
 
 ### <a name="ftp-linked-service"></a>Servizio collegato FTP
 
-Questo esempio usa l'autenticazione di base con il nome utente e la password in testo normale. È possibile anche usare uno dei tre metodi seguenti:
+In questo esempio viene utilizzata l'autenticazione di base, con nome utente hello e una password in testo normale. È inoltre possibile utilizzare uno dei seguenti modi hello:
 
 * Autenticazione anonima
 * Autenticazione di base con credenziali crittografate
 * FTP su SSL/TLS (FTPS)
 
-Per i diversi tipi di autenticazione disponibili, vedere la sezione relativa al [servizio collegato FTP](#linked-service-properties).
+Vedere hello [servizio collegato FTP](#linked-service-properties) sezione per diversi tipi di autenticazione è possibile utilizzare.
 
 ```JSON
 {
@@ -250,9 +250,9 @@ Per i diversi tipi di autenticazione disponibili, vedere la sezione relativa al 
 ```
 ### <a name="ftp-input-dataset"></a>Set di dati di input FTP
 
-Questo set di dati fa riferimento alla cartella FTP `mysharedfolder` e al file `test.csv`. La pipeline copia il file nella destinazione.
+Questo set di dati fa riferimento la cartella FTP toohello `mysharedfolder` e file `test.csv`. Hello pipeline copie hello toohello destinazione file.
 
-Impostando **external** su **true** si comunica al servizio data factory che il set di dati è esterno alla data factory e non è prodotto da un'attività al suo interno.
+Impostazione **esterno** troppo**true** informa il servizio di Data Factory hello hello set di dati è esterno toohello data factory e non viene generato da un'attività nella data factory di hello.
 
 ```JSON
 {
@@ -276,7 +276,7 @@ Impostando **external** su **true** si comunica al servizio data factory che il 
 
 ### <a name="azure-blob-output-dataset"></a>Set di dati di output del BLOB di Azure
 
-I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1). Il percorso della cartella per il BLOB viene valutato dinamicamente in base all'ora di inizio della sezione in fase di elaborazione. Il percorso della cartella usa le parti anno, mese, giorno e ora dell'ora di inizio.
+I dati vengono scritti tooa nuovo blob ogni ora (frequenza: ora, intervallo: 1). percorso della cartella Hello per blob hello viene valutato dinamicamente, in base a ora di inizio hello della sezione hello che viene elaborato. percorso della cartella Hello Usa le parti di anno, mese, giorno e ore hello hello ora di inizio.
 
 ```JSON
 {
@@ -337,7 +337,7 @@ I dati vengono scritti in un nuovo BLOB ogni ora (frequenza: ora, intervallo: 1)
 
 ### <a name="a-copy-activity-in-a-pipeline-with-file-system-source-and-blob-sink"></a>Un'attività di copia in una pipeline con un'origine su file system e un sink BLOB
 
-La pipeline contiene un'attività di copia configurata per usare i set di dati di input e output ed è programmata per essere eseguita ogni ora. Nella definizione JSON della pipeline, il tipo di **origine** è impostato su **FileSystemSource** e il tipo di **sink** è impostato su **BlobSink**.
+pipeline Hello contiene un'attività di copia che è configurato toouse hello set di dati di input e output, senza che sia pianificato toorun ogni ora. Nella pipeline hello definizione JSON, hello **origine** tipo è stato impostato troppo**FileSystemSource**, hello e **sink** tipo è stato impostato troppo**BlobSink**.
 
 ```JSON
 {
@@ -377,11 +377,11 @@ La pipeline contiene un'attività di copia configurata per usare i set di dati d
 }
 ```
 > [!NOTE]
-> Per eseguire il mapping dal set di dati di origine alle colonne del set di dati sink, vedere [Mapping delle colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
+> colonne toomap toocolumns set di dati di origine dal sink set di dati, vedere [mapping tra colonne del set di dati in Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere gli articoli seguenti:
+Vedere hello seguenti articoli:
 
-* Per informazioni sui fattori chiave che influiscono sulle prestazioni dello spostamento dei dati, ovvero dell'attività di copia, in Data Factory e sui vari modi per ottimizzare tali prestazioni, vedere la [Guida alle prestazioni delle attività di copia e all'ottimizzazione](data-factory-copy-activity-performance.md) .
+* toolearn sulla chiave di fattori che influiscono sulle prestazioni di spostamento (attività di copia) dei dati in Data Factory e toooptimize modi diversi, vedere hello [copiare ottimizzazione Guida e alle prestazioni di attività](data-factory-copy-activity-performance.md).
 
-* Per le istruzioni dettagliate sulla creazione di una pipeline con un'attività di copia, vedere l'[esercitazione sull'attività di copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* Per istruzioni dettagliate per la creazione di una pipeline con attività di copia, vedere hello [esercitazione attività Copia](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).

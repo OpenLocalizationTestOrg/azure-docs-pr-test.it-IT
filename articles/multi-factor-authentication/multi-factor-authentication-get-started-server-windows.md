@@ -1,6 +1,6 @@
 ---
-title: Autenticazione di Windows e server Azure MFA | Documentazione Microsoft
-description: "Questa è la pagina di autenticazione a più fattori di Azure che sarà utile per distribuire l'autenticazione di Windows e Server Azure Multi-Factor Authentication."
+title: "aaaWindows l'autenticazione e Server di autenticazione a più fattori di Azure | Documenti Microsoft"
+description: Si tratta hello Azure multi-factor authentication pagina di supporto della distribuzione di autenticazione di Windows e il Server Azure multi-Factor Authentication.
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,38 +15,38 @@ ms.date: 06/06/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 7e6384ea8fea686b5cad1a3bc3007252b9cfcd65
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fc38fd751966bf883d4eae7c48055988922af80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-authentication-and-azure-multi-factor-authentication-server"></a>L'autenticazione di Windows e Azure il Server Multi-Factor Authentication
-Usare la sezione Autenticazione di Windows del server Azure Multi-Factor Authentication per abilitare e configurare l'autenticazione di Windows per le applicazioni. Prima di configurare l'autenticazione di Windows, tenere presente quanto segue:
+Utilizzare sezione autenticazione di Windows hello di hello del Server Azure multi-Factor Authentication tooenable e configurare l'autenticazione di Windows per le applicazioni. Prima di configurare l'autenticazione di Windows, tenere hello seguente elenco presente:
 
-* Dopo aver eseguito la configurazione, riavviare Azure Multi-Factor Authentication per rendere effettivo Servizi terminal.
-* Se "Richiedere corrispondenza utente Azure Multi-Factor Authentication" è selezionata e non si è nell'elenco degli utenti, non sarà possibile accedere alla macchina dopo il riavvio.
-* La funzione IP attendibili dipende da se l'applicazione può fornire l'IP del client con l'autenticazione. Attualmente solo la funzione Servizi Terminal è supportata.  
+* Dopo l'installazione, riavviare hello Azure multi-Factor Authentication per effetto di tootake di servizi Terminal.
+* Se non sono nell'elenco di utenti hello 'Corrispondenza utente richiedono Azure multi-Factor Authentication' è selezionata, non sarà in grado di toolog macchina hello dopo il riavvio.
+* Indirizzi IP attendibili dipende se applicazione hello di fornire l'indirizzo IP con l'autenticazione di hello hello del client. Attualmente solo la funzione Servizi Terminal è supportata.  
 
 > [!NOTE]
-> Questa funzionalità non è supportata per proteggere Servizi Terminal in Windows Server 2012 R2.
+> Questa funzionalità non è supportato toosecure di servizi Terminal in Windows Server 2012 R2.
 
-## <a name="to-secure-an-application-with-windows-authentication-use-the-following-procedure"></a>Per proteggere un'applicazione con l'autenticazione di Windows, utilizzare la procedura seguente.
-1. Nel server Microsoft Azure Multi-Factor Authentication fare clic sull'icona Autenticazione di Windows.
+## <a name="toosecure-an-application-with-windows-authentication-use-hello-following-procedure"></a>toosecure un'applicazione con l'autenticazione di Windows, utilizzare hello seguente procedura.
+1. In hello del Server Azure multi-Factor Authentication fare clic sull'icona di autenticazione di Windows hello.
    ![Autenticazione di Windows](./media/multi-factor-authentication-get-started-server-windows/windowsauth.png)
-2. Selezionare la casella di controllo **Abilita autenticazione di Windows**. Per impostazione predefinita, questa casella è deselezionata.
-3. La scheda applicazioni consente all'amministratore di configurare uno o più applicazioni per l'autenticazione di Windows.
-4. Selezionare un server o un'applicazione, specificare se il server/applicazione è abilitato. Fare clic su **OK**.
+2. Controllare hello **abilitare l'autenticazione di Windows** casella di controllo. Per impostazione predefinita, questa casella è deselezionata.
+3. scheda applicazioni Hello consente hello amministratore tooconfigure uno o più applicazioni per l'autenticazione di Windows.
+4. Selezionare un server o l'applicazione: specificare se i server o l'applicazione hello è abilitata. Fare clic su **OK**.
 5. Fare clic su **Aggiungi...**
-6. La scheda di ID attendibili consente di ignorare Azure Multi-Factor Authentication per le sessioni Windows provenienti da IP specifici. Ad esempio, se i dipendenti usano l'applicazione dall'ufficio e da casa, è possibile decidere di non volere che i loro telefoni squillino per Azure Multi-Factor Authentication in ufficio. A tale scopo, specificare la subnet dell'ufficio come voce di ID attendibili.
+6. scheda indirizzi IP attendibili Hello consente tooskip Azure multi-Factor Authentication per le sessioni Windows provenienti da IP specifici. Ad esempio, se i dipendenti usano un'applicazione hello da office hello e da casa, si può decidere che non si desidera far squillare per Azure multi-Factor Authentication in ufficio hello loro telefoni. A tale scopo, è necessario specificare subnet dell'ufficio hello come voce di indirizzi IP attendibili.
 7. Fare clic su **Aggiungi...**
-8. Selezionare **IP singolo** se si vuole ignorare un singolo indirizzo IP.
-9. Selezionare **Intervallo IP** se si vuole ignorare un intero intervallo di indirizzi IP. Esempio: 10.63.193.1-10.63.193.100.
-10. Selezionare **Subnet** per specificare un intervallo di indirizzi IP usando la notazione subnet. Immettere l’IP iniziale della subnet e scegliere la mask appropriata dall'elenco a discesa.
+8. Selezionare **IP singolo** se si desidera tooskip un singolo indirizzo IP.
+9. Selezionare **intervallo IP** se si desidera tooskip un intero intervallo IP. Esempio: 10.63.193.1-10.63.193.100.
+10. Selezionare **Subnet** se si desidera toospecify un intervallo di indirizzi IP utilizzando la notazione di subnet. Immettere l'IP iniziale della subnet hello e selezionare hello netmask appropriata dall'elenco a discesa hello.
 11. Fare clic su **OK**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
 - [Configurare dispositivi VPN di terze parti per il server Azure MFA](multi-factor-authentication-advanced-vpn-configurations.md)
 
-- [Ampliare l'infrastruttura di autenticazione esistente con l'estensione NPS per Azure MFA](multi-factor-authentication-nps-extension.md)
+- [Aumentare l'infrastruttura di autenticazione esistente con hello estensione dei criteri di rete per Azure MFA](multi-factor-authentication-nps-extension.md)

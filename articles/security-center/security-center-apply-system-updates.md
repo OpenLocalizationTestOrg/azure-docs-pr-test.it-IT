@@ -1,6 +1,6 @@
 ---
-title: Applicare gli aggiornamenti del sistema nel Centro sicurezza di Azure | Microsoft Docs
-description: Questo documento illustra come implementare le raccomandazioni **Applica gli aggiornamenti del sistema** e **Riavvia dopo gli aggiornamenti del sistema** del Centro sicurezza di Azure.
+title: aggiornamenti del sistema aaaApply in Centro sicurezza di Azure | Documenti Microsoft
+description: Questo documento viene illustrato come tooimplement hello indicazioni Centro sicurezza di Azure * * applicare gli aggiornamenti di sistema * * e * * riavviare il sistema dopo gli aggiornamenti di sistema * *.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/03/2017
 ms.author: terrylan
-ms.openlocfilehash: 50cdea437db5387813c6a3905d14b6904d2aba34
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02024f1558b4758c09141fe1934c2e1a9845cc96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="apply-system-updates-in-azure-security-center"></a>Applicare gli aggiornamenti del sistema nel Centro sicurezza di Azure
-Il Centro sicurezza di Azure monitora ogni giorno le macchine virtuali (VM) Windows e Linux alla ricerca di eventuali aggiornamenti mancanti del sistema operativo. Il Centro sicurezza recupera un elenco di aggiornamenti di sicurezza e critici disponibili da Windows Update o Windows Server Update Services (WSUS), in base al servizio configurato nella macchina virtuale Windows.  Il Centro sicurezza cerca anche gli aggiornamenti più recenti nei sistemi Linux. Se nella macchina virtuale non è stato applicato un aggiornamento del sistema, il Centro sicurezza ne consiglierà l'applicazione.
+Il Centro sicurezza di Azure monitora ogni giorno le macchine virtuali (VM) Windows e Linux alla ricerca di eventuali aggiornamenti mancanti del sistema operativo. Il Centro sicurezza recupera un elenco di aggiornamenti di sicurezza e critici disponibili da Windows Update o Windows Server Update Services (WSUS), in base al servizio configurato nella macchina virtuale Windows.  Centro sicurezza PC controlla anche per gli aggiornamenti più recenti di hello nei sistemi Linux. Se nella macchina virtuale non è stato applicato un aggiornamento del sistema, il Centro sicurezza ne consiglierà l'applicazione.
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio.  Questa non è una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questa non è una guida dettagliata.
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
-1. Nel pannello **Consigli** selezionare **Applica gli aggiornamenti del sistema**.
+## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
+1. In hello **indicazioni** pannello seleziona **applicare gli aggiornamenti di sistema**.
 
    ![Applicare gli aggiornamenti di sistema][1]
-2. Viene visualizzato il pannello **Applica gli aggiornamenti del sistema** , che mostra un elenco di macchine virtuali prive di alcuni aggiornamenti del sistema. Selezionare una macchina virtuale.
+2. Hello **applicare gli aggiornamenti di sistema** pannello verrà aperto un elenco di macchine virtuali privi di aggiornamenti di sistema. Selezionare una macchina virtuale.
 
    ![Selezionare una macchina virtuale][2]
 3. Viene visualizzato un pannello che mostra un elenco di aggiornamenti mancanti per la VM. Selezionare un aggiornamento del sistema. In questo esempio viene selezionato l'aggiornamento KB3156016.
 
    ![Aggiornamenti della sicurezza mancanti][3]
 
-4. Seguire la procedura illustrata nel pannello **Aggiornamento per la sicurezza** per applicare l'aggiornamento mancante.
+4. Seguire i passaggi hello hello **aggiornamento della sicurezza** tooapply pannello hello aggiornamento mancante.
 
    ![Aggiornamento della sicurezza][4]
 
 ## <a name="reboot-after-system-updates"></a>Riavviare dopo gli aggiornamenti del sistema
-1. Tornare al pannello **Raccomandazioni** . Dopo l'applicazione degli aggiornamenti del sistema è stata generata una nuova voce, denominata **Riavvia dopo gli aggiornamenti del sistema**. Questa voce indica che è necessario avviare la VM per completare il processo di applicazione degli aggiornamenti del sistema.
+1. Restituire toohello **indicazioni** blade. Dopo l'applicazione degli aggiornamenti del sistema è stata generata una nuova voce, denominata **Riavvia dopo gli aggiornamenti del sistema**. Questa voce indica che è necessario che il processo tooreboot hello VM toocomplete hello di applicazione degli aggiornamenti di sistema.
 
    ![Riavviare dopo gli aggiornamenti del sistema][5]
-2. Selezionare **Riavvia dopo gli aggiornamenti del sistema**. Verrà visualizzato il pannello **In attesa di un riavvio per completare gli aggiornamenti del sistema** che mostra un elenco di macchine virtuali che devono essere riavviate per completare il processo di aggiornamento del sistema.
+2. Selezionare **Riavvia dopo gli aggiornamenti del sistema**. Verrà visualizzata **è un riavvio in sospeso toocomplete gli aggiornamenti del sistema** blade che visualizza un elenco di macchine virtuali che è necessario toorestart toocomplete hello applica il processo di aggiornamento del sistema.
 
    ![Riavvio in sospeso][6]
 
-Riavviare la VM da Azure per completare il processo.
+Riavviare hello VM dal processo di hello toocomplete Azure.
 
 ## <a name="see-also"></a>Vedere anche
-Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
 
-* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) -informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : post di blog sulla sicurezza e sulla conformità di Azure.
 
 <!--Image references-->

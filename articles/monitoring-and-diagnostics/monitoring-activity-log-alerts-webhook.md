@@ -1,6 +1,6 @@
 ---
-title: "Informazioni sullo schema webhook degli avvisi del log attività | Microsoft Docs"
-description: "Informazioni sullo schema del formato JSON che viene pubblicato in un URL del webhook all'attivazione di un avviso del log attività."
+title: "schema di webhook hello aaaUnderstand utilizzato negli avvisi del registro attività | Documenti Microsoft"
+description: "Informazioni sullo schema hello di hello JSON che viene registrato l'URL del webhook tooa quando viene attivato un avviso di log di attività."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: johnkem
-ms.openlocfilehash: 75c71bcd16573d4f4dd3377c623aa9b414aa3906
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 75562e0589222d3e392ea73eacfd7414a422d115
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="webhooks-for-azure-activity-log-alerts"></a>Webhook per gli avvisi del log attività di Azure
-Nella definizione di un gruppo di azione è possibile configurare gli endpoint webhook in modo da ricevere le notifiche per gli avvisi del log attività. Con i webhook è possibile instradare queste notifiche ad altri sistemi per la post-elaborazione o azioni personalizzate. L'articolo illustra anche il modo in cui il payload per il protocollo HTTP POST viene percepito da un webhook.
+Come parte della definizione di hello di un gruppo di azioni, è possibile configurare webhook endpoint tooreceive attività Registro notifiche di avviso. Con webhook, è possibile distribuire questi sistemi tooother notifiche per le azioni di post-elaborazione o personalizzate. Questo articolo illustra i payload hello per hello HTTP POST tooa webhook è simile.
 
-Per altre informazioni sugli avvisi del log di attività, vedere come [creare gli avvisi del log attività di Azure](monitoring-activity-log-alerts.md).
+Per ulteriori informazioni sugli avvisi di log di attività, vedere come troppo[creare attività di Azure gli avvisi del registro](monitoring-activity-log-alerts.md).
 
-Per informazioni su gruppi di azioni, vedere come [creare gruppi di azioni](monitoring-action-groups.md).
+Per informazioni su gruppi di azioni, vedere come troppo[creare gruppi di azioni](monitoring-action-groups.md).
 
-## <a name="authenticate-the-webhook"></a>Autenticazione del webhook
-Facoltativamente il webhook può usare l'autorizzazione basata su token per l'autenticazione. L'URI del webhook viene salvato con un ID token, ad esempio `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`.
+## <a name="authenticate-hello-webhook"></a>L'autenticazione hello webhook
+Hello webhook possono utilizzare facoltativamente basata su token di autorizzazione per l'autenticazione. Hello webhook URI viene salvato con un ID del token, ad esempio, `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`.
 
 ## <a name="payload-schema"></a>Schema del payload
-Il payload JSON contenuto nell'operazione POST varia a seconda del campo data.context.activityLog.eventSource del payload.
+payload JSON Hello contenuti in hello operazione POST varia in base a campo data.context.activityLog.eventSource del payload hello.
 
 ###<a name="common"></a>Comune
 ```json
@@ -122,41 +122,41 @@ Il payload JSON contenuto nell'operazione POST varia a seconda del campo data.co
 
 Per i dettagli su schemi specifici relativi agli avvisi del log attività per le notifiche sull'integrità del servizio, vedere [Notifiche sull'integrità del servizio](monitoring-service-notifications.md).
 
-Per i dettagli su schemi specifici relativi a tutti gli altri avvisi del log attività, vedere [Panoramica del log attività di Azure](monitoring-overview-activity-logs.md).
+Per informazioni dettagliate specifiche dello schema su tutti gli avvisi di log altre attività, vedere [Panoramica del log attività Azure hello](monitoring-overview-activity-logs.md).
 
 | Nome dell'elemento | Descrizione |
 | --- | --- |
-| status |Usato per avvisi relativi alle metriche. Sempre impostato su "Activated" per gli avvisi del registro attività. |
-| context |Contesto dell'evento. |
-| resourceProviderName |Provider della risorsa interessata. |
+| status |Usato per avvisi relativi alle metriche. Impostare sempre troppo "attivato" per gli avvisi del registro attività. |
+| context |Contesto dell'evento hello. |
+| resourceProviderName |provider di risorse Hello di hello influisce sulle risorse. |
 | conditionType |Sempre "Event". |
-| name |Nome della regola di avviso. |
-| id |ID risorsa dell'avviso. |
-| description |Descrizione dell'avviso impostata al momento della creazione dell'avviso. |
+| name |Nome della regola di avviso hello. |
+| id |ID risorsa dell'avviso hello. |
+| description |Descrizione dell'avviso impostato quando viene creato l'avviso hello. |
 | subscriptionId |ID sottoscrizione di Azure. |
-| timestamp |Data e ora in cui l'evento è stato generato dal servizio di Azure che ha elaborato la richiesta. |
-| resourceId |ID risorsa della risorsa interessata. |
-| resourceGroupName |Nome del gruppo di risorse della risorsa interessata. |
-| properties |Set di coppie `<Key, Value>` (cioè `Dictionary<String, String>`), inclusi dettagli relativi all'evento. |
-| event |Elemento contenente i metadati relativi all'evento. |
-| autorizzazione |Proprietà di controllo degli accessi in base al ruolo per l'evento. Queste proprietà includono in genere action, role e scope. |
-| category |Categoria dell'evento. I valori supportati includono Administrative, Alert, Security, ServiceHealth e Recommendation. |
-| caller |Indirizzo di posta elettronica dell'utente che ha eseguito l'operazione, attestazione UPN o attestazione SPN, a seconda della disponibilità. Può essere null per alcune chiamate di sistema. |
-| correlationId |In genere un GUID in formato stringa. Gli eventi con correlationId appartengono alla stessa azione di livello superiore e in genere condividono un elemento correlationId. |
-| eventDescription |Testo statico che descrive l'evento. |
-| eventDataId |Identificatore univoco dell'evento. |
-| eventSource |Nome del servizio o dell'infrastruttura di Azure che ha generato l'evento. |
-| httpRequest |La richiesta in genere include clientRequestId, clientIpAddress e method HTTP, ad esempio PUT. |
-| level |Uno dei valori seguenti: Critical, Error, Warning, Informational e Verbose. |
-| operationId |In genere un GUID condiviso tra gli eventi corrispondenti a una singola operazione. |
-| operationName |Nome dell'operazione. |
-| properties |Proprietà dell'evento. |
-| status |Stringa. Stato dell'operazione. I valori comuni includono: Started, In Progress, Succeeded, Failed, Active e Resolved. |
-| subStatus |In genere include il codice di stato HTTP della chiamata REST corrispondente. Può includere anche altre stringhe che descrivono uno stato secondario. I valori di stato secondario comuni includono OK (codice di stato HTTP: 200), Created (codice di stato HTTP: 201), Accepted (codice di stato HTTP: 202), No Content (codice di stato HTTP: 204), Bad Request (codice di stato HTTP: 400), Not Found (codice di stato HTTP: 404), Conflict (codice di stato HTTP: 409), Internal Server Error (codice di stato HTTP: 500), Service Unavailable (codice di stato HTTP: 503), Gateway Timeout (codice di stato HTTP: 504). |
+| timestamp |Ora in cui hello è stato generato l'evento dal servizio di Azure che ha elaborato la richiesta hello hello. |
+| resourceId |ID di risorsa di hello influisce sulle risorse. |
+| resourceGroupName |Nome del gruppo di risorse hello per hello influisce sulle risorse. |
+| properties |Set di `<Key, Value>` coppie (vale a dire `Dictionary<String, String>`) che include i dettagli sull'evento hello. |
+| event |Elemento che contiene i metadati relativi a eventi hello. |
+| autorizzazione |proprietà di controllo di accesso basato sui ruoli Hello dell'evento hello. Queste proprietà includono in genere azione hello, hello ruolo e ambito hello. |
+| category |Categoria di eventi di hello. I valori supportati includono Administrative, Alert, Security, ServiceHealth e Recommendation. |
+| caller |Indirizzo di posta elettronica dell'utente hello che ha eseguito l'operazione di hello, attestazione UPN o attestazione nome SPN in base alla disponibilità. Può essere null per alcune chiamate di sistema. |
+| correlationId |In genere un GUID in formato stringa. Gli eventi con ID correlazione appartengono toohello stessa azione di dimensioni maggiori e in genere condividono un ID di correlazione. |
+| eventDescription |Descrizione di testo statico dell'evento hello. |
+| eventDataId |Identificatore univoco per l'evento hello. |
+| eventSource |Nome di hello Azure servizio o dell'infrastruttura che l'evento generato hello. |
+| httpRequest |Hello richiesta include in genere hello clientRequestId, clientIpAddress e il metodo HTTP (ad esempio PUT). |
+| level |Uno dei seguenti valori hello: critico, errore, avviso, informativo e dettagliato. |
+| operationId |In genere un GUID condiviso tra gli eventi di hello toosingle operazione corrispondente. |
+| operationName |Nome dell'operazione di hello. |
+| properties |Proprietà di evento hello. |
+| status |Stringa. Stato dell'operazione di hello. I valori comuni includono: Started, In Progress, Succeeded, Failed, Active e Resolved. |
+| subStatus |In genere include codice di stato HTTP hello della chiamata REST corrispondente hello. Può includere anche altre stringhe che descrivono uno stato secondario. I valori di stato secondario comuni includono OK (codice di stato HTTP: 200), Created (codice di stato HTTP: 201), Accepted (codice di stato HTTP: 202), No Content (codice di stato HTTP: 204), Bad Request (codice di stato HTTP: 400), Not Found (codice di stato HTTP: 404), Conflict (codice di stato HTTP: 409), Internal Server Error (codice di stato HTTP: 500), Service Unavailable (codice di stato HTTP: 503), Gateway Timeout (codice di stato HTTP: 504). |
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Altre informazioni sul log attività](monitoring-overview-activity-logs.md).
+* [Altre informazioni sui log attività hello](monitoring-overview-activity-logs.md).
 * [Eseguire gli script di Automazione di Azure (runbook) sugli avvisi di Azure](http://go.microsoft.com/fwlink/?LinkId=627081).
-* [Usare un'app per la logica per inviare SMS tramite Twilio da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app). Questo esempio si riferisce agli avvisi relativi alle metriche, ma può essere modificato per funzionare con un avviso del log attività.
-* [Usare un'app per la logica per inviare un messaggio Slack da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app). Questo esempio si riferisce agli avvisi relativi alle metriche, ma può essere modificato per funzionare con un avviso del log attività.
-* [Usare un'app per la logica per inviare un messaggio a una coda di Azure da un avviso di Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app). Questo esempio si riferisce agli avvisi relativi alle metriche, ma può essere modificato per funzionare con un avviso del log attività.
+* [Utilizzare un toosend di logica app un SMS tramite Twilio da un avviso Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app). In questo esempio è per gli avvisi di metrica, ma può essere modificato toowork con un avviso di log di attività.
+* [Utilizzare un toosend app logica un messaggio da un avviso Azure Slack](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app). In questo esempio è per gli avvisi di metrica, ma può essere modificato toowork con un avviso di log di attività.
+* [Utilizzare un toosend app logica tooan un messaggio Azure coda da un avviso Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app). In questo esempio è per gli avvisi di metrica, ma può essere modificato toowork con un avviso di log di attività.

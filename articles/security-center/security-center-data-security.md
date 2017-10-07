@@ -1,5 +1,5 @@
 ---
-title: Sicurezza dei dati nel Centro sicurezza di Azure | Microsoft Docs
+title: Protezione dei dati di Centro protezione aaaAzure | Documenti Microsoft
 description: Questo documento illustra come i dati vengono gestiti e protetti nel Centro sicurezza di Azure.
 services: security-center
 documentationcenter: na
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: yurid
-ms.openlocfilehash: 6f95cf7631664f4630edbbcdadfd1d98105fdb98
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30f8b11272dc5df6d485608abdaa62ba57e63f23
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-center-data-security"></a>Sicurezza dei dati nel Centro sicurezza di Azure
-Per consentire ai clienti di impedire, rilevare e rispondere alle minacce, il Centro sicurezza di Azure raccoglie ed elabora dati correlati alla sicurezza, tra cui informazioni di configurazione, metadati, registri eventi, file di dump di arresto anomalo del sistema e altro. Microsoft è conforme alle più rigorose linee guida sulla sicurezza e sulla conformità in tutte le fasi, dalla codifica all'esecuzione di un servizio.
+i clienti toohelp impediranno, rilevano e rispondono toothreats, Centro sicurezza di Azure raccoglie ed elabora i dati relativi alla sicurezza, tra cui informazioni di configurazione, metadati, i registri eventi, i file di dump di arresto anomalo del sistema e altro ancora. Microsoft aderisce toostrict linee guida di conformità e sicurezza, dalla codifica toooperating un servizio.
 
 Questo articolo illustra come i dati vengono gestiti e protetti nel Centro sicurezza di Azure.
 
 >[!NOTE] 
->A partire dall'inizio di giugno 2017, il Centro sicurezza usa Microsoft Monitoring Agent per raccogliere e archiviare i dati. Per altre informazioni, vedere [Migrazione della piattaforma del Centro sicurezza di Azure](security-center-platform-migration.md). Le informazioni contenute in questo articolo si riferiscono alle funzionalità del Centro sicurezza dopo la transizione a Microsoft Monitoring Agent.
+>A partire da anticipata giugno 2017, centro di sicurezza verrà utilizzata toocollect Microsoft Monitoring Agent hello e archiviare i dati. Vedere [migrazione della piattaforma Azure sicurezza Center](security-center-platform-migration.md) toolearn altre. informazioni di Hello in questo articolo rappresentano funzionalità Centro sicurezza dopo la transizione toohello Microsoft Monitoring Agent.
 >
 
 
 ## <a name="data-sources"></a>Origini dati
-Il Centro sicurezza di Azure analizza i dati provenienti dalle origini seguenti per offrire visibilità sullo stato della sicurezza, identificare le vulnerabilità e suggerire le mitigazioni e rilevare minacce attive:
+Centro sicurezza di Azure analizza i dati di hello seguente visibilità tooprovide origini nello stato di sicurezza, identificare le vulnerabilità consiglia le misure di attenuazione e rilevare minacce attive.
 
-- Servizi di Azure: usa le informazioni sulla configurazione dei servizi di Azure distribuiti comunicando con il provider di risorse del servizio.
+- Servizi di Azure: Utilizza le informazioni di configurazione hello di servizi di Azure è stata distribuita mediante la comunicazione con il provider di risorse del servizio.
 - Traffico di rete: usa i metadati del traffico di rete campionati dall'infrastruttura di Microsoft, ad esempio l'IP/porta di origine/destinazione, le dimensioni del pacchetto e il protocollo di rete.
 - Soluzioni partner: usa gli avvisi di sicurezza dalle soluzioni partner integrate, ad esempio firewall e soluzioni antimalware. 
-- Macchine virtuali e server: usa informazioni sulla configurazione e sugli eventi di sicurezza, ad esempio log di controllo e log eventi di Windows, log di IIS, messaggi syslog e file di dump di arresto anomalo del sistema dalle macchine virtuali. Quando viene creato un avviso, il Centro sicurezza di Azure può anche generare uno snapshot del disco della VM interessato ed estrarre gli elementi del computer relativi all'avviso dal disco della VM, ad esempio un file del Registro di sistema, a scopo di analisi.
+- Macchine virtuali e server: usa informazioni sulla configurazione e sugli eventi di sicurezza, ad esempio log di controllo e log eventi di Windows, log di IIS, messaggi syslog e file di dump di arresto anomalo del sistema dalle macchine virtuali. Inoltre, quando viene creato un avviso, Centro sicurezza di Azure può generare uno snapshot del disco di macchina virtuale hello interessato ed estrarre di avviso toohello correlati elementi di computer dal disco di macchina virtuale hello, ad esempio un file di registro di sistema, per scopi di analisi forense.
 
 
 ## <a name="data-protection"></a>Protezione dati
-**Separazione dei dati:**i dati vengono mantenuti separati logicamente in ogni componente del servizio. Tutti i dati vengono contrassegnati in base all'organizzazione. Tale contrassegno persiste per tutto il ciclo di vita dei dati e viene applicato a ogni livello del servizio.
+**La separazione dei dati**: dati vengono mantenuti separati logicamente in ogni componente servizio hello. Tutti i dati vengono contrassegnati in base all'organizzazione. Tale contrassegno persiste per tutto hello del ciclo di vita dei dati e viene applicato a ogni livello del servizio hello.
 
-**Accesso ai dati**: per offrire raccomandazioni sulla sicurezza e analizzare le potenziali minacce alla sicurezza, il personale Microsoft può accedere alle informazioni raccolte o analizzate dai servizi di Azure, inclusi i file di dump di arresto anomalo del sistema, eventi di creazione di un processo, snapshot ed elementi del disco della VM, che potrebbero accidentalmente includere dati della società o dati personali provenienti dalle macchine virtuali. Microsoft rispetta le [condizioni di Microsoft Online Services e l'Informativa sulla privacy](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31), in cui è specificato che Microsoft non userà i dati del cliente o ne ricaverà informazioni per scopi pubblicitari o commerciali simili. Microsoft userà i dati dei clienti solo se necessari per fornire i servizi di Azure, incluse le finalità compatibili con la fornitura di tali servizi. L'utente conserva tutti i diritti sui dati dei clienti.
+**Accesso ai dati**: ordine tooprovide consigli sulla sicurezza e provare a potenziali minacce alla sicurezza, personale Microsoft possono accedere alle informazioni raccolte o analizzati da servizi di Azure, inclusi i file di dump di arresto anomalo del sistema, elaborare gli eventi di creazione, macchina virtuale gli snapshot del disco e gli elementi, che possono includere involontariamente i dati dei clienti o dati personali da quelli delle macchine virtuali. È conforme toohello [Microsoft Online Services termini e informativa sulla Privacy](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31), quale stato che Microsoft non utilizza i dati dei clienti o derivare da esso per scopi commerciali pubblicitari o simili. Utilizziamo solo i dati dei clienti come tooprovide necessari con Azure servizi, inclusi motivi compatibile con tali servizi. Mantenere tutti i diritti tooCustomer dati.
 
-**Uso dei dati**: Microsoft usa modelli e intelligence per le minacce trovati in più tenant per migliorare le funzionalità di prevenzione e rilevamento, in base alle garanzie relative alla privacy descritte nell'[Informativa sulla privacy](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx).
+**Utilizzo di dati**: Microsoft utilizza i modelli e sulle minacce visualizzata in più tenant tooenhance la funzionalità di rilevamento e prevenzione; avviene in conformità con impegni di privacy hello descritto in questo [sulla Privacy Istruzione](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx).
 
 ## <a name="data-location"></a>Posizione dei dati
 
-**Aree di lavoro**: per le seguenti aree geografiche è specificata un'area di lavoro e i dati raccolti dalle macchine virtuali di Azure, inclusi i dump di arresto anomalo del sistema e alcuni tipi di dati di avviso, vengono archiviati nell'area di lavoro più vicina. 
+**Le aree di lavoro**: un'area di lavoro è specificato per hello seguente Geos e i dati raccolti da macchine virtuali di Azure, inclusi i dump di arresto anomalo e alcuni tipi di dati di avviso, sono archiviati in hello più prossimo dell'area di lavoro. 
 
 | Area geografica VM                        | Area geografica area di lavoro |
 |-------------------------------|---------------|
@@ -58,29 +58,29 @@ Il Centro sicurezza di Azure analizza i dati provenienti dalle origini seguenti 
 | Australia                     | Australia     |
 
  
-Gli snapshot del disco della VM vengono archiviati nello stesso account di archiviazione del disco della VM.
+Gli snapshot del disco di macchina virtuale sono archiviati nel hello stesso account di archiviazione come disco di macchina virtuale hello.
  
-Per le macchine virtuali e i server in esecuzione in altri ambienti, ad esempio in locale, è possibile specificare l'area di lavoro e l'area in cui vengono archiviati i dati raccolti. 
+Per le macchine virtuali e i server in esecuzione in altri ambienti, ad esempio, in locale, è possibile specificare dell'area di lavoro hello e area in cui vengono archiviati i dati raccolti. 
 
-**Archiviazione in Centro sicurezza di Azure**: le informazioni sugli avvisi di sicurezza, inclusi gli avvisi dei partner, vengono archiviate a livello regionale in base alla posizione della risorsa di Azure correlata, mentre le informazioni sullo stato di integrità della sicurezza e le raccomandazioni vengono archiviate a livello centrale negli Stati Uniti o in Europa in base alla posizione del cliente.
-Il Centro sicurezza di Azure raccoglie copie temporanee dei file di dump di arresto anomalo del sistema e le analizza per cercare le prove di tentativi di exploit e compromissioni riuscite. Il Centro sicurezza di Azure esegue questa analisi nella stessa area geografica dell'area di lavoro ed elimina le copie temporanee al termine dell'analisi.
+**Centro sicurezza di Azure Storage**: informazioni sugli avvisi di sicurezza, inclusi gli avvisi di partner, viene archiviate nella regione in base percorso toohello di hello relative risorse di Azure, mentre le informazioni sullo stato di integrità di protezione e indicazione verrà archiviate centralmente in Italia hello o in base percorso del toocustomer Europa.
+Il Centro sicurezza di Azure raccoglie copie temporanee dei file di dump di arresto anomalo del sistema e le analizza per cercare le prove di tentativi di exploit e compromissioni riuscite. Centro sicurezza di Azure esegue l'analisi in hello stessa area geografica come hello dell'area di lavoro e le eliminazioni hello copie temporanee quando l'analisi sono stata completata.
 
-Gli elementi del computer vengono archiviati centralmente nella stessa area della VM. 
+Gli elementi di computer vengono archiviati centralmente in hello stessa area come hello macchina virtuale. 
 
 
 ## <a name="managing-data-collection-from-virtual-machines"></a>Gestione della raccolta dati da macchine virtuali
 
-Quando si abilita il Centro sicurezza in Azure, viene attivata la raccolta dati per ogni sottoscrizione di Azure. È anche possibile attivare la raccolta dati per le sottoscrizioni esistenti nella sezione Criteri di sicurezza del Centro sicurezza di Azure. Quando la raccolta dati è attivata, il Centro sicurezza di Azure effettua il provisioning di Microsoft Monitoring Agent in tutte le macchine virtuali di Azure supportate esistenti e in quelle nuove che vengono create. Microsoft Monitoring Agent esegue l'analisi delle varie configurazioni correlate alla sicurezza e ne genera gli eventi nelle tracce di [Event Tracing for Windows (ETW)](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx). Il sistema operativo genererà anche eventi del log eventi durante l'esecuzione del computer. Esempi di tali dati sono: tipo e versione del sistema operativo, log del sistema operativo (registri eventi di Windows), processi in esecuzione, nome computer, indirizzi IP, utente connesso e ID tenant. Microsoft Monitoring Agent legge le voci del log eventi ed ETW le traccia e le copia nelle aree di lavoro per l'analisi. Microsoft Monitoring Agent copia anche i file di dump di arresto anomalo del sistema nelle aree di lavoro.
+Quando si abilita il Centro sicurezza in Azure, viene attivata la raccolta dati per ogni sottoscrizione di Azure. È anche possibile attivare la raccolta dei dati per le sottoscrizioni in hello sezione criteri di sicurezza del Centro sicurezza di Azure. Quando è attivata la raccolta dei dati, è supportato Centro sicurezza di Azure esegue il provisioning hello Microsoft Monitoring Agent in tutte le macchine virtuali di Azure e quelli nuovi creati. Microsoft Monitoring agent di Hello esegue l'analisi per la sicurezza varie configurazioni e gli eventi correlati in [Event Tracing for Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) tracce (ETW). Inoltre, sistema operativo hello genererà eventi del registro eventi corso hello dell'esecuzione della macchina hello. Esempi di tali dati sono: tipo e versione del sistema operativo, log del sistema operativo (registri eventi di Windows), processi in esecuzione, nome computer, indirizzi IP, utente connesso e ID tenant. Microsoft Monitoring Agent Hello legge voci del registro eventi e tracce di ETW e li copia tooyour aree di lavoro per l'analisi. Microsoft Monitoring Agent Hello copia workspace tooyour file dump di arresto anomalo del sistema.
 
-Se si usa la versione gratuita del Centro sicurezza di Azure, è anche possibile disabilitare la raccolta dati dalle macchine virtuali nei criteri di sicurezza. La raccolta dati è richiesta per le sottoscrizioni a livello Standard. Gli snapshot dei dischi delle VM e la raccolta di elementi resteranno abilitati anche se la raccolta dati è stata disabilitata.
+Se si utilizza Centro protezione Azure Free, è anche possibile disabilitare la raccolta dei dati da macchine virtuali in hello criteri di sicurezza. Raccolta dati è obbligatorio per le sottoscrizioni nel livello Standard hello. Gli snapshot dei dischi delle VM e la raccolta di elementi resteranno abilitati anche se la raccolta dati è stata disabilitata.
 
 
 ## <a name="see-also"></a>Vedere anche
-Questo documento ha illustrato come i dati vengono gestiti e protetti nel Centro sicurezza di Azure. Per altre informazioni sul Centro sicurezza di Azure, vedere:
+Questo documento ha illustrato come i dati vengono gestiti e protetti nel Centro sicurezza di Azure. toolearn ulteriori informazioni su Centro sicurezza di Azure, vedere:
 
-* [Guida alla pianificazione e alla gestione del Centro sicurezza di Azure](security-center-planning-and-operations-guide.md) : informazioni sulla pianificazione e considerazioni di progettazione per l'adozione del Centro sicurezza di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare l'integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio
+* [Centro sicurezza di Azure Guida alla pianificazione e le operazioni](security-center-planning-and-operations-guide.md) , informazioni come tooplan e comprendere considerazioni sulla progettazione hello tooadopt Centro sicurezza di Azure.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) : informazioni su come toomonitor hello integrità delle risorse di Azure
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) , informazioni come avvisi toosecurity toomanage e rispondere
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'utilizzo di hello servizio di ricerca
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : post di blog sulla sicurezza e sulla conformità di Azure

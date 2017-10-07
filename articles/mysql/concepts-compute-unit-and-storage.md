@@ -1,6 +1,6 @@
 ---
 title: "Descrizione delle unità di calcolo nel database di Azure per MySQL | Microsoft Docs"
-description: "Azure DB per MySQL: questo articolo spiega i concetti relativi alle unità di calcolo e ciò che accade quando il carico di lavoro raggiunge il livello massimo per le unità di calcolo."
+description: "Database di Azure per MySQL: questo articolo illustra i concetti di hello di unità di calcolo e cosa accade quando il carico di lavoro raggiunge hello massimo di unità di calcolo."
 services: mysql
 author: jasonwhowell
 ms.author: jasonh
@@ -9,38 +9,38 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 05/23/2017
-ms.openlocfilehash: a82c283df688d36cd284973312e276f30ed893c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 751b4fff2760e55565e2bc80d49db17a57397779
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explaining-compute-units-in-azure-database-for-mysql"></a>Descrizione delle unità di calcolo nel database di Azure per MySQL
-Questo articolo spiega i concetti relativi alle unità di calcolo e ciò che accade quando il carico di lavoro raggiunge il livello massimo per le unità di calcolo.
+Questo articolo viene illustrato il concetto di hello di unità di calcolo e cosa accade quando i carico di lavoro raggiunge hello massimo di unità di calcolo.
 
 ## <a name="what-are-compute-units"></a>Cosa sono le unità di calcolo?
-Le unità sono una misura della velocità effettiva di elaborazione della CPU garantita come disponibile per un singolo database di Azure per il server MySQL. Un'unità di calcolo è una misura combinata di risorse di CPU e memoria. In generale, 50 unità di calcolo equivalgono a metà di un core. 100 unità di calcolo equivalgono a un core. 2000 unità di calcolo equivalgono a venti core di velocità effettiva di elaborazione garantita disponibile per il server.
+Calcolo delle unità sono una misura della velocità effettiva di elaborazione della CPU che è garantita tooa disponibili toobe singolo Database di Azure per il server MySQL. Un'unità di calcolo è una misura combinata di risorse di CPU e memoria. In generale, 50 unità di calcolo equivalgono toohalf di un core. 100 unità di calcolo equivalgono tooone core. Unità di calcolo 2000 equivalgono tootwenty core del server di elaborazione garantita la velocità effettiva tooyour disponibili.
 
-La quantità di memoria per ogni unità di calcolo è ottimizzata per i piani tariffari Basic e Standard. Raddoppiare le unità di calcolo aumentando il livello di prestazioni equivale a raddoppiare il set di risorse disponibili per quel singolo database di Azure per MySQL.
+quantità di Hello di memoria per ogni unità di calcolo è ottimizzato per hello Basic e i livelli di prezzo Standard. Raddoppiando hello unità di calcolo per aumentare il livello di prestazioni hello equivale a set di hello toodoubling di risorse disponibili toothat singolo Database di Azure per MySQL.
 
-Ad esempio, 800 unità di calcolo Standard offrono una velocità effettiva della CPU e una memoria maggiori di 8 volte rispetto alla configurazione di 100 unità di calcolo Standard. Tuttavia, mentre 100 unità di calcolo Standard offrono la stessa velocità effettiva della CPU rispetto a 100 unità di calcolo Basic, la quantità di memoria che è già configurata nel piano tariffario Standard è il doppio della quantità di memoria configurata per il piano tariffario Basic. Pertanto, il piano tariffario Standard offre prestazioni migliori del carico di lavoro e una latenza delle transazioni inferiore rispetto al piano tariffario Basic con le stesse unità di calcolo selezionate.
+Ad esempio, 800 unità di calcolo Standard offrono una velocità effettiva della CPU e una memoria maggiori di 8 volte rispetto alla configurazione di 100 unità di calcolo Standard. Tuttavia, anche se le unità di calcolo 100 Standard fornisce hello stessa velocità effettiva della CPU rispetto tooBasic 100 unità di calcolo, hello memoria preconfigurato nel piano tariffario Standard è double il hello quantità di memoria configurata per livello di prezzo di base. Pertanto, piano tariffario Standard fornisce migliorare le prestazioni del carico di lavoro e la latenza delle transazioni inferiore rispetto a livello di prezzo di base con hello che stesse unità di calcolo selezionata.
 
-## <a name="how-can-i-determine-the-number-of-compute-units-needed-for-my-workload"></a>Come si determina il numero di unità di calcolo necessarie per il carico di lavoro?
-Se si sta cercando di eseguire la migrazione di un server MySQL esistente eseguito in locale o in una macchina virtuale, è possibile determinare il numero di unità di calcolo stimando il numero di core di velocità effettiva di elaborazione necessari per il carico di lavoro. 
+## <a name="how-can-i-determine-hello-number-of-compute-units-needed-for-my-workload"></a>Come è possibile determinare il numero di hello di unità di calcolo necessarie per il carico di lavoro?
+Se si vuole toomigrate un server esistente di MySQL in esecuzione in locale o in una macchina virtuale, è possibile determinare il numero di hello di unità di calcolo tramite la stima il numero di core della velocità effettiva di elaborazione è necessario il carico di lavoro. 
 
 Se il server esistente nella macchina virtuale o locale sta attualmente usando 4 core, senza contare l'hyperthread CPU, è possibile iniziare configurando 400 unità di calcolo per il database di Azure per il server MySQL. Le unità di calcolo possono essere aumentate o ridotte in modo dinamico in base alle esigenze del carico di lavoro praticamente senza tempi di inattività dell'applicazione. 
 
-Monitorare il grafico delle metriche nel portale di Azure o scrivere l'interfaccia della riga di comando di Azure per misurare le unità di calcolo. Le metriche pertinenti al monitoraggio sono la percentuale dell'unità di calcolo e il limite dell'unità di calcolo.
+Grafico di metriche di monitoraggio hello in hello Azure portal o scrittura CLI di Azure i comandi - toomeasure unità di calcolo. Le metriche pertinenti toomonitor sono percentuale di unità di calcolo hello e limite di unità di calcolo.
 
 >[!IMPORTANT]
-> Se le operazioni di I/O al secondo non vengono usate al massimo, tenere sotto controllo anche l'uso delle unità di calcolo. L'aumento delle unità di calcolo potrebbe consentire una maggiore velocità effettiva di I/O riducendo il collo di bottiglia delle prestazioni a causa delle limitazioni della CPU o della memoria.
+> Se si trova l'account di archiviazione IOPS non completamente utilizzate toohello massimo, prendere in considerazione monitoraggio utilizzo nonché di hello calcolo unità. Generazione di unità di calcolo hello potrebbe consentono una velocità effettiva dei / o riducendo collo di bottiglia delle prestazioni hello scadenza toolimited CPU o memoria.
 
 ## <a name="what-happens-when-i-hit-my-maximum-compute-units"></a>Raggiungimento del numero massimo di unità di calcolo
-I livelli di prestazioni vengono calibrati e gestiti per offrire le risorse necessarie per eseguire il carico di lavoro del database fino ai limiti massimi consentiti per il livello di prestazioni e il piano tariffario selezionati. 
+Livelli di prestazioni sono calibrati e governato tooprovide risorse toorun toohello limiti max per piano tariffario selezionato hello e livello di prestazioni del carico di lavoro del database. 
 
-Se il carico di lavoro raggiunge i limiti massimi per le unità di calcolo o per operazioni di I/O con provisioning, è possibile continuare a usare le risorse al massimo livello consentito, ma probabilmente si noterà un aumento delle latenze per le query. Con questi limiti non si verificheranno errori, ma solo un rallentamento nel carico di lavoro, a meno che il rallentamento non diventi così grave da provocare il timeout delle query. 
+Se il carico di lavoro raggiunge i limiti massimi di hello in sia hello calcolo unità o i limiti IOPS provisioning, è possibile continuare le risorse di hello tooutilize livello hello massimo consentito, ma le query sono le latenze toosee probabilmente aumentato. Questi limiti non generano errori, ma piuttosto un rallentamento del carico di lavoro di hello, a meno che il rallentamento hello più grave in modo che le query timeout. 
 
-Se il carico di lavoro raggiunge i limiti massimi per quanto riguarda il numero di connessioni, vengono generati errori espliciti. Per altre informazioni sul limite delle risorse, vedere [Limiti del Database di Azure per MySQL](concepts-limits.md).
+Se il carico di lavoro raggiunge i limiti massimi di hello numero di connessioni, vengono generati errori espliciti. Per altre informazioni sul limite delle risorse, vedere [Limiti del Database di Azure per MySQL](concepts-limits.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
 Per altre informazioni, vedere [Database di Azure per il piano tariffario di MySQL](./concepts-service-tiers.md).

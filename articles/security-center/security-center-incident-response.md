@@ -1,6 +1,6 @@
 ---
-title: Rispondere agli eventi imprevisti della sicurezza con il Centro sicurezza di Azure | Documentazione Microsoft
-description: Questo documento illustra come usare il Centro sicurezza di Azure per uno scenario di risposta agli eventi imprevisti.
+title: gli eventi imprevisti toosecurity aaaRespond con Centro sicurezza di Azure | Documenti Microsoft
+description: Questo documento illustra come toouse centro di sicurezza di Azure per uno scenario di risposta agli eventi imprevisti.
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,89 +14,89 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/30/2017
 ms.author: yurid
-ms.openlocfilehash: 6cd6c822eb255893feac2536d7bae034380094b2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aaf50c0c7e774d03d517c3fd11686dbae48dd29b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-security-center-for-an-incident-response"></a>Uso del Centro sicurezza di Azure per rispondere a un evento imprevisto
-Molte organizzazioni imparano a rispondere agli eventi imprevisti della sicurezza solo dopo aver subito un attacco. Per ridurre i costi e i danni è importante implementare un piano di risposta agli eventi imprevisti prima di un attacco. Centro sicurezza di Azure può essere usato nelle diverse fasi della risposta agli eventi imprevisti.
+Molte organizzazioni informazioni su come gli eventi imprevisti toosecurity toorespond solo dopo aver subito un attacco. i costi tooreduce e danni, è importante toohave un intervento piano prima di un attacco ha luogo. Centro sicurezza di Azure può essere usato nelle diverse fasi della risposta agli eventi imprevisti.
 
 ## <a name="incident-response-planning"></a>Pianificazione della risposta agli eventi imprevisti
-Un piano efficace dipende da tre capacità principali: proteggere, rilevare e rispondere alle minacce. La protezione consiste nella prevenzione degli eventi imprevisti, il rilevamento nella tempestiva identificazione delle minacce e la risposta nella neutralizzazione di un utente malintenzionato con il conseguente ripristino dei sistemi per ridurre gli effetti della violazione.
+Un piano efficace dipende da tre funzionalità di base: essendo in grado di tooprotect, rilevare e rispondere toothreats. Protezione è su come evitare gli eventi imprevisti, rilevamento è sull'identificazione delle minacce all'inizio e risposta sta rimuovendo l'autore dell'attacco hello e il ripristino impatti hello toomitigate di sistemi di una violazione.
 
-Questo articolo usa le fasi di risposta agli eventi imprevisti della sicurezza illustrate nell'articolo [Microsoft Azure Security Response in the Cloud](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678) (Centro sicurezza di Microsoft Azure nel cloud) e indicate nel diagramma seguente:
+In questo articolo utilizzerà le fasi di risposta agli eventi imprevisti di protezione hello da hello [risposta di sicurezza di Microsoft Azure nel Cloud hello](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678) articolo, come illustrato nel seguente diagramma hello:
 
 ![Ciclo di vita della risposta agli eventi imprevisti](./media/security-center-incident-response/security-center-incident-response-fig1.png)
 
-Il Centro sicurezza può essere usato nelle fasi di rilevamento, valutazione e diagnosi. Di seguito sono descritti esempi dell'utilità del Centro sicurezza nelle tre fasi di risposta iniziali agli eventi imprevisti della sicurezza:
+Durante le fasi di hello rileva problemi, valutare e diagnosticare, è possibile utilizzare il Centro sicurezza PC. Ecco alcuni esempi di come Centro sicurezza PC possono essere utili durante le fasi iniziali di risposta agli eventi imprevisti tre hello:
 
-* **Rilevamento**: esame della prima indicazione di un'analisi per un evento.
-  * Esempio: esame della verifica iniziale dell'attivazione di un avviso di sicurezza ad alta priorità nel dashboard del Centro sicurezza.
-* **Valutazione**: esecuzione della valutazione iniziale per ottenere altre informazioni sull'attività sospetta.
-  * Esempio: recupero di altre informazioni sull'avviso di sicurezza.
+* **Rilevare**: esaminare prima indicazione di hello di un'indagine di eventi.
+  * Esempio: revisione hello verifica iniziale che è stato generato un avviso di sicurezza con priorità alta nel dashboard di hello Centro sicurezza PC.
+* **Valutare**: eseguire hello valutazione iniziale tooobtain ulteriori informazioni sulle attività sospette hello.
+  * Esempio: ottenere ulteriori informazioni sull'avviso di sicurezza hello.
 * **Diagnosi**: conduzione di un'analisi tecnica, identificazione di strategie di contenimento, mitigazione e di soluzioni alternative.
-  * Esempio: seguire la procedura correttiva descritta dal Centro sicurezza nell'avviso di sicurezza specifico.
+  * Esempio: seguire i passaggi correttivi hello descritti da Centro sicurezza PC nell'avviso di protezione.
 
-Lo scenario che segue illustra come usare il Centro sicurezza durante le fasi di rilevamento, valutazione e diagnosi/risposta di un evento imprevisto della sicurezza. Nel Centro sicurezza, un [evento imprevisto della sicurezza](security-center-incident.md) è un'aggregazione di tutti gli avvisi relativi a una risorsa, in linea con i modelli delle [catene di attacco](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/). Gli eventi imprevisti vengono visualizzati nel riquadro e nel pannello [Avvisi di sicurezza](security-center-managing-and-responding-alerts.md). Un evento imprevisto riporta un elenco degli avvisi correlati, che consente di ottenere altre informazioni su ogni occorrenza. Centro sicurezza presenta anche avvisi di sicurezza autonomi che possono essere usati per rilevare un'attività sospetta.
+scenario di Hello che segue viene illustrato come centro di sicurezza tooleverage durante hello rileva problemi, valutare e diagnosticare/rispondono fasi di un problema di sicurezza. Nel Centro sicurezza, un [evento imprevisto della sicurezza](security-center-incident.md) è un'aggregazione di tutti gli avvisi relativi a una risorsa, in linea con i modelli delle [catene di attacco](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/). Eventi imprevisti sono visualizzati in hello [degli avvisi di sicurezza](security-center-managing-and-responding-alerts.md) riquadro e blade. Un evento imprevisto, viene visualizzato per ulteriori informazioni su ogni occorrenza hello elenco avvisi correlati, che consente di tooobtain. Centro sicurezza PC presenta anche autonomo degli avvisi di sicurezza che possono essere anche usato tootrack verso il basso di un'attività sospetta.
 
 ## <a name="scenario"></a>Scenario
-Contoso ha recentemente eseguito la migrazione di alcune delle risorse locali in Azure, inclusi alcuni carichi di lavoro e database SQL di linea di business basati sulle macchine virtuali. Il team di risposta agli eventi imprevisti della sicurezza di Contoso ha attualmente difficoltà nell'analisi dei problemi di sicurezza, data la mancanza di una intelligence di sicurezza integrata con gli attuali strumenti di risposta agli eventi imprevisti. Questa mancata integrazione costituisce un problema durante la fase di rilevamento (troppi falsi positivi) e durante le fasi di valutazione e diagnosi. Nell'ambito di questa migrazione, il team ha deciso di ricorrere al Centro sicurezza per risolvere questo problema.
+Contoso recentemente eseguita la migrazione alcune delle loro tooAzure risorse locali, inclusi alcuni carichi di lavoro line-of-business basati su macchine virtuali e database SQL. Il team di risposta agli eventi imprevisti della sicurezza di Contoso ha attualmente difficoltà nell'analisi dei problemi di sicurezza, data la mancanza di una intelligence di sicurezza integrata con gli attuali strumenti di risposta agli eventi imprevisti. La mancanza di integrazione introduce un problema durante la fase di rilevamento (troppi falsi positivi) hello, nonché durante la valutazione hello e diagnosticare fasi. Come parte di questa migrazione, ha deciso tooopt in Centro sicurezza PC toohelp loro indirizzo di questo problema.
 
-La prima fase della migrazione è stata completata dopo l'onboarding di tutte le risorse e l'adozione di tutte le raccomandazioni del Centro sicurezza. Il team di risposta agli eventi imprevisti della sicurezza di Contoso è il punto focale per la gestione degli eventi imprevisti della sicurezza relativi ai computer. Il team è costituito da un gruppo di persone responsabili della gestione di eventuali eventi imprevisti della sicurezza. I membri del team hanno mansioni chiaramente definite per garantire che vengano coperte tutte le aree della risposta.
+Hello prima fase della migrazione completata dopo caricate tutte le risorse e tutti i consigli relativi alla sicurezza hello dall'area di sicurezza. CSIRT Contoso è il punto focale hello per la gestione dei problemi di sicurezza di computer. il team di Hello è costituito da un gruppo di persone con la responsabilità di affrontare eventuali problemi di sicurezza. chiaramente definiti dai membri del team Hello tooensure compiti rimasti senza un'area della risposta sono stati rilevati.
 
-Ai fini di questo scenario verranno presi in esame i ruoli degli utenti seguenti che appartengono al team di risposta agli eventi imprevisti della sicurezza di Contoso:
+A scopo di hello di questo scenario, verrà toofocus nei ruoli hello di hello personalità che fanno parte di Contoso CSIRT seguenti:
 
 ![Ciclo di vita della risposta agli eventi imprevisti](./media/security-center-incident-response/security-center-incident-response-fig2.png)
 
 Alice si occupa delle attività di sicurezza. Le sue responsabilità includono:
 
-* Monitoraggio e risposta alle minacce per la sicurezza 24 ore su 24.
-* Escalation al proprietario dei carichi di lavoro nel cloud o all'analista della sicurezza in base alle esigenze.
+* Monitorare e rispondere minacce toosecurity intorno clock hello.
+* Escalation di proprietario del carico di lavoro toohello cloud o un analista di sicurezza in base alle esigenze.
 
 Guido è un analista della sicurezza e le sue responsabilità includono:
 
 * Analisi degli attacchi.
 * Risoluzione degli avvisi.
-* Collaborazione con i proprietari dei carichi di lavoro per determinare e applicare soluzioni di mitigazione.
+* Utilizzo di toodetermine proprietari del carico di lavoro e applica le misure di attenuazione.
 
-Come si può notare, Alice e Guido hanno responsabilità diverse e devono interagire tra loro per condividere le informazioni del Centro sicurezza.
+Come si può notare, Alice e Sam hanno responsabilità diverse e devono interagire tra loro informazioni Centro sicurezza PC tooshare.
 
 ## <a name="recommended-solution"></a>Soluzione consigliata
-Avendo ruoli diversi, Alice e Guido useranno aree diverse del Centro sicurezza per ottenere informazioni attinenti alle proprie attività quotidiane. Alice userà gli **avvisi di sicurezza** nell'ambito delle attività di monitoraggio giornaliere.
+Poiché Alice e Sam ruoli diversi, si useranno diverse aree di informazioni rilevanti tooobtain di centro di sicurezza per le attività quotidiane. Alice userà gli **avvisi di sicurezza** nell'ambito delle attività di monitoraggio giornaliere.
 
 ![Avvisi di sicurezza](./media/security-center-incident-response/security-center-incident-response-fig3.png)
 
-Alice userà gli avvisi di sicurezza durante le fasi di rilevamento e valutazione. Quando avrà terminato la valutazione iniziale, Alice potrà inoltrare il problema a Guido, se sono necessarie altre analisi. Guido userà a questo punto le informazioni messe a disposizione dal Centro sicurezza, a volte in combinazione con altre fonti di dati, per passare alla fase di diagnosi.
+Alice userà gli avvisi di sicurezza durante hello rileva problemi e le fasi di valutazione. Al termine di valutazione iniziale hello, Alice lei potrebbe inoltrare hello problema tooSam se è necessaria un'ulteriore analisi. A questo punto, Sam utilizzerà informazioni hello fornito dal Centro sicurezza PC, talvolta in combinazione con altre origini dati, toomove toohello diagnosticare fase.
 
-## <a name="how-to-implement-this-solution"></a>Come implementare questa soluzione
-Per vedere come usare il Centro sicurezza di Azure in uno scenario di risposta agli eventi imprevisti della sicurezza, verranno seguite le attività di Alice nelle fasi di rilevamento e valutazione, quindi le attività svolte da Guido per la diagnosi del problema.
+## <a name="how-tooimplement-this-solution"></a>Come tooimplement questa soluzione
+toosee come si utilizzerebbe Centro sicurezza di Azure in uno scenario di risposta agli eventi imprevisti, verrà passaggi di Alice nelle fasi di rilevare e valutare hello e quindi vedere cosa Sam problema hello toodiagnose.
 
 ### <a name="detect-and-assess-incident-response-stages"></a>Fasi di rilevamento e valutazione nella risposta agli eventi imprevisti della sicurezza
-Alice ha effettuato l'accesso al portale di Azure e si trova nella console del Centro sicurezza. Nell'ambito delle proprie attività di monitoraggio giornaliere, ha iniziato a esaminare avvisi di sicurezza ad alta priorità seguendo questa procedura:
+Alice firmato toohello portale di Azure ed è funzionante nella console di hello Centro sicurezza PC. Come parte della propria giornaliera monitoraggio delle attività, ha avviato la revisione di sicurezza con priorità alta avvisi eseguendo hello alla procedura seguente:
 
-1. Fare clic sul riquadro **Avvisi di sicurezza** e accedere al pannello **Avvisi di sicurezza**.
+1. Fare clic su hello **degli avvisi di sicurezza** hello riquadro e l'accesso **degli avvisi di sicurezza** blade.
     ![Pannello Avvisi di sicurezza](./media/security-center-incident-response/security-center-incident-response-fig4.png)
 
    > [!NOTE]
-   > Ai fini di questo scenario, Alice eseguirà la valutazione dell'avviso riguardante attività SQL dannose, come illustrato nella figura precedente.
+   > A scopo di hello di questo scenario, Alice è tooperform corso una valutazione su avviso di attività hello SQL dannosi, come illustrato nella figura precedente hello.
    >
    >
-2. Fare clic sul **attività SQL dannoso** avviso ed esaminare le risorse attaccate il **attività SQL dannoso** pannello: ![dettagli dell'evento imprevisto](./media/security-center-incident-response/security-center-incident-response-fig5.png)
+2. Fare clic su hello **attività SQL dannoso** avviso ed esaminare risorse hello attaccato hello **attività SQL dannoso** pannello: ![dettagli dell'evento imprevisto](./media/security-center-incident-response/security-center-incident-response-fig5.png)
 
-    In questo pannello Alice può vedere le risorse che hanno subito l'attacco, quante volte si è verificato l'attacco e quando è stato rilevato.
-3. Fare clic sulla **risorsa che ha subito l'attacco** per ottenere altre informazioni sull'attacco.
+    In questo pannello, Alice può richiedere note relative risorse hello attaccato, come si sono verificati più volte questo tipo di attacco e quando è stata rilevata.
+3. Fare clic su hello **attaccato risorsa** tooobtain ulteriori informazioni su questo tipo di attacco.
 
-Dopo aver letto la descrizione, Alice è convinta che non si tratti di un falso positivo e che è necessario inoltrare questo caso a Guido.
+Dopo aver letto descrizione hello, Alice è convinti che non si tratta di un falso positivo e che lei deve inoltrare tooSam questo case.
 
 ### <a name="diagnose-incident-response-stage"></a>Fase di diagnosi nella risposta agli eventi imprevisti della sicurezza
-Guido riceve il caso da Alice e inizia a esaminare la procedura correttiva consigliata dal Centro sicurezza.
+SAM riceve case hello da Alice e inizia a esaminare i passaggi correttivi hello che suggeriti Centro sicurezza PC.
 
 ![Ciclo di vita della risposta agli eventi imprevisti](./media/security-center-incident-response/security-center-incident-response-fig6.png)
 
 ### <a name="additional-resources"></a>Risorse aggiuntive
-Il team di risposta agli eventi imprevisti della sicurezza può anche usare la funzionalità [Power BI nel Centro sicurezza](security-center-powerbi.md) per visualizzare diversi tipi di report. Questi report possono essere utili durante un'analisi più approfondita per visualizzare, analizzare e filtrare raccomandazioni e avvisi di sicurezza. Le aziende che usano la propria soluzione SIEM (Security Information and Event Management, Sistema di gestione delle informazioni e degli eventi di sicurezza) durante il processo di analisi possono anche [integrare il Centro sicurezza con la propria soluzione](security-center-integrating-alerts-with-log-integration.md). È anche possibile integrare i log di controllo di Azure e gli eventi di sicurezza delle macchine virtuali con lo [strumento di integrazione dei log di Azure](https://blogs.msdn.microsoft.com/azuresecurity/2016/07/21/microsoft-azure-log-integration-preview/). Queste informazioni possono essere usate insieme a quelle messe a disposizione dal Centro sicurezza per analizzare un attacco.
+il team di risposta agli eventi imprevisti Hello può avvalersi di hello [sicurezza Center Power BI](security-center-powerbi.md) tipi diversi di toosee funzionalità di report. Questi report possono aiutarlo durante l'ulteriore analisi toovisualize, analizzare e filtrare indicazioni e degli avvisi di sicurezza. Per le aziende che utilizzano le relative informazioni di sicurezza e di una soluzione di gestione (SIEM) evento durante il processo di analisi hello, questi possono anche [integrare Centro sicurezza PC con la propria soluzione](security-center-integrating-alerts-with-log-integration.md). È inoltre possibile integrare i log di controllo di Azure e gli eventi di sicurezza di macchina virtuale (VM) utilizzando hello [strumento di integrazione di Azure log](https://blogs.msdn.microsoft.com/azuresecurity/2016/07/21/microsoft-azure-log-integration-preview/). tooinvestigate un attacco, è possibile utilizzare queste informazioni insieme a informazioni hello che fornisce il Centro sicurezza PC.
 
-## <a name="conclusion"></a>Conclusione
-La creazione di un team prima che si verifichi un evento imprevisto è molto importante per l'organizzazione e avrà effetti positivi sulla gestione degli eventi imprevisti. Con gli strumenti giusti per monitorare le risorse, questo team potrà prendere provvedimenti mirati per la risoluzione di un evento imprevisto della sicurezza. Le [funzionalità di rilevamento](security-center-detection-capabilities.md) del Centro sicurezza consentono all'IT di rispondere rapidamente agli eventi imprevisti della sicurezza e di attuare interventi correttivi per i problemi di sicurezza.
+## <a name="conclusion"></a>Conclusioni
+Mettere insieme un team, prima che si verifichi un evento imprevisto è molto importante tooyour organizzazione ne risentirà positivamente la modalità di gestione eventi imprevisti. Indisponibilità di risorse di hello strumenti giusti toomonitor consente questa tooremediate di passaggi accurate tootake team problemi di sicurezza. Centro sicurezza PC [funzionalità di rilevamento](security-center-detection-capabilities.md) può assistere eventi imprevisti di toosecurity IT tooquickly rispondere e correggere i problemi di sicurezza.

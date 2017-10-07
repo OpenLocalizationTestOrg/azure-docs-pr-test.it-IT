@@ -1,5 +1,5 @@
 ---
-title: "Monitorare la disponibilità e la velocità di risposta dei siti Web | Microsoft Docs"
+title: "aaaMonitor disponibilità e tempi di risposta di qualsiasi sito web | Documenti Microsoft"
 description: Configurare i test Web in Application Insights. Ottenere avvisi se un sito Web diventa non disponibile o risponde lentamente.
 services: application-insights
 documentationcenter: 
@@ -13,85 +13,85 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/25/2017
 ms.author: bwren
-ms.openlocfilehash: 6c7f52fc3998b0b29301206ffbc6a5a0c4134f6a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4c5425c948770cc57a648ca50e217c75ac75fbd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-availability-and-responsiveness-of-any-web-site"></a>Monitorare la disponibilità e la velocità di risposta dei siti Web
-Dopo aver distribuito l'app Web o il sito Web in qualsiasi server, è possibile configurare alcuni test per monitorarne la disponibilità e la velocità di risposta. [Azure Application Insights](app-insights-overview.md) invia richieste Web all'applicazione a intervalli regolari da diversi punti in tutto il mondo. Invia avvisi all'utente nel caso in cui l'applicazione risponda lentamente o non risponda affatto.
+Dopo aver distribuito l'app web o il sito web tooany server, è possibile impostare toomonitor test disponibilità e della velocità di risposta. [Azure Application Insights](app-insights-overview.md) invia le richieste web applicazione tooyour a intervalli regolari dai punti di tutto il mondo hello. Invia avvisi all'utente nel caso in cui l'applicazione risponda lentamente o non risponda affatto.
 
-È possibile configurare test di disponibilità per qualsiasi endpoint HTTP o HTTPS accessibile dalla rete Internet pubblica. Non è necessario aggiungere altro al sito Web che si sta testando. Non deve necessariamente trattarsi del proprio sito: è possibile testare un servizio API REST da cui si dipende.
+È possibile impostare i test di disponibilità per qualsiasi HTTP o hello di endpoint HTTPS accessibile dalla rete internet pubblica. Non è necessario tooadd qualsiasi sito web toohello che si sta testando. Anche non ha toobe del sito: è possibile testare un servizio API REST da cui dipendono.
 
 Sono disponibili due tipi di test di disponibilità:
 
-* [Test di ping URL](#create): un semplice test che può essere creato nel portale di Azure.
-* [Test Web in più passi](#multi-step-web-tests): viene creato in Visual Studio Enterprise e caricato nel portale.
+* [Test di ping URL](#create): un test semplice che è possibile creare nel portale di Azure hello.
+* [Test web multipassaggio](#multi-step-web-tests): creato in Visual Studio Enterprise portal toohello di caricamento.
 
-È possibile creare fino a 25 test di disponibilità per ogni risorsa dell'applicazione.
+È possibile creare i test di disponibilità too25 per ogni risorsa dell'applicazione.
 
 ## <a name="create"></a>1. Aprire una risorsa per i report dei test di disponibilità
 
-**Se si è già configurato Application Insights** per l'app Web, aprire la risorsa di Application Insights nel [portale di Azure](https://portal.azure.com).
+**Se è già stato configurato Application Insights** per l'app web, aprire la risorsa di Application Insights in hello [portale di Azure](https://portal.azure.com).
 
-**Se invece si vogliono visualizzare i report in una nuova risorsa**, accedere a [Microsoft Azure](http://azure.com), passare al [portale di Azure](https://portal.azure.com) e creare una risorsa di Application Insights.
+**Oppure, se si desidera toosee dei report in una nuova risorsa** iscriversi troppo[Microsoft Azure](http://azure.com), visitare toohello [portale di Azure](https://portal.azure.com)e creare una risorsa di Application Insights.
 
 ![New > Application Insights](./media/app-insights-monitor-web-app-availability/11-new-app.png)
 
-Fare clic su **Tutte le risorse** per aprire il pannello Panoramica per la nuova risorsa.
+Fare clic su **tutte le risorse** pannello della panoramica tooopen hello per le nuove risorse hello.
 
 ## <a name="setup"></a>2. Creare un test di ping URL
-Aprire il pannello Disponibilità e aggiungere un test.
+Aprire il pannello di disponibilità hello e aggiungere un test.
 
-![Fill at least the URL of your website](./media/app-insights-monitor-web-app-availability/13-availability.png)
+![Riempimento hello almeno l'URL del sito Web](./media/app-insights-monitor-web-app-availability/13-availability.png)
 
-* **L'URL** può essere qualsiasi pagina Web che si vuole testare, ma deve essere visibile da Internet pubblico. L'URL può includere una stringa di query. In questo modo, ad esempio, è possibile esercitarsi nell'uso del database. Se l'URL comporta un reindirizzamento, l'operazione viene effettuata fino a un numero massimo di 10 reindirizzamenti.
-* **Analizza richieste dipendenti**: se questa opzione è selezionata, il test richiede immagini, script, file di stile e altri file che fanno parte della pagina Web sottoposta a test. Il tempo di risposta registrato include il tempo impiegato per ottenere questi file. Il test avrà esito negativo se non è possibile scaricare tutte queste risorse entro il timeout definito per l'intero test. 
+* **URL di Hello** può essere una pagina web si desidera tootest, ma deve essere visibile da hello rete internet pubblica. URL di Hello può includere una stringa di query. In questo modo, ad esempio, è possibile esercitarsi nell'uso del database. Se l'URL hello risolve tooa reindirizzamento, è seguire i reindirizzamenti too10.
+* **Analizzare le richieste dipendenti**: se questa opzione è selezionata, il test di hello richiede immagini, script, file di tipo e altri file che fanno parte della pagina web hello sottoposta a test. Hello tempi di risposta registrato includono hello scattato tooget questi file. test di Hello non riesce se tutte le risorse non possono essere scaricate entro il timeout di hello per intero test hello. 
 
-    Se l'opzione non viene selezionata, il test richiede solo il file in corrispondenza dell'URL specificato.
-* **Abilita nuovi tentativi**: se questa opzione viene selezionata, quando il test ha esito negativo, viene eseguito un nuovo tentativo dopo un breve intervallo. Un errore viene segnalato solo se tre tentativi successivi non riescono. I test successivi vengono quindi eseguiti in base alla frequenza di test normale. I nuovi tentativi saranno temporaneamente sospesi fino al completamento successivo. Questa regola viene applicata in modo indipendente in ogni località di test. Questa opzione è consigliata. In media, circa l'80% degli errori non si ripresenta al nuovo tentativo.
-* **Frequenza test**: impostare la frequenza di esecuzione del test da ogni località di test. Con una frequenza di cinque minuti e cinque località di test, il sito verrà testato in media ogni minuto.
-* **Località di test** : sono le posizioni da cui i server inviano richieste Web all'URL indicato. Sceglierne più di una, per poter distinguere i problemi del sito Web dai problemi di rete. È possibile selezionare fino a 16 località.
+    Se non è selezionata l'opzione hello, test hello richiede solo file hello hello URL specificato.
+* **Consentire tentativi**: se questa opzione è selezionata, hello test ha esito negativo, si è eseguito un nuovo tentativo dopo un breve intervallo. Un errore viene segnalato solo se tre tentativi successivi non riescono. I test successivi vengono quindi eseguiti con una frequenza di test consuete hello. Riprova è temporaneamente sospesa fino al completamento di hello successivo. Questa regola viene applicata in modo indipendente in ogni località di test. Questa opzione è consigliata. In media, circa l'80% degli errori non si ripresenta al nuovo tentativo.
+* **Frequenza di test**: imposta la frequenza con cui hello test viene eseguito da ogni posizione di test. Con una frequenza di cinque minuti e cinque località di test, il sito verrà testato in media ogni minuto.
+* **Posizioni di test** sono hello colloca in cui il server invia URL tooyour di richieste web. Sceglierne più di una, per poter distinguere i problemi del sito Web dai problemi di rete. È possibile selezionare le destinazioni di too16.
 * **Criteri di successo**:
 
-    **Timeout test**: ridurre questo valore per ricevere avvisi in merito alle risposte lente. Il test viene conteggiato come non riuscito se le risposte dal sito non sono state ricevute entro questo periodo. Se è stata selezionata l'opzione **Analizza richieste dipendenti**, è necessario che tutti gli script, i file di stile, le immagini e le altre risorse dipendenti siano stati ricevuti entro questo periodo.
+    **Timeout di prova**: ridurre il valore toobe generato un avviso per una risposta lenta. test di Hello viene conteggiato come un errore se le risposte hello del sito non sono state ricevute entro questo periodo. Se si seleziona **analizzare le richieste dipendenti**, quindi hello tutte le immagini, file di stile, script e altre risorse dipendenti sono stati ricevuti entro questo periodo.
 
-    **Risposta HTTP**: codice di stato restituito che viene conteggiato come operazione riuscita. 200 è il codice che indica che è stata restituita una normale pagina Web.
+    **Risposta HTTP**: hello ha restituito il codice di stato che viene conteggiato come un caso di esito positivo. 200 è codice hello che indica che una pagina web normale è stato restituito.
 
-    **Il contenuto corrisponde a**: stringa, ad esempio "Benvenuto", Verifichiamo che in ogni risposta ci una corrispondenza esatta di maiuscolo e minuscolo. Deve trattarsi di una stringa di testo normale, senza caratteri jolly. È importante ricordare che, se il contenuto cambia, potrebbe essere necessario aggiornare la stringa.
-* **Avvisi** vengono inviati se si verificano errori in tre posizioni in cinque minuti. Un errore in una posizione può indicare un errore di rete e non un problema con il sito. È comunque possibile modificare la soglia in modo da aumentare la sensibilità del test e modificare i destinatari a cui inviare i messaggi di posta elettronica.
+    **Il contenuto corrisponde a**: stringa, ad esempio "Benvenuto", Verifichiamo che in ogni risposta ci una corrispondenza esatta di maiuscolo e minuscolo. Deve trattarsi di una stringa di testo normale, senza caratteri jolly. Non dimenticare che, se le modifiche di contenuto della pagina potrebbe essere tooupdate è.
+* **Avvisi** , per impostazione predefinita, inviati tooyou se sono presenti errori in tre posizioni più di cinque minuti. È di un errore in un'unica posizione, probabilmente toobe un problema di rete e non è un problema con il sito. Ma è possibile modificare hello soglia toobe più o meno sensibili ed è possibile inoltre modifica chi ha hello messaggi di posta elettronica deve essere inviato.
 
     È possibile configurare un [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md) che verrà chiamato quando viene generato un avviso. Si noti però che attualmente i parametri di query non vengono passati come proprietà.
 
 ### <a name="test-more-urls"></a>Testare più URL
-Aggiungere altri test. Oltre a testare la home page, ad esempio, è possibile verificare che il database sia in esecuzione testando l'URL per una ricerca.
+Aggiungere altri test. Ad esempio, In aggiunta tootesting home page, è possibile verificare che il database è in esecuzione eseguendo i test hello URL per una ricerca.
 
 
 ## <a name="monitor"></a>3. Visualizzare i risultati del test di disponibilità
 
-Dopo pochi minuti, fare clic su **Aggiorna** per visualizzare i risultati del test. 
+Dopo alcuni minuti, fare clic su **aggiornamento** toosee risultati dei test. 
 
-![Summary results on the home blade](./media/app-insights-monitor-web-app-availability/14-availSummary-3.png)
+![Risultati di riepilogo nel pannello principale hello](./media/app-insights-monitor-web-app-availability/14-availSummary-3.png)
 
-Il grafico a dispersione mostra alcuni campioni dei risultati del test che includono dettagli diagnostici sui passaggi del test. Il motore di test archivia i dettagli diagnostici per i test che hanno restituito errori. Per i test riusciti, vengono archiviati i dettagli diagnostici per un subset delle esecuzioni. Posizionare il puntatore del mouse su uno dei punti verdi/rossi per visualizzare il timestamp del test, la durata del test, la posizione e il nome del test. Fare clic su qualsiasi punto del grafico a dispersione per visualizzare i dettagli del risultato del test.  
+Hello scatterplot vengono mostrati esempi di hello risultati dei test con i dettagli di diagnostica di passo del test. motore dei test hello archivia i dettagli relativi diagnostica per i test che sono stati rilevati errori. Per i test superati, di diagnostica viene archiviati per un subset di esecuzioni di hello. Passare il mouse su una qualsiasi delle hello punti verde/rosso toosee hello test timestamp, durata del test, percorso e nome del test. Fare clic su tramite qualsiasi punto nei dettagli hello dispersione tracciato toosee hello hello dei risultati di test.  
 
-Selezionare una posizione o un test specifico oppure ridurre il periodo di tempo per visualizzare più risultati riguardo all'intervallo desiderato. Usare Esplora ricerche per visualizzare i risultati di tutte le esecuzioni oppure usare query di analisi per eseguire report personalizzati per i dati.
+Selezionare un determinato test, percorso, o ridurre il tempo di hello toosee periodo ulteriori risultati intorno hello periodo di tempo di interesse. Utilizzare Esplora ricerche toosee risultati da tutte le esecuzioni o utilizzare report personalizzati di Analitica query toorun per i dati.
 
-Oltre ai risultati non elaborati, Esplora metriche include due metriche di disponibilità: 
+Nei risultati non elaborati toohello di addizione, esistono due metriche di disponibilità in Esplora metriche: 
 
-1. Disponibilità: percentuale dei test riusciti rispetto a tutte le esecuzioni di test. 
+1. Disponibilità: Percentuale di test hello che hanno avuto esito positivo, in tutte le esecuzioni di test. 
 2. Durata test: durata media dei test rispetto a tutte le esecuzioni di test.
 
-È possibile applicare filtri per il nome di test e la posizione per analizzare le tendenze per un test e/o una posizione specifici.
+È possibile applicare filtri sul nome del test hello, le tendenze tooanalyze percorso di un determinato test e/o il percorso.
 
 ## <a name="edit"></a> Esaminare e modificare i test
 
-Nella pagina di riepilogo selezionare uno specifico test. Sarà possibile visualizzarne i risultati specifici e modificarlo o disabilitarlo temporaneamente.
+Pagina Riepilogo hello, selezionare un test specifico. Sarà possibile visualizzarne i risultati specifici e modificarlo o disabilitarlo temporaneamente.
 
 ![Modificare o disabilitare un test Web](./media/app-insights-monitor-web-app-availability/19-availEdit-3.png)
 
-Può essere necessario disabilitare i test di disponibilità o le regole di avviso associate ai test durante le operazioni di manutenzione del servizio. 
+È possibile toodisable disponibilità test o un avviso di hello regole associate mentre si esegue la manutenzione del servizio. 
 
 ## <a name="failures"></a>In caso di errori
 Fare clic su un punto rosso.
@@ -101,118 +101,118 @@ Fare clic su un punto rosso.
 
 Dal risultato di un test di disponibilità è possibile eseguire le operazioni seguenti:
 
-* Controllare la risposta ricevuta dal server.
-* Aprire i dati di telemetria inviati dall'app server durante l'elaborazione dell'istanza della richiesta non riuscita.
-* Registrare un problema o elemento di lavoro in Git o VSTS per tenere traccia del problema. Il bug conterrà un collegamento a questo evento.
-* Aprire il risultato del test Web in Visual Studio.
+* Controllare risposta hello ricevuta dal server.
+* Aprire i dati di telemetria hello inviati all'applicazione server durante l'elaborazione di istanza di hello richieste non riuscite.
+* Elemento di lavoro problema di hello tootrack Git o Visual Studio Team Services o un problema. bug Hello conterrà un evento toothis di collegamento.
+* Aprire il risultato del test web hello in Visual Studio.
 
 
-*Ha un aspetto corretto ma è segnalato come errore?* Controllare tutte le immagini, gli script, i fogli di stile e qualsiasi altro file caricato dalla pagina. In caso di errore in uno di essi, il test verrà segnalato come non superato, anche se la pagina HTML principale viene caricata correttamente.
+*Ha un aspetto corretto ma è segnalato come errore?* Controllare tutte le immagini di hello, script, fogli di stile e qualsiasi altro file caricato dalla pagina hello. Se uno di essi ha esito negativo, prova hello viene segnalato come non riuscita, anche se una pagina html principale hello carica OK.
 
 *Nessun elemento correlato?* Se Application Insights è configurato per l'applicazione lato server, il motivo può essere l'esecuzione del [campionamento](app-insights-sampling.md). 
 
 ## <a name="multi-step-web-tests"></a>Test Web in più passaggi
-È possibile monitorare uno scenario che comporta una sequenza di URL. Ad esempio, se si monitora un sito Web di vendita, si potrebbe testare il corretto funzionamento dell'aggiunta di articoli al carrelli acquisti.
+È possibile monitorare uno scenario che comporta una sequenza di URL. Ad esempio, se si sta monitorando un sito Web di vendita, è possibile verificare che l'aggiunta di elementi toohello carrello funziona correttamente.
 
 > [!NOTE] 
 > È prevista una tariffa per i test Web in più passaggi. Vedere lo [schema dei prezzi](http://azure.microsoft.com/pricing/details/application-insights/).
 > 
 
-Per creare un test in più passaggi, registrare lo scenario con Visual Studio Enterprise, quindi caricare la registrazione in Application Insights. Application Insights riprodurrà lo scenario a intervalli e verificherà le risposte.
+toocreate un test di più passaggi, si registra scenario hello utilizzando Visual Studio Enterprise e quindi carica hello tooApplication informazioni di registrazione. Application Insights riproduce scenario hello a intervalli e verifica le risposte hello.
 
 > [!NOTE]
-> Non è possibile usare funzioni codificate o cicli nei test. Il test deve essere interamente contenuto nello script con estensione webtest. È tuttavia possibile usare plug-in standard.
+> Non è possibile usare funzioni codificate o cicli nei test. test di Hello deve essere completamente contenuto in uno script di hello WebTest. È tuttavia possibile usare plug-in standard.
 >
 
 #### <a name="1-record-a-scenario"></a>1. Registrare uno scenario
-Usare Visual Studio Enterprise per registrare una sessione Web.
+Utilizzare Visual Studio Enterprise toorecord una sessione web.
 
 1. Creare un progetto di test delle prestazioni Web.
 
-    ![In Visual Studio Enterprise creare un progetto dal modello di test di carico e prestazioni Web.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
+    ![In Visual Studio Enterprise edition, creare un progetto dal modello di Test di carico e prestazioni Web hello.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-create.png)
 
- * *Se il modello di test di carico e prestazioni Web non viene visualizzato*, chiudere Visual Studio Enterprise. Aprire il **programma di installazione di Visual Studio** per modificare l'installazione di Visual Studio Enterprise. In **Singoli componenti** selezionare **Strumenti per test di carico e delle prestazioni Web**.
+ * *Non è visualizzato hello delle prestazioni Web e il modello di Test di carico?* chiudere Visual Studio Enterprise. Aprire **programma di installazione di Visual Studio** toomodify l'installazione di Visual Studio Enterprise. In **Singoli componenti** selezionare **Strumenti per test di carico e delle prestazioni Web**.
 
-2. Aprire il file con estensione webtest e iniziare la registrazione.
+2. Apre file hello. WebTest e avviare la registrazione.
 
-    ![Aprire il file con estensione webtest e fare clic su Registra.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-start.png)
-3. Eseguire le azioni utente che si vuole simulare nel test: aprire il sito Web, aggiungere un prodotto al carrello e così via. Quindi, arrestare il test.
+    ![Aprire file hello. WebTest e fare clic su Registra.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-start.png)
+3. Hello desiderato toosimulate nel test di azioni dell'utente: aprire il sito Web, aggiungere un carrello toohello prodotto e così via. Quindi, arrestare il test.
 
-    ![Il registratore esecuzioni dei test Web viene eseguito in Internet Explorer.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-record.png)
+    ![esecuzione di registrazione dei test web Hello in Internet Explorer.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-record.png)
 
     Non creare uno scenario lungo, in quanto è presente un limite di 100 passaggi e 2 minuti.
-4. Modificare il test per:
+4. Modifica del test hello:
 
-   * Aggiungere convalide per verificare i codici di testo e di risposta ricevuti.
-   * Rimuovere tutte le interazioni superflue. È inoltre possibile rimuovere le richieste dipendenti per le immagini o per Active Directory o i siti di rilevamento.
+   * Aggiungere le convalide toocheck hello ricevuto testo e risposta codici.
+   * Rimuovere tutte le interazioni superflue. È anche possibile rimuovere le richieste dipendenti per le immagini o tooad o siti di rilevamento.
 
-     Tenere presente che è possibile modificare solo lo script del test ma non è possibile aggiungere codice personalizzato o chiamare altri test web. Non inserire cicli nel test. È possibile utilizzare i plug-in del test web standard.
-5. Eseguire il test in Visual Studio per verificarne il corretto funzionamento.
+     Tenere presente che è possibile modificare solo script di test hello - non è possibile aggiungere codice personalizzato o chiamare altri test web. Non inserire i cicli nel test hello. È possibile utilizzare i plug-in del test web standard.
+5. Eseguire test hello in Visual Studio toomake verificarne che il funzionamento.
 
-    Il programma di esecuzione del test Web apre un browser Web e ripete le azioni registrate. Verificare che funzioni come previsto.
+    un web browser verrà visualizzato Hello web test runner e si ripete hello azioni registrate. Verificare che funzioni come previsto.
 
-    ![In Visual Studio, aprire il file con estensione webtest e fare clic su Esegui.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-run.png)
+    ![In Visual Studio, aprire il file webtest hello e fare clic su Esegui.](./media/app-insights-monitor-web-app-availability/appinsights-71webtest-multi-vs-run.png)
 
-#### <a name="2-upload-the-web-test-to-application-insights"></a>2. Caricare il test Web in Application Insights
-1. Nel portale di Application Insights creare un test Web.
+#### <a name="2-upload-hello-web-test-tooapplication-insights"></a>2. Caricare hello web test tooApplication Insights
+1. Nel portale Application Insights hello, creare un test web.
 
-    ![Nel pannello Test Web, scegliere Aggiungi.](./media/app-insights-monitor-web-app-availability/16-another-test.png)
-2. Selezionare un test in più passaggi e caricare il file con estensione webtest.
+    ![Nel Pannello di test web hello, scegliere Aggiungi.](./media/app-insights-monitor-web-app-availability/16-another-test.png)
+2. Selezionare il test di più passaggi e caricare il file hello. WebTest.
 
     ![Selezionare Test Web in più passaggi.](./media/app-insights-monitor-web-app-availability/appinsights-71webtestUpload.png)
 
-    Impostare le posizioni di test, la frequenza e i parametri di avviso allo stesso modo dei test ping.
+    Posizioni di test hello set, frequenza e parametri di avviso in hello stesso modo per ping verifica.
 
-#### <a name="3-see-the-results"></a>3. Visualizzare i risultati
+#### <a name="3-see-hello-results"></a>3. Visualizzare i risultati di hello
 
-Visualizzare i risultati del test e gli eventuali errori nello stesso modo dei test con singolo URL.
+Visualizzare il test di risultati e gli eventuali errori in hello stesso modo come url singolo test.
 
-È anche possibile scaricare i risultati del test per visualizzarli in Visual Studio.
+Inoltre, è possibile scaricare tooview risultati test di hello usarle in Visual Studio.
 
 #### <a name="too-many-failures"></a>Numero di errori elevato
 
-* Un motivo frequente di errore è l'eccessiva durata del test. L'esecuzione non deve superare i due minuti.
+* Una causa comune di errore è che il test hello dura troppo a lungo. L'esecuzione non deve superare i due minuti.
 
-* Non dimenticare che, perché il test abbia esito positivo, tutte le risorse di una pagina devono essere caricate correttamente, inclusi script, fogli di stile, immagini e così via.
+* Non dimenticare che tutte le risorse di hello di una pagina è necessario caricare correttamente per hello test toosucceed, inclusi script, fogli di stile, immagini e così via.
 
-* Il test Web deve essere interamente contenuto nello script con estensione webtest: non è possibile usare funzioni codificate nel test.
+* Hello test web deve essere contenuto interamente in script WebTest hello: non è possibile utilizzare funzioni codificate nel test hello.
 
 ### <a name="plugging-time-and-random-numbers-into-your-multi-step-test"></a>Inserimento di plug-in relativi a tempo e numeri casuali nel test in più passaggi
-Si supponga di voler testare uno strumento che riceva dati dipendenti dal tempo, come ad esempio valori di scorte da un feed esterno. Quando si registra il test Web, è necessario usare tempi specifici impostandoli come parametri del test, StartTime e EndTime.
+Si supponga di voler testare uno strumento che riceva dati dipendenti dal tempo, come ad esempio valori di scorte da un feed esterno. Quando si registra il test web, sono toouse orari, ma si impostano come testare i parametri di hello, StartTime ed EndTime.
 
 ![Un test Web con parametri.](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-parameters.png)
 
-Quando si esegue il test, si vuole che EndTime sia sempre l'ora corrente e StartTime 15 minuti fa.
+Quando si esegue il test di hello, desideri toobe hello presentano sempre ora EndTime e StartTime deve essere di 15 minuti fa.
 
-I plug-in del test Web consentono di impostare questi parametri.
+Plug-in Test Web forniscono il modo di hello toodo parametrizzare volte.
 
-1. Aggiungere un plug-in del test Web per ciascun valore di parametro desiderato. Nella barra degli strumenti del test Web scegliere **Aggiungi plug-in test Web**.
+1. Aggiungere un plug-in del test Web per ciascun valore di parametro desiderato. Nella barra degli strumenti test hello web, scegliere **aggiungere plug-in Test Web**.
 
     ![Scegliere Aggiungi plug-in test Web e selezionare un tipo.](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-plugins.png)
 
-    In questo esempio vengono usate due istanze di Plug-in data e ora, una per "15 minuti fa" e l'altra per "ora".
-2. Aprire le proprietà di ciascun plug-in. Assegnare un nome al plug-in e impostarlo in modo che usi l'ora corrente. Per uno di essi, impostare Aggiungi minuti = -15.
+    In questo esempio, si usa due istanze di hello plug-in fase di Data. una per "15 minuti fa" e l'altra per "ora".
+2. Aprire le proprietà di hello di ogni plug-in. Assegnare un nome e impostarlo hello toouse ora corrente. Per uno di essi, impostare Aggiungi minuti = -15.
 
     ![Set name, Use Current Time e Add Minutes.](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-plugin-parameters.png)
-3. Nei parametri del test Web, usare {{nome plug-in}} per fare riferimento a un nome di plug-in.
+3. Nei parametri di test web hello, utilizzare {{plug-in name}} tooreference un nome del plug-in.
 
-    ![Nel parametro di test usare {{nome plug-in}}.](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-plugin-name.png)
+    ![Nel parametro di test hello, utilizzare {{plug-in name}}.](./media/app-insights-monitor-web-app-availability/appinsights-72webtest-plugin-name.png)
 
-Caricare quindi il test nel portale. Userà i valori dinamici ogni volta che verrà eseguito.
+A questo punto, caricare il portale toohello del test. Usa i valori dinamici hello in ogni fase di esecuzione del test di hello.
 
 ## <a name="dealing-with-sign-in"></a>Gestione degli accessi
-Se gli utenti accedono all'app, è possibile simulare l'accesso in vari modi per testare le pagine usate per l'accesso. L'approccio da preferire dipende dal tipo di sicurezza fornito dall'app.
+Se gli utenti accedono tooyour app, si sono disponibili varie opzioni per la simulazione di accesso in modo da poter testare pagine Accedi hello. Hello sia l'approccio utilizzato dipende dal tipo di hello di sicurezza fornito da app hello.
 
-In tutti i casi è consigliabile creare un account nell'applicazione solo a scopo di test. Se possibile, limitare le autorizzazioni dell'account di test in modo che i test Web non possano influire in alcun modo sugli utenti reali.
+In tutti i casi, è necessario creare un account nell'applicazione solo a scopo di hello del test. Se possibile, limitare le autorizzazioni di hello di questo account di test in modo che non vi è alcuna possibilità di test web hello che interessano gli utenti reali.
 
 ### <a name="simple-username-and-password"></a>Nome utente e password semplici
-Registrare un test Web nel modo consueto. Eliminare prima di tutto i cookie.
+Registrare un test web in hello come di consueto. Eliminare prima di tutto i cookie.
 
 ### <a name="saml-authentication"></a>SAML Authentication
-usare il plug-in SAML disponibile per i test Web.
+Utilizzare i plug-in SAML hello che è disponibile per i test web.
 
 ### <a name="client-secret"></a>Segreto client
-Se l'app ha un percorso di accesso che prevede un segreto client, usare tale percorso. Un servizio che offre l'accesso con segreto client è ad esempio Azure Active Directory (AAD). In AAD, il segreto client è la chiave dell'app.
+Se l'app ha un percorso di accesso che prevede un segreto client, usare tale percorso. Un servizio che offre l'accesso con segreto client è ad esempio Azure Active Directory (AAD). In AAD, segreto client hello è hello chiave dell'applicazione.
 
 Ecco un test Web di esempio di un'app Web di Azure che usa una chiave dell'app:
 
@@ -220,71 +220,71 @@ Ecco un test Web di esempio di un'app Web di Azure che usa una chiave dell'app:
 
 1. Ottenere il token da AAD usando il segreto client (AppKey).
 2. Estrarre il token di connessione dalla risposta.
-3. Chiamare l'API usando il token di connessione nell'intestazione dell'autorizzazione.
+3. Chiamare API usando il token di connessione nell'intestazione di autorizzazione hello.
 
-Verificare che il test Web sia effettivamente un client, ovvero che abbia una propria app in AAD, e usare i relativi valori ClientId e AppKey. Anche il servizio sottoposto a test ha una propria app in AAD, il cui URI ID app è riportato nel campo "resource" del test Web.
+Assicurarsi che i test web hello è un client effettivo, che dispone di un'app in Azure ad - e utilizzare il clientId + appkey. Sottoposta a test è anche un'app in AAD: hello appID URI di questa app viene riflessa nel test web hello nel campo "resource" hello.
 
 ### <a name="open-authentication"></a>Autenticazione aperta
-Un esempio di autenticazione aperta è l'accesso con il proprio account Microsoft o Google. Molte app che usano OAuth offrono l'alternativa del segreto client ed è quindi consigliabile ricercare prima di tutto tale possibilità.
+Un esempio di autenticazione aperta è l'accesso con il proprio account Microsoft o Google. Molte applicazioni che utilizzano OAuth fornire hello alternativa segreto client, pertanto la prima strategia dovrebbe essere tooinvestigate il possibilità.
 
-Se il test deve eseguire l'accesso con OAuth, procedere come indicato di seguito:
+Se il test sarà necessario accedere con OAuth, l'approccio generale hello è:
 
-* Usare uno strumento come Fiddler per esaminare il traffico tra il Web browser, il sito di autenticazione e l'app.
-* Eseguire due o più accessi usando computer o browser diversi oppure a distanza di tempo, per lasciar scadere i token.
-* Mettendo a confronto le diverse sessioni, identificare il token restituito dal sito di autenticazione e poi passato al server applicazioni dopo l'accesso.
+* Utilizzare uno strumento come il traffico di hello Fiddler tooexamine tra web browser, il sito di autenticazione hello e app.
+* Eseguire due o più accessi computer diversi o browser, o a intervalli di tempo (tooallow token tooexpire).
+* Tramite il confronto tra sessioni diverse, identificare token hello restituiti da hello l'autenticazione del sito, che viene quindi passato server app tooyour dopo l'accesso.
 * Registrare un test Web usando Visual Studio.
-* Impostare i parametri dei token quando questi vengono restituiti dall'autenticatore e usarli per l'esecuzione di query nel sito.
-  Visual Studio prova a impostare i parametri del test, ma non imposta correttamente i parametri dei token.
+* Parametrizzare token hello, impostando il parametro hello quando il token hello viene restituito da autenticatore hello e utilizzarla nel sito di toohello query hello.
+  (Visual Studio tenta test hello tooparameterize, ma non correttamente parametrizzare token hello.)
 
 
 ## <a name="performance-tests"></a>Test delle prestazioni
-È possibile eseguire un test di carico nel sito Web. Analogamente al test di disponibilità, è possibile inviare semplici richieste o richieste in più passaggi da diversi punti in tutto il mondo. A differenza dei test di disponibilità, vengono inviate molte richieste, simulando più utenti simultanei.
+È possibile eseguire un test di carico nel sito Web. Come test di disponibilità hello, è possibile inviare le richieste semplici o più passaggi richieste dai nostri punti tutto il mondo hello. A differenza dei test di disponibilità, vengono inviate molte richieste, simulando più utenti simultanei.
 
-Dal pannello Panoramica aprire **Impostazioni**, **Test delle prestazioni**. Quando si crea un test, si è invitati a connettersi o a creare un account di Visual Studio Team Services.
+Dal pannello della panoramica hello, aprire **impostazioni**, **test delle prestazioni**. Quando si crea un test, si è stati invitati tooconnect tooor creare un account di Visual Studio Team Services.
 
-Al termine del test verranno visualizzati i tempi di risposta e le percentuali di successo.
+Una volta completato il test di hello, vengono visualizzati i tempi di risposta e percentuali di successo.
 
 
 ![Test delle prestazioni](./media/app-insights-monitor-web-app-availability/perf-test.png)
 
 > [!TIP]
-> Per osservare gli effetti di un test delle prestazioni, usare [Live Stream](app-insights-live-stream.md) e [Profiler](app-insights-profiler.md).
+> effetti hello tooobserve di un test delle prestazioni, utilizzare [flusso Live](app-insights-live-stream.md) e [Profiler](app-insights-profiler.md).
 >
 
 ## <a name="automation"></a>Automazione
-* [Usare script di PowerShell per configurare un test di disponibilità](app-insights-powershell.md#add-an-availability-test) automaticamente.
+* [Utilizzare tooset gli script di PowerShell di un test di disponibilità](app-insights-powershell.md#add-an-availability-test) automaticamente.
 * Configurare un [webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md) che verrà chiamato quando viene generato un avviso.
 
 ## <a name="qna"></a>Domande? Problemi?
 * *È possibile chiamare codice da un test Web?*
 
-    No. I passaggi del test devono essere nel file con estensione webtest. Inoltre non è possibile chiamare altri test web o utilizzare cicli. Esistono diversi plug-in che potrebbero risultare utili.
+    No. passaggi di Hello del test di hello devono essere nel file hello. WebTest. Inoltre non è possibile chiamare altri test web o utilizzare cicli. Esistono diversi plug-in che potrebbero risultare utili.
 * *HTTPS è supportato?*
 
     Sono supportati TLS 1.1 e TLS 1.2.
 * *Esiste una differenza tra "test Web" e "test di disponibilità"?*
 
-    I due termini vengono usati in modo intercambiabile. Test di disponibilità è un termine più generico che include i singoli test di ping URL oltre ai test Web in più passaggi.
-* *È possibile usare test di disponibilità nel server interno protetto da un firewall?*
+    Hello due termini è possibile fare riferimento in modo intercambiabile. Test di disponibilità è un termine più generico che comprende i ping di URL singolo hello verifica inoltre toohello multipassaggio web test.
+* *Imposta come test di disponibilità toouse nel server interno che esegue un firewall.*
 
     Le soluzioni possono essere due:
     
-    * Configurare il firewall per consentire richieste in ingresso dagli [indirizzi IP degli agenti di test Web](app-insights-ip-addresses.md).
-    * Scrivere il proprio codice per testare periodicamente il server interno. Eseguire il codice come processo in background in un server di prova protetto da firewall. Il processo di test può inviare i risultati ad Application Insights tramite l'API [TrackAvailability()](https://docs.microsoft.com/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) nel pacchetto SDK di base. In questo modo è necessario testare il server per avere un accesso in uscita per l'endpoint di inserimento di Application Insights, ma questo rappresenta un minore rischio per la sicurezza rispetto all'alternativa di consentire le richieste in ingresso. I risultati non verranno visualizzati nei pannelli dei test Web di disponibilità, ma verranno mostrati come risultati relativi alla disponibilità in Analisi, Ricerca ed Esplorazione metriche.
+    * Configurare il firewall toopermit le richieste in ingresso da hello [gli agenti di test di indirizzi IP dei nostri web](app-insights-ip-addresses.md).
+    * Scrivere test tooperiodically codice server interno. Eseguire codice hello come un processo in background in un server di prova protetto da firewall. Il processo di test può inviare i risultati tooApplication Insights usando [TrackAvailability()](https://docs.microsoft.com/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API nel pacchetto di hello core SDK. Questo richiede il test toohave in uscita accesso toohello Application Insights inserimento endpoint del server, ma che è un quantità inferiore dei rischi di protezione di alternativa hello di consentire le richieste in ingresso. risultati di Hello non verranno visualizzati nei pannelli di test web disponibilità hello, ma viene visualizzato come risultati di disponibilità in Analitica, ricerca e metrica Explorer.
 * *Non è possibile caricare un test Web in più passi*
 
     È previsto un limite di dimensioni pari a 300 KB.
 
     I cicli non sono supportati.
 
-    I riferimenti ad altri test Web non sono supportati.
+    I test web tooother riferimenti non sono supportati.
 
     Le origini dati non sono supportate.
 * *Il test in più passi non viene completato*
 
     È previsto un limite di 100 richieste per ogni test.
 
-    Il test viene arrestato se la durata dell'esecuzione è superiore a due minuti.
+    test di Hello viene arrestato se viene eseguito più di due minuti.
 * *È possibile eseguire un test con certificati client?*
 
     Questa funzionalità non è supportata.

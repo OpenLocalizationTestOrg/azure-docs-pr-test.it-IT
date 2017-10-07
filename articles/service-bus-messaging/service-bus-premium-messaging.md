@@ -1,5 +1,5 @@
 ---
-title: Panoramica dei piani tariffari di messaggistica Standard e Premium del bus di servizio di Azure | Microsoft Docs
+title: aaaAzure Premium Bus di servizio e di messaggistica Standard prezzo livelli Panoramica | Documenti Microsoft
 description: Livelli di messaggistica Standard e Premium del bus di servizio
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: darosa;sethm
-ms.openlocfilehash: 3fe666da149085d14c3839a64b50765eea483e05
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4eea5d86d342e858f50450308fb3d96a7a80b49e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-premium-and-standard-messaging-tiers"></a>Livelli di messaggistica Standard e Premium del bus di servizio
 
-La messaggistica del bus di servizio, che include entità come code e argomenti, unisce funzionalità di messaggistica aziendale a una semantica di pubblicazione-sottoscrizione completa a livello di cloud. La messaggistica del bus di servizio viene usata come backbone di comunicazione per molte soluzioni cloud avanzate.
+La messaggistica del bus di servizio, che include entità come code e argomenti, unisce funzionalità di messaggistica aziendale a una semantica di pubblicazione-sottoscrizione completa a livello di cloud. Messaggistica del Bus di servizio viene utilizzata come backbone comunicazione hello per molte soluzioni di cloud sofisticate.
 
-Il livello di messaggistica *Premium* del bus di servizio soddisfa le comuni richieste dei clienti in termini di scalabilità, prestazioni e disponibilità per le applicazioni cruciali. Anche se i set di funzionalità sono quasi identici, questi due livelli di messaggistica del bus di servizio sono progettati per gestire diversi casi d'uso.
+Hello *Premium* livello di messaggistica del Bus di servizio risolve le richieste dei clienti comuni attorno alla scala, prestazioni e disponibilità per applicazioni di importanza strategica. Anche se il set di funzionalità hello è quasi identico, questi due livelli di messaggistica del Bus di servizio sono progettate tooserve diversi casi d'uso.
 
-Nella tabella seguente sono evidenziate alcune differenze generali.
+Alcune differenze di alto livello vengono evidenziati in hello nella tabella seguente.
 
 | Premium | Standard |
 | --- | --- |
 | Velocità effettiva elevata |Velocità effettiva variabile |
 | Prestazioni prevedibili |Latenza variabile |
 | Prezzi fissi |Prezzi variabili in base all'uso |
-| Possibilità di aumentare o ridurre le prestazioni del carico di lavoro |N/D |
-| Dimensione messaggi fino a 1 MB |Dimensione messaggi fino a 256 KB |
+| Carico di lavoro di possibilità tooscale su e giù |N/D |
+| Dimensione del messaggio di too1 MB |Dimensione del messaggio too256 KB |
 
-La **messaggistica di livello Premium del bus di servizio** garantisce l'isolamento delle risorse a livello di CPU e di memoria in modo che ogni carico di lavoro del cliente venga eseguito in isolamento. Questo contenitore di risorse viene chiamato *unità di messaggistica*. Ad ogni spazio dei nomi Premium viene allocata almeno un'unità di messaggistica. È possibile acquistare 1, 2 o 4 unità di messaggistica per ogni spazio dei nomi Premium del bus di servizio. Un singolo carico di lavoro o un'entità può estendersi su più unità di messaggistica e il numero di unità di messaggistica può essere modificato in base alle esigenze, anche se la fatturazione prevede un addebito a frequenza giornaliera o a 24 ore. Ne risultano prestazioni prevedibili e ripetibili per la soluzione basata sul bus di servizio.
+**Messaggistica Premium del Bus di servizio** fornisce l'isolamento delle risorse a livello di CPU e memoria hello in modo che ogni carico di lavoro del cliente viene eseguita in isolamento. Questo contenitore di risorse viene chiamato *unità di messaggistica*. Ad ogni spazio dei nomi Premium viene allocata almeno un'unità di messaggistica. È possibile acquistare 1, 2 o 4 unità di messaggistica per ogni spazio dei nomi Premium del bus di servizio. Un singolo carico di lavoro o un'entità può estendersi su più unità di messaggistica e il numero di hello di unità di messaggistica può essere cambiato quando è necessario, anche se la fatturazione è previsto un addebito frequenza di 24 ore oppure ogni giorno. il risultato di Hello è prestazioni prevedibili e ripetibile per la soluzione basata sul Bus di servizio.
 
-Non solo le prestazioni sono più prevedibili e disponibili, ma anche più veloci. La messaggistica Premium del bus di servizio è basata sul motore di archiviazione introdotto in [Hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/). Con la messaggistica Premium, le prestazioni massime sono più veloci rispetto al livello Standard.
+Non solo le prestazioni sono più prevedibili e disponibili, ma anche più veloci. Messaggistica Premium del Bus di servizio si basa sul motore di archiviazione hello introdotta in [hub eventi di Azure](https://azure.microsoft.com/services/event-hubs/). Con la messaggistica Premium, sono molto più veloce con il livello Standard hello ottenere prestazioni ottimali.
 
 ## <a name="premium-messaging-technical-differences"></a>Differenze tecniche della messaggistica Premium
 
-Le sezioni seguenti illustrano alcune differenze tra i livelli di messaggistica Standard e Premium.
+Hello nelle sezioni seguenti vengono illustrano alcune differenze tra i livelli di messaggistica Standard e Premium.
 
 ### <a name="partitioned-queues-and-topics"></a>Code e argomenti partizionati
 
-Le code e gli argomenti partizionati sono supportati nella messaggistica Premium. Queste entità sono in effetti sempre partizionate e non possono essere disabilitate. Le code e gli argomenti partizionati Premium, tuttavia, non funzionano in modo analogo agli elementi corrispondenti nei piani tariffari Standard e Basic della messaggistica del bus di servizio. La messaggistica Premium non usa SQL come archivio dati e non ha più la competizione possibile tra le risorse associata a una piattaforma condivisa. Di conseguenza, il partizionamento non è necessario per migliorare le prestazioni. Il numero delle partizioni è stato inoltre modificato da 16 partizioni nella messaggistica Standard a 2 partizioni in quella Premium. La presenza di due partizioni garantisce la disponibilità ed è un numero più appropriato per l'ambiente di runtime Premium. 
+Le code e gli argomenti partizionati sono supportati nella messaggistica Premium. Queste entità sono in effetti sempre partizionate e non possono essere disabilitate. Tuttavia, Premium partizionare code e argomenti non funzionano hello esattamente come in hello livelli Standard e Basic di messaggistica del Bus di servizio. Non messaggistica Premium Usa SQL come archivio dati e non ha hello concorrenza possibili risorsa associata a una piattaforma condivisa. Di conseguenza, il partizionamento non è necessario tooimprove prestazioni. Inoltre, il numero di partizioni hello è stato modificato da 16 partizioni nella messaggistica Standard partizioni too2 Premium. Con due partizioni garantisce la disponibilità e un numero più appropriato per l'ambiente di runtime di hello Premium. 
 
-Con la messaggistica Premium, quando si usa [MaxSizeInMegabytes](/dotnet/api/microsoft.servicebus.messaging.queuedescription.maxsizeinmegabytes#Microsoft_ServiceBus_Messaging_QueueDescription_MaxSizeInMegabytes) per specificare la dimensione di un'entità, tale dimensione viene suddivisa equamente tra le due partizioni. Con le [entità partizionate Standard](service-bus-partitioning.md#standard), invece, la dimensione totale è di 16 volte la dimensione specificata. 
+Con la messaggistica Premium, quando si specificano dimensioni hello di un'entità con [MaxSizeInMegabytes](/dotnet/api/microsoft.servicebus.messaging.queuedescription.maxsizeinmegabytes#Microsoft_ServiceBus_Messaging_QueueDescription_MaxSizeInMegabytes), che le dimensioni sono suddiviso equamente tra partizioni hello 2, a differenza di [Standard partizionata entità](service-bus-partitioning.md#standard) in cui hello dimensione totale è 16 volte hello dimensioni specificate. 
 
 Per altre informazioni sul partizionamento, vedere [Code e argomenti partizionati](service-bus-partitioning.md).
 
 ### <a name="express-entities"></a>Entità Express
 
-Dato che la messaggistica Premium viene eseguita in un ambiente di runtime completamente isolato, le entità Express non sono supportate negli spazi dei nomi Premium. Per altre informazioni sulla funzionalità Express, vedere la proprietà [QueueDescription.EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress).
+Dato che la messaggistica Premium viene eseguita in un ambiente di runtime completamente isolato, le entità Express non sono supportate negli spazi dei nomi Premium. Per ulteriori informazioni sulla funzionalità express hello, vedere hello [QueueDescription.EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) proprietà.
 
-Se è presente codice in esecuzione nella messaggistica Standard e si vuole trasferirlo al livello Premium, assicurarsi che la proprietà [EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) sia impostata su **false** (valore predefinito).
+Se si dispone di codice in esecuzione con tooport Standard di messaggistica e si desidera il livello Premium toohello, assicurarsi che hello [EnableExpress](/dotnet/api/microsoft.servicebus.messaging.queuedescription.enableexpress#Microsoft_ServiceBus_Messaging_QueueDescription_EnableExpress) impostata troppo**false** (valore predefinito di hello).
 
 ## <a name="get-started-with-premium-messaging"></a>Introduzione alla messaggistica Premium
 
-Iniziare a usare la messaggistica Premium è estremamente semplice e il processo è simile a quello della messaggistica Standard. Iniziare [creando uno spazio dei nomi](service-bus-create-namespace-portal.md). Assicurarsi di selezionare **Premium** in **Piano tariffario**.
+Introduzione a messaggistica Premium è molto semplice e il processo di hello toothat simile di messaggistica Standard. Iniziare [creando uno spazio dei nomi](service-bus-create-namespace-portal.md). Assicurarsi di selezionare **Premium** in **Piano tariffario**.
 
 ![create-premium-namespace][create-premium-namespace]
 
@@ -69,12 +69,12 @@ Iniziare a usare la messaggistica Premium è estremamente semplice e il processo
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per altre informazioni sulla messaggistica del bus di servizio, vedere gli argomenti seguenti.
+toolearn più sulla messaggistica del Bus di servizio, vedere hello seguenti argomenti.
 
 * [Introducing Azure Service Bus Premium Messaging](http://azure.microsoft.com/blog/introducing-azure-service-bus-premium-messaging/) (Introduzione alla messaggistica Premium del bus di servizio di Azure, post di blog)
 * [Introducing Azure Service Bus Premium Messaging](https://channel9.msdn.com/Blogs/Subscribe/Introducing-Azure-Service-Bus-Premium-Messaging) (Introduzione alla messaggistica Premium del bus di servizio di Azure, Channel9)
 * [Panoramica della messaggistica del bus di servizio](service-bus-messaging-overview.md)
-* [Come usare le code del bus di servizio](service-bus-dotnet-get-started-with-queues.md)
+* [Come le code del Bus di servizio toouse](service-bus-dotnet-get-started-with-queues.md)
 
 <!--Image references-->
 

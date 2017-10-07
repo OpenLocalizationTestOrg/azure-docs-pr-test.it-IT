@@ -1,6 +1,6 @@
 ---
-title: Mapping delle colonne del set di dati in Azure Data Factory | Documentazione Microsoft
-description: Informazioni su come eseguire il mapping delle colonne di origine alle colonne di destinazione.
+title: colonne di set di dati aaaMapping nella Data Factory di Azure | Documenti Microsoft
+description: Informazioni su come toomap colonne toodestination di colonne di origine.
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,31 +13,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: a50661b377cfbbff3f1f762342cb275d5da82cea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f78d4af675bec0a70e5f6e83ec1ffb511408b5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="map-source-dataset-columns-to-destination-dataset-columns"></a>Eseguire il mapping delle colonne del set di dati di origine alle colonne del set di dati di destinazione
-Mapping di colonne utilizzabile per specificare come le colonne specificate nella "struttura" di mapping della tabella di origine alle colonne specificate nella "struttura" della tabella di sink. La proprietà **columnMapping** è disponibile nella sezione **typeProperties** dell'attività di copia.
+# <a name="map-source-dataset-columns-toodestination-dataset-columns"></a>Eseguire il mapping di colonne di set di dati di origine del dataset colonne toodestination
+Mapping della colonna può essere utilizzato toospecify come colonne specificate nella hello "struttura" di toocolumns mappa tabella di origine specificate in hello "struttura" della tabella del sink. Hello **columnMapping** proprietà è disponibile in hello **typeProperties** sezione di hello attività di copia.
 
-Il mapping di colonne supporta gli scenari seguenti:
+Mapping di colonne supporta hello seguenti scenari:
 
-* Tutte le colonne della struttura del set di dati di origine vengono mappate a tutte le colonne della struttura del set di dati del sink.
-* Un sottoinsieme delle colonne nella struttura del set di dati di origine viene mappato a tutte le colonne della struttura del set di dati del sink.
+* Tutte le colonne nella struttura di set di dati di origine hello sono mappate tooall nella struttura di hello sink set di dati.
+* Un subset di colonne hello nella struttura di set di dati di origine hello è mappato tooall colonne struttura di set di dati di hello sink.
 
-Le seguenti sono condizioni di errore che generano un'eccezione:
+di seguito Hello sono condizioni di errore che comporta un'eccezione:
 
-* Un numero inferiore o superiore di colonne nella "struttura" della tabella di sink di quanto specificato nel mapping.
+* Un numero di colonne o altre colonne in hello "struttura" della tabella del sink specificato nel mapping hello.
 * Mapping duplicato.
-* Il risultato della query SQL non ha un nome colonna specificato nel mapping.
+* Risultato della query SQL non dispone di un nome di colonna specificato nel mapping hello.
 
 > [!NOTE]
-> Gli esempi che seguono sono per SQL Azure e Azure Blob, ma sono applicabili per qualsiasi archivio dati che supporti set di dati rettangolari. Modificare i set di dati e le definizioni dei servizi collegati negli esempi per puntare a dati nell'origine dati pertinente.
+> Hello negli esempi seguenti sono per SQL Azure e Blob di Azure ma sono applicabili tooany archivio di dati che supporta i set di dati rettangolare. Modificare i set di dati e le definizioni di servizio collegato in toodata toopoint esempi nell'origine dati rilevanti hello.
 
-## <a name="sample-1--column-mapping-from-azure-sql-to-azure-blob"></a>Esempio 1: mapping di colonne da Azure SQL al BLOB di Azure
-In questo esempio, la tabella di input ha una struttura che punta a una tabella SQL in un database SQL di Azure.
+## <a name="sample-1--column-mapping-from-azure-sql-tooazure-blob"></a>Esempio 1: mapping dal blob di Azure SQL tooAzure colonne
+In questo esempio, tabella di input hello ha una struttura e tabella SQL tooa punti in un database SQL di Azure.
 
 ```json
 {
@@ -70,7 +70,7 @@ In questo esempio, la tabella di input ha una struttura che punta a una tabella 
 }
 ```
 
-In questo esempio, la tabella di output ha una struttura che punta a un BLOB in un'archiviazione BLOB di Azure.
+In questo esempio, tabella di output di hello ha una struttura e punti tooa blob in un archivio blob di Azure.
 
 ```json
 {
@@ -103,7 +103,7 @@ In questo esempio, la tabella di output ha una struttura che punta a un BLOB in 
 }
 ```
 
-Il codice JSON seguente definisce un'attività di copia in una pipeline. Le colonne dell'origine vengono mappate alle colonne del sink (**columnMappings**) usando la proprietà **Translator**.
+Hello JSON seguente definisce un'attività di copia in una pipeline. mapping delle colonne di Hello dall'origine toocolumns nel sink (**columnMappings**) utilizzando hello **traduttore** proprietà.
 
 ```json
 {
@@ -137,8 +137,8 @@ Il codice JSON seguente definisce un'attività di copia in una pipeline. Le colo
 
 ![Flusso del mapping di colonne](./media/data-factory-map-columns/column-mapping-flow.png)
 
-## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-to-azure-blob"></a>Esempio 2: mapping di colonne con query SQL da Azure SQL al BLOB di Azure
-In questo esempio, una query SQL viene utilizzata per estrarre dati da Azure SQL invece di specificare semplicemente il nome della tabella e i nomi delle colonne nella sezione "struttura". 
+## <a name="sample-2--column-mapping-with-sql-query-from-azure-sql-tooazure-blob"></a>Esempio 2: mapping con query SQL da blob di Azure SQL tooAzure colonne
+In questo esempio, una query SQL è usato tooextract dati da SQL Azure anziché specificare semplicemente il nome di tabella hello e nomi di colonna hello nella sezione "struttura". 
 
 ```json
 {
@@ -170,13 +170,13 @@ In questo esempio, una query SQL viene utilizzata per estrarre dati da Azure SQL
         }
 }
 ```
-In questo caso, i risultati della query vengono prima mappati alle colonne specificate in "struttura" di origine. Successivamente, le colonne di origine "struttura" vengono mappate alle colonne nel sink "struttura" con le regole specificate nel columnMappings.  Si supponga che la query restituisca 5 colonne, due in più di quelle specificate nella "struttura" dell'origine.
+In questo caso, i risultati della query hello sono prima toocolumns mappato specificato in "struttura" dell'origine. Successivamente, le colonne di hello dall'origine "struttura" sono mappate toocolumns nel sink "struttura" con le regole specificate in elementi columnMappings.  Si supponga che la query hello restituisce 5 colonne, altre due colonne rispetto a quelle specificate in hello "struttura" dell'origine.
 
 **Flusso del mapping di colonne**
 
 ![Flusso del mapping di colonne-2](./media/data-factory-map-columns/column-mapping-flow-2.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-Vedere l'articolo per un'esercitazione sull'uso dell'attività di copia: 
+Per un'esercitazione sull'uso di attività di copia, vedere l'articolo di hello: 
 
-- [Copiare dati da un archivio BLOB a un database SQL](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+- [Copiare i dati da archiviazione Blob tooSQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)

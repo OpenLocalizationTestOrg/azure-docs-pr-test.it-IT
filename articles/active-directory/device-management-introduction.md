@@ -1,6 +1,6 @@
 ---
-title: Introduzione alla gestione dei dispositivi in Azure Active Directory | Microsoft Docs
-description: Informazioni su come la gestione dei dispositivi consente di ottenere il controllo sui dispositivi che accedono alle risorse nell'ambiente.
+title: gestione toodevice aaaIntroduction in Azure Active Directory | Documenti Microsoft
+description: Informazioni su come la gestione dei dispositivi consente un controllo tooget dei dispositivi hello che accedono alle risorse nell'ambiente in uso.
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,113 +15,113 @@ ms.topic: article
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: bebbdddf6b591ea7e36cbac38b568bce614bb335
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e2fc0a3e8d00dc69cf01db9074e34427e396cfcf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-device-management-in-azure-active-directory"></a>Introduzione alla gestione dei dispositivi in Azure Active Directory
+# <a name="introduction-toodevice-management-in-azure-active-directory"></a>Gestione toodevice introduzione in Azure Active Directory
 
-In un mondo in cui i dispositivi mobili e il cloud hanno sempre più importanza, Azure Active Directory (Azure AD) consente ovunque l'accesso Single Sign-On a dispositivi, app e servizi. Con il proliferare dei dispositivi, inclusi i dispositivi Bring Your Own Device (BYOD), i professionisti IT hanno due obiettivi opposti:
+In un ambiente mobile-first, prima di cloud, Azure Active Directory (Azure AD) consente di single sign-on toodevices, applicazioni e servizi da qualsiasi posizione. Con la proliferazione di hello di dispositivi, tra cui BYOD Bring Your Own Device (), i professionisti IT devono affrontare due obiettivi opposti:
 
-- Fare in modo che gli utenti finali siano produttivi sempre e ovunque
-- Proteggere gli asset aziendali in qualsiasi momento
+- Consentire toobe gli utenti finali di hello produttivi ovunque e
+- Proteggere le risorse aziendali hello in qualsiasi momento
 
-Tramite i dispositivi gli utenti hanno accesso alle risorse aziendali. Per proteggere le risorse aziendali, gli amministratori IT vogliono avere il controllo su questi dispositivi. Ciò consente di verificare che gli utenti accedano alle risorse da dispositivi che soddisfano gli standard per sicurezza e conformità. 
+Tramite i dispositivi, gli utenti ottengono accesso risorse aziendali tooyour. tooprotect risorse aziendali, come un amministratore IT, si desidera controllare toohave questi dispositivi. In questo modo toomake assicurarsi che gli utenti accede alle risorse dai dispositivi che soddisfano gli standard di sicurezza e conformità. 
 
-La gestione dei dispositivi rappresenta anche il fondamento per l'[accesso condizionale basato su dispositivo](active-directory-conditional-access-policy-connected-applications.md). Con l'accesso condizionale basato su dispositivo, è possibile assicurarsi che l'accesso alle risorse nell'ambiente sia possibile solo con dispositivi attendibili.   
+Gestione dei dispositivi è inoltre foundation hello per [accesso condizionale basato su dispositivo](active-directory-conditional-access-policy-connected-applications.md). Con accesso condizionale basato su dispositivi, è possibile garantire che tooresources nell'ambiente in uso è possibile solo con accesso dispositivo attendibile.   
 
 Questo argomento illustra il funzionamento della gestione dei dispositivi in Azure Active Directory.
 
-## <a name="getting-devices-under-the-control-of-azure-ad"></a>Controllo dei dispositivi tramite Azure AD
+## <a name="getting-devices-under-hello-control-of-azure-ad"></a>Dispositivi sotto controllo hello di Azure AD
 
-Per controllare un dispositivo tramite Azure AD, sono disponibili due opzioni:
+tooget un dispositivo sotto controllo hello di Azure AD, sono disponibili due opzioni:
 
 - Registrazione 
 - Aggiunta
 
-La **registrazione** di un dispositivo in Azure AD consente di gestire l'identità di un dispositivo. Quando un dispositivo viene registrato, Registrazione dispositivo Azure AD fornisce al dispositivo un'identità che viene usata per autenticare il dispositivo quando un utente accede ad Azure AD. È possibile usare l'identità per abilitare o disabilitare un dispositivo.
+**Registrazione** tooAzure un dispositivo AD consente si toomanage identità di un dispositivo. Quando un dispositivo viene registrato, registrazione dispositivo di Azure AD fornisce dispositivo hello con un'identità che è un dispositivo di hello tooauthenticate utilizzato quando un utente accede tooAzure Active Directory. È possibile utilizzare hello identità tooenable o disattivare un dispositivo.
 
-Con una soluzione di gestione di dispositivi mobili (MDM), ad esempio Microsoft Intune, gli attributi del dispositivo in Azure AD vengono aggiornati con informazioni aggiuntive sul dispositivo. Ciò permette di creare regole di accesso condizionale che subordinano l'accesso dai dispositivi al rispetto dei propri standard di sicurezza e conformità. Per altre informazioni sulla registrazione dei dispositivi in Microsoft Intune, vedere Registrare i dispositivi per la gestione in Intune.
+Se combinato con una soluzione di management(MDM) di dispositivi mobili, ad esempio Microsoft Intune, sugli attributi del dispositivo hello in Azure AD vengono aggiornati con informazioni aggiuntive sul dispositivo di hello. Ciò consente di regole di accesso condizionale toocreate che impongono l'accesso da dispositivi toomeet agli standard di sicurezza e conformità. Per altre informazioni sulla registrazione dei dispositivi in Microsoft Intune, vedere Registrare i dispositivi per la gestione in Intune.
 
-L'**aggiunta** di un dispositivo è un'estensione della registrazione di un dispositivo. Offre infatti tutti i vantaggi della registrazione di un dispositivo, oltre a modificarne lo stato locale. Modificando lo stato locale, gli utenti possono accedere a un dispositivo usando un account aziendale o dell'istituto di istruzione invece di un account personale.
+**Unione di** un dispositivo è un tooregistering estensione un dispositivo. Ciò significa, esso consente di tutti i vantaggi di hello della registrazione di un dispositivo in toothis aggiunta, modifica inoltre lo stato locale di hello di un dispositivo. Modifica dello stato locale hello consente il dispositivo tooa toosign-in utenti utilizzando un organizzazione account aziendale o dell'istituto di istruzione anziché un account personale.
 
 ## <a name="azure-ad-registered-devices"></a>Dispositivi registrati in Azure AD   
 
-L'obiettivo dei dispositivi registrati in Azure AD è di fornire supporto per lo scenario **Bring Your Own Device (BYOD)**. In questo scenario un utente può accedere alle risorse dell'organizzazione controllate da Azure Active Directory usando un dispositivo personale.  
+obiettivo di dispositivi AD Azure registrata Hello è tooprovide è con il supporto per hello **BYOD Bring Your Own Device ()** scenario. In questo scenario un utente può accedere alle risorse dell'organizzazione controllate da Azure Active Directory usando un dispositivo personale.  
 
 ![Dispositivi registrati in Azure AD](./media/device-management-introduction/03.png)
 
-L'accesso si basa su un account aziendale o dell'istituto di istruzione immesso nel dispositivo.  
-Windows 10, ad esempio, consente agli utenti di aggiungere un account aziendale o dell'istituto di istruzione a un computer, un tablet o un telefono personale.  
-Dopo l'aggiunta dell'account aziendale o dell'istituto di istruzione il dispositivo viene registrato in Azure AD e, facoltativamente, anche nel sistema di gestione di dispositivi mobili (MDM) configurato dall'organizzazione. Gli utenti dell'organizzazione possono aggiungere un account aziendale o dell'istituto di istruzione a un dispositivo personale in modo pratico:
+accesso Hello è basata su un account aziendale o dell'istituto di istruzione che è stata immessa nel dispositivo hello.  
+Ad esempio, Windows 10 consente tooadd agli utenti un lavoro o scuola account tooa per PC, tablet o telefono.  
+Quando un utente ha aggiunto un account aziendale o dell'istituto di istruzione, il dispositivo hello è registrato con Azure AD e facoltativamente registrato nel sistema di gestione (MDM) di dispositivi mobili hello che l'organizzazione ha configurato. Aggiungere un lavoro agli utenti dell'organizzazione o dell'istituto di istruzione convenientemente dispositivo personale tooa di account:
 
-- Durante il primo accesso a un'applicazione di lavoro
-- Manualmente tramite il menu **Impostazioni** nel caso di Windows 10 
+- Quando si accede a un'applicazione di lavoro per hello prima volta
+- Manualmente tramite hello **impostazioni** menu nel caso di hello di Windows 10 
 
 È possibile configurare dispositivi registrati in Azure AD per Windows 10, iOS, Android e macOS.
 
 ## <a name="azure-ad-joined-devices"></a>Dispositivi aggiunti ad Azure AD
 
-L'obiettivo dei dispositivi aggiunti ad Azure AD è di semplificare:
+obiettivo di Hello dei dispositivi di Azure AD aggiunti è toosimplify:
 
 - Distribuzioni Windows di dispositivi di proprietà dell'azienda 
-- Accesso ad app e risorse aziendali da qualsiasi dispositivo Windows
+- Accesso alle App tooorganizational e risorse da qualsiasi dispositivo Windows
 
 ![Dispositivi registrati in Azure AD](./media/device-management-introduction/02.png)
 
 
-Per raggiungere questi obiettivi, è possibile fornire agli utenti un'esperienza self-service per porre i dispositivi di proprietà dell'azienda sotto il controllo di Azure AD.  
+Questi obiettivi, vengono eseguiti da fornire agli utenti un'esperienza self-service per ottenere i dispositivi di proprietà lavoro sotto controllo hello di Azure AD.  
 L'**aggiunta ad Azure AD** è destinata alle organizzazioni basate prima di tutto o esclusivamente sul cloud. Si tratta in genere piccole e medie imprese che non hanno un'infrastruttura Active Directory di Windows Server locale. 
 
-L'implementazione di dispositivi aggiunti ad Azure AD offre i vantaggi seguenti:
+Implementazione di dispositivi AD Azure unita in join vengono hello seguenti vantaggi:
 
-- **Single Sign-On (SSO)** alle app e ai servizi SaaS gestiti da Azure. Gli utenti non visualizzano richieste di autenticazione aggiuntive quando accedono alle risorse. La funzionalità SSO è attiva anche quando non sono connessi alla rete di dominio disponibile.
+- **Single Sign-On (SSO)** tooyour Azure gestito App SaaS e servizi. Gli utenti non visualizzano richieste di autenticazione aggiuntive quando accedono alle risorse. Hello funzionalità SSO è anche quando non sono connessi toohello rete di dominio disponibili.
 
-- **Roaming conforme ai criteri dell'organizzazione** per le impostazioni utente tra dispositivi aggiunti. Non è necessario che gli utenti connettano un account Microsoft (ad esempio, Hotmail) per visualizzare le impostazioni tra dispositivi.
+- **Roaming conforme ai criteri dell'organizzazione** per le impostazioni utente tra dispositivi aggiunti. Gli utenti non devono tooconnect le impostazioni di toosee un Microsoft account (ad esempio Hotmail) tra i dispositivi.
 
-- **Accesso a Windows Store per le aziende** tramite l'account AD. Gli utenti possono scegliere da un inventario di applicazioni preselezionate dall'organizzazione.
+- **Accesso tooWindows Store per le aziende** utilizzando l'account di Active Directory. Gli utenti possono scegliere da un inventario delle applicazioni pre-selezionata dall'organizzazione hello.
 
-- Supporto di **Windows Hello** per un accesso sicuro e agevole alle risorse aziendali.
+- **Windows Hello** supporto per le risorse toowork accesso sicuro e pratico.
 
-- **Limitazione dell'accesso** alle app solo dai dispositivi che soddisfano i criteri di conformità.
+- **Limitazione dell'accesso** tooapps da solo i dispositivi che soddisfano i criteri di conformità.
 
 Anche se l'aggiunta ad Azure AD è destinata soprattutto alle organizzazioni prive di un'infrastruttura Active Directory di Windows Server locale, è ovviamente possibile usarla anche in scenari in cui:
 
-- Non è possibile usare un'aggiunta a un dominio locale, ad esempio se è necessario avere il controllo di dispositivi mobili come tablet e telefoni.
+- È possibile utilizzare un'aggiunta al dominio locale, ad esempio, se è necessario tooget di dispositivi mobili come Tablet e telefoni nel controllo.
 
-- Gli utenti hanno soprattutto necessità di accedere a Office 365 o ad altre app SaaS integrate con Azure AD.
+- Gli utenti devono principalmente tooaccess Office 365 o altre applicazioni SaaS integrate con Azure AD.
 
-- Si vuole gestire un gruppo di utenti in Azure AD invece che in Active Directory, ad esempio lavoratori stagionali, terzisti o studenti.
+- Si desidera toomanage un gruppo di utenti in Azure Active Directory anziché in Active Directory. Questo è applicabile, ad esempio, lavoratori tooseasonal, collaboratori o studenti.
 
-- Si vogliono fornire funzionalità di join ai lavoratori in succursali remote con un'infrastruttura locale limitata.
+- Si desidera tooprovide tooworkers funzionalità di unione nelle succursali remote con l'infrastruttura locale limitato.
 
 È possibile configurare dispositivi aggiunti ad Azure AD per dispositivi Windows 10.
 
 
 ## <a name="hybrid-azure-ad-joined-devices"></a>Dispositivi aggiunti all'identità ibrida di Azure AD
 
-Per oltre un decennio, molte organizzazioni hanno usato l'aggiunta a un dominio ad Active Directory locale per consentire:
+Per più di dieci anni, molte organizzazioni hanno utilizzato hello dominio join tootheir locale Active Directory tooenable:
 
-- Ai reparti IT di gestire i dispositivi di proprietà dell'azienda da una posizione centrale.
+- IT reparti toomanage lavoro dispositivi di proprietà da una posizione centrale.
 
-- Agli utenti di accedere ai dispositivi con il proprio account aziendale o dell'istituto di istruzione di Active Directory. 
+- Gli utenti toosign nei dispositivi tootheir con Active Directory di lavoro o scuola account. 
 
-In genere le aziende con un footprint locale si basano su metodi di creazione dell'immagine per effettuare il provisioning dei dispositivi e, per gestirli, usano **System Center Configuration Manager (SCCM)** o **Criteri di gruppo**.
+In genere, le organizzazioni con un footprint locale si basano su metodi tooprovision periferiche e utilizzano spesso **System Center Configuration Manager (SCCM)** o **(GP) di criteri di gruppo** toomanage essi.
 
-Se l'ambiente ha un footprint AD locale e si vogliono anche sfruttare le funzionalità offerte da Azure Active Directory, è possibile implementare dispositivi aggiunti all'identità ibrida di Azure AD. Questi dispositivi vengono aggiunti sia ad Active Directory locale che ad Azure Active Directory.
+Se l'ambiente comprende una locale footprint di Active Directory e si desiderano anche vantaggi offerti dalla funzionalità hello fornite da Azure Active Directory, è possibile implementare i dispositivi di Azure AD unita in join ibrido. Si tratta di dispositivi che sono entrambi, unita in join tooyour Active Directory locale e Azure Active Directory.
 
 ![Dispositivi registrati in Azure AD](./media/device-management-introduction/01.png)
 
 
 È consigliabile usare dispositivi aggiunti all'identità ibrida di Azure AD se:
 
-- Sono state distribuite app Win32 in questi dispositivi che usano NTLM/Kerberos.
+- Si dispone Win32 App distribuito toothese dispositivi che utilizzano l'autenticazione NTLM o Kerberos.
 
-- Sono necessari Criteri di gruppo o SCCM/DCM per gestire i dispositivi.
+- È necessario criteri di gruppo o SCCM / dispositivi toomanage DCM.
 
-- Si vuole continuare a usare soluzioni di creazione dell'immagine per configurare i dispositivi per i dipendenti.
+- Si desidera toocontinue toouse imaging soluzioni tooconfigure dispositivi per i dipendenti.
 
 È possibile configurare dispositivi aggiunti all'identità ibrida di Azure AD per Windows 10 e dispositivi di livello inferiore, ad esempio Windows 8 e Windows 7.
 
@@ -129,27 +129,27 @@ Se l'ambiente ha un footprint AD locale e si vogliono anche sfruttare le funzion
 
 Con la gestione dei dispositivi in Azure AD, è possibile: 
 
-- Semplificare il processo per mettere i dispositivi sotto il controllo di Azure AD
+- Semplificare il processo di hello di riportare i dispositivi sotto controllo hello di Azure AD
 
-- Fornire agli utenti un accesso facile da usare alle risorse basate sul cloud dell'organizzazione
+- Fornire agli utenti con le risorse basate su cloud toouse facile accesso tooyour di un'organizzazione
 
 Come regola generale, è consigliabile usare:
 
 - Dispositivi registrati in Azure AD per i dispositivi personali
 
-- Dispositivi aggiunti ad Azure AD per i dispositivi non aggiunti ad AD locale 
+- Azure AD unita in join i dispositivi per i dispositivi non aggiunti a un tooan AD locale 
 
-- Dispositivi aggiunti all'identità ibrida di Azure AD per i dispositivi aggiunti ad AD locale     
+- Azure AD ibrido unita in join i dispositivi per i dispositivi che vengono aggiunti a un tooan AD locale     
 
 
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-- Per una panoramica sulla gestione del dispositivo nel portale di Azure AD, vedere [Gestione dei dispositivi tramite il portale di Azure](device-management-azure-portal.md)
+- una panoramica delle modalità dispositivo toomanage in hello Azure portale, vedere tooget [gestendo i dispositivi con hello portale di Azure](device-management-azure-portal.md)
 
-- Per altre informazioni sull'accesso condizionale basato su dispositivo, vedere l'articolo su come [configurare criteri di accesso condizionale basati sul dispositivo in Azure Active Directory](active-directory-conditional-access-policy-connected-applications.md).
+- toolearn ulteriori informazioni sull'accesso condizionale basato su dispositivi, vedere [configurare i criteri di accesso condizionale basato su dispositivo di Azure Active Directory](active-directory-conditional-access-policy-connected-applications.md).
 
-- Per configurare dispositivi aggiunti all'identità ibrida di Azure AD, vedere [Come configurare dispositivi aggiunti all'identità ibrida di Azure Active Directory](device-management-hybrid-azuread-joined-devices-setup.md).
+- dispositivi di Azure AD aggiunti toosetup ibride, vedere [modalità ibrida tooconfigure Azure Active Directory unite in join i dispositivi](device-management-hybrid-azuread-joined-devices-setup.md).
 
 

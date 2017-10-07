@@ -1,6 +1,6 @@
 ---
-title: Scegliere tra Flow, App per la logica, Funzioni e Processi Web | Microsoft Docs
-description: "Mettere a confronto i servizi di integrazione cloud di Microsoft e decidere quali è consigliabile usare."
+title: aaaChoose tra flusso, la logica App, funzioni e processi Web | Documenti Microsoft
+description: Confronto e contrasto hello per i servizi di integrazione cloud da Microsoft e decidere quali servizi si consiglia di utilizzare.
 services: functions,app-service\logic
 documentationcenter: na
 author: cephalin
@@ -16,34 +16,34 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: da2ff16b5bdd7a0c171451930ce10427fe5bbda7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6becc1e389698e517924b18295dac4375542d524
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="choose-between-flow-logic-apps-functions-and-webjobs"></a>Scegliere tra Flow, App per la logica, Funzioni e Processi Web
-Questo articolo mette a confronto i servizi seguenti, disponibili in Microsoft Cloud, ognuno dei quali consente di risolvere i problemi di integrazione e automazione dei processi aziendali:
+In questo articolo vengono confrontati i seguenti servizi in cloud di Microsoft hello, che possono tutti risolvere i problemi di integrazione e automazione dei processi di business hello:
 
 * [Microsoft Flow](https://flow.microsoft.com/)
 * [App per la logica di Azure](https://azure.microsoft.com/services/logic-apps/)
 * [Funzioni di Azure](https://azure.microsoft.com/services/functions/)
 * [Processi Web del servizio app di Azure](../app-service-web/web-sites-create-web-jobs.md)
 
-Tutti questi servizi risultano utili quando si "mettono insieme" sistemi diversi. Possono definire input, azioni, condizioni e output e ognuno può essere eseguito in base a una pianificazione o un trigger. Tuttavia, ogni servizio offre un valore aggiunto univoco e il confronto non è finalizzato a stabilire qual è il servizio migliore, ma qual è il servizio più adatto per una determinata situazione. Una combinazione di questi servizi è spesso il modo migliore per creare rapidamente una soluzione di integrazione scalabile e con funzionalità complete.
+Tutti questi servizi risultano utili quando si "mettono insieme" sistemi diversi. Possono definire input, azioni, condizioni e output e ognuno può essere eseguito in base a una pianificazione o un trigger. Tuttavia, ogni servizio aggiunge un set univoco di valore e il confronto non è una domanda "quale servizio è migliore hello?" ma qual è il servizio più adatto per una determinata situazione. Spesso, una combinazione di questi servizi è migliore hello toorapidly compilare una soluzione di integrazione in primo piano completo, scalabile.
 
 <a name="flow"></a>
 
 ## <a name="flow-vs-logic-apps"></a>Flow rispetto ad App per la logica
-Microsoft Flow e App per la logica di Azure possono essere esaminati insieme, essendo entrambi servizi di integrazione di tipo *configuration first* , un aspetto che facilita la creazione di processi e flussi di lavoro e l'integrazione con diverse applicazioni aziendali e SaaS. 
+È possibile discutere Microsoft Flow e App di Azure logica insieme perché entrambi sono *configurazione-first* integration services che rende facile toobuild processi e flussi di lavoro e l'integrazione con vari SaaS ed enterprise applicazioni. 
 
 * Flow si basa sulle app per la logica
-* Hanno la stessa funzionalità di progettazione flussi di lavoro
-* [connettori](../connectors/apis-list.md) che funzionano in un servizio possono funzionare anche nell'altro
+* Hanno hello stessa finestra di progettazione del flusso di lavoro
+* [Connettori](../connectors/apis-list.md) che il lavoro in una possibile funziona anche in altri hello
 
-Flow consente a qualsiasi impiegato di eseguire semplici integrazioni, ad esempio ricevere SMS per i messaggi di posta elettronica importanti, senza ricorrere a sviluppatori o professionisti IT. D'altra parte, App per la logica consente di abilitare integrazioni avanzate o cruciali, come i processi B2B, in cui sono richieste procedure di sicurezza e la metodologia DevOps a livello di organizzazione. È normale che la complessità di un flusso di lavoro aziendale aumenti nel tempo. Di conseguenza, è possibile iniziare con un flusso e quindi convertirlo in un'app per la logica in base alle esigenze.
+Flussi consente a qualsiasi integrazioni di office worker tooperform semplice (ad esempio ottenere SMS per messaggi di posta elettronica importanti) senza passare per gli sviluppatori o IT. In hello invece, la logica App possibile abilitare avanzate o cruciali integrazioni (ad esempio processi B2B) in cui sono necessarie procedure di DevOps e sicurezza a livello aziendale. È tipico per un toogrow del flusso di lavoro di business in straordinario complessità. Di conseguenza, è possibile iniziare con un flusso inizialmente, quindi convertirlo tooa logica app in base alle esigenze.
 
-La tabella seguente consente di determinare se per una data integrazione è più appropriato usare Flow o App per la logica.
+Hello nella tabella seguente consente di determinare se è migliore per l'integrazione di una determinato flusso o App per la logica.
 
 |  | Flusso | App per la logica |
 | --- | --- | --- |
@@ -57,23 +57,23 @@ La tabella seguente consente di determinare se per una data integrazione è più
 <a name="function"></a>
 
 ## <a name="functions-vs-webjobs"></a>Funzioni e WebJobs
-Funzioni di Azure e Processi Web del servizio app di Azure possono essere esaminati insieme, essendo entrambi servizi di integrazione di tipo *code first* e progettati per gli sviluppatori. Consentono di eseguire uno script o un frammento di codice in risposta a eventi diversi, ad esempio [nuovi BLOB di archiviazione](functions-bindings-storage.md) o [una richiesta di webhook](functions-bindings-http-webhook.md). Ecco le analogie: 
+Funzioni di Azure e Processi Web del servizio app di Azure possono essere esaminati insieme, essendo entrambi servizi di integrazione di tipo *code first* e progettati per gli sviluppatori. Consentono di toorun script o parte di codice negli eventi toovarious risposta, ad esempio [nuovi BLOB di archiviazione](functions-bindings-storage.md) o [una richiesta di WebHook](functions-bindings-http-webhook.md). Ecco le analogie: 
 
 * Entrambi si basano sul [Servizio app di Azure](../app-service/app-service-value-prop-what-is.md) e usano funzionalità come [controllo del codice sorgente](../app-service-web/app-service-continuous-deployment.md), [autenticazione](../app-service/app-service-authentication-overview.md), e [monitoraggio](../app-service-web/web-sites-monitor.md).
 * Sono entrambi servizi rivolti agli sviluppatori.
 * Supportano entrambi linguaggi di scripting e programmazione standard.
 * Per entrambi è disponibile il supporto di NuGet e NPM.
 
-Funzioni è l'evoluzione naturale di Processi Web, nel senso che usa gli elementi ottimali di Processi Web come base per il miglioramento. I miglioramenti includono: 
+Funzioni è hello naturale evoluzione processi Web accetta migliore hello su processi Web e li rappresenta un miglioramento. Hello i miglioramenti includono: 
 
-* Sviluppo, test ed esecuzione di codice più semplici, direttamente nel browser.
+* Sviluppo semplificato, testare ed eseguire del codice direttamente nel browser hello.
 * Integrazione predefinita con più servizi di Azure e di terze parti come i [webhook GitHub](https://developer.github.com/webhooks/creating/).
-* Pagamento a consumo, non è necessario pagare per un [piano di servizio app](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+* Pagamento in base all'utilizzo, toopay non necessario per un [piano di servizio App](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
 * [Ridimensionamento dinamico](functions-scale.md)automatico.
-* I clienti del servizio app esistenti possono comunque scegliere l'esecuzione con un piano di servizio app per sfruttare i vantaggi delle risorse sottoutilizzate.
+* Per i clienti esistenti del servizio App, in esecuzione nel piano di servizio App comunque (tootake sfruttare le risorse sottoutilizzate).
 * Integrazione con App per la logica.
 
-La tabella seguente riepiloga le differenze tra Funzioni e Processi Web:
+Hello nella tabella seguente vengono riepilogate le differenze di hello tra funzioni e processi Web:
 
 |  | Funzioni | WebJobs |
 | --- | --- | --- |
@@ -91,28 +91,28 @@ La tabella seguente riepiloga le differenze tra Funzioni e Processi Web:
 | Python |sperimentale |supportato |
 | JavaScript |supportato |supportato |
 
-L'uso di Funzioni o di Processi Web dipende in definitiva dalle operazioni che già si svolgono con il servizio app. Se è disponibile un'app del servizio app per cui si vogliono eseguire frammenti di codice e avere la possibilità di gestirli insieme nello stesso ambiente DevOps, è consigliabile usare Processi Web. Se si vogliono eseguire frammenti di codice per altri servizi di Azure o anche per app di terze parti oppure si vogliono gestire i frammenti di codice di integrazione separatamente dalle app del servizio app o ancora si vogliono chiamare i frammenti di codice da un'app per la logica, è consigliabile sfruttare tutti i miglioramenti disponibili in Funzioni.  
+Se le funzioni toouse o processi Web dipende in definitiva operazioni già eseguite con il servizio App. Se si dispone di un'applicazione di servizio App di cui si desidera toorun frammenti di codice, e si desidera toomanage li riuniti in hello stesso DevOps ambiente, è necessario utilizzare i processi Web. Se si desidera toorun frammenti di codice per altri servizi di Azure o anche a 3rd party App, o se si desidera gestire troppo i frammenti di codice di integrazione di applicazioni di servizio App o se si desidera toocall i frammenti di codice da un'app di logica, è necessario trarre vantaggio da tutti miglioramenti di Hello nelle funzioni.  
 
 <a name="together"></a>
 
 ## <a name="flow-logic-apps-and-functions-together"></a>Flow, App per la logica e Funzioni insieme
-Come accennato in precedenza, il servizio ottimale dipende dalla situazione specifica dell'utente. 
+Come accennato in precedenza, il servizio è più adatta tooyou dipende dalla situazione. 
 
 * Per la semplice ottimizzazione aziendale, usare Flow.
 * Se lo scenario di integrazione è troppo avanzato per Flow o sono necessarie le funzionalità di DevOps e la conformità ai requisiti di sicurezza, usare App per la logica.
 * Se un passaggio nello scenario di integrazione richiede codice specializzato o di trasformazione altamente personalizzato, scrivere un'app per le funzioni e quindi attivare una funzione come azione nell'app per la logica.
 
-È possibile chiamare un'app per la logica in un flusso. Si può anche chiamare una funzione in un'app per la logica e un'app per la logica in una funzione. L'integrazione tra Flow, App per la logica e Funzioni continua a migliorare nel tempo. È possibile creare un elemento in un servizio e usarlo in altri servizi. Qualsiasi investimento effettuato in queste tre tecnologie risulterà comunque proficuo.
+È possibile chiamare un'app per la logica in un flusso. Si può anche chiamare una funzione in un'app per la logica e un'app per la logica in una funzione. integrazione di Hello tra flusso di App per la logica e le funzioni continuare tooimprove straordinario. È possibile generare un oggetto in un servizio e utilizzarlo in hello altri servizi. Qualsiasi investimento effettuato in queste tre tecnologie risulterà comunque proficuo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per un'introduzione a ognuno di questi servizi, creare il primo flusso, la prima app per la logica, la prima app per le funzioni o il primo processo Web. Fare clic su uno di questi collegamenti:
+Introduzione a ognuno dei servizi hello creando prima del flusso, la logica app, app di funzione o processo Web. Fare clic su uno qualsiasi dei seguenti collegamenti hello:
 
 * [Get started with Microsoft Flow](https://flow.microsoft.com/en-us/documentation/getting-started/) (Introduzione a Microsoft Flow)
 * [Creare un'app per la logica](../logic-apps/logic-apps-create-a-logic-app.md)
 * [Creare la prima funzione di Azure](functions-create-first-azure-function.md)
 * [Distribuzione di processi Web usando Visual Studio](../app-service-web/websites-dotnet-deploy-webjobs.md)
 
-In alternativa, è possibile ottenere altre informazioni su questi servizi di integrazione usando i collegamenti seguenti:
+In alternativa, è possibile ottenere ulteriori informazioni su questi servizi di integrazione con hello seguenti collegamenti:
 
 * [Leveraging Azure Functions & Azure App Service for integration scenarios](http://www.biztalk360.com/integrate-2016-resources/leveraging-azure-functions-azure-app-service-integration-scenarios/) (Sfruttare Funzioni di Azure e Servizio app di Azure per scenari di integrazione) di Christopher Anderson
 * [Integrations Made Simple](http://www.biztalk360.com/integrate-2016-resources/integrations-made-simple/)

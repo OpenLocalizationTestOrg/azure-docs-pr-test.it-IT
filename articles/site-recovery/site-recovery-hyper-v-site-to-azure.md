@@ -1,6 +1,6 @@
 ---
-title: Replicare le macchine vistuali Hyper-V in Azure | Microsoft Docs
-description: Questo articolo descrive come orchestrare la replica, il failover e il ripristino di macchine virtuali locali Hyper-V in Azure.
+title: aaaReplicate macchine virtuali Hyper-V tooAzure | Documenti Microsoft
+description: Viene descritto come replica tooorchestrate, failover e il ripristino di locale Hyper-V VM tooAzure
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -16,13 +16,13 @@ ms.date: 04/05/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: hyper-v-site-walkthrough-overview
-ms.openlocfilehash: 8a2ea92759a777b1178fbfe8084a97eec931f709
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fba41e43823fc57511d51ea2e09691159693982
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-hyper-v-virtual-machines-without-vmm-to-azure-using-azure-site-recovery-with-the-azure-portal"></a>Replicare macchine virtuali Hyper-V (senza Virtual Machine Manager) in Azure usando Azure Site Recovery con il portale di Azure
+# <a name="replicate-hyper-v-virtual-machines-without-vmm-tooazure-using-azure-site-recovery-with-hello-azure-portal"></a>La replica Hyper-V le macchine virtuali (senza VMM) tooAzure con Azure Site Recovery hello portale di Azure
 
 > [!div class="op_single_selector"]
 > * [Portale di Azure](site-recovery-hyper-v-site-to-azure.md)
@@ -31,27 +31,27 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Questo articolo illustra come eseguire la replica di macchine virtuali Hyper-V locali in Azure usando [Azure Site Recovery](site-recovery-overview.md) nel portale di Azure. In questa distribuzione le macchine virtuali Hyper-V non vengono gestite tramite la soluzione Virtual Machine Manager (VMM) di System Center.
+In questo articolo viene descritto come tooreplicate locale tooAzure di macchine virtuali Hyper-V, utilizzando [Azure Site Recovery](site-recovery-overview.md) in hello portale di Azure. In questa distribuzione le macchine virtuali Hyper-V non vengono gestite tramite la soluzione Virtual Machine Manager (VMM) di System Center.
 
-Dopo la lettura di questo articolo, è possibile inserire commenti nella parte inferiore oppure porre domande tecniche nel [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Dopo aver letto questo articolo, inviare eventuali commenti nella parte inferiore di hello o porre domande tecniche su hello [forum sui servizi di ripristino di Azure](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-Se si desidera eseguire la migrazione di macchine in Azure (senza failback), leggere ulteriori informazioni in [questo articolo](site-recovery-migrate-to-azure.md).
+Se si desidera toomigrate macchine tooAzure (senza il failback), per ulteriori [questo articolo](site-recovery-migrate-to-azure.md).
 
 
 
 ## <a name="deployment-steps"></a>Passaggi di distribuzione
 
-Seguire l'articolo per completare i passaggi di distribuzione seguenti:
+Seguire questi passaggi per la distribuzione di hello articolo toocomplete:
 
-1. Ottenere [altre informazioni ](site-recovery-components.md#hyper-v-to-azure) sull'architettura di questa distribuzione. Ottenere inoltre [altre informazioni](site-recovery-hyper-v-azure-architecture.md) sul funzionamento della replica Hyper-V in Site Recovery.
+1. [Altre informazioni](site-recovery-components.md#hyper-v-to-azure) sull'architettura di hello per questa distribuzione. Ottenere inoltre [altre informazioni](site-recovery-hyper-v-azure-architecture.md) sul funzionamento della replica Hyper-V in Site Recovery.
 2. Verificare i prerequisiti e le limitazioni.
 3. Configurare la rete e gli account di archiviazione di Azure.
 4. Preparare gli host Hyper-V.
-5. Creare un insieme di credenziali dei servizi di ripristino. L'insieme di credenziali contiene le impostazioni di configurazione e orchestra la replica.
-6. Specificare le impostazioni di origine. Creare un sito Hyper-V che contenga gli host Hyper-V e registrare il sito nell'insieme di credenziali. Installare il provider di Azure Site Recovery e l'agente di Servizi di ripristino di Microsoft sugli host Hyper-V.
+5. Creare un insieme di credenziali dei servizi di ripristino. insieme di credenziali Hello contiene impostazioni di configurazione e Orchestra la replica.
+6. Specificare le impostazioni di origine. Creare un sito Hyper-V che contiene gli host Hyper-V hello e registrare sito hello nell'insieme di credenziali hello. Installare Provider di Azure Site Recovery hello e agente di servizi di ripristino di Microsoft hello, negli host Hyper-V hello.
 7. Specificare le impostazioni di replica e di destinazione.
-8. Abilitare la replica per le VM.
-9. Eseguire un failover di test per verificare che tutti gli elementi funzionino come previsto.
+8. Abilitare la replica per hello macchine virtuali.
+9. Eseguire un toomake di failover di test che tutto funzioni come previsto.
 
 
 
@@ -61,131 +61,131 @@ Seguire l'articolo per completare i passaggi di distribuzione seguenti:
 **Requisito** | **Dettagli** |
 --- | --- |
 **Azure** | Vedere i [requisiti di Azure](site-recovery-prereq.md#azure-requirements).
-**Server locali** | Leggere altre informazioni sui requisiti per gli host Hyper-V locali [qui](site-recovery-prereq.md#disaster-recovery-of-hyper-v-virtual-machines-to-azure-no-virtual-machine-manager).
-**VM Hyper-V locali** | Le VM da replicare devono eseguire un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions) ed essere conformi ai [prerequisiti di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
-**URL di Azure** | Gli host Hyper-V devono accedere agli URL seguenti:<br/><br/> [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]<br/><br/> Se sono presenti regole del firewall basate sull'indirizzo IP, verificare che consentano la comunicazione con Azure.<br/></br> Consentire gli [intervalli IP del data center di Azure ](https://www.microsoft.com/download/confirmation.aspx?id=41653) e la porta HTTPS (443).<br/></br> Consentire gli intervalli di indirizzi IP per l'area di Azure della sottoscrizione e per gli Stati Uniti occidentali (usati per il controllo di accesso e la gestione delle identità).
+**Server locali** | [Altre informazioni](site-recovery-prereq.md#disaster-recovery-of-hyper-v-virtual-machines-to-azure-no-virtual-machine-manager) sui requisiti per gli host Hyper-V locale di hello.
+**VM Hyper-V locali** | Macchine virtuali che si desidera tooreplicate deve essere in esecuzione un [sistema operativo supportato](site-recovery-support-matrix-to-azure.md#support-for-replicated-machine-os-versions)e devono essere conformi con [Azure prerequisiti](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+**URL di Azure** | Host Hyper-V è necessario accedere toothese URL:<br/><br/> [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]<br/><br/> Se si dispone di regole del firewall basato su indirizzi IP, assicurarsi che consentano la comunicazione tooAzure.<br/></br> Consenti hello [intervalli IP dei Data Center Azure](https://www.microsoft.com/download/confirmation.aspx?id=41653)e hello porta HTTPS (443).<br/></br> Consenti gli intervalli di indirizzi IP per hello area della sottoscrizione di Azure e per Stati Uniti occidentali (utilizzato per il controllo di accesso e gestione delle identità).
 
 
 
 ## <a name="prepare-for-deployment"></a>Preparare la distribuzione
 
-Per preparare la distribuzione è necessario:
+tooprepare per la distribuzione che è necessario:
 
 1. [Configurare una rete di Azure](#set-up-an-azure-network) in cui verranno collocate le VM di Azure al momento della creazione, dopo il failover.
 2. [Configurare un account di archiviazione di Azure](#set-up-an-azure-storage-account) per i dati replicati.
-3. [Preparare gli host Hyper-V](#prepare-the-hyper-v-hosts) e assicurarsi che possano accedere agli URL necessari.
+3. [Preparare gli host Hyper-V hello](#prepare-the-hyper-v-hosts) tooensure possano accedere hello necessari URL.
 
 ### <a name="set-up-an-azure-network"></a>Configurare una rete di Azure
 
-Configurare una rete di Azure. È necessario configurare una rete di Azure affinché le macchine virtuali di Azure siano connesse a una rete dopo il failover.
+Configurare una rete di Azure. È necessario in modo che le macchine virtuali di Azure hello create dopo il failover rete tooa connesso.
 
-* La rete deve trovarsi nella stessa area dell'insieme di credenziali di Servizi di ripristino.
-* A seconda del modello di risorsa da usare per le VM di Azure di cui si esegue il failover, la rete di Azure viene configurata in [modalità Resource Manager](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) o in [modalità classica](../virtual-network/virtual-networks-create-vnet-classic-pportal.md).
-* È consigliabile configurare una rete prima di iniziare. In caso contrario sarà necessario eseguire l'operazione durante la distribuzione di Site Recovery.
-- Gli account di archiviazione usati per Site Recovery non possono essere [spostati](../azure-resource-manager/resource-group-move-resources.md) all'interno della stessa sottoscrizione o tra sottoscrizioni diverse.
+* rete Hello devono trovarsi in hello stessa area hello insieme di credenziali di servizi di ripristino.
+* A seconda del modello di risorsa hello desiderate toouse per eseguire il failover le macchine virtuali di Azure, impostate hello rete di Azure in [modalità di gestione risorse](../virtual-network/virtual-networks-create-vnet-arm-pportal.md), o [modalità classica](../virtual-network/virtual-networks-create-vnet-classic-pportal.md).
+* È consigliabile configurare una rete prima di iniziare. In caso contrario, è necessario toodo durante la distribuzione di Site Recovery.
+- Gli account di archiviazione utilizzati da Site Recovery non possono essere [spostato](../azure-resource-manager/resource-group-move-resources.md) all'interno di hello stesso, o in sottoscrizioni diverse,.
 
 
 ### <a name="set-up-an-azure-storage-account"></a>Configurare un account di archiviazione di Azure
 
-- Per contenere i dati replicati in Azure è necessario un account di archiviazione di Azure Standard/Premium. [Archiviazione Premium](../storage/storage-premium-storage.md) viene generalmente usata per le macchine virtuali che necessitano costantemente di prestazioni I/O elevate e bassa latenza per ospitare carichi di lavoro di I/O intensivi.
-- Se si vuole usare un account Premium per archiviare i dati replicati, sarà necessario anche un account di archiviazione standard per l'archiviazione dei log di replica in cui vengono acquisite le modifiche in corso ai dati locali.
-- A seconda del modello di risorsa da usare per le macchine virtuali di Azure di cui si esegue il failover, l'account deve essere configurato in [modalità Resource Manager](../storage/storage-create-storage-account.md) o in [modalità classica](../storage/storage-create-storage-account-classic-portal.md).
-- È consigliabile configurare un account di archiviazione prima di iniziare. In caso contrario sarà necessario eseguire l'operazione durante la distribuzione di Site Recovery. L'account deve trovarsi nella stessa area dell'insieme di credenziali di Servizi di ripristino.
-- Non è possibile spostare gli account di archiviazione usati da Site Recovery tra gruppi di risorse nella stessa sottoscrizione o in diverse sottoscrizioni.
+- È necessario un account di archiviazione Azure toohold dati replicati tooAzure standard o premium. [Archiviazione premium](../storage/storage-premium-storage.md) viene in genere utilizzato per le macchine virtuali che richiedono un costantemente elevato delle prestazioni dei / o e carichi di lavoro con utilizzo intensivo a bassa latenza toohost IO.
+- Se si desidera toouse un toostore account premium dati replicati, è inoltre necessario disporre di un log del replica toostore account di archiviazione standard che in corso di acquisizione Cambia dati tooon locali.
+- A seconda del modello di risorsa hello desiderate toouse per eseguire il failover le macchine virtuali di Azure, è configurato un account in [modalità di gestione risorse](../storage/storage-create-storage-account.md), o [modalità classica](../storage/storage-create-storage-account-classic-portal.md).
+- È consigliabile configurare un account di archiviazione prima di iniziare. In caso contrario, è necessario toodo durante la distribuzione di Site Recovery. Hello devono trovarsi nello hello stessa area hello insieme di credenziali di servizi di ripristino.
+- Non è possibile spostare gli account di archiviazione utilizzato da Site Recovery nei gruppi di risorse all'interno di hello stessa sottoscrizione, o in diverse sottoscrizioni.
 
 
-### <a name="prepare-the-hyper-v-hosts"></a>Preparare gli host Hyper-V
+### <a name="prepare-hello-hyper-v-hosts"></a>Preparare l'host Hyper-V hello
 
-* Assicurarsi che gli host Hyper-V soddisfino i [prerequisiti](site-recovery-prereq.md#disaster-recovery-of-hyper-v-virtual-machines-to-azure-no-virtual-machine-manager).
-- Assicurarsi che gli host possano accedere agli URL necessari.
+* Verificare che gli host Hyper-V hello soddisfino hello [prerequisiti](site-recovery-prereq.md#disaster-recovery-of-hyper-v-virtual-machines-to-azure-no-virtual-machine-manager).
+- Assicurarsi che gli host hello possono accedere agli URL di hello necessario.
 
 
 ## <a name="create-a-recovery-services-vault"></a>Creare un insieme di credenziali di Servizi di ripristino
-1. Accedere al [portale di Azure](https://portal.azure.com).
+1. Accedi toohello [portale di Azure](https://portal.azure.com).
 2. Fare clic su **Nuovo** > **Monitoraggio e gestione** > **Backup e Site Recovery (OMS)**.  
 
     ![Nuovo insieme di credenziali](./media/site-recovery-hyper-v-site-to-azure/new-vault.png)
 
-3. In **Nome**specificare un nome descrittivo per identificare l'insieme di credenziali. Se è disponibile più di una sottoscrizione, selezionarne una.
+3. In **nome**, specificare un insieme di credenziali di nome descrittivo tooidentify hello. Se è disponibile più di una sottoscrizione, selezionarne una.
 
-4. [Creare un nuovo gruppo di risorse](../azure-resource-manager/resource-group-template-deploy-portal.md) o selezionarne uno esistente e specificare un'area di Azure. I computer verranno replicati in quest'area. Per verificare le aree geografiche supportate, vedere la sezione Disponibilità a livello geografico in [Prezzi di Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
+4. [Creare un nuovo gruppo di risorse](../azure-resource-manager/resource-group-template-deploy-portal.md) o selezionarne uno esistente e specificare un'area di Azure. Macchine saranno replicate toothis area. aree toocheck supportati, vedere disponibilità a livello geografico in [dettagli prezzi di Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
 
-5. Per accedere rapidamente all'insieme di credenziali dal dashboard, fare clic su **Aggiungi al dashboard** e quindi su **Crea**.
+5. Insieme di credenziali di tooquickly accesso hello da hello Dashboard, fare clic su **Pin toodashboard**, quindi fare clic su **crea**.
 
     ![Nuovo insieme di credenziali](./media/site-recovery-hyper-v-site-to-azure/new-vault-settings.png)
 
-Il nuovo insieme di credenziali verrà visualizzato nell'elenco **Dashboard** > **Tutte le risorse** e nel pannello **Insiemi di credenziali dei servizi di ripristino** principale.
+verrà visualizzata di nuovo insieme di credenziali Hello in hello **Dashboard** > **tutte le risorse** elenco e su hello principale **insiemi di credenziali di servizi di ripristino** blade.
 
 
 
-## <a name="select-the-protection-goal"></a>Selezionare l'obiettivo di protezione
+## <a name="select-hello-protection-goal"></a>Selezionare l'obiettivo di protezione hello
 
-Selezionare gli elementi da replicare e la posizione in cui eseguire la replica.
+Selezionare gli elementi da tooreplicate, e in cui si desidera tooreplicate per.
 
-1. In **Insiemi di credenziali dei servizi di ripristino** selezionare l'insieme di credenziali.
+1. In hello **insiemi di credenziali di servizi di ripristino**selezionare insieme di credenziali hello.
 2. In **Introduzione** fare clic su **Site Recovery** > **Preparare l'infrastruttura** > **Obiettivo di protezione**.
 
     ![Scegliere gli obiettivi](./media/site-recovery-hyper-v-site-to-azure/choose-goals.png)
-3. In **Obiettivo di protezione** selezionare **In Azure** e scegliere **Sì, con Hyper-V**. Scegliere **No** per confermare che non si sta usando VMM. Fare quindi clic su **OK**.
+3. In **obiettivi della protezione dati**selezionare **tooAzure**e selezionare **Sì, con Hyper-V**. Selezionare **n** tooconfirm VMM non è in uso. Fare quindi clic su **OK**.
 
     ![Scegliere gli obiettivi](./media/site-recovery-hyper-v-site-to-azure/choose-goals2.png)
 
-## <a name="set-up-the-source-environment"></a>Configurare l'ambiente di origine
+## <a name="set-up-hello-source-environment"></a>Configurare un ambiente di origine hello
 
-Configurare il sito Hyper-V, installare il provider di Azure Site Recovery e l'agente di Servizi di ripristino di Azure negli host Hyper-V e registrare il sito nell'insieme di credenziali.
+Impostare il sito di hello Hyper-V, installare hello Provider di Azure Site Recovery e l'agente di servizi di ripristino di Azure di hello negli host Hyper-V e registrare sito hello nell'insieme di credenziali hello.
 
-1. In **Preparare l'infrastruttura** fare clic su **Origine**. Per aggiungere un nuovo sito Hyper-V come contenitore per i cluster o gli host Hyper-V, fare clic su **+ Sito Hyper-V**.
+1. In **Preparare l'infrastruttura** fare clic su **Origine**. Fare clic su un nuovo sito Hyper-V come contenitore per l'host Hyper-V o cluster, tooadd **+ sito Hyper-V**.
 
     ![Impostare l'origine](./media/site-recovery-hyper-v-site-to-azure/set-source1.png)
-2. In **Crea il sito Hyper-V** specificare un nome per il sito. Fare quindi clic su **OK**. A questo punto, selezionare il sito creato e fare clic su **+Server Hyper-V** per aggiungere un server al sito.
+2. In **sito Hyper-V creare**, specificare un nome per il sito hello. Fare quindi clic su **OK**. Ora, selezionare il sito di hello creata, quindi fare clic su **+ Server Hyper-V** tooadd un sito di toohello server.
 
     ![Impostare l'origine](./media/site-recovery-hyper-v-site-to-azure/set-source2.png)
 
 3. In **Aggiungi server** > **Tipo di server** verificare che sia visualizzato **Server Hyper-V**.
 
-    - Verificare che il server Hyper-V che si desidera aggiungere sia conforme ai [prerequisiti](#on-premises-prerequisites) e sia in grado di accedere agli URL specificati.
-    - Scaricare il file di installazione del provider di Azure Site Recovery. Eseguire questo file per installare il provider e l'agente di Servizi di ripristino in ogni host Hyper-V.
+    - Verificare che tale server hello Hyper-V da tooadd è conforme con hello [prerequisiti](#on-premises-prerequisites), ed è in grado di tooaccess hello URL specificati.
+    - Scaricare i file di installazione di Provider di Azure Site Recovery hello. Eseguire questo hello tooinstall file Provider e hello agente servizi di ripristino in ogni host Hyper-V.
 
     ![Impostare l'origine](./media/site-recovery-hyper-v-site-to-azure/set-source3.png)
 
 
-## <a name="install-the-provider-and-agent"></a>Installare provider e agente
+## <a name="install-hello-provider-and-agent"></a>Installare hello Provider e agente
 
-1. Eseguire il file di installazione del provider in ogni host aggiunto al sito Hyper-V. Se l'installazione viene eseguita in un cluster Hyper-V, eseguire il file di installazione in ogni nodo del cluster. L'installazione e la registrazione di ogni nodo del cluster Hyper-V garantisce che le macchine virtuali siano protette anche se ne viene eseguita la migrazione tra i nodi.
+1. Eseguire i file di installazione di Provider di hello in ogni host aggiunti al sito toohello Hyper-V. Se l'installazione viene eseguita in un cluster Hyper-V, eseguire il file di installazione in ogni nodo del cluster. L'installazione e la registrazione di ogni nodo del cluster Hyper-V garantisce che le macchine virtuali siano protette anche se ne viene eseguita la migrazione tra i nodi.
 2. In **Microsoft Update** è possibile acconsentire esplicitamente agli aggiornamenti in modo che gli aggiornamenti del provider vengano installati in base ai criteri di Microsoft Update.
-3. In **Installazione** accettare o modificare il percorso predefinito di installazione del provider e quindi fare clic su **Installa**.
-4. In **Impostazioni dell'insieme di credenziali** fare clic su **Esplora** per selezionare il file di chiave dell'insieme di credenziali scaricato. Specificare la sottoscrizione di Azure Site Recovery, il nome dell'insieme di credenziali e il sito Hyper-V a cui appartiene il server Hyper-V.
+3. In **installazione**, accettare o modificare percorso di installazione di Provider predefinito hello e fare clic su **installare**.
+4. In **impostazioni insieme di credenziali**, fare clic su **Sfoglia** tooselect hello insieme di credenziali chiave file scaricato. Specificare una sottoscrizione di Azure Site Recovery hello, nome di archivio, hello e hello Hyper-V del sito toowhich hello Hyper-V server appartiene.
 
     ![Server registration](./media/site-recovery-hyper-v-site-to-azure/provider3.png)
 
-5. In **Impostazioni proxy** specificare in che modo il provider in esecuzione negli host Hyper-V si connette ad Azure Site Recovery tramite Internet.
+5. In **le impostazioni del Proxy**, specificare la modalità Provider in esecuzione in host Hyper-V si connette tooAzure Site Recovery tramite hello hello internet.
 
-    * Per fare in modo che il provider si connetta direttamente, selezionare **Connetti direttamente ad Azure Site Recovery senza server proxy**.
-    * Se per il proxy esistente è necessaria l'autenticazione o si desidera usare un proxy personalizzato per la connessione al provider, selezionare **Connetti ad Azure Site Recovery usando un server proxy**.
+    * Se si desidera selezionare direttamente hello Provider tooconnect **connettersi direttamente tooAzure il ripristino del sito senza un proxy**.
+    * Se il proxy esistente richiede l'autenticazione, o si desidera toouse un proxy personalizzato per la connessione al Provider di hello, selezionare **connettersi tooAzure ripristino del sito utilizzando un server proxy**.
     * Se si usa un proxy:
-        - Specificare l'indirizzo, la porta e le credenziali.
-        - Assicurarsi che sia possibile accedere tramite il proxy agli URL indicati nei [prerequisiti](#prerequisites) .
+        - Specificare le credenziali, porta e indirizzo hello
+        - Rendono che URL hello descritto in hello [prerequisiti](#prerequisites) siano consentiti attraverso il proxy di hello.
 
     ![Internet](./media/site-recovery-hyper-v-site-to-azure/provider7.PNG)
 
-6. Al termine dell'installazione fare clic su **Registra** per registrare il server nell'insieme di credenziali.
+6. Al termine dell'installazione, fare clic su **registrare** server hello tooregister nell'insieme di credenziali hello.
 
     ![Percorso di installazione](./media/site-recovery-hyper-v-site-to-azure/provider2.png)
 
-7. Al termine della registrazione, i metadati del server Hyper-V vengono recuperati da Azure Site Recovery e il server viene visualizzato in **Site Recovery Infrastructure** >  (Infrastruttura di Site Recovery)**Hyper-V Hosts** (Host Hyper-V).
+7. Al termine della registrazione, i metadati dal server hello Hyper-V vengono recuperati da Azure Site Recovery e hello server viene visualizzato nel **infrastruttura di Site Recovery** > **host Hyper-V**.
 
 
-## <a name="set-up-the-target-environment"></a>Configurare l'ambiente di destinazione
+## <a name="set-up-hello-target-environment"></a>Configurare un ambiente di destinazione hello
 
-Specificare l'account di archiviazione di Azure per la replica e la rete di Azure a cui le macchine virtuali di Azure dovranno connettersi dopo il failover.
+Specificare l'account di archiviazione di Azure hello per la replica e si connetterà hello Azure rete toowhich macchine virtuali di Azure dopo il failover.
 
 1. Fare clic su **Preparare l'infrastruttura** > **Destinazione**.
-2. Selezionare la sottoscrizione e il gruppo di risorse in cui si desidera creare le macchine virtuali di Azure dopo il failover. Scegliere il modello di distribuzione (classica o Resource Manager) da usare in Azure per le macchine virtuali.
+2. Selezionare la sottoscrizione hello e gruppo di risorse hello in cui si desidera toocreate hello macchine virtuali di Azure dopo il failover. Scegliere hello distribuzione modello che si vuole toouse in Azure (classica o risorsa di gestione) per le macchine virtuali hello.
 
 3. Site Recovery verifica la disponibilità di uno o più account di archiviazione di Azure e reti compatibili.
 
-    - Se non si dispone di un account di archiviazione, fare clic su **+ Archiviazione** per creare un account basato su Resource Manager inline. Leggere i [requisiti per l'archiviazione](site-recovery-prereq.md#azure-requirements).
-    - Se non si dispone di una rete Azure, fare clic su **+Rete** per creare una rete basata su Resource Manager inline.
+    - Se non si dispone di un account di archiviazione, fare clic su **+ archiviazione** toocreate inline un account basato su Gestione risorse. Leggere i [requisiti per l'archiviazione](site-recovery-prereq.md#azure-requirements).
+    - Se non si dispone di una rete di Azure, fare clic su **+ rete** toocreate un inline basate su Gestione risorse di rete.
 
     ![Archiviazione](./media/site-recovery-vmware-to-azure/enable-rep3.png)
 
@@ -194,39 +194,39 @@ Specificare l'account di archiviazione di Azure per la replica e la rete di Azur
 
 ## <a name="configure-replication-settings"></a>Configurare le impostazioni di replica
 
-1. Per creare nuovi criteri di replica, fare clic su **Preparare l'infrastruttura** > **Impostazioni della replica** > **+Crea e associa**.
+1. toocreate nuovi criteri di replica, fare clic su **Prepare infrastruttura** > **le impostazioni di replica** > **+ crea e associa**.
 
     ![Rete](./media/site-recovery-hyper-v-site-to-azure/gs-replication.png)
 2. In **Criteri di creazione e associazione**specificare il nome dei criteri.
-3. In **Frequenza di copia**specificare la frequenza con cui replicare i dati differenziali dopo la replica iniziale, ogni 30 secondi oppure ogni 5 o 15 minuti.
+3. In **frequenza di copia**, specificare la frequenza con cui si desidera dati delta tooreplicate dopo la replica iniziale hello (ogni 30 secondi, 5 o 15 minuti).
 
     > [!NOTE]
-    > Quando si esegue la replica in archiviazione Premium la frequenza di 30 secondi non è supportata. Il limite è determinato dal numero di snapshot per BLOB (100) supportato dal servizio di archiviazione Premium. [Altre informazioni](../storage/storage-premium-storage.md#snapshots-and-copy-blob).
+    > Quando la replica di archiviazione toopremium, non è supportata una frequenza secondo 30. limitazione di Hello è determinato dal numero di hello di snapshot per ogni blob (100) supportato da archiviazione premium. [Altre informazioni](../storage/storage-premium-storage.md#snapshots-and-copy-blob)
 
-4. In **Conservazione del punto di recupero** specificare la durata in ore dell'intervallo di conservazione per ogni punto di recupero. Le macchine virtuali possono essere ripristinate in qualsiasi punto all'interno di un intervallo.
+4. In **conservazione del punto di ripristino**, specificare in ore il tempo è un intervallo di conservazione hello per ogni punto di ripristino. Macchine virtuali possono essere ripristinati tooany punto all'interno di una finestra.
 5. In **Frequenza snapshot coerenti con l'app** specificare la frequenza, da 1 a 12 ore, per la creazione di punti di ripristino contenenti snapshot coerenti con l'applicazione.
 
-    - Hyper-V utilizza due tipi di snapshot, uno snapshot standard che fornisce uno snapshot incrementale dell'intera macchina virtuale e uno snapshot coerente con l'applicazione che accetta uno snapshot temporizzato dei dati dell'applicazione all'interno della macchina virtuale.
-    - Negli snapshot coerenti dell'applicazione viene usato il servizio Copia Shadow del volume (VSS) per garantire che le applicazioni siano coerenti durante la creazione dello snapshot.
-    - L'abilitazione di snapshot coerenti con l'applicazione influirà sulle prestazioni delle applicazioni in esecuzione nelle macchine virtuali di origine. Assicurarsi che il valore impostato sia inferiore al numero di punti di ripristino aggiuntivi configurati.
+    - Hyper-V usa due tipi di snapshot, uno snapshot standard che fornisce uno snapshot incrementale dell'intera macchina virtuale di hello e uno snapshot coerente dell'applicazione che accetta uno snapshot del punto nel tempo dei dati dell'applicazione hello macchina virtuale hello.
+    - Snapshot coerenti dell'applicazione usare tooensure del servizio Copia Shadow del Volume (VSS) che le applicazioni sono in uno stato coerente durante hello snapshot.
+    - Se si abilita snapshot coerenti dell'applicazione, influisce negativamente sulle prestazioni di hello delle applicazioni in esecuzione in macchine virtuali di origine. Verificare che il valore di hello impostato è minore hello numero di punti di ripristino aggiuntivi configurati.
 
-6. In **Ora di inizio della replica iniziale** specificare quando deve essere avviata la replica iniziale. La replica avviene sulla larghezza di banda Internet. È quindi consigliabile pianificarla al di fuori dell'orario di lavoro. Fare quindi clic su **OK**.
+6. In **ora inizio replica iniziale**, specificare quando toostart hello la replica iniziale. la replica di Hello viene eseguita tramite la larghezza di banda internet pertanto è opportuno tooschedule è di fuori dell'orario di disponibilità. Fare quindi clic su **OK**.
 
     ![Criteri di replica](./media/site-recovery-hyper-v-site-to-azure/gs-replication2.png)
 
-Quando si creano nuovi criteri, questi vengono associati automaticamente al sito Hyper-V. È possibile associare un sito Hyper-V e le VM che contiene a più criteri di replica in **Replica** > nome-criteri > **Associate Hyper-V Site** (Associa sito Hyper-V).
+Quando si crea un nuovo criterio, è associata automaticamente a sito Hyper-V hello. È possibile associare un sito Hyper-V (e hello macchine virtuali in esso) a più criteri di replica in **replica** > criteri-name > **associare sito Hyper-V**.
 
 ## <a name="capacity-planning"></a>Pianificazione della capacità
 
 Dopo aver configurato l'infrastruttura di base è possibile passare alla pianificazione della capacità e valutare se sono necessarie altre risorse.
 
-In Site Recovery è disponibile lo strumento Capacity Planner, che permette di allocare le risorse appropriate per il calcolo, la rete e l'archiviazione. È possibile eseguire lo strumento di pianificazione in modalità rapida, per ottenere stime basate su un numero medio di macchine virtuali, dischi e risorse di archiviazione oppure in modalità dettagliata, con numeri personalizzati a livello di carico di lavoro. Prima di iniziare è necessario:
+Il ripristino del sito fornisce un toohelp di pianificazione della capacità è allocare risorse hello di calcolo, rete e archiviazione. È possibile eseguire la pianificazione hello in modalità rapida per le stime in base a un numero medio di macchine virtuali, dischi e archiviazione, o in modalità dettagliata con numeri personalizzati a livello di carico di lavoro hello. Prima di iniziare è necessario:
 
 * Raccogliere informazioni sull'ambiente di replica, incluse le macchine virtuali, i dischi per ogni macchina virtuale e le risorse di archiviazione per ogni disco.
-* Stimare la frequenza di modifica giornaliera (varianza) per i dati replicati. A questo scopo è possibile usare lo strumento [Capacity Planner for Hyper-V Replica](https://www.microsoft.com/download/details.aspx?id=39057) .
+* Stima hello modifica (varianza) tariffa giornaliera per i dati replicati. È possibile utilizzare hello [Capacity Planner for Hyper-V Replica](https://www.microsoft.com/download/details.aspx?id=39057) toohelp si esegue questa operazione.
 
-1. Fare clic su **Download** per scaricare lo strumento e quindi eseguirlo. [Vedere l'articolo](site-recovery-capacity-planner.md) fornito con lo strumento.
-2. Al termine scegliere **Sì** in **Have you run the Capacity Planner**(È stato eseguito lo strumento Capacity Planner?).
+1. Fare clic su **scaricare** toodownload hello strumento e quindi eseguirlo. [Leggere l'articolo hello](site-recovery-capacity-planner.md) che accompagna strumento hello.
+2. Al termine, selezionare **Sì** in **è stato eseguito hello Capacity Planner**?
 
    ![Pianificazione della capacità](./media/site-recovery-hyper-v-site-to-azure/gs-capacity-planning.png)
 
@@ -236,166 +236,166 @@ Ulteriori informazioni sul [controllo della larghezza di banda di rete](#network
 
 ## <a name="enable-replication"></a>Abilitare la replica
 
-Prima di iniziare, verificare che l'account utente di Azure disponga delle [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) necessarie per abilitare la replica di una nuova macchina virtuale in Azure.
+Prima di iniziare, assicurarsi che l'account utente di Azure è necessario hello [autorizzazioni](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines) tooenable replica di un nuovo tooAzure macchina virtuale.
 
 Abilitare la replica per le macchine virtuali nel modo seguente:          
 
-1. Fare clic su **Eseguire la replica dell'applicazione** > **Origine**. Dopo avere configurato la replica per la prima volta, è possibile fare clic su **+Replica** per abilitare la replica per altri computer.
+1. Fare clic su **Eseguire la replica dell'applicazione** > **Origine**. Dopo aver configurato la replica per hello prima volta, è possibile fare clic su **+ replicare** replica tooenable per computer aggiuntivi.
 
     ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/enable-replication.png)
-2. In **Origine** selezionare il sito Hyper-V. Fare quindi clic su **OK**.
-3. In **Destinazione** selezionare la sottoscrizione dell'insieme di credenziali e il modello di failover da usare in Azure (modalità classica o Resource Manager) dopo il failover.
-4. Selezionare l'account di archiviazione da usare. Se non si dispone di un account da usare, è possibile [crearne uno](#set-up-an-azure-storage-account). Fare quindi clic su **OK**.
-5. Selezionare la rete di Azure e la subnet a cui dovranno connettersi le macchine virtuali di Azure create dopo il failover.
+2. In **origine**, selezionare il sito hello Hyper-V. Fare quindi clic su **OK**.
+3. In **destinazione**, selezionare una sottoscrizione di insieme di credenziali hello e hello failover modello toouse in Azure (classica o risorsa management) dopo il failover.
+4. Selezionare l'account di archiviazione hello da toouse. Se non si dispone di un account a cui si vuole toouse, è possibile [crearlo](#set-up-an-azure-storage-account). Fare quindi clic su **OK**.
+5. Quando si crea il failover, si connetterà hello seleziona Azure toowhich rete e subnet macchine virtuali di Azure.
 
-    - Per applicare le impostazioni di rete a tutti i computer selezionati per la replica, selezionare **Configurare ora per le macchine virtuali selezionate**.
-    - Scegliere **Configurare in seguito** per selezionare la rete di Azure per ogni computer.
-    - Se non si dispone di una rete da usare, è possibile [crearne una](#set-up-an-azure-network). Selezionare una subnet, se applicabile. Fare quindi clic su **OK**.
+    - tooapply hello rete impostazioni tooall macchine si abilita per la replica, selezionare **Configura ora per macchine virtuali selezionate**.
+    - Selezionare **configurare successivamente** tooselect hello Azure rete al computer.
+    - Se non si dispone di una rete a cui si desidera toouse, è possibile [crearlo](#set-up-an-azure-network). Selezionare una subnet, se applicabile. Fare quindi clic su **OK**.
 
    ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/enable-replication11.png)
 
-6. In **Macchine virtuali** > **Seleziona macchine virtuali** fare clic per selezionare tutte le macchine virtuali da replicare. È possibile selezionare solo i computer per cui è possibile abilitare la replica. Fare quindi clic su **OK**.
+6. In **macchine virtuali** > **selezionare le macchine virtuali**fare clic e selezionare ogni computer in cui si desidera tooreplicate. È possibile selezionare solo i computer per cui è possibile abilitare la replica. Fare quindi clic su **OK**.
 
     ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/enable-replication5-for-exclude-disk.png)
 
-7. In **Proprietà** > **Configura proprietà**selezionare il sistema operativo per le VM selezionate e il disco del sistema operativo.
-8. Verificare che il nome della VM di Azure (nome di destinazione) sia conforme ai [requisiti per le macchine virtuali di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
-9. Per impostazione predefinita, tutti i dischi della VM sono selezionati per la replica. È tuttavia possibile cancellarli per escluderli,
-    - ad esempio per ridurre la larghezza di banda di replica. È possibile evitare, ad esempio, di replicare i dischi con dati temporanei o dati che vengono aggiornati ad ogni riavvio di un computer o di un'applicazione, come pagefile.sys o tempdb di Microsoft SQL Server. Per escludere un disco dalla replica, è sufficiente selezionarlo.
+7. In **proprietà** > **configurare proprietà**selezionare hello del sistema operativo per le macchine virtuali selezionata hello e hello disco del sistema operativo.
+8. Verificare il nome di macchina virtuale di Azure hello (nome di destinazione) sia conforme ai [requisiti macchina virtuale di Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+9. Per impostazione predefinita sono selezionati tutti i dischi di hello di hello VM per la replica, ma è possibile cancellare i dischi tooexclude li.
+    - Si consiglia di larghezza di banda replica tooreduce tooexclude dischi. Ad esempio, non è possibile tooreplicate dischi con dati temporanei o dati che sono stato aggiornato un computer o App ogni volta che viene riavviato (ad esempio pagefile.sys o tempdb di Microsoft SQL Server). È possibile escludere il disco di hello dalla replica dal disco hello deselezionando la casella.
     - Solo i dischi di base possono essere esclusi dalla replica. Non è possibile escludere dischi del sistema operativo
-    - e non è consigliabile escludere dischi dinamici. Site Recovery non può determinare se un disco rigido virtuale all'interno della macchina virtuale guest è di base o dinamico. Se non sono esclusi tutti i volumi dinamici dipendenti, in caso di failover della VM il disco dinamico protetto risulterà guasto e non sarà possibile accedere ai dati presenti su tale disco.
-        - Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si desidera aggiungere o escludere un disco, è necessario disabilitare la protezione della macchina virtuale e riabilitarla al termine dell'operazione.
-        - Per i dischi creati manualmente in Azure non viene eseguito il failback. Ad esempio, se si esegue il failover di tre dischi e se ne creano due direttamente in Azure, verrà eseguito il failback da Azure a Hyper-V soltanto dei tre dischi. Non è possibile includere nel failback o nella replica inversa da Hyper-V ad Azure i dischi creati manualmente.
-        - Se si esclude un disco necessario per il funzionamento di un'applicazione, dopo il failover in Azure è necessario crearlo manualmente in Azure per consentire l'esecuzione dell'applicazione replicata. È possibile in alternativa integrare Automazione di Azure in un piano di ripristino per creare il disco durante il failover del computer.
+    - e non è consigliabile escludere dischi dinamici. Site Recovery non può determinare se un disco rigido virtuale all'interno della macchina virtuale guest è di base o dinamico. Se non sono esclusi tutti i dischi dei volumi dinamici dipendenti, disco dinamico protetto hello verrà visualizzata come un disco guasto quando hello VM viene eseguito il failover e hello dati presenti sul disco non saranno accessibili.
+        - Dopo aver abilitato la replica, non è più possibile aggiungere o rimuovere dischi da replicare. Se si desidera tooadd o esclude un disco, necessitano di protezione toodisable per hello macchina virtuale e riabilitarla.
+        - Per i dischi creati manualmente in Azure non viene eseguito il failback. Ad esempio, se si esito negativo su tre dischi e creare due direttamente nella macchina virtuale di Azure, solo hello tre dischi che sono stati eseguiti il failover non verranno eseguiti nuovamente da Azure tooHyper-V. È possibile includere i dischi creati manualmente il failback oppure la replica inversa da tooAzure Hyper-V.
+        - Se si esclude un disco è sufficiente per toooperate un'applicazione, dopo il failover tooAzure occorre toocreate manualmente in Azure, in modo che hello replicati applicazione può essere eseguito. In alternativa, è possibile integrare automazione di Azure in un piano di ripristino disco hello toocreate durante il failover della macchina hello.
 
-10. Fare clic su **OK** per salvare le modifiche. È possibile impostare proprietà aggiuntive in un secondo momento.
+10. Fare clic su **OK** toosave modifiche. È possibile impostare proprietà aggiuntive in un secondo momento.
 
     ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/enable-replication6-with-exclude-disk.png)
 
-11. In **Impostazioni della replica** > **Configurare le impostazioni di replica** selezionare i criteri di replica da applicare per le VM protette. Fare quindi clic su **OK**. È possibile modificare i criteri di replica in **Criteri di replica** > nome-criterio > **Modifica impostazioni**. Le modifiche applicate verranno usate per i computer di cui è già in corso la replica e per i nuovi computer.
+11. In **le impostazioni di replica** > **configurare le impostazioni di replica**, selezionare i criteri di replica hello da tooapply per hello protetto le macchine virtuali. Fare quindi clic su **OK**. È possibile modificare il criterio di replica hello in **criteri di replica** > criteri-name > **Modifica impostazioni**. Le modifiche applicate verranno usate per i computer di cui è già in corso la replica e per i nuovi computer.
 
 
    ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/enable-replication7.png)
 
-È possibile tenere traccia dello stato del processo **Abilita protezione** in **Processi** > **Site Recovery jobs** (Processi di Site Recovery). Dopo l'esecuzione del processo **Finalizza protezione** la macchina virtuale è pronta per il failover.
+È possibile monitorare lo stato di avanzamento di hello **Abilita protezione** processo **processi** > **i processi di ripristino del sito**. Dopo aver hello **finalizzazione della protezione** processo viene eseguito hello macchina è pronta per il failover.
 
 ### <a name="view-and-manage-vm-properties"></a>Visualizzare e gestire le proprietà della macchina virtuale
 
-È consigliabile verificare le proprietà del computer di origine.
+È consigliabile verificare le proprietà di hello hello computer di origine.
 
-1. In **Elementi protetti** fare clic su **Elementi replicati** e selezionare il computer.
+1. In **elementi protetti**, fare clic su **elementi replicati**e selezionare hello macchina.
 
     ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/test-failover1.png)
-2. In **Proprietà** sono disponibili le informazioni su replica e failover per la VM.
+2. In **proprietà**, è possibile visualizzare la replica e le informazioni di failover per hello macchina virtuale.
 
     ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/test-failover2.png)
-3. In **Calcolo e rete** > **Proprietà di calcolo** è possibile specificare le dimensioni di destinazione e il nome della VM di Azure. Se necessario, modificare il nome in modo che sia conforme ai requisiti di Azure. È anche possibile visualizzare e modificare le informazioni sulla rete di destinazione, la subnet e l'indirizzo IP che verranno assegnati alla macchina virtuale di Azure. Tenere presente quanto segue:
+3. In **di calcolo e rete** > **calcolo proprietà**, è possibile specificare dimensioni delle macchine Virtuali di Azure hello nome e di destinazione. Se si desidera, modificare toocomply nome hello ai requisiti di Azure. È inoltre possibile visualizzare e modificare le informazioni relative alla rete di destinazione hello, subnet e indirizzi IP che verranno assegnato toohello macchina virtuale di Azure. Si noti hello segue:
 
-   * È possibile impostare l'indirizzo IP di destinazione. Se non si specifica un indirizzo, il computer di cui è stato eseguito il failover usa DHCP. Se si imposta un indirizzo che non è disponibile al momento del failover, il failover ha esito negativo. Se l'indirizzo è disponibile nella rete di failover di test, è possibile usare lo stesso indirizzo IP di destinazione per il failover di test.
-   * Il numero di schede di rete dipende dalle dimensioni specificate per la macchina virtuale di destinazione, come illustrato di seguito:
+   * È possibile impostare l'indirizzo IP di destinazione hello. Se non si fornisce un indirizzo, hello failover macchina utilizzerà DHCP. Se si imposta un indirizzo che non è disponibile in caso di failover, hello failover avrà esito negativo. Hello stesso indirizzo IP di destinazione è utilizzabile per il test failover se è disponibile in rete di failover di test hello hello indirizzo.
+   * numero di Hello di schede di rete dipende dalla dimensione hello specificata per la macchina virtuale di destinazione hello, come indicato di seguito:
 
-     * Se il numero di schede di rete nella macchina di origine è minore o uguale al numero di schede consentite per la macchina di destinazione, la destinazione avrà lo stesso numero di schede dell’origine.
-     * Se il numero di schede per la macchina virtuale di origine supera il numero consentito per le dimensioni di destinazione, verrà utilizzata la dimensione di destinazione massima.
-     * Ad esempio, se una macchina di origine dispone di due schede di rete e le dimensioni della macchina di destinazione ne supportano quattro, la macchina di destinazione avrà due schede. Se la macchina di origine dispone di due schede ma le dimensioni di destinazione supportate ne consentono solo una, la macchina di destinazione avrà una sola scheda.     
-     * Se la macchina virtuale ha più schede di rete, si connetteranno tutte alla stessa rete.
-     * Se la macchina virtuale ha più schede di rete, la prima nell'elenco diventa la scheda di rete *predefinita* nella macchina virtuale di Azure.
+     * Se il numero di hello di schede di rete nel computer di origine hello è minore o uguale toohello numero di schede consentite per le dimensioni del computer di destinazione hello, quindi sarà necessario destinazione hello hello origine hello stesso numero di schede.
+     * Se il numero di hello di schede per la macchina virtuale di origine hello supera il numero di hello consentito per la dimensione di destinazione hello quindi massimo di dimensioni di destinazione hello verrà utilizzato.
+     * Se, ad esempio un computer di origine ha due schede di rete e le dimensioni del computer di destinazione hello supporta quattro, il computer di destinazione hello avrà due schede. Se il computer di origine hello dispone di due schede ma hello dimensioni di destinazione supportata supportano solo una macchina di destinazione hello avrà una sola scheda di.     
+     * Se hello macchina virtuale dispone di più schede di rete verranno tutti connettono toohello stessa rete.
+     * Se macchina virtuale hello ha più schede di rete hello prima uno nell'elenco di hello diventa hello *predefinito* scheda di rete nella macchina virtuale di Azure hello.
 
      ![Abilitare la replica](./media/site-recovery-hyper-v-site-to-azure/test-failover4.png)
 
-4. In **Dischi** è possibile visualizzare il sistema operativo e i dischi dati della VM che verranno replicati.
+4. In **dischi**, è possibile vedere hello del sistema operativo e dischi dati in hello VM che verranno replicati.
 
 #### <a name="managed-disks"></a>Dischi gestiti
 
-In **Calcolo e rete** > **Proprietà di calcolo** è possibile impostare l'opzione "Usa dischi gestiti" della macchina virtuale su "Sì" per collegare i dischi gestiti al computer in uso al momento della migrazione in Azure. Managed Disks semplifica la gestione dei dischi per le macchine virtuali IaaS di Azure grazie alla gestione degli account di archiviazione associati ai dischi delle macchine virtuali. [Altre informazioni su Managed Disks](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview).
+In **di calcolo e rete** > **calcolo proprietà**, è possibile impostare "Utilizzo dischi gestiti" impostazione troppo "Sì" per hello VM se si desidera tooattach dischi gestiti tooyour macchina in tooAzure di migrazione. Dischi gestiti semplifica la gestione disco per le macchine virtuali IaaS di Azure per la gestione degli account di archiviazione hello associati hello dischi di macchina virtuale. [Altre informazioni su Managed Disks](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview).
 
-   - I dischi gestiti vengono creati e collegati alla macchina virtuale solo in caso di failover in Azure. Abilitando la protezione, i dati verranno comunque replicati dai computer locali agli account di archiviazione.
-   È possibile creare dischi gestiti solo per le macchine virtuali distribuite tramite il modello di distribuzione di Resource Manager.
-
-  > [!NOTE]
-  > Il failback da Azure all'ambiente Hyper-V locale non è al momento supportato per i computer con dischi gestiti. Impostare l'opzione "Usa dischi gestiti" su "Sì" solo se si prevede di eseguire la migrazione della macchina in Azure.
-
-   - Quando l'opzione "Usa dischi gestiti" viene impostata su "Sì", nel gruppo di risorse è possibile selezionare solo i set di disponibilità con l'opzione "Usa dischi gestiti" impostata su "Sì". Infatti, le macchine virtuali con dischi gestiti possono solo far parte di set di disponibilità la cui proprietà "Usa dischi gestiti" è impostata su "Sì". Verificare di creare set di disponibilità con la proprietà "Usa dischi gestiti" impostata in funzione dell'intenzione di usare i dischi gestiti in caso di failover. Allo stesso modo, quando l'opzione "Usa dischi gestiti" è impostata su "No", nel gruppo di risorse è possibile selezionare solo i set di disponibilità con la proprietà "Usa dischi gestiti" impostata su "No". [Altre informazioni sui dischi gestiti e i set di disponibilità](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set).
+   - I dischi gestiti sono macchina virtuale creata e associata toohello solo su tooAzure un failover. Per abilitare la protezione, i dati da computer locali continueranno tooreplicate toostorage account.
+   Dischi gestiti possono essere creati solo per macchine virtuali distribuite mediante il modello di distribuzione Gestione risorse di hello.
 
   > [!NOTE]
-  > Se l'account di archiviazione usato per la replica è stato crittografato con Crittografia del servizio di archiviazione in un qualsiasi momento, la creazione dei dischi gestiti durante il failover non avrà esito positivo. È possibile impostare "Usa dischi gestiti" su "No" e ripetere il failover oppure disabilitare la protezione per la macchina virtuale e proteggerla in un account di archiviazione per il quale non sia attivata la Crittografia del servizio di archiviazione in qualsiasi momento.
+  > Il failback da un ambiente Hyper-V locale tooon Azure non è attualmente supportato per i computer con dischi gestiti. Impostare "Utilizzo dischi gestiti" troppo 'Yes' solo se si intende toomigrate tooAzure questo computer.
+
+   - Quando si imposta "Utilizzo dischi gestiti" troppo "Yes", solo set di disponibilità nel gruppo di risorse hello con set di "Utilizzo dischi gestiti" troppo "Yes" saranno disponibili per la selezione. In questo modo le macchine virtuali con dischi gestiti può essere solo parte del set di disponibilità con il set di proprietà "Utilizzare gestito dischi" troppo "Yes". Assicurarsi di creare set di disponibilità con il set di proprietà "Dischi utilizzare gestito" in base a dischi toouse preventivo gestiti in caso di failover. Analogamente, quando si imposta "Utilizzo dischi gestiti" troppo "No", solo i set di disponibilità nel gruppo di risorse hello con proprietà "Utilizzo dischi gestiti" impostare troppo "No" saranno disponibili per la selezione. [Altre informazioni sui dischi gestiti e i set di disponibilità](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability#use-managed-disks-for-vms-in-an-availability-set).
+
+  > [!NOTE]
+  > Se l'account di archiviazione hello usato per la replica è stata crittografata con la crittografia del servizio di archiviazione in qualsiasi punto nel tempo, creazione di dischi gestiti durante il failover avrà esito negativo. È possibile impostare "Utilizzo dischi gestiti" troppo "No" e quindi ripetere il failover o disabilitare la protezione per la macchina virtuale hello e proteggerlo tooa account di archiviazione che non è abilitata in qualsiasi punto nel tempo la crittografia del servizio di archiviazione.
   > [Altre informazioni su Crittografia del servizio di archiviazione e dischi gestiti](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview#managed-disks-and-encryption).
 
 
-## <a name="test-the-deployment"></a>Test della distribuzione
+## <a name="test-hello-deployment"></a>Distribuzione di prova hello
 
-Per testare la distribuzione è possibile eseguire un failover di test per una singola macchina virtuale o un piano di ripristino che contenga una o più macchine virtuali.
+distribuzione di hello tootest è possibile eseguire un failover di test per una singola macchina virtuale o un piano di ripristino che contiene uno o più macchine virtuali.
 
 ### <a name="before-you-start"></a>Prima di iniziare
 
- - Per connettersi alle macchine virtuali di Azure con RDP dopo il failover, seguire le istruzioni per la [preparazione alla connessione](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
- - Per un test completo è necessario copiare Active Directory e DNS nell'ambiente di test. [Altre informazioni](site-recovery-active-directory.md#test-failover-considerations).
+ - Se si desidera tooconnect tooAzure macchine virtuali tramite RDP dopo il failover, vedere [preparazione tooconnect](site-recovery-test-failover-to-azure.md#prepare-to-connect-to-azure-vms-after-failover).
+ - test toofully toocopy di Active Directory e DNS è necessario nell'ambiente di test. [Altre informazioni](site-recovery-active-directory.md#test-failover-considerations)
 
 ### <a name="run-a-test-failover"></a>Eseguire un failover di test
 
-1. Per eseguire il failover di una singola macchina, in **Elementi replicati** fare clic sulla VM e quindi sull'icona **+Failover di test**.
-2. Per eseguire il failover di un piano di ripristino, in **Piani di ripristino** fare clic con il pulsante destro del mouse sul piano e quindi su **Failover di test**. Per creare un piano di ripristino, [seguire queste istruzioni](site-recovery-create-recovery-plans.md).
-3. In **Failover di test** selezionare la rete di Azure a cui dovranno connettersi le VM di Azure dopo il failover.
-4. Fare clic su **OK** per iniziare il failover. Per tenere traccia dello stato del processo, fare clic sulla VM per visualizzarne le proprietà oppure fare clic sul processo **Failover di test** nel nome dell'insieme di credenziali > **Processi** > **Site Recovery jobs** (Processi di Site Recovery).
-5. Al termine del failover sarà possibile visualizzare la macchina virtuale di Azure di replica in **Macchine virtuali** nel portale di Azure. Assicurarsi che la macchina virtuale sia delle dimensioni appropriate, che sia connessa alla rete giusta e che sia in esecuzione.
-6. Se sono state preparate le connessioni dopo il failover, sarà possibile connettersi alla VM di Azure.
-7. Al termine, fare clic su **Cleanup test failover** (Pulizia failover di test) nel piano di ripristino. Fare clic su **Note** per registrare e salvare eventuali osservazioni associate al failover di test. Verranno eliminate le macchine virtuali create durante il failover di test.
+1. toofail su un singolo computer, in **elementi replicati**, fare clic su hello VM > **+ Test Failover** icona.
+2. toofail sul ripristino di un piano, in **piani di ripristino**, piano hello rapida > **Failover di Test**. un piano di ripristino, toocreate [seguire queste istruzioni](site-recovery-create-recovery-plans.md).
+3. In **Failover di Test**selezionare hello Azure rete toowhich macchine virtuali di Azure saranno connesse dopo il failover viene eseguito.
+4. Fare clic su **OK** toobegin hello failover. È possibile monitorare i progressi facendo clic su hello VM tooopen le relative proprietà o in hello **Failover di Test** processo nel nome dell'insieme di credenziali > **processi** > **i processi di ripristino del sito**.
+5. Al termine del processo di failover di hello, inoltre deve essere in grado di replica hello toosee macchina di Azure vengono visualizzati nel portale di Azure hello > **macchine virtuali**. È necessario verificare che tale hello VM sia dimensioni appropriate hello, che si è connesso toohello di rete appropriata e che sia in esecuzione.
+6. Se sono preparati per le connessioni dopo il failover, dovrebbe essere in grado di tooconnect toohello macchina virtuale di Azure.
+7. Al termine, fare clic su **il failover di test di pulizia** nel piano di ripristino hello. In **note** registrare e salvare eventuali commenti associati hello test failover. Questa operazione eliminerà hello le macchine virtuali che sono state create durante il failover di test.
 
-Per altre informazioni, vedere l'articolo [Failover di test in Azure](site-recovery-test-failover-to-azure.md).
+Per altre informazioni, leggere hello [Test failover tooAzure](site-recovery-test-failover-to-azure.md) articolo.
 
 
 
-## <a name="monitor-the-deployment"></a>Monitorare la distribuzione
+## <a name="monitor-hello-deployment"></a>Monitoraggio hello distribuzione
 
-Per monitorare le impostazioni di configurazione, lo stato e l'integrità della distribuzione di Site Recovery, seguire questa procedura:
+Le impostazioni di configurazione di monitoraggio hello, stato e l'integrità per la distribuzione di Site Recovery:
 
-1. Fare clic sul nome dell'insieme di credenziali per accedere al dashboard **Informazioni di base** . In questo dashboard è possibile rilevare i processi di Site Recovery, lo stato della replica, i piani di ripristino, l'integrità del server e gli eventi.  
+1. Fare clic su hello tooaccess nome insieme di credenziali di hello **Essentials** dashboard. In questo dashboard è possibile rilevare i processi di Site Recovery, lo stato della replica, i piani di ripristino, l'integrità del server e gli eventi.  
 
     ![Informazioni di base](./media/site-recovery-hyper-v-site-to-azure/essentials.png)
-2. Nel riquadro **Integrità** è possibile monitorare i server del sito in cui si verifica il problema e gli eventi generati da Site Recovery nelle ultime 24 ore. Il dashboard Informazioni di base può essere personalizzato con i riquadri e i layout più utili all'utente, incluso lo stato degli insiemi di credenziali di Backup e di Site Recovery.
-3. È possibile gestire e monitorare la replica nei riquadri **Elementi replicati**, **Piani di ripristino** e **Processi di Site Recovery**. È possibile eseguire il drill-down dei processi altri dettagli in **Processi** > **Site Recovery Jobs** (Processi di Site Recovery).
+2. In hello **integrità** riquadro è possibile monitorare i server del sito che segnalano problemi e hello gli eventi generati da Site Recovery hello ultime 24 ore. È possibile personalizzare i riquadri di Essentials tooshow hello e layout di tooyou più utili, incluso lo stato di hello altri il ripristino del sito e gli insiemi di credenziali di Backup.
+3. È possibile gestire e monitorare la replica in hello **elementi replicati**, **piani di ripristino**, e **i processi di ripristino del sito** riquadri. È possibile eseguire il drill-down dei processi altri dettagli in **Processi** > **Site Recovery Jobs** (Processi di Site Recovery).
 
 ## <a name="command-line-provider-and-agent-installation"></a>Installazione del provider e dell'agente dalla riga di comando
 
-Il provider di Azure Site Recovery può essere installato anche usando la riga di comando seguente. Questo metodo può essere usato per installare il provider in un Server Core per Windows Server 2012 R2.
+Hello Provider di Azure Site Recovery e l'agente possono essere installati anche usando hello seguente riga di comando. Questo metodo può essere provider hello tooinstall utilizzati in un Server Core per Windows Server 2012 R2.
 
-1. Scaricare il file di installazione del provider e il codice di registrazione in una cartella, ad esempio C:\ASR.
-2. Da un prompt dei comandi con privilegi elevati eseguire questi comandi per estrarre il programma di installazione del provider:
+1. Scaricare hello Provider e registrazione tooa chiave cartella di installazione. ad esempio C:\ASR.
+2. Da un prompt dei comandi con privilegi elevati, eseguire il programma di installazione del Provider questi comandi tooextract hello:
 
             C:\Windows\System32> CD C:\ASR
             C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
-3. Eseguire questo comando per installare i componenti:
+3. Eseguire questo comando tooinstall componenti hello:
 
             C:\ASR> setupdr.exe /i
-4. Quindi eseguire questi comandi per registrare il server nell'insieme di credenziali:
+4. Eseguire quindi questi server di hello tooregister comandi nell'insieme di credenziali hello:
 
             CD C:\Program Files\Microsoft Azure Site Recovery Provider\
-            C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file>
+            C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of hello server> /Credentials <path of hello credentials file>
 
 <br/>
 Dove:
 
-* **/Credentials**: parametro obbligatorio che specifica la posizione in cui si trova il file della chiave di registrazione.  
-* **/FriendlyName**: parametro obbligatorio per il nome del server host Hyper-V visualizzato nel portale di Azure Site Recovery.
-* **/proxyAddress**: parametro facoltativo che specifica l'indirizzo del server proxy.
-* **/proxyport** : parametro facoltativo che specifica la porta del server proxy.
-* **/proxyUsername**: parametro facoltativo che specifica il nome utente proxy, se il proxy richiede l'autenticazione.
-* **/proxyPassword**: parametro facoltativo che specifica la password per l'autenticazione nel server proxy, se il proxy richiede l'autenticazione.
+* **/ Credenziali**: parametro obbligatorio che specifica il percorso di hello in cui hello Trova file di chiave di registrazione  
+* **/ FriendlyName**: parametro obbligatorio per il nome del server host Hyper-V hello visualizzata nel portale di Azure Site Recovery hello hello.
+* **/ProxyAddress**: parametro facoltativo che specifica l'indirizzo di hello del server proxy hello.
+* **/ProxyPort** : parametro facoltativo che specifica la porta del server proxy hello hello.
+* **/proxyUsername**: parametro facoltativo che specifica il nome utente di hello Proxy (se proxy richiede l'autenticazione).
+* **/proxyPassword**: parametro facoltativo che specifica hello Password per l'autenticazione con il server proxy hello (se proxy richiede l'autenticazione).
 
 
 ## <a name="network-bandwidth-considerations"></a>Considerazioni sulla larghezza di banda di rete
-Lo [strumento Capacity Planner di Hyper-V](site-recovery-capacity-planner.md) può essere usato per calcolare la larghezza di banda necessaria per la replica iniziale e poi quella differenziale. Per controllare la quantità di larghezza di banda usata per la replica è possibile scegliere una delle opzioni seguenti.
+È possibile utilizzare hello [dello strumento di pianificazione della capacità di Hyper-V](site-recovery-capacity-planner.md) della larghezza di banda di toocalculate hello è necessario per la replica (la replica iniziale e quindi delta). quantità di hello toocontrol di utilizzo della larghezza di banda per la replica sono disponibili alcune opzioni:
 
-* **Limitare la larghezza di banda**: il traffico Hyper-V che viene replicato in Azure passa per un host Hyper-V specifico. È possibile limitare la larghezza di banda nel server host.
-* **Perfezionare la larghezza di banda**: è possibile influire sulla larghezza di banda usata per la replica tramite una coppia di chiavi del Registro di sistema.
+* **Limitazione della larghezza di banda**: Hyper-V che vengono replicati tooAzure del traffico tramite uno specifico host Hyper-V. È possibile limitare la larghezza di banda nel server host hello.
+* **Modificare la larghezza di banda**: È possibile influenzare la larghezza di banda hello utilizzata per la replica con un paio di chiavi del Registro di sistema.
 
 ### <a name="throttle-bandwidth"></a>Limitare la larghezza di banda
-1. Aprire lo snap-in di MMC di Backup di Microsoft Azure nel server host Hyper-V. Per impostazione predefinita, un collegamento a Backup di Microsoft Azure è disponibile sul desktop oppure in: C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
-2. Nello snap-in fare clic su **Modifica proprietà**.
-3. Nella scheda **Limitazione larghezza di banda rete** selezionare **Abilita la limitazione all'uso della larghezza di banda Internet per le operazioni di backup** e impostare i limiti per le ore lavorative e non lavorative. Gli intervalli validi sono compresi tra 512 Kbps e 102 Mbps al secondo.
+1. Aprire hello MMC di Backup di Microsoft Azure snap-nel server host Hyper-V di hello. Per impostazione predefinita, un collegamento per il Backup di Microsoft Azure è disponibile sul desktop hello o in C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
+2. Nello snap-in hello fare clic su **Modifica proprietà**.
+3. In hello **limitazione** scheda selezionare **abilitare la limitazione per le operazioni di backup all'utilizzo della larghezza di banda di internet**e impostare i limiti di hello per lavoro e non lavorative ore. Valori validi sono compresi 512 Mbps di too102 Kbps al secondo.
 
     ![Limitare la larghezza di banda](./media/site-recovery-hyper-v-site-to-azure/throttle2.png)
 
-È anche possibile usare il cmdlet [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) per impostare la limitazione. Di seguito è riportato un esempio:
+È inoltre possibile utilizzare hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) tooset limitazione delle richieste di cmdlet. Di seguito è riportato un esempio:
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -404,11 +404,11 @@ Lo [strumento Capacity Planner di Hyper-V](site-recovery-capacity-planner.md) pu
 **Set-OBMachineSetting -NoThrottle** indica che non è necessaria alcuna limitazione.
 
 ### <a name="influence-network-bandwidth"></a>Influire sulla larghezza di banda di rete
-1. Nel Registro di sistema passare a **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
-   * Per intervenire sul traffico della larghezza di banda in un disco di replica, modificare il valore di **UploadThreadsPerVM**oppure creare la chiave, se non esiste.
-   * Per intervenire sulla larghezza di banda per il traffico di failback da Azure, modificare il valore di **DownloadThreadsPerVM**.
-2. Il valore predefinito è 4. In una rete con provisioning eccessivo è necessario modificare i valori predefiniti di queste chiavi del Registro di sistema. Il valore massimo è 32. Monitorare il traffico per ottimizzare il valore.
+1. Nel Registro di sistema hello passare troppo**Backup\Replication Azure HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows**.
+   * il traffico di larghezza di banda hello tooinfluence su un disco di replica, modificare hello valore hello **UploadThreadsPerVM**, o creare la chiave di hello se non esiste.
+   * larghezza di banda hello tooinfluence per il traffico di failback da Azure, modificare il valore di hello **DownloadThreadsPerVM**.
+2. valore predefinito di Hello è 4. In una rete di "provisioning eccessivo", queste chiavi del Registro di sistema devono essere modificate dai valori predefiniti di hello. Hello massimo è 32. Monitorare il traffico toooptimize hello valore.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Al termine della replica iniziale e dei test della distribuzione, è possibile chiamare i failover in caso di necessità. Altre informazioni sui diversi tipi di failover e su come eseguirli sono disponibili [qui](site-recovery-failover.md).
+Dopo il completamento della replica iniziale e il test di distribuzione di hello, è possibile richiamare i failover come hello necessità. [Altre informazioni](site-recovery-failover.md) sui diversi tipi di failover e modalità toorun li.

@@ -1,6 +1,6 @@
 ---
-title: Installare il gateway dati locale - App per la logica di Azure | Microsoft Docs
-description: Prima di accedere alle origini dei dati in locale, installare il gateway di dati locale per il trasferimento rapido dei dati e la crittografia tra le origini dati locale e le app per la logica
+title: gateway di dati locale aaaInstall - App Azure per la logica | Documenti Microsoft
+description: Prima di accedere a origini dati in locale, installare il gateway di dati hello locale per il trasferimento dei dati rapido e la crittografia tra origini dati in locale e la logica App
 keywords: accesso ai dati, locale, trasferimento dei dati, crittografia, origini dei dati
 services: logic-apps
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 07/13/2017
 ms.author: LADocs; dimazaid; estfan
-ms.openlocfilehash: 34e68ae7d35019848b35c785a2715ec458dc6e73
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 01386a904d856ff545f2eca8eb1b008dcdc08574
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-the-on-premises-data-gateway-for-azure-logic-apps"></a>Installare il gateway dati locale per le app per la logica di Azure
+# <a name="install-hello-on-premises-data-gateway-for-azure-logic-apps"></a>Installare il gateway dati locale di hello per le app di logica di Azure
 
-Prima che le app per la logica possano accedere alle origini di dati in locale, è necessario installare e configurare il gateway dati locale. Il gateway funge da ponte che fornisce il trasferimento rapido dei dati e la crittografia tra sistemi locali e le app per la logica. Il gateway inoltra i dati da origini locali sui canali crittografati tramite il bus di servizio di Azure. Tutto il traffico ha origine come traffico sicuro in uscita dall'agente di gateway. Altre informazioni sul [funzionamento del gateway dati](#gateway-cloud-service).
+Prima di App per la logica può accedere a origini dati in locale, è necessario installare e configurare gateway dati locale di hello. gateway Hello funge da ponte che fornisce il trasferimento dei dati rapido e la crittografia tra i sistemi locali e le app di logica. gateway Hello inoltra i dati da origini locali sui canali crittografati tramite hello Azure Service Bus. Tutto il traffico viene generato come proteggere il traffico in uscita dall'agente gateway hello. Altre informazioni, vedere [funzionamento gateway dati hello](#gateway-cloud-service).
 
-Il gateway supporta le connessioni alle origine dati locali seguenti:
+gateway Hello supporta le connessioni delle origini dati toothese in locale:
 
 *   BizTalk Server 2016
 *   DB2  
@@ -41,9 +41,9 @@ Il gateway supporta le connessioni alle origine dati locali seguenti:
 *   SQL Server
 *   Teradata
 
-Questa procedura mostra come installare il gateway dati locale prima di [impostare una connessione tra il gateway e le app per la logica](./logic-apps-gateway-connection.md). Per altre informazioni sui connettori supportati, vedere [Connettori per le app per la logica di Azure](https://docs.microsoft.com/azure/connectors/apis-list). 
+Questi passaggi mostrano come toofirst installazione hello sul gateway dati locale prima di [impostare una connessione tra gateway hello e App per la logica](./logic-apps-gateway-connection.md). Per altre informazioni sui connettori supportati, vedere [Connettori per le app per la logica di Azure](https://docs.microsoft.com/azure/connectors/apis-list). 
 
-Per informazioni su come usare il gateway con altri servizi, vedere i seguenti articoli:
+Per informazioni su come toouse hello gateway con altri servizi, vedere i seguenti articoli:
 
 *   [Gateway dati locale di Microsoft Power BI](https://powerbi.microsoft.com/documentation/powerbi-gateway-onprem/)
 *   [Gateway dati locale di Azure Analysis Services](../analysis-services/analysis-services-gateway.md)
@@ -66,118 +66,118 @@ Per informazioni su come usare il gateway con altri servizi, vedere i seguenti a
 
 **Considerazioni importanti**:
 
-* Installare il gateway dati locale solo su un computer locale.
-Non è possibile installare il gateway in un controller di dominio.
+* Installare il gateway di dati locale hello solo in un computer locale.
+È possibile installare il gateway hello in un controller di dominio.
 
    > [!TIP]
-   > Non è necessario installare il gateway nello stesso computer dell'origine dati. Per ridurre al minimo la latenza, è possibile installare il gateway il più vicino possibile all'origine dati o nello stesso computer, presupponendo che si disponga delle autorizzazioni.
+   > Non si dispone di gateway hello tooinstall sul hello nello stesso computer dell'origine dati. latenza toominimize, è possibile installare gateway hello più vicino come origine di dati possibili tooyour, o su hello stesso computer, presupponendo che si disponga di autorizzazioni.
 
-* Non installare il gateway su un computer che si disattiva o che non può connettersi a Internet perché il gateway non può essere eseguito in tali circostanze. Le prestazioni del gateway possono anche diminuire su una rete wireless.
+* Non installare il gateway hello in un computer che consente di disattivare, passa alla toosleep o non connettersi toohello Internet perché non è possibile eseguire il gateway hello in tali circostanze. Le prestazioni del gateway possono anche diminuire su una rete wireless.
 
 * Durante l'installazione, è necessario accedere con un [account aziendale o dell'istituto di istruzione](https://docs.microsoft.com/azure/active-directory/sign-up-organization) gestito da Azure Active Directory (Azure AD), non con un account Microsoft. 
 
-  È necessario usare successivamente lo stesso account aziendale o dell'istituto di istruzione nel portale di Azure quando si crea e si associa una risorsa di gateway all'installazione del gateway. Si seleziona quindi la risorsa del gateway quando si crea la connessione tra l'app per la logica e l'origine dati locale. [Perché è necessario usare un account di Azure AD aziendale o dell'istituto di istruzione?](#why-azure-work-school-account)
+  Si dispone di toouse hello stesso lavoro o scuola account in un secondo momento in hello Azure portal quando si crea e associa una risorsa di gateway con l'installazione di gateway. È quindi possibile selezionare la risorsa del gateway quando si crea la connessione hello tra la logica app e hello in origine dati locale. [Perché è necessario usare un account di Azure AD aziendale o dell'istituto di istruzione?](#why-azure-work-school-account)
 
   > [!TIP]
   > Se si è effettuata l'iscrizione a un'offerta di Office 365 senza fornire l'indirizzo di posta elettronica aziendale effettivo, l'indirizzo di accesso sarà simile a jeff@contoso.onmicrosoft.com. 
 
-* Se si dispone di un gateway esistente impostato con un programma di installazione che è precedente alla versione 14.16.6317.4, non è possibile modificare il percorso del gateway eseguendo il programma di installazione più recente. Tuttavia, è possibile usare il programma di installazione più recente per configurare un nuovo gateway con il percorso che si desidera.
+* Se si dispone di un gateway esistente impostato con un programma di installazione è precedente alla versione 14.16.6317.4, è possibile modificare la posizione del gateway dal programma di installazione più recente hello in esecuzione. Tuttavia, è possibile utilizzare hello tooset di programma di installazione più recente di un nuovo gateway con percorso hello che si desidera invece.
   
-  Se si dispone di un programma di installazione di gateway che è precedente alla versione 14.16.6317.4, ma non è ancora stato installato il gateway, è possibile scaricare e usare il programma di installazione più recente.
+  Se si dispone di un programma di installazione di gateway è precedente alla versione 14.16.6317.4, ma non è stato installato il gateway, è possibile scaricare e usare hello programma di installazione più recente.
 
 <a name="install-gateway"></a>
 
-## <a name="install-the-data-gateway"></a>Installare il gateway dati
+## <a name="install-hello-data-gateway"></a>Installare il gateway dati hello
 
-1.  [Scaricare ed eseguire il programma di installazione di gateway in un computer locale](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409).
+1.  [Scaricare ed eseguire il programma di installazione di hello gateway in un computer locale](http://go.microsoft.com/fwlink/?LinkID=820931&clcid=0x409).
 
-2. Leggere e accettare le condizioni per l'utilizzo e l'informativa sulla privacy.
+2. Leggere e accettare i termini di hello di utilizzo e informativa sulla privacy.
 
-3. Specificare il percorso nel computer locale in cui si desidera installare il gateway.
+3. Specificare il percorso di hello sul computer locale in cui si desidera gateway hello tooinstall.
 
 4. Quando richiesto, accedere con il proprio account aziendale o dell'istituzione di istruzione di Azure, non con un account Microsoft.
 
    ![Accedere con l'account aziendale o dell'istituto di istruzione di Azure](./media/logic-apps-gateway-install/sign-in-gateway-install.png)
 
-5. Ora registrare il gateway installato con il [servizio cloud gateway](#gateway-cloud-service). Scegliere l'opzione che **consente di registrare un nuovo gateway in questo computer**.
+5. Registrare il gateway installato presso hello [servizio cloud gateway](#gateway-cloud-service). Scegliere l'opzione che **consente di registrare un nuovo gateway in questo computer**.
 
-   Il servizio cloud gateway crittografa e archivia le credenziali dell'origine dati e i dettagli del gateway. 
-   Il servizio instrada anche le query e i relativi risultati tra l'app per la logica, il gateway dati locale e l'origine dati in locale.
+   il servizio cloud gateway Hello crittografa e archivia le credenziali dell'origine dati e i dettagli del gateway. 
+   servizio Hello indirizza anche le query e i relativi risultati tra le app per la logica, gateway dati locale di hello e l'origine dati in locale.
 
 6. Specificare un nome per l'installazione del gateway. Creare una chiave di ripristino, quindi confermarla. 
 
    > [!IMPORTANT] 
-   > La chiave di ripristino deve contenere almeno otto caratteri. Assicurarsi di salvare e conservare la chiave in un luogo sicuro. Questa chiave è necessaria anche per eseguire la migrazione, ripristinare o acquisire la proprietà di un gateway esistente.
+   > La chiave di ripristino deve contenere almeno otto caratteri. Assicurarsi di salvare e conservare la chiave di hello in un luogo sicuro. Questa chiave è necessaria inoltre quando si desidera toomigrate, ripristinare o acquisire la proprietà di un gateway esistente.
 
-   1. Per modificare l'area predefinita per il servizio cloud gateway e per il bus di servizio di Azure usato per l'installazione del gateway, scegliere **Cambia area**.
+   1. area di toochange hello predefinita per il servizio cloud gateway hello e Bus di servizio di Azure utilizzati dall'installazione del gateway, scegliere **area Modifica**.
 
       ![Cambiare area](./media/logic-apps-gateway-install/change-region-gateway-install.png)
 
-      L'area predefinita è l'area associata al tenant di Azure AD.
+      area predefinita Hello è area hello associata al tenant di Azure AD.
 
-   2. Nel riquadro successivo aprire **Selezionare l'area** per scegliere un'area diversa.
+   2. Nel riquadro successivo di hello, aprire hello **selezionare area** troppo scegliere un'area diversa.
 
       ![Selezionare un'altra area](./media/logic-apps-gateway-install/select-region-gateway-install.png)
 
-      Si potrebbe ad esempio selezionare la stessa area come app per la logica o selezionare l'area più vicina all'origine dati in locale in modo da ridurre la latenza. Le risorse gateway e l'app per la logica possono avere posizioni diverse.
+      Ad esempio, si potrebbe selezionare hello app logica stessa area o hello selezionare area più vicina tooyour locale dati di origine in modo da ridurre la latenza. Le risorse gateway e l'app per la logica possono avere posizioni diverse.
 
       > [!IMPORTANT]
-      > Dopo l'installazione non è possibile modificare questa area. L'area determina e limita anche la posizione in cui è possibile creare la risorsa di Azure per il gateway. Pertanto, quando si crea la risorsa del gateway in Azure, assicurarsi che il percorso della risorsa corrisponda all'area selezionata durante l'installazione del gateway.
+      > Dopo l'installazione non è possibile modificare questa area. Determina inoltre quest'area e limita percorso hello in cui è possibile creare hello risorse di Azure per il gateway. Pertanto, quando si crea la risorsa del gateway in Azure, verificare che percorso della risorsa hello corrisponda area hello selezionata durante l'installazione del gateway.
       > 
-      > Se si desidera usare un'area diversa per il gateway in un secondo momento, è necessario configurare un nuovo gateway.
+      > Se si desidera toouse un'area diversa per il gateway in un secondo momento, è necessario impostare di un nuovo gateway.
 
    3. Al termine, scegliere **Fine**.
 
-7. Seguire ora la procedura seguente nel portale di Azure per [creare una risorsa di Azure per il gateway](../logic-apps/logic-apps-gateway-connection.md). 
+7. Ora in cui è possibile, seguire la procedura hello Azure portal [creare una risorsa di Azure per il gateway](../logic-apps/logic-apps-gateway-connection.md). 
 
-Altre informazioni sul [funzionamento del gateway dati](#gateway-cloud-service).
+Altre informazioni, vedere [funzionamento gateway dati hello](#gateway-cloud-service).
 
 ## <a name="migrate-restore-or-take-over-an-existing-gateway"></a>Eseguire la migrazione, ripristinare o sostituire un gateway esistente
 
-Per eseguire queste attività, è necessario disporre della chiave di ripristino che è stata specificata all'installazione del gateway.
+tooperform queste attività, è necessario disporre di chiave di ripristino hello che è stato specificato durante l'installazione di gateway hello.
 
 1. Dal menu di avvio del computer, scegliere **Gateway dati locale**.
 
-2. Quando viene aperto il programma di installazione accedere con lo stesso account di Azure aziendale o dell'istituto di istruzione usato in precedenza per installare il gateway.
+2. Dopo hello apre programma di installazione, eseguire l'accesso con hello stesso Azure di lavoro o scuola account precedentemente utilizzato gateway hello tooinstall.
 
 3. Scegliere **Eseguire la migrazione, ripristinare o acquisire la proprietà di un gateway esistente**.
 
-4. Specificare la chiave di ripristino per il gateway di cui si vuole eseguire la migrazione o il ripristino o acquisire la proprietà.
+4. Specificare la chiave di ripristino e nome hello per gateway hello che si desidera eseguire, il ripristino o toomigrate sulla.
 
 <a name="restart-gateway"></a>
-## <a name="restart-the-gateway"></a>Riavviare il gateway
+## <a name="restart-hello-gateway"></a>Riavviare il gateway hello
 
-Il gateway viene eseguito come un servizio Windows. Come qualsiasi altro servizio Windows, può essere avviato e arrestato in diversi modi. Ad esempio, è possibile aprire un prompt dei comandi con autorizzazioni elevate nel computer in cui è in esecuzione il gateway e quindi eseguire uno dei comandi seguenti:
+gateway di Hello viene eseguito come servizio Windows. Come qualsiasi altro servizio di Windows, è possibile avviare e arrestare il servizio di hello in diversi modi. Ad esempio, puoi aprire un prompt dei comandi con autorizzazioni elevate in hello computer in cui è in esecuzione gateway hello ed eseguire entrambi questi comandi:
 
-* Per arrestare il servizio, eseguire questo comando:
+* servizio hello toostop, eseguire questo comando:
   
     `net stop PBIEgwService`
 
-* Per avviare il servizio, eseguire questo comando:
+* servizio hello toostart, eseguire questo comando:
   
     `net start PBIEgwService`
 
 ### <a name="windows-service-account"></a>Account del servizio Windows
 
-Il gateway dati locale è configurato per usare `NT SERVICE\PBIEgwService` come credenziale di accesso al servizio Windows. Per impostazione predefinita, il gateway ha il diritto di "Accesso come servizio", per il computer in cui si installa il gateway.
+gateway dati locale di Hello impostato toouse `NT SERVICE\PBIEgwService` per Windows hello le credenziali di accesso del servizio. Per impostazione predefinita, il gateway hello ha diritto "Accesso come servizio" hello per macchina hello in cui si installa il gateway hello.
 
 > [!NOTE]
-> Questo account del servizio Windows è diverso dall'account usato per la connessione a origini dati locali e dall'account di Azure aziendale o dell'istituto di istruzione usato per accedere ai servizi cloud.
+> Hello account del servizio Windows diverso dall'account hello utilizzato per la connessione a origini dati locali tooon e dal hello Azure lavoro o l'account dell'istituto di istruzione usato toosign in toocloud servizi.
 
 ## <a name="configure-a-firewall-or-proxy"></a>Configurare un firewall o proxy
 
-Il gateway crea una connessione in uscita al [bus di servizio di Azure](https://azure.microsoft.com/services/service-bus/). Per fornire al gateway informazioni sul proxy, vedere [Configurazione delle impostazioni proxy](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy/).
+gateway Hello crea una connessione in uscita troppo [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). informazioni sul proxy tooprovide per il gateway, vedere [configurare le impostazioni proxy](https://powerbi.microsoft.com/documentation/powerbi-gateway-proxy/).
 
-Per verificare se il firewall, o proxy, potrebbe bloccare le connessioni, verificare che il computer riesca effettivamente a connettersi a Internet e al [bus di servizio di Azure](https://azure.microsoft.com/services/service-bus/). Da un prompt di PowerShell eseguire questo comando:
+toocheck se il firewall o proxy, potrebbe bloccare le connessioni, verificare se il computer può connettersi effettivamente toohello internet e hello [Azure Service Bus](https://azure.microsoft.com/services/service-bus/). Da un prompt di PowerShell eseguire questo comando:
 
 `Test-NetConnection -ComputerName watchdog.servicebus.windows.net -Port 9350`
 
 > [!NOTE]
-> Questo comando verifica solo la connettività di rete e la connettività per il bus di servizio di Azure. Pertanto, il comando non ha nulla a che fare con il gateway o con il servizio cloud del gateway che crittografa e archivia le credenziali e i dettagli di gateway. 
+> Questo comando verifica solo la connettività di rete e connettività toohello Azure Service Bus. Pertanto il comando hello non vengono eseguite toodo con gateway hello o un servizio cloud gateway di hello che crittografa e archivia le credenziali e i dettagli del gateway. 
 >
-> Questo comando è disponibile solo in Windows Server 2012 R2 o in una versione successiva e in Windows 8.1 o in una versione successiva. Nelle versioni precedenti del sistema operativo, è possibile usare Telnet per testare la connettività. Altre informazioni su [bus di servizio di Azure e soluzioni ibride](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
+> Questo comando è disponibile solo in Windows Server 2012 R2 o in una versione successiva e in Windows 8.1 o in una versione successiva. Nelle versioni precedenti del sistema operativo, è possibile utilizzare Telnet troppo testare la connettività. Altre informazioni su [bus di servizio di Azure e soluzioni ibride](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
 
-I risultati dovrebbero essere simili all'esempio seguente:
+I risultati dovrebbero essere simili toothis esempio:
 
 ```text
 ComputerName           : watchdog.servicebus.windows.net
@@ -190,13 +190,13 @@ PingReplyDetails (RTT) : 0 ms
 TcpTestSucceeded       : True
 ```
 
-Se **TcpTestSucceeded** non è impostato su **True**, il firewall potrebbe essere la causa del blocco. Per la massima completezza sostituire i valori **ComputerName** e **Porta** con quelli elencati in [Configurare le porte](#configure-ports) in questo argomento.
+Se **TcpTestSucceeded** non è stato impostato troppo**True**, potrebbe essere bloccato da un firewall. Se si desidera toobe completa, sostituire hello **ComputerName** e **porta** sotto i valori con valori di hello [configurare porte](#configure-ports) in questo argomento.
 
-Il firewall può anche bloccare le connessioni tra il bus di servizio e i data center di Azure. Se si verifica questo scenario, approvare (sbloccare) tutti gli indirizzi IP per i data center nell'area geografica. Per gli indirizzi IP, [ottenere l'elenco di indirizzi IP Azure qui](https://www.microsoft.com/download/details.aspx?id=41653).
+firewall Hello anche potrebbe bloccare le connessioni che hello che Azure Service Bus rende toohello Data Center di Azure. Se si verifica questo scenario, approvare (sbloccare) tutti gli indirizzi IP per i Data Center nell'area di hello. Per tali indirizzi IP, [get hello Azure elenco di indirizzi IP qui](https://www.microsoft.com/download/details.aspx?id=41653).
 
 ## <a name="configure-ports"></a>Configurare le porte
 
-Il gateway crea una connessione in uscita al [Bus di servizio di Azure](https://azure.microsoft.com/services/service-bus/) e comunica sulle porte in uscita: TCP 443 (predefinita), 5671, 5672, 9350 attraverso 9354. Non sono richieste porte in ingresso. Altre informazioni su [bus di servizio di Azure e soluzioni ibride](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
+gateway Hello crea una connessione in uscita troppo[Azure Service Bus](https://azure.microsoft.com/services/service-bus/) e comunica su porte in uscita: TCP 443 (predefinita), 5671, 5672, 9350 a 9354. gateway Hello non richiede porte in ingresso. Altre informazioni su [bus di servizio di Azure e soluzioni ibride](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md).
 
 | NOMI DI DOMINIO | PORTE IN USCITA | Descrizione |
 | --- | --- | --- |
@@ -207,108 +207,108 @@ Il gateway crea una connessione in uscita al [Bus di servizio di Azure](https://
 | *.frontend.clouddatahub.net | 443 | HTTPS | 
 | *.core.windows.net | 443 | HTTPS | 
 | login.microsoftonline.com | 443 | HTTPS | 
-| *.msftncsi.com | 443 | Usato per testare la connettività a Internet se il gateway non è raggiungibile dal servizio Power BI. | 
+| *.msftncsi.com | 443 | Connettività internet tootest utilizzato hello gateway non è raggiungibile dal servizio Power BI hello. | 
 
-Se è necessario approvare gli indirizzi IP anziché i domini, è possibile scaricare e usare l'[elenco di intervalli IP dei data center di Microsoft Azure](https://www.microsoft.com/download/details.aspx?id=41653). In alcuni casi, le connessioni al Bus di servizio di Azure verranno stabilite con l'indirizzo IP anziché con i nomi di dominio completo.
+Se si dispone di indirizzi IP tooapprove anziché domini hello, è possibile scaricare e utilizzare hello [elenco di intervalli IP dei data center Microsoft Azure](https://www.microsoft.com/download/details.aspx?id=41653). In alcuni casi, hello Azure Service Bus delle connessioni con indirizzo IP anziché nomi di dominio completo.
 
 <a name="gateway-cloud-service"></a>
-## <a name="how-does-the-data-gateway-work"></a>Come funziona il gateway dati?
+## <a name="how-does-hello-data-gateway-work"></a>Come funziona il gateway dati hello?
 
-Il gateway dati facilita la comunicazione rapida e sicura tra l'app per la logica, il servizio cloud del gateway e l'origine dati locale. 
+gateway dati Hello facilita la comunicazione rapida e sicura tra l'app per la logica, il servizio cloud gateway hello e l'origine dati locale. 
 
 ![diagram-for-on-premises-data-gateway-flow](./media/logic-apps-gateway-install/how-on-premises-data-gateway-works-flow-diagram.png)
 
-Pertanto quando l'utente nel cloud interagisce con un elemento connesso a un'origine dati in locale:
+Pertanto, quando utente hello nel cloud hello interagisce con un elemento che è connesso tooyour locale origine dati:
 
-1. Il servizio cloud del gateway crea una query, insieme alle credenziali crittografate per l'origine dati, e invia la query alla coda affinché venga elaborata dal gateway.
+1. servizio cloud gateway di Hello crea una query, insieme alle credenziali crittografato hello per l'origine di dati, hello e invia hello query toohello coda tooprocess gateway hello.
 
-2. Il servizio cloud del gateway analizza la query e inserisce la richiesta nel bus di servizio di Azure.
+2. il servizio cloud gateway Hello analizza query hello e inserisce toohello richiesta hello Azure Service Bus.
 
-3. Il gateway dati locale esegue il polling del bus di servizio per le richieste in sospeso.
+3. gateway dati locale di Hello esegue il polling hello Azure Service Bus per le richieste in sospeso.
 
-4. Il gateway riceve la query, decrittografa le credenziali e le usa per la connessione alle origini dati.
+4. gateway Hello Ottiene hello query, decrittografa le credenziali di hello e collega l'origine dati toohello con tali credenziali.
 
-5. Invia quindi la query all'origine dati per l'esecuzione.
+5. gateway Hello invia hello query toohello origine per l'esecuzione.
 
-6. I risultati vengono quindi inviati dall'origine dati al gateway e quindi al servizio cloud del gateway. Infine, il servizio cloud del gateway usa i risultati.
+6. risultati di Hello vengono inviati dall'origine dati hello, toohello indietro gateway e il servizio cloud gateway toohello. Hello servizio cloud gateway Usa quindi i risultati di hello.
 
 <a name="faq"></a>
 ## <a name="frequently-asked-questions"></a>Domande frequenti
 
 ### <a name="general"></a>Generale
 
-**D**: È necessario un gateway per le origini dati nel cloud, ad esempio SQL Azure? <br/>
-**R**: No. Il gateway si connette solo alle origini dati locali.
+**Domande e**: è necessario un gateway per le origini dati nel cloud hello, ad esempio SQL Azure? <br/>
+**R**: No. Un gateway si connette a origini dati locali tooon solo.
 
-**D**: Il gateway deve essere installato nello stesso computer dell'origine dati? <br/>
-**R**: No. Il gateway si connette all'origine dati tramite le informazioni di connessione fornite. In questo senso il gateway può essere paragonato a un'applicazione client. Il gateway deve solo potersi connettere al nome del server specificato.
+**Domande e**: gateway hello dispone toobe installato hello stesso computer come origine dati hello? <br/>
+**R**: No. gateway Hello stabilisce la connessione origine dati toohello utilizzando le informazioni di connessione hello fornito. Prendere in considerazione gateway hello come un'applicazione client in questo senso. gateway Hello sufficiente hello funzionalità tooconnect toohello nome del server che è stato specificato.
 
 <a name="why-azure-work-school-account"></a>
 
-**D**: Perché è necessario usare un account di Azure aziendale o dell'istituto di istruzione per accedere? <br/>
-**R**: È possibile usare solo un account di Azure aziendale o dell'istituto di istruzione quando si installa il gateway dati locale. L'account di accesso viene archiviato in un tenant gestito da Azure Active Directory (Azure AD). Il nome dell'entità utente (UPN) dell'account di Azure AD in genere corrisponde all'indirizzo di posta elettronica.
+**Domande e**: perché devo non è un lavoro di Azure o dell'istituto di istruzione toosign account in? <br/>
+**Oggetto**: È possibile utilizzare un lavoro di Azure o scuola account quando si installa gateway dati locale di hello. L'account di accesso viene archiviato in un tenant gestito da Azure Active Directory (Azure AD). Nome dell'entità utente dell'account di Azure AD (UPN) corrisponde in genere, indirizzo di posta elettronica hello.
 
 **D**: Dove sono archiviate le credenziali? <br/>
-**R**: Le credenziali immesse per un'origine dati vengono crittografate e archiviate nel servizio cloud del gateway. Le credenziali vengono quindi decrittografate nel gateway dati locale.
+**Oggetto**: credenziali hello immesse per un'origine dati vengono crittografate e archiviate nel servizio cloud gateway di hello. le credenziali di Hello vengono decrittografate nel gateway dati locale di hello.
 
 **D**: Sono previsti requisiti per la larghezza di banda della rete? <br/>
-**R**: È consigliabile che la connessione di rete abbia una buona velocità effettiva. Ogni ambiente è diverso e la quantità di dati inviati influisce sui risultati. L'uso di ExpressRoute può contribuire a garantire un livello di velocità effettiva tra i data center di Azure e quelli locali.
-Lo strumenti di terze parti Azure Speed Test può aiutare a valutare la velocità effettiva.
+**R**: È consigliabile che la connessione di rete abbia una buona velocità effettiva. Ogni ambiente è diverso e quantità hello di invio di dati influisce sui risultati di hello. Uso di ExpressRoute può contribuire a tooguarantee un livello di velocità effettiva tra sedi locali e hello Data Center di Azure.
+È possibile utilizzare hello dello strumento di terze parti Azure Speed Test app toohelp misuratore la velocità effettiva.
 
-**D**: Qual è la latenza per l'esecuzione di query a un'origine dati dal gateway? Qual è l'architettura ottimale? <br/>
-**R**: Per ridurre la latenza di rete è consigliabile installare il gateway il più vicino possibile all'origine dati. Installando il gateway nell'origine dati effettiva, la latenza introdotta risulterà ridotta al minimo grazie a questa prossimità. Si considerino anche i data center. Se, ad esempio, il servizio usa il data center degli Stati Uniti occidentali e SQL Server è ospitato in una macchina virtuale di Azure, è opportuno che anche la macchina virtuale di Azure sia ubicata negli Stati Uniti occidentali. Grazie a questa prossimità la latenza è ridotta al minimo e si evitano addebiti relativi ai dati in uscita sulla macchina virtuale di Azure.
+**Domande e**: che cos'è la latenza di hello per le query tooa dati di origine in esecuzione dal gateway hello? Che cos'è l'architettura migliore hello? <br/>
+**Oggetto**: tooreduce latenza di rete, installare hello gateway come origine dati toohello Chiudi possibili. Se è possibile installare il gateway di hello sull'origine dati effettivi hello, la prossimità riduce la latenza di hello introdotta. Prendere in considerazione i Data Center hello troppo. Ad esempio, se il servizio utilizza hello Data Center di Stati Uniti occidentali e SQL Server è ospitato in una macchina virtuale di Azure, la macchina virtuale di Azure deve essere in Stati Uniti occidentali hello troppo. Questo prossimità riduce la latenza ed evitare addebiti in uscita sulla macchina virtuale di Azure hello.
 
-**D**: In che modo i risultati vengono inviati al cloud? <br/>
-**R**: I risultati vengono inviati tramite il Bus di servizio di Azure.
+**Domande e**: come vengono inviati risultati toohello indietro cloud? <br/>
+**Oggetto**: risultati vengono inviati tramite hello Azure Service Bus.
 
-**D**: Esistono connessioni in ingresso al gateway dal cloud? <br/>
-**R**: No. Il gateway usa le connessioni in uscita al bus di servizio di Azure.
+**Domande e**: sono presenti eventuali gateway toohello le connessioni in ingresso dal cloud hello? <br/>
+**R**: No. gateway di Hello Usa le connessioni in uscita tooAzure Bus di servizio.
 
-**D**: Cosa accade se si bloccano le connessioni in uscita? Cosa fare per sbloccarle? <br/>
-**R**: Visualizzare le porte e gli host usati dal gateway.
+**D**: Cosa accade se si bloccano le connessioni in uscita? Cosa devo tooopen? <br/>
+**Oggetto**: Vedere porte hello e gli host che hello Usa gateway.
 
-**D**: Come viene chiamato il servizio Windows effettivo?<br/>
-**R**: Nei servizi il gateway è denominato servizio Power BI Gateway Enterprise.
+**Domande e**: ciò che viene chiamato il servizio Windows effettivo di hello?<br/>
+**Oggetto**: In servizi, il gateway di hello è chiamato servizio Power BI Enterprise Gateway.
 
-**D**: Il servizio gateway di Windows può essere eseguito con un account Azure Active Directory? <br/>
-**R**: No. Il servizio Windows deve disporre di un account Windows valido. Per impostazione predefinita, il sevizio viene eseguito con il SID servizio NT SERVICE\PBIEgwService.
+**Domande e**: possibile hello servizio gateway di Windows eseguito con un account Azure Active Directory? <br/>
+**R**: No. servizio Windows Hello deve avere un account Windows valido. Per impostazione predefinita, il servizio di hello viene eseguito con hello SID del servizio, NT SERVICE\PBIEgwService.
 
 ### <a name="high-availability-and-disaster-recovery"></a>Disponibilità elevata e ripristino di emergenza
 
 **D**: Quali opzioni sono disponibili per il ripristino di emergenza? <br/>
-**R**: È possibile usare la chiave di ripristino per ripristinare o spostare un gateway. La chiave di ripristino viene specificata al momento dell'installazione del gateway.
+**Oggetto**: È possibile utilizzare toorestore chiave di ripristino hello o spostare un gateway. Quando si installa il gateway di hello, specificare la chiave di ripristino hello.
 
-**D**: Qual è il vantaggio della chiave di ripristino? <br/>
-**R**: La chiave di ripristino consente di eseguire la migrazione o di ripristinare le impostazioni del gateway in caso di emergenza.
+**Domande e**: che cos'è il vantaggio di hello della chiave di ripristino hello? <br/>
+**Oggetto**: chiave di ripristino hello fornisce un modo toomigrate o ripristinare le impostazioni del gateway dopo un'emergenza.
 
-**D**: Esistono piani per l'abilitazione di scenari a disponibilità elevata con il gateway? <br/>
-**R**: Questi scenari verranno implementati in futuro, ma non è ancora stato definito quando.
+**Domande e**: sono disponibili piani per l'abilitazione di scenari a disponibilità elevata con gateway hello? <br/>
+**Oggetto**: questi scenari sono roadmap hello, ma è ancora non dispone di una sequenza temporale.
 
 ## <a name="troubleshooting"></a>Risoluzione dei problemi
 
 [!INCLUDE [existing-gateway-location-changed](../../includes/logic-apps-existing-gateway-location-changed.md)]
 
-**D**: Come è possibile visualizzare le query inviate all'origine dati locale? <br/>
-**R**: È possibile abilitare la funzione di tracciamento delle query, che include le query inviate. Dopo aver risolto il problema, ripristinare il valore originale per il tracciamento delle query. Se il tracciamento delle query non viene disabilitato, si creeranno dei log più grandi.
+**Domande e**: come è possibile vedere quali sono le query vengono inviate toohello origine di dati locale? <br/>
+**Oggetto**: È possibile abilitare la traccia di query, che include le query hello che vengono inviate. Tenere presente che query toochange risalendo toohello valore originale al termine della risoluzione dei problemi. Se il tracciamento delle query non viene disabilitato, si creeranno dei log più grandi.
 
 È anche possibile usare gli strumenti per il tracciamento delle query di cui è dotata l'origine dati. Ad esempio, è possibile usare Eventi estesi o SQL Profiler per SQL Server e Analysis Services.
 
-**D**: Dove si trovano i log del gateway? <br/>
+**Domande e**: dove sono i registri di gateway hello? <br/>
 **R**: Vedere la sezione Strumenti più avanti in questo argomento.
 
-### <a name="update-to-the-latest-version"></a>Aggiornare alla versione più recente
+### <a name="update-toohello-latest-version"></a>Aggiornare la versione più recente di toohello
 
-Quando la versione del gateway non è aggiornata, possono emergere numerosi problemi. Come buona pratica, assicurarsi di usare la versione più recente. Se il gateway non è stato aggiornato per un mese o più è consigliabile installarne la versione più recente e verificare se è possibile riprodurre il problema.
+Molti problemi possono verificarsi quando la versione di gateway hello diventa obsoleta. Come buona pratica, assicurarsi di utilizzare la versione più recente di hello. Se è stato aggiornato gateway hello per un mese o più, si potrebbe si consiglia di installare una versione più recente di hello del gateway hello e verificare se è possibile riprodurre il problema di hello.
 
-### <a name="error-failed-to-add-user-to-group--2147463168-pbiegwservice-performance-log-users"></a>Errore: Impossibile aggiungere l'utente al gruppo. (Utenti log delle prestazioni -2147463168 PBIEgwService)
+### <a name="error-failed-tooadd-user-toogroup--2147463168-pbiegwservice-performance-log-users"></a>Errore: Impossibile tooadd utente toogroup. (Utenti log delle prestazioni -2147463168 PBIEgwService)
 
-Questo errore viene visualizzato se si sta tentando di installare il gateway in un controller di dominio, un'operazione non consentita. Assicurarsi di distribuire il gateway in un computer che non sia un controller di dominio.
+È possibile che venga visualizzato questo errore se si tenta di gateway di hello tooinstall in un controller di dominio che non è supportato. Assicurarsi di distribuire gateway hello in un computer che non è un controller di dominio.
 
 ## <a name="tools"></a>Strumenti
 
-### <a name="collect-logs-from-the-gateway-configurer"></a>Raccolta di log dallo strumento di configurazione del gateway
+### <a name="collect-logs-from-hello-gateway-configurer"></a>Raccogliere registri da configurer gateway hello
 
-È possibile raccogliere numerosi log per il gateway. La raccolta dei log è sempre la prima operazione da eseguire.
+È possibile raccogliere i log per il gateway hello. Iniziare sempre con i registri di hello!
 
 #### <a name="installer-logs"></a>Log dei programmi di installazione
 
@@ -324,14 +324,14 @@ Questo errore viene visualizzato se si sta tentando di installare il gateway in 
 
 #### <a name="event-logs"></a>Log eventi
 
-I log di Gateway di gestione dati e PowerBIGateway sono reperibili in **Registri applicazioni e servizi**.
+È possibile trovare il Gateway di gestione di dati e PowerBIGateway registri in hello **registri applicazioni e servizi**.
 
 ### <a name="fiddler-trace"></a>Fiddler Trace
 
-[Fiddler](http://www.telerik.com/fiddler) è uno strumento gratuito di Telerik che consente di monitorare il traffico HTTP. Dal computer client è possibile visualizzare il traffico con il sevizio Power BI e il computer client. Questo servizio consente di visualizzare errori e altre informazioni correlate.
+[Fiddler](http://www.telerik.com/fiddler) è uno strumento gratuito di Telerik che consente di monitorare il traffico HTTP. È possibile visualizzare il traffico con il servizio Power BI da computer client hello hello. Questo servizio consente di visualizzare errori e altre informazioni correlate.
 
 ## <a name="next-steps"></a>Passaggi successivi
     
-* [Connessione al gateway dati locale per le app per la logica](../logic-apps/logic-apps-gateway-connection.md)
+* [Connessione dati tooon locale da App per la logica](../logic-apps/logic-apps-gateway-connection.md)
 * [Funzionalità di Enterprise Integration](../logic-apps/logic-apps-enterprise-integration-overview.md)
 * [Connettori per App per la logica di Azure](../connectors/apis-list.md)

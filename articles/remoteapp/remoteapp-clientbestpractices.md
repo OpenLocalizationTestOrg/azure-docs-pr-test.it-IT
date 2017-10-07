@@ -1,6 +1,6 @@
 ---
-title: Procedure consigliate per i client di Azure RemoteApp | Documentazione Microsoft
-description: Informazioni sulle procedure consigliate per l'uso dei client RemoteApp
+title: aaaBest procedure consigliate per i client di Azure RemoteApp | Documenti Microsoft
+description: Informazioni sulle procedure consigliate per l'utilizzo di client RemoteApp hello
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 416cd37a907010176fe331ddb908a35b6fd6b253
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa0ccb2f51d381462b78d60e966b87a67d8c247e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-for-azure-remoteapp-clients"></a>Procedure consigliate per i client RemoteApp di Azure 
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Le informazioni seguenti possono essere utili per l'uso dei client Azure RemoteApp:
+Hello le seguenti informazioni consentono di usare Azure RemoteApp client:
 
-* Usare sempre il client più recente. In questo modo si assicura che la versione del client in uso disponga delle correzioni di bug, dei miglioramenti e delle funzionalità più recenti. Può essere necessario registrarsi nel relativo store per ricevere gli aggiornamenti automatici per il client.
-* RemoteApp esegue automaticamente la disconnessione dopo un determinato periodo di inattività. Per evitare perdite di dati, è consigliabile chiudere le applicazioni dopo aver terminato di usare il servizio.
+* Utilizzare sempre il client più recente di hello. Ciò garantisce che hello versione del client è in esecuzione è hello correzioni di bug più recenti, i miglioramenti e funzionalità. Potrebbe essere necessario toosign backup tooautomatically ricevono gli aggiornamenti client hello nell'archivio appropriato hello.
+* RemoteApp esegue automaticamente la disconnessione dopo un determinato periodo di inattività. Ordine tooprevent perdita di dati, è consigliabile chiudere le applicazioni al termine dell'utilizzo del servizio hello.
 

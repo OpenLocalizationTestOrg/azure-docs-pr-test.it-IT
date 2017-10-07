@@ -14,40 +14,40 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: eb44a0d2234c9ee3801d8b3a1655d877aa2f4fef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cec6c6e110514a8bbe0e0780f36738ff21ae2f00
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-validation-on-user-input"></a>Procedura dettagliata: Integrare scambi di attestazioni API REST nel percorso utente di Azure AD B2C come convalida dell'input utente
 
-Il framework dell'esperienza di gestione delle identità alla base di Azure Active Directory B2C (Azure AD B2C) consente allo sviluppatore delle identità di integrare un'interazione con un'API RESTful in un percorso utente.  
+Hello identità esperienza Framework (IEF) sottostante di Azure Active Directory B2C (Azure AD B2C) consente di hello identità developer toointegrate un'interazione con un'API RESTful in viaggio un utente.  
 
-Al termine di questa procedura dettagliata sarà possibile creare percorsi utente di Azure AD B2C che interagiscono con i servizi RESTful.
+Alla fine di hello di questa procedura dettagliata, si sarà in grado di toocreate un proprio processo utente Azure AD B2C che interagisce con servizi RESTful.
 
-Il framework dell'esperienza di gestione delle identità invia i dati in attestazioni e riceve di nuovo i dati in attestazioni. L'interazione con l'API:
+Hello IEF invia i dati delle attestazioni e riceve i dati nuovamente nelle attestazioni. interazione di Hello con hello API:
 
 - Può essere progettata come scambio di attestazioni API REST o come profilo di convalida all'interno di un passaggio di orchestrazione.
-- In genere viene convalidato l'input dell'utente. Se il valore fornito dall'utente viene rifiutato, l'utente può provare nuovamente a immettere un valore valido con la possibilità di restituire un messaggio di errore.
+- In genere convalida l'input utente hello. Se il valore di hello utente hello viene rifiutato, utente hello riprovare tooenter un valore valido con hello opportunità tooreturn un messaggio di errore.
 
-È possibile progettare l'interazione anche come passaggio di orchestrazione. Per altre informazioni, vedere [Procedura dettagliata: Integrare scambi di attestazioni API REST nei percorsi utente di Azure AD B2C come passaggio di orchestrazione](active-directory-b2c-rest-api-step-custom.md).
+È inoltre possibile progettare l'interazione di hello come un passaggio di orchestrazione. Per altre informazioni, vedere [Procedura dettagliata: Integrare scambi di attestazioni API REST nei percorsi utente di Azure AD B2C come passaggio di orchestrazione](active-directory-b2c-rest-api-step-custom.md).
 
-Per l'esempio del profilo di convalida si userà il percorso utente di modifica profilo disponibile nel file ProfileEdit.xml dello starter pack.
+Ad esempio di profilo di convalida hello, verrà utilizzato nel file di pacchetto starter hello ProfileEdit.xml viaggio di hello profilo Modifica utente.
 
-È possibile verificare che il nome fornito dall'utente nella modifica del profilo non faccia parte di un elenco di esclusione.
+Possiamo verificare il nome di hello fornito dall'utente hello nel profilo hello modifica non fa parte di un elenco di esclusione.
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-- Un tenant di Azure AD B2C configurato per completare una procedura di iscrizione/accesso di un account locale, come descritto in [Introduzione](active-directory-b2c-get-started-custom.md).
-- Un endpoint API REST con il quale interagire. Per questa procedura dettagliata è stato configurato un sito demo denominato [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) con un servizio API REST.
+- Un toocomplete di tenant configurato un account locale sign-configurazione/Accedi, come descritto in Azure Active Directory B2C [Introduzione](active-directory-b2c-get-started-custom.md).
+- Toointeract un endpoint API REST con. Per questa procedura dettagliata è stato configurato un sito demo denominato [WingTipGames](https://wingtipgamesb2c.azurewebsites.net/) con un servizio API REST.
 
-## <a name="step-1-prepare-the-rest-api-function"></a>Passaggio 1: Preparare la funzione API REST
+## <a name="step-1-prepare-hello-rest-api-function"></a>Passaggio 1: Preparare la funzione di API REST hello
 
 > [!NOTE]
-> La configurazione delle funzioni API REST non rientra nell'ambito di questo articolo. [Funzioni di Azure](https://docs.microsoft.com/azure/azure-functions/functions-reference) offre un eccellente toolkit per creare servizi RESTful nel cloud.
+> Il programma di installazione di funzioni API REST è di fuori ambito hello di questo articolo. [Funzioni di Azure](https://docs.microsoft.com/azure/azure-functions/functions-reference) offre un'eccellente toolkit toocreate servizi RESTful nel cloud hello.
 
-È stata creata una funzione di Azure che riceve un'attestazione prevista come `playerTag`. La funzione verifica che l'attestazione esista. È possibile accedere al codice completo della funzione di Azure in [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
+È stata creata una funzione di Azure che riceve un'attestazione prevista come `playerTag`. funzione Hello convalida l'esistenza di questa attestazione. È possibile accedere a codice della funzione di Azure completo hello in [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
 
 ```csharp
 if (requestContentAsJObject.playerTag == null)
@@ -65,7 +65,7 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
     {
       version = "1.0.0",
       status = (int) HttpStatusCode.Conflict,
-      userMessage = $"The player tag '{requestContentAsJObject.playerTag}' is already used."
+      userMessage = $"hello player tag '{requestContentAsJObject.playerTag}' is already used."
     },
     new JsonMediaTypeFormatter(),
     "application/json");
@@ -74,14 +74,14 @@ if (playerTag == "mcvinny" || playerTag == "msgates123" || playerTag == "revcott
 return request.CreateResponse(HttpStatusCode.OK);
 ```
 
-L'attestazione `userMessage` restituita dalla funzione di Azure è prevista dal framework dell'esperienza di gestione delle identità e verrà visualizzata all'utente sotto forma di stringa se la convalida non riesce, ad esempio quando viene restituito lo stato di conflitto 409 nell'esempio precedente.
+Hello IEF prevede hello `userMessage` attestazione restituisce tale funzione Azure hello. Questa attestazione verrà presentata come un utente toohello stringa se hello convalida ha esito negativo, ad esempio quando lo stato di 409 conflitto viene restituito in hello sopra riportato.
 
-## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>Passaggio 2: Configurare lo scambio di attestazioni API RESTful come profilo tecnico nel file TrustFrameworkExtensions.xml
+## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworkextensionsxml-file"></a>Passaggio 2: Configurare hello API RESTful attestazioni exchange come profilo tecnico nel file TrustFrameworkExtensions.xml
 
-Un profilo tecnico è la configurazione completa dello scambio desiderato con il servizio RESTful. Aprire il file TrustFrameworkExtensions.xml e aggiungere il frammento XML seguente all'interno dell'elemento `<ClaimsProviders>`.
+Un profilo tecnico è configurazione completa di hello di exchange hello desiderato con hello servizio RESTful. Aprire il file TrustFrameworkExtensions.xml hello e aggiungere hello seguente frammento di codice XML all'interno di hello `<ClaimsProviders>` elemento.
 
 > [!NOTE]
-> Nell'XML seguente il provider RESTful `Version=1.0.0.0` viene descritto come il protocollo. Considerarlo come la funzione che interagirà con il servizio esterno. <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
+> Nel seguente codice XML, provider RESTful hello `Version=1.0.0.0` viene descritto come protocollo di hello. Viene considerata come funzione hello che interagirà con il servizio esterno hello. <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
 
 ```xml
 <ClaimsProvider>
@@ -109,26 +109,26 @@ Un profilo tecnico è la configurazione completa dello scambio desiderato con il
 </ClaimsProvider>
 ```
 
-L'elemento `InputClaims` definisce le attestazioni che verranno inviate dal framework dell'esperienza di gestione delle identità al servizio REST. In questo esempio il contenuto dell'attestazione `givenName` verrà inviato al servizio REST come `playerTag`. In questo esempio, il framework dell'esperienza di gestione non prevede di ricevere attestazioni, ma attende una risposta dal servizio REST e agisce in base ai codici di stato ricevuti.
+Hello `InputClaims` elemento definisce le attestazioni hello che verranno inviate dal servizio REST di toohello IEF hello. In questo esempio, i contenuti dell'attestazione hello hello `givenName` verrà inviato il servizio REST toohello come `playerTag`. In questo esempio hello che IEF non prevede le attestazioni di nuovo. In alternativa, è in attesa di una risposta dal servizio REST hello e agisce in base ai codici di stato hello che riceve.
 
-## <a name="step-3-include-the-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-to-validate-the-user-input"></a>Passaggio 3: Includere lo scambio di attestazioni del servizio RESTful nel profilo tecnico autocertificato in cui si vuole convalidare l'input dell'utente
+## <a name="step-3-include-hello-restful-service-claims-exchange-in-self-asserted-technical-profile-where-you-want-toovalidate-hello-user-input"></a>Passaggio 3: Includere hello servizio RESTful attestazioni exchange nel profilo di tecnico asserzione autonomo in cui si desidera toovalidate hello l'input dell'utente
 
-L'uso più comune del passaggio di convalida è nell'interazione con un utente. Tutte le interazioni in cui è previsto che l'utente fornisca un input sono *profili tecnici autocertificati*. Per questo esempio si aggiungerà la convalida al profilo tecnico Self-Asserted-ProfileUpdate. Questo è il profilo tecnico usato dal file dei criteri relying party `Profile Edit`.
+utilizzo più comune di Hello di passaggio di convalida hello è interazione hello con un utente. Tutte le interazioni dove utente hello è previsto tooprovide di input sono *automatica dichiarata profili tecnici*. Per questo esempio, si aggiungerà profilo tecniche di hello convalida toohello Self Asserted-ProfileUpdate. Si tratta di profilo tecniche hello che hello file dei criteri relying party (RP) `Profile Edit` utilizza.
 
-Per aggiungere lo scambio di attestazioni al profilo tecnico autocertificato:
+tooadd hello attestazioni exchange toohello automatica dichiarata tecnico profilo:
 
-1. Aprire il file TrustFrameworkBase.xml e cercare `<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`.
-2. Esaminare la configurazione di questo profilo tecnico. Si noti che lo scambio con l'utente è definito come attestazioni che verranno chieste all'utente (attestazioni di input) e attestazioni che dovranno essere inviate dal provider autocertificato (attestazioni di output).
+1. Aprire il file di TrustFrameworkBase.xml hello e cercare `<TechnicalProfile Id="SelfAsserted-ProfileUpdate">`.
+2. Verificare la configurazione hello del profilo corrente tecnico. Osservare come exchange hello con utente hello è definito attestazioni che verranno richiesto di utente hello (attestazioni di input) e che sarà necessario tornare dal provider di self-asserzione hello (attestazioni di output).
 3. Cercare `TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate`. Tenere presente che questo profilo viene richiamato come passaggio di orchestrazione 6 di `<UserJourney Id="ProfileEdit">`.
 
-## <a name="step-4-upload-and-test-the-profile-edit-rp-policy-file"></a>Passaggio 4: Caricare e testare il file dei criteri relying party di modifica del profilo
+## <a name="step-4-upload-and-test-hello-profile-edit-rp-policy-file"></a>Passaggio 4: Caricare e verificare i file dei criteri RP Modifica profilo hello
 
-1. Caricare la nuova versione del file TrustFrameworkExtensions.xml.
-2. Usare **Esegui adesso** per testare il file dei criteri relying party di modifica del profilo.
-3. Testare la convalida specificando uno dei nomi esistenti, ad esempio mcvinny, nel campo **Nome**. Se la configurazione è stata eseguita correttamente, verrà visualizzato un messaggio per avvisare l'utente che il tag del player è già in uso.
+1. Caricare hello nuova versione del file TrustFrameworkExtensions.xml hello.
+2. Utilizzare **Esegui ora** profilo hello tootest modificare il file di criteri di relying Party.
+3. Il test di convalida hello fornendo uno dei nomi esistente hello (ad esempio, mcvinny) in hello **nome** campo. Se tutto è configurato correttamente, verrà visualizzato un messaggio che avvisa gli utenti di hello tag player hello viene già utilizzato.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-[Cambiare la modifica del profilo e la registrazione degli utenti per raccogliere informazioni dagli utenti](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[Modificare hello profilo utente e Modifica registrazione toogather informazioni aggiuntive agli utenti](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
 
 [Procedura dettagliata: Integrare scambi di attestazioni API REST nei percorsi utente di Azure AD B2C come passaggio di orchestrazione](active-directory-b2c-rest-api-step-custom.md)

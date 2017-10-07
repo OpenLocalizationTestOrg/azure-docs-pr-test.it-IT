@@ -1,13 +1,13 @@
 ---
-title: Guida di riferimento per gli sviluppatori di Funzioni di Azure in F# | Documentazione Microsoft
-description: Informazioni su come sviluppare Funzioni di Azure in F#.
+title: 'riferimenti per sviluppatori funzioni F # aaaAzure | Documenti Microsoft'
+description: 'Comprendere come toodevelop le funzioni di Azure tramite F #.'
 services: functions
 documentationcenter: fsharp
 author: sylvanc
 manager: jbronsk
 editor: 
 tags: 
-keywords: 'Azure funzioni, funzioni, l''elaborazione di eventi, webhook, calcolo dinamico, senza architettura, F #'
+keywords: Funzioni di Azure, funzioni, elaborazione eventi, webhook, calcolo dinamico, architettura senza server, F#
 ms.assetid: e60226e5-2630-41d7-9e5b-9f9e5acc8e50
 ms.service: functions
 ms.devlang: fsharp
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/09/2016
 ms.author: syclebsc
-ms.openlocfilehash: 1691d378263f6b4ce5072f5c621d8db02f774b5f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ac366ba6f73d191c582dcd9214b688ef719617a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-f-developer-reference"></a>Guida di riferimento per gli sviluppatori di Funzioni di Azure in F#
 > [!div class="op_single_selector"]
 > * [Script C#](functions-reference-csharp.md)
 > * [Script F#](functions-reference-fsharp.md)
-> * [Node.JS](functions-reference-node.md)
+> * [Node.js](functions-reference-node.md)
 > 
 > 
 
-F# per Funzioni di Azure è una soluzione che consente di eseguire facilmente piccole parti di codice, o "funzioni", nel cloud. I dati vengono trasmessi alla funzione F# tramite argomenti della funzione. I nomi di argomento sono specificati in `function.json`e sono disponibili nomi predefiniti per l'accesso a elementi quali il logger delle funzioni e i token di annullamento.
+F # per le funzioni di Azure è una soluzione per l'esecuzione facilmente piccoli frammenti di codice, o "funzioni", nel cloud hello. I dati vengono trasmessi alla funzione F# tramite argomenti della funzione. I nomi di argomento specificati `function.json`, e non vi sono nomi predefiniti per l'accesso alle operazioni quali hello funzione logger e token di annullamento.
 
-Questo articolo presuppone che l'utente abbia già letto [Guida di riferimento per gli sviluppatori di Funzioni di Azure](functions-reference.md).
+Questo articolo si presuppone che sia già stata letta hello [di riferimento per sviluppatori Azure funzioni](functions-reference.md).
 
 ## <a name="how-fsx-works"></a>Funzionamento del file con estensione fsx
-Un file `.fsx` è uno script F#. Può essere considerato un progetto F# contenuto in un singolo file. Il file contiene il codice per il programma (in questo caso la funzione di Azure) e direttive per la gestione delle dipendenze.
+Un file `.fsx` è uno script F#. Può essere considerato un progetto F# contenuto in un singolo file. file Hello contiene sia codice hello per il programma (in questo caso, la funzione di Azure) e direttive per la gestione delle dipendenze.
 
-Quando si usa un file `.fsx` per una funzione di Azure, gli assembly normalmente necessari sono inclusi automaticamente, consentendo di concentrarsi sulla funzione anziché sul codice "boilerplate".
+Quando si utilizza un `.fsx` per una funzione di Azure, in genere gli assembly necessari si automaticamente inclusi automaticamente, consentendo di toofocus sul codice di funzione, anziché "standard" hello.
 
-## <a name="binding-to-arguments"></a>Associazione agli argomenti
-Ogni associazione supporta set di argomenti, come descritto nei dettagli in [Guida di riferimento per gli sviluppatori di trigger e associazioni di Funzioni di Azure](functions-triggers-bindings.md). Ad esempio, una delle associazioni di argomento supportate da un trigger del BLOB è un oggetto POCO, che può essere espresso con un record F#. Ad esempio:
+## <a name="binding-tooarguments"></a>Associazione tooarguments
+Ogni associazione supporta un set di argomenti, come descritto in dettaglio nella hello [riferimenti per sviluppatori trigger e le associazioni di funzioni di Azure](functions-triggers-bindings.md). Ad esempio, una delle associazioni degli argomenti hello che supporta un trigger di blob è un POCO, che può essere espresso con un record F #. ad esempio:
 
 ```fsharp
 type Item = { Id: string }
@@ -50,11 +50,11 @@ let Run(blob: string, output: byref<Item>) =
     output <- item
 ```
 
-La funzione F# di Azure richiederà uno o più argomenti. Per "argomenti di Funzioni di Azure" si intendono argomenti di *input* e argomenti di *output*. Un argomento di input rappresenta un input per la funzione F# di Azure. Un argomento di *output* è costituito da dati modificabili oppure è un argomento `byref<>` usato per passare di nuovo dati *in uscita* dalla funzione.
+La funzione F# di Azure richiederà uno o più argomenti. Quando si parlerà di argomenti di funzioni di Azure, si fa riferimento troppo*input* argomenti e *output* argomenti. Un argomento di input sia esattamente ciò che può sembrare: input tooyour funzione Azure F #. Un *output* argomento è dati modificabili o `byref<>` argomento che funge da backup dei dati toopass modo *out* della funzione.
 
-Nell'esempio precedente, `blob` è un argomento di input, mentre `output` è un argomento di output. Si noti che è stato usato `byref<>` per `output`. Non è necessario aggiungere l'annotazione `[<Out>]`. L'uso di un tipo `byref<>` consente alla funzione di cambiare il record o l'oggetto cui l'argomento fa riferimento.
+Nell'esempio hello sopra, `blob` è un argomento di input e `output` è un argomento di output. Si noti che è stato usato `byref<>` per `output` (non vi è alcun hello tooadd necessità `[<Out>]` annotazione). Utilizzando un `byref<>` tipo consente toochange la funzione fa riferimento l'argomento di hello record o un oggetto a.
 
-Quando un record F# viene usato come tipo di input, la definizione del record deve essere contrassegnata con `[<CLIMutable>]` per consentire al framework di Funzioni di Azure di impostare i campi in modo appropriato prima di passare il record alla funzione. `[<CLIMutable>]` genera setter in background per le proprietà del record. Ad esempio:
+Quando un record F # viene utilizzato come un tipo di input, la definizione record hello deve essere contrassegnata con `[<CLIMutable>]` in ordine tooallow hello Azure funzioni framework tooset campi hello in modo appropriato prima che il passaggio di hello tooyour record funzione. Quinte hello, `[<CLIMutable>]` genera metodi di impostazione per le proprietà di record di hello. ad esempio:
 
 ```fsharp
 [<CLIMutable>]
@@ -79,7 +79,7 @@ let Run(input: string, item: byref<Item>) =
 ```
 
 ## <a name="logging"></a>Registrazione
-Per registrare l'output nei [log in streaming](../app-service-web/web-sites-streaming-logs-and-console.md) in F#, la funzione deve accettare un argomento di tipo `TraceWriter`. Per coerenza è consigliabile denominare questo argomento `log`. Ad esempio:
+toolog output tooyour [i log di streaming](../app-service-web/web-sites-streaming-logs-and-console.md) in F #, la funzione deve accettare un argomento di tipo `TraceWriter`. Per coerenza è consigliabile denominare questo argomento `log`. Ad esempio:
 
 ```fsharp
 let Run(blob: string, output: byref<string>, log: TraceWriter) =
@@ -88,7 +88,7 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
 ```
 
 ## <a name="async"></a>Async
-È possibile usare il flusso di lavoro `async`, ma il risultato deve restituire un oggetto `Task`. Questa operazione può essere eseguita con `Async.StartAsTask`, ad esempio:
+Hello `async` flusso di lavoro può essere utilizzato, ma il risultato di hello deve tooreturn un `Task`. Questa operazione può essere eseguita con `Async.StartAsTask`, ad esempio:
 
 ```fsharp
 let Run(req: HttpRequestMessage) =
@@ -98,7 +98,7 @@ let Run(req: HttpRequestMessage) =
 ```
 
 ## <a name="cancellation-token"></a>Token di annullamento
-Se la funzione deve gestire l'arresto normale, è possibile assegnarle un argomento [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) . È possibile combinare questo argomento con `async`, ad esempio:
+Se la funzione deve toohandle arresto normale, è possibile assegnare un [ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) argomento. È possibile combinare questo argomento con `async`, ad esempio:
 
 ```fsharp
 let Run(req: HttpRequestMessage, token: CancellationToken)
@@ -110,7 +110,7 @@ let Run(req: HttpRequestMessage, token: CancellationToken)
 ```
 
 ## <a name="importing-namespaces"></a>Importazione di spazi dei nomi
-Gli spazi dei nomi possono essere aperti nel modo consueto:
+Spazi dei nomi può essere aperto in hello come di consueto:
 
 ```fsharp
 open System.Net
@@ -120,7 +120,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-I seguenti spazi dei nomi vengono aperti automaticamente:
+viene automaticamente aperti Hello spazi dei nomi seguenti:
 
 * `System`
 * `System.Collections.Generic`
@@ -132,7 +132,7 @@ I seguenti spazi dei nomi vengono aperti automaticamente:
 * `Microsoft.Azure.WebJobs.Host`.
 
 ## <a name="referencing-external-assemblies"></a>Riferimento ad assembly esterni
-In maniera analoga, i riferimenti per l'assembly del framework vengono aggiunti con la direttiva `#r "AssemblyName"` .
+Analogamente, l'assembly framework aggiunti i riferimenti con hello `#r "AssemblyName"` direttiva.
 
 ```fsharp
 #r "System.Web.Http"
@@ -145,7 +145,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     ...
 ```
 
-Gli assembly seguenti vengono aggiunti automaticamente dall'ambiente di hosting di Funzioni di Azure:
+Hello agli assembly seguenti vengono aggiunti automaticamente dalle funzioni di Azure hello ambiente di hosting:
 
 * `mscorlib`,
 * `System`
@@ -158,7 +158,7 @@ Gli assembly seguenti vengono aggiunti automaticamente dall'ambiente di hosting 
 * `System.Web.Http`
 * `System.Net.Http.Formatting`.
 
-Gli assembly seguenti sono anche casi speciali ai quali è possibile fare riferimento tramite simplename, ad esempio `#r "AssemblyName"`:
+Inoltre, hello seguendo gli assembly sono speciale maiuscole/minuscole e possono fare riferimento simplename (ad esempio `#r "AssemblyName"`):
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
@@ -166,10 +166,10 @@ Gli assembly seguenti sono anche casi speciali ai quali è possibile fare riferi
 * `Microsoft.AspNet.WebHooks.Receivers`
 * `Microsoft.AspNEt.WebHooks.Common`.
 
-Per fare riferimento a un assembly privato è possibile caricare il file dell'assembly in una cartella `bin` relativa alla funzione e farvi riferimento usando il nome file, ad esempio `#r "MyAssembly.dll"`. Per informazioni su come caricare i file nella cartella della funzione vedere la sezione seguente sulla gestione dei pacchetti.
+Se è necessario tooreference assembly privato, è possibile caricare il file di assembly hello in un `bin` cartella tooyour relativa funzione e per riferimento usando hello (ad esempio, il nome di file  `#r "MyAssembly.dll"`). Per informazioni sul funzionamento dei file di cartella funzione tooyour tooupload, vedere hello seguente sezione gestione dei pacchetti.
 
 ## <a name="editor-prelude"></a>Codice introduttivo dell'editor
-Un editor che supporta i servizi di compilazione F# non è in grado di riconoscere gli spazi dei nomi e gli assembly inclusi automaticamente con Funzioni di Azure. Può quindi essere utile includere un codice introduttivo che consenta all'editor di trovare gli assembly usati e di aprire in modo esplicito gli spazi dei nomi. Ad esempio:
+Un editor che supporta i servizi del compilatore F # non verrà informato di hello gli spazi dei nomi e assembly che include automaticamente le funzioni di Azure. Di conseguenza, può essere utile tooinclude preludio che consente di trovare gli assembly hello che si utilizza editor hello e tooexplicitly aprire gli spazi dei nomi. ad esempio:
 
 ```fsharp
 #if !COMPILED
@@ -184,12 +184,12 @@ let Run(blob: string, output: byref<string>, log: TraceWriter) =
     ...
 ```
 
-Quando esegue il codice, Funzioni di Azure elabora l'origine con `COMPILED` definito, quindi il codice introduttivo dell'editor verrà ignorato.
+Quando le funzioni di Azure esegue il codice, elabora origine hello con `COMPILED` definito, pertanto preludio editor hello verrà ignorato.
 
 <a name="package"></a>
 
 ## <a name="package-management"></a>Gestione dei pacchetti
-Per usare i pacchetti NuGet in una funzione F#, aggiungere un file `project.json` nella cartella della funzione nel file system dell'app per le funzioni. Di seguito è riportato un esempio di file `project.json` che aggiunge un riferimento ai pacchetti NuGet a `Microsoft.ProjectOxford.Face` versione 1.1.0:
+aggiungere pacchetti NuGet toouse in una funzione di F #, un `project.json` cartella della funzione hello toohello file di sistema di file dell'app di funzione hello. Di seguito è riportato un esempio `project.json` file che si aggiunge un riferimento al pacchetto NuGet troppo`Microsoft.ProjectOxford.Face` versione 1.1.0:
 
 ```json
 {
@@ -203,16 +203,16 @@ Per usare i pacchetti NuGet in una funzione F#, aggiungere un file `project.json
 }
 ```
 
-È supportato solo .NET Framework 4.6, quindi verificare che nel file `project.json` sia specificato `net46` come qui illustrato.
+Solo hello .NET Framework 4.6 è supportato, quindi assicurarsi che il `project.json` file specifica `net46` come illustrato di seguito.
 
-Quando si carica un file `project.json` , il runtime ottiene i pacchetti e aggiunge automaticamente riferimenti agli assembly dei pacchetti. Non è necessario aggiungere direttive `#r "AssemblyName"` . È sufficiente aggiungere le istruzioni `open` necessarie al file `.fsx`.
+Quando si carica un `project.json` file, recupera i pacchetti hello hello runtime e aggiunge automaticamente gli assembly di riferimenti toohello pacchetto. Non è necessario tooadd `#r "AssemblyName"` direttive. È sufficiente aggiungere hello necessario `open` tooyour istruzioni `.fsx` file.
 
-Si consiglia di inserire gli assembly con riferimento automatico nel codice introduttivo dell'editor, per migliorare l'interazione dell'editor con i servizi di compilazione F#.
+È possibile tooput automaticamente fa riferimento ad assembly in preludio l'editor, tooimprove l'interazione dell'editor con servizi di compilazione di F #.
 
-### <a name="how-to-add-a-projectjson-file-to-your-azure-function"></a>Come aggiungere un file `project.json` alla funzione di Azure
-1. Assicurarsi prima di tutto che l'app di funzione sia in esecuzione aprendo la funzione nel portale di Azure. In questo modo è anche possibile accedere ai log in streaming in cui verrà visualizzato l'output di installazione dei pacchetti.
-2. Per caricare un file `project.json` , usare uno dei metodi descritti in [Come aggiornare i file delle app per le funzioni](functions-reference.md#fileupdate). Se si usa la [distribuzione continua per Funzioni di Azure](functions-continuous-deployment.md), è possibile aggiungere un file `project.json` al ramo di staging per eseguire qualche esperimento prima di aggiungerlo al ramo di sviluppo.
-3. Dopo l'aggiunta del file `project.json` , l'output visualizzato nel log in streaming della funzione sarà simile all'esempio seguente:
+### <a name="how-tooadd-a-projectjson-file-tooyour-azure-function"></a>Come tooadd un `project.json` file tooyour Azure (funzione)
+1. Begin assicurandosi che l'app di funzione è in esecuzione, che è possibile effettuare aprendo la funzione hello portale di Azure. Inoltre fornisce accesso toohello i log in streaming in cui verranno visualizzati output installazione del pacchetto.
+2. tooupload un `project.json` file, utilizzare uno dei metodi di hello descritti in [funzionamento di file dell'app tooupdate](functions-reference.md#fileupdate). Se si utilizza [distribuzione continua per le funzioni di Azure](functions-continuous-deployment.md), è possibile aggiungere un `project.json` tooyour ramo in ordine tooexperiment con esso prima di aggiungerlo tooyour ramo di distribuzione di gestione temporanea del file.
+3. Dopo aver hello `project.json` file viene aggiunto, verrà visualizzato toohello simili di output nella funzione di esempio seguente del flusso di log:
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -232,7 +232,7 @@ Si consiglia di inserire gli assembly con riferimento automatico nel codice intr
 ```
 
 ## <a name="environment-variables"></a>Variabili di ambiente
-Per ottenere una variabile di ambiente o un valore di impostazione dell'app, usare `System.Environment.GetEnvironmentVariable`, ad esempio:
+tooget una variabile di ambiente o un valore di impostazione di app, utilizzare `System.Environment.GetEnvironmentVariable`, ad esempio:
 
 ```fsharp
 open System.Environment
@@ -261,16 +261,16 @@ let mylog(log: TraceWriter, text: string) =
     log.Verbose(text);
 ```
 
-I percorsi specificati per la direttiva `#load` sono relativi alla posizione del file `.fsx`.
+Percorsi fornisce toohello `#load` direttiva sono toohello relativo percorso del `.fsx` file.
 
-* `#load "logger.fsx"` carica un file che si trova nella cartella della funzione.
-* `#load "package\logger.fsx"` carica un file che si trova nella sottocartella `package` della cartella della funzione.
-* `#load "..\shared\mylogger.fsx"` carica un file che si trova nella cartella `shared` allo stesso livello della cartella della funzione, ovvero direttamente in `wwwroot`.
+* `#load "logger.fsx"`Carica un file nella cartella funzione hello.
+* `#load "package\logger.fsx"`Carica un file si trova in hello `package` cartella funzione hello.
+* `#load "..\shared\mylogger.fsx"`Carica un file si trova in hello `shared` cartella hello stesso livello, ovvero come cartella funzione hello, direttamente sotto `wwwroot`.
 
-La direttiva `#load` funziona solo con i file `.fsx` (script F# ), non con i file `.fs`.
+Hello `#load` direttiva funziona solo con `.fsx` file (script F #) e non con `.fs` file.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per altre informazioni, vedere le seguenti risorse:
+Per ulteriori informazioni, vedere hello seguenti risorse:
 
 * [F# Guide](/dotnet/articles/fsharp/index) (Guida di F#)
 * [Best Practices for Azure Functions](functions-best-practices.md) (Procedure consigliate per Funzioni di Azure)

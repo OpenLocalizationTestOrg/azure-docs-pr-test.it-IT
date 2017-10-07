@@ -13,7 +13,7 @@
 ### [Abilitazione della sicurezza operativa](azure-operational-security.md)
 ### [Rilevamento delle minacce avanzato](azure-threat-detection.md)
 ### [Registrazione e controllo](azure-log-audit.md)
-### [Isolamento nel cloud pubblico](azure-isolation.md)
+### [Isolamento in un cloud pubblico hello](azure-isolation.md)
 ### [Funzionalità tecniche per la sicurezza](azure-security-technical-capabilities.md)
 ### [Governance in Azure](governance-in-azure.md)
 ### [Crittografia dei dati inattivi](azure-security-encryption-atrest.md)
@@ -48,7 +48,7 @@
 ## Gestione e monitoraggio della sicurezza
 ### [Gestione della sicurezza](azure-security-management.md)
 ### [Centro sicurezza di Azure](../security-center/security-center-intro.md?toc=%2fazure%2fsecurity%2ftoc.json)
-### [Introduzione all'integrazione dei log di Azure](security-azure-log-integration-overview.md)
+### [Integrazione di log tooAzure introduzione](security-azure-log-integration-overview.md)
 #### [Introduzione all'integrazione dei log di Azure](security-azure-log-integration-get-started.md)
 #### [Integrare i log di controllo di Azure Active Directory](security-azure-log-integration-ad.md)
 #### [Integrare gli avvisi del Centro sicurezza](security-azure-log-integration-security-center.md)
@@ -63,7 +63,7 @@
 ### [Procedure consigliate per la sicurezza della gestione delle identità](azure-security-identity-management-best-practices.md)
 
 ## Servizi PaaS
-### [Proteggere distribuzioni PaaS](security-paas-deployments.md)
+### [Protezione delle distribuzioni PaaS](security-paas-deployments.md)
 #### [Protezione delle applicazioni Web e per dispositivi mobili in PaaS mediante i Servizi app](security-paas-applications-using-app-services.md)
 #### [Protezione delle applicazioni Web e per dispositivi mobili in PaaS mediante SQL](security-paas-applications-using-sql.md)
 ##### [Procedure consigliate per la sicurezza del database SQL](azure-database-security-best-practices.md)

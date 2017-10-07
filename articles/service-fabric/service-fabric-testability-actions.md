@@ -1,6 +1,6 @@
 ---
-title: Simulare errori nei microservizi di Azure | Documentazione Microsoft
-description: "In questo articolo vengono illustrate le azioni di Testabilità trovate in Infrastruttura di servizi di Microsoft Azure."
+title: errori aaaSimulate in Azure microservizi | Documenti Microsoft
+description: "In questo articolo comunica sulle azioni di testabilità hello disponibili in Microsoft Azure Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: motanv;heeldin
-ms.openlocfilehash: c8ddc7732999ae555323bebaef60aa34c8f2ec17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5bdda1c0c5a40b243ab956c4791afd52e11c4089
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="testability-actions"></a>Azioni di Testabilità
-Per simulare un'infrastruttura non affidabile, Azure Service Fabric offre agli sviluppatori la possibilità di simulare errori e transizioni di stato reali, esposti come azioni di testabilità. Le azioni sono le API di basso livello che causano una specifica fault injection, una transizione di stato o una convalida. La combinazione di queste azioni consente di scrivere scenari di test completi per i servizi.
+In ordine toosimulate un'infrastruttura affidabile, Azure Service Fabric fornisce sviluppatore hello e con toosimulate modi diversi del mondo reale errori e le transizioni di stato. esposti come azioni di testabilità. azioni Hello sono hello API di basso livello che causano un attacco intrusivo nel codice di errore specifico, la transizione dello stato o la convalida. La combinazione di queste azioni consente di scrivere scenari di test completi per i servizi.
 
-Service Fabric fornisce alcuni scenari di test comuni costituiti da queste azioni. È consigliabile usare questi scenari predefiniti, poiché vengono scelti con attenzione per testare le transizioni di stato e i casi di errore comuni. È comunque possibile creare anche scenari di test personalizzati, costituiti dalle stesse azioni, quando si vuole aggiungere la copertura per scenari specifici di un'applicazione o non ancora presenti negli scenari integrati.
+Service Fabric fornisce alcuni scenari di test comuni costituiti da queste azioni. Si consiglia di utilizzare questi scenari predefiniti, che vengono scelti attentamente le transizioni di stato comuni tootest e casi di errore. Tuttavia, azioni possono essere scenari di test personalizzata toocreate utilizzato quando si desidera tooadd copertura per gli scenari che non rientrano scenari incorporato hello ancora o che sono personalizzati specifici per l'applicazione.
 
-Implementazioni in C# delle azioni sono disponibili nell'assembly System.Fabric.dll. Il modulo di PowerShell System Fabric si trova nell'assembly Microsoft.ServiceFabric.Powershell.dll. Nell'ambito dell'installazione del runtime viene installato il modulo ServiceFabric di PowerShell per garantire una maggiore semplicità d'uso.
+In c# le implementazioni di azioni di hello si trovano in hello System.Fabric.dll assembly. modulo di PowerShell dell'infrastruttura di sistema Hello viene trovato nell'assembly Microsoft.ServiceFabric.Powershell.dll hello. Come parte dell'installazione di runtime, hello modulo ServiceFabric di PowerShell è installato tooallow per facilità d'uso.
 
 ## <a name="graceful-vs-ungraceful-fault-actions"></a>Azioni di errore normali e anomale
 Le azioni di Testabilità sono classificate in due bucket principali:
 
-* Errori anomali: questi errori simulano errori come il riavvio del computer e gli arresti anomali dei processi. In caso di errori di questo tipo, il contesto di esecuzione del processo si interrompe in modo brusco. Non è quindi possibile eseguire alcuna pulizia dello stato prima che l'applicazione venga avviata nuovamente.
-* Errori normali: questi errori simulano azioni normali come gli spostamenti delle repliche e le eliminazioni attivate dal bilanciamento del carico. In questi casi, il servizio riceve una notifica dello stato di chiusura e può eseguire la pulizia dello stato prima di uscire.
+* Errori anomali: questi errori simulano errori come il riavvio del computer e gli arresti anomali dei processi. In questi casi di errori, il contesto di esecuzione hello del processo di interruzione. Ciò significa che alcuna pulizia dello stato di hello può essere eseguito prima dell'applicazione hello è stato riavviato.
+* Errori normali: questi errori simulano azioni normali come gli spostamenti delle repliche e le eliminazioni attivate dal bilanciamento del carico. In questi casi, il servizio di hello Ottiene una notifica di hello Chiudi e possibile pulire lo stato di hello prima della chiusura.
 
-Per una convalida migliore in termini di qualità, eseguire il carico di lavoro del servizio e del business, includendo diversi errori normali e anomali. Gli errori anomali danno luogo a scenari in cui il processo di servizio si chiude improvvisamente nel corso di un flusso di lavoro. Ciò consente di verificare il percorso di ripristino una volta che Service Fabric ripristina la replica del servizio. Ciò consentirà di verificare la coerenza dei dati e se lo stato del servizio viene conservato correttamente dopo gli errori. L'altro set di errori, ovvero gli errori normali, verifica che il servizio risponda correttamente alle repliche spostate da Service Fabric. Ciò consente di verificare la gestione dell'annullamento nel metodo RunAsync. Il servizio deve controllare che il token di annullamento sia impostato, salvarne correttamente lo stato e chiudere il metodo RunAsync.
+Per la convalida di qualità migliore, eseguire il servizio di hello e carico di lavoro di business durante la generazione di diversi errori normale e anomali. Errori anomali esercitare scenari in cui il processo di servizio hello termina improvvisamente centro hello di un flusso di lavoro. Ciò consente di verificare il percorso di recupero hello una volta ripristinato replica del servizio hello dall'infrastruttura del servizio. Ciò consentirà di verificare la coerenza dei dati e se lo stato del servizio hello viene mantenuto correttamente dopo gli errori. Hello altri set di errori (hello normale) verificare che il servizio hello reagisce correttamente tooreplicas viene spostata dal Service Fabric. Ciò consente di verificare la gestione dell'annullamento nel metodo RunAsync hello. servizio Hello deve toocheck hello annullamento token elaborate per impostare correttamente il salvataggio dello stato ed esce dal metodo RunAsync hello.
 
 ## <a name="testability-actions-list"></a>Elenco delle azioni di Testabilità
 | Azione | Descrizione | API gestita | Cmdlet di PowerShell | Errori normali/anomali |
 | --- | --- | --- | --- | --- |
-| CleanTestState |Rimuove lo stato di tutti i test dal cluster in caso di arresto anomalo del driver di test. |CleanTestStateAsync |Remove-ServiceFabricTestState |Non applicabile |
+| CleanTestState |Rimuove tutti gli stati di test hello dal cluster hello in caso di chiusura non valido di driver di test hello. |CleanTestStateAsync |Remove-ServiceFabricTestState |Non applicabile |
 | InvokeDataLoss |Provoca la perdita di dati in una partizione del servizio. |InvokeDataLossAsync |Invoke-ServiceFabricPartitionDataLoss |Normale |
 | InvokeQuorumLoss |Inserisce una partizione del servizio con stato in una perdita di quorum. |InvokeQuorumLossAsync |Invoke-ServiceFabricQuorumLoss |Normale |
-| Move Primary |Sposta la replica primaria specificata di un servizio con stato nel nodo cluster specificato. |MovePrimaryAsync |Move-ServiceFabricPrimaryReplica |Normale |
-| Move Secondary |Sposta la replica secondaria corrente di un servizio con stato a un nodo di cluster diverso. |MoveSecondaryAsync |Move-ServiceFabricSecondaryReplica |Normale |
-| RemoveReplica |Simula un errore di replica tramite la rimozione di una replica da un cluster. In tal modo la replica verrà chiusa e passata al ruolo 'None', rimuovendo tutto lo stato dal cluster. |RemoveReplicaAsync |Remove-ServiceFabricReplica |Normale |
-| RestartDeployedCodePackage |Simula un errore di processo del pacchetto di codice mediante il riavvio di un pacchetto di codice distribuito in un nodo in un cluster. In questo modo, il processo del pacchetto di codice viene interrotto e verranno riavviate tutte le repliche del servizio utente ospitate nel processo. |RestartDeployedCodePackageAsync |Restart-ServiceFabricDeployedCodePackage |Anomalo |
+| Move Primary |Sposta hello specificato replica primaria di un nodo di servizio con stato toohello cluster specificato. |MovePrimaryAsync |Move-ServiceFabricPrimaryReplica |Normale |
+| Move Secondary |Sposta una replica secondaria hello corrente di un nodo di cluster diverso tooa servizio con stato. |MoveSecondaryAsync |Move-ServiceFabricSecondaryReplica |Normale |
+| RemoveReplica |Simula un errore di replica tramite la rimozione di una replica da un cluster. Questo comporta la chiusura replica hello e passerà il toorole 'None', il relativo stato rimozione dal cluster hello. |RemoveReplicaAsync |Remove-ServiceFabricReplica |Normale |
+| RestartDeployedCodePackage |Simula un errore di processo del pacchetto di codice mediante il riavvio di un pacchetto di codice distribuito in un nodo in un cluster. Questo processo pacchetto codice hello, che verrà riavviato tutti hello utente servizio le repliche ospitate in tale processo si interrompe. |RestartDeployedCodePackageAsync |Restart-ServiceFabricDeployedCodePackage |Anomalo |
 | RestartNode |Simula un errore del nodo cluster Infrastruttura di servizi tramite il riavvio di un nodo. |RestartNodeAsync |Restart-ServiceFabricNode |Anomalo |
 | RestartPartition |Simula uno scenario di blackout del data center o del cluster mediante il riavvio di alcune o di tutte le repliche di una partizione. |RestartPartitionAsync |Restart-ServiceFabricPartition |Normale |
-| RestartReplica |Simula un errore di replica mediante il riavvio di una replica persistente in un cluster, la chiusura della replica e quindi la riapertura. |RestartReplicaAsync |Restart-ServiceFabricReplica |Normale |
+| RestartReplica |Simula un errore di replica tramite il riavvio di una replica persistente in un cluster, la chiusura replica hello e riaprirlo. |RestartReplicaAsync |Restart-ServiceFabricReplica |Normale |
 | StartNode |Avvia un nodo in un cluster già arrestato. |StartNodeAsync |Start-ServiceFabricNode |Non applicabile |
-| StopNode |Simula l’errore in un nodo mediante l’arresto di un nodo in un cluster. Il nodo resterà inattivo fino a quando non viene chiamato StartNode. |StopNodeAsync |Stop-ServiceFabricNode |Anomalo |
-| ValidateApplication |Convalida la disponibilità e l’integrità di tutti i servizi Infrastruttura di servizi all’interno dell’applicazione, in genere dopo aver causato un errore nel sistema. |ValidateApplicationAsync |Test-ServiceFabricApplication |Non applicabile |
-| ValidateService |Convalida la disponibilità e l’integrità di un servizio Infrastruttura di servizi, in genere dopo aver causato un errore nel sistema. |ValidateServiceAsync |Test-ServiceFabricService |Non applicabile |
+| StopNode |Simula l’errore in un nodo mediante l’arresto di un nodo in un cluster. nodo Hello resterà verso il basso fino a quando viene chiamato StartNode. |StopNodeAsync |Stop-ServiceFabricNode |Anomalo |
+| ValidateApplication |Convalida integrità di tutti i servizi di Service Fabric all'interno di un'applicazione, in genere dopo la generazione di un errore nel sistema hello e disponibilità hello. |ValidateApplicationAsync |Test-ServiceFabricApplication |Non applicabile |
+| ValidateService |Convalida la disponibilità di hello e l'integrità di un servizio di Service Fabric, in genere dopo la generazione di un errore nel sistema hello. |ValidateServiceAsync |Test-ServiceFabricService |Non applicabile |
 
 ## <a name="running-a-testability-action-using-powershell"></a>Esecuzione di un'azione di testabilità con PowerShell
-Questa esercitazione illustra come eseguire un'azione di testabilità con PowerShell. Si apprenderà come eseguire un'azione di testabilità in un cluster locale (di una casella) o in un cluster di Azure. Microsoft.Fabric.Powershell.dll, il modulo di PowerShell Service Fabric, viene installato automaticamente quando si installa MSI di Microsoft Service Fabric e caricato automaticamente quando si apre un prompt di PowerShell.
+In questa esercitazione illustra come toorun un'azione di testabilità tramite PowerShell. Si apprenderà come toorun un'azione di testabilità rispetto a un cluster (uno-box) locale o un cluster di Azure. Microsoft.Fabric.Powershell.dll - hello modulo PowerShell di Service Fabric - viene installato automaticamente quando si installa Microsoft Service Fabric MSI hello. modulo Hello viene caricato automaticamente quando si apre un prompt dei comandi di PowerShell.
 
 Sezioni dell'esercitazione:
 
@@ -62,13 +62,13 @@ Sezioni dell'esercitazione:
 * [Eseguire un'azione su un cluster di Azure](#run-an-action-against-an-azure-cluster)
 
 ### <a name="run-an-action-against-a-one-box-cluster"></a>Eseguire un'azione su un cluster di una casella
-Per eseguire un'azione di testabilità su un cluster locale, è necessario in primo luogo connettersi al cluster e aprire il prompt di PowerShell in modalità amministratore. Esaminiamo l’azione **Restart-ServiceFabricNode** .
+toorun un'azione di testabilità su un cluster locale, connettersi innanzitutto toohello cluster e il prompt PowerShell hello aperto in modalità amministratore. Esaminiamo hello **riavvio ServiceFabricNode** azione.
 
 ```powershell
 Restart-ServiceFabricNode -NodeName Node1 -CompletionMode DoNotVerify
 ```
 
-Qui l'azione **Restart-ServiceFabricNode** è in esecuzione in un nodo denominato "Node1". e la modalità di completamento specifica che l'esito positivo dell'azione di riavvio del nodo non verrà verificato. Per verificare l'esito positivo dell'azione di riavvio, è necessario specificare la modalità di completamento come "Verify". Anziché specificare direttamente il nodo mediante il nome, è possibile specificarlo tramite una chiave di partizione e il tipo di replica, come indicato di seguito:
+Qui hello azione **riavvio ServiceFabricNode** è in esecuzione in un nodo denominato "Node1". modalità di terminazione Hello specifica non deve verificare se azione di riavvio del nodo hello è effettivamente riuscito. Modalità di completamento hello specificando come "Verifica" determinerà tooverify se l'azione di riavvio hello è effettivamente riuscito. Anziché specificare direttamente il nodo hello in base al nome, è possibile specificare tramite un tipo di chiave e hello partizione della replica, come indicato di seguito:
 
 ```powershell
 Restart-ServiceFabricNode -ReplicaKindPrimary  -PartitionKindNamed -PartitionKey Partition3 -CompletionMode Verify
@@ -83,20 +83,20 @@ Connect-ServiceFabricCluster $connection
 Restart-ServiceFabricNode -NodeName $nodeName -CompletionMode DoNotVerify
 ```
 
-**Restart-ServiceFabricNode** deve essere utilizzata per riavviare un nodo Infrastruttura di servizi in un cluster. In questo modo, il processo Fabric.exe verrà interrotto e tutte le repliche del servizio di sistema e del servizio utente ospitate in quel nodo verranno riavviate. L’uso di questa API per il test del servizio consente di rilevare bug lungo i percorsi di ripristino del failover. Consente di simulare gli errori dei nodi nel cluster.
+**Riavvio ServiceFabricNode** deve essere un nodo di Service Fabric in un cluster toorestart utilizzato. Processo di Fabric.exe hello, che verrà riavviato tutte hello sistema utente e servizio servizio repliche ospitate su tale nodo verrà interrotta. Utilizzando questo tootest API del servizio consente di rilevare i bug ai percorsi di recupero di failover hello. Consente di simulare errori di nodo nel cluster hello.
 
-La schermata seguente mostra il comando di testabilità **Restart-ServiceFabricNode** in azione.
+Hello schermata riportata di seguito viene illustrato hello **riavvio ServiceFabricNode** comando testabilità azione.
 
 ![](media/service-fabric-testability-actions/Restart-ServiceFabricNode.png)
 
-L'output del primo **Get ServiceFabricNode** (un cmdlet dal modulo PowerShell di ServiceFabric) mostra che il cluster locale ha cinque nodi: da Node.1 a Node.5. Dopo l'esecuzione dell'azione di testabilità (cmdlet) **Restart-ServiceFabricNode** sul nodo, denominato Node.4, noteremo che il tempo di attività del nodo è stato reimpostato.
+Hello di output di hello innanzitutto **Get ServiceFabricNode** (un cmdlet dal modulo di PowerShell di Service Fabric hello) viene illustrato il cluster locale hello include cinque nodi: Node.1 tooNode.5. Dopo l'azione di testabilità hello (cmdlet) **riavvio ServiceFabricNode** viene eseguita nel nodo hello, denominato Node.4, vediamo tempi di attività del nodo hello è stata reimpostata.
 
 ### <a name="run-an-action-against-an-azure-cluster"></a>Eseguire un'azione su un cluster di Azure
-L'esecuzione di un'azione di testabilità (con PowerShell) su un cluster di Azure è simile all'esecuzione della stessa azione su un cluster locale. L'unica differenza è che, prima di poter eseguire l'azione, invece di connettersi al cluster locale, è necessario connettersi al cluster di Azure.
+Esecuzione di un'azione di testabilità (tramite PowerShell) su un cluster di Azure è l'azione hello toorunning simile su un cluster locale. Hello solo differenza è che, prima di eseguire l'azione di hello, anziché connessione cluster locale toohello, è necessario tooconnect toohello Azure prima del cluster.
 
 ## <a name="running-a-testability-action-using-c35"></a>Esecuzione di un'azione di testabilità con C&#35;
-Per eseguire un'azione di testabilità con C#, è necessario prima connettersi al cluster tramite FabricClient. Ottenere quindi i parametri necessari per eseguire l'azione. Per eseguire la stessa azione possono essere utilizzati parametri diversi.
-In merito all'azione RestartServiceFabricNode, per eseguirla è possibile usare le informazioni sul nodo (nodo del nome e ID dell'istanza del nodo) disponibili nel cluster.
+toorun un'azione di testabilità mediante c#, è necessario innanzitutto tooconnect toohello cluster utilizzando FabricClient. Ottenere quindi hello parametri necessari toorun hello azione. È possibile utilizzare diversi parametri toorun hello stessa azione.
+Ricerca di hello RestartServiceFabricNode action toorun unidirezionale è utilizzando le informazioni sul nodo hello (nome del nodo e ID istanza del nodo) in cluster hello.
 
 ```csharp
 RestartNodeAsync(nodeName, nodeInstanceId, completeMode, operationTimeout, CancellationToken.None)
@@ -104,16 +104,16 @@ RestartNodeAsync(nodeName, nodeInstanceId, completeMode, operationTimeout, Cance
 
 Spiegazione di alcuni parametri:
 
-* **CompleteMode** specifica che l'esito positivo dell'azione di riavvio non verrà verificato. Per verificare l'esito positivo dell'azione di riavvio, è necessario specificare la modalità di completamento come "Verify".  
-* **OperationTimeout** : imposta la quantità di tempo disponibile per completare l'operazione prima che venga generata un'eccezione TimeoutException.
-* **CancellationToken** : consente di annullare una chiamata in sospeso.
+* **CompleteMode** specifica che la modalità hello non deve verificare se azione di riavvio hello è effettivamente riuscito. Modalità di completamento hello specificando come "Verifica" determinerà tooverify se l'azione di riavvio hello è effettivamente riuscito.  
+* **OperationTimeout** set hello di hello operazione toofinish intervallo di tempo prima che venga generata un'eccezione TimeoutException.
+* **CancellationToken** consente un toobe in sospeso chiamata annullata.
 
-Anziché specificare direttamente il nodo mediante il nome, è possibile specificarlo tramite una chiave di partizione e il tipo di replica:
+Anziché specificare direttamente il nodo hello in base al nome, è possibile specificare tramite un tipo di chiave e hello partizione della replica.
 
 Per altre informazioni vedere [PartitionSelector e ReplicaSelector](#partition_replica_selector).
 
 ```csharp
-// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll
+// Add a reference tooSystem.Fabric.Testability.dll and System.Fabric.dll
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -136,10 +136,10 @@ class Test
         Console.WriteLine("Starting RestartNode test");
         try
         {
-            //Restart the node by using ReplicaSelector
+            //Restart hello node by using ReplicaSelector
             RestartNodeAsync(clusterConnection, serviceName).Wait();
 
-            //Another way to restart node is by using nodeName and nodeInstanceId
+            //Another way toorestart node is by using nodeName and nodeInstanceId
             RestartNodeAsync(clusterConnection, nodeName, nodeInstanceId).Wait();
         }
         catch (AggregateException exAgg)
@@ -180,9 +180,9 @@ class Test
 
 ## <a name="partitionselector-and-replicaselector"></a>PartitionSelector e ReplicaSelector
 ### <a name="partitionselector"></a>PartitionSelector
-PartitionSelector è un helper esposto in fase di testabilità che consente di selezionare una partizione specifica in cui eseguire le azioni di testabilità. Può essere utilizzato per selezionare una partizione specifica se l'ID partizione è noto in anticipo. In alternativa, è possibile fornire la chiave di partizione; l'operazione risolverà internamente l'ID partizione. È inoltre possibile selezionare una partizione casuale.
+PartitionSelector è un helper esposto in testabilità ed è tooselect usato un oggetto specifico di partizione in cui tooperform hello testabilità azioni. Può essere utilizzato tooselect una partizione specifica se l'ID di partizione hello è noto in anticipo. In alternativa, è possibile fornire la chiave di partizione hello e operazione hello risolverà l'ID di partizione hello internamente. È anche possibile hello selezionare una partizione casuale.
 
-Per usare questo helper, creare l'oggetto PartitionSelector e selezionare la partizione ricorrendo a uno dei metodi Select*. Passare quindi l'oggetto PartitionSelector all'API che lo richiede. Se non è selezionata alcuna opzione, per impostazione predefinita viene selezionata una partizione casuale.
+toouse questo supporto, creare l'oggetto PartitionSelector hello e selezionare la partizione hello utilizzando uno dei metodi di hello Select *. Passare quindi hello PartitionSelector oggetto toohello API che lo richiede. Se viene selezionata alcuna opzione, per impostazione predefinita la partizione casuale tooa.
 
 ```csharp
 Uri serviceName = new Uri("fabric:/samples/InMemoryToDoListApp/InMemoryToDoListService");
@@ -204,9 +204,9 @@ PartitionSelector uniformIntPartitionSelector = PartitionSelector.PartitionKeyOf
 ```
 
 ### <a name="replicaselector"></a>ReplicaSelector
-ReplicaSelector è un helper esposto in fase di testabilità che consente di selezionare una replica in cui eseguire le azioni di testabilità. Può essere usato per selezionare una replica specifica se l'ID di replica è noto in anticipo. È possibile selezionare anche una replica primaria o una replica secondaria casuale. ReplicaSelector deriva da PartitionSelector ed è quindi necessario selezionare sia la replica sia la partizione in cui si vuole eseguire l'operazione di testabilità.
+ReplicaSelector è un helper esposto in testabilità e viene utilizzato toohelp selezionare una replica su quali tooperform hello testabilità azioni. Può essere utilizzato tooselect una replica specifica se l'ID replica hello è noto in anticipo. Inoltre, è possibile hello la selezione di una replica primaria o secondaria casuale. ReplicaSelector deriva da PartitionSelector, pertanto è necessario tooselect entrambi hello replica e hello partizione in cui si desidera operazione testabilità di hello tooperform.
 
-Per usare l'helper, creare un oggetto ReplicaSelector e impostare il modo in cui si vuole selezionare la replica e la partizione. Quindi è possibile passarlo nell'API che lo richiede. Se non è selezionata alcuna opzione, per impostazione predefinita vengono selezionate una replica casuale e una partizione casuale.
+toouse questo supporto, creare un oggetto ReplicaSelector e set di partizioni di replica e hello hello tooselect hello desiderato. È quindi possibile passare in hello API che lo richiede. Se viene selezionata alcuna opzione, per impostazione predefinita replica casuale tooa e partizione casuale.
 
 ```csharp
 Guid partitionIdGuid = new Guid("8fb7ebcc-56ee-4862-9cc0-7c6421e68829");
@@ -216,10 +216,10 @@ long replicaId = 130559876481875498;
 // Select a random replica
 ReplicaSelector randomReplicaSelector = ReplicaSelector.RandomOf(partitionSelector);
 
-// Select the primary replica
+// Select hello primary replica
 ReplicaSelector primaryReplicaSelector = ReplicaSelector.PrimaryOf(partitionSelector);
 
-// Select the replica by ID
+// Select hello replica by ID
 ReplicaSelector replicaByIdSelector = ReplicaSelector.ReplicaIdOf(partitionSelector, replicaId);
 
 // Select a random secondary replica
@@ -228,7 +228,7 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Scenari di testabilità](service-fabric-testability-scenarios.md)
-* Come eseguire il test del servizio
+* Come tootest il servizio
   * [Simulare gli errori durante i carichi di lavoro del servizio](service-fabric-testability-workload-tests.md)
   * [Errori di comunicazione da servizio a servizio](service-fabric-testability-scenarios-service-communication.md)
 

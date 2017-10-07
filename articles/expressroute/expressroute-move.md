@@ -1,6 +1,6 @@
 ---
-title: Spostamento dei circuiti ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager | Documentazione Microsoft
-description: Questo articolo offre una panoramica delle informazioni utili sul bridging dei modelli di distribuzione Resource Manager e classica.
+title: i circuiti ExpressRoute aaaMoving da tooResource classico Manager | Documenti Microsoft
+description: "Questa pagina viene fornita una panoramica di ciò che è necessario tooknow sul bridging hello classic e modelli di distribuzione di gestione risorse di hello."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -14,94 +14,94 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/02/2017
 ms.author: ganesr
-ms.openlocfilehash: 7f8386b518ada850fc03e23c5cae3b159b3b213e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c901d2cda01aec409b528d29fc937ac6afaea511
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="moving-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model"></a>Spostamento dei circuiti ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager
-Questo articolo offre una panoramica di cosa si intende per spostamento di un circuito Azure ExpressRoute dal modello di distribuzione classica al modello di distribuzione Azure Resource Manager.
+# <a name="moving-expressroute-circuits-from-hello-classic-toohello-resource-manager-deployment-model"></a>Lo spostamento di circuiti ExpressRoute da hello classic toohello il modello di distribuzione di gestione risorse
+Questo articolo fornisce una panoramica del significato toomove un circuito ExpressRoute di Azure da hello classic toohello modello di distribuzione Azure Resource Manager.
 
-Per connettersi alle reti virtuali distribuite nei modelli di distribuzione Resource Manager o classica è possibile usare un solo circuito ExpressRoute. Indipendentemente da come viene creato, un circuito ExpressRoute ora può essere collegato alle reti virtuali in entrambi i modelli di distribuzione.
+È possibile usare un singola ExpressRoute circuito tooconnect toovirtual reti vengono distribuiti sia nei modelli di distribuzione di gestione risorse hello e hello classico. Un circuito ExpressRoute, indipendentemente dalla modalità di creazione, reti toovirtual ora è possibile collegare tra entrambi i modelli di distribuzione.
 
-![Circuito ExpressRoute collegato a reti virtuali in entrambi i modelli di distribuzione](./media/expressroute-move/expressroute-move-1.png)
+![Un circuito ExpressRoute che collega le reti toovirtual in entrambi i modelli di distribuzione](./media/expressroute-move/expressroute-move-1.png)
 
-## <a name="expressroute-circuits-that-are-created-in-the-classic-deployment-model"></a>Circuiti ExpressRoute creati nel modello di distribuzione classica
-I circuiti ExpressRoute creati nel modello di distribuzione classica devono prima essere spostati nel modello di distribuzione Resource Manager per abilitare la connettività a entrambi i modelli di distribuzione. Non si verificano perdite o interruzioni della connettività durante lo spostamento di una connessione. Vengono mantenuti tutti i collegamenti circuito-rete virtuale nel modello di distribuzione classica, nella stessa sottoscrizione e tra sottoscrizioni.
+## <a name="expressroute-circuits-that-are-created-in-hello-classic-deployment-model"></a>Circuiti ExpressRoute che vengono creati nel modello di distribuzione classica hello
+Circuiti ExpressRoute che vengono creati nel modello di distribuzione classica hello necessario toobe spostato toohello Gestione risorse distribuzione modello primo tooenable connettività tooboth hello classica e hello Gestione risorse modelli di distribuzione. Non si verificano perdite o interruzioni della connettività durante lo spostamento di una connessione. Tutti i collegamenti di rete circuito virtuale nel modello di distribuzione classica hello (hello nella stessa sottoscrizione e tra sottoscrizioni) vengono mantenuti.
 
-Al termine dello spostamento, il circuito ExpressRoute ha esattamente lo stesso aspetto e le stesse prestazioni di un circuito ExpressRoute creato nel modello di distribuzione Resource Manager. Ora è possibile creare le connessioni alle reti virtuali nel modello di distribuzione Resource Manager.
+Dopo lo spostamento hello è stata completata correttamente, hello circuito ExpressRoute Cerca, esegue e aspetto esattamente un circuito ExpressRoute creata nel modello di distribuzione di gestione risorse di hello. È ora possibile creare connessioni toovirtual reti nel modello di distribuzione di gestione risorse di hello.
 
-Dopo aver spostato un circuito ExpressRoute nel modello di distribuzione Resource Manager, il ciclo di vita del circuito ExpressRoute può essere gestito unicamente con il modello di distribuzione Resource Manager. Ciò significa che operazioni come l'aggiunta, l'aggiornamento o l'eliminazione di peering, l'aggiornamento di proprietà dei circuiti, ad esempio la larghezza di banda, lo SKU e il tipo di fatturazione, e l'eliminazione dei circuiti possono essere eseguite solo nel modello di distribuzione Resource Manager. Vedere la sezione seguente sui circuiti creati nel modello di distribuzione Resource Manager per altri dettagli su come gestire l'accesso a entrambi i modelli di distribuzione.
+Dopo un circuito ExpressRoute è stato spostato toohello modello di distribuzione di gestione delle risorse, è possibile gestire il ciclo di vita hello di hello circuito ExpressRoute solo utilizzando il modello di distribuzione di gestione risorse di hello. Ciò significa che è possibile eseguire operazioni come aggiunta/aggiornamento/eliminazione di peering, l'aggiornamento delle proprietà circuito (ad esempio la larghezza di banda, SKU e fatturazione di tipo) e l'eliminazione di circuiti solo nel modello di distribuzione di gestione risorse di hello. Sezione toohello seguito circuiti creati nel modello di distribuzione di gestione risorse di hello per ulteriori informazioni su come è possibile gestire i modelli di distribuzione di accesso tooboth, fare riferimento.
 
-Per eseguire lo spostamento, non è necessario coinvolgere il provider di connettività.
+Non si dispone di tooinvolve spostare il hello tooperform provider di connettività.
 
-## <a name="expressroute-circuits-that-are-created-in-the-resource-manager-deployment-model"></a>Circuiti ExpressRoute creati nel modello di distribuzione Resource Manager
-È possibile fare in modo che i circuiti ExpressRoute creati nel modello di distribuzione Resource Manager siano accessibili da entrambi i modelli di distribuzione. È possibile fare in modo che un circuito ExpressRoute nella sottoscrizione sia accessibile da entrambi i modelli di distribuzione.
+## <a name="expressroute-circuits-that-are-created-in-hello-resource-manager-deployment-model"></a>Circuiti ExpressRoute che vengono creati nel modello di distribuzione di gestione risorse di hello
+È possibile abilitare i circuiti ExpressRoute creati in hello Gestione risorse distribuzione modello toobe accessibili da entrambi i modelli di distribuzione. Qualsiasi circuito ExpressRoute nella sottoscrizione può essere abilitato toobe accessibile da entrambi i modelli di distribuzione.
 
-* I circuiti ExpressRoute creati nel modello di distribuzione Resource Manager non hanno accesso al modello di distribuzione classica per impostazione predefinita.
-* I circuiti ExpressRoute che sono stati spostati dal modello di distribuzione classica al modello di distribuzione Resource Manager sono accessibili da entrambi i modelli di distribuzione per impostazione predefinita.
-* Un circuito ExpressRoute ha sempre accesso al modello di distribuzione Resource Manager, indipendentemente dal modello di distribuzione, classica o Resource Manager, in cui è stato creato. Ciò significa che è possibile creare connessioni alle reti virtuali create nel modello di distribuzione Resource Manager seguendo le istruzioni su [come collegare le reti virtuali](expressroute-howto-linkvnet-arm.md).
-* L'accesso al modello di distribuzione classica è controllato dal parametro **allowClassicOperations** nel circuito ExpressRoute.
+* Circuiti ExpressRoute che sono stati creati nel modello di distribuzione di gestione risorse di hello non dispone del modello di distribuzione classica toohello di accesso per impostazione predefinita.
+* Circuiti ExpressRoute che sono stati spostati dal modello di distribuzione di hello distribuzione classica modello toohello Resource manager sono accessibili da entrambi i modelli di distribuzione per impostazione predefinita.
+* Un circuito ExpressRoute ha sempre accesso toohello Gestione risorse modello di distribuzione, indipendentemente dal fatto che siano state create in Gestione risorse di hello o un modello di distribuzione classica. Ciò significa che è possibile creare connessioni creare reti toovirtual in hello il modello di distribuzione di gestione risorse seguendo le istruzioni visualizzate in [come reti virtuali toolink](expressroute-howto-linkvnet-arm.md).
+* Modello di distribuzione classica toohello di accesso è controllato da hello **allowClassicOperations** parametro hello circuito ExpressRoute.
 
 > [!IMPORTANT]
-> Vengono applicate tutte le quote documentate nella pagina relativa ai [limiti dei servizi](../azure-subscription-service-limits.md) . Ad esempio, un circuito standard può avere al massimo 10 collegamenti/connessioni di rete virtuale sia nel modello di distribuzione classica che nel modello di distribuzione Resource Manager.
+> Tutte le quote sono documentate nella hello [i limiti del servizio](../azure-subscription-service-limits.md) pagina si applicano. Ad esempio, un circuito standard può avere al massimo 10 collegamenti/connessioni di rete virtuale sia hello classico di modelli di distribuzione di gestione risorse di hello.
 > 
 > 
 
-## <a name="controlling-access-to-the-classic-deployment-model"></a>Controllo dell'accesso al modello di distribuzione classica
-È possibile abilitare un unico circuito ExpressRoute per il collegamento alle reti virtuali in entrambi i modelli di distribuzione impostando il parametro **allowClassicOperations** del circuito ExpressRoute.
+## <a name="controlling-access-toohello-classic-deployment-model"></a>Modello di controllo dell'accesso toohello distribuzione classica
+È possibile abilitare una singola rete toovirtual toolink di circuito ExpressRoute in entrambi i modelli di distribuzione per l'impostazione hello **allowClassicOperations** parametro di hello circuito ExpressRoute.
 
-Impostando **allowClassicOperations** su TRUE è possibile collegare le reti virtuali da entrambi i modelli di distribuzione al circuito ExpressRoute. Per creare i collegamenti alle reti virtuali nel modello di distribuzione classica, seguire le istruzioni su [come collegare le reti virtuali nel modello di distribuzione classica](expressroute-howto-linkvnet-classic.md). Per creare i collegamenti alle reti virtuali nel modello di distribuzione Resource Manager, seguire le istruzioni su [come collegare le reti virtuali nel modello di distribuzione Resource Manager](expressroute-howto-linkvnet-arm.md).
+Impostazione **allowClassicOperations** tooTRUE consente le reti virtuali toolink entrambi toohello di modelli di distribuzione circuito ExpressRoute. È possibile collegare reti toovirtual nel modello di distribuzione classica hello da linee guida seguenti su [come toolink reti virtuali in hello modello di distribuzione classica](expressroute-howto-linkvnet-classic.md). È possibile collegare reti toovirtual nel modello di distribuzione di gestione risorse di hello da linee guida seguenti su [come toolink reti virtuali in hello il modello di distribuzione di gestione risorse](expressroute-howto-linkvnet-arm.md).
 
-Impostando **allowClassicOperations** su FALSE viene bloccato l'accesso al circuito dal modello di distribuzione classica. Tuttavia, tutti i collegamenti alle reti virtuali nel modello di distribuzione classica vengono conservati. In tal caso il circuito ExpressRoute non è visibile nel modello di distribuzione classica.
+Impostazione **allowClassicOperations** tooFALSE blocchi accedono circuito toohello dal modello di distribuzione classica hello. Tuttavia, vengono conservati tutti i collegamenti di rete virtuale nel modello di distribuzione classica hello. In questo caso, hello circuito ExpressRoute non è visibile nel modello di distribuzione classica hello.
 
-## <a name="supported-operations-in-the-classic-deployment-model"></a>Operazioni supportate nel modello di distribuzione classica
-Le operazioni classiche seguenti sono supportate in un circuito ExpressRoute quando **allowClassicOperations** è impostato su TRUE:
+## <a name="supported-operations-in-hello-classic-deployment-model"></a>Operazioni supportate nel modello di distribuzione classica hello
+Hello seguente classiche operazioni è supportata in ExpressRoute circuit quando **allowClassicOperations** è impostato tooTRUE:
 
 * Ottenere informazioni sul circuito ExpressRoute.
-* Creare, aggiornare, ottenere o eliminare collegamenti alle reti virtuali classiche.
+* Collegamenti di rete virtuale di creazione/aggiornamento/get/eliminazione tooclassic le reti virtuali
 * Creare, aggiornare, ottenere o eliminare autorizzazioni dei collegamenti alle reti virtuali per la connettività tra sottoscrizioni.
 
-Non è possibile eseguire le operazioni classiche seguenti quando **allowClassicOperations** è impostato su TRUE:
+Non è possibile eseguire dopo operazioni classiche hello quando **allowClassicOperations** è impostato tooTRUE:
 
 * Creare, aggiornare, ottenere o eliminare peering BGP (Border Gateway Protocol) per peering pubblici e privati di Azure e peering Microsoft.
 * Eliminare circuiti ExpressRoute.
 
-## <a name="communication-between-the-classic-and-the-resource-manager-deployment-models"></a>Comunicazione tra i modelli di distribuzione Resource Manager e classica
-Il circuito ExpressRoute fa da bridge tra il modello di distribuzione classica e il modello di distribuzione Resource Manager. Il traffico tra le macchine virtuali nelle reti virtuali del modello di distribuzione classica e quelle nelle reti virtuali del modello di distribuzione Resource Manager passa attraverso ExpressRoute se entrambe le reti virtuali sono collegate allo stesso circuito ExpressRoute.
+## <a name="communication-between-hello-classic-and-hello-resource-manager-deployment-models"></a>Comunicazione tra hello classic e modelli di distribuzione di gestione risorse di hello
+funge da ponte tra hello classic e modelli di distribuzione di gestione risorse di hello Hello circuito ExpressRoute. Se entrambe le reti virtuali sono collegato toohello il traffico tra macchine virtuali in reti virtuali nel modello di distribuzione classica hello e quelli in reti virtuali in hello Gestione risorse distribuzione modello attraversa ExpressRoute stesso circuito ExpressRoute.
 
-La velocità effettiva aggregata è limitata dalla capacità di velocità effettiva del gateway di rete virtuale. In questi casi il traffico non ha accesso alle reti dell'utente o del provider di connettività. Il flusso del traffico tra le reti virtuali è interamente contenuto nella rete Microsoft.
+Velocità effettiva aggregata è limitata dalla capacità di velocità effettiva di hello del gateway di rete virtuale hello. Il traffico di immettere le reti del provider di connettività hello o le reti in tali casi. Il flusso del traffico tra reti virtuali hello è completamente indipendente all'interno di rete Microsoft hello.
 
-## <a name="access-to-azure-public-and-microsoft-peering-resources"></a>Accesso alle risorse di peering Microsoft e peering pubblico di Azure
-È possibile continuare ad accedere alle risorse normalmente accessibili con il peering pubblico di Azure e il peering Microsoft senza interruzioni.  
+## <a name="access-tooazure-public-and-microsoft-peering-resources"></a>Accesso tooAzure pubblico e risorse di peering Microsoft
+È possibile continuare le risorse tooaccess che in genere sono accessibili tramite peering pubblico di Azure e Microsoft peering senza interruzioni.  
 
 ## <a name="whats-supported"></a>Attività supportate
 Questa sezione descrive le attività supportate per i circuiti ExpressRoute:
 
-* Per accedere alle reti virtuali distribuite nei modelli di distribuzione Resource Manager o classica, è possibile usare un solo circuito ExpressRoute.
-* È possibile spostare un circuito ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager. Dopo lo spostamento, il circuito ExpressRoute ha lo stesso aspetto e le stesse prestazioni di qualsiasi altro circuito ExpressRoute creato nel modello di distribuzione Resource Manager.
-* Solo il circuito ExpressRoute può essere spostato. I gateway VPN, le reti virtuali e i collegamenti del circuito non possono essere spostati con questa operazione.
-* Dopo aver spostato un circuito ExpressRoute nel modello di distribuzione Resource Manager, il ciclo di vita del circuito ExpressRoute può essere gestito unicamente con il modello di distribuzione Resource Manager. Ciò significa che operazioni come l'aggiunta, l'aggiornamento o l'eliminazione di peering, l'aggiornamento di proprietà dei circuiti, ad esempio la larghezza di banda, lo SKU e il tipo di fatturazione, e l'eliminazione dei circuiti possono essere eseguite solo nel modello di distribuzione Resource Manager.
-* Il circuito ExpressRoute fa da bridge tra il modello di distribuzione classica e il modello di distribuzione Resource Manager. Il traffico tra le macchine virtuali nelle reti virtuali del modello di distribuzione classica e quelle nelle reti virtuali del modello di distribuzione Resource Manager passa attraverso ExpressRoute se entrambe le reti virtuali sono collegate allo stesso circuito ExpressRoute.
-* La connettività tra sottoscrizioni è supportata sia nel modello di distribuzione classica che nel modello di distribuzione Resource Manager.
-* Dopo avere spostato un circuito ExpressRoute dal modello classico al modello di Azure Resource Manager, è possibile [eseguire la migrazione delle reti virtuali collegate al circuito ExpressRoute](expressroute-migration-classic-resource-manager.md).
+* È possibile usare un singola ExpressRoute circuito tooaccess reti virtuali che vengono distribuiti in hello classic e modelli di distribuzione di gestione risorse di hello.
+* È possibile spostare un circuito ExpressRoute da hello classic toohello il modello di distribuzione di gestione risorse. Dopo lo spostamento, hello circuito ExpressRoute Cerca abbia e opera come qualsiasi altro circuito ExpressRoute creata nel modello di distribuzione di gestione risorse di hello.
+* È possibile spostare solo il circuito ExpressRoute hello. I gateway VPN, le reti virtuali e i collegamenti del circuito non possono essere spostati con questa operazione.
+* Dopo un circuito ExpressRoute è stato spostato toohello modello di distribuzione di gestione delle risorse, è possibile gestire il ciclo di vita hello di hello circuito ExpressRoute solo utilizzando il modello di distribuzione di gestione risorse di hello. Ciò significa che è possibile eseguire operazioni come aggiunta/aggiornamento/eliminazione di peering, l'aggiornamento delle proprietà circuito (ad esempio la larghezza di banda, SKU e fatturazione di tipo) e l'eliminazione di circuiti solo nel modello di distribuzione di gestione risorse di hello.
+* funge da ponte tra hello classic e modelli di distribuzione di gestione risorse di hello Hello circuito ExpressRoute. Se entrambe le reti virtuali sono collegato toohello il traffico tra macchine virtuali in reti virtuali nel modello di distribuzione classica hello e quelli in reti virtuali in hello Gestione risorse distribuzione modello attraversa ExpressRoute stesso circuito ExpressRoute.
+* La connettività tra sottoscrizioni è supportata in hello classic sia modelli di distribuzione di gestione risorse di hello.
+* Dopo aver spostato un circuito ExpressRoute dal modello di hello modello classico toohello Gestione risorse di Azure, è possibile [migrare hello reti virtuali collegate toohello circuito ExpressRoute](expressroute-migration-classic-resource-manager.md).
 
 ## <a name="whats-not-supported"></a>Attività non supportate
 Questa sezione descrive le attività non supportate per i circuiti ExpressRoute:
 
-* Gestione del ciclo di vita di un circuito ExpressRoute dal modello di distribuzione classica.
-* Supporto del Controllo degli accessi in base al ruolo per il modello di distribuzione classica. Non è possibile eseguire il Controllo degli accessi in base al ruolo per un circuito nel modello di distribuzione classica. Qualsiasi amministratore o coamministratore della sottoscrizione può collegare o scollegare le reti virtuali dal circuito.
+* Gestione del ciclo di vita di hello di un circuito ExpressRoute dal modello di distribuzione classica hello.
+* Supporto basata sui ruoli di controllo di accesso (RBAC) per il modello di distribuzione classica hello. È possibile eseguire il circuito tooa RBAC controlli nel modello di distribuzione classica hello. Qualsiasi amministratore/coadministrator di sottoscrizione hello possibile collegare o scollegare circuito toohello reti virtuali.
 
 ## <a name="configuration"></a>Configurazione
-Vedere le istruzioni riportate nell'articolo [Spostamento dei circuiti ExpressRoute dal modello di distribuzione classica al modello di distribuzione Resource Manager](expressroute-howto-move-arm.md).
+Seguire le istruzioni di hello descritti in [spostare un circuito ExpressRoute da modello di distribuzione di gestione risorse toohello classico hello](expressroute-howto-move-arm.md).
 
 ## <a name="next-steps"></a>Passaggi successivi
-* [Eseguire la migrazione delle reti virtuali collegate al circuito ExpressRoute dal modello classico al modello di Resource Manager](expressroute-migration-classic-resource-manager.md)
+* [Eseguire la migrazione di hello reti virtuali collegate toohello circuito ExpressRoute da hello classico modello toohello Azure Resource Manager modello](expressroute-migration-classic-resource-manager.md)
 * Per informazioni sul flusso di lavoro, vedere [Flussi di lavoro e stati di provisioning di un circuito ExpressRoute](expressroute-workflows.md).
-* Per configurare la connessione ExpressRoute:
+* tooconfigure la connessione ExpressRoute:
   
   * [Creare un circuito ExpressRoute](expressroute-howto-circuit-arm.md)
   * [Configurare il routing](expressroute-howto-routing-arm.md)
-  * [Collegare una rete virtuale a un circuito ExpressRoute](expressroute-howto-linkvnet-arm.md)
+  * [Collegare un circuito ExpressRoute di tooan rete virtuale](expressroute-howto-linkvnet-arm.md)
 

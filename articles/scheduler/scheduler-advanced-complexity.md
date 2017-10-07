@@ -1,6 +1,6 @@
 ---
-title: "Come creare pianificazioni complesse e operazioni ricorrenti avanzate con l'Utilità di pianificazione di Azure"
-description: "Come creare pianificazioni complesse e operazioni ricorrenti avanzate con l'Utilità di pianificazione di Azure"
+title: "aaaHow tooBuild pianificazioni complesse e ricorrenza avanzate con utilità di pianificazione di Azure"
+description: "Come tooBuild complesso pianifica e ricorrenza avanzate con utilità di pianificazione di Azure"
 services: scheduler
 documentationcenter: .NET
 author: derek1ee
@@ -14,29 +14,29 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 20c3e3c1cb85308cad47054c2efa87f61cae0f22
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02172791978b12be0ccb3078125d057b2efe8523
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-build-complex-schedules-and-advanced-recurrence-with-azure-scheduler"></a>Come creare pianificazioni complesse e operazioni ricorrenti avanzate con l'Utilità di pianificazione di Azure
-## <a name="overview"></a>Overview
-Alla base dell’Utilità di pianificazione di Azure c’è la *pianificazione*. La pianificazione determina come e quando l'Utilità di Pianificazione esegue il processo.
+# <a name="how-toobuild-complex-schedules-and-advanced-recurrence-with-azure-scheduler"></a>Come tooBuild complesso pianifica e ricorrenza avanzate con utilità di pianificazione di Azure
+## <a name="overview"></a>Panoramica
+Fulcro hello di un'utilità di pianificazione di Azure è hello processo *pianificazione*. pianificazione di Hello determina quando e come hello dell'utilità di pianificazione esegue il processo di hello.
 
-L’Utilità di pianificazione di Azure consente di specificare pianificazioni varie, sia monouso che ricorrenti, per un processo. Le pianificazioni *monouso* vengono eseguite una volta sola all'ora specificata. Si tratta in effetti di pianificazioni *ricorrenti* che vengono eseguite solo una volta. Le pianificazioni ricorrenti vengono eseguite con una frequenza predeterminata.
+Pianificazione di Azure consente toospecify monouso e ricorrenti pianificazioni diverse per un processo. Le pianificazioni *monouso* vengono eseguite una volta sola all'ora specificata. Si tratta in effetti di pianificazioni *ricorrenti* che vengono eseguite solo una volta. Le pianificazioni ricorrenti vengono eseguite con una frequenza predeterminata.
 
 Con questa flessibilità, l’Utilità di pianificazione di Azure consente di supportare un'ampia gamma di scenari aziendali:
 
 * Pulizia periodica dei dati, ad esempio eliminare tutti i post su Twitter più vecchi di 3 mesi
-* Archiviazione – ad esempio, ogni mese, passaggio dello storico fatture al servizio di backup
+* Archiviazione, ad esempio, ogni mese, il servizio toobackup della cronologia di fatturazione push
 * Richieste di dati esterni – ad esempio, ogni 15 minuti, effettuare il prelievo dei nuovi bollettini meteorologici per sciatori dal servizio NOAA
-* Elaborazione immagini – ad esempio, ogni giorno della settimana, durante le ore non di punta, usare Immagine di elaborazione, ad esempio, ogni giorno feriale durante gli orari, utilizzare il cloud computing per comprimere le immagini caricate durante la giornata
+* Immagine di elaborazione, ad esempio, ogni giorno feriale durante le fasce orarie, usare cloud computing toocompress immagini caricate giorno
 
-In questo articolo, presenteremo dei processi di esempio che è possibile creare con l’Utilità di pianificazione di Azure. Verranno forniti i dati JSON che descrivono ciascun processo. Se si usa l'[API REST dell'Utilità di pianificazione](https://msdn.microsoft.com/library/mt629143.aspx), è possibile usare questo stesso JSON per [creare un processo dell'Utilità di pianificazione di Azure](https://msdn.microsoft.com/library/mt629145.aspx).
+In questo articolo, presenteremo dei processi di esempio che è possibile creare con l’Utilità di pianificazione di Azure. Si forniscono dati hello JSON che descrive ogni pianificazione. Se si utilizza hello [API REST dell'utilità di pianificazione](https://msdn.microsoft.com/library/mt629143.aspx), è possibile utilizzare questo stesso JSON per [creazione di un processo dell'utilità di pianificazione di Azure](https://msdn.microsoft.com/library/mt629145.aspx).
 
 ## <a name="supported-scenarios"></a>Scenari Supportati
-I numerosi esempi forniti in questo argomento illustrano i diversi scenari che l'Utilità di Pianificazione di Azure supporta. Complessivamente, questi esempi illustrano come creare pianificazioni adeguate a molti tipi di utilizzo, tra cui quelli indicati di seguito:
+Hello che molti esempi in questo argomento illustrano breadth hello degli scenari che supporta la pianificazione di Azure. Su vasta scala, questi esempi viene illustrato come toocreate pianificazioni per molti modelli di comportamento, tra cui hello quelli seguenti:
 
 * Esecuzione una sola volta in una determinata data e ora
 * Esecuzione ricorrente per un numero esplicito di volte
@@ -46,12 +46,12 @@ I numerosi esempi forniti in questo argomento illustrano i diversi scenari che l
 * Esecuzione ricorrente più volte in un dato periodo – ad esempio, gli ultimi venerdì e lunedì di ogni mese, o alle 5:15 am e 5:15 pm di ogni giorno
 
 ## <a name="dates-and-datetimes"></a>Date e Date-Ore
-Le date nei processi dell'Utilità di pianificazione di Azure seguono [la specifica ISO-8601](http://en.wikipedia.org/wiki/ISO_8601) e includono solo la data.
+Le date nei processi dell'utilità di pianificazione di Azure seguono hello [specifica ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) e includere solo hello Data.
 
-I riferimenti di tipo Data-Ora nei processi dell'Utilità di pianificazione di Azure seguono [la specifica ISO-8601](http://en.wikipedia.org/wiki/ISO_8601) e includono sia la data che l’ora. Una Data-Ora che non specifichi un fuso orario si assume essere UTC.  
+I riferimenti di data e ora nei processi dell'utilità di pianificazione di Azure seguono hello [specifica ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) e includere parti sia data e ora. Data e ora che non specifica un offset UTC presuppone toobe UTC.  
 
 ## <a name="how-to-use-json-and-rest-api-for-creating-schedules"></a>Procedura: Utilizzare JSON e API REST per la creazione di pianificazioni
-Per creare una pianificazione semplice con l'[API REST dell'Utilità di pianificazione di Azure](https://msdn.microsoft.com/library/mt629143), è prima di tutto necessario [registrare la sottoscrizione con un provider di risorse](https://msdn.microsoft.com/library/azure/dn790548.aspx) (il nome del provider per l'Utilità di pianificazione è *Microsoft.Scheduler*), quindi [creare una raccolta processi](https://msdn.microsoft.com/library/mt629159.aspx) e infine [creare un processo](https://msdn.microsoft.com/library/mt629145.aspx). Quando si crea un processo, è possibile specificare la pianificazione e la sua ricorrenza utilizzando un JSON come quello nell’estratto di seguito:
+una pianificazione semplice utilizzando toocreate hello [API REST dell'utilità di pianificazione di Azure](https://msdn.microsoft.com/library/mt629143), prima [registrare la sottoscrizione con un provider di risorse](https://msdn.microsoft.com/library/azure/dn790548.aspx) (nome del provider hello per utilità di pianificazione è  *Microsoft.Scheduler*), quindi [creare una raccolta di processi](https://msdn.microsoft.com/library/mt629159.aspx)e infine [creare un processo](https://msdn.microsoft.com/library/mt629145.aspx). Quando si crea un processo, è possibile specificare la pianificazione e ricorrenza usando JSON come hello uno tratte sotto:
 
     {
         "startTime": "2012-08-04T00:00Z", // optional
@@ -59,29 +59,29 @@ Per creare una pianificazione semplice con l'[API REST dell'Utilità di pianific
         "recurrence":                     // optional
         {
             "frequency": "week",     // can be "year" "month" "day" "week" "hour" "minute"
-            "interval": 1,                // optional, how often to fire (default to 1)
+            "interval": 1,                // optional, how often toofire (default too1)
             "schedule":                   // optional (advanced scheduling specifics)
             {
                 "weekDays": ["monday", "wednesday", "friday"],
                 "hours": [10, 22]                      
             },
-            "count": 10,                  // optional (default to recur infinitely)
-            "endTime": "2012-11-04",      // optional (default to recur infinitely)
+            "count": 10,                  // optional (default toorecur infinitely)
+            "endTime": "2012-11-04",      // optional (default toorecur infinitely)
         },
         …
     }
 
 ## <a name="overview-job-schema-basics"></a>Panoramica: Nozioni di base sugli schemi dei processi
-La tabella seguente fornisce una panoramica di alto livello degli elementi principali correlate alla ricorrenza e pianificazione di un processo:
+Hello nella tabella seguente fornisce una panoramica generale di hello elementi principali correlati toorecurrence e la pianificazione di un processo:
 
 | **Nome JSON** | **Descrizione** |
 |:--- |:--- |
-| ***startTime*** |*startTime* è in formato Data-Ora. Per le pianificazioni semplici *startTime* è la prima occorrenza e per le pianificazioni complesse il processo verrà avviato non prima di *startTime*. |
-| ***recurrence*** |L'oggetto *recurrence* specifica le regole di ricorrenza per il processo e le tempistiche con la quale il processo viene eseguito. L'oggetto recurrence supporta gli elementi *frequency, interval, endTime, count* e *schedule*. Se viene definito l'oggetto *recurrence*, è necessario definire anche *frequency*. Gli altri elementi di *recurrence* sono facoltativi. |
-| ***frequency*** |La stringa *frequency* rappresenta l'intervallo di frequenza con cui ricorre il processo. I valori supportati sono *"minute", "hour", "day", "week",* o *"month"*. |
-| ***interval*** |L'oggetto *interval* è un numero intero positivo e indica l'intervallo per il valore *frequency*, che determina la frequenza di esecuzione del processo. Se ad esempio *interval* è 3 e *frequency* è "week", il processo si ripete ogni 3 settimane. L'Utilità di pianificazione di Azure supporta un oggetto *interval* con valore massimo di 18 mesi per la frequenza mensile, 78 settimane per la frequenza settimanale o 548 giorni per la frequenza giornaliera. Per le frequenze di tipo ora e minuto, l'intervallo supportato è 1 <= *interval* <= 1000. |
-| ***endTime*** |La stringa *endTime* specifica data e ora passate le quali il processo non deve più essere eseguito. Non è possibile impostare un *endTime* nel passato. Se non viene specificato un *endTime* o un oggetto count, il processo viene eseguito all'infinito. Non è possibile includere sia *endTime* e *count* in uno stesso processo. |
-| ***count*** |<p>L'oggetto *count* è un numero intero positivo (maggiore di zero) che specifica il numero di volte per cui il processo deve essere eseguito prima del completamento.</p><p>L'oggetto *count* rappresenta il numero di volte per cui viene eseguito un processo prima di essere considerato come completato. Ad esempio, per un processo che viene eseguito ogni giorno con *count* 5 e data di inizio lunedì, il processo viene completato dopo l'esecuzione di venerdì. Se la data di inizio è già passata, la prima esecuzione verrà calcolata dall'ora di creazione.</p><p>Se non viene specificato un oggetto *endTime* o un oggetto *count*, il processo viene eseguito all'infinito. Non è possibile includere sia *endTime* e *count* in uno stesso processo.</p> |
+| ***startTime*** |*startTime* è in formato Data-Ora. Per le pianificazioni semplice, *startTime* viene prima occorrenza di hello e per le pianificazioni complesse, hello processo non inizierà a avvenga *startTime*. |
+| ***recurrence*** |Hello *ricorrenza* oggetto specifica le regole di ricorrenza per i processi di hello e hello ricorrenza hello verrà eseguita con. oggetto ricorrenza Hello supporta gli elementi di hello *frequenza, intervallo, endTime, conteggio,* e *pianificazione*. Se *ricorrenza* è definito, *frequenza* è obbligatorio; gli altri elementi di hello *ricorrenza* sono facoltativi. |
+| ***frequency*** |Hello *frequenza* stringa che rappresenta l'unità di hello frequenza alla quale hello processo si ripete. I valori supportati sono *"minute", "hour", "day", "week",* o *"month"*. |
+| ***interval*** |Hello *intervallo* un numero intero positivo e indica l'intervallo di hello per hello *frequenza* che determina la frequenza con cui hello processo verrà eseguito. Ad esempio, se *intervallo* è 3 e *frequenza* è "settimana", il processo di hello ricorre ogni tre settimane. L'Utilità di pianificazione di Azure supporta un oggetto *interval* con valore massimo di 18 mesi per la frequenza mensile, 78 settimane per la frequenza settimanale o 548 giorni per la frequenza giornaliera. Per ora e minuto della frequenza, intervallo hello supportato è 1 < = *intervallo* < = 1000. |
+| ***endTime*** |Hello *endTime* stringa specifica data e ora di hello oltre cui hello processo non deve essere eseguita. Non è valido toohave un *endTime* in hello precedente. Se non *endTime* o numero viene specificato, il processo di hello viene eseguito all'infinito. Entrambi *endTime* e *conteggio* non può essere incluso per hello stesso processo. |
+| ***count*** |<p>Hello *conteggio* è un numero intero positivo (maggiore di zero) che specifica il numero di hello di volte in cui questo processo deve essere eseguito prima del completamento.</p><p>Hello *conteggio* rappresenta hello numero di volte in cui viene eseguito il processo di hello prima viene determinato come completata. Ad esempio, per un processo che viene eseguito ogni giorno con *conteggio* 5 e data di inizio del lunedì, hello processo viene completato al termine dell'esecuzione venerdì. Se start hello data hello precedente, prima esecuzione hello viene calcolato dal momento della creazione hello.</p><p>Se non *endTime* o *conteggio* viene specificata, il processo di hello viene eseguito all'infinito. Entrambi *endTime* e *conteggio* non può essere incluso per hello stesso processo.</p> |
 | ***schedule*** |Un processo con una frequenza specificata modifica la sua ricorrenza in base a una pianificazione di ricorrenza. Un oggetto *schedule* contiene modifiche in base a minuti, ore, giorni della settimana, giorni del mese e numero della settimana. |
 
 ## <a name="overview-job-schema-defaults-limits-and-examples"></a>Panoramica: Impostazioni predefinite dello schema del processo, limiti ed esempi
@@ -92,59 +92,59 @@ Dopo questa panoramica, esaminiamo ciascuno di questi elementi in modo dettaglia
 | ***startTime*** |String |No |None |Date-Ore ISO-8601 |<code>"startTime" : "2013-01-09T09:30:00-08:00"</code> |
 | ***recurrence*** |Oggetto |No |None |Oggetto ricorrenza |<code>"recurrence" : { "frequency" : "monthly", "interval" : 1 }</code> |
 | ***frequency*** |String |Sì |None |"minute", "hour", "day", "week", "month" |<code>"frequency" : "hour"</code> |
-| ***interval*** |Number |No |1 |Da 1 a 1000. |<code>"interval":10</code> |
-| ***endTime*** |String |No |None |Il valore Data-Ora fa riferimento a un momento nel futuro |<code>"endTime" : "2013-02-09T09:30:00-08:00"</code> |
+| ***interval*** |Number |No |1 |1 too1000. |<code>"interval":10</code> |
+| ***endTime*** |String |No |Nessuno |Valore di data e ora che rappresenta un'ora nel futuro hello |<code>"endTime" : "2013-02-09T09:30:00-08:00"</code> |
 | ***count*** |Number |No |None |>= 1 |<code>"count": 5</code> |
 | ***schedule*** |Oggetto |No |None |Oggetto pianificazione |<code>"schedule" : { "minute" : [30], "hour" : [8,17] }</code> |
 
 ## <a name="deep-dive-starttime"></a>Approfondimenti: *startTime*
-La tabella seguente illustra come *startTime* controlla la modalità di esecuzione di un processo.
+tabella che segue Hello acquisizioni come *startTime* controlla le modalità di esecuzione di un processo.
 
 | **valore startTime** | **Nessuna ricorrenza** | **Ricorrenza. Nessuna pianificazione** | **Ricorrenza con pianificazione** |
 |:--- |:--- |:--- |:--- |
 | **Nessuna ora di inizio** |Eseguire una volta immediatamente |Eseguire una volta immediatamente. Lanciare le esecuzioni successive basandosi sul calcolo dall'ultima esecuzione |<p>Eseguire una volta immediatamente</p><p>Avviare le esecuzioni successive in base alla pianificazione di ricorrenza</p> |
-| **Ora di inizio nel passato** |Eseguire una volta immediatamente |<p>Calcolare l'ora della prima esecuzione futura dopo l'ora di inizio e avviare l'esecuzione in corrispondenza di tale orario</p><p>Avviare le esecuzione successive in base al calcolo relativo all'ora dell'ultima esecuzione</p><p>Per altre informazioni, vedere l'esempio disponibile dopo la tabella</p> |<p>Il processo inizia *non prima* dell'ora di inizio specificata. La prima occorrenza è basata sulla pianificazione calcolata dall'ora di inizio</p><p>Avviare le esecuzioni successive in base alla pianificazione di ricorrenza</p> |
-| **Ora di inizio nel futuro o nel presente** |Eseguire una sola volta all'ora di inizio specificata |<p>Eseguire una sola volta all'ora di inizio specificata</p><p>Lanciare le esecuzioni successive basandosi sul calcolo dall'ultima esecuzione</p> |<p>Il processo inizia *non prima* dell'ora di inizio specificata. La prima occorrenza è basata sulla pianificazione calcolata dall'ora di inizio</p><p>Avviare le esecuzioni successive in base alla pianificazione di ricorrenza</p> |
+| **Ora di inizio nel passato** |Eseguire una volta immediatamente |<p>Calcolare l'ora della prima esecuzione futura dopo l'ora di inizio e avviare l'esecuzione in corrispondenza di tale orario</p><p>Avviare le esecuzione successive in base al calcolo relativo all'ora dell'ultima esecuzione</p><p>Per altre informazioni, vedere l'esempio disponibile dopo la tabella</p> |<p>Avvio del processo *non prima rispetto a* hello specificato ora di inizio. prima occorrenza di Hello è basato su pianificazione hello calcolato dall'ora di inizio hello</p><p>Avviare le esecuzioni successive in base alla pianificazione di ricorrenza</p> |
+| **Ora di inizio nel futuro o nel presente** |Eseguire una sola volta all'ora di inizio specificata |<p>Eseguire una sola volta all'ora di inizio specificata</p><p>Lanciare le esecuzioni successive basandosi sul calcolo dall'ultima esecuzione</p> |<p>Avvio del processo *non prima rispetto a* hello specificato ora di inizio. prima occorrenza di Hello è basato su pianificazione hello calcolato dall'ora di inizio hello</p><p>Avviare le esecuzioni successive in base alla pianificazione di ricorrenza</p> |
 
-È possibile esaminare lo scenario che prevede un valore per *startTime* nel passato, un oggetto *recurrence* ma nessun oggetto *schedule*.  Si supponga che l'ora corrente sia 2015-04-08 13:00, *startTime* sia 2015-04-07 14:00 e *recurrence* sia pari a ogni 2 giorni, in base a *frequency*: day e *interval*: 2. Si noti che il valore di *startTime* è nel passato e si verifica prima dell'ora corrente.
+Di seguito viene illustrato un esempio di ciò che accade in *startTime* in versioni precedenti di hello con *ricorrenza* ma non *pianificazione*.  Si supponga che hello ora corrente è 2015-04-08 13:00, *startTime* è 2015-04-07 14:00, e *ricorrenza* ogni 2 giorni (definito con *frequenza*: giorno e *intervallo*: 2.) Si noti che hello *startTime* in hello precedente e si verifica prima dell'ora corrente hello
 
-In queste condizioni, il *prima esecuzione* sarà 2015-04-09 alle 14:00\. Il motore dell'utilità di pianificazione calcola le occorrenze dall'ora di inizio dell'esecuzione.  Vengono eliminate tutte le istanze in passato. Il motore utilizza l'istanza successiva che si verifica in futuro.  In questo caso, quindi, il valore per *startTime* è 2015-04-07 alle 14:00, quindi l'istanza successiva viene eseguita due giorni dopo tale orario, ovvero il giorno 2015-04-09 alle 14:00.
+In queste condizioni, hello *prima esecuzione* sarà 2015-04-09 alle 14:00\. il motore di pianificazione Hello calcola le occorrenze di esecuzione dall'ora di inizio hello.  Tutte le istanze in hello precedente vengono eliminate. il motore di Hello utilizza istanza successiva hello che si verifica in hello future.  In questo caso, *startTime* è 2015-04-07 2:00 PM, pertanto hello istanza successiva è 2 giorni a partire da tale ora, ovvero 2015-04-09 2:00 PM.
 
-Si noti che la prima esecuzione potrebbe essere la stessa anche se la proprietà startTime 2015-04-05 14:00 o 14:00\ 2015-04-01. Dopo la prima esecuzione, le esecuzioni successive vengono calcolate secondo la pianificazione – per cui sono il 2015-04-11 alle 14:00, poi il 2015-04-13 alle 14:00, poi il  2015-04-15 alle 14:00, e così via.
+Si noti che prima esecuzione hello sarebbe hello stesso anche se hello startTime 2015-04-05 14:00 o 14:00\ 2015-04-01. Dopo la prima esecuzione hello, nelle esecuzioni successive vengono calcolate utilizzando hello pianificati, in modo saranno 2015-04-11 2:00 PM, quindi 2015-04-13 2:00 pm, quindi 2015-04-15 ore 2:00, e così via.
 
-Infine, quando un processo ha una pianificazione, se non sono impostate ore e/o minuti nella pianificazione, per impostazione predefinita vengono usate le ore e/o minuti della prima esecuzione.
+Infine, quando un processo dispone di una pianificazione, se le ore e/o minuti non sono impostati nella pianificazione hello, essi ore toohello predefinito e/o minuti della prima esecuzione hello, rispettivamente.
 
 ## <a name="deep-dive-schedule"></a>Approfondimenti: *schedule*
-Da un lato, un oggetto *schedule* può *limitare* il numero di esecuzioni di un processo.  Se ad esempio l'oggetto *schedule* di un processo con frequenza "month" prevede l'esecuzione solo il giorno 31,<sup></sup> il processo viene eseguito solo nei mesi che includono 31 giorni.
+In alcuni casi un *pianificazione* possibile *limite* hello numero di esecuzioni del processo.  Ad esempio, se un processo con una frequenza di "month" ha un *pianificazione* che viene eseguito solo giorno 31, hello processo viene eseguito in solo questi mesi che hanno un 31<sup>st</sup> giorno.
 
-Un oggetto *schedule* tuttavia può anche *aumentare* il numero di esecuzioni di un processo. Se, ad esempio l'oggetto *schedule* di un processo con frequenza "month" prevede l'esecuzione nei giorni 1 e 2 del mese, il processo viene eseguito il 1<sup>°</sup> e il 2<sup>°</sup> giorno del mese, invece che una sola volta al mese.
+Hello d'altro canto, una *pianificazione* può anche *espandere* hello numero di esecuzioni del processo. Ad esempio, se un processo con una frequenza di "month" ha un *pianificazione* che viene eseguita in giorni del mese 1 e 2, hello processo viene eseguito su hello 1<sup>st</sup> e 2<sup>nd</sup> giorni del mese hello anziché una sola volta un mese.
 
-Se vengono specificati più parametri di pianificazione, l'ordine di valutazione è dal più grande al più piccolo – numero della settimana, giorno del mese, giorno della settimana, ora, e minuto.
+Se vengono specificati più elementi di programmazione, hello di valutazione è più grande hello toosmallest-numero della settimana, giorno, mese, giorno della settimana, ore e minuti.
 
-La tabella seguente illustra in modo dettagliato gli elementi dell'oggetto *schedule*.
+Hello nella tabella seguente vengono descritti *pianificazione* elementi in modo dettagliato.
 
 | **Nome JSON** | **Descrizione** | **Valori validi** |
 |:--- |:--- |:--- |
-| **minutes** |Minuti dell'ora in cui verrà eseguito il processo |<ul><li>Numero intero o</li><li>Matrice di numeri interi</li></ul> |
-| **hours** |Ora del giorno in cui verrà eseguito il processo |<ul><li>Numero intero o</li><li>Matrice di numeri interi</li></ul> |
-| **weekDays** |Giorni della settimana in cui verrà eseguito il processo. Può essere specificato solo con una frequenza settimanale. |<ul><li>I valori consentiti sono "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" o "Sunday"</li><li>Matrice dei valori precedenti (dimensione massima della matrice: 7)</li></ul>*Non* viene applicata la distinzione tra maiuscole e minuscole |
-| **monthlyOccurrences** |Determina in quali giorni del mese verrà eseguito il processo. Può essere specificato solo con una frequenza mensile. |<ul><li>Matrice di oggetti monthlyOccurrence:</li></ul> <pre>{ "day": *day*,<br />  "occurrence": *occurrence*<br />}</pre><p> *day* è il giorno della settimana in cui verrà eseguito il processo, ad esempio {Sunday} corrisponde a ogni domenica del mese. Richiesto.</p><p>*occurrence* è l'occorrenza del giorno durante il mese, ad esempio {Sunday, -1} corrisponde all'ultima domenica del mese. Facoltativo.</p> |
-| **monthDays** |Giorno del mese in cui verrà eseguito il processo. Può essere specificato solo con una frequenza mensile. |<ul><li>Qualsiasi valore <= -1 e >= -31.</li><li>Qualsiasi valore >= 1 e <= 31.</li><li>Matrice dei valori precedenti</li></ul> |
+| **minutes** |Minuti di ora hello in cui hello processo verrà eseguito |<ul><li>Numero intero o</li><li>Matrice di numeri interi</li></ul> |
+| **hours** |Ore del giorno hello in cui hello processo verrà eseguito |<ul><li>Numero intero o</li><li>Matrice di numeri interi</li></ul> |
+| **weekDays** |Giorni di processo di hello settimana hello verranno eseguito. Può essere specificato solo con una frequenza settimanale. |<ul><li>I valori consentiti sono "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" o "Sunday"</li><li>Matrice di uno dei hello di sopra di valori (dimensione matrice massima 7)</li></ul>*Non* viene applicata la distinzione tra maiuscole e minuscole |
+| **monthlyOccurrences** |Determina quali giorni del processo di hello hello mese verranno eseguito. Può essere specificato solo con una frequenza mensile. |<ul><li>Matrice di oggetti monthlyOccurrence:</li></ul> <pre>{ "day": *day*,<br />  "occurrence": *occurrence*<br />}</pre><p> *giorno* è giorno hello del processo di hello settimana hello verrà eseguito, ad esempio, {domenica} è ogni domenica del mese hello. Obbligatorio.</p><p>Occorrenza *occorrenza* del giorno hello durante il mese di hello, ad esempio {domenica, -1} è hello ultima domenica del mese hello. Facoltativo.</p> |
+| **monthDays** |Giorno del processo di hello hello mese verrà eseguito. Può essere specificato solo con una frequenza mensile. |<ul><li>Qualsiasi valore <= -1 e >= -31.</li><li>Qualsiasi valore >= 1 e <= 31.</li><li>Matrice dei valori precedenti</li></ul> |
 
 ## <a name="examples-recurrence-schedules"></a>Esempi: Pianificazioni di ricorrenza
-Di seguito sono riportati diversi esempi di pianificazioni di ricorrenza – concentrarsi sull'oggetto pianificazione e i relativi elementi secondari.
+di seguito Hello sono vari esempi di pianificazioni di ricorrenza: porre l'attenzione sul oggetto pianificazione hello e i relativi elementi secondari.
 
-Le pianificazioni sotto tutti presuppongono che il *intervallo* è impostato su 1\. Inoltre, uno necessario considerare la frequenza di invio in base al contenuto il *pianificazione* : ad esempio, uno non è possibile utilizzare frequenza "day" e una modifica "giorni mese" nella pianificazione. Tali limitazioni sono state descritte in precedenza.
+le pianificazioni sotto tutti Hello presuppongono che hello *intervallo* è impostato too1\. Inoltre, uno deve presupporre hello frequenza di invio in conformità toowhat è in hello *pianificazione* : ad esempio, uno non è possibile utilizzare "day" frequenza e dispone di una modifica "giorni mese" in pianificazione hello. Tali limitazioni sono state descritte in precedenza.
 
 | **Esempio** | **Descrizione** |
 |:--- |:--- |
-| <code>{"hours":[5]}</code> |Eseguire alle 5 di mattina di ogni giorno. L’Utilità di pianificazione di Azure fa corrispondere ogni valore in "ore" con ogni valore in "minuti", uno per uno, per creare un elenco di tutte le volte in cui deve essere eseguito il processo. |
+| <code>{"hours":[5]}</code> |Eseguire alle 5 di mattina di ogni giorno. Utilità di pianificazione Azure corrisponda a ogni valore nella "orario" con ogni valore in "minutes", uno alla volta, eseguire un elenco di tutti i periodi di hello al quale hello processo è toobe toocreate. |
 | <code>{"minutes":[15], "hours":[5]}</code> |Eseguire alle 5:15 di mattina di ogni giorno. |
 | <code>{"minutes":[15], "hours":[5,17]}</code> |Eseguire alle 5:15 di mattina e alle 17:15 ogni giorno |
 | <code>{"minutes":[15,45], "hours":[5,17]}</code> |Eseguire alle 5:15, 5:45, 17:15 e 17:45 ogni giorno |
 | <code>{"minutes":[0,15,30,45]}</code> |Eseguire ogni 15 minuti |
-| <code>{hours":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}</code> |Eseguire ogni ora. Questo processo viene eseguito ogni ora. Il valore per i minuti viene controllato dall'oggetto *startTime*, se specificato, oppure dall'ora di creazione, se tale oggetto non è specificato. Ad esempio, se l'ora di inizio o l’ora di creazione (qualunque delle due si applichi) è 12:25, il processo verrà eseguito a 00:25, 01:25, 02:25, ..., 23:25. La pianificazione equivale a un processo con *frequency* pari a "hour", *interval* di 1 e nessun oggetto *schedule*. Questa pianificazione, tuttavia, può essere usata con valori diversi per *frequency* e *interval*, per creare anche altri processi. Se, ad esempio, il valore per *frequency* fosse "month", la pianificazione verrebbe eseguita solo una volta al mese invece di ogni giorno, come accadrebbe se il valore di *frequency* fosse "day". |
-| <code>{minutes:[0]}</code> |Eseguire ogni ora all’inizio dell’ora. Anche questo processo viene eseguito ogni ora, ma al suo inizio (ad esempio 12:00, 13:00, 14:00, etc.) Ciò equivale a un processo con frequenza di "ora", uno startTime con zero minuti, e nessuna pianificazione se la frequenza è "giorno", ma se la frequenza è "settimana" o "mese", la pianificazione verrebbe eseguita un solo giorno alla settimana o al mese, rispettivamente. |
+| <code>{hours":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}</code> |Eseguire ogni ora. Questo processo viene eseguito ogni ora. minuto Hello è controllato da hello *startTime*, se ne è stato specificato o se non è specificato, dal momento della creazione hello. Ad esempio, se start hello ora o ora di creazione (a seconda del valore si applica) è 12:25 PM, hello processo verrà eseguito 00:25, 25:01, 02:25,..., 23:25. Hello pianificazione è equivalente toohaving un processo con *frequenza* "ora", un *intervallo* 1 e n *pianificazione*. Hello differenza è che la pianificazione può essere utilizzata con diversi *frequenza* e *intervallo* toocreate altri processi troppo. Ad esempio, se hello *frequenza* fosse "month", la pianificazione hello viene eseguito solo una volta al mese anziché ogni giorno se *frequenza* stato "giorno" |
+| <code>{minutes:[0]}</code> |Eseguire ogni ora in ora hello. Questo processo viene inoltre eseguito ogni ora, ma ora hello (ad esempio, 12 AM, AM 1, 2 AM, ecc.) Questo è equivalente tooa processo con una frequenza di "ora", un'ora di inizio e zero minuti, nessuna pianificazione se frequenza hello "day", ma se la frequenza di hello "settimana" o "month", pianificazione hello eseguirebbe rispettivamente un solo giorno una settimana o un mese, giorno. |
 | <code>{"minutes":[15]}</code> |Eseguire 15 minuti dopo l’inizio di ogni ora. Viene eseguito ogni ora, a partire da 00:15, poi 01:15, 02:15, e così via fino a 22:15 e 23:15. |
 | <code>{"hours":[17], "weekDays":["saturday"]}</code> |Eseguire alle 17.00 di ogni sabato |
 | <code>{hours":[17], "weekDays":["monday", "wednesday", "friday"]}</code> |Eseguire alle 17 di ogni lunedì, mercoledì e venerdì |
@@ -155,27 +155,27 @@ Le pianificazioni sotto tutti presuppongono che il *intervallo* è impostato su 
 | <code>{"minutes":[0,15,30,45], "hours": [9, 10, 11, 12, 13, 14, 15, 16] "weekDays":["monday", "tuesday", "wednesday", "thursday", "friday"]}</code> |Eseguire ogni 15 minuti nei giorni feriali tra le 09:00 e le 16:45 |
 | <code>{"weekDays":["sunday"]}</code> |Eseguire ogni domenica all'ora di inizio |
 | <code>{"weekDays":["tuesday", "thursday"]}</code> |Eseguire ogni martedì e giovedì all'ora di inizio |
-| <code>{"minutes":[0], "hours":[6], "monthDays":[28]}</code> |Eseguire alle 06:00 il ventottesimo giorno di ogni mese (assumendo che la frequenza sia mensile) |
-| <code>{"minutes":[0], "hours":[6], "monthDays":[-1]}</code> |Eseguire alle 06:00 dell’ultimo giorno di ogni mese. Se si desidera eseguire un processo l'ultimo giorno del mese, utilizzare -1 anziché il giorno 28, 29, 30 o 31. |
-| <code>{"minutes":[0], "hours":[6], "monthDays":[1,-1]}</code> |Eseguire alle 06:00 il primo e l’ultimo giorno di ogni mese |
-| <code>{monthDays":[1,-1]}</code> |Eseguire il primo e l’ultimo giorno di ogni mese all’ora di inizio |
-| <code>{monthDays":[1,14]}</code> |Eseguire il primo e il quattordicesimo giorno di ogni mese all’ora di inizio |
-| <code>{monthDays":[2]}</code> |Eseguire il secondo giorno di ogni mese all’ora di inizio |
+| <code>{"minutes":[0], "hours":[6], "monthDays":[28]}</code> |Esegui alle ore 6 in hello 28 giorno di ogni mese (presupponendo che la frequenza del mese) |
+| <code>{"minutes":[0], "hours":[6], "monthDays":[-1]}</code> |Eseguito alle ore 6 hello ultimo giorno del mese hello. Se si desidera un processo in hello toorun ultimo giorno del mese, utilizzare -1 anziché giorno 28, 29, 30 o 31. |
+| <code>{"minutes":[0], "hours":[6], "monthDays":[1,-1]}</code> |Eseguito alle ore 6 hello primo e ultimo giorno di ogni mese |
+| <code>{monthDays":[1,-1]}</code> |Eseguire su hello primo e ultimo giorno di ogni mese in fase di avvio |
+| <code>{monthDays":[1,14]}</code> |Eseguire in hello primo e il quattordicesimo giorno di ogni mese in fase di avvio |
+| <code>{monthDays":[2]}</code> |Eseguire in hello secondo giorno del mese in fase di avvio hello |
 | <code>{"minutes":[0], "hours":[5], "monthlyOccurrences":[{"day":"friday", "occurrence":1}]}</code> |Eseguire il primo venerdì di ogni mese alle 05:00 |
 | <code>{"monthlyOccurrences":[{"day":"friday", "occurrence":1}]}</code> |: Eseguire il primo venerdì di ogni mese all’ora di inizio |
 | <code>{"monthlyOccurrences":[{"day":"friday", "occurrence":-3}]}</code> |Eseguire il terzultimo venerdì di ogni mese, all'ora di inizio |
 | <code>{"minutes":[15], "hours":[5], "monthlyOccurrences":[{"day":"friday", "occurrence":1},{"day":"friday", "occurrence":-1}]}</code> |Eseguire il primo e l’ultimo venerdì di ogni mese alle 05:15 |
 | <code>{"monthlyOccurrences":[{"day":"friday", "occurrence":1},{"day":"friday", "occurrence":-1}]}</code> |Eseguire il primo e l’ultimo venerdì di ogni mese all’ora di inizio |
-| <code>{"monthlyOccurrences":[{"day":"friday", "occurrence":5}]}</code> |Eseguire il quinto venerdì di ogni mese all’ora di inizio Se non ci sono cinque venerdì nel mese, il processo non viene eseguito, dato che è pianificato per essere lanciato solamente al quinto venerdì del mese. È consigliabile utilizzare -1 anziché 5 per l'occorrenza se si desidera eseguire il processo all'ultimo venerdì del mese. |
-| <code>{"minutes":[0,15,30,45], "monthlyOccurrences":[{"day":"friday", "occurrence":-1}]}</code> |Eseguire ogni 15 minuti all’ultimo venerdì del mese |
-| <code>{"minutes":[15,45], "hours":[5,17], "monthlyOccurrences":[{"day":"wednesday", "occurrence":3}]}</code> |Eseguire alle 05:15, 05:45, 17:15 e 17:45 il terzo mercoledì di ogni mese |
+| <code>{"monthlyOccurrences":[{"day":"friday", "occurrence":5}]}</code> |Eseguire il quinto venerdì di ogni mese all’ora di inizio Se è presente alcun venerdì quinto in un mese, questo non viene eseguito, perché è toorun pianificato solo quinto venerdì. È consigliabile utilizzare -1 anziché su 5 occorrenza hello se si desidera toorun hello processo in corso ultimo hello venerdì del mese di hello. |
+| <code>{"minutes":[0,15,30,45], "monthlyOccurrences":[{"day":"friday", "occurrence":-1}]}</code> |Eseguire ogni 15 minuti, ultimo venerdì del mese hello |
+| <code>{"minutes":[15,45], "hours":[5,17], "monthlyOccurrences":[{"day":"wednesday", "occurrence":3}]}</code> |Eseguire 5:15 AM, 5:45 AM, 17:15:00 e 5:45 PM in hello 3rd mercoledì di ogni mese |
 
 ## <a name="see-also"></a>Vedere anche
  [Che cos'è l'Utilità di pianificazione?](scheduler-intro.md)
 
  [Concetti, terminologia e gerarchia di entità dell'Utilità di pianificazione di Azure](scheduler-concepts-terms.md)
 
- [Introduzione all'uso dell'Utilità di pianificazione di Azure nel portale di Azure](scheduler-get-started-portal.md)
+ [Introduzione all'uso dell'utilità di pianificazione nel portale di Azure hello](scheduler-get-started-portal.md)
 
  [Piani e fatturazione nell'utilità di pianificazione di Azure](scheduler-plans-billing.md)
 

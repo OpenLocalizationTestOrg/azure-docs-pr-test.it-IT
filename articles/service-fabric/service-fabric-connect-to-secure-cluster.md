@@ -1,6 +1,6 @@
 ---
-title: Connettersi a un cluster sicuro di Azure Service Fabric | Microsoft Docs
-description: Descrive come autenticare l'accesso client a un cluster di Service Fabric e come proteggere la comunicazione tra i client e un cluster.
+title: aaaConnect in modo sicuro i cluster di Azure Service Fabric tooan | Documenti Microsoft
+description: Descrive come tooauthenticate client di accedere ai cluster di Service Fabric tooa e come toosecure comunicazione tra client e un cluster.
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/01/2017
 ms.author: ryanwi
-ms.openlocfilehash: d6a13ceb8ccd9207ecacc166247535d496d5dec7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1b6a87a1fefaddce2043c604ca53751157232170
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-a-secure-cluster"></a>Connettersi a un cluster sicuro
+# <a name="connect-tooa-secure-cluster"></a>Connettere il cluster protetto di tooa
 
-Quando un client si connette a un nodo di un cluster di Service Fabric, è possibile autenticare il client e proteggere la comunicazione stabilita usando la sicurezza basata su certificati o Azure Active Directory (AAD). Questa autenticazione garantisce che solo gli utenti autorizzati possano accedere al cluster e alle applicazioni distribuite ed eseguire attività di gestione.  La sicurezza basata su certificati o AAD deve essere stata abilitata in precedenza nel cluster durante la creazione del cluster stesso.  Per altre informazioni sugli scenari di sicurezza dei cluster, vedere [Sicurezza del cluster](service-fabric-cluster-security.md). Se ci si connette a un cluster protetto con certificati, [configurare il certificato client](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert) nel computer che si connette al cluster. 
+Quando un client si connette nodo del cluster di Service Fabric tooa, client hello può essere comunicazioni autenticate e protette stabilite utilizzando la sicurezza di certificati o Azure Active Directory (AAD). Questa autenticazione assicura che solo gli utenti autorizzati possono accedere ai cluster hello e le applicazioni distribuite e attività di gestione.  Certificato o la sicurezza di Azure ad deve essere stata precedentemente abilitata in cluster hello quando hello cluster è stato creato.  Per altre informazioni sugli scenari di sicurezza dei cluster, vedere [Sicurezza del cluster](service-fabric-cluster-security.md). Se ci si connette tooa cluster protetti con i certificati, [impostare hello client certificato](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert) computer hello che collega toohello cluster. 
 
 <a id="connectsecureclustercli"></a> 
 
-## <a name="connect-to-a-secure-cluster-using-azure-service-fabric-cli-sfctl"></a>Connettersi a un cluster sicuro usando l'interfaccia della riga di comando di Azure Service Fabric (sfctl)
+## <a name="connect-tooa-secure-cluster-using-azure-service-fabric-cli-sfctl"></a>Connettersi tooa cluster sicuro utilizzando Azure Service Fabric CLI (sfctl)
 
-Esistono modi diversi per connettersi a un cluster protetto usando l'interfaccia della riga di comando di Service Fabric (sfctl). Quando si usa un certificato client per l'autenticazione, i dettagli del certificato devono corrispondere al certificato distribuito ai nodi del cluster. Se il certificato dispone di autorità di certificazione (CA), è necessario specificare anche le autorità di certificazione attendibili.
+Esistono alcuni modi diversi tooconnect tooa cluster sicuro utilizzando hello servizio infrastruttura CLI (sfctl). Quando si utilizza un certificato client per l'autenticazione, il certificato di hello dettagli devono corrispondere al certificato distribuito toohello i nodi del cluster. Se il certificato dispone di autorità di certificazione (CA), è necessario tooadditionally specificare hello attendibile l'autorità di certificazione.
 
-È possibile connettersi a un cluster con il comando `sfctl cluster select`.
+È possibile connettersi tooa cluster utilizzando hello `sfctl cluster select` comando.
 
-È possibile specificare i certificati client in due modi diversi, come una coppia chiave-certificato o come un file con estensione pem singolo. Per i file `pem` protetti da password verrà chiesto automaticamente di immettere la password.
+È possibile specificare i certificati client in due modi diversi, come una coppia chiave-certificato o come un file con estensione pem singolo. Per la protezione con password `pem` file, sarà richiesto automaticamente password hello tooenter.
 
-Per specificare il certificato client come file con estensione pem, specificare il percorso del file nell'argomento `--pem`. ad esempio:
+certificato client di hello toospecify come un file con estensione pem, specificare il percorso di file hello in hello `--pem` argomento. ad esempio:
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem
 ```
 
-I file con estensione pem protetti da password chiederanno la password prima di eseguire qualsiasi comando.
+File pem protetti da password verranno richiesta la password precedente toorunning qualsiasi comando.
 
-Per specificare una coppia certificato-chiave, usare gli argomenti `--cert` e `--key` per specificare i percorsi di file a ogni rispettivo file.
+toospecify un certificato, coppia di chiavi utilizza hello `--cert` e `--key` toospecify hello percorsi tooeach rispettivo file di argomenti.
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --cert ./client.crt --key ./keyfile.key
 ```
 
-In alcuni casi i certificati usati per proteggere i cluster di test o di sviluppo non superano la convalida. Per ignorare la verifica del certificato, specificare l'opzione `--no-verify`. Ad esempio:
+In alcuni casi i certificati utilizzati toosecure test o i cluster di sviluppo non superano la convalida di certificati. toobypass certificato di verifica, specificare hello `--no-verify` opzione. ad esempio:
 
 > [!WARNING]
-> Non usare l'opzione `no-verify` quando ci si connette a cluster di Service Fabric di produzione.
+> Non utilizzare hello `no-verify` opzione quando si connettono i cluster di Service Fabric tooproduction.
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem --no-verify
 ```
 
-È anche possibile specificare i percorsi a directory di certificati CA attendibili o a certificati individuali. Per specificare questi percorsi, usare l'argomento `--ca`. ad esempio:
+Inoltre, è possibile specificare i percorsi toodirectories di certificati CA attendibili o i singoli certificati. toospecify questi percorsi, usare hello `--ca` argomento. ad esempio:
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem --ca ./trusted_ca
 ```
 
-Dopo la connessione, sarà possibile [eseguire altri comandi sfctl](service-fabric-cli.md) per interagire con il cluster.
+Dopo la connessione, dovrebbe essere possibile troppo[eseguire altri comandi sfctl](service-fabric-cli.md) toointeract con cluster hello.
 
 <a id="connectsecurecluster"></a>
 
-## <a name="connect-to-a-cluster-using-powershell"></a>Connessione a un cluster mediante PowerShell
-Prima di eseguire operazioni su un cluster tramite PowerShell, stabilire una connessione al cluster. La connessione al cluster verrà usata per tutti i successivi comandi nella specifica sessione di PowerShell.
+## <a name="connect-tooa-cluster-using-powershell"></a>Connettere il cluster tooa tramite PowerShell
+Prima di eseguire operazioni su un cluster tramite PowerShell, è necessario stabilire prima un cluster di toohello di connessione. connessione di Hello del cluster viene utilizzato per tutti i comandi successivi hello dato sessione di PowerShell.
 
-### <a name="connect-to-an-unsecure-cluster"></a>Connettersi a un cluster non sicuro
+### <a name="connect-tooan-unsecure-cluster"></a>Connettere il cluster non sicuri di tooan
 
-Per connettersi a un cluster non sicuro, specificare l'indirizzo dell'endpoint del cluster nel comando **Connect-ServiceFabricCluster**:
+tooan tooconnect non sicura del cluster, fornire hello cluster endpoint indirizzo toohello **Connect-ServiceFabricCluster** comando:
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 
 ```
 
-### <a name="connect-to-a-secure-cluster-using-azure-active-directory"></a>Connettersi a un cluster sicuro con Azure Active Directory
+### <a name="connect-tooa-secure-cluster-using-azure-active-directory"></a>Connettersi tooa cluster sicuro tramite Azure Active Directory
 
-Per connettersi a un cluster sicuro che usa Azure Active Directory per autorizzare l'accesso di amministratore al cluster, specificare l'identificazione personale del certificato del cluster e usare il flag *AzureActiveDirectory*.  
+tooconnect tooa cluster protetto che utilizza l'accesso di amministratore cluster tooauthorize Azure Active Directory, fornire l'identificazione personale del certificato di cluster hello e utilizzare hello *AzureActiveDirectory* flag.  
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -88,8 +88,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 -AzureActiveDirectory
 ```
 
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a>Connettersi a un cluster sicuro con un certificato client
-Per connettersi a un cluster sicuro che usa certificati client per autorizzare l'accesso di amministratore, eseguire il comando di PowerShell seguente. Specificare l'identificazione personale del certificato del cluster e l'identificazione personale del certificato client a cui sono state concesse le autorizzazioni per la gestione del cluster. I dettagli del certificato devono corrispondere a un certificato sui nodi del cluster.
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a>Connettersi tooa cluster sicuro usando un certificato client
+Hello esecuzione dopo il comando PowerShell tooa tooconnect sicura del cluster che utilizza l'accesso come amministratore tooauthorize i certificati client. Fornire l'identificazione personale del certificato di hello cluster e l'identificazione personale hello del certificato client hello che disponga delle autorizzazioni per la gestione di cluster. dettagli del certificato Hello devono corrispondere al certificato sui nodi del cluster hello.
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -99,8 +99,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
           -StoreLocation CurrentUser -StoreName My
 ```
 
-*ServerCertThumbprint* è l'identificazione personale del certificato del server installato nei nodi del cluster. *FindValue* è l'identificazione personale del certificato client di amministrazione.
-Dopo l'immissione dei parametri, il comando sarà simile all'esempio seguente: 
+*ServerCertThumbprint* è hello identificazione personale del certificato server hello installato nei nodi del cluster hello. *FindValue* è hello identificazione personale del certificato client di amministrazione hello.
+Quando vengono compilati i parametri di hello, comando hello è simile al seguente esempio hello: 
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `
@@ -110,8 +110,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azu
           -StoreLocation CurrentUser -StoreName My
 ```
 
-### <a name="connect-to-a-secure-cluster-using-windows-active-directory"></a>Connettersi a un cluster sicuro con Windows Active Directory
-Se il cluster autonomo viene distribuito usando la protezione di Active Directory, connettersi al cluster aggiungendo l'opzione "WindowsCredential".
+### <a name="connect-tooa-secure-cluster-using-windows-active-directory"></a>Connettersi tooa cluster sicuro tramite Active Directory di Windows
+Se il cluster autonomo viene distribuito utilizzando la protezione di Active Directory, è possibile connettere il cluster di toohello aggiungendo il parametro hello "WindowsCredential".
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -120,26 +120,26 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 
 <a id="connectsecureclusterfabricclient"></a>
 
-## <a name="connect-to-a-cluster-using-the-fabricclient-apis"></a>Connettersi a un cluster mediante le API FabricClient
-Service Fabric SDK fornisce la classe [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) per la gestione del cluster. Per usare le API di FabricClient, è necessario disporre del pacchetto NuGet Microsoft.ServiceFabric.
+## <a name="connect-tooa-cluster-using-hello-fabricclient-apis"></a>Connettere il cluster tooa utilizzando hello FabricClient APIs
+Hello Service Fabric SDK fornisce hello [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) classe per la gestione di cluster. hello toouse APIs FabricClient, ottenere il pacchetto Microsoft.ServiceFabric NuGet hello.
 
-### <a name="connect-to-an-unsecure-cluster"></a>Connettersi a un cluster non sicuro
+### <a name="connect-tooan-unsecure-cluster"></a>Connettere il cluster non sicuri di tooan
 
-Per connettersi a un cluster remoto non protetto, creare un'istanza di FabricClient e specificare l'indirizzo del cluster:
+tooconnect tooa protetta cluster remoto, creare un'istanza di FabricClient e fornire l'indirizzo del cluster hello:
 
 ```csharp
 FabricClient fabricClient = new FabricClient("clustername.westus.cloudapp.azure.com:19000");
 ```
 
-Per il codice in esecuzione in un cluster, ad esempio in un servizio Reliable Services, creare un'istanza di FabricClient *senza* specificare l'indirizzo del cluster. FabricClient si connette al gateway di gestione locale nel nodo in cui il codice è attualmente in esecuzione, evitando un hop di rete aggiuntivo.
+Per il codice che viene eseguito all'interno di un cluster, ad esempio, in un servizio affidabile, creare un FabricClient *senza* specificando l'indirizzo del cluster hello. FabricClient si connette la gestione locale toohello gateway in codice hello del nodo hello è attualmente in esecuzione, evitando un hop di rete aggiuntiva.
 
 ```csharp
 FabricClient fabricClient = new FabricClient();
 ```
 
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a>Connettersi a un cluster sicuro con un certificato client
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a>Connettersi tooa cluster sicuro usando un certificato client
 
-I nodi del cluster devono avere certificati validi il cui nome comune o nome DNS nella rete SAN è contenuto nella [proprietà RemoteCommonNames](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) impostata in [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient). Questo processo consente l'autenticazione reciproca tra il client e i nodi del cluster.
+i nodi nel cluster hello Hello devono avere un certificato valido il cui nome comune o nome DNS nella rete SAN viene visualizzata nella hello [RemoteCommonNames proprietà](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) impostato su [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient). Seguendo questo processo consente l'autenticazione reciproca tra client hello e i nodi del cluster hello.
 
 ```csharp
 using System.Fabric;
@@ -177,11 +177,11 @@ static X509Credentials GetCredentials(string clientCertThumb, string serverCertT
 }
 ```
 
-### <a name="connect-to-a-secure-cluster-interactively-using-azure-active-directory"></a>Connessione interattiva a un cluster protetto con Azure Active Directory
+### <a name="connect-tooa-secure-cluster-interactively-using-azure-active-directory"></a>Connettersi tooa cluster sicuro in modo interattivo tramite Azure Active Directory
 
-Nell'esempio seguente viene utilizzata Azure Active Directory per l'identità del client e il certificato del server per l'identità del server.
+Hello seguente viene illustrato come utilizzare Azure Active Directory per il certificato di identità e i server client per l'identità del server.
 
-Al momento della connessione al cluster viene visualizzata automaticamente una finestra di dialogo per l'accesso interattivo.
+Una finestra di dialogo visualizzata automaticamente per interactive sign-al momento della connessione toohello cluster.
 
 ```csharp
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
@@ -203,9 +203,9 @@ catch (Exception e)
 }
 ```
 
-### <a name="connect-to-a-secure-cluster-non-interactively-using-azure-active-directory"></a>Connessione non interattiva a un cluster protetto con Azure Active Directory
+### <a name="connect-tooa-secure-cluster-non-interactively-using-azure-active-directory"></a>Connettersi tooa cluster sicuro in modo non interattivo tramite Azure Active Directory
 
-L'esempio è basato su Microsoft.IdentityModel.Clients.ActiveDirectory, Versione: 2.19.208020213.
+Hello esempio seguente si basa su ActiveDirectory, versione: 2.19.208020213.
 
 Per ulteriori informazioni sull'acquisizione di token di AAD, vedere [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx).
 
@@ -260,9 +260,9 @@ static string GetAccessToken(
 
 ```
 
-### <a name="connect-to-a-secure-cluster-without-prior-metadata-knowledge-using-azure-active-directory"></a>Connessione a un cluster protetto senza conoscere a priori i metadati tramite Azure Active Directory
+### <a name="connect-tooa-secure-cluster-without-prior-metadata-knowledge-using-azure-active-directory"></a>Connettersi cluster sicuro tooa senza una conoscenza preliminare di metadati tramite Azure Active Directory
 
-L'esempio seguente usa l'acquisizione dei token non interattiva, ma lo stesso approccio consente di creare un'esperienza di acquisizione dei token interattiva personalizzata. I metadati di Azure Active Directory necessari per l'acquisizione dei token vengono letti dalla configurazione del cluster.
+esempio Hello utilizza acquisizione del token non interattiva, ma hello stesso approccio può essere utilizzato toobuild un'esperienza di acquisizione del token interattivo personalizzato. Hello i metadati di Azure Active Directory necessari per l'acquisizione del token viene letto dalla configurazione del cluster.
 
 ```csharp
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
@@ -305,34 +305,34 @@ static string GetAccessToken(AzureActiveDirectoryMetadata aad)
 
 <a id="connectsecureclustersfx"></a>
 
-## <a name="connect-to-a-secure-cluster-using-service-fabric-explorer"></a>Connettersi a un cluster sicuro usando Service Fabric Explorer
-Per raggiungere [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) per un determinato cluster, inserire nel browser l'indirizzo seguente:
+## <a name="connect-tooa-secure-cluster-using-service-fabric-explorer"></a>Connettersi tooa cluster sicuro usando Service Fabric Explorer
+tooreach [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) per un determinato cluster, puntare il browser per:
 
 `http://<your-cluster-endpoint>:19080/Explorer`
 
-L'URL completo è disponibile anche nel riquadro essentials del cluster del portale di Azure.
+URL completo di Hello è disponibile anche nel riquadro di essentials cluster hello di hello portale di Azure.
 
-### <a name="connect-to-a-secure-cluster-using-azure-active-directory"></a>Connettersi a un cluster sicuro con Azure Active Directory
+### <a name="connect-tooa-secure-cluster-using-azure-active-directory"></a>Connettersi tooa cluster sicuro tramite Azure Active Directory
 
-Per connettersi a un cluster protetto con AAD, inserire nel browser l'indirizzo seguente:
-
-`https://<your-cluster-endpoint>:19080/Explorer`
-
-Viene automaticamente richiesto di accedere con AAD.
-
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a>Connettersi a un cluster sicuro con un certificato client
-
-Per connettersi a un cluster protetto con certificati, inserire nel browser l'indirizzo seguente:
+tooconnect tooa cluster che è protetta con AAD, puntare il browser per:
 
 `https://<your-cluster-endpoint>:19080/Explorer`
 
-Viene automaticamente richiesto di selezionare un certificato del client.
+Sarà automaticamente richiesta toolog con AAD.
+
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a>Connettersi tooa cluster sicuro usando un certificato client
+
+tooconnect tooa cluster protetta con i certificati, puntare il browser per:
+
+`https://<your-cluster-endpoint>:19080/Explorer`
+
+Sarà automaticamente tooselect richiesto un certificato client.
 
 <a id="connectsecureclustersetupclientcert"></a>
-## <a name="set-up-a-client-certificate-on-the-remote-computer"></a>Configurare un certificato client nel computer remoto
-È necessario usare almeno due certificati per proteggere il cluster, uno per il certificato del server e del cluster e un altro per l'accesso client.  È consigliabile usare anche altri certificati secondari e certificati di accesso client.  Per proteggere la comunicazione tra un client e un nodo del cluster con la sicurezza basata su certificati, è prima necessario ottenere e installare il certificato client. Il certificato può essere installato nell'archivio personale del computer locale o dell'utente corrente.  È necessaria anche l'identificazione personale del certificato del server in modo che il client possa autenticare il cluster.
+## <a name="set-up-a-client-certificate-on-hello-remote-computer"></a>Configurare un certificato client nel computer remoto hello
+Almeno due certificati devono essere utilizzati per la protezione dei cluster hello, uno per il certificato di cluster e server hello e un altro per l'accesso client.  È consigliabile usare anche altri certificati secondari e certificati di accesso client.  comunicazione hello toosecure tra un client e un nodo di cluster mediante certificati di sicurezza, innanzitutto necessario tooobtain e installare il certificato client hello. Hello certificato può essere installato in hello (My) archivio personale del computer locale hello o dell'utente corrente di hello.  Identificazione personale hello hello del certificato del server è necessario anche in modo che hello client può autenticare cluster hello.
 
-Per configurare il certificato del client nel computer che si userà per accedere al cluster, eseguire il cmdlet PowerShell seguente.
+Eseguire hello seguente tooset di cmdlet di PowerShell backup del certificato client hello computer hello da cui si accedere cluster hello.
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
@@ -340,7 +340,7 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
         -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
 
-Se si tratta di un certificato autofirmato, è necessario importarlo nell'archivio "Persone attendibili" del computer prima di poterlo usare per la connessione a un cluster sicuro.
+Se un certificato autofirmato, è necessario tooimport ciò "persone attendibili" della macchina tooyour archiviazione prima di poter usare certificato tooconnect tooa sicura del cluster.
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPeople `

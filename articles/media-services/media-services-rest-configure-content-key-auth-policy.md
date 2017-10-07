@@ -1,6 +1,6 @@
 ---
-title: Configurare i criteri di autorizzazione della chiave dei contenuti con REST - Azure | Documentazione Microsoft
-description: Informazioni su come configurare i criteri di autorizzazione per una chiave simmetrica utilizzando API REST di Servizi multimediali.
+title: criteri di autorizzazione chiave del contenuto aaaConfigure con REST - Azure | Documenti Microsoft
+description: Informazioni su come tooconfigure criteri di autorizzazione per una chiave simmetrica utilizzando l'API REST di servizi multimediali.
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: ed20fca35070c190bb63925d0a57cf919bcdd96c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c058b7682bcbfb736faba18ec7fce33f2f2acb49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="dynamic-encryption-configure-content-key-authorization-policy"></a>Crittografia dinamica: configurare i criteri di autorizzazione della chiave simmetrica
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
-## <a name="overview"></a>Overview
-Servizi multimediali di Microsoft Azure consente di distribuire contenuti crittografati dinamicamente con AES (Advanced Encryption Standard), tramite chiavi di crittografia a 128 bit e con PlayReady o Widevine DRM. Servizi multimediali offre anche un servizio per la distribuzione di chiavi e licenze PlayReady/Widevine ai client autorizzati.
+## <a name="overview"></a>Panoramica
+Servizi multimediali di Microsoft Azure consente di toodeliver il contenuto crittografato (in modo dinamico) con Advanced Encryption Standard (AES) (utilizzando le chiavi di crittografia a 128 bit) e PlayReady oppure Widevine DRM. Servizi multimediali fornisce anche un servizio per il recapito di chiavi e licenze PlayReady/Widevine tooauthorized client.
 
-Se si desidera crittografare un asset per Servizi multimediali, è necessario associare una chiave di crittografia (**CommonEncryption** o **EnvelopeEncryption**) all'asset (come descritto [qui](media-services-rest-create-contentkey.md)) e anche configurare criteri di autorizzazione per la chiave, (come descritto in questo articolo).
+Se si desidera per servizi multimediali tooencrypt un asset, è necessario tooassociate una chiave di crittografia (**CommonEncryption** o **EnvelopeEncryption**) con asset hello (come descritto [qui](media-services-rest-create-contentkey.md)) e inoltre configurare criteri di autorizzazione per la chiave di hello (come descritto in questo articolo).
 
-Quando un flusso viene richiesto da un lettore, Servizi multimediali usa la chiave specificata per crittografare dinamicamente i contenuti mediante AES o PlayReady. Per decrittografare il flusso, il lettore richiederà la chiave dal servizio di distribuzione delle chiavi. Per decidere se l'utente è autorizzato a ottenere la chiave, il servizio valuta i criteri di autorizzazione specificati.
+Quando un flusso è richiesto da un lettore, servizi multimediali Usa hello specificato toodynamically chiave crittografare il contenuto usando la crittografia AES o PlayReady. flusso di hello toodecrypt, hello lettore richiederà chiave hello dal servizio di distribuzione delle chiavi hello. Se è o meno utente hello toodecide autorizzato chiave hello tooget, servizio hello valuta i criteri di autorizzazione hello specificato per la chiave di hello.
 
-Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. I criteri di autorizzazione delle chiavi simmetriche possono avere una o più restrizioni di tipo **Open** o **Token**. I criteri con restrizione Token devono essere accompagnati da un token rilasciato da un servizio STS (Secure Token Service, servizio token di sicurezza). Servizi multimediali supporta i token nei formati **Simple Web Tokens** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) e **JSON Web Token** (JWT).
+Servizi multimediali supporta più modalità di autenticazione degli utenti che eseguono richieste di chiavi. Hello criteri di autorizzazione chiave contenuto potrebbero avere una o più restrizioni di autorizzazione: **aprire** o **token** restrizione. criteri con restrizione token Hello devono essere accompagnato da un token rilasciato da un servizio (token di sicurezza). Servizi multimediali supporta i token in hello **token Web semplici** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) formato e * * formato **(JWT) Token Web JSON.
 
-Servizi multimediali non fornisce servizi token di sicurezza. Per il rilascio di token è possibile creare un servizio token di sicurezza personalizzato oppure usare il Servizio di controllo di accesso di Microsoft Azure. Il servizio token di sicurezza deve essere configurato in modo da creare un token firmato con la chiave specificata e rilasciare le attestazioni specificate nella configurazione della restrizione Token, come descritto in questo articolo. Il servizio di distribuzione delle chiavi di Servizi multimediali restituisce la chiave di crittografia al client se il token è valido e le attestazioni nel token corrispondono a quelle configurate per la chiave simmetrica.
+Servizi multimediali non fornisce servizi token di sicurezza. È possibile creare un servizio token di sicurezza personalizzato o utilizzare i token tooissue ACS di Microsoft Azure. Hello servizio token di sicurezza deve essere configurato toocreate un token firmato con la chiave specificata hello e rilasciano le attestazioni specificate nella configurazione della restrizione token hello (come descritto in questo articolo). Hello servizio di distribuzione delle chiavi di servizi multimediali restituirà client toohello chiave di crittografia hello se hello token è valido e hello attestazioni nel token hello corrispondono a quelli configurati per la chiave simmetrica hello.
 
 Per altre informazioni, vedere
 
@@ -40,31 +40,31 @@ Per altre informazioni, vedere
 
 [Integrare l'app basata su OWIN MVC di Servizi multimediali di Azure con Azure Active Directory e limitare la distribuzione di chiavi simmetriche in base ad attestazioni JWT](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/).
 
-[Usare il Servizio di controllo di accesso di Azure per il rilascio di token](http://mingfeiy.com/acs-with-key-services).
+[Utilizzare i token ACS di Azure tooissue](http://mingfeiy.com/acs-with-key-services).
 
 ### <a name="some-considerations-apply"></a>Considerazioni applicabili:
-* Per usare la creazione dinamica dei pacchetti e la crittografia dinamica, verificare che l'endpoint di streaming da cui si intende trasmettere i contenuti si trovi nello stato **In esecuzione**.
+* toobe toouse in grado di creazione dinamica dei pacchetti e la crittografia dinamica, verificare che sia di streaming dei contenuti di endpoint da cui si desidera toostream hello in hello **esecuzione** stato.
 * L'asset deve contenere un set di file MP4 o Smooth Streaming a velocità in bit adattiva. Per altre informazioni, vedere l'articolo relativo alla [codifica di un asset](media-services-encode-asset.md).
 * Caricare e codificare gli asset mediante l'opzione **AssetCreationOptions.StorageEncrypted** .
-* Se si prevede di avere più chiavi simmetriche che richiedono una stessa configurazione di criteri, è consigliabile creare un singolo criterio di autorizzazione e applicarlo a più chiavi simmetriche.
-* Il servizio di distribuzione delle chiavi memorizza nella cache l'oggetto ContentKeyAuthorizationPolicy e gli oggetti correlati (opzioni e restrizioni) per 15 minuti.  Se si crea un oggetto ContentKeyAuthorizationPolicy e si specifica di usare una restrizione Token, quindi si esegue il test della configurazione e si aggiornano i criteri impostando una restrizione Open, il passaggio dei criteri alla versione Open richiede circa 15 minuti.
+* Se si prevede di toohave più chiavi simmetriche che richiedono hello stessa configurazione dei criteri, è fortemente consigliabile toocreate un singolo criterio di autorizzazione e applicarlo a più chiavi simmetriche.
+* Hello del servizio di distribuzione delle chiavi memorizza nella cache ContentKeyAuthorizationPolicy e gli oggetti correlati (opzioni di criteri e restrizioni) per 15 minuti.  Se si crea un oggetto ContentKeyAuthorizationPolicy e specifica toouse una restrizione "Token", quindi eseguirne il test e si aggiornano i criteri di hello troppo "aperto" restrizione, richiederà circa 15 minuti prima di hello criteri commutatori toohello "Aperto" versione di hello criterio.
 * Se si aggiungono o si aggiornano i criteri di distribuzione dell'asset, è necessario eliminare l'eventuale localizzatore esistente e creare un nuovo localizzatore.
 * Attualmente, non è possibile crittografare i download progressivi.
 
 ## <a name="aes-128-dynamic-encryption"></a>Crittografia dinamica AES-128
 > [!NOTE]
-> Quando si usa l'API REST di Servizi multimediali, tenere presenti le seguenti considerazioni:
+> Quando si utilizzano le API REST di servizi multimediali, hello hello seguenti considerazioni:
 > 
 > Quando si accede alle entità in Servizi multimediali, è necessario impostare valori e campi di intestazione specifici nelle richieste HTTP. Per altre informazioni, vedere [Panoramica dell'API REST di Servizi multimediali](media-services-rest-how-to-use.md).
 > 
-> Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI. Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md).
+> Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI. Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md).
 > 
 > 
 
 ### <a name="open-restriction"></a>Restrizione Open
-Se si applica una restrizione Open, il sistema distribuirà la chiave a chiunque ne faccia richiesta. Questa restrizione può essere utile a scopo di test.
+Restrizione Open, il sistema di hello distribuirà tooanyone di chiave hello che effettua una richiesta di chiave. Questa restrizione può essere utile a scopo di test.
 
-Il seguente esempio crea un criterio di autorizzazione Open e lo aggiunge alla chiave simmetrica.
+Hello di esempio seguente crea un criterio open authorization e lo aggiunge la chiave simmetrica toohello.
 
 #### <a id="ContentKeyAuthorizationPolicies"></a>Creare ContentKeyAuthorizationPolicies
 Richiesta:
@@ -159,7 +159,7 @@ Risposta:
 
     HTTP/1.1 204 No Content
 
-#### <a id="AddAuthorizationPolicyToKey"></a>Aggiungere criteri di autorizzazione alla chiave simmetrica
+#### <a id="AddAuthorizationPolicyToKey"></a>Aggiungere una chiave simmetrica toohello criteri di autorizzazione
 Richiesta:
 
     PUT https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeys('nb%3Akid%3AUUID%3A2e6d36a7-a17c-4e9a-830d-eca23ad1a6f9') HTTP/1.1
@@ -181,9 +181,9 @@ Risposta:
     HTTP/1.1 204 No Content
 
 ### <a name="token-restriction"></a>Restrizione Token
-Questa sezione descrive come creare un criterio di autorizzazione per una chiave simmetrica e associarlo a tale chiave. I criteri di autorizzazione definiscono i requisiti di autorizzazione che devono essere soddisfatti per determinare se l'utente è autorizzato a ricevere la chiave (ad esempio, se l'elenco di chiavi di verifica contiene la chiave con cui è stato firmato il token).
+In questa sezione viene descritto come toocreate un contenuto criteri di autorizzazione della chiave e associarlo a una chiave simmetrica hello. criteri di autorizzazione Hello descrive i requisiti di autorizzazione devono essere soddisfatto toodetermine se hello utente chiave hello tooreceive autorizzati (ad esempio, è l'elenco di "chiave di verifica" hello contenere chiave hello token hello è stato firmato con).
 
-Per configurare l'opzione di restrizione Token, è necessario usare un file XML per descrivere i requisiti di autorizzazione del token. Il file XML di configurazione della restrizione Token deve essere conforme al seguente schema XML.
+opzione di restrizione token tooconfigure hello, è necessario un XML toouse requisiti di autorizzazione del token di toodescribe hello. configurazione della restrizione token Hello XML deve essere conforme toohello segue uno schema XML.
 
 #### <a id="schema"></a>Schema di restrizione Token
     <?xml version="1.0" encoding="utf-8"?>
@@ -233,12 +233,12 @@ Per configurare l'opzione di restrizione Token, è necessario usare un file XML 
       <xs:element name="SymmetricVerificationKey" nillable="true" type="tns:SymmetricVerificationKey" />
     </xs:schema>
 
-Quando si configurano i criteri di limitazione del **token**, è necessario specificare i parametri primary **verification key**, **issuer** e **audience**. Il parametro **primary verification key** include la chiave usata per firmare il token. Il parametro **issuer** è il servizio token di sicurezza che emette il token. Il parametro **audience** (talvolta denominato **scope**) descrive l'ambito del token o la risorsa a cui il token autorizza l'accesso. Il servizio di distribuzione delle chiavi di Servizi multimediali verifica che i valori nel token corrispondano ai valori nel modello. 
+Quando si configura hello **token** con restrizioni di criteri, è necessario specificare hello primario * * verifica chiave * *, **dell'autorità di certificazione** e **destinatari** parametri. Hello * * chiave di verifica primaria * * contiene chiave hello hello token è stato firmato con, **dell'autorità di certificazione** è servizio di token di sicurezza di hello token hello problemi. Hello **destinatari** (detto anche **ambito**) descrive hello scopo del token hello o della risorsa hello hello token autorizza l'accesso. Hello servizio di distribuzione delle chiavi di servizi multimediali verifica che i valori nel token hello corrispondano valori hello hello modello. 
 
-Il seguente esempio crea un criterio di autorizzazione con una restrizione Token. In questo esempio il client deve presentare un token contenente i seguenti dati: chiave di firma (VerificationKey), autorità emittente del token e attestazioni richieste.
+Hello di esempio seguente crea un criterio di autorizzazione con una restrizione token. In questo esempio, il client hello avrebbe toopresent un token contenente: la firma (VerificationKey) chiave autorità emittente del token e attestazioni necessarie.
 
 ### <a name="create-contentkeyauthorizationpolicies"></a>Creare ContentKeyAuthorizationPolicies
-Creare i "criteri di restrizione Token", come mostrato [qui](#ContentKeyAuthorizationPolicies).
+Creare "Criteri di restrizione Token" hello, come illustrato [qui](#ContentKeyAuthorizationPolicies).
 
 ### <a name="create-contentkeyauthorizationpolicyoptions"></a>Creare ContentKeyAuthorizationPolicyOptions
 Richiesta:
@@ -279,18 +279,18 @@ Risposta:
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>Collegare ContentKeyAuthorizationPolicies con opzioni
 Collegare ContentKeyAuthorizationPolicies con opzioni, come mostrato [qui](#ContentKeyAuthorizationPolicies).
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>Aggiungere criteri di autorizzazione alla chiave simmetrica
-Aggiungere criteri di autorizzazione alla chiave simmetrica, come mostrato [qui](#AddAuthorizationPolicyToKey).
+#### <a name="add-authorization-policy-toohello-content-key"></a>Aggiungere una chiave simmetrica toohello criteri di autorizzazione
+Aggiungere AuthorizationPolicy toohello ContentKey, come illustrato [qui](#AddAuthorizationPolicyToKey).
 
 ## <a name="playready-dynamic-encryption"></a>Crittografia dinamica PlayReady
-Servizi multimediali consente di configurare i diritti e le restrizioni che il runtime di PlayReady DRM deve applicare quando l'utente prova a riprodurre contenuti protetti. 
+Servizi multimediali consente di diritti di hello tooconfigure e le restrizioni che si desidera per hello tooenforce di runtime di PlayReady DRM quando un utente tenta tooplay nuovo contenuto protetto. 
 
-Quando si protegge il contenuto con PlayReady, è necessario includere nei criteri di autorizzazione una stringa XML che definisce il [modello di licenza PlayReady](media-services-playready-license-template-overview.md). 
+Quando si proteggono i contenuti con PlayReady, una delle operazioni di hello è necessario toospecify nei criteri di autorizzazione è una stringa XML che definisce hello [modello di licenza PlayReady](media-services-playready-license-template-overview.md). 
 
 ### <a name="open-restriction"></a>Restrizione Open
-Se si applica una restrizione Open, il sistema distribuirà la chiave a chiunque ne faccia richiesta. Questa restrizione può essere utile a scopo di test.
+Restrizione Open, il sistema di hello distribuirà tooanyone di chiave hello che effettua una richiesta di chiave. Questa restrizione può essere utile a scopo di test.
 
-Il seguente esempio crea un criterio di autorizzazione Open e lo aggiunge alla chiave simmetrica.
+Hello di esempio seguente crea un criterio open authorization e lo aggiunge la chiave simmetrica toohello.
 
 #### <a id="ContentKeyAuthorizationPolicies2"></a>Creare ContentKeyAuthorizationPolicies
 Richiesta:
@@ -368,11 +368,11 @@ Risposta:
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>Collegare ContentKeyAuthorizationPolicies con opzioni
 Collegare ContentKeyAuthorizationPolicies con opzioni, come mostrato [qui](#ContentKeyAuthorizationPolicies).
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>Aggiungere criteri di autorizzazione alla chiave simmetrica
-Aggiungere criteri di autorizzazione alla chiave simmetrica, come mostrato [qui](#AddAuthorizationPolicyToKey).
+#### <a name="add-authorization-policy-toohello-content-key"></a>Aggiungere una chiave simmetrica toohello criteri di autorizzazione
+Aggiungere AuthorizationPolicy toohello ContentKey, come illustrato [qui](#AddAuthorizationPolicyToKey).
 
 ### <a name="token-restriction"></a>Restrizione Token
-Per configurare l'opzione di restrizione Token, è necessario usare un file XML per descrivere i requisiti di autorizzazione del token. Il file XML di configurazione della restrizione Token deve essere conforme allo schema XML illustrato in [questa](#schema) sezione.
+opzione di restrizione token tooconfigure hello, è necessario un XML toouse requisiti di autorizzazione del token di toodescribe hello. configurazione della restrizione token Hello XML deve essere conforme toohello XML schema nella [questo](#schema) sezione.
 
 #### <a name="create-contentkeyauthorizationpolicies"></a>Creare ContentKeyAuthorizationPolicies
 Creare ContentKeyAuthorizationPolicies, come mostrato [qui](#ContentKeyAuthorizationPolicies2).
@@ -416,8 +416,8 @@ Risposta:
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>Collegare ContentKeyAuthorizationPolicies con opzioni
 Collegare ContentKeyAuthorizationPolicies con opzioni, come mostrato [qui](#ContentKeyAuthorizationPolicies).
 
-#### <a name="add-authorization-policy-to-the-content-key"></a>Aggiungere criteri di autorizzazione alla chiave simmetrica
-Aggiungere criteri di autorizzazione alla chiave simmetrica, come mostrato [qui](#AddAuthorizationPolicyToKey).
+#### <a name="add-authorization-policy-toohello-content-key"></a>Aggiungere una chiave simmetrica toohello criteri di autorizzazione
+Aggiungere AuthorizationPolicy toohello ContentKey, come illustrato [qui](#AddAuthorizationPolicyToKey).
 
 ## <a id="types"></a>Tipi usati durante la definizione di ContentKeyAuthorizationPolicy
 ### <a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
@@ -445,5 +445,5 @@ Aggiungere criteri di autorizzazione alla chiave simmetrica, come mostrato [qui]
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Passaggi successivi
-Dopo aver configurato i criteri di autorizzazione della chiave simmetrica, passare all'argomento [Come configurare i criteri di distribuzione degli asset](media-services-rest-configure-asset-delivery-policy.md) .
+Ora che sono stati configurati criteri di autorizzazione della chiave simmetrica, visitare toohello [come criterio di recapito degli asset tooconfigure](media-services-rest-configure-asset-delivery-policy.md) argomento.
 

@@ -13,7 +13,7 @@
 ### [Interfaccia della riga di comando di Azure 1.0](dns-getstarted-cli-nodejs.md)
 ### [Interfaccia della riga di comando di Azure 2.0](dns-getstarted-cli.md)
 
-## [Delegare il dominio al servizio DNS di Azure](dns-delegate-domain-azure-dns.md)
+## [Delegare il tooAzure di dominio DNS](dns-delegate-domain-azure-dns.md)
 ## [Creare record DNS personalizzati per un'app Web](dns-web-sites-custom-domain.md)
 
 # Procedure
@@ -38,7 +38,7 @@
 ## [Importare ed esportare un file di zona DNS](dns-import-export.md)
 ## [Integrare DNS con altri servizi di Azure](dns-for-azure-services.md)
 ## [Proteggere zone e record DNS](dns-protect-zones-recordsets.md)
-## [Automatizzare le operazioni del servizio DNS con .NET SDK](dns-sdk.md)
+## [Automatizzare le operazioni di DNS con hello .NET SDK](dns-sdk.md)
 
 ## [Domini personalizzati per le risorse di Azure](dns-custom-domain.md)
 ## Risoluzione dei problemi

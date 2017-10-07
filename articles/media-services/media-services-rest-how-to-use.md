@@ -1,5 +1,5 @@
 ---
-title: Informazioni generali sull'API REST di Servizi multimediali | Microsoft Docs
+title: Panoramica di aaaMedia servizi operazioni API REST | Documenti Microsoft
 description: Informazioni generali sull'API REST di Servizi multimediali
 services: media-services
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: eada8f2bcd2488d5ed36b0c24aa3d1b917815517
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b54f4d9123486d6cae832c9817688b0f3da5b401
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="media-services-operations-rest-api-overview"></a>Informazioni generali sull'API REST di Servizi multimediali
 [!INCLUDE [media-services-selector-setup](../../includes/media-services-selector-setup.md)]
 
-L'**API REST di Servizi multimediali** viene usata per la creazione di processi, asset, criteri di accesso e altre operazioni sugli oggetti in un account di Servizi multimediali. Per altre informazioni, vedere le [informazioni di riferimento sull'API REST di Servizi multimediali](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
+Hello **REST operazioni di servizi multimediali** API viene usata per la creazione di processi, asset, i criteri di accesso e altre operazioni su oggetti in un account del servizio di supporto. Per altre informazioni, vedere le [informazioni di riferimento sull'API REST di Servizi multimediali](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
 
-Servizi multimediali di Microsoft Azure è un servizio che accetta richieste HTTP basate su OData e può rispondere in formato JSON dettagliato o atom+pub. Poiché Servizi multimediali è conforme alle linee guida di progettazione di Azure, esiste un set di intestazioni HTTP obbligatorie che devono essere usate da ogni client per la connessione a Servizi multimediali, oltre a un set di intestazioni facoltative. Le seguenti sezioni descrivono le intestazioni e i verbi HTTP che è possibile usare quando si creano richieste e si ricevono risposte da Servizi multimediali.
+Servizi multimediali di Microsoft Azure è un servizio che accetta richieste HTTP basate su OData e può rispondere in formato JSON dettagliato o atom+pub. Poiché servizi multimediali è conforme tooAzure linee guida di progettazione, è un set di intestazioni HTTP obbligatorie che ogni client deve utilizzare quando ci si connette tooMedia servizi, nonché un set di intestazioni facoltative che può essere utilizzato. Hello nelle sezioni seguenti vengono descritte le intestazioni di hello e verbi HTTP, è possibile utilizzare quando le richieste di creazione e la ricezione di risposte da servizi multimediali.
 
-Questo argomento offre una panoramica su come usare REST v2 con Servizi multimediali.
+In questo argomento viene fornita una panoramica di come toouse REST v2 con servizi multimediali.
 
 ## <a name="considerations"></a>Considerazioni
 
-Quando si usa REST, si applicano le considerazioni seguenti:
+Hello considerazioni seguenti si applica quando si usa REST.
 
-* Quando si esegue una query di entità, è previsto un limite di 1000 entità restituite in una sola volta perché la versione 2 pubblica di REST limita i risultati della query a 1000 risultati. È necessario usare **Skip** e **Take** (.NET)/**top** (REST) come descritto in [questo esempio .NET](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities) e in [questo esempio di API REST](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities). 
-* Se si usa JSON e si specifica di usare la parola chiave **__metadata** nella richiesta, ad esempio, per fare riferimento a un oggetto collegato, SI DEVE impostare l'intestazione **Accept** sul [formato JSON Verbose](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/). Vedere l'esempio seguente. OData non riconosce la proprietà **__metadata** nella richiesta, a meno che non venga impostata su verbose.  
+* Quando una query sulle entità, è previsto un limite di 1000 entità restituito in una sola volta perché v2 REST pubblici limita risultati too1000 risultati della query. È necessario toouse **Skip** e **richiedere** (.NET) / **top** (REST) come descritto in [in questo esempio .NET](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities) e [questa API REST esempio](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities). 
+* Quando si utilizza JSON e specificando hello toouse **Metadata** (parola chiave) nella richiesta di hello (ad esempio, un oggetto collegato tooreferences) è necessario impostare hello **Accept** intestazione troppo[formato JSON dettagliato ](http://www.odata.org/documentation/odata-version-3-0/json-verbose-format/) (vedere il seguente esempio hello). OData non riconosce hello **Metadata** richiedere proprietà in hello, a meno che non si imposta la proprietà tooverbose.  
   
         POST https://media.windows.net/API/Jobs HTTP/1.1
         Content-Type: application/json;odata=verbose
@@ -52,68 +52,68 @@ Quando si usa REST, si applicano le considerazioni seguenti:
         . . . 
 
 ## <a name="standard-http-request-headers-supported-by-media-services"></a>Intestazioni delle richieste HTTP standard supportate da Servizi multimediali
-Per ogni chiamata effettuata in Servizi multimediali, è necessario includere nella richiesta un set di intestazioni obbligatorie ed eventualmente un set di intestazioni facoltative. Nella seguente tabella sono elencate le intestazioni obbligatorie:
+Per ogni chiamata in servizi multimediali, è presente un set di intestazioni obbligatorie è necessario includere nella richiesta e anche un set di intestazioni facoltative è tooinclude. Hello seguente tabella elenca hello richiesto intestazioni:
 
 | Intestazione | Tipo | Valore |
 | --- | --- | --- |
-| Authorization |Bearer |Bearer è l'unico meccanismo di autorizzazione accettato. Il valore deve includere anche il token di accesso fornito da ACS. |
+| Authorization |Bearer |Bearer è hello accettate solo meccanismo di autorizzazione. valore di Hello deve includere anche il token di accesso hello fornito da ACS. |
 | x-ms-version |Decimale |2.11 |
 | DataServiceVersion |Decimal |3.0 |
 | MaxDataServiceVersion |Decimal |3.0 |
 
 > [!NOTE]
-> Poiché Servizi multimediali usa OData per esporre l'archivio di metadati di asset sottostante tramite le API REST, le intestazioni DataServiceVersion e MaxDataServiceVersion devono essere incluse in tutte le richieste. Se non vengono incluse, Servizi multimediali suppone che il valore di DataServiceVersion in uso sia 3.0.
+> Poiché servizi multimediali Usa OData tooexpose l'archivio di metadati di asset sottostante tramite le API REST, hello DataServiceVersion e MaxDataServiceVersion intestazioni deve essere incluse in tutte le richieste; Tuttavia, se non lo sono, quindi attualmente servizi multimediali suppone che il valore di DataServiceVersion hello in uso sia 3.0.
 > 
 > 
 
-Nella seguente tabella è riportato un set di intestazioni facoltative:
+di seguito Hello è un set di intestazioni facoltative:
 
 | Intestazione | Tipo | Valore |
 | --- | --- | --- |
-| Date |Data RFC 1123 |Timestamp della richiesta. |
-| Accept |Tipo di contenuto |Tipo di contenuto richiesto per la risposta, ad esempio:<p> -application/json;odata=verbose<p> - application/atom+xml<p> Nelle risposte può essere presente un tipo di contenuto diverso, ad esempio di recupero BLOB. In questo caso, una risposta corretta deve contenere il flusso BLOB come payload. |
+| Date |Data RFC 1123 |Timestamp della richiesta di hello |
+| Accept |Tipo di contenuto |Hello richiesto tipo di contenuto per la risposta hello come illustrato di seguito hello:<p> -application/json;odata=verbose<p> - application/atom+xml<p> Le risposte potrebbero essere un tipo di contenuto diversi, ad esempio un'operazione di recupero di blob, in cui una risposta corretta contiene flusso blob hello come payload di hello. |
 | Accept-Encoding |Gzip, deflate |Codifica GZIP e DEFLATE, se applicabile. Nota: in caso di risorse di grandi dimensioni, Servizi multimediali può ignorare questa intestazione e restituire dati non compressi. |
-| Accept-Language |"en", "es" e così via. |Lingua preferita per la risposta. |
+| Accept-Language |"en", "es" e così via. |Specifica la lingua hello preferito per la risposta hello. |
 | Accept-Charset |Tipo di set di caratteri, ad esempio "UTF-8" |L'impostazione predefinita è UTF-8. |
-| X-HTTP-Method |Metodo HTTP |Consente ai client o ai firewall che non supportano metodi HTTP come PUT o DELETE di usarli, con tunneling tramite una chiamata GET. |
-| Content-Type |Tipo di contenuto |Tipo di contenuto del corpo delle richieste PUT o POST. |
-| client-request-id |String |Valore definito dal chiamante che identifica la richiesta fornita. Se specificato, questo valore viene incluso nel messaggio di risposta per consentire il mapping della richiesta. <p><p>**Importante**<p>Le dimensioni di questi valori dovrebbero essere limitate a 2096 b (2 k). |
+| X-HTTP-Method |Metodo HTTP |Consente ai client o firewall che non supportano metodi HTTP come PUT o DELETE toouse questi metodi, con tunneling tramite una chiamata GET. |
+| Content-Type |Tipo di contenuto |Tipo di contenuto del corpo della richiesta hello nelle richieste PUT o POST. |
+| client-request-id |String |Un valore definito dal chiamante che identifica hello richiesta specificato. Se specificato, questo valore verrà incluso nel messaggio di risposta hello come una richiesta di hello toomap modo. <p><p>**Importante**<p>Le dimensioni di questi valori dovrebbero essere limitate a 2096 b (2 k). |
 
 ## <a name="standard-http-response-headers-supported-by-media-services"></a>Intestazioni delle risposte HTTP standard supportate da Servizi multimediali
-Nella seguente tabella è riportato un set di intestazioni che possono essere restituite a seconda della risorsa richiesta e dell'azione che si intende eseguire.
+di seguito Hello è un set di intestazioni che possono essere restituiti tooyou a seconda della risorsa hello che richiesta e hello azione si intendeva tooperform.
 
 | Intestazione | Tipo | Valore |
 | --- | --- | --- |
-| request-id |String |Identificatore univoco per l'operazione corrente, generato dal servizio. |
-| client-request-id |String |Identificatore specificato dal chiamante nella richiesta originale, se presente. |
-| Date |Data RFC 1123 |Data di elaborazione della richiesta. |
-| Content-Type |Variabile |Tipo di contenuto del corpo della risposta. |
+| request-id |String |Identificatore univoco per l'operazione corrente di hello, servizio generato. |
+| client-request-id |String |Un identificatore specificato dal chiamante hello nella richiesta originale hello, se presente. |
+| Date |Data RFC 1123 |Data di Hello è stata elaborata la richiesta di hello. |
+| Content-Type |Variabile |tipo di contenuto Hello del corpo della risposta hello. |
 | Content-Encoding |Variabile |Gzip o deflate, a seconda delle esigenze. |
 
 ## <a name="standard-http-verbs-supported-by-media-services"></a>Verbi HTTP standard supportati da Servizi multimediali
-Nella seguente tabella è riportato l'elenco completo dei verbi HTTP che è possibile usare per la creazione di richieste HTTP:
+di seguito Hello è un elenco completo dei verbi HTTP che può essere usato quando creazione di richieste HTTP:
 
 | Verbo | Descrizione |
 | --- | --- |
-| GET |Restituisce il valore corrente di un oggetto. |
-| POST |Crea un oggetto in base ai dati forniti o invia un comando. |
+| GET |Restituisce hello valore corrente di un oggetto. |
+| POST |Crea un oggetto basato su dati hello forniti o invia un comando. |
 | PUT |Sostituisce un oggetto o ne crea uno nuovo con nome, se applicabile. |
 | DELETE |Elimina un oggetto. |
 | MERGE |Aggiorna un oggetto esistente con le modifiche alle proprietà denominate. |
 | HEAD |Restituisce i metadati di un oggetto per una risposta GET. |
 
 ## <a name="discover-media-services-model"></a>Individuare il modello di Servizi multimediali
-Per rendere più facilmente individuabili le entità di Servizi multimediali, è possibile usare l'operazione $metadata, che consente di recuperare tutti i tipi validi di entità, le proprietà di entità, le associazioni, le funzioni, le azioni e così via. L'esempio seguente illustra come costruire l'URI: https://media.windows.net/API/$metadata.
+toomake servizi multimediali le entità più facilmente individuabili, operazione hello $metadata possono essere utilizzate. Consente di tooretrieve tutti i tipi di entità valido, le proprietà delle entità, associazioni, funzioni, azioni e così via. Hello esempio seguente viene illustrato come tooconstruct hello URI: https://media.windows.net/API/$ metadata.
 
-Aggiungere "?api-version=2.x" alla fine dell'URI se si desidera visualizzare i metadati in un browser o se nella richiesta non è stata inclusa l'intestazione x-ms-version.
+È consigliabile aggiungere "? api-version=2.x" toohello fine hello URI se si desidera tooview hello metadati in un browser o di non inclusa l'intestazione x-ms-version hello nella richiesta.
 
-## <a name="connect-to-media-services"></a>Connettersi a Servizi multimediali
+## <a name="connect-toomedia-services"></a>Connessione dei servizi tooMedia
 
-Per informazioni su come connettersi all'API AMS, vedere [Accedere all'API di Servizi multimediali di Azure con l'autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). Dopo avere stabilito la connessione a https://media.windows.net, si riceverà un reindirizzamento 301 che indica un altro URI di Servizi multimediali. Le chiamate successive dovranno essere effettuate al nuovo URI.
+Per informazioni su come tooconnect toohello AMS API, vedere [hello accesso API di servizi multimediali di Azure con autenticazione di Azure AD](media-services-use-aad-auth-to-access-ams-api.md). Dopo avere stabilito la connessione toohttps://media.windows.net, si riceverà un reindirizzamento 301 specificando un altro URI di servizi multimediali. È necessario effettuare le chiamate successive toohello nuovo URI.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per accedere all'API di AMS con REST, vedere [Usare l'autenticazione di Azure AD per accedere all'API Servizi multimediali di Microsoft Azure con REST](media-services-rest-connect-with-aad.md).
+tooaccess APIs AMS con REST, vedere [usano Azure AD authentication tooaccess hello Azure API dei servizi multimediali con REST](media-services-rest-connect-with-aad.md).
 
 ## <a name="media-services-learning-paths"></a>Percorsi di apprendimento di Servizi multimediali
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

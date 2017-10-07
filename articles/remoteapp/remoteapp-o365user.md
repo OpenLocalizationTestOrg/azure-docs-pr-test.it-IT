@@ -1,6 +1,6 @@
 ---
-title: Come usare Azure RemoteApp con gli account utente di Office 365 | Documentazione Microsoft
-description: Informazioni su come usare Azure RemoteApp con gli account utente di Office 365
+title: aaaHow toouse Azure RemoteApp con gli account utente di Office 365 | Documenti Microsoft
+description: Informazioni su come toouse Azure RemoteApp con l'account utente di Office 365
 services: remoteapp
 documentationcenter: 
 author: piotrci
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 1bc8949c236afd03415f961cf7a657d4d3926b07
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2dbed2a6838adf9bb0f7508eb7dcecb0a74a62f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-remoteapp-with-office-365-user-accounts"></a>Come usare Azure RemoteApp con gli account utente di Office 365
+# <a name="how-toouse-azure-remoteapp-with-office-365-user-accounts"></a>Come toouse Azure RemoteApp con gli account utente di Office 365
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Se si dispone di una sottoscrizione di Office 365, è presente una directory Azure Active Directory in cui sono archiviati i nomi utente e le password usati per accedere ai servizi di Office 365. Ad esempio, quando gli utenti attivano Office 365 ProPlus, eseguono l’autenticazione con Azure AD per cercare le licenze. La maggior parte dei clienti desidera utilizzare la stessa directory con Azure RemoteApp.
+Se si dispone di una sottoscrizione Office 365, si dispone di Azure Active Directory che archivia i nomi utente e password utilizzati tooaccess servizi di Office 365. Ad esempio, quando gli utenti attivano Office 365 ProPlus autenticano contro toocheck di Azure AD per le licenze. La maggior parte dei clienti potrebbero ad esempio toouse hello stessa directory con Azure RemoteApp.
 
-Se si distribuisce Azure RemoteApp, è molto probabile che venga usata una sottoscrizione di Azure associata a un Azure AD diverso. Per usare la directory di Office 365, è necessario spostare la sottoscrizione di Azure in questa directory.
+Se si distribuisce Azure RemoteApp, è molto probabile che venga usata una sottoscrizione di Azure associata a un Azure AD diverso. In ordine toouse la directory di Office 365, sarà necessario toomove hello sottoscrizione di Azure in tale directory.
 
-Per informazioni su come distribuire le applicazioni client di Office 365, vedere [Come usare la sottoscrizione di Office 365 con Azure RemoteApp](remoteapp-officesubscription.md).
+Per informazioni su come le applicazioni client toodeploy Office 365, vedere [come toouse l'abbonamento a Office 365 con Azure RemoteApp](remoteapp-officesubscription.md).
 
 ## <a name="phase-1-register-your-free-office-365-azure-active-directory-subscription"></a>Fase 1: Registrare la sottoscrizione gratuita di Office 365 Azure Active Directory
-Se si usa il portale di Azure classico, usare i passaggi in [Registrazione della sottoscrizione di Azure Active Directory gratuita](https://technet.microsoft.com/library/dn832618.aspx) per ottenere l'accesso amministrativo ad Azure AD tramite il portale di gestione di Azure. Al termine di questo processo dovrebbe essere possibile accedere al portale di Azure e visualizzare qui la directory: a questo punto non verrà visualizzato molto di più perché la sottoscrizione di Azure completa in uso con Azure RemoteApp si trova in una directory diversa.
+Se si utilizza hello portale di Azure classico, utilizzare i passaggi di hello in [registrare la sottoscrizione di Azure Active Directory gratuita](https://technet.microsoft.com/library/dn832618.aspx) tooget tooyour di accesso amministrativo AD Azure tramite il portale di gestione di Azure hello. Come risultato di hello di questo processo si deve essere in grado di toolog nel portale di Azure hello e vedere la directory non esiste: a questo punto non verrà visualizzato molto più poiché hello sottoscrizione di Azure completo in uso con Azure RemoteApp è in una directory diversa.
 
-Ricordare il nome e la password dell'account amministratore creati in questo passaggio, perché saranno necessari nella fase 2.
+Memorizza nome hello e la password dell'account di amministratore hello creato in questo passaggio, saranno necessari nella fase 2.
 
-Se si usa il portale di Azure, consultare il post di blog relativo alla [registrazione e attivazione gratuite di Azure Active Directory tramite il portale di Office 365](http://azureblogger.com/2016/01/how-to-register-and-activate-a-free-azure-active-directory-using-office-365-portal/).
+Se si utilizza hello portale di Azure, consultare [come tooregister e attivare un gratuita di Azure Active Directory tramite il portale di Office 365](http://azureblogger.com/2016/01/how-to-register-and-activate-a-free-azure-active-directory-using-office-365-portal/).
 
-## <a name="phase-2-change-the-azure-ad-associated-with-your-azure-subscription"></a>Fase 2: Modificare l'Azure AD associato alla sottoscrizione di Azure.
-La sottoscrizione di Azure verrà modificata dalla directory corrente alla directory di Office 365 usata nella fase 1.
+## <a name="phase-2-change-hello-azure-ad-associated-with-your-azure-subscription"></a>Fase 2: Hello modifica AD Azure associata alla sottoscrizione di Azure.
+Verrà toochange la sottoscrizione di Azure dalla directory corrente nella directory di Office 365 hello che è utilizzati nella fase 1.
 
-Seguire le istruzioni descritte in [Modificare il tenant di Azure Active Directory in RemoteApp di Azure](remoteapp-changetenant.md). Prestare particolare attenzione ai seguenti passaggi:
+Seguire le istruzioni di hello descritte [tenant di Azure Active Directory modifica hello in Azure RemoteApp](remoteapp-changetenant.md). È necessario prestare particolare attenzione toohello alla procedura seguente:
 
 * Passaggio 1: Se è stato distribuito Azure RemoteApp (ARA) nella sottoscrizione, assicurarsi di rimuovere innanzitutto tutti gli account utente di Azure AD da qualsiasi raccolta ARA, prima di qualsiasi altra operazione. In alternativa, è possibile valutare l’eliminazione delle raccolte esistenti.
-* Passaggio 2: Questo è un passaggio critico. È necessario usare un account Microsoft, ad esempio @outlook.com, come amministratore del servizio nella sottoscrizione. Questo avviene perché non è possibile avere account utente dall'istanza di Azure AD esistente collegati alla sottoscrizione, altrimenti non sarà possibile procedere allo spostamento in un'istanza di Azure AD diversa.
-* Passaggio 4: Quando si aggiunge una directory esistente, il sistema richiederà di accedere con l'account amministratore per tale directory. Assicurarsi di utilizzare l'account amministratore dalla fase 1.
-* Passaggio 5: Modificare la directory padre della sottoscrizione con la directory di Office 365. Il risultato finale deve essere che in Impostazioni -> Sottoscrizioni, nella sottoscrizione è elencata la directory di Office 365. 
-  ![Modificare la directory padre della sottoscrizione](./media/remoteapp-o365user/settings.png)
+* Passaggio 2: Questo è un passaggio critico. È necessario un account Microsoft toouse (ad esempio @outlook.com) come un amministratore del servizio nella sottoscrizione hello; infatti, non abbiamo tutti gli account utente da hello esistente sottoscrizione di Azure AD collegato toohello – in questo caso, non sarà in grado di toomove è tooa di Azure AD.
+* Passaggio &#4;: Quando si aggiunge una directory esistente, sistema hello chiederà toosign con account di amministratore hello per tale directory. Verificare che account di amministratore hello toouse dalla fase 1.
+* Passaggio &#5;: Cambiare directory padre hello della directory di Office 365 tooyour sottoscrizione hello. risultato finale Hello necessario che in Impostazioni -> Sottoscrizioni sottoscrizione Elenca directory hello Office 365. 
+  ![Spostarsi nella directory padre hello di sottoscrizione hello](./media/remoteapp-o365user/settings.png)
 
-A questo punto la sottoscrizione di Azure RemoteApp è associata a Office 365 Azure AD; è possibile usare gli account utente di Office 365 esistenti con Azure RemoteApp.
+A questo punto la sottoscrizione di Azure RemoteApp è associata il Office 365, Azure AD; con Azure RemoteApp, è possibile utilizzare account utente di Office 365 esistente hello!
 

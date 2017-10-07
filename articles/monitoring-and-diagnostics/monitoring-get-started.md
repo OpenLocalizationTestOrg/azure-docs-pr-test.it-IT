@@ -1,6 +1,6 @@
 ---
-title: Introduzione a Monitoraggio di Azure | Documentazione Microsoft
-description: Introduzione all'uso del monitoraggio di Azure per comprendere appieno il funzionamento delle risorse ed eseguire operazioni in base ai dati.
+title: aaaGet Introduzione a monitoraggio di Azure | Documenti Microsoft
+description: Introduzione all'uso di operazione hello delle risorse approfondite toogain Monitor di Azure ed esegue azioni in base ai dati.
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/19/2016
 ms.author: johnkem
-ms.openlocfilehash: a4871cdee882fae8e43f84ce4f2fa0b4c0a8e1de
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 49e7105621a9e60c9fa14c4911c4fe45e0d197a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-monitor"></a>Introduzione al monitoraggio di Azure
-Monitoraggio di Azure è il servizio di piattaforma che mette a disposizione un'unica origine per il monitoraggio delle risorse di Azure. Con Monitoraggio di Azure è possibile visualizzare, fare query, indirizzare, archiviare ed effettuare operazioni sulle metriche e sui log provenienti dalle risorse di Azure. È possibile usare questi dati tramite il pannello del portale di Monitoraggio di Azure, i [cmdlet di PowerShell di Monitoraggio di Azure](insights-powershell-samples.md), l'[interfaccia della riga di comando multi-piattaforma](insights-cli-samples.md) o le [API REST di Monitoraggio di Azure](https://msdn.microsoft.com/library/dn931943.aspx). Questo articolo illustra alcuni componenti principali di Monitoraggio di Azure, usando il portale a scopo dimostrativo.
+Monitoraggio di Azure è servizio di piattaforma hello che fornisce un'unica origine per il monitoraggio delle risorse di Azure. Con il monitoraggio di Azure, è possibile visualizzare, richiedere, route, archiviare e intraprendere un'azione in metriche hello e log provenienti dalle risorse in Azure. È possibile utilizzare questo dati pannello portale monitoraggio di hello, con [i cmdlet PowerShell di monitoraggio](insights-powershell-samples.md), [CLI multipiattaforma](insights-cli-samples.md), o [API REST di Azure monitoraggio](https://msdn.microsoft.com/library/dn931943.aspx). In questo articolo vengono illustrate le alcuni dei componenti principali di hello di monitoraggio di Azure, tramite il portale di hello dimostrativo.
 
-1. Nel portale accedere a **Altri servizi** e trovare l'opzione **Monitoraggio**. Fare clic sull'icona a forma di stella per aggiungere l'opzione all'elenco dei preferiti per renderla facilmente accessibile dalla barra di navigazione a sinistra.
+1. Nel portale di hello passare troppo**più servizi** e trovare hello **monitoraggio** opzione. Fare clic su hello tooadd di icona a stella Preferiti di tooyour questa opzione in modo che sia sempre facilmente accessibile dalla barra di navigazione a sinistra di hello.
    
-    ![Monitor nell'elenco dei servizi](./media/monitoring-get-started/monitor-more-services.png)
-2. Fare clic sull'opzione **Monitoraggio** per aprire il pannello **Monitoraggio**. che riunisce tutte le impostazioni e i dati di monitoraggio in un'unica vista consolidata. Per prima cosa si apre la sezione **Log di attività**.
+    ![Monitorare nell'elenco di servizi di hello](./media/monitoring-get-started/monitor-more-services.png)
+2. Fare clic su hello **monitoraggio** tooopen opzione backup hello **monitoraggio** blade. che riunisce tutte le impostazioni e i dati di monitoraggio in un'unica vista consolidata. Viene aperto prima toohello **log attività** sezione.
    
     ![Esplorazione del pannello Monitoraggio](./media/monitoring-get-started/monitor-blade-nav.png)
    
-    Monitoraggio di Azure presenta tre categorie di base dei dati di monitoraggio: **log di attività**, **metriche** e **log di diagnostica**.
-3. Fare clic su **Log di attività** per assicurarsi di visualizzare la sezione Log di attività.
+    Monitoraggio di Azure ha tre categorie di dati di monitoraggio di base: hello **log attività**, **metriche**, e **i log di diagnostica**.
+3. Fare clic su **log attività** tooensure che hello sezione log attività viene visualizzato.
    
     ![Pannello Log di attività](./media/monitoring-get-started/monitor-act-log-blade.png)
    
-    Il [**log di attività**](monitoring-overview-activity-logs.md) descrive tutte le operazioni eseguite sulle risorse nella sottoscrizione. L'uso del log attività consente di acquisire informazioni dettagliate su qualsiasi operazione di creazione, aggiornamento o eliminazione eseguita per le risorse della sottoscrizione. Ad esempio, Log di attività indica quando un'app Web è stata arrestata e da chi. Gli eventi del log di attività vengono archiviati nella piattaforma e sono disponibili per le query per 90 giorni.
+    Hello [ **log attività** ](monitoring-overview-activity-logs.md) descrive tutte le operazioni eseguite sulle risorse nella sottoscrizione. Hello registro attività, consentono di determinare hello ' cosa, chi e quando ' per le operazioni di creazione, aggiornamento o eliminazione di operazioni sulle risorse nella sottoscrizione. Ad esempio, hello Log attività indica quando un'app web è stata arrestata e che ha interrotto. Eventi del registro attività vengono archiviati nella piattaforma hello e tooquery disponibili per 90 giorni.
    
-    È possibile creare e salvare le query per i filtri comuni, quindi aggiungere le query più importanti a un dashboard del portale, così da sapere sempre se si sono verificati eventi che soddisfano i criteri configurati.
-4. Filtrare la visualizzazione su un determinato gruppo di risorse nell'ultima settimana, quindi fare clic sul pulsante **Salva** .
+    È possibile creare e salvare le query per filtri comuni, quindi pin hello più importanti query tooa dashboard del portale in modo si saprà sempre se si sono verificati gli eventi che soddisfano i criteri specificati.
+4. Filtrare hello vista tooa determinato gruppo di risorse su hello ultima settimana, quindi fare clic su hello **salvare** pulsante.
    
     ![Salvare la query del Log di attività](./media/monitoring-get-started/monitor-act-log-save.png)
-5. A questo punto, fare clic sul pulsante **Aggiungi** .
+5. A questo punto, fare clic su hello **Pin** pulsante.
    
     ![Fare clic su Aggiungi per Log di attività](./media/monitoring-get-started/monitor-act-log-pin.png)
    
-    La maggior parte delle visualizzazioni in questa procedura dettagliata può essere aggiunta a un dashboard. Ciò consente di creare un'unica origine di informazioni sui dati operativi nei propri servizi. 
-6. Tornare al dashboard. Come è possibile notare, adesso la query (e i risultati) viene visualizzata nel dashboard. Ciò è utile per visualizzare rapidamente le azioni di alto profilo che si sono verificate di recente nella sottoscrizione, ad esempio l'assegnazione di un nuovo ruolo o l'eliminazione di una macchina virtuale.
+    La maggior parte delle viste hello in questa procedura dettagliata può essere bloccato tooa dashboard. Ciò consente di creare un'unica origine di informazioni sui dati operativi nei propri servizi. 
+6. Dashboard tooyour restituito. È possibile ora query hello (e numero di risultati) è visualizzato nel dashboard. Ciò è utile se si desidera vedere tooquickly eventuali azioni di alto profilo che si sono verificati recente nella sottoscrizione, ad esempio. l'assegnazione di un nuovo ruolo o l'eliminazione di una macchina virtuale.
    
-    ![Log di attività aggiunto al dashboard](./media/monitoring-get-started/monitor-act-log-db.png)
-7. Tornare al riquadro **Monitoraggio** e fare clic sulla sezione **Metriche**. È prima necessario selezionare una risorsa filtrandola con le opzioni disponibili nella parte superiore del pannello.
+    ![Attività bloccato log toodashboard](./media/monitoring-get-started/monitor-act-log-db.png)
+7. Restituire toohello **monitoraggio** riquadro e fare clic su hello **metriche** sezione. È necessario innanzitutto tooselect una risorsa di applicazione di filtri e selezionando utilizzando hello opzioni a discesa nella parte superiore di hello del pannello hello.
    
     ![Filtrare le risorse per le metriche](./media/monitoring-get-started/monitor-met-filter.png)
    
     Tutte le risorse di Azure generano [**metriche**](monitoring-overview-metrics.md). Questa visualizzazione riunisce tutte le metriche in un unico pannello in modo da comprendere facilmente le prestazioni delle risorse.
-8. Dopo aver selezionato una risorsa, tutte le metriche disponibili vengono visualizzate sul lato sinistro del pannello. È possibile creare un grafico di più metriche selezionando le metriche desiderate e modificando il tipo di grafico e l'intervallo di tempo. È inoltre possibile visualizzare tutti gli avvisi relativi alle metriche impostati su questa risorsa.
+8. Dopo aver selezionato una risorsa, tutte le metriche disponibili vengono visualizzati sul lato sinistro di blade hello hello. È possibile grafico contemporaneamente diverse metriche selezionando le metriche e modificare l'intervallo di tempo e di tipo di grafico hello. È inoltre possibile visualizzare tutti gli avvisi relativi alle metriche impostati su questa risorsa.
    
     ![Blade delle metriche](./media/monitoring-get-started/monitor-metric-blade.png)
    
@@ -62,40 +62,40 @@ Monitoraggio di Azure è il servizio di piattaforma che mette a disposizione un'
    > Alcune metriche sono disponibili solo abilitando [Application Insights](../application-insights/app-insights-overview.md) e/o Diagnostica di Azure per Windows o Linux sulla risorsa.
    > 
    > 
-9. Una volta ottenuto il grafico desiderato, è possibile usare il pulsante **Aggiungi** per aggiungerlo al dashboard.
-10. Tornare al pannello **Monitoraggio** e fare clic su **Log di diagnostica**.
+9. Quando si è soddisfatti con il grafico, è possibile utilizzare hello **Pin** pulsante toopin è tooyour dashboard.
+10. Restituire toohello **monitoraggio** pannello e fare clic su **log di diagnostica**.
     
     ![Pannello Log di diagnostica](./media/monitoring-get-started/monitor-diaglogs-blade.png)
     
-    I [**log di diagnostica**](monitoring-overview-of-diagnostic-logs.md) sono log generati *da* una risorsa che forniscono i dati sul funzionamento di tale risorsa. Ad esempio, i numeri di regole del gruppo di sicurezza di rete e i log del flusso di lavoro delle app per la logica sono due tipologie di log di diagnostica. Questi log possono essere archiviati in un account di archiviazione, trasmessi a un hub eventi e/o inviati a [Log Analytics](../log-analytics/log-analytics-overview.md). Log Analytics è il prodotto di intelligence operativa di Microsoft per eseguire operazioni avanzate di ricerca e avviso.
+    [**I log di diagnostica** ](monitoring-overview-of-diagnostic-logs.md) sono registri generati *da* una risorsa che forniscono dati sull'operazione di hello di tale particolare risorsa. Ad esempio, i numeri di regole del gruppo di sicurezza di rete e i log del flusso di lavoro delle app per la logica sono due tipologie di log di diagnostica. Questi registri possono essere archiviati in un account di archiviazione, flusso tooan Hub eventi, e/o inviati troppo[Analitica Log](../log-analytics/log-analytics-overview.md). Log Analytics è il prodotto di intelligence operativa di Microsoft per eseguire operazioni avanzate di ricerca e avviso.
     
-    Nel portale è possibile visualizzare e filtrare un elenco di tutte le risorse nella sottoscrizione per scoprire se dispongono di log di diagnostica abilitati.
-11. Fare clic su una risorsa nel pannello Log di diagnostica. Se i log di diagnostica vengono archiviati in un account di archiviazione, l'utente visualizzerà un elenco di log orari scaricabile.
+    Nel portale di hello è possibile visualizzare e filtrare un elenco di tutte le risorse in tooidentify la sottoscrizione se dispongono di log di diagnostica abilitato.
+11. Fare clic su una risorsa nel Pannello di log di diagnostica hello. Se i log di diagnostica vengono archiviati in un account di archiviazione, l'utente visualizzerà un elenco di log orari scaricabile.
     
     ![Log di diagnostica per una risorsa](./media/monitoring-get-started/monitor-diaglogs-detail.png)
     
-    È anche possibile fare clic su **Impostazioni di diagnostica** per configurare o modificare le impostazioni dell'archiviazione in un account di archiviazione, lo streaming all'hub eventi o l'invio a un'area di lavoro di Log Analytics.
+    È anche possibile fare clic su **le impostazioni di diagnostica**, che consente tooset backup o modificare le impostazioni per l'account di archiviazione dell'archivio tooa, streaming tooEvent hub o l'invio dell'area di lavoro di tooa Analitica di Log.
     
     ![Abilitare i log di diagnostica](./media/monitoring-get-started/monitor-diaglogs-enable.png)
     
-    Se i log di diagnostica sono stati impostati su Log Analytics, allora è possibile cercarli nella sezione **Ricerca Log** del portale.
-12. Andare alla sezione **Avvisi** del pannello Monitoraggio.
+    Se configuri i log di diagnostica tooLog Analitica, è possibile quindi cercare li hello **ricerca nei Log** sezione del portale hello.
+12. Passare toohello **avvisi** sezione del pannello monitoraggio hello.
     
     ![pannello avvisi pubblici](./media/monitoring-get-started/monitor-alerts-nopp.png)
     
-    Qui è possibile gestire tutti gli [**avvisi**](monitoring-overview-alerts.md) delle risorse di Azure, compresi gli avvisi sulle metriche, sugli eventi di log attività, sui test Web di Application Insights (posizioni) e sulla diagnostica proattiva di Application Insights. Gli avvisi possono attivare l'invio di un messaggio di posta elettronica o un HTTP POST a un URL webhook.
-13. Fare clic su **Aggiungi avviso sulla metrica** per creare un avviso.
+    Qui è possibile gestire tutti gli [**avvisi**](monitoring-overview-alerts.md) delle risorse di Azure, compresi gli avvisi sulle metriche, sugli eventi di log attività, sui test Web di Application Insights (posizioni) e sulla diagnostica proattiva di Application Insights. Gli avvisi possono attivare toobe un messaggio di posta elettronica inviato o un URL del webhook tooa HTTP POST.
+13. Fare clic su **Aggiungi avviso metrica** toocreate un avviso.
     
     ![Aggiungi avviso sulla metrica](./media/monitoring-get-started/monitor-alerts-add.png)
     
-    A questo punto è possibile aggiungere un avviso al dashboard per visualizzarne facilmente lo stato in qualsiasi momento.
-14. La sezione Monitoraggio include anche i collegamenti alle applicazioni di [Application Insights](../application-insights/app-insights-overview.md) e alle soluzioni di gestione di [Log Analytics](../log-analytics/log-analytics-overview.md). Questi altri prodotti Microsoft si integrano pienamente con il monitoraggio di Azure.
-15. Se Application Insights o Log Analytics non vengono usati, ci sono possibilità che il monitoraggio di Azure funzioni in collaborazione con le soluzioni di monitoraggio, registrazione e avviso attualmente in uso. Consultare la [pagina dedicata ai partner](monitoring-partners.md) per l'elenco completo dei partner e per ricevere le istruzioni di integrazione.
+    È possibile quindi pin un tooeasily dashboard tooyour avviso vedere lo stato in qualsiasi momento.
+14. la sezione monitoraggio Hello include anche collegamenti troppo[Application Insights](../application-insights/app-insights-overview.md) applicazioni e [Log Analitica](../log-analytics/log-analytics-overview.md) soluzioni di gestione. Questi altri prodotti Microsoft si integrano pienamente con il monitoraggio di Azure.
+15. Se Application Insights o Log Analytics non vengono usati, ci sono possibilità che il monitoraggio di Azure funzioni in collaborazione con le soluzioni di monitoraggio, registrazione e avviso attualmente in uso. Vedere il nostro [pagina partner](monitoring-partners.md) per un elenco completo e istruzioni su come toointegrate.
 
-Seguendo questi passaggi e aggiungendo tutti i riquadri pertinenti a un dashboard, è possibile creare delle visualizzazioni complete dell'applicazione e dell'infrastruttura come quella mostrata di seguito:
+La procedura seguente e tutti i dashboard tooa sezioni pertinenti di blocco, è possibile creare visualizzazioni complete dell'applicazione e dell'infrastruttura come questa:
 
 ![Dashboard del monitoraggio di Azure](./media/monitoring-get-started/monitor-final-dash.png)
 
 ## <a name="next-steps"></a>Passaggi successivi
-* Consultare [Panoramica del monitoraggio di Azure](monitoring-overview.md)
+* Hello lettura [Panoramica di monitoraggio di Azure](monitoring-overview.md)
 

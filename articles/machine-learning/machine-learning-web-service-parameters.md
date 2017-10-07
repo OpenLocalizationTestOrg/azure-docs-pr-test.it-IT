@@ -1,6 +1,6 @@
 ---
-title: Usare i parametri del servizio Web di Azure Machine Learning | Documentazione Microsoft
-description: Come usare i parametri del servizio Web di Azure Machine Learning per modificare il comportamento del modello quando si accede al servizio Web.
+title: Parametri del servizio Web Azure Machine Learning aaaUse | Documenti Microsoft
+description: Come toouse parametri del servizio Web Azure Machine Learning toomodify hello comportamento del modello quando accede al servizio web hello.
 services: machine-learning
 documentationcenter: 
 author: raymondlaghaeian
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye
-ms.openlocfilehash: 482726c1dae5385964e08b720e529817d5907537
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 214711eb819a6cea34db905abdf015da11e846d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-machine-learning-web-service-parameters"></a>Usare i parametri del servizio Web di Azure Machine Learning
-Un servizio Web di Azure Machine Learning viene creato mediante la pubblicazione di un esperimento contenente moduli con parametri configurabili. In alcuni casi può essere utile modificare il comportamento del modulo mentre è in esecuzione il servizio Web. I *parametri del servizio Web* consentono di eseguire questa operazione. 
+Un servizio Web di Azure Machine Learning viene creato mediante la pubblicazione di un esperimento contenente moduli con parametri configurabili. In alcuni casi, è consigliabile comportamento del modulo hello toochange durante l'esecuzione di servizio web hello. *I parametri di servizio Web* consentono toodo questa attività. 
 
-Un esempio comune è la configurazione del modulo [Import Data][reader] per consentire all’utente del servizio Web pubblicato di specificare un'origine dati diversa quando si accede al servizio Web oppure la configurazione del modulo [Export Data][writer] in modo che sia possibile specificare una destinazione differente. Altri esempi includono la modifica del numero di bit per il modulo [Feature Hashing][feature-hashing] o il numero di funzionalità desiderate per il modulo [Filter-Based Feature Selection][filter-based-feature-selection]. 
+Un esempio comune è impostazione hello [l'importazione dei dati] [ reader] modulo utente hello di hello pubblicato il servizio web è possibile specificare un'origine dati diversa quando accede al servizio web hello. O configurazione hello [Esporta dati] [ writer] modulo in modo che è possibile specificare una destinazione diversa. Alcuni altri esempi includono la modifica hello numero di bit per hello [Feature Hashing] [ feature-hashing] modulo o hello numero di funzioni desiderate per hello [Filter-Based Feature Selection] [ filter-based-feature-selection] modulo. 
 
-È possibile impostare i parametri del servizio Web e associarli a uno o più parametri di modulo nell’esperimento, e specificare se sono obbligatori o facoltativi. L'utente del servizio web può quindi fornire valori per questi parametri quando si chiama il servizio web. 
+È possibile impostare i parametri del servizio Web e associarli a uno o più parametri di modulo nell’esperimento, e specificare se sono obbligatori o facoltativi. utente Hello del servizio web hello può quindi fornire valori per questi parametri quando si chiamano un servizio web hello. 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="how-to-set-and-use-web-service-parameters"></a>Come impostare e usare i parametri del servizio Web
-È possibile definire un parametro del servizio Web facendo clic sull'icona accanto al parametro di un modulo e selezionando "Set as web service parameter". Verrà creato un nuovo parametro del servizio Web che verrà connesso al parametro del modulo. Quando si accede al servizio Web, l'utente può quindi specificare un valore per il parametro del servizio Web che viene applicato al parametro del modulo.
+## <a name="how-tooset-and-use-web-service-parameters"></a>Come tooset e utilizzare i parametri di servizio Web
+Per definire un parametro del servizio Web, fare clic sul parametro successivo toohello hello icona per un modulo e selezionando "Imposta come parametro del servizio web". Questo crea un nuovo parametro del servizio Web e lo connette parametro module toothat. Quindi, quando si accede a servizio web hello, hello utente può specificare un valore per hello parametro del servizio Web ed è il parametro di modulo toohello applicato.
 
-Dopo aver definito un parametro del servizio Web, questo parametro sarà disponibile per qualsiasi altro parametro del modulo nell’esperimento. Se si definisce un parametro del servizio Web associato a un parametro per un modulo, è possibile usare lo stesso parametro per qualsiasi altro modulo, purché il parametro preveda lo stesso tipo di valore. Se ad esempio il parametro del servizio Web è un valore numerico, è possibile usarlo solo per i parametri del modulo che prevedono un valore numerico. Quando l'utente imposta un valore per il parametro del servizio Web, tale valore verrà applicato a tutti i parametri del modulo associati.
+Quando si definisce un parametro di servizio Web, è disponibile tooany altro parametro di modulo nell'esperimento hello. Se si definisce un parametro di servizio Web associato a un parametro per un modulo, è possibile utilizzare tale parametro di servizio Web stesso per qualsiasi altro modulo come parametro di hello prevede hello dello stesso tipo di valore. Ad esempio, se hello parametro del servizio Web è un valore numerico, quindi utilizzabile solo per i parametri di modulo che prevede un valore numerico. Quando l'utente hello imposta un valore per hello parametro del servizio Web, verrà applicato tooall associati parametri del modulo.
 
-È possibile decidere se specificare un valore predefinito per il parametro del servizio Web. In questo caso per l'utente del servizio Web il parametro sarà facoltativo. Se si non specifica un valore predefinito, è necessario immettere un valore quando si accede al servizio Web.
+È possibile decidere se il valore predefinito tooprovide per hello parametro del servizio Web. Se quindi, hello parametro è facoltativo per l'utente hello del servizio web hello. Se non si fornisce un valore predefinito, utente hello è tooenter richiesto un valore quando accede al servizio web hello.
 
-La documentazione dell'API per il servizio Web include informazioni per l'utente del servizio Web su come specificare il parametro del servizio Web a livello di codice quando accede al servizio.
+documentazione dell'API per servizi web hello Hello include informazioni per utente del servizio web hello in modo toospecify hello parametro del servizio Web a livello di codice quando l'accesso al servizio web hello.
 
 > [!NOTE]
-> La documentazione dell'API per un servizio Web classico è disponibile tramite il collegamento **pagina della Guida dell'API** nel **DASHBOARD** del servizio Web in Machine Learning Studio. La documentazione dell'API per un nuovo servizio Web è disponibile tramite il portale dei [servizi Web di Azure Machine Learning](https://services.azureml.net/Quickstart) o nelle pagine **Consume** (Uso) e **Swagger API** (API Swagger) per il servizio Web.
+> Hello documentazione dell'API per un servizio web classico è fornito da hello **pagina della Guida API** collegamento nel servizio web hello **DASHBOARD** in Machine Learning Studio. Hello documentazione dell'API per un nuovo servizio web viene fornito da hello [servizi Web di Azure Machine Learning](https://services.azureml.net/Quickstart) portale su hello **consumare** e **Swagger API** pagine per il servizio Web.
 > 
 > 
 
 ## <a name="example"></a>Esempio
-Si supponga ad esempio di disporre di un esperimento con un modulo [Export Data][writer] che invia informazioni all'archiviazione BLOB di Azure. Verrà definito un parametro del servizio Web denominato "percorso BLOB" che consente all'utente del servizio Web di modificare il percorso dell'archiviazione BLOB quando si accede al servizio.
+Ad esempio, si supponga di disporre un esperimento con un [Esporta dati] [ writer] modulo che invia informazioni sull'archiviazione di blob tooAzure. Definiamo un parametro di servizio Web denominato "Percorso Blob" che consente di hello web servizio utente toochange hello percorso toohello archiviazione blob quando accede al servizio hello.
 
-1. In Machine Learning Studio fare clic sul modulo [Export Data][writer] per selezionarlo. Le relative proprietà verranno visualizzate nel riquadro delle proprietà a destra dell'area di disegno dell'esperimento.
-2. Specificare il tipo di archiviazione:
+1. In Machine Learning Studio, fare clic su hello [Esporta dati] [ writer] tooselect modulo è. Le relative proprietà vengono visualizzate in hello proprietà riquadro toohello destra dell'area di disegno esperimento hello.
+2. Specificare il tipo di archiviazione hello:
    
    * In **Please specify data destination**(Specificare la destinazione dei dati) selezionare "Azure Blob Storage" (Archivio BLOB di Azure).
    * In **Please specify authentication type**selezionare "Account".
-   * Immettere le informazioni dell'account per l'archiviazione BLOB di Azure. 
+   * Immettere le informazioni sull'account hello per hello archiviazione blob di Azure. 
      <p />
-3. Fare clic sull'icona a destra di **Path to blob beginning with container parameter** (Percorso BLOB che inizia con parametro contenitore). L'aspetto sarà simile al seguente:
+3.Fare clic su hello icona toohello diritto di hello **tooblob che inizia con il parametro contenitore**. L'aspetto sarà simile al seguente:
    
    ![Icona del parametro del servizio Web][icon]
    
    Selezionare "Set as web service parameter".
    
-   Verrà aggiunta una voce in **Web Service Parameters** nella parte inferiore del riquadro Proprietà con il nome "Path to blob beginning with container". Questo sarà il parametro del servizio Web associato al parametro del modulo [Export Data][writer].
-4. Per rinominare il parametro del servizio Web, fare clic sul nome, digitare "Blob path" e quindi premere **INVIO** . 
-5. Per specificare un valore predefinito per il parametro del servizio Web, fare clic sull'icona a destra del nome, selezionare "Provide default value", immettere un valore (ad esempio, "container1/output1.csv") e quindi premere **INVIO** .
+   Viene aggiunta una voce in **parametri del servizio Web** nella parte inferiore di hello del riquadro Proprietà hello hello "percorso tooblob che iniziano con con contenitore". Si tratta di hello parametro del servizio Web che è ora associato a questo [Esporta dati] [ writer] parametro module.
+4. toorename hello parametro del servizio Web, fare clic sul nome di hello, immettere "Percorso Blob" e premere hello **invio** chiave. 
+5. tooprovide un valore predefinito per hello parametro del servizio Web, fare clic su hello icona toohello destra del nome hello selezionare "Ottenere il valore predefinito", immettere un valore (ad esempio, "container1/output1.csv") e premere hello **invio** chiave.
    
    ![Parametro del servizio Web][parameter]
 6. Fare clic su **Run**. 
-7. Fare clic su **Deploy Web Service** (Distribuisci servizio Web) e selezionare **Deploy Web Service [Classic]** (Distribuisci servizio Web [Classico]) o **Deploy Web Service [New]** (Distribuisci servizio Web [Nuovo]) per distribuire il servizio Web.
+7. Fare clic su **distribuzione servizio Web** e selezionare **distribuzione di un servizio Web [classica]** o **distribuzione servizio Web [New]** servizio web di toodeploy hello.
 
 > [!NOTE] 
-> Per distribuire un nuovo servizio Web è necessario disporre delle autorizzazioni sufficienti nella sottoscrizione a cui si sta distribuendo il servizio Web. Per altre informazioni, vedere [Gestire un servizio Web usando il portale dei servizi Web di Azure Machine Learning](machine-learning-manage-new-webservice.md). 
+> un nuovo servizio web deve disporre di autorizzazioni sufficienti in hello toowhich di sottoscrizione per la distribuzione del servizio web hello toodeploy. Per ulteriori informazioni, vedere [gestire un servizio Web tramite il portale di servizi Web di Azure Machine Learning hello](machine-learning-manage-new-webservice.md). 
 
-È ora possibile specificare una nuova destinazione per il modulo [Export Data][writer] quando si accede al servizio Web.
+utente Hello del servizio web hello ora è possibile specificare una nuova destinazione per hello [Esporta dati] [ writer] modulo quando l'accesso al servizio web hello.
 
 ## <a name="more-information"></a>Altre informazioni
-Per un esempio più dettagliato, vedere la voce relativa ai [parametri del servizio Web](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) nel [blog di Machine Learning](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx).
+Per un esempio più dettagliato, vedere hello [parametri del servizio Web](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) voce hello [Blog di Machine Learning](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx).
 
-Per altre informazioni sull'accesso a un servizio Web di Machine Learning, vedere [Come usare un servizio Web di Azure Machine Learning ](machine-learning-consume-web-services.md).
+Per ulteriori informazioni sull'accesso a un servizio web Machine Learning, vedere [come un servizio Web di Azure Machine Learning tooconsume](machine-learning-consume-web-services.md).
 
 <!-- Images -->
 [icon]: ./media/machine-learning-web-service-parameters/icon.png

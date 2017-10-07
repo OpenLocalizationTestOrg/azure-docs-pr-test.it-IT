@@ -1,6 +1,6 @@
 ---
-title: Come usare l'API di Engagement in iOS
-description: "iOS SDK più recente: come usare l'API di Engagement in iOS"
+title: aaaHow tooUse hello Engagement API in iOS
+description: "IOS più recente SDK - come tooUse hello Engagement API in iOS"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: a31424da98205e97bdf57010cccfd044360f03dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7fb9b95ad319cf3b1e2de81b5d6aee5b30266069
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-engagement-api-on-ios"></a>Come usare l'API di Engagement in iOS
-Questo documento è complementare all'articolo relativo all'integrazione di Engagement in iOS e fornisce informazioni approfondite su come usare l'API di Engagement per segnalare le statistiche dell'applicazione.
+# <a name="how-toouse-hello-engagement-api-on-ios"></a>Come tooUse hello Engagement API in iOS
+Questo documento è un componente aggiuntivo toohello come tooIntegrate Engagement in iOS: fornisce informazioni approfondite su come toouse hello API Engagement tooreport le statistiche dell'applicazione.
 
-Tenere presente che, se si vuole impostare Engagement in modo che segnali solo le sessioni, le attività, gli arresti anomali e i dati tecnici dell'applicazione, la soluzione più semplice consiste nel fare in modo che tutti gli oggetti `UIViewController` personalizzati ereditino dalla classe `EngagementViewController` corrispondente.
+Tenere presente che se si desidera solo Engagement tooreport sessioni dell'applicazione, le attività, arresti anomali del sistema e informazioni tecniche, hello più semplice consiste nel toomake tutti personalizzato `UIViewController` oggetti ereditano hello corrispondente `EngagementViewController` classe .
 
-Se invece si hanno esigenze più complesse, ad esempio se è necessario segnalare eventi, errori e processi specifici dell'applicazione o presentare le attività dell'applicazione in modo diverso rispetto a quello implementato nelle classi `EngagementViewController`, è necessario usare l'API di Engagement.
+Se si desidera toodo altre, ad esempio se è necessario tooreport eventi specifici di applicazione, gli errori e i processi o se hai tooreport attività dell'applicazione in modo diverso rispetto a uno implementato in hello hello `EngagementViewController` classi, è necessario toouse hello Engagement API.
 
-L'API di Engagement viene fornita dalla classe `EngagementAgent` . Un'istanza di questa classe può essere recuperata chiamando il metodo statico `[EngagementAgent shared]` (tenere presente che l'oggetto `EngagementAgent` restituito è un singleton).
+Hello Engagement API viene fornita da hello `EngagementAgent` classe. Un'istanza di questa classe può essere recuperata dal chiamante hello `[EngagementAgent shared]` metodo statico (si noti che hello `EngagementAgent` oggetto restituito è un singleton).
 
-Prima di eseguire chiamate API, è necessario inizializzare l'oggetto `EngagementAgent` chiamando il metodo `[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`
+Prima di qualsiasi chiamate API, hello `EngagementAgent` necessario inizializzare l'oggetto chiamando il metodo hello`[EngagementAgent init:@"Endpoint={YOUR_APP_COLLECTION.DOMAIN};SdkKey={YOUR_SDK_KEY};AppId={YOUR_APPID}"];`
 
 ## <a name="engagement-concepts"></a>Concetti relativi a Mobile Engagement
-Le parti seguenti approfondiscono le informazioni contenute nell'articolo [Concetti relativi ad Azure Mobile Engagement](mobile-engagement-concepts.md) per la piattaforma iOS.
+parti seguenti Hello perfezionare hello comune [concetti Engagement Mobile](mobile-engagement-concepts.md) per la piattaforma iOS hello.
 
 ### <a name="session-and-activity"></a>`Session` e `Activity`
-Un'*attività* è in genere associata a una schermata dell'applicazione, ovvero l'*attività* inizia quando la schermata viene visualizzata e si arresta quando la schermata viene chiusa. Questo avviene quando l'SDK di Engagement è integrato mediante le classi `EngagementViewController`.
+Un *attività* è generalmente associato a una schermata dell'applicazione hello, che è hello toosay *attività* inizia quando la schermata Ciao viene visualizzato e si arresta alla chiusura della schermata hello: si tratta di hello caso in cui Hello Engagement SDK è integrato con hello `EngagementViewController` classi.
 
-Le *attività* possono tuttavia essere controllate anche manualmente usando l'API di Engagement. In questo modo, è possibile dividere una schermata specifica in diverse parti secondarie per ottenere maggiori dettagli sull'utilizzo della schermata, ad esempio per definire la frequenza e la durata in base alle quali le finestre di dialogo vengono usate all'interno della schermata.
+Ma *attività* può essere controllato anche manualmente utilizzando l'API di Engagement hello. In questo modo una schermata determinata toosplit in diversi tooget di parti di sub hello di ulteriori dettagli sull'utilizzo di questa schermata (ad esempio la frequenza con cui tooknown e per quanto tempo, all'interno di questa schermata, vengono utilizzate le finestre di dialogo).
 
 ## <a name="reporting-activities"></a>Segnalazione di attività
 ### <a name="user-starts-a-new-activity"></a>L'utente inizia una nuova attività
             [[EngagementAgent shared] startActivity:@"MyUserActivity" extras:nil];
 
-È necessario chiamare `startActivity()` ogni volta che l'attività dell'utente cambia. La prima chiamata a questa funzione avvia una nuova sessione utente.
+È necessario toocall `startActivity()` ogni attività utente hello in fase di modifica. Hello prima chiamata toothis funzione avvia una nuova sessione utente.
 
 ### <a name="user-ends-his-current-activity"></a>L'utente termina l'attività corrente
             [[EngagementAgent shared] endActivity];
 
 > [!WARNING]
-> Questa funzione non deve **MAI** essere chiamata autonomamente, a meno che non si desideri dividere un uso dell'applicazione in più sessioni. Una chiamata a questa funzione interromperebbe immediatamente la sessione corrente e quindi una successiva chiamata a `startActivity()` avvierebbe una nuova sessione. Questa funzionalità viene chiamata automaticamente dall'SDK durante la chiusura dell'applicazione.
+> È necessario **mai** chiamare questa funzione personalmente, tranne se si desidera toosplit un utilizzo dell'applicazione in diverse sessioni: una chiamata di funzione toothis interromperebbe hello la sessione corrente immediatamente, pertanto, una chiamata successiva troppo`startActivity()`avvia una nuova sessione. Questa funzione viene chiamata automaticamente da hello SDK alla chiusura dell'applicazione.
 > 
 > 
 
 ## <a name="reporting-events"></a>Segnalazione di eventi
 ### <a name="session-events"></a>Eventi di sessione
-Gli eventi di sessione vengono in genere usati per segnalare le azioni eseguite da un utente durante la sua sessione.
+Gli eventi di sessione sono azioni hello tooreport utilizzati in genere eseguite da un utente durante la sessione.
 
 **Esempio senza dati aggiuntivi:**
 
@@ -89,7 +89,7 @@ Gli eventi di sessione vengono in genere usati per segnalare le azioni eseguite 
     }
 
 ### <a name="standalone-events"></a>Eventi autonomi
-Contrariamente agli eventi della sessione, quelli autonomi possono essere utilizzati al di fuori del contesto di una sessione.
+Eventi di toosession contrarie, autonoma eventi possono essere usati all'esterno di contesto hello di una sessione.
 
 **Esempio:**
 
@@ -97,16 +97,16 @@ Contrariamente agli eventi della sessione, quelli autonomi possono essere utiliz
 
 ## <a name="reporting-errors"></a>Segnalazione di errori
 ### <a name="session-errors"></a>Errori di sessione
-Gli errori di sessione vengono in genere usati per segnalare gli errori che hanno impatto sull'utente durante la sua sessione.
+Sessione gli errori in genere utilizzato tooreport hello conseguenze utente hello durante la sessione.
 
 **Esempio:**
 
-    /** The user has entered invalid data in a form */
+    /** hello user has entered invalid data in a form */
     @implementation MyViewController {
       [...]
       -(void)onMyFormSubmitted:(MyForm*)form {
         [...]
-        /* The user has entered an invalid email address */
+        /* hello user has entered an invalid email address */
         [[EngagementAgent shared] sendSessionError:@"sign_up_email" extras:nil]
         [...]
       }
@@ -114,7 +114,7 @@ Gli errori di sessione vengono in genere usati per segnalare gli errori che hann
     }
 
 ### <a name="standalone-errors"></a>Errori autonomi
-Contrariamente agli errori della sessione, quelli autonomi possono essere utilizzati al di fuori del contesto di una sessione.
+Errori toosession contrarie, autonomo possono essere utilizzati all'esterno di contesto hello di una sessione.
 
 **Esempio:**
 
@@ -123,7 +123,7 @@ Contrariamente agli errori della sessione, quelli autonomi possono essere utiliz
 ## <a name="reporting-jobs"></a>Segnalazione di processi
 **Esempio:**
 
-Si supponga di voler segnalare la durata del processo di accesso:
+Si supponga che si desidera tooreport hello durata del processo di accesso:
 
     [...]
     -(void)signIn
@@ -139,11 +139,11 @@ Si supponga di voler segnalare la durata del processo di accesso:
     [...]
 
 ### <a name="report-errors-during-a-job"></a>Segnalazione di errori durante un processo
-Gli errori possono essere correlati a un processo in esecuzione invece che alla sessione utente corrente.
+Gli errori possono essere correlato tooa esecuzione processo anziché essere correlate toohello sessione utente.
 
 **Esempio:**
 
-Si consideri una situazione nella quale l'utente desidera segnalare un errore durante il processo di accesso:
+Si supponga di che voler tooreport un errore durante il processo di accesso:
 
     [...]
     -(void)signin
@@ -153,7 +153,7 @@ Si consideri una situazione nella quale l'utente desidera segnalare un errore du
 
       BOOL success = NO;
       while (!success) {
-        /* Try to sign in */
+        /* Try toosign in */
         NSError* error = nil;
         [self trySigin:&error];
         success = error == nil;
@@ -176,11 +176,11 @@ Si consideri una situazione nella quale l'utente desidera segnalare un errore du
     [...]
 
 ### <a name="events-during-a-job"></a>Eventi durante un processo
-Gli eventi possono essere correlati a un processo in esecuzione invece che alla sessione utente corrente.
+Gli eventi possono essere correlato tooa esecuzione processo anziché essere correlate toohello sessione utente.
 
 **Esempio:**
 
-Si supponga di disporre di un social network e di usare un processo per segnalare il tempo totale durante il quale l'utente è connesso al server. Se l'utente riceve messaggi dagli amici, si tratta di un evento di processo.
+Si supponga che abbiamo un social network ed è possibile usare un processo tooreport hello totale tempo durante cui hello utente è connesso toohello server. utente Hello può ricevere messaggi dai suoi amici, si tratta di un evento di processo.
 
     [...]
     - (void) signin
@@ -203,18 +203,18 @@ Si supponga di disporre di un social network e di usare un processo per segnalar
     [...]
 
 ## <a name="extra-parameters"></a>Parametri aggiuntivi
-È possibile collegare dati arbitrari a eventi, errori, attività e processi.
+Dati arbitrari possono essere collegati tooevents, errori, le attività e processi.
 
 Questi dati possono essere strutturati e utilizzano la classe NSDictionary di iOS.
 
 Tenere presente che i dati aggiuntivi possono includere `arrays(NSArray, NSMutableArray)`, `numbers(NSNumber class)`, `strings(NSString, NSMutableString)`, `urls(NSURL)`, `data(NSData, NSMutableData)` o altre istanze di `NSDictionary`.
 
 > [!NOTE]
-> Il parametro aggiuntivo viene serializzato in JSON. Se si desidera passare oggetti diversi da quelli descritti in precedenza, è necessario implementare il metodo seguente nella classe:
+> parametro aggiuntivo Hello viene serializzato in JSON. Se si desidera toopass oggetti diversi rispetto a quelli descritti sopra hello, è necessario implementare hello metodo nella classe seguente:
 > 
 > -(NSString*)JSONRepresentation;
 > 
-> Il metodo deve restituire una rappresentazione JSON dell'oggetto.
+> metodo Hello deve restituire la rappresentazione JSON dell'oggetto.
 > 
 > 
 
@@ -226,25 +226,25 @@ Tenere presente che i dati aggiuntivi possono includere `arrays(NSArray, NSMutab
 
 ### <a name="limits"></a>Limiti
 #### <a name="keys"></a>Chiavi
-Ogni chiave in `NSDictionary` deve corrispondere all'espressione regolare seguente:
+Ogni chiave hello `NSDictionary` deve corrispondere hello espressione regolare seguente:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Questo significa che le chiavi devono iniziare con almeno una lettera, seguita da lettere, cifre o caratteri di sottolineatura (\_).
 
 #### <a name="size"></a>Dimensione
-I dati aggiuntivi sono limitati a **1024** caratteri per chiamata, una volta codificati in JSON dall'agente di Engagement.
+Funzionalità aggiuntive sono troppo limitate**1024** caratteri per ogni chiamata (una volta codificato in JSON dall'agente di Engagement hello).
 
-Nell'esempio precedente il codice JSON inviato al server è lungo 58 caratteri:
+In hello esempio precedente, hello JSON inviato server toohello è 58 caratteri:
 
     {"ref_click":"http:\/\/foobar.com\/blog","video_id":"123"}
 
 ## <a name="reporting-application-information"></a>Segnalazione di informazioni sull'applicazione
-È possibile segnalare manualmente le informazioni di traccia o qualsiasi altra informazione specifica dell'applicazione mediante la funzione `sendAppInfo:` .
+È possibile segnalare manualmente traccia informazioni o qualsiasi altra informazione di specifici dell'applicazione mediante hello `sendAppInfo:` (funzione).
 
-Queste informazioni possono essere inviate in modo incrementale: viene mantenuto solo l'ultimo valore per una determinata chiave per ogni dispositivo specifico.
+Si noti che queste informazioni possono essere inviate in modo incrementale: solo hello valore più recente per una determinata chiave verrà conservati per un determinato dispositivo.
 
-Come per i dati aggiuntivi degli eventi, la classe `NSDictionary` viene usata per astrarre le informazioni sull'applicazione. Tenere presente che le matrici o i dizionari secondari vengono trattati come stringhe flat (usando la serializzazione JSON).
+Ad esempio funzionalità aggiuntive di evento, hello `NSDictionary` classe è usato tooabstract informazioni dell'applicazione, tenere presente che le matrici o dizionari secondari verranno considerati come stringhe flat (con la serializzazione JSON).
 
 **Esempio:**
 
@@ -255,15 +255,15 @@ Come per i dati aggiuntivi degli eventi, la classe `NSDictionary` viene usata pe
 
 ### <a name="limits"></a>Limiti
 #### <a name="keys"></a>Chiavi
-Ogni chiave in `NSDictionary` deve corrispondere all'espressione regolare seguente:
+Ogni chiave hello `NSDictionary` deve corrispondere hello espressione regolare seguente:
 
 `^[a-zA-Z][a-zA-Z_0-9]*`
 
 Questo significa che le chiavi devono iniziare con almeno una lettera, seguita da lettere, cifre o caratteri di sottolineatura (\_).
 
 #### <a name="size"></a>Dimensione
-Le informazioni sull'applicazione sono limitate a **1024** caratteri per chiamata, una volta codificate in JSON dall'agente di Engagement.
+Informazioni sull'applicazione sono troppo limitati**1024** caratteri per ogni chiamata (una volta codificato in JSON dall'agente di Engagement hello).
 
-Nell'esempio precedente il codice JSON inviato al server è lungo 44 caratteri:
+In hello esempio precedente, hello JSON inviato server toohello è 44 caratteri:
 
     {"birthdate":"1983-12-07","gender":"female"}

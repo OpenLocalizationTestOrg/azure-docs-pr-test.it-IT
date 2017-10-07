@@ -1,6 +1,6 @@
 ---
-title: Anteprima di Docker Compose di Azure Service Fabric | Microsoft Docs
-description: "Azure Service Fabric accetta il formato Docker Compose per semplificare l'orchestrazione di contenitori esistenti usando Service Fabric. Questo supporto è attualmente disponibile in versione di anteprima."
+title: aaaAzure Service Fabric Docker comporre Preview | Documenti Microsoft
+description: "Azure Service Fabric accetta Docker Compose toomake formato è più facile tooorchestrate exsiting contenitori di usando Service Fabric. Questo supporto è attualmente disponibile in versione di anteprima."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: b12ef95add6347621f7d4865fac46568f91a1e12
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 824044fd698f0ed94c4212722bc82187905315dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="specifying-volume-plugins-and-logging-drivers-for-your-container"></a>Specifica di plug-in di volume e driver di registrazione per il contenitore
 
-Service Fabric supporta la specifica di [plug-in di volume Docker](https://docs.docker.com/engine/extend/plugins_volume/) e i [driver di registrazione Docker](https://docs.docker.com/engine/admin/logging/overview/) per il servizio di contenitore. I plug-in sono specificati nel manifesto dell'applicazione, come illustrato nel manifesto seguente:
+Service Fabric supporta la specifica di [plug-in di volume Docker](https://docs.docker.com/engine/extend/plugins_volume/) e i [driver di registrazione Docker](https://docs.docker.com/engine/admin/logging/overview/) per il servizio di contenitore. Hello i plug-in vengono specificati nel manifesto dell'applicazione hello, come illustrato nel seguente manifesto hello:
 
 
 ```xml
@@ -56,9 +56,9 @@ Service Fabric supporta la specifica di [plug-in di volume Docker](https://docs.
 </ApplicationManifest>
 ```
 
-Nell'esempio precedente, il tag `Source` per `Volume` fa riferimento alla cartella di origine. La cartella di origine potrebbe essere una cartella nella macchina virtuale che ospita i contenitori o un archivio remoto persistente. Il tag `Destination` è il percorso in cui viene eseguito il mapping di `Source` all'interno del contenitore in esecuzione. 
+In hello sopra riportato, hello `Source` tag per hello `Volume` fa riferimento la cartella di origine toohello. cartella di origine Hello potrebbe essere una cartella nella macchina virtuale che ospita i contenitori di hello o un archivio remoto permanente hello. Hello `Destination` tag è percorso hello hello `Source` è mappato toowithin hello contenitore in esecuzione. 
 
-Quando si specifica un plug-in di un volume, Service Fabric crea automaticamente il volume usando i parametri specificati. Il tag `Source` è il nome del volume e il tag `Driver` specifica il plug-in del driver del volume. Le opzioni possono essere specificate usando il tag `DriverOption`, come illustrato nel frammento di codice seguente:
+Quando si specifica un plug-in di volume, Service Fabric crea automaticamente il volume di hello usando hello parametri specificati. Hello `Source` tag è il nome di hello del volume hello e hello `Driver` tag specifica plug-in di hello volume driver. È possibile specificare opzioni utilizzando hello `DriverOption` come illustrato nel seguente frammento di codice hello:
 
 ```xml
 <Volume Source="myvolume1" Destination="c:\testmountlocation4" Driver="azurefile" IsReadOnly="true">
@@ -66,9 +66,9 @@ Quando si specifica un plug-in di un volume, Service Fabric crea automaticamente
 </Volume>
 ```
 
-Se viene specificato un driver di registro Docker, è necessario distribuire gli agenti o i contenitori per gestire i registri nel cluster.  Il tag `DriverOption` può essere usato anche per specificare le opzioni del driver di log.
+Se viene specificato un driver di log di Docker, è necessario toodeploy hello toohandle agenti (o contenitori) registra nel cluster hello.  Hello `DriverOption` tag può essere anche opzioni di driver log toospecify utilizzato.
 
-Vedere gli articoli seguenti per distribuire i contenitori a un cluster Service Fabric:
+Fare riferimento toohello cluster di Service Fabric tooa contenitori toodeploy gli articoli seguenti:
 
 
 [Distribuire un contenitore in Service Fabric](service-fabric-deploy-container.md)

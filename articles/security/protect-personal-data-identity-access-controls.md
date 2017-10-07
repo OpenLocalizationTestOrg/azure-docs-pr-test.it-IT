@@ -1,6 +1,6 @@
 ---
-title: "Proteggere i dati personali usando l'identità e i controlli di accesso di Azure | Microsoft Docs"
-description: "Uso dell'identità e dei controlli di accesso di Azure per proteggere i dati personali"
+title: "i dati personali aaaProtect con controlli di identità e accessi Azure | Documenti Microsoft"
+description: "Tramite Azure toohelp di controlli di identità e accessi proteggere i dati personali"
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,49 +15,49 @@ ms.workload: na
 ms.date: 08/22/2017
 ms.author: barclayn
 ms.custom: 
-ms.openlocfilehash: b43754efd207679dbe08710f44f56454a5fd20ab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3132c2af25f86662668e5b555eab1d81de7f2e6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-and-multi-factor-authentication-protect-personal-data-with-identity-and-access-controls"></a>Azure Active Directory e Multi-Factor Authentication: proteggere i dati personali usando l'identità e i controlli di accesso
 
-Questo articolo fornisce informazioni e procedure utili per proteggere i dati personali usando i servizi e le funzionalità di sicurezza di Azure Active Directory e Multi-Factor Authentication.
+Questo articolo fornisce informazioni e procedure che è possibile utilizzare i dati personali a tooprotect usando i servizi e funzionalità di sicurezza di autenticazione di Azure Active Directory e a più fattori.
 
 ## <a name="scenario"></a>Scenario
 
-Un'importante compagnia di viaggi in crociera, con sede negli Stati Uniti, sta espandendo le proprie operazioni per offrire itinerari nel Mar Mediterraneo e nel Mar Baltico, nonché nelle isole britanniche. Per supportare tale iniziativa, ha acquistato diverse linee minori con sede in Italia, Germania, Danimarca e Regno Unito. 
+Una società crociera di grandi dimensioni, la sede centrale negli Stati Uniti hello espansione relativo itinerari toooffer operazioni Mediterraneo hello, Adriatico e mare Baltico, nonché hello isole britannico. toosupport tali attività, che è stato acquisito più righe crociera inferiori basate in Italia, Germania, Danimarca e hello Regno Unito 
 
-La società usa Microsoft Azure per archiviare i dati aziendali nel cloud. Questi includono informazioni personali come nomi, indirizzi, numeri di telefono e dati delle carte di credito della base clienti globale, Include inoltre informazioni sulle risorse umane di tradizionali, ad esempio indirizzi, i numeri di telefono, codici fiscali e informazioni mediche relativi ai dipendenti della società in tutte le posizioni. La linea di crociere gestisce anche un database di grandi dimensioni dei membri dei programmi fedeltà e premi, che include informazioni personali per tenere traccia delle relazioni con i clienti attuali e del passato.
+la società Hello utilizza i dati aziendali di Microsoft Azure toostore nel cloud hello. Questi includono informazioni personali come nomi, indirizzi, numeri di telefono e dati delle carte di credito della base clienti globale, Include inoltre informazioni sulle risorse umane di tradizionali, ad esempio indirizzi, i numeri di telefono, codici fiscali e informazioni mediche relativi ai dipendenti della società in tutte le posizioni. riga crociera Hello gestisce anche un database di grandi dimensioni di benefici e la fedeltà dei membri del programma che include informazioni personali tootrack relazioni con i clienti correnti e precedenti.
 
-I dipendenti aziendali accedono alla rete dagli uffici remoti della società, mentre agenti di viaggio in tutto il mondo hanno accesso ad alcune risorse aziendali.
+Rete con i dipendenti aziendali accesso hello da sedi remote e agenzie di viaggio hello aziendali presenti in ogni HelloWorld hanno accesso alle risorse aziendali toosome.
 
 ## <a name="problem-statement"></a>Presentazione del problema
 
-L'azienda deve proteggere la privacy dei dati personali dei clienti e dei dipendenti da utenti malintenzionati che cercano di usare le identità compromesse per ottenere l'accesso. Deve anche assicurare che l'accesso ai dati personali da parte di utenti legittimi sia limitato solo a coloro che necessitano di tale accesso per svolgere le proprie mansioni.
+società Hello devono proteggere privacy hello dei dati personali dei dipendenti e clienti da utenti malintenzionati tentando di accedere toogain di identità toouse compromesso. È inoltre necessario verificare che toopersonal di accesso ai dati in base agli utenti legittimi sono limitati solo a quelli che ne hanno bisogno toodo i processi.
 
 ## <a name="company-goal"></a>Obiettivo dell'azienda
 
-L'obiettivo dell'azienda è garantire che l'accesso ai dati personali sia strettamente controllato. È essenziale che le identità degli utenti con accesso ai dati personali siano protette da autenticazione avanzata. È necessario applicare un criterio di [privilegi minimi] (https://it.wikipedia.org/wiki/Principio_del_privilegio_minimo) in modo che gli utenti legittimi abbiano esclusivamente il livello di accesso di cui necessitano e non oltre.
+obiettivo della società Hello è tooensure che accedono ai dati toopersonal è rigorosamente controllate. È essenziale che le identità degli utenti con accesso ai dati toopersonal sia protetta da autenticazione avanzata. Un criterio di [privilegio minimo] (https://en.wikipedia.org/wiki/Principle_of_least_privilege) deve essere applicata in modo che solo livello hello di accesso necessarie, non di più utenti autorizzati.
 
 ## <a name="solutions"></a>Soluzioni
 
-Microsoft Azure offre gli strumenti di gestione di identità e accessi per consentire alle aziende di determinare chi può accedere a risorse che contengono dati personali.
+Microsoft Azure offre gli strumenti di gestione delle identità e accessi toohelp società chi ha accesso tooresources che contengono dati personali.
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
-[Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) (AAD) gestisce le identità e controlla l'accesso ad Azure e ad altre risorse, applicazioni e dati locali o cloud. [Azure Active Directory Privileged Identity Management](https://docs.microsoft.com/azure/active-directory/privileged-identity-management/active-directory-securing-privileged-access) consente agli amministratori di Azure di ridurre al minimo il numero di utenti che hanno accesso a determinate informazioni, ad esempio i dati personali. Consente di individuare, limitare e monitorare le identità con privilegi e il loro accesso alle risorse e di assegnare diritti amministrativi temporanei Just-In-Time (JIT) agli utenti idonei. Consente anche di ottenere informazioni su coloro che hanno privilegi amministrativi di AAD.
+[Azure Active Directory](https://docs.microsoft.com/azure/active-directory/) (AAD) gestisce le identità e controlla l'accesso tooAzure così come altri locali e altre risorse cloud, dati e applicazioni. [Azure Active Directory Privileged Identity Management](https://docs.microsoft.com/azure/active-directory/privileged-identity-management/active-directory-securing-privileged-access) aiuta gli amministratori di Azure toominimize hello numerose persone che hanno accesso toocertain informazioni quali dati personali. Consente loro toodiscover, limitare e monitorare le identità con privilegi e i relativi tooresources e tooassign temporaneo,-Time (JIT) diritti amministrativi tooeligible gli utenti di accesso. Consente anche di ottenere informazioni su coloro che hanno privilegi amministrativi di AAD.
 
-Le attività correlate all'uso di Azure Active Directory Privileged Identity Management includono:
+le attività di Hello relativi all'utilizzo di AAD PIM includono:
 
 - Abilitazione di Privileged Identity Management per la directory
 
-- Uso del dashboard di amministrazione di Privileged Identity Management per visualizzare rapidamente informazioni importanti
+- Utilizzando Gestione identità con privilegi amministratore dashboard toosee importanti informazioni a colpo d'occhio
 
-- Gestione delle identità con privilegi (amministratori) tramite l'aggiunta o la rimozione di amministratori permanenti o idonei a ogni ruolo
+- La gestione delle identità con privilegiata hello (amministratori) aggiungendo o rimuovendo ruolo tooeach amministratori permanenti o idonei
 
-- Configurazione delle impostazioni di attivazione del ruolo
+- Configurazione delle impostazioni di attivazione di hello ruolo
 
 - Attivazione dei ruoli
 
@@ -65,17 +65,17 @@ Le attività correlate all'uso di Azure Active Directory Privileged Identity Man
 
 #### <a name="how-do-i-enable-aad-pim"></a>Come abilitare Azure Active Directory Privileged Identity Management
 
-Per iniziare a usare Privileged Identity Management per la directory, seguire questa procedura:
+usare PIM per la directory, toostart hello seguenti:
 
-1. Accedere al portale di Azure come amministratore globale della directory.
+1. Accedi toohello portale di Azure come amministratore globale della directory.
 
-2. Se l'organizzazione ha più directory, selezionare il proprio nome utente nell'angolo superiore destro del portale di Azure. Selezionare la directory in cui si userà Azure AD Privileged Identity Management.
+2. Se l'organizzazione dispone di più di una directory, selezionare il nome utente in hello nell'angolo superiore destro di hello portale di Azure. Selezionare la directory di hello in cui si userà Azure AD Privileged Identity Management.
 
-3. Selezionare **Altri servizi** e usare la casella di testo **Filtro** per cercare Azure AD Privileged Identity Management.
+3. Selezionare **più servizi** e utilizzare hello **filtro** toosearch casella di testo per Azure AD Privileged Identity Management.
 
-4. Selezionare **Aggiungi al dashboard** e quindi fare clic su **Crea**. Verrà aperta l'applicazione Privileged Identity Management.
+4. Controllare **Pin toodashboard** e quindi fare clic su **crea**. verrà visualizzata la finestra di Hello applicazione Privileged Identity Management.
 
-Dopo la configurazione di Azure AD Privileged Identity Management, a ogni apertura dell'applicazione viene visualizzato il pannello di spostamento.
+Una volta configurato, Azure AD Privileged Identity Management vedrai il pannello di navigazione hello ogni volta che si apre un'applicazione hello.
 
 ![](media/protect-personal-data-identity-access-controls/azure-pim.png)
 
@@ -83,15 +83,15 @@ Per altre informazioni e istruzioni su come iniziare a usare Azure Active Direct
 
 ### <a name="azure-role-based-access-control"></a>Controllo degli accessi in base al ruolo di Azure
 
-Il [controllo degli accessi in base al ruolo di Azure](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) consente agli amministratori di Azure di gestire l'accesso alle risorse di Azure, concedendo l'accesso in base al ruolo assegnato all'utente. È possibile separare i compiti all'interno di un team e concedere a utenti, gruppi e applicazioni solo il livello di accesso necessario per svolgere le proprie attività.
+[Controllo di accesso basato sui ruoli Azure](https://docs.microsoft.com/azure/active-directory/role-based-access-control-configure) (RBAC) aiuta gli amministratori di Azure a gestire tooAzure di accedere alle risorse abilitazione hello concessione dell'accesso in base a hello assegnato il ruolo utente. È possibile separare i compiti all'interno di un team e concedere solo hello quantità di accesso toousers, gruppi e le applicazioni che devono tooperform i processi.
 
-L'accesso in base al ruolo può essere concesso agli utenti tramite il portale di Azure, gli strumenti da riga di comando di Azure o le API di gestione di Azure.
+È possibile concedere accesso basato sui ruoli toousers utilizzando hello portale di Azure, gli strumenti da riga di comando di Azure o le API di gestione di Azure.
 
-Per altre informazioni sul controllo degli accessi in base al ruolo di Azure, vedere [Introduzione al controllo degli accessi in base al ruolo nel portale di Azure](https://docs.microsoft.com/active-directory/role-based-access-control-what-is).
+Per ulteriori informazioni sui concetti di base sui ruoli di Azure, vedere [introduzione Role-Based Access Control in hello portale di Azure.](https://docs.microsoft.com/active-directory/role-based-access-control-what-is)
 
 #### <a name="how-do-i-manage-azure-rbac-with-powershell"></a>Come gestire il controllo degli accessi in base al ruolo con PowerShell
 
-È possibile usare i cmdlet di PowerShell per gestire il controllo degli accessi in base al ruolo di Azure, incluse le attività di gestione seguenti:
+È possibile utilizzare i cmdlet di PowerShell toomanage RBAC di Azure, tra cui hello seguenti attività di gestione:
 
 - Elenco dei ruoli
 
@@ -111,19 +111,19 @@ Per altre informazioni sul controllo degli accessi in base al ruolo di Azure, ve
 
 - Elencare ruoli personalizzati
 
-Per istruzioni su come gestire il controllo degli accessi in base al ruolo di Azure con PowerShell, vedere [Gestire il controllo degli accessi in base al ruolo con Azure PowerShell](https://docs.microsoft.com/azure/active-directory/role-based-access-control-manage-access-powershell).
+Per istruzioni su come toomanage RBAC Azure con PowerShell, vedere [basata sui ruoli di gestione accesso con Azure PowerShell](https://docs.microsoft.com/azure/active-directory/role-based-access-control-manage-access-powershell).
 
 ### <a name="azure-multi-factor-authentication"></a>Azure Multi-Factor Authentication
 
-[Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/), o MFA, è una soluzione per la verifica in due passaggi che consente di proteggere l'accesso ai dati e alle applicazioni, garantendo al tempo stesso agli utenti una procedura di accesso semplice. Offre autenticazione avanzata tramite una gamma di metodi di verifica, fra cui una telefonata, un SMS o una verifica dell'app per dispositivi mobili.
+[Azure multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/) (MFA) è una soluzione di verifica in due fasi che consente di salvaguardare accesso toodata e applicazioni, rispettando la richiesta dell'utente per un semplice processo. Offre autenticazione avanzata tramite una gamma di metodi di verifica, fra cui una telefonata, un SMS o una verifica dell'app per dispositivi mobili.
 
-Per distribuire Multi-Factor Authentication nel cloud di Azure, è prima necessario abilitare il servizio e quindi attivare la verifica in due passaggi per gli utenti.
+toodeploy autenticazione a più fattori in hello cloud di Azure, è necessario toofirst attivarla e quindi attivare la verifica in due passaggi per gli utenti.
 
-#### <a name="how-do-i-enable-azure-to-use-mfa"></a>Come abilitare Azure per l'uso di Multi-Factor Authentication
+#### <a name="how-do-i-enable-azure-toouse-mfa"></a>Come abilitare toouse Azure MFA?
 
-Se gli utenti hanno licenze che comprendono Azure Multi-Factor Authentication, non è necessario eseguire operazioni per attivare Azure MFA. In caso contrario sarà necessario creare un provider di Multi-Factor Authentication nella directory. A questo scopo, seguire questa procedura:
+Se gli utenti hanno le licenze che includono Azure multi-Factor Authentication, non è necessario che è necessario tooturn toodo su Azure MFA. In caso contrario, è necessario un provider multi-Factor Authentication toocreate nella directory. toodo, seguire questi passaggi:
 
-1. Accedere al portale di Azure classico come amministratore e selezionare **Active Directory**.
+1. Selezionare **Active Directory** in hello portale di Azure classico (connesso come amministratore).
 
 2. Selezionare **Provider di Multi-Factor Authentication**.
 
@@ -131,52 +131,52 @@ Se gli utenti hanno licenze che comprendono Azure Multi-Factor Authentication, n
 
 4. Selezionare **Creazione rapida**.
 
-5. Compilare il campo del nome e selezionare un modello di utilizzo, ovvero per autenticazione o per utente abilitato.
+5. Compilare il campo di nome hello e selezionare un modello di utilizzo (per l'autenticazione o per utente abilitato).
 
-6. Designare una directory a cui associare il provider di Multi-Factor Authentication.
+6. Designare una directory a cui hello è associato il Provider di autenticazione a più fattori.
 
-7. Selezionare il pulsante **Create** .
+7. Fare clic su hello **crea** pulsante.
 
 ![](media/protect-personal-data-identity-access-controls/quick-create.png)
 
-Per altre istruzioni su come gestire i provider di Multi-Factor Authentication, vedere [Introduzione all'uso di un provider di Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication-get-started-auth-provider).
+Per altre istruzioni su come toomanage Provider multi-Factor Authentication, vedere [Introduzione a un Provider di Azure multi-Factor Authentication.](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication-get-started-auth-provider)
 
 #### <a name="how-do-i-turn-on-two-step-verification-for-users"></a>Come attivare la verifica in due passaggi per gli utenti
 
-È possibile applicare la verifica in due passaggi per tutti gli accessi o creare criteri di accesso condizionale per richiedere la verifica in due passaggi solo in presenza di condizioni specifiche.
+È possibile applicare la verifica in due passaggi per accessi tutti o solo quando si verificano condizioni specifiche, è possibile creare verifica in due passaggi toorequire criteri di accesso condizionale.
 
-L'abilitazione di Azure MFA modificando gli stati utente è l'approccio tradizionalmente usato per richiedere la verifica in due passaggi. Tutti gli utenti abilitati devono effettuare la verifica in due passaggi ogni volta che accedono. L'abilitazione di un utente sostituisce eventuali criteri di accesso condizionale in vigore per l'utente.
+L'abilitazione di autenticazione a più fattori di Azure, modificare stati utente è l'approccio tradizionale hello per la richiesta di verifica in due passaggi. Tutti gli utenti di hello che abiliti hello verifica in due passaggi di stesso requisito tooperform ogni volta che effettuano l'accesso. L'abilitazione di un utente sostituisce eventuali criteri di accesso condizionale in vigore per l'utente.
 
-L'abilitazione di Azure MFA con criteri di accesso condizionale è un approccio più flessibile per richiedere la verifica in due passaggi. È possibile creare criteri di accesso condizionale da applicare sia a gruppi che a singoli utenti. È possibile, ad esempio, assegnare ai gruppi ad alto rischio più restrizioni rispetto ai gruppi a basso rischio oppure richiedere la verifica in due passaggi solo per le app cloud ad alto rischio e non per quelle a basso rischio. L'accesso condizionale è tuttavia una funzionalità a pagamento di Azure Active Directory.
+L'abilitazione di Azure MFA con criteri di accesso condizionale è un approccio più flessibile per richiedere la verifica in due passaggi. È possibile creare criteri di accesso condizionale che si applicano toogroups, nonché a singoli utenti. È possibile, ad esempio, assegnare ai gruppi ad alto rischio più restrizioni rispetto ai gruppi a basso rischio oppure richiedere la verifica in due passaggi solo per le app cloud ad alto rischio e non per quelle a basso rischio. L'accesso condizionale è tuttavia una funzionalità a pagamento di Azure Active Directory.
 
-Per abilitare MFA modificando lo stato utente, seguire questa procedura:
+hello tooenable MFA modificando lo stato utente seguenti:
 
-1. Accedre al portale di Azure come amministratore.
-2. Passare ad **Azure Active Directory \> Utenti e gruppi \> Tutti gli utenti**.
+1. Accedi toohello portale di Azure come amministratore.
+2. Andare troppo**Azure Active Directory \> utenti e gruppi \> tutti gli utenti**.
 3. Selezionare **Multi-Factor Authentication**.
-4. Trovare l'utente che si vuole abilitare per Azure MFA. Potrebbe essere necessario modificare la visualizzazione nella parte superiore.
-5. Selezionare la casella accanto al nome dell'utente.
-6. A destra scegliere **Abilita** sotto Azioni rapide.
+4. Trova hello utente che si desidera tooenable per Azure MFA. Potrebbe essere necessario toochange hello visualizzazione nella parte superiore di hello.
+5. Controllare nome hello casella Avanti toohello dell'utente.
+6. Sulla destra, nella casella rapide hello, scegliere **abilitare**.
 
    ![](media/protect-personal-data-identity-access-controls/quick-create.png)
 
-7. Confermare la selezione nella finestra popup che viene visualizzata.  Gli utenti per i quali è stata abilitata la funzionalità Multi-Factor Authentication devono eseguire la registrazione all'accesso successivo.
+7. Confermare la selezione nella finestra popup di hello visualizzata.  Gli utenti per cui è stata abilitata l'autenticazione a più fattori verranno chiesto hello tooregister successivo che accesso.
 
-Per abilitare Azure MFA con criteri di accesso condizionale, seguire questa procedura:
+tooenable Azure MFA con un criterio di accesso condizionale, hello seguenti:
 
-1. Accedre al portale di Azure come amministratore.
+1. Accedi toohello portale di Azure come amministratore.
 
-2. Passare ad **Azure Active Directory \> Accesso condizionale**.
+2. Andare troppo**Azure Active Directory \> accesso condizionale**.
 
 3. Selezionare **Nuovi criteri**.
 
-4. In **Assegnazioni** selezionare **Utenti e gruppi**. Usare le schede **Includi** ed **Escludi** per specificare quali utenti e i gruppi dovranno essere gestiti dai criteri.
+4. In **Assegnazioni** selezionare **Utenti e gruppi**. Hello utilizzare **Include** e **escludere** schede toospecify quali utenti e gruppi verranno gestiti da criteri hello.
 
-5. In **Assegnazioni** selezionare **App cloud**. Scegliere di includere **Tutte le app cloud**.
+5. In **Assegnazioni** selezionare **App cloud**. Scegliere troppo**includono tutte le app cloud**.
 6.  In **Controlli di accesso** selezionare **Concedi**. Selezionare **Richiedi autenticazione a più fattori**.
-7.  Impostare **Abilita criterio** su **On** e quindi selezionare **Salva**.
+7.  Attivare **abilitare i criteri di** troppo**su** e quindi selezionare **salvare**.
 
-Per informazioni su come configurare le impostazioni di Azure MFA per definire gli avvisi di illecito, creare un bypass monouso, usare messaggi vocali personalizzati, configurare il caching, specificare indirizzi IP attendibili, creare password per le app, abilitare la memorizzazione dell'autenticazione per i dispositivi attendibili degli utenti e selezionare metodi di verifica, vedere [Configurare le impostazioni di Azure Multi-Factor Authentication](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication-whats-next).
+Per informazioni su come tooset le impostazioni di autenticazione a più fattori di Azure tooconfigure di avvisi di illecito, creare un bypass monouso, utilizzare i messaggi vocali personalizzati, configurare la memorizzazione nella cache, specificare indirizzi IP attendibili, creare password dell'app, abilitare la memorizzazione di autenticazione a più fattori per i dispositivi che gli utenti attendibili, selezionare metodi di verifica, vedere [configurare impostazioni di Azure multi-Factor Authentication.](https://docs.microsoft.com/azure/multi-factor-authentication/multi-factor-authentication-whats-next)
 
 ## <a name="next-steps"></a>Passaggi successivi
 

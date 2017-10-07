@@ -1,6 +1,6 @@
 ---
-title: Impostazioni del Registro di sistema di Cloud App Discovery per i servizi proxy | Documentazione Microsoft
-description: Questo argomento illustra tutti i passaggi da eseguire per impostare la porta necessaria sui computer che eseguono l'agente Cloud App Discovery.
+title: le impostazioni del Registro di sistema di individuazione di App per servizi Proxy aaaCloud | Documenti Microsoft
+description: "obiettivo Hello di questo argomento è tooprovide si con hello i passaggi necessari per necessario tooperform tooset hello necessario porta hello i computer agente Cloud App Discovery hello."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,24 +14,24 @@ ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: ea15dc9a9f20a296e622c8fb1011f7ee99de3e99
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bb1fe20016459160b4f67cb0125b1781a0260c4b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cloud-app-discovery-registry-settings-for-proxy-services"></a>Impostazioni del Registro di sistema di Cloud App Discovery per i servizi proxy
-Per impostazione predefinita, l'agente Cloud App Discovery è configurato solo per l'uso delle porte 80 o 443. Se si prevede di installare Cloud App Discovery in un ambiente con un server proxy che usa una porta personalizzata (non la 80 né la 443), è necessario configurare gli agenti per l'uso di questa porta. La configurazione si basa su una chiave del Registro di sistema.
+Per impostazione predefinita, l'agente Cloud App Discovery hello è toouse configurato solo hello porte 80 o 443. Se prevede di installare Cloud App Discovery in un ambiente con un server proxy che utilizza una porta personalizzata (80 né 443), è necessario tooconfigure il toouse agenti questa porta. configurazione di Hello è basata su una chiave del Registro di sistema.
 
-Questo argomento illustra tutti i passaggi da eseguire per impostare la porta necessaria sui computer che eseguono l'agente Cloud App Discovery.
+obiettivo Hello di questo argomento è tooprovide si con hello i passaggi necessari per necessario tooperform tooset hello necessario porta hello i computer agente Cloud App Discovery hello.
 
-**Per modificare la porta usata dal computer che esegue l'agente Cloud App Discovery, eseguire la procedura seguente:**
+**porta hello toomodify utilizzata dal computer hello esecuzione agente Cloud App Discovery hello, eseguire hello alla procedura seguente:**
 
-1. Avviare l'Editor del Registro di sistema. <br> ![Esegui](./media/active-directory-cloudappdiscovery-registry-settings-for-proxy-services/proxy01.png)
-2. Passare alla chiave seguente del Registro di sistema oppure crearla:  <br> **HKLM_LOCAL_MACHINE\Software\Microsoft\Cloud App Discovery\Endpoint** 
+1. Avviare l'editor del Registro di sistema hello. <br> ![Esegui](./media/active-directory-cloudappdiscovery-registry-settings-for-proxy-services/proxy01.png)
+2. Passare tooor creare hello seguente chiave del Registro di sistema: <br> **HKLM_LOCAL_MACHINE\Software\Microsoft\Cloud App Discovery\Endpoint** 
 3. Creare un nuovo valore **multistringa** denominato **Ports**. ![Nuovo](./media/active-directory-cloudappdiscovery-registry-settings-for-proxy-services/proxy02.png)
-4. Per aprire la finestra di dialogo **Modifica multistringhe** , fare doppio clic sul valore Ports.
-5. Nella casella di testo Dati valore digitare i valori seguenti e aggiungere tutte le porte personalizzate usate dall'organizzazione:  <br><br>
+4. hello tooopen **Modifica multistringhe** finestra di dialogo, fare doppio clic sul valore porte hello.
+5. Nella casella dati valore hello digitare i seguenti valori hello e aggiungere tutte le porte personalizzate che vengono utilizzate dall'organizzazione: <br><br>
    **80** <br>
    **8080** <br>
    **8118** <br>
@@ -45,7 +45,7 @@ Questo argomento illustra tutti i passaggi da eseguire per impostare la porta ne
    **443** <br>
    **1110** <br><br>
    ![Modifica multistringhe](./media/active-directory-cloudappdiscovery-registry-settings-for-proxy-services/proxy03.png)
-6. Fare clic su **OK** per chiudere la finestra di dialogo **Modifica multistringhe**.
+6. Fare clic su **OK** tooclose hello **Modifica multistringhe** finestra di dialogo.
 
 **Risorse aggiuntive**
 

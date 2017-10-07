@@ -1,6 +1,6 @@
 ---
-title: "Pianificare la capacità e la scalabilità per la replica VMware con Azure Site Recovery | Microsoft Docs"
-description: "Consultare questo articolo per pianificare la capacità e la scalabilità quando si esegue la replica delle macchine virtuali VMware in Azure con Azure Site Recovery"
+title: "aaaPlan capacità e scalabilità per VMware replica tooAzure con Azure Site Recovery | Documenti Microsoft"
+description: "Utilizzare questa capacità tooplan articolo e la scala per la replica delle macchine virtuali VMware tooAzure con Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/24/2017
 ms.author: rayne
-ms.openlocfilehash: 8b580ac239bfb6d7b633fb03d4cfb91b168b0610
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7ca9147d1b4611f6b4a67c3de3f27fb9878f4c4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="plan-capacity-and-scaling-for-vmware-replication-with-azure-site-recovery"></a>Pianificare la capacità e la scalabilità per la replica VMware con Azure Site Recovery
 
-Consultare questo articolo per scoprire come pianificare la capacità e la scalabilità durante la replica locale delle macchine virtuali VMware e dei server fisici in Azure, con [Azure Site Recovery](site-recovery-overview.md).
+Utilizzare questo toofigure articolo pianificazione della capacità e scalabilità, la replica di macchine virtuali VMware in locale e server fisici tooAzure con [Azure Site Recovery](site-recovery-overview.md).
 
 ## <a name="how-do-i-start-capacity-planning"></a>Come si inizia per pianificare la capacità?
 
-Raccogliere informazioni sull'ambiente di replica usando [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner-doc) per la replica VMware. [Altre informazioni](site-recovery-deployment-planner.md) su questo strumento. È possibile ottenere informazioni sulle macchine virtuali compatibili e non, i dischi per ogni macchina virtuale e la varianza di dati per ogni disco. Lo strumento specifica anche i requisiti della larghezza di banda di rete e l'infrastruttura di Azure necessaria per la corretta esecuzione della replica e il failover del test.
+Raccogliere informazioni sull'ambiente di replica eseguendo hello [pianificazione della distribuzione di ripristino del sito Azure](https://aka.ms/asr-deployment-planner-doc) per la replica VMware. [Altre informazioni](site-recovery-deployment-planner.md) su questo strumento. È possibile ottenere informazioni sulle macchine virtuali compatibili e non, i dischi per ogni macchina virtuale e la varianza di dati per ogni disco. strumento Hello riguarda anche i requisiti di larghezza di banda di rete e hello necessario per il failover della replica e di test ha esito positivo dell'infrastruttura di Azure.
 
 ## <a name="capacity-considerations"></a>Considerazioni sulla capacità
 
 **Componente** | **Dettagli** |
 --- | --- | ---
-**Replica** | **Frequenza di modifica giornaliera massima**: un computer protetto può usare un solo server di elaborazione e la frequenza di modifica giornaliera gestita da un singolo server di elaborazione può arrivare fino a 2 TB. La massima frequenza di modifica dei dati giornaliera supportata per una macchina protetta è quindi di 2 TB.<br/><br/> **Velocità effettiva massima**: una macchina replicata può appartenere a un account di archiviazione in Azure. Un account di archiviazione standard può gestire fino a 20.000 richieste al secondo ed è consigliabile fare in modo che il numero di operazioni di input/output al secondo (IOPS) in una macchina di origine rimanga impostato su 20.000. Se, ad esempio, si ha un computer di origine con 5 dischi e ogni disco genera 120 IOPS (dimensione pari a 8 K) nella macchina di origine, il computer rientra nel limite di Azure di 500 IOPS per disco. Il numero di account di archiviazione necessari è uguale al numero complessivo di IOPS della macchina di origine diviso per 20.000.
-**Server di configurazione** | Il server di configurazione deve poter gestire la capacità della frequenza di modifica giornaliera in tutti i carichi di lavoro in esecuzione nei computer protetti e avere a disposizione una larghezza di banda sufficiente per eseguire la replica continua dei dati in Archiviazione di Azure.<br/><br/> Come procedura consigliata, il server di configurazione deve trovarsi nella stessa rete e nello stesso segmento LAN dei computer da proteggere. Se si trova in una rete diversa, i computer da proteggere devono avere la visibilità di rete L3 per il server.<br/><br/> Le dimensioni consigliate per il server di configurazione sono riepilogate nella tabella riportata nella sezione successiva.
-**Server di elaborazione** | Per impostazione predefinita, il primo server di elaborazione viene installato nel server di configurazione. È possibile distribuire altri server di elaborazione per ridimensionare l'ambiente. <br/><br/> Il server di elaborazione riceve i dati di replica da computer protetti e li ottimizza attraverso la memorizzazione nella cache, la compressione e la crittografia, prima di inviarli ad Azure. Il computer server di elaborazione deve avere risorse sufficienti per eseguire queste attività.<br/><br/> Il server di elaborazione usa una cache basata su disco. Usare un disco della cache separato di almeno 600 GB per gestire le modifiche ai dati archiviate in caso di colli di bottiglia o interruzioni della rete.
+**Replica** | **Frequenza di modifica massimo giornaliero:** un computer protetto è possibile utilizzare solo un server di elaborazione e un server singolo processo può gestire un tasso di modifica giornaliero backup too2 TB. 2 TB, pertanto è modifica dei dati di giornaliera massima hello frequenza con cui è supportato per un computer protetto.<br/><br/> **Velocità effettiva massima:** un computer replicato può appartenere tooone account di archiviazione in Azure. Un account di archiviazione standard può gestire un massimo di 20.000 richieste al secondo, si consiglia di mantenere il numero di hello di operazioni di input/output al secondo (IOPS) tra un too20 macchina di origine, 000. Ad esempio, se si dispone di una macchina di origine con 5 dischi e ogni disco genera 120 IOPS (dimensioni di 8 KB) nel computer di origine hello, sarà all'interno di hello Azure limite di IOPS disco pari a 500. (numero hello di account di archiviazione richiesto è macchina di origine totale toohello uguale IOPS, diviso per 20.000).
+**Server di configurazione** | il server di configurazione di Hello dovrebbe essere capacità di frequenza giornaliera modifica di toohandle in grado di hello in tutti i carichi di lavoro in esecuzione in macchine virtuali protette e deve toocontinuously della larghezza di banda sufficiente replicare dati tooAzure archiviazione.<br/><br/> Come procedura consigliata, individuare il server di configurazione hello in hello stessa rete e segmento LAN come hello macchine da tooprotect. Sono reperibili in una rete diversa, ma le macchine da tooprotect devono avere tooit di visibilità livello rete 3.<br/><br/> Dimensioni consigliate per il server di configurazione di hello sono riepilogati nella tabella hello nella seguente sezione hello.
+**Server di elaborazione** | primo server di elaborazione Hello è installato per impostazione predefinita nel server di configurazione hello. È possibile distribuire processo aggiuntivo server tooscale l'ambiente. <br/><br/> server di elaborazione Hello riceve i dati di replica da macchine virtuali protette e ottimizzata con la memorizzazione nella cache, la compressione e crittografia. Viene quindi inviato tooAzure dati hello. computer server di processo Hello deve avere sufficiente tooperform risorse queste attività.<br/><br/> server di elaborazione Hello utilizza una cache basata su disco. Utilizzare un disco separato della cache di 600 GB o più modifiche di dati toohandle archiviate nell'evento hello di un collo di bottiglia di rete o di interruzione.
 
-## <a name="size-recommendations-for-the-configuration-server"></a>Dimensioni consigliate per il server di configurazione
+## <a name="size-recommendations-for-hello-configuration-server"></a>Dimensioni consigliate per il server di configurazione di hello
 
 **CPU** | **Memoria** | **Dimensione disco cache** | **Frequenza di modifica dei dati** | **Computer protetti**
 --- | --- | --- | --- | ---
 8 vCPU (2 socket * 4 core a 2.5 gigahertz [GHz]) | 16 GB | 300 GB | 500 GB o inferiore | Replicare meno di 100 computer.
-12 vCPU (2 socket * 6 core a 2,5 GHz) | 18 GB | 600 GB | Da 500 GB a 1 TB | Replicare tra 100 e 150 computer.
-16 vCPU (2 socket * 8 core a 2,5 GHz) | 32 GB | 1 TB | Da 1 TB a 2 TB | Replicare tra 150 e 200 computer.
-Distribuire un altro server di elaborazione | | | Superiore a 2 TB | Distribuire server di elaborazione aggiuntivi se si esegue la replica di più di 200 computer o la frequenza di modifica dei dati giornaliera è superiore a 2 TB.
+12 vCPU (2 socket * 6 core a 2,5 GHz) | 18 GB | 600 GB | 500 GB too1 TB | Replicare tra 100 e 150 computer.
+16 vCPU (2 socket * 8 core a 2,5 GHz) | 32 GB | 1 TB | 1 TB too2 TB | Replicare tra 150 e 200 computer.
+Distribuire un altro server di elaborazione | | | Superiore a 2 TB | Distribuire i server di elaborazione aggiuntive se si esegue la replica di più di 200 macchine, o se i dati giornalieri hello modifica frequenza supera i 2 TB.
 
 Dove:
 
 * Ogni computer di origine è configurato con 3 dischi da 100 GB.
 * La risorsa di archiviazione di benchmarking usata per le misurazioni del disco della cache è di 8 unità SAS a 10.000 RPM con RAID 10.
 
-## <a name="size-recommendations-for-the-process-server"></a>Dimensioni consigliate per il server di elaborazione
+## <a name="size-recommendations-for-hello-process-server"></a>Dimensioni consigliate per il server di elaborazione hello
 
-Se è necessario proteggere più di 200 computer o la frequenza di modifica giornaliera è superiore a 2 TB, è possibile aggiungere altri server di elaborazione per gestire il carico di replica. Per la scalabilità orizzontale è possibile:
+Se è necessario tooprotect più di 200 macchine o modifiche giornaliere hello è maggiore di 2 TB, è possibile aggiungere server toohandle hello replica il caricamento del processo. tooscale out, è possibile:
 
-* Aumentare il numero di server di configurazione. Ad esempio, è possibile proteggere fino a 400 computer con due server di configurazione.
-* Aggiungere altri server di elaborazione e usarli per gestire il traffico al posto del server di gestione o in aggiunta al server di configurazione.
+* Aumentare il numero di hello del server di configurazione. Ad esempio, è possibile proteggere le macchine too400 con due server di configurazione.
+* Aggiungere ulteriori server di elaborazione e usare questi server di configurazione toohandle hello traffico anziché (o in aggiunta a).
 
-La tabella seguente descrive uno scenario in cui:
+Hello nella tabella seguente viene descritto uno scenario in cui:
 
-* Non si prevede di usare il server di configurazione come server di elaborazione.
+* Non si prevede server di configurazione hello toouse come un server di elaborazione.
 * È stato configurato un server di elaborazione aggiuntivo.
-* Le macchine virtuali protette sono state configurate per l'uso del server di elaborazione aggiuntivo.
+* Server di elaborazione aggiuntive di macchine virtuali protette toouse hello configurati.
 * Ogni computer di origine protetto è configurato con tre dischi da 100 GB.
 
 **Server di configurazione** | **Server di elaborazione aggiuntivo** | **Dimensione disco cache** | **Frequenza di modifica dei dati** | **Computer protetti**
 --- | --- | --- | --- | ---
 8 vCPU (2 socket * 4 core a 2,5 GHz), 16 GB di memoria | 4 vCPU (2 socket * 2 core a 2,5 GHz), 8 GB di memoria | 300 GB | 250 GB o inferiore | Eseguire la replica di un massimo di 85 macchine.
-8 vCPU (2 socket * 4 core a 2,5 GHz), 16 GB di memoria | 8 vCPU (2 socket * 4 core a 2,5 GHz), 12 GB di memoria | 600 GB | Da 250 GB a 1 TB | Replicare tra 85 e 150 computer.
-12 vCPU (2 socket * 6 core a 2,5 GHz), 18 GB di memoria | 12 vCPU (2 socket * 6 core a 2,5 GHz), 24 GB di memoria | 1 TB | Da 1 TB a 2 TB | Replicare tra 150 e 225 computer.
+8 vCPU (2 socket * 4 core a 2,5 GHz), 16 GB di memoria | 8 vCPU (2 socket * 4 core a 2,5 GHz), 12 GB di memoria | 600 GB | 250 GB too1 TB | Replicare tra 85 e 150 computer.
+12 vCPU (2 socket * 6 core a 2,5 GHz), 18 GB di memoria | 12 vCPU (2 socket * 6 core a 2,5 GHz), 24 GB di memoria | 1 TB | 1 TB too2 TB | Replicare tra 150 e 225 computer.
 
-Il modo in cui i server vengono adattati dipende dalle preferenze personali in merito al modello di scalabilità orizzontale o verticale.  L'aumento delle prestazioni si ottiene distribuendo alcuni server di configurazione e di elaborazione avanzati, mentre l'aumento del numero di istanze si ottiene distribuendo più server con meno risorse. Ad esempio, per proteggere 220 computer è possibile eseguire una di queste operazioni:
+modo Hello in cui si modifica la scala dei server varia a seconda delle proprie preferenze per un modello di scalabilità verticale o orizzontale.  L'aumento delle prestazioni si ottiene distribuendo alcuni server di configurazione e di elaborazione avanzati, mentre l'aumento del numero di istanze si ottiene distribuendo più server con meno risorse. Ad esempio, se è necessario tooprotect 220 macchine, è possibile eseguire una delle seguenti hello:
 
-* Configurare il server di configurazione con 12 vCPU e 18 GB di memoria e un server di elaborazione aggiuntivo con 12 vCPU e 24 GB di memoria. Configurare quindi le macchine protette affinché usino solo il server di elaborazione aggiuntivo.
-* Configurare due server di configurazione (2 x 8 vCPU, 16 GB di RAM) e due server di elaborazione aggiuntivi (1 x 8 vCPU e 1 x 4 vCPU per gestire 135 + 85 [220] macchine). Configurare quindi le macchine protette affinché usino solo i server di elaborazione aggiuntivi.
+* Impostare il server di configurazione hello con un server di elaborazione aggiuntive con CPU virtuali 12, 24 GB di memoria, 18 GB di memoria e CPU virtuali 12. Configurare macchine virtuali protette toouse hello processo aggiuntivo solo server.
+* Consente di impostare due server di configurazione (2 x 8 CPU virtuali, 16 GB di RAM) e due i server di elaborazione aggiuntive (CPU 1x8 virtuali e le macchine [220] 4 CPU virtuali x 1 toohandle 135 + 85). Configurare macchine virtuali protette toouse hello processo aggiuntivo solo i server.
 
 
 ## <a name="control-network-bandwidth"></a>Controllare la larghezza di banda della rete
 
-Dopo aver usato lo [strumento di pianificazione della distribuzione](site-recovery-deployment-planner.md) per calcolare la larghezza di banda necessaria per la replica, per la replica iniziale e poi delta, è possibile controllare la quantità di larghezza di banda usata per la replica con due opzioni:
+Dopo aver utilizzato hello [strumento di pianificazione della distribuzione hello](site-recovery-deployment-planner.md) toocalculate hello larghezza di banda necessaria per la replica (la replica iniziale hello e quindi delta), è possibile controllare hello quantità di larghezza di banda utilizzata per la replica con un paio opzioni:
 
-* **Limitare la larghezza di banda**: il traffico VMware che viene replicato in Azure passa attraverso un server di elaborazione specifico. È possibile limitare la larghezza di banda nei computer eseguiti come server di elaborazione.
-* **Influire sulla larghezza di banda**: è possibile influire sulla larghezza di banda usata per la replica tramite una coppia di chiavi del Registro di sistema.
-  * Il valore del Registro di sistema **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\UploadThreadsPerVM** specifica il numero di thread usati per il trasferimento dati di un disco, durante la replica iniziale o differenziale. Un valore più elevato aumenta la larghezza di banda di rete usata per la replica.
-  * Il valore **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM** specifica il numero di thread usati per il trasferimento dati durante il failback.
+* **Limitazione della larghezza di banda**: VMware che vengono replicati tooAzure del traffico tramite un server di processo specifico. È possibile limitare la larghezza di banda su computer hello in esecuzione come server di elaborazione.
+* **Influiscono sulla larghezza di banda**: È possibile influenzare la larghezza di banda hello utilizzata per la replica con un paio di chiavi del Registro di sistema:
+  * Hello **Backup\UploadThreadsPerVM Azure HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows** valore del Registro di sistema specifica il numero di hello di thread utilizzati per il trasferimento di dati (la replica iniziale o delta) di un disco. Un valore maggiore aumenta hello larghezza di banda utilizzata per la replica.
+  * Hello **Backup\DownloadThreadsPerVM Azure HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows** specifica hello numero di thread utilizzati per il trasferimento dei dati durante il failback.
 
 ### <a name="throttle-bandwidth"></a>Limitare la larghezza di banda
 
-1. Aprire lo snap-in MMC di Azure Backup nel computer usato come server di elaborazione. Per impostazione predefinita, è disponibile un collegamento a Backup sul desktop o nella cartella seguente: C:\Programmi\Microsoft Azure Recovery Services Agent\bin\wabadmin.
-2. Nello snap-in fare clic su **Modifica proprietà**.
+1. Aprire hello snap-in MMC di Backup di Azure nel ruolo di macchina hello come server di elaborazione hello. Per impostazione predefinita, un collegamento per il Backup è disponibile sul desktop hello o nella seguente cartella hello: C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
+2. Hello nello snap-in, fare clic su **Modifica proprietà**.
 
-    ![Screenshot dello snap-in MMC di Azure Backup facoltativo per modificare le proprietà](./media/site-recovery-vmware-to-azure/throttle1.png)
-3. Nella scheda **Limitazione larghezza di banda rete** selezionare **Abilita la limitazione all'utilizzo della larghezza di banda Internet per le operazioni di backup**. Impostare i limiti per le ore lavorative e non lavorative. Gli intervalli validi sono compresi tra 512 Kbps e 102 Mbps al secondo.
+    ![Proprietà di toochange snap-in Opzioni di schermata di MMC di Backup Azure](./media/site-recovery-vmware-to-azure/throttle1.png)
+3. In hello **limitazione** , selezionare **abilitare la limitazione per le operazioni di backup all'utilizzo della larghezza di banda di internet**. Impostare i limiti di hello per lavoro e non lavorative ore. Valori validi sono compresi 512 Mbps di too102 Kbps al secondo.
 
     ![Screenshot della finestra di dialogo Proprietà di Azure Backup](./media/site-recovery-vmware-to-azure/throttle2.png)
 
-È anche possibile usare il cmdlet [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) per impostare la limitazione. Di seguito è riportato un esempio:
+È inoltre possibile utilizzare hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) tooset limitazione delle richieste di cmdlet. Di seguito è riportato un esempio:
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -105,41 +105,41 @@ Dopo aver usato lo [strumento di pianificazione della distribuzione](site-recove
 
 ### <a name="influence-network-bandwidth-for-a-vm"></a>Influire sulla larghezza di banda della rete per una VM
 
-1. Nel Registro di sistema della VM passare a **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
-   * Per intervenire sul traffico della larghezza di banda in un disco di replica, modificare il valore di **UploadThreadsPerVM** oppure creare la chiave, se non esiste.
-   * Per intervenire sulla larghezza di banda per il traffico di failback da Azure, modificare il valore di **DownloadThreadsPerVM**.
-2. Il valore predefinito è 4. In una rete con provisioning eccessivo è necessario modificare i valori predefiniti di queste chiavi del Registro di sistema. Il valore massimo è 32. Monitorare il traffico per ottimizzare il valore.
+1. Nel Registro di sistema della macchina virtuale di hello, passare troppo**Backup\Replication Azure HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows**.
+   * il traffico di larghezza di banda hello tooinfluence su un disco di replica, modificare il valore di hello di **UploadThreadsPerVM**, o creare la chiave di hello se non esiste.
+   * larghezza di banda hello tooinfluence per il traffico di failback da Azure, modificare il valore di hello di **DownloadThreadsPerVM**.
+2. valore predefinito di Hello è 4. In una rete di "provisioning eccessivo", queste chiavi del Registro di sistema devono essere modificate dai valori predefiniti di hello. Hello massimo è 32. Monitorare il traffico toooptimize hello valore.
 
 
 ## <a name="deploy-additional-process-servers"></a>Distribuire server di elaborazione aggiuntivi
 
-Se è necessario ridimensionare la distribuzione oltre 200 computer di origine oppure la varianza totale giornaliera è superiore a 2 TB, sono necessari server di elaborazione aggiuntivi per gestire il volume di traffico. Seguire queste istruzioni per configurare il server di elaborazione. Dopo aver configurato il server è possibile eseguire la migrazione dei computer di origine per usarlo.
+Se si tooscale orizzontalmente la distribuzione oltre 200 macchine di origine, o si dispone di un totale giornaliero varianza del tasso di più di 2 TB, è necessario volume di traffico hello toohandle server processo aggiuntivo. Seguire queste istruzioni tooset dei server di elaborazione hello. Dopo aver configurato il server di hello, eseguire la migrazione toouse macchine di origine è.
 
-1. In **Site Recovery servers** (Server di Site Recovery) fare clic sul server di configurazione e quindi su **Server di elaborazione**.
+1. In **server di ripristino del sito**, fare clic su server di configurazione hello e quindi fare clic su **Server di elaborazione**.
 
-    ![Screenshot dell'opzione relativa ai server Site Recovery da aggiungere a un server di elaborazione](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
+    ![Schermata di Site Recovery server opzione tooadd un server di elaborazione](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
 2. In **Tipo di server** fare clic su **Process server (on-premises)** (Server di elaborazione (locale)).
 
     ![Screenshot della finestra di dialogo Server di elaborazione](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
-3. Scaricare il file per l'Installazione unificata di Site Recovery ed eseguirlo per installare il server di elaborazione e registrarlo nell'insieme di credenziali.
-4. In **Prima di iniziare** selezionare **Add additional process servers to scale out deployment** (Aggiungere server di elaborazione per aumentare le istanze di distribuzione).
-5. Completare la procedura guidata come per la [configurazione](#step-2-set-up-the-source-environment) del server di configurazione.
+3. Scaricare il file di installazione unificata di Site Recovery hello ed eseguirlo tooinstall hello processo server. Verrà inoltre registrata nell'insieme di credenziali hello.
+4. In **prima di iniziare**selezionare **aggiungere processo aggiuntivo server tooscale distribuzione**.
+5. Creazione guidata hello completo in hello allo stesso modo, si ha quando si [impostare](#step-2-set-up-the-source-environment) server di configurazione hello.
 
     ![Screenshot della procedura guidata per l'installazione unificata di Azure Site Recovery](./media/site-recovery-vmware-to-azure/add-ps1.png)
-6. In **Dettagli del server di configurazione** specificare l'indirizzo IP del server di configurazione e la passphrase. Per ottenere la passphrase, eseguire **[SiteRecoveryInstallationFolder]\home\sysystems\bin\genpassphrase.exe –n** nel server di configurazione.
+6. In **i dettagli di configurazione Server**, specificare l'indirizzo IP hello hello del server di configurazione e hello passphrase. passphrase hello tooobtain, eseguire **[SiteRecoveryInstallationFolder]\home\sysystems\bin\genpassphrase.exe-n** nel server di configurazione hello.
 
     ![Screenshot della pagina dei dettagli del server di configurazione](./media/site-recovery-vmware-to-azure/add-ps2.png)
 
-### <a name="migrate-machines-to-use-the-new-process-server"></a>Eseguire la migrazione dei computer per usare il nuovo server di elaborazione
-1. In **Impostazioni** > **Server di Site Recovery** fare clic sul server di configurazione e quindi espandere **Server di elaborazione**.
+### <a name="migrate-machines-toouse-hello-new-process-server"></a>Eseguire la migrazione di macchine toouse hello nuovo server di elaborazione
+1. In **impostazioni** > **server di ripristino del sito**, fare clic su server di configurazione hello e quindi espandere **elaborare server**.
 
     ![Screenshot della finestra di dialogo Server di elaborazione](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
-2. Fare clic con il pulsante destro del mouse sul server di elaborazione corrente e scegliere **Passa a**.
+2. Fare doppio clic su server di elaborazione hello attualmente in uso e fare clic su **commutatore**.
 
     ![Screenshot della finestra di dialogo Server di configurazione](./media/site-recovery-vmware-to-azure/migrate-ps3.png)
-3. In **Selezionare il server di elaborazione di destinazione** selezionare il nuovo server di elaborazione da usare e le macchine virtuali che dovranno essere gestite dal server. Fare clic sull'icona informazioni per ottenere informazioni sul server. Per consentire di prendere le decisioni relative al carico, viene visualizzato lo spazio medio necessario per replicare ogni macchina virtuale selezionata nel nuovo server di elaborazione. Fare clic sul segno di spunta per avviare la replica nel nuovo server di elaborazione.
+3. In **il server di elaborazione di destinazione selezionare**selezionare hello nuovo server di elaborazione toouse desiderato e quindi selezionare le macchine virtuali hello server hello gestirà. Fare clic su hello icona tooget informazioni sui server hello. toohelp verificare le decisioni di caricamento, hello Media dello spazio è sufficiente tooreplicate viene visualizzato ogni macchina virtuale selezionata toohello nuovo server di elaborazione. Fare clic su hello segno di spunta toostart replica toohello nuovo server di elaborazione.
 
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Scaricare ed eseguire [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner)
+Scaricare ed eseguire hello [pianificazione della distribuzione di ripristino del sito Azure](https://aka.ms/asr-deployment-planner)

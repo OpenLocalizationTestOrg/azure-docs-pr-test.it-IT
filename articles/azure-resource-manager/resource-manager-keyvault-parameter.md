@@ -1,6 +1,6 @@
 ---
-title: Segreto dell'insieme di credenziali delle chiavi con il modello di Resource Manager | Microsoft Docs
-description: Viene illustrato come passare una chiave privata da un insieme di credenziali chiave come parametro durante la distribuzione.
+title: il segreto dell'insieme di credenziali aaaKey con modello di gestione risorse | Documenti Microsoft
+description: Viene illustrato come toopass un segreto da una chiave dell'insieme di credenziali come parametro durante la distribuzione.
 services: azure-resource-manager,key-vault
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1ca72599e67e79d42a3d430dbb13e89ea7265334
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0bb7760c95b3b4ef34c9e5cc2e3421be56b5e5e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-key-vault-to-pass-secure-parameter-value-during-deployment"></a>Usare Key Vault per passare un valore del parametro protetto durante la distribuzione
+# <a name="use-key-vault-toopass-secure-parameter-value-during-deployment"></a>Utilizzare valore di parametro secure toopass insieme di credenziali chiave durante la distribuzione
 
-Quando è necessario passare un valore protetto (ad esempio una password) come parametro durante la distribuzione, è possibile recuperare il valore da [Azure Key Vault](../key-vault/key-vault-whatis.md). Il valore viene recuperato facendo riferimento all'insieme di credenziali delle chiavi e alla chiave privata nel file dei parametri. Il valore non viene mai esposto, in quanto si fa riferimento solo all'ID dell'insieme di credenziali chiave. Non è necessario immettere manualmente il valore segreto ogni volta che si distribuisce le risorse. L'insieme di credenziali delle chiavi può essere presente in una sottoscrizione diversa rispetto al gruppo di risorse in cui si sta eseguendo la distribuzione. Quando si fa riferimento all'insieme di credenziali delle chiavi, includere l'ID sottoscrizione.
+Quando è necessario un valore sicuro (ad esempio una password) toopass come parametro durante la distribuzione, è possibile recuperare il valore di hello da un [insieme credenziali chiavi Azure](../key-vault/key-vault-whatis.md). Per recuperare il valore di hello facendo riferimento a insieme di credenziali chiave hello e il segreto nel file di parametro. il valore di Hello non viene mai esposta in quanto si fa riferimento solo al relativo ID insieme di credenziali chiave. Non è necessario toomanually immettere il valore di hello per segreto hello ogni volta che si distribuisce risorse hello. insieme di credenziali chiave Hello può essere presente in una sottoscrizione diversa rispetto a gruppo di risorse hello che a cui si sta distribuendo. Quando si fa riferimento a insieme di credenziali chiave di hello, includere hello ID di sottoscrizione.
 
-Quando di crea l'insieme di credenziali delle chiavi, impostare la proprietà *enabledForTemplateDeployment* su *true*. Impostando questo valore su true, si consente l'accesso dai modelli di Resource Manager durante la distribuzione.  
+Quando si crea l'insieme di credenziali chiave di hello, impostare hello *enabledForTemplateDeployment* proprietà troppo*true*. Impostando questo valore tootrue, è consentire l'accesso dai modelli di gestione delle risorse durante la distribuzione.  
 
 ## <a name="deploy-a-key-vault-and-secret"></a>Distribuire un insieme di credenziali chiave e una chiave privata
 
-Per creare un insieme di credenziali delle chiavi e un segreto, usare l'interfaccia della riga di comando di Azure o PowerShell. Si noti che l'insieme di credenziali delle chiavi viene abilitato per la distribuzione dei modelli. 
+toocreate un insieme di credenziali chiave e il segreto, utilizzare CLI di Azure o PowerShell. Si noti che insieme di credenziali chiave di hello è abilitata per la distribuzione dei modelli. 
 
 Per l'interfaccia della riga di comando di Azure usare:
 
@@ -53,14 +53,14 @@ $secretvalue = ConvertTo-SecureString $password -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue $secretvalue
 ```
 
-## <a name="enable-access-to-the-secret"></a>Abilitare l'accesso alla chiave privata
+## <a name="enable-access-toohello-secret"></a>Abilitare il segreto toohello accesso
 
-Indipendentemente dal fatto che si usi un insieme di credenziali delle chiavi nuovo o già esistente, assicurarsi che l'utente che distribuisce il modello possa accedere alla chiave privata. L'utente che distribuisce un modello che fa riferimento a una chiave privata deve disporre dell'autorizzazione `Microsoft.KeyVault/vaults/deploy/action` per l'insieme di credenziali delle chiavi. Entrambi i ruoli [Proprietario](../active-directory/role-based-access-built-in-roles.md#owner) e [Collaboratore](../active-directory/role-based-access-built-in-roles.md#contributor) possono concedere l'accesso. È inoltre possibile creare un [ruolo personalizzato](../active-directory/role-based-access-control-custom-roles.md) che conceda l'autorizzazione e aggiunga l'utente a questo ruolo. Per informazioni sull'aggiunta di un utente a un ruolo, vedere [Assegnare un utente ai ruoli di amministratore in Azure Active Directory](../active-directory/active-directory-users-assign-role-azure-portal.md).
+Se si utilizza un insieme di credenziali chiave nuova o esistente, verificare che hello distribuzione modello hello consente l'accesso segreto hello. distribuzione di un modello che fa riferimento a una chiave privata utente di Hello deve avere hello `Microsoft.KeyVault/vaults/deploy/action` l'autorizzazione per l'insieme di credenziali chiave hello. Hello [proprietario](../active-directory/role-based-access-built-in-roles.md#owner) e [collaboratore](../active-directory/role-based-access-built-in-roles.md#contributor) entrambi i ruoli di concedere l'accesso. È inoltre possibile creare un [ruolo personalizzato](../active-directory/role-based-access-control-custom-roles.md) che concede l'autorizzazione e aggiungere hello utente toothat ruolo. Per informazioni sull'aggiunta di un ruolo di utente tooa, vedere [assegnare un utente tooadministrator ruoli in Azure Active Directory](../active-directory/active-directory-users-assign-role-azure-portal.md).
 
 
 ## <a name="reference-a-secret-with-static-id"></a>Fare riferimento a un segreto con un ID statico
 
-Il modello che riceve un segreto dell'insieme di credenziali delle chiavi è come qualsiasi altro modello. Infatti **si fa riferimento all'insieme di credenziali delle chiavi nel file dei parametri, non nel modello**. Il modello seguente, ad esempio, distribuisce un database SQL che include una password dell'amministratore. Il parametro della password è impostato su una stringa sicura, ma il modello non specifica la provenienza di tale valore.
+modello di Hello che riceve un segreto dell'insieme di credenziali chiave è come qualsiasi altro modello. Ciò accade perché **hello chiave dell'insieme di credenziali nel file di parametro hello, modello di hello non si fa riferimento.** Ad esempio, hello seguente modello consente di distribuire un database SQL che include una password di amministratore. il parametro password Hello è impostato la stringa sicura tooa. Tuttavia, modello hello non specifica la provenienza di tale valore.
 
 ```json
 {
@@ -146,7 +146,7 @@ Il modello che riceve un segreto dell'insieme di credenziali delle chiavi è com
 }
 ```
 
-Creare ora un file dei parametri per il modello precedente. Nel file dei parametri specificare un parametro corrispondente al nome del parametro nel modello. Per il valore del parametro, fare riferimento al segreto dall'insieme di credenziali delle chiavi. Si fa riferimento alla chiave privata passando l'identificatore della risorsa dell'insieme di credenziali chiave e il nome della chiave privata. Nell'esempio seguente il segreto dell'insieme di credenziali delle chiavi deve esistere già e si deve fornire un valore statico per il relativo ID risorsa.
+A questo punto, creare un file di parametro per hello modello precedente. Nel file di parametro hello, specificare un parametro che corrisponde al nome del parametro hello nel modello hello hello. Valore del parametro hello, fare riferimento a hello segreto dall'insieme di credenziali chiave hello. Fare riferimento a segreto hello passando l'identificatore di risorsa hello dell'insieme di credenziali chiave hello e il nome di hello del segreto hello. Nell'esempio seguente di hello, segreto dell'insieme di credenziali chiave hello deve esistere e fornire un valore statico per l'ID di risorsa.
 
 ```json
 {
@@ -194,9 +194,9 @@ Creare ora un file dei parametri per il modello precedente. Nel file dei paramet
 
 ## <a name="reference-a-secret-with-dynamic-id"></a>Fare riferimento a un segreto con un ID dinamico
 
-La sezione precedente ha illustrato come passare un ID risorsa statico per il segreto dell'insieme di credenziali delle chiavi. In alcuni scenari, tuttavia, è necessario fare riferimento a un segreto dell'insieme di credenziali delle chiavi che varia a seconda della distribuzione corrente. In questo caso non è possibile impostare come hardcoded l'ID risorsa nel file dei parametri. Non è sfortunatamente possibile generare in modo dinamico l'ID risorsa nel file dei parametri, perché le espressioni del modello non sono consentite nel file dei parametri.
+la sezione precedente di Hello è stato illustrato come toopass un ID di risorsa statica per la chiave di hello archivio segreto. Tuttavia, in alcuni scenari, è necessario un segreto dell'insieme di credenziali chiave che varia in base a una distribuzione corrente di hello tooreference. In tal caso, non è possibile codificare hello ID di risorsa nel file dei parametri di hello. Purtroppo, è possibile generare in modo dinamico hello ID di risorsa nel file dei parametri hello poiché le espressioni del modello non sono consentite nel file dei parametri di hello.
 
-Per generare in modo dinamico l'ID risorsa per un segreto dell'insieme di credenziali delle chiavi, è necessario spostare la risorsa che necessita del segreto in un modello annidato. Nel modello principale aggiungere il modello annidato e passare un parametro che include l'ID risorsa generato in modo dinamico.
+toodynamically generare ID di risorsa hello per un segreto dell'insieme di credenziali chiave, è necessario spostare le risorse hello necessarie segreto hello in un modello annidato. Nel modello principale, aggiungere modelli annidati hello e passare un parametro che contiene l'ID di risorsa hello generato dinamicamente.
 
 ```json
 {

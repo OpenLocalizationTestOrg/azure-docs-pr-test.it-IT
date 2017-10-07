@@ -1,6 +1,6 @@
 ---
-title: 'Azure Cosmos DB: Sviluppare con l''API Graph in .NET | Documentazione Microsoft'
-description: Informazioni su come sviluppare con l'API di DocumentDB di Azure Cosmos DB usando .NET
+title: "Cosmos Azure DB: Attività di sviluppo hello API Graph in .NET | Documenti Microsoft"
+description: Informazioni su come toodevelop con l'API DocumentDB Azure Cosmos DB usando .NET
 services: cosmos-db
 documentationcenter: 
 author: dennyglee
@@ -15,46 +15,46 @@ ms.topic: article
 ms.date: 05/10/2017
 ms.author: denlee
 ms.custom: mvc
-ms.openlocfilehash: eeaa0c4f84a408815371742334d2ba7ce600b72f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 12e435d8169aeee6e818dac4a3b66c7a0ec5f2d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-develop-with-the-graph-api-in-net"></a>Azure Cosmos DB: Sviluppare con l'API Graph in .NET
-Azure Cosmos DB è il servizio di database di Microsoft multimodello distribuito a livello globale. È possibile creare ed eseguire rapidamente query su database di documenti, coppie chiave-valore e grafi, sfruttando in ognuno dei casi i vantaggi offerti dalle funzionalità di scalabilità orizzontale e distribuzione globale alla base di Azure Cosmos DB. 
+# <a name="azure-cosmos-db-develop-with-hello-graph-api-in-net"></a>Cosmos Azure DB: Attività di sviluppo hello API Graph in .NET
+Azure Cosmos DB è il servizio di database di Microsoft multimodello distribuito a livello globale. Creare rapidamente e query chiave/valore, il documento e database grafico, ognuno dei quali trarre vantaggio dalla distribuzione globale hello e funzionalità di scalabilità orizzontale di base di Azure Cosmos DB hello. 
 
-Questa esercitazione illustra come creare un account Azure Cosmos DB usando il portale di Azure e come creare un contenitore e un database di grafi. L'applicazione crea quindi una social network semplice con quattro utenti usando l'[API Graph](graph-sdk-dotnet.md) (anteprima), quindi attraversa ed esegue query sul grafo usando Gremlin.
+Questa esercitazione viene illustrato come toocreate un account Azure Cosmos DB usando hello portale di Azure e come toocreate un database di grafico e un contenitore. quindi, l'applicazione Hello crea un social network semplice con quattro utenti che utilizzano hello [API Graph](graph-sdk-dotnet.md) (anteprima), quindi consente di scorrere e grafico hello Gremlin utilizzando una query.
 
-Questa esercitazione illustra le attività seguenti:
+Questa esercitazione sono trattati hello seguenti attività:
 
 > [!div class="checklist"]
 > * Creare un account Azure Cosmos DB 
 > * Creare un contenitore e un database di grafi
-> * Serializzare vertici e archi negli oggetti .NET
+> * Serializzare oggetti too.NET vertici e bordi
 > * Aggiungere vertici e archi
-> * Eseguire query sul grafo usando Gremlin
+> * Grafico di query hello utilizzando Gremlin
 
 ## <a name="graphs-in-azure-cosmos-db"></a>Grafi in Azure Cosmos DB
-È possibile usare Azure Cosmos DB per creare, aggiornare ed eseguire query di grafi usando la libreria [Microsoft.Azure.Graphs](graph-sdk-dotnet.md). La libreria Microsoft.Azure.Graph offre un metodo di estensione singolo `CreateGremlinQuery<T>` oltre alla classe `DocumentClient` per eseguire query Gremlin.
+È possibile utilizzare Azure Cosmos DB toocreate, update e grafici delle query tramite hello [Microsoft.Azure.Graphs](graph-sdk-dotnet.md) libreria. libreria Microsoft.Azure.Graph Hello fornisce un metodo di estensione singolo `CreateGremlinQuery<T>` sopra hello `DocumentClient` classe query Gremlin tooexecute.
 
-Il linguaggio di programmazione funzionale Gremlin supporta operazioni di scrittura (DML) e le operazioni di query e attraversamento. Questo articolo descrive alcuni esempi per iniziare a usare Gremlin. Vedere [Query di Gremlin](gremlin-support.md) per una procedura dettagliata delle funzionalità Gremlin disponibili in Azure Cosmos DB. 
+Il linguaggio di programmazione funzionale Gremlin supporta operazioni di scrittura (DML) e le operazioni di query e attraversamento. Trattati alcuni esempi in questo articolo di tooget i primi passi Gremlin. Vedere [Query di Gremlin](gremlin-support.md) per una procedura dettagliata delle funzionalità Gremlin disponibili in Azure Cosmos DB. 
 
 ## <a name="prerequisites"></a>Prerequisiti
-Assicurarsi di disporre di quanto segue:
+Assicurarsi di avere hello segue:
 
 * Un account Azure attivo. Se non si ha un account, è possibile iscriversi per ottenere un [account gratuito](https://azure.microsoft.com/free/). 
-    * In alternativa, per questa esercitazione è possibile usare l'[emulatore DocumentDB di Azure](local-emulator.md).
+    * In alternativa, è possibile utilizzare hello [emulatore di Azure DocumentDB](local-emulator.md) per questa esercitazione.
 * [Visual Studio](http://www.visualstudio.com/)
 
 ## <a name="create-database-account"></a>Creare un account di database
 
-Si inizia creando un account Azure Cosmos DB nel portale di Azure.  
+Iniziamo mediante la creazione di un account Azure Cosmos DB in hello portale di Azure.  
 
 > [!TIP]
-> * È stato già creato un account Azure Cosmos DB? In questo caso passare a [Configurare la soluzione di Visual Studio](#SetupVS)
-> * Si dispone di un account Azure DocumentDB? In questo caso l'account è ora un account Azure Cosmos DB ed è possibile passare a [Configurare la soluzione di Visual Studio](#SetupVS).  
-> * Se si usa l'emulatore Azure Cosmos DB, seguire i passaggi descritti nell'articolo [Azure Cosmos DB Emulator](local-emulator.md) (Emulatore Azure Cosmos DB) per configurare l'emulatore e proseguire con il passaggio [Configurare la soluzione di Visual Studio](#SetupVS). 
+> * È stato già creato un account Azure Cosmos DB? In caso affermativo, andare troppo[configurazione della soluzione di Visual Studio](#SetupVS)
+> * Si dispone di un account Azure DocumentDB? Se in tal caso, l'account è un account Azure Cosmos DB ed è possibile andare troppo[configurazione della soluzione di Visual Studio](#SetupVS).  
+> * Se si utilizza hello Azure Cosmos DB emulatore, eseguire le operazioni di hello in [emulatore di Azure Cosmos DB](local-emulator.md) toosetup hello emulatore e andare troppo[configurare la soluzione di Visual Studio](#SetupVS). 
 >
 > 
 
@@ -62,15 +62,15 @@ Si inizia creando un account Azure Cosmos DB nel portale di Azure.
 
 ## <a id="SetupVS"></a>Configurare la soluzione di Visual Studio
 1. Aprire **Visual Studio** nel computer.
-2. Scegliere **Nuovo** dal menu **File** e quindi selezionare **Progetto**.
-3. Nella finestra di dialogo **Nuovo progetto** selezionare **Modelli** / **Visual C#** / **App console (.NET Framework)**, assegnare un nome al progetto e quindi fare clic su **OK**.
-4. In **Esplora soluzioni** fare clic con il pulsante destro del mouse sulla nuova applicazione console, disponibile nella soluzione di Visual Studio, quindi scegliere **Gestisci pacchetti NuGet**.
-5. Nella scheda **NuGet** fare clic su **Sfoglia**e digitare **Microsoft.Azure.Graphs** nella casella di ricerca e selezionare **Includi versione preliminare**.
-6. Nei risultati trovare **Microsoft.Azure.Graphs** e fare clic su **Installa**.
+2. In hello **File** dal menu **New**, quindi scegliere **progetto**.
+3. In hello **nuovo progetto** finestra di dialogo Seleziona **modelli** / **Visual c#** / **applicazione Console (.NET Framework)**, denominare il progetto e quindi fare clic su **OK**.
+4. In hello **Esplora**, fare clic con il pulsante destro sulla nuova applicazione console, ovvero in una soluzione di Visual Studio, e quindi fare clic su **Gestisci pacchetti NuGet...**
+5. In hello **NuGet** scheda, fare clic su **Sfoglia**e il tipo **Microsoft.Azure.Graphs** nella casella di ricerca hello e controllo hello **includono le versioni non definitive**.
+6. All'interno dei risultati di hello, trovare **Microsoft.Azure.Graphs** e fare clic su **installare**.
    
-   Se viene visualizzato un messaggio sulla verifica delle modifiche alla soluzione, fare clic su **OK**. Se viene visualizzato un messaggio sull'accettazione della licenza, fare clic su **Accetto**.
+   Se viene visualizzato un messaggio sull'esaminato soluzione toohello modifiche, fare clic su **OK**. Se viene visualizzato un messaggio sull'accettazione della licenza, fare clic su **Accetto**.
    
-    La libreria`Microsoft.Azure.Graphs` fornisce un metodo di estensione singolo `CreateGremlinQuery<T>` per l'esecuzione di operazioni Gremlin. Il linguaggio di programmazione funzionale Gremlin supporta operazioni di scrittura (DML) e le operazioni di query e attraversamento. Questo articolo descrive alcuni esempi per iniziare a usare Gremlin. [Query Gremlin](gremlin-support.md) include una procedura dettagliata delle funzionalità di Gremlin in Azure Cosmos DB.
+    Hello `Microsoft.Azure.Graphs` libreria fornisce un metodo di estensione singolo `CreateGremlinQuery<T>` per l'esecuzione di operazioni Gremlin. Il linguaggio di programmazione funzionale Gremlin supporta operazioni di scrittura (DML) e le operazioni di query e attraversamento. Trattati alcuni esempi in questo articolo di tooget i primi passi Gremlin. [Query Gremlin](gremlin-support.md) include una procedura dettagliata delle funzionalità di Gremlin in Azure Cosmos DB.
 
 ## <a id="add-references"></a>Connessione dell'app
 
@@ -80,16 +80,16 @@ Aggiungere queste due costanti e la variabile *client* nell'applicazione.
 string endpoint = ConfigurationManager.AppSettings["Endpoint"]; 
 string authKey = ConfigurationManager.AppSettings["AuthKey"]; 
 ``` 
-Tornare al [portale di Azure](https://portal.azure.com) per recuperare la chiave primaria e l'URL dell'endpoint. L'URL e la chiave primaria dell'endpoint sono necessari all'applicazione per conoscere la destinazione della connessione e ad Azure Cosmos DB per considerare attendibile la connessione dell'applicazione. 
+Successivamente, head nuovamente toohello [portale di Azure](https://portal.azure.com) tooretrieve l'URL dell'endpoint e la chiave primaria. URL dell'endpoint Hello e la chiave primaria sono necessari per l'applicazione toounderstand in tooconnect e per Azure Cosmos DB tootrust connessione dell'applicazione. 
 
-Nel portale di Azure passare all'account Azure Cosmos DB, fare clic su **Chiavi**, quindi su **Chiavi di lettura/scrittura**. 
+In hello portale di Azure passare tooyour Azure Cosmos DB account, fare clic su **chiavi**, quindi fare clic su **le chiavi di lettura / scrittura**. 
 
-Copiare l'URI dal portale e incollarlo su `Endpoint` nella proprietà dell'endpoint. Copiare quindi la CHIAVE PRIMARIA dal portale e incollarla nella proprietà `AuthKey` precedente. 
+Copiare hello URI dal portale di hello e incollarla su `Endpoint` nella proprietà endpoint hello precedente. Quindi copia hello chiave primaria dal portale hello e incollarlo in hello `AuthKey` proprietà precedente. 
 
-![Screenshot del portale di Azure usato nell'esercitazione per creare un'applicazione C#. Mostra un account Azure Cosmos DB, il pulsante CHIAVI evidenziato nel Pannello di navigazione Azure Cosmos DB e i valori URI e CHIAVE PRIMARIA evidenziati nel pannello chiavi] [keys] 
+! [Cattura di schermata del portale di Azure hello utilizzato da toocreate esercitazione hello un'applicazione c#. Mostra un hello account Azure Cosmos DB pulsante CHIAVI evidenziato nella hello Azure Cosmos DB spostamento e i valori URI e chiave primaria di hello evidenziati in hello pannello chiavi] [chiavi] 
  
-## <a id="instantiate"></a>Creare un'istanza di DocumentClient 
-Creare quindi una nuova istanza di **DocumentClient**.  
+## <a id="instantiate"></a>Creare un'istanza di hello DocumentClient 
+Successivamente, creare una nuova istanza di hello **DocumentClient**.  
 
 ```csharp 
 DocumentClient client = new DocumentClient(new Uri(endpoint), authKey); 
@@ -97,7 +97,7 @@ DocumentClient client = new DocumentClient(new Uri(endpoint), authKey);
 
 ## <a id="create-database"></a>Creare un database 
 
-A questo punto creare un [database](documentdb-resources.md#databases) di Azure Cosmos DB usando il metodo [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) o [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) della classe **DocumentClient** da [DocumentDB .NET SDK](documentdb-sdk-dotnet.md).  
+A questo punto, creare un database di Azure Cosmos [database](documentdb-resources.md#databases) utilizzando hello [CreateDatabaseAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) metodo o [CreateDatabaseIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseifnotexistsasync.aspx) metodo hello  **DocumentClient** classe da hello [DocumentDB .NET SDK](documentdb-sdk-dotnet.md).  
 
 ```csharp 
 Database database = await client.CreateDatabaseIfNotExistsAsync(new Database { Id = "graphdb" }); 
@@ -105,7 +105,7 @@ Database database = await client.CreateDatabaseIfNotExistsAsync(new Database { I
  
 ## <a name="create-a-graph"></a>Creare un grafo 
 
-Creare quindi un contenitore di grafi usando il metodo [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) o [CreateDocumentCollectionIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) della classe **DocumentClient**. Una raccolta è un contenitore di entità di grafi. 
+Successivamente, creare un contenitore grafico con hello utilizzando hello [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) metodo o [CreateDocumentCollectionIfNotExistsAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionifnotexistsasync.aspx) metodo hello **DocumentClient**  classe. Una raccolta è un contenitore di entità di grafi. 
 
 ```csharp 
 DocumentCollection graph = await client.CreateDocumentCollectionIfNotExistsAsync( 
@@ -114,15 +114,15 @@ DocumentCollection graph = await client.CreateDocumentCollectionIfNotExistsAsync
     new RequestOptions { OfferThroughput = 1000 }); 
 ``` 
 
-## <a id="serializing"></a>Serializzare vertici e archi negli oggetti .NET
-Azure Cosmos DB usa il [formato wire GraphSON](gremlin-support.md), che definisce uno schema JSON per vertici, archi e proprietà. Azure Cosmos DB .NET SDK include JSON.NET come dipendenza e ciò consente di serializzare o deserializzare GraphSON negli oggetti .NET che è possibile usare nel codice.
+## <a id="serializing"></a>Serializzare oggetti too.NET vertici e bordi
+Azure DB Cosmos utilizza hello [formato wire GraphSON](gremlin-support.md), che definisce uno schema JSON per vertici, bordi e le proprietà. In questo modo tooserialize/deserializzare GraphSON in oggetti .NET che è possibile utilizzare nel codice Hello Azure Cosmos DB .NET SDK include JSON.NET come dipendenza.
 
-Ad esempio, è possibile usare una social network semplice con quattro utenti. Verrà illustrato come creare vertici `Person`, aggiungere relazioni `Knows` tra i vertici, quindi eseguire query e attraversare il grafo per individuare le relazioni "amico di amico". 
+Ad esempio, è possibile usare una social network semplice con quattro utenti. Viene illustrato come toocreate `Person` vertici, aggiungere `Knows` relazioni tra di essi, quindi eseguire una query e attraversare le relazioni di hello grafico toofind "friend di friend". 
 
-Lo spazio dei nomi `Microsoft.Azure.Graphs.Elements` fornisce le classi `Vertex`, `Edge`, `Property` e `VertexProperty` per la deserializzazione delle risposte GraphSON a oggetti .NET ben definiti.
+Hello `Microsoft.Azure.Graphs.Elements` spazio dei nomi fornisce `Vertex`, `Edge`, `Property` e `VertexProperty` classi per la deserializzazione di oggetti .NET definiti toowell di GraphSON le risposte.
 
 ## <a name="run-gremlin-using-creategremlinquery"></a>Eseguire Gremlin usando CreateGremlinQuery
-Gremlin, come SQL, supporta le operazioni di lettura, scrittura e le query. Ad esempio, il frammento seguente illustra come creare vertici e archi, eseguire alcune query di esempio usando `CreateGremlinQuery<T>` e iterare in modo asincrono questi risultati usando `ExecuteNextAsync` e 'HasMoreResults.
+Gremlin, come SQL, supporta le operazioni di lettura, scrittura e le query. Ad esempio, hello frammento di codice seguente mostra come toocreate vertici, bordi, eseguono alcune query di esempio utilizzando `CreateGremlinQuery<T>`e scorrere in modo asincrono da questi risultati tramite `ExecuteNextAsync` e ' HasMoreResults.
 
 ```cs
 Dictionary<string, string> gremlinQueries = new Dictionary<string, string>
@@ -152,7 +152,7 @@ foreach (KeyValuePair<string, string> gremlinQuery in gremlinQueries)
 {
     Console.WriteLine($"Running {gremlinQuery.Key}: {gremlinQuery.Value}");
 
-    // The CreateGremlinQuery method extensions allow you to execute Gremlin queries and iterate
+    // hello CreateGremlinQuery method extensions allow you tooexecute Gremlin queries and iterate
     // results asychronously
     IDocumentQuery<dynamic> query = client.CreateGremlinQuery<dynamic>(graph, gremlinQuery.Value);
     while (query.HasMoreResults)
@@ -169,7 +169,7 @@ foreach (KeyValuePair<string, string> gremlinQuery in gremlinQueries)
 
 ## <a name="add-vertices-and-edges"></a>Aggiungere vertici e archi
 
-Verranno esaminati in maggiore dettaglio i comandi Gremlin illustrati nella sezione precedente. Prima si aggiungono vertici usando il metodo `addV` Gremlin. Ad esempio, il frammento seguente crea un vertice "Thomas Andersen" di tipo "Person", con proprietà per il nome, il cognome e l'età.
+Esaminare le istruzioni Gremlin hello mostrate nella precedente sezione hello maggiori dettagli. Prima si aggiungono vertici usando il metodo `addV` Gremlin. Ad esempio, hello frammento di codice seguente crea un vertice "Thomas Andersen" di tipo "Person", con le proprietà per nome, cognome ed età.
 
 ```cs
 // Create a vertex
@@ -197,7 +197,7 @@ while (create.HasMoreResults)
 }
 ```
 
-È possibile aggiornare un vertice esistente usando il comando `properties` Gremlin. Non verrà esaminata la chiamata per eseguire la query tramite `HasMoreResults` e `ExecuteNextAsync` negli altri esempi.
+È possibile aggiornare un vertice esistente usando il comando `properties` Gremlin. Vengono ignorate query hello di hello chiamata tooexecute tramite `HasMoreResults` e `ExecuteNextAsync` per rest hello degli esempi di hello.
 
 ```cs
 // Update a vertex
@@ -206,7 +206,7 @@ client.CreateGremlinQuery<Vertex>(
     "g.V('thomas').property('age', 45)");
 ```
 
-È possibile trascinare gli archi e i vertici usando il comando `drop` Gremlin. Ecco un frammento di codice che illustra come eliminare un vertice e un arco. Si noti che l'eliminazione di un vertice implica l'eliminazione a catena degli archi associati.
+È possibile trascinare gli archi e i vertici usando il comando `drop` Gremlin. Di seguito è riportato un frammento che mostra come toodelete vertice e un bordo. Si noti che l'eliminazione di un vertice esegue un'eliminazione a catena di hello associati bordi.
 
 ```cs
 // Drop an edge
@@ -216,15 +216,15 @@ client.CreateGremlinQuery(graphCollection, "g.E('thomasKnowsRobin').drop()");
 client.CreateGremlinQuery(graphCollection, "g.V('robin').drop()");
 ```
 
-## <a name="query-the-graph"></a>Eseguire una query sul grafo
+## <a name="query-hello-graph"></a>Grafico di query hello
 
-È possibile anche eseguire operazioni di query e attraversamento usando Gremlin. Ad esempio, il frammento seguente illustra come contare il numero di vertici nel grafo:
+È possibile anche eseguire operazioni di query e attraversamento usando Gremlin. Ad esempio, hello frammento di codice seguente viene illustrato come toocount hello numero di vertici nel grafico hello:
 
 ```cs
-// Run a query to count vertices
+// Run a query toocount vertices
 IDocumentQuery<int> countQuery = client.CreateGremlinQuery<int>(graphCollection, "g.V().count()");
 ```
-È possibile eseguire filtri usando i comandi `has` e `hasLabel` Gremlin e combinarli usando `and`, `or` e `not` per creare filtri più complessi:
+È possibile eseguire filtri utilizzando Gremlin `has` e `hasLabel` i passaggi e combinarli con `and`, `or`, e `not` toobuild più complessa di filtri:
 
 ```cs
 // Run a query with filter
@@ -233,7 +233,7 @@ IDocumentQuery<Vertex> personsByAge = client.CreateGremlinQuery<Vertex>(
   "g.V().hasLabel('person').has('age', gt(40))");
 ```
 
-È possibile proiettare determinate proprietà nei risultati della query usando il comando `values`:
+È possibile proiettare determinate proprietà nei risultati della query hello utilizzando hello `values` passaggio:
 
 ```cs
 // Run a query with projection
@@ -242,7 +242,7 @@ IDocumentQuery<string> firstNames = client.CreateGremlinQuery<string>(
   $"g.V().hasLabel('person').values('firstName')");
 ```
 
-Finora sono stati esaminati solo gli operatori di query che è possibile usare in qualsiasi database. I grafi sono veloci ed efficienti per le operazioni di attraversamento quando è necessario passare agli archi e ai vertici correlati. Verranno ora individuati tutti gli amici di Thomas. Questa operazione viene eseguita usando il comando `outE` di Gremlin per individuare tutti gli archi in uscita da Thomas, quindi attraversando i vertici in ingresso da tali archi usando il comando `inV` di Gremlin:
+Finora sono stati esaminati solo gli operatori di query che è possibile usare in qualsiasi database. Grafici sono veloci ed efficienti per le operazioni di attraversamento quando è necessario toonavigate toorelated bordi e i vertici. Verranno ora individuati tutti gli amici di Thomas. Facciamo utilizzando del Gremlin `outE` passaggio toofind hello tutti i bordi in uscita da Thomas, quindi attraversamento toohello in vertici da tali usando del Gremlin `inV` passaggio:
 
 ```cs
 // Run a traversal (find friends of Thomas)
@@ -251,7 +251,7 @@ IDocumentQuery<Vertex> friendsOfThomas = client.CreateGremlinQuery<Vertex>(
   "g.V('thomas').outE('knows').inV().hasLabel('person')");
 ```
 
-La query successiva esegue due passaggi per trovare tutti "gli amici di amici" di Thomas chiamando `outE` e `inV` due volte. 
+la query successiva Hello esegue due hop toofind tutti "agli amici di Thomas di amici", chiamando `outE` e `inV` due volte. 
 
 ```cs
 // Run a traversal (find friends of friends of Thomas)
@@ -260,29 +260,29 @@ IDocumentQuery<Vertex> friendsOfFriendsOfThomas = client.CreateGremlinQuery<Vert
   "g.V('thomas').outE('knows').inV().hasLabel('person').outE('knows').inV().hasLabel('person')");
 ```
 
-È possibile creare query più complesse e implementare la potente logica di attraversamento di grafi usando Gremlin, incluse la combinazione di espressioni di filtro, l'esecuzione di cicli con il comando `loop` e l'implementazione dello spostamento condizionale usando il comando `choose`. Altre informazioni sulle operazioni che è possibile eseguire con il [supporto per Gremlin](gremlin-support.md).
+È possibile compilare query più complesse e implementare la logica di attraversamento potente grafico utilizzando Gremlin, tra cui filtro combinazione espressioni, esecuzione di ciclo tramite hello `loop` passaggio e la navigazione condizionale implementazione utilizzando hello `choose` passaggio. Altre informazioni sulle operazioni che è possibile eseguire con il [supporto per Gremlin](gremlin-support.md).
 
 L'esercitazione di Azure Cosmos DB è stata completata. 
 
 ## <a name="clean-up-resources"></a>Pulire le risorse
 
-Se non si prevede di continuare a usare questa app, seguire questa procedura per eliminare tutte le risorse create da questa esercitazione nel portale di Azure.  
+Se non si ha intenzione toocontinue toouse questa app, utilizzare hello seguendo i passaggi toodelete tutte le risorse create da questa esercitazione in hello portale di Azure.  
 
-1. Scegliere **Gruppi di risorse** dal menu a sinistra del portale di Azure e quindi fare clic sul nome della risorsa creata. 
-2. Nella pagina del gruppo di risorse fare clic su **Elimina**, digitare il nome della risorsa da eliminare nella casella di testo e quindi fare clic su **Elimina**.
+1. Dal menu a sinistra di hello in hello portale di Azure, fare clic su **gruppi di risorse** e quindi fare clic su nome hello della risorsa di hello è stato creato. 
+2. Nella pagina di gruppo di risorse, fare clic su **eliminare**, digitare il nome di hello di hello risorsa toodelete nella casella di testo hello e quindi fare clic su **eliminare**.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-In questa esercitazione sono state eseguite le operazioni seguenti:
+In questa esercitazione, effettuata seguente hello:
 
 > [!div class="checklist"]
 > * Creazione di un account Azure Cosmos DB 
 > * Creazione di un contenitore e un database di grafi
-> * Serializzazione di vertici e archi negli oggetti .NET
+> * Oggetti too.NET vertici e bordi serializzati
 > * Aggiunta di vertici e archi
-> * Esecuzione di query sul grafo usando Gremlin
+> * Grafico di query hello mediante Gremlin
 
-È ora possibile creare query più complesse e implementare la potente logica di attraversamento di grafi usando Gremlin. 
+È ora possibile creare query più complesse e implementare la potente logica di attraversamento dei grafi usando Gremlin. 
 
 > [!div class="nextstepaction"]
 > [Eseguire query con Gremlin](tutorial-query-graph.md)

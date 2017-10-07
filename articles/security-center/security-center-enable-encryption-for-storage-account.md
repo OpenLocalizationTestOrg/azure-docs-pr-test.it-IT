@@ -1,6 +1,6 @@
 ---
-title: Abilitare la crittografia per l'account di archiviazione nel Centro sicurezza di Azure | Microsoft Docs
-description: In questo documento viene illustrato come implementare le raccomandazioni del Centro sicurezza di Azure **Abilitare la crittografia per l'account di archiviazione nel Centro sicurezza di Azure**.
+title: crittografia aaaEnable account di archiviazione nel Centro sicurezza di Azure | Documenti Microsoft
+description: Questo documento viene illustrato come tooimplement hello indicazioni Centro sicurezza di Azure * * abilitare la crittografia per Azure Storage Account * *.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/20/2016
 ms.author: terrylan
-ms.openlocfilehash: b7b2e8a12cbab68da9c8fcc348e8e3c543607007
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c5cbafbf3a8be86f213dcf1c0c0ddcc0222b3d95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-encryption-for-azure-storage-account-in-azure-security-center"></a>Abilitare la crittografia per l'account di archiviazione nel Centro sicurezza di Azure
 Il Centro sicurezza di Azure consiglia all'utente di abilitare la crittografia del servizio di archiviazione di Azure per i dati inattivi.
 
-La Crittografia del servizio di archiviazione (SSE) applica la crittografia ai dati quando vengono scritti nell'archiviazione di Azure e li decrittografa prima del recupero.  SSE è attualmente disponibile solo per il servizio BLOB di Azure e può essere usata per BLOB in blocchi, BLOB di pagine e BLOB di aggiunta.  Per altre informazioni, vedere [Crittografia del servizio di archiviazione di Azure per dati inattivi](../storage/common/storage-service-encryption.md).
+Crittografia del servizio di archiviazione (SSE) funziona la crittografia dei dati di hello quando viene scritta tooAzure archiviazione e la decrittografia dei dati di hello prima del recupero.  SSE è attualmente disponibile solo per hello servizio Blob di Azure e può essere utilizzato per i BLOB in blocchi, BLOB di pagine e BLOB di aggiunta.  vedere, più toolearn [la crittografia del servizio di archiviazione per i dati inattivi](../storage/common/storage-service-encryption.md).
 
 
 > [!Note]
-> Dopo avere attivato la crittografia, vengono crittografati solo i nuovi dati. Qualsiasi BLOB esistente nell'account di archiviazione non viene crittografato. Per crittografare un BLOB esistente, vedere [Domande frequenti su Crittografia del servizio di archiviazione per i dati inattivi](../storage/common/storage-service-encryption.md#frequently-asked-questions-about-storage-service-encryption-for-data-at-rest).
+> Dopo avere attivato la crittografia, vengono crittografati solo i nuovi dati. Qualsiasi BLOB esistente nell'account di archiviazione non viene crittografato. tooencrypt BLOB esistenti, vedere hello [domande frequenti di crittografia del servizio di archiviazione](../storage/common/storage-service-encryption.md#frequently-asked-questions-about-storage-service-encryption-for-data-at-rest).
 >
 >
 
-La crittografia del servizio di archiviazione è supportata solo negli account di archiviazione di Gestione risorse. Gli account di archiviazione classici non sono attualmente supportati. Per informazioni sui modelli di distribuzione classico e di Gestione risorse, vedere i [modelli di distribuzione di Azure](../azure-classic-rm.md).
+La crittografia del servizio di archiviazione è supportata solo negli account di archiviazione di Gestione risorse. Gli account di archiviazione classici non sono attualmente supportati. hello toounderstand classico e modelli di distribuzione di gestione delle risorse, vedere [modelli di distribuzione Azure](../azure-classic-rm.md).
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio.  Questo argomento non costituisce una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questo argomento non costituisce una guida dettagliata.
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
-1. Nel pannello **Raccomandazioni** selezionare **Enable encryption for Azure Storage Account** (Abilita la crittografia per l'account di archiviazione di Azure).
-   ![Enable encryption for storage account][1] (Abilita la crittografia per l'account di archiviazione)
-2. Viene visualizzato il pannello **Enable storage encryption** (Abilita la crittografia di archiviazione). In questo pannello sono elencati gli account di archiviazione di Azure in cui la crittografia di archiviazione è disabilitata. In questo esempio selezioniamo **storageacct1**.
+## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
+1. In hello **indicazioni** pannello seleziona **abilitare la crittografia per l'Account di archiviazione Azure**.
+   ![Abilita la crittografia per l'account di archiviazione][1]
+2. Hello **abilitare la crittografia di archiviazione** apre blade. Questo pannello sono elencati gli account di archiviazione di Azure hello in cui la crittografia di archiviazione è disabilitata. In questo esempio selezioniamo **storageacct1**.
    ![Abilita la crittografia di archiviazione][2]
-3. Si apre il pannello **Crittografia** per **storageacct1**. Selezionare **Enabled**.
+3. Hello **crittografia** pannello **storageacct1** apre. Selezionare **Enabled**.
    ![Pannello di crittografia][3]
 4. Selezionare **Salva**.
 
@@ -51,17 +51,17 @@ A questo punto è stata abilitata la crittografia di archiviazione per **storage
 
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento viene illustrato come implementare la raccomandazione del Centro sicurezza di Azure "Abilitare la crittografia per l'account di archiviazione di Azure". Per ulteriori informazioni sulla crittografia del servizio di archiviazione di Azure, vedere le risorse seguenti:
+Questo documento ha illustrato come tooimplement hello Centro sicurezza PC indicazione "Abilita la crittografia per Account di archiviazione Azure." toolearn ulteriori informazioni su Azure la crittografia del servizio di archiviazione, vedere l'esempio hello:
 
 * [Crittografia del servizio di archiviazione di Azure per dati inattivi](../storage/common/storage-service-encryption.md)
 
-Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
 
-* [Impostare i criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
 * [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/): post di blog sulla sicurezza e sulla conformità di Azure.
 
 <!--Image references-->

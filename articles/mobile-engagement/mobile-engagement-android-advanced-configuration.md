@@ -1,6 +1,6 @@
 ---
-title: Configurazione avanzata di Android SDK per Azure Mobile Engagement
-description: Descrive le opzioni di configurazione avanzate tra cui il manifesto Android con Android SDK per Azure Mobile Engagement
+title: configurazione aaaAdvanced per Azure Mobile Engagement SDK Android
+description: Vengono descritte le opzioni di configurazione inclusi manifesto Android con Azure Mobile Engagement SDK Android hello avanzate hello
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 0301f71c76872714aa1bf727a6c21dd7a63db036
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 757abf362021fd018f444cae6305524623e77062
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-configuration-for-azure-mobile-engagement-android-sdk"></a>Configurazione avanzata di Android SDK per Azure Mobile Engagement
 > [!div class="op_single_selector"]
@@ -29,15 +29,15 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Questa procedura descrive come configurare le diverse opzioni di configurazione per le app Android di Azure Mobile Engagement.
+Questa procedura viene descritto come tooconfigure varie opzioni di configurazione per le app Android di Azure Mobile Engagement.
 
 ## <a name="prerequisites"></a>Prerequisiti
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-android-prereqs.md)]
 
 ## <a name="permission-requirements"></a>Requisiti di autorizzazione
-Alcune opzioni richiedono autorizzazioni specifiche, ognuna delle quali viene elencata di seguito a titolo di riferimento e inline nella funzionalità specifica. Aggiungere queste autorizzazioni al file AndroidManifest.xml del progetto immediatamente prima o dopo il tag `<application>`.
+Alcune opzioni richiedono autorizzazioni specifiche, ognuno dei quali sono elencati di seguito per riferimento e in linea nella funzionalità specifiche di hello. Aggiungere questi toohello autorizzazioni AndroidManifest.xml del progetto, immediatamente prima o dopo hello `<application>` tag.
 
-Il codice di autorizzazione deve essere simile al seguente. L'autorizzazione appropriata viene compilata in base alla tabella seguente.
+codice di autorizzazione Hello deve toolook hello seguente, in cui si compila le autorizzazioni appropriate hello dalla tabella hello che segue.
 
     <uses-permission android:name="android.permission.[specific permission]"/>
 
@@ -46,7 +46,7 @@ Il codice di autorizzazione deve essere simile al seguente. L'autorizzazione app
 | --- | --- |
 | INTERNET |Obbligatorio. Per report di base |
 | ACCESS_NETWORK_STATE |Obbligatorio. Per report di base |
-| RECEIVE_BOOT_COMPLETED |Obbligatorio. Per visualizzare il centro notifiche dopo il riavvio del dispositivo |
+| RECEIVE_BOOT_COMPLETED |Obbligatorio. tooshow Center notifiche hello dopo il riavvio del dispositivo |
 | WAKE_LOCK |Consigliato. Abilita la raccolta dei dati quando si usa il WiFi o quando lo schermo è spento |
 | VIBRATE |Facoltativo. Abilita la vibrazione alla ricezione delle notifiche |
 | DOWNLOAD_WITHOUT_NOTIFICATION |Facoltativo. Abilita la notifica generale di Android |
@@ -56,49 +56,49 @@ Il codice di autorizzazione deve essere simile al seguente. L'autorizzazione app
 
 A partire da Android M, [alcune autorizzazioni vengono gestite in fase di esecuzione](mobile-engagement-android-location-reporting.md#android-m-permissions).
 
-Se si usa già ``ACCESS_FINE_LOCATION`` non è necessario usare anche ``ACCESS_COARSE_LOCATION``.
+Se si sta già utilizzando ``ACCESS_FINE_LOCATION``, è necessario tooalso utilizzare ``ACCESS_COARSE_LOCATION``.
 
 ## <a name="android-manifest-configuration-options"></a>Opzioni di configurazione del file manifesto Android
 ### <a name="crash-report"></a>Segnalazione di arresto anomalo 
-Per disabilitare la segnalazione di arresti anomali del sistema, aggiungere questo codice tra i tag `<application>` e `</application>`:
+segnalazioni di arresti anomali toodisable, aggiungere il codice tra hello `<application>` e `</application>` tag:
 
     <meta-data android:name="engagement:reportCrash" android:value="false"/>
 
 ### <a name="burst-threshold"></a>Soglia del burst
-Per impostazione predefinita, il servizio Engagement segnala i log in tempo reale. Se l'applicazione segnala i log molto spesso, è preferibile memorizzare i log nel buffer e segnalarli tutti insieme con cadenza regolare, la cosiddetta "modalità burst". A tale scopo, aggiungere questo codice tra i tag `<application>` e `</application>`:
+Per impostazione predefinita, i report del servizio di Engagement hello registra in tempo reale. Se la relazione dei log applicazioni variano frequentemente, è meglio toobuffer hello registri e tooreport usarle in una sola volta in volta regolare base (denominata "potenziamento in modalità"). toodo in tal caso, aggiungere il codice tra hello `<application>` e `</application>` tag:
 
     <meta-data android:name="engagement:burstThreshold" android:value="{interval between too bursts (in milliseconds)}"/>
 
-La modalità burst aumenta lievemente la durata della batteria ma ha un impatto su Monitor di Engagement: la durata di tutte le sessioni e di tutti i processi viene arrotondata alla soglia di burst e, di conseguenza, le sessioni e i processi inferiori alla soglia di burst potrebbero non essere visibili. La soglia di burst non dovrebbe essere maggiore di 30000 (30 secondi).
+Modalità burst leggermente aumenta la durata della batteria hello ma ha un impatto sulle hello Engagement Monitor: durata di tutte le sessioni e i processi vengono arrotondati toohello burst soglia (in questo modo, le sessioni e i processi è inferiore a soglia burst hello potrebbe non essere visibile). La soglia di burst non dovrebbe essere maggiore di 30000 (30 secondi).
 
 ### <a name="session-timeout"></a>Timeout della sessione
- È possibile terminare un'attività premendo **Home** o **Indietro**, impostando l'inattività del telefono o passando a un'altra applicazione. Per impostazione predefinita, una sessione viene terminata 10 secondi dopo la fine dell'ultima attività. Ciò avviene per evitare una divisione di sessione ogni volta che l'utente esce e rientra nell'applicazione rapidamente, come può accadere quando preleva un'immagine, controlla una notifica e così via. Questo parametro può essere modificato. A tale scopo, aggiungere questo codice tra i tag `<application>` e `</application>`:
+ È possibile terminare un'attività premendo hello **Home** o **nuovamente** chiave telefonicamente impostazione hello inattivo o per passare a un'altra applicazione. Per impostazione predefinita, una sessione viene terminata dieci secondi dopo la fine di hello del relativo ultima attività. Ciò consente di evitare una divisione di sessione, ogni utente hello in fase di chiusura e restituisce toohello applicazione rapidamente, che possono verificarsi quando l'utente hello preleva un'immagine, verifica una notifica e così via. È opportuno toomodify questo parametro. toodo in tal caso, aggiungere il codice tra hello `<application>` e `</application>` tag:
 
     <meta-data android:name="engagement:sessionTimeout" android:value="{session timeout (in milliseconds)}"/>
 
 ## <a name="disable-log-reporting"></a>Disabilitare la segnalazione di log
 ### <a name="using-a-method-call"></a>Uso di una chiamata del metodo
-Se si vuole che Engagement non invii più log, è possibile chiamare:
+Se si desidera toostop Engagement l'invio di log, è possibile chiamare:
 
     EngagementAgent.getInstance(context).setEnabled(false);
 
 Questa chiamata è persistente: usa un file di preferenze condivise.
 
-Se Engagement è attivo quando si chiama questa funzione, l'arresto del servizio può richiedere 1 minuto. Al successivo avvio dell'applicazione, tuttavia, il servizio non verrà avviato.
+Se Engagement è attivo quando si chiama questa funzione, potrebbe richiedere un minuto per hello servizio toostop. Tuttavia, non verrà avviato servizio hello hello tutti successivo avvio di un'applicazione hello.
 
-È possibile abilitare di nuovo la segnalazione di log chiamando la stessa funzione con `true`.
+È possibile abilitare nuovamente reporting chiamando hello stessa funzione con log `true`.
 
 ### <a name="integration-in-your-own-preferenceactivity"></a>Integrazione nella propria classe `PreferenceActivity`
 Invece di chiamare questa funzione, è anche possibile integrare questa impostazione direttamente nella classe `PreferenceActivity` esistente.
 
-È possibile configurare Engagement in modo da usare il file di preferenze (con la modalità desiderata) nel file `AndroidManifest.xml` con `application meta-data`:
+È possibile configurare le preferenze di file (con modalità desiderata di hello) toouse di Engagement in hello `AndroidManifest.xml` file con `application meta-data`:
 
-* La chiave `engagement:agent:settings:name` viene usata per definire il nome del file di preferenze condivise.
-* La chiave `engagement:agent:settings:mode` viene usata per definire la modalità del file di preferenze condivise. Usare la stessa modalità usata per `PreferenceActivity`. La modalità deve essere passata come numero: se si usa una combinazione di flag di costanti nel codice, controllare il valore totale.
+* Hello `engagement:agent:settings:name` chiave è utilizzata toodefine hello nome del file di preferenze condivise hello.
+* Hello `engagement:agent:settings:mode` chiave è la modalità di hello toodefine utilizzate del file di preferenze condivise hello. Utilizzare hello stessa modalità come il `PreferenceActivity`. modalità Hello deve essere passata come un numero: se si utilizza una combinazione di flag costante nel codice, controllare il valore totale di hello.
 
-Engagement usa sempre la chiave booleana `engagement:key` all'interno del file di preferenze per la gestione di questa impostazione.
+Engagement sempre utilizza hello `engagement:key` booleano chiave all'interno di file di preferenze hello per la gestione di questa impostazione.
 
-L'esempio seguente di `AndroidManifest.xml` mostra i valori predefiniti:
+Hello in seguito ad esempio `AndroidManifest.xml` Mostra hello valori predefiniti:
 
     <application>
         [...]
@@ -109,7 +109,7 @@ L'esempio seguente di `AndroidManifest.xml` mostra i valori predefiniti:
           android:name="engagement:agent:settings:mode"
           android:value="0" />
 
-Sarà quindi possibile aggiungere un elemento `CheckBoxPreference` nel layout delle preferenze simile a quello riportato di seguito:
+È quindi possibile aggiungere un `CheckBoxPreference` nel layout delle preferenze come segue quello hello:
 
     <CheckBoxPreference
       android:key="engagement:enabled"

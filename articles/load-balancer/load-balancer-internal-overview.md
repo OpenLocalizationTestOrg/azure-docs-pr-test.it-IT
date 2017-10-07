@@ -1,6 +1,6 @@
 ---
-title: Panoramica del bilanciamento del carico interno | Documentazione Microsoft
-description: "Panoramica del bilanciamento del carico interno e delle relative funzionalità. Modalità di funzionamento del bilanciamento del carico di Azure e possibili scenari per la configurazione di endpoint interni"
+title: servizio di bilanciamento del carico aaaInternal Panoramica | Documenti Microsoft
+description: "Panoramica di bilanciamento del carico interno e delle relative funzionalità. Funzionamento di un servizio di bilanciamento del carico per gli endpoint interni di Azure e possibili scenari tooconfigure"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d324aaf8ec2c8766d5cf11452158d14c19cba4d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a901aad224d8821c154e130e142699d57282b25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="internal-load-balancer-overview"></a>Panoramica del bilanciamento del carico interno
 
-A differenza del bilanciamento del carico Internet, il bilanciamento del carico interno indirizza il traffico solo alle risorse all'interno del servizio cloud o che accedono all'infrastruttura di Azure tramite una rete VPN. L'infrastruttura limita l'accesso agli indirizzi IP virtuali con carico bilanciato di un servizio cloud o una rete virtuale, senza esposizione diretta a un endpoint Internet. Ciò consente di eseguire le applicazioni line-of-business (LOB) interne in Azure e di accedervi dal cloud o dalle risorse locali.
+A differenza di hello Internet rivolto al bilanciamento del carico, bilanciamento del carico interno hello (ILB) indirizza il traffico tooresources solo all'interno del servizio cloud hello o tramite VPN tooaccess hello dell'infrastruttura di Azure. infrastruttura Hello limita accesso toohello con carico bilanciato indirizzi IP virtuali (VIP) di un servizio Cloud o una rete virtuale in modo che non siano mai esposto direttamente tooan Internet endpoint. Questo consente interno line-of-business (LOB) toorun di applicazioni in Azure e accesso dal cloud hello o da risorse locali.
 
 ## <a name="why-you-may-need-an-internal-load-balancer"></a>Perché potrebbe servire il bilanciamento del carico interno
 
-Il bilanciamento del carico interno di Azure consente di bilanciare il carico tra macchine virtuali che si trovano in un servizio cloud o una rete virtuale nell'ambito di un'area. Per informazioni sull'uso e sulla configurazione di reti virtuali nell'ambito di un'area, vedere [Reti virtuali di area](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/) nel blog di Azure. Le reti virtuali esistenti che sono state configurate per un gruppo di affinità non possono usare il bilanciamento del carico interno.
+Il bilanciamento del carico interno di Azure consente di bilanciare il carico tra macchine virtuali che si trovano in un servizio cloud o una rete virtuale nell'ambito di un'area. Per informazioni sull'uso di hello e la configurazione di reti virtuali con un ambito regionale, vedere [reti virtuali regionali](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/) in hello blog di Azure. Le reti virtuali esistenti che sono state configurate per un gruppo di affinità non possono usare il bilanciamento del carico interno.
 
-Il bilanciamento del carico interno permette di bilanciare i tipi di carico seguenti:
+ILB consente hello seguenti tipi di bilanciamento del carico:
 
-* In un servizio cloud, dalle macchine virtuali a un set di macchine virtuali che si trovano nello stesso servizio cloud (vedere la figura 1).
-* In una rete virtuale, dalle macchine virtuali nella rete virtuale a un set di macchine virtuali che si trovano nello stesso servizio cloud della rete virtuale (vedere la figura 2).
-* Per una rete virtuale cross-premise, dai computer locali a un set di macchine virtuali che si trovano nello stesso servizio cloud della rete virtuale (vedere la figura 3).
-* Applicazioni multilivello con connessione Internet in cui i livelli di back-end non sono connessi a Internet, ma che richiedono il bilanciamento del carico per il traffico dal livello con connessione Internet.
-* Bilanciamento del carico per applicazioni LOB ospitate in Azure senza la necessità di applicazioni software o componenti hardware aggiuntivi per il bilanciamento del carico. Inserimento di server locali nel set di computer il cui traffico viene sottoposto a bilanciamento del carico.
+* All'interno di un servizio cloud, macchine virtuali tooa set di macchine virtuali che risiedono all'interno di hello stesso servizio cloud (vedere la figura 1).
+* All'interno di una rete virtuale, da macchine virtuali nel set di tooa hello rete virtuale di macchine virtuali che risiedono all'interno di hello stesso servizio cloud di hello virtuale di rete (vedere la figura 2).
+* Per una rete virtuale cross-premise, dal set di tooa computer locale di macchine virtuali che risiedono all'interno di hello stesso servizio cloud di hello virtuale di rete (vedere la figura 3).
+* Con connessione Internet applicazioni multilivello in cui i livelli di back-end hello non sono esposti a Internet, ma richiedono il bilanciamento del carico per il traffico dal livello di hello con connessione Internet.
+* Bilanciamento del carico per applicazioni LOB ospitate in Azure senza la necessità di applicazioni software o componenti hardware aggiuntivi per il bilanciamento del carico. Tra i server locali nel set di hello di computer il cui traffico è a carico bilanciato.
 
 ## <a name="internet-facing-multi-tier-applications"></a>Applicazioni multilivello con connessione Internet
 
-Il livello Web presenta endpoint con connessione Internet per i client Internet e fa parte di un set con carico bilanciato. Il bilanciamento del carico distribuisce il traffico in ingresso dai client Web per la porta TCP 443 (HTTPS) ai server Web.
+livello web Hello ha endpoint con connessione Internet per client Internet e fa parte di un set con carico bilanciato. servizio di bilanciamento del carico Hello distribuisce il traffico in ingresso dai client web per TCP porta 443 (HTTPS) toohello i server web.
 
-I server di database si servono di un endpoint di bilanciamento del carico interno usato dai server Web per l'archiviazione. Questo database serve l'endpoint con carico bilanciato, il cui traffico viene sottoposto a bilanciamento del carico tra i server di database nel set di bilanciamento del carico interno.
+server di database Hello sono protetti da un endpoint di bilanciamento del carico interno che i server web hello utilizzano per l'archiviazione. Endpoint, il tipo di traffico con carico bilanciato tra i server di database hello nel set di bilanciamento del carico interno hello con bilanciamento del carico di servizio in questo database.
 
-L'immagine seguente illustra l'applicazione multilivello con connessione Internet all'interno dello stesso servizio cloud.
+Hello seguente immagine Mostra hello applicazione multilivello per Internet all'interno di hello stesso servizio cloud.
 
 ![Bilanciamento del carico interno di un singolo servizio cloud](./media/load-balancer-internal-overview/IC736321.png)
 
 Figura 1. Applicazione multilivello con connessione Internet
 
-Un altro possibile uso per un'applicazione multilivello consiste nella distribuzione del bilanciamento del carico interno in un servizio cloud diverso rispetto a quello che utilizza il servizio per il bilanciamento del carico interno.
+È possibile inoltre utilizzare un'applicazione multilivello è quando hello ILB distribuito tooa un servizio cloud differente rispetto a un servizio consumer di hello per hello ILB hello.
 
-I servizi cloud che usano la stessa rete virtuale avranno accesso all'endpoint di bilanciamento del carico interno. Nella figura seguente è possibile vedere che i server Web front-end si trovano in un servizio cloud diverso rispetto al back-end di database e usano l'endpoint di bilanciamento del carico interno nella stessa rete virtuale.
+Cloud services utilizzando hello stessa rete virtuale avranno accesso endpoint ILB toohello. Hello seguente immagine vengono visualizzati i server web front-end in un servizio cloud diverso da hello database back-end e l'utilizzo di hello endpoint ILB all'interno di hello stessa rete virtuale.
 
 ![Bilanciamento del carico interno tra servizi cloud](./media/load-balancer-internal-overview/IC744147.png)
 
@@ -58,23 +58,23 @@ Figura 2. Server front-end in un altro servizio cloud
 
 ## <a name="intranet-line-of-business-applications"></a>Applicazioni Intranet line-of-business
 
-Il traffico dai client nella rete locale viene sottoposto a bilanciamento del carico nel set di server line-of-business usando la connessione VPN alla rete di Azure.
+Il traffico dai client nella rete locale hello viene bilanciato tra set hello del server LOB tramite rete tooAzure di connessione VPN.
 
-I client avranno accesso a un indirizzo IP dal servizio VPN di Azure tramite una connessione VPN da punto a sito. È quindi possibile usare l'applicazione LOB ospitata dietro l'endpoint di bilanciamento del carico interno.
+computer client Hello avrà indirizzo IP tooan di accesso dal servizio VPN di Azure tramite VPN toosite punto. Consente di hello utilizzare hello applicazione LOB ospitata dietro endpoint ILB hello.
 
-![Bilanciamento del carico interno tramite VPN da punto a sito](./media/load-balancer-internal-overview/IC744148.png)
+![Interno il bilanciamento del carico tramite VPN toosite punto](./media/load-balancer-internal-overview/IC744148.png)
 
-Figura 3. Applicazioni LOB ospitate dietro l'endpoint di bilanciamento carico
+Figura 3 - applicazioni LOB ospitate dietro endpoint LB hello
 
-Un altro scenario di tipo line-of-business prevede l'uso di una rete VPN da sito a sito per la connessione alla rete virtuale in cui è stato configurato l'endpoint di bilanciamento del carico interno. In questo modo, il traffico di rete locale può essere instradato all'endpoint di bilanciamento del carico interno.
+Un altro scenario hello LOB è una sito toosite VPN toohello rete virtuale in cui viene configurato l'endpoint di bilanciamento del carico interno hello toohave. In questo modo l'endpoint di rete traffico toobe indirizzato toohello ILB locale.
 
-![Bilanciamento del carico interno tramite VPN da sito a sito](./media/load-balancer-internal-overview/IC744150.png)
+![Interno il bilanciamento del carico utilizzando toosite sito VPN](./media/load-balancer-internal-overview/IC744150.png)
 
-Figura 4. Il traffico di rete locale può essere instradato all'endpoint di bilanciamento del carico interno
+Figura 4 - il traffico di rete locale indirizzata toohello ILB endpoint
 
 ## <a name="limitations"></a>Limitazioni
 
-SNAT non è supportato dalle configurazioni del servizio di bilanciamento del carico interno. Nel contesto di questo documento, SNAT fa riferimento alla traduzione dell'indirizzo di rete di origine mascherato della porta.  Questo vale per gli scenari in cui una macchina virtuale in un pool di bilanciamento del carico deve raggiungere l'indirizzo IP front-end del rispettivo servizio di bilanciamento del carico interno. Questo scenario non è supportato per il servizio di bilanciamento del carico interno. Si verificheranno errori di connessione una volta eseguito il bilanciamento del carico del flusso sulla macchina virtuale che ha originato il flusso. È necessario usare un servizio di bilanciamento del carico di tipo proxy per questi scenari.
+SNAT non è supportato dalle configurazioni del servizio di bilanciamento del carico interno. Nel contesto di hello di questo documento, SNAT fa riferimento tooport simulazione origine NAT.  Si applica tooscenarios in una macchina virtuale in un pool di bilanciamento del carico richiede l'indirizzo IP del tooreach hello rispettivi interno bilanciamento del carico front-end. Questo scenario non è supportato per il servizio di bilanciamento del carico interno. Quando il flusso di hello è toohello con carico bilanciato macchina virtuale che ha avviato il flusso di hello, si verificheranno errori di connessione. È necessario usare un servizio di bilanciamento del carico di tipo proxy per questi scenari.
 
 ## <a name="next-steps"></a>Passaggi successivi
 

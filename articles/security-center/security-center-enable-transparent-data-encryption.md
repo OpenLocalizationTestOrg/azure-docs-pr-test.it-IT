@@ -1,6 +1,6 @@
 ---
-title: Abilitare Transparent Data Encryption nel Centro sicurezza di Azure | Documentazione Microsoft
-description: "In questo documento è illustrato come implementare la raccomandazione **AbilitareTransparent Data Encryption** del Centro sicurezza di Azure."
+title: Transparent Data Encryption nel Centro protezione Azure aaaEnable | Documenti Microsoft
+description: Questo documento viene illustrato come tooimplement hello raccomandazione Centro sicurezza di Azure * * abilitare Transparent Data Encryption * *.
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 2a2963affdbff3710ad08f86c6ed4e6304335559
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94c6e9a1feddaa48faac6c835d416c4d131cd5c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-in-azure-security-center"></a>Abilitare Transparent Data Encryption nel Centro sicurezza di Azure
-Il Centro sicurezza di Azure consiglia di abilitare Transparent Data Encryption (TDE) nel database SQL, se non è già abilitato. TDE protegge i dati e consente di soddisfare i requisiti di conformità tramite la crittografia del database, backup associati e file di log delle transazioni inattive, senza richiedere modifiche all'applicazione. Per altre informazioni, vedere [Transparent Data Encryption con il database SQL di Azure](https://msdn.microsoft.com/library/dn948096).
+Il Centro sicurezza di Azure consiglia di abilitare Transparent Data Encryption (TDE) nel database SQL, se non è già abilitato. Transparent Data Encryption consente di proteggere i dati e consente di soddisfare i requisiti di conformità grazie alla crittografia del database, i backup associati e i file di log delle transazioni inattivi, senza richiedere modifiche tooyour applicazione. vedere più toolearn [Transparent Data Encryption con il Database di SQL Azure](https://msdn.microsoft.com/library/dn948096).
 
-Questa indicazione si applica esclusivamente al servizio SQL di Azure e non include SQL in esecuzione sulle macchine virtuali.
+Questa indicazione si applica toohello solo servizio di SQL Azure non include SQL in esecuzione nelle macchine virtuali.
 
 > [!NOTE]
-> Il documento introduce il servizio usando una distribuzione di esempio.  Questa non è una guida dettagliata.
+> Questo documento introduce servizio hello utilizzando un esempio di distribuzione.  Questa non è una guida dettagliata.
 >
 >
 
-## <a name="implement-the-recommendation"></a>Implementare la raccomandazione
-1. Nel pannello **Raccomandazioni** selezionare **Abilita Transparent Data Encryption**.
+## <a name="implement-hello-recommendation"></a>Implementare la raccomandazione hello
+1. In hello **indicazioni** pannello seleziona **abilitare Transparent Data Encryption**.
    ![Abilita Transparent Data Encryption][1]
-2. Viene visualizzato il pannello **Abilita Transparent Data Encryption nei database SQL** . Selezionare un database SQL su cui abilitare la crittografiaTDE.
-   ![Selezionare database SQL per abilitare la crittografia TDE][2]
-3. Nel pannello **Transparent Data Encryption** selezionare **ON** in Crittografia dati e selezionare **Salva** nella barra multifunzione situata nella parte superiore del pannello.
+2. Verrà visualizzata hello **abilitare Transparent Data Encryption nel database SQL** blade. Selezionare un tooenable di database SQL Transparent Data Encryption.
+   ![Selezionare database SQL tooenable TDE nel][2]
+3. In hello **crittografia dati trasparente** pannello seleziona **ON** sotto la crittografia dei dati e selezionare **salvare** nella barra multifunzione superiore hello del pannello hello.
    ![Attivare la crittografia TDE][3]
 
-   Dopo aver abilitato TDE nel database SQL selezionato, lo **Stato crittografia** diventerà **Crittografato**.    
+   Una volta TDE è abilitata nel hello selezionati database SQL, hello **lo stato di crittografia** cambierà troppo**Encrypted**.    
 
    ![Stato della crittografia][4]
 
 ## <a name="see-also"></a>Vedere anche
-Questo documento illustra come implementare la raccomandazione "Abilitare Transparent Data Encryption" del Centro sicurezza. Per altre informazioni su TDE di SQL, vedere gli argomenti seguenti:
+In questo articolo ha illustrato come tooimplement hello raccomandazione Centro sicurezza PC "Abilitazione di Transparent Data Encryption". toolearn ulteriori informazioni su TDE SQL, vedere l'esempio hello:
 
 * [Transparent Data Encryption con il database SQL di Azure](https://msdn.microsoft.com/library/dn948096)
 * [Introduzione a Transparent Data Encryption (TDE)](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
 
-Per altre informazioni sul Centro sicurezza, vedere gli argomenti seguenti:
+toolearn ulteriori informazioni su Centro di sicurezza, vedere l'esempio hello:
 
-* [Impostazione dei criteri di sicurezza nel Centro sicurezza di Azure](security-center-policies.md) : informazioni su come configurare i criteri di sicurezza per le sottoscrizioni e i gruppi di risorse di Azure.
+* [L'impostazione di criteri di sicurezza nel Centro protezione Azure](security-center-policies.md) -informazioni su come tooconfigure i criteri di sicurezza per le sottoscrizioni di Azure e i gruppi di risorse.
 * [Gestione delle raccomandazioni di sicurezza nel Centro sicurezza di Azure](security-center-recommendations.md) : informazioni sul modo in cui le raccomandazioni semplificano la protezione delle risorse di Azure.
-* [Monitoraggio dell'integrità della sicurezza nel Centro sicurezza di Azure](security-center-monitoring.md) : informazioni su come monitorare l'integrità delle risorse di Azure.
-* [Gestione e risposta agli avvisi di sicurezza nel Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) : informazioni su come gestire e rispondere agli avvisi di sicurezza.
-* [Monitoraggio delle soluzioni dei partner con il Centro sicurezza di Azure](security-center-partner-solutions.md) : informazioni su come monitorare lo stato integrità delle soluzioni dei partner.
-* [Domande frequenti sul Centro sicurezza di Azure](security-center-faq.md) : domande frequenti sull'uso del servizio.
-* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) : informazioni e notizie aggiornate sulla sicurezza di Azure.
+* [Il monitoraggio dello stato di sicurezza nel Centro protezione Azure](security-center-monitoring.md) -informazioni su come toomonitor hello integrità delle risorse di Azure.
+* [La gestione e risponde toosecurity gli avvisi in Centro sicurezza di Azure](security-center-managing-and-responding-alerts.md) -informazioni su come avvisi toosecurity toomanage e rispondere.
+* [Monitoraggio di soluzioni dei partner con Centro sicurezza di Azure](security-center-partner-solutions.md) -informazioni su come toomonitor hello lo stato di integrità delle soluzioni di partner.
+* [Domande frequenti su Centro sicurezza di Azure](security-center-faq.md) -domande frequenti sull'utilizzo di hello servizio di ricerca.
+* [Blog sulla sicurezza di Azure](http://blogs.msdn.com/b/azuresecurity/) -ottenere informazioni e notizie sicurezza di Azure hello.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-tde-on-sql-databases/enable-tde.png

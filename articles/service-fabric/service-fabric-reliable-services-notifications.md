@@ -1,5 +1,5 @@
 ---
-title: Notifiche di Reliable Services | Microsoft Docs
+title: notifiche di servizi aaaReliable | Documenti Microsoft
 description: Documentazione concettuale per le notifiche di Reliable Services di Service Fabric
 services: service-fabric
 documentationcenter: .net
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 6/29/2017
 ms.author: mcoskun
-ms.openlocfilehash: c6a53d851510ed5e6eec1f3ac0f636ad034a6d4c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8c43190d31dbe82d1dc7fa1c228128bdcc3684f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-services-notifications"></a>Notifiche di Reliable Services
-Le notifiche consentono ai client di tenere traccia delle modifiche apportate a un oggetto a cui sono interessati. Le notifiche sono supportate da due tipi di oggetto: *Reliable State Manager* e *Reliable Dictionary*.
+Le notifiche consentono ai client tootrack hello le modifiche apportate da oggetto tooan che si è interessati. Le notifiche sono supportate da due tipi di oggetto: *Reliable State Manager* e *Reliable Dictionary*.
 
 I motivi comuni per l'uso di notifiche sono i seguenti:
 
-* Compilazione di viste materializzate, come indici secondari o visualizzazioni filtrate aggregate dello stato della replica. Un esempio è costituito da un indice ordinato di tutte le chiavi in un oggetto Reliable Dictionary.
-* Invio di dati di monitoraggio, ad esempio il numero di utenti aggiunti nell'ultima ora.
+* Compilazione materializzata visualizzazioni, ad esempio gli indici secondari o aggregato viste filtrate di stato della replica di hello. Un esempio è costituito da un indice ordinato di tutte le chiavi in un oggetto Reliable Dictionary.
+* L'invio monitoraggio dei dati, ad esempio il numero di hello di utenti aggiunti in hello ultima ora.
 
 Le notifiche vengono attivate come parte dell'applicazione dell'operazione. Per questo motivo, le notifiche devono essere gestite nel più breve tempo possibile e gli eventi sincroni non devono includere operazioni dispendiose.
 
 ## <a name="reliable-state-manager-notifications"></a>Notifiche di Reliable State Manager
-Reliable State Manager prevede notifiche per gli eventi seguenti:
+Gestore degli stati affidabile fornisce notifiche per hello seguenti eventi:
 
 * Transazione
   * Commit
@@ -40,16 +40,16 @@ Reliable State Manager prevede notifiche per gli eventi seguenti:
   * Aggiunta di uno stato affidabile
   * Rimozione di uno stato affidabile
 
-Reliable State Manager tiene traccia delle transazioni correnti in fase di elaborazione. L'unica modifica dello stato della transazione che causa l'attivazione di una notifica è il commit.
+Gestore degli stati affidabile tiene traccia delle transazioni in-Flight corrente hello. modifica solo Hello allo stato di transazione che provoca un toobe notifica generato è una commit della transazione.
 
-Reliable State Manager gestisce una raccolta di stati affidabili come Reliable Dictionary e Reliable Queue. Reliable State Manager attiva le notifiche quando viene modificata la raccolta con l'aggiunta o rimozione di uno stato affidabile o la ricompilazione dell'intera raccolta.
-La raccolta di Reliable State Manager viene ricompilata in tre casi.
+Reliable State Manager gestisce una raccolta di stati affidabili come Reliable Dictionary e Reliable Queue. Gestore degli stati affidabile genera notifiche quando la raccolta cambia: aggiunta o rimozione di uno stato affidabile o l'intera raccolta hello viene ricompilato.
+raccolta affidabile di gestione dello stato di Hello viene ricompilato in tre casi:
 
-* Recupero: quando viene avviata, una replica recupera il proprio stato precedente dal disco. Al termine del recupero, usa **NotifyStateManagerChangedEventArgs** per attivare un evento contenente il set di stati affidabili recuperati.
-* Copia completa: prima che una replica possa essere aggiunta al set di configurazione, deve essere compilata. In alcuni casi, potrebbe essere necessario applicare una copia completa dello stato di Reliable State Manager dalla replica primaria alla replica secondaria inattiva. Reliable State Manager sulla replica secondaria usa **NotifyStateManagerChangedEventArgs** per attivare un evento contenente il set di stati affidabili acquisito dalla replica primaria.
-* Ripristino: negli scenari di ripristino di emergenza, lo stato della replica può essere ripristinato da un backup tramite **RestoreAsync**. In questi casi, Reliable State Manager sulla replica primaria usa **NotifyStateManagerChangedEventArgs** per attivare un evento contenente il set di stati affidabili ripristinato dal backup.
+* Ripristino: All'avvio di una replica, Ripristina lo stato precedente dal disco hello. Alla fine di hello del ripristino, viene utilizzato **NotifyStateManagerChangedEventArgs** toofire un evento che contiene il set di hello degli stati affidabili ripristinati.
+* Copia completa: prima di una replica è possibile unire i set di configurazione hello, ha toobe compilato. In alcuni casi, ciò richiede una copia completa dello stato del gestore degli stati affidabile da hello replica primaria toobe toohello applicato inattivo replica secondaria. Gestore degli stati affidabile su hello replica secondaria utilizzi **NotifyStateManagerChangedEventArgs** toofire un evento che contiene il set di hello degli stati affidabili che acquisito dalla replica primaria hello.
+* Ripristino: A In scenari di ripristino di emergenza, lo stato della replica hello può essere ripristinato da un backup tramite **RestoreAsync**. In questi casi, Usa affidabile gestore degli stati nella replica primaria hello **NotifyStateManagerChangedEventArgs** toofire un evento che contiene il set di hello di stati affidabili di ripristinarla dal backup hello.
 
-Per abilitare le notifiche delle transazioni e/o le notifiche di gestione dello stato, è necessario registrarsi negli eventi **TransactionChanged** o **StateManagerChanged** in Reliable State Manager. Una posizione frequente per la registrazione in questi gestori eventi è il costruttore del servizio con stato. Con la registrazione sul costruttore, non si perde alcuna notifica causata da una modifica nel corso della durata di **IReliableStateManager**.
+tooregister per le notifiche delle transazioni e/o notifiche di gestione dello stato, è necessario tooregister con hello **TransactionChanged** o **StateManagerChanged** eventi Gestione stato affidabile. Un punto comune tooregister con questi gestori eventi è il costruttore di hello del servizio con stato. Quando si registra nel costruttore hello, da non perdere le notifiche che sono causata da una modifica nel corso della durata hello di **IReliableStateManager**.
 
 ```C#
 public MyService(StatefulServiceContext context)
@@ -60,10 +60,10 @@ public MyService(StatefulServiceContext context)
 }
 ```
 
-Il gestore eventi **TransactionChanged** usa **NotifyTransactionChangedEventArgs** per fornire dettagli sull'evento. Contiene la proprietà dell'azione (ad esempio, **NotifyTransactionChangedAction.Commit**) che specifica il tipo di modifica, nonché la proprietà della transazione che fornisce un riferimento alla transazione modificata.
+Hello **TransactionChanged** gestore eventi utilizza **NotifyTransactionChangedEventArgs** tooprovide dettagli sull'evento hello. Contiene la proprietà azione hello (ad esempio, **NotifyTransactionChangedAction.Commit**) che specifica il tipo di hello di modifica. Contiene inoltre proprietà della transazione hello che fornisce una transazione toohello di riferimento che ha modificato.
 
 > [!NOTE]
-> Gli eventi **TransactionChanged** vengono attualmente generati solo in caso di commit della transazione. L'azione è quindi uguale a **NotifyTransactionChangedAction.Commit**. È tuttavia possibile che in futuro vengano generati eventi per altri tipi di modifica dello stato della transazione. È consigliabile controllare l'azione ed elaborare l'evento solo se previsto.
+> Oggi, **TransactionChanged** vengono generati solo se viene eseguito il commit delle transazioni hello. Hello azione viene quindi uguale troppo**NotifyTransactionChangedAction.Commit**. Ma in futuro hello, eventi potrebbero essere generati per altri tipi di modifiche dello stato delle transazioni. È consigliabile controllo azione hello e l'elaborazione di eventi hello solo se è previsto.
 > 
 > 
 
@@ -82,9 +82,9 @@ private void OnTransactionChangedHandler(object sender, NotifyTransactionChanged
 }
 ```
 
-Il gestore eventi **StateManagerChanged** usa **NotifyStateManagerChangedEventArgs** per fornire dettagli sull'evento.
+Hello **StateManagerChanged** gestore eventi utilizza **NotifyStateManagerChangedEventArgs** tooprovide dettagli sull'evento hello.
 **NotifyStateManagerChangedEventArgs** ha due sottoclassi: **NotifyStateManagerRebuildEventArgs** e **NotifyStateManagerSingleEntityChangedEventArgs**.
-La proprietà dell'azione in **NotifyStateManagerChangedEventArgs** viene usata per eseguire il cast di **NotifyStateManagerChangedEventArgs** nella sottoclasse corretta.
+Utilizzare proprietà azione hello in **NotifyStateManagerChangedEventArgs** toocast **NotifyStateManagerChangedEventArgs** sottoclasse corretto toohello:
 
 * **NotifyStateManagerChangedAction.Rebuild**: **NotifyStateManagerRebuildEventArgs**
 * **NotifyStateManagerChangedAction.Add** e **NotifyStateManagerChangedAction.Remove**: **NotifyStateManagerSingleEntityChangedEventArgs**
@@ -106,16 +106,16 @@ public void OnStateManagerChangedHandler(object sender, NotifyStateManagerChange
 ```
 
 ## <a name="reliable-dictionary-notifications"></a>Notifiche di Reliable Dictionary
-Reliable Dictionary prevede notifiche per gli eventi seguenti.
+Dizionario affidabile fornisce notifiche per hello seguenti eventi:
 
 * Ricompilazione: chiamata quando l'oggetto **ReliableDictionary** ha recuperato il proprio stato da un backup o uno stato locale copiato o ripristinato.
-* Cancellazione: chiamata quando lo stato di **ReliableDictionary** è stato cancellato tramite il metodo **ClearAsync**.
-* Aggiunta: chiamata quando è stato aggiunto un elemento a **ReliableDictionary**.
+* Cancella: Viene chiamato quando lo stato di hello **ReliableDictionary** è stato cancellato tramite hello **ClearAsync** (metodo).
+* Aggiungere: Viene chiamato quando un elemento è stato aggiunto troppo**ReliableDictionary**.
 * Aggiornamento: chiamata quando è stato aggiornato un elemento in **IReliableDictionary** .
 * Rimozione: chiamata quando è stato eliminato un elemento in **IReliableDictionary** .
 
-Per ricevere le notifiche di Reliable Dictionary, è necessario registrarsi nel gestore eventi **DictionaryChanged** in **IReliableDictionary**. Una posizione frequente per la registrazione in questi gestori eventi è la notifica di aggiunta **ReliableStateManager.StateManagerChanged** .
-La registrazione al momento dell'aggiunta di **IReliableDictionary** a **IReliableStateManager** garantisce che non verrà persa alcuna notifica.
+notifiche di dizionario affidabile tooget, è necessario tooregister con hello **DictionaryChanged** nel gestore dell'evento **IReliableDictionary**. Un punto comune è tooregister con questi gestori eventi in hello **ReliableStateManager.StateManagerChanged** aggiungere la notifica.
+La registrazione quando **IReliableDictionary** viene aggiunto troppo**IReliableStateManager** assicura che tutte le notifiche andrà perduto.
 
 ```C#
 private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChangedEventArgs e)
@@ -136,11 +136,11 @@ private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChang
 ```
 
 > [!NOTE]
-> **ProcessStateManagerSingleEntityNotification** è il metodo di esempio chiamato dall'esempio **OnStateManagerChangedHandler** precedente.
+> **ProcessStateManagerSingleEntityNotification** è il metodo di esempio hello che hello precedente **OnStateManagerChangedHandler** chiamate di esempio.
 > 
 > 
 
-Il codice precedente imposta l'interfaccia **IReliableNotificationAsyncCallback** e **DictionaryChanged**. Poiché **NotifyDictionaryRebuildEventArgs** contiene un'interfaccia **IAsyncEnumerable**, che richiede un'enumerazione asincrona, le notifiche di ricompilazione vengono attivate tramite **RebuildNotificationAsyncCallback** anziché **OnDictionaryChangedHandler**.
+codice precedente Hello imposta hello **IReliableNotificationAsyncCallback** interfaccia, insieme con **DictionaryChanged**. Poiché **NotifyDictionaryRebuildEventArgs** contiene un **IAsyncEnumerable** interfaccia, che richiede toobe enumerati in modo asincrono, le notifiche di ricompilazione vengono attivate tramite ** RebuildNotificationAsyncCallback** anziché **OnDictionaryChangedHandler**.
 
 ```C#
 public async Task OnDictionaryRebuildNotificationHandlerAsync(
@@ -158,12 +158,12 @@ public async Task OnDictionaryRebuildNotificationHandlerAsync(
 ```
 
 > [!NOTE]
-> Nel codice precedente, nell'ambito dell'elaborazione della notifica di ricompilazione, viene cancellato prima lo stato aggregato mantenuto. Poiché la raccolta Reliable Collections viene ricompilata con un nuovo stato, tutte le notifiche precedenti sono irrilevanti.
+> Hello precedente di codice, come parte della notifica di ricompilazione hello di elaborazione, hello prima gestiti aggregato stato viene cancellato. Poiché raccolta affidabile di hello ricompilazione con un nuovo stato, tutte le notifiche precedenti sono irrilevanti.
 > 
 > 
 
-Il gestore eventi **DictionaryChanged** usa **NotifyDictionaryChangedEventArgs** per fornire dettagli sull'evento.
-**NotifyDictionaryChangedEventArgs** ha cinque sottoclassi. Usare la proprietà dell'azione in **NotifyDictionaryChangedEventArgs** per eseguire il cast di **NotifyDictionaryChangedEventArgs** nella sottoclasse corretta.
+Hello **DictionaryChanged** gestore eventi utilizza **NotifyDictionaryChangedEventArgs** tooprovide dettagli sull'evento hello.
+**NotifyDictionaryChangedEventArgs** ha cinque sottoclassi. Utilizzare proprietà action hello in **NotifyDictionaryChangedEventArgs** toocast **NotifyDictionaryChangedEventArgs** sottoclasse corretto toohello:
 
 * **NotifyDictionaryChangedAction.Rebuild**: **NotifyDictionaryRebuildEventArgs**
 * **NotifyDictionaryChangedAction.Clear**: **NotifyDictionaryClearEventArgs**
@@ -205,15 +205,15 @@ public void OnDictionaryChangedHandler(object sender, NotifyDictionaryChangedEve
 ## <a name="recommendations"></a>Consigli
 * *Completare* gli eventi di notifica nel più breve tempo possibile.
 * *Non eseguire* operazioni dispendiose (ad esempio, operazioni di I/O) nell'ambito di eventi sincroni.
-* *Controllare* il tipo di azione prima di elaborare l'evento. In futuro potrebbero essere aggiunti nuovi tipi di azione.
+* *Eseguire* controllare il tipo di azione hello prima di elaborare l'evento hello. In futuro hello, è potrebbero aggiungervi nuovi tipi di azione.
 
-Occorre tenere presente i concetti seguenti:
+Ecco alcuni aspetti tookeep presente:
 
-* Le notifiche vengono attivate come parte dell'esecuzione di un'operazione. Una notifica di ripristino, ad esempio, viene attivata come ultimo passaggio di un'operazione di ripristino. Un ripristino non viene completato finché non viene elaborato l'evento di notifica.
-* Poiché le notifiche vengono attivate nell'ambito dell'applicazione di operazioni, i client visualizzano solo le notifiche per le operazioni con commit in locale. Poiché è garantito solo il commit in locale (in altri termini, la registrazione), inoltre, potrebbe non essere possibile annullare le operazioni in futuro.
-* Nel percorso di ripristino viene attivata una singola notifica per ogni operazione applicata. Di conseguenza, se la transazione T1 include Create(X), Delete(X) e Create(X), si riceverà una notifica per la creazione di X, una per l'eliminazione e una per una nuova creazione, nell'ordine specificato.
-* Per le transazioni che contengono più operazioni, queste verranno applicate nell'ordine in cui sono state ricevute nella replica primaria dall'utente.
-* Come parte dell'elaborazione di un'incoerenza, alcune operazioni potrebbero essere annullate. Per queste operazioni di annullamento vengono generate notifiche, con rollback dello stato della replica a un punto stabile. Una differenza importante delle notifiche di annullamento è che gli eventi con chiavi duplicate vengono aggregati. Se la transazione T1 viene annullata, ad esempio, viene visualizzata una singola notifica per Delete(X).
+* Le notifiche vengono attivate come parte dell'esecuzione di hello di un'operazione. Ad esempio, una notifica di ripristino viene attivata come ultimo passaggio di hello di un'operazione di ripristino. Un ripristino non verrà completata fino a quando non viene elaborato l'evento di notifica hello.
+* Poiché le notifiche vengono attivate come parte di hello dell'esecuzione di operazioni, visualizzate solo le notifiche per le operazioni di commit in locale. E poiché le operazioni sono consentite solo toobe commit localmente (in altre parole, registrato), potrebbero o potrebbe non essere annullate in hello future.
+* Nel percorso di rollforward hello, una singola notifica viene generata per ogni operazione applicata. Ciò significa che se la transazione T1 include Create(X) Delete(X) e Create(X), si otterrà una notifica per la creazione di hello di X, uno per l'eliminazione di hello e uno per la creazione di hello nuovamente nell'ordine specificato.
+* Per le transazioni che contengono più operazioni, le operazioni vengono applicate nell'ordine di hello in cui sono stati ricevuti nella replica primaria di hello utente hello.
+* Come parte dell'elaborazione di un'incoerenza, alcune operazioni potrebbero essere annullate. Le notifiche vengono generate per tali operazioni di annullamento, rollback dello stato di hello di hello replica tooa indietro stabile punto. Una differenza importante delle notifiche di annullamento è che gli eventi con chiavi duplicate vengono aggregati. Ad esempio, se viene annullata transazione T1, si noterà tooDelete(X) una singola notifica.
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Reliable Collections](service-fabric-work-with-reliable-collections.md)

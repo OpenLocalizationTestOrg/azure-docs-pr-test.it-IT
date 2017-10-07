@@ -1,6 +1,6 @@
 ---
-title: Introduzione ai dispositivi gemelli dell'hub IoT di Azure (.NET/Node) | Microsoft Docs
-description: Come usare i dispositivi gemelli dell'hub IoT di Azure per aggiungere tag e quindi usare una query dell'hub IoT. Si usa Azure IoT SDK per dispositivi per Node.js per implementare l'app per dispositivo simulato e Azure IoT SDK per servizi per .NET per implementare un'app di servizio che aggiunge i tag ed esegue la query dell'hub IoT.
+title: aaaGet introduttiva gemelli dispositivi Azure IoT Hub (.NET/nodo) | Documenti Microsoft
+description: "Modalità toouse IoT Hub Azure dispositivo gemelli tooadd tag e quindi utilizzare una query di IoT Hub. Utilizzare il dispositivo di Azure IoT hello SDK per Node.js tooimplement hello dispositivo simulato app e il servizio di IoT di Azure SDK per .NET tooimplement un'applicazione di servizio che consente di aggiungere tag hello ed esegue query IoT Hub hello hello."
 services: iot-hub
 documentationcenter: node
 author: fsautomata
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: elioda
-ms.openlocfilehash: 07797b9159c9b926e9eb47d8864c63048951931a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1cec082ebddc19c9b87998a5fd0159d32b07acd8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-netnode"></a>Introduzione ai dispositivi gemelli (.NET/Node)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-Con questa esercitazione vengono create un'app console Node.js e un'app console .NET:
+Alla fine di hello di questa esercitazione, si avrà un .NET e un'applicazione console in Node.js:
 
 * **AddTagsAndQuery.sln**, un'app back-end .NET, che aggiunge tag ed effettua una query dei dispositivi gemelli.
-* **TwinSimulatedDevice.js**, un'app Node.js che simula un dispositivo che si connette all'hub IoT con l'identità del dispositivo creata prima e segnala la condizione della connettività.
+* **TwinSimulatedDevice.js**, un'app Node.js che simula un dispositivo che si connette l'hub IoT tooyour con l'identità del dispositivo hello creato in precedenza e segnala la condizione di connettività.
 
 > [!NOTE]
-> L'articolo [Azure IoT SDK][lnk-hub-sdks] contiene informazioni sui componenti Azure IoT SDK che consentono di compilare le app back-end e per dispositivi.
+> articolo Hello [Azure IoT SDK] [ lnk-hub-sdks] fornisce informazioni su Azure IoT SDK hello che è possibile utilizzare toobuild applicazioni back-end sia sul dispositivo.
 > 
 > 
 
-Per completare l'esercitazione, sono necessari gli elementi seguenti:
+toocomplete questa esercitazione è necessario hello segue:
 
 * Visual Studio 2015 o Visual Studio 2017.
 * Node.js 0.10.x o versione successiva.
@@ -43,24 +43,24 @@ Per completare l'esercitazione, sono necessari gli elementi seguenti:
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-the-service-app"></a>Creare l'app di servizio
-In questa sezione si crea un'app console .NET (usando C#) e si aggiungono i metadati della posizione al dispositivo gemello associato a **myDeviceId**. Viene quindi eseguita una query nei dispositivi gemelli archiviati nell'hub IoT selezionando i dispositivi situati negli Stati Uniti e quindi quelli che segnalano una rete cellulare.
+## <a name="create-hello-service-app"></a>Creare l'applicazione di servizio hello
+In questa sezione si crea una console app .NET (tramite c#) che aggiunge un doppio dispositivo toohello metadati posizione associato a **myDeviceId**. Viene quindi gemelli dispositivo hello archiviate nell'hub IoT hello selezionando dispositivi hello che si trovano in hello ci le query e quindi hello quelle che ha segnalato una connessione di rete.
 
-1. In Visual Studio aggiungere un progetto desktop di Windows classico in Visual C# usando il modello di progetto **Applicazione console** . Assegnare al progetto il nome **AddTagsAndQuery**.
+1. In Visual Studio, aggiungere una soluzione di Visual c# Windows Desktop classico progetto toohello corrente utilizzando hello **applicazione Console** modello di progetto. Progetto hello nome **AddTagsAndQuery**.
    
     ![Nuovo progetto desktop di Windows classico in Visual C#][img-createapp]
-1. In Esplora soluzioni fare clic con il pulsante destro del mouse sul progetto **AddTagsAndQuery** e quindi fare clic su **Gestisci pacchetti NuGet**.
-1. Nella finestra **Gestisci pacchetti NuGet** selezionare **Sfoglia** e cercare **microsoft.azure.devices**. Selezionare **Installa** per installare il pacchetto **Microsoft.Azure.Devices** e accettare le condizioni per l'utilizzo. Questa procedura scarica, installa e aggiunge un riferimento al [pacchetto NuGet Azure IoT - SDK per dispositivi][lnk-nuget-service-sdk] e alle relative dipendenze.
+1. In Esplora soluzioni fare doppio clic su hello **AddTagsAndQuery** del progetto e quindi fare clic su **Gestisci pacchetti NuGet...** .
+1. In hello **Gestione pacchetti NuGet** selezionare **Sfoglia** e cercare **microsoft.azure.devices**. Selezionare **installare** tooinstall hello **Microsoft.Azure.Devices** pacchetto e accettare le condizioni di hello d'uso. Questa procedura Scarica, installa e aggiunge un riferimento toohello [SDK di servizi di Azure IoT] [ lnk-nuget-service-sdk] NuGet pacchetto e le relative dipendenze.
    
     ![Finestra Gestione pacchetti NuGet][img-servicenuget]
-1. Aggiungere le istruzione `using` seguenti all'inizio del file **Program.cs** :
+1. Aggiungere il seguente hello `using` le istruzioni nella parte superiore di hello di hello **Program.cs** file:
    
         using Microsoft.Azure.Devices;
-1. Aggiungere i campi seguenti alla classe **Program** . Sostituire il valore del segnaposto con la stringa di connessione dell'hub IoT creato nella sezione precedente.
+1. Aggiungere i seguenti campi toohello hello **programma** classe. Sostituire il valore di segnaposto hello con la stringa di connessione IoT Hub hub hello creato nella sezione precedente hello hello.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. Aggiungere il metodo seguente alla classe **Program** :
+1. Aggiungere hello seguente metodo toohello **programma** classe:
    
         public static async Task AddTagsAndQuery()
         {
@@ -85,40 +85,40 @@ In questa sezione si crea un'app console .NET (usando C#) e si aggiungono i meta
             Console.WriteLine("Devices in Redmond43 using cellular network: {0}", string.Join(", ", twinsInRedmond43UsingCellular.Select(t => t.DeviceId)));
         }
    
-    L'oggetto **RegistryManager** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal servizio. Il codice precedente inizializza prima di tutto l'oggetto **registryManager**, quindi recupera il dispositivo gemello per **myDeviceId** e infine ne aggiorna i tag con le informazioni sulla posizione desiderate.
+    Hello **RegistryManager** classe espone tutte hello metodi obbligatorio toointeract con gemelli di dispositivo dal servizio hello. codice precedente Hello inizializza innanzitutto hello **registryManager** dell'oggetto, quindi recupera hello gemelli di dispositivo per **myDeviceId**e infine gli aggiornamenti relativi tag con le informazioni sul percorso hello desiderato.
    
-    Dopo l'aggiornamento, il codice precedente esegue due query: la prima seleziona solo i dispositivi gemelli tra quelli situati nello stabilimento **Redmond43** e la seconda affina la query per selezionare solo i dispositivi che sono connessi anche tramite la rete cellulare.
+    Dopo l'aggiornamento, vengono eseguite due query: hello dapprima selezionati solo i gemelli dispositivo hello di dispositivi che si trovano in hello **Redmond43** impianto e hello secondo perfeziona hello query tooselect solo hello dispositivi connessi anche tramite rete cellulare.
    
-    Si noti che il codice precedente, quando crea l'oggetto **query**, specifica un numero massimo di documenti restituiti. L'oggetto **query** contiene una proprietà booleana **HasMoreResults** che è possibile usare per richiamare i metodi **GetNextAsTwinAsync** più volte per recuperare tutti i risultati. Per i risultati che non sono dispositivi gemelli, ad esempio i risultati delle query di aggregazione, è disponibile un metodo chiamato **GetNextAsJson**.
-1. Aggiungere infine le righe seguenti al metodo **Main** :
+    Si noti il codice precedente hello, durante la creazione di hello **query** dell'oggetto, specifica un numero massimo di documenti restituiti dalla query. Hello **query** oggetto contiene un **HasMoreResults** proprietà booleana che è possibile utilizzare hello tooinvoke **GetNextAsTwinAsync** metodi più volte tooretrieve tutti risultati. Per i risultati che non sono dispositivi gemelli, ad esempio i risultati delle query di aggregazione, è disponibile un metodo chiamato **GetNextAsJson**.
+1. Infine, aggiungere hello seguenti righe toohello **Main** metodo:
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
-        Console.WriteLine("Press Enter to exit.");
+        Console.WriteLine("Press Enter tooexit.");
         Console.ReadLine();
 
-1. In Esplora soluzioni aprire **Imposta progetti di avvio** e assicurarsi che **Azione** per il progetto **AddTagsAndQuery** sia impostata su **Avvio**. Compilare la soluzione.
-1. Eseguire l'applicazione facendo clic con il pulsante destro del mouse sul progetto **AddTagsAndQuery** e selezionando **Debug**, seguito da **Avvia nuova istanza**. Nei risultati si noterà un dispositivo per la query che cerca tutti i dispositivi situati in **Redmond43** e nessuno per la query che limita i risultati ai dispositivi che usano una rete cellulare.
+1. In Esplora soluzioni hello, aprire hello **progetti di avvio impostato...**  e verificare che hello **azione** per **AddTagsAndQuery** progetto **avviare**. Compilare la soluzione hello.
+1. Eseguire l'applicazione facendo clic su hello **AddTagsAndQuery** progetto, quindi selezionando **Debug**, seguito da **Avvia nuova istanza**. Dovrebbe essere un dispositivo nei risultati di hello per hello porre query per tutti i dispositivi si trovano in **Redmond43** e none per query hello che limita hello risultati toodevices che utilizzano una rete cellulare.
    
     ![Risultati della query nella finestra][img-addtagapp]
 
-Nella sezione successiva si crea un'app per dispositivo che segnala le informazioni sulla connettività e modifica il risultato della query nella sezione precedente.
+Nella sezione successiva hello, si crea un'app per dispositivi vengono fornite informazioni di connettività hello e modifiche hello risultati di query hello nella sezione precedente hello.
 
-## <a name="create-the-device-app"></a>Creare l'app per dispositivo
-In questa sezione si crea un'app console Node.js che si connette all'hub come **myDeviceId** e quindi aggiorna le proprietà segnalate per poter contenere le informazioni relative alla connessione usando una rete cellulare.
+## <a name="create-hello-device-app"></a>Creare app per dispositivi hello
+In questa sezione si crea un'applicazione console Node.js che si connette hub tooyour come **myDeviceId**e quindi aggiorna le informazioni di hello toocontain segnalate le proprietà che è connesso tramite una rete cellulare.
 
-1. Creare una nuova cartella vuota denominata **reportconnectivity**. Nella cartella **reportconnectivity** creare un nuovo file package.json immettendo il comando seguente al prompt dei comandi. Accettare tutte le impostazioni predefinite.
+1. Creare una nuova cartella vuota denominata **reportconnectivity**. In hello **reportconnectivity** cartella, creare un nuovo file package. JSON utilizzando hello seguente comando al prompt dei comandi. Accettare tutte le impostazioni predefinite hello.
    
     ```
     npm init
     ```
-1. Eseguire questo comando al prompt dei comandi nella cartella **reportconnectivity** per installare i pacchetti **azure-iot-device** e **azure-iot-device-mqtt**:
+1. Al prompt dei comandi in hello **reportconnectivity** cartella, eseguire hello successivo comando tooinstall hello **dispositivi iot di azure**, e **mqtt azure-iot-dispositivo** pacchetto :
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-1. Usando un editor di testo, creare un nuovo file **ReportConnectivity.js** nella cartella **reportconnectivity**.
-1. Aggiungere il codice seguente al file **ReportConnectivity.js** e sostituire il segnaposto per la stringa di connessione al dispositivo con quello copiato quando è stata creata l'identità del dispositivo **myDeviceId**:
+1. Utilizzando un editor di testo, creare un nuovo **ReportConnectivity.js** file hello **reportconnectivity** cartella.
+1. Aggiungere i seguenti toohello codice hello **ReportConnectivity.js** file e sostituire il segnaposto hello per la stringa di connessione dispositivo con hello uno è stato copiato al momento della creazione hello **myDeviceId** dispositivo identità:
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -156,24 +156,24 @@ In questa sezione si crea un'app console Node.js che si connette all'hub come **
         }
         });
    
-    L'oggetto **Client** espone tutti i metodi necessari per interagire con i dispositivi gemelli dal dispositivo. Il codice precedente, dopo avere inizializzato l'oggetto **Client**, recupera il dispositivo gemello per **myDeviceId** e aggiorna le proprietà segnalate con le informazioni sulla connettività.
-1. Eseguire l'app per dispositivo
+    Hello **Client** oggetto espone tutti i metodi di hello desiderate toointeract con gemelli di dispositivo dal dispositivo hello. Hello codice precedente, dopo l'inizializzazione hello **Client** oggetto recupera hello gemelli di dispositivo per **myDeviceId** e aggiorna la proprietà segnalata con informazioni sulla connettività hello.
+1. Eseguire app dispositivo hello
    
         node ReportConnectivity.js
    
-    Dovrebbe essere visualizzato il messaggio `twin state reported`.
-1. Ora che il dispositivo ha segnalato le informazioni sulla connettività, verrà visualizzato in entrambe le query. Eseguire l'app .NET **AddTagsAndQuery** per eseguire nuovamente la query. Questa volta **myDeviceId** verrà visualizzato nei risultati di entrambe le query.
+    Verrà visualizzato il messaggio hello `twin state reported`.
+1. Ora che hello dispositivo segnalato le informazioni di connettività, viene visualizzato in entrambe le query. Eseguire .NET hello **AddTagsAndQuery** hello toorun app nuovamente una query. Questa volta **myDeviceId** verrà visualizzato nei risultati di entrambe le query.
    
     ![][img-addtagapp2]
 
 ## <a name="next-steps"></a>Passaggi successivi
-In questa esercitazione è stato configurato un nuovo hub IoT nel Portale di Azure ed è stata quindi creata un'identità del dispositivo nel registro di identità dell'hub IoT. Sono stati aggiunti i metadati del dispositivo come tag da un'app back-end ed è stata scritta un'app per dispositivo simulato per segnalare le informazioni sulla connettività del dispositivo nel dispositivo gemello. Si è anche appreso come effettuare una query di queste informazioni usando il linguaggio di query simile a SQL dell'hub IoT.
+In questa esercitazione, è configurato un nuovo hub IoT in hello portale di Azure e quindi creata un'identità del dispositivo nel Registro di sistema dell'hub IoT hello identità. Aggiunti i metadati del dispositivo come tag da un'app di back-end e ha scritto informazioni di connettività un dispositivo simulato app tooreport dispositivo in un doppio dispositivo hello. È inoltre appreso tooquery queste informazioni usando il linguaggio di query di hello IoT Hub simile a SQL.
 
-Per altre informazioni, vedere le risorse seguenti:
+Hello utilizzare seguenti come risorse toolearn per:
 
-* Per inviare dati di telemetria dai dispositivi, vedere l'esercitazione [Introduzione all'hub IoT][lnk-iothub-getstarted].
-* Per configurare i dispositivi usando le proprietà desiderate del dispositivo gemello, vedere l'esercitazione [Usare le proprietà desiderate per configurare i dispositivi][lnk-twin-how-to-configure].
-* Per controllare i dispositivi in modo interattivo, ad esempio per attivare un ventilatore da un'app controllata dall'utente, vedere l'esercitazione [Use direct methods][lnk-methods-tutorial] (Usare metodi diretti).
+* inviare i dati di telemetria dai dispositivi con hello [iniziare con l'IoT Hub] [ lnk-iothub-getstarted] esercitazione
+* configurare i dispositivi con le proprietà desiderate di un doppio dispositivo hello [lo si desidera utilizzare i dispositivi di proprietà tooconfigure] [ lnk-twin-how-to-configure] esercitazione
+* controllare i dispositivi in modo interattivo (ad esempio l'attivazione di una ventola da un'app controllata dall'utente) con hello [utilizzare metodi diretti] [ lnk-methods-tutorial] esercitazione.
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-node-twin-getstarted/servicesdknuget.png

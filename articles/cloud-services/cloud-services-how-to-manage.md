@@ -1,6 +1,6 @@
 ---
-title: "Attività comuni di gestione di servizi cloud (versione classica)| Microsoft Docs"
-description: Informazioni su come gestire i servizi cloud nel portale di Azure classico.
+title: "attività di gestione del servizio cloud aaaCommon (classico) | Documenti Microsoft"
+description: Informazioni su come toomanage cloud services nel portale di Azure classico hello.
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,142 +14,142 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 2ee76dfcb579e53975b1f61a6590f8d78dc0961b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03b1d632f1480d0f65c87b7f8ffc747417acf7b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-cloud-services"></a>Come gestire i servizi cloud
+# <a name="how-toomanage-cloud-services"></a>Come tooManage dei servizi Cloud
 > [!div class="op_single_selector"]
 > * [Portale di Azure](cloud-services-how-to-manage-portal.md)
-> * [Portale di Azure classico](cloud-services-how-to-manage.md)
+> * [portale di Azure classico](cloud-services-how-to-manage.md)
 >
 >
 
-Nell'area **Servizi cloud** del portale di Azure classico è possibile aggiornare un ruolo di servizio o una distribuzione, convertire una distribuzione di gestione temporanea in una distribuzione di produzione, collegare risorse al servizio cloud per visualizzare le dipendenze delle risorse e scalare le risorse insieme, nonché eliminare un servizio cloud o una distribuzione.
+In hello **servizi Cloud** area di Azure classico hello portale, è possibile aggiornare un ruolo del servizio o una distribuzione, alzare di livello un tooproduction pre-distribuzione, collegare servizio cloud di risorse tooyour in questo modo è possibile visualizzare risorse hello dipendenze e la scala hello risorse insieme ed eliminare un servizio cloud o una distribuzione.
 
 ## <a name="how-to-update-a-cloud-service-role-or-deployment"></a>Procedura: Aggiornare un ruolo o una distribuzione del servizio cloud
-Se è necessario aggiornare il codice dell'applicazione per il servizio cloud, usare **Aggiorna** nel dashboard, pagina **Servizi cloud** o pagina **Istanze**. È possibile aggiornare un singolo ruolo o tutti i ruoli. Sarà necessario caricare un nuovo pacchetto del servizio e un nuovo file di configurazione del servizio.
+Se è necessario codice dell'applicazione hello tooupdate per il servizio cloud, utilizzare **aggiornamento** nel dashboard di hello, **servizi Cloud** pagina o **istanze** pagina. È possibile aggiornare un singolo ruolo o tutti i ruoli. È necessario tooupload un nuovo pacchetto del servizio e i file di configurazione del servizio.
 
-1. Nel dashboard del [portale di Azure classico](https://manage.windowsazure.com/) fare clic su **Aggiorna** nella pagina **Servizi cloud** o nella pagina **Istanze**.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), nel dashboard di hello, **servizi Cloud** pagina o **istanze** pagina, fare clic su **aggiornamento**.
 
     ![UpdateDeployment](./media/cloud-services-how-to-manage/CloudServices_UpdateDeployment.png)
 
-2. In **Etichetta distribuzione**, immettere un nome per identificare la distribuzione (ad esempio, mycloudservice4). L'etichetta di distribuzione è disponibile nella **Guida introduttiva** nel dashboard.
-3. In **Pacchetto** usare **Sfoglia** per caricare il file del pacchetto di servizio (.cspkg).
-4. In **Configurazione** usare **Sfoglia** per caricare il file di configurazione del servizio (.cscfg).
-5. In **Ruolo** selezionare **Tutto** per aggiornare tutti i ruoli nel servizio cloud. Per eseguire l'aggiornamento di un singolo ruolo, selezionare il ruolo da aggiornare. Anche se si seleziona un ruolo specifico per l'aggiornamento, gli aggiornamenti nel file di configurazione del servizio vengono applicati a tutti i ruoli.
-6. Se l'aggiornamento cambia il numero o le dimensioni dei ruoli, selezionare la casella di controllo **Consenti aggiornamento se cambiano le dimensioni o il numero dei ruoli** per consentire all'aggiornamento di proseguire.
+2. In **etichetta distribuzione**, immettere una distribuzione di hello tooidentify nome (ad esempio, mycloudservice4). Sono disponibili etichetta distribuzione hello in **introduttiva** dashboard hello.
+3. In **pacchetto**, utilizzare **Sfoglia** file pacchetto del servizio hello tooupload (con estensione cspkg).
+4. In **configurazione**, utilizzare **Sfoglia** file di configurazione servizio hello tooupload (. cscfg).
+5. In **ruolo**selezionare **tutti** se si desidera tooupgrade tutti i ruoli di hello servizio cloud. tooperform un singolo ruolo, aggiornare il ruolo di hello selezionare da tooupdate. Anche se si seleziona un ruolo specifico di tooupdate, gli aggiornamenti di hello in file di configurazione del servizio hello sono ruoli tooall applicato.
+6. Se le modifiche di aggiornamento hello hello numero di ruoli o le dimensioni di hello di qualsiasi ruolo, selezionare hello **consentire l'aggiornamento se cambia le dimensioni dei ruoli o il numero di ruoli** tooproceed aggiornamento hello tooenable di casella di controllo.
 
-    Tenere presente che se si modificano le dimensioni di un ruolo, ovvero le dimensioni di una macchina virtuale che ospita un'istanza del ruolo, o il numero dei ruoli, è necessario ricreare l'immagine di ogni istanza del ruolo (macchina virtuale) e i dati locali andranno persi.
+    Tenere presente che se si modifica la dimensione hello di un ruolo (ovvero dimensione hello di una macchina virtuale che ospita un'istanza del ruolo) o hello numero di ruoli, ogni istanza del ruolo (macchina virtuale) deve essere ricreato l'immagine e tutti i dati locali vanno persi.
 
-7. Se uno o più ruoli del servizio contengono una sola istanza del ruolo, selezionare la casella di controllo **Eseguire l'aggiornamento anche se uno o più ruoli contengono una sola istanza** per consentire l'esecuzione dell'aggiornamento.
+7. Se i ruoli del servizio dispongono solo un'istanza del ruolo, selezionare hello **aggiornare anche se uno o più ruoli contengono una casella di controllo della singola istanza** tooenable hello aggiornamento tooproceed.
 
-    Durante un aggiornamento del servizio cloud, Azure può garantire una percentuale di disponibilità del servizio pari solo al 99,95% se ogni ruolo contiene almeno due istanze del ruolo (macchine virtuali). In questo modo, una macchina virtuale può elaborare le richieste dei client mentre l'altra viene aggiornata.
+    Durante un aggiornamento del servizio cloud, Azure può garantire una percentuale di disponibilità del servizio pari solo al 99,95% se ogni ruolo contiene almeno due istanze del ruolo (macchine virtuali). Che consente una macchina virtuale tooprocess client richieste durante l'aggiornamento hello altri.
 
-8. Fare clic su **OK** (segno di spunta) per avviare l'aggiornamento del servizio.
+8. Fare clic su **OK** toobegin (segno di spunta) hello servizio di aggiornamento.
 
-## <a name="how-to-swap-deployments-to-promote-a-staged-deployment-to-production"></a>Procedura: Scambiare le distribuzioni per convertire una distribuzione di gestione temporanea in una distribuzione di produzione
-Utilizzare **Swap** per convertire una distribuzione di gestione temporanea di un servizio cloud in una distribuzione di produzione. Quando si decide di distribuire una nuova versione di un servizio cloud, è possibile inserirla e testarla nell'ambiente di gestione temporanea del servizio cloud mentre i clienti usano la versione corrente in produzione. Quando la nuova versione è pronta per il passaggio in produzione, è possibile usare **Swap** per invertire gli URL di indirizzamento delle due distribuzioni.
+## <a name="how-to-swap-deployments-toopromote-a-staged-deployment-tooproduction"></a>Procedura: scambiare le distribuzioni toopromote tooproduction una distribuzione di gestione temporanea
+Utilizzare **scambiare** toopromote una distribuzione di gestione temporanea di un tooproduction servizio cloud. Quando si decide di toodeploy una nuova versione di un servizio cloud, è possibile fase e testare la nuova release dell'ambiente di gestione temporanea del servizio cloud, mentre i clienti utilizzano la versione corrente di hello nell'ambiente di produzione. Quando si è pronti toopromote hello tooproduction versione nuova, è possibile utilizzare **scambiare** tooswitch hello URL da cui hello due distribuzioni.
 
-È possibile scambiare le distribuzioni dalla pagina **Cloud Services** o dal dashboard.
+È possibile scambiare le distribuzioni da hello **servizi Cloud** hello o pagina dashboard.
 
-1. Nel [portale di Azure classico](https://manage.windowsazure.com/)fare clic su **Servizi cloud**.
-2. Nell'elenco dei servizi cloud fare clic sul servizio cloud per selezionarlo.
+1. In hello [portale di Azure classico](https://manage.windowsazure.com/), fare clic su **servizi Cloud**.
+2. Nell'elenco di hello dei servizi cloud, fare clic su tooselect servizio cloud di hello è.
 3. Fare clic su **Swap**.
 
-    Verrà visualizzata la seguente richiesta di conferma.
+    Hello richiesta di conferma seguente viene aperto.
 
     ![Scambio di servizi cloud](./media/cloud-services-how-to-manage/CloudServices_Swap.png)
 
-4. Dopo avere controllato le informazioni sulla distribuzione, fare clic su **Yes** per scambiare le distribuzioni.
+4. Dopo aver verificato le informazioni di distribuzione hello, fare clic su **Sì** distribuzioni hello tooswap.
 
-    Lo scambio delle distribuzioni avviene rapidamente perché l'unico elemento che cambia è rappresentato dagli indirizzi IP virtuali (VIP) delle distribuzioni.
+    lo scambio di distribuzioni Hello possa avvenire rapidamente perché hello unico elemento che viene modificato è hello gli indirizzi IP virtuali (VIP) per le distribuzioni di hello.
 
-    Per ridurre i costi di calcolo, è possibile eliminare la distribuzione nell'ambiente di gestione temporanea dopo avere verificato che le prestazioni della nuova distribuzione di produzione corrispondano alle aspettative.
+    toosave calcolo dei costi, è possibile eliminare la distribuzione di hello in hello ambiente di gestione temporanea quando si è certi nuova distribuzione di produzione hello funzionando come previsto.
 
 ### <a name="common-questions-about-swapping-deployments"></a>Domande comuni sullo scambio di distribuzioni
 
-**Quali sono i prerequisiti per lo scambio delle distribuzioni?**
+**Quali sono i prerequisiti hello per le distribuzioni di effettuare lo swapping?**
 
 Esistono due prerequisiti chiave per lo scambio corretto di distribuzioni:
 
-- Se si desidera usare un indirizzo IP statico per lo slot di produzione, è necessario riservarne uno anche per lo slot di gestione temporanea. In caso contrario, lo scambio avrà esito negativo.
+- Se si desidera usare un indirizzo IP statico toouse slot di produzione, è necessario riservare uno slot di gestione temporanea anche. In caso contrario, lo scambio di hello avrà esito negativo.
 
-- Tutte le istanze dei ruoli devono essere in esecuzione prima di poter eseguire lo scambio. È possibile controllare lo stato delle istanze nel portale di Azure classico o usando il [comando Get-AzureRole in Windows PowerShell](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0).
+- Tutte le istanze dei ruoli devono essere in esecuzione prima di poter eseguire lo scambio di hello. È possibile controllare lo stato di hello delle istanze in hello portale di Azure classico o mediante [hello comando Get-AzureRole in Windows PowerShell](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0).
 
-Si noti che anche gli aggiornamenti del sistema operativo guest e le operazioni di correzione del servizio possono ostacolare il corretto scambio delle distribuzioni. Per altre informazioni, vedere [Risolvere eventuali problemi di distribuzione dei servizi cloud](cloud-services-troubleshoot-deployment-problems.md).
+Si noti che gli aggiornamenti del sistema operativo guest e le operazioni di correzione del servizio può essere causato anche toofail lo scambio di distribuzione. Per altre informazioni, vedere [Risolvere eventuali problemi di distribuzione dei servizi cloud](cloud-services-troubleshoot-deployment-problems.md).
 
 **Uno scambio comporta un tempo di inattività per l'applicazione? Come gestire questa situazione?**
 
-Come descritto nella sezione precedente, lo scambio di distribuzioni è in genere molto veloce perché è una semplice modifica della configurazione in Azure Load Balancer. In alcuni casi, tuttavia, può richiedere più di dieci secondi e causare errori di connessione temporanei. Per limitare l'impatto sui clienti, si consiglia di implementare la [logica di ripetizione dei tentativi nel client](../best-practices-retry-general.md).
+Come descritto nella sezione precedente di hello, lo scambio di distribuzioni in genere è molto veloce perché è solo una modifica della configurazione nel servizio di bilanciamento carico di Azure hello. In alcuni casi, tuttavia, può richiedere più di dieci secondi e causare errori di connessione temporanei. i clienti tooyour impatto toolimit, si consiglia di implementare [logica di ripetizione dei client](../best-practices-retry-general.md).
 
-## <a name="how-to-link-a-resource-to-a-cloud-service"></a>Procedura: Collegare una risorsa a un servizio cloud
-Per visualizzare le dipendenze del servizio cloud da altre risorse, è possibile collegare un'istanza di database SQL di Azure o un account di archiviazione al servizio cloud. È possibile collegare o scollegare le risorse nella pagina **Risorse collegato** e monitorare quindi il relativo uso nel dashboard del servizio cloud. Se in un account di archiviazione collegato è attivato il monitoraggio, è possibile monitorare il totale delle richieste nel dashboard del servizio cloud.
+## <a name="how-to-link-a-resource-tooa-cloud-service"></a>Procedura: collegamento di un servizio cloud di risorse tooa
+tooshow le dipendenze del servizio cloud su altre risorse, è possibile collegare un'istanza di Database SQL di Azure o un servizio di cloud toohello account di archiviazione. È possibile collegare e scollegare risorse hello **risorse collegate** pagina e quindi monitorarne l'utilizzo nel dashboard del servizio cloud hello. Se un account di archiviazione collegato ha attivato il monitoraggio, è possibile monitorare Totale richieste nel dashboard del servizio cloud hello.
 
-Usare **Collegamento** per collegare un'istanza di database SQL nuova o esistente o un account di archiviazione al servizio cloud. È quindi possibile ridimensionare il database insieme al ruolo del servizio cloud che lo usa nella pagina **Piano**. (un account di archiviazione viene scalato automaticamente man mano che aumenta l'utilizzo). Per altre informazioni, vedere [Come ridimensionare un servizio cloud e le risorse collegate](cloud-services-how-to-scale.md).
+Utilizzare **collegamento** toolink un nuovo o esistente del Database SQL istanza o archiviazione account tooyour servizio cloud. È quindi possibile scalare il database di hello insieme al ruolo del servizio cloud hello che è utilizzandolo su hello **scala** pagina. (un account di archiviazione viene scalato automaticamente man mano che aumenta l'utilizzo). Per ulteriori informazioni, vedere [come tooScale un servizio Cloud e le risorse collegate](cloud-services-how-to-scale.md).
 
-È inoltre possibile monitorare, gestire e scalare il database nel nodo **Database** del portale di Azure classico.
+È anche possibile monitorare, gestire e scalare il database di hello in hello **database** nodo di hello portale di Azure classico.
 
-In questo senso, il "collegamento" di una risorsa non comporta la connessione dell'app alla risorsa. Se si crea un nuovo database mediante **Link**, sarà necessario aggiungere le stringhe di connessione al codice dell'applicazione, quindi aggiornare il servizio cloud. Sarà anche necessario aggiungere le stringhe di connessione se l'app usa risorse in un account di archiviazione collegato.
+Una risorsa in questo senso di "collegamento" non connessione la risorsa toohello app. Se si crea un nuovo database utilizzando **collegamento**, sarà necessario tooadd hello connessione stringhe tooyour codice dell'applicazione e servizio cloud hello quindi eseguire l'aggiornamento. Le stringhe di connessione tooadd è necessario anche se l'app Usa le risorse in un account di archiviazione collegato.
 
-Nella procedura seguente viene descritto come collegare una nuova istanza di database SQL, distribuita su un nuovo server di database SQL, a un servizio cloud.
+Hello seguente procedura descrive come toolink una nuova istanza di Database SQL, distribuita in un nuovo server di Database SQL, il servizio di cloud tooa.
 
-### <a name="to-link-a-sql-database-instance-to-a-cloud-service"></a>Per collegare un'istanza di database SQL a un servizio cloud
-1. Nel [portale di Azure classico](http://manage.windowsazure.com/)fare clic su **Servizi cloud**. Quindi fare clic sul nome del servizio cloud per aprire il dashboard.
+### <a name="toolink-a-sql-database-instance-tooa-cloud-service"></a>toolink servizio cloud tooa istanza Database SQL
+1. In hello [portale di Azure classico](http://manage.windowsazure.com/), fare clic su **servizi Cloud**. Quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
 2. Fare clic su **Linked Resources**.
 
-    Verrà visualizzata la pagina **Linked Resources** .
+    Hello **risorse collegate** verrà visualizzata la pagina.
 
     ![LinkedResourcesPage](./media/cloud-services-how-to-manage/CloudServices_LinkedResourcesPage.png)
 
 3. Fare clic su **Collega una risorsa** o **Collega**.
 
-    Verrà avviata la procedura guidata **Link Resource** .
+    Hello **collega risorsa** avviata.
 
     ![Link Page1](./media/cloud-services-how-to-manage/CloudServices_LinkedResources_LinkPage1.png)
 
 4. Fare clic su **Crea una nuova risorsa** o **Collega una risorsa esistente**.
-5. Scegliere il tipo di risorsa da collegare. Nel [portale di Azure classico](http://manage.windowsazure.com/)fare clic su **Database SQL**. Solo il portale di Azure classico supporta il collegamento di un account di archiviazione a un servizio cloud.
-6. Per completare la configurazione del database, seguire le istruzioni nella guida per l'area **SQL Databases** del portale di Azure classico.
+5. Scegliere il tipo di hello di toolink di risorse. In hello [portale di Azure classico](http://manage.windowsazure.com/), fare clic su **Database SQL**. (Solo hello portale di Azure classico supporta il collegamento di un servizio di cloud tooa account di archiviazione).
+6. configurazione del database hello toocomplete, seguire le istruzioni nella Guida per hello **database SQL** area del portale di Azure classico hello.
 
-    È possibile seguire l'avanzamento dell'operazione di collegamento nell'area dei messaggi.
+    È possibile seguire lo stato di avanzamento hello di hello collegare nell'area dei messaggi hello.
 
-    Terminato il collegamento, è possibile monitorare lo stato della risorsa collegata nel dashboard del servizio cloud. Per informazioni sulla scalabilità di un database SQL collegato, vedere [Come scalare un servizio cloud e le risorse collegate](cloud-services-how-to-scale.md).
+    Quando il collegamento è stato completato, è possibile monitorare lo stato di hello della risorsa collegata hello nel dashboard del servizio cloud hello. Per informazioni sulla scalabilità di un Database SQL collegato, vedere [come tooScale un servizio Cloud e le risorse collegate](cloud-services-how-to-scale.md).
 
-### <a name="to-unlink-a-linked-resource"></a>Per scollegare una risorsa collegata
-1. Nel [portale di Azure classico](http://manage.windowsazure.com/)fare clic su **Servizi cloud**. Quindi fare clic sul nome del servizio cloud per aprire il dashboard.
-2. Fare clic su **Linked Resources**e selezionare la risorsa.
-3. Fare clic su **Unlink**. Fare quindi clic su **Yes** alla richiesta di conferma.
+### <a name="toounlink-a-linked-resource"></a>toounlink una risorsa collegata
+1. In hello [portale di Azure classico](http://manage.windowsazure.com/), fare clic su **servizi Cloud**. Quindi fare clic su nome hello del dashboard hello tooopen del servizio cloud hello.
+2. Fare clic su **risorse collegate**, quindi selezionare la risorsa hello.
+3. Fare clic su **Unlink**. Quindi fare clic su **Sì** al prompt di conferma hello.
 
-    Lo scollegamento di un database SQL non ha alcun effetto sul database o sulle connessioni dell'applicazione al database. È comunque possibile gestire il database nell'area **Database SQL** del portale di Azure classico.
+    Lo scollegamento di un Database SQL non ha effetto sul database di hello o dell'applicazione hello connessioni toohello. È comunque possibile gestire database hello in hello **database SQL** area del portale di Azure classico hello.
 
 ## <a name="how-to-delete-deployments-and-a-cloud-service"></a>Procedura: Eliminare le distribuzioni e un servizio cloud
 Per eliminare un servizio cloud è necessario prima eliminare tutte le distribuzioni esistenti.
 
-Per ridurre i costi di calcolo, è possibile eliminare la distribuzione di gestione temporanea dopo avere verificato che la distribuzione di produzione funzioni nel modo previsto. I costi di calcolo per le istanze del ruolo vengono addebitati anche se il servizio cloud non è in esecuzione.
+toosave calcolo dei costi, dopo aver verificato che la distribuzione di produzione funzioni come previsto, è possibile eliminare la distribuzione di gestione temporanea. I costi di calcolo per le istanze del ruolo vengono addebitati anche se il servizio cloud non è in esecuzione.
 
-Per eliminare una distribuzione o il servizio cloud, attenersi alla procedura seguente.
+Utilizzare hello seguendo procedure toodelete una distribuzione o il servizio cloud.
 
-1. Nel [portale di Azure classico](http://manage.windowsazure.com/)fare clic su **Servizi cloud**.
-2. Selezionare il servizio cloud e fare clic su **Elimina**. (per selezionare un servizio cloud senza aprire il dashboard, fare clic in un punto qualsiasi tranne che sul nome nella voce del servizio cloud).
+1. In hello [portale di Azure classico](http://manage.windowsazure.com/), fare clic su **servizi Cloud**.
+2. Selezionare servizio cloud hello e quindi fare clic su **eliminare**. (tooselect un servizio cloud senza dover aprire il dashboard di hello, fare clic in un punto qualsiasi tranne il nome di hello nella voce di servizio cloud hello.)
 
-    Se è presente una distribuzione di gestione temporanea o di produzione, nella parte inferiore della finestra sarà visualizzato un menu analogo al seguente. Prima di eliminare il servizio cloud, è necessario eliminare le eventuali distribuzioni esistenti.
+    Se si dispone di una distribuzione in gestione temporanea o produzione, si verrà visualizzato un menu di opzioni di toohello simile segue quello nella parte inferiore di hello della finestra hello. Prima di poter eliminare il servizio di cloud hello, è necessario eliminare tutte le distribuzioni esistenti.
 
     ![Menu Delete](./media/cloud-services-how-to-manage/CloudServices_DeleteMenu.png)
 
-3. Per eliminare una distribuzione, fare clic su **Delete production deployment** (Elimina distribuzione di produzione) o **Delete staging deployment** (Elimina distribuzione di staging). Quindi, alla richiesta di conferma fare clic su **Yes**.
-4. Se si intende eliminare il servizio cloud, ripetere il passaggio 3, se necessario, per eliminare le altre distribuzioni.
-5. Per eliminare il servizio cloud fare clic su **Delete cloud service**. Quindi, alla richiesta di conferma fare clic su **Yes**.
+3. Fare clic su una distribuzione, toodelete **Elimina la distribuzione di produzione** o **Elimina la distribuzione di gestione temporanea**. Al prompt di conferma hello, quindi fare clic su **Sì**.
+4. Se si prevede di servizio cloud di hello toodelete, ripetere il passaggio 3, se necessario, toodelete l'altra distribuzione.
+5. servizio cloud di hello toodelete, fare clic su **servizio cloud Delete**. Al prompt di conferma hello, quindi fare clic su **Sì**.
 
 > [!NOTE]
-> Se per il servizio cloud è configurato il monitoraggio dettagliato, i dati di monitoraggio dall'account di archiviazione non vengono eliminati quando si elimina il servizio cloud. I dati dovranno essere eliminati manualmente. Per informazioni sull'ubicazione delle tabelle delle metriche, vedere "Procedura: accedere ai dati di monitoraggio dettagliati all'esterno del portale di Azure classico" in [Come monitorare i servizi cloud](cloud-services-how-to-monitor.md).
+> Se il monitoraggio dettagliato è configurato per il servizio cloud, Azure non elimina i dati di monitoraggio dall'account di archiviazione quando si elimina il servizio di cloud hello hello. Sarà necessario dati hello toodelete manualmente. Per informazioni su dove toofind hello tabelle di metrica, vedere "procedura: accedere ai dati di monitoraggio dettagliato di fuori di hello portale di Azure classico" in [come servizi Cloud tooMonitor](cloud-services-how-to-monitor.md).
 >
 >
 
 ## <a name="next-steps"></a>Passaggi successivi
 * [Configurazione generale del servizio cloud](cloud-services-how-to-configure.md).
-* Procedura [distribuire un servizio cloud](cloud-services-how-to-create-deploy.md).
+* Informazioni su come troppo[distribuire un servizio cloud](cloud-services-how-to-create-deploy.md).
 * Configurare un [nome di dominio personalizzato](cloud-services-custom-domain-name.md).
 * Configurare i [certificati ssl](cloud-services-configure-ssl-certificate.md).

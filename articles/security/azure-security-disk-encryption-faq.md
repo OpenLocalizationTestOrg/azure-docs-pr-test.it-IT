@@ -1,6 +1,6 @@
 ---
-title: Domande frequenti su Crittografia dischi di Azure | Microsoft Docs
-description: Questo articolo fornisce le risposte alle domande frequenti su Crittografia dischi di Microsoft Azure per le macchine virtuali IaaS Windows e Linux.
+title: domande frequenti su crittografia disco aaaAzure | Documenti Microsoft
+description: In questo articolo vengono fornite le risposte toofrequently domande frequenti su Microsoft Azure disco crittografia per Windows e le macchine virtuali IaaS di Linux.
 services: security
 documentationcenter: na
 author: deventiwari
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: devtiw
-ms.openlocfilehash: 0d15bf42c156ea7a72c54d690f4016877913efe4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 17f084628ba4ef22e9d37dd3052ef10f8eb2cd7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-disk-encryption-frequently-asked-questions-faq"></a>Domande frequenti su Crittografia dischi di Azure
 
@@ -31,7 +31,7 @@ Questo documento fornisce le risposte alle domande frequenti su Crittografia dis
 
 **D:** Quali esperienze utente sono disponibili con Crittografia dischi di Azure?
 
-**R:** La versione GA di Crittografia dischi di Azure supporta i modelli di Azure Resource Manager, Azure PowerShell e l'interfaccia della riga di comando di Azure. Questo assicura una notevole flessibilità, in quanto sono disponibili tre diverse opzioni per l'abilitazione della crittografia del disco per le macchine virtuali IaaS. Altre informazioni sull'esperienza utente e indicazioni dettagliate sono disponibili negli scenari e nelle esperienze di distribuzione di Crittografia dischi di Azure.
+**R:** La versione GA di Crittografia dischi di Azure supporta i modelli di Azure Resource Manager, Azure PowerShell e l'interfaccia della riga di comando di Azure. Questo assicura una notevole flessibilità, in quanto sono disponibili tre diverse opzioni per l'abilitazione della crittografia del disco per le macchine virtuali IaaS. Ulteriori informazioni sull'esperienza utente hello e informazioni aggiuntive dettagliate è disponibile in scenari di distribuzione di crittografia del disco Azure hello ed esperienze.
 
 **D:** Quanto costa Crittografia dischi di Azure?
 
@@ -43,7 +43,7 @@ Questo documento fornisce le risposte alle domande frequenti su Crittografia dis
 
 **D:** Quali distribuzioni di Linux sono supportate da Crittografia dischi di Azure?
 
-**R:** Crittografia dischi di Azure è supportato nelle distribuzioni e versioni del server Linux seguenti:
+**R:** crittografia del disco di Azure è supportata in hello seguendo le distribuzioni di server Linux e le versioni:
 
 | Distribuzione Linux | Versione | Tipo di volume supportato per la crittografia|
 | --- | --- |--- |
@@ -70,54 +70,54 @@ Questo documento fornisce le risposte alle domande frequenti su Crittografia dis
 
 **D:** Come si può iniziare a usare Crittografia dischi di Azure?
 
-**R:** I clienti possono ottenere informazioni introduttive leggendo il white paper su Crittografia dischi di Azure disponibile [qui](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)
+**R:** clienti utili come tooget iniziare dalla lettura hello white paper di crittografia del disco di Azure si trova [qui](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)
 
 **D:** È possibile crittografare sia i volumi di avvio che i volumi di dati con Crittografia dischi di Azure?
 
-**R:** Sì, è possibile crittografare volumi di avvio e volumi di dati per le macchine virtuali IaaS Windows e Linux. Per le macchine virtuali Windows, non è possibile crittografare i dati senza prima crittografare il volume del sistema operativo. Per le macchine virtuali Linux, è possibile crittografare il volume dei dati senza prima crittografare il del sistema operativo. Dopo aver crittografato il volume del sistema operativo per Linux, la disabilitazione della crittografia in un volume del sistema operativo per le macchine virtuali IaaS Linux non è supportata.
+**R:** Sì, è possibile crittografare volumi di avvio e volumi di dati per le macchine virtuali IaaS Windows e Linux. Per le macchine virtuali di Windows, è possibile crittografare i dati hello senza hello encrpting primo volume del sistema operativo. Per le macchine virtuali Linux, è possibile crittografare il volume di dati hello senza encryptinng hello volume del sistema operativo. Una volta per Liux sono stati crittografati volume hello del sistema operativo, la disabilitazione della crittografia in un volume del sistema operativo per le macchine virtuali IaaS di Linux non è supportata
 
 **D:** Crittografia dischi di Azure rende disponibili funzionalità BYOK (Bring Your Own Key)?
 
-**R:** Sì, è possibile fornire le proprie chiavi di crittografia della chiave. Queste chiavi sono protette in Azure Key Vault, l'archivio delle chiavi per Crittografia dischi di Azure. Per altre informazioni sugli scenari di supporto delle chiavi di crittografia della chiave, vedere gli scenari e le esperienze di distribuzione di Crittografia dischi di Azure.
+**R:** Sì, è possibile fornire le proprie chiavi di crittografia della chiave. Tali chiavi siano protette nell'insieme di credenziali chiave di Azure, ovvero l'archivio delle chiavi di crittografia del disco Azure hello. Per ulteriori informazioni sulla chiave di crittografia della chiave hello supportare gli scenari, vedere esperienze e scenari di distribuzione di hello crittografia del disco di Azure
 
 **D:** È possibile usare una chiave di crittografia della chiave creata in Azure?
 
-**R:** Sì, è possibile usare Azure Key Vault per generare una chiave di crittografia della chiave per l'uso con Crittografia dischi di Azure. Queste chiavi sono protette in Azure Key Vault, l'archivio delle chiavi per Crittografia dischi di Azure. Per altre informazioni sugli scenari di supporto delle chiavi di crittografia della chiave, vedere gli scenari e le esperienze di distribuzione di Crittografia dischi di Azure.
+**R:** Sì, è possibile utilizzare una chiave di crittografia della chiave toogenerate insieme di credenziali chiave di Azure per l'utilizzo di crittografia del disco di Azure. Tali chiavi siano protette nell'insieme di credenziali chiave di Azure, ovvero l'archivio delle chiavi di crittografia del disco Azure hello. Per ulteriori informazioni sulla chiave di crittografia della chiave hello supportare gli scenari, vedere esperienze e scenari di distribuzione di hello crittografia del disco di Azure
 
-**D:** È possibile usare un servizio di gestione delle chiavi/modulo di protezione hardware locale per proteggere le chiavi di crittografia?
+**Q:** è possibile utilizzare chiavi di crittografia hello servizio/HSM toosafeguard gestione delle chiavi locale?
 
-**R:** Non è possibile usare il servizio di gestione delle chiavi/modulo di protezione hardware locale per proteggere le chiavi di crittografia con Crittografia dischi di Azure. Per proteggere le chiavi di crittografia, è possibile usare solo il servizio Azure Key Vault. Per altre informazioni sugli scenari di supporto delle chiavi di crittografia della chiave, vedere gli scenari e le esperienze di distribuzione di Crittografia dischi di Azure.
+**R:** non è possibile utilizzare le chiavi di crittografia hello servizio/HSM toosafeguard gestione delle chiavi locale hello con la crittografia del disco di Azure. È possibile utilizzare solo chiavi di crittografia hello servizio toosafeguard hello Azure dell'insieme di credenziali chiave. Per ulteriori informazioni sulla chiave di crittografia della chiave hello supportare gli scenari, vedere esperienze e scenari di distribuzione di hello crittografia del disco di Azure
 
-**D:** Quali sono i prerequisiti per la configurazione di Crittografia dischi di Azure?
+**Q:** quali sono crittografia del disco Azure tooconfigure prerequisiti hello?
 
-**R:** Lo script di PowerShell richiesto da Crittografia dischi di Azure per creare un'applicazione AAD, creare un nuovo insieme di credenziali delle chiavi o configurare l'insieme di credenziali delle chiavi esistente per l'accesso alla crittografia del disco, per abilitare la crittografia e proteggere i segreti e la chiave.  Per altre informazioni sugli scenari di supporto delle chiavi di crittografia della chiave, vedere i prerequisiti, gli scenari e le esperienze di distribuzione di Crittografia dischi di Azure.
+**R:** hello Azure disco crittografia prerequisiti PowerShell script toocreate AAD dell'applicazione, creare nuovo insieme di credenziali chiave o del programma di installazione esistente dell'insieme di credenziali chiave disco crittografia accesso tooenable crittografia e tutelare i segreti e la chiave.  Per ulteriori informazioni sulla chiave di crittografia della chiave hello supportare gli scenari, vedere i prerequisiti di crittografia del disco Azure hello e scenari di distribuzione e l'esperienza
 
-**D:** Dove si possono ottenere altre informazioni su come usare PowerShell per la configurazione di Crittografia dischi di Azure?
+**Q:** dove è possibile ottenere ulteriori informazioni su come toouse PowerShell per la configurazione di crittografia del disco di Azure?
 
-**R:** Sono disponibili alcuni interessanti articoli su come eseguire le attività di base in Crittografia dischi di Azure, oltre a scenari più avanzati. Per le attività di base, vedere [Esplorare Crittografia dischi di Azure con Azure PowerShell - Parte 1](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/16/explore-azure-disk-encryption-with-azure-powershell/). Per gli scenari più avanzati, vedere [Esplorare Crittografia dischi di Azure con Azure PowerShell - Parte 2](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2/).
+**R:** Sono disponibili alcuni interessanti articoli su come eseguire le attività di base in Crittografia dischi di Azure, oltre a scenari più avanzati. Per le attività di base hello, fai clic su Esplora [crittografia del disco di Azure con Azure PowerShell - parte 1](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/16/explore-azure-disk-encryption-with-azure-powershell/). Per gli scenari più avanzati, vedere [Esplorare Crittografia dischi di Azure con Azure PowerShell - Parte 2](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2/).
 
 **D:** Quale versione di Azure PowerShell è supportata da Crittografia dischi di Azure?
 
-**R:** Usare la versione più recente di Azure PowerShell SDK per configurare Crittografia dischi di Azure. Scaricare la versione più recente di [Azure PowerShell](https://github.com/Azure/azure-powershell/releases). Crittografia dischi di Azure NON è supportato da Azure SDK versione 1.1.0.
+**R:** utilizzare hello più recente di Azure PowerShell SDK versione tooconfigure crittografia del disco di Azure. Scaricare una versione più recente di hello di [Azure PowerShell](https://github.com/Azure/azure-powershell/releases). Crittografia dischi di Azure NON è supportato da Azure SDK versione 1.1.0.
 
 > [!NOTE]
-> L'estensione di anteprima di Crittografia dischi di Azure per Linux è deprecata. Per informazioni dettagliate, fare riferimento alla documentazione disponibile [qui](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/12/deprecating-azure-disk-encryption-preview-extension-for-linux-iaas-vms/)
+> estensione dell'anteprima di Linux Azure disco crittografia Hello è deprecata. Per informazioni dettagliate, vedere toodocumentation [qui](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/12/deprecating-azure-disk-encryption-preview-extension-for-linux-iaas-vms/)
 
 **D:** È possibile applicare Crittografia dischi di Azure a un'immagine Linux personalizzata?
 
-**R:** Non è possibile applicare Crittografia dischi di Azure a un'immagine Linux personalizzata. Sono supportate solo le immagini Linux per le distribuzioni supportate indicate in precedenza. Attualmente le immagini Linux personalizzate non sono supportate.
+**R:** Non è possibile applicare Crittografia dischi di Azure a un'immagine Linux personalizzata. È supportato solo le immagini Linux raccolta hello per le distribuzioni di hello supportata indicate sopra. Attualmente le immagini Linux personalizzate non sono supportate.
 
-**D:** È possibile applicare gli aggiornamenti a una macchina virtuale Linux Red Hat mediante l'aggiornamento Yum?
+**Q:** è possibile applicare gli aggiornamenti tooa Linux Red Hat VM mediante l'aggiornamento Yum?
 
 **R:** Sì, è possibile aggiornare e/o applicare patch a una macchina virtuale Linux Red Hat seguendo le istruzioni riportate [qui](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/13/applying-updates-to-a-encrypted-azure-iaas-red-hat-vm-using-yum-update/)
 
-**D:** Quali risorse sono disponibili per porre domande o inviare commenti?
+**Q:** in cui è possibile passare tooask domanda o fornire commenti e suggerimenti
 
-**R:** È possibile porre domande o fornire commenti e suggerimenti sul forum di Crittografia dischi di Azure disponibile [qui](https://social.msdn.microsoft.com/Forums/home?forum=AzureDiskEncryption)
+**R:** è possibile fornire porre domande o commenti e suggerimenti sul forum di crittografia del disco di Azure hello [qui](https://social.msdn.microsoft.com/Forums/home?forum=AzureDiskEncryption)
 
 ## <a name="see-also"></a>Vedere anche
-In questo documento sono state fornite le risposte alle domande più frequenti relative a Crittografia dischi di Azure. Per altre informazioni su questo servizio e le relativa funzionalità, vedere:
+In questo documento, illustrando più hello più frequenti domande correlate tooAzure crittografia del disco, per ulteriori informazioni su questo servizio e la relativa funzionalità di lettura:
 
-- [Applicare la crittografia del disco nel Centro sicurezza Azure](https://docs.microsoft.com/azure/security-center/security-center-apply-disk-encryption)
+- [Applicare la crittografia dei dischi nel Centro sicurezza di Azure](https://docs.microsoft.com/azure/security-center/security-center-apply-disk-encryption)
 - [Crittografare una macchina virtuale di Azure](https://docs.microsoft.com/azure/security-center/security-center-disk-encryption)
 - [Crittografia dei dati inattivi di Azure](https://docs.microsoft.com/azure/security/azure-security-encryption-atrest)

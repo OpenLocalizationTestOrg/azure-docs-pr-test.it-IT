@@ -1,5 +1,5 @@
 ---
-title: Librerie di gestione del bus di servizio di Azure | Microsoft Docs
+title: le raccolte di gestione di Service Bus aaaAzure | Documenti Microsoft
 description: "Gestire entità di messaggistica e spazi dei nomi del bus di servizio da .NET."
 services: service-bus-messaging
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: sethm
-ms.openlocfilehash: 1db00dc1f91e8976b622030450445babbe547ad8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e4ad91f22815ca0838e6e4647a3606109b2b441
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-management-libraries"></a>Librerie di gestione del bus di servizio
 
-Le librerie di gestione del bus di servizio di Azure possono eseguire il provisioning di entità e spazi dei nomi del bus di servizio in modo dinamico, per consentire distribuzioni complesse e scenari di messaggistica e permettere di determinare a livello di codice le entità di cui eseguire il provisioning. Queste librerie sono attualmente disponibili per .NET.
+le raccolte di gestione di Azure Service Bus Hello possano il provisioning dinamico di entità e spazi dei nomi Service Bus. Ciò consente di eseguire distribuzioni complesse e scenari di messaggistica e rende possibile tooprogrammatically determinare quali tooprovision di entità. Queste librerie sono attualmente disponibili per .NET.
 
 ## <a name="supported-functionality"></a>Funzionalità supportate
 
@@ -33,26 +33,26 @@ Le librerie di gestione del bus di servizio di Azure possono eseguire il provisi
 
 ## <a name="prerequisites"></a>Prerequisiti
 
-Per iniziare a usare le librerie di gestione del bus di servizio, è necessario eseguire l'autenticazione con il servizio Azure Active Directory (AAD). AAD richiede l'autenticazione come entità servizio, che fornisce l'accesso alle risorse di Azure in uso. Per informazioni su come creare un'entità servizio, vedere uno di questi articoli:  
+tooget avviato utilizzando le raccolte di gestione di Service Bus hello, è necessario autenticare con hello servizio Azure Active Directory (AAD). AAD, è necessario eseguire l'autenticazione come un'entità servizio, che fornisce accesso tooyour risorse di Azure. Per informazioni su come creare un'entità servizio, vedere uno di questi articoli:  
 
-* [Usare il portale di Azure per creare un'applicazione Active Directory e un'entità servizio che accedono alle risorse](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-* [Usare Azure PowerShell per creare un'entità servizio per accedere alle risorse](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
-* [Usare l'interfaccia della riga di comando di Azure per creare un'entità servizio per accedere alle risorse](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
+* [Utilizzare un'applicazione hello toocreate portale di Azure Active Directory e dell'entità servizio che possono accedere alle risorse](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+* [Usare Azure PowerShell toocreate una risorse tooaccess dell'entità servizio](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
+* [Utilizzare toocreate CLI di Azure un risorse tooaccess dell'entità servizio](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 
-Nel corso di queste esercitazioni vengono forniti un `AppId` (ID client), un `TenantId` e un `ClientSecret` (chiave di autenticazione) che sono usati per l'autenticazione da parte delle librerie di gestione. È necessario disporre delle autorizzazioni di **Proprietario** per il gruppo di risorse in cui verranno eseguite le librerie.
+Queste esercitazioni forniscono un `AppId` (ID Client), `TenantId`, e `ClientSecret` (chiave di autenticazione), ognuno dei quali vengono utilizzati per l'autenticazione per le raccolte di gestione di hello. È necessario disporre di **proprietario** le autorizzazioni per il gruppo di risorse hello in cui si desidera toorun.
 
 ## <a name="programming-pattern"></a>Modello di programmazione
 
-Il modello di modifica delle risorse del bus di servizio segue un protocollo comune:
+Hello modello toomanipulate qualsiasi risorsa Bus di servizio segue un protocollo comune:
 
-1. Ottenere un token da Azure Active Directory usando la libreria **Microsoft.IdentityModel.Clients.ActiveDirectory**.
+1. Ottenere un token da Azure Active Directory tramite hello **ActiveDirectory** libreria.
    ```csharp
    var context = new AuthenticationContext($"https://login.microsoftonline.com/{tenantId}");
 
    var result = await context.AcquireTokenAsync("https://management.core.windows.net/", new ClientCredential(clientId, clientSecret));
    ```
 
-1. Creare l'oggetto `ServiceBusManagementClient`.
+1. Creare hello `ServiceBusManagementClient` oggetto.
 
    ```csharp
    var creds = new TokenCredentials(token);
@@ -62,7 +62,7 @@ Il modello di modifica delle risorse del bus di servizio segue un protocollo com
    };
    ```
 
-1. Impostare i parametri `CreateOrUpdate` sui valori specificati.
+1. Set hello `CreateOrUpdate` tooyour i parametri specificati.
 
    ```csharp
    var queueParams = new QueueCreateOrUpdateParameters()
@@ -72,7 +72,7 @@ Il modello di modifica delle risorse del bus di servizio segue un protocollo com
    };
    ```
 
-1. Effettuare la chiamata.
+1. Chiamare hello Execute.
 
    ```csharp
    await sbClient.Queues.CreateOrUpdateAsync(resourceGroupName, namespaceName, QueueName, queueParams);

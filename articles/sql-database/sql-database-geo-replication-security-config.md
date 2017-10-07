@@ -1,6 +1,6 @@
 ---
-title: Configurare la sicurezza del database SQL di Azure per il ripristino di emergenza | Documentazione Microsoft
-description: Questo argomento illustra considerazioni sulla configurazione e la gestione della sicurezza dopo il ripristino di un database o il failover in un server secondario dovuto a un'interruzione del data center o ad altre situazioni di emergenza
+title: sicurezza del Database SQL di Azure per il ripristino di emergenza aaaConfigure | Documenti Microsoft
+description: In questo argomento vengono illustrate considerazioni sulla sicurezza per la configurazione e la gestione della sicurezza dopo un ripristino del database o un server secondario tooa di failover in caso di hello di un'interruzione del centro dati o di altro tipo di emergenza
 services: sql-database
 documentationcenter: na
 author: anosov1960
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 10/13/2016
 ms.author: sashan
-ms.openlocfilehash: de5e1732dab570b80692efcdd08e4ed2d8c98800
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3172568e1b8ad2a53958200aa6cf19b4a9434ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-and-manage-azure-sql-database-security-for-geo-restore-or-failover"></a>Configurare e gestire la sicurezza dei database SQL di Azure per il ripristino geografico o il failover 
 
@@ -28,72 +28,72 @@ ms.lasthandoff: 07/11/2017
 >  
 
 ## <a name="overview-of-authentication-requirements-for-disaster-recovery"></a>Panoramica dei requisiti di autenticazione per il ripristino di emergenza
-Questo argomento illustra i requisiti di autenticazione per configurare e controllare la [replica geografica attiva](sql-database-geo-replication-overview.md) e i passaggi necessari per configurare l'accesso utente al database secondario. Descrive anche come abilitare l'accesso al database ripristinato dopo il [ripristino geografico](sql-database-recovery-using-backups.md#geo-restore). Per altre informazioni sulle opzioni di ripristino, vedere [Continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).
+Questo argomento descrive tooconfigure requisiti di autenticazione hello e controllo [replica geografica attiva](sql-database-geo-replication-overview.md) e hello i passaggi necessari tooset backup di database secondario toohello di accesso utente. Viene inoltre descritto come abilitare i database di access toohello recuperato dopo l'utilizzo di [ripristino a livello geografico](sql-database-recovery-using-backups.md#geo-restore). Per altre informazioni sulle opzioni di ripristino, vedere [Continuità aziendale del database SQL di Azure](sql-database-business-continuity.md).
 
 ## <a name="disaster-recovery-with-contained-users"></a>Ripristino di emergenza con gli utenti indipendenti
-A differenza degli utenti tradizionali per i quali deve essere eseguito il mapping agli account di accesso nel database master, un utente indipendente viene gestito completamente dal database stesso. Questo approccio presenta due vantaggi. Nello scenario di ripristino di emergenza, gli utenti possono continuare a connettersi al nuovo database primario o al database ripristinato con il ripristino geografico senza alcuna configurazione aggiuntiva, perché il database gestisce gli utenti. Dal punto di vista dell'accesso, questa configurazione offre anche vantaggi a livello di scalabilità e prestazioni. Per altre informazioni, vedere [Utenti di database indipendente: rendere portabile un database](https://msdn.microsoft.com/library/ff929188.aspx). 
+A differenza degli utenti tradizionale, che deve essere eseguito il mapping nel database master hello toologins, un utente indipendente è gestito completamente dal database hello stesso. Questo approccio presenta due vantaggi. Nello scenario di ripristino di emergenza hello, gli utenti di hello possono continuare tooconnect toohello nuovo database primario o database di hello recuperato mediante geo-restore senza configurazione aggiuntiva, perché il database di hello gestisce gli utenti di hello. Dal punto di vista dell'accesso, questa configurazione offre anche vantaggi a livello di scalabilità e prestazioni. Per altre informazioni, vedere [Utenti di database indipendente: rendere portabile un database](https://msdn.microsoft.com/library/ff929188.aspx). 
 
-Il compromesso principale è rappresentato dal fatto che il processo di ripristino di emergenza su vasta scala è più complesso da gestire. Quando si dispone di più database che usano lo stesso account di accesso, la gestione delle credenziali usate dagli utenti indipendenti in più database può annullare il vantaggio rappresentato dagli utenti indipendenti. Ad esempio, i criteri di rotazione delle password richiedono l'applicazione coerente delle modifiche in più database anziché la modifica singola della password per l'accesso nel database master. Per questo motivo l'uso degli utenti indipendenti non è consigliato in presenza di molti database che usano lo stesso nome utente e la stessa password. 
+compromesso di Hello principale è che Gestione processo di ripristino di emergenza hello su larga scala più impegnativa. Quando si dispone di più database hello tale uso stesso account di accesso, Gestione credenziali hello utilizzando contenuti agli utenti in più database possono annullare i vantaggi hello di utenti indipendenti. Ad esempio, criteri di rotazione hello password richiedono che modifiche in modo coerente in più database anziché la modifica della password per account di accesso hello hello una volta nel database master hello. Per questo motivo, se si dispone di più database hello che usa lo stesso nome utente e password, gli utenti indipendenti consiglia di non utilizzare. 
 
-## <a name="how-to-configure-logins-and-users"></a>Come configurare gli account di accesso e gli utenti
-Se si usano account di accesso e utenti tradizionali, invece di utenti indipendenti, è necessario eseguire altri passaggi per assicurare che nel database master siano presenti gli stessi account di accesso. Le sezioni seguenti illustrano i passaggi da eseguire, oltre a considerazioni aggiuntive.
+## <a name="how-tooconfigure-logins-and-users"></a>Come tooconfigure account di accesso e utenti
+Se si utilizza l'account di accesso e utenti (anziché gli utenti indipendenti), è necessario eseguire passaggi aggiuntivi tooinsure tale hello stessi account di accesso esiste nel database master hello. Hello nelle sezioni seguenti considerazioni coinvolti e ulteriori passaggi di hello.
 
-### <a name="set-up-user-access-to-a-secondary-or-recovered-database"></a>Impostare l'accesso utente a un database secondario o ripristinato
-Per fare in modo che il database secondario sia utilizzabile come database secondario di sola lettura e per garantire l'accesso appropriato al nuovo database primario o al database ripristinato con il ripristino geografico, è necessario che nel database master del server di destinazione sia presente la configurazione di sicurezza appropriata prima del ripristino.
+### <a name="set-up-user-access-tooa-secondary-or-recovered-database"></a>Configurare accesso tooa secondario o recuperata database utente
+Affinché toobe database secondario hello utilizzabile come un database secondario di sola lettura e tooensure accesso appropriato toohello nuovo database o hello database primario recuperato utilizzando ripristino a livello geografico, hello master database hello del server di destinazione deve disporre di hello configurazione di sicurezza appropriate prima ripristino hello.
 
-Le autorizzazioni specifiche per ogni passaggio sono descritte più avanti in questo argomento.
+autorizzazioni specifiche di Hello per ogni passaggio sono descritte più avanti in questo argomento.
 
-La preparazione dell'accesso utente a un database secondario con replica geografica deve essere eseguita durante la configurazione della replica geografica. La preparazione dell'accesso utente ai database ripristinati con il ripristino geografico deve essere eseguita in qualsiasi momento quando il server originale è online, ad esempio nel contesto dell'analisi del ripristino di emergenza.
+Preparazione tooa di accesso utente replica geografica secondaria deve essere eseguita durante la configurazione di replica geografica. Preparazione dell'accesso utente database ripristinato geografica toohello deve essere eseguita in qualsiasi momento server originale hello è online (ad esempio come parte di drill di ripristino di emergenza hello).
 
 > [!NOTE]
-> Se si esegue il failover o il ripristino geografico in un server che non presenta account di accesso configurati adeguatamente, l'accesso sarà limitato all'account amministratore del server.
+> Se si esegue il failover o il ripristino geografico tooa server che non dispone di account di accesso configurato correttamente, accesso tooit sarà l'account amministratore del server toohello limitato.
 > 
 > 
 
-La configurazione degli account di accesso nel server di destinazione prevede i tre passaggi seguenti:
+Impostazione di account di accesso nel server di destinazione hello comporta tre passaggi descritti di seguito:
 
-#### <a name="1-determine-logins-with-access-to-the-primary-database"></a>1. Determinare gli account di accesso che possono accedere al database primario:
-Il primo passaggio della procedura consiste nel determinare quali account di accesso devono essere duplicati nel server di destinazione. A questo scopo, è necessario usare una coppia di istruzioni SELECT, una nel database master logico nel server di origine e una nel database primario stesso.
+#### <a name="1-determine-logins-with-access-toohello-primary-database"></a>1. Determinare gli account di accesso con database di access toohello primario:
+Hello del processo di hello è innanzitutto necessario duplicare gli account di accesso nel server di destinazione hello toodetermine. Questa operazione viene eseguita con una coppia di istruzioni SELECT, uno nel database master logico hello nel server di origine hello e uno nel database primario di hello stesso.
 
-Solo l'amministratore del server o un membro del ruolo del server **LoginManager** può determinare gli account di accesso nel server di origine con l'istruzione SELECT seguente. 
+Hello solo l'amministratore del server o un membro di hello **LoginManager** ruolo del server è possibile determinare gli account di accesso hello nel server di origine hello con hello segue l'istruzione SELECT. 
 
     SELECT [name], [sid] 
     FROM [sys].[sql_logins] 
     WHERE [type_desc] = 'SQL_Login'
 
-Solo un membro del ruolo del database db_owner, l'utente dbo o l'amministratore del server può determinare tutte le entità utente nel database primario.
+Solo un membro del ruolo del database db_owner hello, utente dbo hello o amministratore del server, è possibile determinare tutti hello utente entità di database nel database primario hello.
 
     SELECT [name], [sid]
     FROM [sys].[database_principals]
     WHERE [type_desc] = 'SQL_USER'
 
-#### <a name="2-find-the-sid-for-the-logins-identified-in-step-1"></a>2. Trovare il SID degli account di accesso identificati nel passaggio 1:
-Confrontando l'output delle query illustrate nella sezione precedente e trovando una corrispondenza per i SID, è possibile eseguire il mapping dell'account di accesso del server all'utente del database. Gli account di accesso che hanno un utente del database con un SID corrispondente hanno anche l'accesso utente a quel database come entità utente. 
+#### <a name="2-find-hello-sid-for-hello-logins-identified-in-step-1"></a>2. Trovare hello SID per l'account di accesso hello identificato nel passaggio 1:
+Confrontando l'output di hello di query hello dalla sezione precedente hello e hello corrispondente SID, è possibile eseguire il mapping utente toodatabase con accesso server hello. Account di accesso che dispongono di un utente del database con un SID corrispondente sono database toothat di accesso utente con questo nome utente del database principale. 
 
-La query seguente può essere usata per visualizzare tutte le entità utente e i relativi SID in un database. Questa query può essere eseguita solo da un membro del ruolo del database db_owner o dall'amministratore del server.
+Hello nella query seguente può essere utilizzato toosee tutte le entità utente hello e i relativi SID in un database. Solo un membro di hello db_owner del database del server o del ruolo amministratore può eseguire questa query.
 
     SELECT [name], [sid]
     FROM [sys].[database_principals]
     WHERE [type_desc] = 'SQL_USER'
 
 > [!NOTE]
-> Gli utenti **INFORMATION_SCHEMA** e **sys** avranno SID *NULL*, mentre il SID **guest** è **0x00**. Il SID **dbo** può iniziare con *0x01060000000001648000000000048454* se il database è stato creato dall'amministratore del server invece che da un membro di **DbManager**.
+> Hello **INFORMATION_SCHEMA** e **sys** gli utenti hanno *NULL* SID e hello **guest** SID è **0x00**. Hello **dbo** SID può iniziare con *0x01060000000001648000000000048454*, se hello database è stato salve server anziché un membro di **DbManager**.
 > 
 > 
 
-#### <a name="3-create-the-logins-on-the-target-server"></a>3. Creare gli account di accesso nel server di destinazione:
-L'ultimo passaggio consiste nel generare gli account di accesso con i SID appropriati nel server o nei server di destinazione. La sintassi di base è la seguente.
+#### <a name="3-create-hello-logins-on-hello-target-server"></a>3. Creare gli account di accesso di hello sul server di destinazione hello:
+Hello ultimo passaggio è toogo toohello server di destinazione o server e generare gli account di accesso hello con hello SID appropriati. sintassi di base Hello è come indicato di seguito.
 
     CREATE LOGIN [<login name>]
     WITH PASSWORD = <login password>,
     SID = <desired login SID>
 
 > [!NOTE]
-> Se si vuole concedere l'accesso utente al database secondario, ma non al database primario, è possibile modificare l'account di accesso utente nel server primario usando la sintassi seguente.
+> Se si desidera toogrant utente accesso toohello secondario, ma non i toohello primario, è possibile farlo mediante la modifica di account di accesso utente hello nel server primario hello utilizzando la seguente sintassi hello.
 > 
 > ALTER LOGIN <login name> DISABLE
 > 
-> DISABLE non modifica la password, pertanto è sempre possibile abilitare l'accesso, se necessario.
+> DISABLE non modifica la password di hello, pertanto è sempre possibile abilitarla se necessario.
 > 
 > 
 

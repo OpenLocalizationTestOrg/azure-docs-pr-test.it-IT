@@ -1,6 +1,6 @@
 ---
-title: Ispezione dei pacchetti con Azure Network Watcher | Microsoft Docs
-description: Questo articolo descrive come usare Network Watcher per eseguire un'ispezione approfondita dei pacchetti raccolti da una VM
+title: ispezione aaaPacket con Watcher di rete di Azure | Documenti Microsoft
+description: In questo articolo viene descritto come toouse analisi approfondita dei pacchetti di rete Watcher tooperform raccolti da una macchina virtuale
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 91c47bb8922a9be21dff72e7cf64b29b14a36e9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4aeddcd482edc4df3d63e87b5c4b0788c540850b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="packet-inspection-with-azure-network-watcher"></a>Ispezione dei pacchetti con Azure Network Watcher
 
-Usando la funzionalità di acquisizione di pacchetti di Network Watcher, è possibile avviare e gestire sessioni di acquisizioni nelle VM di Azure dal portale, da PowerShell, dall'interfaccia della riga di comando e a livello di codice tramite l'SDK e l'API REST. L'acquisizione di pacchetti consente di gestire scenari in cui sono necessari dati a livello di pacchetto fornendo le informazioni in un formato subito utilizzabile. Sfruttando gli strumenti disponibili gratuitamente per ispezionare i dati, è possibile esaminare le comunicazioni inviate alle e dalle VM e ottenere informazioni dettagliate sul traffico di rete. Alcuni esempi di uso dei dati di acquisizione di pacchetti includono: esame dei problemi della rete o delle applicazioni, rilevamento dell'uso improprio della rete e dei tentativi di intrusione o gestione della conformità alle normative. In questo articolo viene illustrato come aprire un file di acquisizione di pacchetti fornito da Network Watcher usando un diffuso strumento open source. Verranno anche forniti esempi che illustrano come calcolare la latenza di una connessione, identificare il traffico anomalo ed esaminare le statistiche di rete.
+Utilizza la funzionalità di acquisizione pacchetti hello del controllo di rete, è possibile avviare e gestire le sessioni di acquisizioni su macchine virtuali di Azure dal portale di hello, PowerShell CLI e a livello di programmazione tramite hello SDK e API REST. Acquisizione di pacchetti consente tooaddress scenari che richiedono dati a livello di pacchetto, fornendo informazioni hello in un formato facilmente utilizzabile. Sfruttando i dati di hello tooinspect strumenti liberamente disponibili, è possibile esaminare le comunicazioni inviate tooand dalle macchine virtuali e ottenere informazioni approfondite del traffico di rete. Alcuni esempi di uso dei dati di acquisizione di pacchetti includono: esame dei problemi della rete o delle applicazioni, rilevamento dell'uso improprio della rete e dei tentativi di intrusione o gestione della conformità alle normative. In questo articolo viene illustrata come tooopen un file di acquisizione di pacchetti forniti dal controllo di rete utilizzando uno strumento open source comuni. Inoltre, Microsoft fornisce esempi che mostrano come toocalculate una latenza della connessione, identificare il traffico anomalo ed esaminare le statistiche di rete.
 
 ## <a name="before-you-begin"></a>Prima di iniziare
 
-Questo articolo descrive alcuni scenari preconfigurati in un'acquisizione di pacchetti eseguita prima. Gli scenari esaminano un'acquisizione di pacchetti per illustrare le funzionalità accessibili. Questo scenario usa [WireShark](https://www.wireshark.org/) per ispezionare l'acquisizione di pacchetti.
+Questo articolo descrive alcuni scenari preconfigurati in un'acquisizione di pacchetti eseguita prima. Gli scenari esaminano un'acquisizione di pacchetti per illustrare le funzionalità accessibili. Questo scenario Usa [WireShark](https://www.wireshark.org/) tooinspect acquisizione di pacchetti hello.
 
-Questo scenario presume che sia già stata eseguita un'acquisizione di pacchetti in una macchina virtuale. Per informazioni su come creare un'acquisizione di pacchetti, vedere [Manage packet captures with the portal](network-watcher-packet-capture-manage-portal.md) (Gestire le acquisizioni di pacchetti con il portale) o [Managing Packet Captures with REST API](network-watcher-packet-capture-manage-rest.md) (Gestione di acquisizioni di pacchetti con l'API REST).
+Questo scenario presume che sia già stata eseguita un'acquisizione di pacchetti in una macchina virtuale. modalità di acquisizione pacchetto eseguita toocreate visitare toolearn [acquisizioni di pacchetti di gestione con il portale di hello](network-watcher-packet-capture-manage-portal.md) o con REST visitando [acquisizioni di pacchetti di gestione con l'API REST](network-watcher-packet-capture-manage-rest.md).
 
 ## <a name="scenario"></a>Scenario
 
@@ -38,9 +38,9 @@ In questo scenario:
 
 ## <a name="calculate-network-latency"></a>Calcolare la latenza di rete
 
-In questo scenario viene illustrato come visualizzare il tempo di round trip (RTT, Round Trip Time) di una conversazione TCP (Transmission Control Protocol) che avviene tra due endpoint.
+In questo scenario viene illustrata la modalità tooview hello iniziale Round Trip Time (RTT) di una conversazione di protocollo TCP (Transmission Control) che si verificano tra due endpoint.
 
-Quando viene stabilita una connessione TCP, i primi tre pacchetti inviati nella connessione seguono un modello chiamato in genere handshake a tre livelli. Esaminando i primi due pacchetti inviati in questo handshake, una richiesta iniziale dal client e una risposta dal server, è possibile calcolare la latenza quando questa connessione viene stabilita. Questa latenza è chiamata tempo di round trip. Per altre informazioni sul protocollo TCP e l'handshake a tre livelli, vedere la risorsa seguente. https://support.microsoft.com/it-it/help/172983/explanation-of-the-three-way-handshake-via-tcp-ip
+Quando viene stabilita una connessione TCP, hello primi tre pacchetti inviati nella connessione hello seguono un handshake a tre vie hello tooas modello conosciuta. Esaminando i pacchetti hello primi due inviati questo handshake, una richiesta iniziale dal client hello e una risposta dal server hello, è possibile calcolare la latenza di hello quando è stata stabilita la connessione. Tale latenza è tooas cui hello Round Trip Time (RTT). Per ulteriori informazioni sul protocollo TCP hello e handshake a tre vie hello consultare toohello seguente risorsa. https://support.microsoft.com/it-it/help/172983/explanation-of-the-three-way-handshake-via-tcp-ip
 
 ### <a name="step-1"></a>Passaggio 1
 
@@ -48,83 +48,83 @@ Avviare WireShark
 
 ### <a name="step-2"></a>Passaggio 2
 
-Caricare il file con estensione **cap** dall'acquisizione di pacchetti. Questo file si trova nel BLOB se è stato salvato in locale nella macchina virtuale, a seconda della configurazione eseguita.
+Hello carico **CAP** file di acquisizione del pacchetto. Questo file è reperibile nel blob hello è stato salvato nella macchina virtuale di hello localmente nel, a seconda di come è stato configurato.
 
 ### <a name="step-3"></a>Passaggio 3
 
-Per visualizzare il tempo di round trip iniziale nelle conversazioni TCP, verranno esaminati solo i primi due pacchetti coinvolti nell'handshake TCP. Nell'handshake a tre livelli verranno usati i primi due pacchetti, ovvero [SYN] e [SYN, ACK]. Il nome deriva dai flag impostati nell'intestazione TCP. L'ultimo pacchetto nell'handshake, il pacchetto [ACK], non verrà usato in questo scenario. Il pacchetto [SYN] viene inviato dal client. Dopo che è stato ricevuto, il server invia il pacchetto [ACK] come acknowledgement della ricezione di SYN dal client. Sfruttando il fatto che la risposta del server richiede un overhead molto basso, il tempo RTT viene calcolato sottraendo dall'ora in cui il pacchetto [SYN, ACK] è stato ricevuto dal client l'ora in cui il pacchetto [SYN] è stato inviato dal client.
+tooview hello iniziale Round Trip Time (RTT) nelle conversazioni TCP, verrà letto solo in pacchetti primi due hello coinvolti nell'handshake TCP hello. Si utilizzerà innanzitutto due i pacchetti hello in handshake a tre vie hello, che sono hello [SYN], [SYN, ACK] pacchetti. Hanno un nome per i flag impostati nell'intestazione TCP hello. non Hello ultimo pacchetto handshake hello, pacchetti hello [ACK], verrà utilizzato in questo scenario. Hello [SYN] pacchetto viene inviato dal client hello. Dopo che viene ricevuto server hello invia pacchetti hello [ACK] come una conferma di ricezione hello SYN dal client hello. Utilizzo delle tabelle dei fatti hello che risposta hello del server richiede un overhead minimo, è calcolare hello RTT sottraendo tempo hello pacchetti hello [SYN, ACK] è stato ricevuto da client hello dal pacchetto di tempo [SYN] hello inviato dal client hello.
 
 Usando WireShark questo valore viene calcolato automaticamente.
 
-Per visualizzare più facilmente i primi due pacchetti nell'handshake a tre livelli TCP, verrà utilizzata la funzionalità di filtro di WireShark.
+toomore visualizzare facilmente i primi due pacchetti hello in handshake a tre vie TCP hello, verrà utilizzato il filtro delle funzionalità fornite da WireShark hello.
 
-Per applicare il filtro in WireShark, espandere il segmento "Transmission Control Protocol" di un pacchetto [SYN] nell'acquisizione ed esaminare i flag impostati nell'intestazione TCP.
+filtro hello tooapply WireShark, espandere hello "Transmission Control Protocol" segmento di un pacchetto [SYN] nell'acquisizione ed esaminare i flag di hello impostati nell'intestazione TCP hello.
 
-Poiché si vogliono filtrare i pacchetti [SYN] e [SYN, ACK], nei flag seguenti verificare che il bit Syn sia impostato su 1, quindi fare clic con il pulsante destro del mouse sul bit Syn -> Apply as Filter (Applica come filtro) -> Selezionato.
+Poiché in esame toofilter in tutti i [SYN] e [SYN, ACK] pacchetti, con flag cofirm che hello Syn bit impostato too1, quindi fare clic destro sul bit Syn hello -> Applica come filtro -> selezionati.
 
 ![Figura 7][7]
 
 ### <a name="step-4"></a>Passaggio 4
 
-Dopo avere filtrato la finestra per visualizzare solo i pacchetti con il bit [SYN] impostato, è possibile selezionare facilmente le conversazioni a cui si è interessati per visualizzare il tempo RTT iniziale. Per visualizzare facilmente il tempo RTT in WireShark, è sufficiente fare clic sul menu a discesa dell'analisi "SEQ/ACK". Verrà quindi visualizzato il tempo RTT. In questo caso, il tempo RTT era 0,0022114 secondi o 2,211 ms.
+Ora che sono stati filtrati finestra tooonly vedere i pacchetti hello con hello [SYN] bit impostato, è possibile selezionare le conversazioni si è interessati a tooview hello RTT iniziale. Hello di tooview un modo semplice RTT in WireShark fare clic su elenco a discesa hello contrassegnato analysis "SEQ/ACK". Verrà quindi visualizzato hello che RTT visualizzato. In questo caso, hello RTT era 0.0022114 secondi o 2.211 ms.
 
 ![Figura 8][8]
 
 ## <a name="unwanted-protocols"></a>Protocolli indesiderati
 
-In un'istanza di una macchina virtuale distribuita in Azure potrebbero essere in esecuzione più applicazioni. Molte di queste applicazioni comunicano in rete, a volte senza esplicita autorizzazione. Usando l'acquisizione di pacchetti per archiviare la comunicazione di rete, è possibile esaminare come le applicazioni comunicano in rete e cercare eventuali problemi.
+In un'istanza di una macchina virtuale distribuita in Azure potrebbero essere in esecuzione più applicazioni. Molte di queste applicazioni di comunicare in rete hello, probabilmente senza alcuna autorizzazione esplicita. L'uso della comunicazione di rete toostore acquisizione pacchetto, è possibile esaminare come applicazione comunichino sulla rete hello e cercare eventuali problemi.
 
 In questo esempio viene esaminata un'acquisizione di pacchetti già eseguita per trovare protocolli indesiderati che potrebbero indicare una comunicazione non autorizzata da un'applicazione in esecuzione nel computer.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Usando la stessa acquisizione dello scenario precedente, fare clic su **Statistics** (Statistiche) > **Protocol Hierarchy** (Gerarchia protocolli)
+Utilizzo di hello stessa acquisizione in hello precedente scenario, scegliere **statistiche** > **protocollo gerarchia**
 
 ![Menu Protocol Hierarchy (Gerarchia protocolli)][2]
 
-Verrà visualizzata la finestra della gerarchia dei protocolli. Questa visualizzazione fornisce un elenco di tutti i protocolli usati durante la sessione di acquisizione e il numero di pacchetti trasmessi e ricevuti usando i protocolli. Si tratta di una visualizzazione utile per trovare il traffico di rete indesiderato nelle macchine virtuali o in rete.
+verrà visualizzata la finestra gerarchia di protocollo Hello. Questa visualizzazione fornisce un elenco di tutti i protocolli di hello che erano in uso durante la sessione di acquisizione hello e numero di hello di pacchetti trasmessi e ricevuti tramite protocolli hello. Si tratta di una visualizzazione utile per trovare il traffico di rete indesiderato nelle macchine virtuali o in rete.
 
 ![Gerarchia dei protocolli aperta][3]
 
-Come si può osservare nell'acquisizione della schermata seguente, parte del traffico usava il protocollo BitTorrent, che viene usato per la condivisione di file peer-to-peer. Un amministratore non si aspetta di trovare traffico BitTorrent in queste particolari macchine virtuali. Dopo avere trovato questo tipo di traffico, è possibile rimuovere il software peer-to-peer installato in questa macchina virtuale o bloccare il traffico usando i gruppi di sicurezza di rete o un firewall. È anche possibile scegliere di eseguire le acquisizioni di pacchetti in base a una pianificazione per poter esaminare periodicamente l'uso del protocollo nelle macchine virtuali. Per un esempio di come automatizzare le attività di rete in Azure, vedere [Monitor network resources with azure automation](network-watcher-monitor-with-azure-automation.md) (Monitorare le risorse di rete con Automazione di Azure)
+Come si può notare in hello dopo l'acquisizione dello schermo, si è verificato il traffico tramite il protocollo BitTorrent hello, che viene utilizzato per la condivisione di file toopeer peer. Un amministratore non si prevede toosee BitTorrent traffico specifico le macchine virtuali. Ora è consapevoli del traffico, è possibile rimuovere hello peer toopeer software installato in questa macchina virtuale o hello blocco del traffico tramite un Firewall o i gruppi di sicurezza di rete. Inoltre, è possibile scegliere toorun acquisizioni di pacchetti in una pianificazione, pertanto è possibile esaminare regolarmente hello protocollo utilizzo nelle macchine virtuali. Per un esempio sulle modalità di attività di rete tooautomate in azure visita [monitoraggio delle risorse di rete con automazione di azure](network-watcher-monitor-with-azure-automation.md)
 
 ## <a name="finding-top-destinations-and-ports"></a>Ricerca di porte e destinazioni principali
 
-Conoscere i tipi di traffico, gli endpoint e le porte attraverso cui avviene la comunicazione è importante quando si monitorano o si risolvono i problemi delle applicazioni e delle risorse nella rete. Utilizzando un file di acquisizione di pacchetti già usato, è possibile conoscere rapidamente le destinazioni principali con cui comunica la VM e le porte utilizzate.
+Informazioni sui tipi di hello del traffico, hello endpoint e porte hello comunicate tramite è un importante durante il monitoraggio e risoluzione dei problemi delle applicazioni e risorse di rete. Utilizzo di un file di acquisizione dei pacchetti precedente, è possibile apprendere rapidamente hello prime destinazioni la macchina virtuale sta comunicando e hello porte in uso.
 
 ### <a name="step-1"></a>Passaggio 1
 
-Usando la stessa acquisizione dello scenario precedente, fare clic su **Statistics** (Statistiche) > **IPv4 Statistics** (Statistiche IPv4) > **Destinations and Ports** (Destinazioni e porte)
+Utilizzando hello stessa acquisizione in hello precedente scenario, scegliere **statistiche** > **statistiche IPv4** > **destinazioni e le porte**
 
 ![Finestra di acquisizione di pacchetti][4]
 
 ### <a name="step-2"></a>Passaggio 2
 
-Tra i risultati si nota una riga in cui sono presenti più connessioni alla porta 111. La porta più usata è la 3389, che è un desktop remoto. Le altre sono porte dinamiche RPC.
+Come esaminare i risultati di hello distingue una riga, si sono verificati più connessioni sulla porta 111. porta Hello più utilizzato è 3389, ovvero desktop remoto e hello rimanenti sono porte dinamiche RPC.
 
-Anche se questo traffico può non essere significativo, la porta è però stata usata per diverse connessioni ed è sconosciuta all'amministratore.
+Questo traffico può significare nothing, ma è una porta che veniva utilizzata per un numero di connessioni e amministratore toohello sconosciuto.
 
 ![Figura 5][5]
 
 ### <a name="step-3"></a>Passaggio 3
 
-Dopo avere trovato una porta anomala, è possibile filtrare l'acquisizione in base alla porta.
+Ora che è stato rilevato un timeout della porta sul posto che è possibile filtrare l'acquisizione in base a una porta di hello.
 
-Il filtro in questo scenario sarà:
+filtro Hello in questo scenario sarà:
 
 ```
 tcp.port == 111
 ```
 
-Si immette il testo del filtro precedente nella casella di testo del filtro e si preme INVIO.
+Testo del filtro hello sopra è immettere nella casella di testo hello filtro e premere INVIO.
 
 ![Figura 6][6]
 
-Dai risultati è possibile osservare che tutto il traffico proviene da una macchina virtuale locale nella stessa subnet. Se l'origine di questo traffico non è ancora evidente, è possibile ispezionare meglio i pacchetti per determinare perché vengono eseguite queste chiamate sulla porta 111. Con queste informazioni è possibile eseguire l'azione appropriata.
+Dai risultati di hello, possiamo vedere tutto il traffico hello proviene da una macchina virtuale locale hello stessa subnet. Se ancora non comprendere perché è in corso il traffico, è possibile controllare ulteriormente toodetermine pacchetti hello motivo per cui esegue queste chiamate sulla porta 111. Con queste informazioni è possibile effettuare l'azione appropriata hello.
 
 ## <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni sulle altre funzionalità di diagnostica di Network Watcher, vedere [Azure network monitoring overview](network-watcher-monitoring-overview.md) (Panoramica del monitoraggio della rete di Azure)
+Informazioni circa hello altre funzionalità di diagnostica di rete Watcher visitando [Panoramica di monitoraggio della rete di Azure](network-watcher-monitoring-overview.md)
 
 [1]: ./media/network-watcher-deep-packet-inspection/figure1.png
 [2]: ./media/network-watcher-deep-packet-inspection/figure2.png

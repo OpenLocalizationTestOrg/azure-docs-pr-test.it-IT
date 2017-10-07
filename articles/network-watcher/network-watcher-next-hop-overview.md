@@ -1,6 +1,6 @@
 ---
-title: Introduzione all'hop successivo in Azure Network Watcher | Microsoft Docs
-description: "Questa pagina fornisce una panoramica della funzionalità hop successivo di Network Watcher"
+title: aaaIntroduction toonext hop Watcher di rete di Azure | Documenti Microsoft
+description: "Questa pagina viene fornita una panoramica di hello Watcher di rete dalla capacità dell'hop successiva"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 5dd65d2418cae206965a13013dd990b916ad0733
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 916af736d0d52abadeafed746f0f8a0173b11033
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-next-hop-in-azure-network-watcher"></a>Introduzione all'hop successivo in Azure Network Watcher
+# <a name="introduction-toonext-hop-in-azure-network-watcher"></a>Hop toonext introduzione Watcher di rete di Azure
 
-Il traffico proveniente da una macchina virtuale viene inviato a una destinazione in base alle route valide associate alla scheda di interfaccia di rete. L'hop successivo ottiene il tipo di hop successivo e l'indirizzo IP di un pacchetto da una macchina virtuale e una scheda di interfaccia di rete specifiche. Ciò consente di determinare se il pacchetto viene indirizzato a destinazione o se il traffico viene inviato a un black hole. Una configurazione errata delle route da parte dell'utente, in cui il traffico viene indirizzato a un percorso locale oppure a un dispositivo virtuale, può causare problemi di connettività. L'hop successivo restituisce anche la tabella di route associata all'hop successivo. Quando si eseguono query su un hop successivo, viene restituita la route, se definita dall'utente. In caso contrario l'hop successivo restituisce la route di sistema.
+Il traffico proveniente da una macchina virtuale viene inviato a destinazione tooa in base a route valide di hello associate a una scheda di rete. Hop successivo Ottiene il tipo dell'hop successivo di hello e l'indirizzo IP di un pacchetto da una macchina virtuale specifica e una scheda di rete. In questo modo toodetermine se hello pacchetto è in corso destinazione toohello diretti o è holed traffico hello in nero. Una configurazione non corretta di route da hello utente, in cui il traffico di un percorso locale tooan diretti o da un dispositivo virtuale, può causare problemi di tooconnectivity. Hop successivo restituisce anche tabella di route hello associata all'hop successivo hello. Quando si eseguono query hop successivo itinerario hello è definito come una route definita dall'utente, verrà restituito tale route. In caso contrario l'hop successivo restituisce la route di sistema.
 
 ![Panoramica dell'hop successivo][1]
 
-Di seguito è riportato un elenco dei tipi di hop successivo che possono essere restituiti dalle query sull'hop successivo.
+Hello seguito è riportato un elenco di tipi di hop successivi hello che possono essere restituiti quando si eseguono query hop successivo.
 
 * Internet
 * VirtualAppliance
@@ -38,7 +38,7 @@ Di seguito è riportato un elenco dei tipi di hop successivo che possono essere 
 
 ### <a name="next-steps"></a>Passaggi successivi
 
-Per informazioni su come usare l'hop successivo per rilevare i problemi di connettività di rete, vedere l'articolo relativo alla [verifica dell'hop successivo in una macchina virtuale](network-watcher-check-next-hop-portal.md).
+Informazioni su come toofind hop successivo toouse problemi con la connettività di rete, visitare il sito [controllo hello dell'hop successivo in una macchina virtuale](network-watcher-check-next-hop-portal.md)
 
 <!--Image references-->
 [1]: ./media/network-watcher-next-hop-overview/figure1.png

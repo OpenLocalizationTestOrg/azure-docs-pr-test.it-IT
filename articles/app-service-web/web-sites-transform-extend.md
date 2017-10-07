@@ -1,6 +1,6 @@
 ---
-title: Configurazione avanzata ed estensioni dell'app Web di Servizio app di Azure
-description: Utilizzare le dichiarazioni XMDT (XML Document Transformation) per trasformare il file ApplicationHost.config nell'app Web di Servizio Web di Azure e per aggiungere estensioni provate per abilitare azioni di amministrazione personalizzate."
+title: App del servizio web app aaaAzure estensioni e configurazioni avanzate
+description: Utilizzare file ApplicationHost. config del servizio App di Azure web app tooadd le estensioni private tooenable amministrazione personalizzato azioni e Transformation(XDT) documento XML dichiarazioni tootransform hello.
 author: cephalin
 writer: cephalin
 editor: mollybos
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/25/2016
 ms.author: cephalin
-ms.openlocfilehash: 314d3a954e712b829e7cf5eb37b23b31670f976b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 873347ac13113d1ac989cba29128382c81dcfcca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-web-app-advanced-config-and-extensions"></a>Configurazione avanzata ed estensioni dell'app Web di Servizio app di Azure
-Le dichiarazioni XDT [(XML Document Transformation)](http://msdn.microsoft.com/library/dd465326.aspx) consentono di trasformare il file [ApplicationHost.config](http://www.iis.net/learn/get-started/planning-your-iis-architecture/introduction-to-applicationhostconfig) in app Web in Servizio app di Azure. È inoltre possibile usare le dichiarazioni XDT per aggiungere estensioni private in modo da consentire azioni di amministrazione personalizzate nell'app Web. In questo articolo è disponibile un'estensione dell'app PHP Manager di esempio, che consente la gestione di impostazioni PHP mediante un'interfaccia Web.
+Utilizzando [trasformazione di documenti XML](http://msdn.microsoft.com/library/dd465326.aspx) dichiarazioni (XDT), è possibile trasformare hello [applicationHost. config](http://www.iis.net/learn/get-started/planning-your-iis-architecture/introduction-to-applicationhostconfig) file nell'app web in Azure App Service. È possibile utilizzare anche XDT dichiarazioni tooadd le estensioni private tooenable web personalizzato app le azioni di amministrazione. In questo articolo è disponibile un'estensione dell'app PHP Manager di esempio, che consente la gestione di impostazioni PHP mediante un'interfaccia Web.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a id="transform"></a>Configurazione avanzata tramite ApplicationHost.config
-La piattaforma Servizio app offre flessibilità e controllo per la configurazione dell'app Web. Benché il file di configurazione standard ApplicationHost.config di IIS non sia disponibile per la modifica diretta in Servizio app, la piattaforma supporta un modello di trasformazione dichiarativo di ApplicationHost.config basato su dichiarazioni XDT (XML Document Transformation).
+piattaforma del servizio App Hello offre flessibilità e controllo per la configurazione di app web. Anche se i file di configurazione applicationHost. config IIS standard hello non è disponibile per la modifica diretta nel servizio App, piattaforma hello supporta un modello di trasformazione applicationHost. config dichiarativo basato su XML documento trasformazione (XDT).
 
-Per avvalersi di questa funzionalità per la trasformazione, è necessario creare un file ApplicationHost.xdt con contenuto XDT e posizionarlo sotto la radice del sito (d:\home\site) nella [Console Kudu](https://github.com/projectkudu/kudu/wiki/Kudu-console). Potrebbe essere necessario riacciare l'app Web per rendere effettive le modifiche.
+tooleverage questa funzionalità di trasformazione, creare un file ApplicationHost.xdt con XDT contenuto e inserire nella radice del sito hello (d:\home\site) hello [Kudu Console](https://github.com/projectkudu/kudu/wiki/Kudu-console). Per effetto di tootake modifiche potrebbe essere necessario toorestart hello App Web.
 
-Il seguente esempio di applicationHost.xdt mostra come aggiungere una nuova variabile di ambiente personalizzata a un'app Web che utilizza PHP 5.4.
+Hello applicationHost.xdt esempio seguente viene illustrato come un nuovo tooa variabile di ambiente personalizzato tooadd web app che utilizza PHP 5.4.
 
 ```xml
 <?xml version="1.0"?>
@@ -48,46 +48,46 @@ Il seguente esempio di applicationHost.xdt mostra come aggiungere una nuova vari
 </configuration>
 ```
 
-Un file di log che include lo stato e i dettagli relativi alla trasformazione è disponibile nella radice FTP in LogFiles\Transform.
+È disponibile dalla radice FTP hello in LogFiles\Transform un file di log con lo stato di trasformazione e dettagli.
 
 Per esempi aggiuntivi, vedere [https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples](https://github.com/projectkudu/kudu/wiki/Xdt-transform-samples).
 
 **Nota**<br />
-Non è possibile rimuovere o riordinare gli elementi dell'elenco di moduli in `system.webServer`, ma è possibile aggiungere elementi all'elenco.
+Gli elementi dall'elenco di hello dei moduli in `system.webServer` non possono essere rimossi o riordinati, ma è possibile elenco toohello aggiunte.
 
 ## <a id="extend"></a> Estendere l'app Web
 ### <a id="overview"></a> Panoramica delle estensioni di app Web private
-Servizi app supporta le estensioni di app Web come punto di estensibilità per le azioni di amministrazione. Alcune funzionalità della piattaforma Servizio app sono in effetti implementate come estensioni preinstallate. Benché non sia possibile modificare le estensioni preinstallate della piattaforma, è possibile creare e configurare estensioni private per le proprie app Web. Questa funzionalità si basa anche sulle dichiarazioni XDT. Di seguito sono riportati i passaggi chiave per la creazione di un'estensione privata di app Web:
+Servizi app supporta le estensioni di app Web come punto di estensibilità per le azioni di amministrazione. Alcune funzionalità della piattaforma Servizio app sono in effetti implementate come estensioni preinstallate. Mentre hello piattaforma pre-installate estensioni non possono essere modificate, è possibile creare e configurare le estensioni private per un'app web. Questa funzionalità si basa anche sulle dichiarazioni XDT. Hello chiave per la creazione di un'estensione dell'app web privata passaggi seguenti hello:
 
 1. Estensione di app Web **content**: creare applicazioni Web supportate da Servizio app
 2. Estensione di app Web **declaration**: creare un file ApplicationHost.xdt
-3. **Distribuzione** dell'estensione dell'app Web: inserire il contenuto nella cartella SiteExtensions in `root`
+3. Estensione app Web **distribuzione**: posizionare il contenuto nella cartella SiteExtensions hello in`root`
 
-È necessario che i collegamenti interni per l'app Web facciano riferimento a un percorso relativo al percorso applicazione specificato nel file ApplicationHost.xdt. Dopo ogni modifica al file ApplicationHost.xdt sarà necessario il riavvio dell'app Web.
+I collegamenti interni per l'app web hello devono puntare tooa toohello relativo applicazione percorso specificato nel file ApplicationHost.xdt hello. Qualsiasi file ApplicationHost.xdt toohello delle modifiche richiede un riciclo di app web.
 
 **Nota**: informazioni aggiuntive relative a questi elementi chiave sono disponibili all'indirizzo [https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions).
 
-L'esempio dettagliato incluso illustra la procedura per la creazione e l'abilitazione di un'estensione privata dell'app Web. Il codice sorgente per l'esempio di PHP Manager seguente è disponibile per il download all'indirizzo [https://github.com/projectkudu/PHPManager](https://github.com/projectkudu/PHPManager).
+Un esempio dettagliato è incluso tooillustrate hello passaggi per la creazione e l'abilitazione di un'estensione dell'app web privato. codice sorgente, ad esempio Gestione PHP hello che indicato di seguito può essere scaricati da Hello [https://github.com/projectkudu/PHPManager](https://github.com/projectkudu/PHPManager).
 
 ### <a id="SiteSample"></a> Esempio di estensione app Web: PHP Manager
-PHP Manager è un'estensione di app Web che consente agli amministratori di app Web di visualizzare e configurare con facilità le impostazioni PHP mediante un'interfaccia Web, invece di dovere modificare direttamente i file INI di PHP. I file di configurazione comuni per PHP includono il file php.ini, disponibile in Programmi, e il file .user.ini, disponibile nella cartella radice dell'app Web. Poiché non è possibile modificare il file php.ini direttamente nella piattaforma Servizio app, l'estensione PHP Manager usa il file .user.ini per applicare le modifiche relative alle impostazioni.
+Gestione PHP è un'estensione di app web che consente agli amministratori di app web tooeasily visualizzazione e configura le impostazioni di PHP utilizzando un'interfaccia web anziché direttamente i file con estensione ini toomodify PHP. File di configurazione comuni per PHP includono file php.ini hello in file di programma e hello. user.ini file si trova nella cartella radice hello dell'app web. Poiché il file php.ini hello non è direttamente modificabile hello piattaforma del servizio App, hello estensione PHP Manager utilizza hello. user.ini file tooapply modifiche alle impostazioni.
 
-#### <a id="PHPwebapp"></a> Applicazione Web PHP Manager
-Di seguito è riportata la home page della distribuzione di PHP Manager:
+#### <a id="PHPwebapp"></a>applicazione web gestione PHP Hello
+di seguito Hello è hello home page della distribuzione di gestione PHP hello:
 
 ![TransformSitePHPUI][TransformSitePHPUI]
 
-Come si può notare, un'estensione di app Web è analoga a una normale applicazione Web, ma include un file ApplicationHost.xdt nella cartella radice dell'app Web. Ulteriori dettagli sul file ApplicationHost.xdt sono disponibili nella sezione successiva di questo articolo.
+Come si può notare, un'estensione dell'app web è esattamente come un'applicazione web regolari, ma con un altro file ApplicationHost.xdt nella cartella radice hello di hello web app (ulteriori dettagli sul file ApplicationHost.xdt hello sono disponibili nella sezione di questo hello articolo).
 
-L'estensione PHP Manager è stata creata mediante il modello di applicazione Web MVC 4 ASP.NET di Visual Studio. La visualizzazione seguente di Esplora soluzioni mostra la struttura dell'estensione di PHP Manager.
+estensione di PHP Manager Hello è stato creato utilizzando il modello di applicazione Web Visual Studio ASP.NET MVC 4 hello. Hello visualizzazione seguente da Esplora soluzioni Mostra struttura hello di hello estensione Gestione PHP.
 
 ![TransformSiteSolEx][TransformSiteSolEx]
 
-L'unica logica speciale necessaria per l'I/O file consente di indicare la posizione della directory wwwroot dell'app Web. Come illustrato nell'esempio seguente, la variabile di ambiente "HOME" indica il percorso della radice dell'app Web e il percorso wwwroot può essere creato mediante l'aggiunta di "site\wwwroot":
+Hello solo una logica speciale del file i/o è tooindicate hello directory wwwroot dell'app web hello in cui si trova. Come illustrato di esempio di codice seguente, hello hello variabile di ambiente "HOME" indica hello percorso radice dell'applicazione web e percorso wwwroot hello può essere costruita aggiungendo "site\wwwroot":
 
 ```csharp
 /// <summary>
-/// Gives the location of the .user.ini file, even if one doesn't exist yet
+/// Gives hello location of hello .user.ini file, even if one doesn't exist yet
 /// </summary>
 private static string GetUserSettingsFilePath()
 {
@@ -102,22 +102,22 @@ private static string GetUserSettingsFilePath()
 ```
 
 
-Quando si dispone del percorso della directory, sarà possibile usare operazioni normali di I/O file per la lettura e la scrittura nei file.
+Dopo aver creato il percorso di directory hello, è possibile utilizzare un file regolare tooread operazioni dei / o e scrivere toofiles.
 
-È tuttavia necessario prestare attenzione alla gestione dei collegamenti interni nelle estensioni di app Web.  Se sono presenti collegamenti nei file HTML che forniscono i percorsi assoluti per i collegamenti interni nell'app Web, sarà necessario assicurarsi che davanti a tali collegamenti sia aggiunto il nome dell'estensione come radice. poiché la radice del sito per l'estensione è ora "/`[your-extension-name]`/" invece di essere solo "/". È pertanto necessario aggiornare di conseguenza qualsiasi collegamento interno. Si supponga ad esempio che il codice includa un collegamento all'elemento seguente:
+Un punto di prestare attenzione con estensioni dell'app web per quanto riguarda la gestione di hello dei collegamenti interni.  Se si dispone di tutti i collegamenti nei file HTML che forniscono i percorsi assoluti toointernal collegamenti nell'app web, è necessario assicurarsi di che tali collegamenti vengono anteposti con il nome di estensione come la radice. Ciò è necessario perché hello cartella principale per l'estensione è "/`[your-extension-name]`/" anziché collegamenti semplicemente "/", pertanto qualsiasi interni devono essere aggiornati di conseguenza. Si supponga, ad esempio, che il codice include un esempio di toohello collegamento:
 
 `"<a href="/Home/Settings">PHP Settings</a>"`
 
-Quando il collegamento fa parte di un'estensione dell'app Web, è necessario che abbia il formato seguente:
+Se il collegamento hello fa parte di un'estensione dell'app web, collegamento hello deve essere hello seguente formato:
 
 `"<a href="/[your-site-name]/Home/Settings">Settings</a>"`
 
-In alternativa è possibile usare solo percorsi relativi nell'applicazione Web oppure, nel caso di applicazioni ASP.NET NET , utilizzando il metodo `@Html.ActionLink` che crea automaticamente i collegamenti appropriati.
+È possibile aggirare questo requisito, ovvero usando solo i percorsi relativi all'interno dell'applicazione web o in hello caso delle applicazioni ASP.NET, utilizzando hello `@Html.ActionLink` metodo che crea collegamenti appropriati hello automaticamente.
 
-#### <a id="XDT"></a> File applicationHost.xdt
-Il codice per l'estensione dell'app Web deve essere presente sotto %HOME%\SiteExtensions\[your-extension-name]. Questa sarà la radice dell'estensione.  
+#### <a id="XDT"></a>file applicationHost.xdt Hello
+codice di Hello per l'estensione app web viene inserito in %HOME%\SiteExtensions\[your-estensione-name]. Verrà chiamato questa radice estensione hello.  
 
-Per registrare l'estensione dell'app Web con il file applicationHost.config, sarà necessario inserire un file denominato ApplicationHost.xdt nella radice dell'estensione. Il contenuto del file ApplicationHost.xdt deve essere analogo al seguente:
+tooregister dell'estensione dell'app web con file ApplicationHost. config hello, è necessario un file denominato ApplicationHost.xdt nella radice di estensione hello tooplace. il contenuto di Hello del file ApplicationHost.xdt hello deve essere come segue:
 
 ```xml
 <?xml version="1.0"?>
@@ -125,7 +125,7 @@ Per registrare l'estensione dell'app Web con il file applicationHost.config, sar
   <system.applicationHost>
     <sites>
       <site name="%XDT_SCMSITENAME%" xdt:Locator="Match(name)">
-        <!-- NOTE: Add your extension name in the application paths below -->
+        <!-- NOTE: Add your extension name in hello application paths below -->
         <application path="/[your-extension-name]" xdt:Locator="Match(path)" xdt:Transform="Remove" />
         <application path="/[your-extension-name]" applicationPool="%XDT_APPPOOLNAME%" xdt:Transform="Insert">
           <virtualDirectory path="/" physicalPath="%XDT_EXTENSIONPATH%" />
@@ -136,9 +136,9 @@ Per registrare l'estensione dell'app Web con il file applicationHost.config, sar
 </configuration>
 ```
 
-Il nome selezionato come nome dell'estensione deve essere uguale al nome della cartella radice dell'estensione.
+nome Hello che è selezionato come il nome di estensione deve essere hello stesso nome della cartella radice di estensione.
 
-In tale modo, un nuovo percorso applicazione verrà aggiunto all'elenco di siti `system.applicationHost` nel sito SCM. Il sito SCM è un endpoint di amministrazione di siti, con credenziali di accesso specifiche Ha l'URL `https://[your-site-name].scm.azurewebsites.net`.  
+L'aggiunta di un nuovo toohello percorso applicazione hello effetto è `system.applicationHost` elenco dei siti nel sito di Gestione controllo servizi hello. sito di Gestione controllo servizi Hello è un punto finale di amministrazione del sito con le credenziali di accesso specifico. Contiene l'URL di hello `https://[your-site-name].scm.azurewebsites.net`.  
 
 ```xml
 <system.applicationHost>
@@ -155,7 +155,7 @@ In tale modo, un nuovo percorso applicazione verrà aggiunto all'elenco di siti 
       <application path="/" applicationPool="[your-website]">
         <virtualDirectory path="/" physicalPath="D:\Program Files (x86)\SiteExtensions\Kudu\1.24.20926.5" />
       </application>
-      <!-- Note the custom changes that go here -->
+      <!-- Note hello custom changes that go here -->
       <application path="/[your-extension-name]" applicationPool="[your-website]">
         <virtualDirectory path="/" physicalPath="C:\DWASFiles\Sites\[your-website]\VirtualDirectory0\SiteExtensions\[your-extension-name]" />
       </application>
@@ -166,23 +166,23 @@ In tale modo, un nuovo percorso applicazione verrà aggiunto all'elenco di siti 
 ```
 
 ### <a id="deploy"></a> Distribuzione dell'estensione di app Web
-Per installare l'estensione dell'app Web, è possibile utilizzare FTP per copiare tutti i file dell'applicazione Web nella cartella `\SiteExtensions\[your-extension-name]` dell'app Web su cui si desidera installare l'estensione.  Assicurarsi di copiare anche il file ApplicationHost.xdt nello stesso percorso. Riavviare l'app Web per abilitare l'estensione.
+tooinstall dell'estensione app web, è possibile utilizzare tutti i file hello del toohello di applicazione web FTP toocopy `\SiteExtensions\[your-extension-name]` cartella dell'app web hello in cui si desidera estensione hello tooinstall.  Impossibile verificare toocopy hello ApplicationHost.xdt toothis percorso del file anche. Riavviare l'estensione di hello tooenable app web.
 
-L'estensione dell'app Web dovrebbe essere visibile all'indirizzo:
+Dovrebbe essere in grado di toosee l'estensione dell'app web a:
 
 `https://[your-site-name].scm.azurewebsites.net/[your-extension-name]`
 
-Si noti che l'aspetto dell'URL è uguale a quello dell'URL dell'app Web, ad eccezione del fatto che utilizza HTTPS e include ".scm".
+Si noti che hello che URL è simile a quello hello URL per l'app web, ad eccezione del fatto che usa il protocollo HTTPS e contiene ".scm".
 
-È possibile disabilitare tutte le estensionii provate (non preinstallate) per l'app Web durante sviluppo e analisi aggiungendo impostazioni di un'app con la chiave `WEBSITE_PRIVATE_EXTENSIONS` e il valore `0`.
+È possibile toodisable tutti privati (non preinstallato) estensioni per l'app web durante lo sviluppo e indagini aggiungendo un oggetto impostazioni app con la chiave hello `WEBSITE_PRIVATE_EXTENSIONS` e il valore `0`.
 
 > [!NOTE]
-> Per iniziare a usare il servizio app di Azure prima di registrarsi per ottenere un account Azure, andare a [Prova il servizio app](https://azure.microsoft.com/try/app-service/), dove è possibile creare un'app Web iniziale temporanea nel servizio app. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
+> Se si desidera tooget avviato con il servizio App di Azure prima di effettuare l'iscrizione per un account Azure, andare troppo[tenta di servizio App](https://azure.microsoft.com/try/app-service/), in cui è possibile creare subito un'app web di breve durata starter nel servizio App. Non è necessario fornire una carta di credito né impegnarsi in alcun modo.
 > 
 > 
 
 ## <a name="whats-changed"></a>Modifiche apportate
-* Per una guida relativa al passaggio da Siti Web al servizio app, vedere [Servizio app di Azure e impatto sui servizi di Azure esistenti](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Per una Guida toohello modifica da siti Web tooApp servizio vedere: [relativo impatto sui servizi di Azure esistente e servizio App di Azure](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- IMAGES -->
 [TransformSitePHPUI]: ./media/web-sites-transform-extend/TransformSitePHPUI.png

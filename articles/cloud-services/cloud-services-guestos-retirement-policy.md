@@ -1,6 +1,6 @@
 ---
-title: Guida al supporto e ai criteri di ritiro per il sistema operativo guest di Azure | Documentazione Microsoft
-description: "Fornisce informazioni sul supporto che verrà fornito da Microsoft riguardo al sistema operativo guest di Azure usato da Servizi cloud."
+title: Guida aaaSupportability e sul ritiro di criteri per il sistema operativo Guest Azure | Documenti Microsoft
+description: "Fornisce informazioni su cosa Microsoft supporterà per toohello del sistema operativo Guest Azure utilizzati dai servizi Cloud."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 5/26/2017
 ms.author: raiye
-ms.openlocfilehash: 488a6e144b16c57c137e60b918ee68c78db1a54f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a86c42ac95d12bbf116d900b7afb26fc3fe34e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-supportability-and-retirement-policy"></a>Criteri relativi al supporto e al ritiro del sistema operativo guest di Azure
-Le informazioni di questa pagina si riferiscono al sistema operativo guest di Azure ([sistema operativo guest](cloud-services-guestos-update-matrix.md)) per i ruoli di lavoro e Web di Servizi cloud (PaaS). Non si applica alle macchine virtuali (IaaS).
+informazioni di Hello in questa pagina si riferiscono sistema operativo Guest Azure di toohello ([del sistema operativo Guest](cloud-services-guestos-update-matrix.md)) per i servizi Cloud web e lavoro ruoli (PaaS). Non è applicabile macchine tooVirtual (IaaS).
 
-Microsoft ha pubblicato i [criteri di supporto per il sistema operativo guest](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). Questa pagina contiene informazioni dettagliate sul modo in cui i criteri sono implementati.
+Microsoft dispone di un report pubblicato [criteri di supporto per sistemi operativi Guest hello](http://support.microsoft.com/gp/azure-cloud-lifecycle-faq). pagina Hello che si sta leggendo viene ora implementazione dei criteri di hello.
 
-I criteri sono i seguenti:
+criteri di Hello è
 
-1. Microsoft supporterà **almeno le ultime due famiglie del sistema operativo guest**. Quando una famiglia viene ritirata, i clienti hanno a disposizione 12 mesi dalla data ufficiale di ritiro per eseguire l'aggiornamento a una famiglia di sistemi operativi guest supportata più recente.
-2. Microsoft supporterà **almeno le ultime due versioni delle famiglie del sistema operativo guest supportate**.
-3. Microsoft supporterà **almeno le ultime due versioni di Azure SDK**. Quando una versione di SDK viene ritirata, i clienti avranno 12 mesi dalla data di ritiro ufficiale per eseguire l'aggiornamento a una versione più recente.
+1. Microsoft supporterà **almeno hello ultime due famiglie del sistema operativo Guest hello**. Quando una famiglia viene ritirata, i clienti hanno 12 mesi dalla hello ufficiale di ritiro data tooupdate tooa famiglia supportata più recente del sistema operativo Guest.
+2. Microsoft supporterà **almeno hello ultime due versioni delle famiglie del sistema operativo Guest supportato hello**.
+3. Microsoft supporterà **almeno hello ultime due versioni di Azure SDK hello**. Quando una versione di hello che SDK viene ritirata, i clienti avranno 12 mesi dalla versione più recente di hello ufficiale di ritiro data tooupdate tooa.
 
-Talvolta è possibile che siano supportati più di due rilasci o famiglie. Le informazioni di supporto ufficiale del sistema operativo guest saranno visualizzate nella [matrice di compatibilità di SDK e delle versioni del sistema operativo guest di Azure](cloud-services-guestos-update-matrix.md).
+Talvolta è possibile che siano supportati più di due rilasci o famiglie. Informazioni ufficiali di supporto del sistema operativo Guest verranno visualizzato nella hello [rilasci del sistema operativo Guest Azure e matrice di compatibilità SDK](cloud-services-guestos-update-matrix.md).
 
 ## <a name="when-a-guest-os-family-or-version-is-retired"></a>Ritiro di una famiglia o una versione del sistema operativo guest
-Una nuova **famiglia** di sistemi operativi guest viene introdotta a un certo punto dopo il rilascio di una nuova versione ufficiale del sistema operativo Windows Server. Ogni volta che viene introdotta una nuova famiglia di sistemi operativi guest, Microsoft ritirerà la famiglia precedente.
+Un nuovo sistema operativo Guest **famiglia** viene introdotta un po' dopo il rilascio di hello di una nuova versione ufficiale del sistema operativo di Windows Server hello. Ogni volta che viene introdotta una nuova famiglia di sistemi operativi Guest, Microsoft ritirerà famiglia di sistemi operativi meno recente hello.
 
-Nuove **versioni** del sistema operativo guest vengono rilasciate quasi ogni mese per incorporare gli ultimi aggiornamenti di MSRC. A causa degli aggiornamenti regolari mensili, una versione del sistema operativo guest viene in genere disabilitata 60 giorni dopo il relativo rilascio. In questo modo sono disponibili per l'uso almeno due versioni del sistema operativo guest per ogni famiglia.
+Nuovo sistema operativo Guest **versioni** vengono rilasciate pressoché ogni mese tooincorporate hello ultimi aggiornamenti di MSRC. A causa di hello aggiornamenti regolari mensili, una versione del sistema operativo Guest è in genere disabilitate 60 giorni dopo il relativo rilascio. In questo modo sono disponibili per l'uso almeno due versioni del sistema operativo guest per ogni famiglia.
 
 ### <a name="process-during-a-guest-os-family-retirement"></a>Procedura di ritiro della famiglia di sistemi operativi guest
-Una volta annunciato il ritiro, i clienti hanno a disposizione un periodo di transizione di 12 mesi prima che la famiglia precedente venga ufficialmente rimossa dal servizio. Questo periodo di transizione può essere esteso a discrezione di Microsoft. Gli aggiornamenti vengono pubblicati nella [matrice di compatibilità di SDK e delle versioni del sistema operativo guest di Azure](cloud-services-guestos-update-matrix.md).
+Una volta che viene annunciato il ritiro di hello, i clienti hanno un periodo di transizione"12 mesi" prima di famiglia di hello precedente venga ufficialmente rimossa dal servizio. Questo periodo di transizione può essere esteso a discrezione di hello di Microsoft. Gli aggiornamenti vengono pubblicati in hello [rilasci del sistema operativo Guest Azure e matrice di compatibilità SDK](cloud-services-guestos-update-matrix.md).
 
-Dopo sei (6) mesi dall'inizio del periodo di transizione comincerà un processo di ritiro graduale. In questo periodo di tempo:
+Un processo di ritiro graduale inizierà sei (6) mesi nel periodo di transizione hello. In questo periodo di tempo:
 
-1. Microsoft informerà i clienti del ritiro.
-2. La versione più recente di Azure SDK non supporterà la famiglia di sistemi operativi guest ritirata.
-3. Non sarà possibile eseguire nuove distribuzioni e ridistribuzioni di servizi cloud per la famiglia ritirata
+1. Microsoft informerà i clienti del ritiro hello.
+2. versione più recente di Hello di hello Azure SDK non supporterà la famiglia di sistemi operativi ritirata hello.
+3. Le nuove distribuzioni e ridistribuzioni di servizi Cloud non saranno consentite per la famiglia ritirata hello
 
-Microsoft continuerà a rilasciare la nuova versione del sistema operativo guest che incorpora gli ultimi aggiornamenti di MSRC fino all'ultimo giorno del periodo di transizione, noto come "data di scadenza". Alla data di scadenza, tutti i servizi cloud ancora in esecuzione non saranno supportati in base al contratto di servizio di Azure. Trascorsa tale data, Microsoft potrà forzare l'aggiornamento, l'eliminazione o l'interruzione dei servizi.
+Microsoft continuerà toointroduce nuova versione del sistema operativo Guest che includa ultimi aggiornamenti di MSRC hello fino a quando l'ultimo giorno del periodo di transizione hello, noto come "Data di scadenza" hello hello. Data di scadenza hello, non saranno supportati i servizi Cloud ancora in esecuzione in hello SLA di Azure. Microsoft ha hello discrezione tooforce aggiornare, eliminare o arrestare tali servizi dopo tale data.
 
 ### <a name="process-during-a-guest-os-version-retirement"></a>Processo durante il ritiro della versione del sistema operativo guest
-Se i clienti hanno impostato l'aggiornamento automatico del sistema operativo guest in uso, non è necessario preoccuparsi delle versioni del sistema operativo. Viene usata sempre la versione più recente del sistema operativo guest.
+Se i clienti hanno impostato l'aggiornamento di tooautomatically del sistema operativo Guest, hanno mai tooworry sulla gestione di versioni del sistema operativo Guest. Sempre che useranno hello del sistema operativo Guest più recente.
 
-Le versioni del sistema operativo guest vengono rilasciate ogni mese. A causa della frequenza dei rilasci regolari, ogni versione ha una durata fissa.
+Le versioni del sistema operativo guest vengono rilasciate ogni mese. A causa di frequenza hello dei rilasci regolari, ogni versione ha una durata fissa.
 
-Allo scadere del periodo di 60 giorni, una versione viene "*disabilitata*". "Disabilitata" significa che la versione viene rimossa dal portale. La versione non può più essere impostata dal file di configurazione CSCFG. Le distribuzioni esistenti rimangono in esecuzione, ma non è consentito eseguire nuove distribuzioni e aggiornamenti di configurazione e di codice alle distribuzioni esistenti.
+Dopo 60 giorni nel ciclo di vita di hello, è una versione "*disabilitato*". "Disabilitato" significa che la versione hello viene rimosso dal portale hello. versione di Hello non può più essere impostate dal file di configurazione CSCFG hello. Le distribuzioni esistenti rimangono in esecuzione, Ma nuove distribuzioni e le distribuzioni tooexisting di aggiornamenti di codice e la configurazione non saranno consentite.
 
-Successivamente alla "disabilitazione", la versione del sistema operativo guest "*scade*", viene forzato l'aggiornamento delle installazioni che ancora eseguono la versione in questione e viene impostato l'aggiornamento automatico del sistema operativo Guest per il futuro. La scadenza è un processo graduale, per cui il periodo che intercorre tra la disabilitazione e la scadenza può variare.
+Versione del sistema operativo Guest di hello qualche tempo dopo diventi "disabled", "*scadenza*" e le installazioni che ancora eseguono quella versione vengono forzate all'aggiornamento e impostate tooautomatically hello di aggiornamento del sistema operativo Guest in hello future. Scadenza viene eseguita in batch in modo hello periodo di tempo dalla disabilitazione tooexpiration può variare.
 
-Questi periodi possono essere resi più lunghi a discrezione di Microsoft per facilitare le transizioni del cliente. Le modifiche vengono comunicate nella [matrice di compatibilità di SDK e delle versioni del sistema operativo guest di Azure](cloud-services-guestos-update-matrix.md).
+Questi periodi possono essere resi più lunghi alle transizioni del cliente tooease discrezione di Microsoft. Tutte le modifiche verranno comunicate in hello [rilasci del sistema operativo Guest Azure e matrice di compatibilità SDK](cloud-services-guestos-update-matrix.md).
 
 ### <a name="notifications-during-retirement"></a>Notifiche durante il ritiro
-* **Ritiro della famiglia** <br>Microsoft userà i post di blog e la notifica tramite il portale. Gli utenti che usano ancora una famiglia di sistemi operativi guest ritirata verranno informati tramite una comunicazione diretta (e-mail, messaggi sul portale, telefonata) agli amministratori del servizio assegnato. Tutte le modifiche verranno inserite in questa pagina e il feed RSS verrà elencato all'inizio di questa pagina.
-* **Ritiro della versione** <br>Tutte le modifiche e le date corrispondenti verranno inserite in questa pagina e il feed RSS verrà elencato all'inizio di questa pagina, inclusa la data di rilascio, disabilitazione e scadenza. Se sono presenti distribuzioni in esecuzione su una versione o famiglia di sistemi operativi guest disabilitata, verranno inviati appositi messaggi e-mail agli amministratori dei servizi. La tempistica di questi messaggi può variare. In genere vengono inviati almeno un mese prima della disabilitazione, anche se questo non rappresenta un impegno contrattuale di servizio.
+* **Ritiro della famiglia** <br>Microsoft userà i post di blog e la notifica tramite il portale. I clienti che utilizzano ancora una famiglia di sistemi operativi Guest ritirata verranno informati tramite gli amministratori del servizio tooassigned comunicazione diretta (e-mail, messaggi sul portale, telefonata). Tutte le modifiche verranno registrate toothis pagina e hello feed RSS verrà elencato all'inizio di hello di questa pagina.
+* **Ritiro della versione** <br>Tutte le modifiche e si verificano le date di hello verranno registrate toothis pagina e hello feed RSS verrà elencato all'inizio di hello di questa pagina, inclusa una scadenza, disabilitato e la versione. Se sono presenti distribuzioni in esecuzione su una versione o famiglia di sistemi operativi guest disabilitata, verranno inviati appositi messaggi e-mail agli amministratori dei servizi. intervallo di Hello di tali messaggi può variare. In genere vengono inviati almeno un mese prima della disabilitazione, anche se questo non rappresenta un impegno contrattuale di servizio.
 
 ## <a name="frequently-asked-questions"></a>Domande frequenti
-**In che modo è possibile ridurre gli effetti della migrazione?**
+**Come è possibile ridurre l'impatto hello di migrazione?**
 
 Per progettare i Servizi cloud è consigliabile usare la famiglia di sistemi operativi guest più recente.
 
-1. Iniziare prima a pianificare la migrazione a una famiglia più recente.
-2. Configurare distribuzioni di prova temporanee per testare il servizio cloud in esecuzione nella nuova famiglia.
-3. Impostare la versione del sistema operativo guest su **Automatica** (osVersion=* nel file con estensione [cscfg](cloud-services-model-and-package.md#cscfg) ) in modo che la migrazione alle nuove versioni del sistema operativo guest venga eseguita automaticamente.
+1. Iniziare la pianificazione della famiglia più recente di tooa migrazione anticipata.
+2. Consente di impostare tootest le distribuzioni di test temporanea del servizio Cloud in esecuzione in una nuova famiglia hello.
+3. Impostare la versione del sistema operativo Guest troppo**automatica** (osVersion = * in hello [cscfg](cloud-services-model-and-package.md#cscfg) file) in modo le versioni del sistema operativo Guest di hello migrazione toonew viene eseguita automaticamente.
 
-**Che cosa accade se per l'applicazione Web è necessaria una maggiore integrazione con il sistema operativo?**
+**Cosa accade se l'applicazione web richiede una maggiore integrazione con hello del sistema operativo?**
 
-Se l'architettura dell'applicazione Web dipende da funzionalità sottostanti del sistema operativo, usare le funzionalità supportate dalla piattaforma, ad esempio le [attività di avvio](cloud-services-startup-tasks.md) o altri meccanismi di estendibilità. In alternativa, è anche possibile usare [Macchine virtuali di Azure](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS, Infrastructure as a Service), in cui si è responsabili della manutenzione del sistema operativo sottostante.
+Se l'architettura dell'applicazione web dipende da funzionalità sottostanti del sistema operativo hello, usare funzionalità supportate della piattaforma, ad esempio [le attività di avvio](cloud-services-startup-tasks.md) o altri meccanismi di estendibilità. In alternativa, è inoltre possibile utilizzare [macchine virtuali di Azure](https://azure.microsoft.com/documentation/scenarios/virtual-machines/) (IaaS, infrastruttura come servizio), in cui si è responsabile della gestione hello sottostante del sistema operativo.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Esaminare le [versioni del sistema operativo guest](cloud-services-guestos-update-matrix.md)più recenti.
+Hello revisione più recente [versioni del sistema operativo Guest](cloud-services-guestos-update-matrix.md).

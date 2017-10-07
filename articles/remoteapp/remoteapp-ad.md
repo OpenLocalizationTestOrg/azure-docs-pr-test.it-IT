@@ -1,6 +1,6 @@
 ---
-title: Azure AD + requisiti di Active Directory per Azure RemoteApp | Documentazione Microsoft
-description: Informazioni su come configurare Active Directory per lavorare con Azure RemoteApp.
+title: aaaAzure AD + requisiti di Active Directory per Azure RemoteApp | Documenti Microsoft
+description: Informazioni su come tooset backup toowork di Active Directory con Azure RemoteApp.
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 78008a032faa93795cc02b720d68a0c6f5f16e9a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c1c4a7ad6fb96ec4d479fdc231f03d81b58b2b71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad--active-directory-requirements-for-azure-remoteapp"></a>Azure AD + requisiti di Active Directory per Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Per i dettagli, vedere l' [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp verrà sospeso a partire dal 31 agosto 2017. Hello lettura [annuncio](https://go.microsoft.com/fwlink/?linkid=821148) per informazioni dettagliate.
 > 
 > 
 
-Per la raccolta ibrida di RemoteApp di Azure o per un insieme di cloud che si desidera attuare utilizzando una connessione di Active Directory, è necessario eseguire le operazioni seguenti.
+Per la raccolta ibrida di RemoteApp di Azure o per una raccolta di cloud che si desidera toofederate con Active Directory Connect, è necessario seguente hello toodo.
 
 ### <a name="connect-azure-ad-and-active-directory"></a>Connettersi AD Azure e ad Active Directory
-Se si desidera connettere il tenant di Azure AD e gli ambienti di Active Directory in locale, utilizzare la connessione di Active Directory. Verranno visualizzati solo [4 clic](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) per connettere le due directory.
+Se si desidera tooconnect tenant di Azure AD e gli ambienti di Active Directory locale, utilizzare AD Connect. Verranno visualizzate solo [4 clic](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) tooconnect hello due directory.
 
 Nota - la sincronizzazione delle Directory è necessaria per le raccolte ibride.
 
 ### <a name="make-sure-your-domaincom-match"></a>Controllare la corrispondenza del valore "@domain.com"
-Prima di iniziare, assicurarsi che il nome UPN per la foresta locale corrisponda al suffisso del dominio di Microsoft Azure. 
+Prima di iniziare, verificare che tale hello UPN per il suffisso di hello corrispondenze foresta locale del dominio di Azure AD. 
 
-Dopo avere impostato il suffisso del dominio UPN in Azure AD, tutti gli utenti che accedono ad Azure RemoteApp accederanno come "user@<the suffix you set up>". Assicurarsi che gli utenti possano inoltre accedere con lo stesso user@suffix nel dominio locale. In alcuni casi è possibile impostare un nome di dominio in Azure AD quando si specifica un suffisso di dominio diverso per l'utente locale. In questo caso, gli utenti non potranno connettersi a nessun computer appartenente a un dominio o a risorse tramite Azure RemoteApp.
+Dopo aver configurato il suffisso di dominio UPN hello in Azure AD, tutti gli utenti che accedono in Azure RemoteApp vengono registrati come "utente @<hello suffix you set up>." Assicurarsi che gli utenti possono anche accedere con hello stesso user@suffix nel dominio locale hello. In alcuni casi è possibile impostare un nome di dominio in Azure AD quando si specifica un suffisso di dominio diverso per hello utente in locale. In questo caso, gli utenti sarà in grado di tooconnect tooany dominio computer o alle risorse tramite Azure RemoteApp.
 
-Ad esempio, se si imposta il suffisso di dominio UPN in AAD come contoso.com, ma alcuni utenti in locale o in Active Directory sono configurati per l'accesso con @contoso.uk, tali utenti non potranno accedere correttamente alla raccolta ARA. Gli utenti UPN in AAD e in Active Directory devono essere gli stessi affinché l'accesso sia possibile"
+Se, ad esempio, impostare il suffisso di dominio UPN in AAD come contoso.com, ma alcuni utenti in locale o Active Directory sono configurati toolog con @contoso.uk, gli utenti non saranno hello raccolta ARA toocorrectly in grado di accedere. Gli utenti che UPN in AAD e Active Directory deve essere uguale hello per le possibili toobe account di accesso di hello"
 
 ### <a name="create-objects-for-azure-remoteapp"></a>Creare gli oggetti per RemoteApp di Azure
-Inoltre, è necessario creare i seguenti oggetti di Active Directory locali:
+È inoltre necessario hello toocreate seguendo gli oggetti di Active Directory locale:
 
-* Un account del servizio per fornire l'accesso alle risorse di dominio ai programmi RemoteApp unendo gli endpoint di Host sessione Desktop remoto al dominio locale.
-* Un'unità organizzativa per contenere oggetti computer di RemoteApp. L'uso dell'unità organizzativa è consigliabile (ma non obbligatorio) per isolare gli account e i criteri che si useranno con RemoteApp.
+* Un account servizio tooprovide accesso toodomain alle risorse per i programmi RemoteApp creando un join di dominio locale toohello punti finali di host sessione Desktop remoto.
+* Un'unità organizzativa (OU) toocontain RemoteApp gli oggetti macchina. Utilizzo di hello unità Organizzativa è account hello tooisolate consigliata (ma non obbligatorio) e i criteri che verranno utilizzati con RemoteApp.
 
-Entrambi questi oggetti sono necessari quando si crea la raccolta di RemoteApp, sarà dunque necessario innanzitutto eseguire questi passaggi.
+È necessario entrambi gli oggetti quando si crea la raccolta RemoteApp, pertanto è necessario che toodo questi passaggi prima.
 

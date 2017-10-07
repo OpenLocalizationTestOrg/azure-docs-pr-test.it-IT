@@ -1,6 +1,6 @@
 ---
-title: Usare le raccolte Reliable Collections | Documentazione Microsoft
-description: Procedure consigliate per lavorare con le raccolte Reliable Collections.
+title: aaaWorking con le raccolte affidabile | Documenti Microsoft
+description: Hello le procedure consigliate per l'utilizzo di raccolte affidabile.
 services: service-fabric
 documentationcenter: .net
 author: rajak
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/19/2017
 ms.author: rajak
-ms.openlocfilehash: f53f13e4fb83b1cd370ec673e86e5311cd93055f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 41ba0b257da8493c1fc2e99ad7565593dc7cbcce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="working-with-reliable-collections"></a>Lavorare con le raccolte Reliable Collections
-Service Fabric offre un modello di programmazione con stato disponibile per gli sviluppatori .NET tramite Reliable Collections. In particolare, Service Fabric offre classi ReliableDictionary e ReliableQueue. Quando si usano queste classi, lo stato è partizionato (per la scalabilità), replicato (per la disponibilità) e le transazioni vengono eseguite all'interno di una partizione (per la semantica ACID). Di seguito viene descritto l'uso tipico di un oggetto ReliableDictionary per osservarne le azioni.
+Service Fabric offre un con stato sviluppatori too.NET disponibili di modelli tramite raccolte affidabile di programmazione. In particolare, Service Fabric offre classi ReliableDictionary e ReliableQueue. Quando si usano queste classi, lo stato è partizionato (per la scalabilità), replicato (per la disponibilità) e le transazioni vengono eseguite all'interno di una partizione (per la semantica ACID). Di seguito viene descritto l'uso tipico di un oggetto ReliableDictionary per osservarne le azioni.
 
 ```csharp
 
@@ -36,50 +36,50 @@ try {
       // secondary replicas
       await m_dic.AddAsync(tx, key, value, cancellationToken);
 
-      // CommitAsync sends Commit record to log & secondary replicas
+      // CommitAsync sends Commit record toolog & secondary replicas
       // After quorum responds, all locks released
       await tx.CommitAsync();
    }
    // If CommitAsync not called, Dispose sends Abort
-   // record to log & all locks released
+   // record toolog & all locks released
 }
 catch (TimeoutException) {
    await Task.Delay(100, cancellationToken); goto retry;
 }
 ```
 
-Tutte le operazioni sugli oggetti ReliableDictionary (ad eccezione di ClearAsync che non è annullabile) richiedono un oggetto ITransaction. Questo oggetto è associato a tutte le modifiche che si tenta di apportare a qualsiasi oggetto ReliableDictionary e/o ReliableQueue all'interno di una singola partizione. Acquisire un oggetto ITransaction chiamando il metodo CreateTransaction della partizione "StateManager".
+Tutte le operazioni sugli oggetti ReliableDictionary (ad eccezione di ClearAsync che non è annullabile) richiedono un oggetto ITransaction. Questo oggetto è associato a qualsiasi modifiche che si sta tentando di toomake tooany affidabile dizionario e/o gli oggetti di coda affidabile all'interno di una singola partizione. Acquisire un ITransaction oggetto chiamando partizione hello del metodo CreateTransaction di StateManager.
 
-Nel codice precedente, l'oggetto ITransaction viene passato al metodo AddAsync dell'oggetto ReliableDictionary. Internamente, i metodi di dizionario che accettano una chiave acquisiscono un blocco di lettura/scrittura associato alla chiave. Se il metodo modifica il valore della chiave, il metodo acquisisce un blocco di scrittura sulla chiave; se il metodo legge solo dal valore della chiave, allora acquisisce un blocco di lettura sulla chiave. Poiché AddAsync modifica il valore della chiave sul nuovo valore ottenuto, viene acquisito il blocco di scrittura della chiave. Pertanto, se 2 (o più) thread tentano di aggiungere i valori alla stessa chiave nello stesso momento, un thread acquisirà il blocco di scrittura e gli altri verranno bloccati. Per impostazione predefinita, i metodi si interrompono fino a 4 secondi per acquisire il blocco; dopo 4 secondi, i metodi generano un'eccezione TimeoutException. Se si preferisce, esistono overload del metodo che consentono di superare un valore di timeout esplicito.
+Nel codice hello precedente oggetto ITransaction hello viene passato metodo AddAsync del dizionario di tooa affidabile. Internamente, i metodi di dizionario che accetta una chiave di acquisire un blocco di lettura/scrittura associato alla chiave hello. Se il metodo hello consente di modificare il valore della chiave di hello, metodo hello acquisisce un blocco di scrittura sulla chiave hello e se il metodo hello legge solo dal valore della chiave di hello, quindi un blocco di lettura viene eseguito sulla chiave hello. Poiché AddAsync modifica toohello valore della chiave hello nuovo, viene utilizzato valore passato, il blocco di scrittura della chiave di hello. In tal caso, se i thread 2 (o più) tentano tooadd valori con hello stessa chiave in hello stesso tempo un thread acquisisce il blocco di scrittura hello e hello altri thread verrà bloccata. Per impostazione predefinita, il blocco di metodi per i blocchi di hello tooacquire secondi too4; dopo 4 secondi e i metodi di hello generano un TimeoutException. Se si preferisce, gli overload del metodo esiste consentendo si toopass un valore di timeout esplicito.
 
-In genere, si scrive il codice per reagire a un'eccezione TimeoutException rilevandola e tentando di effettuare nuovamente l'intera operazione (come illustrato nel codice precedente). In questo codice semplice, si sta chiamando ogni volta Task.Delay oltre i 100 millisecondi. In realtà, potrebbe essere più opportuno usare un tipo di ritardo backoff esponenziale.
+In genere, si scrive il tooa tooreact codice TimeoutException rilevandola e ritentare l'intera operazione hello (come illustrato nel codice hello sopra). In questo codice semplice, si sta chiamando ogni volta Task.Delay oltre i 100 millisecondi. In realtà, potrebbe essere più opportuno usare un tipo di ritardo backoff esponenziale.
 
-Una volta acquisito il blocco, AddAsync aggiunge i riferimenti dell'oggetto valore e chiave a un dizionario interno temporaneo associato all'oggetto ITransaction. Questa operazione viene eseguita per fornire la semantica di autolettura delle proprie scritture. Vale a dire che, dopo aver chiamato AddAsync, una chiamata successiva a TryGetValueAsync (usando lo stesso oggetto ITransaction) restituirà il valore anche se non si è eseguito il commit della transazione. Successivamente, AddAsync serializza gli oggetti di chiave e valore in array di byte e aggiunge gli array a un file di log sul nodo locale. Infine, AddAsync invia gli array di byte di tutte le repliche secondarie in modo che abbiano le stesse informazioni chiave/valore. Anche se le informazioni chiave/valore sono stato scritte in un file di log, le informazioni non vengono considerate parte del dizionario fino a quando non è stato eseguito il commit della transazione a cui sono associate.
+Una volta che viene acquisito il blocco di hello, AddAsync aggiunge chiave hello e tooan dizionario temporaneo interno associato hello ITransaction oggetto fa riferimento a oggetto valore. Questa operazione viene eseguita tooprovide si con la semantica di operazioni di lettura-your-proprietari-scrittura. Vale a dire, dopo aver chiamato AddAsync, un tooTryGetValueAsync chiamata successiva (utilizzando hello stesso oggetto ITransaction) restituirà il valore di hello anche se non si è ancora commit transazione hello. Successivamente, AddAsync serializza la chiave e valore toobyte matrici di oggetti e aggiunge questi file di log tooa matrici byte nel nodo locale hello. Infine, AddAsync invia hello byte matrici tooall hello repliche secondarie in modo che hanno hello stessa chiave/valore informazioni. Anche se le informazioni chiave/valore hello sono stato scritto il file di log tooa, informazioni di hello non viene considerate parte del dizionario hello finché non è stato eseguito il commit delle transazioni hello che sono associate.
 
-Nel codice precedente, la chiamata a CommitAsync esegue il commit di tutte le operazioni della transazione. In particolare, aggiunge informazioni di commit al file di log sul nodo locale e invia anche il record di commit a tutte le repliche secondarie. Una volta ricevuta la risposta da un quorum (maggioranza) delle repliche, tutte le modifiche ai dati vengono considerate permanenti e i blocchi associati alle chiavi modificate tramite l'oggetto ITransaction vengono rilasciati in modo che altri thread/transazioni possano modificare le stesse chiavi e i relativi valori.
+Nel codice hello sopra riportato, hello chiamata tooCommitAsync esegue il commit di tutte le operazioni della transazione hello. In particolare, aggiunge file di log commit informazioni toohello nel nodo locale hello e invia anche repliche secondarie hello hello commit tooall record. Una volta che un quorum (maggioranza) delle repliche hello ha risposto, tutti i dati, le modifiche vengono considerate permanenti e i blocchi associati alle chiavi che sono state modificate tramite oggetto ITransaction hello vengono rilasciati in modo da altri thread/transazioni possono modificare hello stesse chiavi e i relativi valori.
 
-Se CommitAsync non viene chiamato (in genere a causa di un'eccezione generata), l'oggetto ITransaction viene eliminato. Quando viene eliminato un oggetto ITransaction su cui non è stato eseguito il commit, Service Fabric aggiunge informazioni sull'interruzione al file di log del nodo locale e non è necessario inviare alcun elemento alle repliche secondarie. A quel punto, i blocchi associati alle chiavi modificate tramite la transazione vengono rilasciati.
+Se a CommitAsync non viene chiamato (in genere a causa la generazione di eccezione tooan), l'oggetto ITransaction hello Ottiene eliminato. Quando esegue l'eliminazione di un oggetto ITransaction Commit, Service Fabric aggiunge file di log interruzione informazioni toohello del nodo locale e non è necessario toobe inviato tooany di hello repliche secondarie. E quindi, in cui vengono rilasciati i blocchi associati alle chiavi che sono state modificate tramite la transazione hello.
 
-## <a name="common-pitfalls-and-how-to-avoid-them"></a>Inconvenienti comuni e come evitarli
-Dopo averne appreso il funzionamento interno, ecco alcuni casi di uso improprio delle Reliable Collections. Osserviamo il seguente codice:
+## <a name="common-pitfalls-and-how-tooavoid-them"></a>Problemi comuni e come tooavoid li
+Ora che si informazioni sul funzionano delle raccolte affidabile hello internamente, esaminiamo un alcuni usi impropri comuni di essi. Vedere codice hello riportato di seguito:
 
 ```csharp
 using (ITransaction tx = StateManager.CreateTransaction()) {
-   // AddAsync serializes the name/user, logs the bytes,
-   // & sends the bytes to the secondary replicas.
+   // AddAsync serializes hello name/user, logs hello bytes,
+   // & sends hello bytes toohello secondary replicas.
    await m_dic.AddAsync(tx, name, user);
 
-   // The line below updates the property’s value in memory only; the
-   // new value is NOT serialized, logged, & sent to secondary replicas.
+   // hello line below updates hello property’s value in memory only; the
+   // new value is NOT serialized, logged, & sent toosecondary replicas.
    user.LastLogin = DateTime.UtcNow;  // Corruption!
 
    await tx.CommitAsync();
 }
 ```
 
-Quando si usa un normale dizionario .NET, è possibile aggiungere una coppia chiave/valore al dizionario e quindi modificare il valore di una proprietà (ad esempio LastLogin). Tuttavia, questo codice non funziona correttamente con un ReliableDictionary. Come visto in precedenza, la chiamata ad AddAsync serializza gli oggetti chiave/valore agli array di byte, salva gli array in un file locale e invia gli array anche alle repliche secondarie. Se successivamente si modifica una proprietà, questa operazione modifica il valore della proprietà solo nella memoria, senza influire sul file locale o sui dati inviati alle repliche. Se il processo si arresta in modo anomalo, il contenuto della memoria viene eliminato. Quando viene avviato un nuovo processo o un'altra replica diventa primaria, è disponibile il valore della proprietà.
+Quando si lavora con un dizionario regolari di .NET, è possibile aggiungere un dizionario toohello chiave/valore e quindi modificare il valore di hello di una proprietà (ad esempio LastLogin). Tuttavia, questo codice non funziona correttamente con un ReliableDictionary. Ricordare di hello discussione precedente, chiamata hello tooAddAsync serializza hello chiave/valore oggetti toobyte matrici e quindi Salva hello matrici tooa file locale e le invia inoltre repliche secondarie toohello. Se in seguito si modifica una proprietà, questo viene modificato il valore della proprietà hello in memoria. non ha impatto sul file locale hello o dati di hello inviati toohello repliche. Se il processo di hello arresti anomali, novità in memoria viene eliminato. Quando un nuovo processo viene avviato o se un'altra replica diventa primaria, quindi hello valore precedente della proprietà è ciò che è disponibile.
 
-Non è possibile sottolineare a sufficienza quanto sia semplice effettuare l'errore descritto in alto. Sarà possibile apprendere l'errore solo se/quando il processo si interrompe. Il modo corretto per scrivere il codice è semplicemente invertire le due righe:
+Non si sottolinea sufficientemente quanto sia facile tipo hello toomake di errore illustrato in precedenza. E si solo apprenderà errore hello se/quando si arresta il processo di hello. codice hello toowrite modo corretto di Hello è semplicemente tooreverse hello due righe:
 
 
 ```csharp
@@ -96,44 +96,44 @@ Ecco un altro esempio che mostra un errore comune:
 ```csharp
 
 using (ITransaction tx = StateManager.CreateTransaction()) {
-   // Use the user’s name to look up their data
+   // Use hello user’s name toolook up their data
    ConditionalValue<User> user =
       await m_dic.TryGetValueAsync(tx, name);
 
-   // The user exists in the dictionary, update one of their properties.
+   // hello user exists in hello dictionary, update one of their properties.
    if (user.HasValue) {
-      // The line below updates the property’s value in memory only; the
-      // new value is NOT serialized, logged, & sent to secondary replicas.
+      // hello line below updates hello property’s value in memory only; the
+      // new value is NOT serialized, logged, & sent toosecondary replicas.
       user.Value.LastLogin = DateTime.UtcNow; // Corruption!
       await tx.CommitAsync();
    }
 }
 ```
 
-Anche qui, con i dizionari regolari .NET, il codice indicato in alto funziona correttamente ed è un modello comune: lo sviluppatore usa una chiave per cercare un valore. Se il valore esiste, lo sviluppatore modifica un valore della proprietà. Con le raccolte Reliable Collections, tuttavia, questo codice presenta lo stesso problema già illustrato: **non SI DEVE modificare un oggetto dopo averlo assegnato a una raccolta Reliable Collections.**
+Nuovamente, con regolari dizionari di .NET, codice hello sopra funziona correttamente ed è un modello comune: developer hello utilizza una chiave toolook un valore. Se il valore di hello esiste, hello imposta un valore della proprietà. Con le raccolte affidabile, tuttavia, questo codice presenta hello stesso problema come già illustrato: **è necessario non modificare un oggetto dopo che aver assegnato tooa affidabile insieme.**
 
-Il modo corretto per aggiornare un valore in una raccolta Reliable Collections è fare riferimento al valore esistente e tenere in considerazione l'oggetto a cui fa riferimento tramite il riferimento non modificabile. Quindi, creare un nuovo oggetto come copia esatta dell'oggetto originale. A questo punto, è possibile modificare lo stato di questo nuovo oggetto e scrivere il nuovo oggetto nella raccolta in modo che venga serializzato in array di byte, aggiunto al file locale e inviato alle repliche. Dopo aver eseguito il commit delle modifiche, gli oggetti interni alla memoria, il file locale e tutte le repliche hanno lo stesso stato. Tutto è in posizione.
+Hello corretto tooupdate modo un valore in un insieme affidabile, si riferisce tooget toohello esistente e provare a oggetto hello cui tooby questo riferimento non modificabile. Quindi, creare un nuovo oggetto che è una copia esatta dell'oggetto originale hello. A questo punto, è possibile modificare lo stato di hello di questo nuovo oggetto e scrivere hello nuovo oggetto nella raccolta hello in modo che si ottiene serializzato toobyte matrici, file locale toohello aggiunti e inviati toohello repliche. Dopo il commit di hello modifiche agli oggetti in memoria hello, file locale hello, in modo che tutte le repliche di hello hello stesso stato. Tutto è in posizione.
 
-Il codice seguente illustra il modo corretto per aggiornare un valore in una raccolta Reliable Collections:
+Hello di codice seguente viene mostrato hello modo corretto tooupdate un valore in un insieme affidabile:
 
 ```csharp
 
 using (ITransaction tx = StateManager.CreateTransaction()) {
-   // Use the user’s name to look up their data
+   // Use hello user’s name toolook up their data
    ConditionalValue<User> currentUser =
       await m_dic.TryGetValueAsync(tx, name);
 
-   // The user exists in the dictionary, update one of their properties.
+   // hello user exists in hello dictionary, update one of their properties.
    if (currentUser.HasValue) {
-      // Create new user object with the same state as the current user object.
+      // Create new user object with hello same state as hello current user object.
       // NOTE: This must be a deep copy; not a shallow copy. Specifically, only
       // immutable state can be shared by currentUser & updatedUser object graphs.
       User updatedUser = new User(currentUser);
 
-      // In the new object, modify any properties you desire
+      // In hello new object, modify any properties you desire
       updatedUser.LastLogin = DateTime.UtcNow;
 
-      // Update the key’s value to the updateUser info
+      // Update hello key’s value toohello updateUser info
       await m_dic.SetValue(tx, name, updatedUser);
 
       await tx.CommitAsync();
@@ -141,10 +141,10 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 }
 ```
 
-## <a name="define-immutable-data-types-to-prevent-programmer-error"></a>Definire tipi di dati non modificabili per evitare errori del programmatore
-Idealmente, il compilatore dovrebbe segnalare gli errori quando si crea inavvertitamente codice che modifica lo stato di un oggetto considerato non modificabile. Tuttavia, il compilatore C# non è in grado di farlo. Pertanto, per evitare potenziali errori del programmatore, si consiglia di definire i tipi da usare con le raccolte Reliable Collections come tipi non modificabili. In particolare, questo significa che è opportuno fermarsi ai principali tipi di valore (ad esempio numeri [Int32, UInt64, etc.], DateTime, Guid, TimeSpan e simili). E, ovviamente, è anche possibile usare le stringhe. È preferibile evitare proprietà della raccolta poiché la serializzazione e la deserializzazione può spesso influire negativamente sulle prestazioni. Tuttavia, se si intende usare le proprietà della raccolta, è consigliabile l'uso di libreria di raccolte .NET non modificabili ([System.Collections.Immutable](https://www.nuget.org/packages/System.Collections.Immutable/)). Questa libreria è disponibile per il download all'indirizzo http://nuget.org. Si consiglia anche di sigillare le classi e rendere i campi di sola lettura quando possibile.
+## <a name="define-immutable-data-types-tooprevent-programmer-error"></a>Definire un errore del programmatore di tooprevent tipi di dati non modificabili
+Idealmente, desideriamo tooreport gli errori del compilatore di hello quando si creano accidentalmente il codice che viene modificato lo stato di un oggetto, si dovrebbe tooconsider non modificabile. Ma, hello il compilatore c# non dispone di hello possibilità toodo questo. In questo caso, tooavoid potenziali programmatore bug, è consigliabile definire i tipi di hello che usa con i tipi di raccolte affidabile toobe non modificabile. In particolare, ciò significa che si osserva toocore i tipi di valore (ad esempio numeri [Int32, UInt64, e così via.], DateTime, Guid, TimeSpan e hello simile). E, ovviamente, è anche possibile usare le stringhe. È una proprietà di raccolta tooavoid migliore come la serializzazione e deserializzazione li può spesso può ridurre le prestazioni. Tuttavia, se si desidera toouse le proprietà della raccolta, è consigliabile utilizzare hello di. Libreria di raccolte non modificabili di rete ([Immutable](https://www.nuget.org/packages/System.Collections.Immutable/)). Questa libreria è disponibile per il download all'indirizzo http://nuget.org. Si consiglia anche di sigillare le classi e rendere i campi di sola lettura quando possibile.
 
-Il tipo UserInfo riportato di seguito mostra come definire un tipo non modificabile sfruttando i consigli indicati in precedenza.
+Hello UserInfo tipo riportato di seguito viene illustrato come toodefine un non modificabile digitare sfruttando i consigli menzionati in precedenza.
 
 ```csharp
 
@@ -160,7 +160,7 @@ public sealed class UserInfo {
 
    [OnDeserialized]
    private void OnDeserialized(StreamingContext context) {
-      // Convert the deserialized collection to an immutable collection
+      // Convert hello deserialized collection tooan immutable collection
       ItemsBidding = ItemsBidding.ToImmutableList();
    }
 
@@ -168,19 +168,19 @@ public sealed class UserInfo {
    public readonly String Email;
 
    // Ideally, this would be a readonly field but it can't be because OnDeserialized
-   // has to set it. So instead, the getter is public and the setter is private.
+   // has tooset it. So instead, hello getter is public and hello setter is private.
    [DataMember]
    public IEnumerable<ItemId> ItemsBidding { get; private set; }
 
-   // Since each UserInfo object is immutable, we add a new ItemId to the ItemsBidding
-   // collection by creating a new immutable UserInfo object with the added ItemId.
+   // Since each UserInfo object is immutable, we add a new ItemId toohello ItemsBidding
+   // collection by creating a new immutable UserInfo object with hello added ItemId.
    public UserInfo AddItemBidding(ItemId itemId) {
       return new UserInfo(Email, ((ImmutableList<ItemId>)ItemsBidding).Add(itemId));
    }
 }
 ```
 
-Anche ItemId è un tipo non modificabile, come illustrato di seguito:
+tipo ItemId Hello è anche un tipo immutabile, come illustrato di seguito:
 
 ```csharp
 
@@ -197,22 +197,22 @@ public struct ItemId {
 ```
 
 ## <a name="schema-versioning-upgrades"></a>Controllo delle versioni dello schema (aggiornamenti)
-Internamente, le raccolte Reliable Collections serializzano gli oggetti usando DataContractSerializer di .NET. Gli oggetti serializzati sono persistenti sul disco locale della replica primaria e vengono anche trasmessi alle repliche secondarie. Con l'evoluzione del servizio, è probabile che si desideri modificare il tipo di dati (schema) richiesti dal servizio. Il controllo delle versioni dei dati deve essere eseguito con estrema attenzione. Innanzitutto, si deve essere sempre in grado di deserializzare i dati precedenti. In particolare, ciò significa che il codice di deserializzazione deve essere infinitamente compatibile con le versioni precedenti: la versione 333 del codice del servizio deve essere in grado di operare sui dati inseriti in una raccolta Reliable Collections dalla versione 1 del codice del servizio 5 anni fa.
+Internamente, le raccolte Reliable Collections serializzano gli oggetti usando DataContractSerializer di .NET. gli oggetti serializzato Hello sono disco locale della replica primaria toohello persistente e trasmesso toohello repliche secondarie. Evoluzione del servizio, è probabile che si tipo hello toochange dei dati (schema), che il servizio lo richiede. Il controllo delle versioni dei dati deve essere eseguito con estrema attenzione. In primo luogo, è necessario essere sempre in grado di toodeserialize vecchi dati. In particolare, questo significa che il codice di deserializzazione deve essere compatibile con le versioni precedenti all'infinito: 333 versione del codice del servizio deve essere in grado di toooperate sui dati inseriti in un insieme affidabile dalla versione 1 del codice del servizio 5 anni.
 
-Il codice del servizio viene aggiornato un dominio di aggiornamento alla volta. Pertanto, durante un aggiornamento, vengono eseguite contemporaneamente due diverse versioni del codice del servizio. È necessario evitare che la nuova versione del codice del servizio usi il nuovo schema dal momento che le versioni precedenti del codice del servizio potrebbero non essere in grado di gestire il nuovo schema. Quando possibile, si consiglia di progettare ogni versione del servizio perché sia compatibile con tutte le versioni precedenti, a partire dalla versione 1. In particolare, questo significa che V1 del codice del servizio deve essere in grado di ignorare tutti gli elementi dello schema che non vengono gestiti in modo esplicito. Tuttavia, deve essere in grado di salvare i dati che non conosce in modo esplicito e riscriverli quando si aggiorna il valore o la chiave del dizionario.
+Il codice del servizio viene aggiornato un dominio di aggiornamento alla volta. Pertanto, durante un aggiornamento, vengono eseguite contemporaneamente due diverse versioni del codice del servizio. È necessario evitare nuova versione di hello del codice del servizio utilizzano hello nuovo schema come le versioni precedenti del codice del servizio potrebbero non essere in grado di toohandle schema di nuovo hello. Se possibile, è consigliabile progettare ogni versione del servizio toobe compatibile con le versioni di 1 versione. In particolare, ciò significa che V1 del codice del servizio deve essere in grado di toosimply ignorare tutti gli elementi dello schema non gestisce in modo esplicito. Tuttavia, deve essere in grado di toosave tutti i dati non conoscere in modo esplicito e scriverlo semplicemente indietro quando si aggiorna un valore o la chiave del dizionario.
 
 > [!WARNING]
-> Sebbene sia possibile modificare lo schema di una chiave, è necessario assicurarsi che il codice hash e l'algoritmo di uguaglianza della chiave siano stabili. Se si modifica il funzionamento di questi algoritmi, non sarà più possibile cercare la chiave all'interno del ReliableDictionary.
+> Mentre è possibile modificare lo schema di hello di una chiave, è necessario assicurarsi che sono stabili codice hash della chiave e algoritmi di equals. Se si modifica uno di questi algoritmi funzionamento, non sarà in grado di toolook backup chiave di hello all'interno di dizionario affidabile hello mai nuovamente.
 >
 >
 
-In alternativa, è possibile eseguire un aggiornamento noto come aggiornamento a 2 fasi. Con un aggiornamento a 2 fasi, viene effettuato l'aggiornamento del servizio da V1 a V2: V2 contiene il codice in grado di gestire la nuova modifica dello schema, che non può essere eseguito. Quando il codice V2 legge i dati V1, opera su di esso e scrive i dati V1. Quindi, al termine dell'aggiornamento di tutti i domini di aggiornamento, è possibile in qualche modo segnalare alle istanze V2 in esecuzione che l'aggiornamento è stato completato. (uno modo consiste nell'implementare un aggiornamento della configurazione; ovvero un aggiornamento a 2 fasi). A questo punto, le istanze V2 possono leggere i dati V1, convertirli in dati V2, operare su di essi e scriverli nella forma di dati V2. Quando altre istanze leggono i dati V2, non è necessario convertirli: possono operano su di essi e scrivere dati V2.
+In alternativa, è possibile eseguire ciò che è in genere indicati tooas 2 fasi l'aggiornamento. Con un aggiornamento della fase 2, aggiornare il servizio da V1 tooV2: V2 contiene codice hello che conosca toodeal con questo codice, nuova modifica dello schema di hello ma non la modalità di esecuzione. Quando hello V2 codice legge i dati di V1, opera su di esso e lo scrive dati V1. Quindi, dopo l'aggiornamento di hello è stata completata in tutti i domini di aggiornamento, è possibile in qualche modo segnalare toohello le istanze di V2 in esecuzione che l'aggiornamento hello è stata completata. (Unidirezionale toosignal tooroll un aggiornamento di configurazione; questo è ciò che crea un aggiornamento in fase di 2.) A questo punto, hello V2 istanze possono leggere i dati V1, convertirlo dati tooV2, operano su di esso e scriverlo sotto forma di dati V2. Quando le altre istanze leggerli V2, non richiedono tooconvert, ma semplicemente operano su di esso e scrivere dati V2.
 
 ## <a name="next-steps"></a>Passaggi successivi
-Per informazioni sulla creazione di contratti dati compatibili con versioni successive, vedere [Contratti dati compatibili con versioni successive](https://msdn.microsoft.com/library/ms731083.aspx).
+toolearn sulla creazione di contratti dati compatibili con, vedere [contratti dati compatibili con versioni](https://msdn.microsoft.com/library/ms731083.aspx).
 
-Per informazioni sulle procedure consigliate per il controllo delle versioni dei contratti dati, vedere [Controllo delle versioni dei contratti dati](https://msdn.microsoft.com/library/ms731138.aspx).
+procedure consigliate di toolearn nei contratti dati di controllo delle versioni, vedere [controllo delle versioni del contratto dati](https://msdn.microsoft.com/library/ms731138.aspx).
 
-Per informazioni su come implementare contratti dati a tolleranza di versione, vedere [Callback di serializzazione a tolleranza di versione](https://msdn.microsoft.com/library/ms733734.aspx).
+toolearn come i contratti dati a tolleranza di versione tooimplement, vedere [callback di serializzazione a tolleranza di versione](https://msdn.microsoft.com/library/ms733734.aspx).
 
-Per informazioni su come fornire una struttura di dati che può interagire con più versioni, vedere [Interfaccia IExtensibleDataObject](https://msdn.microsoft.com/library/system.runtime.serialization.iextensibledataobject.aspx).
+toolearn tooprovide una struttura di dati che può interagire tra più versioni, vedere [IExtensibleDataObject](https://msdn.microsoft.com/library/system.runtime.serialization.iextensibledataobject.aspx).

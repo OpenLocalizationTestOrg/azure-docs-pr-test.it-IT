@@ -1,5 +1,5 @@
 ---
-title: Registri server nel database di Azure per PostgreSQL | Microsoft Docs
+title: aaaServer log nel Database di Azure per PostgreSQL | Documenti Microsoft
 description: Genera registri errori e log di query nel database di Azure per PostgreSQL.
 services: postgresql
 author: SaloniSonpal
@@ -9,35 +9,35 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 10f6c490a4fdb4c70cb80b035eaebb9d2ad2e699
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 22575f3882ce67fe640952f0a8dbfd8dcb4b16fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="server-logs-in-azure-database-for-postgresql"></a>Registri server nel database di Azure per PostgreSQL 
-Il database di Azure per PostgreSQL genera log di query e registri errori. Tuttavia, l'accesso ai log delle transazioni non è supportato. Questi log possono essere usati per individuare e risolvere i problemi e correggere errori di configurazione e prestazioni non ottimali. Per altre informazioni, vedere [Error Reporting and Logging](https://www.postgresql.org/docs/9.6/static/runtime-config-logging.html) (Segnalazione e registrazione degli errori).
+Il database di Azure per PostgreSQL genera log di query e registri errori. Tuttavia, i registri tootransaction di accesso non è supportata. Questi registri possono essere tooidentify utilizzato, risolvere i problemi e ripristinare gli errori di configurazione e delle prestazioni non ottimali. Per altre informazioni, vedere [Error Reporting and Logging](https://www.postgresql.org/docs/9.6/static/runtime-config-logging.html) (Segnalazione e registrazione degli errori).
 
 ## <a name="access-server-logs"></a>Accesso ai registri server
-È possibile elencare e scaricare i registri errori del server PostgreSQL di Azure tramite il portale di Azure, [l'interfaccia della riga di comando di Azure](howto-configure-server-logs-using-cli.md) e le API REST di Azure.
+È possibile elencare e scaricare i log degli errori di server PostgreSQL Azure tramite il portale di Azure, hello [CLI di Azure](howto-configure-server-logs-using-cli.md) e API REST di Azure.
 
 ## <a name="log-retention"></a>Conservazione dei log
-È possibile impostare il periodo di conservazione dei registri di usando il parametro **log\_retention\_period** (periodo di conservazione dei log) associato al server. L'unità di questo parametro è espressa in giorni (da confermare). Il valore predefinito è 3 giorni. Il valore massimo è 7 giorni. Si noti che il server deve disporre di risorse di archiviazione allocate sufficienti per i file di log conservati.
-I file di log ruotano ogni ora o 100 MB di spazio, a seconda della condizione che si verifica per prima.
+È possibile impostare il periodo di memorizzazione hello per i log di sistema usando il **log\_conservazione\_periodo** parametro associato al server. unità di Hello per questo parametro è giorni (necessario tooconfirm). valore predefinito di Hello è tre giorni. valore massimo Hello è 7 giorni. Si noti che il server deve disporre di file di log sufficiente spazio di archiviazione allocato toocontain hello mantenuto.
+file di log Hello ruoterà ogni 1 ora o le dimensioni di 100MB, verifica per primo.
 
 ## <a name="configure-logging-for-azure-postgresql-server"></a>Configurare la registrazione per il server PostgreSQL di Azure
 È possibile abilitare la registrazione delle query e degli errori per il server. I registri errori possono contenere informazioni su checkpoint, connessioni e vuoto automatico.
 
 È possibile abilitare la registrazione delle query per l'istanza del database PostgreSQL impostando due parametri del server: log\_statement (istruzione log) e log\_min\_duration\_statement (istruzione durata registrazione min).
 
-Il parametro **log\_statement** controlla quali istruzioni SQL sono registrate. È consigliabile impostare questo parametro su ***all*** (tutto) per registrare tutte le istruzioni; il valore predefinito è None (Nessuno, da confermare).
+Hello **log\_istruzione** parametro consente di controllare quali istruzioni SQL vengono registrate. È consigliabile impostare questo parametro troppo***tutti*** toolog tutte le istruzioni; il valore predefinito di hello è none (necessario tooconfirm).
 
-Il parametro **log\_min\_duration\_statement** definisce il limite in millisecondi di un'istruzione da registrare. Si registrano tutte le istruzioni SQL che richiedono più tempo rispetto al valore impostato nel parametro. Questo parametro è disabilitato e impostato su meno 1 (-1) per impostazione predefinita (da confermare). L'attivazione di questo parametro può essere utile per rilevare query non ottimizzate nelle applicazioni.
+Hello **log\_min\_durata\_istruzione** parametro imposta il limite di hello in millisecondi, di un'istruzione di toobe registrati. Vengono registrate tutte le istruzioni SQL eseguite più di impostazione del parametro hello. Questo parametro è disabilitato e impostato toominus 1 (-1) per impostazione predefinita (necessario tooconfirm). L'attivazione di questo parametro può essere utile per rilevare query non ottimizzate nelle applicazioni.
 
-Il parametro **log\_min\_messages** permette di controllare quali livelli messaggio scrivere nel registro server. Il valore predefinito è WARNING (avviso). (da confermare)
+Hello **log\_min\_messaggi** consente di determinare quali livelli di messaggio vengono scritti i log del server toohello toocontrol. valore predefinito di Hello è di avviso. (necessario tooconfirm)
 
 Per altre informazioni su queste impostazioni, vedere la documentazione [Error Reporting and Logging](https://www.postgresql.org/docs/9.6/static/runtime-config-logging.html) (segnalazione e registrazione degli errori). Per una configurazione particolare del database di Azure per i parametri del server PostgreSQL, vedere [Server Logs in Azure Database for PostgreSQL](concepts-server-logs.md) (Registri server nel database di Azure per PostgreSQL).
 
 ## <a name="next-steps"></a>Passaggi successivi
-- Per accedere ai registri tramite l'interfaccia della riga di comando di Azure, vedere [Configure and access server logs using Azure CLI](howto-configure-server-logs-using-cli.md) (Accesso e configurazione dei registri server tramite l'interfaccia della riga di comando di Azure)
+- i log di tooaccess tramite l'interfaccia della riga di comando CLI di Azure, vedere [accesso e configurare i log di server tramite CLI di Azure](howto-configure-server-logs-using-cli.md)
 - Per altre informazioni sui parametri del server, vedere [Customize server configuration parameters using Azure CLI](howto-configure-server-parameters-using-cli.md) (Personalizzare i parametri di configurazione del server tramite l'interfaccia della riga di comando di Azure).

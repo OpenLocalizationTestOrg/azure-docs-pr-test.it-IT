@@ -1,5 +1,5 @@
 ---
-title: "Pianificazione della capacità per Ricerca di Azure | Documentazione Microsoft"
+title: pianificazione per la ricerca di Azure aaaCapacity | Documenti Microsoft
 description: "Regolare le risorse di calcolo, ovvero partizioni e repliche, dove il prezzo di ogni risorsa è definito in unità di ricerca fatturabili, in Ricerca di Azure."
 services: search
 documentationcenter: 
@@ -15,55 +15,55 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 02/08/2017
 ms.author: heidist
-ms.openlocfilehash: 26f5e71f3d00161a92de702209e224008ec8a5ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4bbbb929a36b932ea7af12e494ca095d98b9005e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-resource-levels-for-query-and-indexing-workloads-in-azure-search"></a>Ridimensionare i livelli di risorse per i carichi di lavoro di indicizzazione e query in Ricerca di Azure
-Dopo aver [scelto un piano tariffario](search-sku-tier.md) ed [eseguito il provisioning di un servizio di ricerca](search-create-service-portal.md), il passaggio successivo consente di aumentare il numero di repliche o partizioni usate dal servizio. Ogni livello offre un numero fisso di unità di fatturazione. Questo articolo illustra come assegnare le unità per ottenere una configurazione ottimale che bilanci i requisiti per l'esecuzione di query, indicizzazione e archiviazione.
+Dopo aver [scegliere un piano tariffario](search-sku-tier.md) e [il provisioning di un servizio di ricerca](search-create-service-portal.md), hello sarà toooptionally aumento hello più repliche o partizioni utilizzate dal servizio. Ogni livello offre un numero fisso di unità di fatturazione. Questo articolo viene illustrato come tooallocate tali tooachieve unità una configurazione ottimale che consente di bilanciare i requisiti per l'esecuzione di query, indicizzazione e l'archiviazione.
 
-La configurazione delle risorse è disponibile se si imposta un servizio al [livello Basic](http://aka.ms/azuresearchbasic) o a uno dei [livelli Standard](search-limits-quotas-capacity.md). Per tutti i servizi fatturabili di questi livelli è possibile acquistare capacità a incrementi di *unità di ricerca* (SU). Le singole partizioni e repliche vengono considerate come una unità di ricerca. 
+Configurazione di risorsa è disponibile quando si configura un servizio in hello [livello Basic](http://aka.ms/azuresearchbasic) o uno dei hello [livelli Standard](search-limits-quotas-capacity.md). Per tutti i servizi fatturabili di questi livelli è possibile acquistare capacità a incrementi di *unità di ricerca* (SU). Le singole partizioni e repliche vengono considerate come una unità di ricerca. 
 
-Usando un numero minore di risultati SU in una fattura proporzionalmente inferiore. La fatturazione è attiva per l'intera durata impostata per il servizio. Se temporaneamente non si usa un servizio, l'unico modo per evitare la fatturazione è eliminare il servizio e quindi ricrearlo quando sarà necessario.
+Usando un numero minore di risultati SU in una fattura proporzionalmente inferiore. La fatturazione è attiva per purché hello servizio sia configurato. Se è temporaneamente non si utilizza un servizio, l'unico modo hello tooavoid fatturazione consiste nell'eliminazione del servizio hello e quindi ricrearlo quando è necessario.
 
 > [!Note]
-> Eliminando un servizio si elimina tutto il suo contenuto. Non sono disponibili funzionalità all'interno di Ricerca di Azure per eseguire il backup e il ripristino dei dati di ricerca permanenti. Per ridistribuire un indice esistente in un nuovo servizio è necessario eseguire il programma utilizzato in origine per crearlo e caricarlo. 
+> Eliminando un servizio si elimina tutto il suo contenuto. Non sono disponibili funzionalità all'interno di Ricerca di Azure per eseguire il backup e il ripristino dei dati di ricerca permanenti. tooredeploy un indice esistente in un nuovo servizio, eseguire toocreate programma utilizzato hello e caricarlo in origine. 
 
 ## <a name="terminology-partitions-and-replicas"></a>Terminologia: partizioni e repliche
-Partizioni e repliche sono le risorse primarie alla base di un servizio di ricerca.
+Partizioni e repliche sono risorse hello primaria eseguire il backup di un servizio di ricerca.
 
 | Risorsa | Definizione |
 |----------|------------|
 |*Partizioni* | Offre l'archiviazione degli indici e l'I/O per le operazioni di lettura e scrittura, ad esempio durante la compilazione o l'aggiornamento di un indice.|
-|*Repliche* | Istanze del servizio di ricerca, utilizzate principalmente per il bilanciamento di carico delle operazioni di query. Ogni replica ospita sempre una copia di un indice. Se si dispone di 12 repliche, si disporrà di 12 copie di ogni indice caricate nel servizio.|
+|*Repliche* | Le istanze del servizio di ricerca hello, utilizzate principalmente tooload bilanciare le operazioni di query. Ogni replica ospita sempre una copia di un indice. Se si dispongono di 12 repliche, sarà necessario 12 copie di ogni indice caricati nel servizio hello.|
 
 > [!NOTE]
-> Non è possibile manipolare o scegliere direttamente quali indici devono essere eseguiti su una replica. L'architettura del servizio include una copia di ogni indice in ogni replica.
+> Non è possibile modificare o gestire gli indici che eseguito su una replica di toodirectly. Una copia di ogni indice in ogni replica è parte dell'architettura del servizio hello.
 >
 
-## <a name="how-to-allocate-partitions-and-replicas"></a>Modalità di allocazione di partizioni e repliche
-In Ricerca di Azure viene allocato inizialmente a un servizio un livello minimo di risorse costituito da una partizione e una replica. Per i livelli che lo supportano, è possibile regolare in modo incrementale le risorse di elaborazione aumentando le partizioni se si ha bisogno di maggiore spazio di archiviazione e I/O o aggiungendo più repliche per volumi di query maggiori o migliori prestazioni. Un singolo servizio deve disporre di risorse sufficienti per gestire tutti i carichi di lavoro (indicizzazione e query). Non è possibile suddividere i carichi di lavoro tra più servizi.
+## <a name="how-tooallocate-partitions-and-replicas"></a>Come tooallocate partizioni e repliche
+In Ricerca di Azure viene allocato inizialmente a un servizio un livello minimo di risorse costituito da una partizione e una replica. Per i livelli che lo supportano, è possibile regolare in modo incrementale le risorse di elaborazione aumentando le partizioni se si ha bisogno di maggiore spazio di archiviazione e I/O o aggiungendo più repliche per volumi di query maggiori o migliori prestazioni. Un singolo servizio deve avere sufficiente risorse toohandle tutti i carichi di lavoro (l'indicizzazione e query). Non è possibile suddividere i carichi di lavoro tra più servizi.
 
-Per aumentare o modificare l'allocazione delle repliche e delle partizioni, è consigliabile usare il portale di Azure. Il portale applica limiti alle combinazioni consentite inferiori ai limiti massimi:
+allocazione di hello tooincrease o modifica di partizioni e repliche, è consigliabile utilizzare hello portale di Azure. portale Hello impone limiti di combinazioni consentite che rimangono i limiti massimi di seguito:
 
-1. Accedere al [portale di Azure](https://portal.azure.com/) e selezionare il servizio di ricerca.
-2. In **Impostazioni** aprire il pannello **Piano** e usare i dispositivi di scorrimento per aumentare o ridurre il numero di partizioni e repliche.
+1. Accedi toohello [portale di Azure](https://portal.azure.com/) e selezionare il servizio di ricerca di hello.
+2. In **impostazioni**aprire hello **scala** pannello e utilizzare hello tooincrease dispositivi di scorrimento o ridurre il numero di hello di partizioni e repliche.
 
-Se è necessario un approccio di provisioning basato script o su codice, invece del portale è possibile usare l'[API REST di gestione](https://msdn.microsoft.com/library/azure/dn832687.aspx).
+Se si richiede un approccio di provisioning basato su codice o script, hello [API REST di gestione](https://msdn.microsoft.com/library/azure/dn832687.aspx) è un portale toohello alternativo.
 
-In generale le applicazioni di ricerca richiedono più repliche che partizioni, in particolare quando fra le operazioni del servizio prevalgono i carichi di lavoro di query. La sezione relativa alla [disponibilità elevata](#HA) spiega perché.
+In genere, le applicazioni di ricerca richiede più repliche che partizioni, in particolare quando le operazioni del servizio hello sono sbilanciate verso i carichi di lavoro di query. Hello sezione su [la disponibilità elevata](#HA) spiega il motivo.
 
 > [!NOTE]
-> Dopo aver effettuato il provisioning di un servizio, non è possibile aggiornarlo passando a uno SKU superiore. È necessario creare un servizio di ricerca a un nuovo livello e ricaricare gli indici. Per assistenza sul provisioning del servizio, vedere [Creare un servizio Ricerca di Azure nel portale](search-create-service-portal.md) .
+> Dopo il provisioning di un servizio, non può essere aggiornato tooa SKU superiore. Sarà anche necessario toocreate un servizio di ricerca a livello di nuovo hello e ricaricare gli indici. Vedere [creare un servizio di ricerca di Azure nel portale di hello](search-create-service-portal.md) per assistenza con il provisioning del servizio.
 >
 >
 
 <a id="HA"></a>
 
 ## <a name="high-availability"></a>Disponibilità elevata
-Poiché è facile e relativamente veloce eseguire la scalabilità verticale, è consigliabile in genere iniziare con una partizione e una o due repliche e quindi eseguire la scalabilità verticale come vengono compilati i volumi di query. Per molti servizi al livello Basic o S1, una partizione offre risorse di archiviazione e I/O sufficienti, con 15 milioni di documenti per partizione.
+Poiché è semplice e rapido relativamente tooscale backup, è consigliabile in genere si inizia con una partizione e uno o due repliche e quindi scalabilità verticale come volumi di query di compilazione. Per molti servizi in livelli di base o S1 hello, una partizione fornisce l'archiviazione e i/o sufficienti (in 15 milioni di documenti per partizione).
 
 I carichi di lavoro di query vengono eseguiti principalmente nelle repliche. Se è necessaria maggiore velocità effettiva o una disponibilità elevata, probabilmente saranno necessarie repliche aggiuntive.
 
@@ -76,35 +76,35 @@ I contratti di servizio per Ricerca di Azure sono associati a operazioni di quer
 
 ### <a name="index-availability-during-a-rebuild"></a>Disponibilità degli indici durante la ricompilazione
 
-La disponibilità elevata per Ricerca di Azure riguarda gli aggiornamenti di query e indici che non comportano la ricompilazione di un indice. Se si elimina o si rinomina un campo oppure si modifica il tipo di dati, sarà necessario ricompilare l'indice. A tale scopo, è necessario eliminare l'indice, ricrearlo e ricaricare i dati.
+Disponibilità elevata per la ricerca di Azure relativo aggiornamenti tooqueries e indice che non comportano la ricompilazione dell'indice. Se si elimina un campo, modificare il tipo di dati o rinominare un campo, è necessario indice hello toorebuild. indice di hello toorebuild, è necessario eliminare hello di indice, ricreare l'indice di hello e ricaricare i dati di hello.
 
 > [!NOTE]
-> È possibile aggiungere nuovi campi a un indice di Ricerca di Azure senza ricompilare l'indice. Il valore del nuovo campo sarà null per tutti i documenti già presenti nell'indice.
+> È possibile aggiungere nuovo indice di ricerca di Azure tooan campi senza ricompilare l'indice di hello. il valore di Hello del nuovo campo hello sarà null per tutti i documenti già nell'indice hello.
 
-Per mantenere la disponibilità degli indici durante la ricompilazione, è necessario avere una copia dell'indice con un nome diverso nelle stesso servizio oppure una copia dell'indice con lo stesso nome in un servizio diverso e quindi specificare la logica di reindirizzamento o di failover nel codice.
+disponibilità di indice toomaintain durante un'operazione di ricompilazione, è necessario disporre una copia dell'indice hello con un nome diverso in hello stesso servizio oppure una copia di hello indice con hello stesso nome in un altro servizio e quindi fornire la logica di reindirizzamento o di failover nel codice.
 
 ## <a name="disaster-recovery"></a>Ripristino di emergenza
-Attualmente, non esiste alcun meccanismo incorporato per il ripristino di emergenza. L'aggiunta di partizioni o repliche sarebbe una strategia errata per soddisfare gli obiettivi di ripristino di emergenza. Il metodo più comune consiste nell'aggiungere ridondanza a livello di servizio impostando un secondo servizio di ricerca in un'altra area. Come con la disponibilità durante la ricostruzione di un indice, la logica di reindirizzamento o di failover deve provenire dal codice.
+Attualmente, non esiste alcun meccanismo incorporato per il ripristino di emergenza. Aggiunta di partizioni o repliche sarebbe strategia errato di hello per soddisfare gli obiettivi di ripristino di emergenza. approccio più comune di Hello è tooadd ridondanza a livello di servizio hello configurando un secondo servizio di ricerca in un'altra area. Come con la disponibilità durante la ricompilazione di un indice, il reindirizzamento di hello o logica di failover deve provenire dal codice.
 
 ## <a name="increase-query-performance-with-replicas"></a>Aumentare le prestazioni delle query con le repliche
-La latenza delle query indica che sono necessarie repliche aggiuntive. In genere, un primo passo per migliorare le prestazioni delle query consiste nell'aggiungere altre repliche. Quando si aggiungono le repliche, copie aggiuntive dell'indice vengono portate online per supportare carichi di lavoro di query maggiori e per bilanciare il carico delle richieste su più repliche.
+La latenza delle query indica che sono necessarie repliche aggiuntive. In genere, un primo passo per migliorare le prestazioni delle query è tooadd più tale risorsa. Quando si aggiungono repliche, copie aggiuntive dell'indice hello vengono attivata la modalità online toosupport più grande carichi di lavoro di query e hello saldo tooload le richieste attraverso hello più repliche.
 
-Non è possibile fornire stime precise sulle query al secondo. Le prestazioni, infatti, dipendono dalla complessità della query e dai carichi di lavoro concorrenti. In media, una replica agli SKU Basic o S1 può soddisfare circa 15 QPS, ma la velocità effettiva sarà leggermente superiore o inferiore a seconda della complessità della query (le query con facet sono più complesse) e della latenza di rete. È importante sapere che mentre l'aggiunta di repliche consente certamente di migliorare la scalabilità e le prestazioni, il risultato non è strettamente lineare. Vale a dire che l'aggiunta di tre repliche non garantisce una velocità effettiva triplicata.
+Non è possibile fornire le stime di disco rigide per le query al secondo (query al secondo): query prestazioni dipendono dalla complessità di hello di hello query e carichi di lavoro concorrenti. In media, una replica agli SKU Basic o S1 può soddisfare circa 15 QPS, ma la velocità effettiva sarà leggermente superiore o inferiore a seconda della complessità della query (le query con facet sono più complesse) e della latenza di rete. Inoltre, è importante toorecognize che anche se l'aggiunta di repliche comporti indubbiamente un aumento scalabilità e prestazioni, hello risultato non è perfettamente lineare: aggiunta di tre repliche non garantisce triplo della velocità effettiva.
 
-Per altre informazioni sulle query al secondo, inclusi i metodi per la stima di tale valore in funzione dei carichi di lavoro, vedere [Gestire il servizio di ricerca](search-manage.md).
+toolearn sulla query al secondo, tra cui gli approcci per la stima delle query al secondo per i carichi di lavoro, vedere [gestire il servizio di ricerca](search-manage.md).
 
 ## <a name="increase-indexing-performance-with-partitions"></a>Aumentare le prestazioni dell'indicizzazione con le partizioni
 Le applicazioni di ricerca che richiedono l'aggiornamento dei dati quasi in tempo reale avranno bisogno in proporzione di più partizioni che repliche. L'aggiunta di partizioni distribuisce le operazioni di lettura/scrittura su un numero più ampio di risorse di calcolo. Offre inoltre più spazio su disco per l'archiviazione di documenti e indici aggiuntivi.
 
-L'esecuzione di query su indici di dimensioni maggiori può richiedere tempi più lunghi. Di conseguenza, si noterà che ogni aumento incrementale delle partizioni richiede un aumento delle repliche proporzionale ma più limitato. La complessità e il volume delle query influiscono sulla rapidità di esecuzione delle stesse.
+Gli indici di dimensioni maggiori hanno tooquery più lungo. Di conseguenza, si noterà che ogni aumento incrementale delle partizioni richiede un aumento delle repliche proporzionale ma più limitato. complessità Hello delle query e il volume di query è necessario tenere conto rapidità con cui l'esecuzione di query è attivato.
 
 ## <a name="basic-tier-partition-and-replica-combinations"></a>Livello Basic: combinazioni di partizioni e repliche
-Il servizio Basic prevede esattamente una partizione e fino a tre repliche, per un massimo di tre unità di ricerca. Le repliche sono l'unica risorsa regolabile. Per la disponibilità elevata relativa alle query è necessario un minimo di due repliche.
+Un servizio di base può avere esattamente una partizione e configurare le repliche toothree, per un massimo di tre SUs. risorsa solo regolabile Hello è repliche. Per la disponibilità elevata relativa alle query è necessario un minimo di due repliche.
 
 <a id="chart"></a>
 
 ## <a name="standard-tiers-partition-and-replica-combinations"></a>Livello Standard: combinazioni di partizioni e repliche
-La tabella seguente mostra le unità di ricerca necessarie per supportare combinazioni di repliche e partizioni entro il limite di 36 unità di ricerca, per tutti i livelli Standard.
+Questa tabella mostra le combinazioni di hello SUs toosupport necessario di repliche e partizioni, limite di 36 SU toohello soggetto, per tutti i livelli Standard.
 
 |   | **1 partizione** | **2 partizioni** | **3 partizioni** | **4 partizioni** | **6 partizioni** | **12 partizioni** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -116,14 +116,14 @@ La tabella seguente mostra le unità di ricerca necessarie per supportare combin
 | **6 repliche** |6 unità di ricerca |12 unità di ricerca |18 unità di ricerca |24 unità di ricerca |36 unità di ricerca |N/D |
 | **12 repliche** |12 unità di ricerca |24 unità di ricerca |36 unità di ricerca |N/D |N/D |N/D |
 
-Le unità di ricerca, i prezzi e le capacità sono illustrati in dettaglio nel sito web di Azure. Per altre informazioni, vedere i [dettagli sui prezzi](https://azure.microsoft.com/pricing/details/search/).
+SUs, prezzi e capacità sono illustrati in dettaglio nel sito Web di Azure hello. Per altre informazioni, vedere i [dettagli sui prezzi](https://azure.microsoft.com/pricing/details/search/).
 
 > [!NOTE]
-> Il numero di repliche e partizioni divide equamente per 12 (in particolare 1, 2, 3, 4, 6, 12). In questo modo Ricerca di Azure divide preventivamente ogni indice in 12 partizioni in modo che possa essere distribuito ugualmente tra tutte le partizioni. Ad esempio, se il servizio ha tre partizioni e si crea un indice, ogni partizione conterrà quattro partizioni dell'indice. Il modo in cui Ricerca di Azure suddivide un indice in partizioni è un dettaglio di implementazione ed è soggetto a modifiche nelle versioni successive. Sebbene il numero attualmente sia 12, tale numero potrebbe non essere 12 in futuro.
+> numero di Hello di partizioni e repliche divide in modo uniforme in 12 (in particolare, 1, 2, 3, 4, 6, 12). In questo modo Ricerca di Azure divide preventivamente ogni indice in 12 partizioni in modo che possa essere distribuito ugualmente tra tutte le partizioni. Ad esempio, se il servizio dispone di tre partizioni e si crea un indice, ogni partizione conterrà quattro partizioni dell'indice hello. La modalità di partizionamento di ricerca di Azure un indice è un dettaglio di implementazione, soggetto toochange nelle versioni future. Anche se il numero di hello è 12, tuttavia aspettarsi che numero tooalways essere 12 in hello future.
 >
 >
 
 ## <a name="billing-formula-for-replica-and-partition-resources"></a>Formula di fatturazione per le risorse di replica e partizione
-La formula per il calcolo del numero di unità di ricerca usate per combinazioni specifiche è il prodotto delle repliche e delle partizioni, vale a dire (R X P = SU). Ad esempio, tre repliche moltiplicate per tre partizioni vengono fatturate come nove unità di ricerca.
+formula Hello per calcolare il numero di SUs vengono utilizzati per combinazioni specifiche è prodotto hello, partizioni e repliche o (P X R = SU). Ad esempio, tre repliche moltiplicate per tre partizioni vengono fatturate come nove unità di ricerca.
 
-Il costo per SU è determinato dal livello, con una tariffa di fatturazione per unità inferiore per il livello Basic rispetto al livello Standard. Le tariffe per ogni livello sono disponibili in [Prezzi di Ricerca](https://azure.microsoft.com/pricing/details/search/).
+Costo SU è determinato dal livello di hello, con una tariffa di fatturazione per unità inferiore per Basic a Standard. Le tariffe per ogni livello sono disponibili in [Prezzi di Ricerca](https://azure.microsoft.com/pricing/details/search/).

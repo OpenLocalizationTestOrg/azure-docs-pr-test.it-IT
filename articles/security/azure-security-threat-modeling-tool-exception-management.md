@@ -1,6 +1,6 @@
 ---
-title: 'Gestione delle eccezioni: Microsoft Threat Modeling Tool - Azure | Microsoft Docs'
-description: soluzioni di prevenzione per le minacce esposte in Threat Modeling Tool
+title: Gestione - di modellazione strumento Microsoft Threat - Azure aaaException | Documenti Microsoft
+description: misure di attenuazione esposte in hello strumento di modellazione del rischio di minacce per la
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: bbf357b902474a1812eb7a5a2c914d0c8b91934b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 247096c10deeca94ebb9b19df7ba60e442ca1e4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-frame-exception-management--mitigations"></a>Infrastruttura di sicurezza: gestione delle eccezioni | soluzioni di prevenzione 
 | Prodotto o servizio | Articolo |
 | --------------- | ------- |
 | **WCF** | <ul><li>[WCF - non includere il nodo serviceDebug nel file di configurazione](#servicedebug)</li><li>[WCF - non includere il nodo serviceMetadata nel file di configurazione](#servicemetadata)</li></ul> |
 | **API Web** | <ul><li>[Assicurare una gestione appropriata delle eccezioni in API Web ASP.NET](#exception)</li></ul> |
-| **Applicazione Web** | <ul><li>[Non esporre informazioni di sicurezza nei messaggi di errore](#messages)</li><li>[Implementare la pagina di gestione degli errori predefiniti ](#default)</li><li>[Impostare il metodo di distribuzione al dettaglio in IIS](#deployment)</li><li>[Le eccezioni devono avere esito negativo in modo sicuro](#fail)</li></ul> |
+| **Applicazione Web** | <ul><li>[Non esporre informazioni di sicurezza nei messaggi di errore](#messages)</li><li>[Implementare la pagina di gestione degli errori predefiniti ](#default)</li><li>[Impostare il metodo di distribuzione tooRetail in IIS](#deployment)</li><li>[Le eccezioni devono avere esito negativo in modo sicuro](#fail)</li></ul> |
 
 ## <a id="servicedebug"></a>WCF - non includere il nodo serviceDebug nel file di configurazione
 
@@ -36,10 +36,10 @@ ms.lasthandoff: 08/29/2017
 | **Tecnologie applicabili** | Generico, .NET Framework 3 |
 | **Attributes (Attributi) (Attributi)**              | N/D  |
 | **Riferimenti**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Passaggi** | I servizi Windows Communication Framework (WCF) possono essere configurati per esporre le informazioni di debug. Le informazioni di debug non devono essere usate in ambienti di produzione. Il tag `<serviceDebug>` definisce se è abilitata la funzionalità di informazioni di debug per un servizio WCF. Se l'attributo includeExceptionDetailInFaults è impostato su true, le informazioni di eccezione dell'applicazione saranno restituite ai client. Gli utenti malintenzionati possono sfruttare le informazioni aggiuntive che acquisiscono dall'output di debug per sferrare attacchi su framework, database o altre risorse usate dall'applicazione. |
+| **Passaggi** | Servizi Windows Communication Framework (WCF) possono essere configurato tooexpose informazioni di debug. Le informazioni di debug non devono essere usate in ambienti di produzione. Hello `<serviceDebug>` tag definisce se è abilitata la funzionalità di informazioni di debug hello per un servizio WCF. Se hello includeExceptionDetailInFaults di attributo è impostato tootrue, verranno restituite informazioni di eccezione da un'applicazione hello tooclients. Gli utenti malintenzionati possono sfruttare ulteriori informazioni hello che acquisiscono dal debug output toomount attacchi nel framework di hello, database o altre risorse utilizzate da un'applicazione hello. |
 
 ### <a name="example"></a>Esempio
-Il file di configurazione seguente include il tag `<serviceDebug>`: 
+file di configurazione seguente Hello include hello `<serviceDebug>` tag: 
 ```
 <configuration> 
 <system.serviceModel> 
@@ -49,7 +49,7 @@ Il file di configurazione seguente include il tag `<serviceDebug>`:
 <serviceDebug includeExceptionDetailInFaults=""True"" httpHelpPageEnabled=""True""/> 
 ... 
 ```
-Disabilitare le informazioni di debug nel servizio. È possibile eseguire questa operazione rimuovendo il tag `<serviceDebug>` dal file di configurazione dell'applicazione. 
+Disabilitare le informazioni di debug nel servizio hello. Questo può essere ottenuto rimuovendo hello `<serviceDebug>` tag dal file di configurazione dell'applicazione. 
 
 ## <a id="servicemetadata"></a>WCF - non includere il nodo serviceMetadata nel file di configurazione
 
@@ -60,7 +60,7 @@ Disabilitare le informazioni di debug nel servizio. È possibile eseguire questa
 | **Tecnologie applicabili** | Generico |
 | **Attributes (Attributi) (Attributi)**              | Generico, .NET Framework 3 |
 | **Riferimenti**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Passaggi** | Esponendo pubblicamente informazioni su un servizio è possibile consentire agli hacker di comprendere in che modo possono sfruttare il servizio stesso. Il tag `<serviceMetadata>` abilita la funzionalità di pubblicazione dei metadati. I metadati del servizio potrebbero contenere informazioni riservate che non devono essere accessibili pubblicamente. Come minimo, consentire solo agli utenti attendibili di accedere ai metadati e assicurarsi che le informazioni non necessarie non siano esposte. Ancora meglio, disabilitare completamente la possibilità di pubblicare metadati. Una configurazione di WCF sicura non conterrà il tag `<serviceMetadata>`. |
+| **Passaggi** | Esporre pubblicamente informazioni relative a un servizio può fornire importanti informazioni su come si può sfruttare servizio hello. Hello `<serviceMetadata>` tag consente di funzionalità di pubblicazione dei metadati di hello. I metadati del servizio potrebbero contenere informazioni riservate che non devono essere accessibili pubblicamente. Come minimo, consentire solo a utenti attendibili tooaccess hello metadati e assicurarsi che le informazioni non necessarie non sono esposta. Ancora meglio, completamente disabilitare hello possibilità toopublish metadati. Una configurazione di WCF provvisoria non conterrà hello `<serviceMetadata>` tag. |
 
 ## <a id="exception"></a>Assicurare una gestione appropriata delle eccezioni in API Web ASP.NET
 
@@ -74,7 +74,7 @@ Disabilitare le informazioni di debug nel servizio. È possibile eseguire questa
 | **Passaggi** | Per impostazione predefinita, la maggior parte delle eccezioni non rilevate in API Web ASP.NET vengono convertite in una risposta HTTP con codice di stato `500, Internal Server Error`|
 
 ### <a name="example"></a>Esempio
-Per controllare il codice di stato restituito dall'API, è possibile usare `HttpResponseException` come illustrato di seguito: 
+codice di stato hello toocontrol restituito dall'API, hello `HttpResponseException` può essere utilizzato come illustrato di seguito: 
 ```C#
 public Product GetProduct(int id)
 {
@@ -88,7 +88,7 @@ public Product GetProduct(int id)
 ```
 
 ### <a name="example"></a>Esempio
-Per controllare ulteriormente la risposta di eccezione, è possibile usare la classe `HttpResponseMessage` come illustrato di seguito: 
+Per controllare ulteriormente sulla risposta eccezione hello, hello `HttpResponseMessage` classe può essere utilizzata come illustrato di seguito: 
 ```C#
 public Product GetProduct(int id)
 {
@@ -105,7 +105,7 @@ public Product GetProduct(int id)
     return item;
 }
 ```
-Per intercettare le eccezioni non gestite che non sono del tipo `HttpResponseException`, è possibile usare filtri eccezioni. I filtri eccezioni implementano l'interfaccia `System.Web.Http.Filters.IExceptionFilter`. Il modo più semplice per scrivere un filtro eccezioni è derivare la classe `System.Web.Http.Filters.ExceptionFilterAttribute` ed eseguire l'override del metodo OnException. 
+toocatch eccezioni non gestite che non sono di tipo hello `HttpResponseException`, è possibile utilizzare i filtri di eccezione. I filtri eccezioni implementano hello `System.Web.Http.Filters.IExceptionFilter` interfaccia. toowrite modo più semplice di Hello un filtro eccezioni è tooderive da hello `System.Web.Http.Filters.ExceptionFilterAttribute` classe ed eseguire l'override di metodo OnException hello. 
 
 ### <a name="example"></a>Esempio
 Ecco un filtro che converte le eccezioni `NotImplementedException` nel codice di stato HTTP `501, Not Implemented`: 
@@ -130,13 +130,13 @@ namespace ProductStore.Filters
 }
 ```
 
-Esistono diversi modi per registrare un filtro eccezioni API Web:
+Esistono diversi modi tooregister un filtro eccezioni di API Web:
 - Tramite un'azione
 - Tramite un controller
 - A livello globale
 
 ### <a name="example"></a>Esempio
-Per applicare il filtro a un'azione specifica, aggiungere il filtro come attributo per l'azione: 
+hello tooapply filtro azione specifica tooa, aggiungere il filtro hello come azione toohello attributo: 
 ```C#
 public class ProductsController : ApiController
 {
@@ -148,7 +148,7 @@ public class ProductsController : ApiController
 }
 ```
 ### <a name="example"></a>Esempio
-Per applicare il filtro a tutte le azioni in un `controller`, aggiungere il filtro come attributo per la classe `controller`: 
+tooapply hello filtro tooall azioni hello un `controller`, aggiungere il filtro di hello come un attributo toohello `controller` classe: 
 
 ```C#
 [NotImplExceptionFilter]
@@ -159,14 +159,14 @@ public class ProductsController : ApiController
 ```
 
 ### <a name="example"></a>Esempio
-Per applicare il filtro a livello globale per tutti i controller API Web, aggiungere un'istanza del filtro alla raccolta `GlobalConfiguration.Configuration.Filters`. I filtri eccezioni in questa raccolta si applicano a qualsiasi azione del controller API Web. 
+hello tooapply filtro globale controller API Web tooall, aggiungere un'istanza di hello filtro toohello `GlobalConfiguration.Configuration.Filters` insieme. I filtri di eccezioni in questa raccolta si applicano tooany azione del controller API Web. 
 ```C#
 GlobalConfiguration.Configuration.Filters.Add(
     new ProductStore.NotImplExceptionFilterAttribute());
 ```
 
 ### <a name="example"></a>Esempio
-Per la convalida del modello, lo stato del modello può essere passato al metodo CreateErrorResponse come illustrato di seguito: 
+Per la convalida del modello, lo stato del modello di hello può essere passato tooCreateErrorResponse metodo come illustrato di seguito: 
 ```C#
 public HttpResponseMessage PostProduct(Product item)
 {
@@ -178,7 +178,7 @@ public HttpResponseMessage PostProduct(Product item)
 }
 ```
 
-Controllare i collegamenti nella sezione Riferimenti per altre informazioni sulla gestione delle eccezioni e la convalida del modello in API Web ASP.Net 
+Controllo hello collegamenti nella sezione dei riferimenti hello per ulteriori informazioni sulla gestione delle eccezionale e la convalida del modello in ASP.Net Web API 
 
 ## <a id="messages"></a>Non esporre informazioni di sicurezza nei messaggi di errore
 
@@ -189,7 +189,7 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
 | **Tecnologie applicabili** | Generico |
 | **Attributes (Attributi) (Attributi)**              | N/D  |
 | **Riferimenti**              | N/D  |
-| **Passaggi** | <p>I messaggi di errore generici vengono forniti direttamente all'utente senza includere dati sensibili dell'applicazione. Esempi di dati sensibili:</p><ul><li>Nomi dei server</li><li>Stringhe di connessione</li><li>Nomi utente</li><li>Password</li><li>Procedure SQL</li><li>Dettagli di errori SQL dinamici</li><li>Analisi dello stack e righe di codice</li><li>Variabili archiviate in memoria</li><li>Percorsi di unità e cartelle</li><li>Punti di installazione dell'applicazione</li><li>Impostazioni di configurazione dell'host</li><li>Altri dettagli di un'applicazione interna</li></ul><p>Intercettando gli errori all'interno di un'applicazione e presentando messaggi di errore generici, nonché abilitando gli errori personalizzati all'interno di IIS, è possibile evitare la divulgazione di informazioni. La gestione delle eccezioni del database di SQL Server e .NET, tra le altre architetture, di gestione degli errori, è particolarmente dettagliata ed estremamente utile a un utente malintenzionato che esegue la profilatura dell'applicazione. Non visualizzare direttamente il contenuto di una classe derivata dalla classe di eccezione .NET e assicurarsi di disporre della gestione delle eccezioni appropriata in modo che un'eccezione imprevista non venga generata direttamente a disposizione dell'utente.</p><ul><li>Fornire messaggi di errore generici direttamente all'utente che omettono dettagli specifici rilevati direttamente nel messaggio di eccezione o errore</li><li>Non consentire direttamente all'utente di visualizzare il contenuto di una classe di eccezione .NET</li><li>Intercettare tutti i messaggi di errore e se necessario informare l'utente tramite un messaggio di errore generico inviato al client dell'applicazione</li><li>Non esporre il contenuto della classe di eccezione direttamente all'utente, in particolare il valore restituito da `.ToString()`, oppure i valori delle proprietà del messaggio o dell'analisi dello stack. Registrare in modo sicuro queste informazioni e mostrare un messaggio più innocuo all'utente</li></ul>|
+| **Passaggi** | <p>Messaggi di errore generici sono forniti direttamente toohello utente senza includere dati sensibili dell'applicazione. Esempi di dati sensibili:</p><ul><li>Nomi dei server</li><li>Stringhe di connessione</li><li>Nomi utente</li><li>Password</li><li>Procedure SQL</li><li>Dettagli di errori SQL dinamici</li><li>Analisi dello stack e righe di codice</li><li>Variabili archiviate in memoria</li><li>Percorsi di unità e cartelle</li><li>Punti di installazione dell'applicazione</li><li>Impostazioni di configurazione dell'host</li><li>Altri dettagli di un'applicazione interna</li></ul><p>Intercettando gli errori all'interno di un'applicazione e presentando messaggi di errore generici, nonché abilitando gli errori personalizzati all'interno di IIS, è possibile evitare la divulgazione di informazioni. Database di SQL Server e .NET gestione delle eccezioni, tra le altre architetture, di gestione degli errori sono particolarmente dettagliati ed estremamente utile tooa utente malintenzionato la profilatura dell'applicazione. Eseguire questa operazione non direttamente hello visualizzazione contenuto di una classe derivata dalla classe di eccezione .NET hello e assicurarsi di disporre di eccezioni appropriato in modo che non è un'eccezione imprevista inavvertitamente generato direttamente toohello utente.</p><ul><li>Fornire messaggi di errore generico direttamente utente toohello che astraggono stoccaggi dettagli specifici trovati direttamente nel messaggio di errore o eccezione di hello</li><li>Non visualizzato hello contenuto di un'eccezione .NET direttamente alla classe utente toohello</li><li>Intercettare tutti i messaggi di errore e se necessario informare l'utente di hello tramite l'applicazione client un errore generico messaggio inviato toohello</li><li>Non esporre il contenuto di hello della classe di eccezione hello direttamente toohello utente, in particolare hello restituito da `.ToString()`, o i valori delle proprietà di messaggio o StackTrace hello hello. In modo sicuro le informazioni di log e visualizzare più innocuo utente toohello messaggio</li></ul>|
 
 ## <a id="default"></a>Implementare la pagina di gestione degli errori predefiniti
 
@@ -200,9 +200,9 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
 | **Tecnologie applicabili** | Generico |
 | **Attributes (Attributi) (Attributi)**              | N/D  |
 | **Riferimenti**              | [Modificare la finestra di dialogo delle impostazioni pagine di errore ASP.NET](https://technet.microsoft.com/library/dd569096(WS.10).aspx) |
-| **Passaggi** | <p>Quando un'applicazione ASP.NET ha esito negativo e causa un errore Server interno HTTP/1.x 500 o una configurazione di funzionalità (ad esempio, il filtro richieste) impedisce la visualizzazione di una pagina, verrà generato un messaggio di errore. Gli amministratori possono scegliere se nell'applicazione viene visualizzato un messaggio descrittivo per il client, il messaggio di errore dettagliato per il client o il messaggio di errore dettagliato solo a localhost. Il tag <customErrors> in web.config ha tre modalità:</p><ul><li>**On:** specifica che gli errori personalizzati sono attivati. Se non viene specificato alcun attributo defaultRedirect, gli utenti visualizzato un errore generico. Gli errori personalizzati vengono visualizzati sui client remoti e sull'host locale</li><li>**Off:** specifica che gli errori personalizzati sono disattivati. Gli errori ASP.NET dettagliati vengono visualizzati sui client remoti e sull'host locale</li><li>**RemoteOnly:** specifica che gli errori personalizzati vengono visualizzati solo sui client remoti e gli errori ASP.NET vengono visualizzati sull'host locale. Si tratta del valore predefinito</li></ul><p>Aprire il file `web.config` per il sito/applicazione e assicurarsi che per il tag sia definito `<customErrors mode="RemoteOnly" />` o `<customErrors mode="On" />`.</p>|
+| **Passaggi** | <p>Quando un'applicazione ASP.NET ha esito negativo e causa un errore Server interno HTTP/1.x 500 o una configurazione di funzionalità (ad esempio, il filtro richieste) impedisce la visualizzazione di una pagina, verrà generato un messaggio di errore. Gli amministratori possono scegliere se visualizzare o meno un'applicazione hello deve un messaggio descrittivo toohello client, client toohello messaggio di errore dettagliato o toolocalhost messaggio di errore dettagliati solo. Hello <customErrors> tag nel file Web. config hello presenta tre modalità:</p><ul><li>**On:** specifica che gli errori personalizzati sono attivati. Se non viene specificato alcun attributo defaultRedirect, gli utenti visualizzato un errore generico. vengono visualizzati gli errori personalizzati Hello client remoti toohello e host locale toohello</li><li>**Off:** specifica che gli errori personalizzati sono disattivati. Hello errori ASP.NET dettagliati vengono visualizzati i client remoti toohello e host locale toohello</li><li>**RemoteOnly:** specifica che gli errori personalizzati vengono visualizzati solo i client remoti toohello e che gli errori ASP.NET vengono visualizzati l'host locale toohello. Questo è il valore di predefinito hello</li></ul><p>Aprire hello `web.config` file per sito/applicazione hello e verificare che il tag di hello è `<customErrors mode="RemoteOnly" />` o `<customErrors mode="On" />` definito.</p>|
 
-## <a id="deployment"></a>Impostare il metodo di distribuzione al dettaglio in IIS
+## <a id="deployment"></a>Impostare il metodo di distribuzione tooRetail in IIS
 
 | Titolo                   | Dettagli      |
 | ----------------------- | ------------ |
@@ -211,7 +211,7 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
 | **Tecnologie applicabili** | Generico |
 | **Attributes (Attributi) (Attributi)**              | N/D  |
 | **Riferimenti**              | [Element distribuzione (schema impostazioni ASP.NET)](https://msdn.microsoft.com/library/ms228298(VS.80).aspx) |
-| **Passaggi** | <p>Lo switch `<deployment retail>` deve essere usato dai server IIS di produzione. Questo switch viene usato per gestire applicazioni con le migliori prestazioni possibili e minime fughe di informazioni di sicurezza disabilitando la capacità dell'applicazione per generare l'output di traccia in una pagina, disattivando la possibilità di visualizzare messaggi di errore dettagliati per gli utenti finali e disattivando l'opzione di debug.</p><p>Spesso, gli switch e le opzioni che sono destinati agli sviluppatori, ad esempio traccia delle richieste no riuscite e debug, sono abilitati durante lo sviluppo attivo. È consigliabile che il metodo di distribuzione in qualsiasi server di produzione sia impostato su vendita al dettaglio. aprire il file machine.config e assicurarsi che `<deployment retail="true" />` resti impostato su true.</p>|
+| **Passaggi** | <p>Hello `<deployment retail>` switch deve essere utilizzato dal server IIS di produzione. Questo parametro viene utilizzato toohelp le applicazioni eseguite con prestazioni ottimali hello e informazioni di sicurezza minime perdite disabilitando hello output di traccia toogenerate possibilità dell'applicazione in una pagina, la disattivazione hello possibilità toodisplay dettagli errore gli utenti di messaggi tooend e hello Disabilitazione debug commutatore.</p><p>Spesso, gli switch e le opzioni che sono destinati agli sviluppatori, ad esempio traccia delle richieste no riuscite e debug, sono abilitati durante lo sviluppo attivo. È consigliabile che il metodo di distribuzione hello in qualsiasi server di produzione è possibile impostare tooretail. Aprire il file Machine. config hello e assicurarsi che `<deployment retail="true" />` tootrue. Connection resta impostato.</p>|
 
 ## <a id="fail"></a>Le eccezioni devono avere esito negativo in modo sicuro
 
@@ -222,7 +222,7 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
 | **Tecnologie applicabili** | Generico |
 | **Attributes (Attributi) (Attributi)**              | N/D  |
 | **Riferimenti**              | [Esito negativo in modo sicuro](https://www.owasp.org/index.php/Fail_securely) |
-| **Passaggi** | L'applicazione deve avere esito negativo in modo sicuro. Per qualsiasi metodo che restituisce un valore booleano, in base al quale vengono prese determinate decisioni, è necessario creare con attenzione un blocco delle eccezioni. Esistono molti errori logici che causano problemi di sicurezza quando il blocco delle eccezioni è scritto senza fare attenzione.|
+| **Passaggi** | L'applicazione deve avere esito negativo in modo sicuro. Per qualsiasi metodo che restituisce un valore booleano, in base al quale vengono prese determinate decisioni, è necessario creare con attenzione un blocco delle eccezioni. Esistono numerosi errori logici a causa di ampliamento di problemi di sicurezza toowhich in, quando il blocco di eccezioni hello viene scritto senza prestare particolare attenzione.|
 
 ### <a name="example"></a>Esempio
 ```C#
@@ -238,7 +238,7 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
 
                     if (string.Compare(domain, replyDomain, StringComparison.OrdinalIgnoreCase) != 0)
                     {
-                        //// Adding additional check to enable CMS urls if they are not hosted on same domain.
+                        //// Adding additional check tooenable CMS urls if they are not hosted on same domain.
                         if (!string.IsNullOrWhiteSpace(Utilities.CmsBase))
                         {
                             var cmsDomain = RetrieveDomain(new Uri(Utilities.Base.Trim()));
@@ -265,4 +265,4 @@ Controllare i collegamenti nella sezione Riferimenti per altre informazioni sull
             }
         }
 ```
-Il metodo sopra indicato restituirà sempre True, se si verificano alcune eccezioni. Se l'utente finale fornisce un URL in formato non valido, che il browser rispetta, ma il costruttore `Uri()` no, verrà generata un'eccezione e la vittima riuscirà ad accedere all'URL valido, ma in formato non valido. 
+Hello sopra metodo restituirà sempre True, in caso di alcune eccezioni. Se l'utente finale di hello fornisce un URL non valido, che hello browser equivalenti, ma hello `Uri()` non costruttore, verrà generata un'eccezione e vittima hello accederà toohello valido, ma non valido in URL. 

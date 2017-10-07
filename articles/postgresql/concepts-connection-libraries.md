@@ -1,6 +1,6 @@
 ---
 title: Raccolte connessioni per il database di Azure per PostgreSQL | Documentazione Microsoft
-description: In questo articolo vengono descritte varie librerie e driver che gli sviluppatori possono usare per generare il codice delle applicazioni per la connessione e l'esecuzione di query nel database di Azure per PostgreSQL.
+description: Questo articolo descrive diverse librerie e i driver che gli sviluppatori possono utilizzare durante la codifica di applicazioni tooconnect ed eseguire query sui Database di Azure per PostgreSQL.
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,17 +9,17 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/15/2017
-ms.openlocfilehash: 1f99ef7fefb1ff9d35f564a1f0ad77c8dd64659e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f7234499d8abe37f8de9008e3158765b1fb0bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: it-IT
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-postgresql"></a>Raccolte connessioni per il database di Azure per PostgreSQL
-In questo articolo vengono elencate le librerie e i driver che gli sviluppatori possono usare per programmare le applicazioni per la connessione e l'esecuzione di query nel database di Azure per PostgreSQL.
+In questo argomento elenca le librerie e i driver per l'utilizzo dagli sviluppatori per la programmazione di applicazioni tooconnect ed eseguire query sui Database di Azure per PostgreSQL.
 
 ## <a name="client-interfaces"></a>Interfacce client
-La maggior parte delle raccolte del linguaggio per connettersi al server PostgreSQL sono progetti esterni e vengono distribuite in modo indipendente. Queste sono supportate sulle piattaforme Windows, Linux e Mac. Di seguito sono elencati alcuni dei driver client più diffusi:
+La maggior parte delle lingue client librerie tooconnect tooPostgreSQL server sono progetti esterni e vengono distribuiti in modo indipendente. Queste sono supportate sulle piattaforme Windows, Linux e Mac. Sono elencati alcuni dei driver client più diffusi hello:
 
 | **Lingua** | **Interfaccia del client** | **Informazioni aggiuntive** | **Scaricare** |
 |--------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
@@ -35,6 +35,6 @@ La maggior parte delle raccolte del linguaggio per connettersi al server Postgre
 | C++ | [libpqxx](http://pqxx.org/) | Interfaccia nel nuovo stile C++ | [Scaricare](http://pqxx.org/download/software/) |
 
 ## <a name="next-steps"></a>Passaggi successivi
-Leggere queste guide rapide per informazioni su come connettersi ed eseguire query nel database di Azure per PostgreSQL usando il linguaggio scelto:
+Leggere queste guide rapide su come tooconnect ed eseguire query sui Database di Azure per PostgreSQL utilizzando il linguaggio scelto:
 
 [Python](./connect-python.md) | [Node.JS](./connect-nodejs.md) | [.NET (C#)](./connect-csharp.md)
